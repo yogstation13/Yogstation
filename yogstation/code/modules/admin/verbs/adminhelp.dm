@@ -82,7 +82,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	src.text = text
 	src.text_admin = generate_admin_info(text)
 
-	var/datum/DBQuery/add_interaction_query = SSdbcore.NewQuery(
+	var/datum/db_query/add_interaction_query = SSdbcore.NewQuery(
 		"INSERT INTO `[format_table_name("admin_ticket_interactions")]` (`ticket_id`,`user`,`text`) VALUES (:ticket_id,:user,:text)",
 		list("ticket_id" = src.parent.db_id, "user" = src.user, "text" = src.text)
 	)
@@ -156,7 +156,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket.Close()
 	initiator.current_ticket = src
 
-	var/datum/DBQuery/add_ticket_query = SSdbcore.NewQuery(
+	var/datum/db_query/add_ticket_query = SSdbcore.NewQuery(
 		"INSERT INTO `[format_table_name("admin_tickets")]` (round_id, ticket_id, ckey) VALUES (:round, :ticket, :ckey);",
 		list("round" = GLOB.round_id, "ticket" = id, "ckey" = initiator_ckey)
 	)
@@ -685,7 +685,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	handling_admin_ckey = usr.ckey
 	discord_admin = FALSE
 
-	var/datum/DBQuery/set_admin_query = SSdbcore.NewQuery(
+	var/datum/db_query/set_admin_query = SSdbcore.NewQuery(
 		"UPDATE `[format_table_name("admin_tickets")]` SET `a_ckey` = :ckey WHERE `id` = :id;",
 		list("ckey" = usr.ckey, "id" = db_id)
 	)
@@ -707,7 +707,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	handling_admin_ckey = ckey
 	discord_admin = TRUE
 
-	var/datum/DBQuery/set_admin_query = SSdbcore.NewQuery(
+	var/datum/db_query/set_admin_query = SSdbcore.NewQuery(
 		"UPDATE `[format_table_name("admin_tickets")]` SET `a_ckey` = :ckey WHERE `id` = :id;",
 		list("ckey" = ckey, "id" = db_id)
 	)

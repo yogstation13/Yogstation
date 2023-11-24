@@ -50,5 +50,26 @@
 /datum/config_entry/number/bsql_thread_limit
 	config_entry_value = 50
 	min_val = 1
+	deprecated_by = /datum/config_entry/number/pooling_max_sql_connections
+
+/datum/config_entry/number/bsql_thread_limit/DeprecationUpdate(value)
+	return value
+
+/datum/config_entry/number/pooling_min_sql_connections
+	default = 1
+	min_val = 1
+
+/datum/config_entry/number/pooling_max_sql_connections
+	default = 25
+	min_val = 1
+
+/datum/config_entry/number/max_concurrent_queries
+	default = 25
+	min_val = 1
+
+/datum/config_entry/number/max_concurrent_queries/ValidateAndSet(str_val)
+	. = ..()
+	if (.)
+		SSdbcore.max_concurrent_queries = config_entry_value
 
 /datum/config_entry/flag/bsql_debug

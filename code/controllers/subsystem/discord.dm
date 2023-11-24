@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(discord)
 
  // Returns ID from ckey
 /datum/controller/subsystem/discord/proc/lookup_id(lookup_ckey)
-	var/datum/DBQuery/query_get_discord_id = SSdbcore.NewQuery(
+	var/datum/db_query/query_get_discord_id = SSdbcore.NewQuery(
 		"SELECT discord_id FROM [format_table_name("player")] WHERE ckey = :ckey",
 		list("ckey" = lookup_ckey)
 	)
@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(discord)
 
  // Returns ckey from ID
 /datum/controller/subsystem/discord/proc/lookup_ckey(lookup_id)
-	var/datum/DBQuery/query_get_discord_ckey = SSdbcore.NewQuery(
+	var/datum/db_query/query_get_discord_ckey = SSdbcore.NewQuery(
 		"SELECT ckey FROM [format_table_name("player")] WHERE discord_id = :discord_id",
 		list("discord_id" = lookup_id)
 	)
@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(discord)
 
  // Finalises link
 /datum/controller/subsystem/discord/proc/link_account(ckey, id)
-	var/datum/DBQuery/link_account = SSdbcore.NewQuery(
+	var/datum/db_query/link_account = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("player")] SET discord_id = :discord_id WHERE ckey = :ckey",
 		list("discord_id" = id, "ckey" = ckey)
 	)
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(discord)
 
  // Unlink account (Admin verb used)
 /datum/controller/subsystem/discord/proc/unlink_account(ckey)
-	var/datum/DBQuery/unlink_account = SSdbcore.NewQuery(
+	var/datum/db_query/unlink_account = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("player")] SET discord_id = NULL WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)

@@ -9,7 +9,7 @@
 		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 
-	var/datum/DBQuery/query_poll_get = SSdbcore.NewQuery("SELECT id, question FROM [format_table_name("poll_question")] WHERE Now() > starttime ORDER BY starttime DESC")
+	var/datum/db_query/query_poll_get = SSdbcore.NewQuery("SELECT id, question FROM [format_table_name("poll_question")] WHERE Now() > starttime ORDER BY starttime DESC")
 	if(!query_poll_get.warn_execute())
 		qdel(query_poll_get)
 		return
@@ -38,7 +38,7 @@
 	if(!SSdbcore.IsConnected())
 		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
-	var/datum/DBQuery/select_query = SSdbcore.NewQuery("SELECT polltype, question, adminonly, multiplechoiceoptions, starttime, endtime FROM [format_table_name("poll_question")] WHERE id = :pollid", list("pollid" = pollid))
+	var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT polltype, question, adminonly, multiplechoiceoptions, starttime, endtime FROM [format_table_name("poll_question")] WHERE id = :pollid", list("pollid" = pollid))
 	select_query.Execute()
 	var/question = ""
 	var/polltype = ""
@@ -131,7 +131,7 @@
 			var/maxvote = 1
 			var/list/votecounts = list()
 			for(var/I in minval to maxval)
-				var/datum/DBQuery/rating_query = SSdbcore.NewQuery("SELECT COUNT(rating) AS countrating FROM [format_table_name("poll_vote")] WHERE optionid = :optionid AND rating = :I GROUP BY rating", list("optionid" = optionid, "I" = I))
+				var/datum/db_query/rating_query = SSdbcore.NewQuery("SELECT COUNT(rating) AS countrating FROM [format_table_name("poll_vote")] WHERE optionid = :optionid AND rating = :I GROUP BY rating", list("optionid" = optionid, "I" = I))
 				rating_query.Execute()
 				var/votecount = 0
 				while(rating_query.NextRow())

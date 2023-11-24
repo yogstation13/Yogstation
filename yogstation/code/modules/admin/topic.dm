@@ -1,5 +1,5 @@
 /datum/admins/proc/checkMentorEditList(ckey)
-	var/datum/DBQuery/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = :key)", list("key" = ckey))
+	var/datum/db_query/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = :key)", list("key" = ckey))
 	if(!query_memoedits.warn_execute())
 		qdel(query_memoedits)
 		return
@@ -28,7 +28,7 @@
 		new /datum/mentors(ckey, position)
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
+		var/datum/db_query/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
 		query_get_mentor.warn_execute()
 		if(query_get_mentor.NextRow())
 			to_chat(usr, span_danger("[ckey] is already a mentor."), confidential=TRUE)
@@ -36,13 +36,13 @@
 			return
 		qdel(query_get_mentor)
 
-		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`, `position`) VALUES (null, :ckey, :position)", list("ckey" = ckey, "position" = position))
+		var/datum/db_query/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`, `position`) VALUES (null, :ckey, :position)", list("ckey" = ckey, "position" = position))
 		if(!query_add_mentor.warn_execute())
 			qdel(query_add_mentor)
 			return
 		qdel(query_add_mentor)
 
-		var/datum/DBQuery/query_add_mentor_log = SSdbcore.NewQuery({"
+		var/datum/db_query/query_add_mentor_log = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
 			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'add mentor', :target, CONCAT('New mentor added: ', :target))
 		"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "target" = ckey))
@@ -80,7 +80,7 @@
 		GLOB.mentors -= C
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
+		var/datum/db_query/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
 		query_remove_mentor.warn_execute()
 		qdel(query_remove_mentor)
 

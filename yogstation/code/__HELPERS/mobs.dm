@@ -87,7 +87,7 @@
 		log_sql("Failed to connect to database in get_donators().")
 		return
 
-	var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donors")] WHERE expiration_time > Now() AND revoked IS NULL AND valid = 1")
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donors")] WHERE expiration_time > Now() AND revoked IS NULL AND valid = 1")
 	if(!query.Execute())
 		message_admins("Error loading donators from database.")
 		log_sql("Error loading donators from database.")

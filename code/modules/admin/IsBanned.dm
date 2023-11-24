@@ -95,7 +95,7 @@ Yogs End*/
 				message_admins(msg)
 		else
 			if(!real_bans_only)
-				var/datum/DBQuery/query_get_bound_creds = SSdbcore.NewQuery({"
+				var/datum/db_query/query_get_bound_creds = SSdbcore.NewQuery({"
 					SELECT
 						ckey,
 						ip,

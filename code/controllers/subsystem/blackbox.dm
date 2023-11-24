@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(blackbox)
 	var/list/pr = adminstats["present"]
 	var/admincount = st.len + pr.len
 	
-	var/datum/DBQuery/query_record_playercount = SSdbcore.NewQuery({"
+	var/datum/db_query/query_record_playercount = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_ip, server_port, round_id)
 		VALUES (:playercount, :admincount, :time, INET_ATON(:server_ip), :server_port, :round_id)
 	"}, list(
@@ -305,7 +305,7 @@ Versioning
 		first_death["damage"] = "<font color='#FF5555'>[L.getBruteLoss()]</font>/<font color='orange'>[L.getFireLoss()]</font>/<font color='lightgreen'>[L.getToxLoss()]</font>/<font color='lightblue'>[L.getOxyLoss()]</font>/<font color='pink'>[L.getCloneLoss()]</font>"
 		first_death["last_words"] = L.last_words
 
-	var/datum/DBQuery/query_report_death = SSdbcore.NewQuery({"
+	var/datum/db_query/query_report_death = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("death")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide)
 		VALUES (:pod, :x_coord, :y_coord, :z_coord, :map, INET_ATON(:internet_address), :port, :round_id, :time, :job, :special, :name, :key, :laname, :lakey, :brute, :fire, :brain, :oxy, :tox, :clone, :stamina, :last_words, :suicide)
 	"}, list(

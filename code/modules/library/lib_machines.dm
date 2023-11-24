@@ -219,7 +219,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 
 		if("uploadbook")
 			var/msg = "[key_name(usr)] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs"
-			var/datum/DBQuery/query_library_upload = SSdbcore.NewQuery({"
+			var/datum/db_query/query_library_upload = SSdbcore.NewQuery({"
 				INSERT INTO [format_table_name("library")] (author, title, content, category, ckey, datetime, round_id_created)
 				VALUES (:author, :title, :content, :category, :ckey, Now(), :round_id)
 			"}, list("title" = scanner.cache.name, "author" = scanner.cache.author, "content" = scanner.cache.dat, "category" = params["category"], "ckey" = usr.ckey, "round_id" = GLOB.round_id))
@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 				say("Printer unavailable. Please allow a short time before attempting to print.")
 			else
 				cooldown = world.time + PRINTER_COOLDOWN
-				var/datum/DBQuery/query_library_print = SSdbcore.NewQuery(
+				var/datum/db_query/query_library_print = SSdbcore.NewQuery(
 					"SELECT * FROM [format_table_name("library")] WHERE id=:id AND deleted IS NULL",
 					list("id" = id)
 				)
@@ -328,7 +328,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 	set waitfor = 0
 	if(!SSdbcore.Connect())
 		return
-	var/datum/DBQuery/query_library_cache = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] WHERE deleted IS NULL")
+	var/datum/db_query/query_library_cache = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] WHERE deleted IS NULL")
 	if(!query_library_cache.Execute())
 		qdel(query_library_cache)
 		return

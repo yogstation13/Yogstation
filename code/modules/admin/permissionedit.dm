@@ -74,7 +74,7 @@
 // 		var/logssperpage = 20
 // 		var/pagecount = 0
 // 		page = text2num(page)
-// 		var/datum/DBQuery/query_count_admin_logs = SSdbcore.NewQuery(
+// 		var/datum/db_query/query_count_admin_logs = SSdbcore.NewQuery(
 // 			"SELECT COUNT(id) FROM [format_table_name("admin_log")] WHERE (:target IS NULL OR adminckey = :target) AND (:operation IS NULL OR operation = :operation)",
 // 			list("target" = target, "operation" = operation)
 // 		)
@@ -91,7 +91,7 @@
 // 				logcount -= logssperpage
 // 				pagecount++
 // 			output += "|"
-// 		var/datum/DBQuery/query_search_admin_logs = SSdbcore.NewQuery({"
+// 		var/datum/db_query/query_search_admin_logs = SSdbcore.NewQuery({"
 // 			SELECT
 // 				datetime,
 // 				round_id,

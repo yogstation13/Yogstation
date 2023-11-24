@@ -89,7 +89,7 @@ GLOBAL_PROTECT(mentor_href_token)
 			load_mentors()
 			return
 
-		var/datum/DBQuery/query_load_mentors = SSdbcore.NewQuery("SELECT ckey, position FROM [format_table_name("mentor")]")
+		var/datum/db_query/query_load_mentors = SSdbcore.NewQuery("SELECT ckey, position FROM [format_table_name("mentor")]")
 		if(!query_load_mentors.Execute())
 			qdel(query_load_mentors)
 			return

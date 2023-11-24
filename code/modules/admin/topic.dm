@@ -749,7 +749,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/datum/DBQuery/query_get_message_edits = SSdbcore.NewQuery(
+		var/datum/db_query/query_get_message_edits = SSdbcore.NewQuery(
 		"SELECT edits FROM [format_table_name("messages")] WHERE id = :message_id",
 			list("message_id" = href_list["messageedits"])
 		)

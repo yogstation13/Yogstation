@@ -42,21 +42,21 @@ SUBSYSTEM_DEF(achievements)
 		var/datum/achievement/A = new i
 		achievements[A] = A.id
 
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, descr FROM [format_table_name("achievements")] WHERE id = :id", list("id" = A.id)) // No sanitation of A is needed for these calls because we instantiated A right here in this proc.
+		var/datum/db_query/medalQuery = SSdbcore.NewQuery("SELECT name, descr FROM [format_table_name("achievements")] WHERE id = :id", list("id" = A.id)) // No sanitation of A is needed for these calls because we instantiated A right here in this proc.
 		medalQuery.Execute()
 		if(!medalQuery.NextRow())
-			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id, descr) VALUES (:name, :id, :desc)", list("name" = A.name, "id" = A.id, "desc" = A.desc))
+			var/datum/db_query/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id, descr) VALUES (:name, :id, :desc)", list("name" = A.name, "id" = A.id, "desc" = A.desc))
 			medalQuery2.Execute()
 			qdel(medalQuery2)
 		else if(medalQuery.item[1] != A.name || medalQuery.item[2] != A.desc)
-			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("UPDATE [format_table_name("achievements")] SET name = :name, descr = :desc WHERE id = :id", list("name" = A.name, "desc" = A.desc, "id" = A.id))
+			var/datum/db_query/medalQuery2 = SSdbcore.NewQuery("UPDATE [format_table_name("achievements")] SET name = :name, descr = :desc WHERE id = :id", list("name" = A.name, "desc" = A.desc, "id" = A.id))
 			medalQuery2.Execute()
 			qdel(medalQuery2)
 
 		qdel(medalQuery)
 
 
-	var/datum/DBQuery/ridOldChieves = SSdbcore.NewQuery("SELECT id FROM [format_table_name("achievements")]")
+	var/datum/db_query/ridOldChieves = SSdbcore.NewQuery("SELECT id FROM [format_table_name("achievements")]")
 	ridOldChieves.Execute()
 	while(ridOldChieves.NextRow())
 		var/id = text2num(ridOldChieves.item[1]) // This id var also doesn't need to be sanitized because it's from the actual database
@@ -68,9 +68,9 @@ SUBSYSTEM_DEF(achievements)
 				break
 		if(!found_achievement)
 			log_sql("Old achievement [id] found in database, removing")
-			var/datum/DBQuery/getRidOfOldStuff = SSdbcore.NewQuery("DELETE FROM [format_table_name("achievements")] WHERE id = :id", list("id" = id))
+			var/datum/db_query/getRidOfOldStuff = SSdbcore.NewQuery("DELETE FROM [format_table_name("achievements")] WHERE id = :id", list("id" = id))
 			getRidOfOldStuff.Execute()
-			var/datum/DBQuery/ridTheOtherTableAsWell = SSdbcore.NewQuery("DELETE FROM [format_table_name("earned_achievements")] WHERE id = :id", list("id" = id))
+			var/datum/db_query/ridTheOtherTableAsWell = SSdbcore.NewQuery("DELETE FROM [format_table_name("earned_achievements")] WHERE id = :id", list("id" = id))
 			ridTheOtherTableAsWell.Execute()
 			qdel(ridTheOtherTableAsWell)
 			qdel(getRidOfOldStuff)
@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(achievements)
 	if(istype(achievement, /datum/achievement/greentext) && achievementPath != /datum/achievement/greentext)
 		unlock_achievement(/datum/achievement/greentext, C) // Oooh, a little bit recursive!
 	if(!has_achievement(achievementPath, C))
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES (:ckey, :id)", list("ckey" = ckey(C.ckey), "id" = initial(achievement.id)))
+		var/datum/db_query/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES (:ckey, :id)", list("ckey" = ckey(C.ckey), "id" = initial(achievement.id)))
 		medalQuery.Execute()
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement
@@ -162,7 +162,7 @@ SUBSYSTEM_DEF(achievements)
   * * C - Client that you're caching for, See [/client]
   */
 /datum/controller/subsystem/achievements/proc/cache_achievements(client/C)
-	var/datum/DBQuery/cacheQuery = SSdbcore.NewQuery("SELECT id FROM [format_table_name("earned_achievements")] WHERE ckey = :ckey", list("ckey" = ckey(C.ckey)))
+	var/datum/db_query/cacheQuery = SSdbcore.NewQuery("SELECT id FROM [format_table_name("earned_achievements")] WHERE ckey = :ckey", list("ckey" = ckey(C.ckey)))
 	cacheQuery.Execute()
 	cached_achievements[C.ckey] = list()
 	while(cacheQuery.NextRow())

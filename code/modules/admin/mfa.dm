@@ -25,7 +25,7 @@
 	if(tmp_holder && tmp_holder.cid_cache == computer_id && tmp_holder.ip_cache == address)
 		return TRUE
 
-	var/datum/DBQuery/query_mfa_check = SSdbcore.NewQuery(
+	var/datum/db_query/query_mfa_check = SSdbcore.NewQuery(
 		"SELECT COUNT(1) FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey AND ip = INET_ATON(:address) AND cid = :cid AND datetime > current_timestamp() - INTERVAL 30 DAY;",
 		list("ckey" = ckey, "address" = address, "cid" = computer_id)
 	)
@@ -45,7 +45,7 @@
 /client/proc/mfa_query()
 	CHECK_MFA_ENABLED
 
-	var/datum/DBQuery/query_totp_seed = SSdbcore.NewQuery(
+	var/datum/db_query/query_totp_seed = SSdbcore.NewQuery(
 		"SELECT totp_seed FROM [format_table_name("player")] WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)
@@ -190,7 +190,7 @@
 		else
 			return FALSE
 
-	var/datum/DBQuery/query_set_totp_seed = SSdbcore.NewQuery(
+	var/datum/db_query/query_set_totp_seed = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("player")] SET totp_seed = :totp_seed, mfa_backup = :mfa_backup WHERE ckey = :ckey",
 		list("totp_seed" = code_b16, "mfa_backup" = backup_hash, "ckey" = ckey)
 	)
@@ -208,7 +208,7 @@
 	if(!mfa_backup)
 		return
 
-	var/datum/DBQuery/query_mfa_backup = SSdbcore.NewQuery(
+	var/datum/db_query/query_mfa_backup = SSdbcore.NewQuery(
 		"SELECT COUNT(1) FROM [format_table_name("player")] WHERE ckey = :ckey AND mfa_backup = :code",
 		list("ckey" = ckey, "code" = rustg_hash_string(RUSTG_HASH_SHA512, mfa_backup))
 	)
@@ -243,7 +243,7 @@
 		log_admin("[key_name(usr)][msg]")
 		return FALSE
 
-	var/datum/DBQuery/query_clear_mfa = SSdbcore.NewQuery(
+	var/datum/db_query/query_clear_mfa = SSdbcore.NewQuery(
 		"DELETE FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)
@@ -268,7 +268,7 @@
 		return
 
 	if(tgui_alert(src, "Do you wish to remember this connection?", "Remember Me", list("Yes", "No")) == "Yes")
-		var/datum/DBQuery/mfa_addverify = SSdbcore.NewQuery(
+		var/datum/db_query/mfa_addverify = SSdbcore.NewQuery(
 			"INSERT INTO [format_table_name("mfa_logins")] (ckey, ip, cid) VALUE (:ckey, INET_ATON(:address), :cid)",
 			list("ckey" = ckey, "address" = address, "cid" = computer_id)
 		)

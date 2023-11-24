@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(echelon)
 /datum/controller/subsystem/echelon/proc/is_exception(ckey)
 	PRIVATE_PROC(TRUE)
 
-	var/datum/DBQuery/query_get_flags = SSdbcore.NewQuery({"
+	var/datum/db_query/query_get_flags = SSdbcore.NewQuery({"
 		SELECT
 			flags
 		FROM [format_table_name("bound_credentials")]
@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(echelon)
 
 	if(IsAdminAdvancedProcCall()) return
 
-	var/datum/DBQuery/query_get_cached_matches = SSdbcore.NewQuery({"
+	var/datum/db_query/query_get_cached_matches = SSdbcore.NewQuery({"
 		SELECT
 			JSON_VALUE(data, "$.should_block")
 		FROM [format_table_name("proxy_cache")]
@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(echelon)
 	var/datum/http_response/res = req.into_response()
 	var/json = json_decode(res.body)
 
-	var/datum/DBQuery/query_update_cache = SSdbcore.NewQuery({"
+	var/datum/db_query/query_update_cache = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("proxy_cache")]
 			SET ip = INET_ATON(:ip), data = :data
 	"}, list("ip" = ip, "data" = res.body))

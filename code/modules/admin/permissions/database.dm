@@ -26,7 +26,7 @@
 		log_sql("Failed to connect to database to load admins")
 		return
 	
-	var/datum/DBQuery/query_load_admin_ranks = SSdbcore.NewQuery("SELECT rank, flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")]")
+	var/datum/db_query/query_load_admin_ranks = SSdbcore.NewQuery("SELECT rank, flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")]")
 	if(!query_load_admin_ranks.Execute())
 		message_admins("Error loading admin ranks from database.")
 		log_sql("Error loading admin ranks from database.")
@@ -39,7 +39,7 @@
 			dbranks[rank_name] = list("flags" = rank_flags & (~rank_exclude_flags), "can_edit_flags" = rank_can_edit_flags)
 	qdel(query_load_admin_ranks)
 
-	var/datum/DBQuery/query_load_admins = SSdbcore.NewQuery("SELECT ckey, rank FROM [format_table_name("admin")] ORDER BY rank")
+	var/datum/db_query/query_load_admins = SSdbcore.NewQuery("SELECT ckey, rank FROM [format_table_name("admin")] ORDER BY rank")
 	if(!query_load_admins.Execute())
 		message_admins("Error loading admins from database. Loading from backup.")
 		log_sql("Error loading admins from database. Loading from backup.")
@@ -164,7 +164,7 @@
 		if((ckey in dbadmins) && (dbadmins[ckey] in dbranks))
 			current_flags = dbranks[dbadmins[ckey]]
 		dbranks[new_rank] = current_flags
-		var/datum/DBQuery/query_add_rank = SSdbcore.NewQuery({"
+		var/datum/db_query/query_add_rank = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("admin_ranks")] (`rank`, flags, exclude_flags, can_edit_flags)
 			VALUES (:new_rank, :flags, '0', :edit_flags) ON DUPLICATE KEY UPDATE
 		"}, list("new_rank" = new_rank, "flags" = current_flags["flags"], "edit_flags" = current_flags["can_edit_flags"]))
@@ -172,7 +172,7 @@
 			qdel(query_add_rank)
 			return
 		qdel(query_add_rank)
-		var/datum/DBQuery/query_add_rank_log = SSdbcore.NewQuery({"
+		var/datum/db_query/query_add_rank_log = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
 			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'add rank', :new_rank, CONCAT('New rank added: ', :new_rank))
 		"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "new_rank" = new_rank))
@@ -182,7 +182,7 @@
 		qdel(query_add_rank_log)
 	var/old_rank = dbadmins[ckey] || "NEW ADMIN"
 	dbadmins[ckey] = new_rank
-	var/datum/DBQuery/query_change_rank = SSdbcore.NewQuery(
+	var/datum/db_query/query_change_rank = SSdbcore.NewQuery(
 		"INSERT INTO [format_table_name("admin")] (`rank`, ckey) VALUES(:new_rank, :admin_ckey)",
 		list("new_rank" = new_rank, "admin_ckey" = ckey)
 	)
@@ -190,7 +190,7 @@
 		qdel(query_change_rank)
 		return
 	qdel(query_change_rank)
-	var/datum/DBQuery/query_change_rank_log = SSdbcore.NewQuery({"
+	var/datum/db_query/query_change_rank_log = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
 		VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'change admin rank', :target, CONCAT('Rank of ', :target, ' changed from ', :old_rank, ' to ', :new_rank))
 	"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "target" = ckey, "old_rank" = old_rank, "new_rank" = new_rank))
@@ -287,7 +287,7 @@
 	
 	var/rank_name = dbadmins[ckey]
 	var/m = "edited the permissions of rank [rank_name] permanently"
-	var/datum/DBQuery/query_change_rank_flags = SSdbcore.NewQuery(
+	var/datum/db_query/query_change_rank_flags = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("admin_ranks")] SET flags = :new_flags, exclude_flags = :new_exclude_flags, can_edit_flags = :new_can_edit_flags WHERE `rank` = :rank_name",
 		list("new_flags" = new_flags, "new_exclude_flags" = 0, "new_can_edit_flags" = new_can_edit_flags, "rank_name" = rank_name)
 	)
@@ -296,7 +296,7 @@
 		return
 	qdel(query_change_rank_flags)
 	var/log_message = "Permissions of [rank_name] changed from[rights2text(rank["flags"]," ")][rights2text(rank["can_edit_flags"]," ", "*")] to[rights2text(new_flags," ")][rights2text(new_can_edit_flags," ", "*")]"
-	var/datum/DBQuery/query_change_rank_flags_log = SSdbcore.NewQuery({"
+	var/datum/db_query/query_change_rank_flags_log = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
 		VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'change rank flags', :rank_name, :log)
 	"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "rank_name" = rank_name, "log" = log_message))
@@ -346,7 +346,7 @@
 	if(permanent)
 		if(alert(usr, "Are you sure you wish to permanently remove [ckey] from the admins list?", "Confirmation", "Yes", "No") != "Yes")
 			return TRUE
-		var/datum/DBQuery/query_add_rank = SSdbcore.NewQuery(
+		var/datum/db_query/query_add_rank = SSdbcore.NewQuery(
 			"DELETE FROM [format_table_name("admin")] WHERE ckey = :ckey",
 			list("ckey" = ckey)
 		)
@@ -354,7 +354,7 @@
 			qdel(query_add_rank)
 			return
 		qdel(query_add_rank)
-		var/datum/DBQuery/query_add_rank_log = SSdbcore.NewQuery({"
+		var/datum/db_query/query_add_rank_log = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
 			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'remove admin', :admin_ckey, CONCAT('Admin removed: ', :admin_ckey))
 		"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "admin_ckey" = ckey))

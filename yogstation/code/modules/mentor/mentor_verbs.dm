@@ -26,7 +26,7 @@ GLOBAL_PROTECT(mentor_verbs)
 		return
 
 	var/msg = "<b>Current Mentors:</b>\n"
-	var/datum/DBQuery/query_load_mentors = SSdbcore.NewQuery("SELECT `ckey` FROM `[format_table_name("mentor")]`")
+	var/datum/db_query/query_load_mentors = SSdbcore.NewQuery("SELECT `ckey` FROM `[format_table_name("mentor")]`")
 	if(!query_load_mentors.Execute())
 		qdel(query_load_mentors)
 		return
