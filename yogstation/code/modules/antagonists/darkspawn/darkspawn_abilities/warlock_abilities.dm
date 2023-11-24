@@ -79,7 +79,11 @@
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/null_charge/is_valid_target(atom/cast_on)
-	return istype(cast_on, /obj/machinery/power/apc)
+	if(istype(cast_on, /obj/machinery/power/apc))
+		var/obj/machinery/power/apc/target = cast_on
+		if(!(target.stat & BROKEN))
+			return TRUE
+	return FALSE
 
 /datum/action/cooldown/spell/touch/null_charge/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/power/apc/target, mob/living/carbon/human/caster)
 	if(!target || !istype(target))//sanity check
@@ -97,11 +101,15 @@
 		target.visible_message(span_warning("The [target] begins glowing brightly!"))
 	else
 		//We did it
+		if(target.powernet)
+			var/datum/powernet/network = target.powernet
+			for(var/thing in network.nodes)
+				if(istype(thing, /obj/machinery/power/apc))
+					var/obj/machinery/power/apc/other = thing
+					
+				power_fail(20, 40)
 		to_chat(caster, span_velvet("You return the APC's power to the void, disabling it."))
-		target.cell?.charge = 0	//Sent to the shadow realm
-		target.chargemode = 0 //Won't recharge either until an engineer hits the button
-		target.charging = 0
-		target.update_appearance(UPDATE_ICON)
+		target.set_broken()
 		
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Drain enemy, heal ally-------------------------//

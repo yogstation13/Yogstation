@@ -52,15 +52,15 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	psi_cost = 100 //lol
-	cooldown_time = 60 SECONDS
+	psi_cost = 70
+	cooldown_time = 120 SECONDS
 	length = 5 SECONDS
 
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()
 	if(. && isdarkspawn(owner))
 		var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
-		shadowling.block_psi(10 SECONDS)
+		shadowling.block_psi(20 SECONDS)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------Scout and warlock, aoe slow and chill----------------//
