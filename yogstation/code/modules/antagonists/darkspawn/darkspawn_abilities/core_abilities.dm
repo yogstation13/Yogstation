@@ -226,7 +226,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/simulacrum
 	name = "Simulacrum"
-	desc = "Creates an illusion that closely resembles you. The illusion will fight nearby enemies in your stead for 5 seconds. Costs 20 Psi."
+	desc = "Creates an illusion that closely resembles you. The illusion will fight nearby enemies in your stead for 10 seconds. Costs 40 Psi."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -236,7 +236,8 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	psi_cost = 30
+	psi_cost = 40
+	var/duration = 10 SECONDS
 	//no cooldown, make an army if you really want
 
 /datum/action/cooldown/spell/simulacrum/cast(atom/cast_on)
@@ -250,7 +251,7 @@
 
 	var/mob/living/simple_animal/hostile/illusion/M = new(get_turf(L))
 	M.faction = list(ROLE_DARKSPAWN)
-	M.Copy_Parent(L, 5 SECONDS, 100, 10) //closely follows regular player stats so it's not painfully obvious (still sorta is)
+	M.Copy_Parent(L, duration, 100, 10) //closely follows regular player stats so it's not painfully obvious (still sorta is)
 	M.move_to_delay = L.movement_delay()
 
 //////////////////////////////////////////////////////////////////////////
