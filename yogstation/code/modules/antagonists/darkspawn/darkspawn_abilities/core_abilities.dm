@@ -236,8 +236,8 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	psi_cost = 20
-	cooldown_time = 10 SECONDS
+	psi_cost = 30
+	//no cooldown, make an army if you really want
 
 /datum/action/cooldown/spell/simulacrum/cast(atom/cast_on)
 	. = ..()
