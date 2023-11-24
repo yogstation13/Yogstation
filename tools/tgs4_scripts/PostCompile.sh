@@ -73,16 +73,6 @@ git checkout $RUST_G_VERSION
 mv target/release/librust_g.so $1/rust_g
 cd ..
 
-echo "Deploying BSQL..."
-cd BSQL
-git checkout $BSQL_VERSION
-mkdir -p mysql
-mkdir -p artifacts
-cd artifacts
-cmake .. -DCMAKE_CXX_COMPILER=g++-6 -DMARIA_LIBRARY=/usr/lib/i386-linux-gnu/libmariadb.so.2
-make
-mv src/BSQL/libBSQL.so $1/
-
 #run deploy.sh
 echo 'Deploying tgstation compilation...'
 

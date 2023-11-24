@@ -16,3 +16,6 @@ BSQL_THREAD_LIMIT 50
 
 ## Uncomment to enable verbose BSQL communication logs
 #BSQL_DEBUG
+
+## The maximum number of concurrent asynchronous queries that can run at one time, handled by DM.
+MAX_CONCURRENT_QUERIES 25

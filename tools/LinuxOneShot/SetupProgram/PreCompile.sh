@@ -72,7 +72,7 @@ cd "$original_dir"
 if [ ! -d "../GameStaticFiles/config" ]; then
 	echo "Creating initial config..."
 	cp -r "$1/config" "../GameStaticFiles/config"
-	echo -e "SQL_ENABLED\nFEEDBACK_TABLEPREFIX SS13_\nADDRESS mariadb\nPORT 3306\nFEEDBACK_DATABASE ss13_db\nFEEDBACK_LOGIN root\nFEEDBACK_PASSWORD $MYSQL_ROOT_PASSWORD\nASYNC_QUERY_TIMEOUT 10\nBLOCKING_QUERY_TIMEOUT 5\nBSQL_THREAD_LIMIT 50" > "../GameStaticFiles/config/dbconfig.txt"
+	echo -e "SQL_ENABLED\nFEEDBACK_TABLEPREFIX SS13_\nADDRESS mariadb\nPORT 3306\nFEEDBACK_DATABASE ss13_db\nFEEDBACK_LOGIN root\nFEEDBACK_PASSWORD $MYSQL_ROOT_PASSWORD\nASYNC_QUERY_TIMEOUT 10\nBLOCKING_QUERY_TIMEOUT 5" > "../GameStaticFiles/config/dbconfig.txt"
 	echo "$TGS_ADMIN_CKEY = Host" > "../GameStaticFiles/config/admins.txt"
 fi
 
