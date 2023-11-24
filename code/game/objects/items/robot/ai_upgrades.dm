@@ -8,7 +8,6 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "datadisk3"
 
-
 /obj/item/malf_upgrade/afterattack(mob/living/silicon/ai/AI, mob/user)
 	. = ..()
 	if(!istype(AI))
@@ -20,11 +19,10 @@
 		to_chat(AI, span_userdanger("[user] has upgraded you with combat software!"))
 		to_chat(AI, span_userdanger("Your current laws and objectives remain unchanged.")) //this unlocks malf powers, but does not give the license to plasma flood
 		AI.add_malf_picker()
-		log_game("[key_name(user)] has upgraded [key_name(AI)] with a [src].")
-		message_admins("[ADMIN_LOOKUPFLW(user)] has upgraded [ADMIN_LOOKUPFLW(AI)] with a [src].")
+		log_game("[key_name(user)] has upgraded [key_name(AI)] with \a [src].")
+		message_admins("[ADMIN_LOOKUPFLW(user)] has upgraded [ADMIN_LOOKUPFLW(AI)] with \a [src].")
 	to_chat(user, span_notice("You upgrade [AI]. [src] is consumed in the process."))
 	qdel(src)
-
 
 //Lipreading
 /obj/item/surveillance_upgrade
@@ -42,8 +40,8 @@
 		to_chat(AI, span_userdanger("[user] has upgraded you with surveillance software!"))
 		to_chat(AI, "Via a combination of hidden microphones and lip reading software, you are able to use your cameras to listen in on conversations.")
 	to_chat(user, span_notice("You upgrade [AI]. [src] is consumed in the process."))
-	log_game("[key_name(user)] has upgraded [key_name(AI)] with a [src].")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has upgraded [ADMIN_LOOKUPFLW(AI)] with a [src].")
+	log_game("[key_name(user)] has upgraded [key_name(AI)] with \a [src].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has upgraded [ADMIN_LOOKUPFLW(AI)] with \a [src].")
 	qdel(src)
 
 /obj/item/cameragun_upgrade
@@ -57,12 +55,18 @@
 	if(!istype(AI))
 		return
 
+	// No giving multiple copies.
+	for(var/datum/action/action in AI.actions)
+		if(action.type == /datum/action/innate/ai/ranged/cameragun)
+			to_chat(user, span_notice("[AI] has already been upgraded with \a [src]."))
+			return
+
 	var/datum/action/innate/ai/ranged/cameragun/ability = new
 	ability.Grant(AI)
 
 	to_chat(user, span_notice("You upgrade [AI]. [src] is consumed in the process."))
-	log_game("[key_name(user)] has upgraded [key_name(AI)] with [src].")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has upgraded [ADMIN_LOOKUPFLW(AI)] with [src].")
+	log_game("[key_name(user)] has upgraded [key_name(AI)] with \a [src].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has upgraded [ADMIN_LOOKUPFLW(AI)] with \a [src].")
 	qdel(src)
 
 /// An ability that allows the user to shoot a laser beam at a target from the nearest camera.
@@ -73,7 +77,7 @@
 	button_icon_state = "laser"
 	enable_text = span_notice("You prepare to overcharge a camera. Click a target for a nearby camera to shoot a laser at.")
 	disable_text = span_notice("You dissipate the overcharged energy.")
-	click_action = FALSE // Even though that we are an click action, we want to use Activate() and Deactivate().
+	click_action = FALSE // Even though that we are a click action, we want to use Activate() and Deactivate().
 	COOLDOWN_DECLARE(next_shot)
 	var/cooldown = 10 SECONDS
 
@@ -87,7 +91,7 @@
 	proj.ricochets_max = 0
 	proj.ricochet_chance = 0
 	proj.damage = 0
-	proj.nodamage = TRUE
+	proj.nodamage = TRUE // Prevents this hitscan test projectile from detonating certain objects (e.g. welding tanks). 
 	proj.log_override = TRUE
 	proj.hitscan = TRUE
 	proj.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
