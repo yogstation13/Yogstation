@@ -166,8 +166,7 @@
 	
 	COOLDOWN_START(src, next_shot, cooldown)
 	var/turf/loc_chosen = get_turf(chosen_camera)
-	var/obj/projectile/beam/laser/proj = null
-	proj = new /obj/projectile/beam/laser(loc_chosen)
+	var/obj/projectile/beam/laser/proj = new(loc_chosen)
 	proj.preparePixelProjectile(target, chosen_camera)
 	proj.firer = caller
 
