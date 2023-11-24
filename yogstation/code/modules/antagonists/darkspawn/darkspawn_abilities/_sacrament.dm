@@ -105,9 +105,9 @@
 		if(prob(35))
 			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 40))
 
-	animate(shockwave, transform = matrix().Scale(0), time = 3.5 SECONDS)
-	QDEL_IN(shockwave, 3.6 SECONDS)
 	QDEL_IN(soundloop, 39)
+	animate(shockwave, transform = matrix().Scale(0), time = 3.9 SECONDS)
+	QDEL_IN(shockwave, 4 SECONDS)
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)	
 	addtimer(CALLBACK(darkspawn, TYPE_PROC_REF(/datum/antagonist/darkspawn, sacrament)), 4 SECONDS)
 
