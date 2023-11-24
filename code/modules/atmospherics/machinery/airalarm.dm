@@ -99,26 +99,26 @@
 	var/list/TLV = list( // Breathable air.
 		"pressure"					= new/datum/tlv(ONE_ATMOSPHERE * 0.8, ONE_ATMOSPHERE*  0.9, ONE_ATMOSPHERE * 1.1, ONE_ATMOSPHERE * 1.2), // kPa. Values are min2, min1, max1, max2
 		"temperature"				= new/datum/tlv(T0C, T0C+10, T0C+40, T0C+66),
-		GAS_O2			= new/datum/tlv(16, 19, 40, 50), // Partial pressure, kpa
-		GAS_N2			= new/datum/tlv(-1, -1, 1000, 1000),
-		GAS_CO2	= new/datum/tlv(-1, -1, 5, 10),
-		GAS_MIASMA			= new/datum/tlv/(-1, -1, 15, 30),
-		GAS_PLASMA			= new/datum/tlv/dangerous,
-		GAS_NITROUS	= new/datum/tlv/dangerous,
-		GAS_BZ				= new/datum/tlv/dangerous,
-		GAS_HYPERNOB		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
-		GAS_H2O		= new/datum/tlv/dangerous,
-		GAS_TRITIUM			= new/datum/tlv/dangerous,
-		GAS_NITRIUM			= new/datum/tlv/dangerous,
-		GAS_DILITHIUM		= new/datum/tlv/dangerous,//Yogs -- Dilithium
-		GAS_PLUOXIUM			= new/datum/tlv(-1, -1, 5, 6), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
-		GAS_FREON			= new/datum/tlv/dangerous,
-		GAS_H2			= new/datum/tlv/dangerous,
-		GAS_HEALIUM			= new/datum/tlv/dangerous,
-		GAS_PLUONIUM	= new/datum/tlv/dangerous,
-		GAS_ZAUKER			= new/datum/tlv/dangerous,	
-		GAS_HALON			= new/datum/tlv/dangerous,
-		GAS_HEXANE			= new/datum/tlv/dangerous
+		GAS_O2 = new/datum/tlv(16, 19, 40, 50), // Partial pressure, kpa
+		GAS_N2 = new/datum/tlv(-1, -1, 1000, 1000),
+		GAS_CO2 = new/datum/tlv(-1, -1, 5, 10),
+		GAS_MIASMA = new/datum/tlv/(-1, -1, 15, 30),
+		GAS_PLASMA = new/datum/tlv/dangerous,
+		GAS_NITROUS = new/datum/tlv/dangerous,
+		GAS_BZ = new/datum/tlv/dangerous,
+		GAS_HYPERNOB = new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
+		GAS_H2O = new/datum/tlv/dangerous,
+		GAS_TRITIUM = new/datum/tlv/dangerous,
+		GAS_NITRIUM = new/datum/tlv/dangerous,
+		GAS_DILITHIUM = new/datum/tlv/dangerous,//Yogs -- Dilithium
+		GAS_PLUOXIUM = new/datum/tlv(-1, -1, 5, 6), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		GAS_FREON = new/datum/tlv/dangerous,
+		GAS_H2 = new/datum/tlv/dangerous,
+		GAS_HEALIUM = new/datum/tlv/dangerous,
+		GAS_PLUONIUM = new/datum/tlv/dangerous,
+		GAS_ZAUKER = new/datum/tlv/dangerous,	
+		GAS_HALON = new/datum/tlv/dangerous,
+		GAS_HEXANE = new/datum/tlv/dangerous,
 	)
 
 /obj/machinery/airalarm/server // No checks here.
