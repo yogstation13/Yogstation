@@ -254,7 +254,7 @@
 	giver.transfer_ratio_to(air_contents, ratio)
 
 	check_status()
-	return 1
+	return TRUE
 
 /obj/item/tank/proc/remove_air_volume(volume_to_return)
 	if(!air_contents)
