@@ -72,7 +72,7 @@
 /// An ability that allows the user to shoot a laser beam at a target from the nearest camera.
 /datum/action/innate/ai/ranged/cameragun
 	name = "Camera Laser Gun"
-	desc = "Shoots a laser from the nearest available camera toward a chosen destination. Only fires if the laser could reach destination." // This means if you aim at a turf and it doesn't collide, it won't fire. Beware of moving targets.
+	desc = "Shoots a laser from the nearest available camera toward a chosen destination if it is highly probable to reach said destination."
 	button_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "laser"
 	enable_text = span_notice("You prepare to overcharge a camera. Click a target for a nearby camera to shoot a laser at.")
@@ -146,12 +146,12 @@
 		var/turf/loc_camera = get_turf(cam)
 		if(loc_target.z != loc_camera.z)
 			continue
-		if(get_dist(cam, target) == 0) // Pointblank shot.
+		if(get_dist(cam, target) <= 1) // Pointblank shot.
 			chosen_camera = cam
 			break
 		if(get_dist(cam, target) > 12)
 			continue
-		if(!can_shoot_to(cam, target)) // Camera cannot hit this target (assuming they are not moving).
+		if(!can_shoot_to(cam, target)) // No chance to hit.
 			continue
 		if(!chosen_camera)
 			chosen_camera = cam
@@ -171,7 +171,7 @@
 	proj.firer = caller
 
 	// Fire the shot.
-	var/pointblank = get_dist(chosen_camera, target) == 0 ? TRUE : FALSE // Same tile.
+	var/pointblank = get_dist(chosen_camera, target) <= 1 ? TRUE : FALSE // Same tile or right next.
 	if(pointblank)
 		chosen_camera.visible_message(span_danger("[chosen_camera] fires a laser point blank at [target]!"))
 		proj.fire(direct_target = target) 
