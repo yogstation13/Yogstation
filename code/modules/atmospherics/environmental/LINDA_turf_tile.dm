@@ -5,7 +5,7 @@
 
 	//list of open turfs adjacent to us
 	var/list/atmos_adjacent_turfs
-	//bitfield of dirs in which we thermal conductivity is blocked
+	///bitfield of dirs in which we thermal conductivity is blocked
 	var/conductivity_blocked_directions = NONE
 
 	//used for mapping and for breathing while in walls (because that's a thing that needs to be accounted for...)

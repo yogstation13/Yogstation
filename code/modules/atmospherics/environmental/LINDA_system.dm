@@ -125,8 +125,6 @@
 			. -= T
 	UNSETEMPTY(.)
 
-/turf/proc/set_sleeping(should_sleep)
-
 //returns a list of adjacent turfs that can share air with this one.
 //alldir includes adjacent diagonal tiles that can share
 //	air with both of the related adjacent cardinal tiles

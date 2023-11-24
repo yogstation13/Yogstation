@@ -84,7 +84,6 @@ SUBSYSTEM_DEF(air)
 	msg += "C:{"
 	msg += "HP:[round(cost_highpressure,1)]|"
 	msg += "HS:[round(cost_hotspots,1)]|"
-	msg += "HE:[round(heat_process_time(),1)]|"
 	msg += "SC:[round(cost_superconductivity,1)]|"
 	msg += "PN:[round(cost_pipenets,1)]|"
 	msg += "RB:[round(cost_rebuilds,1)]|"

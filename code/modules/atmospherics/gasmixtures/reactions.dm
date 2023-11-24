@@ -3,32 +3,32 @@
 //Please use a different priority for each reaction(higher number are done first) 
 //or else auxmos will ignore the reaction
 //NOTE: ONLY INTEGERS ARE ALLOWED, EXPECT WEIRDNESS IF YOU DON'T FOLLOW THIS
-#define MIASTER 				-10
-#define FREONFIRE 				-5
-#define PLASMAFIRE				-4
-#define H2FIRE 					-3
-#define TRITFIRE 				-2
-#define HALONO2REMOVAL 			-1
-#define NITROUSDECOMP 			0
-#define WATERVAPOR 				1
-#define FUSION 					2
-#define COLDFUSION 				3
-#define NITRIUMFORMATION 		4
-#define BZFORMATION 			5
-#define FREONFORMATION 			6
-#define NITROBALL 				7
-#define ZAUKERDECOMP 			8
-#define HEALIUMFORMATION 		9
-#define PLUONIUMFORMATION 		10
-#define ZAUKERFORMATION 		11
-#define HALONFORMATION 			12
-#define HEXANEFORMATION 		13
-#define PLUONIUMBZRESPONSE 		14
-#define PLUONIUMTRITRESPONSE 	15
-#define PLUONIUMH2RESPONSE 		16
-#define METALHYDROGEN 			17
-#define NOBLIUMSUPPRESSION	 	1000
-#define NOBLIUMFORMATION 		1001
+#define MIASTER -10
+#define FREONFIRE -5
+#define PLASMAFIRE -4
+#define H2FIRE -3
+#define TRITFIRE -2
+#define HALONO2REMOVAL -1
+#define NITROUSDECOMP 0
+#define WATERVAPOR 1
+#define FUSION 2
+#define COLDFUSION 3
+#define NITRIUMFORMATION 4
+#define BZFORMATION 5
+#define FREONFORMATION 6
+#define NITROBALL 7
+#define ZAUKERDECOMP 8
+#define HEALIUMFORMATION 9
+#define PLUONIUMFORMATION 10
+#define ZAUKERFORMATION 11
+#define HALONFORMATION 12
+#define HEXANEFORMATION 13
+#define PLUONIUMBZRESPONSE 14
+#define PLUONIUMTRITRESPONSE 15
+#define PLUONIUMH2RESPONSE 16
+#define METALHYDROGEN 17
+#define NOBLIUMSUPPRESSION 1000
+#define NOBLIUMFORMATION 1001
 
 /proc/init_gas_reactions()
 	. = list()
@@ -125,7 +125,7 @@
 	min_requirements = list(
 		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST,
 		GAS_TRITIUM = MINIMUM_MOLE_COUNT,
-		GAS_O2 = MINIMUM_MOLE_COUNT
+		GAS_O2 = MINIMUM_MOLE_COUNT,
 	)
 
 /datum/gas_reaction/tritfire/react(datum/gas_mixture/air, datum/holder)
@@ -426,7 +426,7 @@
 /datum/gas_reaction/bzformation/init_reqs()
 	min_requirements = list(
 		GAS_NITROUS = 10,
-		GAS_PLASMA = 10
+		GAS_PLASMA = 10,
 	)
 
 /datum/gas_reaction/bzformation/react(datum/gas_mixture/air)

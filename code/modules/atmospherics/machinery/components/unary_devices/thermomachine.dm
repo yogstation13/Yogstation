@@ -151,7 +151,7 @@
 	if(!..())
 		return FALSE
 	set_init_directions()
-	update_icon()
+	update_icon(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/thermomachine/ui_status(mob/user)

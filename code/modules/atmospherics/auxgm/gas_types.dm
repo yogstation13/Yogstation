@@ -11,11 +11,11 @@
 	breath_alert_info = list(
 		not_enough_alert = list(
 			alert_category = "not_enough_nitro",
-			alert_type = /atom/movable/screen/alert/not_enough_nitro
+			alert_type = /atom/movable/screen/alert/not_enough_nitro,
 		),
 		too_much_alert = list(
 			alert_category = "too_much_nitro",
-			alert_type = /atom/movable/screen/alert/too_much_nitro
+			alert_type = /atom/movable/screen/alert/too_much_nitro,
 		)
 	)
 	ui_color = "red"
@@ -28,11 +28,11 @@
 	breath_alert_info = list(
 		not_enough_alert = list(
 			alert_category = "not_enough_co2",
-			alert_type = /atom/movable/screen/alert/not_enough_co2
+			alert_type = /atom/movable/screen/alert/not_enough_co2,
 		),
 		too_much_alert = list(
 			alert_category = "too_much_co2",
-			alert_type = /atom/movable/screen/alert/too_much_co2
+			alert_type = /atom/movable/screen/alert/too_much_co2,
 		)
 	)
 	ui_color = "grey"

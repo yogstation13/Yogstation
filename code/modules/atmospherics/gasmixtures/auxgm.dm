@@ -1,5 +1,19 @@
-GLOBAL_LIST_INIT(hardcoded_gases, list(GAS_O2, GAS_N2, GAS_CO2, GAS_PLASMA)) //the main four gases, which were at one time hardcoded
-GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GAS_PLUOXIUM))) //unable to react amongst themselves
+///the main four gases, which were at one time hardcoded
+GLOBAL_LIST_INIT(hardcoded_gases, list(
+	GAS_O2,
+	GAS_N2,
+	GAS_CO2,
+	GAS_PLASMA,
+))
+///Gasses that are unable to react amongst themselves
+GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(
+	list(
+		GAS_O2,
+		GAS_N2,
+		GAS_CO2,
+		GAS_PLUOXIUM,
+	),
+))
 
 // Auxgm
 // It's a send-up of XGM, like what baystation got.
