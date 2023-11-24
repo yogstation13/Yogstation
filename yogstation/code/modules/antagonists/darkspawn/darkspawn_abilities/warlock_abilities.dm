@@ -216,8 +216,8 @@
 //////////////////////////////////////////////////////////////////////////
 //------------------Literally just goliath tendrils---------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/darkspawn_build/tendril
-	name = "Darkspawn tendril"
+/datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call
+	name = "Abyssal call"
 	desc = "OOOOOOOOOOOOOOOO spooky"
 	cast_range = 10
 	cast_time = 0
