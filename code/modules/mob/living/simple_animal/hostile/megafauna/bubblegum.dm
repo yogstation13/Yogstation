@@ -99,7 +99,7 @@ Difficulty: Hard
 	chosen_attack_num = 4
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/death(gibbed, list/force_grant)
-	.=..()
+	. = ..()
 	if(true_spawn && !(flags_1 & ADMIN_SPAWNED_1))
 		GLOB.bubblegum_dead = TRUE
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -107,7 +107,7 @@ Difficulty: Hard
 			D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 		for(var/mob/living/L in view(7,src))
 			if(L.client)
-				SSachievements.unlock_achievement(/datum/achievement/bubblegum, L.client)
+				L.client.give_award(/datum/award/achievement/megafauna/bubblegum, L)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/OpenFire()
 	if(charging)

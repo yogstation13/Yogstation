@@ -696,7 +696,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 	user.visible_message(span_suicide("[user] was destroyed by the nuclear blast!"))
 	user.adjustOxyLoss(200)
 	user.death(0)
-	SSachievements.unlock_achievement(/datum/achievement/honorarynukie, user.client)
+	user.client.give_award(/datum/award/achievement/misc/honorarynukie, user)
 
 /obj/item/disk/nuclear/fake
 	fake = TRUE

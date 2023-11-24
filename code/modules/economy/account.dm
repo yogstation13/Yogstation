@@ -47,7 +47,7 @@
 		for(var/x in GLOB.player_list)
 			var/mob/M = x
 			if(M.real_name == account_holder)
-				SSachievements.unlock_achievement(/datum/achievement/cargo/bourgeois, M.client)
+				M.client.give_award(/datum/award/achievement/cargo/bourgeois, M)
 				is_bourgeois = TRUE
 				//break would result in the possibility of this being given to changeling who has duplicated the millionaire, and not to the actual millionaire.
 

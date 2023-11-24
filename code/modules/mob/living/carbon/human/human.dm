@@ -678,7 +678,7 @@
 		visible_message(span_notice("[src] performs CPR on [target.name]!"), span_notice("You perform CPR on [target.name]."))
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 		log_combat(src, target, "CPRed")
-		SSachievements.unlock_achievement(/datum/achievement/cpr, client)
+		client.give_award(/datum/award/achievement/misc/cpr, src)
 
 		var/they_ashlung = target.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
@@ -692,7 +692,7 @@
 			target.adjustOxyLoss(10)
 			target.updatehealth()
 			to_chat(target, span_unconscious("You feel a breath of fresh air enter your lungs... you feel worse..."))
-			SSachievements.unlock_achievement(/datum/achievement/anticpr, client) //you can get both achievements at the same time I guess
+			client.give_award(/datum/award/achievement/misc/anticpr, src) //you can get both achievements at the same time I guess
 		//yogs end
 		else
 			target.adjustOxyLoss(-min(target.getOxyLoss(), 7))

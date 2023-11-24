@@ -82,11 +82,11 @@
 				signal.data["reject"] = FALSE
 				Compiler.Run(signal)
 				if(!signal.data["reject"] == FALSE)
-					SSachievements.unlock_achievement(/datum/achievement/engineering/Poly_silent, user.client)
+					user.client.give_award(/datum/award/achievement/engineering/poly_silent, user)
 			else
 				for(var/sample in signal.data["spans"])
 					if(sample == SPAN_COMMAND)
-						SSachievements.unlock_achievement(/datum/achievement/engineering/Poly_loud, user.client)
+						user.client.give_award(/datum/award/achievement/engineering/poly_loud, user)
 						break // Not having this break leaves us open to a potential DoS attack.
 		return compileerrors
 //end-NTSL

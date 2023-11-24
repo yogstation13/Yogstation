@@ -106,7 +106,7 @@
 	if(L.check_completion() && !all_dead)
 		parts += "<span class='greentext big'>The pirate crew was successful!</span>"
 		for(var/datum/mind/M in members)
-			SSachievements.unlock_achievement(/datum/achievement/greentext/pirate,M.current.client)
+			M.current.client.give_award(/datum/award/achievement/antagonist/pirate, M.current)
 	else
 		parts += "<span class='redtext big'>The pirate crew has failed.</span>"
 

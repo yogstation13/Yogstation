@@ -230,9 +230,9 @@
 		for(var/mind in SSticker.mode.servants_of_ratvar)
 			var/datum/mind/M = mind
 			if(M.current?.client)
-				SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar,M.current.client)
+				M.current.client.give_award(/datum/award/achievement/antagonist/ratvar, M.current)
 		if(eminence?.current?.client)
-			SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar/eminence,eminence.current.client)
+			eminence.current.client.give_award(/datum/award/achievement/antagonist/ratvar/eminence, eminence.current)
 	else
 		parts += "<span class='redtext big'>The Ark was destroyed! Ratvar will rust away for all eternity!</span>"
 	parts += " "

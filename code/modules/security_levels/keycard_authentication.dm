@@ -113,7 +113,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	if(confirmer_id == triggerer_id)
 		return
 	else if(confirmer == triggerer) //good luck juggling two IDs while doing this lmao
-		SSachievements.unlock_achievement(/datum/achievement/keycard_auth, confirmer.client)
+		confirmer.client.give_award(/datum/award/achievement/misc/keycard_auth, confirmer)
 
 	log_game("[key_name(triggerer)] triggered and [key_name(confirmer)] confirmed event [event]")
 	message_admins("[ADMIN_LOOKUPFLW(triggerer)] triggered and [ADMIN_LOOKUPFLW(confirmer)] confirmed event [event]")

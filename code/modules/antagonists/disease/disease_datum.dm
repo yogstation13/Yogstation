@@ -59,7 +59,7 @@
 	if(win)
 		result += span_greentext("The [special_role_text] was successful!")
 		if(istype(owner.current, /mob/camera/disease))
-			SSachievements.unlock_achievement(/datum/achievement/greentext/disease,owner.current.client)
+			owner.current.client.give_award(/datum/award/achievement/antagonist/disease, owner.current)
 	else
 		result += span_redtext("The [special_role_text] has failed!")
 

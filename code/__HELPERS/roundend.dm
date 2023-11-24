@@ -2,6 +2,8 @@
 #define POPCOUNT_ESCAPEES "escapees"					//Not dead and on centcom/shuttles marked as escaped
 #define POPCOUNT_SHUTTLE_ESCAPEES "shuttle_escapees" 	//Emergency shuttle only.
 
+GLOBAL_LIST_INIT(achievements_unlocked, list())
+
 /datum/controller/subsystem/ticker/proc/gather_roundend_feedback()
 	gather_antag_data()
 	record_nuke_disk_location()
@@ -331,8 +333,10 @@
 	parts += sec_report()
 
 	CHECK_TICK
+
 	//Medals
 	parts += medal_report()
+
 	CHECK_TICK
 
 	parts += mouse_report()
@@ -344,6 +348,10 @@
 	CHECK_TICK
 	// Department Goals
 	parts += department_goal_report()
+
+	CHECK_TICK
+	//Player Achievements
+	parts += cheevo_report()
 
 	listclearnulls(parts)
 
@@ -422,9 +430,9 @@
 				parts += "<div class='panel greenborder'>"
 				parts += span_greentext("You managed to survive the events on [station_name()] as [M.real_name].")
 				if(M.mind.assigned_role in GLOB.engineering_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
-					SSachievements.unlock_achievement(/datum/achievement/engineering, C)
+					C.give_award(/datum/award/achievement/engineering/engineering_round, M)
 				else if(M.mind.assigned_role in GLOB.supply_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
-					SSachievements.unlock_achievement(/datum/achievement/cargo, C)
+					C.give_award(/datum/award/achievement/cargo/cargo_round, M)
 
 
 		else
@@ -687,23 +695,33 @@
 	return objective_parts.Join("<br>")
 
 /datum/controller/subsystem/ticker/proc/cargoking()
-	var/datum/achievement/cargoking/CK = SSachievements.get_achievement(/datum/achievement/cargoking)
-	var/cargoking = FALSE
 	var/ducatduke = FALSE
 	if(SSshuttle.points > 1000000)//Why is the cargo budget on SSshuttle instead of SSeconomy :thinking:
 		ducatduke = TRUE
-		if(SSshuttle.points > CK.amount)
-			cargoking = TRUE
-	var/hasQM = FALSE //we only wanna update the record if there's a QM
 	for(var/mob/M in GLOB.player_list)
 		if(M.mind?.assigned_role == "Quartermaster")
 			if(ducatduke)
-				SSachievements.unlock_achievement(/datum/achievement/ducatduke, M.client)
-				if(cargoking)
-					SSachievements.unlock_achievement(/datum/achievement/cargoking, M.client)
-			hasQM = TRUE //there might be more than one QM, so we do the DB stuff outside of the loop
-	if(hasQM && cargoking)
-		var/datum/db_query/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET `value` = '[SSshuttle.points]' WHERE `key` = 'cargorecord'")
-		Q.Execute()
-		qdel(Q)
+				M.client.give_award(/datum/award/achievement/cargo/ducatduke, M)
+				M.client.give_award(/datum/award/score/cargoking, M, SSshuttle.points)
 
+/datum/controller/subsystem/ticker/proc/cheevo_report()
+	var/list/parts = list()
+	if(length(GLOB.achievements_unlocked))
+		parts += "<span class='header'>Achievement Get!</span><BR>"
+		parts += "<span class='infoplain'>Total Achievements Earned: <B>[length(GLOB.achievements_unlocked)]!</B></span><BR>"
+		parts += "<ul class='playerlist'>"
+		for(var/datum/achievement_report/cheevo_report in GLOB.achievements_unlocked)
+			parts += "<BR>[cheevo_report.winner_key] was <b>[cheevo_report.winner]</b>, who earned the [span_greentext("'[cheevo_report.cheevo]'")] achievement at [cheevo_report.award_location]!<BR>"
+		parts += "</ul>"
+		return "<div class='panel greenborder'><ul>[parts.Join()]</ul></div>"
+
+///A datum containing the info necessary for an achievement readout, reported and added to the global list in /datum/award/achievement/on_unlock(mob/user)
+/datum/achievement_report
+	///The winner of this achievement.
+	var/winner
+	///The achievement that was won.
+	var/cheevo
+	///The ckey of our winner
+	var/winner_key
+	///The name of the area we earned this cheevo in
+	var/award_location

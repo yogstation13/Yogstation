@@ -78,7 +78,7 @@
 		hive.destroy_hive()
 
 	if(client)
-		SSachievements.unlock_achievement(/datum/achievement/death, client)
+		client.give_award(/datum/award/achievement/misc/death, src)
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)

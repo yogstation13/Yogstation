@@ -192,7 +192,7 @@
 			sound_to_playing_players('sound/hallucinations/veryfar_noise.ogg')
 			for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
 				A.overload_lighting()
-			SSachievements.unlock_achievement(/datum/achievement/greentext/slingascend, H.client)
+			H.client.give_award(/datum/award/achievement/antagonist/slingascend, H)
 			var/mob/A = new /mob/living/simple_animal/ascendant_shadowling(H.loc)
 			for(var/datum/action/spell in H.actions)
 				if(spell == src)

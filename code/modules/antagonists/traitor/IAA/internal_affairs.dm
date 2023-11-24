@@ -13,7 +13,7 @@
 	var/marauder = FALSE
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
-	greentext_achieve = /datum/achievement/greentext/internal
+	greentext_achieve = /datum/award/achievement/antagonist/internal
 	preview_outfit = /datum/outfit/assassin
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
@@ -252,7 +252,7 @@
 			special_role = TRAITOR_AGENT_SROLE
 			marauder = TRUE
 			forge_single_human_objective()
-			greentext_achieve = /datum/achievement/greentext/external
+			greentext_achieve = /datum/award/achievement/antagonist/external
 
 /datum/antagonist/traitor/internal_affairs/forge_traitor_objectives()
 	forge_iaa_objectives()

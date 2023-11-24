@@ -294,7 +294,7 @@
 			if(!O)
 				return
 			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
-				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
+				user.client.give_award(/datum/award/achievement/misc/roboborg, user)
 
 			if(M.laws && M.laws.id != DEFAULT_AI_LAWID && M.override_cyborg_laws)
 				aisync = FALSE
