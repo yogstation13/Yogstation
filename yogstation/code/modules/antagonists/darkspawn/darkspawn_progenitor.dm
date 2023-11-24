@@ -59,7 +59,7 @@
 
 	//have them fade into existence
 	alpha = 0
-	animate(src, alpha = 255, time = 2 SECONDS) 
+	animate(src, alpha = 255, time = 4 SECONDS) 
 
 	ADD_TRAIT(src, TRAIT_HOLY, INNATE_TRAIT) //sorry no magic
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT) //so people can actually look at the sprite without the weird bobbing up and down
