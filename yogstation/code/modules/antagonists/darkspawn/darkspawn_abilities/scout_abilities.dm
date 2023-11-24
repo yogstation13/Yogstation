@@ -25,15 +25,13 @@
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/Enable()
-	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), "<span class='velvet bold'>ikna</span><br>\
-	[span_notice("You transform your arm into a blade.")]")
+	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), "<span class='velvet bold'>ikna</span><br>[span_notice("You transform your arm into a blade.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	var/obj/item/light_eater/T = new(owner)
 	owner.put_in_hands(T)
 
 /datum/action/cooldown/spell/toggle/light_eater/Disable()
-	owner.visible_message(span_warning("[owner]'s blade transform back!"), "<span class='velvet bold'>haoo</span><br>\
-	[span_notice("You dispel the blade.")]")
+	owner.visible_message(span_warning("[owner]'s blade transform back!"), "<span class='velvet bold'>haoo</span><br>[span_notice("You dispel the blade.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	for(var/obj/item/light_eater/T in owner)
 		qdel(T)

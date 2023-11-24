@@ -23,16 +23,18 @@
 	//movement stats
 	speed = -0.5 //just about the same speed as a person
 	movement_type = FLYING
-	move_force = MOVE_FORCE_OVERPOWERING
-	move_resist = MOVE_FORCE_OVERPOWERING
-	pull_force = MOVE_FORCE_OVERPOWERING
+	move_force = INFINITY
+	move_resist = INFINITY //hmm yes, surely this won't cause bugs *clueless*
+	pull_force = INFINITY
 	mob_size = MOB_SIZE_HUGE
 
 	//light
 	light_system = MOVABLE_LIGHT
-	light_power = -1
-	light_range = 10
+	light_power = -0.1
+	light_range = 0 //so they can be seen in the dark at a distance
 	light_color = COLOR_VELVET
+	see_in_dark = INFINITY
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
 	//flavour
 	attack_sound = 'yogstation/sound/creatures/progenitor_attack.ogg'
@@ -50,7 +52,7 @@
 		/datum/action/cooldown/spell/pointed/progenitor_curse
 	)
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload, darkspawn_name)
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload, darkspawn_name, outline_colour = COLOR_DARKSPAWN_PSI)
 	. = ..()
 	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE) //announce the beginning of the end
 	time_to_next_roar = world.time + roar_cooldown //prevent immediate roaring causing sound overlap
@@ -59,24 +61,35 @@
 		var/datum/action/cooldown/spell/new_spell = new spell(src)
 		new_spell.Grant(src)
 
+	//have them fade into existence
 	alpha = 0
-	animate(src, alpha = 255, time = 1 SECONDS) //have them fade into existence
+	animate(src, alpha = 255, time = 2 SECONDS) 
 
 	ADD_TRAIT(src, TRAIT_HOLY, INNATE_TRAIT) //sorry no magic
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT) //so people can actually look at the sprite without the weird bobbing up and down
-	AddComponent(/datum/component/regenerator, outline_colour = "#21007F")
-	AddElement(/datum/element/death_explosion, 5, 10, 20) //with INFINITY health, they're not likely do die, but IF THEY DO
+	AddElement(/datum/element/death_explosion, 10, 20, 40) //with INFINITY health, they're not likely do die, but IF THEY DO
 
-	var/obj/item/radio/headset/silicon/ai/radio = new(src) //so the progenitor can hear people's screams over radio
+	//so the progenitor can hear people's screams over radio
+	var/obj/item/radio/headset/silicon/ai/radio = new(src) 
 	radio.wires.cut(WIRE_TX) //but not talk over it
 
-	//give them a fancy name
-	var/prefix = pick("ancestral", "void", "cosmic", "shadow", "darkspawn", "veil")
-	var/suffix = pick("progenitor", "ascended")
+	//give them a fancy name (and help the darkspawn tell where they are in the dark)
+	var/prefix = pick("Ancestral", "Void", "Cosmic", "Shadow", "Darkspawn", "Veil")
+	var/suffix = pick("Progenitor", "Ascended")
 	if(rand(0, 10000) == 0)
-		prefix = "vxtrin"
+		prefix = "Vxtrin"
 	name = "[prefix] [suffix][darkspawn_name ? " [darkspawn_name]":""]"
-	
+
+	//to show the class of the darkspawn
+	add_filter("outline_filter", 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 2))
+	var/filter = get_filter("outline_filter")
+	animate(filter, alpha = 200, time = 1 SECONDS, loop = -1, easing = EASE_OUT | SINE_EASING)
+	animate(alpha = 100, time = 1 SECONDS, easing = EASE_OUT | SINE_EASING)
+
+	var/datum/component/overlay_lighting/light = GetComponent(/datum/component/overlay_lighting)
+	if(light?.visible_mask) //give the light the same offset
+		light.visible_mask.pixel_x = pixel_x
+		light.visible_mask.pixel_y = pixel_y
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/AttackingTarget()
 	if(istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))

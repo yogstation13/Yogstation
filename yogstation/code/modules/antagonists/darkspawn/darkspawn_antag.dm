@@ -92,8 +92,9 @@
 	current_mob.grant_language(/datum/language/darkspawn)
 
 	//psi stuff
-	current_mob.hud_used.psi_counter.invisibility = 0
-	update_psi_hud()
+	if(current_mob?.hud_used?.psi_counter)
+		current_mob.hud_used.psi_counter.invisibility = 0
+		update_psi_hud()
 	START_PROCESSING(SSprocessing, src)
 
 	current_mob.faction |= ROLE_DARKSPAWN
@@ -214,8 +215,7 @@
 		psi_regen_delay = delay
 
 /datum/antagonist/darkspawn/antag_panel_data()
-	. += "<b>Lucidity:</b> [SSticker.mode.lucidity ? SSticker.mode.lucidity : "0"]<br>"
-	. += "<b>Sacrament Requirement:</b> [SSticker.mode.required_succs ? SSticker.mode.required_succs : "0"]<br>"
+	. += "<b>Lucidity:</b> [SSticker.mode.lucidity ? SSticker.mode.lucidity : "0"] / [SSticker.mode.required_succs ? SSticker.mode.required_succs : "0"]<br>"
 	. += "<b>Willpower:</b> [willpower ? willpower : "0"]<br>"
 	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? psi_regen_delay : "no delay"]<br>"
 	. += "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"

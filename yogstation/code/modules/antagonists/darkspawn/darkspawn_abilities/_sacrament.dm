@@ -63,6 +63,13 @@
 
 	user.visible_message(span_danger("[user] suddenly jolts into the air, pulsing with screaming violet light."), span_progenitor("You begin the Sacrament."))
 
+	//give a sense of where it's happening
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner)) //to-do replace this with inverse lighting rather than grav distortion
+	shockwave.transform *= 0.1
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, transform = matrix().Scale(4), time = 30 SECONDS) //grow larger over the 30 seconds of casting
+
 	for(var/stage in 1 to 2)
 		soundloop.stage = stage
 		switch(stage)
@@ -72,7 +79,7 @@
 				sound_to_playing_players('yogstation/sound/magic/sacrament_01.ogg', 20, FALSE, pressure_affected = FALSE)
 			if(2)
 				for(var/turf/T in range(15, owner)) //add spooky visuals to the mounting power
-					if(prob(25))
+					if(prob(10))
 						addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 15 SECONDS))
 
 				animate(user, transform = matrix() * 2, time = 15 SECONDS)
@@ -85,14 +92,20 @@
 			animate(user, transform = matrix(), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
 			in_use = FALSE
 			QDEL_NULL(soundloop)
+			animate(shockwave, alpha = 0, time = 1 SECONDS)
+			QDEL_IN(shockwave, 1.1 SECONDS)
 			return
+
+
+	animate(shockwave, transform = matrix().Scale(0), time = 0.5 SECONDS)
+	QDEL_IN(shockwave, 0.6 SECONDS)
 
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), span_progenitor("AND THE WEAK WILL KNOW <i>FEAR--</i>"))
 	sound_to_playing_players('yogstation/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
 	soundloop.stage = 3
 
 	for(var/turf/T in range(15, owner))
-		if(prob(25))
+		if(prob(35))
 			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 40))
 
 	QDEL_IN(soundloop, 39)
