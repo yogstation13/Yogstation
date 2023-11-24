@@ -19,12 +19,9 @@
 		pipe_interference_group = "atmos-[piping_layer]"\
 	)
 
-	var/mutable_appearance/center
-
-/obj/machinery/atmospherics/pipe/manifold4w/Initialize(mapload)
-	. = ..()
+/obj/machinery/atmospherics/pipe/manifold4w/New(mapload)
 	icon_state = ""
-	center = mutable_appearance(icon, "manifold4w_center")
+	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/set_init_directions()
 	initialize_directions = initial(initialize_directions)
