@@ -389,14 +389,6 @@ SUBSYSTEM_DEF(air)
 	if(finish_turf_processing_auxtools(MC_TICK_REMAINING_MS))
 		pause()
 
-/datum/controller/subsystem/air/proc/post_process_turfs(resumed = 0)
-	if(post_process_turfs_auxtools(MC_TICK_REMAINING_MS))
-		pause()
-
-/datum/controller/subsystem/air/proc/post_process_turfs_auxtools()
-/datum/controller/subsystem/air/proc/turf_process_time()
-/datum/controller/subsystem/air/proc/heat_process_time()
-
 /datum/controller/subsystem/air/StartLoadingMap()
 	map_loading = TRUE
 
