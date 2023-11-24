@@ -426,30 +426,30 @@
 #define PIPING_CARDINAL_AUTONORMALIZE	(1<<3)
 
 // Gas defines because i hate typepaths
-#define GAS_O2					"o2"
-#define GAS_N2					"n2"
-#define GAS_CO2					"co2"
-#define GAS_PLASMA				"plasma"
-#define GAS_H2O					"water_vapor"
-#define GAS_HYPERNOB			"hypernob"
-#define GAS_NITROUS				"n2o"
-#define GAS_NITRIUM				"no2"
-#define GAS_TRITIUM				"tritium"
-#define GAS_BZ					"bz"
-#define GAS_PLUOXIUM			"pluox"
-#define GAS_MIASMA				"miasma"
-#define GAS_H2					"hydrogen"
-#define GAS_FREON				"freon"
-#define GAS_HEALIUM				"healium"
-#define GAS_PLUONIUM			"pluonium"
-#define GAS_HALON				"halon"
-#define GAS_ANTINOB				"antinob"
-#define GAS_ZAUKER				"zauker"
-#define GAS_HEXANE				"hexane"
-#define GAS_DILITHIUM			"dilithium"
+#define GAS_O2 "o2"
+#define GAS_N2 "n2"
+#define GAS_CO2 "co2"
+#define GAS_PLASMA "plasma"
+#define GAS_H2O "water_vapor"
+#define GAS_HYPERNOB "hypernob"
+#define GAS_NITROUS "n2o"
+#define GAS_NITRIUM "no2"
+#define GAS_TRITIUM "tritium"
+#define GAS_BZ "bz"
+#define GAS_PLUOXIUM "pluox"
+#define GAS_MIASMA "miasma"
+#define GAS_H2 "hydrogen"
+#define GAS_FREON "freon"
+#define GAS_HEALIUM "healium"
+#define GAS_PLUONIUM "pluonium"
+#define GAS_HALON "halon"
+#define GAS_ANTINOB "antinob"
+#define GAS_ZAUKER "zauker"
+#define GAS_HEXANE "hexane"
+#define GAS_DILITHIUM "dilithium"
 
-#define GAS_FLAG_DANGEROUS		(1<<0)
-#define GAS_FLAG_BREATH_PROC	(1<<1)
+#define GAS_FLAG_DANGEROUS (1<<0)
+#define GAS_FLAG_BREATH_PROC (1<<1)
 
 //HELPERS
 #define PIPING_LAYER_SHIFT(T, PipingLayer) \

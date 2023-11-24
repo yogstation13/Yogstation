@@ -53,17 +53,17 @@ SUBSYSTEM_DEF(air)
 
 	var/log_explosive_decompression = TRUE // If things get spammy, admemes can turn this off.
 
-	// Max number of turfs equalization will grab.
+	/// Max number of turfs equalization will grab.
 	var/equalize_turf_limit = 10
-	// Max number of turfs to look for a space turf, and max number of turfs that will be decompressed.
+	/// Max number of turfs to look for a space turf, and max number of turfs that will be decompressed.
 	var/equalize_hard_turf_limit = 2000
-	// Whether equalization should be enabled at all.
+	/// Whether equalization should be enabled at all.
 	var/equalize_enabled = TRUE
-	// Whether turf-to-turf heat exchanging should be enabled.
+	/// Whether turf-to-turf heat exchanging should be enabled.
 	var/heat_enabled = FALSE
-	// Max number of times process_turfs will share in a tick.
+	/// Max number of times process_turfs will share in a tick.
 	var/share_max_steps = 3
-	// Excited group processing will try to equalize groups with total pressure difference less than this amount.
+	/// Excited group processing will try to equalize groups with total pressure difference less than this amount.
 	var/excited_group_pressure_goal = 1
 
 	var/list/paused_z_levels	//Paused z-levels will not add turfs to active
@@ -139,13 +139,13 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/proc/extools_update_ssair()
 
 /proc/reset_all_air()
-	SSair.can_fire = 0
+	SSair.can_fire = FALSE
 	message_admins("Air reset begun.")
 	for(var/turf/open/T in world)
 		T.Initalize_Atmos(0)
 		CHECK_TICK
 	message_admins("Air reset done.")
-	SSair.can_fire = 1
+	SSair.can_fire = TRUE
 
 /datum/controller/subsystem/air/proc/check_threads()
 	if(thread_running())

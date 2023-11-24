@@ -27,18 +27,18 @@
 	var/list/gas_min = list()
 	var/list/gas_max = list(
 		GAS_CO2 = 30, // Yes it's an arbitrary value who cares?
-		GAS_PLASMA = MOLES_GAS_VISIBLE
+		GAS_PLASMA = MOLES_GAS_VISIBLE,
 	)
 	var/list/gas_damage = list(
 		"default" = list(
 			min = MIN_TOXIC_GAS_DAMAGE,
 			max = MAX_TOXIC_GAS_DAMAGE,
-			damage_type = OXY
+			damage_type = OXY,
 		),
 		GAS_PLASMA = list(
 			min = MIN_TOXIC_GAS_DAMAGE,
 			max = MAX_TOXIC_GAS_DAMAGE,
-			damage_type = TOX
+			damage_type = TOX,
 		)
 	)
 

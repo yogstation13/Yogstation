@@ -414,8 +414,7 @@
 /obj/machinery/door/firedoor/border_only/BlockThermalConductivity(opp_dir)
 	if(opp_dir == dir)
 		return density
-	else
-		return FALSE
+	return FALSE
 
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"

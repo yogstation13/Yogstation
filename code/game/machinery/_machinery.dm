@@ -137,7 +137,7 @@ Class Procs:
 	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
 	var/mob/living/last_user_mobtype
 
-	//Stuff for machines that interact with atmos
+	///Boolean on whether this machines interact with atmos
 	var/atmos_processing = FALSE
 
 /obj/machinery/Initialize(mapload)

@@ -25,7 +25,7 @@
 
 #if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
 // Not updating until we fully move to 515
-#error Your version of BYOND is too new to compile this project. Download version 515.1620 at www.byond.com/download/build/515/514.1620_byond.exe
+#error Your version of BYOND is too new to compile this project. Download version 515.1620 at www.byond.com/download/build/515/515.1620_byond.exe
 #endif
 
 // 515 split call for external libraries into call_ext
