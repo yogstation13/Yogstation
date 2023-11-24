@@ -3,7 +3,9 @@
 								/obj/item/stock_parts/cell/computer/micro,
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot)
+								/obj/item/computer_hardware/card_slot,
+								/obj/item/computer_hardware/printer/mini
+								)
 
 // This is literally the worst possible cheap tablet
 /obj/item/modular_computer/tablet/pda/preset/basic
