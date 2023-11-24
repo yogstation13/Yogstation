@@ -12,12 +12,14 @@
 /obj/effect/temp_visual/goliath_tentacle/darkspawn/original/Initialize(mapload, mob/living/new_spawner)
 	. = ..()
 	var/list/turf/turfs = circle_range_turfs(get_turf(src), 2)
-	for(var/i in 1 to rand(4, 10))
+	for(var/i in 1 to 7)
+		if(!LAZYLEN(turfs)) //sanity check
+			break
 		var/turf/T = pick_n_take(turfs)
 		new /obj/effect/temp_visual/goliath_tentacle/darkspawn(T, spawner)
 	
 /obj/effect/temp_visual/goliath_tentacle/darkspawn/trip()
-	var/latched = FALSE
+	var/latched = 0
 	for(var/mob/living/L in loc)
 		if(is_darkspawn_or_veil(L) || L.stat == DEAD)
 			continue
@@ -26,10 +28,10 @@
 			L.Stun(8 SECONDS)
 		else
 			L.AdjustStun(2 SECONDS)
+		latched = max(S, L.AmountStun()) //hold on until the stun applied by the tentacle ends
 		L.adjustBruteLoss(rand(10,15))
-		latched = TRUE
 	if(!latched)
 		retract()
 	else
 		deltimer(timerid)
-		timerid = addtimer(CALLBACK(src, PROC_REF(retract)), 10, TIMER_STOPPABLE)
+		timerid = addtimer(CALLBACK(src, PROC_REF(retract)), latched, TIMER_STOPPABLE) 

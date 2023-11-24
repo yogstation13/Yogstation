@@ -62,7 +62,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/null_charge
 	name = "Null Charge"
-	desc = "Empties an APC, preventing it from recharging until fixed."
+	desc = "Meddle with the powergrid via a functioning APC, causing a temporary stationwide power outage. Breaks the APC afterwards."
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -222,6 +222,7 @@
 	cast_range = 10
 	cast_time = 0
 	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original
+	cooldown = 10 SECONDS
 	can_density = TRUE
 
 //////////////////////////////////////////////////////////////////////////
