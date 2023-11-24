@@ -107,10 +107,11 @@
 			cam.change_cameranet(GLOB.thrallnet)
 
 	//divulge
-	var/datum/action/cooldown/spell/divulge/action = new(owner)
-	action.Grant(current_mob)
-	upgrades += action
-	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
+	if(darkspawn_state == MUNDANE)
+		var/datum/action/cooldown/spell/divulge/action = new(owner)
+		action.Grant(current_mob)
+		upgrades += action
+		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)

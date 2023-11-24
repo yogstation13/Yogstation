@@ -16,7 +16,7 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	armour_penetration = 100
-	obj_damage = 100
+	obj_damage = INFINITY
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	weather_immunities = list("lava", "ash")
 
@@ -28,11 +28,7 @@
 	pull_force = INFINITY
 	mob_size = MOB_SIZE_HUGE
 
-	//light
-	light_system = MOVABLE_LIGHT
-	light_power = -0.1
-	light_range = 0 //so they can be seen in the dark at a distance
-	light_color = COLOR_VELVET
+	//night vision
 	see_in_dark = INFINITY
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
