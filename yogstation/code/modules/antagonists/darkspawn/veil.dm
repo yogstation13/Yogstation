@@ -15,6 +15,7 @@
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
 	if(iscarbon(owner.current))
 		var/mob/living/carbon/dude = owner.current
+		dude.faction |= ROLE_DARKSPAWN
 		var/obj/item/organ/shadowtumor/ST = dude.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
 		if(!ST || !istype(ST))
 			ST = new
@@ -26,6 +27,7 @@
 	log_game("[key_name(owner.current)] was deveiled!")
 	owner.special_role = null
 	var/mob/living/M = owner.current
+	M.faction -= ROLE_DARKSPAWN
 	if(issilicon(M))
 		M.audible_message(span_notice("[M] lets out a short blip, followed by a low-pitched beep."))
 		to_chat(M,span_userdanger("You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a thrall! Though you try, you cannot remember anything about your servitude..."))

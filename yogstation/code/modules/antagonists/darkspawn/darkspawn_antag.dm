@@ -96,6 +96,8 @@
 	update_psi_hud()
 	START_PROCESSING(SSprocessing, src)
 
+	current_mob.faction |= ROLE_DARKSPAWN
+
 	//for panopticon
 	if(current_mob)
 		current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
@@ -111,6 +113,7 @@
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)
+	owner.current.faction -= ROLE_DARKSPAWN
 	if(owner.current)
 		var/datum/component/internal_cam/cam = owner.current.GetComponent(/datum/component/internal_cam)
 		if(cam)
