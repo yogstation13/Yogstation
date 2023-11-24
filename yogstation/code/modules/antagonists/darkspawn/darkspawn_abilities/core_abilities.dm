@@ -224,7 +224,6 @@
 //////////////////////////////////////////////////////////////////////////
 //------------------------Summon a distraction--------------------------//
 //////////////////////////////////////////////////////////////////////////
-//Creates an illusionary copy of the caster that runs in their direction for ten seconds and then vanishes.
 /datum/action/cooldown/spell/simulacrum
 	name = "Simulacrum"
 	desc = "Creates an illusion that closely resembles you. The illusion will fight nearby enemies in your stead for 5 seconds. Costs 20 Psi."
@@ -251,7 +250,7 @@
 
 	var/mob/living/simple_animal/hostile/illusion/M = new(get_turf(L))
 	M.faction = list(ROLE_DARKSPAWN)
-	M.Copy_Parent(L, 5 SECONDS, 1)
+	M.Copy_Parent(L, 5 SECONDS, 100, 10) //closely follows regular player stats so it's not painfully obvious (still sorta is)
 	M.move_to_delay = L.movement_delay()
 
 //////////////////////////////////////////////////////////////////////////
@@ -286,7 +285,7 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build/before_cast(atom/cast_on)
 	. = ..()
 	if(!object_type)
-		. = . | SPELL_CANCEL_CAST
+		. |= SPELL_CANCEL_CAST
 		CRASH("someone forgot to set the placed object of a darkspawn building ability")
 	if(!can_density && cast_on.density)
 		return . | SPELL_CANCEL_CAST
