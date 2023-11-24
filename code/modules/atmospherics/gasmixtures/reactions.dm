@@ -942,7 +942,7 @@
 /datum/gas_reaction/zauker_decomp/init_reqs()
 	min_requirements = list(
 		GAS_N2 = MINIMUM_MOLE_COUNT,
-		GAS_ZAUKER = MINIMUM_MOLE_COUNT
+		GAS_ZAUKER = MINIMUM_MOLE_COUNT,
 	)
 
 /datum/gas_reaction/zauker_decomp/react(datum/gas_mixture/air, datum/holder)
