@@ -81,8 +81,8 @@
 	COOLDOWN_DECLARE(next_shot)
 	var/cooldown = 10 SECONDS
 
-/// Checks if it is possible for an projectile to reach a target in a straight line from a camera.
-/datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, atom/target, confidence = 0)
+/// Checks if it is possible for a (hitscan) projectile to reach a target in a straight line from a camera.
+/datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, atom/target)
 	var/obj/projectile/proj = new /obj/projectile
 	proj.icon = null
 	proj.icon_state = null
@@ -91,7 +91,7 @@
 	proj.ricochets_max = 0
 	proj.ricochet_chance = 0
 	proj.damage = 0
-	proj.nodamage = TRUE // Prevents this hitscan test projectile from detonating certain objects (e.g. welding tanks). 
+	proj.nodamage = TRUE // Prevents this projectile from detonating certain objects (e.g. welding tanks). 
 	proj.log_override = TRUE
 	proj.hitscan = TRUE
 	proj.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
