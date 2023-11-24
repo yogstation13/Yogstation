@@ -139,7 +139,7 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/proc/extools_update_ssair()
 
 /proc/reset_all_air()
-	SSair.can_fire = 0
+	SSair.can_fire = FALSE
 	message_admins("Air reset begun.")
 	for(var/turf/open/T in world)
 		T.Initalize_Atmos(0)
