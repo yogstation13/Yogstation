@@ -308,6 +308,7 @@
 	armour_penetration = 20
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	item_flags = ABSTRACT | DROPDEL
 	tool_behaviour = TOOL_MINING
 	w_class = WEIGHT_CLASS_HUGE
