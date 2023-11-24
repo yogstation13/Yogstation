@@ -277,7 +277,7 @@
 			internal_gas_data.Add(list(list(
 			"name"= GLOB.gas_data.names[gasid],
 			"amount" = round(internal.get_moles(gasid), 0.01),
-			"color" = GLOB.gas_data.ui_colors[gasid]
+			"color" = GLOB.gas_data.ui_colors[gasid],
 			)))
 	else
 		for(var/gasid in internal.get_gases())
