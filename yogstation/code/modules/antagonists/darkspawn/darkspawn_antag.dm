@@ -184,6 +184,7 @@
 		.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
 	.["Set Lucidity"] = CALLBACK(src, PROC_REF(set_lucidity))
 	.["Set Willpower"] = CALLBACK(src, PROC_REF(set_shop))
+	.["Set Psi Values"] = CALLBACK(src, PROC_REF(set_psi))
 	.["Set Max Veils"] = CALLBACK(src, PROC_REF(set_max_veils))
 
 /datum/antagonist/darkspawn/proc/set_lucidity(mob/admin)
@@ -201,11 +202,23 @@
 	if(thrall)
 		SSticker.mode.max_veils = thrall
 
+/datum/antagonist/darkspawn/proc/set_psi(mob/admin)
+	var/max = input(admin, "What should the psi cap be?") as null|num
+	if(max)
+		psi_cap = max
+	var/regen = input(admin, "How much psi should be regenerated per second?") as null|num
+	if(regen)
+		psi_per_second = regen
+	var/delay = input(admin, "What should the delay to psi regeneration be?") as null|num
+	if(delay)
+		psi_regen_delay = delay
+
 /datum/antagonist/darkspawn/antag_panel_data()
 	. += "<b>Lucidity:</b> [SSticker.mode.lucidity ? SSticker.mode.lucidity : "0"]<br>"
 	. += "<b>Sacrament Requirement:</b> [SSticker.mode.required_succs ? SSticker.mode.required_succs : "0"]<br>"
 	. += "<b>Willpower:</b> [willpower ? willpower : "0"]<br>"
-	. = "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
+	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? psi_regen_delay : "no delay"]<br>"
+	. += "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
 
 	. += "<b>Upgrades:</b><br>"
 	for(var/V in upgrades)

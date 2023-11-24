@@ -222,7 +222,7 @@
 	cast_range = 10
 	cast_time = 0
 	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original
-	cooldown = 10 SECONDS
+	cooldown_time = 10 SECONDS
 	can_density = TRUE
 
 //////////////////////////////////////////////////////////////////////////

@@ -14,10 +14,11 @@
 	var/datum/antagonist/darkspawn/darkspawn
 	var/in_use
 
-/datum/action/cooldown/spell/sacrament/New(Target)
+/datum/action/cooldown/spell/sacrament/Grant(mob/grant_to)
 	. = ..()
 	if(!isdarkspawn(owner))
 		Remove(owner)
+		return
 	darkspawn = isdarkspawn(owner)
 
 /datum/action/cooldown/spell/sacrament/IsAvailable(feedback)
@@ -29,7 +30,10 @@
 
 /datum/action/cooldown/spell/sacrament/cast(atom/cast_on)
 	. = ..()
-	if(!darkspawn || SSticker.mode.lucidity < SSticker.mode.required_succs)
+	if(!darkspawn)
+		to_chat(owner, span_warning("Error with non darkspawn using sacrament spell"))
+		return
+	if(SSticker.mode.lucidity < SSticker.mode.required_succs)
 		to_chat(owner, span_warning("You do not have enough unique lucidity! ([SSticker.mode.lucidity] / [SSticker.mode.required_succs])"))
 		return
 	if(alert(owner, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")

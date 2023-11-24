@@ -2,6 +2,7 @@
 	name = "darkspawn tendril"
 	desc = "OOOOOOOOOOOOOOOO spooky"
 	light_power = -1
+	light_range = 1
 	light_color = COLOR_VELVET
 	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 
@@ -28,7 +29,7 @@
 			L.Stun(8 SECONDS)
 		else
 			L.AdjustStun(2 SECONDS)
-		latched = max(S, L.AmountStun()) //hold on until the stun applied by the tentacle ends
+		latched = L.AmountStun() //hold on until the stun applied by the tentacle ends
 		L.adjustBruteLoss(rand(10,15))
 	if(!latched)
 		retract()
