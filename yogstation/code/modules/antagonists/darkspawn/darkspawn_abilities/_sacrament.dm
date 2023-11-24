@@ -68,7 +68,7 @@
 	shockwave.transform *= 0.1
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, transform = matrix().Scale(32), time = 30 SECONDS, easing = EASE_IN|SINE_EASING) //grow to cover the station over the course of the cast time
+	animate(shockwave, transform = matrix().Scale(50), time = 30 SECONDS, easing = EASE_IN|SINE_EASING) //grow to cover the station over the course of the cast time
 
 	for(var/stage in 1 to 2)
 		soundloop.stage = stage
