@@ -269,7 +269,7 @@
 			moderator_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = 0,
-				"color" = GLOB.gas_data.ui_colors[gas_id]
+				"color" = GLOB.gas_data.ui_colors[gas_id],
 			)))
 
 	data["fusion_gases"] = fusion_gasdata
