@@ -227,7 +227,7 @@
 	for(var/gas_id in GLOB.gas_data.ids)
 		data["gas_colors"] += list(list(
 			"id" = gas_id,
-			"ui_color" = GLOB.gas_data.ui_colors[gas_id]
+			"ui_color" = GLOB.gas_data.ui_colors[gas_id],
 		))
 	return data
 
