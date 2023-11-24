@@ -101,20 +101,22 @@
 		to_chat(caster, span_velvet("Your concentration breaks and the APC suddenly repowers!"))
 		target.set_light(2)
 		target.visible_message(span_warning("The [target] begins glowing brightly!"))
-	else
-		//We did it
-		if(isdarkspawn(owner))
-			var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
-			shadowling.block_psi(60 SECONDS)
-		if(target.powernet)
-			var/datum/powernet/network = target.powernet
-			for(var/thing in network.nodes)
-				if(istype(thing, /obj/machinery/power/apc))
-					var/obj/machinery/power/apc/other = thing
-					
-				power_fail(20, 40)
-		to_chat(caster, span_velvet("You return the APC's power to the void, disabling it."))
-		target.set_broken()
+		return FALSE
+
+	//We did it
+	if(isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
+		shadowling.block_psi(60 SECONDS)
+	if(target.powernet)
+		var/datum/powernet/network = target.powernet
+		for(var/thing in network.nodes)
+			if(istype(thing, /obj/machinery/power/apc))
+				var/obj/machinery/power/apc/other = thing
+				
+			power_fail(20, 40)
+	to_chat(caster, span_velvet("You return the APC's power to the void, disabling it."))
+	target.set_broken()
+	return TRUE
 		
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Drain enemy, heal ally-------------------------//
