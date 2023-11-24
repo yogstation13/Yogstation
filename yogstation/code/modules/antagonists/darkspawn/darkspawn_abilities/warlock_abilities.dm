@@ -74,7 +74,7 @@
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
-	cooldown_time = 5 MINUTES
+	cooldown_time = 10 MINUTES
 	psi_cost = 100
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
@@ -103,17 +103,16 @@
 		target.visible_message(span_warning("The [target] begins glowing brightly!"))
 		return FALSE
 
+	if(target.stat & BROKEN)
+		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
+		return FALSE
+
 	//We did it
 	if(isdarkspawn(owner))
 		var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
 		shadowling.block_psi(60 SECONDS)
-	if(target.powernet)
-		var/datum/powernet/network = target.powernet
-		for(var/thing in network.nodes)
-			if(istype(thing, /obj/machinery/power/apc))
-				var/obj/machinery/power/apc/other = thing
-				
-			power_fail(20, 40)
+	priority_announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", ANNOUNCER_POWEROFF)
+	power_fail(30, 40)
 	to_chat(caster, span_velvet("You return the APC's power to the void, disabling it."))
 	target.set_broken()
 	return TRUE
