@@ -79,11 +79,13 @@
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/null_charge/is_valid_target(atom/cast_on)
-	if(istype(cast_on, /obj/machinery/power/apc))
-		var/obj/machinery/power/apc/target = cast_on
-		if(!(target.stat & BROKEN))
-			return TRUE
-	return FALSE
+	if(!istype(cast_on, /obj/machinery/power/apc))
+		return FALSE
+	var/obj/machinery/power/apc/target = cast_on
+	if(target.stat & BROKEN)
+		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
+		return FALSE
+	return TRUE	
 
 /datum/action/cooldown/spell/touch/null_charge/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/power/apc/target, mob/living/carbon/human/caster)
 	if(!target || !istype(target))//sanity check
