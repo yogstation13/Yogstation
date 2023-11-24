@@ -246,7 +246,7 @@
 			fusion_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = round(connected_core.internal_fusion.get_moles(gas_id), 0.01),
-				"color" = GLOB.gas_data.ui_colors[gas_id]
+				"color" = GLOB.gas_data.ui_colors[gas_id],
 			)))
 	else
 		for(var/gas_id in connected_core.internal_fusion.get_gases())
