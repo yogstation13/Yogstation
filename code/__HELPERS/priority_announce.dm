@@ -186,6 +186,7 @@
 
 /// Proc that just dispatches the announcement to our applicable audience. Only the announcement is a mandatory arg.
 /proc/dispatch_announcement_to_players(announcement, list/players = GLOB.player_list, sound_override = null, should_play_sound = TRUE)
+	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/misc/notice2.ogg'
 
 	for(var/mob/target in players)
 		if(isnewplayer(target) || !target.can_hear())
@@ -194,6 +195,8 @@
 		to_chat(target, announcement)
 		if(!should_play_sound)
 			continue
+
+		SEND_SOUND(target, sound(sound_to_play))
 
 #undef MAJOR_ANNOUNCEMENT_TITLE
 #undef MAJOR_ANNOUNCEMENT_TEXT
