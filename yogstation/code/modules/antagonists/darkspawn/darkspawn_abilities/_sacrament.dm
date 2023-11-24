@@ -68,7 +68,7 @@
 	shockwave.transform *= 0.1
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, transform = matrix().Scale(4), time = 30 SECONDS) //grow larger over the 30 seconds of casting
+	animate(shockwave, transform = matrix().Scale(32), time = 30 SECONDS, easing = EASE_IN|SINE_EASING) //grow to cover the station over the course of the cast time
 
 	for(var/stage in 1 to 2)
 		soundloop.stage = stage
@@ -97,9 +97,6 @@
 			return
 
 
-	animate(shockwave, transform = matrix().Scale(0), time = 0.5 SECONDS)
-	QDEL_IN(shockwave, 0.6 SECONDS)
-
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), span_progenitor("AND THE WEAK WILL KNOW <i>FEAR--</i>"))
 	sound_to_playing_players('yogstation/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
 	soundloop.stage = 3
@@ -108,8 +105,10 @@
 		if(prob(35))
 			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 40))
 
+	animate(shockwave, transform = matrix().Scale(0), time = 3.5 SECONDS)
+	QDEL_IN(shockwave, 3.6 SECONDS)
 	QDEL_IN(soundloop, 39)
-	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
+	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)	
 	addtimer(CALLBACK(darkspawn, TYPE_PROC_REF(/datum/antagonist/darkspawn, sacrament)), 4 SECONDS)
 
 /datum/action/cooldown/spell/sacrament/proc/unleashed_psi(turf/T)

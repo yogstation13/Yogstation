@@ -81,7 +81,7 @@
 	name = "[prefix] [suffix][darkspawn_name ? " [darkspawn_name]":""]"
 
 	//to show the class of the darkspawn
-	add_filter("outline_filter", 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 2))
+	add_filter("outline_filter", 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 1))
 	var/filter = get_filter("outline_filter")
 	animate(filter, alpha = 200, time = 1 SECONDS, loop = -1, easing = EASE_OUT | SINE_EASING)
 	animate(alpha = 100, time = 1 SECONDS, easing = EASE_OUT | SINE_EASING)
