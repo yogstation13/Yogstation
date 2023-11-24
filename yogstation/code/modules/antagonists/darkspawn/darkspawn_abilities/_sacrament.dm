@@ -78,7 +78,7 @@
 									span_velvet("Power... <i>power...</i> flooding through you, the dreams and thoughts of those you've touched whispering in your ears..."))
 				sound_to_playing_players('yogstation/sound/magic/sacrament_01.ogg', 20, FALSE, pressure_affected = FALSE)
 			if(2)
-				for(var/turf/T in range(15, owner)) //add spooky visuals to the mounting power
+				for(var/turf/T in range(10, owner)) //add spooky visuals to the mounting power
 					if(prob(10))
 						addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 15 SECONDS))
 
@@ -97,19 +97,22 @@
 			return
 
 
-	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), span_progenitor("AND THE WEAK WILL KNOW <i>FEAR--</i>"))
-	sound_to_playing_players('yogstation/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
 	soundloop.stage = 3
+	animate(shockwave, transform = matrix().Scale(0), time = 3.9 SECONDS)
+	QDEL_IN(shockwave, 4 SECONDS)
+	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
+	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"))	
 
-	for(var/turf/T in range(15, owner))
+	for(var/turf/T in range(10, owner))
 		if(prob(35))
 			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 40))
 
-	QDEL_IN(soundloop, 39)
-	animate(shockwave, transform = matrix().Scale(0), time = 3.9 SECONDS)
-	QDEL_IN(shockwave, 4 SECONDS)
-	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)	
-	addtimer(CALLBACK(darkspawn, TYPE_PROC_REF(/datum/antagonist/darkspawn, sacrament)), 4 SECONDS)
+	sleep(3 SECONDS) //ominous delay that's eerily quiet
+
+	to_chat(user, span_progenitor("AND THE WEAK WILL KNOW <i>FEAR--</i>"))
+	sound_to_playing_players('yogstation/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
+	QDEL_IN(soundloop, 1 SECONDS)
+	addtimer(CALLBACK(darkspawn, TYPE_PROC_REF(/datum/antagonist/darkspawn, sacrament)), 1 SECONDS)
 
 /datum/action/cooldown/spell/sacrament/proc/unleashed_psi(turf/T)
 	if(!in_use)
