@@ -69,13 +69,13 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "null_charge"
 
-	cooldown_time = 30 SECONDS
 	antimagic_flags = NONE
 	panel = null
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
-	psi_cost = 15
+	cooldown_time = 5 MINUTES
+	psi_cost = 100
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/null_charge/is_valid_target(atom/cast_on)
@@ -101,6 +101,9 @@
 		target.visible_message(span_warning("The [target] begins glowing brightly!"))
 	else
 		//We did it
+		if(isdarkspawn(owner))
+			var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
+			shadowling.block_psi(60 SECONDS)
 		if(target.powernet)
 			var/datum/powernet/network = target.powernet
 			for(var/thing in network.nodes)
