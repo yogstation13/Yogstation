@@ -284,7 +284,7 @@
 			internal_gas_data.Add(list(list(
 				"name"= GLOB.gas_data.names[gasid],
 				"amount" = 0,
-				"color" = GLOB.gas_data.ui_colors[gasid]
+				"color" = GLOB.gas_data.ui_colors[gasid],
 				)))
 	data["internal_gas_data"] = internal_gas_data
 
