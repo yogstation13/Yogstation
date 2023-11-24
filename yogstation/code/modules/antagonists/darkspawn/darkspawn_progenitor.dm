@@ -101,6 +101,9 @@
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smolgenitor", I)
 	time_to_next_roar = world.time + roar_cooldown
 
+//////////////////////////////////////////////////////////////////////////
+//-------------------------------Roar-----------------------------------//
+//////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(time_to_next_roar + roar_cooldown <= world.time) //gives time to roar manually if you want to
@@ -110,9 +113,6 @@
 	..()
 	if(time_to_next_roar <= world.time)
 		roar()
-
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove()
-	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/proc/roar()
 	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 50, TRUE)
@@ -127,6 +127,11 @@
 			L.Stun(20)
 	time_to_next_roar = world.time + roar_cooldown
 
+//////////////////////////////////////////////////////////////////////////
+//--------------------------Ignoring physics----------------------------//
+//////////////////////////////////////////////////////////////////////////
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove()
+	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()
 	return
