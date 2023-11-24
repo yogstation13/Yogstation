@@ -244,12 +244,14 @@
 	addtimer(CALLBACK(src, PROC_REF(regenerate_psi)), delay, TIMER_UNIQUE) //tick it up very quickly
 
 ///temporarily block psi regeneration
-/datum/antagonist/darkspawn/proc/block_psi(duration)
-	ADD_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK, type)
-	addtimer(CALLBACK(src, PROC_REF(unblock_psi)), duration, TIMER_OVERRIDE | TIMER_UNIQUE)
+/datum/antagonist/darkspawn/proc/block_psi(duration = 5 SECONDS, identifier)
+	if(!identifier)
+		return
+	ADD_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK, identifier)
+	addtimer(CALLBACK(src, PROC_REF(unblock_psi), identifier), duration, TIMER_UNIQUE | TIMER_OVERRIDE)
 
-/datum/antagonist/darkspawn/proc/unblock_psi()
-	REMOVE_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK, type)
+/datum/antagonist/darkspawn/proc/unblock_psi(identifier)
+	REMOVE_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK, identifier)
 
 /datum/antagonist/darkspawn/proc/update_psi_hud()
 	if(!owner.current || !owner.current.hud_used)

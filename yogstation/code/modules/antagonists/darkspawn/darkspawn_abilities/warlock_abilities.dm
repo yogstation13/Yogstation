@@ -110,7 +110,7 @@
 	//We did it
 	if(isdarkspawn(owner))
 		var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
-		shadowling.block_psi(60 SECONDS)
+		shadowling.block_psi(60 SECONDS, type)
 	priority_announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", ANNOUNCER_POWEROFF)
 	power_fail(30, 40)
 	to_chat(caster, span_velvet("You return the APC's power to the void, disabling it."))

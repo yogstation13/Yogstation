@@ -60,7 +60,7 @@
 	. = ..()
 	if(. && isdarkspawn(owner))
 		var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
-		shadowling.block_psi(20 SECONDS)
+		shadowling.block_psi(20 SECONDS, type)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------Scout and warlock, aoe slow and chill----------------//
