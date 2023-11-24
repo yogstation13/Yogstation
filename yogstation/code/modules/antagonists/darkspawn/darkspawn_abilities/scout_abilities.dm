@@ -228,10 +228,10 @@
 	object_type = /obj/structure/trap/darkspawn/teleport
 
 //////////////////////////////////////////////////////////////////////////
-//----------------------------Trap abilities----------------------------//
+//--------------------------Targeted Teleport---------------------------//
 //////////////////////////////////////////////////////////////////////////
-datum/action/cooldown/spell/pointed/phase_jump/void_warp
-	name = "Void warp"
+datum/action/cooldown/spell/pointed/phase_jump/void_jump
+	name = "Void jump"
 	desc = "A short range targeted teleport."
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	background_icon_state = "bg_alien"
@@ -244,7 +244,7 @@ datum/action/cooldown/spell/pointed/phase_jump/void_warp
 
 	cooldown_time = 25 SECONDS
 	cast_range = 7
-	active_msg = span_velvet("You prepare to warp through the void.")
+	active_msg = span_velvet("You prepare to take a step through the void.")
 	deactive_msg = span_notice("You relax your mind.")
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
