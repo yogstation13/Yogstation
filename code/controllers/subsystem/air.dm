@@ -145,7 +145,7 @@ SUBSYSTEM_DEF(air)
 		T.Initalize_Atmos(0)
 		CHECK_TICK
 	message_admins("Air reset done.")
-	SSair.can_fire = 1
+	SSair.can_fire = TRUE
 
 /datum/controller/subsystem/air/proc/check_threads()
 	if(thread_running())
