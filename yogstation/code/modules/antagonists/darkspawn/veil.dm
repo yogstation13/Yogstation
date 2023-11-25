@@ -6,6 +6,7 @@
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
 	var/mutable_appearance/veil_sigils
+	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/glare/lesser)
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
@@ -43,6 +44,9 @@
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
+	if(!current_mob)
+		return //sanity check
+
 	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
 	current_mob.add_overlay(veil_sigils)
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
@@ -51,15 +55,25 @@
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
 		cam.change_cameranet(GLOB.thrallnet)
+	for(var/spell in abilities)
+		var/datum/action/cooldown/spell/new_spell = new spell(owner)
+		new_spell.Grant(current_mob)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
+	if(!current_mob)
+		return //sanity check
+
 	current_mob.cut_overlay(veil_sigils)
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
 		cam.RemoveComponent()
 	QDEL_NULL(veil_sigils)
+	for(var/datum/action/cooldown/spell/spells in current_mob.actions)
+		if(spells.type in abilities) //I dont want big mobs to be able to use ash jaunt
+			spells.Remove(current_mob)
+			qdel(spells)
 
 /datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)

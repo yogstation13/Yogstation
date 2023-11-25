@@ -321,7 +321,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /datum/action/cooldown/spell/toggle/nightvision/Enable()
 	owner.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	owner.see_in_dark = 8
+	owner.see_in_dark = 10
 
 /datum/action/cooldown/spell/toggle/nightvision/Disable()
 	owner.lighting_alpha = initial(owner.lighting_alpha)
