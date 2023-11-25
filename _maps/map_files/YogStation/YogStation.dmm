@@ -11476,6 +11476,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"bME" = (
+/obj/effect/turf_decal/trimline/green/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/green/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "bMQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 8
@@ -18526,12 +18535,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"dVd" = (
-/obj/machinery/camera{
-	c_tag = "Starboard Primary Hallway 2"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "dVi" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -20325,13 +20328,6 @@
 /obj/effect/turf_decal/box/corners,
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"eDl" = (
-/obj/structure/sign/painting{
-	persistence_id = "public";
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "eDG" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -31498,6 +31494,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"iFa" = (
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "iFb" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 4
@@ -37560,6 +37566,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"kWK" = (
+/obj/machinery/camera{
+	c_tag = "Starboard Primary Hallway 2"
+	},
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "kWL" = (
 /obj/machinery/camera{
 	c_tag = "Mining Dock";
@@ -38619,18 +38634,6 @@
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"loG" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "loK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -50487,6 +50490,15 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"pNk" = (
+/obj/machinery/camera{
+	c_tag = "Starboard Primary Hallway"
+	},
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "pNn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -56463,12 +56475,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
-"rUu" = (
-/obj/machinery/camera{
-	c_tag = "Starboard Primary Hallway"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "rUD" = (
 /obj/machinery/doorButtons/access_button{
 	idDoor = "toxins_airlock_exterior";
@@ -59546,6 +59552,15 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"tdC" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "tdO" = (
 /obj/structure/window,
 /obj/structure/table,
@@ -69600,6 +69615,15 @@
 /obj/structure/chair,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"wSt" = (
+/obj/effect/turf_decal/trimline/green/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/green/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "wSF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -72159,6 +72183,21 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
+"xSb" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "xSl" = (
 /obj/machinery/door/airlock/research{
 	name = "Mech Bay";
@@ -107989,7 +108028,7 @@ nfD
 iim
 rAd
 aql
-aYV
+qfN
 aYV
 duH
 bfF
@@ -108246,7 +108285,7 @@ tZb
 wuA
 bxx
 aql
-aYV
+cuA
 aYV
 duH
 bfF
@@ -108503,7 +108542,7 @@ qga
 sTt
 wEp
 aql
-aYV
+cuA
 aYV
 duH
 bfF
@@ -108760,7 +108799,7 @@ aFf
 sTt
 wEp
 eUG
-aYV
+bME
 aYV
 duH
 bfF
@@ -109017,7 +109056,7 @@ dvc
 sTt
 wEp
 aRA
-aYV
+cuA
 aYV
 tMW
 bfF
@@ -109274,7 +109313,7 @@ fkP
 fZH
 wEp
 eUG
-aYV
+wSt
 aYV
 dIF
 gtC
@@ -109531,7 +109570,7 @@ qga
 caX
 xyv
 xAh
-aYV
+cuA
 jIl
 rJp
 cru
@@ -109788,7 +109827,7 @@ jNY
 caX
 wEp
 aql
-aYV
+cuA
 aYV
 lEb
 laR
@@ -110045,7 +110084,7 @@ jTr
 sio
 wEp
 aql
-rUu
+pNk
 aYV
 cwO
 nNY
@@ -110302,7 +110341,7 @@ bUO
 sgp
 fdj
 wZH
-aYV
+cuA
 aYV
 duH
 jLY
@@ -110559,7 +110598,7 @@ caX
 qrX
 qeU
 wZH
-aYV
+cuA
 aYV
 duH
 jLY
@@ -110816,7 +110855,7 @@ caX
 wEp
 wEp
 aql
-aYV
+cuA
 aYV
 duH
 jLY
@@ -111073,7 +111112,7 @@ caX
 wEp
 deo
 aql
-bal
+tdC
 aYV
 nlS
 scD
@@ -111330,7 +111369,7 @@ xCQ
 kfm
 oPA
 wZH
-aYV
+cuA
 aYV
 rRR
 jQg
@@ -111587,7 +111626,7 @@ dyJ
 qrX
 wVN
 wZH
-aYV
+cuA
 jKG
 sFQ
 pVW
@@ -111844,7 +111883,7 @@ uJY
 wEp
 wEp
 aql
-eDl
+iFa
 aYV
 dIF
 gtC
@@ -112101,7 +112140,7 @@ wEp
 wEp
 wEp
 iLr
-aYV
+rhn
 aYV
 duH
 kiy
@@ -112358,7 +112397,7 @@ wEp
 wEp
 wEp
 iLr
-aYV
+qfN
 aYV
 duH
 jXL
@@ -112615,7 +112654,7 @@ wEp
 wEp
 lBf
 aql
-aYV
+cuA
 aYV
 lmt
 lcC
@@ -112872,7 +112911,7 @@ wEp
 sgp
 wVN
 wZH
-dVd
+kWK
 aYV
 rlx
 kiy
@@ -113129,7 +113168,7 @@ fpM
 qrX
 oPA
 wZH
-aYV
+cuA
 aYV
 duH
 kiy
@@ -113386,7 +113425,7 @@ lrD
 oin
 wEp
 aql
-aYV
+cuA
 aYV
 duH
 lcC
@@ -113643,7 +113682,7 @@ fgc
 fgc
 fgc
 fgc
-loG
+xSb
 cBm
 yfG
 kiy
@@ -113900,7 +113939,7 @@ nia
 nia
 ias
 wBr
-qfN
+cuA
 aYV
 pnN
 kiy
