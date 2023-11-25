@@ -83,12 +83,19 @@
 		source.remove_veil()
 		return
 
+	var/willpower_amount = 0
 	for(var/mob/living/thing in range(5, source))
-		if(!thing.client)
+		if(!thing.client) //gotta be an actual player (hope no one goes afk)
 			continue
 		if(is_darkspawn_or_veil(thing))
 			continue
-		to_chat(world, "[source] generating lucidity for being nearby [thing]")
+		willpower_amount += 1
+		to_chat(world, "[source] generating [willpower_amount] willpower for being nearby [thing]")
+	to_chat(world, "[source] generating [willpower_amount] total willpower this tick")
+	for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
+		var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
+		if(teammate && istype(teammate))//sanity check
+			teammate.willpower += willpower_amount
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
