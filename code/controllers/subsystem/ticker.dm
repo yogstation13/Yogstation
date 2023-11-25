@@ -419,7 +419,6 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless = TRUE
 	var/no_cyborgs = TRUE
-	var/no_bartender = TRUE
 	var/no_clerk = TRUE
 
 	for(var/mob/dead/new_player/N in GLOB.player_list)
