@@ -204,11 +204,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /datum/action/cooldown/spell/veilbuff/before_cast(atom/cast_on)
 	. = ..()
-	/*
-	if(isdarkspawn(owner))
-		var/datum/antagonist/darkspawn/antag = isdarkspawn(owner)
-		darkspawns_too = antag.buff_darkspawn					//change this to check for a special darkspawn variable
-	*/
+	darkspawns_too = HAS_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES)
 
 /datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
 	. = ..()

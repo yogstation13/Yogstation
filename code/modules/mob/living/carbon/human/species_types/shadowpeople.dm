@@ -37,8 +37,6 @@
 					H.SetSleeping(0)
 					H.setOrganLoss(ORGAN_SLOT_BRAIN,0)
 			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
-				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_SPACEWALK) && isspaceturf(T))
-					return
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_LIGHTRES))
 					return
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
@@ -47,8 +45,6 @@
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
 				H.adjustCloneLoss(light_burning * 0.2)
 			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
-				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_SPACEWALK) && isspaceturf(T))
-					return
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
 					return
 				to_chat(H, span_userdanger("The light burns you!"))
@@ -148,7 +144,8 @@
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE, ITEM_SLOT_HEAD, ITEM_SLOT_EYES)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_NOHUNGER, TRAIT_NOSLIPICE)
-	mutanteyes = /obj/item/organ/eyes/night_vision/alien
+	mutanteyes = /obj/item/organ/eyes/darkspawn
+	mutantears = /obj/item/organ/ears/darkspawn
 
 	var/shadow_charges = 3
 	powerful_heal = TRUE
@@ -195,7 +192,29 @@
 
 /datum/species/shadow/darkspawn/check_roundstart_eligible()
 	return FALSE
-/////////////////////////////Organs/////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Darkspawn organs----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/obj/item/organ/eyes/darkspawn //special eyes that innately have night vision without having a toggle that adds action clutter
+	name = "darkspawn eyes"
+	desc = "It turned out they had them after all!"
+	see_in_dark = 10
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable eyes than most
+	healing_factor = 2 * STANDARD_ORGAN_HEALING
+	lighting_alpha = 175 //enough to see well in darkness, but dark enough it's still possible to see where dark is
+	sight_flags = SEE_MOBS
+
+/obj/item/organ/ears/darkspawn //special ears that are a bit tankier and have innate sound protection
+	name = "darkspawn ears"
+	desc = "It turned out they had them after all!"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable ears than most
+	healing_factor = 2 * STANDARD_ORGAN_HEALING
+	bang_protect = 1
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Nightmare organs----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /obj/item/organ/brain/nightmare
 	name = "tumorous mass"
 	desc = "A fleshy growth that was dug out of the skull of a Nightmare."

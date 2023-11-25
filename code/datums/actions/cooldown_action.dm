@@ -170,7 +170,7 @@
 	if(isnum(override_cooldown_time))
 		next_use_time = world.time + override_cooldown_time
 	else
-		next_use_time = world.time + cooldown_time
+		next_use_time = world.time + ((owner && HAS_TRAIT(owner, TRAIT_FAST_COOLDOWNS)) ? (cooldown_time * 0.75) : cooldown_time)
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 	START_PROCESSING(SSfastprocess, src)
 

@@ -164,20 +164,6 @@
 	darkspawn.light_burning *= 2
 	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_LIGHTRES, src)
 
-//Provides immunity to starlight.
-/datum/psi_web/spacewalking
-	name = "\'Starlight\' Sigils"
-	desc = "The Jaxqhw sigils, representing the void, are etched multiple times across the body. Unlocking these sigils provides the ability to walk freely in space without fear of starlight."
-	willpower_cost = 3
-	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER | SCOUT
-
-/datum/psi_web/spacewalking/on_gain()
-	ADD_TRAIT(owner, TRAIT_DARKSPAWN_SPACEWALK, "starlight sigils")
-
-/datum/psi_web/spacewalking/on_gain()
-	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_SPACEWALK, "starlight sigils")
-
 //Using shadow tendrils will now form two tendrils if possible.
 //Attacking with one set of tendrils will attack with the other.
 //This also speeds up most actions they have.
