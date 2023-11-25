@@ -428,8 +428,6 @@ SUBSYSTEM_DEF(ticker)
 				captainless = FALSE
 			if(player.mind.assigned_role == "Cyborg")
 				no_cyborgs = FALSE
-			if(player.mind.assigned_role == "Bartender")
-				no_bartender = FALSE
 			if(player.mind.assigned_role == "Clerk")
 				no_clerk = FALSE
 			if(player.mind.assigned_role != player.mind.special_role)
