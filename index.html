@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(745 modules,
-    1992/9208 macros, 21.6%)</aside></h3>
+<aside>(747 modules,
+    1995/9214 macros, 21.7%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -191,15 +191,17 @@ General Public License version 3.
     <li><a href="code/__HELPERS/view.html" title="code&#x2F;__HELPERS&#x2F;view">view</a></li>
     </ul></li>
     <li><a href="code/__byond_version_compat.html" title="code&#x2F;__byond_version_compat">__byond_version_compat</a></li>
-    <li class="has-children"><span class="no-substance">_globalvars&#x2F;</span><span title="code&#x2F;_globalvars&#x2F;lists">lists</span><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;_globalvars">_globalvars</span><ul class="index-tree">
+    <li><a href="code/_globalvars/bitfields.html" title="code&#x2F;_globalvars&#x2F;bitfields">bitfields</a></li>
+    <li class="has-children"><span title="code&#x2F;_globalvars&#x2F;lists">lists</span><ul class="index-tree">
     <li><a href="code/_globalvars/lists/flavor_misc.html" title="code&#x2F;_globalvars&#x2F;lists&#x2F;flavor_misc">flavor_misc</a></li>
     <li><a href="code/_globalvars/lists/keybindings.html" title="code&#x2F;_globalvars&#x2F;lists&#x2F;keybindings">keybindings</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;_onclick">_onclick</span><ul class="index-tree">
     <li><a href="code/_onclick/drag_drop.html" title="code&#x2F;_onclick&#x2F;drag_drop">drag_drop</a></li>
     <li class="has-children"><span title="code&#x2F;_onclick&#x2F;hud">hud</span><ul class="index-tree">
     <li><a href="code/_onclick/hud/action_button.html" title="code&#x2F;_onclick&#x2F;hud&#x2F;action_button">action_button</a></li>
-    <li><a href="code/_onclick/hud/fullscreen.html" title="code&#x2F;_onclick&#x2F;hud&#x2F;fullscreen">fullscreen</a></li>
     <li><a href="code/_onclick/hud/map_popups.html" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups">map_popups</a></li>
     <li><a href="code/_onclick/hud/plane_master.html" title="code&#x2F;_onclick&#x2F;hud&#x2F;plane_master">plane_master</a></li>
     <li><a href="code/_onclick/hud/radial.html" title="code&#x2F;_onclick&#x2F;hud&#x2F;radial">radial</a></li>
@@ -289,6 +291,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/footstep_override.html" title="code&#x2F;datums&#x2F;elements&#x2F;footstep_override">footstep_override</a></li>
     <li><a href="code/datums/elements/frozen.html" title="code&#x2F;datums&#x2F;elements&#x2F;frozen">frozen</a></li>
     <li><a href="code/datums/elements/life_drain.html" title="code&#x2F;datums&#x2F;elements&#x2F;life_drain">life_drain</a></li>
+    <li><a href="code/datums/elements/light_blocking.html" title="code&#x2F;datums&#x2F;elements&#x2F;light_blocking">light_blocking</a></li>
     <li><a href="code/datums/elements/movetype_handler.html" title="code&#x2F;datums&#x2F;elements&#x2F;movetype_handler">movetype_handler</a></li>
     <li><a href="code/datums/elements/regenerator.html" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator">regenerator</a></li>
     <li><a href="code/datums/elements/rust.html" title="code&#x2F;datums&#x2F;elements&#x2F;rust">rust</a></li>
@@ -799,6 +802,7 @@ transformations and other events that cause new languages to become available.</
     </ul></li>
     </ul></li>
     </ul></li>
+    <li><a href="code/modules/mob/mob_defines.html" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines">mob_defines</a></li>
     <li><a href="code/modules/mob/mob_helpers.html" title="code&#x2F;modules&#x2F;mob&#x2F;mob_helpers">mob_helpers</a></li>
     <li><a href="code/modules/mob/mob_movespeed.html" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed">mob_movespeed</a> - How move speed for mobs works</li>
     <li><a href="code/modules/mob/say.html" title="code&#x2F;modules&#x2F;mob&#x2F;say">say</a></li>
@@ -1095,7 +1099,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1027 detailed/1880 documented/28741 total, 6.5%)</aside></h3>
+<aside>(1030 detailed/1882 documented/28767 total, 6.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1450,6 +1454,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     <li><span class="no-substance" title="&#x2F;datum&#x2F;atom_hud&#x2F;alternate_appearance&#x2F;basic&#x2F;has_antagonist">has_antagonist</span> - An alternate appearance that will only show if you have the antag datum</li>
     </ul></li>
     </ul></li>
+    <li><a href="datum/bitfield.html" title="&#x2F;datum&#x2F;bitfield">bitfield</a> - Specifies a bitfield for smarter debugging</li>
     <li class="has-children"><a href="datum/bloodsucker_clan.html" title="&#x2F;datum&#x2F;bloodsucker_clan">Caitiff</a> - Bloodsucker clans<ul class="index-tree">
     <li><a href="datum/bloodsucker_clan/nosferatu.html" title="&#x2F;datum&#x2F;bloodsucker_clan&#x2F;nosferatu">Nosferatu Clan</a></li>
     </ul></li>
@@ -1799,6 +1804,7 @@ When the object moves, it will unhook the signal and rehook it to the new object
     <li><a href="datum/element/footstep_override.html" title="&#x2F;datum&#x2F;element&#x2F;footstep_override">footstep_override</a> - When attached, the footstep sound played by the footstep element will be replaced by this one's</li>
     <li><a href="datum/element/frozen.html" title="&#x2F;datum&#x2F;element&#x2F;frozen">frozen</a> - simple element to handle frozen obj's</li>
     <li><a href="datum/element/life_draining.html" title="&#x2F;datum&#x2F;element&#x2F;life_draining">life_draining</a> - Slowly drains HP from a living mob.</li>
+    <li><a href="datum/element/light_blocking.html" title="&#x2F;datum&#x2F;element&#x2F;light_blocking">light_blocking</a> - Attached to movable atoms with opacity. Listens to them move and updates their old and new turf loc's opacity accordingly.</li>
     <li><a href="datum/element/movetype_handler.html" title="&#x2F;datum&#x2F;element&#x2F;movetype_handler">movetype_handler</a> - An element that enables and disables movetype bitflags whenever the relative traits are added or removed.
 It also handles the +2/-2 pixel y anim loop typical of mobs possessing the FLYING or FLOATING movetypes.
 This element is necessary for the TRAIT_MOVE_ traits to work correctly, so make sure to attach this element
@@ -2275,8 +2281,8 @@ They attach to an atom and provide the editor + playback functionality.</li>
     <li><a href="datum/species/golem/snow.html" title="&#x2F;datum&#x2F;species&#x2F;golem&#x2F;snow">Snow Golem</a></li>
     <li><a href="datum/species/golem/uranium.html" title="&#x2F;datum&#x2F;species&#x2F;golem&#x2F;uranium">Uranium Golem</a></li>
     </ul></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;species&#x2F;jelly">jelly</span><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;luminescent">Luminescent</span> - LUMINESCENTS</li>
+    <li class="has-children"><span title="&#x2F;datum&#x2F;species&#x2F;jelly">jelly</span><ul class="index-tree">
+    <li><a href="datum/species/jelly/luminescent.html" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;luminescent">Luminescent</a> - LUMINESCENTS</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;slime">Slimeperson</span> - SLIMEPEOPLE</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;stargazer">Stargazer</span> - STARGAZERS</li>
     </ul></li>
@@ -3690,7 +3696,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/da7ee3f6eaca89e6c3ceafa56c53b3dad5186db8">da7ee3f</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/5753d4648c296e557c5f372159ce14c621daca56">5753d46</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
