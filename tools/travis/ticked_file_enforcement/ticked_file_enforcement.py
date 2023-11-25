@@ -64,8 +64,7 @@ fail_no_include = False
 
 scannable_files = []
 for file_extension in file_extensions:
-    compiled_directory = f"{scannable_directory}/**/*.{file_extension}"
-    scannable_files += glob.glob(compiled_directory, recursive=True)
+     scannable_files += glob.glob(scannable_directory + f"**/*{file_extension}", recursive=True)
 
 if len(scannable_files) == 0:
     post_error(f"No files were found in {scannable_directory}. Ticked File Enforcement has failed!")
