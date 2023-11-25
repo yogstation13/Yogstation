@@ -88,38 +88,41 @@
 
 	REMOVE_TRAIT(target, TRAIT_PARALYSIS, type)
 
+	//put the victim to sleep before the visible_message proc so the victim doesn't see it
+	to_chat(target, span_progenitor("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
+	playsound(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
+	target.playsound_local(target, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
+	target.Unconscious(5 SECONDS)
+
+	//get how much lucidity and willpower will be given
 	var/willpower_amount = 4
 	var/lucidity_amount = 1
-	var/list/self_text = list() //easier to format this way
-	self_text += span_velvet("<b>...aranupdejc</b>")
-	self_text += span_velvet("You devour [target]'s will.")
 	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED)) //change the numbers before text
 		lucidity_amount = 0
 		willpower_amount *= 0.5
 		willpower_amount = round(willpower_amount) //make sure it's a whole number still
-	
-	self_text += span_velvet("You have gained [willpower_amount] willpower. Use willpower to purchase abilities and passives.")
-	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
-		self_text += span_warning("[target]'s mind is already damaged by previous devouring and has granted less willpower and no lucidity.")
-	else
-		self_text += span_velvet("This individual's lucidity brings you one step closer to the sacrament...")
-		self_text += span_warning("After meddling with [target]'s mind, they will grant less willpower and no lucidity any future times their will is devoured.")
 
-	self_text += span_warning("[target] is now severely weakened and will take some time to recover.")
-
-	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
-	playsound(target, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
-
+	//pass out the willpower and lucidity to the darkspawns
 	for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
 		var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
 		if(teammate && istype(teammate))//sanity check
 			teammate.willpower += willpower_amount
 	SSticker.mode.lucidity += lucidity_amount
 
-	to_chat(target, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
-	target.playsound_local(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
-	target.Unconscious(5 SECONDS)
-	target.apply_effect(EFFECT_STUTTER, 20)
+	//format the text output to the darkspawn
+	var/list/self_text = list() 
+	self_text += span_velvet("<b>...aranupdejc</b>")
+	self_text += span_velvet("You devour [target]'s will.")
+	self_text += span_velvet("You have gained [willpower_amount] willpower. Use willpower to purchase abilities and passives.")
+	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
+		self_text += span_warning("[target]'s mind is already damaged by previous devouring and has granted less willpower and no lucidity.")
+	else
+		self_text += span_velvet("This individual's lucidity brings you one step closer to the sacrament...")
+		self_text += span_warning("After meddling with [target]'s mind, they will grant less willpower and no lucidity any future times their will is devoured.")
+	self_text += span_warning("[target] is now severely weakened and will take some time to recover.")
+	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
+
+	//apply the long-term debuffs to the victim
 	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
 	target.apply_status_effect(STATUS_EFFECT_DEVOURED_WILL)
 	ADD_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED, type)
@@ -144,6 +147,7 @@
 	psi_cost = 60
 	var/in_use = FALSE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
+	var/duration = 8 SECONDS
 
 /datum/action/cooldown/spell/touch/silver_tongue/can_cast_spell(feedback)
 	if(SSshuttle.emergency.mode != SHUTTLE_CALL || in_use)
@@ -156,42 +160,42 @@
 /datum/action/cooldown/spell/touch/silver_tongue/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/computer/communications/target, mob/living/carbon/caster)
 	if(in_use)
 		return
-	in_use = TRUE
 	if(target.stat)
 		to_chat(owner, span_warning("[target] is depowered."))
 		return FALSE
-	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), \
-	"<span class='velvet bold'>[pick("Oknnu. Pda ywlpwej swo hkccaz ej.", "Pda aiancajyu eo kran. Oknnu bkn swopejc ukqn peia.", "We swo knzanaz xu Hws Psk. Whh ckkz jks.")]</span><br>\
-	[span_velvet("You begin transmitting a recall message to Central Command...")]")
+	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), span_velvet("<b>[pick("Oknnu. Pda ywlpwej swo hkccaz ej.", "Pda aiancajyu eo kran. Oknnu bkn swopejc ukqn peia.", "We swo knzanaz xu Hws Psk. Whh ckkz jks.")]</b><br>You begin transmitting a recall message to Central Command..."))
 	play_recall_sounds(target)
-	if(!do_after(owner, 8 SECONDS, target))
-		in_use = FALSE
-		return
-	if(!target)
-		in_use = FALSE
-		return
-	if(target.stat)
-		to_chat(owner, span_warning("[target] has lost power."))
+	in_use = TRUE
+	if(!do_after(owner, duration, target))
 		in_use = FALSE
 		return
 	in_use = FALSE
+	if(!target)
+		return
+	if(target.stat)
+		to_chat(owner, span_warning("[target] has lost power."))
+		return
 	SSshuttle.emergency.cancel()
 	to_chat(owner, span_velvet("The ruse was a success. The shuttle is on its way back."))
 	return TRUE
 
 /datum/action/cooldown/spell/touch/silver_tongue/proc/play_recall_sounds(obj/machinery/C) //neato sound effects
 	set waitfor = FALSE
-	for(var/i in 1 to 4)
+	playsound(C, "terminal_type", 50, TRUE)
+	for(var/i in 1 to ((duration/10)-1)) //8 seconds (80) -> 7 loops -> 7 seconds of random typing and beeping
 		sleep(1 SECONDS)
-		if(!C || C.stat)
+		if(!C || C.stat || !in_use)
 			return
 		playsound(C, "terminal_type", 50, TRUE)
 		if(prob(25))
 			playsound(C, 'sound/machines/terminal_alert.ogg', 50, FALSE)
 			do_sparks(5, TRUE, get_turf(C))
+	sleep(0.4 SECONDS)
+	if(!C || C.stat || !in_use)
+		return
 	playsound(C, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
-	sleep(0.5 SECONDS)
-	if(!C || C.stat)
+	sleep(0.4 SECONDS)
+	if(!C || C.stat || !in_use)
 		return
 	playsound(C, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 
