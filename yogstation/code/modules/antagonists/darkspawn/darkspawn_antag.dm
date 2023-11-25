@@ -14,7 +14,7 @@
 	var/psi = 100 //Psi is the resource used for darkspawn powers
 	var/psi_cap = 100 //Max Psi by default
 	var/psi_regen_delay = 5 SECONDS //How long before psi starts regenerating
-	var/psi_per_second = 10 //how much psi is regenerated per second once it does start regenerating
+	var/psi_per_second = 5 //how much psi is regenerated per second once it does start regenerating
 	COOLDOWN_DECLARE(psi_cooldown)//When this finishes it's cooldown, regenerate Psi and restart
 	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
 
@@ -217,7 +217,7 @@
 /datum/antagonist/darkspawn/antag_panel_data()
 	. += "<b>Lucidity:</b> [SSticker.mode.lucidity ? SSticker.mode.lucidity : "0"] / [SSticker.mode.required_succs ? SSticker.mode.required_succs : "0"]<br>"
 	. += "<b>Willpower:</b> [willpower ? willpower : "0"]<br>"
-	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? psi_regen_delay : "no delay"]<br>"
+	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? "[psi_regen_delay/10] seconds" : "no delay"]<br>"
 	. += "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
 
 	. += "<b>Upgrades:</b><br>"
@@ -244,14 +244,16 @@
 	if(psi_regen_delay)
 		COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
 	psi -= amt
-	psi = round(psi, 0.2)
+	psi = round(psi, 0.1)
 	update_psi_hud()
 	return TRUE
 
 /datum/antagonist/darkspawn/proc/regenerate_psi()
 	set waitfor = FALSE
 	psi_regenerating = TRUE 
-	psi = min(psi + 1, psi_cap)
+	var/regen_amount = max(1, (psi_per_second/20))//max speed is 20 ticks per second, regenerate extra per tick if regen speed is over 20 (only encountered when admemes mess with numbers)
+	psi = min(psi + regen_amount, psi_cap)
+	psi = round(psi, 0.1) //keep it at reasonable numbers rather than ridiculous decimals
 	update_psi_hud()
 	if(psi >= psi_cap || !COOLDOWN_FINISHED(src, psi_cooldown))
 		psi_regenerating = FALSE
