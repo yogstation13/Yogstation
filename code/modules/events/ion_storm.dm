@@ -1,5 +1,6 @@
 #define ION_RANDOM 0
 #define ION_ANNOUNCE 1
+
 /datum/round_event_control/ion_storm
 	name = "Ion Storm"
 	typepath = /datum/round_event/ion_storm
@@ -7,14 +8,23 @@
 	min_players = 2
 
 /datum/round_event/ion_storm
-	var/addIonLawChance = 100 // chance a new ion law will be added in addition to other ion effects
-	var/replaceLawsetChance = 25 //chance the AI's lawset is completely replaced with something else per config weights
-	var/removeRandomLawChance = 10 //chance the AI has one random supplied or inherent law removed
-	var/removeDontImproveChance = 10 //chance the randomly created law replaces a random law instead of simply being added
-	var/shuffleLawsChance = 10 //chance the AI's laws are shuffled afterwards
+	/// Chance a new ion law will be added in addition to other ion effects.
+	var/addIonLawChance = 100
+	/// Chance the AI's lawset is completely replaced with something else per config weights.
+	var/replaceLawsetChance = 25
+	/// Chance the AI has one random supplied or inherent law removed.
+	var/removeRandomLawChance = 10
+	/// Chance the ion law will replace a random law instead of simply being added.
+	var/removeDontImproveChance = 10
+	/// Chance the AI's laws are shuffled afterwards.
+	var/shuffleLawsChance = 10
+	/// Chance that bots on the station will become emagged.
 	var/botEmagChance = 10
-	var/announceEvent = ION_RANDOM // -1 means don't announce, 0 means have it randomly announce, 1 means
+	/// Should it announce? -1 = No | 0 = Random | 1 = Always.
+	var/announceEvent = ION_RANDOM
+	/// Custom ion law, if not null.
 	var/ionMessage = null
+	/// If announceEvent is 0, what is the chance it is will accounce?
 	var/ionAnnounceChance = 33
 	announceWhen	= 1
 
