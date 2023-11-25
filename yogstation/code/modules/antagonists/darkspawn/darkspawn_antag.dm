@@ -13,8 +13,8 @@
 	//Psi variables
 	var/psi = 100 //Psi is the resource used for darkspawn powers
 	var/psi_cap = 100 //Max Psi by default
-	var/psi_regen_delay = 5 SECONDS //How long before psi starts regenerating
-	var/psi_per_second = 5 //how much psi is regenerated per second once it does start regenerating
+	var/psi_regen_delay = 10 SECONDS //How long before psi starts regenerating
+	var/psi_per_second = 10 //how much psi is regenerated per second once it does start regenerating
 	COOLDOWN_DECLARE(psi_cooldown)//When this finishes it's cooldown, regenerate Psi and restart
 	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
 
