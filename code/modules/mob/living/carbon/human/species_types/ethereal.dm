@@ -53,14 +53,11 @@
 
 	smells_like = "crackling sweetness"
 
-	var/obj/effect/dummy/lighting_obj/ethereal_light
-
+	var/obj/effect/dummy/lighting_obj/moblight/species/ethereal_light
 
 /datum/species/ethereal/Destroy(force)
-	if(ethereal_light)
-		QDEL_NULL(ethereal_light)
+	QDEL_NULL(ethereal_light)
 	return ..()
-
 
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
@@ -70,7 +67,7 @@
 	var/mob/living/carbon/human/ethereal = C
 	setup_color(ethereal)
 
-	ethereal_light = ethereal.mob_light()
+	ethereal_light = ethereal.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight/species)
 	RegisterSignal(ethereal, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	spec_updatehealth(ethereal)
 
