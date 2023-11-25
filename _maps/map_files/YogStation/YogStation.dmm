@@ -12979,21 +12979,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
-"cce" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/obj/effect/turf_decal/trimline/green/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "cch" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
@@ -15165,13 +15150,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"cFS" = (
-/obj/structure/sign/painting{
-	persistence_id = "public";
-	pixel_y = 32
-	},
-/turf/template_noop,
-/area/template_noop)
 "cGw" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
@@ -15217,10 +15195,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"cGS" = (
-/obj/effect/landmark/start/bartender,
-/turf/template_noop,
-/area/template_noop)
 "cHa" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/glowstick,
@@ -18048,12 +18022,6 @@
 /obj/structure/tank_dispenser,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/storage)
-"dIf" = (
-/obj/effect/turf_decal/trimline/green/filled/line/lower{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "dIg" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -19668,6 +19636,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"eoY" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "epj" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/dark,
@@ -20682,6 +20662,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"eGv" = (
+/obj/effect/landmark/start/cook,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "eGB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -21996,6 +21980,9 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"fgy" = (
+/turf/closed/wall,
+/area/space)
 "fgC" = (
 /obj/machinery/recharge_station,
 /obj/machinery/light/small{
@@ -22532,6 +22519,10 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
+"fpQ" = (
+/obj/effect/landmark/start/bartender,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "fpR" = (
 /obj/machinery/computer/shuttle/labor,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -23027,6 +23018,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"fyN" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/space)
 "fyS" = (
 /obj/structure/filingcabinet,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
@@ -23740,10 +23735,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/secondarydatacore)
-"fKR" = (
-/obj/effect/landmark/start/cook,
-/turf/template_noop,
-/area/template_noop)
 "fKT" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -29155,15 +29146,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
-"hQg" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/effect/turf_decal/trimline/green/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "hQm" = (
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
@@ -31029,10 +31011,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"iyy" = (
-/obj/effect/landmark/stationroom/box/bar,
-/turf/template_noop,
-/area/template_noop)
 "iyO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -32720,16 +32698,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
-"jeO" = (
-/obj/structure/sign/painting{
-	persistence_id = "public";
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/trimline/green/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "jfp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -35138,6 +35106,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"kej" = (
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "kek" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -37971,15 +37946,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"lkt" = (
-/obj/machinery/camera{
-	c_tag = "Starboard Primary Hallway 2"
-	},
-/obj/effect/turf_decal/trimline/green/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "lkZ" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -40764,6 +40730,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"mpX" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/space)
 "mqb" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "visitation";
@@ -45578,6 +45548,12 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/main)
+"oir" = (
+/obj/machinery/camera{
+	c_tag = "Starboard Primary Hallway 2"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "ois" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 8
@@ -52149,6 +52125,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"qGZ" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space)
 "qHa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -106292,18 +106275,18 @@ qQV
 qQV
 qQV
 qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-iyy
+fgy
+fgy
+fgy
+fgy
+fgy
+fyN
+fgy
+fyN
+fgy
+fyN
+fgy
+fgy
 jdH
 jdH
 mAA
@@ -106549,18 +106532,18 @@ qQV
 qQV
 qQV
 qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
 vNd
 vNd
 rlf
@@ -106806,18 +106789,18 @@ qQV
 qQV
 qQV
 qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
 aYV
 aYV
 duH
@@ -107061,20 +107044,20 @@ vIY
 sKP
 wIl
 xPa
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
 aYV
 aYV
 duH
@@ -107318,20 +107301,20 @@ jTj
 gsn
 sGs
 gcx
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
 aYV
 aYV
 duH
@@ -107575,20 +107558,20 @@ bAV
 dyX
 fUW
 vft
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+qGZ
 aYV
 aYV
 duH
@@ -107832,20 +107815,20 @@ bPw
 jMv
 jMv
 jMv
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aYV
 aYV
 tMW
@@ -108089,20 +108072,20 @@ ayz
 saC
 nJB
 anf
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+qGZ
 aYV
 aYV
 dIF
@@ -108346,20 +108329,20 @@ alP
 alP
 aEH
 xjK
-qQV
-cFS
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
 aYV
 jIl
 rJp
@@ -108603,20 +108586,20 @@ aFd
 alP
 aHK
 cky
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
 aYV
 aYV
 lEb
@@ -108860,20 +108843,20 @@ aFf
 alP
 wyd
 ckQ
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
 rUu
 aYV
 cwO
@@ -109117,20 +109100,20 @@ aAh
 aAh
 aEH
 aql
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fyN
 aYV
 aYV
 duH
@@ -109374,20 +109357,20 @@ bPA
 aAh
 pCi
 aql
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fyN
 aYV
 aYV
 duH
@@ -109631,21 +109614,21 @@ aAh
 aAh
 aFt
 uya
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qfN
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fyN
+aYV
 aYV
 duH
 jLY
@@ -109888,21 +109871,21 @@ ota
 aAh
 iNv
 aql
-qQV
-cGS
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-cuA
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
+aYV
 aYV
 nlS
 scD
@@ -110145,21 +110128,21 @@ aAh
 aAh
 ceK
 aql
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-hQg
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
+fgy
+bal
 aYV
 rRR
 jQg
@@ -110402,21 +110385,21 @@ fgC
 aAh
 aEH
 ckT
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-naO
-rhn
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
+aYV
+aYV
 jKG
 sFQ
 pVW
@@ -110659,20 +110642,20 @@ aAh
 aAh
 aEH
 aql
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-jeO
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
+kej
 aYV
 aYV
 dIF
@@ -110916,21 +110899,21 @@ alP
 alP
 wyd
 clh
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-buB
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+mpX
 aYV
+fpQ
 aYV
 duH
 kiy
@@ -111173,21 +111156,21 @@ bQb
 alP
 kEF
 clD
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-buB
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+mpX
 aYV
+eGv
 aYV
 duH
 jXL
@@ -111430,21 +111413,21 @@ syq
 rjG
 aEH
 fwD
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-buB
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+mpX
 aYV
+eGv
 aYV
 lmt
 lcC
@@ -111687,20 +111670,20 @@ syq
 alP
 aEH
 aty
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-buB
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+mpX
+aYV
 aYV
 aYV
 rlx
@@ -111944,20 +111927,20 @@ alP
 alP
 aEH
 aty
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-lkt
+fgy
+fgy
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
+oir
 aYV
 aYV
 duH
@@ -112203,19 +112186,19 @@ aEH
 aty
 cuG
 cIg
-qQV
-qQV
-qQV
-qQV
-qQV
-fKR
-fKR
-qQV
-qQV
-qQV
-qQV
-dIf
-qfN
+fgy
+fgy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+fgy
+aYV
+aYV
 aYV
 duH
 lcC
@@ -112472,7 +112455,7 @@ fgc
 fgc
 fgc
 fgc
-cce
+eoY
 cBm
 yfG
 kiy
@@ -112729,7 +112712,7 @@ nia
 nia
 ias
 wBr
-cuA
+qfN
 aYV
 pnN
 kiy
