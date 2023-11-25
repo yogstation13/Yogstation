@@ -458,8 +458,6 @@ SUBSYSTEM_DEF(ticker)
 				to_chat(N, "<FONT color='red'>No Captain is present at the start of shift. Please follow the SOP available <b><a href='https://wiki.yogstation.net/wiki/Official:Disk_Procedure'>here</a></b> to secure the disk and assign an Acting Captain.")
 			CHECK_TICK
 
-	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
-		SSjob.random_bar_init()
 	if(no_clerk)
 		SSjob.random_clerk_init()
 
