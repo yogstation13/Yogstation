@@ -121,6 +121,8 @@
 		for(var/obj/machinery/power/apc/apc in apcs)
 			if(!prob(apcChance))
 				continue
+			if(apc.aidisabled)
+				continue
 			var/turf/turf = get_turf(apc)
 			var/luck = rand(1, 4)
 			switch(luck)
