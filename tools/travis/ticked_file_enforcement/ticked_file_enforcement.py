@@ -6,6 +6,9 @@ import json
 import os
 import sys
 
+# simple way to check if we're running on github actions, or on a local machine
+on_github = os.getenv("TRAVIS") == "true"
+
 def green(text):
     return "\033[32m" + str(text) + "\033[0m"
 
@@ -25,7 +28,8 @@ excluded_files = schema["excluded_files"]
 
 def post_error(string):
     print(red(f"Ticked File Enforcement [{file_reference}]: " + string))
-    print(f"::error file={file_reference},line=1,title=Ticked File Enforcement::{string}")
+    if on_github:
+        print(f"::error file={file_reference},line=1,title=Ticked File Enforcement::{string}")
 
 for excluded_file in excluded_files:
     full_file_path = scannable_directory + excluded_file
