@@ -88,7 +88,6 @@
 				gas_min -= g
 
 /obj/item/organ/lungs/proc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
-//TODO: add lung damage = less oxygen gains
 	var/breathModifier = (5-(5*(damage/maxHealth)/2)) //range 2.5 - 5
 	if(H.status_flags & GODMODE)
 		return
@@ -455,14 +454,9 @@
 /obj/item/organ/lungs/attackby(obj/item/W, mob/user, params)
 	if(!(organ_flags & ORGAN_SYNTHETIC) && organ_efficiency == 1 && W.tool_behaviour == TOOL_CROWBAR)
 		user.visible_message(span_notice("[user] extends [src] with [W]!"), span_notice("You use [W] to extend [src]!"), "You hear something stretching.")
-		name = "extended [name]"
-		icon_state += "-crobar" //shh! don't tell anyone i handed you this card
-		/*safe_oxygen_min *= 2 //SCREAM LOUDER i dont know maybe eventually
-		safe_toxins_min *= 2
-		safe_nitro_min *= 2 //BREATHE HARDER
-		safe_co2_min *= 2*/
-		organ_efficiency = 2 //HOLD YOUR BREATH FOR REALLY LONG
-		maxHealth *= 0.5 //This procedure is not legal but i will do it for you
+		var/old_lung_loc = src.loc
+		qdel(src)
+		new /obj/item/organ/lungs/extended(old_lung_loc)
 
 /obj/item/organ/lungs/prepare_eat()
 	var/obj/S = ..()
@@ -471,6 +465,13 @@
 
 /obj/item/organ/lungs/get_availability(datum/species/species)
 	return !(TRAIT_NOBREATH in species.inherent_traits)
+
+/obj/item/organ/lungs/extended
+	name = "extended lungs"
+	icon_state = "lungs-crobar" //shh! don't tell anyone i handed you this card
+	organ_efficiency = 2 //HOLD YOUR BREATH FOR REALLY LONG
+	maxHealth = 0.5 * STANDARD_ORGAN_THRESHOLD //This procedure is not legal but i will do it for you
+	breathing_class = /datum/breathing_class/oxygen_double //SCREAM LOUDER BREATHE HARDER i dont know maybe eventually
 
 /obj/item/organ/lungs/ipc
 	name = "cooling radiator"

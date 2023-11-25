@@ -6,9 +6,9 @@
 // breathing class at -7, simulating krypton narcosis.
 
 /datum/breathing_class
-	var/list/gases = null
-	var/list/products = null
-	var/danger_reagent = null
+	var/list/gases
+	var/list/products
+	var/danger_reagent
 	var/low_alert_category = "not_enough_oxy"
 	var/low_alert_datum = /atom/movable/screen/alert/not_enough_oxy
 	var/high_alert_category = "too_much_oxy"
@@ -70,6 +70,16 @@
 		GAS_PLUOXIUM = 8,
 		GAS_CO2 = -0.7, // CO2 isn't actually toxic, just an asphyxiant
 		GAS_H2O = 1,
+	)
+	products = list(
+		GAS_CO2 = 1,
+	)
+
+/datum/breathing_class/oxygen_double
+	gases = list(
+		GAS_O2 = 1 * 2,
+		GAS_PLUOXIUM = 8 * 2,
+		GAS_CO2 = -0.7 * 2, // CO2 isn't actually toxic, just an asphyxiant
 	)
 	products = list(
 		GAS_CO2 = 1,
