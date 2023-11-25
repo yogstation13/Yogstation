@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - tweak: "Shooting plasma sheets with a damaging burn-based projectile ignites it."

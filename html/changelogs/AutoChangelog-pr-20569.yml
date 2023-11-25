@@ -1,0 +1,5 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - rscadd: "Seclites now have directional lights- point them in the direction you want to see more of."
+  - experiment: "Ported over many refactors to lighting and opacity. Please report if you can walk or see through walls unintentionally."

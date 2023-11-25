@@ -9278,7 +9278,7 @@
 "aug" = (
 /obj/structure/table/wood,
 /obj/item/pitchfork/demonic/ascended,
-/obj/item/melee/powerfist,
+/obj/item/clothing/gloves/powerfist/filled,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
 "auh" = (

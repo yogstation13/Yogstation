@@ -365,9 +365,19 @@
 	var/disallowed_trait = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
 	qdel(species)
 
-	if(disallowed_trait) 
+	if(disallowed_trait)
 		return "You have no DNA!"
 	return FALSE
+
+/datum/quirk/marine
+	name = "Marine"
+	desc = "Whether inherited from family or gained from years of service, you have the rugged blood of a Marine coursing through your veins. Crayons look quite tasty to you, and you aren't phased by eating them."
+	icon = "chevron-up"
+	value = 2
+	mob_trait = TRAIT_MARINE
+	gain_text = span_notice("You've graduated top of your class and have over 300 confirmed kills.")
+	lose_text = span_danger("You've lost the fierceless spirit of a Marine, alongside your appetite for crayons.")
+	medical_record_text = ("Patient's stomach is unusually proficient at digesting wax.")
 
 /datum/quirk/multilingual
 	name = "Multilingual"

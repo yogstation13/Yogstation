@@ -111,6 +111,8 @@
 	attack_verb = list("poked", "tipped")
 	embedding = list("embed_chance" = 0) //Zero percent chance to embed
 	var/extended = 0
+	var/mob/living/carbon/fedora_man
+	var/returning = FALSE
 
 /obj/item/clothing/head/det_hat/evil/attack_self(mob/user)
 	extended = !extended
@@ -138,16 +140,28 @@
 		hattable = TRUE
 
 /obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(iscarbon(loc) || !iscarbon(thrownby))
-		return ..()
-	throw_at(thrownby, throw_range+3, 3, null)
-	..()
+	if(fedora_man && hit_atom == fedora_man)
+		if(fedora_man.put_in_hands(src))
+			fedora_man.throw_mode_on()
+			return
+		else
+			return ..()
+	. = ..()
+	if(fedora_man && returning)
+		returning = FALSE //only try to return once
+		if(get_turf(src) == get_turf(fedora_man))//don't try to return if the tile it hit is literally under the thrower
+			return
+		addtimer(CALLBACK(src, PROC_REF(comeback)), 1, TIMER_UNIQUE)//delay the return by such a small amount
 
-/obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
-	if(iscarbon(thrower))
-		var/mob/living/carbon/C = thrower
-		C.throw_mode_on()
-	..()
+/obj/item/clothing/head/det_hat/evil/proc/comeback()
+	throw_at(fedora_man, throw_range+3, throw_speed)
+
+/obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=0, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
+	if(thrower && iscarbon(thrower))
+		fedora_man = thrower
+		fedora_man.changeNext_move(CLICK_CD_MELEE)//longer cooldown
+		returning = TRUE
+	. = ..()
 
 //Mime
 /obj/item/clothing/head/beret
