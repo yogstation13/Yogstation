@@ -38,6 +38,7 @@
 	friendly = "stares down"
 	speak_emote = list("roars")
 	speech_span = SPAN_PROGENITOR //pretty sure this is how i'd go about doing this, hopefully
+	faction = list("darkspawn")
 
 	//progenitor specific variables
 	var/time_to_next_roar = 0
@@ -92,6 +93,9 @@
 		playsound(target, 'yogstation/sound/magic/pass_smash_door.ogg', 100, FALSE)
 	. = ..()
 
+//////////////////////////////////////////////////////////////////////////
+//-------------------------------Smol-----------------------------------//
+//////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Login()
 	..()
 	var/image/I = image(icon = 'yogstation/icons/mob/mob.dmi' , icon_state = "smol_progenitor", loc = src)
