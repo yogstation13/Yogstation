@@ -14,11 +14,11 @@ RUST PATH SPELLS GO HERE
 	sound = 'sound/items/welder.ogg'
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 30 SECONDS
+	cooldown_time = 25 SECONDS
 
 	invocation = "A'GRSV SPR'D"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	aoe_radius = 3
 
@@ -58,7 +58,7 @@ RUST PATH SPELLS GO HERE
 
 	invocation = "SPR'D TH' WO'D"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	projectile_type = /obj/projectile/magic/aoe/rust_wave
 
@@ -115,7 +115,7 @@ RUST PATH SPELLS GO HERE
 
 	invocation = "'NTR'P'C PL'M'"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 	
 	cone_levels = 5
 	respect_density = TRUE

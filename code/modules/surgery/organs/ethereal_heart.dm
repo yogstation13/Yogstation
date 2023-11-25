@@ -8,6 +8,7 @@
 	visual = TRUE //This is used by the ethereal species for color
 	desc = "A crystal-like organ that functions similarly to a heart for Ethereals. It can revive its owner."
 
+	decay_factor = 0 //won't randomly decay and break while reviving the ethereal
 	///Cooldown for the next time we can crystalize
 	COOLDOWN_DECLARE(crystalize_cooldown)
 	///Timer ID for when we will be crystalized, If not preparing this will be null.
@@ -234,19 +235,19 @@
 		. += shine
 
 /obj/structure/ethereal_crystal/proc/heal_ethereal()
-	var/datum/brain_trauma/picked_trauma = pick(subtypesof(/datum/brain_trauma/mild))
+	var/datum/brain_trauma/trauma_type = BRAIN_TRAUMA_MILD
 	if(prob(1))
-		picked_trauma = pick(subtypesof(/datum/brain_trauma/special))
+		trauma_type = BRAIN_TRAUMA_SPECIAL
 	else if(prob(10))
-		picked_trauma = pick(subtypesof(/datum/brain_trauma/severe))
-
+		trauma_type = BRAIN_TRAUMA_SEVERE
+		
 	// revive will regenerate organs, so our heart refence is going to be null'd. Unreliable
 	var/mob/living/carbon/regenerating = ethereal_heart.owner
 
 	playsound(get_turf(regenerating), 'sound/effects/ethereal_revive.ogg', 100)
 	to_chat(regenerating, span_notice("You burst out of the crystal with vigour... </span><span class='userdanger'>But at a cost."))
-	regenerating.gain_trauma(picked_trauma, TRAUMA_RESILIENCE_ABSOLUTE)
 	regenerating.revive(TRUE)
+	regenerating.gain_trauma_type(trauma_type, TRAUMA_RESILIENCE_ABSOLUTE)
 	// revive calls fully heal -> deletes the crystal.
 	// this qdeleted check is just for sanity.
 	if(!QDELETED(src))

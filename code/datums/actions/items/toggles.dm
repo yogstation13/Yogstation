@@ -37,7 +37,7 @@
 
 /datum/action/item_action/toggle_welding_screen
 	name = "Toggle Welding Screen"
-	
+
 /datum/action/item_action/toggle_welding_screen/Trigger()
 	var/obj/item/clothing/head/hardhat/weldhat/H = target
 	if(istype(H))
@@ -143,3 +143,6 @@
 
 /datum/action/item_action/equip_unequip_TED_Gun
 	name = "Equip/Unequip TED Gun"
+
+/datum/action/item_action/toggle_pseudocider
+	name = "Toggle Pseudocider"

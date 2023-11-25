@@ -1,58 +1,70 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+/**
+ * Nanotrasen TCS Language - Made by Doohl, ported to Yogs by Altoids
+ */
+#define HUMAN (1<<0)
+#define MONKEY (1<<1)
+#define ROBOT (1<<2)
+#define POLYSMORPH (1<<3)
+#define DRACONIC (1<<4)
+#define BEACHTONGUE (1<<5)
+#define SYLVAN (1<<6)
+#define ETHEREAN (1<<7)
+#define BONE (1<<8)
+#define MOTH (1<<9)
+#define CAT (1<<10)
+#define ENGLISH (1<<11)
 
+///Span classes that players are allowed to set in a radio transmission.
+GLOBAL_LIST_INIT(allowed_custom_spans, list(
+	SPAN_ROBOT,
+	SPAN_YELL,
+	SPAN_ITALICS,
+	SPAN_SANS,
+	SPAN_COMMAND,
+	SPAN_CLOWN,
+))
 
-/* --- Traffic Control Scripting Language --- */
-	// Nanotrasen TCS Language - Made by Doohl, ported to Yogs by Altoids
+///Language datums that players are allowed to translate to in a radio transmission.
+///This is fucking broken.
+GLOBAL_LIST_INIT(allowed_translations, list(
+	/datum/language/common,
+	/datum/language/machine,
+	/datum/language/draconic,
+))
 
-#define HUMAN 1
-#define MONKEY 2
-#define ROBOT 4
-#define POLYSMORPH 8
-#define DRACONIC 16
-#define BEACHTONGUE 32
-#define SYLVAN 64
-#define ETHEREAN 128
-#define BONE 256
-#define MOTH 512
-#define CAT 1024
-#define ENGLISH 2048
-
-GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
-//this is fucking broken
-GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
-
-/n_Interpreter/TCS_Interpreter
+/datum/n_Interpreter/TCS_Interpreter
 	var/datum/TCS_Compiler/Compiler
 
-	HandleError(runtimeError/e)
-		Compiler.Holder.add_entry(e.ToString(), "Execution Error")
+/datum/n_Interpreter/TCS_Interpreter/HandleError(datum/runtimeError/e)
+	Compiler.Holder.add_entry(e.ToString(), "Execution Error")
 
-	GC()
-		..()
-		Compiler = null
-
+/datum/n_Interpreter/TCS_Interpreter/garbage_collect()
+	. = ..()
+	Compiler = null
 
 /datum/TCS_Compiler
-	var/n_Interpreter/TCS_Interpreter/interpreter
-	var/obj/machinery/telecomms/server/Holder	// the server that is running the code
-	var/ready = 1 // 1 if ready to run code
+	var/datum/n_Interpreter/TCS_Interpreter/interpreter
+	///The telecomms server that is running the code.
+	var/obj/machinery/telecomms/server/Holder
+	///Boolean on whether it's ready to run code.
+	var/ready = TRUE
 
-	/* -- Set ourselves to Garbage Collect -- */
-
-/datum/TCS_Compiler/proc/GC()
+/**
+ * Set ourselves to Garbage Collect.
+ */
+/datum/TCS_Compiler/proc/garbage_collect()
 	Holder = null
 	if(interpreter)
-		interpreter.GC()
-
-
-	/* -- Compile a raw block of text -- */
-
+		interpreter.garbage_collect()
+/**
+ * Compile a raw block of text.
+ */
 /datum/TCS_Compiler/proc/Compile(code as message)
-	var/n_scriptOptions/nS_Options/options = new()
-	var/n_Scanner/nS_Scanner/scanner       = new(code, options)
-	var/list/tokens                        = scanner.Scan()
-	var/n_Parser/nS_Parser/parser          = new(tokens, options)
-	var/node/BlockDefinition/GlobalBlock/program   	 = parser.Parse()
+	var/datum/n_scriptOptions/options = new()
+	var/datum/n_Scanner/nS_Scanner/scanner = new(code, options)
+	var/list/datum/token/tokens = scanner.Scan()
+	var/datum/n_Parser/nS_Parser/parser = new(tokens, options)
+	var/datum/node/BlockDefinition/GlobalBlock/program = parser.Parse()
 
 	var/list/returnerrors = list()
 
@@ -62,60 +74,65 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	if(returnerrors.len)
 		return returnerrors
 
-	interpreter 		= new(program)
-	interpreter.persist	= 1
-	interpreter.Compiler= src
+	interpreter = new(program)
+	interpreter.persist = TRUE
+	interpreter.Compiler = src
 	interpreter.container = src
 
-	interpreter.SetVar("PI"		, 	3.141592653)	// value of pi
-	interpreter.SetVar("E" 		, 	2.718281828)	// value of e
-	interpreter.SetVar("SQURT2" , 	1.414213562)	// value of the square root of 2
-	interpreter.SetVar("FALSE"  , 	0)				// boolean shortcut to 0
-	interpreter.SetVar("false"  , 	0)				// boolean shortcut to 0
-	interpreter.SetVar("TRUE"	,	1)				// boolean shortcut to 1
-	interpreter.SetVar("true"	,	1)				// boolean shortcut to 1
+	interpreter.SetVar("PI", 3.141592653) // value of pi
+	interpreter.SetVar("E" , 2.718281828) // value of e
+	interpreter.SetVar("SQURT2", 1.414213562) // value of the square root of 2
+	interpreter.SetVar("FALSE", 0) // boolean shortcut to 0
+	interpreter.SetVar("false", 0) // boolean shortcut to 0
+	interpreter.SetVar("TRUE", 1) // boolean shortcut to 1
+	interpreter.SetVar("true", 1) // boolean shortcut to 1
 
-	interpreter.SetVar("NORTH" 	, 	NORTH)			// NORTH (1)
-	interpreter.SetVar("SOUTH" 	, 	SOUTH)			// SOUTH (2)
-	interpreter.SetVar("EAST" 	, 	EAST)			// EAST  (4)
-	interpreter.SetVar("WEST" 	, 	WEST)			// WEST  (8)
+	interpreter.SetVar("NORTH", NORTH) // NORTH (1)
+	interpreter.SetVar("SOUTH", SOUTH) // SOUTH (2)
+	interpreter.SetVar("EAST", EAST) // EAST (4)
+	interpreter.SetVar("WEST", WEST) // WEST (8)
 
 	// Channel macros
-	interpreter.SetVar("channels", new /datum/n_enum(list(
-		"common" = 1459,
-		"science" = 1351,
-		"command" = 1353,
-		"medical" = 1355,
-		"engineering" = 1357,
-		"security" = 1359,
-		"supply" = 1347,
-		"service" = 1349,
-		"centcom" = 1337,// Yes, that is the real Centcom freq.
-		//This whole game is a big fuckin' meme.
-		"aiprivate" = 1447 // The Common Server is the one...
-		// ...that handles the AI Private Channel, btw.
-	)))
+	// Common server is the one that handles the AI Private Channel, btw.
+	interpreter.SetVar(
+		"channels", new /datum/n_enum(list(
+			"common" = FREQ_COMMON,
+			"science" = FREQ_SCIENCE,
+			"command" = FREQ_COMMAND,
+			"medical" = FREQ_MEDICAL,
+			"engineering" = FREQ_ENGINEERING,
+			"security" = FREQ_SECURITY,
+			"supply" = FREQ_SUPPLY,
+			"service" = FREQ_SERVICE,
+			"centcom" = FREQ_CENTCOM,
+			"aiprivate" = FREQ_AI_PRIVATE,
+		))
+	)
 
 
-	interpreter.SetVar("filter_types", new /datum/n_enum(list(
-		"robot" = SPAN_ROBOT,
-		"loud" = SPAN_YELL,
-		"emphasis" = SPAN_ITALICS,
-		"wacky" = SPAN_SANS,
-		"commanding" = SPAN_COMMAND
-	)))
-	//Current allowed span classes
+	interpreter.SetVar(
+		"filter_types", new /datum/n_enum(list(
+			"robot" = SPAN_ROBOT,
+			"loud" = SPAN_YELL,
+			"emphasis" = SPAN_ITALICS,
+			"wacky" = SPAN_SANS,
+			"commanding" = SPAN_COMMAND,
+		))
+	)
 
-	//Language bitflags
-	/* (Following comment written 26 Jan 2019)
-	So, language doesn't work with bitflags anymore
-	But having them be bitflags inside of NTSL makes more sense in its context
-	So, when we get the signal back from NTSL, if the language has been altered, we'll set it to a new language datum,
-	based on the bitflag the guy used.
-
-	However, I think the signal can only have one language
-	So, the lowest bit set within $language overrides any higher ones that are set.
-	*/
+	/**
+	 * Current allowed span classes
+	 * 
+	 * Language bitflags
+	 * (Following comment written 26 Jan 2019)
+	 * So, language doesn't work with bitflags anymore
+	 * But having them be bitflags inside of NTSL makes more sense in its context
+	 * So, when we get the signal back from NTSL, if the language has been altered, we'll set it to a new language datum,
+	 * based on the bitflag the guy used.
+	 * 
+	 * However, I think the signal can only have one language
+	 * So, the lowest bit set within $language overrides any higher ones that are set.
+	 */
 	interpreter.SetVar("languages", new /datum/n_enum(list(
 		"human" = HUMAN,
 		"monkey" = MONKEY,
@@ -126,7 +143,9 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"sylvan" = SYLVAN,
 		"etherean" = ETHEREAN,
 		"bonespeak" = BONE,
-		"mothian" = MOTH
+		"mothian" = MOTH,
+		"cat" = CAT,
+		"english" = ENGLISH,
 	)))
 
 	interpreter.Run() // run the thing
@@ -134,51 +153,49 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	if(Holder)
 		Holder.compile_warnings = parser.warnings || list()
 		if(!interpreter.ProcExists("process_signal")) // yell at the user if they need to update their scripts
-			Holder.compile_warnings += new /scriptError/OutdatedScript()
+			Holder.compile_warnings += new /datum/scriptError/OutdatedScript()
 
 	return returnerrors
 
-	/* -- Execute the compiled code -- */
-
-/datum/TCS_Compiler/proc/Run(datum/signal/subspace/vocal/signal) // Runs the already-compiled code on an incoming signal.
-
+/**
+ * Executes the Compiled code on an incoming signal.
+ */
+/datum/TCS_Compiler/proc/Run(datum/signal/subspace/vocal/signal)
 	if(!ready)
 		return
 
-	if(!interpreter)
-		return
-
-	if(!interpreter.ProcExists("process_signal"))
+	if(!interpreter || !interpreter.ProcExists("process_signal"))
 		return
 
 	var/datum/language/oldlang = signal.language
 	var/oldlangbits
-	if(oldlang == /datum/language/common)
-		oldlangbits = HUMAN
-	else if(oldlang == /datum/language/monkey)
-		oldlangbits = MONKEY
-	else if(oldlang == /datum/language/machine)
-		oldlangbits = ROBOT
-	else if(oldlang == /datum/language/polysmorph)
-		oldlangbits = POLYSMORPH
-	else if(oldlang == /datum/language/draconic)
-		oldlangbits = DRACONIC
-	else if(oldlang == /datum/language/beachbum)
-		oldlangbits = BEACHTONGUE
-	else if(oldlang == /datum/language/sylvan)
-		oldlangbits = SYLVAN
-	else if(oldlang == /datum/language/etherean)
-		oldlangbits = ETHEREAN
-	else if(oldlang == /datum/language/bonespeak)
-		oldlangbits = BONE
-	else if(oldlang == /datum/language/mothian)
-		oldlangbits = MOTH
-	else if(oldlang == /datum/language/felinid) 
-		oldlangbits  = CAT
-	else if(oldlang == /datum/language/english) 
-		oldlangbits  = ENGLISH
-	// Signal data
+	switch(oldlang)
+		if(/datum/language/common)
+			oldlangbits = HUMAN
+		if(/datum/language/monkey)
+			oldlangbits = MONKEY
+		if(/datum/language/machine)
+			oldlangbits = ROBOT
+		if(/datum/language/polysmorph)
+			oldlangbits = POLYSMORPH
+		if(/datum/language/draconic)
+			oldlangbits = DRACONIC
+		if(/datum/language/beachbum)
+			oldlangbits = BEACHTONGUE
+		if(/datum/language/sylvan)
+			oldlangbits = SYLVAN
+		if(/datum/language/etherean)
+			oldlangbits = ETHEREAN
+		if(/datum/language/bonespeak)
+			oldlangbits = BONE
+		if(/datum/language/mothian)
+			oldlangbits = MOTH
+		if(/datum/language/felinid)
+			oldlangbits = CAT
+		if(/datum/language/english)
+			oldlangbits = ENGLISH
 
+	// Signal data
 	var/datum/n_struct/signal/script_signal = new(list(
 		"content" = html_decode(signal.data["message"]),
 		"freq" = signal.frequency,
@@ -192,13 +209,13 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"say" = signal.virt.verb_say,
 		"ask" = signal.virt.verb_ask,
 		"yell" = signal.virt.verb_yell,
-		"exclaim" = signal.virt.verb_exclaim
+		"exclaim" = signal.virt.verb_exclaim,
 	))
 
 	// Run the compiled code
 	script_signal = interpreter.CallProc("process_signal", list(script_signal))
 	if(!istype(script_signal))
-		signal.data["reject"] = 1
+		signal.data["reject"] = TRUE
 		return
 
 	// Backwards-apply variables onto signal data
@@ -219,34 +236,36 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	if(signal.data["name"] != setname)
 		signal.data["realname"] = signal.data["name"]
 		signal.virt.name = setname
-	signal.data["name"]			= setname
-	//signal.data["uuid"]			= script_signal.get_clean_property("$uuid", signal.data["uuid"])
-	signal.levels 				= script_signal.get_clean_property("sector", signal.levels)
-	signal.data["job"]			= script_signal.get_clean_property("job", signal.data["job"])
-	signal.data["reject"]		= !(script_signal.get_clean_property("pass")) // set reject to the opposite of $pass
-	signal.virt.verb_say		= script_signal.get_clean_property("say")
-	signal.virt.verb_ask		= script_signal.get_clean_property("ask")
-	signal.virt.verb_yell		= script_signal.get_clean_property("yell")
-	signal.virt.verb_exclaim	= script_signal.get_clean_property("exclaim")
+	signal.data["name"] = setname
+	//signal.data["uuid"] = script_signal.get_clean_property("$uuid", signal.data["uuid"])
+	signal.levels = script_signal.get_clean_property("sector", signal.levels)
+	signal.data["job"] = script_signal.get_clean_property("job", signal.data["job"])
+	signal.data["reject"] = !(script_signal.get_clean_property("pass")) // set reject to the opposite of $pass
+	signal.virt.verb_say = script_signal.get_clean_property("say")
+	signal.virt.verb_ask = script_signal.get_clean_property("ask")
+	signal.virt.verb_yell = script_signal.get_clean_property("yell")
+	signal.virt.verb_exclaim = script_signal.get_clean_property("exclaim")
 	var/newlang = LangBit2Datum(script_signal.get_clean_property("language"))
 	if(newlang != oldlang)// makes sure that we only clean out unallowed languages when a translation is taking place otherwise we run an unnecessary proc to filter newlang on foreign untranslated languages.
 		if(!(LAZYFIND(GLOB.allowed_translations, oldlang))) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
 			newlang = oldlang
 	signal.language = newlang || oldlang
 	signal.data["language"] = newlang || oldlang
-	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
+	var/list/setspans = script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
-		signal.data["spans"]	= setspans //Apply new span to the signal only if it is a valid list, made using $filters & vector() in the script.
+		signal.data["spans"] = setspans //Apply new span to the signal only if it is a valid list, made using $filters & vector() in the script.
 	else
 		signal.data["spans"] = list()
 
 	// If the message is invalid, just don't broadcast it!
 	if(signal.data["message"] == "" || !signal.data["message"])
-		signal.data["reject"] = 1
+		signal.data["reject"] = TRUE
 
-/datum/n_struct/signal/New(list/P)
-	properties = P | list(
+/datum/n_struct/signal
+
+/datum/n_struct/signal/New(list/property_list)
+	properties = property_list | list(
 		"content" = "",
 		"freq" = 1459,
 		"source" = "",
@@ -259,7 +278,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"say" = "says",
 		"ask" = "asks",
 		"yell" = "yells",
-		"exclaim" = "exclaims"
+		"exclaim" = "exclaims",
 	)
 
 // makes a new signal object
@@ -268,7 +287,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 // if you want to change anything else do it yourself
 /datum/n_function/default/signal
 	name = "signal"
-	interp_type = /n_Interpreter/TCS_Interpreter
+	interp_type = /datum/n_Interpreter/TCS_Interpreter
+
 /datum/n_function/default/signal/execute(this_obj, list/params)
 	var/datum/n_struct/signal/S = new
 	if(params.len >= 1)
@@ -287,11 +307,10 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #define SIGNAL_COOLDOWN 20 // 2 seconds
 #define MAX_MEM_VARS 500 // The maximum number of variables that can be stored by NTSL via mem()
 
-/datum/signal
-
 /proc/LangBit2Datum(langbits) // Takes in the set language bits, returns the datum to use
 	if(istype(langbits, /datum/language))
 		return langbits
+
 	switch(langbits)
 		if(HUMAN)
 			return /datum/language/common
@@ -320,8 +339,9 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 
 /datum/n_function/default/mem
 	name = "mem"
-	interp_type = /n_Interpreter/TCS_Interpreter
-/datum/n_function/default/mem/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+	interp_type = /datum/n_Interpreter/TCS_Interpreter
+
+/datum/n_function/default/mem/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/TCS_Interpreter/interp)
 	var/address = params.len >= 1 ? params[1] : null
 	var/value = params.len >= 2 ? params[2] : null
 	if(istext(address))
@@ -341,16 +361,18 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 
 /datum/n_function/default/clearmem
 	name = "clearmem"
-	interp_type = /n_Interpreter/TCS_Interpreter
-/datum/n_function/default/clearmem/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+	interp_type = /datum/n_Interpreter/TCS_Interpreter
+
+/datum/n_function/default/clearmem/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/TCS_Interpreter/interp)
 	var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 	S.memory = list()
 	return TRUE
 
 /datum/n_function/default/remote_signal
 	name = "remote_signal"
-	interp_type = /n_Interpreter/TCS_Interpreter
-/datum/n_function/default/remote_signal/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+	interp_type = /datum/n_Interpreter/TCS_Interpreter
+
+/datum/n_function/default/remote_signal/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/TCS_Interpreter/interp)
 	var/freq = params.len >= 1 ? params[1] : 1459
 	var/code = params.len >= 2 ? params[2] : 30
 
@@ -386,8 +408,9 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 
 /datum/n_function/default/broadcast
 	name = "broadcast"
-	interp_type = /n_Interpreter/TCS_Interpreter
-/datum/n_function/default/broadcast/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+	interp_type = /datum/n_Interpreter/TCS_Interpreter
+
+/datum/n_function/default/broadcast/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/TCS_Interpreter/interp)
 	if(params.len < 1)
 		return
 	var/datum/n_struct/signal/script_signal = params[1]
@@ -448,7 +471,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	virt.verb_exclaim = exclaim
 	virt.verb_yell = yell
 
-	var/datum/signal/subspace/vocal/newsign = new(hradio,freq,virt,language,message,spans, list(), list(S.z))
+	var/datum/signal/subspace/vocal/newsign = new(hradio, freq, virt, language, message, spans, list(), list(S.z))
 	/*
 	virt.languages_spoken = language
 	virt.languages_understood = virt.languages_spoken //do not remove this or everything turns to jibberish
@@ -478,6 +501,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	if(!pass) // If we're not sending this to the hub (i.e. we're running a basic tcomms or something)
 		pass = S.relay_information(newsign, /obj/machinery/telecomms/broadcaster) // send this message to broadcasters directly
 	return pass // Returns, as of Jan 23 2019, the number of machines that received this broadcast's message.
+
 #undef SIGNAL_COOLDOWN
 #undef MAX_MEM_VARS
 #undef HUMAN

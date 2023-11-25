@@ -9,12 +9,14 @@
 		/datum/eldritch_knowledge/base_void,
 		/datum/eldritch_knowledge/base_blade,
 		/datum/eldritch_knowledge/base_cosmic,
+		/datum/eldritch_knowledge/base_knock,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
 		/datum/eldritch_knowledge/blade_mark,
 		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
@@ -26,7 +28,8 @@
 		/datum/eldritch_knowledge/mind_final,
 		/datum/eldritch_knowledge/void_final,
 		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final)
+		/datum/eldritch_knowledge/cosmic_final,
+		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ash_knife)
 	cost = 1
 	route = PATH_ASH
@@ -95,7 +98,8 @@
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
 		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark)
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_ASH
 	tier = TIER_MARK
 
@@ -126,7 +130,7 @@
 /datum/eldritch_knowledge/spell/volcano_blast
 	name = "T2 - Volcano Blast"
 	gain_text = "The strongest fires come from within, expel a piece of your burning soul to show you enemies the truth of flame."
-	desc = "Shoot a stong blast of fire at an enemy."
+	desc = "Shoot a strong blast of fire at an enemy."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/fireball/eldritch
 	route = PATH_ASH
@@ -159,7 +163,8 @@
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade)
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	route = PATH_ASH
 	tier = TIER_BLADE
 

@@ -291,7 +291,7 @@
 
 /datum/reagent/firefighting_foam/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if(methods & (VAPOR|TOUCH))
-		M.adjust_fire_stacks(-reac_volume)
+		M.adjust_wet_stacks(reac_volume)
 		M.extinguish_mob()
 	..()
 
