@@ -59,8 +59,8 @@
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()
 	if(. && isdarkspawn(owner))
-		var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
-		shadowling.block_psi(20 SECONDS, type)
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+		darkspawn.block_psi(20 SECONDS, type)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------Scout and warlock, aoe slow and chill----------------//

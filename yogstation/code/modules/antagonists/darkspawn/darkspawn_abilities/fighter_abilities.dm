@@ -98,7 +98,6 @@
 /datum/action/cooldown/spell/pointed/shadow_crash
 	name = "Shadow crash"
 	desc = "Charge in a direction."
-	panel = "Shadowling Abilities"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"

@@ -1,4 +1,3 @@
-//aka Shadowlings/umbrages/whatever
 /datum/antagonist/darkspawn
 	name = "Darkspawn"
 	roundend_category = "darkspawn"

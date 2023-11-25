@@ -83,7 +83,7 @@
 /datum/action/cooldown/spell/pointed/glare //Stuns and mutes a human target for 10 seconds
 	name = "Glare"
 	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
-	panel = "Shadowling Abilities"
+	panel = null
 	button_icon_state = "glare"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
@@ -138,10 +138,10 @@
 //////////////////////////////////////////////////////////////////////////
 //----------------------Temporary Darkness in aoe-----------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/darkness_smoke //Spawns a cloud of smoke that blinds non-thralls/shadows and grants slight healing to shadowlings and their allies
+/datum/action/cooldown/spell/darkness_smoke
 	name = "Darkness Smoke"
 	desc = "Spews a cloud of smoke which will blind enemies."
-	panel = "Shadowling Abilities"
+	panel = null
 	button_icon_state = "black_smoke"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
