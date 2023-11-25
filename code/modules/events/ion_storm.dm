@@ -136,7 +136,6 @@
 					if(apc.environ)
 						apc.environ = 0
 						log_game("Ion storm disabled environment on APC ([apc.name]) at [COORD(turf)].")
-					apc.environ = 0
 				if(4)
 					if(apc.lighting || apc.equipment || apc.environ)
 						apc.environ = 0
