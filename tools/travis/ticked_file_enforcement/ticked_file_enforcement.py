@@ -37,7 +37,7 @@ for excluded_file in excluded_files:
         post_error(f"Excluded file {full_file_path} does not exist, please remove it!")
         sys.exit(1)
 
-file_extensions = ("dm", "dmf")
+file_extensions = (".dm", ".dmf")
 
 reading = False
 lines = []
