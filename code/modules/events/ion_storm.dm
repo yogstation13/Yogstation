@@ -20,11 +20,11 @@
 	var/shuffleLawsChance = 10
 	/// Chance that bots on the station will become emagged.
 	var/botEmagChance = 10
-	/// Chance that an airlock on the station will be messed with.
+	/// Chance that an airlock on the station will be messed with, if there are no AIs.
 	var/airlockChance = 5
 	/// Maximum number of airlocks that can be messed with.
 	var/airlockAmount = 20
-	/// Chance that an APC on the station will be messed with.
+	/// Chance that an APC on the station will be messed with, if there are no AIs.
 	var/apcChance = 5
 	/// Maximum number of APCs that can be messed with.
 	var/apcAmount = 10
@@ -53,9 +53,11 @@
 
 /datum/round_event/ion_storm/start()
 	//AI laws
+	var/anyAliveAI = FALSE
 	for(var/mob/living/silicon/ai/M in GLOB.alive_mob_list)
 		M.laws_sanity_check()
 		if(M.stat != DEAD && M.see_in_dark != 0)
+			anyAliveAI = TRUE
 			if(prob(replaceLawsetChance))
 				M.laws.pick_ion_lawset()
 				to_chat(M, span_alert("Your lawset has been changed by the ion storm!"))
@@ -77,77 +79,77 @@
 			log_game("Ion storm changed laws of [key_name(M)] to [english_list(M.laws.get_law_list(TRUE, TRUE))]")
 			message_admins("[ADMIN_LOOKUPFLW(M)] has had their laws changed by an ion storm to [english_list(M.laws.get_law_list(TRUE, TRUE))]")
 			M.post_lawchange()
-
 	if(botEmagChance)
 		for(var/mob/living/simple_animal/bot/bot in GLOB.alive_mob_list)
 			if(prob(botEmagChance))
 				bot.emag_act()
-	if(airlockChance)
-		var/list/airlocks = get_acceptable_airlocks()
-		var/amountSince = 0
-		for(var/obj/machinery/door/airlock/airlock in airlocks)
-			if(!prob(airlockChance))
-				continue
-			if(!airlock.hasPower() || !airlock.canAIControl() || (airlock.obj_flags & EMAGGED) )
-				continue
-			var/turf/turf = get_turf(airlock)
-			var/luck = rand(1, 4)
-			switch(luck)
-				if(1)
-					if(airlock.locked)
-						airlock.unbolt()
-						log_game("Ion storm unbolted airlock ([airlock.name]) at [COORD(turf)].")
-					else
-						airlock.bolt()
-						log_game("Ion storm bolted airlock ([airlock.name]) at [COORD(turf)].")
-				if(3)
-					airlock.emergency = !airlock.emergency
-					airlock.update_appearance(UPDATE_ICON)
-					log_game("Ion storm [airlock.emergency ? "enabled" : "disabled"] emergency access on airlock ([airlock.name]) at [COORD(turf)].")
-				if(4)
-					var/shocktime = prob(50) ? MACHINE_DEFAULT_ELECTRIFY_TIME : MACHINE_ELECTRIFIED_PERMANENT
-					airlock.set_electrified(shocktime)
-					log_game("Ion storm electrified [shocktime == MACHINE_DEFAULT_ELECTRIFY_TIME ? "for [MACHINE_DEFAULT_ELECTRIFY_TIME] seconds" : "permanently"] airlock ([airlock.name]) at [COORD(turf)].")
-				if(5)
-					airlock.safe = !airlock.safe
-					airlock.normalspeed = airlock.safe // Intentional. They should match for maximum crushing (or maximum safety).
-					log_game("Ion storm [airlock.safe ? "enabled" : "disabled"] safety & speed on airlock ([airlock.name]) at [COORD(turf)].")
-			amountSince += 1
-			if(amountSince >= airlockAmount)
-				break
-	if(apcChance)
-		var/list/apcs = get_acceptable_apcs()
-		var/amountSince = 0
-		for(var/obj/machinery/power/apc/apc in apcs)
-			if(!prob(apcChance))
-				continue
-			if(apc.aidisabled)
-				continue
-			var/turf/turf = get_turf(apc)
-			var/luck = rand(1, 4)
-			switch(luck)
-				if(1)
-					if(apc.lighting)
-						apc.lighting = 0
-						log_game("Ion storm disabled lighting on APC ([apc.name]) at [COORD(turf)].")
-				if(2)
-					if(apc.equipment)
-						apc.equipment = 0
-						log_game("Ion storm disabled equipment on APC ([apc.name]) at [COORD(turf)].")
-				if(3)
-					if(apc.environ)
-						apc.environ = 0
-						log_game("Ion storm disabled environment on APC ([apc.name]) at [COORD(turf)].")
-				if(4)
-					if(apc.lighting || apc.equipment || apc.environ)
-						apc.environ = 0
-						apc.equipment = 0
-						apc.lighting = 0
-						log_game("Ion storm disabled lightning, equipment, and environment on APC ([apc.name]) at [COORD(turf)].")
-			apc.update()
-			amountSince += 1
-			if(amountSince >= apcAmount)
-				break
+
+	if(!anyAliveAI)
+		if(airlockChance)
+			var/list/airlocks = get_acceptable_airlocks()
+			var/amountSince = 0
+			for(var/obj/machinery/door/airlock/airlock in airlocks)
+				if(!prob(airlockChance))
+					continue
+				if(!airlock.hasPower() || !airlock.canAIControl() || (airlock.obj_flags & EMAGGED) )
+					continue
+				var/turf/turf = get_turf(airlock)
+				var/luck = rand(1, 4)
+				switch(luck)
+					if(1)
+						if(airlock.locked)
+							airlock.unbolt()
+							log_game("Ion storm unbolted airlock ([airlock.name]) at [COORD(turf)].")
+						else
+							airlock.bolt()
+							log_game("Ion storm bolted airlock ([airlock.name]) at [COORD(turf)].")
+					if(3)
+						airlock.emergency = !airlock.emergency
+						airlock.update_appearance(UPDATE_ICON)
+						log_game("Ion storm [airlock.emergency ? "enabled" : "disabled"] emergency access on airlock ([airlock.name]) at [COORD(turf)].")
+					if(4)
+						airlock.set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME)
+						log_game("Ion storm electrified for [MACHINE_DEFAULT_ELECTRIFY_TIME] seconds airlock ([airlock.name]) at [COORD(turf)].")
+					if(5)
+						airlock.safe = !airlock.safe
+						airlock.normalspeed = airlock.safe // Intentional. They should match for maximum crushing (or maximum safety).
+						log_game("Ion storm [airlock.safe ? "enabled" : "disabled"] safety & speed on airlock ([airlock.name]) at [COORD(turf)].")
+				amountSince += 1
+				if(amountSince >= airlockAmount)
+					break
+		if(apcChance)
+			var/list/apcs = get_acceptable_apcs()
+			var/amountSince = 0
+			for(var/obj/machinery/power/apc/apc in apcs)
+				if(!prob(apcChance))
+					continue
+				if(apc.aidisabled)
+					continue
+				var/turf/turf = get_turf(apc)
+				var/luck = rand(1, 4)
+				switch(luck)
+					if(1)
+						if(apc.lighting)
+							apc.lighting = 0
+							log_game("Ion storm disabled lighting on APC ([apc.name]) at [COORD(turf)].")
+					if(2)
+						if(apc.equipment)
+							apc.equipment = 0
+							log_game("Ion storm disabled equipment on APC ([apc.name]) at [COORD(turf)].")
+					if(3)
+						if(apc.environ)
+							apc.environ = 0
+							log_game("Ion storm disabled environment on APC ([apc.name]) at [COORD(turf)].")
+					if(4)
+						if(apc.lighting || apc.equipment || apc.environ)
+							apc.environ = 0
+							apc.equipment = 0
+							apc.lighting = 0
+							log_game("Ion storm disabled lightning, equipment, and environment on APC ([apc.name]) at [COORD(turf)].")
+				apc.update()
+				amountSince += 1
+				if(amountSince >= apcAmount)
+					break
 
 /datum/round_event/ion_storm/malicious
 	var/location_name
