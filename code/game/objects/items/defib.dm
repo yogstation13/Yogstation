@@ -655,9 +655,9 @@
 	if(iscyborg(user) && combat == TRUE)
 		cyborg_alternative = !cyborg_alternative
 		if(cyborg_alternative)
-			to_chat(user, "Your shock paddles will now instead shock others on immediate contact.") // Disarm 
+			to_chat(user, span_notice("Your shock paddles will now instead shock others on immediate contact.")) // Disarm 
 		else
-			to_chat(user, "Your shock paddles will now instead charge up to give a heart attack on defib completion.") // Harm
+			to_chat(user, span_notice("Your shock paddles will now instead charge up to give a heart attack on defib completion.")) // Harm
 		return
 	..()
 
