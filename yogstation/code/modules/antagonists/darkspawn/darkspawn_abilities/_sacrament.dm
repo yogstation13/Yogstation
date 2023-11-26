@@ -63,12 +63,13 @@
 
 	user.visible_message(span_danger("[user] suddenly jolts into the air, pulsing with screaming violet light."), span_progenitor("You begin the Sacrament."))
 
-	//give a sense of where it's happening
-	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner)) //to-do replace this with inverse lighting rather than grav distortion
+	/*replace this with inverse lighting rather than grav distortion
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner))
 	shockwave.transform *= 0.1
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
 	animate(shockwave, transform = matrix().Scale(50), time = 30 SECONDS, easing = EASE_IN|SINE_EASING) //grow to cover the station over the course of the cast time
+	*/
 
 	for(var/stage in 1 to 2)
 		soundloop.stage = stage
@@ -92,14 +93,18 @@
 			animate(user, transform = matrix(), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
 			in_use = FALSE
 			QDEL_NULL(soundloop)
+			/* Replace this with inverted lighting
 			animate(shockwave, alpha = 0, time = 1 SECONDS)
 			QDEL_IN(shockwave, 1.1 SECONDS)
+			*/
 			return
 
 
 	soundloop.stage = 3
+	/* Replace this with inverted lighting
 	animate(shockwave, transform = matrix().Scale(0), time = 3.9 SECONDS)
 	QDEL_IN(shockwave, 4 SECONDS)
+	*/
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"))	
 
