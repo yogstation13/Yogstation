@@ -9,8 +9,6 @@ using System.Windows.Forms;
 using System.Collections;
 using System.IO;
 
-file_extensions = (".dm", ".dmf")
-
 namespace UnstandardnessTestForDM
 {
     public partial class Form1 : Form
@@ -147,7 +145,7 @@ namespace UnstandardnessTestForDM
                             int start = s.IndexOf("\"")+1;
                             s = s.Substring(start, s.Length - 11);
 
-                            if (s.EndsWith(file_extensions))
+                            if (s.EndsWith(".dm"))
                             {
                                 filenames.Add(s);
                             }
@@ -169,7 +167,7 @@ namespace UnstandardnessTestForDM
                 {
                     foreach (string f in Directory.GetFiles(d))
                     {
-                        if (f.ToLower().EndsWith(file_extensions))
+                        if (f.ToLower().EndsWith(".dm"))
                         {
                             if ((flag & FLAG_DEFINE) > 0)
                             {
