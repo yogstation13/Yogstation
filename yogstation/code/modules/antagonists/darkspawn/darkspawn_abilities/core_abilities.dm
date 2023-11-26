@@ -283,7 +283,7 @@
 	var/cast_time = 2 SECONDS
 	var/object_type
 	var/can_density = FALSE
-	var/language_final = "...xom"
+	var/language_final = "xom"
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/can_cast_spell(feedback)
 	if(casting)
@@ -316,5 +316,5 @@
 		return
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	var/obj/thing = new object_type(get_turf(cast_on))
-	to_chat(owner, span_progenitor(language_final))
+	to_chat(owner, span_progenitor("...[language_final]"))
 	owner.visible_message(span_warning("[owner] knits shadows together into [thing]!"), span_velvet("You create [thing]"))

@@ -97,8 +97,9 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	var/datum/mind/unveiled = loser
 	if(!unveiled.current)
 		return
-	unveiled.current.remove_veil()
-	to_chat(owner, span_velvet("You release your control over [unveiled]"))
+	if(unveiled.current.remove_veil())
+		to_chat(owner, span_progenitor("Fk'koht"))
+		to_chat(owner, span_velvet("You release your control over [unveiled]"))
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//
@@ -110,6 +111,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	cooldown_time = 1 MINUTES
 	cast_time = 2 SECONDS
 	object_type = /obj/machinery/computer/camera_advanced/darkspawn
+	language_final = "kxmiv'ixnce"
 
 //////////////////////////////////////////////////////////////////////////
 //-----Shoots a projectile, but can be used through the cam system------//
@@ -135,7 +137,6 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	invocation_type = INVOCATION_NONE
 
 	var/body_range = 8 //how far the projectile can shoot from a body
-	var/projectile_type = /obj/projectile/mindblast
 
 /datum/action/cooldown/spell/pointed/mindblast/cast(atom/cast_on)
 	. = ..()
@@ -157,10 +158,11 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		on_deactivation(owner, refund_cooldown = TRUE)
 		return FALSE
 	fire_projectile(cast_on, shooter)
+	to_chat(owner, span_progenitor("Vyk'thunak"))
 	playsound(get_turf(shooter), 'sound/weapons/resonator_blast.ogg', 50, 1)
 
 /datum/action/cooldown/spell/pointed/mindblast/proc/fire_projectile(atom/target, mob/shooter)
-	var/obj/projectile/to_fire = new projectile_type()
+	var/obj/projectile/magic/mindblast/to_fire = new ()
 	ready_projectile(to_fire, target, shooter)
 	SEND_SIGNAL(owner, COMSIG_MOB_SPELL_PROJECTILE, src, target, to_fire)
 	to_fire.fire()
@@ -174,7 +176,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		var/obj/projectile/magic/magic_to_fire = to_fire
 		magic_to_fire.antimagic_flags = antimagic_flags
 
-/obj/projectile/mindblast
+/obj/projectile/magic/mindblast
 	name ="mindbolt"
 	icon_state= "chronobolt"
 	damage = 30
@@ -204,6 +206,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
+	var/language_output = "DEBUGIFY"
 
 /datum/action/cooldown/spell/veilbuff/before_cast(atom/cast_on)
 	. = ..()
@@ -211,6 +214,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
 	. = ..()
+	to_chat(owner, span_progenitor("[language_output]"))
 	for(var/datum/antagonist/veil/lackey in GLOB.antagonists)
 		if(lackey.owner?.current && ishuman(lackey.owner.current))
 			var/mob/living/carbon/human/target = lackey.owner.current
@@ -233,6 +237,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	name = "Heal veils"
 	desc = "Heals all veils for an amount of brute and burn."
 	var/heal_amount = 20
+	language_output = "Plyn othra"
 
 /datum/action/cooldown/spell/veilbuff/heal/empower(mob/living/carbon/human/target)
 	target.heal_overall_damage(heal_amount, heal_amount, 0, BODYPART_ANY)
@@ -241,6 +246,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/veilbuff/speed
 	name = "Expedite veils"
 	desc = "Give all veils a temporary movespeed bonus."
+	language_output = "Vyzthun"
 
 /datum/action/cooldown/spell/veilbuff/speed/empower(mob/living/carbon/human/target)
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 5 SECONDS, type)
@@ -284,6 +290,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	target.resting = FALSE
 	target.SetAllImmobility(0, TRUE)
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 10 SECONDS, type)
+	to_chat(owner, span_progenitor("Ckkrem"))
 	target.visible_message(span_danger("Streaks of velvet light crack out of [target]'s skin."), span_velvet("Power roars through you like a raging storm, pushing you to your absolute limits."))
 	var/obj/item/cuffs = target.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/item/legcuffs = target.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
