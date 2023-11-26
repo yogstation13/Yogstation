@@ -118,7 +118,7 @@
 	. = ..()
 	if(!isliving(cast_on))
 		return
-	owner.visible_message(span_warning("<b>[owner]'s eyes flash a purpleish-red!</b>", span_progenitor("Sskr'aya")))
+	owner.visible_message(span_warning("<b>[owner]'s eyes flash a purpleish-red!</b>"), span_progenitor("Sskr'aya"))
 	var/mob/living/target = cast_on
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return

@@ -222,6 +222,16 @@
 	sound = 'yogstation/sound/magic/devour_will_end.ogg'
 	possible_shapes = list(/mob/living/simple_animal/hostile/crawling_shadows)
 
+/datum/action/cooldown/spell/shapeshift/crawling_shadows/do_shapeshift(mob/living/caster)
+	. = ..()
+	if(.)
+		to_chat(owner, span_progenitor("Zov..."))
+
+/datum/action/cooldown/spell/shapeshift/crawling_shadows/do_unshapeshift(mob/living/caster)
+	. = ..()
+	if(.)
+		to_chat(owner, span_progenitor("...Voz"))
+
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
 	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
 		return FALSE
@@ -252,7 +262,7 @@
 		return
 	var/mob/living/L = owner
 	to_chat(L, span_progenitor("Zkxa'yaera"))
-	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!", span_velvet("You create an illusion of yourself.")))
+	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!"), span_velvet("You create an illusion of yourself."))
 	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 
 	var/mob/living/simple_animal/hostile/illusion/M = new(get_turf(L))

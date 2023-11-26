@@ -1,39 +1,45 @@
 /mob/living/simple_animal/hostile/crawling_shadows
+	//appearance variables
 	name = "crawling shadows"
-	desc = "A formless mass of blackness with two huge, clawed hands and piercing white eyes."
+	desc = "A formless mass of nothingness with piercing white eyes."
 	icon = 'icons/effects/effects.dmi' //Placeholder sprite
 	icon_state = "blank_dspawn"
 	icon_living = "blank_dspawn"
-	response_help = "backs away from"
-	response_disarm = "shoves away"
-	response_harm = "flails at"
-	speed = 0
-	ventcrawler = TRUE
-	maxHealth = 100
-	health = 100
 
-	harm_intent_damage = 5
-	obj_damage = 50
-	melee_damage_lower = 5 //it has a built in stun if you want to kill someone kill them like a man
-	melee_damage_upper = 5
-	attacktext = "claws"
-	attack_sound = 'sound/magic/demon_attack1.ogg'
-	speak_emote = list("whispers")
-
+	//survival variables
+	maxHealth = 50
+	health = 50
+	pressure_resistance = INFINITY
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 
+	//movement variables
 	movement_type = FLYING
-	pressure_resistance = INFINITY
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	see_in_dark = 8
-	see_invisible = SEE_INVISIBLE_MINIMUM
-	gold_core_spawnable = FALSE
+	speed = 0
+	ventcrawler = TRUE
+	pass_flags = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER
 
+	//combat variables
+	harm_intent_damage = 5
+	melee_damage_lower = 5 //it has a built in stun if you want to kill someone kill them like a man
+	melee_damage_upper = 5
+
+	//sight variables
+	lighting_alpha = 175 //same as darkspawn eyes
+	see_in_dark = 10
+
+	//death variables
 	del_on_death = TRUE
 	deathmessage = "trembles, form rapidly dispersing."
 	deathsound = 'yogstation/sound/magic/devour_will_victim.ogg'
+
+	//attack flavour
+	speak_emote = list("whispers")
+	attacktext = "assails"
+	attack_sound = 'sound/magic/voidblink.ogg'
+	response_help = "disturbs"
+	response_harm = "flails at"
 
 	var/move_count = 0 //For spooky sound effects
 	var/knocking_out = FALSE
@@ -47,13 +53,11 @@
 	var/turf/T = get_turf(src)
 	var/lums = T.get_lumcount()
 	if(lums < SHADOW_SPECIES_BRIGHT_LIGHT)
-		invisibility = INVISIBILITY_OBSERVER //Invisible in complete darkness
 		speed = -1 //Faster, too
-		alpha = 255
+		alpha = 0
 	else
-		invisibility = initial(invisibility)
 		speed = 0
-		alpha = min(lums * 60, 255) //Slowly becomes more visible in brighter light
+		alpha = min(alpha + (lums * 30), 255) //Slowly becomes more visible in brighter light
 	update_simplemob_varspeed()
 
 /mob/living/simple_animal/hostile/crawling_shadows/AttackingTarget()
@@ -76,8 +80,4 @@
 		H.Paralyze(6 SECONDS)
 		knocking_out = FALSE
 		return TRUE
-	else if(istype(target, /obj/machinery/door))
-		forceMove(get_turf(target))
-		visible_message(span_warning("Shadows creep through [target]..."), span_notice("You slip through [target]."))
-		return
 	..()

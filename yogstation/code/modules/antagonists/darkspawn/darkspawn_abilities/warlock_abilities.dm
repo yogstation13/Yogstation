@@ -30,6 +30,7 @@
 
 /datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
 	. = ..()
+	to_chat(owner, span_progenitor("Shwooh"))
 	to_chat(owner, span_velvet("You extinguish all lights."))
 
 /datum/action/cooldown/spell/aoe/extinguish/cast_on_thing_in_aoe(atom/victim, atom/caster)
@@ -62,7 +63,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/null_charge
 	name = "Null Charge"
-	desc = "Meddle with the powergrid via a functioning APC, causing a temporary stationwide power outage. Breaks the APC afterwards."
+	desc = "Meddle with the powergrid via a functioning APC, causing a temporary stationwide power outage. Breaks the APC in the process."
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -92,6 +93,7 @@
 		return FALSE
 
 	//Turn it off for the time being
+	to_chat(owner, span_progenitor("Xlahwa..."))
 	target.set_light(0)
 	target.visible_message(span_warning("The [target] flickers and begins to grow dark."))
 
@@ -111,9 +113,10 @@
 	if(isdarkspawn(owner))
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 		darkspawn.block_psi(60 SECONDS, type)
+	to_chat(owner, span_progenitor("...SHWOOH!"))
 	priority_announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", ANNOUNCER_POWEROFF)
 	power_fail(30, 40)
-	to_chat(caster, span_velvet("You return the APC's power to the void, disabling it."))
+	to_chat(caster, span_velvet("You return the APC's power to the void, destroying it and disabling all others."))
 	target.set_broken()
 	return TRUE
 		
@@ -183,6 +186,8 @@
 		if(cost && (!cost.use_psi(upkeep_cost)))
 			cancel()
 			return
+		if(prob(25))
+			to_chat(owner, span_velvet("...thum..."))
 		if(healing)
 			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 		else
@@ -199,6 +204,7 @@
 	
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
+	to_chat(owner, span_progenitor("Qokxlez..."))
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, cast_range)
 	channeled = cast_on
 	healing = is_darkspawn_or_veil(channeled)
@@ -209,6 +215,7 @@
 	if(channeled)
 		channeled = null
 		StartCooldown(actual_cooldown)
+		to_chat(owner, span_velvet("...qokshe"))
 		return TRUE
 	return FALSE
 
@@ -224,6 +231,7 @@
 	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original
 	cooldown_time = 10 SECONDS
 	can_density = TRUE
+	language_final = "Xylt'he kkxla'thamara"
 
 //////////////////////////////////////////////////////////////////////////
 //--------------Gives everyone nearby a random hallucination------------//
@@ -245,6 +253,10 @@
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 7
+
+/datum/action/cooldown/spell/aoe/mass_hallucination/cast(atom/cast_on)
+	. = ..()
+	to_chat(owner, span_progenitor("H'ellekth'ele"))
 
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim))
