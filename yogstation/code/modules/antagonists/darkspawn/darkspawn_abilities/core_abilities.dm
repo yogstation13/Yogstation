@@ -72,8 +72,9 @@
 	ADD_TRAIT(target, TRAIT_PARALYSIS, type)
 	target.silent += 5
 
-	target.visible_message(span_danger("<i>[target] suddenly howls and clutches as their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
-	to_chat(caster, span_velvet("<b>cera qo...</b><br>You begin siphoning [target]'s will..."))
+	to_chat(caster, span_progenitor("Cera ko..."))
+	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))
+	target.visible_message(span_danger("<i>[target] suddenly howls and clutches their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
 	playsound(target, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
 
 	eating = TRUE
@@ -111,7 +112,7 @@
 
 	//format the text output to the darkspawn
 	var/list/self_text = list() 
-	self_text += span_velvet("<b>...aranupdejc</b>")
+	self_text += span_progenitor("...akkraup'dej")
 	self_text += span_velvet("You devour [target]'s will.")
 	self_text += span_velvet("You have gained [willpower_amount] willpower. Use willpower to purchase abilities and passives.")
 	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
@@ -163,7 +164,8 @@
 	if(target.stat)
 		to_chat(owner, span_warning("[target] is depowered."))
 		return FALSE
-	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), span_velvet("<b>[pick("Oknnu. Pda ywlpwej swo hkccaz ej.", "Pda aiancajyu eo kran. Oknnu bkn swopejc ukqn peia.", "We swo knzanaz xu Hws Psk. Whh ckkz jks.")]</b><br>You begin transmitting a recall message to Central Command..."))
+	to_chat(owner, span_progenitor("[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]"))
+	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), span_velvet("You begin transmitting a recall message to Central Command..."))
 	play_recall_sounds(target)
 	in_use = TRUE
 	if(!do_after(owner, duration, target))
@@ -249,8 +251,8 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
-	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!"))
-	to_chat(L, span_velvet("<b>zayaera</b><br>You create an illusion of yourself."))
+	to_chat(L, span_progenitor("Zkxa'yaera"))
+	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!", span_velvet("You create an illusion of yourself.")))
 	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 
 	var/mob/living/simple_animal/hostile/illusion/M = new(get_turf(L))
@@ -281,6 +283,7 @@
 	var/cast_time = 2 SECONDS
 	var/object_type
 	var/can_density = FALSE
+	var/language_final = "...xom"
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/can_cast_spell(feedback)
 	if(casting)
@@ -300,6 +303,7 @@
 		return .
 	if(cast_time)
 		casting = TRUE
+		to_chat(owner, span_progenitor("Xkla'thra..."))
 		playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
 		if(!do_after(owner, cast_time, cast_on))
 			casting = FALSE
@@ -312,4 +316,5 @@
 		return
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	var/obj/thing = new object_type(get_turf(cast_on))
+	to_chat(owner, span_progenitor(language_final))
 	owner.visible_message(span_warning("[owner] knits shadows together into [thing]!"), span_velvet("You create [thing]"))

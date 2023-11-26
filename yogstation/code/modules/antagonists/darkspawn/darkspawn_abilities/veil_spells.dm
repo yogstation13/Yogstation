@@ -44,12 +44,14 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 			to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
 			return FALSE
 
+	to_chat(owner, span_progenitor("Krx'lna tyhx graha..."))
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isveil(target))
+		to_chat(owner, span_progenitor("...tia"))
 		to_chat(owner, span_velvet("You revitalize your veil [target.real_name]."))
 		target.revive(TRUE, TRUE)
 		target.grab_ghost()
@@ -58,6 +60,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 			to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
 			return FALSE
 		master.willpower -= willpower_cost
+		to_chat(owner, span_progenitor("...xthl'kap"))
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
 	else
 		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
