@@ -64,6 +64,7 @@
 /// A trait source when adding traits through unit tests
 #define TRAIT_SOURCE_UNIT_TESTS "unit_tests"
 
+// BEGIN_INCLUDE
 #include "anchored_mobs.dm"
 #include "component_tests.dm"
 #include "dragon_expiration.dm"
@@ -78,6 +79,7 @@
 #include "subsystem_init.dm"
 #include "timer_sanity.dm"
 #include "unit_test.dm"
+// END_INCLUDE
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
