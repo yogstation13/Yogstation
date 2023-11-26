@@ -10,11 +10,14 @@
 /obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 	AddComponent(/datum/component/light_eater)
 
+// the thing that holds the ammo inside the bow
 /obj/item/ammo_box/magazine/internal/bow/shadow
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/shadow
 
+//the object that appears when the arrow finishes flying
 /obj/item/ammo_casing/reusable/arrow/shadow
 	name = "shadow arrow"
 	desc = "it seem to suck light out of the surroundings."
@@ -24,6 +27,10 @@
 	light_range = 3.5
 	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 0) //always embeds if it hits someone
 	projectile_type = /obj/projectile/bullet/reusable/arrow/shadow
+
+/obj/item/ammo_casing/reusable/arrow/shadow/Initialize(mapload)
+	. = ..()
+	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
 /obj/item/ammo_casing/reusable/arrow/shadow/on_land(obj/projectile/old_projectile)
 	. = ..()
@@ -38,6 +45,7 @@
 			holder.remove_embedded_object(src, get_turf(holder), TRUE, TRUE, FALSE)
 	qdel(src)
 
+//the projectile being shot from the bow
 /obj/projectile/bullet/reusable/arrow/shadow
 	name = "shadow arrow"
 	light_system = MOVABLE_LIGHT
