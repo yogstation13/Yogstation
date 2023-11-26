@@ -38,7 +38,7 @@
 	if(isobserver(user) || isdarkspawn(user))
 		to_chat(user, span_velvet("<b>Functions:</b>"))
 		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
-		to_chat(user, span_velvet("<b>Grab intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
+		to_chat(user, span_velvet("<b>Grab intent:</b> Consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
 		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
 		to_chat(user, span_velvet("The tendrils will shatter light fixtures instantly, as opposed to in several attacks."))
 		to_chat(user, span_velvet("Also functions to pry open depowered airlocks on any intent other than harm."))
@@ -61,9 +61,12 @@
 			tendril_swing(user, target)
 
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
+	if(darkspawn && !darkspawn.has_psi(30))
+		return
 	if(isliving(target) && target.lying)
 		to_chat(user, span_warning("[target] is already knocked down!"))
 		return
+	darkspawn.use_psi(30)
 	user.visible_message(span_warning("[user] draws back [src] and swings them towards [target]!"), \
 	span_velvet("<b>opehhjaoo</b><br>You swing your tendrils towards [target]!"))
 	playsound(user, 'sound/magic/tail_swing.ogg', 50, TRUE)
@@ -72,7 +75,6 @@
 	T.twinned = twin
 	T.firer = user
 	T.fire()
-	qdel(src)
 
 /obj/projectile/umbral_tendrils
 	name = "umbral tendrils"

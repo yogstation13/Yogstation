@@ -270,6 +270,18 @@
 	light_color = "#33CCFF"
 	color = "#33CCFF"
 
+/turf/open/floor/grass/fairy/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+
+/turf/open/floor/grass/fairy/proc/on_light_eater(obj/machinery/light/source, datum/light_eater)
+	SIGNAL_HANDLER
+	. = COMPONENT_BLOCK_LIGHT_EATER
+	if(istype(src, /turf/open/floor/grass/fairy/dark))
+		return
+	TerraformTurf(/turf/open/floor/grass/fairy/dark)
+	return
+
 /turf/open/floor/grass/fairy/white
 	name = "white fairygrass patch"
 	floor_tile = /obj/item/stack/tile/fairygrass/white

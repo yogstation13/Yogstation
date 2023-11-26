@@ -52,6 +52,8 @@
 		var/mob/living/target = AM
 		if(is_darkspawn_or_veil(target))
 			return
+	if(isprojectile(AM)) //if it's flying above the trap, don't trigger it
+		return
 	. = ..()
 
 /////////////////////////////Makes people sick////////////////////////////
