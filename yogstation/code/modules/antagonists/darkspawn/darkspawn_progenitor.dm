@@ -19,6 +19,7 @@
 	obj_damage = INFINITY
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	weather_immunities = list("lava", "ash")
+	status_flags = NONE
 
 	//movement stats
 	speed = -0.5 //just about the same speed as a person

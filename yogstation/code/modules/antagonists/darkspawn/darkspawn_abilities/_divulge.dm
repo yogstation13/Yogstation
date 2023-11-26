@@ -72,11 +72,11 @@
 				playsound(user, 'yogstation/sound/magic/divulge_01.ogg', 30, 0)
 			if(2)
 				user.visible_message(span_userdanger("Gravity fluctuates. Psychic tendrils extend outward and feel blindly around the area."), \
-									span_velvet("Gravity around you fluctuates. You tentatively reach out, feel with your mind."))
+									span_velvet("Gravity around you fluctuates. You tentatively reach out, feeling with your mind."))
 				user.Shake(0, 3, 500) //50 loops in a second times 15 seconds = 750 loops
 				playsound(user, 'yogstation/sound/magic/divulge_02.ogg', 40, 0)
 			if(3)
-				user.visible_message(span_userdanger("Sigils form along [user]'s body. \His skin blackens as \he glows a blinding purple."), \
+				user.visible_message(span_userdanger("Sigils form along [user]'s body. [user.p_their()] skin blackens as [user.p_they()] glow a blinding purple."), \
 									span_velvet("Your body begins to warp. Sigils etch themselves upon your flesh."))
 				animate(user, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 10 SECONDS) //Produces a slow skin-blackening effect
 				playsound(user, 'yogstation/sound/magic/divulge_03.ogg', 50, 0)
@@ -93,9 +93,13 @@
 	sleep(4.5 SECONDS)
 
 	user.Shake(5, 5, 11 SECONDS)
-	for(var/i in 1 to 20)
-		to_chat(user, span_progenitor("[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-", "<i>THINK!!!</i>")]"))
-		sleep(0.1 SECONDS) //Spooky flavor message spam
+	var/list/spooky = list(
+		"I- I- I-", "Mind-", "Sigils-", "Can't think-", 
+		"<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-", 
+		"<i>THINK-</i>", "EMBRACE-", "BECOME-")
+	for(var/i in 1 to 40)
+		to_chat(user, span_progenitor("[pick(spooky)]"))
+		sleep(0.05 SECONDS) //Spooky flavor message spam
 
 	user.visible_message(span_userdanger("A tremendous shockwave emanates from [user]!"), span_progenitor("YOU ARE FREE!!"))
 	playsound(user, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)

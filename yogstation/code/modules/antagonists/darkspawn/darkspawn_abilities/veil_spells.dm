@@ -33,7 +33,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control them."))
 		return FALSE
 	if(isdarkspawn(target))
-		to_chat(owner, span_progenitor("You will never be strong enough to control the will of another."))
+		to_chat(owner, span_velvet("You will never be strong enough to control the will of another."))
 		return
 	var/datum/antagonist/darkspawn/master = isdarkspawn(caster)
 	if(!isveil(target))
@@ -44,14 +44,14 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 			to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
 			return FALSE
 
-	to_chat(owner, span_progenitor("Krx'lna tyhx graha..."))
+	to_chat(owner, span_velvet("Krx'lna tyhx graha..."))
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isveil(target))
-		to_chat(owner, span_progenitor("...tia"))
+		to_chat(owner, span_velvet("...tia"))
 		to_chat(owner, span_velvet("You revitalize your veil [target.real_name]."))
 		target.revive(TRUE, TRUE)
 		target.grab_ghost()
@@ -60,7 +60,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 			to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
 			return FALSE
 		master.willpower -= willpower_cost
-		to_chat(owner, span_progenitor("...xthl'kap"))
+		to_chat(owner, span_velvet("...xthl'kap"))
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
 	else
 		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
@@ -98,7 +98,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	if(!unveiled.current)
 		return
 	if(unveiled.current.remove_veil())
-		to_chat(owner, span_progenitor("Fk'koht"))
+		to_chat(owner, span_velvet("Fk'koht"))
 		to_chat(owner, span_velvet("You release your control over [unveiled]"))
 
 //////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		on_deactivation(owner, refund_cooldown = TRUE)
 		return FALSE
 	fire_projectile(cast_on, shooter)
-	to_chat(owner, span_progenitor("Vyk'thunak"))
+	to_chat(owner, span_velvet("Vyk'thunak"))
 	playsound(get_turf(shooter), 'sound/weapons/resonator_blast.ogg', 50, 1)
 
 /datum/action/cooldown/spell/pointed/mindblast/proc/fire_projectile(atom/target, mob/shooter)
@@ -214,7 +214,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_progenitor("[language_output]"))
+	to_chat(owner, span_velvet("[language_output]"))
 	for(var/datum/antagonist/veil/lackey in GLOB.antagonists)
 		if(lackey.owner?.current && ishuman(lackey.owner.current))
 			var/mob/living/carbon/human/target = lackey.owner.current
@@ -290,7 +290,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	target.resting = FALSE
 	target.SetAllImmobility(0, TRUE)
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 10 SECONDS, type)
-	to_chat(owner, span_progenitor("Ckkrem"))
+	to_chat(owner, span_progenitor("CKKREM!"))
 	target.visible_message(span_danger("Streaks of velvet light crack out of [target]'s skin."), span_velvet("Power roars through you like a raging storm, pushing you to your absolute limits."))
 	var/obj/item/cuffs = target.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/item/legcuffs = target.get_item_by_slot(ITEM_SLOT_LEGCUFFED)

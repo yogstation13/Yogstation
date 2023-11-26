@@ -75,7 +75,7 @@
 		switch(stage)
 			if(1)
 				user.visible_message(span_userdanger("[user]'s sigils howl out light. Their limbs twist and move, glowing cracks forming across their chitin."), \
-									span_velvet("Power... <i>power...</i> flooding through you, the dreams and thoughts of those you've touched whispering in your ears..."))
+									span_velvet("Power... <i>power...</i> flooding through you, the dreams and thoughts of the wills you've devoured whispering in your ears..."))
 				sound_to_playing_players('yogstation/sound/magic/sacrament_01.ogg', 20, FALSE, pressure_affected = FALSE)
 			if(2)
 				for(var/turf/T in range(10, owner)) //add spooky visuals to the mounting power
@@ -83,7 +83,7 @@
 						addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 15 SECONDS))
 
 				animate(user, transform = matrix() * 2, time = 15 SECONDS)
-				user.visible_message(span_userdanger("[user] begins to... <i>grow.</i>."), span_progenitor("Yes! You feel the weak mortal shell coming apart!"))
+				user.visible_message(span_userdanger("[user] begins to... <i>grow.</i>."), span_progenitor("Your mortal shell begins to fracture as power swells within it!"))
 				sound_to_playing_players('yogstation/sound/magic/sacrament_02.ogg', 20, FALSE, pressure_affected = FALSE)
 
 		//if you somehow get interrupted

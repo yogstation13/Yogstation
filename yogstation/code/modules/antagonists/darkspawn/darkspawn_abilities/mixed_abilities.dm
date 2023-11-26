@@ -33,7 +33,7 @@
 	
 /datum/action/cooldown/spell/touch/umbral_trespass/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	tagalong = caster.apply_status_effect(STATUS_EFFECT_TAGALONG, target)
-	to_chat(caster, span_progenitor("Iahz"))
+	to_chat(caster, span_velvet("Iahz"))
 	to_chat(caster, span_velvet("You slip into [target]'s shadow. This will last five minutes, until canceled, or you are forced out by darkness."))
 	caster.forceMove(target)
 	return TRUE
@@ -60,7 +60,7 @@
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()
 	if(. && isdarkspawn(owner))
-		to_chat(owner, span_progenitor("Ksh shol'naxhar"))
+		to_chat(owner, span_progenitor("KSH SHOL'NAXHAR!"))
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 		darkspawn.block_psi(20 SECONDS, type)
 
@@ -85,7 +85,7 @@
 
 /datum/action/cooldown/spell/aoe/icyveins/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_progenitor("Syn'thra"))
+	to_chat(owner, span_velvet("Syn'thra"))
 	to_chat(owner, span_velvet("You freeze the nearby air."))
 
 /datum/action/cooldown/spell/aoe/icyveins/cast_on_thing_in_aoe(atom/target, atom/user)

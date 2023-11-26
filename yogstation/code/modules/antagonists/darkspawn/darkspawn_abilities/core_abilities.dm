@@ -72,7 +72,7 @@
 	ADD_TRAIT(target, TRAIT_PARALYSIS, type)
 	target.silent += 5
 
-	to_chat(caster, span_progenitor("Cera ko..."))
+	to_chat(caster, span_velvet("Cera ko..."))
 	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))
 	target.visible_message(span_danger("<i>[target] suddenly howls and clutches their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
 	playsound(target, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
@@ -112,7 +112,7 @@
 
 	//format the text output to the darkspawn
 	var/list/self_text = list() 
-	self_text += span_progenitor("...akkraup'dej")
+	self_text += span_velvet("...akkraup'dej")
 	self_text += span_velvet("You devour [target]'s will.")
 	self_text += span_velvet("You have gained [willpower_amount] willpower. Use willpower to purchase abilities and passives.")
 	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
@@ -164,7 +164,7 @@
 	if(target.stat)
 		to_chat(owner, span_warning("[target] is depowered."))
 		return FALSE
-	to_chat(owner, span_progenitor("[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]"))
+	to_chat(owner, span_velvet("[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]"))
 	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), span_velvet("You begin transmitting a recall message to Central Command..."))
 	play_recall_sounds(target)
 	in_use = TRUE
@@ -225,12 +225,12 @@
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/do_shapeshift(mob/living/caster)
 	. = ..()
 	if(.)
-		to_chat(owner, span_progenitor("Zov..."))
+		to_chat(owner, span_velvet("Zov..."))
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/do_unshapeshift(mob/living/caster)
 	. = ..()
 	if(.)
-		to_chat(owner, span_progenitor("...Voz"))
+		to_chat(owner, span_velvet("...Voz"))
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
 	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
@@ -261,7 +261,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
-	to_chat(L, span_progenitor("Zkxa'yaera"))
+	to_chat(L, span_velvet("Zkxa'yaera"))
 	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!"), span_velvet("You create an illusion of yourself."))
 	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 
@@ -313,7 +313,7 @@
 		return .
 	if(cast_time)
 		casting = TRUE
-		to_chat(owner, span_progenitor("Xkla'thra..."))
+		to_chat(owner, span_velvet("Xkla'thra..."))
 		playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
 		if(!do_after(owner, cast_time, cast_on))
 			casting = FALSE
@@ -326,5 +326,5 @@
 		return
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	var/obj/thing = new object_type(get_turf(cast_on))
-	to_chat(owner, span_progenitor("...[language_final]"))
+	to_chat(owner, span_velvet("...[language_final]"))
 	owner.visible_message(span_warning("[owner] knits shadows together into [thing]!"), span_velvet("You create [thing]"))

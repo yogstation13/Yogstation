@@ -30,7 +30,7 @@
 
 /datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_progenitor("Shwooh"))
+	to_chat(owner, span_velvet("Shwooh"))
 	to_chat(owner, span_velvet("You extinguish all lights."))
 
 /datum/action/cooldown/spell/aoe/extinguish/cast_on_thing_in_aoe(atom/victim, atom/caster)
@@ -93,7 +93,7 @@
 		return FALSE
 
 	//Turn it off for the time being
-	to_chat(owner, span_progenitor("Xlahwa..."))
+	to_chat(owner, span_velvet("Xlahwa..."))
 	target.set_light(0)
 	target.visible_message(span_warning("The [target] flickers and begins to grow dark."))
 
@@ -204,7 +204,7 @@
 	
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
-	to_chat(owner, span_progenitor("Qokxlez..."))
+	to_chat(owner, span_velvet("Qokxlez..."))
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, cast_range)
 	channeled = cast_on
 	healing = is_darkspawn_or_veil(channeled)
@@ -256,7 +256,7 @@
 
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_progenitor("H'ellekth'ele"))
+	to_chat(owner, span_velvet("H'ellekth'ele"))
 
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim))
