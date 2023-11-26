@@ -251,6 +251,22 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	"mixed4" = "Macadamia",
 ))
 
+GLOBAL_LIST_INIT(tts_voices, sortList(list(
+	"GB-alba",
+	"GB-aru",
+	"GB-jenny_dioco",
+	"GB-northern_english_male",
+	"GB-southern_english_female",
+	"GB-vctk",
+	"US-amy",
+	"US-danny",
+	"US-joe",
+	"US-kathleen",
+	"US-kusal",
+	"US-libritts_r"
+	)))
+GLOBAL_PROTECT(tts_voices)
+
 GLOBAL_LIST_EMPTY(species_list)
 
 /proc/age2agedescription(age)

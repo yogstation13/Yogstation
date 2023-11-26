@@ -187,6 +187,13 @@
 		if(M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTRADIO))
 			receive |= M
 
+	// TTS generation
+	var/model = pick(GLOB.tts_voices)
+	if(GLOB.tts_voices.Find(virt.tts_voice)) // Sanitize with an immutable list
+		model = virt.tts_voice
+
+	var/tts_sound = piper_tts(html_decode(message), model)
+
 	// Render the message and have everybody hear it.
 	// Always call this on the virtualspeaker to avoid issues.
 	var/spans = data["spans"]
@@ -194,6 +201,10 @@
 	var/rendered = virt.compose_message(virt, language, message, frequency, spans)
 	for(var/atom/movable/hearer in receive)
 		hearer.Hear(rendered, virt, language, message, frequency, spans, message_mods)
+		if(ismob(hearer))
+			var/mob/hearing_mob = hearer
+			if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(language))
+				hearing_mob.playsound_local(vol = 50, S = tts_sound) // TTS play
 
 	// This following recording is intended for research and feedback in the use of department radio channels
 	if(length(receive))

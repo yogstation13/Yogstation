@@ -234,3 +234,5 @@
 	var/datum/focus
 
 	var/fake_client = FALSE // Currently only used for examines
+
+	var/tts_voice

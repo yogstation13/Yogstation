@@ -218,3 +218,6 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 #KDIFF3 files
 *.orig
+
+#piper cache
+piper/cache/*

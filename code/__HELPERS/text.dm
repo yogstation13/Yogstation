@@ -849,3 +849,9 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 /proc/sanitize_css_class_name(name)
 	var/static/regex/regex = new(@"[^a-zA-Z0-9]","g")
 	return replacetext(name, regex, "")
+
+/// Removes all unsafe cmd/shell text
+/proc/sanitize_tts_input(txt)
+	var/and_replaced = replacetext(txt, "&", "and") // Manually sanitize "&" into "and" so it doesn't get consumed by the void
+	var/static/regex/regex = new(@"[^a-zA-Z0-9,._+:@%/\- ]","g")
+	return replacetext(and_replaced, regex, "")

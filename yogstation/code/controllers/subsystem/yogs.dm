@@ -141,6 +141,10 @@ SUBSYSTEM_DEF(Yogs)
 	for(var/path in subtypesof(/datum/corporation))
 		new path
 
+	// Clean up TTS files from last round
+	for(var/filename in flist("piper/cache/"))
+		fdel("piper/cache/[filename]")
+
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)

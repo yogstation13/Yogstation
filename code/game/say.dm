@@ -39,9 +39,16 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 /atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list())
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
+
+	var/tts_sound = piper_tts(message, GLOB.tts_voices[1])
+
 	for(var/_AM in get_hearers_in_view(range, source))
 		var/atom/movable/AM = _AM
 		AM.Hear(rendered, src, message_language, message, , spans, message_mods)
+		if(ismob(AM))
+			var/mob/hearing_mob = AM
+			if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
+				hearing_mob.playsound_local(get_turf(src), vol = 100, S = tts_sound) // TTS play
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.
@@ -171,6 +178,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/realvoice // Yogs -- new UUID, basically, I guess
 	var/atom/movable/source
 	var/obj/item/radio/radio
+	var/tts_voice
 
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, radio)
@@ -187,6 +195,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 
 	// The mob's job identity
 	if(ishuman(M))
+		var/mob/living/carbon/human/human_speaker = M
+		tts_voice = human_speaker.tts_voice
 		// Humans use their job as seen on the crew manifest. This is so the AI
 		// can know their job even if they don't carry an ID.
 		var/datum/data/record/findjob = find_record("name", name, GLOB.data_core.general)
