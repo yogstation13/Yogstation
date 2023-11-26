@@ -23,9 +23,11 @@
 		return FALSE
 
 	if(world.system_type == MS_WINDOWS)
-		world.shelleo("echo \"[san_message]\" | \"./piper/windows_amd64/piper.exe\" --model \"./piper/voices/[model]/[set_quality]/en_[model]-[set_quality].onnx\" --output_file \"./[output_filepath]\" -q")
+		var/list/out = world.shelleo("echo \"[san_message]\" | \"./piper/windows_amd64/piper.exe\" --model \"./piper/voices/[model]/[set_quality]/en_[model]-[set_quality].onnx\" --output_file \"./[output_filepath]\" -q")
+		world.log << "[out[1]] [out[2]] [out[3]]"
 	else
-		world.shelleo("echo \"[san_message]\" | \"./piper/linux_x86_64/piper\" --model \"./piper/voices/[model]/[set_quality]/en_[model]-[set_quality].onnx\" --output_file \"./[output_filepath]\" -q")
+		var/list/out = world.shelleo("echo \"[san_message]\" | \"./piper/linux_x86_64/piper\" --model \"./piper/voices/[model]/[set_quality]/en_[model]-[set_quality].onnx\" --output_file \"./[output_filepath]\" -q")
+		world.log << "[out[1]] [out[2]] [out[3]]"
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fdel_defined), output_filepath), 5 MINUTES)
 
