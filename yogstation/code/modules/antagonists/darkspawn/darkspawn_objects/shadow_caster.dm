@@ -14,10 +14,6 @@
 
 /obj/item/ammo_box/magazine/internal/bow/shadow
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/shadow
-	light_system = MOVABLE_LIGHT
-	light_power = -1
-	light_color = COLOR_VELVET
-	light_range = 3.5
 
 /obj/item/ammo_casing/reusable/arrow/shadow
 	name = "shadow arrow"
@@ -26,12 +22,21 @@
 	light_power = -1
 	light_color = COLOR_VELVET
 	light_range = 3.5
+	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 0) //always embeds if it hits someone
 	projectile_type = /obj/projectile/bullet/reusable/arrow/shadow
 
 /obj/item/ammo_casing/reusable/arrow/shadow/on_land(obj/projectile/old_projectile)
 	. = ..()
-	QDEL_IN(src, 10 SECONDS)
-	AddComponent(/datum/component/light_eater)
+	addtimer(CALLBACK(src, PROC_REF(dissipate)), 10 SECONDS, TIMER_UNIQUE)
+
+/obj/item/ammo_casing/reusable/arrow/shadow/proc/dissipate()
+	if(QDELETED(src))
+		return
+	if(iscarbon(loc)) //if it's embedded, remove the embedding properly or it'll cause funkiness
+		var/mob/living/carbon/holder = loc
+		if(holder.get_embedded_part(src))
+			holder.remove_embedded_object(src, get_turf(holder), TRUE, TRUE, FALSE)
+	qdel(src)
 
 /obj/projectile/bullet/reusable/arrow/shadow
 	name = "shadow arrow"
@@ -39,3 +44,4 @@
 	light_power = -1
 	light_color = COLOR_VELVET
 	light_range = 3.5
+	embed_chance = 1 //always embeds if it hits someone
