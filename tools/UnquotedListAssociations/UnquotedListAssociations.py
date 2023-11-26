@@ -44,11 +44,12 @@ def unquoted_list_associations_scan_dir(scan_dir):
             output_file = open(todays_file, "w") #w so it overrides existing files for today, there should only really be one file per day
             output_file.write(output_str)
 
+file_extensions = (".dm", ".dmf")
 
 #Scan one file, returning a string as a "report" or if there are no NamedListArgs, False
 def scan_dm_file_for_unquoted_list_associations(_file):
     global total_unquoted_list_associations
-    if not _file.endswith(".dm"):
+    if not _file.endswith(file_extensions):
         return False
     
     with open(_file, "r") as dm_file:
@@ -88,7 +89,7 @@ def build_define_dictionary(scan_dir):
 
 #Find all #define X Y in a file and update define_dict so that define_dict[X] = True
 def scan_dm_file_for_defines(_file):
-    if not _file.endswith(".dm"):
+    if not _file.endswith(file_extensions):
         return False
 
     with open(_file, "r") as dm_file:

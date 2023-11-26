@@ -39,12 +39,12 @@ def colon_scan_dir(scan_dir):
             output_file = open(todays_file, "w") #w so it overrides existing files for today, there should only really be one file per day
             output_file.write(output_str)
 
-
+file_extensions = (".dm", ".dmf")
 
 #Scan one file, returning a string as a "report" or if there are no colons, False
 def scan_dm_file(_file):
     
-    if not _file.endswith(".dm"):
+    if not _file.endswith(file_extensions):
         return False
     
     with open(_file, "r") as dm_file:
