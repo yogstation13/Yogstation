@@ -25,13 +25,15 @@
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/Enable()
-	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), "<span class='velvet bold'>ikna</span><br>[span_notice("You transform your arm into a blade.")]")
+	to_chat(owner, span_progenitor("Akna"))
+	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), span_velvet("You transform your arm into a blade."))
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	var/obj/item/light_eater/T = new(owner)
 	owner.put_in_hands(T)
 
 /datum/action/cooldown/spell/toggle/light_eater/Disable()
-	owner.visible_message(span_warning("[owner]'s blade transform back!"), "<span class='velvet bold'>haoo</span><br>[span_notice("You dispel the blade.")]")
+	to_chat(owner, span_progenitor("Haoo"))
+	owner.visible_message(span_warning("[owner]'s blade transforms back!"), span_velvet("You dispel the blade."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	for(var/obj/item/light_eater/T in owner)
 		qdel(T)
@@ -64,16 +66,16 @@
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/shadow_caster/Enable()
-	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), "<span class='velvet bold'>ikna</span><br>\
-	[span_notice("You transform your arm into a blade.")]")
+	to_chat(owner, span_progenitor("Crxkna"))
+	owner.visible_message(span_warning("[owner]'s arm contorts into a bow!"), span_velvet("You transform your arm into a bow."))
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	if(!bow)
 		bow = new (owner)
 	owner.put_in_hands(bow)
 
 /datum/action/cooldown/spell/toggle/shadow_caster/Disable()
-	owner.visible_message(span_warning("[owner]'s blade transform back!"), "<span class='velvet bold'>haoo</span><br>\
-	[span_notice("You dispel the blade.")]")
+	to_chat(owner, span_progenitor("Haoo"))
+	owner.visible_message(span_warning("[owner]'s bow transforms back!"), span_velvet("You dispel the bow."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	bow.moveToNullspace()
 	
@@ -116,10 +118,10 @@
 	. = ..()
 	if(!isliving(cast_on))
 		return
+	owner.visible_message(span_warning("<b>[owner]'s eyes flash a purpleish-red!</b>", span_progenitor("Sskr'aya")))
 	var/mob/living/target = cast_on
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
-	owner.visible_message(span_warning("<b>[owner]'s eyes flash a purpleish-red!</b>"))
 	var/distance = get_dist(target, owner)
 	if (distance <= 2 && strong)
 		target.visible_message(span_danger("[target] suddenly collapses..."))
@@ -159,7 +161,8 @@
 
 /datum/action/cooldown/spell/darkness_smoke/cast(mob/living/carbon/human/user) //Extremely hacky ---- (oh god, it really is)
 	. = ..()
-	user.visible_message(span_warning("[user] bends over and coughs out a cloud of black smoke!"), span_velvet("You regurgitate a vast cloud of blinding smoke."))
+	to_chat(owner, span_progenitor("Hwlok'krotho"))
+	user.visible_message(span_warning("[user] bends over and bellows out a cloud of black smoke!"), span_velvet("You expel a vast cloud of blinding smoke."))
 	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(user.loc) //hacky
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
@@ -170,6 +173,37 @@
 		S.set_up(range, location = B.loc, carry = B.reagents)
 		S.start()
 	qdel(B)
+
+//////////////////////////////////////////////////////////////////////////
+//----------------------------Trap abilities----------------------------//
+//////////////////////////////////////////////////////////////////////////
+//Reskinned punji sticks that don't stun for as long
+/datum/action/cooldown/spell/pointed/darkspawn_build/punji
+	name = "Damage trap"
+	desc = "Place dangerous punji sticks. Allies pass safely."
+	object_type = /obj/structure/trap/darkspawn/damage
+	language_final = "ksha"
+
+//Reskinned bear trap that doesn't slow as much and can't be picked up
+/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
+	name = "Legcuffs"
+	desc = "a dark bear trap."
+	object_type = /obj/item/restraints/legcuffs/beartrap/dark
+	language_final = "xcrak"
+
+//Discombobulates people
+/datum/action/cooldown/spell/pointed/darkspawn_build/nausea
+	name = "Nausea trap"
+	desc = "a dark bear trap."
+	object_type = /obj/structure/trap/darkspawn/nausea
+	language_final = "guhxo"
+
+//Discombobulates people
+/datum/action/cooldown/spell/pointed/darkspawn_build/teleport
+	name = "Teleport trap"
+	desc = "a dark bear trap."
+	object_type = /obj/structure/trap/darkspawn/teleport
+	language_final = "hwkwo"
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------It's a jaunt, what do you expect-------------------//
@@ -198,37 +232,14 @@
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt/do_steam_effects(turf/loc)
 	return FALSE
 
-//////////////////////////////////////////////////////////////////////////
-//----------------------------Trap abilities----------------------------//
-//////////////////////////////////////////////////////////////////////////
-//Reskinned punji sticks that don't stun for as long
-/datum/action/cooldown/spell/pointed/darkspawn_build/punji
-	name = "Damage trap"
-	desc = "Place dangerous punji sticks. Allies pass safely."
-	object_type = /obj/structure/trap/darkspawn/damage
-
-//Reskinned bear trap that doesn't slow as much and can't be picked up
-/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
-	name = "Legcuffs"
-	desc = "a dark bear trap."
-	object_type = /obj/item/restraints/legcuffs/beartrap/dark
-
-//Discombobulates people
-/datum/action/cooldown/spell/pointed/darkspawn_build/nausea
-	name = "Nausea trap"
-	desc = "a dark bear trap."
-	object_type = /obj/structure/trap/darkspawn/nausea
-
-//Discombobulates people
-/datum/action/cooldown/spell/pointed/darkspawn_build/teleport
-	name = "Teleport trap"
-	desc = "a dark bear trap."
-	object_type = /obj/structure/trap/darkspawn/teleport
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt/cast(mob/living/cast_on)
+	. = ..()
+	to_chat(owner, span_progenitor("Vxklu'wop sla'txhaka"))
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Targeted Teleport---------------------------//
 //////////////////////////////////////////////////////////////////////////
-datum/action/cooldown/spell/pointed/phase_jump/void_jump
+/datum/action/cooldown/spell/pointed/phase_jump/void_jump
 	name = "Void jump"
 	desc = "A short range targeted teleport."
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -247,6 +258,11 @@ datum/action/cooldown/spell/pointed/phase_jump/void_jump
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	beam_icon = "curse0"
+
+/datum/action/cooldown/spell/pointed/phase_jump/void_jump/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(.)
+		to_chat(owner, span_progenitor("Vxklu'wop"))
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------------AOE ice field----------------------------//
@@ -268,6 +284,10 @@ datum/action/cooldown/spell/pointed/phase_jump/void_jump
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 3
+
+/datum/action/cooldown/spell/aoe/permafrost/cast(atom/cast_on)
+	. = ..()
+	to_chat(owner, span_progenitor("Shykk'xklp"))
 
 /datum/action/cooldown/spell/aoe/permafrost/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isopenturf(victim))
