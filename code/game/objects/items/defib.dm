@@ -16,13 +16,18 @@
 	actions_types = list(/datum/action/item_action/toggle_paddles)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 
-	var/on = FALSE //if the paddles are equipped (1) or on the defib (0)
-	var/safety = TRUE //if you can zap people with the defibs on harm mode
-	var/powered = FALSE //if there's a cell in the defib with enough power for a revive, blocks paddles from reviving otherwise
+	/// If the paddles are equipped (1) or on the defib (0).
+	var/on = FALSE
+	/// If you can zap people with the defibs on disarm/harm mode.
+	var/safety = TRUE
+	/// If there's a cell in the defib with enough power for a revive, blocks paddles from reviving otherwise.
+	var/powered = FALSE
 	var/obj/item/shockpaddles/paddles
 	var/obj/item/stock_parts/cell/high/cell
-	var/combat = FALSE //can we revive through space suits?
-	var/grab_ghost = TRUE // Do we pull the ghost back into their body?
+	/// Can we revive through space suits?
+	var/combat = FALSE
+	/// Do we pull the ghost back into their body?
+	var/grab_ghost = TRUE
 
 /obj/item/defibrillator/get_cell()
 	return cell
