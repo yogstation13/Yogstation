@@ -218,7 +218,8 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	psi_cost = 60
 	die_with_shapeshifted_form = FALSE
-	convert_damage = FALSE
+	convert_damage = TRUE
+	convert_damage_type = STAMINA
 	sound = 'yogstation/sound/magic/devour_will_end.ogg'
 	possible_shapes = list(/mob/living/simple_animal/hostile/crawling_shadows)
 

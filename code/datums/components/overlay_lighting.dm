@@ -211,7 +211,7 @@
 	parent_attached_to = new_parent_attached_to
 	if(.)
 		var/atom/movable/old_parent_attached_to = .
-		UnregisterSignal(old_parent_attached_to, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED))
+		UnregisterSignal(old_parent_attached_to, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED, COMSIG_LIGHT_EATER_QUEUE))
 		if(old_parent_attached_to == current_holder)
 			RegisterSignal(old_parent_attached_to, COMSIG_PARENT_QDELETING, PROC_REF(on_holder_qdel))
 			RegisterSignal(old_parent_attached_to, COMSIG_MOVABLE_MOVED, PROC_REF(on_holder_moved))
@@ -242,8 +242,8 @@
 		return
 	if(new_holder != parent && new_holder != parent_attached_to)
 		RegisterSignal(new_holder, COMSIG_PARENT_QDELETING, PROC_REF(on_holder_qdel))
+		RegisterSignal(new_holder, COMSIG_LIGHT_EATER_QUEUE, PROC_REF(on_light_eater))
 		if(overlay_lighting_flags & LIGHTING_ON)
-			RegisterSignal(new_holder, COMSIG_LIGHT_EATER_QUEUE, PROC_REF(on_light_eater))
 			RegisterSignal(new_holder, COMSIG_MOVABLE_MOVED, PROC_REF(on_holder_moved))
 		if(directional)
 			RegisterSignal(new_holder, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_holder_dir_change))

@@ -201,7 +201,6 @@
 	var/glow_power = 3.5
 	var/glow_range = 2.5
 	var/glow_color
-	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 
 	var/obj/effect/dummy/lighting_obj/moblight/glow
 
@@ -212,11 +211,6 @@
 	glow_color = owner.dna.features["mcolor"]
 	glow = owner.mob_light()
 	modify()
-	RegisterSignal(owner, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
-
-/datum/mutation/human/glow/proc/on_light_eater() //remove glow from them
-	SIGNAL_HANDLER
-	on_losing(owner)
 
 // Override modify here without a parent call, because we don't actually give an action.
 /datum/mutation/human/glow/modify()
@@ -228,7 +222,6 @@
 	. = ..()
 	if(.)
 		return
-	UnregisterSignal(owner, COMSIG_LIGHT_EATER_ACT)
 	QDEL_NULL(glow)
 
 /datum/mutation/human/glow/anti

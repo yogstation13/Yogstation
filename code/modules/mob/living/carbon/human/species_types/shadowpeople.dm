@@ -318,7 +318,7 @@
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	item_flags = ABSTRACT | DROPDEL
-	tool_behaviour = TOOL_MINING
+	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = SHARP_EDGED
 	wound_bonus = -30
