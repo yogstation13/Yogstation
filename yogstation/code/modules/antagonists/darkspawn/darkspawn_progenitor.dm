@@ -52,17 +52,13 @@
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload, darkspawn_name, outline_colour = COLOR_DARKSPAWN_PSI)
 	. = ..()
-	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE) //announce the beginning of the end
-	time_to_next_roar = world.time + roar_cooldown //prevent immediate roaring causing sound overlap
 
+	//give them all the class specific spells
 	for(var/spell in actions_to_add)
 		var/datum/action/cooldown/spell/new_spell = new spell(src)
 		new_spell.Grant(src)
 
-	//have them fade into existence
-	alpha = 0
-	animate(src, alpha = 255, time = 4 SECONDS) 
-
+	//add passive traits, elements, and components
 	ADD_TRAIT(src, TRAIT_HOLY, INNATE_TRAIT) //sorry no magic
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT) //so people can actually look at the sprite without the weird bobbing up and down
 	AddElement(/datum/element/death_explosion, 10, 20, 40) //with INFINITY health, they're not likely do die, but IF THEY DO
@@ -84,10 +80,12 @@
 	animate(filter, alpha = 200, time = 1 SECONDS, loop = -1, easing = EASE_OUT | SINE_EASING)
 	animate(alpha = 100, time = 1 SECONDS, easing = EASE_OUT | SINE_EASING)
 
-	var/datum/component/overlay_lighting/light = GetComponent(/datum/component/overlay_lighting)
-	if(light?.visible_mask) //give the light the same offset
-		light.visible_mask.pixel_x = pixel_x
-		light.visible_mask.pixel_y = pixel_y
+	//have them fade into existence and play a sound cry when they finish fading in
+	alpha = 0
+	animate(src, alpha = 255, time = 4 SECONDS) 
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'yogstation/sound/magic/sacrament_complete.ogg', 50), 4 SECONDS, TIMER_UNIQUE)
+	time_to_next_roar = world.time + roar_cooldown //prevent immediate roaring causing sound overlap
+
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/AttackingTarget()
 	if(istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
