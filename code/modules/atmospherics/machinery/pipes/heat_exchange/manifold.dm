@@ -15,12 +15,10 @@
 	construction_type = /obj/item/pipe/trinary
 	pipe_state = "he_manifold"
 
-	var/mutable_appearance/center
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/Initialize(mapload)
-	. = ..()
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/New(mapload)
 	icon_state = ""
-	center = mutable_appearance(icon, "manifold_center")
+	return ..()
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/set_init_directions()
 	initialize_directions = ALL_CARDINALS

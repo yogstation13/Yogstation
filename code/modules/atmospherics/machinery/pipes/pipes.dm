@@ -18,10 +18,10 @@
         ),\
     )
 
-/obj/machinery/atmospherics/pipe/Initialize(mapload)
-	. = ..()
+/obj/machinery/atmospherics/pipe/New(mapload)
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 	volume = 35 * device_type
+	return ..()
 
 /obj/machinery/atmospherics/pipe/nullify_node(i)
 	var/obj/machinery/atmospherics/old_node = nodes[i]
