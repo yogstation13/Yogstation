@@ -68,9 +68,18 @@
 	var/list/ruins_availible = list()	//we can try these in the current pass
 	var/list/ruins_placed = list() // yogs
 
+	if(PERFORM_ALL_TESTS(log_mapping))
+		log_mapping("All ruins being loaded for map testing")
+
 	//Set up the starting ruin list
 	for(var/key in ruins)
 		var/datum/map_template/ruin/R = ruins[key]
+
+		if(PERFORM_ALL_TESTS(log_mapping))
+			R.cost = 0
+			R.allow_duplicates = FALSE // no multiples for testing
+			R.always_place = !R.unpickable // unpickable ruin means it spawns as a set with another ruin
+
 		if(R.cost > budget) //Why would you do that
 			continue
 		if(R.always_place)

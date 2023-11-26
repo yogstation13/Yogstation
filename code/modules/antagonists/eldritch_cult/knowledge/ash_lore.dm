@@ -2,35 +2,6 @@
 	name = "Nightwatcher's Secret"
 	desc = "Pledges yourself to the path of Ash. Allows you to transmute a pile of ash with a knife or its derivatives into an ashen blade. Additionally, empowers your Mansus grasp to throw enemies away from you. You will also become more resistant to fire."
 	gain_text = "Night on the Kilnplains reveals the Ashy Lantern in the sky. In your dreams, you reached out and touched it. Now, like it, you are a part of the dunes. Forever."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_mind,
-		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_blade,
-		/datum/eldritch_knowledge/base_cosmic,
-		/datum/eldritch_knowledge/base_knock,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final,
-		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ash_knife)
 	cost = 1
 	route = PATH_ASH
@@ -94,6 +65,7 @@
 	desc = "Allows you to craft an eldritch amulet by transmuting a pair of eyes with a glass shard. When worn, the amulet will give you thermal vision."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ashen_eyes)
 	cost = 1
+	route = PATH_ASH
 	tier = TIER_1
 
 /datum/eldritch_knowledge/ash_mark
@@ -101,14 +73,6 @@
 	gain_text = "All living things are linked through their sparks. This technique represents a fraction of the Shrouded One's communality."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your ashen blade to detonate the mark, which causes burning that can spread to nearby targets, decreasing in damage with each jump."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_ASH
 	tier = TIER_MARK
 
@@ -166,14 +130,6 @@
 	gain_text = "The stench of boiling blood was common in the wake of the City Guard. Though they are gone, the memory of their pikes and greatswords may yet benefit you."
 	desc = "Your ashen blade will now ignite targets."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	route = PATH_ASH
 	tier = TIER_BLADE
 
@@ -199,6 +155,7 @@
 	desc = "A powerful ranged spell that causes heavy bleeding and blood loss in an area around your target."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/cleave
+	route = PATH_ASH
 	tier = TIER_3
 
 /datum/eldritch_knowledge/ash_final
