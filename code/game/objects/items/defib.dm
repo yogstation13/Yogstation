@@ -302,6 +302,8 @@
 	var/combat = FALSE //If it penetrates armor and gives additional functionality
 	var/grab_ghost = TRUE
 	var/tlimit = DEFIB_TIME_LIMIT
+	/// If safety is true, this determines if harm mode will act like disarm (true) or harm (false).
+	var/cyborg_alternative = FALSE
 
 	var/mob/listeningTo
 
@@ -438,6 +440,9 @@
 		return
 
 	if(user.a_intent == INTENT_HARM)
+		if(cyborg_alternative) // Since cyborgs do not have access to other intents (like disarm), this is a workaround for that.
+			do_disarm(M, user)
+			return
 		do_harm(H, user)
 		return
 
@@ -645,6 +650,16 @@
 				playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 	busy = FALSE
 	update_appearance(UPDATE_ICON)
+
+/obj/item/shockpaddles/AltClick(mob/user)
+	if(iscyborg(user) && combat == TRUE)
+		cyborg_alternative = !cyborg_alternative
+		if(cyborg_alternative)
+			to_chat(user, "Your shock paddles will now instead shock others on immediate contact.") // Disarm 
+		else
+			to_chat(user, "Your shock paddles will now instead charge up to give a heart attack on defib completion.") // Harm
+		return
+	..()
 
 /obj/item/shockpaddles/cyborg
 	name = "cyborg defibrillator paddles"
