@@ -29,7 +29,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold/set_init_directions()
-	initialize_directions = NORTH|SOUTH|EAST|WEST
+	initialize_directions = ALL_CARDINALS
 	initialize_directions &= ~dir
 
 /obj/machinery/atmospherics/pipe/manifold/update_overlays()

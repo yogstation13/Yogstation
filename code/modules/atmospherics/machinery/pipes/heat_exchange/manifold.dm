@@ -23,7 +23,7 @@
 	center = mutable_appearance(icon, "manifold_center")
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/set_init_directions()
-	initialize_directions = NORTH|SOUTH|EAST|WEST
+	initialize_directions = ALL_CARDINALS
 	initialize_directions &= ~dir
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/update_overlays()

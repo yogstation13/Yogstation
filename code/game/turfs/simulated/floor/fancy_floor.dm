@@ -63,6 +63,21 @@
 				to_chat(user, span_notice("You forcefully pry off the planks, destroying them in the process."))
 	return make_plating()
 
+/turf/open/floor/wood/parquet
+	icon_state = "wood-parquet"
+	floor_tile = /obj/item/stack/tile/wood/parquet
+	broken_states = list("wood-parquet-broken", "wood-parquet-broken2", "wood-parquet-broken3", "wood-parquet-broken4", "wood-parquet-broken5", "wood-parquet-broken6", "wood-parquet-broken7")
+
+/turf/open/floor/wood/tile
+	icon_state = "wood-tile"
+	floor_tile = /obj/item/stack/tile/wood/tile
+	broken_states = list("wood-tile-broken", "wood-tile-broken2", "wood-tile-broken3")
+
+/turf/open/floor/wood/large
+	icon_state = "wood-large"
+	floor_tile = /obj/item/stack/tile/wood/large
+	broken_states = list("wood-large-broken", "wood-large-broken2", "wood-large-broken3")
+
 /turf/open/floor/wood/cold
 	initial_gas_mix = KITCHEN_COLDROOM_ATMOS
 
@@ -159,6 +174,48 @@
 
 /turf/open/floor/wood/cold/broken/seven
 	icon_state = "wood-broken7"
+
+/turf/open/floor/wood/parquet/broken
+	icon_state = "wood-parquet-broken"
+	broken = TRUE
+
+/turf/open/floor/wood/parquet/broken/two
+	icon_state = "wood-parquet-broken2"
+
+/turf/open/floor/wood/parquet/broken/three
+	icon_state = "wood-parquet-broken3"
+
+/turf/open/floor/wood/parquet/broken/four
+	icon_state = "wood-parquet-broken4"
+
+/turf/open/floor/wood/parquet/broken/five
+	icon_state = "wood-parquet-broken5"
+
+/turf/open/floor/wood/parquet/broken/six
+	icon_state = "wood-parquet-broken6"
+
+/turf/open/floor/wood/parquet/broken/seven
+	icon_state = "wood-parquet-broken7"
+
+/turf/open/floor/wood/tile/broken
+	icon_state = "wood-tile-broken"
+	broken = TRUE
+
+/turf/open/floor/wood/tile/broken/two
+	icon_state = "wood-tile-broken2"
+
+/turf/open/floor/wood/tile/broken/three
+	icon_state = "wood-tile-broken3"
+
+/turf/open/floor/wood/large/broken
+	icon_state = "wood-large-broken"
+	broken = TRUE
+
+/turf/open/floor/wood/large/broken/two
+	icon_state = "wood-large-broken2"
+
+/turf/open/floor/wood/large/broken/three
+	icon_state = "wood-large-broken3"
 
 /turf/open/floor/bamboo
 	desc = "A bamboo mat with a decorative trim."

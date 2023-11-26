@@ -32,6 +32,7 @@
 	set_light_on(on)
 	if(light_system == STATIC_LIGHT)
 		update_light()
+
 /obj/item/flashlight/attack_self(mob/user)
 	on = !on
 	update_brightness(user)
@@ -236,6 +237,7 @@
 	force = 9 // Not as good as a stun baton.
 	light_range = 5 // A little better than the standard flashlight.
 	hitsound = 'sound/weapons/genhit1.ogg'
+	light_system = MOVABLE_LIGHT_DIRECTIONAL
 
 // the desk lamps are a bit special
 /obj/item/flashlight/lamp
