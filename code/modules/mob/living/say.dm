@@ -307,8 +307,8 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	// TTS generation
 	var/model = pick(GLOB.tts_voices)
-	if(GLOB.tts_voices.Find(H.tts_voice)) // Sanitize with an immutable list
-		model = H.tts_voice
+	if(GLOB.tts_voices.Find(tts_voice)) // Sanitize with an immutable list
+		model = tts_voice
 	else
 		tts_voice = model
 
