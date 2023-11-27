@@ -162,7 +162,7 @@ Class Procs:
 	power_change()
 	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(power_change))
 
-/obj/machinery/Destroy()
+/obj/machinery/Destroy(force=FALSE)
 	disconnect_from_network()
 	GLOB.machines.Remove(src)
 	if(!speed_process)

@@ -2,35 +2,6 @@
 	name = "Glimmer of Winter"
 	desc = "Pledges yourself to the path of the Void. Allows you to transmute a stuff with a knife or its derivatives into a void blade. Additionally, empowers your Mansus grasp to chill any target hit."
 	gain_text = "Wanting, I lie, too weary to die, too lost to the ice for saving. My sins claim me, untame me"
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/base_ash,
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_mind,
-		/datum/eldritch_knowledge/base_blade,
-		/datum/eldritch_knowledge/base_cosmic,
-		/datum/eldritch_knowledge/base_knock,
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,
-		/datum/eldritch_knowledge/ash_final,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final,
-		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_knife)
 	cost = 1
 	route = PATH_VOID
@@ -85,19 +56,6 @@
 	route = PATH_VOID
 	tier = TIER_1
 
-// /datum/eldritch_knowledge/spell/void_phase
-// 	name = "T1 - Void Phase"
-// 	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like 
-// 		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
-// 	desc = "Grants you Void Phase, a long range targeted teleport spell. 
-// 		Additionally causes damage to heathens around your original and target destination."
-// 	cost = 1
-// 	spell_to_add = /datum/action/cooldown/spell/pointed/void_phase
-// 	banned_knowledge = list(
-// 		/datum/eldritch_knowledge/spell/mental_obfuscation)
-// 	route = PATH_VOID
-// 	tier = TIER_1
-
 /datum/eldritch_knowledge/void_cloak
 	name = "T1 - Void Cloak"
 	gain_text = "The Owl is the keeper of things that are not quite in practice, but in theory are. Many things are."
@@ -105,6 +63,7 @@
 		to create a Void Cloak. This cloak will make the wearer partially invisible over time, and allow them to temporarily dodge attacks."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_cloak)
 	cost = 1
+	route = PATH_VOID
 	tier = TIER_1
 
 /datum/eldritch_knowledge/void_mark
@@ -114,14 +73,6 @@
 	desc = "Your Mansus Grasp now applies the Mark of Void. The mark is triggered from an attack with your Void Blade. \
 		When triggered, further silences the victim and swiftly lowers the temperature of their body and the air around them."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_VOID
 	tier = TIER_MARK
 
@@ -165,6 +116,7 @@
 		freezing the ground and any victims within."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/cone/staggered/cone_of_cold/void
+	route = PATH_VOID
 	tier = TIER_2
 
 /datum/eldritch_knowledge/void_blade_upgrade
@@ -172,14 +124,6 @@
 	gain_text = "Fleeting memories, fleeting feet. I mark my way with frozen blood upon the snow. Covered and forgotten, wandering I lie, too weary to die."
 	desc = "Your blade will now inject a freezing venom into your targets."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade)
 	route = PATH_VOID
 	tier = TIER_BLADE
 
@@ -210,11 +154,11 @@
 	desc = "A powerful spell that calls forth memories of ice, will create a large area of ice around you."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/slip/void
+	route = PATH_VOID
 	tier = TIER_3
 
 /datum/eldritch_knowledge/lionhunter_rifle
 	name = "T3 - Lionhunter Rifle"
-	name = "Lionhunter's Rifle"
 	desc = "Allows you to transmute any ballistic weapon, with \
 		a plank of wood, a piece of gold and a camera to create the Lionhunter's rifle. \
 		The Lionhunter's Rifle is a long ranged ballistic weapon with three shots. \
@@ -226,6 +170,7 @@
 		I could not purchase it at the time, but they showed me how they made it ages ago."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/lionhunter, /datum/eldritch_transmutation/lionhunter_ammo)
 	cost = 1
+	route = PATH_VOID
 	tier = TIER_3
 
 /datum/eldritch_knowledge/void_final

@@ -1,12 +1,17 @@
 #!/bin/bash
 set -euo pipefail
 EXIT_CODE=0
+MAP=$1
 
 tools/deploy.sh travis_test
 mkdir travis_test/config
+mkdir travis_test/data
 
 #test config
 cp tools/travis/travis_config.txt travis_test/config/config.txt
+
+#set the map
+cp _maps/$MAP.json travis_test/data/next_map.json
 
 cd travis_test
 ln -s $HOME/libmariadb/libmariadb.so libmariadb.so

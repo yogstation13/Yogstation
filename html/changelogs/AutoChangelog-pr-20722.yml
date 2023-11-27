@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed unintended change to damage of every two-handed weapon"
+  - bugfix: "fixed runtime error when trying to use certain two-handed weapons with one hand"

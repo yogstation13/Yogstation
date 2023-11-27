@@ -2,10 +2,19 @@ import { useBackend } from '../backend';
 import { Button, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  priority_alerts: AlertData[];
+  minor_alerts: AlertData[];
+};
+
+type AlertData = {
+  name: string;
+  ref: string;
+};
+
 export const AtmosAlertConsole = (props, context) => {
-  const { act, data } = useBackend(context);
-  const priorityAlerts = data.priority || [];
-  const minorAlerts = data.minor || [];
+  const { act, data } = useBackend<Data>(context);
+  const { priority_alerts = [], minor_alerts = [] } = data;
   return (
     <Window
       width={350}
@@ -14,32 +23,32 @@ export const AtmosAlertConsole = (props, context) => {
       <Window.Content scrollable>
         <Section title="Alarms">
           <ul>
-            {priorityAlerts.length === 0 && (
+            {priority_alerts.length === 0 && (
               <li className="color-good">
                 No Priority Alerts
               </li>
             )}
-            {priorityAlerts.map(alert => (
-              <li key={alert}>
+            {priority_alerts.map((alert) => (
+              <li key={alert.name}>
                 <Button
                   icon="times"
-                  content={alert}
+                  content={alert.name}
                   color="bad"
-                  onClick={() => act('clear', { zone: alert })} />
+                  onClick={() => act('clear', { zone_ref: alert.ref })} />
               </li>
             ))}
-            {minorAlerts.length === 0 && (
+            {minor_alerts.length === 0 && (
               <li className="color-good">
                 No Minor Alerts
               </li>
             )}
-            {minorAlerts.map(alert => (
-              <li key={alert}>
+            {minor_alerts.map((alert) => (
+              <li key={alert.name}>
                 <Button
                   icon="times"
-                  content={alert}
+                  content={alert.name}
                   color="average"
-                  onClick={() => act('clear', { zone: alert })} />
+                  onClick={() => act('clear', { zone_ref: alert.ref })} />
               </li>
             ))}
           </ul>
