@@ -859,12 +859,13 @@
 	force = 0 // How often we forget
 	throwforce = 0 // Faith without works is...
 	attack_verb = list("blessed")
-	var/held_up = FALSE
-	var/mutable_appearance/holy_glow_fx
-	var/obj/effect/dummy/lighting_obj/moblight/holy_glow_light
-	COOLDOWN_DECLARE(holy_notification)
 	menutab = MENU_MISC
 	additional_desc = "A holy icon, praying to it will allow it to weaken and burn those that draw your god's ire."
+
+	var/held_up = FALSE
+	var/mutable_appearance/holy_glow_fx
+	COOLDOWN_DECLARE(holy_notification)
+	var/obj/effect/dummy/lighting_obj/moblight/holy_glow_light
 
 /obj/item/nullrod/cross/attack_self(mob/living/user)
 	. = ..()
@@ -879,7 +880,7 @@
 	slot_flags = 0
 	holy_glow_fx = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 	user.add_overlay(holy_glow_fx)
-	holy_glow_light = user.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2)
+	holy_glow_light = user.mob_light(range = 2, color = LIGHT_COLOR_HOLY_MAGIC)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
 	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, PROC_REF(drop_unwield))
 	START_PROCESSING(SSfastprocess, src)
@@ -1301,43 +1302,12 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		var/turf/T5 = get_step(get_turf(target),turn(direction, -90))
 		var/list/the_targets = list(T,T1,T2,T3,T4,T5)
 
-		var/list/water_particles=list()
 		for(var/a=0, a<6, a++)
-			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
-			W.life = distance
 			var/my_target = pick(the_targets)
-			water_particles[W] = my_target
-			the_targets -= my_target
-			var/datum/reagents/R = new/datum/reagents(1)
-			W.reagents = R
-			R.my_atom = W
+			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src), my_target, TOUCH|VAPOR)
 			W.reagents.add_reagent(/datum/reagent/water/holywater, 1)
-
-		//Make em move dat ass, hun
-		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, water_particles), 1)
-
-//Particle movement loop
-/obj/item/nullrod/aspergillum/proc/move_particles(list/particles, repetition=0)
-	//Check if there's anything in here first
-	if(!particles || particles.len == 0)
-		return
-	// Second loop: Get all the water particles and make them move to their target
-	for(var/obj/effect/particle_effect/water/W in particles)
-		var/turf/my_target = particles[W]
-		if(!W)
-			continue
-		step_towards(W,my_target)
-		if(!W.reagents)
-			continue
-		for(var/A in get_turf(W))
-			if(A == src.loc)//don't fill the chaplain with holy water
-				continue
-			W.reagents.reaction(A, TOUCH|VAPOR)
-		if(W.loc == my_target)
-			particles -= W
-	if(repetition < distance)
-		repetition++
-		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, particles, repetition), 1)
+			the_targets -= my_target
+			W.life = distance
 
 /obj/item/nullrod/aspergillum/update_icon_state()
 	. = ..()

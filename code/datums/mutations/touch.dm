@@ -56,29 +56,3 @@
 	desc = "This is kind of like when you rub your feet on a shag rug so you can zap your friends, only a lot less safe."
 	icon_state = "zapper"
 	item_state = "zapper"
-	var/far = FALSE
-
-/obj/item/melee/touch_attack/shock/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!(proximity || far) || !can_see(user, target, 5) || get_dist(target, user) > 5)
-		user.visible_message(span_notice("[user]'s hand reaches out but nothing happens."))
-		return
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		if(C.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE))//doesnt stun. never let this stun
-			user.Beam(C, icon_state="red_lightning", time = 1.5 SECONDS)
-			C.dropItemToGround(C.get_active_held_item())
-			C.dropItemToGround(C.get_inactive_held_item())
-			C.adjust_confusion(15 SECONDS)
-			C.visible_message(span_danger("[user] electrocutes [target]!"),span_userdanger("[user] electrocutes you!"))
-			log_combat(user, target, "[user] electrocuted [target] with shock touch")
-		else
-			user.visible_message(span_warning("[user] fails to electrocute [target]!"))
-	else if(isliving(target))
-		var/mob/living/L = target
-		L.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, FALSE)
-		user.Beam(L, icon_state="red_lightning", time = 1.5 SECONDS)
-		L.visible_message(span_danger("[user] electrocutes [target]!"),span_userdanger("[user] electrocutes you!"))
-	else
-		to_chat(user,span_warning("The electricity doesn't seem to affect [target]..."))
-	remove_hand_with_no_refund(user)
-	return ..()

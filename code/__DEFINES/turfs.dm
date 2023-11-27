@@ -8,3 +8,5 @@
 
 ///Returns all currently loaded turfs
 #define ALL_TURFS(...) block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
+
+#define IS_OPAQUE_TURF(turf) (turf.directional_opacity == ALL_CARDINALS)

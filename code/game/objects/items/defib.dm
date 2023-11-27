@@ -308,7 +308,6 @@
 /obj/item/shockpaddles/Initialize(mapload, obj/item/defibrillator/spawned_in)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 8, \
 		force_wielded = 12, \
 		icon_wielded = "[base_icon_state]1", \
 	)

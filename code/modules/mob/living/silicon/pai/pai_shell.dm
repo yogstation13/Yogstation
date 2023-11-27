@@ -34,7 +34,6 @@
 	if(client)
 		client.perspective = EYE_PERSPECTIVE
 		client.eye = src
-	set_light(0)
 	icon_state = "[chassis]"
 	held_state = "[chassis]"
 	visible_message(span_boldnotice("[src] folds out its holochassis emitter and forms a holoshell around itself!"))
@@ -63,7 +62,6 @@
 	forceMove(card)
 	mobility_flags = NONE
 	density = FALSE
-	set_light(0)
 	holoform = FALSE
 	set_resting(resting)
 
@@ -93,12 +91,9 @@
 	return FALSE
 
 /mob/living/silicon/pai/proc/toggle_integrated_light()
-	if(!light_range)
-		set_light(brightness_power)
-		to_chat(src, span_notice("You enable your integrated light."))
-	else
-		set_light(0)
-		to_chat(src, span_notice("You disable your integrated light."))
+	set_light_on(!light_on)
+	set_light_range(brightness_power)
+	to_chat(src, span_notice("You [light_on ? "enable" : "disable"] your integrated light."))
 
 /mob/living/silicon/pai/mob_try_pickup(mob/living/user)
 	if(!possible_chassis[chassis])

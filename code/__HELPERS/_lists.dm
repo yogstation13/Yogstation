@@ -365,6 +365,8 @@
 /// Takes a weighted list (see above) and expands it into raw entries
 /// This eats more memory, but saves time when actually picking from it
 /proc/expand_weights(list/list_to_pick)
+	if(!length(list_to_pick))
+		return list()
 	var/list/values = list()
 	for(var/item in list_to_pick)
 		var/value = list_to_pick[item]
