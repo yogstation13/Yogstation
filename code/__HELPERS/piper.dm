@@ -23,7 +23,7 @@
 	var/file_name = "tmp/tts/[md5("[san_message][san_model][san_pitch]")].wav"
 
 	if(fexists(file_name))
-		var/sound/tts_sound = sound(file_name)
+		return sound(file_name)
 
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?model=[url_encode(san_model)]&pitch=[url_encode(san_pitch)]", json_encode(list("message" = san_message)), headers, file_name)
 
