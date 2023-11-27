@@ -45,6 +45,7 @@
 
 /obj/item/implant/dusting/iaa
 	var/defused = FALSE // For safe removal, admin-only
+	var/reward_type = /obj/item/iaa_reward
 
 /obj/item/implant/dusting/iaa/removed(mob/living/source, silent, special)
 	if(!defused)
@@ -57,7 +58,7 @@
 		return
 	. = ..()
 	var/turf/my_turf = get_turf(src)
-	var/obj/item/iaa_reward/drop = new(my_turf)
+	var/obj/item/drop = new reward_type(my_turf)
 	if(imp_in)
 		drop.desc = "A syndicate 'dog tag' with an inscription that reads [imp_in.real_name]. Seems like it would be a bad idea to let someone evil press this."
 
@@ -131,3 +132,19 @@
 		qdel(src)
 	else
 		to_chat(user, span_notice("\The [src] doesn't seem to do anything."))
+
+//fake one for pseudocider
+/obj/item/implant/dusting/iaa/fake
+	var/reward_type = /obj/item/iaa_reward_fake
+	
+/obj/item/iaa_reward_fake
+	name = "syndicate button"
+	desc = "A syndicate 'dog tag' with an unreadable inscription. Seems like it would be a bad idea to let someone evil press this."
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "bigred"
+	item_state = "electronic"
+	resistance_flags = INDESTRUCTIBLE // no cremation cheese!
+
+/obj/item/iaa_reward_fake/Initialize(mapload)
+	. = ..()
+	QDEL_IN(src, 7 SECONDS)
