@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(747 modules,
-    1995/9214 macros, 21.7%)</aside></h3>
+<aside>(750 modules,
+    2000/9238 macros, 21.6%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -47,6 +47,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/actions.html" title="code&#x2F;__DEFINES&#x2F;actions">actions</a></li>
     <li><a href="code/__DEFINES/admin.html" title="code&#x2F;__DEFINES&#x2F;admin">admin</a></li>
     <li><a href="code/__DEFINES/ai.html" title="code&#x2F;__DEFINES&#x2F;ai">ai</a></li>
+    <li><a href="code/__DEFINES/announcements.html" title="code&#x2F;__DEFINES&#x2F;announcements">announcements</a></li>
     <li><a href="code/__DEFINES/anomalies.html" title="code&#x2F;__DEFINES&#x2F;anomalies">anomalies</a></li>
     <li><a href="code/__DEFINES/antagonists.html" title="code&#x2F;__DEFINES&#x2F;antagonists">antagonists</a></li>
     <li><a href="code/__DEFINES/art.html" title="code&#x2F;__DEFINES&#x2F;art">art</a></li>
@@ -471,6 +472,7 @@ SPDX-License-Identifier: MIT</li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;admin">admin</span><ul class="index-tree">
     <li><a href="code/modules/admin/mfa.html" title="code&#x2F;modules&#x2F;admin&#x2F;mfa">mfa</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;admin&#x2F;verbs">verbs</span><ul class="index-tree">
+    <li><a href="code/modules/admin/verbs/commandreport.html" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;commandreport">commandreport</a></li>
     <li><a href="code/modules/admin/verbs/debug.html" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;debug">debug</a></li>
     <li><a href="code/modules/admin/verbs/pray.html" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;pray">pray</a></li>
     <li><a href="code/modules/admin/verbs/randomverbs.html" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;randomverbs">randomverbs</a></li>
@@ -955,6 +957,7 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/ruins/spaceruin_code/whiteshipruin_box.html" title="code&#x2F;modules&#x2F;ruins&#x2F;spaceruin_code&#x2F;whiteshipruin_box">whiteshipruin_box</a></li>
     </ul></li>
     </ul></li>
+    <li><span class="no-substance">security_levels&#x2F;</span><a href="code/modules/security_levels/security_level_datums.html" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums">security_level_datums</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;spells">spells</span><ul class="index-tree">
     <li><a href="code/modules/spells/spell.html" title="code&#x2F;modules&#x2F;spells&#x2F;spell">spell</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;spells&#x2F;spell_types">spell_types</span><ul class="index-tree">
@@ -1099,7 +1102,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1030 detailed/1882 documented/28773 total, 6.5%)</aside></h3>
+<aside>(1039 detailed/1891 documented/28783 total, 6.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1487,6 +1490,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     <li><span class="no-substance" title="&#x2F;datum&#x2F;chemical_reaction&#x2F;virus_food">Virus Food</span> - VIROLOGY</li>
     </ul></li>
     <li><a href="datum/client_interface.html" title="&#x2F;datum&#x2F;client_interface">client_interface</a> - This should match the interface of /client wherever necessary.</li>
+    <li><a href="datum/command_report_menu.html" title="&#x2F;datum&#x2F;command_report_menu">command_report_menu</a> - Datum for holding the TGUI window for command reports.</li>
     <li class="has-children"><a href="datum/component.html" title="&#x2F;datum&#x2F;component">Component</a> - The component datum<ul class="index-tree">
     <li><a href="datum/component/action_item_overlay.html" title="&#x2F;datum&#x2F;component&#x2F;action_item_overlay">action_item_overlay</a> - Apply to an action to allow it to take an item
 and apply it as an overlay of the action button</li>
@@ -2249,6 +2253,7 @@ DRINKS BELOW, Beer is up there though, along with cola. Cap'n Pete's Cuban Spice
     <li><span class="no-substance" title="&#x2F;datum&#x2F;religion_sect&#x2F;plant">Children of the Kudzu</span> - Children of the Kudzu sect, will allow you to sacrifice plants to become a special wood golem.</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;round_event">round_event</span><ul class="index-tree">
+    <li><a href="datum/round_event/ion_storm.html" title="&#x2F;datum&#x2F;round_event&#x2F;ion_storm">ion_storm</a></li>
     <li><a href="datum/round_event/pirates.html" title="&#x2F;datum&#x2F;round_event&#x2F;pirates">pirates</a></li>
     <li><a href="datum/round_event/scrubber_overflow.html" title="&#x2F;datum&#x2F;round_event&#x2F;scrubber_overflow">scrubber_overflow</a></li>
     <li><a href="datum/round_event/stray_cargo.html" title="&#x2F;datum&#x2F;round_event&#x2F;stray_cargo">stray_cargo</a> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
@@ -2270,6 +2275,16 @@ departments that are already independent, these will be disallowed to be randoml
     <li><a href="datum/scar.html" title="&#x2F;datum&#x2F;scar">scar</a> - scars are cosmetic datums that are assigned to bodyparts once they recover from wounds. Each wound type and severity have their own descriptions for what the scars
 look like, and then each body part has a list of &quot;specific locations&quot; like your elbow or wrist or wherever the scar can appear, to make it more interesting than &quot;right arm&quot;</li>
     <li><a href="datum/scriptError.html" title="&#x2F;datum&#x2F;scriptError">scriptError</a></li>
+    <li class="has-children"><a href="datum/security_level.html" title="&#x2F;datum&#x2F;security_level">not set</a> - If there is a warden or HoS, we can delegate them to be able to swap alerts
+If not, let the officers do it
+Security levels<ul class="index-tree">
+    <li><a href="datum/security_level/blue.html" title="&#x2F;datum&#x2F;security_level&#x2F;blue">blue</a> - BLUE</li>
+    <li><a href="datum/security_level/delta.html" title="&#x2F;datum&#x2F;security_level&#x2F;delta">delta</a> - DELTA</li>
+    <li><a href="datum/security_level/epsilon.html" title="&#x2F;datum&#x2F;security_level&#x2F;epsilon">epsilon</a> - EPSILON</li>
+    <li><a href="datum/security_level/gamma.html" title="&#x2F;datum&#x2F;security_level&#x2F;gamma">gamma</a> - GAMMA</li>
+    <li><a href="datum/security_level/green.html" title="&#x2F;datum&#x2F;security_level&#x2F;green">green</a> - GREEN</li>
+    <li><a href="datum/security_level/red.html" title="&#x2F;datum&#x2F;security_level&#x2F;red">red</a> - RED</li>
+    </ul></li>
     <li><span class="no-substance">signal&#x2F;</span><a href="datum/signal/subspace.html" title="&#x2F;datum&#x2F;signal&#x2F;subspace">subspace</a> - Here is the big, bad function that broadcasts a message given the appropriate
 parameters.</li>
     <li><a href="datum/song.html" title="&#x2F;datum&#x2F;song">Song datum</a> - These are the actual backend behind instruments.
@@ -3696,7 +3711,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/e0575a52dd18cbf96dd3b930c3211065ea71d4b3">e0575a5</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/7049b4d3acbd3b753a9769b7529ca27315f7c72a">7049b4d</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
