@@ -231,6 +231,7 @@
 	..()
 	wires = new /datum/wires/airalarm(src)
 	A = get_area(src)
+	LAZYADD(A.airalarms, src)
 	if(ndir)
 		setDir(ndir)
 
@@ -248,8 +249,13 @@
 /obj/machinery/airalarm/Destroy()
 	SSradio.remove_object(src, frequency)
 	QDEL_NULL(wires)
-	atmos_manualOverride(TRUE)
-	post_alert(0)
+	if(length(A.airalarms)<2 || A.manual_atmosalm)
+		atmos_manualOverride(TRUE)
+		post_alert(0)
+	else
+		atmos_manualOverride(TRUE)
+		A.atmosalert(0, src)
+	LAZYREMOVE(A.airalarms, src)
 	return ..()
 
 /obj/machinery/airalarm/Initialize(mapload)
@@ -708,9 +714,13 @@
 		else
 			AA.manual_override = TRUE
 
+#define ALARM_LEVEL_CLEAR 0
+#define ALARM_LEVEL_MINOR 1
+#define ALARM_LEVEL_SEVERE 2
+
 /obj/machinery/airalarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
-	if(alert_level>0 && !manual_override)
+	if(alert_level > 0 && !manual_override)
 		trigger_reset = TRUE
 	else
 		trigger_reset = FALSE
@@ -722,22 +732,27 @@
 		return
 
 	var/datum/signal/alert_signal = new(list(
-		"zone" = get_area_name(src),
-		"type" = "Atmospheric"
+		"zone" = A,
+		"type" = "Atmospheric",
 	))
-	if(alert_level==2)
-		alert_signal.data["alert"] = "severe"
-		A.set_vacuum_alarm_effect()
-	else if (alert_level==1)
-		alert_signal.data["alert"] = "minor"
-	else if (alert_level==0)
-		alert_signal.data["alert"] = "clear"
-		A.unset_vacuum_alarm_effect()
+	switch(alert_level)
+		if(ALARM_LEVEL_CLEAR)
+			alert_signal.data["alert"] = ATMOS_ALARM_CLEAR
+			A.unset_vacuum_alarm_effect()
+		if(ALARM_LEVEL_MINOR)
+			alert_signal.data["alert"] = ATMOS_ALARM_MINOR
+		if(ALARM_LEVEL_SEVERE)
+			alert_signal.data["alert"] = ATMOS_ALARM_SEVERE
+			A.set_vacuum_alarm_effect()
 
 	frequency.post_signal(src, alert_signal, range = -1)
 
 	for(var/obj/machinery/airalarm/AA in A)
 		AA.update_appearance(UPDATE_ICON)
+
+#undef ALARM_LEVEL_CLEAR
+#undef ALARM_LEVEL_MINOR
+#undef ALARM_LEVEL_SEVERE
 
 /obj/machinery/airalarm/proc/apply_danger_level()
 

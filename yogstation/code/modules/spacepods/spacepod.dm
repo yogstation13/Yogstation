@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	icon = 'goon/icons/obj/spacepods/construction_2x2.dmi'
 	icon_state = "pod_1"
 	density = 1
-	opacity = 0
+	opacity = FALSE
 	dir = NORTH // always points north because why not
 	layer = SPACEPOD_LAYER
 	bound_width = 64

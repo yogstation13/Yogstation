@@ -221,6 +221,8 @@
 	..()
 	store_file(new/datum/computer_file/program/themeify(src))
 	store_file(new/datum/computer_file/program/pdamessager(src))
+	store_file(new/datum/computer_file/program/budgetorders(src))
+	store_file(new/datum/computer_file/program/bounty_board(src))
 
 /// For tablets given to nuke ops
 /obj/item/computer_hardware/hard_drive/small/nukeops
