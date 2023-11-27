@@ -1583,6 +1583,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			// ENGINEERING
 			/obj/machinery/power/smes,
 			/obj/machinery/telecomms, // hard-mode
+			/obj/machinery/power/supermatter_crystal,
 			// MEDICAL
 			/obj/machinery/stasis,
 			/obj/machinery/sleeper,
