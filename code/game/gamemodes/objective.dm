@@ -695,12 +695,17 @@ GLOBAL_LIST_EMPTY(possible_items)
 		targetinfo = item
 		targetinfo.objective = src
 		steal_target = targetinfo.targetitem
-		explanation_text = "Steal [targetinfo.name]"
 		give_special_equipment(targetinfo.special_equipment)
+		update_explanation_text()
 		return steal_target
+	update_explanation_text()
+
+/datum/objective/steal/update_explanation_text()
+	..()
+	if(targetinfo)
+		explanation_text = "Steal [targetinfo.name]"
 	else
-		explanation_text = "Free objective"
-		return
+		explanation_text = "Free Objective"
 
 /datum/objective/steal/copy_target(datum/objective/steal/old_obj)
 	. = ..()
@@ -722,7 +727,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 		if (!custom_name)
 			return
 		steal_target = custom_target
-		explanation_text = "Steal [custom_name]."
+		update_explanation_text()
 
 	else
 		set_target(new_target)
