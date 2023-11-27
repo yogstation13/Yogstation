@@ -123,7 +123,7 @@
 	if(!attacking_item.force)
 		return
 	
-	var/damage = take_damage(attacking_item.force * attacking_item.demolition_mod, attacking_item.damtype, MELEE, 1)
+	var/damage = take_damage(attacking_item.force * attacking_item.demolition_mod, attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
 	var/damage_verb = "hit"
 	if(attacking_item.demolition_mod > 1 && damage)
 		damage_verb = "pulverized"

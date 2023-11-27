@@ -203,11 +203,11 @@
 	desc = "A breaching round designed to destroy airlocks and windows with only a few shots, but is ineffective against other targets."
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	damage = 10 //does shit damage to everything except doors and windows
-	demolition_mod = 50 //extremely good at breaking things
+	demolition_mod = 6 //not that bad at breaking things
 
 /obj/projectile/bullet/shotgun/slug/breaching/on_hit(atom/target)
-	if(issilicon(target) || ismecha(target))
-		demolition_mod = 4 // no don't one-shot mechs and borgs what the fuck
+	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly) || istype(target, /obj/structure/grille))
+		demolition_mod = 50 //one shot to break a window or 3 shots to breach an airlock door
 	..()
 
 /obj/projectile/bullet/pellet/hardlight
