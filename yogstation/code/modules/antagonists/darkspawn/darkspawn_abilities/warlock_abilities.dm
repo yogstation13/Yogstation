@@ -19,6 +19,7 @@
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
 	aoe_radius = 7
 	var/obj/item/darkspawn_extinguish/bopper
+	var/list/seen_things
 
 /datum/action/cooldown/spell/aoe/extinguish/Grant(mob/grant_to)
 	. = ..()
@@ -29,6 +30,7 @@
 	. = ..()
 
 /datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
+	seen_things = view(owner) //cash all things you can see
 	. = ..()
 	to_chat(owner, span_velvet("Shwooh"))
 	to_chat(owner, span_velvet("You extinguish all lights."))
@@ -36,7 +38,9 @@
 /datum/action/cooldown/spell/aoe/extinguish/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(isturf(victim)) //no turf hitting
 		return
-	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
+	if(!seen_things)
+		return
+	if(!(victim in seen_things))//no putting out on the other side of walls
 		return
 	if(ishuman(victim))//put out any
 		var/mob/living/carbon/human/target = victim
