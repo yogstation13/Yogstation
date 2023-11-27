@@ -11,20 +11,20 @@
 	var/san_message = sanitize_tts_input(message)
 	var/san_model = sanitize_tts_input(model)
 	var/san_pitch = sanitize_tts_input(pitch)
-	var/list/headers = list()
-	headers["Content-Type"] = "application/json"
-	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
-	var/datum/http_request/request = new()
-
-	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
-	if(!fexists("tmp/tts/init.txt"))
-		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
 
 	var/file_name = "tmp/tts/[md5("[san_message][san_model][san_pitch]")].wav"
 
 	if(fexists(file_name))
 		return sound(file_name)
 
+	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
+	if(!fexists("tmp/tts/init.txt"))
+		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
+
+	var/list/headers = list()
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
+	var/datum/http_request/request = new()
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?model=[url_encode(san_model)]&pitch=[url_encode(san_pitch)]", json_encode(list("message" = san_message)), headers, file_name)
 
 	request.begin_async()
