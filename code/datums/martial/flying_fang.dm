@@ -120,7 +120,7 @@
 	add_to_streak("D",D)
 	if(!can_use(A))
 		return
-	if(HAS_TRAIT(A, TRAIT_PACIFISM)) // All disarm attacks are harmful; including this and disarm combos.
+	if(HAS_TRAIT(A, TRAIT_PACIFISM)) // All disarm attacks/combos deal non-stamina damage, yet pacifism is not accounted for in base disarm.
 		to_chat(A, span_warning("You don't want to harm [D]!"))
 		return
 	if(check_streak(A,D))
