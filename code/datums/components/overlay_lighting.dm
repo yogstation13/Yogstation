@@ -342,7 +342,7 @@
 		turn_off()
 	range = clamp(CEILING(new_range, 0.5), 1, 6)
 	var/pixel_bounds = ((range - 1) * 64) + 32
-	lumcount_range = CEILING(range - 1, 1)
+	lumcount_range = CEILING(range - 1, 1) //yog change -- added a -1 to range -- makes the visual fit the lumcount range more closely for darkspawn gameplay
 	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
 		current_holder.underlays -= visible_mask
 	visible_mask.icon = light_overlays["[pixel_bounds]"]
