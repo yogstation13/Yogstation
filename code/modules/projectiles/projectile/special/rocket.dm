@@ -82,7 +82,7 @@
 	var/atom/throw_target = get_edge_target_turf(target, H.dir)
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 
-		..()
+	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
 		if(!L.anchored && !L.throwing)//avoid double hits
