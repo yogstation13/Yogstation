@@ -190,8 +190,8 @@
 			severity *= host_carbon.dna.species.emp_mod
 	if(severity < 1)
 		return // don't bother if it's less than 1 severity
-	nanite_volume *= 1 - (rand(0.1, 0.25) / severity)		//Lose 10-25% of nanites
-	adjust_nanites(null, -(rand(5, 30) / severity))		//Lose 5-30 flat nanite volume
+	nanite_volume *= 1 - (rand(0.01, 0.025) * severity)		//Lose 1-2.5% of nanites for each severity level 
+	adjust_nanites(null, -(rand(0.5, 3) * severity))		//Lose 0.5-3 flat nanite volume for each severity level
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_emp(severity)
