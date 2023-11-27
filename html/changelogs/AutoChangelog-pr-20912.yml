@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed preternis being affected by water through hardsuits"
