@@ -454,6 +454,9 @@ MAX_SHUTTLE_SIZE 300
 ## Even if this is enabled, a notification will only be sent if there are no clients connected.
 TOAST_NOTIFICATION_ON_INIT
 
+## Enable/disable Text-to-Speech
+TTS_ENABLE
+
 ## Link to a HTTP server that's been set up on a server.
 TTS_HTTP_URL http://localhost:8133
 

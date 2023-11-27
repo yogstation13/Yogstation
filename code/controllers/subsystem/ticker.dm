@@ -60,6 +60,9 @@ SUBSYSTEM_DEF(ticker)
 
 	var/music_available = 0
 
+	var/pinging_tts = FALSE
+	var/tts_alive = FALSE
+
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
@@ -153,6 +156,9 @@ SUBSYSTEM_DEF(ticker)
 		GLOB.cryopods_enabled = FALSE
 		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
 			pod.PowerOff()
+
+	if(CONFIG_GET(string/tts_enable) && !pinging_tts)
+		INVOKE_ASYNC(src, PROC_REF(ping_tts))
 
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
@@ -768,3 +774,19 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
+
+/// Ping TTS API - If we don't get a response, shut down TTS
+/datum/controller/subsystem/ticker/proc/ping_tts()
+	pinging_tts = TRUE
+
+	var/datum/http_request/request = new()
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/ping")
+	request.begin_async()
+	UNTIL(request.is_complete())
+	var/datum/http_response/response = request.into_response()
+	if(response.errored || response.status_code > 299)
+		tts_alive = FALSE
+	else
+		tts_alive = TRUE
+
+	pinging_tts = FALSE

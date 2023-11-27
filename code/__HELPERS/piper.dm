@@ -5,9 +5,17 @@
 *
 * @param {String} model - The model i.e. "GB-alba"
 *
+* @param {number} pitch - Pitch multiplier, range (0.5-2.0)
+*
 * @returns {sound/} or FALSE
 */
 /proc/piper_tts(message, model, pitch)
+	if(!CONFIG_GET(string/tts_enable))
+		return FALSE
+
+	if(!SSticker.tts_alive)
+		return FALSE
+
 	var/san_message = sanitize_tts_input(message)
 	var/san_model = sanitize_tts_input(model)
 	if(!isnum(pitch))
