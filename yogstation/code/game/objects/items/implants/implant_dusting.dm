@@ -135,7 +135,7 @@
 
 //fake one for pseudocider
 /obj/item/implant/dusting/iaa/fake
-	var/reward_type = /obj/item/iaa_reward_fake
+	reward_type = /obj/item/iaa_reward_fake
 	
 /obj/item/iaa_reward_fake
 	name = "syndicate button"
