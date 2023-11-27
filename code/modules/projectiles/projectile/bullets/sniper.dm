@@ -7,13 +7,8 @@
 	paralyze = 100
 	dismemberment = 50
 	armour_penetration = 50
+	demolition_mod = 2.2 // very effective against armored structures and vehicles
 	var/breakthings = TRUE
-
-/obj/projectile/bullet/p50/on_hit(atom/target, blocked = 0)
-	if(isobj(target) && (blocked != 100) && breakthings)
-		var/obj/O = target
-		O.take_damage(80, BRUTE, BULLET, FALSE, null, armour_penetration)
-	return ..()
 
 /obj/projectile/bullet/p50/soporific
 	name = ".50 soporific bullet"
@@ -36,6 +31,7 @@
 	penetrating = TRUE //Passes through everything and anything until it reaches the end of its range
 	penetration_type = 2
 	dismemberment = 0 //It goes through you cleanly.
+	demolition_mod = 1 // it just goes right through
 	paralyze = 0
 
 /obj/projectile/bullet/p50/penetrator/shuttle //Nukeop Shuttle Variety

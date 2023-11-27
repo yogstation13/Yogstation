@@ -169,6 +169,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.25
 	materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'

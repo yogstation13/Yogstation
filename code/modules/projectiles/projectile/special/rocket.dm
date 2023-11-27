@@ -12,21 +12,15 @@
 	name ="\improper HEDP rocket"
 	desc = "USE A WEEL GUN"
 	icon_state= "84mm-hedp"
+	armor_flag = BOMB
 	damage = 80
-	var/anti_armour_damage = 200
+	demolition_mod = 4
 	armour_penetration = 100
 	dismemberment = 100
 
 /obj/projectile/bullet/a84mm/on_hit(atom/target, blocked = FALSE)
 	..()
 	explosion(target, -1, 1, 3, 1, 0, flame_range = 4)
-
-	if(ismecha(target))
-		var/obj/mecha/M = target
-		M.take_damage(anti_armour_damage, BRUTE, BOMB, FALSE, null, armour_penetration)
-	if(issilicon(target))
-		var/mob/living/silicon/S = target
-		S.take_overall_damage(anti_armour_damage*0.75, anti_armour_damage*0.25)
 	return BULLET_ACT_HIT
 
 /obj/projectile/bullet/a84mm_he
@@ -34,6 +28,7 @@
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
+	demolition_mod = 4
 	ricochets_max = 0 //it's a MISSILE
 
 /obj/projectile/bullet/a84mm_he/on_hit(atom/target, blocked=0)
@@ -49,6 +44,7 @@
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
+	demolition_mod = 4
 	ricochets_max = 0 //it's a MISSILE
 	var/sturdy = list(
 	/turf/closed,
@@ -79,6 +75,7 @@
 	icon_state = "cannonball"
 	desc = "Not for bowling purposes"
 	damage = 30
+	demolition_mod = 4
 
 /obj/projectile/bullet/cball/on_hit(atom/target, blocked=0)
 	var/mob/living/carbon/human/H = firer
