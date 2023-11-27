@@ -112,7 +112,11 @@
 
 /datum/species/lizard/proc/regrow_tail(mob/living/carbon/human/H)
 	if(!H.getorganslot(ORGAN_SLOT_TAIL) && H.stat != DEAD)
-		mutant_bodyparts |= "tail_lizard"
+		var/obj/item/organ/tail/lizard/tail = new mutanttail()
+		tail.color = H.dna.features["mcolor"]
+		tail.tail_type = H.dna.features["tail_lizard"]
+		tail.spines = H.dna.features["spines"]
+		tail.Insert(H, TRUE)
 		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
 	
 /datum/species/lizard/get_species_description()

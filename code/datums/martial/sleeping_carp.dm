@@ -184,7 +184,6 @@
 /obj/item/melee/bostaff/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 10, \
 		force_wielded = 14, \
 	)
 
