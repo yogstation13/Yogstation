@@ -2140,6 +2140,7 @@
 #include "code\modules\client\preferences\tgui.dm"
 #include "code\modules\client\preferences\tooltips.dm"
 #include "code\modules\client\preferences\tts_hear.dm"
+#include "code\modules\client\preferences\tts_hear_radio.dm"
 #include "code\modules\client\preferences\tts_pitch.dm"
 #include "code\modules\client\preferences\tts_voice.dm"
 #include "code\modules\client\preferences\ui_style.dm"

@@ -207,7 +207,7 @@
 		hearer.Hear(rendered, virt, language, message, frequency, spans, message_mods)
 		if(ismob(hearer))
 			var/mob/hearing_mob = hearer
-			if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(language))
+			if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear_radio) && hearing_mob.has_language(language))
 				hearing_mob.playsound_local(vol = 35, S = tts_sound) // TTS play
 
 	// This following recording is intended for research and feedback in the use of department radio channels
