@@ -7,6 +7,7 @@
 	antag_moodlet = /datum/mood_event/thrall
 	var/mutable_appearance/veil_sigils
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/glare/lesser)
+	var/current_willpower_progress = 0
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
@@ -83,22 +84,23 @@
 		source.remove_veil()
 		return
 
-	var/willpower_amount = 0
 	for(var/mob/living/thing in range(5, source))
 		if(!thing.client) //gotta be an actual player (hope no one goes afk)
 			continue
 		if(is_darkspawn_or_veil(thing))
 			continue
-		willpower_amount += 1
-		to_chat(world, "[source] generating [willpower_amount] willpower for being nearby [thing]")
-	to_chat(world, "[source] generating [willpower_amount] total willpower this tick")
-	for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
-		var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
-		if(teammate && istype(teammate))//sanity check
-			teammate.willpower += willpower_amount
+		current_willpower_progress += 2
+
+	if(current_willpower_progress >= 100)
+		current_willpower_progress = 0
+		to_chat(world, "generating willpower for being near enough players")
+		for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
+			var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
+			if(teammate && istype(teammate))//sanity check
+				teammate.willpower ++
 
 /datum/antagonist/veil/greet()
-	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
+	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))
 	if(ispreternis(owner.current))
 		to_chat(owner, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
 		A consciousness brushes against your own. You dream.\n\
