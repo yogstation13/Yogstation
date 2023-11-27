@@ -10,7 +10,7 @@
 * @returns {sound/} or FALSE
 */
 /proc/piper_tts(message, model, pitch)
-	if(!CONFIG_GET(string/tts_enable))
+	if(!CONFIG_GET(flag/tts_enable))
 		return FALSE
 
 	if(!SSticker.tts_alive)

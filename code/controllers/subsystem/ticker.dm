@@ -157,7 +157,7 @@ SUBSYSTEM_DEF(ticker)
 		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
 			pod.PowerOff()
 
-	if(CONFIG_GET(string/tts_enable) && !pinging_tts)
+	if(CONFIG_GET(flag/tts_enable) && !pinging_tts)
 		INVOKE_ASYNC(src, PROC_REF(ping_tts))
 
 	switch(current_state)
