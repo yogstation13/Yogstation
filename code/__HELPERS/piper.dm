@@ -10,9 +10,10 @@
 /proc/piper_tts(message, model, pitch)
 	var/san_message = sanitize_tts_input(message)
 	var/san_model = sanitize_tts_input(model)
-	var/san_pitch = sanitize_tts_input(pitch)
+	if(!isnum(pitch))
+		return FALSE
 
-	var/file_name = "tmp/tts/[md5("[san_message][san_model][san_pitch]")].wav"
+	var/file_name = "tmp/tts/[md5("[san_message][san_model][pitch]")].wav"
 
 	if(fexists(file_name))
 		return sound(file_name)
@@ -25,7 +26,7 @@
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
 	var/datum/http_request/request = new()
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?model=[url_encode(san_model)]&pitch=[url_encode(san_pitch)]", json_encode(list("message" = san_message)), headers, file_name)
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?model=[url_encode(san_model)]&pitch=[url_encode(pitch)]", json_encode(list("message" = san_message)), headers, file_name)
 
 	request.begin_async()
 
