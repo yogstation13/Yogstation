@@ -400,6 +400,7 @@
 	light_range = 1
 	light_color = LIGHT_COLOR_GREEN
 	light_power = 0.2	//Barely glows on low power
+	demolition_mod = 1.5 // lasers are good at cutting metal
 	sharpness = SHARP_EDGED
 
 
