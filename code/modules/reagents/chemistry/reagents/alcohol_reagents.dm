@@ -2726,3 +2726,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.physiology.do_after_speed /= alcoholicspeed
 		M.next_move_modifier /= alcoholicspeed
 	return ..()
+
+/datum/reagent/consumable/ethanol/wine_voltaic
+	name = "Voltaic Yellow Wine"
+	description = "Electrically charged wine. Recharges ethereals, but also nontoxic."
+	boozepwr = 30
+	color = "#FFAA00"
+	quality = DRINK_GOOD
+	taste_description = "static with a hint of sweetness"
+	glass_icon_state = "wine_voltaic"
+	glass_name = "Voltaic Yellow Wine"
+	glass_desc = "Shocking, not stirred."
+
