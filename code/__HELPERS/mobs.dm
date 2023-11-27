@@ -252,12 +252,12 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 ))
 
 GLOBAL_LIST_INIT(tts_voices_names, sortList(list(
-	"GB-alba" = "Alba (Accented British Female)",
-	"GB-aru" = "Aru (Dull British Female)",
-	"GB-jenny_dioco" = "Jenny (British Female)",
-	"GB-northern_english_male" = "Josh (Northern British Male)",
-	"GB-southern_english_female" = "Lucy (Southern British Female)",
-	"GB-vctk" = "Vctk (British Female)",
+	"GB-alba" = "Alba (Scottish Female)",
+	"GB-aru" = "Aru (North-East English Female)",
+	"GB-jenny_dioco" = "Jenny (Welsh Female)",
+	"GB-northern_english_male" = "Josh (Yorkshire Male)",
+	"GB-southern_english_female" = "Lucy (London Female)",
+	"GB-vctk" = "Vctk (Midlands Female)",
 	"US-amy" = "Amy (American Female)",
 	"US-danny" = "Danny (New England Male)",
 	"US-joe" = "Joe (American Male)",
