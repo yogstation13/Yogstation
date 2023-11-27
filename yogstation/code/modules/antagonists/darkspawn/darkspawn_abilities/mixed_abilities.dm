@@ -87,6 +87,9 @@
 	. = ..()
 	to_chat(owner, span_velvet("Syn'thra"))
 	to_chat(owner, span_velvet("You freeze the nearby air."))
+	if(isliving(owner))
+		var/mob/living/target = owner
+		target.extinguish_mob()
 
 /datum/action/cooldown/spell/aoe/icyveins/cast_on_thing_in_aoe(atom/target, atom/user)
 	if(!can_see(user, target))

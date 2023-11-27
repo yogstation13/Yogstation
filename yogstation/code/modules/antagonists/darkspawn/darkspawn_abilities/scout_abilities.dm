@@ -287,7 +287,10 @@
 
 /datum/action/cooldown/spell/aoe/permafrost/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("Shykk'xklp"))
+	to_chat(owner, span_velvet("Syn'thxklp"))
+	if(isliving(owner))
+		var/mob/living/target = owner
+		target.extinguish_mob()
 
 /datum/action/cooldown/spell/aoe/permafrost/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isopenturf(victim))
