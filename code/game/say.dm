@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 /atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list())
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 
-	var/tts_sound = piper_tts(message, GLOB.tts_voices[1])
+	var/tts_sound = piper_tts(message, GLOB.tts_voices[1], 0.65)
 
 	for(var/_AM in get_hearers_in_view(range, source))
 		var/atom/movable/AM = _AM
@@ -179,6 +179,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/atom/movable/source
 	var/obj/item/radio/radio
 	var/tts_voice
+	var/tts_pitch
 
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, radio)
@@ -193,10 +194,14 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		verb_exclaim = M.verb_exclaim
 		verb_yell = M.verb_yell
 
+	if (ismob(M))
+		var/mob/mob_speaker = M
+		tts_voice = mob_speaker.tts_voice
+		tts_pitch = mob_speaker.tts_pitch
+
 	// The mob's job identity
 	if(ishuman(M))
 		var/mob/living/carbon/human/human_speaker = M
-		tts_voice = human_speaker.tts_voice
 		// Humans use their job as seen on the crew manifest. This is so the AI
 		// can know their job even if they don't carry an ID.
 		var/datum/data/record/findjob = find_record("name", name, GLOB.data_core.general)

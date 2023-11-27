@@ -311,8 +311,9 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		model = tts_voice
 	else
 		tts_voice = model
+		tts_pitch = rand(0.8, 1.2)
 
-	var/tts_sound = piper_tts(html_decode(message), model)
+	var/tts_sound = piper_tts(html_decode(message), model, tts_pitch)
 
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 	for(var/_AM in listening)
