@@ -1738,6 +1738,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	var/mob/living/carbon/carbon_target = target.current
 	//if they don't have the original organ inside them
-	if(carbon_target && istype(carbon_target) && original_organ in carbon_target.internal_organs)
+	if(carbon_target && istype(carbon_target) && (original_organ in carbon_target.internal_organs))
 		return FALSE
 	return TRUE
