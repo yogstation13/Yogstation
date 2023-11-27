@@ -251,6 +251,22 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	"mixed4" = "Macadamia",
 ))
 
+GLOBAL_LIST_INIT(tts_voices_names, sortList(list(
+	"Alba (Accented British Female)" = "GB-alba",
+	"Aru (Dull British Female)" = "GB-aru",
+	"Jenny (British Female)" = "GB-jenny_dioco",
+	"Josh (Northern British Male)" = "GB-northern_english_male",
+	"Lucy (Southern British Female)" = "GB-southern_english_female",
+	"Vctk (British Female)" = "GB-vctk",
+	"Amy (American Female)" = "US-amy",
+	"Danny (New England Male)" = "US-danny",
+	"Joe (American Male)" = "US-joe",
+	"Kathleen (Strict American Female)" = "US-kathleen",
+	"Kusal (Nerdier American Male)" = "US-kusal",
+	"Libritts (American Female)" = "US-libritts_r"
+	)))
+GLOBAL_PROTECT(tts_voices_names)
+
 GLOBAL_LIST_INIT(tts_voices, sortList(list(
 	"GB-alba",
 	"GB-aru",

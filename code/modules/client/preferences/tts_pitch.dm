@@ -7,5 +7,5 @@
 	maximum = 1.2
 	step = 0.05
 
-/datum/preference/numeric/age/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/numeric/tts_pitch/apply_to_human(mob/living/carbon/human/target, value)
 	target.tts_pitch = value
