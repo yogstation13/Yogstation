@@ -1,3 +1,5 @@
+#define UNTIL(X) while(!(X)) stoplag() // Used to be in unsorted.dm, but that is later than this file
+
 /**
 * @param {String} message - The message to feed the model i.e. "Hello, world!"
 *
@@ -5,33 +7,34 @@
 *
 * @returns {sound/} or FALSE
 */
-/proc/piper_tts(message, model)
+/proc/piper_tts(message, model, pitch)
 	var/san_message = sanitize_tts_input(message)
-	var/output_filepath = "piper/cache/[md5("[san_message][model]")].wav"
-	if(fexists(output_filepath))
-		return sound(output_filepath)
+	var/san_model = sanitize_tts_input(model)
+	var/san_pitch = sanitize_tts_input(pitch)
+	var/list/headers = list()
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
+	var/datum/http_request/request = new()
 
-	var/set_quality
-	if(fexists("piper/voices/[model]/low/en_[model]-low.onnx"))
-		set_quality = "low"
-	else if(fexists("piper/voices/[model]/medium/en_[model]-medium.onnx"))
-		set_quality = "medium"
-	else if(fexists("piper/voices/[model]/high/en_[model]-high.onnx"))
-		set_quality = "high"
+	// TGS updates can clear out the tmp folder, so we need to create the folder again if it no longer exists.
+	if(!fexists("tmp/tts/init.txt"))
+		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
 
-	if(!set_quality)
+	var/file_name = "tmp/tts/[md5("[san_message][san_model][san_pitch]")].wav"
+
+	if(fexists(file_name))
+		var/sound/tts_sound = sound(file_name)
+
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?model=[url_encode(san_model)]&pitch=[url_encode(san_pitch)]", json_encode(list("message" = san_message)), headers, file_name)
+
+	request.begin_async()
+
+	UNTIL(request.is_complete())
+
+	var/datum/http_response/response = request.into_response()
+	if(response.errored || response.status_code > 299)
 		return FALSE
 
-	if(world.system_type == MS_WINDOWS)
-		var/list/out = world.shelleo("echo \"[san_message]\" | \"./piper/windows_amd64/piper.exe\" --model \"./piper/voices/[model]/[set_quality]/en_[model]-[set_quality].onnx\" --output_file \"./[output_filepath]\" -q")
-		world.log << "[out[1]] [out[2]] [out[3]]"
-	else
-		var/list/out = world.shelleo("echo \"[san_message]\" | \"./piper/linux_x86_64/piper\" --model \"./piper/voices/[model]/[set_quality]/en_[model]-[set_quality].onnx\" --output_file \"./[output_filepath]\" -q")
-		world.log << "[out[1]] [out[2]] [out[3]]"
+	var/sound/tts_sound = sound(file_name)
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fdel_defined), output_filepath), 5 MINUTES)
-
-	return sound(output_filepath)
-
-/proc/fdel_defined(filepath)
-	fdel(filepath)
+	return tts_sound
