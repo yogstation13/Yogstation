@@ -201,7 +201,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 
 	// The mob's job identity
 	if(ishuman(M))
-		var/mob/living/carbon/human/human_speaker = M
 		// Humans use their job as seen on the crew manifest. This is so the AI
 		// can know their job even if they don't carry an ID.
 		var/datum/data/record/findjob = find_record("name", name, GLOB.data_core.general)
