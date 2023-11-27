@@ -207,7 +207,7 @@
 
 /obj/projectile/bullet/shotgun/slug/breaching/on_hit(atom/target)
 	if(issilicon(target) || ismecha(target))
-		demolition_mod = 8 // no don't one-shot mechs and borgs what the fuck
+		demolition_mod = 4 // no don't one-shot mechs and borgs what the fuck
 	..()
 
 /obj/projectile/bullet/pellet/hardlight
