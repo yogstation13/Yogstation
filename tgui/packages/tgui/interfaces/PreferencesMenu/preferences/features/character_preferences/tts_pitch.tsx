@@ -1,6 +1,6 @@
 import { Feature, FeatureNumberInput } from "../base";
 
-export const age: Feature<number> = {
+export const tts_pitch: Feature<number> = {
   name: "Text-to-Speech Pitch",
   component: FeatureNumberInput,
 };

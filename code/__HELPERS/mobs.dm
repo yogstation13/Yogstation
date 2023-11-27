@@ -252,18 +252,18 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 ))
 
 GLOBAL_LIST_INIT(tts_voices_names, sortList(list(
-	"Alba (Accented British Female)" = "GB-alba",
-	"Aru (Dull British Female)" = "GB-aru",
-	"Jenny (British Female)" = "GB-jenny_dioco",
-	"Josh (Northern British Male)" = "GB-northern_english_male",
-	"Lucy (Southern British Female)" = "GB-southern_english_female",
-	"Vctk (British Female)" = "GB-vctk",
-	"Amy (American Female)" = "US-amy",
-	"Danny (New England Male)" = "US-danny",
-	"Joe (American Male)" = "US-joe",
-	"Kathleen (Strict American Female)" = "US-kathleen",
-	"Kusal (Nerdier American Male)" = "US-kusal",
-	"Libritts (American Female)" = "US-libritts_r"
+	"GB-alba" = "Alba (Accented British Female)",
+	"GB-aru" = "Aru (Dull British Female)",
+	"GB-jenny_dioco" = "Jenny (British Female)",
+	"GB-northern_english_male" = "Josh (Northern British Male)",
+	"GB-southern_english_female" = "Lucy (Southern British Female)",
+	"GB-vctk" = "Vctk (British Female)",
+	"US-amy" = "Amy (American Female)",
+	"US-danny" = "Danny (New England Male)",
+	"US-joe" = "Joe (American Male)",
+	"US-kathleen" = "Kathleen (Strict American Female)",
+	"US-kusal" = "Kusal (Nerdier American Male)",
+	"US-libritts_r" = "Libritts (American Female)"
 	)))
 GLOBAL_PROTECT(tts_voices_names)
 
