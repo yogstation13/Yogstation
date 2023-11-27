@@ -11,3 +11,4 @@
 	position = generator("box", list(-240, -240), list(240, 240), NORMAL_RAND)
 	drift = generator("vector", list(-0.1, 0), list(0.1, 0))
 	rotation = generator("num", 0, 360, NORMAL_RAND)
+	color = "#25a5ea"

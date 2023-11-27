@@ -9,7 +9,7 @@
 	icon_state = "wall"
 	layer = CLOSED_TURF_LAYER
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 	max_integrity = 100
 
 	canSmoothWith = list(

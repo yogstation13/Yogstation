@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - imageadd: "Lizard wings now use the new lizard colors instead of the slightly-off old colors"

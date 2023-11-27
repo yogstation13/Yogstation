@@ -312,6 +312,7 @@
 			var/objective = stripped_input(mob_user, "Enter an objective")
 			if(!objective)
 				return
+			var/tc_amount = input(mob_user, "How much TC should they all get?") as null|num
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Traitor All", "[objective]"))
 			for(var/mob/living/H in GLOB.player_list)
 				if(!(ishuman(H)||istype(H, /mob/living/silicon/)))
@@ -327,6 +328,11 @@
 				new_objective.explanation_text = objective
 				T.add_objective(new_objective)
 				H.mind.add_antag_datum(T)
+				if(tc_amount && tc_amount != TELECRYSTALS_DEFAULT)//if the admin chose a different starting TC amount
+					if(T.uplink_holder)
+						var/datum/component/uplink/uplink = T.uplink_holder.GetComponent(/datum/component/uplink)
+						if(uplink)
+							uplink.telecrystals = tc_amount
 			message_admins(span_adminnotice("[key_name_admin(mob_user)] used everyone is a traitor secret. Objective is [objective]"))
 			log_admin("[key_name(mob_user)] used everyone is a traitor secret. Objective is [objective]")
 
@@ -464,7 +470,7 @@
 				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
 					W.req_access = list()
 			message_admins("[key_name_admin(mob_user)] activated Egalitarian Station mode (All doors are open access)")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, RANDOM_REPORT_SOUND)
+			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, SSstation.announcer.get_rand_report_sound())
 
 		if("ancap")
 			if(!check_rights_for(rights, R_FUN))
@@ -473,9 +479,9 @@
 			SSeconomy.full_ancap = !SSeconomy.full_ancap
 			message_admins("[key_name_admin(mob_user)] toggled Anarcho-capitalist mode")
 			if(SSeconomy.full_ancap)
-				priority_announce("The NAP is now in full effect.", null, RANDOM_REPORT_SOUND)
+				priority_announce("The NAP is now in full effect.", null, SSstation.announcer.get_rand_report_sound())
 			else
-				priority_announce("The NAP has been revoked.", null, RANDOM_REPORT_SOUND)
+				priority_announce("The NAP has been revoked.", null, SSstation.announcer.get_rand_report_sound())
 
 		if("dorf")
 			if(!check_rights_for(rights, R_FUN))

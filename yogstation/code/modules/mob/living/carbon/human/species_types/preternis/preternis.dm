@@ -179,8 +179,8 @@
 				addtimer(VARSET_CALLBACK(src, eating_msg_cooldown, FALSE), 2 MINUTES)
 				to_chat(H,span_info("NOTICE: Digestive subroutines are inefficient. Seek sustenance via power-cell C.O.N.S.U.M.E. technology induction."))
 
-	if(chem.current_cycle >= 20)
-		H.reagents.del_reagent(chem.type)
+	// remove 4% of existing reagent, minimum of 0.1 units at a time
+	H.reagents.remove_reagent(chem.type, max(round(chem.volume / 25, 0.1), 0.1))
 
 	return FALSE
 
