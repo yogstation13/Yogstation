@@ -75,23 +75,18 @@
 	icon_state = "cannonball"
 	desc = "Not for bowling purposes"
 	damage = 30
-	demolition_mod = 4
+	demolition_mod = 20 // YARRR
 
 /obj/projectile/bullet/cball/on_hit(atom/target, blocked=0)
-	var/mob/living/carbon/human/H = firer
-	var/atom/throw_target = get_edge_target_turf(target, H.dir)
-	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
-		damage = 500 
+	var/atom/throw_target = get_edge_target_turf(target, firer.dir)
+	if(ismecha(target) || isliving(target))
+		demolition_mod = 5 // woah there let's not one-shot mechs and borgs
 	. = ..()
-	if(isliving(target))
-		var/mob/living/L = target
-		if(!L.anchored && !L.throwing)//avoid double hits
-			if(iscarbon(L))
-				var/mob/living/carbon/C = L
-				var/mob/M = firer
-				if(istype(M))
-					C.throw_at(throw_target, 2, 4, H, 3)
-					return BULLET_ACT_HIT
+	if(!ismovable(target)) // if it's not movable then don't bother trying to throw it
+		return
+	var/atom/movable/movable_target = target
+	if(!movable_target.anchored && !movable_target.throwing)//avoid double hits
+		movable_target.throw_at(throw_target, 2, 4, firer, 3)
 
 /obj/projectile/bullet/bolt
 	name = "bolt"
