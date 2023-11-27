@@ -142,8 +142,8 @@ SUBSYSTEM_DEF(Yogs)
 		new path
 
 	// Clean up TTS files from last round
-	for(var/filename in flist("piper/cache/"))
-		fdel("piper/cache/[filename]")
+	for(var/filename in flist("tmp/tts/"))
+		fdel("tmp/tts/[filename]")
 
 	return SS_INIT_SUCCESS
 
