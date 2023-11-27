@@ -1122,7 +1122,7 @@
 	var/blocked = getarmor(null, RAD)
 
 	if(amount > RAD_BURN_THRESHOLD)
-		var/dmg = max((amount-RAD_BURN_THRESHOLD)/RAD_BURN_THRESHOLD, 20) // Prevents near-instant death because that wouldn't be fun.
+		var/dmg = max((amount-RAD_BURN_THRESHOLD)/RAD_BURN_THRESHOLD, 25) // Prevents near-instant death because that wouldn't be fun.
 		apply_damage(dmg, BURN, null, blocked)
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
