@@ -46,6 +46,15 @@
 	if(!user || !istype(user))//sanity check
 		return
 
+	var/processed_message = span_progenitor("\[Mindlink\] [user] has begun performing the sacrament.")
+	for(var/T in GLOB.alive_mob_list)
+		var/mob/M = T
+		if(is_darkspawn_or_veil(M))
+			to_chat(M, processed_message)
+	for(var/T in GLOB.dead_mob_list)
+		var/mob/M = T
+		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
+
 	in_use = TRUE
 
 	user.visible_message(span_warning("[user]'s sigils flare as energy swirls around them..."), span_velvet("You begin creating a psychic barrier around yourself..."))
