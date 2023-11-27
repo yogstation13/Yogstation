@@ -258,12 +258,12 @@ GLOBAL_LIST_INIT(tts_voices_names, sortList(list(
 	"GB-northern_english_male" = "Josh (Yorkshire Male)",
 	"GB-southern_english_female" = "Lucy (London Female)",
 	"GB-vctk" = "Vctk (Midlands Female)",
-	"US-amy" = "Amy (American Female)",
-	"US-danny" = "Danny (New England Male)",
-	"US-joe" = "Joe (American Male)",
-	"US-kathleen" = "Kathleen (Strict American Female)",
-	"US-kusal" = "Kusal (Nerdier American Male)",
-	"US-libritts_r" = "Libritts (American Female)"
+	"US-amy" = "Amy (Northern American Female)",
+	"US-danny" = "Danny (British American Male)",
+	"US-joe" = "Joe (Hawaiian Male)",
+	"US-kathleen" = "Kathleen (Elder Eastern American Female)",
+	"US-kusal" = "Kusal (Asian American Male)",
+	"US-libritts_r" = "Libritts (Michigan Female)"
 	)))
 GLOBAL_PROTECT(tts_voices_names)
 
