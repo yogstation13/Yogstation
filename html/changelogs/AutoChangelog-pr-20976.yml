@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Constructed anchored emitters are correctly recognized as wrenched; you no longer need to wrench these anchored emitters twice to make it work."
