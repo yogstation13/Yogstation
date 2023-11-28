@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 	if (!istype(guardian.stats.ability, /datum/guardian_ability/major/frenzy))
 		return
 	var/datum/guardian_ability/major/frenzy/ability = guardian.stats.ability
-	if(world.time >= ability.next_rush)
+	if(world.time < ability.next_rush)
 		return
 	if (get_dist_euclidian(guardian.summoner?.current, target) > guardian.range)
 		to_chat(guardian, span_italics(span_danger("[target] is out of your range!")))
