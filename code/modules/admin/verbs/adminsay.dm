@@ -1,7 +1,5 @@
 /client/verb/cmd_admin_say(msg as text)
-	set hidden = TRUE
-
-	set category = "Admin"
+	set category = "Misc.Unused"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
 	
 	if(!check_rights(0))
