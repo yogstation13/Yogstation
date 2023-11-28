@@ -1,0 +1,5 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - tweak: "Horrors can now scan their hosts"
+  - tweak: "Horror chemicals now say how much they inject"
