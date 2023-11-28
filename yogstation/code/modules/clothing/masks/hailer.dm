@@ -5,7 +5,7 @@
 	button_icon = 'yogstation/icons/mob/actions/actions.dmi'
 
 /obj/item/clothing/mask/gas/sechailer
-	mask_tts_filters = list(TTS_FILTER_SECHAILER)
+	mask_tts_filters = list(TTS_FILTER_ROBOCOP)
 	var/obj/item/radio/radio //For engineering alerts.
 	var/radio_key = /obj/item/encryptionkey/headset_medsec //needs med to in order to request medical help for one of the things
 	var/dispatch_cooldown = 25 SECONDS

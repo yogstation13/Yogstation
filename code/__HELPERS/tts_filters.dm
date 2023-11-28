@@ -111,6 +111,6 @@
 #define TTS_FILTER_ALIEN "alien"
 #define TTS_FILTER_ETHEREAL "ethereal"
 #define TTS_FILTER_ROBOT "robotic"
-#define TTS_FILTER_MASK "masked"
-#define TTS_FILTER_SECHAILER "robocop"
+#define TTS_FILTER_MASKED "masked"
+#define TTS_FILTER_ROBOCOP "robocop"
 #define TTS_FILTER_RADIO "radio"

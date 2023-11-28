@@ -21,7 +21,10 @@
 	if(!pitch || !isnum(pitch))
 		pitch = 1
 
-	var/file_name = "tmp/tts/[md5("[san_message][san_model][pitch]")].wav"
+	var/string_filters = ""
+	if(filters && islist(filters))
+		string_filters = jointext(assoc_to_keys(filters), "-")
+	var/file_name = "tmp/tts/[md5("[san_message][san_model][pitch][string_filters]")].wav"
 
 	if(fexists(file_name))
 		return sound(file_name)
