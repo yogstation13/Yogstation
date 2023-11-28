@@ -108,7 +108,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					D.visible_message(span_notice("[D] whirrs as it automatically lifts access requirements!"))
 					playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 
-		if(level >= SEC_LEVEL_GAMMA)
+		if(level == SEC_LEVEL_DELTA)
 			change_areas_lights_alarm()
 		else
 			change_areas_lights_alarm(FALSE)
