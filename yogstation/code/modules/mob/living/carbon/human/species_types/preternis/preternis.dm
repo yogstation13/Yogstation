@@ -177,8 +177,8 @@
 				addtimer(VARSET_CALLBACK(src, eating_msg_cooldown, FALSE), 2 MINUTES)
 				to_chat(H,span_info("NOTICE: Digestive subroutines are inefficient. Seek sustenance via power-cell C.O.N.S.U.M.E. technology induction."))
 
-	if(chem.current_cycle >= 20)
-		H.reagents.del_reagent(chem.type)
+	// remove 4% of existing reagent, minimum of 0.1 units at a time
+	H.reagents.remove_reagent(chem.type, max(round(chem.volume / 25, 0.1), 0.1))
 
 	return FALSE
 
@@ -219,8 +219,9 @@
 	else
 		low_power_warning = FALSE
 
-/datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
-	if(H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
+/datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)
+	var/datum/status_effect/fire_handler/wet_stacks/wetness = H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks)
+	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_wet", /datum/mood_event/wet_preternis)
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are

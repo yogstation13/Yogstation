@@ -52,6 +52,7 @@
 
 /obj/machinery/power/emitter/anchored
 	anchored = TRUE
+	state = EMITTER_WRENCHED
 
 /obj/machinery/power/emitter/ctf
 	name = "Energy Cannon"
@@ -76,6 +77,10 @@
 	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
+
+/obj/machinery/power/emitter/on_construction()
+	if(anchored && state == EMITTER_UNWRENCHED)
+		state = EMITTER_WRENCHED
 
 /obj/machinery/power/emitter/RefreshParts()
 	var/max_reload = initial(maximum_reload_time) + 20

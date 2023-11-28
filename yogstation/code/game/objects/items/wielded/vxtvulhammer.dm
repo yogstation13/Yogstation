@@ -42,7 +42,6 @@
 	spark_system.attach(src)
 	set_light_on(FALSE)
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
