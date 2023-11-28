@@ -56,6 +56,7 @@
 
 /mob/living/silicon/Initialize(mapload)
 	. = ..()
+	ADD_FILTER(src, TTS_FILTER_ROBOT, ROUNDSTART_FILTER)
 	GLOB.silicon_mobs += src
 	faction += "silicon"
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)

@@ -11,6 +11,7 @@
 	resistance_flags = FIRE_PROOF
 	mutantrace_variation = MUTANTRACE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
+	mask_tts_filters = list(TTS_FILTER_MASK)
 
 // **** Atmos gas mask ****
 
@@ -73,6 +74,7 @@
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = /datum/dog_fashion/head/clown
+	mask_tts_filters = null // performer masks expect to be talked through
 	var/list/clownmask_designs = list()
 
 /obj/item/clothing/mask/gas/clown_hat/Initialize(mapload)

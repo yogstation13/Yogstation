@@ -9,7 +9,7 @@
 *
 * @returns {sound/} or FALSE
 */
-/proc/piper_tts(message, model, pitch)
+/proc/piper_tts(message, model, pitch, filters)
 	if(!CONFIG_GET(flag/tts_enable))
 		return FALSE
 
@@ -18,8 +18,8 @@
 
 	var/san_message = sanitize_tts_input(message)
 	var/san_model = sanitize_tts_input(model)
-	if(!isnum(pitch))
-		return FALSE
+	if(!pitch || !isnum(pitch))
+		pitch = 1
 
 	var/file_name = "tmp/tts/[md5("[san_message][san_model][pitch]")].wav"
 
@@ -30,11 +30,14 @@
 	if(!fexists("tmp/tts/init.txt"))
 		rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
 
+	if(!filters || !islist(filters))
+		filters = list()
+
 	var/list/headers = list()
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
 	var/datum/http_request/request = new()
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?model=[url_encode(san_model)]&pitch=[url_encode(pitch)]", json_encode(list("message" = san_message)), headers, file_name)
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?model=[url_encode(san_model)]&pitch=[url_encode(pitch)]", json_encode(list("message" = san_message, "filters" = filters)), headers, file_name)
 
 	request.begin_async()
 

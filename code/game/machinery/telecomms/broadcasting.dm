@@ -190,13 +190,13 @@
 	// TTS generation
 	var/model = pick(GLOB.tts_voices)
 	if(GLOB.tts_voices.Find(virt.tts_voice)) // Sanitize with an immutable list
-		model = virt.tts_voice
+		model = virt.virt_tts_voice
 
 	var/pitch = rand(0.8, 1.2)
 	if(virt.tts_pitch)
-		pitch = virt.tts_pitch
+		pitch = virt.virt_tts_pitch
 
-	var/tts_sound = piper_tts(html_decode(message), model, pitch)
+	var/tts_sound = piper_tts(html_decode(message), model, pitch, virt.virt_tts_filters)
 
 	// Render the message and have everybody hear it.
 	// Always call this on the virtualspeaker to avoid issues.

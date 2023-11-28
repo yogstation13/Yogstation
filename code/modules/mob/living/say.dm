@@ -306,14 +306,11 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
 
 	// TTS generation
-	var/model = pick(GLOB.tts_voices)
-	if(GLOB.tts_voices.Find(tts_voice)) // Sanitize with an immutable list
-		model = tts_voice
-	else
-		tts_voice = model
+	if(!GLOB.tts_voices.Find(tts_voice)) // Sanitize with an immutable list
+		tts_voice = pick(GLOB.tts_voices)
 		tts_pitch = rand(8, 12) * 0.1
 
-	var/tts_sound = piper_tts(html_decode(message), model, tts_pitch)
+	var/tts_sound = piper_tts(html_decode(message), tts_voice, tts_pitch, tts_filters)
 
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 	var/is_quiet = message_mods[WHISPER_MODE] || message_mods[MODE_HEADSET]

@@ -60,6 +60,9 @@
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
 
+	var/tts_voice
+	var/tts_pitch = 1
+	var/list/tts_filters
 
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
@@ -95,7 +98,7 @@
 			CanAtmosPass = ATMOS_PASS_YES
 			air_update_turf(TRUE)
 		loc.handle_atom_del(src)
-	
+
 	if(opacity)
 		RemoveElement(/datum/element/light_blocking)
 
