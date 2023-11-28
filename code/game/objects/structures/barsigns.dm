@@ -298,6 +298,31 @@
 	icon = "little_treats"
 	desc = "A delightfully relaxing tearoom for all the fancy lads in the cosmos."
 
+/datum/barsign/le_cafe_silencieux
+	name = "Le Café Silencieux"
+	icon = "le_cafe_silencieux"
+	desc = "..."
+
+/datum/barsign/maltroach
+	name = "Maltroach"
+	icon = "maltroach"
+	desc = "Mothroaches politely greet you into the bar, or are they greeting eachother?"
+
+/datum/barsign/rock_bottom
+	name = "Rock Bottom"
+	icon = "rock-bottom"
+	desc = "When it feels like you're stuck in a pit, might as well have a drink."
+
+/datum/barsign/assembly_line
+	name = "The Assembly Line"
+	icon = "the-assembly-line"
+	desc = "Where every drink is masterfully crafted with industrial efficiency!"
+
+/datum/barsign/bargonia
+	name = "Bargonia"
+	icon = "bargonia"
+	desc = "The warehouse yearns for a higher calling... so Supply has declared BARGONIA!"
+	
 /datum/barsign/hiddensigns
 	hidden = TRUE
 
