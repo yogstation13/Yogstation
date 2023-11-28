@@ -81,4 +81,5 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 		span_italics("You hear a fast wooosh."))
 	guardian.AttackingTarget()
 	target.throw_at(get_edge_target_turf(guardian, get_dir(guardian, target)), world.maxx / 6, 5, guardian, TRUE)
+	next_rush = world.time + 3 SECONDS
 	Finished()
