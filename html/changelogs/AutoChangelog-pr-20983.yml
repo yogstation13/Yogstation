@@ -1,0 +1,6 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Added new fruit"
+  - rscadd: "Added new drink to go with that fruit"
+  - imageadd: "added some icons and images for lantern fruits and drinks"
