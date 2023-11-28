@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Flying Fang's damage-dealing disarms respects pacifism as intended."
