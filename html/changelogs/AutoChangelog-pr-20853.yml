@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "adds a glowing outline to anyone with the holy light heal boost"
+  - bugfix: "fixed a bug where limb healing generated less favour than overall healing"
+  - tweak: "Increases the holy light heal boost duration to 1 minute from 30 seconds"
+  - tweak: "Reduces the amount of favour that holy light generates by 50%"
