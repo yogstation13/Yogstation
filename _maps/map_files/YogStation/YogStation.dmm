@@ -4292,20 +4292,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"aET" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "captain blast";
-	name = "Privacy Shutters Control";
-	pixel_x = 26;
-	pixel_y = -1;
-	req_access_txt = "20"
-	},
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/stone,
-/area/crew_quarters/heads/captain)
 "aFc" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -18211,6 +18197,20 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/aft)
+"dNO" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "captain blast";
+	name = "Privacy Shutters Control";
+	pixel_x = 26;
+	pixel_y = -1;
+	req_access_txt = "20"
+	},
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/stone,
+/area/crew_quarters/heads/captain)
 "dNY" = (
 /turf/closed/wall/r_wall,
 /area/engine/foyer)
@@ -22026,6 +22026,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"fiz" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Captain";
+	name = "Captain's Fax Machine"
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/crew_quarters/heads/captain)
 "fiE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -34588,6 +34605,15 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"jRb" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/stone,
+/area/crew_quarters/heads/captain)
 "jRq" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 6
@@ -35879,18 +35905,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"ksl" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/obj/machinery/door/window{
-	base_state = "right";
-	icon_state = "right";
-	name = "Captain's Desk Door";
-	req_access_txt = "20"
-	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
-/area/crew_quarters/heads/captain)
 "kso" = (
 /obj/structure/chair/sofa/right{
 	dir = 4
@@ -38435,15 +38449,6 @@
 /obj/machinery/light,
 /turf/open/floor/engine,
 /area/escapepodbay)
-"lsq" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/stone,
-/area/crew_quarters/heads/captain)
 "lsK" = (
 /turf/closed/wall/r_wall,
 /area/construction)
@@ -46483,6 +46488,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"oxG" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	base_state = "right";
+	icon_state = "right";
+	name = "Captain's Desk Door";
+	req_access_txt = "20"
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
+/area/crew_quarters/heads/captain)
 "oyd" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -51878,23 +51895,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"qBx" = (
-/obj/structure/railing{
-	dir = 5
-	},
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 5
-	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
-/turf/open/floor/stone,
-/area/crew_quarters/heads/captain)
 "qCq" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -62313,19 +62313,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/security/main)
-"uzY" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/window/northleft{
-	dir = 2;
-	name = "Captain's Desk Door";
-	req_one_access_txt = "20"
-	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
-/area/crew_quarters/heads/captain)
 "uAd" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "maint1"
@@ -65091,6 +65078,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"vyH" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 5
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/crew_quarters/heads/captain)
 "vyL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -70426,6 +70430,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"xCE" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Captain's Desk Door";
+	req_one_access_txt = "20"
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
+/area/crew_quarters/heads/captain)
 "xCV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -71378,23 +71395,6 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"xWp" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/machinery/photocopier/faxmachine{
-	department = "Captain";
-	name = "Captain's Fax Machine"
-	},
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
-/turf/open/floor/stone,
-/area/crew_quarters/heads/captain)
 "xWN" = (
 /obj/structure/table,
 /obj/item/folder/white,
@@ -103909,7 +103909,7 @@ wKM
 wgP
 doS
 oaq
-xWp
+fiz
 hQo
 qPH
 qPH
@@ -104165,8 +104165,8 @@ aZV
 tTs
 kHw
 qVz
-uzY
-lsq
+xCE
+jRb
 tcm
 oNF
 nlI
@@ -104422,8 +104422,8 @@ aZV
 vnl
 kmy
 hdD
-ksl
-aET
+oxG
+dNO
 guY
 oNF
 hVX
@@ -104679,8 +104679,8 @@ aZV
 aHY
 qnQ
 kqt
-doS
-qBx
+oaq
+vyH
 huD
 hnh
 yje
