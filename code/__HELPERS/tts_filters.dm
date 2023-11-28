@@ -110,7 +110,7 @@
 #define TTS_FILTER_LIZARD "lizard"
 #define TTS_FILTER_ALIEN "alien"
 #define TTS_FILTER_ETHEREAL "ethereal"
-#define TTS_FILTER_ROBOT "robotic"
+#define TTS_FILTER_ROBOTIC "robotic"
 #define TTS_FILTER_MASKED "masked"
 #define TTS_FILTER_ROBOCOP "robocop"
 #define TTS_FILTER_RADIO "radio"
