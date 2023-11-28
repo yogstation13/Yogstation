@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Makes monster hunters monster hunting objective actually tell the monster hunter to hunt monsters"
