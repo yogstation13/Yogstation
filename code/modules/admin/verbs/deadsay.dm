@@ -1,5 +1,5 @@
 /client/verb/dsay(msg as text)
-	set category = "Admin"
+	set category = "Misc.Unused"
 	set name = "Dsay"
 	set hidden = TRUE
 
