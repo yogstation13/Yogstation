@@ -316,6 +316,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	var/tts_sound = piper_tts(html_decode(message), model, tts_pitch)
 
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
+	var/is_quiet = message_mods[WHISPER_MODE] || message_mods[MODE_HEADSET]
 	for(var/_AM in listening)
 		var/atom/movable/AM = _AM
 		if(eavesdrop_range && get_dist(source, AM) > message_range && !(the_dead[AM]))
@@ -329,7 +330,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			if(ismob(AM))
 				var/mob/hearing_mob = AM
 				if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
-					hearing_mob.playsound_local(get_turf(src), vol = 100, S = tts_sound) // TTS play
+					hearing_mob.playsound_local(get_turf(src), vol = is_quiet ? 40 : 100, S = tts_sound) // TTS play
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble
