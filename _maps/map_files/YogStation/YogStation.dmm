@@ -4292,6 +4292,20 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"aET" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "captain blast";
+	name = "Privacy Shutters Control";
+	pixel_x = 26;
+	pixel_y = -1;
+	req_access_txt = "20"
+	},
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/stone,
+/area/crew_quarters/heads/captain)
 "aFc" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -31819,26 +31833,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"iNn" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/machinery/door/window{
-	base_state = "right";
-	dir = 1;
-	icon_state = "right";
-	name = "Captain's Desk Door";
-	req_access_txt = "20"
-	},
-/obj/machinery/button/door{
-	id = "captain blast";
-	name = "Privacy Shutters Control";
-	pixel_x = 26;
-	pixel_y = -1;
-	req_access_txt = "20"
-	},
-/turf/open/floor/stone,
-/area/crew_quarters/heads/captain)
 "iNp" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light{
@@ -35885,6 +35879,18 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"ksl" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	base_state = "right";
+	icon_state = "right";
+	name = "Captain's Desk Door";
+	req_access_txt = "20"
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
+/area/crew_quarters/heads/captain)
 "kso" = (
 /obj/structure/chair/sofa/right{
 	dir = 4
@@ -38429,6 +38435,15 @@
 /obj/machinery/light,
 /turf/open/floor/engine,
 /area/escapepodbay)
+"lsq" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/stone,
+/area/crew_quarters/heads/captain)
 "lsK" = (
 /turf/closed/wall/r_wall,
 /area/construction)
@@ -51863,6 +51878,23 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"qBx" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 5
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/crew_quarters/heads/captain)
 "qCq" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -52712,14 +52744,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"qOH" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
-/area/crew_quarters/heads/captain)
 "qOZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -57760,18 +57784,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"sKm" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/window/northleft{
-	name = "Captain's Desk Door";
-	req_one_access_txt = "20"
-	},
-/turf/open/floor/stone,
-/area/crew_quarters/heads/captain)
 "sKq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -59504,12 +59516,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
-"tsk" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
-/area/crew_quarters/heads/captain)
 "tss" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Tanks and Filtration";
@@ -59880,20 +59886,6 @@
 /obj/structure/railing,
 /turf/open/floor/wood,
 /area/library)
-"tBS" = (
-/obj/structure/railing{
-	dir = 5
-	},
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 5
-	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/turf/open/floor/stone,
-/area/crew_quarters/heads/captain)
 "tBZ" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 8
@@ -62321,6 +62313,19 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/security/main)
+"uzY" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Captain's Desk Door";
+	req_one_access_txt = "20"
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
+/area/crew_quarters/heads/captain)
 "uAd" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "maint1"
@@ -69515,20 +69520,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/aft)
-"xle" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/machinery/photocopier/faxmachine{
-	department = "Captain";
-	name = "Captain's Fax Machine"
-	},
-/turf/open/floor/stone,
-/area/crew_quarters/heads/captain)
 "xlp" = (
 /obj/structure/bodycontainer/morgue,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
@@ -71387,6 +71378,23 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"xWp" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Captain";
+	name = "Captain's Fax Machine"
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/crew_quarters/heads/captain)
 "xWN" = (
 /obj/structure/table,
 /obj/item/folder/white,
@@ -103901,7 +103909,7 @@ wKM
 wgP
 doS
 oaq
-xle
+xWp
 hQo
 qPH
 qPH
@@ -104157,8 +104165,8 @@ aZV
 tTs
 kHw
 qVz
-qOH
-sKm
+uzY
+lsq
 tcm
 oNF
 nlI
@@ -104414,8 +104422,8 @@ aZV
 vnl
 kmy
 hdD
-tsk
-iNn
+ksl
+aET
 guY
 oNF
 hVX
@@ -104671,8 +104679,8 @@ aZV
 aHY
 qnQ
 kqt
-oaq
-tBS
+doS
+qBx
 huD
 hnh
 yje
