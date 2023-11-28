@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue",
 	"Counsellor", "Therapist", "Mentalist",
 	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue",
-	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer","Ripperdoc"))
+	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer"))
 
 GLOBAL_LIST_INIT(alt_science_positions, list(
 	"Chief Science Officer", "Head of Research", "Chief Technology Officer",
