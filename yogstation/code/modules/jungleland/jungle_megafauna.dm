@@ -123,14 +123,14 @@
 	
 	var/mob/living/L = target
 	var/adjustment_amount = 0
-	switch(health)
-		if(2000 to 1500)
+	switch(maxHealth - health)
+		if(0 to 500)
 			adjustment_amount += 1
-		if(1500 to 1000)
+		if(500 to 1000)
 			adjustment_amount += 2
-		if(1000 to 500)
+		if(1000 to 1500)
 			adjustment_amount += 3
-		if(500 to 0)
+		if(1500 to 2000)
 			adjustment_amount += 4
 
 	var/dist = get_dist(src,L)
