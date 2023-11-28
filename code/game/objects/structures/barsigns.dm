@@ -293,6 +293,11 @@
 	icon = "thegoose"
 	desc = "A nice place to hang loose and relax, while enjoying some electrifying drinks."
 
+/datum/barsign/tearoom
+	name = "Little Treats Tea Room"
+	icon = "little_treats"
+	desc = "A delightfully relaxing tearoom for all the fancy lads in the cosmos."
+
 /datum/barsign/hiddensigns
 	hidden = TRUE
 
