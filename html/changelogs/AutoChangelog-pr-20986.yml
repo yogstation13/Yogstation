@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed fire extinguishers not working if the particle never moves"
