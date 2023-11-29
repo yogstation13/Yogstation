@@ -637,7 +637,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_previous_maps = SSdbcore.NewQuery({"
 			SELECT map_name FROM [format_table_name("round")] WHERE id BETWEEN lower = :lower AND upper = :upper
-		"}, list("lower" = GLOB.round_id - 9, "upper" = GLOB.round_id))
+		"}, list("lower" = "[text2num(GLOB.round_id) - 9]", "upper" = GLOB.round_id))
 		if(!query_previous_maps.Execute())
 			qdel(query_previous_maps)
 		for(var/i = 1 to 10)
