@@ -686,7 +686,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Syndicate Icemoon Outpost Commander"
 	glasses = /obj/item/clothing/glasses/sunglasses/big //big man get big sunglasses
 	ears = /obj/item/radio/headset/syndicate/alt/leader //big voice
-	accessory = /obj/item/clothing/accessory/medal/gold //because the captain one is NT brand
+	accessory = /obj/item/clothing/accessory/medal/gold //because the captain one is NT brand AND A TRAITOR OBJECTIVE
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red
 	mask = /obj/item/clothing/mask/chameleon/gps //best one to give a GPS is this guy because he has a fast-firing 2-shot kill to defend his home with
