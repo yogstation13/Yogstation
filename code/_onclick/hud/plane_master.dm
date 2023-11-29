@@ -87,7 +87,7 @@
 
 /atom/movable/screen/plane_master/transparent_floor
 	name = "Transparent Floor"
-	// documentation = "Really just openspace, stuff that is a turf but has no color or alpha whatsoever.\
+	// documentation = "Really just openspace, stuff that is a turf but has no color or alpha whatsoever.
 	// 	<br>We use this to draw to just the light mask plane, cause if it's not there we get holes of blackness over openspace"
 	plane = TRANSPARENT_FLOOR_PLANE
 	render_relay_planes = list(LIGHT_MASK_PLANE)
@@ -130,7 +130,7 @@
 
 /atom/movable/screen/plane_master/wall_upper
 	name = "Upper wall"
-	// documentation = "There are some walls that want to render above most things (mostly minerals since they shift over.\
+	// documentation = "There are some walls that want to render above most things (mostly minerals since they shift over.
 	// 	<br>We draw them to their own plane so we can hijack them for our emissive mask stuff"
 	plane = WALL_PLANE_UPPER
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD, LIGHT_MASK_PLANE)
@@ -326,9 +326,9 @@
 
 /atom/movable/screen/plane_master/parallax
 	name = "Parallax"
-	// documentation = "Contains parallax, or to be more exact the screen objects that hold parallax.\
-	// 	<br>Note the BLEND_MULTIPLY. The trick here is how low our plane value is. Because of that, we draw below almost everything in the game.\
-	// 	<br>We abuse this to ensure we multiply against the Parallax whitifier plane, or space's plane. It's set to full white, so when you do the multiply you just get parallax out where it well, makes sense to be.\
+	// documentation = "Contains parallax, or to be more exact the screen objects that hold parallax.
+	// 	<br>Note the BLEND_MULTIPLY. The trick here is how low our plane value is. Because of that, we draw below almost everything in the game.
+	// 	<br>We abuse this to ensure we multiply against the Parallax whitifier plane, or space's plane. It's set to full white, so when you do the multiply you just get parallax out where it well, makes sense to be.
 	// 	<br>Also notice that the parent parallax plane is mirrored down to all children. We want to support viewing parallax across all z levels at once."
 	plane = PLANE_SPACE_PARALLAX
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
@@ -419,12 +419,12 @@
 ///Contains all lighting objects
 /atom/movable/screen/plane_master/rendering_plate/lighting
 	name = "Lighting plate"
-	// documentation = "Anything on this plane will be <b>multiplied</b> with the plane it's rendered onto (typically the game plane).\
-	// 	<br>That's how lighting functions at base. Because it uses BLEND_MULTIPLY and occasionally color matrixes, it needs a backdrop of blackness.\
-	// 	<br>See <a href=\"https://secure.byond.com/forum/?post=2141928\">This byond post</a>\
-	// 	<br>Lemme see uh, we're masked by the emissive plane so it can actually function (IE: make things glow in the dark).\
-	// 	<br>We're also masked by the overlay lighting plane, which contains all the movable lights in the game. It draws to us and also the game plane.\
-	// 	<br>Masks us out so it has the breathing room to apply its effect.\
+	// documentation = "Anything on this plane will be <b>multiplied</b> with the plane it's rendered onto (typically the game plane).
+	// 	<br>That's how lighting functions at base. Because it uses BLEND_MULTIPLY and occasionally color matrixes, it needs a backdrop of blackness.
+	// 	<br>See <a href=\"https://secure.byond.com/forum/?post=2141928\">This byond post</a>
+	// 	<br>Lemme see uh, we're masked by the emissive plane so it can actually function (IE: make things glow in the dark).
+	// 	<br>We're also masked by the overlay lighting plane, which contains all the movable lights in the game. It draws to us and also the game plane.
+	// 	<br>Masks us out so it has the breathing room to apply its effect.
 	// 	<br>Oh and we quite often have our alpha changed to achive night vision effects, or things of that sort."
 	plane = RENDER_PLANE_LIGHTING
 	blend_mode_override = BLEND_MULTIPLY
@@ -542,11 +542,11 @@
 
 /atom/movable/screen/plane_master/rendering_plate/light_mask
 	name = "Light Mask"
-	// documentation = "Any part of this plane that is transparent will be black below it on the game rendering plate.\
-	// 	<br>This is done to ensure emissives and overlay lights don't light things up \"through\" the darkness that normally sits at the bottom of the lighting plane.\
-	// 	<br>We relay copies of the space, floor and wall planes to it, so we can use them as masks. Then we just boost any existing alpha to 100% and we're done.\
-	// 	<br>If we ever switch to a sight setup that shows say, mobs but not floors, we instead mask just overlay lighting and emissives.\
-		<br>This avoids dumb seethrough without breaking stuff like thermals."
+	// documentation = "Any part of this plane that is transparent will be black below it on the game rendering plate.
+	// 	<br>This is done to ensure emissives and overlay lights don't light things up \"through\" the darkness that normally sits at the bottom of the lighting plane.
+	// 	<br>We relay copies of the space, floor and wall planes to it, so we can use them as masks. Then we just boost any existing alpha to 100% and we're done.
+	// 	<br>If we ever switch to a sight setup that shows say, mobs but not floors, we instead mask just overlay lighting and emissives.
+		// <br>This avoids dumb seethrough without breaking stuff like thermals."
 	plane = LIGHT_MASK_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	// Fullwhite where there's any color, no alpha otherwise
