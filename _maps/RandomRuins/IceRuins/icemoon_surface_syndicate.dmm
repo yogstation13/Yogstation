@@ -227,6 +227,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/circuitboard/machine/smes,
 /obj/item/circuitboard/machine/smes,
+/obj/item/storage/box/metalfoam,
+/obj/item/storage/box/metalfoam,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "bp" = (
@@ -4112,6 +4114,8 @@
 /obj/item/clothing/mask/gas/atmos,
 /obj/item/clothing/head/beret/atmos,
 /obj/item/clothing/head/hardhat/atmos,
+/obj/item/watertank/atmos,
+/obj/item/storage/box/smart_metal_foam,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "AV" = (
@@ -8427,7 +8431,7 @@ Zu
 Zu
 Zu
 Zu
-Zu
+uj
 qK
 qK
 qK
