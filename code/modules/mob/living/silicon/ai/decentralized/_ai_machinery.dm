@@ -8,6 +8,7 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"
 	density = TRUE
+	///Temperature of the ai core itself, this will share with air in the enviroment
 	var/core_temp = 193.15
 
 /obj/machinery/ai/Initialize(mapload)

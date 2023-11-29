@@ -6,12 +6,19 @@
 // breathing class at -7, simulating krypton narcosis.
 
 /datum/breathing_class
+	///Gases that we consume and count as respirable
 	var/list/gases
+	///Gases that we breathe out
 	var/list/products
+	///Reagent generated if we breathe in too much of the gases in the gas_max value of gases defined in lungs
 	var/danger_reagent
+	///Catergory of the alert generated if we do not have enough required gases
 	var/low_alert_category = "not_enough_oxy"
+	///Type of the alert generated if we do not have enough required gases
 	var/low_alert_datum = /atom/movable/screen/alert/not_enough_oxy
+	///Catergory of the alert generated if we breathe in too much of the gases in the gas_max value of gases defined in lungs
 	var/high_alert_category = "too_much_oxy"
+	///Type of the alert generated if we breathe in too much of the gases in the gas_max value of gases defined in lungs
 	var/high_alert_datum = /atom/movable/screen/alert/too_much_oxy
 
 /datum/breathing_class/proc/get_effective_pp(datum/gas_mixture/breath)
@@ -62,7 +69,6 @@
 	low_alert_datum = /atom/movable/screen/alert/not_enough_tox
 	high_alert_category = "too_much_tox"
 	high_alert_datum = /atom/movable/screen/alert/too_much_tox
-
 
 /datum/breathing_class/oxygen_vapor
 	gases = list(

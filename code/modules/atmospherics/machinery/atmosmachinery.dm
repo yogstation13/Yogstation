@@ -23,7 +23,9 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	resistance_flags = FIRE_PROOF
 	max_integrity = 200
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
+	///Is the thing being rebuilt by SSair or not. Prevents list bloat
 	var/rebuilding = FALSE
+	///If we should init and immediately start processing
 	var/init_processing = FALSE
 	var/can_unwrench = 0
 	var/initialize_directions = 0
