@@ -1135,3 +1135,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE
+
+/**
+ * Updates all action buttons associated with this item
+ *
+ * Arguments:
+ * * update_flags - Which flags of the action should we update
+ * * force - Force buttons update even if the given button icon state has not changed
+ */
+/obj/item/proc/update_item_action_buttons(update_flags = ALL, force = FALSE)
+	for(var/datum/action/current_action as anything in actions)
+		current_action.build_all_button_icons(update_flags, force)

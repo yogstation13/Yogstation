@@ -85,8 +85,6 @@
 	///Last fingerprints to touch this atom
 	var/fingerprintslast
 
-	var/list/filter_data //For handling persistent filters
-
 	///Economy cost of item
 	var/custom_price
 	///Economy cost of item in premium vendor
@@ -1502,24 +1500,11 @@
 	filter_data[name] = p
 	update_filters()
 
-/atom/movable/proc/update_filters()
-	filters = null
-	sortTim(filter_data,associative = TRUE)
-	for(var/f in filter_data)
-		var/list/data = filter_data[f]
-		var/list/arguments = data.Copy()
-		arguments -= "priority"
-		filters += filter(arglist(arguments))
-
 /obj/item/update_filters()
 	. = ..()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
-
-/atom/movable/proc/get_filter(name)
-	if(filter_data && filter_data[name])
-		return filters[filter_data.Find(name)]
 
 /// Returns the indice in filters of the given filter name.
 /// If it is not found, returns null.

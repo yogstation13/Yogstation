@@ -150,3 +150,6 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 	rhs = ispath(B, /datum/reagent) ? 0 : 1
 
 	return lhs - rhs
+
+/proc/cmp_filter_data_priority(list/A, list/B)
+	return A["priority"] - B["priority"]

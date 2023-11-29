@@ -19,3 +19,9 @@
 		.["color"] = color
 	if(!isnull(flags))
 		.["flags"] = flags
+		
+/proc/color_matrix_filter(matrix/in_matrix, space)
+	. = list("type" = "color")
+	.["color"] = in_matrix
+	if(!isnull(space))
+		.["space"] = space

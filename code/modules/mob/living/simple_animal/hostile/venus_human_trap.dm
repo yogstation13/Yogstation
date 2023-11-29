@@ -94,7 +94,10 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 0
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Real green, cause of course
+	lighting_cutoff_red = 10
+	lighting_cutoff_green = 35
+	lighting_cutoff_blue = 20
 	faction = list("hostile","vines","plants")
 	initial_language_holder = /datum/language_holder/venus
 	del_on_death = TRUE

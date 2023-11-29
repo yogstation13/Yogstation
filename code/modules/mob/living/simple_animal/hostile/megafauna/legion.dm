@@ -52,6 +52,10 @@ Difficulty: Medium
 	attack_action_types = list(/datum/action/innate/megafauna_attack/create_skull,
 							   /datum/action/innate/megafauna_attack/charge_target)
 	small_sprite_type = /datum/action/small_sprite/megafauna/legion
+	// Purple, but bright cause we're gonna need to spot mobs on lavaland
+	lighting_cutoff_red = 35
+	lighting_cutoff_green = 20
+	lighting_cutoff_blue = 45
 
 /datum/action/innate/megafauna_attack/create_skull
 	name = "Create Legion Skull"

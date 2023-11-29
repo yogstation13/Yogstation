@@ -492,3 +492,9 @@
 #define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"
 /// things with this trait are treated as having no access in /obj/proc/check_access(obj/item)
 #define TRAIT_ALWAYS_NO_ACCESS "alwaysnoaccess"
+/// Gives us Night vision
+#define TRAIT_TRUE_NIGHT_VISION "true_night_vision"
+/// Gives us turf vision through walls and slight night vision
+#define TRAIT_MESON_VISION "meson_vision"
+/// Ignores darkness for hearing
+#define TRAIT_HEAR_THROUGH_DARKNESS "hear_through_darkness"

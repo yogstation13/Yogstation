@@ -5,6 +5,7 @@
 	baseturfs = /turf/open/openspace
 	CanAtmosPassVertical = ATMOS_PASS_YES
 	flags_1 = NO_RUST
+	plane = TRANSPARENT_FLOOR_PLANE
 	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE

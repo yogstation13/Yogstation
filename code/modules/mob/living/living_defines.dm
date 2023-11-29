@@ -1,7 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 	sight = 0
-	see_in_dark = 2
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
 	infra_luminosity = 10

@@ -1,6 +1,9 @@
 //Defines for atom layers and planes
 //KEEP THESE IN A NICE ACSCENDING ORDER, PLEASE
 
+//NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
+#define LOWEST_EVER_PLANE -100
+
 #define CLICKCATCHER_PLANE -99
 
 #define PLANE_SPACE -95
@@ -8,13 +11,20 @@
 #define PLANE_SPACE_PARALLAX -90
 #define PLANE_SPACE_PARALLAX_RENDER_TARGET "PLANE_SPACE_PARALLAX"
 
+#define GRAVITY_PULSE_PLANE -89
+#define GRAVITY_PULSE_RENDER_TARGET "*GRAVPULSE_RENDER_TARGET"
+
 #define SINGULARITY_EFFECT_PLANE -80
 #define SINGULARITY_RENDER_TARGET "*SINGULARITY_EFFECTS_PLANE"
 
-#define FLOOR_PLANE -2
+#define RENDER_PLANE_TRANSPARENT -12 //Transparent plane that shows openspace underneath the floor
+#define TRANSPARENT_FLOOR_PLANE -5
+#define FLOOR_PLANE -4
 #define FLOOR_PLANE_RENDER_TARGET "FLOOR_PLANE"
-#define GAME_PLANE -1
+#define WALL_PLANE -3
+#define GAME_PLANE -2
 #define GAME_PLANE_RENDER_TARGET "GAME_PLANE"
+#define WALL_PLANE_UPPER -1
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define BLACKNESS_PLANE_RENDER_TARGET "BLACKNESS_PLANE"
 
@@ -99,6 +109,16 @@
 #define EMISSIVE_LAYER 13
 #define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
 
+/// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
+#define EMISSIVE_RENDER_PLATE 14
+#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
+
+// Ensures all the render targets that point at the emissive plate layer correctly
+#define EMISSIVE_Z_BELOW_LAYER 1
+#define EMISSIVE_FLOOR_LAYER 2
+#define EMISSIVE_SPACE_LAYER 3
+#define EMISSIVE_WALL_LAYER 4
+
 #define EMISSIVE_UNBLOCKABLE_PLANE 14
 #define EMISSIVE_UNBLOCKABLE_LAYER 14
 #define EMISSIVE_UNBLOCKABLE_RENDER_TARGET "*EMISSIVE_UNBLOCKABLE_PLANE"
@@ -109,10 +129,15 @@
 
 #define RAD_TEXT_LAYER 15.1
 
-
 #define O_LIGHTING_VISUAL_PLANE 16
 #define O_LIGHTING_VISUAL_LAYER 16
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
+
+#define RENDER_PLANE_LIGHTING 15
+/// Masks the lighting plane with turfs, so we never light up the void
+/// Failing that, masks emissives and the overlay lighting plane
+#define LIGHT_MASK_PLANE 16
+#define LIGHT_MASK_RENDER_TARGET "*LIGHT_MASK_PLANE"
 
 #define ABOVE_LIGHTING_PLANE 200 //things that should render ignoring lightning
 #define ABOVE_LIGHTING_LAYER 17
@@ -156,10 +181,44 @@
 #define SPLASHSCREEN_PLANE 23
 #define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
 
+/// This plane master will temporarially remove relays to all other planes
+/// Allows us to retain the effects of a plane while cutting off the changes it makes
+#define PLANE_CRITICAL_NO_RELAY (1<<1)
+/// We assume this plane master has a render target starting with *, it'll be removed, forcing it to render in place
+#define PLANE_CRITICAL_CUT_RENDER (1<<2)
+
+#define PLANE_CRITICAL_FUCKO_PARALLAX (PLANE_CRITICAL_DISPLAY|PLANE_CRITICAL_NO_RELAY|PLANE_CRITICAL_CUT_RENDER)
 
 //-------------------- Rendering ---------------------
+//Plane master critical flags
+//Describes how different plane masters behave when they are being culled for performance reasons
+/// This plane master will not go away if its layer is culled. useful for preserving effects
+#define PLANE_CRITICAL_DISPLAY (1<<0)
+
 #define RENDER_PLANE_GAME 100
 #define RENDER_PLANE_NON_GAME 101
+
+///Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees
+#define SEETHROUGH_PLANE -3
+#define ABOVE_GAME_PLANE -2
+
+#define RENDER_PLANE_GAME_WORLD -1
+
+#define DEFAULT_PLANE 0 //Marks out the default plane, even if we don't use it
+
+#define AREA_PLANE 2
+#define MASSIVE_OBJ_PLANE 3
+#define GHOST_PLANE 4
+#define POINT_PLANE 5
+
+#define RENDER_PLANE_MASTER 110
+
+// Lummox I swear to god I will find you
+// NOTE! You can only ever have planes greater then -10000, if you add too many with large offsets you will brick multiz
+// Same can be said for large multiz maps. Tread carefully mappers
+#define HIGHEST_EVER_PLANE RENDER_PLANE_MASTER
+/// The range unique planes can be in
+#define PLANE_RANGE (HIGHEST_EVER_PLANE - LOWEST_EVER_PLANE)
 
 
 ///1000 is an unimportant number, it's just to normalize copied layers

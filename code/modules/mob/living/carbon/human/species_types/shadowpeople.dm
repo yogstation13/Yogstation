@@ -13,7 +13,7 @@
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_GENELESS,TRAIT_NOHUNGER)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
-	mutanteyes = /obj/item/organ/eyes/night_vision
+	mutanteyes = /obj/item/organ/eyes/shadow
 
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
@@ -89,7 +89,7 @@
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
-	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
+	mutanteyes = /obj/item/organ/eyes/shadow
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
 	mutantbrain = /obj/item/organ/brain/nightmare
 	

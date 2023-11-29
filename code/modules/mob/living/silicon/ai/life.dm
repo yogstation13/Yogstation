@@ -111,17 +111,15 @@
 
 /mob/living/silicon/ai/update_sight()
 	see_invisible = initial(see_invisible)
-	see_in_dark = initial(see_in_dark)
 	sight = initial(sight)
 	if(aiRestorePowerRoutine && !available_ai_cores())
 		sight = sight&~SEE_TURFS
 		sight = sight&~SEE_MOBS
 		sight = sight&~SEE_OBJS
-		see_in_dark = 0
 
 	if(see_override)
 		see_invisible = see_override
-	sync_lighting_plane_alpha()
+	sync_lighting_plane_cutoff()
 
 
 /mob/living/silicon/ai/proc/start_RestorePowerRoutine()

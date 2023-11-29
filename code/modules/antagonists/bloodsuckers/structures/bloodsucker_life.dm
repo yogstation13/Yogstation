@@ -215,8 +215,7 @@
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, - 1)
 		current_eyes.sight_flags = SEE_MOBS
-		current_eyes.see_in_dark = 8
-		current_eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+
 		current_eyes.setOrganDamage(0) //making sure
 		if(my_clan?.get_clan() == CLAN_LASOMBRA && ishuman(bloodsuckeruser))
 			var/mob/living/carbon/human/bloodsucker = bloodsuckeruser

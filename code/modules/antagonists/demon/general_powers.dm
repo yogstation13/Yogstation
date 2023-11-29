@@ -45,8 +45,9 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	wound_bonus = -15
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	loot = (/obj/effect/decal/cleanable/blood)
 	del_on_death = TRUE
 

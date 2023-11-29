@@ -993,30 +993,30 @@
 
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/thrall_night_vision/cast(mob/living/carbon/human/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!is_shadow_or_thrall(user))
-		return
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
-	if(!eyes)
-		return
-	eyes.sight_flags = initial(eyes.sight_flags)
-	switch(eyes.lighting_alpha)
-		if (LIGHTING_PLANE_ALPHA_VISIBLE)
-			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-			eyes.see_in_dark = 8
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		else
-			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			eyes.see_in_dark = 2	//default
-	user.update_sight()
+// /datum/action/cooldown/spell/thrall_night_vision/cast(mob/living/carbon/human/user)
+// 	. = ..()
+// 	if(!.)
+// 		return FALSE
+// 	if(!is_shadow_or_thrall(user))
+// 		return
+// 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
+// 	if(!eyes)
+// 		return
+// 	eyes.sight_flags = initial(eyes.sight_flags)
+// 	switch(eyes.lighting_alpha)
+// 		if (LIGHTING_PLANE_ALPHA_VISIBLE)
+// 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+// 			eyes.see_in_dark = 8
+// 		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+// 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+// 		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
+// 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+// 		else
+// 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+// 			eyes.see_in_dark = 2	//default
+// 	user.update_sight()
 
-	return TRUE
+// 	return TRUE
 
 /datum/action/cooldown/spell/lesser_shadowling_hivemind //Lets a thrall talk with their allies
 	name = "Lesser Commune"

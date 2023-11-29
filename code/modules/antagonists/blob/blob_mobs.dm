@@ -15,8 +15,10 @@
 	maxbodytemp = 360
 	unique_name = 1
 	a_intent = INTENT_HARM
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// ... Blob colored lighting
+	lighting_cutoff_red = 20
+	lighting_cutoff_green = 40
+	lighting_cutoff_blue = 30
 	var/mob/camera/blob/overmind = null
 	var/obj/structure/blob/factory/factory = null
 	var/independent = FALSE

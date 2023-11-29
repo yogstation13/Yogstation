@@ -471,8 +471,5 @@
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
 	if(isXRay())
 		user.sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		user.see_in_dark = max(user.see_in_dark, 8)
-	else
-		user.sight = 0
-		user.see_in_dark = 2
+		
 	return 1

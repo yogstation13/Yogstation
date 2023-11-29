@@ -13,8 +13,6 @@
 	maxHealth = 20
 	health = 20
 	speed = 0
-	see_in_dark = 10
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	harm_intent_damage = 7
 	melee_damage_lower = 5
 	melee_damage_upper = 7

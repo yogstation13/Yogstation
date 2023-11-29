@@ -28,5 +28,8 @@
 #define VISOR_TINT			(1<<1)
 #define VISOR_VISIONFLAGS	(1<<2) //all following flags only matter for glasses
 #define VISOR_DARKNESSVIEW	(1<<3)
-#define VISOR_INVISVIEW		(1<<4)
+#define VISOR_INVISVIEW		(1<<3)
 
+/// Bitfield of sight flags that show THINGS but no lighting
+/// Since lighting is an underlay on turfs, this is everything but that
+#define SEE_AVOID_TURF_BLACKNESS (SEE_MOBS|SEE_OBJS)

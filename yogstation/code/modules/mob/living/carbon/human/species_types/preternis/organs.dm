@@ -1,8 +1,11 @@
+#define NIGHTVISION_LIGHT_OFF 0
+#define NIGHTVISION_LIGHT_LOW 1
+#define NIGHTVISION_LIGHT_MID 2
+#define NIGHTVISION_LIGHT_HIG 3
+
 /obj/item/organ/eyes/robotic/preternis
 	name = "preternis eyes"
 	desc = "An experimental upgraded version of eyes that can see in the dark. They are designed to fit preternis"
-	see_in_dark = PRETERNIS_NV_ON
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
@@ -17,22 +20,34 @@
 	var/powered = TRUE 
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/night_vision = TRUE
+	// These lists are used as the color cutoff for the eye
+	// They need to be filled out for subtypes
+	var/list/low_light_cutoff
+	var/list/medium_light_cutoff
+	var/list/high_light_cutoff
+	var/light_level = NIGHTVISION_LIGHT_OFF
+
+
+
 
 /obj/item/organ/eyes/robotic/preternis/ui_action_click()
 	if(damage > low_threshold)
 		//no nightvision if your eyes are hurt
 		return
 	sight_flags = initial(sight_flags)
-	switch(lighting_alpha)
-		if (LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	switch(light_level)
+		if (NIGHTVISION_LIGHT_OFF)
+			color_cutoffs = low_light_cutoff.Copy()
+			light_level = NIGHTVISION_LIGHT_LOW
+		if (NIGHTVISION_LIGHT_LOW)
+			color_cutoffs = medium_light_cutoff.Copy()
+			light_level = NIGHTVISION_LIGHT_MID
+		if (NIGHTVISION_LIGHT_MID)
+			color_cutoffs = high_light_cutoff.Copy()
+			light_level = NIGHTVISION_LIGHT_HIG
 		else
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			sight_flags &= ~SEE_BLACKNESS
+			color_cutoffs = list()
+			light_level = NIGHTVISION_LIGHT_OFF
 	owner.update_sight()
 
 /obj/item/organ/eyes/robotic/preternis/on_life()
@@ -52,19 +67,11 @@
 		//to simulate running out of power, they take damage
 		owner.adjustOrganLoss(ORGAN_SLOT_EYES,0.5)
 	
-	if(damage < low_threshold)
-		if(see_in_dark == PRETERNIS_NV_OFF)
-			see_in_dark = PRETERNIS_NV_ON
-			owner.update_sight()
-	else
-		//if your eyes start getting hurt no more nightvision
-		if(see_in_dark == PRETERNIS_NV_ON)
-			see_in_dark = PRETERNIS_NV_OFF
-			owner.update_sight()
-		if(lighting_alpha < LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			sight_flags &= ~SEE_BLACKNESS
-			owner.update_sight()
+#undef NIGHTVISION_LIGHT_OFF
+#undef NIGHTVISION_LIGHT_LOW
+#undef NIGHTVISION_LIGHT_MID
+#undef NIGHTVISION_LIGHT_HIG
+
 
 /obj/item/organ/eyes/robotic/preternis/examine(mob/user)
 	. = ..()

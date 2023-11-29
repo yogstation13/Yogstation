@@ -50,7 +50,6 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	light_range = 3
 	light_on = FALSE
 	hud_type = /datum/hud/guardian
-	see_in_dark = 8
 	var/list/barrier_images = list()
 	var/custom_name = FALSE
 	var/atk_cooldown = 10
