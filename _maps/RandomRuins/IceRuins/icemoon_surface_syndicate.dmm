@@ -2528,7 +2528,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "qK" = (
-/turf/open/lava/plasma/ice_moon,
+/turf/open/lava/plasma/ice_moon/no_shelter,
 /area/icemoon/surface/outdoors)
 "qN" = (
 /obj/structure/cable{

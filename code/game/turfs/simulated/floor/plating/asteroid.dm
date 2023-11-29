@@ -183,6 +183,8 @@
 	baseturfs = /turf/open/lava/plasma/ice_moon
 	planetary_atmos = TRUE
 
+/turf/open/lava/plasma/ice_moon/no_shelter //another snowflake type!! yay!!
+
 /turf/open/floor/plating/asteroid/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
