@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			if(ismob(AM))
 				var/mob/hearing_mob = AM
 				if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
-					hearing_mob.playsound_local(get_turf(src), vol = is_quiet ? 40 : 100, S = tts_sound) // TTS play
+					hearing_mob.playsound_local(get_turf(src), vol = message_volume, S = tts_sound) // TTS play
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble
