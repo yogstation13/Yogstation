@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Preterni no longer get 20% more power from liquid electricity than other powerhungry species"
-  - tweak: "All powerhungry species now get \"food\" from consuming teslium, not just Preterni"
