@@ -198,10 +198,10 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		verb_ask = M.verb_ask
 		verb_exclaim = M.verb_exclaim
 		verb_yell = M.verb_yell
+		virt_tts_voice = M.tts_voice
+		virt_tts_pitch = M.tts_pitch
+		virt_tts_filters = M.tts_filters
 
-	virt_tts_voice = M.tts_voice
-	virt_tts_pitch = M.tts_pitch
-	virt_tts_filters = M.tts_filters
 	LAZYINITLIST(virt_tts_filters)
 	if(!virt_tts_filters[TTS_FILTER_RADIO])
 		virt_tts_filters[TTS_FILTER_RADIO] = list(RADIO_PROCESSING_FILTER)

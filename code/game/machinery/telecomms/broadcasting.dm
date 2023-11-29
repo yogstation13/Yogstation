@@ -189,11 +189,11 @@
 
 	// TTS generation
 	var/model = pick(GLOB.tts_voices)
-	if(GLOB.tts_voices.Find(virt.tts_voice)) // Sanitize with an immutable list
+	if(GLOB.tts_voices.Find(virt.virt_tts_voice)) // Sanitize with an immutable list
 		model = virt.virt_tts_voice
 
 	var/pitch = rand(0.8, 1.2)
-	if(virt.tts_pitch)
+	if(virt.virt_tts_pitch)
 		pitch = virt.virt_tts_pitch
 
 	var/tts_sound = piper_tts(html_decode(message), model, pitch, virt.virt_tts_filters)
