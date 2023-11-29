@@ -408,13 +408,13 @@
 		environment = M.loc.return_air()
 	if(environment)
 		if(environment.get_moles(/datum/gas/plasma) > GLOB.meta_gas_info[/datum/gas/plasma][META_GAS_MOLES_VISIBLE]) //if there's enough plasma in the air to see
-			. += power * 0.5
+			. += power * 1
 	var/requires_metabolizing = !(A.process_dead && M.stat == DEAD) //don't require metabolizing if our host is dead and we have necrotic metabolsim
 	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = requires_metabolizing))
-		. +=  power * 0.75
+		. +=  power * 0.5
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 2 * actual_power
+	var/heal_amt = 3 * actual_power
 
 	if(prob(5))
 		to_chat(M, span_notice("You feel yourself absorbing plasma inside and around you..."))
