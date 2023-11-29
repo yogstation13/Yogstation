@@ -103,9 +103,9 @@
 	if(!.)
 		return // reduce unneeded light changes
 	if(stat & NOPOWER)
-		set_light(FALSE)
+		set_light_on(FALSE)
 	else
-		set_light(TRUE)
+		set_light_on(TRUE)
 
 /obj/machinery/computer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
@@ -133,7 +133,7 @@
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
-		set_light(0)
+		set_light_on(FALSE)
 
 /obj/machinery/computer/emp_act(severity)
 	. = ..()

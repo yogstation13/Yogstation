@@ -859,12 +859,13 @@
 	force = 0 // How often we forget
 	throwforce = 0 // Faith without works is...
 	attack_verb = list("blessed")
-	var/held_up = FALSE
-	var/mutable_appearance/holy_glow_fx
-	var/obj/effect/dummy/lighting_obj/moblight/holy_glow_light
-	COOLDOWN_DECLARE(holy_notification)
 	menutab = MENU_MISC
 	additional_desc = "A holy icon, praying to it will allow it to weaken and burn those that draw your god's ire."
+
+	var/held_up = FALSE
+	var/mutable_appearance/holy_glow_fx
+	COOLDOWN_DECLARE(holy_notification)
+	var/obj/effect/dummy/lighting_obj/moblight/holy_glow_light
 
 /obj/item/nullrod/cross/attack_self(mob/living/user)
 	. = ..()
@@ -879,7 +880,7 @@
 	slot_flags = 0
 	holy_glow_fx = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 	user.add_overlay(holy_glow_fx)
-	holy_glow_light = user.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2)
+	holy_glow_light = user.mob_light(range = 2, color = LIGHT_COLOR_HOLY_MAGIC)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
 	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, PROC_REF(drop_unwield))
 	START_PROCESSING(SSfastprocess, src)

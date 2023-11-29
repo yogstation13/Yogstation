@@ -87,3 +87,12 @@
 ///Check for arena shuttle, if the bubblegum has died this round
 GLOBAL_VAR_INIT(bubblegum_dead, FALSE)
 
+// Alert level related for new thing im porting --- cowbot93
+#define ALERT_COEFF_AUTOEVAC_NORMAL 6
+#define ALERT_COEFF_GREEN 5
+#define ALERT_COEFF_BLUE 4
+#define ALERT_COEFF_RED 3
+#define ALERT_COEFF_AUTOEVAC_CRITICAL 2
+#define ALERT_COEFF_DELTA 1
+#define ALERT_COEFF_GAMMA 0
+#define ALERT_COEFF_EPSILON -1

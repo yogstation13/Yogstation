@@ -25,7 +25,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /datum/effect_system
 	var/number = 3
-	var/cardinals = FALSE
+	var/cardinals_only = FALSE
 	var/turf/location
 	var/atom/holder
 	var/effect_type
@@ -39,7 +39,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /datum/effect_system/proc/set_up(number = 3, cardinals_only = FALSE, location)
 	src.number = min(number, 10)
-	src.cardinals = cardinals_only
+	src.cardinals_only = cardinals_only
 	src.location = get_turf(location)
 
 /datum/effect_system/proc/attach(atom/atom)
@@ -59,7 +59,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/obj/effect/E = new effect_type(location)
 	total_effects++
 	var/direction
-	if(cardinals)
+	if(cardinals_only)
 		direction = pick(GLOB.cardinals)
 	else
 		direction = pick(GLOB.alldirs)
