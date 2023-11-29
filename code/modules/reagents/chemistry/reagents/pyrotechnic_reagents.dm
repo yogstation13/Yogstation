@@ -228,7 +228,8 @@
 	shock_timer++
 	if(shock_timer >= rand(5,30)) //Random shocks are wildly unpredictable
 		shock_timer = 0
-		M.electrocute_act(rand(5,20), "Teslium in their body", 1, 1) //Override because it's caused from INSIDE of you
+		var/shock_damage = rand(5,20)
+		M.electrocute_act(shock_damage, "Teslium in their body", 1, zone=null, override=TRUE) //Override because it's caused from INSIDE of you
 		playsound(M, "sparks", 50, 1)
 	..()
 

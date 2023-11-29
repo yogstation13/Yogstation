@@ -970,11 +970,11 @@
 		O.set_owner(src)
 		bodyparts.Remove(X)
 		bodyparts.Add(O)
-		if(O.body_part == ARM_LEFT)
+		if(O.body_part & ARM_LEFT)
 			l_arm_index_next += 2
 			O.held_index = l_arm_index_next //1, 3, 5, 7...
 			hand_bodyparts += O
-		else if(O.body_part == ARM_RIGHT)
+		else if(O.body_part & ARM_RIGHT)
 			r_arm_index_next += 2
 			O.held_index = r_arm_index_next //2, 4, 6, 8...
 			hand_bodyparts += O
@@ -1153,7 +1153,7 @@
 
 /// Returns if the carbon is wearing shock proof gloves
 /mob/living/carbon/proc/wearing_shock_proof_gloves()
-	return gloves?.siemens_coefficient == 0
+	return gloves?.armor.getRating(ELECTRIC) >= 100
 
 /mob/living/carbon/wash(clean_types)
 	. = ..()

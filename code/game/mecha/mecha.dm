@@ -348,6 +348,8 @@
 			readout += "\n<b>ARMOR (I-X)</b>"
 			if(armor.bio)
 				readout += "\nBIO [armor_to_protection_class(armor.bio)]"
+			if(armor.electric)
+				readout += "\nELECTRICAL [armor_to_protection_class(armor.electric)]"
 			if(armor.bomb)
 				readout += "\nEXPLOSIVE [armor_to_protection_class(armor.bomb)]"
 			if(armor.bullet)
