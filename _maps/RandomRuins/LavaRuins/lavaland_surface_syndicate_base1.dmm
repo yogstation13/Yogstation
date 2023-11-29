@@ -5368,7 +5368,7 @@
 "Gv" = (
 /obj/machinery/turretid{
 	ailock = 1;
-	control_area = "/area/ruin/powered/syndicate_lava_base/main";
+	control_area = "/area/ruin/powered/syndicate_lava_base/vault";
 	dir = 1;
 	icon_state = "control_kill";
 	lethal = 1;
