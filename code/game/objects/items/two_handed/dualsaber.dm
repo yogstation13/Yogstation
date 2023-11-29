@@ -50,7 +50,6 @@
 		set_light_color(new_color)
 
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state][saber_color]1", \
 		wieldsound = 'sound/weapons/saberon.ogg', \
