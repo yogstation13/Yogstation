@@ -6555,9 +6555,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/powerplant)
 "Qg" = (
-/obj/machinery/computer/rdconsole/nolock/ruin,
 /obj/effect/turf_decal/siding/red{
 	dir = 5
+	},
+/obj/machinery/computer/camera_advanced/syndie{
+	networks = list("synd_icemoon_xenobio");
+	name = "xenobiology monitoring console";
+	desc = "Used to access the cameras of the base's Xenobiology department."
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
