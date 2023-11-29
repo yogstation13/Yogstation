@@ -180,7 +180,7 @@
 			visual_effect_icon = ATTACK_EFFECT_SMASH
 	..()
 
-/mob/living/simple_animal/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, tesla_shock = FALSE, illusion = FALSE, stun = FALSE, gib = FALSE)
+/mob/living/simple_animal/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(gib)
 		gib()
 	return ..()

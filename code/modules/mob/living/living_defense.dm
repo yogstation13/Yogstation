@@ -360,7 +360,7 @@
 	take_bodypart_damage(acidpwr * min(1, acid_volume * 0.1))
 	return 1
 
-/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
+/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
