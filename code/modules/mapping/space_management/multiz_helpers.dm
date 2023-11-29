@@ -7,6 +7,7 @@
 		dir &= ~DOWN
 		return get_step(GET_TURF_BELOW(us), dir)
 	return get_step(ref, dir)
+	
 /proc/get_dir_multiz(turf/us, turf/them)
 	us = get_turf(us)
 	them = get_turf(them)
