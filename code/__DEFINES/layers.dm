@@ -107,7 +107,6 @@
 
 #define EMISSIVE_PLANE 13
 #define EMISSIVE_LAYER 13
-#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
 
 /// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
 #define EMISSIVE_RENDER_PLATE 14
