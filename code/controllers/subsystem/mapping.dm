@@ -647,3 +647,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			previous_maps[next_map[1]] += 1 / (11 - i) //this lessens the influence of rounds that were longer ago
 		qdel(query_previous_maps)
 	return previous_maps
+
+/client/proc/DebugMapWeights()
+	set name = "See Map Weights"
+	set category = "Misc.Server Debug"
+	var/weights = SSmapping.get_map_weights()
+	for(var/key in weights)
+		to_chat(src, "[key]: weights[key]")
