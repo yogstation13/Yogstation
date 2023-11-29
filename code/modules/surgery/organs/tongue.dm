@@ -253,6 +253,12 @@
 	icon_state = "tongueplasma"
 	modifies_speech = FALSE
 
+/obj/item/organ/tongue/preternis
+	name = "augmented tongue"
+	desc = "A tongue made of metal. Makes the user slightly more difficult to understand."
+	modifies_speech = FALSE
+	organ_tts_filters = list(TTS_FILTER_ROBOTIC)
+
 /obj/item/organ/tongue/robot
 	name = "robotic voicebox"
 	desc = "A voice synthesizer that can interface with organic lifeforms."
@@ -264,6 +270,7 @@
 	attack_verb = list("beeped", "booped")
 	modifies_speech = TRUE
 	taste_sensitivity = NO_TASTE_SENSITIVITY // not as good as an organic tongue
+	organ_tts_filters = list(TTS_FILTER_ROBOTIC)
 
 /obj/item/organ/tongue/robot/emp_act(severity)
 	if(prob(5))

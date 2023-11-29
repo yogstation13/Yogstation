@@ -13,6 +13,17 @@
 	if(!CONFIG_GET(flag/tts_enable))
 		return FALSE
 
+	var/player_count = living_player_count()
+	if(!SSticker.tts_capped && player_count >= CONFIG_GET(number/tts_cap_shutoff))
+		SSticker.tts_capped = TRUE
+		return FALSE
+
+	if(SSticker.tts_capped)
+		if(player_count < CONFIG_GET(number/tts_uncap_reboot))
+			SSticker.tts_capped = FALSE
+		else
+			return FALSE
+
 	if(!SSticker.tts_alive)
 		return FALSE
 
@@ -48,6 +59,11 @@
 
 	var/datum/http_response/response = request.into_response()
 	if(response.errored || response.status_code > 299)
+		fdel(file_name)
+		return FALSE
+
+	if(response.body == "bad auth" || response.body == "missing args")
+		fdel(file_name)
 		return FALSE
 
 	var/sound/tts_sound = sound(file_name)

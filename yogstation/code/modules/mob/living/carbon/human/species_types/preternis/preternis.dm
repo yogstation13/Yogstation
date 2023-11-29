@@ -31,6 +31,7 @@
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	mutantstomach = /obj/item/organ/stomach/cell/preternis
+	mutanttongue = /obj/item/organ/tongue/preternis
 	yogs_virus_infect_chance = 25
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
 	virus_stage_rate_boost = 5 //Not designed with viruses in mind since it doesn't usually get in
@@ -109,7 +110,7 @@
 /datum/action/innate/maglock/Grant(mob/M)
 	if(!ispreternis(M))
 		return
-	var/mob/living/carbon/human/H = M 
+	var/mob/living/carbon/human/H = M
 	owner_species = H.dna.species
 	. = ..()
 
@@ -152,7 +153,7 @@
 			H.throw_alert("preternis_emag", /atom/movable/screen/alert/high/preternis)
 			to_chat(H,span_danger("ALERT! OPTIC SENSORS FAILURE.VISION PROCESSOR COMPROMISED."))
 	return TRUE
-	
+
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 	if(H.reagents.has_reagent(/datum/reagent/teslium))
@@ -197,7 +198,7 @@
 		H.add_movespeed_modifier("preternis_magboot", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(H.has_movespeed_modifier("preternis_magboot"))
 		H.remove_movespeed_modifier("preternis_magboot")
-	
+
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
 	if(tesliumtrip && !H.reagents.has_reagent(/datum/reagent/teslium))//remove teslium effects if you don't have it in you
@@ -219,7 +220,7 @@
 	else
 		low_power_warning = FALSE
 
-/datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
+/datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)
 	if(H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_wet", /datum/mood_event/wet_preternis)
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))

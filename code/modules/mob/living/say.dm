@@ -308,12 +308,18 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	// TTS generation
 	if(!GLOB.tts_voices.Find(tts_voice)) // Sanitize with an immutable list
 		tts_voice = pick(GLOB.tts_voices)
+
+	if(!tts_pitch || !isnum(tts_pitch))
 		tts_pitch = rand(8, 12) * 0.1
 
 	var/tts_sound = piper_tts(html_decode(message), tts_voice, tts_pitch, tts_filters)
 
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
-	var/is_quiet = message_mods[WHISPER_MODE] || message_mods[MODE_HEADSET]
+	var/message_volume = 100
+	if(message_mods[MODE_HEADSET])
+		message_volume = 0
+	else if (message_mods[WHISPER_MODE])
+		message_volume = 40
 	for(var/_AM in listening)
 		var/atom/movable/AM = _AM
 		if(eavesdrop_range && get_dist(source, AM) > message_range && !(the_dead[AM]))

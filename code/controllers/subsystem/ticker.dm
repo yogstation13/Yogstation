@@ -62,6 +62,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/pinging_tts = FALSE
 	var/tts_alive = FALSE
+	var/tts_capped = FALSE
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()

@@ -145,6 +145,12 @@ SUBSYSTEM_DEF(Yogs)
 	for(var/filename in flist("tmp/tts/"))
 		fdel("tmp/tts/[filename]")
 
+	var/list/headers = list()
+	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
+	var/datum/http_request/request = new()
+	request.prepare(RUSTG_HTTP_METHOD_POST, "[CONFIG_GET(string/tts_http_url)]/tts_clear_cache", , headers)
+	request.begin_async()
+
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)

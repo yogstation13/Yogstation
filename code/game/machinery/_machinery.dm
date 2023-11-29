@@ -143,6 +143,8 @@ Class Procs:
 	. = ..()
 	GLOB.machines += src
 
+	ADD_FILTER(src, TTS_FILTER_ROBOTIC, ROUNDSTART_FILTER)
+
 	if(ispath(circuit, /obj/item/circuitboard))
 		circuit = new circuit
 		circuit.apply_default_parts(src)
@@ -387,7 +389,7 @@ Class Procs:
 	if((interaction_flags_machine & INTERACT_MACHINE_WIRES_IF_OPEN) && panel_open && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
 		return TRUE
 	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
-		return	
+		return
 	return ..()
 
 /obj/machinery/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
@@ -500,7 +502,7 @@ Class Procs:
 /obj/proc/default_unfasten_wrench(mob/user, obj/item/wrench, time = 20) //try to unwrench an object in a WONDERFUL DYNAMIC WAY
 	if((flags_1 & NODECONSTRUCT_1) || wrench.tool_behaviour != TOOL_WRENCH)
 		return CANT_UNFASTEN
-	
+
 	var/turf/ground = get_turf(src)
 	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
 		to_chat(user, span_notice("You fail to secure [src]."))
@@ -547,7 +549,7 @@ Class Procs:
 				for(var/obj/item/B in W.contents)
 					if(istype(B, P) && istype(A, P))
 						//won't replace beakers if they have reagents in them to prevent funny explosions
-						if(istype(B,/obj/item/reagent_containers) && length(B.reagents?.reagent_list)) 
+						if(istype(B,/obj/item/reagent_containers) && length(B.reagents?.reagent_list))
 							continue
 						// If it's a corrupt or rigged cell, attempting to send it through Bluespace could have unforeseen consequences.
 						if(istype(B, /obj/item/stock_parts/cell) && W.works_from_distance)

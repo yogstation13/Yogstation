@@ -452,3 +452,11 @@
 	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
 
 /datum/config_entry/flag/tts_enable
+
+/datum/config_entry/number/tts_cap_shutoff
+	config_entry_value = 75
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/number/tts_uncap_reboot
+	config_entry_value = 60
+	protection = CONFIG_ENTRY_LOCKED

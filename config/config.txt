@@ -462,3 +462,9 @@ TTS_HTTP_URL http://localhost:8133
 
 ## Token that can be used to prevent misuse of your TTS server that you've set up.
 TTS_HTTP_TOKEN mysecuretoken
+
+## At this many living players, TTS will automatically shut off
+TTS_CAP_SHUTOFF 75
+
+## When TTS is shut off, if the amount of living players goes below this, TTS will turn back on
+TTS_UNCAP_REBOOT 60
