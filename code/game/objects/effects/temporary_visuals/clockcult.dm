@@ -262,7 +262,7 @@
 	icon_state = "eminence"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	resistance_flags = INDESTRUCTIBLE
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	duration = 30 SECONDS
 
 /obj/effect/temp_visual/ratvar/command_point/Initialize(mapload, appearance)

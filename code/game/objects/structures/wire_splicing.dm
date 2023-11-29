@@ -6,7 +6,7 @@
 	density = FALSE
 	anchored = TRUE
 	flags_1 = CONDUCT_1
-	layer = UNDER_CATWALK
+	layer = CATWALK_LAYER
 	var/messiness = 0 // How bad the splicing was, determines the chance of shock
 
 /obj/structure/wire_splicing/Initialize(mapload)

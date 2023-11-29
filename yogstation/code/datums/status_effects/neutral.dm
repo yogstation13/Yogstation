@@ -46,7 +46,6 @@
 		var/icon/temp = icon(sniffee.icon, sniffee.icon_state)
 		var/image/scent_glow = image(temp, layer = ABOVE_MOB_LAYER, loc = sniffee)
 		scent_glow.copy_overlays(sniffee)
-		scent_glow.layer = HUD_LAYER
 		scent_glow.plane = HUD_PLANE
 		scent_glow.appearance_flags = NO_CLIENT_COLOR
 		scent_glow.color = scent_color
@@ -90,7 +89,6 @@
 	if(!red_thirst)
 		red_thirst = owner.overlay_fullscreen("thirsting", /atom/movable/screen/fullscreen/brute, 4)
 		red_thirst.alpha = 0
-		red_thirst.layer = HUD_LAYER
 		red_thirst.plane = HUD_PLANE
 		animate(red_thirst, alpha = 255, time = 1 SECONDS, easing = EASE_IN) //fade IN
 	to_chat(owner, span_userdanger("As the scent of your prey overwhelms your sense of smell, the thrill of the hunt empowers you!"))

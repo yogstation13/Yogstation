@@ -503,3 +503,10 @@
 #define TRAIT_NO_TRANSFORM "block_transformations"
 /// Does nothing on its own, applied via status effect.
 #define TRAIT_STASIS "in_stasis"
+/* Traits for ventcrawling.
+ * Both give access to ventcrawling, but *_NUDE requires the user to be
+ * wearing no clothes and holding no items. If both present, *_ALWAYS
+ * takes precedence.
+ */
+#define TRAIT_VENTCRAWLER_ALWAYS "ventcrawler_always"
+#define TRAIT_VENTCRAWLER_NUDE "ventcrawler_nude"

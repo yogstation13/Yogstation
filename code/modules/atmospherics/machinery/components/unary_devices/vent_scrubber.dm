@@ -262,7 +262,6 @@
 			user.visible_message("[user] unwelds the scrubber.", "You unweld the scrubber.", "You hear welding.")
 			welded = FALSE
 		update_appearance(UPDATE_ICON)
-		pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
 		pipe_vision_img.plane = ABOVE_HUD_PLANE
 		investigate_log("was [welded ? "welded shut" : "unwelded"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		add_fingerprint(user)
@@ -288,7 +287,6 @@
 	user.visible_message("[user] furiously claws at [src]!", "You manage to clear away the stuff blocking the scrubber.", "You hear loud scraping noises.")
 	welded = FALSE
 	update_appearance(UPDATE_ICON)
-	pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
 	pipe_vision_img.plane = ABOVE_HUD_PLANE
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 

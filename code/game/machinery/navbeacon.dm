@@ -8,7 +8,7 @@
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
 	level = 1		// underfloor
-	layer = UNDER_CATWALK
+	layer = LOW_OBJ_LAYER
 	max_integrity = 500
 	armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 

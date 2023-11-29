@@ -48,7 +48,7 @@
 	icon = 'icons/effects/alphacolors.dmi'
 	icon_state = "white"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_ABOVE_ALL
 	blend_mode = BLEND_ADD
 
 /obj/effect/abstract/marker

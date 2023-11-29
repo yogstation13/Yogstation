@@ -173,13 +173,13 @@
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "flash"
 	plane = SPLASHSCREEN_PLANE
-	layer = SPLASHSCREEN_LAYER - 1
+	layer = CINEMATIC_LAYER
 	color = "#000000"
 	show_when_dead = TRUE
 
 /atom/movable/screen/fullscreen/cinematic_backdrop/Initialize(mapload)
 	. = ..()
-	layer = SPLASHSCREEN_LAYER - 1
+	layer = CINEMATIC_LAYER
 
 /atom/movable/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
@@ -204,7 +204,7 @@
 /atom/movable/screen/fullscreen/see_through_darkness
 	icon_state = "nightvision"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_ABOVE_ALL
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
 

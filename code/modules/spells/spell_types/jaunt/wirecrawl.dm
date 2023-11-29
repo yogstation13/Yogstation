@@ -221,7 +221,6 @@
 				if(istype(object, /obj/structure/cable))
 					var/obj/structure/cable/display = object
 					if(!display.wire_vision_img)
-						display.wire_vision_img = image(display, display.loc, layer = ABOVE_HUD_LAYER, dir = display.dir)
 						display.wire_vision_img.plane = ABOVE_HUD_PLANE
 					client.images += display.wire_vision_img
 					wires_shown += display.wire_vision_img
@@ -229,7 +228,6 @@
 				else if(istype(object, /obj/machinery/power))
 					var/obj/machinery/power/display = object
 					if(!display.wire_vision_img)
-						display.wire_vision_img = image(display, display.loc, layer = ABOVE_HUD_LAYER, dir = display.dir)
 						display.wire_vision_img.plane = ABOVE_HUD_PLANE
 					client.images += display.wire_vision_img
 					wires_shown += display.wire_vision_img

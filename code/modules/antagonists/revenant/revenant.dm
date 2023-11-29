@@ -21,7 +21,7 @@
 	invisibility = INVISIBILITY_REVENANT
 	health = INFINITY //Revenants don't use health, they use essence instead
 	maxHealth = INFINITY
-	layer = GHOST_LAYER
+	plane = GHOST_PLANE
 	healable = FALSE
 	spacewalk = TRUE
 	sight = SEE_MOBS | SEE_OBJS | SEE_TURFS | SEE_SELF

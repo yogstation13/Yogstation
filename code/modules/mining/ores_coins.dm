@@ -603,7 +603,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		flick("coin_[cmineral]_flip", src)
 		icon_state = "coin_[cmineral]_[coinflip]"
 		if(flash)
-			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, unique = TRUE)
+			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_PLANE, unique = TRUE)
 		playsound(loc, 'sound/items/coinflip.ogg', 50, TRUE)
 		var/oldloc = loc
 		sleep(1.5 SECONDS)

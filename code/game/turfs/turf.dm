@@ -57,6 +57,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
+	var/force_no_gravity = FALSE
+
+
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list("x", "y", "z")
 	if(var_name in banned_edits)
