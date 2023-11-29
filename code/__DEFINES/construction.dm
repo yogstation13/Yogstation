@@ -7,16 +7,10 @@
 #define RCD_DESIGN_MODE "rcd_design_mode"
 	/// For changing turfs
 	#define RCD_TURF (1 << 0)
-	/// Full tile windows
-	#define RCD_WINDOWGRILLE (1 << 1)
 	/// Windoors & Airlocks
-	#define RCD_AIRLOCK (1 << 2)
-	/// Literarly anything that is spawned on top of a turf such as tables, machines etc
 	#define RCD_STRUCTURE (1 << 3)
 	/// For wallmounts like air alarms, fire alarms & apc
 	#define RCD_WALLFRAME (1 << 4)
-	/// For deconstructing an structure
-	#define RCD_DECONSTRUCT (1 << 5)
 /// The typepath of the structure the rcd is trying to build
 #define RCD_DESIGN_PATH "rcd_design_path"
 

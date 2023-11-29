@@ -13,6 +13,13 @@
 	var/turf_type = /turf/open/space
 	///Distance away from the cordon where we can put a "sort-cordon" and run some extra code (see make_repel). 0 makes nothing happen
 	var/pre_cordon_distance = 0
+	/// The z stack size of the reservation. Note that reservations are ALWAYS reserved from the bottom up
+	var/z_size = 0
+	/// List of the bottom left turfs. Indexed by what their z index for this reservation is
+	var/list/bottom_left_turfs = list()
+
+	/// List of the top right turfs. Indexed by what their z index for this reservation is
+	var/list/top_right_turfs = list()
 
 /datum/turf_reservation/transit
 	turf_type = /turf/open/space/transit

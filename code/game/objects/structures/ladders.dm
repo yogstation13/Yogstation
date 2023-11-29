@@ -32,7 +32,7 @@
 	var/obj/structure/ladder/L
 
 	if (!down)
-		L = locate() in SSmapping.get_turf_below(T)
+		L = locate() in GET_TURF_BELOW(T)
 		if (L)
 			down = L
 			L.up = src  // Don't waste effort looping the other way
