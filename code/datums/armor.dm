@@ -75,4 +75,53 @@
 	. = ..()
 	tag = ARMORID // update tag in case armor values were edited
 
+/datum/armor/proc/show_protection_classes(additional_info = "")
+	var/list/readout = list("<span class='notice'><u><b>PROTECTION CLASSES</u></b>")
+
+	if(bomb || bullet || energy || laser || melee)
+		readout += "\n<b>ARMOR (I-X)</b>"
+		if(bomb)
+			readout += "\nEXPLOSIVE [armor_to_protection_class(bomb)]"
+		if(bullet)
+			readout += "\nBULLET [armor_to_protection_class(bullet)]"
+		if(energy)
+			readout += "\nENERGY [armor_to_protection_class(energy)]"
+		if(laser)
+			readout += "\nLASER [armor_to_protection_class(laser)]"
+		if(melee)
+			readout += "\nMELEE [armor_to_protection_class(melee)]"
+
+	if(bio || rad || electric)
+		readout += "\n<b>ENVIRONMENT (I-X)</b>"
+		if(bio)
+			readout += "\nBIOHAZARD [armor_to_protection_class(bio)]"
+		if(rad)
+			readout += "\nRADIATION [armor_to_protection_class(rad)]"
+		if(electric)
+			readout += "\nELECTRICAL [armor_to_protection_class(electric)]"
+
+	if(fire || acid)
+		readout += "\n<b>DURABILITY (I-X)</b>"
+		if(fire)
+			readout += "\nFIRE [armor_to_protection_class(fire)]"
+		if(acid)
+			readout += "\nACID [armor_to_protection_class(acid)]"
+
+	if(additional_info != "")
+		readout += additional_info
+	readout += "</span>"
+	return readout.Join()
+
+/**
+  * Rounds armor_value down to the nearest 10, divides it by 10 and then converts it to Roman numerals.
+  *
+  * Arguments:
+  * * armor_value - Number we're converting
+  */
+/datum/armor/proc/armor_to_protection_class(armor_value)
+	if (armor_value < 0)
+		. = "-"
+	. += "\Roman[round(abs(armor_value), 10) / 10]"
+	return .
+
 #undef ARMORID

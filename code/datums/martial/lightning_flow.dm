@@ -27,7 +27,7 @@
 /datum/martial_art/lightning_flow/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(dashing)
 		return TRUE
-	damage(D, A, 5, zone=A.a_intent)
+	damage(D, A, 5, zone=A.zone_selected)
 	return FALSE
 
 /datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE, zone = null)

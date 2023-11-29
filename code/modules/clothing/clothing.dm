@@ -284,31 +284,8 @@
 
 /obj/item/clothing/Topic(href, href_list)
 	. = ..()
-
 	if(href_list["list_armor"])
-		var/list/readout = list("<span class='notice'><u><b>PROTECTION CLASSES</u></b>")
-		if(armor.bio || armor.bomb || armor.bullet || armor.energy || armor.laser || armor.melee)
-			readout += "\n<b>ARMOR (I-X)</b>"
-			if(armor.bio)
-				readout += "\nTOXIN [armor_to_protection_class(armor.bio)]"
-			if(armor.electric)
-				readout += "\nELECTRICAL [armor_to_protection_class(armor.electric)]"
-			if(armor.bomb)
-				readout += "\nEXPLOSIVE [armor_to_protection_class(armor.bomb)]"
-			if(armor.bullet)
-				readout += "\nBULLET [armor_to_protection_class(armor.bullet)]"
-			if(armor.energy)
-				readout += "\nENERGY [armor_to_protection_class(armor.energy)]"
-			if(armor.laser)
-				readout += "\nLASER [armor_to_protection_class(armor.laser)]"
-			if(armor.melee)
-				readout += "\nMELEE [armor_to_protection_class(armor.melee)]"
-		if(armor.fire || armor.acid)
-			readout += "\n<b>DURABILITY (I-X)</b>"
-			if(armor.fire)
-				readout += "\nFIRE [armor_to_protection_class(armor.fire)]"
-			if(armor.acid)
-				readout += "\nACID [armor_to_protection_class(armor.acid)]"
+		var/additional_info = ""
 		if(flags_cover & HEADCOVERSMOUTH || flags_cover & HEADCOVERSEYES)
 			var/list/things_blocked = list()
 			if(flags_cover & HEADCOVERSMOUTH)
@@ -316,24 +293,9 @@
 			if(flags_cover & HEADCOVERSEYES)
 				things_blocked += "pepperspray"
 			if(length(things_blocked))
-				readout += "\n<b>COVERAGE</b>"
-				readout += "\nIt will block [english_list(things_blocked)]."
-
-		readout += "</span>"
-
-		to_chat(usr, "[readout.Join()]")
-
-/**
-  * Rounds armor_value down to the nearest 10, divides it by 10 and then converts it to Roman numerals.
-  *
-  * Arguments:
-  * * armor_value - Number we're converting
-  */
-/obj/item/clothing/proc/armor_to_protection_class(armor_value)
-	if (armor_value < 0)
-		. = "-"
-	. += "\Roman[round(abs(armor_value), 10) / 10]"
-	return .
+				additional_info += "\n<b>COVERAGE</b>"
+				additional_info += "\nIt will block [english_list(things_blocked)]."
+		to_chat(usr, "[armor.show_protection_classes(additional_info)]")
 
 /obj/item/clothing/obj_break(damage_flag)
 	damaged_clothes = CLOTHING_DAMAGED
