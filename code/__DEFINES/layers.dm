@@ -169,9 +169,6 @@
 ///Pipecrawling images
 #define PIPECRAWL_IMAGES_PLANE 20
 
-///AI Camera Static
-#define CAMERA_STATIC_PLANE 21
-
 ///Anything that wants to be part of the game plane, but also wants to draw above literally everything else
 #define HIGH_GAME_PLANE 22
 
@@ -184,7 +181,6 @@
 
 //HUD layer defines
 
-#define FULLSCREEN_PLANE 20
 #define FLASH_LAYER 20
 #define FULLSCREEN_LAYER 20.1
 #define UI_DAMAGE_LAYER 20.2
