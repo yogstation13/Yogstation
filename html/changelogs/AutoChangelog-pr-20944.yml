@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "lightning flow no longer immobilizes for like 0.1 seconds every dash"
