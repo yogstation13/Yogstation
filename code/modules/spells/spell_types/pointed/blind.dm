@@ -39,5 +39,5 @@
 
 	to_chat(cast_on, span_warning("Your eyes cry out in pain!"))
 	cast_on.adjust_blindness(eye_blind_duration)
-	cast_on.blur_eyes(eye_blur_duration)
+	cast_on.adjust_eye_blur(eye_blur_duration)
 	return TRUE

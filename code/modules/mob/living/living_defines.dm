@@ -148,3 +148,5 @@
 	var/num_hands = 2
 	///How many usable hands does this mob currently have. Should only be changed through set_usable_hands()
 	var/usable_hands = 2
+	/// What our current gravity state is. Used to avoid duplicate animates and such
+	var/gravity_state = null

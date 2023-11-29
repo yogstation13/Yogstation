@@ -93,10 +93,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	hand_slots = list()
 
-	for(var/mytype in subtypesof(/atom/movable/screen/plane_master))
-		var/atom/movable/screen/plane_master/instance = new mytype()
-		plane_masters["[instance.plane]"] = instance
-		instance.backdrop(mymob)
+	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
+		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)
+		plane_master_controllers[controller_instance.name] = controller_instance
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
@@ -249,11 +248,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	return TRUE
 
 /datum/hud/proc/plane_masters_update()
-	// Plane masters are always shown to OUR mob, never to observers
-	for(var/thing in plane_masters)
-		var/atom/movable/screen/plane_master/PM = plane_masters[thing]
-		PM.backdrop(mymob)
-		mymob.client.screen += PM
+	for(var/group_key in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		// Plane masters are always shown to OUR mob, never to observers
+		group.refresh_hud()
 
 /datum/hud/human/show_hud(version = 0,mob/viewmob)
 	. = ..()
@@ -662,10 +660,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	current_plane_offset = new_offset
 
 	SEND_SIGNAL(src, COMSIG_HUD_OFFSET_CHANGED, old_offset, new_offset)
-	if(should_use_scale())
-		for(var/group_key as anything in master_groups)
-			var/datum/plane_master_group/group = master_groups[group_key]
-			group.transform_lower_turfs(src, new_offset)
+	// if(should_use_scale())
+	// 	for(var/group_key as anything in master_groups)
+	// 		var/datum/plane_master_group/group = master_groups[group_key]
+	// 		group.transform_lower_turfs(src, new_offset)
 
 /// Returns the plane master that matches the input plane from the passed in group
 /datum/hud/proc/get_plane_master(plane, group_key = PLANE_GROUP_MAIN)
@@ -688,3 +686,17 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 /// Returns the corresponding plane group datum if one exists
 /datum/hud/proc/get_plane_group(key)
 	return master_groups[key]
+
+/datum/hud/proc/on_eye_change(datum/source, atom/old_eye, atom/new_eye)
+	SIGNAL_HANDLER
+	SEND_SIGNAL(src, COMSIG_HUD_EYE_CHANGED, old_eye, new_eye)
+
+	if(old_eye)
+		UnregisterSignal(old_eye, COMSIG_MOVABLE_Z_CHANGED)
+	if(new_eye)
+		// By the time logout runs, the client's eye has already changed
+		// There's just no log of the old eye, so we need to override
+		// :sadkirby:
+		RegisterSignal(new_eye, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(eye_z_changed), override = TRUE)
+	eye_z_changed(new_eye)
+

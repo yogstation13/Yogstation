@@ -59,7 +59,7 @@
 	glass_desc = "It's just like a carrot but without crunching."
 
 /datum/reagent/consumable/carrotjuice/on_mob_life(mob/living/carbon/M)
-	M.adjust_blurriness(-1)
+	M.adjust_eye_blur(-1)
 	M.adjust_blindness(-1)
 	switch(current_cycle)
 		if(1 to 20)

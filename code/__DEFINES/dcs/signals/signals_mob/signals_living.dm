@@ -138,3 +138,7 @@
 
 ///from mind/transfer_to. Sent after the mind has been transferred: (mob/previous_body)
 #define COMSIG_MIND_TRANSFERRED "mind_transferred"
+///From living/Life(). (deltatime, times_fired)
+#define COMSIG_LIVING_LIFE "living_life"
+	/// Block the Life() proc from proceeding... this should really only be done in some really wacky situations.
+	#define COMPONENT_LIVING_CANCEL_LIFE_PROCESSING (1<<0)

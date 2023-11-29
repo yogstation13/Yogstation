@@ -289,7 +289,7 @@
 	if(did_player_win)
 		add_filter("jackpot_rays", 3, ray_filter)
 		animate(get_filter("jackpot_rays"), offset = 10, time = 3 SECONDS, loop = -1)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, remove_filter), "jackpot_rays"), 3 SECONDS)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, remove_filter), "jackpot_rays"), 3 SECONDS)
 		playsound(src, 'sound/machines/roulettejackpot.ogg', 50, TRUE)
 
 /obj/machinery/computer/slot_machine/proc/get_lines()

@@ -26,6 +26,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/station_minimaps = list()
 
+	/// List of z level (as number) -> The lowest plane offset in that z stack
+	var/list/z_level_to_lowest_plane_offset = list()
+
 	/// Assoc list of string plane to the plane's offset value
 	var/list/plane_to_offset
 

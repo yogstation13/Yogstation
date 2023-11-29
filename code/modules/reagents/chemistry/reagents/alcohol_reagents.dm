@@ -2383,7 +2383,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/inocybeshine/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
 		M.adjustStaminaLoss(10,0)
-		M.blur_eyes(3)
+		M.adjust_eye_blur(3)
 		M.adjust_disgust(1)
 		. = TRUE
 	return ..()

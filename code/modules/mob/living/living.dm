@@ -606,7 +606,7 @@
 	set_nutrition(NUTRITION_LEVEL_FED + 50)
 	bodytemperature = BODYTEMP_NORMAL
 	set_blindness(0)
-	set_blurriness(0)
+	set_eye_blur(0)
 
 	cure_nearsighted()
 	cure_blind()
@@ -1550,7 +1550,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			if(E)
 				E.setOrganDamage(var_value)
 		if("eye_blurry")
-			set_blurriness(var_value)
+			set_eye_blur(var_value)
 		if("maxHealth")
 			updatehealth()
 		if("resize")
@@ -1687,3 +1687,15 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 //	if(!resting)
 //		get_up()
 	set_resting(FALSE)
+	
+/mob/living/proc/move_to_error_room()
+	var/obj/effect/landmark/error/error_landmark = locate(/obj/effect/landmark/error) in GLOB.landmarks_list
+	if(error_landmark)
+		forceMove(error_landmark.loc)
+	else
+		forceMove(locate(4,4,1)) //Even if the landmark is missing, this should put them in the error room.
+		//If you're here from seeing this error, I'm sorry. I'm so very sorry. The error landmark should be a sacred object that nobody has any business messing with, and someone did!
+		//Consider seeing a therapist.
+		var/ERROR_ERROR_LANDMARK_ERROR = "ERROR-ERROR: ERROR landmark missing!"
+		log_mapping(ERROR_ERROR_LANDMARK_ERROR)
+		CRASH(ERROR_ERROR_LANDMARK_ERROR)

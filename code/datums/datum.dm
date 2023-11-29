@@ -313,3 +313,39 @@
 /obj/item/update_filters()
 	. = ..()
 	update_item_action_buttons()
+
+/datum/proc/add_filter(name, priority, list/params)
+	LAZYINITLIST(filter_data)
+	var/list/copied_parameters = params.Copy()
+	copied_parameters["priority"] = priority
+	filter_data[name] = copied_parameters
+	update_filters()
+
+/// Returns the indice in filters of the given filter name.
+/// If it is not found, returns null.
+/datum/proc/get_filter_index(name)
+	return filter_data?.Find(name)
+
+/// Removes the passed filter, or multiple filters, if supplied with a list.
+/datum/proc/remove_filter(name_or_names)
+	if(!filter_data)
+		return
+
+	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
+
+	for(var/name in names)
+		if(filter_data[name])
+			filter_data -= name
+	update_filters()
+
+/datum/proc/clear_filters()
+	ASSERT(isatom(src) || istype(src, /image))
+	var/atom/atom_cast = src // filters only work with images or atoms.
+	filter_data = null
+	atom_cast.filters = null
+
+/// Return text from this proc to provide extra context to hard deletes that happen to it
+/// Optional, you should use this for cases where replication is difficult and extra context is required
+/// Can be called more then once per object, use harddel_deets_dumped to avoid duplicate calls (I am so sorry)
+/datum/proc/dump_harddel_info()
+	return

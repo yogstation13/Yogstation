@@ -109,7 +109,7 @@
 		..()
 		return TRUE
 	playsound(caster, 'sound/magic/demon_attack1.ogg', 75, TRUE)
-	victim.blur_eyes(15) //huge array of relatively minor effects.
+	victim.adjust_eye_blur(15) //huge array of relatively minor effects.
 	victim.adjust_jitter(5 SECONDS)
 	victim.set_confusion_if_lower(5 SECONDS)
 	victim.adjust_disgust(40)

@@ -6,6 +6,9 @@
 
 #define CLICKCATCHER_PLANE -99
 
+#define FIELD_OF_VISION_BLOCKER_PLANE -96
+#define FIELD_OF_VISION_BLOCKER_RENDER_TARGET "*FIELD_OF_VISION_BLOCKER_RENDER_TARGET"
+
 #define PLANE_SPACE -95
 #define PLANE_SPACE_RENDER_TARGET "PLANE_SPACE"
 #define PLANE_SPACE_PARALLAX -90
@@ -18,13 +21,21 @@
 #define SINGULARITY_RENDER_TARGET "*SINGULARITY_EFFECTS_PLANE"
 
 #define RENDER_PLANE_TRANSPARENT -12 //Transparent plane that shows openspace underneath the floor
-#define TRANSPARENT_FLOOR_PLANE -5
-#define FLOOR_PLANE -4
+#define TRANSPARENT_FLOOR_PLANE -11
+#define FLOOR_PLANE -10
 #define FLOOR_PLANE_RENDER_TARGET "FLOOR_PLANE"
-#define WALL_PLANE -3
-#define GAME_PLANE -2
+#define WALL_PLANE -9
+#define GAME_PLANE_FOV_HIDDEN -8
+#define GAME_PLANE_UPPER -7
+#define GAME_PLANE -6
 #define GAME_PLANE_RENDER_TARGET "GAME_PLANE"
-#define WALL_PLANE_UPPER -1
+#define WALL_PLANE_UPPER -5
+#define GAME_PLANE_UPPER_FOV_HIDDEN -4
+///Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees
+#define SEETHROUGH_PLANE -3
+#define ABOVE_GAME_PLANE -2
+
+#define RENDER_PLANE_GAME_WORLD -1
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define BLACKNESS_PLANE_RENDER_TARGET "BLACKNESS_PLANE"
 
@@ -153,9 +164,23 @@
 #define CAMERA_STATIC_LAYER 19
 #define CAMERA_STATIC_RENDER_TARGET "CAMERA_STATIC_PLANE"
 
+///---------------- MISC -----------------------
+
+///Pipecrawling images
+#define PIPECRAWL_IMAGES_PLANE 20
+
+///AI Camera Static
+#define CAMERA_STATIC_PLANE 21
+
+///Anything that wants to be part of the game plane, but also wants to draw above literally everything else
+#define HIGH_GAME_PLANE 22
+
+#define FULLSCREEN_PLANE 23
+
+
 #define RUNECHAT_PLANE 20
 
-#define BALLOON_CHAT_PLANE 20.9
+#define BALLOON_CHAT_PLANE 21
 
 //HUD layer defines
 
@@ -210,7 +235,25 @@
 #define GHOST_PLANE 4
 #define POINT_PLANE 5
 
+/// Plane related to the menu when pressing Escape.
+/// Needed so that we can apply a blur effect to EVERYTHING, and guarantee we are above all UI.
+#define ESCAPE_MENU_PLANE 105
+
 #define RENDER_PLANE_MASTER 110
+
+/// A value of /datum/preference/numeric/multiz_performance that disables the option
+#define MULTIZ_PERFORMANCE_DISABLE -1
+/// We expect at most 3 layers of multiz
+/// Increment this define if you make a huge map. We unit test for it too just to make it easy for you
+/// If you modify this, you'll need to modify the tsx file too
+#define MAX_EXPECTED_Z_DEPTH 3
+
+
+///Plane master controller keys
+#define PLANE_MASTERS_GAME "plane_masters_game"
+#define PLANE_MASTERS_NON_MASTER "plane_masters_non_master"
+#define PLANE_MASTERS_COLORBLIND "plane_masters_colorblind"
+
 
 // Lummox I swear to god I will find you
 // NOTE! You can only ever have planes greater then -10000, if you add too many with large offsets you will brick multiz

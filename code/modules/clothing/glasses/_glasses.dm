@@ -59,7 +59,7 @@
 				to_chat(H, span_danger("[src] overloads and blinds you!"))
 				H.flash_act(visual = 1)
 				H.blind_eyes(3)
-				H.blur_eyes(5)
+				H.adjust_eye_blur(5)
 				eyes.applyOrganDamage(5)
 
 /obj/item/clothing/glasses/meson

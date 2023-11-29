@@ -348,7 +348,7 @@
 		if(EMP_HEAVY)
 			owner.set_drugginess(40)
 			owner.adjust_hallucinations(500 SECONDS)
-			owner.blur_eyes(20)
+			owner.adjust_eye_blur(20)
 			owner.adjust_dizzy(10 SECONDS)
 			time_on += 10
 			owner.adjustFireLoss(10)
@@ -356,7 +356,7 @@
 		if(EMP_LIGHT)
 			owner.set_drugginess(20)
 			owner.adjust_hallucinations(200 SECONDS)
-			owner.blur_eyes(10)
+			owner.adjust_eye_blur(10)
 			owner.adjust_dizzy(5 SECONDS)
 			time_on += 5
 			owner.adjustFireLoss(5)

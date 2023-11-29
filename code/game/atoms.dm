@@ -1492,30 +1492,13 @@
 	victim.log_message(message, LOG_ATTACK, color="blue")
 
 
-/atom/movable/proc/add_filter(name,priority,list/params)
-	if(!filter_data)
-		filter_data = list()
-	var/list/p = params.Copy()
-	p["priority"] = priority
-	filter_data[name] = p
-	update_filters()
+
 
 /obj/item/update_filters()
 	. = ..()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
-
-/// Returns the indice in filters of the given filter name.
-/// If it is not found, returns null.
-/atom/proc/get_filter_index(name)
-	return filter_data?.Find(name)
-
-/atom/movable/proc/remove_filter(name)
-	if(filter_data && filter_data[name])
-		filter_data -= name
-		update_filters()
-
 
 /atom/proc/intercept_zImpact(atom/movable/AM, levels = 1)
 	return FALSE

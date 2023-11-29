@@ -285,7 +285,7 @@
 		owner.current.adjust_jitter(3 SECONDS)
 	// BLOOD_VOLUME_SURVIVE: [122] - Blur Vision
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_SURVIVE(owner.current))
-		owner.current.blur_eyes((8 - 8 * (bloodsucker_blood_volume / BLOOD_VOLUME_BAD(owner.current)))* 2 SECONDS)
+		owner.current.adjust_eye_blur((8 - 8 * (bloodsucker_blood_volume / BLOOD_VOLUME_BAD(owner.current)))* 2 SECONDS)
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
 	if(bloodsucker_blood_volume < (FRENZY_THRESHOLD_ENTER + humanity_lost * 10) && !frenzied)

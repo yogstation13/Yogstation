@@ -53,7 +53,7 @@
 		to_chat(victim, span_userdanger("Your eyes explode with horrific pain!"))
 		victim.emote("scream")
 		eyes.applyOrganDamage(eyes.maxHealth)
-		victim.adjust_blurriness(30)
+		victim.adjust_eye_blur(30)
 		victim.adjust_blindness(30)
 		return TRUE
 
@@ -157,7 +157,7 @@
 	eyes.applyOrganDamage(0.5)
 	eye_damage_done += 0.5
 	if(eye_damage_done >= 20)
-		H.adjust_blurriness(2)
+		H.adjust_eye_blur(2)
 	if(eye_damage_done >= nearsight_breakpoint)
 		if(!HAS_TRAIT(H, TRAIT_NEARSIGHT))
 			to_chat(H, span_nzcrentr("Your vision doubles, then trembles. Darkness begins to close in. You can't keep this up!"))

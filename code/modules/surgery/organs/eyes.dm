@@ -55,7 +55,7 @@
 		HMN.update_body()
 	M.cure_blind(list(EYE_DAMAGE)) // can't be blind from eye damage if there's no eye to be damaged, still blind from not having eyes though
 	M.cure_nearsighted(list(EYE_DAMAGE)) // likewise for nearsightedness
-	M.set_blurriness(0) // no eyes to blur
+	M.set_eye_blur(0) // no eyes to blur
 	M.update_tint()
 	M.update_sight()
 
@@ -201,7 +201,7 @@
 	to_chat(owner, span_danger("your eyes overload and blind you!"))
 	owner.flash_act(override_blindness_check = 1)
 	owner.blind_eyes(5)
-	owner.blur_eyes(8)
+	owner.adjust_eye_blur(8)
 	eyes.applyOrganDamage(20 / severity)
 
 /obj/item/organ/eyes/robotic/xray

@@ -498,3 +498,8 @@
 #define TRAIT_MESON_VISION "meson_vision"
 /// Ignores darkness for hearing
 #define TRAIT_HEAR_THROUGH_DARKNESS "hear_through_darkness"
+/// "Magic" trait that blocks the mob from moving or interacting with anything. Used for transient stuff like mob transformations or incorporality in special cases.
+/// Will block movement, `Life()` (!!!), and other stuff based on the mob.
+#define TRAIT_NO_TRANSFORM "block_transformations"
+/// Does nothing on its own, applied via status effect.
+#define TRAIT_STASIS "in_stasis"
