@@ -136,9 +136,9 @@
 
 /obj/item/organ/eyes/night_vision/Initialize(mapload)
 	. = ..()
-	if (PERFORM_ALL_TESTS(focus_only/nightvision_color_cutoffs) && type != /obj/item/organ/eyes/night_vision)
-		if(length(low_light_cutoff) != 3 || length(medium_light_cutoff) != 3 || length(high_light_cutoff) != 3)
-			stack_trace("[type] did not have fully filled out color cutoff lists")
+
+	if(length(low_light_cutoff) != 3 || length(medium_light_cutoff) != 3 || length(high_light_cutoff) != 3)
+		stack_trace("[type] did not have fully filled out color cutoff lists")
 	if(low_light_cutoff)
 		color_cutoffs = low_light_cutoff.Copy()
 	light_level = NIGHTVISION_LIGHT_LOW
