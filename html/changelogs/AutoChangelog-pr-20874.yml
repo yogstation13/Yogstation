@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Lizard tail users can *thump their tail."
+  - soundadd: "Tail thump."
