@@ -356,7 +356,13 @@
 		new_human_mob.sec_hud_set_ID()
 
 	for(var/obj/item/implant/implant_instance in copied_human_mob.implants)
-		var/obj/item/implant/implant_copy = new implant_instance.type
+		var/obj/item/implant/implant_copy
+		if(istype(implant_instance, /obj/item/implant/dusting/iaa))
+			implant_copy = new /obj/item/implant/dusting/iaa/fake ()
+		else 
+			implant_copy = new implant_instance.type
+		if(!implant_copy)
+			continue //if somehow it doesn't create a copy, don't runtime
 		implant_copy.implant(new_human_mob, null, TRUE)
 		if(dropdel)
 			QDEL_IN(implant_copy, 7 SECONDS)
