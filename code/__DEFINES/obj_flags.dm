@@ -86,3 +86,8 @@
 #define ADD_CLOTHING_TRAIT(mob, trait) ADD_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")
 /// Wrapper for removing clothing based traits
 #define REMOVE_CLOTHING_TRAIT(mob, trait) REMOVE_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")
+
+#define BLOCK_Z_OUT_DOWN (1<<5)  // Should this object block z falling from loc?
+#define BLOCK_Z_OUT_UP (1<<6) // Should this object block z uprise from loc?
+#define BLOCK_Z_IN_DOWN (1<<7) // Should this object block z falling from above?
+#define BLOCK_Z_IN_UP (1<<8) // Should this object block z uprise from below?

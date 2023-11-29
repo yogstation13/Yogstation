@@ -10,3 +10,10 @@
 #define ALL_TURFS(...) block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
 
 #define IS_OPAQUE_TURF(turf) (turf.directional_opacity == ALL_CARDINALS)
+
+/// The pipes, disposals, and wires are hidden
+#define UNDERFLOOR_HIDDEN 0
+/// The pipes, disposals, and wires are visible but cannot be interacted with
+#define UNDERFLOOR_VISIBLE 1
+/// The pipes, disposals, and wires are visible and can be interacted with
+#define UNDERFLOOR_INTERACTABLE 2

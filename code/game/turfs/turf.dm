@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	icon = 'icons/turf/floors.dmi'
 	level = 1
 	luminosity = 1
-
+	light_height = LIGHTING_HEIGHT_FLOOR
 	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 	var/intact = 1
@@ -16,11 +16,24 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
 
+	/// Turf bitflags, see code/__DEFINES/flags.dm
+	var/turf_flags = NONE
+
 	var/temperature = T20C
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 
+	/// If there's a tile over a basic floor that can be ripped out
+	var/overfloor_placed = FALSE
+	/// How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.
+	var/underfloor_accessibility = UNDERFLOOR_HIDDEN
+	/// If there is a lattice underneat this turf. Used for the attempt_lattice_replacement proc to determine if it should place lattice.
+	var/lattice_underneath = TRUE
+
 	var/blocks_air = FALSE
+
+	// Optimization, not for setting outside of initialize
+	var/init_air = TRUE
 
 	flags_1 = CAN_BE_DIRTY_1
 
@@ -58,6 +71,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/list/atom/movable/opacity_sources
 
 	var/force_no_gravity = FALSE
+
+	///Bool, whether this turf will always be illuminated no matter what area it is in
+	///Makes it look blue, be warned
+	var/space_lit = FALSE
 
 
 /turf/vv_edit_var(var_name, new_value)
@@ -158,8 +175,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(.)
 		return
 	user.Move_Pulled(src)
-
-/turf/proc/multiz_turf_del(turf/T, dir)
 
 /turf/proc/multiz_turf_new(turf/T, dir)
 
@@ -652,3 +667,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /// Called when attempting to set fire to a turf
 /turf/proc/IgniteTurf(power, fire_color="red")
 	return
+
+/// Returns whether it is safe for an atom to move across this turf
+/turf/proc/can_cross_safely(atom/movable/crossing)
+	return TRUE
+
+/turf/proc/multiz_turf_del(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)

@@ -36,6 +36,19 @@
 /turf/open/zAirOut(direction, turf/source)
 	return (direction == UP)
 
+/**
+ * Replace an open turf with another open turf while avoiding the pitfall of replacing plating with a floor tile, leaving a hole underneath.
+ * This replaces the current turf if it is plating and is passed plating, is tile and is passed tile.
+ * It places the new turf on top of itself if it is plating and is passed a tile.
+ * It also replaces the turf if it is tile and is passed plating, essentially destroying the over turf.
+ * Flags argument is passed directly to ChangeTurf or PlaceOnTop
+ */
+/turf/open/proc/replace_floor(turf/open/new_floor_path, flags)
+	if (!overfloor_placed && initial(new_floor_path.overfloor_placed))
+		place_on_top(new_floor_path, flags = flags)
+		return
+	ChangeTurf(new_floor_path, flags = flags)
+
 /turf/open/indestructible
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
@@ -618,3 +631,54 @@
 		flammability = initial(flammability)
 		return
 	flammability = new_flammability
+
+/// Builds with rods. This doesn't exist to be overriden, just to remove duplicate logic for turfs that want
+/// To support floor tile creation
+/// I'd make it a component, but one of these things is space. So no.
+/turf/open/proc/build_with_rods(obj/item/stack/rods/used_rods, mob/user)
+	var/obj/structure/lattice/catwalk_bait = locate(/obj/structure/lattice, src)
+	var/obj/structure/lattice/catwalk/existing_catwalk = locate(/obj/structure/lattice/catwalk, src)
+	if(existing_catwalk)
+		to_chat(user, span_warning("There is already a catwalk here!"))
+		return
+
+	if(catwalk_bait)
+		if(used_rods.use(1))
+			qdel(catwalk_bait)
+			to_chat(user, span_notice("You construct a catwalk."))
+			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+			new /obj/structure/lattice/catwalk(src)
+		else
+			to_chat(user, span_warning("You need two rods to build a catwalk!"))
+		return
+
+	if(used_rods.use(1))
+		to_chat(user, span_notice("You construct a lattice."))
+		playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+		new /obj/structure/lattice(src)
+	else
+		to_chat(user, span_warning("You need one rod to build a lattice."))
+
+/// Very similar to build_with_rods, this exists to allow consistent behavior between different types in terms of how
+/// Building floors works
+/turf/open/proc/build_with_floor_tiles(obj/item/stack/tile/plasteel/used_tiles, user)
+	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, src)
+	if(!has_valid_support() && !lattice)
+		balloon_alert(user, "needs support, place rods!")
+		return
+	if(!used_tiles.use(1))
+		balloon_alert(user, "need a floor tile to build!")
+		return
+
+	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+	var/turf/open/floor/plating/new_plating = place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+	if(lattice)
+		qdel(lattice)
+	else
+		new_plating.lattice_underneath = FALSE
+
+/turf/open/proc/has_valid_support()
+	for (var/direction in GLOB.cardinals)
+		if(istype(get_step(src, direction), /turf/open/floor))
+			return TRUE
+	return FALSE

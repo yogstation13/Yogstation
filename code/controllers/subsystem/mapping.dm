@@ -55,6 +55,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/areas_in_z = list()
 
+	///list of lists, inner lists are of the form: list("up or down link direction" = TRUE)
+	var/list/multiz_levels = list()
+
 	var/loading_ruins = FALSE
 	var/list/turf/unused_turfs = list()				//Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
 	var/list/datum/turf_reservations		//list of turf reservations
@@ -650,3 +653,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	for(var/turf/to_contain as anything in Z_TURFS(z_level))
 		var/area/our_area = to_contain.loc
 		our_area.contained_turfs += to_contain
+
+/datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
+	RETURN_TYPE(/datum/turf_reservation)
+	return used_turfs[T]

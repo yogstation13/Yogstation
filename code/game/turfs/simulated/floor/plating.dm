@@ -188,3 +188,8 @@
 	if(locate(/obj/structure/lattice/catwalk, src))
 		return FALSE
 	return TRUE
+///not an actual turf its used just for rcd ui purposes
+/turf/open/floor/plating/rcd
+	name = "Floor/Wall"
+	icon = 'icons/mob/radial.dmi'
+	icon_state = "wallfloor"

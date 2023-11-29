@@ -33,6 +33,8 @@
 
 	var/list/atmos_overlay_types //gas IDs of current active gas overlays
 	is_openturf = TRUE
+	/// exists so things like space can ask to take 100% of a tile's gas
+	var/run_later = FALSE
 
 /turf/open/Initialize(mapload)
 	if(!blocks_air)

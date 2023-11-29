@@ -19,6 +19,9 @@
 	/// A reference to the owner HUD, if any.
 	VAR_PRIVATE/datum/hud/hud = null
 
+	/// If FALSE, this will not be cleared when calling /client/clear_screen()
+	var/clear_with_screen = TRUE
+
 /atom/movable/screen/New(datum/hud/new_hud)
 	. = ..()
 	if(istype(new_hud))

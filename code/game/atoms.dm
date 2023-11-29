@@ -12,6 +12,9 @@
 	///If non-null, overrides a/an/some in all cases
 	var/article
 
+	/// How many tiles "up" this light is. 1 is typical, should only really change this if it's a floor light
+	var/light_height = LIGHTING_HEIGHT
+
 	///First atom flags var
 	var/flags_1 = NONE
 	///Intearaction flags

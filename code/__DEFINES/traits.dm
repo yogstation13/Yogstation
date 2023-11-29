@@ -510,3 +510,6 @@
  */
 #define TRAIT_VENTCRAWLER_ALWAYS "ventcrawler_always"
 #define TRAIT_VENTCRAWLER_NUDE "ventcrawler_nude"
+#define TRAIT_SPACEWALK "spacewalk"
+///Turf trait for when a turf is transparent
+#define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
