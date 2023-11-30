@@ -193,3 +193,5 @@
 	/// Do we want to do parallax animations at all?
 	/// Exists to prevent laptop fires
 	var/do_parallax_animations = TRUE
+	var/parallax_throttle = 0 //ds between updates
+	var/last_parallax_shift //world.time of last update
