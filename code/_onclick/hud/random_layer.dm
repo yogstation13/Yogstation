@@ -24,7 +24,7 @@
 
 /// Gassy background with a few random colors
 /atom/movable/screen/parallax_layer/random/space_gas
-	icon_state = "space_gas"
+	icon_state = "random_layer1"
 
 	/// The colors we can be
 	var/possible_colors = list(COLOR_TEAL, COLOR_GREEN, COLOR_SILVER, COLOR_YELLOW, COLOR_CYAN, COLOR_ORANGE, COLOR_PURPLE)
@@ -48,5 +48,5 @@
 
 /// Big asteroid rocks appear in the background
 /atom/movable/screen/parallax_layer/random/asteroids
-	icon_state = "asteroids"
+	icon_state = "random_layer2"
 	layer = 4
