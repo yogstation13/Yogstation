@@ -56,7 +56,7 @@
 		vassal.see_in_dark = 8
 		vassal.eye_color = BLOODCULT_EYE
 		vassal.updateappearance()
-	var/list/powers = list(/datum/action/cooldown/spell/pointed/glare/lesser, /datum/action/cooldown/spell/jaunt/shadow_walk)
+	var/list/powers = list(/datum/action/cooldown/spell/pointed/seize/lesser, /datum/action/cooldown/spell/jaunt/shadow_walk)
 	for(var/datum/action/cooldown/spell/power in powers)
 		power = new(vassaldatum.owner.current)
 		power.Grant(vassaldatum.owner.current)

@@ -306,8 +306,8 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 //----------------------Abilities that thralls get----------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/glare/lesser //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
-	name = "Lesser Glare"
+/datum/action/cooldown/spell/pointed/seize/lesser //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
+	name = "Lesser Seize"
 	desc = "Makes a single target dizzy for a bit."
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "glare"

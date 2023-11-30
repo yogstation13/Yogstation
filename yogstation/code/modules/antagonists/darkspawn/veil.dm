@@ -6,7 +6,7 @@
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
 	var/mutable_appearance/veil_sigils
-	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/glare/lesser)
+	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/seize/lesser)
 	var/current_willpower_progress = 0
 
 /datum/antagonist/veil/on_gain()

@@ -82,8 +82,8 @@
 //////////////////////////////////////////////////////////////////////////
 //---------------------Detain and capture ability-----------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/glare //Stuns and mutes a human target for 10 seconds
-	name = "Glare"
+/datum/action/cooldown/spell/pointed/seize //Stuns and mutes a human target for 10 seconds
+	name = "Seize"
 	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
 	panel = null
 	button_icon_state = "glare"
@@ -99,43 +99,46 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
 	var/strong = TRUE
 
-/datum/action/cooldown/spell/pointed/glare/before_cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/seize/before_cast(atom/cast_on)
 	. = ..()
 	if(!cast_on || !isliving(cast_on))
-		return . | SPELL_CANCEL_CAST
-	if(!owner.getorganslot(ORGAN_SLOT_EYES))
-		to_chat(owner, span_warning("You need eyes to glare!"))
 		return . | SPELL_CANCEL_CAST
 	var/mob/living/carbon/target = cast_on
 	if(istype(target) && target.stat)
 		to_chat(owner, span_warning("[target] must be conscious!"))
 		return . | SPELL_CANCEL_CAST
 	if(is_darkspawn_or_veil(target))
-		to_chat(owner, span_warning("You cannot glare at allies!"))
+		to_chat(owner, span_warning("You cannot seize allies!"))
 		return . | SPELL_CANCEL_CAST
 
-/datum/action/cooldown/spell/pointed/glare/cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/seize/cast(atom/cast_on)
 	. = ..()
-	if(!isliving(cast_on))
+	if(!isliving(cast_on) || !ishuman(owner))
 		return
-	owner.visible_message(span_warning("<b>[owner]'s eyes flash a purpleish-red!</b>"), span_velvet("Sskr'aya"))
+
+	var/mob/living/carbon/human/user = owner
+	if(!(user.check_obscured_slots() & ITEM_SLOT_EYES)) //only show if the eyes are visible
+		user.visible_message(span_warning("<b>[user]'s eyes flash a deep purple</b>"))
+
+	to_chat(user, span_velvet("Sskr'aya"))
+
 	var/mob/living/target = cast_on
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
-	var/distance = get_dist(target, owner)
+		
+	var/distance = get_dist(target, user)
 	if (distance <= 2 && strong)
 		target.visible_message(span_danger("[target] suddenly collapses..."))
-		to_chat(target, span_userdanger("A purple light flashes across your vision, and you lose control of your movements!"))
+		to_chat(target, span_userdanger("A purple light flashes through your mind, and you lose control of your movements!"))
 		target.Paralyze(10 SECONDS)
 		if(iscarbon(target))
 			var/mob/living/carbon/M = target
 			M.silent += 10
 	else //Distant glare
-		var/loss = 100 - (distance * 10)
+		var/loss = max(100 - (distance * 10), 0)
 		target.adjustStaminaLoss(loss)
 		target.adjust_stutter(loss)
-		to_chat(target, span_userdanger("A purple light flashes across your vision, and exhaustion floods your body..."))
-		target.visible_message(span_danger("[target] looks very tired..."))
+		to_chat(target, span_userdanger("A purple light flashes through your mind, and exhaustion floods your body..."))
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------Temporary Darkness in aoe-----------------------//
