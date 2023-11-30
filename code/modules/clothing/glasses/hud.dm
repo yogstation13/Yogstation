@@ -144,7 +144,7 @@
 	flash_protect = 1
 	tint = 1
 	// Red with a tint of green
-	color_cutoffs = list(35, 5, 5)
+	color_cutoffs = list(15, 5, 5)
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
 
 /obj/item/clothing/glasses/hud/security/sunglasses/hos
@@ -157,6 +157,7 @@
 	desc = "An advanced heads-up display which provides ID data and vision in complete darkness."
 	icon_state = "securityhudnight"
 	flash_protect = -1
+	color_cutoffs = list(35, 5, 5)
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
