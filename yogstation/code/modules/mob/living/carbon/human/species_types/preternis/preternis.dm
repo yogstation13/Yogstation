@@ -47,7 +47,6 @@
 	var/lockdown = FALSE
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
-	var/tesliumtrip = FALSE
 	var/draining = FALSE
 	var/soggy = FALSE
 	var/low_power_warning = FALSE
@@ -87,7 +86,6 @@
 
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
-	C.remove_movespeed_modifier("preternis_teslium")
 	C.remove_movespeed_modifier("preternis_water")
 	C.remove_movespeed_modifier("preternis_maglock")
 
@@ -155,20 +153,7 @@
 	
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
-	if(H.reagents.has_reagent(/datum/reagent/teslium))
-		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustBruteLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-		H.AdjustParalyzed(-3)
-		H.AdjustStun(-3)
-		H.AdjustKnockdown(-3)
-		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjust_nutrition(10 * REAGENTS_METABOLISM)//more power charges you, why would it drain you
-		burnmod = 10
-		tesliumtrip = TRUE
-
-	if (istype(chem,/datum/reagent/consumable))
+	if (istype(chem,/datum/reagent/consumable) && !istype(chem, /datum/reagent/consumable/liquidelectricity))
 		var/datum/reagent/consumable/food = chem
 		if (food.nutriment_factor)
 			H.adjust_nutrition(food.nutriment_factor * 0.2)
@@ -187,9 +172,6 @@
 	emag_lvl = 0
 	H.clear_alert("preternis_emag")
 	H.clear_fullscreen("preternis_emag")
-	burnmod = initial(burnmod)
-	tesliumtrip = FALSE
-	H.remove_movespeed_modifier("preternis_teslium") //full heal removes chems so it wont update the teslium speed up until they eat something
 
 /datum/species/preternis/movement_delay(mob/living/carbon/human/H)
 	. = ..()
@@ -200,11 +182,6 @@
 	
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
-	if(tesliumtrip && !H.reagents.has_reagent(/datum/reagent/teslium))//remove teslium effects if you don't have it in you
-		burnmod = initial(burnmod)
-		tesliumtrip = FALSE
-		H.remove_movespeed_modifier("preternis_teslium")
-
 	if(H.stat == DEAD)
 		return
 
