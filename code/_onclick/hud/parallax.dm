@@ -13,15 +13,15 @@
 
 	if(!length(C.parallax_layers_cached))
 		C.parallax_layers_cached = list()
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, C.view)
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, C.view)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, src)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, src)
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_MOONSCORCH))
-			C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet/moonscorch(null, C.view)
+			C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet/moonscorch(null, src)
 		else
-			C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, C.view)
+			C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, src)
 		if(SSparallax.random_layer)
-			C.parallax_layers_cached += new SSparallax.random_layer
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, C.view)
+			C.parallax_layers_cached += new SSparallax.random_layer.type(null, src, FALSE, SSparallax.random_layer)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, src)
 
 	C.parallax_layers = C.parallax_layers_cached.Copy()
 

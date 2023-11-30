@@ -10,13 +10,12 @@ SUBSYSTEM_DEF(parallax)
 	var/list/currentrun
 	var/planet_x_offset = 128
 	var/planet_y_offset = 128
-	var/random_parallax_color
 	/// A random parallax layer that we sent to every player
 	var/atom/movable/screen/parallax_layer/random/random_layer
 	/// Weighted list with the parallax layers we could spawn
 	var/random_parallax_weights = list(
 		/atom/movable/screen/parallax_layer/random/space_gas = 35,
-		// /atom/movable/screen/parallax_layer/random/asteroids = 35,
+		///atom/movable/screen/parallax_layer/random/asteroids = 35,
 		PARALLAX_NONE = 30,
 	)
 
