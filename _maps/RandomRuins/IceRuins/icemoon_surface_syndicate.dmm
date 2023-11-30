@@ -932,7 +932,6 @@
 /area/ruin/syndicate_icemoon/medical)
 "fV" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/structure/bodycontainer/morgue{
 	dir = 2
 	},
@@ -2436,6 +2435,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
 "qh" = (
