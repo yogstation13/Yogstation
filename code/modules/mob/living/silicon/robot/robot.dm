@@ -1081,7 +1081,7 @@
 		sight |= SEE_TURFS
 		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, list(5, 15, 5))
 
-	if(sight_mode & BORGMESON_NIGHTVISION)
+	if(sight_mode & BORGMESON)
 		sight |= SEE_TURFS
 		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, list(5, 30, 5))
 

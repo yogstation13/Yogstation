@@ -140,3 +140,5 @@ require only minor tweaks.
 #define PLACE_LAVA_RUIN "lavaland"
 #define PLACE_ICE_RUIN "icesurface"
 #define PLACE_ICE_UNDERGROUND_RUIN "iceunderground"
+///boolean - does this z disable parallax?
+#define ZTRAIT_NOPARALLAX "No Parallax"

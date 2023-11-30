@@ -173,3 +173,23 @@
 
 	/// Whether or not this client has the combo HUD enabled
 	var/combo_hud_enabled = FALSE
+
+	var/list/parallax_layers
+	var/list/parallax_layers_cached
+	///Tracks say() usage for ic/dchat while slowmode is enabled
+	COOLDOWN_DECLARE(say_slowmode)
+	
+	///this is the last recorded client eye by SSparallax/fire()
+	var/atom/movable/movingmob
+	var/turf/previous_turf
+	///world.time of when we can state animate()ing parallax again
+	var/dont_animate_parallax
+	/// Direction our current area wants to move parallax
+	var/parallax_movedir = 0
+	/// How many parallax layers to show our client
+	var/parallax_layers_max = 4
+	/// Timer for the area directional animation
+	var/parallax_animate_timer
+	/// Do we want to do parallax animations at all?
+	/// Exists to prevent laptop fires
+	var/do_parallax_animations = TRUE
