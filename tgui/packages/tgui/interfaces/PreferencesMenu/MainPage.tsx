@@ -594,7 +594,13 @@ export const MainPage = (props: {
                   randomizations={getRandomization(contextualPreferences)}
                   preferences={contextualPreferences}
                 />
-
+                <Button
+                  icon='headphones'
+                  content='Preview Text-to-Speech'
+                  disabled={data.tts_preview_disabled}
+                  fluid
+                  onClick={() => act('preview_tts')}
+                />
                 <PreferenceList
                   act={act}
                   randomizations={getRandomization(nonContextualPreferences)}

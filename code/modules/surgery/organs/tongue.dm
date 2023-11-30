@@ -307,6 +307,7 @@
 	icon_state = "tonguexeno"
 	say_mod = "hisses"
 	modifies_speech = TRUE
+	organ_tts_filters = list(TTS_FILTER_ALIEN)
 	var/static/list/languages_possible_polysmorph = typecacheof(list(
 		/datum/language/common,
 		/datum/language/polysmorph))

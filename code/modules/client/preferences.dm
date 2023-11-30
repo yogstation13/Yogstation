@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Cached list of keybindings, mapping keys to actions.
 	/// For example, by default would have "X" -> list("swap_hands")
 	var/list/key_bindings_by_key = list()
-	
+
 	var/toggles = TOGGLES_DEFAULT
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				unlock_content |= DONOR_BYOND
 
 			// the latter handles race cases where the prefs are not fully loaded in, or GLOB.donators hasn't loaded in yet
-			if(is_donator(C) || (C.ckey in get_donators())) 
+			if(is_donator(C) || (C.ckey in get_donators()))
 				unlock_content |= DONOR_YOGS
 
 	// give save slots to donors
@@ -174,6 +174,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		tainted_character_profiles = FALSE
 
 	data["character_preferences"] = compile_character_preferences(user)
+
+	data["tts_preview_disabled"] = !SSticker.tts_alive
 
 	data["active_slot"] = default_slot
 
@@ -289,6 +291,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				return FALSE
 
 			return TRUE
+
+		if("preview_tts")
+			var/model = read_preference(/datum/preference/choiced/tts_voice)
+			var/pitch = read_preference(/datum/preference/numeric/tts_pitch)
+			var/list/filters = list()
+			if(isipc(character_preview_view.body) || ispreternis(character_preview_view.body) || issilicon(character_preview_view.body))
+				filters += list(list(TTS_FILTER_ROBOTIC = TRUE))
+			if(isAI(character_preview_view.body)) // youll be talking through the radio a lot
+				filters += list(list(TTS_FILTER_RADIO = TRUE))
+			if(islizard(character_preview_view.body))
+				filters += list(list(TTS_FILTER_LIZARD = TRUE))
+			if(ispolysmorph(character_preview_view.body))
+				filters += list(list(TTS_FILTER_ALIEN = TRUE))
+			if(isethereal(character_preview_view.body))
+				filters += list(list(TTS_FILTER_ETHEREAL = TRUE))
+			var/sound/tts = piper_tts("How are you doing today?", model, pitch, filters)
+			if(!tts || !istype(tts))
+				return
+
+			SEND_SOUND(usr, tts)
+
+			return
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/delegation = preference_middleware.action_delegations[action]
@@ -526,7 +550,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 			continue
 
 		preference.apply_to_human(character, read_preference(preference.type))
-	
+
 	character.dna.real_name = character.real_name
 
 	if(icon_updates)

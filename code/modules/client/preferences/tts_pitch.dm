@@ -3,8 +3,8 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tts_pitch"
 
-	minimum = 0.8
-	maximum = 1.2
+	minimum = 0.9
+	maximum = 1.1
 	step = 0.05
 
 /datum/preference/numeric/tts_pitch/create_default_value()

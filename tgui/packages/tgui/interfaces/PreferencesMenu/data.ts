@@ -175,6 +175,8 @@ export type PreferencesMenuData = {
 
   earned_skillcapes: string[];
 
+  tts_preview_disabled: boolean;
+
   window: Window;
 };
 
