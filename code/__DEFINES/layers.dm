@@ -96,6 +96,7 @@
 //HUD layer defines
 #define HUD_PLANE 40
 #define ABOVE_HUD_PLANE 41
+#define ABOVE_HUD_LAYER 41
 
 ///Plane of the "splash" icon used that shows on the lobby screen
 #define SPLASHSCREEN_PLANE 50
