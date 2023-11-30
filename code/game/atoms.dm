@@ -145,7 +145,6 @@
 		if(SSatoms.InitAtom(src, args))
 			//we were deleted
 			return
-	SSdemo.mark_new(src)
 
 /**
   * The primary method that objects are setup in SS13 with
@@ -205,6 +204,8 @@
 
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
+	
+	SSdemo.mark_new(src)
 
 	return INITIALIZE_HINT_NORMAL
 
