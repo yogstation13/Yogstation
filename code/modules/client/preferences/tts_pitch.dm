@@ -7,5 +7,8 @@
 	maximum = 1.2
 	step = 0.05
 
+/datum/preference/numeric/tts_pitch/create_default_value()
+	return rand(minimum * 10, maximum * 10) / 10
+
 /datum/preference/numeric/tts_pitch/apply_to_human(mob/living/carbon/human/target, value)
 	target.tts_pitch = value
