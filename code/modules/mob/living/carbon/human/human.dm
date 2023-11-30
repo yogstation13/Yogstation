@@ -1129,11 +1129,8 @@
 		remove_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE)
 
 /mob/living/carbon/human/updatehealth()
-	var/oldhealth = health
 	. = ..()
 	dna?.species.spec_updatehealth(src)
-	if(!dna)
-		return
 
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
