@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new lavaland lava type that you can't replace with shelter"
+  - tweak: "lavaland syndie base is surrounded by no-shelter lavaland lava"
