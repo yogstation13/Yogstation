@@ -340,6 +340,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/parallax_layer)
 	speed = 3
 	layer = 30
 
+/atom/movable/screen/parallax_layer/planet/moonscorch
+	icon_state = "rheus_moon"
+
 /atom/movable/screen/parallax_layer/planet/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	var/client/boss = hud_owner?.mymob?.canon_client
