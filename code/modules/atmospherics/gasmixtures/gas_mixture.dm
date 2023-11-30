@@ -374,6 +374,8 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 		//math is under the assumption temperatures are equal
 		var/self_moles = get_moles(gas_id)
 		var/other_moles = other.get_moles(gas_id)
+		
+		//i apologize for this terrible change, i added a bunch of max() procs because they were often dividing by 0 and causing errors
 		if(abs(self_moles / max(return_volume(), 0.000001) - other_moles / max(other.return_volume(), 0.000001)) > min_p_delta / max(R_IDEAL_GAS_EQUATION * return_temperature(), 0.00001))
 			. = TRUE
 			var/total_moles = self_moles + other_moles
