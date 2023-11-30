@@ -19,6 +19,12 @@ SUBSYSTEM_DEF(parallax)
 		PARALLAX_NONE = 30,
 	)
 
+/datum/controller/subsystem/parallax/Initialize(timeofday)
+	if(prob(70))	//70% chance to pick a special extra layer
+		random_layer = pick(/atom/movable/screen/parallax_layer/random/space_gas, /atom/movable/screen/parallax_layer/random/asteroids)
+	planet_x_offset = rand(100, 160)
+	return SS_INIT_SUCCESS
+
 //These are cached per client so needs to be done asap so people joining at roundstart do not miss these.
 /datum/controller/subsystem/parallax/PreInit()
 	. = ..()
