@@ -251,6 +251,38 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	"mixed4" = "Macadamia",
 ))
 
+GLOBAL_LIST_INIT(tts_voices_names, sortList(list(
+	"GB-alba" = "Alba (Scottish Female)",
+	"GB-aru" = "Aru (North-East English Female)",
+	"GB-jenny_dioco" = "Jenny (Welsh Female)",
+	"GB-northern_english_male" = "Josh (Yorkshire Male)",
+	"GB-southern_english_female" = "Lucy (London Female)",
+	"GB-vctk" = "Vctk (Midlands Female)",
+	"US-amy" = "Amy (Northern American Female)",
+	"US-danny" = "Danny (British American Male)",
+	"US-joe" = "Joe (Hawaiian Male)",
+	"US-kathleen" = "Kathleen (Elder Eastern American Female)",
+	"US-kusal" = "Kusal (Asian American Male)",
+	"US-libritts_r" = "Libritts (Michigan Female)"
+	)))
+GLOBAL_PROTECT(tts_voices_names)
+
+GLOBAL_LIST_INIT(tts_voices, sortList(list(
+	"GB-alba",
+	"GB-aru",
+	"GB-jenny_dioco",
+	"GB-northern_english_male",
+	"GB-southern_english_female",
+	"GB-vctk",
+	"US-amy",
+	"US-danny",
+	"US-joe",
+	"US-kathleen",
+	"US-kusal",
+	"US-libritts_r"
+	)))
+GLOBAL_PROTECT(tts_voices)
+
 GLOBAL_LIST_EMPTY(species_list)
 
 /proc/age2agedescription(age)

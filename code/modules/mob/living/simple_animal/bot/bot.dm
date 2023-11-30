@@ -143,6 +143,7 @@
 
 /mob/living/simple_animal/bot/Initialize(mapload)
 	. = ..()
+	ADD_FILTER(src, TTS_FILTER_ROBOTIC, ROUNDSTART_FILTER)
 	GLOB.bots_list += src
 	access_card = new /obj/item/card/id(src)
 //This access is so bots can be immediately set to patrol and leave Robotics, instead of having to be let out first.

@@ -161,10 +161,10 @@
 		for(var/datum/action/changeling/p in purchasedpowers)
 			if(p.dna_cost > 0)
 				additionalpoints += p.dna_cost
-			
+
 			purchasedpowers -= p
 			p.Remove(owner.current)
-			
+
 		geneticpoints = additionalpoints
 
 /datum/antagonist/changeling/proc/reset_powers()
@@ -226,7 +226,7 @@
 		to_chat(owner.current, "We lack the energy to evolve new abilities right now.")
 		return
 	//this checks for conflicting abilities that you dont want players to have at the same time (movement speed abilities for example)
-	for(var/conflictingpower in thepower.conflicts) 
+	for(var/conflictingpower in thepower.conflicts)
 		if(has_sting(conflictingpower))
 			to_chat(owner.current, "This power conflicts with another power we currently have!")
 			return
@@ -324,6 +324,7 @@
 	prof.underwear = H.underwear
 	prof.undershirt = H.undershirt
 	prof.socks = H.socks
+	prof.tts_voice = H.tts_voice
 	if(H.mind)//yes we need to check this
 		prof.accent = H.mind.accent_name
 
@@ -591,7 +592,7 @@
 	// however, this is "close enough" preliminary checks to not block click
 	if(!isliving(clicked) || !IN_GIVEN_RANGE(ling, clicked, sting_range))
 		return
-	
+
 	chosen_sting.try_to_sting(ling, clicked)
 	ling.next_click = world.time + 5
 
@@ -634,6 +635,7 @@
 	var/underwear
 	var/undershirt
 	var/socks
+	var/tts_voice
 	var/accent = null
 	/// What scars the target had when we copied them, in string form (like persistent scars)
 	var/list/stored_scars
@@ -657,6 +659,7 @@
 	newprofile.underwear = underwear
 	newprofile.undershirt = undershirt
 	newprofile.socks = socks
+	newprofile.tts_voice = tts_voice
 	newprofile.accent = accent
 	newprofile.stored_scars = stored_scars.Copy()
 

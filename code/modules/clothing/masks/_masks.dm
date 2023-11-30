@@ -10,6 +10,7 @@
 	var/adjusted_flags = null
 	var/mutantrace_variation = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
 	var/mutantrace_adjusted = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
+	var/list/mask_tts_filters
 
 /obj/item/clothing/mask/attack_self(mob/user)
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
@@ -24,9 +25,15 @@
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
+	for(var/filter in mask_tts_filters)
+		ADD_FILTER(M, filter, "[REF(src)]")
+
 /obj/item/clothing/mask/dropped(mob/M)
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_SAY)
+
+	for(var/filter in mask_tts_filters)
+		REMOVE_FILTER(M, filter, "[REF(src)]")
 
 /obj/item/clothing/mask/proc/handle_speech()
 

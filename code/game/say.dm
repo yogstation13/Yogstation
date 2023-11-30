@@ -39,9 +39,20 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 /atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list())
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
+
+	if(!GLOB.tts_voices.Find(tts_voice)) // Sanitize with an immutable list
+		tts_voice = pick(GLOB.tts_voices)
+		tts_pitch = rand(8, 12) * 0.1
+
+	var/tts_sound = piper_tts(message, tts_voice, tts_pitch, tts_filters)
+
 	for(var/_AM in get_hearers_in_view(range, source))
 		var/atom/movable/AM = _AM
 		AM.Hear(rendered, src, message_language, message, , spans, message_mods)
+		if(ismob(AM))
+			var/mob/hearing_mob = AM
+			if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
+				hearing_mob.playsound_local(get_turf(src), vol = 100, S = tts_sound) // TTS play
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.
@@ -171,6 +182,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/realvoice // Yogs -- new UUID, basically, I guess
 	var/atom/movable/source
 	var/obj/item/radio/radio
+	var/virt_tts_voice
+	var/virt_tts_pitch
+	var/list/virt_tts_filters
 
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, radio)
@@ -184,6 +198,13 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		verb_ask = M.verb_ask
 		verb_exclaim = M.verb_exclaim
 		verb_yell = M.verb_yell
+		virt_tts_voice = M.tts_voice
+		virt_tts_pitch = M.tts_pitch
+		virt_tts_filters = M.tts_filters
+
+	LAZYINITLIST(virt_tts_filters)
+	if(!virt_tts_filters[TTS_FILTER_RADIO])
+		virt_tts_filters[TTS_FILTER_RADIO] = list(RADIO_PROCESSING_FILTER)
 
 	// The mob's job identity
 	if(ishuman(M))

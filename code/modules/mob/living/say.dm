@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mods)
 
-	
+
 	return on_say_success(message,message_range,succumbed, spans, language, message_mods)//Yogs
 
 /mob/living/proc/on_say_success(message,message_range,succumbed, spans, language, message_mods) // A helper function of stuff that is deferred to when /mob/living/say() is done and has successfully said something.
@@ -305,13 +305,35 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesdropping = stars(message)
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
 
+	// TTS generation
+	if(!GLOB.tts_voices.Find(tts_voice)) // Sanitize with an immutable list
+		tts_voice = pick(GLOB.tts_voices)
+
+	if(!tts_pitch || !isnum(tts_pitch))
+		tts_pitch = rand(8, 12) * 0.1
+
+	var/tts_sound = piper_tts(html_decode(message), tts_voice, tts_pitch, tts_filters)
+
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
+	var/message_volume = 100
+	if(message_mods[MODE_HEADSET])
+		message_volume = 0
+	else if (message_mods[WHISPER_MODE])
+		message_volume = 40
 	for(var/_AM in listening)
 		var/atom/movable/AM = _AM
 		if(eavesdrop_range && get_dist(source, AM) > message_range && !(the_dead[AM]))
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mods)
+			if(ismob(AM))
+				var/mob/hearing_mob = AM
+				if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
+					hearing_mob.playsound_local(get_turf(src), vol = 5, S = tts_sound) // TTS play
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mods)
+			if(ismob(AM))
+				var/mob/hearing_mob = AM
+				if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
+					hearing_mob.playsound_local(get_turf(src), vol = message_volume, S = tts_sound) // TTS play
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble
@@ -388,7 +410,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in I.channels))
 			I.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
-			
+
 	switch(message_mods[RADIO_EXTENSION])
 		if(MODE_R_HAND)
 			for(var/obj/item/r_hand in get_held_items_for_side("r", all = TRUE))
