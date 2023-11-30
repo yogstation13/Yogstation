@@ -1035,7 +1035,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					switch(S.color_src)
 						if(MUTCOLORS)
-							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
+							if(H.dna.check_mutation(HULK))			//HULK GO FIRST
 								accessory_overlay.color = "#00aa00"
 							else if(fixed_mut_color)													//Then fixed color if applicable
 								accessory_overlay.color = fixed_mut_color
@@ -1763,7 +1763,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(M.mind)
 		attacker_style = M.mind.martial_art
 	if((M != H) && M.a_intent != INTENT_HELP && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
-		if((M.dna.check_mutation(ACTIVE_HULK) || M.dna.check_mutation(HULK)) && M.a_intent == "disarm")
+		if(M.dna.check_mutation(HULK) && M.a_intent == "disarm")
 			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
 			M.visible_message(span_danger("[M]'s punch knocks the shield out of [H]'s hand."), \
 							span_userdanger("[M]'s punch knocks the shield out of [H]'s hand."))

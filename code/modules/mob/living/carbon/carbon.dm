@@ -541,10 +541,6 @@
 
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src //leaving this here but sus
-		if(stam && H.hulk_stamina_check())
-			return
 	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold)
 		if(!stat)
 			enter_stamcrit()

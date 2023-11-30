@@ -142,7 +142,7 @@
 	. = ..()
 
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
-		if(src.dna.check_mutation(HULK) || src.dna.check_mutation(ACTIVE_HULK))
+		if(src.dna.check_mutation(HULK))
 			to_chat(src, span_warning("Your meaty finger is much too large for the trigger guard!"))
 			return FALSE
 		if(HAS_TRAIT(src, TRAIT_NOGUNS))
