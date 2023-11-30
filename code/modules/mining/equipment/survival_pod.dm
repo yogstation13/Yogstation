@@ -152,6 +152,7 @@
 /obj/machinery/stasis/survival_pod
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "sleeper"
+	base_icon_state = "sleeper"
 	mattress_state = null
 	buckle_lying = 270
 
