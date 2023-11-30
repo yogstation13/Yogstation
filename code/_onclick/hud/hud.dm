@@ -463,7 +463,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	hand_slots = list()
 	var/atom/movable/screen/inventory/hand/hand_box
 	for(var/i in 1 to mymob.held_items.len)
-		hand_box = new /atom/movable/screen/inventory/hand(null, src)
+		hand_box = new /atom/movable/screen/inventory/hand(src)
 		hand_box.name = mymob.get_held_index_name(i)
 		hand_box.icon = ui_style
 		hand_box.icon_state = "hand_[mymob.held_index_to_dir(i)]"
@@ -471,7 +471,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		hand_box.held_index = i
 		hand_slots["[i]"] = hand_box
 		static_inventory += hand_box
-		hand_box.update_appearance()
+		hand_box.update_appearance(UPDATE_ICON)
 
 	var/i = 1
 	for(var/atom/movable/screen/swap_hand/SH in static_inventory)
