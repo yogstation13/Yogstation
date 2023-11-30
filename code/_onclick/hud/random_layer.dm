@@ -4,6 +4,8 @@
 	speed = 2
 	layer = 3
 
+/atom/movable/screen/parallax_layer/random/space_gas/Initialize(mapload, view)
+
 /atom/movable/screen/parallax_layer/random/Initialize(mapload, datum/hud/hud_owner, template, atom/movable/screen/parallax_layer/random/twin)
 	. = ..()
 

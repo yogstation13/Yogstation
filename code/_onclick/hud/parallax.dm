@@ -340,6 +340,12 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/parallax_layer)
 	speed = 3
 	layer = 30
 
+/atom/movable/screen/parallax_layer/random/space_gas
+	icon_state = "random_layer1"
+
+/atom/movable/screen/parallax_layer/random/asteroids
+	icon_state = "random_layer2"
+
 /atom/movable/screen/parallax_layer/planet/moonscorch
 	icon_state = "rheus_moon"
 
