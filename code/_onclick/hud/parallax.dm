@@ -13,12 +13,15 @@
 
 	if(!length(C.parallax_layers_cached))
 		C.parallax_layers_cached = list()
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, src)
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, src)
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, src)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, C.view)
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, C.view)
+		if(HAS_TRAIT(SSstation, STATION_TRAIT_MOONSCORCH))
+			C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet/moonscorch(null, C.view)
+		else
+			C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, C.view)
 		if(SSparallax.random_layer)
-			C.parallax_layers_cached += new SSparallax.random_layer.type(null, src, FALSE, SSparallax.random_layer)
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, src)
+			C.parallax_layers_cached += new SSparallax.random_layer
+		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, C.view)
 
 	C.parallax_layers = C.parallax_layers_cached.Copy()
 
@@ -336,6 +339,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/parallax_layer)
 	absolute = TRUE //Status of seperation
 	speed = 3
 	layer = 30
+
+/atom/movable/screen/parallax_layer/planet/moonscorch
+	icon_state = "rheus_moon"
 
 /atom/movable/screen/parallax_layer/planet/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
