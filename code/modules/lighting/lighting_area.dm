@@ -1,6 +1,8 @@
 /area
 	luminosity = TRUE
 	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	///Whether this area has a currently active base lighting, bool
+	var/area_has_base_lighting = FALSE
 
 /area/proc/set_dynamic_lighting(new_dynamic_lighting = DYNAMIC_LIGHTING_ENABLED)
 	if (new_dynamic_lighting == dynamic_lighting)
