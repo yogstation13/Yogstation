@@ -35,7 +35,7 @@
 
 /obj/structure/falsewall/Initialize(mapload)
 	. = ..()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/falsewall/ratvar_act()
 	new /obj/structure/falsewall/brass(loc)
@@ -68,7 +68,7 @@
 		set_opacity(density)
 		opening = FALSE
 		update_appearance(UPDATE_ICON)
-		air_update_turf(TRUE)
+		air_update_turf()
 
 /obj/structure/falsewall/update_icon_state()
 	. = ..()

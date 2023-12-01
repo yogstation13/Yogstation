@@ -129,6 +129,7 @@
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		hattable = FALSE //So you don't accidentally throw it onto somebody's head instead of decapitating them
+		item_flags = UNCATCHABLE //so it isn't just immediately caught
 	else
 		force = 0
 		throwforce = 0
@@ -138,6 +139,7 @@
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
 		hattable = TRUE
+		item_flags = NONE
 
 /obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(fedora_man && hit_atom == fedora_man)

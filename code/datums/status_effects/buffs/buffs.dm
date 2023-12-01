@@ -717,9 +717,11 @@
 	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, type)
 	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 
+
+#define HEALBOOST_FILTER "holy_glow"
 /datum/status_effect/holylight_healboost
 	id = "holy healboost"
-	duration = 30 SECONDS
+	duration = 1 MINUTES
 	tick_interval = -1
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/holylight_healboost
@@ -734,7 +736,15 @@
 	. = ..()
 	if(.)
 		owner.AddComponent(/datum/component/heal_react/boost/holylight)
+		owner.add_filter(HEALBOOST_FILTER, 2, list("type" = "outline", "color" = "#60A2A8", "alpha" = 0, "size" = 1))
+		var/filter = owner.get_filter(HEALBOOST_FILTER)
+		animate(filter, alpha = 200, time = 2 SECONDS, loop = -1, easing = EASE_OUT | CUBIC_EASING)
+		animate(alpha = 0, time = 2 SECONDS, loop = -1, easing = EASE_OUT | CUBIC_EASING)
 
 /datum/status_effect/holylight_healboost/on_remove()
 	var/datum/component/heal_react/boost/holylight/healing = owner.GetComponent(/datum/component/heal_react/boost/holylight)
 	healing?.RemoveComponent()
+	var/filter = owner.get_filter(HEALBOOST_FILTER)
+	if(filter)
+		animate(filter)
+		owner.remove_filter(HEALBOOST_FILTER)

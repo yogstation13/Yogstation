@@ -20,7 +20,7 @@
 #define H2O_HEAT_PENALTY 12 //This'll get made slowly over time, I want my spice rock spicy god damnit
 #define ANTINOB_HEAT_PENALTY 15
 
-/// Higher == Bigger bonus to power generation. 
+/// Higher == Bigger bonus to power generation.
 /// All of these get divided by 10-bzcomp * 5 before having 1 added and being multiplied with power to determine rads
 #define OXYGEN_TRANSMIT_MODIFIER 1.5
 #define PLASMA_TRANSMIT_MODIFIER 4
@@ -36,7 +36,7 @@
 
 /// How much extra radioactivity to emit
 #define BZ_RADIOACTIVITY_MODIFIER 5 // Up to 500% rads
-#define TRITIUM_RADIOACTIVITY_MODIFIER 3 
+#define TRITIUM_RADIOACTIVITY_MODIFIER 3
 #define PLUOXIUM_RADIOACTIVITY_MODIFIER -2
 
 /// Higher == Gas makes the crystal more resistant against heat damage.
@@ -130,7 +130,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	/// How much force the SM expldoes with
 	var/explosion_power = 35
-	
+
 	/// Factor for power generation. AirTemp*(temp_factor/(0C))
 	var/temp_factor = 30
 	var/power = 0
@@ -222,7 +222,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 	. = ..()
 	uid = gl_uid++
-	SSair.atmos_machinery += src
+	SSair_machinery.start_processing_machine(src)
 	countdown = new(src)
 	countdown.start()
 	GLOB.poi_list |= src
@@ -238,7 +238,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/Destroy()
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
-	SSair.atmos_machinery -= src
+	SSair_machinery.stop_processing_machine(src)
 	QDEL_NULL(radio)
 	GLOB.poi_list -= src
 	QDEL_NULL(countdown)
@@ -456,40 +456,40 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		// Calculate the gas mix ratio
 		combined_gas = max(removed.total_moles(), 0)
 
-		var/plasmacomp = max(removed.get_moles(/datum/gas/plasma)/combined_gas, 0)
-		var/o2comp = max(removed.get_moles(/datum/gas/oxygen)/combined_gas, 0)
-		var/co2comp = max(removed.get_moles(/datum/gas/carbon_dioxide)/combined_gas, 0)
-		var/n2ocomp = max(removed.get_moles(/datum/gas/nitrous_oxide)/combined_gas, 0)
-		var/n2comp = max(removed.get_moles(/datum/gas/nitrogen)/combined_gas, 0)
-		var/pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
-		var/tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
-		var/h2comp = max(removed.get_moles(/datum/gas/hydrogen)/combined_gas, 0)
-		var/h2ocomp = max(removed.get_moles(/datum/gas/water_vapor)/combined_gas, 0)
-		var/bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
-		var/pluoniumcomp = max(removed.get_moles(/datum/gas/pluonium)/combined_gas, 0)
-		var/healcomp = max(removed.get_moles(/datum/gas/healium)/combined_gas, 0)
-		var/zaukcomp = max(removed.get_moles(/datum/gas/zauker)/combined_gas, 0)
-		var/haloncomp = max(removed.get_moles(/datum/gas/halon)/combined_gas, 0)
-		var/nobliumcomp = max(removed.get_moles(/datum/gas/hypernoblium)/combined_gas, 0)
-		var/antinobliumcomp = max(removed.get_moles(/datum/gas/antinoblium)/combined_gas, 0)
-		var/nitriumcomp = max(removed.get_moles(/datum/gas/nitrium)/combined_gas, 0)
-		var/miasmacomp = max(removed.get_moles(/datum/gas/miasma)/combined_gas, 0)
+		var/plasmacomp = max(removed.get_moles(GAS_PLASMA)/combined_gas, 0)
+		var/o2comp = max(removed.get_moles(GAS_O2)/combined_gas, 0)
+		var/co2comp = max(removed.get_moles(GAS_CO2)/combined_gas, 0)
+		var/n2ocomp = max(removed.get_moles(GAS_NITROUS)/combined_gas, 0)
+		var/n2comp = max(removed.get_moles(GAS_N2)/combined_gas, 0)
+		var/pluoxiumcomp = max(removed.get_moles(GAS_PLUOXIUM)/combined_gas, 0)
+		var/tritiumcomp = max(removed.get_moles(GAS_TRITIUM)/combined_gas, 0)
+		var/bzcomp = max(removed.get_moles(GAS_BZ)/combined_gas, 0)
+		var/h2ocomp = max(removed.get_moles(GAS_H2O)/combined_gas, 0)
+		var/h2comp = max(removed.get_moles(GAS_H2)/combined_gas, 0)
+		var/pluoniumcomp = max(removed.get_moles(GAS_PLUONIUM)/combined_gas, 0)
+		var/healcomp = max(removed.get_moles(GAS_HEALIUM)/combined_gas, 0)
+		var/zaukcomp = max(removed.get_moles(GAS_ZAUKER)/combined_gas, 0)
+		var/haloncomp = max(removed.get_moles(GAS_HALON)/combined_gas, 0)
+		var/nobliumcomp = max(removed.get_moles(GAS_HYPERNOB)/combined_gas, 0)
+		var/antinobliumcomp = max(removed.get_moles(GAS_ANTINOB)/combined_gas, 0)
+		var/nitriumcomp = max(removed.get_moles(GAS_NITRIUM)/combined_gas, 0)
+		var/miasmacomp = max(removed.get_moles(GAS_MIASMA)/combined_gas, 0)
 
 		if (healcomp >= 0.1)
 			heal_mod = (healcomp * HEALIUM_HEAL_MOD) + 1 //Increases healing and healing cap
 		else
 			heal_mod = 1
-		
+
 		if (zaukcomp >= 0.05)
 			damage_mod = (zaukcomp * ZAUKER_DAMAGE_MOD) + 1 //Increases damage taken and damage cap
 		else
 			damage_mod = 1
 
 		// Mole releated calculations
-		var/bzmol = max(removed.get_moles(/datum/gas/bz), 0)
-		var/nitriummol = max(removed.get_moles(/datum/gas/nitrium), 0)
-		var/antinobmol = max(removed.get_moles(/datum/gas/antinoblium), 0)
-		var/miasmol = max(removed.get_moles(/datum/gas/miasma), 0)
+		var/bzmol = max(removed.get_moles(GAS_BZ), 0)
+		var/nitriummol = max(removed.get_moles(GAS_NITRIUM), 0)
+		var/antinobmol = max(removed.get_moles(GAS_ANTINOB), 0)
+		var/miasmol = max(removed.get_moles(GAS_MIASMA), 0)
 
 		// Power of the gas. Scale of 0 to 1
 		gasmix_power_ratio = clamp(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp + nitriumcomp + antinobliumcomp - pluoxiumcomp - n2comp, 0, 1)
@@ -507,7 +507,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			powerloss_dynamic_scaling = clamp(powerloss_dynamic_scaling + clamp(co2comp - powerloss_dynamic_scaling, -0.02, 0.02), 0, 1)
 		else
 			powerloss_dynamic_scaling = clamp(powerloss_dynamic_scaling - 0.05,0, 1)
-		
+
 		if(support_integrity >= 10 && !supermatter_blob)
 			powerloss_inhibitor = clamp(1-(powerloss_dynamic_scaling * clamp(combined_gas/POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD,1 ,1.5)),0 ,1)
 
@@ -532,7 +532,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(prob(50))
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
-			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) * pluoxiumcomp) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
+			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + (((pluoxiumcomp ** 2) * PLUOXIUM_RADIOACTIVITY_MODIFIER)) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
 			radiation_pulse(src, max(last_rads))
 
 		if(nitriummol > NITRO_BALL_MOLES_REQUIRED) // haha funny particles go brrrrr
@@ -540,7 +540,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			var/starting_angle = rand(0, 360)
 			for(var/i = 0 to balls_shot) //  fires particles in a ring, with some random variation in the angle
 				src.fire_nuclear_particle(starting_angle + rand(-180/balls_shot, 180/balls_shot) + (i * 360 / balls_shot))
-			removed.set_moles(/datum/gas/nitrium, max(nitriummol - (balls_shot * NITRO_BALL_MOLES_REQUIRED), 0)) //converts nitrium into radballs
+			removed.set_moles(GAS_NITRIUM, max(nitriummol - (balls_shot * NITRO_BALL_MOLES_REQUIRED), 0)) //converts stimulum into radballs
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
 			src.fire_nuclear_particle()			// Start to emit radballs at a maximum of 50% chance per tick
@@ -587,18 +587,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		//Calculate how much gas to release, antinoblium seeded SM produces much more gas
 
 		if(antinoblium_attached || supermatter_blob)
-			removed.adjust_moles(/datum/gas/plasma, max(((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
-			removed.adjust_moles(/datum/gas/oxygen, max((((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
+			removed.adjust_moles(GAS_PLASMA, max(((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
+			removed.adjust_moles(GAS_O2, max((((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
 		else if(haloncomp >= 0.15)
-			removed.adjust_moles(/datum/gas/plasma, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
-			removed.adjust_moles(/datum/gas/oxygen, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / PLASMA_RELEASE_MODIFIER, 0)) // Supresses Oxygen Generation
+			removed.adjust_moles(GAS_PLASMA, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
+			removed.adjust_moles(GAS_O2, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / PLASMA_RELEASE_MODIFIER, 0)) // Supresses Oxygen Generation
 		else
-			removed.adjust_moles(/datum/gas/plasma, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
-			removed.adjust_moles(/datum/gas/oxygen, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
+			removed.adjust_moles(GAS_PLASMA, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
+			removed.adjust_moles(GAS_O2, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
 
 		if(produces_gas)
 			env.merge(removed)
-			air_update_turf()
 
 	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
 		if((!HAS_TRAIT(l, TRAIT_MESONS)) || corruptor_attached)
@@ -628,8 +627,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_pull(src, power/750)
 		if(prob(5) || (antinoblium_attached || supermatter_blob) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_FLUX, rand(5, 10))
-		if(prob(5) || (antinoblium_attached || supermatter_blob) && prob(10))
-			supermatter_anomaly_gen(src, ANOMALY_HALLUCINATION, rand(5, 10))
 		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) || prob(1) || (antinoblium_attached || supermatter_blob) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_GRAVITATIONAL, rand(5, 10))
 		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD || (antinoblium_attached || supermatter_blob) && prob(10))
@@ -696,7 +693,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					radio.talk_into(src, "DANGER: SUPERMATTER BIOHAZARD LEVELS HAVE EXCEEDED SAFETY THRESHOLDS.", common_channel)
 					log_game("DANGER: SUPERMATTER BIOHAZARD LEVELS HAVE EXCEEDED SAFETY THRESHOLDS.") // yogs start - Logs SM chatter
 					investigate_log("DANGER: SUPERMATTER BIOHAZARD LEVELS HAVE EXCEEDED SAFETY THRESHOLDS.", INVESTIGATE_SUPERMATTER) // yogs end
-			
+
 			if(antinoblium_attached)
 				if(support_integrity <= 10)
 					radio.talk_into(src, "DANGER: RESONANCE CASCADE IMMINENT.", engineering_channel)
@@ -1155,8 +1152,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			new /obj/effect/anomaly/flux/explosion(local_turf, has_weak_lifespan ? rand(250, 300) : null)
 		if(ANOMALY_GRAVITATIONAL)
 			new /obj/effect/anomaly/grav(local_turf, has_weak_lifespan ? rand(250, 300) : null)
-		if(ANOMALY_HALLUCINATION)
-			new /obj/effect/anomaly/hallucination(local_turf, has_weak_lifespan ? rand(250, 300) : null)
 		if(ANOMALY_PYRO)
 			new /obj/effect/anomaly/pyro(local_turf, has_weak_lifespan ? rand(250, 300) : null)
 		if(ANOMALY_VORTEX)
@@ -1263,7 +1258,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		qdel(src)
 		addtimer(CALLBACK(shard, TYPE_PROC_REF(/obj/machinery/power/supermatter_crystal/shard, trigger)), 60)
 	return TRUE
-	
+
 /obj/machinery/power/supermatter_crystal/shard/proc/trigger()
 	var/area/A = get_area(loc)
 	playsound(src, 'sound/machines/supermatter_alert.ogg', 75)

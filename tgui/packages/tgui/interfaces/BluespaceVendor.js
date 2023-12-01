@@ -4,7 +4,6 @@ import { toFixed } from 'common/math';
 import { multiline } from 'common/string';
 import { useBackend } from '../backend';
 import { Button, Divider, LabeledList, NumberInput, ProgressBar, Section, Stack, Box } from '../components';
-import { getGasColor, getGasLabel } from '../constants';
 import { Window } from '../layouts';
 
 export const BluespaceVendor = (props, context) => {
@@ -99,11 +98,10 @@ export const BluespaceVendor = (props, context) => {
                   <>
                     <Stack key={gas.name}>
                       <Stack.Item color="label" basis={8} ml={1}>
-                        {getGasLabel(gas.name) + " is " + gas.price + " credits per mole"}
+                        {gas.name + " is " + gas.price + " credits per mole"}
                       </Stack.Item>
                       <Stack.Item grow mt={1}>
                         <ProgressBar
-                          color={getGasColor(gas.name)}
                           value={gas.amount}
                           minValue={0}
                           maxValue={gasMax}>
@@ -122,16 +120,16 @@ export const BluespaceVendor = (props, context) => {
                               gas_id: gas.id,
                             })} />
                         ) || (
-                          <Button
-                            ml={1}
-                            disabled={data.selected_gas !== gas.id}
-                            icon="minus"
-                            tooltipPosition="left"
-                            tooltip={"Stop adding " + gas.name + "."}
-                            onClick={() => act('stop_pumping', {
-                              gas_id: gas.id,
-                            })} />
-                        )}
+                            <Button
+                              ml={1}
+                              disabled={data.selected_gas !== gas.id}
+                              icon="minus"
+                              tooltipPosition="left"
+                              tooltip={"Stop adding " + gas.name + "."}
+                              onClick={() => act('stop_pumping', {
+                                gas_id: gas.id,
+                              })} />
+                          )}
                       </Stack.Item>
                     </Stack>
                     <Divider />
