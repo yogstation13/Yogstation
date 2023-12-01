@@ -102,7 +102,7 @@
 /obj/item/reagent_containers/food/snacks/grown/nettle/death/pickup(mob/living/carbon/user)
 	if(..())
 		if(prob(50))
-			user.Paralyze(100)
+			user.Paralyse(100)
 			to_chat(user, span_userdanger("You are stunned by the Deathnettle as you try picking it up!"))
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/death/attack(mob/living/carbon/M, mob/user)

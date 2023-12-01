@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "tgui:analyze": "webpack --analyze",
+    "tgui:analyse": "webpack --analyse",
     "tgui:build": "BROWSERSLIST_IGNORE_OLD_DATA=true webpack",
     "tgui:dev": "node --experimental-modules packages/tgui-dev-server/index.js",
     "tgui:lint": "eslint packages --ext .js,.cjs,.ts,.tsx",
@@ -55,7 +55,7 @@
     "typescript": "^4.3.5",
     "url-loader": "^4.1.1",
     "webpack": "^5.76.0",
-    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-bundle-analyser": "^4.4.2",
     "webpack-cli": "^4.7.2"
   }
 }

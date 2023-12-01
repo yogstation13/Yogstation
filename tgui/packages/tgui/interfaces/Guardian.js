@@ -57,7 +57,7 @@ const GuardianStatsScene = (props, context) => {
   const levels = ["A", "B", "C", "D", "F"];
   const icons = {
     Damage: "fist-raised",
-    Defense: "shield-alt",
+    Defence: "shield-alt",
     Speed: "bolt",
     Potential: "battery-half",
     Range: "street-view",
@@ -65,7 +65,7 @@ const GuardianStatsScene = (props, context) => {
   const tooltips = {
     Damage:
       "Affects how much damage your guardian does per punch/per projectile.",
-    Defense:
+    Defence:
       "Affects how much damage your guardian takes and transfers back to you.",
     Speed: "Affects how fast your guardian can attack.",
     Potential: "Affects how powerful your guardian's ability is.",

@@ -138,7 +138,7 @@
 
 /obj/effect/anomaly/grav/proc/gravShock(mob/living/A)
 	if(boing && isliving(A) && !A.stat)
-		A.Paralyze(40)
+		A.Paralyse(40)
 		var/atom/target = get_edge_target_turf(A, get_dir(src, get_step_away(A, src)))
 		A.throw_at(target, 5, 1)
 		boing = 0
@@ -200,7 +200,7 @@
 					siemens_coeff *= (H.gloves.siemens_coefficient + 1) / 2 // protective gloves reduce damage by half
 				if(H.wear_suit)
 					siemens_coeff *= (H.wear_suit.siemens_coefficient + 1) / 2 // protective suit reduces damage by another half, minimum of 33%
-			var/should_stun = !M.IsParalyzed() // stunlock is boring
+			var/should_stun = !M.IsParalysed() // stunlock is boring
 			M.electrocute_act(shockdamage, "[name]", max(siemens_coeff, 0.33), safety = TRUE, stun = should_stun) // 15 damage with insuls, 10 damage with insuls and hardsuit
 			return
 		else
@@ -441,7 +441,7 @@
 	var/ticks = 0
 	/// How many seconds between each hallucination spanwed
 	var/release_delay = 5
-	/// flavor of hallucination mobs this spawns (cosmetic)
+	/// flavour of hallucination mobs this spawns (cosmetic)
 	var/hallucination_set
 
 /obj/effect/anomaly/hallucination/Initialize(mapload, new_lifespan)

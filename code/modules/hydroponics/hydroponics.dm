@@ -691,7 +691,7 @@
 	if(myseed)
 		to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
 		to_chat(user, "- Plant Age: [span_notice("[age]")]")
-		var/list/text_string = myseed.get_analyzer_text()
+		var/list/text_string = myseed.get_analyser_text()
 		if(text_string)
 			to_chat(user, text_string)
 	else
@@ -794,13 +794,13 @@
 		else
 			to_chat(user, span_warning("[src] already has seeds in it!"))
 
-	else if(istype(O, /obj/item/plant_analyzer))
+	else if(istype(O, /obj/item/plant_analyser))
 		var/list/combined_msg = list()
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		if(myseed)
 			combined_msg += "*** <B>[myseed.plantname]</B> ***"
 			combined_msg += "- Plant Age: [span_notice("[age]")]"
-			var/list/text_string = myseed.get_analyzer_text()
+			var/list/text_string = myseed.get_analyser_text()
 			if(text_string)
 				combined_msg += "[text_string]"
 		else

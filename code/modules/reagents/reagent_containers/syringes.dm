@@ -316,7 +316,7 @@
 
 /obj/item/reagent_containers/syringe/big/curare
 	name = "syringe (curare)"
-	desc = "Contains 30 units of curare. Will paralyze victims and inflict toxin and suffocation, metabolized very slowly."
+	desc = "Contains 30 units of curare. Will paralyse victims and inflict toxin and suffocation, metabolized very slowly."
 	list_reagents = list(/datum/reagent/toxin/curare = 30)
 
 /obj/item/reagent_containers/syringe/big/amanitin

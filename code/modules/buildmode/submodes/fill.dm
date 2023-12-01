@@ -54,7 +54,7 @@
 				var/turf/T = beep
 				T.AfterChange()
 			log_admin("Build Mode: [key_name(c)] deleted turfs from [AREACOORD(cornerA)] through [AREACOORD(cornerB)]")
-			// if there's an analogous proc for this on tg lmk
+			// if there's an analogueous proc for this on tg lmk
 			// empty_region(block(get_turf(cornerA),get_turf(cornerB)))
 		else
 			for(var/turf/T in block(get_turf(cornerA),get_turf(cornerB)))

@@ -144,7 +144,7 @@
 		of several of the planet's rich plasma veins. As time went on, the vuulen became gradually more accepted into \
 		the human society. Finally, in 2463, the official interdiction of slavery was passed, and vuulen became full \
 		citizens of the SIC. The Opsillian Republic went from a mere puppet state to a somewhat independent and legitimate government, \
-		though many human companies continued to exploit vuulen as workers, as labor laws for non-humans \
+		though many human companies continued to exploit vuulen as workers, as labour laws for non-humans \
 		offered significantly less privilege than what would be expected.",
  
 		"Vuulek communities are organized in clans, though their impact on the culture of the individuals is limited. \

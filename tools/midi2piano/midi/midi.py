@@ -1171,14 +1171,14 @@ The options:
     events = []
 
     while(len(trackdata)):
-        # loop while there's anything to analyze ...
+        # loop while there's anything to analyse ...
         eot = False   # When True, the event registrar aborts this loop
         event_count += 1
 
         E = []
         # E for events - we'll feed it to the event registrar at the end.
 
-        # Slice off the delta time code, and analyze it
+        # Slice off the delta time code, and analyse it
         [time, remainder] = _unshift_ber_int(trackdata)
 
         # Now let's see what we can make of the command

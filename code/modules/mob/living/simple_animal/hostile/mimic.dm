@@ -69,7 +69,7 @@
 		icon_state = initial(icon_state)
 		if(prob(15) && iscarbon(target))
 			var/mob/living/carbon/C = target
-			C.Paralyze(40)
+			C.Paralyse(40)
 			C.visible_message(span_danger("\The [src] knocks down \the [C]!"), \
 					span_userdanger("\The [src] knocks you down!"))
 
@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 	. = ..()
 	if(knockdown_people && . && prob(15) && iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.Paralyze(40)
+		C.Paralyse(40)
 		C.visible_message(span_danger("\The [src] knocks down \the [C]!"), \
 				span_userdanger("\The [src] knocks you down!"))
 

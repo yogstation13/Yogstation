@@ -489,7 +489,7 @@
 /area/awaymission/BMPship/Aft)
 "bP" = (
 /obj/structure/closet/crate,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/stack/spacecash/c10,
 /obj/effect/turf_decal/stripes/line{
 	dir = 2

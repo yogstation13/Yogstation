@@ -61,7 +61,7 @@
 /// Whether the spell requires the caster have a mime vow (mindless mobs will succeed this check regardless).
 #define SPELL_REQUIRES_MIME_VOW (1 << 7)
 /// Whether the spell can be cast, even if the caster is unable to speak the invocation
-/// (effectively making the invocation flavor, instead of required).
+/// (effectively making the invocation flavour, instead of required).
 #define SPELL_CASTABLE_WITHOUT_INVOCATION (1 << 8)
 
 DEFINE_BITFIELD(spell_requirements, list(

@@ -215,7 +215,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = 2;
 	pixel_y = 3
 	},

@@ -114,4 +114,4 @@
 /obj/machinery/power/stationarybike/proc/life_drain(mob/living)
 	for(var/mob/living/BM in buckled_mobs)
 		BM.adjustBruteLoss(5)
-		BM.Paralyze(30)
+		BM.Paralyse(30)

@@ -87,13 +87,13 @@
 	return 0
 
 /datum/martial_art/krav_maga/proc/leg_sweep(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(D.stat || D.IsParalyzed())
+	if(D.stat || D.IsParalysed())
 		return 0
 	D.visible_message(span_warning("[A] leg sweeps [D]!"), \
 					  	span_userdanger("[A] leg sweeps you!"))
 	playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 	D.apply_damage(A.get_punchdamagehigh() / 2, BRUTE)	//5 damage
-	D.Paralyze(40)
+	D.Paralyse(40)
 	log_combat(A, D, "leg sweeped")
 	return 1
 
@@ -195,8 +195,8 @@
 	var/equipped = FALSE //does the user currently have the martial art?
 	var/list/enabled_areas = list(/area/security,
 					/area/ai_monitored/security,
-					/area/mine/laborcamp,
-					/area/shuttle/labor,
+					/area/mine/labourcamp,
+					/area/shuttle/labour,
 					/area/crew_quarters/heads/hos,
 					/area/holodeck/perma) //where can we use krav maga?
 

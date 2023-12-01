@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(stat)
 		to_chat(src, "You must be conscious to do this!")
 		return
-	if(IsStun() || IsParalyzed())
+	if(IsStun() || IsParalysed())
 		to_chat(src, "You can't vent crawl while you're stunned!")
 		return
 	if(restrained())

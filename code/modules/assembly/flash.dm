@@ -157,7 +157,7 @@
 					trauma.on_flash(user, M)
 			else
 				to_chat(M, span_userdanger("You are blinded by [src]!"))
-			if(M.IsParalyzed() || M.IsKnockdown())
+			if(M.IsParalysed() || M.IsKnockdown())
 				M.Knockdown(rand(20,30))
 			else
 				M.Knockdown(rand(80,120))
@@ -175,7 +175,7 @@
 	log_combat(user, robot_victim, "flashed", src)
 	if(!robot_victim.sensor_protection)
 		update_icon(ALL, flash = TRUE)
-		robot_victim.Paralyze(rand(8 SECONDS,12 SECONDS))
+		robot_victim.Paralyse(rand(8 SECONDS,12 SECONDS))
 		robot_victim.set_confusion_if_lower(5 SECONDS * CONFUSION_STACK_MAX_MULTIPLIER)
 		robot_victim.flash_act(affect_silicon = 1)
 		if(ismob(user))

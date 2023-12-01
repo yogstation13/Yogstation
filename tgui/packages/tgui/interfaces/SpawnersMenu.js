@@ -40,7 +40,7 @@ export const SpawnersMenu = (props, context) => {
                     {spawner.short_desc}
                   </Box>
                   <Box>
-                    {spawner.flavor_text}
+                    {spawner.flavour_text}
                   </Box>
                   {!!spawner.important_info && (
                     <Box

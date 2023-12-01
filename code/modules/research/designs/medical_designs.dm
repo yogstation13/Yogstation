@@ -183,8 +183,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/genescanner
-	name = "Genetic Sequence Analyzer"
-	desc = "A handy hand-held analyzer for quickly determining mutations and collecting the full sequence."
+	name = "Genetic Sequence Analyser"
+	desc = "A handy hand-held analyser for quickly determining mutations and collecting the full sequence."
 	id = "genescanner"
 	build_path = /obj/item/sequence_scanner
 	build_type = PROTOLATHE
@@ -192,11 +192,11 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/healthanalyzer_advanced
-	name = "Advanced Health Analyzer"
+/datum/design/healthanalyser_advanced
+	name = "Advanced Health Analyser"
 	desc = "A hand-held body scanner, able to distinguish vital signs of the subject with high accuracy."
-	id = "healthanalyzer_advanced"
-	build_path = /obj/item/healthanalyzer/advanced
+	id = "healthanalyser_advanced"
+	build_path = /obj/item/healthanalyser/advanced
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500, /datum/material/plastic = 1000)
 	category = list("Medical Designs")
@@ -383,8 +383,8 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/cyberimp_science_analyzer
-	name = "Chemical Analyzer Implant"
+/datum/design/cyberimp_science_analyser
+	name = "Chemical Analyser Implant"
 	desc = "These cybernetic eye implants will allow rapid identification of reagents. Wiggle eyes to control."
 	id = "ci-scihud"
 	build_type = PROTOLATHE | MECHFAB
@@ -716,7 +716,7 @@
 
 /datum/design/surgery/experimental_dissection
 	name = "Advanced Dissection"
-	desc = "A surgical procedure which analyzes the biology of a corpse, and automatically adds new findings to the research database."
+	desc = "A surgical procedure which analyses the biology of a corpse, and automatically adds new findings to the research database."
 	id = "surgery_adv_dissection"
 	surgery = list(/datum/surgery/experimental_dissection/adv)
 	research_icon = 'icons/mob/actions.dmi'

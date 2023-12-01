@@ -30,7 +30,7 @@
 	if(dist_from_caster == 0)
 		if(isliving(victim))
 			var/mob/living/victim_living = victim
-			victim_living.Paralyze(10 SECONDS)
+			victim_living.Paralyse(10 SECONDS)
 			victim_living.adjustBruteLoss(5)
 			to_chat(victim, span_userdanger("You're slammed into the floor by [caster]!"))
 	else
@@ -40,7 +40,7 @@
 
 		if(isliving(victim))
 			var/mob/living/victim_living = victim
-			victim_living.Paralyze(4 SECONDS)
+			victim_living.Paralyse(4 SECONDS)
 			to_chat(victim, span_userdanger("You're thrown back by [caster]!"))
 
 		// So stuff gets tossed around at the same time.

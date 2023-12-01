@@ -177,7 +177,7 @@
 					user.visible_message(span_warning("[user] punches [limb_to_hit] clean off!"))
 					limb_to_hit.drop_limb()
 					limb_to_hit.throw_at(throw_target, 8, 4, user, 3)
-					L.Paralyze(3 SECONDS)
+					L.Paralyse(3 SECONDS)
 					return // Stop here, don't bother throwing
 		L.SpinAnimation(0.5 SECONDS, 2)
 		to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))

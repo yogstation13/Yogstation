@@ -44,7 +44,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	suit = /obj/item/clothing/suit/apron
 	gloves  =/obj/item/clothing/gloves/botanic_leather
-	suit_store = /obj/item/plant_analyzer
+	suit_store = /obj/item/plant_analyser
 	backpack = /obj/item/storage/backpack/botany
 	satchel = /obj/item/storage/backpack/satchel/hyd
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
@@ -397,7 +397,7 @@
 	mask = /obj/item/clothing/mask/breath
 	belt = /obj/item/storage/belt/utility/atmostech
 	ears = /obj/item/radio/headset/headset_eng
-	r_pocket = /obj/item/analyzer
+	r_pocket = /obj/item/analyser
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering

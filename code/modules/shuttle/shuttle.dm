@@ -272,7 +272,7 @@
 	var/prearrivalTime = 0
 
 	/// The direction the shuttle prefers to travel in, ie what direction
-	/// the animation will cause it to appear to be traveling in
+	/// the animation will cause it to appear to be travelling in
 	var/preferred_direction = NORTH
 	/// relative direction of the docking port from the front of the shuttle
 	/// NORTH is towards front, EAST would be starboard side, WEST port, etc.

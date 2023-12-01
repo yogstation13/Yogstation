@@ -55,7 +55,7 @@
 /obj/structure/closet/crate/medical{
 	name = "medical crate"
 	},
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "cq" = (
@@ -81,7 +81,7 @@
 /area/shuttle/abandoned)
 "cK" = (
 /obj/structure/table,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /turf/open/floor/carpet/cyan,
 /area/shuttle/abandoned)
 "cR" = (

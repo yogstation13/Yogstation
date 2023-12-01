@@ -148,7 +148,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		if (emagged <= 1)
 			honk_attack(A)
 		else
-			if(!C.IsParalyzed() || arrest_type)
+			if(!C.IsParalysed() || arrest_type)
 				stun_attack(A)
 		..()
 	else if (!spam_flag) //honking at the ground
@@ -195,7 +195,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 			C.adjust_stutter(20 SECONDS)
 			C.adjustEarDamage(0, 5) //far less damage than the H.O.N.K.
 			C.adjust_jitter(50 SECONDS)
-			C.Paralyze(60)
+			C.Paralyse(60)
 			var/mob/living/carbon/human/H = C
 			if(client) //prevent spam from players..
 				spam_flag = TRUE
@@ -214,7 +214,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 					span_userdanger("[src] has honked you!"))
 		else
 			C.adjust_stutter(20 SECONDS)
-			C.Paralyze(8 SECONDS)
+			C.Paralyse(8 SECONDS)
 			addtimer(CALLBACK(src, PROC_REF(spam_flag_false)), cooldowntime)
 
 
@@ -357,7 +357,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 						  	"[C] trips over [src] and falls!", \
 						  	"[C] topples over [src]!", \
 						  	"[C] leaps out of [src]'s way!")]</span>")
-			C.Paralyze(10)
+			C.Paralyse(10)
 			playsound(loc, 'sound/misc/sadtrombone.ogg', 50, 1, -1)
 			if(!client)
 				speak("Honk!")

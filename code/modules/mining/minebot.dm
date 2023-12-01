@@ -154,7 +154,7 @@
 	icon_state = "mining_drone"
 	to_chat(src, span_info("You are set to collect mode. You can now collect loose ore."))
 
-/mob/living/simple_animal/hostile/mining_drone/proc/SetOffenseBehavior()
+/mob/living/simple_animal/hostile/mining_drone/proc/SetOffenceBehavior()
 	mode = MINEDRONE_ATTACK
 	vision_range = 7
 	search_objects = 0
@@ -162,7 +162,7 @@
 	ranged = TRUE
 	retreat_distance = 2
 	minimum_distance = 1
-	icon_state = "mining_drone_offense"
+	icon_state = "mining_drone_offence"
 	to_chat(src, span_info("You are set to attack mode. You can now attack from range."))
 
 /mob/living/simple_animal/hostile/mining_drone/AttackingTarget()
@@ -170,7 +170,7 @@
 		CollectOre()
 		return
 	if(isliving(target))
-		SetOffenseBehavior()
+		SetOffenceBehavior()
 	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/OpenFire(atom/A)
@@ -194,7 +194,7 @@
 
 /mob/living/simple_animal/hostile/mining_drone/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(mode != MINEDRONE_ATTACK && amount > 0)
-		SetOffenseBehavior()
+		SetOffenceBehavior()
 	. = ..()
 
 /datum/action/innate/minedrone/toggle_meson_vision
@@ -220,7 +220,7 @@
 		if(MINEDRONE_ATTACK)
 			SetCollectBehavior()
 		else
-			SetOffenseBehavior()
+			SetOffenceBehavior()
 
 //Actions for sentient minebots
 

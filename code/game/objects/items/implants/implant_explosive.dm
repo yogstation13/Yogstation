@@ -71,7 +71,7 @@
 	sleep(delay*0.25)
 	if(imp_in && !imp_in.stat)
 		imp_in.visible_message(span_warning("[imp_in] doubles over in pain!"))
-		imp_in.Paralyze(140)
+		imp_in.Paralyse(140)
 	playsound(loc, 'sound/items/timer.ogg', 30, 0)
 	sleep(delay*0.25)
 	playsound(loc, 'sound/items/timer.ogg', 30, 0)

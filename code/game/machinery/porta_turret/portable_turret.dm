@@ -390,7 +390,7 @@
 			if(mode == TURRET_LETHAL && C.stat == DEAD)
 				continue
 
-			//if the target is a human and not in our faction, analyze threat level
+			//if the target is a human and not in our faction, analyse threat level
 			if(ishuman(C) && !in_faction(C))
 				if(assess_perp(C) >= 4)
 					targets += C
@@ -726,7 +726,7 @@
 		return TRUE
 
 /obj/machinery/porta_turret/aux_base
-	name = "perimeter defense turret"
+	name = "perimeter defence turret"
 	desc = "A plasma beam turret calibrated to defend outposts against non-humanoid fauna. It is more effective when exposed to the environment."
 	installation = null
 	lethal_projectile = /obj/projectile/plasma/turret
@@ -790,7 +790,7 @@
 
 /obj/machinery/turretid
 	name = "turret control panel"
-	desc = "Used to control a room's automated defenses."
+	desc = "Used to control a room's automated defences."
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_standby"
 	density = FALSE

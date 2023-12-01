@@ -565,7 +565,7 @@
 	Ghost_desc = "This Knight's armor will come alive once non-bloodsuckers get close to it."
 	Vamp_desc = "This is a possesed knight's armor, it will come alive once mortals get close to it.\n\
 		You can reinforce it with 5 silver bars.\n\
-		Good for immediate defense of your lair."
+		Good for immediate defence of your lair."
 	Vassal_desc = "This is a possesed knight's armor, it will protect your master if people get too close to it."
 	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, I shouldn't get too close."
 	var/upgraded = FALSE
@@ -748,7 +748,7 @@
 		return FALSE
 	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "'s corpse" : ""] slides off of the rack."))
 	density = FALSE
-	buckled_mob.Paralyze(2 SECONDS)
+	buckled_mob.Paralyse(2 SECONDS)
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
@@ -884,7 +884,7 @@
 			return FALSE
 		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_HALF_COST)
 		// Prevent them from unbuckling themselves as long as we're torturing.
-		target.Paralyze(1 SECONDS)
+		target.Paralyse(1 SECONDS)
 		convert_progress--
 
 		// We're done? Let's see if they can be Vassal.
@@ -1373,7 +1373,7 @@
 	if(IS_BLOODSUCKER(user))
 		RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
-		user.Paralyze(6 SECONDS)
+		user.Paralyse(6 SECONDS)
 		to_chat(user, span_cult("The power of the blood throne overwhelms you!"))
 		user.apply_damage(10, BRUTE)
 		unbuckle_mob(user)

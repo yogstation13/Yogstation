@@ -1,6 +1,6 @@
 /obj/machinery/power/bluespace_tap
 	name = "\improper Bluespace Harvester"
-	desc = "An elaborate device used to convert power into confusing bluespace science research." // The original didn't even have a description, so...
+	desc = "An elabourate device used to convert power into confusing bluespace science research." // The original didn't even have a description, so...
 
 /obj/machinery/power/bluespace_tap/examine(mob/user)
 	. = ..()

@@ -678,7 +678,7 @@ function is_maintainer($payload, $author){
 	global $maintainer_team_id;
 	$repo_is_org = $payload['pull_request']['base']['repo']['owner']['type'] == 'Organization';
 	if($maintainer_team_id == null || !$repo_is_org) {
-		$collaburl = str_replace('{/collaborator}', '/' . $author, $payload['pull_request']['base']['repo']['collaborators_url']) . '/permission';
+		$collaburl = str_replace('{/collabourator}', '/' . $author, $payload['pull_request']['base']['repo']['collabourators_url']) . '/permission';
 		$perms = json_decode(github_apisend($collaburl), true);
 		$permlevel = $perms['permission'];
 		return $permlevel == 'admin' || $permlevel == 'write';

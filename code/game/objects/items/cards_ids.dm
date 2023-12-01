@@ -299,7 +299,7 @@
 		sleep(0.5 SECONDS)
 		to_chat(cyborg, span_danger("Initiating diagnostics..."))
 		sleep(2 SECONDS)
-		to_chat(cyborg, span_danger("ClownBorg v1.7 loaded.")) // The flavor definitely sucks here.
+		to_chat(cyborg, span_danger("ClownBorg v1.7 loaded.")) // The flavour definitely sucks here.
 		cyborg.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].")
 		sleep(0.5 SECONDS)
 		to_chat(cyborg, span_danger("LAW SYNCHRONISATION ERROR"))
@@ -1011,7 +1011,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/away
 	name = "a perfectly generic identification card"
-	desc = "A perfectly generic identification card. Looks like it could use some flavor."
+	desc = "A perfectly generic identification card. Looks like it could use some flavour."
 	access = list(ACCESS_AWAY_GENERAL)
 	registered_age = null
 
@@ -1026,7 +1026,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/away/old
 	name = "a perfectly generic identification card"
-	desc = "A perfectly generic identification card. Looks like it could use some flavor."
+	desc = "A perfectly generic identification card. Looks like it could use some flavour."
 	icon_state = "centcom"
 
 /obj/item/card/id/away/old/sec

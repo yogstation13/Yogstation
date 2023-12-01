@@ -315,10 +315,10 @@
 
 		var/current_stamina_damage = H.getStaminaLoss()
 		if(current_stamina_damage >= 90)
-			if(!H.IsParalyzed())	
+			if(!H.IsParalysed())	
 				to_chat(H, span_warning("You muscles seize, making you collapse!"))
 			else
-				H.Paralyze(stunforce)
+				H.Paralyse(stunforce)
 			H.adjust_jitter(20 SECONDS)
 			H.adjust_confusion(8 SECONDS)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
@@ -460,7 +460,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
-	desc = "A large metal fist fitted to the arm of an exosuit, it uses repurposed maneuvering thrusters from a Raven battlecruiser to give a little more oomph to every punch. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
+	desc = "A large metal fist fitted to the arm of an exosuit, it uses repurposed manoeuvreing thrusters from a Raven battlecruiser to give a little more oomph to every punch. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
 	icon_state = "mecha_rocket_fist"
 	weapon_damage = 20
 

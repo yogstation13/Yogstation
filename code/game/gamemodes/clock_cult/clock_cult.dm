@@ -147,7 +147,7 @@ Credit where due:
 	restricted_jobs = list("Chaplain", "Captain")
 	announce_span = "brass"
 	announce_text = "Servants of Ratvar are trying to summon the Justiciar!\n\
-	<span class='brass'>Servants</span>: Construct defenses to protect the Ark. Sabotage the station!\n\
+	<span class='brass'>Servants</span>: Construct defences to protect the Ark. Sabotage the station!\n\
 	<span class='notice'>Crew</span>: Stop the servants before they can summon the Clockwork Justiciar."
 	var/servants_to_serve = list()
 	var/roundstart_player_count
@@ -325,7 +325,7 @@ Credit where due:
 	<li>You're in a place called Reebe right now. The crew can't get here normally.</li>\
 	<li>In the center is your base camp, with supplies, consoles, and the Ark. In the area surrounding you is an inaccessible area that the crew can walk between \
 	once they arrive (more on that later.) Everything between that space is an open area.</li>\
-	<li>Your job as a servant is to build fortifications and defenses to protect the Ark and your base once the Ark activates. You can do this \
+	<li>Your job as a servant is to build fortifications and defences to protect the Ark and your base once the Ark activates. You can do this \
 	however you like, but work with your allies and coordinate your efforts.</li>\
 	<li>Once the Ark activates, the station will be alerted. Portals to Reebe will open up in nearly every room. When they take these portals, \
 	the crewmembers will arrive in the area that you can't access, but can get through it freely - whereas you can't. Treat this as the \"spawn\" of the \

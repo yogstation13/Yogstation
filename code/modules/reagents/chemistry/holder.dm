@@ -927,7 +927,7 @@
 				if(percent > minimum_percent * 2 || percent == 100)
 					intensity_desc = ""
 				else if(percent > minimum_percent * 3)
-					intensity_desc = "the strong flavor of"
+					intensity_desc = "the strong flavour of"
 				if(intensity_desc != "")
 					out += "[intensity_desc] [taste_desc]"
 				else

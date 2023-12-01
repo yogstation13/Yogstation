@@ -136,7 +136,7 @@
 		var/z = pick(zlevels)
 		var/random_location = locate(x,y,z)
 		
-		if(istype(get_area(random_location), /area/mine/laborcamp))
+		if(istype(get_area(random_location), /area/mine/labourcamp))
 			continue
 		if(!isfloorturf(random_location))
 			continue

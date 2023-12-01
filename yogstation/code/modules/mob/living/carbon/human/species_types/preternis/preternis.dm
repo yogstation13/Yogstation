@@ -140,7 +140,7 @@
 		return FALSE
 	emag_lvl = min(emag_lvl + 1,2)
 	playsound(H.loc, 'sound/machines/warning-buzzer.ogg', 50, 1, 1)
-	H.Paralyze(60)
+	H.Paralyse(60)
 	switch(emag_lvl)
 		if(1)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50) //HALP AM DUMB

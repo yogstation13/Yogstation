@@ -115,7 +115,7 @@
 	var/reaction = rand(1,4)
 	switch(reaction)
 		if(1)
-			to_chat(owner, span_warning("You are paralyzed with fear!"))
+			to_chat(owner, span_warning("You are paralysed with fear!"))
 			owner.Stun(70)
 			owner.adjust_jitter(8 SECONDS)
 		if(2)

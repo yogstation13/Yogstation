@@ -147,14 +147,14 @@
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space
 	name = "Syndicate Space Comms Agent"
 	short_desc = "You are a syndicate agent, assigned to a small listening post station situated near your hated enemy's top secret research facility: Space Station 13."
-	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collaborate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands! In addition, you are subordinate to your lieutenant should any issues arise."
+	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collabourate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands! In addition, you are subordinate to your lieutenant should any issues arise."
 	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-Syndicate personnel."
 	outfit = /datum/outfit/lavaland_syndicate/comms/subordinate
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space/lieutenant
 	name = "Syndicate Lieutenant Space Comms Agent"
 	short_desc = "You are a syndicate agent, assigned to a small listening post station situated near your hated enemy's top secret research facility: Space Station 13."
-	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collaborate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands! Should any issues arise within the base, you have the final say."
+	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collabourate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands! Should any issues arise within the base, you have the final say."
 	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-Syndicate personnel."
 	outfit = /datum/outfit/lavaland_syndicate/comms/lieutenant
 

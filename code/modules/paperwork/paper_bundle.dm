@@ -55,7 +55,7 @@
 		qdel(W)
 	else
 		if(istype(W, /obj/item/pen) || istype(W, /obj/item/toy/crayon))
-			usr << browse("", "window=[name]") //Closes the dialog
+			usr << browse("", "window=[name]") //Closes the dialogue
 		P = src[page]
 		P.attackby(W, user)
 	update_appearance(UPDATE_ICON)

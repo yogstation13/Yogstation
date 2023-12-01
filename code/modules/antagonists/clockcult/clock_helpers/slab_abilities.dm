@@ -195,7 +195,7 @@
 		else
 			L.visible_message(span_warning("[L]'s eyes blaze with brilliant light!"), \
 			span_userdanger("Your vision suddenly screams with white-hot light!"))
-			L.Paralyze(1.5 SECONDS)
+			L.Paralyse(1.5 SECONDS)
 			L.apply_status_effect(STATUS_EFFECT_KINDLE)
 			L.flash_act(1, 1)
 			if(iscultist(L))

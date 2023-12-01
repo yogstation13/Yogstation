@@ -16,4 +16,4 @@
 /obj/item/book/granter/action/spell/knock/recoil(mob/living/user)
 	. = ..()
 	to_chat(user, span_warning("You're knocked down!"))
-	user.Paralyze(4 SECONDS)
+	user.Paralyse(4 SECONDS)

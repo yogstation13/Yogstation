@@ -202,10 +202,10 @@
 	return
 
 /obj/item/jawsoflife/jimmy/proc/show_gage(mob/user)
-	var/emag_givaway_flavor = ""
+	var/emag_givaway_flavour = ""
 	if(pump_charge > 101)
-		emag_givaway_flavor = pick("somehow","unironically","ironically","actually","maybe")
-	to_chat(user,"[src]'s pressure gage [emag_givaway_flavor] reads [pump_charge]%")
+		emag_givaway_flavour = pick("somehow","unironically","ironically","actually","maybe")
+	to_chat(user,"[src]'s pressure gage [emag_givaway_flavour] reads [pump_charge]%")
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE

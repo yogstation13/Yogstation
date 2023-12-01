@@ -86,7 +86,7 @@ proc name: process cell (/turf/open/process_cell)
 The following runtime has occurred 9 time(s).
 runtime error: Cannot read null.thrownby
 proc name: hitby (/mob/living/carbon/human/hitby)
-  source file: human_defense.dm,353
+  source file: human_defence.dm,353
   usr: the monkey (662) (/mob/living/carbon/monkey)
   src: Sydney Hujsak (/mob/living/carbon/human)
 

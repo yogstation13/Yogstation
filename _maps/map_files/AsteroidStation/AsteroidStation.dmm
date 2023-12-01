@@ -445,7 +445,7 @@
 /area/solar/starboard/aft)
 "aeg" = (
 /obj/machinery/door/airlock/security{
-	name = "Labor Shuttle";
+	name = "Labour Shuttle";
 	req_access_txt = "2"
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -486,7 +486,7 @@
 	},
 /obj/item/pipe_dispenser,
 /obj/item/pipe_dispenser,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/structure/disposalpipe/trunk,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 9
@@ -5599,7 +5599,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 5;
-	id = "laborcamp_home";
+	id = "labourcamp_home";
 	name = "fore bay 1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9
@@ -9048,9 +9048,9 @@
 /area/maintenance/starboard/aft)
 "cgs" = (
 /obj/structure/table,
-/obj/item/stock_parts/subspace/analyzer,
-/obj/item/stock_parts/subspace/analyzer,
-/obj/item/stock_parts/subspace/analyzer,
+/obj/item/stock_parts/subspace/analyser,
+/obj/item/stock_parts/subspace/analyser,
+/obj/item/stock_parts/subspace/analyser,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "cgv" = (
@@ -10839,7 +10839,7 @@
 /area/medical/psych)
 "cHc" = (
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/t_scanner,
 /obj/item/stack/packageWrap,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -11617,7 +11617,7 @@
 /area/teleporter)
 "cUI" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	shuttledocked = 1
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -12981,7 +12981,7 @@
 	pixel_x = 2;
 	pixel_y = 10
 	},
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = -6;
 	pixel_y = -5
 	},
@@ -16362,9 +16362,9 @@
 "erV" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
 	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
-	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defence of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
-	name = "Russian Defense Turret MK-II"
+	name = "Russian Defence Turret MK-II"
 	},
 /obj/machinery/light{
 	dir = 8
@@ -19503,7 +19503,7 @@
 /area/medical/sleeper)
 "foB" = (
 /obj/structure/table/reinforced,
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = 4;
 	pixel_y = 8
 	},
@@ -19616,7 +19616,7 @@
 	pixel_x = -32;
 	receive_ore_updates = 1
 	},
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/item/clothing/glasses/hud/health,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -20599,7 +20599,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/computer/shuttle/labor{
+/obj/machinery/computer/shuttle/labour{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -21338,7 +21338,7 @@
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid,
 /area/space/nearstation)
@@ -30855,7 +30855,7 @@
 /area/chapel/main)
 "iYg" = (
 /obj/structure/table,
-/obj/item/stock_parts/subspace/analyzer,
+/obj/item/stock_parts/subspace/analyser,
 /obj/item/stock_parts/subspace/amplifier,
 /obj/item/stock_parts/subspace/crystal,
 /obj/item/stock_parts/subspace/filter,
@@ -33918,7 +33918,7 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Labor Shuttle Dock North";
+	c_tag = "Labour Shuttle Dock North";
 	dir = 6
 	},
 /obj/structure/table,
@@ -35955,7 +35955,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/condiment/peppermill{
-	desc = "Often used to flavor food or make people sneeze. Fashionably moved to the left side of the table.";
+	desc = "Often used to flavour food or make people sneeze. Fashionably moved to the left side of the table.";
 	pixel_x = -8;
 	pixel_y = 2
 	},
@@ -37972,8 +37972,8 @@
 /area/hallway/primary/central)
 "lnH" = (
 /obj/machinery/computer/security{
-	name = "Labor Camp Monitoring";
-	network = list("labor")
+	name = "Labour Camp Monitoring";
+	network = list("labour")
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
@@ -38074,7 +38074,7 @@
 /area/science/research)
 "lpJ" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock"
+	name = "Labour Camp Shuttle Airlock"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -44658,9 +44658,9 @@
 "noq" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
 	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
-	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defence of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
-	name = "Russian Defense Turret MK-II"
+	name = "Russian Defence Turret MK-II"
 	},
 /obj/machinery/light{
 	dir = 4
@@ -45989,7 +45989,7 @@
 	pixel_x = -6;
 	pixel_y = 7
 	},
-/obj/item/analyzer{
+/obj/item/analyser{
 	pixel_x = 4;
 	pixel_y = -7
 	},
@@ -50173,7 +50173,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_y = 18
 	},
 /obj/item/reagent_containers/glass/rag{
@@ -59433,7 +59433,7 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Labor Shuttle Dock South";
+	c_tag = "Labour Shuttle Dock South";
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -60331,7 +60331,7 @@
 /obj/item/screwdriver{
 	pixel_y = 10
 	},
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
 	},
@@ -61363,7 +61363,7 @@
 	pixel_x = 4;
 	pixel_y = -5
 	},
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = -4;
 	pixel_y = -3
 	},
@@ -62844,7 +62844,7 @@
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "sSe" = (
-/obj/machinery/rnd/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyser,
 /obj/machinery/newscaster{
 	pixel_x = 32
 	},
@@ -63024,7 +63024,7 @@
 /area/medical/medbay/aft)
 "sVB" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	req_access_txt = "2"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -72102,7 +72102,7 @@
 /area/tcommsat/server)
 "vUk" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/t_scanner,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -73173,7 +73173,7 @@
 /area/crew_quarters/dorms)
 "wlh" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	req_access_txt = "2";
 	shuttledocked = 1
 	},
@@ -78643,15 +78643,15 @@
 /area/medical/medbay/lobby)
 "xTX" = (
 /obj/structure/table,
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = -6;
 	pixel_y = 12
 	},
-/obj/item/plant_analyzer{
+/obj/item/plant_analyser{
 	pixel_x = 9;
 	pixel_y = 8
 	},
-/obj/item/analyzer{
+/obj/item/analyser{
 	pixel_x = -3;
 	pixel_y = 2
 	},
@@ -79744,7 +79744,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "ykJ" = (
-/obj/machinery/computer/shuttle/labor,
+/obj/machinery/computer/shuttle/labour,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
 	},

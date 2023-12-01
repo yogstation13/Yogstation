@@ -192,7 +192,7 @@
 		if (T && isturf(T))
 			if (!D.stat)
 				D.emote("scream")
-			D.throw_at(T, 10, 4, A, TRUE, TRUE, callback = CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, Paralyze), 20))
+			D.throw_at(T, 10, 4, A, TRUE, TRUE, callback = CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, Paralyse), 20))
 	log_combat(A, D, "has thrown with wrestling")
 	return 0
 
@@ -289,7 +289,7 @@
 		var/bodyslam_damage = A.get_punchdamagehigh() * 1.5 + 5 //base damage of the slam, 20
 		if (!D.stat)
 			D.emote("scream")
-			D.Paralyze(40)
+			D.Paralyse(40)
 
 			switch(rand(1,3))
 				if (2)
@@ -347,7 +347,7 @@
 
 	var/turf/T = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
 	if (T && isturf(T))
-		D.Paralyze(20)
+		D.Paralyse(20)
 		D.throw_at(T, 3, 2)
 	log_combat(A, D, "roundhouse-kicked")
 
@@ -386,7 +386,7 @@
 			if (falling == 1)
 				A.visible_message("<span class = 'danger'><B>...and dives head-first into the ground, ouch!</b></span>")
 				A.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
-				A.Paralyze(60)
+				A.Paralyse(60)
 			to_chat(A, "[D] is too far away!")
 			return 0
 
@@ -416,7 +416,7 @@
 		else
 			D.adjustBruteLoss(legdrop_damage)
 
-		D.Paralyze(40)
+		D.Paralyse(40)
 
 		A.pixel_y = 0
 

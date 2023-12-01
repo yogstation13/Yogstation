@@ -1002,14 +1002,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/bahama_mama
 	name = "Bahama Mama"
-	description = "A tropical cocktail with a complex blend of flavors."
+	description = "A tropical cocktail with a complex blend of flavours."
 	color = "#FF7F3B" // rgb: 255, 127, 59
 	boozepwr = 35
 	quality = DRINK_GOOD
 	taste_description = "pineapple, coconut, and a hint of coffee"
 	glass_icon_state = "bahama_mama"
 	glass_name = "Bahama Mama"
-	glass_desc = "A tropical cocktail with a complex blend of flavors."
+	glass_desc = "A tropical cocktail with a complex blend of flavours."
 
 /datum/reagent/consumable/ethanol/bahama_mama/reaction_mob(mob/living/M, methods=TOUCH)
 	if(methods & INGEST)
@@ -1630,7 +1630,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	description = "A coconut liqueur for smooth, creamy, tropical drinks."
 	color = "#F7F0D0"
 	boozepwr = 20
-	taste_description = "a sweet milky flavor with notes of toasted sugar"
+	taste_description = "a sweet milky flavour with notes of toasted sugar"
 	glass_icon_state = "glass_white"
 	glass_name = "Creme de Coconut"
 	glass_desc = "An unintimidating glass of coconut liqueur."
@@ -1700,7 +1700,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/bastion_bourbon
 	name = "Bastion Bourbon"
-	description = "Soothing hot herbal brew with restorative properties. Hints of citrus and berry flavors."
+	description = "Soothing hot herbal brew with restorative properties. Hints of citrus and berry flavours."
 	color = "#00FFFF"
 	boozepwr = 30
 	quality = DRINK_FANTASTIC
@@ -1708,7 +1708,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	metabolization_rate = 2 * REAGENTS_METABOLISM //0.8u per tick
 	glass_icon_state = "bastion_bourbon"
 	glass_name = "Bastion Bourbon"
-	glass_desc = "If you're feeling low, count on the buttery flavor of our own bastion bourbon."
+	glass_desc = "If you're feeling low, count on the buttery flavour of our own bastion bourbon."
 	shot_glass_icon_state = "shotglassgreen"
 
 /datum/reagent/consumable/ethanol/bastion_bourbon/on_mob_metabolize(mob/living/L)
@@ -2104,14 +2104,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	var/fruit_list = english_list(fruits)
 	description = "A [alcohol_description] wine brewed from [fruit_list]."
 
-	var/flavor = ""
+	var/flavour = ""
 	if(!primary_tastes.len)
 		primary_tastes = list("[alcohol_description] alcohol")
-	flavor += english_list(primary_tastes)
+	flavour += english_list(primary_tastes)
 	if(secondary_tastes.len)
-		flavor += ", with a hint of "
-		flavor += english_list(secondary_tastes)
-	taste_description = flavor
+		flavour += ", with a hint of "
+		flavour += english_list(secondary_tastes)
+	taste_description = flavour
 	if(holder.my_atom)
 		holder.my_atom.on_reagent_change()
 
@@ -2444,7 +2444,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.AdjustKnockdown(-20, FALSE)
 	M.AdjustUnconscious(-20, FALSE)
 	M.AdjustImmobilized(-20, FALSE)
-	M.AdjustParalyzed(-20, FALSE)
+	M.AdjustParalysed(-20, FALSE)
 	if(M.reagents.has_reagent(/datum/reagent/toxin/mindbreaker))
 		M.reagents.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 	M.adjust_hallucinations(-10 SECONDS)
@@ -2491,7 +2491,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/amaretto_alexander
 	name = "Amaretto Alexander"
-	description = "A weaker version of the Alexander, what it lacks in strength it makes up for in flavor."
+	description = "A weaker version of the Alexander, what it lacks in strength it makes up for in flavour."
 	color = "#DBD5AE"
 	boozepwr = 35
 	quality = DRINK_VERYGOOD

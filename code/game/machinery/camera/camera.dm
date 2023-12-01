@@ -124,7 +124,7 @@
 	if(isXRay(TRUE)) //don't reveal it's upgraded if was done via MALF AI Upgrade Camera Network ability
 		. += "It has an X-ray photodiode installed."
 	else
-		. += span_info("It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.")
+		. += span_info("It can be upgraded with an X-ray photodiode with an <b>analyser</b>.")
 	if(isMotion())
 		. += "It has a proximity sensor installed."
 	else

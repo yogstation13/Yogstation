@@ -270,7 +270,7 @@ RUST PATH SPELLS GO HERE
 		var/list/turfs_by_us = get_adjacent_open_turfs(cast_on)
 		// If there is no side by us, hardstun them
 		if(!length(turfs_by_us))
-			living_mob.Paralyze(5 SECONDS)
+			living_mob.Paralyse(5 SECONDS)
 			continue
 
 		// If there's an open turf throw them to the side

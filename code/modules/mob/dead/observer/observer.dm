@@ -799,7 +799,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/toggle_gas_scan()
 	set name = "Toggle Gas Scan"
-	set desc = "Toggles whether you analyze gas contents on click"
+	set desc = "Toggles whether you analyse gas contents on click"
 	set category = "Ghost"
 
 	scanmode ^= SCAN_GAS

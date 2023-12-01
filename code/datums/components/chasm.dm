@@ -105,7 +105,7 @@
 		dropped_thing.forceMove(T)
 		if(isliving(dropped_thing))
 			var/mob/living/L = dropped_thing
-			L.Paralyze(100)
+			L.Paralyse(100)
 			L.adjustBruteLoss(30)
 		falling_atoms -= falling_ref
 		return
@@ -115,7 +115,7 @@
 	if (isliving(dropped_thing))
 		var/mob/living/falling_mob = dropped_thing
 		falling_mob.notransform = TRUE
-		falling_mob.Paralyze(20 SECONDS)
+		falling_mob.Paralyse(20 SECONDS)
 
 	var/oldtransform = dropped_thing.transform
 	var/oldcolor = dropped_thing.color
@@ -192,7 +192,7 @@
 	escapee.forceMove(get_turf(parent))
 	escapee.throw_at(get_edge_target_turf(parent, pick(GLOB.alldirs)), rand(1, 10), rand(1, 10))
 	escapee.movement_type &= ~FLYING
-	escapee.Paralyze(20 SECONDS, TRUE)
+	escapee.Paralyse(20 SECONDS, TRUE)
 	UnregisterSignal(escapee, COMSIG_LIVING_REVIVE)
 
 #undef CHASM_TRAIT

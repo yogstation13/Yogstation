@@ -55,7 +55,7 @@
 		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/t_scanner,
-		/obj/item/analyzer,
+		/obj/item/analyser,
 		/obj/item/geiger_counter,
 		/obj/item/extinguisher/mini,
 		/obj/item/radio,
@@ -106,7 +106,7 @@
 	SSwardrobe.provide_type(/obj/item/handdrill, src)
 	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
 	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much //It's been 5 years
-	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
+	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyser
 	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
 	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
 	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/chief_engineer, src)
@@ -137,7 +137,7 @@
 	SSwardrobe.provide_type(/obj/item/handdrill, src)
 	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
 	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much
-	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
+	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyser
 	SSwardrobe.provide_type(/obj/item/storage/bag/construction/admin/full, src)
 	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
 	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/chief_engineer, src)
@@ -240,7 +240,7 @@
 	STR.max_items = 12
 	STR.max_combined_w_class = 18
 	STR.set_holdable(list(
-		/obj/item/healthanalyzer,
+		/obj/item/healthanalyser,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,
@@ -301,7 +301,7 @@
 	SSwardrobe.provide_type(/obj/item/cautery/advanced, src)
 	SSwardrobe.provide_type(/obj/item/pinpointer/crew, src)
 	SSwardrobe.provide_type(/obj/item/sensor_device, src)
-	SSwardrobe.provide_type(/obj/item/healthanalyzer/advanced, src)
+	SSwardrobe.provide_type(/obj/item/healthanalyser/advanced, src)
 
 /obj/item/storage/belt/security
 	name = "security belt"
@@ -411,7 +411,7 @@
 		/obj/item/multitool,
 		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
-		/obj/item/analyzer,
+		/obj/item/analyser,
 		/obj/item/extinguisher/mini,
 		/obj/item/radio,
 		/obj/item/clothing/gloves,
@@ -632,7 +632,7 @@
 	new /obj/item/cautery/alien(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/sensor_device(src)
-	new /obj/item/healthanalyzer/advanced(src)
+	new /obj/item/healthanalyser/advanced(src)
 
 /obj/item/storage/belt/military/army
 	name = "army belt"

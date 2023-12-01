@@ -132,7 +132,7 @@
 	src.visible_message(span_danger("[M] falls free of [src]!"))
 	unbuckle_mob(M,force=1)
 	M.emote("scream")
-	M.AdjustParalyzed(2 SECONDS)
+	M.AdjustParalysed(2 SECONDS)
 
 /obj/structure/kitchenspike/Destroy()
 	if(has_buckled_mobs())

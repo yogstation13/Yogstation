@@ -366,7 +366,7 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			if(C.health < C.maxHealth*0.5)
-				C.Paralyze(20)
+				C.Paralyse(20)
 		smash(user)
 
 

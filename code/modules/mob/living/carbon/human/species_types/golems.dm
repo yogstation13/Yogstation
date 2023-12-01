@@ -1,5 +1,5 @@
 /datum/species/golem
-	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck. no need eat
+	// Animated beings of stone. They have increased defences, and do not need to breathe. They're also slow as fuuuck. no need eat
 	name = "Golem"
 	id = "iron golem"
 	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING)
@@ -301,7 +301,7 @@
 	H.adjustToxLoss(-2)
 	H.adjustOxyLoss(-2)
 
-//Since this will usually be created from a collaboration between podpeople and free golems, wood golems are a mix between the two races
+//Since this will usually be created from a collabouration between podpeople and free golems, wood golems are a mix between the two races
 /datum/species/golem/wood
 	name = "Wood Golem"
 	id = "wood golem"
@@ -1638,7 +1638,7 @@
 
 	return to_add
 
-// Override to add a perk elaborating on just how dangerous fire is.
+// Override to add a perk elabourating on just how dangerous fire is.
 /datum/species/golem/cloth/create_pref_temperature_perks()
 	var/list/to_add = list()
 

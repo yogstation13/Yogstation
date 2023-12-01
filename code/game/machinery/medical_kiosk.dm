@@ -1,5 +1,5 @@
-//The Medical Kiosk is designed to act as a low access alernative to  a medical analyzer, and doesn't require breaking into medical. Self Diagnose at your heart's content!
-//For a fee that is. Comes in 4 flavors of medical scan.
+//The Medical Kiosk is designed to act as a low access alernative to  a medical analyser, and doesn't require breaking into medical. Self Diagnose at your heart's content!
+//For a fee that is. Comes in 4 flavours of medical scan.
 
 
 /obj/machinery/medical_kiosk
@@ -265,7 +265,7 @@
 	else if((brute_loss+fire_loss+tox_loss+oxy_loss+clone_loss) >= 20)
 		patient_status = "Lightly Injured"
 	if(pandemonium || user.has_status_effect(/datum/status_effect/hallucination))
-		patient_status = pick("The only kiosk is kiosk, but is the only patient, patient?", "Breathing manually.","Contact NTOS site admin.","97% carbon, 3% natural flavoring","The ebb and flow wears us all in time.","It's Lupus. You have Lupus.","Undergoing monkey disease.")
+		patient_status = pick("The only kiosk is kiosk, but is the only patient, patient?", "Breathing manually.","Contact NTOS site admin.","97% carbon, 3% natural flavouring","The ebb and flow wears us all in time.","It's Lupus. You have Lupus.","Undergoing monkey disease.")
 
 	if((brain_loss) >= 100)   //Brain status checks.
 		brain_status = "Grave brain damage detected."

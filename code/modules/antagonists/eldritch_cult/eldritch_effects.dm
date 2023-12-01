@@ -232,7 +232,7 @@
 	if(IS_HERETIC(human_user))
 		to_chat(human_user,span_boldwarning("You know better than to tempt forces out of your control!"))
 	else
-		//a very elaborate way to suicide
+		//a very elabourate way to suicide
 		var/throwtarget
 		for(var/i in 1 to 20)
 			human_user.SetStun(INFINITY) //:^^^^^^^^^^)
@@ -240,7 +240,7 @@
 			human_user.safe_throw_at(throwtarget, rand(1,20), 1, src, force = MOVE_FORCE_OVERPOWERING , quickstart = TRUE)
 			human_user.Shake(rand(-100,100), rand(-100,100), 110) //oh we are TOTALLY stacking these //turns out we are not in fact stacking these
 			to_chat(user, span_userdanger("[pick("I- I- I-", "NO-", "IT HURTS-", "GETOUTOFMYHEADGETOUTOFMY-", "<i>POD-</i>","<i>COVE-</i>", "AAAAAAAAA-")]"))
-			sleep(0.11 SECONDS) //Spooky flavor message spam
+			sleep(0.11 SECONDS) //Spooky flavour message spam
 		to_chat(user, span_cultbold("That was a really bad idea..."))
 		human_user.ghostize()
 		var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
@@ -463,7 +463,7 @@
 				return
 	ticket.penance_sources[loss]++
 	ticket.penance_left -= penance_given[loss]
-	to_chat(user, span_notice("[src] accepts [penance_given[loss]] of your marbles, you have [ticket.penance_left] marbles remaining.")) //better flavor text maybe idk
+	to_chat(user, span_notice("[src] accepts [penance_given[loss]] of your marbles, you have [ticket.penance_left] marbles remaining.")) //better flavour text maybe idk
 
 /obj/effect/penance_giver/blood
 	name = "Bloody Construct"

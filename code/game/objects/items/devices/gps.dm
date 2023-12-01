@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 /obj/item/gps/cyborg
 	icon_state = "gps-b"
 	gpstag = "BORG0"
-	desc = "A mining cyborg internal positioning system. Used as a recovery beacon for damaged cyborg assets, or a collaboration tool for mining teams."
+	desc = "A mining cyborg internal positioning system. Used as a recovery beacon for damaged cyborg assets, or a collabouration tool for mining teams."
 
 /obj/item/gps/cyborg/Initialize(mapload)
 	. = ..()

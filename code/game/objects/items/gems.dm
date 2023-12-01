@@ -92,7 +92,7 @@
 
 /obj/item/gem/phoron
 	name = "stabilized baroxuldium"
-	desc = "A softly glowing crystal composed entirely of a rich plasma ore. Prized both for its dense plasma composition and otherworldly beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analyzed into usable material."
+	desc = "A softly glowing crystal composed entirely of a rich plasma ore. Prized both for its dense plasma composition and otherworldly beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analysed into usable material."
 	icon_state = "phoron"
 	materials = list(/datum/material/plasma=80000)
 	point_value = 1200
@@ -102,7 +102,7 @@
 
 /obj/item/gem/purple
 	name = "densified dilithium"
-	desc = "A mass of rhythmatically pulsing dilithium, with a signal strong enough to be detectable by long-range GPS scanning. It looks like it could be destructively analyzed into usable material."
+	desc = "A mass of rhythmatically pulsing dilithium, with a signal strong enough to be detectable by long-range GPS scanning. It looks like it could be destructively analysed into usable material."
 	icon_state = "purple"
 	materials = list(/datum/material/dilithium=64000)
 	point_value = 1600

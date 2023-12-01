@@ -271,7 +271,7 @@
 		user.visible_message(span_warning("[user] somehow manages to shoot [user.p_them()]self in the face!"), span_userdanger("You somehow shoot yourself in the face! How the hell?!"))
 		user.emote("scream")
 		user.drop_all_held_items()
-		user.Paralyze(80)
+		user.Paralyse(80)
 
 /obj/item/gun/ballistic/revolver/derringer
 	name = "derringer pistol"

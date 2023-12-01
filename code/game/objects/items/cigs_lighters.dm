@@ -179,7 +179,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				to_chat(user, span_notice("[src] is full."))
 
 
-/obj/item/clothing/mask/cigarette/proc/light(flavor_text = null)
+/obj/item/clothing/mask/cigarette/proc/light(flavour_text = null)
 	if(lit)
 		return
 	if(!(flags_1 & INITIALIZED_1))
@@ -224,9 +224,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	reagents.handle_reactions()
 	icon_state = icon_on
 	item_state = icon_on
-	if(flavor_text)
+	if(flavour_text)
 		var/turf/T = get_turf(src)
-		T.visible_message(flavor_text)
+		T.visible_message(flavour_text)
 	START_PROCESSING(SSobj, src)
 
 	//can't think of any other way to update the overlays :<
@@ -618,7 +618,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else
 		hitsound = "swing_hit"
 		force = 0
-		attack_verb = null //human_defense.dm takes care of it
+		attack_verb = null //human_defence.dm takes care of it
 		STOP_PROCESSING(SSobj, src)
 	set_light_on(lit)
 	update_appearance(UPDATE_ICON)
@@ -965,7 +965,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(prob(5))//small chance for the vape to break and deal damage if it's emagged
 			playsound(get_turf(src), 'sound/effects/pop_expl.ogg', 50, 0)
 			M.apply_damage(20, BURN, BODY_ZONE_HEAD)
-			M.Paralyze(300, 1, 0)
+			M.Paralyse(300, 1, 0)
 			var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 			sp.set_up(5, 1, src)
 			sp.start()

@@ -37,7 +37,7 @@
 		if("waldo")
 			to_chat(owner, "<B>Hi, Friends!</B>")
 			to_chat(owner, "<B>My name is Waldo. I'm just setting off on a galaxywide hike. You can come too. All you have to do is find me.</B>")
-			to_chat(owner, "<B>By the way, I'm not traveling on my own. wherever I go, there are lots of other characters for you to spot. First find the people trying to capture me! They're somewhere around the station!</B>")
+			to_chat(owner, "<B>By the way, I'm not travelling on my own. wherever I go, there are lots of other characters for you to spot. First find the people trying to capture me! They're somewhere around the station!</B>")
 		if("synth")
 			to_chat(owner, span_danger("ALERT: Wide-range teleport has scrambled primary systems."))
 			to_chat(owner, span_danger("Initiating diagnostics..."))

@@ -61,7 +61,7 @@
 
 	var/obj/item/instrument/piano_synth/internal_instrument
 	var/obj/machinery/newscaster			//pAI Newscaster
-	var/obj/item/healthanalyzer/hostscan				//pAI healthanalyzer
+	var/obj/item/healthanalyser/hostscan				//pAI healthanalyser
 
 	var/encryptmod = FALSE
 	var/holoform = FALSE
@@ -114,7 +114,7 @@
 	card = P
 	job = "Personal AI"
 	signaler = new(src)
-	hostscan = new /obj/item/healthanalyzer(src)
+	hostscan = new /obj/item/healthanalyser(src)
 	if(!radio)
 		radio = new /obj/item/radio/headset/silicon/pai(src)
 	newscaster = new /obj/machinery/newscaster(src)

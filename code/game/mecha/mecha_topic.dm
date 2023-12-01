@@ -163,7 +163,7 @@
 
 
 
-/obj/mecha/proc/output_access_dialog(obj/item/card/id/id_card, mob/user)
+/obj/mecha/proc/output_access_dialogue(obj/item/card/id/id_card, mob/user)
 	if(!id_card || !user)
 		return
 	. = {"<html>
@@ -192,7 +192,7 @@
 	onclose(user, "exosuit_add_access")
 
 
-/obj/mecha/proc/output_maintenance_dialog(obj/item/card/id/id_card,mob/user)
+/obj/mecha/proc/output_maintenance_dialogue(obj/item/card/id/id_card,mob/user)
 	if(!id_card || !user)
 		return
 	. = {"<html>
@@ -247,7 +247,7 @@
 				return
 
 		if(href_list["req_access"] && add_req_access && id_card)
-			output_access_dialog(id_card,usr)
+			output_access_dialogue(id_card,usr)
 
 		if(href_list["maint_access"] && maint_access && id_card)
 			if(state==0)
@@ -260,7 +260,7 @@
 				visible_message(span_warning("You need to tighten the securing bolts first!"))
 			else if(state==3)
 				visible_message(span_warning("You need to close the hatch to the power unit first!"))	
-			output_maintenance_dialog(id_card,usr)
+			output_maintenance_dialogue(id_card,usr)
 			return
 
 		if(href_list["drop_cell"])
@@ -268,26 +268,26 @@
 				if(!user.put_in_hands(cell))
 					cell.forceMove(get_turf(user))
 				cell = null
-			output_maintenance_dialog(id_card,usr)
+			output_maintenance_dialogue(id_card,usr)
 			return
 		if(href_list["drop_scanmod"])
 			if(state == 3)
 				if(!user.put_in_hands(scanmod))
 					scanmod.forceMove(get_turf(user))
 				scanmod = null
-			output_maintenance_dialog(id_card,usr)
+			output_maintenance_dialogue(id_card,usr)
 			return
 		if(href_list["drop_cap"])
 			if(state == 3)
 				if(!user.put_in_hands(capacitor))
 					capacitor.forceMove(get_turf(user))
 				capacitor = null
-			output_maintenance_dialog(id_card,usr)
+			output_maintenance_dialogue(id_card,usr)
 			return
 		if(href_list["drop_mmi"])
 			if(state == 3)
 				remove_mmi(user)
-			output_maintenance_dialog(id_card,usr)
+			output_maintenance_dialogue(id_card,usr)
 			return
 
 		if(href_list["set_internal_tank_valve"] && state >=1)
@@ -300,13 +300,13 @@
 			if(!(add_req_access && id_card))
 				return
 			operation_req_access += text2num(href_list["add_req_access"])
-			output_access_dialog(id_card,usr)
+			output_access_dialogue(id_card,usr)
 
 		if(href_list["del_req_access"])
 			if(!(add_req_access && id_card))
 				return
 			operation_req_access -= text2num(href_list["del_req_access"])
-			output_access_dialog(id_card, usr)
+			output_access_dialogue(id_card, usr)
 
 		if(href_list["finish_req_access"])
 			add_req_access = 0

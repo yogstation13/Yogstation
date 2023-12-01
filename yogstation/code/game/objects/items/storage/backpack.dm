@@ -121,7 +121,7 @@
 		for(var/mob/living/M in T)
 			if(M.movement_type & FLYING)
 				M.visible_message(span_danger("The bluespace collapse crushes the air towards it, pulling [M] towards the ground..."))
-				M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
+				M.Paralyse(5, TRUE, TRUE)		//Overrides stun absorbs.
 		T.TerraformTurf(/turf/open/chasm/magic, /turf/open/chasm/magic)
 	for(var/fabricarea in get_areas(/area/fabric_of_reality))
 		var/area/fabric_of_reality/R = fabricarea

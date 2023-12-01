@@ -655,7 +655,7 @@
 				/obj/item/circuitboard/machine/mechfab,
 				/obj/item/circuitboard/machine/circuit_imprinter/department,
 				/obj/item/circuitboard/computer/teleporter,
-				/obj/item/circuitboard/machine/destructive_analyzer,
+				/obj/item/circuitboard/machine/destructive_analyser,
 				/obj/item/circuitboard/computer/rdconsole,
 				/obj/item/circuitboard/computer/nanite_chamber_control,
 				/obj/item/circuitboard/computer/nanite_cloud_controller,

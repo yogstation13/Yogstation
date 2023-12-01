@@ -77,7 +77,7 @@
 	if (distance <= 2)
 		target.visible_message(span_danger("[target] suddendly collapses..."))
 		to_chat(target, span_userdanger("A purple light flashes across your vision, and you lose control of your movements!"))
-		target.Paralyze(10 SECONDS)
+		target.Paralyse(10 SECONDS)
 		M.silent += 10
 	else //Distant glare
 		var/loss = 100 - (distance * 10)
@@ -592,7 +592,7 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Paralyze(5 SECONDS)
+				S.Paralyse(5 SECONDS)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
 
@@ -902,7 +902,7 @@
 
 		//True if jaunter entered stamcrit
 		var/mob/living/jaunter_living = jaunter
-		if(jaunter_living.IsParalyzed())
+		if(jaunter_living.IsParalysed())
 			eject_jaunter(forced = TRUE)
 			return
 

@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/canhear_range = 3  // The range around the radio in which mobs can hear what it receives.
 	var/emped = 0  // Tracks the number of EMPs currently stacked.
 
-	var/broadcasting = FALSE  // Whether the radio will transmit dialogue it hears nearby.
+	var/broadcasting = FALSE  // Whether the radio will transmit dialogueue it hears nearby.
 	var/listening = TRUE  // Whether the radio is currently receiving.
 	var/prison_radio = FALSE  // If true, the transmit wire starts cut.
 	var/unscrewed = FALSE  // Whether wires are accessible. Toggleable by screwdrivering.

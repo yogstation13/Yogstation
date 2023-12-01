@@ -20,7 +20,7 @@
 		if(13 to 14)
 			shake_camera(L, 15, 1)
 			L.emote("whimper")
-			L.Paralyze(10)
+			L.Paralyse(10)
 			to_chat(parent, "<span class='userdanger'>You feel like you are never going to get out...</span>")
 		if(15 to 17)
 			L.emote("cry")

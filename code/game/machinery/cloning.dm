@@ -616,7 +616,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	<h4>Profile Management</h4>
 	<p>The H-87 (as well as your station's standard genetics machine) can accept STANDARD DATA DISKETTES.
 	These diskettes are used to transfer genetic information between machines and profiles.
-	A load/save dialog will become available in each profile if a disk is inserted.</p><br>
+	A load/save dialogue will become available in each profile if a disk is inserted.</p><br>
 	<i>A good diskette is a great way to counter aforementioned genetic drift!</i><br>
 	<br>
 	<font size=1>This technology produced under license from Thinktronic Systems, LTD.</font>"}

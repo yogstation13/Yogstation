@@ -1,6 +1,6 @@
 /datum/guardian_stats
 	var/damage = 1
-	var/defense = 1
+	var/defence = 1
 	var/speed = 1
 	var/potential = 1
 	var/range = 1
@@ -17,7 +17,7 @@
 		guardian.melee_damage_lower = damage * 5
 		guardian.melee_damage_upper = damage * 5
 		guardian.obj_damage = damage * 16
-	var/armor = clamp((max(6 - defense, 1)/2.5)/2, 0.25, 1)
+	var/armor = clamp((max(6 - defence, 1)/2.5)/2, 0.25, 1)
 	guardian.damage_coeff = list(BRUTE = armor, BURN = armor, TOX = armor, CLONE = armor, STAMINA = 0, OXY = armor)
 	if (damage == 5)
 		guardian.environment_smash = ENVIRONMENT_SMASH_WALLS
@@ -65,7 +65,7 @@
 	var/list/stats_info = list()
 	stats_info += "Ranged: [ranged ? "Yes" : "No"]"
 	stats_info += "Damage [level_to_grade(damage)]"
-	stats_info += "Defense [level_to_grade(defense)]"
+	stats_info += "Defence [level_to_grade(defence)]"
 	stats_info += "Speed [level_to_grade(speed)]"
 	stats_info += "Potential [level_to_grade(potential)]"
 	stats_info += "Range [level_to_grade(range)]"
@@ -78,7 +78,7 @@
 
 /datum/guardian_stats/proc/weaken(times = 1)//reduces a random stat x times
 	for(var/i = 0; i < times; i++)
-		var/list/reduction = list("damage", "defense", "speed", "potential", "range")
+		var/list/reduction = list("damage", "defence", "speed", "potential", "range")
 		shuffle(reduction)
 		var/found = FALSE
 		for(var/option in reduction)
@@ -87,9 +87,9 @@
 					if(damage > 1)
 						damage --
 						found = TRUE
-				if("defense")
-					if(defense > 1)
-						defense --
+				if("defence")
+					if(defence > 1)
+						defence --
 						found = TRUE
 				if("speed")
 					if(speed > 1)

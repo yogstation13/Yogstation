@@ -177,7 +177,7 @@
 		var/datum/status_effect/belligerent/B = C.apply_status_effect(STATUS_EFFECT_BELLIGERENT)
 		if(!QDELETED(B))
 			B.duration = world.time + 3 SECONDS
-			C.Paralyze(0.5 SECONDS) //knocks down for half a second if affected
+			C.Paralyse(0.5 SECONDS) //knocks down for half a second if affected
 	sleep(!GLOB.ratvar_approaches ? 1.6 SECONDS : 1 SECONDS)
 	name = "judicial blast"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -197,7 +197,7 @@
 				L.visible_message(span_warning("Strange energy flows into [L]'s [I.name]!"), \
 				span_userdanger("Your [I.name] shields you from [src]!"))
 			continue
-		L.Paralyze(15) //knocks down briefly when exploding
+		L.Paralyse(15) //knocks down briefly when exploding
 		if(!iscultist(L))
 			L.visible_message(span_warning("[L] is struck by a judicial explosion!"), \
 			span_userdanger("[!issilicon(L) ? "An unseen force slams you into the ground!" : "ERROR: Motor servos disabled by external source!"]"))

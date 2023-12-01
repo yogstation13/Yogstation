@@ -18,7 +18,7 @@
 	user.SetStun(0)
 	user.SetKnockdown(0)
 	user.SetImmobilized(0)
-	user.SetParalyzed(0)
+	user.SetParalysed(0)
 	user.reagents.add_reagent(/datum/reagent/medicine/changelingadrenaline, 10)
 	user.reagents.add_reagent(/datum/reagent/medicine/changelinghaste, 2) //For a really quick burst of speed
 	user.adjustStaminaLoss(-75)

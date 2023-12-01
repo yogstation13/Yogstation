@@ -2341,7 +2341,7 @@
 /obj/structure/reagent_dispensers/virusfood{
 	pixel_y = 28
 	},
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = -4;
 	pixel_y = -2
 	},
@@ -2393,7 +2393,7 @@
 	dir = 8
 	},
 /obj/item/holosign_creator/atmos,
-/obj/item/analyzer,
+/obj/item/analyser,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "jD" = (

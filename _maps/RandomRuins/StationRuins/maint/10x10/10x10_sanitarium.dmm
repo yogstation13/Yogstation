@@ -61,7 +61,7 @@
 /area/template_noop)
 "eX" = (
 /obj/structure/table/reinforced,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /turf/open/floor/plasteel/white,
 /area/template_noop)
 "fJ" = (

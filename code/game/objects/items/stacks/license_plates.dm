@@ -18,7 +18,7 @@
 /obj/item/stack/license_plates/filled
 	name = "license plate"
 	singular_name = "license plate"
-	desc = "Prison labor paying off."
+	desc = "Prison labour paying off."
 	icon_state = "filled_plate_1_1"
 	merge_type = /obj/item/stack/license_plates/filled
 

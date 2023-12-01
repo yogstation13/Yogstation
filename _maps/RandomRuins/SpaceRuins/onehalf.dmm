@@ -234,7 +234,7 @@
 	},
 /obj/structure/closet/crate/medical,
 /obj/item/clothing/neck/stethoscope,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/item/reagent_containers/blood/OMinus,
 /obj/item/reagent_containers/blood/OMinus,
 /obj/machinery/power/apc{

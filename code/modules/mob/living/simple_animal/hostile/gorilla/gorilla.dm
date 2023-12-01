@@ -71,7 +71,7 @@
 			var/atom/throw_target = get_edge_target_turf(L, dir)
 			L.throw_at(throw_target, rand(1,2), 7, src)
 		else
-			L.Paralyze(20)
+			L.Paralyse(20)
 			visible_message(span_danger("[src] knocks [L] down!"))
 
 /mob/living/simple_animal/hostile/gorilla/CanAttack(atom/the_target)

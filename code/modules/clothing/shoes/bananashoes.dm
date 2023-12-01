@@ -1,4 +1,4 @@
-//banana flavored chaos and horror ahead
+//banana flavoured chaos and horror ahead
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes
 	name = "mk-honk prototype shoes"

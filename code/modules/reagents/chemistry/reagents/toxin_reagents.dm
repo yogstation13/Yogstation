@@ -413,18 +413,18 @@
 	glass_icon_state = "neurotoxinglass"
 	glass_name = "Neurotoxin"
 	glass_desc = "A drink that is guaranteed to knock you silly."
-	var/list/paralyzeparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
+	var/list/paralyseparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
 
-/datum/reagent/toxin/staminatoxin/neurotoxin_alien/proc/pickparalyze()
-	var/selected = pick(paralyzeparts)
-	paralyzeparts -= selected
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/proc/pickparalyse()
+	var/selected = pick(paralyseparts)
+	paralyseparts -= selected
 	return selected
 
 /datum/reagent/toxin/staminatoxin/neurotoxin_alien/on_mob_life(mob/living/carbon/M)
 	M.adjust_dizzy(2 SECONDS)
 	if(prob(40))
 		if(prob(50))
-			var/part = pickparalyze()
+			var/part = pickparalyse()
 			if(part)
 				M.balloon_alert(M, "your limbs go numb!")
 				ADD_TRAIT(M, part, type)
@@ -624,7 +624,7 @@
 		var/picked_option = rand(1,3)
 		switch(picked_option)
 			if(1)
-				C.Paralyze(60, 0)
+				C.Paralyse(60, 0)
 				. = TRUE
 			if(2)
 				C.losebreath += 10
@@ -769,7 +769,7 @@
 
 /datum/reagent/toxin/curare/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 11)
-		M.Paralyze(60, 0)
+		M.Paralyse(60, 0)
 	M.adjustOxyLoss(1*REM, 0)
 	. = 1
 	..()
@@ -912,7 +912,7 @@
 		holder.remove_reagent(type, actual_metaboliztion_rate * M.metabolism_efficiency)
 		M.adjustToxLoss(actual_toxpwr*REM, 0)
 		if(prob(10))
-			M.Paralyze(20, 0)
+			M.Paralyse(20, 0)
 		. = 1
 	..()
 

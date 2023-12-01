@@ -6,7 +6,7 @@
 /turf/closed/indestructible/riveted,
 /area/awaymission/moonoutpost19/main)
 "ac" = (
-/turf/closed/mineral/random/labormineral,
+/turf/closed/mineral/random/labourmineral,
 /area/awaymission/moonoutpost19/main)
 "ad" = (
 /obj/structure/alien/weeds,
@@ -3897,7 +3897,7 @@
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = 6;
 	pixel_y = -5
 	},

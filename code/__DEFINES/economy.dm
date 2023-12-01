@@ -36,7 +36,7 @@
 #define ACCOUNT_CAR "CAR"
 #define ACCOUNT_CAR_NAME "Cargo Budget"
 #define ACCOUNT_SEC "SEC"
-#define ACCOUNT_SEC_NAME "Defense Budget"
+#define ACCOUNT_SEC_NAME "Defence Budget"
 
 #define MEGAFAUNA_CASH_SCALE 2
 

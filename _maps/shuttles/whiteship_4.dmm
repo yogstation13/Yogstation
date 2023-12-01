@@ -1349,7 +1349,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/wrench,
 /obj/item/clothing/mask/breath{
 	pixel_x = -3;

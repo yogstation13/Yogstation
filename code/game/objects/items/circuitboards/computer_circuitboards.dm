@@ -449,18 +449,18 @@
 
 //Security
 
-/obj/item/circuitboard/computer/labor_shuttle
-	name = "Labor Shuttle (Computer Board)"
+/obj/item/circuitboard/computer/labour_shuttle
+	name = "Labour Shuttle (Computer Board)"
 	icon_state = "security"
-	build_path = /obj/machinery/computer/shuttle/labor
+	build_path = /obj/machinery/computer/shuttle/labour
 
-/obj/item/circuitboard/computer/labor_shuttle/one_way
+/obj/item/circuitboard/computer/labour_shuttle/one_way
 	name = "Prisoner Shuttle Console (Computer Board)"
 	icon_state = "security"
-	build_path = /obj/machinery/computer/shuttle/labor/one_way
+	build_path = /obj/machinery/computer/shuttle/labour/one_way
 
 /obj/item/circuitboard/computer/gulag_teleporter_console
-	name = "Labor Camp teleporter console (Computer Board)"
+	name = "Labour Camp teleporter console (Computer Board)"
 	icon_state = "security"
 	build_path = /obj/machinery/computer/gulag_teleporter_computer
 
@@ -484,10 +484,10 @@
 	icon_state = "security"
 	build_path = /obj/machinery/computer/security
 
-/obj/item/circuitboard/computer/security/labor
-	name = "Labor Security Cameras (Computer Board)"
+/obj/item/circuitboard/computer/security/labour
+	name = "Labour Security Cameras (Computer Board)"
 	icon_state = "security"
-	build_path = /obj/machinery/computer/security/labor
+	build_path = /obj/machinery/computer/security/labour
 
 /obj/item/circuitboard/computer/security/hos
 	name = "HOS Security Cameras (Computer Board)"

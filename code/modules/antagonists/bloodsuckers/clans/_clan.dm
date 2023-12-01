@@ -22,7 +22,7 @@
 	var/join_icon_state = "caitiff"
 	///Description shown when trying to join the clan.
 	var/join_description = "The default, Classic Bloodsucker."
-	///Whether the clan can be joined by players. FALSE for flavortext-only clans.
+	///Whether the clan can be joined by players. FALSE for flavourtext-only clans.
 	var/joinable_clan = TRUE
 
 	///How the Bloodsucker ranks up, if they do.

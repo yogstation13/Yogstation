@@ -173,13 +173,13 @@ GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian",
 	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid",
 	"Librarian", "Journalist", "Archivist", "Cartographer", "Space Archaeologist",
-	"Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney",
+	"Prosecutor", "Defence Attorney", "Paralegal", "Ace Attorney",
 	"Priest", "Preacher", "Cleric", "Exorcist", "Vicar",
 	"Entertainer", "Comedian", "Jester", "Improv Artist",
 	"Mute Entertainer", "Silent Jokester", "Pantomimist",
 	"Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate",
 	"Salesman", "Gift Shop Attendent", "Retail Worker",
-	"Visitor", "Traveler", "Siteseer", "Fisher",
+	"Visitor", "Traveller", "Siteseer", "Fisher",
 	"Composer", "Artisan"
 	))
 

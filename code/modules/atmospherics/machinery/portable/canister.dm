@@ -566,7 +566,7 @@
 
 /obj/machinery/portable_atmospherics/canister/examine(mob/dead/observer/user)
 	if(istype(user))
-		analyzer_act(user, src)
+		analyser_act(user, src)
 	return ..()
 
 /* yog- ADMEME CANISTERS */

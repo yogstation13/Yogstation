@@ -285,7 +285,7 @@
  *	When used on a player, after a short timer, will reveal if the player is a Bloodsucker, including their real name and Clan.
  *	This book should not work on Bloodsuckers using the Masquerade ability.
  *	If it reveals a Bloodsucker, the Curator will then be able to tell they are a Bloodsucker on examine (Like a Vassal).
- *	Reading it normally will allow Curators to read what each Clan does, with some extra flavor text ones.
+ *	Reading it normally will allow Curators to read what each Clan does, with some extra flavour text ones.
  *
  *	Regular Bloodsuckers won't have any negative effects from the book, while everyone else will get burns/eye damage.
  *	It is also Tremere's Clan objective to ensure a Tremere Bloodsucker has stolen this by the end of the round.

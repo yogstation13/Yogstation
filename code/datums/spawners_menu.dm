@@ -22,7 +22,7 @@
 		var/list/this = list()
 		this["name"] = spawner
 		this["short_desc"] = ""
-		this["flavor_text"] = ""
+		this["flavour_text"] = ""
 		this["important_warning"] = ""
 		this["refs"] = list()
 		for(var/spawner_obj in GLOB.mob_spawners[spawner])
@@ -31,7 +31,7 @@
 				if(istype(spawner_obj, /obj/effect/mob_spawn))
 					var/obj/effect/mob_spawn/MS = spawner_obj
 					this["short_desc"] = MS.short_desc
-					this["flavor_text"] = MS.flavour_text
+					this["flavour_text"] = MS.flavour_text
 					this["important_info"] = MS.important_info
 				else
 					var/obj/O = spawner_obj

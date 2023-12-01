@@ -88,7 +88,7 @@
 			hit[all_targets] = TRUE
 			playsound(all_targets, "sound/weapons/punch[rand(1,4)].ogg", 15, 1, -1)
 			all_targets.Knockdown(10 + level_current * 5)
-			all_targets.Paralyze(0.1)
+			all_targets.Paralyse(0.1)
 			all_targets.spin(10, 1)
 			if(IS_MONSTERHUNTER(all_targets) && HAS_TRAIT(all_targets, TRAIT_STUNIMMUNE))
 				to_chat(all_targets, "Knocked down!")

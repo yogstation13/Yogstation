@@ -116,7 +116,7 @@
 		visible_message(span_danger("\The [src] hits [H] in the eye!"))
 		H.adjust_blurriness(6)
 		eyes.applyOrganDamage(rand(6,8))
-		H.Paralyze(40)
+		H.Paralyse(40)
 		H.emote("scream")
 
 /obj/item/paper/examine(mob/user)

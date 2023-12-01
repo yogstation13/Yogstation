@@ -15,7 +15,7 @@
 		"https://www.youtube.com/watch?v=LYo9mIo54Vs" // Red Alert 3 theme
 		)
 
-/datum/holiday/labor
+/datum/holiday/labour
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=UXKr4HSPHT8", // Internationale - german
 		"https://www.youtube.com/watch?v=t8EMx7Y16Vo", // Internationale - russian

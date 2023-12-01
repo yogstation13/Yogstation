@@ -341,7 +341,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	for(var/i_scream in get_all_contents(/mob/living))
 		var/obj/item/reagent_containers/food/snacks/icecream/IC = new()
 		IC.set_cone_type("waffle")
-		IC.add_mob_flavor(i_scream)
+		IC.add_mob_flavour(i_scream)
 		icecreams += IC
 	. = ..()
 	for(var/obj/IC in icecreams)

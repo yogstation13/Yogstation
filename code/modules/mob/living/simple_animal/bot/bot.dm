@@ -27,7 +27,7 @@
 
 	var/obj/machinery/bot_core/bot_core = null
 	var/bot_core_type = /obj/machinery/bot_core
-	var/list/users = list() //for dialog updates
+	var/list/users = list() //for dialogue updates
 	var/window_id = "bot_control"
 	var/window_name = "Protobot 1.0" //Popup title
 	var/window_width = 0 //0 for default size
@@ -263,7 +263,7 @@
 		COOLDOWN_START(src, next_salute_check, salute_delay)
 		for(var/mob/living/simple_animal/bot/B in view(5, src))
 			if(!B.commissioned && B.on)
-				visible_message("<b>[B]</b> performs an elaborate salute for [src]!")
+				visible_message("<b>[B]</b> performs an elabourate salute for [src]!")
 				break
 
 	switch(mode) //High-priority overrides are processed first. Bots can do nothing else while under direct command.

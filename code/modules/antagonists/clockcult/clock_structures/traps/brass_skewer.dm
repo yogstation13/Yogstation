@@ -22,7 +22,7 @@
 	if(buckled_mobs && LAZYLEN(buckled_mobs))
 		var/mob/living/L = buckled_mobs[1]
 		if(iscarbon(L))
-			L.Paralyze(100)
+			L.Paralyse(100)
 			L.visible_message(span_warning("[L] is maimed as the skewer shatters while still in [L.p_their()] body!"))
 			L.adjustBruteLoss(15)
 		unbuckle_mob(L)

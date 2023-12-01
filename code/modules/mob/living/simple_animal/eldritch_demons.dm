@@ -113,7 +113,7 @@
 		return
 
 	INVOKE_ASYNC(unlinked_mob, TYPE_PROC_REF(/mob, emote), "scream")
-	unlinked_mob.AdjustParalyzed(0.5 SECONDS) //micro stun
+	unlinked_mob.AdjustParalysed(0.5 SECONDS) //micro stun
 
 /mob/living/simple_animal/hostile/eldritch/armsy
 	name = "Lavish Serpent"

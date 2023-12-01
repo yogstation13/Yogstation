@@ -38,7 +38,7 @@
 
 /mob/living/simple_animal/hostile/skeleton/eskimo
 	name = "undead eskimo"
-	desc = "The reanimated remains of some poor traveler."
+	desc = "The reanimated remains of some poor traveller."
 	icon_state = "eskimo"
 	icon_living = "eskimo"
 	icon_dead = "eskimo_dead"

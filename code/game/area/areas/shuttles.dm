@@ -134,8 +134,8 @@
 	name = "Mining Shuttle"
 	blob_allowed = FALSE
 
-/area/shuttle/labor
-	name = "Labor Camp Shuttle"
+/area/shuttle/labour
+	name = "Labour Camp Shuttle"
 	blob_allowed = FALSE
 
 /area/shuttle/supply

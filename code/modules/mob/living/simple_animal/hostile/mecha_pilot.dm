@@ -32,7 +32,7 @@
 
 	//Vars that control when the pilot uses their mecha's abilities (if the mecha has that ability)
 	var/threat_use_mecha_smoke = 5 //5 mobs is enough to engage crowd control
-	var/defence_mode_chance = 35 //Chance to engage defense mode when damaged
+	var/defence_mode_chance = 35 //Chance to engage defence mode when damaged
 	var/smoke_chance = 20 //Chance to deploy smoke for crowd control
 	var/retreat_chance = 40 //Chance to run away
 

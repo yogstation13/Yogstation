@@ -220,7 +220,7 @@
 	return TRUE
 
 /obj/structure/closet/body_bag/environmental/prisoner/container_resist(mob/living/user)
-	/// copy-pasted with changes because flavor text as well as some other misc stuff
+	/// copy-pasted with changes because flavour text as well as some other misc stuff
 	if(opened)
 		return
 	if(ismovable(loc))

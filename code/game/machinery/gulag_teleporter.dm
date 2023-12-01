@@ -7,8 +7,8 @@ The console is located at computer/gulag_teleporter.dm
 
 //Gulag teleporter
 /obj/machinery/gulag_teleporter
-	name = "labor camp teleporter"
-	desc = "A bluespace teleporter used for teleporting prisoners to the labor camp."
+	name = "labour camp teleporter"
+	desc = "A bluespace teleporter used for teleporting prisoners to the labour camp."
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 	state_open = FALSE
@@ -159,7 +159,7 @@ The console is located at computer/gulag_teleporter.dm
 		R.fields["criminal"] = WANTED_PRISONER
 
 /obj/item/circuitboard/machine/gulag_teleporter
-	name = "labor camp teleporter (Machine Board)"
+	name = "labour camp teleporter (Machine Board)"
 	build_path = /obj/machinery/gulag_teleporter
 	req_components = list(
 							/obj/item/stack/ore/bluespace_crystal = 2,
@@ -169,7 +169,7 @@ The console is located at computer/gulag_teleporter.dm
 
 /*  beacon that receives the teleported prisoner */
 /obj/structure/gulag_beacon
-	name = "labor camp bluespace beacon"
+	name = "labour camp bluespace beacon"
 	desc = "A receiving beacon for bluespace teleportations."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "light_on-w"

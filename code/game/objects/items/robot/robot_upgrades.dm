@@ -800,45 +800,45 @@
 	for(var/obj/item/shockpaddles/cyborg/S in R.module.modules)
 		R.module.remove_module(S, TRUE)
 
-/obj/item/borg/upgrade/adv_analyzer
-	name = "medical cyborg advanced health analyzer"
-	desc = "An upgrade to medical cyborg which replaces their normal health analyzer with its advanced version."
+/obj/item/borg/upgrade/adv_analyser
+	name = "medical cyborg advanced health analyser"
+	desc = "An upgrade to medical cyborg which replaces their normal health analyser with its advanced version."
 	icon_state = "cyborg_upgrade5"
 	require_module = TRUE
 	module_types = list(/obj/item/robot_module/medical, /obj/item/robot_module/syndicate_medical)
 	module_flags = BORG_MODULE_MEDICAL
 
-/// Replaces the cyborg's health analyzer with an advanced health analyzer.
-/obj/item/borg/upgrade/adv_analyzer/action(mob/living/silicon/robot/R, user = usr)
+/// Replaces the cyborg's health analyser with an advanced health analyser.
+/obj/item/borg/upgrade/adv_analyser/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/healthanalyzer/healthanalyzer in R.module.modules)
-		R.module.remove_module(healthanalyzer, TRUE)
+	for(var/obj/item/healthanalyser/healthanalyser in R.module.modules)
+		R.module.remove_module(healthanalyser, TRUE)
 
-	var/obj/item/healthanalyzer/advanced/advanalyzer = locate() in R.module.modules
-	if(advanalyzer)
-		to_chat(user, span_warning("This cyborg is already equipped with an advanced health analyzer."))
+	var/obj/item/healthanalyser/advanced/advanalyser = locate() in R.module.modules
+	if(advanalyser)
+		to_chat(user, span_warning("This cyborg is already equipped with an advanced health analyser."))
 		return FALSE
 
-	advanalyzer = new(R.module)
-	R.module.basic_modules += advanalyzer
-	R.module.add_module(advanalyzer, FALSE, TRUE)
+	advanalyser = new(R.module)
+	R.module.basic_modules += advanalyser
+	R.module.add_module(advanalyser, FALSE, TRUE)
 
-/obj/item/borg/upgrade/adv_analyzer/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/adv_analyser/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
 	
-	for(var/obj/item/healthanalyzer/advanced/advanalyzer in R.module.modules)
-		R.module.remove_module(advanalyzer, TRUE)
+	for(var/obj/item/healthanalyser/advanced/advanalyser in R.module.modules)
+		R.module.remove_module(advanalyser, TRUE)
 
-	var/obj/item/healthanalyzer/healthanalyzer = locate() in R.module.modules
-	if(!healthanalyzer)
-		healthanalyzer = new(R.module)
-		R.module.basic_modules += healthanalyzer
-		R.module.add_module(healthanalyzer, FALSE, TRUE)
+	var/obj/item/healthanalyser/healthanalyser = locate() in R.module.modules
+	if(!healthanalyser)
+		healthanalyser = new(R.module)
+		R.module.basic_modules += healthanalyser
+		R.module.add_module(healthanalyser, FALSE, TRUE)
 
 /obj/item/borg/upgrade/surgerykit
 	name = "medical cyborg advanced surgical kit"
@@ -1247,7 +1247,7 @@
 	for(var/obj/item/multitool/cyborg/MT in R.module.modules)
 		R.module.remove_module(MT, TRUE)
 
-	for(var/obj/item/analyzer/AL in R.module.modules)
+	for(var/obj/item/analyser/AL in R.module.modules)
 		R.module.remove_module(AL, TRUE)
 
 	var/obj/item/jawsoflife/cyborg/JL = locate() in R.module.modules // Carries over the toolspeed (0.5) instead of using 0.7.
@@ -1308,7 +1308,7 @@
 	R.module.basic_modules += MT
 	R.module.add_module(MT, FALSE, TRUE)
 
-	var/obj/item/analyzer/AL = locate() in R.module.modules
+	var/obj/item/analyser/AL = locate() in R.module.modules
 	AL = new(R.module)
 	R.module.basic_modules += AL
 	R.module.add_module(AL, FALSE, TRUE)

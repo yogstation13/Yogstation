@@ -119,7 +119,7 @@
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"
-	desc = "A pair of snazzy goggles used to protect against chemical spills. Fitted with an analyzer for scanning items and reagents."
+	desc = "A pair of snazzy goggles used to protect against chemical spills. Fitted with an analyser for scanning items and reagents."
 	icon_state = "purple"
 	item_state = "glasses"
 	clothing_flags = SCAN_REAGENTS //You can see reagents while wearing science goggles
@@ -134,7 +134,7 @@
 
 /obj/item/clothing/glasses/science/night
 	name = "night vision science goggles"
-	desc = "A pair of snazzy goggles used to protect against chemical spills that happen in complete darkness. Fitted with an analyzer for scanning items and reagents."
+	desc = "A pair of snazzy goggles used to protect against chemical spills that happen in complete darkness. Fitted with an analyser for scanning items and reagents."
 	icon_state = "sciencehudnight"
 	item_state = "sciencehudnight"
 	darkness_view = 8

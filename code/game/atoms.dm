@@ -408,12 +408,12 @@
 		return loc.return_air()
 	return null
 
-///Return the air if we can analyze it
+///Return the air if we can analyse it
 /atom/proc/return_analyzable_air()
 	return null
 
 
-///Return the air if we can analyze it
+///Return the air if we can analyse it
 ///Check if this atoms eye is still alive (probably)
 /atom/proc/check_eye(mob/user)
 	return
@@ -749,7 +749,7 @@
 	return list("UNKNOWN DNA" = "X*")
 
 /mob/living/silicon/get_blood_dna_list()
-	return list("MOTOR OIL" = "SAE 5W-30") //just a little flavor text.
+	return list("MOTOR OIL" = "SAE 5W-30") //just a little flavour text.
 
 ///to add a mob's dna info into an object's blood_dna list.
 /atom/proc/transfer_mob_blood_dna(mob/living/L)
@@ -1318,7 +1318,7 @@
 		if(TOOL_WELDER)
 			act_result = welder_act(user, tool)
 		if(TOOL_ANALYZER)
-			act_result = analyzer_act(user, tool)
+			act_result = analyser_act(user, tool)
 	if(!act_result)
 		return
 	
@@ -1366,8 +1366,8 @@
 /atom/proc/welder_act(mob/living/user, obj/item/I)
 	return
 
-///Analyzer act
-/atom/proc/analyzer_act(mob/living/user, obj/item/I)
+///Analyser act
+/atom/proc/analyser_act(mob/living/user, obj/item/I)
 	return
 
 ///Generate a tag for this atom

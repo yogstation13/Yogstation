@@ -31,10 +31,10 @@
 	var/current_stamina_damage = M.getStaminaLoss()
 
 	if(current_stamina_damage >= 90)
-		if(!M.IsParalyzed())
+		if(!M.IsParalysed())
 			to_chat(M, span_warning("You muscles seize, making you collapse!"))
 		else
-			M.Paralyze(stunforce)
+			M.Paralyse(stunforce)
 		M.adjust_jitter(20 SECONDS)
 		M.adjust_confusion_up_to(8 SECONDS, 40 SECONDS)
 		M.apply_effect(EFFECT_STUTTER, stunforce)
@@ -349,7 +349,7 @@
 					C.adjust_stutter(10 SECONDS)
 					C.adjust_jitter(10 SECONDS)
 				if(2)
-					C.Paralyze(4 SECONDS)
+					C.Paralyse(4 SECONDS)
 					C.adjust_confusion(10 SECONDS)
 					C.adjust_stutter(15 SECONDS)
 					C.adjust_jitter(25 SECONDS)

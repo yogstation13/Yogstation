@@ -104,7 +104,7 @@
 	ADD_TRAIT(copied_mob, TRAIT_SILENT_FOOTSTEPS, PSEUDOCIDER_TRAIT)
 
 	if(damagetype == STAMINA)
-		fake_corpse.Paralyze(100 SECONDS)
+		fake_corpse.Paralyse(100 SECONDS)
 	else
 		INVOKE_ASYNC(fake_corpse, TYPE_PROC_REF(/mob/living,death))
 	addtimer(CALLBACK(src, PROC_REF(unfake_death), copied_mob, fake_corpse), 7 SECONDS)

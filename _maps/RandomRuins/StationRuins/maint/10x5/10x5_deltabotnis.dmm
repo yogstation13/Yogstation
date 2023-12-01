@@ -117,7 +117,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/structure/table,
 /obj/item/hatchet,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /turf/open/floor/plasteel,
 /area/template_noop)
 "K" = (

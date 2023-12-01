@@ -119,7 +119,7 @@
 	filling_color = "#0000FF"
 	tastes = list("banana" = 1)
 	wine_power = 60
-	wine_flavor = "slippery hypercubes"
+	wine_flavour = "slippery hypercubes"
 
 /obj/item/grown/bananapeel/bluespace
 	seed = /obj/item/seeds/banana/bluespace

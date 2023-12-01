@@ -15,8 +15,8 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 
 //Gulag processor
 /obj/machinery/gulag_processor
-	name = "labor camp processing machine"
-	desc = "A machine used to process prisoners before they're sent to the labor camp. Alt-Click to remove an inserted ID."
+	name = "labour camp processing machine"
+	desc = "A machine used to process prisoners before they're sent to the labour camp. Alt-Click to remove an inserted ID."
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 	state_open = FALSE
@@ -178,14 +178,14 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 				R.fields["criminal"] = WANTED_PRISONER
 
 	open_machine()
-	prisoner.Paralyze(stun_duration)
+	prisoner.Paralyse(stun_duration)
 	if(!prisoner.handcuffed && (prisoner.get_num_arms(FALSE) >= 2 || prisoner.get_arm_ignore()))
 		prisoner.set_handcuffed(new /obj/item/restraints/handcuffs/cable/zipties/used(prisoner))
 		prisoner.update_handcuffed()
 	visible_message(span_warning("Prisoner Processed."))
 
 /obj/item/circuitboard/machine/gulag_processor
-	name = "labor camp processor (Machine Board)"
+	name = "labour camp processor (Machine Board)"
 	build_path = /obj/machinery/gulag_processor
 	req_components = list(
 							/obj/item/stock_parts/scanning_module,

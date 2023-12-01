@@ -625,7 +625,7 @@
 
 	else if(iscyborg(target))
 		var/mob/living/silicon/robot/R = target
-		R.Paralyze(1 SECONDS)						//One second stun on borgs because they get their circuits rattled or something
+		R.Paralyse(1 SECONDS)						//One second stun on borgs because they get their circuits rattled or something
 
 	else if(isstructure(target) || ismachinery(target))	
 		var/obj/structure/S = target			//Works for machinery because they have the same variable that does the same thing

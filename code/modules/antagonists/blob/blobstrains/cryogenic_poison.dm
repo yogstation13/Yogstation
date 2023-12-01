@@ -2,7 +2,7 @@
 /datum/blobstrain/reagent/cryogenic_poison
 	name = "Cryogenic Poison"
 	description = "will inject targets with a freezing poison that does high damage over time."
-	analyzerdescdamage = "Injects targets with a freezing poison that will gradually solidify the target's internal organs."
+	analyserdescdamage = "Injects targets with a freezing poison that will gradually solidify the target's internal organs."
 	color = "#8BA6E9"
 	complementary_color = "#7D6EB4"
 	blobbernaut_message = "injects"

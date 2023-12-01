@@ -15,7 +15,7 @@
 	var/obj/item/reagent_containers/blood/bloodbag
 	///Weakref to a target we're bringing into the fold.
 	var/datum/weakref/target_ref
-	///If we are analyze or helping
+	///If we are analyse or helping
 	var/analyzing
 
 /datum/action/cooldown/bloodsucker/vassal_blood/CanUse(mob/living/carbon/user)
@@ -26,7 +26,7 @@
 	if(revenge_vassal)
 		return FALSE
 
-	if(tgui_alert(owner, "What would you like to do?", "Lost and Found", list("Analyze", "Help")) == "Analyze")
+	if(tgui_alert(owner, "What would you like to do?", "Lost and Found", list("Analyse", "Help")) == "Analyse")
 		if(!revenge_vassal.ex_vassals.len)
 			owner.balloon_alert(owner, "no vassals!")
 			return FALSE

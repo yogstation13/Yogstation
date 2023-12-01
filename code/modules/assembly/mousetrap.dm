@@ -54,7 +54,7 @@
 				if(!H.shoes)
 					affecting = H.get_bodypart(pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 					if(affecting?.status != BODYPART_ROBOTIC)
-						H.Paralyze(60)
+						H.Paralyse(60)
 					else
 						affecting = null
 			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)

@@ -129,7 +129,7 @@
 	var/list/commands
 	var/atom/movable/command_location
 	if(A == src)
-		commands = list("Defend the Ark!", "Advance!", "Retreat!", "Generate Power", "Build Defenses (Bottom-Up)", "Build Defenses (Top-Down)")
+		commands = list("Defend the Ark!", "Advance!", "Retreat!", "Generate Power", "Build Defences (Bottom-Up)", "Build Defences (Top-Down)")
 	else
 		command_location = A
 		commands = list("Rally Here", "Regroup Here", "Avoid This Area", "Reinforce This Area")
@@ -155,7 +155,7 @@
 			command_text = "The Eminence has designated the area to your GETDIR as dangerous and to be avoided!"
 			marker_icon = "eminence_avoid"
 		if("Reinforce This Area")
-			command_text = "The Eminence orders the defense and fortification of the area to your GETDIR!"
+			command_text = "The Eminence orders the defence and fortification of the area to your GETDIR!"
 			marker_icon = "eminence_reinforce"
 		if("Power This Structure")
 			command_text = "[command_location] to your GETDIR has no power! Turn it on and make sure there's a sigil of transmission nearby!"
@@ -164,17 +164,17 @@
 			command_text = "The Eminence orders that [command_location] to your GETDIR should be repaired ASAP!"
 			marker_icon = "eminence_repair"
 		if("Defend the Ark!")
-			command_text = "The Eminence orders immediate defense of the Ark!"
+			command_text = "The Eminence orders immediate defence of the Ark!"
 		if("Advance!")
 			command_text = "The Eminence commands you push forward!"
 		if("Retreat!")
 			command_text = "The Eminence has sounded the retreat! Fall back!"
 		if("Generate Power")
 			command_text = "The Eminence orders more power! Build power generations on the station!"
-		if("Build Defenses (Bottom-Up)")
-			command_text = "The Eminence orders that defenses should be built starting from the bottom of Reebe!"
-		if("Build Defenses (Top-Down)")
-			command_text = "The Eminence orders that defenses should be built starting from the top of Reebe!"
+		if("Build Defences (Bottom-Up)")
+			command_text = "The Eminence orders that defences should be built starting from the bottom of Reebe!"
+		if("Build Defences (Top-Down)")
+			command_text = "The Eminence orders that defences should be built starting from the top of Reebe!"
 	if(marker_icon)
 		new/obj/effect/temp_visual/ratvar/command_point(get_turf(A), marker_icon)
 		for(var/mob/M in servants_and_ghosts())

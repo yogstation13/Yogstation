@@ -72,7 +72,7 @@
 	var/obj/item/default_hatmask //If this exists, it will spawn in the hat/mask slot if it can fit
 	var/visualAppearence = MAINTDRONE //What we appear as
 	var/hacked = FALSE //If we have laws to destroy the station
-	var/flavortext = \
+	var/flavourtext = \
 	"\n<big><span class='warning'>DO NOT INTERFERE WITH THE ROUND AS A DRONE OR YOU WILL BE DRONE BANNED</span></big>\n"+\
 	"<span class='notify'>Drones are a ghost role that are allowed to fix the station and build things. Interfering with the round as a drone is against the rules.</span>\n"+\
 	"<span class='notify'>Actions that constitute interference include, but are not limited to:</span>\n"+\
@@ -143,8 +143,8 @@
 	..()
 	check_laws()
 
-	if(flavortext)
-		to_chat(src, "[flavortext]")
+	if(flavourtext)
+		to_chat(src, "[flavourtext]")
 
 	if(!picked)
 		pickVisualAppearence()

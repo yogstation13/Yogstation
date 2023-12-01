@@ -2,7 +2,7 @@
 /*
 Research and Development (R&D) Console
 
-This is the main work horse of the R&D system. It contains the menus/controls for the Destructive Analyzer, Protolathe, and Circuit
+This is the main work horse of the R&D system. It contains the menus/controls for the Destructive Analyser, Protolathe, and Circuit
 imprinter.
 
 Basic use: When it first is created, it will attempt to link up to related devices within 3 squares. It'll only link up if they
@@ -24,7 +24,7 @@ Nothing else in the console has ID requirements.
 	var/obj/item/disk/design_disk/d_disk	//Stores the design disk.
 	circuit = /obj/item/circuitboard/computer/rdconsole
 
-	var/obj/machinery/rnd/destructive_analyzer/linked_destroy	//Linked Destructive Analyzer
+	var/obj/machinery/rnd/destructive_analyser/linked_destroy	//Linked Destructive Analyser
 	var/obj/machinery/rnd/production/protolathe/linked_lathe				//Linked Protolathe
 	var/obj/machinery/rnd/production/circuit_imprinter/linked_imprinter	//Linked Circuit Imprinter
 
@@ -72,7 +72,7 @@ Nothing else in the console has ID requirements.
 	for(var/obj/machinery/rnd/D in oview(3,src))
 		if(D.linked_console != null || D.disabled || D.panel_open)
 			continue
-		if(istype(D, /obj/machinery/rnd/destructive_analyzer))
+		if(istype(D, /obj/machinery/rnd/destructive_analyser))
 			if(linked_destroy == null)
 				linked_destroy = D
 				D.linked_console = src
@@ -255,7 +255,7 @@ Nothing else in the console has ID requirements.
 	if(t_disk)
 		l += "<hr><a href='?src=[REF(src)];switch_screen=[RDSCREEN_TECHDISK]'>Tech Disk</a>"
 	if(linked_destroy)
-		l += "<hr><a href='?src=[REF(src)];switch_screen=[RDSCREEN_DECONSTRUCT]'>Destructive Analyzer</a>"
+		l += "<hr><a href='?src=[REF(src)];switch_screen=[RDSCREEN_DECONSTRUCT]'>Destructive Analyser</a>"
 	if(linked_lathe)
 		l += "<hr><a href='?src=[REF(src)];switch_screen=[RDSCREEN_PROTOLATHE]'>Protolathe</a>"
 	if(linked_imprinter)
@@ -279,7 +279,7 @@ Nothing else in the console has ID requirements.
 	l += "<h3>R&D Console Device Linkage Menu:</h3>"
 	l += "<A href='?src=[REF(src)];find_device=1'>Re-sync with Nearby Devices</A>"
 	l += "<h3>Linked Devices:</h3>"
-	l += linked_destroy? "* Destructive Analyzer <A href='?src=[REF(src)];disconnect=destroy'>Disconnect</A>" : "* No Destructive Analyzer Linked"
+	l += linked_destroy? "* Destructive Analyser <A href='?src=[REF(src)];disconnect=destroy'>Disconnect</A>" : "* No Destructive Analyser Linked"
 	l += linked_lathe? "* Protolathe <A href='?src=[REF(src)];disconnect=lathe'>Disconnect</A>" : "* No Protolathe Linked"
 	l += linked_imprinter? "* Circuit Imprinter <A href='?src=[REF(src)];disconnect=imprinter'>Disconnect</A>" : "* No Circuit Imprinter Linked"
 	l += "</div>"
@@ -917,7 +917,7 @@ Nothing else in the console has ID requirements.
 		switch(ls["disconnect"])
 			if("destroy")
 				if(QDELETED(linked_destroy))
-					say("No Destructive Analyzer Linked!")
+					say("No Destructive Analyser Linked!")
 					return
 				linked_destroy.linked_console = null
 				linked_destroy = null
@@ -943,7 +943,7 @@ Nothing else in the console has ID requirements.
 		say("Ejecting Technology Disk")
 	if(ls["deconstruct"])
 		if(QDELETED(linked_destroy))
-			say("No Destructive Analyzer Linked!")
+			say("No Destructive Analyser Linked!")
 			return
 		if(!linked_destroy.user_try_decon_id(ls["deconstruct"], usr))
 			say("Destructive analysis failed!")
@@ -1060,12 +1060,12 @@ Nothing else in the console has ID requirements.
 				D.category |= "Imported"
 			d_disk.blueprints[slot] = D
 		screen = RDSCREEN_DESIGNDISK
-	if(ls["eject_item"]) //Eject the item inside the destructive analyzer.
+	if(ls["eject_item"]) //Eject the item inside the destructive analyser.
 		if(QDELETED(linked_destroy))
-			say("No Destructive Analyzer Linked!")
+			say("No Destructive Analyser Linked!")
 			return
 		if(linked_destroy.busy)
-			to_chat(usr, span_danger("The destructive analyzer is busy at the moment."))
+			to_chat(usr, span_danger("The destructive analyser is busy at the moment."))
 		else if(linked_destroy.loaded_item)
 			linked_destroy.unload_item()
 			screen = RDSCREEN_MENU

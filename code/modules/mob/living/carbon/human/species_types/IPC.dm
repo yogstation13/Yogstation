@@ -24,7 +24,7 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
+	payday_modifier = 0.3 //Mass producible labour + robot, lucky to be paid at all
 	pressuremod = 0.5 // from the moment i understood the weakness of my flesh it disgusted me
 	heatmod = 0.5 // and i yearned for the certainty of steel
 	burnmod = 1.25 // easily cut by laser cutters and welding tools to speed up manufacturing
@@ -36,7 +36,7 @@
 	clonemod = 0
 	staminamod = 0.8
 	siemens_coeff = 1.75
-	action_speed_coefficient = 0.9 // designed for labor, they should be good at it
+	action_speed_coefficient = 0.9 // designed for labour, they should be good at it
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'

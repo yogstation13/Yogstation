@@ -10,7 +10,7 @@
 					/obj/item/stock_parts/cell/high = 2,
 					/obj/item/assembly/prox_sensor = 6,
 					/obj/item/assembly/signaler = 3,
-					/obj/item/healthanalyzer = 3,
+					/obj/item/healthanalyser = 3,
 					/obj/item/storage/firstaid/regular/empty = 3,
 					/obj/item/reagent_containers/glass/bucket = 3)
 	refill_canister = /obj/item/vending_refill/robotics

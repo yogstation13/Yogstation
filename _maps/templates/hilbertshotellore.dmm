@@ -356,7 +356,7 @@
 /area/hilbertshotel)
 "bk" = (
 /obj/structure/table/reinforced,
-/obj/item/analyzer/hilbertsanalyzer,
+/obj/item/analyser/hilbertsanalyser,
 /turf/open/indestructible/hotelwood,
 /area/hilbertshotel)
 "bl" = (

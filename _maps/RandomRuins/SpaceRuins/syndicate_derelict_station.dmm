@@ -387,7 +387,7 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "hx" = (
-/obj/machinery/rnd/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyser,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/research)
 "hy" = (

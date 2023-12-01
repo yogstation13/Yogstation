@@ -262,7 +262,7 @@
 	var/list/desc = get_silicon_stun_description(target, user)
 
 	target.flash_act(affect_silicon = TRUE)
-	target.Paralyze(stun_time_silicon)
+	target.Paralyse(stun_time_silicon)
 	additional_effects_silicon(target, user)
 
 	user.visible_message(desc["visible"], desc["local"])
@@ -329,7 +329,7 @@
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>You hit yourself over the head.</span>")
-		user.Paralyze(knockdown_time_carbon * force)
+		user.Paralyse(knockdown_time_carbon * force)
 		user.adjustStaminaLoss(stamina_damage)
 		if(iscarbon(user))
 			additional_effects_carbon(user) // user is the target here
@@ -379,7 +379,7 @@
 
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
-	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
+	desc = "A compact yet robust personal defence weapon. Can be concealed when folded."
 	icon_state = "telebaton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'

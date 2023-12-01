@@ -187,7 +187,7 @@
 		// No climbing on the bar please
 		var/mob/living/M = AM
 		var/throwtarget = get_edge_target_turf(src, boot_dir)
-		M.Paralyze(40)
+		M.Paralyse(40)
 		M.throw_at(throwtarget, 5, 1,src)
 		to_chat(M, span_notice("No climbing on the bar please."))
 	else

@@ -1893,11 +1893,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/rad_laser
 	name = "Radioactive Microlaser"
-	desc = "A radioactive microlaser disguised as a standard Nanotrasen health analyzer. When used, it emits a \
+	desc = "A radioactive microlaser disguised as a standard Nanotrasen health analyser. When used, it emits a \
 			powerful burst of radiation, which, after a short delay, can incapacitate all but the most protected \
 			of humanoids. It has two settings: intensity, which controls the power of the radiation, \
 			and wavelength, which controls the delay before the effect kicks in."
-	item = /obj/item/healthanalyzer/rad_laser
+	item = /obj/item/healthanalyser/rad_laser
 	cost = 4
 	manufacturer = /datum/corporation/traitor/donkco
 
@@ -2485,7 +2485,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Simply insert your bikehorn and get in, and get ready to have the funniest ride of your life! \
 			You can ram any spacemen you come across and stuff them into your car, kidnapping them and locking them inside until \
 			someone saves them or they manage to crawl out. Be sure not to ram into any walls or vending machines, as the springloaded seats \
-			are very sensitive. Now with our included lube defense mechanism which will protect you against any angry shitcurity! \
+			are very sensitive. Now with our included lube defence mechanism which will protect you against any angry shitcurity! \
 			Premium features can be unlocked with a cryptographic sequencer!"
 	item = /obj/vehicle/sealed/car/clowncar
 	cost = 20
@@ -2754,7 +2754,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
-	desc = "Strong flavor, dense smoke, infused with omnizine."
+	desc = "Strong flavour, dense smoke, infused with omnizine."
 	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
@@ -2762,7 +2762,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/syndiebears
 	name = "Omnizine Gummy Bears"
-	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	desc = "Omnizine infused gummy bears. Grape flavour. Chew throughly!"
 	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1
 	manufacturer = /datum/corporation/traitor/vahlen
@@ -2771,7 +2771,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/syndiebears/sleepy
 	name = "Sleepy Gummy Bears"
-	desc = "Sodium Thiopental infused gummy bears. Berry flavor."
+	desc = "Sodium Thiopental infused gummy bears. Berry flavour."
 	item = /obj/item/storage/pill_bottle/gummies/sleepy
 	cost = 2
 	manufacturer = /datum/corporation/traitor/vahlen
@@ -3214,7 +3214,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/nt/support/medkit
 	name = "Medic Kit"
 	desc = "A station-standard medical kit. Stocked with sutures, regenerative mesh, medical gauze, \
-			a health analyzer, and an epinephrine pen."
+			a health analyser, and an epinephrine pen."
 	item = /obj/item/storage/firstaid/regular
 	cost = 1
 
@@ -3460,6 +3460,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/gear/syndiebears
 	name = "Omnizine Gummy Bears"
-	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	desc = "Omnizine infused gummy bears. Grape flavour. Chew throughly!"
 	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1

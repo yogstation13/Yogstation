@@ -275,7 +275,7 @@
 	icon_state = "arrow_shock"
 	light_color = LIGHT_COLOR_YELLOW 
 	nodamage = TRUE
-	paralyze = 10 SECONDS
+	paralyse = 10 SECONDS
 	stutter = 5
 	jitter = 20
 	damage_type = STAMINA

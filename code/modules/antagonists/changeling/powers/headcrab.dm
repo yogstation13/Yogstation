@@ -36,7 +36,7 @@
 			H.adjust_confusion(3 SECONDS)
 	for(var/mob/living/silicon/S in range(2,user))
 		to_chat(S, span_userdanger("Your sensors are disabled by a shower of blood!"))
-		S.Paralyze(60)
+		S.Paralyse(60)
 	var/turf/user_turf = get_turf(user)
 	var/mob/living/simple_animal/horror/horror = user.has_horror_inside()
 	if (horror)

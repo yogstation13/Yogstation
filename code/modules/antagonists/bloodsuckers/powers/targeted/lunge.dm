@@ -171,7 +171,7 @@
 		// Did we knock them down?
 		if(!is_A_facing_B(target, owner) || owner.alpha <= 40)
 			target.Knockdown(10 + level_current * 5)
-			target.Paralyze(0.1)
+			target.Paralyse(0.1)
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower()
 	var/mob/living/O = owner

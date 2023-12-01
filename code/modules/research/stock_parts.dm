@@ -302,10 +302,10 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
 	materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
-/obj/item/stock_parts/subspace/analyzer
-	name = "subspace wavelength analyzer"
-	icon_state = "wavelength_analyzer"
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
+/obj/item/stock_parts/subspace/analyser
+	name = "subspace wavelength analyser"
+	icon_state = "wavelength_analyser"
+	desc = "A sophisticated analyser capable of analyzing cryptic subspace wavelengths."
 	materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/crystal

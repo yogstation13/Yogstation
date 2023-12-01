@@ -68,7 +68,7 @@
 		var/shiddedleg = pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
 		H.apply_damage(2*speed_multiplier, BRUTE, def_zone = shiddedleg)
 		H.apply_damage(30*speed_multiplier, STAMINA, def_zone = shiddedleg)
-		H.Paralyze(10*speed_multiplier)
+		H.Paralyse(10*speed_multiplier)
 
 /obj/structure/table/examine(mob/user)
 	. = ..()
@@ -174,7 +174,7 @@
 		pushed_mob.pass_flags &= ~PASSTABLE
 	if(pushed_mob.loc != loc) //Something prevented the tabling
 		return
-	pushed_mob.Paralyze(40)
+	pushed_mob.Paralyse(40)
 	pushed_mob.visible_message(span_danger("[user] pushes [pushed_mob] onto [src]."), \
 								span_userdanger("[user] pushes [pushed_mob] onto [src]."))
 	log_combat(user, pushed_mob, "tabled", null, "onto [src]")
@@ -301,7 +301,7 @@
 		debris -= AM
 		if(istype(AM, /obj/item/shard))
 			AM.throw_impact(L)
-	L.Paralyze(100)
+	L.Paralyse(100)
 	qdel(src)
 
 /obj/structure/table/glass/deconstruct(disassembled = TRUE, wrench_disassembly = 0)

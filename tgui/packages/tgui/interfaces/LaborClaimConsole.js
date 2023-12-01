@@ -3,7 +3,7 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 
-export const LaborClaimConsole = (props, context) => {
+export const LabourClaimConsole = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     can_go_home,

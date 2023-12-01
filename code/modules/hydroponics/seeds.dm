@@ -288,7 +288,7 @@
 		C.value = weed_chance
 
 
-/obj/item/seeds/proc/get_analyzer_text()  //in case seeds have something special to tell to the analyzer
+/obj/item/seeds/proc/get_analyser_text()  //in case seeds have something special to tell to the analyser
 	var/text = ""
 	if(!get_gene(/datum/plant_gene/trait/plant_type/weed_hardy) && !get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism) && !get_gene(/datum/plant_gene/trait/plant_type/alien_properties))
 		text += "- Plant type: Normal plant\n"
@@ -328,15 +328,15 @@
 /// Ghost attack proc
 /obj/item/seeds/attack_ghost(mob/user)
 	to_chat(user, span_info("This is \a [span_name("[src]")]."))
-	var/text = get_analyzer_text()
+	var/text = get_analyser_text()
 	if(text)
 		to_chat(user, span_notice("[text]"))
 
 /obj/item/seeds/attackby(obj/item/O, mob/user, params)
-	if (istype(O, /obj/item/plant_analyzer))
+	if (istype(O, /obj/item/plant_analyser))
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		to_chat(user, span_info("This is \a [span_name("[src]")]."))
-		var/text = get_analyzer_text()
+		var/text = get_analyser_text()
 		if(text)
 			to_chat(user, span_notice("[text]"))
 

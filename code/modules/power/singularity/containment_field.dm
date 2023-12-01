@@ -109,7 +109,7 @@
 	var/shock_damage = min(rand(30,40),rand(30,40))
 
 	if(iscarbon(user))
-		user.Paralyze(300)
+		user.Paralyse(300)
 		user.electrocute_act(shock_damage, src, 1)
 
 	else if(issilicon(user))

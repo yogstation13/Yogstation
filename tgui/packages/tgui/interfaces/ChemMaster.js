@@ -11,7 +11,7 @@ export const ChemMaster = (props, context) => {
       height={550}
       resizable>
       <Window.Content scrollable>
-        {screen === 'analyze' && (
+        {screen === 'analyse' && (
           <AnalysisResults />
         ) || (
           <ChemMasterContent />
@@ -34,7 +34,7 @@ const ChemMasterContent = (props, context) => {
     pillBottleCurrentAmount,
     pillBottleMaxAmount,
   } = data;
-  if (screen === 'analyze') {
+  if (screen === 'analyse') {
     return <AnalysisResults />;
   }
   return (
@@ -177,8 +177,8 @@ const ChemicalBufferEntry = (props, context) => {
           })} />
         <Button
           icon="question"
-          title="Analyze"
-          onClick={() => act('analyze', {
+          title="Analyse"
+          onClick={() => act('analyse', {
             id: chemical.id,
           })} />
       </Table.Cell>
@@ -358,7 +358,7 @@ const PackagingControls = (props, context) => {
 
 const AnalysisResults = (props, context) => {
   const { act, data } = useBackend(context);
-  const { analyzeVars } = data;
+  const { analyseVars } = data;
   return (
     <Section
       title="Analysis Results"
@@ -372,26 +372,26 @@ const AnalysisResults = (props, context) => {
       )}>
       <LabeledList>
         <LabeledList.Item label="Name">
-          {analyzeVars.name}
+          {analyseVars.name}
         </LabeledList.Item>
         <LabeledList.Item label="State">
-          {analyzeVars.state}
+          {analyseVars.state}
         </LabeledList.Item>
         <LabeledList.Item label="Color">
-          <ColorBox color={analyzeVars.color} mr={1} />
-          {analyzeVars.color}
+          <ColorBox color={analyseVars.color} mr={1} />
+          {analyseVars.color}
         </LabeledList.Item>
         <LabeledList.Item label="Description">
-          {analyzeVars.description}
+          {analyseVars.description}
         </LabeledList.Item>
         <LabeledList.Item label="Metabolization Rate">
-          {analyzeVars.metaRate} u/minute
+          {analyseVars.metaRate} u/minute
         </LabeledList.Item>
         <LabeledList.Item label="Overdose Threshold">
-          {analyzeVars.overD}
+          {analyseVars.overD}
         </LabeledList.Item>
         <LabeledList.Item label="Addiction Threshold">
-          {analyzeVars.addicD}
+          {analyseVars.addicD}
         </LabeledList.Item>
       </LabeledList>
     </Section>

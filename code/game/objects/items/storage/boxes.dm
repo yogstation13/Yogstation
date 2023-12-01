@@ -985,7 +985,7 @@
 
 /obj/item/storage/box/papersack/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen))
-		//if a pen is used on the sack, dialogue to change its design appears
+		//if a pen is used on the sack, dialogueue to change its design appears
 		if(contents.len)
 			to_chat(user, span_warning("You can't modify [src] with items still inside!"))
 			return
@@ -1196,7 +1196,7 @@
 
 /obj/item/storage/box/rndboards/PopulateContents()
 	new /obj/item/circuitboard/machine/protolathe(src)
-	new /obj/item/circuitboard/machine/destructive_analyzer(src)
+	new /obj/item/circuitboard/machine/destructive_analyser(src)
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
 	new /obj/item/circuitboard/computer/rdconsole(src)
 
@@ -1207,7 +1207,7 @@
 /obj/item/storage/box/rndboards/miner/PopulateContents()
 	new /obj/item/circuitboard/machine/autolathe(src)
 	new /obj/item/circuitboard/machine/protolathe(src)
-	new /obj/item/circuitboard/machine/destructive_analyzer(src)
+	new /obj/item/circuitboard/machine/destructive_analyser(src)
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
 	new /obj/item/circuitboard/computer/rdconsole/ruin(src)
 

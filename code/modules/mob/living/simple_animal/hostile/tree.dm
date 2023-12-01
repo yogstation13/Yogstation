@@ -58,7 +58,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		if(prob(15))
-			C.Paralyze(60)
+			C.Paralyse(60)
 			C.visible_message(span_danger("\The [src] knocks down \the [C]!"), \
 					span_userdanger("\The [src] knocks you down!"))
 

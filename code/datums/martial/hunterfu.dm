@@ -42,18 +42,18 @@
 		playsound(get_turf(A), 'sound/weapons/slam.ogg', 50, TRUE, -1)
 		log_combat(A, D, "bodyslammed (Hunter-Fu)")
 		if(!D.mind)
-			D.Paralyze(40)
-			A.Paralyze(25)
+			D.Paralyse(40)
+			A.Paralyse(25)
 			return TRUE
 		if(D.mind.has_antag_datum(/datum/antagonist/changeling))
 			to_chat(D, span_cultlarge("Our DNA shakes as we are body slammed!"))
 			D.apply_damage(A.get_punchdamagehigh() + 5, BRUTE)	//15 damage
-			D.Paralyze(60)
-			A.Paralyze(25)
+			D.Paralyse(60)
+			A.Paralyse(25)
 			return TRUE
 		else
-			D.Paralyze(40)
-			A.Paralyze(25)
+			D.Paralyse(40)
+			A.Paralyse(25)
 	else
 		harm_act(A, D)
 	return TRUE
@@ -134,13 +134,13 @@
 	var/holykick_hereticburn = A.get_punchdamagehigh() * 1.5 + 10	//25 damage
 	if(!D.mind)
 		D.apply_damage(holykick_staminadamage, STAMINA)
-		D.Paralyze(20)
+		D.Paralyse(20)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/heretic))
 		to_chat(D, span_cultlarge("The holy water burns your flesh!"))
 		D.apply_damage(holykick_hereticburn, BURN)
 		D.apply_damage(holykick_staminadamage, STAMINA)
-		D.Paralyze(20)
+		D.Paralyse(20)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/bloodsucker))
 		to_chat(D, span_warning("This just seems like regular water..."))
@@ -151,24 +151,24 @@
 			for(var/datum/action/innate/cult/blood_spell/BS in BD.spells)
 				qdel(BS)
 		D.apply_damage(holykick_staminadamage, STAMINA)
-		D.Paralyze(20)
+		D.Paralyse(20)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/sinfuldemon))
 		to_chat(D, span_cultlarge("The holy water burns deep inside you!"))
 		D.apply_damage(holykick_hereticburn, BURN)
 		D.apply_damage(holykick_staminadamage, STAMINA)
-		D.Paralyze(40)
+		D.Paralyse(40)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/wizard) || (/datum/antagonist/wizard/apprentice))
 		to_chat(D, span_danger("The holy water seems to be muting you somehow!"))
 		if(D.silent <= 10)
 			D.silent = clamp(D.silent + 10, 0, 10)
 		D.apply_damage(holykick_staminadamage, STAMINA)
-		D.Paralyze(20)
+		D.Paralyse(20)
 		return TRUE
 	else
 		D.apply_damage(holykick_staminadamage, STAMINA)
-		D.Paralyze(20)
+		D.Paralyse(20)
 	return TRUE
 
 /// Intents

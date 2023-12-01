@@ -51,7 +51,7 @@
 	M.SetKnockdown(0, FALSE)
 	M.SetStun(0, FALSE)
 	M.SetUnconscious(0, FALSE)
-	M.SetParalyzed(0, FALSE)
+	M.SetParalysed(0, FALSE)
 	M.SetImmobilized(0, FALSE)
 	M.silent = FALSE
 	M.remove_status_effect(/datum/status_effect/dizziness)
@@ -93,7 +93,7 @@
 	affected_mob.AdjustKnockdown(-20, FALSE)
 	affected_mob.AdjustUnconscious(-20, FALSE)
 	affected_mob.AdjustImmobilized(-20, FALSE)
-	affected_mob.AdjustParalyzed(-20, FALSE)
+	affected_mob.AdjustParalysed(-20, FALSE)
 	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
 		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 	affected_mob.adjust_hallucinations(-20 SECONDS * REM)
@@ -1248,7 +1248,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/syndicate_nanites/overdose_process(mob/living/carbon/M) //wtb flavortext messages that hint that you're vomitting up robots
+/datum/reagent/medicine/syndicate_nanites/overdose_process(mob/living/carbon/M) //wtb flavourtext messages that hint that you're vomitting up robots
 	if(prob(25))
 		M.reagents.remove_reagent(type, metabolization_rate*15) // ~5 units at a rate of 0.4 but i wanted a nice number in code
 		M.vomit(20) // nanite safety protocols make your body expel them to prevent harmies
@@ -1446,7 +1446,7 @@
 			if(prob(20))
 				to_chat(M, "You have a sudden fit!")
 				M.emote("moan")
-				M.Paralyze(20, 1, 0) // you should be in a bad spot at this point unless epipen has been used
+				M.Paralyse(20, 1, 0) // you should be in a bad spot at this point unless epipen has been used
 		if(81)
 			to_chat(M, "You feel too exhausted to continue!") // at this point you will eventually die unless you get charcoal
 			M.adjustOxyLoss(0.1*REM, 0)
@@ -1523,7 +1523,7 @@
 
 /datum/reagent/medicine/polypyr  //This is intended to be an ingredient in advanced chems.
 	name = "Polypyrylium Oligomers"
-	description = "A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. It is valued as an intermediate in the synthesis of the cutting edge pharmaceuticals."
+	description = "A purple mixture of short polyelectrolyte chains not easily synthesized in the labouratory. It is valued as an intermediate in the synthesis of the cutting edge pharmaceuticals."
 	reagent_state = SOLID
 	color = "#9423FF"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM

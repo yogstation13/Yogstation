@@ -49,7 +49,7 @@
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/engineering
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
 	uniform_skirt = /obj/item/clothing/under/rank/atmospheric_technician/skirt
-	r_pocket = /obj/item/analyzer
+	r_pocket = /obj/item/analyser
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng

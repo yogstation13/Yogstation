@@ -163,7 +163,7 @@
 	name = "Fish Oil"
 	description = "A pungent oil derived from fish."
 	color = "#eab36b"
-	taste_mult = 3.0 //VERY strong flavor
+	taste_mult = 3.0 //VERY strong flavour
 	taste_description = "fishy oil"
 	nutriment_factor = 2 * REAGENTS_METABOLISM //just barely healthier than oil on its own
 	metabolization_rate = 10 * REAGENTS_METABOLISM
@@ -296,7 +296,7 @@
 
 /datum/reagent/consumable/condensedcapsaicin
 	name = "Condensed Capsaicin"
-	description = "A chemical agent used for self-defense and in police work."
+	description = "A chemical agent used for self-defence and in police work."
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
 	metabolization_rate = 6 * REAGENTS_METABOLISM
@@ -321,7 +321,7 @@
 			victim.blind_eyes(10)
 			victim.set_confusion_if_lower(10 SECONDS)
 			victim.damageoverlaytemp = 75
-			victim.Paralyze(10 SECONDS)
+			victim.Paralyse(10 SECONDS)
 			M.adjustStaminaLoss(3)
 			return
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
@@ -339,7 +339,7 @@
 			victim.blind_eyes(10)
 			victim.set_confusion_if_lower(12 SECONDS)
 			victim.damageoverlaytemp = 100
-			victim.Paralyze(14 SECONDS)
+			victim.Paralyse(14 SECONDS)
 			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
@@ -440,7 +440,7 @@
 	if(isvampire(M)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
 		if(prob(min(25,current_cycle)))
 			to_chat(M, span_danger("You can't get the scent of garlic out of your nose! You can barely think..."))
-			M.Paralyze(10)
+			M.Paralyse(10)
 			M.adjust_jitter(10 SECONDS)
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -495,7 +495,7 @@
 
 /datum/reagent/consumable/hot_ramen
 	name = "Hot Ramen"
-	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
+	description = "The noodles are boiled, the flavours are artificial, just like being back in school."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "wet and cheap noodles"
@@ -506,7 +506,7 @@
 
 /datum/reagent/consumable/hell_ramen
 	name = "Hell Ramen"
-	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
+	description = "The noodles are boiled, the flavours are artificial, just like being back in school."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "wet and cheap noodles on fire"
@@ -859,7 +859,7 @@
 
 /datum/reagent/consumable/drippings
 	name = "meat drippings"
-	description = "Full of fat and flavor. Mix it with water and flour to make gravy."
+	description = "Full of fat and flavour. Mix it with water and flour to make gravy."
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	color = "#85482c"
 	taste_mult = 2

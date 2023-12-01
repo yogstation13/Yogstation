@@ -60,7 +60,7 @@
 	foodtype = FRUIT
 	juice_results = list(/datum/reagent/water/holywater = 0)
 	wine_power = 70 //Water to wine, baby.
-	wine_flavor = "divinity"
+	wine_flavour = "divinity"
 
 /obj/item/reagent_containers/food/snacks/grown/holymelon/Initialize(mapload)
 	. = ..()

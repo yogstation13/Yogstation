@@ -3,7 +3,7 @@
 
 /obj/item/clothing/suit/armor/nerd
 	name = "\improper D.O.T.A. suit"
-	desc = "The Defenseless Operator Traversal Assistance suit is a highly experimental Nanotrasen designed \
+	desc = "The Defenceless Operator Traversal Assistance suit is a highly experimental Nanotrasen designed \
 		protective full body harness designed to prolong the lifespan (and thus productivity) of an employee \
 		via surplus medical technology found in the abandoned part of maintenance no one seems to want to talk about. \
 		Unfortunately the research department couldn't design a helmet before the third quarter so this is definitely not spaceproof. \

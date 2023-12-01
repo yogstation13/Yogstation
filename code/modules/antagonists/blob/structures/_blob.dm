@@ -228,7 +228,7 @@
 /obj/structure/blob/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)
 		user.changeNext_move(CLICK_CD_MELEE)
-		to_chat(user, "<b>The analyzer beeps once, then reports:</b><br>")
+		to_chat(user, "<b>The analyser beeps once, then reports:</b><br>")
 		SEND_SOUND(user, sound('sound/machines/ping.ogg'))
 		if(overmind)
 			to_chat(user, "<b>Progress to Critical Mass:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
@@ -244,8 +244,8 @@
 	. = list()
 	if(overmind)
 		. += list("<b>Material: <font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font>[span_notice(".")]</b>",
-		"<b>Material Effects:</b> [span_notice("[overmind.blobstrain.analyzerdescdamage]")]",
-		"<b>Material Properties:</b> [span_notice("[overmind.blobstrain.analyzerdesceffect]")]")
+		"<b>Material Effects:</b> [span_notice("[overmind.blobstrain.analyserdescdamage]")]",
+		"<b>Material Properties:</b> [span_notice("[overmind.blobstrain.analyserdesceffect]")]")
 	else
 		. += "<b>No Material Detected!</b>"
 

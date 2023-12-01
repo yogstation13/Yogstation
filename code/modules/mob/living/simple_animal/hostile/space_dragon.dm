@@ -109,7 +109,7 @@
 		playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
 		visible_message(span_danger("[src] vomits up [consumed_mob]!"))
 		consumed_mob.forceMove(loc)
-		consumed_mob.Paralyze(5 SECONDS)
+		consumed_mob.Paralyse(5 SECONDS)
 
 /mob/living/simple_animal/hostile/space_dragon/ex_act_devastate()
 	var/damage_coefficient = rand(devastation_damage_min_percentage, devastation_damage_max_percentage)
@@ -399,7 +399,7 @@
 			var/dir_to_target = get_dir(get_turf(src), get_turf(L))
 			var/throwtarget = get_edge_target_turf(target, dir_to_target)
 			L.safe_throw_at(throwtarget, 10, 1, src)
-			L.Paralyze(50)
+			L.Paralyse(50)
 	addtimer(CALLBACK(src, PROC_REF(reset_status)), 4 + ((tiredness * tiredness_mult) / 10))
 	tiredness = tiredness + (gust_tiredness * tiredness_mult)
 

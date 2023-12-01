@@ -180,13 +180,13 @@
 				message_admins("[key_name_admin(mob_user)] moved mining shuttle")
 				log_admin("[key_name(mob_user)] moved the mining shuttle")
 
-		if("movelaborshuttle")
+		if("movelabourshuttle")
 			if(!check_rights_for(rights, R_ADMIN))
 				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send Labor Shuttle"))
-			if(!SSshuttle.toggleShuttle("laborcamp","laborcamp_home","laborcamp_away"))
-				message_admins("[key_name_admin(mob_user)] moved labor shuttle")
-				log_admin("[key_name(mob_user)] moved the labor shuttle")
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send Labour Shuttle"))
+			if(!SSshuttle.toggleShuttle("labourcamp","labourcamp_home","labourcamp_away"))
+				message_admins("[key_name_admin(mob_user)] moved labour shuttle")
+				log_admin("[key_name(mob_user)] moved the labour shuttle")
 
 		if("moveferry")
 			if(!check_rights_for(rights, R_ADMIN))

@@ -51,7 +51,7 @@
 /area/template_noop)
 "s" = (
 /obj/structure/table/glass,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /obj/item/reagent_containers/spray/plantbgone{
 	pixel_x = 6;
 	pixel_y = 6

@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		. += span_holoparasite(span_bold("It seems to radiate an aura of immense, grand power."))
 	if (isobserver(user) || user == summoner?.current)
 		. += span_holoparasite("<b>DAMAGE:</b> [level_to_grade(stats.damage)]")
-		. += span_holoparasite("<b>DEFENSE:</b> [level_to_grade(stats.defense)]")
+		. += span_holoparasite("<b>DEFENSE:</b> [level_to_grade(stats.defence)]")
 		. += span_holoparasite("<b>SPEED:</b> [level_to_grade(stats.speed)]")
 		. += span_holoparasite("<b>POTENTIAL:</b> [level_to_grade(stats.potential)]")
 		. += span_holoparasite("<b>RANGE:</b> [level_to_grade(stats.range)]")
@@ -564,7 +564,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	set category = "Guardian"
 	to_chat(src, "<b>Your Stats:</b>")
 	to_chat(src, "<b>DAMAGE:</b> [level_to_grade(stats.damage)]")
-	to_chat(src, "<b>DEFENSE:</b> [level_to_grade(stats.defense)]")
+	to_chat(src, "<b>DEFENSE:</b> [level_to_grade(stats.defence)]")
 	to_chat(src, "<b>SPEED:</b> [level_to_grade(stats.speed)]")
 	to_chat(src, "<b>POTENTIAL:</b> [level_to_grade(stats.potential)]")
 	to_chat(src, "<b>RANGE:</b> [level_to_grade(stats.range)]")

@@ -23,7 +23,7 @@
 	else
 		return ..()
 
-/obj/machinery/telecomms/analyzer_act(mob/living/user, obj/item/T)
+/obj/machinery/telecomms/analyser_act(mob/living/user, obj/item/T)
 	//Prevent the tricorder's air analysis when trying to configure tcomms
 	if (istype(T, /obj/item/multitool/tricorder))
 		return 

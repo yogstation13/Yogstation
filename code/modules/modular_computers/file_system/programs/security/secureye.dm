@@ -202,16 +202,16 @@
 	network = list("mine", "auxbase")
 
 //////////////////////
-//Labor Camp Cameras//
+//Labour Camp Cameras//
 //////////////////////
 
-///A program that allows you to view the cameras on the Labor Camp
-/datum/computer_file/program/secureye/laborcamp
+///A program that allows you to view the cameras on the Labour Camp
+/datum/computer_file/program/secureye/labourcamp
 	filename = "overseer"
 	filedesc = "OverSeer"
-	extended_desc = "This program allows access to the labor camp camera network."
+	extended_desc = "This program allows access to the labour camp camera network."
 	transfer_access = ACCESS_ARMORY
 	size = 5
 	program_icon = "dungeon"
 
-	network = list("labor")
+	network = list("labour")

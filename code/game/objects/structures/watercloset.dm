@@ -290,7 +290,7 @@
 			if(B.cell.charge > 0 && B.status == 1)
 				flick("baton_active", src)
 				var/stunforce = B.stunforce
-				user.Paralyze(stunforce)
+				user.Paralyse(stunforce)
 				user.adjust_stutter(stunforce/(2 SECONDS))
 				B.deductcharge(B.hitcost)
 				user.visible_message(span_warning("[user] shocks [user.p_them()]self while attempting to wash the active [B.name]!"), \

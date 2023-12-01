@@ -8,7 +8,7 @@
 		H.SetStun(0)
 		H.SetKnockdown(0)
 		H.SetImmobilized(0)
-		H.SetParalyzed(0)
+		H.SetParalysed(0)
 		H.adjustStaminaLoss(-75)
 		H.remove_status_effect(/datum/status_effect/speech/stutter)
 		H.lying = 0

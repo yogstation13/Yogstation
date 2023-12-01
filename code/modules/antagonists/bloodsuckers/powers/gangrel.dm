@@ -34,7 +34,7 @@
 		var/icon/icon_to_mix = getFlatIcon(user)
 		icon_to_mix.Blend(icon('icons/mob/mutant_bodyparts.dmi', "m_ears_cat_FRONT"), ICON_OVERLAY)
 		option.image = icon_to_mix
-		option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility, speed and interaction speed, but decreased defense."
+		option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility, speed and interaction speed, but decreased defence."
 		radial_display["Lizard/Felinid"] = option //haha yeah
 	if(bloodsuckerdatum.total_blood_drank >= 250)
 		var/datum/radial_menu_choice/option = new
@@ -407,7 +407,7 @@
 			power_activated_sucessfully()
 			return
 		target.Knockdown(6 SECONDS)
-		target.Paralyze(1 SECONDS)
+		target.Paralyse(1 SECONDS)
 	power_activated_sucessfully()
 
 /datum/action/cooldown/bloodsucker/targeted/pounce/CheckValidTarget(atom/target_atom)
@@ -460,7 +460,7 @@
 			M.adjustEarDamage(0, 50)
 			if(target.Adjacent(A))
 				M.Knockdown(4 SECONDS)
-				M.Paralyze(0.1 SECONDS)
+				M.Paralyse(0.1 SECONDS)
 		DeactivatePower()
 
 /datum/action/cooldown/bloodsucker/gangrel/rabidism

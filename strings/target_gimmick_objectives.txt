@@ -1,4 +1,4 @@
-Construct an elaborate trap for %TARGET.
+Construct an elabourate trap for %TARGET.
 Ensure %TARGET is demoted from their position.
 Get %TARGET arrested for a crime they haven't committed.
 Top-secret Syndicate intelligence suggests that %TARGET is responsible for scratching the paint on one of our CEOs' private cruisers. Make their life as miserable as possible without killing them.

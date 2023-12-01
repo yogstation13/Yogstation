@@ -139,7 +139,7 @@
 
 /datum/action/innate/horror/scan_host
 	name = "Host Scan"
-	desc = "Analyze your host's body and chemical content."
+	desc = "Analyse your host's body and chemical content."
 	button_icon = 'icons/obj/device.dmi'
 	button_icon_state = "health"
 	blacklisted = TRUE
@@ -380,9 +380,9 @@
 /datum/horror_upgrade/paralysis/apply_effects()
 	var/datum/action/innate/horror/A = B.has_ability(/datum/action/innate/horror/freeze_victim)
 	if(A)
-		A.name = "Paralyze Victim"
+		A.name = "Paralyse Victim"
 		A.desc = "Shock a victim with an electrically charged tentacle."
-		A.button_icon_state = "paralyze"
+		A.button_icon_state = "paralyse"
 		B.update_action_buttons()
 
 //Increases chemical regeneration rate by 2

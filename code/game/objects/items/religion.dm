@@ -67,7 +67,7 @@
 	H.AdjustStun(-40)
 	H.AdjustKnockdown(-40)
 	H.AdjustImmobilized(-40)
-	H.AdjustParalyzed(-40)
+	H.AdjustParalysed(-40)
 	H.AdjustUnconscious(-40)
 	playsound(H, 'sound/magic/staff_healing.ogg', 25, FALSE)
 
@@ -126,7 +126,7 @@
 
 /obj/item/banner/science
 	name = "sciencia banner"
-	desc = "The banner of Sciencia, bold and daring thaumaturges and researchers that take the path less traveled."
+	desc = "The banner of Sciencia, bold and daring thaumaturges and researchers that take the path less travelled."
 	icon_state = "banner_science"
 	item_state = "banner_science"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'

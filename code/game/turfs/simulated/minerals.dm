@@ -314,12 +314,12 @@
 		/turf/closed/mineral/silver/ice/icemoon/top_layer = 12, /turf/closed/mineral/plasma/ice/icemoon/top_layer = 19, /turf/closed/mineral/iron/ice/icemoon/top_layer = 40,
 		/turf/closed/mineral/gibtonite/ice/icemoon/top_layer = 4, /turf/closed/mineral/bscrystal/ice/icemoon/top_layer = 1, /turf/closed/mineral/dilithium/ice/icemoon/top_layer = 2)
 
-/turf/closed/mineral/random/labormineral
+/turf/closed/mineral/random/labourmineral
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/uranium = 3, /turf/closed/mineral/diamond = 1, /turf/closed/mineral/gold = 8, /turf/closed/mineral/titanium = 8,
 		/turf/closed/mineral/silver = 20, /turf/closed/mineral/plasma = 30, /turf/closed/mineral/iron = 95,
 		/turf/closed/mineral/gibtonite = 2)
-	icon_state = "rock_labor"
+	icon_state = "rock_labour"
 
 /turf/closed/mineral/random/snow/underground
 	mineralSpawnChanceList = list(
@@ -327,7 +327,7 @@
 		/turf/closed/mineral/silver/ice/icemoon = 12, /turf/closed/mineral/plasma/ice/icemoon = 19, /turf/closed/mineral/iron/ice/icemoon = 40,
 		/turf/closed/mineral/gibtonite/ice/icemoon = 4, /turf/closed/mineral/bscrystal/ice/icemoon = 1, /turf/closed/mineral/dilithium/ice/icemoon = 2)
 
-/turf/closed/mineral/random/labormineral/volcanic
+/turf/closed/mineral/random/labourmineral/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface

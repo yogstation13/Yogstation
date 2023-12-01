@@ -63,7 +63,7 @@
 /obj/item/book/granter/proc/on_reading_finished(mob/living/user)
 	to_chat(user, span_notice("You finish reading [name]!"))
 
-/// The actual "turning over of the page" flavor bit that happens while someone is reading the granter.
+/// The actual "turning over of the page" flavour bit that happens while someone is reading the granter.
 /obj/item/book/granter/proc/turn_page(mob/living/user)
 	playsound(user, pick(book_sounds), 30, TRUE)
 

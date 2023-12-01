@@ -10,7 +10,7 @@
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	var/lawyers = 0 //Counts lawyer amount
-	alt_titles = list("Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney")
+	alt_titles = list("Prosecutor", "Defence Attorney", "Paralegal", "Ace Attorney")
 
 	outfit = /datum/outfit/job/lawyer
 

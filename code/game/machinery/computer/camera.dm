@@ -230,15 +230,15 @@
 
 /obj/machinery/computer/security/hos
 	name = "\improper Head of Security's camera console"
-	desc = "A custom security console with added access to the labor camp network."
-	network = list("ss13", "labor")
+	desc = "A custom security console with added access to the labour camp network."
+	network = list("ss13", "labour")
 	circuit = /obj/item/circuitboard/computer/security/hos
 
-/obj/machinery/computer/security/labor
-	name = "labor camp monitoring"
-	desc = "Used to access the various cameras on the labor camp."
-	network = list("labor")
-	circuit = /obj/item/circuitboard/computer/security/labor
+/obj/machinery/computer/security/labour
+	name = "labour camp monitoring"
+	desc = "Used to access the various cameras on the labour camp."
+	network = list("labour")
+	circuit = /obj/item/circuitboard/computer/security/labour
 
 /obj/machinery/computer/security/qm
 	name = "\improper Quartermaster's camera console"

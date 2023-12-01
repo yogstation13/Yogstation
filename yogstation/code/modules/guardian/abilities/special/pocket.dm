@@ -203,7 +203,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	if (pull_target)
 		to_chat(pull_target, span_danger("All of existence fades out for a moment..."))
 		summoner.start_pulling(pull_target)
-		pull_target.Paralyze(5 SECONDS)
+		pull_target.Paralyse(5 SECONDS)
 
 /datum/guardian_ability/major/special/pocket/proc/bring_mobs_into_pocket_dimension()
 	var/turf/corner = GLOB.pocket_corners[pocket_dim]["bl-corner"]
@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	if (pull_target)
 		to_chat(pull_target, span_danger("All of existence fades out for a moment..."))
 		summoner.start_pulling(pull_target)
-		pull_target.Paralyze(5 SECONDS)
+		pull_target.Paralyse(5 SECONDS)
 
 
 /datum/guardian_ability/major/special/pocket/proc/demanifest_dimension()

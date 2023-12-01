@@ -1,29 +1,29 @@
-/obj/machinery/computer/shuttle/labor
-	name = "labor shuttle console"
-	desc = "Used to call and send the labor camp shuttle."
-	circuit = /obj/item/circuitboard/computer/labor_shuttle
-	shuttleId = "laborcamp"
-	possible_destinations = "laborcamp_home;laborcamp_away"
+/obj/machinery/computer/shuttle/labour
+	name = "labour shuttle console"
+	desc = "Used to call and send the labour camp shuttle."
+	circuit = /obj/item/circuitboard/computer/labour_shuttle
+	shuttleId = "labourcamp"
+	possible_destinations = "labourcamp_home;labourcamp_away"
 	req_access = list(ACCESS_BRIG)
 
 
-/obj/machinery/computer/shuttle/labor/one_way
+/obj/machinery/computer/shuttle/labour/one_way
 	name = "prisoner shuttle console"
-	desc = "A one-way shuttle console, used to summon the shuttle to the labor camp."
-	possible_destinations = "laborcamp_away"
-	circuit = /obj/item/circuitboard/computer/labor_shuttle/one_way
+	desc = "A one-way shuttle console, used to summon the shuttle to the labour camp."
+	possible_destinations = "labourcamp_away"
+	circuit = /obj/item/circuitboard/computer/labour_shuttle/one_way
 	req_access = list( )
 
-/obj/machinery/computer/shuttle/labor/one_way/launch_check(mob/user)
+/obj/machinery/computer/shuttle/labour/one_way/launch_check(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle("laborcamp")
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle("labourcamp")
 	if(!M)
 		to_chat(user, span_warning("Cannot locate shuttle!"))
 		return FALSE
 	var/obj/docking_port/stationary/S = M.get_docked()
-	if(S?.name == "laborcamp_away")
+	if(S?.name == "labourcamp_away")
 		to_chat(user, span_warning("Shuttle is already at the outpost!"))
 		return FALSE
 	return TRUE

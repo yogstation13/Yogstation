@@ -237,15 +237,15 @@
 	begin_day = 22
 	begin_month = APRIL
 
-/datum/holiday/labor
-	name = "Labor Day"
+/datum/holiday/labour
+	name = "Labour Day"
 	begin_day = 1
 	begin_month = MAY
 	drone_hat = /obj/item/clothing/head/hardhat
 	mail_holiday = TRUE
 
-/datum/holiday/labor/getStationPrefix()
-	return pick("Union","Labor","Worker","Trade")
+/datum/holiday/labour/getStationPrefix()
+	return pick("Union","Labour","Worker","Trade")
 
 /datum/holiday/firefighter
 	name = "Firefighter's Day"

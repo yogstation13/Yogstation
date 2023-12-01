@@ -79,7 +79,7 @@
 /**
   * CQC slam combo attack
   *
-  * Basic counter that causes 15 stamina damage with a 3 second paralyze and 8 second knockdown
+  * Basic counter that causes 15 stamina damage with a 3 second paralyse and 8 second knockdown
   */
 /datum/martial_art/cqc/proc/Slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -90,7 +90,7 @@
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1) //using hit_kick because for some stupid reason slam.ogg is delayed
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 		D.apply_damage(A.get_punchdamagehigh() + 5, STAMINA)	//15 damage
-		D.Paralyze(30)
+		D.Paralyse(30)
 		D.Knockdown(80)
 		log_combat(A, D, "slammed (CQC)")
 	return TRUE
@@ -120,7 +120,7 @@
 					  		span_userdanger("[A] kicks you in the abdomen!"))
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
 		var/kickdamage = A.get_punchdamagehigh() * 2 + 20	//40 damage
-		D.Paralyze(5)
+		D.Paralyse(5)
 		D.apply_damage(kickdamage, STAMINA)
 		D.silent += 2
 	return TRUE
@@ -176,7 +176,7 @@
 /**
   * CQC consecutive attack
   *
-  * Attack that causes 5 seconds paralyze and 10 seconds knockdown as well as 25 stamina damage
+  * Attack that causes 5 seconds paralyse and 10 seconds knockdown as well as 25 stamina damage
   */
 /datum/martial_art/cqc/proc/Consecutive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -188,7 +188,7 @@
 		D.visible_message(span_warning("[A] delivers a firm blow to [D]'s head, knocking them down!"), \
 							span_userdanger("[A] delivers a firm blow to your head, causing you to fall over!"))
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
-		D.Paralyze(50)
+		D.Paralyse(50)
 		D.Knockdown(100)
 		D.apply_damage(consecutivedamage, STAMINA)
 	return TRUE
@@ -228,7 +228,7 @@
 		D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
 							span_userdanger("[A] leg sweeps you!"))
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
-		D.Paralyze(10)
+		D.Paralyse(10)
 		D.Knockdown(30)
 		A.set_resting(FALSE)
 		A.SetKnockdown(0)
@@ -244,7 +244,7 @@
 	if(check_streak(A,D))
 		return TRUE
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
-	if(!D.stat && !D.IsParalyzed() && !restraining)
+	if(!D.stat && !D.IsParalysed() && !restraining)
 		if(prob(65))
 			I = D.get_active_held_item()
 			D.visible_message(span_warning("[A] quickly grabs [D]'s arm and and chops it, disarming them!"), \
@@ -350,4 +350,4 @@
 	to_chat(usr, "[span_notice("Pressure")]: Disarm Grab. Disables the targeted limb or a random limb if the head or chest are targeted, as well as forcing the target to drop anything they are holding.")
 	to_chat(usr, "[span_notice("Consecutive CQC")]: Harm Harm Harm Harm Harm. Offensive move, deals bonus stamina damage and knocking down on the last hit.")
 
-	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to counter attacks done to you. Beware, counter-attacks are tiring and you won't be able to defend yourself forever!</i></b>")
+	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defence mode where you have a chance to counter attacks done to you. Beware, counter-attacks are tiring and you won't be able to defend yourself forever!</i></b>")

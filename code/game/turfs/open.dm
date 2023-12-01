@@ -529,7 +529,7 @@
 		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/slipper, knockdown_amount, obj/slippable, lube, paralyze_amount, force_drop)
+/turf/open/handle_slip(mob/living/carbon/slipper, knockdown_amount, obj/slippable, lube, paralyse_amount, force_drop)
 	if(slipper.movement_type & (FLYING | FLOATING))
 		return FALSE
 	if(has_gravity(src))
@@ -556,7 +556,7 @@
 		slipper.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			slipper.Knockdown(knockdown_amount)
-			slipper.Paralyze(paralyze_amount)
+			slipper.Paralyse(paralyse_amount)
 			slipper.stop_pulling()
 		else
 			slipper.Knockdown(20)

@@ -38,7 +38,7 @@
 	return FALSE
 
 /datum/martial_art/the_sleeping_carp/proc/wristWrench(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat && !D.IsStun() && !D.IsParalyzed())
+	if(!D.stat && !D.IsStun() && !D.IsParalysed())
 		log_combat(A, D, "wrist wrenched (Sleeping Carp)")
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.visible_message(span_warning("[A] grabs [D]'s wrist and wrenches it sideways!"), \
@@ -53,14 +53,14 @@
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/backKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat && !D.IsParalyzed())
+	if(!D.stat && !D.IsParalysed())
 		if(A.dir == D.dir)
 			log_combat(A, D, "back-kicked (Sleeping Carp)")
 			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 			D.visible_message(span_warning("[A] kicks [D] in the back!"), \
 								span_userdanger("[A] kicks you in the back, making you stumble and fall!"))
 			step_to(D,get_step(D,D.dir),1)
-			D.Paralyze(80)
+			D.Paralyse(80)
 			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 			return TRUE
 		else
@@ -70,7 +70,7 @@
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/kneeStomach(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat && !D.IsParalyzed())
+	if(!D.stat && !D.IsParalysed())
 		log_combat(A, D, "stomach kneed (Sleeping Carp)")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.visible_message(span_warning("[A] knees [D] in the stomach!"), \
@@ -83,7 +83,7 @@
 	return basic_hit(A,D)	
 
 /datum/martial_art/the_sleeping_carp/proc/headKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat && !D.IsParalyzed())
+	if(!D.stat && !D.IsParalysed())
 		log_combat(A, D, "head kicked (Sleeping Carp)")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.visible_message(span_warning("[A] kicks [D] in the head!"), \
@@ -139,7 +139,7 @@
 	playsound(get_turf(D), 'sound/weapons/punch1.ogg', 25, 1, -1)
 	if(prob(D.getBruteLoss()) && (D.mobility_flags & MOBILITY_STAND))
 		D.visible_message(span_warning("[D] stumbles and falls!"), span_userdanger("The blow sends you to the ground!"))
-		D.Paralyze(80)
+		D.Paralyse(80)
 	log_combat(A, D, "[atk_verb] (Sleeping Carp)")
 	return TRUE
 
@@ -195,7 +195,7 @@
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='warning'>You club yourself over the head with [src].</span>")
-		user.Paralyze(60)
+		user.Paralyse(60)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD)

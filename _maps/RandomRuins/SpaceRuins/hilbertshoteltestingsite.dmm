@@ -112,7 +112,7 @@
 /area/ruin/space/has_grav/hilbertresearchfacility)
 "u" = (
 /obj/structure/table/glass,
-/obj/item/analyzer,
+/obj/item/analyser,
 /turf/open/floor/plasteel/grimy{
 	icon_state = "engine"
 	},

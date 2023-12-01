@@ -10,7 +10,7 @@ NANITE SCANNER
 GENE SCANNER
 */
 
-// Describes the three modes of scanning available for health analyzers
+// Describes the three modes of scanning available for health analysers
 #define SCANMODE_HEALTH		0
 #define SCANMODE_CHEMICAL 	1
 #define SCANMODE_WOUND	 	2
@@ -82,11 +82,11 @@ GENE SCANNER
 	if(t_ray_images.len)
 		flick_overlay(t_ray_images, list(viewer.client), flick_time)
 
-/obj/item/healthanalyzer
-	name = "health analyzer"
+/obj/item/healthanalyser
+	name = "health analyser"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "health"
-	item_state = "healthanalyzer"
+	item_state = "healthanalyser"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
@@ -102,21 +102,21 @@ GENE SCANNER
 	var/advanced = FALSE
 	var/beep_cooldown = 0
 
-/obj/item/healthanalyzer/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
+/obj/item/healthanalyser/suicide_act(mob/living/carbon/user)
+	user.visible_message(span_suicide("[user] begins to analyse [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
 	return BRUTELOSS
 
-/obj/item/healthanalyzer/attack_self(mob/user)
+/obj/item/healthanalyser/attack_self(mob/user)
 	scanmode = (scanmode + 1) % 3
 	switch(scanmode)
 		if(SCANMODE_HEALTH)
-			to_chat(user, span_notice("You switch the health analyzer to check physical health."))
+			to_chat(user, span_notice("You switch the health analyser to check physical health."))
 		if(SCANMODE_CHEMICAL)
-			to_chat(user, span_notice("You switch the health analyzer to scan chemical contents."))
+			to_chat(user, span_notice("You switch the health analyser to scan chemical contents."))
 		if(SCANMODE_WOUND)
-			to_chat(user, span_notice("You switch the health analyzer to report extra info on wounds."))
+			to_chat(user, span_notice("You switch the health analyser to report extra info on wounds."))
 
-/obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
+/obj/item/healthanalyser/attack(mob/living/M, mob/living/carbon/human/user)
 	flick("[icon_state]-scan", src)	//makes it so that it plays the scan animation upon scanning, including clumsy scanning
 	if(beep_cooldown<world.time)
 		playsound(src, 'sound/effects/fastbeep.ogg', 20)
@@ -125,15 +125,15 @@ GENE SCANNER
 	// Clumsiness/brain damage check
 	/* This needs to be reformated, along with 99% of this stuff
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
-		to_chat(user, span_notice("You stupidly try to analyze the floor's vitals!"))
-		user.visible_message(span_warning("[user] has analyzed the floor's vitals!"))
+		to_chat(user, span_notice("You stupidly try to analyse the floor's vitals!"))
+		user.visible_message(span_warning("[user] has analysed the floor's vitals!"))
 		to_chat(user, span_info("Analyzing results for The floor:\n\tOverall status: <b>Healthy</b>"))
 		to_chat(user, span_info("Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FF8000'>Burn</font>/<font color='red'>Brute</font>"))
 		to_chat(user, span_info("\tDamage specifics: <font color='blue'>0</font>-<font color='green'>0</font>-<font color='#FF8000'>0</font>-<font color='red'>0</font>"))
 		to_chat(user, span_info("Body temperature: ???"))
 		return
 */
-	user.visible_message(span_notice("[user] has analyzed [M]'s vitals."))
+	user.visible_message(span_notice("[user] has analysed [M]'s vitals."))
 
 	switch(scanmode)
 		if(SCANMODE_HEALTH)
@@ -471,14 +471,14 @@ GENE SCANNER
 				combined_msg += span_notice("Subject is not addicted to any reagents.")
 	to_chat(user, examine_block(combined_msg.Join("\n")))
 
-/obj/item/healthanalyzer/advanced
-	name = "advanced health analyzer"
+/obj/item/healthanalyser/advanced
+	name = "advanced health analyser"
 	icon_state = "health_adv"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject with high accuracy."
 	advanced = TRUE
 	var/list/advanced_surgeries = list()
 
-/obj/item/healthanalyzer/advanced/afterattack(obj/item/O, mob/user, proximity)
+/obj/item/healthanalyser/advanced/afterattack(obj/item/O, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
@@ -496,12 +496,12 @@ GENE SCANNER
 		return TRUE
 	return
 
-/obj/item/healthanalyzer/advanced/debug/Initialize(mapload)
+/obj/item/healthanalyser/advanced/debug/Initialize(mapload)
 	. = ..()
 	advanced_surgeries = subtypesof(/datum/surgery)
 
 /// Displays wounds with extended information on their status vs medscanners
-/proc/woundscan(mob/user, mob/living/carbon/patient, obj/item/healthanalyzer/wound/scanner)
+/proc/woundscan(mob/user, mob/living/carbon/patient, obj/item/healthanalyser/wound/scanner)
 	if(!istype(patient))
 		return
 
@@ -524,14 +524,14 @@ GENE SCANNER
 	else
 		to_chat(user, examine_block(jointext(render_list, "")))
 
-/obj/item/healthanalyzer/wound
-	name = "first aid analyzer"
+/obj/item/healthanalyser/wound
+	name = "first aid analyser"
 	icon_state = "adv_spectrometer"
 	desc = "A prototype MeLo-Tech medical scanner used to diagnose injuries and recommend treatment for serious wounds, but offers no further insight into the patient's health. You hope the final version is less annoying to read!"
 	var/next_encouragement
 	var/greedy
 
-/obj/item/healthanalyzer/wound/attack_self(mob/user)
+/obj/item/healthanalyser/wound/attack_self(mob/user)
 	if(next_encouragement < world.time)
 		playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 		var/list/encouragements = list("briefly displays a happy face, gazing emptily at you", "briefly displays a spinning cartoon heart", "displays an encouraging message about eating healthy and exercising", \
@@ -553,7 +553,7 @@ GENE SCANNER
 			L.adjustBruteLoss(4)
 			L.dropItemToGround(src)
 
-/obj/item/healthanalyzer/wound/attack(mob/living/carbon/patient, mob/living/carbon/human/user)
+/obj/item/healthanalyser/wound/attack(mob/living/carbon/patient, mob/living/carbon/human/user)
 	add_fingerprint(user)
 	user.visible_message(span_notice("[user] scans [patient] for serious injuries."), span_notice("You scan [patient] for serious injuries."))
 
@@ -564,13 +564,13 @@ GENE SCANNER
 
 	woundscan(user, patient, src)
 
-/obj/item/analyzer
+/obj/item/analyser
 	desc = "A hand-held environmental scanner which reports current gas levels. Alt-Click to use the built in barometer function."
-	name = "analyzer"
+	name = "analyser"
 	custom_price = 10
 	icon = 'icons/obj/device.dmi'
-	icon_state = "analyzer"
-	item_state = "analyzer"
+	icon_state = "analyser"
+	item_state = "analyser"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -587,15 +587,15 @@ GENE SCANNER
 	var/cooldown_time = 50
 	var/accuracy // 0 is the best accuracy.
 
-/obj/item/analyzer/examine(mob/user)
+/obj/item/analyser/examine(mob/user)
 	. = ..()
 	. += span_notice("Alt-click [src] to activate the barometer function.")
 
-/obj/item/analyzer/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
+/obj/item/analyser/suicide_act(mob/living/carbon/user)
+	user.visible_message(span_suicide("[user] begins to analyse [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
 	return BRUTELOSS
 
-/obj/item/analyzer/attackby(obj/O, mob/living/user)
+/obj/item/analyser/attackby(obj/O, mob/living/user)
 	if(istype(O, /obj/item/bodypart/l_arm/robot) || istype(O, /obj/item/bodypart/r_arm/robot))
 		to_chat(user, "<span class='notice'>You add [O] to [src].</span>")
 		qdel(O)
@@ -604,17 +604,17 @@ GENE SCANNER
 	else
 		..()
 		
-/obj/item/analyzer/attack_self(mob/user)
+/obj/item/analyser/attack_self(mob/user)
 	add_fingerprint(user)
 	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
 
-/obj/item/analyzer/afterattack(atom/target as obj, mob/user, proximity)
+/obj/item/analyser/afterattack(atom/target as obj, mob/user, proximity)
 	if(!proximity)
 		return
 	add_fingerprint(user)
 	if(istype(target, /turf))
 		var/turf/U = get_turf(target)
-		atmosanalyzer_scan(user, U)
+		atmosanalyser_scan(user, U)
 
 /obj/item/proc/scangasses(mob/user)
 	var/list/combined_msg = list()
@@ -674,7 +674,7 @@ GENE SCANNER
 		combined_msg += span_info("Temperature: [round(environment.return_temperature()-T0C, 0.01)] &deg;C ([round(environment.return_temperature(), 0.01)] K)")
 	to_chat(user, examine_block(combined_msg.Join("\n")))
 
-/obj/item/analyzer/AltClick(mob/user) //Barometer output for measuring when the next storm happens
+/obj/item/analyser/AltClick(mob/user) //Barometer output for measuring when the next storm happens
 	..()
 
 	if(user.canUseTopic(src, BE_CLOSE))
@@ -717,16 +717,16 @@ GENE SCANNER
 			else
 				to_chat(user, span_warning("[src]'s barometer function says a storm will land in approximately [butchertime(fixed)]."))
 		cooldown = TRUE
-		addtimer(CALLBACK(src,/obj/item/analyzer/proc/ping), cooldown_time)
+		addtimer(CALLBACK(src,/obj/item/analyser/proc/ping), cooldown_time)
 
-/obj/item/analyzer/proc/ping()
+/obj/item/analyser/proc/ping()
 	if(isliving(loc))
 		var/mob/living/L = loc
 		to_chat(L, span_notice("[src]'s barometer function is ready!"))
 	playsound(src, 'sound/machines/click.ogg', 100)
 	cooldown = FALSE
 
-/obj/item/analyzer/proc/butchertime(amount)
+/obj/item/analyser/proc/butchertime(amount)
 	if(!amount)
 		return
 	if(accuracy)
@@ -737,7 +737,7 @@ GENE SCANNER
 			amount += inaccurate
 	return DisplayTimeText(max(1,amount))
 
-/proc/atmosanalyzer_scan(mob/user, atom/target, silent=FALSE)
+/proc/atmosanalyser_scan(mob/user, atom/target, silent=FALSE)
 	var/mixture = target.return_analyzable_air()
 	if(!mixture)
 		return FALSE
@@ -745,7 +745,7 @@ GENE SCANNER
 	var/list/combined_msg = list()
 	var/icon = target
 	if(!silent && isliving(user))
-		user.visible_message("[user] has used the analyzer on [icon2html(icon, viewers(user))] [target].", "<span class='notice'>You use the analyzer on [icon2html(icon, user)] [target].</span>")
+		user.visible_message("[user] has used the analyser on [icon2html(icon, viewers(user))] [target].", "<span class='notice'>You use the analyser on [icon2html(icon, user)] [target].</span>")
 	combined_msg += span_boldnotice("Results of analysis of [icon2html(icon, user)] [target].")
 
 	var/list/airs = islist(mixture) ? mixture : list(mixture)
@@ -758,7 +758,7 @@ GENE SCANNER
 		var/pressure = air_contents.return_pressure()
 		var/volume = air_contents.return_volume() //could just do mixture.volume... but safety, I guess?
 		var/temperature = air_contents.return_temperature()
-		var/cached_scan_results = air_contents.analyzer_results
+		var/cached_scan_results = air_contents.analyser_results
 
 		if(total_moles > 0)
 			combined_msg += span_notice("Moles: [round(total_moles, 0.01)] mol")
@@ -787,10 +787,10 @@ GENE SCANNER
 
 /obj/item/slime_scanner
 	name = "slime scanner"
-	desc = "A device that analyzes a slime's internal composition and measures its stats."
+	desc = "A device that analyses a slime's internal composition and measures its stats."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "adv_spectrometer"
-	item_state = "analyzer"
+	item_state = "analyser"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -859,7 +859,7 @@ GENE SCANNER
 	materials = list(/datum/material/iron=200)
 
 /obj/item/nanite_scanner/attack(mob/living/M, mob/living/carbon/human/user)
-	user.visible_message(span_notice("[user] has analyzed [M]'s nanites."))
+	user.visible_message(span_notice("[user] has analysed [M]'s nanites."))
 
 	add_fingerprint(user)
 
@@ -871,7 +871,7 @@ GENE SCANNER
 	name = "genetic sequence scanner"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gene"
-	item_state = "healthanalyzer"
+	item_state = "healthanalyser"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	desc = "A hand-held scanner for analyzing someones gene sequence on the fly. Hold near a DNA console to update the internal database."
@@ -891,7 +891,7 @@ GENE SCANNER
 /obj/item/sequence_scanner/attack(mob/living/M, mob/living/carbon/human/user)
 	add_fingerprint(user)
 	if (!HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA)) //no scanning if its a husk or DNA-less Species
-		user.visible_message(span_notice("[user] has analyzed [M]'s genetic sequence."))
+		user.visible_message(span_notice("[user] has analysed [M]'s genetic sequence."))
 		gene_scan(M, user)
 		playsound(src, 'sound/effects/fastbeep.ogg', 20)
 
@@ -934,7 +934,7 @@ GENE SCANNER
 	for(var/A in buffer)
 		options += get_display_name(A)
 
-	var/answer = input(user, "Analyze Potential", "Sequence Analyzer")  as null|anything in options
+	var/answer = input(user, "Analyse Potential", "Sequence Analyser")  as null|anything in options
 	if(answer && ready && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		var/sequence
 		for(var/A in buffer) //this physically hurts but i dont know what anything else short of an assoc list
@@ -972,7 +972,7 @@ GENE SCANNER
 	name = "kiosk scanner wand"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "scanner_wand"
-	item_state = "healthanalyzer"
+	item_state = "healthanalyser"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	desc = "A wand that medically scans people. Inserting it into a medical kiosk makes it able to perform a health scan on the patient."

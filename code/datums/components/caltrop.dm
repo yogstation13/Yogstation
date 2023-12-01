@@ -59,4 +59,4 @@
 						span_userdanger("You slide on [A]!"))
 
 			cooldown = world.time
-		H.Paralyze(60)
+		H.Paralyse(60)

@@ -115,7 +115,7 @@
 			playsound(loc,'sound/effects/snap.ogg',50, TRUE, -1)
 			living_crosser.electrocute_act(0, src, 1, illusion = 1, stun = 1)
 			if(iscyborg(living_crosser))
-				living_crosser.Paralyze(100)
+				living_crosser.Paralyse(100)
 			qdel(src)
 	return ..()
 

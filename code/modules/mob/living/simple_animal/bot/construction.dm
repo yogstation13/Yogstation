@@ -259,7 +259,7 @@
 	icon_state = "firstaid_arm"
 	created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
-	var/healthanalyzer = /obj/item/healthanalyzer
+	var/healthanalyser = /obj/item/healthanalyser
 	var/firstaid = /obj/item/storage/firstaid
 
 /obj/item/bot_assembly/medbot/Initialize(mapload)
@@ -272,13 +272,13 @@
 	..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
-			if(istype(W, /obj/item/healthanalyzer))
+			if(istype(W, /obj/item/healthanalyser))
 				if(!user.temporarilyRemoveItemFromInventory(W))
 					return
-				healthanalyzer = W.type
+				healthanalyser = W.type
 				to_chat(user, span_notice("You add [W] to [src]."))
 				qdel(W)
-				name = "first aid/robot arm/health analyzer assembly"
+				name = "first aid/robot arm/health analyser assembly"
 				add_overlay("na_scanner")
 				build_step++
 
@@ -292,7 +292,7 @@
 				S.name = created_name
 				S.firstaid = firstaid
 				S.robot_arm = robot_arm
-				S.healthanalyzer = healthanalyzer
+				S.healthanalyser = healthanalyser
 				qdel(src)
 
 

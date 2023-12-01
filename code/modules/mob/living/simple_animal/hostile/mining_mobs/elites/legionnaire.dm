@@ -133,7 +133,7 @@
 		visible_message(span_boldwarning("[src] attacks [L] with much force!"))
 		to_chat(L, span_userdanger("[src] grabs you and throws you with much force!"))
 		L.safe_throw_at(throwtarget, 10, 1, src)
-		L.Paralyze(20)
+		L.Paralyse(20)
 		L.adjustBruteLoss(50)
 	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), move_dir, (times_ran + 1)), 2)
 

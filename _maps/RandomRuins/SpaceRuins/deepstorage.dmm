@@ -1390,8 +1390,8 @@
 /area/ruin/space/has_grav/deepstorage/armory)
 "db" = (
 /obj/structure/table,
-/obj/item/healthanalyzer,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
+/obj/item/healthanalyser,
 /obj/item/stack/medical/gauze,
 /obj/item/stack/medical/gauze,
 /turf/open/floor/plasteel/dark,

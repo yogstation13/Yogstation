@@ -712,7 +712,7 @@
 				throwtarget = get_edge_target_turf(src, get_dir(src, get_step_away(owner, src)))
 				SEND_SOUND(owner, sound(pick('sound/hallucinations/turn_around1.ogg','sound/hallucinations/turn_around2.ogg'),0,1,50))
 				flash_color(owner, flash_color="#800080", flash_time=10)
-				owner.Paralyze(10)
+				owner.Paralyse(10)
 				owner.throw_at(throwtarget, 5, 1,src)
 				to_chat(owner, span_ownerdanger("A sudden surge of psionic energy rushes into your mind, only a Hive host could have such power!!"))
 				return

@@ -909,7 +909,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Prison Wing Hallway"
 
 /area/security/processing
-	name = "Labor Shuttle Dock"
+	name = "Labour Shuttle Dock"
 	icon_state = "sec_prison"
 
 /area/security/processing/cremation

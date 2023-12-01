@@ -65,7 +65,7 @@ export const ProbingConsole = (props, context) => {
                   })} />
                 <Button
                   icon="search"
-                  content="Analyze"
+                  content="Analyse"
                   onClick={() => act('experiment', {
                     experiment_type: 3,
                   })} />

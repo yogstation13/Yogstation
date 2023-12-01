@@ -47,7 +47,7 @@
 		plant(user)
 		to_chat(user, span_notice("You plant the kudzu. You monster."))
 
-/obj/item/seeds/kudzu/get_analyzer_text()
+/obj/item/seeds/kudzu/get_analyser_text()
 	var/text = ..()
 	var/text_string = ""
 	for(var/datum/spacevine_mutation/SM in mutations)

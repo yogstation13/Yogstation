@@ -1055,7 +1055,7 @@
 /obj/structure/closet,
 /obj/item/cultivator,
 /obj/item/hatchet,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /obj/item/storage/bag/plants,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/spacebar)

@@ -7405,9 +7405,9 @@
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
-/obj/item/healthanalyzer,
-/obj/item/healthanalyzer,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
+/obj/item/healthanalyser,
+/obj/item/healthanalyser,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cXJ" = (
@@ -12463,8 +12463,8 @@
 /obj/item/radio/intercom{
 	pixel_y = -25
 	},
-/obj/item/analyzer,
-/obj/item/healthanalyzer,
+/obj/item/analyser,
+/obj/item/healthanalyser,
 /turf/open/floor/plating,
 /area/storage/tech)
 "fgV" = (
@@ -13538,7 +13538,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/security/processing";
 	dir = 1;
-	name = "Labor Processing APC";
+	name = "Labour Processing APC";
 	pixel_y = 23
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -15429,7 +15429,7 @@
 /area/lawoffice)
 "gvG" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	req_access_txt = "2";
 	shuttledocked = 1
 	},
@@ -18133,7 +18133,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "hJO" = (
-/obj/machinery/computer/shuttle/labor{
+/obj/machinery/computer/shuttle/labour{
 	dir = 1;
 	icon_state = "computer"
 	},
@@ -18142,7 +18142,7 @@
 	pixel_y = -24
 	},
 /obj/machinery/camera{
-	c_tag = "Security - Labor Dock";
+	c_tag = "Security - Labour Dock";
 	dir = 1;
 	network = list("ss13","Security")
 	},
@@ -18995,7 +18995,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "igP" = (
-/obj/machinery/computer/security/labor{
+/obj/machinery/computer/security/labour{
 	dir = 4;
 	icon_state = "computer"
 	},
@@ -27675,7 +27675,7 @@
 	pixel_y = -32
 	},
 /obj/item/clothing/gloves/color/latex,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/reagent_containers/dropper,
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
@@ -29606,7 +29606,7 @@
 	},
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /obj/item/cultivator,
 /obj/item/cultivator{
 	pixel_x = 3;
@@ -33355,7 +33355,7 @@
 /area/science/explab)
 "ooO" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	req_access_txt = "2";
 	shuttledocked = 1
 	},
@@ -33474,7 +33474,7 @@
 /area/hallway/primary/central)
 "osb" = (
 /obj/structure/table,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /obj/item/hatchet,
 /obj/item/crowbar,
 /obj/item/reagent_containers/glass/bucket,
@@ -35456,7 +35456,7 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
-/obj/machinery/computer/shuttle/labor,
+/obj/machinery/computer/shuttle/labour,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "poS" = (
@@ -39288,8 +39288,8 @@
 "qUw" = (
 /obj/structure/rack,
 /obj/item/storage/bag/plants/portaseeder,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer{
+/obj/item/plant_analyser,
+/obj/item/plant_analyser{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -42830,7 +42830,7 @@
 "syS" = (
 /obj/structure/table,
 /obj/item/wrench,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/stack/cable_coil{
 	pixel_x = 2;
 	pixel_y = -2
@@ -43430,7 +43430,7 @@
 /area/hallway/primary/central)
 "sJM" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	shuttledocked = 1
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -45006,7 +45006,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "ttt" = (
-/obj/machinery/rnd/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyser,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "ttB" = (
@@ -48892,7 +48892,7 @@
 /obj/item/screwdriver{
 	pixel_y = 10
 	},
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/pipe_dispenser,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
@@ -49574,7 +49574,7 @@
 /area/quartermaster/warehouse)
 "vsp" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	shuttledocked = 1
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -54104,7 +54104,7 @@
 	dir = 2;
 	dwidth = 2;
 	height = 5;
-	id = "laborcamp_home";
+	id = "labourcamp_home";
 	name = "fore bay 1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9

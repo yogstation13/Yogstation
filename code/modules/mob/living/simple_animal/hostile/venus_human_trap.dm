@@ -153,7 +153,7 @@
 			L.Immobilize(0.25 SECONDS)
 			L.Knockdown(2 SECONDS)
 		else
-			L.Paralyze(2 SECONDS)
+			L.Paralyse(2 SECONDS)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/venus_human_trap/Login()

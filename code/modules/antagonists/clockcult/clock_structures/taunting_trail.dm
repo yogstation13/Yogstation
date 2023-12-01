@@ -57,5 +57,5 @@
 		if(!L.can_block_magic(charge_cost = 0))
 			L.adjust_confusion_up_to(15 SECONDS, 50 SECONDS)
 			L.adjust_dizzy_up_to(15 SECONDS, 50 SECONDS)
-			L.Paralyze(FLOOR(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 0.8, 1))
+			L.Paralyse(FLOOR(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 0.8, 1))
 		take_damage(max_integrity)

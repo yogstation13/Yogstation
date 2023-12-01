@@ -9,7 +9,7 @@
 	layer = LARGE_MOB_LAYER
 	damage_type = BURN
 	damage = 10
-	paralyze = 20
+	paralyse = 20
 	speed = 2
 	range = 16
 	var/datum/beam/arm
@@ -53,5 +53,5 @@
 /obj/projectile/curse_hand/progenitor
 	name = "psionic barrage"
 	damage_type = BRAIN
-	paralyze = 0
+	paralyse = 0
 

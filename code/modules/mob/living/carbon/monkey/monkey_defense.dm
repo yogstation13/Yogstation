@@ -65,7 +65,7 @@
 			if(!IsUnconscious())
 				M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 				if (prob(25))
-					Paralyze(40)
+					Paralyse(40)
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 					log_combat(M, src, "pushed")
 					visible_message(span_danger("[M] has pushed down [src]!"), \
@@ -107,7 +107,7 @@
 			var/obj/item/I = null
 			playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 			if(prob(95))
-				Paralyze(20)
+				Paralyse(20)
 				visible_message(span_danger("[M] has tackled down [name]!"), \
 						span_userdanger("[M] has tackled down [name]!"), null, COMBAT_MESSAGE_RANGE)
 			else

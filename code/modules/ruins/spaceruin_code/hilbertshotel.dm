@@ -408,12 +408,12 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 /area/ruin/space/has_grav/hilbertresearchfacility
     name = "Hilbert Research Facility"
 
-/obj/item/analyzer/hilbertsanalyzer
-    name = "custom rigged analyzer"
-    desc = "A hand-held environmental scanner which reports current gas levels. This one seems custom rigged to additionally be able to analyze some sort of bluespace device."
-    icon_state = "hilbertsanalyzer"
+/obj/item/analyser/hilbertsanalyser
+    name = "custom rigged analyser"
+    desc = "A hand-held environmental scanner which reports current gas levels. This one seems custom rigged to additionally be able to analyse some sort of bluespace device."
+    icon_state = "hilbertsanalyser"
 
-/obj/item/analyzer/hilbertsanalyzer/afterattack(atom/target, mob/user, proximity)
+/obj/item/analyser/hilbertsanalyser/afterattack(atom/target, mob/user, proximity)
     . = ..()
     if(istype(target, /obj/item/hilbertshotel))
         if(!proximity)
@@ -501,7 +501,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     The visitors have been coming a lot more often, and they all seem increasingly aggressive and nosey. I'm starting to see why they made Doc so nervous, they're certainly starting to creep me out too.<br>
     Awhile ago Doc started having me keep the place on strict lockdown and requested I refuse entry to anyone else, including previous staff.<br>
     But the weirdest part?<br>
-    I haven't seen Doc in days. It's not unusual for him to work continuously for long periods of time in the lab, but when I took a peak in their yesterday - he was nowhere to be seen! I didn't risk prying much further, Doc had a habit of leaving the defense systems on these last few weeks.<br>
+    I haven't seen Doc in days. It's not unusual for him to work continuously for long periods of time in the lab, but when I took a peak in their yesterday - he was nowhere to be seen! I didn't risk prying much further, Doc had a habit of leaving the defence systems on these last few weeks.<br>
     I'm thinking it might be time to call it quits. Can't work much without a boss, plus things are starting to get kind of shady. I wanted to be a part of something important, but you gotta know when to play it safe.<br>
     As my dad always said, "The smart get famous, but the wise survive..."<br>
 	<br>
@@ -511,7 +511,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     name = "note"
     info = {"This is it isn't it?<br>
     No one's coming to help, that much has become clear.<br>
-    Sure, it's lonely, but do I have much choice? At least I brought the analyzer with me, they shouldn't be able to find me without it.<br>
+    Sure, it's lonely, but do I have much choice? At least I brought the analyser with me, they shouldn't be able to find me without it.<br>
     Who knows who's waiting for me out there. Its either die out there in their hands, or die a slower, slightly more comfortable death in here.<br>
     Everyday I can feel myself slipping away more and more, both physically and mentally. Who knows what happens now...<br>
     Heh, so it's true then, this must be the inescapable path of all great minds... so be it then.<br>

@@ -86,7 +86,7 @@
 	G.real_name = "[G.real_name] Requiem"
 	G.mind.name = "[G.mind.name] Requiem"
 	G.stats.damage = min(G.stats.damage + rand(1,3), 5)
-	G.stats.defense = min(G.stats.defense + rand(1,3), 5)
+	G.stats.defence = min(G.stats.defence + rand(1,3), 5)
 	G.stats.speed = min(G.stats.speed + rand(1,3), 5)
 	G.stats.potential = min(G.stats.potential + rand(1,3), 5)
 	G.stats.range = min(G.stats.range + rand(1,3), 5)
@@ -98,9 +98,9 @@
 	G.stats.Apply(G)
 	if (G.berserk)
 		G.stats.ability.Berserk()
-		log_game("[key_name(G)] went berserk (Damage [level_to_grade(G.stats.damage)], Defense [level_to_grade(G.stats.defense)], Speed [level_to_grade(G.stats.speed)], Potential [level_to_grade(G.stats.potential)], Range [level_to_grade(G.stats.range)], [G.stats.ability.name])")
+		log_game("[key_name(G)] went berserk (Damage [level_to_grade(G.stats.damage)], Defence [level_to_grade(G.stats.defence)], Speed [level_to_grade(G.stats.speed)], Potential [level_to_grade(G.stats.potential)], Range [level_to_grade(G.stats.range)], [G.stats.ability.name])")
 	else
-		log_game("[key_name(G)] became requiem (Damage [level_to_grade(G.stats.damage)], Defense [level_to_grade(G.stats.defense)], Speed [level_to_grade(G.stats.speed)], Potential [level_to_grade(G.stats.potential)], Range [level_to_grade(G.stats.range)], [G.stats.ability.name])")
+		log_game("[key_name(G)] became requiem (Damage [level_to_grade(G.stats.damage)], Defence [level_to_grade(G.stats.defence)], Speed [level_to_grade(G.stats.speed)], Potential [level_to_grade(G.stats.potential)], Range [level_to_grade(G.stats.range)], [G.stats.ability.name])")
 		var/datum/antagonist/guardian/S = G.mind.has_antag_datum(/datum/antagonist/guardian)
 		if (S)
 			S.name = "Requiem Guardian"
@@ -112,7 +112,7 @@
 
 /obj/item/stand_arrow/proc/generate_stand(mob/living/carbon/human/H)
 	var/points = 15
-	var/list/categories = list("Damage", "Defense", "Speed", "Potential", "Range") // will be shuffled every iteration
+	var/list/categories = list("Damage", "Defence", "Speed", "Potential", "Range") // will be shuffled every iteration
 	var/list/majors = subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special)
 	var/list/major_weighted = list()
 	for (var/M in majors)
@@ -134,10 +134,10 @@
 				stats.damage++
 				if (stats.damage >= 5)
 					categories -= "Damage"
-			if ("Defense")
-				stats.defense++
-				if (stats.defense >= 5)
-					categories -= "Defense"
+			if ("Defence")
+				stats.defence++
+				if (stats.defence >= 5)
+					categories -= "Defence"
 			if ("Speed")
 				stats.speed++
 				if (stats.speed >= 5)

@@ -209,7 +209,7 @@
 
 /obj/effect/mine/stun/mineEffect(mob/living/victim)
 	if(isliving(victim))
-		victim.Paralyze(stun_time)
+		victim.Paralyse(stun_time)
 
 /obj/effect/mine/kickmine
 	name = "kick mine"

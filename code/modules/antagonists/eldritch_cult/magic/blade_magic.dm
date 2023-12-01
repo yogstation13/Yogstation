@@ -196,7 +196,7 @@
 		if(5, 6, 7)
 			return "Slowed " // Slowed Realignment
 		if(8, 9, 10)
-			return "Laborious " // Laborious Realignment (don't reach here)
+			return "Labourious " // Labourious Realignment (don't reach here)
 
 	return ""
 

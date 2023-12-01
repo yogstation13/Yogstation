@@ -1408,7 +1408,7 @@
 /obj/item/reagent_containers/blood/lizard,
 /obj/item/reagent_containers/blood/lizard,
 /obj/item/stack/sheet/cloth/ten,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/item/clothing/glasses/science,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)

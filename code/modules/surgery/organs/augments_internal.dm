@@ -8,7 +8,7 @@
 	compatible_biotypes = ALL_BIOTYPES // everyone can use cybernetic implants
 	var/implant_color = "#FFFFFF"
 	var/implant_overlay
-	var/syndicate_implant = FALSE //Makes the implant invisible to health analyzers and medical HUDs.
+	var/syndicate_implant = FALSE //Makes the implant invisible to health analysers and medical HUDs.
 
 /obj/item/organ/cyberimp/New(mob/M = null)
 	if(iscarbon(M))

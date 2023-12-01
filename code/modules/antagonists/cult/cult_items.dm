@@ -55,7 +55,7 @@
 
 /obj/item/melee/cultblade/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!iscultist(user))
-		user.Paralyze(100)
+		user.Paralyse(100)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message(span_warning("A powerful force shoves [user] away from [target]!"), \
 							 span_cultlarge("\"You shouldn't play with sharp things. You'll poke someone's eye out.\""))
@@ -159,7 +159,7 @@
 			user.emote("scream")
 			user.apply_damage(30, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 			user.dropItemToGround(src, TRUE)
-			user.Paralyze(50)
+			user.Paralyse(50)
 			return
 	force = initial(force)
 	jaunt.Grant(user, src)
@@ -419,7 +419,7 @@
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
 			user.adjust_dizzy(3 SECONDS)
-			user.Paralyze(100)
+			user.Paralyse(100)
 		else
 			to_chat(user, span_cultlarge("\"Trying to use things you don't own is bad, you know.\""))
 			to_chat(user, span_userdanger("The armor squeezes at your body!"))
@@ -478,7 +478,7 @@
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
 			user.adjust_dizzy(30)
-			user.Paralyze(100)
+			user.Paralyse(100)
 		else
 			to_chat(user, span_cultlarge("\"Trying to use things you don't own is bad, you know.\""))
 			to_chat(user, span_userdanger("The robes squeeze at your body!"))
@@ -499,7 +499,7 @@
 		to_chat(user, span_cultlarge("\"You want to be blind, do you?\""))
 		user.dropItemToGround(src, TRUE)
 		user.adjust_dizzy(30)
-		user.Paralyze(100)
+		user.Paralyse(100)
 		user.blind_eyes(30)
 
 /obj/item/reagent_containers/glass/beaker/unholywater
@@ -521,7 +521,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/shuttle_curse/attack_self(mob/living/user)
 	if(!iscultist(user))
 		user.dropItemToGround(src, TRUE)
-		user.Paralyze(100)
+		user.Paralyse(100)
 		to_chat(user, span_warning("A powerful force shoves you away from [src]!"))
 		return
 	if(GLOB.curselimit >= 2)
@@ -728,9 +728,9 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		return
 	if(!L.can_block_magic())
 		if(is_servant_of_ratvar(L))
-			L.Paralyze(20)
+			L.Paralyse(20)
 		else
-			L.Paralyze(10)
+			L.Paralyse(10)
 	break_spear(get_turf(hit_atom))
 
 /obj/item/cult_spear/proc/break_spear(turf/T)
@@ -856,7 +856,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		INVOKE_ASYNC(src, PROC_REF(pewpew), user, params)
 		var/obj/structure/emergency_shield/invoker/N = new(user.loc)
 		if(do_after(user, 9 SECONDS, user))
-			user.Paralyze(40)
+			user.Paralyse(40)
 			to_chat(user, "<span class='cult italic'>You have exhausted the power of this spell!</span>")
 		firing = FALSE
 		if(N)
@@ -921,7 +921,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				else
 					var/mob/living/L = target
 					if(L.density)
-						L.Paralyze(20)
+						L.Paralyse(20)
 						L.adjustBruteLoss(45)
 						playsound(L, 'sound/hallucinations/wail.ogg', 50, 1)
 						L.emote("scream")
@@ -957,7 +957,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 					T.visible_message(span_warning("The sheer force from [P] shatters the mirror shield!"))
 					new /obj/effect/temp_visual/cult/sparks(T)
 					playsound(T, 'sound/effects/glassbr3.ogg', 100)
-					owner.Paralyze(25)
+					owner.Paralyse(25)
 					qdel(src)
 					return FALSE
 			if(P.reflectable & REFLECT_NORMAL)

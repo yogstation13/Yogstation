@@ -29,7 +29,7 @@
 	default_storage = /obj/item/uplink
 	default_hatmask = /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	hacked = TRUE
-	flavortext = null
+	flavourtext = null
 	pacifism = FALSE
 
 /mob/living/simple_animal/drone/syndrone/Initialize(mapload)
@@ -79,7 +79,7 @@
 	default_storage = null
 	default_hatmask = null
 	picked = TRUE
-	flavortext = null
+	flavourtext = null
 	pacifism = FALSE
 
 /mob/living/simple_animal/drone/polymorphed/Initialize(mapload)
@@ -130,9 +130,9 @@
 	default_storage = /obj/item/storage/toolbox/brass/prefilled
 	hacked = TRUE
 	visualAppearence = CLOCKDRONE
-	flavortext = "<b><span class='nezbere'>You are a cogscarab,</span> a tiny building construct of Ratvar. While you're weak and can't recite scripture, \
+	flavourtext = "<b><span class='nezbere'>You are a cogscarab,</span> a tiny building construct of Ratvar. While you're weak and can't recite scripture, \
 	you have a set of quick tools, as well as a replica fabricator that can create brass and convert objects.<br><br>Work with the servants of Ratvar \
-	to construct and maintain defenses at the City of Cogs. If there are no servants, use this time to experiment with base designs!"
+	to construct and maintain defences at the City of Cogs. If there are no servants, use this time to experiment with base designs!"
 	pacifism = FALSE
 
 /mob/living/simple_animal/drone/cogscarab/ratvar //a subtype for spawning when ratvar is alive, has a slab that it can use and a normal fabricator
@@ -160,7 +160,7 @@
 /mob/living/simple_animal/drone/cogscarab/Login()
 	..()
 	add_servant_of_ratvar(src, TRUE, GLOB.servants_active)
-	to_chat(src,"<b>You yourself are one of these servants, and will be able to utilize almost anything they can[GLOB.ratvar_awakens ? "":", <i>excluding a clockwork slab</i>"].</b>") // this can't go with flavortext because i'm assuming it requires them to be ratvar'd
+	to_chat(src,"<b>You yourself are one of these servants, and will be able to utilize almost anything they can[GLOB.ratvar_awakens ? "":", <i>excluding a clockwork slab</i>"].</b>") // this can't go with flavourtext because i'm assuming it requires them to be ratvar'd
 
 /mob/living/simple_animal/drone/cogscarab/binarycheck()
 	return FALSE

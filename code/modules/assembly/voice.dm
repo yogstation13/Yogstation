@@ -4,7 +4,7 @@
 #define VOICE_SENSOR_MODE 4
 
 /obj/item/assembly/voice
-	name = "voice analyzer"
+	name = "voice analyser"
 	desc = "A small electronic device able to record a voice sample, and send a signal when that sample is repeated."
 	icon_state = "voice"
 	materials = list(/datum/material/iron=500, /datum/material/glass=50)

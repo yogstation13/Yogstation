@@ -1,10 +1,10 @@
-// Plant analyzer
-/obj/item/plant_analyzer
-	name = "plant analyzer"
+// Plant analyser
+/obj/item/plant_analyser
+	name = "plant analyser"
 	desc = "A scanner used to evaluate a plant's various areas of growth."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
-	item_state = "analyzer"
+	item_state = "analyser"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY

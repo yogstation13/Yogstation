@@ -18,7 +18,7 @@
 	var/dry_grind = FALSE //If TRUE, this object needs to be dry to be ground up
 	var/can_distill = TRUE //If FALSE, this object cannot be distilled into an alcohol.
 	var/distill_reagent //If NULL and this object can be distilled, it uses a generic fruit_wine reagent and adjusts its variables.
-	var/wine_flavor //If NULL, this is automatically set to the fruit's flavor. Determines the flavor of the wine if distill_reagent is NULL.
+	var/wine_flavour //If NULL, this is automatically set to the fruit's flavour. Determines the flavour of the wine if distill_reagent is NULL.
 	var/wine_power = 10 //Determines the boozepwr of the wine if distill_reagent is NULL.
 
 /obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, obj/item/seeds/new_seed)
@@ -68,7 +68,7 @@
 	..()
 	var/msg = "<span class='info'>This is \a [span_name("[src]")].\n"
 	if(seed)
-		msg += seed.get_analyzer_text()
+		msg += seed.get_analyser_text()
 	var/reag_txt = ""
 	if(seed)
 		for(var/reagent_id in seed.reagents_add)
@@ -83,11 +83,11 @@
 
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user, params)
 	..()
-	if (istype(O, /obj/item/plant_analyzer))
+	if (istype(O, /obj/item/plant_analyser))
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		var/msg = "<span class='info'>This is \a [span_name("[src]")].\n"
 		if(seed)
-			msg += seed.get_analyzer_text()
+			msg += seed.get_analyser_text()
 		var/reag_txt = ""
 		if(seed)
 			for(var/reagent_id in seed.reagents_add)

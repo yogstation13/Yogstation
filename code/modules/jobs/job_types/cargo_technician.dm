@@ -21,7 +21,7 @@
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
-	minimal_character_age = 18 //We love manual labor and exploiting the young for our corporate purposes
+	minimal_character_age = 18 //We love manual labour and exploiting the young for our corporate purposes
 
 	departments_list = list(
 		/datum/job_department/cargo,

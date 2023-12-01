@@ -32,7 +32,7 @@
 
 /obj/item/codespeak_manual
 	name = "codespeak manual"
-	desc = "The book's cover reads: \"Codespeak(tm) - Secure your communication with metaphors so elaborate, they seem randomly generated!\""
+	desc = "The book's cover reads: \"Codespeak(tm) - Secure your communication with metaphors so elabourate, they seem randomly generated!\""
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book2"
 	var/charges = 1

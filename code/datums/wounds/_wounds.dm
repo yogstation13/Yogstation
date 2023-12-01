@@ -19,7 +19,7 @@
 	var/name = "Wound"
 	/// The description shown on the scanners
 	var/desc = ""
-	/// The basic treatment suggested by health analyzers
+	/// The basic treatment suggested by health analysers
 	var/treat_text = ""
 	/// What the limb looks like on a cursory examine
 	var/examine_desc = "is badly hurt"

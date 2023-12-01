@@ -24,7 +24,7 @@
 		to_chat(user, span_notice("Our muscles relax."))
 		if(stacks >= 10)
 			to_chat(user, span_danger("We collapse in exhaustion."))
-			user.Paralyze(60)
+			user.Paralyse(60)
 			user.emote("gasp")
 
 	INVOKE_ASYNC(src, PROC_REF(muscle_loop), user)
@@ -37,7 +37,7 @@
 		if(user.stat != CONSCIOUS || user.staminaloss >= 90)
 			active = !active
 			to_chat(user, span_notice("Our muscles relax without the energy to strengthen them."))
-			user.Paralyze(40)
+			user.Paralyse(40)
 			user.remove_movespeed_modifier(MOVESPEED_ID_CHANGELING_MUSCLES)
 			break
 

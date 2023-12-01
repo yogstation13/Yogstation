@@ -114,7 +114,7 @@
 		/obj/item/stock_parts/manipulator = 3,
 		/obj/item/stock_parts/subspace/filter = 1,
 		/obj/item/stock_parts/subspace/treatment = 2,
-		/obj/item/stock_parts/subspace/analyzer = 1,
+		/obj/item/stock_parts/subspace/analyser = 1,
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/subspace/amplifier = 1)
 
@@ -822,7 +822,7 @@
 	build_path = /obj/machinery/medical_kiosk
 	var/custom_cost = 10
 	req_components = list(
-		/obj/item/healthanalyzer = 1,
+		/obj/item/healthanalyser = 1,
 		/obj/item/stock_parts/scanning_module = 1)
 
 /obj/item/circuitboard/machine/medical_kiosk/multitool_act(mob/living/user)
@@ -940,10 +940,10 @@
 		/obj/item/stock_parts/manipulator = 1)
 	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 
-/obj/item/circuitboard/machine/destructive_analyzer
-	name = "Destructive Analyzer (Machine Board)"
+/obj/item/circuitboard/machine/destructive_analyser
+	name = "Destructive Analyser (Machine Board)"
 	icon_state = "science"
-	build_path = /obj/machinery/rnd/destructive_analyzer
+	build_path = /obj/machinery/rnd/destructive_analyser
 	req_components = list(
 		/obj/item/stock_parts/scanning_module = 1,
 		/obj/item/stock_parts/manipulator = 1,

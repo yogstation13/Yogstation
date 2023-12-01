@@ -9,7 +9,7 @@
 	if(R?.bodypart_disabled)
 		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
-	if(user.IsParalyzed() || user.IsStun() || user.restrained())
+	if(user.IsParalysed() || user.IsStun() || user.restrained())
 		return FALSE
 	return TRUE
 
@@ -218,7 +218,7 @@
 	if(R?.bodypart_disabled)
 		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
-	if(user.IsParalyzed() || user.IsStun() || user.restrained())
+	if(user.IsParalysed() || user.IsStun() || user.restrained())
 		return FALSE
 	return TRUE
 

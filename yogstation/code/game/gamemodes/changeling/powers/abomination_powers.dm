@@ -24,7 +24,7 @@
 		to_chat(M, span_userdanger("You freeze in terror, your blood turning cold from the sound of the scream!"))
 		M.Stun(max(7/distance, 1))
 	for(var/mob/living/silicon/M in T.contents)
-		M.Paralyze(1 SECONDS)
+		M.Paralyse(1 SECONDS)
 	for(var/obj/machinery/light/L in range(7, user))
 		L.set_light(0)
 

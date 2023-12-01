@@ -308,7 +308,7 @@
 				continue
 			if(!purchase_entry(entry, wizard))
 				continue
-			needed_cats -= entry.category //so the next loop doesn't find another offense spell
+			needed_cats -= entry.category //so the next loop doesn't find another offence spell
 			break
 
 	refunds_allowed = FALSE

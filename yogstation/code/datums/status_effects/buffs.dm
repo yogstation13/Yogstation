@@ -100,7 +100,7 @@
 		owner.overlays -= shield
 		owner.extinguish_mob()
 		owner.AdjustStun(-200)
-		owner.AdjustParalyzed(-200)
+		owner.AdjustParalysed(-200)
 		owner.visible_message(span_warning("[owner] returns to a neutral stance."))
 		addtimer(CALLBACK(grimoire, TYPE_PROC_REF(/obj/item/bloodbook, retaliate), owner, difference))
 	owner.heal_overall_damage(brutechange, burnchange, stamchange)

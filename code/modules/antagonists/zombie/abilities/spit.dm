@@ -50,11 +50,11 @@
 	icon_state = "neurotoxin"
 	damage = 2
 	damage_type = TOX
-	paralyze = 50
+	paralyse = 50
 
 /obj/projectile/bullet/neurotoxin/spitter/on_hit(atom/target, blocked = FALSE)
 	if(isinfected(target))
-		paralyze = 0
+		paralyse = 0
 		nodamage = TRUE
 	return ..()
 */

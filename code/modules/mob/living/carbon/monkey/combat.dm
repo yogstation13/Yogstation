@@ -56,7 +56,7 @@
 		return 1
 	if(IsUnconscious())
 		return 1
-	if(IsStun() || IsParalyzed())
+	if(IsStun() || IsParalysed())
 		return 1
 	if(stat)
 		return 1

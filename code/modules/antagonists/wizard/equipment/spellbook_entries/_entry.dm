@@ -220,7 +220,7 @@
 	log_purchase(user.key)
 	return TRUE
 
-/// Non-purchasable flavor spells to populate the spell book with, for style.
+/// Non-purchasable flavour spells to populate the spell book with, for style.
 /datum/spellbook_entry/challenge
 	name = "Take the Challenge"
 	category = "Challenges"

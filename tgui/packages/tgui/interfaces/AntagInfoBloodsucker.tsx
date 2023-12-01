@@ -129,7 +129,7 @@ const BloodsuckerIntro = () => {
               <br />
               Examine your new structures to see how they function!
               <br />
-              Medical and Genetic Analyzers can sell you out, your Masquerade
+              Medical and Genetic Analysers can sell you out, your Masquerade
               ability will hide your identity to prevent this.
               <br />
             </Stack.Item>

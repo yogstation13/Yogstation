@@ -331,7 +331,7 @@
 
 				do_sparks(5, TRUE, src)
 				var/power = M.powerlevel + rand(0,3)
-				Paralyze(power*20)
+				Paralyse(power*20)
 				set_stutter_if_lower(power * 2 SECONDS)
 				if (prob(stunprob) && M.powerlevel >= 8)
 					adjustFireLoss(M.powerlevel * rand(6,10))
@@ -407,7 +407,7 @@
 	adjust_jitter(stuntime * 2)
 	var/should_stun = !tesla_shock || (tesla_shock && siemens_coeff > 0.5)
 	if(stun && should_stun)
-		Paralyze(min(stuntime, 4 SECONDS))
+		Paralyse(min(stuntime, 4 SECONDS))
 		if(stuntime > 2 SECONDS)
 			addtimer(CALLBACK(src, PROC_REF(secondary_shock), should_stun, stuntime - (2 SECONDS)), 2 SECONDS)
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
@@ -434,7 +434,7 @@
 ///Called slightly after electrocute act to apply a secondary stun.
 /mob/living/carbon/proc/secondary_shock(should_stun, stuntime = 6 SECONDS)
 	if(should_stun)
-		Paralyze(stuntime)
+		Paralyse(stuntime)
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(try_extinguish(M))

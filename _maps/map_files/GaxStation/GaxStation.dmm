@@ -3496,7 +3496,7 @@
 /area/science/xenobiology)
 "bOF" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	req_access_txt = "2";
 	shuttledocked = 1
 	},
@@ -5777,7 +5777,7 @@
 	},
 /obj/structure/table/glass,
 /obj/item/reagent_containers/syringe/lethal/execution,
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = -4;
 	pixel_y = -3
 	},
@@ -6708,8 +6708,8 @@
 	},
 /obj/machinery/computer/security{
 	dir = 4;
-	name = "Labor Camp Monitoring";
-	network = list("labor")
+	name = "Labour Camp Monitoring";
+	network = list("labour")
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -9357,11 +9357,11 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "ezF" = (
-/turf/closed/mineral/random/labormineral,
+/turf/closed/mineral/random/labourmineral,
 /area/science/test_area)
 "eAe" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	req_access_txt = "2";
 	shuttledocked = 1
 	},
@@ -9536,7 +9536,7 @@
 /area/crew_quarters/dorms)
 "eDH" = (
 /obj/machinery/door/airlock/research{
-	name = "Nanite Laboratory";
+	name = "Nanite Labouratory";
 	req_one_access_txt = "7;47;29"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -11733,7 +11733,7 @@
 /obj/item/screwdriver{
 	pixel_y = 10
 	},
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/pipe_dispenser,
 /obj/item/pipe_dispenser,
 /obj/effect/turf_decal/stripes/line{
@@ -12993,7 +12993,7 @@
 /area/maintenance/department/science/xenobiology)
 "ghX" = (
 /obj/structure/table,
-/obj/item/analyzer{
+/obj/item/analyser{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -16440,7 +16440,7 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "hSt" = (
-/obj/machinery/computer/shuttle/labor,
+/obj/machinery/computer/shuttle/labour,
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
@@ -20833,7 +20833,7 @@
 	dir = 5
 	},
 /obj/machinery/camera{
-	c_tag = "Labor Shuttle Dock East";
+	c_tag = "Labour Shuttle Dock East";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -20919,7 +20919,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "kkZ" = (
-/obj/machinery/rnd/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyser,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -22037,7 +22037,7 @@
 /area/hydroponics)
 "kOA" = (
 /obj/machinery/door/airlock/security{
-	name = "Labor Shuttle";
+	name = "Labour Shuttle";
 	req_access_txt = "63"
 	},
 /obj/machinery/door/firedoor/border_only,
@@ -25376,7 +25376,7 @@
 /area/hallway/primary/starboard)
 "mtW" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Nanite Laboratory Maintenance";
+	name = "Nanite Labouratory Maintenance";
 	req_one_access_txt = "7;47;29"
 	},
 /obj/machinery/door/firedoor/border_only,
@@ -29274,7 +29274,7 @@
 	dir = 9
 	},
 /obj/machinery/camera{
-	c_tag = "Labor Shuttle Dock West";
+	c_tag = "Labour Shuttle Dock West";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -30843,7 +30843,7 @@
 /area/security/main)
 "pmk" = (
 /obj/machinery/door/airlock/security{
-	name = "Labor Shuttle";
+	name = "Labour Shuttle";
 	req_access_txt = "2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -32542,7 +32542,7 @@
 	pixel_x = 6
 	},
 /obj/item/shovel/spade,
-/obj/item/plant_analyzer{
+/obj/item/plant_analyser{
 	pixel_x = 4;
 	pixel_y = 4
 	},
@@ -36439,7 +36439,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "/area/security/processing";
-	name = "Labor Shuttle Dock APC";
+	name = "Labour Shuttle Dock APC";
 	pixel_y = -23
 	},
 /turf/open/floor/plasteel,
@@ -36842,7 +36842,7 @@
 /obj/docking_port/stationary{
 	dwidth = 2;
 	height = 5;
-	id = "laborcamp_home";
+	id = "labourcamp_home";
 	name = "fore bay 1";
 	roundstart_template = /datum/map_template/shuttle/labour/gax;
 	width = 9
@@ -37443,9 +37443,9 @@
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
-/obj/item/healthanalyzer,
-/obj/item/healthanalyzer,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
+/obj/item/healthanalyser,
+/obj/item/healthanalyser,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
@@ -42918,7 +42918,7 @@
 	pixel_x = 10;
 	pixel_y = -3
 	},
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "vfV" = (
@@ -48206,7 +48206,7 @@
 /turf/open/floor/carpet,
 /area/library)
 "xIr" = (
-/obj/machinery/computer/shuttle/labor{
+/obj/machinery/computer/shuttle/labour{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{

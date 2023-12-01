@@ -44,7 +44,7 @@ effective or pretty fucking useless.
 	for(var/mob/living/carbon/human/M in urange(10, user, 1))
 		if(prob(50))
 
-			M.Paralyze(rand(200,400))
+			M.Paralyse(rand(200,400))
 			to_chat(M, span_userdanger("You feel a tremendous, paralyzing wave flood your mind."))
 
 		else
@@ -57,7 +57,7 @@ effective or pretty fucking useless.
 		icon_state = "battererburnt"
 
 /*
-		The radioactive microlaser, a device disguised as a health analyzer used to irradiate people.
+		The radioactive microlaser, a device disguised as a health analyser used to irradiate people.
 
 		The strength of the radiation is determined by the 'intensity' setting, while the delay between
 	the scan and the irradiation kicking in is determined by the wavelength.
@@ -68,7 +68,7 @@ effective or pretty fucking useless.
 		Wavelength is also slightly increased by the intensity as well.
 */
 
-/obj/item/healthanalyzer/rad_laser
+/obj/item/healthanalyser/rad_laser
 	materials = list(/datum/material/iron=400)
 	var/irradiate = TRUE
 	var/stealth = FALSE
@@ -76,7 +76,7 @@ effective or pretty fucking useless.
 	var/intensity = 10 // how much damage the radiation does
 	var/wavelength = 10 // time it takes for the radiation to kick in, in seconds
 
-/obj/item/healthanalyzer/rad_laser/attack(mob/living/M, mob/living/user)
+/obj/item/healthanalyser/rad_laser/attack(mob/living/M, mob/living/user)
 	if(!stealth || !irradiate)
 		..()
 	if(!irradiate || !is_syndicate(user)) // only syndicates are aware of this being a rad laser and know how to use it.
@@ -99,36 +99,36 @@ effective or pretty fucking useless.
 	else
 		to_chat(user, span_warning("The radioactive microlaser is still recharging."))
 
-/obj/item/healthanalyzer/rad_laser/proc/handle_cooldown(cooldown)
+/obj/item/healthanalyser/rad_laser/proc/handle_cooldown(cooldown)
 	spawn(cooldown)
 		used = FALSE
 		icon_state = "health"
 
-/obj/item/healthanalyzer/rad_laser/proc/get_cooldown()
+/obj/item/healthanalyser/rad_laser/proc/get_cooldown()
 	return round(max(10, (stealth*30 + intensity*5 - wavelength/4)))
 
-/obj/item/healthanalyzer/rad_laser/attack_self(mob/user)
+/obj/item/healthanalyser/rad_laser/attack_self(mob/user)
 	if(!is_syndicate(user))
 		. = ..()
 		return
 	interact(user)
 
-/obj/item/healthanalyzer/rad_laser/interact(mob/user)
+/obj/item/healthanalyser/rad_laser/interact(mob/user)
 	if(!is_syndicate(user))
 		. = ..()
 		return
 	ui_interact(user)
 
-/obj/item/healthanalyzer/rad_laser/ui_state(mob/user)
+/obj/item/healthanalyser/rad_laser/ui_state(mob/user)
 	return GLOB.hands_state
 
-/obj/item/healthanalyzer/rad_laser/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/healthanalyser/rad_laser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RadioactiveMicrolaser")
 		ui.open()
 
-/obj/item/healthanalyzer/rad_laser/ui_data(mob/user)
+/obj/item/healthanalyser/rad_laser/ui_data(mob/user)
 	var/list/data = list()
 	data["irradiate"] = irradiate
 	data["stealth"] = stealth
@@ -139,7 +139,7 @@ effective or pretty fucking useless.
 	data["cooldown"] = DisplayTimeText(get_cooldown())
 	return data
 
-/obj/item/healthanalyzer/rad_laser/ui_act(action, params)
+/obj/item/healthanalyser/rad_laser/ui_act(action, params)
 	if(..())
 		return
 

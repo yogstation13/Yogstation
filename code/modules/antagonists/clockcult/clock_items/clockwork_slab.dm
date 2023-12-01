@@ -430,8 +430,8 @@
 
 	data["selected"] = selected_scripture
 	data["scripturecolors"] = "<font color=#DAAA18>Scriptures in <b>yellow</b> are related to construction and building.</font><br>\
-	<font color=#6E001A>Scriptures in <b>red</b> are related to attacking and offense.</font><br>\
-	<font color=#1E8CE1>Scriptures in <b>blue</b> are related to healing and defense.</font><br>\
+	<font color=#6E001A>Scriptures in <b>red</b> are related to attacking and offence.</font><br>\
+	<font color=#1E8CE1>Scriptures in <b>blue</b> are related to healing and defence.</font><br>\
 	<font color=#AF0AAF>Scriptures in <b>purple</b> are niche but still important!</font><br>\
 	<font color=#DAAA18><i>Scriptures with italicized names are important to success.</i></font>"
 	generate_all_scripture()

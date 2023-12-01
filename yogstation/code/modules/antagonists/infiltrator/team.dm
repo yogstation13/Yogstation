@@ -18,7 +18,7 @@
 		if (syndicate?.current?.stat != DEAD)
 			dead_as_a_doornail = FALSE
 
-	var/flavor_message
+	var/flavour_message
 	if (dead_as_a_doornail)
 		var/static/list/messages = list(
 			"Well, sending those nitwits was a waste of our time.",
@@ -27,7 +27,7 @@
 		)
 		parts += "<span class='redtext big'>Crew Major Victory!</span>"
 		parts += "<B>The crew killed the Syndicate infiltrators!</B>"
-		flavor_message = pick(messages)
+		flavour_message = pick(messages)
 	else
 		switch (result)
 			if (INFILTRATION_ALLCOMPLETE)
@@ -39,7 +39,7 @@
 				)
 				parts += span_greentext(span_big("Infiltrator Major Victory!"))
 				parts += span_bold("The Syndicate infiltrators completed all of their objectives successfully!")
-				flavor_message = pick(messages)
+				flavour_message = pick(messages)
 			if (INFILTRATION_MOSTCOMPLETE)
 				var/static/list/messages = list(
 					"Well, it ain't perfect, but y'all were damn good.",
@@ -48,7 +48,7 @@
 				)
 				parts += span_greentext(span_big("Infiltrator Moderate Victory"))
 				parts += span_bold("The Syndicate infiltrators completed most of their objectives successfully!")
-				flavor_message = pick(messages)
+				flavour_message = pick(messages)
 			if (INFILTRATION_SOMECOMPLETE)
 				var/static/list/messages = list(
 					"Better than a complete fluke, I guess.",
@@ -57,7 +57,7 @@
 				)
 				parts += span_marooned(span_big("Neutral victory"))
 				parts += span_bold("The Syndicate infiltrators completed some of their objectives, but not enough to win.")
-				flavor_message = pick(messages)
+				flavour_message = pick(messages)
 			else
 				var/static/list/messages = list(
 					"When you nitwits come back to base, y'all better have a damn good explaination for this!",
@@ -66,8 +66,8 @@
 				)
 				parts += span_redtext(span_big("Crew Victory</span>"))
 				parts += span_bold("The crew stopped the Syndicate infiltrators from completing any of their objectives!</B>")
-				flavor_message = pick(messages)
-	parts += "<div><font color='#FF0000'><i>\"[flavor_message]\"</i></font>"
+				flavour_message = pick(messages)
+	parts += "<div><font color='#FF0000'><i>\"[flavour_message]\"</i></font>"
 	parts += "[GLOB.TAB]- Syndicate Commander [pick(pick(GLOB.first_names_male,GLOB.first_names_female))] [pick(GLOB.last_names)]</div>"
 
 	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)

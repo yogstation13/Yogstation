@@ -172,7 +172,7 @@
 	var/mob/living/carbon/human/H = user
 	if(!istype(H) || !H.dna || !H.dna.species)
 		return FALSE
-	if(H.IsParalyzed() || H.IsStun()) // No thumping allowed. Taken from can_wag_tail().
+	if(H.IsParalysed() || H.IsStun()) // No thumping allowed. Taken from can_wag_tail().
 		return FALSE
 	return ("tail_lizard" in H.dna.species.mutant_bodyparts) || ("waggingtail_lizard" in H.dna.species.mutant_bodyparts)
 

@@ -201,7 +201,7 @@
 	if(HAS_TRAIT(owner, TRAIT_NOHUNGER) || HAS_TRAIT(owner, TRAIT_POWERHUNGRY))
 		to_chat(owner, span_notice("You don't eat food, you can't vomit!"))
 		return
-	if(owner.IsParalyzed())
+	if(owner.IsParalysed())
 		to_chat(owner, span_notice("You can't bring yourself to vomit while stunned!"))
 		return
 	if(istype(owner.loc, /obj/effect/dummy/crawling))

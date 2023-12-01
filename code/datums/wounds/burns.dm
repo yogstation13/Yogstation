@@ -28,7 +28,7 @@
 	/// Our current level of sanitization/anti-infection, from disinfectants/alcohol/UV lights. While positive, totally pauses and slowly reverses infestation effects each tick
 	var/sanitization = 0
 
-	/// Once we reach infestation beyond WOUND_INFESTATION_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)
+	/// Once we reach infestation beyond WOUND_INFESTATION_SEPSIS, we get this many warnings before the limb is completely paralysed (you'd have to ignore a really bad burn for a really long time for this to happen)
 	var/strikes_to_lose_limb = 4
 
 
@@ -117,7 +117,7 @@
 					if(1)
 						to_chat(victim, span_warning("<b>Infection has just about completely claimed your [limb.name]!</b>"))
 					if(0)
-						to_chat(victim, span_warning("<b>The last of the nerve endings in your [limb.name] wither away, as the infection completely paralyzes your joint connector.</b>"))
+						to_chat(victim, span_warning("<b>The last of the nerve endings in your [limb.name] wither away, as the infection completely paralyses your joint connector.</b>"))
 						threshold_penalty = 120 // piss easy to destroy
 						var/datum/brain_trauma/severe/paralysis/sepsis = new (limb.body_zone)
 						victim.gain_trauma(sepsis)

@@ -201,7 +201,7 @@
 	if(target_carbon.can_block_magic(MAGIC_RESISTANCE_HOLY))
 		return
 	target_carbon.mind.add_antag_datum(/datum/antagonist/sintouched)
-	target_carbon.Paralyze(40 SECONDS)
+	target_carbon.Paralyse(40 SECONDS)
 
 /datum/action/cooldown/spell/summon_dancefloor
 	name = "Summon Dancefloor"

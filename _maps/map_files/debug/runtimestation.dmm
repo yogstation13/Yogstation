@@ -476,7 +476,7 @@
 /obj/machinery/airalarm/unlocked{
 	pixel_y = 24
 	},
-/obj/machinery/rnd/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyser,
 /turf/open/floor/plasteel,
 /area/science)
 "bt" = (
@@ -1121,7 +1121,7 @@
 /area/hallway/secondary/entry)
 "di" = (
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock"
+	name = "Labour Camp Shuttle Airlock"
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel/dark,
@@ -1394,7 +1394,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 5;
-	id = "laborcamp_home";
+	id = "labourcamp_home";
 	name = "fore bay 1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9
@@ -2490,7 +2490,7 @@
 "gJ" = (
 /obj/structure/table,
 /obj/item/storage/box/prisoner,
-/obj/item/paper/guides/jobs/security/labor_camp,
+/obj/item/paper/guides/jobs/security/labour_camp,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "gY" = (
@@ -2809,7 +2809,7 @@
 /area/medical/chemistry)
 "Kx" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/wrench,
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -2885,7 +2885,7 @@
 /obj/structure/closet/secure_closet/medical3{
 	locked = 0
 	},
-/obj/item/healthanalyzer/advanced,
+/obj/item/healthanalyser/advanced,
 /turf/open/floor/plasteel,
 /area/medical/medbay)
 "Vg" = (

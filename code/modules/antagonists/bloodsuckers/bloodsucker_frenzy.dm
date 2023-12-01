@@ -87,7 +87,7 @@
 	bloodsuckerdatum.frenzygrab.remove(user)
 	owner.remove_client_colour(/datum/client_colour/cursed_heart_blood)
 	owner.adjust_dizzy(3 SECONDS)
-	owner.Paralyze(2 SECONDS)
+	owner.Paralyse(2 SECONDS)
 	user.physiology.stamina_mod /= 0.4
 
 	bloodsuckerdatum.frenzied = FALSE

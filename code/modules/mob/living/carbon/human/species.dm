@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/list/mutant_organs = list()
 	/// this affects the race's speed. positive numbers make it move slower, negative numbers make it move faster
 	var/speedmod = 0
-	///overall defense for the race... or less defense, if it's negative.
+	///overall defence for the race... or less defence, if it's negative.
 	var/armor = 0
 	/// multiplier for brute damage
 	var/brutemod = 1
@@ -1440,9 +1440,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/radiation = H.radiation
 
 	if(radiation > RAD_MOB_KNOCKDOWN && prob(RAD_MOB_KNOCKDOWN_PROB))
-		if(!H.IsParalyzed())
+		if(!H.IsParalysed())
 			H.emote("collapse")
-		H.Paralyze(RAD_MOB_KNOCKDOWN_AMOUNT)
+		H.Paralyse(RAD_MOB_KNOCKDOWN_AMOUNT)
 		to_chat(H, span_danger("You feel weak."))
 
 	if(radiation > RAD_MOB_VOMIT && prob(RAD_MOB_VOMIT_PROB))
@@ -1688,7 +1688,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(get_turf(target) != target_shove_turf)
 				shove_blocked = TRUE
 
-		if(target.IsKnockdown() && !target.IsParalyzed())
+		if(target.IsKnockdown() && !target.IsParalysed())
 			var/armor_block = target.run_armor_check(affecting, MELEE, "Your armor prevents your fall!", "Your armor softens your fall!")
 			target.apply_effect(SHOVE_CHAIN_PARALYZE, EFFECT_PARALYZE, armor_block)
 			target.visible_message(span_danger("[user.name] kicks [target.name] onto their side!"),
@@ -2144,7 +2144,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 ////////////////
 
 /datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
-	if(H.IsParalyzed() || H.IsStun())
+	if(H.IsParalysed() || H.IsStun())
 		return FALSE
 	// var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
 	return ("tail_human" in mutant_bodyparts) || ("waggingtail_human" in mutant_bodyparts) || ("tail_lizard" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)

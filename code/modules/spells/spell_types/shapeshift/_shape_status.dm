@@ -60,7 +60,7 @@
 	var/mob/living/revealed_mob = caster_mob
 	source.visible_message(span_warning("[revealed_mob] gets pulled back to their normal form!"))
 	INVOKE_ASYNC(src, PROC_REF(restore_caster))
-	revealed_mob.Paralyze(10 SECONDS, ignore_canstun = TRUE)
+	revealed_mob.Paralyse(10 SECONDS, ignore_canstun = TRUE)
 	return STOP_WABBAJACK
 
 /// Restores the caster back to their human form.

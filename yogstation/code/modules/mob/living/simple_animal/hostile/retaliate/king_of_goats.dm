@@ -306,7 +306,7 @@ Difficulty: Insanely Hard
 		if(L.stat == DEAD)
 			L.gib()
 		if(prob(stun_chance))
-			L.Paralyze(5)
+			L.Paralyse(5)
 			L.adjust_confusion(1 SECONDS)
 			visible_message(span_warning("\The [L] is bowled over by the impact of [src]'s attack!"))
 

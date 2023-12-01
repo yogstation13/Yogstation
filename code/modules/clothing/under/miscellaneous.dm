@@ -383,7 +383,7 @@
 	item_state = "schoolgirlorange"
 
 /obj/item/clothing/under/overalls
-	name = "laborer's overalls"
+	name = "labourer's overalls"
 	desc = "A set of durable overalls for getting the job done."
 	icon_state = "overalls"
 	item_state = "lb_suit"

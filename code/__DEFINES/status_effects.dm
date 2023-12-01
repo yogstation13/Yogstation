@@ -82,7 +82,7 @@
 
 #define STATUS_EFFECT_IMMOBILIZED /datum/status_effect/incapacitating/immobilized //the affected is unable to move
 
-#define STATUS_EFFECT_PARALYZED /datum/status_effect/incapacitating/paralyzed //the affected is unable to move, use items, or stand up.
+#define STATUS_EFFECT_PARALYZED /datum/status_effect/incapacitating/paralysed //the affected is unable to move, use items, or stand up.
 
 #define STATUS_EFFECT_UNCONSCIOUS /datum/status_effect/incapacitating/unconscious //the affected is unconscious
 

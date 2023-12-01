@@ -57,7 +57,7 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_GHOST, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 	if(user.client)
-		if(user.scanmode & SCAN_GAS && atmosanalyzer_scan(user, src))
+		if(user.scanmode & SCAN_GAS && atmosanalyser_scan(user, src))
 			return TRUE
 		else if(IsAdminGhost(user))
 			attack_ai(user)

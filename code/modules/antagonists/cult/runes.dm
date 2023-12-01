@@ -250,7 +250,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			L.visible_message(span_warning("[L]'s eyes glow a defiant yellow!"), \
 			"<span class='cultlarge'>\"Stop resisting. You <i>will</i> be mi-\"</span>\n\
 			[span_large_brass("\"Give up and you will feel pain unlike anything you've ever felt!\"")]")
-			L.Paralyze(80)
+			L.Paralyse(80)
 		else if(is_convertable)
 			do_convert(L, invokers)
 	else
@@ -983,7 +983,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			if(affecting.key)
 				affecting.visible_message(span_warning("[affecting] slowly relaxes, the glow around [affecting.p_them()] dimming."), \
 									 span_danger("You are re-united with your physical form. [src] releases its hold over you."))
-				affecting.Paralyze(4 SECONDS)
+				affecting.Paralyse(4 SECONDS)
 				break
 			if(affecting.health <= 10)
 				to_chat(G, span_cultitalic("Your body can no longer sustain the connection!"))
@@ -1045,7 +1045,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	playsound(T, 'sound/magic/enter_blood.ogg', 100, 1)
 	visible_message(span_warning("A colossal shockwave of energy bursts from the rune, disintegrating it in the process!"))
 	for(var/mob/living/L in range(src, 3))
-		L.Paralyze(30)
+		L.Paralyse(30)
 	empulse(T, 0.42*(intensity), 1)
 	var/list/images = list()
 	var/zmatch = T.z

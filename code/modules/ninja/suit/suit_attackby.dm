@@ -43,7 +43,7 @@
 			to_chat(U, "Research information detected, processing...")
 			if(do_after(U, s_delay, src))
 				TD.stored_research.copy_research_to(stored_research)
-				to_chat(U, span_notice("Data analyzed and updated. Disk erased."))
+				to_chat(U, span_notice("Data analysed and updated. Disk erased."))
 			else
 				to_chat(U, "[span_userdanger("ERROR")]: Procedure interrupted. Process terminated.")
 		else

@@ -336,7 +336,7 @@
 /obj/item/reagent_containers/borghypo/syndicate
 	name = "syndicate cyborg hypospray"
 	desc = "An experimental piece of Syndicate technology used to produce powerful restorative nanites used to very quickly restore injuries of all types. \
-		Also metabolizes potassium iodide for radiation poisoning, inacusiate for ear damage and morphine for offense."
+		Also metabolizes potassium iodide for radiation poisoning, inacusiate for ear damage and morphine for offence."
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	charge_cost = 20

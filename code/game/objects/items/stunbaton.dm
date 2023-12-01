@@ -153,7 +153,7 @@
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self with [src]!"), \
 							span_userdanger("You accidentally hit yourself with [src]!"))
-		user.Paralyze(stunforce*3)
+		user.Paralyse(stunforce*3)
 		deductcharge(hitcost)
 		return
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
@@ -216,10 +216,10 @@
 	var/current_stamina_damage = L.getStaminaLoss()
 
 	if(current_stamina_damage >= 90)
-		if(!L.IsParalyzed())
+		if(!L.IsParalysed())
 			to_chat(L, span_warning("You muscles seize, making you collapse!"))
 		else
-			L.Paralyze(stunforce)
+			L.Paralyse(stunforce)
 		L.adjust_jitter(20 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)

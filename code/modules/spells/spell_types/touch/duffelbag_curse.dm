@@ -13,8 +13,8 @@
 
 	hand_path = /obj/item/melee/touch_attack/duffelbag
 
-	/// Some meme "elaborate backstories" to use.
-	var/static/list/elaborate_backstory = list(
+	/// Some meme "elabourate backstories" to use.
+	var/static/list/elabourate_backstory = list(
 		"spacewar origin story",
 		"military background",
 		"corporate connections",
@@ -29,7 +29,7 @@
 
 /datum/action/cooldown/spell/touch/duffelbag/on_antimagic_triggered(obj/item/melee/touch_attack/hand, mob/living/carbon/victim, mob/living/carbon/caster)
 	to_chat(caster, span_warning("The spell can't seem to affect [victim]!"))
-	to_chat(victim, span_warning("You really don't feel like talking about your [pick(elaborate_backstory)] with complete strangers today."))
+	to_chat(victim, span_warning("You really don't feel like talking about your [pick(elabourate_backstory)] with complete strangers today."))
 
 /datum/action/cooldown/spell/touch/duffelbag/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/victim, mob/living/carbon/caster)
 
@@ -49,7 +49,7 @@
 	var/obj/item/storage/backpack/duffelbag/cursed/conjured_duffel = new get_turf(victim)
 	victim.visible_message(
 		span_danger("A growling duffel bag appears on [victim]!"),
-		span_danger("You feel something attaching itself to you, and a strong desire to discuss your [pick(elaborate_backstory)] at length!"),
+		span_danger("You feel something attaching itself to you, and a strong desire to discuss your [pick(elabourate_backstory)] at length!"),
 	)
 
 	conjured_duffel.pickup(victim)

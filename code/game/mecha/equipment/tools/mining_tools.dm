@@ -148,7 +148,7 @@
 /obj/item/mecha_parts/mecha_equipment/mining_scanner
 	name = "exosuit mining scanner"
 	desc = "Equipment for engineering and combat exosuits. It will automatically check surrounding rock for useful minerals."
-	icon_state = "mecha_analyzer"
+	icon_state = "mecha_analyser"
 	selectable = 0
 	equip_cooldown = 15
 	var/scanning_time = 0

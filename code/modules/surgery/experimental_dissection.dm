@@ -2,7 +2,7 @@
 
 /datum/surgery/experimental_dissection
 	name = "Dissection"
-	desc = "A surgical procedure which analyzes the biology of a corpse, and gives notes with the points given."
+	desc = "A surgical procedure which analyses the biology of a corpse, and gives notes with the points given."
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "scan_mode"
 	tier = "1"

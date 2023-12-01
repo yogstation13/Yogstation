@@ -404,7 +404,7 @@
 	},
 /obj/machinery/light,
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/engine/atmos)
@@ -912,7 +912,7 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/regular,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "cN" = (

@@ -28,7 +28,7 @@
 	mood_change = -2
 
 /datum/mood_event/creampie
-	description = "<span class='warning'>I've been creamed. Tastes like pie flavor.</span>\n"
+	description = "<span class='warning'>I've been creamed. Tastes like pie flavour.</span>\n"
 	mood_change = -2
 	timeout = 3 MINUTES
 

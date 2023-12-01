@@ -37,7 +37,7 @@
 	Shake(5, 5, 11 SECONDS)
 	for(var/i in 1 to 20)
 		to_chat(src, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-")]</span>")
-		sleep(0.11 SECONDS) //Spooky flavor message spam
+		sleep(0.11 SECONDS) //Spooky flavour message spam
 	visible_message(span_userdanger("A tremendous shockwave emanates from [src]!"), "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")
 	playsound(src, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
 	animate(src, color = initial(color), pixel_y = initial(pixel_y), time = 3 SECONDS)

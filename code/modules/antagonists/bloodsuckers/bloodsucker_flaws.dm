@@ -4,7 +4,7 @@
 	var/list/options = list()
 	var/list/radial_display = list()
 	for(var/datum/bloodsucker_clan/all_clans as anything in typesof(/datum/bloodsucker_clan))
-		if(!initial(all_clans.joinable_clan)) //flavortext only
+		if(!initial(all_clans.joinable_clan)) //flavourtext only
 			continue
 		options[initial(all_clans.name)] = all_clans
 		var/datum/radial_menu_choice/option = new

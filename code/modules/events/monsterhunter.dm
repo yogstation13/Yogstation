@@ -2,7 +2,7 @@
  * 		MONSTER HUNTERS:
  * 	Their job is to hunt Monsters.
  * 	They spawn by default 35 minutes into a Bloodsucker round,
- * 	They also randomly spawn in other rounds, as some unique flavor.
+ * 	They also randomly spawn in other rounds, as some unique flavour.
  * 	They can also be used as Admin-only antags during rounds such as;
  * 	- Changeling murderboning rounds
  * 	- Lategame Cult round

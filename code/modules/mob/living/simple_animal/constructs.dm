@@ -416,7 +416,7 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 		if(!LAZYLEN(parts))
 			if(undismembermerable_limbs) //they have limbs we can't remove, and no parts we can, attack!
 				return ..()
-			C.Paralyze(60)
+			C.Paralyse(60)
 			visible_message(span_danger("[src] knocks [C] down!"))
 			to_chat(src, span_cultlarge("\"Bring [C.p_them()] to me.\""))
 			return FALSE

@@ -18,7 +18,7 @@
 	icon_state = "camera_assembly"
 	max_integrity = 150
 	//	Motion, EMP-Proof, X-ray
-	var/obj/item/analyzer/xray_module
+	var/obj/item/analyser/xray_module
 	var/malf_xray_firmware_active //used to keep from revealing malf AI upgrades for user facing isXRay() checks when they use Upgrade Camera Network ability
 								//will be false if the camera is upgraded with the proper parts.
 	var/malf_xray_firmware_present //so the malf upgrade is restored when the normal upgrade part is removed.
@@ -42,7 +42,7 @@
 		. += "It has an X-ray photodiode installed."
 		has_upgrades = TRUE
 	else if(state == STATE_WIRED)
-		. += span_info("It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.")
+		. += span_info("It can be upgraded with an X-ray photodiode with an <b>analyser</b>.")
 	if(proxy_module)
 		. += "It has a proximity sensor installed."
 		has_upgrades = TRUE
@@ -159,12 +159,12 @@
 					return
 				emp_module = new(src)
 				if(malf_xray_firmware_active)
-					malf_xray_firmware_active = FALSE //flavor reason: MALF AI Upgrade Camera Network ability's firmware is incompatible with the new part
+					malf_xray_firmware_active = FALSE //flavour reason: MALF AI Upgrade Camera Network ability's firmware is incompatible with the new part
 														//real reason: make it a normal upgrade so the finished camera's icons and examine texts are restored.
 				to_chat(user, span_notice("You attach [W] into [src]'s inner circuits."))
 				return
 
-			else if(istype(W, /obj/item/analyzer)) //xray upgrade
+			else if(istype(W, /obj/item/analyser)) //xray upgrade
 				if(xray_module)
 					to_chat(user, span_warning("[src] already contains a [xray_module]!"))
 					return
@@ -173,7 +173,7 @@
 				to_chat(user, span_notice("You attach [W] into [src]'s inner circuits."))
 				xray_module = W
 				if(malf_xray_firmware_active)
-					malf_xray_firmware_active = FALSE //flavor reason: MALF AI Upgrade Camera Network ability's firmware is incompatible with the new part
+					malf_xray_firmware_active = FALSE //flavour reason: MALF AI Upgrade Camera Network ability's firmware is incompatible with the new part
 														//real reason: make it a normal upgrade so the finished camera's icons and examine texts are restored.
 				update_appearance(UPDATE_ICON)
 				return

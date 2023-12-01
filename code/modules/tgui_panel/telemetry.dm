@@ -4,7 +4,7 @@
  */
 
 /**
- * Maximum number of connection records allowed to analyze.
+ * Maximum number of connection records allowed to analyse.
  * Should match the value set in the browser.
  */
 #define TGUI_TELEMETRY_MAX_CONNECTIONS 5
@@ -17,7 +17,7 @@
 /// Time of telemetry request
 /datum/tgui_panel/var/telemetry_requested_at
 /// Time of telemetry analysis completion
-/datum/tgui_panel/var/telemetry_analyzed_at
+/datum/tgui_panel/var/telemetry_analysed_at
 /// List of previous client connections
 /datum/tgui_panel/var/list/telemetry_connections
 
@@ -28,7 +28,7 @@
  */
 /datum/tgui_panel/proc/request_telemetry()
 	telemetry_requested_at = world.time
-	telemetry_analyzed_at = null
+	telemetry_analysed_at = null
 	window.send_message("telemetry/request", list(
 		"limits" = list(
 			"connections" = TGUI_TELEMETRY_MAX_CONNECTIONS,
@@ -38,18 +38,18 @@
 /**
  * private
  *
- * Analyzes a telemetry packet.
+ * Analyses a telemetry packet.
  *
  * Is currently only useful for detecting ban evasion attempts.
  */
-/datum/tgui_panel/proc/analyze_telemetry(payload)
+/datum/tgui_panel/proc/analyse_telemetry(payload)
 	if(world.time > telemetry_requested_at + TGUI_TELEMETRY_RESPONSE_WINDOW)
 		message_admins("[key_name(client)] sent telemetry outside of the allocated time window.")
 		return
-	if(telemetry_analyzed_at)
+	if(telemetry_analysed_at)
 		message_admins("[key_name(client)] sent telemetry more than once.")
 		return
-	telemetry_analyzed_at = world.time
+	telemetry_analysed_at = world.time
 	if(!payload)
 		return
 	telemetry_connections = payload["connections"]

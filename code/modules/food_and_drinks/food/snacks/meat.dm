@@ -164,7 +164,7 @@
 	name = "meat product"
 	icon_state = "meatproduct"
 	desc = "A slab of station reclaimed and chemically processed meat product."
-	tastes = list("meat flavoring" = 2, "modified starches" = 2, "natural & artificial dyes" = 1, "butyric acid" = 1)
+	tastes = list("meat flavouring" = 2, "modified starches" = 2, "natural & artificial dyes" = 1, "butyric acid" = 1)
 	foodtype = RAW | MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/slab/meatproduct/MakeGrillable()

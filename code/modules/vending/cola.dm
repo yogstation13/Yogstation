@@ -59,7 +59,7 @@
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
 	name = "\improper Space-up! Vendor"
-	desc = "Indulge in an explosion of flavor."
+	desc = "Indulge in an explosion of flavour."
 	product_slogans = "Space-up! Like a hull breach in your mouth."
 
 /obj/machinery/vending/cola/starkist

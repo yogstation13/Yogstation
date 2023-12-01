@@ -176,7 +176,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			foundVictim = TRUE
 
 	if(foundVictim)
-		current_victim.Paralyze(40)
+		current_victim.Paralyse(40)
 
 	return foundVictim
 
@@ -350,7 +350,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 						if(O.density || istype(O, /obj/machinery/door/airlock))
 							forceMove(H.loc)
 				to_chat(H, span_userdanger("You feel the floor closing in on your feet!"))
-				H.Paralyze(300)
+				H.Paralyse(300)
 				H.emote("scream")
 				H.adjustBruteLoss(10)
 				manifested = TRUE

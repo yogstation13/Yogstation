@@ -80,7 +80,7 @@
 		for(var/obj/machinery/camera/camera in GLOB.cameranet.cameras)
 			if(camera.stat || !camera.can_use())
 				continue
-			if(length(list("ss13","mine", "rd", "labor", "toxins", "minisat")&camera.network))
+			if(length(list("ss13","mine", "rd", "labour", "toxins", "minisat")&camera.network))
 				bugged_cameras[camera.c_tag] = camera
 	return sortList(bugged_cameras)
 

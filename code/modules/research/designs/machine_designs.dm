@@ -298,11 +298,11 @@
 	category = list ("Hydroponics Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
-/datum/design/board/destructive_analyzer
-	name = "Machine Design (Destructive Analyzer Board)"
-	desc = "The circuit board for a destructive analyzer."
-	id = "destructive_analyzer"
-	build_path = /obj/item/circuitboard/machine/destructive_analyzer
+/datum/design/board/destructive_analyser
+	name = "Machine Design (Destructive Analyser Board)"
+	desc = "The circuit board for a destructive analyser."
+	id = "destructive_analyser"
+	build_path = /obj/item/circuitboard/machine/destructive_analyser
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 

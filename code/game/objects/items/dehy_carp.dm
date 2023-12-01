@@ -53,7 +53,7 @@
 	user.visible_message(span_suicide("[user] starts eating [src]. It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	if(istype(H))
-		H.Paralyze(30)
+		H.Paralyse(30)
 		forceMove(H) //we move it AWAAAYY
 		sleep(2 SECONDS)
 		

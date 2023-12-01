@@ -83,7 +83,7 @@
 
 /obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
 	if(istype(user))
-		analyzer_act(user, src)
+		analyser_act(user, src)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/return_pipenet()

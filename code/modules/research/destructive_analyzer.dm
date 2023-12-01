@@ -1,37 +1,37 @@
 
 
 /*
-Destructive Analyzer
+Destructive Analyser
 
 It is used to destroy hand-held objects and advance technological research. Controls are in the linked R&D console.
 
 Note: Must be placed within 3 tiles of the R&D Console
 */
-/obj/machinery/rnd/destructive_analyzer
-	name = "destructive analyzer"
+/obj/machinery/rnd/destructive_analyser
+	name = "destructive analyser"
 	desc = "Learn science by destroying things!"
-	icon_state = "d_analyzer"
-	circuit = /obj/item/circuitboard/machine/destructive_analyzer
+	icon_state = "d_analyser"
+	circuit = /obj/item/circuitboard/machine/destructive_analyser
 	var/decon_mod = 0
 
-/obj/machinery/rnd/destructive_analyzer/RefreshParts()
+/obj/machinery/rnd/destructive_analyser/RefreshParts()
 	var/T = 0
 	for(var/obj/item/stock_parts/S in component_parts)
 		T += S.rating
 	decon_mod = T
 
 
-/obj/machinery/rnd/destructive_analyzer/proc/ConvertReqString2List(list/source_list)
+/obj/machinery/rnd/destructive_analyser/proc/ConvertReqString2List(list/source_list)
 	var/list/temp_list = params2list(source_list)
 	for(var/O in temp_list)
 		temp_list[O] = text2num(temp_list[O])
 	return temp_list
 
-/obj/machinery/rnd/destructive_analyzer/disconnect_console()
+/obj/machinery/rnd/destructive_analyser/disconnect_console()
 	linked_console.linked_destroy = null
 	..()
 
-/obj/machinery/rnd/destructive_analyzer/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/rnd/destructive_analyser/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(user.a_intent == INTENT_DISARM)
@@ -40,7 +40,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		Insert_Item(I, user)
 	return TRUE
 
-/obj/machinery/rnd/destructive_analyzer/Insert_Item(obj/item/O, mob/user)
+/obj/machinery/rnd/destructive_analyser/Insert_Item(obj/item/O, mob/user)
 	if(user.a_intent != INTENT_HARM)
 		. = 1
 		if(!is_insertion_ready(user))
@@ -51,23 +51,23 @@ Note: Must be placed within 3 tiles of the R&D Console
 		busy = TRUE
 		loaded_item = O
 		to_chat(user, span_notice("You add the [O.name] to the [src.name]!"))
-		flick("d_analyzer_la", src)
+		flick("d_analyser_la", src)
 		addtimer(CALLBACK(src, PROC_REF(finish_loading)), 10)
 		if (linked_console)
 			linked_console.updateUsrDialog()
 
-/obj/machinery/rnd/destructive_analyzer/proc/finish_loading()
+/obj/machinery/rnd/destructive_analyser/proc/finish_loading()
 	update_appearance(UPDATE_ICON)
 	reset_busy()
 
-/obj/machinery/rnd/destructive_analyzer/update_icon_state()
+/obj/machinery/rnd/destructive_analyser/update_icon_state()
 	. = ..()
 	if(loaded_item)
-		icon_state = "d_analyzer_l"
+		icon_state = "d_analyser_l"
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/rnd/destructive_analyzer/proc/reclaim_materials_from(obj/item/thing)
+/obj/machinery/rnd/destructive_analyser/proc/reclaim_materials_from(obj/item/thing)
 	. = 0
 	var/datum/component/material_container/storage = linked_console?.linked_lathe?.materials.mat_container
 	if(storage) //Also sends salvaged materials to a linked protolathe, if any.
@@ -78,11 +78,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 		if (.)
 			linked_console.linked_lathe.materials.silo_log(src, "reclaimed", 1, "[thing.name]", thing.materials)
 
-/obj/machinery/rnd/destructive_analyzer/proc/destroy_item(obj/item/thing, innermode = FALSE)
+/obj/machinery/rnd/destructive_analyser/proc/destroy_item(obj/item/thing, innermode = FALSE)
 	if(QDELETED(thing) || QDELETED(src) || QDELETED(linked_console))
 		return FALSE
 	if(!innermode)
-		flick("d_analyzer_process", src)
+		flick("d_analyser_process", src)
 		busy = TRUE
 		addtimer(CALLBACK(src, PROC_REF(reset_busy)), 24)
 		use_power(250)
@@ -107,7 +107,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		update_appearance(UPDATE_ICON)
 	return TRUE
 
-/obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id, mob/user)
+/obj/machinery/rnd/destructive_analyser/proc/user_try_decon_id(id, mob/user)
 	if(!istype(loaded_item) || !istype(linked_console))
 		return FALSE
 
@@ -155,7 +155,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			linked_console.stored_research.deconstructed_items[loaded_type] = point_value
 	return TRUE
 
-/obj/machinery/rnd/destructive_analyzer/proc/unload_item()
+/obj/machinery/rnd/destructive_analyser/proc/unload_item()
 	if(!loaded_item)
 		return FALSE
 	loaded_item.forceMove(get_turf(src))

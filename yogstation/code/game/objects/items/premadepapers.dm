@@ -126,7 +126,7 @@
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<center><h3>Security Incident Report (Form SEC-030)</h3>",/datum/language/common)
 	written += new/datum/langtext("<hr>",/datum/language/common)
-	written += new/datum/langtext("<b>Offense/Incident Type: </b>",/datum/language/common)
+	written += new/datum/langtext("<b>Offence/Incident Type: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Location: </b>",/datum/language/common)
@@ -521,9 +521,9 @@
 /**
   *
   * 
-  * Papers that add flavor to the Wizard Academy
+  * Papers that add flavour to the Wizard Academy
   *
-  * These are flavor papers for spicing up the Wizard Academy Ruin
+  * These are flavour papers for spicing up the Wizard Academy Ruin
   *
   */
 /obj/item/paper/yog/ruins/academy
@@ -537,7 +537,7 @@
   * 
   * A demonstration paper. See [Wizard Academy Ruins Papers.][/obj/item/paper/yog/ruins/academy]
   *
-  * I wrote this paper as a way to try and add some more flavor to the wizard academy. See PR # 9229.
+  * I wrote this paper as a way to try and add some more flavour to the wizard academy. See PR # 9229.
   *
   */
 /obj/item/paper/yog/ruins/academy/trey_wizard_lizard

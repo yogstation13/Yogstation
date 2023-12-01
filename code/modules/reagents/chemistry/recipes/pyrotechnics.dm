@@ -88,7 +88,7 @@
 	for(var/mob/living/carbon/C in get_hearers_in_view(size,T))
 		if(iscultist(C))
 			to_chat(C, span_userdanger("The divine explosion sears you!"))
-			C.Paralyze(40)
+			C.Paralyse(40)
 			C.adjust_fire_stacks(5)
 			C.ignite_mob()
 
@@ -257,7 +257,7 @@
 	for(var/mob/living/carbon/C in get_hearers_in_view(range, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 4)
-				C.Paralyze(60)
+				C.Paralyse(60)
 			else
 				C.Stun(100)
 	holder.remove_reagent(/datum/reagent/flash_powder, created_volume*3)
@@ -278,7 +278,7 @@
 	for(var/mob/living/carbon/C in get_hearers_in_view(range, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 4)
-				C.Paralyze(60)
+				C.Paralyse(60)
 			else
 				C.Stun(100)
 

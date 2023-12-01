@@ -106,7 +106,7 @@
 		visible_message(span_warning("[src] gently press a hand against [H]'s face, and \he falls limp..."), span_notice("You quietly incapacitate [H]."))
 		H.pixel_y -= 4
 		to_chat(H, span_userdanger("[src] press a hand to your face, and docility comes over you..."))
-		H.Paralyze(60)
+		H.Paralyse(60)
 		knocking_out = FALSE
 		return TRUE
 	else if(istype(target, /obj/machinery/door))

@@ -18,7 +18,7 @@
 	var/condi = FALSE
 	var/chosenPillStyle = 1
 	var/screen = "home"
-	var/analyzeVars[0]
+	var/analyseVars[0]
 	var/useramount = 30 // Last used amount
 	var/list/pillStyles = null
 
@@ -174,7 +174,7 @@
 	data["mode"] = mode
 	data["condi"] = condi
 	data["screen"] = screen
-	data["analyzeVars"] = analyzeVars
+	data["analyseVars"] = analyseVars
 	data["chosenPillStyle"] = chosenPillStyle
 	data["isPillBottleLoaded"] = bottle ? 1 : 0
 	if(bottle)
@@ -371,7 +371,7 @@
 			return TRUE
 		return FALSE
 
-	if(action == "analyze")
+	if(action == "analyse")
 		var/datum/reagent/R = GLOB.name2reagent[params["id"]]
 		if(R)
 			var/state = "Unknown"
@@ -383,8 +383,8 @@
 				state = "Gas"
 			var/const/P = 3 //The number of seconds between life ticks
 			var/T = initial(R.metabolization_rate) * (60 / P)
-			analyzeVars = list("name" = initial(R.name), "state" = state, "color" = initial(R.color), "description" = initial(R.description), "metaRate" = T, "overD" = initial(R.overdose_threshold), "addicD" = initial(R.addiction_threshold))
-			screen = "analyze"
+			analyseVars = list("name" = initial(R.name), "state" = state, "color" = initial(R.color), "description" = initial(R.description), "metaRate" = T, "overD" = initial(R.overdose_threshold), "addicD" = initial(R.addiction_threshold))
+			screen = "analyse"
 			return TRUE
 
 	if(action == "goScreen")

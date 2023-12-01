@@ -1,7 +1,7 @@
 /datum/bounty/item/botany
 	reward = 5000
 	var/datum/bounty/item/botany/multiplier = 0 //adds bonus reward money; increased for higher tier or rare mutations
-	var/datum/bounty/item/botany/bonus_desc //for adding extra flavor text to bounty descriptions
+	var/datum/bounty/item/botany/bonus_desc //for adding extra flavour text to bounty descriptions
 	var/datum/bounty/item/botany/foodtype = "meal" //same here
 
 /datum/bounty/item/botany/New()

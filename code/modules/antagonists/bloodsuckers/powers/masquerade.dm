@@ -18,7 +18,7 @@
 		Activating Masquerade will forge your identity to be practically identical to that of a human;\n\
 		- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus and cold immunity.\n\
 		- Your eyes turn to that of a regular human as your heart begins to beat.\n\
-		- You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyzer.\n\
+		- You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyser.\n\
 		- You will not appear as Pale when examined. Anything further than Pale, however, will not be hidden.\n\
 		At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any Disease & Gene you might have."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
@@ -60,7 +60,7 @@
 				QDEL_LIST(theqdeld)
 	// Remove Bloodsucker traits
 	user.remove_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
-	// Falsifies Health & Genetic Analyzers
+	// Falsifies Health & Genetic Analysers
 	ADD_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
 	// Organs
 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)

@@ -176,10 +176,10 @@
 	icon_state = "powerpylon"
 	can_buckle = 1
 
-/obj/structure/fluff/divine/defensepylon
-	name = "defense pylon"
+/obj/structure/fluff/divine/defencepylon
+	name = "defence pylon"
 	desc = "A pylon which is blessed to withstand many blows, and fire strong bolts at nonbelievers. A god can toggle it."
-	icon_state = "defensepylon"
+	icon_state = "defencepylon"
 
 /obj/structure/fluff/divine/shrine
 	name = "shrine"

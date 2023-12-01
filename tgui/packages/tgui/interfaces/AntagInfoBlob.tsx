@@ -112,7 +112,7 @@ const Basics = (props, context) => {
         </LabeledList.Item>
         <LabeledList.Item label="HUD">
           In addition to the buttons on your HUD, there are a few click
-          shortcuts to speed up expansion and defense.
+          shortcuts to speed up expansion and defence.
         </LabeledList.Item>
         <LabeledList.Item label="Shortcuts">
           Click = Expand Blob | Middle Mouse Click = Rally Spores | Ctrl Click =

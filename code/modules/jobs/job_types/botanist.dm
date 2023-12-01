@@ -48,7 +48,7 @@
 	uniform_skirt = /obj/item/clothing/under/rank/hydroponics/skirt
 	suit = /obj/item/clothing/suit/apron
 	gloves  =/obj/item/clothing/gloves/botanic_leather
-	suit_store = /obj/item/plant_analyzer
+	suit_store = /obj/item/plant_analyser
 
 	backpack = /obj/item/storage/backpack/botany
 	satchel = /obj/item/storage/backpack/satchel/hyd

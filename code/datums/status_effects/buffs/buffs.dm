@@ -75,7 +75,7 @@
 	owner.visible_message(span_warning("[owner] begins to faintly glow!"), span_brass("You will absorb all stuns for the next twenty seconds."))
 	owner.SetStun(0, FALSE)
 	owner.SetKnockdown(0, FALSE)
-	owner.SetParalyzed(0, FALSE)
+	owner.SetParalysed(0, FALSE)
 	owner.SetImmobilized(0)
 	progbar = new(owner, duration, owner)
 	progbar.bar.color = list("#FAE48C", "#FAE48C", "#FAE48C", rgb(0,0,0))
@@ -98,7 +98,7 @@
 			if(owner.stun_absorption[i]["end_time"] > world.time && owner.stun_absorption[i]["priority"] > vanguard["priority"])
 				otheractiveabsorptions = TRUE
 		if(!GLOB.ratvar_awakens && stuns_blocked && !otheractiveabsorptions)
-			owner.Paralyze(stuns_blocked)
+			owner.Paralyse(stuns_blocked)
 			message_to_owner = span_boldwarning("The weight of the Vanguard's protection crashes down upon you!")
 			if(stuns_blocked >= 300)
 				message_to_owner += "\n[span_userdanger("You faint from the exertion!")]"

@@ -77,4 +77,4 @@
 	light_range = 3
 	seed = /obj/item/seeds/ambrosia/gaia
 	wine_power = 70
-	wine_flavor = "the earthmother's blessing"
+	wine_flavour = "the earthmother's blessing"

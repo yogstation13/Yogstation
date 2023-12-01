@@ -128,7 +128,7 @@
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user,span_danger("You feel a pulse of some alien intellect lash out at your mind!"))
 		var/mob/living/carbon/human/human_user = user
-		human_user.AdjustParalyzed(5 SECONDS)
+		human_user.AdjustParalysed(5 SECONDS)
 		return FALSE
 	return ..()
 
@@ -224,7 +224,7 @@
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user, span_cultlarge("\"The amulet burns at the touch, searing the skin off your hand!\""))
 		user.dropItemToGround(src, TRUE)
-		user.Paralyze(8 SECONDS)
+		user.Paralyse(8 SECONDS)
 		user.adjustFireLoss(15)
 
 /obj/item/clothing/neck/eldritch_amulet/equipped(mob/user, slot)
@@ -251,7 +251,7 @@
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user, span_cultlarge("\"The amulet burns at the touch, searing the skin off your hand!\""))
 		user.dropItemToGround(src, TRUE)
-		user.Paralyze(8 SECONDS)
+		user.Paralyse(8 SECONDS)
 		user.adjustFireLoss(15)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
@@ -282,7 +282,7 @@
 		to_chat(user, span_cultlarge("\"You feel the weight of your sins pulling you down!\""))
 		user.dropItemToGround(src, TRUE)
 		user.adjust_confusion(30)
-		user.Paralyze(8 SECONDS)
+		user.Paralyse(8 SECONDS)
 		user.adjustBruteLoss(15)
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/upgraded
@@ -311,7 +311,7 @@
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user, span_cultlarge("\"The eye stares back into your soul, branding you for your sin!\""))
 		user.dropItemToGround(src, TRUE)
-		user.Paralyze(8 SECONDS)
+		user.Paralyse(8 SECONDS)
 		user.blind_eyes(10 SECONDS)
 
 /obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/carbon/human/user, slot)
@@ -439,7 +439,7 @@
 		to_chat(user, span_cultlarge("\"You feel your bones begin to freeze to their very core!\""))
 		user.dropItemToGround(src, TRUE)
 		user.adjust_confusion(30)
-		user.Paralyze(8 SECONDS)
+		user.Paralyse(8 SECONDS)
 		user.adjustFireLoss(10)
 
 /obj/item/clothing/mask/madness_mask

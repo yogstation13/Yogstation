@@ -128,7 +128,7 @@
 		if(stat == UNCONSCIOUS)
 			. += "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
 		else if(InCritical())
-			. += "[t_His] breathing is shallow and labored."
+			. += "[t_His] breathing is shallow and laboured."
 
 		if(digitalcamo)
 			. += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly unsimian manner."

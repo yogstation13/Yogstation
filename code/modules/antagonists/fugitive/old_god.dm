@@ -10,7 +10,7 @@
 	var/datum/action/innate/yalp_transmit/transmit
 	var/datum/action/innate/yalp_transport/transport
 	var/datum/action/cooldown/yalp_heal/heal
-	var/hunters_release_time // Yogs -- making Login() dialogue make more sense
+	var/hunters_release_time // Yogs -- making Login() dialogueue make more sense
 
 /mob/camera/yalp_elor/Initialize(mapload)
 	. = ..()
@@ -21,7 +21,7 @@
 	transport.Grant(src)
 	heal.Grant(src)
 	START_PROCESSING(SSobj, src)
-	hunters_release_time = world.time + 10 MINUTES // Yogs -- making Login() dialogue make more sense
+	hunters_release_time = world.time + 10 MINUTES // Yogs -- making Login() dialogueue make more sense
 
 /mob/camera/yalp_elor/Destroy() // Yogs -- fixes duplicated Destroy() proc
 	QDEL_NULL(transmit)
@@ -36,7 +36,7 @@
 /mob/camera/yalp_elor/Process_Spacemove(movement_dir = 0)
 	return TRUE
 
-/mob/camera/yalp_elor/Login() // Yogs -- better Login() dialogue
+/mob/camera/yalp_elor/Login() // Yogs -- better Login() dialogueue
 	..()
 	to_chat(src,span_boldnotice("You are [name], the old god!"))
 	to_chat(src,span_notice("You must protect your followers from Nanotrasen!"))

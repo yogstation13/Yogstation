@@ -109,7 +109,7 @@
 
 /datum/action/cooldown/spell/pointed/gaze
 	name = "Vampiric Gaze"
-	desc = "Paralyze your target with fear."
+	desc = "Paralyse your target with fear."
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_vampire"
@@ -156,8 +156,8 @@
 	switch(protection)
 	
 		if(0)
-			to_chat(target, span_userdanger("You are paralyzed with fear!"))
-			to_chat(user, span_notice("You paralyze [T]."))
+			to_chat(target, span_userdanger("You are paralysed with fear!"))
+			to_chat(user, span_notice("You paralyse [T]."))
 			T.Stun(5 SECONDS)
 		if(1 to INFINITY)
 			T.adjust_confusion(5 SECONDS)
@@ -373,7 +373,7 @@
 			human_target.Knockdown(40)
 			human_target.adjustEarDamage(0, 30)
 			human_target.adjust_stutter(30 SECONDS)
-			human_target.Paralyze(40)
+			human_target.Paralyse(40)
 			human_target.adjust_jitter(2.5 MINUTES)
 
 /datum/action/cooldown/spell/bats

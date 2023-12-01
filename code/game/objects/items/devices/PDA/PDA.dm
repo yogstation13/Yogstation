@@ -1024,7 +1024,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				if(!id_check(user, idcard))
 					return
 				to_chat(user, span_notice("You put the ID into \the [src]'s slot."))
-				updateSelfDialog()//Update self dialog on success.
+				updateSelfDialog()//Update self dialogue on success.
 			return	//Return in case of failed check or when successful.
 		updateSelfDialog()//For the non-input related code.
 	else if(istype(C, /obj/item/paicard) && !pai)
@@ -1058,12 +1058,12 @@ GLOBAL_LIST_EMPTY(PDAs)
 				if(beep_cooldown < world.time)
 					playsound(src, 'sound/effects/fastbeep.ogg', 20)
 					beep_cooldown = world.time + 40
-				C.visible_message(span_alert("[user] has analyzed [C]'s vitals!"))
+				C.visible_message(span_alert("[user] has analysed [C]'s vitals!"))
 				healthscan(user, C, 1)
 				add_fingerprint(user)
 
 			if(PDA_SCANNER_HALOGEN)
-				C.visible_message(span_warning("[user] has analyzed [C]'s radiation levels!"))
+				C.visible_message(span_warning("[user] has analysed [C]'s radiation levels!"))
 
 				user.show_message(span_notice("Analyzing Results for [C]:"))
 				if(C.radiation)
@@ -1089,7 +1089,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				to_chat(user, span_notice("No significant chemical agents found in [A]."))
 
 		if(PDA_SCANNER_GAS)
-			A.analyzer_act(user, src)
+			A.analyser_act(user, src)
 
 	if (!scanmode && istype(A, /obj/item/paper) && owner)
 		var/obj/item/paper/PP = A

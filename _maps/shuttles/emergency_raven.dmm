@@ -1636,7 +1636,7 @@
 	pixel_x = -4;
 	pixel_y = 3
 	},
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -2283,7 +2283,7 @@
 	dir = 4
 	},
 /obj/machinery/turretid{
-	desc = "Used to the Raven's automated defenses.";
+	desc = "Used to the Raven's automated defences.";
 	icon_state = "control_kill";
 	lethal = 1;
 	pixel_x = 5;

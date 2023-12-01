@@ -299,7 +299,7 @@
 			GiveHint(target)
 		else if(I.get_sharpness() == SHARP_POINTY)
 			to_chat(target, span_userdanger("You feel a stabbing pain in [parse_zone(user.zone_selected)]!"))
-			target.Paralyze(40)
+			target.Paralyse(40)
 			GiveHint(target)
 		else if(istype(I, /obj/item/bikehorn))
 			to_chat(target, span_userdanger("HONK"))

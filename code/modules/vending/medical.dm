@@ -8,7 +8,7 @@
 	products = list(/obj/item/stack/medical/gauze = 8,
 					/obj/item/reagent_containers/syringe = 12,
 					/obj/item/reagent_containers/dropper = 3,
-					/obj/item/healthanalyzer = 4,
+					/obj/item/healthanalyser = 4,
 					/obj/item/reagent_containers/pill/patch/styptic = 5,
 					/obj/item/reagent_containers/pill/patch/silver_sulf = 5,
 					/obj/item/reagent_containers/syringe/perfluorodecalin = 2,
@@ -22,7 +22,7 @@
 					/obj/item/reagent_containers/syringe/antiviral = 6,
 					/obj/item/sensor_device = 2,
 					/obj/item/pinpointer/crew = 2,
-					/obj/item/healthanalyzer/wound = 4,
+					/obj/item/healthanalyser/wound = 4,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/stack/medical/ointment/antiseptic = 4,
 					/obj/item/stack/medical/bone_gel = 4)

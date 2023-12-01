@@ -1205,7 +1205,7 @@
 /obj/item/roller{
 	pixel_y = 4
 	},
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24

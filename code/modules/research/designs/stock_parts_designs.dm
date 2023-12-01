@@ -287,19 +287,19 @@
 	category = list("Stock Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/subspace_analyzer
-	name = "Subspace Wavelength Analyzer" //yogs - added Wavelength
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
-	id = "s-analyzer"
+/datum/design/subspace_analyser
+	name = "Subspace Wavelength Analyser" //yogs - added Wavelength
+	desc = "A sophisticated analyser capable of analyzing cryptic subspace wavelengths."
+	id = "s-analyser"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/gold = 100)
-	build_path = /obj/item/stock_parts/subspace/analyzer
+	build_path = /obj/item/stock_parts/subspace/analyser
 	category = list("Stock Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_crystal
 	name = "Ansible Crystal"
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
+	desc = "A sophisticated analyser capable of analyzing cryptic subspace wavelengths."
 	id = "s-crystal"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 800, /datum/material/silver = 100, /datum/material/gold = 100)

@@ -13,7 +13,7 @@
 	user.SetStun(0)
 	user.SetKnockdown(0)
 	user.SetImmobilized(0)
-	user.SetParalyzed(0)
+	user.SetParalysed(0)
 	user.reagents.add_reagent(/datum/reagent/medicine/changelinghaste, reagent_amount)
 	user.adjustStaminaLoss(-75)
 	return TRUE

@@ -195,7 +195,7 @@
 	if(W.GetID())
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(user))
-				output_maintenance_dialog(W.GetID(), user)
+				output_maintenance_dialogue(W.GetID(), user)
 				return
 			else
 				to_chat(user, span_warning("Invalid ID: Access denied."))

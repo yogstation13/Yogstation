@@ -147,7 +147,7 @@
 			new /obj/item/storage/belt/military(src) //Can't be concealed, basically just 7-slot belt, no normal items allowed. Free
 			new /obj/item/book/granter/martial/cqc(src) //13 TC, ABSOLUTELY mandatory
 			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
-			new /obj/item/kitchen/knife/combat/survival(src) //Simple miner knife, in flavor. Maybe-maybe 1 TC, but basically free
+			new /obj/item/kitchen/knife/combat/survival(src) //Simple miner knife, in flavour. Maybe-maybe 1 TC, but basically free
 			new /obj/item/implanter/stealth(src) //Just a box. 8 TC
 			new /obj/item/storage/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
 			new /obj/item/lighter(src) //Need to light the cigar
@@ -182,7 +182,7 @@
 			new /obj/item/clothing/shoes/combat(src) //See above
 			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
 			new /obj/item/book/granter/action/spell/lightningbolt(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that doesn't require robes and provides ranged potential
-			new /obj/item/book/granter/action/spell/forcewall(src) //It has the word force in it? But more importantly, it doesn't require robes and it's 1 SP and it's VERY good defense
+			new /obj/item/book/granter/action/spell/forcewall(src) //It has the word force in it? But more importantly, it doesn't require robes and it's 1 SP and it's VERY good defence
 			new /obj/item/book/granter/action/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else, more than 100 carps or your TC back

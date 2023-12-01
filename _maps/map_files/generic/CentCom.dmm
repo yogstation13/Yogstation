@@ -4916,7 +4916,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/supply)
 "amd" = (
-/obj/machinery/computer/shuttle/labor,
+/obj/machinery/computer/shuttle/labour,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -7754,7 +7754,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "arm" = (
-/obj/machinery/computer/shuttle/labor,
+/obj/machinery/computer/shuttle/labour,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -16016,7 +16016,7 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -19319,7 +19319,7 @@
 /obj/item/screwdriver{
 	pixel_y = 10
 	},
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/pipe_dispenser,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)

@@ -286,7 +286,7 @@
 			reagents.add_reagent(/datum/reagent/liquidgibs, 2)
 	ice_creamed = 1
 
-/obj/item/reagent_containers/food/snacks/icecream/proc/add_mob_flavor(mob/M)
+/obj/item/reagent_containers/food/snacks/icecream/proc/add_mob_flavour(mob/M)
 	add_ice_cream("mob")
 	name = "[M.name] icecream"
 

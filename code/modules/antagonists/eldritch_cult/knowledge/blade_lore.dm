@@ -1,6 +1,6 @@
 /datum/eldritch_knowledge/base_blade
 	name = "The Cutting Edge"
-	desc = "Pledges yourself to the path of Blade. Allows you to transmute a bar of silver with a knife or its derivatives into a Sundered Blade. Additionally, empowers your Mansus grasp to deal brute damage and paralyze enemies hit."
+	desc = "Pledges yourself to the path of Blade. Allows you to transmute a bar of silver with a knife or its derivatives into a Sundered Blade. Additionally, empowers your Mansus grasp to deal brute damage and paralyse enemies hit."
 	gain_text = "Our great ancestors forged swords and practiced sparring on the eve of great battles."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/dark_knife)
 	cost = 1
@@ -72,7 +72,7 @@
 		return COMPONENT_BLOCK_HAND_USE
 
 	// We're officially behind them, apply effects
-	target.AdjustParalyzed(1.5 SECONDS)
+	target.AdjustParalysed(1.5 SECONDS)
 	target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
 	target.balloon_alert(source, "backstab!")
 	playsound(get_turf(target), 'sound/weapons/guillotine.ogg', 100, TRUE)
@@ -127,7 +127,7 @@
 	// // Let's check their held items to see if we can do a riposte
 	var/obj/item/main_hand = source.get_active_held_item()
 	var/obj/item/off_hand = source.get_inactive_held_item()
-	// // This is the item that ends up doing the "blocking" (flavor)
+	// // This is the item that ends up doing the "blocking" (flavour)
 	var/obj/item/striking_with
 
 	// First we'll check if the offhand is valid

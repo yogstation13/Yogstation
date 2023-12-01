@@ -565,7 +565,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							user.vomit(10, distance = 5)
 					if(ORION_TRAIL_FLUX)
 						if(prob(75))
-							user.Paralyze(60)
+							user.Paralyse(60)
 							say("A sudden gust of powerful wind slams [user] into the floor!")
 							user.take_bodypart_damage(25)
 							playsound(loc, 'sound/weapons/genhit.ogg', 100, 1)

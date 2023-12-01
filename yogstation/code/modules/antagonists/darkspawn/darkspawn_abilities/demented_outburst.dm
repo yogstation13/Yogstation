@@ -44,18 +44,18 @@
 			var/mob/living/carbon/C = AM
 			if(distance <= 1) //you done fucked up now
 				C.visible_message(span_warning("The blast sends [C] flying!"), span_userdanger("The force sends you flying!"))
-				C.Paralyze(50)
+				C.Paralyse(50)
 				C.Knockdown(50)
 				C.adjustBruteLoss(10)
 				C.soundbang_act(1, 5, 15, 5)
 			else if(distance <= 3)
 				C.visible_message(span_warning("The blast knocks [C] off their feet!"), span_userdanger("The force bowls you over!"))
-				C.Paralyze(25)
+				C.Paralyse(25)
 				C.Knockdown(30)
 				C.soundbang_act(1, 3, 5, 0)
 		if(iscyborg(AM))
 			var/mob/living/silicon/robot/R = AM
 			R.visible_message(span_warning("The blast sends [R] flying!"), span_userdanger("The force sends you flying!"))
-			R.Paralyze(100) //fuck borgs
+			R.Paralyse(100) //fuck borgs
 			R.soundbang_act(1, 5, 15, 5)
 	return TRUE

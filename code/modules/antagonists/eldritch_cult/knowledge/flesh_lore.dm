@@ -181,7 +181,7 @@
 
 /datum/eldritch_knowledge/rusty
 	name = "T3 - Rusted Ritual"
-	gain_text = "The Vermin Duke's pawns span the Corroded Sewers, though several spill out and roam the Badlands to accost traders and travelers alike. They are not difficult to control, as you have learned."
+	gain_text = "The Vermin Duke's pawns span the Corroded Sewers, though several spill out and roam the Badlands to accost traders and travellers alike. They are not difficult to control, as you have learned."
 	desc = "You can now summon a Rustwalker transmuting a vomit pool and a book. Rustwalkers are capable of spreading rust and have a strong, short-ranged projectile attack."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/rusty)

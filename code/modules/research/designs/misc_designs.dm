@@ -96,7 +96,7 @@
 
 /datum/design/diagnostic_hud
 	name = "Diagnostic HUD"
-	desc = "A HUD used to analyze and determine faults within robotic machinery."
+	desc = "A HUD used to analyse and determine faults within robotic machinery."
 	id = "diagnostic_hud"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/plastic = 150)
@@ -250,7 +250,7 @@
 
 /datum/design/sci_goggles
 	name = "Science Goggles"
-	desc = "Goggles fitted with a portable analyzer, capable of determining the research worth of an item or components of a machine."
+	desc = "Goggles fitted with a portable analyser, capable of determining the research worth of an item or components of a machine."
 	id = "scigoggles"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
@@ -260,7 +260,7 @@
 
 /datum/design/night_sci_goggles
 	name = "Night Vision Science Goggles"
-	desc = "Goggles fitted with a portable analyzer, capable of determining the research worth of an item or components of a machine. Now with night vision!"
+	desc = "Goggles fitted with a portable analyser, capable of determining the research worth of an item or components of a machine. Now with night vision!"
 	id = "nightscigoggles"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/silver = 350, /datum/material/plastic = 150)

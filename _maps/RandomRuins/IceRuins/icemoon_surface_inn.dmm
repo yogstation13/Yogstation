@@ -846,7 +846,7 @@
 /obj/item/book/manual/wiki/hydroponicsplants,
 /obj/structure/closet/crate/hydroponics,
 /obj/item/storage/bag/plants/portaseeder,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /obj/item/hatchet,
 /obj/item/shovel/spade,
 /obj/item/cultivator,

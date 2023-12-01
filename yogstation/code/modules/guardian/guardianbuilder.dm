@@ -44,8 +44,8 @@
 						level = saved_stats.damage,
 					))
 	.["ratedskills"] += list(list(
-						name = "Defense",
-						level = saved_stats.defense
+						name = "Defence",
+						level = saved_stats.defence
 					))
 	.["ratedskills"] += list(list(
 						name = "Speed",
@@ -101,10 +101,10 @@
 					if ((points + (saved_stats.damage > 1 ? saved_stats.damage - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.damage = lvl
 					. = TRUE
-				if ("Defense")
+				if ("Defence")
 					var/lvl = clamp(text2num(params["level"]), 1, 5)
-					if ((points + (saved_stats.defense > 1 ? saved_stats.defense - 1 : 0)) >= lvl - 1 || lvl == 1)
-						saved_stats.defense = lvl
+					if ((points + (saved_stats.defence > 1 ? saved_stats.defence - 1 : 0)) >= lvl - 1 || lvl == 1)
+						saved_stats.defence = lvl
 					. = TRUE
 				if ("Speed")
 					var/lvl = clamp(text2num(params["level"]), 1, 5)
@@ -156,8 +156,8 @@
 	points = max_points
 	if (saved_stats.damage > 1)
 		points -= saved_stats.damage - 1
-	if (saved_stats.defense > 1)
-		points -= saved_stats.defense - 1
+	if (saved_stats.defence > 1)
+		points -= saved_stats.defence - 1
 	if (saved_stats.potential > 1)
 		points -= saved_stats.potential - 1
 	if (saved_stats.speed > 1)
@@ -291,7 +291,7 @@
 
 /obj/item/guardiancreator/proc/generate_stand()
 	var/points = 15
-	var/list/categories = list("Damage", "Defense", "Speed", "Potential", "Range") // will be shuffled every iteration
+	var/list/categories = list("Damage", "Defence", "Speed", "Potential", "Range") // will be shuffled every iteration
 	var/list/majors = subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special)
 	var/list/major_weighted = list()
 	for (var/M in majors)
@@ -313,10 +313,10 @@
 				stats.damage++
 				if (stats.damage >= 5)
 					categories -= "Damage"
-			if ("Defense")
-				stats.defense++
-				if (stats.defense >= 5)
-					categories -= "Defense"
+			if ("Defence")
+				stats.defence++
+				if (stats.defence >= 5)
+					categories -= "Defence"
 			if ("Speed")
 				stats.speed++
 				if (stats.speed >= 5)

@@ -30,7 +30,7 @@
 /obj/projectile/bullet/shotgun/slug/stun
 	name = "stunslug"
 	damage = 5
-	paralyze = 100
+	paralyse = 100
 	stutter = 5
 	jitter = 20
 	range = 7
@@ -42,7 +42,7 @@
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "dust"
 	damage = 20
-	paralyze = 8 SECONDS
+	paralyse = 8 SECONDS
 	wound_bonus = 0
 	sharpness = SHARP_NONE
 	hitsound = 'sound/effects/meteorimpact.ogg'

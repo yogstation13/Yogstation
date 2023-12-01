@@ -587,7 +587,7 @@
 	SetStun(0, FALSE)
 	SetKnockdown(0, FALSE)
 	SetImmobilized(0, FALSE)
-	SetParalyzed(0, FALSE)
+	SetParalysed(0, FALSE)
 	SetSleeping(0, FALSE)
 	setStaminaLoss(0)
 	SetUnconscious(0, FALSE)
@@ -991,7 +991,7 @@
 			visible_message(span_warning("[src] dry heaves!"), \
 							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
 		if(stun)
-			Paralyze(200)
+			Paralyse(200)
 		return TRUE
 
 	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
@@ -1007,7 +1007,7 @@
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomit)
 
 	if(stun)
-		Paralyze(80)
+		Paralyse(80)
 
 	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
 	var/turf/T = get_turf(src)
@@ -1343,7 +1343,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 						"[C] trips over [src] and falls!", \
 						"[C] topples over [src]!", \
 						"[C] leaps out of [src]'s way!")]</span>")
-	C.Paralyze(40)
+	C.Paralyse(40)
 
 /mob/living/can_be_pulled(user, grab_state, force)
 	return ..() && !(buckled && buckled.buckle_prevents_pull) && (QDELETED(pulledby) || !HAS_TRAIT(pulledby, TRAIT_STRONG_GRIP) || pulledby == user)
@@ -1358,16 +1358,16 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	var/restrained = restrained()
 	var/has_legs = get_num_legs()
 	var/has_arms = get_num_arms()
-	var/paralyzed = IsParalyzed()
+	var/paralysed = IsParalysed()
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src)
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralysed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
 		mobility_flags &= ~MOBILITY_MOVE
-	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyzed && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying)
+	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralysed && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying)
 	var/canstand = canstand_involuntary && !resting
 
 	var/should_be_lying = !canstand
@@ -1393,7 +1393,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_BODY_POSITION, mobility_flags, .) //REMOVE THIS WHEN LAYING DOWN GETS PORTED
 
-	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
+	var/canitem = !paralysed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)
 		mobility_flags |= (MOBILITY_USE | MOBILITY_PICKUP | MOBILITY_STORAGE)
 	else
@@ -1536,7 +1536,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	. = ..()
 	switch(var_name)
 		if("knockdown")
-			SetParalyzed(var_value)
+			SetParalysed(var_value)
 		if("stun")
 			SetStun(var_value)
 		if("unconscious")

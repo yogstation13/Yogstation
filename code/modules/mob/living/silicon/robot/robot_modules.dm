@@ -298,7 +298,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/reagent_containers/borghypo/epi,
-		/obj/item/healthanalyzer,
+		/obj/item/healthanalyser,
 		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/wrench/cyborg,
 		/obj/item/crowbar/cyborg,
@@ -323,7 +323,7 @@
 	name = "Medical"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/healthanalyzer,
+		/obj/item/healthanalyser,
 		/obj/item/reagent_containers/borghypo/medical,
 		/obj/item/reagent_containers/glass/beaker/large,
 		/obj/item/reagent_containers/dropper,
@@ -367,7 +367,7 @@
 		/obj/item/wirecutters/cyborg,
 		/obj/item/multitool/cyborg,
 		/obj/item/t_scanner,
-		/obj/item/analyzer,
+		/obj/item/analyser,
 		/obj/item/borg/gripper/engineering,
 		/obj/item/geiger_counter/cyborg,
 		/obj/item/assembly/signaler/cyborg,
@@ -865,7 +865,7 @@
 		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/reagent_containers/borghypo/syndicate,
 		/obj/item/shockpaddles/syndicate,
-		/obj/item/healthanalyzer,
+		/obj/item/healthanalyser,
 		/obj/item/retractor,
 		/obj/item/hemostat,
 		/obj/item/cautery,

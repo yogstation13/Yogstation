@@ -30,8 +30,8 @@
 		data["names"] = list("[initial(fruit.name)]" = 1)
 		data["color"] = fruit.filling_color
 		data["boozepwr"] = fruit.wine_power
-		if(fruit.wine_flavor)
-			data["tastes"] = list(fruit.wine_flavor = 1)
+		if(fruit.wine_flavour)
+			data["tastes"] = list(fruit.wine_flavour = 1)
 		else
 			data["tastes"] = list(fruit.tastes[1] = 1)
 		reagents.add_reagent(/datum/reagent/consumable/ethanol/fruit_wine, amount, data)

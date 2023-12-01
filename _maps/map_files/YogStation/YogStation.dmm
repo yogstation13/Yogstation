@@ -706,7 +706,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/security{
-	name = "Labor Shuttle";
+	name = "Labour Shuttle";
 	req_access_txt = "63"
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -3967,7 +3967,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	req_access_txt = "2";
 	shuttledocked = 1
 	},
@@ -4057,7 +4057,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	req_access_txt = "2"
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -4967,7 +4967,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 5;
-	id = "laborcamp_home";
+	id = "labourcamp_home";
 	name = "fore bay 1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9
@@ -4989,7 +4989,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock";
+	name = "Labour Camp Shuttle Airlock";
 	shuttledocked = 1
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold{
@@ -5044,7 +5044,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock"
+	name = "Labour Camp Shuttle Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -8513,7 +8513,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "blI" = (
-/obj/machinery/rnd/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyser,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -8609,7 +8609,7 @@
 /area/hallway/primary/central)
 "bnf" = (
 /obj/machinery/camera{
-	c_tag = "Labor Shuttle Dock South";
+	c_tag = "Labour Shuttle Dock South";
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/corner,
@@ -13942,7 +13942,7 @@
 "cnC" = (
 /obj/structure/table,
 /obj/item/wrench,
-/obj/item/analyzer,
+/obj/item/analyser,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "cnG" = (
@@ -14801,7 +14801,7 @@
 "cAP" = (
 /obj/structure/table,
 /obj/item/electropack,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/item/assembly/signaler,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
@@ -21307,9 +21307,9 @@
 /area/science/research)
 "eTe" = (
 /obj/structure/table,
-/obj/item/stock_parts/subspace/analyzer,
-/obj/item/stock_parts/subspace/analyzer,
-/obj/item/stock_parts/subspace/analyzer,
+/obj/item/stock_parts/subspace/analyser,
+/obj/item/stock_parts/subspace/analyser,
+/obj/item/stock_parts/subspace/analyser,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 9
 	},
@@ -21477,8 +21477,8 @@
 /area/science/mixing)
 "eVJ" = (
 /obj/structure/table,
-/obj/item/analyzer,
-/obj/item/healthanalyzer,
+/obj/item/analyser,
+/obj/item/healthanalyser,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -22339,7 +22339,7 @@
 	pixel_y = -1
 	},
 /obj/structure/rack,
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_x = -4;
 	pixel_y = -3
 	},
@@ -22533,7 +22533,7 @@
 /turf/open/floor/wood,
 /area/lawoffice)
 "fpR" = (
-/obj/machinery/computer/shuttle/labor,
+/obj/machinery/computer/shuttle/labour,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
@@ -23667,7 +23667,7 @@
 /obj/structure/table,
 /obj/item/storage/box/prisoner,
 /obj/machinery/camera{
-	c_tag = "Labor Shuttle Dock North"
+	c_tag = "Labour Shuttle Dock North"
 	},
 /obj/machinery/light{
 	dir = 4
@@ -27068,8 +27068,8 @@
 /area/medical/medbay/aft)
 "haD" = (
 /obj/machinery/computer/security{
-	name = "Labor Camp Monitoring";
-	network = list("labor")
+	name = "Labour Camp Monitoring";
+	network = list("labour")
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
@@ -30826,7 +30826,7 @@
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -31353,7 +31353,7 @@
 /area/security/prison/hallway)
 "iFc" = (
 /obj/structure/table/reinforced,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -24
@@ -34609,7 +34609,7 @@
 	pixel_x = -32;
 	receive_ore_updates = 1
 	},
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/science,
 /obj/item/radio/headset/headset_med,
@@ -35063,7 +35063,7 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "kcL" = (
-/obj/machinery/computer/shuttle/labor{
+/obj/machinery/computer/shuttle/labour{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -38855,7 +38855,7 @@
 "lDe" = (
 /obj/structure/chair{
 	dir = 8;
-	name = "Defense"
+	name = "Defence"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
@@ -39985,7 +39985,7 @@
 /area/security/processing)
 "mbK" = (
 /obj/machinery/door/airlock/security{
-	name = "Labor Shuttle";
+	name = "Labour Shuttle";
 	req_access_txt = "2"
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -44646,7 +44646,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/security/processing";
 	dir = 4;
-	name = "Labor Shuttle Dock APC";
+	name = "Labour Shuttle Dock APC";
 	pixel_x = 24
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -45451,7 +45451,7 @@
 /obj/item/storage/box/drinkingglasses,
 /obj/item/storage/box/drinkingglasses,
 /obj/item/reagent_containers/food/condiment/peppermill{
-	desc = "Often used to flavor food or make people sneeze. Fashionably moved to the left side of the table.";
+	desc = "Often used to flavour food or make people sneeze. Fashionably moved to the left side of the table.";
 	pixel_x = -8;
 	pixel_y = 2
 	},
@@ -45605,7 +45605,7 @@
 /area/hallway/primary/central)
 "ojh" = (
 /obj/structure/table,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /obj/item/stock_parts/cell/high/plus,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
@@ -47216,7 +47216,7 @@
 /area/crew_quarters/fitness)
 "oNd" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -47410,9 +47410,9 @@
 /area/ai_monitored/nuke_storage)
 "oRr" = (
 /obj/structure/table,
-/obj/item/stock_parts/subspace/analyzer,
-/obj/item/stock_parts/subspace/analyzer,
-/obj/item/stock_parts/subspace/analyzer,
+/obj/item/stock_parts/subspace/analyser,
+/obj/item/stock_parts/subspace/analyser,
+/obj/item/stock_parts/subspace/analyser,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
 "oRt" = (
@@ -60444,7 +60444,7 @@
 /obj/item/screwdriver{
 	pixel_y = 10
 	},
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/pipe_dispenser,
 /obj/item/pipe_dispenser,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -65086,7 +65086,7 @@
 "vAd" = (
 /obj/structure/chair{
 	dir = 8;
-	name = "Defense"
+	name = "Defence"
 	},
 /obj/effect/turf_decal/tile/green/fourcorners,
 /turf/open/floor/plasteel,
@@ -66474,7 +66474,7 @@
 	},
 /obj/structure/chair{
 	dir = 8;
-	name = "Defense"
+	name = "Defence"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
@@ -71634,7 +71634,7 @@
 /area/bridge/meeting_room)
 "yfZ" = (
 /obj/structure/table,
-/obj/item/analyzer,
+/obj/item/analyser,
 /obj/item/t_scanner,
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)

@@ -10,7 +10,7 @@
 	pixel_y = -2
 	},
 /obj/item/dice/d8,
-/obj/item/healthanalyzer,
+/obj/item/healthanalyser,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)

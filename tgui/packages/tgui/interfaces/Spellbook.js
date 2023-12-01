@@ -294,7 +294,7 @@ const Loadouts = (props, context) => {
             blurb={multiline`
                 Why kill when others will gladly do it for you?
                 Embrace chaos with your kit: Soulshards, Staff of Change,
-                Necro Stone, Teleport, and Jaunt! Remember, no offense spells!
+                Necro Stone, Teleport, and Jaunt! Remember, no offence spells!
               `}
           />
           <SingleLoadout

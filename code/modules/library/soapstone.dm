@@ -109,7 +109,7 @@
 
 /obj/structure/chisel_message
 	name = "engraved message"
-	desc = "A message from a past traveler."
+	desc = "A message from a past traveller."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "soapstone_message"
 	layer = HIGH_OBJ_LAYER

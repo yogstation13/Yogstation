@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 		"0.3 seconds to revelation.",
 		"Sticks and stones may break my bones, but these words will hurt just a little.",
 		"Get pwn3d",
-		"The Spacial OSM Maneuver Test is an agility exercise that gets more difficult the more spin is put on the individual over time.",
+		"The Spacial OSM Manoeuvre Test is an agility exercise that gets more difficult the more spin is put on the individual over time.",
 		"Crazy how these are meant to explode like this",
 		"My finger slipped, sorry",
 		"You have been visited by the SPOOKY SYNDICATE MALWARE. Great wealth and opportunities will come to you, only if you share this with ten other people in the next second."

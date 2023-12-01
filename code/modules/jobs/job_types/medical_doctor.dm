@@ -28,7 +28,7 @@
 	)
 
 	mail_goodies = list(
-		/obj/item/healthanalyzer/advanced = 15,
+		/obj/item/healthanalyser/advanced = 15,
 		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 6,
 		/obj/item/reagent_containers/autoinjector/medipen = 6,
 		/obj/effect/spawner/lootdrop/organ_spawner = 5,

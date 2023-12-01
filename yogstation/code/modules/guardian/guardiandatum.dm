@@ -14,7 +14,7 @@
 		parts += "<B>SUMMONER</B>: [summoner.name]"
 	if (stats)
 		parts += "<b>DAMAGE:</b> [level_to_grade(stats.damage)]"
-		parts += "<b>DEFENSE:</b> [level_to_grade(stats.defense)]"
+		parts += "<b>DEFENSE:</b> [level_to_grade(stats.defence)]"
 		parts += "<b>SPEED:</b> [level_to_grade(stats.speed)]"
 		parts += "<b>POTENTIAL:</b> [level_to_grade(stats.potential)]"
 		parts += "<b>RANGE:</b> [level_to_grade(stats.range)]"

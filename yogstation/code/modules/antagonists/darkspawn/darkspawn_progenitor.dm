@@ -75,7 +75,7 @@
 		else if(isliving(M))
 			var/mob/living/L = M
 			if(L != src) //OH GOD OH FUCK I'M SCARING MYSELF
-				to_chat(M, span_boldannounce("You stand paralyzed in the shadow of the cold as it descends from on high."))
+				to_chat(M, span_boldannounce("You stand paralysed in the shadow of the cold as it descends from on high."))
 				L.Stun(20)
 	time_to_next_roar = world.time + 30 SECONDS
 

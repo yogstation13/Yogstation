@@ -1,5 +1,5 @@
-/datum/ai_project/shock_defense
-	name = "Shock Defense"
+/datum/ai_project/shock_defence
+	name = "Shock Defence"
 	description = "This research enables the option to shock people within 2 tiles of all of your data cores."
 	research_cost = 3000
 	ram_required = 0
@@ -9,20 +9,20 @@
 
 	category = AI_PROJECT_INDUCTION
 
-	ability_path = /datum/action/innate/ai/shock_defense
+	ability_path = /datum/action/innate/ai/shock_defence
 	ability_recharge_cost = 2000
 
-/datum/ai_project/shock_defense/finish()
-	add_ability(/datum/action/innate/ai/shock_defense)
+/datum/ai_project/shock_defence/finish()
+	add_ability(/datum/action/innate/ai/shock_defence)
 
-/datum/action/innate/ai/shock_defense
-	name = "Shock Defense"
+/datum/action/innate/ai/shock_defence
+	name = "Shock Defence"
 	desc = "Shocks anyone within 2 tiles of your data cores."
 	button_icon_state = "emergency_lights"
 	uses = 2
 	delete_on_empty = FALSE
 
-/datum/action/innate/ai/shock_defense/Activate()
+/datum/action/innate/ai/shock_defence/Activate()
 	if(!isaicore(owner.loc))
 		to_chat(owner, span_warning("You must be in your core to do this!"))
 		return

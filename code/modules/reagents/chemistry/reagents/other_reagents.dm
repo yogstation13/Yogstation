@@ -569,7 +569,7 @@
 			frozen = TRUE
 			to_chat(H, span_warning("The movement beneath your skin stops, for now..."))
 
-	if(!frozen) //welcome to flavor town
+	if(!frozen) //welcome to flavour town
 		if(data["transfurmation"] == 10) //that's bad cable management
 			to_chat(H, span_warning("You feel uncomfortably warm."))
 		if(data["transfurmation"] == 25) //take them out
@@ -1139,7 +1139,7 @@
 
 /datum/reagent/silicon
 	name = "Silicon"
-	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
+	description = "A tetravalent metalloid, silicon is less reactive than its chemical analogue carbon."
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_mult = 0
@@ -2283,7 +2283,7 @@
 
 /datum/reagent/lemoline
 	name = "Lemoline"
-	description = "Synthesized in off-station laboratories, used in several high-quality medicines."
+	description = "Synthesized in off-station labouratories, used in several high-quality medicines."
 	color ="#FFF44F"
 	taste_description = "lemony"
 

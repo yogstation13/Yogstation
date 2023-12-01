@@ -37,7 +37,7 @@
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
 		/obj/item/reagent_containers/autoinjector/medipen = 1,
-		/obj/item/healthanalyzer = 1)
+		/obj/item/healthanalyser = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/emergency
@@ -49,7 +49,7 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/healthanalyzer/wound = 1,
+		/obj/item/healthanalyser/wound = 1,
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/suture/emergency = 1,
 		/obj/item/stack/medical/ointment = 1,
@@ -68,7 +68,7 @@
 	STR.max_items = 12
 	STR.max_combined_w_class = 24
 	STR.set_holdable(list(
-		/obj/item/healthanalyzer,
+		/obj/item/healthanalyser,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,
@@ -125,7 +125,7 @@
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
 		/obj/item/reagent_containers/autoinjector/medipen/ekit = 1,
-		/obj/item/healthanalyzer = 1,
+		/obj/item/healthanalyser = 1,
 		/obj/item/scalpel = 1,
 		/obj/item/hemostat = 1,
 		/obj/item/cautery = 1,
@@ -168,7 +168,7 @@
 		/obj/item/reagent_containers/pill/oxandrolone = 2,
 		/obj/item/reagent_containers/medspray/silver_sulf = 1,
 		/obj/item/reagent_containers/autoinjector/medipen = 1,
-		/obj/item/healthanalyzer = 1)
+		/obj/item/healthanalyser = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/toxin
@@ -191,7 +191,7 @@
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/syringe/charcoal = 4,
 		/obj/item/storage/pill_bottle/charcoal = 2,
-		/obj/item/healthanalyzer = 1)
+		/obj/item/healthanalyser = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/o2
@@ -210,7 +210,7 @@
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/syringe/perfluorodecalin = 4,
 		/obj/item/reagent_containers/autoinjector/medipen = 2,
-		/obj/item/healthanalyzer = 1)
+		/obj/item/healthanalyser = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/brute
@@ -231,7 +231,7 @@
 		/obj/item/reagent_containers/pill/salicyclic = 2,
 		/obj/item/reagent_containers/medspray/styptic = 1,
 		/obj/item/stack/medical/gauze = 2,
-		/obj/item/healthanalyzer = 1)
+		/obj/item/healthanalyser = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/advanced
@@ -257,7 +257,7 @@
 		/obj/item/storage/pill_bottle/penacid = 1,
 		/obj/item/reagent_containers/syringe/calomel = 1,
 		/obj/item/reagent_containers/autoinjector/medipen/atropine = 2,
-		/obj/item/healthanalyzer/advanced = 1)
+		/obj/item/healthanalyser/advanced = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/tactical
@@ -325,7 +325,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.set_holdable(list(
-		/obj/item/healthanalyzer,
+		/obj/item/healthanalyser,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,
@@ -378,7 +378,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/charcoal = 1,
 		/obj/item/reagent_containers/glass/bottle/vial/perfluorodecalin = 1,
 		/obj/item/reagent_containers/glass/bottle/vial/epi = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -402,7 +402,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/libital = 2,
 		/obj/item/reagent_containers/glass/bottle/vial/styptic = 2,
 		/obj/item/reagent_containers/glass/bottle/vial/sal_acid = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -420,7 +420,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/aiuri = 2,
 		/obj/item/reagent_containers/glass/bottle/vial/silver_sulfadiazine = 2,
 		/obj/item/reagent_containers/glass/bottle/vial/oxandrolone = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -437,7 +437,7 @@
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/glass/bottle/vial/charcoal = 4,
 		/obj/item/reagent_containers/glass/bottle/vial/calomel = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -455,7 +455,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/perfluorodecalin = 2,
 		/obj/item/reagent_containers/glass/bottle/vial/epi = 2,
 		/obj/item/reagent_containers/glass/bottle/vial/salbutamol = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -477,7 +477,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/calomel = 1,
 		/obj/item/reagent_containers/glass/bottle/vial/salbutamol = 1,
 		/obj/item/reagent_containers/glass/bottle/vial/epi = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -499,7 +499,7 @@
 	..()
 	var/static/items_inside = list(
 		/obj/item/storage/lockbox/vialbox/hypo_deluxe = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -525,7 +525,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/lavaland = 1,
 		/obj/item/stack/medical/suture = 1,
 		/obj/item/stack/medical/mesh = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -544,7 +544,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/coagulant = 1,
 		/obj/item/stack/medical/suture = 1,
 		/obj/item/stack/medical/mesh = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 
@@ -564,7 +564,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/omnizine = 1,
 		/obj/item/reagent_containers/glass/bottle/vial/morphine = 1,
 		/obj/item/reagent_containers/glass/bottle/vial/epi/full = 1,
-		/obj/item/healthanalyzer = 1
+		/obj/item/healthanalyser = 1
 		)
 	generate_items_inside(items_inside,src)
 

@@ -69,8 +69,8 @@
 #define COMSIG_LIVING_STATUS_STUN "living_stun"
 ///from base of mob/living/Knockdown() (amount, ignore_canstun)
 #define COMSIG_LIVING_STATUS_KNOCKDOWN "living_knockdown"
-///from base of mob/living/Paralyze() (amount, ignore_canstun)
-#define COMSIG_LIVING_STATUS_PARALYZE "living_paralyze"
+///from base of mob/living/Paralyse() (amount, ignore_canstun)
+#define COMSIG_LIVING_STATUS_PARALYZE "living_paralyse"
 ///from base of mob/living/Immobilize() (amount, ignore_canstun)
 #define COMSIG_LIVING_STATUS_IMMOBILIZE "living_immobilize"
 ///from base of mob/living/Unconscious() (amount, ignore_canstun)

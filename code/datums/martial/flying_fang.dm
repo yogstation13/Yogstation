@@ -80,7 +80,7 @@
 	D.apply_damage(slap_staminadamage, STAMINA, selected_zone, armor_block)
 	D.apply_damage(A.get_punchdamagehigh(), A.dna.species.attack_type, selected_zone, armor_block)	//10 damage
 	D.Knockdown(5 SECONDS)
-	D.Paralyze(2 SECONDS)
+	D.Paralyse(2 SECONDS)
 	D.visible_message(span_danger("[A] tail slaps [D]!"), \
 					  span_userdanger("[A] tail slaps you!"))
 	log_combat(A, D, "tail slapped (Flying Fang)")
@@ -237,7 +237,7 @@
 				if(H.check_shields(src, 0, "[A]", attack_type = LEAP_ATTACK))
 					blocked = TRUE
 			L.visible_message("<span class ='danger'>[A] pounces on [L]!</span>", "<span class ='userdanger'>[A] pounces on you!</span>")
-			L.Paralyze(blocked ? 6 SECONDS : 0)
+			L.Paralyse(blocked ? 6 SECONDS : 0)
 			L.Knockdown(10 SECONDS)
 			L.Immobilize(6 SECONDS)
 			A.SetKnockdown(0)

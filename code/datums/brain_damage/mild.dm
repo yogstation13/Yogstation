@@ -162,7 +162,7 @@
 		fall_chance += 2
 	if(prob(fall_chance) && (owner.mobility_flags & MOBILITY_STAND))
 		to_chat(owner, span_warning("Your leg gives out!"))
-		owner.Paralyze(35)
+		owner.Paralyse(35)
 
 	else if(owner.get_active_held_item())
 		var/drop_chance = 1

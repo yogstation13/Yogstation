@@ -319,7 +319,7 @@
 
 /mob/living/carbon/resist_fire()
 	adjust_fire_stacks(-5)
-	Paralyze(6 SECONDS, TRUE, TRUE)
+	Paralyse(6 SECONDS, TRUE, TRUE)
 	spin(32,2)
 	visible_message(span_danger("[src] rolls on the floor, trying to put [p_them()]self out!"), \
 		span_notice("You stop, drop, and roll!"))
@@ -639,7 +639,7 @@
 /mob/living/carbon/update_stamina_hud(shown_stamina_amount)
 	if(!client || !hud_used?.stamina)
 		return
-	if(stat == DEAD || IsStun() || IsParalyzed() || IsImmobilized() || IsKnockdown() || IsFrozen())
+	if(stat == DEAD || IsStun() || IsParalysed() || IsImmobilized() || IsKnockdown() || IsFrozen())
 		hud_used.stamina.icon_state = "stamina6"
 	else
 		if(shown_stamina_amount == null)

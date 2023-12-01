@@ -88,7 +88,7 @@
 			SPECIES_PERK_ICON = "book-dead",
 			SPECIES_PERK_NAME = "Vampire Clans",
 			SPECIES_PERK_DESC = "Vampires belong to one of two clans - the Inoculated, and the Outcast. The Outcast \
-				don't follow many vampiric traditions, while the Inoculated are given unique names and flavor.",
+				don't follow many vampiric traditions, while the Inoculated are given unique names and flavour.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

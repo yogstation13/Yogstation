@@ -37,7 +37,7 @@
 	imp_in.SetStun(0)
 	imp_in.SetKnockdown(0)
 	imp_in.SetUnconscious(0)
-	imp_in.SetParalyzed(0)
+	imp_in.SetParalysed(0)
 	imp_in.SetImmobilized(0)
 	imp_in.adjustStaminaLoss(-75)
 	imp_in.clear_stamina_regen() // We already cleared our stamina, don't continue healing

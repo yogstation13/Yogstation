@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/tank/internals/plasmaman/belt/full = W_MYTHICAL,
 	/obj/item/stack/cable_coil/random/five = W_COMMON,
 	/obj/item/stack/cable_coil/random/thirty = W_ESSENTIAL,
-	/obj/item/analyzer = W_COMMON,
+	/obj/item/analyser = W_COMMON,
 	/obj/item/crowbar = W_ESSENTIAL,
 	/obj/item/flashlight = W_ESSENTIAL,
 	/obj/item/geiger_counter = W_UNCOMMON,
@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/pen/red = W_UNCOMMON,
 	/obj/item/photo = W_UNCOMMON,
 	/obj/item/picket_sign = W_UNCOMMON,
-	/obj/item/plant_analyzer = W_RARE,
+	/obj/item/plant_analyser = W_RARE,
 	/obj/item/pizzabox = W_RARE,
 	/obj/item/razor = W_UNCOMMON,
 	/obj/item/reagent_containers/dropper  = W_RARE,
@@ -635,7 +635,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/grenade/chem_grenade/glitter/white = W_RARE,
 	/obj/item/grenade/smokebomb = W_UNCOMMON,
 	/obj/item/hatchet = W_RARE,
-	/obj/item/healthanalyzer/wound = W_UNCOMMON,
+	/obj/item/healthanalyser/wound = W_UNCOMMON,
 	/obj/item/kitchen/knife = W_RARE,
 	/obj/item/melee/skateboard = W_RARE,
 	/obj/item/mining_scanner = W_RARE,
@@ -697,7 +697,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/grenade/chem_grenade/colorful = W_RARE,
 	/obj/item/grenade/chem_grenade/metalfoam = W_UNCOMMON,
 	/obj/item/grenade/chem_grenade/smart_metal_foam = W_RARE,
-	/obj/item/healthanalyzer = W_RARE,
+	/obj/item/healthanalyser = W_RARE,
 	/obj/item/hemostat = W_RARE,
 	/obj/item/holosign_creator/atmos = W_MYTHICAL,
 	/obj/item/holosign_creator/clown = W_MYTHICAL,
@@ -912,7 +912,7 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted = W_RARE,
 ))
 
-//Has serious mechanical usage or uplink stuff that antags would get for flavor.
+//Has serious mechanical usage or uplink stuff that antags would get for flavour.
 GLOBAL_LIST_INIT(maintenance_loot_major,list(
 	/obj/item/clothing/glasses/chameleon = W_RARE,
 	/obj/item/clothing/glasses/eyepatch/bigboss = W_LEGENDARY,

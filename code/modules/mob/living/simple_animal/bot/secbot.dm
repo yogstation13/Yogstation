@@ -222,7 +222,7 @@ Auto Patrol: []"},
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if((!C.IsParalyzed() || arrest_type) && stuncount < 30)
+		if((!C.IsParalysed() || arrest_type) && stuncount < 30)
 			stun_attack(A)
 			if(lastStunned && lastStunned == A)
 				stuncount++
@@ -271,7 +271,7 @@ Auto Patrol: []"},
 	else
 		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
 
-	C.Paralyze(10 SECONDS)
+	C.Paralyse(10 SECONDS)
 	C.adjust_stutter(5 SECONDS)
 	log_combat(src,C,"stunned")
 	if(declare_arrests)
@@ -323,7 +323,7 @@ Auto Patrol: []"},
 		if(BOT_PREP_ARREST)		// preparing to arrest target
 
 			// see if he got away. If he's no no longer adjacent or inside a closet or about to get up, we hunt again.
-			if( !Adjacent(target) || !isturf(target.loc) ||  target.AmountParalyzed() < 40)
+			if( !Adjacent(target) || !isturf(target.loc) ||  target.AmountParalysed() < 40)
 				back_to_hunt()
 				return
 
@@ -350,7 +350,7 @@ Auto Patrol: []"},
 				back_to_idle()
 				return
 
-			if(!Adjacent(target) || !isturf(target.loc) || (target.loc != target_lastloc && target.AmountParalyzed() < 40)) //if he's changed loc and about to get up or not adjacent or got into a closet, we prep arrest again.
+			if(!Adjacent(target) || !isturf(target.loc) || (target.loc != target_lastloc && target.AmountParalysed() < 40)) //if he's changed loc and about to get up or not adjacent or got into a closet, we prep arrest again.
 				back_to_hunt()
 				return
 			else //Try arresting again if the target escapes.

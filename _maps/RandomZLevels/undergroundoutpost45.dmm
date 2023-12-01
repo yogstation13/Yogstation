@@ -14,7 +14,7 @@
 	},
 /area/awaymission/undergroundoutpost45/central)
 "ad" = (
-/turf/closed/mineral/random/labormineral,
+/turf/closed/mineral/random/labourmineral,
 /area/awaymission/undergroundoutpost45/caves)
 "ae" = (
 /turf/closed/wall/r_wall,
@@ -385,7 +385,7 @@
 	req_access_txt = "201"
 	},
 /obj/item/storage/bag/plants/portaseeder,
-/obj/item/plant_analyzer,
+/obj/item/plant_analyser,
 /obj/item/clothing/mask/bandana,
 /obj/item/hatchet,
 /obj/effect/turf_decal/tile/neutral{
@@ -3718,7 +3718,7 @@
 	},
 /area/awaymission/undergroundoutpost45/gateway)
 "hB" = (
-/obj/machinery/rnd/destructive_analyzer,
+/obj/machinery/rnd/destructive_analyser,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -11523,7 +11523,7 @@
 	},
 /area/awaymission/undergroundoutpost45/research)
 "uv" = (
-/turf/closed/mineral/random/labormineral,
+/turf/closed/mineral/random/labourmineral,
 /area/awaymission/undergroundoutpost45/research)
 "uw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,

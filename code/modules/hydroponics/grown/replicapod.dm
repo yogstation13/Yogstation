@@ -58,7 +58,7 @@
 		factions = null
 		contains_sample = FALSE
 
-/obj/item/seeds/replicapod/get_analyzer_text()
+/obj/item/seeds/replicapod/get_analyser_text()
 	var/text = ..()
 	if(contains_sample)
 		text += "\n It contains a blood sample!"

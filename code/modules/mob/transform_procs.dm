@@ -16,7 +16,7 @@
 
 	//Make mob invisible and spawn animation
 	notransform = TRUE
-	Paralyze(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
+	Paralyse(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
 	icon = null
 	cut_overlays()
 	invisibility = INVISIBILITY_MAXIMUM
@@ -142,7 +142,7 @@
 		O.Stun(AmountStun(), ignore_canstun = TRUE)
 		O.Knockdown(AmountKnockdown(), ignore_canstun = TRUE)
 		O.Immobilize(AmountImmobilized(), ignore_canstun = TRUE)
-		O.Paralyze(AmountParalyzed(), ignore_canstun = TRUE)
+		O.Paralyse(AmountParalysed(), ignore_canstun = TRUE)
 		O.Unconscious(AmountUnconscious(), ignore_canstun = TRUE)
 		O.Sleeping(AmountSleeping(), ignore_canstun = TRUE)
 
@@ -192,7 +192,7 @@
 
 	//Make mob invisible and spawn animation
 	notransform = TRUE
-	Paralyze(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
+	Paralyse(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
 
 	icon = null
 	cut_overlays()
@@ -319,7 +319,7 @@
 		O.Stun(AmountStun(), ignore_canstun = TRUE)
 		O.Knockdown(AmountKnockdown(), ignore_canstun = TRUE)
 		O.Immobilize(AmountImmobilized(), ignore_canstun = TRUE)
-		O.Paralyze(AmountParalyzed(), ignore_canstun = TRUE)
+		O.Paralyse(AmountParalysed(), ignore_canstun = TRUE)
 		O.Unconscious(AmountUnconscious(), ignore_canstun = TRUE)
 		O.Sleeping(AmountSleeping(), ignore_canstun = TRUE)
 
@@ -366,7 +366,7 @@
 	if (notransform)
 		return
 	notransform = TRUE
-	Paralyze(1, ignore_canstun = TRUE)
+	Paralyse(1, ignore_canstun = TRUE)
 	for(var/obj/item/W in src)
 		dropItemToGround(W)
 	regenerate_icons()
@@ -401,7 +401,7 @@
 	if (notransform)
 		return
 	notransform = TRUE
-	Paralyze(1, ignore_canstun = TRUE)
+	Paralyse(1, ignore_canstun = TRUE)
 
 	for(var/obj/item/W in src)
 		if(delete_items)
@@ -530,7 +530,7 @@
 	if (notransform)
 		return
 	notransform = TRUE
-	Paralyze(1, ignore_canstun = TRUE)
+	Paralyse(1, ignore_canstun = TRUE)
 	for(var/obj/item/W in src)
 		dropItemToGround(W)
 	regenerate_icons()
@@ -551,7 +551,7 @@
 	if(notransform)
 		return
 	notransform = TRUE
-	Paralyze(1, ignore_canstun = TRUE)
+	Paralyse(1, ignore_canstun = TRUE)
 
 	SSblackbox.record_feedback("amount", "gorillas_created", 1)
 
@@ -577,7 +577,7 @@
 	if (notransform)
 		return
 	notransform = TRUE
-	Paralyze(1, ignore_canstun = TRUE)
+	Paralyse(1, ignore_canstun = TRUE)
 	for(var/obj/item/W in src)
 		dropItemToGround(W)
 	regenerate_icons()
@@ -606,7 +606,7 @@
 	if(notransform)
 		return
 	notransform = TRUE
-	Paralyze(1, ignore_canstun = TRUE)
+	Paralyse(1, ignore_canstun = TRUE)
 
 	for(var/obj/item/W in src)
 		dropItemToGround(W)

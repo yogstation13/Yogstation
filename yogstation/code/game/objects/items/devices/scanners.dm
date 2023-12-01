@@ -42,7 +42,7 @@ TRICORDER
 /obj/item/multitool/tricorder/attack(mob/living/M, mob/living/user, obj/item/I)
 	add_fingerprint(user)
 	var/turf/U = get_turf(I)
-	atmosanalyzer_scan(user, U)
+	atmosanalyser_scan(user, U)
 	if(user.stat || user.eye_blind)
 		return
 	if (isslime(M))
@@ -55,20 +55,20 @@ TRICORDER
 		lesserhealthscan(user, M)
 		return
 
-//Gas Analyzer Tank Scan
+//Gas Analyser Tank Scan
 /obj/item/multitool/tricorder/afterattack(atom/target as obj, mob/user, proximity)
 	add_fingerprint(user)
 	if(istype(target, /turf))
 		var/turf/U = get_turf(target)
-		atmosanalyzer_scan(user, U)
+		atmosanalyser_scan(user, U)
 	else if(istype(target, /obj/effect/anomaly))
 		var/obj/effect/anomaly/A = target
-		A.analyzer_act(user, src)
+		A.analyser_act(user, src)
 		to_chat(user, span_notice("Analyzing... [A]'s unstable field is fluctuating along frequency [format_frequency(A.aSignal.frequency)], code [A.aSignal.code]."))
 	else
-		target.analyzer_act(user, src)
+		target.analyser_act(user, src)
 
-//Gas Analyzer Turf Scan
+//Gas Analyser Turf Scan
 /obj/item/multitool/tricorder/attack_self(mob/user)
 	scangasses(user)
 

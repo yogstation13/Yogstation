@@ -27,7 +27,7 @@ What are the archived variables for?
 	var/gas_list_view_only
 	var/initial_volume = CELL_VOLUME //liters
 	var/list/reaction_results
-	var/list/analyzer_results //used for analyzer feedback - not initialized until its used
+	var/list/analyser_results //used for analyser feedback - not initialized until its used
 	var/_extools_pointer_gasmixture // Contains the index in the gas vector for this gas mixture in rust land. Don't. Touch. This. Var.
 
 GLOBAL_VAR_INIT(auxtools_atmos_initialized, FALSE)
@@ -208,10 +208,10 @@ GLOBAL_VAR_INIT(auxtools_atmos_initialized, FALSE)
 	return 1
 	*/
 
-/datum/gas_mixture/proc/set_analyzer_results(instability)
-	if(!analyzer_results)
-		analyzer_results = new
-	analyzer_results["fusion"] = instability
+/datum/gas_mixture/proc/set_analyser_results(instability)
+	if(!analyser_results)
+		analyser_results = new
+	analyser_results["fusion"] = instability
 
 //Mathematical proofs:
 /*

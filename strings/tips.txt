@@ -68,7 +68,7 @@ As the Research Director, you can take AIs out of their cores by loading them in
 As the Research Director, you can lock down cyborgs instead of blowing them up. Then you can have their laws reset or if that doesn't work, safely dismantled.
 As a Scientist, you can use the mutation toxin obtained from green slimes to turn yourself into a jelly mutant. Each subspecies has unique features - for example telepathic powers, duplicating bodies or integrating slime extracts!
 As a Scientist, you can maximize the number of uses you get out of a slime by feeding it slime steroid, created from purple slimes, while alive. You can then apply extract enhancer, created from cerulean slimes, on each extract.
-As a Scientist, you can disable anomalies by scanning them with an analyzer, then send a signal on the frequency it gives you with a remote signaling device, or if researched, hit the anomaly an anomaly analyzer. This will leave behind an anomaly core, which can be used to construct a Phazon mech or reactive armors!
+As a Scientist, you can disable anomalies by scanning them with an analyser, then send a signal on the frequency it gives you with a remote signaling device, or if researched, hit the anomaly an anomaly analyser. This will leave behind an anomaly core, which can be used to construct a Phazon mech or reactive armors!
 As a Scientist, researchable stock parts can seriously improve the efficiency and speed of machines around the station. In some cases, it can even unlock new functions.
 As a Scientist, you can generate research points by letting the tachyon-doppler array record increasingly large explosions.
 As a Scientist, getting drunk just enough will speed up research. Skol!
@@ -102,7 +102,7 @@ As an Engineer, you can cool the supermatter crystal by spraying it with a fire 
 As an Engineer, the Particle Accelerator that powers singularity engines is also effective at killing blobs!
 As an Engineer, you can repair windows by using a welding tool on them while on any intent other than harm.
 As an Engineer, you can lock APCs, fire alarms, emitters and radiation collectors using your ID card to prevent others from disabling them.
-As an Engineer, you can convert tesla coils into corona analyzers by using a screwdriver on the circuit board. They will produce less power, but generate research points!
+As an Engineer, you can convert tesla coils into corona analysers by using a screwdriver on the circuit board. They will produce less power, but generate research points!
 As an Engineer, you can use radiation collectors to generate research points. Load them with a 50/50 oxygen/tritium tank and use a multitool to switch them to research mode.
 As an Engineer, don't underestimate the humble P.A.C.M.A.N. generators. With upgraded parts, a couple units working in tandem are sufficient to take over for an exploded engine or shattered solars.
 As an Engineer, your departmental protolathe and circuit printer can manufacture the necessary circuit boards and components to build just about anything. Make extra medical machinery everywhere! Build a gibber for security! Set up an array of emitters pointing down the hall! The possibilities are endless!
@@ -162,7 +162,7 @@ As the Bartender, the drinks you start with only give you the basics. If you wan
 As the Bartender, you can use a circular saw on your shotgun to make it easier to store.
 As a Janitor, if someone steals your janicart, you can instead use your space cleaner spray, grenades, water sprayer, exact bloody revenge or order another from Cargo.
 As a Janitor, mousetraps can be used to create bombs or booby-trap containers.
-As the Curator, you are not completely defenseless. Your whip easily disarms people, your laser pointer can blind humans and cyborgs, and you can hide items in wirecut books.
+As the Curator, you are not completely defenceless. Your whip easily disarms people, your laser pointer can blind humans and cyborgs, and you can hide items in wirecut books.
 As the Curator, be sure to keep the shelves stocked and the library clean for crew.
 As a Cargo Technician, you can hack MULEbots to make them faster, run over people in their way, and even let you ride them!
 As a Cargo Technician, you can order contraband items from the supply shuttle console by de-constructing it and using a multitool on the circuit board, the re-assembling it.
@@ -195,7 +195,7 @@ As an Alien, you take double damage from all burn attacks, such as lasers, weldi
 As an Alien, resin floors not only regenerate your plasma supply, but also passively heal you. Fight on resin floors to gain a home turf advantage!
 As an Alien, the facehugger is by far your most powerful weapon because of its ability to instantly win a fight. Remember however that certain helmets, such as biohoods or space helmets will completely block facehugger attacks.
 As an Alien, you are unable to pick up or use any human items or machinery. Instead, you should focus on sabotaging APCs, computers, cameras and either stowing, spacing, or melting any weapons you find.
-When fighting the Blob, you can hit it with an analyzer to check its chemical effects and the type of blob analyzed. Examining it with a research scanner or medical hud active will also reveal this information.
+When fighting the Blob, you can hit it with an analyser to check its chemical effects and the type of blob analysed. Examining it with a research scanner or medical hud active will also reveal this information.
 As the Blob, you can place your core at any clear, unobserved, spot you can move to after 3 minutes have passed. If you wait too long, you will be automatically placed at a random location. Use this wait time to coordinate with any other overminds.
 As the Blob, keep your core some distance from space, as it is both expensive to expand onto space, easy to be attacked from, and does not count towards your win condition. Emitter platforms built in space are especially dangerous.
 As the Blob, you can randomly repick your reagent type if the crew has adapted and protected themselves against your current one.
@@ -239,7 +239,7 @@ As a Morph, you can talk while disguised, but your words have a chance of being 
 As an Eldritch Horror, improvise! You have many abilities you can mutate, most of them applying to diverse situations. Experiment!
 As an Eldritch Horror, don't forget that you're not exempt from server rules while mind-controlling someone. Their actions become your actions.
 You can remove an Eldritch Horror from someone's head via surgery. Decapitation also works!
-You can detect an Eldritch Horror inside someone's head with an advanced health analyzer.
+You can detect an Eldritch Horror inside someone's head with an advanced health analyser.
 If you see an Eldritch Horror trying to enter someone's head, you can quickly shove it away to interrupt the process!
 Eldritch Horrors can enter any creature that has a brain organ. Yes, that includes xenomorphs.
 Contrary to popular belief, Eldritch Horrors are not "cute".

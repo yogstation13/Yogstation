@@ -316,9 +316,9 @@
 "R" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/regular,
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	desc = "A prototype hand-held body scanner able to distinguish vital signs of the subject.";
-	name = "prototype health analyzer"
+	name = "prototype health analyser"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)

@@ -23,7 +23,7 @@
 
 /obj/item/organ/lungs/plant
 	name = "mesophyll"
-	desc = "A lung-shaped organ playing a key role in phytosian's photosynthesis." //phytosians don't need that for their light healing so that's just flavor, I might try to tie their light powers to it later(tm)
+	desc = "A lung-shaped organ playing a key role in phytosian's photosynthesis." //phytosians don't need that for their light healing so that's just flavour, I might try to tie their light powers to it later(tm)
 	icon = 'yogstation/icons/obj/surgery.dmi'
 	icon_state = "lungs-plant"
 

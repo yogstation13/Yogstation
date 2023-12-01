@@ -95,7 +95,7 @@
 			purrbation_remove(M)
 		CHECK_TICK
 
-///used to transmogrificate spacemen into or from catboys/girls. Arguments H = target spaceman and silent = TRUE/FALSE whether or not we alert them to their transformation with cute flavortext
+///used to transmogrificate spacemen into or from catboys/girls. Arguments H = target spaceman and silent = TRUE/FALSE whether or not we alert them to their transformation with cute flavourtext
 /proc/purrbation_toggle(mob/living/carbon/human/H, silent = FALSE)
 	if(!ishumanbasic(H))
 		var/catgirlcheck = istype(H.getorganslot(ORGAN_SLOT_EARS), /obj/item/organ/ears/cat) || istype(H.getorganslot(ORGAN_SLOT_TAIL), /obj/item/organ/tail/cat) //if they've got cat parts they are likely an unfortunate victim of admin black magic AKA "fun", turn them back

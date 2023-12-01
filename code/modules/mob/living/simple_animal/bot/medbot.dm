@@ -35,7 +35,7 @@
 	path_image_color = "#DDDDFF"
 
 	var/obj/item/reagent_containers/glass/reagent_glass = null //Can be set to draw from this for reagents.
-	var/healthanalyzer = /obj/item/healthanalyzer
+	var/healthanalyser = /obj/item/healthanalyser
 	var/firstaid = /obj/item/storage/firstaid
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
 	var/mob/living/carbon/patient = null
@@ -97,7 +97,7 @@
 	if(!on)
 		icon_state = "medibot0"
 		return
-	if(IsStun() || IsParalyzed())
+	if(IsStun() || IsParalysed())
 		icon_state = "medibota"
 		return
 	if(mode == BOT_HEALING)
@@ -381,7 +381,7 @@
 	if(mode == BOT_HEALING)
 		return
 
-	if(IsStun() || IsParalyzed())
+	if(IsStun() || IsParalysed())
 		oldpatient = patient
 		patient = null
 		mode = BOT_IDLE
@@ -523,7 +523,7 @@
 	if(treat_virus && !C.reagents.has_reagent(treatment_virus_avoid) && !C.reagents.has_reagent(treatment_virus))
 		for(var/thing in C.diseases)
 			var/datum/disease/D = thing
-			//the medibot can't detect viruses that are undetectable to Health Analyzers or Pandemic machines.
+			//the medibot can't detect viruses that are undetectable to Health Analysers or Pandemic machines.
 			if(!(D.visibility_flags & HIDDEN_SCANNER || D.visibility_flags & HIDDEN_PANDEMIC) \
 			&& D.severity != DISEASE_SEVERITY_POSITIVE \
 			&& (D.stage > 1 || (D.spread_flags & DISEASE_SPREAD_AIRBORNE))) // medibot can't detect a virus in its initial stage unless it spreads airborne.
@@ -690,7 +690,7 @@
 
 	drop_part(firstaid, Tsec)
 	new /obj/item/assembly/prox_sensor(Tsec)
-	drop_part(healthanalyzer, Tsec)
+	drop_part(healthanalyser, Tsec)
 
 	if(reagent_glass)
 		drop_part(reagent_glass, Tsec)

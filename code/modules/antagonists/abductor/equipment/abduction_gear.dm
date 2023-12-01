@@ -114,7 +114,7 @@
 		M.SetStun(0)
 		M.SetKnockdown(0)
 		M.SetImmobilized(0)
-		M.SetParalyzed(0)
+		M.SetParalysed(0)
 		combat_cooldown = 0
 		START_PROCESSING(SSobj, src)
 
@@ -400,7 +400,7 @@
  9.Insert replacement gland (Retrieve one from gland storage).<br>
  10.Consider dressing the specimen back to not disturb the habitat. <br>
  11.Put the specimen in the experiment machinery.<br>
- 12.Choose one of the machine options. The target will be analyzed and teleported to the selected drop-off point.<br>
+ 12.Choose one of the machine options. The target will be analysed and teleported to the selected drop-off point.<br>
  13.You will receive one supply credit, and the subject will be counted towards your quota.<br>
 <br>
 Congratulations! You are now trained for invasive xenobiology research!"}
@@ -500,7 +500,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	L.lastattacker = user.real_name
 	L.lastattackerckey = user.ckey
 
-	L.Paralyze(140)
+	L.Paralyse(140)
 	L.apply_effect(EFFECT_STUTTER, 7)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 

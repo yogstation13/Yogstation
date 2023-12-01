@@ -90,7 +90,7 @@
 		if(EFFECT_KNOCKDOWN)
 			Knockdown(effect * hit_percent)
 		if(EFFECT_PARALYZE)
-			Paralyze(effect * hit_percent)
+			Paralyse(effect * hit_percent)
 		if(EFFECT_IMMOBILIZE)
 			Immobilize(effect * hit_percent)
 		if(EFFECT_UNCONSCIOUS)
@@ -101,14 +101,14 @@
 		if(EFFECT_EYE_BLUR)
 			blur_eyes(effect * hit_percent)
 		if(EFFECT_PARALYZE)
-			Paralyze(effect * hit_percent)
+			Paralyse(effect * hit_percent)
 		if(EFFECT_IMMOBILIZE)
 			Immobilize(effect * hit_percent)
 	return TRUE
 
 
 /mob/living/proc/apply_effects(stun = 0, knockdown = 0, unconscious = 0, irradiate = 0, slur = 0, stutter = 0, eyeblur = 0, drowsy = 0, \
-								blocked = 0, stamina = 0, jitter = 0, paralyze = 0, immobilize = 0)
+								blocked = 0, stamina = 0, jitter = 0, paralyse = 0, immobilize = 0)
 	if(blocked >= 100)
 		return FALSE
 	if(stun)
@@ -120,8 +120,8 @@
 	if(unconscious)
 		apply_effect(unconscious, EFFECT_UNCONSCIOUS, blocked)
 
-	if(paralyze)
-		apply_effect(paralyze, EFFECT_PARALYZE, blocked)
+	if(paralyse)
+		apply_effect(paralyse, EFFECT_PARALYZE, blocked)
 
 	if(immobilize)
 		apply_effect(immobilize, EFFECT_IMMOBILIZE, blocked)

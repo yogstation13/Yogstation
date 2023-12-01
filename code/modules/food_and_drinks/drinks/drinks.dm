@@ -549,7 +549,7 @@
 
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb
 	name = "Dr. Gibb"
-	desc = "A delicious mixture of 42 different flavors."
+	desc = "A delicious mixture of 42 different flavours."
 	icon_state = "dr_gibb"
 	list_reagents = list(/datum/reagent/consumable/dr_gibb = 30)
 	foodtype = SUGAR | JUNKFOOD
@@ -602,9 +602,9 @@
 
 /obj/item/reagent_containers/food/drinks/soda_cans/mystery
 	name = "Mystery Fizz"
-	desc = "Delicious soda with the added flair of mystery flavor! Note, Fizzfazz Inc. not liable for any damages caused by drinking this product."
+	desc = "Delicious soda with the added flair of mystery flavour! Note, Fizzfazz Inc. not liable for any damages caused by drinking this product."
 	icon_state = "mysterysoda"
-	var/static/list/descs = list("The entire label seems to just be a legal disclaimer.","The label reads off over 200 possible flavors."\
+	var/static/list/descs = list("The entire label seems to just be a legal disclaimer.","The label reads off over 200 possible flavours."\
 	, "The date on the cap reads off that the bottle expired a decade ago...")
 
 /obj/item/reagent_containers/food/drinks/soda_cans/mystery/Initialize(mapload)

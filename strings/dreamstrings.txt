@@ -26,7 +26,7 @@ the medical bay
 the %ADJECTIVE% bridge
 the %ADJECTIVE% brig
 %A% %ADJECTIVE% shuttle
-%A% %ADJECTIVE% laboratory
+%A% %ADJECTIVE% labouratory
 Nanotrasen
 the Syndicate
 the Wizard Federation

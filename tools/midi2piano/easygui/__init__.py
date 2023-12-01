@@ -144,7 +144,7 @@ except:
 
 if runningPython3:
     from tkinter import *
-    import tkinter.filedialog as tk_FileDialog
+    import tkinter.filedialogue as tk_FileDialog
     from io import StringIO
 else:
     from Tkinter import *
@@ -221,7 +221,7 @@ def ynbox(msg="Shall I continue?"
     The default is "Yes".
 
     The returned value is calculated this way::
-        if the first choice ("Yes") is chosen, or if the dialog is cancelled:
+        if the first choice ("Yes") is chosen, or if the dialogue is cancelled:
             return 1
         else:
             return 0
@@ -252,7 +252,7 @@ def ccbox(msg="Shall I continue?"
     The default is "Continue".
 
     The returned value is calculated this way::
-        if the first choice ("Continue") is chosen, or if the dialog is cancelled:
+        if the first choice ("Continue") is chosen, or if the dialogue is cancelled:
             return 1
         else:
             return 0
@@ -286,7 +286,7 @@ def boolbox(msg="Shall I continue?"
     The default is the first choice.
 
     The returned value is calculated this way::
-        if the first choice is chosen, or if the dialog is cancelled:
+        if the first choice is chosen, or if the dialogue is cancelled:
             returns 1
         else:
             returns 0
@@ -1523,13 +1523,13 @@ def diropenbox(msg=None
     , default=None
     ):
     """
-    A dialog to get a directory name.
+    A dialogue to get a directory name.
     Note that the msg argument, if specified, is ignored.
 
     Returns the name of a directory, or None if user chose to cancel.
 
     If the "default" argument specifies a directory name, and that
-    directory exists, then the dialog box will start with that directory.
+    directory exists, then the dialogue box will start with that directory.
     """
     title=getFileDialogTitle(msg,title)
     localRoot = Tk()
@@ -1626,7 +1626,7 @@ def fileopenbox(msg=None
     , filetypes=None
     ):
     """
-    A dialog to get a file name.
+    A dialogue to get a file name.
 
     About the "default" argument
     ============================

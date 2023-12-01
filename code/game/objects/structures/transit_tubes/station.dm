@@ -80,7 +80,7 @@
 						pod.visible_message(span_warning("[user] starts putting [GM] into the [pod]!"))
 						if(do_after(user, 1.5 SECONDS, src))
 							if(open_status == STATION_TUBE_OPEN && GM && user.grab_state >= GRAB_AGGRESSIVE && user.pulling == GM && !GM.buckled && !GM.has_buckled_mobs())
-								GM.Paralyze(100)
+								GM.Paralyse(100)
 								src.Bumped(GM)
 						break
 		else

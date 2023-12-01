@@ -55,7 +55,7 @@
 #define EFFECT_STUN			"stun"
 #define EFFECT_KNOCKDOWN	"knockdown"
 #define EFFECT_UNCONSCIOUS	"unconscious"
-#define EFFECT_PARALYZE		"paralyze"
+#define EFFECT_PARALYZE		"paralyse"
 #define EFFECT_IMMOBILIZE	"immobilize"
 #define EFFECT_IRRADIATE	"irradiate"
 #define EFFECT_STUTTER		"stutter"

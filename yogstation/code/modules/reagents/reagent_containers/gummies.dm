@@ -87,7 +87,7 @@
 	color = "#E78108"
 
 /obj/item/reagent_containers/gummy/meth
-	desc =  "A sweet chewable gummy bear! Could this one be lemon flavor?"
+	desc =  "A sweet chewable gummy bear! Could this one be lemon flavour?"
 	list_reagents = list(/datum/reagent/drug/methamphetamine = 2, /datum/reagent/consumable/banana = 13)
 	color = "#ffdf4e"
 

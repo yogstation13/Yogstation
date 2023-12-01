@@ -7,7 +7,7 @@
 	amount = dna.species.spec_stun(src,amount)
 	return ..()
 
-/mob/living/carbon/human/Paralyze(amount, updating = TRUE, ignore_canstun = FALSE)
+/mob/living/carbon/human/Paralyse(amount, updating = TRUE, ignore_canstun = FALSE)
 	amount = dna.species.spec_stun(src, amount)
 	return ..()
 

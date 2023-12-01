@@ -168,7 +168,7 @@
 		M.visible_message(span_warning("[M] tips over [src]."),
 			span_notice("You tip over [src]."))
 		to_chat(src, span_userdanger("You are tipped over by [M]!"))
-		Paralyze(60, ignore_canstun = TRUE)
+		Paralyse(60, ignore_canstun = TRUE)
 		icon_state = icon_dead
 		spawn(rand(20,50))
 			if(!stat && M)

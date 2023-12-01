@@ -348,7 +348,7 @@
 	M.Move(targetm)
 	M.visible_message(span_warning("[M] is thrown clear of [AM]!"))
 	M.throw_at(target, 14, 5, AM)
-	M.Paralyze(60)
+	M.Paralyse(60)
 	S.throwcooldown = TRUE
 	addtimer(VARSET_CALLBACK(S, throwcooldown, FALSE), 10 SECONDS)
 

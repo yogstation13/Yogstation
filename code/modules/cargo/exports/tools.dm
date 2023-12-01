@@ -78,12 +78,12 @@
 	export_types = list(/obj/item/flashlight/seclite)
 
 
-/datum/export/analyzer
+/datum/export/analyser
 	cost = 5
-	unit_name = "analyzer"
-	export_types = list(/obj/item/analyzer)
+	unit_name = "analyser"
+	export_types = list(/obj/item/analyser)
 
-/datum/export/analyzer/t_scanner
+/datum/export/analyser/t_scanner
 	cost = 10
 	unit_name = "t-ray scanner"
 	export_types = list(/obj/item/t_scanner)

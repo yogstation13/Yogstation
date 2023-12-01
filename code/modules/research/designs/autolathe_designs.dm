@@ -90,12 +90,12 @@
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/analyzer
-	name = "Analyzer"
-	id = "analyzer"
+/datum/design/analyser
+	name = "Analyser"
+	id = "analyser"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 30, /datum/material/glass = 20)
-	build_path = /obj/item/analyzer
+	build_path = /obj/item/analyser
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
@@ -460,12 +460,12 @@
 	category = list("initial","Miscellaneous", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
-/datum/design/plant_analyzer
-	name = "Plant Analyzer"
-	id = "plant_analyzer"
+/datum/design/plant_analyser
+	name = "Plant Analyser"
+	id = "plant_analyser"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 30, /datum/material/glass = 20)
-	build_path = /obj/item/plant_analyzer
+	build_path = /obj/item/plant_analyser
 	category = list("initial","Miscellaneous", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
@@ -612,12 +612,12 @@
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
 
-/datum/design/healthanalyzer
-	name = "Health Analyzer"
-	id = "healthanalyzer"
+/datum/design/healthanalyser
+	name = "Health Analyser"
+	id = "healthanalyser"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 50)
-	build_path = /obj/item/healthanalyzer
+	build_path = /obj/item/healthanalyser
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 

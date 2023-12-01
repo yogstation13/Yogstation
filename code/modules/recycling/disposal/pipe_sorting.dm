@@ -27,7 +27,7 @@
 	var/sortType = 0
 	// sortType is to be set in map editor.
 	// Supports both singular numbers and strings of numbers similar to access level strings.
-	// Look at the list called TAGGERLOCATIONS in /_globalvars/lists/flavor_misc.dm
+	// Look at the list called TAGGERLOCATIONS in /_globalvars/lists/flavour_misc.dm
 	var/list/sortTypes = list()
 
 /obj/structure/disposalpipe/sorting/mail/flip

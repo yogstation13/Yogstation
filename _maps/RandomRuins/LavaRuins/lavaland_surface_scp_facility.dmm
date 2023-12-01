@@ -1272,7 +1272,7 @@
 /area/ruin/unpowered)
 "YP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/analyzer,
+/obj/item/analyser,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "Zf" = (

@@ -396,7 +396,7 @@ GLOBAL_LIST_EMPTY(lockers)
 							 	 span_italics("You hear a loud metal bang."))
 			var/mob/living/L = O
 			if(!issilicon(L))
-				L.Paralyze(40)
+				L.Paralyse(40)
 			if(istype(src, /obj/structure/closet/supplypod/extractionpod))
 				O.forceMove(src)
 			else

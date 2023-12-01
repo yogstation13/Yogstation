@@ -28,7 +28,7 @@
 <b>Function:</b> Transmits a specialized cluster of signals to override handcuff locking
 mechanisms<BR>
 <b>Special Features:</b><BR>
-<i>Neuro-Scan</i>- Analyzes certain shadow signals in the nervous system<BR>
+<i>Neuro-Scan</i>- Analyses certain shadow signals in the nervous system<BR>
 <HR>
 No Implant Specifics"}
 	return dat

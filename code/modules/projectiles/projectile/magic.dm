@@ -780,7 +780,7 @@
 	trigger_range = 0
 	can_only_hit_target = TRUE
 	nodamage = FALSE
-	paralyze = 6 SECONDS
+	paralyse = 6 SECONDS
 	hitsound = 'sound/magic/mm_hit.ogg'
 
 	trail = TRUE
@@ -882,7 +882,7 @@
 	.=..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.Paralyze(30)
+		X.Paralyse(30)
 		X.visible_message(span_warning("Tentacle wraps around [target]!"))
 		X.adjustBruteLoss(6)
 		new /obj/effect/temp_visual/goliath_tentacle/original(target)

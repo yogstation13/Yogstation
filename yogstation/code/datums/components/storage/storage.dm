@@ -87,7 +87,7 @@
 		var/turf/loccheck = get_turf(A)
 		if(is_reebe(loccheck.z))
 			user.visible_message(span_warning("An unseen force knocks [user] to the ground!"), "[span_big_brass("\"I think not!\"")]")
-			user.Paralyze(60)
+			user.Paralyse(60)
 			return
 		if(istype(loccheck.loc, /area/fabric_of_reality))
 			to_chat(user, span_danger("You can't do that here!"))

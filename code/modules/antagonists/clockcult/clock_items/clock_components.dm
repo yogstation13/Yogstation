@@ -59,7 +59,7 @@
 	clockwork_desc = "The gem from an interdiction lens."
 	icon_state = "lens_gem"
 	cultist_message = "The gem turns black and cold for a moment before its normal glow returns."
-	servant_of_ratvar_messages = list("\"Disgusting failure.\"" = TRUE, "You feel scrutinized." = FALSE, "\"Weaklings.\"" = TRUE, "\"Pathetic defenses.\"" = TRUE)
+	servant_of_ratvar_messages = list("\"Disgusting failure.\"" = TRUE, "You feel scrutinized." = FALSE, "\"Weaklings.\"" = TRUE, "\"Pathetic defences.\"" = TRUE)
 	w_class = WEIGHT_CLASS_TINY
 	light_range = 1.4
 	light_power = 0.4

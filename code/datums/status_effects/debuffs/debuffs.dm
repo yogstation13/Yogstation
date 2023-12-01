@@ -70,16 +70,16 @@
 
 
 //PARALYZED
-/datum/status_effect/incapacitating/paralyzed
-	id = "paralyzed"
+/datum/status_effect/incapacitating/paralysed
+	id = "paralysed"
 
-/datum/status_effect/incapacitating/paralyzed/on_apply()
+/datum/status_effect/incapacitating/paralysed/on_apply()
 	. = ..()
 	if(!.)
 		return
 	owner.add_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 
-/datum/status_effect/incapacitating/paralyzed/on_remove()
+/datum/status_effect/incapacitating/paralysed/on_remove()
 	owner.remove_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 	return ..()
 
@@ -381,7 +381,7 @@
 	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.can_block_magic(charge_cost = 0) && number_legs)
 		if(force_damage || owner.m_intent != MOVE_INTENT_WALK)
 			if(GLOB.ratvar_awakens)
-				owner.Paralyze(20)
+				owner.Paralyse(20)
 			if(iscultist(owner))
 				owner.apply_damage(cultist_damage_on_toggle * 0.5, BURN, BODY_ZONE_L_LEG)
 				owner.apply_damage(cultist_damage_on_toggle * 0.5, BURN, BODY_ZONE_R_LEG)
@@ -771,7 +771,7 @@
 	var/old_health
 
 /datum/status_effect/kindle/tick()
-	owner.Paralyze(1.5 SECONDS)
+	owner.Paralyse(1.5 SECONDS)
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
 		C.silent += 2
@@ -1637,7 +1637,7 @@
 		channel = TELEPORT_CHANNEL_MAGIC,
 	)
 	new teleport_effect(get_turf(owner))
-	owner.Paralyze(2 SECONDS)
+	owner.Paralyse(2 SECONDS)
 	return ..()
 
 /datum/status_effect/eldritch/knock

@@ -293,7 +293,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		user.adjustStaminaLoss(stam_cost)
 		if (user.getStaminaLoss() >= 100)
 			user.throw_at(landing_turf, 2, 2)
-			user.Paralyze(4 SECONDS)
+			user.Paralyse(4 SECONDS)
 			user.visible_message(span_notice("[user] collapses on the ground, exhausted!"), span_warning("You're too tired to finish the roll!"))
 		else
 			playsound(user, 'yogstation/sound/items/dodgeroll.ogg', 50, TRUE)

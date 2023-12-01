@@ -1,11 +1,11 @@
-#define COOLDOWN_PERSTEP 0.4 SECONDS//determines how many deciseconds each tile traveled adds to the cooldown
+#define COOLDOWN_PERSTEP 0.4 SECONDS//determines how many deciseconds each tile travelled adds to the cooldown
 #define COOLDOWN_STEPLIMIT 60 SECONDS
 #define COOLDOWN_FLURRYATTACK 5 SECONDS
 
 /obj/item/mdrive
 	name = "mirage drive"
 	desc = "A peculiar device with an almost inaudible thrumming sound coming from the center. Landing near other people will slow them down and recharge the drive faster. Directly \
-	traveling to someone will open a window for a concentrated assault with power proportional to distance."
+	travelling to someone will open a window for a concentrated assault with power proportional to distance."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "miragedrive"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'

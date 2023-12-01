@@ -52,7 +52,7 @@ the `try_update_ui`), so we accept an existing UI to update.
 
 Inside the `if(!ui)` block (which means we are creating a new UI), we choose our
 template, title, and size; we can also set various options like `style` (for
-themes), or autoupdate. These options will be elaborated on later (as will
+themes), or autoupdate. These options will be elabourated on later (as will
 `ui_state`s).
 
 After `ui_interact`, we need to define `ui_data`. This just returns a list of

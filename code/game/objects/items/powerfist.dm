@@ -63,7 +63,7 @@
 			updateTank(tank, 1, user)
 	else if(W.tool_behaviour == TOOL_ANALYZER)
 		if(tank)
-			atmosanalyzer_scan(user, tank)
+			atmosanalyser_scan(user, tank)
 
 /obj/item/clothing/gloves/powerfist/proc/updateTank(obj/item/tank/internals/thetank, removing = 0, mob/living/carbon/human/user)
 	if(removing)

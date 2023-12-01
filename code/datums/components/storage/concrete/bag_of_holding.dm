@@ -17,7 +17,7 @@
 	var/turf/loccheck = get_turf(A)
 	if(is_reebe(loccheck.z))
 		user.visible_message(span_warning("An unseen force knocks [user] to the ground!"), "[span_big_brass("\"I think not!\"")]")
-		user.Paralyze(60)
+		user.Paralyse(60)
 		return
 	if(istype(loccheck.loc, /area/fabric_of_reality))
 		to_chat(user, span_danger("You can't do that here!"))
@@ -29,7 +29,7 @@
 
 	to_chat(user, span_danger("You are pulled into the bluespace disruption!")) // No escaping
 	user.forceMove(loccheck)
-	user.Paralyze(10)
+	user.Paralyse(10)
 
 	message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(loccheck)].")
 	log_game("[key_name(user)] detonated a bag of holding at [loc_name(loccheck)].")
@@ -48,7 +48,7 @@
 				M.take_overall_damage(85)
 				if(M.movement_type & FLYING)
 					M.visible_message(span_danger("The bluespace collapse crushes the air towards it, pulling [M] towards the ground..."))
-					M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
+					M.Paralyse(5, TRUE, TRUE)		//Overrides stun absorbs.
 		T.TerraformTurf(/turf/open/chasm/magic, /turf/open/chasm/magic)
 	for(var/fabricarea in get_areas(/area/fabric_of_reality))
 		var/area/fabric_of_reality/R = fabricarea

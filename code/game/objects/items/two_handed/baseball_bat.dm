@@ -75,6 +75,6 @@
 	. = ..()
 	if(user.zone_selected == BODY_ZONE_HEAD && get_location_accessible(target, BODY_ZONE_HEAD))
 		if(prob(30))
-			target.Paralyze(40)
+			target.Paralyse(40)
 		else
 			return TRUE

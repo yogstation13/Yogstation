@@ -99,7 +99,7 @@
 	gun.gun_owner = A
 	A.put_in_hands(gun)
 	to_chat(A, span_notice("You extract a hidden gun from your hand."))	
-	D.Paralyze(1 SECONDS)
+	D.Paralyse(1 SECONDS)
 	streak = ""
 
 /obj/item/gun/ballistic/automatic/pistol/martial

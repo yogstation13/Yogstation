@@ -119,7 +119,7 @@
 				if(!(BI.resistance_flags & ON_FIRE))
 					BI.fire_act()
 			continue
-		if(L.stat || L.IsStun() || L.IsParalyzed()) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
+		if(L.stat || L.IsStun() || L.IsParalysed()) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
 			continue
 		if(isslime(L)) //Ocular wardens heal slimes
 			continue

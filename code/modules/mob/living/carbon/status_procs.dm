@@ -3,7 +3,7 @@
 //eye_blind, eye_blurry, druggy, TRAIT_BLIND trait, TRAIT_NEARSIGHT trait, and TRAIT_HUSK trait.
 
 
-/mob/living/carbon/IsParalyzed(include_stamcrit = TRUE)
+/mob/living/carbon/IsParalysed(include_stamcrit = TRUE)
 	return ..() || (include_stamcrit && HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
 
 /mob/living/carbon/proc/enter_stamcrit()

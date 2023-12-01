@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	update_icon(new_state = "alienh_pounce")
 	if(hit_atom == target && target.stat!=DEAD)
-		target.Paralyze(100)
+		target.Paralyse(100)
 		target.visible_message(span_danger("[target] flails around wildly."),"<span class ='userdanger'>[name] pounces on you!</span>")
 
 /datum/hallucination/xeno_attack
@@ -309,7 +309,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		shake_camera(target, 2, 1)
 		if(bubblegum.Adjacent(target) && !charged)
 			charged = TRUE
-			target.Paralyze(8 SECONDS)
+			target.Paralyse(8 SECONDS)
 			target.adjustStaminaLoss(40)
 			step_away(target, bubblegum)
 			shake_camera(target, 4, 3)
@@ -1130,7 +1130,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if(istype(target, /obj/effect/dummy/phased_mob) || istype(target, /obj/effect/dummy/crawling))
 			return
 		to_chat(target, span_userdanger("You fall into the chasm!"))
-		target.Paralyze(40)
+		target.Paralyse(40)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), target, span_notice("It's surprisingly shallow.")), 15)
 		QDEL_IN(src, 30)
 
@@ -1166,7 +1166,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	target.set_screwyhud(SCREWYHUD_DEAD)
-	target.Paralyze(300)
+	target.Paralyse(300)
 	target.silent += 10
 	to_chat(target, span_deadsay("<b>[target.real_name]</b> has died at <b>[get_area_name(target)]</b>."))
 	if(prob(50))
@@ -1184,7 +1184,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			 "i[prob(50)?" fucking":""] hate [pick("blood cult", "clock cult", "revenants", "this round","this","myself","admins","you")]")]\"</span>")
 	sleep(rand(7,9) SECONDS)
 	target.set_screwyhud(SCREWYHUD_NONE)
-	target.SetParalyzed(0)
+	target.SetParalysed(0)
 	target.silent = FALSE
 	qdel(src)
 
@@ -1342,7 +1342,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /datum/hallucination/shock/proc/shock_drop()
 	target.adjust_jitter(10 SECONDS) //Still jittery, but vastly less
-	target.Paralyze(6 SECONDS)
+	target.Paralyse(6 SECONDS)
 
 /datum/hallucination/husks
 	random_hallucination_weight = 8

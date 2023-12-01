@@ -41,7 +41,7 @@
 	if(!..())
 		return
 	playsound(host_mob, "sparks", 75, 1, -1)
-	host_mob.Paralyze(80)
+	host_mob.Paralyse(80)
 
 /datum/nanite_program/pacifying
 	name = "Pacification"

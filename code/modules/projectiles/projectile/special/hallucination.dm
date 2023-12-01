@@ -166,7 +166,7 @@
 	hal_impact_effect_wall = null
 
 /obj/projectile/hallucination/taser/hal_apply_effect()
-	hal_target.Paralyze(100)
+	hal_target.Paralyse(100)
 	hal_target.adjust_stutter(2 SECONDS)
 	if(hal_target.dna && (hal_target.dna.check_mutation(HULK)|| hal_target.dna.check_mutation(ACTIVE_HULK)))
 		hal_target.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
@@ -199,7 +199,7 @@
 	hal_impact_effect_wall = null
 
 /obj/projectile/hallucination/ebow/hal_apply_effect()
-	hal_target.Paralyze(100)
+	hal_target.Paralyse(100)
 	hal_target.adjust_stutter(5 SECONDS)
 	hal_target.adjustStaminaLoss(8)
 

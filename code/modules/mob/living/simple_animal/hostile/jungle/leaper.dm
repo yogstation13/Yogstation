@@ -30,7 +30,7 @@
 /obj/projectile/leaper
 	name = "leaper bubble"
 	icon_state = "leaper"
-	paralyze = 50
+	paralyse = 50
 	damage = 0
 	range = 7
 	hitsound = 'sound/effects/snap.ogg'
@@ -92,7 +92,7 @@
 		var/mob/living/L = AM
 		if(!istype(L, /mob/living/simple_animal/hostile/jungle/leaper))
 			playsound(src,'sound/effects/snap.ogg',50, 1, -1)
-			L.Paralyze(50)
+			L.Paralyse(50)
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
 				C.reagents.add_reagent(/datum/reagent/toxin/leaper_venom, 5)

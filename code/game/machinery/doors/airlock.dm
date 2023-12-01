@@ -902,7 +902,7 @@
 		aiControlDisabled = AI_WIRE_HACKED
 		to_chat(user, "Receiving control information from airlock.")
 		sleep(1 SECONDS)
-		//bring up airlock dialog
+		//bring up airlock dialogue
 		aiHacking = FALSE
 		if(user)
 			attack_ai(user)
@@ -936,7 +936,7 @@
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
 				H.visible_message(span_danger("[user] headbutts the airlock."), \
 									span_userdanger("You headbutt the airlock!"))
-				H.Paralyze(100)
+				H.Paralyse(100)
 				H.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
 			else
 				visible_message(span_danger("[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet."))
@@ -1276,7 +1276,7 @@
 		to_chat(user, span_notice("You carefully start removing [charge] from [src]..."))
 		if(!I.use_tool(src, user, 150, volume=50))
 			to_chat(user, span_warning("You slip and [charge] detonates!"))
-			user.Paralyze(60)
+			user.Paralyse(60)
 			return blow_charge()
 		user.visible_message(span_notice("[user] removes [charge] from [src]."), \
 							 span_notice("You gently pry out [charge] from [src] and unhook its wires."))

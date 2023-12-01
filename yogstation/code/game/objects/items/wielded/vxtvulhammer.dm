@@ -181,7 +181,7 @@
 			var/mob/living/victim = target
 			if(toy)
 				if(user == target)
-					victim.Paralyze(2 SECONDS)
+					victim.Paralyse(2 SECONDS)
 					victim.emote("scream")
 					to_chat(victim, span_userdanger("That was stupid."))
 				else
@@ -189,7 +189,7 @@
 					victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
 			else
 				victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
-				victim.Paralyze(2 SECONDS)
+				victim.Paralyse(2 SECONDS)
 				user.visible_message(span_danger("The hammer thunders as it viscerally strikes [target.name]!"))
 				to_chat(victim, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
 				victim.emote("scream")

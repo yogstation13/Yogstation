@@ -229,7 +229,7 @@
 
 /datum/borg_skin/cola
 	name = "Sec Cola"
-	icon_state = "colaborg"
+	icon_state = "colabourg"
 	owner = "boodaliboo"
 	module_locked = "Security"
 

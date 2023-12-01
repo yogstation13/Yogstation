@@ -356,7 +356,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	outfit = /datum/outfit/lavalandprisoner
 	roundstart = FALSE
 	death = FALSE
-	short_desc = "You're a prisoner, sentenced to hard work in one of Nanotrasen's labor camps."
+	short_desc = "You're a prisoner, sentenced to hard work in one of Nanotrasen's labour camps."
 	flavour_text = "Good. It seems as though your ship crashed. It seems as \
 	though fate has other plans for you. You remember that you were convicted of "
 	assignedrole = "Escaped Prisoner"
@@ -366,7 +366,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /obj/effect/mob_spawn/human/prisoner_transport/Initialize(mapload)
 	. = ..()
-	var/list/crimes = list("murder", "larceny", "embezzlement", "unionization", "dereliction of duty", "kidnapping", "gross incompetence", "grand theft", "collaboration with the Syndicate", \
+	var/list/crimes = list("murder", "larceny", "embezzlement", "unionization", "dereliction of duty", "kidnapping", "gross incompetence", "grand theft", "collabouration with the Syndicate", \
 	"worship of a forbidden deity", "interspecies relations", "mutiny")
 	flavour_text += "[pick(crimes)]. But regardless of that, it seems like your crime doesn't matter now. You don't know where you are, but you know that it's out to kill you, and you're not going \
 	to lose this opportunity. Find a way to get out of this mess and back to where you rightfully belong - your [pick("house", "apartment", "spaceship", "station")]."

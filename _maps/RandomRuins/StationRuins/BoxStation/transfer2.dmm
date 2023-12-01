@@ -68,7 +68,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/healthanalyzer{
+/obj/item/healthanalyser{
 	pixel_y = 18
 	},
 /obj/item/clothing/gloves/color/black{

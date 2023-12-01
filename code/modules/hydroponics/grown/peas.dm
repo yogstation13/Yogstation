@@ -27,7 +27,7 @@
 	foodtype = VEGETABLES
 	tastes = list ("peas" = 1, "chalky saltiness" = 1)
 	wine_power = 50
-	wine_flavor = "what is, distressingly, fermented peas."
+	wine_flavour = "what is, distressingly, fermented peas."
 	distill_reagent = /datum/reagent/consumable/ethanol/peawine
 
 
@@ -63,7 +63,7 @@
 	foodtype = VEGETABLES
 	tastes = list ("a prancing rabbit" = 1) //Vib Ribbon sends her regards.. wherever she is.
 	wine_power = 90
-	wine_flavor = "a vector-graphic rabbit dancing on your tongue"
+	wine_flavour = "a vector-graphic rabbit dancing on your tongue"
 	juice_results = list(/datum/reagent/consumable/laughsyrup = 0)
 
 
@@ -98,4 +98,4 @@
 	foodtype = VEGETABLES
 	tastes = list ("numbing tranquility" = 2, "warmth" = 1)
 	wine_power = 100
-	wine_flavor = "mind-numbing peace and warmth"
+	wine_flavour = "mind-numbing peace and warmth"

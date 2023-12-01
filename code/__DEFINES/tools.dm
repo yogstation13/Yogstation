@@ -5,7 +5,7 @@
 #define TOOL_WIRECUTTER 	"wirecutter"
 #define TOOL_WRENCH 		"wrench"
 #define TOOL_WELDER 		"welder"
-#define TOOL_ANALYZER		"analyzer"
+#define TOOL_ANALYZER		"analyser"
 #define TOOL_MINING			"mining"
 #define TOOL_SHOVEL			"shovel"
 #define TOOL_HATCHET		"hatchet"

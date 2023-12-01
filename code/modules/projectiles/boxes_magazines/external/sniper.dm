@@ -3,7 +3,7 @@
 /obj/item/ammo_box/magazine/sniper_rounds
 	name = ".50 BMG magazine"
 	desc = "A six-round .50 BMG magazine that contains massive, oversized bullets. \
-			These bullets will dismember limbs, penetrate armor, and paralyze targets."
+			These bullets will dismember limbs, penetrate armor, and paralyse targets."
 	icon_state = ".50mag"
 	ammo_type = /obj/item/ammo_casing/p50
 	max_ammo = 6

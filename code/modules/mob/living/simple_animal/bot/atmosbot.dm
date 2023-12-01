@@ -212,7 +212,7 @@
 	var/atom/Tsec = drop_location()
 
 	new /obj/item/assembly/prox_sensor(Tsec)
-	new /obj/item/analyzer(Tsec)
+	new /obj/item/analyser(Tsec)
 	if(prob(50))
 		drop_part(robot_arm, Tsec)
 

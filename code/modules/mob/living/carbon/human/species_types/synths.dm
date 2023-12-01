@@ -140,7 +140,7 @@
 			H.adjustOxyLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
 			H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 			H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-		H.AdjustParalyzed(-3)
+		H.AdjustParalysed(-3)
 		H.AdjustStun(-3)
 		H.AdjustKnockdown(-3)
 		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)

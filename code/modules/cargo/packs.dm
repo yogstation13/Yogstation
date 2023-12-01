@@ -299,7 +299,7 @@
 
 /datum/supply_pack/security/energypistol
 	name = "Energy Pistol Single-Pack"
-	desc = "Contains one energy pistol for personal defense, capable of firing both lethal and nonlethal blasts of light. Requires Security access to open."
+	desc = "Contains one energy pistol for personal defence, capable of firing both lethal and nonlethal blasts of light. Requires Security access to open."
 	cost = 700
 	access_view = ACCESS_SECURITY
 	small_item = TRUE
@@ -1072,7 +1072,7 @@
 
 /datum/supply_pack/engineering/shield_sat
 	name = "Shield Generator Satellite"
-	desc = "Protect the very existence of this station with these Anti-Meteor defenses. Contains three Shield Generator Satellites."
+	desc = "Protect the very existence of this station with these Anti-Meteor defences. Contains three Shield Generator Satellites."
 	cost = 3000
 	special = TRUE
 	access_view = ACCESS_HEADS
@@ -1763,7 +1763,7 @@
 
 /datum/supply_pack/science/robotics
 	name = "Robotics Assembly Crate"
-	desc = "The tools you need to replace those finicky humans with a loyal robot army! Contains four proximity sensors, two empty first aid kits, two health analyzers, two red hardhats, two mechanical toolboxes, and two cleanbot assemblies! Requires Robotics access to open."
+	desc = "The tools you need to replace those finicky humans with a loyal robot army! Contains four proximity sensors, two empty first aid kits, two health analysers, two red hardhats, two mechanical toolboxes, and two cleanbot assemblies! Requires Robotics access to open."
 	cost = 1500
 	access = ACCESS_ROBO_CONTROL
 	access_view = ACCESS_ROBO_CONTROL
@@ -1773,8 +1773,8 @@
 					/obj/item/assembly/prox_sensor,
 					/obj/item/storage/firstaid,
 					/obj/item/storage/firstaid,
-					/obj/item/healthanalyzer,
-					/obj/item/healthanalyzer,
+					/obj/item/healthanalyser,
+					/obj/item/healthanalyser,
 					/obj/item/clothing/head/hardhat/red,
 					/obj/item/clothing/head/hardhat/red,
 					/obj/item/storage/toolbox/mechanical,
@@ -2248,7 +2248,7 @@
 
 /datum/supply_pack/organic/hydroponics
 	name = "Hydroponics Crate"
-	desc = "Supplies for growing a great garden! Contains two bottles of ammonia, two Plant-B-Gone spray bottles, a hatchet, cultivator, plant analyzer, as well as a pair of leather gloves and a botanist's apron."
+	desc = "Supplies for growing a great garden! Contains two bottles of ammonia, two Plant-B-Gone spray bottles, a hatchet, cultivator, plant analyser, as well as a pair of leather gloves and a botanist's apron."
 	cost = 1500
 	contains = list(/obj/item/reagent_containers/spray/plantbgone,
 					/obj/item/reagent_containers/spray/plantbgone,
@@ -2256,7 +2256,7 @@
 					/obj/item/reagent_containers/glass/bottle/ammonia,
 					/obj/item/hatchet,
 					/obj/item/cultivator,
-					/obj/item/plant_analyzer,
+					/obj/item/plant_analyser,
 					/obj/item/clothing/gloves/botanic_leather,
 					/obj/item/clothing/suit/apron,
 					/obj/item/storage/box/disks_plantgene)

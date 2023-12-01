@@ -2224,9 +2224,9 @@
 /area/ai_monitored/turret_protected/ai)
 "Uu" = (
 /obj/structure/table,
-/obj/item/stock_parts/subspace/analyzer,
-/obj/item/stock_parts/subspace/analyzer,
-/obj/item/stock_parts/subspace/analyzer,
+/obj/item/stock_parts/subspace/analyser,
+/obj/item/stock_parts/subspace/analyser,
+/obj/item/stock_parts/subspace/analyser,
 /obj/item/stock_parts/subspace/crystal,
 /obj/item/stock_parts/subspace/crystal,
 /obj/item/stock_parts/subspace/crystal,

@@ -96,11 +96,11 @@
 /area/mine/sleeper
 	name = "Mining Station Emergency Sleeper"
 
-/area/mine/laborcamp
-	name = "Labor Camp"
+/area/mine/labourcamp
+	name = "Labour Camp"
 
-/area/mine/laborcamp/security
-	name = "Labor Camp Security"
+/area/mine/labourcamp/security
+	name = "Labour Camp Security"
 	icon_state = "security"
 	ambience_index = AMBIENCE_DANGER
 
@@ -156,7 +156,7 @@
 	map_generator = /datum/map_generator/cave_generator/lavaland
 
 /area/lavaland/surface/outdoors/explored
-	name = "Lavaland Labor Camp"
+	name = "Lavaland Labour Camp"
 	area_flags = NONE
 
 
@@ -221,7 +221,7 @@
 	icon_state = "danger"
 
 /area/icemoon/surface/outdoors/explored
-	name = "Icemoon Labor Camp"
+	name = "Icemoon Labour Camp"
 	area_flags = NONE
 
 /area/icemoon/underground
@@ -245,5 +245,5 @@
 	name = "Icemoon Underground"
 	area_flags = NONE
 
-/area/icemoon/underground/explored/laborcamp
-	name = "Icemoon Labor Camp"
+/area/icemoon/underground/explored/labourcamp
+	name = "Icemoon Labour Camp"
