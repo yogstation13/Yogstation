@@ -126,7 +126,7 @@ module.exports = (env = {}, argv) => {
 
   // Add a bundle analyser to the plugins array
   if (argv.analyse) {
-    const { BundleAnalyserPlugin } = require('webpack-bundle-analyser');
+    const { BundleAnalyserPlugin } = require('webpack-bundle-analyzer');
     config.plugins = [
       ...config.plugins,
       new BundleAnalyserPlugin(),
