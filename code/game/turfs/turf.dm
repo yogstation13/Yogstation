@@ -19,10 +19,17 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/initial_temperature = T20C
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
-
+	/// If there's a tile over a basic floor that can be ripped out
+	var/overfloor_placed = FALSE
+	/// How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.
+	var/underfloor_accessibility = UNDERFLOOR_HIDDEN
 	var/blocks_air = FALSE
-
+	///Bool, whether this turf will always be illuminated no matter what area it is in
+	///Makes it look blue, be warned
+	var/space_lit = FALSE
+	var/force_no_gravity = TRUE
 	flags_1 = CAN_BE_DIRTY_1
+	
 
 	var/list/image/blueprint_data //for the station blueprints, images of objects eg: pipes
 
