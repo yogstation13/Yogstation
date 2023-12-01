@@ -2,18 +2,6 @@
 
 //Defines for construction states
 
-//rcd constants for the design list
-/// The mode of operation to design an specific type of rcd design
-#define RCD_DESIGN_MODE "rcd_design_mode"
-	/// For changing turfs
-	#define RCD_TURF (1 << 0)
-	/// Windoors & Airlocks
-	#define RCD_STRUCTURE (1 << 3)
-	/// For wallmounts like air alarms, fire alarms & apc
-	#define RCD_WALLFRAME (1 << 4)
-/// The typepath of the structure the rcd is trying to build
-#define RCD_DESIGN_PATH "rcd_design_path"
-
 //girder construction states
 #define GIRDER_NORMAL 0
 #define GIRDER_REINF_STRUTS 1
