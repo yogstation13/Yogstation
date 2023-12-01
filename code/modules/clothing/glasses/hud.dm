@@ -45,7 +45,7 @@
 	item_state = "glasses"
 	flash_protect = -1
 	// Blue green, dark
-	color_cutoffs = list(5, 15, 30)
+	color_cutoffs = list(5, 10, 30)
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/hud/health/meson
@@ -54,6 +54,8 @@
 	icon_state = "mesonhealth"
 	item_state = "mesonhealth"
 	vision_flags = SEE_TURFS
+	// Mesons get to be lightly green
+	color_cutoffs = list(5, 5, 15)
 	clothing_traits = list(TRAIT_MESONS)
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
 
