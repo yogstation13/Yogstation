@@ -9,6 +9,9 @@
 	mob_size = MOB_SIZE_TINY
 	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be deactivated."
 	weather_immunities = list(WEATHER_ASH)
+	light_on = FALSE
+	light_flags = LIGHT_ATTACHED
+	light_system = MOVABLE_LIGHT
 	health = 500
 	maxHealth = 500
 	layer = BELOW_MOB_LAYER

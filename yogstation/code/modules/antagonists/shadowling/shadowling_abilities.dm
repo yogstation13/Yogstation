@@ -136,12 +136,12 @@
 		var/mob/living/carbon/M = H
 		var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
 		if(G)
-			G.glowth.set_light(0, 0) // Set glowy to no light
+			G.glow.set_light_range_power_color(range = 0, power = 0) // Set glowy to no light
 			if(G.current_nullify_timer)
 				deltimer(G.current_nullify_timer) // Stacks
-			G.current_nullify_timer = addtimer(CALLBACK(src, PROC_REF(giveGlowyBack), M), 40 SECONDS, TIMER_STOPPABLE)
+			G.current_nullify_timer = addtimer(CALLBACK(src, PROC_REF(give_glow_back), M), 40 SECONDS, TIMER_STOPPABLE)
 
-/datum/action/cooldown/spell/aoe/proc/giveGlowyBack(mob/living/carbon/M)
+/datum/action/cooldown/spell/aoe/proc/give_glow_back(mob/living/carbon/M)
 	if(!M)
 		return
 	var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)

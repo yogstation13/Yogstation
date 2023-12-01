@@ -326,11 +326,10 @@
 //Hallucinating
 
 /obj/item/clothing/suit/armor/reactive/hallucinating
-	name = "reactive hallucinating armor"
-	desc = "An experimental suit of armor with sensitive detectors hooked up to the mind of the wearer, sending mind pulses that causes hallucinations around you."
-	cooldown_message = span_warning("The connection is currently out of sync... Recalibrating.")
-	emp_message = span_warning("You feel the backsurge of a mind pulse.")
-	var/effect_range = 3
+	name = "reactive hallucination armor"
+	desc = "An experimental suit of armor which produces an illusory defender upon registering an attack."
+	cooldown_message = span_warning("The reactive hallucination armor's memetic array is currently recalibrating!")
+	emp_message = span_warning("The reactive hallucination armor's array of lights and mirrors turns on you...")
 	clothing_traits = list(TRAIT_MESONS)
 
 /obj/item/clothing/suit/armor/reactive/hallucinating/cooldown_activation(mob/living/carbon/human/owner)
@@ -340,14 +339,15 @@
 	..()
 
 /obj/item/clothing/suit/armor/reactive/hallucinating/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], sending out mental pulses!"))
-	var/turf/location = get_turf(owner)
-	if(location)
-		hallucination_pulse(location, effect_range, strength = 25)
+	owner.visible_message(span_danger("[src] blocks [attack_text], the body of an assistant forming to absorb it!")) //get down mr president
+	var/mob/living/simple_animal/hostile/shadowclone = new /mob/living/simple_animal/hostile/hallucination(get_turf(src))
+	shadowclone.friends += owner
 	return TRUE
 
 /obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of mental energy into [owner] from the surrounding environment!"))
+	owner.visible_message(span_danger("[src] blocks [attack_text], the body of an assistant forming to absorb it, before turning on [owner]!"))
+	var/mob/living/simple_animal/hostile/shadowclone = new /mob/living/simple_animal/hostile/hallucination(get_turf(src))
+	shadowclone.GiveTarget(owner)
 	owner.adjust_hallucinations(150)
 	return TRUE
 

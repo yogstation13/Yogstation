@@ -38,6 +38,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
 				minor_announce(CONFIG_GET(string/alert_green), "Attention! Security level lowered to green:")
+				sound_to_playing_players('sound/misc/notice2.ogg')
 				if(GLOB.security_level >= SEC_LEVEL_RED)
 					modTimer = 4
 				else
@@ -46,6 +47,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
 					minor_announce(CONFIG_GET(string/alert_blue_upto), "Attention! Security level elevated to blue:", TRUE)
+					sound_to_playing_players('sound/misc/notice1.ogg')
 					modTimer = 0.5
 				else
 					minor_announce(CONFIG_GET(string/alert_blue_downto), "Attention! Security level lowered to blue:")
@@ -53,7 +55,8 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 			if(SEC_LEVEL_RED)
 				if(GLOB.security_level < SEC_LEVEL_RED)
-					minor_announce(CONFIG_GET(string/alert_red_upto), "Attention! Code red!", TRUE, custom_alert_sound = 'sound/misc/notice4.ogg')
+					minor_announce(CONFIG_GET(string/alert_red_upto), "Attention! Code red!", TRUE)
+					sound_to_playing_players('sound/misc/notice4.ogg')
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						modTimer = 0.25
 					else
@@ -81,7 +84,8 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 1
 
 			if(SEC_LEVEL_DELTA)
-				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE, 'sound/misc/delta_alert.ogg')
+				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE)
+				sound_to_playing_players('sound/misc/delta_alert.ogg')
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						modTimer = 0.25
@@ -104,7 +108,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					D.visible_message(span_notice("[D] whirrs as it automatically lifts access requirements!"))
 					playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 
-		if(level >= SEC_LEVEL_GAMMA)
+		if(level == SEC_LEVEL_DELTA)
 			change_areas_lights_alarm()
 		else
 			change_areas_lights_alarm(FALSE)
