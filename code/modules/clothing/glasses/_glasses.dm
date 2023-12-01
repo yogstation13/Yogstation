@@ -149,6 +149,7 @@
 	flash_protect = -1
 	// Real vivid purple
 	color_cutoffs = list(50, 10, 30)
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 /obj/item/clothing/glasses/night
 	name = "night vision goggles"
