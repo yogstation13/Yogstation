@@ -1,9 +1,17 @@
 // This file contains defines allowing targeting byond versions newer than the supported
 
+#ifdef FASTDMM // fastdmm is on 514 currently
+#define IGNORE_MIN_BYOND_VERSION
+#endif
+
+#ifdef SPACEMAN_DMM // moved out from the !defined check below
+#define IGNORE_MIN_BYOND_VERSION
+#endif
+
 //Update this whenever you need to take advantage of more recent byond features
 #define MIN_COMPILER_VERSION 515
 #define MIN_COMPILER_BUILD 1620
-#if (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(SPACEMAN_DMM)
+#if (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(IGNORE_MIN_BYOND_VERSION)
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
 #error You need version 515.1620 or higher
@@ -19,7 +27,7 @@
 #define IGNORE_MAX_BYOND_VERSION
 #endif
 
-#ifdef SPACEMAN_DMM // dm-langserver is now on 515 and we aren't
+#ifdef SPACEMAN_DMM // dm-langserver is now on 515 and... we also are, but i'll leave this here for now
 #define IGNORE_MAX_BYOND_VERSION
 #endif
 
