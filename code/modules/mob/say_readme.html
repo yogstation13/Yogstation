@@ -14,12 +14,12 @@
 </header>
 <main>
 <h1>Say code basics <aside>code/modules/mob/say_readme.md</aside> 
-            <a href="https://github.com/yogstation13/Yogstation/blob/6cabb010ae50ae4e97e05f28e95aea08728aa72a/code/modules/mob/say_readme.md">
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/modules/mob/say_readme.md">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;say_readme.md"/></a></h1>
 
 <table class="summary" cellspacing="0">
         <tr><td colspan="2"><p>This document is a little dated but I believe it's accurate mostly (oranges 2019)</p>
-<h1 id="miauws-say-rewrite">MIAUW'S SAY REWRITE</h1>
+<hh1 id="miauws-say-rewrite">MIAUW'S SAY REWRITE</hh1>
 <p>This is a basic explanation of how say() works. Read this if you don't understand something.</p>
 <p>The basic &quot;flow&quot; of say() is that a speaker says a message, which is heard by hearers. What appears on screen
 is constructed by each hearer separately, and not by the speaker.</p>
@@ -28,7 +28,7 @@ Radio code, while very much related to saycode, is not something I wanted to tou
 <p>If you came here to see how to use saycode, all you will ever really need to call is say(message).
 To have things react when other things speak around them, add the HEAR_1 flag to their flags variable and
 override their Hear() proc.</p>
-<h1 id="procs-variables">PROCS &amp; VARIABLES</h1>
+<hh1 id="procs-variables">PROCS &amp; VARIABLES</hh1>
 <p>Here follows a list of say()-related procs and variables.</p>
 <pre><code>global procs
 	get_radio_span(freq)
@@ -161,7 +161,7 @@ override their Hear() proc.</p>
 		Return 0 if no radio was spoken into.
 		IMPORTANT: remember to call ..() and check for ..()'s return value properly!
 </code></pre>
-<h1 id="radios">RADIOS</h1>
+<hh1 id="radios">RADIOS</hh1>
 <p>I did not want to interfere with radios too much, but I sort of had to.
 For future generations, here is how radio code works:
 First, talk_into() is called on a radio. This sends a signal datum into the magic machine that is tcomms, which
@@ -172,7 +172,7 @@ This is because the system does not like repeating says.</p>
 This is an associative list, and the numbers as strings are the keys. The values are lists of radios that can hear said frequency.</p>
 <p>To add a radio, simply use add_radio(radio, frequency). To remove a radio, use remove_radio(radio, frequency).
 To remove a radio from ALL frequencies, use remove_radio_all(radio).</p>
-<h2 id="virtual-speakers">VIRTUAL SPEAKERS:</h2>
+<hh2 id="virtual-speakers">VIRTUAL SPEAKERS:</hh2>
 <p>Virtual speakers are simply atom/movables with a few extra variables.
 If radio_freq is not null, the code will rely on the fact that the speaker is virtual. This means that several procs will return something:</p>
 <pre><code>	(all of these procs are defined at the atom/movable level and return &quot;&quot; at that level.)
@@ -189,7 +189,7 @@ If radio_freq is not null, the code will rely on the fact that the speaker is vi
 <p>That's all, folks!</p></td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/6cabb010ae50ae4e97e05f28e95aea08728aa72a">6cabb01</a>
-        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f3309b89e046a004fbfc834ac0144b994a409a38">f3309b8</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;air - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/air.html#var">Var Details</a> - <a href="datum/controller/subsystem/air.html#proc">Proc Details</a></header>
+<main>
+<h1>Atmospherics <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/air.html">air</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/controllers/subsystem/air.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;air.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/air.html#var/equalize_enabled">equalize_enabled</a></th><td>Whether equalization should be enabled at all.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/air.html#var/equalize_hard_turf_limit">equalize_hard_turf_limit</a></th><td>Max number of turfs to look for a space turf, and max number of turfs that will be decompressed.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/air.html#var/equalize_turf_limit">equalize_turf_limit</a></th><td>Max number of turfs equalization will grab.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/air.html#var/excited_group_pressure_goal">excited_group_pressure_goal</a></th><td>Excited group processing will try to equalize groups with total pressure difference less than this amount.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/air.html#var/heat_enabled">heat_enabled</a></th><td>Whether turf-to-turf heat exchanging should be enabled.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/air.html#var/share_max_steps">share_max_steps</a></th><td>Max number of times process_turfs will share in a tick.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/air.html#proc/expand_pipeline">expand_pipeline</a></th><td>Rebuilds a pipeline by expanding outwards, while yielding when sane</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/equalize_enabled"><aside class="declaration">var </aside>equalize_enabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/controllers/subsystem/air.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;air.dm 61"/></a></h3>
+        <p>Whether equalization should be enabled at all.</p><h3 id="var/equalize_hard_turf_limit"><aside class="declaration">var </aside>equalize_hard_turf_limit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/controllers/subsystem/air.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;air.dm 59"/></a></h3>
+        <p>Max number of turfs to look for a space turf, and max number of turfs that will be decompressed.</p><h3 id="var/equalize_turf_limit"><aside class="declaration">var </aside>equalize_turf_limit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/controllers/subsystem/air.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;air.dm 57"/></a></h3>
+        <p>Max number of turfs equalization will grab.</p><h3 id="var/excited_group_pressure_goal"><aside class="declaration">var </aside>excited_group_pressure_goal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/controllers/subsystem/air.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;air.dm 67"/></a></h3>
+        <p>Excited group processing will try to equalize groups with total pressure difference less than this amount.</p><h3 id="var/heat_enabled"><aside class="declaration">var </aside>heat_enabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/controllers/subsystem/air.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;air.dm 63"/></a></h3>
+        <p>Whether turf-to-turf heat exchanging should be enabled.</p><h3 id="var/share_max_steps"><aside class="declaration">var </aside>share_max_steps
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/controllers/subsystem/air.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;air.dm 65"/></a></h3>
+        <p>Max number of times process_turfs will share in a tick.</p><h2 id="proc">Proc Details</h2><h3 id="proc/expand_pipeline"><aside class="declaration">proc </aside>expand_pipeline<aside>(/<a href="datum.html">datum</a>/<a href="datum/pipeline.html">pipeline</a>/net, /list/border) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/controllers/subsystem/air.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;air.dm 310"/></a></aside>
+        </h3>
+        <p>Rebuilds a pipeline by expanding outwards, while yielding when sane</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/f3309b89e046a004fbfc834ac0144b994a409a38">f3309b8</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

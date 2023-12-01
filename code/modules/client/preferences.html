@@ -14,12 +14,12 @@
 </header>
 <main>
 <h1>Preferences (by Mothblocks) <aside>code/modules/client/preferences/README.md</aside> 
-            <a href="https://github.com/yogstation13/Yogstation/blob/6cabb010ae50ae4e97e05f28e95aea08728aa72a/code/modules/client/preferences/README.md">
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/modules/client/preferences/README.md">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;README.md"/></a></h1>
 
 <table class="summary" cellspacing="0">
         <tr><td colspan="2"><p>This does not contain all the information on specific values--you can find those as doc-comments in relevant paths, such as <code>/datum/preference</code>. Rather, this gives you an overview for creating <em>most</em> preferences, and getting your foot in the door to create more advanced ones.</p>
-<h2 id="anatomy-of-a-preference-a-k-a-how-do-i-make-one">Anatomy of a preference (A.K.A. how do I make one?)</h2>
+<hh2 id="anatomy-of-a-preference-a-k-a-how-do-i-make-one">Anatomy of a preference (A.K.A. how do I make one?)</hh2>
 <p>Most preferences consist of two parts:</p>
 <ol>
 <li>A <code>/datum/preference</code> type.</li>
@@ -44,7 +44,7 @@ export const savefile_key_here: Feature&lt;T&gt; = {
 }
 </code></pre>
 <p><code>T</code> and <code>Component</code> depend on the type of preference you're making. Here are all common examples...</p>
-<h2 id="numeric-preferences">Numeric preferences</h2>
+<hh2 id="numeric-preferences">Numeric preferences</hh2>
 <p>Examples include age and FPS.</p>
 <p>A numeric preference derives from <code>/datum/preference/numeric</code>.</p>
 <pre><code class="language-dm">/datum/preference/numeric/legs
@@ -62,7 +62,7 @@ export const legs: Feature&lt;number&gt; = {
   component: FeatureNumberInput,
 }
 </code></pre>
-<h2 id="toggle-preferences">Toggle preferences</h2>
+<hh2 id="toggle-preferences">Toggle preferences</hh2>
 <p>Examples include enabling tooltips.</p>
 <pre><code class="language-dm">/datum/preference/toggle/enable_breathing
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -78,7 +78,7 @@ export const enable_breathing: FeatureToggle = {
   component: CheckboxInput,
 }
 </code></pre>
-<h2 id="choiced-preferences">Choiced preferences</h2>
+<hh2 id="choiced-preferences">Choiced preferences</hh2>
 <p>A choiced preference is one where the only options are in a distinct few amount of choices. Examples include skin tone, shirt, and UI style.</p>
 <p>To create one, derive from <code>/datum/preference/choiced</code>.</p>
 <pre><code class="language-dm">/datum/preference/choiced/favorite_drink
@@ -102,7 +102,7 @@ export const favorite_drink: FeatureChoiced = {
 };
 </code></pre>
 <p>This will create a dropdown input for your preference.</p>
-<h3 id="choiced-preferences-icons">Choiced preferences - Icons</h3>
+<hh3 id="choiced-preferences-icons">Choiced preferences - Icons</hh3>
 <p>Choiced preferences can generate icons. This is how the clothing/species preferences work, for instance. However, if we just want a basic dropdown input with icons, it would look like this:</p>
 <pre><code class="language-dm">/datum/preference/choiced/favorite_drink
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -125,7 +125,7 @@ export const favorite_drink: FeatureChoiced = {
   component: FeatureIconnedDropdownInput,
 };
 </code></pre>
-<h3 id="choiced-preferences-display-names">Choiced preferences - Display names</h3>
+<hh3 id="choiced-preferences-display-names">Choiced preferences - Display names</hh3>
 <p>Sometimes the values you want to save in code aren't the same as the ones you want to display. You can specify display names to change this.</p>
 <p>The only thing you will add is &quot;compiled data&quot;.</p>
 <pre><code class="language-dm">/datum/preference/choiced/favorite_drink/compile_constant_data()
@@ -139,7 +139,7 @@ export const favorite_drink: FeatureChoiced = {
 	return data
 </code></pre>
 <p>Your <code>.tsx</code> file does not change. The UI will figure it out for you!</p>
-<h2 id="color-preferences">Color preferences</h2>
+<hh2 id="color-preferences">Color preferences</hh2>
 <p>These refer to colors, such as your OOC color. When read, these values will be given as 6 hex digits, <em>without</em> the pound sign.</p>
 <pre><code class="language-dm">/datum/preference/color/eyeliner_color
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -153,7 +153,7 @@ export const eyeliner_color: Feature&lt;string&gt; = {
   component: FeatureColorInput,
 };
 </code></pre>
-<h2 id="name-preferences">Name preferences</h2>
+<hh2 id="name-preferences">Name preferences</hh2>
 <p>These refer to an alternative name. Examples include AI names and backup human names.</p>
 <p>These exist in <code>code/modules/client/preferences/names.dm</code>.</p>
 <p>These do not need a <code>.ts</code> file, and will be created in the UI automatically.</p>
@@ -167,7 +167,7 @@ export const eyeliner_color: Feature&lt;string&gt; = {
 	// when the player is a medical doctor.
 	relevant_job = /datum/job/medical_doctor
 </code></pre>
-<h2 id="making-your-preference-do-stuff">Making your preference do stuff</h2>
+<hh2 id="making-your-preference-do-stuff">Making your preference do stuff</hh2>
 <p>There are a handful of procs preferences can use to act on their own:</p>
 <pre><code class="language-dm">/// Apply this preference onto the given client.
 /// Called when the savefile_identifier == PREFERENCE_PLAYER.
@@ -186,7 +186,7 @@ export const eyeliner_color: Feature&lt;string&gt; = {
 </code></pre>
 <p>If your preference is <code>PREFERENCE_CHARACTER</code>, it MUST override <code>apply_to_human</code>, even if just to immediately <code>return</code>.</p>
 <p>You can also read preferences directly with <code>preferences.read_preference(/datum/preference/type/here)</code>, which will return the stored value.</p>
-<h2 id="categories">Categories</h2>
+<hh2 id="categories">Categories</hh2>
 <p>Every preference needs to be in a <code>category</code>. These can be found in <code>code/__DEFINES/preferences.dm</code>.</p>
 <pre><code class="language-dm">/// These will be shown in the character sidebar, but at the bottom.
 #define PREFERENCE_CATEGORY_FEATURES &quot;features&quot;
@@ -207,7 +207,7 @@ export const eyeliner_color: Feature&lt;string&gt; = {
 <p>SECONDARY_FEATURES or NON_CONTEXTUAL?
 Secondary features tend to be species specific. Non contextual features shouldn't change much from character to character.</p>
 </blockquote>
-<h2 id="default-values-and-randomization">Default values and randomization</h2>
+<hh2 id="default-values-and-randomization">Default values and randomization</hh2>
 <p>There are three procs to be aware of in regards to this topic:</p>
 <ul>
 <li><code>create_default_value()</code>. This is used when a value deserializes improperly or when a new character is created.</li>
@@ -215,11 +215,11 @@ Secondary features tend to be species specific. Non contextual features shouldn'
 <li><code>create_random_value(datum/preferences/preferences)</code> - Explicitly used for random values, such as when a character is being randomized.</li>
 </ul>
 <p><code>create_default_value()</code> in most preferences will create a random value. If this is a problem (like how default characters should always be human), you can override <code>create_default_value()</code>. By default (without overriding <code>create_random_value</code>), random values are just default values.</p>
-<h2 id="advanced-server-data">Advanced - Server data</h2>
+<hh2 id="advanced-server-data">Advanced - Server data</hh2>
 <p>As previewed in <a href="#Choiced-preferences---Display-names">the display names implementation</a>, there exists a <code>compile_constant_data()</code> proc you can override.</p>
 <p>Compiled data is used wherever the server needs to give the client some value it can't figure out on its own. Skin tones use this to tell the client what colors they represent, for example.</p>
 <p>Compiled data is sent to the <code>serverData</code> field in the <code>FeatureValueProps</code>.</p>
-<h2 id="advanced-creating-your-own-tgui-component">Advanced - Creating your own tgui component</h2>
+<hh2 id="advanced-creating-your-own-tgui-component">Advanced - Creating your own tgui component</hh2>
 <p>If you have good knowledge with tgui (especially TypeScript), you'll be able to create your own component to represent preferences.</p>
 <p>The <code>component</code> field in a feature accepts <strong>any</strong> component that accepts <code>FeatureValueProps&lt;TReceiving, TSending = TReceiving, TServerData = undefined&gt;</code>.</p>
 <p>This will give you the fields:</p>
@@ -248,7 +248,7 @@ value: TReceiving,
   /&gt;);
 };
 </code></pre>
-<h2 id="advanced-middleware">Advanced - Middleware</h2>
+<hh2 id="advanced-middleware">Advanced - Middleware</hh2>
 <p>A <code>/datum/preference_middleware</code> is a way to inject your own data at specific points, as well as hijack actions.</p>
 <p>Middleware can hijack actions by specifying <code>action_delegations</code>:</p>
 <pre><code class="language-dm">/datum/preference_middleware/congratulations
@@ -261,7 +261,7 @@ value: TReceiving,
 </code></pre>
 <p>Middleware can inject its own data at several points, such as providing new UI assets, compiled data (used by middleware such as quirks to tell the client what quirks exist), etc. Look at <code>code/modules/client/preferences/middleware/_middleware.dm</code> for full information.</p>
 <hr />
-<h2 id="antagonists">Antagonists</h2>
+<hh2 id="antagonists">Antagonists</hh2>
 <p>In order to make an antagonist selectable, you must do a few things:</p>
 <ol>
 <li>Your antagonist needs an icon.</li>
@@ -269,7 +269,7 @@ value: TReceiving,
 <li>Your antagonist needs a file in <code>tgui/packages/tgui/interfaces/PreferencesMenu/antagonists/antagonists/filename.ts</code>. This file name MUST be the <code>antag_flag</code> of your ruleset, with nothing but letters remaining (e.g. &quot;Nuclear Operative&quot; -&gt; <code>nuclearoperative</code>).</li>
 <li>Add it to <code>special_roles</code>.</li>
 </ol>
-<h2 id="creating-icons">Creating icons</h2>
+<hh2 id="creating-icons">Creating icons</hh2>
 <p>If you are satisfied with your icon just being a dude with some clothes, then you can specify <code>preview_outfit</code> in your <code>/datum/antagonist</code>.</p>
 <p>Space Ninja, for example, looks like:</p>
 <pre><code class="language-dm">/datum/antagonist/ninja
@@ -290,7 +290,7 @@ value: TReceiving,
 </code></pre>
 <p>...which creates:</p>
 <p><img src="https://raw.githubusercontent.com/tgstation/documentation-assets/main/preferences/changeling.png" alt="Changeling icon" /></p>
-<h2 id="creating-the-tgui-representation">Creating the tgui representation</h2>
+<hh2 id="creating-the-tgui-representation">Creating the tgui representation</hh2>
 <p>In the <code>.ts</code> file you created earlier, you must now give the information of your antagonist. For reference, this is the changeling's:</p>
 <pre><code class="language-ts">import { Antagonist, Category } from &quot;../base&quot;;
 import { multiline } from &quot;common/string&quot;;
@@ -311,17 +311,17 @@ const Changeling: Antagonist = {
 };
 export default Changeling;
 </code></pre>
-<h2 id="readying-the-dynamic-ruleset">Readying the Dynamic ruleset</h2>
+<hh2 id="readying-the-dynamic-ruleset">Readying the Dynamic ruleset</hh2>
 <p>You already need to create a Dynamic ruleset, so in order to get your antagonist recognized, you just need to specify <code>antag_flag</code>. This must be unique per ruleset.</p>
 <p>Two other values to note are <code>antag_flag_override</code> and <code>antag_preference</code>.</p>
 <p><code>antag_flag_override</code> exists for cases where you want the banned antagonist to be separate from <code>antag_flag</code>. As an example: roundstart, midround, and latejoin traitors have separate <code>antag_flag</code>, but all have <code>antag_flag_override = ROLE_TRAITOR</code>. This is because admins want to ban a player from Traitor altogether, not specific rulesets.</p>
 <p>If <code>antag_preference</code> is set, it will refer to that preference instead of <code>antag_flag</code>. This is used for clown operatives, which we want to be on the same preference as standard nuke ops, but must specify a unique <code>antag_flag</code> for.</p>
-<h2 id="updating-special-roles">Updating special_roles</h2>
+<hh2 id="updating-special-roles">Updating special_roles</hh2>
 <p>In <code>code/__DEFINES/role_preferences.dm</code> (the same place you'll need to make your ROLE_* defined), simply add your antagonist to the <code>special_roles</code> assoc list. The key is your ROLE, the value is the number of days since your first game in order to play as that antagonist.</p></td></tr>
         <tr><th><a href="atom&#x2F;movable&#x2F;screen&#x2F;character_preview_view.html">&#x2F;atom&#x2F;movable&#x2F;screen&#x2F;character_preview_view</a></th><td>A preview of a character for use in the preferences menu</td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/6cabb010ae50ae4e97e05f28e95aea08728aa72a">6cabb01</a>
-        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f3309b89e046a004fbfc834ac0144b994a409a38">f3309b8</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

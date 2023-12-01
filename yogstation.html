@@ -14,17 +14,17 @@
 </header>
 <main>
 <h1>THIS IS ALL DEPRECATED AND NO LONGER NECESSARY. YOU CAN STILL DO THIS IF YOU WANT, BUT IT IS NO LONGER A REQUIREMENT, SINCE THE MIRRORBOT IS NO LONGER ACTIVE <aside>yogstation/README.md</aside> 
-            <a href="https://github.com/yogstation13/Yogstation/blob/6cabb010ae50ae4e97e05f28e95aea08728aa72a/yogstation/README.md">
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/yogstation/README.md">
         <img src="git.png" width="16" height="16" title="yogstation&#x2F;README.md"/></a></h1>
 
 <table class="summary" cellspacing="0">
-        <tr><td colspan="2"><h6 id="special-thanks-to-hippiestation-for-the-help">Special thanks to <a href="https://github.com/HippieStation/HippieStation/blob/master/hippiestation/README.md">HippieStation</a> for the help.</h6><h1 id="why-do-we-use-this-yogstation-folder">Why do we use this /yogstation/ folder?</h1>
+        <tr><td colspan="2"><hh6 id="special-thanks-to-hippiestation-for-the-help">Special thanks to <a href="https://github.com/HippieStation/HippieStation/blob/master/hippiestation/README.md">HippieStation</a> for the help.</hh6><hh1 id="why-do-we-use-this-yogstation-folder">Why do we use this /yogstation/ folder?</hh1>
 <p>The way Github works, is that changes to the codebase are marked by the addition, deletion, or editing of particular lines in the code files, or whatever. &quot;This PR adds these lines, edits this line, and removes some of these lines,&quot; that sort of deal.</p>
 <p>However, if /TG/ edits a line that we ourselves have edited, Github does not know which edit to use. This produces a <strong>Merge Conflict</strong>, where an actual person must manually inform Github on what to do. This is annoying and prone to human error.</p>
 <p>So to keep up-to-date with /tg/station while trying to avoid merge conflicts as much as possible, we modularize everything. This is the same method <a href="https://github.com/HippieStation/HippieStation/tree/master/hippiestation">HippieStation</a> uses. Making code not have to edit large swaths of the original /TG/ code files means fewer conflicts and less headcoders banging their heads on their desks over your crap PR.</p>
-<h2 id="what-does-it-mean-to-modularize-something">What does it mean to modularize something?</h2>
+<hh2 id="what-does-it-mean-to-modularize-something">What does it mean to modularize something?</hh2>
 <p>Something is modular when it exists independent from the rest of the code, or at least absolutely minimizes dependency. This means that by simply adding something modular to the DME file, it will exist in-game. It is not always possible to completely modularize something, but if standards are followed correctly, then there should be few to none conflicts with /tg/station in the future.</p>
-<h2 id="how-do-i-be-modular">How do I be &quot;modular?&quot;</h2>
+<hh2 id="how-do-i-be-modular">How do I be &quot;modular?&quot;</hh2>
 <p>All modifications to non-yog files should be marked.</p>
 <ul>
 <li>Multi line changes start with <code>// yogs start</code> and end with <code>// yogs end</code></li>
@@ -42,24 +42,24 @@ bunch of shitcode here
 // yogs end
 </code></pre>
 <p>Once you mirror a file, please follow the above for marking your changes, this way we know what needs to be updated when a file has been mirrored.</p>
-<h3 id="tgstation-dme-versus-yogstation-dme">tgstation.dme versus yogstation.dme</h3>
+<hh3 id="tgstation-dme-versus-yogstation-dme">tgstation.dme versus yogstation.dme</hh3>
 <p><strong>Do not alter the tgstation.dme file.</strong> All additions and removals should be to the yogstation.dme file. Do not manually add files to the dme! Check the file's box in the Dream Maker program. The Dream Maker does not always use alphabetical order, and manually adding a file can cause it to reorder. This means that down the line, many PRs will contain this reorder when it could have been avoided in the first place.</p>
-<h3 id="icons-code-and-sounds">Icons, code, and sounds</h3>
+<hh3 id="icons-code-and-sounds">Icons, code, and sounds</hh3>
 <p>Icons are notorious for conflicts. Because of this, <strong>ALL NEW ICONS</strong> must go in the &quot;yogstation/icons&quot; folder. There are to be no exceptions to this rule. Sounds don't cause conflicts, but for the sake of organization they are to go in the &quot;yogstation/sounds&quot; folder. No exceptions, either. Unless absolutely necessary, code should go in the &quot;yogstation/code&quot; folder. Small changes outside of the folder should be done with hook-procs. Larger changes should simply mirror the file in the &quot;yogstation/code&quot; folder.</p>
-<h3 id="defines">Defines</h3>
+<hh3 id="defines">Defines</hh3>
 <p>Defines only work if they come before the code in which they are used. Because of this, please put all defines in the <code>code/__DEFINES/~yogs_defines</code> path. Use an existing file, or create a new one if necessary.</p>
 <p>If a small addition needs to be made outside of the &quot;yogstation&quot; folder, then it should be done by adding a proc. This proc will be defined inside of the &quot;yogstation&quot; folder. By doing this, a large number of things can be done by adding just one line of code outside of the folder! If a file must be changed a lot, re-create it with the changes inside of the &quot;yogstation/code&quot; folder. <strong>Make sure to follow the file's path correctly</strong> (i.e. &quot;code/modules/clothing/clothing.dm&quot;). Then, remove the original file from the yogstation.dme and add the new one.</p>
-<h2 id="can-you-give-some-examples">Can you give some examples?</h2><h3 id="clothing">Clothing</h3>
+<hh2 id="can-you-give-some-examples">Can you give some examples?</hh2><hh3 id="clothing">Clothing</hh3>
 <p>New clothing items should be a subtype of <code>/obj/item/clothing/CLOTHINGTYPE/yogs</code> inside of the respective clothing file. For example, replace CLOTHINGTYPE with ears to get <code>/obj/item/clothing/ears/yogs</code> inside of &quot;ears.dm&quot; in &quot;code/modules/clothing.&quot; If the file does not exist, create it and follow this format.</p>
-<h3 id="actions-and-spells">Actions and spells</h3>
+<hh3 id="actions-and-spells">Actions and spells</hh3>
 <p>New actions and spells should use the &quot;yogstation/icons/mob/actions.dmi&quot; file. If it is a spell, put the code for the spell in &quot;yogstation/code/modules/spells.&quot; To make sure that the spell uses the Yogs icon, please add <code>button_icon = 'yogstation/icons/mob/actions.dmi'</code> and the <code>button_icon_state</code> var.</p>
-<h3 id="reagents">Reagents</h3>
+<hh3 id="reagents">Reagents</hh3>
 <p>New reagents should go inside &quot;yogstation/code/modules/reagents/drug_reagents.dm.&quot; In this case, &quot;drug_reagents&quot; is an example, so please use or create a &quot;toxins.dm&quot; if you are adding a new toxin. Recipes should go inside &quot;yogstation/code/modules/reagents/recipes/drug_reagents.dm.&quot;</p>
 <hr />
-<h3 id="thank-you-for-following-these-rules-please-contact-a-maintainer-or-headcoder-if-you-have-any-questions-about-modular-code-or-the-yogstation-folder">Thank you for following these rules! Please contact a maintainer or headcoder if you have any questions about modular code or the &quot;yogstation&quot; folder.</h3></td></tr></table></main>
+<hh3 id="thank-you-for-following-these-rules-please-contact-a-maintainer-or-headcoder-if-you-have-any-questions-about-modular-code-or-the-yogstation-folder">Thank you for following these rules! Please contact a maintainer or headcoder if you have any questions about modular code or the &quot;yogstation&quot; folder.</hh3></td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/6cabb010ae50ae4e97e05f28e95aea08728aa72a">6cabb01</a>
-        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f3309b89e046a004fbfc834ac0144b994a409a38">f3309b8</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

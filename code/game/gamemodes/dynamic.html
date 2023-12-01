@@ -14,11 +14,11 @@
 </header>
 <main>
 <h1>DYNAMIC <aside>code/game/gamemodes/dynamic/readme.md</aside> 
-            <a href="https://github.com/yogstation13/Yogstation/blob/6cabb010ae50ae4e97e05f28e95aea08728aa72a/code/game/gamemodes/dynamic/readme.md">
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/game/gamemodes/dynamic/readme.md">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;readme.md"/></a></h1>
 
 <table class="summary" cellspacing="0">
-        <tr><td colspan="2"><h2 id="roundstart">ROUNDSTART</h2>
+        <tr><td colspan="2"><hh2 id="roundstart">ROUNDSTART</hh2>
 <p>Dynamic rolls threat based on a special sauce formula:
 &quot;dynamic_curve_width * tan((3.1416 * (rand() - 0.5) * 57.2957795)) + dynamic_curve_centre&quot;</p>
 <p>This threat is split into two separate budgets--<code>round_start_budget</code> and <code>mid_round_budget</code>. For example, a round with 50 threat might be split into a 30 roundstart budget, and a 20 midround budget. The roundstart budget is used to apply antagonists applied on readied players when the roundstarts (<code>/datum/dynamic_ruleset/roundstart</code>). The midround budget is used for two types of rulesets:</p>
@@ -28,7 +28,7 @@
 </ul>
 <p>This split is done with a similar method, known as the <a href="https://en.wikipedia.org/wiki/Cauchy_distribution">&quot;lorentz distribution&quot;</a>, exists to create a bell curve that ensures that while most rounds will have a threat level around ~50, chaotic and tame rounds still exist for variety.</p>
 <p>The process of creating these numbers occurs in <code>/datum/game_mode/dynamic/proc/generate_threat</code> (for creating the threat level) and <code>/datum/game_mode/dynamic/proc/generate_budgets</code> (for splitting the threat level into budgets).</p>
-<h2 id="deciding-roundstart-threats">Deciding roundstart threats</h2>
+<hh2 id="deciding-roundstart-threats">Deciding roundstart threats</hh2>
 <p>In <code>/datum/game_mode/dynamic/proc/roundstart()</code> (called when no admin chooses the rulesets explicitly), Dynamic uses the available roundstart budget to pick threats. This is done through the following system:</p>
 <ul>
 <li>All roundstart rulesets (remember, <code>/datum/dynamic_ruleset/roundstart</code>) are put into an associative list with their weight as the values (<code>drafted_rules</code>).</li>
@@ -45,7 +45,7 @@
 </li>
 </ul>
 <p>After this process is done, any leftover roundstart threat will be given to the existing midround budget (done in <code>/datum/game_mode/dynamic/pre_setup()</code>).</p>
-<h2 id="deciding-midround-threats">Deciding midround threats</h2>
+<hh2 id="deciding-midround-threats">Deciding midround threats</hh2>
 <p>Latejoin and midround injection cooldowns are set using exponential distribution between
 5 minutes and 25 for latejoin
 15 minutes and 35 for midround
@@ -63,12 +63,12 @@ this value is then added to world.time and assigned to the injection cooldown va
 <li><a href="datum/game_mode/dynamic.html#proc/picking_roundstart_rule" title="/datum/game_mode/dynamic">picking_roundstart_rule</a>(drafted_rules)</li>
 <li><a href="datum/game_mode.html#proc/post_setup" title="/datum/game_mode">post_setup</a>()</li>
 </ol>
-<h2 id="rule-processing">Rule Processing</h2>
+<hh2 id="rule-processing">Rule Processing</hh2>
 <p>Calls rule_process on every rule which is in the current_rules list.
 Every sixty seconds, update_playercounts()
 Midround injection time is checked against world.time to see if an injection should happen.
 If midround injection time is lower than world.time, it updates playercounts again, then tries to inject and generates a new cooldown regardless of whether a rule is picked.</p>
-<h2 id="latejoin">LATEJOIN</h2>
+<hh2 id="latejoin">LATEJOIN</hh2>
 <p>make_antag_chance(newPlayer) -&gt; [For each latespawn rule...]
 -&gt; acceptable(living players, threat_level) -&gt; trim_candidates() -&gt; ready(forced=FALSE)
 **If true, add to drafted rules
@@ -77,19 +77,19 @@ If midround injection time is lower than world.time, it updates playercounts aga
 **NOTE the new_player.dm AttemptLateSpawn() calls OnPostSetup for all roles (unless assigned role is MODE)</p>
 <p>[After collecting all draftble rules...]
 -&gt; picking_latejoin_ruleset(drafted_rules) -&gt; spend threat -&gt; ruleset.execute()</p>
-<h2 id="midround">MIDROUND</h2>
+<hh2 id="midround">MIDROUND</hh2>
 <p>process() -&gt; [For each midround rule...]
 -&gt; acceptable(living players, threat_level) -&gt; trim_candidates() -&gt; ready(forced=FALSE)
 [After collecting all draftble rules...]
 -&gt; picking_midround_ruleset(drafted_rules) -&gt; spend threat -&gt; ruleset.execute()</p>
-<h2 id="forced">FORCED</h2>
+<hh2 id="forced">FORCED</hh2>
 <p>For latejoin, it simply sets forced_latejoin_rule
 make_antag_chance(newPlayer) -&gt; trim_candidates() -&gt; ready(forced=TRUE) **NOTE no acceptable() call</p>
 <p>For midround, calls the below proc with forced = TRUE
 picking_specific_rule(ruletype,forced) -&gt; forced OR acceptable(living_players, threat_level) -&gt; trim_candidates() -&gt; ready(forced) -&gt; spend threat -&gt; execute()
 **NOTE specific rule can be called by RS traitor-&gt;MR autotraitor w/ forced=FALSE
 **NOTE that due to short circuiting acceptable() need not be called if forced.</p>
-<h2 id="ruleset">RULESET</h2>
+<hh2 id="ruleset">RULESET</hh2>
 <p>acceptable(population,threat) just checks if enough threat_level for population indice.
 **NOTE that we currently only send threat_level as the second arg, not threat.
 ready(forced) checks if enough candidates and calls the map's map_ruleset(dynamic_ruleset) at the parent level</p>
@@ -101,7 +101,7 @@ Midround: Instead of building a single list candidates, candidates contains four
 <p>Midround - Rulesets have additional types
 /from_ghosts: execute() -&gt; send_applications() -&gt; review_applications() -&gt; finish_setup(mob/newcharacter, index) -&gt; setup_role(role)
 **NOTE: execute() here adds dead players and observers to candidates list</p>
-<h2 id="configuration-and-variables">Configuration and variables</h2><h3 id="configuration">Configuration</h3>
+<hh2 id="configuration-and-variables">Configuration and variables</hh2><hh3 id="configuration">Configuration</hh3>
 <p>Configuration can be done through a <code>config/dynamic.json</code> file. One is provided as example in the codebase. This config file, loaded in <code>/datum/game_mode/dynamic/pre_setup()</code>, directly overrides the values in the codebase, and so is perfect for making some rulesets harder/easier to get, turning them off completely, changing how much they cost, etc.</p>
 <p>The format of this file is:</p>
 <pre><code class="language-json">{
@@ -126,7 +126,7 @@ Midround: Instead of building a single list candidates, candidates contains four
 }
 </code></pre>
 <p>Note: Comments are not possible in this format, and are just in this document for the sake of readability.</p>
-<h3 id="rulesets">Rulesets</h3>
+<hh3 id="rulesets">Rulesets</hh3>
 <p>Rulesets have the following variables notable to developers and those interested in tuning.</p>
 <ul>
 <li><code>required_candidates</code> - The number of people that <em>must be willing</em> (in their preferences) to be an antagonist with this ruleset. If the candidates do not meet this requirement, then the ruleset will not bother to be drafted.</li>
@@ -168,7 +168,7 @@ Midround: Instead of building a single list candidates, candidates contains four
 </ul>
 </li>
 </ul>
-<h3 id="dynamic">Dynamic</h3>
+<hh3 id="dynamic">Dynamic</hh3>
 <p>The &quot;Dynamic&quot; key has the following configurable values:</p>
 <ul>
 <li><code>pop_per_requirement</code> - The default value of <code>pop_per_requirement</code> for any ruleset that does not explicitly set it. Defaults to 6.</li>
@@ -196,7 +196,7 @@ Midround: Instead of building a single list candidates, candidates contains four
 <li><code>random_event_hijack_maximum</code> - The maximum amount of time for antag random events to be hijacked. (See <a href="#random-event-hijacking">Random Event Hijacking</a>)</li>
 <li><code>hijacked_random_event_injection_chance</code> - The amount of injection chance to give to Dynamic when a random event is hijacked. (See <a href="#random-event-hijacking">Random Event Hijacking</a>)</li>
 </ul>
-<h2 id="random-event-hijacking">Random Event &quot;Hijacking&quot;</h2>
+<hh2 id="random-event-hijacking">Random Event &quot;Hijacking&quot;</hh2>
 <p>Random events have the potential to be hijacked by Dynamic to keep the pace of midround injections, while also allowing greenshifts to contain some antagonists.</p>
 <p><code>/datum/round_event_control/dynamic_should_hijack</code> is a variable to random events to allow Dynamic to hijack them, and defaults to FALSE. This is set to TRUE for random events that spawn antagonists.</p>
 <p>In <code>/datum/game_mode/dynamic/on_pre_random_event</code> (in <code>dynamic_hijacking.dm</code>), Dynamic hooks to random events. If the <code>dynamic_should_hijack</code> variable is TRUE, the following sequence of events occurs:</p>
@@ -204,7 +204,7 @@ Midround: Instead of building a single list candidates, candidates contains four
 <p><code>n</code> is a random value between <code>random_event_hijack_minimum</code> and <code>random_event_hijack_maximum</code>. Injection chance, should it need to be raised, is increased by <code>hijacked_random_event_injection_chance</code>.</p></td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/6cabb010ae50ae4e97e05f28e95aea08728aa72a">6cabb01</a>
-        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f3309b89e046a004fbfc834ac0144b994a409a38">f3309b8</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

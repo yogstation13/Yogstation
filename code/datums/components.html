@@ -14,25 +14,25 @@
 </header>
 <main>
 <h1>Datum Component System (DCS) <aside>code/datums/components/README.md</aside> 
-            <a href="https://github.com/yogstation13/Yogstation/blob/6cabb010ae50ae4e97e05f28e95aea08728aa72a/code/datums/components/README.md">
+            <a href="https://github.com/yogstation13/Yogstation/blob/f3309b89e046a004fbfc834ac0144b994a409a38/code/datums/components/README.md">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;README.md"/></a></h1>
 
 <table class="summary" cellspacing="0">
-        <tr><td colspan="2"><h2 id="concept">Concept</h2>
+        <tr><td colspan="2"><hh2 id="concept">Concept</hh2>
 <p>Loosely adapted from /vg/. This is an entity component system for adding behaviours to datums when inheritance doesn't quite cut it. By using signals and events instead of direct inheritance, you can inject behaviours without hacky overloads. It requires a different method of thinking, but is not hard to use correctly. If a behaviour can have application across more than one thing. Make it generic, make it a component. Atom/mob/obj event? Give it a signal, and forward it's arguments with a <code>SendSignal()</code> call. Now every component that want's to can also know about this happening.</p>
-<h3 id="in-the-code">In the code</h3><h4 id="slippery-things">Slippery things</h4>
+<hh3 id="in-the-code">In the code</hh3><hh4 id="slippery-things">Slippery things</hh4>
 <p>At the time of this writing, every object that is slippery overrides atom/Crossed does some checks, then slips the mob. Instead of all those Crossed overrides they could add a slippery component to all these objects. And have the checks in one proc that is run by the Crossed event</p>
-<h4 id="powercells">Powercells</h4>
+<hh4 id="powercells">Powercells</hh4>
 <p>A lot of objects have powercells. The <code>get_cell()</code> proc was added to give generic access to the cell var if it had one. This is just a specific use case of <code>GetComponent()</code></p>
-<h4 id="radios">Radios</h4>
+<hh4 id="radios">Radios</hh4>
 <p>The radio object as it is should not exist, given that more things use the <em>concept</em> of radios rather than the object itself. The actual function of the radio can exist in a component which all the things that use it (Request consoles, actual radios, the SM shard) can add to themselves.</p>
-<h4 id="standos">Standos</h4>
+<hh4 id="standos">Standos</hh4>
 <p>Stands have a lot of procs which mimic mob procs. Rather than inserting hooks for all these procs in overrides, the same can be accomplished with signals</p>
-<h2 id="api">API</h2><h3 id="defines">Defines</h3>
+<hh2 id="api">API</hh2><hh3 id="defines">Defines</hh3>
 <ol>
 <li><code>COMPONENT_INCOMPATIBLE</code> Return this from <code>/datum/component/Initialize</code> or <code>datum/component/OnTransfer</code> to have the component be deleted if it's applied to an incorrect type. <code>parent</code> must not be modified if this is to be returned. This will be noted in the runtime logs</li>
 </ol>
-<h3 id="vars">Vars</h3>
+<hh3 id="vars">Vars</hh3>
 <ol>
 <li><code>/datum/var/list/datum_components</code> (private)
 <ul>
@@ -90,7 +90,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="procs">Procs</h3>
+<hh3 id="procs">Procs</hh3>
 <ol>
 <li><code>/datum/proc/GetComponent(component_type(type)) -&gt; datum/component?</code> (public, final)
 <ul>
@@ -224,10 +224,10 @@
 </ul>
 </li>
 </ol>
-<h3 id="see-define-signals-and-their-arguments-in-defines-components-dm">See/Define signals and their arguments in __DEFINES\components.dm</h3></td></tr></table></main>
+<hh3 id="see-define-signals-and-their-arguments-in-defines-components-dm">See/Define signals and their arguments in __DEFINES\components.dm</hh3></td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/6cabb010ae50ae4e97e05f28e95aea08728aa72a">6cabb01</a>
-        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f3309b89e046a004fbfc834ac0144b994a409a38">f3309b8</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
