@@ -446,7 +446,7 @@
 	config_entry_value = 250
 
 /datum/config_entry/string/tts_http_url
-//	protection = CONFIG_ENTRY_LOCKED
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/tts_http_token
 	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
