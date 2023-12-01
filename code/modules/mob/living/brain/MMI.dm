@@ -264,8 +264,8 @@
 
 /obj/item/mmi/proc/beginReboot()
 	rebooting = TRUE
-	visible_message(span_danger("The indicator lights on [src] begin to glow faintly as the reboot process begins"))
-	to_chat(brainmob, span_userdanger("You begin to reboot after being removed from the destroyed body"))
+	visible_message(span_danger("The indicator lights on [src] begin to glow faintly as the reboot process begins."))
+	to_chat(brainmob, span_userdanger("You begin to reboot after being removed from the destroyed body."))
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(halfwayReboot)), remove_window / 2, TIMER_STOPPABLE)
 
 	// Lost the mindslaving during the whole borging process. Going to re-add it here.
@@ -273,16 +273,16 @@
 		set_mindslave()
 
 /obj/item/mmi/proc/halfwayReboot()
-	visible_message(span_danger("The indicator lights on [src] begin to glow stronger and the reboot process approaches the halfway point"))
+	visible_message(span_danger("The indicator lights on [src] begin to glow stronger and the reboot process approaches the halfway point."))
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(rebootNoReturn)), remove_window / 2, TIMER_STOPPABLE)
 
 /obj/item/mmi/proc/rebootNoReturn()
-	visible_message(span_danger("The indicator lights on [src] begin to blink as the reboot process nears completion"))
+	visible_message(span_danger("The indicator lights on [src] begin to blink as the reboot process nears completion."))
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(rebootFinish)), remove_time, TIMER_STOPPABLE)
 
 /obj/item/mmi/proc/rebootFinish()
-	visible_message(span_danger("The indicator lights on [src] return to normal as the reboot process completes"))
-	to_chat(brainmob, span_userdanger("You return to normal functionality now that your reboot process has completed"))
+	visible_message(span_danger("The indicator lights on [src] return to normal as the reboot process completes."))
+	to_chat(brainmob, span_userdanger("You return to normal functionality now that your reboot process has completed."))
 	rebooting = FALSE
 	reboot_timer = null
 
