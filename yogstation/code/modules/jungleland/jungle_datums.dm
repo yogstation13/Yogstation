@@ -588,6 +588,7 @@
 	if(holder)
 		holder.remove_reagent(type, volume)
 
+
 #undef STAGE_1_THRESHOLD
 #undef STAGE_2_THRESHOLD
 #undef STAGE_3_THRESHOLD
