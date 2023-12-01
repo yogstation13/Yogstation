@@ -312,28 +312,22 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	if(!tts_pitch || !isnum(tts_pitch))
 		tts_pitch = rand(8, 12) * 0.1
 
-	var/tts_sound = piper_tts(html_decode(message), tts_voice, tts_pitch, tts_filters)
+	var/list/mob/tts_receivers = list()
 
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
-	var/message_volume = 100
-	if(message_mods[MODE_HEADSET])
-		message_volume = 0
-	else if (message_mods[WHISPER_MODE])
-		message_volume = 40
 	for(var/_AM in listening)
 		var/atom/movable/AM = _AM
 		if(eavesdrop_range && get_dist(source, AM) > message_range && !(the_dead[AM]))
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mods)
-			if(ismob(AM))
-				var/mob/hearing_mob = AM
-				if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
-					hearing_mob.playsound_local(get_turf(src), vol = 5, S = tts_sound) // TTS play
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mods)
 			if(ismob(AM))
 				var/mob/hearing_mob = AM
-				if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
-					hearing_mob.playsound_local(get_turf(src), vol = message_volume, S = tts_sound) // TTS play
+				if(!message_mods[MODE_HEADSET] && !message_mods[WHISPER_MODE] && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
+					tts_receivers |= WEAKREF(hearing_mob)
+
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), html_decode(message), tts_voice, tts_pitch, tts_filters, tts_receivers, src, spans[SPAN_COMMAND])
+
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble

@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	data["character_preferences"] = compile_character_preferences(user)
 
-	data["tts_preview_disabled"] = !SSticker.tts_alive
+	data["tts_preview_disabled"] = !SStts.tts_alive
 
 	data["active_slot"] = default_slot
 
@@ -295,22 +295,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("preview_tts")
 			var/model = read_preference(/datum/preference/choiced/tts_voice)
 			var/pitch = read_preference(/datum/preference/numeric/tts_pitch)
-			var/list/filters = list()
-			if(isipc(character_preview_view.body) || ispreternis(character_preview_view.body) || issilicon(character_preview_view.body))
-				filters += list(list(TTS_FILTER_ROBOTIC = TRUE))
-			if(isAI(character_preview_view.body)) // youll be talking through the radio a lot
-				filters += list(list(TTS_FILTER_RADIO = TRUE))
-			if(islizard(character_preview_view.body))
-				filters += list(list(TTS_FILTER_LIZARD = TRUE))
-			if(ispolysmorph(character_preview_view.body))
-				filters += list(list(TTS_FILTER_ALIEN = TRUE))
-			if(isethereal(character_preview_view.body))
-				filters += list(list(TTS_FILTER_ETHEREAL = TRUE))
-			var/sound/tts = piper_tts("How are you doing today?", model, pitch, filters)
-			if(!tts || !istype(tts))
-				return
+			var/list/filters
+			var/datum/job/preview_job = get_highest_priority_job()
+			if(preview_job)
+				if (istype(preview_job, /datum/job/ai))
+					filters = list(TTS_FILTER_ROBOTIC = TRUE, TTS_FILTER_RADIO = TRUE)
+				if (istype(preview_job, /datum/job/cyborg))
+					filters = list(TTS_FILTER_ROBOTIC = TRUE)
 
-			SEND_SOUND(usr, tts)
+			if(!filters)
+				filters = character_preview_view.body.tts_filters
+
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), "How are you doing today?", model, pitch, filters, list(WEAKREF(usr)))
 
 			return
 

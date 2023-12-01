@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//yogs end
 	))
 
-/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, ignore_tts = FALSE)
 	if(!can_speak(message))
 		return
 	if(message == "" || !message)
@@ -44,15 +44,16 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		tts_voice = pick(GLOB.tts_voices)
 		tts_pitch = rand(8, 12) * 0.1
 
-	var/tts_sound = piper_tts(message, tts_voice, tts_pitch, tts_filters)
-
+	var/list/mob/tts_receivers = list()
 	for(var/_AM in get_hearers_in_view(range, source))
 		var/atom/movable/AM = _AM
 		AM.Hear(rendered, src, message_language, message, , spans, message_mods)
 		if(ismob(AM))
 			var/mob/hearing_mob = AM
-			if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
-				hearing_mob.playsound_local(get_turf(src), vol = 100, S = tts_sound) // TTS play
+			if(!message_mods[MODE_HEADSET] && !message_mods[WHISPER_MODE] && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
+				tts_receivers |= WEAKREF(hearing_mob)
+
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), message, tts_voice, tts_pitch, tts_filters, tts_receivers, src, spans[SPAN_COMMAND])
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.

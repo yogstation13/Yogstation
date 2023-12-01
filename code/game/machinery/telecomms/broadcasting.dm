@@ -196,7 +196,7 @@
 	if(virt.virt_tts_pitch)
 		pitch = virt.virt_tts_pitch
 
-	var/tts_sound = piper_tts(html_decode(message), model, pitch, virt.virt_tts_filters)
+	var/list/mob/tts_receivers = list()
 
 	// Render the message and have everybody hear it.
 	// Always call this on the virtualspeaker to avoid issues.
@@ -207,8 +207,10 @@
 		hearer.Hear(rendered, virt, language, message, frequency, spans, message_mods)
 		if(ismob(hearer))
 			var/mob/hearing_mob = hearer
-			if(tts_sound && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear_radio) && hearing_mob.has_language(language))
-				hearing_mob.playsound_local(vol = spans[SPAN_COMMAND] ? 45 : 30, S = tts_sound) // TTS play
+			if(hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear_radio) && hearing_mob.has_language(language))
+				tts_receivers |= WEAKREF(hearing_mob)
+
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), html_decode(message), model, pitch, virt.virt_tts_filters, tts_receivers, null, spans[SPAN_COMMAND])
 
 	// This following recording is intended for research and feedback in the use of department radio channels
 	if(length(receive))

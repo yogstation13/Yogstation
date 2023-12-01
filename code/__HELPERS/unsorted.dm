@@ -1260,6 +1260,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 /proc/pass(...)
 	return
 
+#define UNTIL(X) while(!(X)) stoplag()
+
 /proc/get_mob_or_brainmob(occupant)
 	var/mob/living/mob_occupant
 
