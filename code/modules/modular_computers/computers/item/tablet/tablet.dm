@@ -37,6 +37,7 @@
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
 		if(card_slot2?.stored_card || card_slot?.stored_card)
+			update_appearance(UPDATE_ICON)
 			return ..()
 		remove_pen()
 	else

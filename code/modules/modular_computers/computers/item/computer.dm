@@ -605,7 +605,7 @@
 			to_chat(user, span_notice("You repair \the [src]."))
 		return
 
-	..()
+	return ..()
 
 // Used by processor to relay qdel() to machinery type.
 /obj/item/modular_computer/proc/relay_qdel()

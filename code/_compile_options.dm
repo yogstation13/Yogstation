@@ -26,6 +26,9 @@
 // If defined, we will NOT defer asset generation till later in the game, and will instead do it all at once, during initiialize
 //#define DO_NOT_DEFER_ASSETS
 
+// Uncomment to run runtimestation (less time to compile)
+//#define LOWMEMORYMODE
+
 #ifndef PRELOAD_RSC				//set to:
 #define PRELOAD_RSC	2			//	0 to allow using external resources or on-demand behaviour;
 #endif							//	1 to use the default behaviour;
