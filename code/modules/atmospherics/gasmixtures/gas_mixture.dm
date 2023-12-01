@@ -357,13 +357,16 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 /datum/gas_mixture/proc/equalize(datum/gas_mixture/other)
 	. = FALSE
 
+	if(!return_volume() || !other.return_volume())
+		return
+
 	var/self_temp = return_temperature()
 	var/other_temp = other.return_temperature()
 	if(abs(self_temp - other_temp) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
 		. = TRUE
 		var/self_heat_cap = heat_capacity()
 		var/other_heat_cap = other.heat_capacity()
-		var/new_temp = (self_temp * self_heat_cap + other_temp * other_heat_cap) / (self_heat_cap + other_heat_cap)
+		var/new_temp = max((self_temp * self_heat_cap + other_temp * other_heat_cap) / (self_heat_cap + other_heat_cap), TCMB)
 		set_temperature(new_temp)
 		other.set_temperature(new_temp)
 
