@@ -98,8 +98,8 @@
 /datum/plane_master_group/proc/transform_lower_turfs(datum/hud/source, new_offset, use_scale = TRUE)
 	// Check if this feature is disabled for the client, in which case don't use scale.
 	var/mob/our_mob = our_hud?.mymob
-	if(!our_mob?.client?.prefs?.read_preference(/datum/preference/toggle/multiz_parallax))
-		use_scale = FALSE
+	// if(!our_mob?.client?.prefs?.read_preference(/datum/preference/toggle/multiz_parallax))
+	// 	use_scale = FALSE
 
 	// No offset? piss off
 	if(!SSmapping.max_plane_offset)
@@ -119,14 +119,14 @@
 		scale_by = 1
 
 	var/list/offsets = list()
-	var/multiz_boundary = our_mob?.client?.prefs?.read_preference(/datum/preference/numeric/multiz_performance)
+	// var/multiz_boundary = our_mob?.client?.prefs?.read_preference(/datum/preference/numeric/multiz_performance)
 
 	// We accept negatives so going down "zooms" away the drop above as it goes
 	for(var/offset in -SSmapping.max_plane_offset to SSmapping.max_plane_offset)
 		// Multiz boundaries disable transforms
-		if(multiz_boundary != MULTIZ_PERFORMANCE_DISABLE && (multiz_boundary < abs(offset)))
-			offsets += null
-			continue
+		// if(multiz_boundary != MULTIZ_PERFORMANCE_DISABLE && (multiz_boundary < abs(offset)))
+		// 	offsets += null
+		// 	continue
 
 		// No transformations if we're landing ON you
 		if(offset == 0)
@@ -149,10 +149,10 @@
 		var/visual_offset = plane.offset - new_offset
 
 		// Basically uh, if we're showing something down X amount of levels, or up any amount of levels
-		if(multiz_boundary != MULTIZ_PERFORMANCE_DISABLE && (visual_offset > multiz_boundary || visual_offset < 0))
-			plane.outside_bounds(our_mob)
-		else if(plane.is_outside_bounds)
-			plane.inside_bounds(our_mob)
+		// if(multiz_boundary != MULTIZ_PERFORMANCE_DISABLE && (visual_offset > multiz_boundary || visual_offset < 0))
+		// 	plane.outside_bounds(our_mob)
+		// else if(plane.is_outside_bounds)
+		// 	plane.inside_bounds(our_mob)
 
 		if(!plane.multiz_scaled)
 			continue
