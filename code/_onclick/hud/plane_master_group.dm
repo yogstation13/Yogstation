@@ -97,7 +97,7 @@
 // // It's hard, and potentially expensive. be careful
 /datum/plane_master_group/proc/transform_lower_turfs(datum/hud/source, new_offset, use_scale = TRUE)
 	// Check if this feature is disabled for the client, in which case don't use scale.
-	var/mob/our_mob = our_hud?.mymob
+	// var/mob/our_mob = our_hud?.mymob
 	// if(!our_mob?.client?.prefs?.read_preference(/datum/preference/toggle/multiz_parallax))
 	// 	use_scale = FALSE
 
