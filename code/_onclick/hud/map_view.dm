@@ -22,7 +22,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/map_view)
 		hide_from(our_client.mob)
 
 	return ..()
-
+	
 /atom/movable/screen/map_view/proc/generate_view(map_key)
 	// Map keys have to start and end with an A-Z character,
 	// and definitely NOT with a square bracket or even a number.

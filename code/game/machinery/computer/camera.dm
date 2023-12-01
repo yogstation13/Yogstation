@@ -32,18 +32,9 @@
 		network -= i
 		network += lowertext(i)
 	// Initialize map objects
+	// Initialize map objects
 	cam_screen = new
-	cam_screen.name = "screen"
-	cam_screen.assigned_map = map_name
-	cam_screen.del_on_map_removal = FALSE
-	cam_screen.screen_loc = "[map_name]:1,1"
-	cam_plane_masters = list()
-	for(var/plane in subtypesof(/atom/movable/screen/plane_master))
-		var/atom/movable/screen/instance = new plane()
-		instance.assigned_map = map_name
-		instance.del_on_map_removal = FALSE
-		instance.screen_loc = "[map_name]:CENTER"
-		cam_plane_masters += instance
+	cam_screen.generate_view(map_name)
 	cam_background = new
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
