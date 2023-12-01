@@ -138,7 +138,7 @@
 
 /obj/machinery/portable_atmospherics/canister/nitrium
 	name = "Nitrium canister"
-  desc = "Nitrium gas. Feels great 'til the acid eats your lungs."
+	desc = "Nitrium gas. Feels great 'til the acid eats your lungs."
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#7b4732"
 	gas_type = GAS_NITRIUM
