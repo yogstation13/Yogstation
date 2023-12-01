@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Guardian's Frenzy Ability now respects the three second cooldown that it is suppose to be limited by."
