@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(starlight)
 	var/destination_x
 	var/destination_y
 
-	var/global/datum/gas_mixture/immutable/space/space_gas = new
+	var/global/datum/gas_mixture/immutable/space/space_gas
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
 	light_power = 1
