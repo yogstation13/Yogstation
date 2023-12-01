@@ -463,13 +463,12 @@
 		return
 	//If we're on Masquerade, we appear to have full blood, unless we are REALLY low, in which case we don't look as bad.
 	if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
-		switch(bloodsucker_blood_volume)
-			if(BLOOD_VOLUME_OKAY(owner.current) to INFINITY) // 336 and up, we are perfectly fine.
-				owner.current.blood_volume = initial(bloodsucker_blood_volume)
-			if(BLOOD_VOLUME_BAD(owner.current) to BLOOD_VOLUME_OKAY(owner.current)) // 224 to 336
-				owner.current.blood_volume = BLOOD_VOLUME_SAFE(owner.current)
-			else // 224 and below
-				owner.current.blood_volume = BLOOD_VOLUME_OKAY(owner.current)
+		if(bloodsucker_blood_volume >= BLOOD_VOLUME_OKAY(owner.current))
+			owner.current.blood_volume = initial(bloodsucker_blood_volume)
+		else if(bloodsucker_blood_volume >= BLOOD_VOLUME_BAD(owner.current))
+			owner.current.blood_volume = BLOOD_VOLUME_SAFE(owner.current)
+		else
+			owner.current.blood_volume = BLOOD_VOLUME_OKAY(owner.current)
 		return
 	owner.current.blood_volume = bloodsucker_blood_volume
 

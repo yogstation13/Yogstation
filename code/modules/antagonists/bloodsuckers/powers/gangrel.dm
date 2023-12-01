@@ -85,7 +85,7 @@
 			user.dna.species.punchdamagehigh += 10 //very stronk
 			user.dna.species.punchstunthreshold += 10
 			user.dna.species.action_speed_coefficient *= 1.3
-			user.dna.species.armor += 40
+			user.dna.species.armor += 15
 			bloodsuckerdatum.AddBloodVolume(50)
 		if("Bat")
 			var/mob/living/simple_animal/hostile/bloodsucker/giantbat/gb
