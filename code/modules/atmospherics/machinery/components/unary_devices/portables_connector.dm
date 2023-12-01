@@ -11,6 +11,7 @@
 	pipe_state = "connector"
 	piping_layer = 3
 	showpipe = TRUE
+	custom_reconcilation = TRUE
 
 	var/obj/machinery/portable_atmospherics/connected_device
 
@@ -24,11 +25,22 @@
 		connected_device.disconnect()
 	return ..()
 
+/obj/machinery/atmospherics/components/unary/portables_connector/return_airs_for_reconcilation(datum/pipeline/requester)
+	. = ..()
+	if(!connected_device)
+		return
+	if(istype(connected_device, /obj/mecha))
+		var/obj/mecha/connected_mech = connected_device
+		if(connected_mech.internal_tank)
+			. += connected_mech.internal_tank.return_air()
+	else
+		. += connected_device.return_air()
+
 /obj/machinery/atmospherics/components/unary/portables_connector/update_icon_nopipes()
 	icon_state = "connector"
 	if(showpipe)
 		cut_overlays()
-		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions)
+		var/image/cap = get_pipe_image(icon, "connector_cap", initialize_directions)
 		add_overlay(cap)
 
 /obj/machinery/atmospherics/components/unary/portables_connector/process_atmos()

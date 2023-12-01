@@ -11,7 +11,7 @@
 //You might wonder why not just create the debugger datum global in its own file, since its loaded way earlier than this DM file
 //Well for whatever reason then the Master gets created first and then the debugger when doing that
 //So thats why this code lives here now, until someone finds out how Byond inits globals
-//GLOBAL_REAL(Debugger, /datum/debugger) = new
+GLOBAL_REAL(Debugger, /datum/debugger) = new
 
 //This is the ABSOLUTE ONLY THING that should init globally like this
 //2019 update: the failsafe,config and Global controllers also do it
