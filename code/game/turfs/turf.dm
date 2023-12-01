@@ -29,6 +29,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/space_lit = FALSE
 	var/force_no_gravity = TRUE
 	flags_1 = CAN_BE_DIRTY_1
+	/// If there is a lattice underneat this turf. Used for the attempt_lattice_replacement proc to determine if it should place lattice.
+	var/lattice_underneath = TRUE
 	
 
 	var/list/image/blueprint_data //for the station blueprints, images of objects eg: pipes
