@@ -113,15 +113,6 @@ def compare_lines(a, b):
     a = a[len("#include \""):-1].lower()
     b = b[len("#include \""):-1].lower()
 
-    split_by_period = a.split('.')
-    a_suffix = ""
-    if len(split_by_period) >= 2:
-        a_suffix = split_by_period[len(split_by_period) - 1]
-    split_by_period = b.split('.')
-    b_suffix = ""
-    if len(split_by_period) >= 2:
-        b_suffix = split_by_period[len(split_by_period) - 1]
-
     a_segments = a.split('\\')
     b_segments = b.split('\\')
 
