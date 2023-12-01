@@ -16,7 +16,9 @@
 	var/powered = TRUE 
 	var/night_vision = FALSE
 	// This list is used as the color cutoff for the night vision
-	var/list/light_cutoff = list(25, 10, 60)
+	var/list/colour_cutoff_list = list(12, 0, 50)
+	// This variable is the actual night vision strength
+	var/light_cutoff = LIGHTING_CUTOFF_HIGH
 
 /obj/item/organ/eyes/robotic/preternis/ui_action_click()
 	if(damage > low_threshold)
@@ -25,9 +27,11 @@
 	sight_flags = initial(sight_flags)
 	night_vision = !night_vision
 	if (night_vision)
-		color_cutoffs = light_cutoff.Copy()
+		color_cutoffs = colour_cutoff_list.Copy()
+		lighting_cutoff = light_cutoff
 	else
 		color_cutoffs = null
+		lighting_cutoff = null
 	owner.update_sight()
 
 /obj/item/organ/eyes/robotic/preternis/on_life()
