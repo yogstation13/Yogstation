@@ -138,7 +138,6 @@
 		var/turf/T = get_turf(src)
 		if(T)
 			T.assume_air(air_contents)
-			air_update_turf()
 		playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
 	qdel(src)
 
@@ -230,6 +229,9 @@
 /obj/item/tank/remove_air(amount)
 	return air_contents.remove(amount)
 
+/obj/item/tank/remove_air_ratio(ratio)
+	return air_contents.remove_ratio(ratio)
+
 /obj/item/tank/return_air()
 	return air_contents
 
@@ -241,6 +243,18 @@
 
 	check_status()
 	return 1
+
+/obj/item/tank/assume_air_moles(datum/gas_mixture/giver, moles)
+	giver.transfer_to(air_contents, moles)
+
+	check_status()
+	return TRUE
+
+/obj/item/tank/assume_air_ratio(datum/gas_mixture/giver, ratio)
+	giver.transfer_ratio_to(air_contents, ratio)
+
+	check_status()
+	return TRUE
 
 /obj/item/tank/proc/remove_air_volume(volume_to_return)
 	if(!air_contents)
@@ -417,7 +431,7 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
-	var/fuel_moles = air_contents.get_moles(/datum/gas/tritium) + air_contents.get_moles(/datum/gas/hydrogen) + air_contents.get_moles(/datum/gas/plasma) + air_contents.get_moles(/datum/gas/oxygen)/6
+	var/fuel_moles = air_contents.get_moles(GAS_TRITIUM) + air_contents.get_moles(GAS_H2) + air_contents.get_moles(GAS_PLASMA) + air_contents.get_moles(GAS_O2)/6
 	var/datum/gas_mixture/bomb_mixture = air_contents.copy()
 	var/strength = 1
 
@@ -464,12 +478,9 @@
 		ground_zero.assume_air(bomb_mixture)
 		ground_zero.hotspot_expose(1000, 125)
 
-	ground_zero.air_update_turf()
-
 /obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
 	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles())
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
 	T.assume_air(removed)
-	air_update_turf()
