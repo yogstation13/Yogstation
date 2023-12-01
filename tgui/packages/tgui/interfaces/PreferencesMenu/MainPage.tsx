@@ -12,11 +12,11 @@ import { FeatureChoicedServerData, FeatureValueInput } from "./preferences/featu
 import { filterMap, sortBy } from "common/collections";
 import { useRandomToggleState } from "./useRandomToggleState";
 
-const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 9;
+const CLOTHING_CELL_SIZE = 64;
+const CLOTHING_SIDEBAR_ROWS = 10;
 
-const CLOTHING_SELECTION_CELL_SIZE = 48;
-const CLOTHING_SELECTION_WIDTH = 5.4;
+const CLOTHING_SELECTION_CELL_SIZE = 64;
+const CLOTHING_SELECTION_WIDTH = 6.3;
 const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 
 const CharacterControls = (props: {
