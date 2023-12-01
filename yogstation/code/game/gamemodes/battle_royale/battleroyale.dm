@@ -1,6 +1,7 @@
 GLOBAL_VAR(thebattlebus)
 GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 GLOBAL_VAR(stormdamage)
+GLOBAL_VAR(final_zone)
 
 /datum/game_mode/fortnite
 	name = "battle royale"
@@ -17,10 +18,9 @@ GLOBAL_VAR(stormdamage)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale maint")
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale bridge")
 	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
-	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
 	var/can_end = FALSE //so it doesn't end during setup somehow
@@ -164,12 +164,19 @@ GLOBAL_VAR(stormdamage)
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
-		if(1 to 7)//close off the map
+		if(1)
+			SSweather.run_weather("royale maint",2)
+		if(2 to 7)//close off the map
 			var/weather = pick(randomweathers)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
 		if(8)
-			SSweather.run_weather("royale hallway", 2)//force them to bridge
+			var/weather = pick(randomweathers) //whichever one is left
+			weather = replacetext(weather, "royale ", "")
+			if(weather == "bridge")
+				weather = "the bridge"
+			GLOB.final_zone = weather
+			SSweather.run_weather("royale hallway", 2)//force them to the final department
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
 
@@ -185,8 +192,7 @@ GLOBAL_VAR(stormdamage)
 		var/remainingpercent = LAZYLEN(GLOB.battleroyale_players) / original_num
 		stage_interval = max(1 MINUTES, initial(stage_interval) * remainingpercent) //intervals get faster as people die
 		loot_interval = min(stage_interval / 2, initial(loot_interval)) //loot spawns faster as more die, but won't ever take longer than base
-		loot_deviation = loot_interval / 2 //less deviation as time goes on
-		if(borderstage == 8)//final collapse takes the full time but still spawns loot faster
+		if(borderstage == 9)//final collapse takes the full time but still spawns loot faster
 			stage_interval = initial(stage_interval)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
@@ -251,20 +257,32 @@ GLOBAL_VAR(stormdamage)
 		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
 
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(1)
-	var/nextdelay = loot_interval + (rand(1, loot_deviation * 2) - loot_deviation)
-	addtimer(CALLBACK(src, PROC_REF(loot_drop)), nextdelay)//literally just keep calling it
+	loot_spawn()
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 
-/datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
-	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
-		var/area/AR = get_area(es)
+/datum/game_mode/fortnite/proc/loot_spawn()
+	for(var/area/lootlake as anything in GLOB.areas)
+		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
+			continue
+		if(istype(lootlake, /area/space))//no nearspace
+			continue
+		if(istype(lootlake, /area/solar))//no solars
+			continue
+		if(istype(lootlake, /area/maintenance))//no maintenance, it's too large, it'd lag the hell out of the server and it's not as popular as main hallways
+			continue //also, ideally keeps people out of maints, and in larger open areas that are more interesting
+		var/amount = round(LAZYLEN(lootlake.get_contained_turfs()) / 40)//so bigger areas spawn more crates
 		for(var/I = 0, I < amount, I++)
-			var/turf/turfy = pick(get_area_turfs(AR))
-			while(turfy.density)//so it doesn't spawn inside walls
-				turfy = pick(get_area_turfs(AR))
-			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			new /obj/structure/closet/crate/battleroyale(pod)
-			new /obj/effect/DPtarget(turfy, pod)
+			var/turf/turfy = pick(get_area_turfs(lootlake))
+			for(var/L = 0, L < 15, L++)//cap so it doesn't somehow end in an infinite loop
+				if(!turfy.density)//so it doesn't spawn inside walls
+					break
+				turfy = pick(get_area_turfs(lootlake))
+			addtimer(CALLBACK(src, PROC_REF(drop_pod), turfy), rand(1,50))//to even out the lag that creating a drop pod causes
+
+/datum/game_mode/fortnite/proc/drop_pod(turf/turfy)
+	var/obj/structure/closet/supplypod/centcompod/pod = new()
+	new /obj/structure/closet/crate/battleroyale(pod)
+	new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items
 /datum/antagonist/battleroyale

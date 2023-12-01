@@ -405,9 +405,9 @@
 	. = 0
 
 	if(M.loc)
-		environment = M.loc.return_air()
+		environment = M.return_air()
 	if(environment)
-		if(environment.get_moles(/datum/gas/plasma) > GLOB.meta_gas_info[/datum/gas/plasma][META_GAS_MOLES_VISIBLE]) //if there's enough plasma in the air to see
+		if(environment.get_moles(GAS_PLASMA) > GLOB.gas_data.visibility[GAS_PLASMA]) //if there's enough plasma in the air to see
 			. += power * 0.5
 	var/requires_metabolizing = !(A.process_dead && M.stat == DEAD) //don't require metabolizing if our host is dead and we have necrotic metabolsim
 	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = requires_metabolizing))
@@ -504,3 +504,63 @@
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
 			M.update_damage_overlays()
 	return 1
+
+#define SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD 0.7
+/datum/symptom/heal/surface
+	name = "Superficial Healing"
+	desc = "The virus accelerates the body's natural healing, causing the body to heal minor wounds quickly."
+	stealth = -2
+	resistance = -2
+	stage_speed = -2
+	transmittable = 1
+
+	level = 3
+	passive_message = span_notice("Your skin tingles")
+
+	var/threshold = 0.9 // Percentual total health we check against. This is less than a toolbox hit, so probably wont save you in combat
+	var/healing_power = 0.5 // 0.5 brute and fire, slightly better than the worst case starlight with its 0.3
+
+	threshold_descs = list(
+		"Stage Speed 8" = "Improves healing significantly.",
+		"Resistance 10" = "Improves healing threshhold. This comes at the downside of exhausting the body more as heavier wounds heal",
+	)
+
+/datum/symptom/heal/surface/Start(datum/disease/advance/A)
+	. = ..()
+	if(!.)
+		return
+	if(A.properties["stage_rate"] >= 8) //stronger healing
+		healing_power = 1.5
+	if(A.properties["resistance"] >= 10)
+		threshold = SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
+
+/datum/symptom/heal/surface/CanHeal(datum/disease/advance/A)
+	var/mob/living/M = A.affected_mob
+	if(M.health == M.maxHealth)
+		return FALSE
+	return TRUE
+	
+
+/datum/symptom/heal/surface/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
+	if(M.health == M.maxHealth)
+		return
+	if(((M.health/M.maxHealth) > threshold))
+		healing_power = healing_power * actual_power
+
+		// We don't actually heal all damage types at once, but prioritise one over the other.
+		// Since the virus focuses mainly on surface damage, it will firstly heal those
+		// If it can't find any then it will consider healing some toxins (Not affected by healing power)
+		if(M.getBruteLoss() || M.getFireLoss())
+			M.heal_bodypart_damage(healing_power, healing_power) 				
+		else if(M.getToxLoss())
+			M.adjustToxLoss(-0.5)
+		else
+			return	// Still continues IF we healed something
+
+		// A downside to the better threshold
+		if(threshold == SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD)
+			// Interesting downside
+			if(M.getStaminaLoss() < 65)
+				M.adjustStaminaLoss(20)
+		return TRUE
+#undef SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD

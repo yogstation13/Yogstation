@@ -23,9 +23,7 @@
 
 /obj/item/fishingrod/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 2, \
-	)
+	AddComponent(/datum/component/two_handed)
 
 /obj/item/fishingrod/examine(mob/user)
 	. = ..()
