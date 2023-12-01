@@ -1,7 +1,6 @@
 #define NIGHTVISION_LIGHT_OFF 0
 #define NIGHTVISION_LIGHT_LOW 1
-#define NIGHTVISION_LIGHT_MID 2
-#define NIGHTVISION_LIGHT_HIG 3
+#define NIGHTVISION_LIGHT_HIGH 2
 
 /obj/item/organ/eyes/robotic/preternis
 	name = "preternis eyes"
@@ -17,14 +16,11 @@
 	now_fixed = span_info("Lines of text scroll in your vision as your eyes begin rebooting.")
 	high_threshold_cleared = span_info("Your Preternis eyes have recharged enough to re-enable most functionality.")
 	low_threshold_cleared = span_info("Your Preternis eyes have almost fully recharged.")
-	var/powered = TRUE 
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	var/night_vision = TRUE
+	var/powered = TRUE 
 	// These lists are used as the color cutoff for the eye
-	// They need to be filled out for subtypes
-	var/list/low_light_cutoff
-	var/list/medium_light_cutoff
-	var/list/high_light_cutoff
+	var/list/low_light_cutoff = list(5, 20, 10)
+	var/list/high_light_cutoff = list(10, 30, 20)
 	var/light_level = NIGHTVISION_LIGHT_OFF
 
 
@@ -40,11 +36,8 @@
 			color_cutoffs = low_light_cutoff.Copy()
 			light_level = NIGHTVISION_LIGHT_LOW
 		if (NIGHTVISION_LIGHT_LOW)
-			color_cutoffs = medium_light_cutoff.Copy()
-			light_level = NIGHTVISION_LIGHT_MID
-		if (NIGHTVISION_LIGHT_MID)
 			color_cutoffs = high_light_cutoff.Copy()
-			light_level = NIGHTVISION_LIGHT_HIG
+			light_level = NIGHTVISION_LIGHT_HIGH
 		else
 			color_cutoffs = list()
 			light_level = NIGHTVISION_LIGHT_OFF
@@ -67,12 +60,6 @@
 		//to simulate running out of power, they take damage
 		owner.adjustOrganLoss(ORGAN_SLOT_EYES,0.5)
 	
-#undef NIGHTVISION_LIGHT_OFF
-#undef NIGHTVISION_LIGHT_LOW
-#undef NIGHTVISION_LIGHT_MID
-#undef NIGHTVISION_LIGHT_HIG
-
-
 /obj/item/organ/eyes/robotic/preternis/examine(mob/user)
 	. = ..()
 	if(status == ORGAN_ROBOTIC && (organ_flags & ORGAN_FAILING))
@@ -84,6 +71,13 @@
 	else if(damage > high_threshold)
 		. += span_warning("[src] seem to flicker on and off. They must be pretty low on charge without being in a Preternis")
 
+#undef NIGHTVISION_LIGHT_OFF
+#undef NIGHTVISION_LIGHT_LOW
+#undef NIGHTVISION_LIGHT_HIGH
+
+///////////////////////////////////////////////////////////
+//----------------------Preternis Lungs------------------//
+///////////////////////////////////////////////////////////
 /obj/item/organ/lungs/preternis
 	name = "preternis lungs"
 	desc = "A specialized set of lungs. Due to the cybernetic nature of these lungs, they are far less resistant to cold but are more heat resistant and more efficent at filtering oxygen."
@@ -107,7 +101,10 @@
 	heat_level_2_damage = 7
 	heat_level_3_threshold = 35000 //are you on the fucking surface of the sun or something?
 	heat_level_3_damage = 25 //you should already be dead
-
+	
+///////////////////////////////////////////////////////////
+//---------------------Preternis Stomach-----------------//
+///////////////////////////////////////////////////////////
 /obj/item/organ/stomach/cell/preternis
 	name = "preternis cell-stomach"
 	desc = "Calling it a stomach is perhaps a bit generous. It's better at grinding rocks than dissolving food. Also works as a power cell."

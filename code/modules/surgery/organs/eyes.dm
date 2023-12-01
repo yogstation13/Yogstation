@@ -169,15 +169,18 @@
 	name = "alien eyes"
 	desc = "It turned out they had them after all!"
 	sight_flags = SEE_MOBS
+	color_cutoffs = list(25, 5, 42)
 
 /obj/item/organ/eyes/zombie
 	name = "undead eyes"
 	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
+	color_cutoffs = list(25, 35, 5)
 
 /obj/item/organ/eyes/shadow
 	name = "burning red eyes"
 	desc = "Even without their shadowy owner, looking at these eyes gives you a sense of dread."
 	icon_state = "burning_eyes"
+	color_cutoffs = list(20, 10, 40)
 
 /obj/item/organ/eyes/night_vision/mushroom
 	name = "fung-eye"
