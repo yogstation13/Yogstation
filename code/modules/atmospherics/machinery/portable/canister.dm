@@ -209,7 +209,7 @@
 	name = "Halon canister"
 	desc = "Halon, remove oxygen from high temperature fires and cool down the area."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#9b5d7f#368bff""
+	greyscale_colors = "#9b5d7f#368bff"
 	gas_type = GAS_HALON
 	filled = 1
 
