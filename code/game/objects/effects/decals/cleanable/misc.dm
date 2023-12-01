@@ -233,3 +233,12 @@
 /obj/effect/decal/cleanable/insectguts/Destroy(force)
 	GLOB.vomit_spots -= src
 	. = ..()
+
+/obj/effect/decal/cleanable/dirt_siding
+	name = "dirt siding"
+	icon = 'icons/turf/decals.dmi'
+	icon_state = "dirt_side"
+
+/obj/effect/decal/cleanable/dirt_siding/corner
+	name = "dirt corner"
+	icon_state = "dirt_side_corner"

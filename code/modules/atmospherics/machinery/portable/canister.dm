@@ -27,7 +27,7 @@
 	integrity_failure = 100
 	pressure_resistance = 7 * ONE_ATMOSPHERE
 	var/temperature_resistance = 1000 + T0C
-	var/starter_temp
+	var/starter_temp = T20C
 	// Prototype vars
 	var/prototype = FALSE
 	var/valve_timer = null
@@ -79,42 +79,42 @@
 	desc = "Nitrogen gas. Reportedly useful for something."
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#1b6d1b"
-	gas_type = /datum/gas/nitrogen
+	gas_type = GAS_N2
 
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "Oxygen canister"
 	desc = "Oxygen. Necessary for human life."
 	greyscale_config = /datum/greyscale_config/canister/stripe
 	greyscale_colors = "#2786e5#e8fefe"
-	gas_type = /datum/gas/oxygen
+	gas_type = GAS_O2
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
 	name = "Carbon dioxide canister"
 	desc = "Carbon dioxide. What the fuck is carbon dioxide?"
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#4e4c48"
-	gas_type = /datum/gas/carbon_dioxide
+	gas_type = GAS_CO2
 
 /obj/machinery/portable_atmospherics/canister/plasma
 	name = "Plasma canister"
 	desc = "Plasma gas. The reason YOU are here. Highly toxic."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#f62800#000000"
-	gas_type = /datum/gas/plasma
+	gas_type = GAS_PLASMA
 
 /obj/machinery/portable_atmospherics/canister/bz
 	name = "\improper BZ canister"
 	desc = "BZ, a powerful hallucinogenic nerve agent."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#f62800#d0d2a0"
-	gas_type = /datum/gas/bz
+	gas_type = GAS_BZ
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
 	name = "Nitrous oxide canister"
 	desc = "Nitrous oxide gas. Known to cause drowsiness."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#1b6d1b#f7d5d3"
-	gas_type = /datum/gas/nitrous_oxide
+	gas_type = GAS_NITROUS
 
 /obj/machinery/portable_atmospherics/canister/air
 	name = "Air canister"
@@ -127,34 +127,35 @@
 	desc = "Tritium. Inhalation might cause irradiation."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#d41010#000000"
-	gas_type = /datum/gas/tritium
+	gas_type = GAS_TRITIUM
 
 /obj/machinery/portable_atmospherics/canister/nob
 	name = "Hyper-noblium canister"
 	desc = "Hyper-Noblium. More noble than all other gases."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#6399fc#b2b2b2"
-	gas_type = /datum/gas/hypernoblium
+	gas_type = GAS_HYPERNOB
 
 /obj/machinery/portable_atmospherics/canister/nitrium
 	name = "Nitrium canister"
+  desc = "Nitrium gas. Feels great 'til the acid eats your lungs."
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#7b4732"
-	gas_type = /datum/gas/nitrium
+	gas_type = GAS_NITRIUM
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
 	name = "Pluoxium canister"
 	desc = "Pluoxium. Like oxygen, but more bang for your buck."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#2786e5#000000"
-	gas_type = /datum/gas/pluoxium
+	gas_type = GAS_PLUOXIUM
 
 /obj/machinery/portable_atmospherics/canister/water_vapor
 	name = "Water vapor canister"
 	desc = "Water vapor. We get it, you vape."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#2ee5e9#f7d5d3"
-	gas_type = /datum/gas/water_vapor
+	gas_type = GAS_H2O
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/miasma
@@ -162,7 +163,7 @@
 	desc = "Foul miasma. Even the canister reeks of fetid refuse."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#d35ecb#943233"
-	gas_type = /datum/gas/miasma
+	gas_type = GAS_MIASMA
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/dilithium
@@ -170,54 +171,55 @@
 	desc = "A gas produced from dilithium crystal."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#ff83c0#f7d5d3"
-	gas_type = /datum/gas/dilithium
+	gas_type = GAS_DILITHIUM
 
 /obj/machinery/portable_atmospherics/canister/freon
 	name = "Freon canister"
-	desc = "Freon. Can absorb heat"
+	desc = "Freon. Can absorb heat."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#68d7ef#ffffff"
-	gas_type = /datum/gas/freon
+	gas_type = GAS_FREON
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/hydrogen
 	name = "Hydrogen canister"
-	desc = "Hydrogen, highly flammable"
+	desc = "Hydrogen, highly flammable."
 	greyscale_config = /datum/greyscale_config/canister/stripe
 	greyscale_colors = "#d41010#ffffff"
-	gas_type = /datum/gas/hydrogen
+	gas_type = GAS_H2
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/healium
 	name = "Healium canister"
-	desc = "Healium, causes deep sleep"
+	desc = "Healium, causes deep sleep."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#009823#ff0e00"
-	gas_type = /datum/gas/healium
+	gas_type = GAS_HEALIUM
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/pluonium
 	name = "Pluonium canister"
-	desc = "Pluonium, reacts differently with various gases"
+	desc = "Pluonium, reacts differently with various gases."
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#2786e5"
-	gas_type = /datum/gas/pluonium
+	gas_type = GAS_PLUONIUM
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/halon
 	name = "Halon canister"
-	desc = "Halon, remove oxygen from high temperature fires and cool down the area"
+	desc = "Halon, remove oxygen from high temperature fires and cool down the area."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#9b5d7f#368bff"
-	gas_type = /datum/gas/halon
+	greyscale_colors = "#9b5d7f#368bff""
+	gas_type = GAS_HALON
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/hexane
 	name = "Hexane canister"
-	desc = "hexane, highly flammable."
+	desc = "Hexane, highly flammable, what a shame."
+
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#9b608b#fd89fd"
-	gas_type = /datum/gas/hexane
+	gas_type = GAS_HEXANE
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/zauker
@@ -225,15 +227,15 @@
 	desc = "Zauker, highly toxic"
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#009a00#006600"
-	gas_type = /datum/gas/zauker
+	gas_type = GAS_ZAUKER
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/antinoblium
 	name = "Antinoblium canister"
-	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
+	desc = "Antinoblium, we still don't know what it does, but it sells for a lot."
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#000000#790000"
-	gas_type = /datum/gas/antinoblium
+	gas_type = GAS_ANTINOB
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()
@@ -266,13 +268,13 @@
 /obj/machinery/portable_atmospherics/canister/proto/default/oxygen
 	name = "prototype canister"
 	desc = "A prototype canister for a prototype bike, what could go wrong?"
-	gas_type = /datum/gas/oxygen
+	gas_type = GAS_O2
 	filled = 1
 	release_pressure = ONE_ATMOSPHERE*2
 
 
-/obj/machinery/portable_atmospherics/canister/New(loc, datum/gas_mixture/existing_mixture)
-	..()
+/obj/machinery/portable_atmospherics/canister/Initialize(mapload, datum/gas_mixture/existing_mixture)
+	. = ..()
 	if(existing_mixture)
 		air_contents.copy_from(existing_mixture)
 	else
@@ -295,13 +297,21 @@
 	if(gas_type)
 		if(starter_temp)
 			air_contents.set_temperature(starter_temp)
-		air_contents.set_moles(gas_type, (maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
+		if(air_contents.return_volume() == 0)
+			CRASH("Air content volume is zero, this shouldn't be the case volume is: [volume]!")
+		if(air_contents.return_temperature() == 0)
+			CRASH("Air content temperature is zero, this shouldn't be the case!")
+		if (gas_type)
+			air_contents.set_moles(gas_type, (maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
 
 /obj/machinery/portable_atmospherics/canister/air/create_gas()
-	if(starter_temp)
-		air_contents.set_temperature(starter_temp)
-	air_contents.set_moles(/datum/gas/oxygen, (O2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
-	air_contents.set_moles(/datum/gas/nitrogen, (N2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
+	if(air_contents.return_volume() == 0)
+		CRASH("Air content volume is zero, this shouldn't be the case volume is: [volume]!")
+	if(air_contents.return_temperature() == 0)
+		CRASH("Air content temperature is zero, this shouldn't be the case!")
+	air_contents.set_temperature(starter_temp)
+	air_contents.set_moles(GAS_O2, (O2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
+	air_contents.set_moles(GAS_N2, (N2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
 
 /obj/machinery/portable_atmospherics/canister/update_icon_state()
 	if(stat & BROKEN)
@@ -385,7 +395,6 @@
 	var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
 	var/turf/T = get_turf(src)
 	T.assume_air(expelled_gas)
-	air_update_turf()
 
 	obj_break()
 	density = FALSE
@@ -413,20 +422,15 @@
 	if(timing && valve_timer < world.time)
 		valve_open = !valve_open
 		timing = FALSE
+
+	// Handle gas transfer.
 	if(valve_open)
 		var/turf/T = get_turf(src)
-		pump.airs[1] = air_contents
-		pump.airs[2] = holding ? holding.air_contents : T.return_air()
-		pump.target_pressure = release_pressure
+		var/datum/gas_mixture/target_air = holding ? holding.air_contents : T.return_air()
 
-		pump.process_atmos() // Pump gas.
-		if(!holding)
-			air_update_turf() // Update the environment if needed.
-	else
-		pump.airs[1] = null
-		pump.airs[2] = null
-
+		air_contents.release_gas_to(target_air, release_pressure)
 	update_appearance(UPDATE_ICON)
+
 
 /obj/machinery/portable_atmospherics/canister/ui_state(mob/user)
 	return GLOB.physical_state
@@ -529,11 +533,10 @@
 				if(!holding)
 					var/list/danger = list()
 					for(var/id in air_contents.get_gases())
-						if(!GLOB.meta_gas_info[id][META_GAS_DANGER])
+						if(!(GLOB.gas_data.flags[id] & GAS_FLAG_DANGEROUS))
 							continue
-						if(air_contents.get_moles(id) > (GLOB.meta_gas_info[id][META_GAS_MOLES_VISIBLE] || MOLES_GAS_VISIBLE)) //if moles_visible is undefined, default to default visibility
-							danger[GLOB.meta_gas_info[id][META_GAS_NAME]] = air_contents.get_moles(id) //ex. "plasma" = 20
-
+						if(air_contents.get_moles(id) > (GLOB.gas_data.visibility[id] || MOLES_GAS_VISIBLE)) //if moles_visible is undefined, default to default visibility
+							danger[GLOB.gas_data.names[id]] = air_contents.get_moles(id) //ex. "plasma" = 20
 					if(danger.len)
 						message_admins("[ADMIN_LOOKUPFLW(usr)] opened a canister that contains the following at [ADMIN_VERBOSEJMP(src)]:")
 						log_admin("[key_name(usr)] opened a canister that contains the following at [AREACOORD(src)]:")
@@ -592,10 +595,10 @@
 	icon_state = "danger"
 
 /obj/machinery/portable_atmospherics/canister/fusion_test/create_gas()
-	air_contents.set_moles(/datum/gas/tritium, 10)
-	air_contents.set_moles(/datum/gas/plasma, 500)
-	air_contents.set_moles(/datum/gas/hydrogen, 500)
-	air_contents.set_moles(/datum/gas/nitrous_oxide, 100)
+	air_contents.set_moles(GAS_TRITIUM, 10)
+	air_contents.set_moles(GAS_PLASMA, 500)
+	air_contents.set_moles(GAS_H2, 500)
+	air_contents.set_moles(GAS_NITROUS, 100)
 	air_contents.set_temperature(10000)
 
 /// Canister 1 Kelvin below the fusion point. Contains far too much plasma. Only good for adding more fuel to ongoing fusion reactions.
@@ -604,10 +607,10 @@
 	desc = "This should never be spawned in game."
 	icon_state = "danger"
 /obj/machinery/portable_atmospherics/canister/fusion_test_2/create_gas()
-	air_contents.set_moles(/datum/gas/tritium, 10)
-	air_contents.set_moles(/datum/gas/plasma, 15000)
-	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
-	air_contents.set_moles(/datum/gas/nitrous_oxide, 100)
+	air_contents.set_moles(GAS_TRITIUM, 10)
+	air_contents.set_moles(GAS_PLASMA, 15000)
+	air_contents.set_moles(GAS_CO2, 1500)
+	air_contents.set_moles(GAS_NITROUS, 100)
 	air_contents.set_temperature(9999)
 
 /// Canister at the perfect conditions to start and continue fusion for a long time.
@@ -616,9 +619,9 @@
 	desc = "This should never be spawned in game."
 	icon_state = "danger"
 /obj/machinery/portable_atmospherics/canister/fusion_test_3/create_gas()
-	air_contents.set_moles(/datum/gas/tritium, 1000)
-	air_contents.set_moles(/datum/gas/plasma, 4500)
-	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
+	air_contents.set_moles(GAS_TRITIUM, 1000)
+	air_contents.set_moles(GAS_PLASMA, 4500)
+	air_contents.set_moles(GAS_CO2, 1500)
 	air_contents.set_temperature(1000000)
 
 /** Canister for testing dilithium based cold fusion. Use fusion_test_3 if you don't know what you are doing.
@@ -628,10 +631,10 @@
 	desc = "This should never be spawned in game. Contains dilithium for cold fusion."
 	icon_state = "danger"
 /obj/machinery/portable_atmospherics/canister/fusion_test_4/create_gas()
-	air_contents.set_moles(/datum/gas/tritium, 1000)
-	air_contents.set_moles(/datum/gas/plasma, 4500)
-	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
-	air_contents.set_moles(/datum/gas/dilithium, 2000)
+	air_contents.set_moles(GAS_TRITIUM, 1000)
+	air_contents.set_moles(GAS_PLASMA, 4500)
+	air_contents.set_moles(GAS_CO2, 1500)
+	air_contents.set_moles(GAS_DILITHIUM, 2000)
 	air_contents.set_temperature(10000)
 
 /// A canister that is 1 Kelvin away from doing the stimball reaction.
@@ -640,7 +643,7 @@
 	desc = "This should never be spawned in game except for testing purposes."
 	icon_state = "danger"
 /obj/machinery/portable_atmospherics/canister/stimball_test/create_gas()
-	air_contents.set_moles(/datum/gas/nitrium, 1000)
-	air_contents.set_moles(/datum/gas/plasma, 1000)
-	air_contents.set_moles(/datum/gas/pluoxium, 1000)
+	air_contents.set_moles(GAS_NITRIUM, 1000)
+	air_contents.set_moles(GAS_PLASMA, 1000)
+	air_contents.set_moles(GAS_PLUOXIUM, 1000)
 	air_contents.set_temperature(FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1)

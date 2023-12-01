@@ -46,6 +46,7 @@ const HypertorusMainControls = (props, context) => {
           onRecipe={(id) => act('fuel', { mode: id })}
           selectableFuels={data.selectable_fuel}
           selectedFuelID={data.selected}
+          gasColors={data.gas_colors}
         />
       </Collapsible>
     </Section>

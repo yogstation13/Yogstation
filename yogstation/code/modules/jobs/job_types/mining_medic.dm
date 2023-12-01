@@ -24,7 +24,8 @@
 		/datum/job_department/cargo,
 	)
 
-	added_access = list(ACCESS_SURGERY, ACCESS_CARGO)
+	//if it's skeleton there's probably no paramedic to save spaced miners that jaunted away from danger
+	added_access = list(ACCESS_SURGERY, ACCESS_CARGO, ACCESS_CLONING, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_MED
