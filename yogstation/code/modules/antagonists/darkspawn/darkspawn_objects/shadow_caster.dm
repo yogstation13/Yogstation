@@ -53,3 +53,7 @@
 	light_color = COLOR_VELVET
 	light_range = 3.5
 	embed_chance = 1 //always embeds if it hits someone
+
+/obj/projectile/bullet/reusable/arrow/shadow/Initialize(mapload)
+	. = ..()
+	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
