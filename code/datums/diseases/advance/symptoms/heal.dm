@@ -521,7 +521,7 @@
 	var/healing_power = 0.5 // 0.5 brute and fire, slightly better than the worst case starlight with its 0.3
 
 	threshold_descs = list(
-		"Stage Speed 8" = "Improves healing significantly.",
+		"Stage Speed 7" = "Improves healing significantly.",
 		"Resistance 10" = "Improves healing threshhold. This comes at the downside of exhausting the body more as heavier wounds heal",
 	)
 
@@ -529,7 +529,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(A.properties["stage_rate"] >= 8) //stronger healing
+	if(A.properties["stage_rate"] >= 7) //stronger healing
 		healing_power = 1.5
 	if(A.properties["resistance"] >= 10)
 		threshold = SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
