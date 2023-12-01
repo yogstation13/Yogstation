@@ -45,7 +45,7 @@
 	item_state = "glasses"
 	flash_protect = -1
 	// Blue green, dark
-	color_cutoffs = list(10, 10, 30)
+	color_cutoffs = list(20, 20, 75) //yog change, blue night vision is so much weaker for some reason, so it's been significantly buffed to actually work as night vision
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/hud/health/meson
@@ -86,7 +86,7 @@
 	item_state = "glasses"
 	flash_protect = -1
 	// Pale yellow
-	color_cutoffs = list(30, 20, 10)
+	color_cutoffs = list(40, 30, 15)
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/hud/diagnostic/sunglasses
