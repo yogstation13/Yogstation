@@ -35,6 +35,7 @@ Difficulty: Extremely Hard
 	var/projectile_speed_multiplier = 1
 	var/enraged = FALSE
 	var/enraging = FALSE
+	internal_type = /obj/item/gps/internal/frostminer
 	deathmessage = "falls to the ground, decaying into plasma particles."
 	deathsound = "bodyfall"
 	attack_action_types = list(/datum/action/innate/megafauna_attack/frost_orbs,
@@ -338,3 +339,9 @@ Difficulty: Extremely Hard
 		to_chat(owner, span_notice("The cube melts!"))
 	owner.cut_overlay(cube)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+
+/obj/item/gps/internal/frostminer
+	icon_state = null
+	gpstag = "Hollow Signal"
+	desc = "What could possibly be sending out a GPS signal in these wastes?"
+	invisibility = 100

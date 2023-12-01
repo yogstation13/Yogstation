@@ -307,14 +307,14 @@
 	if(active && moderator_input.total_moles() >= minimum_coolant_level)
 		// Fuel types: increases power and K
 		var/total_fuel_moles = 0
-		total_fuel_moles += moderator_input.get_moles(/datum/gas/plasma) * PLASMA_FUEL_POWER
-		total_fuel_moles += moderator_input.get_moles(/datum/gas/tritium) * TRITIUM_FUEL_POWER
-		total_fuel_moles += moderator_input.get_moles(/datum/gas/antinoblium) * ANTINOBLIUM_FUEL_POWER
+		total_fuel_moles += moderator_input.get_moles(GAS_PLASMA) * PLASMA_FUEL_POWER
+		total_fuel_moles += moderator_input.get_moles(GAS_TRITIUM) * TRITIUM_FUEL_POWER
+		total_fuel_moles += moderator_input.get_moles(GAS_ANTINOB) * ANTINOBLIUM_FUEL_POWER
 
 		// Power modifier types: increases fuel effectiveness
 		var/power_mod_moles = 0
-		power_mod_moles += moderator_input.get_moles(/datum/gas/oxygen) * OXYGEN_POWER_MOD
-		power_mod_moles += moderator_input.get_moles(/datum/gas/hydrogen) * HYDROGEN_POWER_MOD
+		power_mod_moles += moderator_input.get_moles(GAS_O2) * OXYGEN_POWER_MOD
+		power_mod_moles += moderator_input.get_moles(GAS_H2) * HYDROGEN_POWER_MOD
 
 		// Now make some actual power!
 		if(total_fuel_moles >= minimum_coolant_level) //You at least need SOME fuel.
@@ -322,39 +322,39 @@
 			var/power_modifier = max(power_mod_moles * 10 / moderator_input.total_moles(), 1) //You can never have negative IPM. For now.
 			power_produced = max(0,((fuel_power*power_modifier)*moderator_input.total_moles())) / delta_time
 			if(active)
-				coolant_output.adjust_moles(/datum/gas/pluonium, total_fuel_moles/20) //Shove out pluonium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+				coolant_output.adjust_moles(GAS_PLUONIUM, total_fuel_moles/20) //Shove out pluonium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 
 		// Control types: increases control of K
 		var/total_control_moles = 0
-		total_control_moles += moderator_input.get_moles(/datum/gas/nitrogen) * NITROGEN_CONTROL_MOD
-		total_control_moles += moderator_input.get_moles(/datum/gas/carbon_dioxide) * CARBON_CONTROL_MOD
-		total_control_moles += moderator_input.get_moles(/datum/gas/pluoxium) * PLUOXIUM_CONTROL_MOD
+		total_control_moles += moderator_input.get_moles(GAS_N2) * NITROGEN_CONTROL_MOD
+		total_control_moles += moderator_input.get_moles(GAS_CO2) * CARBON_CONTROL_MOD
+		total_control_moles += moderator_input.get_moles(GAS_PLUOXIUM) * PLUOXIUM_CONTROL_MOD
 		if(total_control_moles >= minimum_coolant_level)
 			var/control_bonus = total_control_moles / REACTOR_CONTROL_FACTOR //1 mol of n2 -> 0.002 bonus control rod effectiveness, if you want a super controlled reaction, you'll have to sacrifice some power.
 			control_rod_effectiveness = initial(control_rod_effectiveness) + control_bonus
 
 		// Permeability types: increases cooling efficiency
 		var/total_permeability_moles = 0
-		total_permeability_moles += moderator_input.get_moles(/datum/gas/bz) * BZ_PERMEABILITY_MOD
-		total_permeability_moles += moderator_input.get_moles(/datum/gas/water_vapor) * WATER_PERMEABILITY_MOD
-		total_permeability_moles += moderator_input.get_moles(/datum/gas/hypernoblium) * NOBLIUM_PERMEABILITY_MOD
+		total_permeability_moles += moderator_input.get_moles(GAS_BZ) * BZ_PERMEABILITY_MOD
+		total_permeability_moles += moderator_input.get_moles(GAS_H2O) * WATER_PERMEABILITY_MOD
+		total_permeability_moles += moderator_input.get_moles(GAS_HYPERNOB) * NOBLIUM_PERMEABILITY_MOD
 		if(total_permeability_moles >= minimum_coolant_level)
 			gas_absorption_effectiveness = clamp(gas_absorption_constant + (total_permeability_moles / REACTOR_PERMEABILITY_FACTOR), 0, 1)
 
 		// Radiation types: increases radiation
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/nitrogen) * NITROGEN_RAD_MOD //An example setup of 50 moles of n2 (for dealing with spent fuel) leaves us with a radioactivity spice multiplier of 3.
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/carbon_dioxide) * CARBON_RAD_MOD
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/hydrogen) * HYDROGEN_RAD_MOD 
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/tritium) * TRITIUM_RAD_MOD
-		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/antinoblium) * ANTINOBLIUM_RAD_MOD
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_N2) * NITROGEN_RAD_MOD //An example setup of 50 moles of n2 (for dealing with spent fuel) leaves us with a radioactivity spice multiplier of 3.
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_CO2) * CARBON_RAD_MOD
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_H2) * HYDROGEN_RAD_MOD 
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_TRITIUM) * TRITIUM_RAD_MOD
+		radioactivity_spice_multiplier += moderator_input.get_moles(GAS_ANTINOB) * ANTINOBLIUM_RAD_MOD
 
 		// Integrity modification
-		var/healium_moles = moderator_input.get_moles(/datum/gas/healium)
+		var/healium_moles = moderator_input.get_moles(GAS_HEALIUM)
 		if(healium_moles > minimum_coolant_level)
 			integrity_restoration = max((2400-max(TCMB, temperature))/300) * delta_time //At 1800K integrity_restoration should be around 1, which then it cant keep up with the heat damage (around 1.1 maximum in temp_damage) to restore integrity
 
 		// Degradation types: degrades the fuel rods
-		var/total_degradation_moles = moderator_input.get_moles(/datum/gas/pluonium) //Because it's quite hard to get.
+		var/total_degradation_moles = moderator_input.get_moles(GAS_PLUONIUM) //Because it's quite hard to get.
 		if(total_degradation_moles >= minimum_coolant_level) //I'll be nice.
 			depletion_modifier += total_degradation_moles / 15 //Oops! All depletion. This causes your fuel rods to get SPICY.
 			if(prob(total_degradation_moles)) // don't spam the sound so much please
@@ -568,7 +568,7 @@
 //Results: Engineering becomes unusable and your engine irreparable
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/meltdown()
 	set waitfor = FALSE
-	SSair.atmos_machinery -= src //Annd we're now just a useless brick.
+	SSair_machinery.stop_processing_machine(src)
 	vessel_integrity = null // this makes it show up weird on the monitor to even further emphasize something's gone horribly wrong
 	slagged = TRUE
 	color = null

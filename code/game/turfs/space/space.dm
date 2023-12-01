@@ -49,8 +49,8 @@ GLOBAL_LIST_EMPTY(starlight)
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 
-	temperature = TCMB
-	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	initial_temperature = TCMB
+	thermal_conductivity = 0
 	heat_capacity = 700000
 
 	FASTDMM_PROP(\
@@ -64,8 +64,6 @@ GLOBAL_LIST_EMPTY(starlight)
 	var/destination_y
 
 	var/global/datum/gas_mixture/immutable/space/space_gas = new
-	// We do NOT want atmos adjacent turfs
-	init_air = FALSE
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
 	light_power = 1
@@ -88,8 +86,10 @@ GLOBAL_LIST_EMPTY(starlight)
 /turf/open/space/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
 	icon_state = SPACE_ICON_STATE
+	if(!space_gas)
+		space_gas = new
 	air = space_gas
-	update_air_ref()
+	update_air_ref(0)
 	vis_contents.Cut() //removes inherited overlays
 	visibilityChanged()
 
@@ -101,9 +101,6 @@ GLOBAL_LIST_EMPTY(starlight)
 	var/area/A = loc
 	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
 		add_overlay(/obj/effect/fullbright)
-
-	if(requires_activation)
-		SSair.add_to_active(src)
 
 	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
@@ -138,6 +135,13 @@ GLOBAL_LIST_EMPTY(starlight)
 
 /turf/open/space/Assimilate_Air()
 	return
+
+//IT SHOULD RETURN NULL YOU MONKEY, WHY IN TARNATION WHAT THE FUCKING FUCK
+/turf/open/space/remove_air(amount)
+	return null
+
+/turf/open/space/remove_air_ratio(amount)
+	return null
 
 //IT SHOULD RETURN NULL YOU MONKEY, WHY IN TARNATION WHAT THE FUCKING FUCK
 /turf/open/space/remove_air(amount)
