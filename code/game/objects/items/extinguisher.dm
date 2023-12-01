@@ -55,7 +55,7 @@
 	name = "advanced fire extinguisher"
 	desc = "Used to stop thermonuclear fires from spreading inside your engine."
 	icon_state = "foam_extinguisher0"
-	//item_state = "foam_extinguisher" needs sprite
+	item_state = "foam_extinguisher"
 	max_water = 150
 	chem_amount = 1
 	w_class = WEIGHT_CLASS_NORMAL
