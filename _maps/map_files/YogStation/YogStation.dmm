@@ -7180,6 +7180,20 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/library)
+"bbE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-4";
+	tag = ""
+	},
+/obj/effect/turf_decal/siding/wood/corner/thin{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "bbG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -14424,6 +14438,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"cuT" = (
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/captain";
+	dir = 1;
+	name = "Captain's Office APC";
+	pixel_y = 23
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "cuZ" = (
 /obj/machinery/camera{
 	c_tag = "Telecomms Server Room";
@@ -19286,12 +19315,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"ejT" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/wood/large,
-/area/crew_quarters/heads/captain)
 "eki" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -27146,15 +27169,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"hdD" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/wood/large,
-/area/crew_quarters/heads/captain)
 "hdQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -29048,6 +29062,18 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/main)
+"hOk" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "hOn" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/rack,
@@ -35765,13 +35791,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"kqt" = (
-/obj/effect/landmark/event_spawn,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/wood/large,
-/area/crew_quarters/heads/captain)
 "kqw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -36551,19 +36570,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
-"kHw" = (
-/mob/living/simple_animal/pet/fox/Renault,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/wood/large,
-/area/crew_quarters/heads/captain)
 "kHL" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -41273,6 +41279,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"mzu" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "mzy" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -48414,6 +48429,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"pkR" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "pkU" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 1
@@ -53091,17 +53116,6 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
-"qVz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-4";
-	tag = ""
-	},
-/turf/open/floor/wood/large,
-/area/crew_quarters/heads/captain)
 "qVM" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -55041,6 +55055,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+"rIQ" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "rJa" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -60879,18 +60902,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"tTs" = (
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/heads/captain";
-	dir = 1;
-	name = "Captain's Office APC";
-	pixel_y = 23
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/wood/large,
-/area/crew_quarters/heads/captain)
 "tTK" = (
 /obj/machinery/porta_turret/ai,
 /turf/open/floor/circuit/telecomms/server,
@@ -61511,12 +61522,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"uhH" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/wood/large,
-/area/crew_quarters/heads/captain)
 "uhT" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -69066,6 +69071,22 @@
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"wZx" = (
+/mob/living/simple_animal/pet/fox/Renault,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "wZD" = (
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
@@ -104162,9 +104183,9 @@ aPR
 mJr
 aPR
 aZV
-tTs
-kHw
-qVz
+cuT
+wZx
+bbE
 xCE
 jRb
 tcm
@@ -104421,7 +104442,7 @@ xgM
 aZV
 vnl
 kmy
-hdD
+hOk
 oxG
 dNO
 guY
@@ -104678,7 +104699,7 @@ wWA
 aZV
 aHY
 qnQ
-kqt
+pkR
 oaq
 vyH
 huD
@@ -104935,7 +104956,7 @@ dbt
 aZV
 hNx
 bej
-ejT
+mzu
 bRr
 msk
 msk
@@ -105192,7 +105213,7 @@ hQK
 aZV
 mLc
 iKa
-uhH
+rIQ
 msN
 cjK
 doS
