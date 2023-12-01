@@ -29,6 +29,16 @@
 "aoV" = (
 /turf/open/space,
 /area/space)
+"avQ" = (
+/obj/structure/grille,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/security/armory)
+"aAC" = (
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/nuke_storage)
 "aBi" = (
 /turf/open/floor/circuit/red/off,
 /area/engine/gravity_generator)
@@ -36,11 +46,32 @@
 /turf/open/space/basic,
 /area/security)
 "aSJ" = (
-/turf/open/space/basic,
-/area/security/brig)
+/turf/closed/wall/r_wall,
+/area/security/warden)
+"aTW" = (
+/obj/machinery/vending/autodrobe/capdrobe,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"aWw" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/broken/four,
+/area/bridge/showroom/corporate)
 "btG" = (
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
+"bvP" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"bRj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/security/brig)
 "bRQ" = (
 /turf/open/floor/plating,
 /area/engine/atmos)
@@ -57,6 +88,15 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/foyer)
+"cas" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge)
 "ccw" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -78,6 +118,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cqS" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"cvY" = (
+/obj/machinery/light,
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/nuke_storage)
 "cyg" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -88,6 +138,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cGI" = (
+/obj/structure/window/reinforced/spawner/west,
+/turf/open/floor/plating/asteroid/basalt,
+/area/bridge/showroom/corporate)
+"cHK" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"cIB" = (
+/obj/machinery/nuclearbomb/beer{
+	r_code = "72832";
+	name = "Rapid Alcohol Distribution System Projector Unit";
+	desc = "A nuclear bomb casing refitted for the Rapid Alcohol Distribution System. The reason it was designed in the first place remains unknown. It has a drain valve on the side."
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/nuke_storage)
+"cRj" = (
+/obj/machinery/computer/communications,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "cTZ" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -100,6 +175,44 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"cWK" = (
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
+"cZk" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/east,
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"diR" = (
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"dmH" = (
+/turf/closed/wall/r_wall,
+/area/bridge/meeting_room)
+"dvc" = (
+/obj/machinery/disposal/deliveryChute{
+	dir = 4;
+	name = "warden's access chute"
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor{
+	dir = 4;
+	name = "Warden Access";
+	req_access_txt = "3"
+	},
+/obj/structure/window/reinforced/spawner,
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/security/armory)
 "dwx" = (
 /obj/structure/cable{
 	icon_state = "1-4";
@@ -107,20 +220,132 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"dwP" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/statue{
+	icon = 'icons/mob/simple_human.dmi';
+	icon_state = "syndicate_stormtrooper_sword";
+	name = "syndicate statue";
+	desc = "A Syndicate hardsuit rigged to a mannequin, with a fake energy sword and shield mounted to it. There's a plaque below it, rendered unreadable by dirt."
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/bridge/showroom/corporate)
+"dGw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/hatch,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/mineral/plastitanium,
+/area/bridge/showroom/corporate)
 "dNY" = (
 /turf/closed/wall/r_wall,
 /area/engine/foyer)
+"dTm" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/education)
 "dUD" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/circuit/red/anim,
 /area/engine/gravity_generator)
-"ftu" = (
-/turf/open/space/basic,
+"ecJ" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Bridge";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"ehy" = (
+/obj/structure/window/reinforced/spawner/west,
+/turf/open/floor/plating,
 /area/bridge/showroom/corporate)
+"eoQ" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"esE" = (
+/obj/machinery/computer/station_alert,
+/turf/open/floor/plasteel,
+/area/engine/foyer)
+"etL" = (
+/obj/structure/grille,
+/obj/machinery/camera/motion/armory,
+/turf/open/floor/plating,
+/area/ai_monitored/security/armory)
+"euj" = (
+/obj/machinery/nuclearbomb/beer{
+	r_code = "72832";
+	name = "Rapid Alcohol Distribution System Projector Unit";
+	desc = "A nuclear bomb casing refitted for the Rapid Alcohol Distribution System. The reason it was designed in the first place remains unknown. It has a drain valve on the side."
+	},
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/nuke_storage)
+"eQW" = (
+/obj/machinery/door/window/brigdoor{
+	req_access_txt = "57";
+	dir = 1;
+	name = "HoP's Bedroom"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"eUN" = (
+/obj/machinery/door/airlock/external/glass,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel,
+/area/bridge/showroom/corporate)
+"fdP" = (
+/turf/open/floor/wood,
+/area/bridge)
+"ffY" = (
+/obj/structure/chair/comfy/beige{
+	dir = 8
+	},
+/obj/effect/landmark/start/research_director,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"foQ" = (
+/obj/machinery/door/poddoor{
+	id = "genpop_exit1"
+	},
+/turf/open/floor/plasteel,
+/area/security/warden)
+"fqM" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/broken/four,
+/area/bridge/showroom/corporate)
+"ftu" = (
+/turf/open/floor/wood,
+/area/bridge/showroom/corporate)
+"fMv" = (
+/turf/open/floor/plasteel,
+/area/security/warden)
+"fNG" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/bridge/showroom/corporate)
+"fYY" = (
+/turf/open/floor/plasteel/dark,
+/area/security/execution/education)
+"gdH" = (
+/turf/closed/wall/r_wall,
+/area/ai_monitored/security/armory)
 "gjv" = (
-/turf/open/space/basic,
+/obj/structure/grille,
+/turf/open/floor/plating,
 /area/ai_monitored/security/armory)
 "gjC" = (
 /obj/structure/cable{
@@ -144,6 +369,12 @@
 /obj/machinery/power/rtg/advanced,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"gum" = (
+/obj/machinery/door/poddoor{
+	id = "genpop_exit2"
+	},
+/turf/open/floor/plasteel,
+/area/security/warden)
 "gFN" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/engine/engineering";
@@ -165,10 +396,59 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"gPo" = (
+/obj/machinery/door/window/brigdoor{
+	req_access_txt = "57";
+	dir = 1;
+	name = "Captain's Bedroom";
+	req_access = list(20)
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"gUk" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1;
+	name = "captain's chair";
+	desc = "For only the most important asses."
+	},
+/obj/effect/landmark/start/captain,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"hqt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/mineral/plastitanium/broken/three,
+/area/bridge/showroom/corporate)
 "htQ" = (
 /obj/machinery/gravity_generator/main/station,
 /turf/open/floor/circuit/red/off,
 /area/engine/gravity_generator)
+"hvQ" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/bed,
+/obj/item/bedsheet/ian,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"hJL" = (
+/mob/living/simple_animal/pet/dog/corgi/Ian{
+	dir = 8
+	},
+/obj/structure/bed/dogbed/ian,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"ifC" = (
+/obj/machinery/computer/security,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "imf" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -181,6 +461,43 @@
 "irH" = (
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"itG" = (
+/turf/closed/wall/r_wall,
+/area/security/brig)
+"ivR" = (
+/obj/structure/safe,
+/obj/item/gun/ballistic/automatic/pistol/deagle/gold,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/clothing/head/HoS/beret/syndicate{
+	name = "tattered beret";
+	desc = "An old beret, its label bearing the logo of the Syndicate. Its badge has been replaced with Nanotrasen insignia."
+	},
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/nuke_storage)
+"ixf" = (
+/obj/structure/window/reinforced/spawner,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/broken/two,
+/area/bridge/showroom/corporate)
+"iKd" = (
+/obj/machinery/jukebox/disco/indestructible,
+/turf/open/floor/wood,
+/area/bridge)
+"iTC" = (
+/obj/machinery/modular_computer/console/preset/command,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"iWb" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Brig Control";
+	req_access_txt = "3";
+	security_level = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "iXv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -195,24 +512,122 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"jfv" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/human{
+	desc = "You think these aren't real... probably."
+	},
+/turf/open/floor/mineral/plastitanium/broken/five,
+/area/bridge/showroom/corporate)
+"jgS" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/broken/three,
+/area/bridge/showroom/corporate)
+"jih" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
+"jsg" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"jtr" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bridge/showroom/corporate)
+"jGG" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bridge/meeting_room)
+"jGH" = (
+/turf/closed/wall/r_wall,
+/area/bridge)
+"jUI" = (
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/security/armory)
 "jUX" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"khU" = (
+/obj/item/paper{
+	name = "paper - R.A.D.S code";
+	info = "The code to the Rapid Alcohol Distribution System is: 72832. This code works for all units currently stored in the station's Vault. Please be aware that it requires functional atmospheric scrubbers to operate.";
+	desc = "The words 'HEAD OF PERSONNEL EYES ONLY' are printed on the reverse."
+	},
+/obj/structure/closet/secure_closet/hop,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"kkP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "kpp" = (
-/turf/open/space/basic,
+/obj/machinery/nuclearbomb/beer{
+	r_code = "72832";
+	name = "Rapid Alcohol Distribution System Projector Unit";
+	desc = "A nuclear bomb casing refitted for the Rapid Alcohol Distribution System. The reason it was designed in the first place remains unknown. It has a drain valve on the side."
+	},
+/turf/open/floor/circuit/red/anim,
 /area/ai_monitored/nuke_storage)
+"kzN" = (
+/obj/machinery/computer/atmos_alert,
+/turf/open/floor/plasteel,
+/area/engine/foyer)
+"kMQ" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Bridge";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge)
 "kYK" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
+"liq" = (
+/turf/open/floor/plasteel,
+/area/security/brig)
 "llm" = (
 /turf/open/floor/circuit/red/anim,
 /area/engine/gravity_generator)
+"lpZ" = (
+/turf/open/floor/plasteel,
+/area/bridge/showroom/corporate)
+"lzJ" = (
+/obj/machinery/computer/prisoner,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"lEP" = (
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"lEU" = (
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/fakepit,
+/area/bridge/showroom/corporate)
 "lKd" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -221,6 +636,24 @@
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"lRr" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/table/wood,
+/obj/item/pinpointer/nuke,
+/obj/item/disk/nuclear,
+/obj/item/paper{
+	name = "paper - R.A.D.S standard procedure";
+	info = "The Rapid Alcohol Distribution System is to be operated exclusively by the HoP and Captain. The Captain is to carry the nuclear authentication disk to activate R.A.D.S. The HoP is to carry the sheet with activation codes. When the two decide to activate R.A.D.S, they are to report to the Vault. The Captain is to insert the disk into the selected R.A.D.S unit, and walk at least 3m away. The HoP is then to input the code and set the timer. They are to then arm the R.A.D.S unit and alert the crew of imminent alcohol."
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"lXy" = (
+/obj/structure/window/reinforced/spawner/west,
+/turf/open/floor/plasteel,
+/area/bridge/showroom/corporate)
 "mcw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -230,14 +663,64 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"mzd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/security/warden)
+"mBX" = (
+/obj/machinery/door/airlock/vault{
+	req_access_txt = "53"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/nuke_storage)
+"ndu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/human{
+	desc = "You think these aren't real... probably."
+	},
+/obj/item/clothing/head/collectable/swat{
+	name = "SWAT helmet";
+	desc = "No, wait, this is just a plastic replica.";
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/mineral/plastitanium,
+/area/bridge/showroom/corporate)
+"nmj" = (
+/turf/closed/wall/r_wall,
+/area/ai_monitored/nuke_storage)
+"nws" = (
+/obj/machinery/ore_silo,
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/nuke_storage)
 "nIq" = (
 /obj/structure/window/plasma/reinforced/spawner,
 /turf/open/floor/engine/air,
 /area/engine/atmos)
+"nIJ" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/statue{
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi';
+	icon_state = "goliath";
+	name = "goliath";
+	desc = "...wait, that's just a statue. Thank god. It has a plaque below it commemorating all the Nanotrasen miners who died to these fearsome beasts.";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/bridge/showroom/corporate)
 "nRs" = (
 /obj/machinery/light,
 /turf/open/floor/circuit/green/anim,
 /area/engine/gravity_generator)
+"otK" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/bridge/showroom/corporate)
 "oIX" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -247,6 +730,70 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"oOJ" = (
+/obj/machinery/disposal/deliveryChute{
+	name = "armoury access chute"
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
+"paW" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bridge)
+"paZ" = (
+/obj/structure/window/reinforced/spawner,
+/obj/structure/window/reinforced/spawner/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/syndicate,
+/turf/open/floor/mineral/plastitanium,
+/area/bridge/showroom/corporate)
+"pqs" = (
+/obj/machinery/nuclearbomb/selfdestruct,
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/nuke_storage)
+"pCJ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"pIV" = (
+/obj/structure/chair/comfy/beige{
+	dir = 4
+	},
+/obj/effect/landmark/start/chief_medical_officer,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"pMV" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/bridge/showroom/corporate)
+"pSW" = (
+/turf/open/floor/plating,
+/area/bridge/showroom/corporate)
+"pVM" = (
+/obj/structure/statue/resin/ashwalker{
+	desc = "A decently well done statue made of solid resin. There is a note on it bearing the markings 'Cybersun Salvage Corps', covered by an NT stamp."
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/bridge/showroom/corporate)
+"qrM" = (
+/obj/item/paper{
+	name = "paper - R.A.D.S standard procedure";
+	info = "The Rapid Alcohol Distribution System is to be operated exclusively by the HoP and Captain. The Captain is to carry the nuclear authentication disk to activate R.A.D.S. The HoP is to carry the sheet with activation codes. When the two decide to activate R.A.D.S, they are to report to the Vault. The Captain is to insert the disk into the selected R.A.D.S unit, and walk at least 3m away. The HoP is then to input the code and set the timer. They are to then arm the R.A.D.S unit and alert the crew of imminent alcohol."
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"qrX" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/bridge/showroom/corporate)
 "qvj" = (
 /obj/machinery/power/smes/fullycharged,
 /obj/structure/cable{
@@ -254,6 +801,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"qLX" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/security/warden)
+"qRW" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Bridge";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/wood,
+/area/bridge)
 "qTG" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -271,8 +840,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"rCe" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bridge/showroom/corporate)
+"rOU" = (
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/security/armory)
 "rUj" = (
-/turf/open/space/basic,
+/obj/structure/window/reinforced/spawner/east,
+/obj/structure/closet/secure_closet/captains,
+/obj/item/hand_tele,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
 /area/bridge/meeting_room)
 "rVs" = (
 /turf/open/floor/plasteel,
@@ -286,13 +873,74 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"say" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/mineral/plastitanium,
+/area/bridge/showroom/corporate)
+"seE" = (
+/obj/structure/chair/comfy/beige{
+	dir = 4
+	},
+/obj/effect/landmark/start/chief_engineer,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"snd" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/security/warden)
 "stl" = (
-/turf/open/space/basic,
+/turf/open/floor/plasteel,
 /area/security/execution/education)
+"sBK" = (
+/obj/structure/table/wood,
+/obj/item/radio/intercom{
+	dir = 8;
+	freerange = 1;
+	name = "Station Intercom (Command)"
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"sCg" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bridge/meeting_room)
+"sOj" = (
+/turf/closed/wall/r_wall,
+/area/bridge/showroom/corporate)
+"taI" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge)
 "tbq" = (
 /obj/structure/window/plasma/reinforced/spawner/north,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"tgh" = (
+/obj/structure/chair/comfy/shuttle{
+	name = "head of personnel's chair";
+	desc = "For only the second most important asses."
+	},
+/obj/effect/landmark/start/head_of_personnel,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "tsu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -302,6 +950,35 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"tze" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/chair/comfy/lime{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"tHT" = (
+/obj/machinery/power/floodlight,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"tNA" = (
+/obj/machinery/computer/shuttle/labor,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"tPj" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "tQD" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
@@ -321,8 +998,25 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "udl" = (
-/turf/open/space/basic,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/wood,
 /area/bridge)
+"ulY" = (
+/obj/structure/chair/comfy/beige{
+	dir = 8
+	},
+/obj/effect/landmark/start/head_of_security,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"uxr" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plating,
+/area/bridge/showroom/corporate)
 "uSq" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -347,15 +1041,81 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"uYx" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium,
+/area/bridge/showroom/corporate)
 "vbV" = (
 /turf/open/floor/circuit/green/anim,
 /area/engine/gravity_generator)
+"vcg" = (
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permaouter";
+	name = "Genpop Access";
+	req_access_txt = "2"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"vet" = (
+/obj/machinery/modular_computer/console/preset/engineering,
+/turf/open/floor/plasteel,
+/area/engine/foyer)
+"vkI" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/chair/comfy/lime{
+	dir = 1;
+	name = "DJ's chair"
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"vmN" = (
+/obj/structure/closet/secure_closet/brig,
+/turf/open/floor/plasteel,
+/area/security/brig)
+"vpK" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed/dogbed/renault,
+/mob/living/simple_animal/pet/fox/Renault,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
+"vvg" = (
+/obj/structure/filingcabinet,
+/obj/item/folder/documents,
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/nuke_storage)
+"vvW" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/machinery/light,
+/turf/open/floor/plating/asteroid/basalt,
+/area/bridge/showroom/corporate)
 "vxp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"vyI" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"vAK" = (
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/bridge/showroom/corporate)
 "vGx" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -366,12 +1126,26 @@
 "vOy" = (
 /turf/open/floor/engine/air,
 /area/engine/atmos)
+"vQY" = (
+/obj/machinery/door/airlock/vault{
+	req_access_txt = "3";
+	name = "Armoury"
+	},
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/security/armory)
 "vUi" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wkr" = (
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/bridge/showroom/corporate)
 "wBd" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/engine/engineering";
@@ -384,6 +1158,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wYL" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/security/warden)
 "xer" = (
 /obj/machinery/power/smes/fullycharged,
 /obj/structure/cable{
@@ -394,6 +1179,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"xet" = (
+/obj/machinery/door/airlock/command{
+	name = "Commanding Officer Quarters and Meeting Room";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bridge)
+"xpU" = (
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/bridge/showroom/corporate)
 "xML" = (
 /obj/machinery/power/smes/magical{
 	name = "bluespace power storage unit";
@@ -407,6 +1212,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"xOU" = (
+/obj/machinery/power/floodlight,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/wood,
+/area/bridge)
 "xTk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -417,6 +1229,31 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engine_smes)
+"xWT" = (
+/turf/closed/wall/r_wall,
+/area/security)
+"yem" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bridge)
+"yfe" = (
+/obj/machinery/door/window/eastleft{
+	name = "armory desk";
+	req_access_txt = "1"
+	},
+/obj/machinery/door/window/westleft{
+	name = "armory desk";
+	req_access_txt = "3"
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plating,
+/area/security/warden)
 
 (1,1,1) = {"
 aaa
@@ -35243,30 +36080,30 @@ aaa
 aaa
 aaa
 aaa
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -35500,30 +36337,30 @@ aaa
 aaa
 aaa
 aaa
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
+dmH
+dmH
+sCg
+sCg
+sCg
+sCg
+dmH
+dmH
+dmH
+dmH
+gum
+aSJ
+aSJ
+aSJ
+aSJ
+aSJ
+aSJ
+aSJ
+aSJ
+aSJ
+aSJ
+aSJ
+iWb
+aSJ
 aaa
 aaa
 aaa
@@ -35757,30 +36594,30 @@ aaa
 aaa
 aaa
 aaa
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
+dmH
+hJL
+lEP
+lEP
+lEP
+lEP
+pCJ
+lRr
+aTW
+dmH
+fMv
+fMv
+qLX
+cWK
+cWK
+cWK
+cWK
+aSJ
+oOJ
+cWK
+cWK
+iWb
+cWK
+aSJ
 aaa
 aaa
 aaa
@@ -36014,30 +36851,30 @@ aaa
 aaa
 aaa
 aaa
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
+jGG
+lEP
+lEP
+pIV
+seE
+lEP
+lEP
+gPo
+lEP
+dmH
+fMv
+fMv
+wYL
+kkP
+kkP
+kkP
+kkP
+kkP
+jih
+cWK
+cWK
 aSJ
 aSJ
 aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
 aaa
 aaa
 aaa
@@ -36271,30 +37108,30 @@ aaa
 aaa
 aaa
 aaa
+jGG
+lEP
+tgh
+tPj
+sBK
+gUk
+lEP
+cZk
 rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
+dmH
+foQ
+aSJ
+mzd
 aSJ
 aSJ
 aSJ
 aSJ
 aSJ
+cWK
+cWK
+cWK
+cWK
+cWK
 aSJ
-aSJ
-aSJ
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
 aaa
 aaa
 aaa
@@ -36528,30 +37365,30 @@ aaa
 aaa
 aaa
 aaa
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
-rUj
+jGG
+lEP
+lEP
+ulY
+ffY
+lEP
+lEP
+eQW
+qrM
+dmH
+liq
+liq
+cqS
+liq
+liq
+liq
+liq
+itG
+snd
+yfe
+snd
+snd
+iWb
 aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
 aaa
 aaa
 aaa
@@ -36780,29 +37617,29 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
+aaa
+aaa
+aaa
+aaa
+aaa
+dmH
+vpK
+lEP
+lEP
+lEP
+lEP
+lEP
+hvQ
+khU
+dmH
+liq
+liq
+cqS
+liq
+liq
+liq
+liq
+itG
 aFo
 aFo
 aFo
@@ -37037,29 +37874,29 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
-aSJ
+aaa
+aaa
+aaa
+aaa
+aaa
+jGH
+jGH
+xet
+yem
+yem
+xet
+jGH
+jGH
+jGH
+jGH
+itG
+liq
+cqS
+liq
+liq
+liq
+liq
+itG
 aFo
 aFo
 aFo
@@ -37294,30 +38131,30 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-gjv
-gjv
-gjv
-gjv
-gjv
-aFo
-aFo
-aFo
-aFo
+aaa
+aaa
+aaa
+aaa
+aaa
+paW
+ifC
+diR
+diR
+diR
+diR
+diR
+diR
+diR
+diR
+itG
+itG
+bRj
+itG
+itG
+itG
+vcg
+itG
+itG
 aFo
 aFo
 aFo
@@ -37551,30 +38388,30 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
+aaa
+taI
+cHK
+cHK
+cHK
+paW
+iTC
+diR
+diR
+diR
+diR
+diR
+diR
+diR
+diR
+gdH
+gjv
+avQ
 gjv
 gjv
-gjv
-gjv
-gjv
-aFo
-aFo
-aFo
-aFo
+gdH
+liq
+liq
+itG
 aFo
 aFo
 aFo
@@ -37808,30 +38645,30 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-kpp
-kpp
-kpp
-kpp
-kpp
-kpp
+aaa
+jsg
+fdP
+xOU
+fdP
+paW
+cRj
+diR
+diR
+diR
+diR
+diR
+diR
+diR
+diR
+gdH
 gjv
+dvc
+rOU
 gjv
-gjv
-gjv
-gjv
-aFo
-aFo
-aFo
-aFo
+gdH
+vmN
+liq
+vcg
 aFo
 aFo
 aFo
@@ -38065,30 +38902,30 @@ aaa
 aaa
 aaa
 aaa
+aaa
+tze
+fdP
 udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-kpp
-kpp
-kpp
-kpp
-kpp
-kpp
+fdP
+paW
+diR
+diR
+diR
+nmj
+nmj
+nmj
+nmj
+nmj
+nmj
+gdH
 gjv
+rOU
+jUI
 gjv
-gjv
-gjv
-gjv
-aFo
-aFo
-aFo
-aFo
+gdH
+itG
+itG
+itG
 aFo
 aFo
 aFo
@@ -38322,27 +39159,27 @@ aaa
 aaa
 aaa
 aaa
+aaa
+jsg
+fdP
 udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
+fdP
+paW
+diR
+diR
+diR
+nmj
 kpp
+vvg
+cIB
+nws
 kpp
-kpp
-kpp
-kpp
-kpp
+gdH
 gjv
+jUI
+rOU
 gjv
-gjv
-gjv
-gjv
-aFo
+gdH
 aFo
 aFo
 aFo
@@ -38579,27 +39416,27 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-kpp
-kpp
-kpp
-kpp
-kpp
-kpp
-gjv
-gjv
-gjv
-gjv
-gjv
-aFo
+aaa
+jsg
+iKd
+vkI
+bvP
+qRW
+diR
+diR
+diR
+mBX
+aAC
+aAC
+aAC
+aAC
+cvY
+gdH
+etL
+rOU
+jUI
+rOU
+vQY
 aFo
 aFo
 aFo
@@ -38836,27 +39673,27 @@ aaa
 aaa
 aaa
 aaa
+aaa
+jsg
+fdP
 udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
+fdP
+paW
+diR
+diR
+diR
+nmj
 kpp
+ivR
+euj
+pqs
 kpp
-kpp
-kpp
-kpp
-kpp
+gdH
 gjv
+jUI
+rOU
 gjv
-gjv
-gjv
-gjv
-aFo
+gdH
 aFo
 aFo
 aFo
@@ -39093,27 +39930,27 @@ aaa
 aaa
 aaa
 aaa
+aaa
+tze
+fdP
 udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-kpp
-kpp
-kpp
-kpp
-kpp
-kpp
+fdP
+paW
+diR
+diR
+diR
+nmj
+nmj
+nmj
+nmj
+nmj
+nmj
+gdH
 gjv
+rOU
+jUI
 gjv
-gjv
-gjv
-gjv
-aFo
+gdH
 aFo
 aFo
 aFo
@@ -39350,27 +40187,27 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
+aaa
+jsg
+fdP
+tHT
+fdP
+paW
+tNA
+diR
+diR
+diR
+diR
+paW
+fdP
+fdP
+fdP
+gdH
 gjv
+jUI
+rOU
 gjv
-gjv
-gjv
-gjv
-aFo
+gdH
 aFo
 aFo
 aFo
@@ -39607,27 +40444,27 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
+aaa
+cas
+vyI
+vyI
+vyI
+paW
+lzJ
+diR
+diR
+diR
+diR
+kMQ
+fdP
+fdP
+fdP
+gdH
 gjv
 gjv
 gjv
 gjv
-gjv
-aFo
+gdH
 aFo
 aFo
 aFo
@@ -39864,29 +40701,29 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-stl
-stl
-stl
-stl
-stl
-stl
-stl
-stl
+aaa
+aaa
+aaa
+aaa
+aaa
+paW
+eoQ
+diR
+diR
+diR
+diR
+paW
+fdP
+fdP
+fdP
+dTm
+dTm
+dTm
+dTm
+dTm
+dTm
+dTm
+dTm
 aFo
 aFo
 aFo
@@ -40121,26 +40958,26 @@ aaa
 aaa
 aaa
 aaa
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-udl
-stl
-stl
-stl
-stl
-stl
+aaa
+aaa
+aaa
+aaa
+aaa
+jGH
+jGH
+jGH
+jGH
+jGH
+jGH
+jGH
+yem
+ecJ
+yem
+dTm
+fYY
+fYY
+fYY
+dTm
 stl
 stl
 stl
@@ -40383,24 +41220,24 @@ aaa
 aaa
 aaa
 aaa
+sOj
+uYx
+say
+fqM
+dGw
+ndu
+hqt
+ixf
 ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
+nIJ
+dTm
+fYY
+fYY
+fYY
+dTm
 stl
 stl
-stl
-stl
-stl
-stl
-stl
-stl
+dTm
 aFo
 aFo
 aFo
@@ -40642,22 +41479,22 @@ aaa
 aaa
 ftu
 ftu
+jfv
+jgS
+pMV
+aWw
+dwP
+paZ
 ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
+lEU
+dTm
+fYY
+fYY
+fYY
 stl
 stl
 stl
-stl
-stl
-stl
-stl
-stl
+dTm
 aFo
 aFo
 aFo
@@ -40897,26 +41734,26 @@ aaa
 aaa
 aaa
 aaa
+rCe
+ftu
+ftu
+ftu
+jtr
 ftu
 ftu
 ftu
 ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-stl
-stl
-stl
-stl
-stl
-stl
-stl
-stl
-aFo
-aFo
+lEU
+dTm
+dTm
+dTm
+dTm
+dTm
+dTm
+dTm
+dTm
+irH
+irH
 aFo
 aFo
 aFo
@@ -41154,6 +41991,7 @@ aaa
 aaa
 aaa
 aaa
+rCe
 ftu
 ftu
 ftu
@@ -41162,18 +42000,17 @@ ftu
 ftu
 ftu
 ftu
-ftu
-ftu
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
+vvW
+xWT
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+irH
 aFo
 aFo
 aFo
@@ -41413,24 +42250,24 @@ aaa
 aaa
 ftu
 ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
+vAK
+xpU
+xpU
+wkr
+lXy
+fNG
+cGI
+qrX
+xWT
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+irH
 aFo
 aFo
 aFo
@@ -41668,26 +42505,26 @@ aaa
 aaa
 aaa
 aaa
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-ftu
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
-aFo
+sOj
+ehy
+pSW
+uxr
+pSW
+otK
+lpZ
+eUN
+qrX
+pVM
+xWT
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+bRQ
+irH
 aFo
 aFo
 aFo
@@ -41936,14 +42773,14 @@ ccw
 ccw
 ccw
 ccw
-ccw
 irH
 irH
 irH
 irH
 irH
-irH
-irH
+bRQ
+bRQ
+bRQ
 irH
 dNY
 dNY
@@ -42202,7 +43039,7 @@ tbq
 bRQ
 bRQ
 irH
-aiv
+vet
 aiv
 aiv
 bWJ
@@ -42459,7 +43296,7 @@ tbq
 bRQ
 bRQ
 jdF
-aiv
+esE
 aiv
 aiv
 aiv
@@ -42716,7 +43553,7 @@ tbq
 bRQ
 bRQ
 jdF
-aiv
+kzN
 aiv
 aiv
 bWJ
