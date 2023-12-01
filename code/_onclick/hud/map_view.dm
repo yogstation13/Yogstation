@@ -11,6 +11,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/map_view)
 	plane = GAME_PLANE
 	del_on_map_removal = FALSE
 
+
 	// Weakrefs of all our hud viewers -> a weakref to the hud datum they last used
 	var/list/datum/weakref/viewers_to_huds = list()
 
