@@ -44,7 +44,7 @@
 	var/intake_ratio = 0.1 // might add a way to adjust this in-game later
 
 /obj/machinery/power/compressor/Destroy()
-	SSair.atmos_machinery.Remove(src)
+	SSair_machinery.stop_processing_machine(src)
 	if (turbine && turbine.compressor == src)
 		turbine.compressor = null
 	var/turf/T = get_turf(src)
@@ -72,7 +72,7 @@
 	var/productivity = 1
 
 /obj/machinery/power/turbine/Destroy()
-	SSair.atmos_machinery.Remove(src)
+	SSair_machinery.stop_processing_machine(src)
 	if (compressor && compressor.turbine == src)
 		compressor.turbine = null
 	compressor = null
@@ -91,7 +91,7 @@
 
 /obj/machinery/power/compressor/Initialize(mapload)
 	. = ..()
-	SSair.atmos_machinery += src
+	SSair_machinery.start_processing_machine(src)
 	// The inlet of the compressor is the direction it faces
 	gas_contained = new
 	inturf = get_step(src, dir)
@@ -189,7 +189,7 @@
 
 /obj/machinery/power/turbine/Initialize(mapload)
 	. = ..()
-	SSair.atmos_machinery += src
+	SSair_machinery.start_processing_machine(src)
 	// The outlet is pointed at the direction of the turbine component
 	outturf = get_step(src, dir)
 	locate_machinery()

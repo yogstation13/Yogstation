@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "preternis now purge 4% of internal chemicals every tick, instead of purging everything after 20 ticks"
-  - tweak: "preternis are no longer immune to the effects of morphine and a few other chemicals"

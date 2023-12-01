@@ -1,6 +1,5 @@
 import { useBackend } from '../backend';
 import { AnimatedNumber, Button, Flex, Input, LabeledList, ProgressBar, Section, Table, NumberInput, Box } from '../components';
-import { getGasColor, getGasLabel } from '../constants';
 import { toFixed } from 'common/math';
 import { Window } from '../layouts';
 
@@ -95,9 +94,9 @@ export const Crystallizer = (props, context) => {
             {gasTypes.map(gas => (
               <LabeledList.Item
                 key={gas.name}
-                label={getGasLabel(gas.name)}>
+                label={gas.name}>
                 <ProgressBar
-                  color={getGasColor(gas.name)}
+                  color={gas.color}
                   value={gas.amount}
                   minValue={0}
                   maxValue={1000}>
@@ -108,6 +107,6 @@ export const Crystallizer = (props, context) => {
           </LabeledList>
         </Section>
       </Window.Content>
-    </Window>
+    </Window >
   );
 };
