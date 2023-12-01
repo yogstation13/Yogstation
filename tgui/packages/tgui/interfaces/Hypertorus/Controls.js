@@ -1,6 +1,5 @@
 import { useBackend } from '../../backend';
 import { Box, Button, Icon, Knob, LabeledControls, LabeledList, NumberInput, Section, Tooltip } from '../../components';
-import { getGasLabel } from '../../constants';
 import { HelpDummy, HoverHelp } from './helpers';
 
 /*
@@ -247,7 +246,7 @@ export const HypertorusWasteRemove = (props, context) => {
               key={filter.gas_id}
               icon={filter.enabled ? 'check-square-o' : 'square-o'}
               selected={filter.enabled}
-              content={getGasLabel(filter.gas_id, filter.gas_name)}
+              content={filter.gas_name}
               onClick={() =>
                 act('filter', {
                   mode: filter.gas_id,

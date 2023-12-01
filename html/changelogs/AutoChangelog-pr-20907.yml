@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "hallucination anomalies have had their effects altered. You many want to bring a toolbox instead of mesons when responding to one"
-  - tweak: "hallucination reactive armor has had its effects modified similarly to the new effects of the anomaly"
-  - rscdel: "the supermatter will no longer spawn hallucination anomalies when exploding, on fire, or otherwise."

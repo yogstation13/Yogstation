@@ -65,6 +65,28 @@ env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo build --release --target=i686-un
 mv target/i686-unknown-linux-gnu/release/librust_g.so "$1/librust_g.so"
 cd ..
 
+# Auxtools dependencies
+apt-get install -y build-essential g++-multilib libc6-i386 libstdc++6:i386
+
+# Update auxmos
+if [ ! -d "auxmos" ]; then
+	echo "Cloning auxmos..."
+	git clone https://github.com/yogstation13/auxmos
+	cd auxmos
+	~/.cargo/bin/rustup target add i686-unknown-linux-gnu
+else
+	echo "Fetching auxmos..."
+	cd auxmos
+	git fetch
+	~/.cargo/bin/rustup target add i686-unknown-linux-gnu
+fi
+
+echo "Deploying auxmos..."
+git checkout "$AUXMOS_VERSION"
+env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo rustc --release --target=i686-unknown-linux-gnu --features all_reaction_hooks,katmos -- -C target-cpu=native
+mv -f target/i686-unknown-linux-gnu/release/libauxmos.so "$1/libauxmos.so"
+cd ..
+
 # compile tgui
 echo "Compiling tgui..."
 cd "$1"

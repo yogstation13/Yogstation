@@ -4,6 +4,8 @@
 ///Temperature limit of all AI machinery
 #define AI_TEMP_LIMIT 288.15 //15C, much hotter than a normal server room for leniency :)
 
+#define AI_HEATSINK_CAPACITY 5000
+#define AI_HEATSINK_COEFF 1
 
 ///How many ticks can an AI data core store? When this amount of ticks have passed while it's in an INVALID state it can no longer be used by an AI
 #define MAX_AI_DATA_CORE_TICKS 45
