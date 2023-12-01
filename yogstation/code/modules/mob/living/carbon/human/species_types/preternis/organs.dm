@@ -1,10 +1,6 @@
-#define NIGHTVISION_LIGHT_OFF 0
-#define NIGHTVISION_LIGHT_LOW 1
-#define NIGHTVISION_LIGHT_HIGH 2
-
 /obj/item/organ/eyes/robotic/preternis
 	name = "preternis eyes"
-	desc = "An experimental upgraded version of eyes that can see in the dark. They are designed to fit preternis"
+	desc = "A form archaic robotic eyes that can see in the dark. "
 	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
@@ -18,29 +14,20 @@
 	low_threshold_cleared = span_info("Your Preternis eyes have almost fully recharged.")
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/powered = TRUE 
-	// These lists are used as the color cutoff for the eye
-	var/list/low_light_cutoff = list(5, 20, 10)
-	var/list/high_light_cutoff = list(10, 30, 20)
-	var/light_level = NIGHTVISION_LIGHT_OFF
-
-
-
+	var/night_vision = FALSE
+	// This list is used as the color cutoff for the night vision
+	var/list/light_cutoff = list(30, 12, 60)
 
 /obj/item/organ/eyes/robotic/preternis/ui_action_click()
 	if(damage > low_threshold)
 		//no nightvision if your eyes are hurt
 		return
 	sight_flags = initial(sight_flags)
-	switch(light_level)
-		if (NIGHTVISION_LIGHT_OFF)
-			color_cutoffs = low_light_cutoff.Copy()
-			light_level = NIGHTVISION_LIGHT_LOW
-		if (NIGHTVISION_LIGHT_LOW)
-			color_cutoffs = high_light_cutoff.Copy()
-			light_level = NIGHTVISION_LIGHT_HIGH
-		else
-			color_cutoffs = list()
-			light_level = NIGHTVISION_LIGHT_OFF
+	night_vision = !night_vision
+	if (night_vision)
+		color_cutoffs = light_cutoff.Copy()
+	else
+		color_cutoffs = list()
 	owner.update_sight()
 
 /obj/item/organ/eyes/robotic/preternis/on_life()
@@ -71,9 +58,6 @@
 	else if(damage > high_threshold)
 		. += span_warning("[src] seem to flicker on and off. They must be pretty low on charge without being in a Preternis")
 
-#undef NIGHTVISION_LIGHT_OFF
-#undef NIGHTVISION_LIGHT_LOW
-#undef NIGHTVISION_LIGHT_HIGH
 
 ///////////////////////////////////////////////////////////
 //----------------------Preternis Lungs------------------//

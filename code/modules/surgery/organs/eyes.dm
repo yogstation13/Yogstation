@@ -165,6 +165,14 @@
 #undef NIGHTVISION_LIGHT_MID
 #undef NIGHTVISION_LIGHT_HIG
 
+/obj/item/organ/eyes/night_vision/mushroom
+	name = "fung-eye"
+	desc = "While on the outside they look inert and dead, the eyes of mushroom people are actually very advanced."
+	low_light_cutoff = list(0, 15, 20)
+	medium_light_cutoff = list(0, 20, 35)
+	high_light_cutoff = list(0, 40, 50)
+
+//innate nightvision eyes
 /obj/item/organ/eyes/alien
 	name = "alien eyes"
 	desc = "It turned out they had them after all!"
@@ -182,15 +190,7 @@
 	icon_state = "burning_eyes"
 	color_cutoffs = list(20, 10, 40)
 
-/obj/item/organ/eyes/night_vision/mushroom
-	name = "fung-eye"
-	desc = "While on the outside they look inert and dead, the eyes of mushroom people are actually very advanced."
-	low_light_cutoff = list(0, 15, 20)
-	medium_light_cutoff = list(0, 20, 35)
-	high_light_cutoff = list(0, 40, 50)
-
 ///Robotic
-
 /obj/item/organ/eyes/robotic
 	name = "robotic eyes"
 	icon_state = "cybernetic_eyeballs"
