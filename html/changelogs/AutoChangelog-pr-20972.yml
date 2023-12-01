@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Brig physician also gets cloning and airlock access during skeleton crew"
-  - tweak: "Paramedic also gets surgery access during skeleton crew"
-  - tweak: "Mining medic also gets cloning, maint, and airlock access during skeleton crew"

@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/open/lava/smooth/lava_land_surface,
+/turf/open/lava/smooth/lava_land_surface/no_shelter,
 /area/lavaland/surface/outdoors)
 "ac" = (
 /obj/structure/disposaloutlet{
@@ -448,7 +448,7 @@
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "dS" = (
 /obj/structure/lattice/catwalk,
-/turf/open/lava/smooth/lava_land_surface,
+/turf/open/lava/smooth/lava_land_surface/no_shelter,
 /area/lavaland/surface/outdoors)
 "dT" = (
 /obj/effect/turf_decal/siding/blue/end{
@@ -3606,7 +3606,7 @@
 	name = "Syndicate Lavaland Base: Cargo Bay Dock";
 	width = 11
 	},
-/turf/open/lava/smooth/lava_land_surface,
+/turf/open/lava/smooth/lava_land_surface/no_shelter,
 /area/lavaland/surface/outdoors)
 "ne" = (
 /turf/open/floor/engine/o2,
@@ -4374,7 +4374,7 @@
 	name = "Syndicate Lavaland Base: Arivals Dock";
 	width = 13
 	},
-/turf/open/lava/smooth/lava_land_surface,
+/turf/open/lava/smooth/lava_land_surface/no_shelter,
 /area/lavaland/surface/outdoors)
 "tu" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{

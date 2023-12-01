@@ -66,7 +66,7 @@
 
 /obj/structure/alien/resin/Initialize(mapload)
 	. = ..()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/alien/resin/Move()
 	var/turf/T = loc
@@ -81,7 +81,7 @@
 	resintype = "wall"
 	canSmoothWith = list(/obj/structure/alien/resin/wall, /obj/structure/alien/resin/membrane)
 
-/obj/structure/alien/resin/wall/BlockSuperconductivity()
+/obj/structure/alien/resin/wall/BlockThermalConductivity()
 	return 1
 
 /obj/structure/alien/resin/membrane
