@@ -68,7 +68,6 @@ SUBSYSTEM_DEF(tts)
 		return FALSE
 	if(!istype(tts_sound_result))
 		CRASH(tts_sound_result)
-		return FALSE
 
 	for(var/datum/weakref/ref in receivers)
 		var/mob/hearer = ref.resolve()
