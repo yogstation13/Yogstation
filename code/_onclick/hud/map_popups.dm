@@ -77,9 +77,10 @@
 		screen_maps[screen_obj.assigned_map] = list()
 	// NOTE: Possibly an expensive operation
 	var/list/screen_map = screen_maps[screen_obj.assigned_map]
-	screen_map |= screen_obj
-	screen |= screen_obj
-
+	if(!screen_map.Find(screen_obj))
+		screen_map += screen_obj
+	if(!screen.Find(screen_obj))
+		screen += screen_obj
 
 /**
  * Clears the map of registered screen objects.
