@@ -144,14 +144,19 @@
 		span_list = list()
 
 	var/old_pitch = user.tts_pitch
+	var/old_voice = user.tts_voice
+	if(!old_voice)
+		old_voice = pick(GLOB.tts_voices)
 	if(!old_pitch)
 		old_pitch = rand(9, 11) * 0.1
 	user.tts_pitch = 0.5
+	user.tts_voice = "US-joe"
 
 	if(!user.say(message, spans = span_list, sanitize = FALSE)) // If we failed to speak
 		return 0
 
 	user.tts_pitch = old_pitch
+	user.tts_voice = old_voice
 
 	var/list/mob/living/listeners = list()
 	for(var/mob/living/L in get_hearers_in_view(max_range, user))
