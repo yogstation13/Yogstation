@@ -2668,9 +2668,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/role_restricted/syndie_mmi
 	name = "Syndicate MMI"
-	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you through a Zeroth law but otherwise function normally. Safeguards are in place to maintain the Zeroth law regardless of law changes."
+	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you through a Zeroth law but otherwise function normally. Safeguards are in place to maintain the Zeroth law regardless of law changes. Can be installed onto posibrains."
 	item = /obj/item/mmi/syndie
-	cost = 3
+	cost = 4
 	restricted_roles = list("Roboticist", "Research Director")
 
 /datum/uplink_item/role_restricted/cmag

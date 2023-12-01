@@ -308,7 +308,7 @@
 
 /obj/item/mmi/syndie
 	name = "\improper Syndicate Man-Machine Interface"
-	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you as well. Does not fit into NT AI cores."
+	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you as well. Does not fit into NT AI cores. Can be fitted upon posibrains."
 	syndicate_mmi = TRUE
 
 /obj/item/mmi/syndie/attack_self(mob/user)
