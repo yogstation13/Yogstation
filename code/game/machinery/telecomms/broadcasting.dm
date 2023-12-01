@@ -210,7 +210,7 @@
 			if(hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear_radio) && hearing_mob.has_language(language))
 				tts_receivers |= WEAKREF(hearing_mob)
 
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), html_decode(message), model, pitch, virt.virt_tts_filters, tts_receivers, null, spans[SPAN_COMMAND])
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), html_decode(message), model, pitch, virt.virt_tts_filters, tts_receivers, null, spans)
 
 	// This following recording is intended for research and feedback in the use of department radio channels
 	if(length(receive))

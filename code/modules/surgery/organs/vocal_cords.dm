@@ -74,7 +74,7 @@
 	var/next_command = 0
 	var/cooldown_mod = 1
 	var/base_multiplier = 1
-	spans = list("colossus","yell")
+	spans = list(SPAN_COLOSSUS,"yell")
 
 /datum/action/item_action/organ_action/colossus
 	name = "Voice of God"
@@ -143,8 +143,15 @@
 	if(!span_list || !span_list.len)
 		span_list = list()
 
+	var/old_pitch = user.tts_pitch
+	if(!old_pitch)
+		old_pitch = rand(9, 11) * 0.1
+	user.tts_pitch = 0.5
+
 	if(!user.say(message, spans = span_list, sanitize = FALSE)) // If we failed to speak
 		return 0
+
+	user.tts_pitch = old_pitch
 
 	var/list/mob/living/listeners = list()
 	for(var/mob/living/L in get_hearers_in_view(max_range, user))

@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			if(!message_mods[MODE_HEADSET] && !message_mods[WHISPER_MODE] && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
 				tts_receivers |= WEAKREF(hearing_mob)
 
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), message, tts_voice, tts_pitch, tts_filters, tts_receivers, src, spans[SPAN_COMMAND])
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), message, tts_voice, tts_pitch, tts_filters, tts_receivers, src, spans)
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.

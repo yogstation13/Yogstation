@@ -1,6 +1,7 @@
 #define DEFAULT_TTS_VOLUME 80
 #define DEFAULT_TTS_VOLUME_RADIO 25
 #define TTS_LOUDMODE_MULTIPLIER 1.5
+#define TTS_COLOSSUS_MULTIPLIER 3
 
 SUBSYSTEM_DEF(tts)
 	name = "Text-to-Speech"
@@ -60,7 +61,7 @@ SUBSYSTEM_DEF(tts)
 *
 * @returns {sound/} or FALSE
 */
-/datum/controller/subsystem/tts/proc/create_message(message, model, pitch, list/filters, list/receivers, source, loudmode = FALSE)
+/datum/controller/subsystem/tts/proc/create_message(message, model, pitch, list/filters, list/receivers, source, spans = list())
 	if(!filters || !islist(filters))
 		filters = list()
 	var/sound/tts_sound_result = create_message_audio(message, model, pitch, filters)
@@ -84,8 +85,11 @@ SUBSYSTEM_DEF(tts)
 		if(volume <= 0)
 			continue
 
-		if(loudmode)
+		if(spans[SPAN_COMMAND])
 			volume *= TTS_LOUDMODE_MULTIPLIER
+
+		if(spans[SPAN_COLOSSUS])
+			volume *= TTS_COLOSSUS_MULTIPLIER
 
 		volume = clamp(volume, 0, 100)
 

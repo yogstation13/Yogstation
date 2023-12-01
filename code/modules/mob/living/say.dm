@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 				if(!message_mods[MODE_HEADSET] && !message_mods[WHISPER_MODE] && hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
 					tts_receivers |= WEAKREF(hearing_mob)
 
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), html_decode(message), tts_voice, tts_pitch, tts_filters, tts_receivers, src, spans[SPAN_COMMAND])
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), html_decode(message), tts_voice, tts_pitch, tts_filters, tts_receivers, src, spans)
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
