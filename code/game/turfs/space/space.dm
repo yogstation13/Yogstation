@@ -52,18 +52,24 @@ GLOBAL_LIST_EMPTY(starlight)
 	temperature = TCMB
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 700000
+
+	FASTDMM_PROP(\
+		pipe_astar_cost = 3\
+	)
+
 	var/starlight_source_count = 0
 
 	var/destination_z
 	var/destination_x
 	var/destination_y
 
-	var/static/datum/gas_mixture/immutable/space/space_gas = new
+	var/global/datum/gas_mixture/immutable/space/space_gas = new
 	// We do NOT want atmos adjacent turfs
 	init_air = FALSE
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
 	light_power = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	light_range = 2
 	light_color = COLOR_STARLIGHT
 	light_height = LIGHTING_HEIGHT_SPACE

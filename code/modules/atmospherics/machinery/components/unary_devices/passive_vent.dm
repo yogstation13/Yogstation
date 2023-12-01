@@ -24,6 +24,9 @@
 	var/datum/gas_mixture/external = location.return_air()
 	var/datum/gas_mixture/internal = airs[1]
 
+	// if(!internal.return_temperature())  //temp fix
+	// 	return
+
 	if(internal.equalize(external))
 		air_update_turf()
 		update_parents()
