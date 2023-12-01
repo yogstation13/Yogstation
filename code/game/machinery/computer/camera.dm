@@ -33,7 +33,6 @@
 		network -= i
 		network += lowertext(i)
 	// Initialize map objects
-	// Initialize map objects
 	cam_screen = new
 	cam_screen.generate_view(map_name)
 	cam_background = new
@@ -62,8 +61,10 @@
 		if(length(concurrent_users) == 1 && is_living)
 			playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
 			use_power(active_power_usage)
-		// Register map objects
-		cam_screen.display_to(user)
+		/// Register map objects
+		user.client.register_map_obj(cam_screen)
+		for(var/plane in cam_plane_masters)
+			user.client.register_map_obj(plane)
 		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, "CameraConsole", name)
