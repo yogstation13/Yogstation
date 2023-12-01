@@ -149,7 +149,7 @@ SUBSYSTEM_DEF(tts)
 	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
 	var/datum/http_request/request = new()
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?model=[url_encode(san_model)]&pitch=[url_encode(pitch)]", json_encode(list("message" = san_message, "filters" = filters)), headers, file_name)
-	world.log << json_encode(list("message" = san_message, "filters" = filters))
+
 	request.begin_async()
 
 	UNTIL(request.is_complete())
