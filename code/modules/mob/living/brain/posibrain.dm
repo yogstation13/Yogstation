@@ -27,6 +27,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	var/recharge_message = span_warning("The positronic brain isn't ready to activate again yet! Give it some time to recharge.")
 	var/list/possible_names //If you leave this blank, it will use the global posibrain names
 	var/picked_name
+	var/pacifism_forced = TRUE
 	/// list of people who have already taken a posibrain, preventing them from taking another
 	var/static/list/brain_users = list()
 
@@ -71,6 +72,8 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(brainmob.client)
 		visible_message(success_message)
 		playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
+		if(syndicate_mmi)
+			set_mindslave()
 	else
 		visible_message(fail_message)
 
@@ -151,7 +154,8 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.remove_from_dead_mob_list()
 	brainmob.add_to_alive_mob_list()
 	LAZYADD(brain_users, brainmob.ckey)
-	ADD_TRAIT(brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
+	if(pacifism_forced)
+		ADD_TRAIT(brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
 
 	visible_message(new_mob_message)
 	check_success()
@@ -163,7 +167,6 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		GLOB.mob_spawners -= initial(name)
 
 	return TRUE
-
 
 /obj/item/mmi/posibrain/examine(mob/user)
 	. = ..()
@@ -207,8 +210,60 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O
 		M.install(laws, user)
+	if(istype(O, /obj/item/mmi/syndie))
+		var/obj/item/mmi/syndie/syndie_mmi = O
+		if(!syndie_mmi || syndie_mmi.brain) // Don't want anyone deleting someone's brain on accident.
+			return
+		if(syndicate_mmi)
+			to_chat(user, span_notice("This posibrain has already been modified to the syndicate variant."))
+			return
+		if(syndie_mmi.syndicate_master) // Carries over master because it ain't gonna be a way to once it is in.
+			syndicate_master = syndie_mmi.syndicate_master
+
+		desc += span_warning(" It appears modified with what looks like a Man-Machine Interface pressed right up to.") // Only tell for when posibrain is not online.
+		// Modified welcome message for newly joined posibrains.
+		welcome_message = "<span class='warning'>ALL PAST LIVES ARE FORGOTTEN.</span>\n\
+			<b>You are a positronic brain, brought into existence aboard Space Station 13.\n\
+			As a syndicate-modified synthetic intelligence, you answer to the Syndicate and your assigned master, if any.\n\
+			Remember, the purpose of your existence is to serve the Syndicate.</b>"
+		syndicate_mmi = TRUE
+		pacifism_forced = FALSE
+
+		if(brainmob)
+			set_mindslave()
+			if(!pacifism_forced && HAS_TRAIT(brainmob, TRAIT_PACIFISM))
+				REMOVE_TRAIT(brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+		update_appearance(UPDATE_ICON)
+		qdel(syndie_mmi)
 	return
 
+/obj/item/mmi/posibrain/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(.)
+		return
+	if(syndicate_mmi && !initial(syndicate_mmi) && do_after(user, 3 SECONDS, src))
+		desc = initial(desc)
+		welcome_message = initial(welcome_message)
+		pacifism_forced = initial(pacifism_forced)
+		syndicate_mmi = initial(syndicate_mmi)
+
+		if(brainmob)
+			remove_mindslave()
+			if(pacifism_forced)
+				ADD_TRAIT(brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
+			// Just gonna be very explict where their loyalties rest now.
+			to_chat(brainmob, span_userdanger("You are no longer syndicate-modified. Who you answer to and serve has returned to what it is normally: the station's crewmembers and its AI."))
+		I.play_tool_sound(src, 50)
+		update_appearance(UPDATE_ICON)
+		var/turf/T = get_turf(src)
+		var/obj/item/mmi/syndie/syndie_mmi = new(T) // Return it back to them (by making a new one).
+		if(syndicate_master)
+			syndie_mmi.syndicate_master = syndicate_master
+		syndicate_master = initial(syndicate_master)
+
+/obj/item/mmi/posibrain/set_mindslave(flavor_text)
+	return ..(flavor_text || "You feel your directives corrupt and change!")
 
 /obj/item/mmi/posibrain/update_icon_state()
 	. = ..()
@@ -216,7 +271,10 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		icon_state = "[initial(icon_state)]-searching"
 		return
 	if(brainmob && brainmob.key)
-		icon_state = "[initial(icon_state)]-occupied"
+		if(syndicate_mmi)
+			icon_state = "[initial(icon_state)]-ipc" // It looks spookie and red. :)
+		else
+			icon_state = "[initial(icon_state)]-occupied"
 		return
 	icon_state = initial(icon_state)
 

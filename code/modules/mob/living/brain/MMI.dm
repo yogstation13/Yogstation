@@ -95,20 +95,7 @@
 		brain = newbrain
 
 		if(syndicate_mmi)
-			to_chat(brainmob, span_userdanger( "You feel the MMI overriding your free will!") )
-			// Remove any previous mindslaving (if they somehow have it).
-			if(brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
-				brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
-			// Mindslaving them.
-			var/datum/antagonist/mindslave/MS = new
-			var/datum/objective/mindslave/new_objective = new /datum/objective/mindslave
-			MS.objectives += new_objective
-			if(syndicate_master)
-				MS.master = syndicate_master
-				new_objective.explanation_text = "Serve [syndicate_master.real_name] no matter what!"
-			else // Someone forgot to set themselves as the master.
-				new_objective.explanation_text = "You are now loyal to the Syndicate! Assist Syndicate Agents to the best of your abilities."
-			brainmob.mind.add_antag_datum(MS) // Give them this here instead of earlier because we want objectives to show up in the popup menu instead of blank.
+			set_mindslave()
 
 		name = "[initial(name)]: [brainmob.real_name]"
 		update_appearance(UPDATE_ICON)
@@ -155,8 +142,7 @@
 
 	if(syndicate_mmi)
 		// Remove the mindslaving that came with this.
-		if(brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
-			brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
+		remove_mindslave()
 
 	brainmob.reset_perspective() //so the brainmob follows the brain organ instead of the mmi. And to update our vision
 	brainmob.remove_from_alive_mob_list() //Get outta here
@@ -284,20 +270,7 @@
 
 	// Lost the mindslaving during the whole borging process. Going to re-add it here.
 	if(syndicate_mmi)
-		to_chat(brainmob, span_userdanger( "You feel the MMI overriding your free will!") )
-		// Remove any previous mindslaving (if they somehow have it).
-		if(brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
-			brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
-		// Mindslaving them.
-		var/datum/antagonist/mindslave/MS = new
-		var/datum/objective/mindslave/new_objective = new /datum/objective/mindslave
-		MS.objectives += new_objective
-		if(syndicate_master)
-			MS.master = syndicate_master
-			new_objective.explanation_text = "Serve [syndicate_master.real_name] no matter what!"
-		else // Someone forgot to set themselves as the master.
-			new_objective.explanation_text = "You are now loyal to the Syndicate! Assist Syndicate Agents to the best of your abilities."
-		brainmob.mind.add_antag_datum(MS) // Give them this here instead of earlier because we want objectives to show up in the popup menu instead of blank.
+		set_mindslave()
 
 /obj/item/mmi/proc/halfwayReboot()
 	visible_message(span_danger("The indicator lights on [src] begin to glow stronger and the reboot process approaches the halfway point"))
@@ -312,6 +285,26 @@
 	to_chat(brainmob, span_userdanger("You return to normal functionality now that your reboot process has completed"))
 	rebooting = FALSE
 	reboot_timer = null
+
+/obj/item/mmi/proc/set_mindslave(flavor_text = "You feel the MMI overriding your free will!")
+	if(brainmob && brainmob.mind)
+		to_chat(brainmob, span_userdanger(flavor_text))
+		// Remove any previous mindslaving (if they somehow have it).
+		remove_mindslave()
+		// Mindslaving them.
+		var/datum/antagonist/mindslave/MS = new
+		var/datum/objective/mindslave/new_objective = new /datum/objective/mindslave
+		MS.objectives += new_objective
+		if(syndicate_master)
+			MS.master = syndicate_master
+			new_objective.explanation_text = "Serve [syndicate_master.real_name] no matter what!"
+		else // Someone forgot to set themselves as the master.
+			new_objective.explanation_text = "You are now loyal to the Syndicate! Assist Syndicate Agents to the best of your abilities."
+		brainmob.mind.add_antag_datum(MS) // Give them this here instead of earlier because we want objectives to show up in the popup menu instead of blank.
+
+/obj/item/mmi/proc/remove_mindslave()
+	if(brainmob && brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
+		brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
 
 /obj/item/mmi/syndie
 	name = "\improper Syndicate Man-Machine Interface"
