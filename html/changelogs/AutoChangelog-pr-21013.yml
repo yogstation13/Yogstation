@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "No more infinitely duplicating hulk DAN"
+  - tweak: "Hulk now occasionally says the brain damage hulk lines"
