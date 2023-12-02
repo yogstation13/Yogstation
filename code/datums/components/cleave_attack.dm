@@ -9,7 +9,7 @@
 	/// Which effect should this use
 	var/cleave_effect
 
-/datum/component/cleave_attack/Initialize(arc_size=90, swing_speed_mod=1.5, requires_wielded=FALSE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe, ...)
+/datum/component/cleave_attack/Initialize(arc_size=90, swing_speed_mod=1.5, requires_wielded=FALSE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack, ...)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	
@@ -77,7 +77,7 @@
 	return do_cleave_effects(item, user, center_turf, facing_dir)
 
 /datum/component/cleave_attack/proc/do_cleave_effects(obj/item/item, mob/living/user, turf/center, facing_dir)
-	new cleave_effect(get_step(center, SOUTHWEST), facing_dir)
+	new cleave_effect(get_step(get_turf(user), SOUTHWEST), facing_dir)
 	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
 	user.do_attack_animation(center, no_effect=TRUE)
 	user.weapon_slow(item)

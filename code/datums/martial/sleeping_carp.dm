@@ -186,7 +186,7 @@
 	AddComponent(/datum/component/two_handed, \
 		force_wielded = 14, \
 	)
-	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle)
 
 /obj/item/melee/bostaff/update_icon_state()
 	. = ..()

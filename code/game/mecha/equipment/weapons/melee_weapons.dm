@@ -45,7 +45,7 @@
 	///	Effect on hitting something
 	var/hit_effect = ATTACK_EFFECT_SLASH
 	///	Effect of the cleave attack
-	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
+	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
 	if(!..())

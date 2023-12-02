@@ -142,7 +142,7 @@
 
 /obj/item/scythe/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/cleave_attack, arc_size=180)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle)
 	AddComponent(/datum/component/butchering, 90, 105)
 
 /obj/item/scythe/suicide_act(mob/user)

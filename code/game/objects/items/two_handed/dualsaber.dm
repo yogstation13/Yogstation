@@ -57,7 +57,7 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	AddComponent(/datum/component/cleave_attack, arc_size=360, requires_wielded=TRUE) // lol, lmao even
+	AddComponent(/datum/component/cleave_attack, arc_size=360, requires_wielded=TRUE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/full_circle) // lol, lmao even
 
 /obj/item/melee/dualsaber/Destroy()
 	STOP_PROCESSING(SSobj, src)

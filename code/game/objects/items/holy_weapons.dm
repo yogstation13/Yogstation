@@ -365,7 +365,7 @@
 
 /obj/item/nullrod/bostaff/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/cleave_attack, arc_size=180)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle)
 
 /obj/item/nullrod/tribal_knife
 	name = "arrhythmic knife"
