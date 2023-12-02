@@ -141,7 +141,14 @@ def compare_lines(a, b):
             # if we're at the end of a compare, then this is about the file name
             # files with longer suffixes come after ones with shorter ones
             if a_suffix != b_suffix:
-                return (a_suffix > b_suffix) - (a_suffix < b_suffix)
+                a_dmf = a.endswith('.dmf')
+                b_dmf = b.endswith('.dmf')
+
+                if a_dmf and not b_dmf:
+                    return 1
+                elif not a_dmf and b_dmf:
+                    return -1
+
             return (a_segment > b_segment) - (a_segment < b_segment)
 
     print(f"Two lines were exactly the same ({a} vs. {b})")
