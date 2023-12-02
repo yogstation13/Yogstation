@@ -505,62 +505,67 @@
 			M.update_damage_overlays()
 	return 1
 
-#define SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD 0.7
-/datum/symptom/heal/surface
-	name = "Superficial Healing"
-	desc = "The virus accelerates the body's natural healing, causing the body to heal minor wounds quickly."
+#define SYMPTOM_PARASYMPATHETIC_MIN_DELAY (1 SECONDS)
+
+/datum/symptom/heal/parasympathetic
+	name = "Parasympathetic Regulation"
+	desc = "The virus accelerates the body's natural healing, causing the body to heal wounds quickly while resting."
 	stealth = -2
 	resistance = -2
 	stage_speed = -2
 	transmittable = 1
 
 	level = 3
-	passive_message = span_notice("Your skin tingles")
+	passive_message = span_notice("You feel calm.")
 
-	var/threshold = 0.9 // Percentual total health we check against. This is less than a toolbox hit, so probably wont save you in combat
+	/// When was the last time the affected mob moved?
+	var/last_moved = 0
+	/// How long do you need to stand still to start healing?
+	var/heal_delay = 3 SECONDS
+	/// How much damage does this heal?
 	var/healing_power = 0.5 // 0.5 brute and fire, slightly better than the worst case starlight with its 0.3
 
+	compatible_biotypes = ALL_BIOTYPES // bungus
 	threshold_descs = list(
 		"Stage Speed 8" = "Improves healing significantly.",
-		"Resistance 10" = "Improves healing threshhold. This comes at the downside of exhausting the body more as heavier wounds heal",
+		"Resistance 10" = "Shorter delay until healing starts.",
 	)
 
-/datum/symptom/heal/surface/Start(datum/disease/advance/A)
+/datum/symptom/heal/parasympathetic/Start(datum/disease/advance/A)
 	. = ..()
 	if(!.)
 		return
 	if(A.properties["stage_rate"] >= 8) //stronger healing
 		healing_power = 1.5
-	if(A.properties["resistance"] >= 10)
-		threshold = SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
+	if(A.properties["resistance"] >= 10) //no delay
+		heal_delay = SYMPTOM_PARASYMPATHETIC_MIN_DELAY
+	RegisterSignal(A.affected_mob, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(on_move))
 
-/datum/symptom/heal/surface/CanHeal(datum/disease/advance/A)
-	var/mob/living/M = A.affected_mob
-	if(M.health == M.maxHealth)
+/datum/symptom/heal/parasympathetic/End(datum/disease/advance/A)
+	UnregisterSignal(A.affected_mob, COMSIG_MOB_CLIENT_PRE_MOVE)
+	return ..()
+
+/datum/symptom/heal/parasympathetic/proc/on_move(mob/living/mover, dir)
+	last_moved = world.time
+
+/datum/symptom/heal/parasympathetic/CanHeal(datum/disease/advance/A)
+	if(last_moved + heal_delay > world.time)
 		return FALSE
 	return TRUE
-	
 
-/datum/symptom/heal/surface/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
+/datum/symptom/heal/parasympathetic/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
 	if(M.health == M.maxHealth)
 		return
-	if(((M.health/M.maxHealth) > threshold))
-		healing_power = healing_power * actual_power
+	if(last_moved + heal_delay > world.time)
+		return
 
-		// We don't actually heal all damage types at once, but prioritise one over the other.
-		// Since the virus focuses mainly on surface damage, it will firstly heal those
-		// If it can't find any then it will consider healing some toxins (Not affected by healing power)
-		if(M.getBruteLoss() || M.getFireLoss())
-			M.heal_bodypart_damage(healing_power, healing_power) 				
-		else if(M.getToxLoss())
-			M.adjustToxLoss(-0.5)
-		else
-			return	// Still continues IF we healed something
+	healing_power = healing_power * actual_power
+	if(M.getBruteLoss() || M.getFireLoss() || M.getToxLoss())
+		M.heal_bodypart_damage(healing_power, healing_power)
+		M.adjustToxLoss(-healing_power)
+	else
+		return	// Still continues IF we healed something
 
-		// A downside to the better threshold
-		if(threshold == SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD)
-			// Interesting downside
-			if(M.getStaminaLoss() < 65)
-				M.adjustStaminaLoss(20)
-		return TRUE
-#undef SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
+	return TRUE
+
+#undef SYMPTOM_PARASYMPATHETIC_MIN_DELAY
