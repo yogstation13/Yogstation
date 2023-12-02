@@ -22,9 +22,8 @@
 	projectiletype = /obj/projectile/temp
 	projectilesound = 'sound/weapons/emitter.ogg'
 	attack_sound = 'sound/hallucinations/growl1.ogg'
+	footstep_type = FOOTSTEP_MOB_SHOE
 	var/list/copies = list()
-
-	do_footstep = TRUE
 
 
 //Summon Ability

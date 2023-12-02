@@ -34,9 +34,8 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
+	footstep_type = FOOTSTEP_MOB_CLAW
 	var/alert_light
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/hivebot/Initialize(mapload)
 	. = ..()

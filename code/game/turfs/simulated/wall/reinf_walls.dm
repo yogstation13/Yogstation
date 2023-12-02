@@ -3,7 +3,7 @@
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced_wall.dmi'
 	icon_state = "r_wall"
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
 
 	var/d_state = INTACT
@@ -219,9 +219,10 @@
 /turf/closed/wall/r_wall/rust_heretic_act()
 	if(prob(50))
 		return
-	if(prob(70))
-		new /obj/effect/glowing_rune(src)
-	ChangeTurf(/turf/closed/wall/r_wall/rust)
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		ScrapeAway()
+		return
+	return ..()
 
 /turf/closed/wall/r_wall/syndicate
 	name = "hull"

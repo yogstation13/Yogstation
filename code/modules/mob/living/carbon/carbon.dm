@@ -25,9 +25,6 @@
 	QDEL_NULL(dna)
 	GLOB.carbon_list -= src
 
-/mob/living/carbon/initialize_footstep()
-	AddComponent(/datum/component/footstep, 1, 2)
-
 /mob/living/carbon/perform_hand_swap(held_index)
 	. = ..()
 	if(!.)
@@ -91,7 +88,7 @@
 	return ..()
 
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(mind?.martial_art.handle_throw(hit_atom, src))
+	if(mind?.martial_art.handle_throw(hit_atom, src, throwingdatum))
 		return
 	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
 		return
@@ -544,10 +541,6 @@
 
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src //leaving this here but sus
-		if(stam && H.hulk_stamina_check())
-			return
 	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold)
 		if(!stat)
 			enter_stamcrit()

@@ -34,6 +34,8 @@
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
+	wings_icon = "Ethereal"
+	wings_detail = "Etherealdetails"
 
 	var/max_range = 5
 	var/max_power = 2
@@ -51,14 +53,11 @@
 
 	smells_like = "crackling sweetness"
 
-	var/obj/effect/dummy/lighting_obj/ethereal_light
-
+	var/obj/effect/dummy/lighting_obj/moblight/species/ethereal_light
 
 /datum/species/ethereal/Destroy(force)
-	if(ethereal_light)
-		QDEL_NULL(ethereal_light)
+	QDEL_NULL(ethereal_light)
 	return ..()
-
 
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
@@ -68,7 +67,7 @@
 	var/mob/living/carbon/human/ethereal = C
 	setup_color(ethereal)
 
-	ethereal_light = ethereal.mob_light()
+	ethereal_light = ethereal.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight/species)
 	spec_updatehealth(ethereal)
 
 	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
@@ -94,8 +93,9 @@
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
 	var/list/hsl = rgb2hsl(r1, g1, b1)
-	hsl[2] *= 0.6
-	hsl[3] += (1 - hsl[3]) / 2 //the light part of HSL is from 0 to 1 this increases lightness of the colour, less increase the brighter the light is
+	//both saturation and lightness are a scale of 0 to 1
+	hsl[2] = min(hsl[2], 0.7) //don't let saturation be too high or it's overwhelming
+	hsl[3] = max(hsl[3], 0.5) //don't let lightness be too low or it looks like a void of light
 	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
 	r1 = rgb[1]
 	g1 = rgb[2]

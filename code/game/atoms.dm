@@ -44,6 +44,28 @@
 	var/datum/wires/wires = null
 	var/obj/effect/abstract/particle_holder/master_holder
 
+	///Light systems, both shouldn't be active at the same time.
+	var/light_system = STATIC_LIGHT
+	///Range of the light in tiles. Zero means no light.
+	var/light_range = 0
+	///Intensity of the light. The stronger, the less shadows you will see on the lit area.
+	var/light_power = 1
+	///Hexadecimal RGB string representing the colour of the light. White by default.
+	var/light_color = COLOR_WHITE
+	/// Angle of light to show in light_dir
+	/// 360 is a circle, 90 is a cone, etc.
+	var/light_angle = 360
+	/// What angle to project light in
+	var/light_dir = NORTH
+	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
+	var/light_on = TRUE
+	///Bitflags to determine lighting-related atom properties.
+	var/light_flags = NONE
+	///Our light source. Don't fuck with this directly unless you have a good reason!
+	var/tmp/datum/light_source/light
+	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
+	var/tmp/list/light_sources
+
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
 	/// a very temporary list of overlays to remove
@@ -170,10 +192,6 @@
 
 	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
-
-	if (opacity && isturf(loc))
-		var/turf/T = loc
-		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
@@ -363,22 +381,37 @@
 
 ///Take air from the passed in gas mixture datum
 /atom/proc/assume_air(datum/gas_mixture/giver)
-	qdel(giver)
+	return null
+
+/atom/proc/assume_air_moles(datum/gas_mixture/giver, moles)
+	return null
+
+/atom/proc/assume_air_ratio(datum/gas_mixture/giver, ratio)
 	return null
 
 ///Remove air from this atom
 /atom/proc/remove_air(amount)
 	return null
 
+/atom/proc/remove_air_ratio(ratio)
+	return null
+
+/atom/proc/transfer_air(datum/gas_mixture/taker, amount)
+	return null
+
+/atom/proc/transfer_air_ratio(datum/gas_mixture/taker, ratio)
+	return null
+
 ///Return the current air environment in this atom
 /atom/proc/return_air()
 	if(loc)
 		return loc.return_air()
-	else
-		return null
+	return null
 
+///Return the air if we can analyze it
 /atom/proc/return_analyzable_air()
 	return null
+
 
 ///Return the air if we can analyze it
 ///Check if this atoms eye is still alive (probably)
@@ -1046,12 +1079,63 @@
   * the object has been admin edited
   */
 /atom/vv_edit_var(var_name, var_value)
+	var/old_light_flags = light_flags
+	// Disable frozen lights for now, so we can actually modify it
+	light_flags &= ~LIGHT_FROZEN	
+	switch(var_name)
+		
+		if(NAMEOF(src, light_range))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_range = var_value)
+			else
+				set_light_range(var_value)
+			. = TRUE
+		if(NAMEOF(src, light_power))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_power = var_value)
+			else
+				set_light_power(var_value)
+			. = TRUE
+		if(NAMEOF(src, light_color))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_color = var_value)
+			else
+				set_light_color(var_value)
+			. = TRUE
+		if(NAMEOF(src, light_angle))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_angle = var_value)
+				. = TRUE
+		if(NAMEOF(src, light_dir))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_dir = var_value)
+				. = TRUE
+		if(NAMEOF(src, light_on))
+			set_light_on(var_value)
+			. = TRUE
+		if(NAMEOF(src, light_flags))
+			set_light_flags(var_value)
+			// I'm sorry
+			old_light_flags = var_value
+			. = TRUE
+
+	light_flags = old_light_flags
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
 	if(!GLOB.Debug2)
 		flags_1 |= ADMIN_SPAWNED_1
-	. = ..()
+
+	. = ..()	
+	
 	switch(var_name)
-		if("color")
+		if(NAMEOF(src, color))
 			add_atom_colour(color, ADMIN_COLOUR_PRIORITY)
+			update_appearance()
+		if(NAMEOF(src, opacity))
+			set_opacity(var_value)
+			. = TRUE
 
 /**
   * Return the markup to for the dropdown list for the VV panel for this atom
@@ -1204,31 +1288,47 @@
 	return
 
 /**
-  *Tool behavior procedure. Redirects to tool-specific procs by default.
-  *
-  * You can override it to catch all tool interactions, for use in complex deconstruction procs.
-  *
-  * Must return  parent proc ..() in the end if overridden
-  */
-/atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
-	. = FALSE
+ * Tool behavior procedure. Redirects to tool-specific procs by default.
+ *
+ * You can override it to catch all tool interactions, for use in complex deconstruction procs.
+ *
+ * Must return  parent proc ..() in the end if overridden
+ */
+/atom/proc/tool_act(mob/living/user, obj/item/tool, tool_type)
+	var/act_result
+	var/signal_result
+
+	signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, tool)
+	if(signal_result & COMPONENT_BLOCK_TOOL_ATTACK) // The COMSIG_ATOM_TOOL_ACT signal is blocking the act
+		return TOOL_ACT_SIGNAL_BLOCKING
+	if(QDELETED(tool))
+		return TRUE
+
 	switch(tool_type)
 		if(TOOL_CROWBAR)
-			. = crowbar_act(user, I)
+			act_result = crowbar_act(user, tool)
 		if(TOOL_MULTITOOL)
-			. = multitool_act(user, I)
+			act_result = multitool_act(user, tool)
 		if(TOOL_SCREWDRIVER)
-			. = screwdriver_act(user, I)
+			act_result = screwdriver_act(user, tool)
 		if(TOOL_WRENCH)
-			. = wrench_act(user, I)
+			act_result = wrench_act(user, tool)
 		if(TOOL_WIRECUTTER)
-			. = wirecutter_act(user, I)
+			act_result = wirecutter_act(user, tool)
 		if(TOOL_WELDER)
-			. = welder_act(user, I)
+			act_result = welder_act(user, tool)
 		if(TOOL_ANALYZER)
-			. = analyzer_act(user, I)
-	if(. && I.toolspeed < 1) //nice tool bro
+			act_result = analyzer_act(user, tool)
+	if(!act_result)
+		return
+	
+	if(. && tool.toolspeed < 1) //nice tool bro
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nice_tool", /datum/mood_event/nice_tool)
+
+	// A tooltype_act has completed successfully
+//	log_tool("[key_name(user)] used [tool] on [src] at [AREACOORD(src)]")
+	SEND_SIGNAL(tool, COMSIG_TOOL_ATOM_ACTED_PRIMARY(tool_type), src)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 
 //! Tool-specific behavior procs. To be overridden in subtypes.
@@ -1389,7 +1489,7 @@
   * * dealt_bare_wound_bonus- The bare_wound_bonus, if one was specified *and applied*, of the wounding attack. Not shown if armor was present
   * * base_roll- Base wounding ability of an attack is a random number from 1 to (dealt_damage ** WOUND_DAMAGE_EXPONENT). This is the number that was rolled in there, before mods
   */
-/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll, attack_direction = null)
+/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll)
 	if(QDELETED(victim) || !suffered_wound)
 		return
 	var/message = "has suffered: [suffered_wound][suffered_wound.limb ? " to [suffered_wound.limb.name]" : null]"// maybe indicate if it's a promote/demote?
@@ -1405,9 +1505,6 @@
 
 	if(dealt_bare_wound_bonus)
 		message += " | BWB: [dealt_bare_wound_bonus]"
-
-	if(attack_direction)
-		message += " | AtkDir: [attack_direction]"
 
 	victim.log_message(message, LOG_ATTACK, color="blue")
 

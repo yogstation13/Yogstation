@@ -251,7 +251,8 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 
-	priority_announce("The emergency shuttle has been called. [GLOB.security_level >= SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.\nNature of emergency:\n\n[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLECALLED, "Priority")
+	var/emergency_reason = "\nNature of emergency:\n\n[reason]"
+	priority_announce("The emergency shuttle has been called. [GLOB.security_level >= SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[html_decode(emergency_reason)][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLECALLED, "Priority")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
 	if(mode != SHUTTLE_CALL)
@@ -451,7 +452,8 @@
 					destination_dock = "emergency_syndicate"
 					minor_announce("Corruption detected in \
 						shuttle navigation protocols. Please contact your \
-						supervisor.", "SYSTEM ERROR:", alert=TRUE, custom_alert_sound = 'sound/misc/announce2.ogg')
+						supervisor.", "SYSTEM ERROR:", alert=TRUE)
+					sound_to_playing_players('sound/misc/announce2.ogg')
 
 				dock_id(destination_dock)
 				mode = SHUTTLE_ENDGAME

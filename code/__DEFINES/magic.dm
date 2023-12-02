@@ -64,7 +64,7 @@
 /// (effectively making the invocation flavor, instead of required).
 #define SPELL_CASTABLE_WITHOUT_INVOCATION (1 << 8)
 
-/*DEFINE_BITFIELD(spell_requirements, list(
+DEFINE_BITFIELD(spell_requirements, list(
 	"SPELL_CASTABLE_AS_BRAIN" = SPELL_CASTABLE_AS_BRAIN,
 	"SPELL_CASTABLE_WHILE_PHASED" = SPELL_CASTABLE_WHILE_PHASED,
 	"SPELL_CASTABLE_WITHOUT_INVOCATION" = SPELL_CASTABLE_WITHOUT_INVOCATION,
@@ -74,7 +74,7 @@
 	"SPELL_REQUIRES_NO_ANTIMAGIC" = SPELL_REQUIRES_NO_ANTIMAGIC,
 	"SPELL_REQUIRES_STATION" = SPELL_REQUIRES_STATION,
 	"SPELL_REQUIRES_WIZARD_GARB" = SPELL_REQUIRES_WIZARD_GARB,
-))*/
+))
 
 // Bitflags for teleport spells
 /// Whether the teleport spell skips over space turfs
@@ -92,11 +92,11 @@
 /// Holy magic resistance that blocks unholy magic (revenant, vampire, voice of god)
 #define MAGIC_RESISTANCE_HOLY (1<<2)
 
-/*DEFINE_BITFIELD(antimagic_flags, list(
+DEFINE_BITFIELD(antimagic_flags, list(
 	"MAGIC_RESISTANCE" = MAGIC_RESISTANCE,
 	"MAGIC_RESISTANCE_HOLY" = MAGIC_RESISTANCE_HOLY,
 	"MAGIC_RESISTANCE_MIND" = MAGIC_RESISTANCE_MIND,
-))*/
+))
 
 /**
  * Checks if our mob is jaunting actively (within a phased mob object)

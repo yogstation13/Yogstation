@@ -20,6 +20,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
 	/client/proc/fix_air_z,
+	/client/proc/clear_all_pipenets,
 	/client/proc/debugstatpanel,
 	/client/proc/clear_mfa,
 	/client/proc/show_rights
@@ -129,7 +130,9 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/rejuv_all, // yogs - Revive All
 	/client/proc/admin_vox, // yogs - Admin AI Vox
 	/client/proc/admin_away,
-	/client/proc/centcom_podlauncher/*Open a window to launch a Supplypod and configure it or it's contents*/
+	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
+	/client/proc/load_json_admin_event,
+	/client/proc/event_role_manager
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
@@ -153,7 +156,6 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
 	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
-	/client/proc/dump_memory_usage,
 	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
 	/client/proc/toggle_cdn
 	)
@@ -810,7 +812,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
-
+/*
 /client/proc/dump_memory_usage()
 	set name = "Dump Server Memory Usage"
 	set category = "Server"
@@ -839,6 +841,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		to_chat(usr, span_warning("File creation failed. Please check to see if the data/logs/memory folder actually exists."))
 	else
 		to_chat(usr, span_notice("Memory dump completed."))
+*/
 
 
 /client/proc/debugstatpanel()

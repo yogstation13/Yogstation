@@ -132,9 +132,13 @@ Class Procs:
 
 	/// For storing and overriding ui id
 	var/tgui_id // ID of TGUI interface
-	var/climb_time = 20
-	var/climb_stun = 20
-	var/mob/living/machineclimber
+	/// world.time of last use by [/mob/living]
+	var/last_used_time = 0
+	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
+	var/mob/living/last_user_mobtype
+
+	///Boolean on whether this machines interact with atmos
+	var/atmos_processing = FALSE
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
@@ -161,7 +165,7 @@ Class Procs:
 	power_change()
 	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(power_change))
 
-/obj/machinery/Destroy()
+/obj/machinery/Destroy(force=FALSE)
 	disconnect_from_network()
 	GLOB.machines.Remove(src)
 	if(!speed_process)
@@ -296,11 +300,7 @@ Class Procs:
 
 	var/mob/living/carbon/H = user
 	if(istype(H) && H.has_dna())
-		if (H.dna.check_mutation(ACTIVE_HULK))
-			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
-			return FALSE // hulks cant use machines
-
-		else if(!Adjacent(user) && !H.dna.check_mutation(TK))
+		if(!Adjacent(user) && !H.dna.check_mutation(TK))
 			return FALSE // need to be close or have telekinesis
 
 	return TRUE
@@ -388,6 +388,14 @@ Class Procs:
 	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
 		return	
 	return ..()
+
+/obj/machinery/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
+	if(SEND_SIGNAL(user, COMSIG_TRY_USE_MACHINE, src) & COMPONENT_CANT_USE_MACHINE_TOOLS)
+		return TOOL_ACT_MELEE_CHAIN_BLOCKING
+	. = ..()
+	if(. & TOOL_ACT_SIGNAL_BLOCKING)
+		return
+	update_last_used(user)
 
 /obj/machinery/CheckParts(list/parts_list)
 	..()
@@ -479,8 +487,8 @@ Class Procs:
 		I.play_tool_sound(src, 50)
 		setDir(turn(dir,-90))
 		to_chat(user, span_notice("You rotate [src]."))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
 	if(!(isfloorturf(loc) || istype(loc, /turf/open/indestructible)) && !anchored)
@@ -654,3 +662,8 @@ Class Procs:
 
 /obj/machinery/rust_heretic_act()
 	take_damage(500, BRUTE, MELEE, 1)
+
+/obj/machinery/proc/update_last_used(mob/user)
+	if(isliving(user))
+		last_used_time = world.time
+		last_user_mobtype = user.type

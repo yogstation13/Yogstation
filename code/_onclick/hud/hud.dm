@@ -13,6 +13,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Operative" = 'icons/mob/screen_operative.dmi',
 	"Clockwork" = 'icons/mob/screen_clockwork.dmi',
 	"Detective" = 'icons/mob/screen_detective.dmi',
+	"Obsidian" = 'icons/mob/screen_obsidian.dmi',
 ))
 
 /proc/ui_style2icon(ui_style)
@@ -125,9 +126,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	mymob = null
 
 	return ..()
-
-/mob
-	var/hud_type = /datum/hud
 
 /mob/proc/create_mob_hud()
 	if(!client || hud_used)

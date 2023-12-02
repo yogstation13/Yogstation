@@ -107,7 +107,7 @@
 
 	if(!dna)
 		return
-	if(prob(3) && dna.check_mutation(ACTIVE_HULK))
+	if(prob(3) && dna.check_mutation(HULK))
 		say(pick_list_replacements(BRAIN_DAMAGE_FILE, "hulk"))
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
@@ -153,22 +153,6 @@
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	dna.species.handle_environment(environment, src)
-
-///FIRE CODE
-/mob/living/carbon/human/handle_fire()
-	. = ..()
-	if(.) //if the mob isn't on fire anymore
-		return
-
-	if(dna)
-		. = dna.species.handle_fire(src) //do special handling based on the mob's species. TRUE = they are immune to the effects of the fire.
-
-	if(!last_fire_update)
-		last_fire_update = fire_stacks
-	if((fire_stacks > HUMAN_FIRE_STACK_ICON_NUM && last_fire_update <= HUMAN_FIRE_STACK_ICON_NUM) || (fire_stacks <= HUMAN_FIRE_STACK_ICON_NUM && last_fire_update > HUMAN_FIRE_STACK_ICON_NUM))
-		last_fire_update = fire_stacks
-		update_fire()
-
 
 /mob/living/carbon/human/proc/get_thermal_protection()
 	var/thermal_protection = 0 //Simple check to estimate how protected we are against multiple temperatures

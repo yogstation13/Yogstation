@@ -395,6 +395,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		adminGreet()
 
 	add_verbs_from_config()
+	if(GLOB.admin_event)
+		add_verb(src, /client/proc/event_info)
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		player_age = 0
@@ -402,6 +404,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
 			message_admins("New user: [key_name_admin(src)] ([address]) is connecting here for the first time.")
+			to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "[key_name_mentor(src)] is connecting here for the first time, and might need help! Their BYOND account is [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].", confidential=TRUE)
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)
@@ -410,6 +413,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		player_age = account_age
 	if(account_age >= 0 && account_age < nnpa)
 		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
+		to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "[key_name_mentor(src)] is connecting, and might need help! Their BYOND account is [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].", confidential=TRUE)
 		if (CONFIG_GET(flag/irc_first_connection_alert))
 			send2irc_adminless_only("new_byond_user", "[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
 	get_message_output("watchlist entry", ckey)

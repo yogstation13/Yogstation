@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(explosions)
 		else
 			continue
 
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(wipe_color_and_text), wipe_colours), 100)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(wipe_color_and_text), wipe_colours), 100)
 
 /proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)
@@ -586,3 +586,5 @@ SUBSYSTEM_DEF(explosions)
 		cost_throwturf = MC_AVERAGE(cost_throwturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 	currentpart = SSEXPLOSIONS_TURFS
+
+#undef SSAIR_REBUILD_PIPENETS

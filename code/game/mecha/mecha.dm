@@ -18,7 +18,7 @@
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE //Dense. To raise the heat.
-	opacity = 1 ///opaque. Menacing.
+	opacity = TRUE ///opaque. Menacing.
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG //no pulling around.
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	layer = BELOW_MOB_LAYER//icon draw layer
@@ -34,8 +34,8 @@
 	var/mob/living/carbon/occupant = null
 	var/step_in = 10 //make a step in step_in/10 sec.
 	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
-	var/normal_step_energy_drain = 10 //How much energy the mech will consume each time it moves. This variable is a backup for when leg actuators affect the energy drain.
-	var/step_energy_drain = 10
+	var/normal_step_energy_drain = 0 //How much energy the mech will consume each time it moves. This variable is a backup for when leg actuators affect the energy drain.
+	var/step_energy_drain = 0
 	var/melee_energy_drain = 15
 	var/overload_step_energy_drain_min = 100
 	max_integrity = 300 //max_integrity is base health
@@ -213,11 +213,7 @@
 	scanmod = null
 	capacitor = null
 	internal_tank = null
-	if(loc)
-		loc.assume_air(cabin_air)
-		air_update_turf()
-	else
-		qdel(cabin_air)
+	assume_air(cabin_air)
 	cabin_air = null
 	qdel(spark_system)
 	spark_system = null
@@ -239,18 +235,6 @@
 	cell = locate(/obj/item/stock_parts/cell) in contents
 	scanmod = locate(/obj/item/stock_parts/scanning_module) in contents
 	capacitor = locate(/obj/item/stock_parts/capacitor) in contents
-	update_part_values()
-
-/// Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
-/obj/mecha/proc/update_part_values()
-	if(scanmod)
-		// Starting at 20 energy per step (at tier 0), each tier reduces this value down by 5 until it reaches 0.
-		normal_step_energy_drain = max(20 - (5 * scanmod.rating), 0)
-		if(!leg_overload_mode)
-			step_energy_drain = normal_step_energy_drain
-	else
-		normal_step_energy_drain = 500 // If they somehow move, a massive energy drain per step.
-		step_energy_drain = normal_step_energy_drain
 
 ////////////////////////
 ////// Helpers /////////
@@ -288,8 +272,8 @@
 	cabin_air = new
 	cabin_air.set_temperature(T20C)
 	cabin_air.set_volume(200)
-	cabin_air.set_moles(/datum/gas/oxygen, O2STANDARD*cabin_air.return_volume()/(R_IDEAL_GAS_EQUATION*cabin_air.return_temperature()))
-	cabin_air.set_moles(/datum/gas/nitrogen, N2STANDARD*cabin_air.return_volume()/(R_IDEAL_GAS_EQUATION*cabin_air.return_temperature()))
+	cabin_air.set_moles(GAS_O2, O2STANDARD*cabin_air.return_volume()/(R_IDEAL_GAS_EQUATION*cabin_air.return_temperature()))
+	cabin_air.set_moles(GAS_N2, N2STANDARD*cabin_air.return_volume()/(R_IDEAL_GAS_EQUATION*cabin_air.return_temperature()))
 	return cabin_air
 
 /obj/mecha/proc/add_radio()
@@ -306,6 +290,11 @@
 		if(!user.incapacitated())
 			return TRUE
 	return FALSE
+
+/obj/mecha/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..() // if something can go through machines it can go through mechs
+	if(istype(mover) && (mover.pass_flags & PASSMECH))
+		return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -417,13 +406,7 @@
 
 		if(internal_damage & MECHA_INT_TANK_BREACH) //remove some air from internal tank
 			if(internal_tank)
-				var/datum/gas_mixture/int_tank_air = internal_tank.return_air()
-				var/datum/gas_mixture/leaked_gas = int_tank_air.remove_ratio(0.1)
-				if(loc)
-					loc.assume_air(leaked_gas)
-					air_update_turf()
-				else
-					qdel(leaked_gas)
+				assume_air_ratio(internal_tank.return_air(), 0.1)
 
 		if(internal_damage & MECHA_INT_SHORT_CIRCUIT)
 			if(get_charge())
@@ -446,8 +429,7 @@
 		if(pressure_delta > 0) //cabin pressure lower than release pressure
 			if(tank_air.return_temperature() > 0)
 				transfer_moles = pressure_delta*cabin_air.return_volume()/(cabin_air.return_temperature() * R_IDEAL_GAS_EQUATION)
-				var/datum/gas_mixture/removed = tank_air.remove(transfer_moles)
-				cabin_air.merge(removed)
+				tank_air.transfer_to(cabin_air,transfer_moles)
 		else if(pressure_delta < 0) //cabin pressure higher than release pressure
 			var/datum/gas_mixture/t_air = return_air()
 			pressure_delta = cabin_pressure - release_pressure
@@ -455,11 +437,7 @@
 				pressure_delta = min(cabin_pressure - t_air.return_pressure(), pressure_delta)
 			if(pressure_delta > 0) //if location pressure is lower than cabin pressure
 				transfer_moles = pressure_delta*cabin_air.return_volume()/(cabin_air.return_temperature() * R_IDEAL_GAS_EQUATION)
-				var/datum/gas_mixture/removed = cabin_air.remove(transfer_moles)
-				if(t_air)
-					t_air.merge(removed)
-				else //just delete the cabin gas, we're in space or some shit
-					qdel(removed)
+				cabin_air.transfer_to(t_air, transfer_moles)
 
 	if(occupant)
 		if(cell)
@@ -675,7 +653,7 @@
 		return FALSE
 	if(!has_charge(step_energy_drain))
 		return FALSE
-	
+
 	if(defence_mode)
 		if(world.time - last_message > 20)
 			occupant_message(span_danger("Unable to move while in defence mode"))
@@ -966,6 +944,11 @@
 		return cabin_air.remove(amount)
 	return ..()
 
+/obj/mecha/remove_air_ratio(ratio)
+	if(use_internal_tank)
+		return cabin_air.remove_ratio(ratio)
+	return ..()
+
 /obj/mecha/return_air()
 	if(use_internal_tank)
 		return cabin_air
@@ -1114,6 +1097,17 @@
 	GrantActions(brainmob)
 	return TRUE
 
+/obj/mecha/proc/remove_mmi(mob/user)
+	if(!silicon_pilot) // this should be impossible unless someone is messing with the client to do unintended things
+		CRASH("[type] called remove_mmi() without having a silicon pilot!")
+	var/mob/living/brain/brainmob = occupant
+	go_out(FALSE, get_turf(src)) // eject any silicon pilot, including AIs
+	if(!istype(brainmob)) // if there wasn't a brain inside, no need to continue
+		return
+	var/obj/item/mmi/mmi = brainmob.container
+	if(user && !user.put_in_hands(mmi))
+		mmi.forceMove(get_turf(user))
+
 /obj/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
@@ -1133,11 +1127,9 @@
 		return
 	if(scanmod && scanmod == M)
 		scanmod = null
-		update_part_values()
 		return
 	if(capacitor && capacitor == M)
 		capacitor = null
-		update_part_values()
 		return
 
 /obj/mecha/proc/go_out(forced, atom/newloc = loc)
@@ -1192,6 +1184,7 @@
 			if(mmi.brainmob)
 				L.forceMove(mmi)
 				L.reset_perspective()
+				L.remote_control = null
 			mmi.mecha = null
 			mmi.update_appearance(UPDATE_ICON)
 			L.mobility_flags = NONE
@@ -1252,6 +1245,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		return max(0, cell.charge)
 
 /obj/mecha/proc/use_power(amount)
+	amount *= (2.5 - (scanmod.rating / 2)) // 0-5: 2.5x, 2x, 1.5x, 1x, 0.5x
 	if(get_charge())
 		cell.use(amount)
 		return TRUE

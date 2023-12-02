@@ -605,6 +605,9 @@
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
 				return
+			if(!HM.allow_cloning)
+				say("ERROR: This mutation is anomalous and cannot be synthesized.")
+				return
 
 			// Create a new DNA Injector and add the appropriate mutations to it
 			var/obj/item/dnainjector/activator/I = new /obj/item/dnainjector/activator(loc)
@@ -717,6 +720,9 @@
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
+				return
+			if(!HM.allow_cloning)
+				say("ERROR: This mutation is anomalous, and cannot be saved.")
 				return
 
 			var/datum/mutation/human/A = new HM.type()
@@ -1385,6 +1391,9 @@
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
+				return
+			if(!HM.allow_cloning)
+				say("ERROR: This mutation is anomalous, and cannot be added to an injector.")
 				return
 
 			// We want to make sure we stick within the instability limit.

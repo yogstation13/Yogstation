@@ -471,22 +471,18 @@
 			trauma.on_hug(M, src)
 
 		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
-		fire_stacks = averagestacks
-		M.fire_stacks = averagestacks
 		if(averagestacks > 1)
+			adjust_fire_stacks(averagestacks)
+			M.adjust_fire_stacks(-averagestacks)
 			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
 		else if(averagestacks < -1)
+			adjust_wet_stacks(averagestacks)
+			M.adjust_wet_stacks(-averagestacks)
 			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
 
 	adjust_status_effects_on_shake_up()
 
 //	adjustStaminaLoss(-10) if you want hugs to recover stamina damage, uncomment this
-	if(dna && dna.check_mutation(ACTIVE_HULK))
-		if(prob(30))
-			adjustStaminaLoss(10)
-			to_chat(src, span_notice("[M] calms you down a little."))
-		else
-			to_chat(src, span_warning("[M] tries to calm you!"))
 	set_resting(FALSE)
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
