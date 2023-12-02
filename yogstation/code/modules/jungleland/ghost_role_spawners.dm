@@ -19,6 +19,7 @@
 	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Jungle and your home. Fresh sacrifices for your nest."
 	assignedrole = "Ivyman"
 	var/datum/team/ivymen/team
+	
 
 /obj/effect/mob_spawn/human/ivymen/special(mob/living/new_spawn)
 	var/plant_name = pick("Thorn", "Spine", "Pitcher", "Belladonna", "Reed", "Ivy", "Kudzu", "Nettle", "Moss", "Hemlock", "Foxglove", "Root", "Bark", "Amanitin", "Hyacinth", "Leaf", \
