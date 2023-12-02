@@ -363,6 +363,10 @@
 	menutab = MENU_WEAPON
 	additional_desc = "The weapon of choice for a devout monk. Block incoming blows while striking weak points until your opponent is too exhausted to continue."
 
+/obj/item/nullrod/bostaff/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack, arc_size=180)
+
 /obj/item/nullrod/tribal_knife
 	name = "arrhythmic knife"
 	desc = "They say fear is the true mind killer, but stabbing them in the head works too. Honour compels you to not sheathe it once drawn."
