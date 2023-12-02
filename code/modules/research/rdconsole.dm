@@ -892,23 +892,23 @@ Nothing else in the console has ID requirements.
 			to_chat(usr, span_boldwarning("Unauthorized Access."))
 	if(ls["find_device"])
 		SyncRDevices()
-		say("Resynced with nearby devices.")
+		visible_message("Resynced with nearby devices.")
 	if(ls["back_screen"])
 		back = text2num(ls["back_screen"])
 	if(ls["build"]) //Causes the Protolathe to build something.
 		if(QDELETED(linked_lathe))
-			say("No Protolathe Linked!")
+			visible_message("No Protolathe Linked!")
 			return
 		if(linked_lathe.busy)
-			say("Warning: Protolathe busy!")
+			visible_message("Warning: Protolathe busy!")
 		else
 			linked_lathe.user_try_print_id(ls["build"], ls["amount"])
 	if(ls["imprint"])
 		if(QDELETED(linked_imprinter))
-			say("No Circuit Imprinter Linked!")
+			visible_message("No Circuit Imprinter Linked!")
 			return
 		if(linked_imprinter.busy)
-			say("Warning: Imprinter busy!")
+			visible_message("Warning: Imprinter busy!")
 		else
 			linked_imprinter.user_try_print_id(ls["imprint"])
 	if(ls["category"])
