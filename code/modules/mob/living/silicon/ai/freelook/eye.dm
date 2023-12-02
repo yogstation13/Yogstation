@@ -17,7 +17,6 @@
 	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = COLOR_RED
-	interaction_range = INFINITY
 
 /mob/camera/aiEye/Initialize(mapload)
 	. = ..()
@@ -25,13 +24,6 @@
 	icon_state = "ai_camera[GLOB.ai_list.len % 3]" // Yogs -- multicoloured AI eyes
 	update_ai_detect_hud()
 	setLoc(loc, TRUE)
-
-/mob/camera/aiEye/examine(mob/user) //Displays a silicon's laws to ghosts
-	. = ..()
-	if(istype(ai) && ai.laws && isobserver(user))
-		. += "<b>[ai] has the following laws:</b>"
-		for(var/law in ai.laws.get_law_list(include_zeroth = TRUE))
-			. += law
 
 /mob/camera/aiEye/proc/update_ai_detect_hud()
 	var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
@@ -79,32 +71,30 @@
 // It will also stream the chunk that the new loc is in.
 
 /mob/camera/aiEye/proc/setLoc(T, force_update = FALSE)
-	if(!ai)
-		return
-	if(!(isturf(ai.loc) || istype(ai.loc, /obj/machinery/ai/data_core)))
-		return
-	T = get_turf(T)
-	if(!force_update && (T == get_turf(src)) )
-		return //we are already here!
-	if (T)
-		forceMove(T)
-	else
-		moveToNullspace()
-	if(use_static)
-		ai.camera_visibility(src)
-	if(ai.client && !ai.multicam_on)
-		ai.client.eye = src
-	update_ai_detect_hud()
-	update_parallax_contents()
-	//Holopad
-	if(istype(ai.current, /obj/machinery/holopad))
-		var/obj/machinery/holopad/H = ai.current
-		H.move_hologram(ai, T)
-
-	if(ai.camera_light_on)
-		ai.light_cameras()
-	if(ai.master_multicam)
-		ai.master_multicam.refresh_view()
+	if(ai)
+		if(!(isturf(ai.loc) || istype(ai.loc, /obj/machinery/ai/data_core)))
+			return
+		T = get_turf(T)
+		if(!force_update && (T == get_turf(src)) )
+			return //we are already here!
+		if (T)
+			forceMove(T)
+		else
+			moveToNullspace()
+		if(use_static)
+			ai.camera_visibility(src)
+		if(ai.client && !ai.multicam_on)
+			ai.client.eye = src
+		update_ai_detect_hud()
+		update_parallax_contents()
+		//Holopad
+		if(istype(ai.current, /obj/machinery/holopad))
+			var/obj/machinery/holopad/H = ai.current
+			H.move_hologram(ai, T)
+		if(ai.camera_light_on)
+			ai.light_cameras()
+		if(ai.master_multicam)
+			ai.master_multicam.refresh_view()
 
 /mob/camera/aiEye/Move()
 	return 0
@@ -130,13 +120,12 @@
 	return ..()
 
 /atom/proc/move_camera_by_click()
-	if(!isAI(usr))
-		return
-	var/mob/living/silicon/ai/AI = usr
-	if(AI.eyeobj && (AI.multicam_on || (AI.client.eye == AI.eyeobj)) && (AI.eyeobj.z == z))
-		AI.cameraFollow = null
-		if (isturf(loc) || isturf(src))
-			AI.eyeobj.setLoc(src)
+	if(isAI(usr))
+		var/mob/living/silicon/ai/AI = usr
+		if(AI.eyeobj && (AI.multicam_on || (AI.client.eye == AI.eyeobj)) && (AI.eyeobj.z == z))
+			AI.cameraFollow = null
+			if (isturf(loc) || isturf(src))
+				AI.eyeobj.setLoc(src)
 
 // This will move the AIEye. It will also cause lights near the eye to light up, if toggled.
 // This is handled in the proc below this one.
