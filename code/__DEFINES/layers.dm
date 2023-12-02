@@ -75,7 +75,6 @@
 #define PIPECRAWL_IMAGES_PLANE 20
 
 ///AI Camera Static
-#define CAMERA_STATIC_LAYER 21
 #define CAMERA_STATIC_PLANE 21
 
 ///Anything that wants to be part of the game plane, but also wants to draw above literally everything else

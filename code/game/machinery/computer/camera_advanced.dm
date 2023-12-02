@@ -204,6 +204,7 @@
 		if(visible_icon && eye_user.client)
 			eye_user.client.images -= user_image
 			user_image = image(icon,loc,icon_state,FLY_LAYER)
+			SET_PLANE(user_image, ABOVE_GAME_PLANE, destination)
 			eye_user.client.images += user_image
 
 /mob/camera/aiEye/remote/relaymove(mob/user,direct)
