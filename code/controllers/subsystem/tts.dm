@@ -74,6 +74,10 @@ SUBSYSTEM_DEF(tts)
 		var/mob/hearer = ref.resolve()
 		if(!hearer || !istype(hearer))
 			continue
+		if(isnewplayer(hearer))
+			continue
+		if(hearer.stat >= UNCONSCIOUS)
+			continue
 		var/volume = 0
 		if(!filters[TTS_FILTER_RADIO])
 			volume = hearer.client?.prefs?.read_preference(/datum/preference/numeric/tts_volume) || DEFAULT_TTS_VOLUME
