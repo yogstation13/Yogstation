@@ -113,6 +113,18 @@ def compare_lines(a, b):
     a = a[len("#include \""):-1].lower()
     b = b[len("#include \""):-1].lower()
 
+    a_segments = a.split('\\')
+    b_segments = b.split('\\')
+
+    a_is_file = a_segment.endswith(file_extensions)
+    b_is_file = b_segment.endswith(file_extensions)
+
+    # code\something.dm will ALWAYS come before code\directory\something.dm
+    if a_is_file and not b_is_file:
+        return -1
+    if b_is_file and not a_is_file:
+        return 1
+
     split_by_period = a.split('.')
     a_suffix = ""
     if len(split_by_period) >= 2:
@@ -122,32 +134,11 @@ def compare_lines(a, b):
     if len(split_by_period) >= 2:
         b_suffix = split_by_period[len(split_by_period) - 1]
 
-    a_segments = a.split('\\')
-    b_segments = b.split('\\')
-
     for (a_segment, b_segment) in zip(a_segments, b_segments):
-        a_is_file = a_segment.endswith(file_extensions)
-        b_is_file = b_segment.endswith(file_extensions)
-
-        # code\something.dm will ALWAYS come before code\directory\something.dm
-        if a_is_file and not b_is_file:
-            return -1
-
-        if b_is_file and not a_is_file:
-            return 1
-
         # interface\something.dm will ALWAYS come after code\something.dm
         if a_segment != b_segment:
-            # if we're at the end of a compare, then this is about the file name
-            # files with longer suffixes come after ones with shorter ones
             if a_suffix != b_suffix:
-                a_dmf = a.endswith('.dmf')
-                b_dmf = b.endswith('.dmf')
-
-                if a_dmf and not b_dmf:
-                    return 1
-                elif not a_dmf and b_dmf:
-                    return -1
+                return (a_suffix > b_suffix) - (a_suffix < b_suffix)
 
             return (a_segment > b_segment) - (a_segment < b_segment)
 
