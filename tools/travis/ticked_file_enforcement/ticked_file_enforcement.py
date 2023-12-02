@@ -130,15 +130,18 @@ def compare_lines(a, b):
         b_is_file = b_segment.endswith(file_extensions)
 
         # code\something.dm will ALWAYS come before code\directory\something.dm
-        if a_is_file != b_is_file:
-            return a_is_file - b_is_file
+        if a_is_file and not b_is_file:
+            return -1
+
+        if b_is_file and not a_is_file:
+            return 1
 
         # interface\something.dm will ALWAYS come after code\something.dm
         if a_segment != b_segment:
             # if we're at the end of a compare, then this is about the file name
             # files with longer suffixes come after ones with shorter ones
             if a_suffix != b_suffix:
-                return (a_suffix > b_suffix) - (a_suffix < b_suffix)
+                return a_suffix - b_suffix
             return (a_segment > b_segment) - (a_segment < b_segment)
 
     print(f"Two lines were exactly the same ({a} vs. {b})")
