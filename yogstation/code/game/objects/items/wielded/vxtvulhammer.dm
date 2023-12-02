@@ -45,6 +45,7 @@
 		force_wielded = force_wielded, \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE)
 
 /obj/item/melee/vxtvulhammer/Destroy() //Even though the hammer won't probably be destroyed, Ever™
 	QDEL_NULL(spark_system)

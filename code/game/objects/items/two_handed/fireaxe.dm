@@ -28,6 +28,7 @@
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 	)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE) // YEAHHHHH
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
 /obj/item/fireaxe/update_icon_state()

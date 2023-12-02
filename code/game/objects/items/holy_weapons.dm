@@ -147,6 +147,10 @@
 	menutab = MENU_WEAPON
 	additional_desc = "An exceptionally large sword, capable of occasionally deflecting blows."
 
+/obj/item/nullrod/claymore/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
+
 /obj/item/nullrod/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance = 0 //Don't bring a sword to a gunfight

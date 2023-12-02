@@ -74,6 +74,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/claymore/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack, arc_size=90)
 	AddComponent(/datum/component/butchering, 40, 105)
 
 /obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)

@@ -564,6 +564,7 @@
 #include "code\datums\components\summoning.dm"
 #include "code\datums\components\surgery_bed.dm"
 #include "code\datums\components\swarming.dm"
+#include "code\datums\components\cleave_attack.dm"
 #include "code\datums\components\tactical.dm"
 #include "code\datums\components\tether.dm"
 #include "code\datums\components\thermite.dm"

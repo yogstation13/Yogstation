@@ -148,6 +148,9 @@
 		. = . || (mover.pass_flags & PASSGRILLE)
 
 /obj/structure/grille/attackby(obj/item/W, mob/user, params)
+	var/obj/structure/window/window = locate() in loc
+	if(window && window.density)
+		return TRUE // don't attack grilles through windows, that's weird and causes too many problems
 	user.changeNext_move(CLICK_CD_MELEE)
 	add_fingerprint(user)
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
