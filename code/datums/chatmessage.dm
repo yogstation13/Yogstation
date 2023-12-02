@@ -18,9 +18,9 @@
 #define CHAT_MESSAGE_ICON_SIZE 9
 
 ///Base layer of chat elements
-#define CHAT_LAYER 1
+#define CHAT_LAYER 12.0001
 ///Highest possible layer of chat elements
-#define CHAT_LAYER_MAX 2
+#define CHAT_LAYER_MAX 12.9999
 /// Maximum precision of float before rounding errors occur (in this context)
 #define CHAT_LAYER_Z_STEP 0.0001
 /// The number of z-layer 'slices' usable by the chat message layering
