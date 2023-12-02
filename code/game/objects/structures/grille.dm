@@ -149,7 +149,7 @@
 
 /obj/structure/grille/attackby(obj/item/W, mob/user, params)
 	var/obj/structure/window/window = locate() in loc
-	if(window && window.density)
+	if(window && window.fulltile && window.anchored)
 		return TRUE // don't attack grilles through windows, that's weird and causes too many problems
 	user.changeNext_move(CLICK_CD_MELEE)
 	add_fingerprint(user)
