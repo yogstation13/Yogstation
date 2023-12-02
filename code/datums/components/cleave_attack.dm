@@ -2,10 +2,10 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	var/arc_size = 90 // size of the attack arc in degrees
 	var/requires_wielded = FALSE // make this TRUE for two-handed weapons like axes
-	var/swing_speed_mod = 1.25 // how much slower is it to swing
+	var/swing_speed_mod = 1.5 // how much slower is it to swing
 	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
 
-/datum/component/cleave_attack/Initialize(arc_size=90, swing_speed_mod=1.25, requires_wielded=FALSE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe, ...)
+/datum/component/cleave_attack/Initialize(arc_size=90, swing_speed_mod=1.5, requires_wielded=FALSE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe, ...)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	
@@ -67,6 +67,8 @@
 			if(A.pass_flags & LETPASSTHROW)
 				continue // if you can throw something over it, you can swing over it too
 			item.melee_attack_chain(user, A, params)
+			if(isliving(A) && item.sharpness == SHARP_NONE)
+				break // blunt weapons can't hit more than one person
 	
 	// now do some effects
 	new cleave_effect(get_step(user_turf, SOUTHWEST), facing_dir)

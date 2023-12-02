@@ -11,6 +11,10 @@
 	var/emp_cooldown = 0
 	var/cooldown_duration = 10 SECONDS
 
+/obj/item/clockwork/weapon/brass_sword/Initialize(mapload, new_action)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack) // slice and dice in the name of ratvar
+
 /obj/item/clockwork/weapon/brass_sword/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
 	if(world.time > emp_cooldown && !is_servant_of_ratvar(target))
