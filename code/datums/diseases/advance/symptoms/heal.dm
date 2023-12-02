@@ -561,7 +561,7 @@
 
 	healing_power = healing_power * actual_power
 	if(M.getBruteLoss() || M.getFireLoss() || M.getToxLoss())
-		M.heal_bodypart_damage(healing_power, healing_power)
+		M.heal_bodypart_damage(healing_power, healing_power, required_status=((A.infectable_biotypes & MOB_ROBOTIC) ? BODYPART_ANY : BODYPART_ORGANIC))
 		M.adjustToxLoss(-healing_power)
 	else
 		return	// Still continues IF we healed something
