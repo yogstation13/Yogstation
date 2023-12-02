@@ -13,7 +13,6 @@
 	src.swing_speed_mod = swing_speed_mod
 	src.requires_wielded = requires_wielded
 	src.cleave_effect = cleave_effect
-	//RegisterSignal(parent, COMSIG_ITEM_PRE_ATTACK, PROC_REF(perform_sweep))
 	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_afterattack))
 
 /datum/component/cleave_attack/InheritComponent(datum/component/C, i_am_original, arc_size, swing_speed_mod, requires_wielded, cleave_effect)
@@ -27,7 +26,6 @@
 		src.requires_wielded = requires_wielded
 
 /datum/component/cleave_attack/Destroy(force, silent)
-	//UnregisterSignal(parent, COMSIG_ITEM_PRE_ATTACK)
 	UnregisterSignal(parent, COMSIG_ITEM_AFTERATTACK)
 	. = ..()
 
@@ -56,7 +54,7 @@
 	var/turfs_count = round(arc_size / 90, 1)
 	for(var/i in -turfs_count to turfs_count)
 		turf_list.Add(get_step(user_turf, turn(facing_dir, i * 45 * swing_direction)))
-	
+
 	// now swing across those turfs
 	for(var/turf/T as anything in turf_list)
 		for(var/atom/movable/A in T)
@@ -69,11 +67,9 @@
 			item.melee_attack_chain(user, A, params)
 			if(isliving(A) && item.sharpness == SHARP_NONE)
 				break // blunt weapons can't hit more than one person
-	
+
 	// now do some effects
 	new cleave_effect(get_step(user_turf, SOUTHWEST), facing_dir)
 	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
 	user.do_attack_animation(center_turf, no_effect=TRUE)
 	user.weapon_slow(item)
-	
-	// return COMPONENT_NO_ATTACK
