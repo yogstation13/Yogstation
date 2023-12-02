@@ -197,16 +197,16 @@
 			break
 		if(mytape.storedinfo.len < i)
 			break
-		say(mytape.storedinfo[i])
+		visible_message(mytape.storedinfo[i])
 		if(mytape.storedinfo.len < i + 1)
 			playsleepseconds = 1
 			sleep(1 SECONDS)
-			say("End of recording.")
+			visible_message("End of recording.")
 		else
 			playsleepseconds = mytape.timestamp[i + 1] - mytape.timestamp[i]
 		if(playsleepseconds > 14)
 			sleep(1 SECONDS)
-			say("Skipping [playsleepseconds] seconds of silence")
+			visible_message("Skipping [playsleepseconds] seconds of silence")
 			playsleepseconds = 1
 		i++
 
