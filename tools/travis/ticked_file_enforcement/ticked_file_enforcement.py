@@ -116,8 +116,8 @@ def compare_lines(a, b):
     a_segments = a.split('\\')
     b_segments = b.split('\\')
 
-    a_is_file = a_segment.endswith(file_extensions)
-    b_is_file = b_segment.endswith(file_extensions)
+    a_is_file = a.endswith(file_extensions)
+    b_is_file = b.endswith(file_extensions)
 
     # code\something.dm will ALWAYS come before code\directory\something.dm
     if a_is_file and not b_is_file:
