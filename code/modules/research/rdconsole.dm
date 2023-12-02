@@ -155,11 +155,11 @@ Nothing else in the console has ID requirements.
 
 /obj/machinery/computer/rdconsole/proc/research_node(id, mob/user)
 	if(!stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		say("Node unlock failed: Either already researched or not available!")
+		visible_message("Node unlock failed: Either already researched or not available!")
 		return FALSE
 	var/datum/techweb_node/TN = SSresearch.techweb_node_by_id(id)
 	if(!istype(TN))
-		say("Node unlock failed: Unknown error.")
+		visible_message("Node unlock failed: Unknown error.")
 		return FALSE
 	var/list/price = TN.get_price(stored_research)
 	if(stored_research.can_afford(price))
@@ -167,7 +167,7 @@ Nothing else in the console has ID requirements.
 		if(stored_research == SSresearch.science_tech)
 			SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("id" = "[id]", "name" = TN.display_name, "price" = "[json_encode(price)]", "time" = SQLtime()))
 		if(stored_research.research_node_id(id))
-			say("Successfully researched [TN.display_name].")
+			visible_message("Successfully researched [TN.display_name].")
 			var/logname = "Unknown"
 			if(isAI(user))
 				logname = "AI: [user.name]"
@@ -187,9 +187,9 @@ Nothing else in the console has ID requirements.
 			stored_research.research_logs[++i] = list(TN.display_name, price["General Research"], logname, "[get_area(src)] ([src.x],[src.y],[src.z])")
 			return TRUE
 		else
-			say("Failed to research node: Internal database error!")
+			visible_message("Failed to research node: Internal database error!")
 			return FALSE
-	say("Not enough research points...")
+	visible_message("Not enough research points...")
 	return FALSE
 
 /obj/machinery/computer/rdconsole/on_deconstruction()
@@ -917,72 +917,72 @@ Nothing else in the console has ID requirements.
 		switch(ls["disconnect"])
 			if("destroy")
 				if(QDELETED(linked_destroy))
-					say("No Destructive Analyzer Linked!")
+					visible_message("No Destructive Analyzer Linked!")
 					return
 				linked_destroy.linked_console = null
 				linked_destroy = null
 			if("lathe")
 				if(QDELETED(linked_lathe))
-					say("No Protolathe Linked!")
+					visible_message("No Protolathe Linked!")
 					return
 				linked_lathe.linked_console = null
 				linked_lathe = null
 			if("imprinter")
 				if(QDELETED(linked_imprinter))
-					say("No Circuit Imprinter Linked!")
+					visible_message("No Circuit Imprinter Linked!")
 					return
 				linked_imprinter.linked_console = null
 				linked_imprinter = null
 	if(ls["eject_design"]) //Eject the design disk.
 		eject_disk("design")
 		screen = RDSCREEN_MENU
-		say("Ejecting Design Disk")
+		visible_message("Ejecting Design Disk")
 	if(ls["eject_tech"]) //Eject the technology disk.
 		eject_disk("tech")
 		screen = RDSCREEN_MENU
-		say("Ejecting Technology Disk")
+		visible_message("Ejecting Technology Disk")
 	if(ls["deconstruct"])
 		if(QDELETED(linked_destroy))
-			say("No Destructive Analyzer Linked!")
+			visible_message("No Destructive Analyzer Linked!")
 			return
 		if(!linked_destroy.user_try_decon_id(ls["deconstruct"], usr))
-			say("Destructive analysis failed!")
+			visible_message("Destructive analysis failed!")
 	//Protolathe Materials
 	if(ls["disposeP"])  //Causes the protolathe to dispose of a single reagent (all of it)
 		if(QDELETED(linked_lathe))
-			say("No Protolathe Linked!")
+			visible_message("No Protolathe Linked!")
 			return
 		linked_lathe.reagents.del_reagent(ls["disposeP"])
 	if(ls["disposeallP"]) //Causes the protolathe to dispose of all it's reagents.
 		if(QDELETED(linked_lathe))
-			say("No Protolathe Linked!")
+			visible_message("No Protolathe Linked!")
 			return
 		linked_lathe.reagents.clear_reagents()
 	if(ls["ejectsheet"]) //Causes the protolathe to eject a sheet of material
 		if(QDELETED(linked_lathe))
-			say("No Protolathe Linked!")
+			visible_message("No Protolathe Linked!")
 			return
 		if(!linked_lathe.materials.mat_container)
-			say("No material storage linked to protolathe!")
+			visible_message("No material storage linked to protolathe!")
 			return
 		linked_lathe.eject_sheets(ls["ejectsheet"], ls["eject_amt"])
 	//Circuit Imprinter Materials
 	if(ls["disposeI"])  //Causes the circuit imprinter to dispose of a single reagent (all of it)
 		if(QDELETED(linked_imprinter))
-			say("No Circuit Imprinter Linked!")
+			visible_message("No Circuit Imprinter Linked!")
 			return
 		linked_imprinter.reagents.del_reagent(ls["disposeI"])
 	if(ls["disposeallI"]) //Causes the circuit imprinter to dispose of all it's reagents.
 		if(QDELETED(linked_imprinter))
-			say("No Circuit Imprinter Linked!")
+			visible_message("No Circuit Imprinter Linked!")
 			return
 		linked_imprinter.reagents.clear_reagents()
 	if(ls["imprinter_ejectsheet"]) //Causes the imprinter to eject a sheet of material
 		if(QDELETED(linked_imprinter))
-			say("No Circuit Imprinter Linked!")
+			visible_message("No Circuit Imprinter Linked!")
 			return
 		if(!linked_imprinter.materials.mat_container)
-			say("No material storage linked to circuit imprinter!")
+			visible_message("No material storage linked to circuit imprinter!")
 			return
 		var/datum/material/M = locate(ls["imprinter_ejectsheet"]) in linked_imprinter.materials.mat_container.materials
 		linked_imprinter.eject_sheets(M, ls["eject_amt"])
@@ -999,30 +999,30 @@ Nothing else in the console has ID requirements.
 		research_node(ls["research_node"], usr)
 	if(ls["clear_tech"]) //Erase la on the technology disk.
 		if(QDELETED(t_disk))
-			say("No Technology Disk Inserted!")
+			visible_message("No Technology Disk Inserted!")
 			return
 		qdel(t_disk.stored_research)
 		t_disk.stored_research = new
-		say("Wiping technology disk.")
+		visible_message("Wiping technology disk.")
 	if(ls["copy_tech"]) //Copy some technology la from the research holder to the disk.
 		if(QDELETED(t_disk))
-			say("No Technology Disk Inserted!")
+			visible_message("No Technology Disk Inserted!")
 			return
 		stored_research.copy_research_to(t_disk.stored_research)
 		screen = RDSCREEN_TECHDISK
-		say("Downloading to technology disk.")
+		visible_message("Downloading to technology disk.")
 	if(ls["clear_design"]) //Erases la on the design disk.
 		if(QDELETED(d_disk))
-			say("No Design Disk Inserted!")
+			visible_message("No Design Disk Inserted!")
 			return
 		var/n = text2num(ls["clear_design"])
 		if(!n)
 			for(var/i in 1 to d_disk.max_blueprints)
 				d_disk.blueprints[i] = null
-				say("Wiping design disk.")
+				visible_message("Wiping design disk.")
 		else
 			var/datum/design/D = d_disk.blueprints[n]
-			say("Wiping design [D.name] from design disk.")
+			visible_message("Wiping design [D.name] from design disk.")
 			d_disk.blueprints[n] = null
 	if(ls["search"]) //Search for designs with name matching pattern
 		searchstring = ls["to_search"]
@@ -1034,13 +1034,13 @@ Nothing else in the console has ID requirements.
 			screen = RDSCREEN_IMPRINTER_SEARCH
 	if(ls["updt_tech"]) //Uple the research holder with information from the technology disk.
 		if(QDELETED(t_disk))
-			say("No Technology Disk Inserted!")
+			visible_message("No Technology Disk Inserted!")
 			return
-		say("Uploading technology disk.")
+		visible_message("Uploading technology disk.")
 		t_disk.stored_research.copy_research_to(stored_research)
 	if(ls["copy_design"]) //Copy design from the research holder to the design disk.
 		if(QDELETED(d_disk))
-			say("No Design Disk Inserted!")
+			visible_message("No Design Disk Inserted!")
 			return
 		var/slot = text2num(ls["copy_design"])
 		var/datum/design/D = SSresearch.techweb_design_by_id(ls["copy_design_ID"])
@@ -1062,7 +1062,7 @@ Nothing else in the console has ID requirements.
 		screen = RDSCREEN_DESIGNDISK
 	if(ls["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(QDELETED(linked_destroy))
-			say("No Destructive Analyzer Linked!")
+			visible_message("No Destructive Analyzer Linked!")
 			return
 		if(linked_destroy.busy)
 			to_chat(usr, span_danger("The destructive analyzer is busy at the moment."))
@@ -1081,7 +1081,7 @@ Nothing else in the console has ID requirements.
 		screen = RDSCREEN_TECHWEB_DESIGNVIEW
 	if(ls["updt_design"]) //Uploads a design from disk to the techweb.
 		if(QDELETED(d_disk))
-			say("No design disk found.")
+			visible_message("No design disk found.")
 			return
 		var/n = text2num(ls["updt_design"])
 		if(!n)
