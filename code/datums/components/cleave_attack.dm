@@ -71,13 +71,13 @@
 				continue // if you can throw something over it, you can swing over it too
 			item.melee_attack_chain(user, A, params)
 			if(isliving(A) && item.sharpness == SHARP_NONE)
-				return do_cleave_effects(item, user, center_turf, facing_dir, (swing_direction == -1))// blunt weapons can't hit more than one person
+				return do_cleave_effects(item, user, center_turf, facing_dir)// blunt weapons can't hit more than one person
 
 	// now do some effects
-	return do_cleave_effects(item, user, center_turf, facing_dir, (swing_direction == -1))
+	return do_cleave_effects(item, user, center_turf, facing_dir)
 
-/datum/component/cleave_attack/proc/do_cleave_effects(obj/item/item, mob/living/user, turf/center, facing_dir, mirrored=FALSE)
-	new cleave_effect(get_step(center, SOUTHWEST), facing_dir, mirrored)
+/datum/component/cleave_attack/proc/do_cleave_effects(obj/item/item, mob/living/user, turf/center, facing_dir)
+	new cleave_effect(get_step(center, SOUTHWEST), facing_dir)
 	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
 	user.do_attack_animation(center, no_effect=TRUE)
 	user.weapon_slow(item)
