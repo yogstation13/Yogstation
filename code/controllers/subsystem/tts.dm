@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(tts)
 			continue
 		if(isnewplayer(hearer))
 			continue
-		if(hearer.stat >= UNCONSCIOUS)
+		if(!isobserver(hearer) && hearer.stat >= UNCONSCIOUS)
 			continue
 		var/volume = 0
 		if(!filters[TTS_FILTER_RADIO])
