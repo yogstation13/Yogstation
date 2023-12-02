@@ -1044,6 +1044,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	menutab = MENU_MISC
 	additional_desc = "You feel an unwoken presence in this one."
 
+/obj/item/nullrod/talking/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
+
 /obj/item/nullrod/talking/relaymove(mob/user)
 	return //stops buckled message spam for the ghost.
 
