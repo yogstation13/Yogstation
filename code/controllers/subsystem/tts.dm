@@ -64,6 +64,10 @@ SUBSYSTEM_DEF(tts)
 /datum/controller/subsystem/tts/proc/create_message(message, model, pitch, list/filters, list/receivers, source, spans = list())
 	if(!filters || !islist(filters))
 		filters = list()
+	pitch = pitch || 1
+	if(spans[SPAN_CLOWN])
+		pitch *= 1.5
+	pitch = clamp(pitch, 0.5, 2)
 	var/sound/tts_sound_result = create_message_audio(message, model, pitch, filters)
 	if(!tts_sound_result)
 		return FALSE
@@ -89,7 +93,7 @@ SUBSYSTEM_DEF(tts)
 		if(volume <= 0)
 			continue
 
-		if(spans[SPAN_COMMAND])
+		if(spans[SPAN_COMMAND] || spans[SPAN_CLOWN])
 			volume *= TTS_LOUDMODE_MULTIPLIER
 
 		if(spans[SPAN_COLOSSUS])
