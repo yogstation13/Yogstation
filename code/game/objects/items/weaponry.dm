@@ -260,6 +260,10 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 
+/obj/item/katana/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
+
 /obj/item/katana/basalt
 	name = "basalt katana"
 	desc = "a katana made out of hardened basalt. Particularly damaging to lavaland fauna. (Activate this item in hand to dodge roll in the direction you're facing)"
