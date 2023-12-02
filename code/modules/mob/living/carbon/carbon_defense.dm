@@ -483,12 +483,6 @@
 	adjust_status_effects_on_shake_up()
 
 //	adjustStaminaLoss(-10) if you want hugs to recover stamina damage, uncomment this
-	if(dna && dna.check_mutation(ACTIVE_HULK))
-		if(prob(30))
-			adjustStaminaLoss(10)
-			to_chat(src, span_notice("[M] calms you down a little."))
-		else
-			to_chat(src, span_warning("[M] tries to calm you!"))
 	set_resting(FALSE)
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
