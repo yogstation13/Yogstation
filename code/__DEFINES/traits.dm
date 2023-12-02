@@ -134,6 +134,8 @@
 #define TRAIT_CRITICAL_CONDITION "critical-condition"
 /// Is frozen in place
 #define TRAIT_FROZEN "frozen"
+/// Is runechat for this atom/movable currently disabled, regardless of prefs or anything?
+#define TRAIT_RUNECHAT_HIDDEN "runechat_hidden"
 /// trait associated to a stat value or range of
 #define STAT_TRAIT 				"stat"
 #define TRAIT_INCAPACITATED 	"incapacitated"
