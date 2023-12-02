@@ -1,9 +1,13 @@
 /datum/component/cleave_attack
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
-	var/arc_size = 90 // size of the attack arc in degrees
-	var/requires_wielded = FALSE // make this TRUE for two-handed weapons like axes
-	var/swing_speed_mod = 1.5 // how much slower is it to swing
-	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
+	/// Size of the attack arc in degrees
+	var/arc_size
+	/// Make this TRUE for two-handed weapons like axes
+	var/requires_wielded
+	/// How much slower is it to swing
+	var/swing_speed_mod
+	/// Which effect should this use
+	var/cleave_effect
 
 /datum/component/cleave_attack/Initialize(arc_size=90, swing_speed_mod=1.5, requires_wielded=FALSE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe, ...)
 	if(!isitem(parent))
@@ -13,7 +17,6 @@
 	src.swing_speed_mod = swing_speed_mod
 	src.requires_wielded = requires_wielded
 	src.cleave_effect = cleave_effect
-	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_afterattack))
 
 /datum/component/cleave_attack/InheritComponent(datum/component/C, i_am_original, arc_size, swing_speed_mod, requires_wielded, cleave_effect)
 	if(!i_am_original)
@@ -25,9 +28,11 @@
 	if(requires_wielded)
 		src.requires_wielded = requires_wielded
 
-/datum/component/cleave_attack/Destroy(force, silent)
+/datum/component/cleave_attack/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_afterattack))
+
+/datum/component/cleave_attack/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ITEM_AFTERATTACK)
-	. = ..()
 
 /datum/component/cleave_attack/proc/on_afterattack(obj/item/item, atom/target, mob/user, proximity_flag, click_parameters)
 	if(proximity_flag)
@@ -66,13 +71,13 @@
 				continue // if you can throw something over it, you can swing over it too
 			item.melee_attack_chain(user, A, params)
 			if(isliving(A) && item.sharpness == SHARP_NONE)
-				return do_cleave_effects(item, user, center_turf, facing_dir)// blunt weapons can't hit more than one person
+				return do_cleave_effects(item, user, center_turf, facing_dir, (swing_direction == -1))// blunt weapons can't hit more than one person
 
 	// now do some effects
-	return do_cleave_effects(item, user, center_turf, facing_dir)
+	return do_cleave_effects(item, user, center_turf, facing_dir, (swing_direction == -1))
 
-/datum/component/cleave_attack/proc/do_cleave_effects(obj/item/item, mob/living/user, turf/center, facing_dir)
-	new cleave_effect(get_step(center, SOUTHWEST), facing_dir)
+/datum/component/cleave_attack/proc/do_cleave_effects(obj/item/item, mob/living/user, turf/center, facing_dir, mirrored=FALSE)
+	new cleave_effect(get_step(center, SOUTHWEST), facing_dir, mirrored)
 	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
 	user.do_attack_animation(center, no_effect=TRUE)
 	user.weapon_slow(item)
