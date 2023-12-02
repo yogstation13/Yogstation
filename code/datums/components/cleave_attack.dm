@@ -52,7 +52,7 @@
 	// make a list of turfs to swing across
 	var/list/turf_list = list()
 	var/turfs_count = round(arc_size / 90, 1)
-	for(var/i in -turfs_count to turfs_count)
+	for(var/i in -min(turfs_count, 3) to min(turfs_count, 4)) // do NOT hit the same tile more than once
 		turf_list.Add(get_step(user_turf, turn(facing_dir, i * 45 * swing_direction)))
 
 	// now swing across those turfs
@@ -66,10 +66,13 @@
 				continue // if you can throw something over it, you can swing over it too
 			item.melee_attack_chain(user, A, params)
 			if(isliving(A) && item.sharpness == SHARP_NONE)
-				break // blunt weapons can't hit more than one person
+				return do_cleave_effects(item, user, center_turf, facing_dir)// blunt weapons can't hit more than one person
 
 	// now do some effects
-	new cleave_effect(get_step(user_turf, SOUTHWEST), facing_dir)
+	return do_cleave_effects(item, user, center_turf, facing_dir)
+
+/datum/component/cleave_attack/proc/do_cleave_effects(obj/item/item, mob/living/user, turf/center, facing_dir)
+	new cleave_effect(get_step(center, SOUTHWEST), facing_dir)
 	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
-	user.do_attack_animation(center_turf, no_effect=TRUE)
+	user.do_attack_animation(center, no_effect=TRUE)
 	user.weapon_slow(item)
