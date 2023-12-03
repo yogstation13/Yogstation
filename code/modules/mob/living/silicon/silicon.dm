@@ -238,13 +238,13 @@
 		for(var/index = 1, index <= laws.devillaws.len, index++)
 			if (force || devillawcheck[index] == "Yes")
 				say("[radiomod] 666. [laws.devillaws[index]]")
-				sleep(5 SECONDS)
+				sleep(7 SECONDS)
 
 
 	if (laws.zeroth)
 		if (force || lawcheck[1] == "Yes")
 			say("[radiomod] 0. [laws.zeroth]")
-			sleep(5 SECONDS)
+			sleep(7 SECONDS)
 
 	for (var/index = 1, index <= laws.hacked.len, index++)
 		var/law = laws.hacked[index]
@@ -252,7 +252,7 @@
 		if (length(law) > 0)
 			if (force || hackedcheck[index] == "Yes")
 				say("[radiomod] [num]. [law]")
-				sleep(5 SECONDS)
+				sleep(7 SECONDS)
 
 	for (var/index = 1, index <= laws.ion.len, index++)
 		var/law = laws.ion[index]
@@ -260,7 +260,7 @@
 		if (length(law) > 0)
 			if (force || ioncheck[index] == "Yes")
 				say("[radiomod] [num]. [law]")
-				sleep(5 SECONDS)
+				sleep(7 SECONDS)
 
 	for (var/index = 1, index <= laws.inherent.len, index++)
 		var/law = laws.inherent[index]
@@ -269,7 +269,7 @@
 			if (force || lawcheck[index+1] == "Yes")
 				say("[radiomod] [number]. [law]")
 				number++
-				sleep(5 SECONDS)
+				sleep(7 SECONDS)
 
 	for (var/index = 1, index <= laws.supplied.len, index++)
 		var/law = laws.supplied[index]
@@ -279,7 +279,7 @@
 				if (force || lawcheck[number+1] == "Yes")
 					say("[radiomod] [number]. [law]")
 					number++
-					sleep(5 SECONDS)
+					sleep(7 SECONDS)
 
 
 /mob/living/silicon/proc/checklaws() //Gives you a link-driven interface for deciding what laws the statelaws() proc will share with the crew. --NeoFite
