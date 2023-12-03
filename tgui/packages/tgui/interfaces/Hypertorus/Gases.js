@@ -26,7 +26,7 @@ const moderator_gases_help = {
     'Saps most forms of energy expression. Slows the rate of temperature change.',
 };
 
-const moderator_gases_sticky_order = ['plasma', 'bz', 'pluonium'];
+const moderator_gases_sticky_order = ['plasma', 'bz', 'pluonium', 'o2', 'healium', 'antinoblium', 'freon'];
 
 const ensure_gases = (gas_array, gasids) => {
   const gases_by_id = {};
