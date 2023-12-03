@@ -201,7 +201,7 @@
 		investigate_log("has consumed [key_name(user)].", "supermatter")
 		user.dust()
 	radiation_pulse(src, 500, 2)
-	empulse(src, 5, 10)
+	empulse(src, EMP_HEAVY)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 	QDEL_NULL(shard)
 	update_appearance(UPDATE_ICON)
