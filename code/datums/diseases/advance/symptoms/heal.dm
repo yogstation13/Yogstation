@@ -517,7 +517,7 @@
 	level = 3
 	passive_message = span_notice("Your skin tingles")
 
-	var/threshold = 0.8 // Percentual total health we check against. This is less than a toolbox hit, so probably wont save you in combat
+	var/threshold = 0.8 // Percentual total health we check against.
 	var/healing_power = 1 // 1 brute or fire, slightly better than the worst case starlight with its 0.3 on both
 	var/stamina_reduction = 40 //effectively reduced stamina while healing
 
@@ -545,14 +545,13 @@
 	if(M.health == M.maxHealth)
 		return
 	if(((M.health/M.maxHealth) > threshold))
-		var/healing = healing_power * actual_power
 
 		// We don't actually heal all damage types at once, but prioritise one over the other.
 		if(M.getBruteLoss() || M.getFireLoss())
-			healing = M.heal_ordered_damage(healing, list(BRUTE, BURN))
+			healing = M.heal_ordered_damage(healing_power, list(BRUTE, BURN))
 		
 		// Still continues IF we healed something
-		if(healing == (healing_power * actual_power))
+		if(healing == healing_power)
 			return FALSE
 			
 
