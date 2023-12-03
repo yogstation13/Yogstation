@@ -372,13 +372,16 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(HAS_TRAIT(src, TRAIT_FARADAYCAGE))
-		severity++
-		if(severity > EMP_LIGHT)
-			return
-	for(var/X in internal_organs)
-		var/obj/item/organ/O = X
-		O.emp_act(severity)
+
+	if(dna?.species)
+		severity *= dna.species.emp_mod
+	if(severity < 1)
+		return
+
+	var/emp_message = TRUE
+	for(var/obj/item/bodypart/BP as anything in get_damageable_bodyparts(BODYPART_ROBOTIC))
+		if(!(BP.emp_act(severity, emp_message) & EMP_PROTECT_SELF))
+			emp_message = FALSE // if the EMP was successful, don't spam the chat with more messages
 
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
@@ -483,12 +486,6 @@
 	adjust_status_effects_on_shake_up()
 
 //	adjustStaminaLoss(-10) if you want hugs to recover stamina damage, uncomment this
-	if(dna && dna.check_mutation(ACTIVE_HULK))
-		if(prob(30))
-			adjustStaminaLoss(10)
-			to_chat(src, span_notice("[M] calms you down a little."))
-		else
-			to_chat(src, span_warning("[M] tries to calm you!"))
 	set_resting(FALSE)
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

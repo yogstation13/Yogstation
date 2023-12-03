@@ -274,10 +274,10 @@
 
 /obj/item/organ/tongue/robot/emp_act(severity)
 	if(prob(5))
-		return
-	owner.apply_effect(EFFECT_STUTTER, rand(5 SECONDS, 2 MINUTES))
+		return 
+	owner.apply_effect(EFFECT_STUTTER, rand(1, severity) * 6 SECONDS)
 	owner.emote("scream")
-	to_chat(owner, "<span class='warning'>Alert: Vocal cords are malfunctioning.</span>")
+	to_chat(owner, "<span class='warning'>Alert: Voice synthesizer is malfunctioning.</span>")
 
 /obj/item/organ/tongue/robot/can_speak_language(language)
 	return TRUE // THE MAGIC OF ELECTRONICS

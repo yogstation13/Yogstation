@@ -47,7 +47,7 @@
 		return FALSE
 	DeactivatePower()
 	var/datum/gas_mixture/air = owner.loc.return_air()
-	if(air.get_moles(/datum/gas/miasma) >= 0.1/sensitivity && sensitive)
+	if(air.get_moles(GAS_MIASMA) >= 0.1/sensitivity && sensitive)
 		owner.adjust_disgust(sensitivity * 45)
 		to_chat(owner, span_warning("With your overly sensitive nose, you get a whiff of stench and feel sick! Try moving to a cleaner area!"))
 		return
