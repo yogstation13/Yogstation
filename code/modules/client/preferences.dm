@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	data["character_preferences"] = compile_character_preferences(user)
 
-	data["tts_preview_disabled"] = !SStts.tts_alive
+	data["tts_preview_disabled"] = !SStts.tts_alive || !SStts.can_fire || SStts.init_stage > Master.init_stage_completed
 
 	data["active_slot"] = default_slot
 
@@ -293,6 +293,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return TRUE
 
 		if("preview_tts")
+			if(!SStts.tts_alive || !SStts.can_fire || SStts.init_stage > Master.init_stage_completed)
+				return FALSE
 			var/model = read_preference(/datum/preference/choiced/tts_voice)
 			var/pitch = read_preference(/datum/preference/numeric/tts_pitch)
 			var/list/filters

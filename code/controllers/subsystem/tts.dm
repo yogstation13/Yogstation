@@ -123,7 +123,7 @@ SUBSYSTEM_DEF(tts)
 		else
 			return FALSE
 
-	if(!tts_alive)
+	if(!tts_alive || !can_fire || init_stage > Master.init_stage_completed)
 		return FALSE
 
 	/// anti spam
