@@ -617,47 +617,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		L?.mind?.name = newname
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Offer Mob Rename") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
-/client/proc/cmd_admin_create_centcom_report()
-	set category = "Admin.Round Interaction"
-	set name = "Create Command Report"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/input = input(usr, "Enter a Command Report. Ensure it makes sense IC.", "What?", "") as message|null
-	if(!input)
-		return
-
-	var/confirm = alert(src, "Do you want to announce the contents of the report to the crew?", "Announce", "Yes", "No", "Cancel")
-	var/announce_command_report = TRUE
-	var/senderOverride = input(src, "Please input the sender of the report", "Sender", "[command_name()] Update")
-	switch(confirm)
-		if("Yes")
-			priority_announce(input, null, RANDOM_REPORT_SOUND, sender_override = senderOverride, sanitize = FALSE)
-			announce_command_report = FALSE
-		if("Cancel")
-			return
-
-	print_command_report(input, "[announce_command_report ? "Classified " : ""][senderOverride]", announce_command_report)
-
-	log_admin("[key_name(src)] has created a command report: [input]")
-	message_admins("[key_name_admin(src)] has created a command report")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/cmd_change_command_name()
-	set category = "Admin.Round Interaction"
-	set name = "Change Command Name"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/input = input(usr, "Please input a new name for Central Command.", "What?", "") as text|null
-	if(!input)
-		return
-	change_command_name(input)
-	message_admins("[key_name_admin(src)] has changed Central Command's name to [input]")
-	log_admin("[key_name(src)] has changed the Central Command name to: [input]")
-
 /client/proc/cmd_admin_delete(atom/A as obj|mob|turf in world)
 	set category = "Misc.Unused"
 	set name = "Delete"
@@ -744,18 +703,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
-	if(heavy == null)
+	var/severity = input("Severity of pulse.", text("Input"))  as num|null
+	if(!isnum(severity))
 		return
-	var/light = input("Range of light pulse.", text("Input"))  as num|null
-	if(light == null)
-		return
+	var/range = input("Range of pulse.", text("Input"))  as num|null
+	if(!isnum(range))
+		range = severity
 
-	if (heavy || light)
-
-		empulse(O, heavy, light)
-		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[light]) at [AREACOORD(O)]")
-		message_admins("[key_name_admin(usr)] created an EM Pulse ([heavy],[light]) at [AREACOORD(O)]")
+	if (severity)
+		empulse(O, severity, range)
+		log_admin("[key_name(usr)] created an EM Pulse ([range] range, [severity] severity) at [AREACOORD(O)]")
+		message_admins("[key_name_admin(usr)] created an EM Pulse ([range] range, [severity] severity) at [AREACOORD(O)]")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "EM Pulse") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 		return
