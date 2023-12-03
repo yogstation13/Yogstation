@@ -68,6 +68,7 @@ SUBSYSTEM_DEF(tts)
 	if(spans[SPAN_CLOWN])
 		pitch *= 1.5
 	pitch = clamp(pitch, 0.5, 2)
+	message = tts_filter(message) // Phonetically correct the message (NOT SANITIZATION!)
 	var/sound/tts_sound_result = create_message_audio(message, model, pitch, filters)
 	if(!tts_sound_result)
 		return FALSE
@@ -129,9 +130,10 @@ SUBSYSTEM_DEF(tts)
 	/// anti spam
 	/// Replaces any 3 or more consecutive characters with 2 consecutive characters
 	var/static/regex/antispam_regex = new(@"(?=(.)\1\1).","g")
-	var/message = replacetext(spammy_message, antispam_regex, "")
-	/// cmd sanitization
-	var/san_message = sanitize_tts_input(message)
+	/// We do not want to sanitize the message, as it goes in JSON body and is not exposed directly to CMD
+	/// Delete later: is currently exposed to CMD, but is sanitized on backend anyways
+	var/san_message = replacetext(spammy_message, antispam_regex, "")
+	/// We do want to sanitize the model
 	var/san_model = sanitize_tts_input(model)
 	if(!pitch || !isnum(pitch))
 		pitch = 1

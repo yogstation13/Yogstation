@@ -1,20 +1,37 @@
 GLOBAL_LIST_EMPTY(pretty_filter_items)
 GLOBAL_LIST_EMPTY(minor_filter_items)
+GLOBAL_LIST_EMPTY(tts_filter_items)
+
+#define PRETTY_FILTER "pretty"
+#define MINOR_FILTER "minor"
+#define TTS_FILTER "tts"
+GLOBAL_LIST_INIT(pretty_filters, list(
+	PRETTY_FILTER = pretty_filter_items,
+	MINOR_FILTER = minor_filter_items,
+	TTS_FILTER = tts_filter_items,
+	))
+GLOBAL_PROTECT(pretty_filters)
 
 // Append pretty filter items from file to a list
-/proc/setup_pretty_filter(path = "config/pretty_filter.txt")
-	var/list/filter_lines = world.file2list(path)
+/proc/setup_pretty_filters()
+	var/list/filter_lines = world.file2list("config/pretty_filter.txt")
 
 	for(var/line in filter_lines)
-		add_pretty_filter_line(line)
+		add_pretty_filter_line(line, PRETTY_FILTER)
 
 	filter_lines = world.file2list("config/minor_filter.txt")
 	for(var/line in filter_lines)
-		add_pretty_filter_line(line, TRUE)
+		add_pretty_filter_line(line, MINOR_FILTER)
+
+	filter_lines = world.file2list("config/tts_filter.txt")
+	for(var/line in filter_lines)
+		add_pretty_filter_line(line, TTS_FILTER)
 
 // Add a filter pair
-/proc/add_pretty_filter_line(line, minor)
+/proc/add_pretty_filter_line(line, filter_type)
 	if(findtextEx(line,"#",1,2) || length(line) == 0)
+		return
+	if(!filter_type)
 		return
 
 	//Split the line at every "="
@@ -38,11 +55,8 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 
 	if(!replacement)
 		return FALSE
-	if(minor)
-		GLOB.minor_filter_items.Add(line)
-	else
-		GLOB.pretty_filter_items.Add(line)
-	return TRUE
+
+	pretty_filters[filter_type]?.Add(line)
 
 // List all filters that have been loaded
 /client/proc/list_pretty_filters()
@@ -97,3 +111,7 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 	text = text + " " //necessary since some words like "lol" have words like lollard, which means we need to only trigger if there's a space after it, which won't happen at the end of the sentence
 	return pretty_filter(text, GLOB.minor_filter_items)
 
+//Filter mispronunciations with phonetic versions i.e. ipc -> eye pee see
+/proc/tts_filter(text)
+	text = text + " "
+	return pretty_filter(text, GLOB.tts_filter_items)

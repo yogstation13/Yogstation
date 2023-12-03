@@ -1,0 +1,30 @@
+# This file contains filters required for phoenetic replacements in text-to-speech systems.
+# Each line contains one pattern and one replacement. The patterns used are regular
+# expression patterns.
+#
+# Examples:
+#
+# fuck=duck
+#     This would replace all instances of "fuck" with duck. So "fucking" would become "ducking".
+#
+# fu+ck=duck
+#    This would do the same as above, except it would accept one or more "u". So "fuuuuuck" would become "duck".
+#
+# Activate the ([\S]+?)=use $1
+#    This would match a group, and use it in a pattern. So "Activate the probulator" would become "use probulator".
+#
+# \b[f]+[u]+\b=fun you
+#    This would make any word with combinations of "f" followed by "u" be replaced with fun you. So "ffffffffuuuuuuuuuuu" becomes "fun you".
+
+echo "see eess" | ./piper/piper.exe --model '.\en_GB\alba\medium\en_GB-alba-medium.onnx'
+
+# Prefer to use this over I.P.C. as "IPCs" would be pronounced "I.P.C.S."
+ipc=eye pee see
+smes=ess em e ess
+\bhos\b=h oh ess
+\bhos's\b=h oh esses
+\bce\b=see e
+\bce's\b=see eess
+xenobio=xeno bio
+esword=e sword
+emag=e mag

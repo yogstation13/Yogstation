@@ -62,7 +62,7 @@ GLOBAL_VAR(restart_counter)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
 
-	setup_pretty_filter() //yogs
+	setup_pretty_filters() //yogs
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
