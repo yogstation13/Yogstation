@@ -56,7 +56,8 @@ GLOBAL_PROTECT(pretty_filters)
 	if(!replacement)
 		return FALSE
 
-	GLOB.pretty_filters[filter_type]?.Add(line)
+	var/list/pretty_list_items = GLOB.pretty_filters[filter_type]
+	pretty_list_items?.Add(line)
 
 // List all filters that have been loaded
 /client/proc/list_pretty_filters()
