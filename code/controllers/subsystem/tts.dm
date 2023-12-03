@@ -61,8 +61,8 @@ SUBSYSTEM_DEF(tts)
 *
 * @returns {sound/} or FALSE
 */
-/datum/controller/subsystem/tts/proc/create_message(message, model, pitch = 1, list/filters = list(), list/receivers = list(), source, spans = list())
-	if(spans[RADIO_EXTENSION] || message_mods[MODE_HEADSET] || message_mods[WHISPER_MODE])
+/datum/controller/subsystem/tts/proc/create_message(message, model, pitch = 1, list/filters = list(), list/receivers = list(), source, list/spans = list(), list/message_mods = list())
+	if(message_mods[RADIO_EXTENSION] || message_mods[MODE_HEADSET] || message_mods[WHISPER_MODE])
 		return FALSE // Radio messages never have these spans attached to them, so this is safe
 	if(spans[SPAN_CLOWN])
 		pitch *= 1.5
