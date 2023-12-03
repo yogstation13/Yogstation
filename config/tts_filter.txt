@@ -16,8 +16,6 @@
 # \b[f]+[u]+\b=fun you
 #    This would make any word with combinations of "f" followed by "u" be replaced with fun you. So "ffffffffuuuuuuuuuuu" becomes "fun you".
 
-echo "see eess" | ./piper/piper.exe --model '.\en_GB\alba\medium\en_GB-alba-medium.onnx'
-
 # Prefer to use this over I.P.C. as "IPCs" would be pronounced "I.P.C.S."
 ipc=eye pee see
 smes=ess em e ess
