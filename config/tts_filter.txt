@@ -26,3 +26,4 @@ smes=ess em e ess
 xenobio=xeno bio
 esword=e sword
 emag=e mag
+\bhm\b=hmm
