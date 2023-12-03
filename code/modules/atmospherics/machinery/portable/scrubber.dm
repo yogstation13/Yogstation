@@ -64,7 +64,7 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(is_operational())
-		if(prob(50 / severity))
+		if(prob(5 * severity))
 			on = !on
 		update_appearance(UPDATE_ICON)
 

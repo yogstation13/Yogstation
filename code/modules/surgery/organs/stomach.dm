@@ -145,7 +145,7 @@
 
 /obj/item/organ/stomach/cell/emp_act(severity)
 	to_chat(owner, emp_message)
-	charge(amount = owner.nutrition * -0.2 / severity)
+	charge(amount = owner.nutrition * -0.02 * severity)
 
 /obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
