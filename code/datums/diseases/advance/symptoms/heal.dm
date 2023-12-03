@@ -505,7 +505,7 @@
 			M.update_damage_overlays()
 	return 1
 
-#define SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD 0.7
+#define SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD 0.6
 /datum/symptom/heal/surface
 	name = "Superficial Healing"
 	desc = "The virus accelerates the body's natural healing, causing the body to heal minor wounds quickly. This however tires the body until the healing finishes."
@@ -517,7 +517,7 @@
 	level = 3
 	passive_message = span_notice("Your skin tingles")
 
-	var/threshold = 0.9 // Percentual total health we check against. This is less than a toolbox hit, so probably wont save you in combat
+	var/threshold = 0.8 // Percentual total health we check against. This is less than a toolbox hit, so probably wont save you in combat
 	var/healing_power = 1 // 1 brute or fire, slightly better than the worst case starlight with its 0.3 on both
 	var/stamina_reduction = 40 //effectively reduced stamina while healing
 
