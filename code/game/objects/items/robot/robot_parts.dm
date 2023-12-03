@@ -335,7 +335,7 @@
 
 			REMOVE_TRAIT(O, TRAIT_PACIFISM, POSIBRAIN_TRAIT) // remove the posibrain's pacifism
 
-			O.updatename(BM.client)
+			O.update_cyborg_prefs(BM.client)
 
 			BM.mind.transfer_to(O)
 

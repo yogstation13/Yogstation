@@ -25,7 +25,7 @@
 	var/repeatable = FALSE
 	/// If the cyborg doesn't have all of these upgrades, they are prevented from receiving this upgrade.
 	var/list/prerequisite_upgrades = null
-	/// If the cyborg has any of these upgrades, they are prevented from receiving this upgrade. 
+	/// If the cyborg has any of these upgrades, they are prevented from receiving this upgrade.
 	var/list/blacklisted_upgrades = null
 
 /// Called when upgrade is used on the cyborg.
@@ -96,11 +96,11 @@
 	if(!length(heldname)) // Hugbox against people that forgot to set the name.
 		to_chat(user, span_notice("This board doesn't have a name set!"))
 		return FALSE
-		
+
 	var/oldname = R.real_name
 	var/oldkeyname = key_name(R)
 	R.custom_name = heldname
-	R.updatename()
+	R.update_cyborg_prefs()
 	if(oldname != R.real_name) // Name is different now.
 		R.notify_ai(RENAME, oldname, R.real_name)
 	log_game("[key_name(user)] used a cyborg reclassification board to rename [oldkeyname] to [key_name(R)] at [loc_name(user)]") // Should be logged even if no change.
@@ -327,7 +327,7 @@
 	if(DD)
 		to_chat(user, span_notice("This cyborg already has a diamond drill built into them!"))
 		return FALSE
-		
+
 	DD = new(R.module)
 	R.module.basic_modules += DD
 	R.module.add_module(DD, FALSE, TRUE)
@@ -541,7 +541,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-		
+
 	toggle_action.Remove(R)
 	QDEL_NULL(toggle_action)
 	deactivate_sr()
@@ -605,7 +605,7 @@
 
 	if(!COOLDOWN_FINISHED(src, next_message))
 		return
-	
+
 	COOLDOWN_START(src, next_message, message_cooldown)
 	var/msgmode = "standby"
 	if(cyborg.health < 0)
@@ -732,7 +732,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
 		H.bypass_protection = initial(H.bypass_protection)
 
@@ -830,7 +830,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	for(var/obj/item/healthanalyzer/advanced/advanalyzer in R.module.modules)
 		R.module.remove_module(advanalyzer, TRUE)
 
@@ -895,7 +895,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	for(var/obj/item/scalpel/advanced/SE in R.module.modules)
 		R.module.remove_module(SE, TRUE)
 
@@ -1072,7 +1072,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	for(var/obj/item/storage/part_replacer/bluespace/cyborg/BRPED in R.module.modules)
 		BRPED.emptyStorage()
 		R.module.remove_module(BRPED, TRUE)
@@ -1110,7 +1110,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	for(var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC in R.module.modules)
 		R.module.remove_module(PC, TRUE)
 
@@ -1206,7 +1206,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-		
+
 	for(var/obj/item/borg_snack_dispenser/snack_dispenser in R.module.modules)
 		R.module.remove_module(snack_dispenser, TRUE)
 
@@ -1405,7 +1405,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	for(var/obj/item/borg/sight/meson/nightvision/nvgmeson in R.module.modules)
 		R.module.remove_module(nvgmeson, TRUE)
 

@@ -32,7 +32,7 @@
 
 /datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
 	. = ..()
-			
+
 	var/mob/living/silicon/ai/AI = H
 
 	AI.relocate(TRUE)
@@ -45,6 +45,7 @@
 
 	AI.apply_pref_name(/datum/preference/name/ai, M.client)			//If this runtimes oh well jobcode is fucked.
 	AI.set_core_display_icon(null, M.client)
+	AI.update_accent_and_pitch(M.client)
 
 	//we may have been created after our borg
 	if(SSticker.current_state == GAME_STATE_SETTING_UP)

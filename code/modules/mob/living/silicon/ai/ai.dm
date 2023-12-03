@@ -169,6 +169,7 @@
 		INVOKE_ASYNC(src, PROC_REF(apply_pref_name), /datum/preference/name/ai, client)
 
 	INVOKE_ASYNC(src, PROC_REF(set_core_display_icon))
+	INVOKE_ASYNC(src, PROC_REF(update_accent_and_pitch))
 
 
 	holo_icon = getHologramIcon(icon('icons/mob/ai.dmi',"default"))
@@ -239,6 +240,18 @@
 /mob/living/silicon/ai/ignite_mob()
 	fire_stacks = 0
 	. = ..()
+
+// Used only for AI and cyborgs, because character prefs typically only apply to humans
+/mob/proc/update_accent_and_pitch(client/C)
+	if(client && !C)
+		C = client
+
+	var/voice_pref = C?.prefs?.read_preference(/datum/preference/choiced/tts_voice)
+	if(voice_pref)
+		tts_voice = voice_pref
+	var/pitch_pref = C?.prefs?.read_preference(/datum/preference/numeric/tts_pitch)
+	if(pitch_pref)
+		tts_pitch = pitch_pref
 
 /mob/living/silicon/ai/proc/set_core_display_icon(input, client/C)
 	if(client && !C)

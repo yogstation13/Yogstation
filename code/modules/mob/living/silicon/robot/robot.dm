@@ -172,7 +172,7 @@
 		mmi.brainmob.container = mmi
 		mmi.update_appearance(UPDATE_ICON)
 
-	updatename()
+	update_cyborg_prefs()
 
 	blacklisted_hats = typecacheof(blacklisted_hats)
 
@@ -252,11 +252,14 @@
 
 	module.transform_to(modulelist[input_module])
 
-/mob/living/silicon/robot/proc/updatename(client/C)
+/mob/living/silicon/robot/proc/update_cyborg_prefs(client/C)
 	if(shell)
 		return
 	if(!C)
 		C = client
+
+	update_accent_and_pitch(C)
+
 	var/changed_name = ""
 	if(custom_name)
 		changed_name = custom_name
@@ -1018,7 +1021,7 @@
 
 	cut_overlay(GLOB.fire_appearances[fire_icon])
 	return null
-	
+
 /mob/living/silicon/robot/updatehealth()
 	..()
 
@@ -1163,14 +1166,14 @@
 	// Drops all items found in any storage bags on the Cyborg.
 	for(var/obj/item/storage/bag in module.contents)
 		bag.emptyStorage()
-			
+
 	while(expansion_count)
 		resize = 0.5
 		expansion_count--
 		update_transform()
 	logevent("Chassis configuration has been reset.")
 	icon = initial(icon) //Should fix invisi-donorborgs ~ Kmc
-	module.transform_to(/obj/item/robot_module) // Will reset armor & armor_plates as well. 
+	module.transform_to(/obj/item/robot_module) // Will reset armor & armor_plates as well.
 
 	// Remove upgrades.
 	for(var/obj/item/borg/upgrade/I in upgrades)
@@ -1204,7 +1207,7 @@
 	hat_offset = module.hat_offset
 
 	magpulse = module.magpulsing
-	updatename()
+	update_cyborg_prefs()
 
 /mob/living/silicon/robot/proc/place_on_head(obj/item/new_hat)
 	if(hat)

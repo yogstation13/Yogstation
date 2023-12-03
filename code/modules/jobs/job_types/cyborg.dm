@@ -28,7 +28,7 @@
 
 /datum/job/cyborg/after_spawn(mob/living/silicon/robot/R, mob/M)
 	. = ..()
-	R.updatename(M.client)
+	R.update_cyborg_prefs(M.client)
 	R.gender = NEUTER
 
 /datum/job/cyborg/radio_help_message(mob/M)

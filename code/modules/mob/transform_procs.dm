@@ -420,7 +420,7 @@
 	R.invisibility = 0
 
 	if(client)
-		R.updatename(client)
+		R.update_cyborg_prefs(client)
 
 	if(mind)		//TODO
 		if(!transfer_after)
