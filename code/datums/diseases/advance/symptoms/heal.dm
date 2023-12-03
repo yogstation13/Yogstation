@@ -545,10 +545,11 @@
 	if(M.health == M.maxHealth)
 		return
 	if(((M.health/M.maxHealth) > threshold))
+		var/healing = healing_power
 
 		// We don't actually heal all damage types at once, but prioritise one over the other.
 		if(M.getBruteLoss() || M.getFireLoss())
-			healing = M.heal_ordered_damage(healing_power, list(BRUTE, BURN))
+			healing = M.heal_ordered_damage(healing, list(BRUTE, BURN))
 		
 		// Still continues IF we healed something
 		if(healing == healing_power)
