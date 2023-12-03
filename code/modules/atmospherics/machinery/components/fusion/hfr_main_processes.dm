@@ -205,6 +205,13 @@
 	heat_output_max = heat_limiter_modifier * positive_temperature_multiplier
 	heat_output = clamp(internal_instability * power_output * heat_modifier / 100, heat_output_min, heat_output_max)
 
+	//Keep the lists at 0 in most cases
+	for(var/delta_mod_id in delta_mod_removed_list)
+		delta_mod_removed_list[delta_mod_id] = 0
+
+	for(var/delta_fuel_id in delta_fuel_removed_list)
+		delta_fuel_removed_list[delta_fuel_id] = 0
+
 	// Is the fusion process actually going to run?
 	// Note we have to always perform the above calculations to keep the UI updated, so we can't use this to early return.
 	if (!check_fuel())
@@ -247,9 +254,6 @@
 			if(delta_id == GLOB.gas_data.ids[gas_id])
 				delta_fuel_removed_list[delta_id] = -remove_amount
 	for(var/gas_id in fuel.primary_products)
-		for(var/delta_id in delta_fuel_removed_list)
-			if(delta_id == GLOB.gas_data.ids[gas_id])
-				delta_fuel_removed_list[delta_id] = 0
 		internal_fusion.adjust_moles(gas_id, fuel_consumption * 0.5)
 
 	if(power_level < 1)
@@ -272,8 +276,6 @@
  * - Committing staged output, performing filtering, and making !FUN! emissions
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/moderator_common_process(delta_time, scaled_production, datum/gas_mixture/internal_output, moderator_list, dirty_production_rate, heat_output, radiation_modifier)
-	for(var/delta_id in delta_mod_removed_list)
-		delta_mod_removed_list[delta_id] = 0
 	switch(power_level)
 		if(1)
 			if(moderator_list[GAS_PLASMA] > 100)
