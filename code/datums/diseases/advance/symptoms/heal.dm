@@ -616,11 +616,13 @@
 	if(last_moved + heal_delay > world.time)
 		return
 
-	var/heal_amount = actual_power * 0.5
 	if(M.getBruteLoss() || M.getFireLoss() || M.getToxLoss())
+		var/heal_amount = actual_power * 0.5
 		M.heal_bodypart_damage(heal_amount, heal_amount, required_status=((A.infectable_biotypes & MOB_ROBOTIC) ? BODYPART_ANY : BODYPART_ORGANIC))
 		M.adjustToxLoss(-heal_amount)
-	else
-		return // stop healing if there's no damage to heal
+		if(prob(1) && IS_ENGINEERING(M))
+			M.adjust_wet_stacks(0.1) // there seems to be a danger of precipitation...
+			to_chat(M, span_notice("You can smell rain."))
+		return TRUE
 
-	return TRUE
+	return FALSE // stop healing if there isn't any damage to heal
