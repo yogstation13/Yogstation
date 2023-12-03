@@ -1,7 +1,0 @@
-author: " itseasytosee, sapphicoverload"
-delete-after: true 
-changes: 
-  - tweak: "some items and projectiles are now better or worse than others at destroying things"
-  - tweak: "chat messages from hitting an object now tell whether you can damage it"
-  - bugfix: "fixed machines/structures/etc not caring about armor penetration when hit by a melee weapon"
-  - bugfix: "fixed cannonballs not doing any damage to mobs"

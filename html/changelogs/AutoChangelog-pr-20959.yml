@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Sometimes fixes feed ability sometimes breaking"
-  - tweak: "Gangrel transformation ability now shows the radial menu before the 10 second do_after"
-  - bugfix: "Fixes gangrel transformation ability sometimes deleting itself without ever being used"
-  - bugfix: "Fixes gangrel werewolf transformation being eradicated from the timeline by tattax"
