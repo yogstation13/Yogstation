@@ -13,4 +13,5 @@ ALTER TABLE erro_poll_question RENAME TO SS13_poll_question;
 ALTER TABLE erro_poll_textreply RENAME TO SS13_poll_textreply;
 ALTER TABLE erro_poll_vote RENAME TO SS13_poll_vote;
 ALTER TABLE erro_watch RENAME TO SS13_watch;
-ALTER TABLE erro_achievements RENAME to achievement_metadata;
+ALTER TABLE erro_achievements RENAME to SS13_achievements;
+ALTER TABLE erro_achievement_metadata RENAME to SS13_achievement_metadata;
