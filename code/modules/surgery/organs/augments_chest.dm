@@ -335,13 +335,23 @@
 		to_chat(owner, span_warning("Your spinal implant makes you feel queasy!"))
 		return
 
-	owner.set_drugginess(4 * severity)
-	owner.adjust_hallucinations((50 * severity) SECONDS)
-	owner.blur_eyes(2 * severity)
-	owner.adjust_dizzy(severity SECONDS)
-	time_on += severity
-	owner.adjustFireLoss(severity)
-	to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
+	switch(severity)//i don't want emps to just be damage again, that's boring
+		if(EMP_HEAVY)
+			owner.set_drugginess(40)
+			owner.adjust_hallucinations(500 SECONDS)
+			owner.blur_eyes(20)
+			owner.adjust_dizzy(10 SECONDS)
+			time_on += 10
+			owner.adjustFireLoss(10)
+			to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
+		if(EMP_LIGHT)
+			owner.set_drugginess(20)
+			owner.adjust_hallucinations(200 SECONDS)
+			owner.blur_eyes(10)
+			owner.adjust_dizzy(5 SECONDS)
+			time_on += 5
+			owner.adjustFireLoss(5)
+			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))
 
 /obj/item/organ/cyberimp/chest/spinalspeed/toy
 	name = "glowy after-image trail implant"
