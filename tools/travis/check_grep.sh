@@ -46,11 +46,11 @@ if grep -i 'centcomm' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
 fi;
-if grep 'NanoTrasen' code/**/*.dm; then
+if grep 'Nanotrasen' code/**/*.dm; then
     echo "ERROR: Misspelling(s) of Nanotrasen detected in code, please uncapitalize the T."
     st=1
 fi;
-if grep 'NanoTrasen' _maps/**/*.dmm; then
+if grep 'Nanotrasen' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of Nanotrasen detected in maps, please uncapitalize the T."
     st=1
 fi;
