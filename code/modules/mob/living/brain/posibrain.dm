@@ -220,7 +220,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		if(syndie_mmi.syndicate_master) // Carries over master because it ain't gonna be a way to once it is in.
 			syndicate_master = syndie_mmi.syndicate_master
 
-		desc += span_warning(" It appears modified with what looks like a Man-Machine Interface pressed right up to.") // Only tell for when posibrain is not online.
+		desc += span_warning(" It appears modified with what looks like a Man-Machine Interface pressed right up to it.") // Only tell for when posibrain is not online.
 		// Modified welcome message for newly joined posibrains.
 		welcome_message = "<span class='warning'>ALL PAST LIVES ARE FORGOTTEN.</span>\n\
 			<b>You are a positronic brain, brought into existence aboard Space Station 13.\n\
