@@ -150,7 +150,7 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	ranged = TRUE 
-	ranged_cooldown = 10 SECONDS
+	ranged_cooldown = 20 SECONDS
 	move_to_delay = 10
 	pixel_x = -32
 	sentience_type = SENTIENCE_BOSS
@@ -182,7 +182,7 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	ranged = TRUE 
-	ranged_cooldown = 7.5 SECONDS
+	ranged_cooldown = 17.5 SECONDS
 	move_to_delay = 10
 	pixel_x = -32
 	projectiletype = /obj/projectile/jungle/damage_orb

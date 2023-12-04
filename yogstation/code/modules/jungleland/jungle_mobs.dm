@@ -278,6 +278,13 @@
 
 	say(lure)
 
+/mob/living/simple_animal/hostile/yog_jungle/skin_twister/death(gibbed)
+	move_force = MOVE_FORCE_DEFAULT
+	move_resist = MOVE_RESIST_DEFAULT
+	pull_force = PULL_FORCE_DEFAULT
+	return ..(gibbed)
+	
+
 /mob/living/simple_animal/hostile/yog_jungle/blobby
 	name = "Blobby"
 	desc = "A gelatinous creature of the swampy regions of the jungle. It's a big blob of goo, and it's not very friendly."
