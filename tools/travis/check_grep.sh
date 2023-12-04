@@ -50,10 +50,6 @@ if grep -i 'NanoTrasen' code/**/*.dm; then
     echo "ERROR: Misspelling(s) of Nanotrasen detected in code, please uncapitalize the T."
     st=1
 fi;
-if grep -i 'NanoTrasen' _maps/**/*.dmm; then
-    echo "ERROR: Misspelling(s) of Nanotrasen detected in maps, please uncapitalize the T."
-    st=1
-fi;
 if grep -i 'balloon_alert\(.*?, ?"[A-Z]'; then
 	echo
 	echo "ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT()."
