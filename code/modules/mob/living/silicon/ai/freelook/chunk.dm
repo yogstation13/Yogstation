@@ -11,13 +11,13 @@
 	///turfs our cameras can see inside our grid
 	var/list/visibleTurfs = list()
 	///cameras that can see into our grid
+	///indexed by the z level of the camera
 	var/list/cameras = list()
-	///list of all turfs
+	///list of all turfs, associative with that turf's static image
+	///turf -> /image
 	var/list/turfs = list()
 	///camera mobs that can see turfs in our grid
 	var/list/seenby = list()
-	///images created to represent obscured turfs
-	var/list/inactive_static_images = list()
 	///images currently in use on obscured turfs.
 	var/list/active_static_images = list()
 
@@ -55,15 +55,19 @@
 /**
  * Updates the chunk, makes sure that it doesn't update too much. If the chunk isn't being watched it will
  * instead be flagged to update the next time an AI Eye moves near it.
+ * update_delay_buffer is used for cameras that are moving around, which are cyborg inbuilt cameras and
+ * mecha onboard cameras. This buffer should be usually lower than UPDATE_BUFFER_TIME because
+ * otherwise a moving camera can run out of its own view before updating static.
  */
-/datum/camerachunk/proc/hasChanged(update_now = 0)
+/datum/camerachunk/proc/hasChanged(update_now = 0, update_delay_buffer = UPDATE_BUFFER_TIME)
 	if(seenby.len || update_now)
-		addtimer(CALLBACK(src, PROC_REF(update)), UPDATE_BUFFER_TIME, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(update)), update_delay_buffer, TIMER_UNIQUE)
 	else
 		changed = TRUE
 
 /// The actual updating. It gathers the visible turfs from cameras and puts them into the appropiate lists.
-/datum/camerachunk/proc/update()
+/// Accepts an optional partial_update argument, that blocks any calls out to chunks that could affect us, like above or below
+/datum/camerachunk/proc/update(partial_update = FALSE)
 	var/list/updated_visible_turfs = list()
 
 	for(var/obj/machinery/camera/current_camera as anything in cameras)
@@ -91,31 +95,24 @@
 		client.images -= active_static_images
 
 	for(var/turf/visible_turf as anything in newly_visible_turfs)
-		var/image/static_image_to_deallocate = obscuredTurfs[visible_turf]
-		if(!static_image_to_deallocate)
+		var/image/static_image = obscuredTurfs[visible_turf]
+		if(!static_image)
 			continue
 
-		static_image_to_deallocate.loc = null
-		active_static_images -= static_image_to_deallocate
-		inactive_static_images += static_image_to_deallocate
-
+		active_static_images -= static_image
 		obscuredTurfs -= visible_turf
 
 	for(var/turf/obscured_turf as anything in newly_obscured_turfs)
 		if(obscuredTurfs[obscured_turf] || istype(obscured_turf, /turf/open/ai_visible))
 			continue
 
-		var/image/static_image_to_allocate = inactive_static_images[length(inactive_static_images)]
-		if(!static_image_to_allocate)
-			stack_trace("somehow a camera chunk ran out of static images!")
+		var/image/static_image = turfs[obscured_turf]
+		if(!static_image)
+			stack_trace("somehow a camera chunk used a turf it didn't contain!!")
 			break
 
-		obscuredTurfs[obscured_turf] = static_image_to_allocate
-		static_image_to_allocate.loc = obscured_turf
-
-		inactive_static_images -= static_image_to_allocate
-		active_static_images += static_image_to_allocate
-
+		obscuredTurfs[obscured_turf] = static_image
+		active_static_images += static_image
 	visibleTurfs = updated_visible_turfs
 
 	changed = FALSE
@@ -129,8 +126,8 @@
 
 /// Create a new camera chunk, since the chunks are made as they are needed.
 /datum/camerachunk/New(x, y, z)
-	x &= ~(CHUNK_SIZE - 1)
-	y &= ~(CHUNK_SIZE - 1)
+	x = GET_CHUNK_COORD(x)
+	y = GET_CHUNK_COORD(y)
 
 	src.x = x
 	src.y = y
@@ -144,7 +141,7 @@
 		turfs[t] = t
 
 	for(var/turf in turfs)//one for each 16x16 = 256 turfs this camera chunk encompasses
-		inactive_static_images += new/image(GLOB.cameranet.obscured_images)
+		active_static_images += new/image(GLOB.cameranet.obscured_images)
 
 	for(var/obj/machinery/camera/camera as anything in cameras)
 		if(!camera || !camera.can_use())
@@ -155,11 +152,10 @@
 				visibleTurfs[vis_turf] = vis_turf
 
 	for(var/turf/obscured_turf as anything in turfs - visibleTurfs)
-		var/image/new_static = inactive_static_images[inactive_static_images.len]
+		var/image/new_static = active_static_images[active_static_images.len]
 		new_static.loc = obscured_turf
 		active_static_images += new_static
-		inactive_static_images -= new_static
+		active_static_images -= new_static
 		obscuredTurfs[obscured_turf] = new_static
 
 #undef UPDATE_BUFFER_TIME
-#undef CHUNK_SIZE

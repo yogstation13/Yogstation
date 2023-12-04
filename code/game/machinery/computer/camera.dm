@@ -131,10 +131,8 @@
 		return
 
 	if(action == "switch_camera")
-		var/c_tag = params["name"]
-		var/list/cameras = get_available_cameras()
-		var/obj/machinery/camera/C = cameras[c_tag]
-		active_camera = C
+		var/obj/machinery/camera/selected_camera = locate(params["camera"]) in GLOB.cameranet.cameras
+		active_camera = selected_camera
 		playsound(src, get_sfx("terminal_type"), 25, FALSE)
 
 		if(isnull(active_camera))

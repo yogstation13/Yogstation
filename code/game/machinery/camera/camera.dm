@@ -365,7 +365,7 @@
 	else
 		icon_state = "[xray_module][default_camera_icon][in_use_lights ? "_in_use" : ""]"
 
-/obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = 1)
+/obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
 	if(can_use())
 		GLOB.cameranet.addCamera(src)
@@ -379,12 +379,15 @@
 		GLOB.cameranet.removeCamera(src)
 		if (isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
-	GLOB.cameranet.updateChunk(x, y, z)
+	// We are not guarenteed that the camera will be on a turf. account for that
+	var/turf/our_turf = get_turf(src)
+	GLOB.cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
 	var/change_msg = "deactivates"
 	if(status)
 		change_msg = "reactivates"
 		triggerCameraAlarm()
-		addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 100)
+		if(!QDELETED(src)) //We'll be doing it anyway in destroy
+			addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 100)
 	if(displaymessage)
 		if(user)
 			visible_message(span_danger("[user] [change_msg] [src]!"))
@@ -393,16 +396,16 @@
 			visible_message(span_danger("\The [src] [change_msg]!"))
 
 		playsound(src, 'sound/items/wirecutter.ogg', 100, TRUE)
-	update_appearance(UPDATE_ICON) //update Initialize(mapload) if you remove this.
+	update_appearance() //update Initialize() if you remove this.
 
 	// now disconnect anyone using the camera
 	//Apparently, this will disconnect anyone even if the camera was re-activated.
 	//I guess that doesn't matter since they can't use it anyway?
 	for(var/mob/O in GLOB.player_list)
-		if (O.client && O.client.eye == src)
+		if (O.client?.eye == src)
 			O.unset_machine()
 			O.reset_perspective(null)
-			to_chat(O, "The screen bursts into static.")
+			to_chat(O, span_warning("The screen bursts into static!"))
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
 	alarm_on = TRUE
@@ -424,10 +427,32 @@
 /obj/machinery/camera/proc/can_see()
 	var/list/see = null
 	var/turf/pos = get_turf(src)
+	var/turf/directly_above = GET_TURF_ABOVE(pos)
+	var/check_lower = pos != get_lowest_turf(pos)
+	var/check_higher = directly_above && istransparentturf(directly_above) && (pos != get_highest_turf(pos))
+
 	if(isXRay())
 		see = range(view_range, pos)
 	else
 		see = get_hear(view_range, pos)
+	if(check_lower || check_higher)
+		// Haha datum var access KILL ME
+		for(var/turf/seen in see)
+			if(check_lower)
+				var/turf/visible = seen
+				while(visible && istransparentturf(visible))
+					var/turf/below = GET_TURF_BELOW(visible)
+					for(var/turf/adjacent in range(1, below))
+						see += adjacent
+						see += adjacent.contents
+					visible = below
+			if(check_higher)
+				var/turf/above = GET_TURF_ABOVE(seen)
+				while(above && istransparentturf(above))
+					for(var/turf/adjacent in range(1, above))
+						see += adjacent
+						see += adjacent.contents
+					above = GET_TURF_ABOVE(above)
 	return see
 
 /atom/proc/auto_turn()
@@ -469,8 +494,9 @@
 		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
 
 /obj/machinery/camera/update_remote_sight(mob/living/user)
-	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
+	user.set_invis_see(SEE_INVISIBLE_LIVING) //can't see ghosts through cameras
 	if(isXRay())
-		user.sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		
+		user.add_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+	else
+		user.clear_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 	return 1

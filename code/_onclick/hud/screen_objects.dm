@@ -12,7 +12,7 @@
 	plane = HUD_PLANE
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
-	vis_flags = VIS_INHERIT_PLANE
+	//vis_flags = VIS_INHERIT_PLANE
 	appearance_flags = APPEARANCE_UI
 	/// A reference to the object in the slot. Grabs or items, generally.
 	var/obj/master = null

@@ -12,11 +12,16 @@
 	var/atom/movable/screen/component_button/button_shrink
 
 	var/mutable_appearance/standard_background
-	var/const/max_dimensions = 10
 
-/atom/movable/screen/movable/pic_in_pic/Initialize(mapload)
+/atom/movable/screen/movable/pic_in_pic/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	make_backgrounds()
+	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(multiz_offset_increase))
+	multiz_offset_increase(SSmapping)
+
+/atom/movable/screen/movable/pic_in_pic/proc/multiz_offset_increase(datum/source)
+	SIGNAL_HANDLER
+	SET_PLANE_W_SCALAR(src, initial(plane), SSmapping.max_plane_offset)
 
 /atom/movable/screen/movable/pic_in_pic/Destroy()
 	for(var/C in shown_to)
@@ -101,9 +106,11 @@
 		standard_background.transform = M
 		add_overlay(standard_background)
 
+// maximum number of dimensions is 10
+
 /atom/movable/screen/movable/pic_in_pic/proc/set_view_size(width, height, do_refresh = TRUE)
-	width = clamp(width, 0, max_dimensions)
-	height = clamp(height, 0, max_dimensions)
+	width = clamp(width, 0, 10)
+	height = clamp(height, 0, 10)
 	src.width = width
 	src.height = height
 
