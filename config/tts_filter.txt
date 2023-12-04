@@ -27,3 +27,4 @@ xenobio=xeno bio
 esword=e sword
 emag=e mag
 \bhm\b=hmm
+\bus\b=uss
