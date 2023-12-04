@@ -350,6 +350,7 @@
 	UnregisterSignal(user,COMSIG_MOVABLE_MOVED)
 	state = 0
 	icon_state = "slime_sling_0"
+	
 
 /obj/item/slime_sling/proc/sling(mob/user,atom/A, params)
 	UnregisterSignal(user,COMSIG_MOB_CLICKON)
