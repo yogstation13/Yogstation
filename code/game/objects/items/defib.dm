@@ -153,7 +153,7 @@
 	. = ..()
 
 	if(cell && !(. & EMP_PROTECT_CONTENTS))
-		deductcharge(500 * severity)
+		deductcharge(5000 / severity)
 
 	if (. & EMP_PROTECT_SELF)
 		return

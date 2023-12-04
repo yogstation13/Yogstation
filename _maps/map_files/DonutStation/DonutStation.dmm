@@ -5440,6 +5440,20 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ciH" = (
+/obj/machinery/door/airlock/external{
+	name = "Security External Airlock";
+	req_access_txt = "63"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -2;
+	diry = 1
+	},
+/turf/open/space/basic,
+/area/security/main)
 "ciL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -30820,20 +30834,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"nlF" = (
-/obj/machinery/door/airlock/external{
-	name = "Security External Airlock";
-	req_access_txt = "63"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
-	dirx = -2;
-	diry = 1
-	},
-/turf/open/floor/plating,
-/area/security/main)
 "nlJ" = (
 /obj/structure/frame/machine,
 /obj/effect/turf_decal/stripes/line{
@@ -105911,7 +105911,7 @@ xGT
 pzZ
 alW
 cJk
-nlF
+ciH
 cJk
 bHj
 bHj

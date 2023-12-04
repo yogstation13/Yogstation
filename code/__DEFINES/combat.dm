@@ -236,8 +236,8 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EXPLODE_LIGHT 3
 #define EXPLODE_GIB_THRESHOLD 50	//ex_act() with EXPLODE_DEVASTATE severity will gib mobs with less than this much bomb armor
 
-#define EMP_LIGHT 5 // maximum severity level without severe effects like organ failure and paralysis
-#define EMP_HEAVY 10 // max severity from most sources so you can't use a 5 billion tile EMP to instakill people
+#define EMP_HEAVY 1
+#define EMP_LIGHT 2
 
 #define GRENADE_CLUMSY_FUMBLE 1
 #define GRENADE_NONCLUMSY_FUMBLE 2

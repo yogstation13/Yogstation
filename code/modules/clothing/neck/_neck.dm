@@ -515,15 +515,17 @@
 	cloak_charge_rate = 20
 	cloak_dodge_loss = 40
 	var/cloak_emp_disable_duration = 10 SECONDS
-	var/cloak_emp_loss = 5
+	var/cloak_emp_loss = 25
 
 /obj/item/clothing/neck/cloak/ranger/syndie/emp_act(severity)
 	. = ..()
 	if(CHECK_BITFIELD(., EMP_PROTECT_SELF))
 		return
-	if(severity > EMP_LIGHT)
+	if(severity == EMP_HEAVY)
+		set_cloak(0)
 		TIMER_COOLDOWN_START(src, "cloak_emp_disable", cloak_emp_disable_duration)
-	set_cloak(max(cloak - (cloak_emp_loss * severity), 0))
+	else
+		set_cloak(cloak - cloak_emp_loss)
 
 /obj/item/clothing/neck/cloak/ranger/syndie/process(delta_time)
 	if(TIMER_COOLDOWN_CHECK(src, "cloak_emp_disable"))

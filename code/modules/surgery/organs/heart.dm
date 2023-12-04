@@ -239,9 +239,8 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(severity > EMP_LIGHT)
-		Stop()
-		addtimer(CALLBACK(src, PROC_REF(Restart)), restartTimer * min(severity / EMP_HEAVY, 1)) //Can restart itself after an EMP so it isnt an insta death
+	Stop()
+	addtimer(CALLBACK(src, PROC_REF(Restart)), restartTimer/severity) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
@@ -267,12 +266,12 @@
 /obj/item/organ/heart/cybernetic/ipc
 	desc = "An electronic device that appears to mimic the functions of an organic heart."
 
-/obj/item/organ/heart/cybernetic/ipc/emp_act(severity)
+/obj/item/organ/heart/cybernetic/ipc/emp_act()
 	if(prob(30))
 		return
 	. = ..()
 	to_chat(owner, "<span class='warning'>Alert: Cybernetic heart failed one heartbeat</span>")
-	addtimer(CALLBACK(src, PROC_REF(Restart)), severity SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS)
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"

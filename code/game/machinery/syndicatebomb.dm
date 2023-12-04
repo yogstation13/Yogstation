@@ -502,15 +502,16 @@
 /obj/item/bombcore/emp
 	name = "EMP payload"
 	desc = "A set of superconducting electromagnetic coils designed to release a powerful pulse to destroy electronics and scramble circuits"
-	range_heavy = 25 // 25 severity, can do some serious damage
+	range_heavy = 15
+	range_medium = 25
 
 /obj/item/bombcore/emp/detonate()
 	if(adminlog)
 		message_admins(adminlog)
 		log_game(adminlog)
 
-	empulse(src, range_heavy)
-
+	empulse(src, range_heavy, range_medium)
+	
 	qdel(src)
 
 ///Syndicate Detonator (aka the big red button)///

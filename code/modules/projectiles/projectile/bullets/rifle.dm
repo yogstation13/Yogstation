@@ -44,7 +44,6 @@
 	damage = 60
 	wound_bonus = -35
 	wound_falloff_tile = 0
-	demolition_mod = 1.2
 
 /obj/projectile/bullet/a762/raze
 	name = "7.62mm Raze bullet"
@@ -64,7 +63,6 @@
 	penetrating = TRUE //Passes through two objects, stops on a mob or on a third object
 	penetrations = 2
 	penetration_type = 1
-	demolition_mod = 1.5 // anti-armor
 
 /obj/projectile/bullet/a762/vulcan
 	name = "7.62mm Vulcan bullet"

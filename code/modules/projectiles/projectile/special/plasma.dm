@@ -6,7 +6,6 @@
 	damage = 5
 	range = 4
 	dismemberment = 20
-	demolition_mod = 2 // industrial strength plasma cutter designed to cut things
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	var/mine_range = 3 //mines this many additional tiles of rock
 	tracer_type = /obj/effect/projectile/tracer/plasma_cutter

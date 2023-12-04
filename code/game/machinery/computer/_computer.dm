@@ -137,10 +137,14 @@
 
 /obj/machinery/computer/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(prob(5 * severity))
-		obj_break(ENERGY)
+	if (!(. & EMP_PROTECT_SELF))
+		switch(severity)
+			if(1)
+				if(prob(50))
+					obj_break(ENERGY)
+			if(2)
+				if(prob(10))
+					obj_break(ENERGY)
 
 /obj/machinery/computer/deconstruct(disassembled = TRUE, mob/user)
 	on_deconstruction()

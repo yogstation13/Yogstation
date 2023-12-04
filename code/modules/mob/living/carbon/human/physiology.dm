@@ -17,7 +17,6 @@
 	var/damage_resistance = 0 // %damage reduction from all sources
 
 	var/siemens_coeff = 1 	// resistance to shocks
-	var/emp_mod = 1			// resistance to EMPs
 
 	var/stun_mod = 1      	// % stun modifier
 	var/bleed_mod = 1     	// % bleeding modifier

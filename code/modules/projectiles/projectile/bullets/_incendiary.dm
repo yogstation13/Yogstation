@@ -1,7 +1,6 @@
 /obj/projectile/bullet/incendiary
 	damage = 20
 	var/fire_stacks = 4
-	demolition_mod = 0.75
 
 /obj/projectile/bullet/incendiary/on_hit(atom/target, blocked = FALSE)
 	. = ..()

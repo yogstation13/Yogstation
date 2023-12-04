@@ -550,10 +550,10 @@ GLOBAL_LIST_EMPTY(lockers)
 		for(var/obj/O in src)
 			O.emp_act(severity)
 	if(secure && !broken && !(. & EMP_PROTECT_SELF))
-		if(prob(5 * severity))
+		if(prob(50 / severity))
 			locked = !locked
 			update_appearance(UPDATE_ICON)
-		if(prob(2 * severity) && !opened)
+		if(prob(20 / severity) && !opened)
 			if(!locked)
 				open()
 			else

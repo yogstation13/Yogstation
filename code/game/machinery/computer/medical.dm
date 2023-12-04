@@ -534,7 +534,7 @@
 	. = ..()
 	if(!(stat & (BROKEN|NOPOWER)) && !(. & EMP_PROTECT_SELF))
 		for(var/datum/data/record/R in GLOB.data_core.medical)
-			if(prob(severity))
+			if(prob(10/severity))
 				switch(rand(1,6))
 					if(1)
 						if(prob(10))

@@ -151,7 +151,7 @@
 
 /obj/item/grenade/chem_grenade/emp_act(severity)
 	..()
-	if(prob(4 * severity))
+	if(prob(40/severity))
 		prime()
 
 /obj/item/grenade/chem_grenade/on_found(mob/finder)

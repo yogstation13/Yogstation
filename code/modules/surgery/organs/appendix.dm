@@ -83,5 +83,4 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(severity > EMP_LIGHT)
-		damage += 20 * (severity - EMP_HEAVY)
+	damage += 100/severity

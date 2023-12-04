@@ -10,7 +10,6 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 7
-	demolition_mod = 2 // the right tool in the wrong place can make all the difference
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=50)
 	drop_sound = 'sound/items/handling/crowbar_drop.ogg'

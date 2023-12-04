@@ -423,7 +423,7 @@
 	return ..()
 
 /obj/machinery/door/window/clockwork/emp_act(severity)
-	if(prob(8 * severity))
+	if(prob(80/severity))
 		open()
 
 /obj/machinery/door/window/clockwork/ratvar_act()

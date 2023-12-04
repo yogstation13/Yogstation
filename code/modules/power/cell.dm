@@ -179,7 +179,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	charge -= max((charge * severity / 100), 50 * severity)
+	charge -= max((charge * 0.1), 500) / severity
 	if (charge < 0)
 		charge = 0
 
@@ -392,7 +392,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	charge = clamp((charge-(1000 * severity)),0,maxcharge)
+	charge = clamp((charge-(10000/severity)),0,maxcharge)
 
 /obj/item/stock_parts/cell/emergency_light
 	name = "miniature power cell"

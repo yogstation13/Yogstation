@@ -53,5 +53,5 @@
 	for(var/obj/machinery/light/L in range(5, usr))
 		L.on = 1
 		L.break_light_tube()
-	empulse(get_turf(user), EMP_HEAVY, 5, 1)
+	empulse(get_turf(user), 2, 5, 1)
 	return TRUE

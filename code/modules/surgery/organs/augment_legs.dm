@@ -23,7 +23,7 @@
 	if(!L)	//how did you get an implant in a limb you don't have?
 		return
 
-	L.receive_damage(severity / 2, 0, severity)	//always take a least a little bit of damage to the leg
+	L.receive_damage(5,0,10)	//always take a least a little bit of damage to the leg
 
 	if(prob(50))	//you're forced to use two of these for them to work so let's give em a chance to not get completely fucked
 		if(COOLDOWN_FINISHED(src, emp_notice))
@@ -32,15 +32,15 @@
 		return
 
 	L.set_disabled(TRUE)	//disable the bodypart
-	addtimer(CALLBACK(src, PROC_REF(reenableleg)), (severity / 2) SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(reenableleg)), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
-	if(severity > EMP_LIGHT && prob(5) && !syndicate_implant)	//put probabilities into a calculator before you try fucking with this
-		to_chat(owner, span_warning("[src] malfunctions and thrashes your [L] around wildly, breaking it!"))
+	if(severity & EMP_HEAVY && prob(5) && !syndicate_implant)	//put probabilities into a calculator before you try fucking with this
+		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly, breaking it!"))
 		var/datum/wound/blunt/severe/breakdown = new
 		breakdown.apply_wound(L)
 		L.receive_damage(20)
 	else if(COOLDOWN_FINISHED(src, emp_notice))
-		to_chat(owner, span_warning("[src] malfunctions and causes your muscles to seize up, preventing your [L] from moving!"))
+		to_chat(owner, span_warning("The EMP causes your [src] to seize up, preventing your [L] from moving!"))
 		COOLDOWN_START(src, emp_notice, 30 SECONDS)
 
 /obj/item/organ/cyberimp/leg/proc/reenableleg()
@@ -83,6 +83,14 @@
 	SetSlotFromZone()
 	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_LEG ? "right" : "left"] leg."))
 	update_appearance(UPDATE_ICON)
+
+/obj/item/organ/cyberimp/leg/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(prob(15/severity) && owner)
+		to_chat(owner, span_warning("[src] is hit by EMP!"))
+		// give the owner an idea about why his implant is glitching
 
 /obj/item/organ/cyberimp/leg/Insert(mob/living/carbon/M, special, drop_if_replaced, special_zone)
 	. = ..()

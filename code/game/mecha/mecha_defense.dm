@@ -161,8 +161,8 @@
 	if (. & EMP_PROTECT_SELF)
 		return
 	if(get_charge())
-		use_power((cell.charge * severity / 15))
-		take_damage(4 * severity, BURN, ENERGY, 1)
+		use_power((cell.charge/3)/(severity*2))
+		take_damage(40 / severity, BURN, ENERGY, 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
 
 	if(istype(src, /obj/mecha/combat))

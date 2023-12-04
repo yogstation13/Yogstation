@@ -36,7 +36,7 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	owner.Stun(stun_amount * (severity / EMP_HEAVY))
+	owner.Stun(stun_amount / severity)
 	to_chat(owner, span_warning("Your body seizes up!"))
 
 
@@ -74,12 +74,13 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
+	var/range = severity ? 10 : 5
 	var/atom/A
 	if(active)
 		release_items()
 	for(var/obj/item/I in stored_items)
-		A = pick(oview(severity))
-		I.throw_at(A, severity, 2)
+		A = pick(oview(range))
+		I.throw_at(A, range, 2)
 		to_chat(owner, span_warning("Your [owner.get_held_index_name(owner.get_held_index_of_item(I))] spasms and throws the [I.name]!"))
 	stored_items = list()
 
@@ -137,7 +138,7 @@
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
 	organ_flags |= ORGAN_FAILING
-	addtimer(CALLBACK(src, PROC_REF(reboot)), stun_cap_amount * (severity / 5))
+	addtimer(CALLBACK(src, PROC_REF(reboot)), stun_cap_amount * 2 / severity)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/reboot()
 	clear_stuns()
@@ -182,7 +183,7 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	if(prob(6 * severity))
+	if(prob(60/severity))
 		to_chat(owner, span_warning("Your breathing tube suddenly closes!"))
 		owner.losebreath += 2
 

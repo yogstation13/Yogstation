@@ -228,7 +228,7 @@
 
 /obj/machinery/power/engine_capacitor_bank/emp_act(severity)
 	. = ..()
-	stored_power = stored_power * (0.9**(severity)) // exponential decay based on EMP severity, heavy EMPs (10 severity) reduce to 35% power
+	stored_power = rand(0, stored_power)
 
 /obj/machinery/power/engine_capacitor_bank/escape_pod
 	name = "emergency thruster capacitor bank"

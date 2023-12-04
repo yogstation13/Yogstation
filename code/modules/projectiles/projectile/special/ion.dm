@@ -6,18 +6,22 @@
 	nodamage = TRUE
 	armor_flag = ENERGY
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
-	var/ion_severity = EMP_HEAVY // Heavy EMP effects that don't spread to adjacent tiles
-	var/ion_range = 1
+	var/light_emp_radius = 1
+	var/heavy_emp_radius = 0.5	//Effectively 1 but doesnt spread to adjacent tiles
 
 /obj/projectile/ion/on_hit(atom/target, blocked = FALSE)
 	..()
-	empulse(target, ion_severity, ion_range)
+	empulse(target, heavy_emp_radius, light_emp_radius)
 	return BULLET_ACT_HIT
 
 /obj/projectile/ion/weak
-	ion_severity = EMP_LIGHT // weak ions
-	ion_range = 0
+	light_emp_radius = 0
+	heavy_emp_radius = 0
+
+/obj/projectile/ion/light
+	light_emp_radius = 1
+	heavy_emp_radius = 0
 
 /obj/projectile/ion/heavy
-	ion_severity = 15 // STRONG ions
-	ion_range = 2
+	light_emp_radius = 2
+	heavy_emp_radius = 2

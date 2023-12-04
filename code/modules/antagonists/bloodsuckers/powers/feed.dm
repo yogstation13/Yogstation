@@ -58,7 +58,7 @@
 
 /datum/action/cooldown/bloodsucker/feed/DeactivatePower()
 	var/mob/living/user = owner
-	var/mob/living/feed_target = target_ref?.resolve()
+	var/mob/living/feed_target = target_ref.resolve()
 	if(isnull(feed_target))
 		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
 	else
@@ -136,7 +136,7 @@
 	if(!active) //If we aren't active (running on SSfastprocess)
 		return ..() //Manage our cooldown timers
 	var/mob/living/user = owner
-	var/mob/living/feed_target = target_ref?.resolve()
+	var/mob/living/feed_target = target_ref.resolve()
 	if(!ContinueActive(user, feed_target))
 		if(!silent_feed)
 			user.visible_message(

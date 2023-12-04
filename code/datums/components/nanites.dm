@@ -184,14 +184,12 @@
 /datum/component/nanites/proc/on_emp(datum/source, severity)
 	if(HAS_TRAIT(host_mob, TRAIT_EMPPROOF_SELF))
 		return // don't do EMP effects if they're protected from EMPs
-	if(iscarbon(host_mob))
-		var/mob/living/carbon/host_carbon = host_mob
-		if(host_carbon.dna?.species)
-			severity *= host_carbon.dna.species.emp_mod
-	if(severity < 1)
-		return // don't bother if it's less than 1 severity
-	nanite_volume *= 1 - (rand(0.01, 0.025) * severity)		//Lose 1-2.5% of nanites for each severity level 
-	adjust_nanites(null, -(rand(0.5, 3) * severity))		//Lose 0.5-3 flat nanite volume for each severity level
+	if(HAS_TRAIT(host_mob, TRAIT_FARADAYCAGE))
+		severity++
+		if(severity > EMP_LIGHT)
+			return
+	nanite_volume *= 1 - (rand(0.1, 0.25) / severity)		//Lose 10-25% of nanites
+	adjust_nanites(null, -(rand(5, 30) / severity))		//Lose 5-30 flat nanite volume
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_emp(severity)

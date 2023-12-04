@@ -182,7 +182,7 @@
 		return
 	if(prob(1)) // :^)
 		obj_flags |= EMAGGED
-	var/severity_ascending = 2 + (severity / 5)
+	var/severity_ascending = 4 - severity
 	money = max(rand(money - (200 * severity_ascending), money + (200 * severity_ascending)), 0)
 	balance = max(rand(balance - (50 * severity_ascending), balance + (50 * severity_ascending)), 0)
 	money -= max(0, give_payout(min(rand(-50, 100 * severity_ascending)), money)) //This starts at -50 because it shouldn't always dispense coins yo

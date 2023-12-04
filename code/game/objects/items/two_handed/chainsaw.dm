@@ -14,7 +14,6 @@
 	throwforce = 13
 	throw_speed = 2
 	throw_range = 4
-	demolition_mod = 1.5
 	materials = list(/datum/material/iron=13000)
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = "swing_hit"

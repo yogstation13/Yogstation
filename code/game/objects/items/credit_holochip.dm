@@ -105,7 +105,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	var/wipe_chance = 6 * severity
+	var/wipe_chance = 60 / severity
 	if(prob(wipe_chance))
 		visible_message(span_warning("[src] fizzles and disappears!"))
 		qdel(src) //rip cash

@@ -206,7 +206,7 @@
 	if(severity > 0)
 		if(overmind)
 			overmind.blobstrain.emp_reaction(src, severity)
-		if(prob(40 + (severity * 6)))
+		if(prob(100 - severity * 30))
 			new /obj/effect/temp_visual/emp(get_turf(src))
 
 /obj/structure/blob/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)

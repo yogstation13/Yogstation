@@ -12,15 +12,21 @@
 	name ="\improper HEDP rocket"
 	desc = "USE A WEEL GUN"
 	icon_state= "84mm-hedp"
-	armor_flag = BOMB
 	damage = 80
-	demolition_mod = 4
+	var/anti_armour_damage = 200
 	armour_penetration = 100
 	dismemberment = 100
 
 /obj/projectile/bullet/a84mm/on_hit(atom/target, blocked = FALSE)
 	..()
 	explosion(target, -1, 1, 3, 1, 0, flame_range = 4)
+
+	if(ismecha(target))
+		var/obj/mecha/M = target
+		M.take_damage(anti_armour_damage, BRUTE, BOMB, FALSE, null, armour_penetration)
+	if(issilicon(target))
+		var/mob/living/silicon/S = target
+		S.take_overall_damage(anti_armour_damage*0.75, anti_armour_damage*0.25)
 	return BULLET_ACT_HIT
 
 /obj/projectile/bullet/a84mm_he
@@ -28,7 +34,6 @@
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
-	demolition_mod = 4
 	ricochets_max = 0 //it's a MISSILE
 
 /obj/projectile/bullet/a84mm_he/on_hit(atom/target, blocked=0)
@@ -44,7 +49,6 @@
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
-	demolition_mod = 4
 	ricochets_max = 0 //it's a MISSILE
 	var/sturdy = list(
 	/turf/closed,
@@ -75,18 +79,22 @@
 	icon_state = "cannonball"
 	desc = "Not for bowling purposes"
 	damage = 30
-	demolition_mod = 20 // YARRR
 
 /obj/projectile/bullet/cball/on_hit(atom/target, blocked=0)
-	var/atom/throw_target = get_edge_target_turf(target, firer.dir)
-	if(ismecha(target) || isliving(target))
-		demolition_mod = 5 // woah there let's not one-shot mechs and borgs
-	. = ..()
-	if(!ismovable(target)) // if it's not movable then don't bother trying to throw it
-		return
-	var/atom/movable/movable_target = target
-	if(!movable_target.anchored && !movable_target.throwing)//avoid double hits
-		movable_target.throw_at(throw_target, 2, 4, firer, 3)
+	var/mob/living/carbon/human/H = firer
+	var/atom/throw_target = get_edge_target_turf(target, H.dir)
+	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
+		damage = 500 
+		..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(!L.anchored && !L.throwing)//avoid double hits
+			if(iscarbon(L))
+				var/mob/living/carbon/C = L
+				var/mob/M = firer
+				if(istype(M))
+					C.throw_at(throw_target, 2, 4, H, 3)
+					return BULLET_ACT_HIT
 
 /obj/projectile/bullet/bolt
 	name = "bolt"

@@ -84,14 +84,14 @@
 				new /obj/item/clothing/neck/petcollar(src)
 		if(63 to 64)
 			for(var/i in 1 to rand(4, 7))
-				var/newcoin = pickweight(list(
+				var/newcoin = pickweight(
 					/obj/item/coin/silver = 3,
 					/obj/item/coin/iron = 3,
 					/obj/item/coin/gold = 1,
 					/obj/item/coin/diamond = 1,
 					/obj/item/coin/plasma = 1,
 					/obj/item/coin/uranium = 1,
-				))
+				)
 				new newcoin(src)
 		if(65 to 66)
 			new /obj/item/clothing/suit/ianshirt(src)

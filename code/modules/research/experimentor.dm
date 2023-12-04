@@ -369,7 +369,7 @@
 		else if(prob(EFFECT_PROB_MEDIUM-badThingCoeff))
 			autoexperiment = 0
 			visible_message(span_warning("[src] melts [exp_on], ionizing the air around it!"))
-			empulse(loc, 6)
+			empulse(loc, 4, 6)
 			investigate_log("Experimentor has generated an Electromagnetic Pulse.", INVESTIGATE_EXPERIMENTOR)
 			ejectItem(TRUE)
 	////////////////////////////////////////////////////////////////////////////////////////////////

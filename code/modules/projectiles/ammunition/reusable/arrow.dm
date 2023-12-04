@@ -464,23 +464,23 @@
 		if(/obj/item/singularity_shard/stage2)
 			break_chance = 0.5
 			rads_released = 200
-			empulse(src, 1)
+			empulse(src, 0, 1)
 		if(/obj/item/singularity_shard/stage3)
 			break_chance = 1.5
 			rads_released = 500
-			empulse(src, 3)
+			empulse(src, 0, 3)
 		if(/obj/item/singularity_shard/stage4)
 			break_chance = 5
 			rads_released = 1000
-			empulse(src, 5)
+			empulse(src, 1, 5)
 		if(/obj/item/singularity_shard/stage5)
 			break_chance = 10
 			rads_released = 2000
-			empulse(src, 7)
+			empulse(src, 2, 7)
 		if(/obj/item/singularity_shard/stage6)
 			break_chance = 100
 			rads_released = 3000
-			empulse(src, 15) // Its going to break open into a singulo anyways, may as well add some fireworks
+			empulse(src, 5, 15) // Its going to break open into a singulo anyways, may as well add some fireworks
 	
 	// Handles releasing rads
 	if(rads_released)

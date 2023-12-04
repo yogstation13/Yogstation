@@ -231,10 +231,10 @@
 /obj/item/ammo_casing/shotgun/hardlight/emp_act(severity)
 	if (. & EMP_PROTECT_SELF)
 		return
-	variance = initial(variance) + severity*4 // yikes
-	if(severity > EMP_LIGHT)
-		pellets = initial(pellets) * (0.5**(severity / EMP_HEAVY)) // also yikes
-	addtimer(CALLBACK(src, PROC_REF(remove_emp)), severity SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
+	variance = 60 // yikes
+	if(severity == EMP_HEAVY)
+		pellets = 3 // also yikes
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), 10 SECONDS / severity, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /obj/item/ammo_casing/shotgun/hardlight/proc/remove_emp()
 	variance = initial(variance)

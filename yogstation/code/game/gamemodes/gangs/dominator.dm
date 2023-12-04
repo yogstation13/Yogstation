@@ -45,7 +45,7 @@
 	return ..()
 
 /obj/machinery/dominator/emp_act(severity)
-	gang.domination_time += 3 * severity
+	gang.domination_time += 30
 	..()
 
 /obj/machinery/dominator/hulk_damage()

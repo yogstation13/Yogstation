@@ -721,9 +721,6 @@
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
 				return
-			if(!HM.allow_cloning)
-				say("ERROR: This mutation is anomalous, and cannot be saved.")
-				return
 
 			var/datum/mutation/human/A = new HM.type()
 			A.copy_mutation(HM)
@@ -1391,9 +1388,6 @@
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
-				return
-			if(!HM.allow_cloning)
-				say("ERROR: This mutation is anomalous, and cannot be added to an injector.")
 				return
 
 			// We want to make sure we stick within the instability limit.

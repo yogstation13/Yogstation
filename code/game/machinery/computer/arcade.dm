@@ -120,7 +120,12 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		return
 
 	var/empprize = null
-	var/num_of_prizes = rand(0, severity / 2.5)
+	var/num_of_prizes = 0
+	switch(severity)
+		if(1)
+			num_of_prizes = rand(1,4)
+		if(2)
+			num_of_prizes = rand(0,2)
 	for(var/i = num_of_prizes; i > 0; i--)
 		if(override)
 			empprize = pickweight(prize_override)

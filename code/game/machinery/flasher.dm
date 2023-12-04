@@ -141,7 +141,7 @@
 /obj/machinery/flasher/emp_act(severity)
 	. = ..()
 	if(!(stat & (BROKEN|NOPOWER)) && !(. & EMP_PROTECT_SELF))
-		if(bulb && prob(8 * severity))
+		if(bulb && prob(75/severity))
 			flash()
 			bulb.burn_out()
 			power_change()

@@ -364,7 +364,7 @@
 		ejectpai(0)
 	if(on)
 		turn_off()
-	spawn(30 * severity)
+	spawn(severity*300)
 		stat &= ~EMPED
 		if(was_on)
 			turn_on()
