@@ -291,7 +291,46 @@
 	if(bloodsucker_blood_volume < (FRENZY_THRESHOLD_ENTER + humanity_lost * 10) && !frenzied)
 		if(!iscarbon(owner.current))
 			return
-		owner.current.apply_status_effect(/datum/status_effect/frenzy)
+		if(my_clan?.get_clan() == CLAN_GANGREL)
+			var/mob/living/carbon/user = owner.current
+			switch(frenzies)
+				if(0)
+					owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+				if(1)
+					to_chat(owner, span_warning("You start feeling hungrier, you feel like a normal frenzy won't satiate it enough anymore."))
+					owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+				if(2 to INFINITY)
+					if(do_after(user, 2 SECONDS, user, IGNORE_ALL))
+						playsound(user.loc, 'sound/weapons/slash.ogg', 25, 1)
+						to_chat(user, span_warning("<i><b>You skin rips and tears.</b></i>"))
+						if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
+							playsound(user.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
+							to_chat(user, span_warning("<i><b>You heart pumps blackened blood into your veins as your skin turns into fur.</b></i>"))
+							if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
+								playsound(user.loc, 'sound/weapons/slice.ogg', 25, 1)
+								to_chat(user, span_boldnotice("<i><b><FONT size = 3>YOU HAVE AWOKEN.</b></i>"))
+								var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww
+								if(!ww || ww.stat == DEAD)
+									AddBloodVolume(560 - user.blood_volume) //so it doesn't happen multiple times and refills your blood when you get out again
+									ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
+									user.forceMove(ww)
+									ww.bloodsucker = user
+									user.mind.transfer_to(ww)
+									var/list/wolf_powers = list(new /datum/action/cooldown/bloodsucker/targeted/feast,)
+									for(var/datum/action/cooldown/bloodsucker/power in powers)
+										if(istype(power, /datum/action/cooldown/bloodsucker/fortitude))
+											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/wolfortitude
+										if(istype(power, /datum/action/cooldown/bloodsucker/targeted/lunge))
+											wolf_powers += new /datum/action/cooldown/bloodsucker/targeted/pounce
+										if(istype(power, /datum/action/cooldown/bloodsucker/cloak))
+											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/howl
+										if(istype(power, /datum/action/cooldown/bloodsucker/targeted/trespass))
+											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/rabidism
+									for(var/datum/action/cooldown/bloodsucker/power in wolf_powers) 
+										power.Grant(ww)
+								frenzies ++
+		else
+			owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
 	else if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD(owner.current))
 		additional_regen = 0.1
 	else if(bloodsucker_blood_volume < BLOOD_VOLUME_OKAY(owner.current))

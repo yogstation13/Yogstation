@@ -583,7 +583,7 @@
 
 
 /obj/singularity/proc/emp_area()
-	empulse(src, 8, 10)
+	empulse(src, EMP_HEAVY)
 	return
 
 /obj/singularity/singularity_act()

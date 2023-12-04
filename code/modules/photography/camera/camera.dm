@@ -154,7 +154,7 @@
 	if(on) // EMP will only work on cameras that are on as it has power going through it
 		icon_state = state_off
 		on = FALSE
-		addtimer(CALLBACK(src, PROC_REF(emp_after)), (600/severity))
+		addtimer(CALLBACK(src, PROC_REF(emp_after)), (6*severity) SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /obj/item/camera/proc/emp_after()
 	on = TRUE

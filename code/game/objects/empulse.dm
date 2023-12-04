@@ -1,32 +1,30 @@
-/proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
+/proc/empulse(turf/epicenter, severity, range=null, log=TRUE)
 	if(!epicenter)
+		CRASH("Warning: empulse() called without an epicenter!")
+
+	if(severity < 1)
 		return
 
 	if(!isturf(epicenter))
 		epicenter = get_turf(epicenter.loc)
+	
+	if(isnull(range)) // range is equal to severity by default
+		range = severity
 
 	if(log)
-		message_admins("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
-		log_game("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
+		message_admins("EMP with size ([range]) and severity ([severity]) in area [epicenter.loc.name] ")
+		log_game("EMP with size ([range]) and severity ([severity]) in area [epicenter.loc.name] ")
 
-	if(heavy_range > 1)
-		new /obj/effect/temp_visual/emp/pulse(epicenter)
+	if(range <= 0)
+		for(var/atom/A in epicenter)
+			A.emp_act(severity)
+		return
 
-	if(heavy_range > light_range)
-		light_range = heavy_range
-
-	for(var/A in spiral_range(light_range, epicenter))
+	var/tile_falloff = severity / range
+	for(var/A in spiral_range(range, epicenter))
 		var/atom/T = A
-		var/distance = get_dist(epicenter, T)
-		if(distance < 0)
-			distance = 0
-		if(distance < heavy_range)
-			T.emp_act(EMP_HEAVY)
-		else if(heavy_range && distance == heavy_range)	//0 radius heavy EMPs will have no effect
-			if(prob(50))
-				T.emp_act(EMP_HEAVY)
-			else
-				T.emp_act(EMP_LIGHT)
-		else if(distance <= light_range)
-			T.emp_act(EMP_LIGHT)
-	return 1
+		var/decayed_severity = severity - round(get_dist(epicenter, T) * tile_falloff)
+		if(decayed_severity < 1)
+			continue
+		T.emp_act(decayed_severity)
+	return TRUE
