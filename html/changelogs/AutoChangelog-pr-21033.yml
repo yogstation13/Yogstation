@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Pseudocider costs 8tc instead of 6tc"
+  - tweak: "Pseudocider has a 30s cooldown instead of 20s"
