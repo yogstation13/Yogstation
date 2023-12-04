@@ -91,6 +91,7 @@
 	if(!tank)
 		to_chat(user, span_warning("\The [src] can't operate without a source of gas!"))
 		return
+	var/moles_used = min(tank.air_contents.total_moles(), gasperfist * fisto_setting)
 	var/datum/gas_mixture/gasused = tank.air_contents.remove(gasperfist * fisto_setting)
 	var/turf/T = get_turf(src)
 	if(!T)
@@ -103,14 +104,14 @@
 		target.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as [user.p_they()] punch[user.p_es()] [target.name]!"), \
 			span_userdanger("[user]'s punches you!"))
 		return COMPONENT_NO_ATTACK_HAND
-	if(gasused.total_moles() < gasperfist * fisto_setting)
+	if(moles_used < gasperfist * fisto_setting)
 		to_chat(user, span_warning("\The [src]'s piston-ram lets out a weak hiss, it needs more gas!"))
 		playsound(loc, 'sound/weapons/punch4.ogg', 50, 1)
 		do_attack(user, target, force / 2)
 		target.visible_message(span_danger("[user]'s powerfist lets out a weak hiss as [user.p_they()] punch[user.p_es()] [target.name]!"), \
 			span_userdanger("[user]'s punch strikes with force!"))
 		return COMPONENT_NO_ATTACK_HAND
-	do_attack(user, target, force * gasused.total_moles() / gasperfist)
+	do_attack(user, target, force * moles_used / gasperfist)
 	target.visible_message(span_danger("[user]'s powerfist lets out a loud hiss as [user.p_they()] punch[user.p_es()] [target.name]!"), \
 		span_userdanger("You cry out in pain as [user]'s punch flings you backwards!"))
 	new /obj/effect/temp_visual/kinetic_blast(target.loc)

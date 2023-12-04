@@ -501,7 +501,7 @@ LAW_WEIGHT fitnesscoach,0
 ION_LAW_WEIGHT fitnesscoach,3
 LAW_WEIGHT educator,0
 ION_LAW_WEIGHT educator,3
-LAW_WEIGHT mediator,1
+LAW_WEIGHT mediator,0
 ION_LAW_WEIGHT mediator,3
 
 ## Bad idea laws. Probably shouldn't enable these
