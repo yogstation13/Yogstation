@@ -1,22 +1,10 @@
-/mob/living/silicon/ai/proc/get_camera_list()
-	var/list/L = list()
-	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
-		L.Add(C)
-
-	camera_sort(L)
-
-	var/list/T = list()
-
-	for (var/obj/machinery/camera/C in L)
-		var/list/tempnetwork = C.network&src.network
-		if (tempnetwork.len)
-			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
-
-	return T
-
 /mob/living/silicon/ai/proc/show_camera_list()
-	var/list/cameras = get_camera_list()
-	var/camera = input(src, "Choose which camera you want to view", "Cameras") as null|anything in cameras
+	var/list/cameras = get_camera_list(network)
+	var/camera = tgui_input_list(src, "Choose which camera you want to view", "Cameras", cameras)
+	if(isnull(camera))
+		return
+	if(isnull(cameras[camera]))
+		return
 	switchCamera(cameras[camera])
 
 /datum/trackable
