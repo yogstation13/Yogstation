@@ -159,16 +159,16 @@
 /obj/item/pod_parts/armor/security
 	name = "security pod armor"
 	icon_state = "pod_armor_mil"
-	desc = "Tough military-grade pod armor, meant for use by the NanoTrasen military and it's sub-divisons for space combat."
+	desc = "Tough military-grade pod armor, meant for use by the Nanotrasen military and it's sub-divisons for space combat."
 	pod_icon_state = "pod_mil"
-	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the NanoTrasen Military insignia"
+	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the Nanotrasen Military insignia"
 	pod_integrity = 350
 /obj/item/pod_parts/armor/security/red
 	name = "security pod armor"
 	icon_state = "pod_armor_synd"
-	desc = "Tough military-grade pod armor, meant for use by the NanoTrasen military and it's sub-divisons for space combat."
+	desc = "Tough military-grade pod armor, meant for use by the Nanotrasen military and it's sub-divisons for space combat."
 	pod_icon_state = "pod_synd"
-	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the NanoTrasen Military insignia"
+	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the Nanotrasen Military insignia"
 	pod_integrity = 350
 
 /obj/item/circuitboard/mecha/pod
