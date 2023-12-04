@@ -51,7 +51,7 @@
 	retreat_distance = 1
 	minimum_distance = 3
 	projectiletype = /obj/projectile/jungle/damage_orb
-	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_dryad
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad
 	var/alt_projectiletype = /obj/projectile/jungle/heal_orb
 	var/alt_cooldown_time = 10 SECONDS
 
@@ -90,7 +90,7 @@
 	retreat_distance = 1
 	minimum_distance = 3
 	projectiletype = /obj/projectile/jungle/damage_orb
-	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad
 
 /mob/living/simple_animal/hostile/yog_jungle/meduracha
 	name ="Meduracha aquatica"
@@ -119,7 +119,7 @@
 
 	rapid_melee = 3
 	
-	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha
 
 	var/sulking = FALSE 
 
@@ -310,7 +310,7 @@
 	melee_damage_lower = 4
 	melee_damage_upper = 6
 	
-	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_blobby
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_blobby
 
 	var/current_size = 3
 
@@ -364,7 +364,7 @@
 	spacewalk = TRUE
 	melee_damage_lower = 10
 	melee_damage_upper = 40 
-	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito
 	move_to_delay = 5
 	var/can_charge = TRUE
 	var/cooldown = 15 SECONDS
@@ -471,7 +471,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 1, /obj/item/stack/sheet/sinew = 1, /obj/item/stack/sheet/bone = 1)
 	loot = list()
-	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_yellowjacket
 	var/charging = FALSE
 	var/revving_charge = FALSE
 	var/poison_type = /datum/reagent/toxin

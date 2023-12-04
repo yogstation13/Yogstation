@@ -128,8 +128,8 @@
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_blobby/proc/increment_stage()
 	if(!target)
 		return
-	var/mob/living/simple_animal/hostile/A = new /mob/living/simple_animal/hostile/yog_jungle/alpha/blobby(get_step(src,turn(get_dir(src,target),90)),4 - stage)
-	var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/yog_jungle/alpha/blobby(get_step(src,turn(get_dir(src,target),-90)),4 - stage)
+	var/mob/living/simple_animal/hostile/A = new /mob/living/simple_animal/hostile/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),90)),4 - stage)
+	var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),-90)),4 - stage)
 	A.PickTarget(list(target))
 	B.PickTarget(list(target))
 	stage++
@@ -160,7 +160,7 @@
 	move_to_delay = 10
 	pixel_x = -32
 	sentience_type = SENTIENCE_BOSS
-	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/alpha/dryad,/mob/living/simple_animal/hostile/yog_jungle/alpha/meduracha, /mob/living/simple_animal/hostile/yog_jungle/alpha/yellowjacket,/mob/living/simple_animal/hostile/yog_jungle/alpha/emeraldspider)
+	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/dryad,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket,/mob/living/simple_animal/hostile/yog_jungle/emeraldspider)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad/OpenFire(atom/A)
 	. = ..()
@@ -194,7 +194,7 @@
 	projectiletype = /obj/projectile/jungle/damage_orb
 	sentience_type = SENTIENCE_BOSS
 
-	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/alpha/skin_twister,/mob/living/simple_animal/hostile/yog_jungle/alpha/blobby,/mob/living/simple_animal/hostile/yog_jungle/alpha/corrupted_dryad)
+	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/skin_twister,/mob/living/simple_animal/hostile/yog_jungle/blobby,/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/Shoot(atom/targeted_atom)
 	var/angle = Get_Angle(src,targeted_atom)
