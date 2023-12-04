@@ -59,8 +59,9 @@ SUBSYSTEM_DEF(achievements)
 				most_unlocked_achievement = instance
 	qdel(query)
 
-	for(var/i in GLOB.clients)
-		var/client/C = i
+	for(var/client/C as anything in GLOB.clients)
+		if(!istype(C) || !C.player_details)
+			continue
 		if(!C.player_details.achievements.initialized)
 			C.player_details.achievements.InitializeData()
 

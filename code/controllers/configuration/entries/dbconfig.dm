@@ -1,4 +1,4 @@
-/datum/config_entry/flag/sql_enabled	// for sql switching
+/datum/config_entry/flag/sql_enabled // for sql switching
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/mfa_enabled
@@ -26,7 +26,7 @@
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
 /datum/config_entry/string/feedback_tableprefix
-	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/number/query_debug_log_timeout
 	config_entry_value = 70
