@@ -395,7 +395,7 @@
 	
 	var/mob/living/carbon/human/humie = hit_atom
 	humie.blood_volume -= 10 // ouch!
-	var/malaria_chance = ((humie.wear_suit ? 100 - humie.wear_suit.armor.bio : 100)  +  (humie.head ? 100 - humie.head.armor.bio : 100) )/2
+	var/malaria_chance = 125 - humie.getarmor(null,BIO)
 	if(prob(malaria_chance * 0.25))
 		var/datum/disease/malaria/infection = new() 
 		humie.ForceContractDisease(infection,FALSE,TRUE)
