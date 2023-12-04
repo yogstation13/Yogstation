@@ -1,4 +1,4 @@
-#define DEFAULT_MAP_SIZE 15
+
 
 /datum/computer_file/program/secureye
 	filename = "secureye"
@@ -184,6 +184,7 @@
 		if(tempnetwork.len)
 			camlist["[cam.c_tag]"] = cam
 	return camlist
+
 
 //////////////////
 //Mining Cameras//
