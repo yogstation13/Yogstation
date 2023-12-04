@@ -45,8 +45,8 @@
 
 /obj/machinery/computer/security/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-	// if(!user.can_perform_action(src, NEED_DEXTERITY)) //prevents monkeys from using camera consoles
-	// 	return
+	if(!user.canUseTopic(src, no_dextery = TRUE)) //prevents monkeys from using camera consoles
+		return
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)
 
@@ -102,28 +102,6 @@
 		))
 
 	return data
-
-//returns the list of cameras accessible from this computer
-/obj/machinery/computer/security/proc/get_available_cameras()
-	var/list/L = list()
-	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
-		if((is_away_level(z) || is_away_level(C.z)) && (C.z != z))//if on away mission, can only receive feed from same z_level cameras
-			continue
-		L.Add(C)
-
-	var/list/D = list()
-
-	for(var/obj/machinery/camera/C in L)
-		if(!C.network)
-			stack_trace("Camera in a cameranet has no camera network")
-			continue
-		if(!(islist(C.network)))
-			stack_trace("Camera in a cameranet has a non-list camera network")
-			continue
-		var/list/tempnetwork = C.network & network
-		if(tempnetwork.len)
-			D["[C.c_tag]"] = C
-	return D
 
 /obj/machinery/computer/security/ui_act(action, params)
 	. = ..()
@@ -197,7 +175,6 @@
 	cam_background.icon_state = "scanline2"
 	cam_background.fill_rect(1, 1, DEFAULT_MAP_SIZE, DEFAULT_MAP_SIZE)
 
-
 // SECURITY MONITORS
 
 /obj/machinery/computer/security/wooden_tv
@@ -237,12 +214,11 @@
 
 /obj/machinery/computer/security/qm
 	name = "\improper Quartermaster's camera console"
-	desc = "A console with access to the mining, auxillary base and vault camera networks."
+	desc = "A console with access to the mining, auxiliary base and vault camera networks."
 	network = list("mine", "auxbase", "vault")
 	circuit = /obj/item/circuitboard/computer/security/qm
 
 // TELESCREENS
-
 /obj/machinery/computer/security/telescreen
 	name = "\improper Telescreen"
 	desc = "Used for watching an empty arena."
@@ -254,13 +230,11 @@
 	circuit = null
 	clockwork = TRUE //it'd look very weird
 	light_power = 0
-
 /obj/machinery/computer/security/telescreen/update_icon_state()
 	. = ..()
 	icon_state = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state += "b"
-
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
 	desc = "Damn, they better have the Yogs Channel on these things... Nope, just the /tg/ channel! Aww..."
@@ -356,3 +330,5 @@
 	name = "\improper AI upload monitor"
 	desc = "A telescreen that connects to the AI upload's camera network."
 	network = list("aiupload")
+
+#undef DEFAULT_MAP_SIZE
