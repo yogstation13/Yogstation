@@ -3,15 +3,6 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-DROP TABLE IF EXISTS `achievements`;
-CREATE TABLE IF NOT EXISTS `achievements` (
-  `name` mediumtext NOT NULL,
-  `id` int(10) unsigned NOT NULL,
-  `descr` varchar(2048) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `ckey` varchar(32) NOT NULL,
@@ -198,14 +189,6 @@ CREATE TABLE IF NOT EXISTS `donors` (
   KEY `ckey` (`ckey`),
   KEY `forum_username` (`discord_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=761 DEFAULT CHARSET=utf8;
-
-
-DROP TABLE IF EXISTS `earned_achievements`;
-CREATE TABLE IF NOT EXISTS `earned_achievements` (
-  `ckey` varchar(32) NOT NULL,
-  `id` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE IF NOT EXISTS `feedback` (
