@@ -1,4 +1,10 @@
-/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha
+/mob/living/simple_animal/hostile/yog_jungle/alpha
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha/death(gibbed)
+	new /obj/structure/closet/crate/necropolis/tendril(loc)
+	return ..()
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha
 	name ="Meduracha majora"
 	desc = "Collosal beast of tentacles, its deep eye looks directly at you."
 	icon_state = "alpha_meduracha"
@@ -30,12 +36,12 @@
 
 	var/list/anchors = list("SOUTH" = null, "NORTH" = null, "EAST" = null, "WEST" = null)
 	
-/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/Initialize()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha/Initialize()
 	. = ..()
 	for(var/side in anchors)
 		anchors[side] = get_beam()
 	
-/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/Move(atom/newloc, dir, step_x, step_y)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha/Move(atom/newloc, dir, step_x, step_y)
 	for(var/direction in list("NORTH","SOUTH","EAST","WEST"))
 		var/datum/beam/B = anchors[direction]
 		if(!B || QDELETED(B))
@@ -45,7 +51,7 @@
 			remake_beam(direction)
 	. = ..() 
 	
-/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/Shoot(atom/targeted_atom)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha/Shoot(atom/targeted_atom)
 	. = ..()
 	var/angle = Get_Angle(src,targeted_atom)
 	var/list/to_shoot = list() 
@@ -56,7 +62,7 @@
 	for(var/turf/T as anything in to_shoot)
 		shoot_projectile(T)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/proc/shoot_projectile(atom/targeted_atom)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha/proc/shoot_projectile(atom/targeted_atom)
 	var/turf/startloc = get_turf(src)
 	var/obj/projectile/P = new projectiletype(startloc)
 	playsound(src, projectilesound, 100, 1)
@@ -71,17 +77,17 @@
 	P.preparePixelProjectile(targeted_atom, src)
 	P.fire()
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/proc/get_beam()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha/proc/get_beam()
 	var/list/turfs = spiral_range_turfs(4,src)
 	var/turf/T = pick(turfs)
 	return Beam(T,"meduracha",'yogstation/icons/effects/beam.dmi',INFINITY,8)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/proc/remake_beam(side)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_meduracha/proc/remake_beam(side)
 	var/datum/beam/B = anchors[side]
 	anchors[side] = get_beam()
 	qdel(B)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_blobby
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_blobby
 	name = "Gelatinous Giant"
 	desc = "A gelatinous creature of the swampy regions of the jungle. It's a big blob of goo, and it's not very friendly."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
@@ -113,17 +119,17 @@
 	sentience_type = SENTIENCE_BOSS
 	var/stage = 1
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_blobby/attacked_by(obj/item/I, mob/living/user)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_blobby/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if((stage == 1 && health <= 300) || (stage == 2 && health <= 200) || (stage == 3 && health <= 100))
 		increment_stage()
 		return
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_blobby/proc/increment_stage()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_blobby/proc/increment_stage()
 	if(!target)
 		return
-	var/mob/living/simple_animal/hostile/A = new /mob/living/simple_animal/hostile/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),90)),4 - stage)
-	var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/yog_jungle/blobby(get_step(src,turn(get_dir(src,target),-90)),4 - stage)
+	var/mob/living/simple_animal/hostile/A = new /mob/living/simple_animal/hostile/yog_jungle/alpha/blobby(get_step(src,turn(get_dir(src,target),90)),4 - stage)
+	var/mob/living/simple_animal/hostile/B = new /mob/living/simple_animal/hostile/yog_jungle/alpha/blobby(get_step(src,turn(get_dir(src,target),-90)),4 - stage)
 	A.PickTarget(list(target))
 	B.PickTarget(list(target))
 	stage++
@@ -131,7 +137,7 @@
 	M.Scale(1/stage)
 	transform = M
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_dryad
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad
 	name ="Wrath of Gaia"
 	desc = "Collosal tree inhabited by all the furious spirits of the jungle."
 	icon = 'yogstation/icons/mob/jungle96x96.dmi'
@@ -154,16 +160,16 @@
 	move_to_delay = 10
 	pixel_x = -32
 	sentience_type = SENTIENCE_BOSS
-	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/dryad,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket,/mob/living/simple_animal/hostile/yog_jungle/emeraldspider)
+	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/alpha/dryad,/mob/living/simple_animal/hostile/yog_jungle/alpha/meduracha, /mob/living/simple_animal/hostile/yog_jungle/alpha/yellowjacket,/mob/living/simple_animal/hostile/yog_jungle/alpha/emeraldspider)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_dryad/OpenFire(atom/A)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_dryad/OpenFire(atom/A)
 	. = ..()
 	for(var/i in 0 to rand(1,3))
 		var/to_spawn = pick(spawnables)
 		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
 		spawned.PickTarget(A)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad
 	name ="Wrath of Corruption"
 	desc = "Collosal tree that used to be a home of the dryads. Now it serves as a weapon of corruption, spreading it's destruction wherever it goes."
 	icon = 'yogstation/icons/mob/jungle96x96.dmi'
@@ -188,9 +194,9 @@
 	projectiletype = /obj/projectile/jungle/damage_orb
 	sentience_type = SENTIENCE_BOSS
 
-	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/skin_twister,/mob/living/simple_animal/hostile/yog_jungle/blobby,/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad)
+	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/alpha/skin_twister,/mob/living/simple_animal/hostile/yog_jungle/alpha/blobby,/mob/living/simple_animal/hostile/yog_jungle/alpha/corrupted_dryad)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad/Shoot(atom/targeted_atom)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/Shoot(atom/targeted_atom)
 	var/angle = Get_Angle(src,targeted_atom)
 	var/list/to_shoot = list() 
 	
@@ -207,7 +213,7 @@
 		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
 		spawned.PickTarget(targeted_atom)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad/proc/shoot_projectile(atom/targeted_atom)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/proc/shoot_projectile(atom/targeted_atom)
 	var/turf/startloc = get_turf(src)
 	var/obj/projectile/P = new projectiletype(startloc)
 	playsound(src, projectilesound, 100, 1)
@@ -222,7 +228,7 @@
 	P.preparePixelProjectile(targeted_atom, src)
 	P.fire()
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito
 	name ="Mosquito Patriarch"
 	desc = "A collosoal blood sucking mosquito, it is very angry."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
@@ -251,11 +257,11 @@
 	var/has_blood = FALSE
 	var/overshoot_dist = 5
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/Aggro()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/Aggro()
 	. = ..()
 	prepare_charge()
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/Goto(target, delay, minimum_distance)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/Goto(target, delay, minimum_distance)
 	if (iscarbon(target) && get_dist(src,target) > 4 && get_charge())
 		prepare_charge()
 		return
@@ -263,7 +269,7 @@
 	if(!charging)
 		return ..()
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	charging = FALSE
 	if(!ishuman(hit_atom))
@@ -283,7 +289,7 @@
 	icon_state = "mosquito_blood"
 	animate(src,color = initial(color),time = charge_ramp_up*2)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/proc/prepare_charge()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/proc/prepare_charge()
 	if(!get_charge())
 		return FALSE 
 
@@ -309,17 +315,17 @@
 
 	throw_at(found_turf,dist + overshoot_dist,4,spin = FALSE)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/proc/reset_charge()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/proc/reset_charge()
 	can_charge = TRUE
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/proc/use_charge()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/proc/use_charge()
 	can_charge = FALSE 
 	addtimer(CALLBACK(src,PROC_REF(reset_charge)),cooldown,TIMER_UNIQUE)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/proc/get_charge()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_mosquito/proc/get_charge()
 	return can_charge 
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_yellowjacket
 	name = "yellow jacket matriarch"
 	desc = "A large and aggressive creature with a massive stinger. It is very angry."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
@@ -356,14 +362,14 @@
 	var/poison_type = /datum/reagent/toxin/concentrated
 	var/poison_per_attack = 7.5
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket/AttackingTarget()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_yellowjacket/AttackingTarget()
 	..()
 	if(isliving(target))
 		var/mob/living/L = target
 		if(target.reagents)
 			L.reagents.add_reagent(poison_type, poison_per_attack)
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket/OpenFire()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_yellowjacket/OpenFire()
 	if(charging)
 		return
 	var/tturf = get_turf(target)
@@ -373,10 +379,10 @@
 		charge()
 		ranged_cooldown = world.time + ranged_cooldown_time
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket/Aggro()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_yellowjacket/Aggro()
 	vision_range = aggro_vision_range
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket/proc/charge(var/atom/chargeat = target, var/delay = 4)
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_yellowjacket/proc/charge(var/atom/chargeat = target, var/delay = 4)
 	if(!chargeat)
 		return
 	var/chargeturf = get_turf(chargeat)
@@ -399,7 +405,7 @@
 	walk(src, 0) // cancel the movement
 	charging = FALSE
 
-/mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket/Move()
+/mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_yellowjacket/Move()
 	if(revving_charge)
 		return FALSE
 	if(charging)

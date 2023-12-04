@@ -170,31 +170,6 @@
 	reagents_add = list(/datum/reagent/quinine = 0.1, /datum/reagent/medicine/atropine = 0.05, /datum/reagent/medicine/omnizine = 0.1)
 
 /obj/item/organ/regenerative_core/dryad
-	desc = "Heart of a dryad. It can be used to heal completely and cleanse the body of certain jungle toxins, but it will rapidly decay into uselessness."
-	icon = 'yogstation/icons/obj/jungle.dmi'
-	icon_state = "dryad_heart"
-	status_effect = /datum/status_effect/regenerative_core/dryad
-
-/obj/item/organ/regenerative_core/dryad/Initialize()
-	. = ..()
-	update_icon()
-
-/obj/item/organ/regenerative_core/dryad/update_icon()
-	. = ..()
-	icon_state = inert ? "dryad_heart_decay" : "dryad_heart"
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.build_all_button_icons()
-
-/obj/item/organ/regenerative_core/dryad/go_inert()
-	..()
-	desc = "[src] has become inert. It has decayed, and is completely useless."
-
-/obj/item/organ/regenerative_core/dryad/preserved(implanted = 0)
-	..()
-	desc = "[src] has been stabilized. It is preserved, allowing you to use it to heal completely without danger of decay."
-
-/obj/item/organ/regenerative_core/dryad
 	name = "Dryad heart"
 	desc = "Heart of a dryad. It can be used to heal completely, but it will rapidly decay into uselessness."
 	icon = 'yogstation/icons/obj/jungle.dmi'
@@ -207,10 +182,15 @@
 
 /obj/item/organ/regenerative_core/dryad/update_icon()
 	. = ..()
-	icon_state = inert ? "dryad_heart_decay" : "dryad_heart"
+	icon_state = inert ? "dryad_heart_decay" : icon_state
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
+
+/obj/item/organ/regenerative_core/dryad/preserved(implanted)
+	. = ..()
+	name = "preserved [initial(name)]"
+	desc = "Heart of a dryad. It can be used to heal completely, unlike others, this one won't decay"
 
 /obj/item/organ/regenerative_core/dryad/go_inert()
 	..()
@@ -350,7 +330,7 @@
 	UnregisterSignal(user,COMSIG_MOVABLE_MOVED)
 	state = 0
 	icon_state = "slime_sling_0"
-	
+
 
 /obj/item/slime_sling/proc/sling(mob/user,atom/A, params)
 	UnregisterSignal(user,COMSIG_MOB_CLICKON)

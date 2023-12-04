@@ -355,7 +355,6 @@ GLOBAL_LIST_INIT(nests, list())
 	return ..()
 
 /obj/structure/spawner/nest/deconstruct(disassembled, force)
-	new /obj/structure/closet/crate/necropolis/tendril(loc)
 	visible_message(span_boldannounce("You've awakened a sleeping monster from within the nest! Get back!"))
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, 1, 1)
 	spawn_mother_monster()
