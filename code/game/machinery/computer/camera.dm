@@ -1,3 +1,5 @@
+#define DEFAULT_MAP_SIZE 15
+
 /obj/machinery/computer/security
 	name = "security camera console"
 	desc = "Used to access the various cameras on the station."
