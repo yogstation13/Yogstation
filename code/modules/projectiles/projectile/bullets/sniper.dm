@@ -7,13 +7,7 @@
 	paralyze = 100
 	dismemberment = 50
 	armour_penetration = 50
-	var/breakthings = TRUE
-
-/obj/projectile/bullet/p50/on_hit(atom/target, blocked = 0)
-	if(isobj(target) && (blocked != 100) && breakthings)
-		var/obj/O = target
-		O.take_damage(80, BRUTE, BULLET, FALSE, null, armour_penetration)
-	return ..()
+	demolition_mod = 2.2 // very effective against armored structures and vehicles
 
 /obj/projectile/bullet/p50/soporific
 	name = ".50 soporific bullet"
@@ -21,7 +15,6 @@
 	damage = 0
 	dismemberment = 0
 	paralyze = 0
-	breakthings = FALSE
 
 /obj/projectile/bullet/p50/soporific/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && isliving(target))

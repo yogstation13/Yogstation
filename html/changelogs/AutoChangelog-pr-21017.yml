@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed abandoned crates having a 2% chance to cause runtime errors when initialized"

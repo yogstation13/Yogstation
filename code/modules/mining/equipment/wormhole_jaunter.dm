@@ -52,7 +52,7 @@
 	playsound(src,'sound/effects/sparks4.ogg',50,1)
 	qdel(src)
 
-/obj/item/wormhole_jaunter/emp_act(power)
+/obj/item/wormhole_jaunter/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
@@ -60,11 +60,8 @@
 	var/mob/M = loc
 	if(istype(M))
 		var/triggered = FALSE
-		if(M.get_item_by_slot(ITEM_SLOT_BELT) == src)
-			if(power == 1)
-				triggered = TRUE
-			else if(power == 2 && prob(50))
-				triggered = TRUE
+		if(M.get_item_by_slot(ITEM_SLOT_BELT) == src && prob(10 * severity))
+			triggered = TRUE
 
 		if(triggered)
 			M.visible_message(span_warning("[src] overloads and activates!"))
