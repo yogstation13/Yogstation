@@ -316,7 +316,7 @@
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = 11, \
-		force_wielded = 10, \
+		force_wielded = 19, \
 		icon_wielded = "sting_trident1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
 	)
