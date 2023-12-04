@@ -26,6 +26,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/station_minimaps = list()
 
+	/// The largest plane offset we've generated so far
+	var/max_plane_offset = 0
+
 	/// List of z level (as number) -> The lowest plane offset in that z stack
 	var/list/z_level_to_lowest_plane_offset = list()
 
@@ -37,9 +40,6 @@ SUBSYSTEM_DEF(mapping)
 
 	/// List of planes that do not allow for offsetting
 	var/list/plane_offset_blacklist
-
-	/// The largest plane offset we've generated so far
-	var/max_plane_offset = 0
 
 	/// Assoc list of true string plane values to a list of all potential offset planess
 	var/list/true_to_offset_planes

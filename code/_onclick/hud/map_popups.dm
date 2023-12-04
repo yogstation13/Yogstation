@@ -1,36 +1,3 @@
-/client
-	/**
-	 * Assoc list with all the active maps - when a screen obj is added to
-	 * a map, it's put in here as well.
-	 *
-	 * Format: list(<mapname> = list(/atom/movable/screen))
-	 */
-	var/list/screen_maps = list()
-
-/atom/movable/screen
-	/**
-	 * Map name assigned to this object.
-	 * Automatically set by /client/proc/add_obj_to_map.
-	 */
-	var/assigned_map
-	/**
-	 * Mark this object as garbage-collectible after you clean the map
-	 * it was registered on.
-	 *
-	 * This could probably be changed to be a proc, for conditional removal.
-	 * But for now, this works.
-	 */
-	var/del_on_map_removal = TRUE
-
-/**
- * A screen object, which acts as a container for turfs and other things
- * you want to show on the map, which you usually attach to "vis_contents".
- */
-/atom/movable/screen/map_view
-	// Map view has to be on the lowest plane to enable proper lighting
-	layer = GAME_PLANE
-	plane = GAME_PLANE
-
 /**
  * A generic background object.
  * It is also implicitly used to allocate a rectangle on the map, which will
@@ -79,8 +46,6 @@
 	var/list/screen_map = screen_maps[screen_obj.assigned_map]
 	if(!screen_map.Find(screen_obj))
 		screen_map += screen_obj
-	if(!screen.Find(screen_obj))
-		screen += screen_obj
 
 /**
  * Clears the map of registered screen objects.

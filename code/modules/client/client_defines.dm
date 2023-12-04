@@ -195,3 +195,10 @@
 	var/do_parallax_animations = TRUE
 	var/parallax_throttle = 0 //ds between updates
 	var/last_parallax_shift //world.time of last update
+	/**
+	 * Assoc list with all the active maps - when a screen obj is added to
+	 * a map, it's put in here as well.
+	 *
+	 * Format: list(<mapname> = list(/atom/movable/screen))
+	 */
+	var/list/screen_maps = list()
