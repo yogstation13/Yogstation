@@ -226,14 +226,9 @@
 
 /obj/docking_port/mobile/emergency/request(obj/docking_port/stationary/S, area/signalOrigin, reason, set_coefficient=null)
 	if(!isnum(set_coefficient))
-		var/security_num = seclevel2num(get_security_level())
-		switch(security_num)
-			if(SEC_LEVEL_GREEN)
-				set_coefficient = 2
-			if(SEC_LEVEL_BLUE)
-				set_coefficient = 1
-			else
-				set_coefficient = 0.5
+		set_coefficient = SSsecurity_level.current_security_level.shuttle_call_time_mod
+	alert_coeff = set_coefficient
+
 	var/call_time = SSshuttle.emergencyCallTime * set_coefficient * engine_coeff
 	switch(mode)
 		// The shuttle can not normally be called while "recalling", so
@@ -252,7 +247,7 @@
 		SSshuttle.emergencyLastCallLoc = null
 
 	var/emergency_reason = "\nNature of emergency:\n\n[reason]"
-	priority_announce("The emergency shuttle has been called. [GLOB.security_level >= SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[html_decode(emergency_reason)][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLECALLED, "Priority")
+	priority_announce("The emergency shuttle has been called. [alert_coeff < 1 ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[html_decode(emergency_reason)][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLECALLED, "Priority")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
 	if(mode != SHUTTLE_CALL)
@@ -493,7 +488,7 @@
 
 /obj/machinery/computer/shuttle/pod
 	name = "pod control computer"
-	admin_controlled = 1
+	admin_controlled = TRUE
 	possible_destinations = "pod_asteroid"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "dorm_available"
@@ -504,6 +499,9 @@
 /obj/machinery/computer/shuttle/pod/Initialize(mapload, obj/item/circuitboard/C)
 	AddElement(/datum/element/update_icon_blocker)
 	return ..()
+
+/obj/machinery/computer/shuttle/pod/proc/update_security_level(new_level)
+	admin_controlled = !new_level.open_pods
 
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)

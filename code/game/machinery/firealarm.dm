@@ -64,6 +64,8 @@
 	radio.recalculateChannels()
 	STOP_PROCESSING(SSmachines, src) // I will do this
 
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
+
 /obj/machinery/firealarm/Destroy()
 	myarea.firereset(src, TRUE)
 	QDEL_NULL(radio)
@@ -79,6 +81,10 @@
 		icon_state = "firex"
 		return
 	icon_state = "fire0"
+
+/obj/machinery/firealarm/proc/update_security_level()
+	if(is_station_level(z))
+		update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/firealarm/update_overlays()
 	. = ..()

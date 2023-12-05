@@ -27,6 +27,10 @@
 	radio.listening = FALSE
 	radio.independent = TRUE
 	radio.recalculateChannels()
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
+
+/obj/machinery/level_interface/proc/update_security_level()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/level_interface/update_icon(updates=ALL)
 	. = ..()

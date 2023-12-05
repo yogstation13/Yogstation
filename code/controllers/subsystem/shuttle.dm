@@ -30,9 +30,9 @@ SUBSYSTEM_DEF(shuttle)
 	var/obj/docking_port/mobile/emergency/emergency
 	var/obj/docking_port/mobile/arrivals/arrivals
 	var/obj/docking_port/mobile/emergency/backup/backup_shuttle
-	var/emergencyCallTime = 6000	//time taken for emergency shuttle to reach the station when called (in deciseconds)
-	var/emergencyDockTime = 1800	//time taken for emergency shuttle to leave again once it has docked (in deciseconds)
-	var/emergencyEscapeTime = 1200	//time taken for emergency shuttle to reach a safe distance after leaving station (in deciseconds)
+	var/emergencyCallTime = 10 MINUTES //time taken for emergency shuttle to reach the station when called (in deciseconds)
+	var/emergencyDockTime = 3 MINUTES //time taken for emergency shuttle to leave again once it has docked (in deciseconds)
+	var/emergencyEscapeTime = 2 MINUTES //time taken for emergency shuttle to reach a safe distance after leaving station (in deciseconds)
 	var/area/emergencyLastCallLoc
 	var/emergencyCallAmount = 0		//how many times the escape shuttle was called
 	var/emergencyNoEscape
