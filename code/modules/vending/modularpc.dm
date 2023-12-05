@@ -26,6 +26,8 @@
 	refill_canister = /obj/item/vending_refill/modularpc
 	default_price = 30
 	extra_price = 250
+	light_color = LIGHT_COLOR_BLUE
+	light_mask = "modular-light-mask"
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/modularpc

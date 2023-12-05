@@ -29,6 +29,8 @@
 	light_power = 0
 	light_range = 7
 	light_color = "#ff3232"
+	//Trick to get the glowing overlay visible from a distance
+	luminosity = 1
 
 	/// 1 = will auto detect fire, 0 = no auto
 	var/detecting = 1
@@ -92,10 +94,13 @@
 		. += "fire_[GLOB.security_level]"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, EMISSIVE_PLANE, dir)
+		. += emissive_appearance(icon, "fire_level_e", src, alpha = src.alpha)
 	else
 		. += "fire_[SEC_LEVEL_GREEN]"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, EMISSIVE_PLANE, dir)
+		. += emissive_appearance(icon, "fire_level_e", src, alpha = src.alpha)
+		set_light(l_color = LIGHT_COLOR_BLUE)
 
 	var/area/A = src.loc
 	A = A.loc
@@ -108,10 +113,14 @@
 		. += "fire_emagged"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_emagged", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_emagged", layer, EMISSIVE_PLANE, dir)
+		. += emissive_appearance(icon, "fire_alerting_e", src, alpha = src.alpha)
+		set_light(l_color = LIGHT_COLOR_RED)
 	else
 		. += "fire_on"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_on", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_on", layer, EMISSIVE_PLANE, dir)
+		. += emissive_appearance(icon, "fire_alerting_e", src, alpha = src.alpha)
+		set_light(l_color = LIGHT_COLOR_RED)
 
 /obj/machinery/firealarm/emp_act(severity)
 	. = ..()

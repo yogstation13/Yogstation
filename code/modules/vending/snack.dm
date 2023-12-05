@@ -23,6 +23,8 @@
 	default_price = 20
 	extra_price = 30
 	payment_department = ACCOUNT_SRV
+	light_color = LIGHT_COLOR_BLUE
+	light_mask = "snack-light-mask"
 	input_display_header = "Chef's Food Selection"
 
 /obj/item/vending_refill/snack

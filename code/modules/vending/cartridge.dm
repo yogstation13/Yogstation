@@ -10,6 +10,8 @@
 	default_price = 50
 	extra_price = 100
 	payment_department = ACCOUNT_SRV
+	light_mask="cart-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 
 /obj/item/vending_refill/cart
 	machine_name = "PTech"

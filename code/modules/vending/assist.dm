@@ -13,8 +13,11 @@
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 	default_price = 10
 	extra_price = 50
+	light_mask = "generic-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	payment_department = NO_FREEBIES
 
 /obj/item/vending_refill/assist
 	machine_name = "Vendomat"
 	icon_state = "refill_engi"
+	

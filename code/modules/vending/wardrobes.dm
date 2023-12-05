@@ -6,6 +6,9 @@
 	extra_price = 75
 	payment_department = NO_FREEBIES
 	input_display_header = "Returned Clothing"
+	light_mask = "wardrobe-light-mask"
+	light_color = LIGHT_COLOR_BLUE
+
 
 /obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
 	if(I.type in products)

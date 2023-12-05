@@ -9,6 +9,8 @@
 	refill_canister = /obj/item/vending_refill/sovietsoda
 	default_price = 1
 	extra_price = 1
+	light_mask = "soviet-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	payment_department = NO_FREEBIES
 
 /obj/item/vending_refill/sovietsoda

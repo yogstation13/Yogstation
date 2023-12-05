@@ -22,6 +22,8 @@
 	refill_canister = /obj/item/vending_refill/cigarette
 	default_price = 10
 	extra_price = 50
+	light_mask = "cigs-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	payment_department = ACCOUNT_SRV
 
 /obj/machinery/vending/cigarette/syndicate

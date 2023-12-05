@@ -63,6 +63,8 @@
 	refill_canister = /obj/item/vending_refill/hydroseeds
 	default_price = 10
 	extra_price = 50
+	light_mask = "seeds-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/hydroseeds
