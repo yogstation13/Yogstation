@@ -18227,9 +18227,6 @@
 	},
 /area/maintenance/aft)
 "dNO" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
 /obj/machinery/button/door{
 	id = "captain blast";
 	name = "Privacy Shutters Control";
@@ -18237,7 +18234,17 @@
 	pixel_y = -1;
 	req_access_txt = "20"
 	},
-/obj/effect/turf_decal/ramp_middle,
+/obj/structure/railing{
+	dir = 9
+	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Captain";
+	name = "Captain's Fax Machine"
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 9
+	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "dNY" = (
@@ -22050,21 +22057,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "fiz" = (
-/obj/structure/railing{
-	dir = 1
+/obj/effect/turf_decal/ramp_middle,
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Captain's Desk Door";
+	req_one_access_txt = "20"
 	},
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/machinery/photocopier/faxmachine{
-	department = "Captain";
-	name = "Captain's Fax Machine"
-	},
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
-/turf/open/floor/stone,
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
 /area/crew_quarters/heads/captain)
 "fiE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -22227,11 +22226,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "flu" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
 /obj/structure/railing{
-	dir = 1
+	dir = 5
 	},
 /obj/structure/table/wood,
 /obj/item/hand_tele{
@@ -22240,6 +22236,9 @@
 /obj/item/storage/pencil_holder/crew/fancy{
 	pixel_x = -7;
 	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 5
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -25432,6 +25431,12 @@
 "guY" = (
 /obj/structure/chair/office/light{
 	dir = 4
+	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner/thin{
+	dir = 1
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -29222,6 +29227,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
+	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -34632,13 +34640,16 @@
 /turf/open/floor/wood,
 /area/library)
 "jRb" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/stone,
+/obj/machinery/door/window{
+	base_state = "right";
+	icon_state = "right";
+	name = "Captain's Desk Door";
+	req_access_txt = "20"
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
 /area/crew_quarters/heads/captain)
 "jRq" = (
 /obj/effect/turf_decal/stripes/white/line{
@@ -46504,16 +46515,13 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "oxG" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
+/obj/structure/railing/corner{
+	dir = 4
 	},
-/obj/machinery/door/window{
-	base_state = "right";
-	icon_state = "right";
-	name = "Captain's Desk Door";
-	req_access_txt = "20"
+/obj/effect/turf_decal/siding/wood/corner/thin{
+	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
+/turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "oyd" = (
 /obj/structure/window/reinforced{
@@ -58701,6 +58709,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "tcr" = (
@@ -65095,9 +65106,6 @@
 	pixel_x = 6;
 	pixel_y = 5
 	},
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "vyL" = (
@@ -70452,17 +70460,12 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "xCE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/window/northleft{
-	dir = 2;
-	name = "Captain's Desk Door";
-	req_one_access_txt = "20"
-	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
+/turf/open/floor/wood/large,
 /area/crew_quarters/heads/captain)
 "xCV" = (
 /obj/structure/disposalpipe/segment{
@@ -103674,7 +103677,7 @@ wPu
 kcc
 oaq
 flu
-oNF
+oxG
 oNF
 dnF
 aZV
@@ -104443,7 +104446,7 @@ aZV
 vnl
 kmy
 hOk
-oxG
+oaq
 dNO
 guY
 oNF
