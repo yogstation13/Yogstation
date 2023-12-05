@@ -2,6 +2,7 @@
 	name = "donksoft hyper-soaker"
 	desc = "Harmless fun, unless you're allergic to water."
 	icon_state = "water"
+	item_state = "water"
 	w_class = WEIGHT_CLASS_NORMAL
 	clumsy_check = 0 // we do a little trolling
 	fire_sound = 'sound/effects/spray2.ogg'
