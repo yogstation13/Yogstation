@@ -178,11 +178,11 @@
 
 /obj/item/organ/regenerative_core/dryad/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/regenerative_core/dryad/update_icon()
+/obj/item/organ/regenerative_core/dryad/update_icon_state()
 	. = ..()
-	icon_state = inert ? "dryad_heart_decay" : icon_state
+	icon_state = inert ? "dryad_heart_decay" : initial(icon_state)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
