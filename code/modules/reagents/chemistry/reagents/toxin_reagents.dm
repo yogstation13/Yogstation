@@ -415,6 +415,13 @@
 	glass_desc = "A drink that is guaranteed to knock you silly."
 	var/list/paralyzeparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
 
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+	. = ..()
+	var/amount = round(max(reac_volume * clamp(permeability, 0, 1), 0.1))
+	if(amount >= 0.5 && !isalien(M))
+		M.reagents.add_reagent(type, amount)
+		M.apply_damage(reac_volume / 2, TOX, null, (1 - permeability) * 100)
+
 /datum/reagent/toxin/staminatoxin/neurotoxin_alien/proc/pickparalyze()
 	var/selected = pick(paralyzeparts)
 	paralyzeparts -= selected
