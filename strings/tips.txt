@@ -1,3 +1,5 @@
+@You can use the |, + and _ characters to emphasize parts of what you say in-game (e.g. say"my _ass_ |is| +heavy+." will be outputted as "my <u>ass</u> <i>is</i> <b>heavy</b>."). You can also escape these emphasizers by appending backslashes before them (e.g. say"1\+2\+3" will come out as "1+2+3" and not "1\<b>2\</b>3").
+♪ Hey, have you ever tried appending the % character before your messages when speaking in-game? ♫
 Where the space map levels connect is randomized every round, but are otherwise kept consistent within rounds. Remember that they are not necessarily bidirectional!
 You can catch thrown items by toggling on your throw mode with an empty hand active.
 To crack the safe in the vault, use a stethoscope or three plastic explosives on it.
