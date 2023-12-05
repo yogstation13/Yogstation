@@ -105,7 +105,7 @@
 	if(stat & BROKEN)
 		overlay_state = "[icon_state]_broken"
 	. += mutable_appearance(icon, overlay_state)
-	. += mutable_appearance(icon, overlay_state, layer, EMISSIVE_PLANE)
+	. += emissive_appearance(icon, icon_screen, src)
 
 /obj/machinery/mindmachine_hub/RefreshParts()
 	// 2 matter bins. Reduce failure chance by 5 per tier. Results in 30 (tier 1) to 0 (tier 4).
