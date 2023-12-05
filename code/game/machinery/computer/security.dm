@@ -875,7 +875,7 @@
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.security)
-		if(prob(10/severity))
+		if(prob(severity))
 			switch(rand(1,8))
 				if(1)
 					if(prob(10))

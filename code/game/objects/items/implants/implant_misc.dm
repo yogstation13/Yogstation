@@ -64,7 +64,7 @@
 /obj/item/implant/emp/activate()
 	. = ..()
 	uses--
-	empulse(imp_in, 3, 5)
+	empulse(imp_in, EMP_HEAVY, 5) // 10 severity, extends to 5 tiles
 	if(!uses)
 		qdel(src)
 
@@ -174,13 +174,13 @@
 			UnregisterSignal(target, COMSIG_ATOM_EMP_ACT)
 		return TRUE
 
-/obj/item/implant/empshield/proc/overloaded(mob/living/target)
+/obj/item/implant/empshield/proc/overloaded(mob/living/target, severity)
 	if(world.time - lastemp > overloadtimer)
 		numrecent = 0
-	numrecent ++
+	numrecent += severity
 	lastemp = world.time
 
-	if(numrecent >= 5 && ishuman(target))
+	if(numrecent >= (5 * EMP_HEAVY) && ishuman(target))
 		if(warning)
 			to_chat(target, span_userdanger("You feel a twinge inside from your [src], you get the feeling it won't protect you anymore."))
 			warning = FALSE

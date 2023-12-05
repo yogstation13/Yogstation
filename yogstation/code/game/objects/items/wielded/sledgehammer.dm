@@ -14,6 +14,7 @@
 	throwforce = 18
 	throw_range = 3 /// Doesn't throw very far
 	sharpness = SHARP_NONE
+	demolition_mod = 3 // BREAK THINGS
 	armour_penetration = -20
 	hitsound = 'sound/weapons/smash.ogg' /// Hitsound when thrown at someone
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
@@ -26,8 +27,7 @@
 /obj/item/melee/sledgehammer/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 3, \
-		force_wielded = 18, \
+		force_wielded = 15, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 		require_twohands = TRUE, \
@@ -55,8 +55,6 @@
 			var/obj/structure/S = target
 			if(istype(S, /obj/structure/window)) // Sledgehammer really good at smashing windows. 2-7 hits to kill a window
 				S.take_damage(S.max_integrity/2, BRUTE, MELEE, FALSE, null, armour_penetration)
-			else // Sledgehammer can kill airlocks in 17-23 hits, against most other things it's almost as good as a fireaxe
-				S.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 
 /obj/item/melee/sledgehammer/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)

@@ -172,5 +172,7 @@
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
 
+/turf/open/lava/smooth/lava_land_surface/no_shelter //snowflake version that survival pods won't spawn in
+
 /turf/open/lava/smooth/airless
 	initial_gas_mix = AIRLESS_ATMOS

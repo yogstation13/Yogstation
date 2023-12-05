@@ -25,7 +25,6 @@
 	name = "ninja gloves"
 	icon_state = "s-ninja"
 	item_state = "s-ninja"
-	siemens_coefficient = 0
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
@@ -36,6 +35,7 @@
 	var/candrain = 0
 	var/mindrain = 200
 	var/maxdrain = 3200
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 0, ELECTRIC = 100)
 
 
 /obj/item/clothing/gloves/space_ninja/Touch(atom/A,proximity)
