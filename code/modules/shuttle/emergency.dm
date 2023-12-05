@@ -476,7 +476,7 @@
 	var/obj/machinery/computer/shuttle/C = getControlConsole()
 	if(!istype(C, /obj/machinery/computer/shuttle/pod))
 		return ..()
-	if(GLOB.security_level >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))
+	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))
 		if(launch_status == UNLAUNCHED)
 			launch_status = EARLY_LAUNCHED
 			return ..()
@@ -501,8 +501,8 @@
 	AddElement(/datum/element/update_icon_blocker)
 	return ..()
 
-/obj/machinery/computer/shuttle/pod/proc/update_security_level(new_level)
-	admin_controlled = !new_level.open_pods
+/obj/machinery/computer/shuttle/pod/proc/update_security_level(datum/security_level/new_level)
+	admin_controlled = !new_level.pod_access
 
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
@@ -611,7 +611,7 @@
 /obj/item/storage/pod/can_interact(mob/user)
 	if(!..())
 		return FALSE
-	if(GLOB.security_level >= SEC_LEVEL_RED || unlocked)
+	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED || unlocked)
 		return TRUE
 	to_chat(user, "The storage unit will only unlock during a Red or Delta security alert.")
 

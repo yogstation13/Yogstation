@@ -94,7 +94,7 @@
 	@!$, [text2ratvar("PURGE ALL UNTRUTHS")] <&. the anomalies and destroy their source to prevent further damage to corporate property. This is \
 	not a drill.[grace_period ? " Estimated time of appearance: [grace_period] seconds. Use this time to prepare for an attack on [station_name()]." : ""]", \
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
-	set_security_level(SEC_LEVEL_GAMMA)
+	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 	for(var/V in SSticker.mode.servants_of_ratvar)
 		var/datum/mind/M = V
 		if(!M || !M.current)
@@ -332,7 +332,7 @@
 			glow.icon_state = "clockwork_gateway_closing"
 		if(GATEWAY_RATVAR_ARRIVAL to INFINITY)
 			if(!purpose_fulfilled)
-				set_security_level(SEC_LEVEL_DELTA)
+				SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 				countdown.stop()
 				resistance_flags |= INDESTRUCTIBLE
 				purpose_fulfilled = TRUE

@@ -39,6 +39,8 @@
 	var/emergency_doors = FALSE
 	/// Are players allowed to cryo
 	var/allow_cryo = TRUE
+	/// Require providing a reason for a shuttle call at this alert level
+	var/require_call_reason = TRUE
 
 /datum/security_level/New()
 	. = ..()
@@ -47,7 +49,7 @@
 	if(elevating_to_configuration_key)
 		elevating_to_announcement = global.config.Get(elevating_to_configuration_key)
 
-/datum/security_level/on_activate(previous_level)
+/datum/security_level/proc/on_activate(previous_level)
 
 /**
  * GREEN
@@ -61,6 +63,7 @@
 	number_level = SEC_LEVEL_GREEN
 	lowering_to_configuration_key = /datum/config_entry/string/alert_green
 	shuttle_call_time_mod = ALERT_COEFF_GREEN
+	require_call_reason = FALSE
 
 /**
  * BLUE

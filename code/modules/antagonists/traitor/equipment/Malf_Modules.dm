@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(owner.stat == DEAD)
 		return
 	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert", ANNOUNCER_AIMALF)
-	set_security_level("delta")
+	SSsecurity_level.set_level("delta")
 	var/obj/machinery/doomsday_device/DOOM = new(owner_AI)
 	owner_AI.nuking = TRUE
 	owner_AI.doomsday_device = DOOM

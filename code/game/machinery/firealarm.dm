@@ -95,9 +95,9 @@
 	. += "fire_overlay"
 
 	if(is_station_level(z))
-		. += "fire_[GLOB.security_level]"
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, EMISSIVE_PLANE, dir)
+		. += "fire_[SSsecurity_level.get_current_level_as_number()]"
+		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SSsecurity_level.get_current_level_as_number()]", layer, plane, dir)
+		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SSsecurity_level.get_current_level_as_number()]", layer, EMISSIVE_PLANE, dir)
 	else
 		. += "fire_[SEC_LEVEL_GREEN]"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, plane, dir)

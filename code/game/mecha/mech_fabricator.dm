@@ -612,7 +612,7 @@
 	data["isProcessingQueue"] = process_queue
 	data["authorization"] = authorization_override
 	data["user_clearance"] = head_or_silicon(user)
-	data["alert_level"] = GLOB.security_level 
+	data["alert_level"] = SSsecurity_level.get_current_level_as_number()
 	data["combat_parts_allowed"] = combat_parts_allowed(user)
 	data["emagged"] = (obj_flags & EMAGGED)
 	data["silicon_user"] = issilicon(user)
@@ -621,7 +621,7 @@
 
 /// Updates the various authorization checks used to determine if combat parts are available to the current user
 /obj/machinery/mecha_part_fabricator/proc/combat_parts_allowed(mob/user)
-	return authorization_override || GLOB.security_level >= SEC_LEVEL_RED || head_or_silicon(user)
+	return authorization_override || SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED || head_or_silicon(user)
 
 /// made as a lazy check to allow silicons full access always
 /obj/machinery/mecha_part_fabricator/proc/head_or_silicon(mob/user)
