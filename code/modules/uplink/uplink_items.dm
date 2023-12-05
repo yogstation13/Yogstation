@@ -1462,7 +1462,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			completely silent as you slip away from the scene, or into a better position! You will not be able to take \
 			any actions for the 7 second duration."
 	item = /obj/item/pseudocider
-	cost = 6
+	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/shadowcloak
