@@ -26,11 +26,6 @@
 /// The number of z-layer 'slices' usable by the chat message layering
 #define CHAT_LAYER_MAX_Z (CHAT_LAYER_MAX - CHAT_LAYER) / CHAT_LAYER_Z_STEP
 
-///Base layer of chat elements
-#define CHAT_LAYER 1
-///Highest possible layer of chat elements
-#define CHAT_LAYER_MAX 2
-
 /**
  * # Chat Message Overlay
  *

@@ -96,7 +96,7 @@
 	if(stat & BROKEN)
 		overlay_state = "[icon_state]_broken"
 	. += mutable_appearance(icon, overlay_state)
-	. += mutable_appearance(icon, overlay_state, layer, EMISSIVE_PLANE)
+	. += emissive_appearance(icon, icon_screen, src)
 
 /obj/machinery/computer/power_change()
 	. = ..()
