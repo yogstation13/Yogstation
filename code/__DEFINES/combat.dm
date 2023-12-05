@@ -34,6 +34,8 @@
 #define BIO			"bio"
 /// Involves ionizing radiation.
 #define RAD			"rad"
+/// Involves electric shock.
+#define ELECTRIC	"electric"
 /// Involves fire or temperature extremes.
 #define FIRE		"fire"
 /// Involves corrosive substances.

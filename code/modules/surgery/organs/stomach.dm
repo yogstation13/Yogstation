@@ -182,7 +182,7 @@
 	UnregisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT)
 	..()
 
-/obj/item/organ/stomach/cell/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, illusion = FALSE)
+/obj/item/organ/stomach/cell/ethereal/proc/on_electrocute(mob/living/victim, shock_damage, obj/source, siemens_coeff = 1, zone = null, tesla_shock = 0, illusion = 0)
 	if(illusion)
 		return
 	if(!HAS_TRAIT(owner, TRAIT_POWERHUNGRY))
