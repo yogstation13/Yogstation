@@ -74,10 +74,6 @@
 ///Pipecrawling images
 #define PIPECRAWL_IMAGES_PLANE 20
 
-///AI Camera Static
-#define CAMERA_STATIC_LAYER 40
-#define CAMERA_STATIC_PLANE 40
-
 ///Anything that wants to be part of the game plane, but also wants to draw above literally everything else
 #define HIGH_GAME_PLANE 22
 
@@ -89,6 +85,10 @@
 #define RUNECHAT_PLANE 30
 /// Plane for balloon text (text that fades up)
 #define BALLOON_CHAT_PLANE 31
+
+///AI Camera Static -- YOG
+#define CAMERA_STATIC_LAYER 40
+#define CAMERA_STATIC_PLANE 40
 
 //-------------------- HUD ---------------------
 //HUD layer defines
