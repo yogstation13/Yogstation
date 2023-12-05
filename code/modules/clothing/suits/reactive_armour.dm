@@ -117,7 +117,7 @@
 	if(ismob(loc))
 		to_chat(loc, emp_message)
 	bad_effect = TRUE
-	addtimer(VARSET_CALLBACK(src, bad_effect, FALSE), 30 SECONDS)
+	addtimer(VARSET_CALLBACK(src, bad_effect, FALSE), (3 SECONDS) * severity)
 
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive/teleport

@@ -144,7 +144,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/emp_act(severity)
 	. = ..()
-	display_visor_message("[severity > 1 ? "Light" : "Strong"] electromagnetic pulse detected!")
+	display_visor_message("Electromagnetic pulse detected! Severity: [severity]")
 
 
 /obj/item/clothing/suit/space/hardsuit

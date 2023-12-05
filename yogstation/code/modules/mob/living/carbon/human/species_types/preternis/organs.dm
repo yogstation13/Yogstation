@@ -113,5 +113,5 @@
 
 /obj/item/organ/stomach/cell/preternis/emp_act(severity)
 	owner.vomit(stun=FALSE) // fuck that
-	owner.adjust_disgust(20)
+	owner.adjust_disgust(2*severity)
 	to_chat(owner, "<span class='warning'>You feel violently ill as the EMP causes your stomach to kick into high gear.</span>")

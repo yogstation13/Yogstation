@@ -96,12 +96,13 @@
 	. = ..()
 	. += "Resources: [resources]"
 
-/mob/living/simple_animal/hostile/swarmer/emp_act()
+/mob/living/simple_animal/hostile/swarmer/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(health > 1)
-		adjustHealth(health-1)
+	var/emp_damage = severity/EMP_HEAVY
+	if(health > emp_damage)
+		adjustHealth(health - emp_damage)
 	else
 		death()
 

@@ -528,16 +528,17 @@
 	return clamp(damage_amount * (1 - armor_protection/100), 1, damage_amount) // Minimum of 1 damage.
 
 /// Copy of '/mob/living/attacked_by', except it sets damage to what is returned by 'proc/run_armor'.
-/mob/living/silicon/attacked_by(obj/item/I, mob/living/user)
-	send_item_attack_message(I, user)
-	if(I.force)
-		var/damage = run_armor(I.force, I.damtype, MELEE)
-		apply_damage(damage, I.damtype)
-		if(I.damtype == BRUTE)
-			if(prob(33))
-				I.add_mob_blood(src)
-				var/turf/location = get_turf(src)
-				add_splatter_floor(location)
-				if(get_dist(user, src) <= 1)
-					user.add_mob_blood(src)
-		return TRUE
+/mob/living/silicon/attacked_by(obj/item/attacking_item, mob/living/user)
+	send_item_attack_message(attacking_item, user)
+	if(!attacking_item.force)
+		return FALSE
+	// Demolition mod has half the effect on silicons that it does on structures (ex. 2x will act as 1.5x, 0.5x will act as 0.75x)
+	var/damage = run_armor(attacking_item.force * (1 + attacking_item.demolition_mod)/2, attacking_item.damtype, MELEE)
+	apply_damage(damage, attacking_item.damtype)
+	if(attacking_item.damtype == BRUTE && prob(33))
+		attacking_item.add_mob_blood(src)
+		var/turf/location = get_turf(src)
+		add_splatter_floor(location)
+		if(get_dist(user, src) <= 1)
+			user.add_mob_blood(src)
+	return TRUE

@@ -295,6 +295,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(HAS_TRAIT(src, TRAIT_NO_STORAGE))
 		. += "[gender == PLURAL ? "They are" : "It is"] too bulky, fragile, or cumbersome to fit in a container."
 
+	if(demolition_mod > 1)
+		. += "[src] seems exceptionally good at breaking things!"
+	else if(demolition_mod < 1)
+		. += "[src] seems exceptionally bad at breaking things."
+
 	if(resistance_flags & INDESTRUCTIBLE)
 		. += "[src] seems extremely robust! It'll probably withstand anything that could happen to it!"
 	else

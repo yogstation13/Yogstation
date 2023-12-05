@@ -80,11 +80,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	switch(severity)
-		if(1)
-			Stun(160)
-		if(2)
-			Stun(60)
+	Stun(min((1.6 SECONDS) * severity, 16 SECONDS)) // up to 16 seconds
 
 
 /mob/living/silicon/robot/emag_act(mob/user, obj/item/card/emag/emag_card)
