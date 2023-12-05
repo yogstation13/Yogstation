@@ -37,6 +37,8 @@
 	var/pod_access = FALSE
 	/// If red alert access doors should be unlocked
 	var/emergency_doors = FALSE
+	/// Are players allowed to cryo
+	var/allow_cryo = TRUE
 
 /datum/security_level/New()
 	. = ..()
@@ -98,15 +100,16 @@
  */
 /datum/security_level/gamma
 	name = "gamma"
-	announcement_color = "purple"
+	announcement_color = "orange"
 	sound = 'sound/misc/gamma_alert.ogg'
 	number_level = SEC_LEVEL_EPSILON
 	elevating_to_configuration_key = /datum/config_entry/string/alert_gamma
 	lowering_to_configuration_key = /datum/config_entry/string/alert_gamma
-	shuttle_call_time_mod = ALERT_COEFF_EPSILON
+	shuttle_call_time_mod = ALERT_COEFF_DELTA
 	disable_night_mode = TRUE
 	pod_access = TRUE
 	emergency_doors = TRUE
+	allow_cryo = FALSE
 
 /**
  * EPSILON
@@ -115,7 +118,7 @@
  */
 /datum/security_level/epsilon
 	name = "epsilon"
-	announcement_color = "purple"
+	announcement_color = "black"
 	sound = 'sound/misc/epsilon_alert.ogg'
 	number_level = SEC_LEVEL_EPSILON
 	elevating_to_configuration_key = /datum/config_entry/string/alert_epsilon
@@ -124,6 +127,7 @@
 	disable_night_mode = TRUE
 	pod_access = TRUE
 	emergency_doors = TRUE
+	allow_cryo = FALSE
 
 /datum/security_level/epsilon/on_activate(previous_level)
 	send_to_playing_players(span_notice("You get a bad feeling as you hear the Epsilon alert siren."))
@@ -144,3 +148,4 @@
 	area_alarm = TRUE
 	pod_access = TRUE
 	emergency_doors = TRUE
+	allow_cryo = FALSE

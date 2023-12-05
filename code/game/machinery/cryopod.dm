@@ -132,8 +132,6 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	updateUsrDialog()
 	return
 
-GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
-
 //Cryopods themselves.
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
@@ -165,6 +163,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 /obj/machinery/cryopod/Initialize(mapload)
 	..()
 	GLOB.cryopods += src
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
 	return INITIALIZE_HINT_LATELOAD //Gotta populate the cryopod computer GLOB first
 
 /obj/machinery/cryopod/Destroy()
@@ -174,6 +173,12 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 /obj/machinery/cryopod/LateInitialize()
 	update_appearance(UPDATE_ICON)
 	find_control_computer()
+
+/obj/machinery/cryopod/proc/update_security_level(new_level)
+	if(new_level.allow_cryo)
+		PowerOn()
+	else
+		PowerOff()
 
 /obj/machinery/cryopod/proc/PowerOn()
 	if(!occupant)
@@ -227,7 +232,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 /obj/machinery/cryopod/open_machine()
 	..()
-	icon_state = GLOB.cryopods_enabled ? "cryopod-open" : "cryopod-off"
+	icon_state = SSsecurity_level.current_security_level.allow_cryo ? "cryopod-open" : "cryopod-off"
 	if(open_sound)
 		playsound(src, open_sound, 40)
 	density = TRUE
@@ -373,7 +378,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	if(!istype(target) || user.incapacitated() || !target.Adjacent(user) || !Adjacent(user) || !ismob(target) || (!ishuman(user) && !iscyborg(user)) || !istype(user.loc, /turf) || target.buckled)
 		return
 
-	if(!GLOB.cryopods_enabled)
+	if(SSsecurity_level.current_security_level.allow_cryo)
 		to_chat(user, span_boldnotice("NanoTrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 

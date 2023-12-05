@@ -145,15 +145,6 @@ SUBSYSTEM_DEF(ticker)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire()
-	if(seclevel2num(get_security_level()) < SEC_LEVEL_GAMMA && !GLOB.cryopods_enabled)
-		GLOB.cryopods_enabled = TRUE
-		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
-			pod.PowerOn()
-	else if(seclevel2num(get_security_level()) >= SEC_LEVEL_GAMMA && GLOB.cryopods_enabled)
-		GLOB.cryopods_enabled = FALSE
-		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
-			pod.PowerOff()
-
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in)
