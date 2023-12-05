@@ -13,6 +13,8 @@
 	/// What kind of sign do we drop upon being disassembled?
 	var/disassemble_result = /obj/item/wallframe/barsign
 	light_color = LIGHT_COLOR_BLUE
+	/// If barsign has a lighting mask
+	var/light_mask = FALSE
 
 /datum/armor/sign_barsign
 	melee = 20
@@ -64,12 +66,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 /obj/machinery/barsign/update_overlays()
 	. = ..()
-
+	
+	. += emissive_appearance(icon, "[chosen_sign.icon_state]-light-mask", src)
 	if(((stat & NOPOWER) && !(stat & EMPED)) || (stat & BROKEN))
 		return
 
 	if(chosen_sign && chosen_sign.light_mask)
-		. += emissive_appearance(icon, "[chosen_sign.icon_state]-light-mask", src, alpha = src.alpha)
+		SSvis_overlays.add_vis_overlay(src, icon, light_mask, EMISSIVE_LAYER, EMISSIVE_PLANE)
+		. += emissive_appearance(icon, "[chosen_sign.icon_state]-light-mask", src)
 
 /obj/machinery/barsign/update_appearance(updates=ALL)
 	. = ..()
@@ -209,7 +213,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	/// Rename the area when this sign is selected.
 	var/rename_area = TRUE
 	/// If a barsign has a light mask for emission effects
-	var/light_mask
+	var/light_mask = TRUE
 	/// The emission color of the neon light
 	var/neon_color
 
@@ -405,18 +409,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	desc = "When it feels like you're stuck in a pit, might as well have a drink."
 	neon_color = "#aa2811"
 
-/datum/barsign/orangejuice
-	name = "Oranges' Juicery"
-	icon_state = "orangejuice"
-	desc = "For those who wish to be optimally tactful to the non-alcoholic population."
-	neon_color = COLOR_ORANGE
-
 /datum/barsign/tearoom
 	name = "Little Treats Tea Room"
 	icon_state = "little_treats"
 	desc = "A delightfully relaxing tearoom for all the fancy lads in the cosmos."
 	neon_color = LIGHT_COLOR_ORANGE
-	light_mask = "little_treats-light-mask"
 
 /datum/barsign/assembly_line
 	name = "The Assembly Line"

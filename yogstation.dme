@@ -1418,7 +1418,6 @@
 #include "code\game\objects\items\two_handed\spears.dm"
 #include "code\game\objects\structures\aliens.dm"
 #include "code\game\objects\structures\artstuff.dm"
-#include "code\game\objects\structures\barsigns.dm"
 #include "code\game\objects\structures\bedsheet_bin.dm"
 #include "code\game\objects\structures\catwalk.dm"
 #include "code\game\objects\structures\crateshelf.dm"
