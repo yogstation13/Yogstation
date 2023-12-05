@@ -15,12 +15,13 @@
 	construction_type = /obj/item/pipe/trinary
 	pipe_state = "he_manifold"
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/New()
+
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/New(mapload)
 	icon_state = ""
 	return ..()
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/SetInitDirections()
-	initialize_directions = NORTH|SOUTH|EAST|WEST
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/set_init_directions()
+	initialize_directions = ALL_CARDINALS
 	initialize_directions &= ~dir
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/update_overlays()
@@ -33,7 +34,7 @@
 	//Add non-broken pieces
 	for(var/i in 1 to device_type)
 		if(nodes[i])
-			. +=  getpipeimage(icon, "pipe-[piping_layer]", get_dir(src, nodes[i]))
+			. +=  get_pipe_image(icon, "pipe-[piping_layer]", get_dir(src, nodes[i]))
 
 	update_layer()
 	update_alpha()

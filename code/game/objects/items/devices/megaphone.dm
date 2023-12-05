@@ -7,7 +7,6 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	siemens_coefficient = 1
 	var/last_used = 0
 	var/list/voicespan = list(SPAN_COMMAND)
 	

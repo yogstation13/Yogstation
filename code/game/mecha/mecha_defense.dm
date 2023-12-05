@@ -161,8 +161,8 @@
 	if (. & EMP_PROTECT_SELF)
 		return
 	if(get_charge())
-		use_power((cell.charge/3)/(severity*2))
-		take_damage(40 / severity, BURN, ENERGY, 1)
+		use_power((cell.charge * severity / 15))
+		take_damage(4 * severity, BURN, ENERGY, 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
 
 	if(istype(src, /obj/mecha/combat))
@@ -250,7 +250,6 @@
 				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				scanmod = W
 				log_message("[W] installed", LOG_MECHA)
-				update_part_values()
 			else
 				to_chat(user, span_notice("There's already a scanning module installed."))
 		return
@@ -264,7 +263,6 @@
 				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				capacitor = W
 				log_message("[W] installed", LOG_MECHA)
-				update_part_values()
 			else
 				to_chat(user, span_notice("There's already a capacitor installed."))
 		return

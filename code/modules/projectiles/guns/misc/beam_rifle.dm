@@ -425,6 +425,7 @@
 	armor_flag = ENERGY
 	range = 150
 	jitter = 10
+	demolition_mod = 4
 	var/obj/item/gun/gun
 	var/structure_pierce_amount = 0				//All set to 0 so the gun can manually set them during firing.
 	var/structure_bleed_coeff = 0

@@ -272,6 +272,8 @@
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+///You become a Marine that can eat crayons!!!
+#define TRAIT_MARINE  "marine"
 /// makes your footsteps completely silent
 #define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
 /// Immune to being afflicted by time stop (spell)
@@ -289,8 +291,6 @@
 #define TRAIT_NOVEHICLE	"no_vehicle"
 /// BALD!!!
 #define TRAIT_BALD "bald"
-/// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
-#define TRAIT_FARADAYCAGE "faraday_cage"
 /// You can't see color!
 #define TRAIT_COLORBLIND "color_blind"
 
@@ -451,6 +451,7 @@
 #define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
+#define STATION_TRAIT_MOONSCORCH "station_trait_moonscorch"
 
 //important_recursive_contents traits
 /*

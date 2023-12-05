@@ -320,7 +320,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				one_time_password_used = TRUE
 				var/msg = "<h4>Warning!</h4><br>We have detected usage of the AI Control Code for unlocking a console at coordinates ([src.x], [src.y], [src.z]) by [usr.name]. Please verify that this is correct. Be aware we have cancelled the current control code.<br>\
 				If needed a new code can be printed at a communications console."
-				priority_announce(msg, sender_override = "Central Cyber Security Update", has_important_message = TRUE, sanitize = FALSE)
+				priority_announce(msg, sender_override = "Central Cyber Security Update", has_important_message = TRUE)
 				GLOB.ai_control_code = null
 			else
 				to_chat(usr, span_warning("Incorrect code. Make sure you have the latest one."))

@@ -98,7 +98,7 @@
 	var/obj/structure/cable/C = locate(/obj/structure/cable) in T
 	if(!C)
 		return FALSE
-	if (electrocute_mob(user, C.powernet, src, siemens_coeff))
+	if(electrocute_mob(user, C.powernet, src, siemens_coeff, zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
 		do_sparks(5, TRUE, src)
 		return TRUE
 	else

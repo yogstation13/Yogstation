@@ -619,7 +619,8 @@
 		facial_hair_style = "Full Beard"
 	else
 		facial_hair_style = "Shaved"
-	hair_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
+	if(!HAS_TRAIT(src, TRAIT_BALD))
+		hair_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 	underwear = "Nude"
 	update_body()
 	update_hair()
@@ -708,7 +709,7 @@
 #undef CPR_PANIC_SPEED
 
 /mob/living/carbon/human/cuff_resist(obj/item/I)
-	if(dna && (dna.check_mutation(HULK) || dna.check_mutation(ACTIVE_HULK)))
+	if(dna && (dna.check_mutation(HULK)))
 		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		if(..(I, cuff_break = FAST_CUFFBREAK))
 			dropItemToGround(I)
@@ -1128,12 +1129,8 @@
 		remove_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE)
 
 /mob/living/carbon/human/updatehealth()
-	var/oldhealth = health
 	. = ..()
 	dna?.species.spec_updatehealth(src)
-	if(!dna)
-		return
-	hulk_health_check(oldhealth)
 
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
@@ -1346,12 +1343,15 @@
 
 /mob/living/carbon/human/species/ipc/empty/Initialize(mapload)
 	. = ..()
+	var/old_deathsound = deathsound
 	deathsound = null //make it a silent death
 	death()
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
 	if(B)
 		B.Remove(src)
 		QDEL_NULL(B)
+	// By this point they are allowed to die loudly again
+	deathsound = old_deathsound
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman
@@ -1391,36 +1391,3 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
-
-/mob/living/carbon/human/proc/hulk_health_check(oldhealth)
-	if(!dna)
-		return
-
-	if(dna.check_mutation(ACTIVE_HULK))
-		if(health < HEALTH_THRESHOLD_CRIT)
-			dna.remove_mutation(ACTIVE_HULK)
-			return
-		if(health < oldhealth)
-			adjustStaminaLoss(-1.5 * (oldhealth - health))
-	else
-		if(!dna.check_mutation(HULK) && dna.check_mutation(GENETICS_HULK) && stat == CONSCIOUS && (oldhealth >= health + 10 || health < (0.5 * maxHealth)))
-			dna.add_mutation(ACTIVE_HULK)
-
-/mob/living/carbon/human/proc/hulk_stamina_check()
-	if(dna.check_mutation(ACTIVE_HULK))
-		if(staminaloss < 60 && prob(1))
-			adjust_confusion(7 SECONDS)
-			say("HULK SMASH!!")
-		if(staminaloss >= 90)
-			dna.remove_mutation(ACTIVE_HULK)
-			to_chat(src, span_notice("You have calm down enough to become human again."))
-			Knockdown(6)
-		return TRUE
-	else
-		return FALSE
-
-/mob/living/carbon/human/Bump(atom/movable/AM)
-	..()
-	if(dna.check_mutation(ACTIVE_HULK) && has_status_effect(/datum/status_effect/confusion) && (world.time - last_bumped) > 15)
-		Bumped(AM)
-		return AM.attack_hulk(src)

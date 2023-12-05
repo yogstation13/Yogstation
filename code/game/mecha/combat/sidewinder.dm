@@ -13,7 +13,6 @@
 	wreckage = /obj/structure/mecha_wreckage/sidewinder
 	internal_damage_threshold = 25	//Reinforced internal components
 	max_equip = 3
-	step_energy_drain = 3
 	guns_allowed = FALSE			//Melee only
 	omnidirectional_attacks = TRUE	//Thus the name
 	melee_cooldown = 7
@@ -39,7 +38,7 @@
 	if(!equipment_disabled)								//EMP will disable the turning temporarily
 		var/initial_direction = dir
 		face_atom(target)
-		var/new_direction = dir	
+		var/new_direction = dir
 		if(initial_direction != new_direction)			//Make sure we actually turned
 			playsound(src,'sound/mecha/mechmove01.ogg',40,1)
 	return ..()

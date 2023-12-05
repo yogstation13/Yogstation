@@ -103,9 +103,9 @@
 	if(!.)
 		return // reduce unneeded light changes
 	if(stat & NOPOWER)
-		set_light(FALSE)
+		set_light_on(FALSE)
 	else
-		set_light(TRUE)
+		set_light_on(TRUE)
 
 /obj/machinery/computer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
@@ -133,18 +133,14 @@
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
-		set_light(0)
+		set_light_on(FALSE)
 
 /obj/machinery/computer/emp_act(severity)
 	. = ..()
-	if (!(. & EMP_PROTECT_SELF))
-		switch(severity)
-			if(1)
-				if(prob(50))
-					obj_break(ENERGY)
-			if(2)
-				if(prob(10))
-					obj_break(ENERGY)
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(prob(5 * severity))
+		obj_break(ENERGY)
 
 /obj/machinery/computer/deconstruct(disassembled = TRUE, mob/user)
 	on_deconstruction()

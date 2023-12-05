@@ -142,7 +142,7 @@
 	. = ..()
 
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
-		if(src.dna.check_mutation(HULK) || src.dna.check_mutation(ACTIVE_HULK))
+		if(src.dna.check_mutation(HULK))
 			to_chat(src, span_warning("Your meaty finger is much too large for the trigger guard!"))
 			return FALSE
 		if(HAS_TRAIT(src, TRAIT_NOGUNS))
@@ -339,6 +339,10 @@
 		visually_duplicate_and_equip_item(copied_human_mob.back, ITEM_SLOT_BACK, new_human_mob, dropdel)
 	if(copied_human_mob.belt)
 		visually_duplicate_and_equip_item(copied_human_mob.belt, ITEM_SLOT_BELT, new_human_mob, dropdel)
+	if(copied_human_mob.wear_mask)
+		visually_duplicate_and_equip_item(copied_human_mob.wear_mask, ITEM_SLOT_MASK, new_human_mob, dropdel)
+	if(copied_human_mob.wear_neck)
+		visually_duplicate_and_equip_item(copied_human_mob.wear_neck, ITEM_SLOT_NECK, new_human_mob, dropdel)
 	if(copied_human_mob.ears)
 		visually_duplicate_and_equip_item(copied_human_mob.ears, ITEM_SLOT_EARS, new_human_mob, dropdel)
 	if(copied_human_mob.glasses)
@@ -347,12 +351,20 @@
 		visually_duplicate_and_equip_item(copied_human_mob.gloves, ITEM_SLOT_GLOVES, new_human_mob, dropdel)
 	if(copied_human_mob.shoes)
 		visually_duplicate_and_equip_item(copied_human_mob.shoes, ITEM_SLOT_FEET, new_human_mob, dropdel)
+	if(copied_human_mob.head)
+		visually_duplicate_and_equip_item(copied_human_mob.head, ITEM_SLOT_HEAD, new_human_mob, dropdel)
 	if(copied_human_mob.wear_id)
 		visually_duplicate_and_equip_item(copied_human_mob.wear_id, ITEM_SLOT_ID, new_human_mob, dropdel)
 		new_human_mob.sec_hud_set_ID()
 
 	for(var/obj/item/implant/implant_instance in copied_human_mob.implants)
-		var/obj/item/implant/implant_copy = new implant_instance.type
+		var/obj/item/implant/implant_copy
+		if(istype(implant_instance, /obj/item/implant/dusting/iaa))
+			implant_copy = new /obj/item/implant/dusting/iaa/fake ()
+		else 
+			implant_copy = new implant_instance.type
+		if(!implant_copy)
+			continue //if somehow it doesn't create a copy, don't runtime
 		implant_copy.implant(new_human_mob, null, TRUE)
 		if(dropdel)
 			QDEL_IN(implant_copy, 7 SECONDS)

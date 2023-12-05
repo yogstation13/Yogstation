@@ -70,9 +70,17 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 		return
 	if (!guardian.stats)
 		return
+	if(!guardian.stats.ability)
+		return
+	if (!istype(guardian.stats.ability, /datum/guardian_ability/major/frenzy))
+		return
+	var/datum/guardian_ability/major/frenzy/ability = guardian.stats.ability
+	if(world.time < ability.next_rush)
+		return
 	if (get_dist_euclidian(guardian.summoner?.current, target) > guardian.range)
 		to_chat(guardian, span_italics(span_danger("[target] is out of your range!")))
 		return
+
 	guardian.forceMove(get_step(get_turf(target), turn(target.dir, 180)))
 	playsound(guardian, 'yogstation/sound/effects/vector_appear.ogg', 100, FALSE)
 	guardian.target = target
@@ -81,4 +89,5 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 		span_italics("You hear a fast wooosh."))
 	guardian.AttackingTarget()
 	target.throw_at(get_edge_target_turf(guardian, get_dir(guardian, target)), world.maxx / 6, 5, guardian, TRUE)
+	ability.next_rush = world.time + 3 SECONDS
 	Finished()

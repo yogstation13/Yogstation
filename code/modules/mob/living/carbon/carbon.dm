@@ -88,7 +88,7 @@
 	return ..()
 
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(mind?.martial_art.handle_throw(hit_atom, src))
+	if(mind?.martial_art.handle_throw(hit_atom, src, throwingdatum))
 		return
 	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
 		return
@@ -541,10 +541,6 @@
 
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src //leaving this here but sus
-		if(stam && H.hulk_stamina_check())
-			return
 	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold)
 		if(!stat)
 			enter_stamcrit()
@@ -970,11 +966,11 @@
 		O.set_owner(src)
 		bodyparts.Remove(X)
 		bodyparts.Add(O)
-		if(O.body_part == ARM_LEFT)
+		if(O.body_part & ARM_LEFT)
 			l_arm_index_next += 2
 			O.held_index = l_arm_index_next //1, 3, 5, 7...
 			hand_bodyparts += O
-		else if(O.body_part == ARM_RIGHT)
+		else if(O.body_part & ARM_RIGHT)
 			r_arm_index_next += 2
 			O.held_index = r_arm_index_next //2, 4, 6, 8...
 			hand_bodyparts += O
@@ -1153,7 +1149,7 @@
 
 /// Returns if the carbon is wearing shock proof gloves
 /mob/living/carbon/proc/wearing_shock_proof_gloves()
-	return gloves?.siemens_coefficient == 0
+	return gloves?.armor.getRating(ELECTRIC) >= 100
 
 /mob/living/carbon/wash(clean_types)
 	. = ..()

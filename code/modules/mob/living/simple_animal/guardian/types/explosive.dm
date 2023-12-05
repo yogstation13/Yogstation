@@ -55,7 +55,7 @@
 /obj/guardian_bomb/proc/disguise(obj/A)
 	A.forceMove(src)
 	stored_obj = A
-	opacity = A.opacity
+	set_opacity(A.opacity)
 	anchored = A.anchored
 	density = A.density
 	appearance = A.appearance
