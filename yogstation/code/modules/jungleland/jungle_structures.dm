@@ -332,6 +332,7 @@
 	icon_state = "shrine"
 	resistance_flags = INDESTRUCTIBLE
 	anchored = TRUE
+	
 
 /obj/structure/spawner/nest
 	name = "Fauna nest"
