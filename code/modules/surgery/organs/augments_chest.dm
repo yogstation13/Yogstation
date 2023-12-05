@@ -337,7 +337,7 @@
 
 	owner.set_drugginess(4 * severity)
 	owner.adjust_hallucinations((50 * severity) SECONDS)
-	owner.blur_eyes(2 * severity)
+	owner.adjust_eye_blur(2 * severity)
 	owner.adjust_dizzy(severity SECONDS)
 	time_on += severity
 	owner.adjustFireLoss(severity)
