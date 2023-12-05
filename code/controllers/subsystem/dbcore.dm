@@ -86,7 +86,8 @@ SUBSYSTEM_DEF(dbcore)
 	var/address = CONFIG_GET(string/address)
 	var/port = CONFIG_GET(number/port)
 	var/timeout = max(CONFIG_GET(number/async_query_timeout), CONFIG_GET(number/blocking_query_timeout))
-	var/thread_limit = CONFIG_GET(number/bsql_thread_limit)
+	var/min_sql_connections = CONFIG_GET(number/pooling_min_sql_connections)
+	var/max_sql_connections = CONFIG_GET(number/pooling_max_sql_connections)
 
 	var/result = json_decode(rustg_sql_connect_pool(json_encode(list(
 		"host" = address,
@@ -94,10 +95,10 @@ SUBSYSTEM_DEF(dbcore)
 		"user" = user,
 		"pass" = pass,
 		"db_name" = db,
-		"max_threads" = 5,
 		"read_timeout" = timeout,
 		"write_timeout" = timeout,
-		"max_threads" = thread_limit,
+		"min_threads" = min_sql_connections,
+		"max_threads" = max_sql_connections,
 	))))
 	. = (result["status"] == "ok")
 	if (.)
