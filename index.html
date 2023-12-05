@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(749 modules,
-    2003/9307 macros, 21.5%)</aside></h3>
+<aside>(756 modules,
+    2011/9314 macros, 21.6%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -115,6 +115,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/economy.html" title="code&#x2F;__DEFINES&#x2F;economy">economy</a></li>
     <li><a href="code/__DEFINES/exosuit_fab.html" title="code&#x2F;__DEFINES&#x2F;exosuit_fab">exosuit_fab</a></li>
     <li><a href="code/__DEFINES/flags.html" title="code&#x2F;__DEFINES&#x2F;flags">flags</a></li>
+    <li><a href="code/__DEFINES/fonts.html" title="code&#x2F;__DEFINES&#x2F;fonts">fonts</a></li>
     <li><a href="code/__DEFINES/food.html" title="code&#x2F;__DEFINES&#x2F;food">food</a></li>
     <li><a href="code/__DEFINES/footsteps.html" title="code&#x2F;__DEFINES&#x2F;footsteps">footsteps</a></li>
     <li><a href="code/__DEFINES/hud.html" title="code&#x2F;__DEFINES&#x2F;hud">hud</a></li>
@@ -227,7 +228,6 @@ General Public License version 3.
 Materials are now instanced datums, with an associative list of them being kept in SSmaterials. We only instance the materials once and then re-use these instances for everything.
 These materials call on_applied() on whatever item they are applied to, common effects are adding components, changing color and changing description. This allows us to differentiate items based on the material they are made out of.area</li>
     <li><a href="code/controllers/subsystem/overlays.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;overlays">overlays</a></li>
-    <li><a href="code/controllers/subsystem/runechat.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;runechat">runechat</a></li>
     <li><a href="code/controllers/subsystem/shuttle.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;shuttle">shuttle</a></li>
     <li><a href="code/controllers/subsystem/tgui.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tgui">tgui</a> - Copyright (c) 2020 Aleksej Komarov
 SPDX-License-Identifier: MIT</li>
@@ -459,6 +459,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/game/objects/structures/statues.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;statues">statues</a></li>
     </ul></li>
     </ul></li>
+    <li><a href="code/game/say.html" title="code&#x2F;game&#x2F;say">say</a></li>
     <li><a href="code/game/sound.html" title="code&#x2F;game&#x2F;sound">sound</a> - playsound</li>
     <li class="has-children"><span class="no-substance">turfs&#x2F;</span><span title="code&#x2F;game&#x2F;turfs&#x2F;simulated">simulated</span><ul class="index-tree">
     <li><span class="no-substance">floor&#x2F;plating&#x2F;</span><a href="code/game/turfs/simulated/floor/plating/asteroid.html" title="code&#x2F;game&#x2F;turfs&#x2F;simulated&#x2F;floor&#x2F;plating&#x2F;asteroid">asteroid</a></li>
@@ -1049,6 +1050,14 @@ SPDX-License-Identifier: MIT</li>
     </ul></li>
     <li><a href="code/world.html" title="code&#x2F;world">world</a></li>
     </ul></li>
+    <li class="has-children"><span class="no-substance">interface&#x2F;</span><span title="interface&#x2F;fonts">fonts</span><ul class="index-tree">
+    <li><a href="interface/fonts/fonts_datum.html" title="interface&#x2F;fonts&#x2F;fonts_datum">fonts_datum</a></li>
+    <li><a href="interface/fonts/grand_9k.html" title="interface&#x2F;fonts&#x2F;grand_9k">grand_9k</a></li>
+    <li><a href="interface/fonts/license.html" title="interface&#x2F;fonts&#x2F;license">license</a></li>
+    <li><a href="interface/fonts/pixellari.html" title="interface&#x2F;fonts&#x2F;pixellari">pixellari</a></li>
+    <li><a href="interface/fonts/spess_font.html" title="interface&#x2F;fonts&#x2F;spess_font">spess_font</a></li>
+    <li><a href="interface/fonts/tiny_unicode.html" title="interface&#x2F;fonts&#x2F;tiny_unicode">tiny_unicode</a></li>
+    </ul></li>
     <li class="has-children"><a href="yogstation.html" title="yogstation">THIS IS ALL DEPRECATED AND NO LONGER NECESSARY. YOU CAN STILL DO THIS IF YOU WANT, BUT IT IS NO LONGER A REQUIREMENT, SINCE THE MIRRORBOT IS NO LONGER ACTIVE</a><ul class="index-tree">
     <li><a href="yogstation/changes.html" title="yogstation&#x2F;changes">Differences with &#x2F;TG&#x2F;Station</a> - The best practice to have while coding is to keep everything modularized, or the most possible. Sometimes it's not possible and you're required to put a &quot;hook&quot; proc call in a TG file. This file is intended to have a list of those hooks, so their locations and purposes can be easily found.</li>
     <li class="has-children"><span title="yogstation&#x2F;code">code</span><ul class="index-tree">
@@ -1101,7 +1110,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1043 detailed/1895 documented/28809 total, 6.6%)</aside></h3>
+<aside>(1043 detailed/1903 documented/28820 total, 6.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1604,7 +1613,6 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/controller/subsystem/processing/station.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;processing&#x2F;station">Station</a></li>
     </ul></li>
     <li><a href="datum/controller/subsystem/research.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;research">Research</a></li>
-    <li><a href="datum/controller/subsystem/runechat.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;runechat">Runechat</a></li>
     <li><a href="datum/controller/subsystem/shuttle.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;shuttle">Shuttle</a></li>
     <li><a href="datum/controller/subsystem/sounds.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;sounds">Sounds</a></li>
     <li><a href="datum/controller/subsystem/statpanels.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;statpanels">Stat Panels</a></li>
@@ -1827,6 +1835,36 @@ The overlay can be specified in new as the first paramter; if not set it default
     </ul></li>
     <li><a href="datum/fluid_group.html" title="&#x2F;datum&#x2F;fluid_group">fluid_group</a> - SMOKE SYSTEMS
 A group of fluid objects.</li>
+    <li class="has-children"><a href="datum/font.html" title="&#x2F;datum&#x2F;font">font</a> - A font datum, it exists to define a custom font to use in a span style later.<ul class="index-tree">
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;font&#x2F;grand9k">Grand9K Pixel</span> - For clean results on map, use only sizing pt, multiples of 6: 6pt 12pt 18pt 24pt etc. - Not for use with px sizing
+Can be used in TGUI etc, px sizing is pt / 0.75. 6pt = 8px, 12pt = 16px etc.
+Base font<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;font&#x2F;grand9k&#x2F;size_6pt">Grand9K Pixel 6pt</span> - For icon overlays
+Grand9K 6pt metrics generated using Lummox's dmifontsplus (https://www.byond.com/developer/LummoxJR/DmiFontsPlus)
+Note: these variable names have been changed, so you can't straight copy/paste from dmifontsplus.exe</li>
+    </ul></li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;font&#x2F;pixellari">Pixellari</span> - For clean results on map, use only sizing pt, multiples of 12: 12pt 24pt 48pt etc. - Not for use with px sizing
+Can be used in TGUI etc, px sizing is pt / 0.75. 12pt = 16px, 24pt = 32px etc.
+Base font<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;font&#x2F;pixellari&#x2F;size_12pt">Pixellari 12pt</span> - For icon overlays
+Pixellari 12pt metrics generated using Lummox's dmifontsplus (https://www.byond.com/developer/LummoxJR/DmiFontsPlus)
+Note: these variable names have been changed, so you can't straight copy/paste from dmifontsplus.exe</li>
+    </ul></li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;font&#x2F;spessfont">Spess Font</span> - For clean results on map, use only sizing pt, multiples of 6: 6t 12pt 18pt etc. - Not for use with px sizing
+Can be used in TGUI etc, px sizing is pt / 0.75. 12pt = 16px, 24pt = 32px etc.
+Base font<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;font&#x2F;spessfont&#x2F;size_6pt">Spess Font 6pt</span> - For icon overlays
+Spess Font 6pt metrics generated using Lummox's dmifontsplus (https://www.byond.com/developer/LummoxJR/DmiFontsPlus)
+Note: these variable names have been changed, so you can't straight copy/paste from dmifontsplus.exe</li>
+    </ul></li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;font&#x2F;tiny_unicode">TinyUnicode</span> - For clean results on map, use only sizing pt, multiples of 12: 12pt 24pt 48pt etc. - Not for use with px sizing
+Can be used in TGUI etc, px sizing is pt / 0.75. 12pt = 16px, 24pt = 32px etc.
+Base font<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;font&#x2F;tiny_unicode&#x2F;size_12pt">TinyUnicode 12pt</span> - For icon overlays
+TinyUnicode 12pt metrics generated using Lummox's dmifontsplus (https://www.byond.com/developer/LummoxJR/DmiFontsPlus)
+Note: these variable names have been changed, so you can't straight copy/paste from dmifontsplus.exe</li>
+    </ul></li>
+    </ul></li>
     <li class="has-children"><a href="datum/game_mode.html" title="&#x2F;datum&#x2F;game_mode">invalid</a><ul class="index-tree">
     <li><a href="datum/game_mode/bloodsucker.html" title="&#x2F;datum&#x2F;game_mode&#x2F;bloodsucker">bloodsucker</a></li>
     <li><a href="datum/game_mode/dynamic.html" title="&#x2F;datum&#x2F;game_mode&#x2F;dynamic">dynamic mode</a></li>
@@ -3715,7 +3753,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/46d51ce852d3152536261739dd2ec2b918488b4c">46d51ce</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/25e3c77e7ec46fbc242adb9156b69815e94aa486">25e3c77</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
