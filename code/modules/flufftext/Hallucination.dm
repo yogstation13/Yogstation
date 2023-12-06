@@ -1120,7 +1120,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	name = "chasm"
 
 /obj/effect/hallucination/danger/chasm/show_icon()
-	image = image('icons/turf/floors/Chasms.dmi',src,"smooth",TURF_LAYER)
+	image = image('icons/turf/floors/chasms.dmi',src,"smooth",TURF_LAYER)
 	if(target.client)
 		target.client.images += image
 

@@ -506,7 +506,7 @@
 
 /turf/open/floor/fakepit
 	desc = "A clever illusion designed to look like a bottomless pit."
-	icon = 'icons/turf/floors/Chasms.dmi'
+	icon = 'icons/turf/floors/chasms.dmi'
 	icon_state = "chasms-0"
 	base_icon_state = "chasms"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER

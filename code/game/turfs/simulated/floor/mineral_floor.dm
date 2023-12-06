@@ -196,7 +196,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig/fakepit
 	name = "brig chasm"
 	desc = "A place for very naughy criminals."
-	icon = 'icons/turf/floors/Chasms.dmi'
+	icon = 'icons/turf/floors/chasms.dmi'
 	icon_state = "chasms-0"
 	base_icon_state = "chasms"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
