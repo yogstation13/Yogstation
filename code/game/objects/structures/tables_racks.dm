@@ -359,7 +359,7 @@
 /obj/structure/table/wood/fancy
 	name = "fancy table"
 	desc = "A standard metal table frame covered with an amazingly fancy, patterned cloth."
-	icon = 'icons/obj/structures.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table.dmi', 'icons/obj/structures.dmi')
 	icon_state = "fancy_table"
 	base_icon_state = "fancy_table"
 	frame = /obj/structure/table_frame
@@ -367,60 +367,52 @@
 	buildstack = /obj/item/stack/tile/carpet
 	smoothing_groups = SMOOTH_GROUP_FANCY_WOOD_TABLES //Don't smooth with SMOOTH_GROUP_TABLES or SMOOTH_GROUP_WOOD_TABLES
 	canSmoothWith = SMOOTH_GROUP_FANCY_WOOD_TABLES
-	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize(mapload)
-
-/obj/structure/table/wood/fancy/Initialize(mapload)
-	. = ..()
-	// Needs to be set dynamically because table smooth sprites are 32x34,
-	// which the editor treats as a two-tile-tall object. The sprites are that
-	// size so that the north/south corners look nice - examine the detail on
-	// the sprites in the editor to see why.
-	icon = smooth_icon
 
 /obj/structure/table/wood/fancy/black
 	icon_state = "fancy_table_black"
 	buildstack = /obj/item/stack/tile/carpet/black
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_black.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/exoticblue
 	icon_state = "fancy_table_exoticblue"
 	buildstack = /obj/item/stack/tile/carpet/exoticblue
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticblue.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticblue.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/cyan
 	icon_state = "fancy_table_cyan"
 	buildstack = /obj/item/stack/tile/carpet/cyan
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_cyan.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_cyan.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/exoticgreen
 	icon_state = "fancy_table_exoticgreen"
 	buildstack = /obj/item/stack/tile/carpet/exoticgreen
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticgreen.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticgreen.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/orange
 	icon_state = "fancy_table_orange"
 	buildstack = /obj/item/stack/tile/carpet/orange
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_orange.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_orange.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/exoticpurple
 	icon_state = "fancy_table_exoticpurple"
 	buildstack = /obj/item/stack/tile/carpet/exoticpurple
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticpurple.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticpurple.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/red
 	icon_state = "fancy_table_red"
 	buildstack = /obj/item/stack/tile/carpet/red
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_red.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_red.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/royalblack
 	icon_state = "fancy_table_royalblack"
 	buildstack = /obj/item/stack/tile/carpet/royalblack
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblack.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_royalblack.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/royalblue
 	icon_state = "fancy_table_royalblue"
 	buildstack = /obj/item/stack/tile/carpet/royalblue
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblue.dmi'
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_royalblue.dmi', 'icons/obj/structures.dmi')
+
 /*
  * Reinforced tables
  */

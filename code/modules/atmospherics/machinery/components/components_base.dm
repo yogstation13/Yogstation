@@ -2,17 +2,25 @@
 // On top of that, now people can add component-speciic procs/vars if they want!
 
 /obj/machinery/atmospherics/components
-	var/welded = FALSE //Used on pumps and scrubbers
+	hide = FALSE
+	layer = GAS_PUMP_LAYER
+
+	///Is the component welded?
+	var/welded = FALSE
+	///Should the component should show the pipe underneath it?
 	var/showpipe = TRUE
-	var/shift_underlay_only = TRUE //Layering only shifts underlay?
-
-	var/update_parents_after_rebuild = FALSE
-
+	///When the component is on a non default layer should we shift everything? Or just the underlay pipe
+	var/shift_underlay_only = TRUE
+	///Stores the parent pipeline, used in components
 	var/list/datum/pipeline/parents
+	///If this is queued for a rebuild this var signifies whether parents should be updated after it's done
+	var/update_parents_after_rebuild = FALSE
+	///Stores the gasmix for each node, used in components
 	var/list/datum/gas_mixture/airs
-	var/startingvolume = 200
-
+	///Handles whether the custom reconcilation handling should be used
 	var/custom_reconcilation = FALSE
+
+	var/startingvolume = 200
 
 /obj/machinery/atmospherics/components/New()
 	parents = new(device_type)

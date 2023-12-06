@@ -309,7 +309,7 @@
 
 // item traits
 #define TRAIT_NODROP            "nodrop"
-/// Visible on t-ray scanners if the atom/var/level == 1
+/// Visible on t-ray scanners.
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible"
 /// Properly wielded two handed item
 #define TRAIT_WIELDED "wielded"

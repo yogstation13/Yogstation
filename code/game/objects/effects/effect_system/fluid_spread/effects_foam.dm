@@ -88,7 +88,7 @@
 		if(object == src)
 			continue
 		if(isturf(object.loc))
-			if(turf_location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(object, TRAIT_T_RAY_VISIBLE))
+			if(location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(object, TRAIT_T_RAY_VISIBLE))
 				continue
 		reagents.reaction(object, TOUCH|VAPOR, fraction)
 

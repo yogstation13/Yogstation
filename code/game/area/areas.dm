@@ -4,7 +4,6 @@
   * A grouping of tiles into a logical space, mostly used by map editors
   */
 /area
-	level = null
 	name = "Space"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
@@ -115,11 +114,13 @@
 	var/list/cameras
 	var/list/firealarms
 	var/list/airalarms
+
+	///Typepath to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
+	var/area/area_limited_icon_smoothing
+
 	var/firedoors_last_closed_on = 0
 	/// Can the Xenobio management console transverse this area by default?
 	var/xenobiology_compatible = FALSE
-	/// typecache to limit the areas that atoms in this area can smooth with, used for shuttles IIRC
-	var/list/canSmoothWithAreas
 
 	var/minimap_color = null // if null, chooses random one
 
@@ -197,7 +198,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	layer = AREA_LAYER
 	uid = ++global_uid
 	map_name = name // Save the initial (the name set in the map) name of the area.
-	canSmoothWithAreas = typecacheof(canSmoothWithAreas)
 
 	add_delta_areas()
 

@@ -329,7 +329,7 @@
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
 //merges adjacent full-tile windows into one
-/obj/structure/window/update_overlays()
+/obj/structure/window/update_overlays(updates=ALL)
 	. = ..()
 	if(QDELETED(src) || !fulltile)
 		return
@@ -680,7 +680,6 @@
 	smoothing_groups = SMOOTH_GROUP_WINDOW_FULLTILE
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE
 	state = RWINDOW_SECURE
-	level = 3
 	glass_amount = 2
 
 /obj/structure/window/reinforced/fulltile/unanchored
@@ -696,7 +695,6 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_WINDOW_FULLTILE
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE
-	level = 3
 	glass_amount = 2
 
 /obj/structure/window/reinforced/fulltile/ice
@@ -704,7 +702,6 @@
 	icon_state = "rice_window-0"
 	base_icon_state = "rice_window"
 	max_integrity = 150
-	level = 3
 	glass_amount = 2
 
 /obj/structure/window/reinforced/fulltile/bronze
@@ -731,7 +728,6 @@
 	smoothing_groups = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE
 	explosion_block = 3
-	level = 3
 	glass_type = /obj/item/stack/sheet/titaniumglass
 	glass_amount = 2
 
@@ -763,7 +759,6 @@
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM
 	explosion_block = 3
 	damage_deflection = 21 //The same as reinforced plasma windows.
-	level = 3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
 	glass_amount = 2
 	rad_insulation = RAD_FULL_INSULATION
@@ -839,7 +834,6 @@
 	flags_1 = PREVENT_CLICK_UNDER_1
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 600
-	level = 3
 	glass_amount = 2
 
 /obj/structure/window/reinforced/clockwork/spawnDebris(location)

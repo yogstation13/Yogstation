@@ -4,6 +4,7 @@
 	desc = "It is an open vent."
 	can_unwrench = TRUE
 	layer = GAS_SCRUBBER_LAYER
+	hide = TRUE
 	shift_underlay_only = FALSE
 
 	pipe_state = "pvent"

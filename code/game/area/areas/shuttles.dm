@@ -11,15 +11,12 @@
 	icon_state = "shuttle"
 	// Loading the same shuttle map at a different time will produce distinct area instances.
 	unique = FALSE
-	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
-	var/list/gem_payout = list()
+	area_limited_icon_smoothing = /area/shuttle
 	lighting_colour_tube = "#fff0dd"
 	lighting_colour_bulb = "#ffe1c1"
 
-/area/shuttle/Initialize(mapload)
-	if(!canSmoothWithAreas)
-		canSmoothWithAreas = type
-	. = ..()
+	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
+	var/list/gem_payout = list()
 
 /area/shuttle/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	. = ..()
@@ -36,7 +33,7 @@
 	name = "Syndicate Infiltrator"
 	blob_allowed = FALSE
 	ambience_index = AMBIENCE_DANGER
-	canSmoothWithAreas = /area/shuttle/syndicate
+	area_limited_icon_smoothing = /area/shuttle/syndicate
 
 /area/shuttle/syndicate/bridge
 	name = "Syndicate Infiltrator Control"
@@ -61,7 +58,6 @@
 	name = "Pirate Shuttle"
 	blob_allowed = FALSE
 	requires_power = TRUE
-	canSmoothWithAreas = /area/shuttle/pirate
 
 ////////////////////////////Bounty Hunter Shuttles////////////////////////////
 
@@ -69,7 +65,6 @@
 	name = "Hunter Shuttle"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	blob_allowed = FALSE
-	canSmoothWithAreas = /area/shuttle/hunter
 
 ////////////////////////////White Ship////////////////////////////
 
@@ -77,7 +72,7 @@
 	name = "Abandoned Ship"
 	blob_allowed = FALSE
 	requires_power = TRUE
-	canSmoothWithAreas = /area/shuttle/abandoned
+	area_limited_icon_smoothing = /area/shuttle/abandoned
 
 /area/shuttle/abandoned/bridge
 	name = "Abandoned Ship Bridge"
@@ -149,6 +144,7 @@
 
 /area/shuttle/escape
 	name = "Emergency Shuttle"
+	area_limited_icon_smoothing = /area/shuttle/escape
 
 /area/shuttle/escape/backup
 	name = "Backup Emergency Shuttle"

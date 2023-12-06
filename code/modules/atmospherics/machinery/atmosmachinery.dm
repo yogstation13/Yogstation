@@ -7,9 +7,6 @@
 // Pipes -> Pipelines
 // Pipelines + Other Objects -> Pipe network
 
-#define PIPE_VISIBLE_LEVEL 2
-#define PIPE_HIDDEN_LEVEL 1
-
 GLOBAL_LIST_EMPTY(iconsetids)
 GLOBAL_LIST_EMPTY(pipeimages)
 
@@ -32,6 +29,9 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	var/pipe_color
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/pipe_flags = NONE
+
+	///This only works on pipes, because they have 1000 subtypes wich need to be visible and invisible under tiles, so we track this here
+	var/hide = TRUE
 
 	var/image/pipe_vision_img = null
 
@@ -64,6 +64,8 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/Initialize(mapload)
 	if(init_processing)
 		SSair_machinery.start_processing_machine(src)
+	if(hide)
+		AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE) //if changing this, change the subtypes RemoveElements too, because thats how bespoke works
 	return ..()
 
 /obj/machinery/atmospherics/Destroy()
@@ -216,11 +218,6 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	if(!can_unwrench(user))
 		return ..()
 
-	var/turf/T = get_turf(src)
-	if (level==1 && isturf(T) && T.intact)
-		to_chat(user, span_warning("You must remove the plating first!"))
-		return TRUE
-
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	add_fingerprint(user)
@@ -319,8 +316,6 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
 		pipe_color = obj_color
 	set_piping_layer(set_layer)
-	var/turf/T = get_turf(src)
-	level = T.intact ? 2 : 1
 	atmos_init()
 	var/list/nodes = pipeline_expansion()
 	for(var/obj/machinery/atmospherics/A in nodes)

@@ -63,6 +63,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_ALIEN_RESIN
 	canSmoothWith = SMOOTH_GROUP_ALIEN_RESIN
+	var/resintype = null
 
 
 /obj/structure/alien/resin/Initialize(mapload)

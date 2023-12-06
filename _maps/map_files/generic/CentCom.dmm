@@ -6861,11 +6861,7 @@
 /area/centcom/testchamber)
 "apy" = (
 /obj/machinery/smartfridge,
-/turf/closed/indestructible{
-	icon = 'icons/turf/walls/wood_wall.dmi';
-	icon_state = "wood";
-	smooth = 1
-	},
+/turf/closed/indestructible/rock/wood,
 /area/centcom/holding)
 "apz" = (
 /obj/structure/rack,
@@ -13119,11 +13115,7 @@
 /area/yogs/infiltrator_base/outside)
 "aBV" = (
 /obj/machinery/chem_dispenser/drinks/beer,
-/turf/closed/indestructible{
-	icon = 'icons/turf/walls/wood_wall.dmi';
-	icon_state = "wood";
-	smooth = 1
-	},
+/turf/closed/indestructible/rock/wood,
 /area/centcom/holding)
 "aBW" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -14652,11 +14644,7 @@
 /area/wizard_station)
 "aED" = (
 /obj/machinery/vending/boozeomat,
-/turf/closed/indestructible{
-	icon = 'icons/turf/walls/wood_wall.dmi';
-	icon_state = "wood";
-	smooth = 1
-	},
+/turf/closed/indestructible/rock/wood,
 /area/centcom/holding)
 "aEE" = (
 /obj/structure/closet/crate/bin,
@@ -19174,11 +19162,7 @@
 	},
 /area/holodeck/rec_center/medical)
 "aNd" = (
-/turf/closed/indestructible{
-	icon = 'icons/turf/walls/wood_wall.dmi';
-	icon_state = "wood";
-	smooth = 1
-	},
+/turf/closed/indestructible/rock/wood,
 /area/centcom/holding)
 "aNe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -21031,11 +21015,7 @@
 /area/centcom/testchamber)
 "aQT" = (
 /obj/machinery/chem_dispenser/drinks,
-/turf/closed/indestructible{
-	icon = 'icons/turf/walls/wood_wall.dmi';
-	icon_state = "wood";
-	smooth = 1
-	},
+/turf/closed/indestructible/rock/wood,
 /area/centcom/holding)
 "aQU" = (
 /obj/structure/table/reinforced,

@@ -35,12 +35,13 @@
 
 
 /turf/open/floor/plating/ashplanet
-	icon = 'icons/turf/mining.dmi'
-	gender = PLURAL
 	name = "ash"
-	icon_state = "ash"
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	desc = "The ground is covered in volcanic ash."
+	icon_state = "ash"
+	base_icon_state = "ash"
+	icon = MAP_SWITCH('icons/turf/floors/ash.dmi', 'icons/turf/mining.dmi')
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	gender = PLURAL
 	baseturfs = /turf/open/floor/plating/ashplanet/wateryrock //I assume this will be a chasm eventually, once this becomes an actual surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
@@ -51,16 +52,14 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 
-	var/smooth_icon = 'icons/turf/floors/ash.dmi'
-
 /turf/open/floor/plating/ashplanet/Initialize(mapload)
 	. = ..()
-	if(smoothing_flags & SMOOTH_BITMASK)
-		var/matrix/M = new
-		M.Translate(-4, -4)
-		transform = M
-		icon = smooth_icon
-		icon_state = "[icon_state]-[smoothing_junction]"
+	if(!(smoothing_flags & SMOOTH_BITMASK))
+		return
+	var/matrix/M = new
+	M.Translate(-4, -4)
+	transform = M
+	icon_state = "[base_icon_state]-[smoothing_junction]"
 
 /turf/open/floor/plating/ashplanet/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
@@ -80,7 +79,7 @@
 /turf/open/floor/plating/ashplanet/rocky
 	gender = PLURAL
 	name = "rocky ground"
-	icon_state = "rockyash"
+	icon_state = "rocky_ash"
 	base_icon_state = "rocky_ash"
 	icon = MAP_SWITCH('icons/turf/floors/rocky_ash.dmi', 'icons/turf/mining.dmi')
 	layer = MID_TURF_LAYER
@@ -94,7 +93,8 @@
 /turf/open/floor/plating/ashplanet/wateryrock
 	gender = PLURAL
 	name = "wet rocky ground"
-	icon_state = "wateryrock"
+	icon_state = "watery_rock"
+	base_icon_state = "watery_rock"
 	smoothing_flags = NONE
 	slowdown = 2
 	footstep = FOOTSTEP_FLOOR
@@ -103,9 +103,8 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/floor/plating/ashplanet/wateryrock/Initialize(mapload)
-	icon_state = "[icon_state][rand(1, 9)]"
-	. = ..()
-
+	icon_state = "[base_icon_state][rand(1, 9)]"
+	return ..()
 
 /turf/open/floor/plating/beach
 	name = "beach"

@@ -2,7 +2,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf
 	icon = 'icons/turf/floors.dmi'
-	level = 1
 	luminosity = 1
 
 	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
@@ -568,11 +567,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		acid_type = /obj/effect/acid/alien
 	var/has_acid_effect = FALSE
 	for(var/obj/O in src)
-		if(intact && O.location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE) //hidden under the floor
+		var/turf/loc = get_turf(O)
+		if(loc.underfloor_accessibility < UNDERFLOOR_INTERACTABLE) //hidden under the floor
 			continue
 		if(istype(O, acid_type))
 			var/obj/effect/acid/A = O
-			A.acid_level = min(A.level + acid_volume * acidpwr, 12000)//capping acid level to limit power of the acid
+			A.acid_level = min(acid_volume * acidpwr, 12000)//capping acid level to limit power of the acid
 			has_acid_effect = 1
 			continue
 		O.acid_act(acidpwr, acid_volume)

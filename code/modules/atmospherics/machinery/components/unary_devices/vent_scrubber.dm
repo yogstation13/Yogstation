@@ -11,8 +11,8 @@
 	active_power_usage = 60
 	can_unwrench = TRUE
 	welded = FALSE
-	level = 1
 	layer = GAS_SCRUBBER_LAYER
+	hide = TRUE
 	shift_underlay_only = FALSE
 	showpipe = FALSE
 

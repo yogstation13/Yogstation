@@ -2,8 +2,6 @@
 	var/datum/gas_mixture/air_temporary //used when reconstructing a pipeline that broke
 	var/volume = 0
 
-	level = 1
-
 	use_power = NO_POWER_USE
 	can_unwrench = 1
 	var/datum/pipeline/parent = null
@@ -17,10 +15,6 @@
 			icon_state = INSTANCE_VAR_DEFAULT\
         ),\
     )
-
-/obj/machinery/atmospherics/pipe/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE) //if changing this, change the subtypes RemoveElements too, because thats how bespoke works
 
 /obj/machinery/atmospherics/pipe/New(mapload)
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
@@ -41,16 +35,6 @@
 		return
 	parent = new
 	return list(parent)
-
-/obj/machinery/atmospherics/pipe/atmos_init()
-	var/turf/T = loc			// hide if turf is not intact
-	hide(T.intact)
-	..()
-
-/obj/machinery/atmospherics/pipe/hide(i)
-	if(level == 1 && isturf(loc))
-		invisibility = i ? INVISIBILITY_MAXIMUM : 0
-	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/pipe/proc/releaseAirToTurf()
 	if(air_temporary)

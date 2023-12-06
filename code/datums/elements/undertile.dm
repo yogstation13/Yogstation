@@ -50,7 +50,7 @@
 			T.add_overlay(tile_overlay)
 
 		if(use_anchor)
-			source.set_anchored(TRUE)
+			source.anchored = TRUE
 
 		if(underfloor_accessibility < UNDERFLOOR_VISIBLE)
 			if(use_alpha)
@@ -73,7 +73,7 @@
 			source.alpha = initial(source.alpha)
 
 		if(use_anchor)
-			source.set_anchored(FALSE)
+			source.anchored = FALSE
 
 /datum/element/undertile/Detach(atom/movable/source, visibility_trait, invisibility_level = INVISIBILITY_MAXIMUM)
 	. = ..()

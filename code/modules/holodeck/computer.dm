@@ -224,7 +224,7 @@
 
 /obj/machinery/computer/holodeck/proc/floorcheck()
 	for(var/turf/T in linked)
-		if(!T.intact || isspaceturf(T))
+		if(T.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE || isspaceturf(T))
 			return FALSE
 	return TRUE
 

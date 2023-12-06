@@ -106,8 +106,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/atmos_init()
 	normalize_cardinal_directions()
 	findAllConnections()
-	var/turf/T = loc			// hide if turf is not intact
-	hide(T.intact)
 
 /obj/machinery/atmospherics/pipe/layer_manifold/set_piping_layer()
 	piping_layer = PIPING_LAYER_DEFAULT
@@ -141,5 +139,4 @@
 	to_chat(user, "You align yourself with the [user.ventcrawl_layer]\th output.")
 
 /obj/machinery/atmospherics/pipe/layer_manifold/visible
-	level = PIPE_VISIBLE_LEVEL
 	layer = GAS_PIPE_VISIBLE_LAYER

@@ -13,10 +13,6 @@
 		if(EAST, WEST)
 			initialize_directions = EAST|WEST
 
-/obj/machinery/atmospherics/components/binary/hide(intact)
-	update_appearance(UPDATE_ICON)
-	..()
-
 /obj/machinery/atmospherics/components/binary/get_node_connects()
 	return list(turn(dir, 180), dir)
 

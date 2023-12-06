@@ -17,9 +17,12 @@
 	clawfootstep = FOOTSTEP_LAVA
 	heavyfootstep = FOOTSTEP_LAVA
 
+	/// The icon that covers the lava bits of our turf
+	var/mask_icon = 'icons/turf/floors.dmi'
 	/// The icon state that covers the lava bits of our turf
 	var/mask_state = "lava-lightmask"
 
+/* //to add when emissives are added :thumbsup:
 /turf/open/lava/update_overlays()
 	. = ..()
 	// We need a light overlay here because not every lava turf casts light, only the edge ones
@@ -34,6 +37,7 @@
 	light_mask.blend_mode = BLEND_MULTIPLY
 	light_mask.color = list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0)
 	. += light_mask
+*/
 
 /turf/open/lava/ex_act(severity, target)
 	contents_explosion(severity, target)

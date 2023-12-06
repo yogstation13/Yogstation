@@ -7,7 +7,6 @@
 	name = "terminal"
 	icon_state = "term"
 	desc = "It's an underfloor wiring terminal for power equipment."
-	level = 1
 	layer = WIRE_TERMINAL_LAYER //a bit above wires
 	var/obj/machinery/power/master = null
 
@@ -21,15 +20,6 @@
 		master.disconnect_terminal()
 		master = null
 	return ..()
-
-/obj/machinery/power/terminal/hide(i)
-	if(i)
-		invisibility = INVISIBILITY_MAXIMUM
-		icon_state = "term-f"
-	else
-		invisibility = 0
-		icon_state = "term"
-
 
 /obj/machinery/power/proc/can_terminal_dismantle()
 	. = FALSE
