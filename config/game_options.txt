@@ -674,6 +674,9 @@ ROUNDSTART_TRAITS
 ## Uncomment to disable human moods.
 DISABLE_HUMAN_MOOD
 
+## Uncomment to force human moods. Not compatible with DISABLE_HUMAN_MOOD
+FORCE_HUMAN_MOOD
+
 ## Enable night shifts ##
 #ENABLE_NIGHT_SHIFTS
 
