@@ -60,7 +60,7 @@
 	icon = 'icons/turf/walls/stone_wall.dmi'
 	icon_state = "stone"
 	sheet_type = /obj/item/stack/sheet/mineral/stone
-	explosion_block = 0
+	explosion_block = 1
 	canSmoothWith = list(/turf/closed/wall/mineral/stone, /obj/structure/falsewall/stone)
 
 /turf/closed/wall/mineral/uranium
