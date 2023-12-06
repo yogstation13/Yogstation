@@ -94,7 +94,7 @@
 
 /obj/item/melee/dualsaber/attack(mob/target, mob/living/carbon/human/user)
 	if(user.has_dna())
-		if(user.dna.check_mutation(HULK) || user.dna.check_mutation(ACTIVE_HULK))
+		if(user.dna.check_mutation(HULK))
 			to_chat(user, span_warning("You grip the blade too hard and accidentally close it!"))
 			if(HAS_TRAIT(src, TRAIT_WIELDED))
 				user.dropItemToGround(src, force=TRUE)
@@ -184,7 +184,7 @@
 /obj/item/melee/dualsaber/proc/on_wield(atom/source, mob/living/carbon/M)
 	if(!M.has_dna())
 		return
-	if(M.dna.check_mutation(HULK) || M.dna.check_mutation(ACTIVE_HULK))
+	if(M.dna.check_mutation(HULK))
 		to_chat(M, span_warning("You lack the grace to wield this!"))
 		return
 	sharpness = SHARP_EDGED

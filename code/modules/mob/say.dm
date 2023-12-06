@@ -142,7 +142,7 @@
 	if(key)
 		K = src.key
 
-	var/spanned = say_quote(message)
+	var/spanned = say_quote(say_emphasis(message))
 	var/source = "<span class='game'>[span_prefix("DEAD:")] [span_name("[(src.client.prefs.chat_toggles & GHOST_CKEY) ? "" : "([K]) "][name]")][alt_name]" // yogs - i have no clue
 	var/rendered = " [span_message("[emoji_parse(spanned)]")]</span>"
 	log_talk(message, LOG_SAY, tag="DEAD")

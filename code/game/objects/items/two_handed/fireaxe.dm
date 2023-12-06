@@ -8,6 +8,7 @@
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	force = 5
 	throwforce = 15
+	demolition_mod = 3 // specifically designed for breaking things
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut", "axed")
@@ -43,6 +44,8 @@
 	. = ..()
 	if(!proximity)
 		return
+	if(QDELETED(A))
+		return
 	if(HAS_TRAIT(src, TRAIT_WIELDED)) //destroys shit faster, generally in 1-2 hits.
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
@@ -50,12 +53,6 @@
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
 			G.take_damage(G.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
-		else if(istype(A, /obj/machinery/door)) //Nines hits for reinforced airlock, seven for normal
-			var/obj/machinery/door/D = A
-			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
-		else if(istype(A, /obj/structure/door_assembly)) //Two hits for frames left behind
-			var/obj/machinery/door/D = A
-			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /*
  * Metal Hydrogen Axe
@@ -86,6 +83,7 @@
 	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "energy-fireaxe0"
 	base_icon_state = "energy-fireaxe"
+	demolition_mod = 4 // DESTROY
 	armour_penetration = 50 // Probably doesn't care much for armor given how it can destroy solid metal structures
 	block_chance = 50 // Big handle and large flat energy blade, good for blocking things
 	heat = 1800 // It's a FIRE axe
@@ -130,15 +128,6 @@
 /obj/item/fireaxe/energy/attack(mob/living/M, mob/living/user)
 	..()
 	M.ignite_mob() // Ignites you if you're flammable
-
-/obj/item/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(HAS_TRAIT(src, TRAIT_WIELDED)) // Does x2 damage against inanimate objects like machines, structures, mechs, etc
-		if(isobj(A) && !isitem(A))
-			var/obj/O = A
-			O.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /obj/item/fireaxe/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
