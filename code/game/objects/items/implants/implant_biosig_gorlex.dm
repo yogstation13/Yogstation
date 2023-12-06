@@ -16,8 +16,8 @@
 	if(!imp_in)
 		return FALSE
 
-// A message from command for the surviving team members.
-	var/gorlex_message = pick(
+	// A message from command for the surviving team members.
+	var/gorlex_msg = pick(
 		"UPHOLD THE MISSION.",
 		"CONTINUE YOUR MISSION.",
 		"FAILURE IS NOT AN OPTION.",
@@ -32,7 +32,7 @@
 		"THEY WILL NOT HOLD BACK. SHOW THEM NO MERCY.",
 		"DO NOT HESITATE. RIP AND TEAR UNTIL IT IS DONE.",
 		"THERE IS NO ROOM FOR ERROR. FINISH THE JOB.",
-		"THAT'S ONE LESS SHARE OF THE PAY."
+		"THAT'S ONE LESS SHARE OF THE PAY.",
 		"GO HARD OR GO HOME DEAD.",
 		"GET DAT FUKKEN DISK.")
 
@@ -41,14 +41,14 @@
 	// Name of implant user.
 	var/mobname = imp_in.name
 	// What is to be said.
-	var/message = "OPERATOR NOTICE: [mobname] EXPLO//N&#@$¤#§>..." // Default message for unexpected causes.
+	var/message = "OPERATIVE NOTICE: AGENT [uppertext(mobname)] EXPLO//N&#@$¤#§>..." // Default message for unexpected causes.
 	if(cause == "death")
-		message = "OPERATOR NOTICE: [mobname] EXPLOSIVE IMPLANT TRIGGERED IN [turf.name]. [gorlex_message]"
+		message = "OPERATIVE NOTICE: AGENT [uppertext(mobname)] EXPLOSIVE IMPLANT TRIGGERED IN [uppertext(turf.name)]. [gorlex_msg]"
 
 
 	name = "[mobname]'s Biosignaller"
-	radio.talk_into( message, RADIO_CHANNEL_SYNDICATE)
-	qdel(src) // No reuses.
+	radio.talk_into(src, message, RADIO_CHANNEL_SYNDICATE)
+	qdel(src) // Single purpose, single use.
 
 /obj/item/implant/biosig_gorlex/on_mob_death(mob/living/L, gibbed)
 	if(gibbed)
@@ -65,5 +65,5 @@
 		<b>Implant Details:</b><BR>
     <b>Function:</b>Contains a miniature radio connected to a bioscanner encased in a black, EMP-resistant shell. Broadcasts the death and last known position of the user over an encrypted radio channel.<BR>"}
 
-/obj/item/implanter/biosig_gorlex // Testing/admin purposes.
+/obj/item/implanter/biosig_gorlex // Testing/admin purposes; shouldn't be obtainable.
 	imp_type = /obj/item/implant/biosig_gorlex
