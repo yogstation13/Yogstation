@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscdel: "Removes tile grime and support for it."
-  - imageadd: "Replaces tiles to be less shiny."

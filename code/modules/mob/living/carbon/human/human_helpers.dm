@@ -142,7 +142,7 @@
 	. = ..()
 
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
-		if(src.dna.check_mutation(HULK) || src.dna.check_mutation(ACTIVE_HULK))
+		if(src.dna.check_mutation(HULK))
 			to_chat(src, span_warning("Your meaty finger is much too large for the trigger guard!"))
 			return FALSE
 		if(HAS_TRAIT(src, TRAIT_NOGUNS))
@@ -351,6 +351,8 @@
 		visually_duplicate_and_equip_item(copied_human_mob.gloves, ITEM_SLOT_GLOVES, new_human_mob, dropdel)
 	if(copied_human_mob.shoes)
 		visually_duplicate_and_equip_item(copied_human_mob.shoes, ITEM_SLOT_FEET, new_human_mob, dropdel)
+	if(copied_human_mob.head)
+		visually_duplicate_and_equip_item(copied_human_mob.head, ITEM_SLOT_HEAD, new_human_mob, dropdel)
 	if(copied_human_mob.wear_id)
 		visually_duplicate_and_equip_item(copied_human_mob.wear_id, ITEM_SLOT_ID, new_human_mob, dropdel)
 		new_human_mob.sec_hud_set_ID()

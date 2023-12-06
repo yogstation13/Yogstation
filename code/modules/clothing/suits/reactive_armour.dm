@@ -117,7 +117,7 @@
 	if(ismob(loc))
 		to_chat(loc, emp_message)
 	bad_effect = TRUE
-	addtimer(VARSET_CALLBACK(src, bad_effect, FALSE), 30 SECONDS)
+	addtimer(VARSET_CALLBACK(src, bad_effect, FALSE), (3 SECONDS) * severity)
 
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive/teleport
@@ -222,23 +222,29 @@
 /obj/item/clothing/suit/armor/reactive/tesla
 	name = "reactive tesla armor"
 	desc = "An experimental suit of armor with sensitive detectors hooked up to a huge capacitor grid, with emitters strutting out of it. Zap."
-	siemens_coefficient = -1
 	reactivearmor_cooldown_duration = 3 SECONDS
 	var/tesla_power = 25000
 	var/tesla_range = 20
 	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
 	cooldown_message = span_danger("The tesla capacitors on the reactive tesla armor are still recharging! The armor merely emits some sparks.")
 	emp_message = span_warning("The tesla capacitors beep ominously for a moment.")
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100, ELECTRIC = 100)
 
 /obj/item/clothing/suit/armor/reactive/tesla/dropped(mob/user)
 	..()
 	if(istype(user))
 		user.flags_1 &= ~TESLA_IGNORE_1
+		UnregisterSignal(user, COMSIG_LIVING_ELECTROCUTE_ACT)
 
 /obj/item/clothing/suit/armor/reactive/tesla/equipped(mob/user, slot)
 	..()
 	if(slot_flags & slot) //Was equipped to a valid slot for this item?
 		user.flags_1 |= TESLA_IGNORE_1
+		RegisterSignal(user, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(handle_shock))
+
+/obj/item/clothing/suit/armor/reactive/tesla/proc/handle_shock(mob/living/victim, shock_damage, obj/source, siemens_coeff = 1, zone = null, tesla_shock = 0, illusion = 0)
+	if(tesla_shock)
+		return COMPONENT_NO_ELECTROCUTE_ACT
 
 /obj/item/clothing/suit/armor/reactive/tesla/cooldown_activation(mob/living/carbon/human/owner)
 	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
