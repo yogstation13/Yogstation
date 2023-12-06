@@ -56,6 +56,12 @@
 	suffix = "lavaland_surface_seed_vault.dmm"
 	allow_duplicates = FALSE
 
+/datum/map_template/ruin/icemoon/walker_village
+	name = "Walker Village"
+	id = "walkervillage"
+	description = "A town populated by strange, sapient zombies."
+	suffix = "icemoon_surface_walkervillage.dmm"
+
 // above and below ground together
 
 /datum/map_template/ruin/icemoon/mining_site
@@ -119,9 +125,3 @@
 	id = "wampacave"
 	description = "A cave inhabited by a strange monster, with an unfortunate hero..."
 	suffix = "icemoon_underground_wampacave.dmm"
-
-/datum/map_template/ruin/icemoon/underground/walker_village
-	name = "Walker Village"
-	id = "walkervillage"
-	description = "A town populated by strange, sapient zombies."
-	suffix = "icemoon_underground_walkervillage.dmm"

@@ -11,6 +11,7 @@
 #_maps/RandomRuins/IceRuins/icemoon_surface_asteroid.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_hotsprings.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_hermit.dmm
+_maps/RandomRuins/IceRuins/icemoon_surface_walkervillage.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_puzzle.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_abandoned_village.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_mining_site.dmm
@@ -19,4 +20,3 @@
 #_maps/RandomRuins/IceRuins/icemoon_underground_lavaland.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_bathhouse.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_wampacave.dmm
-#_maps/RandomRuins/IceRuins/icemoon_underground_walkervillage.dmm
