@@ -271,6 +271,9 @@
 	QDEL_NULL(light)
 	if (length(light_sources))
 		light_sources.Cut()
+	
+	if(smoothing_flags & SMOOTH_QUEUED)
+		SSicon_smooth.remove_from_queues(src)
 
 	return ..()
 
@@ -992,8 +995,14 @@
   */
 /atom/proc/setDir(newdir)
 	SHOULD_CALL_PARENT(TRUE)
+	if (SEND_SIGNAL(src, COMSIG_ATOM_PRE_DIR_CHANGE, dir, newdir) & COMPONENT_ATOM_BLOCK_DIR_CHANGE)
+		newdir = dir
+		return
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
+	SEND_SIGNAL(src, COMSIG_ATOM_POST_DIR_CHANGE, dir, newdir)
+	if(smoothing_flags & SMOOTH_BORDER_OBJECT)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 /**
   * Used to change the pixel shift of an atom

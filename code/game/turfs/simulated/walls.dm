@@ -75,6 +75,7 @@
 			P.roll_and_drop(src)
 
 	ScrapeAway()
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /turf/closed/wall/proc/break_wall()
 	new sheet_type(src, sheet_amount)
