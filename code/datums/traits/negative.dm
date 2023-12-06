@@ -265,7 +265,6 @@
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
-	job_blacklist = list("Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/poor_aim/add()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -798,7 +797,6 @@
 	gain_text = span_danger("You feel like your blood is thin.")
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
-	job_blacklist = list("Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/hemophilia/check_quirk(datum/preferences/prefs)
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)

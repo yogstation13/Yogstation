@@ -51,7 +51,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			if(Q)
 				Q = new Q (user, spawn_effects, TRUE)
 				if(user.job in Q.job_blacklist)
-					to_chat(cli, "One or more of your quirks is incompatible with your job so all have been removed.")
+					to_chat(cli, span_danger("One or more of your quirks is incompatible with your job so all have been removed."))
 					return
 
 	var/badquirk = FALSE
