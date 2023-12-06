@@ -223,10 +223,11 @@
 			"temperature_multiplier" = recipe.temperature_change_multiplier,
 		))
 
-	data["gas_colors"] = list()
+	data["gas_data"] = list()
 	for(var/gas_id in GLOB.gas_data.ids)
-		data["gas_colors"] += list(list(
+		data["gas_data"] += list(list(
 			"id" = gas_id,
+			"label" = GLOB.gas_data.labels[gas_id],
 			"ui_color" = GLOB.gas_data.ui_colors[gas_id],
 		))
 	return data
@@ -246,14 +247,12 @@
 			fusion_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = round(connected_core.internal_fusion.get_moles(gas_id), 0.01),
-				"color" = GLOB.gas_data.ui_colors[gas_id],
 			)))
 	else
 		for(var/gas_id in connected_core.internal_fusion.get_gases())
 			fusion_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = 0,
-				"color" = GLOB.gas_data.ui_colors[gas_id],
 			)))
 	//Moderator gases
 	var/list/moderator_gasdata = list()
@@ -262,14 +261,12 @@
 			moderator_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = round(connected_core.moderator_internal.get_moles(gas_id), 0.01),
-				"color" = GLOB.gas_data.ui_colors[gas_id]
 			)))
 	else
 		for(var/gas_id in connected_core.moderator_internal.get_gases())
 			moderator_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = 0,
-				"color" = GLOB.gas_data.ui_colors[gas_id],
 			)))
 
 	data["fusion_gases"] = fusion_gasdata
@@ -313,7 +310,7 @@
 	data["fuel_remove"] = connected_core.fuel_remove
 	data["filter_types"] = list()
 	for(var/id in GLOB.gas_data.ids)
-		data["filter_types"] += list(list("gas_id" = id, "gas_name" = GLOB.gas_data.names[id], "enabled" = (id in connected_core.moderator_scrubbing)))
+		data["filter_types"] += list(list("gas_id" = id, "gas_name" = GLOB.gas_data.labels[id], "enabled" = (id in connected_core.moderator_scrubbing)))
 
 	data["cooling_volume"] = connected_core.airs[1].return_volume()
 	data["mod_filtering_rate"] = connected_core.moderator_filtering_rate
