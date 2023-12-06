@@ -867,7 +867,6 @@
 	switch(action)
 		if("change_voice")
 			var/new_voice = params["voice"]
-			world.log << new_voice
 			if(!(new_voice in voice_list))
 				return FALSE
 			current_voice = new_voice
@@ -875,7 +874,6 @@
 
 		if("change_pitch")
 			var/new_pitch = text2num(params["pitch"])
-			world.log << new_pitch
 			if(!isnum(new_pitch))
 				return FALSE
 			current_pitch = clamp(new_pitch, 0.8, 1.2)
