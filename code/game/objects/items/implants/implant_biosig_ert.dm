@@ -21,14 +21,13 @@
 	// Name of implant user.
 	var/mobname = imp_in.name
 	// What is to be said.
-	var/message = "TEAM ALERT: [mobname] lifesig//N&#@$¤#§>..." // Default message for unexpected causes.
+	var/message = "TEAM ALERT: [mobname]'s lifesig//N&#@$¤#§>..." // Default message for unexpected causes.
 	if(cause == "death")
-		message = "TEAM ALERT: [mobname] lifesigns ceased in [turf.name]! Use caution"
+		message = "TEAM ALERT: [mobname]'s lifesigns ceased in [turf.name]! Dispatch notified, proceed with caution."
 
 
 	name = "[mobname]'s Biosignaller"
 	radio.talk_into(src, message, RADIO_CHANNEL_CENTCOM)
-	qdel(src) // No reuses.
 
 /obj/item/implant/biosig_ert/on_mob_death(mob/living/L, gibbed)
 	if(gibbed)
@@ -45,5 +44,5 @@
 		<b>Implant Details:</b><BR>
     <b>Function:</b>Contains a miniature radio connected to a bioscanner encased in a blue, EMP-resistant shell. Broadcasts the death and last known position of the user over an encrypted radio channel.<BR>"}
 
-/obj/item/implanter/biosig_ert // Testing/admin purposes.
+/obj/item/implanter/biosig_ert // Testing/admin purposes; shouldn't be obtainable.
 	imp_type = /obj/item/implant/biosig_ert
