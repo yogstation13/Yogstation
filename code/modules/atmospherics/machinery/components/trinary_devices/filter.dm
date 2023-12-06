@@ -145,7 +145,7 @@
 
 	data["filter_types"] = list()
 	for(var/id in GLOB.gas_data.ids)
-		data["filter_types"] += list(list("name" = GLOB.gas_data.names[id], "gas_id" = id, "enabled" = (id in filter_type)))
+		data["filter_types"] += list(list("name" = GLOB.gas_data.labels[id], "gas_id" = id, "enabled" = (id in filter_type)))
 
 	return data
 

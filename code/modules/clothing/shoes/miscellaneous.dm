@@ -12,7 +12,7 @@
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50, ELECTRIC = 100)
 	strip_delay = 70
 	resistance_flags = NONE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
@@ -25,7 +25,7 @@
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."
 	clothing_flags = NOSLIP
-	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 30, FIRE = 90, ACID = 50)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 30, FIRE = 90, ACID = 50, ELECTRIC = 100)
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain wooden sandals."
@@ -55,7 +55,7 @@
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 40, ACID = 75)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 40, ACID = 75, ELECTRIC = 100)
 	can_be_bloody = FALSE
 	custom_price = 100
 
@@ -169,7 +169,7 @@
 
 /obj/item/clothing/shoes/workboots
 	name = "work boots"
-	desc = "Nanotrasen-issue Engineering lace-up work boots for the especially blue-collar."
+	desc = "Nanotrasen-issue Engineering lace-up work boots for the especially blue-collar. Electrically insulated to protect from hazardous work environments."
 	icon_state = "workboots"
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -177,7 +177,7 @@
 	strip_delay = 40
 	equip_delay_other = 40
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 /obj/item/clothing/shoes/workboots/mining
 	name = "mining boots"
@@ -451,7 +451,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps //Standard for all digitigrade legs and feets
 	name = "footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
+	desc = "Standard issue Nanotrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
 	icon_state = "footwraps"
 	item_state = "footwraps"
 	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
@@ -469,7 +469,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
 	name = "command footwraps"
-	desc = "These Command-grade NanoTrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
+	desc = "These Command-grade Nanotrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
 	icon_state = "footwraps_c"
 	item_state = "footwraps_c"
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
@@ -509,15 +509,16 @@
 
 /obj/item/clothing/shoes/xeno_wraps/engineering
 	name = "engineering footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader."
+	desc = "Standard issue Nanotrasen cloth footwraps, specially made for the frequent glass treader. Electrically insulated."
 	icon_state = "footwraps_e"
 	item_state = "footwraps_e"
 	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 /obj/item/clothing/shoes/xeno_wraps/science
 	name = "science footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
+	desc = "Standard issue Nanotrasen cloth footwraps, to reduce fatigue when standing at a console all day."
 	icon_state = "footwraps_sc"
 	item_state = "footwraps_sc"
 	xenoshoe = YES_DIGIT
@@ -525,7 +526,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/medical
 	name = "medical footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, for when you dont want other people's blood all over your feet."
+	desc = "Standard issue Nanotrasen cloth footwraps, for when you dont want other people's blood all over your feet."
 	icon_state = "footwraps_m"
 	item_state = "footwraps_m"
 	xenoshoe = YES_DIGIT
@@ -533,7 +534,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/cargo
 	name = "cargo footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
+	desc = "Standard issue Nanotrasen cloth footwraps, with reinforcment to protect against falling crates."
 	icon_state = "footwraps_ca"
 	item_state = "footwraps_ca"
 	xenoshoe = YES_DIGIT
