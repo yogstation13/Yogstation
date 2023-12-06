@@ -121,7 +121,7 @@
  */
 /datum/security_level/epsilon
 	name = "epsilon"
-	announcement_color = "black"
+	announcement_color = "grey"
 	sound = 'sound/misc/epsilon_alert.ogg'
 	number_level = SEC_LEVEL_EPSILON
 	elevating_to_configuration_key = /datum/config_entry/string/alert_epsilon

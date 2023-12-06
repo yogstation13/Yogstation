@@ -99,7 +99,7 @@
 	if(red_alert_access)
 		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
 
-/obj/machinery/door/proc/update_security_level(datum/security_level/new_level)
+/obj/machinery/door/proc/update_security_level(_, datum/security_level/new_level)
 	if(red_alert_access && new_level.emergency_doors)
 		visible_message(span_notice("[src] whirrs as it automatically lifts access requirements!"))
 		playsound(src, 'sound/machines/boltsup.ogg', 50, TRUE)

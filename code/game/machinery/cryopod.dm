@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	update_appearance(UPDATE_ICON)
 	find_control_computer()
 
-/obj/machinery/cryopod/proc/update_security_level(datum/security_level/new_level)
+/obj/machinery/cryopod/proc/update_security_level(_, datum/security_level/new_level)
 	if(new_level.allow_cryo)
 		PowerOn()
 	else

@@ -501,7 +501,7 @@
 	AddElement(/datum/element/update_icon_blocker)
 	return ..()
 
-/obj/machinery/computer/shuttle/pod/proc/update_security_level(datum/security_level/new_level)
+/obj/machinery/computer/shuttle/pod/proc/update_security_level(_, datum/security_level/new_level)
 	admin_controlled = !new_level.pod_access
 
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user, obj/item/card/emag/emag_card)
