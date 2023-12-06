@@ -54,6 +54,15 @@
 	explosion_block = 0
 	canSmoothWith = list(/turf/closed/wall/mineral/sandstone, /obj/structure/falsewall/sandstone)
 
+/turf/closed/wall/mineral/stone
+	name = "stone wall"
+	desc = "A wall with stone plating. Smooth."
+	icon = 'icons/turf/walls/stone_wall.dmi'
+	icon_state = "stone"
+	sheet_type = /obj/item/stack/sheet/mineral/stone
+	explosion_block = 0
+	canSmoothWith = list(/turf/closed/wall/mineral/stone, /obj/structure/falsewall/stone)
+
 /turf/closed/wall/mineral/uranium
 	article = "a"
 	name = "uranium wall"
