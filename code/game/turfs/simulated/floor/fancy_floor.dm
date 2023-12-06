@@ -336,7 +336,7 @@
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."
 	icon = 'icons/turf/floors/carpet.dmi'
-	icon_state = "carpet"
+	icon_state = "carpet-255"
 	floor_tile = /obj/item/stack/tile/carpet
 	broken_states = list("damaged")
 	smoothing_flags = SMOOTH_BITMASK

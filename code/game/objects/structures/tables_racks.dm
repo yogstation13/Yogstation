@@ -16,7 +16,8 @@
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon = 'icons/obj/smooth_structures/table.dmi'
-	icon_state = "table"
+	icon_state = "table-0"
+	base_icon_state = "table"
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
@@ -254,9 +255,11 @@
 	name = "glass table"
 	desc = "What did I say about leaning on the glass tables? Now you need surgery."
 	icon = 'icons/obj/smooth_structures/glass_table.dmi'
-	icon_state = "glass_table"
+	icon_state = "glass_table-0"
+	base_icon_state = "glass_table"
 	buildstack = /obj/item/stack/sheet/glass
-	canSmoothWith = null
+	smoothing_groups = SMOOTH_GROUP_GLASS_TABLES
+	canSmoothWith = SMOOTH_GROUP_GLASS_TABLES
 	max_integrity = 70
 	resistance_flags = ACID_PROOF
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
@@ -350,7 +353,8 @@
 	name = "gambling table"
 	desc = "A seedy table for seedy dealings in seedy places."
 	icon = 'icons/obj/smooth_structures/poker_table.dmi'
-	icon_state = "poker_table"
+	icon_state = "poker_table-0"
+	base_icon_state = "poker_table"
 	buildstack = /obj/item/stack/tile/carpet
 
 /obj/structure/table/wood/poker/narsie_act()
@@ -370,46 +374,55 @@
 
 /obj/structure/table/wood/fancy/black
 	icon_state = "fancy_table_black"
+	base_icon_state = "fancy_table_black"
 	buildstack = /obj/item/stack/tile/carpet/black
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_black.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/exoticblue
 	icon_state = "fancy_table_exoticblue"
+	base_icon_state = "fancy_table_exoticblue"
 	buildstack = /obj/item/stack/tile/carpet/exoticblue
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticblue.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/cyan
 	icon_state = "fancy_table_cyan"
+	base_icon_state = "fancy_table_cyan"
 	buildstack = /obj/item/stack/tile/carpet/cyan
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_cyan.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/exoticgreen
 	icon_state = "fancy_table_exoticgreen"
+	base_icon_state = "fancy_table_exoticgreen"
 	buildstack = /obj/item/stack/tile/carpet/exoticgreen
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticgreen.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/orange
 	icon_state = "fancy_table_orange"
+	base_icon_state = "fancy_table_orange"
 	buildstack = /obj/item/stack/tile/carpet/orange
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_orange.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/exoticpurple
 	icon_state = "fancy_table_exoticpurple"
+	base_icon_state = "fancy_table_exoticpurple"
 	buildstack = /obj/item/stack/tile/carpet/exoticpurple
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticpurple.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/red
 	icon_state = "fancy_table_red"
+	base_icon_state = "fancy_table_red"
 	buildstack = /obj/item/stack/tile/carpet/red
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_red.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/royalblack
 	icon_state = "fancy_table_royalblack"
+	base_icon_state = "fancy_table_royalblack"
 	buildstack = /obj/item/stack/tile/carpet/royalblack
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_royalblack.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/royalblue
 	icon_state = "fancy_table_royalblue"
+	base_icon_state = "fancy_table_royalblue"
 	buildstack = /obj/item/stack/tile/carpet/royalblue
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_royalblue.dmi', 'icons/obj/structures.dmi')
 
