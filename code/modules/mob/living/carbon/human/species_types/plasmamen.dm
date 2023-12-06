@@ -40,7 +40,6 @@
 	/// If the bones themselves are burning clothes won't help you much
 	var/internal_fire = FALSE
 
-
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H)
 	var/datum/gas_mixture/environment = H.loc.return_air()
 	var/atmos_sealed = FALSE
