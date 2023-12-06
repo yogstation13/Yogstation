@@ -53,6 +53,7 @@
 	gain_text = span_danger("You can't see anything.")
 	lose_text = span_notice("You miraculously gain back your vision.")
 	medical_record_text = "Patient has permanent blindness."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/blindness/add()
 	quirk_holder.become_blind(ROUNDSTART_TRAIT)
@@ -73,6 +74,7 @@
 	gain_text = span_danger("You feel smooth.")
 	lose_text = span_notice("You feel wrinkled again.")
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 	var/where = "at your feet"
 
 /datum/quirk/brainproblems/on_process()
@@ -100,6 +102,7 @@
 	gain_text = span_danger("You can't hear anything.")
 	lose_text = span_notice("You're able to hear again!")
 	medical_record_text = "Patient's cochlear nerve is incurably damaged."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/depression
 	name = "Depression"
@@ -215,6 +218,7 @@
 	gain_text = span_danger("You feel repulsed by the thought of violence!")
 	lose_text = span_notice("You think you can defend yourself again.")
 	medical_record_text = "Patient is unusually pacifistic and cannot bring themselves to cause physical harm."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 
 /datum/quirk/paraplegic
@@ -226,6 +230,7 @@
 	gain_text = null // Handled by trauma.
 	lose_text = null
 	medical_record_text = "Patient has an untreatable impairment in motor function in the lower extremities."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/paraplegic/add()
 	var/datum/brain_trauma/severe/paralysis/paraplegic/T = new()
@@ -260,6 +265,7 @@
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
+	job_blacklist = list("Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/poor_aim/add()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -380,6 +386,7 @@
 	gain_text = span_danger("You start worrying about what you're saying.")
 	lose_text = span_notice("You feel easier about talking again.") //if only it were that easy!
 	medical_record_text = "Patient is usually anxious in social encounters and prefers to avoid them."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 	var/dumb_thing = TRUE
 	mob_trait = TRAIT_ANXIOUS
 
@@ -668,6 +675,7 @@
 	gain_text = span_danger("You do not speak galactic common.")
 	lose_text = span_notice("You start to put together how to speak galactic common.")
 	medical_record_text = "Patient looks perplexed when questioned in galactic common."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/sheltered/on_clone(data)
 	var/mob/living/carbon/human/H = quirk_holder
@@ -774,6 +782,7 @@
 	gain_text = "You feel your vocabulary slipping away."
 	lose_text = "You regrasp the full extent of your linguistic prowess."
 	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/ineloquent/add()
 	var/datum/brain_trauma/mild/expressive_aphasia/T = new()
@@ -789,6 +798,7 @@
 	gain_text = span_danger("You feel like your blood is thin.")
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
+	job_blacklist = list("Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/hemophilia/check_quirk(datum/preferences/prefs)
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
@@ -809,6 +819,7 @@
 	gain_text = span_danger("Your head hurts.")
 	lose_text = span_notice("Your head feels good again.")
 	medical_record_text = "Patient appears to have brain damage."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/brain_damage/add()
 	var/mob/living/carbon/human/H = quirk_holder
