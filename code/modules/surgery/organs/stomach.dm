@@ -190,6 +190,9 @@
 	owner.adjust_nutrition(shock_damage * siemens_coeff)
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
 
+/obj/item/organ/stomach/cell/ethereal/emp_act(severity)
+	return // it's organic
+
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"
 	icon_state = "stomach-cursed"
