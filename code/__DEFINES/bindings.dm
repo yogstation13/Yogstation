@@ -5,9 +5,9 @@
 
 /proc/__detect_auxmos()
 	if (world.system_type == UNIX)
-		return __auxmos = "libauxmos"
+		return __auxmos = "./libauxmos.so"
 	else
-		return __auxmos = "auxmos"
+		return __auxmos = "./auxmos.dll"
 
 #define AUXMOS (__auxmos || __detect_auxmos())
 
