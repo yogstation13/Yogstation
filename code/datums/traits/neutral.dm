@@ -375,25 +375,3 @@
 
 /datum/quirk/bald/proc/unequip_hat(mob/user, obj/item/hat)
 	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_hair_day", /datum/mood_event/bald)
-
-/datum/quirk/sheltered
-	name = "Sheltered"
-	desc = "You never learned to speak galactic common."
-	icon = "comment-dots"
-	value = 0
-	mob_trait = TRAIT_SHELTERED
-	gain_text = span_danger("You do not speak galactic common.")
-	lose_text = span_notice("You start to put together how to speak galactic common.")
-	medical_record_text = "Patient looks perplexed when questioned in galactic common."
-
-/datum/quirk/sheltered/on_clone(data)
-	var/mob/living/carbon/human/H = quirk_holder
-	H.remove_language(/datum/language/common, FALSE, TRUE)
-	if(!H.get_selected_language())
-		H.grant_language(/datum/language/japanese)
-
-/datum/quirk/sheltered/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.remove_language(/datum/language/common, FALSE, TRUE)
-	if(!H.get_selected_language())
-		H.grant_language(/datum/language/japanese)
