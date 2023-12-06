@@ -4,8 +4,22 @@
 		verb_say = rare_verb
 	else
 		verb_say = dna.species.say_mod
-	
+
 	. = ..()
+
+/mob/living/carbon/human/GetTTSVoice()
+	if(istype(wear_mask, /obj/item/clothing/mask/chameleon))
+		var/obj/item/clothing/mask/chameleon/V = wear_mask
+		if(V.vchange && V.voice_action?.current_voice)
+			return V.voice_action.current_voice
+	return ..()
+
+/mob/living/carbon/human/GetTTSPitch()
+	if(istype(wear_mask, /obj/item/clothing/mask/chameleon))
+		var/obj/item/clothing/mask/chameleon/V = wear_mask
+		if(V.vchange && V.voice_action?.current_pitch)
+			return V.voice_action.current_pitch
+	return ..()
 
 /mob/living/carbon/human/GetVoice()
 	if(istype(wear_mask, /obj/item/clothing/mask/chameleon))

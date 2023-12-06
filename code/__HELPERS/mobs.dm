@@ -261,12 +261,17 @@ GLOBAL_LIST_INIT(tts_voices_names, sortList(list(
 	"US-amy" = "Amy (Northern American Female)",
 	"US-danny" = "Danny (British American Male)",
 	"US-joe" = "Joe (Hawaiian Male)",
-	"US-kathleen" = "Kathleen (Elder Eastern American Female)",
+	"US-kathleen" = "Kathleen (Elder East Coast American Female)",
 	"US-kusal" = "Kusal (Asian American Male)",
-	"US-libritts_r" = "Libritts (Michigan Female)"
+	"US-libritts_r" = "Libritts (Michigan Female)",
+	// Custom voices down here
+	"US-josef" = "Josef (Canadian Male)",
+	"US-andrew" = "Andrew (East Coast American Male)",
+	"US-cameron" = "Cameron (West Coast American Male)"
 	)))
 GLOBAL_PROTECT(tts_voices_names)
 
+// Don't list custom voices on this list, they will be fetched by the API
 GLOBAL_LIST_INIT(tts_voices, sortList(list(
 	"GB-alba",
 	"GB-aru",

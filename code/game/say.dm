@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 /atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list())
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 
-	if(!GLOB.tts_voices.Find(tts_voice)) // Sanitize with an immutable list
+	if(!GLOB.tts_voices.Find(GetTTSVoice())) // Sanitize with an immutable list
 		tts_voice = pick(GLOB.tts_voices)
 		tts_pitch = rand(8, 12) * 0.1
 
@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			if(hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
 				tts_receivers |= WEAKREF(hearing_mob)
 
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), message, tts_voice, tts_pitch, tts_filters, tts_receivers, src, spans, message_mods)
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), message, GetTTSVoice(), GetTTSPitch(), tts_filters, tts_receivers, src, spans, message_mods)
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.
@@ -160,6 +160,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return "2"
 	return "0"
 
+/atom/movable/proc/GetTTSVoice()
+	return tts_voice
+
+/atom/movable/proc/GetTTSPitch()
+	return tts_pitch
+
 /atom/movable/proc/GetVoice()
 	return "[src]"	//Returns the atom's name, prepended with 'The' if it's not a proper noun
 
@@ -199,8 +205,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		verb_ask = M.verb_ask
 		verb_exclaim = M.verb_exclaim
 		verb_yell = M.verb_yell
-		virt_tts_voice = M.tts_voice
-		virt_tts_pitch = M.tts_pitch
+		virt_tts_voice = M.GetTTSVoice()
+		virt_tts_pitch = M.GetTTSPitch()
 		virt_tts_filters = LAZYCOPY(M.tts_filters)
 
 	if(!virt_tts_filters[TTS_FILTER_RADIO])

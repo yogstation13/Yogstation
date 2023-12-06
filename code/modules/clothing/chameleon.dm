@@ -312,7 +312,7 @@
 /obj/item/clothing/under/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
-	
+
 /obj/item/clothing/under/plasmaman/chameleon
 	name = "envirosuit"
 	icon_state = "plasmaman"
@@ -481,7 +481,7 @@
 /obj/item/clothing/head/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
-	
+
 /obj/item/clothing/head/helmet/space/plasmaman/chameleon
 	name = "purple envirosuit helmet"
 	desc = "A generic purple envirohelm of Nanotrasen design. This updated model comes with a built-in lamp."
@@ -541,6 +541,7 @@
 	var/vchange = 1
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
+	var/datum/action/item_action/mask_voice_change/voice_action
 
 /obj/item/clothing/mask/chameleon/syndicate
 	syndicate = TRUE
@@ -548,23 +549,30 @@
 /obj/item/clothing/mask/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
+	voice_action = new(src)
 	if(syndicate)
 		chameleon_action.syndicate = TRUE
+		voice_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/mask
 	chameleon_action.chameleon_name = "Mask"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/mask/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
+	voice_action.initialize_disguises()
 	add_item_action(chameleon_action)
+	if(vchange) // dont give this button to drones, it wouldn't do anything
+		add_item_action(voice_action)
 
 /obj/item/clothing/mask/chameleon/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	chameleon_action.emp_randomise()
+	voice_action.emp_randomise()
 
 /obj/item/clothing/mask/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
+	voice_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/mask/chameleon/attack_self(mob/user)
 	vchange = !vchange
@@ -776,3 +784,99 @@
 
 /obj/item/proc/on_chameleon_change()
 	return
+
+/// Item action for changing voice (TTS)
+/datum/action/item_action/mask_voice_change
+	name = "Change Voice"
+	var/list/voice_list = list()
+	var/list/voice_display = list()
+	var/emp_timer
+	var/current_voice = null
+	var/current_pitch = 1
+	var/syndicate = FALSE
+
+/datum/action/item_action/mask_voice_change/Grant(mob/M)
+	if(syndicate)
+		owner_has_control = is_syndicate(M)
+	return ..()
+
+/datum/action/item_action/mask_voice_change/proc/initialize_disguises()
+	build_all_button_icons()
+	voice_list = LAZYCOPY(GLOB.tts_voices)
+	voice_display = LAZYCOPY(GLOB.tts_voices_names)
+	random_look()
+
+/datum/action/item_action/mask_voice_change/proc/random_look()
+	current_voice = pick(voice_list)
+	current_pitch = rand(16, 24) * 0.05 // 0.8-1.2
+
+/datum/action/item_action/mask_voice_change/Trigger(trigger_flags)
+	if(!IsAvailable(feedback = TRUE))
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
+	ui_interact(owner)
+
+/datum/action/item_action/mask_voice_change/proc/emp_randomise(amount = EMP_RANDOMISE_TIME)
+	START_PROCESSING(SSprocessing, src)
+	random_look()
+
+	var/new_value = world.time + amount
+	if(new_value > emp_timer)
+		emp_timer = new_value
+
+/datum/action/item_action/mask_voice_change/process()
+	if(world.time > emp_timer)
+		STOP_PROCESSING(SSprocessing, src)
+		return
+	random_look()
+
+/datum/action/item_action/mask_voice_change/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!IsAvailable(feedback = TRUE))
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
+	if(!ui)
+		ui = new(user, src, "VoiceChanger", name)
+		ui.open()
+	return TRUE
+
+/datum/action/item_action/mask_voice_change/ui_status(mob/user)
+	return user == owner ? UI_INTERACTIVE : UI_CLOSE
+
+/datum/action/item_action/mask_voice_change/ui_data(mob/user)
+	var/list/data = ..()
+	data["voice_list"] = voice_list
+	data["voice_display"] = voice_display
+	data["current_voice"] = current_voice
+	data["current_pitch"] = current_pitch
+	data["emp"] = world.time <= emp_timer
+	return data
+
+/datum/action/item_action/mask_voice_change/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(..())
+		return TRUE
+
+	if(!IsAvailable(feedback = FALSE))
+		return FALSE
+
+	if(world.time <= emp_timer)
+		return FALSE
+
+	switch(action)
+		if("change_voice")
+			var/new_voice = params["voice"]
+			world.log << new_voice
+			if(!(new_voice in voice_list))
+				return FALSE
+			current_voice = new_voice
+			return TRUE
+
+		if("change_pitch")
+			var/new_pitch = text2num(params["pitch"])
+			world.log << new_pitch
+			if(!isnum(new_pitch))
+				return FALSE
+			current_pitch = clamp(new_pitch, 0.8, 1.2)
+			return TRUE

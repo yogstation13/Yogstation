@@ -306,10 +306,10 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
 
 	// TTS generation
-	if(!GLOB.tts_voices.Find(tts_voice)) // Sanitize with an immutable list
+	if(!GLOB.tts_voices.Find(GetTTSVoice())) // Sanitize with an immutable list
 		tts_voice = pick(GLOB.tts_voices)
 
-	if(!tts_pitch || !isnum(tts_pitch))
+	if(!GetTTSPitch() || !isnum(GetTTSPitch()))
 		tts_pitch = rand(8, 12) * 0.1
 
 	var/list/mob/tts_receivers = list()
@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 				if(hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/tts_hear) && hearing_mob.has_language(message_language))
 					tts_receivers |= WEAKREF(hearing_mob)
 
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), html_decode(message), tts_voice, tts_pitch, tts_filters, tts_receivers, src, spans, message_mods)
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, create_message), html_decode(message), GetTTSVoice(), GetTTSPitch(), tts_filters, tts_receivers, src, spans, message_mods)
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 

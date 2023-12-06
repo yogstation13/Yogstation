@@ -130,9 +130,7 @@ SUBSYSTEM_DEF(tts)
 	/// Replaces any 3 or more consecutive characters with 2 consecutive characters
 	var/static/regex/antispam_regex = new(@"(?=(.)\1\1).","g")
 	/// We do not want to sanitize the message, as it goes in JSON body and is not exposed directly to CMD
-	var/message = replacetext(spammy_message, antispam_regex, "")
-	/// Delete when backend is updated
-	var/san_message = sanitize_tts_input(message)
+	var/san_message = replacetext(spammy_message, antispam_regex, "")
 	/// We do want to sanitize the model
 	var/san_model = sanitize_tts_input(model)
 	if(!pitch || !isnum(pitch))
