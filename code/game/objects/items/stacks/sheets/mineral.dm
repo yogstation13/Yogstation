@@ -68,6 +68,7 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	throw_speed = 3
 	throw_range = 5
 	sheettype = "stone"
+	grind_results = list(/datum/reagent/oxygen = 5, /datum/reagent/silicon = 15)
 	merge_type = /obj/item/stack/sheet/mineral/stone
 
 GLOBAL_LIST_INIT(stone_recipes, list ( \
