@@ -29,6 +29,7 @@
 
 /obj/machinery/magnetic_module/Initialize(mapload)
 	..()
+	AddElement(/datum/element/undertile, tile_overlay = tile_overlay, use_anchor = TRUE)
 	var/turf/T = loc
 	hide(T.intact)
 	center = T
