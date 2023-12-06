@@ -28,7 +28,7 @@
 	var/start_moderator = FALSE
 
 	/**
-	 * Hypertorus internal objects and gasmixes
+	 * Hypertorus internal objects and gasmixes.
 	 */
 
 	///Stores the informations of the interface machine
