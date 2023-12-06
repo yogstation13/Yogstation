@@ -30,15 +30,10 @@
 
 	smells_like = "plasma-caked calcium"
 
+	screamsound = list('sound/voice/plasmaman/plasmeme_scream_1.ogg', 'sound/voice/plasmaman/plasmeme_scream_2.ogg', 'sound/voice/plasmaman/plasmeme_scream_3.ogg')
+
 	/// If the bones themselves are burning clothes won't help you much
 	var/internal_fire = FALSE
-
-/datum/species/plasmaman/get_scream_sound(mob/living/carbon/human)
-	return pick(
-		'sound/voice/plasmaman/plasmeme_scream_1.ogg',
-		'sound/voice/plasmaman/plasmeme_scream_2.ogg',
-		'sound/voice/plasmaman/plasmeme_scream_3.ogg',
-	)
 
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H)
 	var/datum/gas_mixture/environment = H.loc.return_air()
