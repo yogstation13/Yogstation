@@ -31,6 +31,7 @@
 	var/datum/component/simple_rotation/rotcomp = AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_FLIP | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)), CALLBACK(src, PROC_REF(after_rot)))
 	if(flip)
 		rotcomp.BaseRot(null,ROTATION_FLIP)
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 	update_appearance(UPDATE_ICON)
 
@@ -115,7 +116,7 @@
 		var/ispipe = is_pipe() // Indicates if we should change the level of this pipe
 
 		var/turf/T = get_turf(src)
-		if(T.intact && isfloorturf(T))
+		if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && isfloorturf(T))
 			to_chat(user, span_warning("You can only attach the [pipename] if the floor plating is removed!"))
 			return TRUE
 

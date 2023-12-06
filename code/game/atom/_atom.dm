@@ -7,7 +7,6 @@
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
-	var/level = 2
 
 	///If non-null, overrides a/an/some in all cases
 	var/article
@@ -118,6 +117,23 @@
 	var/base_icon_state
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
+
+	///Icon-smoothing behavior.
+	var/smoothing_flags = NONE
+	///What directions this is currently smoothing with. IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.
+	var/smoothing_junction = null //This starts as null for us to know when it's first set, but after that it will hold a 8-bit mask ranging from 0 to 255.
+	///Smoothing variable
+	var/top_left_corner
+	///Smoothing variable
+	var/top_right_corner
+	///Smoothing variable
+	var/bottom_left_corner
+	///Smoothing variable
+	var/bottom_right_corner
+	///What smoothing groups does this atom belongs to, to match canSmoothWith. If null, nobody can smooth with it. Must be sorted.
+	var/list/smoothing_groups = null
+	///List of smoothing groups this atom can smooth with. If this is null and atom is smooth, it smooths only with itself. Must be sorted.
+	var/list/canSmoothWith = null
 
 	var/atom/orbit_target //Reference to atom being orbited
 /**
@@ -1287,89 +1303,6 @@
 /atom/proc/return_temperature()
 	return
 
-/**
- * Tool behavior procedure. Redirects to tool-specific procs by default.
- *
- * You can override it to catch all tool interactions, for use in complex deconstruction procs.
- *
- * Must return  parent proc ..() in the end if overridden
- */
-/atom/proc/tool_act(mob/living/user, obj/item/tool, tool_type)
-	var/act_result
-	var/signal_result
-
-	signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, tool)
-	if(signal_result & COMPONENT_BLOCK_TOOL_ATTACK) // The COMSIG_ATOM_TOOL_ACT signal is blocking the act
-		return TOOL_ACT_SIGNAL_BLOCKING
-	if(QDELETED(tool))
-		return TRUE
-
-	switch(tool_type)
-		if(TOOL_CROWBAR)
-			act_result = crowbar_act(user, tool)
-		if(TOOL_MULTITOOL)
-			act_result = multitool_act(user, tool)
-		if(TOOL_SCREWDRIVER)
-			act_result = screwdriver_act(user, tool)
-		if(TOOL_WRENCH)
-			act_result = wrench_act(user, tool)
-		if(TOOL_WIRECUTTER)
-			act_result = wirecutter_act(user, tool)
-		if(TOOL_WELDER)
-			act_result = welder_act(user, tool)
-		if(TOOL_ANALYZER)
-			act_result = analyzer_act(user, tool)
-	if(!act_result)
-		return
-	
-	if(. && tool.toolspeed < 1) //nice tool bro
-		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nice_tool", /datum/mood_event/nice_tool)
-
-	// A tooltype_act has completed successfully
-//	log_tool("[key_name(user)] used [tool] on [src] at [AREACOORD(src)]")
-	SEND_SIGNAL(tool, COMSIG_TOOL_ATOM_ACTED_PRIMARY(tool_type), src)
-	return TOOL_ACT_TOOLTYPE_SUCCESS
-
-
-//! Tool-specific behavior procs. To be overridden in subtypes.
-///
-
-///Crowbar act
-/atom/proc/crowbar_act(mob/living/user, obj/item/I)
-	return
-
-///Multitool act
-/atom/proc/multitool_act(mob/living/user, obj/item/I)
-	return
-
-///Check if the multitool has an item in it's data buffer
-/atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
-	if(!istype(I, /obj/item/multitool))
-		if(user && !silent)
-			to_chat(user, span_warning("[I] has no data buffer!"))
-		return FALSE
-	return TRUE
-
-///Screwdriver act
-/atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), user, I)
-
-///Wrench act
-/atom/proc/wrench_act(mob/living/user, obj/item/I)
-	return
-
-///Wirecutter act
-/atom/proc/wirecutter_act(mob/living/user, obj/item/I)
-	return
-
-///Welder act
-/atom/proc/welder_act(mob/living/user, obj/item/I)
-	return
-
-///Analyzer act
-/atom/proc/analyzer_act(mob/living/user, obj/item/I)
-	return
-
 ///Generate a tag for this atom
 /atom/proc/GenerateTag()
 	return
@@ -1377,137 +1310,6 @@
 ///Connect this atom to a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
-
-/// Generic logging helper
-/atom/proc/log_message(message, message_type, color=null, log_globally=TRUE)
-	if(!log_globally)
-		return
-
-	var/log_text = "[key_name(src)] [message] [loc_name(src)]"
-	switch(message_type)
-		if(LOG_ATTACK)
-			log_attack(log_text)
-		if(LOG_SAY)
-			log_say(log_text)
-		if(LOG_WHISPER)
-			log_whisper(log_text)
-		if(LOG_EMOTE)
-			log_emote(log_text)
-		if(LOG_DSAY)
-			log_dsay(log_text)
-		if(LOG_PDA)
-			log_pda(log_text)
-		if(LOG_CHAT)
-			log_chat(log_text)
-		if(LOG_COMMENT)
-			log_comment(log_text)
-		if(LOG_TELECOMMS)
-			log_telecomms(log_text)
-		if(LOG_NTSL)
-			log_ntsl(log_text)
-		if(LOG_OOC)
-			log_ooc(log_text)
-		if(LOG_LOOC) // yogs - LOOC log
-			log_looc(log_text) // yogs - LOOC log
-		if(LOG_DONATOR) // yogs - Donator log
-			log_donator(log_text) // yogs - Donator log
-		if(LOG_ADMIN)
-			log_admin(log_text)
-		if(LOG_ADMIN_PRIVATE)
-			log_admin_private(log_text)
-		if(LOG_ASAY)
-			log_adminsay(log_text)
-		if(LOG_OWNERSHIP)
-			log_game(log_text)
-		if(LOG_GAME)
-			log_game(log_text)
-		if(LOG_MECHA)
-			log_mecha(log_text)
-		else
-			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
-			log_game(log_text)
-
-/// Helper for logging chat messages or other logs with arbitrary inputs (e.g. announcements)
-/atom/proc/log_talk(message, message_type, tag=null, log_globally=TRUE, forced_by=null)
-	var/prefix = tag ? "([tag]) " : ""
-	var/suffix = forced_by ? " FORCED by [forced_by]" : ""
-	log_message("[prefix]\"[message]\"[suffix]", message_type, log_globally=log_globally)
-
-/// Helper for logging of messages with only one sender and receiver
-/proc/log_directed_talk(atom/source, atom/target, message, message_type, tag)
-	if(!tag)
-		stack_trace("Unspecified tag for private message")
-		tag = "UNKNOWN"
-
-	source.log_talk(message, message_type, tag="[tag] to [key_name(target)]")
-	if(source != target)
-		target.log_talk(message, message_type, tag="[tag] from [key_name(source)]", log_globally=FALSE)
-
-/**
-  * Log a combat message in the attack log
-  *
-  * 1 argument is the actor performing the action
-  * 2 argument is the target of the action
-  * 3 is a verb describing the action (e.g. punched, throwed, kicked, etc.)
-  * 4 is a tool with which the action was made (usually an item)
-  * 5 is any additional text, which will be appended to the rest of the log line
-  */
-/proc/log_combat(atom/user, atom/target, what_done, atom/object=null, addition=null)
-	var/ssource = key_name(user)
-	var/starget = key_name(target)
-
-	var/mob/living/living_target = target
-	var/hp = istype(living_target) ? " (NEWHP: [living_target.health]) " : ""
-
-	var/sobject = ""
-	if(object)
-		sobject = " with [object]"
-	var/saddition = ""
-	if(addition)
-		saddition = " [addition]"
-
-	var/postfix = "[sobject][saddition][hp]"
-
-	var/message = "has [what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color="red")
-
-	if(user != target)
-		var/reverse_message = "has been [what_done] by [ssource][postfix]"
-		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
-
-/**
-  * log_wound() is for when someone is *attacked* and suffers a wound. Note that this only captures wounds from damage, so smites/forced wounds aren't logged, as well as demotions like cuts scabbing over
-  *
-  * Note that this has no info on the attack that dealt the wound: information about where damage came from isn't passed to the bodypart's damaged proc. When in doubt, check the attack log for attacks at that same time
-  * TODO later: Add logging for healed wounds, though that will require some rewriting of healing code to prevent admin heals from spamming the logs. Not high priority
-  *
-  * Arguments:
-  * * victim- The guy who got wounded
-  * * suffered_wound- The wound, already applied, that we're logging. It has to already be attached so we can get the limb from it
-  * * dealt_damage- How much damage is associated with the attack that dealt with this wound.
-  * * dealt_wound_bonus- The wound_bonus, if one was specified, of the wounding attack
-  * * dealt_bare_wound_bonus- The bare_wound_bonus, if one was specified *and applied*, of the wounding attack. Not shown if armor was present
-  * * base_roll- Base wounding ability of an attack is a random number from 1 to (dealt_damage ** WOUND_DAMAGE_EXPONENT). This is the number that was rolled in there, before mods
-  */
-/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll)
-	if(QDELETED(victim) || !suffered_wound)
-		return
-	var/message = "has suffered: [suffered_wound][suffered_wound.limb ? " to [suffered_wound.limb.name]" : null]"// maybe indicate if it's a promote/demote?
-
-	if(dealt_damage)
-		message += " | Damage: [dealt_damage]"
-		// The base roll is useful since it can show how lucky someone got with the given attack. For example, dealing a cut
-		if(base_roll)
-			message += "(rolled [base_roll]/[dealt_damage ** WOUND_DAMAGE_EXPONENT])"
-
-	if(dealt_wound_bonus)
-		message += " | WB: [dealt_wound_bonus]"
-
-	if(dealt_bare_wound_bonus)
-		message += " | BWB: [dealt_bare_wound_bonus]"
-
-	victim.log_message(message, LOG_ATTACK, color="blue")
-
 
 /atom/movable/proc/add_filter(name,priority,list/params)
 	if(!filter_data)
@@ -1550,25 +1352,6 @@
 /atom/proc/intercept_zImpact(atom/movable/AM, levels = 1)
 	return FALSE
 
-/**Returns the material composition of the atom.
-  *
-  * Used when recycling items, specifically to turn alloys back into their component mats.
-  *
-  * Exists because I'd need to add a way to un-alloy alloys or otherwise deal
-  * with people converting the entire stations material supply into alloys.
-  *
-  * Arguments:
-  * - flags: A set of flags determining how exactly the materials are broken down.
-  */
-/atom/proc/get_material_composition(breakdown_flags=NONE)
-	. = list()
-	var/list/cached_materials = custom_materials
-	for(var/mat in cached_materials)
-		var/datum/material/material = getmaterialref(mat)
-		var/list/material_comp = material.return_composition(cached_materials[material], breakdown_flags)
-		for(var/comp_mat in material_comp)
-			.[comp_mat] += material_comp[comp_mat]
-
 ///Setter for the `density` variable to append behavior related to its changing.
 /atom/proc/set_density(new_value)
 	SHOULD_CALL_PARENT(TRUE)
@@ -1599,41 +1382,6 @@
  */
 /atom/proc/setClosed()
 	return
-
-/**
-  * Recursive getter method to return a list of all ghosts orbitting this atom
-  *
-  * This will work fine without manually passing arguments.
-  */
-/atom/proc/get_all_orbiters(list/processed, source = TRUE)
-	var/list/output = list()
-	if (!processed)
-		processed = list()
-	if (src in processed)
-		return output
-	if (!source)
-		output += src
-	processed += src
-	for (var/o in orbiters?.orbiters)
-		var/atom/atom_orbiter = o
-		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
-	return output
-
-///Sets the custom materials for an item.
-/atom/proc/set_custom_materials(list/materials, multiplier = 1)
-	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
-		for(var/i in custom_materials)
-			var/datum/material/custom_material = i
-			custom_material.on_removed(src, material_flags) //Remove the current materials
-
-	custom_materials = list() //Reset the list
-
-	for(var/x in materials)
-		var/datum/material/custom_material = x
-
-
-		custom_material.on_applied(src, materials[custom_material] * multiplier, material_flags)
-		custom_materials[custom_material] += materials[x] * multiplier
 
 ///Passes Stat Browser Panel clicks to the game and calls client click on an atom
 /atom/Topic(href, list/href_list)

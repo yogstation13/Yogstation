@@ -11,19 +11,22 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
+	overfloor_placed = TRUE
+
+	thermal_conductivity = 0.040
+	heat_capacity = 10000
+
+	tiled_dirt = TRUE
+
 	var/icon_state_regular_floor = "floor" //used to remember what icon state the tile should have by default
 	var/icon_regular_floor = 'icons/turf/floors.dmi' //used to remember what icon the tile should have by default
 	var/icon_plating = "plating"
-	thermal_conductivity = 0.040
-	heat_capacity = 10000
-	intact = 1
+
 	var/broken = 0
 	var/burnt = 0
 	var/floor_tile = null //tile that this floor drops
 	var/list/broken_states
 	var/list/burnt_states
-
-	tiled_dirt = TRUE
 
 /turf/open/floor/Initialize(mapload)
 
@@ -110,8 +113,7 @@
 
 /turf/open/floor/is_shielded()
 	for(var/obj/structure/A in contents)
-		if(A.level == 3)
-			return 1
+		return 1
 
 /turf/open/floor/blob_act(obj/structure/blob/B)
 	return
@@ -168,20 +170,25 @@
 	W.update_appearance(UPDATE_ICON)
 	return W
 
-/turf/open/floor/attackby(obj/item/C, mob/user, params)
-	if(!C || !user)
-		return 1
-	if(..())
-		return 1
-	if(intact && istype(C, /obj/item/stack/tile))
-		try_replace_tile(C, user, params)
-	return 0
+/turf/open/floor/attackby(obj/item/object, mob/living/user, params)
+	if(!object || !user)
+		return TRUE
+	. = ..()
+	if(.)
+		return .
+	if(overfloor_placed && istype(object, /obj/item/stack/tile))
+		try_replace_tile(object, user, params)
+		return TRUE
+	if(underfloor_accessibility >= UNDERFLOOR_INTERACTABLE && istype(object, /obj/item/stack/tile))
+		try_replace_tile(object, user, params)
+	return FALSE
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
 	if(istype(I,/obj/item/jawsoflife/jimmy))
 		to_chat(user,"The [I] cannot pry tiles.")
 		return
-	return intact ? pry_tile(I, user) : FALSE
+	if(overfloor_placed && pry_tile(I, user))
+		return TRUE
 
 /turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	if(T.turf_type == type)

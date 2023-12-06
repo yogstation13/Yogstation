@@ -309,7 +309,8 @@
 
 // item traits
 #define TRAIT_NODROP            "nodrop"
-#define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+/// Visible on t-ray scanners if the atom/var/level == 1
+#define TRAIT_T_RAY_VISIBLE "t-ray-visible"
 /// Properly wielded two handed item
 #define TRAIT_WIELDED "wielded"
 /// The items needs two hands to be carried
@@ -384,6 +385,8 @@
 #define ELEMENT_TRAIT(source) "element_trait_[source]"
 /// Trait from [/datum/element/rust]. Its rusty and should be applying a special overlay to denote this.
 #define TRAIT_RUSTY "rust_trait"
+/// Trait from being under the floor in some manner
+#define TRAIT_UNDERFLOOR "underfloor"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"

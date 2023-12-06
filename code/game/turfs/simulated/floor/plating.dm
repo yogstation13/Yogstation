@@ -10,7 +10,8 @@
 /turf/open/floor/plating
 	name = "plating"
 	icon_state = "plating"
-	intact = FALSE
+	overfloor_placed = FALSE
+	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	baseturfs = /turf/baseturf_bottom
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -87,10 +88,9 @@
 	else if(istype(C, /obj/item/stack/tile) && !locate(/obj/structure/lattice/catwalk, src))
 		if(!broken && !burnt)
 			for(var/obj/O in src)
-				if(O.level == 1) //ex. pipes laid underneath a tile
-					for(var/M in O.buckled_mobs)
-						to_chat(user, span_warning("Someone is buckled to \the [O]! Unbuckle [M] to move \him out of the way."))
-						return
+				for(var/M in O.buckled_mobs)
+					to_chat(user, span_warning("Someone is buckled to \the [O]! Unbuckle [M] to move \him out of the way."))
+					return
 			var/obj/item/stack/tile/W = C
 			if(!W.use(1))
 				return

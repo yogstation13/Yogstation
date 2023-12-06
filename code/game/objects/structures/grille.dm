@@ -11,9 +11,7 @@
 	max_integrity = 50
 	integrity_failure = 20
 	appearance_flags = KEEP_TOGETHER
-	smooth = SMOOTH_TRUE
 	can_be_unanchored = TRUE
-	canSmoothWith = list(/obj/structure/grille, /obj/structure/grille/broken)
 	var/holes = 0 //bitflag
 	var/rods_type = /obj/item/stack/rods
 	var/rods_amount = 2
@@ -40,6 +38,14 @@
 	holes = (holes | (1 << rand(0,3))) //add random holes between 1 and 8
 
 	update_appearance(UPDATE_ICON)
+
+/obj/structure/grille/update_appearance(updates)
+	if(QDELETED(src) || broken)
+		return
+
+	. = ..()
+	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
+		QUEUE_SMOOTH(src)
 
 /obj/structure/grille/update_icon(updates=ALL)
 	. = ..()
@@ -160,8 +166,6 @@
 			setAnchored(!anchored)
 			user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
 								 span_notice("You [anchored ? "fasten [src] to" : "unfasten [src] from"] the floor."))
-			queue_smooth(src)
-			queue_smooth_neighbors(src)
 			return
 	else if(istype(W, /obj/item/stack/rods) && broken)
 		var/obj/item/stack/rods/R = W
@@ -258,6 +262,8 @@
 	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
 		return FALSE
 	var/turf/T = get_turf(src)
+	if(T.overfloor_placed)//cant be a floor in the way!
+		return FALSE
 	var/obj/structure/cable/C = T.get_cable_node()
 	if(C)
 		if(electrocute_mob(user, C, src, 1, TRUE))
@@ -281,6 +287,8 @@
 			var/obj/O = AM
 			if(O.throwforce != 0)//don't want to let people spam tesla bolts, this way it will break after time
 				var/turf/T = get_turf(src)
+				if(T.overfloor_placed)
+					return FALSE
 				var/obj/structure/cable/C = T.get_cable_node()
 				if(C)
 					playsound(src, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
@@ -312,7 +320,6 @@
 	name = "cog grille"
 	desc = "A strangely-shaped grille."
 	broken_type = /obj/structure/grille/ratvar/broken
-	smooth = SMOOTH_FALSE
 
 /obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()

@@ -8,3 +8,6 @@
 #define TEXT_SOUTH "[SOUTH]"
 #define TEXT_EAST "[EAST]"
 #define TEXT_WEST "[WEST]"
+
+//Better performant than an artisanal proc and more reliable than Turn(). From TGMC.
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )

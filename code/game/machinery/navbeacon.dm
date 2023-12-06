@@ -27,7 +27,6 @@
 	set_codes()
 
 	var/turf/T = loc
-	hide(T.intact)
 	if(codes["patrol"])
 		if(!GLOB.navbeacons["[z]"])
 			GLOB.navbeacons["[z]"] = list()
@@ -35,6 +34,8 @@
 	if(codes["delivery"])
 		GLOB.deliverybeacons += src
 		GLOB.deliverybeacontags += location
+	
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 /obj/machinery/navbeacon/Destroy()
 	if (GLOB.navbeacons["[z]"])

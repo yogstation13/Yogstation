@@ -1,20 +1,3 @@
-//wrapper macros for easier grepping
-#define DIRECT_OUTPUT(A, B) A << B
-#define DIRECT_INPUT(A, B) A >> B
-#define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
-#define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
-#define SEND_TEXT(target, text) DIRECT_OUTPUT(target, text)
-#define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
-#define READ_FILE(file, text) DIRECT_INPUT(file, text)
-//This is an external call, "true" and "false" are how rust parses out booleans
-#ifdef EXTOOLS_LOGGING
-#define WRITE_LOG(log, text) extools_log_write(log, text, TRUE)
-#define WRITE_LOG_NO_FORMAT(log, text) extools_log_write(log, text, FALSE)
-#else
-#define WRITE_LOG(log, text) rustg_log_write(log, "\[[worldtime2text()]\] [text]", "true")
-#define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
-#endif
-
 //print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
 /proc/warning(msg)
@@ -361,3 +344,52 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
+
+/// Generic logging helper
+/atom/proc/log_message(message, message_type, color=null, log_globally=TRUE)
+	if(!log_globally)
+		return
+
+	var/log_text = "[key_name(src)] [message] [loc_name(src)]"
+	switch(message_type)
+		if(LOG_ATTACK)
+			log_attack(log_text)
+		if(LOG_SAY)
+			log_say(log_text)
+		if(LOG_WHISPER)
+			log_whisper(log_text)
+		if(LOG_EMOTE)
+			log_emote(log_text)
+		if(LOG_DSAY)
+			log_dsay(log_text)
+		if(LOG_PDA)
+			log_pda(log_text)
+		if(LOG_CHAT)
+			log_chat(log_text)
+		if(LOG_COMMENT)
+			log_comment(log_text)
+		if(LOG_TELECOMMS)
+			log_telecomms(log_text)
+		if(LOG_NTSL)
+			log_ntsl(log_text)
+		if(LOG_OOC)
+			log_ooc(log_text)
+		if(LOG_LOOC) // yogs - LOOC log
+			log_looc(log_text) // yogs - LOOC log
+		if(LOG_DONATOR) // yogs - Donator log
+			log_donator(log_text) // yogs - Donator log
+		if(LOG_ADMIN)
+			log_admin(log_text)
+		if(LOG_ADMIN_PRIVATE)
+			log_admin_private(log_text)
+		if(LOG_ASAY)
+			log_adminsay(log_text)
+		if(LOG_OWNERSHIP)
+			log_game(log_text)
+		if(LOG_GAME)
+			log_game(log_text)
+		if(LOG_MECHA)
+			log_mecha(log_text)
+		else
+			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
+			log_game(log_text)

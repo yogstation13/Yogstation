@@ -88,8 +88,7 @@
 		if(object == src)
 			continue
 		if(isturf(object.loc))
-			var/turf/turf = object.loc
-			if(turf.intact && object.level == 1) //hidden under the floor
+			if(turf_location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(object, TRAIT_T_RAY_VISIBLE))
 				continue
 		reagents.reaction(object, TOUCH|VAPOR, fraction)
 

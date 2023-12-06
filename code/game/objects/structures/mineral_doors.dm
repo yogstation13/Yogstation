@@ -304,7 +304,13 @@
 
 /obj/structure/mineral_door/paperframe/Initialize(mapload)
 	. = ..()
-	queue_smooth_neighbors(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
+
+/obj/structure/mineral_door/paperframe/Destroy()
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
+	return ..()
 
 /obj/structure/mineral_door/paperframe/examine(mob/user)
 	. = ..()
@@ -333,8 +339,4 @@
 			user.visible_message("[user] patches some of the holes in [src].", span_notice("You patch some of the holes in [src]!"))
 			return TRUE
 
-	return ..()
-
-/obj/structure/mineral_door/paperframe/Destroy()
-	queue_smooth_neighbors(src)
 	return ..()

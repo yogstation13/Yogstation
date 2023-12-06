@@ -3,6 +3,8 @@
 	desc = "Watch your step!"
 	icon_state = "grey"
 	baseturfs = /turf/open/openspace
+	overfloor_placed = FALSE
+	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	CanAtmosPassVertical = ATMOS_PASS_YES
 	flags_1 = NO_RUST
 	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT

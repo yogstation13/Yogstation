@@ -59,6 +59,8 @@
 /turf/open/indestructible/plating
 	name = "plating"
 	icon_state = "plating"
+	overfloor_placed = FALSE
+	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
@@ -103,8 +105,6 @@
 	desc = "Soft velvet carpeting. Feels good between your toes."
 	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet"
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/indestructible/carpet)
 	flags_1 = NONE
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_CARPET
@@ -112,6 +112,9 @@
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET
+	canSmoothWith = SMOOTH_GROUP_CARPET
 
 /turf/open/indestructible/carpet/black
 	icon = 'icons/turf/floors/carpet_black.dmi'
@@ -145,9 +148,11 @@
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."
 	icon = 'icons/turf/floors/carpet_royalblue.dmi'
-	icon_state = "carpet"
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/indestructible/carpet/royal)
+	icon_state = "carpet-255"
+	base_icon_state = "carpet"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET
+	canSmoothWith = SMOOTH_GROUP_CARPET
 	flags_1 = NONE
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_CARPET
@@ -159,14 +164,20 @@
 /turf/open/indestructible/carpet/royal/black
 	icon = 'icons/turf/floors/carpet_royalblack.dmi'
 	icon_state = "carpet"
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ROYAL_BLACK
+	canSmoothWith = SMOOTH_GROUP_CARPET_ROYAL_BLACK
 
 /turf/open/indestructible/carpet/royal/green
 	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
 	icon_state = "carpet"
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ROYAL_GREEN
+	canSmoothWith = SMOOTH_GROUP_CARPET_ROYAL_GREEN
 
 /turf/open/indestructible/carpet/royal/purple
 	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
 	icon_state = "carpet"
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ROYAL_PURPLE
+	canSmoothWith = SMOOTH_GROUP_CARPET_ROYAL_PURPLE
 
 /turf/open/indestructible/grass
 	name = "grass patch"
@@ -337,7 +348,7 @@
 	icon = 'icons/turf/floors/hierophant_floor.dmi'
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	baseturfs = /turf/open/indestructible/hierophant
-	smooth = SMOOTH_TRUE
+	smoothing_flags = SMOOTH_CORNERS
 	tiled_dirt = FALSE
 
 /turf/open/indestructible/hierophant/two
@@ -453,10 +464,11 @@
 		icon_state = "necro[rand(2,3)]"
 
 /turf/open/indestructible/brazil/lostit
-	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
-	canSmoothWith = list(/turf/open/indestructible/brazil/lostit)
 	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
 	icon_state = "smooth"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_BRAZIL
+	canSmoothWith = SMOOTH_GROUP_BRAZIL
 
 /turf/open/indestructible/wiki
 	light_range = 2

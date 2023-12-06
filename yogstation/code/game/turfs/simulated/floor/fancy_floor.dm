@@ -1,24 +1,28 @@
 /turf/open/floor/ballpit
 	desc = "A bunch of balls compressed together into a tile. Fun for the whole family!"
-	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/ballpit)
 	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
 	icon_state = "smooth"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = SMOOTH_GROUP_TURF_BALLPIT
+	canSmoothWith = SMOOTH_GROUP_TURF_BALLPIT
 
 /turf/open/floor/carpet/purple
 	icon = 'goon/icons/turfs/carpet_purple.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/purple
-	canSmoothWith = list(/turf/open/floor/carpet/purple)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PURPLE
+	canSmoothWith = SMOOTH_GROUP_CARPET_PURPLE
 
 /turf/open/floor/carpet/green
 	icon = 'goon/icons/turfs/carpet_green.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/green
-	canSmoothWith = list(/turf/open/floor/carpet/green)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_GREEN
+	canSmoothWith = SMOOTH_GROUP_CARPET_GREEN
 
 /turf/open/floor/carpet/blue
 	icon = 'goon/icons/turfs/carpet_blue.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/blue
-	canSmoothWith = list(/turf/open/floor/carpet/blue)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_BLUE
+	canSmoothWith = SMOOTH_GROUP_CARPET_BLUE
 
 /turf/open/floor/plasteel/stairs/goon
 	icon = 'goon/icons/turfs/floors.dmi'

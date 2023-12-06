@@ -34,13 +34,14 @@
 
 	if(initialize_dirs != DISP_DIR_NONE)
 		dpdir = dir
-
 		if(initialize_dirs & DISP_DIR_LEFT)
 			dpdir |= turn(dir, 90)
 		if(initialize_dirs & DISP_DIR_RIGHT)
 			dpdir |= turn(dir, -90)
 		if(initialize_dirs & DISP_DIR_FLIP)
 			dpdir |= turn(dir, 180)
+
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 	update()
 
 // pipe is deleted
@@ -97,7 +98,7 @@
 	var/eject_range = 5
 	var/turf/open/floor/floorturf
 
-	if(isfloorturf(T)) //intact floor, pop the tile
+	if(isfloorturf(T) && T.overfloor_placed) // pop the tile if present
 		floorturf = T
 		floorturf.remove_tile()
 

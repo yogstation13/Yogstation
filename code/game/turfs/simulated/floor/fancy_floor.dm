@@ -223,8 +223,9 @@
 	icon_state = "bamboo"
 	floor_tile = /obj/item/stack/tile/bamboo
 	broken_states = list("damaged")
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/bamboo)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_BAMBOO_FLOOR
+	canSmoothWith = SMOOTH_GROUP_BAMBOO_FLOOR
 	flags_1 = NONE
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
@@ -338,8 +339,9 @@
 	icon_state = "carpet"
 	floor_tile = /obj/item/stack/tile/carpet
 	broken_states = list("damaged")
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/carpet)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET
+	canSmoothWith = SMOOTH_GROUP_CARPET
 	flags_1 = NONE
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_CARPET
@@ -359,15 +361,15 @@
 
 /turf/open/floor/carpet/update_icon(updates=ALL)
 	. = ..()
-	if(!.)
-		return 0
+	if(!. || !(updates & UPDATE_SMOOTHING))
+		return
 	if(!broken && !burnt)
-		if(smooth)
-			queue_smooth(src)
+		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+			QUEUE_SMOOTH(src)
 	else
 		make_plating()
-		if(smooth)
-			queue_smooth_neighbors(src)
+		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+			QUEUE_SMOOTH_NEIGHBORS(src)
 
 /turf/open/floor/carpet/broken
 	icon_state = "damaged"
@@ -375,8 +377,11 @@
 
 /turf/open/floor/carpet/black
 	icon = 'icons/turf/floors/carpet_black.dmi'
+	icon_state = "carpet_black-255"
+	base_icon_state = "carpet_black"
 	floor_tile = /obj/item/stack/tile/carpet/black
-	canSmoothWith = list(/turf/open/floor/carpet/black)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_BLACK
+	canSmoothWith = SMOOTH_GROUP_CARPET_BLACK
 
 /turf/open/floor/carpet/black/broken
 	icon_state = "damaged"
@@ -384,8 +389,11 @@
 
 /turf/open/floor/carpet/exoticblue
 	icon = 'icons/turf/floors/carpet_exoticblue.dmi'
+	icon_state = "carpet_blue-255"
+	base_icon_state = "carpet_blue"
 	floor_tile = /obj/item/stack/tile/carpet/exoticblue
-	canSmoothWith = list(/turf/open/floor/carpet/exoticblue)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_BLUE
+	canSmoothWith = SMOOTH_GROUP_CARPET_BLUE
 
 /turf/open/floor/carpet/exoticblue/broken
 	icon_state = "damaged"
@@ -393,8 +401,11 @@
 
 /turf/open/floor/carpet/cyan
 	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	icon_state = "carpet_cyan-255"
+	base_icon_state = "carpet_cyan"
 	floor_tile = /obj/item/stack/tile/carpet/cyan
-	canSmoothWith = list(/turf/open/floor/carpet/cyan)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_CYAN
+	canSmoothWith = SMOOTH_GROUP_CARPET_CYAN
 
 /turf/open/floor/carpet/cyan/broken
 	icon_state = "damaged"
@@ -402,8 +413,11 @@
 
 /turf/open/floor/carpet/exoticgreen
 	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
+	icon_state = "carpet_green-255"
+	base_icon_state = "carpet_green"
 	floor_tile = /obj/item/stack/tile/carpet/exoticgreen
-	canSmoothWith = list(/turf/open/floor/carpet/exoticgreen)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_GREEN
+	canSmoothWith = SMOOTH_GROUP_CARPET_GREEN
 
 /turf/open/floor/carpet/exoticgreen/broken
 	icon_state = "damaged"
@@ -411,8 +425,11 @@
 
 /turf/open/floor/carpet/orange
 	icon = 'icons/turf/floors/carpet_orange.dmi'
+	icon_state = "carpet_orange-255"
+	base_icon_state = "carpet_orange"
 	floor_tile = /obj/item/stack/tile/carpet/orange
-	canSmoothWith = list(/turf/open/floor/carpet/orange)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ORANGE
+	canSmoothWith = SMOOTH_GROUP_CARPET_ORANGE
 
 /turf/open/floor/carpet/orange/broken
 	icon_state = "damaged"
@@ -420,8 +437,11 @@
 
 /turf/open/floor/carpet/exoticpurple
 	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
+	icon_state = "carpet_purple-255"
+	base_icon_state = "carpet_purple"
 	floor_tile = /obj/item/stack/tile/carpet/exoticpurple
-	canSmoothWith = list(/turf/open/floor/carpet/exoticpurple)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PURPLE
+	canSmoothWith = SMOOTH_GROUP_CARPET_PURPLE
 
 /turf/open/floor/carpet/exoticpurple/broken
 	icon_state = "damaged"
@@ -429,8 +449,11 @@
 
 /turf/open/floor/carpet/red
 	icon = 'icons/turf/floors/carpet_red.dmi'
+	icon_state = "carpet_red-255"
+	base_icon_state = "carpet_red"
 	floor_tile = /obj/item/stack/tile/carpet/red
-	canSmoothWith = list(/turf/open/floor/carpet/red)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_RED
+	canSmoothWith = SMOOTH_GROUP_CARPET_RED
 
 /turf/open/floor/carpet/red/broken
 	icon_state = "damaged"
@@ -438,8 +461,11 @@
 
 /turf/open/floor/carpet/royalblack
 	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	icon_state = "carpet_royalblack-255"
+	base_icon_state = "carpet_royalblack"
 	floor_tile = /obj/item/stack/tile/carpet/royalblack
-	canSmoothWith = list(/turf/open/floor/carpet/royalblack)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ROYAL_BLACK
+	canSmoothWith = SMOOTH_GROUP_CARPET_ROYAL_BLACK
 
 /turf/open/floor/carpet/royalblack/broken
 	icon_state = "damaged"
@@ -447,8 +473,11 @@
 
 /turf/open/floor/carpet/royalblue
 	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon_state = "carpet_royalblue-255"
+	base_icon_state = "carpet_royalblue"
 	floor_tile = /obj/item/stack/tile/carpet/royalblue
-	canSmoothWith = list(/turf/open/floor/carpet/royalblue)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ROYAL_BLUE
+	canSmoothWith = SMOOTH_GROUP_CARPET_ROYAL_BLUE
 
 /turf/open/floor/carpet/royalblue/broken
 	icon_state = "damaged"
@@ -477,10 +506,12 @@
 
 /turf/open/floor/fakepit
 	desc = "A clever illusion designed to look like a bottomless pit."
-	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/fakepit)
 	icon = 'icons/turf/floors/Chasms.dmi'
-	icon_state = "smooth"
+	icon_state = "chasms-0"
+	base_icon_state = "chasms"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_TURF_CHASM
+	canSmoothWith = SMOOTH_GROUP_TURF_CHASM
 	tiled_dirt = FALSE
 
 /turf/open/floor/fakepit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)

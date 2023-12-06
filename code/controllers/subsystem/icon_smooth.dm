@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(icon_smooth)
 		var/atom/A = cached[cached.len]
 		cached.len--
 		if (A.flags_1 & INITIALIZED_1)
-			smooth_icon(A)
+			A.smooth_icon()
 		else
 			deferred += A
 		if (MC_TICK_CHECK)
@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(icon_smooth)
 		var/atom/A = V
 		if(!A || A.z <= 2)
 			continue
-		smooth_icon(A)
+		A.smooth_icon()
 		CHECK_TICK
 
 	return SS_INIT_SUCCESS

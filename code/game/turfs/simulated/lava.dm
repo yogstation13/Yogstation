@@ -17,6 +17,24 @@
 	clawfootstep = FOOTSTEP_LAVA
 	heavyfootstep = FOOTSTEP_LAVA
 
+	/// The icon state that covers the lava bits of our turf
+	var/mask_state = "lava-lightmask"
+
+/turf/open/lava/update_overlays()
+	. = ..()
+	// We need a light overlay here because not every lava turf casts light, only the edge ones
+	var/mutable_appearance/light = mutable_appearance(mask_icon, mask_state, LIGHTING_PRIMARY_LAYER, src, LIGHTING_PLANE)
+	light.color = light_color
+	light.blend_mode = BLEND_ADD
+	. += light
+	// Mask away our light underlay, so things don't double stack
+	// This does mean if our light underlay DOESN'T look like the light we emit things will be wrong
+	// But that's rare, and I'm ok with that, quartering our light source count is useful
+	var/mutable_appearance/light_mask = mutable_appearance(mask_icon, mask_state, LIGHTING_MASK_LAYER, src, LIGHTING_PLANE)
+	light_mask.blend_mode = BLEND_MULTIPLY
+	light_mask.color = list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0)
+	. += light_mask
+
 /turf/open/lava/ex_act(severity, target)
 	contents_explosion(severity, target)
 
@@ -163,9 +181,16 @@
 	name = "lava"
 	baseturfs = /turf/open/lava/smooth
 	icon = 'icons/turf/floors/lava.dmi'
-	icon_state = "unsmooth"
-	smooth = SMOOTH_MORE | SMOOTH_BORDER
-	canSmoothWith = list(/turf/open/lava/smooth)
+	icon_state = "lava-255"
+	mask_state = "lava-255"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_FLOOR_LAVA
+	canSmoothWith = SMOOTH_GROUP_FLOOR_LAVA
+
+/turf/open/lava/smooth_icon()
+	. = ..()
+	mask_state = icon_state
+	update_appearance(~UPDATE_SMOOTHING)
 
 /turf/open/lava/smooth/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS

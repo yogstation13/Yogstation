@@ -32,7 +32,7 @@
 		sigdev.code = roundstart_signaller_code
 		sigdev.frequency = roundstart_signaller_freq
 		if(isopenturf(loc))
-			hide(TRUE)
+			AddElement(/datum/element/undertile, tile_overlay = tile_overlay, use_anchor = TRUE)
 
 /obj/item/pressure_plate/Crossed(atom/movable/AM)
 	. = ..()

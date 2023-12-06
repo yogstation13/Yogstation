@@ -29,17 +29,16 @@
 	name = "clockwork wall"
 	icon = 'icons/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall"
-	canSmoothWith = list(/obj/effect/clockwork/overlay/wall, /obj/structure/falsewall/brass)
-	smooth = SMOOTH_TRUE
 	layer = CLOSED_TURF_LAYER
+	smoothing_flags = SMOOTH_BITMASK
+	canSmoothWith = null
 
 /obj/effect/clockwork/overlay/wall/Initialize(mapload)
 	. = ..()
-	queue_smooth_neighbors(src)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(queue_smooth), src), 1)
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/effect/clockwork/overlay/wall/Destroy()
-	queue_smooth_neighbors(src)
+	QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
 /obj/effect/clockwork/overlay/floor

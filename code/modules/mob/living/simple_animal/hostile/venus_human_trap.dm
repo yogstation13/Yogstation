@@ -15,8 +15,8 @@
 	icon_state = "flower_bud"
 	layer = SPACEVINE_MOB_LAYER
 	opacity = FALSE
-	canSmoothWith = list()
-	smooth = SMOOTH_FALSE
+	canSmoothWith = null
+	smoothing_flags = NONE
 	/// The amount of time it takes to create a venus human trap, in deciseconds
 	var/growth_time = 1200
 	/// Used by countdown to check time, this is when the timer will complete and the venus trap will spawn.

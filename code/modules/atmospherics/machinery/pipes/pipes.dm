@@ -18,6 +18,10 @@
         ),\
     )
 
+/obj/machinery/atmospherics/pipe/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE) //if changing this, change the subtypes RemoveElements too, because thats how bespoke works
+
 /obj/machinery/atmospherics/pipe/New(mapload)
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 	volume = 35 * device_type
