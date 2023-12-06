@@ -12,13 +12,13 @@
 
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1 | NO_RUST
-	canSmoothWith = null
 	baseturfs = /turf/open/floor/plating/asteroid/airless
 	initial_gas_mix = AIRLESS_ATMOS
 	opacity = TRUE
 	density = TRUE
 	layer = EDGED_TURF_LAYER
 	initial_temperature = TCMB
+
 	var/environment_type = "asteroid"
 	var/turf/open/floor/plating/turf_type = /turf/open/floor/plating/asteroid/airless
 	var/mineralType = null
@@ -971,3 +971,26 @@
 	icon = MAP_SWITCH('icons/turf/smoothrocks.dmi', 'icons/turf/mining.dmi')
 	color = "#eb9877"
 	hardness = 3
+
+//yoo RED ROCK RED ROCK
+
+/turf/closed/mineral/asteroid
+	name = "iron rock"
+	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
+	icon_state = "redrock"
+	base_icon_state = "red_wall"
+
+/turf/closed/mineral/random/stationside/asteroid
+	name = "iron rock"
+	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
+	base_icon_state = "red_wall"
+
+/turf/closed/mineral/random/stationside/asteroid/porus
+	name = "porous iron rock"
+	desc = "This rock is filled with pockets of breathable air."
+	baseturfs = /turf/open/floor/plating/asteroid
+
+/turf/closed/mineral/asteroid/porous
+	name = "porous rock"
+	desc = "This rock is filled with pockets of breathable air."
+	baseturfs = /turf/open/floor/plating/asteroid

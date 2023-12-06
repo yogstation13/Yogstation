@@ -26,6 +26,8 @@
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/sheet_amount = 2
 	var/girder_type = /obj/structure/girder
+	/// A turf that will replace this turf when this turf is destroyed
+	var/decon_type
 
 	var/list/dent_decals
 
@@ -73,8 +75,10 @@
 		if(istype(O, /obj/structure/sign/poster))
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
-
-	ScrapeAway()
+	if(decon_type)
+		ChangeTurf(decon_type, flags = CHANGETURF_INHERIT_AIR)
+	else
+		ScrapeAway()
 	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /turf/closed/wall/proc/break_wall()

@@ -56,7 +56,7 @@
 
 		if(isopenturf(OT))
 			if(OT.postdig_icon_change)
-				if(istype(OT, /turf/open/floor/plating/asteroid/) && !OT.postdig_icon)
+				if(istype(OT, /turf/open/floor/plating/asteroid) && !OT.postdig_icon)
 					var/turf/open/floor/plating/asteroid/AOT = parent
 					AOT.icon_plating = "[AOT.environment_type]_dug"
 					AOT.icon_state = "[AOT.environment_type]_dug"
