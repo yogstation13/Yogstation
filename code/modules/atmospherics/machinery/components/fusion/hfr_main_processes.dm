@@ -297,7 +297,7 @@
 				delta_mod_removed_list[GAS_PLASMA] = -remove_amount
 			if(moderator_list[GAS_PLUONIUM] > 20)
 				radiation *= 1.55
-				heat_output *= 1.
+				heat_output *= 1.025
 				var/remove_amount = min(moderator_internal.get_moles(GAS_PLUONIUM), scaled_production * 1.35)
 				moderator_internal.adjust_moles(GAS_PLUONIUM, -remove_amount)
 				delta_mod_removed_list[GAS_PLUONIUM] = -remove_amount
