@@ -27,10 +27,10 @@
 	liked_food = DAIRY
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	species_language_holder = /datum/language_holder/plasmaman
+	
+	screamsound = list('sound/voice/plasmaman/plasmeme_scream_1.ogg', 'sound/voice/plasmaman/plasmeme_scream_2.ogg', 'sound/voice/plasmaman/plasmeme_scream_3.ogg')
 
 	smells_like = "plasma-caked calcium"
-
-	screamsound = list('sound/voice/plasmaman/plasmeme_scream_1.ogg', 'sound/voice/plasmaman/plasmeme_scream_2.ogg', 'sound/voice/plasmaman/plasmeme_scream_3.ogg')
 
 	/// If the bones themselves are burning clothes won't help you much
 	var/internal_fire = FALSE
