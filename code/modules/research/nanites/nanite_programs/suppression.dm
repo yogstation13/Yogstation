@@ -27,7 +27,7 @@
 /datum/nanite_program/triggered/shocking/trigger()
 	if(!..())
 		return
-	host_mob.electrocute_act(rand(5,10), "shock nanites", TRUE, TRUE)
+	host_mob.electrocute_act(rand(5,10), "shock nanites", TRUE, zone=null, override=TRUE) // external protection can't save you from being shocked on the inside
 
 /datum/nanite_program/triggered/stun
 	name = "Neural Shock"

@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a few issues with the tgui for supermatter monitor, HFR control panel, atmos scanner, and filters/scrubbers"
