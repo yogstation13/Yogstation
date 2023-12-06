@@ -4,7 +4,8 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to separate rooms."
 	icon = 'icons/turf/walls/wall.dmi'
-	icon_state = "wall"
+	icon_state = "wall-0"
+	base_icon_state = "wall"
 	explosion_block = 1
 
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT

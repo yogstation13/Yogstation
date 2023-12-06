@@ -139,16 +139,24 @@
 			/turf/open/chasm,
 			/turf/open/lava))
 
+	set_base_icon()
 
 	last_expand = world.time + rand(growth_cooldown_low, growth_cooldown_high)
-	if(icon == initial(icon))
-		switch(rand(1,3))
-			if(1)
-				icon = 'icons/obj/smooth_structures/alien/weeds1.dmi'
-			if(2)
-				icon = 'icons/obj/smooth_structures/alien/weeds2.dmi'
-			if(3)
-				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
+
+///Randomizes the weeds' starting icon, gets redefined by children for them not to share the behavior.
+/obj/structure/alien/weeds/proc/set_base_icon()
+	. = base_icon_state
+	switch(rand(1,3))
+		if(1)
+			icon = 'icons/obj/smooth_structures/alien/weeds1.dmi'
+			base_icon_state = "weeds1"
+		if(2)
+			icon = 'icons/obj/smooth_structures/alien/weeds2.dmi'
+			base_icon_state = "weeds2"
+		if(3)
+			icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
+			base_icon_state = "weeds3"
+	set_smoothed_icon_state(smoothing_junction)
 
 /obj/structure/alien/weeds/Click(atom/A)
 	var/turf/T = loc
@@ -183,14 +191,15 @@
 /obj/structure/alien/weeds/node
 	name = "glowing resin"
 	desc = "Blue bioluminescence shines from beneath the surface."
-	icon_state = "weednode"
+	icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
+	icon_state = "weednode-0"
+	base_icon_state = "weednode"
 	light_color = LIGHT_COLOR_BLUE
 	light_power = 0.5
 	var/lon_range = 4
 	var/node_range = NODERANGE
 
 /obj/structure/alien/weeds/node/Initialize(mapload)
-	icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
 	. = ..()
 	set_light(lon_range)
 	var/obj/structure/alien/weeds/W = locate(/obj/structure/alien/weeds) in loc
@@ -207,6 +216,9 @@
 		if(W.last_expand <= world.time)
 			if(W.expand())
 				W.last_expand = world.time + rand(growth_cooldown_low, growth_cooldown_high)
+
+/obj/structure/alien/weeds/node/set_base_icon()
+	return //No icon randomization at init. The node's icon is already well defined.
 
 #undef NODERANGE
 

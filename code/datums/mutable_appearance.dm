@@ -4,18 +4,27 @@
 
 // Mutable appearances are children of images, just so you know.
 
-/mutable_appearance/New()
+// Mutable appearances erase template vars on new, because they accept an appearance to copy as an arg
+// If we have nothin to copy, we set the float plane
+/mutable_appearance/New(mutable_appearance/to_copy)
 	..()
-	plane = FLOAT_PLANE // No clue why this is 0 by default yet images are on FLOAT_PLANE
-						// And yes this does have to be in the constructor, BYOND ignores it if you set it as a normal var
+	if(!to_copy)
+		plane = FLOAT_PLANE
 
-// Helper similar to image()
+/** Helper similar to image()
+ *
+ * icon - Our appearance's icon
+ * icon_state - Our appearance's icon state
+ * layer - Our appearance's layer
+ * plane - The plane to use for the appearance. If this is not FLOAT_PLANE we require context for the offset to use
+ * alpha - Our appearance's alpha
+ * appearance_flags - Our appearance's appearance_flags
+**/
 /proc/mutable_appearance(icon, icon_state = "", layer = FLOAT_LAYER, plane = FLOAT_PLANE, alpha = 255, appearance_flags = NONE)
-	var/mutable_appearance/MA = new()
-	MA.icon = icon
-	MA.icon_state = icon_state
-	MA.layer = layer
-	MA.plane = plane
-	MA.alpha = alpha
-	MA.appearance_flags |= appearance_flags
-	return MA
+	var/mutable_appearance/appearance = new()
+	appearance.icon = icon
+	appearance.icon_state = icon_state
+	appearance.layer = layer
+	appearance.alpha = alpha
+	appearance.appearance_flags |= appearance_flags
+	return appearance

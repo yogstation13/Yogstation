@@ -136,6 +136,7 @@
 	var/list/canSmoothWith = null
 
 	var/atom/orbit_target //Reference to atom being orbited
+
 /**
   * Called when an atom is created in byond (built in engine proc)
   *

@@ -6,7 +6,8 @@
 	desc = "A huge chunk of metal used to separate rooms."
 	anchored = TRUE
 	icon = 'icons/turf/walls/wall.dmi'
-	icon_state = "wall"
+	icon_state = "wall-0"
+	base_icon_state = "wall"
 	layer = CLOSED_TURF_LAYER
 	density = TRUE
 	opacity = TRUE
@@ -157,7 +158,8 @@
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced_wall.dmi'
-	icon_state = "r_wall"
+	icon_state = "reinforced_wall-0"
+	base_icon_state = "reinforced_wall"
 	walltype = /turf/closed/wall/r_wall
 	mineral = /obj/item/stack/sheet/plasteel
 

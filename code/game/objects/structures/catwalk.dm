@@ -2,7 +2,8 @@
 	name = "catwalk"
 	desc = "A catwalk for easier EVA maneuvering and cable placement."
 	icon = 'icons/obj/smooth_structures/catwalk.dmi'
-	icon_state = "catwalk"
+	icon_state = "catwalk-0"
+	base_icon_state = "catwalk"
 	number_of_rods = 2
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_CATWALK + SMOOTH_GROUP_LATTICE + SMOOTH_GROUP_OPEN_FLOOR
