@@ -56,6 +56,14 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	amount = 30
 
 /*
+ * Stone
+ */
+
+GLOBAL_LIST_INIT(stone_recipes, list ( \
+	new/datum/stack_recipe("stone brick tile", /obj/item/stack/tile/stone, 1, 4, 20), \
+))
+
+/*
  * Sandbags
  */
 

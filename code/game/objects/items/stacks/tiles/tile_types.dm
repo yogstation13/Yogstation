@@ -190,6 +190,15 @@
 	item_state = "tile-basalt"
 	turf_type = /turf/open/floor/grass/fakebasalt
 
+//Stone
+/obj/item/stack/tile/stone
+	name = "stone brick tile"
+	singular_name = "stone brick tile"
+	desc = "How rustic."
+	icon_state = "tile_stone"
+	item_state = "tile_stone"
+	turf_type = /turf/open/floor/stone
+
 //Carpets
 /obj/item/stack/tile/carpet
 	name = "carpet"

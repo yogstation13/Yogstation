@@ -17,7 +17,7 @@
 	var/turf_type = /turf/open/floor/plating/asteroid //Because caves do whacky shit to revert to normal
 	var/floor_variance = 20 //probability floor has a different icon state
 	attachment_holes = FALSE
-	var/obj/item/stack/digResult = /obj/item/stack/ore/glass/basalt
+	var/obj/item/stack/digResult = /obj/item/stack/ore/glass/basalt, /obj/item/stack/sheet/stone
 	var/dug
 
 /turf/open/floor/plating/asteroid/Initialize(mapload)
