@@ -2,7 +2,8 @@
 	name = "lattice"
 	desc = "A lightweight support lattice. These hold our station together."
 	icon = 'icons/obj/smooth_structures/lattice.dmi'
-	icon_state = "lattice"
+	icon_state = "lattice-255"
+	base_icon_state = "lattice"
 	density = FALSE
 	anchored = TRUE
 	armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)

@@ -3175,9 +3175,7 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "axJ" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/closed/wall/r_wall,
 /area/engine/atmos/mix)
 "axL" = (
@@ -37026,8 +37024,7 @@
 "kRZ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	layer = 2.35;
-	level = 1
+	layer = 2.35
 	},
 /turf/closed/wall,
 /area/science/mixing)
@@ -54097,8 +54094,7 @@
 /area/security/brig)
 "rrF" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	layer = 2.35;
-	level = 1
+	layer = 2.35
 	},
 /turf/closed/wall,
 /area/science/mixing)

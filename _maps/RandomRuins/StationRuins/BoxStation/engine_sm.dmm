@@ -1246,8 +1246,7 @@
 "dI" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4;
-	level = 2
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)

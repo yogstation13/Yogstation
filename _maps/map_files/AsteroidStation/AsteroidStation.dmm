@@ -74962,8 +74962,7 @@
 /area/tcommsat/server)
 "wJw" = (
 /obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4;
-	level = 2
+	dir = 4
 	},
 /turf/closed/wall,
 /area/engine/atmos/storage)

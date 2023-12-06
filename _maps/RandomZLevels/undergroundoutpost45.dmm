@@ -611,8 +611,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "bB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5;
-	level = 1
+	dir = 5
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -637,8 +636,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "bD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10;
-	level = 1
+	dir = 10
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -796,8 +794,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "bV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10;
-	level = 1
+	dir = 10
 	},
 /turf/closed/wall,
 /area/awaymission/undergroundoutpost45/central)
@@ -1189,8 +1186,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "cM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5;
-	level = 2
+	dir = 5
 	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -1274,8 +1270,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "cV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10;
-	level = 1
+	dir = 10
 	},
 /turf/closed/wall/rust,
 /area/awaymission/undergroundoutpost45/central)
@@ -3014,15 +3009,13 @@
 /area/awaymission/undergroundoutpost45/central)
 "gc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5;
-	level = 1
+	dir = 5
 	},
 /turf/closed/wall/r_wall,
 /area/awaymission/undergroundoutpost45/central)
 "gd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10;
-	level = 1
+	dir = 10
 	},
 /turf/closed/wall/r_wall,
 /area/awaymission/undergroundoutpost45/central)
@@ -3917,8 +3910,7 @@
 /area/awaymission/undergroundoutpost45/crew_quarters)
 "hU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4;
-	level = 2
+	dir = 4
 	},
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
@@ -3930,8 +3922,7 @@
 "hV" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4;
-	level = 2
+	dir = 4
 	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -4490,8 +4481,7 @@
 /area/awaymission/undergroundoutpost45/gateway)
 "iX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10;
-	level = 1
+	dir = 10
 	},
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
@@ -9779,8 +9769,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4;
-	level = 2
+	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
 	name = "Research Maintenance";
@@ -11090,8 +11079,7 @@
 /area/awaymission/undergroundoutpost45/engineering)
 "tK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5;
-	level = 1
+	dir = 5
 	},
 /turf/closed/wall/rust,
 /area/awaymission/undergroundoutpost45/research)
@@ -11744,7 +11732,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/computer/atmos_control{
 	dir = 4;
-	level = 3;
 	name = "Distribution and Waste Monitor";
 	sensors = list("UO45_air_sensor" = "Mixed Air Supply Tank", "UO45_distro_meter" = "Distribution Loop", "UO45_waste_meter" = "Waste Loop")
 	},
@@ -11758,8 +11745,7 @@
 /area/awaymission/undergroundoutpost45/engineering)
 "uV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5;
-	level = 1
+	dir = 5
 	},
 /obj/structure/chair/office/dark{
 	dir = 8
