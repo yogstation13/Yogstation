@@ -29,6 +29,8 @@
 	var/lowering_to_configuration_key
 	/// Our configuration key for elevating to text, if set, will override the default elevating to announcement.
 	var/elevating_to_configuration_key
+	/// Custom title to use for announcement messages
+	var/custom_title
 	/// If the alert level should disable night mode
 	var/disable_night_mode = FALSE
 	/// If the emergency lights should be activiated
@@ -105,7 +107,7 @@
 	name = "gamma"
 	announcement_color = "orange"
 	sound = 'sound/misc/gamma_alert.ogg'
-	number_level = SEC_LEVEL_EPSILON
+	number_level = SEC_LEVEL_GAMMA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_gamma
 	lowering_to_configuration_key = /datum/config_entry/string/alert_gamma
 	shuttle_call_time_mod = ALERT_COEFF_DELTA
@@ -126,6 +128,7 @@
 	number_level = SEC_LEVEL_EPSILON
 	elevating_to_configuration_key = /datum/config_entry/string/alert_epsilon
 	lowering_to_configuration_key = /datum/config_entry/string/alert_epsilon
+	custom_title = "Epsilon Protocol Activated"
 	shuttle_call_time_mod = ALERT_COEFF_EPSILON
 	disable_night_mode = TRUE
 	pod_access = TRUE
@@ -135,7 +138,7 @@
 /datum/security_level/epsilon/on_activate(previous_level)
 	send_to_playing_players(span_notice("You get a bad feeling as you hear the Epsilon alert siren."))
 
-/**
+/**da
  * DELTA
  *
  * Station destruction is imminent

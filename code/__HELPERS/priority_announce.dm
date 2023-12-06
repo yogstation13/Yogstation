@@ -155,11 +155,13 @@
 	var/title
 	var/message
 
+	if(selected_level.custom_title)
+		title = selected_level.custom_title
 	if(current_level_number > previous_level_number)
-		title = "Attention! Security level elevated to [current_level_name]:"
+		title = title || "Attention! Security level elevated to [current_level_name]:"
 		message = selected_level.elevating_to_announcement
 	else
-		title = "Attention! Security level lowered to [current_level_name]:"
+		title = title || "Attention! Security level lowered to [current_level_name]:"
 		message = selected_level.lowering_to_announcement
 
 	var/list/level_announcement_strings = list()
