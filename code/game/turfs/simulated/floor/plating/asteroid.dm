@@ -17,7 +17,7 @@
 	var/turf_type = /turf/open/floor/plating/asteroid //Because caves do whacky shit to revert to normal
 	var/floor_variance = 20 //probability floor has a different icon state
 	attachment_holes = FALSE
-	var/obj/item/stack/digResult = /obj/item/stack/ore/glass/basalt, /obj/item/stack/sheet/stone
+	var/obj/item/stack/digResult = /obj/item/stack/ore/glass/basalt
 	var/dug
 
 /turf/open/floor/plating/asteroid/Initialize(mapload)
@@ -29,6 +29,8 @@
 
 /turf/open/floor/plating/asteroid/proc/getDug()
 	new digResult(src, 5)
+	prob(20)
+		new /obj/item/stack/sheet/mineral/stone(src, rand(1,3))
 	if(postdig_icon_change)
 		if(!postdig_icon)
 			icon_plating = "[environment_type]_dug"

@@ -59,6 +59,18 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
  * Stone
  */
 
+/obj/item/stack/sheet/mineral/stone
+	name = "stone brick"
+	desc = "A stone brick."
+	singular_name = "stone brick"
+	icon_state = "sheet-stone"
+	item_state = "sheet-stone"
+	throw_speed = 3
+	throw_range = 5
+	materials = list(/datum/material/stone=MINERAL_MATERIAL_AMOUNT)
+	sheettype = "stone"
+	merge_type = /obj/item/stack/sheet/mineral/stone
+
 GLOBAL_LIST_INIT(stone_recipes, list ( \
 	new/datum/stack_recipe("stone brick tile", /obj/item/stack/tile/stone, 1, 4, 20), \
 ))
