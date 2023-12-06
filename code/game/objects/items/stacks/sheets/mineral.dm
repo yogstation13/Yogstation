@@ -67,7 +67,6 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	item_state = "sheet-stone"
 	throw_speed = 3
 	throw_range = 5
-	materials = list(/datum/material/stone=MINERAL_MATERIAL_AMOUNT)
 	sheettype = "stone"
 	merge_type = /obj/item/stack/sheet/mineral/stone
 
