@@ -187,6 +187,7 @@
 	icon = 'icons/turf/floors/lava.dmi'
 	icon_state = "lava-255"
 	mask_state = "lava-255"
+	base_icon_state = "lava"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_FLOOR_LAVA
 	canSmoothWith = SMOOTH_GROUP_FLOOR_LAVA

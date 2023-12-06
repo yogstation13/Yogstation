@@ -7,6 +7,7 @@
 	baseturfs = /turf/open/floor/plating/asteroid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
+	base_icon_state = "asteroid"
 	icon_plating = "asteroid"
 	postdig_icon_change = TRUE
 	footstep = FOOTSTEP_SAND
@@ -97,6 +98,7 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "basalt"
+	base_icon_state = "basalt"
 	icon_plating = "basalt"
 	environment_type = "basalt"
 	floor_variance = 15
@@ -146,6 +148,7 @@
 	icon = 'icons/turf/snow.dmi'
 	baseturfs = /turf/open/floor/plating/asteroid/snow
 	icon_state = "snow"
+	base_icon_state = "snow"
 	icon_plating = "snow"
 	initial_gas_mix = FROZEN_ATMOS
 	environment_type = "snow"
