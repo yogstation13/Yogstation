@@ -4,7 +4,7 @@
  * fusion_process() handles all the main fusion reaction logic and consequences (lightning, radiation, particles) from an active fusion reaction.
  */
 
-/obj/machinery/atmospherics/components/unary/hypertorus/core/process(delta_time)
+/obj/machinery/atmospherics/components/unary/hypertorus/core/process_atmos(delta_time)
 	/*
 	 *Pre-checks
 	 */

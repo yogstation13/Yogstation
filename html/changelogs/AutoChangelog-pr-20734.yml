@@ -1,6 +1,0 @@
-author: "sapphicoverload, bluishtsunami"
-delete-after: true 
-changes: 
-  - rscadd: "adds a water gun to donksoft vending machines (and uplink)"
-  - tweak: "preternis water damage tweaked to be more affected by smaller volumes"
-  - tweak: "preternis water damage updates immediately when splashed instead of waiting up to 2 seconds"
