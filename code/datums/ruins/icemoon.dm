@@ -17,7 +17,7 @@
 	name = "Icemoon Hermit"
 	id = "ice_hermit"
 	description = "The home of a hermit in the ice and snow, you can't possibly imagine who'd want to live here."
-	suffix = "icemoon_hermit.dmm"
+	suffix = "icemoon_surface_hermit.dmm"
 
 /datum/map_template/ruin/icemoon/lust
 	name = "Ruin of Lust"
