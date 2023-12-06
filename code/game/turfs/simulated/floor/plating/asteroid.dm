@@ -29,7 +29,7 @@
 
 /turf/open/floor/plating/asteroid/proc/getDug()
 	new digResult(src, 5)
-	prob(20)
+	if(prob(20))
 		new /obj/item/stack/sheet/mineral/stone(src, rand(1,3))
 	if(postdig_icon_change)
 		if(!postdig_icon)
