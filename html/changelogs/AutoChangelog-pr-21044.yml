@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "HFR processes at the same rate as other atmos machines now"
