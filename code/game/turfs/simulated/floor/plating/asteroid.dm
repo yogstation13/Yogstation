@@ -29,8 +29,8 @@
 
 /turf/open/floor/plating/asteroid/proc/getDug()
 	new digResult(src, 5)
-	if(prob(20))
-		new /obj/item/stack/sheet/mineral/stone(src, rand(1,3))
+	if(prob(50))
+		new /obj/item/stack/sheet/mineral/stone(src, rand(5))
 	if(postdig_icon_change)
 		if(!postdig_icon)
 			icon_plating = "[environment_type]_dug"
