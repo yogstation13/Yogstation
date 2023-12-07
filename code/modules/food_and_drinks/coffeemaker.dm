@@ -455,19 +455,51 @@
 	icon_state = "cartridge_blank"
 
 //now, how do you store coffee carts? well, in a rack, of course!
-/obj/item/storage/fancy/coffee_cart_rack
-	name = "coffeemaker cartridge rack"
+/obj/item/storage/box/coffee_cart_rack
+	name = "coffeemaker cartridge box"
 	desc = "A small rack for storing coffeemaker cartridges."
-	icon = 'icons/obj/food/containers.dmi'
-	icon_state = "coffee_cartrack4"
-	base_icon_state = "coffee_cartrack"
-	spawn_type = /obj/item/coffee_cartridge
+	var/cartridge_type = /obj/item/coffee_cartridge
 
-/obj/item/storage/fancy/coffee_cart_rack/Initialize(mapload)
+/obj/item/storage/box/coffee_cart_rack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 4
-	STR.set_holdable(list(/obj/item/storage/fancy/coffee_cart_rack))
+	STR.max_items = 8
+	STR.can_hold = typecacheof(list(/obj/item/coffee_cartridge))
+
+
+/obj/item/storage/box/coffee_cart_rack/PopulateContents()
+	for(var/i in 1 to 4)
+		new cartridge_type(src)
+		new /obj/item/coffee_cartridge/decaf(src)
+		new /obj/item/coffee_cartridge/fancy(src)
+		new /obj/item/coffee_cartridge(src)
+
+/*
+ * Coffee condiments display -- someone can make this fancy eventually, i cant fucking figure it out for the life of me
+ */
+
+/obj/item/storage/box/coffee_condi_display
+	name = "coffee condiments display"
+	desc = "A neat small box, holding all your favorite coffee condiments."
+
+/obj/item/storage/box/coffee_condi_display/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 14
+	STR.set_holdable(list(
+		/obj/item/reagent_containers/food/condiment/pack/sugar,
+		/obj/item/reagent_containers/food/condiment/pack/creamer,
+		/obj/item/reagent_containers/food/condiment/pack/astrotame,
+		/obj/item/reagent_containers/food/condiment/pack/chocolate,
+	))
+
+/obj/item/storage/box/coffee_condi_display/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/reagent_containers/food/condiment/pack/sugar(src)
+		new /obj/item/reagent_containers/food/condiment/pack/creamer(src)
+		new /obj/item/reagent_containers/food/condiment/pack/astrotame(src)
+		new /obj/item/reagent_containers/food/condiment/pack/chocolate(src)
+
 
 /*
  * impressa coffee maker
@@ -678,7 +710,7 @@
 		balloon_alert(user, "no cups left!")
 		return
 	balloon_alert_to_viewers("took cup")
-	var/obj/item/reagent_containers/food/drinks/bottle/coffee/new_cup = new(get_turf(src))
+	var/obj/item/reagent_containers/food/drinks/coffee/new_cup = new(get_turf(src))
 	user.put_in_hands(new_cup)
 	coffee_cups--
 	update_appearance(UPDATE_OVERLAYS)

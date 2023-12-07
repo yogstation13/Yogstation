@@ -2085,7 +2085,7 @@
 		/obj/item/storage/box/coffeepack/robusta,
 		/obj/item/storage/box/coffeepack,
 		/obj/item/reagent_containers/food/drinks/bottle/coffeepot,
-		/obj/item/storage/fancy/coffee_condi_display,
+		/obj/item/storage/box/coffee_condi_display,
 		/obj/item/reagent_containers/food/condiment/cream,
 		/obj/item/reagent_containers/food/condiment/milk,
 		/obj/item/reagent_containers/food/condiment/soymilk,
