@@ -297,7 +297,7 @@
 				delta_mod_removed_list[GAS_PLASMA] = -remove_amount
 			if(moderator_list[GAS_PLUONIUM] > 20)
 				radiation *= 1.55
-				heat_output *= 1.
+				heat_output *= 1.025
 				var/remove_amount = min(moderator_internal.get_moles(GAS_PLUONIUM), scaled_production * 1.35)
 				moderator_internal.adjust_moles(GAS_PLUONIUM, -remove_amount)
 				delta_mod_removed_list[GAS_PLUONIUM] = -remove_amount
@@ -348,7 +348,7 @@
 					critical_threshold_proximity = max(critical_threshold_proximity - (moderator_list[GAS_HEALIUM] / 100 * delta_time ), 0)
 					var/remove_amount = min(moderator_internal.get_moles(GAS_HEALIUM), scaled_production * 20)
 					moderator_internal.adjust_moles(GAS_HEALIUM, -remove_amount)
-					delta_mod_removed_list[GAS_PLASMA] = -remove_amount
+					delta_mod_removed_list[GAS_HEALIUM] = -remove_amount
 			if(moderator_internal.return_temperature() < 1e7 || (moderator_list[GAS_PLASMA] > 100 && moderator_list[GAS_BZ] > 50))
 				internal_output.adjust_moles(GAS_ANTINOB, dirty_production_rate * 0.9 / 0.065 * delta_time)
 
