@@ -209,6 +209,28 @@
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	foodtype = BREAKFAST
+	var/lid_open = 0
+
+/obj/item/reagent_containers/food/drinks/coffee/no_lid
+	icon_state = "coffee_empty"
+	list_reagents = null
+
+/obj/item/reagent_containers/food/drinks/coffee/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click to toggle cup lid.")
+	return
+
+/obj/item/reagent_containers/food/drinks/coffee/AltClick(mob/user)
+	lid_open = !lid_open
+	update_icon_state()
+	return ..()
+
+/obj/item/reagent_containers/food/drinks/coffee/update_icon_state()
+	if(lid_open)
+		icon_state = reagents.total_volume ? "[base_icon_state]_full" : "[base_icon_state]_empty"
+	else
+		icon_state = base_icon_state
+	return ..()
 
 /obj/item/reagent_containers/food/drinks/ice
 	name = "ice cup"
