@@ -515,3 +515,5 @@
 #define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
 /// This mob overrides certian SSlag_switch measures with this special trait
 #define TRAIT_BYPASS_MEASURES "bypass_lagswitch_measures"
+/// This movable atom has the explosive block element
+#define TRAIT_BLOCKING_EXPLOSIVES "blocking_explosives"
