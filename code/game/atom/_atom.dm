@@ -137,104 +137,6 @@
 
 	var/atom/orbit_target //Reference to atom being orbited
 
-/**
-  * Called when an atom is created in byond (built in engine proc)
-  *
-  * Not a lot happens here in SS13 code, as we offload most of the work to the
-  * [Intialization](atom.html#proc/Initialize) proc, mostly we run the preloader
-  * if the preloader is being used and then call InitAtom of which the ultimate
-  * result is that the Intialize proc is called.
-  *
-  * We also generate a tag here if the DF_USE_TAG flag is set on the atom
-  */
-/atom/New(loc, ...)
-	//atom creation method that preloads variables at creation
-	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
-		world.preloader_load(src)
-
-	if(datum_flags & DF_USE_TAG)
-		GenerateTag()
-
-	var/do_initialize = SSatoms.initialized
-	if(do_initialize != INITIALIZATION_INSSATOMS)
-		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
-		if(SSatoms.InitAtom(src, args))
-			//we were deleted
-			return
-	SSdemo.mark_new(src)
-
-/**
-  * The primary method that objects are setup in SS13 with
-  *
-  * we don't use New as we have better control over when this is called and we can choose
-  * to delay calls or hook other logic in and so forth
-  *
-  * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
-  * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
-  * is also true for loading map templates as well, so they don't Initalize until all objects
-  * in the map file are parsed and present in the world
-  *
-  * If you're creating an object at any point after SSInit has run then this proc will be
-  * immediately be called from New.
-  *
-  * mapload: This parameter is true if the atom being loaded is either being intialized during
-  * the Atom subsystem intialization, or if the atom is being loaded from the map template.
-  * If the item is being created at runtime any time after the Atom subsystem is intialized then
-  * it's false.
-  *
-  * You must always call the parent of this proc, otherwise failures will occur as the item
-  * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
-  * the item being completely unclickable)
-  *
-  * You must not sleep in this proc, or any subprocs
-  *
-  * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
-  * there are no other arguments
-  *
-  * Must return an [initialization hint](code/__DEFINES/subsystems.html) or a runtime will occur.
-  *
-  * Note: the following functions don't call the base for optimization and must copypasta handling:
-  * * /turf/Initialize
-  * * /turf/open/space/Initialize
-  */
-/atom/proc/Initialize(mapload, ...)
-	SHOULD_CALL_PARENT(TRUE)
-	if(flags_1 & INITIALIZED_1)
-		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_1 |= INITIALIZED_1
-
-	//atom color stuff
-	if(color)
-		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
-
-	if (light_system == STATIC_LIGHT && light_power && light_range)
-		update_light()
-
-	if(custom_materials && custom_materials.len)
-		var/temp_list = list()
-		for(var/i in custom_materials)
-			var/datum/material/material = getmaterialref(i) || i
-			temp_list[material] = custom_materials[material] //Get the proper instanced version
-
-		custom_materials = null //Null the list to prepare for applying the materials properly
-		set_custom_materials(temp_list)
-
-	return INITIALIZE_HINT_NORMAL
-
-/**
-  * Late Intialization, for code that should run after all atoms have run Intialization
-  *
-  * To have your LateIntialize proc be called, your atoms [Initalization](atom.html#proc/Initialize)
-  *  proc must return the hint
-  * [INITIALIZE_HINT_LATELOAD](code/__DEFINES/subsystems.html#define/INITIALIZE_HINT_LATELOAD)
-  * otherwise you will never be called.
-  *
-  * useful for doing things like finding other machines on GLOB.machines because you can guarantee
-  * that all atoms will actually exist in the "WORLD" at this time and that all their Intialization
-  * code has been run
-  */
-/atom/proc/LateInitialize()
-	return
 
 /**
   * Top level of the destroy chain for most atoms
@@ -1310,9 +1212,12 @@
 /atom/proc/return_temperature()
 	return
 
-///Generate a tag for this atom
-/atom/proc/GenerateTag()
-	return
+///Generate a tag for this /datum, if it implements one
+///Should be called as early as possible, best would be in New, to avoid weakref mistargets
+///Really just don't use this, you don't need it, global lists will do just fine MOST of the time
+///We really only use it for mobs to make id'ing people easier
+/datum/proc/GenerateTag()
+	datum_flags |= DF_USE_TAG
 
 ///Connect this atom to a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)

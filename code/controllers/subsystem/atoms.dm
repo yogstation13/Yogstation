@@ -1,14 +1,9 @@
 #define SUBSYSTEM_INIT_SOURCE "subsystem init"
-
-#define BAD_INIT_QDEL_BEFORE 1
-#define BAD_INIT_DIDNT_INIT 2
-#define BAD_INIT_SLEPT 4
-#define BAD_INIT_NO_HINT 8
-
 SUBSYSTEM_DEF(atoms)
 	name = "Atoms"
 	init_order = INIT_ORDER_ATOMS
 	flags = SS_NO_FIRE
+
 	loading_points = 30 SECONDS // Yogs -- smarter loading times
 
 	/// A stack of list(source, desired initialized state)
@@ -20,32 +15,34 @@ SUBSYSTEM_DEF(atoms)
 
 	var/list/BadInitializeCalls = list()
 
-	var/init_start_time
+	///initAtom() adds the atom its creating to this list iff InitializeAtoms() has been given a list to populate as an argument
+	var/list/created_atoms
 
 	/// Atoms that will be deleted once the subsystem is initialized
 	var/list/queued_deletions = list()
 
+	var/init_start_time
+
 	initialized = INITIALIZATION_INSSATOMS
 
-/datum/controller/subsystem/atoms/Initialize(timeofday)
+/datum/controller/subsystem/atoms/Initialize()
 	init_start_time = world.time
-	GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	setupGenetics() //to set the mutations' sequence
 
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 	initialized = INITIALIZATION_INNEW_REGULAR
-	
+
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
+/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms, list/atoms_to_return)
 	if(initialized == INITIALIZATION_INSSATOMS)
 		return
 
 	set_tracked_initalized(INITIALIZATION_INNEW_MAPLOAD, SUBSYSTEM_INIT_SOURCE)
 
 	// This may look a bit odd, but if the actual atom creation runtimes for some reason, we absolutely need to set initialized BACK
-	CreateAtoms(atoms)
+	CreateAtoms(atoms, atoms_to_return)
 	clear_tracked_initalize(SUBSYSTEM_INIT_SOURCE)
 
 	if(late_loaders.len)
@@ -57,7 +54,11 @@ SUBSYSTEM_DEF(atoms)
 			A.LateInitialize()
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
-	
+
+	if (created_atoms)
+		atoms_to_return += created_atoms
+		created_atoms = null
+
 	for (var/queued_deletion in queued_deletions)
 		qdel(queued_deletion)
 
@@ -65,7 +66,10 @@ SUBSYSTEM_DEF(atoms)
 	queued_deletions.Cut()
 
 /// Actually creates the list of atoms. Exists soley so a runtime in the creation logic doesn't cause initalized to totally break
-/datum/controller/subsystem/atoms/proc/CreateAtoms(list/atoms)
+/datum/controller/subsystem/atoms/proc/CreateAtoms(list/atoms, list/atoms_to_return = null)
+	if (atoms_to_return)
+		LAZYINITLIST(created_atoms)
+
 	#ifdef TESTING
 	var/count
 	#endif
@@ -81,7 +85,9 @@ SUBSYSTEM_DEF(atoms)
 			var/atom/A = atoms[I]
 			if(!(A.flags_1 & INITIALIZED_1))
 				CHECK_TICK
-				InitAtom(A, mapload_arg)
+				PROFILE_INIT_ATOM_BEGIN()
+				InitAtom(A, TRUE, mapload_arg)
+				PROFILE_INIT_ATOM_END(A)
 	else
 		#ifdef TESTING
 		count = 0
@@ -89,55 +95,15 @@ SUBSYSTEM_DEF(atoms)
 
 		for(var/atom/A as anything in world)
 			if(!(A.flags_1 & INITIALIZED_1))
-				InitAtom(A, mapload_arg)
+				PROFILE_INIT_ATOM_BEGIN()
+				InitAtom(A, FALSE, mapload_arg)
+				PROFILE_INIT_ATOM_END(A)
 				#ifdef TESTING
 				++count
 				#endif
 				CHECK_TICK
 
 	testing("Initialized [count] atoms")
-
-/datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
-	var/the_type = A.type
-	if(QDELING(A))
-		// Check init_start_time to not worry about atoms created before the atoms SS that are cleaned up before this
-		if (A.gc_destroyed > init_start_time)
-			BadInitializeCalls[the_type] |= BAD_INIT_QDEL_BEFORE
-		return TRUE
-
-	#ifdef UNIT_TESTS
-	var/start_tick = world.time
-	#endif
-
-	var/result = A.Initialize(arglist(arguments))
-
-	#ifdef UNIT_TESTS
-	if(start_tick != world.time)
-		BadInitializeCalls[the_type] |= BAD_INIT_SLEPT
-	#endif
-
-	var/qdeleted = FALSE
-
-	switch(result)
-		if (INITIALIZE_HINT_NORMAL)
-			// pass
-		if (INITIALIZE_HINT_LATELOAD)
-			if(arguments[1]) //mapload
-				late_loaders += A
-			else
-				A.LateInitialize()
-		if (INITIALIZE_HINT_QDEL)
-			qdel(A)
-			qdeleted = TRUE
-		else
-			BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
-
-	if(!A)	//possible harddel
-		qdeleted = TRUE
-	else if(!(A.flags_1 & INITIALIZED_1))
-		BadInitializeCalls[the_type] |= BAD_INIT_DIDNT_INIT
-
-	return qdeleted || QDELING(A)
 
 /datum/controller/subsystem/atoms/proc/map_loader_begin(source)
 	set_tracked_initalized(INITIALIZATION_INSSATOMS, source)
@@ -154,7 +120,9 @@ SUBSYSTEM_DEF(atoms)
 	initialized = state
 
 /datum/controller/subsystem/atoms/proc/clear_tracked_initalize(source)
-	for(var/i in length(initialized_state) to 1)
+	if(!length(initialized_state))
+		return
+	for(var/i in length(initialized_state) to 1 step -1)
 		if(initialized_state[i][1] == source)
 			initialized_state.Cut(i, i+1)
 			break
@@ -211,7 +179,7 @@ SUBSYSTEM_DEF(atoms)
 		if(fails & BAD_INIT_QDEL_BEFORE)
 			. += "- Qdel'd in New()\n"
 		if(fails & BAD_INIT_SLEPT)
-			. += "- Slept during Initialize(mapload)\n"
+			. += "- Slept during Initialize()\n"
 
 /// Prepares an atom to be deleted once the atoms SS is initialized.
 /datum/controller/subsystem/atoms/proc/prepare_deletion(atom/target)
@@ -225,10 +193,5 @@ SUBSYSTEM_DEF(atoms)
 	var/initlog = InitLog()
 	if(initlog)
 		text2file(initlog, "[GLOB.log_directory]/initialize.log")
-
-#undef BAD_INIT_QDEL_BEFORE
-#undef BAD_INIT_DIDNT_INIT
-#undef BAD_INIT_SLEPT
-#undef BAD_INIT_NO_HINT
 
 #undef SUBSYSTEM_INIT_SOURCE

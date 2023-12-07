@@ -87,12 +87,18 @@
 	update_config_movespeed()
 	update_movespeed(TRUE)
 
+/mob/New()
+	// This needs to happen IMMEDIATELY. I'm sorry :(
+	GenerateTag()
+	return ..()
+
 /**
-  * Generate the tag for this mob
-  *
-  * This is simply "mob_"+ a global incrementing counter that goes up for every mob
-  */
+ * Generate the tag for this mob
+ *
+ * This is simply "mob_"+ a global incrementing counter that goes up for every mob
+ */
 /mob/GenerateTag()
+	. = ..()
 	tag = "mob_[next_mob_id++]"
 
 /**
