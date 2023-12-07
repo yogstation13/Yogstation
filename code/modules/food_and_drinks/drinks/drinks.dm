@@ -201,9 +201,10 @@
 //	rather then having to add it to something else first. They should only contain liquids. They have a default container size of 50.
 //	Formatting is the same as food.
 
-/obj/item/reagent_containers/food/drinks/coffee
+/obj/item/reagent_containers/food/drinks/bottle/coffee
 	name = "robust coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
+	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/coffee = 30)
 	resistance_flags = FREEZE_PROOF
@@ -211,21 +212,21 @@
 	foodtype = BREAKFAST
 	var/lid_open = 0
 
-/obj/item/reagent_containers/food/drinks/coffee/no_lid
+/obj/item/reagent_containers/food/drinks/bottle/coffee/no_lid
 	icon_state = "coffee_empty"
 	list_reagents = null
 
-/obj/item/reagent_containers/food/drinks/coffee/examine(mob/user)
+/obj/item/reagent_containers/food/drinks/bottle/coffee/examine(mob/user)
 	. = ..()
 	. += span_notice("Alt-click to toggle cup lid.")
 	return
 
-/obj/item/reagent_containers/food/drinks/coffee/AltClick(mob/user)
+/obj/item/reagent_containers/food/drinks/bottle/coffee/AltClick(mob/user)
 	lid_open = !lid_open
 	update_icon_state()
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/coffee/update_icon_state()
+/obj/item/reagent_containers/food/drinks/bottle/coffee/update_icon_state()
 	if(lid_open)
 		icon_state = reagents.total_volume ? "[base_icon_state]_full" : "[base_icon_state]_empty"
 	else

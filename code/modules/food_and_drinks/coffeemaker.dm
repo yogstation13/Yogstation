@@ -678,7 +678,7 @@
 		balloon_alert(user, "no cups left!")
 		return
 	balloon_alert_to_viewers("took cup")
-	var/obj/item/reagent_containers/food/drinks/coffee/no_lid/new_cup = new(get_turf(src))
+	var/obj/item/reagent_containers/food/drinks/bottle/coffee/new_cup = new(get_turf(src))
 	user.put_in_hands(new_cup)
 	coffee_cups--
 	update_appearance(UPDATE_OVERLAYS)

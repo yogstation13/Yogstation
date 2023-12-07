@@ -510,14 +510,15 @@
  */
 
 /obj/item/storage/fancy/coffee_condi_display
-	icon = 'icons/obj/food/containers.dmi'
+	icon = 'icons/obj/machines/coffeemaker.dmi'
 	icon_state = "coffee_condi_display"
-	base_icon_state = "coffee_condi_display"
+	item_state = "coffee_condi_display"
+	// base_icon_state = "coffee_condi_display"
 	name = "coffee condiments display"
 	desc = "A neat small wooden box, holding all your favorite coffee condiments."
+	spawn_type = /obj/item/reagent_containers/food/condiment/pack
 
 /obj/item/storage/fancy/coffee_condi_display/Initialize(mapload)
-	. = ..()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 14
