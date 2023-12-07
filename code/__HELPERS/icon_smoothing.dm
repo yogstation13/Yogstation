@@ -390,7 +390,9 @@ xxx xxx xxx
 		break set_adj_in_dir; \
 	/// Check that non border objects use to smooth against border objects
 	/// Returns true if the smooth is acceptable, FALSE otherwise
-	#define BITMASK_ON_BORDER_CHECK(target, direction) (!(target.smoothing_flags & SMOOTH_BORDER_OBJECT) || CAN_DIAGONAL_SMOOTH(target, src, REVERSE_DIR(direction)))
+	#define BITMASK_ON_BORDER_CHECK(target, direction) \
+		(!(target.smoothing_flags & SMOOTH_BORDER_OBJECT) || CAN_DIAGONAL_SMOOTH(target, src, REVERSE_DIR(direction)) \
+	)
 
 	#define BORDER_FOUND(target, direction, direction_flag) new_junction |= CAN_DIAGONAL_SMOOTH(src, target, direction)
 	// Border objects require an object as context, so we need a dummy. I'm sorry
@@ -411,6 +413,7 @@ xxx xxx xxx
 			SEARCH_ADJ_IN_DIR(direction, direction_flag, BITMASK_FOUND, BITMASK_FOUND, BITMASK_ON_BORDER_CHECK) \
 		}} \
 			while(FALSE)
+
 	// and another for border object work (Doesn't early exit because we can hit more then one direction by checking the same turf)
 	#define SET_BORDER_ADJ_IN_DIR(direction) SEARCH_ADJ_IN_DIR(direction, direction, BORDER_FOUND, WORLD_BORDER_FOUND, BORDER_ON_BORDER_CHECK)
 
