@@ -15,6 +15,7 @@
 	damage_deflection = 10
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	/// TRUE means density will be set as soon as the door begins to close
 	var/air_tight = FALSE

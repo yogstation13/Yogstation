@@ -92,7 +92,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/forcecrit = 0
 	var/num_shards = 7
 	var/list/pinned_mobs = list()
-	light_power = 0.5
+	light_power = 0.7
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 
 
@@ -271,28 +271,28 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	else
 		..()
 
-/obj/machinery/vending/update_icon_state()
+/obj/machinery/vending/update_appearance(updates=ALL)
 	. = ..()
 	if(stat & BROKEN)
-		icon_state = "[initial(icon_state)]-broken"
 		set_light(0)
 		return
+	set_light(powered() ? MINIMUM_USEFUL_LIGHT_RANGE : 0)
 
-	if(powered())
-		icon_state = initial(icon_state)
-		set_light(1.4)
-	else
-		icon_state = "[initial(icon_state)]-off"
-		set_light(0)
+/obj/machinery/vending/update_icon_state()
+	if(stat & BROKEN)
+		icon_state = "[initial(icon_state)]-broken"
+		return ..()
+	icon_state = "[initial(icon_state)][powered() ? null : "-off"]"
+	return ..()
 
 /obj/machinery/vending/update_overlays()
 	. = ..()
 	if(!light_mask)
 		return
 
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	//SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(!(stat & BROKEN) && powered())
-		SSvis_overlays.add_vis_overlay(src, icon, light_mask, EMISSIVE_LAYER, EMISSIVE_PLANE)
+		. += emissive_appearance(icon, light_mask, src)
 
 
 /obj/machinery/vending/obj_break(damage_flag)

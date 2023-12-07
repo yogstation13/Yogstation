@@ -72,7 +72,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 		return
 
 	if(chosen_sign && chosen_sign.light_mask)
-		SSvis_overlays.add_vis_overlay(src, icon, light_mask, EMISSIVE_LAYER, EMISSIVE_PLANE)
 		. += emissive_appearance(icon, "[chosen_sign.icon_state]-light-mask", src)
 
 /obj/machinery/barsign/update_appearance(updates=ALL)

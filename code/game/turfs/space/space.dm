@@ -98,8 +98,8 @@ GLOBAL_LIST_EMPTY(starlight)
 			stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 
-	var/area/A = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
+	var/area/our_area = loc
+	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(our_area))
 		add_overlay(/obj/effect/fullbright)
 
 	if (light_system == STATIC_LIGHT && light_power && light_range)

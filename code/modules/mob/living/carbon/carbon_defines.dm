@@ -4,6 +4,7 @@
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,GLAND_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	has_limbs = 1
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	held_items = list(null, null)
 	/// List of /obj/item/organ in the mob.
 	/// They don't go in the contents for some reason I don't want to know.

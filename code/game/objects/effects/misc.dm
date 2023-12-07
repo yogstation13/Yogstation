@@ -77,6 +77,7 @@
 	light_color = "#FFFFFF"
 	light_system = MOVABLE_LIGHT
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/dummy/lighting_obj/Initialize(mapload, range, power, color, duration)

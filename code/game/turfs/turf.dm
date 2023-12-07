@@ -2,6 +2,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf
 	icon = 'icons/turf/floors.dmi'
+	vis_flags = VIS_INHERIT_ID // Important for interaction with and visualization of openspace.
 	level = 1
 	luminosity = 1
 
@@ -92,8 +93,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	for(var/atom/movable/AM in src)
 		Entered(AM)
 
-	var/area/A = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
+	var/area/our_area = loc
+	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(our_area))
 		add_overlay(/obj/effect/fullbright)
 
 	if(requires_activation)

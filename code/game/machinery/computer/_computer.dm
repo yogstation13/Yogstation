@@ -10,15 +10,20 @@
 	integrity_failure = 100
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 20)
 	clicksound = "keyboard"
-	light_system = STATIC_LIGHT
-	light_range = 2
-	light_power = 1
-	light_on = TRUE
+	/// How bright we are when turned on.
+	var/brightness_on = 1
+	/// Icon_state of the keyboard overlay.
 	var/icon_keyboard = "generic_key"
+	/// Should we render an unique icon for the keyboard when off?
+	var/keyboard_change_icon = TRUE
+	/// Icon_state of the emissive screen overlay.
 	var/icon_screen = "generic"
-	var/clockwork = FALSE
-	var/time_to_scewdrive = 20
+	/// Time it takes to deconstruct with a screwdriver.
+	var/time_to_unscrew = 2 SECONDS
+	/// Are we authenticated to use this? Used by things like comms console, security and medical data, and apc controller.
 	var/authenticated = FALSE
+
+	var/clockwork = FALSE
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
@@ -86,17 +91,23 @@
 
 /obj/machinery/computer/update_overlays()
 	. = ..()
-	if(stat & NOPOWER)
-		. += "[icon_keyboard]_off"
-		return
-	. += icon_keyboard
+	if(icon_keyboard)
+		if(keyboard_change_icon && (stat & NOPOWER))
+			. += "[icon_keyboard]_off"
+		else
+			. += icon_keyboard
 
-	// This whole block lets screens ignore lighting and be visible even in the darkest room
-	var/overlay_state = icon_screen
 	if(stat & BROKEN)
-		overlay_state = "[icon_state]_broken"
-	. += mutable_appearance(icon, overlay_state)
-	. += emissive_appearance(icon, icon_screen, src)
+		. += mutable_appearance(icon, "[icon_state]_broken")
+		return // If we don't do this broken computers glow in the dark.
+
+	if(stat & NOPOWER) // Your screen can't be on if you've got no damn charge
+		return
+
+	// This lets screens ignore lighting and be visible even in the darkest room
+	if(icon_screen)
+		. += mutable_appearance(icon, icon_screen)
+		. += emissive_appearance(icon, icon_screen, src)
 
 /obj/machinery/computer/power_change()
 	. = ..()
@@ -105,14 +116,14 @@
 	if(stat & NOPOWER)
 		set_light_on(FALSE)
 	else
-		set_light_on(TRUE)
+		set_light_on(brightness_on)
 
 /obj/machinery/computer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(circuit && !(flags_1&NODECONSTRUCT_1))
 		to_chat(user, span_notice("You start to disconnect the monitor..."))
-		if(I.use_tool(src, user, time_to_scewdrive, volume=50))
+		if(I.use_tool(src, user, time_to_unscrew, volume=50))
 			deconstruct(TRUE, user)
 	return TRUE
 

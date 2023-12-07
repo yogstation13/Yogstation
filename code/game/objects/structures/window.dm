@@ -325,7 +325,7 @@
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(smooth)
 		queue_smooth_neighbors(src)
 

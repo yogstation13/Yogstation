@@ -623,7 +623,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()				// reverify power status (to update icons etc.)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /**
   * Return the usage of power per channel
