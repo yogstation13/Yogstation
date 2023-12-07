@@ -669,9 +669,6 @@
 		if(coffee_amount >= BEAN_CAPACITY)
 			balloon_alert(user, "the coffee container is full!")
 			return
-		if(!HAS_TRAIT(attack_item, TRAIT_DRIED))
-			balloon_alert(user, "coffee beans must be dry!")
-			return
 		var/obj/item/reagent_containers/food/snacks/grown/coffee/new_coffee = attack_item
 		if(!user.transferItemToLoc(new_coffee, src))
 			return
@@ -686,22 +683,15 @@
 			return
 		var/obj/item/storage/box/coffeepack/new_coffee_pack = attack_item
 		for(var/obj/item/reagent_containers/food/snacks/grown/coffee/new_coffee in new_coffee_pack.contents)
-			if(HAS_TRAIT(new_coffee, TRAIT_DRIED)) //the coffee beans inside must be dry
-				if(coffee_amount < BEAN_CAPACITY)
-					if(user.transferItemToLoc(new_coffee, src))
-						coffee += new_coffee
-						coffee_amount++
-						new_coffee.forceMove(src)
-						balloon_alert(user, "added coffee")
-						update_appearance(UPDATE_OVERLAYS)
-					else
-						return
+			if(coffee_amount < BEAN_CAPACITY)
+				if(user.transferItemToLoc(new_coffee, src))
+					coffee += new_coffee
+					coffee_amount++
+					new_coffee.forceMove(src)
+					balloon_alert(user, "added coffee")
+					update_appearance(UPDATE_OVERLAYS)
 				else
 					return
-			else
-				balloon_alert(user, "non-dried beans inside of coffee pack!")
-				return
-
 	update_appearance(UPDATE_OVERLAYS)
 	return TRUE //no afterattack
 
