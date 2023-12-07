@@ -70,7 +70,7 @@
 	if(uplink_holder)
 		var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
 		if(uplink)//remove uplink so they can't keep using it if admin abuse happens
-			uplink.RemoveComponent()
+			qdel(uplink)
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)

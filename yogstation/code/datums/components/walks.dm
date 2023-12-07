@@ -14,7 +14,7 @@
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(handle_move))
 	ADD_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 
-/datum/component/walk/RemoveComponent()
+/datum/component/walk/ClearFromParent()
 	REMOVE_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 	return ..()
 

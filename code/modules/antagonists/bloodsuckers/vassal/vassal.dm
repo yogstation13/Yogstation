@@ -102,7 +102,7 @@
 			master.special_vassals[special_type] -= src
 		master.vassals -= src
 		owner.enslaved_to = null
-	for(var/all_status_traits in owner.current.status_traits)
+	for(var/all_status_traits in owner.current._status_traits)
 		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
 	//Remove Recuperate Power
 	while(powers.len)

@@ -439,7 +439,7 @@
  * * target - The turf being painted to
 */
 /obj/item/airlock_painter/decal/proc/paint_floor(turf/open/floor/target)
-	target.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, FALSE, color, null, null, 255)
+	target.AddElement(/datum/element/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, null, null, alpha, color, null, FALSE, null)
 
 /**
  * Return the final icon_state for the given decal options
@@ -641,4 +641,4 @@
 		decal_color = rgba_regex.group[1]
 		decal_alpha = text2num(rgba_regex.group[2], 16)
 
-	target.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', source_decal, source_dir, FALSE, decal_color, null, null, decal_alpha)
+	target.AddElement(/datum/element/decal, 'icons/turf/decals.dmi', source_decal, source_dir, null, null, decal_alpha, decal_color, null, FALSE, null)

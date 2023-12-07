@@ -44,7 +44,8 @@
 
 					var/obj/item/storage/backpack/holding/twin = new(loc)
 					var/datum/component/storage/old_other_storage = twin.GetComponent(/datum/component/storage)
-					old_other_storage.RemoveComponent()
+					if(old_other_storage)
+						qdel(old_other_storage)
 					var/datum/component/storage/this_storage = GetComponent(/datum/component/storage)
 					var/datum/component/storage/twin_storage = twin.AddComponent(/datum/component/storage/bluespace/bag_of_holding, this_storage.master()) // add a slave storage component
 					twin_storage.allow_big_nesting = TRUE
@@ -85,7 +86,7 @@
 			var/obj/item/storage/backpack/holding/m_obj = new_master.parent
 			var/datum/component/storage/m_storage = m_obj.GetComponent(/datum/component/storage)
 			if(m_storage)
-				m_storage.RemoveComponent()
+				qdel(m_storage)
 			m_storage = m_obj.AddComponent(m_obj.component_type)
 			m_storage.allow_big_nesting = TRUE
 			m_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
@@ -95,7 +96,7 @@
 				slave.change_master(m_storage)
 			for(var/obj/item/I in src)
 				I.forceMove(m_obj)
-	STR.RemoveComponent()
+	qdel(STR)
 	if(dump && get_turf(src))
 		for(var/obj/item/I in src)
 			I.forceMove(get_turf(src))

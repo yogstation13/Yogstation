@@ -75,7 +75,7 @@
 	qdel(holder)
 	holder = null
 
-/datum/component/crawl/RemoveComponent(del_holder=TRUE)
+/datum/component/crawl/ClearFromParent(del_holder=TRUE)
 	var/mob/living/M = parent
 	if(del_holder && holder)
 		M.forceMove(get_turf(holder))

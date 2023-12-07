@@ -58,6 +58,7 @@ All ShuttleMove procs go here
 		CRASH("A turf queued to move via shuttle somehow had no skipover in baseturfs. [src]([type]):[loc]")
 	var/depth = baseturfs.len - shuttle_boundary + 1
 	newT.CopyOnTop(src, 1, depth, TRUE, CHANGETURF_DEFER_CHANGE)
+	SEND_SIGNAL(src, COMSIG_TURF_ON_SHUTTLE_MOVE, newT)
 	return TRUE
 
 // Called on the new turf after everything has been moved

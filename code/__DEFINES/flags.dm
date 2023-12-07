@@ -69,6 +69,11 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_RUINS_1					(1<<18)
 /// Blocks this turf from being rusted
 #define NO_RUST 					(1<<19)
+/// If this atom has experienced a decal element "init finished" sourced appearance update
+/// We use this to ensure stacked decals don't double up appearance updates for no rasin
+/// Flag as an optimization, don't make this a trait without profiling
+/// Yes I know this is a stupid flag, no you can't take him from me
+#define DECAL_INIT_UPDATE_EXPERIENCED_1 (1<<20)
 
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.

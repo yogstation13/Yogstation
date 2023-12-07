@@ -6,6 +6,7 @@
 	base_icon_state = "reinforced_wall"
 	opacity = TRUE
 	density = TRUE
+	smoothing_flags = SMOOTH_BITMASK
 
 	var/d_state = INTACT
 	hardness = 10

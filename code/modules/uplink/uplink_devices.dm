@@ -103,7 +103,7 @@
 /obj/item/ntuplink/proc/finalize() //if the uplink type has been modified somehow, remove it and replace it
 	var/datum/component/uplink/nanotrasen/uplink = GetComponent(/datum/component/uplink/nanotrasen)
 	if(uplink)
-		uplink.RemoveComponent()
+		qdel(uplink)
 	AddComponent(nt_datum, datum_owner, FALSE, TRUE, null, wc_start)
 
 /obj/item/ntuplink/official
