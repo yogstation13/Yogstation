@@ -459,7 +459,7 @@ TOAST_NOTIFICATION_ON_INIT
 TTS_ENABLE
 
 ## Link to a HTTP server that's been set up on a server.
-TTS_HTTP_URL http://localhost:8133
+#TTS_HTTP_URL http://localhost:8133
 
 ## Token that can be used to prevent misuse of your TTS server that you've set up.
 #TTS_HTTP_TOKEN mysecuretoken
