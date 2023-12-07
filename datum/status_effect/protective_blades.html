@@ -16,7 +16,7 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/status_effect.html">status_effect</a>/<a href="datum/status_effect/protective_blades.html">protective_blades</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1429">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1429">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1429"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -33,55 +33,55 @@ If we have a blade in our list, consume it and block the incoming attack (shield
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1437">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1437">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1437"/></a></h3>
         <p>The radius of the blade's orbit.</p><h3 id="var/blades"><aside class="declaration">var </aside>blades
             <aside>&ndash; /list/obj/effect/floating_blade</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1443">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1443">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1443"/></a></h3>
         <p>A list of blade effects orbiting / protecting our owner</p><h3 id="var/delete_on_blades_gone"><aside class="declaration">var </aside>delete_on_blades_gone
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1441">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1441">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1441"/></a></h3>
         <p>If TRUE, we self-delete our status effect after all the blades are deleted.</p><h3 id="var/max_num_blades"><aside class="declaration">var </aside>max_num_blades
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1435">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1435">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1435"/></a></h3>
         <p>The number of blades we summon up to.</p><h3 id="var/time_between_initial_blades"><aside class="declaration">var </aside>time_between_initial_blades
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1439">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1439">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1439"/></a></h3>
         <p>The time between spawning blades.</p><h2 id="proc">Proc Details</h2><h3 id="proc/create_blade"><aside class="declaration">proc </aside>create_blade<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1477">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1477">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1477"/></a></aside>
         </h3>
         <p>Creates a floating blade, adds it to our blade list, and makes it orbit our owner.</p><h3 id="proc/on_shield_reaction"><aside class="declaration">proc </aside>on_shield_reaction<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/hitby, damage, attack_text, attack_type, armour_penetration, damage_type) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1489">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1489">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1489"/></a></aside>
         </h3>
         <p>Signal proc for <a href="code/__DEFINES/dcs/signals/signals_mob/signals_human.html#define/COMSIG_HUMAN_CHECK_SHIELDS" title="COMSIG_HUMAN_CHECK_SHIELDS">COMSIG_HUMAN_CHECK_SHIELDS</a>.
 If we have a blade in our list, consume it and block the incoming attack (shield it)</p><h3 id="proc/remove_blade"><aside class="declaration">proc </aside>remove_blade<aside>(/<a href="obj.html">obj</a>/<a href="obj/effect/floating_blade.html">effect/floating_blade</a>/to_remove) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/61add81e06e3d9ff038580920c810fa2999b4641/code/datums/status_effects/debuffs/debuffs.dm#L1524">
+            <a href="https://github.com/yogstation13/Yogstation/blob/142eda06783f72dd321686e8ac47dba7642db850/code/datums/status_effects/debuffs/debuffs.dm#L1524">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;debuffs&#x2F;debuffs.dm 1524"/></a></aside>
         </h3>
         <p>Remove deleted blades from our blades list properly.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/61add81e06e3d9ff038580920c810fa2999b4641">61add81</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/142eda06783f72dd321686e8ac47dba7642db850">142eda0</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
