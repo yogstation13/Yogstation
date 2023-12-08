@@ -31,15 +31,14 @@
 		draining = FALSE
 		return
 
-	if(H.gloves)
-		if(!H.gloves.siemens_coefficient)
-			to_chat(H, span_info("NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted."))
-			draining = FALSE
-			return
-		else
-			if(H.gloves.siemens_coefficient < 1)
-				to_chat(H, span_info("NOTICE: [H.gloves] are interfering with electrical contact - advise removal before activating CONSUME protocol."))
-			siemens_coefficient *= H.gloves.siemens_coefficient
+	var/blocked = H.getarmor(H.held_index_to_body_zone(H.active_hand_index), ELECTRIC)
+	siemens_coefficient *= (100 - blocked) / 100
+	if(blocked >= 100)
+		to_chat(H, span_info("NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted."))
+		draining = FALSE
+		return
+	else if(blocked > 0)
+		to_chat(H, span_info("NOTICE: [H.gloves] are interfering with electrical contact - advise removal before activating CONSUME protocol."))
 
 	. = COMSIG_MOB_CANCEL_CLICKON
 

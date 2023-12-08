@@ -374,7 +374,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		return
 
 	if(!GLOB.cryopods_enabled)
-		to_chat(user, span_boldnotice("NanoTrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
+		to_chat(user, span_boldnotice("Nanotrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 
 	if(occupant)

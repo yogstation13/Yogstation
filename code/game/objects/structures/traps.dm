@@ -88,7 +88,7 @@
 	icon_state = "trap-shock"
 
 /obj/structure/trap/stun/trap_effect(mob/living/L)
-	L.electrocute_act(30, src, safety=1) // electrocute act does a message.
+	L.electrocute_act(30, src, zone=null, override=TRUE) // electrocute act does a message.
 	L.Paralyze(100)
 
 /obj/structure/trap/fire

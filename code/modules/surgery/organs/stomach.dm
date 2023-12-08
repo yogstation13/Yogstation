@@ -145,7 +145,7 @@
 
 /obj/item/organ/stomach/cell/emp_act(severity)
 	to_chat(owner, emp_message)
-	charge(amount = owner.nutrition * -0.2 / severity)
+	charge(amount = owner.nutrition * -0.02 * severity)
 
 /obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
@@ -182,13 +182,16 @@
 	UnregisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT)
 	..()
 
-/obj/item/organ/stomach/cell/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, illusion = FALSE)
+/obj/item/organ/stomach/cell/ethereal/proc/on_electrocute(mob/living/victim, shock_damage, obj/source, siemens_coeff = 1, zone = null, tesla_shock = 0, illusion = 0)
 	if(illusion)
 		return
 	if(!HAS_TRAIT(owner, TRAIT_POWERHUNGRY))
 		return
 	owner.adjust_nutrition(shock_damage * siemens_coeff)
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
+
+/obj/item/organ/stomach/cell/ethereal/emp_act(severity)
+	return // it's organic
 
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"

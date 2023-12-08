@@ -2,12 +2,14 @@
 	id = GAS_O2
 	specific_heat = 20
 	name = "Oxygen"
+	label = "O₂"
 	ui_color = "blue"
 
 /datum/gas/nitrogen
 	id = GAS_N2
 	specific_heat = 20
 	name = "Nitrogen"
+	label = "N₂"
 	breath_alert_info = list(
 		not_enough_alert = list(
 			alert_category = "not_enough_nitro",
@@ -24,6 +26,7 @@
 	id = GAS_CO2
 	specific_heat = 30
 	name = "Carbon Dioxide"
+	label = "CO₂"
 	breath_results = GAS_O2
 	breath_alert_info = list(
 		not_enough_alert = list(
@@ -50,6 +53,7 @@
 	id = GAS_H2O
 	specific_heat = 40
 	name = "Water Vapor"
+	label = "H₂O"
 	gas_overlay = "water_vapor"
 	moles_visible = MOLES_GAS_VISIBLE
 	breath_reagent = /datum/reagent/water
@@ -60,6 +64,7 @@
 	id = GAS_HYPERNOB
 	specific_heat = 2000
 	name = "Hyper-noblium"
+	label = "Hyper-nob"
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
@@ -69,6 +74,7 @@
 	id = GAS_NITROUS
 	specific_heat = 40
 	name = "Nitrous Oxide"
+	label = "N₂O"
 	gas_overlay = "nitrous_oxide"
 	moles_visible = MOLES_GAS_VISIBLE * 2
 	fusion_power = 10
@@ -131,6 +137,7 @@
 	id = GAS_H2
 	specific_heat = 15
 	name = "Hydrogen"
+	label = "H₂"
 	flags = GAS_FLAG_DANGEROUS
 	ui_color = "white"
 
@@ -164,6 +171,7 @@
 	id = GAS_ANTINOB
 	specific_heat = 1
 	name = "Antinoblium"
+	label = "Anti-nob"
 	gas_overlay = "antinoblium"
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 20
