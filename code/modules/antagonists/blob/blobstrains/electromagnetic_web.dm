@@ -22,7 +22,7 @@
 
 /datum/blobstrain/reagent/electromagnetic_web/death_reaction(obj/structure/blob/B, damage_flag)
 	if(damage_flag == MELEE || damage_flag == BULLET || damage_flag == LASER)
-		empulse(B.loc, 1, 3) //less than screen range, so you can stand out of range to avoid it
+		empulse(B.loc, EMP_HEAVY, 3) //less than screen range, so you can stand out of range to avoid it
 
 /datum/reagent/blob/electromagnetic_web
 	name = "Electromagnetic Web"
@@ -32,6 +32,6 @@
 /datum/reagent/blob/electromagnetic_web/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message, permeability, mob/camera/blob/O)
 	reac_volume = ..()
 	if(prob(reac_volume*2))
-		M.emp_act(EMP_LIGHT)
+		M.emp_act(min(reac_volume / 10, EMP_HEAVY))
 	if(M)
 		M.apply_damage(reac_volume, BURN, wound_bonus=CANT_WOUND)

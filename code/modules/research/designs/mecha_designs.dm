@@ -555,7 +555,7 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_rocket_fist
-	name = "Exosuit Weapon (DD-2 \"Atom Smasher\" Rocket Fist)"
+	name = "Exosuit Weapon (RS-77 \"Atom Smasher\" Rocket Fist)"
 	id = "mech_rocket_fist"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist
@@ -575,7 +575,7 @@
 	combat_design = TRUE
 
 /datum/design/mech_katana
-	name = "Exosuit Weapon (OWM-5 \"Ronin\" katana)"
+	name = "Exosuit Weapon (HR-2 \"Ronin\" katana)"
 	id = "mech_katana"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/katana
@@ -605,7 +605,7 @@
 	combat_design = TRUE
 
 /datum/design/mech_maul
-	name = "Exosuit Weapon (CX-22 \"Barbatos\" heavy maul)"
+	name = "Exosuit Weapon (ASW-8 \"Barbatos\" heavy maul)"
 	id = "mech_maul"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul
