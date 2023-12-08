@@ -137,6 +137,12 @@ jobs:
           key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
           restore-keys: ${{ runner.os }}-byond
 
+      - name: Restore Cache Auxmos
+        uses: actions/cache@v1
+        with:
+          path: ~/.byond
+          key: auxmos-${{ hashFiles('dependencies.sh')}}
+
       - name: Restore Yarn Cache
         uses: actions/cache@v2
         with:
