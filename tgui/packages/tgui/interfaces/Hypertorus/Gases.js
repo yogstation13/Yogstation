@@ -3,8 +3,7 @@ import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, NumberInput, ProgressBar, Section } from '../../components';
-import { getGasColor, getGasLabel } from '../../constants';
-import { HelpDummy, HoverHelp } from './helpers';
+import { HelpDummy, HoverHelp, getGasLabel, getGasColor } from './helpers';
 
 /*
  * Displays contents of gas mixtures, along with help text for gases with
@@ -54,6 +53,7 @@ const GasList = (props, context) => {
     prepend,
     rateHelp,
     stickyGases,
+    gasData,
   } = props;
 
   const gases = flow([
@@ -101,11 +101,11 @@ const GasList = (props, context) => {
             label={
               <>
                 {labelPrefix}
-                {getGasLabel(gas.id)}:
+                {getGasLabel(gas.id, gasData)}:
               </>
             }>
             <ProgressBar
-              color={getGasColor(gas.id)}
+              color={getGasColor(gas.id, gasData)}
               value={gas.amount}
               minValue={0}
               maxValue={minimumScale}>
@@ -121,7 +121,7 @@ const GasList = (props, context) => {
 export const HypertorusGases = (props, context) => {
   const { data } = useBackend(context);
 
-  const { fusion_gases, moderator_gases } = data;
+  const { fusion_gases, moderator_gases, gas_data } = data;
 
   const selected_fuel = (data.selectable_fuel || []).filter(
     (d) => d.id === data.selected
@@ -137,6 +137,7 @@ export const HypertorusGases = (props, context) => {
             input_max={150}
             input_min={0.5}
             gases={fusion_gases}
+            gasData={gas_data}
             minimumScale={500}
             prepend={() => <HelpDummy />}
             rateHelp={
@@ -159,6 +160,7 @@ export const HypertorusGases = (props, context) => {
           input_max={150}
           input_min={0.5}
           gases={moderator_gases}
+          gasData={gas_data}
           minimumScale={500}
           rateHelp={
             'The rate at which new moderator gas is added from the moderator port.'

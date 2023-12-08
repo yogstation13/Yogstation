@@ -27,11 +27,11 @@
 /datum/martial_art/lightning_flow/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(dashing)
 		return TRUE
-	damage(D, A, 5)
+	damage(D, A, 5, zone=A.zone_selected)
 	return FALSE
 
-/datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE)
-	target.electrocute_act(amount, user, stun = stun)
+/datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE, zone = null)
+	target.electrocute_act(amount, user, stun = stun, zone = zone)
 
 /datum/martial_art/lightning_flow/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
 	var/list/modifiers = params2list(params)
@@ -108,7 +108,7 @@
 /datum/martial_art/lightning_flow/proc/dropkick(mob/living/target, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
 	target.visible_message(span_danger("[H] dropkicks [target]!"), span_userdanger("[H] dropkicks you!"))
 	target.Knockdown(5 SECONDS)
-	damage(target, H, 15, TRUE)
+	damage(target, H, 15, TRUE, BODY_ZONE_CHEST)
 	var/destination = throwingdatum.target
 	if(get_dist(target, destination) < 5)
 		destination = get_ranged_target_turf(get_turf(H), throwingdatum.init_dir, 5)

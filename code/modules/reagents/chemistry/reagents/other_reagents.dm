@@ -121,7 +121,7 @@
 /datum/reagent/water
 	name = "Water"
 	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
-	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
+	color = "#609bdf77" // rgb: 96, 155, 223, 77 (alpha)
 	taste_description = "water"
 	var/cooling_temperature = 2
 	glass_icon_state = "glass_clear"
@@ -192,8 +192,16 @@
 		M.AdjustUnconscious(-reac_volume*0.3 SECONDS)
 		M.AdjustSleeping(-reac_volume*0.5 SECONDS)
 
-		M.adjust_wet_stacks((reac_volume / 10) * M.get_permeability(null, TRUE))
+		// this function allows lower volumes to still do something without preventing higher volumes from causing too much wetness
+		M.adjust_wet_stacks(3*log(2, (reac_volume*M.get_permeability(null, TRUE) + 10) / 10))
 		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
+
+		// if preternis, update wetness instantly when applying more water instead of waiting for the next life tick
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/species/preternis/P = H.dna?.species
+			if(istype(P))
+				P.handle_wetness(H)
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
@@ -1087,7 +1095,12 @@
 /datum/reagent/bluespace/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if((methods & (TOUCH|VAPOR)) && (reac_volume > 5))
 		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
-	..()
+	return ..()
+
+/datum/reagent/bluespace/reaction_obj(obj/O, volume)
+	if(volume > 5 && !O.anchored) // can teleport objects that aren't anchored
+		do_teleport(O, get_turf(O), (volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
+	return ..()
 
 /datum/reagent/bluespace/on_mob_life(mob/living/carbon/M)
 	if(current_cycle > 10 && prob(15))

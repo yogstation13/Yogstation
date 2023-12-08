@@ -360,22 +360,30 @@
 	take_bodypart_damage(acidpwr * min(1, acid_volume * 0.1))
 	return 1
 
-/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
-	SEND_SIGNAL(src, COMSIG_LIVING_ELECTROCUTE_ACT, shock_damage)
+/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
-	if(shock_damage > 0)
-		if(!illusion)
-			last_damage = "electricity burns"
-			adjustFireLoss(shock_damage)
-		visible_message(
-			span_danger("[src] was shocked by \the [source]!"), \
-			span_userdanger("You feel a powerful shock coursing through your body!"), \
-			span_italics("You hear a heavy electrical crack.") \
-		)
-		return shock_damage
+
+	if(!override)
+		siemens_coeff *= (100 - getarmor(zone, ELECTRIC)) / 100
+	if(SEND_SIGNAL(src, COMSIG_LIVING_ELECTROCUTE_ACT, shock_damage, source, siemens_coeff, zone, tesla_shock, illusion) & COMPONENT_NO_ELECTROCUTE_ACT)
+		return FALSE
+	
+	shock_damage *= siemens_coeff
+	if(shock_damage < 1 && !override)
+		return FALSE
+
+	if(!illusion)
+		last_damage = "electricity burns"
+		adjustFireLoss(shock_damage)
+	visible_message(
+		span_danger("[src] was shocked by \the [source]!"), \
+		span_userdanger("You feel a powerful shock coursing through your body!"), \
+		span_italics("You hear a heavy electrical crack.") \
+	)
+	return shock_damage
 
 /mob/living/emp_act(severity)
 	. = ..()
