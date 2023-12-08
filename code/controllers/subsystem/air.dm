@@ -68,18 +68,6 @@ SUBSYSTEM_DEF(air)
 
 	var/list/paused_z_levels	//Paused z-levels will not add turfs to active
 
-//hack
-/proc/get_overlays()
-	return GLOB.gas_data.overlays
-
-//hack
-/proc/get_hpds()
-	return SSair.high_pressure_delta
-
-//hack
-/proc/get_reactions()
-	return SSair.gas_reactions
-
 /datum/controller/subsystem/air/stat_entry(msg)
 	msg += "C:{"
 	msg += "HP:[round(cost_highpressure,1)]|"
