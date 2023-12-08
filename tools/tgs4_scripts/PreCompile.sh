@@ -83,7 +83,7 @@ fi
 
 echo "Deploying auxmos..."
 git checkout "$AUXMOS_VERSION"
-env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo rustc --release --target=i686-unknown-linux-gnu --features all_reaction_hooks,katmos -- -C target-cpu=native
+env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo rustc --release --target=i686-unknown-linux-gnu --features katmos -- -C target-cpu=native
 mv -f target/i686-unknown-linux-gnu/release/libauxmos.so "$1/libauxmos.so"
 cd ..
 
