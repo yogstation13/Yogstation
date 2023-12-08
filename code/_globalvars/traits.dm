@@ -6,6 +6,7 @@
 GLOBAL_LIST_INIT(traits_by_type, list(
 	/mob = list(/atom/movable = list(
 		"TRAIT_MOVE_PHASING" = TRAIT_MOVE_PHASING,
+		"TRAIT_RUNECHAT_HIDDEN" = TRAIT_RUNECHAT_HIDDEN,
 	))))
 /// value -> trait name, generated on use from trait_by_type global
 GLOBAL_LIST(trait_name_map)

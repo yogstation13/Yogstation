@@ -586,7 +586,7 @@
 	. += gear_text
 
 /obj/machinery/door/airlock/clockwork/emp_act(severity)
-	if(prob(80/severity))
+	if(prob(8 * severity))
 		open()
 
 /obj/machinery/door/airlock/clockwork/canAIControl(mob/user)

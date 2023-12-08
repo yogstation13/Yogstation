@@ -191,7 +191,7 @@ Class Procs:
 /obj/machinery/emp_act(severity)
 	. = ..()
 	if(use_power && !stat && !(. & EMP_PROTECT_SELF))
-		use_power(7500/severity)
+		use_power(750 * severity)
 		new /obj/effect/temp_visual/emp(loc)
 
 /obj/machinery/proc/open_machine(drop = TRUE)
@@ -300,11 +300,7 @@ Class Procs:
 
 	var/mob/living/carbon/H = user
 	if(istype(H) && H.has_dna())
-		if (H.dna.check_mutation(ACTIVE_HULK))
-			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
-			return FALSE // hulks cant use machines
-
-		else if(!Adjacent(user) && !H.dna.check_mutation(TK))
+		if(!Adjacent(user) && !H.dna.check_mutation(TK))
 			return FALSE // need to be close or have telekinesis
 
 	return TRUE

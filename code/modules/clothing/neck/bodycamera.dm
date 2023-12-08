@@ -88,7 +88,7 @@
 
 /obj/item/clothing/neck/bodycam/emp_act(severity)
 	. = ..()
-	if(prob(150/severity))
+	if(prob(15 * severity))
 		Disconnect()
 		bodcam.c_tag = null
 		bodcam.network[1] = null //requires a reset

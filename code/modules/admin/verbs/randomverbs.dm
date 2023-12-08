@@ -703,18 +703,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
-	if(heavy == null)
+	var/severity = input("Severity of pulse.", text("Input"))  as num|null
+	if(!isnum(severity))
 		return
-	var/light = input("Range of light pulse.", text("Input"))  as num|null
-	if(light == null)
-		return
+	var/range = input("Range of pulse.", text("Input"))  as num|null
+	if(!isnum(range))
+		range = severity
 
-	if (heavy || light)
-
-		empulse(O, heavy, light)
-		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[light]) at [AREACOORD(O)]")
-		message_admins("[key_name_admin(usr)] created an EM Pulse ([heavy],[light]) at [AREACOORD(O)]")
+	if (severity)
+		empulse(O, severity, range)
+		log_admin("[key_name(usr)] created an EM Pulse ([range] range, [severity] severity) at [AREACOORD(O)]")
+		message_admins("[key_name_admin(usr)] created an EM Pulse ([range] range, [severity] severity) at [AREACOORD(O)]")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "EM Pulse") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 		return

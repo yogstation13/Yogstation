@@ -417,7 +417,7 @@
 	outputting = output_attempt
 	output_level = rand(0, output_level_max)
 	input_level = rand(0, input_level_max)
-	charge = max(charge - 1e6/severity, 0)
+	charge = max(charge - (1e5 * severity), 0)
 	update_appearance(UPDATE_ICON)
 	log_smes()
 
