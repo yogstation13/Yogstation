@@ -144,6 +144,7 @@
 	desc = "A tougher, space-worthy envirohelm designed for engineering personnel."
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 100, RAD = 20, FIRE = 100, ACID = 75, WOUND = 10, ELECTRIC = 100)
 
 /obj/item/clothing/head/helmet/space/plasmaman/chief_engineer
@@ -151,6 +152,7 @@
 	desc = "A tougher, space-worthy, yet still comfortable envirohelm designed for plasmamen with the rank of \"Chief Engineer\"."
 	icon_state = "ce_envirohelm"
 	item_state = "ce_envirohelm"
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 100, RAD = 20, FIRE = 100, ACID = 75, WOUND = 10, ELECTRIC = 100)
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator
