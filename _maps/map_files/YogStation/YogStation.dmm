@@ -9742,11 +9742,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bwN" = (
-/obj/structure/window/reinforced/tinted{
+/obj/machinery/door/window{
 	dir = 4
-	},
-/obj/structure/chair/office/dark{
-	dir = 8
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -14948,7 +14945,6 @@
 "cCl" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/computer/atmos_sim{
-	dir = 2;
 	mode = 1
 	},
 /turf/open/floor/plasteel,
@@ -16897,10 +16893,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"dma" = (
-/obj/machinery/papershredder,
-/turf/open/floor/wood,
-/area/lawoffice)
 "dmd" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
@@ -17608,7 +17600,6 @@
 /area/hallway/primary/central)
 "dAx" = (
 /obj/structure/plasticflaps{
-	density = 0;
 	opacity = 1
 	},
 /obj/structure/cable{
@@ -18199,6 +18190,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"dKX" = (
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching Prison Wing holding areas.";
+	name = "Prison Monitor";
+	network = list("prison");
+	pixel_y = 30
+	},
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/lawoffice)
 "dLK" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/white,
@@ -18963,6 +18966,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
+"ebd" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/machinery/door/morgue,
+/turf/open/floor/wood,
+/area/lawoffice)
 "ebl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -22165,7 +22175,6 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "fjZ" = (
 /obj/structure/plasticflaps{
-	density = 0;
 	opacity = 1
 	},
 /obj/structure/cable{
@@ -22501,8 +22510,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "cell6 blast";
-	name = "blast door"
+	id = "cell6 blast"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -23233,12 +23241,12 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "fCI" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "phoenixwright";
-	name = "Lawyer Shutters"
+/obj/structure/window/reinforced/tinted,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
 	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/machinery/vending/wardrobe/law_wardrobe,
+/turf/open/floor/wood,
 /area/lawoffice)
 "fCV" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -24290,7 +24298,6 @@
 	},
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 2;
-	sortType = 0;
 	sortTypes = list("13","28")
 	},
 /turf/open/floor/plasteel/white,
@@ -24686,11 +24693,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "gdE" = (
-/obj/structure/table/wood,
-/obj/machinery/door/poddoor/shutters{
+/obj/machinery/button/door{
 	id = "phoenixwright";
-	name = "Lawyer Shutters"
+	name = "Lawyer Shutters";
+	req_access_txt = "38";
+	pixel_x = -24
 	},
+/obj/machinery/door/morgue,
 /turf/open/floor/wood,
 /area/lawoffice)
 "gdH" = (
@@ -28628,9 +28637,6 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "hED" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /obj/machinery/requests_console{
 	department = "Law office";
 	pixel_y = 32
@@ -28644,6 +28650,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -28934,8 +28943,7 @@
 	},
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 1;
-	sortType = 13;
-	sortTypes = list()
+	sortType = 13
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
@@ -29094,7 +29102,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
 "hPG" = (
-/obj/machinery/vending/wardrobe/law_wardrobe,
+/obj/structure/filingcabinet,
 /turf/open/floor/wood,
 /area/lawoffice)
 "hPT" = (
@@ -29694,12 +29702,6 @@
 /area/medical/medbay/aft)
 "hZq" = (
 /obj/machinery/photocopier,
-/obj/machinery/button/door{
-	id = "lawyer_blast";
-	name = "Privacy Shutters";
-	pixel_x = -24;
-	req_access_txt = "38"
-	},
 /turf/open/floor/wood,
 /area/lawoffice)
 "hZw" = (
@@ -32782,8 +32784,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "cell5 blast";
-	name = "blast door"
+	id = "cell5 blast"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -34285,24 +34286,19 @@
 	icon_state = "0-4"
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	listening = 0;
 	name = "Custom Channel";
 	pixel_y = -27
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
-	broadcasting = 0;
 	freerange = 1;
 	frequency = 1447;
 	name = "Private Channel";
 	pixel_y = 20
 	},
 /obj/item/radio/intercom{
-	broadcasting = 0;
 	freerange = 1;
-	listening = 1;
 	name = "Common Channel";
 	pixel_y = -37
 	},
@@ -36074,12 +36070,15 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "kyP" = (
-/obj/machinery/button/door{
-	id = "phoenixwright";
-	name = "Lawyer Shutters";
-	pixel_x = -24;
-	pixel_y = 32;
-	req_access_txt = "38"
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching Prison Wing holding areas.";
+	name = "Prison Monitor";
+	network = list("prison");
+	pixel_y = -30;
+	dir = 1
+	},
+/obj/structure/chair/comfy{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -38329,6 +38328,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"lpX" = (
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	layer = 3
+	},
+/turf/open/floor/wood,
+/area/lawoffice)
 "lql" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -38811,6 +38819,12 @@
 /area/security/main)
 "lBI" = (
 /obj/machinery/light,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/lawoffice)
 "lBO" = (
@@ -39273,7 +39287,6 @@
 /obj/machinery/camera{
 	c_tag = "Psychiatrist Office";
 	dir = 4;
-	network = list("ss13");
 	pixel_x = 1;
 	pixel_y = -4
 	},
@@ -41469,8 +41482,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "cell4 blast";
-	name = "blast door"
+	id = "cell4 blast"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -44437,7 +44449,6 @@
 /obj/machinery/requests_console{
 	department = "AI";
 	departmentType = 5;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/circuit/telecomms/server,
@@ -50119,15 +50130,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
-"pRS" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/lawoffice)
 "pSb" = (
 /obj/structure/table,
 /obj/item/wrench,
@@ -50160,9 +50162,13 @@
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "pTb" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Lawyer";
+	name = "Lawyer's Fax Machine"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -55123,8 +55129,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/poddoor/preopen{
-	id = "cell3 blast";
-	name = "blast door"
+	id = "cell3 blast"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -55231,6 +55236,12 @@
 "rNk" = (
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/chair/office/dark{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -58681,8 +58692,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/poddoor/preopen{
-	id = "cell2 blast";
-	name = "blast door"
+	id = "cell2 blast"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -59084,6 +59094,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/lawoffice)
 "tlg" = (
@@ -62269,10 +62280,8 @@
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/pen,
-/obj/item/pen{
-	pixel_x = 7;
-	pixel_y = 6
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 9
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -62700,8 +62709,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/poddoor/preopen{
-	id = "cell1 blast";
-	name = "blast door"
+	id = "cell1 blast"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -63891,9 +63899,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "vdb" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
@@ -64154,14 +64159,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"vjz" = (
-/obj/structure/table/wood,
-/obj/machinery/photocopier/faxmachine{
-	department = "Lawyer";
-	name = "Lawyer's Fax Machine"
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "vjC" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -66231,12 +66228,6 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/janitor)
-"vUu" = (
-/obj/structure/table/wood,
-/obj/item/folder/blue,
-/obj/item/pen,
-/turf/open/floor/wood,
-/area/lawoffice)
 "vUB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -66604,6 +66595,8 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
+/obj/structure/table/wood,
+/obj/item/folder/red,
 /turf/open/floor/wood,
 /area/lawoffice)
 "waq" = (
@@ -68411,6 +68404,8 @@
 	dir = 1;
 	pixel_y = -26
 	},
+/obj/structure/table/wood,
+/obj/item/folder/blue,
 /turf/open/floor/wood,
 /area/lawoffice)
 "wPh" = (
@@ -70496,9 +70491,10 @@
 /turf/closed/wall,
 /area/medical/virology)
 "xGW" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/wood,
 /area/lawoffice)
 "xHc" = (
@@ -71036,12 +71032,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"xSN" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "xSQ" = (
 /obj/structure/sign/warning/radiation/rad_area{
 	pixel_x = -32
@@ -98050,10 +98040,10 @@ aiX
 fzs
 iNE
 aph
+dKX
 apS
-xSN
 gdE
-xSN
+apS
 kyP
 aph
 lVQ
@@ -98308,9 +98298,9 @@ tsu
 kUv
 aph
 wap
-vUu
+apS
 fCI
-vUu
+apS
 wPg
 aph
 avt
@@ -98566,8 +98556,8 @@ wnk
 aph
 rNk
 bwN
-aph
-bwN
+ebd
+lpX
 lBI
 aph
 wIv
@@ -98822,9 +98812,9 @@ gcP
 kUv
 aph
 xGW
-vjz
+apS
 hZq
-dma
+apS
 eqF
 aph
 avt
@@ -99597,7 +99587,7 @@ fpv
 apS
 uAs
 rsk
-pRS
+aph
 hal
 ayL
 aug
