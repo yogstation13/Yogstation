@@ -1,6 +1,9 @@
 //Defines for atom layers and planes
 //KEEP THESE IN A NICE ACSCENDING ORDER, PLEASE
 
+//NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
+#define LOWEST_EVER_PLANE -100
+
 #define CLICKCATCHER_PLANE -99
 
 #define PLANE_SPACE -95
@@ -158,6 +161,19 @@
 #define RENDER_PLANE_GAME 100
 #define RENDER_PLANE_NON_GAME 101
 
+#define RENDER_PLANE_MASTER 110
+// Lummox I swear to god I will find you
+// NOTE! You can only ever have planes greater then -10000, if you add too many with large offsets you will brick multiz
+// Same can be said for large multiz maps. Tread carefully mappers
+#define HIGHEST_EVER_PLANE RENDER_PLANE_MASTER
+/// The range unique planes can be in
+#define PLANE_RANGE (HIGHEST_EVER_PLANE - LOWEST_EVER_PLANE)
+
 
 ///1000 is an unimportant number, it's just to normalize copied layers
 #define RADIAL_CONTENT_LAYER 1000
+
+/// We expect at most 3 layers of multiz
+/// Increment this define if you make a huge map. We unit test for it too just to make it easy for you
+/// If you modify this, you'll need to modify the tsx file too
+#define MAX_EXPECTED_Z_DEPTH 3

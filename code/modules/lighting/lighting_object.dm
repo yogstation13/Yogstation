@@ -8,14 +8,18 @@
 	///the turf that our light is applied to
 	var/turf/affected_turf
 
+// Global list of lighting underlays, indexed by z level
+GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
+
 /datum/lighting_object/New(turf/source)
 	if(!isturf(source))
 		qdel(src, force=TRUE)
 		stack_trace("a lighting object was assigned to [source], a non turf! ")
 		return
+	
 	. = ..()
 
-	current_underlay = mutable_appearance(LIGHTING_ICON, "atransparent", source.z, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+	current_underlay = new(GLOB.default_lighting_underlays_by_z[source.z])
 
 	affected_turf = source
 	if (affected_turf.lighting_object)
@@ -23,7 +27,8 @@
 		stack_trace("a lighting object was assigned to a turf that already had a lighting object!")
 
 	affected_turf.lighting_object = src
-	affected_turf.luminosity = 0
+	// Default to fullbright, so things can "see" if they use view() before we update
+	affected_turf.luminosity = 1
 
 	for(var/turf/open/space/space_tile in RANGE_TURFS(1, affected_turf))
 		space_tile.update_starlight()
@@ -88,12 +93,12 @@
 	if((rr & gr & br & ar) && (rg + gg + bg + ag + rb + gb + bb + ab == 8))
 		//anything that passes the first case is very likely to pass the second, and addition is a little faster in this case
 		affected_turf.underlays -= current_underlay
-		current_underlay.icon_state = "atransparent"
+		current_underlay.icon_state = "lighting_transparent"
 		current_underlay.color = null
 		affected_turf.underlays += current_underlay
 	else if(!set_luminosity)
 		affected_turf.underlays -= current_underlay
-		current_underlay.icon_state = "adark"
+		current_underlay.icon_state = "lighting_dark"
 		current_underlay.color = null
 		affected_turf.underlays += current_underlay
 	else

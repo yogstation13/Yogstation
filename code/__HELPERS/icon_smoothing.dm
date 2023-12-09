@@ -390,9 +390,7 @@ xxx xxx xxx
 		break set_adj_in_dir; \
 	/// Check that non border objects use to smooth against border objects
 	/// Returns true if the smooth is acceptable, FALSE otherwise
-	#define BITMASK_ON_BORDER_CHECK(target, direction) \
-		(!(target.smoothing_flags & SMOOTH_BORDER_OBJECT) || CAN_DIAGONAL_SMOOTH(target, src, REVERSE_DIR(direction)) \
-	)
+	#define BITMASK_ON_BORDER_CHECK(target, direction) (!(target.smoothing_flags & SMOOTH_BORDER_OBJECT) || CAN_DIAGONAL_SMOOTH(target, src, REVERSE_DIR(direction)))
 
 	#define BORDER_FOUND(target, direction, direction_flag) new_junction |= CAN_DIAGONAL_SMOOTH(src, target, direction)
 	// Border objects require an object as context, so we need a dummy. I'm sorry
@@ -408,12 +406,7 @@ xxx xxx xxx
 
 	// We're building 2 different types of smoothing searches here
 	// One for standard bitmask smoothing (We provide a label so our macro can eary exit, as it wants to do)
-	#define SET_ADJ_IN_DIR(direction, direction_flag) \
-		do { set_adj_in_dir: { \
-			SEARCH_ADJ_IN_DIR(direction, direction_flag, BITMASK_FOUND, BITMASK_FOUND, BITMASK_ON_BORDER_CHECK) \
-		}} \
-			while(FALSE)
-
+	#define SET_ADJ_IN_DIR(direction, direction_flag) do { set_adj_in_dir: { SEARCH_ADJ_IN_DIR(direction, direction_flag, BITMASK_FOUND, BITMASK_FOUND, BITMASK_ON_BORDER_CHECK) }} while(FALSE)
 	// and another for border object work (Doesn't early exit because we can hit more then one direction by checking the same turf)
 	#define SET_BORDER_ADJ_IN_DIR(direction) SEARCH_ADJ_IN_DIR(direction, direction, BORDER_FOUND, WORLD_BORDER_FOUND, BORDER_ON_BORDER_CHECK)
 
@@ -498,7 +491,7 @@ xxx xxx xxx
 			var/junction_dir = reverse_ndir(smoothing_junction)
 			var/turned_adjacency = REVERSE_DIR(junction_dir)
 			var/turf/neighbor_turf = get_step(src, turned_adjacency & (NORTH|SOUTH))
-			var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, plane = FLOOR_PLANE)
+			var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, offset_spokesman = src, plane = FLOOR_PLANE)
 			if(!neighbor_turf.get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency))
 				neighbor_turf = get_step(src, turned_adjacency & (EAST|WEST))
 
@@ -656,7 +649,6 @@ xxx xxx xxx
 	name = "smooth wall"
 	icon = 'icons/turf/smooth_wall.dmi'
 	icon_state = "smooth"
-	base_icon_state = "smooth"
 	smoothing_flags = SMOOTH_CORNERS|SMOOTH_DIAGONAL_CORNERS|SMOOTH_BORDER
 	smoothing_groups = null
 	canSmoothWith = null
