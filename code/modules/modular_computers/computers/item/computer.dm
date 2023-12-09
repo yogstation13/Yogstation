@@ -268,35 +268,23 @@
 
 	. += get_modular_computer_parts_examine(user)
 
-/obj/item/modular_computer/update_icon(updates=ALL)
+/obj/item/modular_computer/update_icon_state()
+	if(!icon_state_powered || !icon_state_unpowered) //no valid icon, don't update.
+		return ..()
+	icon_state = enabled ? icon_state_powered : icon_state_unpowered
+	return ..()
+
+/obj/item/modular_computer/update_overlays()
 	. = ..()
-	if(!physical)
+	var/init_icon = initial(icon)
+	if(!init_icon)
 		return
 
-	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
-	var/program_overlay = ""
-	var/is_broken = obj_integrity <= integrity_failure
-	if(overlay_skin)
-		program_overlay = "[overlay_skin]-"
-	if(!enabled)
-		if(use_power() && !isnull(icon_state_screensaver))
-			program_overlay += icon_state_screensaver
-		else
-			icon_state = icon_state_unpowered
-	else
-		icon_state = icon_state_powered
-		if(is_broken)
-			program_overlay += "bsod"
-		else
-			if(active_program)
-				program_overlay += active_program.program_icon_state ? "[active_program.program_icon_state]" : "[icon_state_menu]"
-			else
-				program_overlay += icon_state_menu
-
-	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, physical.plane, physical.dir)
-	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, EMISSIVE_PLANE, physical.dir)
-	if(is_broken)
-		SSvis_overlays.add_vis_overlay(physical, physical.icon, "broken", physical.layer, physical.plane, physical.dir)
+	if(enabled)
+		. += active_program ? mutable_appearance(init_icon, active_program.program_icon_state) : mutable_appearance(init_icon, icon_state_menu)
+	if(obj_integrity <= integrity_failure)
+		. += mutable_appearance(init_icon, "bsod")
+		. += mutable_appearance(init_icon, "broken")
 
 /obj/item/modular_computer/equipped()
 	. = ..()
@@ -345,7 +333,7 @@
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		play_computer_sound(startup_sound, get_clamped_volume(), FALSE)
 		ui_interact(user)
 	else // Unpowered
@@ -487,7 +475,7 @@
 	var/mob/user = usr
 	if(user && istype(user))
 		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
@@ -503,7 +491,7 @@
 	var/obj/item/computer_hardware/network_card/network_card = all_components[MC_NET]
 	return SSnetworks.station_network.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(loud = 1)
+/obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	kill_program(forced = TRUE)
 	for(var/datum/computer_file/program/P in idle_threads)
 		P.kill_program(forced = TRUE)
@@ -511,8 +499,8 @@
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
-	update_appearance(UPDATE_ICON)
 	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
+	update_appearance()
 
 /**
   * Toggles the computer's flashlight, if it has one.
@@ -524,7 +512,7 @@
 	if(!has_light)
 		return FALSE
 	set_light_on(!light_on)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	return TRUE
 
 /**

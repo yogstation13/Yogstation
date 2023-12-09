@@ -99,7 +99,7 @@
 			if(!HAS_TRAIT(src, TRAIT_RADIMMUNE)&& !(status_flags & GODMODE))
 				radiation += max(effect * hit_percent, 0)
 		if(EFFECT_EYE_BLUR)
-			blur_eyes(effect * hit_percent)
+			adjust_eye_blur(effect * hit_percent)
 		if(EFFECT_PARALYZE)
 			Paralyze(effect * hit_percent)
 		if(EFFECT_IMMOBILIZE)

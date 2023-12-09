@@ -24,4 +24,6 @@
 	resistance_flags = FIRE_PROOF
 	default_price = 20
 	extra_price = 80
+	light_color = LIGHT_COLOR_BLUE
+	light_mask = "tool-light-mask"
 	payment_department = ACCOUNT_ENG

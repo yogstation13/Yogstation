@@ -528,7 +528,7 @@
 	return ..()
 
 ///Move a mob between z levels, if it's valid to move z's on this turf
-/mob/proc/zMove(dir, feedback = FALSE)
+/mob/proc/zMoveMob(dir, feedback = FALSE)
 	if(dir != UP && dir != DOWN)
 		return FALSE
 	var/turf/target = get_step_multiz(src, dir)

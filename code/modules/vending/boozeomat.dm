@@ -48,6 +48,8 @@
 	req_access = list(ACCESS_BAR)
 	refill_canister = /obj/item/vending_refill/boozeomat
 	default_price = 20
+	light_mask = "boozeomat-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	extra_price = 50
 	payment_department = ACCOUNT_SRV
 

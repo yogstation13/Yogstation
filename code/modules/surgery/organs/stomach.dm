@@ -63,7 +63,7 @@
 			H.adjust_dizzy(5 SECONDS)
 		if(H.disgust >= DISGUST_LEVEL_DISGUSTED)
 			if(prob(25))
-				H.blur_eyes(3) //We need to add more shit down here
+				H.adjust_eye_blur(3) //We need to add more shit down here
 
 		H.adjust_disgust(-0.5 * disgust_metabolism)
 	switch(H.disgust)
@@ -191,6 +191,9 @@
 		return
 	owner.adjust_nutrition(shock_damage * siemens_coeff)
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
+
+/obj/item/organ/stomach/cell/ethereal/emp_act(severity)
+	return // it's organic
 
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"

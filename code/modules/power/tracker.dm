@@ -10,6 +10,7 @@
 	icon_state = "tracker"
 	density = TRUE
 	use_power = NO_POWER_USE
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	max_integrity = 250
 	integrity_failure = 0.2
 

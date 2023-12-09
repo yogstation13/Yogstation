@@ -36,6 +36,8 @@
 	refill_canister = /obj/item/vending_refill/donksoft
 	default_price = 25
 	extra_price = 50
+	light_mask = "donksoft-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/donksoft

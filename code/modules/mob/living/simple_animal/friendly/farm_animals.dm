@@ -11,7 +11,6 @@
 	emote_see = list("shakes its head.", "stamps a foot.", "glares around.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4, /obj/item/clothing/head/yogs/goatpelt = 1)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -127,7 +126,6 @@
 	emote_see = list("shakes its head.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 6)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -349,7 +347,6 @@
 	emote_see = list("nibbles at the ground.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"

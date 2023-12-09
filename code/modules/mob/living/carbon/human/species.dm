@@ -1851,7 +1851,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							H.visible_message(span_danger("[H] has been knocked senseless!"), \
 											span_userdanger("[H] has been knocked senseless!"))
 							H.set_confusion_if_lower(20 SECONDS)
-							H.adjust_blurriness(10)
+							H.adjust_eye_blur(10)
 						if(prob(10))
 							H.gain_trauma(/datum/brain_trauma/mild/concussion)
 					else

@@ -14,6 +14,8 @@
 	refill_canister = /obj/item/vending_refill/sustenance
 	default_price = 0
 	extra_price = 0
+	light_color = LIGHT_COLOR_BLUE
+	light_mask = "snack-light-mask"
 	payment_department = NO_FREEBIES
 
 /obj/item/vending_refill/sustenance

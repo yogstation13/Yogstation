@@ -15,8 +15,9 @@
 
 /mob/camera/aiEye/remote/shuttle_creation/update_remote_sight(mob/living/user)
 	user.sight = BLIND|SEE_TURFS
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	user.sync_lighting_plane_alpha()
+	// Pale blue, should look nice I think
+	user.lighting_color_cutoffs = list(30, 40, 50)
+	user.sync_lighting_plane_cutoff()
 	return TRUE
 
 /mob/camera/aiEye/remote/shuttle_creation/relaymove(mob/user, direct)
@@ -50,6 +51,6 @@
 	if(eye_user?.client)
 		eye_user.client.images -= user_image
 		var/image/I = image(icon, loc, icon_state, FLY_LAYER, dir)
-		I.plane = MASSIVE_OBJ_LAYER
+		I.plane = MASSIVE_OBJ_PLANE
 		user_image = I
 		eye_user.client.images += user_image

@@ -15,8 +15,10 @@
 	stop_automated_movement = 1
 	AIStatus = AI_OFF
 	attack_sound = 'sound/weapons/punch1.ogg'
-	see_in_dark = 7
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Sort of greenish brown, to match the vibeTM
+	lighting_cutoff_red = 20
+	lighting_cutoff_green = 25
+	lighting_cutoff_blue = 5
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0

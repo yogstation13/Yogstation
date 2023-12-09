@@ -482,52 +482,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //////////////
 
 /client/Del()
-	//if(credits)
-		//QDEL_LIST(credits)
-	log_access("Logout: [key_name(src)]")
-	if(holder)
-		adminGreet(1)
-		holder.owner = null
-		GLOB.permissions.admins -= src
-		if (!GLOB.permissions.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
-			var/cheesy_message = pick(
-				"I have no admins online!",\
-				"I'm all alone :(",\
-				"I'm feeling lonely :(",\
-				"I'm so lonely :(",\
-				"Why does nobody love me? :(",\
-				"I want a man :(",\
-				"Where has everyone gone?",\
-				"I need a hug :(",\
-				"Someone come hold me :(",\
-				"I need someone on me :(",\
-				"What happened? Where has everyone gone?",\
-				"Forever alone :("\
-			)
+	if(!gc_destroyed)
+		gc_destroyed = world.time
+		if (!QDELING(src))
+			stack_trace("Client does not purport to be QDELING, this is going to cause bugs in other places!")
 
-			send2irc("Server", "[cheesy_message] (No admins online)")
-		qdel(holder)
-	if(ckey in GLOB.permissions.deadmins)
-		qdel(GLOB.permissions.deadmins[ckey])
-
-	GLOB.ahelp_tickets.ClientLogout(src)
-	GLOB.directory -= ckey
-	GLOB.clients -= src
-
-	SSambience.remove_ambience_client(src)
-
-	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
-	if(CL)
-		CL.logout(mob)
-
-	QDEL_LIST_ASSOC_VAL(char_render_holders)
-	if(movingmob != null)
-		movingmob.client_mobs_in_contents -= mob
-		UNSETEMPTY(movingmob.client_mobs_in_contents)
-	seen_messages = null
-	Master.UpdateTickRate()
-	world.sync_logout_with_db(connection_number) // yogs - logout logging
-
+		// Yes this is the same as what's found in qdel(). Yes it does need to be here
+		// Get off my back
+		SEND_SIGNAL(src, COMSIG_PARENT_QDELETING, TRUE)
+		Destroy() //Clean up signals and timers.
 	return ..()
 
 /client/proc/set_client_age_from_db(connectiontopic)
@@ -1116,3 +1079,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		holder.particool = new /datum/particle_editor(in_atom)
 		holder.particool.ui_interact(mob)
+/// Clears the client's screen, aside from ones that opt out
+/client/proc/clear_screen()
+	for (var/object in screen)
+		if (istype(object, /atom/movable/screen))
+			var/atom/movable/screen/screen_object = object
+			if (!screen_object.clear_with_screen)
+				continue
+
+		screen -= object

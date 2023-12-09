@@ -1,8 +1,6 @@
 /obj/item/organ/eyes/robotic/preternis
 	name = "preternis eyes"
-	desc = "An experimental upgraded version of eyes that can see in the dark. They are designed to fit preternis"
-	see_in_dark = PRETERNIS_NV_ON
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	desc = "A form archaic robotic eyes that can see in the dark. "
 	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
@@ -14,25 +12,26 @@
 	now_fixed = span_info("Lines of text scroll in your vision as your eyes begin rebooting.")
 	high_threshold_cleared = span_info("Your Preternis eyes have recharged enough to re-enable most functionality.")
 	low_threshold_cleared = span_info("Your Preternis eyes have almost fully recharged.")
-	var/powered = TRUE 
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	var/night_vision = TRUE
+	var/powered = TRUE 
+	var/night_vision = FALSE
+	// This list is used as the color cutoff for the night vision
+	var/list/colour_cutoff_list = list(12, 0, 50)
+	// This variable is the actual night vision strength
+	var/light_cutoff = LIGHTING_CUTOFF_HIGH
 
 /obj/item/organ/eyes/robotic/preternis/ui_action_click()
 	if(damage > low_threshold)
 		//no nightvision if your eyes are hurt
 		return
 	sight_flags = initial(sight_flags)
-	switch(lighting_alpha)
-		if (LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		else
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			sight_flags &= ~SEE_BLACKNESS
+	night_vision = !night_vision
+	if (night_vision)
+		color_cutoffs = colour_cutoff_list.Copy()
+		lighting_cutoff = light_cutoff
+	else
+		color_cutoffs = null
+		lighting_cutoff = null
 	owner.update_sight()
 
 /obj/item/organ/eyes/robotic/preternis/on_life()
@@ -52,20 +51,6 @@
 		//to simulate running out of power, they take damage
 		owner.adjustOrganLoss(ORGAN_SLOT_EYES,0.5)
 	
-	if(damage < low_threshold)
-		if(see_in_dark == PRETERNIS_NV_OFF)
-			see_in_dark = PRETERNIS_NV_ON
-			owner.update_sight()
-	else
-		//if your eyes start getting hurt no more nightvision
-		if(see_in_dark == PRETERNIS_NV_ON)
-			see_in_dark = PRETERNIS_NV_OFF
-			owner.update_sight()
-		if(lighting_alpha < LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			sight_flags &= ~SEE_BLACKNESS
-			owner.update_sight()
-
 /obj/item/organ/eyes/robotic/preternis/examine(mob/user)
 	. = ..()
 	if(status == ORGAN_ROBOTIC && (organ_flags & ORGAN_FAILING))
@@ -77,6 +62,10 @@
 	else if(damage > high_threshold)
 		. += span_warning("[src] seem to flicker on and off. They must be pretty low on charge without being in a Preternis")
 
+
+///////////////////////////////////////////////////////////
+//----------------------Preternis Lungs------------------//
+///////////////////////////////////////////////////////////
 /obj/item/organ/lungs/preternis
 	name = "preternis lungs"
 	desc = "A specialized set of lungs. Due to the cybernetic nature of these lungs, they are far less resistant to cold but are more heat resistant and more efficent at filtering oxygen."
@@ -106,7 +95,10 @@
 	heat_level_2_damage = 7
 	heat_level_3_threshold = 35000 //are you on the fucking surface of the sun or something?
 	heat_level_3_damage = 25 //you should already be dead
-
+	
+///////////////////////////////////////////////////////////
+//---------------------Preternis Stomach-----------------//
+///////////////////////////////////////////////////////////
 /obj/item/organ/stomach/cell/preternis
 	name = "preternis cell-stomach"
 	desc = "Calling it a stomach is perhaps a bit generous. It's better at grinding rocks than dissolving food. Also works as a power cell."

@@ -11,6 +11,9 @@
 	///If non-null, overrides a/an/some in all cases
 	var/article
 
+	/// How many tiles "up" this light is. 1 is typical, should only really change this if it's a floor light
+	var/light_height = LIGHTING_HEIGHT
+
 	///First atom flags var
 	var/flags_1 = NONE
 	///Intearaction flags
@@ -83,8 +86,6 @@
 	var/buckle_message_cooldown = 0
 	///Last fingerprints to touch this atom
 	var/fingerprintslast
-
-	var/list/filter_data //For handling persistent filters
 
 	///Economy cost of item
 	var/custom_price
@@ -1231,35 +1232,12 @@
 	filter_data[name] = p
 	update_filters()
 
-/atom/movable/proc/update_filters()
-	filters = null
-	sortTim(filter_data,associative = TRUE)
-	for(var/f in filter_data)
-		var/list/data = filter_data[f]
-		var/list/arguments = data.Copy()
-		arguments -= "priority"
-		filters += filter(arglist(arguments))
 
 /obj/item/update_filters()
 	. = ..()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
-
-/atom/movable/proc/get_filter(name)
-	if(filter_data && filter_data[name])
-		return filters[filter_data.Find(name)]
-
-/// Returns the indice in filters of the given filter name.
-/// If it is not found, returns null.
-/atom/proc/get_filter_index(name)
-	return filter_data?.Find(name)
-
-/atom/movable/proc/remove_filter(name)
-	if(filter_data && filter_data[name])
-		filter_data -= name
-		update_filters()
-
 
 /atom/proc/intercept_zImpact(atom/movable/AM, levels = 1)
 	return FALSE

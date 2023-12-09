@@ -13,8 +13,6 @@
 	obj_damage = 5
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	maxHealth = 15
 	health = 15
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/mouse = 1)

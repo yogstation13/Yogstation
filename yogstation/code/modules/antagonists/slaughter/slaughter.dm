@@ -32,8 +32,6 @@
 	wound_bonus = -10
 	bare_wound_bonus = 0
 	sharpness = SHARP_EDGED
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 	var/playstyle_string = "<span class='big bold'>You are a slaughter demon,</span><B> a terrible creature from another realm. You have a single desire: To kill.  \
 							Alt-click blood pools to travel through them, appearing and disappearing from the station at will. \

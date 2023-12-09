@@ -1,5 +1,6 @@
 /turf/closed
 	layer = CLOSED_TURF_LAYER
+	plane = WALL_PLANE
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE

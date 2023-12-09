@@ -6,7 +6,6 @@
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
 	initial_language_holder = /datum/language_holder/synthetic
-	see_in_dark = 8
 	infra_luminosity = 0
 	bubble_icon = "machine"
 	weather_immunities = list("ash")

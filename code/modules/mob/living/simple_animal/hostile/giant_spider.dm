@@ -46,8 +46,7 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	unique_name = 1
 	gold_core_spawnable = HOSTILE_SPAWN
-	see_in_dark = 4
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+
 	footstep_type = FOOTSTEP_MOB_CLAW
 	var/busy = SPIDER_IDLE
 	var/playable_spider = FALSE

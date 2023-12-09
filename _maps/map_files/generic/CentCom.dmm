@@ -14870,9 +14870,6 @@
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
 "aFc" = (
-/obj/structure/sign/barsign{
-	pixel_y = 32
-	},
 /obj/structure/chair/stool,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
@@ -16335,22 +16332,8 @@
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
 "aHM" = (
-/obj/structure/chair,
-/obj/effect/landmark/thunderdome/observe,
-/obj/structure/sign/barsign{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/barsign,
+/turf/closed/indestructible/riveted,
 /area/tdome/tdomeobserve)
 "aHN" = (
 /obj/structure/chair,
@@ -16635,9 +16618,6 @@
 	pixel_x = -3;
 	pixel_y = 5
 	},
-/obj/structure/sign/barsign{
-	pixel_y = -32
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -16686,9 +16666,6 @@
 	pixel_y = 5
 	},
 /obj/structure/table/wood,
-/obj/structure/sign/barsign{
-	pixel_y = -32
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -69566,7 +69543,7 @@ aEp
 aEp
 aEp
 aEp
-aHM
+aHN
 aHW
 aHN
 aIl
@@ -72393,7 +72370,7 @@ aGP
 aGK
 aGP
 aEp
-aHM
+aHN
 aHW
 aHN
 aIl
@@ -73425,7 +73402,7 @@ aHf
 aHf
 aHf
 aIo
-aEp
+aHM
 aIL
 aIZ
 aIZ

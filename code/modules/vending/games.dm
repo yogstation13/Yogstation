@@ -24,6 +24,8 @@
 	refill_canister = /obj/item/vending_refill/games
 	default_price = 10
 	extra_price = 25
+	light_mask = "games-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/games

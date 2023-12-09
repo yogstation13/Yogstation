@@ -1,5 +1,5 @@
 //Snowflake spot for putting sling organ related stuff
-/obj/item/organ/eyes/night_vision/alien/sling
+/obj/item/organ/eyes/alien/sling
 	name = "shadowling eyes"
 	desc = "The eyes of a spooky shadowling!"
 
@@ -62,7 +62,7 @@
 				playsound(S, 'sound/effects/bang.ogg', 50, 1)
 		return FALSE
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
-	eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+	eyes.lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
 	eyes.sight_flags = initial(eyes.sight_flags)
 	M.update_sight()
 	M.remove_thrall()

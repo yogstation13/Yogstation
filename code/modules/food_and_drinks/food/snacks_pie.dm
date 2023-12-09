@@ -49,7 +49,7 @@
 			creamoverlay.icon_state = "creampie_human"
 		if(stunning)
 			H.Paralyze(20) //splat!
-		H.adjust_blurriness(1)
+		H.adjust_eye_blur(1)
 		H.visible_message(span_warning("[H] is creamed by [src]!"), span_userdanger("You've been creamed by [src]!"))
 		playsound(H, "desceration", 50, TRUE)
 		if(!H.creamed) // one layer at a time

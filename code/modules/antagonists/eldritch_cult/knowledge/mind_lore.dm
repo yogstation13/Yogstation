@@ -31,7 +31,7 @@
 	if(!ishuman(target))
 		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/human/human_target = target
-	human_target.blur_eyes(1 SECONDS)
+	human_target.adjust_eye_blur(1 SECONDS)
 	human_target.Knockdown(2 SECONDS)
 
 /datum/eldritch_knowledge/spell/eldritchbolt
@@ -76,7 +76,7 @@
 	if(!ishuman(target))
 		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/human/human_target = target
-	human_target.blur_eyes(2 SECONDS)
+	human_target.adjust_eye_blur(2 SECONDS)
 	human_target.blind_eyes(1 SECONDS)
 
 /datum/eldritch_knowledge/spell/assault

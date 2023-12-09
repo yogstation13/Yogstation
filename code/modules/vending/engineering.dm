@@ -30,6 +30,8 @@
 	refill_canister = /obj/item/vending_refill/engineering
 	default_price = 50
 	extra_price = 60
+	light_mask = "engi-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	payment_department = ACCOUNT_ENG
 
 /obj/item/vending_refill/engineering

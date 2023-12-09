@@ -18,4 +18,6 @@
 	resistance_flags = FIRE_PROOF
 	default_price = 25
 	extra_price = 50
+	light_color = LIGHT_COLOR_BLUE
+	light_mask = "magivend-light-mask"
 	payment_department = ACCOUNT_SRV

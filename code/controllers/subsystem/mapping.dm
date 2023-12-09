@@ -26,6 +26,33 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/station_minimaps = list()
 
+	/// The largest plane offset we've generated so far
+	var/max_plane_offset = 0
+
+	/// List of z level (as number) -> The lowest plane offset in that z stack
+	var/list/z_level_to_lowest_plane_offset = list()
+
+	/// Assoc list of string plane to the plane's offset value
+	var/list/plane_to_offset
+
+	/// Used to maintain the plane cube
+	var/list/z_level_to_plane_offset = list()
+
+	/// List of planes that do not allow for offsetting
+	var/list/plane_offset_blacklist
+
+	/// Assoc list of true string plane values to a list of all potential offset planess
+	var/list/true_to_offset_planes
+
+	/// List of render targets that do not allow for offsetting
+	var/list/render_offset_blacklist
+
+	/// List of plane masters that are of critical priority
+	var/list/critical_planes
+
+	/// Assoc list of string plane values to their true, non offset representation
+	var/list/plane_offset_to_true
+
 	var/list/areas_in_z = list()
 	/// List of z level (as number) -> plane offset of that z level
 	/// Used to maintain the plane cube
@@ -51,6 +78,9 @@ SUBSYSTEM_DEF(mapping)
 	var/list/critical_planes
 	/// The largest plane offset we've generated so far
 	var/max_plane_offset = 0
+
+	///list of lists, inner lists are of the form: list("up or down link direction" = TRUE)
+	var/list/multiz_levels = list()
 
 	var/loading_ruins = FALSE
 	var/list/turf/unused_turfs = list() //Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
@@ -784,3 +814,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		GLOB.default_lighting_underlays_by_z.len = z_level
 	
 	GLOB.default_lighting_underlays_by_z[z_level] = mutable_appearance(LIGHTING_ICON, "transparent", z_level * 0.01, null, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM, offset_const = GET_Z_PLANE_OFFSET(z_level))
+/datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
+	RETURN_TYPE(/datum/turf_reservation)
+	return used_turfs[T]

@@ -564,8 +564,9 @@
 	if(user_eyes)
 		user_eyes.flash_protect = initial(user_eyes.flash_protect)
 		user_eyes.sight_flags = initial(user_eyes.sight_flags)
-		user_eyes.see_in_dark = initial(user_eyes.see_in_dark)
-		user_eyes.lighting_alpha = initial(user_eyes.lighting_alpha)
+		user.lighting_cutoff_red += 5
+		user.lighting_cutoff_green += 15
+		user.lighting_cutoff_blue += 5
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/give_masquerade_infraction()

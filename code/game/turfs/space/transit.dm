@@ -8,7 +8,7 @@
 
 /turf/open/space/transit/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	RegisterSignal(src, COMSIG_TURF_RESERVATION_RELEASED, PROC_REF(launch_contents))
 
 /turf/open/space/transit/Destroy()

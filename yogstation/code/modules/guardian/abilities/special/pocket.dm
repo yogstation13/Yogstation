@@ -288,7 +288,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		G.status_flags &= ~GODMODE
 
 /obj/effect/manifestation
-	layer = ABOVE_LIGHTING_LAYER
+	plane = ABOVE_LIGHTING_PLANE
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	alpha = 0
 	mouse_opacity = FALSE

@@ -38,8 +38,6 @@
 	icon_dead = "spacedragon_dead"
 	health_doll_icon = "spacedragon"
 	obj_damage = 50
-	see_in_dark = 7 //yogs
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE //yogs
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	flags_1 = HEAR_1 | PREVENT_CONTENTS_EXPLOSION_1
 	mob_size = MOB_SIZE_LARGE

@@ -756,7 +756,7 @@
 	desc = "A blood-red prison."
 	density = FALSE
 	anchored = TRUE
-	layer = MASSIVE_OBJ_LAYER
+	plane= MASSIVE_OBJ_PLANE
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "leaper"
 	max_integrity = 500
@@ -782,14 +782,14 @@
 /obj/structure/prop
 	anchored = TRUE
 	density = FALSE
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	max_integrity = 500
 
 /obj/structure/prop/killrock
 	name = "ruby spire"
 	desc = "An unrelenting claw."
 	anchored = TRUE
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	icon = 'icons/obj/cult_64x64.dmi'
 	icon_state = "bloodstone-enter1"
 	var/stage = 1
@@ -870,7 +870,7 @@
 /obj/structure/slash
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "slash"
-	layer = POINT_LAYER
+	plane = POINT_PLANE
 	color =  "#ffa600"
 
 /obj/structure/slash/Initialize(mapload)

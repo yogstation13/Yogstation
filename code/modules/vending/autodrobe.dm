@@ -232,6 +232,8 @@
 		           /obj/item/clothing/mask/yogs/richard = 1) //yogs end
 	refill_canister = /obj/item/vending_refill/autodrobe
 	default_price = 50
+	light_mask="theater-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	extra_price = 75
 	payment_department = ACCOUNT_SRV
 

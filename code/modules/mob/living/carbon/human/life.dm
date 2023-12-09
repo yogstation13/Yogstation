@@ -98,7 +98,7 @@
 		else
 			adjust_blindness(-1)
 	if(eye_blurry)			//blurry eyes heal slowly
-		adjust_blurriness(-1)
+		adjust_eye_blur(-1)
 
 	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 60)
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)

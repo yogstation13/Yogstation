@@ -15,6 +15,7 @@
 	var/material_drop_type = /obj/item/stack/sheet/metal
 	var/impressiveness = 15
 	CanAtmosPass = ATMOS_PASS_DENSITY
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 /obj/structure/statue/Initialize(mapload)
 	. = ..()

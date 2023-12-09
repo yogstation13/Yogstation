@@ -7,6 +7,7 @@
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	CanAtmosPassVertical = ATMOS_PASS_YES
 	flags_1 = NO_RUST
+	plane = TRANSPARENT_FLOOR_PLANE
 	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
@@ -17,9 +18,25 @@
 
 /turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
-	plane = FLOOR_OPENSPACE_PLANE
-	layer = OPENSPACE_LAYER
+
+	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE, PROC_REF(on_atom_created))
+	var/area/our_area = loc
+	if(istype(our_area, /area/space))
+		force_no_gravity = TRUE
 	return INITIALIZE_HINT_LATELOAD
+/**
+ * Drops movables spawned on this turf after they are successfully initialized.
+ * so that spawned movables that should fall to gravity, will fall.
+ */
+/turf/open/openspace/proc/on_atom_created(datum/source, atom/created_atom)
+	SIGNAL_HANDLER
+	if(ismovable(created_atom))
+		zfall_if_on_turf(created_atom)
+
+/turf/open/openspace/proc/zfall_if_on_turf(atom/movable/movable)
+	if(QDELETED(movable) || movable.loc != src)
+		return
+	zFall(movable)
 
 /turf/open/openspace/LateInitialize()
 	update_multiz(TRUE, TRUE)

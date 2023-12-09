@@ -13,6 +13,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	movement_type = FLYING
 	wound_bonus = CANT_WOUND // can't wound by default
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	var/hitsound = 'sound/weapons/pierce.ogg'
 	var/hitsound_wall = ""
 

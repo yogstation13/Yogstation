@@ -23,6 +23,8 @@ GLOBAL_PROTECT(href_token)
 
 	var/deadmined
 
+	var/datum/plane_master_debug/plane_debug
+
 	var/ip_cache
 	var/cid_cache
 

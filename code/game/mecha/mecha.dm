@@ -92,6 +92,9 @@
 
 	var/silicon_pilot = FALSE //set to true if an AI or MMI is piloting.
 
+	///Camera installed into the mech
+	var/obj/machinery/camera/exosuit/chassis_camera
+
 	var/enter_delay = 40 //Time taken to enter the mech
 	var/exit_delay = 20 //Time to exit mech
 	var/destruction_sleep_duration = 20 //Time that mech pilot is put to sleep for if mech is destroyed

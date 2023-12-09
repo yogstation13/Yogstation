@@ -212,7 +212,7 @@
 	if(!hive.is_carbon_member(target))
 		power *= 0.5
 	target.blind_eyes(4*power)
-	target.blur_eyes(30*power)
+	target.adjust_eye_blur(30*power)
 	target.minimumDeafTicks(15*power) //equivalent to 30s deafness max
 	target.adjust_jitter(power SECONDS)
 	target.silent += 10*power

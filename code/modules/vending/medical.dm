@@ -43,6 +43,8 @@
 	refill_canister = /obj/item/vending_refill/medical
 	default_price = 25
 	extra_price = 100
+	light_color = LIGHT_COLOR_BLUE
+	light_mask = "med-light-mask"
 	payment_department = ACCOUNT_MED
 
 /obj/item/vending_refill/medical

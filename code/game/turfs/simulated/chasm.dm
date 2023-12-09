@@ -14,7 +14,7 @@
 
 /turf/open/chasm/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/chasm, SSmapping.get_turf_below(src))
+	apply_components(mapload)
 
 /turf/open/chasm/proc/set_target(turf/target)
 	var/datum/component/chasm/chasm_component = GetComponent(/datum/component/chasm)
@@ -128,3 +128,7 @@
 	var/turf/T = pick(get_area_turfs(/area/fabric_of_reality))
 	if(T)
 		set_target(T)
+
+/// Handles adding the chasm component to the turf (So stuff falls into it!)
+/turf/open/chasm/proc/apply_components(mapload)
+	AddComponent(/datum/component/chasm, GET_TURF_BELOW(src), mapload)

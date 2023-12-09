@@ -423,8 +423,14 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 // Used by PDA and cartridge code to reduce repetitiveness of spritesheets
 #define PDAIMG(what) {"<span class="pda16x16 [#what]"></span>"}
 
+#define NEGATIVE_GRAVITY -1
+
 #define STANDARD_GRAVITY 1 //Anything above this is high gravity, anything below no grav
 #define GRAVITY_DAMAGE_TRESHOLD 3 //Starting with this value gravity will start to damage mobs
+/// The scaling factor for high gravity damage.
+#define GRAVITY_DAMAGE_SCALING 3.5
+/// The maximum [BRUTE] damage a mob can take from high gravity per second.
+#define GRAVITY_DAMAGE_MAXIMUM 4.5
 
 #define CAMERA_NO_GHOSTS 0
 #define CAMERA_SEE_GHOSTS_BASIC 1
@@ -481,3 +487,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define ui_vamprank_display "WEST:6,CENTER-2:-5"
 /// 6 pixels to the right, zero tiles & 5 pixels DOWN.
 #define ui_sunlight_display "WEST:6,CENTER-0:0"
+
+
+

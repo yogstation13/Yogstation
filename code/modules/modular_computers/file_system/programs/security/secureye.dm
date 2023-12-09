@@ -1,3 +1,4 @@
+
 #define DEFAULT_MAP_SIZE 15
 
 /datum/computer_file/program/secureye
@@ -185,6 +186,7 @@
 			camlist["[cam.c_tag]"] = cam
 	return camlist
 
+
 //////////////////
 //Mining Cameras//
 //////////////////
@@ -215,3 +217,5 @@
 	program_icon = "dungeon"
 
 	network = list("labor")
+
+#undef DEFAULT_MAP_SIZE

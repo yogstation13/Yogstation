@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	density = 1
 	opacity = FALSE
 	dir = NORTH // always points north because why not
-	layer = SPACEPOD_LAYER
+	layer = VEHICLE_LAYER
 	bound_width = 64
 	bound_height = 64
 	animate_movement = NO_STEPS // we do our own gliding here

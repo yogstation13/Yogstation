@@ -165,7 +165,7 @@
 /datum/quirk/night_vision/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/organ/eyes/eyes = H.getorgan(/obj/item/organ/eyes)
-	if(!eyes || eyes.lighting_alpha)
+	if(!eyes || eyes.lighting_cutoff)
 		return
 	eyes.Insert(H) //refresh their eyesight and vision
 

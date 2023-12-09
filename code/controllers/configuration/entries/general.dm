@@ -308,6 +308,10 @@
 	max_val = 1
 	integer = FALSE
 
+/datum/config_entry/number/auto_lag_switch_pop //Number of clients at which drastic lag mitigation measures kick in
+	config_entry_value = null
+	min_val = 0
+
 /datum/config_entry/number/soft_popcap
 	config_entry_value = null
 	min_val = 0

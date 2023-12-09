@@ -11,11 +11,13 @@
 	icon_state = "eminence"
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	move_on_shuttle = TRUE
-	see_in_dark = 8
 	invisibility = INVISIBILITY_OBSERVER
 	layer = FLY_LAYER
 	faction = list("ratvar")
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// VERY red, to fit the eyes
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
 	var/turf/last_failed_turf
 	var/static/superheated_walls = 0
 	var/lastWarning = 0

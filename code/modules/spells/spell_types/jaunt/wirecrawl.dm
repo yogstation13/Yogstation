@@ -108,7 +108,6 @@
 	wire.visible_message(span_warning("[jaunter] zips into [wire]!"))
 	jaunter.extinguish_mob()
 
-	jaunter.sight |= (SEE_TURFS|BLIND)
 	jaunter.add_wirevision(wire)
 	holder.travelled = wire.powernet
 	do_sparks(10, FALSE, jaunter)
@@ -135,7 +134,6 @@
 	if(!exit_jaunt(jaunter, get_turf(wire)))
 		return FALSE
 
-	jaunter.sight &= ~(SEE_TURFS|BLIND)
 	jaunter.remove_wirevision()
 	do_sparks(10, FALSE, jaunter)
 
@@ -214,6 +212,8 @@
 
 	if(!totalMembers.len)
 		return
+		
+	sight |= (SEE_TURFS|BLIND)
 
 	if(client)
 		for(var/object in totalMembers)//cables and power machinery are not the same unfortunately
@@ -239,6 +239,7 @@
 		for(var/image/current_image in wires_shown)
 			client.images -= current_image
 		wires_shown.len = 0
+	sight &= ~(SEE_TURFS|BLIND)
 
 
 /obj/item/wirecrawl
