@@ -18190,18 +18190,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"dKX" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
-	pixel_y = 30
-	},
-/obj/structure/chair/comfy{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "dLK" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/white,
@@ -18966,13 +18954,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
-"ebd" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/machinery/door/morgue,
-/turf/open/floor/wood,
-/area/lawoffice)
 "ebl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -26991,6 +26972,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"gZV" = (
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	layer = 3
+	},
+/turf/open/floor/wood,
+/area/lawoffice)
 "gZW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -28654,6 +28644,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/machinery/papershredder,
 /turf/open/floor/wood,
 /area/lawoffice)
 "hEG" = (
@@ -36990,6 +36981,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"kRc" = (
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching Prison Wing holding areas.";
+	name = "Prison Monitor";
+	network = list("prison");
+	pixel_y = 30
+	},
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/lawoffice)
 "kRm" = (
 /obj/machinery/light,
 /obj/machinery/airalarm{
@@ -38328,15 +38331,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"lpX" = (
-/obj/machinery/door/window{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	layer = 3
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "lql" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -50005,6 +49999,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"pQm" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/machinery/door/morgue,
+/turf/open/floor/wood,
+/area/lawoffice)
 "pQq" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/dark,
@@ -98040,7 +98041,7 @@ aiX
 fzs
 iNE
 aph
-dKX
+kRc
 apS
 gdE
 apS
@@ -98556,8 +98557,8 @@ wnk
 aph
 rNk
 bwN
-ebd
-lpX
+pQm
+gZV
 lBI
 aph
 wIv
