@@ -64113,6 +64113,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"viS" = (
+/obj/effect/landmark/start/chaplain,
+/turf/template_noop,
+/area/template_noop)
 "viU" = (
 /obj/structure/table,
 /obj/structure/mirror{
@@ -120689,7 +120693,7 @@ qQV
 qQV
 qQV
 qQV
-qQV
+viS
 qQV
 qQV
 qQV
