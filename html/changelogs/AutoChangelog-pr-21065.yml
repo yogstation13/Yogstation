@@ -1,6 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - bugfix: "IceMeta Hermit and Walker ruins can now spawn."
-  - tweak: "Rewrote Hermit flavor text."
-  - experiment: "Walkers currently disabled in config since map needs editing now that it is no longer underground."
