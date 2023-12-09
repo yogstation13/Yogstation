@@ -1,5 +1,5 @@
 import { Box, Button, Icon, Table, Tooltip } from '../../components';
-import { getGasColor, getGasLabel } from '../../constants';
+import { getGasColor, getGasLabel } from './helpers';
 
 /*
  * Recipe selection interface
@@ -101,9 +101,8 @@ const MemoRow = (props) => {
   const { active, children, key, ...rest } = props;
   return (
     <Table.Row
-      className={`hypertorus-recipes__row${
-        active ? ' hypertorus-recipes__activerow' : ''
-      }`}
+      className={`hypertorus-recipes__row${active ? ' hypertorus-recipes__activerow' : ''
+        }`}
       {...rest}>
       {children}
     </Table.Row>
@@ -113,10 +112,10 @@ const MemoRow = (props) => {
 MemoRow.defaultHooks = activeChange;
 
 const GasCellItem = (props) => {
-  const { gasid, ...rest } = props;
+  const { gasid, label, color, ...rest } = props;
   return (
-    <Table.Cell key={gasid} label={getGasLabel(gasid)} {...rest}>
-      <Box color={getGasColor(gasid)}>{getGasLabel(gasid)}</Box>
+    <Table.Cell key={gasid} label={label} {...rest}>
+      <Box color={color} >{label}</Box>
     </Table.Cell>
   );
 };
@@ -127,6 +126,7 @@ export const HypertorusRecipes = (props) => {
     onRecipe,
     selectableFuels: selectable_fuels,
     selectedFuelID: selected_fuel_id,
+    gasData: gas_data,
     ...rest
   } = props;
   return (
@@ -189,12 +189,22 @@ export const HypertorusRecipes = (props) => {
                     onClick={onRecipe.bind(null, recipe.id)}
                   />
                 </Table.Cell>
-                <GasCellItem gasid={recipe.requirements[0]} />
-                <GasCellItem gasid={recipe.requirements[1]} />
-                <GasCellItem gasid={recipe.fusion_byproducts[0]} />
-                <GasCellItem gasid={recipe.fusion_byproducts[1]} />
+                <GasCellItem gasid={recipe.requirements[0]}
+                  label={getGasLabel(recipe.requirements[0], gas_data)}
+                  color={getGasColor(recipe.requirements[0], gas_data)} />
+                <GasCellItem gasid={recipe.requirements[1]}
+                  label={getGasLabel(recipe.requirements[1], gas_data)}
+                  color={getGasColor(recipe.requirements[1], gas_data)} />
+                <GasCellItem gasid={recipe.fusion_byproducts[0]}
+                  label={getGasLabel(recipe.fusion_byproducts[0], gas_data)}
+                  color={getGasColor(recipe.fusion_byproducts[0], gas_data)} />
+                <GasCellItem gasid={recipe.fusion_byproducts[1]}
+                  label={getGasLabel(recipe.fusion_byproducts[1], gas_data)}
+                  color={getGasColor(recipe.fusion_byproducts[1], gas_data)} />
                 {recipe.product_gases.map((gasid) => (
-                  <GasCellItem key={gasid} gasid={gasid} />
+                  <GasCellItem key={gasid} gasid={gasid}
+                    label={getGasLabel(gasid, gas_data)}
+                    color={getGasColor(gasid, gas_data)} />
                 ))}
                 {recipe_effect_structure.map((item) => {
                   const value = recipe[item.param];

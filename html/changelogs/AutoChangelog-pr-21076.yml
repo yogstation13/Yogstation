@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed water gun spilling gases when it shouldn't"
+  - tweak: "water gun can be drained into containers or emptied"
+  - tweak: "water gun can be refilled from water tanks"

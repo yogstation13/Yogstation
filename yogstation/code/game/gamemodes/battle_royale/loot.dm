@@ -310,7 +310,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/effect/spawner/lootdrop/stronggene = -3,
 		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
 		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
-		/obj/item/scrying = -3, //info, but leaves you open to attack
 		/obj/item/battleroyale/extraarm = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
@@ -339,7 +338,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 /obj/structure/closet/crate/battleroyale
 	name = "Supply Crate"
 	icon_state = "trashcart"
-	light_range = 10
+	light_range = 5
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
 	dense_when_open = FALSE
 
@@ -399,8 +398,8 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
 
-	if(prob(0.1)) //0.1% chance of being clowned, probably won't see it every round
-		for(var/i = 0, i < 5, i++)
+	if(rand(0, 10000) == 1)
+		for(var/i = 0, i < 10, i++)
 			new /mob/living/simple_animal/hostile/retaliate/clown(src)// you've been clowned
 
 /obj/structure/closet/crate/battleroyale/proc/declutter()

@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(delta_areas)
 GLOBAL_LIST_EMPTY(bar_areas)
 // IF YOU ARE MAKING A NEW TEMPLATE AND WANT IT ROUNDSTART ADD IT TO THIS LIST!
 GLOBAL_LIST_INIT(potential_box_clerk, list("Clerk Box", "Clerk Pod", "Clerk Meta", "Clerk Gambling Hall"))
-
+GLOBAL_LIST_INIT(potential_box_chapels, list("Chapel 1", "Chapel 2"))
 /// Away missions
 GLOBAL_LIST_EMPTY(awaydestinations)	//a list of landmarks that the warpgate can take you to
 GLOBAL_LIST_EMPTY(vr_spawnpoints)

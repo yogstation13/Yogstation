@@ -81,10 +81,16 @@
 	name = "preternis lungs"
 	desc = "A specialized set of lungs. Due to the cybernetic nature of these lungs, they are far less resistant to cold but are more heat resistant and more efficent at filtering oxygen."
 	icon_state = "lungs-c"
+
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
-	safe_oxygen_min = 12
-	safe_toxins_max = 10
+	safe_breath_min = 12
+
+	gas_max = list(
+		GAS_CO2 = 30, 
+		GAS_PLASMA = 10
+	)
+
 	gas_stimulation_min = 0.01 //fucking filters removing my stimulants
 
 	cold_level_1_threshold = 280 //almost room temperature
@@ -115,5 +121,5 @@
 
 /obj/item/organ/stomach/cell/preternis/emp_act(severity)
 	owner.vomit(stun=FALSE) // fuck that
-	owner.adjust_disgust(20)
+	owner.adjust_disgust(2*severity)
 	to_chat(owner, "<span class='warning'>You feel violently ill as the EMP causes your stomach to kick into high gear.</span>")

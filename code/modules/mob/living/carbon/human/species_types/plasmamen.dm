@@ -27,6 +27,8 @@
 	liked_food = DAIRY
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	species_language_holder = /datum/language_holder/plasmaman
+	
+	screamsound = list('sound/voice/plasmaman/plasmeme_scream_1.ogg', 'sound/voice/plasmaman/plasmeme_scream_2.ogg', 'sound/voice/plasmaman/plasmeme_scream_3.ogg')
 
 	smells_like = "plasma-caked calcium"
 
@@ -47,7 +49,7 @@
 	if((!istype(H.w_uniform, /obj/item/clothing/under/plasmaman) || !istype(H.head, /obj/item/clothing/head/helmet/space/plasmaman)) && !atmos_sealed)
 		if(environment)
 			if(environment.total_moles())
-				if(environment.get_moles(/datum/gas/oxygen) >= 1) //Same threshhold that extinguishes fire
+				if(environment.get_moles(GAS_O2) >= 1) //Same threshhold that extinguishes fire
 					H.adjust_fire_stacks(0.5)
 					if(!H.on_fire && H.fire_stacks > 0)
 						H.visible_message(span_danger("[H]'s body reacts with the atmosphere and bursts into flames!"),span_userdanger("Your body reacts with the atmosphere and bursts into flame!"))

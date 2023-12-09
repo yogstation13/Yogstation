@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		else
 			var/mob/living/L = target
 			L.attack_animal(src)
-			L.electrocute_act(10, src, safety = TRUE) //safety = TRUE means we don't check gloves... Ok?
+			L.electrocute_act(10, src, zone = null) //zone=null means we don't only check gloves... Ok?
 		return TRUE
 	else
 		return ..()

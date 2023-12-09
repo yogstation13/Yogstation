@@ -14,7 +14,6 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 2
 	light_color = LIGHT_COLOR_RED
-	light_flags = LIGHT_NO_LUMCOUNT
 	ricochets_max = 50	//Honk!
 	ricochet_chance = 80
 	reflectable = REFLECT_NORMAL
@@ -154,6 +153,7 @@
 	damage = 30
 	wound_bonus = -40
 	bare_wound_bonus = 70
+	demolition_mod = 3 // industrial laser
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = LIGHT_COLOR_GREEN
 
