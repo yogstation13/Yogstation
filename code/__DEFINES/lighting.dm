@@ -4,12 +4,17 @@
 #define STATIC_LIGHT 1
 ///Light made by masking the lighting darkness plane.
 #define MOVABLE_LIGHT 2
+/// Light made by masking the lighting darkness plane, and is directional.
+#define MOVABLE_LIGHT_DIRECTIONAL 3
+///Light made by masking the lighting darkness plane, and is a directionally focused beam.
+#define MOVABLE_LIGHT_BEAM 4
+
+#define NONSENSICAL_VALUE -99999
 
 ///Is a movable light source attached to another movable (its loc), meaning that the lighting component should go one level deeper.
 #define LIGHT_ATTACHED (1<<0)
-
-///This light doesn't affect turf's lumcount calculations. Set to 1<<15 to ignore conflicts
-#define LIGHT_NO_LUMCOUNT (1<<15)
+/// Freezes a light in its current state, blocking any attempts at modification
+#define LIGHT_FROZEN (1<<1)
 
 //Bay lighting engine shit, not in /code/modules/lighting because BYOND is being shit about it
 /// frequency, in 1/10ths of a second, of the lighting process
@@ -67,6 +72,7 @@
 #define DYNAMIC_LIGHTING_FORCED 2
 /// dynamic lighting enabled only if starlight is.
 #define DYNAMIC_LIGHTING_IFSTARLIGHT 3
+
 #define IS_DYNAMIC_LIGHTING(A) A.dynamic_lighting
 
 

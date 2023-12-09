@@ -9,7 +9,7 @@
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
-	opacity = 0
+	opacity = FALSE
 	var/state = MECHA_WRECK_CUT
 	var/orig_mecha
 	var/can_be_reconstructed = FALSE

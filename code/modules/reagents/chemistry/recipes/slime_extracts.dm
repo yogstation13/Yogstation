@@ -291,8 +291,7 @@
 	if(holder && holder.my_atom)
 		var/turf/open/T = get_turf(holder.my_atom)
 		if(istype(T))
-			var/datum/gas/gastype = /datum/gas/nitrogen
-			T.atmos_spawn_air("[initial(gastype.id)]=50;TEMP=2.7")
+			T.atmos_spawn_air("n2=50;TEMP=2.7")
 
 /datum/chemical_reaction/slime/slimefireproof
 	name = "Slime Fireproof"
@@ -355,7 +354,7 @@
 	required_other = TRUE
 
 /datum/chemical_reaction/slime/slimeoverload/on_reaction(datum/reagents/holder, created_volume)
-	empulse(get_turf(holder.my_atom), 3, 7)
+	empulse(get_turf(holder.my_atom), 7)
 	..()
 
 /datum/chemical_reaction/slime/slimecell

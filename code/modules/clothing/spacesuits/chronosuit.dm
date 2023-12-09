@@ -73,13 +73,11 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	var/mob/living/carbon/human/user = src.loc
-	switch(severity)
-		if(1)
-			if(activated && user && ishuman(user) && (user.wear_suit == src))
-				to_chat(user, span_danger("E:FATAL:RAM_READ_FAIL\nE:FATAL:STACK_EMPTY\nE:FATAL:READ_NULL_POINT\nE:FATAL:PWR_BUS_OVERLOAD"))
-				to_chat(user, span_userdanger("An electromagnetic pulse disrupts your [name] and violently tears you out of time-bluespace!"))
-				user.emote("scream")
-			deactivate(1, 1)
+	if(severity > EMP_LIGHT && activated && user && ishuman(user) && (user.wear_suit == src))
+		to_chat(user, span_danger("E:FATAL:RAM_READ_FAIL\nE:FATAL:STACK_EMPTY\nE:FATAL:READ_NULL_POINT\nE:FATAL:PWR_BUS_OVERLOAD"))
+		to_chat(user, span_userdanger("An electromagnetic pulse disrupts your [name] and violently tears you out of time-bluespace!"))
+		user.emote("scream")
+		deactivate(1, 1)
 
 /obj/item/clothing/suit/space/chronos/proc/finish_chronowalk(mob/living/carbon/human/user, turf/to_turf)
 	if(!user)
@@ -223,7 +221,7 @@
 			teleport_now.Remove(user)
 			if(user.wear_suit == src)
 				if(hard_landing)
-					user.electrocute_act(35, src, safety = 1)
+					user.electrocute_act(35, src, zone = null)
 					user.Paralyze(200)
 				if(!silent)
 					to_chat(user, "\nroot@ChronosuitMK4# chronowalk4 --stop\n")
@@ -246,7 +244,7 @@
 	density = FALSE
 	anchored = TRUE
 	invisibility = INVISIBILITY_ABSTRACT
-	opacity = 0
+	opacity = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/mob/holder
 	var/phase_time = 0

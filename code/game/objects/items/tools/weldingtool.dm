@@ -23,6 +23,7 @@
 	light_on = FALSE
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.5 // not very good at smashing
 	w_class = WEIGHT_CLASS_SMALL
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
@@ -225,6 +226,7 @@
 			playsound(loc, acti_sound, 50, 1)
 			force = 12
 			damtype = BURN
+			demolition_mod = 1.5 // pretty good at cutting
 			hitsound = 'sound/items/welder.ogg'
 			update_appearance(UPDATE_ICON)
 			START_PROCESSING(SSobj, src)
@@ -243,6 +245,7 @@
 	force = 3
 	damtype = "brute"
 	hitsound = "swing_hit"
+	demolition_mod = initial(demolition_mod)
 	update_appearance(UPDATE_ICON)
 
 

@@ -293,6 +293,51 @@
 	icon = "thegoose"
 	desc = "A nice place to hang loose and relax, while enjoying some electrifying drinks."
 
+/datum/barsign/tearoom
+	name = "Little Treats Tea Room"
+	icon = "little_treats"
+	desc = "A delightfully relaxing tearoom for all the fancy lads in the cosmos."
+
+/datum/barsign/le_cafe_silencieux
+	name = "Le Café Silencieux"
+	icon = "le_cafe_silencieux"
+	desc = "..."
+
+/datum/barsign/maltroach
+	name = "Maltroach"
+	icon = "maltroach"
+	desc = "Mothroaches politely greet you into the bar, or are they greeting eachother?"
+
+/datum/barsign/rock_bottom
+	name = "Rock Bottom"
+	icon = "rock-bottom"
+	desc = "When it feels like you're stuck in a pit, might as well have a drink."
+
+/datum/barsign/assembly_line
+	name = "The Assembly Line"
+	icon = "the-assembly-line"
+	desc = "Where every drink is masterfully crafted with industrial efficiency!"
+
+/datum/barsign/bargonia
+	name = "Bargonia"
+	icon = "bargonia"
+	desc = "The warehouse yearns for a higher calling... so Supply has declared BARGONIA!"
+
+/datum/barsign/cult_cove
+	name = "Cult Cove"
+	icon = "cult-cove"
+	desc = "Nar'Sie's favourite retreat"
+
+/datum/barsign/neon_flamingo
+	name = "Neon Flamingo"
+	icon = "neon-flamingo"
+	desc = "A bus for all but the flamboyantly challenged."
+	
+/datum/barsign/slowdive
+	name = "Slowdive"
+	icon = "slowdive"
+	desc = "First stop out of hell, last stop before heaven."
+	
 /datum/barsign/hiddensigns
 	hidden = TRUE
 
