@@ -20,7 +20,7 @@
 
 	alt_titles = list("Brig Watchman", "Brig Superintendent", "Security Dispatcher", "Prison Supervisor")
 
-	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS)
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS, ACCESS_BRIG_PHYS, ACCESS_MEDICAL) //they get medical access because apparently the windoors AREN'T BRIG PHYS ACCESS
 	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM) // See /datum/job/warden/get_access()
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC

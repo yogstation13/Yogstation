@@ -194,7 +194,7 @@
 /datum/nanite_program/proc/on_emp(severity)
 	if(program_flags & NANITE_EMP_IMMUNE)
 		return
-	if(prob(80 / severity))
+	if(prob(8 * severity))
 		software_error()
 
 /datum/nanite_program/proc/on_shock(shock_damage)

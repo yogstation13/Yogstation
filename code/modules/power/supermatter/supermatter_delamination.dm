@@ -77,6 +77,7 @@
 		call_tesla()
 		call_explosion()
 		return
+	call_explosion()
 
 /datum/supermatter_delamination/proc/shockwave() //borrowed ynot's code
 	var/atom/movable/gravity_lens/shockwave = new(supermatter_turf)

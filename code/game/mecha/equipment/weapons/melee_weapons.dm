@@ -273,7 +273,7 @@
 	set_light_on(FALSE)	
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/katana	//Anime mech sword
-	name = "\improper OWM-5 \"Ronin\" katana"
+	name = "\improper HR-2 \"Ronin\" katana"
 	desc = "An oversized, light-weight replica of an ancient style of blade. Still woefully underpowered in D&D."
 	icon_state = "mecha_katana"
 	energy_drain = 15
@@ -363,7 +363,7 @@
 		playsound(L, 'sound/items/welder.ogg', 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul
-	name = "\improper CX-22 \"Barbatos\" heavy maul"
+	name = "\improper ASW-8 \"Barbatos\" heavy maul"
 	desc = "A massive, unwieldy, mace-like weapon, this thing really looks like something you don't want to be hit by if you're not a fan of being concave."
 	icon_state = "mecha_maul"
 	energy_drain = 40
@@ -385,7 +385,7 @@
 		do_item_attack_animation(L, hit_effect)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier
-	name = "\improper E9-V \"Sigrun\" rapier"
+	name = "\improper MS-15 \"Gyan\" rapier"
 	desc = "A remarkably thin blade for a weapon wielded by an exosuit, this rapier is the favorite of syndicate pilots that perfer finesse over brute force."
 	icon_state = "mecha_rapier"
 	energy_drain = 40
@@ -459,7 +459,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
-	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
+	name = "\improper RS-77 \"Atom Smasher\" rocket fist"
 	desc = "A large metal fist fitted to the arm of an exosuit, it uses repurposed maneuvering thrusters from a Raven battlecruiser to give a little more oomph to every punch. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
 	icon_state = "mecha_rocket_fist"
 	weapon_damage = 20

@@ -29,6 +29,10 @@
 	var/starting_loc = loc
 	step_towards(src, target_turf)
 	if(starting_loc == loc)
+		if(reagents) // react again if it got stuck
+			reagents.reaction(loc, transfer_methods)
+			for(var/atom/A in loc)
+				reagents.reaction(A, transfer_methods)
 		qdel(src) // delete itself if it got blocked and can't move
 		return
 	addtimer(CALLBACK(src, PROC_REF(move_particle)), 2)

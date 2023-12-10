@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "Ion storms can affect up to 20 airlocks and 10 APCs with random effects, only if is no AI."
-  - rscadd: "Airlocks affected by ion storms will randomly have one of the following effects: toggle bolts, toggle emergency access, shock temporarily or have their safety & speed toggled."
-  - rscadd: "APCs affected by ion storms will have one of three or all of their power channels turned off."

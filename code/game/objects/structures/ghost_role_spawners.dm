@@ -702,7 +702,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	short_desc = "After becoming disillusioned with society, you chose a life here with the ice and snow."
 	roundstart = FALSE
 	death = FALSE
-	flavour_text = "After becoming disillusioned with society, you chose a life here with the ice and snow."
+	flavour_text = "Your solitude might be threatened by the new Nanotrasen facility constructed nearby, but it also might offer minor comforts and services that you haven't experienced in years."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	outfit = /datum/outfit/ice_hermit

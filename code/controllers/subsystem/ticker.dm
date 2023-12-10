@@ -421,6 +421,7 @@ SUBSYSTEM_DEF(ticker)
 	var/no_cyborgs = TRUE
 	var/no_bartender = TRUE
 	var/no_clerk = TRUE
+	var/no_chaplain = TRUE
 
 	for(var/mob/dead/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
@@ -433,6 +434,8 @@ SUBSYSTEM_DEF(ticker)
 				no_bartender = FALSE
 			if(player.mind.assigned_role == "Clerk")
 				no_clerk = FALSE
+			if(player.mind.assigned_role == "Chaplain")
+				no_chaplain = FALSE
 			if(player.mind.assigned_role != player.mind.special_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, FALSE)
 				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
@@ -462,6 +465,8 @@ SUBSYSTEM_DEF(ticker)
 		SSjob.random_bar_init()
 	if(no_clerk)
 		SSjob.random_clerk_init()
+	if(no_chaplain)
+		SSjob.random_chapel_init()
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()

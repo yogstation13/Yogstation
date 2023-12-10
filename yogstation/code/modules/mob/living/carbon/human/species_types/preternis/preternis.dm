@@ -3,7 +3,7 @@
 	plural_form = "Preterni"
 	id = "preternis"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_FARADAYCAGE) //Faraday cage reduces incoming EMP severity by one level
+	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE)
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = MOB_ORGANIC|MOB_ROBOTIC|MOB_HUMANOID
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
@@ -47,7 +47,6 @@
 	var/lockdown = FALSE
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
-	var/tesliumtrip = FALSE
 	var/draining = FALSE
 	var/soggy = FALSE
 	var/low_power_warning = FALSE
@@ -60,6 +59,7 @@
 
 	for (var/obj/item/bodypart/BP in C.bodyparts)
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
+		BP.emp_reduction = EMP_LIGHT
 		BP.burn_reduction = 2
 		BP.brute_reduction = 1
 		if(BP.body_zone == BODY_ZONE_CHEST)
@@ -80,6 +80,7 @@
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
+		BP.emp_reduction = initial(BP.emp_reduction)
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
 
@@ -87,7 +88,6 @@
 
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
-	C.remove_movespeed_modifier("preternis_teslium")
 	C.remove_movespeed_modifier("preternis_water")
 	C.remove_movespeed_modifier("preternis_maglock")
 
@@ -155,20 +155,7 @@
 	
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
-	if(H.reagents.has_reagent(/datum/reagent/teslium))
-		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustBruteLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-		H.AdjustParalyzed(-3)
-		H.AdjustStun(-3)
-		H.AdjustKnockdown(-3)
-		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjust_nutrition(10 * REAGENTS_METABOLISM)//more power charges you, why would it drain you
-		burnmod = 10
-		tesliumtrip = TRUE
-
-	if (istype(chem,/datum/reagent/consumable))
+	if (istype(chem,/datum/reagent/consumable) && !istype(chem, /datum/reagent/consumable/liquidelectricity))
 		var/datum/reagent/consumable/food = chem
 		if (food.nutriment_factor)
 			H.adjust_nutrition(food.nutriment_factor * 0.2)
@@ -187,9 +174,6 @@
 	emag_lvl = 0
 	H.clear_alert("preternis_emag")
 	H.clear_fullscreen("preternis_emag")
-	burnmod = initial(burnmod)
-	tesliumtrip = FALSE
-	H.remove_movespeed_modifier("preternis_teslium") //full heal removes chems so it wont update the teslium speed up until they eat something
 
 /datum/species/preternis/movement_delay(mob/living/carbon/human/H)
 	. = ..()
@@ -200,11 +184,6 @@
 	
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
-	if(tesliumtrip && !H.reagents.has_reagent(/datum/reagent/teslium))//remove teslium effects if you don't have it in you
-		burnmod = initial(burnmod)
-		tesliumtrip = FALSE
-		H.remove_movespeed_modifier("preternis_teslium")
-
 	if(H.stat == DEAD)
 		return
 
@@ -219,8 +198,9 @@
 	else
 		low_power_warning = FALSE
 
-/datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
-	if(H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
+/datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)
+	var/datum/status_effect/fire_handler/wet_stacks/wetness = H.has_status_effect(/datum/status_effect/fire_handler/wet_stacks)
+	if(wetness && wetness.stacks >= 1) // needs at least 1 wetness stack to do anything
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_wet", /datum/mood_event/wet_preternis)
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
@@ -316,6 +296,12 @@
 	var/list/to_add = list()
 
 	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "Preterni have an outer plasteel shell that can block low-intensity EM interference.",
+		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "cookie-bite",

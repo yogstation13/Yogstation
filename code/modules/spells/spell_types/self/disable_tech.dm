@@ -6,14 +6,14 @@
 
 	school = SCHOOL_EVOCATION
 
-	/// The heavy radius of the EMP
-	var/emp_heavy = 2
-	/// The light radius of the EMP
-	var/emp_light = 3
+	/// The severity of the EMP
+	var/severity = EMP_HEAVY
+	/// The radius of the EMP
+	var/radius = 3
 
 /datum/action/cooldown/spell/emp/cast(atom/cast_on)
 	. = ..()
-	empulse(get_turf(cast_on), emp_heavy, emp_light)
+	empulse(get_turf(cast_on), severity, radius)
 
 /datum/action/cooldown/spell/emp/disable_tech
 	name = "Disable Tech"
@@ -26,5 +26,4 @@
 	invocation = "NEC CANTIO"
 	invocation_type = INVOCATION_SHOUT
 
-	emp_heavy = 6
-	emp_light = 10
+	radius = 10
