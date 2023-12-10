@@ -4,9 +4,10 @@
 	icon_state = "sidewinder"
 	step_in = 2.5	//Faster than a gygax
 	dir_in = 1		//Facing North.
-	force = 15
-	max_integrity = 200
-	deflect_chance = 10
+	force = 20
+	max_integrity = 250
+	deflect_chance = 15
+	super_deflects = TRUE	//Plastitanium plating baby!
 	armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 0, BOMB = 40, BIO = 100, RAD = 75, FIRE = 100, ACID = 100)	//Good for harsh environments, less good vs gun
 	max_temperature = 25000
 	infra_luminosity = 6
@@ -15,7 +16,7 @@
 	max_equip = 3
 	guns_allowed = FALSE			//Melee only
 	omnidirectional_attacks = TRUE	//Thus the name
-	melee_cooldown = 7
+	melee_cooldown = 6
 	turnsound = 'sound/mecha/mechmove01.ogg'
 
 /obj/mecha/combat/sidewinder/click_action(atom/target,mob/user,params)
@@ -42,3 +43,4 @@
 		if(initial_direction != new_direction)			//Make sure we actually turned
 			playsound(src,'sound/mecha/mechmove01.ogg',40,1)
 	return ..()
+
