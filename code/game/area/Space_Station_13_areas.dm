@@ -1379,11 +1379,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //Do NOT reuse outside of the map!
 
 /area/ballstation
-	name = "Asteroid Interior"
+	name = "Nanotrasen Celebration Barge"
 	icon_state = "yellow"
 
 /area/ballstation/solars
 	name = "Solar Array Control Room"
 
 /area/ballstation/exterior
-	name = "Station Asteroid"
+	name = "Earth"
