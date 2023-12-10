@@ -695,7 +695,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/chameleon/gps //best one to give a GPS is this guy because he has a fast-firing 2-shot kill to defend his home with
 	head = /obj/item/clothing/head/HoS/beret/syndicate
 	back = /obj/item/storage/backpack/satchel/leather //LUXURY AT ITS FINEST
-	suit_store = /obj/item/gun/ballistic/revolver
+	suit_store = /obj/item/gun/ballistic/revolver/ultrasecure //nuh uh
 	belt = /obj/item/storage/belt/sabre //ceremonial shamnk
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1, /obj/item/ammo_box/a357=2, /obj/item/melee/classic_baton/telescopic=1)
 
