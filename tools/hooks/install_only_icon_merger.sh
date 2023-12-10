@@ -11,5 +11,5 @@ echo "Installing tgui hooks"
 ../../tgui/bin/tgui --install-git-hooks
 
 echo "Installing Python dependencies"
-./python.sh -m pip install -r ../mapmerge2/requirements.txt
+./python.sh -m pip install -r ../requirements.txt
 echo "Done"
