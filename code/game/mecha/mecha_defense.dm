@@ -123,6 +123,7 @@
 		booster_damage_modifier /= facing_modifier
 		booster_deflection_modifier *= facing_modifier
 	if(prob(deflect_chance * booster_deflection_modifier))
+		visible_message(span_danger("[src]'s armour deflects the attack!"))
 		if(super_deflects)
 			Proj.firer = src
 			Proj.setAngle(rand(0, 360))	//PTING
@@ -130,7 +131,7 @@
 		else
 			Proj.damage = 0	//Armor has stopped the projectile effectively, if it has other effects that's another issue
 			return BULLET_ACT_BLOCK
-		visible_message(span_danger("[src]'s armour deflects the attack!"))
+
 
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.armor_flag]).", LOG_MECHA, color="red")
 	. = ..()
