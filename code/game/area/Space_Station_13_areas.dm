@@ -1374,3 +1374,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/tcommsat/server
 	name = "Telecomms Server Room"
 	icon_state = "tcomsatcham"
+
+//Winter Ball station-exclusive areas
+//Do NOT reuse outside of the map!
+
+/area/ballstation
+	name = "Asteroid Interior"
+	icon_state = "yellow"
+
+/area/ballstation/solars
+	name = "Solar Array Control Room"
+
+/area/ballstation/exterior
+	name = "Station Asteroid"
