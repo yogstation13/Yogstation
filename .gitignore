@@ -218,3 +218,7 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 #KDIFF3 files
 *.orig
+
+# ezdb
+/db/
+/config/ezdb.txt
