@@ -212,36 +212,7 @@ xxx xxx xxx
 			return FALSE
 
 	icon_state = ""
-	return adjacencies
-
-//only walls should have a need to handle underlays
-/turf/closed/wall/diagonal_smooth(adjacencies)
-	adjacencies = reverse_ndir(..())
-	if(adjacencies)
-		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, offset_spokesman = src, plane = FLOOR_PLANE)
-		var/list/U = list(underlay_appearance)
-		if(fixed_underlay)
-			if(fixed_underlay["space"])
-				generate_space_underlay(underlay_appearance, src)
-			else
-				underlay_appearance.icon = fixed_underlay["icon"]
-				underlay_appearance.icon_state = fixed_underlay["icon_state"]
-		else
-			var/turned_adjacency = turn(adjacencies, 180)
-			var/turf/T = get_step(src, turned_adjacency)
-			if(!T.get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency))
-				T = get_step(src, turn(adjacencies, 135))
-				if(!T.get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency))
-					T = get_step(src, turn(adjacencies, 225))
-			//if all else fails, ask our own turf
-			if(!T.get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency) && !get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency))
-				underlay_appearance.icon = DEFAULT_UNDERLAY_ICON
-				underlay_appearance.icon_state = DEFAULT_UNDERLAY_ICON_STATE
-		underlays = U
-
-		// Drop posters which were previously placed on this wall.
-		for(var/obj/structure/sign/poster/P in src)
-			P.roll_and_drop(src)
+	return TRUE
 
 
 /atom/proc/corners_cardinal_smooth(adjacencies)

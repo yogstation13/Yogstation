@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(lighting)
 	
 	var/list/queue = current_sources
 	var/i = 0
-	for (i < length(queue))
+	while(i < length(queue))
 		i += 1
 		
 		var/datum/light_source/L = queue[i]

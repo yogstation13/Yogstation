@@ -142,18 +142,6 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define HAS_SENSORS 1
 #define LOCKED_SENSORS 2
 
-//Wet floor type flags. Stronger ones should be higher in number.
-#define TURF_DRY			(0)
-#define TURF_WET_WATER		(1<<0)
-#define TURF_WET_PERMAFROST	(1<<1)
-#define TURF_WET_ICE 		(1<<2)
-#define TURF_WET_LUBE		(1<<3)
-#define TURF_WET_SUPERLUBE	(1<<4)
-
-#define IS_WET_OPEN_TURF(O) O.GetComponent(/datum/component/wet_floor)
-
-//Maximum amount of time, (in deciseconds) a tile can be wet for.
-#define MAXIMUM_WET_TIME 5 MINUTES
 
 //unmagic-strings for types of polls
 #define POLLTYPE_OPTION		"OPTION"
@@ -162,16 +150,8 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define POLLTYPE_MULTI		"MULTICHOICE"
 #define POLLTYPE_IRV		"IRV"
 
-
-
 //subtypesof(), typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
-
-//Gets the turf this atom inhabits
-#define get_turf(A) (get_step(A, 0))
-
-//Same as above except gets the area instead
-#define get_area(A) (isarea(A) ? A : get_step(A, 0)?.loc)
 
 //Ghost orbit types:
 #define GHOST_ORBIT_CIRCLE		"circle"

@@ -1,11 +1,11 @@
 GLOBAL_LIST_EMPTY(station_turfs)
 
+/// Any floor or wall. What makes up the station and the rest of the map.
 /turf
 	icon = 'icons/turf/floors.dmi'
 	vis_flags = VIS_INHERIT_ID // Important for interaction with and visualization of openspace.
-	level = 1
 	luminosity = 1
-	//light_height = LIGHTING_HEIGHT_FLOOR
+	light_height = LIGHTING_HEIGHT_FLOOR
 
 	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
@@ -17,23 +17,18 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/list/baseturfs = /turf/baseturf_bottom
 
 	var/initial_temperature = T20C
-	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
-	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
-	/// If there's a tile over a basic floor that can be ripped out
-	var/overfloor_placed = FALSE
-	/// How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.
-	var/underfloor_accessibility = UNDERFLOOR_HIDDEN
+	///Used for fire, if a melting temperature was reached, it will be destroyed
+	var/to_be_destroyed = 0
+	///The max temperature of the fire which it was subjected to
+	var/max_fire_temperature_sustained = 0
+
 	var/blocks_air = FALSE
-
+	
 	/// If there's a tile over a basic floor that can be ripped out
 	var/overfloor_placed = FALSE
 	/// How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.
 	var/underfloor_accessibility = UNDERFLOOR_HIDDEN
 
-	///Bool, whether this turf will always be illuminated no matter what area it is in
-	///Makes it look blue, be warned
-	var/space_lit = FALSE
-	var/force_no_gravity = TRUE
 	flags_1 = CAN_BE_DIRTY_1
 	/// If there is a lattice underneat this turf. Used for the attempt_lattice_replacement proc to determine if it should place lattice.
 	var/lattice_underneath = TRUE
@@ -41,12 +36,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/turf_flags = NONE
 
 	var/list/image/blueprint_data //for the station blueprints, images of objects eg: pipes
-
+	
 	var/explosion_level = 0	//for preventing explosion dodging
 	var/explosion_id = 0
 	var/list/explosion_throw_details
 
-	var/requires_activation	//add to air processing after initialize?
+	var/requires_activation //add to air processing after initialize?
 	var/changing_turf = FALSE
 
 	var/bullet_bounce_sound = 'sound/weapons/bulletremove.ogg' //sound played when a shell casing is ejected ontop of the turf.
@@ -61,6 +56,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
 	var/dynamic_lumcount = 0
 
+	///Bool, whether this turf will always be illuminated no matter what area it is in
+	///Makes it look blue, be warned
+	var/space_lit = FALSE
+
 	var/tmp/lighting_corners_initialised = FALSE
 
 	///Our lighting object.
@@ -71,10 +70,38 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/tmp/datum/lighting_corner/lighting_corner_SW
 	var/tmp/datum/lighting_corner/lighting_corner_NW
 
+
 	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
 	var/directional_opacity = NONE
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
+
+	///the holodeck can load onto this turf if TRUE
+	var/holodeck_compatible = FALSE
+
+	/// If this turf contained an RCD'able object (or IS one, for walls)
+	/// but is now destroyed, this will preserve the value.
+	/// See __DEFINES/construction.dm for RCD_MEMORY_*.
+	var/rcd_memory
+	///whether or not this turf forces movables on it to have no gravity (unless they themselves have forced gravity)
+	var/force_no_gravity = FALSE
+
+	/// How pathing algorithm will check if this turf is passable by itself (not including content checks). By default it's just density check.
+	/// WARNING: Currently to use a density shortcircuiting this does not support dense turfs with special allow through function
+	var/pathing_pass_method = TURF_PATHING_PASS_DENSITY
+
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
+	/// For the area_contents list unit test
+	/// Allows us to know our area without needing to preassign it
+	/// Sorry for the mess
+	var/area/in_contents_of
+#endif
+	/// How much explosive resistance this turf is providing to itself
+	/// Defaults to -1, interpreted as initial(explosive_resistance)
+	/// This is an optimization to prevent turfs from needing to set these on init
+	/// This would either be expensive, or impossible to manage. Let's just avoid it yes?
+	/// Never directly access this, use get_explosive_block() instead
+	var/inherent_explosive_resistance = -1
 
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list("x", "y", "z")
@@ -88,8 +115,22 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 
-	// by default, vis_contents is inherited from the turf that was here before
-	vis_contents.Cut()
+	/// We do NOT use the shortcut here, because this is faster
+	if(SSmapping.max_plane_offset)
+		if(!SSmapping.plane_offset_blacklist["[plane]"])
+			plane = plane - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+
+		var/turf/T = GET_TURF_ABOVE(src)
+		if(T)
+			T.multiz_turf_new(src, DOWN)
+		T = GET_TURF_BELOW(src)
+		if(T)
+			T.multiz_turf_new(src, UP)
+
+	// by default, vis_contents is inherited from the turf that was here before.
+	// Checking length(vis_contents) in a proc this hot has huge wins for performance.
+	if (length(vis_contents))
+		vis_contents.Cut()
 
 	assemble_baseturfs()
 
@@ -102,29 +143,21 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	visibilityChanged()
 
-	for(var/atom/movable/AM in src)
-		Entered(AM)
+	for(var/atom/movable/content as anything in src)
+		Entered(content, null)
 
 	var/area/our_area = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(our_area))
-		add_overlay(/obj/effect/fullbright)
+	if(!our_area.area_has_base_lighting && space_lit) //Only provide your own lighting if the area doesn't for you
+		add_overlay(GLOB.starlight_overlays[GET_TURF_PLANE_OFFSET(src) + 1])
 
 	if(requires_activation)
 		ImmediateCalculateAdjacentTurfs()
 
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
-	if (light_system == STATIC_LIGHT && light_power && light_range)
+	
+	if(light_power && light_range)
 		update_light()
-
-	var/turf/T = GET_TURF_ABOVE(src)
-	if(T)
-		T.multiz_turf_new(src, DOWN)
-		SEND_SIGNAL(T, COMSIG_TURF_MULTIZ_NEW, src, DOWN)
-	T = GET_TURF_BELOW(src)
-	if(T)
-		T.multiz_turf_new(src, UP)
-		SEND_SIGNAL(T, COMSIG_TURF_MULTIZ_NEW, src, UP)
 
 	if (opacity)
 		directional_opacity = ALL_CARDINALS
@@ -193,8 +226,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	user.Move_Pulled(src)
 
 /turf/proc/multiz_turf_del(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)
 
 /turf/proc/multiz_turf_new(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
 
 //zPassIn doesn't necessarily pass an atom!
 //direction is direction of travel of air

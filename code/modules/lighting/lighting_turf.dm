@@ -1,3 +1,15 @@
+/area
+	luminosity = 1
+	///List of mutable appearances we underlay to show light
+	///In the form plane offset + 1 -> appearance to use
+	var/list/mutable_appearance/lighting_effects = null
+	///Whether this area has a currently active base lighting, bool
+	var/area_has_base_lighting = FALSE
+	///alpha 0-255 of lighting_effect and thus baselighting intensity
+	var/base_lighting_alpha = 0
+	///The colour of the light acting on this area
+	var/base_lighting_color = COLOR_WHITE
+
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	lighting_corner_NE?.vis_update()

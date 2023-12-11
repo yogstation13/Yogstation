@@ -11,7 +11,12 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/map_config/config
 	var/datum/map_config/next_map_config
 
+	/// Has the map for the next round been voted for already?
 	var/map_voted = FALSE
+	/// Has the map for the next round been deliberately chosen by an admin?
+	var/map_force_chosen = FALSE
+	/// Has the map vote been rocked?
+	var/map_vote_rocked = FALSE
 
 	var/list/map_templates = list()
 
@@ -23,35 +28,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
+	var/list/holodeck_templates = list()
 
 	var/list/station_minimaps = list()
-
-	/// The largest plane offset we've generated so far
-	var/max_plane_offset = 0
-
-	/// List of z level (as number) -> The lowest plane offset in that z stack
-	var/list/z_level_to_lowest_plane_offset = list()
-
-	/// Assoc list of string plane to the plane's offset value
-	var/list/plane_to_offset
-
-	/// Used to maintain the plane cube
-	var/list/z_level_to_plane_offset = list()
-
-	/// List of planes that do not allow for offsetting
-	var/list/plane_offset_blacklist
-
-	/// Assoc list of true string plane values to a list of all potential offset planess
-	var/list/true_to_offset_planes
-
-	/// List of render targets that do not allow for offsetting
-	var/list/render_offset_blacklist
-
-	/// List of plane masters that are of critical priority
-	var/list/critical_planes
-
-	/// Assoc list of string plane values to their true, non offset representation
-	var/list/plane_offset_to_true
 
 	var/list/areas_in_z = list()
 	/// List of z level (as number) -> plane offset of that z level
@@ -79,9 +58,6 @@ SUBSYSTEM_DEF(mapping)
 	/// The largest plane offset we've generated so far
 	var/max_plane_offset = 0
 
-	///list of lists, inner lists are of the form: list("up or down link direction" = TRUE)
-	var/list/multiz_levels = list()
-
 	var/loading_ruins = FALSE
 	var/list/turf/unused_turfs = list() //Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
 	var/list/datum/turf_reservations //list of turf reservations
@@ -91,6 +67,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/reservation_ready = list()
 	var/clearing_reserved_turfs = FALSE
+
+	///All possible biomes in assoc list as type || instance
+	var/list/biomes = list()
 
 	// Z-manager stuff
 	var/station_start  // should only be used for maploading-related tasks
@@ -760,7 +739,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if(max_plane_offset == old_max)
 		return
 
-	//generate_offset_lists(old_max + 1, max_plane_offset)
+	generate_offset_lists(old_max + 1, max_plane_offset)
 	//SEND_SIGNAL(src, COMSIG_PLANE_OFFSET_INCREASE, old_max, max_plane_offset)
 	// Sanity check
 	if(max_plane_offset > MAX_EXPECTED_Z_DEPTH)
@@ -768,46 +747,46 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 /// Takes an offset to generate misc lists to, and a base to start from
 /// Use this to react globally to maintain parity with plane offsets
-// /datum/controller/subsystem/mapping/proc/generate_offset_lists(gen_from, new_offset)
-// 	//create_plane_offsets(gen_from, new_offset)
-// 	for(var/offset in gen_from to new_offset)
-// 		GLOB.starlight_objects += starlight_object(offset)
-// 		GLOB.starlight_overlays += starlight_overlay(offset)
+/datum/controller/subsystem/mapping/proc/generate_offset_lists(gen_from, new_offset)
+	create_plane_offsets(gen_from, new_offset)
+	for(var/offset in gen_from to new_offset)
+		GLOB.starlight_objects += starlight_object(offset)
+		GLOB.starlight_overlays += starlight_overlay(offset)
 
-// 	// [Yog] pretty sure auxmos would shit if this was included
-// 	for(var/datum/gas/gas_type as anything in GLOB.meta_gas_info)
-// 		var/list/gas_info = GLOB.meta_gas_info[gas_type]
-// 		if(initial(gas_type.moles_visible) != null)
-// 			gas_info[META_GAS_OVERLAY] += generate_gas_overlays(gen_from, new_offset, gas_type)
+	// [Yog] pretty sure auxmos would shit if this was included
+	// for(var/datum/gas/gas_type as anything in GLOB.meta_gas_info)
+	// 	var/list/gas_info = GLOB.meta_gas_info[gas_type]
+	// 	if(initial(gas_type.moles_visible) != null)
+	// 		gas_info[META_GAS_OVERLAY] += generate_gas_overlays(gen_from, new_offset, gas_type)
 
-// /datum/controller/subsystem/mapping/proc/create_plane_offsets(gen_from, new_offset)
-// 	for(var/plane_offset in gen_from to new_offset)
-// 		for(var/atom/movable/screen/plane_master/master_type as anything in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/rendering_plate)
-// 			var/plane_to_use = initial(master_type.plane)
-// 			var/string_real = "[plane_to_use]"
+/datum/controller/subsystem/mapping/proc/create_plane_offsets(gen_from, new_offset)
+	for(var/plane_offset in gen_from to new_offset)
+		for(var/atom/movable/screen/plane_master/master_type as anything in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/rendering_plate)
+			var/plane_to_use = initial(master_type.plane)
+			var/string_real = "[plane_to_use]"
 
-// 			var/offset_plane = GET_NEW_PLANE(plane_to_use, plane_offset)
-// 			var/string_plane = "[offset_plane]"
+			var/offset_plane = GET_NEW_PLANE(plane_to_use, plane_offset)
+			var/string_plane = "[offset_plane]"
 
-// 			if(!initial(master_type.allows_offsetting))
-// 				plane_offset_blacklist[string_plane] = TRUE
-// 				var/render_target = initial(master_type.render_target)
-// 				if(!render_target)
-// 					render_target = get_plane_master_render_base(initial(master_type.name))
-// 				render_offset_blacklist[render_target] = TRUE
-// 				if(plane_offset != 0)
-// 					continue
+			if(!initial(master_type.allows_offsetting))
+				plane_offset_blacklist[string_plane] = TRUE
+				var/render_target = initial(master_type.render_target)
+				if(!render_target)
+					render_target = get_plane_master_render_base(initial(master_type.name))
+				render_offset_blacklist[render_target] = TRUE
+				if(plane_offset != 0)
+					continue
 
-// 			if(initial(master_type.critical) & PLANE_CRITICAL_DISPLAY)
-// 				critical_planes[string_plane] = TRUE
+			if(initial(master_type.critical) & PLANE_CRITICAL_DISPLAY)
+				critical_planes[string_plane] = TRUE
 
-// 			plane_offset_to_true[string_plane] = plane_to_use
-// 			plane_to_offset[string_plane] = plane_offset
+			plane_offset_to_true[string_plane] = plane_to_use
+			plane_to_offset[string_plane] = plane_offset
 
-// 			if(!true_to_offset_planes[string_real])
-// 				true_to_offset_planes[string_real] = list()
+			if(!true_to_offset_planes[string_real])
+				true_to_offset_planes[string_real] = list()
 
-// 			true_to_offset_planes[string_real] |= offset_plane
+			true_to_offset_planes[string_real] |= offset_plane
 
 /proc/generate_lighting_appearance_by_z(z_level)
 	if(length(GLOB.default_lighting_underlays_by_z) < z_level)

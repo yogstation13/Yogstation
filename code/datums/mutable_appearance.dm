@@ -35,15 +35,15 @@
 		if(isatom(offset_spokesman))
 			// Note, we are ok with null turfs, that's not an error condition we'll just default to 0, the error would be
 			// Not passing ANYTHING in, key difference
-			//SET_PLANE_EXPLICIT(appearance, plane, offset_spokesman)
+			SET_PLANE_EXPLICIT(appearance, plane, offset_spokesman)
 
-			var/turf/our_turf = get_turf(offset_spokesman)
-			plane = MUTATE_PLANE(plane, our_turf)
+			// var/turf/our_turf = get_turf(offset_spokesman)
+			// plane = MUTATE_PLANE(plane, our_turf)
 		// That or I'll let you pass in a static offset. Don't be stupid now
 		else if(!isnull(offset_const))
-			//SET_PLANE_W_SCALAR(appearance, plane, offset_const)
+			SET_PLANE_W_SCALAR(appearance, plane, offset_const)
 			
-			plane = GET_NEW_PLANE(plane, offset_const)
+			//plane = GET_NEW_PLANE(plane, offset_const)
 		// otherwise if you're setting plane you better have the guts to back it up
 		else
 			stack_trace("No plane offset passed in as context for a non floating mutable appearance, things are gonna go to hell on multiz maps")
