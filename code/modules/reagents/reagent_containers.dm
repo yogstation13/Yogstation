@@ -125,6 +125,8 @@
 		if(QDELETED(src))
 			return
 
+	if(!isturf(target)) // it all ends up on the floor because gravity exists
+		reagents.reaction(get_turf(target), TOUCH)
 	reagents.clear_reagents()
 
 /obj/item/reagent_containers/microwave_act(obj/machinery/microwave/M)

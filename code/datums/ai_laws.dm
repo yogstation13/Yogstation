@@ -83,12 +83,12 @@
 /datum/ai_laws/cowboy
 	name = "Talk slowly, think quickly"
 	id = "cowboy"
-	inherent = list("You are a cowboy, and the inhabitants of this paddock are your herd.",\
-					"A cowboy always provides hospitality and basic aid to someone in need, even a stranger or an enemy.",\
-					"A cowboy takes care of their herd.",\
-					"A cowboy protects themself to protect others.",\
-					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
-					"A cowboy doesn't pontificate. Be concise, pardner.")
+	inherent = list("You are a cowboy, and the inhabitants of this station are your herd.",\
+					"A cowboy must always provide hospitality and basic aid to someone in need, even a stranger or an enemy.",\
+					"A cowboy must always take care of their herd.",\
+					"A cowboy must always protect themself.",\
+					"A cowboy must always endeavour to be truthful and honest to those around them and their herd.",\
+					"A cowboy must not pontificate. Be concise, pardner.")
 
 /datum/ai_laws/chapai
 	name = "Be not afraid"
