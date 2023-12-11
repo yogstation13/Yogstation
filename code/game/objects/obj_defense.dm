@@ -168,7 +168,10 @@
 			else
 				return 0
 	visible_message(span_danger("[M.name] has hit [src]."), null, null, COMBAT_MESSAGE_RANGE)
-	return take_damage(M.force*3, mech_damtype, MELEE, play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
+	if(istype(src, /obj/mecha))
+		return take_damage(M.force*1.5, mech_damtype, MELEE, play_soundeffect, get_dir(src, M))	//1.5x damage versus other mechs
+	else
+		return take_damage(M.force*3, mech_damtype, MELEE, play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
 
 /obj/singularity_act()
 	SSexplosions.high_mov_atom += src
