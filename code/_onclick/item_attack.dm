@@ -123,11 +123,11 @@
 	if(!attacking_item.force)
 		return
 	
-	var/damage = take_damage(attacking_item.force * attacking_item.demolition_mod, attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
+	var/damage = take_damage(attacking_item.force * (demolition_factor ? (attacking_item.demolition_mod + demolition_factor - 1) / demolition_factor : 1), attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
 	var/damage_verb = "hit"
-	if(attacking_item.demolition_mod > 1 && damage)
+	if(attacking_item.demolition_mod > 1 && demolition_factor && damage)
 		damage_verb = "pulverized"
-	if(attacking_item.demolition_mod < 1 || !damage)
+	if((attacking_item.demolition_mod < 1 && demolition_factor) || !damage)
 		damage_verb = "ineffectively pierced"
 
 	visible_message(span_danger("[user] [damage_verb] [src] with [attacking_item][damage ? "" : ", without leaving a mark"]!"), null, null, COMBAT_MESSAGE_RANGE)

@@ -33,6 +33,8 @@
 
 	///Value used to increment ex_act() if reactionary_explosions is on
 	var/explosion_block = 0
+	///How resistant is this to demolition damage modifier? 1 means exact modifier, 2 is half as effective, 3 is a third, etc. FALSE if unaffected.
+	var/demolition_factor = FALSE
 
 	/**
 	  * used to store the different colors on an atom

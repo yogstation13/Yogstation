@@ -15,6 +15,7 @@
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	demolition_factor = 2 // demolition mod shouldn't be too effective, they're an actual mob
 
 	/// Set during initialization. If initially a list, then the resulting armor will gain the listed armor values.
 	var/datum/armor/armor
@@ -534,7 +535,7 @@
 	if(!attacking_item.force)
 		return FALSE
 	// Demolition mod has half the effect on silicons that it does on structures (ex. 2x will act as 1.5x, 0.5x will act as 0.75x)
-	var/damage = run_armor(attacking_item.force * (1 + attacking_item.demolition_mod)/2, attacking_item.damtype, MELEE)
+	var/damage = run_armor(attacking_item.force * (demolition_factor ? (attacking_item.demolition_mod + demolition_factor - 1) / demolition_factor : 1), attacking_item.damtype, MELEE)
 	apply_damage(damage, attacking_item.damtype)
 	if(attacking_item.damtype == BRUTE && prob(33))
 		attacking_item.add_mob_blood(src)

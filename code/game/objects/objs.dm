@@ -2,6 +2,7 @@
 /obj
 	animate_movement = 2
 	speech_span = SPAN_ROBOT
+	demolition_factor = 1 // if this doesn't get the normal demo mod, i don't know what does
 	var/obj_flags = CAN_BE_HIT
 	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
 

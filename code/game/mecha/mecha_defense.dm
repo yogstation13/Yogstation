@@ -297,21 +297,8 @@
 		return ..()
 
 /obj/mecha/attacked_by(obj/item/attacking_item, mob/living/user)
-	if(!attacking_item.force)
-		return
-	
 	log_message("Attacked by [attacking_item]. Attacker - [user]", LOG_MECHA)
-	
-	var/damage = take_damage(attacking_item.force * (1 + attacking_item.demolition_mod)/2, attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
-	var/damage_verb = "hit"
-	if(attacking_item.demolition_mod > 1 && damage)
-		damage_verb = "pulverized"
-	if(attacking_item.demolition_mod < 1 || !damage)
-		damage_verb = "ineffectively pierced"
-
-	visible_message(span_danger("[user] [damage_verb] [src] with [attacking_item][damage ? "" : ", without leaving a mark"]!"), null, null, COMBAT_MESSAGE_RANGE)
-	//only witnesses close by and the victim see a hit message.
-	log_combat(user, src, "attacked", attacking_item)
+	return ..()
 
 /obj/mecha/proc/mech_toxin_damage(mob/living/target)
 	playsound(src, 'sound/effects/spray2.ogg', 50, 1)
