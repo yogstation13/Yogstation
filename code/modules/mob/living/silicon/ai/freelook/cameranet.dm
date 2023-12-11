@@ -125,30 +125,28 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
  * It will also add the atom to the cameras list if you set the choice to 1.
  * Setting the choice to 0 will remove the camera from the chunks.
  * If you want to update the chunks around an object, without adding/removing a camera, use choice 2.
- * update_delay_buffer is passed all the way to hasChanged() from portable camera updates on movement
- * to change the time between static updates.
  */
-/datum/cameranet/proc/majorChunkChange(atom/c, choice, update_delay_buffer)
-	if(QDELETED(c) && choice == 1)
-		CRASH("Tried to add a qdeleting camera to the net")
+/datum/cameranet/proc/majorChunkChange(atom/c, choice)
+	if(!c)
+		return
 
 	var/turf/T = get_turf(c)
 	if(T)
-		var/x1 = max(1, T.x - (CHUNK_SIZE / 2))
-		var/y1 = max(1, T.y - (CHUNK_SIZE / 2))
-		var/x2 = min(world.maxx, T.x + (CHUNK_SIZE / 2))
-		var/y2 = min(world.maxy, T.y + (CHUNK_SIZE / 2))
+		var/x1 = max(0, T.x - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+		var/y1 = max(0, T.y - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+		var/x2 = min(world.maxx, T.x + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+		var/y2 = min(world.maxy, T.y + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
 		for(var/x = x1; x <= x2; x += CHUNK_SIZE)
 			for(var/y = y1; y <= y2; y += CHUNK_SIZE)
 				var/datum/camerachunk/chunk = chunkGenerated(x, y, T.z)
 				if(chunk)
 					if(choice == 0)
 						// Remove the camera.
-						chunk.cameras["[T.z]"] -= c
+						chunk.cameras -= c
 					else if(choice == 1)
 						// You can't have the same camera in the list twice.
-						chunk.cameras["[T.z]"] |= c
-					chunk.hasChanged(update_delay_buffer = update_delay_buffer)
+						chunk.cameras |= c
+					chunk.hasChanged()
 
 /// A faster, turf only version of [/datum/cameranet/proc/majorChunkChange]
 /// For use in sensitive code, be careful with it
