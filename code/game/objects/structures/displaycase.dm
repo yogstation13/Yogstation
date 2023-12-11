@@ -239,7 +239,7 @@
 	if(seclevel2num(get_security_level()) >= SEC_LEVEL_DELTA) // Everything higher than red.
 		req_access = list(ACCESS_CAPTAIN)
 	else
-		to_chat(user, "The display case can only be unlocked above RED alert!"
+		to_chat(user, "The display case can only be unlocked above RED alert!")
 		req_access = list(ACCESS_CENT_SPECOPS)
 		return
 	. = ..()
