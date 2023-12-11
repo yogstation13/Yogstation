@@ -131,7 +131,8 @@
 		else
 			Proj.damage = 0	//Armor has stopped the projectile effectively, if it has other effects that's another issue
 			return BULLET_ACT_BLOCK
-
+			
+	Proj.damage *= booster_damage_modifier	//If you manage to shoot THROUGH a mech with something, the bullet wont be fully intact
 
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.armor_flag]).", LOG_MECHA, color="red")
 	. = ..()
@@ -318,7 +319,8 @@
 
 	log_message("Attacked by [attacking_item]. Attacker - [user]", LOG_MECHA)
 	var/is_combat = istype(src, /obj/mecha/combat)	//Combat mechs are armored properly
-	var/damage = take_damage(attacking_item.force * (is_combat ? 1 : (1 + attacking_item.demolition_mod)/2), attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
+	var/attack_direction = get_dir(src, user)
+	var/damage = take_damage(attacking_item.force * (is_combat ? 1 : (1 + attacking_item.demolition_mod)/2), attacking_item.damtype, MELEE, 1, attack_direction, armour_penetration = attacking_item.armour_penetration)
 	var/damage_verb = "hit"
 	if(!is_combat && attacking_item.demolition_mod != 1)
 		if(attacking_item.demolition_mod > 1 && damage)
