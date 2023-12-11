@@ -296,11 +296,11 @@
 	else
 		return ..()
 
-/obj/mecha/attacked_by(obj/item/I, mob/living/user)
+/obj/mecha/attacked_by(obj/item/attacking_item, mob/living/user)
 	if(!attacking_item.force)
 		return
 	
-	log_message("Attacked by [I]. Attacker - [user]", LOG_MECHA)
+	log_message("Attacked by [attacking_item]. Attacker - [user]", LOG_MECHA)
 	
 	var/damage = take_damage(attacking_item.force * (1 + attacking_item.demolition_mod)/2, attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
 	var/damage_verb = "hit"
