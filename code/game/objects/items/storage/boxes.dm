@@ -1310,3 +1310,30 @@
 	STR.max_combined_w_class = 200
 	STR.max_items = 30
 	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
+
+/obj/item/storage/box/coffeepack
+	icon_state = "arabica_beans"
+	name = "arabica beans"
+	desc = "A bag containing fresh, dry coffee arabica beans. Ethically sourced and packaged by Waffle Corp."
+	illustration = null
+	icon = 'icons/obj/food/containers.dmi'
+	var/beantype = /obj/item/reagent_containers/food/snacks/grown/coffee
+
+/obj/item/storage/box/cofeepack/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 5
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/grown/coffee))
+
+/obj/item/storage/box/coffeepack/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/food/snacks/grown/coffee = 5,
+		/obj/item/reagent_containers/food/snacks/grown/coffee/robusta = 5)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/coffeepack/robusta
+	icon_state = "robusta_beans"
+	name = "robusta beans"
+	desc = "A bag containing fresh, dry coffee robusta beans. Ethically sourced and packaged by Waffle Corp."
+	beantype = /obj/item/reagent_containers/food/snacks/grown/coffee/robusta
+
