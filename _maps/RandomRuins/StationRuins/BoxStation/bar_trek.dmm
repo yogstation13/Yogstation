@@ -964,7 +964,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/bar)
 "df" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "dD" = (

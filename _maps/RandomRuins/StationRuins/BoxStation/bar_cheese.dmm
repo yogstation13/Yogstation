@@ -736,7 +736,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "dh" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "dI" = (
@@ -1219,7 +1219,7 @@ bh
 bh
 aU
 aB
-ag
+dh
 "}
 (7,1,1) = {"
 ag
@@ -1267,7 +1267,7 @@ aB
 aB
 aB
 Ju
-dh
+ag
 "}
 (10,1,1) = {"
 KK

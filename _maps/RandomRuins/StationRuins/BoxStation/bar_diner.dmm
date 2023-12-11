@@ -845,7 +845,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "dj" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "dH" = (

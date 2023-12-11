@@ -782,7 +782,7 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "cG" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "cH" = (

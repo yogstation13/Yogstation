@@ -552,7 +552,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "bN" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "bO" = (

@@ -791,7 +791,7 @@
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "Fv" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/wall/mineral/bronze,
 /area/crew_quarters/bar)
 "FU" = (
