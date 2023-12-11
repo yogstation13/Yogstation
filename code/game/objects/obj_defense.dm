@@ -80,7 +80,10 @@
 	playsound(src, P.hitsound, 50, 1)
 	visible_message(span_danger("[src] is hit by \a [P]!"), null, null, COMBAT_MESSAGE_RANGE)
 	if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
-		take_damage(P.damage *(istype(src, /obj/mecha/combat) ? 1 : (1 + P.demolition_mod)/2), P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
+		var/demolition_mult = P.demolition_mod
+		if(istype(src, /obj/mecha) && P.demolition_mod != 1)	//snowflake damage checks for mechs
+			demolition_mult = istype(src, /obj/mecha/combat) ? min(1, (1 + attacking_item.demolition_mod)/2) : (1 + attacking_item.demolition_mod)/2
+		take_damage(P.damage * demolition_mult, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
 
 ///Called to get the damage that hulks will deal to the obj.
 /obj/proc/hulk_damage()
