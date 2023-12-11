@@ -385,6 +385,7 @@
 	gain_text = span_danger("You do not speak galactic common.")
 	lose_text = span_notice("You start to put together how to speak galactic common.")
 	medical_record_text = "Patient looks perplexed when questioned in galactic common."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/sheltered/on_clone(data)
 	var/mob/living/carbon/human/H = quirk_holder
