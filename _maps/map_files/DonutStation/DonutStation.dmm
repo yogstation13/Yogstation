@@ -34382,9 +34382,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "oNx" = (
-/obj/structure/sign/barsign{
-	pixel_y = 32
-	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
@@ -46086,6 +46083,10 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"tPB" = (
+/obj/machinery/barsign,
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "tPF" = (
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -87656,7 +87657,7 @@ vDp
 wLr
 gxy
 jgR
-gxy
+tPB
 oNx
 rsE
 wuu
