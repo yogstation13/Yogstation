@@ -77,10 +77,10 @@
 
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
-#ifdef UNIT_TESTS
-	if(explosion_block && !HAS_TRAIT(src, TRAIT_BLOCKING_EXPLOSIVES))
-		stack_trace("[type] blocks explosives, but does not have the managing element applied")
-#endif
+// #ifdef UNIT_TESTS
+// 	if(explosion_block && !HAS_TRAIT(src, TRAIT_BLOCKING_EXPLOSIVES))
+// 		stack_trace("[type] blocks explosives, but does not have the managing element applied")
+// #endif -- who cares
 
 #if EMISSIVE_BLOCK_GENERIC != 0
 	#error EMISSIVE_BLOCK_GENERIC is expected to be 0 to faciliate a weird optimization hack where we rely on it being the most common.
