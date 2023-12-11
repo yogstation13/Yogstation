@@ -29665,14 +29665,9 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "iFj" = (
-/obj/structure/sign/barsign{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/trimline/neutral/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/obj/machinery/barsign,
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "iFF" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line/lower{
 	dir = 1
@@ -100472,8 +100467,8 @@ xWW
 xWW
 xWW
 xWW
-aFi
 iFj
+rkk
 hoR
 sIx
 asr

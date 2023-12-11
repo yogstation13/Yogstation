@@ -33617,12 +33617,9 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "jPu" = (
-/obj/structure/sign/barsign{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/trimline/green/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
+/obj/machinery/barsign/all_access,
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "jPy" = (
 /obj/structure/closet/secure_closet/brig{
 	id = "Cell 1";
@@ -117341,8 +117338,8 @@ rkO
 bjd
 eHK
 lFl
+bJD
 jPu
-rfi
 nYc
 lgH
 ptc
