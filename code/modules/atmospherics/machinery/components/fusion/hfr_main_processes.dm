@@ -4,7 +4,7 @@
  * fusion_process() handles all the main fusion reaction logic and consequences (lightning, radiation, particles) from an active fusion reaction.
  */
 
-/obj/machinery/atmospherics/components/unary/hypertorus/core/process(delta_time)
+/obj/machinery/atmospherics/components/unary/hypertorus/core/process_atmos(delta_time)
 	/*
 	 *Pre-checks
 	 */
@@ -345,7 +345,7 @@
 	//Modifies the internal_fusion temperature with the amount of heat output
 	var/temperature_modifier = selected_fuel.temperature_change_multiplier
 	if(internal_fusion.return_temperature() <= FUSION_MAXIMUM_TEMPERATURE * temperature_modifier)
-		internal_fusion.set_temperature(clamp(internal_fusion.return_temperature() + heat_output, TCMB, FUSION_MAXIMUM_TEMPERATURE * temperature_modifier))
+		internal_fusion.set_temperature(clamp(internal_fusion.return_temperature() + (heat_output * delta_time), TCMB, FUSION_MAXIMUM_TEMPERATURE * temperature_modifier))
 	else
 		internal_fusion.set_temperature(internal_fusion.return_temperature() - (heat_limiter_modifier * 0.01 * delta_time))
 

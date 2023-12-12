@@ -459,7 +459,7 @@ LAW_WEIGHT reporter,4
 ION_LAW_WEIGHT reporter,1
 
 ## Quirky laws. Shouldn't cause too much harm
-LAW_WEIGHT hippocratic,1
+LAW_WEIGHT hippocratic,0
 ION_LAW_WEIGHT hippocratic,2
 LAW_WEIGHT maintain,1
 ION_LAW_WEIGHT maintain,2
@@ -501,7 +501,7 @@ LAW_WEIGHT fitnesscoach,0
 ION_LAW_WEIGHT fitnesscoach,3
 LAW_WEIGHT educator,0
 ION_LAW_WEIGHT educator,3
-LAW_WEIGHT mediator,1
+LAW_WEIGHT mediator,0
 ION_LAW_WEIGHT mediator,3
 
 ## Bad idea laws. Probably shouldn't enable these

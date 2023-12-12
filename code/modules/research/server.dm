@@ -96,12 +96,12 @@
 		working = TRUE
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/rnd/server/emp_act()
+/obj/machinery/rnd/server/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	stat |= EMPED
-	addtimer(CALLBACK(src, PROC_REF(unemp)), 600)
+	addtimer(CALLBACK(src, PROC_REF(unemp)), (6 * severity) SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	refresh_working()
 
 /obj/machinery/rnd/server/proc/unemp()

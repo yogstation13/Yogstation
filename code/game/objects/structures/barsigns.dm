@@ -322,6 +322,21 @@
 	name = "Bargonia"
 	icon = "bargonia"
 	desc = "The warehouse yearns for a higher calling... so Supply has declared BARGONIA!"
+
+/datum/barsign/cult_cove
+	name = "Cult Cove"
+	icon = "cult-cove"
+	desc = "Nar'Sie's favourite retreat"
+
+/datum/barsign/neon_flamingo
+	name = "Neon Flamingo"
+	icon = "neon-flamingo"
+	desc = "A bus for all but the flamboyantly challenged."
+	
+/datum/barsign/slowdive
+	name = "Slowdive"
+	icon = "slowdive"
+	desc = "First stop out of hell, last stop before heaven."
 	
 /datum/barsign/hiddensigns
 	hidden = TRUE
