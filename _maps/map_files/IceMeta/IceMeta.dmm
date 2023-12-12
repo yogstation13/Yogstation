@@ -10957,6 +10957,9 @@
 	pixel_y = 28;
 	id = "geo_vent_nw"
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/port/fore)
 "dor" = (
@@ -31497,6 +31500,9 @@
 	pixel_y = 28;
 	id = "geo_vent_se"
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/aft)
 "jky" = (
@@ -33772,6 +33778,9 @@
 	pixel_x = -24;
 	id = "geo_turbine_sw"
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/port/aft)
 "jPS" = (
@@ -34288,6 +34297,9 @@
 	name = "pressure chamber vent";
 	pixel_x = -24;
 	id = "geo_vent_sw"
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/port/aft)
@@ -52238,6 +52250,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/lattice/catwalk,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/fore)
 "pio" = (
@@ -52631,6 +52646,9 @@
 	id = "geo_turbine_ne"
 	},
 /obj/structure/lattice/catwalk,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/fore)
 "pmV" = (
@@ -64853,6 +64871,9 @@
 	id = "geo_turbine_se"
 	},
 /obj/structure/lattice/catwalk,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/aft)
 "sQR" = (
@@ -71424,6 +71445,9 @@
 	name = "turbine vent";
 	pixel_y = 28;
 	id = "geo_turbine_nw"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/port/fore)
