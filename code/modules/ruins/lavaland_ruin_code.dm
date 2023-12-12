@@ -166,14 +166,16 @@
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	mask = /obj/item/clothing/mask/chameleon/gps
 	suit = /obj/item/clothing/suit/armor/vest
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
-		/obj/item/modular_computer/tablet/preset/syndicate=1,
-		/obj/item/storage/box/syndie
+		/obj/item/storage/box/syndie,
+		/obj/item/modular_computer/tablet/preset/syndicate=1
 		)
 
 /datum/outfit/lavaland_syndicate/comms/subordinate
 	name = "Space Syndicate Comms Agent"
 	r_hand = /obj/item/kitchen/knife/combat
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
@@ -183,6 +185,7 @@
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	head = /obj/item/clothing/head/HoS/syndicate
 	r_pocket = null
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie,
 		/obj/item/modular_computer/tablet/preset/syndicate=1,
