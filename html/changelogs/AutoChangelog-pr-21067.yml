@@ -1,6 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new coffee machines"
-  - soundadd: "Adds new sound for coffee machine"
-  - imageadd: "Adds coffee related sprites"

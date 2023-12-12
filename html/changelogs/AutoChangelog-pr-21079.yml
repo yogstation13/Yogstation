@@ -1,4 +1,0 @@
-author: "tattax"
-delete-after: true 
-changes: 
-  - bugfix: "fixed a non-human storage hotkey, \"E\", bug"
