@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(752 modules,
-    2003/9306 macros, 21.5%)</aside></h3>
+    2005/9309 macros, 21.5%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -1104,7 +1104,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1045 detailed/1901 documented/28821 total, 6.6%)</aside></h3>
+<aside>(1052 detailed/1907 documented/28855 total, 6.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1809,6 +1809,7 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
 When the object moves, it will unhook the signal and rehook it to the new object.</li>
     <li><a href="datum/element/content_barfer.html" title="&#x2F;datum&#x2F;element&#x2F;content_barfer">content_barfer</a> - Content Barfer; which expels the contents of a mob when it dies, or is transformed</li>
     <li><a href="datum/element/death_explosion.html" title="&#x2F;datum&#x2F;element&#x2F;death_explosion">death_explosion</a></li>
+    <li><a href="datum/element/dryable.html" title="&#x2F;datum&#x2F;element&#x2F;dryable">dryable</a></li>
     <li><a href="datum/element/effect_trail.html" title="&#x2F;datum&#x2F;element&#x2F;effect_trail">effect_trail</a></li>
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
     <li><a href="datum/element/footstep.html" title="&#x2F;datum&#x2F;element&#x2F;footstep">footstep</a> - Footstep element. Plays footsteps at parents location when it is appropriate.</li>
@@ -2441,7 +2442,9 @@ Repair Hairline Fracture (Severe)</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;surgery_step&#x2F;reset_compound_fracture">reset bone</span> - Reset Compound Fracture (Crticial)</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;surgery_step&#x2F;seal_veins">weld veins</span> - Sealing the vessels back together</li>
     </ul></li>
-    <li><a href="datum/symptom.html" title="&#x2F;datum&#x2F;symptom">Disease Symptoms</a> - Symptoms are the effects that engineered advanced diseases do.</li>
+    <li class="has-children"><a href="datum/symptom.html" title="&#x2F;datum&#x2F;symptom">Disease Symptoms</a> - Symptoms are the effects that engineered advanced diseases do.<ul class="index-tree">
+    <li><span class="no-substance">heal&#x2F;</span><a href="datum/symptom/heal/symbiotic.html" title="&#x2F;datum&#x2F;symptom&#x2F;heal&#x2F;symbiotic">Symbiotic Regeneration</a></li>
+    </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;team">team</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;team&#x2F;contractor_team">contractor_team</span> - Team for storing both the contractor and their support unit - only really for the HUD and admin logging.</li>
     <li><a href="datum/team/cult.html" title="&#x2F;datum&#x2F;team&#x2F;cult">Cult</a></li>
@@ -3311,11 +3314,14 @@ Given to Nuke Ops members.</li>
     </ul></li>
     <li><a href="obj/item/reagent_containers/chemtank.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;chemtank">backpack chemical injector</a></li>
     <li class="has-children"><a href="obj/item/reagent_containers/food.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food">food</a><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;condiment">condiment container</span> - Condiments</li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;condiment">condiment container</span> - Condiments<ul class="index-tree">
+    <li><span class="no-substance">pack&#x2F;</span><a href="obj/item/reagent_containers/food/condiment/pack/creamer.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;condiment&#x2F;pack&#x2F;creamer">creamer</a></li>
+    </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks">drink</span> - Drinks.<ul class="index-tree">
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks&#x2F;bottle">glass bottle</span> - Alchohol bottles! -Agouri<ul class="index-tree">
+    <li class="has-children"><a href="obj/item/reagent_containers/food/drinks/bottle.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks&#x2F;bottle">glass bottle</a> - Alchohol bottles! -Agouri<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks&#x2F;bottle&#x2F;molotov">molotov cocktail</span> - MOLOTOV</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks&#x2F;bottle&#x2F;orangejuice">orange juice</span> - JUICES AND STUFF</li>
+    <li><a href="obj/item/reagent_containers/food/drinks/bottle/syrup_bottle.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks&#x2F;bottle&#x2F;syrup_bottle">syrup bottle</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks&#x2F;coffee">robust coffee</span> - Drinks</li>
     <li><a href="obj/item/reagent_containers/food/drinks/colocup.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;drinks&#x2F;colocup">colo cup</a></li>
@@ -3475,6 +3481,9 @@ The file also contain the guicode of the machine<ul class="index-tree">
 Enables crew to create requests, crew can sign up to perform the request, and the requester can chose who to pay-out.</li>
     <li><a href="obj/machinery/chem_heater.html" title="&#x2F;obj&#x2F;machinery&#x2F;chem_heater">chemical heater</a></li>
     <li><a href="obj/machinery/clonepod.html" title="&#x2F;obj&#x2F;machinery&#x2F;clonepod">cloning pod</a></li>
+    <li class="has-children"><a href="obj/machinery/coffeemaker.html" title="&#x2F;obj&#x2F;machinery&#x2F;coffeemaker">coffeemaker</a><ul class="index-tree">
+    <li><a href="obj/machinery/coffeemaker/impressa.html" title="&#x2F;obj&#x2F;machinery&#x2F;coffeemaker&#x2F;impressa">impressa coffeemaker</a></li>
+    </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;computer">computer</span><ul class="index-tree">
     <li><a href="obj/machinery/computer/aifixer.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;aifixer">AI system integrity restorer</a></li>
     <li><a href="obj/machinery/computer/atmos_alert.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;atmos_alert">atmospheric alert console</a></li>
@@ -3726,7 +3735,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/ba7c69ce6f300cd37199700c7c442f12042f0e39">ba7c69c</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/c3ddbea6d5058a175046bc9fbdf746160dac80ca">c3ddbea</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
