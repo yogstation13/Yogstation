@@ -542,6 +542,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	ears = /obj/item/radio/headset/syndicate/alt
 	implants = list(/obj/item/implant/weapons_auth)
 	id = /obj/item/card/id/syndicate
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
@@ -561,6 +562,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	l_pocket = /obj/item/gun/ballistic/automatic/pistol
 	r_pocket = /obj/item/kitchen/knife/combat/survival
 	belt = /obj/item/storage/belt/military/assault
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
@@ -625,6 +627,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	mask = /obj/item/clothing/mask/gas/syndicate
 	id = /obj/item/card/id/syndicate/anyone
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
@@ -643,6 +646,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/gas //i want them to look like the generic operative NPC
 	belt = /obj/item/storage/belt/security/full //take like one guy alive
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses //identify the job of whoever the fuck is breaking in at a glance
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
@@ -660,6 +664,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	accessory = /obj/item/clothing/accessory/armband/science
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd //it's a syndicate nerd
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
@@ -678,6 +683,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	head = /obj/item/clothing/head/hardhat
 	accessory = /obj/item/clothing/accessory/armband/engine
 	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
@@ -695,6 +701,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	suit = /obj/item/clothing/suit/toggle/labcoat/md //I AM A SURGEON!!
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo //rapid hurt and chemical identification
 	accessory = /obj/item/clothing/accessory/armband/medblue
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
