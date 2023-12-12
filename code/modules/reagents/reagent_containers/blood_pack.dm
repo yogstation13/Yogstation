@@ -4,11 +4,17 @@
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "bloodpack"
 	volume = 200
-	var/blood_type = null
+	var/datum/blood_type/blood_type = null
 	var/unique_blood = null
 	var/labelled = 0
 
 #define BLOODBAG_GULP_SIZE 10
+
+/obj/item/reagent_containers/blood/Initialize()
+	. = ..()
+	if(blood_type != null)
+		reagents.add_reagent(unique_blood ? unique_blood : /datum/reagent/blood, 200, list("viruses"=null,"blood_DNA"=null,"blood_type"=get_blood_type(blood_type),"resistances"=null,"trace_chem"=null))
+		update_icon()
 
 /obj/item/reagent_containers/blood/attack(mob/target, mob/user, def_zone)
 	if(!reagents.total_volume)
@@ -83,7 +89,7 @@
 /obj/item/reagent_containers/blood/proc/update_pack_name()
 	if(!labelled)
 		if(blood_type)
-			name = "blood pack - [blood_type]"
+			name = "blood pack[blood_type ? " - [unique_blood ? blood_type : blood_type.name]" : null]"
 		else
 			name = "blood pack"
 
@@ -127,7 +133,7 @@
 	blood_type = "L"
 
 /obj/item/reagent_containers/blood/ethereal
-	blood_type = "LE"
+	blood_type = "E"
 	unique_blood = /datum/reagent/consumable/liquidelectricity
 
 /obj/item/reagent_containers/blood/universal

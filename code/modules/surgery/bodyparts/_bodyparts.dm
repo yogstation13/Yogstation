@@ -14,7 +14,8 @@
 	var/status = BODYPART_ORGANIC
 	var/sub_status = BODYPART_SUBTYPE_ORGANIC
 	var/needs_processing = FALSE
-
+	///This is effectively the icon_state prefix for limbs.
+	var/limb_id
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
 	var/aux_zone // used for hands
 	var/aux_layer
@@ -56,6 +57,10 @@
 	var/species_color = ""
 	var/mutation_color = ""
 	var/no_update = 0
+	/// The colour of damage done to this bodypart
+	var/damage_color = ""
+	/// Should we even use a color?
+	var/use_damage_color = FALSE
 
 	var/animal_origin = null //for nonhuman bodypart (e.g. monkey)
 	var/dismemberable = 1 //whether it can be dismembered with a weapon.
@@ -848,6 +853,7 @@
 
 		body_gender = H.gender
 		should_draw_gender = S.sexes
+		use_damage_color = S.use_damage_color
 
 		if((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits))
 			if(S.fixed_mut_color)
@@ -897,7 +903,10 @@
 		image_dir = SOUTH
 		if(dmg_overlay_type)
 			if(brutestate)
-				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				var/image/bruteoverlay = image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				if(use_damage_color)
+					bruteoverlay.color = damage_color
+				. += bruteoverlay
 			if(burnstate)
 				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
 

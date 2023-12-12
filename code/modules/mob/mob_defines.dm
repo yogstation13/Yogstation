@@ -50,6 +50,9 @@
 	Changing this around would probably require a good look-over the pre-existing code.
 	*/
 
+	///How many legs does this mob currently have. Should only be changed through set_num_legs()
+	var/num_legs = 2
+
 	/// The zone this mob is currently targeting
 	var/zone_selected = BODY_ZONE_CHEST
 

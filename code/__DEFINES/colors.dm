@@ -330,6 +330,9 @@
 #define SOFA_BROWN "#a75400"
 #define SOFA_MAROON "#830000"
 
+/// Color used for default blood
+#define COLOR_BLOOD "#CC0000"
+
 GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_BLUE = CABLE_HEX_COLOR_BLUE,
 	CABLE_COLOR_CYAN = CABLE_HEX_COLOR_CYAN,

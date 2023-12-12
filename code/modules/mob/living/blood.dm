@@ -318,27 +318,16 @@
 	return /datum/reagent/blood
 
 // This is has more potential uses, and is probably faster than the old proc.
-/proc/get_safe_blood(bloodtype)
-	. = list()
-	if(!bloodtype)
-		return
+/proc/random_blood_type()
+	return get_blood_type(pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+"))
 
-	var/static/list/bloodtypes_safe = list(
-		"A-" = list("A-", "O-", "U"),
-		"A+" = list("A-", "A+", "O-", "O+", "U"),
-		"B-" = list("B-", "O-", "U"),
-		"B+" = list("B-", "B+", "O-", "O+", "U"),
-		"AB-" = list("A-", "B-", "O-", "AB-", "U"),
-		"AB+" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "U"),
-		"O-" = list("O-", "U"),
-		"O+" = list("O-", "O+", "U"),
-		"L" = list("L", "U"),
-		"U" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "L", "U") //literally universal
-	)
+/proc/get_blood_type(type)
+	return GLOB.blood_types[type]
 
-	var/safe = bloodtypes_safe[bloodtype]
-	if(safe)
-		. = safe
+/proc/get_blood_dna_color(list/blood_dna)
+	var/blood_print = blood_dna[length(blood_dna)]
+	var/datum/blood_type/blood_type = blood_dna[blood_print]
+	return blood_type.color
 
 //to add a splatter of blood or other mob liquid.
 /mob/living/proc/add_splatter_floor(turf/T, small_drip)
@@ -380,8 +369,7 @@
 	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
 		B = new /obj/effect/decal/cleanable/blood/splatter(T, get_static_viruses())
-	if (B.bloodiness < MAX_SHOE_BLOODINESS) //add more blood, up to a limit
-		B.bloodiness += BLOOD_AMOUNT_PER_DECAL
+	B.bloodiness = min((B.bloodiness + BLOOD_AMOUNT_PER_DECAL), BLOOD_POOL_MAX)
 	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
 	if(temp_blood_DNA)
 		B.add_blood_DNA(temp_blood_DNA)
@@ -404,3 +392,26 @@
 	var/obj/effect/decal/cleanable/oil/B = locate() in T.contents
 	if(!B)
 		B = new(T)
+
+// This is has more potential uses, and is probably faster than the old proc.
+/proc/get_safe_blood(bloodtype)
+	. = list()
+	if(!bloodtype)
+		return
+
+	var/static/list/bloodtypes_safe = list(
+		"A-" = list("A-", "O-", "U"),
+		"A+" = list("A-", "A+", "O-", "O+", "U"),
+		"B-" = list("B-", "O-", "U"),
+		"B+" = list("B-", "B+", "O-", "O+", "U"),
+		"AB-" = list("A-", "B-", "O-", "AB-", "U"),
+		"AB+" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "U"),
+		"O-" = list("O-", "U"),
+		"O+" = list("O-", "O+", "U"),
+		"L" = list("L", "U"),
+		"U" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "L", "U") //literally universal
+	)
+
+	var/safe = bloodtypes_safe[bloodtype]
+	if(safe)
+		. = safe

@@ -206,6 +206,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Should we preload this species's organs?
 	var/preload = TRUE
 
+	///Does our species have colors for its' damage overlays?
+	var/use_damage_color = TRUE
+
 ///////////
 // PROCS //
 ///////////
@@ -437,7 +440,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	regenerate_organs(C,old_species)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
-		C.dna.blood_type = exotic_bloodtype
+		C.dna.blood_type = get_blood_type(exotic_bloodtype)
 
 	if(old_species.mutanthands)
 		for(var/obj/item/I in C.held_items)

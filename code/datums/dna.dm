@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/unique_enzymes
 	///Stores the hashed values of traits such as skin tones, hair style, and gender
 	var/unique_identity
-	var/blood_type
+	var/datum/blood_type/blood_type
 	///The type of mutant race the player is if applicable (i.e. potato-man)
 	var/datum/species/species = new /datum/species/human
 	///first value is mutant color

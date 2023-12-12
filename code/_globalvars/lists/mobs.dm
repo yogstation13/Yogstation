@@ -39,6 +39,14 @@ GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
 GLOBAL_LIST_EMPTY(emote_list)
 
+GLOBAL_LIST_INIT(blood_types, generate_blood_types())
+
+/proc/generate_blood_types()
+	. = list()
+	for(var/path in subtypesof(/datum/blood_type))
+		var/datum/blood_type/new_type = new path()
+		.[new_type.name] = new_type
+
 /// Keys are the names of the accents, values are the name of their .json file.
 GLOBAL_LIST_INIT(accents_name2file, strings("accents.json", "accent_file_names", directory = "strings/accents"))
 /// List of all accents
