@@ -294,7 +294,7 @@
 
 /obj/machinery/mineral/equipment_vendor/free_miner
 	name = "free miner ship equipment vendor"
-	desc = "A vendor sold by NanoTrasen to profit off small mining contractors."
+	desc = "A vendor sold by Nanotrasen to profit off small mining contractors."
 	prize_list = list(
 		new /datum/data/mining_equipment("Kinetic Accelerator", 		/obj/item/gun/energy/kinetic_accelerator,						750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",          			/obj/item/resonator,											800, VENDING_WEAPON),

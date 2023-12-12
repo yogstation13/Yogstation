@@ -505,25 +505,23 @@
 /proc/sortUsernames(list/L, order=1)
 	return sortTim(L, order >= 0 ? /proc/cmp_username_asc : /proc/cmp_username_dsc)
 
-/// Converts a bitfield to a list of numbers (or words if a wordlist is provided)
-/proc/bitfield2list(bitfield = 0, list/wordlist)
-	var/list/r = list()
+///Converts a bitfield to a list of numbers (or words if a wordlist is provided)
+/proc/bitfield_to_list(bitfield = 0, list/wordlist)
+	var/list/return_list = list()
 	if(islist(wordlist))
-		var/max = min(wordlist.len,16)
+		var/max = min(wordlist.len, 24)
 		var/bit = 1
-		for(var/i=1, i<=max, i++)
+		for(var/i in 1 to max)
 			if(bitfield & bit)
-				r += wordlist[i]
+				return_list += wordlist[i]
 			bit = bit << 1
 	else
-		for(var/bit=1, bit<=65535, bit = bit << 1)
+		for(var/bit_number = 0 to 23)
+			var/bit = 1 << bit_number
 			if(bitfield & bit)
-				r += bit
+				return_list += bit
 
-	return r
-
-//tg compat
-#define bitfield_to_list(args...) bitfield2list(args)
+	return return_list
 
 /// Returns the key based on the index
 #define KEYBYINDEX(L, index) (((index <= length(L)) && (index > 0)) ? L[index] : null)

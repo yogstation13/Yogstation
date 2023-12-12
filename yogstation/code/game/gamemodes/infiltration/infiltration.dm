@@ -43,7 +43,7 @@
 	return ..()
 
 /datum/game_mode/infiltration/generate_report() //make this less shit
-	return "Reports show that the Syndicate is rounding up it's elite agents, possibly for a raid on a NanoTrasen-controlled station. Keep an eye out for unusual people."
+	return "Reports show that the Syndicate is rounding up it's elite agents, possibly for a raid on a Nanotrasen-controlled station. Keep an eye out for unusual people."
 
 /datum/game_mode/infiltration/set_round_result()
 	..()
