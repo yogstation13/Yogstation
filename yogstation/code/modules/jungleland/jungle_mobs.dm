@@ -631,6 +631,7 @@
 	maxbodytemp = INFINITY
 	pressure_resistance = 100
 	mob_size = MOB_SIZE_LARGE
+	del_on_death = TRUE
 	faction = list("tar")
 
 /mob/living/simple_animal/hostile/tar/amalgamation
