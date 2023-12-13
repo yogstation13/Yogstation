@@ -8,7 +8,7 @@
 	mutantlungs = /obj/item/organ/lungs/ethereal
 	mutantstomach = /obj/item/organ/stomach/cell/ethereal
 	mutantheart = /obj/item/organ/heart/ethereal
-	exotic_bloodtype = "E"
+	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
 	burnmod = 0.8 //Bodies are resilient to heat and energy
