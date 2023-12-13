@@ -3476,6 +3476,7 @@
 	dir = 1
 	},
 /obj/structure/table/wood,
+/obj/item/toy/cards/deck/uno,
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
 "mx" = (
