@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - tweak: "Regenerative cores cannot be put into autosurgeons."
