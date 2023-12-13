@@ -12145,9 +12145,6 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},
@@ -14349,6 +14346,10 @@
 "ctR" = (
 /turf/open/floor/engine/n2,
 /area/engine/atmos/distro)
+"cuj" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "cum" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -18227,23 +18228,22 @@
 	},
 /area/maintenance/aft)
 "dNO" = (
-/obj/machinery/button/door{
-	id = "captain blast";
-	name = "Privacy Shutters Control";
-	pixel_x = 26;
-	pixel_y = -1;
-	req_access_txt = "20"
-	},
 /obj/structure/railing{
 	dir = 9
 	},
 /obj/structure/table/wood,
-/obj/machinery/photocopier/faxmachine{
-	department = "Captain";
-	name = "Captain's Fax Machine"
-	},
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 9
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = -3;
+	pixel_y = 10
+	},
+/obj/machinery/button/door{
+	id = "captain blast";
+	name = "Privacy Shutters Control";
+	pixel_x = 5;
+	req_access_txt = "20"
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -22230,15 +22230,15 @@
 	dir = 5
 	},
 /obj/structure/table/wood,
-/obj/item/hand_tele{
-	pixel_x = 3
-	},
 /obj/item/storage/pencil_holder/crew/fancy{
 	pixel_x = -7;
-	pixel_y = 4
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 5
+	},
+/obj/item/hand_tele{
+	pixel_x = 4
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -25438,6 +25438,9 @@
 /obj/effect/turf_decal/siding/wood/corner/thin{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "gvl" = (
@@ -27997,19 +28000,9 @@
 	name = "Captain RC";
 	pixel_x = -30
 	},
-/obj/item/stamp/captain{
-	layer = 3.2;
-	pixel_x = 8;
-	pixel_y = -2
-	},
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen{
-	pixel_x = -6;
-	pixel_y = 5
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -28124,6 +28117,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/thin{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/stone,
@@ -29231,6 +29227,9 @@
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "hQt" = (
@@ -29597,9 +29596,19 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "hVX" = (
-/obj/structure/filingcabinet,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/table/wood,
+/obj/item/stamp/captain{
+	layer = 3.2;
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper_bin{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = 4;
+	pixel_y = 5
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -42500,7 +42509,10 @@
 	dir = 1
 	},
 /obj/structure/table/wood,
-/obj/item/melee/chainofcommand,
+/obj/item/melee/chainofcommand{
+	pixel_x = -5;
+	pixel_y = 2
+	},
 /obj/item/radio/intercom{
 	dir = 8;
 	freerange = 1;
@@ -43404,11 +43416,8 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "nlI" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /obj/machinery/light,
+/obj/machinery/papershredder,
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "nlS" = (
@@ -46521,6 +46530,9 @@
 /obj/effect/turf_decal/siding/wood/corner/thin{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "oyd" = (
@@ -49472,12 +49484,10 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "pBC" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood/large,
 /area/crew_quarters/heads/captain)
 "pBG" = (
@@ -58712,6 +58722,9 @@
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "tcr" = (
@@ -65106,9 +65119,9 @@
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 5
 	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = 6;
-	pixel_y = 5
+/obj/machinery/photocopier/faxmachine{
+	department = "Captain";
+	name = "Captain's Fax Machine"
 	},
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
@@ -66482,6 +66495,15 @@
 "vWn" = (
 /turf/open/floor/plasteel/white,
 /area/security/prison)
+"vWw" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "vWM" = (
 /obj/structure/light_construct{
 	dir = 8
@@ -71636,6 +71658,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"ybP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/wood/large,
+/area/crew_quarters/heads/captain)
 "ycf" = (
 /obj/machinery/meter{
 	pixel_x = -5;
@@ -72063,10 +72091,7 @@
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 4
 	},
-/obj/machinery/papershredder,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/structure/filingcabinet,
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "yjf" = (
@@ -104966,7 +104991,7 @@ bej
 mzu
 bRr
 msk
-msk
+vWw
 msk
 bRs
 aZV
@@ -105223,8 +105248,8 @@ iKa
 rIQ
 msN
 cjK
-doS
-doS
+ybP
+cuj
 pBC
 nsz
 kSk
