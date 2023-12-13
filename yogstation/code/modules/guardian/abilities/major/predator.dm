@@ -20,7 +20,7 @@
 	if (mode)
 		if (!guardian.Adjacent(target))
 			return ..()
-		if (istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/trail_holder))
+		if (istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/blood/trail_holder))
 			guardian.visible_message(span_notice("[guardian] swirls it's finger around in [target] for a bit, before shaking it off."))
 			var/obj/effect/decal/D = target
 			var/list/blood = D.return_blood_DNA()

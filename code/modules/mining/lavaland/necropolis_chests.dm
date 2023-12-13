@@ -1376,7 +1376,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(target == user)
 				continue
 			for(var/obj/effect/decal/cleanable/decal in range(0, target))
-				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/trail_holder))
+				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/blood/trail_holder))
 					valid_reaching = TRUE
 					target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 		if(!valid_reaching)

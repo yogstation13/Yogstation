@@ -85,7 +85,7 @@
 
 ////////////BLOODCRAWL
 /datum/component/crawl/blood
-	crawling_types = list(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/xenoblood, /obj/effect/decal/cleanable/trail_holder)
+	crawling_types = list(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/xenoblood, /obj/effect/decal/cleanable/blood/trail_holder)
 	gain_message = span_boldnotice("You can now bloodcrawl! Alt-click blood or gibs to phase in and out.")
 	loss_message = span_warning("You can no longer bloodcrawl.")
 

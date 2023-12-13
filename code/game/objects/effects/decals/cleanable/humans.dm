@@ -117,7 +117,7 @@
 	random_icon_states = null
 	var/list/existing_dirs = list()
 
-/obj/effect/decal/cleanable/trail_holder/proc/Etherealify()
+/obj/effect/decal/cleanable/blood/trail_holder/proc/Etherealify()
 	name = "glowing \"blood\""
 	light_power = 1
 	light_range = 2
@@ -126,7 +126,7 @@
 	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
 	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
 
-/obj/effect/decal/cleanable/trail_holder/proc/Fade()
+/obj/effect/decal/cleanable/blood/trail_holder/proc/Fade()
 	name = "faded \"blood\""
 	light_power = 0
 	light_range = 0

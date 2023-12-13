@@ -49,12 +49,12 @@
 
 /datum/blood_type/lizard
 	name = "L"
-	color = LIGHT_COLOR_BLUE
+	color = LIGHT_COLOR_BLUEGREEN
 	compatible_types = list(/datum/blood_type/lizard)
 
 /datum/blood_type/synthetic //Blood for synthetic/robotic species
 	name = "Coolant"
-	color = "#dddeff"
+	color = "#000000"
 	compatible_types = list(/datum/blood_type/synthetic)
 
 /datum/blood_type/universal

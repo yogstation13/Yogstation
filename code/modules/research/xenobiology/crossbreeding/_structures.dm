@@ -408,7 +408,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 				blood_amt = max_blood_amt
 				break
 			qdel(B)
-		else if (istype(B, /obj/effect/decal/cleanable/trail_holder))
+		else if (istype(B, /obj/effect/decal/cleanable/blood/trail_holder))
 			blood_amt += 3
 			if(blood_amt > max_blood_amt)
 				blood_amt = max_blood_amt
