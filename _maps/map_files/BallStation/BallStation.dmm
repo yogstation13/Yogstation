@@ -94,13 +94,17 @@
 	dir = 8
 	},
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/open/floor/wood,
 /area/bridge)
 "aSJ" = (
 /turf/closed/wall/r_wall,
 /area/security/warden)
+"aUL" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel,
+/area/security)
 "bbM" = (
 /turf/open/floor/wood,
 /area/ballstation)
@@ -185,6 +189,22 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
+"ctf" = (
+/obj/structure/rack,
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/melee/transforming/vib_blade{
+	pixel_x = 16;
+	pixel_y = 5
+	},
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/security/armory)
 "cBa" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge";
@@ -199,6 +219,19 @@
 	},
 /turf/open/floor/wood,
 /area/bridge)
+"cFp" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun,
+/obj/item/gun/energy/e_gun{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/gun/energy/e_gun{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/floor/circuit/green/anim,
+/area/ai_monitored/security/armory)
 "cHb" = (
 /obj/machinery/door/airlock/vault{
 	req_access_txt = "53"
@@ -271,9 +304,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
+"dUY" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/effect/light_emitter{
+	light_power = 50;
+	light_range = 100;
+	name = "daylight";
+	set_cap = 50;
+	set_luminosity = 50
+	},
+/turf/open/floor/wood,
+/area/ballstation)
 "dXW" = (
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/closed/wall/r_wall,
 /area/security/execution/education)
@@ -313,6 +359,19 @@
 "eRb" = (
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"faA" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/effect/light_emitter{
+	light_power = 50;
+	light_range = 100;
+	name = "daylight";
+	set_cap = 50;
+	set_luminosity = 50
+	},
+/turf/open/floor/wood,
+/area/ballstation)
 "fhN" = (
 /obj/structure/chair/comfy/beige{
 	dir = 4
@@ -369,10 +428,37 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/whiteship/box)
+"gIz" = (
+/obj/structure/rack,
+/obj/item/gun/ballistic/shotgun/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/gun/ballistic/shotgun/riot,
+/obj/item/gun/ballistic/shotgun/riot,
+/obj/item/gun/ballistic/shotgun/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/lethalshot,
+/obj/item/storage/box/lethalshot,
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/security/armory)
+"gKH" = (
+/obj/structure/railing/corner,
+/turf/open/floor/wood,
+/area/ballstation)
 "gVW" = (
 /obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/plasteel,
 /area/bridge/showroom/corporate)
+"heJ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "genpop_exit2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "hkZ" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/east,
@@ -398,7 +484,7 @@
 /area/ruin/space/has_grav/whiteship/box)
 "hSW" = (
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -419,6 +505,12 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"hZZ" = (
+/obj/machinery/autolathe/hacked{
+	name = "security autolathe"
+	},
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
 "ihM" = (
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating/asteroid/basalt,
@@ -442,6 +534,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
+"isa" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing,
+/turf/open/floor/wood,
+/area/ballstation)
 "iEW" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
@@ -562,7 +661,7 @@
 "lrE" = (
 /obj/machinery/ore_silo,
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/open/floor/circuit/green/anim,
 /area/ai_monitored/nuke_storage)
@@ -585,7 +684,7 @@
 /area/ruin/space/has_grav/whiteship/box)
 "lUe" = (
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/closed/wall/r_wall,
 /area/security/warden)
@@ -671,6 +770,19 @@
 /obj/machinery/computer/security,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"nvE" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 50;
+	light_range = 100;
+	name = "daylight";
+	set_cap = 50;
+	set_luminosity = 50
+	},
+/turf/open/floor/wood,
+/area/ballstation)
 "nCc" = (
 /obj/structure/grille,
 /turf/open/floor/plating,
@@ -685,6 +797,25 @@
 	},
 /turf/open/floor/wood,
 /area/ballstation)
+"nNp" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced/spawner/east,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/window/eastleft{
+	name = "armory desk";
+	req_access_txt = "1";
+	dir = 2
+	},
+/obj/machinery/door/window/westleft{
+	name = "armory desk";
+	req_access_txt = "3";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
 "nRi" = (
 /turf/open/floor/plating,
 /area/bridge/showroom/corporate)
@@ -741,6 +872,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/whiteship/box)
+"pco" = (
+/obj/structure/railing/corner,
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ballstation)
 "pkW" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/effect/decal/cleanable/dirt,
@@ -782,6 +920,19 @@
 	},
 /turf/open/floor/wood,
 /area/bridge)
+"qjg" = (
+/obj/structure/rack,
+/obj/item/gun/energy/laser{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/gun/energy/laser{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/gun/energy/laser,
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/security/armory)
 "qlb" = (
 /obj/structure/chair/comfy/shuttle{
 	name = "head of personnel's chair";
@@ -927,7 +1078,7 @@
 /area/bridge/showroom/corporate)
 "sWn" = (
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
@@ -937,6 +1088,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)
+"tjl" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/plasteel,
+/area/security)
 "tjy" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/effect/decal/cleanable/dirt,
@@ -1001,6 +1157,10 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
+"tUj" = (
+/obj/structure/railing,
+/turf/open/floor/wood,
+/area/ballstation)
 "udl" = (
 /obj/structure/railing{
 	dir = 1
@@ -1099,6 +1259,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
+"vXD" = (
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
 "wjI" = (
 /obj/structure/railing{
 	dir = 1
@@ -1107,7 +1270,7 @@
 /area/ruin/space/has_grav/whiteship/box)
 "wAU" = (
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/open/floor/wood,
 /area/ballstation)
@@ -1117,7 +1280,7 @@
 /area/ruin/space/has_grav/whiteship/box)
 "wBa" = (
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/open/floor/circuit/red/anim,
 /area/ai_monitored/security/armory)
@@ -1130,6 +1293,18 @@
 "wWY" = (
 /turf/closed/wall/r_wall,
 /area/bridge/meeting_room)
+"wZi" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Armoury Access";
+	req_access_txt = "3";
+	security_level = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
 "wZr" = (
 /obj/structure/railing{
 	dir = 1
@@ -1154,16 +1329,38 @@
 	desc = "A decently well done statue made of solid resin. There is a note on it bearing the markings 'Cybersun Salvage Corps', covered by an NT stamp."
 	},
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/bridge/showroom/corporate)
 "xpL" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/security/armory)
+"xtr" = (
+/obj/structure/rack,
+/turf/open/floor/circuit/red/anim,
+/area/ai_monitored/security/armory)
+"xuw" = (
 /obj/effect/baseturf_helper{
-	baseturf = /turf/open/floor/plating
+	baseturf = /turf/open/floor/plating/ice
 	},
 /turf/open/floor/plasteel,
 /area/security)
+"xKB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "genpop_exit1"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "xLw" = (
 /obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/plating,
@@ -31147,48 +31344,48 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nvE
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+dUY
 aaa
 aaa
 aaa
@@ -31404,48 +31601,48 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+vbp
+gKH
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+pco
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+pco
+ovz
+ovz
+vbp
+tUj
 aaa
 aaa
 aaa
@@ -31668,41 +31865,41 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+isa
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+isa
+iUw
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -31925,41 +32122,41 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+isa
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+isa
+iUw
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -32182,41 +32379,41 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+isa
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+isa
+iUw
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -32439,41 +32636,41 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+isa
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
+isa
+iUw
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -32696,14 +32893,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
 wWY
 wWY
 uie
@@ -32728,9 +32925,9 @@ aSJ
 aSJ
 irH
 aSJ
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -32953,14 +33150,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
 wWY
 vet
 eRb
@@ -32974,7 +33171,7 @@ wWY
 bYz
 bYz
 aKF
-oKL
+heJ
 oKL
 oKL
 oKL
@@ -32985,9 +33182,9 @@ oKL
 cof
 oKL
 aSJ
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -33210,14 +33407,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
 mdd
 eRb
 eRb
@@ -33231,7 +33428,7 @@ wWY
 bYz
 bYz
 mcK
-bLn
+xKB
 bLn
 bLn
 bLn
@@ -33242,9 +33439,9 @@ oKL
 aSJ
 aSJ
 aSJ
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -33467,14 +33664,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
 mdd
 eRb
 qlb
@@ -33499,9 +33696,9 @@ oKL
 oKL
 oKL
 aSJ
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -33724,14 +33921,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mZG
+tUj
+iUw
+iUw
+iUw
+iUw
+iUw
+iUw
 mdd
 eRb
 eRb
@@ -33757,8 +33954,8 @@ hUr
 dNY
 aSJ
 iUw
-iUw
-iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -34014,8 +34211,8 @@ kYK
 kYK
 dAB
 iUw
-iUw
-iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -34271,8 +34468,8 @@ kYK
 kYK
 dAB
 iUw
-iUw
-iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -34525,11 +34722,11 @@ mmn
 kYK
 kYK
 kYK
-kYK
+xuw
 dAB
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -34784,9 +34981,9 @@ kYK
 kYK
 kYK
 dAB
-aaa
-aaa
-aaa
+nGZ
+wRb
+tUj
 aaa
 aaa
 aaa
@@ -35041,9 +35238,9 @@ kYK
 kYK
 kYK
 kYK
-aaa
-aaa
-aaa
+bbM
+bbM
+tUj
 aaa
 aaa
 aaa
@@ -35298,9 +35495,9 @@ kYK
 kYK
 kYK
 btG
-aaa
-aaa
-aaa
+ovz
+vbp
+tUj
 aaa
 aaa
 aaa
@@ -35543,21 +35740,21 @@ lrE
 jIz
 gjv
 nCc
-cPb
+xtr
 lcR
 nCc
 gjv
+vXD
+vXD
+nNp
 kYK
 kYK
 kYK
-kYK
-kYK
-kYK
-kYK
+aUL
 btG
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -35800,21 +35997,21 @@ sdF
 cVl
 gjv
 cin
-lcR
+ctf
 cPb
 lcR
 tOB
+vXD
+vXD
+wZi
 kYK
 kYK
 kYK
-kYK
-kYK
-kYK
-kYK
+tjl
 btG
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -36057,21 +36254,21 @@ vwS
 jIz
 gjv
 nCc
-cPb
+gIz
 lcR
 nCc
 gjv
+vXD
+vXD
+xpL
 kYK
 kYK
 kYK
-kYK
-kYK
-kYK
-kYK
+tjl
 btG
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -36318,17 +36515,17 @@ lcR
 wBa
 nCc
 gjv
-kYK
-kYK
+vXD
+vXD
 xpL
 kYK
 kYK
 kYK
-kYK
+aUL
 btG
-aaa
-aaa
-aaa
+iUw
+mZG
+tUj
 aaa
 aaa
 aaa
@@ -36571,21 +36768,21 @@ hTE
 hTE
 gjv
 nCc
-cPb
-lcR
+qjg
+cFp
 nCc
 gjv
-kYK
-kYK
-kYK
+vXD
+vXD
+xpL
 kYK
 kYK
 kYK
 kYK
 btG
-aaa
-aaa
-aaa
+nGZ
+wRb
+tUj
 aaa
 aaa
 aaa
@@ -36832,17 +37029,17 @@ nCc
 nCc
 nCc
 gjv
+hZZ
+vXD
+xpL
 kYK
 kYK
 kYK
 kYK
 kYK
-kYK
-kYK
-kYK
-aaa
-aaa
-aaa
+bbM
+bbM
+tUj
 aaa
 aaa
 aaa
@@ -37091,15 +37288,15 @@ xlB
 xlB
 xlB
 xlB
-kYK
+dAB
 kYK
 kYK
 kYK
 kYK
 dAB
-aaa
-aaa
-aaa
+ovz
+vbp
+tUj
 aaa
 aaa
 aaa
@@ -37355,8 +37552,8 @@ kYK
 kYK
 dAB
 aaa
-aaa
-aaa
+aoV
+faA
 aaa
 aaa
 aaa
@@ -38086,19 +38283,19 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-mZG
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+nGZ
+wRb
 bbM
 bbM
 nbv
@@ -38343,19 +38540,19 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-mZG
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+ovz
+vbp
 bbM
 bbM
 nbv
