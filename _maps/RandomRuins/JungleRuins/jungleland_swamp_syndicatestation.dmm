@@ -1147,6 +1147,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"kS" = (
+/turf/open/water/safe,
+/area/jungleland/toxic_pit)
 "kY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2377,6 +2380,10 @@
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/vault)
+"wq" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "wI" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/white{
@@ -2676,12 +2683,6 @@
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
-"zR" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
-/area/jungleland/toxic_pit)
 "zY" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/incinerator_syndicatelava{
 	dir = 1
@@ -3087,6 +3088,10 @@
 /obj/machinery/smartfridge/organ,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
+"Dg" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "Di" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -4173,6 +4178,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"MO" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/item/clothing/head/fishing,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "MR" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/siding/wood{
@@ -4180,6 +4192,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"Nd" = (
+/obj/structure/flytrap,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "Nf" = (
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_interior,
 /obj/machinery/door/firedoor/border_only{
@@ -7736,11 +7752,11 @@ Fi
 Fi
 Fi
 PW
+Nd
+wq
+MO
 PW
-PW
-PW
-PW
-PW
+GR
 PW
 HA
 Fi
@@ -7798,10 +7814,10 @@ Fi
 Fi
 Fi
 PW
-PW
-GR
-PW
-PW
+kS
+kS
+kS
+wq
 PW
 Lj
 Fi
@@ -7859,11 +7875,11 @@ Fi
 PW
 PW
 zH
+Dg
+kS
+kS
 PW
 PW
-PW
-PW
-zR
 Fi
 ZW
 Fi
@@ -7984,7 +8000,7 @@ Fi
 Fi
 PW
 PW
-PW
+wq
 Fi
 Fi
 Fi
