@@ -94,7 +94,7 @@
 	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler
-	equip_cooldown = 5
+	equip_cooldown = 8
 	name = "\improper CH-DS \"Peacemaker\" disabler"
 	desc = "A weapon for combat exosuits. Shoots basic disablers."
 	icon_state = "mecha_disabler"
