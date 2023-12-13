@@ -45,6 +45,16 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/cli, spawn_effects)
 	if(!checkquirks(user,cli)) return// Yogs -- part of Adding Mood as Preference
 
+	if(user.job)
+		for(var/V in cli.prefs.all_quirks)
+			var/datum/quirk/Q = quirks[V]
+			if(Q)
+				Q = new Q (no_init = TRUE)
+				if(user.job in Q.job_blacklist)
+					to_chat(cli, span_danger("One or more of your quirks is incompatible with your job so all have been removed."))
+					return
+				qdel(Q)//clean up afterwards
+
 	var/badquirk = FALSE
 
 	for(var/V in cli.prefs.all_quirks)

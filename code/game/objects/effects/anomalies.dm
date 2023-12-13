@@ -191,23 +191,9 @@
 
 /obj/effect/anomaly/flux/proc/mobShock(mob/living/M)
 	if(canshock && istype(M))
-		canshock = 0 //Just so you don't instakill yourself if you slam into the anomaly five times in a second.
-		if(iscarbon(M))
-			var/siemens_coeff = 1
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H.gloves)
-					siemens_coeff *= (H.gloves.siemens_coefficient + 1) / 2 // protective gloves reduce damage by half
-				if(H.wear_suit)
-					siemens_coeff *= (H.wear_suit.siemens_coefficient + 1) / 2 // protective suit reduces damage by another half, minimum of 33%
-			var/should_stun = !M.IsParalyzed() // stunlock is boring
-			M.electrocute_act(shockdamage, "[name]", max(siemens_coeff, 0.33), safety = TRUE, stun = should_stun) // 15 damage with insuls, 10 damage with insuls and hardsuit
-			return
-		else
-			M.adjustFireLoss(shockdamage)
-			M.visible_message(span_danger("[M] was shocked by \the [name]!"), \
-		span_userdanger("You feel a powerful shock coursing through your body!"), \
-		span_italics("You hear a heavy electrical crack."))
+		var/should_stun = !M.IsParalyzed() // stunlock is boring
+		var/hit_percent = (100 - M.getarmor(null, ELECTRIC)) / 100
+		M.electrocute_act(shockdamage, "[name]", max(hit_percent, 0.33), zone = null, override=TRUE, stun = should_stun) // ignore armor because we're doing our own calculations
 
 /obj/effect/anomaly/flux/detonate()
 	switch(explosive)

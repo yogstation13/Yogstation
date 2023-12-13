@@ -3,7 +3,6 @@ import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { useBackend } from '../backend';
 import { LabeledList, ProgressBar, Section } from '../components';
-import { getGasColor, getGasLabel } from '../constants';
 import { NtosWindow } from '../layouts';
 
 export const NtosAtmos = (props, context) => {
@@ -38,9 +37,9 @@ export const NtosAtmos = (props, context) => {
             {gases.map(gas => (
               <LabeledList.Item
                 key={gas.name}
-                label={getGasLabel(gas.name)}>
+                label={gas.name}>
                 <ProgressBar
-                  color={getGasColor(gas.name)}
+                  color={gas.ui_color}
                   value={gas.percentage}
                   minValue={0}
                   maxValue={gasMaxPercentage}>
@@ -51,6 +50,6 @@ export const NtosAtmos = (props, context) => {
           </LabeledList>
         </Section>
       </NtosWindow.Content>
-    </NtosWindow>
+    </NtosWindow >
   );
 };

@@ -21,7 +21,7 @@
 
 /obj/item/mop/Initialize(mapload)
 	. = ..()
-	create_reagents(mopcap)
+	create_reagents(mopcap, REFILLABLE)
 
 
 /obj/item/mop/proc/clean(turf/A)

@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - rscadd: "Added Biosignaller implants to nuke ops and ERTs, which alert their teammates when and where they died"

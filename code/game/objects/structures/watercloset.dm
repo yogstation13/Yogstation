@@ -274,15 +274,19 @@
 		to_chat(user, span_warning("Someone's already washing here!"))
 		return
 
-	if(istype(O, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/RG = O
-		if(RG.is_refillable())
-			if(!RG.reagents.holder_full())
-				RG.reagents.add_reagent(dispensedreagent, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-				to_chat(user, span_notice("You fill [RG] from [src]."))
-				return TRUE
-			to_chat(user, span_notice("\The [RG] is full."))
-			return FALSE
+	// If it's refillable, fill it up
+	if(O.is_refillable())
+		if(!O.reagents.holder_full())
+			var/transfer_amount = 10
+			if(istype(O, /obj/item/reagent_containers))
+				var/obj/item/reagent_containers/R = O
+				transfer_amount = R.amount_per_transfer_from_this
+			O.reagents.add_reagent(dispensedreagent, min(O.reagents.maximum_volume - O.reagents.total_volume, transfer_amount))
+			to_chat(user, span_notice("You fill [O] from [src]."))
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			return TRUE
+		to_chat(user, span_notice("\The [O] is full."))
+		return FALSE
 
 	if(istype(O, /obj/item/melee/baton))
 		var/obj/item/melee/baton/B = O
@@ -297,12 +301,6 @@
 									span_userdanger("You unwisely attempt to wash [B] while it's still on."))
 				playsound(src, "sparks", 50, 1)
 				return
-
-	if(istype(O, /obj/item/mop))
-		O.reagents.add_reagent(dispensedreagent, 5)
-		to_chat(user, span_notice("You wet [O] in [src]."))
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		return
 
 	if(istype(O, /obj/item/stack/medical/gauze))
 		var/obj/item/stack/medical/gauze/G = O
