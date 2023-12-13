@@ -86,10 +86,12 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_CARPET_ORANGE S_TURF(15) ///turf/open/floor/carpet/orange
 #define SMOOTH_GROUP_CARPET_PURPLE S_TURF(16) ///turf/open/floor/carpet/purple
 #define SMOOTH_GROUP_CARPET_RED S_TURF(17) ///turf/open/floor/carpet/red
-#define SMOOTH_GROUP_CARPET_ROYAL_BLACK S_TURF(18) ///turf/open/indestructible/carpet/royal/black
-#define SMOOTH_GROUP_CARPET_ROYAL_GREEN S_TURF(19) ///turf/open/indestructible/carpet/royal/black
-#define SMOOTH_GROUP_CARPET_ROYAL_BLUE S_TURF(20) ///turf/open/indestructible/carpet/royal/blue
-#define SMOOTH_GROUP_CARPET_ROYAL_PURPLE S_TURF(21) ///turf/open/indestructible/carpet/royal/purple
+#define SMOOTH_GROUP_CARPET_ROYAL_BLACK S_TURF(18) ///turf/open/indestructible/carpet/royalblack
+///Unimplemented because we haven't cut the icons yet
+#define SMOOTH_GROUP_CARPET_ROYAL_GREEN S_TURF(19) ///turf/open/indestructible/carpet/royalgreen
+#define SMOOTH_GROUP_CARPET_ROYAL_BLUE S_TURF(20) ///turf/open/indestructible/carpet/royalblue
+///Unimplemented because we haven't cut the icons yet
+#define SMOOTH_GROUP_CARPET_ROYAL_PURPLE S_TURF(21) ///turf/open/indestructible/carpet/royalpurple
 #define SMOOTH_GROUP_CARPET_EXECUTIVE S_TURF(22) ///turf/open/floor/carpet/executive
 #define SMOOTH_GROUP_CARPET_STELLAR S_TURF(23) ///turf/open/floor/carpet/stellar
 #define SMOOTH_GROUP_CARPET_DONK S_TURF(24) ///turf/open/floor/carpet/donk

@@ -4,7 +4,6 @@
 	light_range = 5
 	icon_state = "light_on"
 	floor_tile = /obj/item/stack/tile/light
-	broken_states = list("light_broken")
 	var/on = TRUE
 	var/state = 0//0 = fine, 1 = flickering, 2 = breaking, 3 = broken
 	var/list/coloredlights = list("r", "o", "y", "g", "b", "i", "v", "w", "s", "z")
@@ -12,6 +11,9 @@
 	var/can_modify_colour = TRUE
 	tiled_dirt = FALSE
 	var/static/list/lighttile_designs
+
+/turf/open/floor/light/broken_states()
+	return list("light_broken")
 
 /turf/open/floor/light/examine(mob/user)
 	. = ..()
@@ -34,7 +36,7 @@
 
 /turf/open/floor/light/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(!length(lighttile_designs))
 		populate_lighttile_designs()
 

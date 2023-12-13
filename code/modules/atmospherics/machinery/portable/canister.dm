@@ -6,9 +6,6 @@
 	icon = 'icons/obj/atmospherics/canister.dmi'
 	icon_state = "hazard"
 	density = TRUE
-	light_system = MOVABLE_LIGHT
-	light_range = 1.4
-	light_on = FALSE
 	var/valve_open = FALSE
 	var/obj/machinery/atmospherics/components/binary/passive_gate/pump
 	var/release_log = ""

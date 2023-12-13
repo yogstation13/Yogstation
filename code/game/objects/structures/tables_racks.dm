@@ -378,11 +378,11 @@
 	buildstack = /obj/item/stack/tile/carpet/black
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_black.dmi', 'icons/obj/structures.dmi')
 
-/obj/structure/table/wood/fancy/exoticblue
-	icon_state = "fancy_table_exoticblue"
-	base_icon_state = "fancy_table_exoticblue"
-	buildstack = /obj/item/stack/tile/carpet/exoticblue
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticblue.dmi', 'icons/obj/structures.dmi')
+/obj/structure/table/wood/fancy/blue
+	icon_state = "fancy_table_blue"
+	base_icon_state = "fancy_table_blue"
+	buildstack = /obj/item/stack/tile/carpet/blue
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_blue.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/cyan
 	icon_state = "fancy_table_cyan"
@@ -390,11 +390,11 @@
 	buildstack = /obj/item/stack/tile/carpet/cyan
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_cyan.dmi', 'icons/obj/structures.dmi')
 
-/obj/structure/table/wood/fancy/exoticgreen
-	icon_state = "fancy_table_exoticgreen"
-	base_icon_state = "fancy_table_exoticgreen"
-	buildstack = /obj/item/stack/tile/carpet/exoticgreen
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticgreen.dmi', 'icons/obj/structures.dmi')
+/obj/structure/table/wood/fancy/green
+	icon_state = "fancy_table_green"
+	base_icon_state = "fancy_table_green"
+	buildstack = /obj/item/stack/tile/carpet/green
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_green.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/orange
 	icon_state = "fancy_table_orange"
@@ -402,11 +402,11 @@
 	buildstack = /obj/item/stack/tile/carpet/orange
 	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_orange.dmi', 'icons/obj/structures.dmi')
 
-/obj/structure/table/wood/fancy/exoticpurple
-	icon_state = "fancy_table_exoticpurple"
-	base_icon_state = "fancy_table_exoticpurple"
-	buildstack = /obj/item/stack/tile/carpet/exoticpurple
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_exoticpurple.dmi', 'icons/obj/structures.dmi')
+/obj/structure/table/wood/fancy/purple
+	icon_state = "fancy_table_purple"
+	base_icon_state = "fancy_table_purple"
+	buildstack = /obj/item/stack/tile/carpet/purple
+	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_purple.dmi', 'icons/obj/structures.dmi')
 
 /obj/structure/table/wood/fancy/red
 	icon_state = "fancy_table_red"

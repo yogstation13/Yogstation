@@ -1813,7 +1813,7 @@
 "aqq" = (
 /obj/structure/table/wood/poker,
 /obj/item/reagent_containers/food/drinks/beer,
-/turf/open/floor/carpet/exoticgreen,
+/turf/open/floor/carpet/green,
 /area/hallway/secondary/entry)
 "aqt" = (
 /obj/machinery/power/smes,
@@ -2537,7 +2537,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "awH" = (
-/turf/open/floor/carpet/exoticgreen,
+/turf/open/floor/carpet/green,
 /area/hallway/secondary/entry)
 "awN" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -5183,7 +5183,7 @@
 "aUF" = (
 /obj/structure/table/wood/poker,
 /obj/item/reagent_containers/food/snacks/cheesyfries,
-/turf/open/floor/carpet/exoticgreen,
+/turf/open/floor/carpet/green,
 /area/hallway/secondary/entry)
 "aUH" = (
 /turf/closed/wall,
@@ -29231,7 +29231,7 @@
 "iwU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/snacks/grown/cannabis,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/maintenance/port/aft)
 "iwW" = (
 /obj/structure/cable{
@@ -29636,7 +29636,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/stool,
 /obj/item/reagent_containers/food/snacks/grown/cannabis,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/maintenance/port/aft)
 "iEJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -35968,7 +35968,7 @@
 /area/security/prison)
 "kBi" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/maintenance/port/aft)
 "kBm" = (
 /obj/structure/rack,
@@ -44389,7 +44389,7 @@
 	flags_1 = 128
 	},
 /obj/item/reagent_containers/food/snacks/grown/cannabis,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/maintenance/port/aft)
 "njW" = (
 /obj/structure/extinguisher_cabinet{
@@ -63132,7 +63132,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/carpet/exoticgreen,
+/turf/open/floor/carpet/green,
 /area/hallway/secondary/entry)
 "sXe" = (
 /obj/structure/cable{
@@ -73104,7 +73104,7 @@
 "wkf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/stool,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/maintenance/port/aft)
 "wkn" = (
 /obj/structure/table/optable,

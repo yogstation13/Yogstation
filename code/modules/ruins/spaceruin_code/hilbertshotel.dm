@@ -61,9 +61,9 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     if(!storageTurf) //Blame subsystems for not allowing this to be in Initialize
         if(!GLOB.hhStorageTurf)
             var/datum/map_template/hilbertshotelstorage/storageTemp = new()
-            var/datum/turf_reservation/storageReservation = SSmapping.RequestBlockReservation(3, 3)
-            storageTemp.load(locate(storageReservation.bottom_left_coords[1], storageReservation.bottom_left_coords[2], storageReservation.bottom_left_coords[3]))
-            GLOB.hhStorageTurf = locate(storageReservation.bottom_left_coords[1]+1, storageReservation.bottom_left_coords[2]+1, storageReservation.bottom_left_coords[3])
+            var/datum/turf_reservation/storageReservation = SSmapping.request_turf_block_reservation(3, 3)
+            storageTemp.load(locate(storageReservation.bottom_left_turfs[1], storageReservation.bottom_left_turfs[2], storageReservation.bottom_left_turfs[3]))
+            GLOB.hhStorageTurf = locate(storageReservation.bottom_left_turfs[1]+1, storageReservation.bottom_left_turfs[2]+1, storageReservation.bottom_left_turfs[3])
         else
             storageTurf = GLOB.hhStorageTurf
     if(tryActiveRoom(chosenRoomNumber, user))
@@ -77,20 +77,20 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     if(activeRooms["[roomNumber]"])
         var/datum/turf_reservation/roomReservation = activeRooms["[roomNumber]"]
         do_sparks(3, FALSE, get_turf(user))
-        user.forceMove(locate(roomReservation.bottom_left_coords[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_coords[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_coords[3]))
+        user.forceMove(locate(roomReservation.bottom_left_turfs[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_turfs[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_turfs[3]))
         return TRUE
     return FALSE
 
 /obj/item/hilbertshotel/proc/tryStoredRoom(roomNumber, mob/user)
     if(storedRooms["[roomNumber]"])
-        var/datum/turf_reservation/roomReservation = SSmapping.RequestBlockReservation(hotelRoomTemp.width, hotelRoomTemp.height)
-        hotelRoomTempEmpty.load(locate(roomReservation.bottom_left_coords[1], roomReservation.bottom_left_coords[2], roomReservation.bottom_left_coords[3]))
+        var/datum/turf_reservation/roomReservation = SSmapping.request_turf_block_reservation(hotelRoomTemp.width, hotelRoomTemp.height)
+        hotelRoomTempEmpty.load(locate(roomReservation.bottom_left_turfs[1], roomReservation.bottom_left_turfs[2], roomReservation.bottom_left_turfs[3]))
         var/turfNumber = 1
         for(var/i=0, i<hotelRoomTemp.width, i++)
             for(var/j=0, j<hotelRoomTemp.height, j++)
                 for(var/atom/movable/A in storedRooms["[roomNumber]"][turfNumber])
                     if(istype(A.loc, /obj/item/abstracthotelstorage))//Don't want to recall something thats been moved
-                        A.forceMove(locate(roomReservation.bottom_left_coords[1] + i, roomReservation.bottom_left_coords[2] + j, roomReservation.bottom_left_coords[3]))
+                        A.forceMove(locate(roomReservation.bottom_left_turfs[1] + i, roomReservation.bottom_left_turfs[2] + j, roomReservation.bottom_left_turfs[3]))
                 turfNumber++
         for(var/obj/item/abstracthotelstorage/S in storageTurf)
             if((S.roomNumber == roomNumber) && (S.parentSphere == src))
@@ -99,27 +99,27 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
         activeRooms["[roomNumber]"] = roomReservation
         linkTurfs(roomReservation, roomNumber)
         do_sparks(3, FALSE, get_turf(user))
-        user.forceMove(locate(roomReservation.bottom_left_coords[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_coords[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_coords[3]))
+        user.forceMove(locate(roomReservation.bottom_left_turfs[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_turfs[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_turfs[3]))
         return TRUE
     return FALSE
 
 /obj/item/hilbertshotel/proc/sendToNewRoom(roomNumber, mob/user)
-    var/datum/turf_reservation/roomReservation = SSmapping.RequestBlockReservation(hotelRoomTemp.width, hotelRoomTemp.height)
+    var/datum/turf_reservation/roomReservation = SSmapping.request_turf_block_reservation(hotelRoomTemp.width, hotelRoomTemp.height)
     if(ruinSpawned)
         mysteryRoom = GLOB.hhmysteryRoomNumber
         if(roomNumber == mysteryRoom)
-            hotelRoomTempLore.load(locate(roomReservation.bottom_left_coords[1], roomReservation.bottom_left_coords[2], roomReservation.bottom_left_coords[3]))
+            hotelRoomTempLore.load(locate(roomReservation.bottom_left_turfs[1], roomReservation.bottom_left_turfs[2], roomReservation.bottom_left_turfs[3]))
         else
-            hotelRoomTemp.load(locate(roomReservation.bottom_left_coords[1], roomReservation.bottom_left_coords[2], roomReservation.bottom_left_coords[3]))
+            hotelRoomTemp.load(locate(roomReservation.bottom_left_turfs[1], roomReservation.bottom_left_turfs[2], roomReservation.bottom_left_turfs[3]))
     else
-        hotelRoomTemp.load(locate(roomReservation.bottom_left_coords[1], roomReservation.bottom_left_coords[2], roomReservation.bottom_left_coords[3]))
+        hotelRoomTemp.load(locate(roomReservation.bottom_left_turfs[1], roomReservation.bottom_left_turfs[2], roomReservation.bottom_left_turfs[3]))
     activeRooms["[roomNumber]"] = roomReservation
     linkTurfs(roomReservation, roomNumber)
     do_sparks(3, FALSE, get_turf(user))
-    user.forceMove(locate(roomReservation.bottom_left_coords[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_coords[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_coords[3]))
+    user.forceMove(locate(roomReservation.bottom_left_turfs[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_turfs[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_turfs[3]))
 
 /obj/item/hilbertshotel/proc/linkTurfs(datum/turf_reservation/currentReservation, currentRoomnumber)
-    var/area/hilbertshotel/currentArea = get_area(locate(currentReservation.bottom_left_coords[1], currentReservation.bottom_left_coords[2], currentReservation.bottom_left_coords[3]))
+    var/area/hilbertshotel/currentArea = get_area(locate(currentReservation.bottom_left_turfs[1], currentReservation.bottom_left_turfs[2], currentReservation.bottom_left_turfs[3]))
     currentArea.name = "Hilbert's Hotel Room [currentRoomnumber]"
     currentArea.parentSphere = src
     currentArea.storageTurf = storageTurf
@@ -137,7 +137,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
             var/datum/turf_reservation/room = activeRooms[x]
             for(var/i=0, i<hotelRoomTemp.width, i++)
                 for(var/j=0, j<hotelRoomTemp.height, j++)
-                    for(var/atom/movable/A in locate(room.bottom_left_coords[1] + i, room.bottom_left_coords[2] + j, room.bottom_left_coords[3]))
+                    for(var/atom/movable/A in locate(room.bottom_left_turfs[1] + i, room.bottom_left_turfs[2] + j, room.bottom_left_turfs[3]))
                         if(ismob(A))
                             var/mob/M = A
                             if(M.mind)
@@ -356,7 +356,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
                 storeRoom()
 
 /area/hilbertshotel/proc/storeRoom()
-    var/roomSize = (reservation.top_right_coords[1]-reservation.bottom_left_coords[1]+1)*(reservation.top_right_coords[2]-reservation.bottom_left_coords[2]+1)
+    var/roomSize = (reservation.top_right_turfs[1]-reservation.bottom_left_turfs[1]+1)*(reservation.top_right_turfs[2]-reservation.bottom_left_turfs[2]+1)
     var/storage[roomSize]
     var/turfNumber = 1
     var/obj/item/abstracthotelstorage/storageObj = new(storageTurf)
@@ -366,7 +366,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     for(var/i=0, i<parentSphere.hotelRoomTemp.width, i++)
         for(var/j=0, j<parentSphere.hotelRoomTemp.height, j++)
             var/list/turfContents = list()
-            for(var/atom/movable/A in locate(reservation.bottom_left_coords[1] + i, reservation.bottom_left_coords[2] + j, reservation.bottom_left_coords[3]))
+            for(var/atom/movable/A in locate(reservation.bottom_left_turfs[1] + i, reservation.bottom_left_turfs[2] + j, reservation.bottom_left_turfs[3]))
                 if(ismob(A) && !isliving(A))
                     continue //Don't want to store ghosts
                 turfContents += A

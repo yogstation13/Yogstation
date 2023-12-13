@@ -19,7 +19,12 @@
 	var/floor_variance = 20 //probability floor has a different icon state
 	attachment_holes = FALSE
 	var/obj/item/stack/digResult = /obj/item/stack/ore/glass/basalt
-	var/dug
+	var/dug = FALSE
+
+/turf/open/floor/plating/asteroid/broken_states()
+	if(initial(dug))
+		return list(icon_state)
+	return list("[base_icon_state]_dug")
 
 /turf/open/floor/plating/asteroid/Initialize(mapload)
 	var/proper_name = name
@@ -35,6 +40,8 @@
 			icon_plating = "[environment_type]_dug"
 			icon_state = "[environment_type]_dug"
 	dug = TRUE
+	broken = TRUE
+	update_appearance()
 
 /turf/open/floor/plating/asteroid/proc/can_dig(mob/user)
 	if(!dug)
@@ -154,11 +161,13 @@
 	environment_type = "snow"
 	flags_1 = NONE
 	planetary_atmos = TRUE
-	burnt_states = list("snow_dug")
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
 	digResult = /obj/item/stack/sheet/mineral/snow
 	flammability = -5
+
+/turf/open/floor/plating/asteroid/snow/burnt_states()
+	return list("snow_dug")
 
 /turf/open/floor/plating/asteroid/snow/singularity_act()
 	. = ..() //take the wires n shit out
@@ -173,7 +182,7 @@
 		visible_message(span_danger("[src] melts away!."))
 		slowdown = 0
 		burnt = TRUE
-		icon_state = "snow_dug"
+		update_appearance()
 		return TRUE
 	return FALSE
 

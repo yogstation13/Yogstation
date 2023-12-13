@@ -123,9 +123,13 @@
 	name = "high-traction floor"
 	icon_state = "noslip"
 	floor_tile = /obj/item/stack/tile/noslip
-	broken_states = list("noslip-damaged1","noslip-damaged2","noslip-damaged3")
-	burnt_states = list("noslip-scorched1","noslip-scorched2")
 	slowdown = -0.3
+
+/turf/open/floor/noslip/broken_states()
+	return list("noslip-damaged1","noslip-damaged2","noslip-damaged3")
+
+/turf/open/floor/noslip/burnt_states()
+	return list("noslip-scorched1","noslip-scorched2")
 
 /turf/open/floor/noslip/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
 	return
@@ -313,7 +317,9 @@
 	desc = "This one takes you back."
 	icon_state = "eighties"
 	floor_tile = /obj/item/stack/tile/eighties
-	broken_states = list("eighties_damaged")
+
+/turf/open/floor/eighties/broken_states()
+	return list("eighties_damaged")
 
 /turf/open/floor/eighties/broken
 	icon_state = "eighties_damaged"

@@ -63,14 +63,23 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/lockdown = FALSE	//disallow transit after nuke goes off
 
+	/// The currently selected shuttle map_template in the shuttle manipulator's template viewer.
 	var/datum/map_template/shuttle/selected
-
+	/// The existing shuttle associated with the selected shuttle map_template.
 	var/obj/docking_port/mobile/existing_shuttle
 
-	var/obj/docking_port/mobile/preview_shuttle
+	/// The shuttle map_template of the shuttle we want to preview.
 	var/datum/map_template/shuttle/preview_template
+	/// The docking port associated to the preview_template that's currently being previewed.
+	var/obj/docking_port/mobile/preview_shuttle
 
+	/// The turf reservation for the current previewed shuttle.
 	var/datum/turf_reservation/preview_reservation
+
+	/// Are we currently in the process of loading a shuttle? Useful to ensure we don't load more than one at once, to avoid weird inconsistencies and possible runtimes.
+	var/shuttle_loading
+	/// Did the supermatter start a cascade event?
+	var/supermatter_cascade = FALSE
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	ordernum = rand(1, 9000)
@@ -497,12 +506,18 @@ SUBSYSTEM_DEF(shuttle)
 		if(WEST)
 			transit_path = /turf/open/space/transit/west
 
-	var/datum/turf_reservation/proposal = SSmapping.RequestBlockReservation(transit_width, transit_height, null, /datum/turf_reservation/transit, transit_path)
+	var/datum/turf_reservation/proposal = SSmapping.request_turf_block_reservation(
+		transit_width,
+		transit_height,
+		1,
+		reservation_type = /datum/turf_reservation/transit,
+		turf_type_override = transit_path,
+	)
 
 	if(!istype(proposal))
 		return FALSE
 
-	var/turf/bottomleft = locate(proposal.bottom_left_coords[1], proposal.bottom_left_coords[2], proposal.bottom_left_coords[3])
+	var/turf/bottomleft = proposal.bottom_left_turfs[1]
 	// Then create a transit docking port in the middle
 	var/coords = M.return_coords(0, 0, dock_dir)
 	/*  0------2
@@ -686,8 +701,15 @@ SUBSYSTEM_DEF(shuttle)
 
 	QDEL_LIST(remove_images)
 
-
-/datum/controller/subsystem/shuttle/proc/action_load(datum/map_template/shuttle/loading_template, obj/docking_port/stationary/destination_port)
+/**
+ * Loads a shuttle template and sends it to a given destination port, optionally replacing the existing shuttle
+ *
+ * Arguments:
+ * * loading_template - The shuttle template to load
+ * * destination_port - The station docking port to send the shuttle to once loaded
+ * * replace - Whether to replace the shuttle or create a new one
+*/
+/datum/controller/subsystem/shuttle/proc/action_load(datum/map_template/shuttle/loading_template, obj/docking_port/stationary/destination_port, replace = FALSE)
 	// Check for an existing preview
 	if(preview_shuttle && (loading_template != preview_template))
 		preview_shuttle.jumpToNullSpace()
@@ -748,16 +770,28 @@ SUBSYSTEM_DEF(shuttle)
 	selected = null
 	QDEL_NULL(preview_reservation)
 
-/datum/controller/subsystem/shuttle/proc/load_template(datum/map_template/shuttle/S)
+/**
+ * Loads a shuttle template into the transit Z level, usually referred to elsewhere in the code as a shuttle preview.
+ * Does not register the shuttle so it can't be used yet, that's handled in action_load()
+ *
+ * Arguments:
+ * * loading_template - The shuttle template to load
+ */
+/datum/controller/subsystem/shuttle/proc/load_template(datum/map_template/shuttle/loading_template)
 	. = FALSE
-	// load shuttle template, centred at shuttle import landmark,
-	preview_reservation = SSmapping.RequestBlockReservation(S.width, S.height, SSmapping.transit.z_value, /datum/turf_reservation/transit)
+	// Load shuttle template to a fresh block reservation.
+	preview_reservation = SSmapping.request_turf_block_reservation(
+		loading_template.width,
+		loading_template.height,
+		1,
+		reservation_type = /datum/turf_reservation/transit,
+	)
 	if(!preview_reservation)
 		CRASH("failed to reserve an area for shuttle template loading")
-	var/turf/BL = TURF_FROM_COORDS_LIST(preview_reservation.bottom_left_coords)
-	S.load(BL, centered = FALSE, register = FALSE)
+	var/turf/bottom_left = preview_reservation.bottom_left_turfs[1]
+	loading_template.load(bottom_left, centered = FALSE, register = FALSE)
 
-	var/affected = S.get_affected_turfs(BL, centered=FALSE)
+	var/affected = loading_template.get_affected_turfs(bottom_left, centered=FALSE)
 
 	var/found = 0
 	// Search the turfs for docking ports
@@ -765,34 +799,39 @@ SUBSYSTEM_DEF(shuttle)
 	//   the shuttle.
 	// - We need to check that no additional ports have slipped in from the
 	//   template, because that causes unintended behaviour.
-	for(var/T in affected)
-		for(var/obj/docking_port/P in T)
-			if(istype(P, /obj/docking_port/mobile))
+	for(var/affected_turfs in affected)
+		for(var/obj/docking_port/port in affected_turfs)
+			if(istype(port, /obj/docking_port/mobile))
 				found++
 				if(found > 1)
-					qdel(P, force=TRUE)
-					log_world("Map warning: Shuttle Template [S.mappath] has multiple mobile docking ports.")
+					qdel(port, force=TRUE)
+					log_mapping("Shuttle Template [loading_template.mappath] has multiple mobile docking ports.")
 				else
-					preview_shuttle = P
-			if(istype(P, /obj/docking_port/stationary))
-				log_world("Map warning: Shuttle Template [S.mappath] has a stationary docking port.")
+					preview_shuttle = port
+			if(istype(port, /obj/docking_port/stationary))
+				log_mapping("Shuttle Template [loading_template.mappath] has a stationary docking port.")
 	if(!found)
-		var/msg = "load_template(): Shuttle Template [S.mappath] has no mobile docking port. Aborting import."
-		for(var/T in affected)
-			var/turf/T0 = T
+		var/msg = "load_template(): Shuttle Template [loading_template.mappath] has no mobile docking port. Aborting import."
+		for(var/affected_turfs in affected)
+			var/turf/T0 = affected_turfs
 			T0.empty()
 
 		message_admins(msg)
 		WARNING(msg)
 		return
 	//Everything fine
-	S.post_load(preview_shuttle)
+	loading_template.post_load(preview_shuttle)
 	return TRUE
 
+/**
+ * Removes the preview_shuttle from the transit Z-level
+ */
 /datum/controller/subsystem/shuttle/proc/unload_preview()
 	if(preview_shuttle)
 		preview_shuttle.jumpToNullSpace()
 	preview_shuttle = null
+	if(preview_reservation)
+		QDEL_NULL(preview_reservation)
 
 /datum/controller/subsystem/shuttle/ui_state(mob/user)
 	return GLOB.admin_state

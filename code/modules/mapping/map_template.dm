@@ -8,6 +8,8 @@
 	var/keep_cached_map = FALSE
 
 /datum/map_template/New(path = null, rename = null, cache = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
 	if(path)
 		mappath = path
 	if(mappath)
@@ -77,8 +79,10 @@
 	SSatoms.InitializeAtoms(areas + turfs + movables)
 
 	for(var/turf/unlit as anything in turfs)
+		if(unlit.space_lit)
+			continue
 		var/area/loc_area = unlit.loc
-		if(!IS_DYNAMIC_LIGHTING(loc_area))
+		if(!loc_area.static_lighting)
 			continue
 		unlit.lighting_build_overlay()
 
@@ -110,7 +114,7 @@
 	var/y = round((world.maxy - height)/2)
 
 	var/datum/space_level/level = SSmapping.add_new_zlevel(name, secret ? ZTRAITS_AWAY_SECRET : ZTRAITS_AWAY, contain_turfs = FALSE)
-	var/datum/parsed_map/parsed = load_map(file(mappath), x, y, level.z_value, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE, new_z = TRUE)
+	var/datum/parsed_map/parsed = load_map(file(mappath), x, y, level.z_value, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), place_on_top=TRUE, new_z = TRUE)
 	var/list/bounds = parsed.bounds
 	if(!bounds)
 		return FALSE
@@ -137,7 +141,7 @@
 	// ruins clogging up memory for the whole round.
 	var/datum/parsed_map/parsed = cached_map || new(file(mappath))
 	cached_map = keep_cached_map ? parsed : null
-	if(!parsed.load(T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE))
+	if(!parsed.load(T.x, T.y, T.z, crop_map = TRUE, no_changeturf = (SSatoms.initialized == INITIALIZATION_INSSATOMS), place_on_top = TRUE))
 		return
 	var/list/bounds = parsed.bounds
 	if(!bounds)

@@ -1,7 +1,7 @@
 /obj/structure/grille
 	desc = "A flimsy framework of metal rods."
 	name = "grille"
-	icon = 'icons/obj/smooth_structures/grille.dmi'
+	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
@@ -32,12 +32,12 @@
 
 	if(broken)
 		holes = (holes | 16) //16 is the biggest hole
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return
 
 	holes = (holes | (1 << rand(0,3))) //add random holes between 1 and 8
 
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/structure/grille/update_appearance(updates)
 	if(QDELETED(src) || broken)

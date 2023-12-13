@@ -107,13 +107,27 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/Initialize(timeofday)
 	HACK_LoadMapConfig()
 	if(initialized)
-		return
+		return SS_INIT_SUCCESS
 	if(config.defaulted)
 		var/old_config = config
 		config = global.config.defaultmap
 		if(!config || config.defaulted)
 			to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting to Box Station"))
 			config = old_config
+	plane_offset_to_true = list()
+	true_to_offset_planes = list()
+	plane_to_offset = list()
+	// VERY special cases for FLOAT_PLANE, so it will be treated as expected by plane management logic
+	// Sorry :(
+	plane_offset_to_true["[FLOAT_PLANE]"] = FLOAT_PLANE
+	true_to_offset_planes["[FLOAT_PLANE]"] = list(FLOAT_PLANE)
+	plane_to_offset["[FLOAT_PLANE]"] = 0
+	plane_offset_blacklist = list()
+	// You aren't allowed to offset a floatplane that'll just fuck it all up
+	plane_offset_blacklist["[FLOAT_PLANE]"] = TRUE
+	render_offset_blacklist = list()
+	critical_planes = list()
+	create_plane_offsets(0, 0)
 	loadWorld()
 	require_area_resort()
 	process_teleport_locs()			//Sets up the wizard teleport locations
@@ -587,27 +601,40 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		GLOB.the_gateway.awaygate = new_gate
 		GLOB.the_gateway.wait = world.time
 
-/datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
-	UNTIL(initialized && !clearing_reserved_turfs)
-	var/datum/turf_reservation/reserve = new type
-	if(turf_type_override)
+/// Adds a new reservation z level. A bit of space that can be handed out on request
+/// Of note, reservations default to transit turfs, to make their most common use, shuttles, faster
+/datum/controller/subsystem/mapping/proc/add_reservation_zlevel(for_shuttles)
+	num_of_res_levels++
+	return add_new_zlevel("Transit/Reserved #[num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
+
+/// Requests a /datum/turf_reservation based on the given width, height, and z_size. You can specify a z_reservation to use a specific z level, or leave it null to use any z level.
+/datum/controller/subsystem/mapping/proc/request_turf_block_reservation(
+	width,
+	height,
+	z_size = 1,
+	z_reservation = null,
+	reservation_type = /datum/turf_reservation,
+	turf_type_override = null,
+)
+	UNTIL((!z_reservation || reservation_ready["[z_reservation]"]) && !clearing_reserved_turfs)
+	var/datum/turf_reservation/reserve = new reservation_type
+	if(!isnull(turf_type_override))
 		reserve.turf_type = turf_type_override
-	if(!z)
+	if(!z_reservation)
 		for(var/i in levels_by_trait(ZTRAIT_RESERVED))
-			if(reserve.Reserve(width, height, i))
+			if(reserve.reserve(width, height, z_size, i))
 				return reserve
 		//If we didn't return at this point, theres a good chance we ran out of room on the exisiting reserved z levels, so lets try a new one
-		num_of_res_levels += 1
-		var/datum/space_level/newReserved = add_new_zlevel("Transit/Reserved [num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
+		var/datum/space_level/newReserved = add_reservation_zlevel()
 		initialize_reserved_level(newReserved.z_value)
-		if(reserve.Reserve(width, height, newReserved.z_value))
+		if(reserve.reserve(width, height, z_size, newReserved.z_value))
 			return reserve
 	else
-		if(!level_trait(z, ZTRAIT_RESERVED))
+		if(!level_trait(z_reservation, ZTRAIT_RESERVED))
 			qdel(reserve)
 			return
 		else
-			if(reserve.Reserve(width, height, z))
+			if(reserve.reserve(width, height, z_size, z_reservation))
 				return reserve
 	QDEL_NULL(reserve)
 
@@ -787,6 +814,31 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 				true_to_offset_planes[string_real] = list()
 
 			true_to_offset_planes[string_real] |= offset_plane
+
+/datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
+	RETURN_TYPE(/datum/turf_reservation)
+
+	UNTIL(initialized)
+	var/static/lazy_loading = FALSE
+	UNTIL(!lazy_loading)
+
+	lazy_loading = TRUE
+	. = _lazy_load_template(template_key, force)
+	lazy_loading = FALSE
+	return .
+
+/datum/controller/subsystem/mapping/proc/_lazy_load_template(template_key, force = FALSE)
+	PRIVATE_PROC(TRUE)
+
+	if(LAZYACCESS(loaded_lazy_templates, template_key)  && !force)
+		var/datum/lazy_template/template = GLOB.lazy_templates[template_key]
+		return template.reservations[1]
+	LAZYSET(loaded_lazy_templates, template_key, TRUE)
+
+	var/datum/lazy_template/target = GLOB.lazy_templates[template_key]
+	if(!target)
+		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
+	return target.lazy_load()
 
 /proc/generate_lighting_appearance_by_z(z_level)
 	if(length(GLOB.default_lighting_underlays_by_z) < z_level)

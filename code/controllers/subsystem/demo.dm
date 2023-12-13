@@ -456,7 +456,7 @@ SUBSYSTEM_DEF(demo)
 		return
 	if(!isobj(M) && !ismob(M))
 		return
-	if(M.gc_destroyed)
+	if(M.gc_destroyed || QDELETED(M))
 		return
 	if(!marked_new[M])
 		marked_dirty[M] = TRUE

@@ -120,6 +120,9 @@
 /// Successful, but don't print anything. Useful if subsystem was disabled.
 #define SS_INIT_NO_NEED 3
 
+/// Succesfully initialized, BUT do not announce it to players (generally to hide game mechanics it would otherwise spoil)
+#define SS_INIT_NO_MESSAGE 4
+
 //! ### SS initialization load orders
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
@@ -191,7 +194,7 @@
 #define FIRE_PRIORITY_THROWING		25
 #define FIRE_PRIORITY_SPACEDRIFT	30
 #define FIRE_PRIORITY_FIELDS		30
-#define FIRE_PRIORITY_SMOOTHING 35
+#define FIRE_PRIORITY_SMOOTHING 	35
 #define FIRE_PRIORITY_NETWORKS		40
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_ACID			40

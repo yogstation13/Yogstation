@@ -24,9 +24,6 @@
 	anchored = FALSE
 	base_state = "pflash"
 	density = TRUE
-	light_system = MOVABLE_LIGHT //Used as a flash here.
-	light_range = FLASH_LIGHT_RANGE
-	light_on = FALSE
 
 /obj/machinery/flasher/Initialize(mapload, ndir = 0, built = 0)
 	. = ..() // ..() is EXTREMELY IMPORTANT, never forget to add it

@@ -17,19 +17,16 @@
 
 
 /turf/open/floor/mineral/Initialize(mapload)
-	if(!broken_states)
-		broken_states = list("[initial(icon_state)]_dam")
 	. = ..()
 	icons = typelist("icons", icons)
 
+/turf/open/floor/mineral/broken_states()
+	return isnull(icon_state) ? list() : list("[initial(icon_state)]_dam")
 
 /turf/open/floor/mineral/update_icon_state()
-	. = ..()
-	if(!.)
-		return
-	if(!broken && !burnt)
-		if(!(icon_state in icons))
-			icon_state = initial(icon_state)
+	if(!broken && !burnt && !(icon_state in icons))
+		icon_state = initial(icon_state)
+	return ..()
 
 //PLASMA
 
@@ -95,7 +92,12 @@
 	icon_state = "titanium"
 	flags_1 = NO_RUST | CAN_BE_DIRTY_1
 	floor_tile = /obj/item/stack/tile/mineral/titanium
-	broken_states = list("titanium_dam1","titanium_dam2","titanium_dam3","titanium_dam4","titanium_dam5")
+
+/turf/open/floor/mineral/titanium/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/titanium/rust_heretic_act()
+	return // titanium does not rust
 
 /turf/open/floor/mineral/titanium/broken
 	icon_state = "titanium_dam1"
@@ -161,7 +163,9 @@
 	name = "shuttle floor"
 	icon_state = "plastitanium"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium
-	broken_states = list("plastitanium_dam1","plastitanium_dam2","plastitanium_dam3","plastitanium_dam4","plastitanium_dam5")
+
+/turf/open/floor/mineral/plastitanium/broken_states()
+	return list("plastitanium_dam1","plastitanium_dam2","plastitanium_dam3","plastitanium_dam4","plastitanium_dam5")
 
 /turf/open/floor/mineral/plastitanium/broken
 	icon_state = "plastitanium_dam1"

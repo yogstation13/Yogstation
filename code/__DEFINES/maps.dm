@@ -142,3 +142,6 @@ require only minor tweaks.
 #define PLACE_ICE_UNDERGROUND_RUIN "iceunderground"
 ///boolean - does this z disable parallax?
 #define ZTRAIT_NOPARALLAX "No Parallax"
+
+/// A map key that corresponds to being one exclusively for Space.
+#define SPACE_KEY "space"

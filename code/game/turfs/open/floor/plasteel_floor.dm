@@ -1,8 +1,12 @@
 /turf/open/floor/plasteel
 	icon_state = "floor"
 	floor_tile = /obj/item/stack/tile/plasteel
-	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
-	burnt_states = list("floorscorched1", "floorscorched2")
+
+/turf/open/floor/plasteel/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/plasteel/broken_states()
+	return list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/plasteel/examine(mob/user)
 	. = ..()
@@ -13,13 +17,11 @@
 		new /obj/effect/glowing_rune(src)
 	ChangeTurf(/turf/open/floor/plating/rust)
 
-/turf/open/floor/plasteel/update_icon(updates=ALL)
-	. = ..()
-	if(!.)
-		return 0
-	if(!broken && !burnt)
-		icon = icon_regular_floor
-		icon_state = icon_state_regular_floor
+/turf/open/floor/plasteel/update_icon_state()
+	if(broken || burnt)
+		return ..()
+	icon_state = base_icon_state
+	return ..()
 
 /turf/open/floor/plasteel/broken
 	icon_state = "damaged1"
@@ -192,8 +194,10 @@ turf/open/floor/plasteel/airless/solarpanel
 
 /turf/open/floor/plasteel/cult
 	icon_state = "cult"
-	broken_states = list("damage1", "damage2", "damage3", "damage4", "damage5")
 	name = "engraved floor"
+
+/turf/open/floor/plasteel/cult/broken_states()
+	return list("damage1", "damage2", "damage3", "damage4", "damage5")
 
 /turf/open/floor/plasteel/cult/broken
 	icon_state = "damage1"

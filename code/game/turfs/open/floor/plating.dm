@@ -24,6 +24,12 @@
 
 	var/attachment_holes = TRUE
 
+/turf/open/floor/plating/broken_states()
+	return list("damaged1", "damaged2", "damaged4")
+
+/turf/open/floor/plating/burnt_states()
+	return list("floorscorched1", "floorscorched2")
+
 /turf/open/floor/plating/examine(mob/user)
 	. = ..()
 	if(broken || burnt)
@@ -33,24 +39,6 @@
 		. += span_notice("There are a few attachment holes for a new <i>tile</i>, reinforcement <i>sheets</i> or catwalk <i>rods</i>.")
 	else
 		. += span_notice("You might be able to build ontop of it with some <i>tiles</i>...")
-
-/turf/open/floor/plating/Initialize(mapload)
-	if (!broken_states)
-		broken_states = list("platingdmg1", "platingdmg2", "platingdmg3")
-	if (!burnt_states)
-		burnt_states = list("panelscorched")
-	. = ..()
-	if(!attachment_holes || (!broken && !burnt))
-		icon_plating = icon_state
-	else
-		icon_plating = initial(icon_state)
-
-/turf/open/floor/plating/update_icon_state()
-	. = ..()
-	if(!.)
-		return
-	if(!broken && !burnt)
-		icon_state = icon_plating //Because asteroids are 'platings' too.
 
 /turf/open/floor/plating/attackby(obj/item/C, mob/user, params)
 	if(..())

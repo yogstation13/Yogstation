@@ -10,11 +10,8 @@ again.
 
 /obj/effect/spawner/structure/Initialize(mapload)
 	. = ..()
-	if(spawn_list && spawn_list.len)
-		for(var/I in spawn_list)
-			new I(get_turf(src))
-	return INITIALIZE_HINT_QDEL
-
+	for(var/spawn_type in spawn_list)
+		new spawn_type(loc)
 
 //normal windows
 
@@ -27,6 +24,12 @@ again.
 	FASTDMM_PROP(\
 		pipe_astar_cost = 1\
 	)
+
+// /obj/effect/spawner/structure/window/Initialize(mapload)
+// 	. = ..()
+
+// 	var/turf/current_turf = loc
+// 	current_turf.rcd_memory = RCD_MEMORY_WINDOWGRILLE
 
 /obj/effect/spawner/structure/window/hollow
 	name = "hollow window spawner"

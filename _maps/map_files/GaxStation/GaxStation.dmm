@@ -578,7 +578,7 @@
 	req_access_txt = "45";
 	req_one_access_txt = null
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "anu" = (
 /obj/effect/turf_decal/loading_area{
@@ -1081,7 +1081,7 @@
 	icon_state = "2-4"
 	},
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "aCj" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -1856,7 +1856,7 @@
 	freerange = 1;
 	name = "Station Intercom (Command)"
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "aVt" = (
 /obj/effect/turf_decal/delivery,
@@ -4545,7 +4545,7 @@
 	pixel_y = 25;
 	req_access_txt = "57"
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "coA" = (
 /obj/structure/cable{
@@ -10041,7 +10041,7 @@
 	pixel_x = -6;
 	pixel_y = 4
 	},
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "eNI" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower{
@@ -10326,7 +10326,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "eVZ" = (
 /obj/machinery/light{
@@ -10423,7 +10423,7 @@
 "eYS" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/landmark/start/head_of_security,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "eZo" = (
 /obj/structure/chair/office/light,
@@ -10435,7 +10435,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "eZx" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -10785,7 +10785,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "fhN" = (
 /obj/structure/cable{
@@ -13322,7 +13322,7 @@
 	name = "Head of Personnel RC";
 	pixel_y = -32
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "gqR" = (
 /turf/open/floor/plating,
@@ -13780,7 +13780,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "gCt" = (
 /obj/structure/cable{
@@ -15192,7 +15192,7 @@
 	pixel_y = 28
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "hnH" = (
 /obj/docking_port/stationary{
@@ -15876,7 +15876,7 @@
 	pixel_x = 8;
 	pixel_y = 4
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "hBV" = (
 /obj/effect/turf_decal/siding/wideplating,
@@ -19009,7 +19009,7 @@
 	dir = 8;
 	pixel_x = 28
 	},
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "jls" = (
 /turf/open/floor/plasteel/white,
@@ -19487,7 +19487,7 @@
 /obj/structure/sign/plaques/ai_password{
 	pixel_x = 32
 	},
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "jyN" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
@@ -20711,7 +20711,7 @@
 /obj/item/storage/pencil_holder/crew/fancy{
 	pixel_y = 12
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "kdW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -21343,7 +21343,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/chief_engineer,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "kwC" = (
 /obj/machinery/light{
@@ -21891,7 +21891,7 @@
 /area/teleporter)
 "kJB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "kJZ" = (
 /obj/machinery/light/small,
@@ -22150,7 +22150,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "kTM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -27882,7 +27882,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "nHs" = (
 /obj/machinery/power/apc{
@@ -29752,7 +29752,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "oJl" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower{
@@ -30446,7 +30446,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = -28
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "pdz" = (
 /turf/closed/wall/r_wall,
@@ -32670,7 +32670,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/head_of_personnel,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "qdH" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
@@ -33047,7 +33047,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "qlG" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -35962,7 +35962,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "rHt" = (
 /obj/machinery/light{
@@ -41202,7 +41202,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "umn" = (
 /obj/machinery/door/airlock/engineering{
@@ -42289,7 +42289,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "uQR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -43986,7 +43986,7 @@
 	},
 /obj/effect/landmark/start/chief_medical_officer,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "vFH" = (
 /obj/machinery/rnd/server,
@@ -44190,7 +44190,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "vKU" = (
 /obj/structure/closet/secure_closet/bar{
@@ -45070,7 +45070,7 @@
 	icon_state = "1-4"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "whZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
@@ -46853,7 +46853,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "xbm" = (
 /obj/machinery/door/airlock/atmos{
@@ -47390,7 +47390,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/exoticpurple,
+/turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "xnH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{

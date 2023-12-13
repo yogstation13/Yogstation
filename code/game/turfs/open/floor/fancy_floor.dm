@@ -11,7 +11,6 @@
 	desc = "Stylish dark wood."
 	icon_state = "wood"
 	floor_tile = /obj/item/stack/tile/wood
-	broken_states = list("wood-broken", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW
@@ -19,6 +18,9 @@
 	tiled_dirt = FALSE
 	flags_1 = NO_RUST | CAN_BE_DIRTY_1
 	flammability = 3 // yikes, better put that out quick
+
+/turf/open/floor/wood/broken_states()
+	return list("wood-broken", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
 
 /turf/open/floor/wood/examine(mob/user)
 	. = ..()
@@ -66,17 +68,23 @@
 /turf/open/floor/wood/parquet
 	icon_state = "wood-parquet"
 	floor_tile = /obj/item/stack/tile/wood/parquet
-	broken_states = list("wood-parquet-broken", "wood-parquet-broken2", "wood-parquet-broken3", "wood-parquet-broken4", "wood-parquet-broken5", "wood-parquet-broken6", "wood-parquet-broken7")
+
+/turf/open/floor/wood/parquet/broken_states()
+	return list("wood-parquet-broken", "wood-parquet-broken2", "wood-parquet-broken3", "wood-parquet-broken4", "wood-parquet-broken5", "wood-parquet-broken6", "wood-parquet-broken7")
 
 /turf/open/floor/wood/tile
 	icon_state = "wood-tile"
 	floor_tile = /obj/item/stack/tile/wood/tile
-	broken_states = list("wood-tile-broken", "wood-tile-broken2", "wood-tile-broken3")
+
+/turf/open/floor/wood/tile/broken_states()
+	return list("wood-tile-broken", "wood-tile-broken2", "wood-tile-broken3")
 
 /turf/open/floor/wood/large
 	icon_state = "wood-large"
 	floor_tile = /obj/item/stack/tile/wood/large
-	broken_states = list("wood-large-broken", "wood-large-broken2", "wood-large-broken3")
+
+/turf/open/floor/wood/large/broken_states()
+	return list("wood-tile-broken", "wood-tile-broken2", "wood-tile-broken3")
 
 /turf/open/floor/wood/cold
 	initial_gas_mix = KITCHEN_COLDROOM_ATMOS
@@ -222,7 +230,6 @@
 	icon = 'icons/turf/floors/bamboo_mat.dmi'
 	icon_state = "bamboo"
 	floor_tile = /obj/item/stack/tile/bamboo
-	broken_states = list("damaged")
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_BAMBOO_FLOOR
 	canSmoothWith = SMOOTH_GROUP_BAMBOO_FLOOR
@@ -233,6 +240,9 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 
+/turf/open/floor/bamboo/broken_states()
+	return list("bamboodamaged")
+
 /turf/open/floor/bamboo/broken
 	icon_state = "damaged"
 	broken = TRUE
@@ -242,7 +252,6 @@
 	desc = "You can't tell if this is real grass or just cheap plastic imitation."
 	icon_state = "grass1"
 	floor_tile = /obj/item/stack/tile/grass
-	broken_states = list("sand")
 	flags_1 = NONE
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_GRASS
@@ -254,11 +263,14 @@
 	tiled_dirt = FALSE
 	flammability = 2 // california simulator
 
+/turf/open/floor/grass/broken_states()
+	return list("sand")
+
 /turf/open/floor/grass/Initialize(mapload)
 	. = ..()
 	if(src.type == /turf/open/floor/grass) //don't want grass subtypes getting the icon state,
 		icon_state = "grass[rand(1,4)]"
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /turf/open/floor/grass/attackby(obj/item/C, mob/user, params)
 	if((C.tool_behaviour == TOOL_SHOVEL) && params)
@@ -337,8 +349,8 @@
 	desc = "Soft velvet carpeting. Feels good between your toes."
 	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet-255"
+	base_icon_state = "carpet"
 	floor_tile = /obj/item/stack/tile/carpet
-	broken_states = list("damaged")
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET
 	canSmoothWith = SMOOTH_GROUP_CARPET
@@ -357,7 +369,7 @@
 
 /turf/open/floor/carpet/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /turf/open/floor/carpet/update_icon(updates=ALL)
 	. = ..()
@@ -371,9 +383,6 @@
 		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 			QUEUE_SMOOTH_NEIGHBORS(src)
 
-/turf/open/floor/carpet/broken
-	icon_state = "damaged"
-	broken = TRUE
 
 /turf/open/floor/carpet/black
 	icon = 'icons/turf/floors/carpet_black.dmi'
@@ -383,21 +392,13 @@
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_BLACK
 	canSmoothWith = SMOOTH_GROUP_CARPET_BLACK
 
-/turf/open/floor/carpet/black/broken
-	icon_state = "damaged"
-	broken = TRUE
-
-/turf/open/floor/carpet/exoticblue
-	icon = 'icons/turf/floors/carpet_exoticblue.dmi'
+/turf/open/floor/carpet/blue
+	icon = 'icons/turf/floors/carpet_blue.dmi'
 	icon_state = "carpet_blue-255"
 	base_icon_state = "carpet_blue"
-	floor_tile = /obj/item/stack/tile/carpet/exoticblue
+	floor_tile = /obj/item/stack/tile/carpet/blue
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_BLUE
 	canSmoothWith = SMOOTH_GROUP_CARPET_BLUE
-
-/turf/open/floor/carpet/exoticblue/broken
-	icon_state = "damaged"
-	broken = TRUE
 
 /turf/open/floor/carpet/cyan
 	icon = 'icons/turf/floors/carpet_cyan.dmi'
@@ -407,21 +408,13 @@
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_CYAN
 	canSmoothWith = SMOOTH_GROUP_CARPET_CYAN
 
-/turf/open/floor/carpet/cyan/broken
-	icon_state = "damaged"
-	broken = TRUE
-
-/turf/open/floor/carpet/exoticgreen
-	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
+/turf/open/floor/carpet/green
+	icon = 'icons/turf/floors/carpet_green.dmi'
 	icon_state = "carpet_green-255"
 	base_icon_state = "carpet_green"
-	floor_tile = /obj/item/stack/tile/carpet/exoticgreen
+	floor_tile = /obj/item/stack/tile/carpet/green
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_GREEN
 	canSmoothWith = SMOOTH_GROUP_CARPET_GREEN
-
-/turf/open/floor/carpet/exoticgreen/broken
-	icon_state = "damaged"
-	broken = TRUE
 
 /turf/open/floor/carpet/orange
 	icon = 'icons/turf/floors/carpet_orange.dmi'
@@ -431,21 +424,13 @@
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ORANGE
 	canSmoothWith = SMOOTH_GROUP_CARPET_ORANGE
 
-/turf/open/floor/carpet/orange/broken
-	icon_state = "damaged"
-	broken = TRUE
-
-/turf/open/floor/carpet/exoticpurple
-	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
+/turf/open/floor/carpet/purple
+	icon = 'icons/turf/floors/carpet_purple.dmi'
 	icon_state = "carpet_purple-255"
 	base_icon_state = "carpet_purple"
-	floor_tile = /obj/item/stack/tile/carpet/exoticpurple
+	floor_tile = /obj/item/stack/tile/carpet/purple
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_PURPLE
 	canSmoothWith = SMOOTH_GROUP_CARPET_PURPLE
-
-/turf/open/floor/carpet/exoticpurple/broken
-	icon_state = "damaged"
-	broken = TRUE
 
 /turf/open/floor/carpet/red
 	icon = 'icons/turf/floors/carpet_red.dmi'
@@ -455,10 +440,6 @@
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_RED
 	canSmoothWith = SMOOTH_GROUP_CARPET_RED
 
-/turf/open/floor/carpet/red/broken
-	icon_state = "damaged"
-	broken = TRUE
-
 /turf/open/floor/carpet/royalblack
 	icon = 'icons/turf/floors/carpet_royalblack.dmi'
 	icon_state = "carpet_royalblack-255"
@@ -466,10 +447,6 @@
 	floor_tile = /obj/item/stack/tile/carpet/royalblack
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ROYAL_BLACK
 	canSmoothWith = SMOOTH_GROUP_CARPET_ROYAL_BLACK
-
-/turf/open/floor/carpet/royalblack/broken
-	icon_state = "damaged"
-	broken = TRUE
 
 /turf/open/floor/carpet/royalblue
 	icon = 'icons/turf/floors/carpet_royalblue.dmi'
@@ -479,9 +456,32 @@
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_ROYAL_BLUE
 	canSmoothWith = SMOOTH_GROUP_CARPET_ROYAL_BLUE
 
-/turf/open/floor/carpet/royalblue/broken
-	icon_state = "damaged"
-	broken = TRUE
+/turf/open/floor/carpet/executive
+	name = "executive carpet"
+	icon = 'icons/turf/floors/carpet_executive.dmi'
+	icon_state = "executive_carpet-255"
+	base_icon_state = "executive_carpet"
+	floor_tile = /obj/item/stack/tile/carpet/executive
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_EXECUTIVE
+	canSmoothWith = SMOOTH_GROUP_CARPET_EXECUTIVE
+
+/turf/open/floor/carpet/stellar
+	name = "stellar carpet"
+	icon = 'icons/turf/floors/carpet_stellar.dmi'
+	icon_state = "stellar_carpet-255"
+	base_icon_state = "stellar_carpet"
+	floor_tile = /obj/item/stack/tile/carpet/stellar
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_STELLAR
+	canSmoothWith = SMOOTH_GROUP_CARPET_STELLAR
+
+/turf/open/floor/carpet/donk
+	name = "Donk Co. carpet"
+	icon = 'icons/turf/floors/carpet_donk.dmi'
+	icon_state = "donk_carpet-255"
+	base_icon_state = "donk_carpet"
+	floor_tile = /obj/item/stack/tile/carpet/donk
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_DONK
+	canSmoothWith = SMOOTH_GROUP_CARPET_DONK
 
 /turf/open/floor/carpet/narsie_act(force, ignore_mobs, probability = 20)
 	. = (prob(probability) || force)
@@ -494,11 +494,11 @@
 
 /turf/open/floor/carpet/break_tile()
 	broken = TRUE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /turf/open/floor/carpet/burn_tile()
 	burnt = TRUE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /turf/open/floor/carpet/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	return FALSE
@@ -523,16 +523,13 @@
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
 	floor_tile = /obj/item/stack/tile/fakespace
-	broken_states = list("damaged")
 	plane = PLANE_SPACE
 	tiled_dirt = FALSE
+	damaged_dmi = 'icons/turf/space.dmi'
 
-/turf/open/floor/fakespace/Initialize(mapload)
-	. = ..()
-	icon_state = SPACE_ICON_STATE
+/turf/open/floor/fakespace/broken_states()
+	return list("damaged")
 
 /turf/open/floor/fakespace/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	underlay_appearance.icon = 'icons/turf/space.dmi'
-	underlay_appearance.icon_state = SPACE_ICON_STATE
-	underlay_appearance.plane = PLANE_SPACE
+	generate_space_underlay(underlay_appearance, asking_turf)
 	return TRUE

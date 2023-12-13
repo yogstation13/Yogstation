@@ -49,35 +49,6 @@
 				. += S.z_value
 				break
 
-/// Calculates the effective bounds information for the given turf. Returns a list of the information, or null if not applicable.
-/datum/turf_reservation/proc/calculate_turf_bounds_information(turf/target)
-	for(var/z_idx in 1 to z_size)
-		var/turf/bottom_left = bottom_left_turfs[z_idx]
-		var/turf/top_right = top_right_turfs[z_idx]
-		var/bl_x = bottom_left.x
-		var/bl_y = bottom_left.y
-		var/tr_x = top_right.x
-		var/tr_y = top_right.y
-
-		if(target.x < bl_x)
-			continue
-
-		if(target.y < bl_y)
-			continue
-
-		if(target.x > tr_x)
-			continue
-
-		if(target.y > tr_y)
-			continue
-
-		var/list/return_information = list()
-		return_information["z_idx"] = z_idx
-		return_information["offset_x"] = target.x - bl_x
-		return_information["offset_y"] = target.y - bl_y
-		return return_information
-	return null
-
 /// Gets the turf below the given target. Returns null if there is no turf below the target
 /datum/turf_reservation/proc/get_turf_below(turf/target)
 	var/list/bounds_info = calculate_turf_bounds_information(target)
