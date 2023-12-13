@@ -11,6 +11,7 @@
 	var/list/list_reagents = null
 	var/spawned_disease = null
 	var/disease_amount = 20
+	var/spillable = FALSE
 
 /obj/item/reagent_containers/Initialize(mapload, vol)
 	. = ..()

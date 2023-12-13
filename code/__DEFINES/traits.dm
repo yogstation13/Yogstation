@@ -515,3 +515,7 @@
 #define TRAIT_BYPASS_MEASURES "bypass_lagswitch_measures"
 /// This movable atom has the explosive block element
 #define TRAIT_BLOCKING_EXPLOSIVES "blocking_explosives"
+///Trait for dryable items
+#define TRAIT_DRYABLE "trait_dryable"
+///Trait for dried items
+#define TRAIT_DRIED "trait_dried"
