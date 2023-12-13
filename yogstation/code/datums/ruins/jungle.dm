@@ -116,14 +116,6 @@
 	always_place = TRUE
 	cost = 0
 
-/datum/map_template/ruin/jungle/all/tar_altar
-	name = "Tar altar"
-	id = "tar_altar"
-	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
-	suffix = "tar_altar.dmm"
-	always_place = TRUE
-	allow_duplicates = TRUE
-	cost = 5
 /datum/map_template/ruin/jungle/all/tar_temple1
 	name = "Tar temple 1"
 	id = "jungle-dying-tar-temple"

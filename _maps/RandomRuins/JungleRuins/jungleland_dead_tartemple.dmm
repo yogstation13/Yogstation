@@ -1,10 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/effect/decal/remains/human,
-/obj/item/twohanded/bonespear,
-/obj/item/clothing/head/helmet/shaman,
-/obj/item/tar_crystal,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
 "c" = (
 /obj/structure/bonfire/prelit,
@@ -15,9 +14,14 @@
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "e" = (
-/obj/structure/table/wood,
-/obj/item/twohanded/bamboospear,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"f" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
 "g" = (
 /obj/structure/table/wood,
@@ -54,6 +58,10 @@
 /mob/living/simple_animal/hostile/tar/amalgamation,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
+"o" = (
+/obj/item/ammo_casing/reusable/arrow/bamboo,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/ruin/unpowered/tar_temple)
 "q" = (
 /obj/structure/chair/wood{
 	dir = 4
@@ -62,6 +70,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/ruin/unpowered/tar_temple)
+"r" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
 "s" = (
 /obj/item/gun/ballistic/bow,
@@ -104,21 +118,29 @@
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "A" = (
-/obj/structure/stone_tile/slab,
-/obj/structure/stone_tile/slab/cracked,
+/obj/effect/decal/remains/human,
+/obj/item/clothing/head/helmet/shaman,
+/obj/item/tar_crystal,
+/obj/item/melee/spear/bamboospear,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/ruin/unpowered/tar_temple)
+"B" = (
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/simple_animal/hostile/tar/shade,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
 "C" = (
-/obj/structure/stone_tile/slab,
-/obj/structure/stone_tile/slab,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/ruin/unpowered/tar_temple)
-"E" = (
-/obj/structure/stone_tile/slab/cracked{
-	dir = 5
+/obj/structure/necropolis_gate{
+	name = "ancient gate"
 	},
-/obj/structure/stone_tile/slab,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"D" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
 "F" = (
 /obj/structure/chair/wood{
@@ -139,16 +161,16 @@
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
 "J" = (
-/obj/structure/stone_tile/slab/cracked{
-	dir = 6
-	},
+/obj/effect/decal/remains/human,
+/obj/item/storage/belt/quiver,
+/obj/item/ammo_casing/reusable/arrow/bamboo,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
 "K" = (
-/obj/structure/stone_tile/surrounding,
-/obj/effect/decal/cleanable/blood/old,
-/mob/living/simple_animal/hostile/tar/shade,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
 "L" = (
 /mob/living/simple_animal/hostile/tar/dryad,
@@ -169,34 +191,19 @@
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
 "P" = (
-/obj/structure/stone_tile/slab/cracked,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/obj/structure/tar_altar,
+/turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
 "Q" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
+/obj/structure/stone_tile/block{
 	dir = 1
 	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
 "R" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/obj/structure/table/wood,
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "S" = (
 /obj/structure/necropolis_gate{
@@ -205,13 +212,21 @@
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "T" = (
-/obj/effect/decal/remains/human,
-/obj/item/storage/belt/quiver,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/obj/structure/stone_tile/block,
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"U" = (
+/obj/structure/table/wood,
+/obj/item/melee/spear/bamboospear,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "V" = (
 /turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
+"W" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/ruin/unpowered/tar_temple)
 "X" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
@@ -357,7 +372,7 @@ Y
 Y
 Y
 Y
-e
+R
 w
 w
 w
@@ -437,7 +452,7 @@ i
 w
 Y
 Y
-e
+U
 w
 w
 O
@@ -603,9 +618,9 @@ Y
 w
 w
 z
-u
-I
-I
+z
+z
+z
 y
 I
 I
@@ -644,14 +659,8 @@ w
 w
 z
 z
-u
-O
-u
-O
-O
-O
-O
-O
+z
+N
 z
 O
 O
@@ -662,8 +671,14 @@ O
 O
 O
 O
-u
 O
+O
+O
+O
+O
+O
+u
+z
 z
 w
 Y
@@ -686,15 +701,15 @@ z
 u
 z
 z
-O
-O
-O
-O
-O
-O
 z
 z
-z
+O
+O
+O
+O
+O
+O
+O
 O
 O
 O
@@ -704,8 +719,8 @@ O
 O
 O
 u
-O
 z
+N
 w
 Y
 Y
@@ -728,24 +743,24 @@ O
 O
 z
 z
+z
+O
+O
+o
 O
 O
 O
 O
-z
-z
-N
-z
-z
+O
+O
+O
+O
+O
+O
+O
+O
 u
-Q
-O
-O
-O
-O
-O
-u
-O
+z
 z
 w
 c
@@ -772,21 +787,21 @@ z
 m
 O
 O
-O
-O
-z
-z
-z
-O
-O
-O
+u
+u
+u
+u
+u
+u
+u
+u
 O
 O
 O
 O
 O
 u
-O
+z
 z
 w
 w
@@ -812,23 +827,23 @@ O
 z
 z
 O
-t
+u
+W
 O
 O
 O
-z
 n
 O
 O
-O
-O
+W
+u
 O
 O
 h
 O
 u
 u
-O
+z
 z
 w
 Y
@@ -845,15 +860,15 @@ Y
 d
 w
 z
-O
+W
 O
 t
 u
 O
 z
+O
 u
-A
-u
+O
 O
 O
 O
@@ -863,7 +878,7 @@ O
 O
 O
 m
-O
+u
 O
 t
 O
@@ -893,9 +908,9 @@ O
 O
 z
 z
-O
-O
 u
+O
+O
 O
 L
 O
@@ -904,7 +919,7 @@ O
 O
 O
 O
-O
+u
 O
 O
 O
@@ -934,19 +949,19 @@ O
 O
 O
 z
+u
 O
 O
 O
-J
-O
-O
-O
+D
+K
+a
 n
 O
 O
 O
 O
-O
+u
 O
 O
 O
@@ -968,33 +983,33 @@ Y
 d
 w
 z
-a
+A
 z
 z
 u
 j
+u
+u
+O
+O
+O
+B
+Q
+P
+T
+O
+O
+O
+O
+O
+O
+u
+u
+u
+u
 u
 u
 C
-u
-u
-K
-u
-P
-u
-u
-u
-u
-u
-u
-u
-j
-u
-u
-u
-O
-O
-S
 Y
 Y
 Y
@@ -1016,19 +1031,19 @@ O
 O
 O
 z
-O
-O
-O
 u
 O
 O
 O
+r
+f
+e
 n
 O
 O
 O
 O
-O
+u
 O
 O
 O
@@ -1057,9 +1072,9 @@ O
 O
 z
 z
-O
-O
 u
+O
+O
 O
 L
 O
@@ -1068,7 +1083,7 @@ O
 O
 O
 O
-O
+u
 O
 O
 O
@@ -1091,25 +1106,25 @@ Y
 Y
 w
 z
-O
+W
 O
 O
 u
 O
 z
+O
 u
-E
+O
+O
+O
+O
+o
+O
+O
+O
+O
+O
 u
-O
-O
-O
-O
-O
-O
-h
-O
-O
-O
 O
 O
 O
@@ -1140,23 +1155,23 @@ O
 z
 z
 O
+u
+W
 O
 O
 O
-O
-z
 n
 O
 O
-O
-O
+W
+u
 O
 O
 O
 O
 u
 u
-O
+z
 z
 w
 Y
@@ -1182,21 +1197,21 @@ z
 O
 O
 O
-O
-O
-z
-z
-z
-O
-O
-O
+u
+u
+u
+u
+u
+u
+u
+u
 O
 O
 O
 O
 O
 u
-O
+z
 z
 w
 w
@@ -1220,24 +1235,24 @@ O
 O
 z
 z
-m
-O
-O
-O
 z
-z
-N
-z
-z
-P
-R
 O
 O
 O
-T
+O
+O
+O
+O
+O
+O
+O
+O
+O
+O
+J
 O
 u
-O
+z
 z
 w
 c
@@ -1260,15 +1275,15 @@ z
 u
 z
 z
-O
-O
-O
-O
-O
-O
 z
 z
-z
+O
+O
+O
+O
+O
+O
+O
 O
 t
 O
@@ -1278,8 +1293,8 @@ O
 O
 s
 u
-O
 z
+N
 w
 Y
 Y
@@ -1300,15 +1315,14 @@ w
 w
 z
 z
-u
-O
-u
+z
+N
+z
 h
 O
 O
 O
 O
-z
 O
 O
 O
@@ -1318,8 +1332,9 @@ O
 O
 O
 O
+o
 u
-O
+z
 z
 w
 Y
@@ -1341,9 +1356,9 @@ Y
 w
 w
 z
-u
-k
-k
+z
+z
+z
 v
 k
 k
@@ -1503,7 +1518,7 @@ i
 w
 Y
 Y
-e
+R
 w
 w
 O
@@ -1587,7 +1602,7 @@ Y
 Y
 Y
 Y
-e
+U
 w
 w
 w
