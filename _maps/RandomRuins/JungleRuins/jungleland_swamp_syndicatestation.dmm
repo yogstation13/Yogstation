@@ -635,6 +635,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
+"gw" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/item/clothing/head/fishing,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "gC" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -1642,6 +1649,9 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"pw" = (
+/turf/open/water/safe/jungle,
+/area/jungleland/toxic_pit)
 "pK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -1975,6 +1985,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/telecomms)
+"rW" = (
+/obj/structure/flytrap,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "sa" = (
 /obj/structure/dresser,
 /turf/open/floor/plasteel/grimy,
@@ -2676,12 +2690,6 @@
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
-"zR" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
-/area/jungleland/toxic_pit)
 "zY" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/incinerator_syndicatelava{
 	dir = 1
@@ -3912,6 +3920,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
+"JD" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "JG" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -4316,6 +4328,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
+"NZ" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "Oa" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -7736,11 +7752,11 @@ Fi
 Fi
 Fi
 PW
+rW
+NZ
+gw
 PW
-PW
-PW
-PW
-PW
+GR
 PW
 HA
 Fi
@@ -7798,10 +7814,10 @@ Fi
 Fi
 Fi
 PW
-PW
-GR
-PW
-PW
+pw
+pw
+pw
+NZ
 PW
 Lj
 Fi
@@ -7859,11 +7875,11 @@ Fi
 PW
 PW
 zH
+JD
+pw
+pw
 PW
 PW
-PW
-PW
-zR
 Fi
 ZW
 Fi
@@ -7984,7 +8000,7 @@ Fi
 Fi
 PW
 PW
-PW
+NZ
 Fi
 Fi
 Fi
