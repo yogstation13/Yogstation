@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Base mech vs mech damage multiplier for melee weapons and punches reduced"
+  - tweak: "Energy axe and rapier mech multipliers tweaked"
+  - tweak: "Mech katana damage bonus and AP increased"
