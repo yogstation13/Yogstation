@@ -212,6 +212,9 @@ Temperature: 126.85 °C (400 K)
 	if(prob((chance * 0.15 ) + 10 ))
 		humie.acid_act(5,7.5)
 
+/turf/open/water/safe/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
 /turf/open/water/deep_toxic_pit
 	name = "deep sulphuric pit"
 	desc = "Extraordinarly toxic"
