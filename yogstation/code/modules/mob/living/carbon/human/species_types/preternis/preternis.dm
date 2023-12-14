@@ -26,7 +26,6 @@
 	punchdamagehigh = 7 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //technically better stunning
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
-	payday_modifier = 0.6 //Highly efficient workers, but significant political tension between SIC and Remnants = next to no protection or people willing to fight the obvious wage cut
 	//mutant_bodyparts = list("head", "body_markings")
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis

@@ -15,7 +15,6 @@
 	mutanttail = /obj/item/organ/tail/lizard
 	coldmod = 0.67 //used to being cold, just doesn't like it much
 	heatmod = 0.67 //greatly appreciate heat, just not too much
-	payday_modifier = 0.85 //Full SIC citizens, but not quite given all the same rights- it's been an ongoing process for about half a decade
 	default_features = list("mcolor" = "#00FF00", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"

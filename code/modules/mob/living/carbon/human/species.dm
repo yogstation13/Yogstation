@@ -99,8 +99,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/pressuremod = 1
 	/// multiplier for EMP severity
 	var/emp_mod = 1
-	/// multiplier for money paid at payday, species dependent
-	var/payday_modifier = 1
 	///Type of damage attack does
 	var/attack_type = BRUTE
 	///lowest possible punch damage. if this is set to 0, punches will always miss

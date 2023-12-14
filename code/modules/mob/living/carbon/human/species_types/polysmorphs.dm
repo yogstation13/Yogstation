@@ -21,7 +21,6 @@
 	inert_mutation = ACIDSPIT
 	punchdamagehigh = 11 //slightly better high end of damage
 	punchstunthreshold = 11 //technically slightly worse stunchance
-	payday_modifier = 0.3 //Some are quite literally slaves + they HAVE to work for NT
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'

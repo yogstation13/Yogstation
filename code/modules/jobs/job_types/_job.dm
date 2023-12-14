@@ -189,7 +189,7 @@
 			H.apply_pref_name(/datum/preference/name/backup_human, preference_source)
 
 	if(!visualsOnly)
-		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
+		var/datum/bank_account/bank_account = new(H.real_name, src)
 		bank_account.adjust_money(rand(STARTING_PAYCHECKS_MIN, STARTING_PAYCHECKS_MAX), TRUE)
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
