@@ -4607,13 +4607,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"crc" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/space/basic,
-/area/solar/starboard/aft)
 "cry" = (
 /obj/machinery/light{
 	dir = 4
@@ -86286,8 +86279,8 @@ tpB
 bHK
 ipc
 hQr
-crc
-crc
+wUq
+wUq
 plY
 mFI
 mFI
