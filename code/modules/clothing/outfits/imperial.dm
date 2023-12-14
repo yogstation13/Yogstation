@@ -171,7 +171,7 @@
 	neck = /obj/item/clothing/neck/imperial
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	id = /obj/item/card/id/ert/imperial
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 	
 /datum/outfit/imperial/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

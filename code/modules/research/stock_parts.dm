@@ -47,6 +47,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	name = "bluespace rapid part exchange device"
 	desc = "A version of the RPED that allows for the replacement of parts and scanning from a distance, along with a higher capacity for parts."
 	icon_state = "BS_RPED"
+	item_state = "BS_RPED"
 	w_class = WEIGHT_CLASS_NORMAL
 	works_from_distance = TRUE
 	pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/pshoom.ogg'

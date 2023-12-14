@@ -408,13 +408,13 @@
 		environment = M.return_air()
 	if(environment)
 		if(environment.get_moles(GAS_PLASMA) > GLOB.gas_data.visibility[GAS_PLASMA]) //if there's enough plasma in the air to see
-			. += power * 0.5
+			. += power * 0.625
 	var/requires_metabolizing = !(A.process_dead && M.stat == DEAD) //don't require metabolizing if our host is dead and we have necrotic metabolsim
 	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = requires_metabolizing))
-		. +=  power * 0.75
+		. +=  power * 0.375
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 2 * actual_power
+	var/heal_amt = 4 * actual_power
 
 	if(prob(5))
 		to_chat(M, span_notice("You feel yourself absorbing plasma inside and around you..."))
@@ -505,24 +505,25 @@
 			M.update_damage_overlays()
 	return 1
 
-#define SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD 0.7
+#define SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD 0.6
 /datum/symptom/heal/surface
 	name = "Superficial Healing"
-	desc = "The virus accelerates the body's natural healing, causing the body to heal minor wounds quickly."
-	stealth = -2
-	resistance = -2
-	stage_speed = -2
-	transmittable = 1
+	desc = "The virus accelerates the body's natural healing, causing the body to heal minor wounds quickly. This however tires the body until the healing finishes."
+	stealth = 2
+	resistance = 3
+	stage_speed = -1
+	transmittable = -1
 
 	level = 3
 	passive_message = span_notice("Your skin tingles")
 
-	var/threshold = 0.9 // Percentual total health we check against. This is less than a toolbox hit, so probably wont save you in combat
-	var/healing_power = 0.5 // 0.5 brute and fire, slightly better than the worst case starlight with its 0.3
+	var/threshold = 0.8 // Percentual total health we check against.
+	var/healing_power = 1 // 1 brute or fire, slightly better than the worst case starlight with its 0.3 on both
+	var/stamina_reduction = 40 //effectively reduced stamina while healing
 
 	threshold_descs = list(
-		"Stage Speed 8" = "Improves healing significantly.",
-		"Resistance 10" = "Improves healing threshhold. This comes at the downside of exhausting the body more as heavier wounds heal",
+		"Stage Speed 8" = "Improves healing speed.",
+		"Resistance 10" = "Improves healing max damage threshhold.",
 	)
 
 /datum/symptom/heal/surface/Start(datum/disease/advance/A)
@@ -530,7 +531,7 @@
 	if(!.)
 		return
 	if(A.properties["stage_rate"] >= 8) //stronger healing
-		healing_power = 1.5
+		healing_power = 2
 	if(A.properties["resistance"] >= 10)
 		threshold = SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
 
@@ -540,27 +541,84 @@
 		return FALSE
 	return TRUE
 	
-
 /datum/symptom/heal/surface/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
 	if(M.health == M.maxHealth)
 		return
 	if(((M.health/M.maxHealth) > threshold))
-		healing_power = healing_power * actual_power
+		var/healing = healing_power
 
 		// We don't actually heal all damage types at once, but prioritise one over the other.
-		// Since the virus focuses mainly on surface damage, it will firstly heal those
-		// If it can't find any then it will consider healing some toxins (Not affected by healing power)
 		if(M.getBruteLoss() || M.getFireLoss())
-			M.heal_bodypart_damage(healing_power, healing_power) 				
-		else if(M.getToxLoss())
-			M.adjustToxLoss(-0.5)
-		else
-			return	// Still continues IF we healed something
+			healing = M.heal_ordered_damage(healing, list(BRUTE, BURN))
+		
+		// Still continues IF we healed something
+		if(healing == healing_power)
+			return FALSE
+			
 
-		// A downside to the better threshold
-		if(threshold == SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD)
-			// Interesting downside
-			if(M.getStaminaLoss() < 65)
-				M.adjustStaminaLoss(20)
+		if(M.getStaminaLoss() < stamina_reduction) //effectively reduced stamina while healing
+			M.adjustStaminaLoss(max(stamina_reduction - M.getStaminaLoss(), 0))
 		return TRUE
 #undef SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
+
+
+/datum/symptom/heal/symbiotic
+	name = "Symbiotic Regeneration"
+	desc = "The virus forms a symbiotic relationship with vital organs in the host's body, accelerating the host's natural healing processes while resting."
+	stealth = -3
+	resistance = -1
+	stage_speed = 2
+	transmittable = -4
+
+	level = 3
+	passive_message = span_notice("You feel calm.")
+
+	/// When was the last time the affected mob moved?
+	var/last_moved = 0
+	/// How long do you need to stand still to start healing?
+	var/heal_delay = 3 SECONDS
+
+	compatible_biotypes = ALL_BIOTYPES // bungus
+	threshold_descs = list(
+		"Stage speed 9" = "Shorter delay until healing starts.",
+		"Resistance 9" = "Increased rate of healing.",
+	)
+
+/datum/symptom/heal/symbiotic/Start(datum/disease/advance/A)
+	. = ..()
+	if(!.)
+		return
+	if(A.totalStealth() >= 5) //stronger healing
+		heal_delay = 1 SECONDS
+	if(A.totalResistance() >= 10) //no delay
+		power = 3
+	RegisterSignal(A.affected_mob, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(on_move))
+
+/datum/symptom/heal/symbiotic/End(datum/disease/advance/A)
+	UnregisterSignal(A.affected_mob, COMSIG_MOB_CLIENT_PRE_MOVE)
+	return ..()
+
+/datum/symptom/heal/symbiotic/proc/on_move(mob/living/mover, dir)
+	last_moved = world.time
+
+/datum/symptom/heal/symbiotic/CanHeal(datum/disease/advance/A)
+	if(last_moved + heal_delay > world.time)
+		return FALSE
+	return power
+
+/datum/symptom/heal/symbiotic/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
+	if(M.health == M.maxHealth)
+		return
+	if(last_moved + heal_delay > world.time)
+		return
+
+	if(M.getBruteLoss() || M.getFireLoss() || M.getToxLoss())
+		var/heal_amount = actual_power * 0.5
+		M.heal_bodypart_damage(heal_amount, heal_amount, required_status=((A.infectable_biotypes & MOB_ROBOTIC) ? BODYPART_ANY : BODYPART_ORGANIC))
+		M.adjustToxLoss(-heal_amount)
+		if(prob(1) && IS_ENGINEERING(M))
+			M.adjust_wet_stacks(0.1) // there seems to be a danger of precipitation...
+			to_chat(M, span_notice("You can smell rain."))
+		return TRUE
+
+	return FALSE // stop healing if there isn't any damage to heal

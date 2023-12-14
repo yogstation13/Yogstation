@@ -232,6 +232,13 @@
 	list_reagents = list(/datum/reagent/consumable/milk = 50)
 	possible_states = list()
 
+/obj/item/reagent_containers/food/condiment/cream
+	name = "milk cream"
+	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
+	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon_state = "cream"
+	list_reagents = list(/datum/reagent/consumable/cream = 100)
+
 /obj/item/reagent_containers/food/condiment/flour
 	name = "flour sack"
 	desc = "A big bag of flour. Good for baking!"
@@ -391,3 +398,19 @@
 	name = "bbq sauce pack"
 	originalname = "bbq sauce"
 	list_reagents = list(/datum/reagent/consumable/bbqsauce = 5)
+
+/obj/item/reagent_containers/food/condiment/pack/sugar
+	name = "sugar pack"
+	originalname = "sugar"
+	list_reagents = list(/datum/reagent/consumable/sugar = 5)
+
+/obj/item/reagent_containers/food/condiment/pack/creamer
+	name = "creamer" /// dont laugh you child
+	originalname = "cream"
+	list_reagents = list(/datum/reagent/consumable/cream = 5)
+
+/obj/item/reagent_containers/food/condiment/pack/chocolate
+	name = "creamer"
+	originalname = "cream"
+	list_reagents = list(/datum/reagent/consumable/chocolate = 5)
+

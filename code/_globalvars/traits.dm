@@ -26,6 +26,12 @@ GLOBAL_LIST_INIT(admin_visible_traits, list(
 		"TRAIT_BALLMER_SCIENTIST" = TRAIT_BALLMER_SCIENTIST,
 	),
 ))
+GLOBAL_LIST_INIT(traits_by_type, list(
+	/mob = list(/atom/movable = list(
+		"TRAIT_MOVE_PHASING" = TRAIT_MOVE_PHASING,
+	))))
+/// value -> trait name, generated on use from trait_by_type global
+GLOBAL_LIST(trait_name_map)
 
 /// value -> trait name, generated as needed for adminning.
 GLOBAL_LIST(admin_trait_name_map)

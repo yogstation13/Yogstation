@@ -974,7 +974,7 @@
 
 /datum/techweb_node/mech_rocket_fist
 	id = "mech_rocket_fist"
-	display_name = "Exosuit Weapon (DD-2 \"Atom Smasher\" Rocket Fist)"
+	display_name = "Exosuit Weapon (RS-77 \"Atom Smasher\" Rocket Fist)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_mecha","weaponry")
 	design_ids = list("mech_rocket_fist")
@@ -990,7 +990,7 @@
 
 /datum/techweb_node/mech_katana
 	id = "mech_katana"
-	display_name = "Exosuit Weapon (OWM-5 \"Ronin\" katana)"
+	display_name = "Exosuit Weapon (HR-2 \"Ronin\" katana)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_mecha","mech_shortsword")
 	design_ids = list("mech_katana")
@@ -1014,7 +1014,7 @@
 
 /datum/techweb_node/mech_maul
 	id = "mech_maul"
-	display_name = "Exosuit Weapon (CX-22 \"Barbatos\" heavy maul)"
+	display_name = "Exosuit Weapon (ASW-8 \"Barbatos\" heavy maul)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_mecha","mech_shortsword")
 	design_ids = list("mech_maul")

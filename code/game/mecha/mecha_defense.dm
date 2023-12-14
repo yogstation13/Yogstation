@@ -27,29 +27,23 @@
 		return 0
 	var/booster_deflection_modifier = 1
 	var/booster_damage_modifier = 1
-	if(damage_flag == BULLET || damage_flag == LASER || damage_flag == ENERGY)
-		for(var/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/B in equipment)
-			if(B.projectile_react())
-				booster_deflection_modifier = B.deflect_coeff
-				booster_damage_modifier = B.damage_coeff
-				break
-	else if(damage_flag == MELEE)
+	if(damage_flag == MELEE)
 		for(var/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/B in equipment)
 			if(B.attack_react())
 				booster_deflection_modifier *= B.deflect_coeff
 				booster_damage_modifier *= B.damage_coeff
 				break
 
-	if(attack_dir)
-		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(dir))
-		booster_damage_modifier /= facing_modifier
-		booster_deflection_modifier *= facing_modifier
-	if(prob(deflect_chance * booster_deflection_modifier))
-		visible_message(span_danger("[src]'s armour deflects the attack!"))
-		log_message("Armor saved.", LOG_MECHA)
-		return 0
-	if(.)
-		. *= booster_damage_modifier
+		if(attack_dir)
+			var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(dir))
+			booster_damage_modifier /= facing_modifier
+			booster_deflection_modifier *= facing_modifier
+		if(prob(deflect_chance * booster_deflection_modifier))
+			visible_message(span_danger("[src]'s armour deflects the attack!"))
+			log_message("Armor saved.", LOG_MECHA)
+			return 0
+		if(.)
+			. *= booster_damage_modifier
 
 
 /obj/mecha/attack_hand(mob/living/user)
@@ -117,6 +111,29 @@
 	if ((!enclosed || istype(Proj, /obj/projectile/bullet/shotgun/slug/uranium))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
 		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
+	var/booster_deflection_modifier = 1
+	var/booster_damage_modifier = 1
+	var/attack_dir = get_dir(src, Proj)
+	for(var/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/B in equipment)
+		if(B.projectile_react())
+			booster_deflection_modifier = B.deflect_coeff
+			booster_damage_modifier = B.damage_coeff
+	if(attack_dir)
+		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(dir))
+		booster_damage_modifier /= facing_modifier
+		booster_deflection_modifier *= facing_modifier
+	if(prob(deflect_chance * booster_deflection_modifier))
+		visible_message(span_danger("[src]'s armour deflects the attack!"))
+		if(super_deflects)
+			Proj.firer = src
+			Proj.setAngle(rand(0, 360))	//PTING
+			return BULLET_ACT_FORCE_PIERCE
+		else
+			Proj.damage = 0	//Armor has stopped the projectile effectively, if it has other effects that's another issue
+			return BULLET_ACT_BLOCK
+
+	Proj.damage *= booster_damage_modifier	//If you manage to shoot THROUGH a mech with something, the bullet wont be fully intact
+
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.armor_flag]).", LOG_MECHA, color="red")
 	. = ..()
 
@@ -296,9 +313,25 @@
 	else
 		return ..()
 
-/obj/mecha/attacked_by(obj/item/I, mob/living/user)
-	log_message("Attacked by [I]. Attacker - [user]", LOG_MECHA)
-	..()
+/obj/mecha/attacked_by(obj/item/attacking_item, mob/living/user)
+	if(!attacking_item.force)
+		return
+
+	log_message("Attacked by [attacking_item]. Attacker - [user]", LOG_MECHA)
+	var/is_combat = istype(src, /obj/mecha/combat)	//Combat mechs are armored properly
+	var/attack_direction = get_dir(src, user)
+	var/demolition_mult = is_combat ? min(1, (1 + attacking_item.demolition_mod)/2) : (1 + attacking_item.demolition_mod)/2	//Half effective modifier
+	var/damage = take_damage(attacking_item.force * demolition_mult, attacking_item.damtype, MELEE, 1, attack_direction, armour_penetration = attacking_item.armour_penetration)
+	var/damage_verb = "hit"
+	if(!is_combat && attacking_item.demolition_mod != 1)
+		if(attacking_item.demolition_mod > 1 && damage)
+			damage_verb = "pulverized"
+		else
+			damage_verb = "ineffectively pierced"
+
+	visible_message(span_danger("[user] [damage_verb] [src] with [attacking_item][damage ? "" : ", without leaving a mark"]!"), null, null, COMBAT_MESSAGE_RANGE)
+	//only witnesses close by and the victim see a hit message.
+	log_combat(user, src, "attacked", attacking_item)
 
 /obj/mecha/proc/mech_toxin_damage(mob/living/target)
 	playsound(src, 'sound/effects/spray2.ogg', 50, 1)
