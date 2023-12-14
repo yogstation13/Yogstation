@@ -16450,11 +16450,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
-"cYj" = (
-/obj/structure/lattice,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/space/basic,
-/area/space/nearstation)
 "cYD" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
@@ -54747,6 +54742,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"qWa" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/public/glass{
+	name = "Fitness"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/wood/parquet,
+/area/crew_quarters/bar)
 "qWk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -55245,22 +55256,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/teleporter)
-"rfS" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock/public/glass{
-	name = "Fitness"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/wood/parquet,
-/area/crew_quarters/bar)
 "rgh" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -110612,7 +110607,7 @@ bnz
 khY
 thp
 xza
-rfS
+qWa
 col
 hQg
 hOm
@@ -113433,8 +113428,8 @@ aro
 aro
 aro
 aro
-aDf
-gXs
+arj
+syq
 syq
 syq
 syq
@@ -113690,8 +113685,8 @@ aro
 aro
 aro
 aro
-aDf
-cYj
+arj
+syq
 syq
 syq
 syq
@@ -113947,8 +113942,8 @@ aro
 aro
 aro
 aro
-aDf
-uBx
+arj
+syq
 syq
 syq
 syq
