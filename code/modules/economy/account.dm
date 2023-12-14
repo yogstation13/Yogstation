@@ -13,7 +13,7 @@
 	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
 	var/sec_weapon_claimed = FALSE // If this account has claimed a weapon \code\modules\vending\security_armaments.dm
 
-/datum/bank_account/New(newname)
+/datum/bank_account/New(newname, job)
 	var/limiter = 0
 	while(limiter < 10)
 		account_id = rand(111111,999999)
