@@ -419,7 +419,6 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless = TRUE
 	var/no_cyborgs = TRUE
-	var/no_bartender = TRUE
 	var/no_clerk = TRUE
 	var/no_chaplain = TRUE
 
@@ -430,8 +429,6 @@ SUBSYSTEM_DEF(ticker)
 				captainless = FALSE
 			if(player.mind.assigned_role == "Cyborg")
 				no_cyborgs = FALSE
-			if(player.mind.assigned_role == "Bartender")
-				no_bartender = FALSE
 			if(player.mind.assigned_role == "Clerk")
 				no_clerk = FALSE
 			if(player.mind.assigned_role == "Chaplain")
@@ -461,8 +458,6 @@ SUBSYSTEM_DEF(ticker)
 				to_chat(N, "<FONT color='red'>No Captain is present at the start of shift. Please follow the SOP available <b><a href='https://wiki.yogstation.net/wiki/Official:Disk_Procedure'>here</a></b> to secure the disk and assign an Acting Captain.")
 			CHECK_TICK
 
-	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
-		SSjob.random_bar_init()
 	if(no_clerk)
 		SSjob.random_clerk_init()
 	if(no_chaplain)

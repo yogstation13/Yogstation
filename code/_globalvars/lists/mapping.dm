@@ -43,8 +43,7 @@ GLOBAL_LIST_EMPTY(brazil_reception) //teleport receive spots for heretic sacrifi
 GLOBAL_LIST_EMPTY(ruin_landmarks)
 GLOBAL_LIST_EMPTY(delta_areas)
 GLOBAL_LIST_EMPTY(bar_areas)
-// IF YOU ARE MAKING A NEW BAR TEMPLATE AND WANT IT ROUNDSTART ADD IT TO THIS LIST!
-GLOBAL_LIST_INIT(potential_box_bars, list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Grassy", "Bar Clock", "Bar Arcade"))
+// IF YOU ARE MAKING A NEW TEMPLATE AND WANT IT ROUNDSTART ADD IT TO THIS LIST!
 GLOBAL_LIST_INIT(potential_box_clerk, list("Clerk Box", "Clerk Pod", "Clerk Meta", "Clerk Gambling Hall"))
 GLOBAL_LIST_INIT(potential_box_chapels, list("Chapel 1", "Chapel 2"))
 /// Away missions
