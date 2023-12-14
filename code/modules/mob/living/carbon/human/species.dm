@@ -97,6 +97,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/staminamod = 1
 	/// multiplier for pressure damage
 	var/pressuremod = 1
+	/// multiplier for EMP severity
+	var/emp_mod = 1
 	/// multiplier for money paid at payday, species dependent
 	var/payday_modifier = 1
 	///Type of damage attack does
@@ -1035,7 +1037,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					switch(S.color_src)
 						if(MUTCOLORS)
-							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
+							if(H.dna.check_mutation(HULK))			//HULK GO FIRST
 								accessory_overlay.color = "#00aa00"
 							else if(fixed_mut_color)													//Then fixed color if applicable
 								accessory_overlay.color = fixed_mut_color
@@ -1542,7 +1544,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	return FALSE
 
-/datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	return
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
@@ -1763,7 +1765,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(M.mind)
 		attacker_style = M.mind.martial_art
 	if((M != H) && M.a_intent != INTENT_HELP && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
-		if((M.dna.check_mutation(ACTIVE_HULK) || M.dna.check_mutation(HULK)) && M.a_intent == "disarm")
+		if(M.dna.check_mutation(HULK) && M.a_intent == "disarm")
 			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
 			M.visible_message(span_danger("[M]'s punch knocks the shield out of [H]'s hand."), \
 							span_userdanger("[M]'s punch knocks the shield out of [H]'s hand."))
@@ -2577,6 +2579,22 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are resilient to being shocked.",
 		))
 
+	if(emp_mod > 1)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm",
+			SPECIES_PERK_NAME = "EM Weakness",
+			SPECIES_PERK_DESC = "[plural_form] are weak to electromagnetic interference.",
+		))
+
+	if(emp_mod < 1)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "EM Resistance",
+			SPECIES_PERK_DESC = "[plural_form] are resistant to electromagnetic interference.",
+		))
+
 	return to_add
 
 /**
@@ -2675,15 +2693,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_NAME = "Radiation Immunity",
 			SPECIES_PERK_DESC = "[plural_form] are completely unaffected by radiation. However, this doesn't mean they can't be irradiated.",
 		))
-
-	if(TRAIT_FARADAYCAGE in inherent_traits)
-		to_add += list(list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
-			SPECIES_PERK_NAME = "Faraday \"Skin\"",
-			SPECIES_PERK_DESC = "[plural_form] have a unique physiology that shields them from weak EMPs.",
-		))
-
 	if(TRAIT_LIMBATTACHMENT in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,

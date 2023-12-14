@@ -362,7 +362,7 @@ GENE SCANNER
 		var/mob/living/carbon/human/H = M
 		var/datum/species/S = H.dna.species
 		var/mutant = FALSE
-		if (H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))
+		if (H.dna.check_mutation(HULK))
 			mutant = TRUE
 		else if (S.mutantlungs != initial(S.mutantlungs))
 			mutant = TRUE

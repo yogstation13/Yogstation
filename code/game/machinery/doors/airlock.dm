@@ -507,12 +507,9 @@
 			else
 				return
 		else if(user.has_status_effect(/datum/status_effect/hallucination) && ishuman(user) && prob(1) && !operating)
-			var/mob/living/carbon/human/H = user
-			if(H.gloves)
-				var/obj/item/clothing/gloves/G = H.gloves
-				if(G.siemens_coefficient)//not insulated
-					new /datum/hallucination/shock(H)
-					return
+			if(user.getarmor(user.held_index_to_body_zone(user.active_hand_index), ELECTRIC) < 100)
+				new /datum/hallucination/shock(user)
+				return
 	var/allowed = (obj_flags & CMAGGED) ? cmag_allowed(user) : allowed(user)
 	if (cyclelinkedairlock)
 		if (!shuttledocked && !emergency && !cyclelinkedairlock.shuttledocked && !cyclelinkedairlock.emergency && allowed)

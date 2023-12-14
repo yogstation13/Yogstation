@@ -11,6 +11,7 @@ In any query remember to add a prefix to the table names if you use one.
 version 5.13 2023-05-10
 Adds allow_vpn to bound credentials flags
 
+```sql
 ALTER TABLE `bound_credentials` MODIFY COLUMN flags set('bypass_bans','allow_proxies') DEFAULT NULL NULL;
 CREATE TABLE `proxy_cache` (
   `ip` int(11) unsigned NOT NULL,
@@ -19,28 +20,36 @@ CREATE TABLE `proxy_cache` (
   PRIMARY KEY (`ip`),
   CONSTRAINT `data` CHECK (json_valid(`data`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
+```sql
 CREATE OR REPLACE EVENT proxy_cache_ttl
     ON SCHEDULE EVERY 1 HOUR
     DO
       DELETE FROM proxy_cache WHERE (last_updated + INTERVAL 1 DAY) < current_timestamp();
+```
 
 version 5.12 2023-04-10
 Adds playtime to notes
 
+```sql
 ALTER TABLE `messages` ADD `playtime` int(10) unsigned DEFAULT NULL;
 CREATE TRIGGER messagesTloghours
     BEFORE INSERT ON `messages` FOR EACH ROW
     SET NEW.playtime = (SELECT minutes FROM role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
+```
 
 version 5.11 2023-01-03
 Adds comment to credentials binding
 
+```sql
 ALTER TABLE `bound_credentials` ADD comment text NULL;
+```
 
 version 5.10 2022-05-18, alexkar598
 Adds credentials binding
 
+```sql
 CREATE TABLE `bound_credentials` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
@@ -52,27 +61,33 @@ CREATE TABLE `bound_credentials` (
   KEY `idx_cid_lookup` (`computerid`),
   KEY `idx_ip_lookup` (`ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 version 5.9 23 November 2021, by adamsogm
 
 Adds the datetime column to the primary key for the MFA table
 
+```sql
 ALTER TABLE ss13_mfa_logins
     DROP PRIMARY KEY,
     ADD PRIMARY KEY (`ckey`,`ip`,`cid`, `datetime`);
+```
 
 version 5.8 25 October 2021, by adamsogm
 
 Modifies the admin_tickets table, and adds the admin_ticket_interactions table
 Do not forget to apply the prefix to the foreign key on the admin_ticket_interactions table
 
+```sql
 ALTER TABLE `admin_tickets`
 DROP COLUMN `content`,
 DROP COLUMN `rating`,
 MODIFY `a_ckey` varchar(32),
 ADD INDEX `idx_round` (`round_id`),
 ADD INDEX `idx_round_ticket` (`round_id`,`ticket_id`);
+```
 
+```sql
 DROP TABLE IF EXISTS `admin_ticket_interactions`;
 CREATE TABLE IF NOT EXISTS `admin_ticket_interactions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -83,15 +98,19 @@ CREATE TABLE IF NOT EXISTS `admin_ticket_interactions` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`ticket_id`) REFERENCES `admin_tickets`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 version 5.7 23 September 2021, by adamsogm
 
 Adds table for storing mfa login cache and a column for storing TOTP seeds and one for mfa backup code
 
+```sql
 ALTER TABLE player
 ADD COLUMN totp_seed varchar(20),
 ADD COLUMN mfa_backup varchar(128);
+```
 
+```sql
 DROP TABLE IF EXISTS `mfa_logins`;
 CREATE TABLE IF NOT EXISTS `mfa_logins` (
 	`ckey` varchar(32) NOT NULL,
@@ -100,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `mfa_logins` (
 	`datetime` timestamp NOT NULL DEFAULT current_timestamp(),
 	PRIMARY KEY (`ckey`,`ip`,`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 ----------------------------------------------------
 
@@ -107,9 +127,10 @@ version 5.6 14 August 2021, by alexkar598
 
 Adds index on connection_log
 
+```sql
 create index idx_review
 	on connection_log (ckey, computerid, ip);
-
+```
 
 ----------------------------------------------------
 
@@ -117,7 +138,9 @@ version 5.5 14 August 2021, by JamieD1
 
 Adds column in mentor for position
 
+```sql
 ALTER TABLE `mentor` ADD COLUMN `position` VARSET(32) UNSIGNED NOT NULL AFTER `ckey`;
+```
 
 ----------------------------------------------------
 
@@ -125,6 +148,7 @@ version 5.4 18 May 2020, by TheGamer01
 
 Adds table for antag tokens
 
+```sql
 CREATE TABLE `antag_tokens` (
 	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`ckey` VARCHAR(32) NULL NOT NULL,
@@ -137,6 +161,7 @@ CREATE TABLE `antag_tokens` (
 	`round_id` int(11) unsigned NOT NULL,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
+```
 
 ----------------------------------------------------
 
@@ -144,23 +169,29 @@ version 5.3 10 Dec 2019, by Nichlas0010
 
 Added two tables for achievements, one for the metadata and one for storing achieved achievements, as well as a misc table which is essentially just a glorified assoc list
 
+```sql
 CREATE TABLE `achievements` (
 	`name` VARCHAR(32) NOT NULL,
 	`id` INT UNSIGNED NOT NULL,
 	`descr` VARCHAR(2048) NOT NULL,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
+```
 
+```sql
 CREATE TABLE `earned_achievements` (
 	`ckey` VARCHAR(32) NOT NULL,
 	`id` INT UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
+```
 
+```sql
 CREATE TABLE `misc` (
 	`key` VARCHAR(32) NOT NULL,
 	`value` VARCHAR(2048) NOT NULL,
 	PRIMARY KEY (`key`)
 ) ENGINE=InnoDB;
+```
 
 ----------------------------------------------------
 
@@ -168,13 +199,17 @@ Version 5.2, 28 Aug 2019, by AffectedArc07/TheGamer01
 
 Added a field to the `player` table to track ckey and discord ID relationships
 
+```sql
  ALTER TABLE `player`
 	ADD COLUMN `discord_id` BIGINT NULL DEFAULT NULL AFTER `flags`;
+```
+
 ----------------------------------------------------
 
 Version 5.1, 25 Feb 2018, by MrStonedOne
 Added four tables to enable storing of stickybans in the database since byond can lose them, and to enable disabling stickybans for a round without depending on a crash free round. Existing stickybans are automagically imported to the tables.
 
+```sql
 CREATE TABLE `stickyban` (
 	`ckey` VARCHAR(32) NOT NULL,
 	`reason` VARCHAR(2048) NOT NULL,
@@ -182,7 +217,9 @@ CREATE TABLE `stickyban` (
 	`datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`ckey`)
 ) ENGINE=InnoDB;
+```
 
+```sql
 CREATE TABLE `stickyban_matched_ckey` (
 	`stickyban` VARCHAR(32) NOT NULL,
 	`matched_ckey` VARCHAR(32) NOT NULL,
@@ -191,7 +228,9 @@ CREATE TABLE `stickyban_matched_ckey` (
 	`exempt` TINYINT(1) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`stickyban`, `matched_ckey`)
 ) ENGINE=InnoDB;
+```
 
+```sql
 CREATE TABLE `stickyban_matched_ip` (
 	`stickyban` VARCHAR(32) NOT NULL,
 	`matched_ip` INT UNSIGNED NOT NULL,
@@ -199,7 +238,9 @@ CREATE TABLE `stickyban_matched_ip` (
 	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`stickyban`, `matched_ip`)
 ) ENGINE=InnoDB;
+```
 
+```sql
 CREATE TABLE `stickyban_matched_cid` (
 	`stickyban` VARCHAR(32) NOT NULL,
 	`matched_cid` VARCHAR(32) NOT NULL,
@@ -207,6 +248,7 @@ CREATE TABLE `stickyban_matched_cid` (
 	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`stickyban`, `matched_cid`)
 ) ENGINE=InnoDB;
+```
 
 ----------------------------------------------------
 
@@ -216,6 +258,7 @@ Modified ban table to remove the need for the `bantype` column, a python script 
 See the file 'ban_conversion_2018-10-28.py' for instructions on how to use the script.
 
 A new ban table can be created with the query:
+```sql
 CREATE TABLE `ban` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `bantime` DATETIME NOT NULL,
@@ -245,20 +288,25 @@ CREATE TABLE `ban` (
   KEY `idx_ban_isbanned_details` (`ckey`,`ip`,`computerid`,`role`,`unbanned_datetime`,`expiration_time`),
   KEY `idx_ban_count` (`bantime`,`a_ckey`,`applies_to_admins`,`unbanned_datetime`,`expiration_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
 
 ----------------------------------------------------
 
 Version 4.7, 18 August 2018, by CitrusGender
 Modified table `messages`, adding column `severity` to classify notes based on their severity.
 
+```sql
 ALTER TABLE `messages` ADD `severity` enum('high','medium','minor','none') DEFAULT NULL AFTER `expire_timestamp`
+```
 
 ----------------------------------------------------
 
 Version 4.6, 11 August 2018, by Jordie0608
 Modified table `messages`, adding column `expire_timestamp` to allow for auto-"deleting" messages.
 
+```sql
 ALTER TABLE `messages` ADD `expire_timestamp` DATETIME NULL DEFAULT NULL AFTER `secret`;
+```
 
 ----------------------------------------------------
 
@@ -266,26 +314,34 @@ Version 4.5, 9 July 2018, by Jordie0608
 Modified table `player`, adding column `byond_key` to store a user's key along with their ckey.
 To populate this new column run the included script 'populate_key_2018-07', see the file for use instructions.
 
+```sql
 ALTER TABLE `player` ADD `byond_key` VARCHAR(32) DEFAULT NULL AFTER `ckey`;
+```
 
 ----------------------------------------------------
 
 Version 4.4, 9 May 2018, by Jordie0608
 Modified table `round`, renaming column `start_datetime` to `initialize_datetime` and `end_datetime` to `shutdown_datetime` and adding columns to replace both under the same name in preparation for changes to TGS server initialization.
 
+```sql
 ALTER TABLE `round`
 	ALTER `start_datetime` DROP DEFAULT;
+```
+
+```sql
 ALTER TABLE `round`
 	CHANGE COLUMN `start_datetime` `initialize_datetime` DATETIME NOT NULL AFTER `id`,
 	ADD COLUMN `start_datetime` DATETIME NULL DEFAULT NULL AFTER `initialize_datetime`,
 	CHANGE COLUMN `end_datetime` `shutdown_datetime` DATETIME NULL DEFAULT NULL AFTER `start_datetime`,
 	ADD COLUMN `end_datetime` DATETIME NULL DEFAULT NULL AFTER `shutdown_datetime`;
+```
 
 ----------------------------------------------------
 
 Version 4.3, 9 May 2018, by MrStonedOne
 Added table `role_time_log` and triggers `role_timeTlogupdate`, `role_timeTloginsert` and `role_timeTlogdelete` to update it from changes to `role_time`
 
+```sql
 CREATE TABLE `role_time_log` ( `id` BIGINT NOT NULL AUTO_INCREMENT , `ckey` VARCHAR(32) NOT NULL , `job` VARCHAR(128) NOT NULL , `delta` INT NOT NULL , `datetime` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`), INDEX (`ckey`), INDEX (`job`), INDEX (`datetime`)) ENGINE = InnoDB;
 
 DELIMITER $$
@@ -299,6 +355,7 @@ CREATE TRIGGER `role_timeTlogdelete` AFTER DELETE  ON `role_time` FOR EACH ROW B
 END
 $$
 DELIMITER ;
+```
 ----------------------------------------------------
 
 Version 4.2, 17 April 2018, by Jordie0608
@@ -315,6 +372,7 @@ This change was made to enable use of sql-based admin loading.
 To import your existing admins and ranks run the included script 'admin_import_2018-02-03.py', see the file for use instructions.
 Legacy file-based admin loading is still supported, if you want to continue using it the script doesn't need to be run.
 
+```sql
 ALTER TABLE `admin`
 	CHANGE COLUMN `rank` `rank` VARCHAR(32) NOT NULL AFTER `ckey`,
 	DROP COLUMN `id`,
@@ -323,14 +381,18 @@ ALTER TABLE `admin`
 	DROP COLUMN `email`,
 	DROP PRIMARY KEY,
 	ADD PRIMARY KEY (`ckey`);
+```
 
+```sql
 ALTER TABLE `admin_log`
 	CHANGE COLUMN `datetime` `datetime` DATETIME NOT NULL AFTER `id`,
 	CHANGE COLUMN `adminckey` `adminckey` VARCHAR(32) NOT NULL AFTER `datetime`,
 	CHANGE COLUMN `adminip` `adminip` INT(10) UNSIGNED NOT NULL AFTER `adminckey`,
 	ADD COLUMN `operation` ENUM('add admin','remove admin','change admin rank','add rank','remove rank','change rank flags') NOT NULL AFTER `adminip`,
 	CHANGE COLUMN `log` `log` VARCHAR(1000) NOT NULL AFTER `operation`;
+```
 
+```sql
 ALTER TABLE `admin_ranks`
 	CHANGE COLUMN `rank` `rank` VARCHAR(32) NOT NULL FIRST,
 	CHANGE COLUMN `flags` `flags` SMALLINT UNSIGNED NOT NULL AFTER `rank`,
@@ -339,6 +401,7 @@ ALTER TABLE `admin_ranks`
 	DROP COLUMN `id`,
 	DROP PRIMARY KEY,
 	ADD PRIMARY KEY (`rank`);
+```
 
 ----------------------------------------------------
 
@@ -348,6 +411,8 @@ Modified feedback table to use json, a python script is used to migrate data to 
 See the file 'feedback_conversion_2017-11-12.py' for instructions on how to use the script.
 
 A new json feedback table can be created with:
+
+```sql
 CREATE TABLE `feedback` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -358,12 +423,14 @@ CREATE TABLE `feedback` (
   `json` json NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM
+```
 
 ----------------------------------------------------
 
 Version 3.4, 28 August 2017, by MrStonedOne
 Modified table 'messages', adding a deleted column and editing all indexes to include it
 
+```sql
 ALTER TABLE `messages`
 ADD COLUMN `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0' AFTER `edits`,
 DROP INDEX `idx_msg_ckey_time`,
@@ -372,6 +439,7 @@ DROP INDEX `idx_msg_type_ckey_time_odr`,
 ADD INDEX `idx_msg_ckey_time` (`targetckey`,`timestamp`, `deleted`),
 ADD INDEX `idx_msg_type_ckeys_time` (`type`,`targetckey`,`adminckey`,`timestamp`, `deleted`),
 ADD INDEX `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`, `deleted`);
+```
 
 ----------------------------------------------------
 
@@ -379,11 +447,13 @@ Version 3.3, 25 August 2017, by Jordie0608
 
 Modified tables 'connection_log', 'legacy_population', 'library', 'messages' and 'player' to add additional 'round_id' tracking in various forms and 'server_ip' and 'server_port' to the table 'messages'.
 
+```sql
 ALTER TABLE `connection_log` ADD COLUMN `round_id` INT(11) UNSIGNED NOT NULL AFTER `server_port`;
 ALTER TABLE `legacy_population` ADD COLUMN `round_id` INT(11) UNSIGNED NOT NULL AFTER `server_port`;
 ALTER TABLE `library` ADD COLUMN `round_id_created` INT(11) UNSIGNED NOT NULL AFTER `deleted`;
 ALTER TABLE `messages` ADD COLUMN `server_ip` INT(10) UNSIGNED NOT NULL AFTER `server`, ADD COLUMN `server_port` SMALLINT(5) UNSIGNED NOT NULL AFTER `server_ip`, ADD COLUMN `round_id` INT(11) UNSIGNED NOT NULL AFTER `server_port`;
 ALTER TABLE `player` ADD COLUMN `firstseen_round_id` INT(11) UNSIGNED NOT NULL AFTER `firstseen`, ADD COLUMN `lastseen_round_id` INT(11) UNSIGNED NOT NULL AFTER `lastseen`;
+```
 
 ----------------------------------------------------
 
@@ -391,9 +461,11 @@ Version 3.2, 18 August 2017, by Cyberboss and nfreader
 
 Modified table 'death', adding the columns `last_words` and 'suicide'.
 
+```sql
 ALTER TABLE `death`
 ADD COLUMN `last_words` varchar(255) DEFAULT NULL AFTER `staminaloss`,
 ADD COLUMN `suicide` tinyint(0) NOT NULL DEFAULT '0' AFTER `last_words`;
+```
 
 Remember to add a prefix to the table name if you use them.
 
@@ -403,9 +475,13 @@ Version 3.1, 20th July 2017, by Shadowlight213
 Added role_time table to track time spent playing departments.
 Also, added flags column to the player table.
 
+```sql
 CREATE TABLE `role_time` ( `ckey` VARCHAR(32) NOT NULL , `job` VARCHAR(128) NOT NULL , `minutes` INT UNSIGNED NOT NULL, PRIMARY KEY (`ckey`, `job`) ) ENGINE = InnoDB;
+```
 
+```sql
 ALTER TABLE `player` ADD `flags` INT NOT NULL default '0' AFTER `accountjoindate`;
+```
 
 Remember to add a prefix to the table name if you use them.
 
@@ -417,14 +493,18 @@ Added schema_revision to store the current db revision, why start at 3.0?
 because:
 15:09 <+MrStonedOne> 1.0 was erro, 2.0 was when i removed erro_, 3.0 was when jordie made all the strings that hold numbers numbers
 
+```sql
 CREATE TABLE `schema_revision` (
 `major` TINYINT(3) UNSIGNED NOT NULL ,
 `minor` TINYINT(3) UNSIGNED NOT NULL ,
 `date` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
 PRIMARY KEY ( `major`,`minor` )
 ) ENGINE = INNODB;
+```
 
+```sql
 INSERT INTO `schema_revision` (`major`, `minor`) VALUES (3, 0);
+```
 
 Remember to add a prefix to the table name if you use them.
 
@@ -434,7 +514,9 @@ Remember to add a prefix to the table name if you use them.
 
 Modified table 'poll_option', adding the column 'default_percentage_calc'.
 
+```sql
 ALTER TABLE `poll_option` ADD COLUMN `default_percentage_calc` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' AFTER `descmax`
+```
 
 Remember to add a prefix to the table name if you use them.
 
@@ -444,7 +526,9 @@ Remember to add a prefix to the table name if you use them.
 
 Modified table 'poll_option', removing the column 'percentagecalc'.
 
+```sql
 ALTER TABLE `poll_option` DROP COLUMN `percentagecalc`
+```
 
 Remember to add a prefix to the table name if you use them.
 

@@ -80,11 +80,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	switch(severity)
-		if(1)
-			Stun(160)
-		if(2)
-			Stun(60)
+	Stun(min((1.6 SECONDS) * severity, 16 SECONDS)) // up to 16 seconds
 
 
 /mob/living/silicon/robot/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -201,7 +197,7 @@
 	if(prob(75) && Proj.damage > 0)
 		spark_system.start()
 
-/mob/living/silicon/robot/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
+/mob/living/silicon/robot/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(gib)
 		visible_message(
 		span_danger("[src] begins to heat up!"), \
