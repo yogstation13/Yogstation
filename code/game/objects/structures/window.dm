@@ -112,9 +112,9 @@
 /obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
-		return 1
-	if(dir == FULLTILE_WINDOW_DIR)
-		return 0	//full tile window, you can't move into it!
+		return TRUE
+	if(fulltile)
+		return FALSE	//full tile window, you can't move into it!
 	var/attempted_dir = get_dir(loc, target)
 	if(attempted_dir == dir)
 		return
@@ -321,7 +321,7 @@
 /obj/structure/window/CanAtmosPass(turf/T)
 	if(!anchored || !density)
 		return TRUE
-	return !(FULLTILE_WINDOW_DIR == dir || dir == get_dir(loc, T))
+	return !(fulltile || dir == get_dir(loc, T))
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
@@ -356,7 +356,7 @@
 /obj/structure/window/CanAStarPass(ID, to_dir)
 	if(!density)
 		return 1
-	if((dir == FULLTILE_WINDOW_DIR) || (dir == to_dir))
+	if((fulltile) || (dir == to_dir))
 		return 0
 
 	return 1
@@ -508,7 +508,7 @@
 /obj/structure/window/plasma/BlockThermalConductivity(opp_dir)
 	if(!anchored || !density)
 		return FALSE
-	return FULLTILE_WINDOW_DIR == dir || dir == opp_dir
+	return fulltile || dir == opp_dir
 
 /obj/structure/window/plasma/spawner/east
 	dir = EAST
@@ -612,8 +612,8 @@
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
-	icon_state = "twindow"
 	opacity = TRUE
+
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
 	icon_state = "fwindow"
@@ -690,7 +690,8 @@
 
 /obj/structure/window/reinforced/tinted/fulltile
 	icon = 'icons/obj/smooth_structures/tinted_window.dmi'
-	icon_state = "tinted_window"
+	icon_state = "tinted_window-0"
+	base_icon_state = "tinted_window"
 	dir = FULLTILE_WINDOW_DIR
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
@@ -748,7 +749,8 @@
 	name = "plastitanium window"
 	desc = "A durable looking window made of an alloy of of plasma and titanium."
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
-	icon_state = "plastitanium_window"
+	icon_state = "plastitanium_window-0"
+	base_icon_state = "plastitanium_window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 1200
 	wtype = "shuttle"
@@ -814,7 +816,7 @@
 /obj/structure/window/reinforced/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
 		obj_integrity = max_integrity
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
 	take_damage(rand(25, 75), BRUTE)
@@ -858,7 +860,8 @@
 	name = "paper frame"
 	desc = "A fragile separator made of thin wood and paper."
 	icon = 'icons/obj/smooth_structures/paperframes.dmi'
-	icon_state = "frame"
+	icon_state = "frame-0"
+	base_icon_state = "frame"
 	dir = FULLTILE_WINDOW_DIR
 	opacity = TRUE
 	max_integrity = 15
@@ -881,7 +884,7 @@
 
 /obj/structure/window/paperframe/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/structure/window/paperframe/examine(mob/user)
 	. = ..()
@@ -938,7 +941,7 @@
 				update_appearance(UPDATE_ICON)
 			return
 	..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 
 
