@@ -98,7 +98,7 @@
 	l_pocket = /obj/item/reagent_containers/food/drinks/beer
 	r_pocket = /obj/item/storage/fancy/cigarettes
 	id = /obj/item/card/id/ert/occupying
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 	
 
 /datum/outfit/occupying/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
