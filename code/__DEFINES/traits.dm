@@ -327,6 +327,8 @@
 #define TRAIT_NEEDS_TWO_HANDS "needstwohands"
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 #define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
+/// The effects of hyperspace drift are blocked when the tile has this trait
+#define TRAIT_HYPERSPACE_STOPPED "hyperspace_stopped"
 
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
@@ -524,6 +526,14 @@
 #define TRAIT_VENTCRAWLER_ALWAYS "ventcrawler_always"
 #define TRAIT_VENTCRAWLER_NUDE "ventcrawler_nude"
 #define TRAIT_SPACEWALK "spacewalk"
+/// Sanity trait to keep track of when we're in hyperspace and add the appropriate element if we werent
+#define TRAIT_HYPERSPACED "hyperspaced"
+///Gives the movable free hyperspace movement without being pulled during shuttle transit
+#define TRAIT_FREE_HYPERSPACE_MOVEMENT "free_hyperspace_movement"
+///Lets the movable move freely in the soft-cordon area of transit space, which would otherwise teleport them away just before they got to see the true cordon
+#define TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT "free_hyperspace_softcordon_movement"
+///Deletes the object upon being dumped into space, usually from exiting hyperspace. Useful if you're spawning in a lot of stuff for hyperspace events that dont need to flood the entire game
+#define TRAIT_DEL_ON_SPACE_DUMP "del_on_hyperspace_leave"
 ///Turf trait for when a turf is transparent
 #define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
 /// This mob overrides certian SSlag_switch measures with this special trait

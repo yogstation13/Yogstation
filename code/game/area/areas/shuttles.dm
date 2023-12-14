@@ -4,7 +4,7 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = TRUE
 	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
 	valid_territory = FALSE
@@ -100,7 +100,8 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 /area/shuttle/custom
 	name = "Custom player shuttle"

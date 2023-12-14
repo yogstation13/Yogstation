@@ -462,6 +462,10 @@ SUBSYSTEM_DEF(ticker)
 		SSjob.random_bar_init()
 	if(no_clerk)
 		SSjob.random_clerk_init()
+	
+	///Yog code, since we load in templates at roundstart we need to resmooth
+	for(var/station_z_level in SSmapping.levels_by_trait(ZTRAIT_STATION))
+		smooth_zlevel(station_z_level, now = TRUE) //You should smooth yourself NOW
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()

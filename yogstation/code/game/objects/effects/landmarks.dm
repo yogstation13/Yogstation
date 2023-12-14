@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	var/unique = FALSE
 	layer = BULLET_HOLE_LAYER
 
-/obj/effect/landmark/stationroom/New()
+/obj/effect/landmark/stationroom/Initialize(mapload)
 	..()
 	GLOB.stationroom_landmarks += src
 

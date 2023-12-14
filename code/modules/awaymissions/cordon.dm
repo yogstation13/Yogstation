@@ -9,9 +9,10 @@
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
 	bullet_bounce_sound = null
 	flags_1 = CAN_BE_DIRTY_1 | NO_RUST
+	baseturfs = /turf/cordon
 
 /turf/cordon/AfterChange()
 	. = ..()
@@ -39,11 +40,19 @@
 /turf/cordon/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	return FALSE
 
+/turf/cordon/Bumped(atom/movable/bumped_atom)
+	. = ..()
+
+	if(HAS_TRAIT(bumped_atom, TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT)) //we could feasibly reach the border, so just dont
+		dump_in_space(bumped_atom)
+
 /// Area used in conjuction with the cordon turf to create a fully functioning world border.
 /area/misc/cordon
 	name = "CORDON"
 	icon_state = "cordon"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 	unique = TRUE
 	noteleport = TRUE
 	hidden = TRUE 

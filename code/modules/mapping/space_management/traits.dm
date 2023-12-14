@@ -49,37 +49,6 @@
 				. += S.z_value
 				break
 
-/// Gets the turf below the given target. Returns null if there is no turf below the target
-/datum/turf_reservation/proc/get_turf_below(turf/target)
-	var/list/bounds_info = calculate_turf_bounds_information(target)
-	if(isnull(bounds_info))
-		return null
-
-	var/z_idx = bounds_info["z_idx"]
-	// check what z level, if its the max, then there is no turf below
-	if(z_idx == z_size)
-		return null
-
-	var/offset_x = bounds_info["offset_x"]
-	var/offset_y = bounds_info["offset_y"]
-	var/turf/bottom_left = bottom_left_turfs[z_idx + 1]
-	return locate(bottom_left.x + offset_x, bottom_left.y + offset_y, bottom_left.z)
-
-/// Gets the turf above the given target. Returns null if there is no turf above the target
-/datum/turf_reservation/proc/get_turf_above(turf/target)
-	var/list/bounds_info = calculate_turf_bounds_information(target)
-	if(isnull(bounds_info))
-		return null
-
-	var/z_idx = bounds_info["z_idx"]
-	// check what z level, if its the min, then there is no turf above
-	if(z_idx == 1)
-		return null
-
-	var/offset_x = bounds_info["offset_x"]
-	var/offset_y = bounds_info["offset_y"]
-	var/turf/bottom_left = bottom_left_turfs[z_idx - 1]
-	return locate(bottom_left.x + offset_x, bottom_left.y + offset_y, bottom_left.z)
 // Prefer not to use this one too often
 /datum/controller/subsystem/mapping/proc/get_station_center()
 	var/station_z = levels_by_trait(ZTRAIT_STATION)[1]

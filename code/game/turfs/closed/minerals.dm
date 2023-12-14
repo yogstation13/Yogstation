@@ -4,19 +4,21 @@
 	name = "rock"
 	icon = MAP_SWITCH('icons/turf/smoothrocks.dmi', 'icons/turf/mining.dmi')
 	icon_state = "rock"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	baseturfs = /turf/open/floor/plating/asteroid/airless
+	initial_gas_mix = AIRLESS_ATMOS
+	opacity = TRUE
+	density = TRUE
+	layer = EDGED_TURF_LAYER
+	plane = WALL_PLANE_UPPER
+	base_icon_state = "smoothrocks"
 
 	// This is static
 	// Done like this to avoid needing to make it dynamic and save cpu time
 	// 4 to the left, 4 down
 	transform = MAP_SWITCH(TRANSLATE_MATRIX(-4, -4), matrix())
 
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1 | NO_RUST
-	baseturfs = /turf/open/floor/plating/asteroid/airless
-	initial_gas_mix = AIRLESS_ATMOS
-	opacity = TRUE
-	density = TRUE
-	layer = EDGED_TURF_LAYER
 	initial_temperature = TCMB
 
 	var/environment_type = "asteroid"

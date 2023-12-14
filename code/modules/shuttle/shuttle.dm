@@ -231,6 +231,7 @@
 
 /obj/docking_port/stationary/transit
 	name = "In Transit"
+	override_can_dock_checks = TRUE
 	/// The turf reservation returned by the transit area request
 	var/datum/turf_reservation/reserved_area
 	/// The area created during the transit area reservation

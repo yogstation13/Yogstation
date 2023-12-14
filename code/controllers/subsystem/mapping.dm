@@ -132,7 +132,6 @@ SUBSYSTEM_DEF(mapping)
 	require_area_resort()
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
-	run_map_generation()
 
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
@@ -195,14 +194,14 @@ SUBSYSTEM_DEF(mapping)
 		message_admins("A shuttle arena failed to load!")
 		log_game("A shuttle arena failed to load!")
 #endif
-
+	run_map_generation()
 	// Add the transit level
-	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
+	var/datum/space_level/base_transit = add_reservation_zlevel()
 	require_area_resort()
 	// Set up Z-level transitions.
 	setup_map_transitions()
 	generate_station_area_list()
-	initialize_reserved_level()
+	initialize_reserved_level(base_transit.z_value)
 	// Build minimaps
 	build_minimaps()
 	return SS_INIT_SUCCESS
@@ -237,7 +236,7 @@ SUBSYSTEM_DEF(mapping)
 	lists_to_reserve.Cut(1, index)
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
-	if(clearing_reserved_turfs || !initialized)			//in either case this is just not needed.
+	if(clearing_reserved_turfs || !initialized) //in either case this is just not needed.
 		return
 	clearing_reserved_turfs = TRUE
 	SSshuttle.transit_requesters.Cut()
@@ -638,20 +637,29 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 				return reserve
 	QDEL_NULL(reserve)
 
-//This is not for wiping reserved levels, use wipe_reservations() for that.
-/datum/controller/subsystem/mapping/proc/initialize_reserved_level()
-	UNTIL(!clearing_reserved_turfs)				//regardless, lets add a check just in case.
-	clearing_reserved_turfs = TRUE			//This operation will likely clear any existing reservations, so lets make sure nothing tries to make one while we're doing it.
-	for(var/i in levels_by_trait(ZTRAIT_RESERVED))
-		var/turf/A = get_turf(locate(SHUTTLE_TRANSIT_BORDER,SHUTTLE_TRANSIT_BORDER,i))
-		var/turf/B = get_turf(locate(world.maxx - SHUTTLE_TRANSIT_BORDER,world.maxy - SHUTTLE_TRANSIT_BORDER,i))
-		var/block = block(A, B)
-		for(var/t in block)
-			// No need to empty() these, because it's world init and they're
-			// already /turf/open/space/basic.
-			var/turf/T = t
-			T.flags_1 |= UNUSED_RESERVATION_TURF_1
-		unused_turfs["[i]"] = block
+///Sets up a z level as reserved
+///This is not for wiping reserved levels, use wipe_reservations() for that.
+///If this is called after SSatom init, it will call Initialize on all turfs on the passed z, as its name promises
+/datum/controller/subsystem/mapping/proc/initialize_reserved_level(z)
+	UNTIL(!clearing_reserved_turfs) //regardless, lets add a check just in case.
+	clearing_reserved_turfs = TRUE //This operation will likely clear any existing reservations, so lets make sure nothing tries to make one while we're doing it.
+	if(!level_trait(z,ZTRAIT_RESERVED))
+		clearing_reserved_turfs = FALSE
+		CRASH("Invalid z level prepared for reservations.")
+	var/turf/A = get_turf(locate(SHUTTLE_TRANSIT_BORDER,SHUTTLE_TRANSIT_BORDER,z))
+	var/turf/B = get_turf(locate(world.maxx - SHUTTLE_TRANSIT_BORDER,world.maxy - SHUTTLE_TRANSIT_BORDER,z))
+	var/block = block(A, B)
+	for(var/turf/T as anything in block)
+		// No need to empty() these, because they just got created and are already /turf/open/space/basic.
+		T.flags_1 = UNUSED_RESERVATION_TURF_1
+		CHECK_TICK
+
+	// Gotta create these suckers if we've not done so already
+	if(SSatoms.initialized)
+		SSatoms.InitializeAtoms(Z_TURFS(z))
+
+	unused_turfs["[z]"] = block
+	reservation_ready["[z]"] = TRUE
 	clearing_reserved_turfs = FALSE
 
 /// Schedules a group of turfs to be handed back to the reservation system's control
@@ -664,17 +672,17 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 //DO NOT CALL THIS PROC DIRECTLY, CALL wipe_reservations().
 /datum/controller/subsystem/mapping/proc/do_wipe_turf_reservations()
 	PRIVATE_PROC(TRUE)
-	UNTIL(initialized)							//This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
+	UNTIL(initialized) //This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
 	for(var/i in turf_reservations)
 		var/datum/turf_reservation/TR = i
 		if(!QDELETED(TR))
 			qdel(TR, TRUE)
 	UNSETEMPTY(turf_reservations)
 	var/list/clearing = list()
-	for(var/l in unused_turfs)			//unused_turfs is a assoc list by z = list(turfs)
+	for(var/l in unused_turfs) //unused_turfs is an assoc list by z = list(turfs)
 		if(islist(unused_turfs[l]))
 			clearing |= unused_turfs[l]
-	clearing |= used_turfs		//used turfs is an associative list, BUT, reserve_turfs() can still handle it. If the code above works properly, this won't even be needed as the turfs would be freed already.
+	clearing |= used_turfs //used turfs is an associative list, BUT, reserve_turfs() can still handle it. If the code above works properly, this won't even be needed as the turfs would be freed already.
 	unused_turfs.Cut()
 	used_turfs.Cut()
 	reserve_turfs(clearing, await = TRUE)
@@ -815,30 +823,30 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 			true_to_offset_planes[string_real] |= offset_plane
 
-/datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
-	RETURN_TYPE(/datum/turf_reservation)
+// /datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
+// 	RETURN_TYPE(/datum/turf_reservation)
 
-	UNTIL(initialized)
-	var/static/lazy_loading = FALSE
-	UNTIL(!lazy_loading)
+// 	UNTIL(initialized)
+// 	var/static/lazy_loading = FALSE
+// 	UNTIL(!lazy_loading)
 
-	lazy_loading = TRUE
-	. = _lazy_load_template(template_key, force)
-	lazy_loading = FALSE
-	return .
+// 	lazy_loading = TRUE
+// 	. = _lazy_load_template(template_key, force)
+// 	lazy_loading = FALSE
+// 	return .
 
-/datum/controller/subsystem/mapping/proc/_lazy_load_template(template_key, force = FALSE)
-	PRIVATE_PROC(TRUE)
+// /datum/controller/subsystem/mapping/proc/_lazy_load_template(template_key, force = FALSE)
+// 	PRIVATE_PROC(TRUE)
 
-	if(LAZYACCESS(loaded_lazy_templates, template_key)  && !force)
-		var/datum/lazy_template/template = GLOB.lazy_templates[template_key]
-		return template.reservations[1]
-	LAZYSET(loaded_lazy_templates, template_key, TRUE)
+// 	if(LAZYACCESS(loaded_lazy_templates, template_key)  && !force)
+// 		var/datum/lazy_template/template = GLOB.lazy_templates[template_key]
+// 		return template.reservations[1]
+// 	LAZYSET(loaded_lazy_templates, template_key, TRUE)
 
-	var/datum/lazy_template/target = GLOB.lazy_templates[template_key]
-	if(!target)
-		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
-	return target.lazy_load()
+// 	var/datum/lazy_template/target = GLOB.lazy_templates[template_key]
+// 	if(!target)
+// 		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
+// 	return target.lazy_load()
 
 /proc/generate_lighting_appearance_by_z(z_level)
 	if(length(GLOB.default_lighting_underlays_by_z) < z_level)

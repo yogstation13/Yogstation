@@ -24,8 +24,7 @@
 /area/crew_quarters/theatre)
 "ae" = (
 /obj/machinery/camera{
-	c_tag = "Theatre Stage";
-	dir = 2
+	c_tag = "Theatre Stage"
 	},
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/hardhat/cakehat,
@@ -35,33 +34,18 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
-"ag" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/crew_quarters/bar)
 "ai" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
 "ak" = (
 /obj/machinery/door/window/southleft{
-	base_state = "left";
-	dir = 2;
-	icon_state = "left";
 	name = "Bar Delivery";
 	req_access_txt = "25"
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"al" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/crew_quarters/kitchen)
 "am" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
@@ -100,12 +84,10 @@
 /area/crew_quarters/bar)
 "ar" = (
 /obj/machinery/airalarm{
-	dir = 2;
 	pixel_y = 24
 	},
 /obj/structure/chair/americandiner{
 	dir = 4;
-	icon_state = "americhair";
 	tag = ""
 	},
 /turf/open/floor/carpet,
@@ -119,7 +101,6 @@
 "at" = (
 /obj/structure/chair/americandiner{
 	dir = 8;
-	icon_state = "americhair";
 	tag = ""
 	},
 /turf/open/floor/carpet,
@@ -140,7 +121,6 @@
 	dir = 8
 	},
 /obj/machinery/firealarm{
-	dir = 2;
 	pixel_y = 26
 	},
 /turf/open/floor/carpet,
@@ -163,9 +143,6 @@
 /area/crew_quarters/kitchen)
 "aC" = (
 /obj/machinery/door/window/southleft{
-	base_state = "left";
-	dir = 2;
-	icon_state = "left";
 	name = "Kitchen Delivery";
 	req_access_txt = "28"
 	},
@@ -208,7 +185,6 @@
 "aK" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -24
 	},
 /obj/machinery/light/small{
@@ -233,6 +209,10 @@
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
 "aM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8;
 	icon_state = "vent_map_on-1"
@@ -367,10 +347,7 @@
 /area/crew_quarters/kitchen)
 "be" = (
 /obj/item/storage/secure/safe,
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
+/turf/closed/wall,
 /area/crew_quarters/bar)
 "bf" = (
 /obj/structure/disposalpipe/segment,
@@ -390,7 +367,6 @@
 "bg" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -24
 	},
 /obj/machinery/camera{
@@ -530,7 +506,6 @@
 "bC" = (
 /obj/machinery/camera{
 	c_tag = "Kitchen";
-	dir = 2;
 	network = list("SS13")
 	},
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -586,7 +561,6 @@
 "bJ" = (
 /obj/structure/chair/americandiner{
 	dir = 4;
-	icon_state = "americhair";
 	tag = ""
 	},
 /turf/open/floor/carpet,
@@ -637,7 +611,6 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 24
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
@@ -766,7 +739,6 @@
 	},
 /obj/structure/chair/americandiner{
 	dir = 8;
-	icon_state = "americhair";
 	tag = ""
 	},
 /turf/open/floor/carpet,
@@ -774,8 +746,7 @@
 "df" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks{
-	dir = 4;
-	icon_state = "soda_dispenser"
+	dir = 4
 	},
 /obj/machinery/door/window/westright,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -783,10 +754,6 @@
 	name = "bar shutters"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/bar)
-"dg" = (
-/obj/structure/sign/barsign,
-/turf/closed/wall,
 /area/crew_quarters/bar)
 "ge" = (
 /obj/structure/table,
@@ -976,10 +943,7 @@
 	pixel_x = 6;
 	pixel_y = 5
 	},
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
+/turf/closed/wall,
 /area/crew_quarters/bar)
 "Sb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1170,7 +1134,7 @@ ap
 aE
 aE
 JA
-dg
+ac
 "}
 (6,1,1) = {"
 ac
@@ -1269,10 +1233,10 @@ cX
 ac
 "}
 (12,1,1) = {"
-ag
-ag
-ag
-ag
+ac
+ac
+ac
+ac
 RH
 CC
 df
@@ -1321,7 +1285,7 @@ cC
 ay
 aM
 cc
-ag
+ac
 aR
 bq
 cm
@@ -1333,11 +1297,11 @@ db
 ac
 "}
 (16,1,1) = {"
-ag
+ac
 PF
 ba
-ag
-ag
+ac
+ac
 am
 am
 Tn
@@ -1352,7 +1316,7 @@ am
 ak
 bV
 aN
-ag
+ac
 aG
 am
 aT
@@ -1365,10 +1329,10 @@ am
 aa
 "}
 (18,1,1) = {"
-al
-al
-al
-al
+am
+am
+am
+am
 am
 am
 bz

@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			if(!istype(air,/datum/gas_mixture))
 				Initalize_Atmos(0)
 
-// Take off the top layer turf and replace it with the next baseturf down
+/// Take off the top layer turf and replace it with the next baseturf down
 /turf/proc/ScrapeAway(amount=1, flags)
 	if(!amount)
 		return
@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		while(ispath(turf_type, /turf/baseturf_skipover))
 			amount++
 			if(amount > new_baseturfs.len)
-				CRASH("The bottomost baseturf of a turf is a skipover [src]([type])")
+				CRASH("The bottommost baseturf of a turf is a skipover [src]([type])")
 			turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
 		new_baseturfs.len -= min(amount, new_baseturfs.len - 1) // No removing the very bottom
 		if(new_baseturfs.len == 1)

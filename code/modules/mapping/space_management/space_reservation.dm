@@ -36,6 +36,9 @@
 	pre_cordon_distance = 7
 
 /datum/turf_reservation/proc/Release()
+	bottom_left_turfs.Cut()
+	top_right_turfs.Cut()
+
 	var/list/reserved_copy = reserved_turfs.Copy()
 	SSmapping.used_turfs -= reserved_turfs
 	reserved_turfs = list()
@@ -50,7 +53,7 @@
 		SEND_SIGNAL(reserved_turf, COMSIG_TURF_RESERVATION_RELEASED, src)
 
 	// Makes the linter happy, even tho we don't await this
-	INVOKE_ASYNC(SSmapping, /datum/controller/subsystem/mapping/proc/reserve_turfs, reserved_copy)
+	INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, reserve_turfs), release_turfs)
 
 /// Attempts to calaculate and store a list of turfs around the reservation for cordoning. Returns whether a valid cordon was calculated
 /datum/turf_reservation/proc/calculate_cordon_turfs(turf/BL, turf/TR)
@@ -81,10 +84,13 @@
 		old_area.turfs_to_uncontain += cordon_turf
 		cordon_area.contained_turfs += cordon_turf
 		cordon_area.contents += cordon_turf
+		// Its no longer unused, but its also not "used"
+		cordon_turf.turf_flags &= ~UNUSED_RESERVATION_TURF
 		cordon_turf.ChangeTurf(/turf/cordon, /turf/cordon)
 
 		cordon_turf.flags_1 &= ~UNUSED_RESERVATION_TURF_1
 		SSmapping.unused_turfs["[cordon_turf.z]"] -= cordon_turf
+		// still gets linked to us though
 		SSmapping.used_turfs[cordon_turf] = src
 
 	//swap the area with the pre-cordoning area
@@ -111,7 +117,7 @@
 /datum/turf_reservation/transit/make_repel(turf/pre_cordon_turf)
 	..()
 
-	RegisterSignal(pre_cordon_turf, COMSIG_ATOM_ENTERED, PROC_REF(space_dump))
+	RegisterSignal(pre_cordon_turf, COMSIG_ATOM_ENTERED, PROC_REF(space_dump_soft))
 
 /datum/turf_reservation/transit/stop_repel(turf/pre_cordon_turf)
 	..()
@@ -121,7 +127,15 @@
 /datum/turf_reservation/transit/proc/space_dump(atom/source, atom/movable/enterer)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(throw_atom), enterer)
+	dump_in_space(enterer)
+
+///Only dump if we don't have the hyperspace cordon movement exemption trait
+/datum/turf_reservation/transit/proc/space_dump_soft(atom/source, atom/movable/enterer)
+	SIGNAL_HANDLER
+
+	if(!HAS_TRAIT(enterer, TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT))
+		space_dump(source, enterer)
+
 
 /// Internal proc which handles reserving the area for the reservation.
 /datum/turf_reservation/proc/_reserve_area(width, height, zlevel)
@@ -163,7 +177,6 @@
 	for(var/i in final)
 		var/turf/T = i
 		reserved_turfs |= T
-		T.flags_1 &= ~UNUSED_RESERVATION_TURF_1
 		SSmapping.unused_turfs["[T.z]"] -= T
 		SSmapping.used_turfs[T] = src
 		T.ChangeTurf(turf_type, turf_type)
@@ -215,6 +228,38 @@
 		return_information["offset_y"] = target.y - bl_y
 		return return_information
 	return null
+
+/// Gets the turf below the given target. Returns null if there is no turf below the target
+/datum/turf_reservation/proc/get_turf_below(turf/target)
+	var/list/bounds_info = calculate_turf_bounds_information(target)
+	if(isnull(bounds_info))
+		return null
+
+	var/z_idx = bounds_info["z_idx"]
+	// check what z level, if its the max, then there is no turf below
+	if(z_idx == z_size)
+		return null
+
+	var/offset_x = bounds_info["offset_x"]
+	var/offset_y = bounds_info["offset_y"]
+	var/turf/bottom_left = bottom_left_turfs[z_idx + 1]
+	return locate(bottom_left.x + offset_x, bottom_left.y + offset_y, bottom_left.z)
+
+/// Gets the turf above the given target. Returns null if there is no turf above the target
+/datum/turf_reservation/proc/get_turf_above(turf/target)
+	var/list/bounds_info = calculate_turf_bounds_information(target)
+	if(isnull(bounds_info))
+		return null
+
+	var/z_idx = bounds_info["z_idx"]
+	// check what z level, if its the min, then there is no turf above
+	if(z_idx == 1)
+		return null
+
+	var/offset_x = bounds_info["offset_x"]
+	var/offset_y = bounds_info["offset_y"]
+	var/turf/bottom_left = bottom_left_turfs[z_idx - 1]
+	return locate(bottom_left.x + offset_x, bottom_left.y + offset_y, bottom_left.z)
 
 /datum/turf_reservation/New()
 	LAZYADD(SSmapping.turf_reservations, src)
