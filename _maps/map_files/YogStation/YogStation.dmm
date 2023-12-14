@@ -43118,6 +43118,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/bar,
+/obj/item/reagent_containers/food/drinks/shaker,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -43131,8 +43132,6 @@
 	id = "barcounter";
 	name = "bar shutters"
 	},
-/obj/machinery/coffeemaker/impressa,
-/obj/item/reagent_containers/food/drinks/bottle/coffeepot,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "mKD" = (
@@ -59190,10 +59189,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/bar,
-/obj/item/reagent_containers/food/drinks/bottle/coffeepot,
-/obj/item/seeds/coffee/robusta,
-/obj/item/seeds/coffee,
-/obj/item/storage/box/coffee_condi_display,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "sFl" = (
@@ -72728,23 +72723,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"xHs" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barcounter";
-	name = "bar shutters"
-	},
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "xHA" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/disposalpipe/segment,
@@ -109831,7 +109809,7 @@ sGs
 sGs
 sGs
 mJZ
-xHs
+sTA
 oXZ
 aFd
 hRB
