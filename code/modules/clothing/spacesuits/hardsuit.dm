@@ -262,11 +262,11 @@
 
 	//Elder_Atmosian's hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/elder_atmosian
-	name = "Elder Atmosian Hardsuit Helmet"
+	name = "Elder Atmosian Firefighter Helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has thermal shielding. This one is made with the toughest and rarest materials available to man."
-	icon_state = "hardsuit0-flight"
-	item_state = "flighthelmet"
-	hardsuit_type = "flight"
+	icon_state = "hardsuit0-metalh2"
+	item_state = "hardhat0_atmos"
+	hardsuit_type = "metalh2"
 	armor = list(MELEE = 40, BULLET = 35, LASER = 25, ENERGY = 30, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 20, ELECTRIC = 100)
 	heat_protection = HEAD												//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -274,10 +274,10 @@
 	flags_1 = RAD_PROTECT_CONTENTS_1
 
 /obj/item/clothing/suit/space/hardsuit/elder_atmosian
-	name = "Elder Atmosian Hardsuit"
+	name = "Elder Atmosian Firesuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has thermal shielding. This one is made with the toughest and rarest materials available to man."
-	icon_state = "flightsuit"
-	item_state = "flightsuit"
+	icon_state = "metalh2_firesuit"
+	item_state = "firesuit_atmos"
 	armor = list(MELEE = 40, BULLET = 35, LASER = 25, ENERGY = 30, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 20, ELECTRIC = 100)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS					//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT

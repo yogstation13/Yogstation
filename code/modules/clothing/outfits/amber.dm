@@ -64,7 +64,7 @@
 	head = /obj/item/clothing/head/helmet/riot/raised
 	l_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/ert/amber
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 	
 
 

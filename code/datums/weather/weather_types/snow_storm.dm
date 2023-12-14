@@ -25,5 +25,14 @@
 
 
 /datum/weather/snow_storm/weather_act(mob/living/L)
-	L.adjust_bodytemperature(-rand(5,15))
-
+	var/weather_strength = -rand(5, 15)
+	var/datum/gas_mixture/environment = L.loc?.return_air()
+	if(!environment) // no air == no snow
+		return
+	if(ismovable(L.loc))
+		var/atom/movable/occupied_space = L.loc
+		weather_strength *= (1 - occupied_space.contents_thermal_insulation)
+	if(ishuman(L))
+		var/mob/living/carbon/human/human_mob = L
+		weather_strength *= (1 - human_mob.get_cold_protection(environment.return_temperature()))
+	L.adjust_bodytemperature(weather_strength)

@@ -38,7 +38,7 @@
 	///	Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
 	///	Mech damage multiplier, modifies the structure damage multiplier for damage specifically against mechs. Default to 0.75 for extended mech combat gaming
-	var/mech_damage_multiplier = 0.75
+	var/mech_damage_multiplier = 0.5
 	///	Weapons that can hit turfs, default to false because it'll be special effects maybe some time
 	var/can_stab_turfs = FALSE
 	
@@ -251,6 +251,7 @@
 	fauna_damage_bonus = 30		//If you're fighting fauna with this thing, why? I mean it works, I guess.
 	base_armor_piercing = 40
 	structure_damage_mult = 4	//Think obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech with a huge terrifying axe
+	mech_damage_multiplier = 0.75	//Your puny exosuit will not save you
 	minimum_damage = 40			
 	attack_speed_modifier = 1.5 //Kinda chunky
 	mob_strike_sound = 'sound/weapons/blade1.ogg'
@@ -278,11 +279,11 @@
 	icon_state = "mecha_katana"
 	energy_drain = 15
 	cleave = FALSE				//small fast blade
-	precise_weapon_damage = 5
+	precise_weapon_damage = 10
 	attack_speed_modifier = 0.7	//live out your anime dreams in a mech
 	fauna_damage_bonus = 20		//because why not
 	deflect_bonus = 20			//ANIME REASONS
-	base_armor_piercing = 10	//20 on the precise attacks, meant for lighter targets
+	base_armor_piercing = 20	//40 on the precise attacks, something about being folded 10 gorillion times or whatever
 	structure_damage_mult = 2	//katana is less smashy than other swords
 	minimum_damage = 20
 	sword_wound_bonus = 15		//More bleeding
@@ -393,7 +394,7 @@
 	base_armor_piercing = 25	//50 on precise attack
 	deflect_bonus = 15			//mech fencing but it parries bullets too because robot reaction time or something
 	structure_damage_mult = 2	//Ever try to shank an engine block?
-	mech_damage_multiplier = 0.85	//Slightly better against mechs
+	mech_damage_multiplier = 0.75	//Notably better against mechs
 	attack_sharpness = SHARP_POINTY
 	attack_speed_modifier = 0.8	//Counteracts the 0.2 second time between attacks
 	extended_range = 1			//so we can jump at people

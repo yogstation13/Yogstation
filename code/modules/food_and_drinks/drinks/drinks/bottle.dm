@@ -22,6 +22,11 @@
 	isGlass = TRUE
 	foodtype = ALCOHOL
 	age_restricted = TRUE
+	/// The optional custom name for the reagent fill icon_state prefix
+	/// If not set, uses the current icon state.
+	var/fill_icon_state = null
+	/// The icon file to take fill icon appearances from
+	var/fill_icon = 'icons/obj/reagentfillings.dmi'
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change(changetype)
 	update_appearance(UPDATE_ICON)

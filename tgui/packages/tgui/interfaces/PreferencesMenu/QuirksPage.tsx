@@ -89,6 +89,13 @@ const QuirkList = (props: {
                   }}>
                     {quirk.description}
                   </Stack.Item>
+                  <Stack.Item grow basis="content" style={{
+                    "font-size": "0.8em",
+                    "margin-top": 0,
+                    "padding": "3px",
+                  }}>
+                    {quirk.blacklisted}
+                  </Stack.Item>
                 </Stack>
               </Stack.Item>
             </Stack>

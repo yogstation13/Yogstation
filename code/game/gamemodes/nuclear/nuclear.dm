@@ -155,6 +155,8 @@
 		var/obj/item/U = new uplink_type(H, H.key, tc)
 		H.equip_to_slot_or_del(U, ITEM_SLOT_BACKPACK)
 
+	var/obj/item/implant/biosig_gorlex/B = new/obj/item/implant/biosig_gorlex(H) // Biosignaller won't trigger if it's put below the explosive implant.
+	B.implant(H)
 	var/obj/item/implant/weapons_auth/W = new/obj/item/implant/weapons_auth(H)
 	W.implant(H)
 	var/obj/item/implant/explosive/E = new/obj/item/implant/explosive(H)

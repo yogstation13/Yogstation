@@ -457,7 +457,7 @@ LAW_WEIGHT reporter,4
 ION_LAW_WEIGHT reporter,1
 
 ## Quirky laws. Shouldn't cause too much harm
-LAW_WEIGHT hippocratic,1
+LAW_WEIGHT hippocratic,0
 ION_LAW_WEIGHT hippocratic,2
 LAW_WEIGHT maintain,1
 ION_LAW_WEIGHT maintain,2

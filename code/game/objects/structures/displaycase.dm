@@ -233,7 +233,18 @@
 //The lab cage and captain's display case do not spawn with electronics, which is why req_access is needed.
 /obj/structure/displaycase/captain
 	start_showpiece_type = /obj/item/gun/energy/laser/captain
-	req_access = list(ACCESS_CENT_SPECOPS) //this was intentional, presumably to make it slightly harder for caps to grab their gun roundstart
+	req_access = list(ACCESS_CENT_SPECOPS) // This is intentional, presumably to make it slightly harder for caps to grab their gun roundstart.
+
+/obj/structure/displaycase/captain/attackby(obj/item/W, mob/user, params) // Unless shit has really hit the fan.
+	if(!istype(W, /obj/item/card/id))
+		return ..()
+	if(seclevel2num(get_security_level()) >= SEC_LEVEL_GAMMA) // Everything higher than red.
+		req_access = list(ACCESS_CAPTAIN)
+	else
+		to_chat(user, span_warning("The display case's access locks can only be lifted above red alert!"))
+		req_access = list(ACCESS_CENT_SPECOPS)
+		return
+	. = ..()
 
 /obj/structure/displaycase/labcage
 	name = "lab cage"

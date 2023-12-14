@@ -80,7 +80,10 @@
 	playsound(src, P.hitsound, 50, 1)
 	visible_message(span_danger("[src] is hit by \a [P]!"), null, null, COMBAT_MESSAGE_RANGE)
 	if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
-		take_damage(P.damage * P.demolition_mod, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
+		var/demolition_mult = P.demolition_mod
+		if(istype(src, /obj/mecha) && P.demolition_mod != 1)	//snowflake damage checks for mechs
+			demolition_mult = istype(src, /obj/mecha/combat) ? min(1, (1 + P.demolition_mod)/2) : (1 + P.demolition_mod)/2
+		take_damage(P.damage * demolition_mult, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
 
 ///Called to get the damage that hulks will deal to the obj.
 /obj/proc/hulk_damage()
@@ -168,7 +171,10 @@
 			else
 				return 0
 	visible_message(span_danger("[M.name] has hit [src]."), null, null, COMBAT_MESSAGE_RANGE)
-	return take_damage(M.force*3, mech_damtype, MELEE, play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
+	if(istype(src, /obj/mecha))
+		return take_damage(M.force*1.5, mech_damtype, MELEE, play_soundeffect, get_dir(src, M))	//1.5x damage versus other mechs
+	else
+		return take_damage(M.force*3, mech_damtype, MELEE, play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
 
 /obj/singularity_act()
 	SSexplosions.high_mov_atom += src

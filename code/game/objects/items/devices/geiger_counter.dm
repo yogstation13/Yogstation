@@ -16,6 +16,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	item_flags = NOBLUDGEON
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
+	grind_results = list(/datum/reagent/uranium/radium = 5)
 
 	var/grace = RAD_GEIGER_GRACE_PERIOD
 	var/datum/looping_sound/geiger/soundloop

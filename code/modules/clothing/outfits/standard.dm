@@ -369,7 +369,7 @@
 	r_hand = /obj/item/gun/energy/pulse/loyalpin
 	id = /obj/item/card/id/centcom
 	ears = /obj/item/radio/headset/headset_cent/alt
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 
 	backpack_contents = list(/obj/item/storage/box=1,\
 		/obj/item/ammo_box/m44=1,\
