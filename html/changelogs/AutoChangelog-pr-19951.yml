@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Map rotations and player votes no longer offer maps if they were played the last 70% of rounds"
