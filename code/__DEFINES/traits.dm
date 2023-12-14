@@ -134,8 +134,6 @@
 #define TRAIT_CRITICAL_CONDITION "critical-condition"
 /// Is frozen in place
 #define TRAIT_FROZEN "frozen"
-/// Is runechat for this atom/movable currently disabled, regardless of prefs or anything?
-#define TRAIT_RUNECHAT_HIDDEN "runechat_hidden"
 /// trait associated to a stat value or range of
 #define STAT_TRAIT 				"stat"
 #define TRAIT_INCAPACITATED 	"incapacitated"
@@ -492,3 +490,7 @@
 #define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"
 /// things with this trait are treated as having no access in /obj/proc/check_access(obj/item)
 #define TRAIT_ALWAYS_NO_ACCESS "alwaysnoaccess"
+///Trait for dryable items
+#define TRAIT_DRYABLE "trait_dryable"
+///Trait for dried items
+#define TRAIT_DRIED "trait_dried"
