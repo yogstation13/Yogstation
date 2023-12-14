@@ -201,7 +201,7 @@
 			organ_objective.finalize()
 			add_objective(organ_objective)
 		else
-			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon)
 			var/datum/objective/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()
