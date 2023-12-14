@@ -146,7 +146,6 @@
 		add_mob_profile(L)
 	for(var/i = 0; i < adjustment_amount; i++)
 		var/direction = pickweightAllowZero(attack_adjustments[L.real_name][move])
-		message_admins(direction)
 		var/actual_direction 
 		actual_direction = turn(text2dir(direction),dir2angle(get_dir(src,L)))
 		if(!actual_direction || prob(35))
