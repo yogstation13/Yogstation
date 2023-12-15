@@ -432,3 +432,13 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	log_admin(span_notice("[key_name(target)] entered a stasis pod."))
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
+
+/obj/machinery/cryopod/JoinPlayerHere(mob/M, buckle)
+	. = ..()
+	open_machine()
+	if(iscarbon(M))
+		apply_effects_to_mob(M)
+
+/obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
+	sleepyhead.SetSleeping(50)
+	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
