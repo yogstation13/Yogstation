@@ -442,3 +442,18 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 /obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
 	sleepyhead.SetSleeping(50)
 	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
+	sleepyhead.set_nutrition(200)
+	sleepyhead.SetSleeping(60) //if you read this comment and feel like shitting together something to adjust IPC charge on wakeup, be my guest.
+	//but it can be worse.
+	if(prob(90))
+		sleepyhead.adjust_drowsiness(rand(3 SECONDS, 10 SECONDS))
+	if(prob(75))
+		sleepyhead.blur_eyes(rand(3, 6))
+	//so much worse
+	if(prob(66))
+		sleepyhead.adjust_disgust(rand(25,35))
+	if(prob(33))
+		sleepyhead.adjust_disgust(rand(20,30))
+	if(prob(16))
+		sleepyhead.adjust_disgust(rand(10, 17))
+	to_chat(sleepyhead, "<span class='userdanger'>The symptoms of cryosleep set in as you awaken...")
