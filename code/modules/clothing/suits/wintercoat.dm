@@ -34,7 +34,7 @@
 
 /obj/item/clothing/suit/hooded/wintercoat/centcom/Initialize(mapload)
 	. = ..()
-	allowed += GLOB.security_wintercoat_allowed
+	allowed = GLOB.security_wintercoat_allowed
 
 /obj/item/clothing/head/hooded/winterhood/centcom
 	icon_state = "hood_centcom"
