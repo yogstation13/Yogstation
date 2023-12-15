@@ -429,7 +429,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if (. & EMP_PROTECT_SELF)
 		return
 	emped++ //There's been an EMP; better count it
-	var/curremp = emped //Remember which EMP this was
 	if (listening && ismob(loc))	// if the radio is turned on and on someone's person they notice
 		to_chat(loc, span_warning("\The [src] overloads."))
 	broadcasting = FALSE
@@ -437,11 +436,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
 	on = FALSE
-	addtimer(CALLBACK(src, PROC_REF(end_emp_effect), curremp), 200)
+	addtimer(CALLBACK(src, PROC_REF(end_emp_effect)), 20 * severity, TIMER_UNIQUE | TIMER_OVERRIDE)
 
-/obj/item/radio/proc/end_emp_effect(curremp)
-	if(emped != curremp) //Don't fix it if it's been EMP'd again
-		return FALSE
+/obj/item/radio/proc/end_emp_effect()
 	emped = FALSE
 	on = TRUE
 	return TRUE

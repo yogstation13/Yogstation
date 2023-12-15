@@ -144,7 +144,7 @@
 	if(!status)
 		return
 	if(!(. & EMP_PROTECT_SELF))
-		if(prob(150/severity))
+		if(prob(15 * severity))
 			update_appearance(UPDATE_ICON)
 			var/list/previous_network = network
 			network = list()
@@ -164,7 +164,7 @@
 						if(can_use())
 							GLOB.cameranet.addCamera(src)
 						emped = 0 //Resets the consecutive EMP count
-						addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 100)
+						addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), severity SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 			for(var/i in GLOB.player_list)
 				var/mob/M = i
 				if (M.client.eye == src)

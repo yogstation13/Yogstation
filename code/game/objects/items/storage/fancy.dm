@@ -503,3 +503,5 @@
 /obj/item/storage/fancy/nugget_box/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/food/snacks/nugget(src)
+
+

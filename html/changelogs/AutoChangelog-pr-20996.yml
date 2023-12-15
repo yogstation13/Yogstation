@@ -1,5 +1,0 @@
-author: " Twaticus, Imaginos16, Cark"
-delete-after: true 
-changes: 
-  - imageadd: "added new object sprite for plasteel tile"
-  - imagedel: "deleted old object sprite for plasteel tile"

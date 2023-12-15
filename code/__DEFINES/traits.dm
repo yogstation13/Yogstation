@@ -293,8 +293,6 @@
 #define TRAIT_NOVEHICLE	"no_vehicle"
 /// BALD!!!
 #define TRAIT_BALD "bald"
-/// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
-#define TRAIT_FARADAYCAGE "faraday_cage"
 /// You can't see color!
 #define TRAIT_COLORBLIND "color_blind"
 
@@ -497,3 +495,7 @@
 #define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"
 /// things with this trait are treated as having no access in /obj/proc/check_access(obj/item)
 #define TRAIT_ALWAYS_NO_ACCESS "alwaysnoaccess"
+///Trait for dryable items
+#define TRAIT_DRYABLE "trait_dryable"
+///Trait for dried items
+#define TRAIT_DRIED "trait_dried"

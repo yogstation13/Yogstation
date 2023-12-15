@@ -12,7 +12,7 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	materials = list(/datum/material/glass=1000)
 	w_class = WEIGHT_CLASS_SMALL
-	grind_results = list(/datum/reagent/silicon = 20)
+	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/gold = 10)
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	var/build_path = null
 

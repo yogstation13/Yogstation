@@ -338,7 +338,7 @@
 
 /mob/living/carbon/proc/handle_bodyparts()
 	var/stam_regen = FALSE
-	if(stam_regen_start_time <= world.time && (has_dna() && !dna.check_mutation(ACTIVE_HULK)))
+	if(stam_regen_start_time <= world.time)
 		stam_regen = TRUE
 		if(HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
 			. |= BODYPART_LIFE_UPDATE_HEALTH //make sure we remove the stamcrit

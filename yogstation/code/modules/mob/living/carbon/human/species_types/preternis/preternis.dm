@@ -3,7 +3,7 @@
 	plural_form = "Preterni"
 	id = "preternis"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_FARADAYCAGE) //Faraday cage reduces incoming EMP severity by one level
+	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE)
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = MOB_ORGANIC|MOB_ROBOTIC|MOB_HUMANOID
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
@@ -59,6 +59,7 @@
 
 	for (var/obj/item/bodypart/BP in C.bodyparts)
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
+		BP.emp_reduction = EMP_LIGHT
 		BP.burn_reduction = 2
 		BP.brute_reduction = 1
 		if(BP.body_zone == BODY_ZONE_CHEST)
@@ -79,6 +80,7 @@
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
+		BP.emp_reduction = initial(BP.emp_reduction)
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
 
@@ -294,6 +296,12 @@
 	var/list/to_add = list()
 
 	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "Preterni have an outer plasteel shell that can block low-intensity EM interference.",
+		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "cookie-bite",
