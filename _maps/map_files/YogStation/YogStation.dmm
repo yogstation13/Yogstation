@@ -13613,18 +13613,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"ckB" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "ckC" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -14484,6 +14472,14 @@
 "ctR" = (
 /turf/open/floor/engine/n2,
 /area/engine/atmos/distro)
+"ctX" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutter"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "cuj" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood/large,
@@ -15945,22 +15941,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
-"cPq" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/railing/corner,
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "cPt" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -16902,6 +16882,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"dhY" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/railing/corner,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "dil" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -18091,14 +18084,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
-"dFa" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/siding/wood/corner/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_corner,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "dFi" = (
 /obj/structure/table,
 /obj/item/storage/box/prisoner{
@@ -19892,15 +19877,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"ens" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/curtain,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutter"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "eoj" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -33646,15 +33622,6 @@
 "jdO" = (
 /turf/closed/wall,
 /area/medical/storage)
-"jdT" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "jec" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8;
@@ -38428,27 +38395,6 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
-"kYv" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/glass{
-	name = "Bar Counter";
-	req_access_txt = "25"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutter"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "kYK" = (
 /turf/closed/wall/r_wall,
 /area/medical/genetics/cloning)
@@ -42161,6 +42107,15 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"mry" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "mrK" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -45808,15 +45763,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"nHi" = (
-/obj/structure/curtain,
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutter"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "nHm" = (
 /obj/structure/closet/wardrobe/pjs,
 /turf/open/floor/plasteel,
@@ -59488,6 +59434,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
+"sJi" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/siding/wood/corner/thin{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "sJk" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/structure/window/reinforced{
@@ -64029,16 +63982,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
-"uwv" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "uwD" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
 	dir = 1
@@ -67069,6 +67012,12 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+"vyW" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "vza" = (
 /obj/machinery/camera{
 	c_tag = "Engineering Storage";
@@ -108559,7 +108508,7 @@ qQV
 qQV
 qQV
 aql
-kYv
+ctX
 rNJ
 aql
 aql
@@ -109593,7 +109542,7 @@ xdm
 oXZ
 aFd
 aFd
-uwv
+gWx
 raM
 dIf
 aCr
@@ -109850,7 +109799,7 @@ sTA
 oXZ
 aFd
 hRB
-ckB
+mry
 icC
 keq
 aCr
@@ -110107,7 +110056,7 @@ bKr
 rDG
 aFd
 cFS
-jdT
+vyW
 mOc
 dIf
 aCr
@@ -110364,7 +110313,7 @@ rDG
 kls
 inJ
 vBq
-cPq
+dhY
 kDs
 eWI
 aCr
@@ -110621,7 +110570,7 @@ aFd
 oeV
 vcp
 djq
-dFa
+sJi
 raM
 joU
 czU
@@ -111139,7 +111088,7 @@ cyr
 aPl
 qiP
 aCr
-nHi
+inS
 cuA
 aYV
 cwO
@@ -111396,7 +111345,7 @@ fgc
 xYx
 qiP
 aCr
-nHi
+inS
 cuA
 aYV
 duH
@@ -112167,7 +112116,7 @@ mtr
 rpB
 pur
 rpB
-ens
+inS
 cuA
 aYV
 nlS
@@ -112424,7 +112373,7 @@ mtr
 rpB
 jja
 qKv
-ens
+inS
 cuA
 aYV
 rRR
@@ -113428,12 +113377,12 @@ aro
 aro
 aro
 aro
-arj
+aDf
+gXs
+alP
 syq
 syq
-syq
-syq
-bQb
+eCa
 alP
 iuq
 anf
@@ -113685,9 +113634,9 @@ aro
 aro
 aro
 aro
-arj
-syq
-syq
+aDf
+gXs
+aoq
 syq
 syq
 syq
@@ -113942,9 +113891,9 @@ aro
 aro
 aro
 aro
-arj
-syq
-syq
+aDf
+aaa
+alP
 syq
 syq
 syq
