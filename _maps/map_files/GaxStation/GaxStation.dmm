@@ -8456,15 +8456,6 @@
 "efI" = (
 /turf/closed/wall,
 /area/crew_quarters/toilet)
-"efO" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "efX" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -13546,6 +13537,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
+"guf" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "gug" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -32271,6 +32271,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"pRM" = (
+/turf/closed/wall/r_wall,
+/area/crew_quarters/cryopods)
 "pSg" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -91560,14 +91563,14 @@ uxf
 gIq
 nXc
 neX
-fXQ
-fXQ
-fXQ
+pRM
+pRM
+pRM
 hHC
 hHC
 hHC
-fXQ
-fXQ
+pRM
+pRM
 vRP
 vRP
 tkl
@@ -91824,8 +91827,8 @@ czL
 czL
 czL
 skT
-fXQ
-fXQ
+pRM
+pRM
 vRP
 tkl
 ubS
@@ -92852,8 +92855,8 @@ hjq
 vfX
 hJl
 ctp
-fXQ
-fXQ
+pRM
+pRM
 vRP
 tkl
 aCD
@@ -93108,8 +93111,8 @@ fXQ
 fXQ
 ntu
 nDd
-fXQ
-fXQ
+pRM
+pRM
 vRP
 vRP
 tkl
@@ -93358,8 +93361,8 @@ pKx
 lwC
 rWP
 nBO
-lMA
-lMA
+tSW
+tSW
 vRP
 sqz
 xBd
@@ -93615,7 +93618,7 @@ pKx
 cVQ
 hjp
 ryX
-lMA
+tSW
 aCD
 aCD
 sqz
@@ -93872,8 +93875,8 @@ faQ
 wtt
 lVK
 gsE
-lMA
-lMA
+tSW
+tSW
 sqz
 sqz
 eGD
@@ -94133,7 +94136,7 @@ xpQ
 mmo
 xpQ
 xpQ
-efO
+guf
 tfe
 unc
 xpQ
