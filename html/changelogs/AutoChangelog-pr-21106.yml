@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "You can now use darker colors on canvases."
