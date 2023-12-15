@@ -14416,6 +14416,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"ctq" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "ctu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14472,14 +14481,6 @@
 "ctR" = (
 /turf/open/floor/engine/n2,
 /area/engine/atmos/distro)
-"ctX" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutter"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "cuj" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood/large,
@@ -16882,19 +16883,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"dhY" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/railing/corner,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "dil" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -25557,6 +25545,12 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
+"glZ" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "gmo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -42107,15 +42101,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
-"mry" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "mrK" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -45049,6 +45034,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"ntk" = (
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/railing/corner,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "ntH" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -59434,13 +59432,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
-"sJi" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/siding/wood/corner/thin{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "sJk" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/structure/window/reinforced{
@@ -61349,6 +61340,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/storage)
+"tuR" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutter"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "tvb" = (
 /obj/structure/alien/weeds,
 /obj/effect/spawner/lootdrop/two_percent_xeno_egg_spawner,
@@ -64435,6 +64434,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"uFg" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/siding/wood/corner/thin{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "uFo" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 4
@@ -67012,12 +67018,6 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
-"vyW" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "vza" = (
 /obj/machinery/camera{
 	c_tag = "Engineering Storage";
@@ -108508,8 +108508,8 @@ qQV
 qQV
 qQV
 aql
-ctX
-rNJ
+tuR
+aql
 aql
 aql
 rNJ
@@ -109799,7 +109799,7 @@ sTA
 oXZ
 aFd
 hRB
-mry
+ctq
 icC
 keq
 aCr
@@ -110056,7 +110056,7 @@ bKr
 rDG
 aFd
 cFS
-vyW
+glZ
 mOc
 dIf
 aCr
@@ -110313,7 +110313,7 @@ rDG
 kls
 inJ
 vBq
-dhY
+ntk
 kDs
 eWI
 aCr
@@ -110570,7 +110570,7 @@ aFd
 oeV
 vcp
 djq
-sJi
+uFg
 raM
 joU
 czU
