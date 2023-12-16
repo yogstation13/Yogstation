@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered)
 "h" = (
-/turf/open/lava/smooth/lava_land_surface,
+/turf/open/lava/smooth/jungle_surface,
 /area/ruin/unpowered)
 "l" = (
 /turf/closed/indestructible/riveted/boss,
@@ -14,7 +14,7 @@
 /area/ruin/unpowered)
 "q" = (
 /mob/living/simple_animal/hostile/asteroid/goliath/beast,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered)
 "G" = (
 /turf/template_noop,
@@ -23,11 +23,7 @@
 /turf/closed/mineral/random/volcanic/hard,
 /area/ruin/unpowered)
 "N" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"V" = (
-/obj/structure/necropolis_gate/locked,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -129,7 +125,7 @@ N
 N
 L
 L
-n
+l
 G
 "}
 (7,1,1) = {"
@@ -146,7 +142,7 @@ N
 N
 l
 N
-l
+N
 G
 "}
 (8,1,1) = {"
@@ -163,7 +159,7 @@ N
 N
 N
 N
-V
+N
 G
 "}
 (9,1,1) = {"
@@ -180,7 +176,7 @@ q
 N
 l
 N
-l
+N
 G
 "}
 (10,1,1) = {"
@@ -197,7 +193,7 @@ N
 L
 L
 n
-n
+l
 G
 "}
 (11,1,1) = {"
