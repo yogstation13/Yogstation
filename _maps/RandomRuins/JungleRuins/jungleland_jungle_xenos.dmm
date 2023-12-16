@@ -194,10 +194,6 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
-"gI" = (
-/obj/structure/sign/warning,
-/turf/closed/indestructible/rock/wood,
-/area/template_noop)
 "kb" = (
 /obj/effect/mine/stun,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -275,6 +271,12 @@
 /obj/item/storage/box/mre/menu3,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
+"MY" = (
+/obj/structure/sign/warning{
+	desc = "A warning sign denoting landmines ahead."
+	},
+/turf/closed/indestructible/rock/wood,
+/area/template_noop)
 "Ou" = (
 /obj/structure/alien/weeds,
 /obj/structure/bed/nest,
@@ -369,7 +371,7 @@ aP
 aP
 aP
 aP
-aP
+aS
 aP
 aP
 aP
@@ -395,12 +397,12 @@ aV
 aV
 aV
 aV
-aP
-aP
-ax
-aP
-aS
-aP
+uP
+uP
+ay
+ay
+uP
+uP
 aV
 aV
 aV
@@ -429,7 +431,7 @@ aP
 aW
 ai
 aP
-aP
+ax
 aP
 aV
 am
@@ -585,9 +587,9 @@ aJ
 av
 aP
 aP
-ay
-ax
 aP
+ax
+uP
 aP
 aH
 "}
@@ -615,9 +617,9 @@ aP
 aI
 aP
 aP
-ay
 aP
 aP
+uP
 aP
 aH
 "}
@@ -793,8 +795,8 @@ aP
 aY
 ap
 aP
-aP
-aP
+ay
+ay
 aV
 aV
 aV
@@ -825,7 +827,7 @@ ay
 aP
 aP
 aP
-ay
+uP
 aP
 aP
 aP
@@ -855,7 +857,7 @@ aP
 aP
 aj
 aP
-ay
+uP
 aP
 aP
 aP
@@ -1099,7 +1101,7 @@ ae
 ae
 ae
 ae
-gI
+MY
 "}
 (27,1,1) = {"
 aP
