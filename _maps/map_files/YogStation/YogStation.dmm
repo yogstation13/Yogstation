@@ -5478,14 +5478,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"aMT" = (
-/obj/machinery/camera{
-	c_tag = "Kitchen North";
-	dir = 2
-	},
-/obj/machinery/deepfryer,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "aMZ" = (
 /turf/closed/wall,
 /area/hallway/secondary/exit)
@@ -6576,6 +6568,10 @@
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
 /area/vacant_room)
+"aUz" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "aUD" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -7518,6 +7514,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"bdG" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "bdH" = (
 /obj/machinery/door/airlock{
 	name = "Unit 3"
@@ -22603,13 +22606,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"fjo" = (
-/obj/item/radio/intercom{
-	pixel_y = 25
-	},
-/obj/machinery/deepfryer,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "fjz" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
@@ -29033,6 +29029,13 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"hBl" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "hBp" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -50280,13 +50283,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
-"prS" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "psj" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -51683,6 +51679,14 @@
 	},
 /turf/closed/wall,
 /area/lawoffice)
+"pRU" = (
+/obj/machinery/camera{
+	c_tag = "Kitchen North";
+	dir = 2
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "pSb" = (
 /obj/structure/table,
 /obj/item/wrench,
@@ -61899,10 +61903,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"tGC" = (
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "tGM" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -112103,7 +112103,7 @@ ota
 aAh
 aEH
 fgc
-aMT
+pRU
 fKR
 iyy
 mAp
@@ -112360,7 +112360,7 @@ aAh
 aAh
 ceK
 fgc
-tGC
+tFi
 fKR
 tIF
 fKR
@@ -112617,7 +112617,7 @@ fgC
 aAh
 aEH
 fgc
-tFi
+aUz
 xem
 xoK
 rUu
@@ -113907,7 +113907,7 @@ kfW
 sFE
 cju
 fgc
-fjo
+hBl
 jGi
 krr
 bCC
@@ -114164,7 +114164,7 @@ fgc
 fgc
 nXX
 fgc
-prS
+bdG
 fKR
 noJ
 wCY
@@ -114421,7 +114421,7 @@ cIg
 fgc
 fgc
 fgc
-tFi
+aUz
 fbU
 fKR
 fKR
