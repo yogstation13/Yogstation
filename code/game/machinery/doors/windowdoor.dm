@@ -12,7 +12,7 @@
 	armor = list(MELEE = 60, BULLET = -40, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	flags_1 = ON_BORDER_1
-	opacity = 0
+	opacity = FALSE
 	CanAtmosPass = ATMOS_PASS_PROC
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 	var/obj/item/electronics/airlock/electronics = null
@@ -158,7 +158,7 @@
 	sleep(1 SECONDS)
 
 	density = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 
 	if(operating == 1) //emag again
@@ -180,7 +180,7 @@
 	icon_state = base_state
 
 	density = TRUE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 	sleep(1 SECONDS)
 
@@ -423,7 +423,7 @@
 	return ..()
 
 /obj/machinery/door/window/clockwork/emp_act(severity)
-	if(prob(80/severity))
+	if(prob(8 * severity))
 		open()
 
 /obj/machinery/door/window/clockwork/ratvar_act()

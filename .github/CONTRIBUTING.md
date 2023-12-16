@@ -104,6 +104,7 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 - [Embedding TGUI Components in Chat](../../tgui/docs/chat-embedded-components.md)
 - [Hard Deletes](./guides/HARDDELETES.md)
+- [Quickly setting up a development database with ezdb](./guides/EZDB.md)
 - [MC Tab Guide](./guides/MC_tab.md)
 - [Tick system](./guides/TICK_ORDER.md)
 - [UI Development](../tgui/README.md)

@@ -118,10 +118,13 @@
 //headbutt, deals moderate brute and stamina damage with an eye blur, causes poor aim for a few seconds to the target if they have no helmet on
 /datum/martial_art/flyingfang/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("D",D)
-	if(check_streak(A,D))
-		return TRUE
 	if(!can_use(A))
 		return
+	if(HAS_TRAIT(A, TRAIT_PACIFISM)) // All disarm attacks/combos deal non-stamina damage, yet pacifism is not accounted for in base disarm.
+		to_chat(A, span_warning("You don't want to harm [D]!"))
+		return
+	if(check_streak(A,D))
+		return TRUE
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(BODY_ZONE_HEAD))
 	var/armor_block = D.run_armor_check(affecting, MELEE)
 	var/disarm_damage = A.get_punchdamagehigh() / 2 	//5 damage

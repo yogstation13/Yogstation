@@ -221,4 +221,16 @@
 
 	var/list/alerts = list() // contains /atom/movable/screen/alert only // On /mob so clientless mobs will throw alerts properly
 
+	///Contains the fullscreen overlays the mob can see (from 'code/_onclick/hud/fullscreen.dm')
+	var/list/screens = list()
+
+	///The HUD type the mob will gain on Initialize. (from 'code/_onclick/hud/hud.dm')
+	var/hud_type = /datum/hud
+
+	///The client colors the mob is looking at. (from 'code/modules/client/client_color.dm')
+	var/list/client_colours = list()
+
+	///What receives our keyboard inputs. src by default. (from 'code/modules/keybindings/focus.dm')
+	var/datum/focus
+
 	var/fake_client = FALSE // Currently only used for examines

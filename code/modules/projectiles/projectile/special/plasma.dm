@@ -6,6 +6,7 @@
 	damage = 5
 	range = 4
 	dismemberment = 20
+	demolition_mod = 2 // industrial strength plasma cutter designed to cut things
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	var/mine_range = 3 //mines this many additional tiles of rock
 	tracer_type = /obj/effect/projectile/tracer/plasma_cutter
@@ -13,7 +14,6 @@
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
 	light_system = MOVABLE_LIGHT
 	light_color = LIGHT_COLOR_PURPLE
-	light_flags = LIGHT_NO_LUMCOUNT
 	light_range = 2
 
 /obj/projectile/plasma/weak

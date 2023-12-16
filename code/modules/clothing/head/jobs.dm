@@ -129,6 +129,7 @@
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		hattable = FALSE //So you don't accidentally throw it onto somebody's head instead of decapitating them
+		item_flags = UNCATCHABLE //so it isn't just immediately caught
 	else
 		force = 0
 		throwforce = 0
@@ -138,6 +139,7 @@
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
 		hattable = TRUE
+		item_flags = NONE
 
 /obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(fedora_man && hit_atom == fedora_man)
@@ -179,7 +181,7 @@
 
 /obj/item/clothing/head/beret/archaic
 	name = "archaic beret"
-	desc = "An absolutely ancient beret, allegedly worn by the first mime to ever step foot on a NanoTrasen station."
+	desc = "An absolutely ancient beret, allegedly worn by the first mime to ever step foot on a Nanotrasen station."
 	icon_state = "archaicberet"
 	dog_fashion = null
 
@@ -336,7 +338,7 @@
 
 /obj/item/clothing/head/beret/sec/centcom
 	name = "\improper CentCom beret"
-	desc = "A special beret with the NanoTrasen logo emblazoned on it. For where no man has gone before."
+	desc = "A special beret with the Nanotrasen logo emblazoned on it. For where no man has gone before."
 	icon_state = "official"
 
 //Curator

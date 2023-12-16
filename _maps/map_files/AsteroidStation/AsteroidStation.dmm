@@ -12134,7 +12134,7 @@
 "dcK" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Armoury";
-	req_access_txt = "3"
+	req_access_txt = "1"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{

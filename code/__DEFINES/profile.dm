@@ -27,3 +27,5 @@
 #define PROFILE_ITEM_LEN 2
 #define PROFILE_ITEM_TIME 1
 #define PROFILE_ITEM_COUNT 2
+
+GLOBAL_VAR_INIT(enable_memdump, 0)

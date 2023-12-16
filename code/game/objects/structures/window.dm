@@ -55,7 +55,7 @@
 		state = RWINDOW_SECURE
 
 	ini_dir = dir
-	air_update_turf(1)
+	air_update_turf()
 
 	if(fulltile)
 		setDir()
@@ -219,7 +219,7 @@
 
 /obj/structure/window/setAnchored(anchorvalue)
 	..()
-	air_update_turf(TRUE)
+	air_update_turf()
 	update_nearby_icons()
 
 /obj/structure/window/proc/check_state(checked_state)
@@ -302,16 +302,15 @@
 	return TRUE
 
 /obj/structure/window/proc/after_rotation(mob/user,rotation_type)
-	air_update_turf(1)
+	air_update_turf()
 	ini_dir = dir
 	add_fingerprint(user)
 
 /obj/structure/window/Destroy()
 	density = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_nearby_icons()
 	return ..()
-
 
 /obj/structure/window/Move()
 	var/turf/T = loc
@@ -510,6 +509,11 @@
 	if (fulltile)
 		. += new /obj/item/shard/plasma(location)
 
+/obj/structure/window/plasma/BlockThermalConductivity(opp_dir)
+	if(!anchored || !density)
+		return FALSE
+	return FULLTILE_WINDOW_DIR == dir || dir == opp_dir
+
 /obj/structure/window/plasma/spawner/east
 	dir = EAST
 
@@ -613,7 +617,7 @@
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	icon_state = "twindow"
-	opacity = 1
+	opacity = TRUE
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
 	icon_state = "fwindow"
