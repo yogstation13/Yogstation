@@ -78,7 +78,7 @@
 	desc = "Shoots a laser from the nearest available camera toward a chosen destination if it is highly probable to reach said destination."
 	button_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "laser"
-	background_icon_state = "bg_default"
+	background_icon_state = "bg_default" // Better button sprites welcomed. :)
 	enable_text = span_notice("You prepare to overcharge a camera. Click a target for a nearby camera to shoot a laser at.")
 	disable_text = span_notice("You dissipate the overcharged energy.")
 	click_action = FALSE // Even though that we are a click action, we want to use Activate() and Deactivate().
