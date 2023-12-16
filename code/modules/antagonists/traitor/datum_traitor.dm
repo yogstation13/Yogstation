@@ -264,9 +264,15 @@
 			add_law_zero()
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
 			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
-			var/datum/action/innate/ai/ranged/cameragun/ability = new
-			ability.from_traitor = TRUE
-			ability.Grant(owner.current)
+
+			var/has_action = FALSE
+			for(var/datum/action/innate/ai/ranged/cameragun/ai_action in owner.current.actions)
+				has_action = TRUE
+				break
+			if(!has_action)
+				var/datum/action/innate/ai/ranged/cameragun/ability = new
+				ability.from_traitor = TRUE
+				ability.Grant(owner.current)
 
 		if(TRAITOR_HUMAN)
 			if(should_equip)
