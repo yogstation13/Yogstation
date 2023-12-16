@@ -55,14 +55,17 @@
 	if(!istype(AI))
 		return
 
-	// No giving multiple copies.
-	for(var/datum/action/action in AI.actions)
-		if(action.type == /datum/action/innate/ai/ranged/cameragun)
+	var/datum/action/innate/ai/ranged/cameragun/ai_action
+	for(var/datum/action/innate/ai/ranged/cameragun/listed_action in AI.actions)
+		if(!listed_action.from_traitor) // Duplicate.
 			to_chat(user, span_notice("[AI] has already been upgraded with \a [src]."))
 			return
+		ai_action = listed_action // If they somehow have more than one action, blame adminbus first.
+		ai_action.from_traitor = FALSE // Let them keep the action if they lose traitor status.
 
-	var/datum/action/innate/ai/ranged/cameragun/ability = new
-	ability.Grant(AI)
+	if(!ai_action)
+		ai_action = new
+		ai_action.Grant(AI)
 
 	to_chat(user, span_notice("You upgrade [AI]. [src] is consumed in the process."))
 	log_game("[key_name(user)] has upgraded [key_name(AI)] with \a [src].")
@@ -78,6 +81,8 @@
 	enable_text = span_notice("You prepare to overcharge a camera. Click a target for a nearby camera to shoot a laser at.")
 	disable_text = span_notice("You dissipate the overcharged energy.")
 	click_action = FALSE // Even though that we are a click action, we want to use Activate() and Deactivate().
+	/// If this ability is sourced from being a traitor AI.
+	var/from_traitor = FALSE
 	COOLDOWN_DECLARE(next_shot)
 	var/cooldown = 10 SECONDS
 
