@@ -11,6 +11,13 @@
 	var/dryname = "dried blood" //when the blood lasts long enough, it becomes dry and gets a new name
 	var/drydesc = "Looks like it's been here a while. Eew." //as above
 	var/drytime = 0
+	
+/obj/effect/decal/cleanable/blood/Initialize()
+	. = ..()
+	if(bloodiness)
+		start_drying()
+	else
+		dry()
 
 /obj/effect/decal/cleanable/blood/process()
 	if(world.time > drytime)
