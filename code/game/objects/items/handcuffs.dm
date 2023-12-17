@@ -283,12 +283,13 @@
 	if(ishuman(user) && !user.stat && !user.restrained())
 		armed = !armed
 		update_appearance(UPDATE_ICON)
-		to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]"))
+		to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]."))
 
 /obj/item/restraints/legcuffs/beartrap/wrench_act(mob/living/user, obj/item/wrench/W)
 	if(armed && !anchored)
 		if(do_after(user, 1 SECONDS, src)) // Take the time to wrench it this trap to be more effective.
 			anchored = TRUE
+			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 		return
 	..()
 
