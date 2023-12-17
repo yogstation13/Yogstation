@@ -40,7 +40,7 @@
 
 /datum/blood_type/xenomorph //for xenomorph gib dna
 	name = "X"
-	color = COLOR_GREEN
+	color = "#00FF32"
 	compatible_types = list(/datum/blood_type/xenomorph, /datum/blood_type/universal)
 
 /datum/blood_type/animal //for simplemob gib dna
@@ -66,3 +66,8 @@
 /datum/blood_type/universal/synthetic //Blood for preterni
 	name = "Synthetic"
 	color = "#009dff"
+
+/datum/blood_type/electricity
+	name = "E"
+	color = "#cbee63" //slightly more yellowy than regular liquid electricity because of the grey scale image used
+	compatible_types = list(/datum/blood_type/electricity, /datum/blood_type/universal)

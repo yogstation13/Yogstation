@@ -98,8 +98,7 @@
 	light_range = 2
 	light_color = "#eef442"
 	update_light()
-	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
-	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 3 MINUTES)
 
 /obj/effect/decal/cleanable/blood/proc/Fade()
 	name = "faded \"blood\""

@@ -6,6 +6,7 @@
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
+	exotic_bloodtype = "X" //this isn't used for anything other than bloodsplatter colours
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT | MICE
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
