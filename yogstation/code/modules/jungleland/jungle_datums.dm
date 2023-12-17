@@ -540,7 +540,7 @@
 /datum/reagent/toxic_metabolities/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if(HAS_TRAIT(M,TRAIT_SULPH_PIT_IMMUNE))
-		old_volume = volume
+		cure()
 		return
 	switch(volume)
 		if(0 to STAGE_1_THRESHOLD)
@@ -588,6 +588,9 @@
 
 /datum/reagent/toxic_metabolities/on_mob_add(mob/living/L)
 	. = ..()
+	if(HAS_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE))
+		cure()
+		return
 	RegisterSignal(L,COMSIG_REGEN_CORE_HEALED,PROC_REF(cure))
 	switch(volume)
 		if(0 to STAGE_1_THRESHOLD)
