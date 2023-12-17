@@ -1162,6 +1162,13 @@
 	contains = list(/obj/machinery/the_singularitygen)
 	crate_name = "singularity generator crate"
 
+/datum/supply_pack/engine/tesla_gen
+	name = "Energy Ball Generator Crate"
+	desc = "For invoking the swirling balls of electric doom. Particle Accelerator not included."
+	cost = 5000
+	contains = list(/obj/machinery/the_singularitygen/tesla)
+	crate_name = "energy ball generator crate"
+
 /datum/supply_pack/engine/solar
 	name = "Solar Panel Crate"
 	desc = "Go green with this DIY advanced solar array. Contains twenty one solar assemblies, a solar-control circuit board, and tracker. If you have any questions, please check out the enclosed instruction book."
