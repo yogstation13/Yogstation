@@ -102,29 +102,30 @@
 
 /obj/item/reagent_containers/blood/random/Initialize(mapload)
 	icon_state = "bloodpack"
-	blood_type = pick("A+", "A-", "B+", "B-", "O+", "O-", "L")
+	blood_type = pick(/datum/blood_type/a_plus, /datum/blood_type/a_minus, /datum/blood_type/b_plus, 
+		/datum/blood_type/b_minus, datum/blood_type/o_plus, /datum/blood_type/o_minus, /datum/blood_type/lizard)
 	return ..()
 
 /obj/item/reagent_containers/blood/APlus
-	blood_type = "A+"
+	blood_type = /datum/blood_type/a_plus
 
 /obj/item/reagent_containers/blood/AMinus
-	blood_type = "A-"
+	blood_type = /datum/blood_type/a_minus
 
 /obj/item/reagent_containers/blood/BPlus
-	blood_type = "B+"
+	blood_type = /datum/blood_type/b_plus
 
 /obj/item/reagent_containers/blood/BMinus
-	blood_type = "B-"
+	blood_type = /datum/blood_type/b_minus
 
 /obj/item/reagent_containers/blood/OPlus
-	blood_type = "O+"
+	blood_type = /datum/blood_type/o_plus
 
 /obj/item/reagent_containers/blood/OMinus
-	blood_type = "O-"
+	blood_type = /datum/blood_type/o_minus
 
 /obj/item/reagent_containers/blood/lizard
-	blood_type = "L"
+	blood_type = /datum/blood_type/lizard
 
 /obj/item/reagent_containers/blood/ethereal
 	blood_type = "E"
@@ -132,6 +133,9 @@
 
 /obj/item/reagent_containers/blood/universal
 	blood_type = "U"
+
+/obj/item/reagent_containers/blood/gorilla
+	blood_type = "G"
 
 /obj/item/reagent_containers/blood/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/pen) || istype(I, /obj/item/toy/crayon))

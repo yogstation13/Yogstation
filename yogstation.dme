@@ -4264,7 +4264,6 @@
 #include "yogstation\code\modules\reagents\chemistry\reagents\food_reagents.dm"
 #include "yogstation\code\modules\reagents\chemistry\reagents\other_reagents.dm"
 #include "yogstation\code\modules\reagents\chemistry\recipes\slime_extracts.dm"
-#include "yogstation\code\modules\reagents\reagent_containers\blood_pack.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\bottle.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\gummies.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\hypospray.dm"
