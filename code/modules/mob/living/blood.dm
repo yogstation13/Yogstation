@@ -343,8 +343,6 @@
 			B = new(T)
 			B.transfer_mob_blood_dna(src)
 		return
-	if(get_blood_id() != /datum/reagent/blood)
-		return
 	var/list/temp_blood_DNA
 	if(small_drip)
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
