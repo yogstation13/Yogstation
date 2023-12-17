@@ -52,31 +52,6 @@
 		C.bloodiness = min((C.bloodiness + bloodiness), BLOOD_AMOUNT_PER_DECAL)
 	return ..()
 
-/obj/effect/decal/cleanable/whiteblood
-	name = "\"blood\""
-	desc = "It's an unsettling colour. Maybe it's the chef's cooking?"
-	icon = 'icons/effects/blood.dmi'
-	icon_state = "genericsplatter1"
-	random_icon_states = list("genericsplatter1", "genericsplatter2", "genericsplatter3", "genericsplatter4", "genericsplatter5", "genericsplatter6")
-
-/obj/effect/decal/cleanable/whiteblood/ethereal
-	name = "glowing \"blood\""
-	desc = "It has a fading glow. Surely it's just the chef's cooking?"
-	light_power = 1
-	light_range = 2
-	light_color = "#eef442"
-
-/obj/effect/decal/cleanable/whiteblood/ethereal/Initialize(mapload, list/datum/disease/diseases)
-	. = ..()
-	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
-	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
-
-/obj/effect/decal/cleanable/whiteblood/ethereal/proc/Fade()
-	name = "faded \"blood\""
-	light_power = 0
-	light_range = 0
-	update_light()
-
 /obj/effect/decal/cleanable/blood/old
 	name = "dried blood"
 	desc = "Looks like it's been here a while.  Eew."
@@ -117,7 +92,7 @@
 	random_icon_states = null
 	var/list/existing_dirs = list()
 
-/obj/effect/decal/cleanable/blood/trail_holder/proc/Etherealify()
+/obj/effect/decal/cleanable/blood/proc/Etherealify()
 	name = "glowing \"blood\""
 	light_power = 1
 	light_range = 2
@@ -126,7 +101,7 @@
 	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
 	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
 
-/obj/effect/decal/cleanable/blood/trail_holder/proc/Fade()
+/obj/effect/decal/cleanable/blood/proc/Fade()
 	name = "faded \"blood\""
 	light_power = 0
 	light_range = 0
@@ -309,9 +284,11 @@
 	/// Insurance so that we don't keep moving once we hit a stoppoint
 	var/hit_endpoint = FALSE
 
-/obj/effect/decal/cleanable/blood/hitsplatter/Initialize(mapload, splatter_strength)
+/obj/effect/decal/cleanable/blood/hitsplatter/Initialize(mapload, splatter_strength, set_color)
 	. = ..()
 	prev_loc = loc //Just so we are sure prev_loc exists
+	if(set_color)
+		color = set_color
 	if(splatter_strength)
 		src.splatter_strength = splatter_strength
 
@@ -375,6 +352,7 @@
 			land_on_window(bumped_atom)
 		else
 			var/obj/effect/decal/cleanable/blood/splatter/over_window/final_splatter = new(prev_loc)
+			final_splatter.color = color
 			final_splatter.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
 			final_splatter.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
 	else // This will only happen if prev_loc is not even a turf, which is highly unlikely.
@@ -386,6 +364,7 @@
 	if(!the_window.fulltile)
 		return
 	var/obj/effect/decal/cleanable/blood/splatter/over_window/final_splatter = new
+	final_splatter.color = color
 	final_splatter.forceMove(the_window)
 	the_window.vis_contents += final_splatter
 	the_window.bloodied = TRUE

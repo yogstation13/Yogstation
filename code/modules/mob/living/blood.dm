@@ -238,7 +238,8 @@
 						if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 							continue
 						C.ForceContractDisease(D)
-				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.blood_type)))
+				var/datum/blood_type/blood_type = blood_data["blood_type"]
+				if(!(blood_type.type in C.dna.blood_type.compatible_types))
 					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return TRUE
 
@@ -317,7 +318,6 @@
 		return
 	return /datum/reagent/blood
 
-// This is has more potential uses, and is probably faster than the old proc.
 /proc/random_blood_type()
 	return get_blood_type(pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+"))
 
@@ -325,8 +325,12 @@
 	return GLOB.blood_types[type]
 
 /proc/get_blood_dna_color(list/blood_dna)
+	if(!blood_dna)
+		return COLOR_BLOOD
 	var/blood_print = blood_dna[length(blood_dna)]
 	var/datum/blood_type/blood_type = blood_dna[blood_print]
+	if(!blood_type)
+		return COLOR_BLOOD
 	return blood_type.color
 
 //to add a splatter of blood or other mob liquid.
@@ -335,12 +339,6 @@
 		T = get_turf(src)
 	if(ispolysmorph(src)) //polysmorphs bleed green blood
 		var/obj/effect/decal/cleanable/xenoblood/B = locate() in T.contents
-		if(!B)
-			B = new(T)
-			B.transfer_mob_blood_dna(src)
-		return
-	if(isethereal(src))
-		var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T.contents
 		if(!B)
 			B = new(T)
 			B.transfer_mob_blood_dna(src)
@@ -356,6 +354,8 @@
 				drop.drips++
 				drop.add_overlay(pick(drop.random_icon_states))
 				drop.transfer_mob_blood_dna(src)
+				if(isethereal(src))
+					drop.Etherealify()
 				return
 			else
 				temp_blood_DNA = drop.return_blood_DNA() //we transfer the dna from the drip to the splatter
@@ -363,6 +363,8 @@
 		else
 			drop = new(T, get_static_viruses())
 			drop.transfer_mob_blood_dna(src)
+			if(isethereal(src))
+				drop.Etherealify()
 			return
 
 	// Find a blood decal or create a new one.
@@ -373,6 +375,8 @@
 	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
 	if(temp_blood_DNA)
 		B.add_blood_DNA(temp_blood_DNA)
+	if(isethereal(src))
+		B.Etherealify()
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip)
 	if(!(NOBLOOD in dna.species.species_traits))
@@ -392,26 +396,3 @@
 	var/obj/effect/decal/cleanable/oil/B = locate() in T.contents
 	if(!B)
 		B = new(T)
-
-// This is has more potential uses, and is probably faster than the old proc.
-/proc/get_safe_blood(bloodtype)
-	. = list()
-	if(!bloodtype)
-		return
-
-	var/static/list/bloodtypes_safe = list(
-		"A-" = list("A-", "O-", "U"),
-		"A+" = list("A-", "A+", "O-", "O+", "U"),
-		"B-" = list("B-", "O-", "U"),
-		"B+" = list("B-", "B+", "O-", "O+", "U"),
-		"AB-" = list("A-", "B-", "O-", "AB-", "U"),
-		"AB+" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "U"),
-		"O-" = list("O-", "U"),
-		"O+" = list("O-", "O+", "U"),
-		"L" = list("L", "U"),
-		"U" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "L", "U") //literally universal
-	)
-
-	var/safe = bloodtypes_safe[bloodtype]
-	if(safe)
-		. = safe

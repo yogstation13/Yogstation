@@ -8,54 +8,49 @@
 
 /datum/blood_type/a_minus
 	name = "A-"
-	compatible_types = list(/datum/blood_type/a_minus, /datum/blood_type/o_minus)
+	compatible_types = list(/datum/blood_type/a_minus, /datum/blood_type/o_minus, /datum/blood_type/universal)
 
 /datum/blood_type/a_plus
 	name = "A+"
-	compatible_types = list(/datum/blood_type/a_minus, /datum/blood_type/a_plus, /datum/blood_type/o_minus, /datum/blood_type/o_plus)
+	compatible_types = list(/datum/blood_type/a_minus, /datum/blood_type/a_plus, /datum/blood_type/o_minus, /datum/blood_type/o_plus, /datum/blood_type/universal)
 
 /datum/blood_type/b_minus
 	name = "B-"
-	compatible_types = list(/datum/blood_type/b_minus, /datum/blood_type/o_minus)
+	compatible_types = list(/datum/blood_type/b_minus, /datum/blood_type/o_minus, /datum/blood_type/universal)
 
 /datum/blood_type/b_plus
 	name = "B+"
-	compatible_types = list(/datum/blood_type/b_minus, /datum/blood_type/b_plus, /datum/blood_type/o_minus, /datum/blood_type/o_plus)
+	compatible_types = list(/datum/blood_type/b_minus, /datum/blood_type/b_plus, /datum/blood_type/o_minus, /datum/blood_type/o_plus, /datum/blood_type/universal)
 
 /datum/blood_type/ab_minus
 	name = "AB-"
-	compatible_types = list(/datum/blood_type/b_minus, /datum/blood_type/a_minus, /datum/blood_type/ab_minus, /datum/blood_type/o_minus)
+	compatible_types = list(/datum/blood_type/b_minus, /datum/blood_type/a_minus, /datum/blood_type/ab_minus, /datum/blood_type/o_minus, /datum/blood_type/universal)
 
 /datum/blood_type/ab_plus
 	name = "AB+"
-	compatible_types = list(/datum/blood_type/b_minus, /datum/blood_type/a_minus, /datum/blood_type/ab_minus, /datum/blood_type/o_minus)
+	compatible_types = list(/datum/blood_type/b_minus, /datum/blood_type/a_minus, /datum/blood_type/ab_minus, /datum/blood_type/o_minus, /datum/blood_type/universal)
 
 /datum/blood_type/o_minus
 	name = "O-"
-	compatible_types = list(/datum/blood_type/o_minus)
+	compatible_types = list(/datum/blood_type/o_minus, /datum/blood_type/universal)
 
 /datum/blood_type/o_plus
 	name = "O+"
-	compatible_types = list(/datum/blood_type/o_minus, /datum/blood_type/o_plus)
+	compatible_types = list(/datum/blood_type/o_minus, /datum/blood_type/o_plus, /datum/blood_type/universal)
 
 /datum/blood_type/xenomorph //for xenomorph gib dna
 	name = "X"
 	color = COLOR_GREEN
-	compatible_types = list(/datum/blood_type/xenomorph)
+	compatible_types = list(/datum/blood_type/xenomorph, /datum/blood_type/universal)
 
 /datum/blood_type/animal //for simplemob gib dna
 	name = "Y-"
-	compatible_types = list(/datum/blood_type/animal)
+	compatible_types = list(/datum/blood_type/animal, /datum/blood_type/universal)
 
 /datum/blood_type/lizard
 	name = "L"
 	color = LIGHT_COLOR_BLUEGREEN
-	compatible_types = list(/datum/blood_type/lizard)
-
-/datum/blood_type/synthetic //Blood for synthetic/robotic species
-	name = "Coolant"
-	color = "#000000"
-	compatible_types = list(/datum/blood_type/synthetic)
+	compatible_types = list(/datum/blood_type/lizard, /datum/blood_type/universal)
 
 /datum/blood_type/universal
 	name = "U"
@@ -63,3 +58,7 @@
 /datum/blood_type/universal/New()
 	. = ..()
 	compatible_types = subtypesof(/datum/blood_type)
+
+/datum/blood_type/universal/synthetic //Blood for preterni
+	name = "Synthetic"
+	color = "#009dff"
