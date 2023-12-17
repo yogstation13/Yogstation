@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		"selected_color" = paint_color,
 		"paint_colors" = GLOB.pipe_paint_colors,
 		"mode" = mode,
-		"locked" = locked
+		"locked" = locked,
 	)
 
 	var/list/recipes
@@ -329,10 +329,10 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	return data
 
 /obj/item/pipe_dispenser/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
-	if(!usr.canUseTopic(src, BE_CLOSE))
-		return
+
 	var/playeffect = TRUE
 	switch(action)
 		if("color")

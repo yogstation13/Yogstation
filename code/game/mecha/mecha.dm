@@ -4,8 +4,8 @@
 #define MECHA_INT_TANK_BREACH	(1<<3)
 #define MECHA_INT_CONTROL_LOST	(1<<4)
 
-#define MECHA_MELEE 1
-#define MECHA_RANGED 2
+#define MECHA_MELEE (1<<0)
+#define MECHA_RANGED (1<<1)
 
 #define FRONT_ARMOUR 1
 #define SIDE_ARMOUR 2
@@ -522,7 +522,7 @@
 			if(HAS_TRAIT(L, TRAIT_NO_STUN_WEAPONS) && !selected.harmful)
 				to_chat(user, span_warning("You cannot use non-lethal weapons!"))
 				return
-			if(selected.action(target,params))
+			if(selected.action(target, user, params))
 				selected.start_cooldown()
 	else if(selected && selected.is_melee())
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
@@ -536,7 +536,7 @@
 			if(HAS_TRAIT(L, TRAIT_PACIFISM) && W.cleave)
 				to_chat(user, span_warning("You don't want to harm other living beings!"))
 				return
-		if(selected.action(target,params))
+		if(selected.action(target, user, params))
 			selected.start_cooldown()
 	else
 		if(internal_damage & MECHA_INT_CONTROL_LOST)
@@ -1270,6 +1270,13 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		else
 			to_chat(user, span_notice("None of the equipment on this exosuit can use this ammo!"))
 	return FALSE
+
+// Matter resupply and upgrades for mounted RCDs
+/obj/mecha/proc/matter_resupply(obj/item/I, mob/user)
+	for(var/obj/item/mecha_parts/mecha_equipment/rcd/R in equipment)
+		R.internal_rcd.attackby(I, user)
+		if(QDELETED(I))
+			return
 
 // Checks the pilot and their clothing for mech speed buffs
 /obj/mecha/proc/check_eva()

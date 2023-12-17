@@ -208,6 +208,10 @@
 	if(istype(W, /obj/item/mecha_ammo))
 		ammo_resupply(W, user)
 		return
+	
+	if(istype(W, /obj/item/stack) || istype(W, /obj/item/rcd_ammo) || istype(W, /obj/item/rcd_upgrade))
+		matter_resupply(W, user)
+		return
 
 	if(W.GetID())
 		if(add_req_access || maint_access)

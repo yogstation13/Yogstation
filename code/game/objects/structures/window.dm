@@ -65,7 +65,7 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 
 /obj/structure/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 5)
 	return FALSE
@@ -74,7 +74,7 @@
 	if (resistance_flags & INDESTRUCTIBLE)
 		return FALSE
 
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_DECONSTRUCT)
 			to_chat(user, span_notice("You deconstruct the window."))
 			qdel(src)

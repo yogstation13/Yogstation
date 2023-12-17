@@ -10,6 +10,8 @@
 	stats_action.Grant(user, src)
 	if(canstrafe)
 		strafing_action.Grant(user, src)
+	for(var/obj/item/mecha_parts/mecha_equipment/E as anything in equipment)
+		E.grant_actions(user)
 
 
 /obj/mecha/proc/RemoveActions(mob/living/user, human_occupant = 0)
@@ -21,6 +23,8 @@
 	stats_action.Remove(user)
 	if(canstrafe)
 		strafing_action.Remove(user)
+	for(var/obj/item/mecha_parts/mecha_equipment/E as anything in equipment)
+		E.remove_actions(user)
 
 /datum/action/innate/mecha
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
@@ -288,3 +292,18 @@
 	button_icon_state = "mech_phasing_[chassis.phasing ? "on" : "off"]"
 	chassis.occupant_message("<font color=\"[chassis.phasing?"#00f\">En":"#f00\">Dis"]abled phasing.</font>")
 	build_all_button_icons()
+
+//////////////////////////////////////// Equipment Actions ///////////////////////////////////////////////
+//Equipment-based actions like RCD mode selection
+
+/datum/action/innate/mecha/equipment
+	var/obj/item/mecha_parts/mecha_equipment/equipment
+
+/datum/action/innate/mecha/equipment/Grant(mob/living/L, obj/mecha/M, obj/item/mecha_parts/mecha_equipment/E)
+	if(E)
+		equipment = E
+	return ..()
+
+/datum/action/innate/mecha/equipment/Destroy()
+	equipment = null
+	return ..()
