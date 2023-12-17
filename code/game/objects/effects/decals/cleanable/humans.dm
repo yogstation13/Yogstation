@@ -95,7 +95,7 @@
 /obj/effect/decal/cleanable/blood/proc/Etherealify()
 	name = "glowing \"blood\""
 	light_power = 1
-	light_range = 2
+	light_range = 1
 	light_color = "#eef442"
 	update_light()
 	addtimer(CALLBACK(src, PROC_REF(Fade)), 3 MINUTES)
