@@ -65,6 +65,8 @@
 /obj/item/reagent_containers/blood/Initialize(mapload)
 	. = ..()
 	if(blood_type != null)
+		if(!istype(blood_type, /datum/blood_type) && get_blood_type(blood_type))
+			blood_type = get_blood_type(blood_type)
 		reagents.add_reagent(unique_blood ? unique_blood : /datum/reagent/blood, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
 		update_appearance(UPDATE_ICON)
 
@@ -102,40 +104,39 @@
 
 /obj/item/reagent_containers/blood/random/Initialize(mapload)
 	icon_state = "bloodpack"
-	blood_type = pick(/datum/blood_type/a_plus, /datum/blood_type/a_minus, /datum/blood_type/b_plus, 
-		/datum/blood_type/b_minus, /datum/blood_type/o_plus, /datum/blood_type/o_minus, /datum/blood_type/lizard)
+	blood_type = pick("A+", "A-", "B+", "B-", "O+", "O-", "L")
 	return ..()
 
 /obj/item/reagent_containers/blood/APlus
-	blood_type = /datum/blood_type/a_plus
+	blood_type = "A+"
 
 /obj/item/reagent_containers/blood/AMinus
-	blood_type = /datum/blood_type/a_minus
+	blood_type = "A-"
 
 /obj/item/reagent_containers/blood/BPlus
-	blood_type = /datum/blood_type/b_plus
+	blood_type = "B+"
 
 /obj/item/reagent_containers/blood/BMinus
-	blood_type = /datum/blood_type/b_minus
+	blood_type = "B-"
 
 /obj/item/reagent_containers/blood/OPlus
-	blood_type = /datum/blood_type/o_plus
+	blood_type = "O+"
 
 /obj/item/reagent_containers/blood/OMinus
-	blood_type = /datum/blood_type/o_minus
+	blood_type = "O-"
 
 /obj/item/reagent_containers/blood/lizard
-	blood_type = /datum/blood_type/lizard
+	blood_type = "L"
 
 /obj/item/reagent_containers/blood/ethereal
 	blood_type = "E"
 	unique_blood = /datum/reagent/consumable/liquidelectricity
 
 /obj/item/reagent_containers/blood/universal
-	blood_type = /datum/blood_type/universal
+	blood_type = "U"
 
 /obj/item/reagent_containers/blood/gorilla
-	blood_type = /datum/blood_type/gorilla
+	blood_type = "G"
 
 /obj/item/reagent_containers/blood/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/pen) || istype(I, /obj/item/toy/crayon))
