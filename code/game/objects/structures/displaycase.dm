@@ -236,6 +236,8 @@
 	req_access = list(ACCESS_CENT_SPECOPS) // This is intentional, presumably to make it slightly harder for caps to grab their gun roundstart.
 
 /obj/structure/displaycase/captain/attackby(obj/item/W, mob/user, params) // Unless shit has really hit the fan.
+	if(!istype(W, /obj/item/card/id))
+		return ..()
 	if(seclevel2num(get_security_level()) >= SEC_LEVEL_GAMMA) // Everything higher than red.
 		req_access = list(ACCESS_CAPTAIN)
 	else

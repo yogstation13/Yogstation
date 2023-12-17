@@ -23,7 +23,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 100)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/glass
-	grind_results = list(/datum/reagent/silicon = 20)
+	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/sodium = 10)
 	point_value = 5
 	tableVariant = /obj/structure/table/glass
 	matter_amount = 4
