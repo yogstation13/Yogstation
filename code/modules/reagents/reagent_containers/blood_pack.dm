@@ -10,12 +10,6 @@
 
 #define BLOODBAG_GULP_SIZE 10
 
-/obj/item/reagent_containers/blood/Initialize()
-	. = ..()
-	if(blood_type != null)
-		reagents.add_reagent(unique_blood ? unique_blood : /datum/reagent/blood, 200, list("viruses"=null,"blood_DNA"=null,"blood_type"=get_blood_type(blood_type),"resistances"=null,"trace_chem"=null))
-		update_icon()
-
 /obj/item/reagent_containers/blood/attack(mob/target, mob/user, def_zone)
 	if(!reagents.total_volume)
 		user.balloon_alert(user, "empty!")
