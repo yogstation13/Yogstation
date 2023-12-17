@@ -103,7 +103,7 @@
 /obj/item/reagent_containers/blood/random/Initialize(mapload)
 	icon_state = "bloodpack"
 	blood_type = pick(/datum/blood_type/a_plus, /datum/blood_type/a_minus, /datum/blood_type/b_plus, 
-		/datum/blood_type/b_minus, datum/blood_type/o_plus, /datum/blood_type/o_minus, /datum/blood_type/lizard)
+		/datum/blood_type/b_minus, /datum/blood_type/o_plus, /datum/blood_type/o_minus, /datum/blood_type/lizard)
 	return ..()
 
 /obj/item/reagent_containers/blood/APlus
