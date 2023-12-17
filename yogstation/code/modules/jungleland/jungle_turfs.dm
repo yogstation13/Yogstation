@@ -195,7 +195,7 @@ Temperature: 126.85 °C (400 K)
 	var/mob/living/carbon/human/humie = AM
 	var/chance = (100 - humie.getarmor(null,BIO)) * 0.33
 
-	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity())
+	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity() || HAS_TRAIT(AM,TRAIT_SULPH_PIT_IMMUNE))
 		return
 
 	if(isipc(humie) && prob(chance))
@@ -338,4 +338,3 @@ Temperature: 126.85 °C (400 K)
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/lava/smooth/jungle_surface
-	

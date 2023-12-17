@@ -252,6 +252,32 @@
 	color =  "#5e3807" 
 	taste_description = "bitter and sour"
 
+/datum/reagent/magnus_purpura_enzyme
+	name = "Magnus purpura enzyme"
+	description = "Yellowish liquid with potent anti-acidic properties"
+	color = "#e0ea4e"
+	taste_description = "sweet"
+	metabolization_rate = 0.1
+	var/alert_id = "magnus_purpura"
+
+/datum/reagent/magnus_purpura_enzyme/on_mob_metabolize(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE,JUNGLELAND_TRAIT)
+	L.throw_alert(alert_id,/atom/movable/screen/alert/magnus_purpura)
+
+/datum/reagent/magnus_purpura_enzyme/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE,JUNGLELAND_TRAIT)
+	L.clear_alert(alert_id)
+	return ..()
+
+/datum/reagent/magnus_purpura_enzyme/condensed
+	name = "Condensed magnus purpura enzyme"
+	description = "Yellowish liquid with VERY potent anti-acidic properties"
+	color = "#eeff00"
+	taste_description = "sweet"
+	metabolization_rate = 0.05
+	alert_id = "magnus_purpura_condensed"
+
 //i tried to base it off of actual malaria
 /datum/disease/malaria 
 	name = "Malaria Exotica"

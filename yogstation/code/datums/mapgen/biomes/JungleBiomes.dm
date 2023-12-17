@@ -62,7 +62,7 @@
 /datum/biome/jungleland/toxic_pit
 	turf_type = /turf/open/floor/plating/dirt/jungleland/toxic_pit
 	closed_turf = /turf/open/water/toxic_pit
-	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/herb/explosive_shrooms = 0.05,/obj/structure/herb/cinchona = 0.05,/obj/structure/herb/liberal_hats = 0.5,/obj/structure/herb/fruit = 0.1)
+	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/herb/explosive_shrooms = 0.05,/obj/structure/herb/liberal_hats = 0.5,/obj/structure/herb/magnus_purpura = 0.5)
 	dense_flora = list(/obj/structure/flora/ausbushes/stalkybush = 1)
 	loose_flora_density = 20
 	dense_flora_density = 10
@@ -74,7 +74,7 @@
 /datum/biome/jungleland/dying_forest
 	turf_type = /turf/open/floor/plating/dirt/jungleland/dying_forest
 	closed_turf = /turf/open/floor/plating/dirt/jungleland/dying_forest
-	dense_flora = list(/obj/structure/flora/stump=1,/obj/structure/flora/tree/dead/jungle = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/tree/jungle/small = 1,/obj/structure/herb/cinchona = 0.1)
+	dense_flora = list(/obj/structure/flora/stump=1,/obj/structure/flora/tree/dead/jungle = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/tree/jungle/small = 1,/obj/structure/herb/cinchona = 0.25)
 	dense_flora_density = 50
 	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing = 39,/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad = 55,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 5)
 	fauna_density = 0.8

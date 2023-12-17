@@ -249,10 +249,10 @@
 /area/jungleland/explored)
 "LK" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/bamboospear,
-/obj/item/twohanded/bamboospear,
-/obj/item/twohanded/bamboospear,
-/obj/item/twohanded/bamboospear,
+/obj/item/melee/spear/bamboospear,
+/obj/item/melee/spear/bamboospear,
+/obj/item/melee/spear/bamboospear,
+/obj/item/melee/spear/bamboospear,
 /obj/item/hatchet/wooden,
 /obj/item/hatchet/wooden,
 /obj/item/hatchet/wooden,
@@ -277,7 +277,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered/ivymen)
 "Tb" = (
-/obj/item/twohanded/bamboospear,
+/obj/item/melee/spear/bamboospear,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/jungleland/explored)
 

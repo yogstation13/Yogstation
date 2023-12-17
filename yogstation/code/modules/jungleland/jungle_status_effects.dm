@@ -4,6 +4,12 @@
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "toxic_buildup"
 
+/atom/movable/screen/alert/magnus_purpura
+	name = "Magnus Purpura Immunity"
+	desc = "The anti-acidic enzymes found in magnus purpura make you temporarily immune to shallow sulphuric pits, allowing you to walk over them without harm. You are not immune to deep sulphuric pits."
+	icon = 'yogstation/icons/mob/screen_alert.dmi'
+	icon_state = "magnus_purpura"
+
 /atom/movable/screen/alert/status_effect/tar_curse
 	name = "Curse of Tar"
 	desc = "You've been cursed by the tar priest, next attack by any tar monster will cause more damage and may have additional effects."

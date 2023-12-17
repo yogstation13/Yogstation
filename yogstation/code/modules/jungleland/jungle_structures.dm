@@ -273,6 +273,15 @@
 			icon_state = "bianco_plant"
 			picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/bianco
 
+/obj/structure/herb/magnus_purpura
+	name = "Magnus Purpura"
+	desc = "A weird flower that can surivive in the harshest environments of jungleland. It thrives where others disolve and wither away. Maybe you could use that to your advantage?"
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "magnus_purpura"
+	picked_amt = 1
+	picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/magnus_purpura
+
+
 /obj/structure/flytrap //feed it a specific mob loot to get rare materials. Can rarely drop VERY rare minerals like bananium!
 	name = "Mineral Rich Flytrap"
 	desc = "The mouth doesn't look big enough to hurt you, but it does look very hungry."

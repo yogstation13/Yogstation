@@ -132,7 +132,6 @@
 	growthstages = 4
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.25,/datum/reagent/consumable/nutriment/vitamin = 0.05)
 
-
 /obj/item/reagent_containers/food/snacks/grown/jungle/liberal_hat
 	name = "Liberal Hat"
 	desc = "Hats off madlad, take me and free your mind..."
@@ -168,6 +167,24 @@
 	growing_icon = 'icons/obj/hydroponics/growing.dmi'
 	growthstages = 3
 	reagents_add = list(/datum/reagent/quinine = 0.1, /datum/reagent/medicine/atropine = 0.05, /datum/reagent/medicine/omnizine = 0.1)
+
+/obj/item/seeds/jungleland/magnus_purpura
+	name = "pack of magnus purpura seeds"
+	desc = "These seeds should grow into cinchona shrubs"
+	icon_state = "seed-magnus_purpura"
+	species = "magnus_purpura"
+	plantname = "Magnus Purpura"
+	product = /obj/item/reagent_containers/food/snacks/grown/jungle/cinchona_bark
+	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
+	growthstages = 3
+	reagents_add = list(/datum/reagent/magnus_purpura_enzyme = 0.25)
+
+/obj/item/reagent_containers/food/snacks/grown/jungle/magnus_purpura
+	name = "Magnus Purpura flower"
+	desc = "A head of a massive flower, it contains potent anti-acidic enzymes that allow someone to temporarily be immune to highly corrosive waters on jungleland. It can be processed futher to increase it's efficiency."
+	icon_state = "magnus_purpura_flower"
+	seed = /obj/item/seeds/jungleland/magnus_purpura
+	distill_reagent = /datum/reagent/magnus_purpura_enzyme/condensed
 
 /obj/item/organ/regenerative_core/dryad
 	name = "Dryad heart"
@@ -403,6 +420,7 @@
 				Every plant we are blessed with can be used in some way. 
 				Liberal hats can be used to free the mind for a pleasant time.
 				Cinchona bark can heal wounds when consumed, or fermented for sterilizine and poultice.
+				Magnus Purpura can be used to temporarily make you immune to sulphuric pits
 				<h2>Leather:</h2>
 				Leather does not need to be interacted with much as a shaman,
 				especially if you are prioritizing medicine.
