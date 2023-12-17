@@ -47,6 +47,10 @@
 	name = "Y-"
 	compatible_types = list(/datum/blood_type/animal, /datum/blood_type/universal)
 
+/datum/blood_type/gorilla
+	name = "G"
+	compatible_types = list(/datum/blood_type/universal)
+
 /datum/blood_type/lizard
 	name = "L"
 	color = LIGHT_COLOR_BLUEGREEN

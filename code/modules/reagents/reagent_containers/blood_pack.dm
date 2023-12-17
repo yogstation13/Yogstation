@@ -132,10 +132,10 @@
 	unique_blood = /datum/reagent/consumable/liquidelectricity
 
 /obj/item/reagent_containers/blood/universal
-	blood_type = "U"
+	blood_type = /datum/blood_type/universal
 
 /obj/item/reagent_containers/blood/gorilla
-	blood_type = "G"
+	blood_type = /datum/blood_type/gorilla
 
 /obj/item/reagent_containers/blood/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/pen) || istype(I, /obj/item/toy/crayon))
