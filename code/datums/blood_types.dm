@@ -69,7 +69,7 @@
 	The species have exotic blood, but with how dna is stored, they still need a blood type
 	They're literally ONLY used to colour bloodsplats as far as I know (maybe it will be possible to podclone from bloodsplats)
 */
-/datum/blood_type/xenomorph //for xenomorph gib dna
+/datum/blood_type/xenomorph //for xenomorph gib dna and polysmorph bloodsplats
 	name = "X"
 	color = "#00FF32"
 	compatible_types = list(/datum/blood_type/xenomorph)
