@@ -71787,6 +71787,10 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"xqi" = (
+/obj/machinery/the_singularitygen,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "xqr" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/stripes/corner,
@@ -100874,7 +100878,7 @@ bCq
 uzc
 ccw
 ppM
-wil
+xqi
 bQa
 cmD
 cmD
