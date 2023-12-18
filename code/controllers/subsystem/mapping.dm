@@ -345,9 +345,11 @@ SUBSYSTEM_DEF(mapping)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
+		GLOB.minetype = MINETYPE_LAVALAND
 	//Yogs begin, jungleland gen
 	else if(config.minetype == "jungleland")
 		LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
+		GLOB.minetype = MINETYPE_JUNGLE
 	else if(config.minetype == "jungle_and_lavaland")
 		SSpersistence.LoadMinetype()
 		var/determinant = SSpersistence.next_minetype
@@ -355,17 +357,22 @@ SUBSYSTEM_DEF(mapping)
 			if(2)
 				if(prob(50))
 					LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
+					GLOB.minetype = MINETYPE_LAVALAND
 				else 
 					LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND) 
+					GLOB.minetype = MINETYPE_JUNGLE
 			
 			if(1)
 				LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
+				GLOB.minetype = MINETYPE_LAVALAND
 			
 			if(0)
 				LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
+				GLOB.minetype = MINETYPE_JUNGLE
 			 
 	//Yogs end
 	else if(config.minetype == "icemoon")
+		GLOB.minetype = MINETYPE_ICEMOON
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif

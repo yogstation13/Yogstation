@@ -10,6 +10,12 @@
 #define ORE_DILITHIUM "dilithium"
 #define ORE_EMPTY "empty"
 
+
+#define MINETYPE_JUNGLE "jungle"
+#define MINETYPE_LAVALAND "lavaland"
+#define MINETYPE_ICEMOON "icemoon"
+GLOBAL_VAR(minetype)
+
 GLOBAL_LIST_INIT(jungle_ores, list( \
 		ORE_IRON = new /datum/ore_patch/iron(), 
 		ORE_GOLD = new /datum/ore_patch/gold(), 
