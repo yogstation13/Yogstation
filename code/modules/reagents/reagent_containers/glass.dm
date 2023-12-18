@@ -123,33 +123,32 @@
 /obj/item/reagent_containers/glass/beaker/on_reagent_change(changetype)
 	update_appearance(UPDATE_ICON)
 
-/// Update beaker overlay with current fill state
-/obj/item/reagent_containers/glass/beaker/update_overlays(fill_state as text|null)
+/obj/item/reagent_containers/glass/beaker/update_overlays()
 	. = ..()
 	if(!reagents.total_volume)
 		return
+	var/base_state = base_icon_state
+	if(isnull(base_state))
+		base_state = icon_state
 
-	if (!fill_state)
-		fill_state = icon_state
-
-	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[fill_state]10")
+	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[base_state]10")
 
 	var/percent = round((reagents.total_volume / volume) * 100)
 	switch(percent)
 		if(0 to 9)
-			filling.icon_state = "[fill_state]-10"
+			filling.icon_state = "[base_state]-10"
 		if(10 to 24)
-			filling.icon_state = "[fill_state]10"
+			filling.icon_state = "[base_state]10"
 		if(25 to 49)
-			filling.icon_state = "[fill_state]25"
+			filling.icon_state = "[base_state]25"
 		if(50 to 74)
-			filling.icon_state = "[fill_state]50"
+			filling.icon_state = "[base_state]50"
 		if(75 to 79)
-			filling.icon_state = "[fill_state]75"
+			filling.icon_state = "[base_state]75"
 		if(80 to 90)
-			filling.icon_state = "[fill_state]80"
+			filling.icon_state = "[base_state]80"
 		if(91 to INFINITY)
-			filling.icon_state = "[fill_state]100"
+			filling.icon_state = "[base_state]100"
 
 	filling.color = mix_color_from_reagents(reagents.reagent_list)
 	. += filling
@@ -173,14 +172,12 @@
 	name = "x-large beaker"
 	desc = "An extra-large beaker. Can hold up to 120 units."
 	icon_state = "beakerwhite"
+	/// Overrides the base state used for the fill overlay
+	base_icon_state = "beakerlarge"
 	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000)
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
-
-/obj/item/reagent_containers/glass/beaker/plastic/update_overlays()
-	// Use the beakerlarge fill states
-	. = ..("beakerlarge")
 
 /obj/item/reagent_containers/glass/beaker/meta
 	name = "metamaterial beaker"
