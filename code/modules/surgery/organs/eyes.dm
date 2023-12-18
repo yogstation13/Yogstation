@@ -460,6 +460,13 @@
 /obj/item/organ/eyes/ethereal
 	name = "fractal eyes"
 	desc = "Crystalline eyes from an Ethereal. Seeing with them should feel like using a kaleidoscope, but somehow it isn't."
+	icon_state = "ethereal_eyes"
+	///Color of the eyes, is set by the species on gain
+	var/ethereal_color = "#9c3030"
+
+/obj/item/organ/eyes/ethereal/Initialize(mapload)
+	. = ..()
+	add_atom_colour(ethereal_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/organ/eyes/ethereal/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
 	. = ..()
