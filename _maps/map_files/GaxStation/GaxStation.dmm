@@ -396,6 +396,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"aiz" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "aiE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/stripes/line{
@@ -834,6 +845,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"auN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "avc" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -1976,6 +1997,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"aXC" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "aXP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -4703,12 +4730,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"ctp" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/emergency,
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "ctx" = (
 /turf/open/floor/plating,
 /area/maintenance/disposal)
@@ -5042,12 +5063,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
-"czL" = (
-/obj/machinery/cryopod{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "czT" = (
 /turf/closed/wall,
 /area/ai_monitored/security/armory)
@@ -9866,6 +9881,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"eKc" = (
+/obj/machinery/computer/cryopod{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "eKg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -14919,13 +14944,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"hjq" = (
-/obj/machinery/computer/cryopod{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "hjs" = (
 /obj/machinery/door/window/northleft{
 	dir = 4;
@@ -16512,6 +16530,12 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"hTx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "hTG" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -16764,17 +16788,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"ibv" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 1
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/structure/closet/emcloset,
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "ibA" = (
 /obj/effect/decal/cleanable/xenoblood,
 /turf/open/floor/engine,
@@ -19618,24 +19631,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"jzP" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/cryopods";
-	dir = 8;
-	name = "Cryogenic Crew Storage APC";
-	pixel_x = -25
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "jzY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -21398,6 +21393,25 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"kvA" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Cryogenics"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "kvW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -21565,6 +21579,13 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/department/medical/central)
+"kzh" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "kzS" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -21659,6 +21680,18 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/hallway/primary/central)
+"kCg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "kCl" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 1
@@ -26667,6 +26700,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"nbF" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "nbL" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -27373,21 +27418,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
-"ntu" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Cryogenics"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "ntC" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -27898,6 +27928,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"nEA" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/cryopods";
+	dir = 8;
+	name = "Cryogenic Crew Storage APC";
+	pixel_x = -25
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "nEQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -33376,6 +33427,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"qtO" = (
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "qub" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -34363,6 +34421,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"qXH" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/emergency,
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "qXK" = (
 /obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
@@ -37017,14 +37084,6 @@
 /obj/effect/turf_decal/trimline/atmos/warning/lower/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"skT" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -28
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "skY" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -37091,12 +37150,6 @@
 /obj/effect/turf_decal/trimline/secred/warning/lower/corner,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"sng" = (
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "snj" = (
 /obj/effect/turf_decal/stripes/box,
 /obj/machinery/disposal/bin,
@@ -37797,6 +37850,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"sDZ" = (
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/cryopods)
 "sEp" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower,
 /obj/machinery/camera{
@@ -42881,12 +42943,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"vfX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "vgs" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 6
@@ -91729,11 +91785,11 @@ atx
 oaC
 nDd
 feh
-jzP
-czL
-czL
-czL
-skT
+nEA
+sDZ
+sDZ
+sDZ
+aiz
 eLr
 eLr
 vRP
@@ -91991,7 +92047,7 @@ hJl
 hJl
 xUY
 hJl
-sng
+qtO
 hHC
 aCD
 tkl
@@ -92248,7 +92304,7 @@ gQo
 lzs
 nDE
 hJl
-sng
+qtO
 hHC
 vRP
 tkl
@@ -92505,7 +92561,7 @@ nDE
 wMH
 aCP
 hJl
-sng
+qtO
 hHC
 aCD
 tkl
@@ -92757,11 +92813,11 @@ kqi
 sod
 nDd
 xmg
-ibv
-hjq
-vfX
-hJl
-ctp
+nbF
+eKc
+auN
+aXC
+qXH
 eLr
 eLr
 vRP
@@ -93016,7 +93072,7 @@ fXQ
 fXQ
 fXQ
 fXQ
-ntu
+kvA
 nDd
 eLr
 eLr
@@ -93272,9 +93328,9 @@ tSW
 tSW
 vRP
 sqz
-xBd
-tfe
-vaq
+kzh
+kCg
+hTx
 sqz
 vRP
 vRP
