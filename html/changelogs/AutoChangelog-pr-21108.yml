@@ -1,0 +1,4 @@
+author: " cark, cowbot93"
+delete-after: true 
+changes: 
+  - mapping: "improves new bar by fixing issues and adding coffee"

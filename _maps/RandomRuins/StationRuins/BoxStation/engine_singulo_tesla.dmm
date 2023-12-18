@@ -957,10 +957,6 @@
 /obj/item/wrench,
 /turf/open/space/basic,
 /area/engine/engineering)
-"Rn" = (
-/obj/machinery/the_singularitygen,
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
 "Rw" = (
 /obj/machinery/power/rad_collector,
 /obj/structure/cable/orange{
@@ -1036,10 +1032,6 @@
 "WN" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
-/area/engine/engineering)
-"XG" = (
-/obj/machinery/the_singularitygen/tesla,
-/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "Zr" = (
 /obj/structure/cable/yellow{
@@ -1513,7 +1505,7 @@ gm
 gm
 gm
 yi
-XG
+yi
 yi
 kU
 kU
@@ -1569,7 +1561,7 @@ sd
 kU
 kU
 yi
-Rn
+yi
 yi
 gm
 gm
