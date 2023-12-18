@@ -442,7 +442,7 @@
 
 /obj/item/organ/eyes/moth
 	name = "moth eyes"
-	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
+	desc = "These eyes can see just a little too well, light doesn't entirely agree with them."
 	flash_protect = -1
 
 /obj/item/organ/eyes/moth/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
@@ -450,7 +450,7 @@
 	var/client/dude = M.client
 	if(dude)
 		dude.view_size.addTo(1)
-		
+
 /obj/item/organ/eyes/moth/Remove(mob/living/carbon/M, special)
 	var/client/dude = M.client
 	if(dude)
