@@ -579,6 +579,9 @@
 		sight |= E.sight_flags
 		if(!isnull(E.lighting_alpha))
 			lighting_alpha = E.lighting_alpha
+		if(istype(E, /obj/item/organ/eyes/ethereal) && client) //special view range ethereal eyes
+			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
+			client.view_size.addTo("2x2")
 
 	for(var/image/I in infra_images)
 		if(client)

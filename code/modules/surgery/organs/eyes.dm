@@ -465,7 +465,7 @@
 	. = ..()
 	var/client/dude = M.client
 	if(dude)
-		dude.view_size.setTo(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen))+1)
+		dude.view_size.addTo("2x2")
 
 /obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
 	var/client/dude = M.client
