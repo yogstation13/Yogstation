@@ -445,18 +445,6 @@
 	desc = "These eyes can see just a little too well, light doesn't entirely agree with them."
 	flash_protect = -1
 
-/obj/item/organ/eyes/moth/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
-	. = ..()
-	var/client/dude = M.client
-	if(dude)
-		dude.view_size.addTo(1)
-
-/obj/item/organ/eyes/moth/Remove(mob/living/carbon/M, special)
-	var/client/dude = M.client
-	if(dude)
-		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
-	. = ..()
-
 /obj/item/organ/eyes/snail
 	name = "snail eyes"
 	desc = "These eyes seem to have a large range, but might be cumbersome with glasses."
@@ -468,3 +456,19 @@
 	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	see_in_dark = 5
+
+/obj/item/organ/eyes/ethereal
+	name = "fractal eyes"
+	desc = "Crystalline eyes from an Ethereal. Seeing with them should feel like using a kaleidoscope, but somehow it isn't."
+
+/obj/item/organ/eyes/ethereal/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
+	. = ..()
+	var/client/dude = M.client
+	if(dude)
+		dude.view_size.setTo(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen))+1)
+
+/obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
+	var/client/dude = M.client
+	if(dude)
+		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
+	. = ..()
