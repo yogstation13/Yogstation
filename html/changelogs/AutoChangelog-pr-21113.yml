@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Removes arrival shuttle from NVS Gax, people spawn in cryo now"
