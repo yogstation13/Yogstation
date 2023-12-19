@@ -79,6 +79,13 @@
 /obj/structure/railing{
 	dir = 5
 	},
+/obj/effect/light_emitter{
+	light_power = 50;
+	light_range = 100;
+	name = "daylight";
+	set_cap = 50;
+	set_luminosity = 50
+	},
 /turf/open/floor/wood,
 /area/bridge)
 "aKF" = (
@@ -145,6 +152,21 @@
 	color = "#265db5"
 	},
 /area/ballstation/exterior)
+"bpM" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/light_emitter{
+	light_power = 50;
+	light_range = 100;
+	name = "daylight";
+	set_cap = 50;
+	set_luminosity = 50
+	},
+/turf/open/floor/plating,
+/area/security)
 "bpS" = (
 /turf/open/floor/wood,
 /area/bridge/showroom/corporate)
@@ -181,6 +203,21 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar/atrium)
+"bxJ" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/light_emitter{
+	light_power = 50;
+	light_range = 100;
+	name = "daylight";
+	set_cap = 50;
+	set_luminosity = 50
+	},
+/turf/open/floor/plating,
+/area/bridge/showroom/corporate)
 "bGj" = (
 /obj/machinery/disposal/deliveryChute{
 	dir = 4;
@@ -233,6 +270,23 @@
 /obj/machinery/camera/motion/armory,
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
+"ckE" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/light_emitter{
+	light_power = 50;
+	light_range = 100;
+	name = "daylight";
+	set_cap = 50;
+	set_luminosity = 50
+	},
+/turf/open/floor/plating,
+/area/bridge/meeting_room)
 "ckH" = (
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/fakepit,
@@ -976,6 +1030,13 @@
 /obj/structure/railing{
 	dir = 9
 	},
+/obj/effect/light_emitter{
+	light_power = 50;
+	light_range = 100;
+	name = "daylight";
+	set_cap = 50;
+	set_luminosity = 50
+	},
 /turf/open/floor/wood,
 /area/bridge)
 "jZd" = (
@@ -1000,6 +1061,12 @@
 	},
 /turf/open/floor/circuit/green/anim,
 /area/ai_monitored/nuke_storage)
+"kCU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "kEi" = (
 /obj/structure/railing{
 	dir = 8
@@ -1153,6 +1220,13 @@
 /area/bridge/showroom/corporate)
 "mDh" = (
 /obj/structure/closet/secure_closet/freezer/meat,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"mEH" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "mOt" = (
@@ -1550,6 +1624,17 @@
 "rom" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/bridge/showroom/corporate)
+"rzj" = (
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "rCi" = (
 /obj/machinery/light{
 	dir = 4
@@ -1960,6 +2045,7 @@
 /area/crew_quarters/kitchen)
 "wij" = (
 /obj/structure/table,
+/obj/machinery/light,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "wjI" = (
@@ -29827,7 +29913,7 @@ aaa
 mZG
 rXr
 xIP
-lPA
+kCU
 lPA
 lPA
 mdi
@@ -30854,7 +30940,7 @@ aaa
 aaa
 mZG
 rXr
-aOj
+rzj
 lPA
 lPA
 cKP
@@ -31626,7 +31712,7 @@ aaa
 mZG
 rXr
 huY
-lPA
+mEH
 lPA
 cYt
 rXr
@@ -33672,7 +33758,7 @@ iUw
 wWY
 wWY
 uie
-uie
+ckE
 uie
 uie
 wWY
@@ -35751,7 +35837,7 @@ kYK
 dAB
 nGZ
 wRb
-tUj
+pbX
 aaa
 aaa
 aaa
@@ -36519,7 +36605,7 @@ kYK
 kYK
 kYK
 aUL
-btG
+bpM
 iUw
 mZG
 tUj
@@ -37290,7 +37376,7 @@ kYK
 kYK
 kYK
 aUL
-btG
+bpM
 iUw
 mZG
 tUj
@@ -39323,7 +39409,7 @@ ovz
 vbp
 bbM
 bbM
-nbv
+bxJ
 bpS
 bpS
 bpS
@@ -41082,7 +41168,7 @@ aaa
 aaa
 leU
 nGZ
-nGZ
+nvE
 nGZ
 nGZ
 rfo
