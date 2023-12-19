@@ -1,0 +1,5 @@
+author: " Scrambledeggs00 & Molti"
+delete-after: true 
+changes: 
+  - imageadd: "new vampire cloak"
+  - imagedel: "old vampire cloak"
