@@ -61367,6 +61367,10 @@
 	name = "privacy shutter"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barcounter";
+	name = "bar shutters"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "tvb" = (
@@ -70112,10 +70116,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"wFS" = (
-/obj/effect/spawner/xmastree,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "wGq" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -73517,6 +73517,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
+"xYx" = (
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "xYD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
@@ -111133,7 +111137,7 @@ mpT
 mpT
 mpT
 jYy
-wFS
+xYx
 mlf
 aPl
 qiP
