@@ -14205,10 +14205,14 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "cqk" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
+/obj/structure/frame/machine{
+	anchored = 1;
+	state = 2
 	},
-/turf/open/floor/plasteel/dark/telecomms,
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
+	dir = 1
+	},
+/turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "cqP" = (
 /obj/structure/table,
@@ -18043,7 +18047,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 5
 	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "dEw" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
@@ -18829,17 +18833,11 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dTb" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 4
+/obj/machinery/ai/server_cabinet/prefilled,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
-/obj/machinery/camera{
-	c_tag = "MiniSat North Servers";
-	dir = 8;
-	name = "ai camera";
-	network = list("minisat","ss13");
-	start_active = 1
-	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "dTe" = (
 /obj/structure/closet/secure_closet/quartermaster,
@@ -20296,17 +20294,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "eva" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat South Servers";
+/obj/machinery/atmospherics/components/binary/valve/digital/on{
 	dir = 8;
-	name = "ai camera";
-	network = list("minisat","ss13");
-	start_active = 1
+	name = "Server Room South"
 	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "evg" = (
 /obj/machinery/door/window/southleft{
@@ -23501,12 +23493,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"fzC" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
-	},
-/turf/closed/wall/r_wall,
-/area/ai_monitored/turret_protected/ai)
 "fzE" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -24824,10 +24810,14 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "fYE" = (
+/obj/structure/frame/machine{
+	anchored = 1;
+	state = 2
+	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "fYZ" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
@@ -30137,6 +30127,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"hUE" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "hUM" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -31104,12 +31100,17 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/mix)
 "ikV" = (
-/obj/structure/frame/machine{
-	anchored = 1;
-	state = 2
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
-/turf/open/floor/circuit/green/telecomms,
+/obj/machinery/camera{
+	c_tag = "MiniSat South Servers";
+	dir = 8;
+	name = "ai camera";
+	network = list("minisat","ss13");
+	start_active = 1
+	},
+/turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "ilc" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower,
@@ -38489,14 +38490,10 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "lbE" = (
-/obj/structure/frame/machine{
-	anchored = 1;
-	state = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 4
+	dir = 10
 	},
-/turf/open/floor/circuit/green/telecomms,
+/turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "lbH" = (
 /obj/effect/decal/cleanable/dirt,
@@ -40168,11 +40165,10 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/captain)
 "lHO" = (
-/obj/machinery/atmospherics/components/binary/valve/digital/on{
-	dir = 8;
-	name = "Server Room North"
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
 	},
-/turf/open/floor/circuit/telecomms/server,
+/turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "lIb" = (
 /obj/structure/sign/warning/electricshock{
@@ -46286,14 +46282,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "nSR" = (
-/obj/structure/frame/machine{
-	anchored = 1;
-	state = 2
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
-	dir = 1
-	},
-/turf/open/floor/circuit/green/telecomms,
+/turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "nTv" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -49576,9 +49568,11 @@
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "phH" = (
-/obj/structure/rack,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat_interior)
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "phI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -50684,21 +50678,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "pyZ" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "MiniSat Maintenance";
-	req_access_txt = "65"
+/obj/machinery/atmospherics/components/binary/valve/digital/on{
+	dir = 8;
+	name = "Server Room North"
 	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/aisat_interior)
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "pzg" = (
 /obj/machinery/door/airlock/medical{
 	name = "Operating Theatre";
@@ -51620,7 +51605,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat_interior)
+/area/ai_monitored/turret_protected/ai)
 "pRx" = (
 /obj/machinery/door/window/brigdoor/security/holding{
 	id = "Holding Cell";
@@ -53374,12 +53359,21 @@
 /turf/open/floor/plasteel,
 /area/security/courtroom)
 "qzd" = (
-/obj/machinery/ai/server_cabinet/prefilled,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "MiniSat Maintenance";
+	req_access_txt = "65"
 	},
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/aisat_interior)
 "qzt" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -54079,9 +54073,16 @@
 /area/hydroponics/garden)
 "qLi" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 9
+	dir = 4
 	},
-/turf/closed/wall/r_wall,
+/obj/machinery/camera{
+	c_tag = "MiniSat North Servers";
+	dir = 8;
+	name = "ai camera";
+	network = list("minisat","ss13");
+	start_active = 1
+	},
+/turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "qLt" = (
 /obj/effect/turf_decal/stripes/line{
@@ -54395,12 +54396,13 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "qQs" = (
-/obj/machinery/atmospherics/components/binary/valve/digital/on{
-	dir = 8;
-	name = "Server Room South"
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat_interior)
 "qQw" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -64020,12 +64022,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
-"uxm" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 5
-	},
-/turf/closed/wall/r_wall,
-/area/ai_monitored/turret_protected/ai)
 "uxv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -64700,10 +64696,12 @@
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "uIU" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 6
+/obj/structure/frame/machine{
+	anchored = 1;
+	state = 2
 	},
-/turf/closed/wall/r_wall,
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
+/turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "uIX" = (
 /obj/structure/filingcabinet,
@@ -65656,6 +65654,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"vaz" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 9
+	},
+/turf/closed/wall/r_wall,
+/area/ai_monitored/turret_protected/ai)
 "vaP" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/stripes/line{
@@ -66273,11 +66277,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "vmm" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/structure/rack,
-/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "vmo" = (
@@ -73385,7 +73385,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 6
 	},
-/turf/open/floor/plasteel/dark/telecomms,
+/turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "xVm" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
@@ -113246,7 +113246,7 @@ tgv
 nIj
 oQJ
 ntH
-pyZ
+qzd
 rCd
 iKg
 mVN
@@ -114022,7 +114022,7 @@ jEd
 nnx
 fnK
 gtB
-phH
+vmm
 vxS
 gtB
 gtB
@@ -114279,7 +114279,7 @@ otV
 nnx
 lxF
 gtB
-vmm
+qQs
 vMR
 wEX
 lZD
@@ -114531,7 +114531,7 @@ qTh
 cva
 cva
 cva
-gtB
+cva
 snB
 nnx
 bhL
@@ -115043,7 +115043,7 @@ tgv
 tgv
 tgv
 cva
-lbE
+fYE
 nDA
 cva
 cva
@@ -115051,7 +115051,7 @@ ouB
 cva
 cva
 nDA
-lbE
+fYE
 cva
 gtB
 gtB
@@ -115300,15 +115300,15 @@ pEf
 pEf
 pEf
 jXD
-nSR
-dEd
+cqk
+hUE
 cva
 tHJ
 vUR
 nKN
 cva
-xUW
-ikV
+phH
+uIU
 jXD
 pEf
 pEf
@@ -115557,15 +115557,15 @@ gXs
 gXs
 pEf
 jXD
-qzd
 dTb
+qLi
 wbH
 mxQ
 uYw
 uuW
 wbH
-eva
-qzd
+ikV
+dTb
 cva
 pEf
 aaa
@@ -115815,13 +115815,13 @@ pEf
 pEf
 cva
 cva
-fzC
-uxm
+lHO
+dEd
 cva
 gka
 cva
-uIU
-qLi
+xUW
+vaz
 cva
 cva
 pEf
@@ -116073,11 +116073,11 @@ cva
 cva
 cva
 byg
-lHO
+pyZ
 bRu
 xFg
 gTY
-qQs
+eva
 jnr
 cva
 cva
@@ -116334,7 +116334,7 @@ jzm
 ybM
 soe
 nDA
-fYE
+nSR
 yap
 cva
 cva
@@ -116591,7 +116591,7 @@ npc
 cva
 cva
 pBl
-cqk
+lbE
 pyn
 wer
 cva
