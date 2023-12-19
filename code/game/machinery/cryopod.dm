@@ -440,7 +440,6 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		apply_effects_to_mob(M)
 
 /obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
-	sleepyhead.SetSleeping(50)
 	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
 	sleepyhead.set_nutrition(200)
 	sleepyhead.SetSleeping(60) //if you read this comment and feel like shitting together something to adjust IPC charge on wakeup, be my guest.
