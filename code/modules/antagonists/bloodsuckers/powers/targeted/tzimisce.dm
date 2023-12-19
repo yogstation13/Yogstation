@@ -143,7 +143,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		for(var/obj/item/bodypart/bodypart in H.bodyparts)
-			if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+			if(bodypart.body_part & (HEAD|CHEST))
 				if(bodypart.dismemberable)
 					bodypart.dismember()
 					qdel(bodypart)
@@ -154,7 +154,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		for(var/obj/item/bodypart/bodypart in C.bodyparts)
-			if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+			if(!(bodypart.body_part & (HEAD|CHEST)))
 				if(bodypart.dismemberable)
 					bodypart.dismember()
 					qdel(bodypart)
