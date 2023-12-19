@@ -40,7 +40,7 @@
 	var/assigned_role
 
 	var/role_alt_title
-	
+
 	var/special_role
 	var/list/restricted_roles = list()
 	var/list/datum/objective/objectives = list()
@@ -346,7 +346,7 @@
 
 	if(!uplink_loc) // We've looked everywhere, let's just implant you
 		implant = TRUE
-	
+
 	if(!implant)
 		. = uplink_loc
 		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
@@ -624,6 +624,9 @@
 	var/list/all_objectives = list()
 	for(var/datum/antagonist/A in antag_datums)
 		all_objectives |= A.objectives
+		if(A.get_team())
+			var/datum/team/antag_team = A.get_team()
+			all_objectives |= antag_team.objectives
 	return all_objectives
 
 /datum/mind/proc/announce_objectives()

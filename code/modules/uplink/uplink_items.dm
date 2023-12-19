@@ -526,7 +526,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Upon hitting a target, the piston-ram will extend forward to make contact for some serious damage. \
 			Using a wrench on the piston valve will allow you to tweak the amount of gas used per punch to \
 			deal extra damage and hit targets further. Use a screwdriver to take out any attached tanks."
-	item = /obj/item/melee/powerfist
+	item = /obj/item/clothing/gloves/powerfist
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
@@ -610,6 +610,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			darts effective at incapacitating a target."
 	item = /obj/item/gun/ballistic/automatic/toy/pistol/riot
 	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus = 10
+
+/datum/uplink_item/dangerous/watergun
+	name = "Extended Capacity Hyper-Soaker"
+	desc = "A simple yet effective way of applying chemicals to a target's skin. \
+			Comes with a high-power nozzle and larger tank."
+	item = /obj/item/gun/water/syndicate
+	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
@@ -1455,6 +1464,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/multitool/ai_detect
 	cost = 1
 	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/stealthy_tools/pseudocider
+	name = "Pseudocider"
+	desc = "Disguised as a common pocket watch, the pseudocider will convincingly feign your fall, making you invisible \
+			completely silent as you slip away from the scene, or into a better position! You will not be able to take \
+			any actions for the 7 second duration."
+	item = /obj/item/pseudocider
+	cost = 8
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/shadowcloak
 	name = "Cloaker Belt"

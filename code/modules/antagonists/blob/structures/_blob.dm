@@ -5,7 +5,7 @@
 	light_range = 2
 	desc = "A thick wall of writhing tendrils."
 	density = FALSE //this being false causes two bugs, being able to attack blob tiles behind other blobs and being unable to move on blob tiles in no gravity, but turning it to 1 causes the blob mobs to be unable to path through blobs, which is probably worse.
-	opacity = 0
+	opacity = FALSE
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
 	CanAtmosPass = ATMOS_PASS_PROC
@@ -31,7 +31,7 @@
 	setDir(pick(GLOB.cardinals))
 	update_appearance(UPDATE_ICON)
 	if(atmosblock)
-		air_update_turf(1)
+		air_update_turf()
 	ConsumeTile()
 
 /obj/structure/blob/proc/creation_action() //When it's created by the overmind, do this.
@@ -40,7 +40,7 @@
 /obj/structure/blob/Destroy()
 	if(atmosblock)
 		atmosblock = FALSE
-		air_update_turf(1)
+		air_update_turf()
 	if(overmind)
 		overmind.blobs_legit -= src  //if it was in the legit blobs list, it isn't now
 	GLOB.blobs -= src //it's no longer in the all blobs list either
@@ -64,7 +64,7 @@
 						result++
 		. -= result - 1
 
-/obj/structure/blob/BlockSuperconductivity()
+/obj/structure/blob/BlockThermalConductivity()
 	return atmosblock
 
 /obj/structure/blob/CanAllowThrough(atom/movable/mover, turf/target)
@@ -206,7 +206,7 @@
 	if(severity > 0)
 		if(overmind)
 			overmind.blobstrain.emp_reaction(src, severity)
-		if(prob(100 - severity * 30))
+		if(prob(40 + (severity * 6)))
 			new /obj/effect/temp_visual/emp(get_turf(src))
 
 /obj/structure/blob/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)

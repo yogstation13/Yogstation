@@ -1442,3 +1442,32 @@
 
 	for(var/obj/item/borg/cookbook/book in R.module)
 		R.module.remove_module(book, TRUE)
+
+/obj/item/borg/upgrade/janitor_autocleaner
+	name = "janitor autocleaner"
+	desc = "An upgrade to the janitor cyborg that lets them automatically cleans the floor wherever they go."
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_types = list(/obj/item/robot_module/janitor)
+	module_flags = BORG_MODULE_JANITOR
+
+/obj/item/borg/upgrade/janitor_autocleaner/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/obj/item/borg/floor_autocleaner/autocleaner = locate() in R.module.modules
+	if(autocleaner)
+		to_chat(user, span_warning("This cyborg is already equipped with an autocleaner."))
+		return FALSE
+	autocleaner = new(R.module)
+	R.module.basic_modules += autocleaner
+	R.module.add_module(autocleaner, FALSE, TRUE)
+
+/obj/item/borg/upgrade/janitor_autocleaner/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return FALSE
+
+	for(var/obj/item/borg/floor_autocleaner/autocleaner in R.module)
+		R.module.remove_module(autocleaner, TRUE)
+

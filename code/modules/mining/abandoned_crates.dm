@@ -11,6 +11,15 @@
 	var/attempts = 10
 	var/codelen = 4
 
+/obj/structure/closet/crate/secure/loot/Initialize(mapload)
+	. = ..()
+	var/list/digits = list("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
+	code = ""
+	for(var/i = 0, i < codelen, i++)
+		var/dig = pick(digits)
+		code += dig
+		digits -= dig  //there are never matching digits in the answer
+
 /obj/structure/closet/crate/secure/loot/update_overlays()
 	. = ..()
 	tamperproof = initial(tamperproof)
@@ -20,13 +29,6 @@
 
 /obj/structure/closet/crate/secure/loot/PopulateContents()
 	. = ..()
-	var/list/digits = list("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
-	code = ""
-	for(var/i = 0, i < codelen, i++)
-		var/dig = pick(digits)
-		code += dig
-		digits -= dig  //there are never matching digits in the answer
-
 	var/loot = rand(1,100) //100 different crates with varying chances of spawning
 	switch(loot)
 		if(1 to 5) //5% chance
@@ -82,14 +84,14 @@
 				new /obj/item/clothing/neck/petcollar(src)
 		if(63 to 64)
 			for(var/i in 1 to rand(4, 7))
-				var/newcoin = pickweight(
+				var/newcoin = pickweight(list(
 					/obj/item/coin/silver = 3,
 					/obj/item/coin/iron = 3,
 					/obj/item/coin/gold = 1,
 					/obj/item/coin/diamond = 1,
 					/obj/item/coin/plasma = 1,
 					/obj/item/coin/uranium = 1,
-				)
+				))
 				new newcoin(src)
 		if(65 to 66)
 			new /obj/item/clothing/suit/ianshirt(src)

@@ -71,7 +71,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/body_parts_partial_covered = 0 //same bit flags as above, only applies half armor to these body parts
 
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
-	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/armour_penetration = 0 //percentage of armour effectiveness to remove
 	var/list/allowed = null //suit storage stuff.
@@ -295,6 +294,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	if(HAS_TRAIT(src, TRAIT_NO_STORAGE))
 		. += "[gender == PLURAL ? "They are" : "It is"] too bulky, fragile, or cumbersome to fit in a container."
+
+	if(demolition_mod > 1)
+		. += "[src] seems exceptionally good at breaking things!"
+	else if(demolition_mod < 1)
+		. += "[src] seems exceptionally bad at breaking things."
 
 	if(resistance_flags & INDESTRUCTIBLE)
 		. += "[src] seems extremely robust! It'll probably withstand anything that could happen to it!"
@@ -842,9 +846,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			force_string = "low"
 		if(7 to 10)
 			force_string = "medium"
-		if(10 to 11)
+		if(10 to 14)
 			force_string = "high"
-		if(11 to 20) //12 is the force of a toolbox
+		if(14 to 20) //15 is the force of a toolbox
 			force_string = "robust"
 		if(20 to 25)
 			force_string = "very robust"

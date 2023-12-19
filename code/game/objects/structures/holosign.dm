@@ -110,6 +110,10 @@
 		var/mob/living/carbon/human/janitor = mover
 		if(istype(janitor.shoes, /obj/item/clothing/shoes/galoshes))
 			return TRUE
+	if(iscyborg(mover))
+		var/mob/living/silicon/robot/cyborg = mover
+		if(istype(cyborg.module, /obj/item/robot_module/janitor))
+			return TRUE
 
 /obj/structure/holosign/barrier/engineering
 	icon_state = "holosign_engi"
@@ -130,7 +134,7 @@
 
 /obj/structure/holosign/barrier/atmos/Initialize(mapload)
 	. = ..()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/holosign/barrier/cyborg
 	name = "Energy Field"
@@ -280,7 +284,7 @@
 	if(!shockcd)
 		if(ismob(user))
 			var/mob/living/M = user
-			M.electrocute_act(15,"Energy Barrier", safety=1)
+			M.electrocute_act(15,"Energy Barrier", zone=user.held_index_to_body_zone(user.active_hand_index)) // you touched it with your hand
 			shockcd = TRUE
 			addtimer(CALLBACK(src, PROC_REF(cooldown)), 5)
 
@@ -292,6 +296,6 @@
 		return
 
 	var/mob/living/M = AM
-	M.electrocute_act(15,"Energy Barrier", safety=1)
+	M.electrocute_act(15,"Energy Barrier", zone=null)
 	shockcd = TRUE
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), 5)

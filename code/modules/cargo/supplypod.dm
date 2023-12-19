@@ -227,7 +227,7 @@
 				var/mob/living/carbon/carbon_target_mob = target_living
 				for (var/bp in carbon_target_mob.bodyparts) //Look at the bodyparts in our poor mob beneath our pod as it lands
 					var/obj/item/bodypart/bodypart = bp
-					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)//we dont want to kill him, just teach em a lesson!
+					if(!(bodypart.body_part & (HEAD|CHEST)))//we dont want to kill him, just teach em a lesson!
 						if (bodypart.dismemberable)
 							bodypart.dismember() //Using the power of flextape i've sawed this man's limb in half!
 							break

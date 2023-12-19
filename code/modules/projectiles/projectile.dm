@@ -153,6 +153,11 @@
 
 	var/splatter = FALSE // Make a cool splatter effect even if it doesn't do brute damage
 
+	/// If FALSE, allow us to hit something directly targeted/clicked/whatnot even if we're able to phase through it
+	var/phasing_ignore_direct_target = FALSE
+	/// Bitflag for things the projectile should just phase through entirely - No hitting unless direct target and [phasing_ignore_direct_target] is FALSE. Uses pass_flags flags.
+	var/projectile_phasing = NONE
+
 /obj/projectile/Initialize(mapload)
 	. = ..()
 	impacted = list()

@@ -373,6 +373,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	else
 		for(var/M in global.config.maplist)
 			mapvotes[M] = 1
+	var/previous_maps = get_map_weights()
 
 	//filter votes
 	for (var/map in mapvotes)
@@ -392,6 +393,9 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			mapvotes.Remove(map)
 			continue
 		if (VM.config_max_users > 0 && players > VM.config_max_users)
+			mapvotes.Remove(map)
+			continue
+		if(previous_maps[VM.map_name] > 7)
 			mapvotes.Remove(map)
 			continue
 
@@ -623,3 +627,28 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	for(var/turf/to_contain as anything in Z_TURFS(z_level))
 		var/area/our_area = to_contain.loc
 		our_area.contained_turfs += to_contain
+
+
+
+/datum/controller/subsystem/mapping/proc/get_map_weights()
+	var/list/previous_maps = list()
+	if(SSdbcore.Connect())
+		var/datum/DBQuery/query_previous_maps = SSdbcore.NewQuery({"
+			SELECT map_name FROM [format_table_name("round")] WHERE id BETWEEN lower = :lower AND upper = :upper
+		"}, list("lower" = "[text2num(GLOB.round_id) - 9]", "upper" = GLOB.round_id))
+		if(!query_previous_maps.Execute())
+			qdel(query_previous_maps)
+		for(var/i = 1 to 10)
+			var/next_map = query_previous_maps.NextRow()
+			if(!next_map)
+				continue
+			previous_maps[next_map[1]] += 1 / (11 - i) //this lessens the influence of rounds that were longer ago
+		qdel(query_previous_maps)
+	return previous_maps
+
+/client/proc/DebugMapWeights()
+	set name = "See Map Weights"
+	set category = "Misc.Server Debug"
+	var/weights = SSmapping.get_map_weights()
+	for(var/key in weights)
+		to_chat(src, "[key]: weights[key]")

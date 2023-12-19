@@ -287,14 +287,14 @@
 		seedify(O, 1)
 
 // -----------------------------
-//        Sheet Snatcher
+//        Stack Snatcher
 // -----------------------------
 // Because it stacks stacks, this doesn't operate normally.
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 
 /obj/item/storage/bag/sheetsnatcher
 	name = "stack snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of stacks. this is geared towards sheets, rods, and tiles."
+	desc = "A patented Nanotrasen storage system designed for any kind of stacks. This is geared towards sheets, rods, and tiles."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 
@@ -310,11 +310,11 @@
 	STR.max_items = 500
 
 // -----------------------------
-//    Sheet Snatcher (Cyborg)
+//    Stack Snatcher (Cyborg)
 // -----------------------------
 
 /obj/item/storage/bag/sheetsnatcher/borg
-	name = "sheet snatcher 9000"
+	name = "stack snatcher 9000"
 	desc = ""
 	capacity = 1000//Borgs get more because >specialization
 

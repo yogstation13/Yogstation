@@ -33,6 +33,21 @@
 							'sound/misc/clap2.ogg',
 							'sound/misc/clap3.ogg',
 							'sound/misc/clap4.ogg')
+/datum/emote/living/carbon/clap/run_emote(user, params, type_override, intentional = FALSE)
+	. = ..()
+	if(!.)
+		return
+	var/area/A = get_area(user)
+	if(A)
+		if(rand(0, 10000) == 0)
+			A.lightswitch = !A.lightswitch
+			A.update_appearance(UPDATE_ICON)
+		
+			for(var/obj/machinery/light_switch/L in A)
+				L.update_appearance(UPDATE_ICON)
+		
+			A.power_change()
+
 
 /datum/emote/living/carbon/crack
 	key = "crack"

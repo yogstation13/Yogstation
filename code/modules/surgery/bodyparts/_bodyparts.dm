@@ -45,6 +45,7 @@
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
+	var/emp_reduction = 0	//Subtracted to EMP severity
 
 	//Coloring and proper item icon update
 	var/skin_tone = ""
@@ -126,6 +127,32 @@
 
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
+
+/obj/item/bodypart/emp_act(severity, emp_message=TRUE)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+
+	var/blocked = owner.getarmor(body_zone, ENERGY) // energy armor protects against EMPs
+	severity *= (100 - blocked) / 100
+	severity -= emp_reduction
+	if(severity < 1)
+		return
+
+	if(receive_damage(0, severity / 2, severity, FALSE, TRUE, BODYPART_ROBOTIC, CANT_WOUND)) // returns false for non-robotic limbs
+		if(severity > EMP_LIGHT)
+			ADD_TRAIT(src, TRAIT_PARALYSIS, "EMP")
+			addtimer(CALLBACK(src, PROC_REF(after_emp)), min((severity / 2) SECONDS, 5 SECONDS), TIMER_UNIQUE | TIMER_OVERRIDE)
+		if(owner && emp_message)
+			owner.emote("scream")
+			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
+
+	if(!(. & EMP_PROTECT_CONTENTS))
+		for(var/obj/item/organ/O as anything in get_organs())
+			O.emp_act(severity)
+
+/obj/item/bodypart/proc/after_emp()
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, "EMP")
 
 /obj/item/bodypart/Destroy()
 	if(owner)
@@ -448,12 +475,12 @@
 		if(initial(possible_wound.threshold_minimum) < injury_roll)
 			var/datum/wound/new_wound
 			if(replaced_wound)
-				new_wound = replaced_wound.replace_wound(possible_wound)
-				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll, attack_direction = attack_direction) // dismembering wounds are logged in the apply_wound() for loss wounds since they delete themselves immediately, these will be immediately returned
+				new_wound = replaced_wound.replace_wound(possible_wound, attack_direction = attack_direction)
+				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll) // dismembering wounds are logged in the apply_wound() for loss wounds since they delete themselves immediately, these will be immediately returned
 			else
 				new_wound = new possible_wound
-				new_wound.apply_wound(src)
-				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll, attack_direction = attack_direction)
+				new_wound.apply_wound(src, attack_direction = attack_direction)
+				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
 			return new_wound
 
 // try forcing a specific wound, but only if there isn't already a wound of that severity or greater for that type on this bodypart
@@ -831,7 +858,7 @@
 		else
 			species_color = ""
 
-		if(!dropping_limb && (H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK)))
+		if(!dropping_limb && (H.dna.check_mutation(HULK)))
 			mutation_color = "#00aa00"
 		else
 			mutation_color = ""

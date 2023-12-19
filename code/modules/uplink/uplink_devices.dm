@@ -97,9 +97,13 @@
 
 /obj/item/ntuplink/Initialize(mapload, owner)
 	. = ..()
+	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start)
 	datum_owner = owner
 	
-/obj/item/ntuplink/proc/finalize()
+/obj/item/ntuplink/proc/finalize() //if the uplink type has been modified somehow, remove it and replace it
+	var/datum/component/uplink/nanotrasen/uplink = GetComponent(/datum/component/uplink/nanotrasen)
+	if(uplink)
+		uplink.RemoveComponent()
 	AddComponent(nt_datum, datum_owner, FALSE, TRUE, null, wc_start)
 
 /obj/item/ntuplink/official

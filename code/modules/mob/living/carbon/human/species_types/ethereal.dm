@@ -17,7 +17,6 @@
 	speedmod = -0.1 //Light and energy move quickly
 	punchdamagehigh  = 11 //Fire hand more painful
 	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
-	payday_modifier = 0.7 //Moths have to be compensated slightly more to be willing to work for NT bcuz drug therapy, both ethereal and moth are neutral though
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(NOEYESPRITES, EYECOLOR, MUTCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
@@ -53,14 +52,11 @@
 
 	smells_like = "crackling sweetness"
 
-	var/obj/effect/dummy/lighting_obj/ethereal_light
-
+	var/obj/effect/dummy/lighting_obj/moblight/species/ethereal_light
 
 /datum/species/ethereal/Destroy(force)
-	if(ethereal_light)
-		QDEL_NULL(ethereal_light)
+	QDEL_NULL(ethereal_light)
 	return ..()
-
 
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
@@ -70,7 +66,7 @@
 	var/mob/living/carbon/human/ethereal = C
 	setup_color(ethereal)
 
-	ethereal_light = ethereal.mob_light()
+	ethereal_light = ethereal.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight/species)
 	spec_updatehealth(ethereal)
 
 	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
@@ -136,7 +132,7 @@
 		to_chat(H, span_notice("You feel the light of your body leave you."))
 	EMPeffect = TRUE
 	spec_updatehealth(H)
-	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200 / severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 to 20 seconds depending on severity
+	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 20 * severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 2 to 20 seconds depending on severity
 
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
 	EMPeffect = FALSE

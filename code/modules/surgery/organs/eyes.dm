@@ -171,12 +171,11 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	to_chat(owner, span_danger("your eyes overload and blind you!"))
 	owner.flash_act(override_blindness_check = 1)
-	owner.blind_eyes(5)
+	owner.blind_eyes(severity / 2)
 	owner.blur_eyes(8)
-	eyes.applyOrganDamage(20 / severity)
+	applyOrganDamage(2 * severity)
 
 /obj/item/organ/eyes/robotic/xray
 	name = "\improper meson eyes"
@@ -377,7 +376,7 @@
 	on_mob.forceMove(scanning)
 	for(var/i in 1 to light_beam_distance)
 		scanning = get_step(scanning, scandir)
-		if(scanning.opacity || scanning.has_opaque_atom)
+		if(IS_OPAQUE_TURF(scanning))
 			stop = TRUE
 		var/obj/effect/abstract/eye_lighting/L = LAZYACCESS(eye_lighting, i)
 		if(stop)

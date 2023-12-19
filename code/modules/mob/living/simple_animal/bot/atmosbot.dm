@@ -136,7 +136,7 @@
 		return ATMOSBOT_CHECK_BREACH
 	//Too little oxygen or too little pressure
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * gas_mix.return_temperature() / gas_mix.return_volume()
-	var/oxygen_moles = gas_mix.get_moles(/datum/gas/oxygen) * partial_pressure
+	var/oxygen_moles = gas_mix.get_moles(GAS_O2) * partial_pressure
 	if(oxygen_moles < 20 || gas_mix.return_pressure() < WARNING_LOW_PRESSURE)
 		return ATMOSBOT_LOW_OXYGEN
 

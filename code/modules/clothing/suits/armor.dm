@@ -92,6 +92,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
+	mutantrace_variation = MUTANTRACE_VARIATION
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/capcarapace

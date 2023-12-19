@@ -899,6 +899,25 @@
 	icon_state = "medical"
 	build_path = /obj/machinery/rnd/production/techfab/department/medical
 
+/obj/item/circuitboard/machine/mindmachine_hub
+	name = "Mind Machine Hub (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/mindmachine_hub
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stack/ore/bluespace_crystal = 2)
+
+/obj/item/circuitboard/machine/mindmachine_pod
+	name = "Mind Machine Pod (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/mindmachine_pod
+	req_components = list(
+		/obj/item/stock_parts/scanning_module = 2,
+		/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stack/ore/bluespace_crystal = 1)
+
 //Science
 
 /obj/item/circuitboard/machine/circuit_imprinter/department/science

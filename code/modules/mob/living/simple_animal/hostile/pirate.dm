@@ -42,8 +42,7 @@
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/rapierhit.ogg'
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
  
 /mob/living/simple_animal/hostile/pirate/melee/space
 	name = "Space Pirate Swashbuckler"

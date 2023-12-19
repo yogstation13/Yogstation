@@ -13,7 +13,7 @@
 	var/list/researched_knowledge = list()
 	var/list/transmutations = list()
 	var/total_sacrifices = 0
-	var/lore = "Unpledged" //Used to track which path the heretic has taken
+	var/lore = PATH_NONE //Used to track which path the heretic has taken
 	var/ascended = FALSE
 	var/transformed = FALSE //Used to track if the heretic sheds their own body during ascension
 	var/charge = 1
@@ -21,79 +21,8 @@
 	var/knowledge_tier = TIER_PATH //oh boy this is going to be fun
 ///tracks the number of knowledges to next tier, currently 3
 	var/tier_counter = 0
-///list of knowledges available, by path. every odd tier is an exclusive upgrade, and every even one is a set of upgrades of which 3 need to be picked to move on.
 ///order these from main path ability (will choose the color in the UI) to minor abilities below them (will once again, make sense if you look at the in game UI)
-	var/list/knowledges = list(	
-	TIER_PATH = list(
-		/datum/eldritch_knowledge/base_ash,
-		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_mind,
-		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_blade,
-		/datum/eldritch_knowledge/base_cosmic),
-	TIER_1 = list(
-		/datum/eldritch_knowledge/madness_mask,
-		/datum/eldritch_knowledge/flesh_ghoul,
-		/datum/eldritch_knowledge/rust_regen,
-		/datum/eldritch_knowledge/spell/mental_obfuscation,
-		/datum/eldritch_knowledge/spell/void_phase,
-		/datum/eldritch_knowledge/blade_dance,
-		/datum/eldritch_knowledge/spell/cosmic_runes,
-		/datum/eldritch_knowledge/armor,
-		/datum/eldritch_knowledge/void_cloak,
-		/datum/eldritch_knowledge/ashen_eyes,
-		/datum/eldritch_knowledge/essence,
-		/datum/eldritch_knowledge/eldritch_eye),
-	TIER_MARK = list(
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark),
-	TIER_2 = list(
-		/datum/eldritch_knowledge/spell/volcano_blast,
-		/datum/eldritch_knowledge/raw_prophet,
-		/datum/eldritch_knowledge/spell/area_conversion,
-		/datum/eldritch_knowledge/spell/assault,
-		/datum/eldritch_knowledge/cold_snap,
-		/datum/eldritch_knowledge/duel_stance,
-		/datum/eldritch_knowledge/spell/star_blast,
-		/datum/eldritch_knowledge/spell/blood_siphon,
-		/datum/eldritch_knowledge/spell/eldritchbolt,
-		/datum/eldritch_knowledge/spell/void_blast),
-	TIER_BLADE = list(
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade),
-	TIER_3 = list(
-		/datum/eldritch_knowledge/spell/flame_birth,
-		/datum/eldritch_knowledge/stalker,
-		/datum/eldritch_knowledge/spell/entropic_plume,
-		/datum/eldritch_knowledge/cerebral_control,
-		/datum/eldritch_knowledge/spell/void_pull,
-		/datum/eldritch_knowledge/spell/furious_steel,
-		/datum/eldritch_knowledge/spell/cosmic_expansion,
-		/datum/eldritch_knowledge/ashy,
-		/datum/eldritch_knowledge/rusty,
-		/datum/eldritch_knowledge/spell/cleave,
-		/datum/eldritch_knowledge/spell/famished_roar,
-		/datum/eldritch_knowledge/spell/call_of_ice),
-	TIER_ASCEND = list(
-		/datum/eldritch_knowledge/ash_final,
-		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final))
-
+	
 	var/static/list/path_to_ui_color = list(
 		PATH_START = "grey",
 		PATH_SIDE = "green",
@@ -113,10 +42,10 @@
 	data["charges"] = charge
 	data["total_sacrifices"] = total_sacrifices
 	data["ascended"] = ascended
-
+	data["path"] = lore
+	
 	for(var/datum/eldritch_knowledge/knowledge as anything in get_researchable_knowledge())
 		var/list/knowledge_data = list()
-		knowledge_data["path"] = lore
 		knowledge_data["name"] = initial(knowledge.name)
 		knowledge_data["desc"] = initial(knowledge.desc)
 		knowledge_data["gainFlavor"] = initial(knowledge.gain_text)
@@ -131,7 +60,7 @@
 		knowledge_data["color"] = path_to_ui_color[initial(knowledge.route)] || "grey"
 
 		data["learnableKnowledge"] += list(knowledge_data)
-
+	
 	for(var/path in researched_knowledge)
 		var/list/knowledge_data = list()
 		var/datum/eldritch_knowledge/found_knowledge = researched_knowledge[path]
@@ -150,8 +79,6 @@
 	var/list/data = list()
 
 	data["objectives"] = get_objectives()
-
-	
 
 	return data
 
@@ -368,8 +295,10 @@
 		else if(is_cosmic())
 			if(transformed)
 				parts += "<span class='greentext big'>THE STAR GAZER HAS ASCENDED!</span>"
-			else
-				parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
+		else if(is_knock())
+			parts += "<span class='greentext big'>THE SPIDER'S DOOR HAS BEEN OPENED!</span>"
+		else
+			parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
 			parts += span_greentext("The [lowertext(lore)] heretic was successful!")
@@ -731,6 +660,37 @@
 				flavor_message += 	"Dragging your feet through what remains of the ruined station, you can only laugh as the stars continue to twinkle in the sky, despite everything."
 			else //Dead
 				flavor_message += 	"Your skin turns to dust and your bones reduce to raw atoms, you will be forgotten in the new cosmic age."
+
+	else if(is_knock()) //Cosmic epilogues
+
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"The shuttle docks at Centcom, the doors open but instead of people a mass of horrors pour out, consuming everyone in their path."
+			else if(alive)
+				flavor_message += 	"You've opened the door, unlocked the lock, became the key. Crack open the rest of reality, door by door."
+			else //Dead
+				flavor_message += 	"For a fleeting moment, you opened a portal to the end of days. Nothing could have brought you greater satisfaction, and you pass in peace"
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"With each gleeful step you take through the station, you look at the passing airlocks, knowing the truth that you will bring."
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"The shuttle is gone, you are alone. And yet, as you turn to the nearest airlock, what waits beyond is something only you can see."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"Your death is not your end, as your bones will become the key for another's path to glory."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You escaped, but for what? For the rest of your life you avoid doorways, knowing that once you pass through one, you may not come back."
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"Step by step, you walk the halls of the abandonded tarnished station, ID in hand looking for the right door. The door to oblivion."
+			else //Dead
+				flavor_message += 	"As the last of your life drains from you, all you can manage is to lay there dying. Nobody will remember your deeds here today."
 	else //Unpledged epilogues
 
 		if(cultiewin) //Completed objectives (WITH NO RESEARCH MIND YOU)
@@ -795,15 +755,17 @@
 
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
 	var/list/researchable_knowledge = list()
-	var/list/banned_knowledge = list()
-	for(var/X in researched_knowledge)
-		var/datum/eldritch_knowledge/EK = researched_knowledge[X]
-		banned_knowledge |= EK.banned_knowledge
-		banned_knowledge |= EK.type
-	for(var/i in TIER_PATH to knowledge_tier)
-		for(var/knowledge in knowledges[i])
-			researchable_knowledge += knowledge
-	researchable_knowledge -= banned_knowledge
+	for(var/datum/eldritch_knowledge/knowledge as anything in subtypesof(/datum/eldritch_knowledge))
+		if(locate(knowledge) in researched_knowledge)
+			continue
+		if(initial(knowledge.tier) > knowledge_tier)
+			continue
+		if((initial(knowledge.tier) == TIER_PATH) && lore != PATH_NONE)
+			continue
+		if((initial(knowledge.tier) == TIER_MARK || initial(knowledge.tier) == TIER_BLADE || initial(knowledge.tier) == TIER_ASCEND) && lore != initial(knowledge.route))
+			continue
+		researchable_knowledge += knowledge
+
 	return researchable_knowledge
 
 /datum/antagonist/heretic/proc/get_knowledge(wanted)
@@ -819,28 +781,31 @@
 	return transmutations
 
 /datum/antagonist/heretic/proc/is_ash()
-	return "[lore]" == "Ash"
+	return "[lore]" == PATH_ASH
 
 /datum/antagonist/heretic/proc/is_flesh()
-	return "[lore]" == "Flesh"
+	return "[lore]" == PATH_FLESH
 
 /datum/antagonist/heretic/proc/is_rust()
-	return "[lore]" == "Rust"
+	return "[lore]" == PATH_RUST
 
 /datum/antagonist/heretic/proc/is_mind()
-	return "[lore]" == "Mind"
+	return "[lore]" == PATH_MIND
 
 /datum/antagonist/heretic/proc/is_void()
-	return "[lore]" == "Void"
+	return "[lore]" == PATH_VOID
 
 /datum/antagonist/heretic/proc/is_blade()
-	return "[lore]" == "Blade"
+	return "[lore]" == PATH_BLADE
 
 /datum/antagonist/heretic/proc/is_cosmic()
-	return "[lore]" == "Cosmic"
+	return "[lore]" == PATH_COSMIC
+
+/datum/antagonist/heretic/proc/is_knock()
+	return "[lore]" == PATH_KNOCK
 
 /datum/antagonist/heretic/proc/is_unpledged()
-	return "[lore]" == "Unpledged"
+	return "[lore]" == PATH_NONE
 
 ////////////////
 // Objectives //
