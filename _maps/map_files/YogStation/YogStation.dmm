@@ -8966,6 +8966,9 @@
 "bqe" = (
 /turf/closed/wall/r_wall,
 /area/science/explab)
+"bqh" = (
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat_interior)
 "bqi" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -39736,13 +39739,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "lxF" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/gloves/color/black,
-/obj/item/clothing/gloves/color/black,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/tank/internals/emergency_oxygen,
+/obj/machinery/light,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
 "lxP" = (
@@ -45036,6 +45033,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
@@ -54396,11 +54396,16 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "qQs" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/gloves/color/black,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "qQw" = (
@@ -66277,9 +66282,11 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "vmm" = (
-/obj/structure/rack,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat_interior)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "vmo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -72129,6 +72136,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -114020,9 +114030,9 @@ iDE
 gtB
 jEd
 nnx
-fnK
+bqh
 gtB
-vmm
+fnK
 vxS
 gtB
 gtB
@@ -114787,13 +114797,13 @@ hZg
 cBP
 cva
 xgS
-nDA
+vmm
 pRt
 kyA
 kik
 eEZ
 jWq
-nDA
+vmm
 xgS
 cva
 mtW
