@@ -174,7 +174,7 @@
 	icon_state = "seed-magnus_purpura"
 	species = "magnus_purpura"
 	plantname = "Magnus Purpura"
-	product = /obj/item/reagent_containers/food/snacks/grown/jungle/cinchona_bark
+	product = /obj/item/reagent_containers/food/snacks/grown/jungle/magnus_purpura
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	growthstages = 3
 	reagents_add = list(/datum/reagent/magnus_purpura_enzyme = 0.25)

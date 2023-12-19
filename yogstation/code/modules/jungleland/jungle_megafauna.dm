@@ -75,9 +75,9 @@
 	attack_adjustments[L.real_name][last_done_attack][uppertext(dir2text(chosen_dir))] += 1
 	last_done_attack = 0 
 
-/mob/living/simple_animal/hostile/megafauna/tar_king/OpenFire()
+/mob/living/simple_animal/hostile/megafauna/tar_king/Shoot()
 	if (stage == 0 && health < 1500)
-		SetRecoveryTime(20 SECONDS,0)
+		SetRecoveryTime(20 SECONDS)
 		stage++
 		stage_transition()
 		return
@@ -258,7 +258,7 @@
 	else 
 		if(!GLOB.tar_pits.len)
 			return
-		closest = GLOB.tar_pits[0]
+		closest = GLOB.tar_pits[1]
 	
 	if(!closest || cached_dist > 7)
 		return
