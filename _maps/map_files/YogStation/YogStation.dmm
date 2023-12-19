@@ -29632,7 +29632,7 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
 	req_access_txt = "0";
-	req_one_access_txt = "12,25"
+	req_one_access_txt = "12;25"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
