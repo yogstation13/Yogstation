@@ -193,7 +193,7 @@
 
 /obj/item/storage/fancy/cigarettes/PopulateContents()
 	for(var/i in 1 to 6)
-		new /obj/item/clothing/mask/cigarette(src)
+		new /obj/item/clothing/mask/space_cigarette(src)
 
 /obj/item/storage/fancy/cigarettes/examine(mob/user)
 	. = ..()
