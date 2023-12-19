@@ -39,7 +39,7 @@
 	starting_node = TRUE
 	display_name = "Basic Exosuit Equipment"
 	description = "Various tools fit for basic mech units"
-	design_ids = list("mech_drill", "mech_mscanner", "mech_extinguisher", "mech_cable_layer")
+	design_ids = list("mech_drill", "mech_mscanner", "mech_extinguisher", "mech_cable_layer", "mech_t_scanner", "mech_pipe_dispenser")
 
 /datum/techweb_node/clarke
 	id = "mecha_clarke"

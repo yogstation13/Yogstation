@@ -411,6 +411,26 @@
 	construction_time = 1200
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_pipe_dispenser
+	name = "Exosuit Module (Pipe Dispenser Module)"
+	desc = "An exosuit-mounted Rapid Pipe Dispenser."
+	id = "mech_pipe_dispenser"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/pipe_dispenser
+	materials = list(/datum/material/iron=10000,/datum/material/glass=2000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_t_scanner
+	name = "Exosuit Module (T-ray Scanner Module)"
+	desc = "An exosuit-mounted Terahertz-Ray Scanner."
+	id = "mech_t_scanner"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/t_scanner
+	materials = list(/datum/material/iron=2000)
+	construction_time = 50
+	category = list("Exosuit Equipment")
+
 /datum/design/mech_gravcatapult
 	name = "Exosuit Module (Gravitational Catapult Module)"
 	desc = "An exosuit mounted Gravitational Catapult."

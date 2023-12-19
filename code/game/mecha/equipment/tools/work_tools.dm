@@ -1,8 +1,6 @@
-#define DECONSTRUCT 0
-#define WALL 1
-#define AIRLOCK 2
 
-//Hydraulic clamp, Kill clamp, Extinguisher, RCD, Cable layer.
+
+//Hydraulic clamp, Kill clamp, Extinguisher, RCD, RPD, Cable layer.
 
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp
@@ -274,7 +272,7 @@
 	if(prox_flag && (istype(target, /obj/item/stack) || istype(target, /obj/item/rcd_ammo) || istype(target, /obj/item/rcd_upgrade)))
 		chassis.matter_resupply(target, user)
 		return
-	internal_rcd.afterattack(target, user, chassis.Adjacent(target), params) // RCD itself will handle it
+	return internal_rcd.afterattack(target, user, prox_flag, params) // RCD itself will handle it
 
 /obj/item/mecha_parts/mecha_equipment/rcd/get_equip_info()
 	return "[..()] \[Matter: [internal_rcd ? internal_rcd.matter : 0]/[internal_rcd ? internal_rcd.max_matter : 0]\]"
@@ -291,6 +289,129 @@
 	name = "silenced mounted RCD"
 	desc = "An expertly mimed exosuit-mounted Rapid Construction Device. Not a sound is made."
 	rcd_type = /obj/item/construction/rcd/arcd/mech/mime
+
+
+/obj/item/mecha_parts/mecha_equipment/pipe_dispenser
+	name = "mounted RPD"
+	desc = "An exosuit-mounted Rapid Pipe Dispenser"
+	icon_state = "mecha_pipe_dispenser"
+	equip_cooldown = 0 // internal RPD will handle it
+	energy_drain = 0 // uses matter instead of energy
+	range = MECHA_MELEE|MECHA_RANGED
+	item_flags = NO_MAT_REDEMPTION
+	linked_actions = list(/datum/action/innate/mecha/equipment/pipe_dispenser)
+	var/rpd_type = /obj/item/pipe_dispenser/exosuit // in case there's ever any other type of RPD for mechs for some reason
+	var/obj/item/pipe_dispenser/internal_rpd
+
+/obj/item/mecha_parts/mecha_equipment/pipe_dispenser/Initialize(mapload)
+	. = ..()
+	internal_rpd = new rpd_type(src)
+
+/obj/item/mecha_parts/mecha_equipment/pipe_dispenser/Destroy()
+	if(internal_rpd && !QDELETED(internal_rpd))
+		qdel(internal_rpd)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/pipe_dispenser/attach(obj/mecha/M)
+	. = ..()
+	internal_rpd.owner = M
+
+/obj/item/mecha_parts/mecha_equipment/pipe_dispenser/detach(atom/moveto)
+	internal_rpd.owner = null
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/pipe_dispenser/action(atom/target, mob/living/user, params)
+	if(internal_rpd.pre_attack(target, user))
+		return FALSE
+	chassis.Beam(target, icon_state="rped_upgrade",time=2)
+	return TRUE
+
+/datum/action/innate/mecha/equipment/pipe_dispenser
+	name = "Change RPD Mode"
+	button_icon_state = "rpd"
+
+/datum/action/innate/mecha/equipment/pipe_dispenser/Activate()
+	var/obj/item/mecha_parts/mecha_equipment/pipe_dispenser/E = equipment
+	E.internal_rpd.ui_interact(owner)
+
+
+/obj/item/mecha_parts/mecha_equipment/t_scanner
+	name = "exosuit T-ray scanner"
+	desc = "An exosuit-mounted terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes. Has much higher range than the handheld version."
+	icon_state = "mecha_t_scanner"
+	linked_actions = list(/datum/action/innate/mecha/equipment/t_scanner)
+	selectable = FALSE
+	var/scanning = FALSE
+	var/list/t_ray_images
+
+/obj/item/mecha_parts/mecha_equipment/t_scanner/attach(obj/mecha/M)
+	. = ..()
+	RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(on_mech_move))
+
+/obj/item/mecha_parts/mecha_equipment/t_scanner/detach(atom/moveto)
+	UnregisterSignal(chassis, COMSIG_MOVABLE_MOVED)
+	if(scanning)
+		STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/t_scanner/process(delta_time)
+	if(!update_scan(chassis.occupant))
+		return PROCESS_KILL
+
+/obj/item/mecha_parts/mecha_equipment/t_scanner/proc/on_mech_move()
+	if(chassis.occupant?.client)
+		update_scan(chassis.occupant)
+
+/obj/item/mecha_parts/mecha_equipment/t_scanner/proc/update_scan(mob/pilot, force_remove=FALSE) // twice the range, no downtime
+	if(!pilot?.client)
+		return FALSE
+	if(t_ray_images?.len)
+		pilot.client.images.Remove(t_ray_images)
+		QDEL_NULL(t_ray_images)
+	if(!scanning || force_remove)
+		return FALSE
+
+	t_ray_images = list()
+	for(var/obj/O in orange(6, chassis))
+		if(O.level != 1)
+			continue
+
+		if(O.invisibility == INVISIBILITY_MAXIMUM || HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
+			var/image/I = new(loc = get_turf(O))
+			var/mutable_appearance/MA = new(O)
+			MA.alpha = 128
+			MA.dir = O.dir
+			I.appearance = MA
+			t_ray_images += I
+
+	if(t_ray_images.len)
+		pilot.client.images += t_ray_images
+	
+	return TRUE
+
+/obj/item/mecha_parts/mecha_equipment/t_scanner/grant_actions(mob/pilot)
+	. = ..()
+	update_scan(pilot)
+
+/obj/item/mecha_parts/mecha_equipment/t_scanner/remove_actions(mob/pilot)
+	update_scan(pilot, TRUE)
+	return ..()
+
+/datum/action/innate/mecha/equipment/t_scanner
+	name = "Toggle T-ray Scanner"
+	button_icon_state = "t_scanner_off"
+
+/datum/action/innate/mecha/equipment/t_scanner/Activate()
+	var/obj/item/mecha_parts/mecha_equipment/t_scanner/t_scan = equipment
+	t_scan.scanning = !t_scan.scanning
+	t_scan.update_scan(t_scan.chassis.occupant)
+	t_scan.chassis.occupant_message("You [t_scan.scanning ? "activate" : "deactivate"] [t_scan].")
+	button_icon_state = "t_scanner_[t_scan.scanning ? "on" : "off"]"
+	build_all_button_icons()
+	if(t_scan.scanning)
+		START_PROCESSING(SSobj, t_scan)
+	else
+		STOP_PROCESSING(SSobj, t_scan)
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer
 	name = "cable layer"
@@ -484,7 +605,3 @@
 	qdel(M)
 	playsound(get_turf(N),'sound/items/ratchet.ogg',50,1)
 	return
-
-#undef DECONSTRUCT
-#undef WALL
-#undef AIRLOCK

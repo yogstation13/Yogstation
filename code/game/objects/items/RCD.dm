@@ -414,7 +414,13 @@ RLD
 	var/delay = rcd_results["delay"] * delay_mod
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
 	if(checkResource(rcd_results["cost"], user))
-		if(do_after(user, delay, A))
+		if(!A.Adjacent(owner ? owner : user)) // ranged RCDs create beams
+			if(isatom(owner))
+				var/atom/owner_atom = owner
+				owner_atom.Beam(A,icon_state="rped_upgrade",time=10)
+			else
+				Beam(A,icon_state="rped_upgrade",time=10)
+		if(do_after(user, delay, (owner ? owner : A)))
 			if(checkResource(rcd_results["cost"], user))
 				if(A.rcd_act(user, src, rcd_results["mode"]))
 					rcd_effect.end_animation()
@@ -431,7 +437,7 @@ RLD
 	var/delay = 1
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
 	if(checkResource(cost, user))
-		if(do_after(user, delay, A))
+		if(do_after(user, delay, (owner ? owner : A)))
 			if(checkResource(cost, user))
 				rcd_effect.end_animation()
 				useResource(cost, user)
@@ -446,7 +452,7 @@ RLD
 	var/cost = 5
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
 	if(checkResource(cost, user))
-		if(do_after(user, delay, target = A))
+		if(do_after(user, delay, target = (owner ? owner : A)))
 			if(checkResource(cost, user))
 				rcd_effect.end_animation()
 				useResource(cost, user)
@@ -774,8 +780,6 @@ RLD
 	..()
 	if(!range_check(A,user))
 		return
-	if(target_check(A,user))
-		loc.Beam(A,icon_state="rped_upgrade",time=30)
 	rcd_create(A,user)
 
 /obj/item/construction/rcd/arcd/mech
@@ -794,7 +798,7 @@ RLD
 	if(!(owner && ismecha(owner)))
 		return FALSE
 	var/obj/mecha/gundam = owner
-	if(user == gundam.occupant)
+	if(user == gundam.occupant && !gundam.equipment_disabled && gundam.selected == loc)
 		return TRUE
 	return FALSE
 

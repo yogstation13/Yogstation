@@ -240,6 +240,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	var/static/datum/pipe_info/first_plumbing
 	var/mode = BUILD_MODE | PAINT_MODE | DESTROY_MODE | WRENCH_MODE
 	var/locked = FALSE //wheter we can change categories. Useful for the plumber
+	/// The owner of this RCD. It can be a mech or a player.
+	var/owner
 
 /obj/item/pipe_dispenser/Initialize(mapload)
 	. = ..()
@@ -285,6 +287,9 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/pipes),
 	)
+
+/obj/item/pipe_dispenser/ui_host(mob/user)
+	return owner || ..()
 
 /obj/item/pipe_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -566,6 +571,24 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	else
 		return
 	to_chat(source, span_notice("You set the layer to [piping_layer]."))
+
+/obj/item/pipe_dispenser/exosuit
+	name = "mounted pipe dispenser"
+	desc = "You shouldn't be seeing this!"
+	item_flags = NO_MAT_REDEMPTION | DROPDEL | NOBLUDGEON
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | UNACIDABLE // would be weird if it could somehow be destroyed inside the equipment item
+
+/obj/item/pipe_dispenser/exosuit/ui_state(mob/user)
+	return GLOB.pilot_state
+
+// don't allow using this thing unless you're piloting the mech it's attached to
+/obj/item/pipe_dispenser/exosuit/can_interact(mob/user)
+	if(!(owner && ismecha(owner)))
+		return FALSE
+	var/obj/mecha/gundam = owner
+	if(user == gundam.occupant && !gundam.equipment_disabled && gundam.selected == loc)
+		return TRUE
+	return FALSE
 
 /obj/item/pipe_dispenser/plumbing
 	name = "Plumberinator"
