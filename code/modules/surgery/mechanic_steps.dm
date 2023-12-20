@@ -106,7 +106,7 @@
 	name = "unwrench bolts"
 	implements = list(
 		TOOL_WRENCH = 100,
-		TOOL_CROWBAR = 80,//this sounds like a REALLY bad idea
+		TOOL_CROWBAR = 100,//this sounds like a REALLY bad idea
 		TOOL_RETRACTOR = 20)
 	time = 2.4 SECONDS
 	bloody_chance = FALSE
@@ -142,7 +142,7 @@
 	name = "wrench bolts"
 	implements = list(
 		TOOL_WRENCH = 100,
-		TOOL_WELDER = 80, //also a terrible idea
+		TOOL_WELDER = 100, //also a terrible idea
 		TOOL_RETRACTOR = 20)
 	time = 2.4 SECONDS
 	bloody_chance = FALSE
