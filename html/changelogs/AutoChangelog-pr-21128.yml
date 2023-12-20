@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "You can now use a wrench to anchor armed beartraps after a second delay. It can be disarmed with an empty hand with a second delay."
+  - spellcheck: "Message for arming and disarming beartraps properly ends with a period."
