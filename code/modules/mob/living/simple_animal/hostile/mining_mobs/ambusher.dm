@@ -37,9 +37,11 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/asteroid/wolf/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/asteroid/ambusher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(health <= 100) //Reveal itself if damaged enough
+		name = "ambusher"
+		desc = "Something isn't quite right with this wolf..."
 		icon_state = "ambusher"
 		icon_living = "ambusher"
 		friendly = "gurgles at"
