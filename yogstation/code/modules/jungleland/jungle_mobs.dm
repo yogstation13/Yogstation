@@ -655,6 +655,15 @@
 			melee_damage_upper = initial(melee_damage_upper)
 	return ..()
 
+/mob/living/simple_animal/hostile/tar/amalgamation/convert
+	name = "Tar Convert"
+	desc = "The remains of a shaft miner which has fallen to the tar."
+	icon_state = "tar_convert"
+	health = 150
+	maxHealth = 150
+	melee_damage_lower = 15
+	melee_damage_upper = 20
+
 /mob/living/simple_animal/hostile/tar/dryad
 	name = "Tar Dryad"
 	desc = "Once a creature of the forest. It now belongs to the dominion of tar."
@@ -720,3 +729,54 @@
 /mob/living/simple_animal/hostile/obsidian_demon/Initialize()
 	. = ..()
 	icon_state = "demon-[rand(0,2)]" 
+
+mob/living/simple_animal/hostile/asteroid/hivelord/tar
+	name = "pillar of tar"
+	desc = "A solid chunk of tar. You struggle to think that something like this could even be alive, but it seems to pulsate and even move at times..."
+	icon = 'yogstation/icons/mob/jungle.dmi'
+	stat_attack = DEAD
+	weather_immunities = WEATHER_ACID
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	robust_searching = TRUE
+	see_in_dark = 5
+	vision_range = 6
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	pressure_resistance = 100
+	mob_size = MOB_SIZE_LARGE
+	del_on_death = TRUE
+	faction = list("tar")
+	icon_state = "tar_pillar"
+	icon_living = "tar_pillar"
+	icon_aggro = "tar_pillar"
+	icon_dead = "tar_pillar"
+	mob_biotypes = MOB_INORGANIC
+	move_to_delay = 20
+	speed = 4
+	maxHealth = 100
+	health = 100
+	attacktext = "flings tar at"
+	throw_message = "falls into thick tar before falling through the"
+	loot = list()
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/tar
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/tar
+	name = "tar aspect"
+	desc = "A floating orb of tar animated through dark magic, ready to hunt down prey."
+	icon = 'yogstation/icons/mob/jungle.dmi'
+	icon_state = "tar_aspect"
+	icon_living = "tar_aspect"
+	icon_aggro = "tar_aspect"
+	icon_dead = "tar_aspect"
+	stat_attack = DEAD
+	weather_immunities = WEATHER_ACID
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	robust_searching = TRUE
+	see_in_dark = 5
+	vision_range = 6
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	pressure_resistance = 100
+	mob_size = MOB_SIZE_LARGE
+	del_on_death = TRUE
+	faction = list("tar")

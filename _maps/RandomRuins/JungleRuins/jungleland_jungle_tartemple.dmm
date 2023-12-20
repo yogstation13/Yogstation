@@ -54,6 +54,12 @@
 /mob/living/simple_animal/hostile/tar/dryad,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
+"o" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center/burnt,
+/mob/living/simple_animal/hostile/asteroid/hivelord/tar,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
 "p" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -116,11 +122,6 @@
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
-"H" = (
-/obj/structure/stone_tile/surrounding,
-/obj/structure/stone_tile/center/burnt,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
 "I" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -677,7 +678,7 @@ t
 X
 K
 W
-H
+o
 j
 j
 h

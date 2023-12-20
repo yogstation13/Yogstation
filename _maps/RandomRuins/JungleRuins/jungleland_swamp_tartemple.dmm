@@ -58,6 +58,11 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/water/toxic_pit,
 /area/ruin/unpowered/tar_temple)
+"r" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/asteroid/hivelord/tar,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
 "v" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
@@ -735,7 +740,7 @@ y
 y
 y
 y
-x
+r
 y
 y
 y
