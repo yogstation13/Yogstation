@@ -31,6 +31,7 @@
 	loot = list()
 	stat_attack = UNCONSCIOUS
 	robust_searching = TRUE
+	var/transformed = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/Move(atom/newloc)
 	if(newloc && newloc.z == z && (islava(newloc) || ischasm(newloc)))
@@ -39,21 +40,25 @@
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if(health <= 100) //Reveal itself if damaged enough
-		name = "ambusher"
+	if(health <= 100 && !transformed) //Reveal itself if damaged enough and if it hasn't already done so
+		name = "white wolf?"
 		desc = "Something isn't quite right with this wolf..."
 		icon_state = "ambusher"
 		icon_living = "ambusher"
 		friendly = "gurgles at"
 		speak_emote = list("gurgles")
-		speed = 1
-		melee_damage_lower = 10
-		melee_damage_upper = 10
-		dodge_prob = 70
-		/obj/effect/gibspawner/generic
+		speed = 1.5
+		melee_damage_lower = 15
+		melee_damage_upper = 15
+		dodging = FALSE
+		attacktext = "lacerates"
+		attack_sound = 'sound/effects/wounds/blood3.ogg'
+		new /obj/effect/gibspawner/generic(get_turf(src))
+		playsound(get_turf(src), 'sound/effects/reee.ogg', 60, TRUE, -1) //Play a spooky sound
+		src.visible_message(span_warning("The white wolf's head rips itself apart, forming a ghastly maw!"))
+		transformed = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)
-		retreat_message_said = FALSE
