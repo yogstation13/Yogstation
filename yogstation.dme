@@ -1493,6 +1493,7 @@
 #include "code\game\objects\structures\lavaland\geyser.dm"
 #include "code\game\objects\structures\lavaland\katana_grave.dm"
 #include "code\game\objects\structures\lavaland\necropolis_tendril.dm"
+#include "code\game\objects\structures\lavaland\steam_fissure.dm"
 #include "code\game\objects\structures\signs\_signs.dm"
 #include "code\game\objects\structures\signs\signs_departments.dm"
 #include "code\game\objects\structures\signs\signs_interactive.dm"
