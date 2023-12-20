@@ -60,20 +60,23 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
+/// If a turf is an usused reservation turf awaiting assignment
 #define UNUSED_RESERVATION_TURF_1	(1<<1)
+/// If a turf is a reserved turf
+#define RESERVATION_TURF_1 			(1<<2)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
-#define CAN_BE_DIRTY_1				(1<<2)
+#define CAN_BE_DIRTY_1				(1<<3)
 /// Blocks lava rivers being generated on the turf
-#define NO_LAVA_GEN_1				(1<<6)
+#define NO_LAVA_GEN_1				(1<<3)
 /// Blocks ruins spawning on the turf
-#define NO_RUINS_1					(1<<18)
+#define NO_RUINS_1					(1<<4)
 /// Blocks this turf from being rusted
-#define NO_RUST 					(1<<19)
+#define NO_RUST 					(1<<5)
 /// If this atom has experienced a decal element "init finished" sourced appearance update
 /// We use this to ensure stacked decals don't double up appearance updates for no rasin
 /// Flag as an optimization, don't make this a trait without profiling
 /// Yes I know this is a stupid flag, no you can't take him from me
-#define DECAL_INIT_UPDATE_EXPERIENCED_1 (1<<20)
+#define DECAL_INIT_UPDATE_EXPERIENCED_1 (1<<6)
 
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.

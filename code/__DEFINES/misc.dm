@@ -57,8 +57,6 @@
 #define MANIFEST_ERROR_CONTENTS		2
 #define MANIFEST_ERROR_ITEM			4
 
-#define TRANSITIONEDGE			7 //Distance from edge to move to another z-level
-
 #define BE_CLOSE TRUE		//in the case of a silicon, to select if they need to be next to the atom
 #define NO_DEXTERY TRUE	//if other mobs (monkeys, aliens, etc) can use this
 #define NO_TK TRUE
@@ -225,14 +223,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 
 //Just space
 #define SPACE_ICON_STATE	"[((x + y) ^ ~(x * y) + z) % 25]"
-
-// Maploader bounds indices
-#define MAP_MINX 1
-#define MAP_MINY 2
-#define MAP_MINZ 3
-#define MAP_MAXX 4
-#define MAP_MAXY 5
-#define MAP_MAXZ 6
 
 // Defib stats
 #define DEFIB_TIME_LIMIT 15 MINUTES

@@ -259,7 +259,7 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, span_notice("You build a wall."))
-			PlaceOnTop(/turf/closed/wall)
+			place_on_top(/turf/closed/wall)
 			return TRUE
 		if(RCD_AIRLOCK)
 			if((locate(/obj/machinery/door/airlock) in src) || (locate(/obj/machinery/door/window) in src)) // Have to ignore firelocks

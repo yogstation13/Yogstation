@@ -447,7 +447,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	if(prob(90))
 		sleepyhead.adjust_drowsiness(rand(3 SECONDS, 10 SECONDS))
 	if(prob(75))
-		sleepyhead.blur_eyes(rand(3, 6))
+		sleepyhead.adjust_eye_blur(rand(3, 6))
 	//so much worse
 	if(prob(66))
 		sleepyhead.adjust_disgust(rand(25,35))

@@ -56,20 +56,20 @@
 	INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, reserve_turfs), release_turfs)
 
 /// Attempts to calaculate and store a list of turfs around the reservation for cordoning. Returns whether a valid cordon was calculated
-/datum/turf_reservation/proc/calculate_cordon_turfs(turf/BL, turf/TR)
-	if(BL.x < 2 || BL.y < 2 || TR.x > (world.maxx - 2) || TR.y > (world.maxy - 2))
+/datum/turf_reservation/proc/calculate_cordon_turfs(turf/bottom_left, turf/top_right)
+	if(bottom_left.x < 2 || bottom_left.y < 2 || top_right.x > (world.maxx - 2) || top_right.y > (world.maxy - 2))
 		return FALSE // no space for a cordon here
 
-	var/list/possible_turfs = CORNER_OUTLINE(BL, width, height)
+	var/list/possible_turfs = CORNER_OUTLINE(bottom_left, width, height)
+	// if they're our cordon turfs, accept them
+	possible_turfs -= cordon_turfs
 	for(var/turf/cordon_turf as anything in possible_turfs)
-		if(!(cordon_turf.flags_1 & UNUSED_RESERVATION_TURF_1))
+		if(!(cordon_turf.turf_flags & UNUSED_RESERVATION_TURF))
 			return FALSE
-	cordon_turfs = possible_turfs
-
-	pre_cordon_turfs.Cut()
+	cordon_turfs |= possible_turfs
 
 	if(pre_cordon_distance)
-		var/turf/offset_turf = locate(BL.x + pre_cordon_distance, BL.y + pre_cordon_distance, BL.z)
+		var/turf/offset_turf = locate(bottom_left.x + pre_cordon_distance, bottom_left.y + pre_cordon_distance, bottom_left.z)
 		var/list/to_add = CORNER_OUTLINE(offset_turf, width - pre_cordon_distance * 2, height - pre_cordon_distance * 2) //we step-by-stop move inwards from the outer cordon
 		for(var/turf/turf_being_added as anything in to_add)
 			pre_cordon_turfs |= turf_being_added //add one by one so we can filter out duplicates
@@ -136,7 +136,6 @@
 	if(!HAS_TRAIT(enterer, TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT))
 		space_dump(source, enterer)
 
-
 /// Internal proc which handles reserving the area for the reservation.
 /datum/turf_reservation/proc/_reserve_area(width, height, zlevel)
 	src.width = width
@@ -179,6 +178,7 @@
 		reserved_turfs |= T
 		SSmapping.unused_turfs["[T.z]"] -= T
 		SSmapping.used_turfs[T] = src
+		T.flags_1 = (T.flags_1 | RESERVATION_TURF_1) & ~UNUSED_RESERVATION_TURF_1
 		T.ChangeTurf(turf_type, turf_type)
 
 	bottom_left_turfs += BL

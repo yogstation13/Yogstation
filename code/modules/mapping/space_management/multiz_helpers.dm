@@ -44,22 +44,3 @@
 		us = next
 		next = GET_TURF_ABOVE(us)
 	return us
-
-/proc/dir_inverse_multiz(dir)
-	var/holder = dir & (UP|DOWN)
-	if((holder == NONE) || (holder == (UP|DOWN)))
-		return turn(dir, 180)
-	dir &= ~(UP|DOWN)
-	dir = turn(dir, 180)
-	if(holder == UP)
-		holder = DOWN
-	else
-		holder = UP
-	dir |= holder
-	return dir
-
-/turf/proc/above()
-	return get_step_multiz(src, UP)
-
-/turf/proc/below()
-	return get_step_multiz(src, DOWN)

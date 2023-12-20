@@ -16,12 +16,21 @@
 /turf/open/space/transit/Destroy()
 	//Signals are NOT removed from turfs upon replacement, and we get replaced ALOT, so unregister our signal
 	UnregisterSignal(src, list(COMSIG_TURF_RESERVATION_RELEASED, COMSIG_ATOM_ENTERED, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON))
+	
 	return ..()
 
 /turf/open/space/transit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	. = ..()
 	underlay_appearance.icon_state = "speedspace_ns_[get_transit_state(asking_turf)]"
 	underlay_appearance.transform = turn(matrix(), get_transit_angle(asking_turf))
+
+/turf/open/space/transit/update_icon()
+	. = ..()
+	transform = turn(matrix(), get_transit_angle(src))
+
+/turf/open/space/transit/update_icon_state()
+	icon_state = "speedspace_ns_[get_transit_state(src)]"
+	return ..()
 
 /turf/open/space/transit/proc/initialize_drifting(atom/entered, atom/movable/enterer)
 	SIGNAL_HANDLER
@@ -87,11 +96,6 @@
 
 /turf/open/space/transit/east
 	dir = EAST
-
-/turf/open/space/transit/update_icon_state()
-	. = ..()
-	icon_state = "speedspace_ns_[get_transit_state(src)]"
-	transform = turn(matrix(), get_transit_angle(src))
 
 /proc/get_transit_state(turf/T)
 	var/p = 9

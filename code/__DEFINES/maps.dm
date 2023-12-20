@@ -16,8 +16,23 @@ As of 2018-02-04, the typical z-levels for a single-level station are:
 12: Empty space
 13: Transit space
 
-Multi-Z stations are supported and multi-Z mining and away missions would
-require only minor tweaks.
+Multi-Z stations are supported and Multi-Z mining and away missions would
+require only minor tweaks. They also handle their Z-Levels differently on their
+own case by case basis.
+
+This information will absolutely date quickly with how we handle Z-Levels, and will
+continue to handle them in the future. Currently, you can go into the Debug tab
+of your stat-panel (in game) and hit "Mapping verbs - Enable". You will then get a new tab
+called "Mapping", as well as access to the verb "Debug-Z-Levels". Although the information
+presented in this comment is factual for the time it was written for, it's ill-advised
+to trust the words presented within.
+
+We also provide this information to you so that you can have an at-a-glance look at how
+Z-Levels are arranged. It is extremely ill-advised to ever use the location of a Z-Level
+to assign traits to it or use it in coding. Use Z-Traits (ZTRAITs) for these.
+
+If you want to start toying around with Z-Levels, do not take these words for fact.
+Always compile, always use that verb, and always make sure that it works for what you want to do.
 */
 
 // helpers for modifying jobs, used in various job_changes.dm files
@@ -26,6 +41,23 @@ require only minor tweaks.
 #define MAP_REMOVE_JOB(jobpath) /datum/job/##jobpath/map_check() { return (SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) && ..() }
 
 #define SPACERUIN_MAP_EDGE_PAD 15
+
+/// Distance from edge to move to another z-level
+#define TRANSITIONEDGE 7
+
+// Maploader bounds indices
+/// The maploader index for the maps minimum x
+#define MAP_MINX 1
+/// The maploader index for the maps minimum y
+#define MAP_MINY 2
+/// The maploader index for the maps minimum z
+#define MAP_MINZ 3
+/// The maploader index for the maps maximum x
+#define MAP_MAXX 4
+/// The maploader index for the maps maximum y
+#define MAP_MAXY 5
+/// The maploader index for the maps maximum z
+#define MAP_MAXZ 6
 
 // traits
 // boolean - marks a level as having that property if present
