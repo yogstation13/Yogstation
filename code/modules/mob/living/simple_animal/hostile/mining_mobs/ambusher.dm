@@ -31,32 +31,42 @@
 	loot = list()
 	stat_attack = UNCONSCIOUS
 	robust_searching = TRUE
-	var/transformed = FALSE
+	var/revealed = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/Move(atom/newloc)
 	if(newloc && newloc.z == z && (islava(newloc) || ischasm(newloc)))
 		return FALSE
 	return ..()
 
+/mob/living/simple_animal/hostile/asteroid/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+	if(!revealed) //Make sure it doesn't twitch if already revealed
+		if(prob(30)) //Randomly twitch to differentiate it from normal wolves
+			icon_state = "ambusher_twitch"
+			src.visible_message(span_warning("The white wolf twitches"))
+			playsound(get_turf(src), 'sound/effects/wounds/crack1.ogg', 40, TRUE, -1)
+		else
+			icon_state = "whitewolf"
+
 /mob/living/simple_animal/hostile/asteroid/ambusher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if(health <= 100 && !transformed) //Reveal itself if damaged enough and if it hasn't already done so
+	if(health <= 100 && !revealed) //Reveal itself if damaged enough and if it hasn't already done so
 		name = "white wolf?"
 		desc = "Something isn't quite right with this wolf..."
 		icon_state = "ambusher"
 		icon_living = "ambusher"
 		friendly = "gurgles at"
 		speak_emote = list("gurgles")
-		speed = 1.5
+		speed = 1
+		move_to_delay = 2
 		melee_damage_lower = 15
 		melee_damage_upper = 15
 		dodging = FALSE
 		attacktext = "lacerates"
 		attack_sound = 'sound/effects/wounds/blood3.ogg'
 		new /obj/effect/gibspawner/generic(get_turf(src))
-		playsound(get_turf(src), 'sound/effects/reee.ogg', 60, TRUE, -1) //Play a spooky sound
+		playsound(get_turf(src), 'sound/effects/reee.ogg', 80, TRUE, -1) //Play a spooky sound
 		src.visible_message(span_warning("The white wolf's head rips itself apart, forming a ghastly maw!"))
-		transformed = TRUE
+		revealed = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
