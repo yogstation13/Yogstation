@@ -403,7 +403,7 @@
 
 /obj/effect/mob_spawn/human/bartender/alive/space
 	name = "space bartender sleeper"
-	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until NanoTrasen decided to move in. Time to mix drinks and change lives."
+	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until Nanotrasen decided to move in. Time to mix drinks and change lives."
 	important_info = "Do not leave your post under any circumstances!"
 	outfit = /datum/outfit/spacebartender/space
 

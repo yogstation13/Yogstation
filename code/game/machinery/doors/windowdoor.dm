@@ -158,7 +158,7 @@
 	sleep(1 SECONDS)
 
 	density = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 
 	if(operating == 1) //emag again
@@ -180,7 +180,7 @@
 	icon_state = base_state
 
 	density = TRUE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 	sleep(1 SECONDS)
 
@@ -423,7 +423,7 @@
 	return ..()
 
 /obj/machinery/door/window/clockwork/emp_act(severity)
-	if(prob(80/severity))
+	if(prob(8 * severity))
 		open()
 
 /obj/machinery/door/window/clockwork/ratvar_act()

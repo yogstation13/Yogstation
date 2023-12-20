@@ -363,7 +363,10 @@
 
 //same as above
 /mob/living/pointed(atom/A as mob|obj|turf in view())
-	if(incapacitated())
+	var/obj/item/clothing/suit/straight_jacket/straightjacket = get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(straightjacket))
+		return FALSE
+	if(incapacitated(ignore_restraints = TRUE))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_DEATHCOMA))
 		return FALSE
@@ -941,7 +944,7 @@
 			loc_temp = obj_temp
 	else if(isspaceturf(get_turf(src)))
 		var/turf/heat_turf = get_turf(src)
-		loc_temp = heat_turf.temperature
+		loc_temp = heat_turf.return_temperature()
 	return loc_temp
 
 /mob/living/proc/get_standard_pixel_x_offset(lying = 0)

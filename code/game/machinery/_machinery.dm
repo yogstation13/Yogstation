@@ -137,6 +137,9 @@ Class Procs:
 	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
 	var/mob/living/last_user_mobtype
 
+	///Boolean on whether this machines interact with atmos
+	var/atmos_processing = FALSE
+
 /obj/machinery/Initialize(mapload)
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
@@ -188,7 +191,7 @@ Class Procs:
 /obj/machinery/emp_act(severity)
 	. = ..()
 	if(use_power && !stat && !(. & EMP_PROTECT_SELF))
-		use_power(7500/severity)
+		use_power(750 * severity)
 		new /obj/effect/temp_visual/emp(loc)
 
 /obj/machinery/proc/open_machine(drop = TRUE)
@@ -297,11 +300,7 @@ Class Procs:
 
 	var/mob/living/carbon/H = user
 	if(istype(H) && H.has_dna())
-		if (H.dna.check_mutation(ACTIVE_HULK))
-			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
-			return FALSE // hulks cant use machines
-
-		else if(!Adjacent(user) && !H.dna.check_mutation(TK))
+		if(!Adjacent(user) && !H.dna.check_mutation(TK))
 			return FALSE // need to be close or have telekinesis
 
 	return TRUE
@@ -488,8 +487,8 @@ Class Procs:
 		I.play_tool_sound(src, 50)
 		setDir(turn(dir,-90))
 		to_chat(user, span_notice("You rotate [src]."))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
 	if(!(isfloorturf(loc) || istype(loc, /turf/open/indestructible)) && !anchored)
@@ -668,3 +667,22 @@ Class Procs:
 	if(isliving(user))
 		last_used_time = world.time
 		last_user_mobtype = user.type
+
+/**
+ * Puts passed object in to user's hand
+ *
+ * Puts the passed object in to the users hand if they are adjacent.
+ * If the user is not adjacent then place the object on top of the machine.
+ *
+ * Vars:
+ * * object (obj) The object to be moved in to the users hand.
+ * * user (mob/living) The user to recive the object
+ */
+/obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
+	if(!issilicon(user) && in_range(src, user))
+		user.put_in_hands(object)
+	else
+		object.forceMove(drop_location())
+
+/obj/machinery/proc/set_occupant(atom/movable/new_occupant)
+	SHOULD_CALL_PARENT(TRUE)

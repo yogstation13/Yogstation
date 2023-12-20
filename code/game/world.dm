@@ -272,17 +272,15 @@ GLOBAL_VAR(restart_counter)
 
 	log_world("World rebooted at [time_stamp()]")
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+	__auxmos_shutdown()
 	..()
 
 /world/Del()
-	// memory leaks bad
-	var/num_deleted = 0
-	for(var/datum/gas_mixture/GM)
-		GM.__gasmixture_unregister()
-		num_deleted++
-	log_world("Deallocated [num_deleted] gas mixtures")
-	if(fexists(EXTOOLS))
-		LIBCALL(EXTOOLS, "cleanup")()
+	shutdown_logging() // makes sure the thread is closed before end, else we terminate
+	__auxmos_shutdown()
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		LIBCALL(debug_server, "auxtools_shutdown")()
 	..()
 
 /world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid

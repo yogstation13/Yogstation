@@ -2,6 +2,7 @@
 	name = "tesla bolt"
 	icon_state = "tesla_projectile"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	armor_flag = ELECTRIC
 	var/chain
 	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
 	var/zap_range = 3
