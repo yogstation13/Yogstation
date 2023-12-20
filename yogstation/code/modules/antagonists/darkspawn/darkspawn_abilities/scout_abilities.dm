@@ -84,7 +84,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/seize //Stuns and mutes a human target for 10 seconds
 	name = "Seize"
-	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
+	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
 	panel = null
 	button_icon_state = "glare"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
@@ -145,7 +145,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/darkness_smoke
 	name = "Darkness Smoke"
-	desc = "Spews a cloud of smoke which will blind enemies."
+	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
 	panel = null
 	button_icon_state = "black_smoke"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
@@ -272,7 +272,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/permafrost
 	name = "Permafrost"
-	desc = "permafrost."
+	desc = "Banish heat from the surrounding terrain, freezing it instantly."
 	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "Kindle"
 	active_icon_state = "Kindle"
