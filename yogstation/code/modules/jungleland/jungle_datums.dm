@@ -265,6 +265,10 @@
 	ADD_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE,JUNGLELAND_TRAIT)
 	L.throw_alert(alert_id,/atom/movable/screen/alert/magnus_purpura)
 
+/datum/reagent/magnus_purpura_enzyme/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	M.adjustToxLoss(-3.5 * REM) // YOU CAN ONLY GET IT ON JUNGLELAND, why not make it pretty good?
+
 /datum/reagent/magnus_purpura_enzyme/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L,TRAIT_SULPH_PIT_IMMUNE,JUNGLELAND_TRAIT)
 	L.clear_alert(alert_id)
