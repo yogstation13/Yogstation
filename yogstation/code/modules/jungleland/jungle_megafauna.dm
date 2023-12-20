@@ -134,7 +134,7 @@
 			adjustment_amount += 4
 
 	var/dist = get_dist(src,L)
-	if(dist >= 3)
+	if(dist > 3)
 		visible_message(span_colossus("Coward!"))		
 		var/step_dir = pick(GLOB.alldirs)
 		var/turf/new_loc = get_step(L,step_dir)
