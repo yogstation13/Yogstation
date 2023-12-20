@@ -442,8 +442,8 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	. = ..()
 	close_machine(M, TRUE) // put the mob inside instead of on the turf
 	playsound(src, join_sound, 30)
-	if(iscarbon(user))
-		apply_effects_to_mob(user)
+	if(iscarbon(M))
+		apply_effects_to_mob(M)
 	addtimer(CALLBACK(src, PROC_REF(open_machine)), JOIN_SLEEP_DURATION)
 
 /obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
