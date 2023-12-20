@@ -183,28 +183,28 @@
 //Reskinned punji sticks that don't stun for as long
 /datum/action/cooldown/spell/pointed/darkspawn_build/punji
 	name = "Damage trap"
-	desc = "Place dangerous punji sticks. Allies pass safely."
+	desc = "Stitch together shadows into a trap that deals damage to non-ally that crosses it."
 	object_type = /obj/structure/trap/darkspawn/damage
 	language_final = "ksha"
 
 //Reskinned bear trap that doesn't slow as much and can't be picked up
 /datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
 	name = "Legcuffs"
-	desc = "a dark bear trap."
-	object_type = /obj/item/restraints/legcuffs/beartrap/dark
+	desc = "Stitch together shadows into a trap that restrains the legs of any non-ally that crosses it."
+	object_type = /obj/structure/trap/darkspawn/legcuff
 	language_final = "xcrak"
 
 //Discombobulates people
 /datum/action/cooldown/spell/pointed/darkspawn_build/nausea
 	name = "Nausea trap"
-	desc = "a dark bear trap."
+	desc = "Stitch together shadows into a trap that makes any non-ally that crosses it sick to their stomach."
 	object_type = /obj/structure/trap/darkspawn/nausea
 	language_final = "guhxo"
 
 //Discombobulates people
 /datum/action/cooldown/spell/pointed/darkspawn_build/teleport
 	name = "Teleport trap"
-	desc = "a dark bear trap."
+	desc = "Stitch together shadows into a trap that teleports any non-ally to a random location on the station."
 	object_type = /obj/structure/trap/darkspawn/teleport
 	language_final = "hwkwo"
 

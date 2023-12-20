@@ -90,11 +90,22 @@
 
 /obj/structure/trap/darkspawn/damage/flare()
 	. = ..()
-	playsound(get_turf(src), 'sound/effects/snap.ogg', 40, TRUE, -1)
-	playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 70, TRUE, -1)
+	playsound(get_turf(src), 'sound/effects/snap.ogg', 30, TRUE, -1)
+	playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 60, TRUE, -1)
 
 /obj/structure/trap/darkspawn/damage/trap_effect(mob/living/L)
 	L.apply_damage(30, BRUTE)
 	L.Knockdown(2 SECONDS)
 
-	
+///////////////////////bear traps target///////////////////////////////////
+/obj/structure/trap/darkspawn/legcuff
+	charges = 1
+	examine_text = "restrain"
+
+/obj/structure/trap/darkspawn/legcuff/flare()
+	. = ..()
+	playsound(get_turf(src), 'sound/effects/snap.ogg', 50, TRUE)
+
+/obj/structure/trap/darkspawn/legcuff/trap_effect(mob/living/L)
+	var/obj/item/restraints/legcuffs/beartrap/dark/trap = new(get_turf(src))
+	trap.Crossed(L)
