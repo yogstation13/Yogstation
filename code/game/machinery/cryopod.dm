@@ -8,6 +8,8 @@
 GLOBAL_LIST_EMPTY(cryopods)
 GLOBAL_LIST_EMPTY(cryopod_computers)
 
+#define JOIN_SLEEP_DURATION 6 SECONDS
+
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
@@ -435,8 +437,6 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	log_admin(span_notice("[key_name(target)] entered a stasis pod."))
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
-
-#define JOIN_SLEEP_DURATION 6 SECONDS
 
 /obj/machinery/cryopod/JoinPlayerHere(mob/M, buckle)
 	. = ..()
