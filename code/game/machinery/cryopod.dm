@@ -149,6 +149,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	var/on_store_name = "Cryogenic Oversight"
 	var/open_sound = 'sound/machines/podopen.ogg'
 	var/close_sound = 'sound/machines/podclose.ogg'
+	var/join_sound = 'sound/machines/hiss.ogg'
 
 	// 5 minutes-ish safe period before being despawned.
 	var/time_till_despawn = 15 MINUTES // Time if a player gets forced into cryo
@@ -199,13 +200,15 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	return control_computer != null
 
-/obj/machinery/cryopod/close_machine(mob/user)
+/obj/machinery/cryopod/close_machine(mob/user, waking = FALSE)
 	if(!control_computer)
 		find_control_computer(TRUE)
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
 		..(user)
 		icon_state = "cryopod"
 		var/mob/living/mob_occupant = occupant
+		if(waking) // waking up, not going to sleep. don't continue past this point
+			return
 		if(close_sound)
 			playsound(src, close_sound, 40)
 		if(mob_occupant && mob_occupant.stat != DEAD)
@@ -433,16 +436,20 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
 
+#define JOIN_SLEEP_DURATION 6 SECONDS
+
 /obj/machinery/cryopod/JoinPlayerHere(mob/M, buckle)
 	. = ..()
-	open_machine()
-	if(iscarbon(M))
-		apply_effects_to_mob(M)
+	close_machine(M, TRUE) // put the mob inside instead of on the turf
+	playsound(src, join_sound, 30)
+	if(iscarbon(user))
+		apply_effects_to_mob(user)
+	addtimer(CALLBACK(src, PROC_REF(open_machine)), JOIN_SLEEP_DURATION)
 
 /obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
 	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
-	sleepyhead.set_nutrition(200)
-	sleepyhead.SetSleeping(60) //if you read this comment and feel like shitting together something to adjust IPC charge on wakeup, be my guest.
+	sleepyhead.set_nutrition(200) //works for IPCs and stuff too
+	sleepyhead.SetSleeping(JOIN_SLEEP_DURATION)
 	//but it can be worse.
 	if(prob(90))
 		sleepyhead.adjust_drowsiness(rand(3 SECONDS, 10 SECONDS))
@@ -455,4 +462,6 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		sleepyhead.adjust_disgust(rand(20,30))
 	if(prob(16))
 		sleepyhead.adjust_disgust(rand(10, 17))
-	to_chat(sleepyhead, "<span class='userdanger'>The symptoms of cryosleep set in as you awaken...")
+	to_chat(sleepyhead, span_danger("The symptoms of cryosleep set in as you awaken..."))
+
+#undef JOIN_SLEEP_DURATION
