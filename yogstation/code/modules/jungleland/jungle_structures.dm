@@ -526,6 +526,7 @@ GLOBAL_LIST_INIT(nests, list())
 	. = ..()
 	if(!used)
 		. += "It glows with incandescent power."
+		. += "There is just enough space in the middle of the runes to place an item there."
 
 /obj/structure/enchanting_table/attacked_by(obj/item/I, mob/living/user)
 	if(used)
