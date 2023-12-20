@@ -159,11 +159,6 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
-"dj" = (
-/obj/effect/decal/cleanable/blood/old,
-/mob/living/simple_animal/hostile/tar/shade,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/ruin/unpowered/tar_temple)
 "gg" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
@@ -174,9 +169,8 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/template_noop)
-"pW" = (
-/obj/effect/decal/remains/human,
-/obj/item/storage/backpack/satchel/explorer,
+"pP" = (
+/mob/living/simple_animal/hostile/tar/amalgamation/convert,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
 "rb" = (
@@ -184,6 +178,16 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"rI" = (
+/obj/effect/decal/remains/human,
+/obj/item/storage/backpack/satchel/explorer,
+/mob/living/simple_animal/hostile/tar/amalgamation/convert,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/ruin/unpowered/tar_temple)
+"wB" = (
+/mob/living/simple_animal/hostile/tar/shade,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
 "xw" = (
 /obj/effect/decal/remains/human,
@@ -286,6 +290,11 @@
 /area/ruin/unpowered/tar_temple)
 "Vc" = (
 /obj/item/flashlight/lantern,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/ruin/unpowered/tar_temple)
+"VB" = (
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/simple_animal/hostile/asteroid/hivelord/tar,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
 "Wl" = (
@@ -844,7 +853,7 @@ aO
 ah
 aO
 az
-pW
+rI
 aO
 Fu
 au
@@ -892,7 +901,7 @@ Vc
 aO
 aO
 aO
-an
+aO
 aO
 aO
 Vc
@@ -931,7 +940,7 @@ au
 aO
 aO
 aO
-aO
+wB
 aO
 aO
 aO
@@ -1053,7 +1062,7 @@ au
 aO
 aO
 aO
-dj
+VB
 Wl
 Tg
 RE
@@ -1177,11 +1186,11 @@ au
 aO
 aO
 aO
-aO
+wB
 zB
 aO
 aO
-aO
+pP
 aO
 aO
 au
@@ -1220,7 +1229,7 @@ Vc
 aO
 aO
 aO
-an
+aO
 aO
 aO
 Vc
