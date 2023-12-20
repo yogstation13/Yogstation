@@ -133,6 +133,9 @@
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	id = /obj/item/card/id/syndicate/anyone
 	implants = list(/obj/item/implant/weapons_auth)
+	backpack_contents = list(
+		/obj/item/storage/box/syndie
+		)
 
 /datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
@@ -163,20 +166,30 @@
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	mask = /obj/item/clothing/mask/chameleon/gps
 	suit = /obj/item/clothing/suit/armor/vest
-	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1)
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/syndie,
+		/obj/item/modular_computer/tablet/preset/syndicate=1
+		)
 
 /datum/outfit/lavaland_syndicate/comms/subordinate
 	name = "Space Syndicate Comms Agent"
 	r_hand = /obj/item/kitchen/knife/combat
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/syndie
+		)
 
 /datum/outfit/lavaland_syndicate/comms/lieutenant
 	name = "Space Syndicate Comms Agent Lieutenant"
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	head = /obj/item/clothing/head/HoS/syndicate
 	r_pocket = null
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
+		/obj/item/storage/box/syndie,
 		/obj/item/modular_computer/tablet/preset/syndicate=1,
-		/obj/item/gun/ballistic/revolver/ultrasecure=1,
+		/obj/item/gun/ballistic/revolver/ultrasecure=1
 		)
 
 /obj/item/clothing/mask/chameleon/gps/Initialize(mapload)
