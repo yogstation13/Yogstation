@@ -108,7 +108,7 @@
 	. = ..()
 	var/atom/A = target
 	if(!proximity && prox_check)
-		return 
+		return
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
@@ -206,7 +206,7 @@
 /obj/item/card/cmag/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity && prox_check)
-		return 
+		return
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
@@ -285,7 +285,7 @@
 			cyborg.SetStun(60) // Gives you time to run if needed.
 			cyborg.module.transform_to(/obj/item/robot_module/clown) // No law change, but they get to clown around instead.
 			return
-		
+
 		cyborg.SetStun(60) // Standard stun like from emagging.
 		cyborg.lawupdate = FALSE
 		cyborg.set_connected_ai(null)
@@ -314,7 +314,7 @@
 
 		cyborg.laws = new /datum/ai_laws/pranksimov
 		cyborg.laws.associate(cyborg)
-			
+
 		cyborg.update_icons()
 		return
 
@@ -1088,12 +1088,30 @@ update_label("John Doe", "Clowny")
 	department_ID = ACCOUNT_SEC
 	department_name = ACCOUNT_SEC_NAME
 
+/obj/item/card/id/departmental_budget/sec/examine(mob/user)
+	. = ..()
+	. += span_info("Accepts telecrystals as a bounty.")
+
+/obj/item/card/id/departmental_budget/sec/attackby(obj/item/inserted_item, mob/user, params)
+	. = ..()
+	if(istype(inserted_item, /obj/item/stack/telecrystal))
+		if(!registered_account)
+			to_chat(user, span_warning("[src] doesn't have a linked account to deposit [inserted_item] into!"))
+			return
+		var/obj/item/stack/stack_item = inserted_item
+		var/cash_money = (5000 * stack_item.amount)
+		registered_account.adjust_money(cash_money)
+		to_chat(user, span_notice("You stuff [inserted_item] into [src]. It disappears in a small puff of bluespace smoke, adding [cash_money] credits to the linked account."))
+		to_chat(user, span_notice("The linked account now reports a balance of $[registered_account.account_balance]."))
+		qdel(inserted_item)
+		return
+
 /***
- * 
- * 
+ *
+ *
  * 	HERETIC ID SECTION (SORRY)
- * 
- * 
+ *
+ *
  */
 
 /obj/effect/knock_portal
@@ -1119,7 +1137,7 @@ update_label("John Doe", "Clowny")
 	if(target)
 		our_airlock = target
 		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(delete_on_door_delete))
-		
+
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
@@ -1209,7 +1227,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/syndicate/heretic/proc/clear_portals()
 	QDEL_NULL(portal_one)
-	QDEL_NULL(portal_two)	
+	QDEL_NULL(portal_two)
 
 ///Clears portal references
 /obj/item/card/id/syndicate/heretic/proc/clear_portal_refs()
@@ -1223,7 +1241,7 @@ update_label("John Doe", "Clowny")
 	if(portal_one || portal_two)
 		clear_portals()
 		message += ", previous cleared"
-	
+
 	portal_one = new(get_turf(door2), door2)
 	portal_two = new(get_turf(door1), door1)
 	portal_one.destination = portal_two
