@@ -113,7 +113,7 @@
 	preop_sound = 'sound/items/ratchet.ogg'
 
 /datum/surgery_step/mechanic_unwrench/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(item.tool_behaviour == TOOL_CROWBAR)
+	if(tool.tool_behaviour == TOOL_CROWBAR)
 		display_results(user, target, span_notice("You begin reefing on the bolts in [target]'s [parse_zone(target_zone)]..."),
 				"[user] begins reefing on some bolts in [target]'s [parse_zone(target_zone)].",
 				"[user] begins reefing on some bolts in [target]'s [parse_zone(target_zone)].")
@@ -123,12 +123,12 @@
 				"[user] begins to unwrench some bolts in [target]'s [parse_zone(target_zone)].")
 
 /datum/surgery_step/mechanic_unwrench/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(item.tool_behaviour == TOOL_CROWBAR)
+	if(tool.tool_behaviour == TOOL_CROWBAR)
 		target.apply_damage(10, BRUTE, target_zone)//reduced damage if successful
 	return ..()
 
 /datum/surgery_step/mechanic_unwrench/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(item.tool_behaviour == TOOL_CROWBAR)
+	if(tool.tool_behaviour == TOOL_CROWBAR)
 		target.apply_damage(20, BRUTE, target_zone)
 	return ..()
 
@@ -149,7 +149,7 @@
 	preop_sound = 'sound/items/ratchet.ogg'
 
 /datum/surgery_step/mechanic_wrench/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(item.tool_behaviour == TOOL_WELDER)
+	if(tool.tool_behaviour == TOOL_WELDER)
 		display_results(user, target, span_notice("You begin to weld some bolts in [target]'s [parse_zone(target_zone)]..."),
 				"[user] begins to weld some bolts in [target]'s [parse_zone(target_zone)].",
 				"[user] begins to weld some bolts in [target]'s [parse_zone(target_zone)].")
@@ -159,12 +159,12 @@
 				"[user] begins to wrench some bolts in [target]'s [parse_zone(target_zone)].")
 
 /datum/surgery_step/mechanic_wrench/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(item.tool_behaviour == TOOL_WELDER)
+	if(tool.tool_behaviour == TOOL_WELDER)
 		target.apply_damage(10, BURN, target_zone)//reduced damage if successful
 	return ..()
 
 /datum/surgery_step/mechanic_wrench/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(item.tool_behaviour == TOOL_WELDER)
+	if(tool.tool_behaviour == TOOL_WELDER)
 		target.apply_damage(20, BURN, target_zone)
 	return ..()
 
