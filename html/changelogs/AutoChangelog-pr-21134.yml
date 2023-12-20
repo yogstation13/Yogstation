@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes spray cans/crayons not working"
