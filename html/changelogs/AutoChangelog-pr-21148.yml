@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Rune scimitar works as intended; you can now properly grind and obtain loot."
