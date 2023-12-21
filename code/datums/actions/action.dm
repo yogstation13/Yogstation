@@ -135,7 +135,8 @@
 
 	if(target == owner)
 		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref))
-	owner = null
+	if(owner == remove_from)
+		owner = null
 
 /// Actually triggers the effects of the action.
 /// Called when the on-screen button is clicked, for example.
