@@ -11,8 +11,8 @@
 	speak_emote = list("howls")
 	speed = -1
 	move_to_delay = 5
-	maxHealth = 200
-	health = 200
+	maxHealth = 250
+	health = 250
 	obj_damage = 15
 	melee_damage_lower = 7.5
 	melee_damage_upper = 7.5
@@ -32,6 +32,8 @@
 	stat_attack = UNCONSCIOUS
 	robust_searching = TRUE
 	var/revealed = FALSE
+	var/poison_type = /datum/reagent/toxin/ambusher_toxin
+	var/poison_per_bite = 0
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/Move(atom/newloc)
 	if(newloc && newloc.z == z && (islava(newloc) || ischasm(newloc)))
@@ -40,33 +42,53 @@
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!revealed) //Make sure it doesn't twitch if already revealed
-		if(prob(30)) //Randomly twitch to differentiate it from normal wolves
+		if(prob(10)) //Randomly twitch to differentiate it from normal wolves
 			icon_state = "ambusher_twitch"
 			src.visible_message(span_warning("The white wolf twitches"))
-			playsound(get_turf(src), 'sound/effects/wounds/crack1.ogg', 40, TRUE, -1)
+			playsound(get_turf(src), 'sound/effects/wounds/crack1.ogg', 30, TRUE, -1)
 		else
 			icon_state = "whitewolf"
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if(health <= 100 && !revealed) //Reveal itself if damaged enough and if it hasn't already done so
+	if(health <= 175 && !revealed) //Reveal itself if damaged enough and if it hasn't already done so
 		name = "white wolf?"
 		desc = "Something isn't quite right with this wolf..."
 		icon_state = "ambusher"
 		icon_living = "ambusher"
+		color = "#ac0000" //Grrr anger
 		friendly = "gurgles at"
 		speak_emote = list("gurgles")
-		speed = 1
-		move_to_delay = 2
-		melee_damage_lower = 15
-		melee_damage_upper = 15
+		speed = 2.5
+		move_to_delay = 2 //Faster to help it land a hit and inject toxin
+		melee_damage_lower = 5 //Less damage so player doesn't just immediatly eat rocks during rage
+		melee_damage_upper = 5
+		rapid_melee = 4
+		poison_per_bite = 4
 		dodging = FALSE
-		attacktext = "lacerates"
-		attack_sound = 'sound/effects/wounds/blood3.ogg'
+		attacktext = "nips"
 		new /obj/effect/gibspawner/generic(get_turf(src))
-		playsound(get_turf(src), 'sound/effects/reee.ogg', 80, TRUE, -1) //Play a spooky sound
+		playsound(get_turf(src), 'sound/effects/reee.ogg', 100, TRUE, -1) //Play a spooky sound
 		src.visible_message(span_warning("The white wolf's head rips itself apart, forming a ghastly maw!"))
+		addtimer(CALLBACK(src, PROC_REF(endRage)), 4 SECONDS) //Rage timer
 		revealed = TRUE
+
+/mob/living/simple_animal/hostile/asteroid/ambusher/AttackingTarget()
+	..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(target.reagents)
+			L.reagents.add_reagent(poison_type, poison_per_bite)
+
+/mob/living/simple_animal/hostile/asteroid/ambusher/proc/endRage()
+	color = null //Remove the color
+	move_to_delay = 3
+	melee_damage_lower = 15 
+	melee_damage_upper = 15
+	rapid_melee = 2
+	attacktext = "lacerates"
+	attack_sound = 'sound/effects/wounds/blood3.ogg'
+	src.visible_message(span_warning("The white wolf slows down as it focuses on you!"))
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
