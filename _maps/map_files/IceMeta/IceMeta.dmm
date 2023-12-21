@@ -14751,9 +14751,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "etK" = (
-/obj/structure/sign/warning/electricshock{
-	pixel_x = -32
-	},
+/obj/structure/sign/warning/electricshock,
 /turf/closed/wall,
 /area/science/xenobiology)
 "etT" = (
@@ -15718,11 +15716,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	pixel_x = -28;
-	name = "Engineering SMES APC";
-	areastring = "area/engine/engine_smes"
-	},
+/obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "eKm" = (
@@ -41661,9 +41655,7 @@
 /turf/closed/wall,
 /area/escapepodbay)
 "mej" = (
-/obj/structure/sign/warning/electricshock{
-	pixel_x = -32
-	},
+/obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "men" = (
@@ -66265,9 +66257,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "tjN" = (
-/obj/structure/sign/warning/electricshock{
-	pixel_x = -32
-	},
+/obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
 "tjZ" = (
