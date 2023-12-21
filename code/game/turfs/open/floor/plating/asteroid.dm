@@ -53,7 +53,7 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, span_notice("You build a floor."))
-			place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+			PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			return TRUE
 	return FALSE  
 

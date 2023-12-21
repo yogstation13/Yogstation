@@ -59,7 +59,7 @@
 		to_chat(user, span_notice("You build a floor."))
 		var/turf/T = src.loc
 		if(isspaceturf(T))
-			T.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+			T.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			qdel(src)
 			return TRUE
 	return FALSE

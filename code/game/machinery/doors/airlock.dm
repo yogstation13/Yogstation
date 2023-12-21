@@ -212,10 +212,10 @@
 				for(var/obj/machinery/door/firedoor/FD in here)
 					qdel(FD)
 				for(var/turf/closed/T in range(2, src))
-					here.place_on_top(T.type)
+					here.PlaceOnTop(T.type)
 					qdel(src)
 					return
-				here.place_on_top(/turf/closed/wall)
+				here.PlaceOnTop(/turf/closed/wall)
 				qdel(src)
 				return
 			if(10 to 11)

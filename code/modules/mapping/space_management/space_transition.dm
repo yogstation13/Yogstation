@@ -93,13 +93,13 @@
 		level.set_neigbours(used_points)
 		point = pick(possible_points)
 		CHECK_TICK
-
+	
 	// Now that we've handed out neighbors, we're gonna handle an edge case
 	// Need to check if all our levels have neighbors in all directions
 	// If they don't, we'll make them wrap all the way around to the other side of the grid
 	for(var/direction in GLOB.cardinals)
 		var/dir = "[direction]"
-		var/inverse = "[REVERSE_DIR(direction)]"
+		var/inverse = "[turn(direction, 180)]"
 		for(var/datum/space_level/level as anything in transition_levels)
 			// If we have something in this dir that isn't just us, continue on
 			if(level.neigbours[dir] && level.neigbours[dir] != level)
@@ -114,17 +114,15 @@
 
 	//Lists below are pre-calculated values arranged in the list in such a way to be easily accessable in the loop by the counter
 	//Its either this or madness with lotsa math
+
 	var/inner_max_x = world.maxx - TRANSITIONEDGE
 	var/inner_max_y = world.maxy - TRANSITIONEDGE
 	var/list/x_pos_beginning = list(1, 1, inner_max_x, 1)  //x values of the lowest-leftest turfs of the respective 4 blocks on each side of zlevel
 	var/list/y_pos_beginning = list(inner_max_y, 1, 1 + TRANSITIONEDGE, 1 + TRANSITIONEDGE)  //y values respectively
-	var/list/x_pos_ending = list(world.maxx, world.maxx, world.maxx, 1 + TRANSITIONEDGE) //x values of the highest-rightest turfs of the respective 4 blocks on each side of zlevel
+	var/list/x_pos_ending = list(world.maxx, world.maxx, world.maxx, 1 + TRANSITIONEDGE)	//x values of the highest-rightest turfs of the respective 4 blocks on each side of zlevel
 	var/list/y_pos_ending = list(world.maxy, 1 + TRANSITIONEDGE, inner_max_y, inner_max_y) //y values respectively
 	var/list/x_pos_transition = list(1, 1, TRANSITIONEDGE + 2, inner_max_x - 1) //values of x for the transition from respective blocks on the side of zlevel, 1 is being translated into turfs respective x value later in the code
 	var/list/y_pos_transition = list(TRANSITIONEDGE + 2, inner_max_y - 1, 1, 1) //values of y for the transition from respective blocks on the side of zlevel, 1 is being translated into turfs respective y value later in the code
-
-	// Cache the range passed to the mirage border element, to reduce world var access in the thousands
-	var/range_cached = world.view
 
 	for(var/datum/space_level/level as anything in cached_z_list)
 		if(!level.neigbours.len)
@@ -144,7 +142,7 @@
 				S.destination_x = x_target || S.x
 				S.destination_y = y_target || S.y
 				S.destination_z = zdestination
-
+				
 				// Mirage border code
 				var/mirage_dir
 				if(S.x == 1 + TRANSITIONEDGE)
@@ -159,6 +157,6 @@
 					continue
 
 				var/turf/place = locate(S.destination_x, S.destination_y, zdestination)
-				S.AddElement(/datum/element/mirage_border, place, mirage_dir, range_cached)
+				S.AddComponent(/datum/component/mirage_border, place, mirage_dir)
 
 #undef CHORDS_TO_1D

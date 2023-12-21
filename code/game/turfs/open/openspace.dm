@@ -1,13 +1,10 @@
 /turf/open/openspace
 	name = "open space"
 	desc = "Watch your step!"
-	// We don't actually draw openspace, but it needs to have color
-	// In its icon state so we can count it as a "non black" tile
-	icon_state = MAP_SWITCH("pure_white", "invisible")
+	icon_state = "grey"
 	baseturfs = /turf/open/openspace
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	CanAtmosPassVertical = ATMOS_PASS_YES
 	flags_1 = NO_RUST
 	plane = TRANSPARENT_FLOOR_PLANE
@@ -15,26 +12,18 @@
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 
-// Reminder, any behavior code written here needs to be duped to /turf/open/space/openspace
-// I am so sorry
+/turf/open/openspace/debug/update_multiz()
+	..()
+	return TRUE
+
 /turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
-	if(PERFORM_ALL_TESTS(focus_only/openspace_clear) && !GET_TURF_BELOW(src))
-		stack_trace("[src] was inited as openspace with nothing below it at ([x], [y], [z])")
-	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_atom_created))
+
+	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE, PROC_REF(on_atom_created))
 	var/area/our_area = loc
 	if(istype(our_area, /area/space))
 		force_no_gravity = TRUE
 	return INITIALIZE_HINT_LATELOAD
-
-/turf/open/openspace/LateInitialize()
-	. = ..()
-	AddElement(/datum/element/turf_z_transparency)
-
-/turf/open/openspace/ChangeTurf(path, list/new_baseturfs, flags)
-	UnregisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON)
-	return ..()
-
 /**
  * Drops movables spawned on this turf after they are successfully initialized.
  * so that spawned movables that should fall to gravity, will fall.
@@ -49,37 +38,46 @@
 		return
 	zFall(movable)
 
+/turf/open/openspace/LateInitialize()
+	update_multiz(TRUE, TRUE)
+
+/turf/open/openspace/Destroy()
+	vis_contents.len = 0
+	return ..()
+
+/turf/open/openspace/update_multiz(prune_on_fail = FALSE, init = FALSE)
+	. = ..()
+	var/turf/T = below()
+	if(!T)
+		vis_contents.len = 0
+		if(prune_on_fail)
+			ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+		return FALSE
+	if(init)
+		vis_contents += T
+	return TRUE
+
+/turf/open/openspace/multiz_turf_del(turf/T, dir)
+	if(dir != DOWN)
+		return
+	update_multiz()
+
+/turf/open/openspace/multiz_turf_new(turf/T, dir)
+	if(dir != DOWN)
+		return
+	update_multiz()
+
 /turf/open/openspace/zAirIn()
 	return TRUE
 
 /turf/open/openspace/zAirOut()
 	return TRUE
 
-/turf/open/openspace/zPassIn(direction)
-	if(direction == DOWN)
-		for(var/obj/contained_object in contents)
-			if(contained_object.obj_flags & BLOCK_Z_IN_DOWN)
-				return FALSE
-		return TRUE
-	if(direction == UP)
-		for(var/obj/contained_object in contents)
-			if(contained_object.obj_flags & BLOCK_Z_IN_UP)
-				return FALSE
-		return TRUE
-	return FALSE
+/turf/open/openspace/zPassIn(atom/movable/A, direction, turf/source)
+	return TRUE
 
-/turf/open/openspace/zPassOut(direction)
-	if(direction == DOWN)
-		for(var/obj/contained_object in contents)
-			if(contained_object.obj_flags & BLOCK_Z_OUT_DOWN)
-				return FALSE
-		return TRUE
-	if(direction == UP)
-		for(var/obj/contained_object in contents)
-			if(contained_object.obj_flags & BLOCK_Z_OUT_UP)
-				return FALSE
-		return TRUE
-	return FALSE
+/turf/open/openspace/zPassOut(atom/movable/A, direction, turf/destination)
+	return TRUE
 
 /turf/open/openspace/proc/CanCoverUp()
 	return can_cover_up
@@ -123,7 +121,7 @@
 				qdel(L)
 				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				to_chat(user, span_notice("You build a floor."))
-				place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+				PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			else
 				to_chat(user, span_warning("You need one floor tile to build a floor!"))
 		else

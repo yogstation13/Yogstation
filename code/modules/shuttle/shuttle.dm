@@ -34,28 +34,7 @@
 	///Delete this port after ship fly off.
 	var/delete_after = FALSE
 
-	///are we registered in SSshuttles?
-	var/registered = FALSE
-
-///register to SSshuttles
-/obj/docking_port/proc/register()
-	if(registered)
-		WARNING("docking_port registered multiple times")
-		unregister()
-	registered = TRUE
-	return
-
-///unregister from SSshuttles
-/obj/docking_port/proc/unregister()
-	if(!registered)
-		WARNING("docking_port unregistered multiple times")
-	registered = FALSE
-	return
-
-/obj/docking_port/proc/Check_id()
-	return
-
-//these objects are indestructible
+	//these objects are indestructible
 /obj/docking_port/Destroy(force)
 	// unless you assert that you know what you're doing. Horrible things
 	// may result.
@@ -145,9 +124,7 @@
 
 #ifdef DOCKING_PORT_HIGHLIGHT
 //Debug proc used to highlight bounding area
-/obj/docking_port/proc/highlight(_color = "#f00")
-	SetInvisibility(INVISIBILITY_NONE)
-	SET_PLANE_IMPLICIT(src, GHOST_PLANE)
+/obj/docking_port/proc/highlight(_color)
 	var/list/L = return_coords()
 	var/turf/T0 = locate(L[1],L[2],z)
 	var/turf/T1 = locate(L[3],L[4],z)
@@ -198,17 +175,13 @@
 	///If true, the shuttle can always dock at this docking port, despite its area checks, or if something is already docked
 	var/override_can_dock_checks = FALSE
 
-/obj/docking_port/stationary/register(replace = FALSE)
+/obj/docking_port/stationary/Initialize(mapload)
 	. = ..()
+	SSshuttle.stationary += src
 	if(!id)
 		id = "[SSshuttle.stationary.len]"
 	if(name == "dock")
 		name = "dock[SSshuttle.stationary.len]"
-	SSshuttle.stationary += src
-
-/obj/docking_port/stationary/Initialize(mapload)
-	. = ..()
-	register()
 	if(!area_type)
 		var/area/place = get_area(src)
 		area_type = place?.type // We might be created in nullspace
@@ -217,20 +190,16 @@
 		for(var/turf/T in return_turfs())
 			T.flags_1 |= NO_RUINS_1
 
-	if(SSshuttle.initialized)
-		INVOKE_ASYNC(SSshuttle, TYPE_PROC_REF(/datum/controller/subsystem/shuttle, setup_shuttles), list(src))
+	// if(SSshuttle.initialized)
+	// 	INVOKE_ASYNC(SSshuttle, TYPE_PROC_REF(/datum/controller/subsystem/shuttle, setup_shuttles), list(src))
 	
 	#ifdef DOCKING_PORT_HIGHLIGHT
 	highlight("#f00")
 	#endif
 
-/obj/docking_port/stationary/unregister()
-	. = ..()
-	SSshuttle.stationary -= src
-
 /obj/docking_port/stationary/Destroy(force)
 	if(force)
-		unregister()
+		SSshuttle.stationary -= src
 	. = ..()
 
 /obj/docking_port/stationary/Moved(atom/oldloc, dir, forced)
@@ -325,10 +294,7 @@
 	var/launch_status = NOLAUNCH
 
 	///Whether or not you want your ship to knock people down, and also whether it will throw them several tiles upon launching.
-	var/list/movement_force = list(
-		"KNOCKDOWN" = 3,
-		"THROW" = 0,
-	)
+	var/list/movement_force = list("KNOCKDOWN" = 3, "THROW" = 0)
 
 	var/list/ripples = list()
 	var/engine_coeff = 1
@@ -339,84 +305,10 @@
 	var/can_move_docking_ports = FALSE
 	var/list/hidden_turfs = list()
 
-#define WORLDMAXX_CUTOFF (world.maxx + 1)
-#define WORLDMAXY_CUTOFF (world.maxx + 1)
-/**
- * Calculated and populates the information used for docking and some internal vars.
- * This can also be used to calculate from shuttle_areas so that you can expand/shrink shuttles!
- *
- * Arguments:
- * * loading_from - The template that the shuttle was loaded from, if not given we iterate shuttle_areas to calculate information instead
- */
-/obj/docking_port/mobile/proc/calculate_docking_port_information(datum/map_template/shuttle/loading_from)
-	var/port_x_offset = loading_from?.port_x_offset
-	var/port_y_offset = loading_from?.port_y_offset
-	var/width = loading_from?.width
-	var/height = loading_from?.height
-	if(!loading_from)
-		if(!length(shuttle_areas))
-			CRASH("Attempted to calculate a docking port's information without a template before it was assigned any areas!")
-		// no template given, use shuttle_areas to calculate width and height
-		var/min_x = -1
-		var/min_y = -1
-		var/max_x = WORLDMAXX_CUTOFF
-		var/max_y = WORLDMAXY_CUTOFF
-		for(var/area/area as anything in shuttle_areas)
-			for(var/turf/turf in area)
-				min_x = max(turf.x, min_x)
-				max_x = min(turf.x, max_x)
-				min_y = max(turf.y, min_y)
-				max_y = min(turf.y, max_y)
-			CHECK_TICK
-
-		if(min_x == -1 || max_x == WORLDMAXX_CUTOFF)
-			CRASH("Failed to locate shuttle boundaries when iterating through shuttle areas, somehow.")
-		if(min_y == -1 || max_y == WORLDMAXY_CUTOFF)
-			CRASH("Failed to locate shuttle boundaries when iterating through shuttle areas, somehow.")
-
-		width = (max_x - min_x) + 1
-		height = (max_y - min_y) + 1
-		port_x_offset = min_x - x
-		port_y_offset = min_y - y
-
-	if(dir in list(EAST, WEST))
-		src.width = height
-		src.height = width
-	else
-		src.width = width
-		src.height = height
-
-	switch(dir)
-		if(NORTH)
-			dwidth = port_x_offset - 1
-			dheight = port_y_offset - 1
-		if(EAST)
-			dwidth = height - port_y_offset
-			dheight = port_x_offset - 1
-		if(SOUTH)
-			dwidth = width - port_x_offset
-			dheight = height - port_y_offset
-		if(WEST)
-			dwidth = port_y_offset - 1
-			dheight = width - port_x_offset
-#undef WORLDMAXX_CUTOFF
-#undef WORLDMAXY_CUTOFF
-
-/obj/docking_port/mobile/register(replace = FALSE)
-	. = ..()
+/obj/docking_port/mobile/proc/register()
 	SSshuttle.mobile += src
 
-/**
- * Actions to be taken after shuttle is loaded and has been moved to its final location
- *
- * Arguments:
- * * replace - TRUE if this shuttle is replacing an existing one. FALSE by default.
- */
-/obj/docking_port/mobile/proc/postregister(replace = FALSE)
-	return
-
-/obj/docking_port/mobile/unregister()
-	. = ..()
+/obj/docking_port/mobile/proc/unregister()
 	SSshuttle.mobile -= src
 
 /obj/docking_port/mobile/Destroy(force)
@@ -522,32 +414,32 @@
 /obj/docking_port/mobile/proc/transit_failure()
 	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
 
-//call the shuttle to destination destination_port
-/obj/docking_port/mobile/proc/request(obj/docking_port/stationary/destination_port)
-	if(!check_dock(destination_port))
+//call the shuttle to destination S
+/obj/docking_port/mobile/proc/request(obj/docking_port/stationary/S)
+	if(!check_dock(S))
 		testing("check_dock failed on request for [src]")
 		return
 
-	if(mode == SHUTTLE_IGNITING && destination == destination_port)
+	if(mode == SHUTTLE_IGNITING && destination == S)
 		return
 
 	switch(mode)
 		if(SHUTTLE_CALL)
-			if(destination_port == destination)
+			if(S == destination)
 				if(timeLeft(1) < callTime * engine_coeff)
 					setTimer(callTime * engine_coeff)
 			else
-				destination = destination_port
+				destination = S
 				setTimer(callTime * engine_coeff)
 		if(SHUTTLE_RECALL)
-			if(destination_port == destination)
+			if(S == destination)
 				setTimer(callTime * engine_coeff - timeLeft(1))
 			else
-				destination = destination_port
+				destination = S
 				setTimer(callTime * engine_coeff)
 			mode = SHUTTLE_CALL
 		if(SHUTTLE_IDLE, SHUTTLE_IGNITING)
-			destination = destination_port
+			destination = S
 			mode = SHUTTLE_IGNITING
 			setTimer(ignitionTime)
 

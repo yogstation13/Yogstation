@@ -4,33 +4,25 @@
 /datum/component/rot/Initialize(new_amount)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
-	if(isliving(parent))
-		var/mob/living/living_parent = parent
-		//I think this can break in cases where someone becomes a robot post death, but I uh, I don't know how to account for that
-		if(!(living_parent.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD)))
-			return COMPONENT_INCOMPATIBLE
+
+	if(new_amount)
+		amount = new_amount
 
 	START_PROCESSING(SSprocessing, src)
 
 /datum/component/rot/process()
 	var/atom/A = parent
 
-
-	var/turf/T = get_turf(A)
-	if(QDELETED(T) || !isopenturf(T))
+	var/turf/open/T = get_turf(A)
+	if(!istype(T) || T.return_air().return_pressure() > (WARNING_HIGH_PRESSURE - 10))
 		return
-	
-	var/datum/gas_mixture/turf_air = T.return_air()
-	if(!turf_air)
-		return
-	
-	if(!istype(T) || turf_air.return_pressure() > (WARNING_HIGH_PRESSURE - 10))
-		return
-	
 	var/area/area = get_area(T)
 	if(area.outdoors)
 		return
 
+	var/datum/gas_mixture/turf_air = T.return_air()
+	if(!turf_air)
+		return
 	var/datum/gas_mixture/stank_breath = T.remove_air(1 / turf_air.return_volume() * turf_air.total_moles())
 	if(!stank_breath)
 		return

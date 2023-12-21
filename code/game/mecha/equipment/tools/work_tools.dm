@@ -313,7 +313,7 @@
 				var/turf/open/space/S = target
 				occupant_message("Building Floor...")
 				if(do_after_cooldown(S))
-					S.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+					S.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 					if(play_sound)
 						playsound(S, 'sound/items/deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
@@ -322,7 +322,7 @@
 				energy_drain = 750
 				occupant_message("Building Wall...")
 				if(do_after_cooldown(F))
-					F.place_on_top(/turf/closed/wall)
+					F.PlaceOnTop(/turf/closed/wall)
 					if(play_sound)
 						playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()

@@ -521,10 +521,10 @@ SUBSYSTEM_DEF(shuttle)
 	// Then create a transit docking port in the middle
 	var/coords = M.return_coords(0, 0, dock_dir)
 	/*  0------2
-	*   |      |
-	*   |      |
-	*   |  x   |
-	*   3------1
+        |      |
+        |      |
+        |  x   |
+        3------1
 	*/
 
 	var/x0 = coords[1]
@@ -541,7 +541,6 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/turf/midpoint = locate(transit_x, transit_y, bottomleft.z)
 	if(!midpoint)
-		qdel(proposal)
 		return FALSE
 	var/area/old_area = midpoint.loc
 	old_area.turfs_to_uncontain += proposal.reserved_turfs
@@ -719,42 +718,39 @@ SUBSYSTEM_DEF(shuttle)
 		QDEL_NULL(preview_reservation)
 
 	if(!preview_shuttle)
-		load_template(loading_template)
+		if(load_template(loading_template))
+			preview_shuttle.linkup(loading_template, destination_port)
 		preview_template = loading_template
 
 	// get the existing shuttle information, if any
 	var/timer = 0
 	var/mode = SHUTTLE_IDLE
-	var/obj/docking_port/stationary/dest_dock
+	var/obj/docking_port/stationary/D
 
 	if(istype(destination_port))
-		dest_dock = destination_port
-	else if(existing_shuttle && replace)
+		D = destination_port
+	else if(existing_shuttle)
 		timer = existing_shuttle.timer
 		mode = existing_shuttle.mode
-		dest_dock = existing_shuttle.get_docked()
+		D = existing_shuttle.get_docked()
 
-	if(!dest_dock)
-		dest_dock = generate_transit_dock(preview_shuttle)
-
-	if(!dest_dock)
+	if(!D)
 		CRASH("No dock found for preview shuttle ([preview_template.name]), aborting.")
 
-	var/result = preview_shuttle.canDock(dest_dock)
+	var/result = preview_shuttle.canDock(D)
 	// truthy value means that it cannot dock for some reason
 	// but we can ignore the someone else docked error because we'll
 	// be moving into their place shortly
 	if((result != SHUTTLE_CAN_DOCK) && (result != SHUTTLE_SOMEONE_ELSE_DOCKED))
-		CRASH("Template shuttle [preview_shuttle] cannot dock at [dest_dock] ([result]).")
+		WARNING("Template shuttle [preview_shuttle] cannot dock at [D] ([result]).")
+		return
 
 	if(existing_shuttle)
 		existing_shuttle.jumpToNullSpace()
 
-	preview_shuttle.register(replace)
 	var/list/force_memory = preview_shuttle.movement_force
 	preview_shuttle.movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
-	preview_shuttle.mode = SHUTTLE_PREARRIVAL//No idle shuttle moving. Transit dock get removed if shuttle moves too long.
-	preview_shuttle.initiate_docking(dest_dock)
+	preview_shuttle.initiate_docking(D)
 	preview_shuttle.movement_force = force_memory
 
 	. = preview_shuttle
@@ -764,7 +760,7 @@ SUBSYSTEM_DEF(shuttle)
 	preview_shuttle.timer = timer
 	preview_shuttle.mode = mode
 
-	preview_shuttle.postregister(replace)
+	preview_shuttle.register()
 
 	// TODO indicate to the user that success happened, rather than just
 	// blanking the modification tab

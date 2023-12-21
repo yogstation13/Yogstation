@@ -132,17 +132,16 @@ SUBSYSTEM_DEF(mapping)
 	require_area_resort()
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
-	run_map_generation()
 
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
 	while (space_levels_so_far < config.space_ruin_levels)
+		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
+	// and one level with no ruins
+	for (var/i in 1 to config.space_empty_levels)
 		++space_levels_so_far
-	// Create empty space levels
-	while (space_levels_so_far < config.space_empty_levels + config.space_ruin_levels)
 		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
-		++space_levels_so_far
 
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
@@ -195,7 +194,7 @@ SUBSYSTEM_DEF(mapping)
 		message_admins("A shuttle arena failed to load!")
 		log_game("A shuttle arena failed to load!")
 #endif
-
+	run_map_generation()
 	// Add the transit level
 	var/datum/space_level/base_transit = add_reservation_zlevel()
 	require_area_resort()
@@ -219,8 +218,7 @@ SUBSYSTEM_DEF(mapping)
 		var/packetlen = length(packet)
 		while(packetlen)
 			if(MC_TICK_CHECK)
-				if(index)
-					lists_to_reserve.Cut(1, index)
+				lists_to_reserve.Cut(1, index)
 				return
 			var/turf/T = packet[packetlen]
 			T.empty(RESERVED_TURF_TYPE, RESERVED_TURF_TYPE, null, TRUE)
@@ -236,25 +234,6 @@ SUBSYSTEM_DEF(mapping)
 
 		index++
 	lists_to_reserve.Cut(1, index)
-
-/datum/controller/subsystem/mapping/proc/generate_z_level_linkages()
-	for(var/z_level in 1 to length(z_list))
-		generate_linkages_for_z_level(z_level)
-
-/datum/controller/subsystem/mapping/proc/generate_linkages_for_z_level(z_level)
-	if(!isnum(z_level) || z_level <= 0)
-		return FALSE
-
-	if(multiz_levels.len < z_level)
-		multiz_levels.len = z_level
-
-	var/z_above = level_trait(z_level, ZTRAIT_UP)
-	var/z_below = level_trait(z_level, ZTRAIT_DOWN)
-	if(!(z_above == TRUE || z_above == FALSE || z_above == null) || !(z_below == TRUE || z_below == FALSE || z_below == null))
-		stack_trace("Warning, numeric mapping offsets are deprecated. Instead, mark z level connections by setting UP/DOWN to true if the connection is allowed")
-	multiz_levels[z_level] = new /list(LARGEST_Z_LEVEL_INDEX)
-	multiz_levels[z_level][Z_LEVEL_UP] = !!z_above
-	multiz_levels[z_level][Z_LEVEL_DOWN] = !!z_below
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
 	if(clearing_reserved_turfs || !initialized) //in either case this is just not needed.
@@ -284,10 +263,6 @@ SUBSYSTEM_DEF(mapping)
 	if(!error)
 		returning += M
 		qdel(T, TRUE)
-
-/datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
-	RETURN_TYPE(/datum/turf_reservation)
-	return used_turfs[T]
 
 /* Nuke threats, for making the blue tiles on the station go RED
    Used by the AI doomsday and the self destruct nuke.
@@ -373,10 +348,7 @@ SUBSYSTEM_DEF(mapping)
 	// load the maps
 	for (var/P in parsed_maps)
 		var/datum/parsed_map/pm = P
-		var/bounds = pm.bounds
-		var/x_offset = bounds ? round(world.maxx / 2 - bounds[MAP_MAXX] / 2) + 1 : 1
-		var/y_offset = bounds ? round(world.maxy / 2 - bounds[MAP_MAXY] / 2) + 1 : 1
-		if (!pm.load(x_offset, y_offset, start_z + parsed_maps[P], no_changeturf = TRUE, new_z = TRUE))
+		if (!pm.load(1, 1, start_z + parsed_maps[P], no_changeturf = TRUE, new_z = TRUE))
 			errorList |= pm.original_path
 	if(!silent)
 		INIT_ANNOUNCE("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
@@ -523,9 +495,9 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	// Still supporting bans by filename
-	var/list/banned = generateMapList("lavaruinblacklist.txt")
-	banned += generateMapList("spaceruinblacklist.txt")
-	banned += generateMapList("iceruinblacklist.txt")
+	var/list/banned = generateMapList("[global.config.directory]/lavaruinblacklist.txt")
+	banned += generateMapList("[global.config.directory]/spaceruinblacklist.txt")
+	banned += generateMapList("[global.config.directory]/iceruinblacklist.txt")
 
 	for(var/item in sortList(subtypesof(/datum/map_template/ruin), /proc/cmp_ruincost_priority))
 		var/datum/map_template/ruin/ruin_type = item
@@ -552,7 +524,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			station_room_templates[R.name] = R //yogs
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
-	var/list/unbuyable = generateMapList("unbuyableshuttles.txt")
+	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")
 
 	for(var/item in subtypesof(/datum/map_template/shuttle))
 		var/datum/map_template/shuttle/shuttle_type = item
@@ -885,6 +857,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		GLOB.default_lighting_underlays_by_z.len = z_level
 	
 	GLOB.default_lighting_underlays_by_z[z_level] = mutable_appearance(LIGHTING_ICON, "transparent", z_level * 0.01, null, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM, offset_const = GET_Z_PLANE_OFFSET(z_level))
+/datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
+	RETURN_TYPE(/datum/turf_reservation)
+	return used_turfs[T]
+
 
 /datum/controller/subsystem/mapping/proc/get_map_weights()
 	var/list/previous_maps = list()
