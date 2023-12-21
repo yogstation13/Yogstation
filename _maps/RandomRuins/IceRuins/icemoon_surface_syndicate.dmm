@@ -6212,6 +6212,10 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/syndicate_icemoon/engine)
+"Mr" = (
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "Mt" = (
 /obj/effect/turf_decal/stripes{
 	dir = 1
@@ -6375,6 +6379,13 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
 "Nx" = (
@@ -10432,7 +10443,7 @@ FK
 Wk
 eC
 YC
-EV
+Mr
 EV
 rQ
 EV
