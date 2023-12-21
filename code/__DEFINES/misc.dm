@@ -253,18 +253,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
 #define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"
 
-//debug printing macros
-#define debug_world(msg) if (GLOB.Debug2) to_chat(world, \
-	type = MESSAGE_TYPE_DEBUG, \
-	text = "DEBUG: [msg]")
-#define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, \
-	type = MESSAGE_TYPE_DEBUG, \
-	text = "DEBUG: [msg]")
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.permissions.admins, \
-	type = MESSAGE_TYPE_DEBUG, \
-	text = "DEBUG: [msg]")
-#define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
-
 #define INCREMENT_TALLY(L, stat) if(L[stat]){L[stat]++}else{L[stat] = 1}
 
 //TODO Move to a pref
