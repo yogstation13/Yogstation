@@ -410,7 +410,7 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 		var/undismembermerable_limbs = 0
 		for(var/X in C.bodyparts)
 			var/obj/item/bodypart/BP = X
-			if(!(BP.body_part & (HEAD|CHEST)))
+			if(BP.body_part != HEAD && BP.body_part != CHEST)
 				if(BP.dismemberable)
 					parts += BP
 				else

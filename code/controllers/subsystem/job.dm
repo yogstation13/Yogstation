@@ -893,66 +893,38 @@ SUBSYSTEM_DEF(job)
 		return
 
 	//bad mojo
-	if(SSmapping.config.cryo_spawn)
-		var/area/shuttle/arrival/A = GLOB.areas_by_type[/area/crew_quarters/cryopods]
-		if(A)
-			var/list/pods = list()
-			var/list/unoccupied_pods = list()
-			for(var/obj/machinery/cryopod/pod in A)
-				pods |= pod
-				if(!pod.occupant)
-					unoccupied_pods |= pod
-			if(length(unoccupied_pods)) //if we have any unoccupied ones
-				destination = pick(unoccupied_pods)
-			else if(length(pods))
-				destination = pick(pods) //if they're all full somehow??
-			else //no pods at all
-				var/list/available = list()
-				for(var/turf/T in A)
-					if(!T.is_blocked_turf(TRUE))
-						available += T
-				if(length(available))
-					destination = pick(available)
-		if(destination)
-			destination.JoinPlayerHere(M, FALSE)
-		else
-			var/msg = "Unable to send mob [M] to late join (CRYOPODS)!"
-			message_admins(msg)
-			CRASH(msg)
+	var/area/shuttle/arrival/A = GLOB.areas_by_type[/area/shuttle/arrival]
+	if(A)
+		//first check if we can find a chair
+		var/obj/structure/chair/C = locate() in A
+		if(C)
+			C.JoinPlayerHere(M, buckle)
+			return
 
+		//last hurrah
+		var/list/avail = list()
+		for(var/turf/T in A)
+			if(!T.is_blocked_turf(TRUE))
+				avail += T
+		if(avail.len)
+			destination = pick(avail)
+			destination.JoinPlayerHere(M, FALSE)
+			return
+
+	//pick an open spot on arrivals and dump em
+	var/list/arrivals_turfs = shuffle(get_area_turfs(/area/shuttle/arrival))
+	if(arrivals_turfs.len)
+		for(var/turf/T in arrivals_turfs)
+			if(!T.is_blocked_turf(TRUE))
+				T.JoinPlayerHere(M, FALSE)
+				return
+		//last chance, pick ANY spot on arrivals and dump em
+		destination = arrivals_turfs[1]
+		destination.JoinPlayerHere(M, FALSE)
 	else
-		var/area/shuttle/arrival/A = GLOB.areas_by_type[/area/shuttle/arrival]
-		if(A)
-			//first check if we can find a chair
-			var/obj/structure/chair/C = locate() in A
-			if(C)
-				C.JoinPlayerHere(M, buckle)
-				return
-
-			//last hurrah
-			var/list/avail = list()
-			for(var/turf/T in A)
-				if(!T.is_blocked_turf(TRUE))
-					avail += T
-			if(avail.len)
-				destination = pick(avail)
-				destination.JoinPlayerHere(M, FALSE)
-				return
-
-		//pick an open spot on arrivals and dump em
-		var/list/arrivals_turfs = shuffle(get_area_turfs(/area/shuttle/arrival))
-		if(arrivals_turfs.len)
-			for(var/turf/T in arrivals_turfs)
-				if(!T.is_blocked_turf(TRUE))
-					T.JoinPlayerHere(M, FALSE)
-					return
-			//last chance, pick ANY spot on arrivals and dump em
-			destination = arrivals_turfs[1]
-			destination.JoinPlayerHere(M, FALSE)
-		else
-			var/msg = "Unable to send mob [M] to late join!"
-			message_admins(msg)
-			CRASH(msg)
+		var/msg = "Unable to send mob [M] to late join!"
+		message_admins(msg)
+		CRASH(msg)
 
 ///Lands specified mob at a random spot in the hallways
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)

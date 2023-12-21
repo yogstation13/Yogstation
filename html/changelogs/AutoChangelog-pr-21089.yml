@@ -1,0 +1,8 @@
+author: " Mqiib, @RG4ORDR @SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Sidewinder mechs made moderately tougher"
+  - tweak: "Sidewinder mechs slightly better in melee than before"
+  - rscadd: "Sidewinder mechs have superior projectile deflection, watch those lasers!"
+  - bugfix: "Directional damage modifiers and deflection modifiers work for melee too now"
+  - tweak: "Demolition modifiers are half-effective versus non-combat mechs and completely ineffective vs combat mechs"

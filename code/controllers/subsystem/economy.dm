@@ -1,3 +1,6 @@
+GLOBAL_VAR_INIT(stolen_paycheck_money, 0)
+
+
 SUBSYSTEM_DEF(economy)
 	name = "Economy"
 	wait = 5 MINUTES
