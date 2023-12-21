@@ -33,7 +33,7 @@
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 /// Used for debug messages to the admins
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.permissions.admins, \
+#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 /// Used for debug messages to the server
