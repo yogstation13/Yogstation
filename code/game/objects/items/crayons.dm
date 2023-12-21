@@ -82,7 +82,7 @@
 	var/value = max(read) // Reads the V from HSV, essentially the brightness
 
 	if(value >= 64) // Min V is 64, 3 quarters to black from white
-		return
+		return color
 
 	if(value > 0) // Div by zero avoidance
 		var/difference = 64/value

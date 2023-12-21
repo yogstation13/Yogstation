@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Various mood descriptions now properly start on a new line."
+  - bugfix: "Space cigarettes now properly spawn with their branded cigarette rather than the base cigarette."
+  - spellcheck: "Ending punctuation for a few mood descriptions."
