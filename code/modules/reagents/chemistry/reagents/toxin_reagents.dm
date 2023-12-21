@@ -1013,3 +1013,21 @@
 	color = "#67423A" // rgb: 127, 132, 0
 	toxpwr = 0.1
 	taste_description = "mushrooms"
+
+/datum/reagent/toxin/ambusher_toxin
+	name = "Unknown Toxin"
+	description = "A toxin from an unknown source that attacks the leg muscles, slowing the victim. Its effects can, however, be nullified by Epinephrine"
+	color = "#2d4816"
+	toxpwr = 0
+	metabolization_rate = 5 * REAGENTS_METABOLISM
+
+/datum/reagent/toxin/ambusher_toxin/on_mob_life(mob/living/L)
+	..()
+	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
+		L.remove_movespeed_modifier(type) //Remove slowdown from toxin if there is any
+	else
+		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.5) //Slow them down
+		L.balloon_alert(L, "Your legs feel weak!")
+
+/datum/reagent/toxin/ambusher_toxin/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
