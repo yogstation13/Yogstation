@@ -1730,6 +1730,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/knocked_item = FALSE
 			if(!is_type_in_typecache(target_held_item, GLOB.shove_disarming_types))
 				target_held_item = null
+			if(isgun(target_held_item) && prob(70))
+				var/turf/curloc = get_turf(src)
+				var/atom/target_aimed_atom = target.client?.mouse_object_ref?.resolve()
+				var/turf/aimloc = get_turf(target_aimed_atom)
+				if(target_aimed_atom && istype(aimloc) && istype(curloc))
+					var/obj/item/gun/held_gun = target_held_item
+					held_gun.process_fire(target_aimed_atom, target, bonus_spread = 10)
 			if(!target.has_movespeed_modifier(MOVESPEED_ID_SHOVE))
 				target.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
 				if(target_held_item)

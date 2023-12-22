@@ -1048,10 +1048,13 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "agW" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/structure/chair/americandiner{
 	dir = 8
 	},
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "agX" = (
@@ -5822,8 +5825,11 @@
 /turf/open/floor/engine/cult,
 /area/library)
 "aPl" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/structure/table/wood/fancy,
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aPm" = (
@@ -16447,12 +16453,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
-"cYD" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "cZd" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -17215,10 +17215,13 @@
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
 "dnS" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/structure/chair/americandiner{
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "dof" = (
@@ -19176,9 +19179,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "ead" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -21426,8 +21426,8 @@
 	id = "barcounter";
 	name = "bar shutters"
 	},
-/obj/machinery/coffeemaker,
 /obj/item/reagent_containers/food/drinks/bottle/coffeepot,
+/obj/machinery/coffeemaker/impressa,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "eOj" = (
@@ -22075,6 +22075,9 @@
 	id = "barcounter";
 	name = "bar shutters"
 	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "eZl" = (
@@ -22230,10 +22233,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
 "fdB" = (
-/obj/effect/turf_decal/siding/wood/corner/thin{
-	dir = 1
-	},
-/obj/effect/spawner/xmastree,
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "fdO" = (
@@ -23616,7 +23616,18 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "fBR" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/paystand/register{
 	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -26197,6 +26208,9 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = -5;
 	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -29618,7 +29632,7 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
 	req_access_txt = "0";
-	req_one_access_txt = "12,25"
+	req_one_access_txt = "12;25"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -34783,11 +34797,7 @@
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 8
 	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/machinery/light{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -39280,9 +39290,12 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "lna" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/item/kirbyplants/random,
 /obj/machinery/light/floor,
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
@@ -45766,16 +45779,6 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"nGU" = (
-/obj/machinery/button/door{
-	id = "kitchen";
-	name = "Kitchen Shutters Control";
-	pixel_x = -27;
-	pixel_y = 34;
-	req_access_txt = "28"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "nHm" = (
 /obj/structure/closet/wardrobe/pjs,
 /turf/open/floor/plasteel,
@@ -46067,6 +46070,9 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barcounter";
 	name = "bar shutters"
+	},
+/obj/machinery/paystand/register{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -48947,13 +48953,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
-"oSG" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/turf/closed/wall,
-/area/crew_quarters/bar)
 "oSN" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 4
@@ -49854,6 +49853,10 @@
 	pixel_x = -1;
 	pixel_y = -35
 	},
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "pkD" = (
@@ -57710,10 +57713,14 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "saC" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
-/turf/closed/wall,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "saG" = (
 /obj/effect/turf_decal/stripes/line,
@@ -58600,7 +58607,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "sth" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -2;
@@ -58610,6 +58616,10 @@
 	pixel_x = 5;
 	pixel_y = -2
 	},
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "sti" = (
@@ -60254,16 +60264,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"sYA" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -23;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "sYJ" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -61367,6 +61367,10 @@
 	name = "privacy shutter"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barcounter";
+	name = "bar shutters"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "tvb" = (
@@ -70112,13 +70116,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"wFS" = (
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 8
-	},
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "wGq" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -71339,9 +71336,12 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "xgE" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/item/kirbyplants/random,
 /obj/machinery/light/floor,
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
 	},
@@ -73518,13 +73518,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
 "xYx" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
-/obj/structure/chair/americandiner{
-	dir = 8
-	},
-/turf/open/floor/wood,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "xYD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -110103,7 +110098,7 @@ mkr
 aql
 fUp
 cAH
-oSG
+aql
 esY
 aql
 tBu
@@ -110360,7 +110355,7 @@ ggj
 aql
 aql
 ayz
-saC
+aql
 iVb
 aql
 kLq
@@ -110885,7 +110880,7 @@ jhx
 jhx
 ocO
 djq
-fdB
+jYy
 mlf
 dnS
 joU
@@ -111137,13 +111132,13 @@ ckQ
 jCi
 mpT
 mpT
-wFS
-wFS
 mpT
-ead
+mpT
+mpT
+mpT
 jYy
-drL
-cyr
+xYx
+mlf
 aPl
 qiP
 aCr
@@ -111390,18 +111385,18 @@ aAh
 aAh
 aAh
 hLj
-fgc
-fgc
-sYS
-uBF
-lOY
-lOY
-clS
-fgc
-hCu
-mtr
-fgc
-xYx
+aql
+saC
+drL
+fdB
+fdB
+fdB
+drL
+ead
+drL
+drL
+cyr
+agW
 qiP
 aCr
 inS
@@ -111648,15 +111643,15 @@ bPA
 aAh
 cZh
 fgc
-fJj
-nGU
-fKR
-fKR
-fKR
+fgc
+sYS
+uBF
+lOY
+clS
 fBR
-sYA
-fKR
-cYD
+fgc
+hCu
+mtr
 fgc
 iSq
 nCt
@@ -113455,7 +113450,7 @@ fgc
 pLO
 bba
 fKR
-fKR
+fJj
 jMv
 sKP
 hRx
