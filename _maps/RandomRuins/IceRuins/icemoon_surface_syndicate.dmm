@@ -2083,6 +2083,8 @@
 /obj/structure/rack,
 /obj/item/slime_scanner,
 /obj/effect/turf_decal/tile/purple/fourcorners,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "mQ" = (
@@ -5236,6 +5238,8 @@
 /obj/item/slime_scanner,
 /obj/structure/window/reinforced/spawner/west,
 /obj/effect/turf_decal/tile/purple/fourcorners,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "Ge" = (
