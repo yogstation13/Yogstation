@@ -17,6 +17,11 @@ map yogstation
 	votable
 endmap
 
+map ballstation
+	votable
+	voteweight 0
+endmap
+
 map icemeta
 	minplayers 25
 	votable
