@@ -1,4 +1,48 @@
 //////////////////////////////////////////////////////////////////////////
+//-------------------------Warlock basic staff--------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/toggle/dark_staff
+	name = "Shadow Staff"
+	desc = "Pull darkness from the void, knitting it into a staff."
+	panel = null
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "pass"
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	var/obj/item/gun/magic/darkspawn/staff
+	/// Flags used for different effects that apply when a projectile hits something
+	var/effect_flags
+
+/datum/action/cooldown/spell/toggle/dark_staff/process()
+	active = owner.is_holding_item_of_type(/obj/item/gun/magic/darkspawn)
+	. = ..()
+
+/datum/action/cooldown/spell/toggle/dark_staff/can_cast_spell(feedback)
+	if(!owner.get_empty_held_indexes() && !active)
+		if(feedback)
+			to_chat(owner, span_warning("You need an empty hand for this!"))
+		return FALSE
+	. = ..()
+
+/datum/action/cooldown/spell/toggle/dark_staff/Enable()
+	to_chat(owner, span_velvet("Shhouna"))
+	owner.visible_message(span_warning("[owner] knits shadows together into a staff!"), span_velvet("You summon your staff."))
+	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
+	if(!staff)
+		staff = new (owner)
+	staff.effect_flags = effect_flags
+	owner.put_in_hands(staff)
+
+/datum/action/cooldown/spell/toggle/dark_staff/Disable()
+	to_chat(owner, span_velvet("Haoo"))
+	owner.visible_message(span_warning("[owner]'s staff dissipates!"), span_velvet("You dispel the staff."))
+	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
+	staff.moveToNullspace()
+
+//////////////////////////////////////////////////////////////////////////
 //---------------------Warlock light eater ability----------------------// little bit of anti-fire too
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/extinguish
