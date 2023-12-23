@@ -338,7 +338,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	cooldown_time = 10 SECONDS
+	cooldown_time = 3 MINUTES
 	psi_cost = 100 //big fuckin layzer
 	sound = null
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
@@ -393,6 +393,7 @@
 	if(times <= 0)
 		return
 	playsound(user, 'sound/effects/magic.ogg', 40, TRUE)
+	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
 	if(first)
 		new /obj/effect/temp_visual/cult/rune_spawn/rune1(user.loc, 2 SECONDS, "#21007F")
 	else
@@ -408,7 +409,7 @@
 	if(times <= 0)
 		return
 	new /obj/effect/temp_visual/dir_setting/void_shift/out(user.loc, user.dir)
-	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 80, FALSE)
+	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 120, FALSE, 5)
 	var/turf/targets_from = get_turf(user)
 	var/second = FALSE
 	var/set_angle = angle
@@ -420,15 +421,16 @@
 		second = TRUE //Handles beam firing in pairs
 		var/turf/temp_target = get_turf_in_angle(set_angle, targets_from, 40)
 		for(var/turf/T in getline(targets_from,temp_target))
-			for(var/mob/living/target in range(1, T)) //bit of aoe around the beam (super fucking intensive lol)
+			for(var/mob/living/target in range(1, T)) //bit of aoe around the beam (probably super fucking intensive lol)
 				if(HAS_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK)) //prevents shotgunning
 					continue
 				ADD_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK, type) //prevents shotgunning
 				addtimer(CALLBACK(src, PROC_REF(remove_protection), target), 1, TIMER_OVERRIDE | TIMER_UNIQUE)
 				if(is_darkspawn_or_veil(target))
-					to_chat(target, "beam is safe, you heal")
-				else if(target.density) //if they lie down, they're alright
-					target.adjustFireLoss(20)
+					target.heal_ordered_damage(40, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+					playsound(target, 'sound/magic/staff_healing.ogg', 40, 1)
+				else if(target.density) //if they lie down, they'll avoid it. git gud
+					target.adjustFireLoss(40)
 					playsound(target, 'sound/weapons/sear.ogg', 100, 1)
 					target.emote("scream")
 		user.Beam(temp_target, "shadow_beam", 'icons/effects/beam.dmi', (beam_delay - (beam_delay / 4)), INFINITY, /obj/effect/ebeam/darkspawn) //lasts for 75% of the delay between beams
