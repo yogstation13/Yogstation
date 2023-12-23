@@ -436,7 +436,6 @@
 				ADD_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK, type) //prevents shotgunning
 				addtimer(CALLBACK(src, PROC_REF(remove_protection), target), 1, TIMER_OVERRIDE | TIMER_UNIQUE)
 				if(is_darkspawn_or_veil(target))
-					new/obj/effect/temp_visual/dir_setting/void_shift(get_turf(target), target.dir)
 					target.heal_ordered_damage(50 / beam_number, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 					playsound(target, 'sound/magic/staff_healing.ogg', 20, 1, -1) //super quiet, just to tell people that healing is happening
 				else if(target.density) //if they lie down, they'll avoid it. git gud
