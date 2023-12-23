@@ -9,6 +9,7 @@
 	flags_1 = NONE
 	break_strength = 2
 	slowdown = 4
+	gender = FEMALE //lol examine text? (this actually matters, don't change it)
 
 /obj/item/restraints/legcuffs/beartrap/dark/Initialize(mapload)
 	. = ..()

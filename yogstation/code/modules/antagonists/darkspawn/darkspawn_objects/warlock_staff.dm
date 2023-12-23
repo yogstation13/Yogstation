@@ -29,7 +29,6 @@
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
 
-
 ///////////////////FANCY PROJECTILE EFFECTS//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_projectile_hit(datum/source, atom/movable/firer, atom/target, angle)
 	if(isliving(target))

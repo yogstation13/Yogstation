@@ -250,6 +250,9 @@
 		return FALSE
 	. = ..()
 	
+/obj/effect/ebeam/darkspawn
+	name = "void beam"
+
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
 	to_chat(owner, span_velvet("Qokxlez..."))
@@ -266,7 +269,6 @@
 		to_chat(owner, span_velvet("...qokshe"))
 		return TRUE
 	return FALSE
-
 
 //////////////////////////////////////////////////////////////////////////
 //------------------Literally just goliath tendrils---------------------//
@@ -319,3 +321,119 @@
 	var/datum/hallucination/picked_hallucination = pick(GLOB.hallucination_list)//not using weights
 	target.cause_hallucination(picked_hallucination, "mass hallucination")
 
+//////////////////////////////////////////////////////////////////////////
+//----------------I stole blood beam from blood cultists----------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/shadow_beam
+	name = "Shadow beam"
+	desc = "Shadow beam."
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon_state = "Kindle"
+	active_icon_state = "Kindle"
+	base_icon_state = "Kindle"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	panel = null
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags =  AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	cooldown_time = 10 SECONDS
+	psi_cost = 100 //big fuckin layzer
+	sound = null
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
+	cast_range = INFINITY //lol
+	var/charging = FALSE
+	var/firing = FALSE
+	var/angle
+	var/charge_ticks = 8
+	var/beam_volleys = 5
+	var/beam_delay = 1 SECONDS
+
+/datum/action/cooldown/spell/pointed/shadow_beam/can_cast_spell(feedback)
+	if(charging || firing)
+		return
+	. = ..()
+
+/datum/action/cooldown/spell/pointed/shadow_beam/cast(atom/cast_on)
+	. = ..()
+	if(firing || charging)
+		return
+
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/user = owner	
+	var/client/player = user.client
+	if(ishuman(user) && player)
+		angle = mouse_angle_from_client(player)
+	else
+		return
+
+	charging = TRUE
+	to_chat(user, span_velvet("Qwo..."))
+	to_chat(user, span_velvet("You start building up psionic energy."))
+	INVOKE_ASYNC(src, PROC_REF(charge), user)
+	if(do_after(user, charge_ticks SECONDS, user))
+		firing = TRUE
+		INVOKE_ASYNC(src, PROC_REF(fire_beams), user)
+		to_chat(user, span_progenitor("...GX'KSHA!"))
+		if(!do_after(user, beam_volleys * beam_delay, user))
+			user.Paralyze(4 SECONDS)
+			to_chat(user, span_userdanger("The unreleased psionic energy lashes back, disabling you."))
+		// if(isdarkspawn(user))
+		// 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+		// 	darkspawn.block_psi(30 SECONDS, type)
+		firing = FALSE
+	charging = FALSE
+
+/datum/action/cooldown/spell/pointed/shadow_beam/proc/charge(mob/user, times = charge_ticks, first = TRUE)
+	if(!charging)
+		return
+	if(times <= 0)
+		return
+	playsound(user, 'sound/effects/magic.ogg', 40, TRUE)
+	if(first)
+		new /obj/effect/temp_visual/cult/rune_spawn/rune1(user.loc, 2 SECONDS, "#21007F")
+	else
+		new /obj/effect/temp_visual/cult/rune_spawn/rune1/reverse(user.loc, 2 SECONDS, "#21007F")
+	addtimer(CALLBACK(src, PROC_REF(charge), user, times - 1, !first), 1 SECONDS)
+
+/obj/effect/temp_visual/cult/rune_spawn/rune1/reverse //spins the other way, that's it
+	turnedness = 179
+
+/datum/action/cooldown/spell/pointed/shadow_beam/proc/fire_beams(mob/user, spread = 15, times = beam_volleys)
+	if(!firing)
+		return
+	if(times <= 0)
+		return
+	new /obj/effect/temp_visual/dir_setting/void_shift/out(user.loc, user.dir)
+	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 80, FALSE)
+	var/turf/targets_from = get_turf(user)
+	var/second = FALSE
+	var/set_angle = angle
+	for(var/i in 1 to 2)
+		if(second)
+			set_angle = angle - spread
+		else
+			set_angle = angle + spread
+		second = TRUE //Handles beam firing in pairs
+		var/turf/temp_target = get_turf_in_angle(set_angle, targets_from, 40)
+		for(var/turf/T in getline(targets_from,temp_target))
+			for(var/mob/living/target in range(1, T)) //bit of aoe around the beam (super fucking intensive lol)
+				if(HAS_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK)) //prevents shotgunning
+					continue
+				ADD_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK, type) //prevents shotgunning
+				addtimer(CALLBACK(src, PROC_REF(remove_protection), target), 1, TIMER_OVERRIDE | TIMER_UNIQUE)
+				if(is_darkspawn_or_veil(target))
+					to_chat(target, "beam is safe, you heal")
+				else if(target.density) //if they lie down, they're alright
+					target.adjustFireLoss(20)
+					playsound(target, 'sound/weapons/sear.ogg', 100, 1)
+					target.emote("scream")
+		user.Beam(temp_target, "shadow_beam", 'icons/effects/beam.dmi', (beam_delay - (beam_delay / 4)), INFINITY, /obj/effect/ebeam/darkspawn) //lasts for 75% of the delay between beams
+	addtimer(CALLBACK(src, PROC_REF(fire_beams), user, max(spread - 5, 0)), beam_delay, times - 1)
+
+/datum/action/cooldown/spell/pointed/shadow_beam/proc/remove_protection(mob/living/victim)
+	if(victim)
+		REMOVE_TRAIT(victim, TRAIT_DARKSPAWN_BEAMBLOCK, type)
