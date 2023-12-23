@@ -413,7 +413,8 @@
 	var/turf/targets_from = get_turf(user)
 	var/second = FALSE
 	var/set_angle = angle
-	for(var/i in 1 to 2)
+	var/beam_number = spread > 0 ? 2 : 1 //multiple beams that are weaker before they converge
+	for(var/i in 1 to beam_number)
 		if(second)
 			set_angle = angle - spread
 		else
@@ -427,10 +428,10 @@
 				ADD_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK, type) //prevents shotgunning
 				addtimer(CALLBACK(src, PROC_REF(remove_protection), target), 1, TIMER_OVERRIDE | TIMER_UNIQUE)
 				if(is_darkspawn_or_veil(target))
-					target.heal_ordered_damage(40, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+					target.heal_ordered_damage(60 / beam_number, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 					playsound(target, 'sound/magic/staff_healing.ogg', 40, 1)
 				else if(target.density) //if they lie down, they'll avoid it. git gud
-					target.adjustFireLoss(40)
+					target.adjustFireLoss(60 / beam_number)
 					playsound(target, 'sound/weapons/sear.ogg', 100, 1)
 					target.emote("scream")
 		user.Beam(temp_target, "shadow_beam", 'icons/effects/beam.dmi', (beam_delay - (beam_delay / 4)), INFINITY, /obj/effect/ebeam/darkspawn) //lasts for 75% of the delay between beams
