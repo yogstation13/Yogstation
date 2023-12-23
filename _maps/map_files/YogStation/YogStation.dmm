@@ -7009,9 +7009,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "aZq" = (
-/obj/machinery/camera{
-	c_tag = "Conference Room"
-	},
 /obj/machinery/keycard_auth{
 	pixel_y = 25
 	},
@@ -11551,7 +11548,7 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Service Hall Interior";
+	c_tag = "Library West";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -14896,10 +14893,6 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "czU" = (
-/obj/machinery/camera{
-	c_tag = "Bar Southwest";
-	dir = 1
-	},
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -24
@@ -17169,6 +17162,9 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 1
 	},
+/obj/machinery/camera{
+	c_tag = "Custodial Closet"
+	},
 /turf/open/floor/plasteel,
 /area/janitor)
 "dne" = (
@@ -18641,6 +18637,10 @@
 /obj/structure/sign/painting{
 	persistence_id = "public";
 	pixel_x = -32
+	},
+/obj/machinery/camera{
+	c_tag = "Library East";
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/library)
@@ -23258,6 +23258,11 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 1
 	},
+/obj/machinery/camera{
+	c_tag = "Medbay";
+	network = list("ss13","medbay");
+	pixel_x = 21
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "fvD" = (
@@ -24962,10 +24967,6 @@
 /area/bridge)
 "gaq" = (
 /obj/structure/table,
-/obj/machinery/camera{
-	c_tag = "Experimentor Lab";
-	network = list("ss13","rd")
-	},
 /obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
@@ -24975,6 +24976,10 @@
 /obj/item/stack/packageWrap,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Experimentor Lab";
+	network = list("ss13","rd")
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -26582,6 +26587,13 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"gIp" = (
+/obj/machinery/camera{
+	c_tag = "Bar Southwest";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "gIq" = (
 /obj/machinery/power/apc{
 	areastring = "/area/engine/atmos/foyer";
@@ -38062,6 +38074,10 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 4
 	},
+/obj/machinery/camera{
+	c_tag = "Head of Personnel's Office";
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "kPL" = (
@@ -39562,9 +39578,6 @@
 	department = "Crew Quarters";
 	pixel_y = 30
 	},
-/obj/machinery/camera{
-	c_tag = "Dormitory North"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -40231,10 +40244,6 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "lIo" = (
-/obj/machinery/camera{
-	c_tag = "Chief Medical Office";
-	network = list("ss13","medbay")
-	},
 /obj/machinery/modular_computer/console/preset/command/cmo,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
@@ -41143,7 +41152,7 @@
 /area/maintenance/disposal)
 "maQ" = (
 /obj/machinery/camera{
-	c_tag = "Library South";
+	c_tag = "Library East";
 	dir = 8
 	},
 /obj/effect/landmark/start/assistant,
@@ -41233,6 +41242,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"mcr" = (
+/obj/machinery/camera{
+	c_tag = "Conference Room";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "mcw" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only,
@@ -45671,10 +45687,6 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "nEv" = (
-/obj/machinery/camera{
-	c_tag = "Construction Area";
-	dir = 1
-	},
 /obj/structure/table,
 /obj/item/flashlight,
 /turf/open/floor/plating,
@@ -49070,6 +49082,18 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"oVH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Dormitory"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "oVO" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
@@ -49982,6 +50006,10 @@
 /obj/machinery/photocopier/faxmachine{
 	department = "Chief Medical Officer";
 	name = "Chief Medical Officer's Fax Machine"
+	},
+/obj/machinery/camera{
+	c_tag = "Chief Medical Office";
+	network = list("ss13","medbay")
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
@@ -57308,6 +57336,13 @@
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/port/aft)
+"rSz" = (
+/obj/machinery/camera{
+	c_tag = "Theater";
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/bar)
 "rST" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
@@ -61770,10 +61805,6 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "tDD" = (
-/obj/machinery/camera{
-	c_tag = "Head of Personnel's Office";
-	dir = 1
-	},
 /obj/machinery/recharger/wallrecharger{
 	pixel_x = 4;
 	pixel_y = -25
@@ -63716,10 +63747,6 @@
 /area/hallway/primary/central)
 "uqt" = (
 /obj/structure/closet/l3closet/janitor,
-/obj/machinery/camera{
-	c_tag = "Custodial Closet";
-	dir = 8
-	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/firealarm{
 	dir = 8;
@@ -68639,6 +68666,18 @@
 "vZM" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"vZV" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/camera{
+	c_tag = "Dormitory North";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "vZW" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/structure/window/reinforced{
@@ -71689,6 +71728,12 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
+"xmP" = (
+/obj/machinery/camera{
+	c_tag = "Construction Area"
+	},
+/turf/open/floor/plating,
+/area/construction)
 "xng" = (
 /obj/structure/closet/secure_closet/warden,
 /turf/open/floor/plasteel/showroomfloor,
@@ -102407,7 +102452,7 @@ jwK
 aZC
 dzR
 bcZ
-xul
+mcr
 sXS
 bgI
 mqI
@@ -102437,7 +102482,7 @@ bfv
 bfv
 aaa
 lsK
-bNJ
+xmP
 mrp
 cCd
 bNJ
@@ -106234,7 +106279,7 @@ ekw
 dfz
 iZh
 wQG
-dlZ
+vZV
 ocg
 jDM
 dlZ
@@ -107777,7 +107822,7 @@ arf
 arf
 arf
 arf
-jmh
+oVH
 bur
 qXo
 lpv
@@ -109599,7 +109644,7 @@ aFd
 gWx
 lna
 iiF
-aCr
+gIp
 aql
 cuA
 aYV
@@ -111912,7 +111957,7 @@ tYJ
 mtr
 acW
 iXL
-rpB
+rSz
 aql
 rRs
 aYV
