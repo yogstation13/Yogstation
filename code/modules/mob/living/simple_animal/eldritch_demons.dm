@@ -276,7 +276,7 @@
 			var/list/parts = list()
 			for(var/X in C.bodyparts)
 				var/obj/item/bodypart/bodypart = X
-				if(bodypart.body_part != HEAD && bodypart.body_part != CHEST && bodypart.body_part != LEG_LEFT && bodypart.body_part != LEG_RIGHT)
+				if(!(bodypart.body_part & HEAD|CHEST|LEG_LEFT|LEG_RIGHT))
 					if(bodypart.dismemberable)
 						parts += bodypart
 			if(length(parts) && prob(10))

@@ -39,6 +39,7 @@ export const NtosAtmos = (props, context) => {
                 key={gas.name}
                 label={gas.name}>
                 <ProgressBar
+                  color={gas.ui_color}
                   value={gas.percentage}
                   minValue={0}
                   maxValue={gasMaxPercentage}>

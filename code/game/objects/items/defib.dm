@@ -153,7 +153,7 @@
 	. = ..()
 
 	if(cell && !(. & EMP_PROTECT_CONTENTS))
-		deductcharge(5000 / severity)
+		deductcharge(500 * severity)
 
 	if (. & EMP_PROTECT_SELF)
 		return
@@ -461,12 +461,14 @@
 		return
 	if(!req_defib && !combat)
 		return
-	busy = TRUE
 	M.visible_message(span_danger("[user] has touched [M] with [src]!"), \
 			span_userdanger("[user] has touched [M] with [src]!"))
-	M.adjustStaminaLoss(50)
-	M.Knockdown(100)
-	M.updatehealth() //forces health update before next life tick //isn't this done by adjustStaminaLoss anyway?
+	var/hit_percent = (100 - M.getarmor(user.zone_selected, ELECTRIC)) / 100
+	if(!hit_percent)
+		return
+	busy = TRUE
+	M.adjustStaminaLoss(50 * hit_percent)
+	M.Knockdown((10 * hit_percent) SECONDS)
 	playsound(src,  'sound/machines/defib_zap.ogg', 50, 1, -1)
 	M.emote("gasp")
 	log_combat(user, M, "stunned", src)

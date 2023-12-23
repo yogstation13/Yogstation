@@ -74,10 +74,7 @@
 	. = 0
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/affecting = X
-		if(affecting.body_part == ARM_RIGHT)
-			if(!check_disabled || !affecting.bodypart_disabled)
-				.++
-		if(affecting.body_part == ARM_LEFT)
+		if(affecting.body_part & (ARM_RIGHT|ARM_LEFT))
 			if(!check_disabled || !affecting.bodypart_disabled)
 				.++
 
@@ -97,10 +94,7 @@
 	. = 0
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/affecting = X
-		if(affecting.body_part == LEG_RIGHT)
-			if(!check_disabled || !affecting.bodypart_disabled)
-				.++
-		if(affecting.body_part == LEG_LEFT)
+		if(affecting.body_part & (LEG_RIGHT|LEG_LEFT))
 			if(!check_disabled || !affecting.bodypart_disabled)
 				.++
 
@@ -290,12 +284,12 @@
 		var/obj/item/bodypart/O = X
 		var/obj/item/bodypart/N
 		if((!O.use_digitigrade && swap_back == FALSE) || (O.use_digitigrade && swap_back == TRUE))
-			if(O.body_part == LEG_LEFT)
+			if(O.body_part & LEG_LEFT)
 				if(swap_back == TRUE)
 					N = new /obj/item/bodypart/l_leg
 				else
 					N = new /obj/item/bodypart/l_leg/digitigrade
-			else if(O.body_part == LEG_RIGHT)
+			else if(O.body_part & LEG_RIGHT)
 				if(swap_back == TRUE)
 					N = new /obj/item/bodypart/r_leg
 				else

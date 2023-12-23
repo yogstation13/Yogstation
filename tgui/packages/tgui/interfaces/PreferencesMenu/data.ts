@@ -81,6 +81,7 @@ export type Quirk = {
   name: string;
   value: number;
   mood: BooleanLike;
+  blacklisted: string;
 };
 
 export type QuirkInfo = {

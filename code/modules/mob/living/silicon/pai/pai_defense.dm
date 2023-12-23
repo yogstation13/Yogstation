@@ -6,16 +6,16 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	take_holo_damage(50/severity)
-	Paralyze(400/severity)
-	silent = max(30/severity, silent)
+	take_holo_damage(5 * severity)
+	Paralyze(40 * severity)
+	silent = max(3 * severity, silent)
 	if(holoform)
 		fold_in(force = TRUE)
 	//Need more effects that aren't instadeath or permanent law corruption.
 	//Ask and you shall receive
 	switch(rand(1, 3))
 		if(1)
-			adjust_stutter(1 MINUTES / severity)
+			adjust_stutter((6 * severity) SECONDS)
 			to_chat(src, span_danger("Warning: Feedback loop detected in speech module."))
 		if(2)
 			adjust_slurring(INFINITY)

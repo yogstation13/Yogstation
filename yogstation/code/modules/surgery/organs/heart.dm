@@ -6,12 +6,6 @@
 	compatible_biotypes = ALL_BIOTYPES
 	var/nanite_boost = 1
 
-/obj/item/organ/heart/nanite/emp_act()
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return .
-	Stop()
-
 /obj/item/organ/heart/nanite/on_life()
 	. = ..()
 	if(owner)//makes nanites tick on every life tick, only about 33% speed increase
