@@ -392,7 +392,7 @@
 		return
 	if(times <= 0)
 		return
-	var/power = times - charge_ticks //grow in sound volume and added sound range as it charges
+	var/power = charge_ticks - times //grow in sound volume and added sound range as it charges
 	var/volume = 15 + (power * 5)
 	playsound(user, 'sound/effects/magic.ogg', volume, TRUE, power)
 	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', volume, TRUE, power)
