@@ -26575,7 +26575,7 @@
 /area/hallway/secondary/entry)
 "gIp" = (
 /obj/machinery/camera{
-	c_tag = "Theater";
+	c_tag = "Bar Southwest";
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -57335,7 +57335,7 @@
 /area/maintenance/port/aft)
 "rSz" = (
 /obj/machinery/camera{
-	c_tag = "Bar Southwest";
+	c_tag = "Theater";
 	dir = 1
 	},
 /turf/open/floor/carpet,
