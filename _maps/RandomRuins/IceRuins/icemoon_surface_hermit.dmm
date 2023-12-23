@@ -209,33 +209,50 @@
 	icon_state = "wood-broken"
 	},
 /area/ruin/powered/icemoon_hermit)
-"bI" = (
-/obj/machinery/door/airlock/wood,
-/turf/open/floor/wood,
-/area/ruin/powered/icemoon_hermit)
-"eq" = (
-/obj/machinery/hydroponics/soil,
+"ey" = (
 /obj/structure/window/reinforced{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/powered/icemoon_hermit)
-"vW" = (
+"eQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/item/kinetic_crusher,
 /obj/item/gun/energy/kinetic_accelerator,
 /obj/item/tank/internals/oxygen,
+/obj/item/storage/firstaid/medical,
 /turf/open/floor/wood,
 /area/ruin/powered/icemoon_hermit)
-"Ci" = (
+"fA" = (
 /obj/machinery/hydroponics/soil,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/powered/icemoon_hermit)
-"Jh" = (
+"hW" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/storage/bag/plants/portaseeder,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"mH" = (
+/obj/machinery/door/airlock/wood,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"um" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"wi" = (
+/obj/machinery/hydroponics/soil,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"Fx" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -244,34 +261,16 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/powered/icemoon_hermit)
-"Qh" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/storage/bag/plants/portaseeder,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/powered/icemoon_hermit)
-"QS" = (
-/obj/structure/window/reinforced{
+"Mi" = (
+/obj/machinery/light/small{
 	dir = 1
+	},
+/obj/machinery/vending/hydronutrients{
+	onstation = 0
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/powered/icemoon_hermit)
-"RS" = (
-/obj/machinery/door/airlock/wood,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/powered/icemoon_hermit)
-"To" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/reagent_containers/glass/woodmug,
-/obj/item/reagent_containers/glass/woodmug,
-/obj/item/reagent_containers/glass/woodmug,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/powered/icemoon_hermit)
-"WX" = (
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/powered/icemoon_hermit)
-"ZJ" = (
+"Ot" = (
 /obj/structure/table/wood,
 /obj/machinery/light/small{
 	dir = 1
@@ -282,14 +281,16 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/icemoon_hermit)
-"ZS" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/vending/hydronutrients{
-	onstation = 0
-	},
+"SZ" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"Tp" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
 /area/ruin/powered/icemoon_hermit)
 
 (1,1,1) = {"
@@ -355,9 +356,9 @@ aL
 (4,1,1) = {"
 aL
 aT
-Jh
-eq
-eq
+Fx
+wi
+wi
 an
 aM
 an
@@ -375,7 +376,7 @@ aL
 (5,1,1) = {"
 aL
 aT
-QS
+ey
 aP
 aP
 an
@@ -395,9 +396,9 @@ aL
 (6,1,1) = {"
 aL
 aT
-Ci
+fA
 aP
-WX
+um
 an
 ab
 aC
@@ -415,9 +416,9 @@ aL
 (7,1,1) = {"
 aL
 aT
-Ci
+fA
 aP
-Qh
+hW
 an
 an
 an
@@ -435,9 +436,9 @@ aL
 (8,1,1) = {"
 aL
 aT
-Ci
+fA
 aP
-WX
+um
 an
 at
 ak
@@ -456,7 +457,7 @@ aL
 aL
 an
 an
-RS
+mH
 an
 an
 aA
@@ -495,16 +496,16 @@ aL
 (11,1,1) = {"
 aL
 an
-ZS
+Mi
 aP
 aP
-bI
+Tp
 am
 am
 am
 am
 aH
-vW
+eQ
 an
 aI
 aI
@@ -519,7 +520,7 @@ aV
 aP
 aP
 an
-ZJ
+Ot
 aF
 aW
 am
@@ -537,7 +538,7 @@ aL
 an
 aR
 aP
-To
+SZ
 an
 ai
 ae
