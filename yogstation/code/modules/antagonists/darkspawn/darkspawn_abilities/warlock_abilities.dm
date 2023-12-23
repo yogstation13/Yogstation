@@ -346,9 +346,9 @@
 	var/charging = FALSE
 	var/firing = FALSE
 	var/angle
-	var/charge_ticks = 8
-	var/beam_volleys = 5
-	var/beam_delay = 1 SECONDS
+	var/charge_ticks = 7 //1 second per tick
+	var/beam_volleys = 6
+	var/beam_delay = 1.2 SECONDS
 
 /datum/action/cooldown/spell/pointed/shadow_beam/can_cast_spell(feedback)
 	if(charging || firing)
@@ -381,9 +381,9 @@
 		if(!do_after(user, beam_volleys * beam_delay, user))
 			user.Paralyze(4 SECONDS)
 			to_chat(user, span_userdanger("The unreleased psionic energy lashes back, disabling you."))
-		// if(isdarkspawn(user))
-		// 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
-		// 	darkspawn.block_psi(30 SECONDS, type)
+		if(isdarkspawn(user))
+			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+			darkspawn.block_psi(30 SECONDS, type)
 		firing = FALSE
 	charging = FALSE
 
@@ -392,8 +392,10 @@
 		return
 	if(times <= 0)
 		return
-	playsound(user, 'sound/effects/magic.ogg', 40, TRUE)
-	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
+	var/power = times - charge_ticks //grow in sound volume and added sound range as it charges
+	var/volume = 15 + (power * 5)
+	playsound(user, 'sound/effects/magic.ogg', volume, TRUE, power)
+	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', volume, TRUE, power)
 	if(first)
 		new /obj/effect/temp_visual/cult/rune_spawn/rune1(user.loc, 2 SECONDS, "#21007F")
 	else
@@ -408,8 +410,9 @@
 		return
 	if(times <= 0)
 		return
+
 	new /obj/effect/temp_visual/dir_setting/void_shift/out(user.loc, user.dir)
-	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 120, FALSE, 5)
+	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 20)
 	var/turf/targets_from = get_turf(user)
 	var/second = FALSE
 	var/set_angle = angle
@@ -420,21 +423,28 @@
 		else
 			set_angle = angle + spread
 		second = TRUE //Handles beam firing in pairs
-		var/turf/temp_target = get_turf_in_angle(set_angle, targets_from, 40)
+		var/turf/temp_target = get_turf_in_angle(set_angle, targets_from, 60) //not too long, if it hits the end of the map things get fucky and the visual disconnects with the damage
 		for(var/turf/T in getline(targets_from,temp_target))
+			if(targets_from == T)//no hitting things behind you because of aoe
+				continue
+				
 			for(var/mob/living/target in range(1, T)) //bit of aoe around the beam (probably super fucking intensive lol)
+				if(target == user)
+					continue
 				if(HAS_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK)) //prevents shotgunning
 					continue
 				ADD_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK, type) //prevents shotgunning
 				addtimer(CALLBACK(src, PROC_REF(remove_protection), target), 1, TIMER_OVERRIDE | TIMER_UNIQUE)
 				if(is_darkspawn_or_veil(target))
-					target.heal_ordered_damage(60 / beam_number, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
-					playsound(target, 'sound/magic/staff_healing.ogg', 40, 1)
+					new/obj/effect/temp_visual/dir_setting/void_shift(get_turf(target), target.dir)
+					target.heal_ordered_damage(50 / beam_number, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+					playsound(target, 'sound/magic/staff_healing.ogg', 20, 1, -1) //super quiet, just to tell people that healing is happening
 				else if(target.density) //if they lie down, they'll avoid it. git gud
-					target.adjustFireLoss(60 / beam_number)
+					new/obj/effect/temp_visual/dir_setting/void_shift(get_turf(target), target.dir)
+					target.adjustFireLoss(50 / beam_number)
 					playsound(target, 'sound/weapons/sear.ogg', 100, 1)
 					target.emote("scream")
-		user.Beam(temp_target, "shadow_beam", 'icons/effects/beam.dmi', (beam_delay - (beam_delay / 4)), INFINITY, /obj/effect/ebeam/darkspawn) //lasts for 75% of the delay between beams
+		user.Beam(temp_target, "shadow_beam", 'icons/effects/beam.dmi', 5, INFINITY, /obj/effect/ebeam/darkspawn)
 	addtimer(CALLBACK(src, PROC_REF(fire_beams), user, max(spread - 5, 0)), beam_delay, times - 1)
 
 /datum/action/cooldown/spell/pointed/shadow_beam/proc/remove_protection(mob/living/victim)
