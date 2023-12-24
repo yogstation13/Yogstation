@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Trying to remove decoy brains from MMIs properly works."
-  - bugfix: "Removing MMI brains from range no longer teleport it into your hands if you're far away (e.g. through walls/windows with TK). Same for folding paper."
-  - spellcheck: "Ending punctuation for ripping out brain from MMI."
