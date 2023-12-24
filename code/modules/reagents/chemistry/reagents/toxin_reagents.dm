@@ -1016,7 +1016,7 @@
 
 /datum/reagent/toxin/ambusher_toxin
 	name = "Unknown Toxin"
-	description = "A toxin from an unknown source that attacks the leg muscles, slowing the victim. Its effects can, however, be nullified by Epinephrine"
+	description = "A toxin from an unknown source that attacks the legs' muscles, slowing the victim. Its effects can, however, be nullified by Epinephrine"
 	color = "#2d4816"
 	toxpwr = 0
 	metabolization_rate = 5 * REAGENTS_METABOLISM

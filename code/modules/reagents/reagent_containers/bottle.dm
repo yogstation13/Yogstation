@@ -211,7 +211,7 @@
 
 /obj/item/reagent_containers/glass/bottle/ambusher_toxin
 	name = "unknown toxin bottle"
-	desc = "A small bottle. Contains an unknown toxin."
+	desc = "A small bottle. Contains a toxin from an unknown source."
 	list_reagents = list(/datum/reagent/toxin/ambusher_toxin = 30)
 
 /obj/item/reagent_containers/glass/bottle/diphenhydramine
