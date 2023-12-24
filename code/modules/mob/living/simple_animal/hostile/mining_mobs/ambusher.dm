@@ -56,19 +56,19 @@
 		desc = "Something isn't quite right with this wolf..."
 		icon_state = "ambusher"
 		icon_living = "ambusher"
-		color = "#ac0000" //Grrr anger
+		color = "#ac0000" //Grrr angery
 		friendly = "gurgles at"
 		speak_emote = list("gurgles")
 		speed = 2.5
 		move_to_delay = 2 //Faster to help it land a hit and inject toxin
 		melee_damage_lower = 5 //Less damage so player doesn't just immediatly eat rocks during rage
 		melee_damage_upper = 5
-		rapid_melee = 4
+		rapid_melee = 4 //More chances to attack and inject toxins
 		poison_per_bite = 4
 		dodging = FALSE
-		attacktext = "nips"
+		attacktext = "lashes"
 		new /obj/effect/gibspawner/generic(get_turf(src))
-		playsound(get_turf(src), 'sound/effects/reee.ogg', 100, TRUE, -1) //Play a spooky sound
+		playsound(get_turf(src), 'sound/effects/reee.ogg', 100, TRUE, -1) //Froeg
 		src.visible_message(span_warning("The white wolf's head rips itself apart, forming a ghastly maw!"))
 		addtimer(CALLBACK(src, PROC_REF(endRage)), 4 SECONDS) //Rage timer
 		revealed = TRUE
@@ -82,8 +82,8 @@
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/proc/endRage()
 	color = null //Remove the color
-	move_to_delay = 3
-	melee_damage_lower = 15 
+	move_to_delay = 3 //Slow down, toxin will let it keep up with player and if player did not get poisoned then ambusher skill issue
+	melee_damage_lower = 15 //More damage to make up for less speed
 	melee_damage_upper = 15
 	rapid_melee = 2
 	attacktext = "lacerates"
