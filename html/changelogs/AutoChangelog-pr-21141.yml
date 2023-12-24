@@ -1,0 +1,4 @@
+author: "azzzertyy"
+delete-after: true 
+changes: 
+  - rscdel: "Removes the \"WARNING. THE WAY AI IS PLAYED HAS CHANGED\" message when joining as AI"
