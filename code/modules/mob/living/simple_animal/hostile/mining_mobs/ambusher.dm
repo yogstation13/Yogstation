@@ -68,9 +68,9 @@
 		dodging = FALSE
 		attacktext = "lashes"
 		new /obj/effect/gibspawner/generic(get_turf(src))
-		playsound(get_turf(src), 'sound/effects/reee.ogg', 100, TRUE, -1) //Froeg
+		playsound(get_turf(src), 'sound/effects/reee.ogg', 150, TRUE, -1) //Froeg
 		src.visible_message(span_warning("The white wolf's head rips itself apart, forming a ghastly maw!"))
-		addtimer(CALLBACK(src, PROC_REF(endRage)), 4 SECONDS) //Rage timer
+		addtimer(CALLBACK(src, PROC_REF(endRage)), 6 SECONDS) //Rage timer
 		revealed = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/AttackingTarget()
@@ -82,7 +82,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/proc/endRage()
 	color = null //Remove the color
-	move_to_delay = 3 //Slow down, toxin will let it keep up with player and if player did not get poisoned then ambusher skill issue
+	move_to_delay = 2 //Slow down, toxin will let it keep up with player and if player did not get poisoned then ambusher skill issue
 	melee_damage_lower = 15 //More damage to make up for less speed
 	melee_damage_upper = 15
 	rapid_melee = 2
