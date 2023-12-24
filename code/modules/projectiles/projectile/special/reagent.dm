@@ -47,6 +47,25 @@
 			last_volume = R.volume
 			name = "\proper [lowertext(R.name)]"
 
+// PRESSURE WASHER
+/obj/projectile/reagent/pressure_washer
+	name = "\proper high-pressure water"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "extinguish"
+	range = 7
+	reagents_list = list(/datum/reagent/water = 10)
+	speed = 0.6 // very high power
+
+/obj/projectile/reagent/pressure_washer/on_hit(atom/movable/target, blocked)
+	. = ..()
+	if(istype(target) && !target.anchored && prob(20))
+		target.throw_at(get_step(target, dir), 1, 1, firer)
+
+/obj/projectile/reagent/pressure_washer/Move(atom/newloc, dir)
+	. = ..()
+	if(newloc)
+		newloc.wash(CLEAN_SCRUB) // wash everything in its path
+
 /// Xeno neurotoxin
 /obj/projectile/reagent/neurotoxin
 	name = "neurotoxin spit"

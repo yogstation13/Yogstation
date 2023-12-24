@@ -32,7 +32,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/get_shot_amount()
 	return projectiles_per_shot
 
-/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, params)
+/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, mob/living/user, params)
 	if(!action_checks(target))
 		return 0
 
@@ -309,7 +309,7 @@
 		src.rearm()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action(atom/target)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action(atom/target, mob/living/user, params)
 	if(..())
 		projectiles -= get_shot_amount()
 		send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
@@ -548,3 +548,42 @@
 			var/atom/movable/AM = hit_atom
 			AM.safe_throw_at(get_edge_target_turf(AM,get_dir(src, AM)), 7, 2)
 		qdel(src)
+
+// pressure washer, technically a gun
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer
+	name = "exosuit-mounted pressure washer"
+	desc = "A high-power pressure washer."
+	icon_state = "mecha_washer"
+	range = MECHA_MELEE|MECHA_RANGED
+	projectile = /obj/projectile/reagent/pressure_washer
+	firing_effect_type = null
+	fire_sound = 'sound/effects/extinguish.ogg'
+	var/chem_amount = 5
+
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer/Initialize(mapload)
+	. = ..()
+	create_reagents(1000)
+	reagents.add_reagent(/datum/reagent/water, 1000)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer/action(atom/target, mob/living/user, params)
+	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
+		var/obj/structure/reagent_dispensers/WT = target
+		WT.reagents.trans_to(src, 1000)
+		occupant_message(span_notice("Pressure washer refilled."))
+		playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
+		return TRUE
+	else if(reagents.total_volume < 1)
+		occupant_message(span_notice("Not enough water!"))
+		return TRUE
+	if(..())
+		reagents.remove_reagent(/datum/reagent/water, chem_amount)
+		return TRUE
+	return FALSE
+
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer/can_attach(obj/mecha/M)
+	if(istype(M, /obj/mecha/working) && M.equipment.len < M.max_equip)
+		return TRUE
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer/get_equip_info()
+	return "[..()] \[[src.reagents.total_volume]\]"

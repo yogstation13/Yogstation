@@ -118,7 +118,7 @@
 		return 0
 	return 1
 
-/obj/item/mecha_parts/mecha_equipment/proc/action(atom/target, mob/living/user)
+/obj/item/mecha_parts/mecha_equipment/proc/action(atom/target, mob/living/user, params)
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/proc/start_cooldown()

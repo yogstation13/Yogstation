@@ -93,6 +93,15 @@
 	silicon_icon_state = null
 	opacity = TRUE
 
+// maybe janitor ERTs could get this or something?
+/obj/mecha/working/ripley/janitorial/Initialize(mapload)
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/washer = new /obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer
+	washer.attach(src)
+	var/obj/item/mecha_parts/mecha_equipment/big_mop = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/mop
+	big_mop.attach(src)
+	var/obj/item/mecha_parts/mecha_equipment/swatter = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter
+	swatter.attach(src)
 
 /obj/mecha/working/ripley/deathripley
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
