@@ -490,8 +490,6 @@
 #define TRAIT_DARKSPAWN_PSIBLOCK "darkspawn_psiblock" 
 ///make aoe ally buff abilities also affect allied darkspawns
 #define TRAIT_DARKSPAWN_BUFFALLIES "darkspawn_allybuff" 
-///prevents shadow beam from hurting someone while they have it
-#define TRAIT_DARKSPAWN_BEAMBLOCK "darkspawn_beamblock" 
 
 ///reduces the cooldown of all used /datum/action/cooldown by 25%
 #define TRAIT_FAST_COOLDOWNS "short_spell_cooldowns" 

@@ -338,53 +338,39 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	cooldown_time = 3 MINUTES
-	psi_cost = 100 //big fuckin layzer
+	cooldown_time = 1
+	psi_cost = 1 //big fuckin layzer
 	sound = null
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = INFINITY //lol
 	var/charging = FALSE
-	var/firing = FALSE
 	var/angle
-	var/charge_ticks = 7 //1 second per tick
-	var/beam_volleys = 6
-	var/beam_delay = 1.2 SECONDS
+	var/charge_ticks = 3 //1 second per tick
+	var/turf/targets_from
 
 /datum/action/cooldown/spell/pointed/shadow_beam/can_cast_spell(feedback)
-	if(charging || firing)
+	if(charging)
 		return
 	. = ..()
 
 /datum/action/cooldown/spell/pointed/shadow_beam/cast(atom/cast_on)
 	. = ..()
-	if(firing || charging)
+	if(charging)
 		return
 
 	if(!ishuman(owner))
 		return
 
 	var/mob/living/carbon/human/user = owner	
-	var/client/player = user.client
-	if(ishuman(user) && player)
-		angle = mouse_angle_from_client(player)
-	else
-		return
+	targets_from = get_turf(user)
+	angle = get_angle(user, get_turf(cast_on))
 
-	charging = TRUE
 	to_chat(user, span_velvet("Qwo..."))
 	to_chat(user, span_velvet("You start building up psionic energy."))
+	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(charge), user)
 	if(do_after(user, charge_ticks SECONDS, user))
-		firing = TRUE
-		INVOKE_ASYNC(src, PROC_REF(fire_beams), user)
-		to_chat(user, span_progenitor("...GX'KSHA!"))
-		if(!do_after(user, beam_volleys * beam_delay, user))
-			user.Paralyze(4 SECONDS)
-			to_chat(user, span_userdanger("The unreleased psionic energy lashes back, disabling you."))
-		if(isdarkspawn(user))
-			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
-			darkspawn.block_psi(30 SECONDS, type)
-		firing = FALSE
+		INVOKE_ASYNC(src, PROC_REF(fire_beam), user)
 	charging = FALSE
 
 /datum/action/cooldown/spell/pointed/shadow_beam/proc/charge(mob/user, times = charge_ticks, first = TRUE)
@@ -393,7 +379,7 @@
 	if(times <= 0)
 		return
 	var/power = charge_ticks - times //grow in sound volume and added sound range as it charges
-	var/volume = 15 + (power * 5)
+	var/volume = min(10 + (power * 20), 80)
 	playsound(user, 'sound/effects/magic.ogg', volume, TRUE, power)
 	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', volume, TRUE, power)
 	if(first)
@@ -405,47 +391,47 @@
 /obj/effect/temp_visual/cult/rune_spawn/rune1/reverse //spins the other way, that's it
 	turnedness = 179
 
-/datum/action/cooldown/spell/pointed/shadow_beam/proc/fire_beams(mob/user, spread = 15, times = beam_volleys)
-	if(!firing)
+/datum/action/cooldown/spell/pointed/shadow_beam/proc/fire_beam(mob/user)
+	if(!angle || !targets_from) //sanity check
 		return
-	if(times <= 0)
-		return
+	to_chat(user, span_progenitor("...GX'KSHA!"))
+	// if(isdarkspawn(user))
+	// 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+	// 	darkspawn.block_psi(30 SECONDS, type)
 
-	new /obj/effect/temp_visual/dir_setting/void_shift/out(user.loc, user.dir)
 	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 20)
-	var/turf/targets_from = get_turf(user)
-	var/second = FALSE
-	var/set_angle = angle
-	var/beam_number = spread > 0 ? 2 : 1 //multiple beams that are weaker before they converge
-	for(var/i in 1 to beam_number)
-		if(second)
-			set_angle = angle - spread
-		else
-			set_angle = angle + spread
-		second = TRUE //Handles beam firing in pairs
-		var/turf/temp_target = get_turf_in_angle(set_angle, targets_from, 60) //not too long, if it hits the end of the map things get fucky and the visual disconnects with the damage
-		for(var/turf/T in getline(targets_from,temp_target))
-			if(targets_from == T)//no hitting things behind you because of aoe
-				continue
-				
-			for(var/mob/living/target in range(1, T)) //bit of aoe around the beam (probably super fucking intensive lol)
-				if(target == user)
-					continue
-				if(HAS_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK)) //prevents shotgunning
-					continue
-				ADD_TRAIT(target, TRAIT_DARKSPAWN_BEAMBLOCK, type) //prevents shotgunning
-				addtimer(CALLBACK(src, PROC_REF(remove_protection), target), 1, TIMER_OVERRIDE | TIMER_UNIQUE)
-				if(is_darkspawn_or_veil(target))
-					target.heal_ordered_damage(50 / beam_number, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
-					playsound(target, 'sound/magic/staff_healing.ogg', 20, 1, -1) //super quiet, just to tell people that healing is happening
-				else if(target.density) //if they lie down, they'll avoid it. git gud
-					new/obj/effect/temp_visual/dir_setting/void_shift(get_turf(target), target.dir)
-					target.adjustFireLoss(50 / beam_number)
-					playsound(target, 'sound/weapons/sear.ogg', 100, 1)
-					target.emote("scream")
-		user.Beam(temp_target, "shadow_beam", 'icons/effects/beam.dmi', 5, INFINITY, /obj/effect/ebeam/darkspawn)
-	addtimer(CALLBACK(src, PROC_REF(fire_beams), user, max(spread - 5, 0)), beam_delay, times - 1)
+	var/turf/temp_target = get_turf_in_angle(angle, targets_from, 60)
+	for(var/turf/T in getline(targets_from,temp_target))
+		for(var/turf/realtile in range(1, T)) //bit of aoe around the line (probably super fucking intensive lol)
+			var/obj/effect/temp_visual/darkspawn/chasm/effect = locate() in realtile.contents
+			if(!effect) //to prevent multiple visuals from appearing on the same tile and doing more than intended
+				effect = new(realtile)
 
-/datum/action/cooldown/spell/pointed/shadow_beam/proc/remove_protection(mob/living/victim)
-	if(victim)
-		REMOVE_TRAIT(victim, TRAIT_DARKSPAWN_BEAMBLOCK, type)
+/obj/effect/temp_visual/darkspawn
+	name = "echoing void"
+	icon = 'yogstation/icons/effects/effects.dmi'
+	icon_state = "nothing"
+
+/obj/effect/temp_visual/darkspawn/chasm
+	icon_state = "consuming"
+	duration = 4 SECONDS //can be almost any number for balance, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
+	layer = ABOVE_OPEN_TURF_LAYER
+
+/obj/effect/temp_visual/darkspawn/chasm/Destroy()
+	new/obj/effect/temp_visual/darkspawn/detonate(get_turf(src))
+	. = ..()
+
+/obj/effect/temp_visual/darkspawn/detonate
+	icon_state = "detonate"
+	layer = ABOVE_OPEN_TURF_LAYER
+	duration = 2
+
+/obj/effect/temp_visual/darkspawn/detonate/Destroy()
+	var/turf/T = get_turf(src)
+	for(var/mob/living/L in T.contents)
+		if(is_darkspawn_or_veil(L))
+			L.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+		else
+			L.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
+			L.emote("scream")
+	. = ..()

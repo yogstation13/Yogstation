@@ -39,6 +39,7 @@
 /obj/item/gun/magic/darkspawn/update_icon_state()
 	. = ..()
 	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
 
 /obj/item/gun/magic/darkspawn/proc/on_wield()
 	block_chance = 50
