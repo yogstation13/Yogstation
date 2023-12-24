@@ -27,7 +27,7 @@
 	move_force = MOVE_FORCE_WEAK
 	move_resist = MOVE_FORCE_WEAK
 	pull_force = MOVE_FORCE_WEAK
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/sinew/wolf = 2, /obj/item/stack/sheet/bone = 2)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/sinew/wolf = 2, /obj/item/stack/sheet/bone = 2, /obj/item/reagent_containers/food/snacks/ambusher_tounge = 1)
 	loot = list()
 	stat_attack = UNCONSCIOUS
 	robust_searching = TRUE
@@ -94,3 +94,13 @@
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)
+
+/obj/item/reagent_containers/food/snacks/ambusher_tounge
+	name = "tounge?"
+	desc = "An organ that appears to be an intestine with serated bone fragments jutting out of it. Something seems to be secreating from it."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "ambusher_tounge"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/toxin/ambusher_toxin = 15)
+	filling_color = "#b971c8"
+	tastes = list("meat" = 1)
+	foodtype = MEAT | RAW
