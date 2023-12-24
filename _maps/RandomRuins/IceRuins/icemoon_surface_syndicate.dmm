@@ -3932,13 +3932,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
-"za" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/atmospherics/pipe/layer_manifold/visible,
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/atmospherics/pipe/simple/supply/visible,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine)
 "zl" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -10221,7 +10214,7 @@ iF
 GJ
 kg
 GJ
-za
+FK
 WO
 lS
 YC
