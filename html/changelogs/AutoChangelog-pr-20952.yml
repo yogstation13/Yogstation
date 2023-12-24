@@ -1,0 +1,4 @@
+author: "hedgehog1029"
+delete-after: true 
+changes: 
+  - bugfix: "XL beakers show contained chemicals again"
