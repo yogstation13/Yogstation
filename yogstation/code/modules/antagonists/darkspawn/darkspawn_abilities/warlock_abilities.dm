@@ -438,7 +438,7 @@
 	for(var/mob/living/L in T.contents)
 		if(is_darkspawn_or_veil(L))
 			L.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
-		else
+		else if(!L.can_block_magic(MAGIC_RESISTANCE_MIND))
 			L.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
 			L.emote("scream")
 	. = ..()
