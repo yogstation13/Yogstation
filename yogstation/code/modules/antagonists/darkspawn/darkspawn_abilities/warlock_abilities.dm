@@ -326,7 +326,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/shadow_beam
 	name = "Shadow beam"
-	desc = "Shadow beam."
+	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
 	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "Kindle"
 	active_icon_state = "Kindle"
@@ -338,8 +338,8 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	cooldown_time = 1
-	psi_cost = 1 //big fuckin layzer
+	cooldown_time = 1 MINUTES
+	psi_cost = 100 //big fuckin layzer
 	sound = null
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = INFINITY //lol
@@ -395,12 +395,12 @@
 	if(!angle || !targets_from) //sanity check
 		return
 	to_chat(user, span_progenitor("...GX'KSHA!"))
-	// if(isdarkspawn(user))
-	// 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
-	// 	darkspawn.block_psi(30 SECONDS, type)
+	if(isdarkspawn(user))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+		darkspawn.block_psi(30 SECONDS, type)
 
 	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 20)
-	var/turf/temp_target = get_turf_in_angle(angle, targets_from, 60)
+	var/turf/temp_target = get_turf_in_angle(angle, targets_from, 200) //cross the entire map, lol
 	for(var/turf/T in getline(targets_from,temp_target))
 		for(var/turf/realtile in range(1, T)) //bit of aoe around the line (probably super fucking intensive lol)
 			var/obj/effect/temp_visual/darkspawn/chasm/effect = locate() in realtile.contents
@@ -414,8 +414,15 @@
 
 /obj/effect/temp_visual/darkspawn/chasm
 	icon_state = "consuming"
-	duration = 4 SECONDS //can be almost any number for balance, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
+	duration = 6 SECONDS //can be almost any number for balance, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
 	layer = ABOVE_OPEN_TURF_LAYER
+
+/obj/effect/temp_visual/darkspawn/chasm/Crossed(atom/movable/AM, oldloc)
+	. = ..()
+	if(isliving(AM))
+		var/mob/living/target = AM
+		if(!is_darkspawn_or_veil(target))
+			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 4, 1 SECONDS, type) //slow field, makes it harder to escape
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
 	new/obj/effect/temp_visual/darkspawn/detonate(get_turf(src))
