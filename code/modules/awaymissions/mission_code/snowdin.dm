@@ -229,23 +229,23 @@
 						if(NN.status == BODYPART_ROBOTIC)
 							robo_parts += NN
 
-					if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
-						PP.adjustToxLoss(15)
-						PP.adjustFireLoss(25)
-						if(plasma_parts.len)
-							var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs for dismember() to use
-							PP.emote("scream")
-							NB.species_id = "plasmaman"//change the species_id of the limb to that of a plasmaman
-							NB.no_update = TRUE
-							NB.change_bodypart_status()
-							PP.visible_message(span_warning("[L] screams in pain as [L.p_their()] [NB] melts down to the bone!"), \
+//					if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
+//						PP.adjustToxLoss(15)
+//						PP.adjustFireLoss(25)
+//						if(plasma_parts.len)
+//							var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs for dismember() to use
+//							PP.emote("scream")
+//							NB.species_id = "plasmaman"//change the species_id of the limb to that of a plasmaman
+//							NB.no_update = TRUE
+//							NB.change_bodypart_status()
+//							PP.visible_message(span_warning("[L] screams in pain as [L.p_their()] [NB] melts down to the bone!"), \
 											  span_userdanger("You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
-						if(!plasma_parts.len && !robo_parts.len) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
-							PP.ignite_mob()
-							PP.set_species(/datum/species/plasmaman)
-							PP.visible_message(span_warning("[L] bursts into a brilliant purple flame as [L.p_their()] entire body is that of a skeleton!"), \
+//						if(!plasma_parts.len && !robo_parts.len) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
+//							PP.ignite_mob()
+//							PP.set_species(/datum/species/plasmaman)
+//							PP.visible_message(span_warning("[L] bursts into a brilliant purple flame as [L.p_their()] entire body is that of a skeleton!"), \
 											  span_userdanger("Your senses numb as all of your remaining flesh is turned into a purple slurry, sloshing off your body and leaving only your bones to show in a vibrant purple!"))
-
+//disabled because plasmaman limbs dont fucking work and can't be healed for some unholy reason
 
 /obj/vehicle/ridden/lavaboat/plasma
 	name = "plasma boat"
