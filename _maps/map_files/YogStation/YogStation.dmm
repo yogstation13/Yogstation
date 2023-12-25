@@ -19288,9 +19288,6 @@
 	dir = 8
 	},
 /obj/machinery/door/window/southleft{
-	base_state = "left";
-	dir = 2;
-	icon_state = "left";
 	name = "Kitchen Delivery";
 	req_access_txt = "28"
 	},
@@ -20134,9 +20131,7 @@
 "esY" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/window/southleft{
-	base_state = "left";
 	dir = 8;
-	icon_state = "left";
 	name = "Bar Delivery";
 	req_access_txt = "25"
 	},
@@ -23369,12 +23364,8 @@
 	freq = 1400;
 	location = "Kitchen"
 	},
-/obj/effect/turf_decal/bot{
-	dir = 2
-	},
-/turf/open/floor/plasteel{
-	dir = 2
-	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "fwE" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -29651,7 +29642,6 @@
 	},
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
-	req_access_txt = "0";
 	req_one_access_txt = "12;25"
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -33167,9 +33157,7 @@
 	location = "Bar"
 	},
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel{
-	dir = 2
-	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "iVd" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -38124,18 +38112,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"kRj" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/machinery/reagentgrinder,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "kRc" = (
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching Prison Wing holding areas.";
@@ -38149,6 +38125,18 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
+"kRj" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/machinery/reagentgrinder,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "kRm" = (
 /obj/machinery/light,
 /obj/machinery/airalarm{
@@ -51733,14 +51721,7 @@
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
 "pRS" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/lawoffice)
+)
 "pSb" = (
 /obj/structure/table,
 /obj/item/wrench,
@@ -112191,7 +112172,7 @@ ota
 aAh
 aEH
 fgc
-pRU
+pRS
 fKR
 iyy
 mAp
