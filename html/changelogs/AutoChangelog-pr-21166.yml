@@ -1,4 +1,0 @@
-author: " cark"
-delete-after: true 
-changes: 
-  - mapping: "fixes there being too many firelocks under a door in AI sat on Donut"
