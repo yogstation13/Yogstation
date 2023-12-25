@@ -19683,6 +19683,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+/obj/structure/filingcabinet/chestdrawer/wheeled,
 /turf/open/floor/wood,
 /area/lawoffice)
 "era" = (
@@ -23210,29 +23211,18 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "fCI" = (
-/obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = 6;
-	pixel_y = 4
+/obj/item/taperecorder{
+	pixel_x = -7;
+	pixel_y = 2
 	},
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = 5;
-	pixel_y = 8
-	},
-/obj/item/stamp/law{
-	pixel_x = -10;
-	pixel_y = -2
-	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = 1;
+/obj/item/toy/figure/lawyer{
+	pixel_x = 7;
 	pixel_y = 5
 	},
-/obj/machinery/door/window/survival_pod,
-/obj/machinery/door/window/survival_pod{
-	dir = 1
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 4
+/obj/structure/table/wood,
+/obj/machinery/door/poddoor/shutters{
+	id = lawyer;
+	name = "lawyer shutters"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -24681,12 +24671,25 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "gdE" = (
-/obj/machinery/door/window/survival_pod,
-/obj/machinery/door/window/survival_pod{
-	dir = 1
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -1
 	},
-/obj/structure/window/reinforced/tinted{
-	dir = 4
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/stamp/law{
+	pixel_x = -10;
+	pixel_y = -2
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = lawyer;
+	name = "lawyer shutters"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -29704,10 +29707,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"hZq" = (
-/obj/structure/filingcabinet/chestdrawer/wheeled,
-/turf/open/floor/wood,
-/area/lawoffice)
 "hZw" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -38831,7 +38830,7 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/obj/structure/window/reinforced/tinted{
+/obj/structure/window{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -50014,25 +50013,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"pQm" = (
-/obj/structure/table/wood,
-/obj/item/taperecorder{
-	pixel_x = -7;
-	pixel_y = 2
-	},
-/obj/item/toy/figure/lawyer{
-	pixel_x = 7;
-	pixel_y = 5
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/machinery/door/window/survival_pod,
-/obj/machinery/door/window/survival_pod{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "pQq" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/dark,
@@ -55252,7 +55232,7 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/obj/structure/window/reinforced/tinted{
+/obj/structure/window{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -71806,6 +71786,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"yiH" = (
+/obj/machinery/button{
+	pixel_x = 9;
+	name = "the privacy button"
+	},
+/turf/closed/wall,
+/area/lawoffice)
 "yiM" = (
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Lab";
@@ -97795,9 +97782,9 @@ aes
 afl
 aph
 aph
+yiH
 aph
-aph
-aph
+yiH
 aph
 aph
 avt
@@ -98567,7 +98554,7 @@ wnk
 aph
 rNk
 bwN
-pQm
+aph
 gZV
 lBI
 aph
@@ -98824,7 +98811,7 @@ kUv
 aph
 xGW
 apS
-hZq
+apS
 apS
 eqF
 aph
