@@ -212,7 +212,7 @@
 	growthstages = 2
 	rarity = 60 // Can't be obtained from xenobio/superlucks (exceptions apply, e.g. santa gifts) as it is excluded from `get_random_food()`.
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
-	reagents_add = list(/datum/reagent/sulfur = 0.1, /datum/reagent/carbon = 0.1, /datum/reagent/nitrogen = 0.07, /datum/reagent/potassium = 0.05)
+	reagents_add = list(/datum/reagent/sulphur = 0.1, /datum/reagent/carbon = 0.1, /datum/reagent/nitrogen = 0.07, /datum/reagent/potassium = 0.05)
 
 /obj/item/reagent_containers/food/snacks/grown/shell/gatfruit
 	seed = /obj/item/seeds/gatfruit
