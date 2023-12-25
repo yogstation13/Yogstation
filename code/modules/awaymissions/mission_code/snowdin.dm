@@ -210,7 +210,8 @@
 				if(WEATHER_SNOW in live.weather_immunities)
 					continue
 
-			L.adjustFireLoss(2)
+			L.adjustFireLoss(25)
+			L.adjustToxLoss(5)
 			if(L)
 				L.adjust_fire_stacks(20) //dipping into a stream of plasma would probably make you more flammable than usual
 				L.adjust_bodytemperature(-rand(50,65)) //its cold, man
