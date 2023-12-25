@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds more tool options for ghetto mechanical surgery"
+  - tweak: "existing ghetto mechanical surgery options are slightly better"
