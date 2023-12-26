@@ -25152,7 +25152,6 @@
 	name = "Lawyer Shutters"
 	},
 /obj/structure/table/wood,
-/obj/structure/table/wood,
 /obj/item/book/manual/wiki/security_space_law{
 	pixel_x = 6;
 	pixel_y = 2
