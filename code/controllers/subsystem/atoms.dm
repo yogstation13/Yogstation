@@ -124,9 +124,6 @@ SUBSYSTEM_DEF(atoms)
 	if(!length(initialized_state))
 		base_initialized = initialized
 	
-	// var/resolved_ref = locate(source)
-	// var/datum/parsed_map/map_ref = resolved_ref
-	// log_world("setting tracked inits in ssatoms for ref: [ istype(resolved_ref, /datum/parsed_map) ? map_ref.original_path : source] to state: [state]")
 	initialized_state += list(list(source, state))
 	initialized = state
 
@@ -138,16 +135,13 @@ SUBSYSTEM_DEF(atoms)
 			initialized_state.Cut(i, i+1)
 			break
 
-	// var/resolved_ref = locate(source)
-	// var/datum/parsed_map/map_ref = resolved_ref
-	// log_world("clear tracked inits in ssatoms for ref: [ istype(resolved_ref, /datum/parsed_map) ? map_ref.original_path : source]. intialized state now: [length(initialized_state)]")
 	if(!length(initialized_state))
 		initialized = base_initialized
 		base_initialized = INITIALIZATION_INNEW_REGULAR
 		return
 	initialized = initialized_state[length(initialized_state)][2]
 
-/// Returns TRUE if anything is currently being initialized
+/// Returns TRUE if anything is currently being initialized or needing to be deleted
 /datum/controller/subsystem/atoms/proc/initializing_something()
 	return length(initialized_state) || length(queued_deletions)
 
