@@ -3,7 +3,6 @@ SUBSYSTEM_DEF(demo)
 	wait = 1
 	flags = SS_TICKER | SS_BACKGROUND
 	init_order = INIT_ORDER_DEMO
-	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
 	loading_points = 12.6 SECONDS // Yogs -- loading times
 

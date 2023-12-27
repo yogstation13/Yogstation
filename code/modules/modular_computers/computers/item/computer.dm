@@ -99,7 +99,7 @@
 	idle_threads = list()
 	install_starting_components()
 	install_starting_files()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/modular_computer/Destroy()
 	kill_program(forced = TRUE)
@@ -189,6 +189,7 @@
 		return FALSE
 
 	if((card_slot?.try_insert(inserting_id)) || (card_slot2?.try_insert(inserting_id)))
+		update_appearance()
 		return TRUE
 	//to_chat(user, "<span class='warning'>This computer doesn't have an open card slot.</span>")
 	return FALSE
@@ -288,11 +289,11 @@
 
 /obj/item/modular_computer/equipped()
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/modular_computer/dropped()
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 
 /obj/item/modular_computer/proc/update_label()
@@ -623,14 +624,9 @@
 
 /obj/item/modular_computer/proc/install_starting_files()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
-	if(!istype(hard_drive) || starting_files.len < 1)
-		if(!starting_files.len < 1)
-			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files")
-		return
+
 	for(var/datum/computer_file/file in starting_files)
 		var/result = hard_drive.store_file(file)
-		if(result == FALSE)
-			CRASH("[src] failed to install starting files for an unknown reason")
 		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
 			var/datum/computer_file/program/program = result
 			if(program.requires_ntnet && program.network_destination)

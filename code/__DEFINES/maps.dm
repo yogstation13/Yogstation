@@ -20,12 +20,24 @@ Multi-Z stations are supported and multi-Z mining and away missions would
 require only minor tweaks.
 */
 
-// helpers for modifying jobs, used in various job_changes.dm files
-#define MAP_JOB_CHECK if(SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) { return; }
-#define MAP_JOB_CHECK_BASE if(SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) { return ..(); }
-#define MAP_REMOVE_JOB(jobpath) /datum/job/##jobpath/map_check() { return (SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) && ..() }
-
 #define SPACERUIN_MAP_EDGE_PAD 15
+
+/// Distance from edge to move to another z-level
+#define TRANSITIONEDGE 7
+
+// Maploader bounds indices
+/// The maploader index for the maps minimum x
+#define MAP_MINX 1
+/// The maploader index for the maps minimum y
+#define MAP_MINY 2
+/// The maploader index for the maps minimum z
+#define MAP_MINZ 3
+/// The maploader index for the maps maximum x
+#define MAP_MAXX 4
+/// The maploader index for the maps maximum y
+#define MAP_MAXY 5
+/// The maploader index for the maps maximum z
+#define MAP_MAXZ 6
 
 // traits
 // boolean - marks a level as having that property if present
@@ -39,6 +51,7 @@ require only minor tweaks.
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
 #define ZTRAIT_ICE_RUINS "Ice Ruins"
 #define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
+#define ZTRAIT_ISOLATED_RUINS "Isolated Ruins" //Placing ruins on z levels with this trait will use turf reservation instead of usual placement.
 
 // boolean - weather types that occur on the level
 #define ZTRAIT_SNOWSTORM "Weather_Snowstorm"
@@ -134,14 +147,28 @@ require only minor tweaks.
 #define PLACEMENT_TRIES 100 //How many times we try to fit the ruin somewhere until giving up (really should just swap to some packing algo)
 
 #define PLACE_DEFAULT "random"
+///On same z level as original ruin
 #define PLACE_SAME_Z "same"
+///On space ruin z level(s)
 #define PLACE_SPACE_RUIN "space"
-#define PLACE_BELOW "below" //On z levl below - centered on same tile
+///On z levl below - centered on same tile
+#define PLACE_BELOW "below"
+///On lavaland ruin z levels(s)
 #define PLACE_LAVA_RUIN "lavaland"
 #define PLACE_ICE_RUIN "icesurface"
 #define PLACE_ICE_UNDERGROUND_RUIN "iceunderground"
+
+///Map generation defines
+#define DEFAULT_SPACE_RUIN_LEVELS 7
+#define DEFAULT_SPACE_EMPTY_LEVELS 1
+
 ///boolean - does this z disable parallax?
 #define ZTRAIT_NOPARALLAX "No Parallax"
 
 /// A map key that corresponds to being one exclusively for Space.
 #define SPACE_KEY "space"
+
+// helpers for modifying jobs, used in various job_changes.dm files
+#define MAP_JOB_CHECK if(SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) { return; }
+#define MAP_JOB_CHECK_BASE if(SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) { return ..(); }
+#define MAP_REMOVE_JOB(jobpath) /datum/job/##jobpath/map_check() { return (SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) && ..() }

@@ -300,7 +300,7 @@
 	return null
 
 /obj/structure/grille/broken // Pre-broken grilles for map placement
-	icon_state = "grille_broken"
+	icon_state = "brokengrille"
 	density = FALSE
 	obj_integrity = 20
 	broken = TRUE
@@ -312,7 +312,7 @@
 /obj/structure/grille/broken/Initialize(mapload)
 	. = ..()
 	holes = (holes | 16)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/structure/grille/ratvar
 	icon = 'icons/obj/structures.dmi'

@@ -34382,7 +34382,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "oNx" = (
-/obj/structure/sign/barsign{
+/obj/machinery/barsign{
 	pixel_y = 32
 	},
 /obj/machinery/door/poddoor/shutters/preopen{

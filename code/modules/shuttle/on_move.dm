@@ -66,9 +66,10 @@ All ShuttleMove procs go here
 	//Dealing with the turf we left behind
 	oldT.TransferComponents(src)
 	SSexplosions.wipe_turf(src)
-	var/shuttle_boundary = baseturfs.Find(/turf/baseturf_skipover/shuttle)
-	if(shuttle_boundary)
-		oldT.ScrapeAway(baseturfs.len - shuttle_boundary + 1, CHANGETURF_DEFER_CHANGE)
+	var/shuttle_depth = depth_to_find_baseturf(/turf/baseturf_skipover/shuttle)
+
+	if(shuttle_depth)
+		oldT.ScrapeAway(shuttle_depth)
 
 	if(rotation)
 		shuttleRotate(rotation) //see shuttle_rotate.dm

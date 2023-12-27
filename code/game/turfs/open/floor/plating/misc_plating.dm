@@ -240,7 +240,7 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/floor/plating/snowed/cavern
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120"
+	initial_gas_mix = BURNING_COLD
 
 /turf/open/floor/plating/snowed/smoothed
 	icon = 'icons/turf/floors/snow_turf.dmi'

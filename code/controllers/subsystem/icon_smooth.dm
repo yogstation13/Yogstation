@@ -10,12 +10,15 @@ SUBSYSTEM_DEF(icon_smooth)
 	var/list/smooth_queue = list()
 	var/list/deferred = list()
 
+	var/map_loading = FALSE
+
 /datum/controller/subsystem/icon_smooth/fire()
 	// We do not want to smooth icons of atoms whose neighbors are not initialized yet,
 	// this causes runtimes.
 	// Icon smoothing SS runs after atoms, so this only happens for something like shuttles.
 	// This kind of map loading shouldn't take too long, so the delay is not a problem.
-	if (SSatoms.initializing_something())
+	if (SSatoms.initializing_something() || map_loading)
+		log_world("icon smooth early return because [ map_loading ? "map loading is in process" : "ssatoms is initing something"] ")
 		return
 
 	var/list/smooth_queue_cache = smooth_queue
@@ -76,3 +79,15 @@ SUBSYSTEM_DEF(icon_smooth)
 	if(blueprint_queue)
 		blueprint_queue -= thing
 	deferred -= thing
+
+// /datum/controller/subsystem/icon_smooth/StartLoadingMap()
+// 	log_world("icon smooth start loading map called")
+// 	map_loading = TRUE
+// 	//can_fire = FALSE
+// 	//pause()
+
+// /datum/controller/subsystem/icon_smooth/StopLoadingMap()
+// 	log_world("icon smooth map loading finished and resuming")
+// 	map_loading = FALSE
+// 	//can_fire = TRUE
+// 	//enqueue()

@@ -23,6 +23,10 @@ SUBSYSTEM_DEF(atoms)
 
 	var/init_start_time
 
+	// #ifdef PROFILE_MAPLOAD_INIT_ATOM
+	// var/list/mapload_init_times = list()
+	// #endif
+
 	initialized = INITIALIZATION_INSSATOMS
 
 /datum/controller/subsystem/atoms/Initialize()
@@ -64,6 +68,9 @@ SUBSYSTEM_DEF(atoms)
 
 	testing("[queued_deletions.len] atoms were queued for deletion.")
 	queued_deletions.Cut()
+	// #ifdef PROFILE_MAPLOAD_INIT_ATOM
+	// rustg_file_write(json_encode(mapload_init_times), "[GLOB.log_directory]/init_times.json")
+	// #endif
 
 /// Actually creates the list of atoms. Exists soley so a runtime in the creation logic doesn't cause initalized to totally break
 /datum/controller/subsystem/atoms/proc/CreateAtoms(list/atoms, list/atoms_to_return = null)
@@ -116,6 +123,10 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/proc/set_tracked_initalized(state, source)
 	if(!length(initialized_state))
 		base_initialized = initialized
+	
+	// var/resolved_ref = locate(source)
+	// var/datum/parsed_map/map_ref = resolved_ref
+	// log_world("setting tracked inits in ssatoms for ref: [ istype(resolved_ref, /datum/parsed_map) ? map_ref.original_path : source] to state: [state]")
 	initialized_state += list(list(source, state))
 	initialized = state
 
@@ -127,6 +138,9 @@ SUBSYSTEM_DEF(atoms)
 			initialized_state.Cut(i, i+1)
 			break
 
+	// var/resolved_ref = locate(source)
+	// var/datum/parsed_map/map_ref = resolved_ref
+	// log_world("clear tracked inits in ssatoms for ref: [ istype(resolved_ref, /datum/parsed_map) ? map_ref.original_path : source]. intialized state now: [length(initialized_state)]")
 	if(!length(initialized_state))
 		initialized = base_initialized
 		base_initialized = INITIALIZATION_INNEW_REGULAR
@@ -135,7 +149,7 @@ SUBSYSTEM_DEF(atoms)
 
 /// Returns TRUE if anything is currently being initialized
 /datum/controller/subsystem/atoms/proc/initializing_something()
-	return length(initialized_state) > 1
+	return length(initialized_state) || length(queued_deletions)
 
 /datum/controller/subsystem/atoms/Recover()
 	initialized = SSatoms.initialized
@@ -177,7 +191,7 @@ SUBSYSTEM_DEF(atoms)
 		if(fails & BAD_INIT_NO_HINT)
 			. += "- Didn't return an Initialize hint\n"
 		if(fails & BAD_INIT_QDEL_BEFORE)
-			. += "- Qdel'd in New()\n"
+			. += "- Qdel'd before Initialize proc ran\n"
 		if(fails & BAD_INIT_SLEPT)
 			. += "- Slept during Initialize()\n"
 

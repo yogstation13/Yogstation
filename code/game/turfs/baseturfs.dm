@@ -1,3 +1,25 @@
+/// Take off the top layer turf and replace it with the next baseturf down
+/turf/proc/ScrapeAway(amount=1, flags)
+	if(!amount)
+		return
+	if(length(baseturfs))
+		var/list/new_baseturfs = baseturfs.Copy()
+		var/turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
+		while(ispath(turf_type, /turf/baseturf_skipover))
+			amount++
+			if(amount > new_baseturfs.len)
+				CRASH("The bottommost baseturf of a turf is a skipover [src]([type])")
+			turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
+		new_baseturfs.len -= min(amount, new_baseturfs.len - 1) // No removing the very bottom
+		if(new_baseturfs.len == 1)
+			new_baseturfs = new_baseturfs[1]
+		return ChangeTurf(turf_type, new_baseturfs, flags)
+
+	if(baseturfs == type)
+		return src
+
+	return ChangeTurf(baseturfs, baseturfs, flags) // The bottom baseturf will never go away
+
 /// Places the given turf on the bottom of the turf stack.
 /turf/proc/place_on_bottom(turf/bottom_turf)
 	baseturfs = baseturfs_string_list(

@@ -1,10 +1,12 @@
 /datum/map_template/ruin/proc/try_to_place(z, list/allowed_areas_typecache, turf/forced_turf, clear_below)
 	var/sanity = forced_turf ? 1 : PLACEMENT_TRIES
+	if(SSmapping.level_trait(z,ZTRAIT_ISOLATED_RUINS))
+		return place_on_isolated_level(z)
 	while(sanity > 0)
 		sanity--
 		var/width_border = TRANSITIONEDGE + SPACERUIN_MAP_EDGE_PAD + round(width / 2)
 		var/height_border = TRANSITIONEDGE + SPACERUIN_MAP_EDGE_PAD + round(height / 2)
-		var/turf/central_turf = locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z)
+		var/turf/central_turf = forced_turf ? forced_turf : locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z)
 		var/valid = TRUE
 		var/list/affected_turfs = get_affected_turfs(central_turf,1)
 		var/list/affected_areas = list()
@@ -49,6 +51,18 @@
 		new /obj/effect/landmark/ruin(central_turf, src)
 		return central_turf
 
+/datum/map_template/ruin/proc/place_on_isolated_level(z)
+	var/datum/turf_reservation/reservation = SSmapping.request_turf_block_reservation(width, height, 1, z) //Make the new level creation work with different traits.
+	if(!reservation)
+		return
+	var/turf/placement = reservation.bottom_left_turfs[1]
+	load(placement)
+	loaded++
+	for(var/turf/T in get_affected_turfs(placement))
+		T.flags_1 |= NO_RUINS_1
+	var/turf/center = locate(placement.x + round(width/2),placement.y + round(height/2),placement.z)
+	new /obj/effect/landmark/ruin(center, src)
+	return center
 
 /proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins, clear_below = FALSE)
 	if(!z_levels || !z_levels.len)

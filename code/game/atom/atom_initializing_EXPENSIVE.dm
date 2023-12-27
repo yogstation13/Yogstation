@@ -73,7 +73,8 @@
 			//we were deleted
 			return
 	//Yogs edit: Demos
-	SSdemo.mark_new(src)
+	if(SSdemo?.initialized)
+		SSdemo.mark_new(src)
 	//Yogs edit ends
 
 /**

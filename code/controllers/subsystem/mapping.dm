@@ -132,6 +132,7 @@ SUBSYSTEM_DEF(mapping)
 	require_area_resort()
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
+	run_map_generation()
 
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
@@ -194,7 +195,6 @@ SUBSYSTEM_DEF(mapping)
 		message_admins("A shuttle arena failed to load!")
 		log_game("A shuttle arena failed to load!")
 #endif
-	run_map_generation()
 	// Add the transit level
 	var/datum/space_level/base_transit = add_reservation_zlevel()
 	require_area_resort()
@@ -234,6 +234,25 @@ SUBSYSTEM_DEF(mapping)
 
 		index++
 	lists_to_reserve.Cut(1, index)
+
+/datum/controller/subsystem/mapping/proc/generate_z_level_linkages()
+	for(var/z_level in 1 to length(z_list))
+		generate_linkages_for_z_level(z_level)
+
+/datum/controller/subsystem/mapping/proc/generate_linkages_for_z_level(z_level)
+	if(!isnum(z_level) || z_level <= 0)
+		return FALSE
+
+	if(multiz_levels.len < z_level)
+		multiz_levels.len = z_level
+
+	var/z_above = level_trait(z_level, ZTRAIT_UP)
+	var/z_below = level_trait(z_level, ZTRAIT_DOWN)
+	if(!(z_above == TRUE || z_above == FALSE || z_above == null) || !(z_below == TRUE || z_below == FALSE || z_below == null))
+		stack_trace("Warning, numeric mapping offsets are deprecated. Instead, mark z level connections by setting UP/DOWN to true if the connection is allowed")
+	multiz_levels[z_level] = new /list(LARGEST_Z_LEVEL_INDEX)
+	multiz_levels[z_level][Z_LEVEL_UP] = !!z_above
+	multiz_levels[z_level][Z_LEVEL_DOWN] = !!z_below
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
 	if(clearing_reserved_turfs || !initialized) //in either case this is just not needed.
@@ -306,6 +325,8 @@ SUBSYSTEM_DEF(mapping)
 	clearing_reserved_turfs = SSmapping.clearing_reserved_turfs
 
 	z_list = SSmapping.z_list
+	multiz_levels = SSmapping.multiz_levels
+	loaded_lazy_templates = SSmapping.loaded_lazy_templates
 
 #define INIT_ANNOUNCE(X) to_chat(world, span_boldannounce("[X]")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
@@ -348,7 +369,10 @@ SUBSYSTEM_DEF(mapping)
 	// load the maps
 	for (var/P in parsed_maps)
 		var/datum/parsed_map/pm = P
-		if (!pm.load(1, 1, start_z + parsed_maps[P], no_changeturf = TRUE, new_z = TRUE))
+		var/bounds = pm.bounds
+		var/x_offset = bounds ? round(world.maxx / 2 - bounds[MAP_MAXX] / 2) + 1 : 1
+		var/y_offset = bounds ? round(world.maxy / 2 - bounds[MAP_MAXY] / 2) + 1 : 1
+		if (!pm.load(x_offset, y_offset, start_z + parsed_maps[P], no_changeturf = TRUE, new_z = TRUE))
 			errorList |= pm.original_path
 	if(!silent)
 		INIT_ANNOUNCE("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
@@ -823,36 +847,41 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 			true_to_offset_planes[string_real] |= offset_plane
 
-// /datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
-// 	RETURN_TYPE(/datum/turf_reservation)
+/datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
+	RETURN_TYPE(/datum/turf_reservation)
 
-// 	UNTIL(initialized)
-// 	var/static/lazy_loading = FALSE
-// 	UNTIL(!lazy_loading)
+	UNTIL(initialized)
+	var/static/lazy_loading = FALSE
+	UNTIL(!lazy_loading)
 
-// 	lazy_loading = TRUE
-// 	. = _lazy_load_template(template_key, force)
-// 	lazy_loading = FALSE
-// 	return .
+	lazy_loading = TRUE
+	. = _lazy_load_template(template_key, force)
+	lazy_loading = FALSE
+	return .
 
-// /datum/controller/subsystem/mapping/proc/_lazy_load_template(template_key, force = FALSE)
-// 	PRIVATE_PROC(TRUE)
+/datum/controller/subsystem/mapping/proc/_lazy_load_template(template_key, force = FALSE)
+	PRIVATE_PROC(TRUE)
 
-// 	if(LAZYACCESS(loaded_lazy_templates, template_key)  && !force)
-// 		var/datum/lazy_template/template = GLOB.lazy_templates[template_key]
-// 		return template.reservations[1]
-// 	LAZYSET(loaded_lazy_templates, template_key, TRUE)
+	if(LAZYACCESS(loaded_lazy_templates, template_key)  && !force)
+		var/datum/lazy_template/template = GLOB.lazy_templates[template_key]
+		return template.reservations[1]
+	LAZYSET(loaded_lazy_templates, template_key, TRUE)
 
-// 	var/datum/lazy_template/target = GLOB.lazy_templates[template_key]
-// 	if(!target)
-// 		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
-// 	return target.lazy_load()
+	var/datum/lazy_template/target = GLOB.lazy_templates[template_key]
+	if(!target)
+		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
+	return target.lazy_load()
 
 /proc/generate_lighting_appearance_by_z(z_level)
 	if(length(GLOB.default_lighting_underlays_by_z) < z_level)
 		GLOB.default_lighting_underlays_by_z.len = z_level
 	
 	GLOB.default_lighting_underlays_by_z[z_level] = mutable_appearance(LIGHTING_ICON, "transparent", z_level * 0.01, null, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM, offset_const = GET_Z_PLANE_OFFSET(z_level))
+
+/// Returns true if the map we're playing on is on a planet
+/datum/controller/subsystem/mapping/proc/is_planetary()
+	return config.planetary
+
 /datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
 	RETURN_TYPE(/datum/turf_reservation)
 	return used_turfs[T]

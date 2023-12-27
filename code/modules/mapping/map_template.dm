@@ -111,6 +111,7 @@
 	// need these two below?
 	SSmachines.setup_template_powernets(cables)
 	SSair.setup_template_machinery(atmos_machines)
+	SSshuttle.setup_shuttles(ports)
 
 	//calculate all turfs inside the border
 	var/list/template_and_bordering_turfs = block(
@@ -126,7 +127,7 @@
 			)
 		)
 	for(var/turf/affected_turf as anything in template_and_bordering_turfs)
-		affected_turf.air_update_turf(TRUE, TRUE)
+		affected_turf.ImmediateCalculateAdjacentTurfs()
 		affected_turf.levelupdate()
 
 /datum/map_template/proc/load_new_z(secret = FALSE)
@@ -194,19 +195,19 @@
 	//initialize things that are normally initialized after map load
 	initTemplateBounds(bounds)
 
-	// if(has_ceiling)
-	// 	var/affected_turfs = get_affected_turfs(T, FALSE)
-	// 	generate_ceiling(affected_turfs)
+	if(has_ceiling)
+		var/affected_turfs = get_affected_turfs(T, FALSE)
+		generate_ceiling(affected_turfs)
 
 	log_game("[name] loaded at [T.x],[T.y],[T.z]")
 	return bounds
 
-// /datum/map_template/proc/generate_ceiling(affected_turfs)
-// 	for (var/turf/turf in affected_turfs)
-// 		var/turf/ceiling = get_step_multiz(turf, UP)
-// 		if (ceiling)
-// 			if (istype(ceiling, /turf/open/openspace) || istype(ceiling, /turf/open/space/openspace))
-// 				ceiling.ChangeTurf(ceiling_turf, ceiling_baseturfs, CHANGETURF_INHERIT_AIR)
+/datum/map_template/proc/generate_ceiling(affected_turfs)
+	for (var/turf/turf in affected_turfs)
+		var/turf/ceiling = get_step_multiz(turf, UP)
+		if (ceiling)
+			if (istype(ceiling, /turf/open/openspace) || istype(ceiling, /turf/open/space/openspace))
+				ceiling.ChangeTurf(ceiling_turf, ceiling_baseturfs, CHANGETURF_INHERIT_AIR)
 
 /datum/map_template/proc/post_load()
 	return

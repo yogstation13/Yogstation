@@ -166,22 +166,26 @@
 	screen_loc = ui_ghost_language_menu
 
 /atom/movable/screen/inventory
-	var/slot_id	// The indentifier for the slot. It has nothing to do with ID cards.
-	var/icon_empty // Icon when empty. For now used only by humans.
-	var/icon_full  // Icon when contains an item. For now used only by humans.
-	var/list/object_overlays = list()
+	/// The identifier for the slot. It has nothing to do with ID cards.
+	var/slot_id
+	/// Icon when empty. For now used only by humans.
+	var/icon_empty
+	/// Icon when contains an item. For now used only by humans.
+	var/icon_full
+	/// The overlay when hovering over with an item in your hand
+	var/image/object_overlay
 	plane = HUD_PLANE
 
 /atom/movable/screen/inventory/Click(location, control, params)
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(world.time <= usr.next_move)
-		return 1
+		return TRUE
 
 	if(usr.incapacitated())
-		return 1
+		return TRUE
 	if(ismecha(usr.loc)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 
 	if(hud && hud.mymob && slot_id)
 		var/obj/item/inv_item = hud.mymob.get_item_by_slot(slot_id)
@@ -190,7 +194,7 @@
 
 	if(usr.attack_ui(slot_id))
 		usr.update_inv_hands()
-	return 1
+	return TRUE
 
 /atom/movable/screen/inventory/MouseEntered()
 	..()
@@ -198,8 +202,8 @@
 
 /atom/movable/screen/inventory/MouseExited()
 	..()
-	cut_overlay(object_overlays)
-	object_overlays.Cut()
+	cut_overlay(object_overlay)
+	QDEL_NULL(object_overlay)
 
 /atom/movable/screen/inventory/update_icon_state()
 	if(!icon_empty)
@@ -210,24 +214,27 @@
 	return ..()
 
 /atom/movable/screen/inventory/proc/add_overlays()
-	var/mob/user = hud.mymob
+	var/mob/user = hud?.mymob
 
-	if(hud && user && slot_id)
-		var/obj/item/holding = user.get_active_held_item()
+	if(!user || !slot_id)
+		return
 
-		if(!holding || user.get_item_by_slot(slot_id))
-			return
+	var/obj/item/holding = user.get_active_held_item()
 
-		var/image/item_overlay = image(holding)
-		item_overlay.alpha = 92
+	if(!holding || user.get_item_by_slot(slot_id))
+		return
 
-		if(!user.can_equip(holding, slot_id, TRUE))
-			item_overlay.color = "#FF0000"
-		else
-			item_overlay.color = "#00ff00"
+	var/image/item_overlay = image(holding)
+	item_overlay.alpha = 92
 
-		object_overlays += item_overlay
-		add_overlay(object_overlays)
+	if(!user.can_equip(holding, slot_id, TRUE))
+		item_overlay.color = "#FF0000"
+	else
+		item_overlay.color = "#00ff00"
+
+	cut_overlay(object_overlay)
+	object_overlay = item_overlay
+	add_overlay(object_overlay)
 
 /atom/movable/screen/inventory/hand
 	var/mutable_appearance/handcuff_overlay

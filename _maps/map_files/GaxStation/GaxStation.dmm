@@ -24025,7 +24025,7 @@
 /turf/open/floor/carpet,
 /area/hallway/secondary/entry)
 "lLC" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "lLV" = (

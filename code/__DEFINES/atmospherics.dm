@@ -245,6 +245,8 @@
 #define KITCHEN_COLDROOM_ATMOS		"o2=33;n2=124;TEMP=193.15"
 /// used in the holodeck burn test program
 #define BURNMIX_ATMOS				"o2=2500;plasma=5000;TEMP=370"
+///-153.15°C plasma air, used for burning people.
+#define BURNING_COLD 				"o2=0;n2=82;plasma=24;TEMP=120"
 
 //ATMOSPHERICS DEPARTMENT GAS TANK TURFS
 #define ATMOS_TANK_N2O				"n2o=6000;TEMP=293.15"

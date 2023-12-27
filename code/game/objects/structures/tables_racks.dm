@@ -363,7 +363,7 @@
 /obj/structure/table/wood/fancy
 	name = "fancy table"
 	desc = "A standard metal table frame covered with an amazingly fancy, patterned cloth."
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table.dmi', 'icons/obj/structures.dmi')
+	icon = 'icons/obj/structures.dmi'
 	icon_state = "fancy_table"
 	base_icon_state = "fancy_table"
 	frame = /obj/structure/table_frame
@@ -371,60 +371,70 @@
 	buildstack = /obj/item/stack/tile/carpet
 	smoothing_groups = SMOOTH_GROUP_FANCY_WOOD_TABLES //Don't smooth with SMOOTH_GROUP_TABLES or SMOOTH_GROUP_WOOD_TABLES
 	canSmoothWith = SMOOTH_GROUP_FANCY_WOOD_TABLES
+	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize()
+
+
+/obj/structure/table/wood/fancy/Initialize(mapload)
+	. = ..()
+	// Needs to be set dynamically because table smooth sprites are 32x34,
+	// which the editor treats as a two-tile-tall object. The sprites are that
+	// size so that the north/south corners look nice - examine the detail on
+	// the sprites in the editor to see why.
+	icon = smooth_icon
 
 /obj/structure/table/wood/fancy/black
 	icon_state = "fancy_table_black"
 	base_icon_state = "fancy_table_black"
 	buildstack = /obj/item/stack/tile/carpet/black
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_black.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
 
 /obj/structure/table/wood/fancy/blue
 	icon_state = "fancy_table_blue"
 	base_icon_state = "fancy_table_blue"
 	buildstack = /obj/item/stack/tile/carpet/blue
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_blue.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_blue.dmi'
 
 /obj/structure/table/wood/fancy/cyan
 	icon_state = "fancy_table_cyan"
 	base_icon_state = "fancy_table_cyan"
 	buildstack = /obj/item/stack/tile/carpet/cyan
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_cyan.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_cyan.dmi'
 
 /obj/structure/table/wood/fancy/green
 	icon_state = "fancy_table_green"
 	base_icon_state = "fancy_table_green"
 	buildstack = /obj/item/stack/tile/carpet/green
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_green.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_green.dmi'
 
 /obj/structure/table/wood/fancy/orange
 	icon_state = "fancy_table_orange"
 	base_icon_state = "fancy_table_orange"
 	buildstack = /obj/item/stack/tile/carpet/orange
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_orange.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_orange.dmi'
 
 /obj/structure/table/wood/fancy/purple
 	icon_state = "fancy_table_purple"
 	base_icon_state = "fancy_table_purple"
 	buildstack = /obj/item/stack/tile/carpet/purple
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_purple.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_purple.dmi'
 
 /obj/structure/table/wood/fancy/red
 	icon_state = "fancy_table_red"
 	base_icon_state = "fancy_table_red"
 	buildstack = /obj/item/stack/tile/carpet/red
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_red.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_red.dmi'
 
 /obj/structure/table/wood/fancy/royalblack
 	icon_state = "fancy_table_royalblack"
 	base_icon_state = "fancy_table_royalblack"
 	buildstack = /obj/item/stack/tile/carpet/royalblack
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_royalblack.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblack.dmi'
 
 /obj/structure/table/wood/fancy/royalblue
 	icon_state = "fancy_table_royalblue"
 	base_icon_state = "fancy_table_royalblue"
 	buildstack = /obj/item/stack/tile/carpet/royalblue
-	icon = MAP_SWITCH('icons/obj/smooth_structures/fancy_table_royalblue.dmi', 'icons/obj/structures.dmi')
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblue.dmi'
 
 /*
  * Reinforced tables

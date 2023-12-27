@@ -299,6 +299,11 @@ SUBSYSTEM_DEF(ticker)
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 
+	//Yog code, since we load in templates at roundstart we need to resmooth
+	// for(var/z_level in 1 to world.maxz)
+	// 	smooth_zlevel(z_level, now = TRUE) //You should smooth yourself NOW
+	//End Yog Code
+
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()
@@ -461,11 +466,7 @@ SUBSYSTEM_DEF(ticker)
 	if(no_clerk)
 		SSjob.random_clerk_init()
 	if(no_chaplain)
-		SSjob.random_chapel_init()
-	
-	///Yog code, since we load in templates at roundstart we need to resmooth
-	for(var/station_z_level in SSmapping.levels_by_trait(ZTRAIT_STATION))
-		smooth_zlevel(station_z_level, now = TRUE) //You should smooth yourself NOW
+		SSjob.random_chapel_init()	
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()

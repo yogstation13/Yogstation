@@ -20,8 +20,10 @@
 	var/map_file = "YogStation.dmm"
 
 	var/traits = null
-	var/space_ruin_levels = 7
-	var/space_empty_levels = 1
+	var/space_ruin_levels = DEFAULT_SPACE_RUIN_LEVELS
+	var/space_empty_levels = DEFAULT_SPACE_EMPTY_LEVELS
+	/// Boolean that tells us if this is a planetary station. (like IceBoxStation)
+	var/planetary = FALSE
 
 	var/minetype = "lavaland"
 
@@ -134,6 +136,9 @@
 
 	if ("minetype" in json)
 		minetype = json["minetype"]
+	
+	if ("planetary" in json)
+		planetary = json["planetary"]
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 

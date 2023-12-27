@@ -159,11 +159,6 @@
 
 /datum/config_entry/flag/allow_holidays
 
-/datum/config_entry/number/tick_limit_mc_init	//SSinitialization throttling
-	config_entry_value = TICK_LIMIT_MC_INIT_DEFAULT
-	min_val = 0 //oranges warned us
-	integer = FALSE
-
 /datum/config_entry/flag/protect_legacy_admins	//Stops any admins loaded by the legacy system from having their rank edited by the permissions panel
 	protection = CONFIG_ENTRY_LOCKED
 

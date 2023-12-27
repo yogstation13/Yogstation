@@ -14,10 +14,11 @@
 
 /turf/closed/mineral/dilithium/volcanic/hard
 	icon = MAP_SWITCH('icons/turf/smoothrocks_hard.dmi', 'icons/turf/mining.dmi')
+	base_icon_state = "smoothrocks_hard"
+	base_icon_state = ""
 	hardness = 2
 
-/turf/closed/mineral/dilithium/volcanic/hard/harder
-	icon = MAP_SWITCH('icons/turf/smoothrocks.dmi', 'icons/turf/mining.dmi')
+/turf/closed/mineral/dilithium/volcanic/harder
 	mineralAmt = 5
 	color = "#eb9877"
 	hardness = 3
@@ -25,6 +26,8 @@
 /turf/closed/mineral/dilithium/ice
 	environment_type = "snow_cavern"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
+	base_icon_state = "icerock_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
 	initial_gas_mix = FROZEN_ATMOS

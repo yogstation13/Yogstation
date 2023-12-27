@@ -52,24 +52,32 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/door_hinge_x = -6.5
 	var/door_anim_time = 2.5 // set to 0 to make the door not animate at all
 
+	var/is_maploaded = FALSE
+
 /obj/structure/closet/Initialize(mapload)
 	. = ..()
 
-	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
-		. = INITIALIZE_HINT_LATELOAD
+	if(is_station_level(z) && mapload)
+		add_to_roundstart_list()
 
-	update_appearance()
+	// if closed, any item at the crate's loc is put in the contents
+	if (mapload)
+		is_maploaded = TRUE
+	. = INITIALIZE_HINT_LATELOAD
+
 	PopulateContents()
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
-	GLOB.lockers += src
+	
+	update_appearance()
 
 /obj/structure/closet/LateInitialize()
 	. = ..()
 
-	take_contents()
+	if(!opened && is_maploaded)
+		take_contents()
 
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
@@ -679,3 +687,8 @@ GLOBAL_LIST_EMPTY(lockers)
 	. = ..()
 	if(user in contents)
 		return FALSE
+
+///Adds the closet to a global list. Placed in its own proc so that crates may be excluded.
+/obj/structure/closet/proc/add_to_roundstart_list()
+	//GLOB.roundstart_station_closets += src
+	GLOB.lockers += src

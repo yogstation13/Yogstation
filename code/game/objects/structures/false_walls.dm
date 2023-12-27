@@ -299,7 +299,8 @@
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
-	icon_state = "sandstone"
+	icon_state = "sandstone-0"
+	base_icon_state = "sandstone_wall"
 	mineral = /obj/item/stack/sheet/mineral/sandstone
 	walltype = /turf/closed/wall/mineral/sandstone
 	smoothing_flags = SMOOTH_BITMASK
