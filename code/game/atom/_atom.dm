@@ -588,9 +588,9 @@
 	return list("MOTOR OIL" = "SAE 5W-30") //just a little flavor text.
 
 ///to add a mob's dna info into an object's blood_dna list.
-/atom/proc/transfer_mob_blood_dna(mob/living/L)
+/atom/proc/transfer_mob_blood_dna(mob/living/injected_mob)
 	// Returns 0 if we have that blood already
-	var/new_blood_dna = L.get_blood_dna_list()
+	var/new_blood_dna = injected_mob.get_blood_dna_list()
 	if(!new_blood_dna)
 		return FALSE
 	var/old_length = blood_DNA_length()
