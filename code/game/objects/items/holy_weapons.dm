@@ -1325,9 +1325,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
 	force = 4.13
-	throwforce = 1
+	throwforce = 1.11111
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("attaged", "sashed", "stabb", "fall downed", "CAUSE violenced", "unbro hurt cuted", "unhealed..", "makes this hapen to")
+	force_string = "un real,,,"
 	menutab = MENU_MISC //banish it from being associated with proper weapons
 	additional_desc = "Hey, God here. Asking you to pick literally anything else as your implement of justice."
 
