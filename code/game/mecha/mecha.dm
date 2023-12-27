@@ -24,8 +24,8 @@
 	layer = BELOW_MOB_LAYER//icon draw layer
 	infra_luminosity = 15 //byond implementation is bugged.
 	force = 5
-	light_system = MOVABLE_LIGHT
-	light_range = 3
+	light_system = MOVABLE_LIGHT_DIRECTIONAL
+	light_range = 8
 	light_power = 6
 	light_on = FALSE
 	flags_1 = HEAR_1
