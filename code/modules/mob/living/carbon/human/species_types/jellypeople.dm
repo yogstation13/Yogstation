@@ -17,7 +17,6 @@
 	coldmod = 6
 	heatmod = 0.5
 	burnmod = 0.5 // = 1/2x generic burn damage
-	payday_modifier = 0.6 //literally a pile of toxic ooze walking around, definitely a health hazard
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
 	swimming_component = /datum/component/swimming/dissolve

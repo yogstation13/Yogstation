@@ -26,6 +26,7 @@
 	var/planetary = FALSE
 
 	var/minetype = "lavaland"
+	var/cryo_spawn = FALSE
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
@@ -139,6 +140,9 @@
 	
 	if ("planetary" in json)
 		planetary = json["planetary"]
+
+	if("cryo_spawn" in json)
+		cryo_spawn = json["cryo_spawn"]
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 

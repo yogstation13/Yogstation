@@ -440,16 +440,14 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 /obj/machinery/cryopod/JoinPlayerHere(mob/M, buckle)
 	. = ..()
-	close_machine(M, TRUE) // put the mob inside instead of on the turf
-	playsound(src, join_sound, 30)
+	open_machine()
 	if(iscarbon(M))
 		apply_effects_to_mob(M)
-	addtimer(CALLBACK(src, PROC_REF(open_machine)), JOIN_SLEEP_DURATION)
 
 /obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
 	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
-	sleepyhead.set_nutrition(200) //works for IPCs and stuff too
-	sleepyhead.SetSleeping(JOIN_SLEEP_DURATION)
+	sleepyhead.set_nutrition(200)
+	sleepyhead.SetSleeping(60) //if you read this comment and feel like shitting together something to adjust IPC charge on wakeup, be my guest.
 	//but it can be worse.
 	if(prob(90))
 		sleepyhead.adjust_drowsiness(rand(3 SECONDS, 10 SECONDS))

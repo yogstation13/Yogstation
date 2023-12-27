@@ -250,7 +250,7 @@
 "kU" = (
 /obj/effect/turf_decal/ramp_middle,
 /obj/machinery/camera{
-	c_tag = "Atmospherics East";
+	c_tag = "Chapel South";
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -342,8 +342,7 @@
 "rx" = (
 /obj/structure/table/wood/fancy/black,
 /obj/machinery/camera{
-	c_tag = "Testing Lab East";
-	network = list("ss13","rd")
+	c_tag = "Chapel Central"
 	},
 /turf/open/floor/carpet/black,
 /area/chapel/main)
@@ -672,8 +671,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Testing Lab East";
-	network = list("ss13","rd")
+	c_tag = "Chapel North"
 	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
 	dir = 4
@@ -695,9 +693,8 @@
 	pixel_y = -23
 	},
 /obj/machinery/camera{
-	c_tag = "Prison Common Room South";
-	dir = 1;
-	network = list("ss13","prison")
+	c_tag = "Chapel Crematorium";
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)

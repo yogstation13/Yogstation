@@ -62,6 +62,10 @@
 /obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
 	dir = 4
 	},
+/obj/effect/landmark/start/chemist,
+/obj/structure/chair/office/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "abp" = (
@@ -11420,17 +11424,35 @@
 	dir = 1;
 	network = list("ss13","Medical")
 	},
-/obj/structure/table/glass,
-/obj/item/book/manual/wiki/chemistry{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/book/manual/wiki/grenades,
-/obj/item/stack/sheet/mineral/plasma,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -28
 	},
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/structure/table/glass,
+/obj/item/hand_labeler,
+/obj/item/clothing/glasses/science{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/science,
+/obj/item/screwdriver{
+	pixel_x = -1;
+	pixel_y = -5
+	},
+/obj/item/grenade/chem_grenade,
+/obj/item/grenade/chem_grenade{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/grenade/chem_grenade{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/stack/cable_coil/random{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/cable_coil/random,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "eLD" = (
@@ -15391,6 +15413,7 @@
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/mining_medic,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "gvx" = (
@@ -15514,10 +15537,6 @@
 /obj/item/pool/rubber_ring,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"gxP" = (
-/obj/machinery/chem_heater,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "gxT" = (
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -15963,11 +15982,10 @@
 /obj/structure/sign/poster/official/safety_eye_protection{
 	pixel_y = -32
 	},
-/obj/structure/table/glass,
-/obj/machinery/reagentgrinder,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 10
 	},
+/obj/machinery/vending/wardrobe/chem_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "gLB" = (
@@ -18167,22 +18185,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"hKN" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/southright{
-	name = "Chemistry Desk";
-	req_access_txt = "33"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "chemistryshutter";
-	name = "Chemistry Privacy Shutters"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "hLr" = (
 /obj/structure/table/wood,
 /obj/effect/landmark/event_spawn,
@@ -21718,13 +21720,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/button/door{
-	id = "chemistryshutter";
-	name = "Chemistry Privacy Toggle";
-	pixel_x = 8;
-	pixel_y = 28
-	},
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/landmark/start/chemist,
+/obj/structure/chair/office/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
@@ -22521,64 +22521,10 @@
 /turf/open/floor/carpet,
 /area/library)
 "jKC" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/structure/table/glass,
-/obj/item/assembly/timer{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/assembly/timer{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/assembly/timer{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/assembly/timer{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/assembly/igniter{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/assembly/igniter{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/assembly/igniter{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/assembly/igniter{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/screwdriver{
-	pixel_x = 2;
-	pixel_y = 18
-	},
-/obj/item/stack/cable_coil/random{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/cable_coil/random,
-/obj/item/grenade/chem_grenade{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/grenade/chem_grenade,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 8
 	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "jKL" = (
@@ -24165,8 +24111,9 @@
 	name = "Chemistry Request Console";
 	pixel_y = -28
 	},
-/obj/machinery/vending/wardrobe/chem_wardrobe,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/machinery/reagentgrinder,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "krY" = (
@@ -28446,9 +28393,6 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/structure/chair{
-	dir = 8
-	},
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 9
 	},
@@ -28508,15 +28452,14 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "mqd" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 1
+	},
 /obj/machinery/button/door{
 	id = "chemistryshutter";
 	name = "Chemistry Privacy Toggle";
-	pixel_x = -8;
-	pixel_y = 28
-	},
-/obj/machinery/chem_master,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 1
+	pixel_x = -26;
+	pixel_y = 31
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
@@ -32779,13 +32722,10 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "obM" = (
-/obj/structure/chair/office/light{
-	dir = 1
-	},
-/obj/effect/landmark/start/chemist,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 1
 	},
+/obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "obZ" = (
@@ -37006,18 +36946,10 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "pTs" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/syringes,
-/obj/item/storage/box/beakers,
-/obj/item/clothing/glasses/science{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/clothing/glasses/science,
-/obj/item/hand_labeler,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 8
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "pTD" = (
@@ -39874,7 +39806,6 @@
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "rhB" = (
-/obj/machinery/light,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 6
 	},
@@ -40874,6 +40805,12 @@
 /obj/structure/closet/secure_closet/chemical,
 /obj/item/toy/figure/chemist,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/item/book/manual/wiki/chemistry{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/book/manual/wiki/grenades,
+/obj/item/stack/sheet/mineral/plasma,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "rFB" = (
@@ -45099,6 +45036,26 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
+"tuu" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/window/southright{
+	name = "Chemistry Desk";
+	req_access_txt = "33"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "chemistryshutter";
+	name = "Chemistry Privacy Shutters"
+	},
+/obj/item/deskbell/preset/chemistry{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "tuz" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -50983,6 +50940,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "vYJ" = (
@@ -51709,13 +51667,12 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "wpC" = (
-/obj/structure/chair/office/light{
-	dir = 1
-	},
-/obj/effect/landmark/start/chemist,
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 5
 	},
+/obj/structure/table/glass,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/syringes,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "wpE" = (
@@ -52453,26 +52410,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"wDW" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/southleft{
-	name = "Chemistry Desk";
-	req_access_txt = "33"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "chemistryshutter";
-	name = "Chemistry Privacy Shutters"
-	},
-/obj/item/deskbell/preset/chemistry{
-	pixel_x = 8;
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "wEp" = (
 /obj/machinery/suit_storage_unit/ce,
 /turf/open/floor/plasteel/dark,
@@ -86098,9 +86035,9 @@ swH
 pvV
 dGO
 vNj
-wDW
+icl
 obM
-vpk
+vXK
 xoU
 tOj
 krW
@@ -86355,10 +86292,10 @@ rMl
 etj
 vWB
 jtg
-niP
+tuu
 mqd
-vXK
-gxP
+vpk
+vpk
 lIE
 rFw
 icl
@@ -86612,7 +86549,7 @@ nMn
 jZe
 hhG
 rhB
-hKN
+niP
 wpC
 abo
 vpk
@@ -94660,8 +94597,8 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
+ylr
+ylr
 ylr
 ylr
 ylr
@@ -94915,10 +94852,10 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
+ylr
+ylr
+ylr
+ylr
 ylr
 ylr
 ylr
@@ -95170,14 +95107,14 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
 ylr
 ylr
+ylr
+ylr
+ylr
+ylr
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -95426,15 +95363,15 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
 ylr
+ylr
+ylr
+ylr
+ylr
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -95683,15 +95620,15 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
-aCv
-dJY
-dJY
-dJY
 ylr
+ylr
+ylr
+dJY
+dJY
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -95940,16 +95877,16 @@ ylr
 ylr
 ylr
 ylr
-dJY
-aCv
-dJY
-dJY
-dJY
-dJY
-dJY
 ylr
 ylr
-ylr
+dJY
+dJY
+dJY
+dJY
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -96197,16 +96134,16 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
 ylr
 ylr
-ylr
+dJY
+dJY
+dJY
+dJY
+aCv
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -96453,16 +96390,16 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
+ylr
+ylr
+ylr
 dJY
 aCv
 dJY
 dJY
 dJY
 dJY
-ylr
-ylr
+dJY
 ylr
 ylr
 ylr
@@ -96710,16 +96647,16 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
 ylr
 ylr
 ylr
+dJY
+dJY
+dJY
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -96967,16 +96904,16 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
-dJY
 ylr
 ylr
-ylr
+dJY
+dJY
+dJY
+aCv
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -97225,14 +97162,14 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
-dJY
 ylr
-ylr
-ylr
+dJY
+dJY
+dJY
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -97482,14 +97419,14 @@ ylr
 ylr
 ylr
 ylr
+ylr
 dJY
 dJY
 dJY
 dJY
-ylr
-ylr
-ylr
-ylr
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -97739,13 +97676,13 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
 ylr
 ylr
-ylr
+dJY
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -97997,11 +97934,11 @@ ylr
 ylr
 ylr
 ylr
+ylr
 dJY
 dJY
-ylr
-ylr
-ylr
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -98255,10 +98192,10 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
-ylr
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -98513,8 +98450,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -98761,7 +98698,7 @@ ylr
 ylr
 ylr
 ylr
-dJY
+ylr
 ylr
 ylr
 ylr
@@ -99017,9 +98954,9 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
+ylr
+ylr
+ylr
 ylr
 ylr
 ylr
@@ -99274,9 +99211,9 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
+ylr
+ylr
+ylr
 ylr
 ylr
 ylr
@@ -99530,10 +99467,10 @@ ylr
 ylr
 ylr
 ylr
-dJY
-aCv
-dJY
-dJY
+ylr
+ylr
+ylr
+ylr
 ylr
 ylr
 ylr
@@ -99787,10 +99724,10 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
+ylr
+ylr
+ylr
+ylr
 ylr
 ylr
 ylr
@@ -100044,10 +99981,10 @@ ylr
 ylr
 ylr
 ylr
-dJY
-dJY
-dJY
-dJY
+ylr
+ylr
+ylr
+ylr
 ylr
 ylr
 ylr
@@ -100301,10 +100238,10 @@ ylr
 ylr
 ylr
 ylr
+ylr
 dJY
-dJY
-dJY
-dJY
+ylr
+ylr
 ylr
 ylr
 ylr
@@ -100558,7 +100495,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+dJY
 dJY
 dJY
 ylr
@@ -100815,9 +100752,9 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -101071,10 +101008,10 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
-ylr
+dJY
+aCv
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -101328,10 +101265,10 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
-ylr
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -101585,10 +101522,10 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
-ylr
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -101842,10 +101779,10 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
-ylr
+dJY
+dJY
+dJY
+dJY
 ylr
 ylr
 ylr
@@ -102100,8 +102037,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+dJY
+dJY
 ylr
 ylr
 ylr

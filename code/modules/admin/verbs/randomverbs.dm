@@ -1169,7 +1169,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(iscarbon(target))
 				var/mob/living/carbon/CM = target
 				for(var/obj/item/bodypart/bodypart in CM.bodyparts)
-					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+					if(!(bodypart.body_part & (HEAD|CHEST)))
 						if(bodypart.dismemberable)
 							bodypart.dismember()
 		if(ADMIN_PUNISHMENT_GIB)
