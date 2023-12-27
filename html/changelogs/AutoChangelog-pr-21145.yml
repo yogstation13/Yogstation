@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Removing/extracting IPC's positron brain properly moves their mind."

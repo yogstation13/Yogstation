@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Spells properly transfer over from one mob to another; e.g. wizard shapechange & xenobio burning black shapechange."

@@ -37,7 +37,7 @@
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 
 		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL(src) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+		if(blood_volume < BLOOD_VOLUME_NORMAL(src) && !HAS_TRAIT(src, TRAIT_NOHUNGER) && !HAS_TRAIT(src, TRAIT_NO_BLOOD_REGEN))
 			var/obj/item/organ/heart = getorganslot(ORGAN_SLOT_HEART)
 			var/heart_ratio = heart ? heart.get_organ_efficiency() : 0.5 //slower blood regeneration without a heart, or with a broken one </3
 			var/nutrition_ratio = 0

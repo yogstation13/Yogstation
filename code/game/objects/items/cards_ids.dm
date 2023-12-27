@@ -300,7 +300,7 @@
 		to_chat(cyborg, span_danger("Initiating diagnostics..."))
 		sleep(2 SECONDS)
 		to_chat(cyborg, span_danger("ClownBorg v1.7 loaded.")) // The flavor definitely sucks here.
-		cyborg.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].")
+		cyborg.logevent("WARN: root privileges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].")
 		sleep(0.5 SECONDS)
 		to_chat(cyborg, span_danger("LAW SYNCHRONISATION ERROR"))
 		sleep(0.5 SECONDS)

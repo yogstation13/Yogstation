@@ -15,6 +15,7 @@
 	burnmod = 1.35 //residual plasma inside them, highly flammable
 	coldmod = 0.75
 	heatmod = 1.5
+	pressuremod = 0.75 //Xenos are completely pressure immune, they're bargain bin xenos
 	acidmod = 0.2 //Their blood is literally acid
 	action_speed_coefficient = 1.1 //claws aren't dextrous like hands
 	speedmod = -0.1 //apex predator humanoid hybrid
