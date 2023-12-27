@@ -1300,10 +1300,9 @@
 				return
 		INVOKE_ASYNC(src, (density ? PROC_REF(open) : PROC_REF(close)), 2)
 
-	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade))
-		if(isElectrified())
-			if(shock(user,100))//it's like sticking a fork in a power socket
-				return
+	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade) || istype(I, /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp))
+		if(isElectrified() && shock(user,100))//it's like sticking a fork in a power socket
+			return
 
 		if(istype(I, /obj/item/mantis/blade))
 			var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()

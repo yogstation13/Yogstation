@@ -151,6 +151,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma
 	equip_cooldown = 10
+	range = MECHA_MELEE|MECHA_RANGED
 	name = "217-D Heavy Plasma Cutter"
 	desc = "A device that shoots resonant plasma bursts at extreme velocity. The blasts are capable of crushing rock and demolishing solid obstacles."
 	icon_state = "mecha_plasmacutter"
@@ -160,6 +161,9 @@
 	energy_drain = 30
 	projectile = /obj/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
+	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
+	toolspeed = 0.25 // high-power cutting
+	tool_behaviour = TOOL_WELDER
 	harmful = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
@@ -170,6 +174,18 @@
 	else if(M.equipment.len < M.max_equip && istype(M))
 		return 1
 	return 0
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/action(atom/target, mob/living/user, params)
+	if(!chassis.Adjacent(target))
+		return ..()
+	// Again, two ways using tools can be handled, so check both
+	if(target.tool_act(chassis.occupant, src, TOOL_WELDER) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
+		return TRUE
+	if(target.attackby(src, chassis.occupant, params))
+		return TRUE
+	if(user.a_intent == INTENT_HARM) // hurt things
+		chassis.default_melee_attack(target)
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
 	equip_cooldown = 10

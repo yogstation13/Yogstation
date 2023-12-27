@@ -9,10 +9,28 @@
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 10
+	toolspeed = 0.5
+	usesound = 'sound/mecha/hydraulic.ogg'
+	tool_behaviour = TOOL_CROWBAR
+	equip_actions = list(/datum/action/innate/mecha/equipment/clamp_mode)
 	/// How much damage does it apply when used
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
 	harmful = FALSE
+
+/datum/action/innate/mecha/equipment/clamp_mode
+	name = "Toggle Clamp Mode"
+	button_icon_state = "clamp_crowbar"
+
+/datum/action/innate/mecha/equipment/clamp_mode/Activate()
+	if(equipment.tool_behaviour == TOOL_CROWBAR)
+		equipment.tool_behaviour = TOOL_WRENCH
+	else
+		equipment.tool_behaviour = TOOL_CROWBAR
+	button_icon_state = "clamp_[equipment.tool_behaviour]"
+	chassis.balloon_alert(owner, "clamp set to [(equipment.tool_behaviour==TOOL_CROWBAR) ? "pry" : "wrench"]")
+	playsound(chassis, 'sound/items/change_jaws.ogg', 50, 1)
+	build_all_button_icons()
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/can_attach(obj/mecha/working/ripley/M as obj)
 	if(..())
@@ -29,11 +47,18 @@
 	..()
 	cargo_holder = null
 
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/action(atom/target)
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/action(atom/target, mob/living/user, params)
 	if(!action_checks(target))
 		return
 	if(!cargo_holder)
 		return
+	
+	// There are two ways things handle being pried, and I'm too lazy to make every single thing use the same one
+	if(target.tool_act(user, src, tool_behaviour) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
+		return TRUE
+	if(target.attackby(src, user, params))
+		return TRUE
+
 	if(ismecha(target))
 		var/obj/mecha/M = target
 		var/have_ammo
@@ -47,20 +72,14 @@
 		else
 			to_chat(chassis.occupant, "No providable supplies found in cargo hold")
 		return
+
 	if(isobj(target))
 		var/obj/O = target
-		if(istype(O, /obj/machinery/door/firedoor))
-			var/obj/machinery/door/firedoor/D = O
-			D.try_to_crowbar(src,chassis.occupant)
-			return
-		if(istype(O, /obj/machinery/door/airlock/))
-			var/obj/machinery/door/airlock/D = O
-			D.try_to_crowbar(src,chassis.occupant)
-			return
 		if(!O.anchored)
 			if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
 				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
 				O.anchored = TRUE
+				play_tool_sound(chassis)
 				if(do_after_cooldown(target))
 					cargo_holder.cargo += O
 					O.forceMove(chassis)
@@ -244,7 +263,7 @@
 	energy_drain = 0 // uses matter instead of energy
 	range = MECHA_MELEE|MECHA_RANGED
 	item_flags = NO_MAT_REDEMPTION
-	linked_actions = list(/datum/action/innate/mecha/equipment/rcd)
+	equip_actions = list(/datum/action/innate/mecha/equipment/rcd)
 	var/rcd_type = /obj/item/construction/rcd/arcd/mech
 	var/obj/item/construction/rcd/internal_rcd
 
@@ -299,7 +318,7 @@
 	energy_drain = 0 // uses matter instead of energy
 	range = MECHA_MELEE|MECHA_RANGED
 	item_flags = NO_MAT_REDEMPTION
-	linked_actions = list(/datum/action/innate/mecha/equipment/pipe_dispenser)
+	equip_actions = list(/datum/action/innate/mecha/equipment/pipe_dispenser)
 	var/rpd_type = /obj/item/pipe_dispenser/exosuit // in case there's ever any other type of RPD for mechs for some reason
 	var/obj/item/pipe_dispenser/internal_rpd
 
@@ -339,7 +358,7 @@
 	name = "exosuit T-ray scanner"
 	desc = "An exosuit-mounted terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes. Has much higher range than the handheld version."
 	icon_state = "mecha_t_scanner"
-	linked_actions = list(/datum/action/innate/mecha/equipment/t_scanner)
+	equip_actions = list(/datum/action/innate/mecha/equipment/t_scanner)
 	selectable = FALSE
 	var/scanning = FALSE
 	var/list/t_ray_images

@@ -411,6 +411,16 @@
 	construction_time = 1200
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_thrusters
+	name = "Exosuit Module (RCS Thruster Package)"
+	desc = "A thruster package for exosuits. Expels gas from the internal life-support air tank to generate thrust."
+	id = "mech_thrusters"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/thrusters/gas
+	materials = list(/datum/material/iron=25000,/datum/material/titanium=5000,/datum/material/silver=3000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
 /datum/design/mech_pipe_dispenser
 	name = "Exosuit Module (Pipe Dispenser Module)"
 	desc = "An exosuit-mounted Rapid Pipe Dispenser."

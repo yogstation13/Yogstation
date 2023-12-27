@@ -213,6 +213,11 @@
 		matter_resupply(W, user)
 		return
 
+	if(istype(W, /obj/item/mecha_parts))
+		var/obj/item/mecha_parts/P = W
+		P.try_attach_part(user, src)
+		return
+
 	if(W.GetID())
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(user))
@@ -304,11 +309,6 @@
 		else
 			to_chat(user, span_warning("The [name] is at full integrity!"))
 		return 1
-
-	else if(istype(W, /obj/item/mecha_parts))
-		var/obj/item/mecha_parts/P = W
-		P.try_attach_part(user, src)
-		return
 
 	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
 		var/obj/item/airlock_scanner/S = W

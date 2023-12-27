@@ -182,7 +182,7 @@
 		return
 
 	//get the user's location
-	if(!isturf(user.loc))
+	if(!isturf(user.loc) && !ismecha(user.loc))
 		return	//can't do this stuff whilst inside objects and such
 
 	add_fingerprint(user)

@@ -550,10 +550,22 @@
 	harmful = FALSE
 	weapon_damage = 0 // no damage
 	structure_damage_mult = 0 // don't break stuff while trying to clean
+	equip_actions = list(/datum/action/innate/mecha/equipment/sweeping)
+	var/auto_sweep = TRUE
+
+/datum/action/innate/mecha/equipment/sweeping
+	name = "Toggle Auto-Mop"
+	button_icon_state = "sweep_on"
+
+/datum/action/innate/mecha/equipment/sweeping/Activate()
+	var/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/mop = equipment
+	mop.auto_sweep = !mop.auto_sweep
+	button_icon_state = "sweep_[mop.auto_sweep ? "on" : "off"]"
+	build_all_button_icons()
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/attach(obj/mecha/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(do_mop))
+	RegisterSignal(M, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_pre_move))
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/detach(atom/moveto)
 	UnregisterSignal(chassis, COMSIG_MOVABLE_PRE_MOVE)
@@ -564,6 +576,14 @@
 		return TRUE
 	return ..()
 
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/proc/on_pre_move(obj/mecha/mech, atom/newloc)
+	if(!auto_sweep)
+		return
+	var/mop_dir = get_dir(mech, newloc)
+	if(mop_dir != mech.dir) // only sweep things in front of the mech
+		return
+	do_mop(mech, newloc)
+
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/proc/do_mop(obj/mecha/mech, atom/newloc, throw_power=1)
 	var/turf/mop_turf = newloc
 	var/turf/thrown_at = get_edge_target_turf(mop_turf, chassis.dir)
@@ -572,6 +592,11 @@
 	if(mop_turf.wash(CLEAN_SCRUB))
 		cleaned = TRUE
 	for(var/atom/movable/moved_atom in newloc)
+		if(istype(moved_atom, /obj/effect/decal/nuclear_waste)) // sweep that nuclear waste under the rug
+			cleaned = TRUE
+			playsound(moved_atom, 'sound/effects/gib_step.ogg', 50, 1)
+			qdel(moved_atom)
+			continue
 		if(moved_atom.wash(CLEAN_SCRUB))
 			cleaned = TRUE
 		if(moved_atom.anchored)

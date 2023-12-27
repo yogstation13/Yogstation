@@ -311,7 +311,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			return
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
-	var/atom/user_loc = user.loc
+	var/atom/user_loc = ismovable(user.loc) ? get_turf(user) : user.loc // check which turf the user's location is on if it's a movable object
 	var/atom/target_loc = target?.loc
 
 	var/drifting = FALSE
@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			user_loc = user.loc
 
 		if(QDELETED(user) \
-			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
+			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && ((ismovable(user.loc) ? get_turf(user) : user.loc) != user_loc)) \
 			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding) \
 			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
 			|| (extra_checks && !extra_checks.Invoke()))

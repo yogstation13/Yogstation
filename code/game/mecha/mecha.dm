@@ -109,7 +109,6 @@
 	var/datum/action/innate/mecha/mech_cycle_equip/cycle_action = new
 	var/datum/action/innate/mecha/mech_toggle_lights/lights_action = new
 	var/datum/action/innate/mecha/mech_view_stats/stats_action = new
-	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
 	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
 	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
 	var/datum/effect_system/fluid_spread/smoke/smoke_system = new //not an action, but trigged by one
@@ -120,7 +119,6 @@
 	var/datum/action/innate/mecha/strafe/strafing_action = new
 
 	//Action vars
-	var/thrusters_active = FALSE
 	var/defence_mode = FALSE
 	var/defence_mode_deflect_chance = 15
 	var/leg_overload_mode = FALSE
@@ -479,7 +477,7 @@
 ////////////////////////////
 
 
-/obj/mecha/proc/click_action(atom/target,mob/user,params)
+/obj/mecha/proc/click_action(atom/target, mob/user, params)
 	if(!occupant || occupant != user )
 		return
 	if(!locate(/turf) in list(target,target.loc)) // Prevents inventory from being drilled
@@ -539,16 +537,19 @@
 		if(selected.action(target, user, params))
 			selected.start_cooldown()
 	else
-		if(internal_damage & MECHA_INT_CONTROL_LOST)
-			target = pick(oview(1,src))
-		if(!melee_can_hit || !istype(target, /atom))
-			return
-		if(equipment_disabled)
-			return
-		target.mech_melee_attack(src, TRUE)
-		melee_can_hit = FALSE
-		spawn(melee_cooldown)
-			melee_can_hit = TRUE
+		default_melee_attack(target)
+
+/obj/mecha/proc/default_melee_attack(atom/target)
+	if(internal_damage & MECHA_INT_CONTROL_LOST)
+		target = pick(oview(1,src))
+	if(!melee_can_hit || !istype(target, /atom))
+		return
+	if(equipment_disabled)
+		return
+	target.mech_melee_attack(src, TRUE)
+	melee_can_hit = FALSE
+	spawn(melee_cooldown)
+		melee_can_hit = TRUE
 
 
 /obj/mecha/proc/range_action(atom/target)
@@ -570,8 +571,6 @@
 /obj/mecha/Process_Spacemove(movement_dir = 0)
 	. = ..()
 	if(.)
-		return TRUE
-	if(thrusters_active && movement_dir && use_power(step_energy_drain))
 		return TRUE
 
 	var/atom/movable/backup = get_spacemove_backup()
@@ -663,13 +662,13 @@
 	var/result = step(src,direction)
 	if(strafe)
 		setDir(current_dir)
-	if(result && stepsound)
+	if(result && stepsound && has_gravity(get_turf(src)))
 		playsound(src,stepsound,40,1)
 	return result
 
 /obj/mecha/proc/mechsteprand()
 	var/result = step_rand(src)
-	if(result && stepsound)
+	if(result && stepsound && has_gravity(get_turf(src)))
 		playsound(src,stepsound,40,1)
 	return result
 
