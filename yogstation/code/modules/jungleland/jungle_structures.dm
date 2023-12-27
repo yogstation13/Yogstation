@@ -116,6 +116,19 @@
 /obj/effect/timed_attack/proc/finish_attack()
 	qdel(src)
 
+
+/obj/effect/timed_attack/tar_king
+	icon = 'yogstation/icons/effects/jungle.dmi'
+	animation_length = 13
+
+/obj/effect/timed_attack/tar_king/spawn_shrine 
+	replace_icon_state = "tar_king_shrine"
+
+/obj/effect/timed_attack/tar_king/spawn_shrine/finish_attack()
+	new /obj/structure/tar_pit(loc)
+	return ..()
+	
+
 /obj/effect/timed_attack/tar_priest 
 	icon = 'yogstation/icons/effects/jungle.dmi'
 	animation_length = 13

@@ -3,6 +3,7 @@
 #define RUNE_ATTACK "rune"
 #define TAR_ATTACK "tar"
 #define TELEPORT_ATTACK "teleport"
+#define SPAWN_ATTACK "spawn"
 
 #define DIRECTION_MATRIX list("NORTH" = 0 , "EAST" = 0, "SOUTH" = 0, "WEST" = 0, "NORTHEAST" = 0 , "SOUTHEAST" = 0 , "SOUTHWEST" = 0, "NORTHWEST" = 0)
 #define ATTACK_MATRIX list(SLASH_ATTACK = DIRECTION_MATRIX, RUNE_ATTACK = DIRECTION_MATRIX, IMPALE_ATTACK = DIRECTION_MATRIX)
@@ -23,6 +24,7 @@
 	melee_damage_upper = 50
 	movement_type = GROUND
 	ranged = TRUE 
+	faction = list("tar", "boss")
 	speak_emote = list("roars")
 	speed = 2
 	move_to_delay = 2
@@ -33,13 +35,37 @@
 	deathsound = "bodyfall"
 	do_footstep = TRUE
 	ranged_cooldown_time = 10 SECONDS
+	armour_penetration = 50
 	dodge_prob = 0
 	loot = list(/obj/item/clothing/head/yogs/tar_king_crown = 1, /obj/item/gem/tarstone = 1, /obj/item/demon_core = 1)
-	crusher_loot = list(/obj/item/crusher_trophy/jungleland/aspect_of_tar)
+	crusher_loot = list(/obj/item/crusher_trophy/jungleland/aspect_of_tar = 1,/obj/item/clothing/head/yogs/tar_king_crown = 1, /obj/item/gem/tarstone = 1, /obj/item/demon_core = 1)
 	var/list/attack_adjustments = list()
 	var/last_done_attack = 0
 	var/list/attack_stack = list()
 	var/stage = 0
+
+	var/list/orbitals = list(0,120,240,60,180,300)
+	var/orbital_theta_per_tick = 15
+	var/orbital_range = 4
+
+/mob/living/simple_animal/hostile/megafauna/tar_king/Initialize()
+	. = ..()
+	START_PROCESSING(SSfastprocess,src)
+
+/mob/living/simple_animal/hostile/megafauna/tar_king/Life(seconds_per_tick, times_fired)
+	. = ..()
+	if(stat == DEAD)
+		return 
+
+	if(prob(25) && target)
+		spawn_tar_shrine()
+
+
+/mob/living/simple_animal/hostile/megafauna/tar_king/process()
+	if(stat == DEAD)
+		STOP_PROCESSING(SSfastprocess, src)
+		return
+	process_orbitals()
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -54,7 +80,6 @@
 	if(isclosedturf(hit_atom))
 		SSexplosions.medturf += get_turf(hit_atom)
 		return
-
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/Goto(target, delay, minimum_distance)
 	if(!attack_stack.len)
@@ -94,7 +119,7 @@
 	if(attack_stack.len)
 		return 
 	var/list/combo = forge_combo()
-	SetRecoveryTime( 3 SECONDS + ((health/maxHealth) * 0.5 SECONDS),0) 
+	SetRecoveryTime( 1 SECONDS + ((health/maxHealth) * 1 SECONDS),0) 
 	
 	for(var/move as anything in combo)	
 		attack_stack += move
@@ -108,12 +133,20 @@
 				rune_attack_chain()
 			if(TELEPORT_ATTACK)
 				teleport_attack_chain()
-			if(TAR_ATTACK)
-				tar_attack_chain()
-
+			if(SPAWN_ATTACK)
+				spawn_attack_chain()
 		attack_stack -= move
 		Goto(target,move_to_delay,minimum_distance)
 		SLEEP_CHECK_DEATH(1 SECONDS)
+
+/mob/living/simple_animal/hostile/megafauna/tar_king/proc/spawn_tar_shrine()
+	var/list/pickable_turfs = list()
+	for(var/turf/open/T in oview(3,target))
+		pickable_turfs += T
+	
+	for(var/i = 0 ; i < rand(1,3); i++)
+		var/turf/spawning = pick_n_take(pickable_turfs)				
+		new /obj/effect/timed_attack/tar_king/spawn_shrine(spawning)
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/react(move)
 	last_done_attack = move
@@ -156,7 +189,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/forge_combo()
 	var/list/combo = list()
-	var/list/possible_moves = list(SLASH_ATTACK,IMPALE_ATTACK,RUNE_ATTACK,TELEPORT_ATTACK,TAR_ATTACK)
+	var/list/possible_moves = list(SLASH_ATTACK,IMPALE_ATTACK,RUNE_ATTACK,TELEPORT_ATTACK,SPAWN_ATTACK)
 	for(var/i = 0 ; i < 3; i++)
 		combo += pick_n_take(possible_moves)
 	return combo
@@ -230,20 +263,6 @@
 		var/limb_to_hit = C.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
 		C.apply_damage(45, BURN, limb_to_hit, C.run_armor_check(limb_to_hit, MAGIC, null, null, armour_penetration), wound_bonus = CANT_WOUND)
 
-/mob/living/simple_animal/hostile/megafauna/tar_king/proc/tar_attack_chain()
-	var/list/pickable_turfs = list()
-	for(var/turf/T as anything in spiral_range_turfs(3,src))
-		if(T.CanPass(src))
-			pickable_turfs += T
-
-	visible_message(span_colossus("Tar-Ishkat!"))			
-	new /obj/effect/tar_king/orb_out(get_turf(src),src,dir)
-	SLEEP_CHECK_DEATH(0.5 SECONDS)
-	for(var/i = 0 ; i < rand(1,3); i++)
-		var/turf/spawning = pick_n_take(pickable_turfs)				
-		new /obj/structure/tar_pit(spawning)
-
-
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/teleport_attack_chain()
 	new /obj/effect/tar_king/orb_in(get_turf(src),src,dir)
 	var/obj/closest
@@ -269,11 +288,46 @@
 	visible_message(span_colossus("Atyr!"))	
 	throw_at(target,get_dist(target,src),4, spin = FALSE)		
 
+/mob/living/simple_animal/hostile/megafauna/tar_king/proc/spawn_attack_chain()
+	if(!GLOB.tar_pits.len)
+		return
+	visible_message(span_colossus("At-Karan!"))
+	var/list/spawnable = list(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/tar)
+	for(var/TP in GLOB.tar_pits)
+		if(prob(50))
+			continue
+		var/obj/structure/tar_pit/pit = TP 
+		var/picked = pick(spawnable)
+		var/mob/living/simple_animal/hostile/H = new picked(pit.loc)
+		H.GiveTarget(target)
+		H.friends = friends
+		H.faction = faction.Copy()
+
+/mob/living/simple_animal/hostile/megafauna/tar_king/proc/process_orbitals()
+	var/orbitals_shown = 3
+	switch(maxHealth - health)
+		if(500 to 1000)
+			orbitals_shown += 1
+		if(1000 to 1500)
+			orbitals_shown += 2
+		if(1500 to 2000)
+			orbitals_shown += 3
+	
+	for(var/i in 1 to 5)
+		orbitals[i] += orbital_theta_per_tick
+
+	for(var/i in 1 to orbitals_shown)
+		var/xcoord = loc.x + orbital_range * cos(orbitals[i])
+		var/ycoord = loc.y + orbital_range * sin(orbitals[i])
+		var/turf/located = locate(xcoord,ycoord,loc.z)
+		var/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/T = new(located, src)
+		T.damage = 25
+
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/sword_hit(list/turfs)
 	for(var/turf/T as anything in turfs)
 		for(var/mob/living/carbon/C in T.contents)
 			var/limb_to_hit = C.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-			C.apply_damage(20, BRUTE, limb_to_hit, C.run_armor_check(limb_to_hit, MELEE, null, null, armour_penetration), wound_bonus = CANT_WOUND)
+			C.apply_damage(35, BRUTE, limb_to_hit, C.run_armor_check(limb_to_hit, MELEE, null, null, armour_penetration), wound_bonus = CANT_WOUND)
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/stage_transition()
 	walk(src,0)
@@ -351,7 +405,7 @@
 	var/speed = 3 //how many deciseconds between each step
 	var/currently_seeking = FALSE
 	var/monster_damage_boost = TRUE
-	var/damage = 10
+	var/damage = 25
 	var/caster
 
 /obj/effect/temp_visual/tar_king_chaser/Initialize(mapload, new_caster, new_target, new_speed)

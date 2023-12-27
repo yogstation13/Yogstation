@@ -211,6 +211,7 @@
 	for(var/i in 0 to rand(1,3))
 		var/to_spawn = pick(spawnables)
 		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
+		spawned.faction = faction
 		spawned.PickTarget(targeted_atom)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/alpha_corrupted_dryad/proc/shoot_projectile(atom/targeted_atom)
