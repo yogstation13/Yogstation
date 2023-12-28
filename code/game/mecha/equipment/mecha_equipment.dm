@@ -229,7 +229,7 @@
 
 // Some equipment can be used as tools
 /obj/item/mecha_parts/mecha_equipment/tool_use_check(mob/living/user, amount)
-	return (chassis.cell.charge >= energy_drain)
+	return (chassis ? (chassis.cell.charge >= energy_drain) : FALSE) // but not if they aren't attached to a mech
 
 // Grant any actions to the pilot
 /obj/item/mecha_parts/mecha_equipment/proc/grant_actions(mob/pilot)

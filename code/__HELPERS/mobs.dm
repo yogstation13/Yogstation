@@ -311,11 +311,14 @@ GLOBAL_LIST_EMPTY(species_list)
 			return
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
-	var/atom/user_loc = ismovable(user.loc) ? get_turf(user) : user.loc // check which turf the user's location is on if it's a movable object
+	var/atom/movable/movable_loc = ismovable(user.loc) ? user.loc : null
+	var/atom/user_loc = movable_loc ? get_turf(user) : user.loc // check which turf the user's location is on if it's a movable object
 	var/atom/target_loc = target?.loc
 
 	var/drifting = FALSE
 	if(!user.Process_Spacemove() && user.inertia_dir)
+		drifting = TRUE
+	if(movable_loc && !movable_loc.Process_Spacemove() && movable_loc.inertia_dir)
 		drifting = TRUE
 
 	var/holding = user.get_active_held_item()
@@ -338,9 +341,9 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(!QDELETED(progbar))
 			progbar.update(world.time - starttime)
 
-		if(drifting && !user.inertia_dir)
+		if(drifting && !user.inertia_dir && !(movable_loc && movable_loc.inertia_dir))
 			drifting = FALSE
-			user_loc = user.loc
+			user_loc = movable_loc ? get_turf(user) : user.loc
 
 		if(QDELETED(user) \
 			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && ((ismovable(user.loc) ? get_turf(user) : user.loc) != user_loc)) \

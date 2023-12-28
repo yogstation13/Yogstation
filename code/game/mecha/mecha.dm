@@ -131,7 +131,7 @@
 	var/phasing_energy_drain = 200
 	var/phase_state = "" //icon_state when phasing
 	var/strafe = FALSE //If we are strafing
-	var/canstrafe = TRUE
+	var/pivot_step = FALSE
 	var/nextsmash = 0
 	var/smashcooldown = 3	//deciseconds
 	var/ejection_distance = 0 //violently ejects the pilot when destroyed
@@ -605,8 +605,11 @@
 /obj/mecha/proc/domove(direction)
 	if(can_move >= world.time)
 		return FALSE
-	if(direction == DOWN || direction == UP)
-		return FALSE //nuh uh
+	var/turf/mech_turf = get_turf(src)
+	if(direction == DOWN && !isgroundlessturf(mech_turf) && !SSmapping.get_turf_below(mech_turf)) 
+		return FALSE
+	if(direction == UP && !((has_gravity(mech_turf)) && !isgroundlessturf(SSmapping.get_turf_above(mech_turf))))
+		return FALSE
 	if(!Process_Spacemove(direction))
 		return FALSE
 	if(!has_charge(step_energy_drain))
@@ -653,14 +656,14 @@
 
 /obj/mecha/proc/mechturn(direction)
 	setDir(direction)
-	if(turnsound)
+	if(turnsound && has_gravity(get_turf(src)))
 		playsound(src,turnsound,40,1)
 	return TRUE
 
 /obj/mecha/proc/mechstep(direction)
 	var/current_dir = dir
 	var/result = step(src,direction)
-	if(strafe)
+	if(strafe && !pivot_step)
 		setDir(current_dir)
 	if(result && stepsound && has_gravity(get_turf(src)))
 		playsound(src,stepsound,40,1)
@@ -671,6 +674,11 @@
 	if(result && stepsound && has_gravity(get_turf(src)))
 		playsound(src,stepsound,40,1)
 	return result
+
+/obj/mecha/setDir()
+	. = ..()
+	if(occupant)
+		occupant.setDir(dir) // keep the pilot facing the direction of the mech or bad things happen
 
 /obj/mecha/Bump(atom/obstacle)
 	var/turf/newloc = get_step(src,dir)

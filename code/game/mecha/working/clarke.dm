@@ -15,7 +15,7 @@
 	max_equip = 7
 	wreckage = /obj/structure/mecha_wreckage/clarke
 	enter_delay = 40
-	canstrafe = FALSE
+	pivot_step = TRUE
 	/// Handles an internal ore box for Clarke
 	var/obj/structure/ore_box/box
 	omnidirectional_attacks = TRUE
@@ -49,6 +49,14 @@
 		var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
 		var/mob/living/brain/B = M.brainmob
 		hud.show_to(B)
+
+/obj/mecha/working/clarke/domove(direction)
+	if(ISDIAGONALDIR(direction) && strafe)
+		if(EWCOMPONENT(dir))
+			direction &= ~(NORTH|SOUTH)
+		else if(NSCOMPONENT(dir))
+			direction &= ~(EAST|WEST)
+	return ..(direction)
 
 //Ore Box Controls
 

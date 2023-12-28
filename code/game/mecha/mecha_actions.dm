@@ -8,8 +8,7 @@
 	cycle_action.Grant(user, src)
 	lights_action.Grant(user, src)
 	stats_action.Grant(user, src)
-	if(canstrafe)
-		strafing_action.Grant(user, src)
+	strafing_action.Grant(user, src)
 	for(var/obj/item/mecha_parts/mecha_equipment/E as anything in equipment)
 		E.grant_actions(user)
 
@@ -21,8 +20,7 @@
 	cycle_action.Remove(user)
 	lights_action.Remove(user)
 	stats_action.Remove(user)
-	if(canstrafe)
-		strafing_action.Remove(user)
+	strafing_action.Remove(user)
 	for(var/obj/item/mecha_parts/mecha_equipment/E as anything in equipment)
 		E.remove_actions(user)
 
@@ -138,7 +136,7 @@
 
 /datum/action/innate/mecha/strafe
 	name = "Toggle Strafing. Disabled when Alt is held."
-	button_icon_state = "strafe"
+	button_icon_state = "strafe_off"
 
 /datum/action/innate/mecha/strafe/Activate()
 	if(!owner || !chassis || chassis.occupant != owner)
@@ -155,6 +153,7 @@
 
 	occupant_message("Toggled strafing mode [strafe?"on":"off"].")
 	log_message("Toggled strafing mode [strafe?"on":"off"].", LOG_MECHA)
+	strafing_action.button_icon_state = "strafe_[strafe?"on":"off"]"
 	strafing_action.build_all_button_icons()
 
 //////////////////////////////////////// Specific Ability Actions  ///////////////////////////////////////////////

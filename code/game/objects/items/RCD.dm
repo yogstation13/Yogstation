@@ -777,10 +777,9 @@ RLD
 	has_ammobar = FALSE
 
 /obj/item/construction/rcd/arcd/afterattack(atom/A, mob/user)
-	..()
 	if(!range_check(A,user))
 		return
-	rcd_create(A,user)
+	return ..()
 
 /obj/item/construction/rcd/arcd/mech
 	name = "mounted RCD"

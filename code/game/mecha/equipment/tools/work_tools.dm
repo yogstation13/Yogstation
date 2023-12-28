@@ -290,8 +290,10 @@
 	var/prox_flag = chassis.Adjacent(target)
 	if(prox_flag && (istype(target, /obj/item/stack) || istype(target, /obj/item/rcd_ammo) || istype(target, /obj/item/rcd_upgrade)))
 		chassis.matter_resupply(target, user)
-		return
-	return internal_rcd.afterattack(target, user, prox_flag, params) // RCD itself will handle it
+		return TRUE
+	if(!isliving(target))
+		internal_rcd.afterattack(target, user, prox_flag, params) // RCD itself will handle it
+		return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/rcd/get_equip_info()
 	return "[..()] \[Matter: [internal_rcd ? internal_rcd.matter : 0]/[internal_rcd ? internal_rcd.max_matter : 0]\]"
