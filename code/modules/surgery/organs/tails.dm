@@ -71,12 +71,12 @@
 			else
 				H.dna.species.mutant_bodyparts["spines"] = H.dna.features["spines"]
 		H.update_body()
-		H.physiology.crawl_speed -= 1
+		H.physiology.crawl_speed -= 0.5
 
 /obj/item/organ/tail/lizard/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
 	if(istype(H))
-		H.physiology.crawl_speed += 1
+		H.physiology.crawl_speed += 0.5
 		H.dna.species.mutant_bodyparts -= "tail_lizard"
 		H.dna.species.mutant_bodyparts -= "spines"
 		color = H.dna.features["mcolor"]
