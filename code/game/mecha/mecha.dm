@@ -608,7 +608,7 @@
 	var/turf/mech_turf = get_turf(src)
 	if(direction == DOWN && (!SSmapping.get_turf_below(mech_turf) || (!phasing && !isgroundlessturf(mech_turf))))
 		return FALSE
-	if(direction == UP && (!SSmapping.get_turf_above(mech_turf) || has_gravity(mech_turf) || (!phasing && !isgroundlessturf(SSmapping.get_turf_above(mech_turf)))))
+	if(direction == UP && (!SSmapping.get_turf_above(mech_turf) || has_gravity() || (!phasing && !isgroundlessturf(SSmapping.get_turf_above(mech_turf)))))
 		return FALSE
 	if(!Process_Spacemove(direction))
 		return FALSE
@@ -656,7 +656,7 @@
 
 /obj/mecha/proc/mechturn(direction)
 	setDir(direction)
-	if(turnsound && has_gravity(get_turf(src)))
+	if(turnsound && has_gravity())
 		playsound(src,turnsound,40,1)
 	return TRUE
 
@@ -665,13 +665,13 @@
 	var/result = step(src,direction)
 	if(strafe && !pivot_step)
 		setDir(current_dir)
-	if(result && stepsound && has_gravity(get_turf(src)))
+	if(result && stepsound && has_gravity())
 		playsound(src,stepsound,40,1)
 	return result
 
 /obj/mecha/proc/mechsteprand()
 	var/result = step_rand(src)
-	if(result && stepsound && has_gravity(get_turf(src)))
+	if(result && stepsound && has_gravity())
 		playsound(src,stepsound,40,1)
 	return result
 
