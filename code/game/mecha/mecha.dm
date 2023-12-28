@@ -606,9 +606,9 @@
 	if(can_move >= world.time)
 		return FALSE
 	var/turf/mech_turf = get_turf(src)
-	if(direction == DOWN && (!SSmapping.get_turf_below(mech_turf) || !isgroundlessturf(mech_turf)))
+	if(direction == DOWN && (!SSmapping.get_turf_below(mech_turf) || !isspaceturf(mech_turf)))
 		return FALSE
-	if(direction == UP && !isgroundlessturf(SSmapping.get_turf_above(mech_turf)))
+	if(direction == UP && !isspaceturf(SSmapping.get_turf_above(mech_turf)))
 		return FALSE
 	if(!Process_Spacemove(direction))
 		return FALSE
