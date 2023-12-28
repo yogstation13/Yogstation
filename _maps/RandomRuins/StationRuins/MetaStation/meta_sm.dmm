@@ -1,8 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ag" = (
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/stripes{
 	dir = 5
 	},
