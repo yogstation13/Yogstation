@@ -417,9 +417,13 @@
 	AddElement(/datum/element/update_icon_blocker)
 	return ..()
 
-/obj/structure/ladder/unbreakable/rune/show_fluff_message(up,mob/user)
-	user.visible_message("[user] activates \the [src].",span_notice("You activate \the [src]."))
+/obj/structure/ladder/unbreakable/rune/show_initial_fluff_message(mob/user, going_up)
+	user.balloon_alert_to_viewers("activating...")
 
-/obj/structure/ladder/unbreakable/rune/use(mob/user, is_ghost=FALSE)
-	if(is_ghost || !(user.mind in SSticker.mode.wizards))
+/obj/structure/ladder/unbreakable/rune/show_final_fluff_message(mob/user, going_up)
+	visible_message(span_notice("[user] activates [src] and teleports away."))
+	user.balloon_alert_to_viewers("warped in")
+
+/obj/structure/ladder/unbreakable/rune/use(mob/user, going_up = TRUE)
+	if(!IS_WIZARD(user))
 		..()

@@ -12,18 +12,47 @@
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 
-/turf/open/openspace/debug/update_multiz()
-	..()
-	return TRUE
+/turf/open/openspace/airless
+	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/openspace/airless/planetary
+	planetary_atmos = TRUE
 
 /turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
-
-	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE, PROC_REF(on_atom_created))
+	if(PERFORM_ALL_TESTS(focus_only/openspace_clear) && !GET_TURF_BELOW(src))
+		stack_trace("[src] was inited as openspace with nothing below it at ([x], [y], [z])")
+	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_atom_created))
 	var/area/our_area = loc
 	if(istype(our_area, /area/space))
 		force_no_gravity = TRUE
 	return INITIALIZE_HINT_LATELOAD
+
+/turf/open/openspace/LateInitialize()
+	. = ..()
+	AddElement(/datum/element/turf_z_transparency)
+
+/turf/open/openspace/ChangeTurf(path, list/new_baseturfs, flags)
+	UnregisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON)
+	return ..()
+
+/**
+ * Prepares a moving movable to be precipitated if Move() is successful.
+ * This is done in Enter() and not Entered() because there's no easy way to tell
+ * if the latter was called by Move() or forceMove() while the former is only called by Move().
+ */
+/turf/open/openspace/Enter(atom/movable/movable, atom/oldloc, no_side_effects = FALSE)
+	. = ..()
+	if(.)
+		//higher priority than CURRENTLY_Z_FALLING so the movable doesn't fall on Entered()
+		movable.set_currently_z_moving(CURRENTLY_Z_FALLING_FROM_MOVE)
+
+///Makes movables fall when forceMove()'d to this turf.
+/turf/open/openspace/Entered(atom/movable/movable)
+	. = ..()
+	if(movable.set_currently_z_moving(CURRENTLY_Z_FALLING))
+		zFall(movable, falling_from_move = TRUE)
+
 /**
  * Drops movables spawned on this turf after they are successfully initialized.
  * so that spawned movables that should fall to gravity, will fall.
@@ -38,34 +67,17 @@
 		return
 	zFall(movable)
 
-/turf/open/openspace/LateInitialize()
-	update_multiz(TRUE, TRUE)
-
 /turf/open/openspace/Destroy()
 	vis_contents.len = 0
 	return ..()
 
-/turf/open/openspace/update_multiz(prune_on_fail = FALSE, init = FALSE)
-	. = ..()
-	var/turf/T = below()
-	if(!T)
-		vis_contents.len = 0
-		if(prune_on_fail)
-			ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
-		return FALSE
-	if(init)
-		vis_contents += T
-	return TRUE
-
 /turf/open/openspace/multiz_turf_del(turf/T, dir)
 	if(dir != DOWN)
 		return
-	update_multiz()
 
 /turf/open/openspace/multiz_turf_new(turf/T, dir)
 	if(dir != DOWN)
 		return
-	update_multiz()
 
 /turf/open/openspace/zAirIn()
 	return TRUE
@@ -73,11 +85,31 @@
 /turf/open/openspace/zAirOut()
 	return TRUE
 
-/turf/open/openspace/zPassIn(atom/movable/A, direction, turf/source)
-	return TRUE
+/turf/open/openspace/zPassIn(direction)
+	if(direction == DOWN)
+		for(var/obj/contained_object in contents)
+			if(contained_object.obj_flags & BLOCK_Z_IN_DOWN)
+				return FALSE
+		return TRUE
+	if(direction == UP)
+		for(var/obj/contained_object in contents)
+			if(contained_object.obj_flags & BLOCK_Z_IN_UP)
+				return FALSE
+		return TRUE
+	return FALSE
 
-/turf/open/openspace/zPassOut(atom/movable/A, direction, turf/destination)
-	return TRUE
+/turf/open/openspace/zPassOut(direction)
+	if(direction == DOWN)
+		for(var/obj/contained_object in contents)
+			if(contained_object.obj_flags & BLOCK_Z_OUT_DOWN)
+				return FALSE
+		return TRUE
+	if(direction == UP)
+		for(var/obj/contained_object in contents)
+			if(contained_object.obj_flags & BLOCK_Z_OUT_UP)
+				return FALSE
+		return TRUE
+	return FALSE
 
 /turf/open/openspace/proc/CanCoverUp()
 	return can_cover_up
@@ -130,9 +162,26 @@
 /turf/open/openspace/icemoon
 	name = "ice chasm"
 	baseturfs = /turf/open/openspace/icemoon
-	can_cover_up = FALSE
-	can_build_on = FALSE
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	/// Replaces itself with replacement_turf if the turf has the no ruins allowed flag (usually ruins themselves)
+	var/protect_ruin = TRUE
+	/// The turf that will replace this one if the turf below has the no ruins allowed flag. we use this one so we don't get any potential double whammies
+	var/replacement_turf = /turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm
+	/// If true mineral turfs below this openspace turf will be mined automatically
+	var/drill_below = TRUE
 
-/turf/open/openspace/icemoon/can_zFall(atom/movable/A, levels = 1, turf/target)
-	return TRUE
+/turf/open/openspace/icemoon/Initialize(mapload)
+	. = ..()
+	var/turf/T = GET_TURF_BELOW(src)
+	//I wonder if I should error here
+	if(!T)
+		return
+	if(T.flags_1 & NO_RUINS_1 && protect_ruin)
+		ChangeTurf(replacement_turf, null, CHANGETURF_IGNORE_AIR)
+		return
+	if(!ismineralturf(T) || !drill_below)
+		return
+	var/turf/closed/mineral/M = T
+	M.mineralAmt = 0
+	M.gets_drilled()
+	baseturfs = /turf/open/openspace/icemoon //This is to ensure that IF random turf generation produces a openturf, there won't be other turfs assigned other than openspace.

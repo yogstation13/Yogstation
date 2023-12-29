@@ -153,11 +153,13 @@
 	name = "snow"
 	desc = "Looks cold."
 	icon = 'icons/turf/snow.dmi'
+	damaged_dmi = 'icons/turf/snow.dmi'
 	baseturfs = /turf/open/floor/plating/asteroid/snow
 	icon_state = "snow"
 	base_icon_state = "snow"
 	icon_plating = "snow"
 	initial_gas_mix = FROZEN_ATMOS
+	slowdown = 2
 	environment_type = "snow"
 	flags_1 = NONE
 	planetary_atmos = TRUE
@@ -165,6 +167,15 @@
 	bullet_bounce_sound = null
 	digResult = /obj/item/stack/sheet/mineral/snow
 	flammability = -5
+
+/turf/open/floor/plating/asteroid/snow/burn_tile()
+	if(!burnt)
+		visible_message(span_danger("[src] melts away!."))
+		slowdown = 0
+		burnt = TRUE
+		update_appearance()
+		return TRUE
+	return FALSE
 
 /turf/open/floor/plating/asteroid/snow/burnt_states()
 	return list("snow_dug")
@@ -177,18 +188,16 @@
 	..()
 	slowdown = 0
 
-/turf/open/floor/plating/asteroid/snow/burn_tile()
-	if(!burnt)
-		visible_message(span_danger("[src] melts away!."))
-		slowdown = 0
-		burnt = TRUE
-		update_appearance()
-		return TRUE
-	return FALSE
-
 /turf/open/floor/plating/asteroid/snow/icemoon
-	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon
+	baseturfs = /turf/open/openspace/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	slowdown = 0
+
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm
+	flags_1 = CAN_BE_DIRTY_1 | NO_RUINS_1 | NO_RUST
+
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_scrape
+	flags_1 = CAN_BE_DIRTY_1 | NO_RUINS_1 | NO_RUST
 
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer
 	light_range = 2
@@ -222,6 +231,12 @@
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/floor/plating/asteroid/snow/ice/break_tile()
+	return FALSE
+
+/turf/open/floor/plating/asteroid/snow/ice/burn_tile()
+	return FALSE
 
 /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon

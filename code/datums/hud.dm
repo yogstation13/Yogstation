@@ -276,30 +276,30 @@ GLOBAL_LIST_INIT(huds, list(
 
 ///when a hud atom or hud user changes z levels this makes sure it gets the images it needs and removes the images it doesnt need.
 ///because of how signals work we need the same proc to handle both use cases because being a hud atom and being a hud user arent mutually exclusive
-/datum/atom_hud/proc/on_atom_or_user_z_level_changed(atom/movable/moved_atom, old_z, new_z) //turf/old_turf, turf/new_turf
+/datum/atom_hud/proc/on_atom_or_user_z_level_changed(atom/movable/moved_atom, turf/old_turf, turf/new_turf)
 	SIGNAL_HANDLER
-	if(old_z)
+	if(old_turf)
 		if(hud_users_all_z_levels[moved_atom])
-			hud_users[old_z] -= moved_atom
+			hud_users[old_turf.z] -= moved_atom
 
-			remove_all_atoms_from_single_hud(moved_atom, get_hud_atoms_for_z_level(old_z))
+			remove_all_atoms_from_single_hud(moved_atom, get_hud_atoms_for_z_level(old_turf.z))
 
 		if(hud_atoms_all_z_levels[moved_atom])
-			hud_atoms[old_z] -= moved_atom
+			hud_atoms[old_turf.z] -= moved_atom
 
 			//this wont include moved_atom since its removed
-			remove_atom_from_all_huds(get_hud_users_for_z_level(old_z), moved_atom)
+			remove_atom_from_all_huds(get_hud_users_for_z_level(old_turf.z), moved_atom)
 
-	if(new_z)
+	if(new_turf)
 		if(hud_users_all_z_levels[moved_atom])
-			hud_users[new_z][moved_atom] = TRUE //hud users is associative, hud atoms isnt
+			hud_users[new_turf.z][moved_atom] = TRUE //hud users is associative, hud atoms isnt
 
-			add_all_atoms_to_single_mob_hud(moved_atom, get_hud_atoms_for_z_level( new_z))
+			add_all_atoms_to_single_mob_hud(moved_atom, get_hud_atoms_for_z_level(new_turf.z))
 
 		if(hud_atoms_all_z_levels[moved_atom])
-			hud_atoms[ new_z] |= moved_atom
+			hud_atoms[new_turf.z] |= moved_atom
 
-			add_atom_to_all_mob_huds(get_hud_users_for_z_level(new_z), moved_atom)
+			add_atom_to_all_mob_huds(get_hud_users_for_z_level(new_turf.z), moved_atom)
 
 /// add just hud_atom's hud images (that are part of this atom_hud) to requesting_mob's client.images list
 /datum/atom_hud/proc/add_atom_to_single_mob_hud(mob/requesting_mob, atom/hud_atom) //unsafe, no sanity apart from client

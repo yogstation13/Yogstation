@@ -147,9 +147,7 @@
 /// Is runechat for this atom/movable currently disabled, regardless of prefs or anything?
 #define TRAIT_RUNECHAT_HIDDEN "runechat_hidden"
 /// trait associated to a stat value or range of
-#define STAT_TRAIT 				"stat"
 #define TRAIT_INCAPACITATED 	"incapacitated"
-#define HANDCUFFED_TRAIT 		"handcuffed"
 #define TRAIT_BLIND 			"blind"
 #define TRAIT_ECHOLOCATION_RECEIVER "echolocation_receiver"
 #define TRAIT_MUTE				"mute"
@@ -360,40 +358,16 @@
 #define TRAIT_SEE_REAGENTS		"see_reagents"
 #define TRAIT_STARGAZED			"stargazed"
 
-// common trait sources
-#define TRAIT_GENERIC "generic"
-#define UNCONSCIOUS_TRAIT "unconscious"
-#define EYE_DAMAGE "eye_damage"
-#define GENETIC_MUTATION "genetic"
-#define OBESITY "obesity"
-#define MAGIC_TRAIT "magic"
-#define TRAUMA_TRAIT "trauma"
-#define DISEASE_TRAIT "disease"
-#define SPECIES_TRAIT "species"
-#define ORGAN_TRAIT "organ"
-#define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
-#define JOB_TRAIT "job"
-#define CYBORG_ITEM_TRAIT "cyborg-item"
-#define ADMIN_TRAIT "admin" // (B)admins only.
-#define CHANGELING_TRAIT "changeling"
-#define CULT_TRAIT "cult"
-#define LICH_TRAIT "lich"
 /// The item is magically cursed
 #define CURSED_ITEM_TRAIT(item_type) "cursed_item_[item_type]"
-#define ABSTRACT_ITEM_TRAIT "abstract-item"
+
 #define PSEUDOCIDER_TRAIT "pseudocider_trait"
-#define STATUS_EFFECT_TRAIT "status-effect"
-#define CLOTHING_TRAIT "clothing"
-#define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
-#define INNATE_TRAIT "innate"
-#define STATION_TRAIT "station-trait"
+
 #define ATTACHMENT_TRAIT "attachment-trait"
-#define GLASSES_TRAIT "glasses"
+
 /// A trait given by a specific status effect (not sure why we need both but whatever!)
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
-/// trait associated to being held in a chokehold
-#define CHOKEHOLD_TRAIT "chokehold"
-#define CRYO_TRAIT "cryo_trait"
+
 /// Trait applied by element
 #define ELEMENT_TRAIT(source) "element_trait_[source]"
 /// Trait from [/datum/element/rust]. Its rusty and should be applying a special overlay to denote this.
@@ -403,39 +377,13 @@
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
-#define STATUE_MUTE "statue"
-#define CHANGELING_DRAIN "drain"
 #define CHANGELING_HIVEMIND_MUTE "ling_mute"
 #define ABYSSAL_GAZE_BLIND "abyssal_gaze"
 #define HIGHLANDER "highlander"
 #define TRAIT_HULK "hulk"
-#define STASIS_MUTE "stasis"
-#define GENETICS_SPELL "genetics_spell"
-#define EYES_COVERED "eyes_covered"
 #define CULT_EYES "cult_eyes"
-#define TRAIT_SANTA "santa"
-#define SCRYING_ORB "scrying-orb"
-#define ABDUCTOR_ANTAGONIST "abductor-antagonist"
 #define NUKEOP_TRAIT "nuke-op"
 #define DEATHSQUAD_TRAIT "deathsquad"
-#define MEGAFAUNA_TRAIT "megafauna"
-#define CLOWN_NUKE_TRAIT "clown-nuke"
-#define STICKY_MOUSTACHE_TRAIT "sticky-moustache"
-#define CHAINSAW_FRENZY_TRAIT "chainsaw-frenzy"
-#define CHRONO_GUN_TRAIT "chrono-gun"
-#define REVERSE_BEAR_TRAP_TRAIT "reverse-bear-trap"
-#define CURSED_MASK_TRAIT "cursed-mask"
-#define HIS_GRACE_TRAIT "his-grace"
-#define HAND_REPLACEMENT_TRAIT "magic-hand"
-#define HOT_POTATO_TRAIT "hot-potato"
-#define SABRE_SUICIDE_TRAIT "sabre-suicide"
-#define ABDUCTOR_VEST_TRAIT "abductor-vest"
-#define CAPTURE_THE_FLAG_TRAIT "capture-the-flag"
-#define EYE_OF_GOD_TRAIT "eye-of-god"
-#define SHAMEBRERO_TRAIT "shamebrero"
-#define CHRONOSUIT_TRAIT "chronosuit"
-#define LOCKED_HELMET_TRAIT "locked-helmet"
-#define NINJA_SUIT_TRAIT "ninja-suit"
 #define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
 #define HIVEMIND_ONE_MIND_TRAIT "one_mind"
 #define VR_ZONE_TRAIT "vr_zone_trait"
@@ -443,7 +391,6 @@
 #define STARGAZER_TRAIT "stargazer"
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
-#define PULLED_WHILE_SOFTCRIT_TRAIT "pulled-while-softcrit"
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
 /// Source trait for Monster Hunter-related traits
@@ -458,7 +405,6 @@
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
 #define WRIST_STRAP_TRAIT "wrist_strap"
-#define ECHOLOCATION_TRAIT "echolocation_trait"
 #define GRIMOIRE_TRAIT "grimoire_trait"
 
 ///Traits given by station traits
@@ -540,8 +486,6 @@
 #define TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT "free_hyperspace_softcordon_movement"
 ///Deletes the object upon being dumped into space, usually from exiting hyperspace. Useful if you're spawning in a lot of stuff for hyperspace events that dont need to flood the entire game
 #define TRAIT_DEL_ON_SPACE_DUMP "del_on_hyperspace_leave"
-///Turf trait for when a turf is transparent
-#define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
 /// This mob overrides certian SSlag_switch measures with this special trait
 #define TRAIT_BYPASS_MEASURES "bypass_lagswitch_measures"
 /// This movable atom has the explosive block element

@@ -626,7 +626,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	M.Turn(0)
 	transform = M
 
-/obj/machinery/vending/unbuckle_mob(mob/living/buckled_mob, force=FALSE)
+/obj/machinery/vending/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	if(!force)
 		return
 	. = ..()
@@ -1101,6 +1101,3 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 		to_chat(user, span_warning("[src]'s input compartment blinks red: Access denied."))
 		return FALSE
-
-/obj/machinery/vending/onTransitZ()
-	return

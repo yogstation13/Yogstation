@@ -104,10 +104,7 @@ All ShuttleMove procs go here
 
 // Called on atoms after everything has been moved
 /atom/movable/proc/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
-
-	var/turf/newT = get_turf(src)
-	if (newT.z != oldT.z)
-		onTransitZ(oldT.z, newT.z)
+	SEND_SIGNAL(src, COMSIG_ATOM_AFTER_SHUTTLE_MOVE)
 
 	if(light)
 		update_light()
@@ -115,6 +112,11 @@ All ShuttleMove procs go here
 		shuttleRotate(rotation)
 
 	update_parallax_contents()
+
+	//Yog code: i'm not sure if this is actually still needed but taking a closer look will be another PR having to do with shuttles
+	var/turf/newT = get_turf(src)
+	if (newT.z != oldT.z)
+		on_changed_z_level(oldT, newT)
 
 	return TRUE
 

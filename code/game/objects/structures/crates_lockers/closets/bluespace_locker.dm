@@ -112,13 +112,13 @@
 		else
 			. += image(other.icon, "[other.icon_state]_open")
 
-/obj/structure/closet/bluespace/external/onTransitZ(old_z,new_z)
+/obj/structure/closet/bluespace/external/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	var/obj/structure/closet/O = get_other_locker()
 	if(O)
 		var/area/A = get_area(O)
 		if(A)
 			for(var/atom/movable/M in A)
-				M.onTransitZ(old_z,new_z)
+				M.on_changed_z_level(old_turf, new_turf)
 	return ..()
 
 /obj/structure/closet/bluespace/internal/proc/update_mirage()

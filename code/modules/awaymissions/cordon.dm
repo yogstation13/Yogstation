@@ -9,7 +9,7 @@
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
+	space_lit = TRUE
 	bullet_bounce_sound = null
 	flags_1 = CAN_BE_DIRTY_1 | NO_RUST
 	baseturfs = /turf/cordon
@@ -35,6 +35,7 @@
 	return src // :devilcat:
 
 /turf/cordon/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+	SHOULD_CALL_PARENT(FALSE) // Fuck you
 	return BULLET_ACT_HIT
 
 /turf/cordon/Adjacent(atom/neighbor, atom/target, atom/movable/mover)

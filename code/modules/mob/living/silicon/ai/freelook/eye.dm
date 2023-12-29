@@ -25,6 +25,12 @@
 	update_ai_detect_hud()
 	setLoc(loc, TRUE)
 
+/mob/camera/aiEye/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	. = ..()
+	if(same_z_layer)
+		return
+	update_ai_detect_hud()
+
 /mob/camera/aiEye/proc/update_ai_detect_hud()
 	var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
 	var/list/old_images = hud_list[AI_DETECT_HUD]

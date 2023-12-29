@@ -24,6 +24,7 @@
 /mob/Login()
 	if(!client)
 		return FALSE
+	
 	canon_client = client
 	add_to_player_list()
 	lastKnownIP	= client.address
@@ -107,6 +108,10 @@
 
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
+	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN, src)
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGGED_IN, src)
+	return TRUE
 
 /**
   * Checks if the attached client is an admin and may deadmin them

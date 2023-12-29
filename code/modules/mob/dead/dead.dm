@@ -25,14 +25,14 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/canUseStorage()
 	return FALSE
 
-/mob/dead/forceMove(atom/destination)
-	var/turf/old_turf = get_turf(src)
-	var/turf/new_turf = get_turf(destination)
-	if (old_turf?.z != new_turf?.z)
-		onTransitZ(old_turf?.z, new_turf?.z)
-	var/oldloc = loc
-	loc = destination
-	Moved(oldloc, NONE, TRUE)
+// /mob/dead/forceMove(atom/destination)
+// 	var/turf/old_turf = get_turf(src)
+// 	var/turf/new_turf = get_turf(destination)
+// 	if (old_turf?.z != new_turf?.z)
+// 		on_changed_z_level(old_turf, new_turf)
+// 	var/oldloc = loc
+// 	loc = destination
+// 	Moved(oldloc, NONE, TRUE)
 
 /mob/dead/get_status_tab_items()
 	. = ..()
@@ -108,6 +108,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 /mob/dead/Login()
 	. = ..()
+	if(!. || !client)
+		return FALSE
 	var/turf/T = get_turf(src)
 	if (isturf(T))
 		update_z(T.z)
@@ -119,6 +121,6 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	update_z(null)
 	return ..()
 
-/mob/dead/onTransitZ(old_z,new_z)
+/mob/dead/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	..()
-	update_z(new_z)
+	update_z(new_turf?.z)
