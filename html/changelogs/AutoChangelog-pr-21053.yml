@@ -1,0 +1,4 @@
+author: "jupyterkat"
+delete-after: true 
+changes: 
+  - tweak: "updated auxmos to latest"
