@@ -1,8 +1,7 @@
-/*
-	FUN ZONE OF ADMIN LISTINGS
-	Try to keep this in sync with __DEFINES/traits.dm
-	quirks have it's own panel so we don't need them here.
-*/
+// This file contains any stuff related to admin-visible traits.
+// There's likely more than a few traits missing from this file, do consult the `_traits.dm` file in this folder to see every global trait that exists.
+// quirks have it's own panel so we don't need them here.
+
 GLOBAL_LIST_INIT(admin_visible_traits, list(
 	/atom/movable = list(
 		"TRAIT_ASHSTORM_IMMUNE" = TRAIT_ASHSTORM_IMMUNE,
@@ -43,23 +42,3 @@ GLOBAL_LIST(admin_trait_name_map)
 
 	return .
 
-
-GLOBAL_LIST_INIT(movement_type_trait_to_flag, list(
-	TRAIT_MOVE_GROUND = GROUND,
-	TRAIT_MOVE_FLYING = FLYING,
-	TRAIT_MOVE_VENTCRAWLING = VENTCRAWLING,
-	TRAIT_MOVE_FLOATING = FLOATING,
-	))
-
-GLOBAL_LIST_INIT(movement_type_addtrait_signals, set_movement_type_addtrait_signals())
-GLOBAL_LIST_INIT(movement_type_removetrait_signals, set_movement_type_removetrait_signals())
-
-/proc/set_movement_type_addtrait_signals(signal_prefix)
-	. = list()
-	for(var/trait in GLOB.movement_type_trait_to_flag)
-		. += SIGNAL_ADDTRAIT(trait)
-
-/proc/set_movement_type_removetrait_signals(signal_prefix)
-	. = list()
-	for(var/trait in GLOB.movement_type_trait_to_flag)
-		. += SIGNAL_REMOVETRAIT(trait)
