@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/yog_jungle/alpha
+	gold_core_spawnable = FALSE
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha/death(gibbed)
 	new /obj/structure/closet/crate/necropolis/tendril(loc)
