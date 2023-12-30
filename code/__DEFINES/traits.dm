@@ -124,142 +124,47 @@
 //Remember to update code/datums/traits/ folder if you're adding/removing/renaming traits.
 
 //mob traits
-/// Forces the user to stay unconscious.
-#define TRAIT_KNOCKEDOUT 		"knockedout"
-/// Prevents voluntary movement.
-#define TRAIT_IMMOBILIZED 		"immobilized"
-/// Prevents voluntary standing or staying up on its own.
-#define TRAIT_FLOORED 			"floored"
-/// Forces user to stay standing
-#define TRAIT_FORCED_STANDING 	"forcedstanding"
-/// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
-#define TRAIT_HANDS_BLOCKED 	"handsblocked"
-/// Inability to access UI hud elements. Turned into a trait from [MOBILITY_UI] to be able to track sources.
-#define TRAIT_UI_BLOCKED "uiblocked"
-/// Inability to pull things. Turned into a trait from [MOBILITY_PULL] to be able to track sources.
-#define TRAIT_PULL_BLOCKED "pullblocked"
-/// Abstract condition that prevents movement if being pulled and might be resisted against. Handcuffs and straight jackets, basically.
-#define TRAIT_RESTRAINED 		"restrained"
-/// In some kind of critical condition. Is able to succumb.
-#define TRAIT_CRITICAL_CONDITION "critical-condition"
-/// Is frozen in place
-#define TRAIT_FROZEN "frozen"
-/// Is runechat for this atom/movable currently disabled, regardless of prefs or anything?
-#define TRAIT_RUNECHAT_HIDDEN "runechat_hidden"
-/// trait associated to a stat value or range of
-#define TRAIT_INCAPACITATED 	"incapacitated"
+
 #define TRAIT_BLIND 			"blind"
-#define TRAIT_ECHOLOCATION_RECEIVER "echolocation_receiver"
-#define TRAIT_MUTE				"mute"
-#define TRAIT_EMOTEMUTE			"emotemute"
-#define TRAIT_DEAF				"deaf"
+
 #define TRAIT_NEARSIGHT			"nearsighted"
-#define TRAIT_FAT				"fat"
-#define TRAIT_HUSK				"husk"
-#define TRAIT_BADDNA			"baddna"
-#define TRAIT_CLUMSY			"clumsy"
-#define TRAIT_DUMB				"dumb"
+
 #define TRAIT_MONKEYLIKE		"monkeylike" //sets IsAdvancedToolUser to FALSE
-#define TRAIT_PACIFISM			"pacifism"
-#define TRAIT_IGNORESLOWDOWN	"ignoreslow"
-#define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
+
 #define TRAIT_REDUCED_DAMAGE_SLOWDOWN "reduced_damage_slowdown"
 #define TRAIT_RESISTDAMAGESLOWDOWN "resistdamageslowdown"
 #define TRAIT_HIGHRESISTDAMAGESLOWDOWN "highresistdamageslowdown"
-#define TRAIT_DEATHCOMA			"deathcoma" //Causes death-like unconsciousness
-#define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
-#define TRAIT_DISFIGURED		"disfigured"
-#define TRAIT_XENO_HOST			"xeno_host"	//Tracks whether we're gonna be a baby alien's mummy.
-#define TRAIT_STUNIMMUNE		"stun_immunity"
-#define TRAIT_SLEEPIMMUNE		"sleep_immunity"
+
 #define TRAIT_IMPACTIMMUNE		"impact_immunity" //protects from the damage of getting launched into a wall hard
-#define TRAIT_PUSHIMMUNE		"push_immunity"
-#define TRAIT_SHOCKIMMUNE		"shock_immunity"
-/// Prevents you from leaving your corpse
-#define TRAIT_CORPSELOCKED 		"corpselocked"
-#define TRAIT_STABLEHEART		"stable_heart"
-#define TRAIT_STABLELIVER		"stable_liver"
-#define TRAIT_RESISTHEAT		"resist_heat"
-#define TRAIT_RESISTHEATHANDS	"resist_heat_handsonly" //For when you want to be able to touch hot things, but still want fire to be an issue.
-#define TRAIT_RESISTCOLD		"resist_cold"
-#define TRAIT_RESISTHIGHPRESSURE	"resist_high_pressure"
-#define TRAIT_RESISTLOWPRESSURE	"resist_low_pressure"
-#define TRAIT_BOMBIMMUNE		"bomb_immunity"
-#define TRAIT_RADIMMUNE			"rad_immunity"
+
 #define TRAIT_EMPPROOF_SELF		"emp_immunity_self" //for the specific "thing" itself
 #define TRAIT_EMPPROOF_CONTENTS "emp_immunity_contents" //for anything the "thing" is carrying, but not itself
-#define TRAIT_GENELESS  		"geneless"
-#define TRAIT_VIRUSIMMUNE		"virus_immunity"
-#define TRAIT_PIERCEIMMUNE		"pierce_immunity"
-#define TRAIT_NODISMEMBER		"dismember_immunity"
+
 #define TRAIT_SAFEWELD		"safe_welding" //prevents blinding from welding without giving actual flash immunity
-#define TRAIT_NOFIRE			"nonflammable"
-#define TRAIT_NOGUNS			"no_guns"
+
 #define TRAIT_NO_STUN_WEAPONS	"no_stun_weapons" //prevents use of commonly available instant or near instant stun weapons
 #define TRAIT_NOINTERACT		"no_interact" //Not allowed to touch anything (even with TK) or use things in hand
-#define TRAIT_NOHUNGER			"no_hunger"
+
 #define TRAIT_POWERHUNGRY		"power_hungry" // uses electricity instead of food
-#define TRAIT_EASYDISMEMBER		"easy_dismember"
-#define TRAIT_LIMBATTACHMENT 	"limb_attach"
-#define TRAIT_NOLIMBDISABLE		"no_limb_disable"
-#define TRAIT_EASILY_WOUNDED		"easy_limb_wound"
-#define TRAIT_HARDLY_WOUNDED		"hard_limb_wound"
-#define TRAIT_TOXINLOVER		"toxinlover"
-#define TRAIT_TOXIMMUNE         "toxin_immune"
-#define TRAIT_NOBREATH			"no_breath"
-/// This mob is antimagic, and immune to spells / cannot cast spells
-#define TRAIT_ANTIMAGIC "anti_magic"
-/// This allows a person who has antimagic to cast spells without getting blocked
-#define TRAIT_ANTIMAGIC_NO_SELFBLOCK "anti_magic_no_selfblock"
-/// This mob recently blocked magic with some form of antimagic
-#define TRAIT_RECENTLY_BLOCKED_MAGIC "recently_blocked_magic"
-#define TRAIT_HOLY				"holy"
-#define TRAIT_DEPRESSION		"depression"
-#define TRAIT_JOLLY				"jolly"
-#define TRAIT_NOCRITDAMAGE		"no_crit"
+
 #define TRAIT_NOSLIPICE			"noslip_ice"
 #define TRAIT_NOSLIPWATER		"noslip_water"
 #define TRAIT_NOSLIPALL			"noslip_all"
-#define TRAIT_NODEATH			"nodeath"
-#define TRAIT_NOHARDCRIT		"nohardcrit"
-#define TRAIT_NOSOFTCRIT		"nosoftcrit"
-#define TRAIT_MINDSHIELD		"mindshield"
-#define TRAIT_DISSECTED			"dissected"
-#define TRAIT_SIXTHSENSE		"sixth_sense" //I can hear dead people
-#define TRAIT_FEARLESS			"fearless"
-#define TRAIT_PARALYSIS_L_ARM	"para-l-arm" //These are used for brain-based paralysis, where replacing the limb won't fix it
-#define TRAIT_PARALYSIS_R_ARM	"para-r-arm"
-#define TRAIT_PARALYSIS_L_LEG	"para-l-leg"
-#define TRAIT_PARALYSIS_R_LEG	"para-r-leg"
-#define TRAIT_CANNOT_OPEN_PRESENTS "cannot-open-presents"
-#define TRAIT_PRESENT_VISION    "present-vision"
-#define TRAIT_DISK_VERIFIER     "disk-verifier"
-#define TRAIT_NOMOBSWAP         "no-mob-swap"
-#define TRAIT_XRAY_VISION       "xray_vision"
-#define TRAIT_THERMAL_VISION    "thermal_vision"
+
 #define TRAIT_INFRARED_VISION	"infrared_vision"
-#define TRAIT_ABDUCTOR_TRAINING "abductor-training"
-#define TRAIT_ABDUCTOR_SCIENTIST_TRAINING "abductor-scientist-training"
-#define TRAIT_SURGEON           "surgeon"
-#define	TRAIT_STRONG_GRABBER	"strong_grabber"
+
 #define	TRAIT_CALCIUM_HEALER	"calcium_healer"
 #define	TRAIT_MAGIC_CHOKE		"magic_choke"
-#define TRAIT_SOOTHED_THROAT    "soothed-throat"
-#define TRAIT_LAW_ENFORCEMENT_METABOLISM "law-enforcement-metabolism"
+
 #define TRAIT_PSYCH				"psych-diagnosis"
 #define TRAIT_ALWAYS_CLEAN      "always-clean"
-#define TRAIT_BOOZE_SLIDER      "booze-slider"
-#define TRAIT_QUICK_CARRY		"quick-carry"
-#define TRAIT_QUICKER_CARRY		"quicker-carry"
+
 #define TRAIT_QUICKEST_CARRY	"quickest-carry"
 #define TRAIT_STRONG_GRIP		"strong-grip"
-#define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
-#define TRAIT_UNSTABLE			"unstable"
-#define TRAIT_OIL_FRIED			"oil_fried"
+
 #define TRAIT_SHELTERED			"sheltered"
 #define TRAIT_RANDOM_ACCENT		"random_accent"
 #define TRAIT_MEDICALIGNORE     "medical_ignore"
-#define TRAIT_PASSTABLE			"passtable"
 #define TRAIT_SLIME_EMPATHY		"slime-empathy"
 #define TRAIT_ACIDBLOOD         "acid_blood"
 #define TRAIT_PRESERVED_ORGANS	"preserved_organs"
@@ -267,10 +172,8 @@
 #define TRAIT_SURGERY_PREPARED	"surgery_prepared"
 #define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
 #define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
-#define TRAIT_BLOODY_MESS		"bloody_mess" //from heparin, makes open bleeding wounds rapidly spill more blood
 #define TRAIT_BLOODY_MESS_LITE	"bloody_mess_lite" //weak heparin, otherwise the same
 #define TRAIT_NO_BLOOD_REGEN	"no_blood_regen" //prevents regenerating blood
-#define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
 #define TRAIT_NOCLONE			"noclone" // No cloning
@@ -285,76 +188,32 @@
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
 ///You become a Marine that can eat crayons!!!
 #define TRAIT_MARINE  "marine"
-/// makes your footsteps completely silent
-#define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
-/// Immune to being afflicted by time stop (spell)
-#define TRAIT_TIME_STOP_IMMUNE "time_stop_immune"
-/// This mob has no soul
-#define TRAIT_NO_SOUL "no_soul"
-/// Whether a spider's consumed this mob
-#define TRAIT_SPIDER_CONSUMED "spider_consumed"
+
 /// Whether we're sneaking, from the alien sneak ability.
 /// Maybe worth generalizing into a general "is sneaky" / "is stealth" trait in the future.
 #define TRAIT_ALIEN_SNEAK "sneaking_alien"
-/// This mob is phased out of reality from magic, either a jaunt or rod form
-#define TRAIT_MAGICALLY_PHASED "magically_phased"
+
 ///This mob can't use vehicles
 #define TRAIT_NOVEHICLE	"no_vehicle"
-/// BALD!!!
-#define TRAIT_BALD "bald"
+
 /// You can't see color!
 #define TRAIT_COLORBLIND "color_blind"
 
 /// This person is crying
 #define TRAIT_CRYING "crying"
-/// This human wants to see the color of their glasses, for some reason
-#define TRAIT_SEE_GLASS_COLORS "see_glass_colors"
 
-//non-mob traits
-/// Used for limb-based paralysis, where replacing the limb will fix it.
-#define TRAIT_PARALYSIS				"paralysis"
-/// Used for limbs.
-#define TRAIT_DISABLED_BY_WOUND		"disabled-by-wound"
-
-// item traits
-#define TRAIT_NODROP            "nodrop"
-/// Visible on t-ray scanners.
-#define TRAIT_T_RAY_VISIBLE "t-ray-visible"
-/// Properly wielded two handed item
-#define TRAIT_WIELDED "wielded"
-/// The items needs two hands to be carried
-#define TRAIT_NEEDS_TWO_HANDS "needstwohands"
-#define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 #define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
-/// The effects of hyperspace drift are blocked when the tile has this trait
-#define TRAIT_HYPERSPACE_STOPPED "hyperspace_stopped"
 
-#define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
-#define TRAIT_AGEUSIA			"ageusia"
-#define TRAIT_HEAVY_SLEEPER		"heavy_sleeper"
-#define TRAIT_NIGHT_VISION		"night_vision"
-#define TRAIT_LIGHT_STEP "light_step"
-#define TRAIT_SPIRITUAL			"spiritual"
-#define TRAIT_VORACIOUS			"voracious"
-#define TRAIT_SELF_AWARE		"self_aware"
-#define TRAIT_FREERUNNING		"freerunning"
-#define TRAIT_SKITTISH			"skittish"
 #define TRAIT_POOR_AIM			"poor_aim"
-#define TRAIT_PROSOPAGNOSIA		"prosopagnosia"
+
 #define TRAIT_DRUNK_HEALING		"drunk_healing"
-#define TRAIT_TAGGER			"tagger"
-#define TRAIT_PHOTOGRAPHER		"photographer"
-#define TRAIT_MUSICIAN			"musician"
-#define TRAIT_LIGHT_DRINKER		"light_drinker"
-#define TRAIT_EMPATH			"empath"
-#define TRAIT_FRIENDLY			"friendly"
+
 #define TRAIT_ALLERGIC			"allergic"
 #define TRAIT_KLEPTOMANIAC		"kleptomaniac"
 #define TRAIT_EAT_LESS			"eat_less"
 #define TRAIT_CRAFTY			"crafty"
 #define TRAIT_ANOREXIC			"anorexic"
-#define TRAIT_SHIFTY_EYES		"shifty_eyes"
-#define TRAIT_ANXIOUS			"anxious"
+
 #define TRAIT_SEE_REAGENTS		"see_reagents"
 #define TRAIT_STARGAZED			"stargazed"
 
@@ -370,17 +229,13 @@
 
 /// Trait applied by element
 #define ELEMENT_TRAIT(source) "element_trait_[source]"
-/// Trait from [/datum/element/rust]. Its rusty and should be applying a special overlay to denote this.
-#define TRAIT_RUSTY "rust_trait"
-/// Trait from being under the floor in some manner
-#define TRAIT_UNDERFLOOR "underfloor"
+
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
 #define CHANGELING_HIVEMIND_MUTE "ling_mute"
 #define ABYSSAL_GAZE_BLIND "abyssal_gaze"
 #define HIGHLANDER "highlander"
-#define TRAIT_HULK "hulk"
 #define CULT_EYES "cult_eyes"
 #define NUKEOP_TRAIT "nuke-op"
 #define DEATHSQUAD_TRAIT "deathsquad"
@@ -408,85 +263,7 @@
 #define GRIMOIRE_TRAIT "grimoire_trait"
 
 ///Traits given by station traits
-#define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
-#define STATION_TRAIT_CARP_INFESTATION "station_trait_carp_infestation"
-#define STATION_TRAIT_PREMIUM_INTERNALS "station_trait_premium_internals"
-#define STATION_TRAIT_RANDOM_ARRIVALS "station_trait_random_arrivals"
-#define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
-#define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
-#define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
+
 #define STATION_TRAIT_MOONSCORCH "station_trait_moonscorch"
 
-//important_recursive_contents traits
-/*
- * Used for movables that need to be updated, via COMSIG_ENTER_AREA and COMSIG_EXIT_AREA, when transitioning areas.
- * Use [/atom/movable/proc/become_area_sensitive(trait_source)] to properly enable it. How you remove it isn't as important.
- */
-#define TRAIT_AREA_SENSITIVE "area-sensitive"
-///every hearing sensitive atom has this trait
-#define TRAIT_HEARING_SENSITIVE "hearing_sensitive"
-///every object that is currently the active storage of some client mob has this trait
-#define TRAIT_ACTIVE_STORAGE "active_storage"
 
-/// Climbable trait, given and taken by the climbable element when added or removed. Exists to be easily checked via HAS_TRAIT().
-#define TRAIT_CLIMBABLE "trait_climbable"
-
-///Organ traits
-#define TRAIT_BALLMER_SCIENTIST "ballmer_scientist"
-
-///storm immunity traits
-#define TRAIT_LAVA_IMMUNE "lava_immune" //Used by lava turfs and The Floor Is Lava.
-#define TRAIT_ASHSTORM_IMMUNE "ashstorm_immune"
-#define TRAIT_SNOWSTORM_IMMUNE "snowstorm_immune"
-#define TRAIT_RADSTORM_IMMUNE "radstorm_immune"
-#define TRAIT_VOIDSTORM_IMMUNE "voidstorm_immune"
-#define TRAIT_WEATHER_IMMUNE "weather_immune" //Immune to ALL weather effects.
-
-///Movement type traits for movables. See elements/movetype_handler.dm
-#define TRAIT_MOVE_GROUND "move_ground"
-#define TRAIT_MOVE_FLYING "move_flying"
-#define TRAIT_MOVE_VENTCRAWLING "move_ventcrawling"
-#define TRAIT_MOVE_FLOATING "move_floating"
-#define TRAIT_MOVE_PHASING "move_phasing"
-/// Disables the floating animation. See above.
-#define TRAIT_NO_FLOATING_ANIM "no-floating-animation"
-/// Used to prevent multiple floating blades from triggering over the same target
-#define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"
-/// things with this trait are treated as having no access in /obj/proc/check_access(obj/item)
-#define TRAIT_ALWAYS_NO_ACCESS "alwaysnoaccess"
-///Trait for dryable items
-#define TRAIT_DRYABLE "trait_dryable"
-///Trait for dried items
-#define TRAIT_DRIED "trait_dried"
-
-/// Gives us Night vision
-#define TRAIT_TRUE_NIGHT_VISION "true_night_vision"
-/// Gives us turf vision through walls and slight night vision
-#define TRAIT_MESON_VISION "meson_vision"
-/// Ignores darkness for hearing
-#define TRAIT_HEAR_THROUGH_DARKNESS "hear_through_darkness"
-/// "Magic" trait that blocks the mob from moving or interacting with anything. Used for transient stuff like mob transformations or incorporality in special cases.
-/// Will block movement, `Life()` (!!!), and other stuff based on the mob.
-#define TRAIT_NO_TRANSFORM "block_transformations"
-/// Does nothing on its own, applied via status effect.
-#define TRAIT_STASIS "in_stasis"
-/* Traits for ventcrawling.
- * Both give access to ventcrawling, but *_NUDE requires the user to be
- * wearing no clothes and holding no items. If both present, *_ALWAYS
- * takes precedence.
- */
-#define TRAIT_VENTCRAWLER_ALWAYS "ventcrawler_always"
-#define TRAIT_VENTCRAWLER_NUDE "ventcrawler_nude"
-#define TRAIT_SPACEWALK "spacewalk"
-/// Sanity trait to keep track of when we're in hyperspace and add the appropriate element if we werent
-#define TRAIT_HYPERSPACED "hyperspaced"
-///Gives the movable free hyperspace movement without being pulled during shuttle transit
-#define TRAIT_FREE_HYPERSPACE_MOVEMENT "free_hyperspace_movement"
-///Lets the movable move freely in the soft-cordon area of transit space, which would otherwise teleport them away just before they got to see the true cordon
-#define TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT "free_hyperspace_softcordon_movement"
-///Deletes the object upon being dumped into space, usually from exiting hyperspace. Useful if you're spawning in a lot of stuff for hyperspace events that dont need to flood the entire game
-#define TRAIT_DEL_ON_SPACE_DUMP "del_on_hyperspace_leave"
-/// This mob overrides certian SSlag_switch measures with this special trait
-#define TRAIT_BYPASS_MEASURES "bypass_lagswitch_measures"
-/// This movable atom has the explosive block element
-#define TRAIT_BLOCKING_EXPLOSIVES "blocking_explosives"

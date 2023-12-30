@@ -53,6 +53,8 @@
 #define COMSIG_GLOB_NEW_ITEM "!new_item"
 /// called post /obj/item initialize (obj/item/created_item)
 #define COMSIG_GLOB_ATOM_AFTER_POST_INIT "!atom_after_post_init"
+/// an obj/machinery is created! (obj/machinery/created_machine)
+#define COMSIG_GLOB_NEW_MACHINE "!new_machine"
 /// a client (re)connected, after all /client/New() checks have passed : (client/connected_client)
 #define COMSIG_GLOB_CLIENT_CONNECT "!client_connect"
 /// a weather event of some kind occured

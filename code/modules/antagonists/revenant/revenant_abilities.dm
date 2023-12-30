@@ -71,7 +71,7 @@
 											   span_revenwarning("Violet lights, dancing in your vision, receding--"))
 					draining = FALSE
 					return
-				var/datum/beam/B = Beam(target,icon_state="drain_life",time=INFINITY)
+				var/datum/beam/draining_beam = Beam(target, icon_state = "drain_life")
 				if(do_after(src, 4.6 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
 					change_essence_amount(essence_drained, FALSE, target)
 					if(essence_drained <= 90 && target.stat != DEAD)
@@ -91,7 +91,7 @@
 					if(target) //Wait, target is WHERE NOW?
 						target.visible_message(span_warning("[target] slumps onto the ground."), \
 											   span_revenwarning("Violets lights, dancing in your vision, receding--"))
-				qdel(B)
+				qdel(draining_beam)
 			else
 				to_chat(src, span_revenwarning("You are not close enough to siphon [target ? "[target]'s":"[target.p_their()]"] soul. The link has been broken."))
 	draining = FALSE

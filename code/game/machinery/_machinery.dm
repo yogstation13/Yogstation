@@ -158,6 +158,8 @@ Class Procs:
 
 	if (occupant_typecache)
 		occupant_typecache = typecacheof(occupant_typecache)
+	
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_MACHINE, src)
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -195,14 +197,25 @@ Class Procs:
 		use_power(750 * severity)
 		new /obj/effect/temp_visual/emp(loc)
 
-/obj/machinery/proc/open_machine(drop = TRUE)
+/**
+ * Opens the machine.
+ *
+ * Will update the machine icon and any user interfaces currently open.
+ * Arguments:
+ * * drop - Boolean. Whether to drop any stored items in the machine. Does not include components.
+ * * density - Boolean. Whether to make the object dense when it's open.
+ */
+/obj/machinery/proc/open_machine(drop = TRUE, density_to_set = FALSE)
 	state_open = TRUE
-	density = FALSE
+	set_density(density_to_set)
 	if(drop)
 		dropContents()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	updateUsrDialog()
 
+/**
+ * Drop every movable atom in the machine's contents list, including any components and circuit.
+ */
 /obj/machinery/proc/dropContents(list/subset = null)
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/A in contents)
@@ -212,7 +225,7 @@ Class Procs:
 		if(isliving(A))
 			var/mob/living/L = A
 			L.update_mobility()
-	occupant = null
+	set_occupant(null)
 
 /obj/machinery/proc/can_be_occupant(atom/movable/am)
 	return occupant_typecache ? is_type_in_typecache(am, occupant_typecache) : isliving(am)
@@ -235,10 +248,10 @@ Class Procs:
 
 	var/mob/living/mobtarget = target
 	if(target && !target.has_buckled_mobs() && (!isliving(target) || !mobtarget.buckled))
-		occupant = target
+		set_occupant(target)
 		target.forceMove(src)
 	updateUsrDialog()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
@@ -455,7 +468,7 @@ Class Procs:
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return TRUE
 	return FALSE
 
@@ -465,8 +478,8 @@ Class Procs:
 
 /obj/machinery/handle_atom_del(atom/A)
 	if(A == occupant)
-		occupant = null
-		update_appearance(UPDATE_ICON)
+		set_occupant(null)
+		update_appearance()
 		updateUsrDialog()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
@@ -630,10 +643,11 @@ Class Procs:
 		if(prob(40))
 			emp_act(EMP_LIGHT)
 
-/obj/machinery/Exited(atom/movable/AM, atom/newloc)
+/obj/machinery/Exited(atom/movable/gone, atom/newloc)
 	. = ..()
-	if (AM == occupant)
-		occupant = null
+	if (gone == occupant)
+		set_occupant(null)
+		update_appearance()
 
 /obj/machinery/proc/adjust_item_drop_location(atom/movable/AM)	// Adjust item drop location to a 3x3 grid inside the tile, returns slot id from 0 to 8
 	var/md5 = md5(AM.name)										// Oh, and it's deterministic too. A specific item will always drop from the same slot.
@@ -687,3 +701,6 @@ Class Procs:
 
 /obj/machinery/proc/set_occupant(atom/movable/new_occupant)
 	SHOULD_CALL_PARENT(TRUE)
+
+	SEND_SIGNAL(src, COMSIG_MACHINERY_SET_OCCUPANT, new_occupant)
+	occupant = new_occupant

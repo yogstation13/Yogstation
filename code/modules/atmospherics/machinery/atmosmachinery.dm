@@ -134,15 +134,15 @@ GLOBAL_LIST_EMPTY(pipeimages)
 			if(can_be_node(target, i))
 				nodes[i] = target
 				break
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/atmospherics/proc/set_piping_layer(new_layer)
 	piping_layer = (pipe_flags & PIPING_DEFAULT_LAYER_ONLY) ? PIPING_LAYER_DEFAULT : new_layer
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/atmospherics/update_icon(updates=ALL)
 	. = ..()
-	layer = initial(layer) + piping_layer / 1000
+	update_layer()
 
 /obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target, iteration)
 	return connection_check(target, piping_layer)
@@ -388,4 +388,4 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	return TRUE
 
 /obj/machinery/atmospherics/proc/update_layer()
-	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE
+	return

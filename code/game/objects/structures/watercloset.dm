@@ -405,7 +405,6 @@
 		set_opacity(FALSE)
 	else
 		layer = WALL_OBJ_LAYER
-		SET_PLANE_IMPLICIT(src, GAME_PLANE_UPPER)
 		set_density(TRUE)
 		if(opaque_closed)
 			set_opacity(TRUE)

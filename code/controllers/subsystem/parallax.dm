@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(parallax)
 		return
 
 	random_layer = new picked_parallax(null,  /* hud_owner = */ null, /* template = */ TRUE)
-	RegisterSignal(random_layer, COMSIG_PARENT_QDELETING, PROC_REF(clear_references))
+	RegisterSignal(random_layer, COMSIG_QDELETING, PROC_REF(clear_references))
 	random_layer.get_random_look()
 
 /// Change the random parallax layer after it's already been set. update_player_huds = TRUE will also replace them in the players client images, if it was set

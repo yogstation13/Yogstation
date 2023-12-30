@@ -190,7 +190,7 @@
 	gold_core_spawnable = NO_SPAWN
 	var/slowed_by_webs = FALSE
 
-/mob/living/simple_animal/hostile/poison/giant_spider/tarantula/Moved(atom/oldloc, dir)
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(slowed_by_webs)
 		if(!(locate(/obj/structure/spider/stickyweb) in loc))

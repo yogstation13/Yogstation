@@ -235,6 +235,10 @@ SUBSYSTEM_DEF(mapping)
 		index++
 	lists_to_reserve.Cut(1, index)
 
+/datum/controller/subsystem/mapping/proc/calculate_default_z_level_gravities()
+	for(var/z_level in 1 to length(z_list))
+		calculate_z_level_gravity(z_level)
+
 /datum/controller/subsystem/mapping/proc/generate_z_level_linkages()
 	for(var/z_level in 1 to length(z_list))
 		generate_linkages_for_z_level(z_level)
@@ -253,6 +257,19 @@ SUBSYSTEM_DEF(mapping)
 	multiz_levels[z_level] = new /list(LARGEST_Z_LEVEL_INDEX)
 	multiz_levels[z_level][Z_LEVEL_UP] = !!z_above
 	multiz_levels[z_level][Z_LEVEL_DOWN] = !!z_below
+
+/datum/controller/subsystem/mapping/proc/calculate_z_level_gravity(z_level_number)
+	if(!isnum(z_level_number) || z_level_number < 1)
+		return FALSE
+
+	var/max_gravity = 0
+
+	for(var/obj/machinery/gravity_generator/main/grav_gen as anything in GLOB.gravity_generators["[z_level_number]"])
+		max_gravity = max(grav_gen.setting, max_gravity)
+
+	max_gravity = max_gravity || level_trait(z_level_number, ZTRAIT_GRAVITY) || 0//just to make sure no nulls
+	gravity_by_z_level[z_level_number] = max_gravity
+	return max_gravity
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
 	if(clearing_reserved_turfs || !initialized) //in either case this is just not needed.
@@ -803,7 +820,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		return
 
 	generate_offset_lists(old_max + 1, max_plane_offset)
-	//SEND_SIGNAL(src, COMSIG_PLANE_OFFSET_INCREASE, old_max, max_plane_offset)
+	SEND_SIGNAL(src, COMSIG_PLANE_OFFSET_INCREASE, old_max, max_plane_offset)
 	// Sanity check
 	if(max_plane_offset > MAX_EXPECTED_Z_DEPTH)
 		stack_trace("We've loaded a map deeper then the max expected z depth. Preferences won't cover visually disabling all of it!")
@@ -851,6 +868,13 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 			true_to_offset_planes[string_real] |= offset_plane
 
+/// Takes a turf or a z level, and returns a list of all the z levels that are connected to it
+/datum/controller/subsystem/mapping/proc/get_connected_levels(turf/connected)
+	var/z_level = connected
+	if(isturf(z_level))
+		z_level = connected.z
+	return z_level_to_stack[z_level]
+
 /datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
 	RETURN_TYPE(/datum/turf_reservation)
 
@@ -879,7 +903,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 /proc/generate_lighting_appearance_by_z(z_level)
 	if(length(GLOB.default_lighting_underlays_by_z) < z_level)
 		GLOB.default_lighting_underlays_by_z.len = z_level
-	
 	GLOB.default_lighting_underlays_by_z[z_level] = mutable_appearance(LIGHTING_ICON, "transparent", z_level * 0.01, null, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM, offset_const = GET_Z_PLANE_OFFSET(z_level))
 
 /// Returns true if the map we're playing on is on a planet

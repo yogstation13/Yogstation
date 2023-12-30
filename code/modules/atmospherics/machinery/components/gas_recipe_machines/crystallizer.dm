@@ -341,6 +341,9 @@
 			investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_appearance(UPDATE_ICON)
 
+/obj/machinery/atmospherics/components/binary/crystallizer/update_layer()
+	return
+
 #undef MIN_PROGRESS_AMOUNT
 #undef MIN_DEVIATION_RATE
 #undef MAX_DEVIATION_RATE

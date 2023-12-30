@@ -549,23 +549,3 @@
 	if(new_turf && (istype(new_turf, /turf/cordon/secret) || is_secret_level(new_turf.z)) && !client?.holder)
 		return
 	return ..()
-
-///Move a mob between z levels, if it's valid to move z's on this turf
-/mob/proc/zMoveMob(dir, feedback = FALSE)
-	if(dir != UP && dir != DOWN)
-		return FALSE
-	var/turf/target = get_step_multiz(src, dir)
-	if(!target)
-		if(feedback)
-			to_chat(src, span_warning("There's nothing [dir == DOWN ? "below" : "above"] you!"))
-		return FALSE
-	if(!canZMove(dir, target))
-		if(feedback)
-			to_chat(src, span_warning("You couldn't move there!"))
-		return FALSE
-	forceMove(target)
-	return TRUE
-
-/// Can this mob move between z levels
-/mob/proc/canZMove(direction, turf/target)
-	return FALSE

@@ -46,7 +46,7 @@
 
 	underlays.Cut()
 
-	plane = showpipe ? GAME_PLANE : FLOOR_PLANE
+	SET_PLANE_IMPLICIT(src, showpipe ? GAME_PLANE : FLOOR_PLANE)
 
 	if(!showpipe)
 		return
@@ -227,3 +227,6 @@
 
 /obj/machinery/atmospherics/components/return_analyzable_air()
 	return airs
+
+/obj/machinery/atmospherics/components/update_layer()
+	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE

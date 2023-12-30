@@ -1,16 +1,29 @@
 /datum/holiday
+	///Name of the holiday itself. Visible to players.
 	var/name = "Bugsgiving"
 
+	///What day of begin_month does the holiday begin on?
 	var/begin_day = 1
+	///What month does the holiday begin on?
 	var/begin_month = 0
-	var/end_day = 0 // Default of 0 means the holiday lasts a single day
+	/// What day of end_month does the holiday end? Default of 0 means the holiday lasts a single.
+	var/end_day = 0
+	/// What month does the holiday end on?
 	var/end_month = 0
-	var/begin_week = FALSE //If set to a number, then this holiday will begin on certain week
-	var/begin_weekday = FALSE //If set to a weekday, then this will trigger the holiday on the above week
-	var/always_celebrate = FALSE // for christmas neverending, or testing.
+	///If set to a number, then this holiday will begin on certain week
+	var/begin_week = FALSE
+	///If set to a weekday, then this will trigger the holiday on the above week
+	var/begin_weekday = FALSE 
+	///for christmas neverending, or testing.
+	var/always_celebrate = FALSE
+	/// Held variable to better calculate when certain holidays may fall on, like easter.
 	var/current_year = 0
+	///How many years are you offsetting your calculations for begin_day and end_day on. Used for holidays like easter.
 	var/year_offset = 0
-	var/obj/item/drone_hat //If this is defined, drones without a default hat will spawn with this one during the holiday; check drones_as_items.dm to see this used
+	///Timezones this holiday is celebrated in (defaults to three timezones spanning a 50 hour window covering all timezones)
+	var/list/timezones = list(TIMEZONE_LINT, TIMEZONE_UTC, TIMEZONE_ANYWHERE_ON_EARTH)
+	///If this is defined, drones without a default hat will spawn with this one during the holiday; check drones_as_items.dm to see this used
+	var/obj/item/drone_hat 
 	///When this holiday is active, does this prevent mail from arriving to cargo? Try not to use this for longer holidays.
 	var/mail_holiday = FALSE
 
@@ -300,6 +313,7 @@
 
 /datum/holiday/USA
 	name = "Independence Day"
+	timezones = list(TIMEZONE_EDT, TIMEZONE_CDT, TIMEZONE_MDT, TIMEZONE_MST, TIMEZONE_PDT, TIMEZONE_AKDT, TIMEZONE_HDT, TIMEZONE_HST)
 	begin_day = 4
 	begin_month = JULY
 	lobby_music = list(
@@ -323,6 +337,7 @@
 
 /datum/holiday/france
 	name = "Bastille Day"
+	timezones = list(TIMEZONE_CEST)
 	begin_day = 14
 	begin_month = JULY
 	drone_hat = /obj/item/clothing/head/beret

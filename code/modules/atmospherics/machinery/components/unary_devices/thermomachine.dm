@@ -96,6 +96,9 @@
 		investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
 		balloon_alert(user, "You maximize the target temperature on [src] to [target_temperature] K.d")
 
+/obj/machinery/atmospherics/components/unary/thermomachine/update_layer()
+	return
+
 /obj/machinery/atmospherics/components/unary/thermomachine/update_icon_nopipes()
 	cut_overlays()
 	if(showpipe)

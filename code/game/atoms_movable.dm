@@ -78,7 +78,6 @@
 	. = ..()
 	// Need to do this here because it's overriden by the parent call
 	color = EM_BLOCK_COLOR
-	plane = EMISSIVE_PLANE
 	appearance_flags = EMISSIVE_APPEARANCE_FLAGS
 
 /atom/movable/Initialize(mapload, ...)
@@ -117,7 +116,7 @@
 		blocker.icon_state = icon_state
 		blocker.dir = dir
 		blocker.appearance_flags |= appearance_flags
-		//blocker.plane = GET_NEW_PLANE(EMISSIVE_PLANE, PLANE_TO_OFFSET(plane))
+		blocker.plane = GET_NEW_PLANE(EMISSIVE_PLANE, PLANE_TO_OFFSET(plane))
 		// Ok so this is really cursed, but I want to set with this blocker cheaply while
 		// Still allowing it to be removed from the overlays list later
 		// So I'm gonna flatten it, then insert the flattened overlay into overlays AND the managed overlays list, directly
@@ -542,7 +541,7 @@
 	var/atom/old_loc = loc
 	var/direction = get_dir(old_loc, new_loc)
 	loc = new_loc
-	Moved(old_loc, direction, TRUE)
+	Moved(old_loc, direction, TRUE, momentum_change = FALSE)
 
 ////////////////////////////////////////
 // Here's where we rewrite how byond handles movement except slightly different

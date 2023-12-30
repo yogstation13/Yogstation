@@ -107,8 +107,9 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			var/obj/machinery/atmospherics/A = X //all elements in totalMembers are necessarily of this type.
 			if(in_view_range(client.mob, A))
 				if(!A.pipe_vision_img)
-					A.pipe_vision_img = image(A, A.loc, layer = ABOVE_HUD_LAYER, dir = A.dir)
-					A.pipe_vision_img.plane = ABOVE_HUD_PLANE
+					var/turf/their_turf = get_turf(A)
+					A.pipe_vision_img = image(A, A.loc, dir = A.dir)
+					SET_PLANE(A.pipe_vision_img, PIPECRAWL_IMAGES_PLANE, their_turf)
 				client.images += A.pipe_vision_img
 				pipes_shown += A.pipe_vision_img
 	setMovetype(movement_type | VENTCRAWLING)

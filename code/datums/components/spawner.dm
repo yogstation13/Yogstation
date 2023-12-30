@@ -19,7 +19,7 @@
 	if(_max_mobs)
 		max_mobs=_max_mobs
 
-	RegisterSignals(parent, list(COMSIG_PARENT_QDELETING), PROC_REF(stop_spawning))
+	RegisterSignals(parent, list(COMSIG_QDELETING), PROC_REF(stop_spawning))
 	START_PROCESSING(SSprocessing, src)
 
 /datum/component/spawner/process()

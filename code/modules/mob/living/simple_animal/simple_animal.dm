@@ -542,19 +542,15 @@
 	update_inv_hands()
 
 /mob/living/simple_animal/update_inv_hands()
-	if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
-		var/obj/item/l_hand = get_item_for_held_index(1)
-		var/obj/item/r_hand = get_item_for_held_index(2)
-		if(r_hand)
-			r_hand.layer = ABOVE_HUD_LAYER
-			r_hand.plane = ABOVE_HUD_PLANE
-			r_hand.screen_loc = ui_hand_position(get_held_index_of_item(r_hand))
-			client.screen |= r_hand
-		if(l_hand)
-			l_hand.layer = ABOVE_HUD_LAYER
-			l_hand.plane = ABOVE_HUD_PLANE
-			l_hand.screen_loc = ui_hand_position(get_held_index_of_item(l_hand))
-			client.screen |= l_hand
+	. = ..()
+	if(!client || !hud_used || hud_used.hud_version == HUD_STYLE_NOHUD)
+		return
+	var/turf/our_turf = get_turf(src)
+	for(var/obj/item/I in held_items)
+		var/index = get_held_index_of_item(I)
+		SET_PLANE(I, ABOVE_HUD_PLANE, our_turf)
+		I.screen_loc = ui_hand_position(index)
+		client.screen |= I
 
 //ANIMAL RIDING
 

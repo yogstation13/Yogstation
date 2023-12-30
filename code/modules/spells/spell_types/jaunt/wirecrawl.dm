@@ -221,16 +221,18 @@
 				if(istype(object, /obj/structure/cable))
 					var/obj/structure/cable/display = object
 					if(!display.wire_vision_img)
-						display.wire_vision_img = image(display, display.loc, layer = ABOVE_HUD_LAYER, dir = display.dir)
-						display.wire_vision_img.plane = ABOVE_HUD_PLANE
+						var/turf/their_turf = get_turf(display)
+						display.wire_vision_img = image(display, display.loc, dir = display.dir)
+						SET_PLANE(display.wire_vision_img, ABOVE_HUD_PLANE, their_turf)
 					client.images += display.wire_vision_img
 					wires_shown += display.wire_vision_img
 				
 				else if(istype(object, /obj/machinery/power))
 					var/obj/machinery/power/display = object
 					if(!display.wire_vision_img)
-						display.wire_vision_img = image(display, display.loc, layer = ABOVE_HUD_LAYER, dir = display.dir)
-						display.wire_vision_img.plane = ABOVE_HUD_PLANE
+						var/turf/their_turf = get_turf(display)
+						display.wire_vision_img = image(display, display.loc, dir = display.dir)
+						SET_PLANE(display.wire_vision_img, ABOVE_HUD_PLANE, their_turf)
 					client.images += display.wire_vision_img
 					wires_shown += display.wire_vision_img
 

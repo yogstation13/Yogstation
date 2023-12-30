@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 		if(M.stat & BROKEN)
 			M.set_fix()
 	broken_state = 0
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	set_power()
 
 // Interaction
@@ -190,14 +190,14 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 				to_chat(user, span_notice("You secure the screws of the framework."))
 				I.play_tool_sound(src)
 				broken_state++
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 				return
 		if(GRAV_NEEDS_WELDING)
 			if(I.tool_behaviour == TOOL_WELDER)
 				if(I.use_tool(src, user, 0, volume=50, amount=1))
 					to_chat(user, span_notice("You mend the damaged framework."))
 					broken_state++
-					update_appearance(UPDATE_ICON)
+					update_appearance()
 				return
 		if(GRAV_NEEDS_PLASTEEL)
 			if(istype(I, /obj/item/stack/sheet/plasteel))
@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 					to_chat(user, span_notice("You add the plating to the framework."))
 					playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 					broken_state++
-					update_appearance(UPDATE_ICON)
+					update_appearance()
 				else
 					to_chat(user, span_warning("You need 10 sheets of plasteel!"))
 				return
@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 /obj/machinery/gravity_generator/main/update_icon(updates=ALL)
 	. = ..()
 	for(var/obj/O in parts)
-		O.update_appearance(UPDATE_ICON)
+		O.update_appearance()
 
 // Set the charging state based on power/breaker.
 /obj/machinery/gravity_generator/main/proc/set_power()
@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 	charging_state = new_state ? POWER_UP : POWER_DOWN // Startup sequence animation.
 	investigate_log("is now [charging_state == POWER_UP ? "charging" : "discharging"].", INVESTIGATE_GRAVITY)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 // Set the state of the gravity.
 /obj/machinery/gravity_generator/main/proc/set_state(new_state)
@@ -295,11 +295,15 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 				investigate_log("was brought offline and there is now no gravity for this level.", INVESTIGATE_GRAVITY)
 				message_admins("The gravity generator was brought offline with no backup generator. [ADMIN_VERBOSEJMP(src)]")
 
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	update_list()
 	src.updateUsrDialog()
 	if(alert)
 		shake_everyone()
+
+/obj/machinery/gravity_generator/main/proc/complete_state_update()
+	update_appearance()
+	update_list()
 
 // Charge/Discharge and turn on/off gravity when you reach 0/100 percent.
 // Also emit radiation and handle the overlays.
@@ -364,20 +368,30 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 /obj/machinery/gravity_generator/main/proc/gravity_in_level()
 	var/turf/T = get_turf(src)
 	if(!T)
-		return 0
+		return FALSE
 	if(GLOB.gravity_generators["[T.z]"])
 		return length(GLOB.gravity_generators["[T.z]"])
-	return 0
+	return FALSE
 
 /obj/machinery/gravity_generator/main/proc/update_list()
-	var/turf/T = get_turf(src.loc)
-	if(T)
-		if(!GLOB.gravity_generators["[T.z]"])
-			GLOB.gravity_generators["[T.z]"] = list()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+	var/list/z_list = list()
+	// Multi-Z, station gravity generator generates gravity on all ZTRAIT_STATION z-levels.
+	if(SSmapping.level_trait(T.z, ZTRAIT_STATION))
+		for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
+			z_list += z
+	else
+		z_list += T.z
+	for(var/z in z_list)
+		if(!GLOB.gravity_generators["[z]"])
+			GLOB.gravity_generators["[z]"] = list()
 		if(on)
-			GLOB.gravity_generators["[T.z]"] |= src
+			GLOB.gravity_generators["[z]"] |= src
 		else
-			GLOB.gravity_generators["[T.z]"] -= src
+			GLOB.gravity_generators["[z]"] -= src
+		SSmapping.calculate_z_level_gravity(z)
 
 /obj/machinery/gravity_generator/main/proc/change_setting(value)
 	if(value != setting)

@@ -17,12 +17,22 @@
 	opacity = FALSE
 	canSmoothWith = null
 	smoothing_flags = NONE
+	density = FALSE
 	/// The amount of time it takes to create a venus human trap, in deciseconds
-	var/growth_time = 1200
+	var/growth_time = 120 SECONDS
+	var/growth_icon = 0
+
 	/// Used by countdown to check time, this is when the timer will complete and the venus trap will spawn.
 	var/finish_time
 	/// The countdown ghosts see to when the plant will hatch
 	var/obj/effect/countdown/flower_bud/countdown
+	
+	var/trait_flags = 0
+
+	var/list/vines = list()
+
+	/// The spawner that actually handles spawning the ghost role in
+	//var/obj/effect/mob_spawn/ghost_role/venus_human_trap/spawner
 
 /obj/structure/alien/resin/flower_bud_enemy/Initialize(mapload)
 	. = ..()
@@ -34,8 +44,7 @@
 	anchors += locate(x+2,y-2,z)
 
 	for(var/turf/T in anchors)
-		var/datum/beam/B = Beam(T, "vine", time=INFINITY, maxdistance=5, beam_type=/obj/effect/ebeam/vine)
-		B.sleep_time = 10 //these shouldn't move, so let's slow down updates to 1 second (any slower and the deletion of the vines would be too slow)
+		vines += Beam(T, "vine", maxdistance=5, beam_type=/obj/effect/ebeam/vine)
 	finish_time = world.time + growth_time
 	addtimer(CALLBACK(src, PROC_REF(bear_fruit)), growth_time)
 	countdown.start()
@@ -55,8 +64,15 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	desc = "A thick vine, painful to the touch."
 
-/obj/effect/ebeam/vine/Crossed(atom/movable/AM)
+/obj/effect/ebeam/vine/Initialize(mapload)
 	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/effect/ebeam/vine/proc/on_entered(datum/source, atom/movable/AM)
+	SIGNAL_HANDLER
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(!isvineimmune(L))
@@ -107,6 +123,8 @@
 	var/max_vines = 4
 	/// How far away a plant can attach a vine to something
 	var/vine_grab_distance = 5
+	/// how long does a vine attached to something last (and its leash) (lasts twice as long on nonliving things)
+	var/vine_duration = 2 SECONDS
 	/// Whether or not this plant is ghost possessable
 	var/playable_plant = TRUE
 
@@ -146,10 +164,10 @@
 			if(O.density)
 				return
 	
-	var/datum/beam/newVine = Beam(the_target, "vine", time=INFINITY, maxdistance = vine_grab_distance, beam_type=/obj/effect/ebeam/vine)
-	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, PROC_REF(remove_vine), newVine)
+	var/datum/beam/new_vine = Beam(the_target, icon_state = "vine", time = vine_duration * (ismob(the_target) ? 1 : 2), beam_type = /obj/effect/ebeam/vine, emissive = FALSE)
+	RegisterSignal(new_vine, COMSIG_QDELETING, PROC_REF(remove_vine), new_vine)
 	listclearnulls(vines)
-	vines += newVine
+	vines += new_vine
 	if(isliving(the_target))
 		var/mob/living/L = the_target
 		if(iscarbon(the_target))
@@ -204,7 +222,7 @@
 			if(!AM.anchored)
 				step(AM,get_dir(AM,src))
 		if(get_dist(src,B.target) == 0)
-			B.End()
+			qdel(B)
 
 /**
   * Removes a vine from the list.

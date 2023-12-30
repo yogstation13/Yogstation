@@ -42,9 +42,8 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/proc/get_all_connected_nodes()
 	return front_nodes + back_nodes + nodes
 
-/obj/machinery/atmospherics/pipe/layer_manifold/update_icon(updates=ALL)
-	. = ..()
-	layer = initial(layer) + (PIPING_LAYER_MAX * PIPING_LAYER_LCHANGE)
+/obj/machinery/atmospherics/pipe/layer_manifold/update_layer()
+	layer = initial(layer) + (PIPING_LAYER_MAX * PIPING_LAYER_LCHANGE) //This is above everything else.
 
 /obj/machinery/atmospherics/pipe/layer_manifold/update_overlays(updates=ALL)
 	. = ..()

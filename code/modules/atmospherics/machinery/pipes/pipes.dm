@@ -120,3 +120,6 @@
 	pipe_color = paint_color
 	update_node_icon()
 	return TRUE
+
+/obj/machinery/atmospherics/pipe/update_layer()
+	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE

@@ -249,7 +249,7 @@
 
 /obj/structure/alien/egg/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(status == GROWING || status == GROWN)
 		child = new(src)
 	if(status == GROWING)

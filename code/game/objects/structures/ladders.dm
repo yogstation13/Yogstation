@@ -160,23 +160,23 @@
 		return FALSE
 	return TRUE
 
-// /obj/structure/ladder/CtrlClick(mob/user)
-// 	. = ..()
-// 	if(.)
-// 		return
-// 	if(down)
-// 		use(user, FALSE, "Down")
-// 	else
-// 		to_chat(user, span_warning("[src] doesn't seem to lead anywhere!"))
+/obj/structure/ladder/CtrlClick(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(down)
+		use(user, going_up = FALSE)
+	else
+		to_chat(user, span_warning("[src] doesn't seem to lead anywhere!"))
 
-// /obj/structure/ladder/AltClick(mob/user)
-// 	. = ..()
-// 	if(.)
-// 		return
-// 	if(up)
-// 		use(user, FALSE, "Up")
-// 	else
-// 		to_chat(user, span_warning("[src] doesn't seem to lead anywhere!"))
+/obj/structure/ladder/AltClick(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(up)
+		use(user)
+	else
+		to_chat(user, span_warning("[src] doesn't seem to lead anywhere!"))
 
 /obj/structure/ladder/attack_hand(mob/user)
 	. = ..()
