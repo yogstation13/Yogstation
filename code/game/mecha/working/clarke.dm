@@ -11,7 +11,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	light_power = 7
 	deflect_chance = 10
-	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1
+	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	armor = list(MELEE = 20, BULLET = 10, LASER = 20, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 100, FIRE = 100, ACID = 100)
 	max_equip = 7
 	wreckage = /obj/structure/mecha_wreckage/clarke
