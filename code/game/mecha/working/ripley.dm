@@ -70,7 +70,8 @@
 	fast_pressure_step_in = 1.75 //step_in while in low pressure conditions
 	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
 	step_in = 3
-	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 0, BOMB = 40, BIO = 100, RAD = 55, FIRE = 100, ACID = 100)
+	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1
+	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 0, BOMB = 40, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	wreckage = /obj/structure/mecha_wreckage/ripley/mkii
 	enclosed = TRUE
 	enter_delay = 40
@@ -83,12 +84,13 @@
 	icon_state = "firefighter"
 	max_temperature = 65000
 	max_integrity = 250
-	fast_pressure_step_in = 2 //step_in while in low pressure conditions
-	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
-	step_in = 4
+	fast_pressure_step_in = 1.75 //step_in while in low pressure conditions
+	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
+	step_in = 3
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	light_power = 7
-	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 70, FIRE = 100, ACID = 100)
+	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_equip = 5 // More armor, less tools
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 	enclosed = TRUE
