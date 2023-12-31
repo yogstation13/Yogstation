@@ -82,7 +82,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/ambusher/proc/endRage()
 	color = null //Remove the color
-	move_to_delay = 2 //Slow down, toxin will let it keep up with player and if player did not get poisoned then ambusher skill issue
+	move_to_delay = 4 //Slow down, toxin will let it keep up with player and if player did not get poisoned then ambusher skill issue
 	melee_damage_lower = 12 //More damage to make up for less speed
 	melee_damage_upper = 12
 	rapid_melee = 1
