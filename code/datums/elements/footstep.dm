@@ -142,6 +142,9 @@
 	if(!prepared_steps)
 		return
 
+	if(source.dna.species.special_walk_sounds) // Plays in addition to shoe/barefoot sound.
+		playsound(source.loc, pick(source.dna.species.special_walk_sounds), 50, TRUE, falloff_distance = 1, vary = sound_vary)
+
 	//cache for sanic speed (lists are references anyways)
 	var/static/list/footstep_sounds = GLOB.footstep
 
