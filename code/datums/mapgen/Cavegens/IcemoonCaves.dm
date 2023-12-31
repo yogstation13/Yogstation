@@ -8,7 +8,7 @@
 						  /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow = 50, 
 						  /mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 30,
 						  /mob/living/simple_animal/hostile/asteroid/goldgrub = 10,
-						  /mob/living/simple_animal/hostile/asteroid/ambusher = 15)
+						  /mob/living/simple_animal/hostile/asteroid/ambusher = 10)
 	weighted_flora_spawn_list = list(/obj/structure/flora/tree/pine = 2, /obj/structure/flora/rock/icy = 2, /obj/structure/flora/rock/pile/icy = 2, /obj/structure/flora/grass/both = 6)
 	///Note that this spawn list is also in the lavaland generator
 	weighted_feature_spawn_list = null
@@ -20,7 +20,7 @@
 						  /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow = 50, 
 						  /mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 30,
 						  /mob/living/simple_animal/hostile/asteroid/goldgrub = 10,
-						  /mob/living/simple_animal/hostile/asteroid/ambusher = 5)
+						  /mob/living/simple_animal/hostile/asteroid/ambusher = 2)
 	initial_closed_chance = 53
 	birth_limit = 5
 	death_limit = 4
