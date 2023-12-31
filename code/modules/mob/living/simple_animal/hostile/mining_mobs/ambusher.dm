@@ -11,8 +11,8 @@
 	speak_emote = list("howls")
 	speed = -1
 	move_to_delay = 5
-	maxHealth = 250
-	health = 250
+	maxHealth = 225
+	health = 225
 	obj_damage = 15
 	melee_damage_lower = 7.5
 	melee_damage_upper = 7.5
@@ -61,8 +61,8 @@
 		speak_emote = list("gurgles")
 		speed = 2.5
 		move_to_delay = 2 //Faster to help it land a hit and inject toxin
-		melee_damage_lower = 5 //Less damage so player doesn't just immediatly eat rocks during rage
-		melee_damage_upper = 5
+		melee_damage_lower = 2 //Less damage so player doesn't just immediatly eat rocks during rage
+		melee_damage_upper = 2
 		rapid_melee = 4 //More chances to attack and inject toxins
 		poison_per_bite = 4
 		dodging = FALSE
@@ -83,8 +83,8 @@
 /mob/living/simple_animal/hostile/asteroid/ambusher/proc/endRage()
 	color = null //Remove the color
 	move_to_delay = 2 //Slow down, toxin will let it keep up with player and if player did not get poisoned then ambusher skill issue
-	melee_damage_lower = 15 //More damage to make up for less speed
-	melee_damage_upper = 15
+	melee_damage_lower = 12 //More damage to make up for less speed
+	melee_damage_upper = 12
 	rapid_melee = 2
 	attacktext = "lacerates"
 	attack_sound = 'sound/effects/wounds/blood3.ogg'
