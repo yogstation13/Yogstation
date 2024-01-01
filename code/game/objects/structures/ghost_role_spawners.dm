@@ -627,10 +627,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	mask = /obj/item/clothing/mask/gas/syndicate
 	id = /obj/item/card/id/syndicate/anyone
+	implants = list(/obj/item/implant/weapons_auth, /obj/item/implant/teleporter/syndicate_icemoon) //i dont fucking trust you
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/syndie
 		)
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/special(mob/living/new_spawn) //ported from the rejected revision 2.1, just in case
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
 	name = "Syndicate Outpost Security Officer"
@@ -672,13 +676,13 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
 	name = "Syndicate Outpost Engineer"
 	short_desc = "You are an engineer at the Syndicate icemoon outpost."
-	flavour_text = "Maintain and upgrade the base's systems and equipment."
+	flavour_text = "Maintain and upgrade the base's systems and equipment. Operate the nuclear reactor and DON'T LET IT MELT DOWN."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
 
 /datum/outfit/syndicate_empty/icemoon_base/engineer
 	name = "Syndicate Icemoon Outpost Engineer"
-	belt = /obj/item/storage/belt/utility/chief/full //mainly based off the fact that the syndie station ruin that's TM'd at the time of the ruin gives its engis this
+	belt = /obj/item/storage/belt/utility/chief/full //mainly based off the fact that the syndie station ruin gives its engis this
 	suit = /obj/item/clothing/suit/hazardvest
 	head = /obj/item/clothing/head/hardhat
 	accessory = /obj/item/clothing/accessory/armband/engine
