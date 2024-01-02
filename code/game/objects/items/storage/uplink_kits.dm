@@ -138,7 +138,7 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "solo" = 1)))
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "" = 1)))
 		if("v") //Big Boss. Total of ~26 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
@@ -270,12 +270,11 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
-		if("solo") //14 + 6x4 + 1 = 3 tc = 39 tc, or 37 if molti's pr gets merged. wow thats really costly this is probably going to busted. eh
-			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //14 tc as of writing, 12 if molti's pr gets merged
+		if("solo") //14 + 6x3 + 1 = 3 tc = 31 tc. it was, in fact, busted
+			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //12 tc
 			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
-			new /obj/item/storage/box/syndie_kit/emp_shield(src) //6 tc
 			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
 			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
 			
@@ -300,7 +299,8 @@
 /obj/item/clothing/suit/toggle/cyberpunk/solo
 	name = "David's Jacket"
 	desc = "A jacket once owned by a legendary edgerunner, or so they say. Armored."
-	armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 15, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF //it's too stylish to be destroyed
 
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
