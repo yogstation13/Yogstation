@@ -134,5 +134,6 @@
 	if(origami_action?.active)
 		plane_type = /obj/item/paperplane/syndicate
 
-	I = new plane_type(user, src)
-	user.put_in_hands(I)
+	I = new plane_type(loc, src)
+	if(I.Adjacent(user))
+		user.put_in_hands(I)
