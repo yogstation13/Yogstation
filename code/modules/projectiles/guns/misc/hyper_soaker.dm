@@ -16,12 +16,37 @@
 
 /obj/item/gun/water/Initialize(mapload)
 	. = ..()
-	create_reagents(reagent_volume, REFILLABLE|AMOUNT_VISIBLE)
+	create_reagents(reagent_volume, REFILLABLE|DRAINABLE|AMOUNT_VISIBLE)
 
 /// Pre-filled version
 /obj/item/gun/water/full/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/water, reagent_volume)
+
+/obj/item/gun/water/examine(mob/user)
+	. = ..()
+	. += "Alt-click to empty its contents onto the floor."
+
+/obj/item/gun/water/AltClick(mob/user)
+	. = ..()
+	if(!reagents.total_volume)
+		return
+	to_chat(user, span_notice("You empty [src] onto the floor."))
+	reagents.reaction(get_turf(user), TOUCH) // spills onto the floor
+	reagents.clear_reagents()
+
+/obj/item/gun/water/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!proximity_flag)
+		return
+	if(istype(target, /obj/structure/reagent_dispensers))
+		var/trans_amount = target.reagents.trans_to(src, reagent_volume)
+		if(trans_amount)
+			to_chat(user, span_notice("You refill [src] from [target]."))
+	else if(target.is_refillable())
+		var/trans_amount = reagents.trans_to(target, 10)
+		if(trans_amount)
+			to_chat(user, span_notice("You transfer [trans_amount] units to [target]."))
 
 /obj/item/gun/water/can_shoot()
 	return (reagents.total_volume > 1)

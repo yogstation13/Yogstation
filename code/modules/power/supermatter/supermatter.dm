@@ -599,14 +599,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(produces_gas)
 			env.merge(removed)
 
-	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
-		if((!HAS_TRAIT(l, TRAIT_MESONS)) || corruptor_attached)
-			visible_hallucination_pulse(
-				center = src,
-				radius = HALLUCINATION_RANGE(power),
-				hallucination_duration = power * 0.1,
-				hallucination_max_duration = 400 SECONDS,
-			)
+	visible_hallucination_pulse(
+		center = src,
+		radius = HALLUCINATION_RANGE(power),
+		hallucination_duration = power * 0.1,
+		hallucination_max_duration = 400 SECONDS,
+	)
 
 	power -= ((power/500)**3) * powerloss_inhibitor
 

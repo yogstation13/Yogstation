@@ -675,7 +675,7 @@
 	if(!istype(M))
 		return
 
-	if(try_extinguish(M))
+	if(try_extinguish(M)) //mostly redundant since it's called in species.dm also, but this allows alternative forms of help act calling to extinguish
 		return
 
 	if(src == M)
