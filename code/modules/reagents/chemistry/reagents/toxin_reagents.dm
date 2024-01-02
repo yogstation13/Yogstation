@@ -1015,7 +1015,7 @@
 	taste_description = "mushrooms"
 
 /datum/reagent/toxin/ambusher_toxin
-	name = "Unknown Toxin"
+	name = "Carpenter Toxin"
 	description = "A toxin from an unknown source that attacks the legs' muscles, slowing the victim. Its effects can, however, be nullified by Epinephrine"
 	color = "#2d4816"
 	toxpwr = 0
