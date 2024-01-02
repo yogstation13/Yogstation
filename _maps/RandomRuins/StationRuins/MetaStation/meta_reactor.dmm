@@ -1525,15 +1525,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"RZ" = (
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "Si" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -1906,7 +1897,7 @@ OD
 OD
 "}
 (5,1,1) = {"
-RZ
+iC
 OD
 eZ
 tS
