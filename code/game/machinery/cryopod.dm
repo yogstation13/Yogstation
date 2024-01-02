@@ -8,6 +8,8 @@
 GLOBAL_LIST_EMPTY(cryopods)
 GLOBAL_LIST_EMPTY(cryopod_computers)
 
+#define JOIN_SLEEP_DURATION 6 SECONDS
+
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
@@ -149,6 +151,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	var/on_store_name = "Cryogenic Oversight"
 	var/open_sound = 'sound/machines/podopen.ogg'
 	var/close_sound = 'sound/machines/podclose.ogg'
+	var/join_sound = 'sound/machines/hiss.ogg'
 
 	// 5 minutes-ish safe period before being despawned.
 	var/time_till_despawn = 15 MINUTES // Time if a player gets forced into cryo
@@ -199,13 +202,15 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	return control_computer != null
 
-/obj/machinery/cryopod/close_machine(mob/user)
+/obj/machinery/cryopod/close_machine(mob/user, waking = FALSE)
 	if(!control_computer)
 		find_control_computer(TRUE)
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
 		..(user)
 		icon_state = "cryopod"
 		var/mob/living/mob_occupant = occupant
+		if(waking) // waking up, not going to sleep. don't continue past this point
+			return
 		if(close_sound)
 			playsound(src, close_sound, 40)
 		if(mob_occupant && mob_occupant.stat != DEAD)
@@ -432,3 +437,31 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	log_admin(span_notice("[key_name(target)] entered a stasis pod."))
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
+
+/obj/machinery/cryopod/JoinPlayerHere(mob/M, buckle)
+	. = ..()
+	close_machine(M, TRUE) // put the mob inside instead of on the turf
+	playsound(src, join_sound, 30)
+	if(iscarbon(M))
+		apply_effects_to_mob(M)
+	addtimer(CALLBACK(src, PROC_REF(open_machine)), JOIN_SLEEP_DURATION)
+
+/obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
+	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
+	sleepyhead.set_nutrition(200) //works for IPCs and stuff too
+	sleepyhead.SetSleeping(JOIN_SLEEP_DURATION)
+	//but it can be worse.
+	if(prob(90))
+		sleepyhead.adjust_drowsiness(rand(3 SECONDS, 10 SECONDS))
+	if(prob(75))
+		sleepyhead.blur_eyes(rand(3, 6))
+	//so much worse
+	if(prob(66))
+		sleepyhead.adjust_disgust(rand(25,35))
+	if(prob(33))
+		sleepyhead.adjust_disgust(rand(20,30))
+	if(prob(16))
+		sleepyhead.adjust_disgust(rand(10, 17))
+	to_chat(sleepyhead, span_danger("The symptoms of cryosleep set in as you awaken..."))
+
+#undef JOIN_SLEEP_DURATION

@@ -2,18 +2,23 @@
 
 set -euo pipefail
 
-echo "Installing Extools dependencies"
-mkdir ../extools
-cd ../extools
-gh repo clone yogstation13/extools
-rm -r build
-mkdir build
-cd build
-cmake ../byond-extools
-cmake --build .
-chmod 755 libbyond-extools.so
+source dependencies.sh
 
-mkdir -p ~/.byond/bin
-cp libbyond-extools.so ~/.byond/bin/libbyond-extools.so
-ldd ~/.byond/bin/libbyond-extools.so
-echo "Finished installing Extools"
+if [ -f "$HOME/.byond/bin/libauxmos.so" ] && grep -Fxq "${AUXMOS_VERSION}" $HOME/.byond/bin/auxmos-version.txt;
+then
+  echo "Using cached directory."
+else
+  echo "Installing Auxmos"
+  git clone https://github.com/Putnam3145/auxmos
+  cd ./auxmos
+  rustup target add i686-unknown-linux-gnu
+  cargo build --target i686-unknown-linux-gnu --features katmos --release
+  chmod 755 ./target/i686-unknown-linux-gnu/release/libauxmos.so
+  
+  mkdir -p ~/.byond/bin
+  cp ./target/i686-unknown-linux-gnu/release/libauxmos.so ~/.byond/bin/libauxmos.so
+  echo "$AUXMOS_VERSION" > "$HOME/.byond/bin/auxmos-version.txt"
+  ldd ~/.byond/bin/libauxmos.so
+  echo "Finished installing Auxmos"
+  cd ..
+fi
