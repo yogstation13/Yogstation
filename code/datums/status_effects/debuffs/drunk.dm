@@ -165,7 +165,7 @@
 				var/mob/living/carbon/carbon_owner = owner
 				carbon_owner.vomit() // Vomiting clears toxloss - consider this a blessing
 		if(!HAS_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE))
-			owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
+			owner.adjust_slurring_up_to(2.4 SECONDS, 7 SECONDS)
 
 	// Over 71, we will constantly have blurry eyes
 	if(drunk_value >= 71)
@@ -177,7 +177,7 @@
 		if(owner.stat == CONSCIOUS && prob(5))
 			to_chat(owner, span_warning("Maybe you should lie down for a bit..."))
 		if(HAS_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE))
-			owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
+			owner.adjust_slurring_up_to(2.4 SECONDS, 4 SECONDS)
 
 	// Over 91, we gain even more toxloss, brain damage, and have a chance of dropping into a long sleep
 	if(drunk_value >= 91)
