@@ -144,7 +144,7 @@
 	// And drunk people will always lose jitteriness
 	owner.adjust_jitter(-6 SECONDS)
 
-	// If lightweight, over 11, we will constantly gain slurring up to 10 seconds of slurring.
+	// Over 11, Light drinkers will constantly gain slurring up to 10 seconds of slurring.
 	if(HAS_TRAIT(owner, TRAIT_LIGHT_DRINKER) & (drunk_value >= 11))
 		owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
 
