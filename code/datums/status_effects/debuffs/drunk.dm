@@ -145,7 +145,7 @@
 	owner.adjust_jitter(-6 SECONDS)
 
 	// If lightweight, over 11, we will constantly gain slurring up to 10 seconds of slurring.
-	if(HAS_TRAIT(drinker, TRAIT_LIGHT_DRINKER) & (drunk_value >= 11))
+	if(HAS_TRAIT(owner, TRAIT_LIGHT_DRINKER) & (drunk_value >= 11))
 		owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
 
 	// Over 41, we have a 30% chance to gain confusion, and we will always have 20 seconds of dizziness.
@@ -164,7 +164,7 @@
 			if(iscarbon(owner))
 				var/mob/living/carbon/carbon_owner = owner
 				carbon_owner.vomit() // Vomiting clears toxloss - consider this a blessing
-		if(!HAS_TRAIT(drinker, TRAIT_ALCOHOL_TOLERANCE))
+		if(!HAS_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE))
 			owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
 
 	// Over 71, we will constantly have blurry eyes
@@ -176,7 +176,7 @@
 		owner.adjustToxLoss(1)
 		if(owner.stat == CONSCIOUS && prob(5))
 			to_chat(owner, span_warning("Maybe you should lie down for a bit..."))
-		if(HAS_TRAIT(drinker, TRAIT_ALCOHOL_TOLERANCE))
+		if(HAS_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE))
 			owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
 
 	// Over 91, we gain even more toxloss, brain damage, and have a chance of dropping into a long sleep
