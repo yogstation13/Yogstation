@@ -2607,7 +2607,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "qK" = (
-/turf/open/lava/plasma/ice_moon/no_shelter,
+/turf/open/lava/plasma/ice_moon,
 /area/icemoon/surface/outdoors)
 "qN" = (
 /obj/structure/cable{
