@@ -48,6 +48,9 @@
 				new /obj/effect/decal/remains/human(loc)
 			if("robotic")
 				new /obj/effect/decal/remains/robot(loc)
+			if("plasma")
+				new /obj/effect/decal/remains/plasma(loc)
+				
 
 /mob/living/carbon/human/death(gibbed)
 	if(stat == DEAD)
