@@ -12,7 +12,7 @@
 	attack_verb = "assault"
 	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
-	exotic_bloodtype = "U" //synthetic blood that works for literally everyone
+	exotic_bloodtype = "Synthetic" //synthetic blood
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES

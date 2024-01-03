@@ -10,6 +10,7 @@
 	mutantheart = /obj/item/organ/heart/ethereal
 	mutanteyes = /obj/item/organ/eyes/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
+	exotic_bloodtype = "E" //this isn't used for anything other than bloodsplatter colours
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
 	burnmod = 0.8 //Bodies are resilient to heat and energy
