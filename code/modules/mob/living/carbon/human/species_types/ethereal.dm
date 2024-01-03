@@ -8,6 +8,7 @@
 	mutantlungs = /obj/item/organ/lungs/ethereal
 	mutantstomach = /obj/item/organ/stomach/cell/ethereal
 	mutantheart = /obj/item/organ/heart/ethereal
+	mutanteyes = /obj/item/organ/eyes/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
@@ -72,6 +73,9 @@
 	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
 	if(ethereal_heart)
 		ethereal_heart.ethereal_color = default_color
+	var/obj/item/organ/eyes/ethereal/ethereal_eyes = ethereal.getorganslot(ORGAN_SLOT_EYES)
+	if(ethereal_eyes)
+		ethereal_eyes.ethereal_color = default_color
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	QDEL_NULL(ethereal_light)
