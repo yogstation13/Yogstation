@@ -1,7 +1,0 @@
-author: " Cowbot92 & Molti"
-delete-after: true 
-changes: 
-  - tweak: "tweaks how blood works"
-  - imageadd: "adds new blood"
-  - imagedel: "removes the old bad blood"
-  - experiment: "fear the old blood"
