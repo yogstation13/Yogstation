@@ -751,6 +751,16 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Moonshine"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
+/datum/reagent/consumable/ethanol/moonshine/on_mob_life(mob/living/carbon/M)
+if(!M.mind?.assigned_role == "Assistant")
+	ADD_TRAIT(M, TRAIT_BLIND, type)
+	return ..()
+
+/datum/reagent/consumable/ethanol/moonshine/on_mob_end_metabolize(mob/living/carbon/M)
+if(!M.mind?.assigned_role == "Assistant")
+	REMOVE_TRAIT(M, TRAIT_BLIND, type)
+	return ..()
+
 /datum/reagent/consumable/ethanol/b52
 	name = "B-52"
 	description = "Coffee, Irish Cream, and cognac. You will get bombed."
