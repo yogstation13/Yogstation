@@ -441,6 +441,36 @@
 	construction_time = 50
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_washer
+	name = "Exosuit Module (Pressure Washer)"
+	desc = "An exosuit-mounted pressure washer."
+	id = "mech_washer"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer
+	materials = list(/datum/material/iron=2000)
+	construction_time = 50
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_mop
+	name = "Exosuit Module (Mop)"
+	desc = "An exosuit-mounted mop."
+	id = "mech_mop"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/mop
+	materials = list(/datum/material/iron=2000)
+	construction_time = 50
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_flyswatter
+	name = "Exosuit Module (Flyswatter)"
+	desc = "An exosuit-mounted flyswatter."
+	id = "mech_flyswatter"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter
+	materials = list(/datum/material/iron=2000)
+	construction_time = 50
+	category = list("Exosuit Equipment")
+
 /datum/design/mech_gravcatapult
 	name = "Exosuit Module (Gravitational Catapult Module)"
 	desc = "An exosuit mounted Gravitational Catapult."
