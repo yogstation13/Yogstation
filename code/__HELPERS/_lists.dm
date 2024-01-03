@@ -737,3 +737,15 @@
 ///sort any value in a list
 /proc/sort_list(list/list_to_sort, cmp=/proc/cmp_text_asc)
 	return sortTim(list_to_sort.Copy(), cmp)
+
+
+/// ORs two lazylists together without inserting errant nulls, returning a new list and not modifying the existing lists.
+#define LAZY_LISTS_OR(left_list, right_list)\
+	(length(left_list)\
+		? length(right_list)\
+			? (left_list | right_list)\
+			: left_list.Copy()\
+		: length(right_list)\
+			? right_list.Copy()\
+			: null\
+	)
