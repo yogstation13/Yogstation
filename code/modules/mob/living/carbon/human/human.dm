@@ -1183,9 +1183,9 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize(mapload)
-	. = ..()
-	set_species(race)
+/mob/living/carbon/human/species/create_dna()
+	dna = new /datum/dna(src)
+	dna.species = new race()
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
