@@ -759,7 +759,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/moonshine/on_mob_end_metabolize(mob/living/carbon/M)
 	if(!M.mind?.assigned_role == "Assistant")
 		REMOVE_TRAIT(M, TRAIT_BLIND, type)
-		return ..()
+		return ..() 
 
 /datum/reagent/consumable/ethanol/b52
 	name = "B-52"
