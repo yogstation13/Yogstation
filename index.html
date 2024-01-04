@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(751 modules,
-    2005/9313 macros, 21.5%)</aside></h3>
+    2014/9316 macros, 21.6%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -1103,7 +1103,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1054 detailed/1908 documented/28846 total, 6.6%)</aside></h3>
+<aside>(1059 detailed/1913 documented/28864 total, 6.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1460,6 +1460,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     </ul></li>
     </ul></li>
     <li><a href="datum/bitfield.html" title="&#x2F;datum&#x2F;bitfield">bitfield</a> - Specifies a bitfield for smarter debugging</li>
+    <li><a href="datum/blood_type.html" title="&#x2F;datum&#x2F;blood_type">?</a></li>
     <li class="has-children"><a href="datum/bloodsucker_clan.html" title="&#x2F;datum&#x2F;bloodsucker_clan">Caitiff</a> - Bloodsucker clans<ul class="index-tree">
     <li><a href="datum/bloodsucker_clan/nosferatu.html" title="&#x2F;datum&#x2F;bloodsucker_clan&#x2F;nosferatu">Nosferatu Clan</a></li>
     </ul></li>
@@ -1499,6 +1500,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
 and apply it as an overlay of the action button</li>
     <li><a href="datum/component/anti_magic.html" title="&#x2F;datum&#x2F;component&#x2F;anti_magic">anti_magic</a> - This provides different types of magic resistance on an object</li>
     <li><a href="datum/component/bakeable.html" title="&#x2F;datum&#x2F;component&#x2F;bakeable">bakeable</a> - This component indicates this object can be baked in an oven.</li>
+    <li><a href="datum/component/bloodysoles.html" title="&#x2F;datum&#x2F;component&#x2F;bloodysoles">bloodysoles</a></li>
     <li><a href="datum/component/chasm.html" title="&#x2F;datum&#x2F;component&#x2F;chasm">chasm</a></li>
     <li><span class="no-substance">construction&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;construction&#x2F;mecha">mecha</span> - Construction datums</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;crawl">crawl</span><ul class="index-tree">
@@ -1808,6 +1810,7 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
 When the object moves, it will unhook the signal and rehook it to the new object.</li>
     <li><a href="datum/element/content_barfer.html" title="&#x2F;datum&#x2F;element&#x2F;content_barfer">content_barfer</a> - Content Barfer; which expels the contents of a mob when it dies, or is transformed</li>
     <li><a href="datum/element/death_explosion.html" title="&#x2F;datum&#x2F;element&#x2F;death_explosion">death_explosion</a></li>
+    <li><a href="datum/element/decal.html" title="&#x2F;datum&#x2F;element&#x2F;decal">decal</a></li>
     <li><a href="datum/element/dryable.html" title="&#x2F;datum&#x2F;element&#x2F;dryable">dryable</a></li>
     <li><a href="datum/element/effect_trail.html" title="&#x2F;datum&#x2F;element&#x2F;effect_trail">effect_trail</a></li>
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
@@ -2676,7 +2679,10 @@ also because some objects do not display particles due to how their visuals are 
     <li><span class="no-substance">cross_action&#x2F;</span><a href="obj/effect/cross_action/spacetime_dist.html" title="&#x2F;obj&#x2F;effect&#x2F;cross_action&#x2F;spacetime_dist">spacetime distortion</a></li>
     <li><a href="obj/effect/custom_portal.html" title="&#x2F;obj&#x2F;effect&#x2F;custom_portal">portal</a></li>
     <li class="has-children"><span class="no-substance">decal&#x2F;</span><a href="obj/effect/decal/cleanable.html" title="&#x2F;obj&#x2F;effect&#x2F;decal&#x2F;cleanable">cleanable</a><ul class="index-tree">
-    <li><span class="no-substance">blood&#x2F;</span><a href="obj/effect/decal/cleanable/blood/hitsplatter.html" title="&#x2F;obj&#x2F;effect&#x2F;decal&#x2F;cleanable&#x2F;blood&#x2F;hitsplatter">blood splatter</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;decal&#x2F;cleanable&#x2F;blood">blood</span><ul class="index-tree">
+    <li><a href="obj/effect/decal/cleanable/blood/footprints.html" title="&#x2F;obj&#x2F;effect&#x2F;decal&#x2F;cleanable&#x2F;blood&#x2F;footprints">footprints</a></li>
+    <li><a href="obj/effect/decal/cleanable/blood/hitsplatter.html" title="&#x2F;obj&#x2F;effect&#x2F;decal&#x2F;cleanable&#x2F;blood&#x2F;hitsplatter">blood splatter</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span class="no-substance">dummy&#x2F;</span><a href="obj/effect/dummy/phased_mob.html" title="&#x2F;obj&#x2F;effect&#x2F;dummy&#x2F;phased_mob">water</a><ul class="index-tree">
     <li><a href="obj/effect/dummy/phased_mob/shadow.html" title="&#x2F;obj&#x2F;effect&#x2F;dummy&#x2F;phased_mob&#x2F;shadow">shadows</a></li>
@@ -3228,6 +3234,7 @@ Given to Nuke Ops members.</li>
     <li><a href="obj/item/organ/brain.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;brain">brain</a></li>
     <li><span class="no-substance">cyberimp&#x2F;arm&#x2F;</span><a href="obj/item/organ/cyberimp/arm/toolset.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;arm&#x2F;toolset">integrated toolset implant</a></li>
     <li class="has-children"><a href="obj/item/organ/eyes.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes">eyes</a><ul class="index-tree">
+    <li><a href="obj/item/organ/eyes/ethereal.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes&#x2F;ethereal">fractal eyes</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes&#x2F;robotic">robotic eyes</span> - Robotic</li>
     </ul></li>
     <li class="has-children"><a href="obj/item/organ/heart.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;heart">heart</a><ul class="index-tree">
@@ -3735,7 +3742,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/11a9937421490b2cbe5c0d8efd4b5684785dd5b0">11a9937</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ee877b7bc09b557cfef46757843573e0195fe326">ee877b7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
