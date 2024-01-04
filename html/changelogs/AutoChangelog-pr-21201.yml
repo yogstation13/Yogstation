@@ -1,0 +1,6 @@
+author: "Therandomhoboo"
+delete-after: true 
+changes: 
+  - rscadd: "Slurring now happens based on what kind of drinker you are (Light, normal or heavy drinker which are based on traits)"
+  - rscadd: "Slurring duration changed based on drinker type"
+  - rscdel: "The constant chance to randomly slur, we can drink now"
