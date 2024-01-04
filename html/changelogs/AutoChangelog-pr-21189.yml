@@ -1,0 +1,5 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - mapping: "Removed disposals air alarm"
+  - mapping: "Moved windoor in disposals"
