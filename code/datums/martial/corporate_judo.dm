@@ -7,7 +7,7 @@
 #define EYEPOKE_COMBO "DH"
 #define JUDOTHROW_COMBO "GD"
 #define ARMBAR_COMBO "DDG"
-#define WHEELTHROW_COMBO "GDH"
+#define WHEELTHROW_COMBO "GGD"
 
 /datum/martial_art/corporate_judo
 	name = "Corporate Judo"
@@ -80,6 +80,14 @@
 /datum/martial_art/corporate_judo/proc/handle_combos(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!can_use(user) || !can_use(target))
 		return FALSE
+	if(findtext(streak, ARMBAR_COMBO))
+		if(armbar(user, target)) // Can fail.
+			streak = ""
+			return TRUE
+	if(findtext(streak, WHEELTHROW_COMBO))
+		if(wheelthrow(user, target)) // Can fail.
+			streak = ""
+			return TRUE
 	if(findtext(streak, DISCOMBOULATE_COMBO))
 		streak = ""
 		discomboulate(user, target) // Will always be true.
@@ -92,14 +100,7 @@
 		if(judo_throw(user, target)) // Can fail.
 			streak = ""
 			return TRUE
-	if(findtext(streak, ARMBAR_COMBO))
-		if(armbar(user, target)) // Can fail.
-			streak = ""
-			return TRUE
-	if(findtext(streak, WHEELTHROW_COMBO))
-		if(wheelthrow(user, target)) // Can fail.
-			streak = ""
-			return TRUE
+
 	return FALSE // Continue on with the normal act.
 
 /// Inflicts stamina damage and confuses the target.
@@ -226,7 +227,7 @@
 	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 4 seconds of blindness, and 10 seconds of blurriness. Effects are halved if they have eye protection."
 	combined_msg += "[span_notice("Judo Throw")]: Grab Disarm. Deals 25 stamina damage and knockdowns for 7 seconds. Only works on standing targets."
 	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 45 stamina damage, knockdowns, and immobilizes for 5 seconds. Only works on downed targets."
-	combined_msg += "[span_notice("Wheel Throw")]: Grab Disarm Harm. Deals 100 stamina damage, knockdowns for 15 seconds, and confuses for 10 seconds. Only works on immobilized targets."
+	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Harm. Deals 100 stamina damage, knockdowns for 15 seconds, and confuses for 10 seconds. Only works on immobilized targets."
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 // Apparently, all belts are storage belts. Wrestling belt is the closet we're gonna get.
