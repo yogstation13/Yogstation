@@ -442,3 +442,64 @@
 			L.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
 			L.emote("scream")
 	. = ..()
+
+//////////////////////////////////////////////////////////////////////////
+//---------------------Detain and capture ability-----------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/seize //Stuns and mutes a human target for 10 seconds
+	name = "Seize"
+	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
+	panel = null
+	button_icon_state = "glare"
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	panel = null
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	cooldown_time = 30 SECONDS
+	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
+	var/strong = TRUE
+
+/datum/action/cooldown/spell/pointed/seize/before_cast(atom/cast_on)
+	. = ..()
+	if(!cast_on || !isliving(cast_on))
+		return . | SPELL_CANCEL_CAST
+	var/mob/living/carbon/target = cast_on
+	if(istype(target) && target.stat)
+		to_chat(owner, span_warning("[target] must be conscious!"))
+		return . | SPELL_CANCEL_CAST
+	if(is_darkspawn_or_veil(target))
+		to_chat(owner, span_warning("You cannot seize allies!"))
+		return . | SPELL_CANCEL_CAST
+
+/datum/action/cooldown/spell/pointed/seize/cast(atom/cast_on)
+	. = ..()
+	if(!isliving(cast_on) || !ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/user = owner
+	if(!(user.check_obscured_slots() & ITEM_SLOT_EYES)) //only show if the eyes are visible
+		user.visible_message(span_warning("<b>[user]'s eyes flash a deep purple</b>"))
+
+	to_chat(user, span_velvet("Sskr'aya"))
+
+	var/mob/living/target = cast_on
+	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
+		return
+		
+	var/distance = get_dist(target, user)
+	if (distance <= 2 && strong)
+		target.visible_message(span_danger("[target] suddenly collapses..."))
+		to_chat(target, span_userdanger("A purple light flashes through your mind, and you lose control of your movements!"))
+		target.Paralyze(10 SECONDS)
+		if(iscarbon(target))
+			var/mob/living/carbon/M = target
+			M.silent += 10
+	else //Distant glare
+		var/loss = max(100 - (distance * 10), 0)
+		target.adjustStaminaLoss(loss)
+		target.adjust_stutter(loss)
+		to_chat(target, span_userdanger("A purple light flashes through your mind, and exhaustion floods your body..."))
