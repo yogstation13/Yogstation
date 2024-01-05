@@ -104,6 +104,7 @@
 
 /// Inflicts stamina damage and confuses the target.
 /datum/martial_art/corporate_judo/proc/discomboulate(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 	target.visible_message(
 		span_warning("[user] strikes [target] in the head with [user.p_their()] palm!"),
 		span_userdanger("[user] strikes you with [user.p_their()] palm!")
@@ -116,6 +117,8 @@
 
 /// Inflicts brute/stamina damage and tries to temporarily blind/blur the target's vision.
 /datum/martial_art/corporate_judo/proc/eyepoke(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
+
 	var/has_head = target.get_bodypart(BODY_ZONE_PRECISE_EYES)
 	if(!has_head || !user.can_inject(target, FALSE, BODY_ZONE_PRECISE_EYES))
 		var/msg = has_head ? "They do not have a head!" : "Their eyes are too protected!"
@@ -162,6 +165,7 @@
 	if(!(target.mobility_flags & MOBILITY_STAND)) // Target standing.
 		return FALSE
 	
+	user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 	target.visible_message(
 		span_warning("[user] judo throws [target] to ground!"),
 		span_userdanger("[user] judo throws you to the ground!")
@@ -179,6 +183,7 @@
 	if((target.mobility_flags & MOBILITY_STAND)) // Target not standing.
 		return FALSE
 	
+	user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 	target.visible_message(
 		span_warning("[user] puts [target] into an armbar!"),
 		span_userdanger("[user] wrestles you into an armbar!")
@@ -196,6 +201,7 @@
 	if((target.mobility_flags & MOBILITY_STAND) || !target.IsImmobilized()) // Target not standing and is immobilized.
 		return FALSE
 
+	user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 	target.visible_message(
 		span_warning("[user] raises [target] over [user.p_their()] shoulder, and slams [target.p_them()] into the ground!"),
 		span_userdanger("[user] throws you over [user.p_their()] shoulder, slamming you into the ground!")
