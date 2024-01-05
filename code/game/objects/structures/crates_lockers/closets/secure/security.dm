@@ -75,6 +75,7 @@
 	new /obj/item/radio/security(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/head(src)
 	new /obj/item/barrier_taperoll/police(src)
+	new /obj/item/storage/belt/corporate_judo(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"

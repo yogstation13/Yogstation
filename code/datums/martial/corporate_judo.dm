@@ -223,6 +223,11 @@
 	w_class = WEIGHT_CLASS_BULKY
 	var/datum/martial_art/corporate_judo/style = new
 
+/obj/item/storage/belt/corporate_judo/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 0
+
 /obj/item/storage/belt/corporate_judo/equipped(mob/user, slot)
 	. = ..()
 	if(!ishuman(user))
