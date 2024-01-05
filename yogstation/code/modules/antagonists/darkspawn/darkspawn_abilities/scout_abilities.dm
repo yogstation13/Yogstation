@@ -239,3 +239,46 @@
 		return
 	var/turf/open/target = victim
 	target.MakeSlippery(TURF_WET_PERMAFROST, 15 SECONDS, 15 SECONDS)
+
+//////////////////////////////////////////////////////////////////////////
+//------------------------Chameleon projector---------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/disguise //chameleon projector as a spell
+	name = "Shadow disguise"
+	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
+	panel = null
+	button_icon_state = "glare"
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	panel = null
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	cooldown_time = 30 SECONDS
+	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
+	var/obj/item/chameleon/handler
+	var/active
+
+/datum/action/cooldown/spell/pointed/disguise/New(Target)
+	. = ..()
+	handler = new()
+
+/datum/action/cooldown/spell/pointed/disguise/before_cast(atom/cast_on)
+	. = ..()
+	if(!handler)
+		return . | SPELL_CANCEL_CAST
+	if(!cast_on || !isobj(cast_on))
+		return . | SPELL_CANCEL_CAST
+
+/datum/action/cooldown/spell/pointed/disguise/cast(atom/cast_on)
+	. = ..()
+	if(!handler)
+		return
+	if(active)
+		handler.disrupt()
+		return
+
+	handler.afterattack(cast_on, owner, TRUE)
+	handler.toggle(owner)
