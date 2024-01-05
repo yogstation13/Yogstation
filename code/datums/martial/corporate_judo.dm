@@ -13,10 +13,10 @@
 	name = "Corporate Judo"
 	id = MARTIALART_CORPORATEJUDO
 	help_verb = /mob/living/carbon/human/proc/corporate_judo_help
-	/// Only allow use of this martial arts if in the main services areas (bar and kitchen).
+	/// Only allow use of this martial arts if in the main services areas (bar and kitchen); if for some reason, we want to give to the bartender in the future.
 	var/service_only = FALSE
 
-/datum/martial_art/corporate_judo/can_use(mob/living/carbon/human/user) //this is used to make chef CQC only work in kitchen
+/datum/martial_art/corporate_judo/can_use(mob/living/carbon/human/user)
 	var/area/current_area = get_area(user)
 	if(service_only)
 		var/list/restricted_areas = list(/area/crew_quarters/kitchen, /area/crew_quarters/bar)
@@ -154,7 +154,7 @@
 		span_warning("[user] judo throws [target] to ground!"),
 		span_userdanger("[user] judo throws you to the ground!")
 	)
-	playsound(get_turf(target), 'sound/weapons/slam.ogg', 40, TRUE, -1)
+	playsound(get_turf(target), 'sound/effects/hit_kick.ogg', 40, TRUE, -1)
 
 	target.apply_damage(25, STAMINA)
 	target.Knockdown(3 SECONDS)
