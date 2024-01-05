@@ -12,6 +12,7 @@
 /datum/martial_art/corporate_judo
 	name = "Corporate Judo"
 	id = MARTIALART_CORPORATEJUDO
+	help_verb = /mob/living/carbon/human/proc/corporate_judo_help
 	/// Only allow use of this martial arts if in the main services areas (bar and kitchen).
 	var/service_only = FALSE
 
@@ -156,9 +157,9 @@
 	return TRUE
 
 /datum/martial_art/corporate_judo/proc/judo_throw(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if((user.mobility_flags & MOBILITY_STAND)) // User standing.
+	if(!(user.mobility_flags & MOBILITY_STAND)) // User standing.
 		return FALSE
-	if((target.mobility_flags & MOBILITY_STAND)) // Target standing.
+	if(!(target.mobility_flags & MOBILITY_STAND)) // Target standing.
 		return FALSE
 	
 	target.visible_message(
@@ -173,9 +174,9 @@
 	return TRUE
 
 /datum/martial_art/corporate_judo/proc/armbar(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if((user.mobility_flags & MOBILITY_STAND)) // User standing.
+	if(!(user.mobility_flags & MOBILITY_STAND)) // User standing.
 		return FALSE
-	if(!(target.mobility_flags & MOBILITY_STAND)) // Target not standing.
+	if((target.mobility_flags & MOBILITY_STAND)) // Target not standing.
 		return FALSE
 	
 	target.visible_message(
@@ -190,9 +191,9 @@
 	return TRUE
 
 /datum/martial_art/corporate_judo/proc/wheelthrow(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if((user.mobility_flags & MOBILITY_STAND)) // User standing.
+	if(!(user.mobility_flags & MOBILITY_STAND)) // User standing.
 		return FALSE
-	if(!(target.mobility_flags & MOBILITY_STAND) && target.IsImmobilized()) // Target not standing and is immobilized.
+	if((target.mobility_flags & MOBILITY_STAND) || !target.IsImmobilized()) // Target not standing and is immobilized.
 		return FALSE
 
 	target.visible_message(
@@ -233,7 +234,6 @@
 	item_state = "judo"
 	w_class = WEIGHT_CLASS_BULKY
 	var/datum/martial_art/corporate_judo/style = new
-
 
 /obj/item/storage/belt/corporate_judo/equipped(mob/user, slot)
 	. = ..()
