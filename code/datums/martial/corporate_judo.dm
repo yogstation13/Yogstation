@@ -43,7 +43,6 @@
 
 /// Split their punch damage in half by spreading it between brute and stamina.
 /datum/martial_art/corporate_judo/harm_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	// For service only: make sure user and target are in their restricted area for martials to work.
 	if(!can_use(user) || !can_use(target))
 		return FALSE
 	// Check if this streak leads into a combo moves. If so, do that combo instead.
@@ -70,6 +69,28 @@
 	return TRUE
 
 /datum/martial_art/corporate_judo/proc/handle_combos(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(!can_use(user) || !can_use(target))
+		return FALSE
+	if(findtext(streak, DISCOMBOULATE_COMBO))
+		streak = ""
+		discomboulate(user, target) // Will always be true.
+		return TRUE
+	if(findtext(streak, EYEPOKE_COMBO))
+		streak = ""
+		eyepoke(user, target) // Will always be true.
+		return TRUE
+	if(findtext(streak, JUDOTHROW_COMBO))
+		if(judo_throw(user, target)) // Can fail.
+			streak = ""
+			return TRUE
+	if(findtext(streak, ARMBAR_COMBO))
+		if(armbar(user, target)) // Can fail.
+			streak = ""
+			return TRUE
+	if(findtext(streak, WHEELTHROW_COMBO))
+		if(wheelthrow(user, target)) // Can fail.
+			streak = ""
+			return TRUE
 	return FALSE // Continue on with the normal act.
 
 /// Inflicts stamina damage and confuses the target.
