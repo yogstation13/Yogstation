@@ -13,6 +13,7 @@
 	name = "Corporate Judo"
 	id = MARTIALART_CORPORATEJUDO
 	help_verb = /mob/living/carbon/human/proc/corporate_judo_help
+	nonlethal = TRUE
 	/// Only allow use of this martial arts if in the main services areas (bar and kitchen); if for some reason, we want to give to the bartender in the future.
 	var/service_only = FALSE
 
@@ -26,12 +27,12 @@
 		return FALSE
 	return ..()
 
-/datum/martial_art/corporate_judo/teach(mob/living/carbon/human/H, make_temporary=0)
+/datum/martial_art/corporate_judo/teach(mob/living/carbon/human/user, make_temporary = FALSE)
 	..()
-	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "corporate judo")
+	ADD_TRAIT(user, TRAIT_NO_STUN_WEAPONS, "corporate judo")
 
 /datum/martial_art/corporate_judo/on_remove(mob/living/carbon/human/H)
-	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "corporate judo")
+	REMOVE_TRAIT(user, TRAIT_NO_STUN_WEAPONS, "corporate judo")
 	return ..()
 
 /datum/martial_art/corporate_judo/disarm_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -225,7 +226,8 @@
 /obj/item/storage/belt/corporate_judo/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 0
+	STR.max_items = 1
+	STR.set_holdable(list(/obj/item/book/manual/wiki/security_space_law))
 
 /obj/item/storage/belt/corporate_judo/equipped(mob/user, slot)
 	. = ..()
