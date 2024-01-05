@@ -69,7 +69,7 @@
 	log_combat(user, target, "attacked (Corporate Judo)")
 	return TRUE
 
-/datum/martial_art/corporate_judo/handle_combos(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/martial_art/corporate_judo/proc/handle_combos(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return FALSE // Continue on with the normal act.
 
 /// Inflicts stamina damage and confuses the target.
