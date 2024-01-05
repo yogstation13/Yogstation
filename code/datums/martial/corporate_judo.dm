@@ -61,7 +61,6 @@
 /datum/martial_art/corporate_judo/proc/handle_combos(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!can_use(user) || !can_use(target))
 		return FALSE
-	user.balloon_alert(user, "streak: [streak]")
 	if(findtext(streak, ARMBAR_COMBO))
 		if(armbar(user, target)) // Can fail.
 			streak = ""
@@ -204,11 +203,11 @@
 
 	combined_msg += "<b><i>You try to remember the teachings of Corporate Judo.</i></b>"
 	combined_msg += span_notice("<b>As long you know Corporate Judo, you cannot use any stunning weapons such as stunbatons and flashes.</b>")
-	combined_msg += "[span_notice("Discomboulate")]: Disarm Grab. Deals 10 stamina damage and confuses them for 5 seconds."
-	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 20 seconds of blurriness, and 4 seconds of blindness. Effects is halved if they have eye protection."
+	combined_msg += "[span_notice("Discomboulate")]: Disarm Grab. Deals 10 stamina damage and 5 seconds of confusion."
+	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 20 seconds of blurriness, and 4 seconds of blindness. Effects is halved if they have basic eye protection (e.g. any eyewear). Completely negated if they have lots of eye protection (e.g. hardsuit helmets)."
 	combined_msg += "[span_notice("Judo Throw")]: Grab Disarm. Deals 25 stamina damage and knockdowns for 3 seconds. Only works on standing targets and if you are standing."
 	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 50 stamina damage. Only works on downed targets and if you are standing."
-	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Disarm. Deals 120 stamina damage and confuses for 10 seconds. Only works on immobilized targets."
+	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Disarm. Deals 120 stamina damage and confuses for 10 seconds. Only works on targets that have 50 stamina damage or more."
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 // Apparently, all belts are storage belts. Wrestling belt is the closest we're gonna get.
