@@ -179,7 +179,7 @@
 	return TRUE
 
 /datum/martial_art/corporate_judo/proc/wheelthrow(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if((target.mobility_flags & MOBILITY_STAND)) // Target not standing and is immobilized.
+	if((target.mobility_flags & MOBILITY_STAND)) // Target not standing.
 		return FALSE
 	if(target.getStaminaLoss() < 50) // Target must have taken 50 stamina damage for this finisher.
 		return FALSE
@@ -208,7 +208,7 @@
 	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 20 seconds of blurriness, and 4 seconds of blindness. Effects is halved if they have basic eye protection (e.g. any eyewear). Completely negated if they have lots of eye protection (e.g. hardsuit helmets)."
 	combined_msg += "[span_notice("Judo Throw")]: Grab Disarm. Deals 25 stamina damage and knockdowns for 3 seconds. Only works on standing targets and if you are standing."
 	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 50 stamina damage. Only works on downed targets and if you are standing."
-	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Disarm. Deals 120 stamina damage and confuses for 10 seconds. Only works on targets that have 50 stamina damage or more."
+	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Disarm. Deals 120 stamina damage and confuses for 10 seconds. Only works on downed targets that have 50 stamina damage or more."
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 // Apparently, all belts are storage belts. Wrestling belt is the closest we're gonna get.
