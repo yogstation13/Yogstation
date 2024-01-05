@@ -103,6 +103,7 @@
 			else
 				H.dna.species.mutant_bodyparts["tail_polysmorph"] = H.dna.features["tail_polysmorph"]
 		H.update_body()
+		H.physiology.crawl_speed += 0.5
 
 /obj/item/organ/tail/polysmorph/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
@@ -110,3 +111,4 @@
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		tail_type = H.dna.features["tail_polysmorph"]
 		H.update_body()
+		H.physiology.crawl_speed -= 0.5

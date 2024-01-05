@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(air_machinery)
 	name = "Atmospherics Machinery"
 	init_order = INIT_ORDER_AIR_MACHINERY
 	priority = FIRE_PRIORITY_AIR
-	wait = 1 SECONDS
+	wait = 0.5 SECONDS
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	loading_points = 4.2 SECONDS // Yogs -- loading times
