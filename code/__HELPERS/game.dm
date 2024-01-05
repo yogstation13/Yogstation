@@ -699,6 +699,10 @@
 	var/pressure = environment.return_pressure()
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
+	//YOGS EDIT
+	if(pressure >= JUNGLELAND_EQUIPMENT_EFFECT_PRESSURE)
+		. = TRUE
+	//YOGS END
 
 /proc/ispipewire(item)
 	var/static/list/pire_wire = list(
