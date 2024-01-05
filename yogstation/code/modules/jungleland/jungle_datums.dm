@@ -11,7 +11,7 @@
 	screen_loc = "CENTER-9,CENTER-7"
 	appearance_flags = TILE_BOUND
 	layer = ABOVE_OPEN_TURF_LAYER
-	plane = BLACKNESS_PLANE
+	plane = DEFAULT_PLANE
 	alpha = 0 //we animate it ourselves
 
 //wall trip
@@ -21,7 +21,7 @@
 	screen_loc = "CENTER-9,CENTER-7"
 	appearance_flags = TILE_BOUND
 	layer = BELOW_MOB_LAYER
-	plane = BLACKNESS_PLANE 
+	plane = DEFAULT_PLANE
 	alpha = 0 //we animate it ourselves
 
 // reagents
@@ -111,7 +111,7 @@
 	if(!L.hud_used || !L.client)
 		return
 
-	var/atom/movable/screen/plane_master/game_world/game_plane =  L.hud_used.plane_masters["[GAME_PLANE]"]
+	var/atom/movable/screen/plane_master/game_plane =  L.hud_used.plane_masters["[GAME_PLANE]"]
 	var/atom/movable/screen/plane_master/floor/floor_plane  = L.hud_used.plane_masters["[FLOOR_PLANE]"]
 
 	cached_screen = L.overlay_fullscreen("polycybin_trip",/atom/movable/screen/fullscreen/trip)
@@ -134,7 +134,7 @@
 	L.clear_fullscreen("polycybin_gtrip")
 	
 
-/datum/reagent/jungle/polybycin/proc/update_filters(mob/living/L)
+/datum/reagent/jungle/polybycin/proc/update_jungle_filters(mob/living/L)
 	if(!L.client)
 		return
 
@@ -243,7 +243,7 @@
 /datum/reagent/toxin/meduracha/on_mob_life(mob/living/carbon/M)
 	M.damageoverlaytemp = 60
 	M.update_damage_hud()
-	M.blur_eyes(3)
+	M.adjust_eye_blur(3)
 	return ..()
 
 /datum/reagent/quinine 
