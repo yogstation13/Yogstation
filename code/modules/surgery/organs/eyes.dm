@@ -502,8 +502,6 @@
 	desc = "It turned out they had them after all!"
 	sight_flags = SEE_MOBS
 	color_cutoffs = list(25, 5, 42)
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
-	see_in_dark = 5
 
 /obj/item/organ/eyes/ethereal
 	name = "fractal eyes"

@@ -299,8 +299,8 @@
  * * name for debugging purposes
  * Other vars such as alpha will automatically be applied with the render source
  */
-/atom/movable/screen/plane_master/proc/generate_render_relays()
-	var/relay_loc = "CENTER"
+/atom/movable/screen/plane_master/proc/generate_render_relays(relay_loc_override)
+	var/relay_loc = relay_loc_override ? relay_loc_override : "CENTER"
 	// If we're using a submap (say for a popup window) make sure we draw onto it
 	if(home?.map)
 		relay_loc = "[home.map]:[relay_loc]"
@@ -319,12 +319,12 @@
 /// Creates a connection between this plane master and the passed in plane
 /// Helper for out of system code, shouldn't be used in this file
 /// Build system to differenchiate between generated and non generated render relays
-/atom/movable/screen/plane_master/proc/add_relay_to(target_plane, blend_override, relay_layer, relay_color)
+/atom/movable/screen/plane_master/proc/add_relay_to(target_plane, blend_override, relay_layer, relay_color, relay_loc)
 	if(get_relay_to(target_plane))
 		return
 	render_relay_planes += target_plane
 	var/client/display_lad = home?.our_hud?.mymob?.canon_client
-	var/atom/movable/render_plane_relay/relay = generate_relay_to(target_plane, show_to = display_lad, blend_override = blend_override, relay_layer = relay_layer)
+	var/atom/movable/render_plane_relay/relay = generate_relay_to(target_plane, relay_loc = relay_loc, show_to = display_lad, blend_override = blend_override, relay_layer = relay_layer)
 	relay.color = relay_color
 
 /proc/get_plane_master_render_base(name)
@@ -384,3 +384,9 @@
 			return relay
 
 	return null
+
+/atom/movable/screen/plane_master/proc/remove_all_relays()
+	for(var/atom/movable/render_plane_relay/relay in relays)
+		remove_relay_from(relay.plane)
+
+	relays_generated = FALSE

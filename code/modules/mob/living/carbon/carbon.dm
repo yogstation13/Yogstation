@@ -571,16 +571,12 @@
 	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 	sight = initial(sight)
 	see_infrared = initial(see_infrared)
-	lighting_alpha = initial(lighting_alpha)
 	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
 	if(!E)
 		update_tint()
 	else
 		see_invisible = E.see_invisible
-		see_in_dark = E.see_in_dark
 		sight |= E.sight_flags
-		if(!isnull(E.lighting_alpha))
-			lighting_alpha = E.lighting_alpha
 		if(istype(E, /obj/item/organ/eyes/ethereal) && client) //special view range ethereal eyes
 			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
 			client.view_size.addTo("2x2")

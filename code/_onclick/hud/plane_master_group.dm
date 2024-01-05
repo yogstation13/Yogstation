@@ -13,6 +13,7 @@
 	var/active_offset = 0
 	/// What, if any, submap we render onto
 	var/map = ""
+	var/relay_loc_override = null
 
 /datum/plane_master_group/New(key, map = "")
 	. = ..()
@@ -84,7 +85,7 @@
 		for(var/plane_offset in starting_offset to ending_offset)
 			if(plane_offset != 0 && !initial(mytype.allows_offsetting))
 				continue
-			var/atom/movable/screen/plane_master/instance = new mytype(null, null, src, plane_offset)
+			var/atom/movable/screen/plane_master/instance = new mytype(null, null, src, plane_offset, relay_loc_override)
 			plane_masters["[instance.plane]"] = instance
 			prep_plane_instance(instance)
 
@@ -170,6 +171,7 @@
 /// If you wanna try someday feel free, but I can't manage it
 /datum/plane_master_group/popup
 
+	relay_loc_override = "LEFT,TOP"
 // /datum/plane_master_group/popup/transform_lower_turfs(datum/hud/source, new_offset, use_scale = TRUE)
 // 	return ..(source, new_offset, FALSE)
 
