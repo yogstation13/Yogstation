@@ -761,9 +761,10 @@
 	if(reac_volume < 3)
 		return
 
-	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
-		B = new(T)
+		B = new /obj/effect/decal/cleanable/blood/splatter(T)
+		B.Etherealify()
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))

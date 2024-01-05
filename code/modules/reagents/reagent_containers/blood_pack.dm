@@ -4,7 +4,7 @@
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "bloodpack"
 	volume = 200
-	var/blood_type = null
+	var/datum/blood_type/blood_type = null
 	var/unique_blood = null
 	var/labelled = 0
 
@@ -65,6 +65,8 @@
 /obj/item/reagent_containers/blood/Initialize(mapload)
 	. = ..()
 	if(blood_type != null)
+		if(!istype(blood_type, /datum/blood_type) && get_blood_type(blood_type))
+			blood_type = get_blood_type(blood_type)
 		reagents.add_reagent(unique_blood ? unique_blood : /datum/reagent/blood, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
 		update_appearance(UPDATE_ICON)
 
@@ -74,7 +76,7 @@
 		if(B && B.data && B.data["blood_type"])
 			blood_type = B.data["blood_type"]
 		else if(reagents.has_reagent(/datum/reagent/consumable/liquidelectricity))
-			blood_type = "LE"
+			blood_type = "E"
 		else
 			blood_type = null
 	update_pack_name()
@@ -83,7 +85,7 @@
 /obj/item/reagent_containers/blood/proc/update_pack_name()
 	if(!labelled)
 		if(blood_type)
-			name = "blood pack - [blood_type]"
+			name = "blood pack[blood_type ? " - [unique_blood ? blood_type : blood_type.name]" : null]"
 		else
 			name = "blood pack"
 
@@ -127,11 +129,14 @@
 	blood_type = "L"
 
 /obj/item/reagent_containers/blood/ethereal
-	blood_type = "LE"
+	blood_type = "E"
 	unique_blood = /datum/reagent/consumable/liquidelectricity
 
 /obj/item/reagent_containers/blood/universal
 	blood_type = "U"
+
+/obj/item/reagent_containers/blood/gorilla
+	blood_type = "G"
 
 /obj/item/reagent_containers/blood/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/pen) || istype(I, /obj/item/toy/crayon))

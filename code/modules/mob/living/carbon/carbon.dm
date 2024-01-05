@@ -569,6 +569,21 @@
 	var/new_sight = initial(sight)
 	lighting_cutoff = initial(lighting_cutoff)
 	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
+	sight = initial(sight)
+	see_infrared = initial(see_infrared)
+	lighting_alpha = initial(lighting_alpha)
+	var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
+	if(!E)
+		update_tint()
+	else
+		see_invisible = E.see_invisible
+		see_in_dark = E.see_in_dark
+		sight |= E.sight_flags
+		if(!isnull(E.lighting_alpha))
+			lighting_alpha = E.lighting_alpha
+		if(istype(E, /obj/item/organ/eyes/ethereal) && client) //special view range ethereal eyes
+			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
+			client.view_size.addTo("2x2")
 
 	var/obj/item/organ/eyes/eyes = getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
@@ -1257,7 +1272,15 @@
 /mob/living/carbon/proc/spray_blood(splatter_direction, splatter_strength = 3)
 	if(!isturf(loc))
 		return
-	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
+	var/splatter_color = null
+	if(dna?.blood_type)
+		splatter_color = dna.blood_type.color
+	else
+		var/blood_id = get_blood_id()
+		if(blood_id != /datum/reagent/blood)//special blood substance
+			var/datum/reagent/R = GLOB.chemical_reagents_list[blood_id]
+			splatter_color = R.color
+	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc, splatter_strength, splatter_color)
 	our_splatter.add_blood_DNA(return_blood_DNA())
 	our_splatter.blood_dna_info = get_blood_dna_list()
 	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)

@@ -763,3 +763,14 @@
 			return item
 
 	return null
+
+/// ORs two lazylists together without inserting errant nulls, returning a new list and not modifying the existing lists.
+#define LAZY_LISTS_OR(left_list, right_list)\
+	(length(left_list)\
+		? length(right_list)\
+			? (left_list | right_list)\
+			: left_list.Copy()\
+		: length(right_list)\
+			? right_list.Copy()\
+			: null\
+	)
