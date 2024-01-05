@@ -50,36 +50,18 @@
 		return TRUE
 	return FALSE 
 
-/// Split their punch damage in half by spreading it between brute and stamina.
 /datum/martial_art/corporate_judo/harm_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!can_use(user) || !can_use(target))
 		return FALSE
-	// Check if this streak leads into a combo moves. If so, do that combo instead.
 	add_to_streak("H", target)
 	if(handle_combos(user, target))
 		return TRUE
-	// Effects
-	var/picked_hit_type = pick("chops", "slices", "strikes")
-	log_combat(user, target, "attacked (Corporate Judo)")
-	playsound(get_turf(target), 'sound/effects/hit_punch.ogg', 50, 1, -1)
-	user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
-	target.visible_message(
-		span_danger("[user] [picked_hit_type] [target]!"),
-		span_userdanger("[user] [picked_hit_type] you!")
-	)
-	// Damage
-	var/expected_damage = rand(user.get_punchdamagelow(), user.get_punchdamagehigh())
-	if(ISODD(expected_damage)) // Easy number to split in half.
-		expected_damage += 1
-	target.apply_damage(expected_damage/2, BRUTE)
-	target.apply_damage(expected_damage/2, STAMINA)
-	// Logging
-	log_combat(user, target, "attacked (Corporate Judo)")
-	return TRUE
+	return FALSE
 
 /datum/martial_art/corporate_judo/proc/handle_combos(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!can_use(user) || !can_use(target))
 		return FALSE
+	user.balloon_alert(user, "streak: [streak]")
 	if(findtext(streak, ARMBAR_COMBO))
 		if(armbar(user, target)) // Can fail.
 			streak = ""
@@ -151,11 +133,12 @@
 		log_combat(user, target, "eyepoked no-eye (Corporate Judo)")
 		return TRUE
 
-	var/blindness_duration = eyes_protected ? 2 SECONDS : 4 SECONDS
-	var/blurriness_duration = eyes_protected ? 5 SECONDS : 10 SECONDS
+	var/blindness_duration = eyes_protected ? 2 SECONDS: 4 SECONDS
+	var/blurriness_duration = eyes_protected ? 10 : 20 // Intentionally not multiplied by seconds.
 	var/damage = eyes_protected ? 10 : 20
-	target.adjust_blindness(blindness_duration)
-	target.adjust_blurriness(blurriness_duration)
+	target.adjust_temp_blindness_up_to(blindness_duration, blindness_duration)
+	target.adjust_blurriness(max(0, blurriness_duration - target.eye_blurry))
+
 	target.apply_damage(damage, STAMINA)
 	log_combat(user, target, "eyepoked (Corporate Judo)")
 	return TRUE
@@ -174,7 +157,7 @@
 	playsound(get_turf(target), 'sound/weapons/slam.ogg', 40, TRUE, -1)
 
 	target.apply_damage(25, STAMINA)
-	target.Knockdown(7 SECONDS)
+	target.Knockdown(3 SECONDS)
 	log_combat(user, target, "judothrow (Corporate Judo)")
 	return TRUE
 
@@ -191,14 +174,13 @@
 	)
 	playsound(get_turf(user), 'sound/weapons/slashmiss.ogg', 40, TRUE, -1)
 
-	target.apply_damage(45, STAMINA)
-	target.Immobilize(5 SECONDS)
-	target.Knockdown(5 SECONDS)
+	user.Knockdown(3 SECONDS)
+	target.apply_damage(25, STAMINA)
+	target.Immobilize(3 SECONDS)
+	target.AdjustKnockdown(3 SECONDS)
 	return TRUE
 
 /datum/martial_art/corporate_judo/proc/wheelthrow(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if(!(user.mobility_flags & MOBILITY_STAND)) // User standing.
-		return FALSE
 	if((target.mobility_flags & MOBILITY_STAND) || !target.IsImmobilized()) // Target not standing and is immobilized.
 		return FALSE
 
@@ -208,9 +190,9 @@
 		span_userdanger("[user] throws you over [user.p_their()] shoulder, slamming you into the ground!")
 	)
 	playsound(get_turf(user), 'sound/magic/tail_swing.ogg', 40, TRUE, -1)
-	target.SpinAnimation(1 SECONDS, 1)
+	target.SpinAnimation(0.5 SECONDS, 1)
 	target.apply_damage(100, STAMINA)
-	target.Knockdown(15 SECONDS)
+	target.AdjustKnockdown(15 SECONDS)
 	target.set_confusion_if_lower(10 SECONDS)
 	return TRUE
 
@@ -222,15 +204,14 @@
 
 	combined_msg += "<b><i>You try to remember the teachings of Corporate Judo.</i></b>"
 	combined_msg += span_notice("<b>As long you know Corporate Judo, you cannot use any stunning weapons such as stunbatons and flashes.</b>")
-	combined_msg += span_notice("<b>All of your unarmed attacks deal half of its amount in stamina damage and half in brute damage.</b>")
 	combined_msg += "[span_notice("Discomboulate")]: Disarm Grab. Deals 10 stamina damage and confuses them for 5 seconds."
-	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 4 seconds of blindness, and 10 seconds of blurriness. Effects are halved if they have eye protection."
-	combined_msg += "[span_notice("Judo Throw")]: Grab Disarm. Deals 25 stamina damage and knockdowns for 7 seconds. Only works on standing targets."
-	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 45 stamina damage, knockdowns, and immobilizes for 5 seconds. Only works on downed targets."
-	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Harm. Deals 100 stamina damage, knockdowns for 15 seconds, and confuses for 10 seconds. Only works on immobilized targets."
+	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 20 seconds of blurriness, and 4 seconds of blindness. Effects are halved if they have eye protection."
+	combined_msg += "[span_notice("Judo Throw")]: Grab Disarm. Deals 25 stamina damage and knockdowns for 3 seconds. Only works on standing targets and if you are standing."
+	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 45 stamina damage, knockdowns, and immobilizes for 3 seconds. Knocks you down for 3 seconds. Only works on downed targets and if you are standing."
+	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Disarm. Deals 100 stamina damage, knockdowns for 15 seconds, and confuses for 10 seconds. Only works on immobilized targets."
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
-// Apparently, all belts are storage belts. Wrestling belt is the closet we're gonna get.
+// Apparently, all belts are storage belts. Wrestling belt is the closest we're gonna get.
 /obj/item/storage/belt/corporate_judo
 	name = "\improper Corporate Judo Belt"
 	desc = "Teaches the wearer NT Corporate Judo."
