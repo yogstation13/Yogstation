@@ -104,7 +104,7 @@
 
 	var/has_head = target.get_bodypart(BODY_ZONE_PRECISE_EYES)
 	if(!has_head || !user.can_inject(target, FALSE, BODY_ZONE_PRECISE_EYES))
-		var/msg = has_head ? "They do not have a head!" : "Their eyes are too protected!"
+		var/msg = has_head ? "Their eyes are too protected!" : "They do not have a head!"
 		to_chat(user, span_warning(msg))
 		target.visible_message(
 			span_warning("[user] tries to jabs [target] in [user.p_their()] eyes, but fails!"),
