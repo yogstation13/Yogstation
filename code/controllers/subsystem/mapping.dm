@@ -202,6 +202,7 @@ SUBSYSTEM_DEF(mapping)
 	setup_map_transitions()
 	generate_station_area_list()
 	initialize_reserved_level(base_transit.z_value)
+	calculate_default_z_level_gravities()
 	// Build minimaps
 	build_minimaps()
 	return SS_INIT_SUCCESS
@@ -754,7 +755,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	// Suck it jannies
 	z_level_to_plane_offset.len += 1
 	z_level_to_lowest_plane_offset.len += 1
-	//gravity_by_z_level.len += 1
+	gravity_by_z_level.len += 1
 	z_level_to_stack.len += 1
 	//Bare minimum we have ourselves
 	z_level_to_stack[z_value] = list(z_value)

@@ -9,18 +9,17 @@
 /atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen_gen.dmi'
+	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
+	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
-	//vis_flags = VIS_INHERIT_PLANE
 	appearance_flags = APPEARANCE_UI
 	/// A reference to the object in the slot. Grabs or items, generally.
-	var/obj/master = null
+	var/datum/weakref/master_ref = null
 	/// A reference to the owner HUD, if any.
 	VAR_PRIVATE/datum/hud/hud = null
 
-	/// If FALSE, this will not be cleared when calling /client/clear_screen()
-	var/clear_with_screen = TRUE
 	/**
 	 * Map name assigned to this object.
 	 * Automatically set by /client/proc/add_obj_to_map.
@@ -35,13 +34,16 @@
 	 */
 	var/del_on_map_removal = TRUE
 
+	/// If FALSE, this will not be cleared when calling /client/clear_screen()
+	var/clear_with_screen = TRUE
+
 /atom/movable/screen/New(datum/hud/new_hud)
 	. = ..()
 	if(istype(new_hud))
 		hud = new_hud
 
 /atom/movable/screen/Destroy()
-	master = null
+	master_ref = null
 	hud = null
 	return ..()
 
@@ -289,11 +291,13 @@
 
 /atom/movable/screen/close/Initialize(mapload, new_master)
 	. = ..()
-	master = new_master
+	master_ref = WEAKREF(new_master)
 
 /atom/movable/screen/close/Click()
-	var/datum/component/storage/S = master
-	S.hide_from(usr)
+	var/datum/component/storage/storage = master_ref?.resolve()
+	if(!storage)
+		return
+	storage.hide_from(usr)
 	return TRUE
 
 /atom/movable/screen/drop
@@ -413,19 +417,23 @@
 
 /atom/movable/screen/storage/Initialize(mapload, new_master)
 	. = ..()
-	master = new_master
+	master_ref = WEAKREF(new_master)
 
 /atom/movable/screen/storage/Click(location, control, params)
+	var/datum/component/storage/storage_master = master_ref?.resolve()
+	if(!istype(storage_master))
+		return FALSE
+
 	if(world.time <= usr.next_move)
 		return TRUE
 	if(usr.incapacitated())
 		return TRUE
 	if (ismecha(usr.loc)) // stops inventory actions in a mech
 		return TRUE
-	if(master)
-		var/obj/item/I = usr.get_active_held_item()
-		if(I)
-			master.attackby(null, I, usr, params)
+
+	var/obj/item/inserted = usr.get_active_held_item()
+	if(inserted)
+		storage_master.attackby(null, inserted, usr, params)
 	return TRUE
 
 /atom/movable/screen/throw_catch

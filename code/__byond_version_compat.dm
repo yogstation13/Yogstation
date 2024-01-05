@@ -11,7 +11,7 @@
 
 //If you update these values, update the message in the #error
 #define MAX_BYOND_MAJOR 515
-#define MAX_BYOND_MINOR 1620
+#define MAX_BYOND_MINOR 1623
 
 // You can define IGNORE_MAX_BYOND_VERSION to bypass the max version check.
 // Note: This will likely break the game, especially any extools/auxtools linkage. Only use if you know what you're doing!

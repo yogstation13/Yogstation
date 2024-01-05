@@ -18,13 +18,17 @@
 	if(!category || QDELETED(src))
 		return
 
+	var/datum/weakref/master_ref
+	if(isdatum(new_master))
+		master_ref = WEAKREF(new_master)
 	var/atom/movable/screen/alert/thealert
 	if(alerts[category])
 		thealert = alerts[category]
 		if(thealert.override_alerts)
 			return 0
-		if(new_master && new_master != thealert.master)
-			WARNING("[src] threw alert [category] with new_master [new_master] while already having that alert with master [thealert.master]")
+		if(master_ref && thealert.master_ref && master_ref != thealert.master_ref)
+			var/datum/current_master = thealert.master_ref.resolve()
+			WARNING("[src] threw alert [category] with new_master [new_master] while already having that alert with master [current_master]")
 
 			clear_alert(category)
 			return .()
@@ -53,7 +57,7 @@
 		new_master.layer = old_layer
 		new_master.plane = old_plane
 		thealert.icon_state = "template" // We'll set the icon to the client's ui pref in reorganize_alerts()
-		thealert.master = new_master
+		thealert.master_ref = master_ref
 	else
 		thealert.icon_state = "[initial(thealert.icon_state)][severity]"
 		thealert.severity = severity
@@ -99,6 +103,8 @@
 	var/override_alerts = FALSE //If it is overriding other alerts of the same type
 	var/mob/mob_viewer //the mob viewing this alert
 
+	/// Boolean. If TRUE, the Click() proc will attempt to Click() on the master first if there is a master.
+	var/click_master = TRUE
 
 /atom/movable/screen/alert/MouseEntered(location,control,params)
 	if(!QDELETED(src))
@@ -650,10 +656,12 @@ so as to remain in compliance with the most up-to-date laws."
 /atom/movable/screen/alert/restrained/handcuffed
 	name = "Handcuffed"
 	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
+	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/legcuffed
 	name = "Legcuffed"
 	desc = "You're legcuffed, which slows you down considerably. Click the alert to free yourself."
+	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/Click()
 	var/mob/living/L = usr
@@ -726,12 +734,13 @@ so as to remain in compliance with the most up-to-date laws."
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
 		to_chat(usr, "[span_boldnotice("[name]")] - [span_info("[desc]")]")
 		return
-	if(master)
-		return usr.client.Click(master, location, control, params)
+	var/datum/our_master = master_ref?.resolve()
+	if(our_master && click_master)
+		return usr.client.Click(our_master, location, control, params)
 
 /atom/movable/screen/alert/Destroy()
 	. = ..()
 	severity = 0
-	master = null
+	master_ref = null
 	mob_viewer = null
 	screen_loc = ""

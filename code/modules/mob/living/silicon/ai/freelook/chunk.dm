@@ -148,6 +148,9 @@
 			if(sillycone.builtInCamera?.can_use())
 				local_cameras += sillycone.builtInCamera
 
+		// for(var/obj/vehicle/sealed/mecha/mech in urange(CHUNK_SIZE, locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z_level)))
+		// 	if(mech.chassis_camera?.can_use())
+		// 		local_cameras += mech.chassis_camera
 
 		cameras["[z_level]"] = local_cameras
 

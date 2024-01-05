@@ -33,7 +33,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/alien_queen_finder
 
 	var/atom/movable/screen/devil/soul_counter/devilsouldisplay
-	var/atom/movable/screen/combo/combo_display
 
 	var/atom/movable/screen/action_intent
 	var/atom/movable/screen/zone_select
@@ -56,7 +55,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/list/datum/plane_master_group/master_groups = list()
 	///Assoc list of controller groups, associated with key string group name with value of the plane master controller ref
 	var/list/atom/movable/plane_master_controller/plane_master_controllers = list()
-	var/list/atom/movable/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
 
 	/// Think of multiz as a stack of z levels. Each index in that stack has its own group of plane masters
 	/// This variable is the plane offset our mob/client is currently "on"
@@ -67,6 +65,11 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	///UI for screentips that appear when you mouse over things
 	var/atom/movable/screen/screentip/screentip_text
 
+	/// Whether or not screentips are enabled.
+	/// This is updated by the preference for cheaper reads than would be
+	/// had with a proc call, especially on one of the hottest procs in the
+	/// game (MouseEntered).
+	var/screentips_enabled = SCREENTIP_PREFERENCE_ENABLED
 	/// Whether to use text or images for click hints.
 	/// Same behavior as `screentips_enabled`--very hot, updated when the preference is updated.
 	var/screentip_images = TRUE
@@ -117,6 +120,13 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	var/datum/plane_master_group/main/main_group = new(PLANE_GROUP_MAIN)
 	main_group.attach_to(src)
+
+	// var/datum/preferences/preferences = owner?.client?.prefs
+	// screentip_color = preferences?.read_preference(/datum/preference/color/screentip_color)
+	// screentips_enabled = preferences?.read_preference(/datum/preference/choiced/enable_screentips)
+	// screentip_images = preferences?.read_preference(/datum/preference/toggle/screentip_images)
+	// screentip_text = new(null, src)
+	// static_inventory += screentip_text
 
 	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
 		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)
@@ -237,6 +247,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	QDEL_LIST(always_visible_inventory)
 	mymob = null
 
+	//QDEL_NULL(screentip_text)
 
 	return ..()
 
@@ -471,7 +482,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		hand_box.held_index = i
 		hand_slots["[i]"] = hand_box
 		static_inventory += hand_box
-		hand_box.update_appearance(UPDATE_ICON)
+		hand_box.update_appearance()
 
 	var/i = 1
 	for(var/atom/movable/screen/swap_hand/SH in static_inventory)

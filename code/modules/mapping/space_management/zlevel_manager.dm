@@ -19,6 +19,8 @@
 		manage_z_level(S, filled_with_space = FALSE)
 	generate_z_level_linkages() // Default Zs don't use add_new_zlevel() so they don't automatically generate z-linkages.
 
+/// Generates a real, honest to god new z level. Will create the actual space, and also generate a datum that holds info about the new plot of land
+/// Accepts the name, traits list, datum type, and if we should manage the turfs we create
 /datum/controller/subsystem/mapping/proc/add_new_zlevel(name, traits = list(), z_type = /datum/space_level, contain_turfs = TRUE)
 	UNTIL(!adding_new_zlevel)
 	adding_new_zlevel = TRUE
@@ -30,6 +32,7 @@
 	var/datum/space_level/S = new z_type(new_z, name, traits)
 	manage_z_level(S, filled_with_space = TRUE, contain_turfs = contain_turfs)
 	generate_linkages_for_z_level(new_z)
+	calculate_z_level_gravity(new_z)
 	adding_new_zlevel = FALSE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_Z, S)
 	return S

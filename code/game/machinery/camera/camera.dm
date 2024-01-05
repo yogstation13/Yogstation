@@ -95,7 +95,7 @@
 	if(mapload && is_station_level(z) && prob(3) && !start_active)
 		toggle_cam()
 	else //this is handled by toggle_camera, so no need to update it twice.
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/camera/Destroy()
 	if(can_use())
@@ -145,14 +145,14 @@
 		return
 	if(!(. & EMP_PROTECT_SELF))
 		if(prob(15 * severity))
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			var/list/previous_network = network
 			network = list()
 			GLOB.cameranet.removeCamera(src)
 			stat |= EMPED
 			set_light(0)
 			emped = emped+1  //Increase the number of consecutive EMP's
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			var/thisemp = emped //Take note of which EMP this proc is for
 			spawn(900)
 				if(loc) //qdel limbo
@@ -160,7 +160,7 @@
 					if(emped == thisemp) //Only fix it if the camera hasn't been EMP'd again
 						network = previous_network
 						stat &= ~EMPED
-						update_appearance(UPDATE_ICON)
+						update_appearance()
 						if(can_use())
 							GLOB.cameranet.addCamera(src)
 						emped = 0 //Resets the consecutive EMP count
