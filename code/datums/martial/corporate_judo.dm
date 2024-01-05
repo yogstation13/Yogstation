@@ -174,8 +174,7 @@
 	)
 	playsound(get_turf(user), 'sound/weapons/slashmiss.ogg', 40, TRUE, -1)
 
-	target.apply_damage(35, STAMINA)
-	target.Knockdown(5 SECONDS)
+	target.apply_damage(50, STAMINA)
 	log_combat(user, target, "armbar (Corporate Judo)")
 	return TRUE
 
@@ -192,8 +191,7 @@
 	)
 	playsound(get_turf(user), 'sound/magic/tail_swing.ogg', 40, TRUE, -1)
 	target.SpinAnimation(0.5 SECONDS, 1)
-	target.apply_damage(100, STAMINA)
-	target.Knockdown(15 SECONDS)
+	target.apply_damage(120, STAMINA)
 	target.set_confusion_if_lower(10 SECONDS)
 	log_combat(user, target, "wheelthrow (Corporate Judo)")
 	return TRUE
@@ -209,8 +207,8 @@
 	combined_msg += "[span_notice("Discomboulate")]: Disarm Grab. Deals 10 stamina damage and confuses them for 5 seconds."
 	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 20 seconds of blurriness, and 4 seconds of blindness. Effects is halved if they have eye protection."
 	combined_msg += "[span_notice("Judo Throw")]: Grab Disarm. Deals 25 stamina damage and knockdowns for 3 seconds. Only works on standing targets and if you are standing."
-	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 45 stamina damage and knockdowns for 4 seconds. Only works on downed targets and if you are standing."
-	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Disarm. Deals 100 stamina damage, knockdowns for 15 seconds, and confuses for 10 seconds. Only works on immobilized targets."
+	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 50 stamina damage. Only works on downed targets and if you are standing."
+	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Disarm. Deals 120 stamina damage and confuses for 10 seconds. Only works on immobilized targets."
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 // Apparently, all belts are storage belts. Wrestling belt is the closest we're gonna get.
