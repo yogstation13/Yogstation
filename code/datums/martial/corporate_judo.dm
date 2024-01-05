@@ -31,7 +31,7 @@
 	..()
 	ADD_TRAIT(user, TRAIT_NO_STUN_WEAPONS, "corporate judo")
 
-/datum/martial_art/corporate_judo/on_remove(mob/living/carbon/human/H)
+/datum/martial_art/corporate_judo/on_remove(mob/living/carbon/human/user)
 	REMOVE_TRAIT(user, TRAIT_NO_STUN_WEAPONS, "corporate judo")
 	return ..()
 
