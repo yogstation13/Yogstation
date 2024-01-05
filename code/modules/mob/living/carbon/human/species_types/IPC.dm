@@ -24,7 +24,6 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
 	pressuremod = 0.5 // from the moment i understood the weakness of my flesh it disgusted me
 	heatmod = 0.5 // and i yearned for the certainty of steel
 	burnmod = 1.25 // easily cut by laser cutters and welding tools to speed up manufacturing

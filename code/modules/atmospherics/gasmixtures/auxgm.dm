@@ -30,6 +30,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(
 	var/list/datums = list()
 	var/list/specific_heats = list()
 	var/list/names = list()
+	var/list/labels = list()
 	var/list/visibility = list()
 	var/list/overlays = list()
 	var/list/flags = list()
@@ -53,6 +54,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(
 	var/id = ""
 	var/specific_heat = 0
 	var/name = ""
+	var/label = "" //shortened name
 	var/gas_overlay = "" //icon_state in icons/effects/atmospherics.dmi
 	var/moles_visible = null
 	var/flags = NONE //currently used by canisters
@@ -81,6 +83,9 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(
 		datums[g] = gas
 		specific_heats[g] = gas.specific_heat
 		names[g] = gas.name
+		if(!gas.label)
+			gas.label = gas.name
+		labels[g] = gas.label
 		if(gas.moles_visible)
 			visibility[g] = gas.moles_visible
 			overlays[g] = new /list(FACTOR_GAS_VISIBLE_MAX)

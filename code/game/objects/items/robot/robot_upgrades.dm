@@ -479,7 +479,7 @@
 
 	R.SetEmagged(TRUE)
 	R.logevent("WARN: hardware installed with missing security certificate!") // A bit of fluff to hint it was an illegal tech item.
-	R.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") // Random eight digit hex value. Two are used because rand(1,4294967295) throws an error.
+	R.logevent("WARN: root privileges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") // Random eight digit hex value. Two are used because rand(1,4294967295) throws an error.
 
 /obj/item/borg/upgrade/syndicate/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()

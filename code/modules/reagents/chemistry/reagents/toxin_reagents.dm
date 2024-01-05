@@ -75,12 +75,6 @@
 		toxpwr = initial(toxpwr)
 	return ..()
 
-/datum/reagent/toxin/plasma/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("plasma=[reac_volume];TEMP=[temp]")
-
 /datum/reagent/toxin/plasma/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
 		var/temp = holder ? holder.chem_temp : T20C
@@ -414,6 +408,13 @@
 	glass_name = "Neurotoxin"
 	glass_desc = "A drink that is guaranteed to knock you silly."
 	var/list/paralyzeparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+	. = ..()
+	var/amount = round(max(reac_volume * clamp(permeability, 0, 1), 0.1))
+	if(amount >= 0.5 && !isalien(M))
+		M.reagents.add_reagent(type, amount)
+		M.apply_damage(reac_volume / 2, TOX, null, (1 - permeability) * 100)
 
 /datum/reagent/toxin/staminatoxin/neurotoxin_alien/proc/pickparalyze()
 	var/selected = pick(paralyzeparts)

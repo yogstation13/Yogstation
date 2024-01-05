@@ -147,6 +147,7 @@ export const NtosSupermatterMonitorContent = (props, context) => {
                 label={gas.name}>
                 <ProgressBar
                   value={gas.amount}
+                  color={gas.ui_color}
                   minValue={0}
                   maxValue={gasMaxAmount}>
                   {toFixed(gas.amount, 2) + '%'}

@@ -9,7 +9,7 @@
 	var/active = FALSE
 	var/mob/living/carbon/fake_corpse
 	COOLDOWN_DECLARE(fake_death_timer)
-	var/fake_death_cooldown = 20 SECONDS
+	var/fake_death_cooldown = 30 SECONDS
 
 /obj/item/pseudocider/update_icon_state()
 	icon_state = "[base_icon_state][active ? "-open" : "-closed"]"

@@ -110,6 +110,11 @@
 	if(turbine)
 		turbine.locate_machinery()
 
+/obj/machinery/power/compressor/multitool_act(mob/living/user, obj/item/multitool/tool)
+	tool.buffer = src
+	user.balloon_alert(user, "saved to buffer")
+	return TRUE
+
 /obj/machinery/power/compressor/RefreshParts()
 	var/E = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
@@ -214,6 +219,14 @@
 	compressor = locate() in get_step(src, get_dir(outturf, src))
 	if(compressor)
 		compressor.locate_machinery()
+
+/obj/machinery/power/turbine/multitool_act(mob/living/user, obj/item/multitool/tool)
+	if(!compressor)
+		user.balloon_alert(user, "no compressor!")
+		return TRUE
+	tool.buffer = compressor
+	user.balloon_alert(user, "saved to buffer")
+	return TRUE
 
 /obj/machinery/power/turbine/process(delta_time)
 	add_avail(lastgen) // add power in process() so it doesn't update power output separately from the rest of the powernet (bad)
@@ -344,6 +357,15 @@
 				return
 	else
 		compressor = locate(/obj/machinery/power/compressor) in range(7, src)
+
+/obj/machinery/computer/turbine_computer/multitool_act(mob/living/user, obj/item/multitool/tool)
+	if(istype(tool.buffer, /obj/machinery/power/compressor))
+		var/obj/machinery/power/compressor/new_link = tool.buffer
+		if(!new_link.comp_id)
+			new_link.comp_id = getnewid()
+		id = new_link.comp_id
+		user.balloon_alert(user, "linked!")
+	return TRUE
 
 /obj/machinery/computer/turbine_computer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

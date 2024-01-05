@@ -28,3 +28,15 @@
 	var/mob/living/L = user.mob
 	L.resist()
 	return TRUE
+
+// Moved here because of dextrous mobs and carbons and etc.
+/datum/keybinding/living/quick_equip
+	hotkey_keys = list("E")
+	name = "quick_equip"
+	full_name = "Quick Equip"
+	description = "Quickly puts an item in the best slot available."
+
+/datum/keybinding/living/quick_equip/down(client/user)
+	var/mob/living/living_mob = user.mob
+	living_mob.quick_equip()
+	return TRUE
