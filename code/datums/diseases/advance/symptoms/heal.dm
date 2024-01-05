@@ -580,8 +580,8 @@
 
 	compatible_biotypes = ALL_BIOTYPES // bungus
 	threshold_descs = list(
-		"Stage speed 9" = "Shorter delay until healing starts.",
-		"Resistance 9" = "Increased rate of healing.",
+		"Stealth 5" = "Shorter delay until healing starts.",
+		"Resistance 10" = "Increased rate of healing.",
 	)
 
 /datum/symptom/heal/symbiotic/Start(datum/disease/advance/A)
