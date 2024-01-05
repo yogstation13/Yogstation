@@ -25,6 +25,14 @@
 		return FALSE
 	return ..()
 
+/datum/martial_art/corporate_judo/teach(mob/living/carbon/human/H, make_temporary=0)
+	..()
+	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "corporate judo")
+
+/datum/martial_art/corporate_judo/on_remove(mob/living/carbon/human/H)
+	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "corporate judo")
+	return ..()
+
 /datum/martial_art/corporate_judo/disarm_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!can_use(user) || !can_use(target))
 		return FALSE
@@ -205,6 +213,7 @@
 	var/list/combined_msg = list()
 
 	combined_msg += "<b><i>You try to remember the teachings of Corporate Judo.</i></b>"
+	combined_msg += span_notice("<b>As long you know Corporate Judo, you cannot use any stunning weapons such as stunbatons and flashes.</b>")
 	combined_msg += span_notice("<b>All of your unarmed attacks deal half of its amount in stamina damage and half in brute damage.</b>")
 	combined_msg += "[span_notice("Discomboulate")]: Disarm Grab. Deals 10 stamina damage and confuses them for 5 seconds."
 	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 4 seconds of blindness, and 10 seconds of blurriness. Effects are halved if they have eye protection."
