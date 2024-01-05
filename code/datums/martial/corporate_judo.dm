@@ -174,14 +174,15 @@
 	)
 	playsound(get_turf(user), 'sound/weapons/slashmiss.ogg', 40, TRUE, -1)
 
-	user.Knockdown(3 SECONDS)
-	target.apply_damage(25, STAMINA)
-	target.Immobilize(3 SECONDS)
-	target.AdjustKnockdown(3 SECONDS)
+	target.apply_damage(35, STAMINA)
+	target.Knockdown(5 SECONDS)
+	log_combat(user, target, "armbar (Corporate Judo)")
 	return TRUE
 
 /datum/martial_art/corporate_judo/proc/wheelthrow(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if((target.mobility_flags & MOBILITY_STAND) || !target.IsImmobilized()) // Target not standing and is immobilized.
+	if((target.mobility_flags & MOBILITY_STAND)) // Target not standing and is immobilized.
+		return FALSE
+	if(target.getStaminaLoss() < 50) // Target must have taken 50 stamina damage for this finisher.
 		return FALSE
 
 	user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
@@ -192,8 +193,9 @@
 	playsound(get_turf(user), 'sound/magic/tail_swing.ogg', 40, TRUE, -1)
 	target.SpinAnimation(0.5 SECONDS, 1)
 	target.apply_damage(100, STAMINA)
-	target.AdjustKnockdown(15 SECONDS)
+	target.Knockdown(15 SECONDS)
 	target.set_confusion_if_lower(10 SECONDS)
+	log_combat(user, target, "wheelthrow (Corporate Judo)")
 	return TRUE
 
 /mob/living/carbon/human/proc/corporate_judo_help()
@@ -205,9 +207,9 @@
 	combined_msg += "<b><i>You try to remember the teachings of Corporate Judo.</i></b>"
 	combined_msg += span_notice("<b>As long you know Corporate Judo, you cannot use any stunning weapons such as stunbatons and flashes.</b>")
 	combined_msg += "[span_notice("Discomboulate")]: Disarm Grab. Deals 10 stamina damage and confuses them for 5 seconds."
-	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 20 seconds of blurriness, and 4 seconds of blindness. Effects are halved if they have eye protection."
+	combined_msg += "[span_notice("Eye Poke")]: Disarm Harm. Deals 20 stamina damage, 20 seconds of blurriness, and 4 seconds of blindness. Effects is halved if they have eye protection."
 	combined_msg += "[span_notice("Judo Throw")]: Grab Disarm. Deals 25 stamina damage and knockdowns for 3 seconds. Only works on standing targets and if you are standing."
-	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 45 stamina damage, knockdowns, and immobilizes for 3 seconds. Knocks you down for 3 seconds. Only works on downed targets and if you are standing."
+	combined_msg += "[span_notice("Armbar")]: Disarm Disarm Grab. Deals 45 stamina damage and knockdowns for 4 seconds. Only works on downed targets and if you are standing."
 	combined_msg += "[span_notice("Wheel Throw")]: Grab Grab Disarm. Deals 100 stamina damage, knockdowns for 15 seconds, and confuses for 10 seconds. Only works on immobilized targets."
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
