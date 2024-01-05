@@ -71,7 +71,7 @@
 */
 /datum/blood_type/xenomorph //for xenomorph gib dna and polysmorph bloodsplats
 	name = "X"
-	color = "#00FF32"
+	color = "#96bb00"
 	compatible_types = list(/datum/blood_type/xenomorph)
 
 /datum/blood_type/electricity
