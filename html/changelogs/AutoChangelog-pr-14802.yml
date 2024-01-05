@@ -1,0 +1,11 @@
+author: "EdgeLordExe"
+delete-after: true 
+changes: 
+  - rscadd: "New Mining area: Jungleland, Most content added by Djiq, Most ruins, some mobs and Ivymen added by Marmio64. Other ruins added by ToasterBiome. Various fixes and updates by courtesy of Jamie1D and SapphicOverload!"
+  - rscadd: "New Mobs now appear on jungleland, such as Meduracha, Dryads, Giant mosquitoes, and Skin Twisters!"
+  - rscadd: "New Mining implement: Kinetic Javelin, get it either from the roundstart kit, or buy it in a mining vendor."
+  - rscadd: "New Megafauna: Tar King - You can summon it by collecting 3 parts of a broken crystal, assembling it, and placing it in a Forgotten Altar!"
+  - rscadd: "Ivymen - Jungleland's counterpart to ashwalkers, by Marmio64"
+  - rscadd: "Jungleland has many new biomes, beware of sulphuric pits, as it will cause you trouble if you step into it."
+  - imageadd: "Added new icons and icon states for jungleland"
+  - mapping: "Added Jungleland as a new mining destination!"
