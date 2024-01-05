@@ -193,7 +193,7 @@
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 // Apparently, all belts are storage belts. Wrestling belt is the closet we're gonna get.
-/obj/item/storage/belt/champion/wrestling
+/obj/item/storage/belt/corporate_judo
 	name = "\improper Corporate Judo Belt"
 	desc = "Teaches the wearer NT Corporate Judo."
 	icon = 'icons/obj/clothing/belts.dmi'
@@ -205,7 +205,7 @@
 	var/datum/martial_art/corporate_judo/style = new
 
 
-/obj/item/storage/belt/champion/wrestling/equipped(mob/user, slot)
+/obj/item/storage/belt/corporate_judo/equipped(mob/user, slot)
 	. = ..()
 	if(!ishuman(user))
 		return
@@ -213,7 +213,7 @@
 		var/mob/living/carbon/human/human_user = user
 		style.teach(human_user, 1)
 
-/obj/item/storage/belt/champion/wrestling/dropped(mob/user)
+/obj/item/storage/belt/corporate_judo/dropped(mob/user)
 	. = ..()
 	if(!ishuman(user))
 		return
