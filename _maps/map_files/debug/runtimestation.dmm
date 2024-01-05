@@ -2665,10 +2665,6 @@
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
-"vT" = (
-/obj/machinery/computer/security,
-/turf/open/floor/plating,
-/area/storage/primary)
 "wb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -8656,7 +8652,7 @@ dl
 gg
 ez
 dB
-vT
+dl
 dl
 dl
 dx
