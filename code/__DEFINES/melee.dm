@@ -20,7 +20,7 @@
 #define MARTIALART_WORLDBREAKER "worldbreaker"
 #define MARTIALART_SPACIALLDOMINANCE "absolute spacial dominance"
 #define MARTIALART_LIGHTNINGFLOW "lightning flow"
-
+#define MARTIALART_CORPORATEJUDO "corporate judo"
 
 //Weapon stat defines
 #define SWING_SPEED 		"swing_speed"
