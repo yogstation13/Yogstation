@@ -5,7 +5,7 @@
 		if("robotic")
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-r")
 		if("plasma")
-			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-h")
+			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-h") //This will have more use in the near future
 
 /mob/living/carbon/human/dust(just_ash, drop_items, force)
 	if(drop_items)
