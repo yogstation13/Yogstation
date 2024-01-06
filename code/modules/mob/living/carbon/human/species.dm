@@ -204,6 +204,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Should we preload this species's organs?
 	var/preload = TRUE
 
+	///Does our species have colors for its' damage overlays?
+	var/use_damage_color = TRUE
+
 ///////////
 // PROCS //
 ///////////
@@ -435,7 +438,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	regenerate_organs(C,old_species)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
-		C.dna.blood_type = exotic_bloodtype
+		C.dna.blood_type = get_blood_type(exotic_bloodtype)
 
 	if(old_species.mutanthands)
 		for(var/obj/item/I in C.held_items)
@@ -1546,7 +1549,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
+	if(target.try_extinguish(user))
+		return 1
+	else if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
 		target.help_shake_act(user)
 		if(target != user)
 			log_combat(user, target, "shaken")

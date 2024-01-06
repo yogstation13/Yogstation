@@ -954,3 +954,9 @@
 	if(H.get_item_by_slot(ITEM_SLOT_ICLOTHING) == src)
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "drippy")
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripless", /datum/mood_event/dripless)
+
+//ivymen name variatons
+
+/obj/item/clothing/under/ash_robe/hunter/jungle
+	name = "primal rags"
+	desc = "Light primal rags that are fashionable and practical, while still maximizing photosynthesis capability for plantpeople."

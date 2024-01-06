@@ -99,3 +99,15 @@
 	data += "</BODY></HTML>"
 
 	src << browse(data, "window=law_history")
+
+/client/proc/set_next_minetype()
+	set name = "Set Next Minetype"
+	set category = "Server"
+	set desc = "Sets the next mintype (jungleland or lavaland), provided that the map allows it."
+	var/list/l = list("Jungleland" = 0, "Lavaland" = 1, "Either" = 2)
+	var/answer = input(src,"Which one do you choose?","Selection","Either") in l
+	if(!answer)
+		return
+	message_admins("[src] the next minetype was picked.")
+	log_admin("[src] picked the next minetype.")
+	SSpersistence.SaveMinetype(l[answer])
