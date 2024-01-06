@@ -752,7 +752,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
 /datum/reagent/consumable/ethanol/moonshine/on_mob_life(mob/living/carbon/M)
-	M.adjust_blurriness(0.5)
+	M.adjust_blurriness(2)
 	return ..()
 
 /datum/reagent/consumable/ethanol/b52
