@@ -129,15 +129,14 @@
 
 /obj/item/mmi/attack_self(mob/user)
 	if(brain)
-		user.visible_message(span_notice("[user] begins to remove the brain from [src]"), span_danger("You begin to pry the brain out of [src], ripping out the wires and probes"))
-		to_chat(brainmob, span_userdanger("You feel your mind failing as you are slowly ripped from the [src]"))
+		user.visible_message(span_notice("[user] begins to remove the brain from [src]."), span_danger("You begin to pry the brain out of [src], ripping out the wires and probes."))
+		to_chat(brainmob, span_userdanger("You feel your mind failing as you are slowly ripped from the [src]."))
 		if(do_after(user, remove_time, src))
-			if(!brainmob) return
-			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg" : ""]"))
+			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg." : ""]."))
 			eject_brain(user)
 			update_appearance(UPDATE_ICON)
 			name = initial(name)
-			user.visible_message(span_notice("[user] rips the brain out of [src]"), span_danger("You successfully remove the brain from the [src][rebooting ? ", interrupting the reboot process" : ""]"))
+			user.visible_message(span_notice("[user] rips the brain out of [src]."), span_danger("You successfully remove the brain from the [src][rebooting ? ", interrupting the reboot process." : ""]."))
 			if(rebooting)
 				rebooting = FALSE
 				deltimer(reboot_timer)
@@ -148,28 +147,30 @@
 	to_chat(user, span_notice("You toggle [src]'s radio system [radio.on==1 ? "on" : "off"]."))
 
 /obj/item/mmi/proc/eject_brain(mob/user)
-	brainmob.container = null //Reset brainmob mmi var.
-	brainmob.forceMove(brain) //Throw mob into brain.
-	brainmob.set_stat(DEAD)
-	brainmob.emp_damage = 0
+	if(brainmob)
+		brainmob.container = null //Reset brainmob mmi var.
+		brainmob.forceMove(brain) //Throw mob into brain.
+		brainmob.set_stat(DEAD)
+		brainmob.emp_damage = 0
 
-	if(syndicate_mmi)
-		// Remove the mindslaving that came with this.
-		if(brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
-			brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
+		if(syndicate_mmi)
+			// Remove the mindslaving that came with this.
+			if(brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
+				brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
 
-	brainmob.reset_perspective() //so the brainmob follows the brain organ instead of the mmi. And to update our vision
-	brainmob.remove_from_alive_mob_list() //Get outta here
-	brainmob.add_to_dead_mob_list()
-	brain.brainmob = brainmob //Set the brain to use the brainmob
-	brainmob = null //Set mmi brainmob var to null
+		brainmob.reset_perspective() //so the brainmob follows the brain organ instead of the mmi. And to update our vision
+		brainmob.remove_from_alive_mob_list() //Get outta here
+		brainmob.add_to_dead_mob_list()
+		brain.brainmob = brainmob //Set the brain to use the brainmob
+		brainmob = null //Set mmi brainmob var to null
+
 	brain.setOrganDamage(brain.maxHealth) // Kill the brain, requiring mannitol
-	if(user)
-		user.put_in_hands(brain) //puts brain in the user's hand or otherwise drops it on the user's turf
+	// Put brain in the user's hand if they're nearby. Otherwise, drop it on the MMI's turf.
+	if(Adjacent(user))
+		user.put_in_hands(brain)
 	else
 		brain.forceMove(get_turf(src))
 	brain = null //No more brain in here
-
 
 /obj/item/mmi/proc/transfer_identity(mob/living/L) //Same deal as the regular brain proc. Used for human-->robot people.
 	if(!brainmob)

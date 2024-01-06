@@ -23,7 +23,8 @@
 	var/space_ruin_levels = 7
 	var/space_empty_levels = 1
 
-	var/minetype = "lavaland"
+	var/minetype = "jungle_and_lavaland"
+	var/cryo_spawn = FALSE
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
@@ -134,6 +135,9 @@
 
 	if ("minetype" in json)
 		minetype = json["minetype"]
+
+	if("cryo_spawn" in json)
+		cryo_spawn = json["cryo_spawn"]
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 
