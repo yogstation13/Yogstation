@@ -55,14 +55,14 @@
 	/// The degree of pressure protection that mobs in list/contents have from the external environment, between 0 and 1
 	var/contents_pressure_protection = 0
 
+	var/tts_voice
+	var/tts_pitch = 1
+	var/list/tts_filters
+
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_dynamic_lights
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
-
-	var/tts_voice
-	var/tts_pitch = 1
-	var/list/tts_filters
 
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
