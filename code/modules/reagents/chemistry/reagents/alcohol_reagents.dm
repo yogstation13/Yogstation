@@ -756,7 +756,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/moonshine/on_mob_end_metabolize(mob/living/carbon/M)
-	M.adjust_blurriness(30)
+	M.remove_blurriness
 	return ..()
 
 
