@@ -60,6 +60,7 @@
 	///Highest-intensity light affecting us, which determines our visibility.
 	var/affecting_dynamic_lumi = 0
 
+
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
 	switch(blocks_emissive)
