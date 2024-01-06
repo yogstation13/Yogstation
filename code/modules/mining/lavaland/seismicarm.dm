@@ -25,7 +25,7 @@
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "lariat"
 	cooldown_time = 7 SECONDS
-	var/jumpdistance = 4
+	var/jumpdistance = 3
 
 /datum/action/cooldown/seismic/lariat/Activate()
 	var/turf/T = get_step(get_turf(owner), owner.dir)
@@ -43,15 +43,15 @@
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "mop"
 	cooldown_time = 7 SECONDS
-	var/jumpdistance = 4
-	var/list/mopped = list()	
+	var/jumpdistance = 4	
 
 /datum/action/cooldown/seismic/mop/Activate()
 	var/turf/Z = get_turf(owner)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, owner)
+	animate(F, alpha = 0, color = "#00d9ff")
 	owner.visible_message(span_warning("[owner] sprints forward with [owner.p_their()] hand outstretched!"))
 	StartCooldown()
-	addtimer(CALLBACK(src, PROC_REF(mopmove), owner))	
+	addtimer(CALLBACK(src, PROC_REF(mopmove), owner, F, owner.loc))	
 	playsound(owner,'sound/effects/gravhit.ogg', 20, 1)
 	return TRUE
 
@@ -118,7 +118,7 @@
 
 /datum/action/cooldown/seismic/righthook/Activate()
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
-	if(do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE))
+	if(do_after(owner, 2 SECONDS, owner, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		if(!owner.put_in_r_hand(new /obj/item/melee/overcharged_emitter))
 			to_chat(owner, span_warning("You can't do this with your right hand full!"))
 		else
@@ -130,25 +130,17 @@
 
 /datum/action/cooldown/seismic/lariat/proc/lariatmove(mob/living/target, obj/effect, turf/T, var/times = 0)
 	walk_towards(effect,target, 0, 1.5)
-	if(T.density)
-		return
-	for(var/obj/D in T.contents)
-		if(D.density == TRUE)
-			return
-	for(var/turf/closed/indestructible/I in T.contents)
-		return
+	if(!(T.reachableTurftestdensity(T = T)))
+		return FALSE
 	if(istype(T, /turf/open/lava) || (istype(T, /turf/open/chasm)))
 		return
-	for(var/obj/machinery/door/window/E in target.loc.contents)
-		if(E.density == TRUE)
-			return 
 	if(T)
 		T = get_step(target.loc, target.dir)
 		target.forceMove(T)
 	for(var/mob/living/L in T.contents)
-		playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
 		if(L == target)
 			continue
+		playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
 		to_chat(L, span_userdanger("[target] catches you with [target.p_their()] arm and clotheslines you!"))
 		target.visible_message(span_warning("[target] hits [L] with a lariat!"))
 		L.SpinAnimation(0.5 SECONDS, 1)
@@ -158,51 +150,37 @@
 			L.adjustBruteLoss(10)
 		if(issilicon(L))
 			L.adjustBruteLoss(12)
+	var/turf/newstep = get_step(owner, owner.dir)
 	if(times < jumpdistance)
 		times++
-		addtimer(CALLBACK(src, PROC_REF(lariatmove), owner, effect, times), 0.3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(lariatmove), owner, effect, newstep, times), 0.1 SECONDS)
 
-/datum/action/cooldown/seismic/mop/proc/mopmove(mob/living/target, obj/effect, turf/present, var/times = 0)
-	var/turf/Q = get_step(present, target.dir)
-	var/turf/Z
+/datum/action/cooldown/seismic/mop/proc/mopmove(mob/living/target, obj/effect, turf/present, list/mopped, var/times = 0)
+	var/turf/Q = get_step(target.loc, target.dir)
 	if(!(Q.reachableTurftestdensity(T = Q)))
 		return
 	if(istype(Q, /turf/open/lava) || (istype(Q, /turf/open/chasm)))
 		return
-	for(var/obj/machinery/door/window/E in target.loc.contents)
-		if(E.density == TRUE)
-			return 
 	if(Q)
-		sleep(0.1 SECONDS)
-		owner.forceMove(Q)
-		Z = get_turf(target)
 		walk_towards(effect, owner, 0, 1.5)
-		animate(effect, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
 		for(var/mob/living/L in Q.contents)
-			if(L == target)
-				continue
 			L.Immobilize(0.2 SECONDS)
 			mopped |= L
-			var/turf/R = get_step(get_turf(owner), owner.dir)
-			var/mob/living/U = owner
+		owner.forceMove(Q)
+		var/turf/R = get_step(get_turf(owner), owner.dir)
+		for(var/mob/living/L in mopped)
 			sweep(L)
 			if(ismineralturf(R))
 				var/turf/closed/mineral/M = R
 				M.attempt_drill()
 				L.adjustBruteLoss(5)
-			if(R.density)
-				wakeup(L)
+			if(!(R.reachableTurftestdensity(T = R)))
 				return
-			for(var/obj/D in R.contents)
-				if(D.density == TRUE)
-					wakeup(L)
-					return
-			U.forceMove(get_turf(L))
-			to_chat(L, span_userdanger("[U] catches you with [U.p_their()] hand and drags you down!"))
-			U.visible_message(span_warning("[U] hits [L] and drags them through the dirt!"))
-			L.forceMove(Q)
+			to_chat(L, span_userdanger("[owner] catches you with [owner.p_their()] hand and drags you down!"))
+			owner.visible_message(span_warning("[owner] hits [L] and drags them through the dirt!"))
+			L.forceMove(R)
 			if(isanimal(L))
-				U.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
+				target.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
 				L.adjustBruteLoss(20)
 				if(L.stat == DEAD)
 					L.visible_message(span_warning("[L] is ground into paste!"))
@@ -218,7 +196,7 @@
 		wakeup(C)
 	if(times < jumpdistance)
 		times++
-		addtimer(CALLBACK(src, PROC_REF(mopmove), owner, effect, Z, times), 0.3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(mopmove), owner, effect, Q, times), 0.2 SECONDS)
 
 /obj/item/melee/overcharged_emitter
 	name = "supercharged emitter"
