@@ -755,11 +755,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.adjust_blurriness(30)
 	return ..()
 
-/datum/reagent/consumable/ethanol/moonshine/on_mob_end_metabolize(mob/living/carbon/M)
-	M.adjust_blurriness(-30)
-	return ..()
-
-
 /datum/reagent/consumable/ethanol/b52
 	name = "B-52"
 	description = "Coffee, Irish Cream, and cognac. You will get bombed."
