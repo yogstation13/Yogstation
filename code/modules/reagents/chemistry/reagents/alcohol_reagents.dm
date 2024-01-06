@@ -753,7 +753,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/moonshine/on_mob_metabolize(mob/living/M)
 	if(!M.mind?.assigned_role == "Assistant")
-		M.adjust_blurriness(30)
+		M.adjust_blurriness(50)
 	return ..()
 
 
