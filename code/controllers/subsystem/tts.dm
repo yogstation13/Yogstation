@@ -18,6 +18,11 @@ SUBSYSTEM_DEF(tts)
 	var/tts_capped = FALSE
 	var/list/active_processing // Prevents us from queueing the same message twice, resulting in probable errors
 
+/atom/movable
+	var/tts_voice
+	var/tts_pitch = 1
+	var/list/tts_filters
+
 /datum/controller/subsystem/tts/Initialize(timeofday)
 	if(!CONFIG_GET(flag/tts_enable))
 		return SS_INIT_NO_NEED
