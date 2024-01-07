@@ -66153,6 +66153,7 @@
 	department = "Lawyer";
 	name = "Lawyer's Fax Machine"
 	},
+/obj/machinery/camera,
 /turf/open/floor/wood,
 /area/lawoffice)
 "vjC" = (
