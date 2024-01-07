@@ -10,6 +10,7 @@
 	max_integrity = 200
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
+	var/next_beep = 0 //Prevents spamming of the construction sound, dripstation edit
 
 /obj/structure/girder/examine(mob/user)
 	. = ..()
@@ -27,6 +28,12 @@
 			. += span_notice("[src] is disassembled! You probably shouldn't be able to see this examine message.")
 
 /obj/structure/girder/attackby(obj/item/W, mob/user, params)
+	var/platingmodifier = 1	//dripstation edit start
+	if(HAS_TRAIT(user, TRAIT_QUICK_BUILD))
+		platingmodifier = 0.7
+		if(next_beep <= world.time)
+			next_beep = world.time + 10
+			playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)	//dripstation edit end
 	add_fingerprint(user)
 
 	if(istype(W, /obj/item/gun/energy/plasmacutter))
@@ -55,7 +62,7 @@
 					to_chat(user, span_warning("You need at least two rods to create a false wall!"))
 					return
 				to_chat(user, span_notice("You start building a reinforced false wall..."))
-				if(do_after(user, 2 SECONDS, src))
+				if(do_after(user, 20*platingmodifier, src)) //dripstation edit
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -68,7 +75,7 @@
 					to_chat(user, span_warning("You need at least five rods to add plating!"))
 					return
 				to_chat(user, span_notice("You start adding plating..."))
-				if(do_after(user, 4 SECONDS, src))
+				if(do_after(user, 40*platingmodifier, src)) //dripstation edit
 					if(S.get_amount() < 5)
 						return
 					S.use(5)

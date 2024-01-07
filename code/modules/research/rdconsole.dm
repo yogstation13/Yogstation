@@ -1090,6 +1090,9 @@ Nothing else in the console has ID requirements.
 					stored_research.add_design(D, TRUE)
 		else
 			stored_research.add_design(d_disk.blueprints[n], TRUE)
+		
+		say("Uploading blueprints from disk.")	//dripstation edit
+		d_disk.on_upload(stored_research)		//dripstation edit
 
 	updateUsrDialog()
 

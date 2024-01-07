@@ -78,6 +78,7 @@
 		/obj/item/shuttle_creator, //Yogs: Added this here cause I felt it fits
 		/obj/item/barrier_taperoll/engineering,
 		/obj/item/storage/bag/sheetsnatcher,
+		/obj/item/boxcutter,						//dripstation edit
 		/obj/item/holotool,
 	))
 
