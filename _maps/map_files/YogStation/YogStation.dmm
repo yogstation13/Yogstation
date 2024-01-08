@@ -3198,7 +3198,8 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "axJ" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/turf/closed/wall/r_wall,
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/closed/wall/r_wall,
 /area/engine/atmos/mix)
 "axL" = (
 /obj/structure/table/wood,
