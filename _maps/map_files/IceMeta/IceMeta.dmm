@@ -12329,8 +12329,7 @@
 	},
 /area/maintenance/starboard/secondary)
 "dHz" = (
-/obj/machinery/barsign,
-{
+/obj/machinery/barsign{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
