@@ -28,6 +28,9 @@
 	///What baseturfs to set when replacing openspace when has_ceiling is true
 	var/list/ceiling_baseturfs = list()
 
+	//yogs edit
+	var/place_on_top = TRUE
+
 /datum/map_template/New(path = null, rename = null, cache = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()

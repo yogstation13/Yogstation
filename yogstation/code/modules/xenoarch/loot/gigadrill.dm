@@ -104,8 +104,12 @@
 		return
 	
 	for(var/turf/closed/mineral/M in range(src,1))
-		if(get_dir(src,M)&src.dir)
+		if(get_dir(src,M) & src.dir)
 			M.attempt_drill()
+	
+	for(var/turf/open/floor/plating/dirt/jungleland/J in range(src,1))
+		if(get_dir(src,J) & src.dir)
+			J.spawn_rock()
 
 	if(!QDELETED(OB))
 		for(var/obj/item/stack/ore/ore in range(1, src))
