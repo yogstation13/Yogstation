@@ -929,7 +929,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	//Istype so we filter out points of interest that are not mobs
 	if(client && mob_eye && istype(mob_eye))
-		client.eye = mob_eye
+		client.set_eye(mob_eye)
 		client.perspective = EYE_PERSPECTIVE
 		if(is_secret_level(mob_eye.z) && !client?.holder)
 			sight = null //we dont want ghosts to see through walls in secret areas
@@ -938,10 +938,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			unobserve_button = new(src)
 		unobserve_button.Grant(src)
 		if(mob_eye.hud_used)
-			client.screen = list()
+			client.clear_screen()
 			LAZYOR(mob_eye.observers, src)
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
 			observetarget = mob_eye
+
+/mob/dead/observer/proc/on_observing_z_changed(datum/source, turf/old_turf, turf/new_turf)
+	SIGNAL_HANDLER
+
+	if(is_secret_level(new_turf.z) && !client?.holder)
+		set_sight(null) //we dont want ghosts to see through walls in secret areas
+	else
+		set_sight(initial(sight))
 
 /datum/action/innate/unobserve
 	name = "Stop Observing"
@@ -955,14 +963,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /datum/action/innate/unobserve/IsAvailable(feedback = FALSE)
 	return TRUE
-
-/mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)
-	SHOULD_NOT_SLEEP(TRUE)
-
-	if(is_secret_level(newz) && !client?.holder)
-		sight = null //we dont want ghosts to see through walls in secret areas
-	else
-		sight = initial(sight)
 
 /mob/dead/observer/verb/register_pai_candidate()
 	set category = "Ghost"

@@ -357,7 +357,7 @@
 			var/atom/movable/screen/plane_master/source = our_planes["[source_plane]"]
 			if(source.get_relay_to(target_plane)) // Fuck off
 				return
-			source.add_relay_to(target_plane, relay_loc = source.relay_loc_debug)
+			source.add_relay_to(target_plane)
 			return TRUE
 		if("disconnect_relay")
 			var/source_plane = params["source"]
