@@ -20,3 +20,12 @@
 
 /// Checks that smoothing_groups and canSmoothWith are properly sorted in /atom/Initialize
 /datum/unit_test/focus_only/sorted_smoothing_groups
+
+/// Checks that nightvision eyes have a full set of color lists
+/datum/unit_test/focus_only/nightvision_color_cutoffs
+
+/// Checks that no light shares a tile/pixel offsets with another
+/datum/unit_test/focus_only/stacked_lights
+
+/// Ensures openspace never spawns on the bottom of a z stack
+/datum/unit_test/focus_only/openspace_clear
