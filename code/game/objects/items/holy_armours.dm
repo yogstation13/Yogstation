@@ -233,3 +233,30 @@
 	icon_state = "darktemplar-chaplain1"
 	item_state = "darktemplar-chaplain1"
 	armor = list(MELEE = 30, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 60, RAD = 40, FIRE = 90, ACID = 80)
+
+/obj/item/storage/box/holy/flagelanteschains
+	name = "Flagenantes Kit"
+
+/obj/item/storage/box/holy/flagelanteschains/PopulateContents()
+	new /obj/item/clothing/suit/hooded/flagelantes_chains(src)
+
+/obj/item/clothing/suit/hooded/flagelantes_chains
+	name = "flagelantes chains"
+	desc = "Chains worn by those who wish to purify themselves through pain. They slow the wearer down initialy, but give divine haste the more hurt they are."
+	icon_state = "flagelantes_chains"
+	item_state = "flagelantes_chains"
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 25)
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
+	hoodtype = /obj/item/clothing/head/hooded/flagelantes_chains_hood
+
+/obj/item/clothing/head/hooded/flagelantes_chains_hood
+	name = "flagelantes hood"
+	desc = "A cowl worn by flagelantes"
+	icon = 'icons/obj/clothing/hats.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
+	icon_state = "flagelantes_chains_hood"
+	item_state = "flagelantes_chains_hood"
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 25)
+	body_parts_covered = HEAD
+	flags_inv = HIDEHAIR|HIDEEARS
