@@ -283,10 +283,26 @@
 	if(ishuman(user) && !user.stat && !user.restrained())
 		armed = !armed
 		update_appearance(UPDATE_ICON)
-		to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]"))
+		to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]."))
+
+/obj/item/restraints/legcuffs/beartrap/wrench_act(mob/living/user, obj/item/wrench/W)
+	if(armed && !anchored)
+		if(do_after(user, 1 SECONDS, src)) // Take the time to wrench it this trap to be more effective.
+			anchored = TRUE
+			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+		return
+	..()
+
+/obj/item/restraints/legcuffs/beartrap/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(armed && anchored && do_after(user, 1 SECONDS, src)) // And take the time to disarm this anchored trap.
+		close_trap()
 
 /obj/item/restraints/legcuffs/beartrap/proc/close_trap()
 	armed = FALSE
+	anchored = FALSE
 	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 

@@ -143,6 +143,10 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/stationroom/box/chapel
 	template_names = list("Chapel 1", "Chapel 2")
 
+/obj/effect/landmark/stationroom/box/chapel/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
+
 /obj/effect/landmark/stationroom/meta/engine
 	template_names = list("Meta SM" = 25, "Meta Nuclear Reactor" = 75) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
 

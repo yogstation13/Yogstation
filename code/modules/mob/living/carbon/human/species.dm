@@ -99,8 +99,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/pressuremod = 1
 	/// multiplier for EMP severity
 	var/emp_mod = 1
-	/// multiplier for money paid at payday, species dependent
-	var/payday_modifier = 1
 	///Type of damage attack does
 	var/attack_type = BRUTE
 	///lowest possible punch damage. if this is set to 0, punches will always miss
@@ -205,6 +203,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	//Should we preload this species's organs?
 	var/preload = TRUE
+
+	///Does our species have colors for its' damage overlays?
+	var/use_damage_color = TRUE
 
 ///////////
 // PROCS //
@@ -437,7 +438,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	regenerate_organs(C,old_species)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
-		C.dna.blood_type = exotic_bloodtype
+		C.dna.blood_type = get_blood_type(exotic_bloodtype)
 
 	if(old_species.mutanthands)
 		for(var/obj/item/I in C.held_items)
@@ -1548,7 +1549,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
+	if(target.try_extinguish(user))
+		return 1
+	else if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
 		target.help_shake_act(user)
 		if(target != user)
 			log_combat(user, target, "shaken")
@@ -1732,6 +1735,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/knocked_item = FALSE
 			if(!is_type_in_typecache(target_held_item, GLOB.shove_disarming_types))
 				target_held_item = null
+			if(isgun(target_held_item) && prob(70))
+				var/turf/curloc = get_turf(src)
+				var/atom/target_aimed_atom = target.client?.mouse_object_ref?.resolve()
+				var/turf/aimloc = get_turf(target_aimed_atom)
+				if(target_aimed_atom && istype(aimloc) && istype(curloc))
+					var/obj/item/gun/held_gun = target_held_item
+					held_gun.process_fire(target_aimed_atom, target, bonus_spread = 10)
 			if(!target.has_movespeed_modifier(MOVESPEED_ID_SHOVE))
 				target.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
 				if(target_held_item)
