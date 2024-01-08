@@ -755,7 +755,7 @@
 		if(12 to 24)
 			M.adjust_drugginess(1 SECONDS)
 		if(24 to INFINITY)
-			M.Stun(15, 0)
+			M.blur_eyes(15)
 			. = 1
 	if(M.stat > CONSCIOUS)
 		M.adjustBruteLoss(-1*REM)
