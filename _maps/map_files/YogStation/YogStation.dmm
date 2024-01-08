@@ -3198,10 +3198,7 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "axJ" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	level = 2
-	},
-/turf/closed/wall/r_wall,
+/obj/machinery/atmospherics/pipe/layer_manifold/turf/closed/wall/r_wall,
 /area/engine/atmos/mix)
 "axL" = (
 /obj/structure/table/wood,
@@ -38086,7 +38083,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
 	layer = 2.35;
-	level = 1
+	
 	},
 /turf/closed/wall,
 /area/science/mixing)
@@ -55773,7 +55770,7 @@
 "rrF" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	layer = 2.35;
-	level = 1
+	
 	},
 /turf/closed/wall,
 /area/science/mixing)

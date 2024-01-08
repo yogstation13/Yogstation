@@ -703,9 +703,7 @@
 	name = "Labor Camp Maintenance";
 	req_access_txt = "2"
 	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
