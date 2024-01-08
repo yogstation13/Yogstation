@@ -295,8 +295,6 @@
 		if(2)
 			if(moderator_list[GAS_PLASMA] > 50)
 				internal_output.adjust_moles(GAS_BZ, scaled_production * 1.8)
-				internal_output.adjust_moles(GAS_BZ, add_amount)
-				delta_mod_list[GAS_BZ] += add_amount
 				var/remove_amount = round(min(moderator_internal.get_moles(GAS_PLASMA), scaled_production * 1.75), 0.01)
 				moderator_internal.adjust_moles(GAS_PLASMA, -remove_amount)
 				delta_mod_list[GAS_PLASMA] -= remove_amount
