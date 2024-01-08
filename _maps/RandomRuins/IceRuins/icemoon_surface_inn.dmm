@@ -242,7 +242,9 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/inn)
 "iG" = (
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/inn)
 "iH" = (
