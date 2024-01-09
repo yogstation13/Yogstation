@@ -3,6 +3,7 @@
 	desc = "A vending machine for costumes."
 	icon_state = "theater"
 	icon_deny = "theater-deny"
+	panel_type = "panel16"
 	req_access = list(ACCESS_THEATRE)
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
@@ -232,10 +233,9 @@
 		           /obj/item/clothing/mask/yogs/richard = 1) //yogs end
 	refill_canister = /obj/item/vending_refill/autodrobe
 	default_price = 50
-	light_mask="theater-light-mask"
-	light_color = LIGHT_COLOR_BLUE
 	extra_price = 75
 	payment_department = ACCOUNT_SRV
+	light_mask="theater-light-mask"
 
 /obj/machinery/vending/autodrobe/canLoadItem(obj/item/I,mob/user)
 	return (I.type in products)

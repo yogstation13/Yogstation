@@ -6,8 +6,8 @@
 	extra_price = 75
 	payment_department = NO_FREEBIES
 	input_display_header = "Returned Clothing"
+	panel_type = "panel19"
 	light_mask = "wardrobe-light-mask"
-	light_color = LIGHT_COLOR_BLUE
 
 
 /obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
@@ -64,6 +64,7 @@
 					/obj/item/clothing/head/beret/sec/navyofficer = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 	payment_department = ACCOUNT_SEC
+	light_color = COLOR_MOSTLY_PURE_RED
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
 	machine_name = "SecDrobe"
@@ -98,6 +99,7 @@
 					/obj/item/clothing/accessory/armband/medblue = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/medi_wardrobe
 	payment_department = ACCOUNT_MED
+
 /obj/item/vending_refill/wardrobe/medi_wardrobe
 	machine_name = "MediDrobe"
 
@@ -126,6 +128,7 @@
 					/obj/item/clothing/head/hardhat/weldhat = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/engi_wardrobe
 	payment_department = ACCOUNT_ENG
+	light_color = COLOR_VIVID_YELLOW
 /obj/item/vending_refill/wardrobe/engi_wardrobe
 	machine_name = "EngiDrobe"
 
@@ -146,6 +149,8 @@
 					/obj/item/clothing/shoes/sneakers/black = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	payment_department = ACCOUNT_ENG
+	light_color = COLOR_VIVID_YELLOW
+
 /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	machine_name = "AtmosDrobe"
 
@@ -256,6 +261,8 @@
 					/obj/item/clothing/accessory/armband/hydro = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/hydro_wardrobe
 	payment_department = ACCOUNT_SRV
+	light_color = LIGHT_COLOR_ELECTRIC_GREEN
+
 /obj/item/vending_refill/wardrobe/hydro_wardrobe
 	machine_name = "HyDrobe"
 
@@ -375,6 +382,8 @@
 					/obj/item/reagent_containers/spray/cleaner = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/jani_wardrobe
 	payment_department = ACCOUNT_SRV
+	light_color = COLOR_STRONG_MAGENTA
+
 /obj/item/vending_refill/wardrobe/jani_wardrobe
 	machine_name = "JaniDrobe"
 

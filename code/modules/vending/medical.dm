@@ -3,6 +3,7 @@
 	desc = "Medical drug dispenser."
 	icon_state = "med"
 	icon_deny = "med-deny"
+	panel_type = "panel11"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MEDICAL)
 	products = list(/obj/item/stack/medical/gauze = 8,
@@ -43,9 +44,8 @@
 	refill_canister = /obj/item/vending_refill/medical
 	default_price = 25
 	extra_price = 100
-	light_color = LIGHT_COLOR_BLUE
-	light_mask = "med-light-mask"
 	payment_department = ACCOUNT_MED
+	light_mask = "med-light-mask"
 
 /obj/item/vending_refill/medical
 	machine_name = "NanoMed Plus"

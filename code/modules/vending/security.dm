@@ -4,6 +4,8 @@
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
+	panel_type = "panel6"
+	light_mask = "sec-light-mask"
 	req_access = list(ACCESS_SECURITY)
 	products = list(/obj/item/clothing/head/helmet/plated = 6,
 					/obj/item/clothing/suit/armor/plated = 6,
@@ -27,8 +29,6 @@
 	refill_canister = /obj/item/vending_refill/security
 	default_price = 100
 	extra_price = 150
-	light_mask = "sec-light-mask"
-	light_color = LIGHT_COLOR_BLUE
 	payment_department = ACCOUNT_SEC
 
 /obj/machinery/vending/security/pre_throw(obj/item/I)

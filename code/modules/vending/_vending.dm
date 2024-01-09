@@ -78,6 +78,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	circuit = /obj/item/circuitboard/machine/vendor
 	clicksound = 'sound/machines/pda_button1.ogg'
 	payment_department = ACCOUNT_SRV
+	light_power = 0.7
+	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
 	///Are we ready to vend?? Is it time??
@@ -86,15 +88,24 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/purchase_message_cooldown
 	///Last mob to shop with us
 	var/last_shopper
+	///Whether the vendor is tilted or not
 	var/tilted = FALSE
+	/// If tilted, this variable should always be the rotation that was applied when we were tilted. Stored for the purposes of unapplying it.
+	var/tilted_rotation = 0
+	///Whether this vendor can be tilted over or not
 	var/tiltable = TRUE
+	///Damage this vendor does when tilting onto an atom
 	var/squish_damage = 75
+	/// The chance, in percent, of this vendor performing a critical hit on anything it crushes via [tilt].
+	var/crit_chance = 15
+	/// If set to a critical define in crushing.dm, anything this vendor crushes will always be hit with that effect.
 	var/forcecrit = 0
+	///Number of glass shards the vendor creates and tries to embed into an atom it tilted onto
 	var/num_shards = 7
+	///List of mobs stuck under the vendor
 	var/list/pinned_mobs = list()
-	light_power = 0.7
-	light_range = MINIMUM_USEFUL_LIGHT_RANGE
-
+	///Icon for the maintenance panel overlay
+	var/panel_type = "panel1"
 
 	/**
 	  * List of products this machine sells
@@ -287,13 +298,10 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 /obj/machinery/vending/update_overlays()
 	. = ..()
-	if(!light_mask)
-		return
-
-	//SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	if(!(stat & BROKEN) && powered())
+	if(panel_open)
+		. += panel_type
+	if(light_mask && !(stat & BROKEN) && powered())
 		. += emissive_appearance(icon, light_mask, src)
-
 
 /obj/machinery/vending/obj_break(damage_flag)
 	. = ..()

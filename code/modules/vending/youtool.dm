@@ -3,6 +3,8 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
+	panel_type = "panel11"
+	light_mask = "tool-light-mask"
 	products = list(/obj/item/stack/cable_coil/random = 10,
 		            /obj/item/crowbar = 5,
 		            /obj/item/weldingtool = 3,
@@ -24,6 +26,4 @@
 	resistance_flags = FIRE_PROOF
 	default_price = 20
 	extra_price = 80
-	light_color = LIGHT_COLOR_BLUE
-	light_mask = "tool-light-mask"
 	payment_department = ACCOUNT_ENG
