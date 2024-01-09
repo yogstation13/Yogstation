@@ -46,7 +46,7 @@
 	///what chemical we're injecting with the "sedate" function
 	var/sedate_chem = /datum/reagent/medicine/morphine
 	///maximum allowed chemical volume
-	var/sedate_limit = 20
+	var/sedate_limit = 10
 	///what are we putting in the tgui
 	var/sedate_button_text = "Sedate"
 
