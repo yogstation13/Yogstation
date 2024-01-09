@@ -64,6 +64,30 @@
 	new_turf.baseturfs = baseturfs_string_list(old_baseturfs + (new_turf.baseturfs - GLOB.blacklisted_automated_baseturfs), new_turf)
 	return new_turf
 
+// Copy an existing turf and put it on top
+// Returns the new turf
+/turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY, copy_air = FALSE, flags)
+	var/list/new_baseturfs = list()
+	new_baseturfs += baseturfs
+	new_baseturfs += type
+
+	if(depth)
+		var/list/target_baseturfs
+		if(length(copytarget.baseturfs))
+			// with default inputs this would be Copy(clamp(2, -INFINITY, baseturfs.len))
+			// Don't forget a lower index is lower in the baseturfs stack, the bottom is baseturfs[1]
+			target_baseturfs = copytarget.baseturfs.Copy(clamp(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
+		else if(!ignore_bottom)
+			target_baseturfs = list(copytarget.baseturfs)
+		if(target_baseturfs)
+			target_baseturfs -= new_baseturfs & GLOB.blacklisted_automated_baseturfs
+			new_baseturfs += target_baseturfs
+
+	var/turf/newT = copytarget.copyTurf(src, copy_air, flags)
+	newT.baseturfs = new_baseturfs
+	return newT
+
+
 /// Tries to find the given type in baseturfs.
 /// If found, returns how deep it is for use in other baseturf procs, or null if it cannot be found.
 /// For example, this number can be passed into ScrapeAway to scrape everything until that point.

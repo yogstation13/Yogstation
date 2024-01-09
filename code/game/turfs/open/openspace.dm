@@ -153,7 +153,7 @@
 				qdel(L)
 				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				to_chat(user, span_notice("You build a floor."))
-				PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+				place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			else
 				to_chat(user, span_warning("You need one floor tile to build a floor!"))
 		else

@@ -87,12 +87,12 @@
 		severity = 3
 
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
-		if(2)
+		if(EXPLODE_HEAVY)
 			switch(pick(1,2;75,3))
 				if(1)
-					if(!length(baseturfs) || !ispath(baseturfs[baseturfs.len-1], /turf/open/floor))
+					if (!ispath(baseturf_at_depth(2), /turf/open/floor))
 						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 						ReplaceWithLattice()
 					else
@@ -109,7 +109,7 @@
 					hotspot_expose(1000,CELL_VOLUME)
 					if(prob(33))
 						new /obj/item/stack/sheet/metal(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if (prob(50))
 				src.break_tile()
 				src.hotspot_expose(1000,CELL_VOLUME)
@@ -259,7 +259,7 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, span_notice("You build a wall."))
-			PlaceOnTop(/turf/closed/wall)
+			place_on_top(/turf/closed/wall)
 			return TRUE
 		if(RCD_AIRLOCK)
 			if((locate(/obj/machinery/door/airlock) in src) || (locate(/obj/machinery/door/window) in src)) // Have to ignore firelocks

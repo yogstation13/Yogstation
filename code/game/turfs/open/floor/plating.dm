@@ -68,7 +68,7 @@
 			to_chat(user, span_notice("You begin reinforcing the floor..."))
 			if(do_after(user, 3 SECONDS, src))
 				if (R.get_amount() >= 1 && !istype(src, /turf/open/floor/engine))
-					PlaceOnTop(/turf/open/floor/engine, flags = CHANGETURF_INHERIT_AIR)
+					place_on_top(/turf/open/floor/engine, flags = CHANGETURF_INHERIT_AIR)
 					playsound(src, 'sound/items/deconstruct.ogg', 80, 1)
 					R.use(1)
 					to_chat(user, span_notice("You reinforce the floor."))
@@ -82,7 +82,7 @@
 			var/obj/item/stack/tile/W = C
 			if(!W.use(1))
 				return
-			var/turf/open/floor/T = PlaceOnTop(W.turf_type, flags = CHANGETURF_INHERIT_AIR)
+			var/turf/open/floor/T = place_on_top(W.turf_type, flags = CHANGETURF_INHERIT_AIR)
 			if(istype(W, /obj/item/stack/tile/light)) //TODO: get rid of this ugly check somehow
 				var/obj/item/stack/tile/light/L = W
 				var/turf/open/floor/light/F = T

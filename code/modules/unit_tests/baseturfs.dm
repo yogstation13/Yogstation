@@ -9,7 +9,7 @@
 
 /datum/unit_test/baseturfs_unmodified_scrape/Run()
 	// What this is specifically doesn't matter, just as long as the test is built for it
-	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, EXPECTED_FLOOR_TYPE, "run_loc_floor_bottom_left should be an iron floor")
+	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, EXPECTED_FLOOR_TYPE, "run_loc_floor_bottom_left should be a plasteel floor")
 
 	RESET_TO_EXPECTED(run_loc_floor_bottom_left)
 	run_loc_floor_bottom_left.ScrapeAway()
@@ -34,7 +34,7 @@
 	// Do this instead of just ChangeTurf to guarantee that baseturfs is completely default on-init behavior
 	RESET_TO_EXPECTED(run_loc_floor_bottom_left)
 
-	run_loc_floor_bottom_left.PlaceOnTop(/turf/closed/wall/rock)
+	run_loc_floor_bottom_left.place_on_top(/turf/closed/wall/rock)
 	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, /turf/closed/wall/rock, "Rock wall should've been placed on top")
 
 	run_loc_floor_bottom_left.ScrapeAway()
@@ -53,7 +53,7 @@
 	// Do this instead of just ChangeTurf to guarantee that baseturfs is completely default on-init behavior
 	RESET_TO_EXPECTED(run_loc_floor_bottom_left)
 
-	run_loc_floor_bottom_left.PlaceOnBottom(/turf/closed/wall/rock)
+	run_loc_floor_bottom_left.place_on_bottom(/turf/closed/wall/rock)
 	TEST_ASSERT_EQUAL(run_loc_floor_bottom_left.type, EXPECTED_FLOOR_TYPE, "PlaceOnBottom shouldn't have changed turf")
 
 	run_loc_floor_bottom_left.ScrapeAway()
