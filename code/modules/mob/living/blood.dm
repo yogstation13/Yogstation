@@ -37,7 +37,7 @@
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 
 		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL(src) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+		if(blood_volume < BLOOD_VOLUME_NORMAL(src) && !HAS_TRAIT(src, TRAIT_NOHUNGER) && !HAS_TRAIT(src, TRAIT_NO_BLOOD_REGEN))
 			var/obj/item/organ/heart = getorganslot(ORGAN_SLOT_HEART)
 			var/heart_ratio = heart ? heart.get_organ_efficiency() : 0.5 //slower blood regeneration without a heart, or with a broken one </3
 			var/nutrition_ratio = 0
@@ -238,7 +238,8 @@
 						if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 							continue
 						C.ForceContractDisease(D)
-				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.blood_type)))
+				var/datum/blood_type/blood_type = blood_data["blood_type"]
+				if(!(blood_type.type in C.dna.blood_type.compatible_types))
 					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return TRUE
 
@@ -317,47 +318,25 @@
 		return
 	return /datum/reagent/blood
 
-// This is has more potential uses, and is probably faster than the old proc.
-/proc/get_safe_blood(bloodtype)
-	. = list()
-	if(!bloodtype)
-		return
+/proc/random_blood_type()
+	return get_blood_type(pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+"))
 
-	var/static/list/bloodtypes_safe = list(
-		"A-" = list("A-", "O-", "U"),
-		"A+" = list("A-", "A+", "O-", "O+", "U"),
-		"B-" = list("B-", "O-", "U"),
-		"B+" = list("B-", "B+", "O-", "O+", "U"),
-		"AB-" = list("A-", "B-", "O-", "AB-", "U"),
-		"AB+" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "U"),
-		"O-" = list("O-", "U"),
-		"O+" = list("O-", "O+", "U"),
-		"L" = list("L", "U"),
-		"U" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "L", "U") //literally universal
-	)
+/proc/get_blood_type(type)
+	return GLOB.blood_types[type]
 
-	var/safe = bloodtypes_safe[bloodtype]
-	if(safe)
-		. = safe
+/proc/get_blood_dna_color(list/blood_dna)
+	if(!blood_dna)
+		return null
+	var/blood_print = blood_dna[length(blood_dna)]
+	var/datum/blood_type/blood_type = blood_dna[blood_print]
+	if(!blood_type)
+		return null
+	return blood_type.color
 
 //to add a splatter of blood or other mob liquid.
 /mob/living/proc/add_splatter_floor(turf/T, small_drip)
 	if(!T)
 		T = get_turf(src)
-	if(ispolysmorph(src)) //polysmorphs bleed green blood
-		var/obj/effect/decal/cleanable/xenoblood/B = locate() in T.contents
-		if(!B)
-			B = new(T)
-			B.transfer_mob_blood_dna(src)
-		return
-	if(isethereal(src))
-		var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T.contents
-		if(!B)
-			B = new(T)
-			B.transfer_mob_blood_dna(src)
-		return
-	if(get_blood_id() != /datum/reagent/blood)
-		return
 	var/list/temp_blood_DNA
 	if(small_drip)
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
@@ -367,6 +346,8 @@
 				drop.drips++
 				drop.add_overlay(pick(drop.random_icon_states))
 				drop.transfer_mob_blood_dna(src)
+				if(isethereal(src))
+					drop.Etherealify()
 				return
 			else
 				temp_blood_DNA = drop.return_blood_DNA() //we transfer the dna from the drip to the splatter
@@ -374,17 +355,20 @@
 		else
 			drop = new(T, get_static_viruses())
 			drop.transfer_mob_blood_dna(src)
+			if(isethereal(src))
+				drop.Etherealify()
 			return
 
 	// Find a blood decal or create a new one.
 	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
 		B = new /obj/effect/decal/cleanable/blood/splatter(T, get_static_viruses())
-	if (B.bloodiness < MAX_SHOE_BLOODINESS) //add more blood, up to a limit
-		B.bloodiness += BLOOD_AMOUNT_PER_DECAL
+	B.bloodiness = min((B.bloodiness + BLOOD_AMOUNT_PER_DECAL), BLOOD_POOL_MAX)
 	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
 	if(temp_blood_DNA)
 		B.add_blood_DNA(temp_blood_DNA)
+	if(isethereal(src))
+		B.Etherealify()
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip)
 	if(!(NOBLOOD in dna.species.species_traits))

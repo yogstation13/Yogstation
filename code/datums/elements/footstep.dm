@@ -100,9 +100,9 @@
 		return
 
 	. = list(FOOTSTEP_MOB_SHOE = turf.footstep, FOOTSTEP_MOB_BAREFOOT = turf.barefootstep, FOOTSTEP_MOB_HEAVY = turf.heavyfootstep, FOOTSTEP_MOB_CLAW = turf.clawfootstep, STEP_SOUND_PRIORITY = STEP_SOUND_NO_PRIORITY)
-	SEND_SIGNAL(turf, COMSIG_TURF_PREPARE_STEP_SOUND, .)
+	
 	//The turf has no footstep sound (e.g. open space) and none of the objects on that turf (e.g. catwalks) overrides it
-	if(isnull(turf.footstep))
+	if(!(SEND_SIGNAL(turf, COMSIG_TURF_PREPARE_STEP_SOUND, .) & FOOTSTEP_OVERRIDDEN) && isnull(turf.footstep))
 		return null
 	return .
 
@@ -142,10 +142,13 @@
 	if(!prepared_steps)
 		return
 
+	if(source.dna.species.special_walk_sounds) // Plays in addition to shoe/barefoot sound.
+		playsound(source.loc, pick(source.dna.species.special_walk_sounds), 50, TRUE, falloff_distance = 1, vary = sound_vary)
+
 	//cache for sanic speed (lists are references anyways)
 	var/static/list/footstep_sounds = GLOB.footstep
 
-	if ((source.wear_suit?.body_parts_covered | source.w_uniform?.body_parts_covered | source.shoes?.body_parts_covered) & FEET)
+	if (((source.wear_suit?.body_parts_covered | source.w_uniform?.body_parts_covered) & FEET) || (source.shoes && !istype(source.shoes, /obj/item/clothing/shoes/xeno_wraps)))
 		// we are wearing shoes
 
 		var/shoestep_type = prepared_steps[FOOTSTEP_MOB_SHOE]

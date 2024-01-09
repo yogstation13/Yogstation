@@ -446,6 +446,8 @@
 	power_coeff = 1
 
 /datum/mutation/human/hypermarrow/on_life()
+	if(HAS_TRAIT(owner, TRAIT_NO_BLOOD_REGEN))
+		return	//no bone marrow to regenerate blood in the first place
 	if(owner.blood_volume < BLOOD_VOLUME_NORMAL(owner))
 		owner.blood_volume += GET_MUTATION_POWER(src) * 2 - 1
 		owner.adjust_nutrition((GET_MUTATION_POWER(src) * 2 - 0.8) * HUNGER_FACTOR)
