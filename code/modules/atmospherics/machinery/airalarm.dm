@@ -557,6 +557,7 @@
 						GAS_PLASMA,
 						GAS_H2O,
 						GAS_HYPERNOB,
+						GAS_ANTINOB,
 						GAS_NITROUS,
 						GAS_NITRIUM,
 						GAS_TRITIUM,
