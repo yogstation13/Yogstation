@@ -220,7 +220,7 @@
 	// Phew. Lets calculate what this means in practice.
 	var/reaction_rate = clamp((power_level * 0.5) * (500 / magnetic_constrictor) * delta_time, 0.05, 30) // constrictor controls reaction rate instead of fuel injection
 	switch(power_level)
-		if(3,4)
+		if(3,4,5,6)
 			reaction_rate = clamp(reaction_rate * heat_output * 5e-4, 0, reaction_rate)
 		else
 			reaction_rate = clamp(reaction_rate * heat_output / (10 ** (power_level+1)), 0, reaction_rate)
@@ -502,7 +502,7 @@
 	if (critical_threshold_proximity == 0)
 		return
 	
-	if(DT_PROB(100 - critical_threshold_proximity / 15, delta_time))
+	if(DT_PROB(100 - critical_threshold_proximity / 15, delta_time * 4))
 		return
 
 	var/grav_range = round(log(2.5, critical_threshold_proximity))
@@ -555,17 +555,17 @@
 	var/datum/gas_mixture/cooling_port = airs[1]
 	var/datum/gas_mixture/cooling_remove = cooling_port.remove(0.05 * cooling_port.total_moles())
 	//Cooling of the moderator gases with the cooling loop in and out the core
-	if(internal_fusion.total_moles() > 0)
-		var/coolant_temperature_delta = cooling_remove.return_temperature() - internal_fusion.return_temperature()
-		var/cooling_heat_amount = (1 - (1 - METALLIC_VOID_CONDUCTIVITY) ** (delta_time * 4)) * coolant_temperature_delta * (cooling_remove.heat_capacity() * internal_fusion.heat_capacity() / (cooling_remove.heat_capacity() + internal_fusion.heat_capacity()))
-		cooling_remove.set_temperature(max(cooling_remove.return_temperature() - cooling_heat_amount / cooling_remove.heat_capacity(), TCMB))
-		internal_fusion.set_temperature(max(internal_fusion.return_temperature() + cooling_heat_amount / internal_fusion.heat_capacity(), TCMB))
-
 	if(moderator_internal.total_moles() > 0)
 		var/coolant_temperature_delta = cooling_remove.return_temperature() - moderator_internal.return_temperature()
-		var/cooling_heat_amount = (1 - (1 - HIGH_EFFICIENCY_CONDUCTIVITY) ** (delta_time * 4)) * coolant_temperature_delta * (cooling_remove.heat_capacity() * moderator_internal.heat_capacity() / (cooling_remove.heat_capacity() + moderator_internal.heat_capacity()))
+		var/cooling_heat_amount = (1 - (1 - HIGH_EFFICIENCY_CONDUCTIVITY) ** delta_time) * coolant_temperature_delta * (cooling_remove.heat_capacity() * moderator_internal.heat_capacity() / (cooling_remove.heat_capacity() + moderator_internal.heat_capacity()))
 		cooling_remove.set_temperature(max(cooling_remove.return_temperature() - cooling_heat_amount / cooling_remove.heat_capacity(), TCMB))
 		moderator_internal.set_temperature(max(moderator_internal.return_temperature() + cooling_heat_amount / moderator_internal.heat_capacity(), TCMB))
+
+	else if(internal_fusion.total_moles() > 0)
+		var/coolant_temperature_delta = cooling_remove.return_temperature() - internal_fusion.return_temperature()
+		var/cooling_heat_amount = (1 - (1 - METALLIC_VOID_CONDUCTIVITY) ** delta_time) * coolant_temperature_delta * (cooling_remove.heat_capacity() * internal_fusion.heat_capacity() / (cooling_remove.heat_capacity() + internal_fusion.heat_capacity()))
+		cooling_remove.set_temperature(max(cooling_remove.return_temperature() - cooling_heat_amount / cooling_remove.heat_capacity(), TCMB))
+		internal_fusion.set_temperature(max(internal_fusion.return_temperature() + cooling_heat_amount / internal_fusion.heat_capacity(), TCMB))
 	cooling_port.merge(cooling_remove)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/inject_from_side_components(delta_time)
@@ -586,7 +586,7 @@
 
 	var/datum/gas_mixture/fuel_port = linked_input.airs[1]
 	for(var/gas_type in selected_fuel.requirements)
-		var/fuel_injected = round(min(linked_input.airs[1].get_moles(gas_type), fuel_injection_rate * 2 * delta_time / length(selected_fuel.requirements)), 0.01)
+		var/fuel_injected = round(min(linked_input.airs[1].get_moles(gas_type), fuel_injection_rate * 4 * delta_time / length(selected_fuel.requirements)), 0.01)
 		fuel_port.adjust_moles(gas_type, -fuel_injected)
 		delta_fuel_list[gas_type] += fuel_injected
 		internal_fusion.adjust_moles(gas_type, fuel_injected)
