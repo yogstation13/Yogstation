@@ -12,9 +12,6 @@
 	var/change_area_name = FALSE
 	/// What kind of sign do we drop upon being disassembled?
 	var/disassemble_result = /obj/item/wallframe/barsign
-	light_color = LIGHT_COLOR_BLUE
-	/// If barsign has a lighting mask
-	var/light_mask = FALSE
 
 /datum/armor/sign_barsign
 	melee = 20
@@ -67,7 +64,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 /obj/machinery/barsign/update_overlays()
 	. = ..()
 	
-	. += emissive_appearance(icon, "[chosen_sign.icon_state]-light-mask", src)
 	if(((stat & NOPOWER) && !(stat & EMPED)) || (stat & BROKEN))
 		return
 
