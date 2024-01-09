@@ -34,7 +34,7 @@
 	networks = list("ss13")
 	var/obj/item/construction/rcd/internal/RCD //Internal RCD. The computer passes user commands to this in order to avoid massive copypaste.
 	circuit = /obj/item/circuitboard/computer/base_construction
-	off_action = new/datum/action/innate/camera_off/base_construction
+	off_action = /datum/action/innate/camera_off/base_construction
 	jump_action = null
 	var/datum/action/innate/aux_base/switch_mode/switch_mode_action = new //Action for switching the RCD's build modes
 	var/datum/action/innate/aux_base/build/build_action = new //Action for using the RCD

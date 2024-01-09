@@ -112,4 +112,5 @@
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		tail_type = H.dna.features["tail_polysmorph"]
 		H.update_body()
-		H.physiology.crawl_speed -= 0.5
+		if(H.physiology)
+			H.physiology.crawl_speed -= 0.5
