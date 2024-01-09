@@ -2,10 +2,10 @@
 /turf/open/chasm
 	name = "chasm"
 	desc = "Watch your step."
+	baseturfs = /turf/open/chasm
 	icon = 'icons/turf/floors/chasms.dmi'
 	icon_state = "chasms-255"
 	base_icon_state = "chasms"
-	baseturfs = /turf/open/chasm
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_TURF_CHASM
 	canSmoothWith = SMOOTH_GROUP_TURF_CHASM
@@ -15,6 +15,11 @@
 /turf/open/chasm/Initialize(mapload)
 	. = ..()
 	apply_components(mapload)
+
+/// Lets people walk into chasms.
+/turf/open/chasm/CanAllowThrough(atom/movable/mover, border_dir)
+	. = ..()
+	return TRUE
 
 /turf/open/chasm/proc/set_target(turf/target)
 	var/datum/component/chasm/chasm_component = GetComponent(/datum/component/chasm)
@@ -131,4 +136,4 @@
 
 /// Handles adding the chasm component to the turf (So stuff falls into it!)
 /turf/open/chasm/proc/apply_components(mapload)
-	AddComponent(/datum/component/chasm, GET_TURF_BELOW(src), mapload)
+	AddComponent(/datum/component/chasm, null, mapload)
