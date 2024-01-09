@@ -247,17 +247,21 @@
 	desc = "Used for watching an empty arena."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "telescreen"
+	icon_keyboard = null
+	icon_screen = null
 	layer = SIGN_LAYER
 	network = list("thunder")
 	density = FALSE
 	circuit = null
 	clockwork = TRUE //it'd look very weird
 	light_power = 0
+
 /obj/machinery/computer/security/telescreen/update_icon_state()
 	. = ..()
 	icon_state = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state += "b"
+
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
 	desc = "Damn, they better have the Yogs Channel on these things... Nope, just the /tg/ channel! Aww..."
