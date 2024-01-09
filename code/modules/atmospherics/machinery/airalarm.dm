@@ -321,10 +321,11 @@
 		if(!(gas_id in TLV)) // We're not interested in this gas, it seems.
 			continue
 		cur_tlv = TLV[gas_id]
+		var/moles = environment?.get_moles(gas_id)
+		var/portion = moles / total_moles
 		data["environment_data"] += list(list(
 								"name" = GLOB.gas_data.names[gas_id],
-								"value" = environment.get_moles(gas_id) / total_moles * 100,
-								"unit" = "%",
+								"value" = "[round(moles, 0.01)] moles / [round(100 * portion, 0.01)] % / [round(portion * pressure, 0.01)] kPa",
 								"danger_level" = cur_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure)
 		))
 
@@ -590,7 +591,7 @@
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
-					"set_external_pressure" = ONE_ATMOSPHERE*2
+					"set_external_pressure" = ONE_ATMOSPHERE
 				), signal_source)
 		if(AALARM_MODE_PANIC,
 			AALARM_MODE_REPLACEMENT)
