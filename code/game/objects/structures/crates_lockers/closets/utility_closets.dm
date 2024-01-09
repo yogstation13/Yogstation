@@ -48,6 +48,7 @@
 
 		if ("nothing")
 			// doot
+			return
 
 /*
  * Fire Closet
