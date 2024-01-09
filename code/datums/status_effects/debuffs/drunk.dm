@@ -141,15 +141,11 @@
 		if(drunk_value > BALLMER_PEAK_WINDOWS_ME) // by this point you're into windows ME territory
 			owner.say(pick_list_replacements(VISTA_FILE, "ballmer_windows_me_msg"), forced = "ballmer")
 
-	// There's always a 30% chance to gain some drunken slurring
-	if(prob(30))
-		owner.adjust_slurring(4 SECONDS)
-
 	// And drunk people will always lose jitteriness
 	owner.adjust_jitter(-6 SECONDS)
 
-	// Over 11, we will constantly gain slurring up to 10 seconds of slurring.
-	if(drunk_value >= 11)
+	// Over 11, Light drinkers will constantly gain slurring up to 10 seconds of slurring.
+	if(HAS_TRAIT(owner, TRAIT_LIGHT_DRINKER) & (drunk_value >= 11))
 		owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
 
 	// Over 41, we have a 30% chance to gain confusion, and we will always have 20 seconds of dizziness.
@@ -160,7 +156,7 @@
 		owner.set_dizzy_if_lower(20 SECONDS)
 		ADD_TRAIT(src, TRAIT_SURGERY_PREPARED, "drunk")
 
-	// Over 51, we have a 3% chance to gain a lot of confusion and vomit, and we will always have 50 seconds of dizziness
+	// Over 51, we have a 3% chance to gain a lot of confusion and vomit, and we will always have 50 seconds of dizziness and normal drinkers will start to slur
 	if(drunk_value >= 51)
 		owner.set_dizzy_if_lower(50 SECONDS)
 		if(prob(3))
@@ -168,16 +164,20 @@
 			if(iscarbon(owner))
 				var/mob/living/carbon/carbon_owner = owner
 				carbon_owner.vomit() // Vomiting clears toxloss - consider this a blessing
+		if(!HAS_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE))
+			owner.adjust_slurring_up_to(2.4 SECONDS, 7 SECONDS)
 
 	// Over 71, we will constantly have blurry eyes
 	if(drunk_value >= 71)
 		owner.blur_eyes(drunk_value * 2 - 140)
 
-	// Over 81, we will gain constant toxloss
+	// Over 81, we will gain constant toxloss and experienced drunks will now begin to slur
 	if(drunk_value >= 81)
 		owner.adjustToxLoss(1)
 		if(owner.stat == CONSCIOUS && prob(5))
 			to_chat(owner, span_warning("Maybe you should lie down for a bit..."))
+		if(HAS_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE))
+			owner.adjust_slurring_up_to(2.4 SECONDS, 4 SECONDS)
 
 	// Over 91, we gain even more toxloss, brain damage, and have a chance of dropping into a long sleep
 	if(drunk_value >= 91)

@@ -20,7 +20,7 @@
 		return
 		
 	var/mob/living/L = target	
-	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L, /mob/living/simple_animal/hostile/yog_jungle) || istype(L, /mob/living/simple_animal/hostile/tar))
 		L.apply_damage(fauna_damage_bonus)
 
 	if(!istype(ammo_type, /obj/item/ammo_casing/reusable/arrow))	

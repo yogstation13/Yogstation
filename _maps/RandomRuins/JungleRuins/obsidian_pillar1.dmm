@@ -1,0 +1,49 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"m" = (
+/turf/closed/obsidian,
+/area/jungleland/explored)
+"n" = (
+/turf/closed/obsidian/hard,
+/area/jungleland/explored)
+"Q" = (
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/jungleland/explored)
+
+(1,1,1) = {"
+a
+Q
+m
+Q
+a
+"}
+(2,1,1) = {"
+Q
+m
+n
+m
+Q
+"}
+(3,1,1) = {"
+a
+m
+n
+m
+m
+"}
+(4,1,1) = {"
+m
+n
+m
+Q
+Q
+"}
+(5,1,1) = {"
+Q
+m
+a
+Q
+a
+"}
