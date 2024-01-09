@@ -119,6 +119,7 @@
 		GAS_ZAUKER = new/datum/tlv/dangerous,	
 		GAS_HALON = new/datum/tlv/dangerous,
 		GAS_HEXANE = new/datum/tlv/dangerous,
+		GAS_ANTINOB = new/datum/tlv/dangerous,
 	)
 
 /obj/machinery/airalarm/server // No checks here.
@@ -144,6 +145,7 @@
 		GAS_PLUONIUM = new/datum/tlv/dangerous,
 		GAS_HALON = new/datum/tlv/dangerous,
 		GAS_HEXANE = new/datum/tlv/dangerous,
+		GAS_ANTINOB = new/datum/tlv/dangerous,
 	)
 
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -80°C or 193.15°K.
@@ -170,6 +172,7 @@
 		GAS_ZAUKER = new/datum/tlv/dangerous,
 		GAS_HALON = new/datum/tlv/dangerous,
 		GAS_HEXANE = new/datum/tlv/dangerous,
+		GAS_ANTINOB = new/datum/tlv/dangerous,
 	)
 
 /obj/machinery/airalarm/unlocked
