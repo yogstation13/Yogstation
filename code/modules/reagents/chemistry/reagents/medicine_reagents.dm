@@ -730,21 +730,23 @@
 
 /datum/reagent/medicine/morphine
 	name = "Morphine"
-	description = "A painkiller that allows the patient to move at full speed even in bulky objects. Causes drowsiness and eventually unconsciousness in high doses. Overdose will cause a variety of effects, ranging from minor to lethal."
+	description = "A traditional painkiller from ancient eras. Very addictive."
 	reagent_state = LIQUID
 	color = "#A9FBFB"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshold = 35
-	addiction_threshold = 15
+	overdose_threshold = 30
+	addiction_threshold = 10
 
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()
-	L.ignore_slowdown(type)
+	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	L.update_movespeed(FALSE)
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
 	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "[type]_high", /datum/mood_event/high)
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
-	L.unignore_slowdown(type)
+	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, sources)
+	L.update_movespeed(FALSE)
 	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
 	..()
 
@@ -766,6 +768,7 @@
 /datum/reagent/medicine/morphine/overdose_process(mob/living/M)
 	if(prob(33))
 		M.drop_all_held_items()
+		M.adjustToxLoss(1*REM, 0)
 		M.adjust_dizzy(2)
 		M.adjust_jitter(2 SECONDS)
 	..()
