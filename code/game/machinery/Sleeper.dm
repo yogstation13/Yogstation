@@ -310,7 +310,7 @@
 			. = TRUE
 		if("sedate")
 			if(can_sedate())
-				if(mob_occupant.reagents.add_reagent(sedate_chem, 10))
+				if(mob_occupant.reagents.add_reagent(sedate_chem, 5))
 					COOLDOWN_START(src, sedate_cooldown_index, sedate_cooldown_secs)
 					if(usr)
 						log_combat(usr,occupant, "injected sedate chem into", addition = "via [src]")
