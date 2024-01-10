@@ -5,7 +5,7 @@
 		if("robotic")
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-r")
 		if("plasma")
-			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-h")
+			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-h") //This will have more use in the near future
 		if("polysmorph")
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-a")
 
