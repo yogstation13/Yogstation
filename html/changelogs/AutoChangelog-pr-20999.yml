@@ -1,4 +1,0 @@
-author: "bruhlookatthisdood"
-delete-after: true 
-changes: 
-  - bugfix: "ASay and DSay are now no longer visible to non-admins"
