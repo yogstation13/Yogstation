@@ -249,6 +249,50 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/flagelantes_chains_hood
+	var/wrap = FALSE
+	//var/footstep = 1
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/ToggleHood() //So people can't just quickly wear it whenever they want to
+	var/mob/living/carbon/human/H = src.loc
+	if(wrap) //Make sure they're not already trying to wear it
+		to_chat(H, span_warning("You're already wrapping the chains around yourself!."))
+		return
+	else if(!suittoggled)
+		if(H.wear_suit != src)
+			to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
+			return
+		if(H.head)
+			to_chat(H, span_warning("You're already wearing something on your head!"))
+			return
+		to_chat(H, span_notice("You start wrapping the chains around yourself."))
+		H.visible_message(span_warning("[H] starts wrapping the [src] around themselves!"))
+		playsound(get_turf(src), 'sound/spookoween/chain_rattling.ogg', 10, TRUE, -1)
+		wrap = TRUE
+		if(!do_after(H, 10 SECONDS, H))
+			wrap = FALSE
+			H.balloon_alert(H, "You were interupted!")
+			return //Stop it from completing if they move
+		if(ishuman(src.loc))
+			if(H.equip_to_slot_if_possible(hood,ITEM_SLOT_HEAD,0,0,1))
+				suittoggled = TRUE
+				src.icon_state = "[initial(icon_state)]_t"
+				H.update_inv_wear_suit()
+				for(var/X in actions)
+					var/datum/action/A = X
+					A.build_all_button_icons()
+		wrap = FALSE			
+	else
+		RemoveHood()
+
+/* /obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_mob_move()
+	var/mob/living/carbon/human/H = loc
+	if(!istype(H) || H.wear_suit != src)
+		return
+	if(footstep > 2)
+		playsound(src, 'sound/weapons/chainhit.ogg', 10, 1)
+		footstep = 0
+	else
+		footstep++ */
 
 /obj/item/clothing/head/hooded/flagelantes_chains_hood
 	name = "flagelantes hood"
