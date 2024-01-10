@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Override Machine and Overload Machine abilities (from malf AI/malf upgrade disk) now work."
