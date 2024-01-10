@@ -250,7 +250,7 @@ SUBSYSTEM_DEF(mapping)
 			unused_turfs["[T.z]"] |= T
 			var/area/old_area = T.loc
 			old_area.turfs_to_uncontain += T
-			T.flags_1 |= UNUSED_RESERVATION_TURF_1
+			T.turf_flags |= UNUSED_RESERVATION_TURF
 			world_contents += T
 			world_turf_contents += T
 			packet.len--
@@ -761,7 +761,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/block = block(A, B)
 	for(var/turf/T as anything in block)
 		// No need to empty() these, because they just got created and are already /turf/open/space/basic.
-		T.flags_1 = UNUSED_RESERVATION_TURF_1
+		T.turf_flags = UNUSED_RESERVATION_TURF
 		CHECK_TICK
 
 	// Gotta create these suckers if we've not done so already

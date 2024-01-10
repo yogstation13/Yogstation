@@ -62,7 +62,7 @@
 
 	var/list/possible_turfs = CORNER_OUTLINE(BL, width, height)
 	for(var/turf/cordon_turf as anything in possible_turfs)
-		if(!(cordon_turf.flags_1 & UNUSED_RESERVATION_TURF_1))
+		if(!(cordon_turf.turf_flags & UNUSED_RESERVATION_TURF))
 			return FALSE
 	cordon_turfs = possible_turfs
 
@@ -87,8 +87,6 @@
 		// Its no longer unused, but its also not "used"
 		cordon_turf.turf_flags &= ~UNUSED_RESERVATION_TURF
 		cordon_turf.ChangeTurf(/turf/cordon, /turf/cordon)
-
-		cordon_turf.flags_1 &= ~UNUSED_RESERVATION_TURF_1
 		SSmapping.unused_turfs["[cordon_turf.z]"] -= cordon_turf
 		// still gets linked to us though
 		SSmapping.used_turfs[cordon_turf] = src
@@ -151,12 +149,12 @@
 	for(var/i in avail)
 		CHECK_TICK
 		BL = i
-		if(!(BL.flags_1 & UNUSED_RESERVATION_TURF_1))
+		if(!(BL.turf_flags & UNUSED_RESERVATION_TURF))
 			continue
 		if(BL.x + width > world.maxx || BL.y + height > world.maxy)
 			continue
 		TR = locate(BL.x + width - 1, BL.y + height - 1, BL.z)
-		if(!(TR.flags_1 & UNUSED_RESERVATION_TURF_1))
+		if(!(TR.turf_flags & UNUSED_RESERVATION_TURF))
 			continue
 		final = block(BL, TR)
 		if(!final)
@@ -164,7 +162,7 @@
 		passing = TRUE
 		for(var/I in final)
 			var/turf/checking = I
-			if(!(checking.flags_1 & UNUSED_RESERVATION_TURF_1))
+			if(!(checking.turf_flags & UNUSED_RESERVATION_TURF))
 				passing = FALSE
 				break
 		if(passing) // found a potentially valid area, now try to calculate its cordon
@@ -179,6 +177,7 @@
 		reserved_turfs |= T
 		SSmapping.unused_turfs["[T.z]"] -= T
 		SSmapping.used_turfs[T] = src
+		T.turf_flags = (T.turf_flags | RESERVATION_TURF) & ~UNUSED_RESERVATION_TURF
 		T.ChangeTurf(turf_type, turf_type)
 
 	bottom_left_turfs += BL
