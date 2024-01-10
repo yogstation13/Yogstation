@@ -1924,10 +1924,10 @@
 
 /datum/reagent/medicine/propofol/on_mob_life(mob/living/carbon/M)
 	switch(current_cycle)
-		if(3 to 10)
+		if(3 to 13)
 			M.blur_eyes(15)
 			. = 1
-		if(24 to INFINITY)
+		if(14 to INFINITY)
 			M.Sleeping(5 SECONDS)
 			M.blur_eyes(15)
 			. = 1
