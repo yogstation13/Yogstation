@@ -751,9 +751,10 @@
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/M)
+	if(prob(20) && (M.get_damage_amount(BRUTE) > 0 || M.get_damage_amount(BURN) > 0 || M.get_damage_amount(STAMINA) > 0))
+		to_chat(M, span_notice("Your pain fades, like it was never there."))
+
 	switch(current_cycle)
-		if(11)
-			to_chat(M, span_warning("You start to feel good, and very bad...") )
 		if(12 to 24)
 			M.adjust_drugginess(1 SECONDS)
 		if(24 to INFINITY)
