@@ -58,16 +58,16 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// Should we use the initial icon for display? Mostly used by overlay only objects
 #define HTML_USE_INITAL_ICON_1 (1<<19)
 
-//turf-only flags
+//TURF FLAGS
 #define NOJAUNT_1					(1<<0)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
 #define CAN_BE_DIRTY_1				(1<<2)
 /// Blocks lava rivers being generated on the turf
-#define NO_LAVA_GEN_1				(1<<6)
+#define NO_LAVA_GEN_1				(1<<3)
 /// Blocks ruins spawning on the turf
-#define NO_RUINS_1					(1<<18)
+#define NO_RUINS_1					(1<<4)
 /// Blocks this turf from being rusted
-#define NO_RUST 					(1<<19)
+#define NO_RUST 					(1<<5)
 /// If this atom has experienced a decal element "init finished" sourced appearance update
 /// We use this to ensure stacked decals don't double up appearance updates for no rasin
 /// Flag as an optimization, don't make this a trait without profiling
