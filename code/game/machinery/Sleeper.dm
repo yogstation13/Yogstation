@@ -44,11 +44,14 @@
 	fair_market_price = 5
 
 	///what chemical we're injecting with the "sedate" function
-	var/sedate_chem = /datum/reagent/medicine/morphine
+	var/sedate_chem = /datum/reagent/medicine/propofol
 	///maximum allowed chemical volume
-	var/sedate_limit = 10
+	var/sedate_limit = 40
 	///what are we putting in the tgui
 	var/sedate_button_text = "Sedate"
+	///sedation cooldown
+	var/sedate_cooldown_secs = 2 SECONDS
+	COOLDOWN_DECLARE(sedate_cooldown_index)
 
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
@@ -307,15 +310,18 @@
 			. = TRUE
 		if("sedate")
 			if(can_sedate())
-				mob_occupant.reagents.add_reagent(sedate_chem, 10)
-				if(usr)
-					log_combat(usr,occupant, "injected morphine into", addition = "via [src]")
-				. = TRUE
+				if(mob_occupant.reagents.add_reagent(sedate_chem, 10))
+					COOLDOWN_START(src, sedate_cooldown_index, sedate_cooldown_secs)
+					if(usr)
+						log_combat(usr,occupant, "injected sedate chem into", addition = "via [src]")
+					. = TRUE
 
 /obj/machinery/sleeper/proc/can_sedate()
+	if(!COOLDOWN_FINISHED(src, sedate_cooldown_index))
+		return FALSE
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
-		return
+		return FALSE
 	return mob_occupant.reagents.get_reagent_amount(sedate_chem) + 10 <= sedate_limit
 
 /obj/machinery/sleeper/syndie

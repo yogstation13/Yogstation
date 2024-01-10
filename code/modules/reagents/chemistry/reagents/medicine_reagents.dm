@@ -745,7 +745,7 @@
 	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "[type]_high", /datum/mood_event/high)
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
-	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, sources)
+	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
 	L.update_movespeed(FALSE)
 	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
 	..()
@@ -1906,3 +1906,48 @@
 	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
 	return ..()
+
+/datum/reagent/medicine/propofol
+	name = "Propofol"
+	description = "A general anesthetic. Overdose will cause arrhythmia and organ failure."
+	reagent_state = LIQUID
+	color = "#fff6e9" // milky
+	overdose_threshold = 50
+
+/datum/reagent/medicine/propofol/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+
+/datum/reagent/medicine/propofol/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	..()
+
+/datum/reagent/medicine/propofol/on_mob_life(mob/living/carbon/M)
+	switch(current_cycle)
+		if(3 to 10)
+			M.blur_eyes(15)
+			. = 1
+		if(24 to INFINITY)
+			M.Sleeping(5 SECONDS)
+			M.blur_eyes(15)
+			. = 1
+	..()
+
+/datum/reagent/medicine/propofol/overdose_process(mob/living/overdosed_living)
+	if(!iscarbon(overdosed_living))
+		return
+	var/mob/living/carbon/overdosed_carbon = overdosed_living
+	overdosed_carbon.Sleeping(5 SECONDS)
+	switch(rand(1,10))
+		if(1 to 3)
+			if(overdosed_carbon.getorganslot(ORGAN_SLOT_HEART))
+				overdosed_carbon.adjustOrganLoss(ORGAN_SLOT_HEART, 3*REM)
+				to_chat(overdosed_carbon, span_warning("Your heart skips a beat."))
+		if(4)
+			overdosed_carbon.adjustOrganLoss(ORGAN_SLOT_LUNGS, 3*REM)
+		if(5)
+			overdosed_carbon.adjustOrganLoss(ORGAN_SLOT_LIVER, 3*REM)
+		if(6)
+			overdosed_carbon.adjustOrganLoss(ORGAN_SLOT_STOMACH, 3*REM)
+		else
+			return
