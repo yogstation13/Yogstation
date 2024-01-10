@@ -99,6 +99,11 @@
 		to_return += parents[i]
 	return to_return
 
+/**
+ * Called by nullify_node(), used to remove the pipeline the component is attached to
+ * Arguments:
+ * * -reference: the pipeline the component is attached to
+ */
 /obj/machinery/atmospherics/components/proc/nullify_pipenet(datum/pipeline/reference)
 	if(!reference)
 		CRASH("nullify_pipenet(null) called by [type] on [COORD(src)]")
@@ -165,6 +170,10 @@
 
 // Helpers
 
+/**
+ * Called in most atmos processes and gas handling situations, update the parents pipelines of the devices connected to the source component
+ * This way gases won't get stuck
+ */
 /obj/machinery/atmospherics/components/proc/update_parents()
 	if(!SSair.initialized)
 		return

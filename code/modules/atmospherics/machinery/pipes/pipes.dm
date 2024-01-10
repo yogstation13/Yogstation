@@ -16,7 +16,7 @@
         ),\
     )
 
-/obj/machinery/atmospherics/pipe/New(mapload)
+/obj/machinery/atmospherics/pipe/New()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 	volume = 35 * device_type
 	return ..()
@@ -105,7 +105,7 @@
 	for(var/i in 1 to device_type)
 		if(nodes[i])
 			var/obj/machinery/atmospherics/N = nodes[i]
-			N.update_appearance(UPDATE_ICON)
+			N.update_appearance()
 
 /obj/machinery/atmospherics/pipe/return_pipenets()
 	. = list(parent)
