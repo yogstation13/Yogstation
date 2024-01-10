@@ -400,3 +400,16 @@
 /datum/chemical_reaction/medicine/seraka_destroy //seraka extract is destroyed by sodium hydroxide
 	results = list(/datum/reagent/consumable/sugar = 1)
 	required_reagents = list(/datum/reagent/medicine/coagulant/seraka_extract = 1, /datum/reagent/lye = 1)
+
+/datum/chemical_reaction/propofol
+	name = "Propofol"
+	id = /datum/reagent/medicine/propofol
+	results = list(/datum/reagent/medicine/propofol = 2)
+	required_reagents = list(/datum/reagent/chlorine = 1, /datum/reagent/water = 1, /datum/reagent/toxin/acid = 1)
+	required_temp = 400
+
+/datum/chemical_reaction/propofol/on_reaction(datum/reagents/holder, created_volume)
+	var/turf/open/location = get_turf(holder.my_atom)
+	if(istype(location))
+		var/temp = holder ? holder.chem_temp : T20C
+		location.atmos_spawn_air("co2=[created_volume/5];TEMP=[temp]")
