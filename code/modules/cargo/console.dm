@@ -136,9 +136,9 @@
 /obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
-	if(!allowed(usr) && can_approve_requests)
-		say("Access denied.")
-		return
+	if(!allowed(usr) && can_approve_requests)	//dripstation edit
+		say("Access denied.")					//dripstation edit
+		return									//dripstation edit
 	switch(action)
 		if("send")
 			if(!SSshuttle.supply.canMove())
@@ -154,7 +154,7 @@
 				investigate_log("[key_name(usr)] sent the supply shuttle away.", INVESTIGATE_CARGO)
 			else
 				investigate_log("[key_name(usr)] called the supply shuttle.", INVESTIGATE_CARGO)
-				say("The supply shuttle has been called and will arrive in [SSshuttle.supply.timeLeft(10)] seconds.")
+				say("The supply shuttle has been called and will arrive in [SSshuttle.supply.timeLeft(10)] seconds.")	//dripstation edit
 				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 			. = TRUE
 		if("loan")
@@ -222,8 +222,8 @@
 				SSshuttle.requestlist += SO
 			else
 				SSshuttle.shoppinglist += SO
-				SO.pack.times_ordered += 1
-				SO.pack.times_ordered_in_one_order += 1
+				SO.pack.times_ordered += 1	//dripstation edit
+				SO.pack.times_ordered_in_one_order += 1	//dripstation edit
 				if(self_paid)
 					say("Order processed. The price will be charged to [account.account_holder]'s bank account on delivery.")
 			. = TRUE
@@ -232,30 +232,30 @@
 			for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 				if(SO.id == id)
 					SSshuttle.shoppinglist -= SO
-					SO.pack.times_ordered -= 1
-					SO.pack.times_ordered_in_one_order -= 1
+					SO.pack.times_ordered -= 1	//dripstation edit
+					SO.pack.times_ordered_in_one_order -= 1	//dripstation edit
 					. = TRUE
 					break
 		if("clear")
-			for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
-				SO.pack.times_ordered -= 1
-				SO.pack.times_ordered_in_one_order = 0
+			for(var/datum/supply_order/SO in SSshuttle.shoppinglist)	//dripstation edit
+				SO.pack.times_ordered -= 1								//dripstation edit
+				SO.pack.times_ordered_in_one_order = 0					//dripstation edit
 			SSshuttle.shoppinglist.Cut()
 			. = TRUE
 		if("approve")
 			var/id = text2num(params["id"])
 			for(var/datum/supply_order/SO in SSshuttle.requestlist)
 				if(SO.id == id)
-					if(SO.pack.times_ordered >= SO.pack.order_limit && SO.pack.order_limit != -1) //If the crate has reached the limit, do not allow it to be ordered.
+					if(SO.pack.times_ordered >= SO.pack.order_limit && SO.pack.order_limit != -1) //If the crate has reached the limit, do not allow it to be ordered.	dripstation edit start
 						say("[SO.pack.name] is out of stock and can no longer be ordered.")
 						return
 					if(SO.pack.times_ordered_in_one_order >= SO.pack.order_limit_in_one_order && SO.pack.order_limit_in_one_order != -1) 
 						say("[SO.pack.name] is out of stock for now and can no longer be ordered in this package. Try again later.")
-						return
+						return	//dripstation edit end
 					SSshuttle.requestlist -= SO
 					SSshuttle.shoppinglist += SO
-					SO.pack.times_ordered += 1
-					SO.pack.times_ordered_in_one_order += 1
+					SO.pack.times_ordered += 1	//dripstation edit
+					SO.pack.times_ordered_in_one_order += 1	//dripstation edit
 					. = TRUE
 					break
 		if("deny")
