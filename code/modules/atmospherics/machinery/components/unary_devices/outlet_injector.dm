@@ -47,7 +47,7 @@
 	cut_overlays()
 	if(showpipe)
 		// everything is already shifted so don't shift the cap
-		add_overlay(getpipeimage(icon, "inje_cap", initialize_directions))
+		add_overlay(get_pipe_image(icon, "inje_cap", initialize_directions))
 
 	if(!nodes[1] || !on || !is_operational())
 		icon_state = "inje_off"
@@ -55,7 +55,6 @@
 		icon_state = "inje_on"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/process_atmos()
-	..()
 
 	injecting = 0
 
@@ -65,13 +64,7 @@
 	var/datum/gas_mixture/air_contents = airs[1]
 
 	if(air_contents.return_temperature() > 0)
-		var/transfer_moles = (air_contents.return_pressure()) * volume_rate  / (air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
-
-		var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
-
-		loc.assume_air(removed)
-		air_update_turf()
-
+		loc.assume_air_ratio(air_contents, volume_rate / air_contents.return_volume())
 		update_parents()
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/proc/inject()
@@ -84,9 +77,7 @@
 	injecting = 1
 
 	if(air_contents.return_temperature() > 0)
-		var/transfer_moles = (air_contents.return_pressure())*volume_rate/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
-		var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
-		loc.assume_air(removed)
+		loc.assume_air_ratio(air_contents, volume_rate / air_contents.return_volume())
 		update_parents()
 
 	flick("inje_inject", src)
@@ -112,7 +103,7 @@
 	))
 	radio_connection.post_signal(src, signal)
 
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmosinit()
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos_init()
 	set_frequency(frequency)
 	broadcast_status()
 	..()

@@ -1,5 +1,6 @@
 /datum/symptom/heal/conversion
 	name = "Rapid Protein Synthesis"
+	icon = "rapid_protein_synthesis"
 	desc = "The virus rapidly consumes nutrients in blood to heal wounds."
 	stealth = 0
 	resistance = -2

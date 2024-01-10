@@ -14,6 +14,7 @@ Bonus
 */
 /datum/symptom/narcolepsy
 	name = "Narcolepsy"
+	icon = "symptom.narcolepsy.gif"
 	desc = "The virus causes a hormone imbalance, making the host sleepy and narcoleptic."
 	stealth = -1
 	resistance = -2

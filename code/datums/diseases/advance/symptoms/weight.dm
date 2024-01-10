@@ -19,6 +19,7 @@ Bonus
 /datum/symptom/weight_loss
 
 	name = "Weight Loss"
+	icon = "weight_loss"
 	desc = "The virus mutates the host's metabolism, making it almost unable to gain nutrition from food."
 	stealth = -2
 	resistance = 2

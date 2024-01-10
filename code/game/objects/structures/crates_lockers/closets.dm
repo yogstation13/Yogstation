@@ -78,6 +78,12 @@ GLOBAL_LIST_EMPTY(lockers)
 	GLOB.lockers -= src
 	return ..()
 
+/obj/structure/closet/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(var_name == NAMEOF(src, locked))
+		update_appearance()
+		. = TRUE
+
 /obj/structure/closet/update_overlays()
 	. = ..()
 	if(opened)
@@ -544,10 +550,10 @@ GLOBAL_LIST_EMPTY(lockers)
 		for(var/obj/O in src)
 			O.emp_act(severity)
 	if(secure && !broken && !(. & EMP_PROTECT_SELF))
-		if(prob(50 / severity))
+		if(prob(5 * severity))
 			locked = !locked
 			update_appearance(UPDATE_ICON)
-		if(prob(20 / severity) && !opened)
+		if(prob(2 * severity) && !opened)
 			if(!locked)
 				open()
 			else
@@ -619,7 +625,6 @@ GLOBAL_LIST_EMPTY(lockers)
 			var/remove_amount = (loc_air.total_moles() + air_contents.total_moles()) * air_contents.return_volume() / (loc_air.return_volume() + air_contents.return_volume())
 			loc.assume_air(air_contents)
 			loc.remove_air(remove_amount)
-			loc.air_update_turf()
 		air_contents = null
 
 /obj/structure/closet/return_air()

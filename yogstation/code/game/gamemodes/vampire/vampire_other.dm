@@ -67,13 +67,6 @@
 			if (vampire.total_blood >= 5 && vampire.usable_blood < vampire.total_blood)
 				vampire.usable_blood = min(vampire.usable_blood + 5, vampire.total_blood) // 5 units every 10 seconds
 
-/mob/living/carbon/human/handle_fire()
-	. = ..()
-	if(mind)
-		var/datum/antagonist/vampire/L = mind.has_antag_datum(/datum/antagonist/vampire)
-		if(on_fire && stat == DEAD && L && !L.get_ability(/datum/vampire_passive/full))
-			dust()
-
 /obj/item/storage/book/bible/attack(mob/living/M, mob/living/carbon/human/user, heal_mode = TRUE)
 	. = ..()
 	if(!(user.mind && user.mind.holy_role) && is_vampire(user))

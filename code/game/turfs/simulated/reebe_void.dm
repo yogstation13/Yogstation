@@ -36,7 +36,7 @@
 		else if(prob(5))
 			new /obj/structure/lattice/clockwork(src)
 
-/turf/open/indestructible/reebe_void/Enter(atom/movable/AM, atom/old_loc)
+/turf/open/indestructible/reebe_void/Enter(atom/movable/AM, atom/old_loc, no_side_effects = FALSE)
 	if(!..())
 		return FALSE
 	else

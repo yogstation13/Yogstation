@@ -81,8 +81,7 @@
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
 
-	var/turf/new_floor = ScrapeAway()
-	new_floor.air_update_turf()
+	ScrapeAway()
 
 /turf/closed/wall/proc/break_wall()
 	new sheet_type(src, sheet_amount)
@@ -320,8 +319,11 @@
 	add_overlay(dent_decals)
 
 /turf/closed/wall/rust_heretic_act()
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		ScrapeAway()
+		return
 	if(prob(70))
 		new /obj/effect/glowing_rune(src)
-	ChangeTurf(/turf/closed/wall/rust)
+	return ..()
 
 #undef MAX_DENT_DECALS

@@ -1,5 +1,10 @@
 /datum/objective/monsterhunter
 	name = "destroymonsters"
+	explanation_text = "Destroy all monsters on ."
+
+/datum/objective/monsterhunter/New()
+	update_explanation_text()
+	..()
 
 // EXPLANATION
 /datum/objective/monsterhunter/update_explanation_text()

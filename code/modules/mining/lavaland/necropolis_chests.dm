@@ -609,15 +609,15 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L,/mob/living/simple_animal/hostile/yog_jungle)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH, PROC_REF(roll_loot), TRUE)
+				RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
 ///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
 /obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
-	UnregisterSignal(target, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_LIVING_DEATH)
 	if(mobs_grinded<max_grind)
 		mobs_grinded++
 	var/spot = get_turf(target)
@@ -709,7 +709,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
-		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
+		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C) || isethereal(C))
 		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni can get wings
 			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
 			return ..()
@@ -1376,7 +1376,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(target == user)
 				continue
 			for(var/obj/effect/decal/cleanable/decal in range(0, target))
-				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/trail_holder))
+				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/blood/trail_holder))
 					valid_reaching = TRUE
 					target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 		if(!valid_reaching)

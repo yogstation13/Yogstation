@@ -360,7 +360,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 
 	minor_announce("Hostile runtime detected in door controllers. Isolation lockdown protocols are now in effect. Please remain calm.","Network Alert:", TRUE)
 	to_chat(owner, span_danger("Lockdown initiated. Network reset in 90 seconds."))
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(minor_announce),
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce),
 		"Automatic system reboot complete. Have a secure day.",
 		"Network reset:"), 900)
 
@@ -386,11 +386,11 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	. = ..()
 	desc = "[desc] It has [uses] use\s remaining."
 
-/datum/action/innate/ai/ranged/override_machine/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/ai/ranged/override_machine/do_ability(mob/living/caller, params, atom/clicked_on)
 	if(caller.incapacitated())
 		unset_ranged_ability(caller)
 		return FALSE
-	if(!istype(clicked_on, /obj/machinery))
+	if(!ismachinery(clicked_on))
 		to_chat(caller, span_warning("You can only animate machines!"))
 		return FALSE
 	var/obj/machinery/clicked_machine = clicked_on
@@ -474,7 +474,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(!QDELETED(to_explode)) //to check if the explosion killed it before we try to delete it
 		qdel(to_explode)
 
-/datum/action/innate/ai/ranged/overload_machine/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/ai/ranged/overload_machine/do_ability(mob/living/caller, params, atom/clicked_on)
 	if(caller.incapacitated())
 		unset_ranged_ability(caller)
 		return FALSE

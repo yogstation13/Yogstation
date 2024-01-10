@@ -77,8 +77,9 @@
 	var/obj/effect/decal/cleanable/blood/splatter/B = locate() in src
 	if(!B)
 		B = new /obj/effect/decal/cleanable/blood/splatter(src, diseases)
-	B.add_blood_DNA(blood_dna) //give blood info to the blood decal.
-	return TRUE //we bloodied the floor
+	if(!QDELETED(B))
+		B.add_blood_DNA(blood_dna) //give blood info to the blood decal.
+		return TRUE //we bloodied the floor
 
 /mob/living/carbon/human/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
 	if(wear_suit)
@@ -95,6 +96,11 @@
 		blood_in_hands = rand(2, 4)
 	update_inv_gloves()	//handles bloody hands overlays and updating
 	return TRUE
+
+/obj/effect/decal/cleanable/blood/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
+	. = ..()
+	if(blood_dna)
+		color = get_blood_dna_color(blood_dna)
 
 /atom/proc/transfer_fingerprints_to(atom/A)
 	A.add_fingerprint_list(return_fingerprints())

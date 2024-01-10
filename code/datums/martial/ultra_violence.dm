@@ -290,7 +290,7 @@
 	dashing = FALSE
 	H.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 
-/datum/martial_art/ultra_violence/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+/datum/martial_art/ultra_violence/handle_throw(atom/hit_atom, mob/living/carbon/human/A, datum/thrownthing/throwingdatum)
 	if(!dashing)
 		return ..()
 	return TRUE

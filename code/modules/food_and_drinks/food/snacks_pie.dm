@@ -276,3 +276,29 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("pie" = 1, "cinnamon" = 1, "determination" = 1)
 	foodtype = GRAIN | DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/pie/mimetart
+	name = "mime tart"
+	desc = "..."
+	icon_state = "mimetart"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nothing = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("nothing" = 3)
+
+/obj/item/reagent_containers/food/snacks/pie/berrytart
+	name = "berry tart"
+	desc = "A tasty dessert of many different small berries on a thin pie crust."
+	icon_state = "berrytart"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("pie" = 1, "berries" = 2)
+	foodtype = GRAIN | FRUIT
+
+/obj/item/reagent_containers/food/snacks/pie/cocolavatart
+	name = "chocolate lava tart"
+	desc = "A tasty dessert made of chocolate, with a liquid core."
+	icon_state = "cocolavatart"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("pie" = 1, "dark chocolate" = 3)
+	foodtype = GRAIN | SUGAR | CHOCOLATE

@@ -1,15 +1,20 @@
 /obj/projectile/plasma
 	name = "plasma blast"
 	icon_state = "plasmacutter"
+	armor_flag = ENERGY
 	damage_type = BRUTE
 	damage = 5
 	range = 4
 	dismemberment = 20
+	demolition_mod = 2 // industrial strength plasma cutter designed to cut things
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	var/mine_range = 3 //mines this many additional tiles of rock
 	tracer_type = /obj/effect/projectile/tracer/plasma_cutter
 	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
+	light_system = MOVABLE_LIGHT
+	light_color = LIGHT_COLOR_PURPLE
+	light_range = 2
 
 /obj/projectile/plasma/weak
 	name = "weak plasma blast"
@@ -17,8 +22,16 @@
 	damage = 3
 	dismemberment = 5
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_color = LIGHT_COLOR_RED
 	mine_range = 0
+//yogs begin
+/obj/projectile/plasma/Move(atom/newloc, dir)
+	. = ..()
+	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland))
+		var/turf/open/floor/plating/dirt/jungleland/JG = newloc
+		JG.spawn_rock()
 
+//yogs end
 /obj/projectile/plasma/on_hit(atom/target)
 	. = ..()
 	if(ismineralturf(target))
@@ -29,6 +42,15 @@
 			range++
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
+// yogs begin
+	if(istype(target,/obj/structure/flora))
+		qdel(target)
+		if(mine_range)
+			mine_range--
+			range++
+		if(range > 0)
+			return BULLET_ACT_FORCE_PIERCE
+// yogs end
 
 /obj/projectile/plasma/scatter/adv/on_hit(atom/target)
 	if(istype(target, /turf/closed/mineral/gibtonite))
@@ -65,6 +87,7 @@
 	tracer_type = /obj/effect/projectile/tracer/laser/blue
 	muzzle_type = /obj/effect/projectile/muzzle/laser/blue
 	impact_type = /obj/effect/projectile/impact/laser/blue
+	light_color = LIGHT_COLOR_BLUE
 	damage_type = STAMINA
 	damage = 5
 	range = 4

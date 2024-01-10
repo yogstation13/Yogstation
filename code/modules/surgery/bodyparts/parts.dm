@@ -5,7 +5,7 @@
 	icon_state = "default_human_chest"
 	max_damage = 200
 	body_zone = BODY_ZONE_CHEST
-	body_part = CHEST
+	body_part = CHEST|GROIN
 	px_x = 0
 	px_y = 0
 	stam_damage_coeff = 1
@@ -64,7 +64,7 @@
 	max_damage = 50
 	max_stamina_damage = 50
 	body_zone = BODY_ZONE_L_ARM
-	body_part = ARM_LEFT
+	body_part = ARM_LEFT|HAND_LEFT
 	aux_zone = BODY_ZONE_PRECISE_L_HAND
 	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
@@ -158,7 +158,7 @@
 	attack_verb = list("slapped", "punched")
 	max_damage = 50
 	body_zone = BODY_ZONE_R_ARM
-	body_part = ARM_RIGHT
+	body_part = ARM_RIGHT|HAND_RIGHT
 	aux_zone = BODY_ZONE_PRECISE_R_HAND
 	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
@@ -253,7 +253,7 @@
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
 	body_zone = BODY_ZONE_L_LEG
-	body_part = LEG_LEFT
+	body_part = LEG_LEFT|FOOT_LEFT
 	body_damage_coeff = 0.75
 	px_x = -2
 	px_y = 12
@@ -342,7 +342,7 @@
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
 	body_zone = BODY_ZONE_R_LEG
-	body_part = LEG_RIGHT
+	body_part = LEG_RIGHT|FOOT_RIGHT
 	body_damage_coeff = 0.75
 	px_x = 2
 	px_y = 12

@@ -153,6 +153,9 @@
 	if(plates <= 0)//no plate to lose
 		return
 
+	deltimer(plate_timer)//reset the plate timer
+	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), user), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)
+
 	if(damagetype != BRUTE && damagetype != BURN)
 		damage /= 4 //brute and burn are most effective
 
@@ -322,7 +325,7 @@
 /datum/martial_art/worldbreaker/proc/reset_pixel(mob/living/user)//in case something happens, we don't permanently float
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 
-/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)//never wallsplat ever
+/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A, datum/thrownthing/throwingdatum)//never wallsplat ever
 	return TRUE
 /*---------------------------------------------------------------
 	end of leap section

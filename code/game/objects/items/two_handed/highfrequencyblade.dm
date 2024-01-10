@@ -20,7 +20,6 @@
 /obj/item/vibro_weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = 20, \
 		icon_wielded = "[base_icon_state]1", \
 	)

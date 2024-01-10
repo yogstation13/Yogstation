@@ -3,7 +3,7 @@
 	desc = "A space wizard's magic wall."
 	icon_state = "m_shield"
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 	density = TRUE
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	/// If set, how long the force field lasts after it's created. Set to 0 to have infinite duration forcefields.

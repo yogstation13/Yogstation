@@ -12,7 +12,7 @@
 
 	outfit = /datum/outfit/job/paramedic
 
-	added_access = list(ACCESS_CLONING)
+	added_access = list(ACCESS_SURGERY, ACCESS_CLONING)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED

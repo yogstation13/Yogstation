@@ -276,12 +276,15 @@
 
 /datum/supply_pack/security/armor
 	name = "Armor Crate"
-	desc = "Three vests of well-rounded, decently-protective armor. Requires Security access to open."
-	cost = 1000
+	desc = "Three sets of well-rounded, decently-protective armor and helmet. Requires Security access to open."
+	cost = 2000
 	access_view = ACCESS_SECURITY
-	contains = list(/obj/item/clothing/suit/armor/vest,
-					/obj/item/clothing/suit/armor/vest,
-					/obj/item/clothing/suit/armor/vest)
+	contains = list(/obj/item/clothing/suit/armor/vest/alt,
+					/obj/item/clothing/suit/armor/vest/alt,
+					/obj/item/clothing/suit/armor/vest/alt,
+					/obj/item/clothing/head/helmet/sec,
+					/obj/item/clothing/head/helmet/sec,
+					/obj/item/clothing/head/helmet/sec)
 	crate_name = "armor crate"
 
 /datum/supply_pack/security/disabler
@@ -314,15 +317,6 @@
 					/obj/item/toy/crayon/white,
 					/obj/item/clothing/head/fedora/det_hat)
 	crate_name = "forensics crate"
-
-/datum/supply_pack/security/helmets
-	name = "Helmets Crate"
-	desc = "Contains three standard-issue brain buckets. Requires Security access to open."
-	cost = 1000
-	contains = list(/obj/item/clothing/head/helmet/sec,
-					/obj/item/clothing/head/helmet/sec,
-					/obj/item/clothing/head/helmet/sec)
-	crate_name = "helmet crate"
 
 /datum/supply_pack/security/laser
 	name = "Lasers Crate"
@@ -522,21 +516,15 @@
 
 /datum/supply_pack/security/armory/bulletarmor
 	name = "Bulletproof Armor Crate"
-	desc = "Contains three sets of bulletproof armor. Guaranteed to reduce a bullet's stopping power by over half. Requires Armory access to open."
-	cost = 1500
+	desc = "Contains three sets of bulletproof armor and helmet. Guaranteed to reduce a bullet's stopping power by over half. Requires Armory access to open."
+	cost = 3000
 	contains = list(/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/suit/armor/bulletproof)
-	crate_name = "bulletproof armor crate"
-
-/datum/supply_pack/security/armory/bullethelmets
-	name = "Bulletproof Helmet Crate"
-	desc = "Contains three bulletproof helmets, perfect for protecting the void inside your skull. Requires Armory access to open."
-	cost = 1500
-	contains = list(/obj/item/clothing/head/helmet/alt,
+					/obj/item/clothing/suit/armor/bulletproof,
+					/obj/item/clothing/head/helmet/alt,
 					/obj/item/clothing/head/helmet/alt,
 					/obj/item/clothing/head/helmet/alt)
-	crate_name = "bulletproof helmet crate"
+	crate_name = "bulletproof armor crate"
 
 /datum/supply_pack/security/armory/chemimp
 	name = "Chemical Implants Crate"
@@ -579,21 +567,15 @@
 
 /datum/supply_pack/security/armory/riotarmor
 	name = "Riot Armor Crate"
-	desc = "Contains three sets of heavy body armor. Advanced padding protects against close-ranged weaponry, making melee attacks feel only half as potent to the user. Requires Armory access to open."
-	cost = 1500
+	desc = "Contains three sets of heavy body armor and helmet. Advanced padding protects against close-ranged weaponry, making melee attacks feel only half as potent to the user. Requires Armory access to open."
+	cost = 3000
 	contains = list(/obj/item/clothing/suit/armor/riot,
 					/obj/item/clothing/suit/armor/riot,
-					/obj/item/clothing/suit/armor/riot)
-	crate_name = "riot armor crate"
-
-/datum/supply_pack/security/armory/riothelmets
-	name = "Riot Helmets Crate"
-	desc = "Contains three riot helmets. Requires Armory access to open."
-	cost = 1500
-	contains = list(/obj/item/clothing/head/helmet/riot,
+					/obj/item/clothing/suit/armor/riot,
+					/obj/item/clothing/head/helmet/riot,
 					/obj/item/clothing/head/helmet/riot,
 					/obj/item/clothing/head/helmet/riot)
-	crate_name = "riot helmets crate"
+	crate_name = "riot armor crate"
 
 /datum/supply_pack/security/armory/riotshields
 	name = "Riot Shields Crate"
@@ -1001,17 +983,6 @@
 					/obj/item/stock_parts/cell/high)
 	crate_name = "power cell crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
-
-/datum/supply_pack/engineering/portable_pumps
-	name = "Portable Pumps"
-	desc = "A set of spare portable pumps. Perfect for larger atmospheric projects or restocking after a toxins problem goes wrong."
-	cost = 1500
-	contains = list(
-		/obj/machinery/portable_atmospherics/pump,
-		/obj/machinery/portable_atmospherics/pump
-	)
-	crate_name = "portable pump crate"
-	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/engineering/portable_scrubbers
 	name = "Portable Scrubbers"
@@ -2081,6 +2052,55 @@
 	cost = 1000
 	contains = list(/obj/item/vending_refill/assist)
 	crate_name = "vendomat supply crate"
+
+/datum/supply_pack/service/syrup
+	name = "Coffee Syrups Box"
+	desc = "A packaged box of various syrups, perfect for making your delicious coffee even more diabetic."
+	cost = 200
+	contains = list(
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/caramel,
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/liqueur,
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/korta_nectar,
+	)
+	crate_name = "coffee syrups box"
+	crate_type = /obj/structure/closet/crate
+
+/datum/supply_pack/service/syrup_contraband
+	contraband = TRUE
+	name = "Contraband Syrups Box"
+	desc = "A packaged box containing illegal coffee syrups. Possession of these carries a penalty established in the galactic penal code."
+	cost = 400
+	contains = list(
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/laughsyrup,
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/laughsyrup,
+	)
+	crate_name = "illegal syrups box"
+	crate_type = /obj/structure/closet/crate
+
+/datum/supply_pack/service/coffeekit
+	name = "Coffee Equipment Crate"
+	desc = "A complete kit to setup your own cozy coffee shop, the coffeemaker is for some reason not included."
+	cost = 1000
+	contains = list(
+		/obj/item/storage/box/coffeepack/robusta,
+		/obj/item/storage/box/coffeepack,
+		/obj/item/reagent_containers/food/drinks/bottle/coffeepot,
+		/obj/item/storage/box/coffee_condi_display,
+		/obj/item/reagent_containers/food/condiment/cream,
+		/obj/item/reagent_containers/food/condiment/milk,
+		/obj/item/reagent_containers/food/condiment/soymilk,
+		/obj/item/reagent_containers/food/condiment/sugar,
+		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/caramel, //one extra syrup as a treat
+	)
+	crate_name = "coffee equipment crate"
+
+/datum/supply_pack/service/coffeemaker
+	name = "Impressa Coffeemaker Crate"
+	desc = "An assembled Impressa model coffeemaker."
+	cost = 1000
+	contains = list(/obj/machinery/coffeemaker/impressa)
+	crate_name = "coffeemaker crate"
+	crate_type = /obj/structure/closet/crate
 
 /datum/supply_pack/service/emptycrate
 	name = "Empty Crate"

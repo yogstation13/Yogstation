@@ -1639,3 +1639,16 @@
 	new teleport_effect(get_turf(owner))
 	owner.Paralyze(2 SECONDS)
 	return ..()
+
+/datum/status_effect/eldritch/knock
+	id = "knock_mark"
+	effect_sprite = "emark7"
+	duration = 10 SECONDS
+
+/datum/status_effect/eldritch/knock/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_ALWAYS_NO_ACCESS, STATUS_EFFECT_TRAIT)
+
+/datum/status_effect/eldritch/knock/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_ALWAYS_NO_ACCESS, STATUS_EFFECT_TRAIT)
+	return ..()

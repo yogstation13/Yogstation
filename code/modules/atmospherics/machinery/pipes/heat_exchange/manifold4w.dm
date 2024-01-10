@@ -7,7 +7,7 @@
 	name = "4-way pipe manifold"
 	desc = "A manifold composed of heat-exchanging pipes."
 
-	initialize_directions = NORTH|SOUTH|EAST|WEST
+	initialize_directions = ALL_CARDINALS
 
 	device_type = QUATERNARY
 
@@ -18,7 +18,7 @@
 	icon_state = ""
 	return ..()
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/SetInitDirections()
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/set_init_directions()
 	initialize_directions = initial(initialize_directions)
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/update_overlays()
@@ -30,7 +30,7 @@
 	//Add non-broken pieces
 	for(var/i in 1 to device_type)
 		if(nodes[i])
-			. += getpipeimage(icon, "pipe-[piping_layer]", get_dir(src, nodes[i]))
+			. += get_pipe_image(icon, "pipe-[piping_layer]", get_dir(src, nodes[i]))
 
 	update_layer()
 	update_alpha()
