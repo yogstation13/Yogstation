@@ -42,10 +42,6 @@
 	if(!stored_files)
 		return FALSE
 
-	// This file is already stored. Don't store it again.
-	if(F in stored_files)
-		return FALSE
-
 	F.holder = src
 
 	if(istype(F, /datum/computer_file/program))
@@ -71,8 +67,7 @@
 		stored_files -= F
 		recalculate_size()
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 // Loops through all stored files and recalculates used_capacity of this drive
 /obj/item/computer_hardware/hard_drive/proc/recalculate_size()
@@ -101,8 +96,7 @@
 		return FALSE
 	if((used_capacity + F.size) > max_capacity)
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 
 // Tries to find the file by filename. Returns null on failure

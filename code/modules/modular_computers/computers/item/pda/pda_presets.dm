@@ -73,8 +73,8 @@
 
 /obj/item/modular_computer/tablet/pda/preset/cargo/Initialize(mapload)
 	starting_files |= list(
-		new /datum/computer_file/program/bounty_board,
-		new /datum/computer_file/program/budgetorders,
+//		new /datum/computer_file/program/bounty_board, Both of these come with the preset PDA hardware (/obj/item/computer_hardware/hard_drive/small/pda).
+//		new /datum/computer_file/program/budgetorders, Uncomment if any change is made to that in question.
 		new /datum/computer_file/program/cargobounty,
 	)	
 	return ..()

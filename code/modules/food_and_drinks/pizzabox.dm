@@ -94,7 +94,7 @@
 			. += tag_overlay
 
 /obj/item/pizzabox/worn_overlays(isinhands, icon_file)
-	. = list()
+	. = ..()
 	var/current_offset = 2
 	if(isinhands)
 		for(var/V in boxes) //add EXTRA BOX per box

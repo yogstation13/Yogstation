@@ -230,7 +230,7 @@
 	. += M
 
 /obj/item/clothing/head/wig/worn_overlays(isinhands = FALSE, file2use)
-	. = list()
+	. = ..()
 	if(!isinhands)
 		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
 		if(!S)

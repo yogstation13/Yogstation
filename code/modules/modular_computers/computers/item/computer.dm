@@ -626,24 +626,24 @@
 		if(istype(new_part, /obj/item/computer_hardware))
 			var/result = install_component(new_part)
 			if(result == FALSE)
-				CRASH("[src] failed to install starting component for an unknown reason")
+				CRASH("[src] failed to install starting component for an unknown reason.")
 		else if(istype(new_part, /obj/item/stock_parts/cell/computer))
 			var/new_cell = new /obj/item/computer_hardware/battery(src, part)
 			qdel(new_part)
 			var/result = install_component(new_cell)
 			if(result == FALSE)
-				CRASH("[src] failed to install starting cell for an unknown reason")
+				CRASH("[src] failed to install starting cell for an unknown reason.")
 
 /obj/item/modular_computer/proc/install_starting_files()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
 	if(!istype(hard_drive) || starting_files.len < 1)
 		if(!starting_files.len < 1)
-			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files")
+			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files.")
 		return
 	for(var/datum/computer_file/file in starting_files)
 		var/result = hard_drive.store_file(file)
 		if(result == FALSE)
-			CRASH("[src] failed to install starting files for an unknown reason")
+			CRASH("[src] failed to install starting files for an unknown reason.")
 		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
 			var/datum/computer_file/program/program = result
 			if(program.requires_ntnet && program.network_destination)

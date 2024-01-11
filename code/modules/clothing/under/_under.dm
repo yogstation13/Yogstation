@@ -24,7 +24,7 @@
 	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
 
 /obj/item/clothing/under/worn_overlays(isinhands = FALSE)
-	. = list()
+	. = ..()
 	if(!isinhands)
 		if(damaged_clothes)
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")

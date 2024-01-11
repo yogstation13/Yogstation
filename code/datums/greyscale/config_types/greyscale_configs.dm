@@ -117,6 +117,11 @@
 	icon_file = 'icons/mob/clothing/uniform/color.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit_worn.json'
 
+/datum/greyscale_config/jumpsuit_lizard_worn
+	name = "Worn Jumpsuit"
+	icon_file = 'icons/mob/clothing/uniform/color.dmi'
+	json_config = 'code/datums/greyscale/json_configs/jumpsuit_worn.json'
+
 /datum/greyscale_config/jumpsuit_inhand_left
 	name = "Held Jumpsuit, Left"
 	icon_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
