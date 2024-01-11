@@ -410,7 +410,7 @@
 	list_reagents = list(/datum/reagent/consumable/cream = 10)
 
 /obj/item/reagent_containers/food/condiment/pack/chocolate
-	name = "creamer"
-	originalname = "cream"
+	name = "chocolate"
+	originalname = "chocolate"
 	list_reagents = list(/datum/reagent/consumable/chocolate = 10)
 
