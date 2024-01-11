@@ -89,6 +89,14 @@
 
 /obj/item/cautery/attack(mob/living/M, mob/user)
 	if(!attempt_initiate_surgery(src, M, user))
+		if(cig && M == user)
+			if(cig.lit)
+				to_chat(user, span_notice("[cig] is already lit."))
+				return
+			else
+				cig.light(span_notice("[user] carefully lights their [cig] with [src]."))
+				playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
+				return
 		..()
 
 /obj/item/cautery/augment
