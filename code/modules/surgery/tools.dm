@@ -89,16 +89,10 @@
 
 /obj/item/cautery/attack(mob/living/M, mob/user)
 	if(!attempt_initiate_surgery(src, M, user))
-	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
-		if(cig && M == user)
-			if(cig.lit)
-				to_chat(user, span_notice("[cig] is already lit."))
-				return
-			else
-				cig.light(span_notice("[user] carefully lights their [cig] with [src]."))
-				playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
-				return
 		..()
+
+/obj/item/cautery/ignition_effect(atom/A, mob/living/user)
+	. = span_danger("[user] carefully lights their [A.name] with [src].")
 
 /obj/item/cautery/augment
 	name = "cautery"
