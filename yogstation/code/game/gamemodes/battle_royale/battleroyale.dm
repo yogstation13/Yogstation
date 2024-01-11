@@ -260,6 +260,8 @@ GLOBAL_VAR(final_zone)
 	loot_spawn()
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 
+/// How many tiles in a given room gives a 100% guaranteed crate
+#define ROOMSIZESCALING 60 
 /datum/game_mode/fortnite/proc/loot_spawn()
 	for(var/area/lootlake as anything in GLOB.areas)
 		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
@@ -270,7 +272,8 @@ GLOBAL_VAR(final_zone)
 			continue
 		if(istype(lootlake, /area/maintenance))//no maintenance, it's too large, it'd lag the hell out of the server and it's not as popular as main hallways
 			continue //also, ideally keeps people out of maints, and in larger open areas that are more interesting
-		var/amount = round(LAZYLEN(lootlake.get_contained_turfs()) / 40)//so bigger areas spawn more crates
+		var/number = LAZYLEN(lootlake.get_contained_turfs())//so bigger areas spawn more crates
+		var/amount = round(number / ROOMSIZESCALING) + prob(((number % ROOMSIZESCALING)/ROOMSIZESCALING)*100) //any remaining tiles gives a probability to have an extra crate
 		for(var/I = 0, I < amount, I++)
 			var/turf/turfy = pick(get_area_turfs(lootlake))
 			for(var/L = 0, L < 15, L++)//cap so it doesn't somehow end in an infinite loop
@@ -278,6 +281,8 @@ GLOBAL_VAR(final_zone)
 					break
 				turfy = pick(get_area_turfs(lootlake))
 			addtimer(CALLBACK(src, PROC_REF(drop_pod), turfy), rand(1,50))//to even out the lag that creating a drop pod causes
+
+#undef ROOMSIZESCALING
 
 /datum/game_mode/fortnite/proc/drop_pod(turf/turfy)
 	var/obj/structure/closet/supplypod/centcompod/pod = new()
