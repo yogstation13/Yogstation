@@ -252,6 +252,19 @@
 	var/wrap = FALSE
 	//var/footstep = 1
 
+/obj/item/clothing/suit/hooded/flagelantes_chains/equipped(mob/M, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M))
+		RegisterSignal(M, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(handle_damage))
+		RegisterSignal(M, COMSIG_MOB_APPLY_HEALING, PROC_REF(on_heal))
+		RegisterSignal(M, COMSIG_CARBON_GAIN_WOUND, PROC_REF(handle_wound_add))
+	else
+		UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND))
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND))
+
 /obj/item/clothing/suit/hooded/flagelantes_chains/ToggleHood() //So people can't just quickly wear it whenever they want to
 	var/mob/living/carbon/human/H = src.loc
 	if(wrap) //Make sure they're not already trying to wear it
@@ -280,10 +293,54 @@
 				for(var/X in actions)
 					var/datum/action/A = X
 					A.build_all_button_icons()
+				ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+				change_slowdown(H, slowdown) // Ignore damage slowdown and change clothing slowdown based on damage
 		wrap = FALSE			
 	else
 		RemoveHood()
+		REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+		slowdown = 0
 
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
+
+	SIGNAL_HANDLER
+
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(C, slowdown) //Change speed when damaged
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_heal(var/mob/living/carbon/C, amount, damtype)
+
+	SIGNAL_HANDLER
+
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(C, slowdown) //Change speed when healed
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_wound_add(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
+
+	SIGNAL_HANDLER
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(var/mob/living/carbon/human/H, starting_slowdown)
+	var/health_percent = H.health / H.maxHealth
+	switch(health_percent) //Change slowdown based on health
+		if(0.90 to INFINITY)
+			slowdown = 1
+		if(0.70 to 0.89)
+			slowdown = 0.5
+		if(0.60 to 0.79)
+			slowdown = 0
+		if(0.30 to 0.59)
+			slowdown = -0.3
+		if(0.10 to 0.29)
+			slowdown = -0.6
+		if(0.1 to 0.9)
+			slowdown = -1
+		if(-INFINITY to 0) //So crit people are not rolling around at the speed of sound
+			slowdown = 1
+	if(slowdown > starting_slowdown) //Show bubble alert based on starting slowdown and new slowdown
+		H.balloon_alert(H, "You slow down!")
+	else if(slowdown < starting_slowdown)
+		H.balloon_alert(H, "You speed up!")
+		
 /* /obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_mob_move()
 	var/mob/living/carbon/human/H = loc
 	if(!istype(H) || H.wear_suit != src)
