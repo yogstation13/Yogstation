@@ -89,6 +89,7 @@
 
 /obj/item/cautery/attack(mob/living/M, mob/user)
 	if(!attempt_initiate_surgery(src, M, user))
+	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
 		if(cig && M == user)
 			if(cig.lit)
 				to_chat(user, span_notice("[cig] is already lit."))
