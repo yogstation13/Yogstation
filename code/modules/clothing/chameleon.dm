@@ -312,6 +312,12 @@
 /obj/item/clothing/under/chameleon/ratvar
 	name = "ratvarian engineer's jumpsuit"
 	desc = "A tough jumpsuit woven from alloy threads. It can take on the appearance of other jumpsuits."
+	mob_overlay_icon = 'icons/mob/clothing/uniform/uniform.dmi'
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+	greyscale_config_worn = null
 	icon_state = "engine"
 	item_state = "engi_suit"
 
