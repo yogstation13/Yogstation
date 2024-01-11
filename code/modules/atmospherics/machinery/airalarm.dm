@@ -119,6 +119,7 @@
 		GAS_ZAUKER = new/datum/tlv/dangerous,	
 		GAS_HALON = new/datum/tlv/dangerous,
 		GAS_HEXANE = new/datum/tlv/dangerous,
+		GAS_ANTINOB = new/datum/tlv/dangerous,
 	)
 
 /obj/machinery/airalarm/server // No checks here.
@@ -144,6 +145,7 @@
 		GAS_PLUONIUM = new/datum/tlv/dangerous,
 		GAS_HALON = new/datum/tlv/dangerous,
 		GAS_HEXANE = new/datum/tlv/dangerous,
+		GAS_ANTINOB = new/datum/tlv/dangerous,
 	)
 
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -80°C or 193.15°K.
@@ -170,6 +172,7 @@
 		GAS_ZAUKER = new/datum/tlv/dangerous,
 		GAS_HALON = new/datum/tlv/dangerous,
 		GAS_HEXANE = new/datum/tlv/dangerous,
+		GAS_ANTINOB = new/datum/tlv/dangerous,
 	)
 
 /obj/machinery/airalarm/unlocked
@@ -556,6 +559,7 @@
 						GAS_PLASMA,
 						GAS_H2O,
 						GAS_HYPERNOB,
+						GAS_ANTINOB,
 						GAS_NITROUS,
 						GAS_NITRIUM,
 						GAS_TRITIUM,
@@ -590,7 +594,7 @@
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
-					"set_external_pressure" = ONE_ATMOSPHERE*2
+					"set_external_pressure" = ONE_ATMOSPHERE
 				), signal_source)
 		if(AALARM_MODE_PANIC,
 			AALARM_MODE_REPLACEMENT)

@@ -23621,7 +23621,6 @@
 	id = "phoenixwright";
 	name = "Lawyer Shutters"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /obj/item/toy/figure/lawyer{
 	pixel_x = 7;
 	pixel_y = 5
@@ -23634,7 +23633,7 @@
 	pixel_y = 2
 	},
 /obj/structure/table/wood,
-/turf/open/floor/plating,
+/turf/open/floor/wood,
 /area/lawoffice)
 "fCV" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -37080,6 +37079,13 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/lawyer,
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching Prison Wing holding areas.";
+	name = "Prison Monitor";
+	network = list("prison");
+	pixel_y = -26;
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/lawoffice)
 "kyX" = (
@@ -51657,15 +51663,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
-"pRS" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
-	pixel_y = -6
-	},
-/turf/closed/wall,
-/area/lawoffice)
 "pRU" = (
 /obj/machinery/camera{
 	c_tag = "Kitchen North"
@@ -51726,6 +51723,12 @@
 /obj/effect/landmark/start/lawyer,
 /obj/structure/chair/comfy/teal{
 	dir = 4
+	},
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching Prison Wing holding areas.";
+	name = "Prison Monitor";
+	network = list("prison");
+	pixel_y = 26
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -66141,6 +66144,9 @@
 /obj/machinery/photocopier/faxmachine{
 	department = "Lawyer";
 	name = "Lawyer's Fax Machine"
+	},
+/obj/machinery/camera{
+	c_tag = "Law Office"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -100318,13 +100324,13 @@ dDy
 aiX
 fzs
 iNE
-pRS
+aph
 pTb
 xSN
 gdE
 xSN
 kyP
-uAs
+aph
 lVQ
 ayL
 bts

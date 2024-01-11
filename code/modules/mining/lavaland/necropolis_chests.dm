@@ -188,9 +188,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(active_owner && user == active_owner)
 		var/safety = alert(user, "Doing this will instantly kill you, reducing you to nothing but dust.", "Take off [src]?", "Abort", "Proceed")
 		if(safety != "Proceed")
-			return 
+			return
 	. = ..()
-	
+
 /obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
 	..()
 	if(active_owner)
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "hook"
 	desc = "A hook."
 	projectile_type = /obj/projectile/hook
-	caliber = "hook"
+	caliber = CALIBER_HOOK
 	icon_state = "hook"
 
 /obj/projectile/hook
@@ -679,7 +679,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "syndi_potionflask"
 	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
-	
+
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
@@ -1858,7 +1858,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/band)
 	var/limit = 3
-	var/telerange = 20 
+	var/telerange = 20
 	var/next_tap = 0
 	var/next_band = 0
 	var/next_teleport = 0
@@ -1972,7 +1972,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 						aide.forceMove(O)
 						playsound(aide, 'sound/magic/teleport_app.ogg', 20, 1)
 		next_band = world.time + COOLDOWN_BAND
-				
+
 
 /obj/item/cane/cursed/afterattack(mob/living/target , mob/living/carbon/user, proximity)
 	.=..()

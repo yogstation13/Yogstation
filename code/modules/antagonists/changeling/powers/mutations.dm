@@ -288,7 +288,7 @@
 	name = "tentacle"
 	desc = "A tentacle."
 	projectile_type = /obj/projectile/tentacle
-	caliber = "tentacle"
+	caliber = CALIBER_TENTACLE
 	icon_state = "tentacle_end"
 	firing_effect_type = null
 	var/obj/item/gun/magic/tentacle/gun //the item that shot it
@@ -613,23 +613,23 @@
 	if(synthetic)
 		can_drop = TRUE
 
-/obj/item/melee/flesh_maul/afterattack(atom/target, mob/user, proximity)	
+/obj/item/melee/flesh_maul/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		C.add_movespeed_modifier("flesh maul", update=TRUE, priority=101, multiplicative_slowdown=1)						//Slows the target because big whack
-		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	
+		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		to_chat(target, span_danger("You are staggered from the blow!"))
 
 	else if(iscyborg(target))
 		var/mob/living/silicon/robot/R = target
 		R.Paralyze(1 SECONDS)						//One second stun on borgs because they get their circuits rattled or something
 
-	else if(isstructure(target) || ismachinery(target))	
+	else if(isstructure(target) || ismachinery(target))
 		var/obj/structure/S = target			//Works for machinery because they have the same variable that does the same thing
-		var/structure_damage = S.max_integrity		
+		var/structure_damage = S.max_integrity
 		var/make_sound = TRUE
 		if(istype(target, /obj/structure/window) || istype(target, /obj/structure/grille))
 			structure_damage *= 2 				// Because of melee armor
