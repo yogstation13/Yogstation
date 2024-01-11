@@ -42,8 +42,16 @@
 			index = findtext(t, char, index+length(char))
 	return t
 
-/proc/sanitize_filename(t)
-	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+/proc/sanitize_filename(text)
+	return hashtag_newlines_and_tabs(text, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+
+/proc/hashtag_newlines_and_tabs(text, list/repl_chars = list("\n"="#","\t"="#"))
+	for(var/char in repl_chars)
+		var/index = findtext(text, char)
+		while(index)
+			text = copytext(text, 1, index) + repl_chars[char] + copytext(text, index + length(char))
+			index = findtext(text, char, index + length(char))
+	return text
 
 /proc/sanitize_name(t,list/repl_chars = null)
 	if(t == "space" || t == "floor" || t == "wall" || t == "r-wall" || t == "monkey" || t == "unknown" || t == "inactive ai")

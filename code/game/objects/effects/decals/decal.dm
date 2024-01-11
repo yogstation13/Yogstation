@@ -7,15 +7,23 @@
 
 /obj/effect/decal/Initialize(mapload)
 	. = ..()
-	if(turf_loc_check && (!isturf(loc) || NeverShouldHaveComeHere(loc)))
+	if(NeverShouldHaveComeHere(loc))
+		// Yog Code: Mappers you have a lot of shit to clean up before we can enable this
+		// if(mapload)
+		// 	stack_trace("[name] spawned in a bad turf ([loc]) at [AREACOORD(src)] in \the [get_area(src)].
+		// 		Please remove it or allow it to pass NeverShouldHaveComeHere if it's intended.")
 		return INITIALIZE_HINT_QDEL
+	var/static/list/loc_connections = list(
+		COMSIG_TURF_CHANGE = PROC_REF(on_decal_move),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/effect/decal/blob_act(obj/structure/blob/B)
 	if(B && B.loc == loc)
 		qdel(src)
 
-/obj/effect/decal/proc/NeverShouldHaveComeHere(turf/T)
-	return isclosedturf(T) || isgroundlessturf(T)
+/obj/effect/decal/proc/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf) || (isgroundlessturf(here_turf) && !GET_TURF_BELOW(here_turf))
 
 /obj/effect/decal/ex_act(severity, target)
 	qdel(src)
@@ -24,9 +32,12 @@
 	if(!(resistance_flags & FIRE_PROOF)) //non fire proof decal or being burned by lava
 		qdel(src)
 
-/obj/effect/decal/HandleTurfChange(turf/T)
-	..()
-	if(T == loc && NeverShouldHaveComeHere(T))
+/obj/effect/decal/proc/on_decal_move(turf/changed, path, list/new_baseturfs, flags, list/post_change_callbacks)
+	SIGNAL_HANDLER
+	post_change_callbacks += CALLBACK(src, PROC_REF(sanity_check_self))
+
+/obj/effect/decal/proc/sanity_check_self(turf/changed)
+	if(changed == loc && NeverShouldHaveComeHere(changed))
 		qdel(src)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,5 +69,12 @@
 
 /obj/effect/turf_decal/Destroy(force)
 	SHOULD_CALL_PARENT(FALSE)
-	moveToNullspace()
+// #ifdef UNIT_TESTS
+// // If we don't do this, turf decals will end up stacking up on a tile, and break the overlay limit
+// // I hate it too bestie
+// 	if(GLOB.running_create_and_destroy)
+// 		var/turf/T = loc
+// 		T.RemoveElement(/datum/element/decal, icon, icon_state, dir, null, layer, alpha, color, null, FALSE, null)
+// #endif
+	loc = null
 	return QDEL_HINT_QUEUE

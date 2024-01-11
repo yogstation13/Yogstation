@@ -624,9 +624,6 @@
 /obj/docking_port/mobile/emergency/backup
 	name = "backup shuttle"
 	id = "backup"
-	dwidth = 2
-	width = 8
-	height = 8
 	dir = EAST
 
 /obj/docking_port/mobile/emergency/backup/Initialize(mapload)

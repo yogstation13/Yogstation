@@ -194,10 +194,10 @@
 	slowdown = 0
 
 /turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm
-	flags_1 = CAN_BE_DIRTY_1 | NO_RUINS_1 | NO_RUST
+	flags_1 = CAN_BE_DIRTY_1 | NO_RUINS | NO_RUST
 
 /turf/open/floor/plating/asteroid/snow/icemoon/do_not_scrape
-	flags_1 = CAN_BE_DIRTY_1 | NO_RUINS_1 | NO_RUST
+	flags_1 = CAN_BE_DIRTY_1 | NO_RUINS | NO_RUST
 
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer
 	light_range = 2

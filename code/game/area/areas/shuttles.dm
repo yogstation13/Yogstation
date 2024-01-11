@@ -4,13 +4,14 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
-	static_lighting = TRUE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
 	valid_territory = FALSE
 	icon_state = "shuttle"
 	// Loading the same shuttle map at a different time will produce distinct area instances.
 	unique = FALSE
+	flags_1 = CAN_BE_DIRTY_1
 	area_limited_icon_smoothing = /area/shuttle
 	lighting_colour_tube = "#fff0dd"
 	lighting_colour_bulb = "#ffe1c1"
@@ -63,7 +64,6 @@
 
 /area/shuttle/hunter
 	name = "Hunter Shuttle"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	blob_allowed = FALSE
 
 ////////////////////////////White Ship////////////////////////////
@@ -100,6 +100,7 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 
@@ -150,6 +151,7 @@
 /area/shuttle/escape
 	name = "Emergency Shuttle"
 	area_limited_icon_smoothing = /area/shuttle/escape
+	flags_1 = CAN_BE_DIRTY_1
 
 /area/shuttle/escape/backup
 	name = "Backup Emergency Shuttle"

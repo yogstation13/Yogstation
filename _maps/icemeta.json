@@ -4,12 +4,12 @@
 	"map_file": "IceMeta.dmm",
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
+	"planetary": 1,
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
 		"emergency": "emergency_meta"
 	},
-	"minetype": "icemoon",
 	"traits": [
 		{
 			"Up": true,
@@ -19,7 +19,8 @@
 			"Ice Ruins": true,
 			"Mining": true,
 			"Gravity": true,
-			"Bombcap Multiplier": 2.5
+			"Bombcap Multiplier": 2.5,
+			"No Parallax": true
 		},
 		{
 			"Down": true,
@@ -30,7 +31,8 @@
 			"Ice Ruins": true,
 			"Mining": true,
 			"Gravity": true,
-			"Bombcap Multiplier": 2.5
+			"Bombcap Multiplier": 2.5,
+			"No Parallax": true
 		},
 		{
 			"Down": true,
@@ -39,7 +41,9 @@
 			"Weather_Snowstorm": true,
 			"Ice Ruins": false,
 			"Mining": true,
-			"Gravity": true
+			"Gravity": true,
+			"No Parallax": true
 		}
-	]
+	],
+	"minetype": "none"
 }

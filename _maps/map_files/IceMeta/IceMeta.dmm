@@ -56393,10 +56393,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"qrN" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/vacant_room/commissary)
 "qrZ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/camera{
@@ -65159,11 +65155,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"sVc" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/maintenance/starboard)
 "sVf" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -238954,10 +238945,10 @@ poy
 ruf
 bxU
 jfG
-qrN
+jfG
 ipZ
 gzZ
-qrN
+jfG
 sYq
 xvm
 hwv
@@ -254405,8 +254396,8 @@ cim
 iJT
 cim
 yjI
-sVc
 jxo
+xqA
 jxo
 jxo
 jxo

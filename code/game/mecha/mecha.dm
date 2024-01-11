@@ -679,7 +679,7 @@
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
 
-	if(phasing && ((newloc.flags_1 & NOJAUNT_1) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
+	if(phasing && ((newloc.flags_1 & NOJAUNT) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
 		return	//If we're trying to phase and it's NOT ALLOWED, don't bump
 

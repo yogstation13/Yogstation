@@ -31,6 +31,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	blob_allowed = FALSE //Eating up space doesn't count for victory as a blob.
 	ambience_index = null
 	ambient_music_index = AMBIENCE_SPACE
+	flags_1 = CAN_BE_DIRTY_1
 	ambient_buzz = null
 	sound_environment = SOUND_AREA_SPACE
 

@@ -70,14 +70,6 @@
 #define STAGE_FIVE 9
 #define STAGE_SIX 11 //From supermatter shard
 
-//SSticker.current_state values
-#define GAME_STATE_STARTUP		0
-#define GAME_STATE_PREGAME		1
-#define GAME_STATE_SETTING_UP	2
-#define GAME_STATE_PLAYING		3
-#define GAME_STATE_FINISHED		4
-
-
 //FONTS:
 // Used by Paper and PhotoCopier (and PaperBin once a year).
 // Used by PDA's Notekeeper.
@@ -332,26 +324,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define STACK_CHECK_CARDINALS "cardinals" //checks if there is an object of the result type in any of the cardinal directions
 #define STACK_CHECK_ADJACENT "adjacent" //checks if there is an object of the result type within one tile
 
-//text files
-/// File location for brain damage traumas
-#define BRAIN_DAMAGE_FILE "traumas.json"
-/// File location for AI ion laws
-#define ION_FILE "ion_laws.json"
-/// File location for pirate names
-#define PIRATE_NAMES_FILE "pirates.json"
-/// File location for redpill questions
-#define REDPILL_FILE "redpill.json"
-/// File location for wanted posters messages
-#define WANTED_FILE "wanted_message.json"
-/// File location for really dumb suggestions memes
-#define VISTA_FILE "steve.json"
-/// File location for flesh wound descriptions
-#define FLESH_SCAR_FILE "wounds/flesh_scar_desc.json"
-/// File location for bone wound descriptions
-#define BONE_SCAR_FILE "wounds/bone_scar_desc.json"
-/// File location for scar wound descriptions
-#define SCAR_LOC_FILE "wounds/scar_loc.json"
-
 //Fullscreen overlay resolution in tiles.
 #define FULLSCREEN_OVERLAY_RESOLUTION_X 15
 #define FULLSCREEN_OVERLAY_RESOLUTION_Y 15
@@ -410,10 +382,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define GRENADE_EMPTY 1
 #define GRENADE_WIRED 2
 #define GRENADE_READY 3
-
-//Misc text define. Does 4 spaces. Used as a makeshift tabulator.
-#define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
-
 
 // camera shooting modes , originally was going to put this under tools since the camera is a tool in rl but wasn't 100% sure
 #define CAMERA_STANDARD 		"standard"

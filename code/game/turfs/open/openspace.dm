@@ -18,6 +18,8 @@
 /turf/open/openspace/airless/planetary
 	planetary_atmos = TRUE
 
+// Reminder, any behavior code written here needs to be duped to /turf/open/space/openspace
+// I am so sorry
 /turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
 	if(PERFORM_ALL_TESTS(focus_only/openspace_clear) && !GET_TURF_BELOW(src))
@@ -176,7 +178,7 @@
 	//I wonder if I should error here
 	if(!T)
 		return
-	if(T.flags_1 & NO_RUINS_1 && protect_ruin)
+	if(T.flags_1 & NO_RUINS && protect_ruin)
 		ChangeTurf(replacement_turf, null, CHANGETURF_IGNORE_AIR)
 		return
 	if(!ismineralturf(T) || !drill_below)

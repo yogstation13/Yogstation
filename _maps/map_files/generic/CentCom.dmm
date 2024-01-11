@@ -1201,8 +1201,7 @@
 /obj/structure/bed,
 /obj/machinery/airalarm{
 	pixel_y = 24;
-	req_access = list(150);
-	req_access_txt = "0"
+	req_access = list(150)
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -6877,7 +6876,6 @@
 "apA" = (
 /obj/machinery/turretid{
 	ailock = 1;
-	control_area = null;
 	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
 	icon_state = "control_stun";
 	name = "Security turret control";
@@ -13681,7 +13679,7 @@
 "aCQ" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aCR" = (
 /obj/machinery/computer/security{
@@ -17597,9 +17595,9 @@
 	dir = 4;
 	dwidth = 2;
 	height = 8;
-	id = "backup_away";
 	name = "Backup Shuttle Dock";
 	roundstart_template = /datum/map_template/shuttle/emergency/backup;
+	id = "backup_away";
 	width = 8
 	},
 /turf/open/space/basic,
@@ -18137,14 +18135,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/machinery/airalarm{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 24;
 	req_access = 150
 	},
 /obj/machinery/turretid{
 	icon_state = "control_kill";
 	lethal = 1;
-	locked = 1;
 	pixel_y = 28;
 	req_access = 150
 	},
@@ -18353,9 +18349,7 @@
 /area/yogs/infiltrator_base)
 "aLx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aLy" = (
 /obj/effect/turf_decal/tile/red{
@@ -18683,7 +18677,7 @@
 "aMj" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/structure/light_prism,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aMk" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -19158,7 +19152,7 @@
 "aNf" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/down,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aNg" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -19324,7 +19318,7 @@
 "aNx" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /mob/living/simple_animal/hostile/carp/ranged,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aNy" = (
 /obj/machinery/modular_computer/console/preset/research,
@@ -19795,7 +19789,7 @@
 "aOu" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aOv" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -19948,9 +19942,7 @@
 /obj/item/storage/crayons,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aOK" = (
 /obj/machinery/door/airlock/external{
@@ -20697,7 +20689,7 @@
 "aQq" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aQr" = (
 /turf/open/floor/plating/asteroid/snow/temperatre,
@@ -20812,7 +20804,7 @@
 "aQB" = (
 /obj/structure/light_prism,
 /obj/structure/lattice/catwalk/swarmer_catwalk,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aQC" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -20846,7 +20838,7 @@
 "aQE" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/shreds,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aQF" = (
 /obj/structure/shuttle/engine/heater{
@@ -20968,7 +20960,7 @@
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/leaper_sludge,
 /mob/living/simple_animal/hostile/carp/ranged/chaos,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aQR" = (
 /turf/closed/indestructible/abductor{
@@ -21188,8 +21180,7 @@
 	},
 /obj/machinery/airalarm{
 	pixel_y = 24;
-	req_access = list(150);
-	req_access_txt = "0"
+	req_access = list(150)
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base/jail)
@@ -21327,7 +21318,7 @@
 "aRA" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /mob/living/simple_animal/hostile/retaliate/goat/king,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aRB" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -21624,7 +21615,7 @@
 "aSa" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/robot_debris/old,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aSb" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -21719,7 +21710,7 @@
 "aSo" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/body,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aSp" = (
 /obj/effect/decal/cleanable/crayon{
@@ -22024,7 +22015,6 @@
 	pixel_y = -2
 	},
 /obj/item/toy/cards/deck/syndicate{
-	icon_state = "deck_syndicate_full";
 	pixel_x = -6;
 	pixel_y = 6
 	},
@@ -23292,9 +23282,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aVC" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -23576,7 +23564,6 @@
 "aWf" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -24;
 	req_access = list(150)
 	},
@@ -24394,7 +24381,7 @@
 /area/centcom/ferry)
 "aXI" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aXJ" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -24980,9 +24967,7 @@
 	},
 /area/holodeck/rec_center/chapelcourt)
 "aYX" = (
-/obj/machinery/airalarm/directional/west{
-	pixel_x = -24
-	},
+/obj/machinery/airalarm/directional/west,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -25076,7 +25061,7 @@
 "aZg" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/leaper_sludge,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aZh" = (
 /obj/effect/turf_decal/tile/green{
@@ -25092,7 +25077,6 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/door/airlock/centcom{
 	name = "Equipment Room";
-	opacity = 1;
 	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -25198,9 +25182,7 @@
 "aZt" = (
 /obj/machinery/washing_machine,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aZu" = (
 /obj/structure/chair/stool,
@@ -25515,7 +25497,7 @@
 "aZZ" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /mob/living/simple_animal/hostile/carp/ranged/chaos,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "baa" = (
 /turf/open/indestructible/brazil/necropolis,
@@ -26072,9 +26054,7 @@
 /obj/structure/mirror{
 	pixel_x = 28
 	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "gCx" = (
 /obj/effect/landmark/wiki,
@@ -26664,7 +26644,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
-	dir = 2;
 	pixel_y = 24
 	},
 /obj/machinery/recharge_station/fullupgrade,
@@ -26673,7 +26652,6 @@
 "ngw" = (
 /obj/machinery/computer/cryopod{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -28
 	},
 /turf/open/floor/wood,
@@ -27060,7 +27038,6 @@
 	},
 /obj/machinery/door/airlock/centcom{
 	name = "Atmos Room";
-	opacity = 1;
 	req_access_txt = "150"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
@@ -27247,9 +27224,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
@@ -27736,9 +27711,7 @@
 /obj/machinery/door/window{
 	name = "Shower Door"
 	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 
 (1,1,1) = {"

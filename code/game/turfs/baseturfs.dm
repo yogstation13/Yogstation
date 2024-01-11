@@ -84,9 +84,8 @@
 			new_baseturfs += target_baseturfs
 
 	var/turf/newT = copytarget.copyTurf(src, copy_air, flags)
-	newT.baseturfs = new_baseturfs
+	newT.baseturfs = baseturfs_string_list(new_baseturfs, newT)
 	return newT
-
 
 /// Tries to find the given type in baseturfs.
 /// If found, returns how deep it is for use in other baseturf procs, or null if it cannot be found.

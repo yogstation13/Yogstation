@@ -2,7 +2,10 @@
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
-	flags_1 = NOJAUNT_1 | CAN_BE_DIRTY_1 | NO_RUST
+	flags_1 = NOJAUNT | NO_RUST
+
+/turf/closed/indestructible/rust_heretic_act()
+	return
 
 /turf/closed/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
@@ -42,23 +45,38 @@
 
 /turf/closed/indestructible/splashscreen
 	name = "Space Station 13"
+	desc = null
 	icon = 'icons/blanks/blank_title.png'
 	icon_state = ""
-	layer = FLY_LAYER
+	//pixel_x = -64
+	plane = SPLASHSCREEN_PLANE
 	bullet_bounce_sound = null
 
-/turf/closed/indestructible/splashscreen/New()
+INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
+
+/turf/closed/indestructible/splashscreen/Initialize(mapload)
+	. = ..()
 	SStitle.splash_turf = src
 	if(SStitle.icon)
 		icon = SStitle.icon
-	..()
+		handle_generic_titlescreen_sizes()
+
+///helper proc that will center the screen if the icon is changed to a generic width, to make admins have to fudge around with pixel_x less. returns null
+/turf/closed/indestructible/splashscreen/proc/handle_generic_titlescreen_sizes()
+	var/icon/size_check = icon(SStitle.icon, icon_state)
+	var/width = size_check.Width()
+	if(width == 480) // 480x480 is nonwidescreen
+		pixel_x = 0
+	else if(width == 608) // 608x480 is widescreen
+		pixel_x = -64
 
 /turf/closed/indestructible/splashscreen/vv_edit_var(var_name, var_value)
 	. = ..()
 	if(.)
 		switch(var_name)
-			if("icon")
+			if(NAMEOF(src, icon))
 				SStitle.icon = icon
+				handle_generic_titlescreen_sizes()
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'

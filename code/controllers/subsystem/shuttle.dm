@@ -8,9 +8,10 @@
 
 SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
-	wait = 10
+	wait = 1 SECONDS
 	init_order = INIT_ORDER_SHUTTLE
 	flags = SS_KEEP_TIMING
+	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 	loading_points = 4.9 SECONDS // Yogs -- loading times
 
@@ -112,8 +113,8 @@ SUBSYSTEM_DEF(shuttle)
 		if(!thing)
 			mobile.Remove(thing)
 			continue
-		var/obj/docking_port/mobile/P = thing
-		P.check()
+		var/obj/docking_port/mobile/port = thing
+		port.check()
 	for(var/thing in transit)
 		var/obj/docking_port/stationary/transit/T = thing
 		if(!T.owner)
@@ -521,10 +522,10 @@ SUBSYSTEM_DEF(shuttle)
 	// Then create a transit docking port in the middle
 	var/coords = M.return_coords(0, 0, dock_dir)
 	/*  0------2
-        |      |
-        |      |
-        |  x   |
-        3------1
+    *   |      |
+    *   |      |
+    *   |  x   |
+    *   3------1
 	*/
 
 	var/x0 = coords[1]
@@ -541,6 +542,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/turf/midpoint = locate(transit_x, transit_y, bottomleft.z)
 	if(!midpoint)
+		qdel(proposal)
 		return FALSE
 	var/area/old_area = midpoint.loc
 	old_area.turfs_to_uncontain += proposal.reserved_turfs

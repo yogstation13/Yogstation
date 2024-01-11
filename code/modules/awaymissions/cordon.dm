@@ -11,7 +11,7 @@
 	blocks_air = TRUE
 	space_lit = TRUE
 	bullet_bounce_sound = null
-	flags_1 = CAN_BE_DIRTY_1 | NO_RUST
+	flags_1 = NOJAUNT
 	baseturfs = /turf/cordon
 
 /turf/cordon/AfterChange()
@@ -51,7 +51,7 @@
 /area/misc/cordon
 	name = "CORDON"
 	icon_state = "cordon"
-	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	unique = TRUE

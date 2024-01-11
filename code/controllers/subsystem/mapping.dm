@@ -103,16 +103,15 @@ SUBSYSTEM_DEF(mapping)
 	var/list/loaded_lazy_templates
 
 //dlete dis once #39770 is resolved
-/datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
-	if(!config)
+/datum/controller/subsystem/mapping/PreInit()
+	..()
 #ifdef FORCE_MAP
-		config = load_map_config(FORCE_MAP)
+	config = load_map_config(FORCE_MAP, FORCE_MAP_DIRECTORY)
 #else
-		config = load_map_config(error_if_missing = FALSE)
+	config = load_map_config(error_if_missing = FALSE)
 #endif
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
-	HACK_LoadMapConfig()
 	if(initialized)
 		return SS_INIT_SUCCESS
 	if(config.defaulted)
@@ -242,7 +241,8 @@ SUBSYSTEM_DEF(mapping)
 		var/packetlen = length(packet)
 		while(packetlen)
 			if(MC_TICK_CHECK)
-				lists_to_reserve.Cut(1, index)
+				if(index)
+					lists_to_reserve.Cut(1, index)
 				return
 			var/turf/T = packet[packetlen]
 			T.empty(RESERVED_TURF_TYPE, RESERVED_TURF_TYPE, null, TRUE)
@@ -250,7 +250,7 @@ SUBSYSTEM_DEF(mapping)
 			unused_turfs["[T.z]"] |= T
 			var/area/old_area = T.loc
 			old_area.turfs_to_uncontain += T
-			T.turf_flags |= UNUSED_RESERVATION_TURF
+			T.turf_flags = UNUSED_RESERVATION_TURF
 			world_contents += T
 			world_turf_contents += T
 			packet.len--
@@ -323,6 +323,10 @@ SUBSYSTEM_DEF(mapping)
 	if(!error)
 		returning += M
 		qdel(T, TRUE)
+
+/datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
+	RETURN_TYPE(/datum/turf_reservation)
+	return used_turfs[T]
 
 /* Nuke threats, for making the blue tiles on the station go RED
    Used by the AI doomsday and the self destruct nuke.
@@ -474,9 +478,7 @@ SUBSYSTEM_DEF(mapping)
 				GLOB.minetype = MINETYPE_JUNGLE
 			 
 	//Yogs end
-	else if(config.minetype == "icemoon")
-		GLOB.minetype = MINETYPE_ICEMOON
-	else if (!isnull(config.minetype))
+	else if (!isnull(config.minetype) && config.minetype != "none")
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
 
@@ -569,7 +571,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 /datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
 	if(!VM.MakeNextMap())
-		next_map_config = load_map_config(default_to_box = TRUE)
+		next_map_config = load_map_config()
 		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
 		return
 
@@ -629,8 +631,9 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		else if(istype(R,/datum/map_template/ruin/jungle/all))
 			jungleland_general_ruins_templates[R.name] = R
 		//Yogs end
+
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
-	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")
+	var/list/unbuyable = generateMapList("unbuyableshuttles.txt")
 
 	for(var/item in subtypesof(/datum/map_template/shuttle))
 		var/datum/map_template/shuttle/shuttle_type = item
@@ -979,11 +982,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 /// Returns true if the map we're playing on is on a planet
 /datum/controller/subsystem/mapping/proc/is_planetary()
 	return config.planetary
-
-/datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
-	RETURN_TYPE(/datum/turf_reservation)
-	return used_turfs[T]
-
 
 /datum/controller/subsystem/mapping/proc/get_map_weights()
 	var/list/previous_maps = list()

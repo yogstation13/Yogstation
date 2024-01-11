@@ -2,17 +2,26 @@
 	name = "Base Shuttle Template"
 	var/prefix = "_maps/shuttles/"
 	var/suffix
+	/**
+	 * Port ID is the place this template should be docking at, set on '/obj/docking_port/stationary'
+	 * Because getShuttle() compares port_id to shuttle_id to find an already existing shuttle,
+	 * you should set shuttle_id to be the same as port_id if you want them to be replacable.
+	 */
 	var/port_id
+	/// ID of the shuttle, make sure it matches port_id if necessary.
 	var/shuttle_id
-
+	/// Information to display on communication console about the shuttle
 	var/description
+	/// Description of the prerequisition that has to be achieved for the shuttle to be purchased
 	var/prerequisites
+	/// Shuttle warnings and hazards to the admin who spawns the shuttle
 	var/admin_notes
-
+	/// How much does this shuttle cost the cargo budget to purchase? Put in terms of CARGO_CRATE_VALUE to properly scale the cost with the current balance of cargo's income.
 	var/credit_cost = INFINITY
+	/// Whether or not this shuttle is locked to emags only.
 	var/emag_buy = FALSE
-
-	var/list/movement_force // If set, overrides default movement_force on shuttle
+	/// If set, overrides default movement_force on shuttle
+	var/list/movement_force
 
 	var/port_x_offset
 	var/port_y_offset
@@ -31,30 +40,13 @@
 	if(!cached_map)
 		return
 
-	discover_port_offset()
+	var/offset = discover_offset(/obj/docking_port/mobile)
+
+	port_x_offset = offset[1]
+	port_y_offset = offset[2]
 
 	if(!cache)
 		cached_map = null
-
-/datum/map_template/shuttle/proc/discover_port_offset()
-	var/key
-	var/list/models = cached_map.grid_models
-	for(key in models)
-		if(findtext(models[key], "[/obj/docking_port/mobile]")) // Yay compile time checks
-			break // This works by assuming there will ever only be one mobile dock in a template at most
-
-	for(var/i in cached_map.gridSets)
-		var/datum/grid_set/gset = i
-		var/ycrd = gset.ycrd
-		for(var/line in gset.gridLines)
-			var/xcrd = gset.xcrd
-			for(var/j in 1 to length(line) step cached_map.key_len)
-				if(key == copytext(line, j, j + cached_map.key_len))
-					port_x_offset = xcrd
-					port_y_offset = ycrd
-					return
-				++xcrd
-			--ycrd
 
 /datum/map_template/shuttle/load(turf/T, centered, register=TRUE)
 	. = ..()
@@ -64,10 +56,12 @@
 							locate(.[MAP_MAXX], .[MAP_MAXY], .[MAP_MAXZ]))
 	for(var/i in 1 to turfs.len)
 		var/turf/place = turfs[i]
-		if(istype(place, /turf/open/space)) // This assumes all shuttles are loaded in a single spot then moved to their real destination.
+		if(isspaceturf(place)) // This assumes all shuttles are loaded in a single spot then moved to their real destination.
 			continue
-		if(length(place.baseturfs) < 2) // Some snowflake shuttle shit
+		
+		if (place.count_baseturfs() < 2) // Some snowflake shuttle shit
 			continue
+		
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 		for(var/obj/docking_port/mobile/port in place)
@@ -104,6 +98,7 @@
 /datum/map_template/shuttle/post_load(obj/docking_port/mobile/M)
 	if(movement_force)
 		M.movement_force = movement_force.Copy()
+	//M.linkup()
 
 /datum/map_template/shuttle/emergency
 	port_id = "emergency"

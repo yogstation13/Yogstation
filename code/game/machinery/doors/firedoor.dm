@@ -154,7 +154,7 @@
 	if(W.use_tool(src, user, 40, volume=50))
 		welded = !welded
 		to_chat(user, span_danger("[user] [welded?"welds":"unwelds"] [src]."), span_notice("You [welded ? "weld" : "unweld"] [src]."))
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/I, mob/user)
 	if(welded || operating)

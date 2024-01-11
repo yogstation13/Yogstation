@@ -15,9 +15,6 @@
 		C.parallax_layers_cached = list()
 		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, src)
 		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, src)
-
-		if(!GLOB.minetype)
-			stack_trace("GLOB.minetype wasn't set when creating parallax! uh oh!!")
 			
 		if(GLOB.minetype == MINETYPE_LAVALAND)
 			if(HAS_TRAIT(SSstation, STATION_TRAIT_MOONSCORCH))

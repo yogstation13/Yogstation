@@ -1,9 +1,10 @@
 /turf/open/space/transit
 	name = "\proper hyperspace"
+	desc = "What is this, light-speed? We need to go to plaid speed!"  // spaceballs was a great movie
 	icon_state = "black"
 	dir = SOUTH
 	baseturfs = /turf/open/space/transit
-	flags_1 = NOJAUNT_1 //This line goes out to every wizard that ever managed to escape the den. I'm sorry.
+	flags_1 = NOJAUNT //This line goes out to every wizard that ever managed to escape the den. I'm sorry.
 	explosion_block = INFINITY
 
 /turf/open/space/transit/Initialize(mapload)
@@ -16,6 +17,7 @@
 /turf/open/space/transit/Destroy()
 	//Signals are NOT removed from turfs upon replacement, and we get replaced ALOT, so unregister our signal
 	UnregisterSignal(src, list(COMSIG_TURF_RESERVATION_RELEASED, COMSIG_ATOM_ENTERED, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON))
+	
 	return ..()
 
 /turf/open/space/transit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
@@ -23,11 +25,19 @@
 	underlay_appearance.icon_state = "speedspace_ns_[get_transit_state(asking_turf)]"
 	underlay_appearance.transform = turn(matrix(), get_transit_angle(asking_turf))
 
+/turf/open/space/transit/update_icon()
+	. = ..()
+	transform = turn(matrix(), get_transit_angle(src))
+
+/turf/open/space/transit/update_icon_state()
+	icon_state = "speedspace_ns_[get_transit_state(src)]"
+	return ..()
+
 /turf/open/space/transit/proc/initialize_drifting(atom/entered, atom/movable/enterer)
 	SIGNAL_HANDLER
 
-	// if(enterer && !HAS_TRAIT(enterer, TRAIT_HYPERSPACED) && !HAS_TRAIT(src, TRAIT_HYPERSPACE_STOPPED))
-	// 	enterer.AddComponent(/datum/component/shuttle_cling, REVERSE_DIR(dir))
+	if(!locate(/obj/structure/lattice) in src)
+		dump_in_space(enterer)
 
 /turf/open/space/transit/proc/initialize_drifting_but_from_initialize(atom/movable/location, atom/movable/enterer, mapload)
 	SIGNAL_HANDLER
@@ -87,11 +97,6 @@
 
 /turf/open/space/transit/east
 	dir = EAST
-
-/turf/open/space/transit/update_icon_state()
-	. = ..()
-	icon_state = "speedspace_ns_[get_transit_state(src)]"
-	transform = turn(matrix(), get_transit_angle(src))
 
 /proc/get_transit_state(turf/T)
 	var/p = 9

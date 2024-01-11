@@ -115,9 +115,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		callback.InvokeAsync(new_turf)
 
 	if(new_baseturfs)
-		new_turf.baseturfs = new_baseturfs
+		new_turf.baseturfs = baseturfs_string_list(new_baseturfs, new_turf)
 	else
-		new_turf.baseturfs = old_baseturfs
+		new_turf.baseturfs = baseturfs_string_list(old_baseturfs, new_turf) //Just to be safe
 
 	new_turf.explosion_id = old_exi
 	new_turf.explosion_level = old_exl
@@ -153,6 +153,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		QUEUE_SMOOTH_NEIGHBORS(src)
 		QUEUE_SMOOTH(src)
 
+	// We will only run this logic if the tile is not on the prime z layer, since we use area overlays to cover that
+	if(SSmapping.z_level_to_plane_offset[z])
+		var/area/our_area = new_turf.loc
+		if(our_area.lighting_effects)
+			new_turf.add_overlay(our_area.lighting_effects[SSmapping.z_level_to_plane_offset[z] + 1])
+
 	SSdemo.mark_turf(new_turf)
 
 	return new_turf
@@ -181,7 +187,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	else
 		if(turf_fire)
 			qdel(turf_fire)
-		if(ispath(path,/turf/closed)|| ispath(path,/turf/cordon))
+		if(ispath(path, /turf/closed) || ispath(path, /turf/cordon))
 			flags |= CHANGETURF_RECALC_ADJACENT
 			update_air_ref(-1)
 			. = ..()
@@ -193,7 +199,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 //If you modify this function, ensure it works correctly with lateloaded map templates.
 /turf/proc/AfterChange(flags) //called after a turf has been replaced in ChangeTurf()
 	levelupdate()
-	ImmediateCalculateAdjacentTurfs()
+	if(flags & CHANGETURF_RECALC_ADJACENT)
+		ImmediateCalculateAdjacentTurfs()
 
 	//update firedoor adjacency
 	var/list/turfs_to_check = get_adjacent_open_turfs(src) | src
@@ -201,8 +208,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		var/turf/T = I
 		for(var/obj/machinery/door/firedoor/FD in T)
 			FD.CalculateAffectingAreas()
-
-	HandleTurfChange(src)
 
 /turf/open/AfterChange(flags)
 	..()

@@ -241,6 +241,9 @@
 	smoothing_groups = SMOOTH_GROUP_TITANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_TITANIUM_WALLS
 
+/turf/closed/wall/mineral/titanium/rust_heretic_act()
+	return // titanium does not rust
+
 /turf/closed/wall/mineral/titanium/nodiagonal
 	icon_state = "map-shuttle_nd"
 	base_icon_state = "shuttle_wall"

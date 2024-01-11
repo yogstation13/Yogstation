@@ -38,6 +38,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ON_BORDER_1					(1<<8)
 /// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
 #define PREVENT_CLICK_UNDER_1		(1<<9)
+///specifies that this atom is a hologram that isnt real
 #define HOLOGRAM_1					(1<<10)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
 #define TESLA_IGNORE_1				(1<<11)
@@ -48,26 +49,37 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// should not get harmed if this gets caught by an explosion?
 #define PREVENT_CONTENTS_EXPLOSION_1 (1<<14)
 /// should the contents of this atom be acted upon
-#define RAD_PROTECT_CONTENTS_1 (1 << 15)
+#define RAD_PROTECT_CONTENTS_1 		(1<<15)
 /// should this object be allowed to be contaminated
-#define RAD_NO_CONTAMINATE_1 (1 << 16)
+#define RAD_NO_CONTAMINATE_1 		(1<<16)
 /// Prevents most radiation on this turf from leaving it
-#define RAD_CONTAIN_CONTENTS (1<<17)
+#define RAD_CONTAIN_CONTENTS 		(1<<17)
 /// Is the thing currently spinning?
-#define IS_SPINNING_1 (1<<18)
+#define IS_SPINNING_1 				(1<<18)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 (1<<19)
+#define HTML_USE_INITAL_ICON_1 		(1<<19)
+/// If a turf can be made dirty at roundstart. This is also used in areas.
+#define CAN_BE_DIRTY_1				(1<<20)
 
 //TURF FLAGS
-#define NOJAUNT_1					(1<<0)
-/// If a turf can be made dirty at roundstart. This is also used in areas.
-#define CAN_BE_DIRTY_1				(1<<2)
+/// If a turf cant be jaunted through.
+#define NOJAUNT						(1<<0)
+/// If a turf is an usused reservation turf awaiting assignment
+#define UNUSED_RESERVATION_TURF 	(1<<1)
+/// If a turf is a reserved turf
+#define RESERVATION_TURF 			(1<<2)
 /// Blocks lava rivers being generated on the turf
-#define NO_LAVA_GEN_1				(1<<3)
+#define NO_LAVA_GEN					(1<<3)
 /// Blocks ruins spawning on the turf
-#define NO_RUINS_1					(1<<4)
+#define NO_RUINS					(1<<4)
 /// Blocks this turf from being rusted
 #define NO_RUST 					(1<<5)
+/// Is this turf is "solid". Space and lava aren't for instance
+#define IS_SOLID 					(1<<6)
+/// This turf will never be cleared away by other objects on Initialize.
+#define NO_CLEARING 				(1<<7)
+
+
 /// If this atom has experienced a decal element "init finished" sourced appearance update
 /// We use this to ensure stacked decals don't double up appearance updates for no rasin
 /// Flag as an optimization, don't make this a trait without profiling
@@ -222,19 +234,3 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define IGNORE_SLOWDOWNS (1<<4)
 
 #define IGNORE_ALL (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM|IGNORE_INCAPACITATED|IGNORE_SLOWDOWNS)
-
-//TURF FLAGS
-/// If a turf cant be jaunted through.
-#define NOJAUNT (1<<0)
-/// If a turf is an usused reservation turf awaiting assignment
-#define UNUSED_RESERVATION_TURF (1<<1)
-/// If a turf is a reserved turf
-#define RESERVATION_TURF (1<<2)
-/// Blocks lava rivers being generated on the turf.
-#define NO_LAVA_GEN (1<<3)
-/// Blocks ruins spawning on the turf.
-#define NO_RUINS (1<<4)
-/// Is this turf is "solid". Space and lava aren't for instance
-#define IS_SOLID (1<<6)
-/// This turf will never be cleared away by other objects on Initialize.
-#define NO_CLEARING (1<<7)
