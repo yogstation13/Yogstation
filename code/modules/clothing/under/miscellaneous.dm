@@ -773,6 +773,7 @@
 /obj/item/clothing/under/durathread
 	name = "durathread jumpsuit"
 	desc = "A jumpsuit made from durathread, its resilient fibres provide some protection to the wearer."
+	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "jumpsuit"
 	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'
 	greyscale_colors = "#8291a1"
