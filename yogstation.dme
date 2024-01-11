@@ -30,6 +30,7 @@
 #include "code\__DEFINES\actions.dm"
 #include "code\__DEFINES\admin.dm"
 #include "code\__DEFINES\ai.dm"
+#include "code\__DEFINES\ammo.dm"
 #include "code\__DEFINES\announcements.dm"
 #include "code\__DEFINES\anomalies.dm"
 #include "code\__DEFINES\antagonists.dm"
