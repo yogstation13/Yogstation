@@ -5,7 +5,7 @@
 	desc = "A seven-shot speed loader designed for .357 revolvers. High damaging, some innate prowess against armor."
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/a357
-	caliber = "357"
+	caliber = CALIBER_357MAG
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
@@ -51,7 +51,7 @@
 	desc = "A six-shot speed loader designed for .44 revolvers. Massively damaging, wreaks havoc on bodies."
 	icon_state = "44"
 	ammo_type = /obj/item/ammo_casing/m44
-	caliber = "44"
+	caliber = CALIBER_44MAG
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
@@ -62,7 +62,7 @@
 	desc = "A six-shot speed loader designed for .38 revolvers."
 	icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
-	caliber = "38"
+	caliber = CALIBER_38
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	materials = list(/datum/material/iron = 20000)
@@ -81,7 +81,7 @@
 			These needle-like rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is five minutes."
 	icon_state = "32trac"
 	ammo_type = /obj/item/ammo_casing/tra32
-	caliber = "32trac"
+	caliber = CALIBER_32ACP
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
@@ -91,14 +91,14 @@
 	name = "ammo box (9mm)"
 	icon_state = "9mmbox"
 	ammo_type = /obj/item/ammo_casing/c9mm
-	caliber = "9mm"
+	caliber = CALIBER_9X19
 	max_ammo = 30
 
 /obj/item/ammo_box/c10mm
 	name = "ammo box (10mm)"
 	icon_state = "10mmbox"
 	ammo_type = /obj/item/ammo_casing/c10mm
-	caliber = "10mm"
+	caliber = CALIBER_10MM
 	max_ammo = 20
 
 /obj/item/ammo_box/c10mm/cs
@@ -129,14 +129,14 @@
 	name = "ammo box (.45 ACP)"
 	icon_state = "45box"
 	ammo_type = /obj/item/ammo_casing/c45
-	caliber = ".45"
+	caliber = CALIBER_45ACP
 	max_ammo = 20
 
 /obj/item/ammo_box/a40mm
 	name = "ammo box (40mm grenades)"
 	icon_state = "40mm"
 	ammo_type = /obj/item/ammo_casing/a40mm
-	caliber = "40mm"
+	caliber = CALIBER_40GL
 	max_ammo = 4
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
@@ -145,7 +145,7 @@
 	icon = 'icons/obj/guns/toy.dmi'
 	icon_state = "foambox"
 	ammo_type = /obj/item/ammo_casing/reusable/foam_dart
-	caliber = "foam_force"
+	caliber = CALIBER_FOAM
 	max_ammo = 40
 	materials = list(/datum/material/iron = 500)
 
@@ -186,14 +186,14 @@
 	name = "ammo box (7.62x38mmR)"
 	icon_state = "10mmbox"
 	ammo_type = /obj/item/ammo_casing/n762
-	caliber = "n762"
+	caliber = CALIBER_762X38R
 	max_ammo = 14
 
 /obj/item/ammo_box/no_direct/m308
 	name = "ammo box (.308)"
 	icon_state = "308box"
 	ammo_type = /obj/item/ammo_casing/m308
-	caliber = "m308"
+	caliber = CALIBER_308
 	max_ammo = 20
 
 // Mosin stripper clip
@@ -203,7 +203,7 @@
 	desc = "A stripper clip holding 7.62mm rounds."
 	icon_state = "762"
 	ammo_type = /obj/item/ammo_casing/a762
-	caliber = "a762"
+	caliber = CALIBER_762X54R
 	max_ammo = 5
 	multiple_sprites = AMMO_BOX_PER_BULLET
 

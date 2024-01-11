@@ -97,7 +97,7 @@
 /obj/item/gun/ballistic/revolver/detective/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
-	if(magazine.caliber == "38")
+	if(magazine.caliber == CALIBER_38)
 		to_chat(user, span_notice("You begin to reinforce the barrel of [src]..."))
 		if(magazine.ammo_count())
 			afterattack(user, user)	//you know the drill
@@ -107,7 +107,7 @@
 			if(magazine.ammo_count())
 				to_chat(user, span_warning("You can't modify it!"))
 				return TRUE
-			magazine.caliber = "357"
+			magazine.caliber = CALIBER_357MAG
 			fire_delay = 8 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder. Plus, if you perfectly slam fire with the .38 and hit all your shots, you (should) do more lethal damage than using .357 at this fire_delay
 			fire_sound = 'sound/weapons/revolver357tgmc.ogg' // See attributions.txt
 			desc = "The barrel and chamber assembly seems to have been modified."
@@ -122,7 +122,7 @@
 			if(magazine.ammo_count())
 				to_chat(user, span_warning("You can't modify it!"))
 				return
-			magazine.caliber = "38"
+			magazine.caliber = CALIBER_38
 			fire_delay = 0 //Blessed mag dump
 			spread = 0
 			fire_sound = 'sound/weapons/revolver38tgmc.ogg' // See attributions.txt
