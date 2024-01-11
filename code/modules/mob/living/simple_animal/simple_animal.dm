@@ -613,3 +613,9 @@
 	if (AIStatus == AI_Z_OFF)
 		SSidlenpcpool.idle_mobs_by_zlevel[old_z] -= src
 		toggle_ai(initial(AIStatus))
+
+//YOGS EDIT
+/mob/living/simple_animal/proc/return_standard_turns_per_move()
+	turns_per_move = initial(turns_per_move)
+
+//YOGS END

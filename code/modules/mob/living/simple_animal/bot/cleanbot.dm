@@ -192,7 +192,7 @@
 	if(blood)
 		target_types += /obj/effect/decal/cleanable/xenoblood
 		target_types += /obj/effect/decal/cleanable/blood
-		target_types += /obj/effect/decal/cleanable/trail_holder
+		target_types += /obj/effect/decal/cleanable/blood/trail_holder
 
 	if(pests)
 		target_types += /mob/living/simple_animal/cockroach

@@ -442,7 +442,7 @@
 
 /obj/item/organ/eyes/moth
 	name = "moth eyes"
-	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
+	desc = "These eyes can see just a little too well, light doesn't entirely agree with them."
 	flash_protect = -1
 
 /obj/item/organ/eyes/snail
@@ -456,3 +456,27 @@
 	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	see_in_dark = 5
+
+/obj/item/organ/eyes/ethereal
+	name = "fractal eyes"
+	desc = "Crystalline eyes from an Ethereal. Seeing with them should feel like using a kaleidoscope, but somehow it isn't."
+	icon_state = "ethereal_eyes"
+	///Color of the eyes, is set by the species on gain
+	var/ethereal_color = "#9c3030"
+
+/obj/item/organ/eyes/ethereal/Initialize(mapload)
+	. = ..()
+	add_atom_colour(ethereal_color, FIXED_COLOUR_PRIORITY)
+
+/obj/item/organ/eyes/ethereal/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
+	. = ..()
+	var/client/dude = M.client
+	if(dude)
+		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
+		dude.view_size.addTo("2x2")
+
+/obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
+	var/client/dude = M.client
+	if(dude)
+		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
+	. = ..()

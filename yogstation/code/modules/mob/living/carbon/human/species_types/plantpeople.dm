@@ -20,7 +20,6 @@
 	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
 	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
 	punchstunthreshold = 9
-	payday_modifier = 0.7 //Neutrally viewed by NT
 	mutantlungs = /obj/item/organ/lungs/plant //let them breathe CO2
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH
@@ -349,5 +348,28 @@
 	// TODO
 
 	return to_add
+/*
+ Podpeople subspecies: IVYMEN
+*/
+/datum/species/pod/ivymen
+	// A unique podpeople mutation native to Jungleland. 
+	// They are adapted to the region, don't mind meat, and move faster than normal podpeople.
+	// However, they can't use guns or machines.
+	name = "Ivymen"
+	id = "ivymen"
+	limbs_id = "pod"
+	inherent_traits = list(TRAIT_NOGUNS,TRAIT_RESISTHIGHPRESSURE)
+	speedmod = 0
+	mutantlungs = /obj/item/organ/lungs/plant/ivymen
+	disliked_food = DAIRY
+
+/datum/species/pod/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	. = ..()
+	C.weather_immunities |= "acid"
+
+/datum/species/pod/ivymen/on_species_loss(mob/living/carbon/C)
+	. = ..()
+	C.weather_immunities -= "acid"
+
 
 #undef STATUS_MESSAGE_COOLDOWN

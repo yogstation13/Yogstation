@@ -87,7 +87,7 @@
 	hidden = TRUE
 
 /datum/mood_event/badass_antag
-	description = "I'm a fucking badass and everyone around me knows it. Just look at them; they're all fucking shaking at the mere thought of me around."
+	description = span_nicegreen("I'm a fucking badass and everyone around me knows it. Just look at them; they're all fucking shaking at the mere thought of me around.\n")
 	mood_change = 15
 	hidden = TRUE
 	special_screen_obj = "badass_sun"
@@ -143,7 +143,7 @@
 	timeout = 3 MINUTES
 
 /datum/mood_event/religiously_comforted
-	description = span_nicegreen("You are comforted by the presence of a holy person.")
+	description = span_nicegreen("You are comforted by the presence of a holy person.\n")
 	mood_change = 3
 	timeout = 5 MINUTES
 
@@ -189,22 +189,22 @@
 	timeout = 4 MINUTES
 
 /datum/mood_event/confident_mane
-	description = "I'm feeling confident with a head full of hair."
+	description = span_nicegreen("I'm feeling confident with a head full of hair.\n")
 	mood_change = 2
 
 /datum/mood_event/pet_borg
-	description = span_nicegreen("I just love my robotic friends!")
+	description = span_nicegreen("I just love my robotic friends!\n")
 	mood_change = 3
 	timeout = 5 MINUTES
 	required_job = list("Research Director", "Scientist", "Roboticist", "Geneticist") // Only for science and science-adjacent jobs.
 
 /datum/mood_event/nice_tool
-	description = span_nicegreen("I recently used a nice tool.")
+	description = span_nicegreen("I recently used a nice tool.\n")
 	mood_change = 2
 	timeout = 2 MINUTES
 
 /datum/mood_event/adrenaline
-	description = span_nicegreen("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!")
+	description = span_nicegreen("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!\n")
 	mood_change = 10
 
 /datum/mood_event/area
