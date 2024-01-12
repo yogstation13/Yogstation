@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 /obj/item/cargo_teleporter/proc/makingchoice(mob/user)
 	choice = tgui_input_list(user, "Select which cargo mark to teleport the items to?", "Cargo Mark Selection", GLOB.cargo_marks)
 	if(!choice)
-		return ..()
+		return
 
 
 /obj/item/cargo_teleporter/verb/remove_all_markers()
