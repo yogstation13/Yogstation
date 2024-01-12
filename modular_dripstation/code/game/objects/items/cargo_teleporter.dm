@@ -67,26 +67,27 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	ctcell = new(src)
 
 /obj/item/cargo_teleporter/emp_act(severity)
+	if (. & EMP_PROTECT_SELF)
+		return
 	emped = TRUE
 	SStgui.close_uis(src) //Close the UI control if it is open. I guess do not work, will work with ui refactor, if it will be made some day
-	switch(severity)
-		if(1)
-			ctcell.use(chargecost)
-			if(emagged)
-				emagged = FALSE
-		if(2)
-			ctcell.charge = 0
-			if(emagged)
-				emagged = FALSE
-				if(prob(50))
-					var/mob/living/carbon/human/user = src.loc
-					say("E:FATAL:PWR_BUS_OVERLOAD")
-					if(user.is_holding(src))
-						if(user.dna && user.dna.species.id == "human")
-							say("E:FATAL:STACK_EMPTY\nE:FATAL:READ_NULL_POINT")
-							to_chat(user, span_danger("An electromagnetic pulse disrupts your hacked teleporter and violently turns you into abomination."))
-							to_chat(user, span_userdanger("You SEE THE LIGHT."))
-							user.set_species(/datum/species/moth)
+	if(severity > EMP_LIGHT)
+		ctcell.charge = 0
+		if(emagged)
+			emagged = FALSE
+			if(prob(50))
+				var/mob/living/carbon/human/user = src.loc
+				say("E:FATAL:PWR_BUS_OVERLOAD")
+				if(user.is_holding(src))
+					if(user.dna && user.dna.species.id == "human")
+						say("E:FATAL:STACK_EMPTY\nE:FATAL:READ_NULL_POINT")
+						to_chat(user, span_danger("An electromagnetic pulse disrupts your hacked teleporter and violently turns you into abomination."))
+						to_chat(user, span_userdanger("You SEE THE LIGHT."))
+						user.set_species(/datum/species/moth)
+	else
+		ctcell.use(chargecost)
+		if(emagged)
+			emagged = FALSE
 
 /obj/item/cargo_teleporter/examine(mob/user)
 	. = ..()
@@ -216,6 +217,10 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	if(emagged && (get_dist(user, target) > manipulator.rating))
 		return ..()
 	if(target == src)
+		return ..()
+	if(emped)
+		say("\The [src] malfunctioning and needs to be restarted.")
+		to_chat(user, span_notice("AltClick on device to restart it."))
 		return ..()
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
 		say("\The [src] is still on cooldown.")
