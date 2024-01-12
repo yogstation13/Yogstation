@@ -261,7 +261,7 @@ GLOBAL_VAR(final_zone)
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 
 /// How many tiles in a given room gives a 100% guaranteed crate
-#define ROOMSIZESCALING 55 
+#define ROOMSIZESCALING 50 
 /datum/game_mode/fortnite/proc/loot_spawn()
 	for(var/area/lootlake as anything in GLOB.areas)
 		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
