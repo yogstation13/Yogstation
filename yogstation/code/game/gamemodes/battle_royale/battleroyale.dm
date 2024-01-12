@@ -18,7 +18,7 @@ GLOBAL_VAR(final_zone)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale bridge")
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale the bridge")
 	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
 	var/borderstage = 0
@@ -171,11 +171,7 @@ GLOBAL_VAR(final_zone)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
 		if(8)
-			var/weather = pick(randomweathers) //whichever one is left
-			weather = replacetext(weather, "royale ", "")
-			if(weather == "bridge")
-				weather = "the bridge"
-			GLOB.final_zone = weather
+			GLOB.final_zone = replacetext(pick(randomweathers), "royale ", "")
 			SSweather.run_weather("royale hallway", 2)//force them to the final department
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
@@ -261,7 +257,7 @@ GLOBAL_VAR(final_zone)
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 
 /// How many tiles in a given room gives a 100% guaranteed crate
-#define ROOMSIZESCALING 50 
+#define ROOMSIZESCALING 60
 /datum/game_mode/fortnite/proc/loot_spawn()
 	for(var/area/lootlake as anything in GLOB.areas)
 		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
