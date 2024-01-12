@@ -261,7 +261,7 @@ GLOBAL_VAR(final_zone)
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 
 /// How many tiles in a given room gives a 100% guaranteed crate
-#define ROOMSIZESCALING 60 
+#define ROOMSIZESCALING 55 
 /datum/game_mode/fortnite/proc/loot_spawn()
 	for(var/area/lootlake as anything in GLOB.areas)
 		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
@@ -378,11 +378,11 @@ GLOBAL_VAR(final_zone)
 	name = "very cool tie (do not remove)"
 	desc = "Totally not just here for keeping track of kills."
 	var/datum/antagonist/battleroyale/last_hit
-	clothing_traits = (TRAIT_NODROP)
 	resistance_flags = INDESTRUCTIBLE //no escaping
 
 /obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, "I will kill you if you take this off somehow") //can't be a clothing trait because those get applied to the mob, not the item
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(death))
 
 /obj/item/clothing/neck/tie/gamer/proc/death()
