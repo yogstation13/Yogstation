@@ -125,7 +125,7 @@
 /obj/machinery/rnd/bepis/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Bepis_new", name)
+		ui = new(user, src, "Bepis", name)
 		ui.open()
 	RefreshParts()
 //	if(isliving(user))

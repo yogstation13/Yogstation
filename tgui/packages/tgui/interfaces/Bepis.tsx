@@ -23,7 +23,7 @@ electrical and financial resources to invent new products,
 or discover new technologies otherwise overlooked for being
 too risky or too niche to produce!`;
 
-export const Bepis_new = (props, context) => {
+export const Bepis = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const {
     amount,
