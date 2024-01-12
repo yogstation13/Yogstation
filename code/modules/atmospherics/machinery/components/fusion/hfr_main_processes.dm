@@ -542,7 +542,7 @@
 		var/fusion_temperature_delta = internal_fusion.return_temperature() - moderator_internal.return_temperature()
 		var/fusion_heat_amount = (1 - (1 - METALLIC_VOID_CONDUCTIVITY) ** delta_time) * fusion_temperature_delta * (internal_fusion.heat_capacity() * moderator_internal.heat_capacity() / (internal_fusion.heat_capacity() + moderator_internal.heat_capacity()))
 		internal_fusion.set_temperature(max(internal_fusion.return_temperature() - fusion_heat_amount / internal_fusion.heat_capacity(), TCMB))
-		moderator_internal.set_temperature(max(moderator_internal.return_temperature() + fusion_heat_amount / moderator_internal.heat_capacity(), TCMB))
+		moderator_internal.set_temperature(max((moderator_internal.return_temperature() + fusion_heat_amount / moderator_internal.heat_capacity()) * 0.4, TCMB))
 
 	if(airs[1].total_moles() * 0.05 <= MINIMUM_MOLE_COUNT)
 		return
@@ -552,14 +552,14 @@
 	//Cooling of the moderator gases with the cooling loop in and out the core
 	if(moderator_internal.total_moles() > MINIMUM_MOLE_COUNT)
 		var/coolant_temperature_delta = cooling_remove.return_temperature() - moderator_internal.return_temperature()
-		var/cooling_heat_amount = (1 - (1 - HIGH_EFFICIENCY_CONDUCTIVITY) ** (delta_time * 4)) * coolant_temperature_delta * (cooling_remove.heat_capacity() * moderator_internal.heat_capacity() / (cooling_remove.heat_capacity() + moderator_internal.heat_capacity()))
-		cooling_remove.set_temperature(max(cooling_remove.return_temperature() - cooling_heat_amount / cooling_remove.heat_capacity(), TCMB))
+		var/cooling_heat_amount = (1 - (1 - HIGH_EFFICIENCY_CONDUCTIVITY) ** delta_time) * coolant_temperature_delta * (cooling_remove.heat_capacity() * moderator_internal.heat_capacity() / (cooling_remove.heat_capacity() + moderator_internal.heat_capacity()))
+		cooling_remove.set_temperature(max((cooling_remove.return_temperature() - cooling_heat_amount / cooling_remove.heat_capacity()) * 0.4, TCMB))
 		moderator_internal.set_temperature(max(moderator_internal.return_temperature() + cooling_heat_amount / moderator_internal.heat_capacity(), TCMB))
 
 	else if(internal_fusion.total_moles() > MINIMUM_MOLE_COUNT)
 		var/coolant_temperature_delta = cooling_remove.return_temperature() - internal_fusion.return_temperature()
-		var/cooling_heat_amount = (1 - (1 - METALLIC_VOID_CONDUCTIVITY) ** (delta_time * 4)) * coolant_temperature_delta * (cooling_remove.heat_capacity() * internal_fusion.heat_capacity() / (cooling_remove.heat_capacity() + internal_fusion.heat_capacity()))
-		cooling_remove.set_temperature(max(cooling_remove.return_temperature() - cooling_heat_amount / cooling_remove.heat_capacity(), TCMB))
+		var/cooling_heat_amount = (1 - (1 - METALLIC_VOID_CONDUCTIVITY) ** delta_time) * coolant_temperature_delta * (cooling_remove.heat_capacity() * internal_fusion.heat_capacity() / (cooling_remove.heat_capacity() + internal_fusion.heat_capacity()))
+		cooling_remove.set_temperature(max((cooling_remove.return_temperature() - cooling_heat_amount / cooling_remove.heat_capacity()) * 0.4, TCMB))
 		internal_fusion.set_temperature(max(internal_fusion.return_temperature() + cooling_heat_amount / internal_fusion.heat_capacity(), TCMB))
 	cooling_port.merge(cooling_remove)
 
