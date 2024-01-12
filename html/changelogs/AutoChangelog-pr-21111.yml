@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "adds more winter coats"
+  - imageadd: "moves winter coat and hood sprites to their own files"
