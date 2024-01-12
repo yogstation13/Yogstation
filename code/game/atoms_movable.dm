@@ -1011,6 +1011,8 @@
 		return FALSE
 	if(force < (move_resist * MOVE_FORCE_PULL_RATIO))
 		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ATOM_CAN_BE_PULLED, user) & COMSIG_ATOM_CANT_PULL)	//dripstation edit
+		return FALSE																//dripstation edit
 	return TRUE
 
 /// Called when mob changes from a standing position into a prone while lacking the ability to stand up at the moment.

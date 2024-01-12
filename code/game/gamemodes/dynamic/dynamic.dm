@@ -79,7 +79,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	/// Antags rolled by rules so far, to keep track of and discourage scaling past a certain ratio of crew/antags especially on lowpop.
 	var/antags_rolled = 0
 	/// CRATE DISCOUNT
-	var/discountedcrates = list(	/datum/supply_pack/security/laser,
+	var/discountedcrates = list(	/datum/supply_pack/security/armory/laser, //dripstation edit
 									/datum/supply_pack/security/vending/security,
 									/datum/supply_pack/service/party)
 

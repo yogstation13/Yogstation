@@ -44,7 +44,7 @@
 /datum/component/storage/concrete/pockets/shoes/Initialize()
 	. = ..()
 	set_holdable(list(
-		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen,
+		/obj/item/kitchen/knife, /obj/item/boxcutter, /obj/item/switchblade, /obj/item/pen, //boxcutter dripstation edit
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
@@ -56,7 +56,7 @@
 /datum/component/storage/concrete/pockets/shoes/clown/Initialize()
 	. = ..()
 	set_holdable(list(
-		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen,
+		/obj/item/kitchen/knife, /obj/item/boxcutter, /obj/item/switchblade, /obj/item/pen, //boxcutter dripstation edit
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,

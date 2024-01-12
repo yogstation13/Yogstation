@@ -122,6 +122,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		value += SO.pack.get_cost()
 		SSshuttle.shoppinglist -= SO
 		SSshuttle.orderhistory += SO
+		SO.pack.times_ordered_in_one_order = 0 //dripstation edit
 
 		if(SO.pack.small_item) //small_item means it gets piled in the miscbox
 			if(SO.paying_account)
