@@ -91,7 +91,7 @@
 
 /obj/item/organ/ears/cat
 	name = "cat ears"
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats/hats.dmi'
 	icon_state = "kitty"
 	visual = TRUE
 	compatible_biotypes = ALL_BIOTYPES // meowchine... turn back now
