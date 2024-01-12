@@ -3,7 +3,6 @@
 	desc = "These rubberized gauntlets have high adhesion to the metal surface that allows you to drag crates and lockers with more confidence on them not getting nabbed from you."
 	icon = 'modular_dripstation/icons/obj/clothing/gloves.dmi'
 	mob_overlay_icon = 'modular_dripstation/icons/mob/clothing/hands.dmi'
-	siemens_coefficient = 0.6 // Some shock protected material anyway
 	icon_state = "cargogloves"
 	item_state = "cargogloves"
 	cold_protection = HANDS
@@ -11,7 +10,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	undyeable = TRUE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 50, ELECTRIC = 60)
 	var/datum/weakref/pull_component_weakref
 
 /obj/item/clothing/gloves/cargo_gauntlet/Initialize(mapload)
