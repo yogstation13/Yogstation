@@ -163,6 +163,10 @@
 	ui_x = 32
 	ui_y = 160
 
+/datum/techweb_node/cyborg_upgrades_nvg
+	ui_x = 96
+	ui_y = 160
+
 /datum/techweb_node/cyborg_upgrades_medical
 	ui_x = -32
 	ui_y = 224

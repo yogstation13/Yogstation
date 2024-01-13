@@ -335,20 +335,28 @@
 	description = "Upgrades that can be used on all cyborg module types that increases their general utility."
 	prereq_ids = list("engineering", "adv_robotics")
 	design_ids = list("borg_upgrade_thrusters", "borg_upgrade_language", "borg_upgrade_expand", "borg_upgrade_selfrepair")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 
 /datum/techweb_node/cyborg_upgrades_engineering
 	id = "cyborg_upgrades_engineering"
 	display_name = "Cyborg Upgrades: Engineering"
 	description = "Upgrades that can only be used on cyborgs with a engineering-related module."
-	prereq_ids = list("cyborg_upgrades_utility", "practical_bluespace", "exp_tools")
+	prereq_ids = list("cyborg_upgrades_utility")
+	design_ids = list("borg_upgrade_rped")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+
+/datum/techweb_node/cyborg_upgrades_engineering_adv
+	id = "cyborg_upgrades_engineering"
+	display_name = "Cyborg Upgrades: Advanced Engineering"
+	description = "Advanced upgrades that can only be used on cyborgs with a engineering-related module."
+	prereq_ids = list("cyborg_upgrades_engineering", "practical_bluespace", "exp_tools")
 	design_ids = list("borg_upgrade_engi_advancedtools", "borg_upgrade_holofan", "borg_upgrade_brped")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
-/datum/techweb_node/cyborg_upgrades_engineering_adv
-	id = "cyborg_upgrades_engineering_adv" // This is its own seperate node solely ONLY because it wasn't obvious on how to find this upgrade.
-	display_name = "Cyborg Upgrades: Advanced Engineering"
-	description = "Upgrades that can only be used on cyborgs with a engineering-related module."
+/datum/techweb_node/cyborg_upgrades_nvg
+	id = "cyborg_upgrades_nvg" // This is its own seperate node solely ONLY because it wasn't obvious on how to find this upgrade.
+	display_name = "Cyborg Upgrades: NVG"
+	description = "Upgrade that swaps a cyborg's mesons to nightvision mesons."
 	prereq_ids = list("cyborg_upgrades_engineering", "NVGtech")
 	design_ids = list("borg_upgrade_nv_mesons")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
@@ -585,7 +593,7 @@
 	display_name = "Advanced Mining Technology"
 	description = "Efficiency Level 127"	//dumb mc references
 	prereq_ids = list("basic_mining", "adv_engi", "adv_power", "adv_plasma")
-	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv","miningcharge")
+	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "miningcharge")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/magmite_mining
