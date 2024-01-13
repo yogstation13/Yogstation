@@ -250,6 +250,7 @@
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/flagelantes_chains_hood
 	var/wrap = FALSE
+	var/total_wounds
 	//var/footstep = 1
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/equipped(mob/M, slot)
@@ -258,8 +259,9 @@
 		RegisterSignal(M, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(handle_damage))
 		RegisterSignal(M, COMSIG_MOB_APPLY_HEALING, PROC_REF(on_heal))
 		RegisterSignal(M, COMSIG_CARBON_GAIN_WOUND, PROC_REF(handle_wound_add))
+		RegisterSignal(M, COMSIG_CARBON_LOSE_WOUND, PROC_REF(handle_wound_remove))
 	else
-		UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND))
+		UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_CARBON_LOSE_WOUND))
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/dropped(mob/M)
 	. = ..()
@@ -319,23 +321,47 @@
 
 	SIGNAL_HANDLER
 
-/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(var/mob/living/carbon/human/H, starting_slowdown)
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(C, slowdown, 1) //Change speed when gaining a wound
+
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_wound_remove(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
+
+	SIGNAL_HANDLER
+
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(C, slowdown, -1) //Change speed when losing a wound
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(var/mob/living/carbon/human/H, starting_slowdown, wound)
 	var/health_percent = H.health / H.maxHealth
+	var/final_slowdown
 	switch(health_percent) //Change slowdown based on health
 		if(0.90 to INFINITY)
-			slowdown = 1
+			final_slowdown = 1
 		if(0.70 to 0.89)
-			slowdown = 0.5
+			final_slowdown = 0.5
 		if(0.60 to 0.79)
-			slowdown = 0
+			final_slowdown = 0
 		if(0.30 to 0.59)
-			slowdown = -0.3
+			final_slowdown = -0.3
 		if(0.10 to 0.29)
-			slowdown = -0.6
+			final_slowdown = -0.6
 		if(0.1 to 0.9)
-			slowdown = -1
+			final_slowdown = -1
 		if(-INFINITY to 0) //So crit people are not rolling around at the speed of sound
-			slowdown = 1
+			final_slowdown = 1
+
+	total_wounds += wound
+	switch(total_wounds) //Change slowdown based on wounds
+		if(1)
+			final_slowdown += -0.2
+		if(2)
+			final_slowdown += -0.4
+		if(3)
+			final_slowdown += -0.6
+
+	slowdown = final_slowdown //set slowdown
+
 	if(slowdown > starting_slowdown) //Show bubble alert based on starting slowdown and new slowdown
 		H.balloon_alert(H, "You slow down!")
 	else if(slowdown < starting_slowdown)
