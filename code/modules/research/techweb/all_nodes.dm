@@ -335,7 +335,7 @@
 	description = "Upgrades that can be used on all cyborg module types that increases their general utility."
 	prereq_ids = list("engineering", "adv_robotics")
 	design_ids = list("borg_upgrade_thrusters", "borg_upgrade_language", "borg_upgrade_expand", "borg_upgrade_selfrepair")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 
 /datum/techweb_node/cyborg_upgrades_engineering
 	id = "cyborg_upgrades_engineering"
