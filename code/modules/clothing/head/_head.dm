@@ -1,6 +1,6 @@
 /obj/item/clothing/head
 	name = BODY_ZONE_HEAD
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats/hats.dmi'
 	icon_state = "top_hat"
 	item_state = "that"
 	body_parts_covered = HEAD
