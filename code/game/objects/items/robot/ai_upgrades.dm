@@ -91,10 +91,10 @@
 	var/burstmode_length = 30 SECONDS
 	COOLDOWN_DECLARE(since_burstmode)
 	/// How much time (after burst mode is deactivated) must pass before it can be activated again?
-	var/activate_cooldown = 30 SECONDS
+	var/activate_cooldown = 60 SECONDS
 	COOLDOWN_DECLARE(next_activate)
 	/// How much time between shots (during burst mode)?
-	var/fire_cooldown = 1 SECONDS
+	var/fire_cooldown = 0.5 SECONDS
 	COOLDOWN_DECLARE(next_fire)
 
 /// Checks if it is possible for a (hitscan) projectile to reach a target in a straight line from a camera.
