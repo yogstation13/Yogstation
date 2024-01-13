@@ -229,5 +229,6 @@
 	else
 		COOLDOWN_START(src, next_activate, activate_cooldown)
 		to_chat(owner, span_notice("Burstmode deactivated."))
+		Deactivate(FALSE) // In case that they were in the middle of shooting.
 		owner.playsound_local(owner, 'sound/items/timer.ogg', 50, FALSE)
 	return TRUE
