@@ -932,9 +932,15 @@
 	name = "medical gripper"
 	desc = "A simple grasping tool for interacting with various medical related items."
 	can_hold = list(
-		/obj/item/reagent_containers/glass/bottle, // Bottles & Vials
+		/obj/item/reagent_containers/medspray, // Without this, just syringe the content out and put it into a beaker to get around it.
+		/obj/item/reagent_containers/blood, // To insert blood bags into IV drips.
+		/obj/item/reagent_containers/food/snacks/lollipop, // Given that they have a snack dispenser, might as well.
+		// All chemistry specific concerns:
+		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/blood // Blood Bags.
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/gummy,
+		/obj/item/storage/bag/chemistry // QOL for moving a billion pills into the chemfridge.
 	)
   
 /obj/item/borg/gripper/service
