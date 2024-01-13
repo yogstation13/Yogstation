@@ -938,7 +938,7 @@
 		// All chemistry specific concerns:
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/pill, // Includes patches... because they're are pills too?
 		/obj/item/reagent_containers/gummy,
 		/obj/item/storage/bag/chemistry // QOL for moving a billion pills into the chemfridge.
 	)
