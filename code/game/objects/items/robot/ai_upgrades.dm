@@ -100,6 +100,8 @@
 	/// How much time between shots (during burst mode)?
 	var/fire_cooldown = 0.5 SECONDS
 	COOLDOWN_DECLARE(next_fire)
+	/// What EMP strength will the camera be hit with after it is used to shoot?
+	var/emp_drawback = EMP_HEAVY // 7+ guarantees a 90 seconds downtime.
 
 /// Checks if it is possible for a (hitscan) projectile to reach a target in a straight line from a camera.
 /datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, atom/target)
@@ -214,7 +216,8 @@
 
 	/* 	This EMP prevents burstmode from annihilating a stationary object/person.
 		If someone gives a camera EMP resistance, then they had it coming. */
-	chosen_camera.emp_act(EMP_HEAVY) // 90 seconds downtime.
+	if(emp_drawback > 0)
+		chosen_camera.emp_act(emp_drawback)
 	return TRUE
 
 /datum/action/innate/ai/ranged/cameragun/proc/toggle_burstmode()
