@@ -73,9 +73,10 @@
 	qdel(src)
 
 /// An ability that allows the user to shoot a laser beam at a target from the nearest camera.
+// TODO: If right-click functionality for buttons are added, make singleshot a left-click ability & burstmode a right-click ability.
 /datum/action/innate/ai/ranged/cameragun
 	name = "Camera Laser Gun"
-	desc = "Shoots a laser from the nearest available camera toward a chosen destination if it is highly probable to reach said destination."
+	desc = "Shoots a laser from the nearest available camera toward a chosen destination if it is highly probable to reach said destination. If successful, enters burst mode which temporarily allows the ability to be reused every second for 30 seconds."
 	button_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "laser"
 	background_icon_state = "bg_default" // Better button sprites welcomed. :)
@@ -84,8 +85,17 @@
 	click_action = FALSE // Even though that we are a click action, we want to use Activate() and Deactivate().
 	/// If this ability is sourced from being a traitor AI.
 	var/from_traitor = FALSE
-	COOLDOWN_DECLARE(next_shot)
-	var/cooldown = 10 SECONDS
+	/// Is burst mode activated?
+	var/burstmode_activated = FALSE
+	/// How long is burst mode?
+	var/burstmode_length = 30 SECONDS
+	COOLDOWN_DECLARE(since_burstmode)
+	/// How much time (after burst mode is deactivated) must pass before it can be activated again?
+	var/activate_cooldown = 30 SECONDS
+	COOLDOWN_DECLARE(next_activate)
+	/// How much time between shots (during burst mode)?
+	var/fire_cooldown = 1 SECONDS
+	COOLDOWN_DECLARE(next_fire)
 
 /// Checks if it is possible for a (hitscan) projectile to reach a target in a straight line from a camera.
 /datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, atom/target)
@@ -120,7 +130,9 @@
 	return ..()
 
 /datum/action/innate/ai/ranged/cameragun/process()
-	build_all_button_icons() // To update the button to display if active/available.
+	if(burstmode_activated && COOLDOWN_FINISHED(src, since_burstmode))
+		toggle_burstmode()
+	build_all_button_icons()
 
 /datum/action/innate/ai/ranged/cameragun/Activate(loud = TRUE)
 	set_ranged_ability(owner, loud ? enable_text : null)
@@ -136,7 +148,11 @@
 
 /datum/action/innate/ai/ranged/cameragun/IsAvailable(feedback = FALSE)
 	. = ..()
-	if(!. || !COOLDOWN_FINISHED(src, next_shot))
+	if(!.)
+		return FALSE
+	if(burstmode_activated && !COOLDOWN_FINISHED(src, next_fire)) // Not ready to shoot (during brustmode).
+		return FALSE
+	if(!burstmode_activated && !COOLDOWN_FINISHED(src, next_activate)) // Burstmode is not ready.
 		return FALSE
 
 /datum/action/innate/ai/ranged/cameragun/do_ability(mob/living/caller, params, atom/target)
@@ -169,8 +185,10 @@
 		Deactivate(FALSE)
 		to_chat(caller, span_notice("Unable to find nearby available cameras for this target."))
 		return FALSE
-	
-	COOLDOWN_START(src, next_shot, cooldown)
+	if(!burstmode_activated)
+		toggle_burstmode()
+
+	COOLDOWN_START(src, next_fire, fire_cooldown)
 	var/turf/loc_chosen = get_turf(chosen_camera)
 	var/obj/projectile/beam/laser/proj = new(loc_chosen)
 	proj.preparePixelProjectile(target, chosen_camera)
@@ -188,4 +206,16 @@
 	to_chat(caller, span_danger("Camera overcharged."))
 
 	chosen_camera.emp_act(EMP_HEAVY) // 90 seconds downtime -- definitely enough time to toolbox this camera (unless it is emp-proof).
+	return TRUE
+
+/datum/action/innate/ai/ranged/cameragun/proc/toggle_burstmode()
+	burstmode_activated = !burstmode_activated
+	if(burstmode_activated)
+		COOLDOWN_START(src, since_burstmode, burstmode_length)
+		to_chat(owner, span_notice("Burstmode activated."))
+		owner.playsound_local(owner, 'sound/effects/light_flicker.ogg', 50, FALSE)
+	else
+		COOLDOWN_START(src, next_activate, activate_cooldown)
+		to_chat(owner, span_notice("Burstmode deactivated."))
+		owner.playsound_local(owner, 'sound/items/timer.ogg', 50, FALSE)
 	return TRUE
