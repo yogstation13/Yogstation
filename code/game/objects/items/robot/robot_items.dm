@@ -925,7 +925,9 @@
 		/obj/item/stock_parts,
 		/obj/item/tank/internals,
 		/obj/item/conveyor_switch_construct,
-		/obj/item/stack/conveyor
+		/obj/item/stack/conveyor,
+		/obj/item/server_rack,
+		/obj/item/ai_cpu,
 	)
 
 /obj/item/borg/gripper/medical
