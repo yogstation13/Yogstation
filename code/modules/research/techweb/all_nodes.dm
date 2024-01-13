@@ -382,7 +382,7 @@
 	display_name = "Cyborg Upgrades: Mining"
 	description = "Upgrades that focus on cyborgs with a mining-related module."
 	prereq_ids = list("cyborg_upgrades_utility", "adv_mining")
-	design_ids = list("borg_upgrade_diamonddrill", "borg_upgrade_plasmacutter", "borg_upgrade_holding", "borg_upgrade_gemsatchel", "borg_upgrade_lavaproof")
+	design_ids = list("borg_upgrade_lavaproof", "borg_upgrade_diamonddrill", "borg_upgrade_plasmacutter", "borg_upgrade_holding", "borg_upgrade_gemsatchel")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
 
 /datum/techweb_node/cyborg_upgrades_service
