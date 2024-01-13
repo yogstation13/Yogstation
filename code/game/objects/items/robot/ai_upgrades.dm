@@ -98,7 +98,7 @@
 	var/activate_cooldown = 60 SECONDS
 	COOLDOWN_DECLARE(next_activate)
 	/// How much time between shots (during burst mode)?
-	var/fire_cooldown = 0.5 SECONDS
+	var/fire_cooldown = 1 SECONDS
 	COOLDOWN_DECLARE(next_fire)
 	/// What EMP strength will the camera be hit with after it is used to shoot?
 	var/emp_drawback = EMP_HEAVY // 7+ guarantees a 90 seconds downtime.
