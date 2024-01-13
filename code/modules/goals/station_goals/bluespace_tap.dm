@@ -3,6 +3,7 @@
 /datum/station_goal/bluespace_tap
 	name = "Bluespace Harvester"
 	var/goal = BLUESPACE_TAP_POINT_GOAL // Yogs
+	var/cheese = FLY_LAYER
 
 /datum/station_goal/bluespace_tap/get_report()
 	return {"<b>Bluespace Harvester Experiment</b><br>
@@ -503,7 +504,7 @@
 		return
 	points -= A.product_cost
 	playsound(src, 'sound/magic/blink.ogg', 50)
-	flick("flash", src)
+	flick_overlay_view(image(icon, src, "flash", FLY_LAYER))
 	do_sparks(2, FALSE, src)
 	new A.product_path(get_turf(src))
 
