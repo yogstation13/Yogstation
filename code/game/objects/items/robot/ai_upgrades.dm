@@ -205,7 +205,9 @@
 	Deactivate(FALSE)
 	to_chat(caller, span_danger("Camera overcharged."))
 
-	chosen_camera.emp_act(EMP_HEAVY) // 90 seconds downtime -- definitely enough time to toolbox this camera (unless it is emp-proof).
+	/* 	This EMP prevents burstmode from annihilating a stationary object/person.
+		If someone gives a camera EMP resistance, then they had it coming. */
+	chosen_camera.emp_act(EMP_HEAVY) // 90 seconds downtime.
 	return TRUE
 
 /datum/action/innate/ai/ranged/cameragun/proc/toggle_burstmode()
