@@ -42,7 +42,8 @@
 	weight = 0.2
 	show_in_report = TRUE
 	report_message = "Please be nice to him."
-	blacklist = list(/datum/station_trait/announcement_medbot)
+	blacklist = list(/datum/station_trait/announcement_medbot,
+	/datum/station_trait/announcement_duke)
 
 /datum/station_trait/announcement_intern/New()
 	. = ..()
@@ -54,7 +55,8 @@
 	weight = 0.2
 	show_in_report = TRUE
 	report_message = "Our announcement system is under scheduled maintenance at the moment. Thankfully, we have a backup."
-	blacklist = list(/datum/station_trait/announcement_intern)
+	blacklist = list(/datum/station_trait/announcement_intern,
+	/datum/station_trait/announcement_duke)
 
 /datum/station_trait/announcement_medbot/New()
 	. = ..()
@@ -66,7 +68,7 @@
 	weight = 0.05
 	show_in_report = TRUE
 	report_message = "All our announcement systems are down and our interns are on strike, so we hired some guy off the street."
-	blacklist = list(/datum/station_trait/announcement_medbot,,
+	blacklist = list(/datum/station_trait/announcement_medbot,
 	/datum/station_trait/announcement_intern
 	)
 
