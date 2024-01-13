@@ -503,7 +503,7 @@
 		return
 	points -= A.product_cost
 	playsound(src, 'sound/magic/blink.ogg', 50)
-	flick_overlay_view(image(icon, src, "flash", layer+1))
+	flick_overlay_view(image(icon, src, "flash", layer+1), src, 6)
 	do_sparks(2, FALSE, src)
 	new A.product_path(get_turf(src))
 
