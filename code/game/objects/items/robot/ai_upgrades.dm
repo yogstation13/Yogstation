@@ -83,6 +83,10 @@
 	enable_text = span_notice("You prepare to overcharge a camera. Click a target for a nearby camera to shoot a laser at.")
 	disable_text = span_notice("You dissipate the overcharged energy.")
 	click_action = FALSE // Even though that we are a click action, we want to use Activate() and Deactivate().
+	/// The beam projectile that is spawned and shot.
+	var/obj/projectile/beam/proj_type = /obj/projectile/beam/laser
+	/// Pass flags used for the `can_shoot_to` proc.
+	var/proj_pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	/// If this ability is sourced from being a traitor AI.
 	var/from_traitor = FALSE
 	/// Is burst mode activated?
@@ -110,7 +114,7 @@
 	proj.nodamage = TRUE // Prevents this projectile from detonating certain objects (e.g. welding tanks). 
 	proj.log_override = TRUE
 	proj.hitscan = TRUE
-	proj.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	proj.pass_flags = proj_pass_flags
 
 	proj.preparePixelProjectile(target, C)
 	proj.fire()
@@ -190,7 +194,10 @@
 
 	COOLDOWN_START(src, next_fire, fire_cooldown)
 	var/turf/loc_chosen = get_turf(chosen_camera)
-	var/obj/projectile/beam/laser/proj = new(loc_chosen)
+	var/obj/projectile/beam/proj = new proj_type(loc_chosen)
+	if(!isprojectile(proj))
+		Deactivate(FALSE)
+		CRASH("Camera gun's proj_type was not a projectile.")
 	proj.preparePixelProjectile(target, chosen_camera)
 	proj.firer = caller
 
