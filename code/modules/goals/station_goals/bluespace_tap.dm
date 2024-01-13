@@ -503,7 +503,7 @@
 		return
 	points -= A.product_cost
 	playsound(src, 'sound/magic/blink.ogg', 50)
-	flick("flash")
+	flick("flash", src)
 	do_sparks(2, FALSE, src)
 	new A.product_path(get_step(src,(dir)))
 
