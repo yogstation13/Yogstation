@@ -346,7 +346,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
 
 /datum/techweb_node/cyborg_upgrades_engineering_adv
-	id = "cyborg_upgrades_engineering"
+	id = "cyborg_upgrades_engineering_adv"
 	display_name = "Cyborg Upgrades: Advanced Engineering"
 	description = "Advanced upgrades that can only be used on cyborgs with a engineering-related module."
 	prereq_ids = list("cyborg_upgrades_engineering", "practical_bluespace", "exp_tools")
