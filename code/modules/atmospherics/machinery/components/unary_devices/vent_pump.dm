@@ -264,7 +264,7 @@
 		pump_direction = text2num(signal.data["direction"])
 
 	if("space_detection" in signal.data)
-		space_detection = !space_detection
+		space_detection = text2num(signal.data["space_detection"])
 		space_shutoff_ticks = 0
 		if(!space_detection)
 			investigate_log(" space detection was disabled by [key_name(signal_sender)]", INVESTIGATE_ATMOS)
