@@ -267,7 +267,7 @@
 		space_detection = !space_detection
 		space_shutoff_ticks = 0
 		if(!space_detection)
-			investigate_log(" space detection was disabled by [key_name(user)]", INVESTIGATE_ATMOS)
+			investigate_log(" space detection was disabled by [key_name(signal_sender)]", INVESTIGATE_ATMOS)
 
 	if("set_internal_pressure" in signal.data)
 		var/old_pressure = internal_pressure_bound
