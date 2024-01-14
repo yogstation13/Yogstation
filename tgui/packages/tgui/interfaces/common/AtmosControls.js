@@ -13,9 +13,9 @@ export const Vent = (props, context) => {
     excheck,
     incheck,
     direction,
+    space_detection,
     external,
     internal,
-    space_detection,
     extdefault,
     intdefault,
   } = vent;
@@ -51,7 +51,7 @@ export const Vent = (props, context) => {
             color={!space_detection && 'danger'}
             onClick={() => act('space_detection', {
               id_tag,
-              val: Number(!direction),
+              val: Number(!space_detection),
             })} />
         </LabeledList.Item>
         <LabeledList.Item label="Pressure Regulator">

@@ -346,6 +346,7 @@
 					"excheck"	= info["checks"]&1,
 					"incheck"	= info["checks"]&2,
 					"direction"	= info["direction"],
+					"space_detection" = info["space_detection"],
 					"external"	= info["external"],
 					"internal"	= info["internal"],
 					"extdefault"= (info["external"] == ONE_ATMOSPHERE),
@@ -418,7 +419,7 @@
 			if(usr.has_unlimited_silicon_privilege && !wires.is_cut(WIRE_IDSCAN))
 				locked = !locked
 				. = TRUE
-		if("power", "toggle_filter", "widenet", "scrubbing", "direction")
+		if("power", "toggle_filter", "widenet", "scrubbing", "direction", "space_detection")
 			send_signal(device_id, list("[action]" = params["val"]), usr)
 			. = TRUE
 		if("excheck")

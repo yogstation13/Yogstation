@@ -200,10 +200,10 @@
 		"timestamp" = world.time,
 		"power" = on,
 		"direction" = pump_direction,
+		"space_detection" = space_detection,
 		"checks" = pressure_checks,
 		"internal" = internal_pressure_bound,
 		"external" = external_pressure_bound,
-		"space_detection" = space_detection,
 		"sigtype" = "status",
 		"has_aac" = aac != null
 	))
