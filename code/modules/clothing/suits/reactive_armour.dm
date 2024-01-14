@@ -2,7 +2,7 @@
 	name = "reactive armor shell"
 	desc = "An experimental suit of armor, awaiting installation of an anomaly core."
 	icon_state = "reactiveoff"
-	icon = 'icons/obj/clothing/suits.dmi'
+	icon = 'icons/obj/clothing/suits/suits.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/reactive_armor_shell/attackby(obj/item/I, mob/user, params)

@@ -100,7 +100,7 @@
 	if(!ismob(loc))
 		return
 	if(helmet_pref_style)
-		var/mutable_appearance/helmet_overlay = mutable_appearance('icons/obj/clothing/hats.dmi', helmet_pref_style)
+		var/mutable_appearance/helmet_overlay = mutable_appearance('icons/obj/clothing/hats/hats.dmi', helmet_pref_style)
 		. += helmet_overlay
 
 /obj/item/clothing/head/helmet/space/plasmaman/equipped(mob/living/user, slot)

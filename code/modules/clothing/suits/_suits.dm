@@ -1,4 +1,5 @@
 /obj/item/clothing/suit
+	icon = 'icons/obj/clothing/suits/suits.dmi'
 	name = "suit"
 	icon = 'icons/obj/clothing/suits.dmi'
 	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
