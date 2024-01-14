@@ -317,15 +317,14 @@
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/multitool_act(mob/living/user, obj/item/I)
-	if(do_after(user, 5))
-		if(space_detection)
-			to_chat(user, span_notice("You disable space detection."))
-			space_detection = FALSE
-		else
-			to_chat(user, span_notice("You enable space detection."))
-			space_detection = TRUE
-		investigate_log("space detection [space_detection ? "enabled" : "disabled"] by [key_name(user)]", INVESTIGATE_ATMOS)
-		add_fingerprint(user)
+	if(space_detection)
+		to_chat(user, span_notice("You disable space detection."))
+		space_detection = FALSE
+	else
+		to_chat(user, span_notice("You enable space detection."))
+		space_detection = TRUE
+	investigate_log("space detection [space_detection ? "enabled" : "disabled"] by [key_name(user)]", INVESTIGATE_ATMOS)
+	add_fingerprint(user)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
