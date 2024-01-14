@@ -250,12 +250,13 @@
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/flagelantes_chains_hood
 	var/wrap = FALSE
+	var/obj/effect/abstract/particle_holder/flagelantes_effect
 	var/total_wounds
 	//var/footstep = 1
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/equipped(mob/M, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M))
+	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M)) //Signals for sensing damage, healing, and wounds
 		RegisterSignal(M, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(handle_damage))
 		RegisterSignal(M, COMSIG_MOB_APPLY_HEALING, PROC_REF(on_heal))
 		RegisterSignal(M, COMSIG_CARBON_GAIN_WOUND, PROC_REF(handle_wound_add))
@@ -280,7 +281,7 @@
 			to_chat(H, span_warning("You're already wearing something on your head!"))
 			return
 		to_chat(H, span_notice("You start wrapping the chains around yourself."))
-		H.visible_message(span_warning("[H] starts wrapping the [src] around themselves!"))
+		H.visible_message(span_warning("[H] starts wrapping [src] around themselves!"))
 		playsound(get_turf(src), 'sound/spookoween/chain_rattling.ogg', 10, TRUE, -1)
 		wrap = TRUE
 		if(!do_after(H, 10 SECONDS, H))
@@ -332,7 +333,7 @@
 	if(suittoggled) //Make sure it only checks when the hood is up
 		change_slowdown(C, slowdown, -1) //Change speed when losing a wound
 
-/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(var/mob/living/carbon/human/H, starting_slowdown, wound)
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(mob/living/carbon/human/H, starting_slowdown, wound)
 	var/health_percent = H.health / H.maxHealth
 	var/final_slowdown
 	switch(health_percent) //Change slowdown based on health
@@ -357,15 +358,29 @@
 			final_slowdown += -0.2
 		if(2)
 			final_slowdown += -0.4
-		if(3)
+		if(3) //Max of three wounds for slowdown calculation
 			final_slowdown += -0.6
 
 	slowdown = final_slowdown //set slowdown
 
-	if(slowdown > starting_slowdown) //Show bubble alert based on starting slowdown and new slowdown
+	appearance_change(H, slowdown) //Add particles and/or change sprite depending on slowdown
+
+	if(slowdown > starting_slowdown) //Show bubble alert based on starting and new slowdown
 		H.balloon_alert(H, "You slow down!")
 	else if(slowdown < starting_slowdown)
 		H.balloon_alert(H, "You speed up!")
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/appearance_change(mob/living/carbon/human/H, slowdown)
+	switch(slowdown)
+		if(-0.2 to 1)
+			if(flagelantes_effect)
+				QDEL_NULL(flagelantes_effect) //Remove particle effect
+		if(-1.5 to -0.3)
+			if(flagelantes_effect)
+				return
+			else
+				flagelantes_effect = new(H, /particles/droplets) //Add particle effect
+				flagelantes_effect.color = "#a41c1c"
 		
 /* /obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_mob_move()
 	var/mob/living/carbon/human/H = loc
