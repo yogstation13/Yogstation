@@ -203,6 +203,7 @@
 		"checks" = pressure_checks,
 		"internal" = internal_pressure_bound,
 		"external" = external_pressure_bound,
+		"space_detection" = space_detection,
 		"sigtype" = "status",
 		"has_aac" = aac != null
 	))
@@ -261,6 +262,12 @@
 
 	if("direction" in signal.data)
 		pump_direction = text2num(signal.data["direction"])
+
+	if("space_detection" in signal.data)
+		space_detection = !space_detection
+		space_shutoff_ticks = 0
+		if(!space_detection)
+			investigate_log(" space detection was disabled by [key_name(user)]", INVESTIGATE_ATMOS)
 
 	if("set_internal_pressure" in signal.data)
 		var/old_pressure = internal_pressure_bound

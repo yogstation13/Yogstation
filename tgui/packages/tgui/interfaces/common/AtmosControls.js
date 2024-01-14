@@ -15,6 +15,7 @@ export const Vent = (props, context) => {
     direction,
     external,
     internal,
+    space_detection,
     extdefault,
     intdefault,
   } = vent;
@@ -39,6 +40,16 @@ export const Vent = (props, context) => {
             content={direction ? 'Pressurizing' : 'Scrubbing'}
             color={!direction && 'danger'}
             onClick={() => act('direction', {
+              id_tag,
+              val: Number(!direction),
+            })} />
+        </LabeledList.Item>
+        <LabeledList.Item label="Space Detection">
+          <Button
+            icon="wind"
+            content={space_detection ? 'Enabled' : 'Disabled'}
+            color={!space_detection && 'danger'}
+            onClick={() => act('space_detection', {
               id_tag,
               val: Number(!direction),
             })} />
