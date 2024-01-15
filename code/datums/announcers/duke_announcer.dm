@@ -23,7 +23,7 @@
 						ANNOUNCER_POWEROFF = 'sound/ai/duke/poweroff.ogg',
 						ANNOUNCER_POWERON = 'sound/ai/duke/poweron.ogg',
 						ANNOUNCER_RADIATION = 'sound/ai/duke/radiation.ogg',
-						ANNOUNCER_SHUTTLECALLED = 'sound/ai/duke/shuttlecalled.ogg',
+						ANNOUNCER_SHUTTLECALLED = 'sound/ai/duke/shuttlecall.ogg',
 						ANNOUNCER_SHUTTLEDOCK = 'sound/ai/duke/shuttledock.ogg',
 						ANNOUNCER_SHUTTLERECALLED = 'sound/ai/duke/shuttlerecall.ogg',
 						ANNOUNCER_SPANOMALIES = 'sound/ai/duke/spanomalies.ogg')
