@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(HIGHRISK, typecacheof(list(/obj/item/disk/nuclear,
 			var/mob/living/L = user
 			to_chat(L, span_danger("Your [name] beeps as it reconfigures it's tracking algorithms."))
 			playsound(src, 'sound/machines/boop.ogg', 50, 1)
-			switch_mode_to()
+			switch_mode_to(user)
 		else
 			setting = SETTING_DISK
 
@@ -92,20 +92,18 @@ GLOBAL_LIST_INIT(HIGHRISK, typecacheof(list(/obj/item/disk/nuclear,
 		if("Disk Recovery")
 			setting = SETTING_DISK
 		if("High Risk")
-			to_chat(user, "<span class='notice'>Where are you working?</span>")
 			setting = SETTING_OBJECT
 			var/list/item_names[0]
 			var/list/item_paths[0]
 			for(var/objective in GLOB.HIGHRISK)
-				var/datum/objective_item/steal/T = objective
-				var/name = initial(T.name)
+				var/obj/item/I = objective
+				var/name = initial(I.name)
 				item_names += name
-				item_paths[name] = initial(T.targetitem)
+				item_paths[name] = objective
 			var/targetitem = input("Select item to search for.", "Item Mode Select","") as null|anything in item_names
 			if(!targetitem)
 				return
 			var/list/target_candidates = get_all_of_type(item_paths[targetitem], subtypes = TRUE)
-			to_chat(user, "<span class='notice'>You fucking work here?.</span>")
 			for(var/obj/item/candidate in target_candidates)
 				if(!is_centcom_level((get_turf(candidate)).z))
 					highrisk_rem = candidate
@@ -115,7 +113,6 @@ GLOBAL_LIST_INIT(HIGHRISK, typecacheof(list(/obj/item/disk/nuclear,
 			if(!highrisk_rem)
 				to_chat(user, "<span class='warning'>Failed to locate [targetitem]!</span>")
 				return
-			to_chat(user, "<span class='notice'>The fuck are you doing here?.</span>")
 
 		if("DNA RSS")
 			setting = SETTING_PERSON
