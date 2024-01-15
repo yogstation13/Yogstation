@@ -77,7 +77,7 @@
 
 /obj/structure/meatblesser
 	name = "Blessing Altar"
-	desc = "A dedicated altar towards the purifying and blessing of flesh. Does the job quicker and more easily than the rite version."
+	desc = "A dedicated altar towards the purifying and blessing of flesh. Does the job quicker and more easily than the rite version. To use, click on it with a slab of meat in hand."
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/hand_of_god_structures.dmi'
