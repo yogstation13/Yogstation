@@ -65,6 +65,8 @@
 #include "code\game\objects\items\devices\radio\encryptionkey.dm"
 #include "code\game\objects\items\devices\radio\radio.dm"
 #include "code\game\objects\items\devices\powersink.dm"
+#include "code\game\objects\items\devices\laserpointer.dm"
+#include "code\game\objects\items\devices\advpinpointer.dm"
 #include "code\game\objects\items\stacks\cash.dm"
 #include "code\game\objects\items\implants\implant.dm"
 #include "code\game\objects\items\implants\implanter.dm"
