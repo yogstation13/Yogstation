@@ -14,6 +14,8 @@
 	buckle_lying = 90 //we turn to you!
 	max_integrity = 300
 	integrity_failure = 0
+	buildstackamount = 6
+	buildstack = /obj/item/stack/sheet/ruinous_metal
 	///Avoids having to check global everytime by referencing it locally.
 	var/datum/religion_sect/sect_to_altar
 
