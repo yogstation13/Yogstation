@@ -337,24 +337,8 @@
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(mob/living/carbon/human/H, starting_slowdown, wound)
 	var/health_percent = H.health / H.maxHealth
-	var/final_slowdown
-	switch(health_percent) //Change slowdown based on health
-		if(0.90 to INFINITY)
-			final_slowdown = 1
-		if(0.70 to 0.89)
-			final_slowdown = 0.5
-		if(0.60 to 0.79)
-			final_slowdown = 0
-		if(0.30 to 0.59)
-			final_slowdown = -0.3
-		if(0.10 to 0.29)
-			final_slowdown = -0.6
-		if(0.1 to 0.9)
-			final_slowdown = -1
-		if(-INFINITY to 0) //So crit people are not rolling around at the speed of sound
-			final_slowdown = 1
+	var/final_slowdown = 0
 
-	total_wounds += wound
 	switch(total_wounds) //Change slowdown based on wounds
 		if(1)
 			final_slowdown += -0.2
@@ -363,9 +347,27 @@
 		if(3 to INFINITY) //Max of three wounds for slowdown calculation
 			final_slowdown += -0.6
 
+	switch(health_percent) //Change slowdown based on health
+		if(0.90 to INFINITY)
+			final_slowdown += 1
+		if(0.70 to 0.89)
+			final_slowdown += 0.5
+		if(0.60 to 0.79)
+			final_slowdown += 0
+		if(0.30 to 0.59)
+			final_slowdown += -0.3
+		if(0.10 to 0.29)
+			final_slowdown += -0.6
+		if(0 to 0.9)
+			final_slowdown += -1
+		if(-INFINITY to -0.1) //So crit people are not rolling around at the speed of sound
+			final_slowdown = 1
+
+	total_wounds += wound
+	
 	slowdown = final_slowdown //set slowdown
 
-	appearance_change(H, slowdown) //Add particles and/or change sprite depending on slowdown
+	appearance_change(H, slowdown) //Add particles and change sprite depending on slowdown
 
 	change_footstep(slowdown) //Change occurance of chain noise
 
@@ -376,16 +378,36 @@
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/appearance_change(mob/living/carbon/human/H, slowdown)
 	switch(slowdown)
-		if(-0.2 to 1)
+		if(0 to 1)
 			if(flagelantes_effect)
 				QDEL_NULL(flagelantes_effect) //Remove particle effect
-		if(-1.5 to -0.3)
-			if(flagelantes_effect)
-				return
-			else
+			update_icon_state()
+		if(-1.5 to -0.1)
+			if(!flagelantes_effect)
 				flagelantes_effect = new(H, /particles/droplets) //Add particle effect
 				flagelantes_effect.color = "#a41c1c"
+			update_icon_state()
+		if(-INFINITY to -1.6)
+			if(!flagelantes_effect)
+				flagelantes_effect = new(H, /particles/droplets)
+				flagelantes_effect.color = "#a41c1c"
+			update_icon_state()
 
+/obj/item/clothing/suit/hooded/flagelantes_chains/update_icon_state()
+	. = ..()
+	switch(slowdown)
+		if(0 to 1)
+			if(hood.icon_state != "flagelantes_chains_hood")
+				hood.icon_state = "flagelantes_chains_hood" //Change sprite
+				hood.flags_inv = HIDEHAIR|HIDEEARS
+		if(-1.5 to -0.1)
+			if(hood.icon_state != "flagelantes_chains_hood_1")
+				hood.icon_state = "flagelantes_chains_hood_1"
+				hood.flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+		if(-INFINITY to -1.6)
+			if(hood.icon_state != "flagelantes_chains_hood_2")
+				hood.icon_state = "flagelantes_chains_hood_2"
+				hood.flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_footstep(slowdown) //So the chain sounds isn't spammed at higher speeds
 	switch(slowdown)
@@ -418,3 +440,4 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 25)
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEEARS
+
