@@ -74,3 +74,27 @@
 		icon_state = "fountain"
 	else
 		icon_state = "fountain-black"
+
+/obj/structure/meatblesser
+	name = "Blessing Altar"
+	desc = "A dedicated altar towards the purifying and blessing of flesh. Does the job quicker and more easily than the rite version."
+	density = TRUE
+	anchored = TRUE
+	icon = 'icons/obj/hand_of_god_structures.dmi'
+	icon_state = "blessingaltar"
+
+/obj/structure/meatblesser/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/meat/slab))
+		var/obj/item/reagent_containers/food/snacks/meat/slab/W = I
+		user.show_message(span_notice("You begin silently blessing the [W.name].."), MSG_VISUAL)
+		if(W.use_tool(src, user, 10))
+			if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat))
+				new /obj/item/reagent_containers/food/snacks/meat/slab/blessed/weak(drop_location())
+			else
+				new /obj/item/reagent_containers/food/snacks/meat/slab/blessed(drop_location())
+			user.show_message(span_notice("You bless the [W.name]."), MSG_VISUAL)
+			qdel(W)
+		else
+			user.show_message(span_notice("You need a valid chunk of flesh for blessing."))
+	else
+		return ..()
