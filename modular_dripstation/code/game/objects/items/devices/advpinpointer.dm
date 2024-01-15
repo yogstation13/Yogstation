@@ -80,6 +80,9 @@ GLOBAL_LIST_INIT(HIGHRISK, typecacheof(list(/obj/item/disk/nuclear,
 /obj/item/pinpointer/adv/AltClick(mob/user)
 	if(isliving(user))
 		if(is_syndicate(user))
+			if(!user.is_holding(src))
+				to_chat(user, span_notice("You should be able to press the change mode button to interact with interface."))
+				return
 			var/mob/living/L = user
 			to_chat(L, span_danger("Your [name] beeps as it reconfigures it's tracking algorithms."))
 			playsound(src, 'sound/machines/boop.ogg', 50, 1)
