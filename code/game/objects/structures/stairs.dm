@@ -22,14 +22,13 @@
 	if(force_open_above)
 		force_open_above()
 		build_signal_listener()
-	
+	update_surrounding()
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
 	)
 
 	AddElement(/datum/element/connect_loc, loc_connections)
 	
-	update_surrounding()
 	return ..()
 
 /obj/structure/stairs/Destroy()
@@ -82,7 +81,6 @@
 		climber.pulling?.move_from_pull(climber, loc, climber.glide_size)
 		for(var/mob/living/buckled as anything in climber.buckled_mobs)
 			buckled.pulling?.move_from_pull(buckled, loc, buckled.glide_size)
-
 
 /obj/structure/stairs/update_icon_state()
 	. = ..()
