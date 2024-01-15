@@ -252,21 +252,23 @@
 	var/wrap = FALSE
 	var/obj/effect/abstract/particle_holder/flagelantes_effect
 	var/total_wounds
-	//var/footstep = 1
+	var/footstep = 1
+	var/footstep_max = 2
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/equipped(mob/M, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M)) //Signals for sensing damage, healing, and wounds
+	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M)) //Signals for sensing damage, healing, wounds, and movement
 		RegisterSignal(M, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(handle_damage))
 		RegisterSignal(M, COMSIG_MOB_APPLY_HEALING, PROC_REF(on_heal))
 		RegisterSignal(M, COMSIG_CARBON_GAIN_WOUND, PROC_REF(handle_wound_add))
 		RegisterSignal(M, COMSIG_CARBON_LOSE_WOUND, PROC_REF(handle_wound_remove))
+		RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(on_mob_move))
 	else
-		UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_CARBON_LOSE_WOUND))
+		UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_CARBON_LOSE_WOUND, COMSIG_MOVABLE_MOVED))
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/dropped(mob/M)
 	. = ..()
-	UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND))
+	UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_MOVABLE_MOVED))
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/ToggleHood() //So people can't just quickly wear it whenever they want to
 	var/mob/living/carbon/human/H = src.loc
@@ -296,8 +298,8 @@
 				for(var/X in actions)
 					var/datum/action/A = X
 					A.build_all_button_icons()
-				ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)
-				change_slowdown(H, slowdown) // Ignore damage slowdown and change clothing slowdown based on damage
+				ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)// Ignore damage slowdown
+				change_slowdown(H, slowdown) //Change clothing slowdown based on damage
 		wrap = FALSE			
 	else
 		RemoveHood()
@@ -358,12 +360,14 @@
 			final_slowdown += -0.2
 		if(2)
 			final_slowdown += -0.4
-		if(3) //Max of three wounds for slowdown calculation
+		if(3 to INFINITY) //Max of three wounds for slowdown calculation
 			final_slowdown += -0.6
 
 	slowdown = final_slowdown //set slowdown
 
 	appearance_change(H, slowdown) //Add particles and/or change sprite depending on slowdown
+
+	change_footstep(slowdown) //Change occurance of chain noise
 
 	if(slowdown > starting_slowdown) //Show bubble alert based on starting and new slowdown
 		H.balloon_alert(H, "You slow down!")
@@ -381,16 +385,28 @@
 			else
 				flagelantes_effect = new(H, /particles/droplets) //Add particle effect
 				flagelantes_effect.color = "#a41c1c"
-		
-/* /obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_mob_move()
+
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_footstep(slowdown) //So the chain sounds isn't spammed at higher speeds
+	switch(slowdown)
+		if(0 to 1)
+			footstep_max = 2
+		if(-0.5 to -0.1)
+			footstep_max = 3
+		if(-1 to -0.6)
+			footstep_max = 4
+		if(-1.6 to -1.1)
+			footstep_max = 5
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_mob_move()
 	var/mob/living/carbon/human/H = loc
 	if(!istype(H) || H.wear_suit != src)
 		return
-	if(footstep > 2)
-		playsound(src, 'sound/weapons/chainhit.ogg', 10, 1)
+	if(footstep > footstep_max)
+		playsound(src, 'sound/weapons/chainhit.ogg', 5, 1)
 		footstep = 0
 	else
-		footstep++ */
+		footstep++
 
 /obj/item/clothing/head/hooded/flagelantes_chains_hood
 	name = "flagelantes hood"
