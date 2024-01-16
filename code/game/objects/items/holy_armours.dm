@@ -255,6 +255,13 @@
 	var/footstep = 1
 	var/footstep_max = 2
 
+	var/obj/item/clothing/head/hooded/flagelantes_chains_hood/linkedhood
+
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/Initialize(mapload)
+	. = ..()
+	if(istype(loc, /obj/item/clothing/head/hooded/flagelantes_chains_hood))
+		linkedhood = loc
+
 /obj/item/clothing/suit/hooded/flagelantes_chains/equipped(mob/M, slot)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M)) //Signals for sensing damage, healing, wounds, and movement
@@ -392,22 +399,23 @@
 				flagelantes_effect = new(H, /particles/droplets)
 				flagelantes_effect.color = "#a41c1c"
 			update_icon_state()
+	hood.update_appearance(UPDATE_ICON)
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/update_icon_state()
 	. = ..()
 	switch(slowdown)
 		if(0 to 1)
-			if(hood.icon_state != "flagelantes_chains_hood")
-				hood.icon_state = "flagelantes_chains_hood" //Change sprite
-				hood.flags_inv = HIDEHAIR|HIDEEARS
+			if(linkedhood.icon_state != "flagelantes_chains_hood")
+				linkedhood.icon_state = "flagelantes_chains_hood" //Change sprite
+				linkedhood.flags_inv = HIDEHAIR|HIDEEARS
 		if(-1.5 to -0.1)
-			if(hood.icon_state != "flagelantes_chains_hood_1")
-				hood.icon_state = "flagelantes_chains_hood_1"
-				hood.flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+			if(linkedhood.icon_state != "flagelantes_chains_hood_1")
+				linkedhood.icon_state = "flagelantes_chains_hood_1"
+				linkedhood.flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 		if(-INFINITY to -1.6)
-			if(hood.icon_state != "flagelantes_chains_hood_2")
-				hood.icon_state = "flagelantes_chains_hood_2"
-				hood.flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+			if(linkedhood.icon_state != "flagelantes_chains_hood_2")
+				linkedhood.icon_state = "flagelantes_chains_hood_2"
+				linkedhood.flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_footstep(slowdown) //So the chain sounds isn't spammed at higher speeds
 	switch(slowdown)
