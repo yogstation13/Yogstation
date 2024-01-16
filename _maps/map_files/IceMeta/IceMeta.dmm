@@ -8754,10 +8754,10 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/yogs/mining_medic,
-/obj/structure/railing{
+/obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/structure/railing{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -37742,6 +37742,16 @@
 /obj/machinery/computer/security/mining{
 	dir = 4
 	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "kYp" = (
@@ -47356,19 +47366,11 @@
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "nIB" = (
-/obj/machinery/light{
+/obj/structure/railing{
 	dir = 8
 	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	req_access = null
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
@@ -64944,6 +64946,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/machinery/camera{
+	c_tag = "Mining Dock";
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "sRg" = (
@@ -72288,13 +72294,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/science/xenobiology)
-"uTS" = (
-/obj/machinery/camera{
-	c_tag = "Mining Dock";
-	dir = 1
-	},
-/turf/open/openspace,
-/area/quartermaster/miningoffice)
 "uUd" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -100481,8 +100480,8 @@ cAc
 cAc
 cAc
 cAc
+cAc
 ueX
-tRh
 ozK
 ozK
 ozK
@@ -100737,9 +100736,9 @@ cAc
 wkl
 sRc
 abf
+abf
 cAc
 ueX
-tRh
 ozK
 ozK
 ozK
@@ -100993,9 +100992,9 @@ ueX
 cAc
 jnA
 xoj
-uTS
+abf
+abf
 cAc
-ueX
 ueX
 ueX
 ueX
@@ -101251,8 +101250,8 @@ swJ
 oFu
 vzg
 abf
+abf
 swJ
-cAc
 cAc
 swJ
 ueX
@@ -162412,20 +162411,20 @@ oVp
 oVp
 oVp
 oVp
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
 oVp
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
 oVp
 oVp
 oVp
@@ -162664,37 +162663,37 @@ oVp
 oVp
 oVp
 oVp
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
 oVp
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
 oVp
 oVp
 oVp
@@ -162920,7 +162919,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -162952,6 +162950,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -163176,7 +163175,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -163209,6 +163207,7 @@ tVK
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -163431,7 +163430,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -163466,6 +163464,7 @@ tVK
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -163687,7 +163686,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -163723,6 +163721,7 @@ tVK
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -163943,7 +163942,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -163980,6 +163978,7 @@ tVK
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -164199,7 +164198,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -164237,6 +164235,7 @@ tVK
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -164455,7 +164454,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -164495,6 +164493,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -164711,7 +164710,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -164755,6 +164753,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -164966,7 +164965,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -165013,6 +165011,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -165223,7 +165222,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 iJR
@@ -165271,6 +165269,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -165480,7 +165479,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -165528,6 +165526,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -165737,7 +165736,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -165784,6 +165782,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -165994,7 +165993,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -166041,6 +166039,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -166251,7 +166250,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -166299,6 +166297,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -166508,7 +166507,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -166556,6 +166554,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -166765,7 +166764,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -166813,6 +166811,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -167022,7 +167021,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -167070,6 +167068,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -167279,7 +167278,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -167326,6 +167324,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -167537,7 +167536,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -167583,6 +167581,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -167795,7 +167794,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -167839,6 +167837,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -168052,7 +168051,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -168095,6 +168093,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -168310,7 +168309,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -168352,6 +168350,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -168567,7 +168566,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -168609,6 +168607,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -168824,7 +168823,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -168866,6 +168864,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -169086,7 +169085,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 rbd
 yds
@@ -169123,6 +169121,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -169343,7 +169342,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 rbd
 rbd
@@ -169379,6 +169377,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -169600,7 +169599,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -169636,6 +169634,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -169860,7 +169859,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -169892,6 +169890,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -170117,7 +170116,6 @@ oVp
 oVp
 oVp
 oVp
-oVp
 wMi
 wMi
 wMi
@@ -170147,6 +170145,7 @@ wMi
 wMi
 wMi
 wMi
+oVp
 oVp
 oVp
 oVp
@@ -170375,27 +170374,27 @@ oVp
 oVp
 oVp
 oVp
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
 oVp
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
 oVp
 oVp
 oVp
@@ -170635,24 +170634,24 @@ oVp
 oVp
 oVp
 oVp
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
 oVp
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
 oVp
 oVp
 oVp
@@ -170893,21 +170892,21 @@ oVp
 oVp
 oVp
 oVp
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
 oVp
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
 oVp
 oVp
 oVp
@@ -171151,16 +171150,16 @@ oVp
 oVp
 oVp
 oVp
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
+wMi
 oVp
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
-wMi
 oVp
 oVp
 oVp
@@ -231554,13 +231553,13 @@ lbu
 lbu
 lbu
 lbu
-lbu
 iwT
 iwT
 jVj
 hqG
 jVj
 iwT
+lbu
 lbu
 lbu
 lbu
@@ -231811,13 +231810,13 @@ lbu
 lbu
 lbu
 lbu
-lbu
 iwT
 oZy
 hqG
 hqG
 hqG
 jVj
+lbu
 lbu
 lbu
 lbu
@@ -232068,13 +232067,13 @@ lbu
 lbu
 lbu
 lbu
-lbu
 iwT
 oZy
 hqG
 hqG
 hqG
 hqG
+lbu
 lbu
 lbu
 lbu
@@ -232325,13 +232324,13 @@ lbu
 lbu
 lbu
 lbu
-lbu
 iwT
 oZy
 cUs
 hqG
 hqG
 jVj
+lbu
 lbu
 lbu
 lbu
@@ -232582,13 +232581,13 @@ lbu
 lbu
 lbu
 lbu
-lbu
 iwT
 iwT
 dEb
 hqG
 jVj
 iwT
+lbu
 lbu
 lbu
 lbu
