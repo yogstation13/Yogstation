@@ -1029,6 +1029,12 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"azT" = (
+/obj/machinery/vr_sleeper/netmin/synth_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "azV" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/disposalpipe/segment,
@@ -1716,6 +1722,15 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"aRk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "aRM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -2367,13 +2382,7 @@
 "bfP" = (
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"bgd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/maintenance/department/engine)
-"bgw" = (
+"bfW" = (
 /obj/machinery/ai/networking{
 	label = "Subcontroller";
 	roundstart_connection = "Computer Science - 2"
@@ -2383,6 +2392,12 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/secondarydatacore)
+"bgd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "bgF" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "armory_eva";
@@ -2970,6 +2985,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"bxO" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "bxQ" = (
 /obj/machinery/light{
 	dir = 1
@@ -17318,15 +17337,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
-"ipj" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/ethernet_cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "ipy" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -18346,26 +18356,6 @@
 /obj/machinery/lapvend,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"iPv" = (
-/obj/structure/rack,
-/obj/item/aicard,
-/obj/item/disk/holodisk/tutorial/AICore,
-/obj/item/circuitboard/computer/ai_upload_download,
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/heads/hor";
-	dir = 8;
-	name = "RD Office APC";
-	pixel_x = -25
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/hor)
 "iQf" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -19536,18 +19526,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jyw" = (
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
-"jyJ" = (
-/obj/machinery/computer/robotics{
-	dir = 8
-	},
-/obj/structure/sign/plaques/ai_password{
-	pixel_x = 32
-	},
-/turf/open/floor/carpet/exoticpurple,
-/area/crew_quarters/heads/hor)
 "jyN" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 8
@@ -26147,13 +26125,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/eva)
-"mLS" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/landmark/start/synthetic,
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "mMi" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/department/science/central";
@@ -26436,6 +26407,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"mSa" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/landmark/start/synthetic,
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "mSo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -30702,13 +30680,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"pgO" = (
-/obj/machinery/ai/master_subcontroller,
-/obj/structure/ethernet_cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "pgQ" = (
 /obj/structure/table/wood,
 /obj/item/pinpointer/nuke,
@@ -31067,10 +31038,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security)
-"png" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "pno" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -33676,12 +33643,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"qzE" = (
-/obj/machinery/vr_sleeper/netmin/synth_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "qzW" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -34519,9 +34480,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"qZX" = (
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/secondarydatacore)
 "rak" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/stripes/line{
@@ -35663,6 +35621,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"rzs" = (
+/obj/machinery/computer/robotics{
+	dir = 8
+	},
+/turf/open/floor/carpet/exoticpurple,
+/area/crew_quarters/heads/hor)
 "rzE" = (
 /obj/effect/turf_decal/trimline/white/filled/line/lower{
 	dir = 8
@@ -39737,6 +39701,13 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/auxiliary)
+"tzI" = (
+/obj/machinery/ai/master_subcontroller,
+/obj/structure/ethernet_cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "tzQ" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall/r_wall,
@@ -41495,6 +41466,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"uxq" = (
+/obj/structure/rack,
+/obj/item/aicard,
+/obj/item/disk/holodisk/tutorial/AICore,
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/hor";
+	dir = 8;
+	name = "RD Office APC";
+	pixel_x = -25
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
 "uxw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -42392,12 +42382,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/dorms)
-"uSn" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/light/small,
-/obj/structure/closet/emcloset,
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "uSr" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -42578,6 +42562,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"uWW" = (
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "uXE" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -42594,6 +42581,12 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"uXY" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/light/small,
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "uYw" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
 	dir = 8
@@ -43826,6 +43819,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+"vAl" = (
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/secondarydatacore)
 "vAA" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower,
 /obj/machinery/camera{
@@ -81518,7 +81514,7 @@ wTB
 hBZ
 kSo
 dpf
-bgw
+bfW
 juY
 gYo
 wQM
@@ -81775,8 +81771,8 @@ wTB
 hBZ
 nJe
 dpf
-ipj
-qZX
+aRk
+vAl
 ios
 mZK
 iGe
@@ -82032,7 +82028,7 @@ aOB
 wOb
 nJe
 dpf
-pgO
+tzI
 vFH
 ydu
 dpf
@@ -82547,8 +82543,8 @@ nJe
 wIc
 dpf
 ylC
-jyw
-jyw
+uWW
+uWW
 dpf
 wYJ
 dpf
@@ -82804,7 +82800,7 @@ nJe
 mpT
 dpf
 eVZ
-png
+bxO
 mjG
 sXP
 xFt
@@ -88704,7 +88700,7 @@ hso
 bdB
 rIB
 rrE
-iPv
+uxq
 tAW
 lID
 qPM
@@ -89216,7 +89212,7 @@ tAW
 jNf
 eEB
 jlh
-jyJ
+rzs
 eNu
 bxI
 tAW
@@ -96124,7 +96120,7 @@ dYL
 dYL
 xgP
 ihC
-uSn
+uXY
 fnc
 fzn
 ghk
@@ -96638,7 +96634,7 @@ vRP
 vRP
 xgP
 kIf
-mLS
+mSa
 fnc
 pRp
 eTE
@@ -96895,7 +96891,7 @@ vRP
 vRP
 xgP
 xgP
-qzE
+azT
 fnc
 fqe
 eTE
