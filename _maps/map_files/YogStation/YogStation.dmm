@@ -61117,13 +61117,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"tpy" = (
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
-	dir = 1
-	},
-/obj/machinery/rnd/server/master,
-/turf/open/floor/plasteel,
-/area/hallway/primary/aft_starboard)
 "tpA" = (
 /obj/machinery/shower{
 	dir = 4
@@ -117628,7 +117621,7 @@ udM
 qQa
 dOm
 xdh
-tpy
+rXM
 vxp
 iXv
 rXM
