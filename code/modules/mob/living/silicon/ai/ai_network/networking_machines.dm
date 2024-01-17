@@ -116,6 +116,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	return ..()
 
 /obj/machinery/ai/networking/proc/roundstart_connect(mapload)
+	if(!network)
+		connect_to_ai_network()
 	for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
 		if(partner)
 			break
