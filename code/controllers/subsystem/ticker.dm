@@ -300,11 +300,6 @@ SUBSYSTEM_DEF(ticker)
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 
-	//Yog code, since we load in templates at roundstart we need to resmooth
-	// for(var/z_level in 1 to world.maxz)
-	// 	smooth_zlevel(z_level, now = TRUE) //You should smooth yourself NOW
-	//End Yog Code
-
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()

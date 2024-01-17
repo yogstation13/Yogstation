@@ -282,9 +282,6 @@
 	var/bulb_vacuum_colour = "#4F82FF"	
 	var/bulb_vacuum_brightness = 8
 
-	///So we don't have a lot of stress on startup.
-	var/maploaded = FALSE
-
 	///More stress stuff.
 	var/turning_on = FALSE
 
@@ -318,7 +315,7 @@
 /obj/machinery/light/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
+	update(FALSE)
 
 /obj/machinery/light/floor/built
 	icon_state = "floor-empty"
@@ -326,7 +323,7 @@
 /obj/machinery/light/floor/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
+	update(FALSE)
 
 /obj/machinery/light/small/built
 	icon_state = "bulb-empty"
@@ -334,7 +331,7 @@
 /obj/machinery/light/small/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
+	update(FALSE)
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
@@ -344,56 +341,50 @@
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
 
 	//Setup area colours -pb
-	var/area/A = get_area(src)
+	var/area/our_area = get_room_area()
 	if(bulb_colour == initial(bulb_colour))
 		if(istype(src, /obj/machinery/light/small))
-			bulb_colour = A.lighting_colour_bulb
+			bulb_colour = our_area.lighting_colour_bulb
 		else
-			bulb_colour = A.lighting_colour_tube
+			bulb_colour = our_area.lighting_colour_tube
 
 	if(nightshift_light_color == initial(nightshift_light_color))
-		nightshift_light_color = A.lighting_colour_night
+		nightshift_light_color = our_area.lighting_colour_night
 
 	if(!mapload) //sync up nightshift lighting for player made lights
-		var/obj/machinery/power/apc/temp_apc = A.get_apc()
+		var/obj/machinery/power/apc/temp_apc = our_area.get_apc()
 		nightshift_enabled = temp_apc?.nightshift_lights
-	else
-		maploaded = TRUE
 
 	if(start_with_cell && !no_emergency)
 		cell = new/obj/item/stock_parts/cell/emergency_light(src)
-	spawn(2)
-		switch(fitting)
-			if("tube")
-				brightness = 8
-				if(prob(2))
-					break_light_tube(1)
-			if("bulb")
-				brightness = 4
-				if(prob(5))
-					break_light_tube(1)
-			if("floor bulb")
-				brightness = 4
-				if(prob(5))
-					break_light_tube(1)
-		spawn(1)
-			update(FALSE, TRUE, maploaded)
+	
+	// Light projects out backwards from the dir of the light
+	set_light(l_dir = REVERSE_DIR(dir))
+	on = mapload && our_area.lights_always_start_on
+
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/light/LateInitialize()
+	. = ..()
+	switch(fitting)
+		if("tube")
+			if(prob(2))
+				break_light_tube(TRUE)
+		if("bulb")
+			if(prob(5))
+				break_light_tube(TRUE)
+	update(trigger = FALSE)
 
 /obj/machinery/light/Destroy()
 	GLOB.lights.Remove(src)
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE && !forced_off
-//		A.update_lights()
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/machinery/light/update_icon(updates=ALL)
+/obj/machinery/light/update_icon_state(updates=ALL)
 	. = ..()
-	if(on && turning_on)
-		return
-
-	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			if(forced_off)
@@ -406,15 +397,6 @@
 				icon_state = "[base_state]_vacuum"
 			else
 				icon_state = "[base_state]"
-			if(on && !forced_off)
-				var/glow_state = base_state
-				if(emergency_mode || (A && A.fire))
-					glow_state = "[base_state]_emergency"
-				else if ((A && A.vacuum) || nightshift_enabled)
-					glow_state = "[base_state]_nightshift"
-				var/mutable_appearance/glowybit = mutable_appearance(overlay_icon, glow_state, layer)
-				//glowybit.alpha = clamp(light_power*250, 30, 200)
-				add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
@@ -459,9 +441,6 @@
 	if(on)
 		if(instant)
 			turn_on(trigger, quiet)
-		else if(maploaded)
-			turn_on(trigger, TRUE)
-			maploaded = FALSE
 		else if(!turning_on)
 			turning_on = TRUE
 			addtimer(CALLBACK(src, PROC_REF(turn_on), trigger, quiet), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
@@ -471,7 +450,8 @@
 		START_PROCESSING(SSmachines, src)
 	else
 		use_power = IDLE_POWER_USE
-		set_light(0)
+		set_light(l_range = 0)
+	
 	update_appearance()
 
 	active_power_usage = (brightness * 10)
@@ -492,23 +472,23 @@
 	if(!on)
 		return FALSE
 
-	var/BR = brightness
-	var/PO = bulb_power
-	var/CO = bulb_colour
+	var/brightness_set = brightness
+	var/power_set = bulb_power
+	var/color_set = bulb_colour
 	if(color)
-		CO = color
+		color_set = color
 	var/area/A = get_area(src)
 	if (A && (A.fire || A.delta_light))
-		CO = bulb_emergency_colour
+		color_set = bulb_emergency_colour
 	else if (A && A.vacuum)
-		CO = bulb_vacuum_colour
-		BR = bulb_vacuum_brightness
+		color_set = bulb_vacuum_colour
+		brightness_set = bulb_vacuum_brightness
 	else if (nightshift_enabled)
-		BR = nightshift_brightness
-		PO = nightshift_light_power
+		brightness_set = nightshift_brightness
+		power_set = nightshift_light_power
 		if(!color)
-			CO = nightshift_light_color
-	var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
+			color_set = nightshift_light_color
+	var/matching = light && brightness_set == light.light_range && power_set == light.light_power && color_set == light.light_color
 	if(!matching)
 		switchcount++
 		if(rigged)
@@ -519,11 +499,15 @@
 				burn_out()
 		else
 			use_power = ACTIVE_POWER_USE
-			set_light(BR, PO, CO)
+			set_light(
+				l_range = brightness_set,
+				l_power = power_set,
+				l_color = color_set
+				)
 			if(!quiet)
 				playsound(src.loc, 'sound/effects/light_on.ogg', 50)
 	update_appearance()
-	return TRUE
+	broken_sparks(start_only=TRUE)
 
 /obj/machinery/light/update_atom_colour()
 	..()
@@ -557,9 +541,9 @@
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(s)
-	on = (s && status == LIGHT_OK && !forced_off)
-	update(FALSE)
+/obj/machinery/light/proc/set_on(turn_on)
+	on = (turn_on && status == LIGHT_OK)
+	update()
 
 /obj/machinery/light/get_cell()
 	return cell
@@ -623,7 +607,7 @@
 	// hit the light socket with umbral tendrils, instantly breaking the light as opposed to RNG //yogs
 	else if(istype(W, /obj/item/umbral_tendrils))
 		break_light_tube()
-		..() //yogs end
+		return ..() //yogs end
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
@@ -638,15 +622,8 @@
 				do_sparks(3, TRUE, src)
 				if (prob(75))
 					electrocute_mob(user, get_area(src), src, rand(0.7,1.0), TRUE)
-	//attempt to turn off light with multitool
-	else if(W.tool_behaviour == TOOL_MULTITOOL)
-		set_light(0)
-		forced_off = !forced_off
-		on = !on
-		update_appearance()
-		update()
-	else
-		return ..()
+
+	return ..()
 
 /obj/machinery/light/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -754,10 +731,10 @@
 			if(status != LIGHT_OK)
 				break
 			on = !on
-			update(0)
+			update(FALSE)
 			sleep(rand(0.5, 1.5) SECONDS)
 		on = (status == LIGHT_OK) && !forced_off
-		update(0)
+		update(FALSE)
 	flickering = 0
 
 // ai attack - make lights flicker, because why not
@@ -822,25 +799,25 @@
 	drop_light_tube(user)
 
 /obj/machinery/light/proc/drop_light_tube(mob/user)
-	var/obj/item/light/L = new light_type()
-	L.status = status
-	L.rigged = rigged
-	L.brightness = brightness
+	var/obj/item/light/light_object = new light_type()
+	light_object.status = status
+	light_object.rigged = rigged
+	light_object.brightness = brightness
 
 	// light item inherits the switchcount, then zero it
-	L.switchcount = switchcount
+	light_object.switchcount = switchcount
 	switchcount = 0
 
-	L.update()
-	L.forceMove(loc)
+	light_object.update_appearance()
+	light_object.forceMove(loc)
 
 	if(user) //puts it in our active hand
-		L.add_fingerprint(user)
-		user.put_in_active_hand(L)
+		light_object.add_fingerprint(user)
+		user.put_in_active_hand(light_object)
 
 	status = LIGHT_EMPTY
 	update()
-	return L
+	return light_object
 
 /obj/machinery/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
@@ -894,7 +871,7 @@
 // called when area power state changes
 /obj/machinery/light/power_change()
 	var/area/A = get_area(src)
-	seton(A.lightswitch && A.power_light)
+	set_on(A.lightswitch && A.power_light)
 
 // called when on fire
 

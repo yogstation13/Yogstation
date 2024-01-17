@@ -212,9 +212,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		power_light = TRUE
 		power_equip = TRUE
 		power_environ = TRUE
-		
-		if(static_lighting)
-			luminosity = 0
 
 		if(dynamic_lighting == DYNAMIC_LIGHTING_FORCED)
 			dynamic_lighting = DYNAMIC_LIGHTING_ENABLED

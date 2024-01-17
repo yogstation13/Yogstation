@@ -7,14 +7,17 @@ SUBSYSTEM_DEF(lighting)
 	var/static/list/corners_queue = list() // List of lighting corners queued for update.
 	var/static/list/objects_queue = list() // List of lighting objects queued for update.
 	var/static/list/current_sources = list()
-
+// #ifdef VISUALIZE_LIGHT_UPDATES
+// 	var/allow_duped_values = FALSE
+// 	var/allow_duped_corners = FALSE
+// #endif
 	loading_points = 6 SECONDS // Yogs -- loading times
 
 /datum/controller/subsystem/lighting/stat_entry(msg)
 	msg = "L:[length(sources_queue)]|C:[length(corners_queue)]|O:[length(objects_queue)]"
 	return ..()
 
-/datum/controller/subsystem/lighting/Initialize(timeofday)
+/datum/controller/subsystem/lighting/Initialize()
 	if(!initialized)
 		if (CONFIG_GET(flag/starlight))
 			for(var/I in GLOB.areas)
@@ -33,16 +36,17 @@ SUBSYSTEM_DEF(lighting)
 	MC_SPLIT_TICK_INIT(3)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
-	
+
 	if(!resumed)
 		current_sources = sources_queue
 		sources_queue = list()
-	
-	var/list/queue = current_sources
+
+	// UPDATE SOURCE QUEUE
 	var/i = 0
-	while(i < length(queue))
+	var/list/queue = current_sources
+	while(i < length(queue)) //we don't use for loop here because i cannot be changed during an iteration
 		i += 1
-		
+
 		var/datum/light_source/L = queue[i]
 		L.update_corners()
 		if(!QDELETED(L))

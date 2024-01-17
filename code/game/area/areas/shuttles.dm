@@ -6,6 +6,7 @@
 	requires_power = FALSE
 	static_lighting = TRUE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	lights_always_start_on = TRUE
 	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
 	valid_territory = FALSE
