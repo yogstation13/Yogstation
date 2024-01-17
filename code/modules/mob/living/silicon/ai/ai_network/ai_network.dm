@@ -13,8 +13,6 @@
 	var/list/decryption_drives = list()
 
 	var/list/synth_list = list()
-
-	var/list/remote_networks = list()
 	
 	var/previous_ram = 0
 
@@ -161,7 +159,7 @@
 		if(M.network == src)
 			return
 		else
-			M.disconnect_from_network()//..remove it
+			M.disconnect_from_ai_network()//..remove it
 	M.network = src
 	nodes[M] = M
 
@@ -351,8 +349,8 @@
 		net1.add_cable(Cable)
 	
 	for(var/obj/machinery/ai/Node in net2.nodes) //merge power machines 
-		if(!Node.connect_to_network())
-			Node.disconnect_from_network() //if somehow we can't connect the machine to the new network, disconnect it from the old nonetheless
+		if(!Node.connect_to_ai_network())
+			Node.disconnect_from_ai_network() //if somehow we can't connect the machine to the new network, disconnect it from the old nonetheless
 
 
 	net1.ai_list += net2.ai_list //AIs can only be in 1 network at a time
@@ -397,8 +395,8 @@
 
 	//now that the network is set, connect found machines to it
 	for(var/obj/machinery/ai/PM in found_machines)
-		if(!PM.connect_to_network()) //couldn't find a node on its turf...
-			PM.disconnect_from_network() //... so disconnect if already on a network
+		if(!PM.connect_to_ai_network()) //couldn't find a node on its turf...
+			PM.disconnect_from_ai_network() //... so disconnect if already on a network
 
 	//AN.rebuild_remote()
 
