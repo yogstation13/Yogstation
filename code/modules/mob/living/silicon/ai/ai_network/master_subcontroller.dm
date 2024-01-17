@@ -92,7 +92,7 @@
 		on = TRUE
 	update_icon()
 	
-/obj/machinery/ai/master_subcontroller/disconnect_from_network()
+/obj/machinery/ai/master_subcontroller/disconnect_from_ai_network()
 	if(network.cached_subcontroller == src)
 		network.cached_subcontroller = null
 	. = ..()

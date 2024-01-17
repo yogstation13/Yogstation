@@ -263,8 +263,8 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	//now that cables are done, let's connect found machines
 	for(var/obj/machinery/ai/PM in to_connect)
-		if(!PM.connect_to_network())
-			PM.disconnect_from_network() //if we somehow can't connect the machine to the new ai network, remove it from the old nonetheless
+		if(!PM.connect_to_ai_network())
+			PM.disconnect_from_ai_network() //if we somehow can't connect the machine to the new ai network, remove it from the old nonetheless
 	
 
 //////////////////////////////////////////////
@@ -347,8 +347,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		network.remove_cable(src)
 
 		for(var/obj/machinery/ai/P in T1)//check if it was powering a machine
-			if(!P.connect_to_network()) //can't find a node cable on a the turf to connect to
-				P.disconnect_from_network() //remove from current network (and delete ai network)
+			if(!P.connect_to_ai_network()) //can't find a node cable on a the turf to connect to
+				P.disconnect_from_ai_network() //remove from current network (and delete ai network)
 		return
 
 	var/obj/O = P_list[1]
@@ -364,8 +364,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	// Disconnect machines connected to nodes
 	if(d1 == 0) // if we cut a node (O-X) cable
 		for(var/obj/machinery/ai/P in T1)
-			if(!P.connect_to_network()) //can't find a node cable on a the turf to connect to
-				P.disconnect_from_network() //remove from current network
+			if(!P.connect_to_ai_network()) //can't find a node cable on a the turf to connect to
+				P.disconnect_from_ai_network() //remove from current network
 
 
 ///////////////////////////////////////////////
