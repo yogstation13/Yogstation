@@ -640,6 +640,7 @@
 /obj/structure/window/plasma/fulltile
 	icon = 'icons/obj/smooth_structures/plasma_window.dmi'
 	icon_state = "plasmawindow"
+	base_icon_state = "plasmawindow"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 300
 	fulltile = TRUE
@@ -655,7 +656,8 @@
 
 /obj/structure/window/plasma/reinforced/fulltile
 	icon = 'icons/obj/smooth_structures/rplasma_window.dmi'
-	icon_state = "rplasmawindow"
+	icon_state = "rplasmawindow-0"
+	base_icon_state = "rplasmawindow"
 	dir = FULLTILE_WINDOW_DIR
 	state = RWINDOW_SECURE
 	max_integrity = 1000
@@ -711,7 +713,8 @@
 	name = "bronze window"
 	desc = "A pane of translucent yet reinforced bronze."
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
-	icon_state = "clockwork_window"
+	icon_state = "clockwork_window-0"
+	base_icon_state = "clockwork_window"
 	glass_type = /obj/item/stack/tile/bronze
 
 /obj/structure/window/shuttle
