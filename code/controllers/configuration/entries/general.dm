@@ -553,3 +553,5 @@
 
 /// Whether demos are written, if not set demo SS never initializes
 /datum/config_entry/flag/demos_enabled
+
+/datum/config_entry/flag/toast_notification_on_init

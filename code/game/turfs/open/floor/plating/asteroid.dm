@@ -97,8 +97,9 @@
 	contents_explosion(severity, target)
 
 /turf/open/floor/plating/lavaland_baseturf
-	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 
 /turf/open/floor/plating/asteroid/basalt
 	name = "volcanic floor"
@@ -138,7 +139,11 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
-	
+
+/// Used for the lavaland icemoon ruin.
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface/no_ruins
+	turf_flags = NO_RUINS
+
 /turf/open/floor/plating/asteroid/airless
 	initial_gas_mix = AIRLESS_ATMOS
 	baseturfs = /turf/open/floor/plating/asteroid/airless
@@ -194,10 +199,12 @@
 	slowdown = 0
 
 /turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm
-	flags_1 = CAN_BE_DIRTY_1 | NO_RUINS | NO_RUST
+	flags_1 = CAN_BE_DIRTY_1
+	turf_flags = IS_SOLID | NO_RUST | NO_RUINS
 
 /turf/open/floor/plating/asteroid/snow/icemoon/do_not_scrape
-	flags_1 = CAN_BE_DIRTY_1 | NO_RUINS | NO_RUST
+	flags_1 = CAN_BE_DIRTY_1
+	turf_flags = IS_SOLID | NO_RUST | NO_CLEARING
 
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer
 	light_range = 2

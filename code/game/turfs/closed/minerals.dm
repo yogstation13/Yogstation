@@ -22,7 +22,7 @@
 	// 4 to the left, 4 down
 	transform = MAP_SWITCH(TRANSLATE_MATRIX(-4, -4), matrix())
 
-	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1 | NO_RUST
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	initial_temperature = TCMB
 
 	var/environment_type = "asteroid"
@@ -185,7 +185,11 @@
 	. = ..()
 	if (prob(mineralChance))
 		var/path = pickweight(mineralSpawnChanceList)
+		var/stored_flags = 0
+		if(turf_flags & NO_RUINS)
+			stored_flags |= NO_RUINS
 		var/turf/T = ChangeTurf(path,null,CHANGETURF_IGNORE_AIR)
+		T.flags_1 |= stored_flags
 
 		if(T && ismineralturf(T))
 			var/turf/closed/mineral/M = T
@@ -295,6 +299,12 @@
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/uranium/volcanic/harder = 6, /turf/closed/mineral/diamond/volcanic/harder = 2, /turf/closed/mineral/gold/volcanic/harder = 11, /turf/closed/mineral/titanium/volcanic/harder = 12, /turf/closed/mineral/magmite/volcanic/harder = 2, /turf/closed/mineral/gem/volcanic/harder = 2,
 		/turf/closed/mineral/silver/volcanic/harder = 13, /turf/closed/mineral/plasma/volcanic/harder = 21, /turf/closed/mineral/iron/volcanic/harder = 10, /turf/closed/mineral/dilithium/volcanic/harder = 4, /turf/closed/mineral/gibtonite/volcanic/harder = 7, /turf/closed/mineral/bscrystal/volcanic/harder = 3)
+
+/// A turf that can't we can't build openspace chasms on or spawn ruins in.
+/turf/closed/mineral/random/volcanic/do_not_chasm
+	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface/no_ruins
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface/no_ruins
+	turf_flags = NO_RUINS
 
 /turf/closed/mineral/random/snow
 	name = "snowy mountainside"
@@ -798,7 +808,7 @@
 
 /// This snowy mountain will never be scraped away for any reason what so ever.
 /turf/closed/mineral/snowmountain/icemoon/unscrapeable
-	flags_1 = IS_SOLID | NO_CLEARING
+	turf_flags = IS_SOLID | NO_CLEARING
 	turf_type = /turf/open/floor/plating/asteroid/snow/icemoon/do_not_scrape
 	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon/do_not_scrape
 

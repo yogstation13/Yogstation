@@ -90,7 +90,6 @@
 /turf/open/floor/mineral/titanium
 	name = "shuttle floor"
 	icon_state = "titanium"
-	flags_1 = NO_RUST | CAN_BE_DIRTY_1
 	floor_tile = /obj/item/stack/tile/mineral/titanium
 
 /turf/open/floor/mineral/titanium/broken_states()

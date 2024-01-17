@@ -4,6 +4,7 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
+	static_lighting = TRUE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
@@ -100,7 +101,7 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 

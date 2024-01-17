@@ -3,7 +3,7 @@
 	desc = "Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
-	flags_1 = NOJAUNT | NO_RUST
+	turf_flags = NOJAUNT | NO_RUST
 
 /turf/closed/indestructible/rust_heretic_act()
 	return

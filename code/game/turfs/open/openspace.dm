@@ -6,7 +6,6 @@
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	CanAtmosPassVertical = ATMOS_PASS_YES
-	flags_1 = NO_RUST
 	plane = TRANSPARENT_FLOOR_PLANE
 	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/can_cover_up = TRUE
@@ -177,7 +176,7 @@
 	//I wonder if I should error here
 	if(!T)
 		return
-	if(T.flags_1 & NO_RUINS && protect_ruin)
+	if(T.turf_flags & NO_RUINS && protect_ruin)
 		ChangeTurf(replacement_turf, null, CHANGETURF_IGNORE_AIR)
 		return
 	if(!ismineralturf(T) || !drill_below)

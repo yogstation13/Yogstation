@@ -47,8 +47,11 @@
 	icon_state = "warningline"
 	plane = FLOOR_PLANE
 	layer = TURF_DECAL_LAYER
-	var/detail_overlay
-	var/detail_color
+	anchored = TRUE
+	/// Does this decal change colors on holidays
+	var/use_holiday_colors = FALSE
+	/// The pattern used when recoloring the decal. If null, it'll use the def of the station or holiday.
+	var/pattern
 
 // This is with the intent of optimizing mapload
 // See spawners for more details since we use the same pattern
@@ -59,13 +62,18 @@
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 
+	// If the tile uses holiday colors, apply them here
+	if(use_holiday_colors)
+
+		var/custom_color = request_station_colors(src, pattern) || request_holiday_colors(src, pattern)
+		if(custom_color)
+			color = custom_color
+			alpha = DECAL_ALPHA
+
 	var/turf/T = loc
 	if(!istype(T)) //you know this will happen somehow
 		CRASH("Turf decal initialized in an object/nullspace")
-	T.AddComponent(/datum/component/decal, icon, icon_state, dir, FALSE, color, null, null, alpha)
-	T.AddElement(/datum/element/decal, icon, icon_state, dir, FALSE, color, null, null, alpha, FALSE)
-	if(detail_overlay)
-		T.AddElement(/datum/element/decal, icon, detail_overlay, dir, FALSE, detail_color, null, null, alpha, appearance_flags)
+	T.AddElement(/datum/element/decal, icon, icon_state, dir, null, layer, alpha, color, null, FALSE, null)
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/turf_decal/Destroy(force)

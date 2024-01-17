@@ -664,7 +664,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	return
 
 /turf/rust_heretic_act()
-	if((turf_flags & NO_RUST) || (flags_1 & NO_RUST))
+	if(turf_flags & NO_RUST)
 		return
 	if(HAS_TRAIT(src, TRAIT_RUSTY))
 		return

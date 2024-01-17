@@ -237,7 +237,7 @@
 
 	if(mapload)
 		for(var/turf/T in return_turfs())
-			T.flags_1 |= NO_RUINS
+			T.turf_flags |= NO_RUINS
 
 	if(SSshuttle.initialized)
 		INVOKE_ASYNC(SSshuttle, TYPE_PROC_REF(/datum/controller/subsystem/shuttle, setup_shuttles), list(src))

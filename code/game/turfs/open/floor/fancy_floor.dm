@@ -16,7 +16,7 @@
 	clawfootstep = FOOTSTEP_WOOD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
-	flags_1 = NO_RUST | CAN_BE_DIRTY_1
+	turf_flags = NO_RUST
 	flammability = 3 // yikes, better put that out quick
 
 /turf/open/floor/wood/broken_states()

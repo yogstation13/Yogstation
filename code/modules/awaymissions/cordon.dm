@@ -11,7 +11,7 @@
 	blocks_air = TRUE
 	space_lit = TRUE
 	bullet_bounce_sound = null
-	flags_1 = NOJAUNT
+	turf_flags = NOJAUNT
 	baseturfs = /turf/cordon
 
 /turf/cordon/AfterChange()

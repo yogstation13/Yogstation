@@ -13,7 +13,7 @@
 
 		for(var/turf/check in affected_turfs)
 			// Use assoc lists to move this out, it's easier that way
-			if(check.flags_1 & NO_RUINS)
+			if(check.turf_flags & NO_RUINS)
 				valid = FALSE
 				break
 			var/area/new_area = get_area(check)
@@ -46,7 +46,7 @@
 		loaded++
 
 		for(var/turf/T in affected_turfs)
-			T.flags_1 |= NO_RUINS
+			T.turf_flags |= NO_RUINS
 
 		new /obj/effect/landmark/ruin(central_turf, src)
 		return central_turf
@@ -59,7 +59,7 @@
 	load(placement)
 	loaded++
 	for(var/turf/T in get_affected_turfs(placement))
-		T.flags_1 |= NO_RUINS
+		T.turf_flags |= NO_RUINS
 	var/turf/center = locate(placement.x + round(width/2),placement.y + round(height/2),placement.z)
 	new /obj/effect/landmark/ruin(center, src)
 	return center

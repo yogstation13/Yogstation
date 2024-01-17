@@ -26,6 +26,13 @@
 	var/obj/item/drone_hat 
 	///When this holiday is active, does this prevent mail from arriving to cargo? Try not to use this for longer holidays.
 	var/mail_holiday = FALSE
+	var/poster_name = "generic celebration poster"
+	var/poster_desc = "A poster for celebrating some holiday. Unfortunately, its unfinished, so you can't see what the holiday is."
+	var/poster_icon = "holiday_unfinished"
+	/// Color scheme for this holiday
+	var/list/holiday_colors
+	/// The default pattern of the holiday, if the requested pattern is null.
+	var/holiday_pattern = PATTERN_DEFAULT
 
 // This proc gets run before the game starts when the holiday is activated. Do festive shit here.
 /datum/holiday/proc/celebrate()
@@ -78,6 +85,31 @@
 			return TRUE
 
 	return FALSE
+
+/// Procs to return holiday themed colors for recoloring atoms
+/datum/holiday/proc/get_holiday_colors(atom/thing_to_color, pattern = holiday_pattern)
+	if(!holiday_colors)
+		return
+	switch(pattern)
+		if(PATTERN_DEFAULT)
+			return holiday_colors[(thing_to_color.y % holiday_colors.len) + 1]
+		if(PATTERN_VERTICAL_STRIPE)
+			return holiday_colors[(thing_to_color.x % holiday_colors.len) + 1]
+
+/proc/request_holiday_colors(atom/thing_to_color, pattern)
+	switch(pattern)
+		if(PATTERN_RANDOM)
+			return "#[random_short_color()]"
+		if(PATTERN_RAINBOW)
+			var/datum/holiday/pride_week/rainbow_datum = new()
+			return rainbow_datum.get_holiday_colors(thing_to_color, PATTERN_DEFAULT)
+	if(!length(GLOB.holidays))
+		return
+	for(var/holiday_key in GLOB.holidays)
+		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
+		if(!holiday_real.holiday_colors)
+			continue
+		return holiday_real.get_holiday_colors(thing_to_color, pattern || holiday_real.holiday_pattern)
 
 // The actual holidays
 
@@ -191,6 +223,12 @@
 	begin_day = 17
 	begin_month = MARCH
 	drone_hat = /obj/item/clothing/head/soft/green
+	holiday_colors = list(
+		COLOR_IRISH_GREEN,
+		COLOR_WHITE,
+		COLOR_IRISH_ORANGE,
+	)
+	holiday_pattern = PATTERN_VERTICAL_STRIPE
 
 /datum/holiday/no_this_is_patrick/getStationPrefix()
 	return pick("Blarney","Green","Leprechaun","Booze","Pub","IRA")
@@ -214,6 +252,9 @@
 /datum/holiday/april_fools/celebrate()
 	SSjob.set_overflow_role("Clown")
 
+/datum/holiday/april_fools/get_holiday_colors(atom/thing_to_color)
+	return "#[random_short_color()]"
+
 /datum/holiday/april_fools/greet()
 	return "NOTICE: Yogstation will be down from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
 
@@ -230,6 +271,11 @@
 	name = "Four-Twenty"
 	begin_day = 20
 	begin_month = APRIL
+	holiday_colors = list(
+		COLOR_ETHIOPIA_GREEN,
+		COLOR_ETHIOPIA_YELLOW,
+		COLOR_ETHIOPIA_RED,
+	)
 
 /datum/holiday/fourtwenty/getStationPrefix()
 	return pick("Snoop","Blunt","Toke","Dank","Cheech","Chong")
@@ -286,6 +332,21 @@
 /datum/holiday/summersolstice/greet()
 	return "Happy Summer Solstice!"
 
+/datum/holiday/pride_week
+	name = PRIDE_WEEK
+	begin_month = JUNE
+	// Stonewall was June 28th, this captures its week.
+	begin_day = 23
+	end_day = 29
+	holiday_colors = list(
+		COLOR_PRIDE_PURPLE,
+		COLOR_PRIDE_BLUE,
+		COLOR_PRIDE_GREEN,
+		COLOR_PRIDE_YELLOW,
+		COLOR_PRIDE_ORANGE,
+		COLOR_PRIDE_RED,
+	)
+
 /datum/holiday/doctor
 	name = "Doctor's Day"
 	begin_day = 1
@@ -327,6 +388,14 @@
 		"https://www.youtube.com/watch?v=kQzdJUiALBk"	// wyoming - In the Shadow of the Valley - Don Burnham
 	)
 	mail_holiday = TRUE
+	holiday_colors = list(
+		COLOR_OLD_GLORY_BLUE,
+		COLOR_OLD_GLORY_RED,
+		COLOR_WHITE,
+		COLOR_OLD_GLORY_RED,
+		COLOR_WHITE,
+	)
+
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
 
@@ -348,6 +417,12 @@
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
 		)
 	mail_holiday = TRUE
+	holiday_colors = list(
+		COLOR_FRENCH_BLUE,
+		COLOR_WHITE,
+		COLOR_FRENCH_RED
+	)
+	holiday_pattern = PATTERN_VERTICAL_STRIPE
 
 /datum/holiday/france/getStationPrefix()
 	return pick("Francais","Fromage", "Zut", "Merde")
@@ -442,6 +517,7 @@
 		"https://www.youtube.com/watch?v=fixc63xMXeY", // Plok Boss Theme - HD Remastered
 		"https://www.youtube.com/watch?v=bRLML36HnzU" // Monster Mash
 		)
+	holiday_colors = list(COLOR_MOSTLY_PURE_ORANGE, COLOR_PRISONER_BLACK)
 
 /datum/holiday/halloween/shouldCelebrate(dd, mm, yy, ww, ddd)
 	. = ..()
@@ -467,6 +543,11 @@
 	begin_day = 6
 	begin_month = NOVEMBER
 	end_day = 7
+	holiday_colors = list(
+		COLOR_MEDIUM_DARK_RED,
+		COLOR_GOLD,
+		COLOR_MEDIUM_DARK_RED,
+	)
 
 /datum/holiday/october_revolution/getStationPrefix()
 	return pick("Communist", "Soviet", "Bolshevik", "Socialist", "Red", "Workers'")
@@ -627,6 +708,10 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 		)
 	mail_holiday = TRUE
+	holiday_colors = list(
+		COLOR_CHRISTMAS_GREEN,
+		COLOR_CHRISTMAS_RED,
+	)
 
 /datum/holiday/xmas/getStationPrefix()
 	return pick(

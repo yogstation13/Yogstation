@@ -184,7 +184,7 @@
 	blocks_air = 1
 	name = "holographic projection"
 	desc = "A holographic projection of the area surrounding the bluespace locker"
-	flags_1 = NOJAUNT
+	turf_flags = NOJAUNT
 	var/turf/internal_origin
 	var/turf/external_origin
 	var/turf/external_origin_prev
