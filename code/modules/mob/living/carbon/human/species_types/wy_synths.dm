@@ -26,9 +26,7 @@
 	use_skintones = TRUE
 	forced_skintone = "albino"
 	inherent_biotypes = MOB_ROBOTIC
-	process_flags = SYNTHETIC
 
-	payday_modifier = 0
 	burnmod = 0.9
 	heatmod = 0.95
 	brutemod = 0.75

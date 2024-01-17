@@ -10,8 +10,8 @@ GLOBAL_LIST_EMPTY(rock_paper_scissors_puzzle_answers)
 			player_list -= unsorted_players
 
 	var/players_to_ask = 3
-	if(len(player_list) < players_to_ask)
-		players_to_ask = len(player_list)
+	if(length(player_list) < players_to_ask)
+		players_to_ask = length(player_list)
 
 	while(players_to_ask > 0)
 		var/mob/player = pick_n_take(player_list)

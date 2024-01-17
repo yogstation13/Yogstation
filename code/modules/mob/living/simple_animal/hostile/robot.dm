@@ -1,8 +1,8 @@
-/obj/item/projectile/robot_bullet
+/obj/projectile/robot_bullet
 	damage = 15
 	damage_type = BRUTE
 
-/obj/item/projectile/robot_bullet/weak
+/obj/projectile/robot_bullet/weak
 	damage = 10
 	damage_type = BRUTE
 
@@ -23,7 +23,7 @@
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	projectilesound = 'sound/weapons/gunshot.ogg'
-	projectiletype = /obj/item/projectile/robot_bullet/weak
+	projectiletype = /obj/projectile/robot_bullet/weak
 	faction = list("robots")
 	check_friendly_fire = TRUE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -84,7 +84,7 @@
 	health = 150
 	maxHealth = 150
 	dodging = TRUE
-	projectiletype = /obj/item/projectile/robot_bullet
+	projectiletype = /obj/projectile/robot_bullet
 	melee_damage_lower = 8
 	melee_damage_upper = 15
 
@@ -123,7 +123,7 @@
 	health = 500
 	maxHealth = 500
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	projectiletype = /obj/item/projectile/robot_bullet
+	projectiletype = /obj/projectile/robot_bullet
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	projectilesound = 'sound/weapons/gunshot.ogg'

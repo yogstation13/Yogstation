@@ -214,14 +214,14 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	cached_power_usage += rack.get_power_usage()
 	installed_racks += rack
 
-/obj/machinery/ai/server_cabinet/connect_to_network()
+/obj/machinery/ai/server_cabinet/connect_to_ai_network()
 	. = ..()
 	if(network)
 		network.update_resources()
 		if(puzzle_disk)
 			network.decryption_drives |= src
 
-/obj/machinery/ai/server_cabinet/disconnect_from_network()
+/obj/machinery/ai/server_cabinet/disconnect_from_ai_network()
 	var/datum/ai_network/temp = network
 	if(puzzle_disk)
 		network.decryption_drives -= src

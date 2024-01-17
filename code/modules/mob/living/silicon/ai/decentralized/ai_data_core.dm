@@ -135,7 +135,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 				to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 	
 
-	disconnect_from_network()
+	disconnect_from_ai_network()
 	vis_contents -= smoke
 	QDEL_NULL(smoke)
 	..()
@@ -311,7 +311,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	else
 		icon_state = "core-offline"
 
-/obj/machinery/ai/data_core/connect_to_network() //If we ever get connected to a network (or a new one gets created) we get the AIs to the correct one too
+/obj/machinery/ai/data_core/connect_to_ai_network() //If we ever get connected to a network (or a new one gets created) we get the AIs to the correct one too
 	. = ..()
 	for(var/mob/living/silicon/ai/AI in contents)
 		if(!AI.ai_network)

@@ -17,7 +17,7 @@
 
 /obj/machinery/ai/Initialize(mapload)
 	. = ..()
-	connect_to_network()
+	connect_to_ai_network()
 	START_PROCESSING(SSmachines, src)
 	SSair_machinery.start_processing_machine(src)
 	
@@ -39,10 +39,11 @@
 	. = ..()
 	SSair_machinery.stop_processing_machine(src)
 	STOP_PROCESSING(SSmachines, src)
-	disconnect_from_network()
+	disconnect_from_ai_network()
 
 /obj/machinery/ai/proc/valid_holder()
 	if(!network)
+		return FALSE
 	if(stat & (BROKEN|EMPED) || !has_power())
 		return FALSE
 	if(core_temp > network.get_temp_limit())
@@ -57,12 +58,11 @@
 		return AI_MACHINE_BROKEN_NOPOWER_EMPED
 	if(!network)
 		return AI_MACHINE_NO_NETWORK
-		return FALSE
 	if(core_temp > network.get_temp_limit())
 		return AI_MACHINE_TOO_HOT
 	
 
-/obj/machinery/ai/proc/connect_to_network()
+/obj/machinery/ai/proc/connect_to_ai_network()
 	var/turf/T = src.loc
 	if(!T || !istype(T))
 		return FALSE
@@ -75,7 +75,7 @@
 	return TRUE
 
 // remove and disconnect the machine from its current powernet
-/obj/machinery/ai/proc/disconnect_from_network()
+/obj/machinery/ai/proc/disconnect_from_ai_network()
 	if(!network)
 		return FALSE
 	network.remove_machine(src)
