@@ -220,15 +220,10 @@
 
 /// For PDAs, comes pre-equipped with PDA messaging
 /obj/item/computer_hardware/hard_drive/small/pda
-	default_programs = list(
-		/datum/computer_file/program/computerconfig,
-		/datum/computer_file/program/ntnetdownload,
-		/datum/computer_file/program/filemanager,
-		/datum/computer_file/program/themeify,
-		/datum/computer_file/program/pdamessager,
-		/datum/computer_file/program/budgetorders,
-		/datum/computer_file/program/bounty_board,
-	)
+/obj/item/computer_hardware/hard_drive/small/pda/install_default_programs()
+	..()
+	store_file(new/datum/computer_file/program/themeify(src))
+	store_file(new/datum/computer_file/program/pdamessager(src))
 
 /// For tablets given to nuke ops
 /obj/item/computer_hardware/hard_drive/small/nukeops
