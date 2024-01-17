@@ -94,8 +94,7 @@
 			switch(pick(1,2;75,3))
 				if(1)
 					if (!ispath(baseturf_at_depth(2), /turf/open/floor))
-						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-						ReplaceWithLattice()
+						attempt_lattice_replacement()
 					else
 						ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 					if(prob(33))
@@ -217,7 +216,7 @@
 				new floor_tile(src)
 				make_plating()
 		else if(prob(50))
-			ReplaceWithLattice()
+			attempt_lattice_replacement()
 
 /turf/open/floor/narsie_act(force, ignore_mobs, probability = 20)
 	. = ..()

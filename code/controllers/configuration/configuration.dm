@@ -20,7 +20,8 @@
 
 	var/motd
 	var/policy
-
+	
+	/// If the configuration is loaded
 	var/load_complete = FALSE
 
 /datum/controller/configuration/proc/admin_reload()

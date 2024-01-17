@@ -364,14 +364,8 @@
 			log_comment(log_text)
 		if(LOG_TELECOMMS)
 			log_telecomms(log_text)
-		if(LOG_NTSL)
-			log_ntsl(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
-		if(LOG_LOOC) // yogs - LOOC log
-			log_looc(log_text) // yogs - LOOC log
-		if(LOG_DONATOR) // yogs - Donator log
-			log_donator(log_text) // yogs - Donator log
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)
@@ -384,6 +378,14 @@
 			log_game(log_text)
 		if(LOG_MECHA)
 			log_mecha(log_text)
+		if(LOG_SHUTTLE)
+			log_shuttle(log_text)
+		if(LOG_NTSL) // yogs - NTSL log
+			log_ntsl(log_text)
+		if(LOG_LOOC) // yogs - LOOC log
+			log_looc(log_text) // yogs - LOOC log
+		if(LOG_DONATOR) // yogs - Donator log
+			log_donator(log_text) // yogs - Donator log
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)

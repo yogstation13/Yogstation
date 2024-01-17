@@ -124,27 +124,7 @@
 	if(!CanBuildHere())
 		return
 	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		var/obj/structure/lattice/catwalk/W = locate(/obj/structure/lattice/catwalk, src)
-		if(W)
-			to_chat(user, span_warning("There is already a catwalk here!"))
-			return
-		if(L)
-			if(R.use(1))
-				to_chat(user, span_notice("You construct a catwalk."))
-				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
-				new/obj/structure/lattice/catwalk(src)
-			else
-				to_chat(user, span_warning("You need two rods to build a catwalk!"))
-			return
-		if(R.use(1))
-			to_chat(user, span_notice("You construct a lattice."))
-			playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
-			ReplaceWithLattice()
-		else
-			to_chat(user, span_warning("You need one rod to build a lattice."))
-		return
+		build_with_rods(C, user)
 	if(istype(C, /obj/item/stack/tile/plasteel))
 		if(!CanCoverUp())
 			return
@@ -160,6 +140,25 @@
 				to_chat(user, span_warning("You need one floor tile to build a floor!"))
 		else
 			to_chat(user, span_warning("The plating is going to need some support! Place metal rods first."))
+
+/turf/open/openspace/build_with_floor_tiles(obj/item/stack/tile/plasteel/used_tiles)
+	if(!CanCoverUp())
+		return
+	return ..()
+
+/turf/open/openspace/rust_heretic_act()
+	return FALSE
+
+/turf/open/openspace/replace_floor(turf/open/new_floor_path, flags)
+	if (!initial(new_floor_path.overfloor_placed))
+		ChangeTurf(new_floor_path, flags = flags)
+		return
+	// Create plating under tiled floor we try to create directly onto the air
+	place_on_top(/turf/open/floor/plating, flags = flags)
+	place_on_top(new_floor_path, flags = flags)
+
+/turf/open/openspace/can_cross_safely(atom/movable/crossing)
+	return HAS_TRAIT(crossing, TRAIT_MOVE_FLYING)
 
 /turf/open/openspace/icemoon
 	name = "ice chasm"

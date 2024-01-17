@@ -83,7 +83,7 @@
 
 	return ..()
 
-/turf/closed/wall/clockwork/ReplaceWithLattice()
+/turf/closed/wall/clockwork/attempt_lattice_replacement()
 	..()
 	for(var/obj/structure/lattice/L in src)
 		L.ratvar_act()

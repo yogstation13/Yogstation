@@ -297,7 +297,7 @@
 
 /datum/config_entry/flag/maprotation
 
-/datum/config_entry/number/maprotatechancedelta
+/datum/config_entry/number/maprotationchancedelta
 	config_entry_value = 0.75
 	min_val = 0
 	max_val = 1

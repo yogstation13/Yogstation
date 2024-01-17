@@ -73,11 +73,10 @@
 	else
 		filename = PATH_TO_NEXT_MAP_JSON
 
+	
 	if (!config.LoadConfig(filename, error_if_missing))
 		qdel(config)
 		return load_default_map_config()
-	if (delete_after)
-		fdel(filename)
 	return config
 
 #define CHECK_EXISTS(X) if(!istext(json[X])) { log_world("[##X] missing from json!"); return; }

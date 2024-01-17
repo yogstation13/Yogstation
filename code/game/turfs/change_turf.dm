@@ -2,7 +2,7 @@
 GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	/turf/open/space,
 	/turf/baseturf_bottom,
-)))
+	)))
 
 /turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
@@ -15,31 +15,33 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	if(turf_type)
 		ChangeTurf(turf_type, baseturf_type, flags)
+		// var/turf/new_turf = ChangeTurf(turf_type, baseturf_type, flags)
+		// SSair.remove_from_active(new_turf)
+		// CALCULATE_ADJACENT_TURFS(new_turf, KILL_EXCITED)
 
-/turf/proc/copyTurf(turf/T, copy_air, flags)
-	if(T.type != type)
-		T.ChangeTurf(type, null, flags)
-	if(T.icon_state != icon_state)
-		T.icon_state = icon_state
-	if(T.icon != icon)
-		T.icon = icon
+/turf/proc/copyTurf(turf/copy_to_turf)
+	if(copy_to_turf.type != type)
+		copy_to_turf.ChangeTurf(type)
+	if(copy_to_turf.icon_state != icon_state)
+		copy_to_turf.icon_state = icon_state
+	if(copy_to_turf.icon != icon)
+		copy_to_turf.icon = icon
 	if(color)
-		T.atom_colours = atom_colours.Copy()
-		T.update_atom_colour()
-	if(T.dir != dir)
-		T.setDir(dir)
-	return T
+		copy_to_turf.atom_colours = atom_colours.Copy()
+		copy_to_turf.update_atom_colour()
+	if(copy_to_turf.dir != dir)
+		copy_to_turf.setDir(dir)
+	return copy_to_turf
 
-/turf/open/copyTurf(turf/T, copy_air = FALSE)
+/turf/open/copyTurf(turf/open/copy_to_turf, copy_air = FALSE)
 	. = ..()
-	if (isopenturf(T))
-		var/datum/component/wet_floor/slip = GetComponent(/datum/component/wet_floor)
-		if(slip)
-			var/datum/component/wet_floor/WF = T.AddComponent(/datum/component/wet_floor)
-			WF.InheritComponent(slip)
-		if (copy_air)
-			var/turf/open/openTurf = T
-			openTurf.air.copy_from(air)
+	ASSERT(istype(copy_to_turf, /turf/open))
+	var/datum/component/wet_floor/slip = GetComponent(/datum/component/wet_floor)
+	if(slip)
+		var/datum/component/wet_floor/new_wet_floor_component = copy_to_turf.AddComponent(/datum/component/wet_floor)
+		new_wet_floor_component.InheritComponent(slip)
+	if (copy_air)
+		copy_to_turf.air.copy_from(air)
 
 //wrapper for ChangeTurf()s that you want to prevent/affect without overriding ChangeTurf() itself
 /turf/proc/TerraformTurf(path, new_baseturf, flags)
@@ -83,13 +85,24 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_lighting_corner_SW = lighting_corner_SW
 	var/old_lighting_corner_NW = lighting_corner_NW
 	var/old_directional_opacity = directional_opacity
+	var/old_dynamic_lumcount = dynamic_lumcount
+	var/old_rcd_memory = rcd_memory
+	var/old_explosion_throw_details = explosion_throw_details
+	var/old_opacity = opacity
+	// I'm so sorry brother
+	// This is used for a starlight optimization
+	var/old_light_range = light_range
+	// We get just the bits of explosive_resistance that aren't the turf
+	//var/old_explosive_resistance = explosive_resistance - get_explosive_block()
+	var/old_lattice_underneath = lattice_underneath
 
 	var/old_exl = explosion_level
-	var/old_exi = explosion_id
+	
 	var/old_bp = blueprint_data
 	blueprint_data = null
 
 	var/list/old_baseturfs = baseturfs
+	var/old_type = type
 
 	var/list/post_change_callbacks = list()
 	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, post_change_callbacks)
@@ -119,18 +132,24 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	else
 		new_turf.baseturfs = baseturfs_string_list(old_baseturfs, new_turf) //Just to be safe
 
-	new_turf.explosion_id = old_exi
-	new_turf.explosion_level = old_exl
-
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
-		new_turf.AfterChange(flags)
+		new_turf.AfterChange(flags, old_type)
 
 	new_turf.blueprint_data = old_bp
+	new_turf.rcd_memory = old_rcd_memory
+	new_turf.explosion_throw_details = old_explosion_throw_details
+	//new_turf.explosive_resistance += old_explosive_resistance
 
 	lighting_corner_NE = old_lighting_corner_NE
 	lighting_corner_SE = old_lighting_corner_SE
 	lighting_corner_SW = old_lighting_corner_SW
 	lighting_corner_NW = old_lighting_corner_NW
+
+	dynamic_lumcount = old_dynamic_lumcount
+
+	lattice_underneath = old_lattice_underneath
+
+	new_turf.explosion_level = old_exl
 
 	if(SSlighting.initialized)
 		lighting_object = old_lighting_object
@@ -148,6 +167,32 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		for(var/turf/open/space/S in RANGE_TURFS(1, src)) //RANGE_TURFS is in code\__HELPERS\game.dm
 			S.update_starlight()
 	
+// If we're space, then we're either lit, or not, and impacting our neighbors, or not
+	if(isspaceturf(src))
+		var/turf/open/space/lit_turf = src
+		// This also counts as a removal, so we need to do a full rebuild
+		if(!ispath(old_type, /turf/open/space))
+			lit_turf.update_starlight()
+			for(var/turf/open/space/space_tile in RANGE_TURFS(1, src) - src)
+				space_tile.update_starlight()
+		else if(old_light_range)
+			lit_turf.enable_starlight()
+
+	// If we're a cordon we count against a light, but also don't produce any ourselves
+	else if (istype(src, /turf/cordon))
+		// This counts as removing a source of starlight, so we need to update the space tile to inform it
+		if(!ispath(old_type, /turf/open/space))
+			for(var/turf/open/space/space_tile in RANGE_TURFS(1, src))
+				space_tile.update_starlight()
+
+	// If we're not either, but were formerly a space turf, then we want light
+	else if(ispath(old_type, /turf/open/space))
+		for(var/turf/open/space/space_tile in RANGE_TURFS(1, src))
+			space_tile.enable_starlight()
+
+	if(old_opacity != opacity && SSticker)
+		GLOB.cameranet.bareMajorChunkChange(src)
+
 	// only queue for smoothing if SSatom initialized us, and we'd be changing smoothing state
 	if(flags_1 & INITIALIZED_1)
 		QUEUE_SMOOTH_NEIGHBORS(src)
@@ -197,7 +242,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 				Initalize_Atmos(0)
 
 //If you modify this function, ensure it works correctly with lateloaded map templates.
-/turf/proc/AfterChange(flags) //called after a turf has been replaced in ChangeTurf()
+/turf/proc/AfterChange(flags, oldType) //called after a turf has been replaced in ChangeTurf()
 	levelupdate()
 	if(flags & CHANGETURF_RECALC_ADJACENT)
 		ImmediateCalculateAdjacentTurfs()
@@ -209,7 +254,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		for(var/obj/machinery/door/firedoor/FD in T)
 			FD.CalculateAffectingAreas()
 
-/turf/open/AfterChange(flags)
+/turf/open/AfterChange(flags, oldType)
 	..()
 	RemoveLattice()
 	if(!(flags & (CHANGETURF_IGNORE_AIR | CHANGETURF_INHERIT_AIR)))
@@ -231,6 +276,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	air.copy_from(total.remove_ratio(1/turf_count))
 
-/turf/proc/ReplaceWithLattice()
-	ScrapeToBottom(flags = CHANGETURF_INHERIT_AIR) // Yogs -- fixes this not actually replacing the turf with a lattice, lmao (ScrapeToBottom defined in yogs file)
-	new /obj/structure/lattice(locate(x, y, z))
+/// Attempts to replace a tile with lattice. Amount is the amount of tiles to scrape away.
+/turf/proc/attempt_lattice_replacement(amount = 2)
+	if(lattice_underneath)
+		var/turf/new_turf = ScrapeAway(amount, flags = CHANGETURF_INHERIT_AIR)
+		if(!istype(new_turf, /turf/open/floor))
+			new /obj/structure/lattice(src)
+	else
+		ScrapeAway(amount, flags = CHANGETURF_INHERIT_AIR)

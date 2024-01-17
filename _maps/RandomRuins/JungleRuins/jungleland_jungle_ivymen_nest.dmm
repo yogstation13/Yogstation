@@ -50,7 +50,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered/ivymen)
 "al" = (
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/ruin/unpowered/ivymen)
 "am" = (
 /obj/machinery/iv_drip,

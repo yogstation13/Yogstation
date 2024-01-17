@@ -38,7 +38,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/list/image/blueprint_data //for the station blueprints, images of objects eg: pipes
 	
 	var/explosion_level = 0	//for preventing explosion dodging
-	var/explosion_id = 0
 	var/list/explosion_throw_details
 
 	var/requires_activation //add to air processing after initialize?
@@ -189,20 +188,19 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
 	changing_turf = FALSE
-	var/turf/T = GET_TURF_ABOVE(src)
-	if(T)
-		T.multiz_turf_del(src, DOWN)
-	T = GET_TURF_BELOW(src)
-	if(T)
-		T.multiz_turf_del(src, UP)
+	if(GET_LOWEST_STACK_OFFSET(z))
+		var/turf/T = GET_TURF_ABOVE(src)
+		if(T)
+			T.multiz_turf_del(src, DOWN)
+		T = GET_TURF_BELOW(src)
+		if(T)
+			T.multiz_turf_del(src, UP)
 	if(force)
 		..()
 		//this will completely wipe turf state
 		var/turf/B = new world.turf(src)
 		for(var/A in B.contents)
 			qdel(A)
-		for(var/I in B.vars)
-			B.vars[I] = null
 		return
 	visibilityChanged()
 	QDEL_LIST(blueprint_data)
@@ -589,8 +587,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	for(var/thing in contents)
 		var/atom/movable/movable_thing = thing
 		if(QDELETED(movable_thing))
-			continue
-		if(!movable_thing.ex_check(explosion_id))
 			continue
 		switch(severity)
 			if(EXPLODE_DEVASTATE)

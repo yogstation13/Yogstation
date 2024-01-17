@@ -50,10 +50,10 @@
 	if(move_down_action)
 		actions += new move_down_action(src)
 
-// /obj/machinery/computer/camera_advanced/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
-// 	for(var/i in networks)
-// 		networks -= i
-// 		networks += "[port.shuttle_id]_[i]"
+/obj/machinery/computer/camera_advanced/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	for(var/i in networks)
+		networks -= i
+		networks += "[port.shuttle_id]_[i]"
 
 /obj/machinery/computer/camera_advanced/syndie
 	icon_keyboard = "syndie_key"

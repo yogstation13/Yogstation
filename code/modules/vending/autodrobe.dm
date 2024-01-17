@@ -251,8 +251,10 @@
 /obj/machinery/vending/autodrobe/capdrobe
 	name = "\improper CapDrobe"
 	desc = "A vending machine for captain outfits."
+	icon = 'yogstation/icons/obj/vending.dmi'
 	icon_state = "capdrobe"
 	icon_deny = "capdrobe-deny"
+	panel_type = "panel-capdrobe"
 	req_access = list(ACCESS_CAPTAIN)
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use the Captain's Autodrobe!"
 	vend_reply = "Thank you for using the Captain's Autodrobe!"

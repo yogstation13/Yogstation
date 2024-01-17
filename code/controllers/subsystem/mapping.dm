@@ -102,7 +102,6 @@ SUBSYSTEM_DEF(mapping)
 	/// list of lazy templates that have been loaded
 	var/list/loaded_lazy_templates
 
-//dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/PreInit()
 	..()
 #ifdef FORCE_MAP
@@ -112,6 +111,7 @@ SUBSYSTEM_DEF(mapping)
 #endif
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
+	//HACK_LoadMapConfig()
 	if(initialized)
 		return SS_INIT_SUCCESS
 	if(config.defaulted)
@@ -302,7 +302,7 @@ SUBSYSTEM_DEF(mapping)
 	SSshuttle.transit_requesters.Cut()
 	message_admins("Clearing dynamic reservation space.")
 	var/list/obj/docking_port/mobile/in_transit = list()
-	for(var/i in SSshuttle.transit)
+	for(var/i in SSshuttle.transit_docking_ports)
 		var/obj/docking_port/stationary/transit/T = i
 		if(!istype(T))
 			continue
@@ -569,13 +569,21 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, span_boldannounce("Map rotation has chosen [VM.map_name] for next round!"))
 
-/datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
-	if(!VM.MakeNextMap())
-		next_map_config = load_map_config()
-		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
+/datum/controller/subsystem/mapping/proc/changemap(datum/map_config/change_to)
+	if(!change_to.MakeNextMap())
+		next_map_config = load_default_map_config()
+		message_admins("Failed to set new map with next_map.json for [change_to.map_name]! Using default as backup!")
 		return
 
-	next_map_config = VM
+	var/filter_threshold = get_active_player_count(alive_check = FALSE, afk_check = TRUE, human_check = FALSE)
+	if (change_to.config_min_users > 0 && filter_threshold != 0 && filter_threshold < change_to.config_min_users)
+		message_admins("[change_to.map_name] was chosen for the next map, despite there being less current players than its set minimum population range!")
+		log_game("[change_to.map_name] was chosen for the next map, despite there being less current players than its set minimum population range!")
+	if (change_to.config_max_users > 0 && filter_threshold > change_to.config_max_users)
+		message_admins("[change_to.map_name] was chosen for the next map, despite there being more current players than its set maximum population range!")
+		log_game("[change_to.map_name] was chosen for the next map, despite there being more current players than its set maximum population range!")
+
+	next_map_config = change_to
 	return TRUE
 
 /datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup
@@ -643,6 +651,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		var/datum/map_template/shuttle/S = new shuttle_type()
 		if(unbuyable.Find(S.mappath))
 			S.credit_cost = INFINITY
+			S.who_can_purchase = null
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S

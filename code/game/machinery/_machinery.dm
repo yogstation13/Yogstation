@@ -145,6 +145,7 @@ Class Procs:
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
+	SSmachines.register_machine(src)
 	GLOB.machines += src
 
 	if(ispath(circuit, /obj/item/circuitboard))
@@ -170,6 +171,7 @@ Class Procs:
 
 /obj/machinery/Destroy(force=FALSE)
 	disconnect_from_network()
+	SSmachines.unregister_machine(src)
 	GLOB.machines.Remove(src)
 	if(!speed_process)
 		STOP_PROCESSING(SSmachines, src)

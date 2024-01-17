@@ -53,10 +53,6 @@ GLOBAL_LIST_EMPTY(starlight)
 	thermal_conductivity = 0
 	heat_capacity = 700000
 
-	FASTDMM_PROP(\
-		pipe_astar_cost = 3\
-	)
-
 	var/starlight_source_count = 0
 
 	var/destination_z
@@ -77,6 +73,10 @@ GLOBAL_LIST_EMPTY(starlight)
 	vis_flags = VIS_INHERIT_ID //when this be added to vis_contents of something it be associated with something on clicking, important for visualisation of turf in openspace and interraction with openspace that show you turf.
 
 	force_no_gravity = TRUE
+
+	FASTDMM_PROP(\
+		pipe_astar_cost = 3\
+	)
 
 /turf/open/space/basic/New() //Do not convert to Initialize
 	SHOULD_CALL_PARENT(FALSE)
@@ -322,6 +322,3 @@ GLOBAL_LIST_EMPTY(starlight)
 	// Create plating under tiled floor we try to create directly onto space
 	place_on_top(/turf/open/floor/plating, flags = flags)
 	place_on_top(new_floor_path, flags = flags)
-
-/turf/open/openspace/can_cross_safely(atom/movable/crossing)
-	return HAS_TRAIT(crossing, TRAIT_MOVE_FLYING)

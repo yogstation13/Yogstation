@@ -3746,7 +3746,7 @@
 	dir = 8;
 	dwidth = 8;
 	height = 7;
-	id = "supply_away";
+	shuttle_id = "supply_away";
 	json_key = "cargo";
 	name = "CentCom";
 	width = 20
@@ -4114,7 +4114,7 @@
 	area_type = /area/syndicate_mothership;
 	dwidth = 25;
 	height = 50;
-	id = "emergency_syndicate";
+	shuttle_id = "emergency_syndicate";
 	name = "Syndicate Auxillary Shuttle Dock";
 	width = 50
 	},
@@ -6860,7 +6860,7 @@
 /area/centcom/testchamber)
 "apy" = (
 /obj/machinery/smartfridge,
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/centcom/holding)
 "apz" = (
 /obj/structure/rack,
@@ -9230,7 +9230,7 @@
 	dir = 2;
 	dwidth = 14;
 	height = 13;
-	id = "syndicatecutter_home";
+	shuttle_id = "syndicatecutter_home";
 	name = "Syndicate Home Outpost";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/cutter;
 	width = 22
@@ -9872,7 +9872,7 @@
 	dir = 4;
 	dwidth = 25;
 	height = 50;
-	id = "emergency_away";
+	shuttle_id = "emergency_away";
 	json_key = "emergency";
 	name = "CentCom Emergency Shuttle Dock";
 	width = 50
@@ -10672,7 +10672,7 @@
 /obj/docking_port/stationary{
 	dwidth = 1;
 	height = 4;
-	id = "pod2_away";
+	shuttle_id = "pod2_away";
 	name = "recovery ship";
 	width = 3
 	},
@@ -10759,7 +10759,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 13;
-	id = "ferry_away";
+	shuttle_id = "ferry_away";
 	json_key = "ferry";
 	name = "CentCom Ferry Dock";
 	width = 5
@@ -12828,7 +12828,7 @@
 /obj/docking_port/stationary{
 	dwidth = 1;
 	height = 4;
-	id = "pod3_away";
+	shuttle_id = "pod3_away";
 	name = "recovery ship";
 	width = 3
 	},
@@ -13113,7 +13113,7 @@
 /area/yogs/infiltrator_base/outside)
 "aBV" = (
 /obj/machinery/chem_dispenser/drinks/beer,
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/centcom/holding)
 "aBW" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -13979,7 +13979,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 7;
-	id = "pod_away";
+	shuttle_id = "pod_away";
 	name = "recovery ship";
 	width = 5
 	},
@@ -14642,7 +14642,7 @@
 /area/wizard_station)
 "aED" = (
 /obj/machinery/vending/boozeomat,
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/centcom/holding)
 "aEE" = (
 /obj/structure/closet/crate/bin,
@@ -17597,7 +17597,7 @@
 	height = 8;
 	name = "Backup Shuttle Dock";
 	roundstart_template = /datum/map_template/shuttle/emergency/backup;
-	id = "backup_away";
+	shuttle_id = "backup_away";
 	width = 8
 	},
 /turf/open/space/basic,
@@ -18825,7 +18825,7 @@
 	dir = 8;
 	dwidth = 12;
 	height = 17;
-	id = "syndicate_away";
+	shuttle_id = "syndicate_away";
 	name = "syndicate recon outpost";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/basic;
 	width = 23
@@ -19133,7 +19133,7 @@
 	},
 /area/holodeck/rec_center/medical)
 "aNd" = (
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/centcom/holding)
 "aNe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -20984,7 +20984,7 @@
 /area/centcom/testchamber)
 "aQT" = (
 /obj/machinery/chem_dispenser/drinks,
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/centcom/holding)
 "aQU" = (
 /obj/structure/table/reinforced,
@@ -22157,7 +22157,7 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	id = "pod4_away";
+	shuttle_id = "pod4_away";
 	name = "recovery ship";
 	width = 3
 	},
@@ -23480,10 +23480,6 @@
 /obj/item/clothing/head/peaceflower,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aVX" = (
-/obj/effect/landmark/shuttle_import,
-/turf/open/space/basic,
-/area/space)
 "aVY" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -50119,7 +50115,7 @@ aaa
 aaa
 aaa
 aaa
-aVX
+aaa
 aaa
 aaa
 aaa

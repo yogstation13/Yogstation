@@ -775,7 +775,7 @@
 		timer += more_minutes
 		priority_announce("Major system failure aboard the emergency shuttle. This will extend its arrival time by approximately 15 minutes...", "System Failure", 'sound/misc/notice1.ogg')
 		SSshuttle.emergency.setTimer(timer)
-		SSshuttle.emergencyNoRecall = TRUE
+		SSshuttle.emergency_no_recall = TRUE
 	user.actions.Remove(src) //Can only be used once!
 	qdel(src)
 	

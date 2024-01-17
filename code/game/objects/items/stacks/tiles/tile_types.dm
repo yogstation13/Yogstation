@@ -12,7 +12,16 @@
 	throw_range = 7
 	max_amount = 60
 	mats_per_stack = 500
+	/// What type of turf does this tile produce.
 	var/turf_type = null
+	/// What dir will the turf have?
+	var/turf_dir = SOUTH
+	/// Cached associative lazy list to hold the radial options for tile reskinning. See tile_reskinning.dm for more information. Pattern: list[type] -> image
+	var/list/tile_reskin_types
+	/// Cached associative lazy list to hold the radial options for tile dirs. See tile_reskinning.dm for more information.
+	var/list/tile_rotate_dirs
+	/// Allows us to replace the plating we are attacking if our baseturfs are the same.
+	var/replace_plating = FALSE
 	var/mineralType = null
 	novariants = TRUE
 

@@ -196,8 +196,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   */
 /area/Initialize(mapload)
 	icon_state = ""
-	layer = AREA_LAYER
-	uid = ++global_uid
 	map_name = name // Save the initial (the name set in the map) name of the area.
 
 	add_delta_areas()
@@ -225,7 +223,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 
 	. = ..()
 
-	blend_mode = BLEND_MULTIPLY // Putting this in the constructor so that it stops the icons being screwed up in the map editor.
+	if(!static_lighting)
+		blend_mode = BLEND_MULTIPLY
 
 	if(!IS_DYNAMIC_LIGHTING(src))
 		add_overlay(/obj/effect/fullbright)
@@ -803,3 +802,26 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /// A hook so areas can modify the incoming args (of what??)
 /area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	return flags
+
+/// Called when a living mob that spawned here, joining the round, receives the player client.
+/area/proc/on_joining_game(mob/living/boarder)
+	return
+
+/**
+ * Returns the name of an area, with the original name if the area name has been changed.
+ *
+ * If an area has not been renamed, returns the area name. If it has been modified (by blueprints or other means)
+ * returns the current name, as well as the initial value, in the format of [Current Location Name (Original Name)]
+ */
+
+/area/proc/get_original_area_name()
+	if(name == initial(name))
+		return name
+	return "[name] ([initial(name)])"
+
+/**
+ * A blank area subtype solely used by the golem area editor for the purpose of
+ * allowing golems to create new areas without suffering from the hazard_area debuffs.
+ */
+/area/golem
+	name = "Golem Territory"

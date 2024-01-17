@@ -1,5 +1,6 @@
 /turf/closed/indestructible
 	name = "wall"
+	desc = "Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
 	flags_1 = NOJAUNT | NO_RUST

@@ -3,14 +3,21 @@
 	desc = "Used to designate a precise transit location for a spacecraft."
 	jump_action = null
 	should_supress_view_changes  = FALSE
-	var/datum/action/innate/shuttledocker_rotate/rotate_action = new
-	var/datum/action/innate/shuttledocker_place/place_action = new
+	
+	// Docking cameras should only interact with their current z-level.
+	move_up_action = null
+	move_down_action = null
+	
 	var/shuttleId = ""
 	var/shuttlePortId = ""
 	var/shuttlePortName = "custom location"
-	var/list/jumpto_ports = list() //hashset of ports to jump to and ignore for collision purposes
-	var/obj/docking_port/stationary/my_port //the custom docking port placed by this console
-	var/obj/docking_port/mobile/shuttle_port //the mobile docking port of the connected shuttle
+	/// Hashset of ports to jump to and ignore for collision purposes
+	var/list/jump_to_ports = list()
+	/// The custom docking port placed by this console
+	var/obj/docking_port/stationary/my_port
+	/// The mobile docking port of the connected shuttle
+	var/obj/docking_port/mobile/shuttle_port
+	// Traits forbided for custom docking
 	var/list/locked_traits = list(ZTRAIT_RESERVED, ZTRAIT_CENTCOM, ZTRAIT_AWAY, ZTRAIT_REEBE) //traits forbided for custom docking
 	var/view_range = 0
 	var/x_offset = 0
@@ -24,18 +31,51 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
-	GLOB.navigation_computers += src
-	for(var/V in SSshuttle.stationary)
-		if(!V)
+	actions += new /datum/action/innate/shuttledocker_rotate(src)
+	actions += new /datum/action/innate/shuttledocker_place(src)
+
+	set_init_ports()
+
+	if(connect_to_shuttle(mapload, SSshuttle.get_containing_shuttle(src)))
+		for(var/obj/docking_port/stationary/port as anything in SSshuttle.stationary_docking_ports)
+			if(port.shuttle_id == shuttleId)
+				add_jumpable_port(port.shuttle_id)
+
+	for(var/obj/docking_port/stationary/port as anything in SSshuttle.stationary_docking_ports)
+		if(!port)
 			continue
-		var/obj/docking_port/stationary/S = V
-		if(jumpto_ports[S.id])
-			z_lock |= S.z
+		if(jump_to_ports[port.shuttle_id])
+			z_lock |= port.z
 	whitelist_turfs = typecacheof(whitelist_turfs)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
 	. = ..()
-	GLOB.navigation_computers -= src
+	if(my_port?.get_docked())
+		my_port.delete_after = TRUE
+		my_port.shuttle_id = null
+		my_port.name = "Old [my_port.name]"
+		my_port = null
+	else
+		QDEL_NULL(my_port)
+
+/// "Initializes" any default port ids we have, done so add_jumpable_port can be a proper setter
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/set_init_ports()
+	var/list/init_ports = jump_to_ports.Copy()
+	jump_to_ports = list() //Reset it so we don't get dupes
+	for(var/port_id in init_ports)
+		add_jumpable_port(port_id)
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/add_jumpable_port(port_id)
+	if(!length(jump_to_ports))
+		actions += new /datum/action/innate/camera_jump/shuttle_docker(src)
+	jump_to_ports[port_id] = TRUE
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/remove_jumpable_port(port_id)
+	jump_to_ports -= port_id
+	if(!length(jump_to_ports))
+		var/datum/action/to_remove = locate(/datum/action/innate/camera_jump/shuttle_docker) in actions
+		actions -= to_remove
+		qdel(to_remove)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/attack_hand(mob/user)
 	if(jammed)
@@ -45,21 +85,6 @@
 		to_chat(user,span_warning("Warning: Shuttle connection severed!"))
 		return
 	return ..()
-
-/obj/machinery/computer/camera_advanced/shuttle_docker/GrantActions(mob/living/user)
-	if(jumpto_ports.len)
-		jump_action = new /datum/action/innate/camera_jump/shuttle_docker
-	..()
-
-	if(rotate_action)
-		rotate_action.target = user
-		rotate_action.Grant(user)
-		actions += rotate_action
-
-	if(place_action)
-		place_action.target = user
-		place_action.Grant(user)
-		actions += place_action
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/CreateEye()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
@@ -140,7 +165,7 @@
 	if(!my_port)
 		my_port = new()
 		my_port.name = shuttlePortName
-		my_port.id = shuttlePortId
+		my_port.shuttle_id = shuttlePortId
 		my_port.height = shuttle_port.height
 		my_port.width = shuttle_port.width
 		my_port.dheight = shuttle_port.dheight
@@ -262,12 +287,15 @@
 		current_user.client.images -= remove_images
 		current_user.client.images += add_images
 
-/obj/machinery/computer/camera_advanced/shuttle_docker/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
-	if(port && (shuttleId == initial(shuttleId) || override))
-		shuttleId = port.id
-		shuttlePortId = "[port.id]_custom"
+/obj/machinery/computer/camera_advanced/shuttle_docker/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	if(!mapload)
+		return FALSE
+	if(port)
+		shuttleId = port.shuttle_id
+		shuttlePortId = "[port.shuttle_id]_custom"
 	if(dock)
-		jumpto_ports[dock.id] = TRUE
+		add_jumpable_port(dock.shuttle_id)
+	return TRUE
 
 /mob/camera/aiEye/remote/shuttle_docker
 	visible_icon = FALSE
@@ -331,19 +359,19 @@
 	playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, 0)
 
 	var/list/L = list()
-	for(var/V in SSshuttle.stationary)
+	for(var/V in SSshuttle.stationary_docking_ports)
 		if(!V)
-			stack_trace("SSshuttle.stationary have null entry!")
+			stack_trace("SSshuttle.stationary_docking_ports have null entry!")
 			continue
 		var/obj/docking_port/stationary/S = V
 		if(console.z_lock.len && !(S.z in console.z_lock))
 			continue
-		if(console.jumpto_ports[S.id])
+		if(console.jump_to_ports[S.shuttle_id])
 			L["([L.len])[S.name]"] = S
 
-	for(var/V in SSshuttle.beacons)
+	for(var/V in SSshuttle.beacon_list)
 		if(!V)
-			stack_trace("SSshuttle.beacons have null entry!")
+			stack_trace("SSshuttle.beacon_list have null entry!")
 			continue
 		var/obj/machinery/spaceship_navigation_beacon/nav_beacon = V
 		if(!nav_beacon.z || SSmapping.level_has_any_trait(nav_beacon.z, console.locked_traits))
