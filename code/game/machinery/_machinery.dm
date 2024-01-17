@@ -711,3 +711,23 @@ Class Procs:
 
 	SEND_SIGNAL(src, COMSIG_MACHINERY_SET_OCCUPANT, new_occupant)
 	occupant = new_occupant
+
+///Get a valid powered area to reference for power use, mainly for wall-mounted machinery that isn't always mapped directly in a powered location.
+/obj/machinery/proc/get_room_area()
+	var/area/machine_area = get_area(src)
+	if(isnull(machine_area))
+		return null // ??
+
+	// check our own loc first to see if its a powered area
+	if(!machine_area.always_unpowered)
+		return machine_area
+
+	// loc area wasn't good, checking adjacent wall for a good area to use
+	var/turf/mounted_wall = get_step(src, dir)
+	if(isclosedturf(mounted_wall))
+		var/area/wall_area = get_area(mounted_wall)
+		if(!wall_area.always_unpowered)
+			return wall_area
+
+	// couldn't find a proper powered area on loc or adjacent wall, defaulting back to loc and blaming mappers
+	return machine_area

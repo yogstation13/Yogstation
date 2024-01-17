@@ -90,7 +90,7 @@
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!",span_notice("You remove [cell]."))
 		user.put_in_hands(cell)
-		cell.update_appearance(UPDATE_ICON)
+		cell.update_appearance()
 		cell = null
 		add_fingerprint(user)
 
@@ -212,8 +212,6 @@
 /obj/machinery/light
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
-	var/overlayicon = 'icons/obj/lighting_overlay.dmi'
-	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube"
 	desc = "A lighting fixture."
 	layer = WALL_OBJ_LAYER
@@ -221,40 +219,67 @@
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = AREA_USAGE_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/on = FALSE					// 1 if on, 0 if off
+	///Lights are calc'd via area so they dont need to be in the machine list
+	power_channel = AREA_USAGE_LIGHT
+	///What overlay the light should use
+	var/overlay_icon = 'icons/obj/lighting_overlay.dmi'
+	///base description and icon_state
+	var/base_state = "tube"
+	///Is the light on?
+	var/on = FALSE
 	var/on_gs = FALSE
 	var/forced_off = FALSE
 	var/static_power_used = 0
-	var/brightness = 8			// luminosity when on, also used in power calculation
-	var/bulb_power = 1			// basically the alpha of the emitted light source
-	var/bulb_colour = "#FFFFFF"	// befault colour of the light.
-	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
+	///Luminosity when on, also used in power calculation
+	var/brightness = 8
+	///Basically the alpha of the emitted light source
+	var/bulb_power = 1
+	///Default colour of the light.
+	var/bulb_colour = LIGHT_COLOR_DEFAULT
+	///LIGHT_OK, _EMPTY, _BURNED or _BROKEN
+	var/status = LIGHT_OK
+	///Should we flicker?
 	var/flickering = FALSE
-	var/light_type = /obj/item/light/tube		// the type of light item
+	///The type of light item
+	var/light_type = /obj/item/light/tube
+	///String of the light type, used in descriptions and in examine
 	var/fitting = "tube"
-	var/switchcount = 0			// count of number of times switched on/off
-								// this is used to calc the probability the light burns out
+	///Count of number of times switched on/off, this is used to calculate the probability the light burns out
+	var/switchcount = 0
+	///true if rigged to explode
+	var/rigged = FALSE
 
-	var/rigged = FALSE			// true if rigged to explode
-
+	///Cell reference
 	var/obj/item/stock_parts/cell/cell
-	var/start_with_cell = TRUE	// if true, this fixture generates a very weak cell at roundstart
+	///If true, this fixture generates a very weak cell at roundstart
+	var/start_with_cell = TRUE
 
-	var/nightshift_enabled = FALSE	//Currently in night shift mode?
-	var/nightshift_allowed = TRUE	//Set to FALSE to never let this light get switched to night mode.
+	///Currently in night shift mode?
+	var/nightshift_enabled = FALSE
+	///Set to FALSE to never let this light get switched to night mode.
+	var/nightshift_allowed = TRUE
+	///Brightness of the nightshift light
 	var/nightshift_brightness = 8
+	///Alpha of the nightshift light
 	var/nightshift_light_power = 0.45
+	///Basecolor of the nightshift light
 	var/nightshift_light_color = "#FFDDCC"
 
-	var/emergency_mode = FALSE	// if true, the light is in emergency mode
-	var/no_emergency = FALSE	// if true, this light cannot ever have an emergency mode
-	var/bulb_emergency_brightness_mul = 0.25	// multiplier for this light's base brightness in emergency power mode
-	var/bulb_emergency_colour = "#FF3232"	// determines the colour of the light while it's in emergency mode
-	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
-	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
+	///if true, the light is in emergency mode
+	var/emergency_mode = FALSE	
+	///if true, this light cannot ever have an emergency mode
+	var/no_emergency = FALSE	
+	///Multiplier for this light's base brightness during a cascade
+	var/bulb_emergency_brightness_mul = 0.25
+	///Colour of the light when major emergency mode is on
+	var/bulb_emergency_colour = "#ff4e4e"
+	///the multiplier for determining the light's power in emergency mode
+	var/bulb_emergency_pow_mul = 0.75
+	///the minimum value for the light's power in emergency mode
+	var/bulb_emergency_pow_min = 0.5
 
-	var/bulb_vacuum_colour = "#4F82FF"	// colour of the light when air alarm is set to severe
+	///colour of the light when air alarm is set to severe
+	var/bulb_vacuum_colour = "#4F82FF"	
 	var/bulb_vacuum_brightness = 8
 
 	///So we don't have a lot of stress on startup.
@@ -387,7 +412,7 @@
 					glow_state = "[base_state]_emergency"
 				else if ((A && A.vacuum) || nightshift_enabled)
 					glow_state = "[base_state]_nightshift"
-				var/mutable_appearance/glowybit = mutable_appearance(overlayicon, glow_state, layer)
+				var/mutable_appearance/glowybit = mutable_appearance(overlay_icon, glow_state, layer)
 				//glowybit.alpha = clamp(light_power*250, 30, 200)
 				add_overlay(glowybit)
 		if(LIGHT_EMPTY)
@@ -397,6 +422,23 @@
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 	return
+
+/obj/machinery/light/update_overlays()
+	. = ..()
+	if(!on || status != LIGHT_OK)
+		return
+
+	. += emissive_appearance(overlay_icon, "[base_state]", src, alpha = src.alpha)
+
+	var/area/local_area = get_room_area()
+
+	if(emergency_mode || (local_area?.fire))
+		. += mutable_appearance(overlay_icon, "[base_state]_emergency")
+		return
+	if(nightshift_enabled)
+		. += mutable_appearance(overlay_icon, "[base_state]_nightshift")
+		return
+	. += mutable_appearance(overlay_icon, base_state)
 
 /obj/machinery/light/proc/clean_light(O,strength)
 	if(strength < CLEAN_TYPE_BLOOD)
@@ -430,7 +472,7 @@
 	else
 		use_power = IDLE_POWER_USE
 		set_light(0)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 	active_power_usage = (brightness * 10)
 	if(on != on_gs)
@@ -480,7 +522,7 @@
 			set_light(BR, PO, CO)
 			if(!quiet)
 				playsound(src.loc, 'sound/effects/light_on.ogg', 50)
-	update_icon()
+	update_appearance()
 	return TRUE
 
 /obj/machinery/light/update_atom_colour()
@@ -511,7 +553,7 @@
 		on = FALSE
 		set_light(0)
 		playsound(src.loc, 'sound/effects/burnout.ogg', 65)
-		update_icon()
+		update_appearance()
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
@@ -601,7 +643,7 @@
 		set_light(0)
 		forced_off = !forced_off
 		on = !on
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		update()
 	else
 		return ..()

@@ -372,4 +372,3 @@ TRIMLINE_SUBTYPE_HELPER(/obj/effect/turf_decal/trimline/dark)
 
 #undef TRIMLINE_SUBTYPE_HELPER
 #undef DECAL_ALPHA
-

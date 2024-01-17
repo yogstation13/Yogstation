@@ -149,7 +149,6 @@
 /obj/effect/light_emitter/vr_hub
 	set_luminosity = 9
 	set_cap = 2.5
-	light_color = LIGHT_COLOR_WHITE
 
 /turf/closed/indestructible/iron
 	name = "rough metal wall"
