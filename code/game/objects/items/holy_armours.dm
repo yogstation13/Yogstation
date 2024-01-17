@@ -252,15 +252,9 @@
 	var/wrap = FALSE
 	var/obj/effect/abstract/particle_holder/flagelantes_effect
 	var/total_wounds
+	var/speed_message = FALSE
 	var/footstep = 1
 	var/footstep_max = 2
-
-	var/obj/item/clothing/head/hooded/flagelantes_chains_hood/linkedhood
-
-/obj/item/clothing/head/helmet/space/hardsuit/syndi/Initialize(mapload)
-	. = ..()
-	if(istype(loc, /obj/item/clothing/head/hooded/flagelantes_chains_hood))
-		linkedhood = loc
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/equipped(mob/M, slot)
 	. = ..()
@@ -362,11 +356,11 @@
 		if(0.60 to 0.79)
 			final_slowdown += 0
 		if(0.30 to 0.59)
-			final_slowdown += -0.3
+			final_slowdown += -0.2
 		if(0.10 to 0.29)
-			final_slowdown += -0.6
+			final_slowdown += -0.4
 		if(0 to 0.9)
-			final_slowdown += -1
+			final_slowdown += -0.6
 		if(-INFINITY to -0.1) //So crit people are not rolling around at the speed of sound
 			final_slowdown = 1
 
@@ -374,7 +368,15 @@
 	
 	slowdown = final_slowdown //set slowdown
 
-	appearance_change(H, slowdown) //Add particles and change sprite depending on slowdown
+	if(slowdown == -1.2) //Alert the user and those around that they've achieved MAXIMUM OVERDRIVE
+		if(!speed_message)
+			to_chat(H, span_notice("You feel yourself grow closer to the divine as your sins seep out of the chains!."))
+			H.visible_message(span_warning("[H] starts sweating profusely!"))
+			speed_message = TRUE
+	else
+		speed_message = FALSE
+
+	appearance_change(H, slowdown) //Add particles depending on slowdown
 
 	change_footstep(slowdown) //Change occurance of chain noise
 
@@ -385,47 +387,23 @@
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/appearance_change(mob/living/carbon/human/H, slowdown)
 	switch(slowdown)
-		if(0 to 1)
+		if(-1.1 to 1)
 			if(flagelantes_effect)
 				QDEL_NULL(flagelantes_effect) //Remove particle effect
-			update_icon_state()
-		if(-1.5 to -0.1)
-			if(!flagelantes_effect)
-				flagelantes_effect = new(H, /particles/droplets) //Add particle effect
-				flagelantes_effect.color = "#a41c1c"
-			update_icon_state()
-		if(-INFINITY to -1.6)
+		if(-INFINITY to -1.2)
 			if(!flagelantes_effect)
 				flagelantes_effect = new(H, /particles/droplets)
 				flagelantes_effect.color = "#a41c1c"
-			update_icon_state()
-	hood.update_appearance(UPDATE_ICON)
-
-/obj/item/clothing/suit/hooded/flagelantes_chains/update_icon_state()
-	. = ..()
-	switch(slowdown)
-		if(0 to 1)
-			if(linkedhood.icon_state != "flagelantes_chains_hood")
-				linkedhood.icon_state = "flagelantes_chains_hood" //Change sprite
-				linkedhood.flags_inv = HIDEHAIR|HIDEEARS
-		if(-1.5 to -0.1)
-			if(linkedhood.icon_state != "flagelantes_chains_hood_1")
-				linkedhood.icon_state = "flagelantes_chains_hood_1"
-				linkedhood.flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
-		if(-INFINITY to -1.6)
-			if(linkedhood.icon_state != "flagelantes_chains_hood_2")
-				linkedhood.icon_state = "flagelantes_chains_hood_2"
-				linkedhood.flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_footstep(slowdown) //So the chain sounds isn't spammed at higher speeds
 	switch(slowdown)
 		if(0 to 1)
 			footstep_max = 2
-		if(-0.5 to -0.1)
+		if(-0.3 to -0.1)
 			footstep_max = 3
-		if(-1 to -0.6)
+		if(-1 to -0.4)
 			footstep_max = 4
-		if(-1.6 to -1.1)
+		if(-INFINITY to -1.1)
 			footstep_max = 5
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_mob_move()
@@ -433,7 +411,7 @@
 	if(!istype(H) || H.wear_suit != src)
 		return
 	if(footstep > footstep_max)
-		playsound(src, 'sound/weapons/chainhit.ogg', 5, 1)
+		playsound(src, 'sound/weapons/chainhit.ogg', 3, 1)
 		footstep = 0
 	else
 		footstep++
@@ -447,5 +425,5 @@
 	item_state = "flagelantes_chains_hood"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 25)
 	body_parts_covered = HEAD
-	flags_inv = HIDEHAIR|HIDEEARS
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
