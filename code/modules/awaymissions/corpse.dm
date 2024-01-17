@@ -312,7 +312,7 @@
 
 /obj/effect/mob_spawn/human/corpse/cargo_tech
 	name = "Cargo Tech"
-	outfit = /datum/outfit/job/cargo_tech
+	outfit = /datum/outfit/job/cargo_tech/no_pda
 
 /obj/effect/mob_spawn/human/cook
 	name = "Cook"
