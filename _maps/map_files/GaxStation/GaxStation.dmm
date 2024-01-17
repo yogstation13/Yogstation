@@ -845,9 +845,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"auE" = (
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/secondarydatacore)
 "auN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2376,6 +2373,16 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"bgw" = (
+/obj/machinery/ai/networking{
+	label = "Subcontroller";
+	roundstart_connection = "Computer Science - 2"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "bgF" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "armory_eva";
@@ -3625,13 +3632,6 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
-"bPU" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/landmark/start/synthetic,
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "bQp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -4835,12 +4835,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"cvx" = (
-/obj/machinery/computer/ai_server_console{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "cvF" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 10
@@ -11378,12 +11372,6 @@
 "fvA" = (
 /turf/open/floor/plasteel,
 /area/security/main)
-"fvC" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "fvG" = (
 /obj/structure/chair{
 	dir = 4
@@ -14574,13 +14562,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/secondarydatacore)
-"gYR" = (
-/obj/machinery/ai/master_subcontroller,
-/obj/structure/ethernet_cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "gZh" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
@@ -17337,6 +17318,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+"ipj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "ipy" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -19096,15 +19086,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"jlV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/ethernet_cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "jlY" = (
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -19555,6 +19536,9 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"jyw" = (
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "jyJ" = (
 /obj/machinery/computer/robotics{
 	dir = 8
@@ -21763,12 +21747,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/engine,
 /area/engine/gravity_generator)
-"kFB" = (
-/obj/machinery/vr_sleeper/netmin/synth_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "kFN" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall,
@@ -26167,6 +26145,13 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
+"mLS" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/landmark/start/synthetic,
 /turf/open/floor/plating,
 /area/maintenance/department/eva)
 "mMi" = (
@@ -30717,6 +30702,13 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"pgO" = (
+/obj/machinery/ai/master_subcontroller,
+/obj/structure/ethernet_cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "pgQ" = (
 /obj/structure/table/wood,
 /obj/item/pinpointer/nuke,
@@ -31075,6 +31067,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+"png" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "pno" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -33680,6 +33676,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"qzE" = (
+/obj/machinery/vr_sleeper/netmin/synth_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "qzW" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -34517,6 +34519,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"qZX" = (
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/secondarydatacore)
 "rak" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/stripes/line{
@@ -41431,13 +41436,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"uvN" = (
-/obj/structure/chair/office/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "uvV" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line/lower{
 	dir = 4
@@ -42394,6 +42392,12 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/dorms)
+"uSn" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/light/small,
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "uSr" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -42776,12 +42780,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"vbK" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/light/small,
-/obj/structure/closet/emcloset,
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "vbO" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -49475,16 +49473,6 @@
 /obj/machinery/light,
 /turf/open/floor/engine,
 /area/escapepodbay)
-"ylt" = (
-/obj/machinery/ai/networking{
-	label = "Subcontroller";
-	roundstart_connection = "Computer Science - 2"
-	},
-/obj/structure/ethernet_cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "ylA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -81530,7 +81518,7 @@ wTB
 hBZ
 kSo
 dpf
-ylt
+bgw
 juY
 gYo
 wQM
@@ -81787,8 +81775,8 @@ wTB
 hBZ
 nJe
 dpf
-jlV
-auE
+ipj
+qZX
 ios
 mZK
 iGe
@@ -82044,7 +82032,7 @@ aOB
 wOb
 nJe
 dpf
-gYR
+pgO
 vFH
 ydu
 dpf
@@ -82559,8 +82547,8 @@ nJe
 wIc
 dpf
 ylC
-fvC
-cvx
+jyw
+jyw
 dpf
 wYJ
 dpf
@@ -82816,7 +82804,7 @@ nJe
 mpT
 dpf
 eVZ
-uvN
+png
 mjG
 sXP
 xFt
@@ -96136,7 +96124,7 @@ dYL
 dYL
 xgP
 ihC
-vbK
+uSn
 fnc
 fzn
 ghk
@@ -96650,7 +96638,7 @@ vRP
 vRP
 xgP
 kIf
-bPU
+mLS
 fnc
 pRp
 eTE
@@ -96907,7 +96895,7 @@ vRP
 vRP
 xgP
 xgP
-kFB
+qzE
 fnc
 fqe
 eTE
