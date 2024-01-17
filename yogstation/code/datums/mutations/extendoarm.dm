@@ -19,7 +19,7 @@
 	spell_requirements = NONE
 
 	cast_range = 50
-	projectile_type = /obj/item/projectile/bullet/arm
+	projectile_type = /obj/projectile/bullet/arm
 	active_msg = "You loosen up your arm!"
 	deactive_msg = "You relax your arm."
 	projectile_amount = 64
@@ -53,7 +53,7 @@
 
 	return TRUE
 
-/datum/action/cooldown/spell/pointed/projectile/extendoarm/ready_projectile(obj/item/projectile/bullet/arm/P, atom/target, mob/user, iteration)
+/datum/action/cooldown/spell/pointed/projectile/extendoarm/ready_projectile(obj/projectile/bullet/arm/P, atom/target, mob/user, iteration)
 	. = ..()
 	var/mob/living/carbon/C = user
 	var/new_color
@@ -67,13 +67,13 @@
 
 	var/obj/item/I = C.get_active_held_item()
 	if(I && C.dropItemToGround(I, FALSE))
-		var/obj/item/projectile/bullet/arm/ARM = P
+		var/obj/projectile/bullet/arm/ARM = P
 		ARM.grab(I)
 	P.arm = C.hand_bodyparts[C.active_hand_index]
 	P.arm.drop_limb()
 	P.arm.forceMove(P)
 
-/obj/item/projectile/bullet/arm
+/obj/projectile/bullet/arm
 	name = "arm"
 	icon = 'yogstation/icons/obj/projectiles.dmi'
 	icon_state = "arm"
@@ -89,7 +89,7 @@
 	var/returning = FALSE
 	var/datum/beam/beam
 
-/obj/item/projectile/bullet/arm/prehit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/arm/prehit(atom/target, blocked = FALSE)
 	if(returning)
 		if(target == firer)
 			var/mob/living/L = firer
@@ -110,14 +110,14 @@
 				grab(target)
 		go_home()
 
-/obj/item/projectile/bullet/arm/proc/go_home()
+/obj/projectile/bullet/arm/proc/go_home()
 	homing_target = firer
 	returning = TRUE
 	icon_state += "-reverse"
 	range = decayedRange
 	ignore_source_check = TRUE
 
-/obj/item/projectile/bullet/arm/proc/grab(obj/item/I)
+/obj/projectile/bullet/arm/proc/grab(obj/item/I)
 	if(!I)
 		return
 	I.forceMove(src)
@@ -126,7 +126,7 @@
 	grabbed = I
 	overlays += IM
 
-/obj/item/projectile/bullet/arm/proc/ungrab()
+/obj/projectile/bullet/arm/proc/ungrab()
 	if(!grabbed)
 		return
 	grabbed.forceMove(drop_location())
@@ -134,7 +134,7 @@
 	. = grabbed
 	grabbed = null
 
-/obj/item/projectile/bullet/arm/Destroy()
+/obj/projectile/bullet/arm/Destroy()
 	if(grabbed)
 		grabbed.forceMove(drop_location())
 	if(arm)

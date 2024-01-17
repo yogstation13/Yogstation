@@ -182,6 +182,7 @@ There are several things that need to be remembered:
 				bloody_overlay.icon_state = "bloodyhands_left"
 			else if(has_right_hand(FALSE))
 				bloody_overlay.icon_state = "bloodyhands_right"
+		bloody_overlay.color = get_blood_dna_color(return_blood_DNA())
 
 		overlays_standing[GLOVES_LAYER] = bloody_overlay
 
@@ -631,7 +632,7 @@ generate/load female uniform sprites matching all previously decided variables
 /mob/living/carbon/human/generate_icon_render_key()
 	. = "[dna.species.limbs_id]"
 
-	if(dna.check_mutation(HULK) || dna.check_mutation(ACTIVE_HULK))
+	if(dna.check_mutation(HULK))
 		. += "-coloured-hulk"
 	else if(dna.species.use_skintones)
 		. += "-coloured-[skin_tone]"

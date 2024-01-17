@@ -21,7 +21,18 @@
 		C.parallax_layers_cached = list()
 		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, C.view)
 		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, C.view)
-		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, C.view)
+
+		if(!GLOB.minetype)
+			stack_trace("GLOB.minetype wasn't set when creating parallax! uh oh!!")
+			
+		if(GLOB.minetype == MINETYPE_LAVALAND)
+			if(HAS_TRAIT(SSstation, STATION_TRAIT_MOONSCORCH))
+				C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet/moonscorch(null, C.view)
+			else
+				C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, C.view)
+		if(GLOB.minetype == MINETYPE_JUNGLE)
+			C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet/jungle(null, C.view)
+
 		if(SSparallax.random_layer)
 			C.parallax_layers_cached += new SSparallax.random_layer
 		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, C.view)
@@ -326,6 +337,9 @@
 	speed = 3
 	layer = 30
 
+/atom/movable/screen/parallax_layer/planet/moonscorch
+	icon_state = "rheus_moon"
+
 /atom/movable/screen/parallax_layer/planet/update_status(mob/M)
 	var/turf/T = get_turf(M)
 	if(is_station_level(T.z))
@@ -335,3 +349,6 @@
 
 /atom/movable/screen/parallax_layer/planet/update_o()
 	return //Shit wont move
+
+/atom/movable/screen/parallax_layer/planet/jungle 
+	icon_state = "jungleland"

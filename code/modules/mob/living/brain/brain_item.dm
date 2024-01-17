@@ -106,9 +106,9 @@
 			brainmob.stored_dna = new /datum/dna/stored(brainmob)
 		C.dna.copy_dna(brainmob.stored_dna)
 		if(HAS_TRAIT(L, TRAIT_BADDNA))
-			brainmob.status_traits[TRAIT_BADDNA] = L.status_traits[TRAIT_BADDNA]
+			LAZYSET(brainmob.status_traits, TRAIT_BADDNA, L.status_traits[TRAIT_BADDNA])
 		if(HAS_TRAIT(L, TRAIT_NOCLONE)) // YOU CAN'T ESCAPE
-			brainmob.status_traits[TRAIT_NOCLONE] = L.status_traits[TRAIT_NOCLONE]
+			LAZYSET(brainmob.status_traits, TRAIT_NOCLONE, L.status_traits[TRAIT_NOCLONE])
 		var/obj/item/organ/zombie_infection/ZI = L.getorganslot(ORGAN_SLOT_ZOMBIE)
 		if(ZI)
 			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
@@ -191,7 +191,7 @@
 		return
 
 	// This should be a better check but this covers 99.9% of cases
-	if(!(process_flags & C.get_process_flags()))
+	if(!(compatible_biotypes & C.mob_biotypes))
 		to_chat(user, span_warner("This brain is incompatiable with this beings biology!"))
 		return
 
@@ -278,7 +278,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 	organ_flags = ORGAN_SYNTHETIC
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 
 /obj/item/organ/brain/positron/emp_act(severity)
 	if(prob(25))
@@ -288,13 +288,10 @@
 	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
 		return
 
-	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (50/severity) * (maxHealth - damage) / maxHealth)
-	owner.adjust_drugginess(40/severity)
-	switch(severity)
-		if(1)
-			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
-		if(2)
-			to_chat(owner, span_warning("Alert: Posibrain damaged."))
+	to_chat(owner, span_warning("Alert: Posibrain [severity > EMP_LIGHT ? "severely " : ""]damaged."))
+	owner.adjust_drugginess(5 * severity)
+	if(severity > EMP_LIGHT)
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (2 * (severity - EMP_LIGHT)) * (maxHealth - damage) / maxHealth) // don't give traumas from weak EMPs
 
 /obj/item/organ/brain/positron/synth
 	zone = BODY_ZONE_HEAD

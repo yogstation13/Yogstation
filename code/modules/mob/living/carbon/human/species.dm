@@ -99,8 +99,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/staminamod = 1
 	/// multiplier for pressure damage
 	var/pressuremod = 1
-	/// multiplier for money paid at payday, species dependent
-	var/payday_modifier = 1
+	/// multiplier for EMP severity
+	var/emp_mod = 1
 	///Type of damage attack does
 	var/attack_type = BRUTE
 	///lowest possible punch damage. if this is set to 0, punches will always miss
@@ -140,8 +140,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///the icon used for the wings + details icon of a different source colour
 	var/wings_icon = "Angel"
 	var/wings_detail
-	/// Used for reagents, organs, and virus symptoms. We're going to assume you're a meatbag unless you say otherwise.
-	var/process_flags = ORGANIC
 	/// What kind of gibs to spawn
 	var/species_gibs = "human"
 	/// Can this species use numbers in its name?
@@ -165,6 +163,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Breathing!
 	///what type of gas is breathed
 	var/breathid = "o2"
+
+	/// The icon_state of the fire overlay added when sufficently ablaze and standing. see onfire.dmi
+	var/fire_overlay = "human" //not used until monkey is added as a species type rather than a mob
 
 	//Do NOT remove by setting to null. use OR make a RESPECTIVE TRAIT (removing stomach? add the NOSTOMACH trait to your species)
 	//why does it work this way? because traits also disable the downsides of not having an organ, removing organs but not having the trait will make your species die
@@ -209,6 +210,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	//for preternis + synths
 	var/draining = FALSE
+	///Does our species have colors for its' damage overlays?
+	var/use_damage_color = TRUE
 
 ///////////
 // PROCS //
@@ -441,7 +444,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	regenerate_organs(C,old_species)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
-		C.dna.blood_type = exotic_bloodtype
+		C.dna.blood_type = get_blood_type(exotic_bloodtype)
 
 	if(old_species.mutanthands)
 		for(var/obj/item/I in C.held_items)
@@ -724,7 +727,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 								flower_overlay.color = fixed_mut_color
 							else
 								flower_overlay.color = hair_color
-						else		
+						else
 							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
@@ -1041,7 +1044,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					switch(S.color_src)
 						if(MUTCOLORS)
-							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
+							if(H.dna.check_mutation(HULK))			//HULK GO FIRST
 								accessory_overlay.color = "#00aa00"
 							else if(fixed_mut_color)													//Then fixed color if applicable
 								accessory_overlay.color = fixed_mut_color
@@ -1322,7 +1325,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		H.reagents.del_reagent(chem.type)
 		return TRUE
 	//This handles dumping unprocessable reagents.
-	if(!(chem.process_flags & H.get_process_flags()))
+	if(!(chem.compatible_biotypes & H.mob_biotypes))
 		chem.holder.remove_reagent(chem.type, chem.metabolization_rate)
 		return TRUE
 	return FALSE
@@ -1504,6 +1507,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(health_deficiency >= H.maxHealth * 0.4)
 				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
 					health_deficiency *= 0.5
+				if(HAS_TRAIT(H, TRAIT_HIGHRESISTDAMAGESLOWDOWN))
+					health_deficiency *= 0.25
 				if(flight)
 					health_deficiency *= 0.333
 				if(health_deficiency < 100) // https://i.imgur.com/W4nusN8.png https://www.desmos.com/calculator/qsf6iakqgp
@@ -1548,11 +1553,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	return FALSE
 
-/datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	return
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
+	if(target.try_extinguish(user))
+		return 1
+	else if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
 		target.help_shake_act(user)
 		if(target != user)
 			log_combat(user, target, "shaken")
@@ -1739,6 +1746,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/knocked_item = FALSE
 			if(!is_type_in_typecache(target_held_item, GLOB.shove_disarming_types))
 				target_held_item = null
+			if(isgun(target_held_item) && prob(70))
+				var/turf/curloc = get_turf(src)
+				var/atom/target_aimed_atom = target.client?.mouse_object_ref?.resolve()
+				var/turf/aimloc = get_turf(target_aimed_atom)
+				if(target_aimed_atom && istype(aimloc) && istype(curloc))
+					var/obj/item/gun/held_gun = target_held_item
+					held_gun.process_fire(target_aimed_atom, target, bonus_spread = 10)
 			if(!target.has_movespeed_modifier(MOVESPEED_ID_SHOVE))
 				target.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
 				if(target_held_item)
@@ -1772,7 +1786,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(M.mind)
 		attacker_style = M.mind.martial_art
 	if((M != H) && M.a_intent != INTENT_HELP && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
-		if((M.dna.check_mutation(ACTIVE_HULK) || M.dna.check_mutation(HULK)) && M.a_intent == "disarm")
+		if(M.dna.check_mutation(HULK) && M.a_intent == "disarm")
 			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
 			M.visible_message(span_danger("[M]'s punch knocks the shield out of [H]'s hand."), \
 							span_userdanger("[M]'s punch knocks the shield out of [H]'s hand."))
@@ -1952,15 +1966,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			sitter.take_damage(damage, damagetype)
 	return 1
 
-/datum/species/proc/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	// called when hit by a projectile
 	switch(P.type)
-		if(/obj/item/projectile/energy/floramut) // overwritten by plants/pods
+		if(/obj/projectile/energy/floramut) // overwritten by plants/pods
 			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
-		if(/obj/item/projectile/energy/florayield)
+		if(/obj/projectile/energy/florayield)
 			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
 
-/datum/species/proc/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/proc/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	// called before a projectile hit
 	return 0
 
@@ -1982,11 +1996,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(istype(human_loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		return
 
-	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
-		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
-			H.adjust_fire_stacks(-3)
+	if(environment.get_moles(GAS_H2O) > 10)//water vapour above a certain amount makes you wet
+		if(environment.get_moles(GAS_H2O) > 40)//if there's a lot of water vapour, preterni ded
+			H.adjust_wet_stacks(3)
 		else
-			H.adjust_fire_stacks(-2)
+			H.adjust_wet_stacks(2)
 
 	var/loc_temp = H.get_temperature(environment)
 	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
@@ -2104,67 +2118,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 // FIRE //
 //////////
 
-/datum/species/proc/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
-	if(!Canignite_mob(H))
-		return TRUE
-	if(H.on_fire)
-		//the fire tries to damage the exposed clothes and items
-		var/list/burning_items = list()
-		var/list/obscured = H.check_obscured_slots(TRUE)
-		//HEAD//
-
-		if(H.glasses && !(ITEM_SLOT_EYES in obscured))
-			burning_items += H.glasses
-		if(H.wear_mask && !(ITEM_SLOT_MASK in obscured))
-			burning_items += H.wear_mask
-		if(H.wear_neck && !(ITEM_SLOT_NECK in obscured))
-			burning_items += H.wear_neck
-		if(H.ears && !(ITEM_SLOT_EARS in obscured))
-			burning_items += H.ears
-		if(H.head)
-			burning_items += H.head
-
-		//CHEST//
-		if(H.w_uniform && !(ITEM_SLOT_ICLOTHING in obscured))
-			burning_items += H.w_uniform
-		if(H.wear_suit)
-			burning_items += H.wear_suit
-
-		//ARMS & HANDS//
-		var/obj/item/clothing/arm_clothes = null
-		if(H.gloves && !(ITEM_SLOT_GLOVES in obscured))
-			arm_clothes = H.gloves
-		else if(H.wear_suit && ((H.wear_suit.body_parts_covered & HANDS) || (H.wear_suit.body_parts_covered & ARMS)))
-			arm_clothes = H.wear_suit
-		else if(H.w_uniform && ((H.w_uniform.body_parts_covered & HANDS) || (H.w_uniform.body_parts_covered & ARMS)))
-			arm_clothes = H.w_uniform
-		if(arm_clothes)
-			burning_items |= arm_clothes
-
-		//LEGS & FEET//
-		var/obj/item/clothing/leg_clothes = null
-		if(H.shoes && !(ITEM_SLOT_FEET in obscured))
-			leg_clothes = H.shoes
-		else if(H.wear_suit && ((H.wear_suit.body_parts_covered & FEET) || (H.wear_suit.body_parts_covered & LEGS)))
-			leg_clothes = H.wear_suit
-		else if(H.w_uniform && ((H.w_uniform.body_parts_covered & FEET) || (H.w_uniform.body_parts_covered & LEGS)))
-			leg_clothes = H.w_uniform
-		if(leg_clothes)
-			burning_items |= leg_clothes
-
-		for(var/X in burning_items)
-			var/obj/item/I = X
-			I.fire_act((H.fire_stacks * 50)) //damage taken is reduced to 2% of this value by fire_act()
-
-		var/thermal_protection = H.get_thermal_protection()
-
-		if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
-			return
-		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
-			H.adjust_bodytemperature(11)
-		else
-			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 2))
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
+/datum/species/proc/handle_fire(mob/living/carbon/human/H, seconds_per_tick, no_protection = FALSE)
+	return no_protection
 
 /datum/species/proc/Canignite_mob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
@@ -2489,7 +2444,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_species_diet()
 	if(TRAIT_NOHUNGER in inherent_traits)
 		return null
-	
+
 	if(TRAIT_POWERHUNGRY in inherent_traits)
 		return null
 
@@ -2645,6 +2600,22 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are resilient to being shocked.",
 		))
 
+	if(emp_mod > 1)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm",
+			SPECIES_PERK_NAME = "EM Weakness",
+			SPECIES_PERK_DESC = "[plural_form] are weak to electromagnetic interference.",
+		))
+
+	if(emp_mod < 1)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "EM Resistance",
+			SPECIES_PERK_DESC = "[plural_form] are resistant to electromagnetic interference.",
+		))
+
 	return to_add
 
 /**
@@ -2743,15 +2714,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_NAME = "Radiation Immunity",
 			SPECIES_PERK_DESC = "[plural_form] are completely unaffected by radiation. However, this doesn't mean they can't be irradiated.",
 		))
-
-	if(TRAIT_FARADAYCAGE in inherent_traits)
-		to_add += list(list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
-			SPECIES_PERK_NAME = "Faraday \"Skin\"",
-			SPECIES_PERK_DESC = "[plural_form] have a unique physiology that shields them from weak EMPs.",
-		))
-
 	if(TRAIT_LIMBATTACHMENT in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -2791,7 +2753,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "Toxins damage dealt to [plural_form] are reversed - healing toxins will instead cause harm, and \
 				causing toxins will instead cause healing. Be careful around purging chemicals!",
 		))
-		
+
 	return to_add
 
 /**
@@ -2810,7 +2772,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are of the undead! The undead do not have the need to eat or breathe, and \
 				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
 		))
-	
+
 	if(inherent_biotypes & MOB_ROBOTIC)//species traits is basically inherent traits
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,

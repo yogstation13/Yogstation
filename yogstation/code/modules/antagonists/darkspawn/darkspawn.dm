@@ -377,7 +377,7 @@
 	QDEL_IN(user, 5)
 
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
-	SSshuttle.emergency.request(null, 0, null, FALSE, 0.1)
+	SSshuttle.emergency.request(null, 0, null, 0.1)
 
 /datum/antagonist/darkspawn/get_preview_icon()
 	var/icon/darkspawn_icon = icon('yogstation/icons/mob/darkspawn_progenitor.dmi', "darkspawn_progenitor")

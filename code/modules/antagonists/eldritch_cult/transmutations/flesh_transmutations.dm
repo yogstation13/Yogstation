@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/flesh_blade
 	name = "Flesh Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood)
-	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/flesh)
+	result_atoms = list(/obj/item/melee/sickly_blade/flesh)
 	required_shit_list = "A pool of blood and a knife."
 
 /datum/eldritch_transmutation/voiceless_dead
@@ -75,6 +75,12 @@
 	required_atoms = list(/obj/effect/decal/cleanable/ash,/obj/item/bodypart/head,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/ash_spirit
 	required_shit_list = "A pile of ash, a head, and a book."
+
+/datum/eldritch_transmutation/summon/fire_shark
+	name = "Summon Fire Shark"
+	required_atoms = list(/obj/item/organ/eyes,/obj/effect/decal/cleanable/ash,/obj/item/stack/sheet/mineral/plasma)
+	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/fire_shark
+	required_shit_list = "A pile of ash, a pair of eyes, and a stack of plasma."
 
 /datum/eldritch_transmutation/summon/rusty
 	name = "Summon Rustwalker"

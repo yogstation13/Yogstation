@@ -872,7 +872,7 @@
 	/// The time it takes for an arrow to return
 	var/return_time = 5 SECONDS
 	/// If the return is blocked by anti-magic
-	var/anti_magic_check = TRUE
+	var/check_for_antimagic = TRUE
 
 /obj/item/storage/belt/quiver/returning/Initialize(mapload)
 	. = ..()
@@ -888,7 +888,7 @@
 		return
 	if(ismob(arrow.loc))
 		var/mob/arrow_holder = arrow.loc
-		if(anti_magic_check && arrow_holder.anti_magic_check(TRUE, FALSE ,FALSE, 0))
+		if(check_for_antimagic && arrow_holder.can_block_magic(charge_cost = 0))
 			to_chat(arrow_holder, span_notice("You feel [arrow] tugging on you."))
 			return
 		var/mob/living/carbon/carbon = arrow.loc
@@ -935,7 +935,7 @@
 	icon_state = "quiver_holding"
 	item_state = "quiver_holding"
 	content_overlays = FALSE // The arrows are stored in the quiver, so none of it hangs out
-	anti_magic_check = FALSE
+	check_for_antimagic = FALSE
 
 /obj/item/storage/belt/quiver/returning/holding/Initialize(mapload)
 	. = ..()

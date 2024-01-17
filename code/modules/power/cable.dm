@@ -44,6 +44,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		pipe_group = "cable-[cable_color]"\
 	)
 
+	var/image/wire_vision_img //specifically for wirecrawling
+
 /obj/structure/cable/yellow
 	cable_color = "yellow"
 	color = "#ffff00"
@@ -96,6 +98,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(powernet)
 		cut_cable_from_powernet()				// update the powernets
 	GLOB.cable_list -= src							//remove it from global cable list
+	if(wire_vision_img)
+		qdel(wire_vision_img)
 	return ..()									// then go ahead and delete the cable
 
 /obj/structure/cable/deconstruct(disassembled = TRUE)
@@ -569,6 +573,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
 	item_state = "coil_[cable_color]"
+	color = null
+	add_atom_colour(cable_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/stack/cable_coil/update_name(updates=ALL)
 	. = ..()

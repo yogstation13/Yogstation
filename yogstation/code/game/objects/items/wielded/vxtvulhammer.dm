@@ -11,6 +11,7 @@
 	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 	force = 4 //It's heavy as hell
+	demolition_mod = 3 // it's a big hammer, what do you expect
 	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
 	throwforce = 18
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
@@ -42,7 +43,6 @@
 	spark_system.attach(src)
 	set_light_on(FALSE)
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
@@ -181,8 +181,13 @@
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			var/mob/living/victim = target
 			if(toy)
-				ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
-				victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
+				if(user == target)
+					victim.Paralyze(2 SECONDS)
+					victim.emote("scream")
+					to_chat(victim, span_userdanger("That was stupid."))
+				else
+					ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
+					victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
 			else
 				victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
 				victim.Paralyze(2 SECONDS)

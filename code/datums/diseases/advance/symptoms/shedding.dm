@@ -16,6 +16,7 @@ BONUS
 
 /datum/symptom/shedding
 	name = "Alopecia"
+	icon = "alopecia"
 	desc = "The virus causes rapid shedding of head and body hair."
 	stealth = 0
 	resistance = 1

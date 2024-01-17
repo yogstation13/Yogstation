@@ -59,7 +59,7 @@
 
 /mob/living/simple_animal/lesserdemon/UnarmedAttack(mob/living/L, proximity)//10 hp healed from landing a hit.
 	if(isliving(L))
-		if(L.stat != DEAD && !L.anti_magic_check(TRUE, TRUE)) //demons do not gain succor from the dead or holy 
+		if(L.stat != DEAD && !L.can_block_magic(MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND)) //demons do not gain succor from the dead or holy 
 			adjustHealth(-maxHealth * 0.05)
 	return ..()
 
@@ -102,7 +102,7 @@
 	item_state = "hivemind"
 
 /datum/action/cooldown/spell/touch/torment/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
-	if(victim.anti_magic_check())
+	if(victim.can_block_magic())
 		to_chat(caster, span_warning("[victim] resists your torment!"))
 		to_chat(victim, span_warning("A hideous feeling of agony dances around your mind before being suddenly dispelled."))
 		..()

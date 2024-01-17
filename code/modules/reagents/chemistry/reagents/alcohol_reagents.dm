@@ -751,6 +751,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Moonshine"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
+/datum/reagent/consumable/ethanol/moonshine/on_mob_life(mob/living/carbon/M)
+	M.adjust_blurriness(1.5)
+	return ..()
+
 /datum/reagent/consumable/ethanol/b52
 	name = "B-52"
 	description = "Coffee, Irish Cream, and cognac. You will get bombed."
@@ -1164,12 +1168,27 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Amasec"
 	description = "Official drink of the Nanotrasen Gun-Club!"
 	color = "#664300" // rgb: 102, 67, 0
-	boozepwr = 35
+	boozepwr = 55
 	quality = DRINK_GOOD
 	taste_description = "dark and metallic"
 	glass_icon_state = "amasecglass"
 	glass_name = "Amasec"
 	glass_desc = "Always handy before COMBAT!!!"
+
+/datum/reagent/consumable/ethanol/amasec/on_mob_metabolize(mob/living/carbon/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/guy = M
+		guy.physiology.punchdamagehigh_bonus += 2
+		guy.physiology.punchdamagelow_bonus += 2
+		guy.physiology.punchstunthreshold_bonus += 2
+
+/datum/reagent/consumable/ethanol/amasec/on_mob_end_metabolize(mob/living/carbon/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/guy = M
+		guy.physiology.punchdamagehigh_bonus -= 2
+		guy.physiology.punchdamagelow_bonus -= 2
+		guy.physiology.punchstunthreshold_bonus -= 2
+	return ..()
 
 /datum/reagent/consumable/ethanol/changelingsting
 	name = "Changeling Sting"
@@ -2674,11 +2693,21 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Moscow Mule"
 	glass_desc = "A chilly drink that reminds you of the Derelict."
 
+/datum/reagent/consumable/ethanol/gin_garden
+	name = "Gin Garden"
+	description = "Excellent cooling alcoholic drink with a not so ordinary taste."
+	boozepwr = 30
+	color = "#6cd87a"
+	quality = DRINK_GOOD
+	taste_description = "light gin with sweet ginger and cucumber"
+	glass_icon_state = "gin_garden"
+	glass_name = "Gin Garden"
+	glass_desc = "Hey, someone forgot the herb and... the cucumber in my cocktail!"
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver
 	var/alcoholicspeed = 0.75 //For determining the speed effect\\
 	name = "Syndicate Screwdriver"
-	description = "A drink that all greytiders and syndicate enjoy"
+	description = "A drink that all greytiders and syndicate enjoy."
 	boozepwr = 115
 	metabolization_rate = 1.5
 	color = "#2E6671"
@@ -2686,7 +2715,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "a tangy taste mixed with liquified Robustness"
 	glass_icon_state = "syndicate_screwdriver"
 	glass_name = "Syndicate Screwdriver"
-	glass_desc = "A glass full of spite, haste and the need to greytide"
+	glass_desc = "A glass full of spite, haste and the need to greytide."
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
@@ -2701,3 +2730,30 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.physiology.do_after_speed /= alcoholicspeed
 		M.next_move_modifier /= alcoholicspeed
 	return ..()
+
+/datum/reagent/consumable/ethanol/wine_voltaic
+	name = "Voltaic Yellow Wine"
+	description = "Electrically charged wine. Recharges ethereals, but also nontoxic."
+	boozepwr = 30
+	color = "#FFAA00"
+	quality = DRINK_GOOD
+	taste_description = "static with a hint of sweetness"
+	glass_icon_state = "wine_voltaic"
+	glass_name = "Voltaic Yellow Wine"
+	glass_desc = "Shocking, not stirred."
+
+/datum/reagent/consumable/ethanol/wine_voltaic/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
+		M.adjust_nutrition(nutriment_factor)
+	else if(prob(25))
+		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
+		playsound(M, "sparks", 50, 1)
+	return ..()
+
+/datum/reagent/consumable/korta_nectar
+	name = "Korta Nectar"
+	description = "A sweet, sugary syrup made from crushed sweet korta nuts."
+	color = "#d3a308"
+	nutriment_factor = 5
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	taste_description = "peppery sweetness"

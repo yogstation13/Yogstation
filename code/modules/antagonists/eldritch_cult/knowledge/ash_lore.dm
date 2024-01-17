@@ -2,23 +2,6 @@
 	name = "Nightwatcher's Secret"
 	desc = "Pledges yourself to the path of Ash. Allows you to transmute a pile of ash with a knife or its derivatives into an ashen blade. Additionally, empowers your Mansus grasp to throw enemies away from you. You will also become more resistant to fire."
 	gain_text = "Night on the Kilnplains reveals the Ashy Lantern in the sky. In your dreams, you reached out and touched it. Now, like it, you are a part of the dunes. Forever."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_mind,
-		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ash_knife)
 	cost = 1
 	route = PATH_ASH
@@ -28,19 +11,27 @@
 	. = ..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.physiology.heat_mod *= 0.6
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/ash
+		H.physiology.heat_mod *= 0.4
+		H.physiology.burn_mod *= 0.8
+	var/obj/realknife = new /obj/item/melee/sickly_blade/ash
 	user.put_in_hands(realknife)
+	///use is if you want to swap out a spell they get upon becoming their certain type of heretic
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/ash_jaunt = new(user)
+	ash_jaunt.Grant(user)
+
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
 /datum/eldritch_knowledge/base_ash/on_lose(mob/user)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_ash/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-//	SIGNAL_HANDLER
+	SIGNAL_HANDLER
 
 	if(!iscarbon(target))
-		return
+		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/C = target
 	var/atom/throw_target = get_edge_target_turf(C, source.dir)
 	if(!C.anchored)
@@ -51,7 +42,7 @@
 	if(!iscarbon(target))
 		return
 	var/mob/living/carbon/C = target
-	var/datum/status_effect/eldritch/E = C.has_status_effect(/datum/status_effect/eldritch/rust) || C.has_status_effect(/datum/status_effect/eldritch/ash) || C.has_status_effect(/datum/status_effect/eldritch/flesh) || C.has_status_effect(/datum/status_effect/eldritch/void)
+	var/datum/status_effect/eldritch/E = C.has_status_effect(/datum/status_effect/eldritch/rust) || C.has_status_effect(/datum/status_effect/eldritch/ash) || C.has_status_effect(/datum/status_effect/eldritch/flesh) || C.has_status_effect(/datum/status_effect/eldritch/void) || C.has_status_effect(/datum/status_effect/eldritch/cosmic)
 	if(E)
 		// Also refunds 75% of charge!
 		var/datum/action/cooldown/spell/touch/mansus_grasp/grasp = locate() in user.actions
@@ -59,16 +50,12 @@
 			grasp.next_use_time = min(round(grasp.next_use_time - grasp.cooldown_time * 0.75, 0), 0)
 			grasp.build_all_button_icons()
 
-/datum/eldritch_knowledge/spell/ashen_shift
-	name = "T1 - Ashen Shift"
-	gain_text = "Essence is versatile, flexible. It is so easy for grains to blow into all sorts of small crevices."
-	desc = "A very short range jaunt that can help you escape from bad situations or navigate past obstacles."
+/datum/eldritch_knowledge/madness_mask
+	name = "T1 - Mask of Madness"
+	gain_text = "Those cursed to walk this forsaken ash covered desert don this masks to protect them from the heat, and to scare away unwanted visitors"
+	desc = "Transmute a mask, and a raw liver to create a Mask of Madness. It causes passive stamina damage and hallucinations to everyone around the wearer."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/spell/mental_obfuscation,
-		/datum/eldritch_knowledge/spell/void_phase
-	)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/madness_mask)
 	route = PATH_ASH
 	tier = TIER_1
 
@@ -78,6 +65,7 @@
 	desc = "Allows you to craft an eldritch amulet by transmuting a pair of eyes with a glass shard. When worn, the amulet will give you thermal vision."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ashen_eyes)
 	cost = 1
+	route = PATH_ASH
 	tier = TIER_1
 
 /datum/eldritch_knowledge/ash_mark
@@ -85,7 +73,6 @@
 	gain_text = "All living things are linked through their sparks. This technique represents a fraction of the Shrouded One's communality."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your ashen blade to detonate the mark, which causes burning that can spread to nearby targets, decreasing in damage with each jump."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/void_mark)
 	route = PATH_ASH
 	tier = TIER_MARK
 
@@ -113,12 +100,12 @@
 	// unlocked_transmutations = list(/datum/eldritch_transmutation/curse/blindness)
 	// tier = TIER_1
 
-/datum/eldritch_knowledge/madness_mask
-	name = "T2 - Mask of Madness"
-	gain_text = "Those cursed to walk this forsaken ash covered desert don this masks to protect them from the heat, and to scare away unwanted visitors"
-	desc = "Transmute a mask, and a raw liver to create a Mask of Madness. It causes passive stamina damage and hallucinations to everyone around the wearer."
+/datum/eldritch_knowledge/spell/volcano_blast
+	name = "T2 - Volcano Blast"
+	gain_text = "The strongest fires come from within, expel a piece of your burning soul to show you enemies the truth of flame."
+	desc = "Shoot a strong blast of fire at an enemy."
 	cost = 1
-	unlocked_transmutations = list(/datum/eldritch_transmutation/madness_mask)
+	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/fireball/eldritch
 	route = PATH_ASH
 	tier = TIER_2
 
@@ -143,7 +130,6 @@
 	gain_text = "The stench of boiling blood was common in the wake of the City Guard. Though they are gone, the memory of their pikes and greatswords may yet benefit you."
 	desc = "Your ashen blade will now ignite targets."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade)
 	route = PATH_ASH
 	tier = TIER_BLADE
 
@@ -169,6 +155,7 @@
 	desc = "A powerful ranged spell that causes heavy bleeding and blood loss in an area around your target."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/cleave
+	route = PATH_ASH
 	tier = TIER_3
 
 /datum/eldritch_knowledge/ash_final

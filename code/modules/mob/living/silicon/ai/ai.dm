@@ -112,7 +112,6 @@
 	//Reduces/Increases download speed by this modifier
 	var/downloadSpeedModifier = 1
 
-
 	//Do we have access to camera tracking?
 	var/canCameraMemoryTrack = FALSE
 	//The person we are tracking

@@ -45,13 +45,13 @@
 	return ..()
 
 /obj/machinery/dominator/emp_act(severity)
-	gang.domination_time += 30
+	gang.domination_time += 3 * severity
 	..()
 
 /obj/machinery/dominator/hulk_damage()
 	return (max_integrity - integrity_failure) / DOM_HULK_HITS_REQUIRED
 
-/obj/machinery/dominator/tesla_act()
+/obj/machinery/dominator/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	qdel(src)
 
 /obj/machinery/dominator/update_overlays()

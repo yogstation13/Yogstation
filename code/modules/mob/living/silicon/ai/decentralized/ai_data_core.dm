@@ -65,9 +65,53 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	active_power_usage = AI_DATA_CORE_POWER_USAGE * power_modifier
 
 /obj/machinery/ai/data_core/process()
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
+	
+	if(valid_holder())
+		valid_ticks++
+		if(valid_ticks == 1)
+			update_appearance(UPDATE_ICON)
+		if(icon_state == "core-offline")
+			update_appearance(UPDATE_ICON)
+		if(smoke)
+			vis_contents -= smoke
+			QDEL_NULL(smoke)
+		use_power = ACTIVE_POWER_USE
+		if((stat & NOPOWER))
+			integrated_battery.use(active_power_usage * CELL_POWERUSE_MULTIPLIER)
+		warning_sent = FALSE
+	else
+		if(!smoke)
+			if(get_holder_status() == AI_MACHINE_TOO_HOT)
+				smoke = new()
+				vis_contents += smoke
+		if(valid_ticks <= 0)
+			use_power = IDLE_POWER_USE
+			update_appearance(UPDATE_ICON)
+			for(var/mob/living/silicon/ai/AI in contents)
+				if(!AI.is_dying)
+					AI.relocate()
+		if(network && network.resources)
+			if(!warning_sent && COOLDOWN_FINISHED(src, warning_cooldown))
+				warning_sent = TRUE
+				COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
+				var/list/send_to = network.resources.get_all_ais()
+				for(var/mob/living/silicon/ai/AI in send_to)
+					if(AI.is_dying)
+						continue
+					if(!AI.mind && !AI.deployed_shell.mind)
+						continue
+					if(!AI.mind && AI.deployed_shell.mind)
+						to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+					else
+						to_chat(AI, span_userdanger("<A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+					AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
 
-/obj/machinery/ai/data_core/process_atmos()
-	calculate_validity()
+	if(!(stat & (BROKEN|EMPED)) && has_power() && !disableheat)
+		var/temp_active_usage = stat & NOPOWER ? active_power_usage * CELL_POWERUSE_MULTIPLIER : active_power_usage
+		var/temperature_increase = (temp_active_usage / AI_HEATSINK_CAPACITY) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+		core_temp += temperature_increase * AI_TEMPERATURE_MULTIPLIER
+
 
 /obj/machinery/ai/data_core/Destroy()
 	GLOB.data_cores -= src
@@ -148,6 +192,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		. += span_warning("Machinery non-functional. Reason: [holder_status]")
 	if(!isobserver(user))
 		return
+	. += "Core temperature: <b>[core_temp] K</b>"
 	. += "<b>Networked AI Laws:</b>"
 	if(network && network.resources)
 		var/list/connected_ais = network.resources.get_all_ais()

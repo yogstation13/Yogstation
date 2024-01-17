@@ -43,6 +43,10 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	slot_flags = ITEM_SLOT_BELT
 	var/success_heal_chance = 60
 
+/obj/item/storage/book/bible/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/anti_magic, MAGIC_RESISTANCE_HOLY)
+
 /obj/item/storage/book/bible/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is offering [user.p_them()]self to [deity_name]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
@@ -82,7 +86,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			var/obj/item/clothing/gloves/color/fyellow/insuls = new
 			insuls.name = "insuls"
 			insuls.desc = "A mere copy of the true insuls."
-			insuls.siemens_coefficient = 0.99999
+			insuls.armor.setRating(electric=0.001)
 			H.equip_to_slot(insuls, ITEM_SLOT_GLOVES)
 		GLOB.bible_icon_state = icon_state
 		GLOB.bible_item_state = item_state

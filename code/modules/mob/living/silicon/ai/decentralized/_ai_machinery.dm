@@ -10,35 +10,42 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"
 	density = TRUE
+	///Temperature of the ai core itself, this will share with air in the enviroment
+	var/core_temp = 193.15
 
 	var/datum/ai_network/network
 
 /obj/machinery/ai/Initialize(mapload)
 	. = ..()
-	
-	SSair.atmos_machinery += src 
 	connect_to_network()
+	START_PROCESSING(SSmachines, src)
+	SSair_machinery.start_processing_machine(src)
+	
+
+//Cooling happens here
+/obj/machinery/ai/process_atmos()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+	if(isspaceturf(T))
+		return
+	var/datum/gas_mixture/env = T.return_air()
+	if(!env)
+		return
+	var/new_temp = env.temperature_share(AI_HEATSINK_COEFF, core_temp, AI_HEATSINK_CAPACITY)
+	core_temp = new_temp
 	
 /obj/machinery/ai/Destroy()
 	. = ..()
+	SSair_machinery.stop_processing_machine(src)
+	STOP_PROCESSING(SSmachines, src)
 	disconnect_from_network()
-	SSair.atmos_machinery -= src 
 
 /obj/machinery/ai/proc/valid_holder()
 	if(!network)
-		return FALSE
 	if(stat & (BROKEN|EMPED) || !has_power())
 		return FALSE
-	
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/env = T.return_air()
-	if(!env)
-		return FALSE
-	var/total_moles = env.total_moles()
-	if(istype(T, /turf/open/space) || total_moles < 10)
-		return FALSE
-	
-	if(env.return_temperature() > network.get_temp_limit() || !env.heat_capacity())
+	if(core_temp > network.get_temp_limit())
 		return FALSE
 	return TRUE
 
@@ -50,16 +57,8 @@
 		return AI_MACHINE_BROKEN_NOPOWER_EMPED
 	if(!network)
 		return AI_MACHINE_NO_NETWORK
-	
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/env = T.return_air()
-	if(!env)
-		return AI_MACHINE_NO_MOLES
-	var/total_moles = env.total_moles()
-	if(istype(T, /turf/open/space) || total_moles < 10)
-		return AI_MACHINE_NO_MOLES
-	
-	if(env.return_temperature() > network.get_temp_limit() || !env.heat_capacity())
+		return FALSE
+	if(core_temp > network.get_temp_limit())
 		return AI_MACHINE_TOO_HOT
 	
 

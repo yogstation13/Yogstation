@@ -221,6 +221,16 @@
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 
+/obj/item/reagent_containers/food/snacks/danish_hotdog
+	name = "danish hotdog"
+	desc = "Appetizing bun, with a sausage in the middle, covered with sauce, fried onion and pickle rings."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "danish_hotdog"
+	filling_color = "#F1F49A"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/ketchup = 3, /datum/reagent/consumable/nutriment/vitamin = 7)
+	tastes = list("bun" = 3, "meat" = 2, "fried onion" = 1, "pickles" = 1)
+	foodtype = GRAIN | MEAT | VEGETABLES
+
 /obj/item/reagent_containers/food/snacks/frenchtoast
 	name = "French toast"
 	desc = "A slice of bread soaked in an egg mixture and grilled until golden-brown. Drizzled with syrup!"

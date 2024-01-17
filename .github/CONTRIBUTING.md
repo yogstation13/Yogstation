@@ -104,6 +104,7 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 - [Embedding TGUI Components in Chat](../../tgui/docs/chat-embedded-components.md)
 - [Hard Deletes](./guides/HARDDELETES.md)
+- [Quickly setting up a development database with ezdb](./guides/EZDB.md)
 - [MC Tab Guide](./guides/MC_tab.md)
 - [Tick system](./guides/TICK_ORDER.md)
 - [UI Development](../tgui/README.md)
@@ -117,6 +118,8 @@ There is no strict process when it comes to merging pull requests. Pull requests
 * You are going to be expected to document all your changes in the pull request. Failing to do so will mean delaying it as we will have to question why you made the change. On the other hand, you can speed up the process by making the pull request readable and easy to understand, with diagrams or before/after data.
 
 * We ask that you use the changelog system to document your player facing changes, which prevents our players from being caught unaware by said changes - you can find more information about this [on this wiki page](http://tgstation13.org/wiki/Guide_to_Changelogs).
+
+* If you are fixing a game-breaking bug, it's advised to use the [s] tag to not bring unwanted attention to your pull request. Very rarely is it acceptable to use this label outside of these situations, due to it hiding information from many sources.
 
 * If you are proposing multiple changes, which change many different aspects of the code, you are expected to section them off into different pull requests in order to make it easier to review them and to deny/accept the changes that are deemed acceptable.
 

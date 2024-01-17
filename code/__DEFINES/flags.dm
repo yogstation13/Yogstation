@@ -4,6 +4,10 @@
 #define ALL (~0) //For convenience.
 #define NONE 0
 
+/* Directions */
+///All the cardinal direction bitflags.
+#define ALL_CARDINALS (NORTH|SOUTH|EAST|WEST)
+
 //for convenience
 #define ENABLE_BITFIELD(variable, flag) (variable |= (flag))
 #define DISABLE_BITFIELD(variable, flag) (variable &= ~(flag))
@@ -49,6 +53,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RAD_NO_CONTAMINATE_1 (1 << 16)
 /// Prevents most radiation on this turf from leaving it
 #define RAD_CONTAIN_CONTENTS (1<<17)
+/// Is the thing currently spinning?
+#define IS_SPINNING_1 (1<<18)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -59,6 +65,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
 #define NO_RUINS_1					(1<<18)
+/// Blocks this turf from being rusted
+#define NO_RUST 					(1<<19)
 
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.
@@ -95,16 +103,18 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 	the atom/checkpass() proc uses them (tables will call movable atom checkpass(PASSTABLE) for example)
 */
 //flags for pass_flags
-#define PASSTABLE		(1<<0)
-#define PASSGLASS		(1<<1)
-#define PASSGRILLE		(1<<2)
-#define PASSBLOB		(1<<3)
-#define PASSMOB			(1<<4)
-#define PASSCLOSEDTURF	(1<<5)
-#define LETPASSTHROW	(1<<6)
-#define PASSMACHINES	(1<<7)
-#define PASSCOMPUTER	(1<<8)
-#define PASSSTRUCTURE	(1<<9)
+#define PASSTABLE (1<<0)
+#define PASSGLASS (1<<1)
+#define PASSGRILLE (1<<2)
+#define PASSBLOB (1<<3)
+#define PASSMOB (1<<4)
+#define PASSCLOSEDTURF (1<<5)
+#define LETPASSTHROW (1<<6)
+#define PASSMACHINES (1<<7)
+#define PASSCOMPUTER (1<<8)
+#define PASSSTRUCTURE (1<<9)
+#define PASSDOOR (1<<10)
+#define PASSMECH (1<<11)
 
 //Movement Types
 #define GROUND			(1<<0)

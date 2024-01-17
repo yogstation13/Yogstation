@@ -16,7 +16,6 @@
 	var/datum/proximity_monitor/advanced/timestop/chronofield
 	alpha = 125
 	var/check_anti_magic = FALSE
-	var/check_holy = FALSE
 	var/start_sound = 'sound/magic/timeparadox2.ogg'
 	var/start_sound_len = 3.3 SECONDS
 
@@ -44,7 +43,7 @@
 /obj/effect/timestop/proc/timestop()
 	target = get_turf(src)
 	playsound(src, start_sound, 75, 1, -1)
-	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic, "check_holy" = check_holy))
+	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic))
 	if(duration - start_sound_len * 2 > 0) // Needs to have enough time for both sounds to play in full
 		addtimer(CALLBACK(src, PROC_REF(time_resumes)), duration - start_sound_len)
 	QDEL_IN(src, duration)
@@ -65,7 +64,6 @@
 	var/list/frozen_things = list()
 	var/list/frozen_mobs = list() //cached separately for processing
 	var/check_anti_magic = FALSE
-	var/check_holy = FALSE
 
 	var/static/list/global_frozen_atoms = list()
 
@@ -81,13 +79,13 @@
 		return FALSE
 	if(ismob(A))
 		var/mob/M = A
-		if(M.anti_magic_check(check_anti_magic, check_holy))
+		if(M.can_block_magic((check_anti_magic ? MAGIC_RESISTANCE : NONE)))
 			immune[A] = TRUE
 			return
 	var/frozen = TRUE
 	if(isliving(A))
 		freeze_mob(A)
-	else if(istype(A, /obj/item/projectile))
+	else if(istype(A, /obj/projectile))
 		freeze_projectile(A)
 	else if(istype(A, /obj/mecha))
 		freeze_mecha(A)
@@ -117,7 +115,7 @@
 		unfreeze_throwing(A)
 	if(isliving(A))
 		unfreeze_mob(A)
-	else if(istype(A, /obj/item/projectile))
+	else if(istype(A, /obj/projectile))
 		unfreeze_projectile(A)
 	else if(istype(A, /obj/mecha))
 		unfreeze_mecha(A)
@@ -157,10 +155,10 @@
 	return ..()
 
 
-/datum/proximity_monitor/advanced/timestop/proc/freeze_projectile(obj/item/projectile/P)
+/datum/proximity_monitor/advanced/timestop/proc/freeze_projectile(obj/projectile/P)
 	P.paused = TRUE
 
-/datum/proximity_monitor/advanced/timestop/proc/unfreeze_projectile(obj/item/projectile/P)
+/datum/proximity_monitor/advanced/timestop/proc/unfreeze_projectile(obj/projectile/P)
 	P.paused = FALSE
 
 /datum/proximity_monitor/advanced/timestop/proc/freeze_mob(mob/living/L)

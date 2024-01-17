@@ -9,6 +9,10 @@
 ///How much CPU we need to use to revive the AI
 #define AI_BLACKBOX_PROCESSING_REQUIREMENT 2500
 
+
+#define AI_HEATSINK_CAPACITY 5000
+#define AI_HEATSINK_COEFF 1
+
 ///How many ticks can an AI data core store? When this amount of ticks have passed while it's in an INVALID state it can no longer be used by an AI
 #define MAX_AI_DATA_CORE_TICKS (45 * (20 / SSair.wait))
 ///How much power does the AI date core use while being in a valid state. This is also the base heat output. (Divide by heat capacity to get actual temperature increase)

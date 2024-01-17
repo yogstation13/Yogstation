@@ -7,7 +7,7 @@
 	visual = TRUE
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
-	process_flags = ORGANIC | SYNTHETIC // pretty much entirely cosmetic, if someone wants to make crimes against nature then sure
+	compatible_biotypes = ALL_BIOTYPES // pretty much entirely cosmetic, if someone wants to make crimes against nature then sure
 	/// The sprite accessory this tail gives to the human it's attached to. If null, it will inherit its value from the human's DNA once attached.
 	var/tail_type = "None"
 
@@ -103,6 +103,7 @@
 			else
 				H.dna.species.mutant_bodyparts["tail_polysmorph"] = H.dna.features["tail_polysmorph"]
 		H.update_body()
+		H.physiology.crawl_speed += 0.5
 
 /obj/item/organ/tail/polysmorph/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
@@ -110,3 +111,4 @@
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		tail_type = H.dna.features["tail_polysmorph"]
 		H.update_body()
+		H.physiology.crawl_speed -= 0.5

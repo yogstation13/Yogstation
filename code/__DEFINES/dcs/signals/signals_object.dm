@@ -353,23 +353,23 @@
 ///called in /obj/item/gun/process_fire (user, target, params, zone_override)
 #define COMSIG_GRENADE_ARMED "grenade_armed"
 
-// /obj/item/projectile signals (sent to the firer)
+// /obj/projectile signals (sent to the firer)
 
-///from base of /obj/item/projectile/proc/on_hit(), like COMSIG_PROJECTILE_ON_HIT but on the projectile itself and with the hit limb (if any): (atom/movable/firer, atom/target, Angle, hit_limb)
+///from base of /obj/projectile/proc/on_hit(), like COMSIG_PROJECTILE_ON_HIT but on the projectile itself and with the hit limb (if any): (atom/movable/firer, atom/target, Angle, hit_limb)
 #define COMSIG_PROJECTILE_SELF_ON_HIT "projectile_self_on_hit"
-///from base of /obj/item/projectile/proc/on_hit(): (atom/movable/firer, atom/target, Angle)
+///from base of /obj/projectile/proc/on_hit(): (atom/movable/firer, atom/target, Angle)
 #define COMSIG_PROJECTILE_ON_HIT "projectile_on_hit"
-///from base of /obj/item/projectile/proc/fire(): (obj/item/projectile, atom/original_target)
+///from base of /obj/projectile/proc/fire(): (obj/projectile, atom/original_target)
 #define COMSIG_PROJECTILE_BEFORE_FIRE "projectile_before_fire"
-///from base of /obj/item/projectile/proc/fire(): (obj/item/projectile, atom/firer, atom/original_target)
+///from base of /obj/projectile/proc/fire(): (obj/projectile, atom/firer, atom/original_target)
 #define COMSIG_PROJECTILE_FIRER_BEFORE_FIRE "projectile_firer_before_fire"
-///from the base of /obj/item/projectile/proc/fire(): ()
+///from the base of /obj/projectile/proc/fire(): ()
 #define COMSIG_PROJECTILE_FIRE "projectile_fire"
 ///sent to targets during the process_hit proc of projectiles
 #define COMSIG_PROJECTILE_PREHIT "com_proj_prehit"
-///from the base of /obj/item/projectile/Range(): ()
+///from the base of /obj/projectile/Range(): ()
 #define COMSIG_PROJECTILE_RANGE "projectile_range"
-///from the base of /obj/item/projectile/on_range(): ()
+///from the base of /obj/projectile/on_range(): ()
 #define COMSIG_PROJECTILE_RANGE_OUT "projectile_range_out"
 ///from [/obj/item/proc/tryEmbed] sent when trying to force an embed (mainly for projectiles and eating glass)
 #define COMSIG_EMBED_TRY_FORCE "item_try_embed"

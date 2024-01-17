@@ -9,7 +9,7 @@ Mention if you have tested your changes. If you changed a map, make sure you use
 If this is an Issue Correction, you can type "Fixes Issue #169420" to link the PR to the corresponding Issue number #169420.
 
 Prefix the PR title with [admin] if it involves something admin related. 
-Prefix the PR title with [s] if you are fixing an exploit, so that it is not announced on the Yogstation Discord and the server.
+Prefix the PR title with [s] if you are fixing a game-breaking exploit, so that it is not announced on the Yogstation Discord and the server.
 
 Remember: something that is self-evident to you might not be to others. Explain your rationale fully, even if you feel it goes without saying.-->
 

@@ -1,6 +1,7 @@
 GLOBAL_VAR(thebattlebus)
 GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 GLOBAL_VAR(stormdamage)
+GLOBAL_VAR(final_zone)
 
 /datum/game_mode/fortnite
 	name = "battle royale"
@@ -17,14 +18,14 @@ GLOBAL_VAR(stormdamage)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale maint")
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale bridge")
 	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
-	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
 	var/can_end = FALSE //so it doesn't end during setup somehow
 	var/finished = FALSE
+	var/original_num = 0
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
 
@@ -41,7 +42,7 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/proc/spawn_bus()
 	var/obj/effect/landmark/observer_start/center = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list //observer start is usually in the middle
 	var/turf/turf = get_ranged_target_turf(get_turf(center), prob(50) ? NORTH : SOUTH, rand(0,30)) //get a random spot above or below the middle
-	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 20) //almost all the way at the edge of the map
+	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 15) //almost all the way at the edge of the map
 	if(target)
 		new /obj/structure/battle_bus(target)
 	else //please don't ever happen
@@ -62,11 +63,14 @@ GLOBAL_VAR(stormdamage)
 			log_game("There is no battle bus! Attempting to spawn players at random.")
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
-		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
+		original_num ++
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_GAMER) //to prevent space from hurting
+		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
 		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
-		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i get pacifists get to fight too
+		ADD_TRAIT(virgin.current, TRAIT_NOSOFTCRIT, "KEEP GOING, FIGHT MORE") //because no sleepy
+		ADD_TRAIT(virgin.current, TRAIT_NOHARDCRIT, "Son always remember, dying is gay. @margot") //fight fight fight
+		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i guess pacifists get to fight too
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
@@ -142,9 +146,9 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/set_round_result()
 	..()
 	if(winner)
-		SSticker.mode_result = "win - [winner] won the battle royale"
+		SSticker.mode_result = span_green(span_extremelybig("win - [winner] won the battle royale"))
 	else
-		SSticker.mode_result = "loss - nobody won the battle royale!"
+		SSticker.mode_result = span_narsiesmall("loss - nobody won the battle royale!")
 
 /datum/game_mode/fortnite/proc/shrinkborders()
 	switch(borderstage)//to keep it seperate and not fuck with weather selection
@@ -160,12 +164,19 @@ GLOBAL_VAR(stormdamage)
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
-		if(1 to 7)//close off the map
+		if(1)
+			SSweather.run_weather("royale maint",2)
+		if(2 to 7)//close off the map
 			var/weather = pick(randomweathers)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
 		if(8)
-			SSweather.run_weather("royale hallway", 2)//force them to bridge
+			var/weather = pick(randomweathers) //whichever one is left
+			weather = replacetext(weather, "royale ", "")
+			if(weather == "bridge")
+				weather = "the bridge"
+			GLOB.final_zone = weather
+			SSweather.run_weather("royale hallway", 2)//force them to the final department
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
 
@@ -176,8 +187,13 @@ GLOBAL_VAR(stormdamage)
 
 	if(borderstage % 2 == 0) //so it scales, but not too hard
 		GLOB.stormdamage *= 1.5
-
+	
 	if(borderstage <= 9)
+		var/remainingpercent = LAZYLEN(GLOB.battleroyale_players) / original_num
+		stage_interval = max(1 MINUTES, initial(stage_interval) * remainingpercent) //intervals get faster as people die
+		loot_interval = min(stage_interval / 2, initial(loot_interval)) //loot spawns faster as more die, but won't ever take longer than base
+		if(borderstage == 9)//final collapse takes the full time but still spawns loot faster
+			stage_interval = initial(stage_interval)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/delete_armoury()
@@ -192,12 +208,18 @@ GLOBAL_VAR(stormdamage)
 	to_clear |= typesof(/area/bridge) //fireaxe
 	to_clear |= typesof(/area/engine/atmos) //also fireaxe
 
+	var/list/removals = typecacheof(list( //remove non-standard things in this list
+		/obj/structure/fireaxecabinet, 
+		/obj/machinery/suit_storage_unit, 
+		/obj/machinery/atmospherics/miner/toxins, //no plasmaflood, sleepflood is fine because no one needs to breathe
+		))
+
 	for(var/place in to_clear)
 		var/area/actual = locate(place) in GLOB.areas
 		for(var/obj/thing in actual)
 			if(QDELETED(thing))
 				continue
-			if(!thing.anchored || istype(thing, /obj/structure/fireaxecabinet) || istype(thing, /obj/machinery/suit_storage_unit))//only target something that is possibly a weapon or gear
+			if(!thing.anchored || is_type_in_typecache(thing, removals))//only target something that is possibly a weapon or gear
 				QDEL_NULL(thing)
 	
 	for(var/target in GLOB.mob_living_list)
@@ -235,20 +257,32 @@ GLOBAL_VAR(stormdamage)
 		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
 
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(1)
-	var/nextdelay = loot_interval + (rand(1, loot_deviation * 2) - loot_deviation)
-	addtimer(CALLBACK(src, PROC_REF(loot_drop)), nextdelay)//literally just keep calling it
+	loot_spawn()
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 
-/datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
-	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
-		var/area/AR = get_area(es)
+/datum/game_mode/fortnite/proc/loot_spawn()
+	for(var/area/lootlake as anything in GLOB.areas)
+		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
+			continue
+		if(istype(lootlake, /area/space))//no nearspace
+			continue
+		if(istype(lootlake, /area/solar))//no solars
+			continue
+		if(istype(lootlake, /area/maintenance))//no maintenance, it's too large, it'd lag the hell out of the server and it's not as popular as main hallways
+			continue //also, ideally keeps people out of maints, and in larger open areas that are more interesting
+		var/amount = round(LAZYLEN(lootlake.get_contained_turfs()) / 40)//so bigger areas spawn more crates
 		for(var/I = 0, I < amount, I++)
-			var/turf/turfy = pick(get_area_turfs(AR))
-			while(turfy.density)//so it doesn't spawn inside walls
-				turfy = pick(get_area_turfs(AR))
-			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			new /obj/structure/closet/crate/battleroyale(pod)
-			new /obj/effect/DPtarget(turfy, pod)
+			var/turf/turfy = pick(get_area_turfs(lootlake))
+			for(var/L = 0, L < 15, L++)//cap so it doesn't somehow end in an infinite loop
+				if(!turfy.density)//so it doesn't spawn inside walls
+					break
+				turfy = pick(get_area_turfs(lootlake))
+			addtimer(CALLBACK(src, PROC_REF(drop_pod), turfy), rand(1,50))//to even out the lag that creating a drop pod causes
+
+/datum/game_mode/fortnite/proc/drop_pod(turf/turfy)
+	var/obj/structure/closet/supplypod/centcompod/pod = new()
+	new /obj/structure/closet/crate/battleroyale(pod)
+	new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items
 /datum/antagonist/battleroyale
@@ -257,6 +291,7 @@ GLOBAL_VAR(stormdamage)
 	job_rank = "Battle Royale Contestant"
 	show_name_in_check_antagonists = TRUE
 	antag_moodlet = /datum/mood_event/focused
+	var/killed = 0
 
 /datum/antagonist/battleroyale/on_gain()
 	. = ..()
@@ -299,14 +334,77 @@ GLOBAL_VAR(stormdamage)
 	to_chat(owner.current, "<span_class='danger'>You have been entered into Nanotrasen's up and coming TV show! : <b> LAST MAN STANDING </b>. \n\ KILL YOUR COWORKERS TO ACHIEVE THE VICTORY ROYALE! Attempting to leave the station will disqualify you from the round!</span>")
 	owner.announce_objectives()
 
+/datum/antagonist/battleroyale/roundend_report()
+	var/list/report = list()
+
+	if(!owner)
+		CRASH("antagonist datum without owner")
+
+	var/text = "<b>[owner.key]</b> was <b>[owner.name]</b> and"
+	if(owner.current)
+		var/datum/game_mode/fortnite/fortnut = SSticker.mode 
+		if(istype(fortnut))
+			if(owner?.current == fortnut.winner)
+				text += " [span_greentext("won")]"
+			else
+				text += " [span_redtext("lost")]"
+		if(owner.current.real_name != owner.name)
+			text += " as <b>[owner.current.real_name]</b>"
+	else
+		text += " [span_redtext("lost while having their body destroyed")]"
+
+	report += text
+	report += "They killed a total of [killed ? killed : "0" ] competitors"
+
+	return report.Join("<br>")
+
 /datum/outfit/battleroyale
 	name = "Default Skin"
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	neck = /obj/item/clothing/neck/tie/gamer //glorified kill tracker
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/crowbar
 	id = /obj/item/card/id/captains_spare
+
+/obj/item/clothing/neck/tie/gamer
+	name = "very cool tie (do not remove)"
+	desc = "Totally not just here for keeping track of kills."
+	var/datum/antagonist/battleroyale/last_hit
+	clothing_traits = (TRAIT_NODROP)
+	resistance_flags = INDESTRUCTIBLE //no escaping
+
+/obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
+	. = ..()
+	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(death))
+
+/obj/item/clothing/neck/tie/gamer/proc/death()
+	if(last_hit)
+		last_hit.killed++
+	qdel(src)//so reviving them doesn't give the necklace back
+
+/obj/item/clothing/neck/tie/gamer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
+	. = ..()
+	var/mob/living/culprit
+
+	if(isprojectile(hitby))//get the person that shot the projectile
+		var/obj/projectile/thing
+		if(thing?.firer && isliving(thing.firer))
+			culprit = thing.firer
+	else if(isitem(hitby))//get the person holding the item
+		var/obj/item/thing = hitby
+		if(isliving(thing.loc))
+			culprit = thing.loc
+	else if(isliving(hitby))//get the person
+		culprit = hitby
+
+	if(!culprit)
+		return
+	if(culprit.mind?.has_antag_datum(/datum/antagonist/battleroyale))
+		last_hit = culprit.mind.has_antag_datum(/datum/antagonist/battleroyale)
+
 
 /obj/structure/battle_bus
 	name = "The battle bus"
@@ -315,10 +413,11 @@ GLOBAL_VAR(stormdamage)
 	icon_state = "battlebus"
 	density = FALSE
 	opacity = FALSE
-	alpha = 185 //So you can see under it when it moves
+	alpha = 170 //So you can see under it when it moves
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	light_power = 1
-	light_range = 10 //light up the darkness, oh battle bus.
+	light_system = MOVABLE_LIGHT
+	light_range = 20 //light up the darkness, oh battle bus.
+	light_power = 2
 	layer = 4 //Above everything
 	var/starter_z = 0 //What Z level did we start on?
 	var/can_leave = FALSE //so people don't immediately walk out into space by accident

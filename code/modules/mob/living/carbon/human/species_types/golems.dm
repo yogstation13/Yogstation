@@ -402,7 +402,7 @@
 	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown) && user != H)
 		radiation_emission(H)
 
-/datum/species/golem/uranium/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/uranium/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown))
 		radiation_emission(H)
@@ -431,9 +431,9 @@
 		new /obj/item/stack/ore/glass(get_turf(H))
 	qdel(H)
 
-/datum/species/golem/sand/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/sand/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H))
-		if(P.flag == BULLET || P.flag == BOMB)
+		if(P.armor_flag == BULLET || P.armor_flag == BOMB)
 			playsound(H, 'sound/effects/shovel_dig.ogg', 70, 1)
 			H.visible_message(span_danger("The [P.name] sinks harmlessly in [H]'s sandy body!"), \
 			span_userdanger("The [P.name] sinks harmlessly in [H]'s sandy body!"))
@@ -466,9 +466,9 @@
 		new /obj/item/shard(get_turf(H))
 	qdel(H)
 
-/datum/species/golem/glass/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/glass/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H)) //self-shots don't reflect
-		if(P.flag == LASER || P.flag == ENERGY)
+		if(P.armor_flag == LASER || P.armor_flag == ENERGY)
 			H.visible_message(span_danger("The [P.name] gets reflected by [H]'s glass skin!"), \
 			span_userdanger("The [P.name] gets reflected by [H]'s glass skin!"))
 			if(P.starting)
@@ -525,7 +525,7 @@
 	if(world.time > last_teleport + teleport_cooldown && user != H)
 		reactive_teleport(H)
 
-/datum/species/golem/bluespace/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/bluespace/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_teleport + teleport_cooldown)
 		reactive_teleport(H)
@@ -624,7 +624,7 @@
 		new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
 		last_banana = world.time
 
-/datum/species/golem/bananium/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/bananium/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_banana + banana_cooldown)
 		new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
@@ -731,7 +731,6 @@
 	limbs_id = "clockgolem"
 	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem</span><span class='bold alloy'>, you are faster than other types of golems. On death, you will break down into scrap.</span>"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
-	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	armor = 20 //Reinforced, but much less so to allow for fast movement
 	attack_verb = "smash"
 	attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
@@ -927,10 +926,10 @@
 	var/last_gong_time = 0
 	var/gong_cooldown = 150
 
-/datum/species/golem/bronze/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/bronze/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(world.time > last_gong_time + gong_cooldown))
 		return BULLET_ACT_HIT
-	if(P.flag == BULLET || P.flag == BOMB)
+	if(P.armor_flag == BULLET || P.armor_flag == BOMB)
 		gong(H)
 		return BULLET_ACT_HIT
 
@@ -949,7 +948,7 @@
 	if(world.time > last_gong_time + gong_cooldown)
 		gong(H)
 
-/datum/species/golem/bronze/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/bronze/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_gong_time + gong_cooldown)
 		gong(H)
@@ -1570,9 +1569,9 @@
 	qdel(I)
 	
 
-/datum/species/golem/supermatter/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/supermatter/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	. = ..()
-	if(istype(P, /obj/item/projectile/magic) || P.flag == LASER || P.flag == ENERGY)
+	if(istype(P, /obj/projectile/magic) || P.armor_flag == LASER || P.armor_flag == ENERGY)
 		return .
 	H.visible_message(span_danger("[P] melts on collision with [H]!"))
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
@@ -1653,3 +1652,29 @@
 	))
 
 	return to_add
+
+/datum/species/golem/tar
+	name = "Tar Golem"
+	id = "tar golem"
+	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING)
+	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
+	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	speedmod = 1.5 // Slightly faster
+	armor = 25
+	punchstunthreshold = 13
+	fixed_mut_color = "48002b"
+	info_text = "As a <span class='danger'>Tar Golem</span>, you burn very very easily and can temporarily turn yourself into a pool of tar, in this form you are invulnerable to all attacks."
+	random_eligible = FALSE //If false, the golem subtype can't be made through golem mutation toxin
+	prefix = "Tar"
+	special_names = list("Tar'ath", "Tar'eth", "Tar'kian", "Eth'ar", "Rum'tir")
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/tar_pool/TP
+
+/datum/species/golem/tar/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
+	TP = new 
+	TP.Grant(C)
+
+
+/datum/species/golem/tar/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	TP?.Remove(C)

@@ -326,7 +326,7 @@
 			Y1+=s
 			while(Y1!=Y2)
 				T=locate(X1,Y1,Z)
-				if(T.opacity)
+				if(IS_OPAQUE_TURF(T))
 					return 0
 				Y1+=s
 	else
@@ -342,7 +342,7 @@
 			else
 				X1+=signX //Line exits tile horizontally
 			T=locate(X1,Y1,Z)
-			if(T.opacity)
+			if(IS_OPAQUE_TURF(T))
 				return 0
 	return 1
 #undef SIGNV
@@ -430,7 +430,7 @@
 /proc/flick_overlay(image/I, list/show_to, duration)
 	for(var/client/C in show_to)
 		C.images += I
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/remove_images_from_clients, I, show_to), duration, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_images_from_clients), I, show_to), duration, TIMER_CLIENT_TIME)
 
 /proc/flick_overlay_view(image/I, atom/target, duration) //wrapper for the above, flicks to everyone who can see the target atom
 	var/list/viewing = list()
@@ -711,11 +711,15 @@
 	if(!istype(T))
 		return
 	var/datum/gas_mixture/environment = T.return_air()
-	if(!istype(environment))
+	if(!environment)
 		return
 	var/pressure = environment.return_pressure()
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
+	//YOGS EDIT
+	if(pressure >= JUNGLELAND_EQUIPMENT_EFFECT_PRESSURE)
+		. = TRUE
+	//YOGS END
 
 /proc/ispipewire(item)
 	var/static/list/pire_wire = list(

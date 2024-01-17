@@ -330,6 +330,29 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
+	// Toggle lightswitches on in occupied departments
+	var/list/lightup_area_typecache = list()
+	var/minimal_access = CONFIG_GET(flag/jobs_have_minimal_access)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
+		var/role = player.mind?.assigned_role
+		if(!role)
+			continue
+		var/datum/job/job = SSjob.GetJob(role)
+		if(!job)
+			continue
+		lightup_area_typecache |= job.areas_to_light_up(minimal_access)
+	for(var/area in lightup_area_typecache)
+		var/area/place = locate(area) in GLOB.areas
+		if(!place || place.lights_always_start_on)
+			continue
+		place.lightswitch = TRUE
+		place.update_appearance()
+
+		for(var/obj/machinery/light_switch/lswitch in place)
+			lswitch.update_appearance()
+
+		place.power_change()
+
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
@@ -397,7 +420,8 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless = TRUE
 	var/no_cyborgs = TRUE
-	var/no_bartender = TRUE
+	var/no_clerk = TRUE
+	var/no_chaplain = TRUE
 
 	for(var/mob/dead/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
@@ -406,8 +430,10 @@ SUBSYSTEM_DEF(ticker)
 				captainless = FALSE
 			if(player.mind.assigned_role == "Cyborg")
 				no_cyborgs = FALSE
-			if(player.mind.assigned_role == "Bartender")
-				no_bartender = FALSE
+			if(player.mind.assigned_role == "Clerk")
+				no_clerk = FALSE
+			if(player.mind.assigned_role == "Chaplain")
+				no_chaplain = FALSE
 			if(player.mind.assigned_role != player.mind.special_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, FALSE)
 				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
@@ -433,8 +459,10 @@ SUBSYSTEM_DEF(ticker)
 				to_chat(N, "<FONT color='red'>No Captain is present at the start of shift. Please follow the SOP available <b><a href='https://wiki.yogstation.net/wiki/Official:Disk_Procedure'>here</a></b> to secure the disk and assign an Acting Captain.")
 			CHECK_TICK
 
-	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
-		SSjob.random_bar_init()
+	if(no_clerk)
+		SSjob.random_clerk_init()
+	if(no_chaplain)
+		SSjob.random_chapel_init()
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()

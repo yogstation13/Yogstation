@@ -189,7 +189,7 @@
 	name = "disabler system"
 	desc = "A weak disabler system for space pods, fires disabler beams."
 	icon_state = "weapon_taser"
-	projectile_type = /obj/item/projectile/beam/disabler
+	projectile_type = /obj/projectile/beam/disabler
 	shot_cost = 400
 	fire_sound = 'sound/weapons/taser2.ogg'
 	overlay_icon = 'yogstation/icons/obj/spacepods/2x2.dmi'
@@ -199,7 +199,7 @@
 	name = "burst disabler system"
 	desc = "A weak disabler system for space pods, this one fires 3 at a time."
 	icon_state = "weapon_burst_taser"
-	projectile_type = /obj/item/projectile/beam/disabler
+	projectile_type = /obj/projectile/beam/disabler
 	shot_cost = 1200
 	shots_per = 3
 	fire_sound = 'sound/weapons/taser2.ogg'
@@ -211,7 +211,7 @@
 	name = "laser system"
 	desc = "A weak laser system for space pods, fires concentrated bursts of energy."
 	icon_state = "weapon_laser"
-	projectile_type = /obj/item/projectile/beam/laser
+	projectile_type = /obj/projectile/beam/laser
 	shot_cost = 600
 	fire_sound = 'sound/weapons/Laser.ogg'
 	overlay_icon = 'yogstation/icons/obj/spacepods/2x2.dmi'
@@ -223,7 +223,7 @@
 	desc = "A weak kinetic accelerator for space pods, fires bursts of energy that cut through rock."
 	icon = 'goon/icons/obj/spacepods/parts.dmi'
 	icon_state = "pod_taser"
-	projectile_type = /obj/item/projectile/kinetic/pod
+	projectile_type = /obj/projectile/kinetic/pod
 	shot_cost = 300
 	fire_delay = 14
 	fire_sound = 'sound/weapons/Kenetic_accel.ogg'
@@ -233,15 +233,15 @@
 	desc = "A kinetic accelerator system for space pods, fires bursts of energy that cut through rock."
 	icon = 'goon/icons/obj/spacepods/parts.dmi'
 	icon_state = "pod_m_laser"
-	projectile_type = /obj/item/projectile/kinetic/pod/regular
+	projectile_type = /obj/projectile/kinetic/pod/regular
 	shot_cost = 250
 	fire_delay = 10
 	fire_sound = 'sound/weapons/Kenetic_accel.ogg'
 
-/obj/item/projectile/kinetic/pod
+/obj/projectile/kinetic/pod
 	range = 4
 
-/obj/item/projectile/kinetic/pod/regular
+/obj/projectile/kinetic/pod/regular
 	damage = 50
 	pressure_decrease = 0.5
 
@@ -250,7 +250,7 @@
 	desc = "A plasma cutter system for space pods. It is capable of expelling concentrated plasma bursts to mine or cut off xeno limbs!"
 	icon = 'goon/icons/obj/spacepods/parts.dmi'
 	icon_state = "pod_p_cutter"
-	projectile_type = /obj/item/projectile/plasma
+	projectile_type = /obj/projectile/plasma
 	shot_cost = 250
 	fire_delay = 10
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
@@ -261,7 +261,7 @@
 	name = "enhanced plasma cutter system"
 	desc = "An enhanced plasma cutter system for space pods. It is capable of expelling concentrated plasma bursts to mine or cut off xeno faces!"
 	icon_state = "pod_ap_cutter"
-	projectile_type = /obj/item/projectile/plasma/adv
+	projectile_type = /obj/projectile/plasma/adv
 	shot_cost = 200
 	fire_delay = 8
 

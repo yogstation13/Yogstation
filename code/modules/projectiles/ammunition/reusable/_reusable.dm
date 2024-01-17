@@ -1,6 +1,6 @@
 // For casing that are dropped when the projectile has hit, usually for casing that are the projectiles like foam darts or arrows.
 // They don't get deleted when fire and instead are moved to the projectile until it lands, where it is then dropped.
-// Intended to be used with '/obj/item/projectile/bullet/reusable'.
+// Intended to be used with '/obj/projectile/bullet/reusable'.
 /obj/item/ammo_casing/reusable
 	desc = "A reusable bullet casing."
 	firing_effect_type = null
@@ -15,13 +15,13 @@
 	..()
 	if(!BB)
 		newshot() // Just in case it wasn't replaced. Should be replaced when the projectile landed in case a subtype wants to change it, this is just a failsafe.
-	var/obj/item/projectile/bullet/reusable/reusable_projectile = BB
+	var/obj/projectile/bullet/reusable/reusable_projectile = BB
 	if(istype(reusable_projectile))
 		reusable_projectile.ammo_type = src
 	forceMove(BB)
 	in_air = TRUE
 
-/obj/item/ammo_casing/reusable/proc/on_land(obj/item/projectile/old_projectile)
+/obj/item/ammo_casing/reusable/proc/on_land(obj/projectile/old_projectile)
 	if(istype(old_projectile))
 		pixel_x = old_projectile.pixel_x
 		pixel_y = old_projectile.pixel_y

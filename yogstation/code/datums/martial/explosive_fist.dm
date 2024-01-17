@@ -243,7 +243,7 @@
 
 	if(!D.has_movespeed_modifier(MOVESPEED_ID_SHOVE)) /// We apply a more long shove slowdown if our target doesn't already have one
 		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
-		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), 4 SECONDS)
+		addtimer(CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, clear_shove_slowdown)), 4 SECONDS)
 
 	D.dna.species.aiminginaccuracy += 25
 	addtimer(CALLBACK(src, PROC_REF(remove_stagger), D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)

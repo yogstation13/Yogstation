@@ -45,7 +45,7 @@
 		if(prob(50))
 			to_chat(mover, span_danger("You get stuck in \the [src] for a moment."))
 			return FALSE
-	else if(istype(mover, /obj/item/projectile))
+	else if(istype(mover, /obj/projectile))
 		return prob(30)
 
 /obj/structure/spider/eggcluster
@@ -133,7 +133,7 @@
 		if(get_dist(src, entry_vent) <= 1)
 			var/list/vents = list()
 			var/datum/pipeline/entry_vent_parent = entry_vent.parents[1]
-			for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in entry_vent_parent.other_atmosmch)
+			for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in entry_vent_parent.other_atmos_machines)
 				vents.Add(temp_vent)
 			if(!vents.len)
 				entry_vent = null

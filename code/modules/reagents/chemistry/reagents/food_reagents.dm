@@ -146,7 +146,7 @@
 			M.emote("scream")
 		playsound(M, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
 		ADD_TRAIT(M, TRAIT_OIL_FRIED, "cooking_oil_react")
-		addtimer(CALLBACK(M, /mob/living/proc/unfry_mob), 3)
+		addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living, unfry_mob)), 3)
 	if(FryLoss)
 		M.adjustFireLoss(FryLoss)
 	return TRUE
@@ -475,10 +475,9 @@
 	T.MakeSlippery(TURF_WET_LUBE, min_wet_time = 10 SECONDS, wet_time_to_add = reac_volume*2 SECONDS)
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
 	if(hotspot)
-		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles())
-		lowertemp.set_temperature(max( min(lowertemp.return_temperature()-2000,lowertemp.return_temperature() / 2) ,0))
+		var/datum/gas_mixture/lowertemp = T.return_air()
+		lowertemp.set_temperature(max( min(lowertemp.return_temperature()-2000,lowertemp.return_temperature() / 2) ,TCMB))
 		lowertemp.react(src)
-		T.assume_air(lowertemp)
 		qdel(hotspot)
 
 /datum/reagent/consumable/enzyme
@@ -754,7 +753,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#97ee63"
 	taste_description = "pure electricity"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
 	if(!istype(T))
@@ -762,9 +761,10 @@
 	if(reac_volume < 3)
 		return
 
-	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
-		B = new(T)
+		B = new /obj/effect/decal/cleanable/blood/splatter(T)
+		B.Etherealify()
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))

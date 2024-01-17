@@ -12,7 +12,7 @@
 
 	outfit = /datum/outfit/job/paramedic
 
-	added_access = list(ACCESS_CLONING)
+	added_access = list(ACCESS_SURGERY, ACCESS_CLONING)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
@@ -29,6 +29,13 @@
 		/obj/item/reagent_containers/autoinjector/medipen/ekit = 15,
 		/obj/item/reagent_containers/autoinjector/medipen/blood_loss = 10,
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 5
+	)
+
+	lightup_areas = list(/area/medical/surgery)
+	minimal_lightup_areas = list(
+		/area/storage/eva,
+		/area/medical/morgue,
+		/area/medical/genetics/cloning
 	)
 
 	smells_like = "pre-packaged oxygen"

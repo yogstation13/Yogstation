@@ -223,11 +223,9 @@
 		else
 			L.Paralyze(stunforce)
 		L.adjust_jitter(20 SECONDS)
-		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
 		L.adjust_jitter(10 SECONDS)
-		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
 		L.adjust_jitter(5 SECONDS)
@@ -261,7 +259,7 @@
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
 	if (!(. & EMP_PROTECT_SELF))
-		deductcharge(1000 / severity)
+		deductcharge(100 * severity)
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod

@@ -77,7 +77,7 @@
 		visible_message(span_danger("\The [name] buries into the ground, vanishing from sight!"))
 		qdel(src)
 
-/mob/living/simple_animal/hostile/asteroid/goldgrub/bullet_act(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/bullet_act(obj/projectile/P)
 	visible_message(span_danger("\The [P.name] was repelled by [name]'s blubberous girth!"))
 	return BULLET_ACT_BLOCK
 

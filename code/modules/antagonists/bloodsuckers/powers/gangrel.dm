@@ -24,11 +24,9 @@
 /datum/action/cooldown/bloodsucker/gangrel/transform/ActivatePower()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
-	if(!do_after(user, 10 SECONDS))
-		return
 	var/list/radial_display = list()
 	//get our options, switches are kinda weird here cause wwe ant to stack them
-	if(bloodsuckerdatum.total_blood_drank) //makes the icons for the options
+	if(bloodsuckerdatum) //makes the icons for the options
 		var/datum/radial_menu_choice/option = new
 		user.setDir(SOUTH)
 		var/icon/icon_to_mix = getFlatIcon(user)
@@ -55,6 +53,8 @@
 		option.info = "Turn into a giant bat simple mob with unique abilities."
 		radial_display["Bat"] = option
 	var/chosen_transform = show_radial_menu(user, user, radial_display)
+	if(!chosen_transform || !do_after(user, 10 SECONDS))
+		return
 	transform(chosen_transform) //actually transform
 	return ..()
 
@@ -85,7 +85,7 @@
 			user.dna.species.punchdamagehigh += 10 //very stronk
 			user.dna.species.punchstunthreshold += 10
 			user.dna.species.action_speed_coefficient *= 1.3
-			user.dna.species.armor += 40
+			user.dna.species.armor += 15
 			bloodsuckerdatum.AddBloodVolume(50)
 		if("Bat")
 			var/mob/living/simple_animal/hostile/bloodsucker/giantbat/gb
@@ -188,23 +188,23 @@
 	to_chat(user, span_warning("You fire a blood bolt!"))
 	user.changeNext_move(CLICK_CD_RANGE)
 	user.newtonian_move(get_dir(target_atom, user))
-	var/obj/item/projectile/magic/arcane_barrage/bloodsucker/magic_9ball = new(user.loc)
+	var/obj/projectile/magic/arcane_barrage/bloodsucker/magic_9ball = new(user.loc)
 	magic_9ball.bloodsucker_power = src
 	magic_9ball.firer = user
 	magic_9ball.def_zone = ran_zone(user.zone_selected)
 	magic_9ball.preparePixelProjectile(target_atom, user)
-	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/item/projectile, fire))
+	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
 	power_activated_sucessfully()
 
-/obj/item/projectile/magic/arcane_barrage/bloodsucker
+/obj/projectile/magic/arcane_barrage/bloodsucker
 	name = "blood bolt"
 	icon_state = "bloodbolt"
 	damage_type = BURN
 	damage = 30
 	var/datum/action/cooldown/bloodsucker/targeted/bloodbolt/bloodsucker_power
 
-/obj/item/projectile/magic/arcane_barrage/bloodsucker/on_hit(target)
+/obj/projectile/magic/arcane_barrage/bloodsucker/on_hit(target)
 	if(ismob(target))
 		qdel(src)
 		if(iscarbon(target))

@@ -11,3 +11,5 @@
 #define STATUS_EFFECT_BLOOD_HUNTER /datum/status_effect/scent_hunter/blood
 
 #define STATUS_EFFECT_BLOODTHIRSTY /datum/status_effect/bloodthirsty
+
+#define STATUS_EFFECT_SOULSHIELD /datum/status_effect/soulshield //granted by using a blocking ability lasting 0.5 seconds, takes the damage sustained in that time and redirects it

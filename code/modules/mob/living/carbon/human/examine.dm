@@ -252,15 +252,10 @@
 				surgery_text += ", [S.operated_bodypart]"
 		msg += "[surgery_text].\n"
 
-	switch(fire_stacks)
-		if(1 to INFINITY)
-			msg += "[t_He] [t_is] covered in something flammable.\n"
-		if(-5 to -1)
-			msg += "[t_He] look[p_s()] a little damp.\n"
-		if(-10 to -5)
-			msg += "[t_He] look[p_s()] a little soaked.\n"
-		if(-INFINITY to -10)
-			msg += "[t_He] look[p_s()] drenched.\n"
+	if(has_status_effect(/datum/status_effect/fire_handler/fire_stacks))
+		msg += "[t_He] [t_is] covered in something flammable.\n"
+	if(has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
+		msg += "[t_He] look[p_s()] a little soaked.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
@@ -410,7 +405,7 @@
 					msg += "The unit is indicating that it is currently inactive. Place this unit inside a synthetic storage unit to allow the onboard synthetic intelligences to control it.\n"
 				else
 					msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
-			else if(!client)
+			else if(!client && !fake_client)
 				if(is_synth(src))
 					msg += "The unit is indicating that it is currently inactive. Place this unit inside a synthetic storage unit to allow the onboard synthetic intelligences to control it.\n"
 				else
@@ -418,6 +413,8 @@
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 	var/scar_severity = 0
 	for(var/i in all_scars)
@@ -488,7 +485,7 @@
 							"<a href='?src=[REF(src)];hud=s;view_comment=1'>\[View comment log\]</a>",
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
-		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
+		. += "<span class='info'><b>Quirks:</b> [traitstring]</span><br>"
 	. += "</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!

@@ -20,13 +20,15 @@
 	heatmod = 1.5 //Don't let the plasma actually heat up though
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
 	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
-	payday_modifier = 1 //Former humans, employment restrictions arise from psychological and practical concerns; they won't be able to be some head positions, but they get human pay and NT can't weasel out of it
+	species_gibs = "plasma"
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
 	disliked_food = NONE
 	liked_food = DAIRY
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	species_language_holder = /datum/language_holder/plasmaman
+	
+	screamsound = list('sound/voice/plasmaman/plasmeme_scream_1.ogg', 'sound/voice/plasmaman/plasmeme_scream_2.ogg', 'sound/voice/plasmaman/plasmeme_scream_3.ogg')
 
 	smells_like = "plasma-caked calcium"
 
@@ -47,7 +49,7 @@
 	if((!istype(H.w_uniform, /obj/item/clothing/under/plasmaman) || !istype(H.head, /obj/item/clothing/head/helmet/space/plasmaman)) && !atmos_sealed)
 		if(environment)
 			if(environment.total_moles())
-				if(environment.get_moles(/datum/gas/oxygen) >= 1) //Same threshhold that extinguishes fire
+				if(environment.get_moles(GAS_O2) >= 1) //Same threshhold that extinguishes fire
 					H.adjust_fire_stacks(0.5)
 					if(!H.on_fire && H.fire_stacks > 0)
 						H.visible_message(span_danger("[H]'s body reacts with the atmosphere and bursts into flames!"),span_userdanger("Your body reacts with the atmosphere and bursts into flame!"))

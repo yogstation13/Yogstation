@@ -153,6 +153,9 @@
 	if(plates <= 0)//no plate to lose
 		return
 
+	deltimer(plate_timer)//reset the plate timer
+	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), user), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)
+
 	if(damagetype != BRUTE && damagetype != BURN)
 		damage /= 4 //brute and burn are most effective
 
@@ -322,7 +325,7 @@
 /datum/martial_art/worldbreaker/proc/reset_pixel(mob/living/user)//in case something happens, we don't permanently float
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 
-/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)//never wallsplat ever
+/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A, datum/thrownthing/throwingdatum)//never wallsplat ever
 	return TRUE
 /*---------------------------------------------------------------
 	end of leap section
@@ -584,7 +587,9 @@
 			target.break_tile()
 
 	//flavour stuff
-	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
+	if(heavy)
+		flicker_all_lights()
+		playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS + (WARNING_RANGE * 2))
 	playsound(owner, 'sound/effects/explosion_distant.ogg', 200, FALSE, STOMP_RADIUS + WARNING_RANGE)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner))
 	shockwave.transform *= 0.1 //basically invisible

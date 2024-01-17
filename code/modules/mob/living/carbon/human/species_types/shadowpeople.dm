@@ -102,7 +102,7 @@
 
 	C.fully_replace_character_name("[C.real_name]","[pick(GLOB.nightmare_names)]") // Yogs -- fixes nightmares not having special spooky names. this proc takes the old name first, and *THEN* the new name!
 
-/datum/species/shadow/nightmare/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/shadow/nightmare/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()

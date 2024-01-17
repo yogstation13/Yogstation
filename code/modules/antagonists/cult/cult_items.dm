@@ -695,7 +695,6 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/cult_spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 12, \
 		force_wielded = 16, \
 		icon_wielded = "[base_icon_state]1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5), \
@@ -727,7 +726,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	. = ..()
 	if(.)
 		return
-	if(!L.anti_magic_check())
+	if(!L.can_block_magic())
 		if(is_servant_of_ratvar(L))
 			L.Paralyze(20)
 		else
@@ -789,10 +788,10 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	ammo_type = /obj/item/ammo_casing/magic/arcane_barrage/blood
 
 /obj/item/ammo_casing/magic/arcane_barrage/blood
-	projectile_type = /obj/item/projectile/magic/arcane_barrage/blood
+	projectile_type = /obj/projectile/magic/arcane_barrage/blood
 	firing_effect_type = /obj/effect/temp_visual/cult/sparks
 
-/obj/item/projectile/magic/arcane_barrage/blood
+/obj/projectile/magic/arcane_barrage/blood
 	name = "blood bolt"
 	icon_state = "mini_leaper"
 	nondirectional_sprite = TRUE
@@ -801,7 +800,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	damage = 20
 	armour_penetration = 0
 
-/obj/item/projectile/magic/arcane_barrage/blood/Bump(atom/target)
+/obj/projectile/magic/arcane_barrage/blood/Bump(atom/target)
 	var/turf/T = get_turf(target)
 	playsound(T, 'sound/effects/splat.ogg', 50, TRUE)
 	if(iscultist(target))
@@ -950,8 +949,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 /obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(iscultist(owner))
-		if(istype(hitby, /obj/item/projectile))
-			var/obj/item/projectile/P = hitby
+		if(istype(hitby, /obj/projectile))
+			var/obj/projectile/P = hitby
 			if(P.damage_type == BRUTE || P.damage_type == BURN)
 				if(P.damage >= 30)
 					var/turf/T = get_turf(owner)
@@ -1018,7 +1017,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			else
 				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
 		else if(!..())
-			if(!L.anti_magic_check())
+			if(!L.can_block_magic())
 				if(L.buckled)
 					L.buckled.unbuckle_mob(L)
 

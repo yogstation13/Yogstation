@@ -597,3 +597,12 @@
 	desc = "A can of peaches, perhaps stashed here long ago to hide them from the wizards."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
+
+/obj/item/reagent_containers/food/snacks/pickle
+	name = "pickle"
+	desc = "Slightly shriveled darkish cucumber. Smelling something sour, but incredibly inviting."
+	icon_state = "pickle"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	filling_color = "#ffdf26"
+	tastes = list("pickle" = 1, "spices" = 1, "salt water" = 2)
+	foodtype = VEGETABLES

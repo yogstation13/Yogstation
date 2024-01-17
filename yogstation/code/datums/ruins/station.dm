@@ -5,76 +5,6 @@
 /datum/map_template/ruin/station/box
 	prefix = "_maps/RandomRuins/StationRuins/BoxStation/"
 
-/datum/map_template/ruin/station/box/bar
-	id = "bar_box"
-	suffix = "bar_box.dmm"
-	name = "Bar Box"
-
-/datum/map_template/ruin/station/box/bar/trek
-	id = "bar_trek"
-	suffix = "bar_trek.dmm"
-	name = "Bar Trek"
-
-/datum/map_template/ruin/station/box/bar/spacious
-	id = "bar_spacious"
-	suffix = "bar_spacious.dmm"
-	name = "Bar Spacious"
-
-/datum/map_template/ruin/station/box/bar/casino
-	id = "bar_casino"
-	suffix = "bar_casino.dmm"
-	name = "Bar Casino"
-
-/datum/map_template/ruin/station/box/bar/citadel
-	id = "bar_citadel"
-	suffix = "bar_citadel.dmm"
-	name = "Bar Citadel"
-
-/datum/map_template/ruin/station/box/bar/conveyor
-	id = "bar_conveyor"
-	suffix = "bar_conveyor.dmm"
-	name = "Bar Conveyor"
-
-/datum/map_template/ruin/station/box/bar/diner
-	id = "bar_diner"
-	suffix = "bar_diner.dmm"
-	name = "Bar Diner"
-
-/datum/map_template/ruin/station/box/bar/disco
-	id = "bar_disco"
-	suffix = "bar_disco.dmm"
-	name = "Bar Disco"
-
-/datum/map_template/ruin/station/box/bar/purple
-	id = "bar_purple"
-	suffix = "bar_purple.dmm"
-	name = "Bar Purple"
-
-/datum/map_template/ruin/station/box/bar/irishman
-	id = "bar_irish"
-	suffix = "bar_irish.dmm"
-	name = "Bar Irish"
-
-/datum/map_template/ruin/station/box/bar/cheese
-	id = "bar_cheese"
-	suffix = "bar_cheese.dmm"
-	name = "Bar Cheese"
-
-/datum/map_template/ruin/station/box/bar/grassy
-	id = "bar_grassy"
-	suffix = "bar_grassy.dmm"
-	name = "Bar Grassy"
-
-/datum/map_template/ruin/station/box/bar/clock
-	id = "bar_clock"
-	suffix = "bar_clock.dmm"
-	name = "Bar Clock"
-
-/datum/map_template/ruin/station/box/bar/arcade
-	id = "bar_arcade"
-	suffix = "bar_arcade.dmm"
-	name = "Bar Arcade"
-
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
 	suffix = "engine_sm.dmm"
@@ -274,6 +204,26 @@
 	id = "chapel2"
 	suffix = "chapel2.dmm"
 	name = "Chapel 2"
+
+/datum/map_template/ruin/station/box/clerk/box
+	id = "clerk_box"
+	suffix = "clerk_box.dmm"
+	name = "Clerk Box"
+
+/datum/map_template/ruin/station/box/clerk/pod
+	id = "clerk_pod"
+	suffix = "clerk_pod.dmm"
+	name = "Clerk Pod"
+
+/datum/map_template/ruin/station/box/clerk/meta
+	id = "clerk_meta"
+	suffix = "clerk_meta.dmm"
+	name = "Clerk Meta"
+
+/datum/map_template/ruin/station/box/clerk/gamble
+	id = "clerk_gamble"
+	suffix = "clerk_gamble.dmm"
+	name = "Clerk Gambling Hall"
 
 /datum/map_template/ruin/station/meta
 	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
@@ -622,6 +572,11 @@
 	id = "checkpoint"
 	suffix = "3x5_checkpoint.dmm"
 	name = "Maint checkpoint"
+
+/datum/map_template/ruin/station/maint/threexfive/experimental
+	id = "experimental"
+	suffix = "3x5_experimental.dmm"
+	name = "Secure Loot"
 
 /datum/map_template/ruin/station/maint/threexfive/hank
 	id = "hank"

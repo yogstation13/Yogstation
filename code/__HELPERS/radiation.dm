@@ -8,7 +8,7 @@
 		/mob/living/silicon/ai,
 		/obj/effect,
 		/obj/docking_port,
-		/obj/item/projectile,
+		/obj/projectile,
 		/atom/movable/gravity_lens
 		))
 	var/list/processing_list = list(location)

@@ -8,7 +8,7 @@
 	var/aiming_time_left = 12
 	var/laser_color = rgb(255,0,0)
 	var/listeningTo = null
-	var/obj/item/projectile/beam/beam_rifle/hitscan/aiming_beam/last_beam
+	var/obj/projectile/beam/beam_rifle/hitscan/aiming_beam/last_beam
 	actions_list = list(/datum/action/item_action/toggle_laser_sight, /datum/action/item_action/change_laser_sight_color)
 
 /obj/item/attachment/laser_sight/examine(mob/user)
@@ -67,7 +67,7 @@
 	if(diff < 0.1 && !force_update)
 		return
 	aiming_lastangle = lastangle
-	var/obj/item/projectile/beam/beam_rifle/hitscan/aiming_beam/P = new
+	var/obj/projectile/beam/beam_rifle/hitscan/aiming_beam/P = new
 	P.gun = attached_gun
 	P.color = laser_color
 	var/turf/curloc = get_turf(src)

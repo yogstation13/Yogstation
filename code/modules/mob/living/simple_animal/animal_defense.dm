@@ -124,7 +124,7 @@
 		apply_damage(damage, damagetype, null, getarmor(null, armorcheck))
 		return TRUE
 
-/mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/bullet_act(obj/projectile/Proj)
 	apply_damage(Proj.damage, Proj.damage_type)
 	last_damage = Proj.name
 	Proj.on_hit(src)
@@ -182,3 +182,8 @@
 		else
 			visual_effect_icon = ATTACK_EFFECT_SMASH
 	..()
+
+/mob/living/simple_animal/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+	if(gib)
+		gib()
+	return ..()

@@ -19,7 +19,7 @@
 		to_chat(owner, span_notice("You are unable to curse [cast_on]!"))
 		return FALSE
 	var/mob/living/target = cast_on
-	if(target.anti_magic_check())
+	if(target.can_block_magic())
 		to_chat(owner, span_notice("They didn't laugh!"))
 		return FALSE
 	return TRUE

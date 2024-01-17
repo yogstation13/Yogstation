@@ -11,11 +11,9 @@
 AshCorr	=	Host
 Xantam	=	Host
  
-adamsogm = Council Member
-britishgrace = Council Member
-margot = Council Member
+aquizit = Council Member
 mordrehel = Council Member
-ynot01 = Council Member
+cowbot93 = Council Member
 
 jamied12	=	Head Developer
 baiomu = Head Developer

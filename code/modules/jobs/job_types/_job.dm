@@ -95,6 +95,17 @@
 	var/orbit_icon
 
 	var/datum/species/forced_species
+		/**
+	 * A list of job-specific areas to enable lights for if this job is present at roundstart, whenever minimal access is not in effect.
+	 * This will be combined with minimal_lightup_areas, so no need to duplicate entries.
+	 * Areas within their department will have their lights turned on automatically, so you should really only use this for areas outside of their department.
+	 */
+	var/list/lightup_areas = list()
+	/**
+	 * A list of job-specific areas to enable lights for if this job is present at roundstart.
+	 * Areas within their department will have their lights turned on automatically, so you should really only use this for areas outside of their department.
+	 */
+	var/list/minimal_lightup_areas = list()
 
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
@@ -130,6 +141,9 @@
 
 /datum/job/New()
 	.=..()
+	lightup_areas = typecacheof(lightup_areas)
+	minimal_lightup_areas = typecacheof(minimal_lightup_areas)
+
 	if(changed_maps.len)
 		for(var/map in changed_maps)
 			RegisterSignal(src, map, text2path("[type]/proc/[map]Changes"))
@@ -181,7 +195,7 @@
 		H.set_species(forced_species)
 
 	if(!visualsOnly)
-		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
+		var/datum/bank_account/bank_account = new(H.real_name, src)
 		bank_account.adjust_money(rand(STARTING_PAYCHECKS_MIN, STARTING_PAYCHECKS_MAX), TRUE)
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
@@ -219,7 +233,7 @@
 /datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
@@ -227,6 +241,26 @@
 		return TRUE	//Available in 0 days = available right now = player is old enough to play.
 	return FALSE
 
+/datum/job/proc/areas_to_light_up(minimal_access = TRUE)
+	. = minimal_lightup_areas.Copy()
+	if(!minimal_access)
+		. |= lightup_areas
+	for(var/department in departments_list)
+		var/datum/job_department/place = new department()
+		if(istype(place))
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_COMMAND)
+				. |= GLOB.command_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
+				. |= GLOB.engineering_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
+				. |= GLOB.medical_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_SCIENCE)
+				. |= GLOB.science_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_CARGO)
+				. |= GLOB.supply_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_SECURITY)
+				. |= GLOB.security_lightup_areas
+		qdel(place)
 
 /datum/job/proc/available_in_days(client/C)
 	if(!C)

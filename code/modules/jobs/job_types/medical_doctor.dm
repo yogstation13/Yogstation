@@ -35,6 +35,17 @@
 		/obj/effect/spawner/lootdrop/memeorgans = 1
 	)
 
+	lightup_areas = list(
+		/area/medical/genetics,
+		/area/medical/virology,
+		/area/medical/chemistry
+	)
+	minimal_lightup_areas = list(
+		/area/medical/morgue,
+		/area/medical/surgery,
+		/area/medical/genetics/cloning
+	)
+
 	smells_like = "a hospital"
 
 /datum/outfit/job/doctor

@@ -51,6 +51,10 @@
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
 	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 
+	//YOGS EDIT
+	var/inverse_faction_check = FALSE
+	//YOGS END
+
 /mob/living/simple_animal/hostile/Initialize(mapload)
 	. = ..()
 
@@ -117,7 +121,7 @@
 		FindTarget(list(user), 1)
 	return ..()
 
-/mob/living/simple_animal/hostile/bullet_act(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
 	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client)
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 			FindTarget(list(P.firer), 1)
@@ -202,7 +206,10 @@
 	if(search_objects < 2)
 		if(isliving(the_target))
 			var/mob/living/L = the_target
-			var/faction_check = faction_check_mob(L)
+			//YOGS EDIT
+			//factions check returns a number so we have to coerce it into a range of 0-1 before xoring it with inverse_faction_check
+			var/faction_check = (faction_check_mob(L) > 0 ) ^ inverse_faction_check
+			//YOGS END
 			if(robust_searching)
 				if(faction_check && !attack_same)
 					return FALSE
@@ -385,7 +392,7 @@
 /mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
 	if(CheckFriendlyFire(A))
 		return
-	visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
+
 
 
 	if(rapid > 1)
@@ -406,7 +413,7 @@
 		playsound(src, projectilesound, 100, 1)
 		casing.fire_casing(targeted_atom, src, null, null, null, ran_zone(), 0,  src)
 	else if(projectiletype)
-		var/obj/item/projectile/P = new projectiletype(startloc)
+		var/obj/projectile/P = new projectiletype(startloc)
 		playsound(src, projectilesound, 100, 1)
 		P.starting = startloc
 		P.firer = src
