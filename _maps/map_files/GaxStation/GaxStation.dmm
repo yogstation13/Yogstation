@@ -1472,6 +1472,9 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"aLJ" = (
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/secondarydatacore)
 "aMq" = (
 /obj/effect/turf_decal/siding/wideplating/corner{
 	dir = 4
@@ -8020,12 +8023,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
-"dVD" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "dVK" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -10402,11 +10399,6 @@
 /obj/machinery/computer/rdservercontrol,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
-"eWK" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "eWQ" = (
 /obj/structure/spacepoddoor,
 /turf/open/floor/engine/airless,
@@ -11504,6 +11496,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"fyT" = (
+/obj/machinery/ai/networking{
+	label = "Subcontroller";
+	roundstart_connection = "Computer Science - 2"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "fyU" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 1
@@ -12870,10 +12872,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"gdU" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/plating,
-/area/maintenance/department/eva)
 "geh" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 1
@@ -15252,6 +15250,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos/distro)
+"hph" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/landmark/start/synthetic,
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "hpl" = (
 /obj/machinery/door/airlock/external{
 	name = "Mining Dock Airlock";
@@ -24706,6 +24711,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"mbJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "mbK" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -25370,13 +25384,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"mqM" = (
-/obj/machinery/ai/data_core,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/secondarydatacore)
 "mrk" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line/lower{
 	dir = 4
@@ -27186,6 +27193,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"nnr" = (
+/obj/machinery/ai/master_subcontroller,
+/obj/structure/ethernet_cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "noh" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
@@ -28261,6 +28275,12 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/fore)
+"nKK" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/light/small,
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "nKN" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -33791,6 +33811,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"qGl" = (
+/obj/machinery/vr_sleeper/netmin/synth_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/eva)
 "qGr" = (
 /obj/structure/closet/secure_closet/atmospherics,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -81504,7 +81530,7 @@ wTB
 hBZ
 kSo
 dpf
-dpf
+fyT
 juY
 gYo
 wQM
@@ -81761,8 +81787,8 @@ wTB
 hBZ
 nJe
 dpf
-dpf
-mqM
+mbJ
+aLJ
 ios
 mZK
 iGe
@@ -82018,7 +82044,7 @@ aOB
 wOb
 nJe
 dpf
-dpf
+nnr
 vFH
 ydu
 dpf
@@ -96110,7 +96136,7 @@ dYL
 dYL
 xgP
 ihC
-eWK
+nKK
 fnc
 fzn
 ghk
@@ -96624,7 +96650,7 @@ vRP
 vRP
 xgP
 kIf
-dVD
+hph
 fnc
 pRp
 eTE
@@ -96881,7 +96907,7 @@ vRP
 vRP
 xgP
 xgP
-gdU
+qGl
 fnc
 fqe
 eTE
