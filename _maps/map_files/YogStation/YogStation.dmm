@@ -37240,21 +37240,6 @@
 	},
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"kCN" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/department/tcoms";
-	dir = 1;
-	name = "Telecommunications Maintenance APC";
-	pixel_y = 23
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/storage)
 "kDr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -44868,6 +44853,21 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos/mix)
+"nsd" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/tcommsat/storage";
+	dir = 1;
+	name = "Telecommunications Maintenance APC";
+	pixel_y = 23
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/storage)
 "nsj" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -103745,7 +103745,7 @@ qjk
 fmC
 fmC
 lMT
-kCN
+nsd
 suV
 tto
 jqy
