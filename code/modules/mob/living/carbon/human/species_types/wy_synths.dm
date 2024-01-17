@@ -66,6 +66,8 @@
 
 	var/datum/ai_laws/laws = null
 
+	species_language_holder = /datum/language_holder/machine
+
 
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
 	. = ..()
@@ -77,7 +79,6 @@
 	if(A)
 		A.Remove(C)
 		QDEL_NULL(A)
-	C.grant_language(/datum/language/machine, source = LANGUAGE_SYNTH)
 	original_numbers = rand(1, 999)
 	C.real_name = "Synthetic Unit #[original_numbers]"
 	C.name = C.real_name
