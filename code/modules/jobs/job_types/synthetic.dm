@@ -7,8 +7,8 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL
 	department_head = list("AI")
 	faction = "Station"
-	total_positions = 0
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the AI"
 	selection_color = "#ddffdd"
 	minimal_player_age = 30
