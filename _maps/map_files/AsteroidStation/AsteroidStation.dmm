@@ -29527,9 +29527,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"iCL" = (
-/turf/open/floor/plasteel/grimy,
-/area/ai_monitored/turret_protected/aisat_interior)
 "iDf" = (
 /obj/effect/turf_decal/trimline/atmos/warning/lower{
 	dir = 4
@@ -39541,9 +39538,6 @@
 /obj/structure/closet/wardrobe/robotics_black,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
-"lPZ" = (
-/turf/open/floor/plasteel/grimy,
-/area/ai_monitored/turret_protected/aisat_interior)
 "lQe" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -135768,7 +135762,7 @@ qEP
 ndM
 aSh
 feE
-lPZ
+aoX
 fDR
 aLi
 sjG
@@ -136281,8 +136275,8 @@ rwD
 aYj
 aYj
 aYj
-iCL
-lPZ
+aoX
+aoX
 aoX
 aLi
 sjG
