@@ -270,6 +270,10 @@
 /obj/item/clothing/suit/hooded/flagelantes_chains/dropped(mob/M)
 	. = ..()
 	UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_MOVABLE_MOVED))
+	total_wounds = 0
+	slowdown = 0
+	if(flagelantes_effect)
+		QDEL_NULL(flagelantes_effect)
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/ToggleHood() //So people can't just quickly wear it whenever they want to
 	var/mob/living/carbon/human/H = src.loc
@@ -305,7 +309,9 @@
 	else
 		RemoveHood()
 		REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+		total_wounds = 0
 		slowdown = 0
+		appearance_change(H, slowdown)
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
 
@@ -340,6 +346,11 @@
 	var/health_percent = H.health / H.maxHealth
 	var/final_slowdown = 0
 
+	total_wounds += wound
+
+	if(total_wounds < 0)
+		total_wounds = 0
+
 	switch(total_wounds) //Change slowdown based on wounds
 		if(1)
 			final_slowdown += -0.2
@@ -364,7 +375,7 @@
 		if(-INFINITY to -0.1) //So crit people are not rolling around at the speed of sound
 			final_slowdown = 1
 
-	total_wounds += wound
+	
 	
 	slowdown = final_slowdown //set slowdown
 
