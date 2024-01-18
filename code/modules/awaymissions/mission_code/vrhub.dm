@@ -5,7 +5,8 @@
 /area/awaymission/vr/hub
 	name = "Virtual Reality Hub Area"
 	icon_state = "awaycontent2"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 /area/awaymission/vr/hub/boxing
 	name = "Virtual Reality Boxing Ring"

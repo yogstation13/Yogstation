@@ -153,8 +153,8 @@
 	if(!shadowling_check(owner) && !admin_override)
 		return
 	to_chat(owner, span_shadowling("You silently disable all nearby lights."))
-	var/turf/T = get_turf(owner)
-	for(var/datum/light_source/LS in T.get_affecting_lights())
+	//var/turf/T = get_turf(owner)
+	for(var/datum/light_source/LS in target.light_sources)
 		var/atom/LO = LS.source_atom
 		if(isitem(LO))
 			extinguishItem(LO)

@@ -322,7 +322,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	noteleport = TRUE
 	hidden = TRUE
 	unique = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = TRUE
 	ambientsounds = list('sound/ambience/servicebell.ogg')
 	var/roomnumber = 0
 	var/obj/item/hilbertshotel/parentSphere

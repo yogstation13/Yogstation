@@ -107,7 +107,7 @@
 
 /obj/item/storage/backpack/holding/proc/fuck_up(mob/living/user)
 	var/turf/loccheck = get_turf(src)
-	if(is_reebe(loccheck.z) || istype(loccheck.loc, /area/fabric_of_reality))
+	if(is_reebe(loccheck.z) || istype(loccheck.loc, /area/centcom/fabric_of_reality))
 		qdel(src)
 		return
 	playsound(loccheck,'sound/effects/supermatter.ogg', 200, 1)
@@ -124,8 +124,8 @@
 				M.visible_message(span_danger("The bluespace collapse crushes the air towards it, pulling [M] towards the ground..."))
 				M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
 		T.TerraformTurf(/turf/open/chasm/magic, /turf/open/chasm/magic)
-	for(var/fabricarea in get_areas(/area/fabric_of_reality))
-		var/area/fabric_of_reality/R = fabricarea
+	for(var/fabricarea in get_areas(/area/centcom/fabric_of_reality))
+		var/area/centcom/fabric_of_reality/R = fabricarea
 		R.origin = loccheck
 	for (var/obj/structure/ladder/unbreakable/binary/ladder in GLOB.ladders)
 		ladder.ActivateAlmonds()

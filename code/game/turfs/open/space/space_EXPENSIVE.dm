@@ -17,23 +17,22 @@
 		space_gas = new
 	air = space_gas
 	update_air_ref(0)
-	vis_contents.Cut() //removes inherited overlays
-	visibilityChanged()
 
 	if (PERFORM_ALL_TESTS(focus_only/multiple_space_initialization))
 		if(flags_1 & INITIALIZED_1)
 			stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 
+	// We make the assumption that the space plane will never be blacklisted, as an optimization
+	if(SSmapping.max_plane_offset)
+		plane = PLANE_SPACE - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+
 	var/area/our_area = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(our_area))
-		add_overlay(/obj/effect/fullbright)
-
-	if (light_system == STATIC_LIGHT && light_power && light_range)
-		update_light()
-
-	if (opacity)
-		directional_opacity = ALL_CARDINALS
+	if(!our_area.area_has_base_lighting && space_lit) //Only provide your own lighting if the area doesn't for you
+		// Intentionally not add_overlay for performance reasons.
+		// add_overlay does a bunch of generic stuff, like creating a new list for overlays,
+		// queueing compile, cloning appearance, etc etc etc that is not necessary here.
+		overlays += GLOB.starlight_overlays[GET_TURF_PLANE_OFFSET(src) + 1]
 	
 	if (!mapload)
 		// if(requires_activation)

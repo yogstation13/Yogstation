@@ -13,12 +13,16 @@ Temperature: 126.85 °C (400 K)
 	icon = 'yogstation/icons/turf/floors/jungle.dmi'
 	icon_state = "pregen"
 	map_generator = /datum/map_generator/jungleland
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	has_gravity = TRUE
 
 /area/jungleland
 	name = "Jungleland"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	outdoors = TRUE
 	has_gravity = TRUE
 	always_unpowered = TRUE

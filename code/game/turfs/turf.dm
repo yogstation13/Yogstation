@@ -6,8 +6,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	vis_flags = VIS_INHERIT_ID // Important for interaction with and visualization of openspace.
 	luminosity = 1
 	light_height = LIGHTING_HEIGHT_FLOOR
-
-	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	
 	/// Turf bitflags, see code/__DEFINES/flags.dm
 	var/turf_flags = NONE
@@ -168,8 +166,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		update_air_ref(-1)
 		__auxtools_update_turf_temp_info(isspaceturf(get_z_base_turf()))
 
-	if(color)
-		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/__auxtools_update_turf_temp_info()

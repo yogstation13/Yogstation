@@ -78,7 +78,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(flags & CHANGETURF_SKIP)
 		return new path(src)
 
-	var/old_dynamic_lighting = dynamic_lighting
 	var/old_lighting_object = lighting_object
 	var/old_lighting_corner_NE = lighting_corner_NE
 	var/old_lighting_corner_SE = lighting_corner_SE
@@ -152,20 +151,18 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	new_turf.explosion_level = old_exl
 
 	if(SSlighting.initialized)
-		lighting_object = old_lighting_object
+		// Space tiles should never have lighting objects
+		if(!space_lit)
+			// Should have a lighting object if we never had one
+			lighting_object = old_lighting_object || new /datum/lighting_object(src)
+		else if (old_lighting_object)
+			qdel(old_lighting_object, force = TRUE)
+
 		directional_opacity = old_directional_opacity
 		recalculate_directional_opacity()
 
-		if (dynamic_lighting != old_dynamic_lighting)
-			if (IS_DYNAMIC_LIGHTING(src))
-				lighting_build_overlay()
-			else
-				lighting_clear_overlay()
-		else if(lighting_object && !lighting_object.needs_update)
+		if(lighting_object && !lighting_object.needs_update)
 			lighting_object.update()
-
-		for(var/turf/open/space/S in RANGE_TURFS(1, src)) //RANGE_TURFS is in code\__HELPERS\game.dm
-			S.update_starlight()
 	
 // If we're space, then we're either lit, or not, and impacting our neighbors, or not
 	if(isspaceturf(src))
@@ -193,16 +190,17 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(old_opacity != opacity && SSticker)
 		GLOB.cameranet.bareMajorChunkChange(src)
 
-	// only queue for smoothing if SSatom initialized us, and we'd be changing smoothing state
-	if(flags_1 & INITIALIZED_1)
-		QUEUE_SMOOTH_NEIGHBORS(src)
-		QUEUE_SMOOTH(src)
-
 	// We will only run this logic if the tile is not on the prime z layer, since we use area overlays to cover that
 	if(SSmapping.z_level_to_plane_offset[z])
 		var/area/our_area = new_turf.loc
 		if(our_area.lighting_effects)
 			new_turf.add_overlay(our_area.lighting_effects[SSmapping.z_level_to_plane_offset[z] + 1])
+	
+	// only queue for smoothing if SSatom initialized us, and we'd be changing smoothing state
+	if(flags_1 & INITIALIZED_1)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+		QUEUE_SMOOTH(src)
+
 
 	SSdemo.mark_turf(new_turf)
 

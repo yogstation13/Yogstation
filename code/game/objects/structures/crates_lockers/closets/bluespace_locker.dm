@@ -233,7 +233,7 @@
 				dx--
 			var/list/fullbrights = list()
 			var/area/A = target_turf.loc
-			if(!IS_DYNAMIC_LIGHTING(A))
+			if(!A.static_lighting)
 				fullbrights += new /obj/effect/fullbright()
 			for(var/cdir in GLOB.cardinals)
 				if(!(glide_dir & cdir))
@@ -248,7 +248,7 @@
 					if(odir == 2)
 						py = -32
 					A = target_turf.loc
-					if(!IS_DYNAMIC_LIGHTING(A))
+					if(!A.static_lighting)
 						var/obj/effect/fullbright/F = new()
 						switch(odir)
 							if(1)

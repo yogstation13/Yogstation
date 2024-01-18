@@ -10,7 +10,9 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 
 /area/yogstation/pocket_dimension
 	name = "Pocket Dimension"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	has_gravity = STANDARD_GRAVITY
 	noteleport = TRUE
 	unique = FALSE

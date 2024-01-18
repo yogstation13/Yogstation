@@ -51,7 +51,6 @@
 /area/misc/cordon
 	name = "CORDON"
 	icon_state = "cordon"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	unique = TRUE

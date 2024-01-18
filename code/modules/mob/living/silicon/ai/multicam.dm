@@ -91,8 +91,10 @@
 /area/ai_multicam_room
 	name = "ai_multicam_room"
 	icon_state = "ai_camera_room"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	valid_territory = FALSE
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	ambientsounds = list()
 	blob_allowed = FALSE
 	noteleport = TRUE

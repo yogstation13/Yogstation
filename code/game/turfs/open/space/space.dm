@@ -63,7 +63,6 @@ GLOBAL_LIST_EMPTY(starlight)
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
 	light_power = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	light_range = 2
 	light_color = COLOR_STARLIGHT
 	light_height = LIGHTING_HEIGHT_SPACE

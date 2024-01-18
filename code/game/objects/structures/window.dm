@@ -7,6 +7,7 @@
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = TRUE //initially is 0 for tile smoothing
 	flags_1 = ON_BORDER_1 | RAD_PROTECT_CONTENTS_1
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR | IGNORE_DENSITY
 	max_integrity = 25
 	can_be_unanchored = TRUE
 	resistance_flags = ACID_PROOF
@@ -57,6 +58,8 @@
 
 	if(fulltile)
 		setDir()
+		obj_flags &= ~BLOCKS_CONSTRUCTION_DIR
+		obj_flags &= ~IGNORE_DENSITY
 
 	//windows only block while reinforced and fulltile, so we'll use the proc
 	real_explosion_block = explosion_block
@@ -113,7 +116,7 @@
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	if(fulltile)
+	if(dir == FULLTILE_WINDOW_DIR)
 		return FALSE	//full tile window, you can't move into it!
 	var/attempted_dir = get_dir(loc, target)
 	if(attempted_dir == dir)
@@ -321,7 +324,7 @@
 /obj/structure/window/CanAtmosPass(turf/T)
 	if(!anchored || !density)
 		return TRUE
-	return !(fulltile || dir == get_dir(loc, T))
+	return !(FULLTILE_WINDOW_DIR == dir || dir == get_dir(loc, T))
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
@@ -356,7 +359,7 @@
 /obj/structure/window/CanAStarPass(ID, to_dir)
 	if(!density)
 		return 1
-	if((fulltile) || (dir == to_dir))
+	if((dir == FULLTILE_WINDOW_DIR) || (dir == to_dir))
 		return 0
 
 	return 1
@@ -508,7 +511,7 @@
 /obj/structure/window/plasma/BlockThermalConductivity(opp_dir)
 	if(!anchored || !density)
 		return FALSE
-	return fulltile || dir == opp_dir
+	return FULLTILE_WINDOW_DIR == dir || dir == opp_dir
 
 /obj/structure/window/plasma/spawner/east
 	dir = EAST
@@ -612,6 +615,7 @@
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
+	icon_state = "twindow"
 	opacity = TRUE
 
 /obj/structure/window/reinforced/tinted/frosted

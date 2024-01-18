@@ -32,8 +32,8 @@
 /obj/item/wallframe/light_fixture/try_build(turf/on_wall, user)
 	if(!..())
 		return
-	var/area/A = get_area(user)
-	if(!IS_DYNAMIC_LIGHTING(A))
+	var/area/local_area = get_area(user)
+	if(!local_area.static_lighting)
 		to_chat(user, span_warning("You cannot place [src] in this area!"))
 		return
 	return TRUE
@@ -359,8 +359,9 @@
 		cell = new/obj/item/stock_parts/cell/emergency_light(src)
 	
 	// Light projects out backwards from the dir of the light
-	set_light(l_dir = REVERSE_DIR(dir))
-	on = mapload && our_area.lights_always_start_on
+	//set_light(l_dir = REVERSE_DIR(dir))
+	if(mapload && our_area.lights_always_start_on)
+		turn_on(trigger = FALSE, quiet = TRUE)
 
 	return INITIALIZE_HINT_LATELOAD
 

@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			return
 
 	if (mode & BUILD_MODE)
-		if(istype(get_area(user), /area/reebe/city_of_cogs))
+		if(istype(get_area(user), /area/centcom/reebe/city_of_cogs))
 			to_chat(user, span_notice("You cannot build on Reebe.."))
 			return
 

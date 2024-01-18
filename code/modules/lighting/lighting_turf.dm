@@ -14,11 +14,7 @@
 	if (lighting_object)
 		qdel(lighting_object, force=TRUE) //Shitty fix for lighting objects persisting after death
 
-	var/area/our_area = loc
-	if (!IS_DYNAMIC_LIGHTING(our_area) && !light_sources)
-		return
-
-	new/datum/lighting_object(src)
+	new /datum/lighting_object(src)
 
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(minlum = 0, maxlum = 1)
@@ -57,7 +53,8 @@
 	if (!lighting_object)
 		return FALSE
 
-	return !luminosity
+	return !(luminosity || dynamic_lumcount)
+
 
 ///Proc to add movable sources of opacity on the turf and let it handle lighting code.
 /turf/proc/add_opacity_source(atom/movable/new_source)
@@ -73,6 +70,7 @@
 	if(opacity) //Still opaque, no need to worry on updating.
 		return
 	recalculate_directional_opacity()
+
 
 ///Calculate on which directions this turfs block view.
 /turf/proc/recalculate_directional_opacity()
@@ -118,40 +116,3 @@
 			overlays += GLOB.starlight_overlays[GET_TURF_PLANE_OFFSET(src) + 1]
 		else if (new_area.lighting_effects && !old_area.lighting_effects)
 			overlays -= GLOB.starlight_overlays[GET_TURF_PLANE_OFFSET(src) + 1]
-
-/turf/proc/generate_missing_corners()
-	if (!lighting_corner_NE)
-		lighting_corner_NE = new/datum/lighting_corner(src, NORTH|EAST)
-
-	if (!lighting_corner_SE)
-		lighting_corner_SE = new/datum/lighting_corner(src, SOUTH|EAST)
-
-	if (!lighting_corner_SW)
-		lighting_corner_SW = new/datum/lighting_corner(src, SOUTH|WEST)
-
-	if (!lighting_corner_NW)
-		lighting_corner_NW = new/datum/lighting_corner(src, NORTH|WEST)
-
-	lighting_corners_initialised = TRUE
-
-/turf/proc/get_affecting_lights()
-	var/list/affecting = list()
-
-	if (!lighting_object)
-		return affecting
-
-	var/datum/lighting_corner/L
-	L = lighting_corner_NE
-	if (L)
-		affecting += L.affecting
-	L = lighting_corner_SE
-	if (L)
-		affecting += L.affecting
-	L = lighting_corner_SW
-	if (L)
-		affecting += L.affecting
-	L = lighting_corner_NW
-	if (L)
-		affecting += L.affecting
-
-	return uniqueList(affecting)

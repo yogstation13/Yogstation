@@ -130,7 +130,7 @@
 
 /turf/open/chasm/magic/Initialize(mapload)
 	. = ..()
-	var/turf/T = pick(get_area_turfs(/area/fabric_of_reality))
+	var/turf/T = pick(get_area_turfs(/area/centcom/fabric_of_reality))
 	if(T)
 		set_target(T)
 

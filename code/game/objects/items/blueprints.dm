@@ -156,8 +156,8 @@
 		/area/shuttle,
 		/area/centcom,
 		/area/asteroid,
-		/area/tdome,
-		/area/wizard_station,
+		/area/centcom/tdome,
+		/area/centcom/wizard_station,
 		/area/hilbertshotel,
 		/area/hilbertshotelstorage
 	)

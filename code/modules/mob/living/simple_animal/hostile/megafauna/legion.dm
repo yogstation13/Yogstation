@@ -209,7 +209,7 @@ Difficulty: Medium
 	hitsound = 'sound/weapons/sear.ogg'
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
-	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
+	var/static/list/excluded_areas = list(/area/centcom/reebe/city_of_cogs)
 
 /obj/item/staff/storm/attack_self(mob/user)
 	if(storm_cooldown > world.time)

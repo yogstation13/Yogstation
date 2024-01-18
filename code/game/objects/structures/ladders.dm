@@ -5,7 +5,7 @@
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder11"
 	anchored = TRUE
-	
+	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
 	var/obj/structure/ladder/down   //the ladder below this one
 	var/obj/structure/ladder/up     //the ladder above this one
 	var/crafted = FALSE
@@ -14,6 +14,7 @@
 
 /obj/structure/ladder/Initialize(mapload, obj/structure/ladder/up, obj/structure/ladder/down)
 	..()
+	GLOB.ladders += src
 	if (up)
 		src.up = up
 		up.down = src
@@ -28,6 +29,7 @@
 /obj/structure/ladder/Destroy(force)
 	if ((resistance_flags & INDESTRUCTIBLE) && !force)
 		return QDEL_HINT_LETMELIVE
+	GLOB.ladders -= src
 	disconnect()
 	return ..()
 

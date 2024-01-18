@@ -3,6 +3,8 @@
 	desc = "Basic railing meant to protect idiots like you from falling."
 	icon = 'icons/obj/railing.dmi'
 	icon_state = "railing"
+	flags_1 = ON_BORDER_1
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	density = TRUE
 	anchored = TRUE
 	pixel_y = -16
