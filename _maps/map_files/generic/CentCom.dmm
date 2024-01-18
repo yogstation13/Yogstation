@@ -9150,12 +9150,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/riveted,
 /area/centcom/control)
-"atQ" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien15";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "atR" = (
 /obj/machinery/status_display/ai,
 /turf/closed/indestructible/riveted,
@@ -9201,12 +9195,6 @@
 /obj/structure/sign/warning/xeno_mining,
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
-"atZ" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien5";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aua" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -10365,12 +10353,6 @@
 /obj/structure/statue/diamond/captain,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
-"awj" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien24";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "awk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -12780,12 +12762,6 @@
 /obj/effect/baseturf_helper/asteroid/snow,
 /turf/closed/indestructible/riveted,
 /area/yogs/infiltrator_base/jail)
-"aBq" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien18";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aBr" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -13101,12 +13077,6 @@
 	},
 /turf/open/floor/engine/cult,
 /area/centcom/wizard_station)
-"aBT" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien20";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aBU" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/airless,
@@ -13267,12 +13237,6 @@
 /obj/item/instrument/guitar,
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/lounge)
-"aCm" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien7";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aCn" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13985,12 +13949,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"aDn" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien17";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aDo" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -15301,12 +15259,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aGa" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien3";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aGb" = (
 /obj/machinery/shower{
 	dir = 4
@@ -15735,12 +15687,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/tdome/tdomeobserve)
-"aGN" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien8";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aGO" = (
 /obj/structure/table/wood,
 /obj/structure/sign/plaques/golden{
@@ -15958,11 +15904,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/tdome/tdomeobserve)
-"aHi" = (
-/turf/closed/indestructible/abductor{
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aHj" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17447,12 +17388,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/tdome/tdomeadmin)
-"aJY" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien23";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aJZ" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-21"
@@ -20962,12 +20897,6 @@
 /mob/living/simple_animal/hostile/carp/ranged/chaos,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aQR" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien9";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aQS" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20994,12 +20923,6 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
-"aQV" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien13";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aQW" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	locked = 0
@@ -22105,12 +22028,6 @@
 	icon_state = "darkfull"
 	},
 /area/holodeck/rec_center/gym)
-"aTf" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien4";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aTg" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22699,12 +22616,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aUp" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien14";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aUq" = (
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/holofloor{
@@ -22991,12 +22902,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aUU" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien19";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aUV" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
@@ -23245,12 +23150,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aVx" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien12";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aVy" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -23741,12 +23640,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/centcom/testchamber)
-"aWy" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien21";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aWz" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/dirt,
@@ -24041,12 +23934,6 @@
 /obj/item/gun/ballistic/shotgun/bulldog/unrestricted,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aXa" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien16";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aXb" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "3"
@@ -24493,12 +24380,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aXV" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien10";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aXW" = (
 /obj/item/clothing/head/ushanka{
 	pixel_x = -5;
@@ -24571,12 +24452,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aYd" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien6";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aYe" = (
 /obj/effect/landmark/brazil,
 /turf/open/indestructible/brazil/space,
@@ -24750,12 +24625,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aYx" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien11";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aYy" = (
 /turf/open/floor/holofloor{
 	icon_state = "reebe"
@@ -24996,12 +24865,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aZb" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien2";
-	opacity = 0
-	},
-/area/bluespace_locker)
 "aZc" = (
 /turf/open/indestructible/binary,
 /area/space)
@@ -26911,6 +26774,9 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"pJM" = (
+/turf/closed/indestructible/alien,
+/area/bluespace_locker)
 "pLF" = (
 /obj/machinery/vending/wardrobe/cargo_wardrobe,
 /turf/open/floor/plasteel/bluespace,
@@ -46454,13 +46320,13 @@ aOQ
 aOQ
 aOQ
 aOQ
-aOQ
-aXa
-aUp
-aVx
-aXV
-aYd
-aOQ
+pJM
+pJM
+pJM
+pJM
+pJM
+pJM
+pJM
 aOQ
 aOQ
 aOQ
@@ -46711,13 +46577,13 @@ aOQ
 aOQ
 aOQ
 aOQ
-aBT
-aDn
+pJM
+aVa
 aVa
 aRn
 aVa
-aCm
-aHi
+aVa
+pJM
 aOQ
 aOQ
 aOQ
@@ -46968,13 +46834,13 @@ aOQ
 aOQ
 aOQ
 aOQ
-aWy
+pJM
 aVa
 aVa
 aVa
 aVa
 aVa
-aZb
+pJM
 aOQ
 aOQ
 aOQ
@@ -47231,7 +47097,7 @@ aVa
 aOw
 aVa
 eiz
-aGa
+pJM
 aOQ
 aOQ
 aOQ
@@ -47482,13 +47348,13 @@ aOQ
 aOQ
 aOQ
 aOQ
-aJY
+pJM
 aVa
 aVa
 aVa
 aVa
 aVa
-aTf
+pJM
 aOQ
 aOQ
 aOQ
@@ -47739,13 +47605,13 @@ aOQ
 aOQ
 aOQ
 aOQ
-awj
-aBq
+pJM
+aVa
 aVa
 aXR
 aVa
-aGN
-atZ
+aVa
+pJM
 aOQ
 aOQ
 aOQ
@@ -47996,13 +47862,13 @@ aOQ
 aOQ
 aOQ
 aOQ
-aOQ
-aUU
-atQ
-aQV
-aYx
-aQR
-aOQ
+pJM
+pJM
+pJM
+pJM
+pJM
+pJM
+pJM
 aOQ
 aOQ
 aOQ

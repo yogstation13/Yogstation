@@ -256,7 +256,8 @@
 
 /turf/closed/wall/mineral/titanium/overspace
 	icon_state = "map-overspace"
-	fixed_underlay = list("space"=1)
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
+	fixed_underlay = list("space" = TRUE)
 
 //sub-type to be used for interior shuttle walls
 //won't get an underlay of the destination turf on shuttle move
@@ -299,6 +300,9 @@
 	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
 	rad_insulation = RAD_FULL_INSULATION
 
+/turf/closed/wall/mineral/plastitanium/rust_heretic_act()
+	return // plastitanium does not rust
+
 /turf/closed/wall/mineral/plastitanium/nodiagonal
 	icon_state = "map-shuttle_nd"
 	base_icon_state = "plastitanium_wall"
@@ -311,7 +315,8 @@
 
 /turf/closed/wall/mineral/plastitanium/overspace
 	icon_state = "map-overspace"
-	fixed_underlay = list("space"=1)
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
+	fixed_underlay = list("space" = TRUE)
 
 /turf/closed/wall/mineral/plastitanium/explosive/ex_act(severity)
 	var/obj/item/bombcore/large/bombcore = new(get_turf(src))

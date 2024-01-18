@@ -20,8 +20,11 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_WALLS
-
-	var/hardness = 30 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
+	
+	///bool on whether this wall can be chiselled into
+	var/can_engrave = TRUE
+	///lower numbers are harder. Used to determine the probability of a hulk smashing through.
+	var/hardness = 30 
 	var/slicing_duration = 200  //default time taken to slice the wall
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/sheet_amount = 2
@@ -33,8 +36,19 @@
 
 /turf/closed/wall/Initialize(mapload)
 	. = ..()
+	if(!can_engrave)
+		ADD_TRAIT(src, TRAIT_NOT_ENGRAVABLE, INNATE_TRAIT)
 	if(is_station_level(z))
 		GLOB.station_turfs += src
+	if(smoothing_flags & SMOOTH_DIAGONAL_CORNERS && fixed_underlay) //Set underlays for the diagonal walls.
+		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, offset_spokesman = src, plane = FLOOR_PLANE)
+		if(fixed_underlay["space"])
+			generate_space_underlay(underlay_appearance, src)
+		else
+			underlay_appearance.icon = fixed_underlay["icon"]
+			underlay_appearance.icon_state = fixed_underlay["icon_state"]
+		fixed_underlay = string_assoc_list(fixed_underlay)
+		underlays += underlay_appearance
 
 /turf/closed/wall/Destroy()
 	if(is_station_level(z))
