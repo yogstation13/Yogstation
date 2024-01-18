@@ -1514,6 +1514,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/assassinate/cloned,
 		/datum/objective/assassinate/once,
 		/datum/objective/maroon,
+		/datum/objective/maroon_organ,
 		/datum/objective/debrain,
 		/datum/objective/protect,
 		/datum/objective/assist,
