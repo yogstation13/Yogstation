@@ -6,8 +6,8 @@
 	icon_state = "larva0_dead"
 	/// How long it has been growing, increases by 2 every 2 seconds based on the state of the host
 	var/growth_progress = 0
-	/// At what point can it burst (should be roughly 4 minutes)
-	var/burst_threshold = 240
+	/// At what point can it burst
+	var/burst_threshold = 270
 	/// what "stage" we are at (used for image handling)
 	var/current_stage = 0
 	/// Are we in the process of bursting out of the poor sucker who's the xeno mom?
@@ -32,7 +32,8 @@
 	return S
 
 /obj/item/organ/body_egg/alien_embryo/on_life()
-	growth_progress ++ //doesn't progress if the host is dead
+	if(owner.buckling && istype(owner.buckling, /obj/structure/bed/nest))
+		growth_progress += 2 //doesn't get the extra progress if the host is either dead or not buckled to an alien bed
 	switch(current_stage)
 		if(3, 4)
 			if(prob(2))
