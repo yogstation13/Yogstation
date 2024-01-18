@@ -111,7 +111,6 @@ SUBSYSTEM_DEF(mapping)
 #endif
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
-	//HACK_LoadMapConfig()
 	if(initialized)
 		return SS_INIT_SUCCESS
 	if(config.defaulted)
