@@ -1729,6 +1729,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		explanation_text = "Free Objective"
 	. = ..()
 
+/datum/objective/maroon_organ/admin_edit(mob/admin)
+	finalize()
+	update_explanation_text()
+	return
+
 /datum/objective/maroon_organ/check_completion()
 	if(..())
 		return TRUE
