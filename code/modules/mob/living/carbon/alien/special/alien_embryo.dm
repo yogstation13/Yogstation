@@ -4,7 +4,7 @@
 	name = "alien embryo"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "larva0_dead"
-	/// How long it has been growing, increases by 2 every 2 seconds based on the state of the host
+	/// How long it has been growing, increases by up to 3 every 2 seconds based on the state of the host
 	var/growth_progress = 0
 	/// At what point can it burst
 	var/burst_threshold = 270
