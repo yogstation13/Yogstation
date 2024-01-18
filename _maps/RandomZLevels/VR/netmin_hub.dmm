@@ -1981,10 +1981,6 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"pQ" = (
-/mob/living/simple_animal/hostile/alien/queen/large,
-/turf/open/floor/plating/asteroid,
-/area/awaymission/vr/abandoned_mine)
 "pU" = (
 /obj/machinery/conveyor{
 	id = "QMLoad"
@@ -2424,6 +2420,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"tK" = (
+/obj/machinery/door/password/floppy_disk{
+	id = "mine_floppy";
+	name = "Command Centre"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "tL" = (
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
@@ -3673,13 +3676,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"DT" = (
-/obj/machinery/door/password/floppy_disk{
-	id = "mine_floopy";
-	name = "Command Centre"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/vr/abandoned_mine)
 "Ee" = (
 /turf/open/space/basic,
 /area/awaymission/vr/combat_robot_factory)
@@ -3727,6 +3723,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"EL" = (
+/mob/living/simple_animal/hostile/alien/queen/large{
+	health = 250;
+	ranged = 0
+	},
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "EM" = (
 /obj/machinery/computer{
 	dir = 4;
@@ -14463,7 +14466,7 @@ Ue
 aV
 Im
 gb
-DT
+tK
 JZ
 gb
 Hw
@@ -15451,7 +15454,7 @@ jD
 jD
 TQ
 TQ
-Rp
+TQ
 TQ
 TQ
 TQ
@@ -16477,10 +16480,10 @@ TQ
 TQ
 TQ
 TQ
+Dt
 TQ
 TQ
-TQ
-TQ
+Dt
 TQ
 TQ
 TQ
@@ -16733,7 +16736,7 @@ jD
 TQ
 TQ
 TQ
-Rp
+TQ
 TQ
 TQ
 TQ
@@ -16990,10 +16993,10 @@ jD
 TQ
 TQ
 TQ
+Dt
 TQ
 TQ
-TQ
-pQ
+EL
 TQ
 TQ
 TQ
