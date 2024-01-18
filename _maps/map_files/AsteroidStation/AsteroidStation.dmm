@@ -18123,7 +18123,7 @@
 /turf/open/floor/plating,
 /area/science/misc_lab)
 "eTa" = (
-/obj/structure/altar_of_gods,
+/obj/structure/table/altar_of_gods,
 /obj/item/storage/book/bible{
 	pixel_x = -2;
 	pixel_y = -2
