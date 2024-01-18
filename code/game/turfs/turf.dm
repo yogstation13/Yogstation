@@ -340,7 +340,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	// Here's hoping it doesn't stay like this for years before we finish conversion to step_
 	var/atom/firstbump
 	var/canPassSelf = CanPass(mover, src)
-	if(canPassSelf || CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE))
+	if(canPassSelf || CHECK_BITFIELD(mover.movement_type, PHASING))
 		for(var/i in contents)
 			if(QDELETED(mover))
 				return FALSE		//We were deleted, do not attempt to proceed with movement.
@@ -352,7 +352,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 					return FALSE
 				if(QDELETED(mover))		//Mover deleted from Cross/CanPass, do not proceed.
 					return FALSE
-				if(CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE))
+				if(CHECK_BITFIELD(mover.movement_type, PHASING))
 					mover.Bump(thing)
 					continue
 				else
@@ -360,11 +360,11 @@ GLOBAL_LIST_EMPTY(station_turfs)
 						firstbump = thing
 	if(QDELETED(mover))					//Mover deleted from Cross/CanPass/Bump, do not proceed.
 		return FALSE
-	if(!canPassSelf)	//Even if mover is unstoppable they need to bump us.
+	if(!canPassSelf)	//Even if mover is PHASING they need to bump us.
 		firstbump = src
 	if(firstbump)
 		mover.Bump(firstbump)
-		return CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE)
+		return CHECK_BITFIELD(mover.movement_type, PHASING)
 	return TRUE
 
 /turf/Exit(atom/movable/mover, atom/newloc)
@@ -378,7 +378,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(!thing.Uncross(mover, newloc))
 			if(thing.flags_1 & ON_BORDER_1)
 				mover.Bump(thing)
-			if(!CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE))
+			if(!CHECK_BITFIELD(mover.movement_type, PHASING))
 				return FALSE
 		if(QDELETED(mover))
 			return FALSE		//We were deleted.

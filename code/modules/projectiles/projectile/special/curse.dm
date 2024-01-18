@@ -18,7 +18,7 @@
 
 /obj/projectile/curse_hand/Initialize(mapload)
 	. = ..()
-	ENABLE_BITFIELD(movement_type, UNSTOPPABLE)
+	ENABLE_BITFIELD(movement_type, PHASING)
 	ADD_TRAIT(src, TRAIT_FREE_HYPERSPACE_MOVEMENT, INNATE_TRAIT)
 	handedness = prob(50)
 	icon_state = "[base_icon_state][handedness]"
@@ -40,7 +40,7 @@
 
 /obj/projectile/curse_hand/prehit(atom/target)
 	if(target == original)
-		DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+		DISABLE_BITFIELD(movement_type, PHASING)
 	else if(!isturf(target))
 		return FALSE
 	return ..()
@@ -48,7 +48,7 @@
 /obj/projectile/curse_hand/proc/finale()
 	if(arm)
 		QDEL_NULL(arm)
-	if(CHECK_BITFIELD(movement_type, UNSTOPPABLE))
+	if(CHECK_BITFIELD(movement_type, PHASING))
 		playsound(src, 'sound/effects/curse3.ogg', 25, TRUE, -1)
 	var/turf/T = get_step(src, dir)
 	var/obj/effect/temp_visual/dir_setting/curse/hand/leftover = new(T, dir)

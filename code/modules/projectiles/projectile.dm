@@ -340,13 +340,13 @@
 
 	return process_hit(T, select_target(T, A))
 
-#define QDEL_SELF 1			//Delete if we're not UNSTOPPABLE flagged non-temporarily
+#define QDEL_SELF 1			//Delete if we're not PHASING flagged non-temporarily
 #define DO_NOT_QDEL 2		//Pass through.
 #define FORCE_QDEL 3		//Force deletion.
 
 /obj/projectile/proc/process_hit(turf/T, atom/target, qdel_self, hit_something = FALSE)		//probably needs to be reworked entirely when pixel movement is done.
 	if(QDELETED(src) || !T || !target)		//We're done, nothing's left.
-		if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, UNSTOPPABLE)))
+		if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, PHASING)))
 			qdel(src)
 		return hit_something
 	impacted |= target		//Make sure we're never hitting it again. If we ever run into weirdness with piercing projectiles needing to hit something multiple times.. well.. that's a to-do.
@@ -354,9 +354,9 @@
 		return process_hit(T, select_target(T), qdel_self, hit_something)		//Hit whatever else we can since that didn't work.
 	var/result = target.bullet_act(src, def_zone)
 	if(result == BULLET_ACT_FORCE_PIERCE)
-		if(!CHECK_BITFIELD(movement_type, UNSTOPPABLE))
+		if(!CHECK_BITFIELD(movement_type, PHASING))
 			temporary_unstoppable_movement = TRUE
-			ENABLE_BITFIELD(movement_type, UNSTOPPABLE)
+			ENABLE_BITFIELD(movement_type, PHASING)
 		return process_hit(T, select_target(T), qdel_self, TRUE)		//Hit whatever else we can since we're piercing through but we're still on the same tile.
 	else if(result == BULLET_ACT_PENETRATE) // This is slightly different from ACT_TURF in that it goes through the first thing
 		return process_hit(T, select_target(T), qdel_self, TRUE)
@@ -365,7 +365,7 @@
 	else		//Whether it hit or blocked, we're done!
 		qdel_self = QDEL_SELF
 		hit_something = TRUE
-	if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, UNSTOPPABLE)))
+	if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, PHASING)))
 		qdel(src)
 	return hit_something
 
@@ -723,7 +723,7 @@
 	if(.)
 		if(temporary_unstoppable_movement)
 			temporary_unstoppable_movement = FALSE
-			DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+			DISABLE_BITFIELD(movement_type, PHASING)
 		if(fired && can_hit_target(original, impacted, TRUE))
 			Bump(original)
 

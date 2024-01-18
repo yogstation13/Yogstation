@@ -40,6 +40,9 @@
 /area/centcom/supplypod
 	name = "Supplypod Facility"
 	icon_state = "supplypod"
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 
 /area/centcom/supplypod/podStorage
 	name = "Supplypod Storage"
@@ -82,6 +85,9 @@
 /area/centcom/tdome
 	name = "Thunderdome"
 	icon_state = "yellow"
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 
 /area/centcom/tdome/arena
 	name = "Thunderdome Arena"
