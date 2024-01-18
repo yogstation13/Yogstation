@@ -312,6 +312,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
+"cI" = (
+/obj/machinery/door/password/floppy_disk{
+	id = "mine_floppy";
+	name = "Command Centre"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "cJ" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/fancy/cigarettes/cigars/havana,
@@ -3673,13 +3680,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"DT" = (
-/obj/machinery/door/password/floppy_disk{
-	id = "mine_floopy";
-	name = "Command Centre"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/vr/abandoned_mine)
 "Ee" = (
 /turf/open/space/basic,
 /area/awaymission/vr/combat_robot_factory)
@@ -14463,7 +14463,7 @@ Ue
 aV
 Im
 gb
-DT
+cI
 JZ
 gb
 Hw
