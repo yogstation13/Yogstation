@@ -81,4 +81,4 @@
 				to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 		
 		if(valid_id)
-			var/item = new chosen_id(src)
+			new chosen_id(src)
