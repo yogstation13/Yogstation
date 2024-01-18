@@ -102,3 +102,13 @@
 		/datum/surgery_step/revive_ipc,
 		/datum/surgery_step/mechanic_close
 	)
+
+/datum/surgery/synth_revival/can_start(mob/user, mob/living/target)
+	if(target.stat != DEAD)
+		return FALSE // they're already activated
+	if(!is_synth(user))
+		return FALSE
+	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	if(!B) // you can't reactivate a brain that DOESN'T EXIST
+		return FALSE
+	return istype(target.getorganslot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
