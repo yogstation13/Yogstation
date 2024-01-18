@@ -30,6 +30,7 @@
 
 	/// What items can be consumed to repair this clothing (must by an /obj/item/stack)
 	var/repairable_by = /obj/item/stack/sheet/cloth
+	var/list/species_restricted = null //Only these species can wear this kit.
 
 	//Var modification - PLEASE be careful with this I know who you are and where you live
 	var/list/user_vars_to_edit //VARNAME = VARVALUE eg: "name" = "butts"
@@ -77,6 +78,59 @@
 		var/atom/movable/screen/inventory/hand/H = over_object
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 			add_fingerprint(usr)
+
+//BS12: Species-restricted clothing check.
+/obj/item/clothing/mob_can_equip(mob/M, slot)
+
+	//if we can't equip the item anyway, don't bother with species_restricted (also cuts down on spam)
+	if(!..())
+		return FALSE
+
+	// Skip species restriction checks on non-equipment slots
+	if(slot in list(ITEM_SLOT_BACKPACK, ITEM_SLOT_LPOCKET, ITEM_SLOT_RPOCKET))
+		return TRUE
+
+	if(species_restricted && ishuman(M))
+
+		var/wearable = null
+		var/exclusive = null
+		var/mob/living/carbon/human/H = M
+
+		if("exclude" in species_restricted)
+			exclusive = TRUE
+
+		if(H.dna.species)
+			if(exclusive)
+				if(!(H.dna.species.name in species_restricted))
+					wearable = TRUE
+			else
+				if(H.dna.species.name in species_restricted)
+					wearable = TRUE
+
+			if(!wearable)
+				to_chat(M, "<span class='warning'>Your species cannot wear [src].</span>")
+				return FALSE
+
+	return TRUE
+
+/obj/item/clothing/proc/refit_for_species(var/target_species)
+	//Set species_restricted list
+	switch(target_species)
+		if("Human")//humanoid bodytypes
+			species_restricted = list("exclude","Unathi","Ash Walker", "Ethari")
+		else
+			species_restricted = list(target_species)
+
+	//Set icon
+	if(sprite_sheets && (target_species in sprite_sheets))
+		icon_override = sprite_sheets[target_species]
+	else
+		icon_override = initial(icon_override)
+
+	if(sprite_sheets_obj && (target_species in sprite_sheets_obj))
+		icon = sprite_sheets_obj[target_species]
+	else
+		icon = initial(icon)
 
 /obj/item/reagent_containers/food/snacks/clothing
 	name = "temporary moth clothing snack item"

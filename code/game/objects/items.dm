@@ -126,6 +126,18 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 	var/list/slot_equipment_priority = null // for default list, see /mob/proc/equip_to_appropriate_slot()
 
+	/* Species-specific sprites, concept from Bay.
+	ex:
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/head.dmi'
+		)
+	If index term exists and icon_override is not set, this sprite sheet will be used.
+	*/
+	var/list/sprite_sheets = null
+	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
+	var/sprite_sheets_obj = null //Used to override hardcoded clothing inventory object dmis in human clothing proc.
+	var/list/species_fit = null //This object has a different appearance when worn by these species
+
 	// Needs to be in /obj/item because corgis can wear a lot of
 	// non-clothing items
 	var/datum/dog_fashion/dog_fashion = null

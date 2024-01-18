@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/species_gibs = "human"
 	/// Can this species use numbers in its name?
 	var/allow_numbers_in_name = FALSE
-
+	var/is_dimorphic = TRUE
 	/// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()
 	/// generic traits tied to having the species
@@ -726,7 +726,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 						hair_overlay.color = H.hair_color
 				hair_overlay.alpha = hair_alpha
 				standing+=hair_overlay
-				//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
+			//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
 				S = GLOB.pod_flower_list[H.dna.features["pod_flower"]]
 				if(S)
 					var/flower_state = S.icon_state
@@ -943,6 +943,38 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "pod_flower"
 		if(H.dna.features["pod_flower"] != H.dna.features["pod_hair"])
 			H.dna.features["pod_flower"] = H.dna.features["pod_hair"]
+	
+	if("vox_quills" in mutant_bodyparts)
+		if(H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "vox_quills"
+
+	if("vox_facial_quills" in mutant_bodyparts)
+		if(!H.dna.features["vox_facial_quills"] || H.dna.features["vox_facial_quills"] == "None" || H.head && (H.head.flags_inv & HIDEFACE) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "vox_facial_quills"
+
+	if("vox_eyes" in mutant_bodyparts)
+		if(!H.dna.features["vox_eyes"] || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "vox_eyes"
+
+	if("vox_tail" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "vox_tail"
+	
+	if("wagging_vox_tail" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "wagging_vox_tail"
+		else if ("vox_tail" in mutant_bodyparts)
+			bodyparts_to_add -= "wagging_vox_tail"
+
+	if("vox_tail_markings" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "vox_tail_markings"
+
+	if("wagging_vox_tail_markings" in mutant_bodyparts)
+		if(!H.dna.features["vox_tail_markings"] || H.dna.features["vox_tail_markings"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "vox_tail_markings"
+		else if ("vox_tail" in mutant_bodyparts)
+			bodyparts_to_add -= "wagging_vox_tail_markings"
 
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
@@ -1056,15 +1088,33 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.ipc_antennas_list[H.dna.features["ipc_antenna"]]
 				if("ipc_chassis")
 					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
+				if("vox_body")
+					S = GLOB.vox_bodies_list[H.dna.features["vox_body"]]
+				if("vox_quills")
+					S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
+				if("vox_facial_quills")
+					S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
+				if("vox_eyes")
+					S = GLOB.vox_eyes_list[H.dna.features["vox_eyes"]]
+				if("vox_tail")
+					S = GLOB.vox_tails_list[H.dna.features["vox_tail"]]
+				if("wagging_vox_tail")
+					S = GLOB.animated_vox_tails_list[H.dna.features["vox_tail"]]
+				if("vox_body_markings")
+					S = GLOB.vox_body_markings_list[H.dna.features["vox_body_markings"]]
+				if("vox_tail_markings")
+					S = GLOB.vox_tail_markings_list[H.dna.features["vox_tail_markings"]]
+				if("wagging_vox_tail_markings")
+					S = GLOB.animated_vox_tail_markings_list[H.dna.features["vox_tail_markings"]]
 			if(!S || S.icon_state == "none")
 				continue
 
 			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
 
 			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
-			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph")
+			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph" || bodypart == "vox_tail")
 				bodypart = "tail"
-			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human")
+			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human" || bodypart == "wagging_vox_tail")
 				bodypart = "waggingtail"
 
 			if(S.gender_specific)
@@ -1098,6 +1148,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							accessory_overlay.color = H.eye_color
 				else
 					accessory_overlay.color = forced_colour
+			if(S.color_blend_mode == "add")
+				accessory_overlay.color = list(null, null, null, null, accessory_overlay.color)
 			standing += accessory_overlay
 
 			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)) && !istype(H, /mob/living/carbon/human/dummy))//don't put emissives on dummy mobs as they're used for the preference menu, which doesn't draw emissives properly
@@ -2215,10 +2267,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(H.IsParalyzed() || H.IsStun())
 		return FALSE
 	// var/obj/item/organ/tail = H.getorganslot(ORGAN_SLOT_TAIL)
-	return ("tail_human" in mutant_bodyparts) || ("waggingtail_human" in mutant_bodyparts) || ("tail_lizard" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)
+	return ("tail_human" in mutant_bodyparts) || ("waggingtail_human" in mutant_bodyparts) || ("tail_lizard" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts) || ("vox_tail" in mutant_bodyparts) || ("wagging_vox_tail" in mutant_bodyparts)
 
 /datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
-	return ("waggingtail_human" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts)
+	return ("waggingtail_human" in mutant_bodyparts) || ("waggingtail_lizard" in mutant_bodyparts) || ("wagging_vox_tail" in mutant_bodyparts)
 
 /datum/species/proc/start_wagging_tail(mob/living/carbon/human/H)
 	if("tail_human" in mutant_bodyparts)
@@ -2229,6 +2281,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		mutant_bodyparts -= "spines"
 		mutant_bodyparts |= "waggingtail_lizard"
 		mutant_bodyparts |= "waggingspines"
+	if("vox_tail" in mutant_bodyparts)
+		mutant_bodyparts -= "vox_tail"
+		mutant_bodyparts -= "vox_tail_markings"
+		mutant_bodyparts |= "wagging_vox_tail"
+		mutant_bodyparts |= "wagging_vox_tail_markings"
 	H.update_body()
 
 /datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
@@ -2240,6 +2297,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		mutant_bodyparts -= "waggingspines"
 		mutant_bodyparts |= "tail_lizard"
 		mutant_bodyparts |= "spines"
+	if("vox_tail" in mutant_bodyparts)
+		mutant_bodyparts |= "vox_tail"
+		mutant_bodyparts |= "vox_tail_markings"
+		mutant_bodyparts -= "wagging_vox_tail"
+		mutant_bodyparts -= "wagging_vox_tail_markings"
 	H.update_body()
 
 ///////////////
@@ -2428,10 +2490,17 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	for (var/preference_type in GLOB.preference_entries)
 		var/datum/preference/preference = GLOB.preference_entries[preference_type]
+		var/required_species_traits_found = FALSE
+		for(var/species_trait in species_traits)
+			if(species_trait in preference.relevant_species_traits)
+				required_species_traits_found = TRUE
+				break
+			else
+				continue
 
 		if ( \
 			(preference.relevant_mutant_bodypart in mutant_bodyparts) \
-			|| (preference.relevant_species_trait in species_traits) \
+			|| required_species_traits_found \
 		)
 			features += preference.savefile_key
 

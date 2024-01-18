@@ -27,7 +27,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "eye_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	relevant_species_trait = EYECOLOR
+	relevant_species_traits = list(EYECOLOR)
 	unique = TRUE
 
 /datum/preference/color/eye_color/apply_to_human(mob/living/carbon/human/target, value)
@@ -49,7 +49,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Hair style"
 	should_generate_icons = TRUE
-	relevant_species_trait = HAIR
+	relevant_species_traits = list(HAIR)
 
 /datum/preference/choiced/hairstyle/init_possible_values()
 	return generate_possible_values_for_sprite_accessories_on_head(GLOB.hair_styles_list)
@@ -62,7 +62,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	relevant_species_trait = HAIR
+	relevant_species_traits = list(HAIR, HAIRCOLOR)
 
 /datum/preference/color/hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_color = value
@@ -74,7 +74,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	main_feature_name = "Facial hair"
 	should_generate_icons = TRUE
-	relevant_species_trait = FACEHAIR
+	relevant_species_traits = list(FACEHAIR)
 
 /datum/preference/choiced/facial_hairstyle/init_possible_values()
 	return generate_possible_values_for_sprite_accessories_on_head(GLOB.facial_hair_styles_list)
@@ -87,7 +87,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "facial_hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	relevant_species_trait = FACEHAIR
+	relevant_species_traits = list(FACEHAIR)
 
 /datum/preference/color/facial_hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.facial_hair_color = value
@@ -97,7 +97,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_gradientstyle"
 	savefile_identifier = PREFERENCE_CHARACTER
-	relevant_species_trait = HAIR
+	relevant_species_traits = list(HAIR)
 
 /datum/preference/choiced/hair_gradient/init_possible_values()
 	return assoc_to_keys(GLOB.hair_gradients_list)
@@ -113,7 +113,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_gradientcolor"
 	savefile_identifier = PREFERENCE_CHARACTER
-	relevant_species_trait = HAIR
+	relevant_species_traits = list(HAIR)
 
 /datum/preference/color/hair_gradient/apply_to_human(mob/living/carbon/human/target, value)
 	target.grad_color = value

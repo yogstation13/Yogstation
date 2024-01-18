@@ -685,7 +685,8 @@ generate/load female uniform sprites matching all previously decided variables
 	else
 		. += "-not_coloured"
 
-	. += "-[gender]"
+	if(dna.species.is_dimorphic)
+		. += "-[gender]"
 
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X

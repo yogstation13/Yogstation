@@ -190,6 +190,8 @@
 			else
 				hair_color = "000"
 			hair_alpha = initial(hair_alpha)
+		if(HAIRCOLOR in S.species_traits)
+			hair_color = H.hair_color
 		// lipstick
 		if(H.lip_style && (LIPS in S.species_traits))
 			lip_style = H.lip_style
@@ -241,7 +243,10 @@
 				var/datum/sprite_accessory/S2 = GLOB.hair_styles_list[hair_style]
 				if(S2)
 					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
-					hair_overlay.color = hair_color
+					if(S2.color_blend_mode == "add")
+						hair_overlay.color = list(null,null,null,null,hair_color)
+					else
+						hair_overlay.color = hair_color
 					hair_overlay.alpha = hair_alpha
 					. += hair_overlay
 

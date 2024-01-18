@@ -120,3 +120,40 @@
 		H.update_body()
 		if(H.physiology)
 			H.physiology.crawl_speed -= 0.5
+
+/obj/item/organ/tail/vox
+	name = "vox tail"
+	desc = "A severed vox tail. Somewhere, no doubt, a vox hater is very pleased with themselves."
+	icon_state = "severedlizardtail" //yogs - so the tail uses the correct sprites
+	color = "#116611"
+	tail_type = "Vox Default"
+	var/tail_markings = "None"
+
+/obj/item/organ/tail/vox/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
+	..()
+	if(istype(H))
+		// Checks here are necessary so it wouldn't overwrite the tail of a lizard it spawned in
+		var/default_part = H.dna.species.mutant_bodyparts["vox_tail"]
+		if(!default_part || default_part == "None")
+			if(tail_type)
+				H.dna.features["vox_tail"] = H.dna.species.mutant_bodyparts["vox_tail"] = tail_type
+			else
+				H.dna.species.mutant_bodyparts["vox_tail"] = H.dna.features["vox_tail"]
+		
+		default_part = H.dna.species.mutant_bodyparts["vox_tail_markings"]
+		if(!default_part || default_part == "None")
+			if(tail_markings)
+				H.dna.features["vox_tail_markings"] = H.dna.species.mutant_bodyparts["vox_tail_markings"] = tail_markings
+				H.dna.update_uf_block(DNA_VOX_TAIL_MARKINGS_BLOCK)
+			else
+				H.dna.species.mutant_bodyparts["vox_tail_markings"] = H.dna.features["vox_tail_markings"]
+		H.update_body()
+
+/obj/item/organ/tail/vox/Remove(mob/living/carbon/human/H,  special = 0)
+	..()
+	if(istype(H))
+		H.dna.species.mutant_bodyparts -= "vox_tail"
+		H.dna.species.mutant_bodyparts -= "vox_tail_markings"
+		tail_type = H.dna.features["vox_tail"]
+		tail_markings = H.dna.features["vox_tail_markings"]
+		H.update_body()

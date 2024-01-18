@@ -96,6 +96,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isshadowperson(A) (is_species(A, /datum/species/shadow))
 #define is_synth(A) (is_species(A,/datum/species/wy_synth))
 #define isdummy(A) (istype(A, /mob/living/carbon/human/dummy))
+#define isvox(A) (is_species(A, /datum/species/vox))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))

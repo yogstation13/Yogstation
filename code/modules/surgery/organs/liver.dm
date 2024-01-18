@@ -135,3 +135,9 @@
 		return
 	to_chat(owner, "<span class='warning'>Alert: Your Substance Processor has been damaged. An internal chemical leak is affecting performance.</span>")
 	owner.adjustToxLoss(severity)
+
+/obj/item/organ/liver/vox
+	name = "vox liver"
+	icon_state = "liver-vox"
+	desc = "A mechanically-assisted vox liver."
+	status = ORGAN_ROBOTIC

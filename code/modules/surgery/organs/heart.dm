@@ -288,3 +288,10 @@
 		owner.heal_overall_damage(15, 15, 0, BODYPART_ORGANIC)
 		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
 			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)
+
+/obj/item/organ/heart/vox
+	name = "vox heart"
+	desc = "A vox's heart. It appears to have circuitry and components woven into it."
+	icon_state = "heartvox-off"
+	icon_base = "heartvox"
+	status = ORGAN_ROBOTIC

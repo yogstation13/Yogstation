@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	/// If the selected species has this in its /datum/species/species_traits,
 	/// will show the feature as selectable.
-	var/relevant_species_trait = null
+	var/list/relevant_species_traits
 
 	/// If the target should be checked upon applying the preference
 	/// For example, this is used for for podperson hair_color since it overwrites human hair_color
@@ -318,7 +318,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if (!isnull(relevant_mutant_bodypart) || !isnull(relevant_species_trait))
+	if (!isnull(relevant_mutant_bodypart) || length(relevant_species_traits))
 		var/species_type = preferences.read_preference(/datum/preference/choiced/species)
 
 		var/datum/species/species = new species_type
@@ -334,7 +334,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/proc/can_apply(datum/preferences/preferences)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if (!isnull(relevant_mutant_bodypart) || !isnull(relevant_species_trait))
+	if (!isnull(relevant_mutant_bodypart) || length(relevant_species_traits))
 		var/species_type = preferences.read_preference(/datum/preference/choiced/species)
 
 		var/datum/species/species = new species_type

@@ -165,3 +165,12 @@
 		to_chat(owner, span_warning("Your robotic ears are uselessly ringing."))
 		return
 	to_chat(owner, span_warning("Your robotic ears buzz."))  
+
+/obj/item/organ/ears/vox
+	name = "vox ears"
+	icon_state = "ears-vox"
+	desc = "The internal parts of the vox ear. Corporate scientists hypothesize that the synthetic components take the piercing edge off their own shrieking."
+	status = ORGAN_ROBOTIC
+
+/obj/item/organ/ears/vox/emp_act()
+	deaf = 10
