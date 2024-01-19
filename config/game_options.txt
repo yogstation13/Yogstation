@@ -674,11 +674,9 @@ MICE_ROUNDSTART 5
 ## This used to be named traits, hence the config name, but it handles quirks, not the other kind of trait!
 ROUNDSTART_TRAITS
 
-## Uncomment to disable human moods.
-DISABLE_HUMAN_MOOD
-
-## Uncomment to force human moods. Not compatible with DISABLE_HUMAN_MOOD
-FORCE_HUMAN_MOOD
+## Comment to enable forced human moods.
+## If uncommented, it will still allow people to opt into mood via preferences
+#DISABLE_HUMAN_MOOD
 
 ## Enable night shifts ##
 #ENABLE_NIGHT_SHIFTS
