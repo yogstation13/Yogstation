@@ -363,7 +363,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
 
 	if(type != 5)//don't remove healing crates
-		addtimer(CALLBACK(src, PROC_REF(declutter)), 2 MINUTES)//remove obsolete outscaled crates after a bit
+		addtimer(CALLBACK(src, PROC_REF(declutter)), 3 MINUTES)//remove obsolete outscaled crates after a bit
 
 	if(rand(0, 100000) == 1)
 		for(var/i = 0, i < 10, i++)
