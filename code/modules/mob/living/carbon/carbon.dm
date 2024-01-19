@@ -400,7 +400,7 @@
 
 	if(!QDELETED(cuff)) //if it didn't delete on drop, update planes
 		cuff.layer = initial(cuff.layer)
-		cuff.plane = initial(cuff.plane)
+		SET_PLANE_IMPLICIT(cuff, initial(cuff.plane))
 
 	changeNext_move(0)
 

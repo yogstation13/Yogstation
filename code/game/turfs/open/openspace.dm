@@ -1,13 +1,15 @@
 /turf/open/openspace
 	name = "open space"
 	desc = "Watch your step!"
-	icon_state = "grey"
+	// We don't actually draw openspace, but it needs to have color
+	// In its icon state so we can count it as a "non black" tile
+	icon_state = MAP_SWITCH("pure_white", "invisible")
 	baseturfs = /turf/open/openspace
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	CanAtmosPassVertical = ATMOS_PASS_YES
 	plane = TRANSPARENT_FLOOR_PLANE
-	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 
@@ -67,18 +69,6 @@
 	if(QDELETED(movable) || movable.loc != src)
 		return
 	zFall(movable)
-
-/turf/open/openspace/Destroy()
-	vis_contents.len = 0
-	return ..()
-
-/turf/open/openspace/multiz_turf_del(turf/T, dir)
-	if(dir != DOWN)
-		return
-
-/turf/open/openspace/multiz_turf_new(turf/T, dir)
-	if(dir != DOWN)
-		return
 
 /turf/open/openspace/zAirIn()
 	return TRUE
@@ -185,3 +175,10 @@
 	M.mineralAmt = 0
 	M.gets_drilled()
 	baseturfs = /turf/open/openspace/icemoon //This is to ensure that IF random turf generation produces a openturf, there won't be other turfs assigned other than openspace.
+
+/turf/open/openspace/icemoon/keep_below
+	drill_below = FALSE
+
+/turf/open/openspace/icemoon/ruins
+	protect_ruin = FALSE
+	drill_below = FALSE
