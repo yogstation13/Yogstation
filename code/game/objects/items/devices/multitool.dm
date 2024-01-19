@@ -84,7 +84,7 @@
 	var/turf/our_turf = get_turf(src)
 	detect_state = PROXIMITY_NONE
 
-	for(var/mob/camera/aiEye/AI_eye as anything in GLOB.aiEyes)
+	for(var/mob/camera/ai_eye/AI_eye as anything in GLOB.aiEyes)
 		if(!AI_eye.ai_detector_visible)
 			continue
 
