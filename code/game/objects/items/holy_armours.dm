@@ -245,8 +245,10 @@
 	desc = "Chains worn by those who wish to purify themselves through pain. They slow the wearer down initialy, but give divine haste the more hurt they are."
 	icon_state = "flagelantes_chains"
 	item_state = "flagelantes_chains"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 25)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	mutantrace_variation = MUTANTRACE_VARIATION //No leg squishing
+	resistance_flags = FIRE_PROOF | ACID_PROOF //No turning to ash/mush in the quest for pain
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/flagelantes_chains_hood
 	var/wrap = FALSE
@@ -270,6 +272,7 @@
 /obj/item/clothing/suit/hooded/flagelantes_chains/dropped(mob/M)
 	. = ..()
 	UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_MOVABLE_MOVED))
+	REMOVE_TRAIT(M, TRAIT_IGNOREDAMAGESLOWDOWN, type)
 	total_wounds = 0
 	slowdown = 0
 	if(flagelantes_effect)
@@ -311,7 +314,8 @@
 		REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)
 		total_wounds = 0
 		slowdown = 0
-		appearance_change(H, slowdown)
+		if(flagelantes_effect)
+			QDEL_NULL(flagelantes_effect)
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
 
@@ -434,7 +438,7 @@
 	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
 	icon_state = "flagelantes_chains_hood"
 	item_state = "flagelantes_chains_hood"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 25)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = HEAD
-	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
-
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR|HIDEMASK
+	resistance_flags = FIRE_PROOF | ACID_PROOF
