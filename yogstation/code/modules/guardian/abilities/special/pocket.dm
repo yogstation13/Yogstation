@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	var/manifested_at_x
 	var/manifested_at_y
 	var/manifested_at_z
-	var/mob/camera/aiEye/remote/pocket/eye
+	var/mob/camera/ai_eye/remote/pocket/eye
 	var/manifesting = FALSE
 	var/list/manifestations = list()
 	var/datum/action/cooldown/spell/pocket_dim/manifest_spell
@@ -404,7 +404,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	if (PD.manifesting)
 		to_chat(guardian, span_red(span_bold("Wait! Your pocket dimension is currently (de)manifesting!</span>")))
 		return
-	var/mob/camera/aiEye/remote/pocket/eyeobj = PD.eye
+	var/mob/camera/ai_eye/remote/pocket/eyeobj = PD.eye
 	if (eyeobj.eye_user)
 		for (var/V in eyeobj.visibleCameraChunks)
 			var/datum/camerachunk/C = V
@@ -421,7 +421,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		
 	return TRUE
 
-/datum/action/cooldown/spell/pocket_dim_move/proc/give_eye(mob/camera/aiEye/remote/pocket/eyeobj)
+/datum/action/cooldown/spell/pocket_dim_move/proc/give_eye(mob/camera/ai_eye/remote/pocket/eyeobj)
 	eyeobj.eye_user = guardian
 	eyeobj.name = "Guardian Eye ([guardian.name])"
 	guardian.remote_control = eyeobj
@@ -462,14 +462,14 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		animate(offset=f:offset-1, time=next)
 		next_animate = world.time + next
 
-/mob/camera/aiEye/remote/pocket
+/mob/camera/ai_eye/remote/pocket
 	name = "Inactive Guardian Eye"
 	move_on_shuttle = TRUE
 	use_static = FALSE
 	var/mob/living/simple_animal/hostile/guardian/guardian
 	var/datum/guardian_ability/major/special/pocket/guardian_ability
 
-/mob/camera/aiEye/remote/pocket/setLoc()
+/mob/camera/ai_eye/remote/pocket/setLoc(turf/destination, force_update = FALSE)
 	. = ..()
 	var/turf/T = get_turf(src)
 	if (T)

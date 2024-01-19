@@ -209,6 +209,9 @@
 	name = "Reebe"
 	icon_state = "yellow"
 	has_gravity = STANDARD_GRAVITY
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	noteleport = TRUE
 	hidden = TRUE
 	ambience_index = AMBIENCE_REEBE
@@ -216,4 +219,7 @@
 /area/centcom/reebe/city_of_cogs
 	name = "City of Cogs"
 	icon_state = "purple"
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	hidden = FALSE

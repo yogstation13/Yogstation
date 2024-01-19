@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define iscameramob(A) (istype(A, /mob/camera))
 
-#define isaicamera(A) (istype(A, /mob/camera/aiEye))
+#define isaicamera(A) (istype(A, /mob/camera/ai_eye))
 
 #define iseminence(A) (istype(A, /mob/camera/eminence))
 
