@@ -787,7 +787,7 @@
 /area/chapel/office)
 "Nz" = (
 /obj/structure/railing,
-/obj/structure/altar_of_gods,
+/obj/structure/table/altar_of_gods,
 /turf/open/floor/carpet/red,
 /area/chapel/main)
 "NN" = (
