@@ -223,10 +223,6 @@
 	var/id
 	var/height = 0  // higher numbers are considered physically higher
 
-/obj/structure/ladder/unbreakable/Initialize(mapload)
-	GLOB.ladders += src
-	return ..()
-
 /obj/structure/ladder/unbreakable/Destroy()
 	. = ..()
 	if (. != QDEL_HINT_LETMELIVE)
