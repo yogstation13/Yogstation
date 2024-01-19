@@ -154,13 +154,14 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/nullrod/tribal_knife = 3,
 		/obj/item/nullrod/vibro = 3,
 
+		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised = 2,
+		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn = 2,
 		/obj/item/pen/red/edagger = 2,
 		/obj/item/flamethrower/full/tank = 2,
 		/obj/item/melee/chainsaw = 2,
 		/obj/item/fireaxe/metal_h2_axe = 2,
 		/obj/item/nullrod/whip = 2,
 
-		/obj/item/gun/ballistic/shotgun/riot = 1,
 		/obj/item/gun/ballistic/revolver/detective = 1,
 		/obj/item/melee/baseball_bat/homerun = 1,
 		/obj/item/fireaxe = 1,
@@ -362,7 +363,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
 
 	if(type != 5)//don't remove healing crates
-		addtimer(CALLBACK(src, PROC_REF(declutter)), 3 MINUTES)//remove obsolete outscaled crates after a bit
+		addtimer(CALLBACK(src, PROC_REF(declutter)), 2 MINUTES)//remove obsolete outscaled crates after a bit
 
 	if(rand(0, 100000) == 1)
 		for(var/i = 0, i < 10, i++)
