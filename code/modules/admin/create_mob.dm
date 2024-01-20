@@ -49,6 +49,8 @@
 	human.dna.features["vox_facial_quills"] = pick(GLOB.vox_facial_quills_list)
 	human.dna.features["vox_body_markings"] = pick(GLOB.vox_body_markings_list)
 	human.dna.features["vox_tail_markings"] = pick(GLOB.vox_tail_markings_list)
+	human.dna.features["vox_tail"] = pick(GLOB.vox_tails_list)
+
 	human.update_body()
 	human.update_hair()
 	human.update_body_parts()

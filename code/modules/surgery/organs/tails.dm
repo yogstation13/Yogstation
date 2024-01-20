@@ -126,7 +126,7 @@
 	desc = "A severed vox tail. Somewhere, no doubt, a vox hater is very pleased with themselves."
 	icon_state = "severedlizardtail" //yogs - so the tail uses the correct sprites
 	color = "#116611"
-	tail_type = "Vox Default"
+	tail_type = "grnvox"
 	var/tail_markings = "None"
 
 /obj/item/organ/tail/vox/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)

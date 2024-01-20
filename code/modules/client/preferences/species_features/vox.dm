@@ -65,17 +65,17 @@
 /datum/preference/choiced/vox_body/create_default_value()
 	return pick(GLOB.vox_bodies_list)
 
-/datum/preference/choiced/vox_spines
+/datum/preference/choiced/vox_tail_markings
 	savefile_key = "feature_vox_tail_markings"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_mutant_bodypart = "vox_tail_markings"
 	main_feature_name = "Tail Markings"
 
-/datum/preference/choiced/vox_spines/init_possible_values()
+/datum/preference/choiced/vox_tail_markings/init_possible_values()
 	return assoc_to_keys(GLOB.vox_tail_markings_list)
 
-/datum/preference/choiced/vox_spines/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/vox_tail_markings/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["vox_tail_markings"] = value
 
 /datum/preference/choiced/vox_body_markings

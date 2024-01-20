@@ -101,8 +101,6 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_quills, GLOB.vox_quills_list)
 	if(!GLOB.vox_facial_quills_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_facial_quills, GLOB.vox_facial_quills_list)
-	if(!GLOB.vox_eyes_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_eyes, GLOB.vox_eyes_list)
 	if(!GLOB.vox_tails_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_tails, GLOB.vox_tails_list)
 	if(!GLOB.vox_body_markings_list.len)

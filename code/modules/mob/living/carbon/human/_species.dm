@@ -385,6 +385,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					var/obj/item/organ/tail/lizard/new_lizard_tail = neworgan
 					new_lizard_tail.tail_type = C.dna.features["tail_lizard"]
 					new_lizard_tail.spines = C.dna.features["spines"]
+				if(isvox(C))
+					var/obj/item/organ/tail/vox/new_vox_tail = neworgan
+					new_vox_tail.tail_type = C.dna.features["vox_tail"]
+					new_vox_tail.tail_markings = C.dna.features["vox_tail_markings"]
 
 	// if(tail && (!should_have_tail || replace_current))
 	// 	tail.Remove(C,1)
@@ -952,10 +956,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(!H.dna.features["vox_facial_quills"] || H.dna.features["vox_facial_quills"] == "None" || H.head && (H.head.flags_inv & HIDEFACE) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "vox_facial_quills"
 
-	if("vox_eyes" in mutant_bodyparts)
-		if(!H.dna.features["vox_eyes"] || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "vox_eyes"
-
 	if("vox_tail" in mutant_bodyparts)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
 			bodyparts_to_add -= "vox_tail"
@@ -1094,8 +1094,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
 				if("vox_facial_quills")
 					S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
-				if("vox_eyes")
-					S = GLOB.vox_eyes_list[H.dna.features["vox_eyes"]]
 				if("vox_tail")
 					S = GLOB.vox_tails_list[H.dna.features["vox_tail"]]
 				if("wagging_vox_tail")
@@ -2297,7 +2295,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		mutant_bodyparts -= "waggingspines"
 		mutant_bodyparts |= "tail_lizard"
 		mutant_bodyparts |= "spines"
-	if("vox_tail" in mutant_bodyparts)
+	if("wagging_vox_tail" in mutant_bodyparts)
 		mutant_bodyparts |= "vox_tail"
 		mutant_bodyparts |= "vox_tail_markings"
 		mutant_bodyparts -= "wagging_vox_tail"

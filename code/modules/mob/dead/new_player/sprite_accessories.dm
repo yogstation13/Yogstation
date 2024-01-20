@@ -3027,17 +3027,6 @@
 //	limbs_id = "aurvox"
 //	eye_type = "three_eyes"
 */
-/datum/sprite_accessory/vox_eyes
-	icon = 'icons/mob/species/vox/eyes.dmi'
-	color_src = EYECOLOR
-
-/datum/sprite_accessory/vox_eyes/two_eyes
-	name = "two_eyes"
-	icon_state = "two_eyes"
-
-///datum/sprite_accessory/vox_eyes/three_eyes
-//	name = "three_eyes"
-	//icon_state = "three_eyes"
 
 /datum/sprite_accessory/vox_tails
 	icon = 'icons/mob/species/vox/tails.dmi'

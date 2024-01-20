@@ -59,8 +59,6 @@
 	C.dna.species.limbs_id = vox_body_of_choice.limbs_id
 	C.dna.features["vox_tail"] = vox_body_of_choice.limbs_id // The tail has to match the bodytype
 
-//	C.dna.features["vox_eyes"] = vox_body_of_choice.eye_type // Auroras have three eyes, so we have to swap that
-
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
 	H.grant_language(/datum/language/voxpidgin)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), ITEM_SLOT_MASK)
