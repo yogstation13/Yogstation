@@ -192,6 +192,8 @@
 			hair_alpha = initial(hair_alpha)
 		if(HAIRCOLOR in S.species_traits)
 			hair_color = H.hair_color
+		if(FACEHAIRCOLOR in S.species_traits)
+			facial_hair_color = H.facial_hair_color
 		// lipstick
 		if(H.lip_style && (LIPS in S.species_traits))
 			lip_style = H.lip_style

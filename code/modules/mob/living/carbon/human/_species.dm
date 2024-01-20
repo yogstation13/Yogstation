@@ -750,6 +750,63 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
+		if("vox_quills" in H.dna.species.mutant_bodyparts)
+			S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
+			if(S)
+				//var/icon/hairs = new(S.icon)
+				//hairs.Blend(H.hair_color, ICON_ADD)
+				var/hair_state = S.icon_state
+				//var/hair_file = hairs
+				var/hair_file = S.icon
+				
+				hair_overlay.icon = hair_file
+				hair_overlay.icon_state = hair_state
+				if(!forced_colour)
+					if(hair_color)
+						if(hair_color == "mutcolor")
+							hair_overlay.color = H.dna.features["mcolor"]
+						else if(hair_color == "fixedmutcolor")
+							hair_overlay.color = fixed_mut_color
+						else
+							hair_overlay.color = hair_color
+					else
+						hair_overlay.color = H.hair_color
+				if(S.color_blend_mode == "add")
+					var/icon/hairs = new(hair_file)
+					hairs.Blend(hair_overlay.color, ICON_ADD)
+					hair_overlay.color = initial(hair_overlay.color)
+					hair_overlay.icon = hairs
+				hair_overlay.alpha = hair_alpha
+				standing+=hair_overlay
+		if("vox_facial_quills" in H.dna.species.mutant_bodyparts)
+			var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER)
+			S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
+			if(S)
+				//var/icon/hairs = new(S.icon)
+				//hairs.Blend(H.hair_color, ICON_ADD)
+				var/hair_state = S.icon_state
+				//var/hair_file = hairs
+				var/hair_file = S.icon
+				
+				facial_quills_overlay.icon = hair_file
+				facial_quills_overlay.icon_state = hair_state
+				if(!forced_colour)
+					if(hair_color)
+						if(hair_color == "mutcolor")
+							facial_quills_overlay.color = H.dna.features["mcolor"]
+						else if(hair_color == "fixedmutcolor")
+							facial_quills_overlay.color = fixed_mut_color
+						else
+							facial_quills_overlay.color = hair_color
+					else
+						facial_quills_overlay.color = H.facial_hair_color
+				if(S.color_blend_mode == "add")
+					var/icon/hairs = new(hair_file)
+					hairs.Blend(facial_quills_overlay.color, ICON_ADD)
+					facial_quills_overlay.color = initial(facial_quills_overlay.color)
+					facial_quills_overlay.icon = hairs
+				facial_quills_overlay.alpha = hair_alpha
+				standing+=facial_quills_overlay
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
 
@@ -1090,10 +1147,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
 				if("vox_body")
 					S = GLOB.vox_bodies_list[H.dna.features["vox_body"]]
-				if("vox_quills")
-					S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
-				if("vox_facial_quills")
-					S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
+	//			if("vox_quills")
+	//				S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
+			//	if("vox_facial_quills")
+		//			S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
 				if("vox_tail")
 					S = GLOB.vox_tails_list[H.dna.features["vox_tail"]]
 				if("wagging_vox_tail")
