@@ -1,0 +1,5 @@
+author: " kugamo, warface1234455"
+delete-after: true 
+changes: 
+  - imageadd: "Resprites the Bluespace Harvester."
+  - tweak: "Also also slightly changes the nether portals event, so that the portals spawn sequentially over at most 15 seconds."
