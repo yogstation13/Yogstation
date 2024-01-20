@@ -7,5 +7,6 @@
 		"cargo": "cargo_gax",
 		"ferry": "ferry_fancy",
 		"emergency": "emergency_box"
-	}
+	},
+	"cryo_spawn": true
 }

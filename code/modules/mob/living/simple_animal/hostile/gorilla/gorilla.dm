@@ -49,7 +49,7 @@
 		if(C.stat >= UNCONSCIOUS)
 			for(var/X in C.bodyparts)
 				var/obj/item/bodypart/BP = X
-				if(BP.body_part != HEAD && BP.body_part != CHEST)
+				if(!(BP.body_part & (HEAD|CHEST)))
 					if(BP.dismemberable)
 						parts += BP
 			return parts

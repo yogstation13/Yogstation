@@ -751,6 +751,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Moonshine"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
+/datum/reagent/consumable/ethanol/moonshine/on_mob_life(mob/living/carbon/M)
+	M.adjust_blurriness(1.5)
+	return ..()
+
 /datum/reagent/consumable/ethanol/b52
 	name = "B-52"
 	description = "Coffee, Irish Cream, and cognac. You will get bombed."
@@ -2745,3 +2749,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
 		playsound(M, "sparks", 50, 1)
 	return ..()
+
+/datum/reagent/consumable/korta_nectar
+	name = "Korta Nectar"
+	description = "A sweet, sugary syrup made from crushed sweet korta nuts."
+	color = "#d3a308"
+	nutriment_factor = 5
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	taste_description = "peppery sweetness"

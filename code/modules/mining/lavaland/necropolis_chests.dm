@@ -188,9 +188,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(active_owner && user == active_owner)
 		var/safety = alert(user, "Doing this will instantly kill you, reducing you to nothing but dust.", "Take off [src]?", "Abort", "Proceed")
 		if(safety != "Proceed")
-			return 
+			return
 	. = ..()
-	
+
 /obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
 	..()
 	if(active_owner)
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "hook"
 	desc = "A hook."
 	projectile_type = /obj/projectile/hook
-	caliber = "hook"
+	caliber = CALIBER_HOOK
 	icon_state = "hook"
 
 /obj/projectile/hook
@@ -609,15 +609,15 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L,/mob/living/simple_animal/hostile/yog_jungle)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH, PROC_REF(roll_loot), TRUE)
+				RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
 ///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
 /obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
-	UnregisterSignal(target, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_LIVING_DEATH)
 	if(mobs_grinded<max_grind)
 		mobs_grinded++
 	var/spot = get_turf(target)
@@ -679,7 +679,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "syndi_potionflask"
 	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
-	
+
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
@@ -1376,7 +1376,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(target == user)
 				continue
 			for(var/obj/effect/decal/cleanable/decal in range(0, target))
-				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/trail_holder))
+				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/blood/trail_holder))
 					valid_reaching = TRUE
 					target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 		if(!valid_reaching)
@@ -1858,7 +1858,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/band)
 	var/limit = 3
-	var/telerange = 20 
+	var/telerange = 20
 	var/next_tap = 0
 	var/next_band = 0
 	var/next_teleport = 0
@@ -1972,7 +1972,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 						aide.forceMove(O)
 						playsound(aide, 'sound/magic/teleport_app.ogg', 20, 1)
 		next_band = world.time + COOLDOWN_BAND
-				
+
 
 /obj/item/cane/cursed/afterattack(mob/living/target , mob/living/carbon/user, proximity)
 	.=..()

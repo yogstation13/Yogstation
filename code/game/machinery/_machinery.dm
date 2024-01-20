@@ -298,6 +298,11 @@ Class Procs:
 	if(is_species(L, /datum/species/lizard/ashwalker))
 		return FALSE // ashwalkers cant use modern machines
 
+	//YOGS EDIT BEGIN
+	if(is_species(L, /datum/species/pod/ivymen))
+		return FALSE // same as ivymen
+	//YOGS EDIT END
+
 	var/mob/living/carbon/H = user
 	if(istype(H) && H.has_dna())
 		if(!Adjacent(user) && !H.dna.check_mutation(TK))
@@ -667,3 +672,22 @@ Class Procs:
 	if(isliving(user))
 		last_used_time = world.time
 		last_user_mobtype = user.type
+
+/**
+ * Puts passed object in to user's hand
+ *
+ * Puts the passed object in to the users hand if they are adjacent.
+ * If the user is not adjacent then place the object on top of the machine.
+ *
+ * Vars:
+ * * object (obj) The object to be moved in to the users hand.
+ * * user (mob/living) The user to recive the object
+ */
+/obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
+	if(!issilicon(user) && in_range(src, user))
+		user.put_in_hands(object)
+	else
+		object.forceMove(drop_location())
+
+/obj/machinery/proc/set_occupant(atom/movable/new_occupant)
+	SHOULD_CALL_PARENT(TRUE)

@@ -178,7 +178,7 @@
 
 		var/list/data = null
 		if(rid == /datum/reagent/blood) // Hack to make blood in plants always O-
-			data = list("blood_type" = "O-")
+			data = list("blood_type" = get_blood_type("O-"))
 		if(rid == /datum/reagent/consumable/nutriment || rid == /datum/reagent/consumable/nutriment/vitamin)
 			// apple tastes of apple.
 			if(istype(T, /obj/item/reagent_containers/food/snacks/grown))
