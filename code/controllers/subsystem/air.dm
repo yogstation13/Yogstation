@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(air)
 
 
 	var/list/currentrun = list()
-	var/currentpart = SSAIR_FINALIZE_TURFS
+	var/currentpart = SSAIR_PIPENETS
 
 	var/map_loading = TRUE
 
@@ -163,35 +163,18 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 
-	if(currentpart == SSAIR_ACTIVETURFS)
+	if(currentpart == SSAIR_PIPENETS || !resumed)
 		timer = TICK_USAGE_REAL
-		process_turfs(resumed)
+		if(!resumed)
+			cached_cost = 0
+		process_pipenets(resumed)
+		cached_cost += TICK_USAGE_REAL - timer
 		if(state != SS_RUNNING)
 			return
-		resumed = 0
-		currentpart = SSAIR_EXCITEDGROUPS
-
-	if(currentpart == SSAIR_EXCITEDGROUPS)
-		process_excited_groups(resumed)
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
-		currentpart = SSAIR_EQUALIZE
-
-	if(currentpart == SSAIR_EQUALIZE)
-		process_turf_equalize(resumed)
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
-		currentpart = SSAIR_FINALIZE_TURFS
-
-	if(currentpart == SSAIR_FINALIZE_TURFS)
-		finish_turf_processing(resumed)
-		if(state != SS_RUNNING)
-			return
+		cost_pipenets = MC_AVERAGE(cost_pipenets, TICK_DELTA_TO_MS(cached_cost))
 		resumed = 0
 		currentpart = SSAIR_ATMOSMACHINERY
-	
+
 	if(currentpart == SSAIR_ATMOSMACHINERY)
 		timer = TICK_USAGE_REAL
 		if(!resumed)
@@ -202,17 +185,34 @@ SUBSYSTEM_DEF(air)
 			return
 		resumed = 0
 		cost_machinery = MC_AVERAGE(cost_machinery, TICK_DELTA_TO_MS(cached_cost))
-		currentpart = SSAIR_PIPENETS
+		currentpart = SSAIR_ACTIVETURFS
 
-	if(currentpart == SSAIR_PIPENETS || !resumed)
+	if(currentpart == SSAIR_ACTIVETURFS)
 		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_pipenets(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
+		process_turfs(resumed)
 		if(state != SS_RUNNING)
 			return
-		cost_pipenets = MC_AVERAGE(cost_pipenets, TICK_DELTA_TO_MS(cached_cost))
+		resumed = 0
+		currentpart = SSAIR_EQUALIZE
+
+	if(currentpart == SSAIR_EQUALIZE)
+		process_turf_equalize(resumed)
+		if(state != SS_RUNNING)
+			return
+		resumed = 0
+		currentpart = SSAIR_EXCITEDGROUPS
+
+	if(currentpart == SSAIR_EXCITEDGROUPS)
+		process_excited_groups(resumed)
+		if(state != SS_RUNNING)
+			return
+		resumed = 0
+		currentpart = SSAIR_FINALIZE_TURFS
+
+	if(currentpart == SSAIR_FINALIZE_TURFS)
+		finish_turf_processing(resumed)
+		if(state != SS_RUNNING)
+			return
 		resumed = 0
 		currentpart = SSAIR_HIGHPRESSURE
 
@@ -238,7 +238,7 @@ SUBSYSTEM_DEF(air)
 			return
 		cost_hotspots = MC_AVERAGE(cost_hotspots, TICK_DELTA_TO_MS(cached_cost))
 		resumed = 0
-		currentpart = heat_enabled ? SSAIR_TURF_CONDUCTION : SSAIR_ACTIVETURFS
+		currentpart = heat_enabled ? SSAIR_TURF_CONDUCTION : SSAIR_PIPENETS
 
 	// Heat -- slow and of questionable usefulness. Off by default for this reason. Pretty cool, though.
 	if(currentpart == SSAIR_TURF_CONDUCTION)
@@ -249,7 +249,7 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-		currentpart = SSAIR_ACTIVETURFS
+		currentpart = SSAIR_PIPENETS
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = FALSE)
 	if (!resumed)
