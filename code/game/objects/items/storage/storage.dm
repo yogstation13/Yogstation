@@ -81,4 +81,6 @@
 				to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 		
 		if(valid_id)
-			new chosen_id(src)
+			var/obj/item/item = new chosen_id(src)
+			item.forceMove(src)
+
