@@ -125,8 +125,11 @@
 	return 0
 
 /mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
+	//YOGS EDIT BEGIN
+	if(SEND_SIGNAL(src, COMSIG_MOB_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration))	
+		return TRUE 
+	//YOGS EDIT END
 	var/block_chance_modifier = round(damage / -3)
-
 	for(var/obj/item/I in held_items)
 		if(!istype(I, /obj/item/clothing))
 			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.armour_penetration)/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
@@ -198,8 +201,6 @@
 		if(I.force && I.damtype != STAMINA && affecting.status == BODYPART_ROBOTIC) // Bodpart_robotic sparks when hit, but only when it does real damage
 			if(I.force >= 5)
 				do_sparks(1, FALSE, loc)
-				if(prob(25))
-					new /obj/effect/decal/cleanable/oil(loc)
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 
@@ -501,6 +502,8 @@
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
 /mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+	if(!override)
+		siemens_coeff *= physiology.siemens_coeff
 	. = ..()
 	if(.)
 		electrocution_animation(40)
@@ -675,7 +678,7 @@
 	if(!istype(M))
 		return
 
-	if(try_extinguish(M))
+	if(try_extinguish(M)) //mostly redundant since it's called in species.dm also, but this allows alternative forms of help act calling to extinguish
 		return
 
 	if(src == M)

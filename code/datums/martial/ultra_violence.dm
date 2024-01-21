@@ -150,13 +150,13 @@
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
 	ammo_type = /obj/item/ammo_casing/ipcmartial
-	caliber = "357"
+	caliber = CALIBER_357MAG
 	max_ammo = 3
 
 /obj/item/ammo_casing/ipcmartial
 	name = ".357 sharpshooter bullet casing"
 	desc = "A .357 sharpshooter bullet casing."
-	caliber = "357"
+	caliber = CALIBER_357MAG
 	projectile_type = /obj/projectile/bullet/ipcmartial
 	click_cooldown_override = 0.1 //this gun shoots faster
 

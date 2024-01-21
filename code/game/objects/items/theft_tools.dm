@@ -134,9 +134,9 @@
 
 /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
 	name = "r&d server hard disk drive"
-	desc = "For some reason, people really seem to want to steal this. The source code on this drive is probably used for something awful!"
+	desc = "The hard drive containing sensitive data on alternate universes. Holding it up to your ear you can faintly hear the hum of millions of bees."
 	icon = 'icons/obj/nuke_tools.dmi'
-	icon_state = "project_bee"
+	icon_state = "project_bee" //hi bee!
 	max_capacity = 512
 
 // STEALING SUPERMATTER

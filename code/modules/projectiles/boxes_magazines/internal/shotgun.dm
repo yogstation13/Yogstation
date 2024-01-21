@@ -1,7 +1,7 @@
 /obj/item/ammo_box/magazine/internal/shot
 	name = "shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	caliber = "shotgun"
+	caliber = CALIBER_12GA
 	max_ammo = 4
 	multiload = 0
 
@@ -41,10 +41,10 @@
 	name = "breaching shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/breacher
 	max_ammo = 3
-	caliber = "breaching"
+	caliber = CALIBER_BREACH
 
 /obj/item/ammo_box/magazine/internal/shot/lever
 	name = "lever-action rifle internal magazine"
 	ammo_type = /obj/item/ammo_casing/m308
 	max_ammo = 8
-	caliber = "m308"
+	caliber = CALIBER_308
