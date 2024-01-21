@@ -148,6 +148,13 @@
 	tastes = list("pure electricity" = 2, "meat" = 1)
 	foodtype = RAW | MEAT | TOXIC
 
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/vox
+	icon_state = "lizardmeat"
+	desc = "Surprisingly, it doesn't actually taste like chicken."
+	filling_color = "#00FFFF"
+	tastes = list("skrek" = 1)
+	foodtype = MEAT | RAW | TOXIC
+
 ////////////////////////////////////// OTHER MEATS ////////////////////////////////////////////////////////
 
 

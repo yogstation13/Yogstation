@@ -195,3 +195,19 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/spam_musubi
 	category = CAT_MEAT
+
+/datum/crafting_recipe/food/fried_vox
+	name = "Kentucky Fried Vox"
+	reqs = list(
+		/obj/item/bodypart = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/fried_vox
+	category = CAT_MEAT
+
+/datum/crafting_recipe/food/fried_vox/check_requirements(mob/user, list/collected_requirements)
+	for(var/obj/item/bodypart/limb as anything in collected_requirements)
+		if(limb.species_id != SPECIES_VOX)
+			to_chat(user, span_warning("You can't pass off other meat as KFV, people can tell from the taste. Vox meat has an exquisite flavor found nowhere else in the universe."))
+			return FALSE
+		else
+			return TRUE

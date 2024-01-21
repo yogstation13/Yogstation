@@ -206,7 +206,7 @@
 		M.visible_message(span_notice("[M] vanishes..."))
 
 		for(var/obj/item/W in M)
-			if (ishuman(M))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(W == H.w_uniform)
 					continue //So all they're left with are shoes and uniform.

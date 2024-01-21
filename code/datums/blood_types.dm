@@ -60,6 +60,10 @@
 	color = LIGHT_COLOR_BLUEGREEN
 	compatible_types = list(/datum/blood_type/lizard)
 
+/datum/blood_type/vox
+	name = "V"
+	color = "#2299FC"
+	compatible_types = list(/datum/blood_type/vox)
 
 /datum/blood_type/universal/synthetic //Blood for preterni
 	name = "Synthetic"

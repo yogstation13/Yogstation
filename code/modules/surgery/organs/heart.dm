@@ -295,3 +295,5 @@
 	icon_state = "heartvox-off"
 	icon_base = "heartvox"
 	status = ORGAN_ROBOTIC
+	decay_factor = 0
+

@@ -539,6 +539,7 @@
 	desc = "Vox perceive the universe through these strange, circuitry-embedded eyes."
 	icon_state = "eyes-vox"
 	eye_icon_state = "vox_eyes"
+	decay_factor = 0
 	status = ORGAN_ROBOTIC
 
 /obj/item/organ/eyes/vox/emp_act()

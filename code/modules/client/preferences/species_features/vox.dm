@@ -1,4 +1,4 @@
-#define VOX_HAIR_COLOR "#FF9966"
+#define VOX_HAIR_COLOR "#614f19"
 
 /proc/generate_vox_side_shots(list/sprite_accessories, key, accessory_color = VOX_HAIR_COLOR)
 	var/list/values = list()

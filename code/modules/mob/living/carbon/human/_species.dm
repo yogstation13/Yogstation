@@ -135,6 +135,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/grab_sound
 	///yogs - audio of a species' scream
 	var/screamsound  //yogs - grabs scream from screamsound list or string
+	var/husk_id = "husk"
 	/// The visual effect of the attack.
 	var/attack_effect = ATTACK_EFFECT_PUNCH
 	///is a flying species, just a check for some things
@@ -325,6 +326,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/has_toes()
 	return FALSE
+
+/datum/species/proc/on_husk()
+	return
+
+/datum/species/proc/on_husk_cure()
+	return
 
 /// Sprite to show for photocopying mob butts
 /datum/species/proc/get_butt_sprite(mob/living/carbon/human/human)

@@ -609,3 +609,10 @@
 	icon_state = "slugcat"
 	item_state = "slugcat"
 
+/obj/item/toy/plush/voxplushie
+	name = "vox plushie"
+	desc = "A stitched-together vox, fresh from the skipjack. Press its belly to hear it skree!"
+	icon_state = "plushie_vox"
+	item_state = "plushie_vox"
+	squeak_override = list('sound/voice/vox/shriek1.ogg' = 1)
+

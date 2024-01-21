@@ -567,7 +567,32 @@
 	//safe_nitro_min = 16 //We breathe THIS!
 	//oxy_damage_type = TOX //Oxygen poisons us
 	//oxy_damage_multiplier = 6 // BADLY.
-	status = ORGAN_ROBOTIC
+	//status = ORGAN_ROBOTIC
+	//decay_factor = 0
+	breathing_class = BREATH_VOX
+	gas_max = list(
+		GAS_O2 = 0.05,
+		GAS_CO2 = 30, // Yes it's an arbitrary value who cares?
+		GAS_PLASMA = MOLES_GAS_VISIBLE,
+	)
+	gas_damage = list(
+		"default" = list(
+			min = MIN_TOXIC_GAS_DAMAGE,
+			max = MAX_TOXIC_GAS_DAMAGE,
+			damage_type = OXY,
+		),
+		GAS_PLASMA = list(
+			min = MIN_TOXIC_GAS_DAMAGE,
+			max = MAX_TOXIC_GAS_DAMAGE,
+			damage_type = TOX,
+		),
+		GAS_O2 = list(
+			min = MIN_TOXIC_GAS_DAMAGE,
+			max = MAX_TOXIC_GAS_DAMAGE,
+			damage_type = TOX,
+		)
+	)
+
 
 /obj/item/organ/lungs/vox/emp_act()
 	owner.emote("gasp")

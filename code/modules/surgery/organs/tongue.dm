@@ -29,7 +29,7 @@
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
 		/datum/language/darkspawn, //also yogs
-		/datum/language/voxpidgin,
+		/datum/language/vox,
 		/datum/language/encrypted,
 		/datum/language/felinid,
 		/datum/language/english,
@@ -336,14 +336,13 @@
 
 /obj/item/organ/tongue/vox
 	name = "vox tongue"
-	desc = "A half-robotic tongue, usually found inside a vox's.. Beak? You almost swear you can hear it shrieking."
-	say_mod = "shrieks"
+	desc = "You almost swear you can hear it shrieking."
 	icon_state = "tongue-vox"
 	taste_sensitivity = 50 // There's not much need for taste when you're a scavenger.
 	attack_verb = list("skree'd")
 	status = ORGAN_ROBOTIC
 
-///obj/item/organ/tongue/vox/handle_speech(datum/source, list/speech_args)
-//	..()
-//	if(prob(10))
-//		playsound(owner, 'sound/voice/shriek1.ogg', 25, 1, 1)
+/obj/item/organ/tongue/vox/handle_speech(datum/source, list/speech_args)
+	..()
+	if(prob(20))
+		playsound(owner, 'sound/voice/vox/shriek1.ogg', 25, 1, 1)

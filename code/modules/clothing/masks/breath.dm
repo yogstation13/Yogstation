@@ -14,6 +14,9 @@
 	visor_flags_cover = MASKCOVERSMOUTH
 	resistance_flags = NONE
 	mutantrace_variation = DIGITIGRADE_VARIATION
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/clothing/species/vox/mask.dmi',
+	)
 
 /obj/item/clothing/mask/breath/tactical
 	name = "tactical breath mask"
@@ -42,7 +45,8 @@
 
 /obj/item/clothing/mask/breath/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click [src] to adjust it.")
+	if(length(actions_types))
+		. += span_notice("Alt-click [src] to adjust it.")
 
 /obj/item/clothing/mask/breath/medical
 	desc = "A close-fitting sterile mask that can be connected to an air supply."
@@ -52,3 +56,26 @@
 	equip_delay_other = 10
 	mutantrace_variation = DIGITIGRADE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)
+
+/obj/item/clothing/mask/breath/vox
+	name = "vox breath mask"
+	desc = "A weirdly-shaped breath mask."
+	species_restricted = list("Vox")
+	flags_cover = NONE
+	visor_flags_cover = NONE
+
+/obj/item/clothing/mask/breath/vox/respirator
+	name = "vox respirator"
+	desc = "A weirdly-shaped breath mask, this one seems to be designed for a vox beak."
+	icon_state = "voxmask2"
+	item_state = "voxmask2"
+	species_restricted = list("Vox")
+	actions_types = list()
+	flags_cover = NONE
+	visor_flags_cover = NONE
+
+/obj/item/clothing/mask/breath/vox/respirator/attack_self(mob/user)
+	return
+
+/obj/item/clothing/mask/breath/vox/respirator/AltClick(mob/user)
+	return

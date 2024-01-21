@@ -141,3 +141,4 @@
 	icon_state = "liver-vox"
 	desc = "A mechanically-assisted vox liver."
 	status = ORGAN_ROBOTIC
+	decay_factor = 0

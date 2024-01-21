@@ -270,6 +270,21 @@
 	desc = "We barely understand the brains of terrestial animals. Who knows what we may find in the brain of such an advanced species?"
 	icon_state = "brain-x"
 
+/obj/item/organ/brain/vox
+	name = "cortical stack"
+	desc = "A peculiarly advanced bio-electronic device that seems to hold the memories and identity of a Vox."
+	icon_state = "brain-vox"
+	status = ORGAN_ROBOTIC
+	decay_factor = 0
+
+/obj/item/organ/brain/vox/emp_act(severity)
+	to_chat(owner, span_warning("Your head hurts."))
+	switch(severity)
+		if(EMP_HEAVY)
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(25, 50))
+		if(EMP_LIGHT)
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(0, 25))
+
 /obj/item/organ/brain/positron
 	name = "positronic brain"
 	slot = "brain"

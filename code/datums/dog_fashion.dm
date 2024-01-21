@@ -183,3 +183,7 @@
 /datum/dog_fashion/head/fishfear/legendary
 	name = "Grandmaster Fisherman REAL_NAME"
 	desc = "Fish truly do fear NAME, and you should too."
+
+/datum/dog_fashion/head/fried_vox_empty
+	name = "Colonel REAL_NAME"
+	desc = "Keep away from live vox."

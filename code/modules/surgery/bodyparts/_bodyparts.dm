@@ -830,7 +830,7 @@
 			var/mob/living/carbon/human/S = C
 			if(isszlachta(S))
 				return
-		species_id = "husk" //overrides species_id
+		species_id = C.dna?.species.husk_id || "husk" //overrides species_id
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
 		should_draw_greyscale = FALSE
@@ -863,7 +863,7 @@
 			should_draw_gender = (FEMALE in S.possible_genders)
 		use_damage_color = S.use_damage_color
 
-		if((MUTCOLORS in S.species_traits) && !has_icon_variants || (DYNCOLORS in S.species_traits))
+		if((MUTCOLORS in S.species_traits) && !S.has_icon_variants || (DYNCOLORS in S.species_traits))
 			if(S.fixed_mut_color)
 				species_color = S.fixed_mut_color
 			else

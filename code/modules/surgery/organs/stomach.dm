@@ -245,6 +245,7 @@
 	icon_state = "stomach-vox"
 	desc = "A vox stomach. If the mere concept wasn't disgusting enough, it appears to have metal components grown into it."
 	status = ORGAN_ROBOTIC
+	decay_factor = 0
 
 /obj/item/organ/stomach/vox/emp_act()
 	owner.adjust_disgust(10)

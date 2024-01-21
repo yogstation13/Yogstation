@@ -94,6 +94,12 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	icon_state = "sheet-xeno"
 	item_state = "sheet-xeno"
 
+/obj/item/stack/sheet/animalhide/vox
+	name = "vox skin"
+	desc = "SKREE!"
+	singular_name = "vox skin piece"
+	icon_state = "sheet-vox"
+
 GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	new/datum/stack_recipe("alien helmet", /obj/item/clothing/head/xenos, 1), \
 	new/datum/stack_recipe("alien suit", /obj/item/clothing/suit/xenos, 2), \
