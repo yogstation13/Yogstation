@@ -376,11 +376,7 @@
 			final_slowdown += -0.4
 		if(0 to 0.9)
 			final_slowdown += -0.6
-		if(-INFINITY to -0.1) //So crit people are not rolling around at the speed of sound
-			final_slowdown = 1
 
-	
-	
 	slowdown = final_slowdown //set slowdown
 
 	if(slowdown == -1.2) //Alert the user and those around that they've achieved MAXIMUM OVERDRIVE
