@@ -233,3 +233,212 @@
 	icon_state = "darktemplar-chaplain1"
 	item_state = "darktemplar-chaplain1"
 	armor = list(MELEE = 30, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 60, RAD = 40, FIRE = 90, ACID = 80)
+
+/obj/item/storage/box/holy/flagelanteschains
+	name = "Flagenantes Kit"
+
+/obj/item/storage/box/holy/flagelanteschains/PopulateContents()
+	new /obj/item/clothing/suit/hooded/flagelantes_chains(src)
+
+/obj/item/clothing/suit/hooded/flagelantes_chains
+	name = "flagelantes chains"
+	desc = "Chains worn by those who wish to purify themselves through pain. They slow the wearer down initialy, but give divine haste the more hurt they are."
+	icon_state = "flagelantes_chains"
+	item_state = "flagelantes_chains"
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	mutantrace_variation = MUTANTRACE_VARIATION //No leg squishing
+	resistance_flags = FIRE_PROOF | ACID_PROOF //No turning to ash/mush in the quest for pain
+	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
+	hoodtype = /obj/item/clothing/head/hooded/flagelantes_chains_hood
+	var/wrap = FALSE
+	var/obj/effect/abstract/particle_holder/flagelantes_effect
+	var/total_wounds
+	var/speed_message = FALSE
+	var/footstep = 1
+	var/footstep_max = 2
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/equipped(mob/M, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M)) //Signals for sensing damage, healing, wounds, and movement
+		RegisterSignal(M, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(handle_damage))
+		RegisterSignal(M, COMSIG_MOB_APPLY_HEALING, PROC_REF(on_heal))
+		RegisterSignal(M, COMSIG_CARBON_GAIN_WOUND, PROC_REF(handle_wound_add))
+		RegisterSignal(M, COMSIG_CARBON_LOSE_WOUND, PROC_REF(handle_wound_remove))
+		RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(on_mob_move))
+	else
+		UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_CARBON_LOSE_WOUND, COMSIG_MOVABLE_MOVED))
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_MOVABLE_MOVED))
+	REMOVE_TRAIT(M, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	total_wounds = 0
+	slowdown = 0
+	if(flagelantes_effect)
+		QDEL_NULL(flagelantes_effect)
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/ToggleHood() //So people can't just quickly wear it whenever they want to
+	var/mob/living/carbon/human/H = src.loc
+	if(wrap) //Make sure they're not already trying to wear it
+		to_chat(H, span_warning("You're already wrapping the chains around yourself!."))
+		return
+	else if(!suittoggled)
+		if(H.wear_suit != src)
+			to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
+			return
+		if(H.head)
+			to_chat(H, span_warning("You're already wearing something on your head!"))
+			return
+		to_chat(H, span_notice("You start wrapping the chains around yourself."))
+		H.visible_message(span_warning("[H] starts wrapping [src] around themselves!"))
+		playsound(get_turf(src), 'sound/spookoween/chain_rattling.ogg', 10, TRUE, -1)
+		wrap = TRUE
+		if(!do_after(H, 10 SECONDS, H))
+			wrap = FALSE
+			H.balloon_alert(H, "You were interupted!")
+			return //Stop it from completing if they move
+		if(ishuman(src.loc))
+			if(H.equip_to_slot_if_possible(hood,ITEM_SLOT_HEAD,0,0,1))
+				suittoggled = TRUE
+				src.icon_state = "[initial(icon_state)]_t"
+				H.update_inv_wear_suit()
+				for(var/X in actions)
+					var/datum/action/A = X
+					A.build_all_button_icons()
+				ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)// Ignore damage slowdown
+				change_slowdown(H, slowdown) //Change clothing slowdown based on damage
+		wrap = FALSE			
+	else
+		RemoveHood()
+		REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+		total_wounds = 0
+		slowdown = 0
+		if(flagelantes_effect)
+			QDEL_NULL(flagelantes_effect)
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
+
+	SIGNAL_HANDLER
+
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(C, slowdown) //Change speed when damaged
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_heal(var/mob/living/carbon/C, amount, damtype)
+
+	SIGNAL_HANDLER
+
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(C, slowdown) //Change speed when healed
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_wound_add(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
+
+	SIGNAL_HANDLER
+
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(C, slowdown, 1) //Change speed when gaining a wound
+
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_wound_remove(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
+
+	SIGNAL_HANDLER
+
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(C, slowdown, -1) //Change speed when losing a wound
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(mob/living/carbon/human/H, starting_slowdown, wound)
+	var/health_percent = H.health / H.maxHealth
+	var/final_slowdown = 0
+
+	total_wounds += wound
+
+	if(total_wounds < 0)
+		total_wounds = 0
+
+	switch(total_wounds) //Change slowdown based on wounds
+		if(1)
+			final_slowdown += -0.2
+		if(2)
+			final_slowdown += -0.4
+		if(3 to INFINITY) //Max of three wounds for slowdown calculation
+			final_slowdown += -0.6
+
+	switch(health_percent) //Change slowdown based on health
+		if(0.90 to INFINITY)
+			final_slowdown += 1
+		if(0.70 to 0.89)
+			final_slowdown += 0.5
+		if(0.60 to 0.79)
+			final_slowdown += 0
+		if(0.30 to 0.59)
+			final_slowdown += -0.2
+		if(0.10 to 0.29)
+			final_slowdown += -0.4
+		if(0 to 0.9)
+			final_slowdown += -0.6
+		if(-INFINITY to -0.1) //So crit people are not rolling around at the speed of sound
+			final_slowdown = 1
+
+	
+	
+	slowdown = final_slowdown //set slowdown
+
+	if(slowdown == -1.2) //Alert the user and those around that they've achieved MAXIMUM OVERDRIVE
+		if(!speed_message)
+			to_chat(H, span_notice("You feel yourself grow closer to the divine as your sins seep out of the chains!."))
+			H.visible_message(span_warning("[H] starts sweating profusely!"))
+			speed_message = TRUE
+	else
+		speed_message = FALSE
+
+	appearance_change(H, slowdown) //Add particles depending on slowdown
+
+	change_footstep(slowdown) //Change occurance of chain noise
+
+	if(slowdown > starting_slowdown) //Show bubble alert based on starting and new slowdown
+		H.balloon_alert(H, "You slow down!")
+	else if(slowdown < starting_slowdown)
+		H.balloon_alert(H, "You speed up!")
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/appearance_change(mob/living/carbon/human/H, slowdown)
+	switch(slowdown)
+		if(-1.1 to 1)
+			if(flagelantes_effect)
+				QDEL_NULL(flagelantes_effect) //Remove particle effect
+		if(-INFINITY to -1.2)
+			if(!flagelantes_effect)
+				flagelantes_effect = new(H, /particles/droplets)
+				flagelantes_effect.color = "#a41c1c"
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_footstep(slowdown) //So the chain sounds isn't spammed at higher speeds
+	switch(slowdown)
+		if(0 to 1)
+			footstep_max = 2
+		if(-0.3 to -0.1)
+			footstep_max = 3
+		if(-1 to -0.4)
+			footstep_max = 4
+		if(-INFINITY to -1.1)
+			footstep_max = 5
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_mob_move()
+	var/mob/living/carbon/human/H = loc
+	if(!istype(H) || H.wear_suit != src)
+		return
+	if(footstep > footstep_max)
+		playsound(src, 'sound/weapons/chainhit.ogg', 3, 1)
+		footstep = 0
+	else
+		footstep++
+
+/obj/item/clothing/head/hooded/flagelantes_chains_hood
+	name = "flagelantes hood"
+	desc = "A cowl worn by flagelantes"
+	icon = 'icons/obj/clothing/hats/hats.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
+	icon_state = "flagelantes_chains_hood"
+	item_state = "flagelantes_chains_hood"
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	body_parts_covered = HEAD
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR|HIDEMASK
+	resistance_flags = FIRE_PROOF | ACID_PROOF
