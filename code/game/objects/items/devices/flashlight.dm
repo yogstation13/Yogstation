@@ -203,7 +203,7 @@
 
 /obj/item/flashlight/pen/paramedic/advanced
 	name = "advanced penlight"
-	desc = "A stronger version of the UV penlight that paramedics and doctors recieve, it is capable of cauterizing bleeding as well as sterilizing burns."
+	desc = "A stronger version of the UV penlight that paramedics and doctors receive, it is capable of cauterizing bleeding as well as sterilizing burns."
 	icon_state = "penlight_cmo"
 	light_range = 4
 	uv_power = 2
