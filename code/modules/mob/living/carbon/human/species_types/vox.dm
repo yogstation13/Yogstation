@@ -3,7 +3,7 @@
 	id = SPECIES_VOX
 	say_mod = "shrieks"
 	is_dimorphic = FALSE
-	species_traits = list(NO_UNDERWEAR, NOTRANSSTING, EYECOLOR, HAS_TAIL, HAIRCOLOR, FACEHAIRCOLOR) // Robust, but cannot be cloned easily.
+	species_traits = list(NO_UNDERWEAR, NOTRANSSTING, EYECOLOR, HAS_TAIL, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
 	inherent_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings",  "vox_facial_quills", "vox_tail", "vox_body", "vox_tail_markings")
 	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "grnvox", "vox_tail_markings" = "None", "vox_body" = "Green")
@@ -31,6 +31,7 @@
 	stunmod = 1.1 // Take a bit longer to get up than other species.
 	//breathid = "n2"
 	//husk_id = "voxhusk"
+	has_icon_variants = TRUE
 	damage_overlay_type = "vox"
 	exotic_bloodtype = "V"
 

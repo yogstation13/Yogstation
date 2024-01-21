@@ -190,6 +190,8 @@
 		. += list(SKIN_COLOR = list("select a new skintone", GLOB.skin_tones))
 	if((MUTCOLORS in S.species_traits) && !(NOCOLORCHANGE in S.species_traits))
 		. += list(MUTANT_COLOR)
+	if((MUTCOLORS_SECONDARY in S.species_traits))
+		. += list("Secondary mutant color")
 	. += list(NAME)
 
 /obj/structure/mirror/magic/preapply_choices(selectiontype, mob/living/carbon/human/H)
@@ -224,6 +226,16 @@
 				H.dna.update_uf_block(DNA_MUTANT_COLOR_BLOCK)
 			else
 				to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
+			H.update_body()
+			H.update_hair()
+			H.update_body_parts()
+			H.update_mutations_overlay() // no hulk lizard
+		if("Secondary mutant color")
+			var/new_mutantcolor = input(H, "Choose your secondary mutant color:", "Race change",H.dna.features["mcolor_secondary"]) as color|null
+			if(!new_mutantcolor)
+				return TRUE
+			H.dna.features["mcolor_secondary"] = sanitize_hexcolor(new_mutantcolor)
+			H.dna.update_uf_block(DNA_MUTANT_COLOR_SECONDARY)
 			H.update_body()
 			H.update_hair()
 			H.update_body_parts()

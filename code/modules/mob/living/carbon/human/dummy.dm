@@ -80,6 +80,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.features["frills"] = "None"
 	target.dna.features["horns"] = "None"
 	target.dna.features["mcolor"] = COLOR_VIBRANT_LIME
+	target.dna.features["mcolor_secondary"] = COLOR_RED
 	target.dna.features["moth_antennae"] = "Plain"
 	target.dna.features["moth_markings"] = "None"
 	target.dna.features["moth_wings"] = "Plain"

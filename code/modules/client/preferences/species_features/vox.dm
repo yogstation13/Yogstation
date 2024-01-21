@@ -70,7 +70,6 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_mutant_bodypart = "vox_tail_markings"
-	main_feature_name = "Tail Markings"
 
 /datum/preference/choiced/vox_tail_markings/init_possible_values()
 	return assoc_to_keys(GLOB.vox_tail_markings_list)
@@ -83,7 +82,6 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_mutant_bodypart = "vox_body_markings"
-	main_feature_name = "Body markings"
 
 /datum/preference/choiced/vox_body_markings/init_possible_values()
 	return assoc_to_keys(GLOB.vox_body_markings_list)
@@ -96,8 +94,8 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
 	should_generate_icons = TRUE
-	main_feature_name = "Quillstyle"
 	relevant_mutant_bodypart =  "vox_quills"
+	main_feature_name = "Quillstyle"
 
 /datum/preference/choiced/vox_hair/init_possible_values()
 	return generate_vox_side_shots(GLOB.vox_quills_list, "vox_hair")
@@ -109,12 +107,38 @@
 	savefile_key = "feature_vox_facial_hair"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
-	main_feature_name = "Facial Quillstyle"
 	should_generate_icons = TRUE
 	relevant_mutant_bodypart = "vox_facial_quills"
+	main_feature_name = "Facial Quillstyle"
+
 
 /datum/preference/choiced/vox_facial_hair/init_possible_values()
 	return generate_vox_side_shots(GLOB.vox_facial_quills_list, "vox_facial_hair")
 
 /datum/preference/choiced/vox_facial_hair/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["vox_facial_quills"] = value
+
+/datum/preference/color/hair_color/quill_color
+	savefile_key = "feature_quill_color"
+	relevant_species_traits = null
+	relevant_mutant_bodypart = "vox_quills"
+
+/datum/preference/color/facial_hair_color/facial_quill_color
+	savefile_key = "feature_facial_quill_color"
+	relevant_species_traits = null
+	relevant_mutant_bodypart = "vox_facial_quills"
+
+/datum/preference/color/mutant_color/vox_body_markings_color
+	savefile_key = "feature_body_markings_color"
+	relevant_mutant_bodypart = "vox_body_markings"
+	relevant_species_traits = null
+	blacklisted_species = null
+
+/datum/preference/color/mutant_color/vox_body_markings_color/is_valid(value)
+	return findtext(value, GLOB.is_color)
+
+/datum/preference/color/mutant_color_secondary/vox_tail_markings_color
+	savefile_key = "feature_tail_markings_color"
+	relevant_mutant_bodypart = "vox_tail_markings"
+	relevant_species_traits = null
+	blacklisted_species = null

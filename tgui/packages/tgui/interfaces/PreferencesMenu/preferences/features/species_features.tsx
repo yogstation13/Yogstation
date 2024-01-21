@@ -50,6 +50,31 @@ export const feature_mcolor: Feature<string> = {
   component: FeatureColorInput,
 };
 
+export const feature_mcolor_secondary: Feature<string> = {
+  name: "Secondary mutant color",
+  component: FeatureColorInput,
+};
+
+export const feature_quill_color: Feature<string> = {
+  name: "Quill Color",
+  component: FeatureColorInput,
+};
+
+export const feature_facial_quill_color: Feature<string> = {
+  name: "Facial Quill Color",
+  component: FeatureColorInput,
+};
+
+export const feature_body_markings_color: Feature<string> = {
+  name: "Body Markings Color",
+  component: FeatureColorInput,
+};
+
+export const feature_tail_markings_color: Feature<string> = {
+  name: "Tail Markings Color",
+  component: FeatureColorInput,
+};
+
 export const feature_ipc_screen: FeatureChoiced = {
   name: "Screen",
   component: FeatureDropdownInput,
@@ -141,21 +166,21 @@ export const feature_vox_quills: FeatureChoiced = {
 };
 
 export const feature_vox_facial_quills: FeatureChoiced = {
-  name: 'Facial hair',
+  name: 'Facial Quillstyle',
   component: FeatureDropdownInput,
 };
 
 export const feature_vox_tail_markings: FeatureChoiced = {
-  name: 'Spines',
+  name: 'Tail Markings',
   component: FeatureDropdownInput,
 };
 
 export const feature_vox_body_markings: FeatureChoiced = {
-  name: 'Body markings',
+  name: 'Body Markings',
   component: FeatureDropdownInput,
 };
 
 export const feature_vox_body: FeatureChoiced = {
-  name: 'Body',
+  name: 'Skin Tone',
   component: FeatureDropdownInput,
 };

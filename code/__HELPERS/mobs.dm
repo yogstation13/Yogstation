@@ -111,6 +111,7 @@
 	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
 	return(list(
 		"mcolor" = "#[pick("7F","FF")][pick("7F","FF")][pick("7F","FF")]",
+		"mcolor_secondary" = "#[pick("7F","FF")][pick("7F","FF")][pick("7F","FF")]",
 		"gradientstyle" = random_hair_gradient_style(10),
 		"gradientcolor" = "#[pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")]",
 		"tail_lizard" = pick(GLOB.tails_list_lizard),

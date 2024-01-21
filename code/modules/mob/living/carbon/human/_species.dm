@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
-
+	var/has_icon_variants = FALSE
 	var/forced_skintone
 
 	/// What genders can this race be?
@@ -585,44 +585,71 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(M.flags_inv & HIDEFACIALHAIR)
 			facialhair_hidden = TRUE
 
-	if(H.facial_hair_style && (FACEHAIR in species_traits) && (!facialhair_hidden || dynamic_fhair_suffix))
-		S = GLOB.facial_hair_styles_list[H.facial_hair_style]
-		if(S)
-
-			//List of all valid dynamic_fhair_suffixes
-			var/static/list/fextensions
-			if(!fextensions)
-				var/icon/fhair_extensions = icon('icons/mob/facialhair_extensions.dmi')
-				fextensions = list()
-				for(var/s in fhair_extensions.IconStates(1))
-					fextensions[s] = TRUE
-				qdel(fhair_extensions)
-
-			//Is hair+dynamic_fhair_suffix a valid iconstate?
-			var/fhair_state = S.icon_state
-			var/fhair_file = S.icon
-			if(fextensions[fhair_state+dynamic_fhair_suffix])
-				fhair_state += dynamic_fhair_suffix
-				fhair_file = 'icons/mob/facialhair_extensions.dmi'
-
-			var/mutable_appearance/facial_overlay = mutable_appearance(fhair_file, fhair_state, -HAIR_LAYER)
-
-			if(!forced_colour)
-				if(hair_color)
-					if(hair_color == "mutcolor")
-						facial_overlay.color =  H.dna.features["mcolor"]
-					else if(hair_color == "fixedmutcolor")
-						facial_overlay.color = fixed_mut_color
+	if(!facialhair_hidden)
+		if("vox_facial_quills" in H.dna.species.mutant_bodyparts)
+			var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER)
+			S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
+			if(S)
+				var/hair_state = S.icon_state
+				var/hair_file = S.icon
+				
+				facial_quills_overlay.icon = hair_file
+				facial_quills_overlay.icon_state = hair_state
+				if(!forced_colour)
+					if(hair_color)
+						if(hair_color == "mutcolor")
+							facial_quills_overlay.color = H.dna.features["mcolor"]
+						else if(hair_color == "fixedmutcolor")
+							facial_quills_overlay.color = fixed_mut_color
+						else
+							facial_quills_overlay.color = hair_color
 					else
-						facial_overlay.color = hair_color
+						facial_quills_overlay.color = H.facial_hair_color
+				if(S.color_blend_mode == "add")
+					var/icon/hairs = new(hair_file)
+					hairs.Blend(facial_quills_overlay.color, ICON_ADD)
+					facial_quills_overlay.color = initial(facial_quills_overlay.color)
+					facial_quills_overlay.icon = hairs
+				facial_quills_overlay.alpha = hair_alpha
+				standing+=facial_quills_overlay
+		if(H.facial_hair_style && (FACEHAIR in species_traits) && dynamic_fhair_suffix)
+			S = GLOB.facial_hair_styles_list[H.facial_hair_style]
+			if(S)
+
+				//List of all valid dynamic_fhair_suffixes
+				var/static/list/fextensions
+				if(!fextensions)
+					var/icon/fhair_extensions = icon('icons/mob/facialhair_extensions.dmi')
+					fextensions = list()
+					for(var/s in fhair_extensions.IconStates(1))
+						fextensions[s] = TRUE
+					qdel(fhair_extensions)
+
+				//Is hair+dynamic_fhair_suffix a valid iconstate?
+				var/fhair_state = S.icon_state
+				var/fhair_file = S.icon
+				if(fextensions[fhair_state+dynamic_fhair_suffix])
+					fhair_state += dynamic_fhair_suffix
+					fhair_file = 'icons/mob/facialhair_extensions.dmi'
+
+				var/mutable_appearance/facial_overlay = mutable_appearance(fhair_file, fhair_state, -HAIR_LAYER)
+
+				if(!forced_colour)
+					if(hair_color)
+						if(hair_color == "mutcolor")
+							facial_overlay.color =  H.dna.features["mcolor"]
+						else if(hair_color == "fixedmutcolor")
+							facial_overlay.color = fixed_mut_color
+						else
+							facial_overlay.color = hair_color
+					else
+						facial_overlay.color = H.facial_hair_color
 				else
-					facial_overlay.color = H.facial_hair_color
-			else
-				facial_overlay.color = forced_colour
+					facial_overlay.color = forced_colour
 
-			facial_overlay.alpha = hair_alpha
+				facial_overlay.alpha = hair_alpha
 
-			standing += facial_overlay
+				standing += facial_overlay
 
 	if(H.head)
 		var/obj/item/I = H.head
@@ -778,35 +805,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					hair_overlay.icon = hairs
 				hair_overlay.alpha = hair_alpha
 				standing+=hair_overlay
-		if("vox_facial_quills" in H.dna.species.mutant_bodyparts)
-			var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER)
-			S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
-			if(S)
-				//var/icon/hairs = new(S.icon)
-				//hairs.Blend(H.hair_color, ICON_ADD)
-				var/hair_state = S.icon_state
-				//var/hair_file = hairs
-				var/hair_file = S.icon
-				
-				facial_quills_overlay.icon = hair_file
-				facial_quills_overlay.icon_state = hair_state
-				if(!forced_colour)
-					if(hair_color)
-						if(hair_color == "mutcolor")
-							facial_quills_overlay.color = H.dna.features["mcolor"]
-						else if(hair_color == "fixedmutcolor")
-							facial_quills_overlay.color = fixed_mut_color
-						else
-							facial_quills_overlay.color = hair_color
-					else
-						facial_quills_overlay.color = H.facial_hair_color
-				if(S.color_blend_mode == "add")
-					var/icon/hairs = new(hair_file)
-					hairs.Blend(facial_quills_overlay.color, ICON_ADD)
-					facial_quills_overlay.color = initial(facial_quills_overlay.color)
-					facial_quills_overlay.icon = hairs
-				facial_quills_overlay.alpha = hair_alpha
-				standing+=facial_quills_overlay
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
 
@@ -994,7 +992,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if("preternis_core" in mutant_bodyparts)
 		if(!get_location_accessible(H, BODY_ZONE_CHEST))
 			bodyparts_to_add -= "preternis_core"
-
 	if("pod_hair" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "pod_hair"
@@ -1147,10 +1144,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
 				if("vox_body")
 					S = GLOB.vox_bodies_list[H.dna.features["vox_body"]]
-	//			if("vox_quills")
-	//				S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
-			//	if("vox_facial_quills")
-		//			S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
 				if("vox_tail")
 					S = GLOB.vox_tails_list[H.dna.features["vox_tail"]]
 				if("wagging_vox_tail")
@@ -1190,6 +1183,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 								accessory_overlay.color = fixed_mut_color
 							else																		//Then snowflake color
 								accessory_overlay.color = H.dna.features["mcolor"]
+						if(MUTCOLORS_SECONDARY)
+							if(fixed_mut_color)
+								accessory_overlay.color = fixed_mut_color
+							else
+								accessory_overlay.color = H.dna.features["mcolor_secondary"]
 						if(HAIR)
 							if(hair_color == "mutcolor")
 								accessory_overlay.color = H.dna.features["mcolor"]
@@ -1243,6 +1241,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					emissive_accessory_overlay.color = forced_colour
 				standing += emissive_accessory_overlay
 
+			if(length(S.body_slots) || length(S.external_slots))
+				standing += return_accessory_layer(layer, S, H, accessory_overlay.color)
 			if(S.hasinner)
 				var/mutable_appearance/inner_accessory_overlay = mutable_appearance(S.icon, layer = -layer)
 				if(S.gender_specific)
@@ -1262,6 +1262,43 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	H.apply_overlay(BODY_ADJ_LAYER)
 	H.apply_overlay(BODY_FRONT_LAYER)
 
+/datum/species/proc/return_accessory_layer(layer, datum/sprite_accessory/added_accessory, mob/living/carbon/human/host, passed_color)
+	var/list/return_list = list()
+	var/layertext = mutant_bodyparts_layertext(layer)
+	var/g = (host.gender == FEMALE) ? "f" : "m"
+	for(var/list_item in added_accessory.external_slots)
+		var/can_hidden_render = return_external_render_state(list_item, host)
+		if(!can_hidden_render)
+			continue // we failed the render check just dont bother
+		if(!host.getorganslot(list_item))
+			continue
+		var/mutable_appearance/new_overlay = mutable_appearance(added_accessory.icon, layer = -layer)
+		if(added_accessory.gender_specific)
+			new_overlay.icon_state = "[g]_[list_item]_[added_accessory.icon_state]_[layertext]"
+		else
+			new_overlay.icon_state = "m_[list_item]_[added_accessory.icon_state]_[layertext]"
+		new_overlay.color = passed_color
+		return_list += new_overlay
+
+	for(var/list_item in added_accessory.body_slots)
+		if(!host.get_bodypart(list_item))
+			continue
+		var/mutable_appearance/new_overlay = mutable_appearance(added_accessory.icon, layer = -layer)
+		if(added_accessory.gender_specific)
+			new_overlay.icon_state = "[g]_[list_item]_[added_accessory.icon_state]_[layertext]"
+		else
+			new_overlay.icon_state = "m_[list_item]_[added_accessory.icon_state]_[layertext]"
+		new_overlay.color = passed_color
+		return_list += new_overlay
+	
+	return return_list
+
+/proc/return_external_render_state(external_slot, mob/living/carbon/human/human)
+	switch(external_slot)
+		if(ORGAN_SLOT_TAIL)
+			if(human.wear_suit && (human.wear_suit.flags_inv & HIDEJUMPSUIT))
+				return FALSE
+			return TRUE
 
 //This exists so sprite accessories can still be per-layer without having to include that layer's
 //number in their sprite name, which causes issues when those numbers change.

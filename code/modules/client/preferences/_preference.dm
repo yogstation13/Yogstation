@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	/// If the selected species has this in its /datum/species/mutant_bodyparts,
 	/// will show the feature as selectable.
 	var/relevant_mutant_bodypart = null
-
+	var/list/blacklisted_species = list()
 	/// If the selected species has this in its /datum/species/species_traits,
 	/// will show the feature as selectable.
 	var/list/relevant_species_traits
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 		var/species_type = preferences.read_preference(/datum/preference/choiced/species)
 
 		var/datum/species/species = new species_type
-		if (!(savefile_key in species.get_features()))
+		if (!(savefile_key in species.get_features()) || (species_type in blacklisted_species))
 			return FALSE
 
 	if (!should_show_on_page(preferences.current_window))

@@ -863,7 +863,7 @@
 			should_draw_gender = (FEMALE in S.possible_genders)
 		use_damage_color = S.use_damage_color
 
-		if((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits))
+		if((MUTCOLORS in S.species_traits) && !has_icon_variants || (DYNCOLORS in S.species_traits))
 			if(S.fixed_mut_color)
 				species_color = S.fixed_mut_color
 			else
