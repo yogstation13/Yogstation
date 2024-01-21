@@ -242,7 +242,9 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/inn)
 "iG" = (
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/inn)
 "iH" = (
@@ -274,7 +276,9 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/machinery/vending/hydroseeds,
+/obj/machinery/vending/hydroseeds{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/inn)
 "jY" = (
@@ -894,7 +898,9 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/inn)
 "My" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat{
+	onstation = 0
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
 "Na" = (
@@ -1049,7 +1055,9 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/machinery/vending/hydronutrients,
+/obj/machinery/vending/hydronutrients{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/inn)
 "Wx" = (

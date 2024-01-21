@@ -60,6 +60,9 @@
 	if((stat == CONSCIOUS && !sterile) && !isalien(user))
 		if(Leap(user))
 			return
+	if(!sterile && stat == CONSCIOUS && !do_after(user, 2 SECONDS, src))
+		to_chat(user, "You fail to pry [src] off your face.")
+		return
 	. = ..()
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M, mob/user)
@@ -184,7 +187,7 @@
 
 	if(!sterile)
 		M.take_bodypart_damage(strength,0) //done here so that humans in helmets take damage
-		M.Unconscious(MAX_IMPREGNATION_TIME/0.3) //something like 25 ticks = 20 seconds with the default settings
+		M.Unconscious(MAX_IMPREGNATION_TIME) //knock them out for the longest time needed to finish the deed
 
 	GoIdle() //so it doesn't jump the people that tear it off
 

@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, radio)
 	. = ..()
-	radio = radio
+	src.radio = radio
 	source = M
 	if (istype(M))
 		name = M.GetVoice()

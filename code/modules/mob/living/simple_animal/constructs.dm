@@ -112,7 +112,7 @@
 /mob/living/simple_animal/hostile/construct/narsie_act()
 	return
 
-/mob/living/simple_animal/hostile/construct/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
+/mob/living/simple_animal/hostile/construct/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	return 0
 
 /mob/living/simple_animal/hostile/construct/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -408,7 +408,7 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 		var/undismembermerable_limbs = 0
 		for(var/X in C.bodyparts)
 			var/obj/item/bodypart/BP = X
-			if(BP.body_part != HEAD && BP.body_part != CHEST)
+			if(!(BP.body_part & (HEAD|CHEST)))
 				if(BP.dismemberable)
 					parts += BP
 				else

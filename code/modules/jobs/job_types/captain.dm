@@ -9,7 +9,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "NanoTrasen officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
+	supervisors = "Nanotrasen officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
 	selection_color = "#ccccff"
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
@@ -58,7 +58,7 @@
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(minor_announce), "Captain [H.real_name] on deck!"))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "Captain [H.real_name] on deck!"))
 
 /datum/outfit/job/captain
 	name = "Captain"

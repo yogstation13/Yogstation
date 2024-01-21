@@ -44,8 +44,6 @@
 	var/cell_type = /obj/item/stock_parts/cell
 	var/vest_type = /obj/item/clothing/suit/armor/vest
 
-	do_footstep = TRUE
-
 
 /mob/living/simple_animal/bot/ed209/Initialize(mapload,created_name,created_lasercolor)
 	. = ..()
@@ -461,12 +459,10 @@ Auto Patrol[]"},
 
 
 /mob/living/simple_animal/bot/ed209/emp_act(severity)
-	if(severity == 2 && prob(70))
-		severity = 1
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if (severity >= 2)
+	if (severity > EMP_LIGHT || prob(70))
 		new /obj/effect/temp_visual/emp(loc)
 		var/list/mob/living/carbon/targets = new
 		for(var/mob/living/carbon/C in view(12,src))

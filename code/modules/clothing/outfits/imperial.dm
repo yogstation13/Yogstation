@@ -59,7 +59,7 @@
 /obj/item/clothing/suit/armor/imperial/commissar
 	name = "armored commisar coat"
 	desc = "A black and red coat. Armored and padded, it instils fear into all that see it, friend and foe alike."
-	icon = 'icons/obj/clothing/suits.dmi'
+	icon = 'icons/obj/clothing/suits/suits.dmi'
 	icon_state = "commissar"
 	item_state = "commissar"
 
@@ -67,7 +67,7 @@
 /obj/item/clothing/head/helmet/imperial/commissar
 	name = "commissar cap"
 	desc = "An armored cap, protecting your head from stray rounds and your eyes from splashes of blood."
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats/hats.dmi'
 	icon_state = "commissar"
 	item_state = "commissar"
 
@@ -171,7 +171,7 @@
 	neck = /obj/item/clothing/neck/imperial
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	id = /obj/item/card/id/ert/imperial
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 	
 /datum/outfit/imperial/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

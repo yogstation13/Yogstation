@@ -20,6 +20,13 @@ SUBSYSTEM_DEF(mapping)
 	var/list/lava_ruins_templates = list()
 	var/list/ice_ruins_templates = list()
 	var/list/ice_ruins_underground_templates = list()
+	//Yogs edit 
+	var/list/jungleland_proper_ruins_templates = list()
+	var/list/jungleland_dying_ruins_templates = list()
+	var/list/jungleland_swamp_ruins_templates = list()
+	var/list/jungleland_barren_ruins_templates = list()
+	var/list/jungleland_general_ruins_templates = list()
+	//Yogs end
 
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
@@ -36,6 +43,9 @@ SUBSYSTEM_DEF(mapping)
 	var/list/lists_to_reserve = list()
 
 	var/clearing_reserved_turfs = FALSE
+
+	///All possible biomes in assoc list as type || instance
+	var/list/biomes = list()
 
 	// Z-manager stuff
 	var/station_start  // should only be used for maploading-related tasks
@@ -64,13 +74,29 @@ SUBSYSTEM_DEF(mapping)
 		if(!config || config.defaulted)
 			to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting to Box Station"))
 			config = old_config
+	initialize_biomes()
 	loadWorld()
 	require_area_resort()
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
-	run_map_generation()
 
+	var/list/jungle_ruins = levels_by_trait(ZTRAIT_JUNGLE_RUINS)
+	//this is really fuckign hacky, but we need to have a very specific order for these things, and if jungleland isn't even being loaded then i dont fucking care.
+	if(jungle_ruins.len)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/pregen), jungleland_general_ruins_templates, clear_below = TRUE)
+		run_map_generation()
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/proper), jungleland_proper_ruins_templates, clear_below = TRUE)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/dying_forest), jungleland_dying_ruins_templates, clear_below = TRUE)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/toxic_pit), jungleland_swamp_ruins_templates, clear_below = TRUE)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/barren_rocks), jungleland_barren_ruins_templates, clear_below = TRUE)
+	else
+		run_map_generation()
+	//YOGS EDIT
 #ifndef LOWMEMORYMODE
+	//Pregenerate generic jungleland ruins that are biome-nonspecific 
+
+	//YOGS END
+	
 	// Create space ruin levels
 	while (space_levels_so_far < config.space_ruin_levels)
 		++space_levels_so_far
@@ -117,7 +143,7 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), list(/area/space), space_ruins_templates)
 	seedStation()
 	loading_ruins = FALSE
-
+	
 	//Load Reebe
 	var/list/errorList = list()
 	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
@@ -319,8 +345,36 @@ SUBSYSTEM_DEF(mapping)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
-	else if (config.minetype == "icemoon")
-	else if (!isnull(config.minetype)) 
+		GLOB.minetype = MINETYPE_LAVALAND
+	//Yogs begin, jungleland gen
+	else if(config.minetype == "jungleland")
+		LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
+		GLOB.minetype = MINETYPE_JUNGLE
+		
+	else if(config.minetype == "jungle_and_lavaland")
+		SSpersistence.LoadMinetype()
+		var/determinant = SSpersistence.next_minetype
+		switch(determinant)
+			if(2)
+				if(prob(50))
+					LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
+					GLOB.minetype = MINETYPE_LAVALAND
+				else 
+					LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND) 
+					GLOB.minetype = MINETYPE_JUNGLE
+			
+			if(1)
+				LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
+				GLOB.minetype = MINETYPE_LAVALAND
+			
+			if(0)
+				LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
+				GLOB.minetype = MINETYPE_JUNGLE
+			 
+	//Yogs end
+	else if(config.minetype == "icemoon")
+		GLOB.minetype = MINETYPE_ICEMOON
+	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
 
@@ -373,6 +427,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	else
 		for(var/M in global.config.maplist)
 			mapvotes[M] = 1
+	var/previous_maps = get_map_weights()
 
 	//filter votes
 	for (var/map in mapvotes)
@@ -392,6 +447,9 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			mapvotes.Remove(map)
 			continue
 		if (VM.config_max_users > 0 && players > VM.config_max_users)
+			mapvotes.Remove(map)
+			continue
+		if(previous_maps[VM.map_name] > 7)
 			mapvotes.Remove(map)
 			continue
 
@@ -431,6 +489,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/list/banned = generateMapList("[global.config.directory]/lavaruinblacklist.txt")
 	banned += generateMapList("[global.config.directory]/spaceruinblacklist.txt")
 	banned += generateMapList("[global.config.directory]/iceruinblacklist.txt")
+	banned += generateMapList("[global.config.directory]/jungleruinblacklist.txt")
 
 	for(var/item in sortList(subtypesof(/datum/map_template/ruin), /proc/cmp_ruincost_priority))
 		var/datum/map_template/ruin/ruin_type = item
@@ -445,6 +504,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		map_templates[R.name] = R
 		ruins_templates[R.name] = R
 
+
 		if(istype(R, /datum/map_template/ruin/lavaland))
 			lava_ruins_templates[R.name] = R
 		else if(istype(R, /datum/map_template/ruin/icemoon/underground))
@@ -453,9 +513,20 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			ice_ruins_templates[R.name] = R
 		else if(istype(R, /datum/map_template/ruin/space))
 			space_ruins_templates[R.name] = R
-		else if(istype(R, /datum/map_template/ruin/station)) //yogs
-			station_room_templates[R.name] = R //yogs
-
+		//Yogs begin
+		else if(istype(R, /datum/map_template/ruin/station)) 
+			station_room_templates[R.name] = R 
+		else if(istype(R,/datum/map_template/ruin/jungle/proper))
+			jungleland_proper_ruins_templates[R.name] = R
+		else if(istype(R,/datum/map_template/ruin/jungle/dying))
+			jungleland_dying_ruins_templates[R.name] = R
+		else if(istype(R,/datum/map_template/ruin/jungle/swamp))
+			jungleland_swamp_ruins_templates[R.name] = R
+		else if(istype(R,/datum/map_template/ruin/jungle/barren))
+			jungleland_barren_ruins_templates[R.name] = R
+		else if(istype(R,/datum/map_template/ruin/jungle/all))
+			jungleland_general_ruins_templates[R.name] = R
+		//Yogs end
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")
 
@@ -602,6 +673,12 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	used_turfs.Cut()
 	reserve_turfs(clearing, await = TRUE)
 
+///Initialize all biomes, assoc as type || instance
+/datum/controller/subsystem/mapping/proc/initialize_biomes()
+	for(var/biome_path in subtypesof(/datum/biome))
+		var/datum/biome/biome_instance = new biome_path()
+		biomes[biome_path] += biome_instance
+
 /datum/controller/subsystem/mapping/proc/build_minimaps()
 	to_chat(world, span_boldannounce("Building minimaps..."))
 	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
@@ -623,3 +700,28 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	for(var/turf/to_contain as anything in Z_TURFS(z_level))
 		var/area/our_area = to_contain.loc
 		our_area.contained_turfs += to_contain
+
+
+
+/datum/controller/subsystem/mapping/proc/get_map_weights()
+	var/list/previous_maps = list()
+	if(SSdbcore.Connect())
+		var/datum/DBQuery/query_previous_maps = SSdbcore.NewQuery({"
+			SELECT map_name FROM [format_table_name("round")] WHERE id BETWEEN lower = :lower AND upper = :upper
+		"}, list("lower" = "[text2num(GLOB.round_id) - 9]", "upper" = GLOB.round_id))
+		if(!query_previous_maps.Execute())
+			qdel(query_previous_maps)
+		for(var/i = 1 to 10)
+			var/next_map = query_previous_maps.NextRow()
+			if(!next_map)
+				continue
+			previous_maps[next_map[1]] += 1 / (11 - i) //this lessens the influence of rounds that were longer ago
+		qdel(query_previous_maps)
+	return previous_maps
+
+/client/proc/DebugMapWeights()
+	set name = "See Map Weights"
+	set category = "Misc.Server Debug"
+	var/weights = SSmapping.get_map_weights()
+	for(var/key in weights)
+		to_chat(src, "[key]: weights[key]")

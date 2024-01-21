@@ -19,7 +19,6 @@
 /obj/item/broom/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 8, \
 		force_wielded = 4, \
 		icon_wielded = "[base_icon_state]1", \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \

@@ -1,5 +1,6 @@
 /datum/symptom/radiation
 	name = "Ionising Cellular Emission"
+	icon = "symptom.ionizing_cellular_emission.gif"
 	desc = "Causes the host's cells to emit ionising radiation."
 	stealth = -3
 	resistance = 2

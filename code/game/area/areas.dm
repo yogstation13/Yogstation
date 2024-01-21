@@ -32,6 +32,7 @@
 	var/clockwork_warp_allowed = TRUE // Can servants warp into this area from Reebe?
 	var/clockwork_warp_fail = "The structure there is too dense for warping to pierce. (This is normal in high-security areas.)"
 
+	///If true, that means one of any fire alarms in the area is active
 	var/fire = FALSE
 	var/atmos = TRUE
 	var/atmosalm = FALSE
@@ -113,6 +114,7 @@
 	var/list/firedoors
 	var/list/cameras
 	var/list/firealarms
+	var/list/airalarms
 	var/firedoors_last_closed_on = 0
 	/// Can the Xenobio management console transverse this area by default?
 	var/xenobiology_compatible = FALSE
@@ -124,10 +126,11 @@
 	/// Wire assignment for airlocks in this area
 	var/airlock_wires = /datum/wires/airlock
 
+	///This datum, if set, allows terrain generation behavior to be ran on Initialize()
+	var/datum/map_generator/map_generator
+	
 	var/turf/teleport_anchors = list()	//ist of tiles we prefer to teleport to. this is for areas that are partially hazardous like for instance atmos_distro
 
-	///This datum, if set, allows terrain generation behavior to be ran on Initialize(mapload)
-	var/datum/map_generator/map_generator
 
 	/// Whether the lights in this area aren't turned off when it's empty at roundstart
 	var/lights_always_start_on = FALSE
@@ -344,10 +347,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 					D.triggerAlarm("Power", src, cameras, source)
 			for(var/item in GLOB.alarmdisplay)
 				var/datum/computer_file/program/alarm_monitor/p = item
-				if(state == 1)
-					p.cancelAlarm("Power", src, source)
-				else
-					p.triggerAlarm("Power", src, cameras, source)
+				p.update_alarm_display()
 
 /**
   * Generate an atmospheric alert for this area
@@ -368,7 +368,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			D.triggerAlarm("Atmosphere", src, cameras, source)
 		for(var/item in GLOB.alarmdisplay)
 			var/datum/computer_file/program/alarm_monitor/p = item
-			p.triggerAlarm("Atmosphere", src, cameras, source)
+			p.update_alarm_display()
 
 	else
 		for (var/item in GLOB.silicon_mobs)
@@ -382,7 +382,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			D.cancelAlarm("Atmosphere", src, source)
 		for(var/item in GLOB.alarmdisplay)
 			var/datum/computer_file/program/alarm_monitor/p = item
-			p.cancelAlarm("Atmosphere", src, source)
+			p.update_alarm_display()
 /**
   * Try to close all the firedoors in the area
   */
@@ -433,7 +433,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		D.triggerAlarm("Fire", src, cameras, source)
 	for(var/item in GLOB.alarmdisplay)
 		var/datum/computer_file/program/alarm_monitor/p = item
-		p.triggerAlarm("Fire", src, cameras, source)
+		p.update_alarm_display()
 
 	START_PROCESSING(SSobj, src)
 
@@ -445,8 +445,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Also cycles the icons of all firealarms and deregisters the area from processing on SSOBJ
   */
-/area/proc/firereset(obj/source)
-	if (fire)
+/area/proc/firereset(obj/source, alert_only=FALSE)
+	if (fire && !alert_only)
 		unset_fire_alarm_effects()
 		ModifyFiredoors(TRUE)
 		for(var/item in firealarms)
@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		D.cancelAlarm("Fire", src, source)
 	for(var/item in GLOB.alarmdisplay)
 		var/datum/computer_file/program/alarm_monitor/p = item
-		p.cancelAlarm("Fire", src, source)
+		p.update_alarm_display()
 
 	STOP_PROCESSING(SSobj, src)
 

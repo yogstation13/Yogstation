@@ -153,10 +153,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 /obj/machinery/telecomms/proc/update_speed()
 	if(!on)
 		return
-	var/turf/T = get_turf(src) //yogs
 	var/speedloss = 0
-	var/datum/gas_mixture/env = T.return_air()
-	var/temperature = env.return_temperature()
+	var/datum/gas_mixture/env = return_air()
+	var/temperature = env?.return_temperature()
 	if(temperature <= 150)				// 150K optimal operating parameters
 		net_efective = 100
 	else
@@ -191,9 +190,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(prob(100/severity) && !(stat & EMPED))
+	if(prob(10 * severity) && !(stat & EMPED))
 		stat |= EMPED
-		var/duration = (300 * 10)/severity
+		var/duration = (30 SECONDS) * severity // 30 seconds per level of severity, 5 minutes at 10 severity (EMP_HEAVY)
 		addtimer(CALLBACK(src, PROC_REF(de_emp)), rand(duration - 20, duration + 20))
 
 /obj/machinery/telecomms/proc/de_emp()

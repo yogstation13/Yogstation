@@ -2,6 +2,7 @@
 /datum/computer_file/program/energy_harvester_control
 	filename = "energy_harvester_control"
 	filedesc = "Energy Harvester Control"
+	category = PROGRAM_CATEGORY_ENGI
 	ui_header = "energy_harvester_null.gif"
 	program_icon_state = "energy_harvester_null"
 	extended_desc = "This program connects remotely to the onboard energy harvester, allowing a chief engineer to control the input rates and check for cashflow."

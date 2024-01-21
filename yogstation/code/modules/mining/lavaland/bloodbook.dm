@@ -767,7 +767,7 @@
 	var/obj/structure/slash/P = new(src.loc)
 	times++
 	addtimer(CALLBACK(src, PROC_REF(shred), times), 0.1 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), P), 1.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), P), 1.5 SECONDS)
 	return
 
 
@@ -876,4 +876,4 @@
 /obj/structure/slash/Initialize(mapload)
 	. = ..()
 	animate(src,  pixel_y = 30, transform = matrix(rand(1, 360), MATRIX_ROTATE).Scale(1.5))
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 0.7 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 0.7 SECONDS)

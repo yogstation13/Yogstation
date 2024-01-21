@@ -25,9 +25,6 @@
 	QDEL_NULL(dna)
 	GLOB.carbon_list -= src
 
-/mob/living/carbon/initialize_footstep()
-	AddComponent(/datum/component/footstep, 1, 2)
-
 /mob/living/carbon/perform_hand_swap(held_index)
 	. = ..()
 	if(!.)
@@ -91,7 +88,7 @@
 	return ..()
 
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(mind?.martial_art.handle_throw(hit_atom, src))
+	if(mind?.martial_art.handle_throw(hit_atom, src, throwingdatum))
 		return
 	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
 		return
@@ -544,10 +541,6 @@
 
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src //leaving this here but sus
-		if(stam && H.hulk_stamina_check())
-			return
 	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold)
 		if(!stat)
 			enter_stamcrit()
@@ -586,6 +579,9 @@
 		sight |= E.sight_flags
 		if(!isnull(E.lighting_alpha))
 			lighting_alpha = E.lighting_alpha
+		if(istype(E, /obj/item/organ/eyes/ethereal) && client) //special view range ethereal eyes
+			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
+			client.view_size.addTo("2x2")
 
 	for(var/image/I in infra_images)
 		if(client)
@@ -973,11 +969,11 @@
 		O.set_owner(src)
 		bodyparts.Remove(X)
 		bodyparts.Add(O)
-		if(O.body_part == ARM_LEFT)
+		if(O.body_part & ARM_LEFT)
 			l_arm_index_next += 2
 			O.held_index = l_arm_index_next //1, 3, 5, 7...
 			hand_bodyparts += O
-		else if(O.body_part == ARM_RIGHT)
+		else if(O.body_part & ARM_RIGHT)
 			r_arm_index_next += 2
 			O.held_index = r_arm_index_next //2, 4, 6, 8...
 			hand_bodyparts += O
@@ -1156,7 +1152,7 @@
 
 /// Returns if the carbon is wearing shock proof gloves
 /mob/living/carbon/proc/wearing_shock_proof_gloves()
-	return gloves?.siemens_coefficient == 0
+	return gloves?.armor.getRating(ELECTRIC) >= 100
 
 /mob/living/carbon/wash(clean_types)
 	. = ..()
@@ -1276,7 +1272,15 @@
 /mob/living/carbon/proc/spray_blood(splatter_direction, splatter_strength = 3)
 	if(!isturf(loc))
 		return
-	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
+	var/splatter_color = null
+	if(dna?.blood_type)
+		splatter_color = dna.blood_type.color
+	else
+		var/blood_id = get_blood_id()
+		if(blood_id != /datum/reagent/blood)//special blood substance
+			var/datum/reagent/R = GLOB.chemical_reagents_list[blood_id]
+			splatter_color = R.color
+	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc, splatter_strength, splatter_color)
 	our_splatter.add_blood_DNA(return_blood_DNA())
 	our_splatter.blood_dna_info = get_blood_dna_list()
 	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)

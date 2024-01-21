@@ -35,6 +35,10 @@
 					continue
 			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 				continue
+			else if(S.requires_bodypart_type == BODYPART_ORGANIC && !(M.mob_biotypes & MOB_ORGANIC))
+				continue //simplemob surgeries based on biotypes
+			else if(S.requires_bodypart_type == BODYPART_ROBOTIC && !(M.mob_biotypes & MOB_ROBOTIC))
+				continue
 			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
 				continue
 			if(!S.can_start(user, M))

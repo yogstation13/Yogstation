@@ -185,6 +185,13 @@
 	restricted_species = list("ipc")
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
 
+/datum/uplink_item/race_restricted/lightning_flow
+	name = "Glowing parchment"
+	desc = "A scroll made of unusual paper, written for ethereals looking to defend themselves while exploring the material world."
+	cost = 12
+	item = /obj/item/book/granter/martial/lightning_flow
+	restricted_species = list("ethereal")
+
 /datum/uplink_item/race_restricted/wirecrawl
 	name = "Modified yellow slime extract"
 	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."

@@ -6,6 +6,7 @@
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
+	exotic_bloodtype = "X" //this isn't used for anything other than bloodsplatter colours
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT | MICE
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
@@ -15,13 +16,13 @@
 	burnmod = 1.35 //residual plasma inside them, highly flammable
 	coldmod = 0.75
 	heatmod = 1.5
+	pressuremod = 0.75 //Xenos are completely pressure immune, they're bargain bin xenos
 	acidmod = 0.2 //Their blood is literally acid
 	action_speed_coefficient = 1.1 //claws aren't dextrous like hands
 	speedmod = -0.1 //apex predator humanoid hybrid
 	inert_mutation = ACIDSPIT
 	punchdamagehigh = 11 //slightly better high end of damage
 	punchstunthreshold = 11 //technically slightly worse stunchance
-	payday_modifier = 0.3 //Some are quite literally slaves + they HAVE to work for NT
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'

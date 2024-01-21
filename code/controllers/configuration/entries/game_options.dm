@@ -68,6 +68,8 @@
 
 /datum/config_entry/flag/disable_human_mood
 
+/datum/config_entry/flag/force_human_mood // force every human to have mood enabled, this overwrites disabling it.
+
 /datum/config_entry/flag/disable_secborg	// disallow secborg module to be chosen.
 
 /datum/config_entry/flag/disable_peaceborg
@@ -372,6 +374,12 @@
 	config_entry_value = 16
 	integer = FALSE
 	min_val = 0
+//Yogs edit
+/datum/config_entry/number/jungleland_budget
+	config_entry_value = 40
+	integer = FALSE
+	min_val = 0
+//Yogs end
 
 /datum/config_entry/flag/allow_random_events	// Enables random events mid-round when set
 

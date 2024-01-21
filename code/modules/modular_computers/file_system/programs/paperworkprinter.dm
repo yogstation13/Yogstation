@@ -4,7 +4,7 @@
 	filedesc = "Paperwork Printing"
 	category = PROGRAM_CATEGORY_MISC
 	program_icon_state = "id"
-	extended_desc = "Program for dispensing paperwork"
+	extended_desc = "Program for dispensing paperwork."
 	requires_ntnet = FALSE
 	size = 4
 	tgui_id = "NtosPaperworkPrinter"
@@ -38,7 +38,7 @@
 			if(initial(P.id)==paperworkToPick)
 				src.print(P)
 				break
-			
+
 
 /datum/computer_file/program/paperwork_printer/proc/print(obj/item/paper/paperwork/T)
 	var/obj/item/computer_hardware/printer/printer

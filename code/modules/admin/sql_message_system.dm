@@ -310,7 +310,6 @@
 		if(!new_severity)
 			qdel(query_find_edit_note_severity)
 			return
-		new_severity = new_severity
 		var/edit_text = "Note severity edited by [editor_key] on [SQLtime()] from [old_severity] to [new_severity]<hr>"
 		var/datum/DBQuery/query_edit_note_severity = SSdbcore.NewQuery({"
 			UPDATE [format_table_name("messages")]

@@ -17,6 +17,7 @@ Bonus
 
 /datum/symptom/shivering
 	name = "Shivering"
+	icon = "shivering"
 	desc = "The virus inhibits the body's thermoregulation, cooling the body down."
 	stealth = 0
 	resistance = 2

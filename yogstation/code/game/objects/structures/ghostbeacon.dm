@@ -8,12 +8,11 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mob/living/carbon/ghosts = list()
 	var/area/spawnArea
+	var/restricted = FALSE
 
 /obj/structure/ghostbeacon/Initialize(mapload)
 	. = ..()
 	GLOB.poi_list |= src
-	var/area/A = get_area(loc)
-	spawnArea = A
 	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/ghostbeacon/Destroy()
@@ -26,6 +25,9 @@
 	STOP_PROCESSING(SSprocessing, src)
 
 /obj/structure/ghostbeacon/process()
+	if(restricted && !spawnArea)
+		var/area/A = get_area(loc)
+		spawnArea = A
 	for(var/mob/living/M in ghosts)
 		if(M.InCritical() || M.stat == DEAD || !M.key)
 			ghosts -= M
@@ -34,14 +36,16 @@
 		if(QDELETED(M)) // Admin fuckery check
 			ghosts.Remove(M) // -= doesnt work with qdeled objects
 
-		// Get your ass back here
-		// Only problem is a admin sending someone to the admin gulag
-		// Unsure what to do. Detect if the zlevel is centcom?
-		// Is it even a problem?
-		var/area/A = get_area(M)
-		if(spawnArea != A)
-			to_chat(M, span_warner("Your corporeal form gets ripped back!"))
-			M.loc = loc
+
+		if(restricted)
+			// Get your ass back here
+			// Only problem is a admin sending someone to the admin gulag
+			// Unsure what to do. Detect if the zlevel is centcom?
+			// Is it even a problem?
+			var/area/A = get_area(M)
+			if(spawnArea != A)
+				to_chat(M, span_warner("Your corporeal form gets ripped back!"))
+				M.loc = loc
 
 /obj/structure/ghostbeacon/attack_ghost(mob/user)
 	. = ..()
@@ -95,3 +99,6 @@
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
+
+/obj/structure/ghostbeacon/restricted
+	restricted = TRUE

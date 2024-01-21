@@ -8,7 +8,9 @@
 	mutantlungs = /obj/item/organ/lungs/ethereal
 	mutantstomach = /obj/item/organ/stomach/cell/ethereal
 	mutantheart = /obj/item/organ/heart/ethereal
+	mutanteyes = /obj/item/organ/eyes/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
+	exotic_bloodtype = "E" //this isn't used for anything other than bloodsplatter colours
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
 	burnmod = 0.8 //Bodies are resilient to heat and energy
@@ -17,7 +19,6 @@
 	speedmod = -0.1 //Light and energy move quickly
 	punchdamagehigh  = 11 //Fire hand more painful
 	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
-	payday_modifier = 0.7 //Moths have to be compensated slightly more to be willing to work for NT bcuz drug therapy, both ethereal and moth are neutral though
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(NOEYESPRITES, EYECOLOR, MUTCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
@@ -34,6 +35,8 @@
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
+	wings_icon = "Ethereal"
+	wings_detail = "Etherealdetails"
 
 	var/max_range = 5
 	var/max_power = 2
@@ -51,14 +54,11 @@
 
 	smells_like = "crackling sweetness"
 
-	var/obj/effect/dummy/lighting_obj/ethereal_light
-
+	var/obj/effect/dummy/lighting_obj/moblight/species/ethereal_light
 
 /datum/species/ethereal/Destroy(force)
-	if(ethereal_light)
-		QDEL_NULL(ethereal_light)
+	QDEL_NULL(ethereal_light)
 	return ..()
-
 
 /datum/species/ethereal/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
@@ -68,12 +68,15 @@
 	var/mob/living/carbon/human/ethereal = C
 	setup_color(ethereal)
 
-	ethereal_light = ethereal.mob_light()
+	ethereal_light = ethereal.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight/species)
 	spec_updatehealth(ethereal)
 
 	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
 	if(ethereal_heart)
 		ethereal_heart.ethereal_color = default_color
+	var/obj/item/organ/eyes/ethereal/ethereal_eyes = ethereal.getorganslot(ORGAN_SLOT_EYES)
+	if(ethereal_eyes)
+		ethereal_eyes.ethereal_color = default_color
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	QDEL_NULL(ethereal_light)
@@ -94,8 +97,9 @@
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
 	var/list/hsl = rgb2hsl(r1, g1, b1)
-	hsl[2] *= 0.6
-	hsl[3] += (1 - hsl[3]) / 2 //the light part of HSL is from 0 to 1 this increases lightness of the colour, less increase the brighter the light is
+	//both saturation and lightness are a scale of 0 to 1
+	hsl[2] = min(hsl[2], 0.7) //don't let saturation be too high or it's overwhelming
+	hsl[3] = max(hsl[3], 0.5) //don't let lightness be too low or it looks like a void of light
 	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
 	r1 = rgb[1]
 	g1 = rgb[2]
@@ -133,7 +137,7 @@
 		to_chat(H, span_notice("You feel the light of your body leave you."))
 	EMPeffect = TRUE
 	spec_updatehealth(H)
-	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200 / severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 to 20 seconds depending on severity
+	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 20 * severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 2 to 20 seconds depending on severity
 
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
 	EMPeffect = FALSE

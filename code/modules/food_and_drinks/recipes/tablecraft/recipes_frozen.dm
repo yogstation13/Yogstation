@@ -121,7 +121,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
-		/obj/item/reagent_containers/food/snacks/pineappleslice = 2
+		/datum/reagent/consumable/pineapplejuice = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/snowcones/pineapple
 	category = CAT_ICE
@@ -181,7 +181,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
-		/datum/reagent/consumable/bluecherryjelly= 5
+		/datum/reagent/consumable/bluecherryjelly = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/snowcones/blue
 	category = CAT_ICE
@@ -191,7 +191,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
-		/datum/reagent/consumable/cherryjelly= 5
+		/datum/reagent/consumable/cherryjelly = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/snowcones/red
 	category = CAT_ICE
@@ -263,7 +263,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
-		/datum/reagent/consumable/pwr_game = 15
+		/datum/reagent/consumable/pwr_game = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/snowcones/pwrgame
 	category = CAT_ICE
