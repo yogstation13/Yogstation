@@ -676,7 +676,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
 	name = "Syndicate Outpost Engineer"
 	short_desc = "You are an engineer at the Syndicate icemoon outpost."
-	flavour_text = "Maintain the base and upgrade equipment. Operate the nuclear reactor and don't let it melt down."
+	flavour_text = "Maintain the base and upgrade equipment. Operate the nuclear reactor and prevent it from melting down."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
 

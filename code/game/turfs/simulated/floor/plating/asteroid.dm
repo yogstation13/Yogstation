@@ -187,7 +187,7 @@
 	baseturfs = /turf/open/lava/plasma/ice_moon
 	planetary_atmos = TRUE
 
-/turf/open/lava/plasma/ice_moon/no_shelter //another snowflake type!! yay!!
+/turf/open/lava/plasma/ice_moon/no_shelter //another snowflake type!! yay!! wondrous!!
 
 /turf/open/floor/plating/asteroid/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/icemoon

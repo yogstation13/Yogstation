@@ -111,4 +111,4 @@
 /obj/item/implant/teleporter/syndicate_icemoon
 	pointofreturn = /area/ruin/syndicate_icemoon/dorms
 	usewhitelist = TRUE
-	retrievalmessage = "Do not abandon the base, agent!"
+	retrievalmessage = "Agent retrieval complete."
