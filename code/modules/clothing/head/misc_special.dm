@@ -367,7 +367,7 @@
 
 /obj/item/clothing/head/franks_hat
 	name = "Frank's Hat"
-	desc = "You feel ashamed about what you had to do to get this hat"
+	desc = "You feel ashamed about what you had to do to get this hat."
 	icon_state = "cowboy"
 	item_state = "cowboy"
 
@@ -393,12 +393,12 @@
 
 /obj/item/clothing/head/Floralwizhat
 	name = "Druid hat"
-	desc = "A black wizard hat with an exotic looking purple flower on it"
+	desc = "A black wizard hat with an exotic looking purple flower on it."
 	icon_state = "flowerwizhat"
 	item_state = "flowerwizhat"
 
 /obj/item/clothing/head/fedora/gtrim_fedora
 	name = "Gold trimmed Fedora"
-	desc = "A Unique variation of the classic fedora. Now with 'Waterproofing' for when buisness gets messy."
+	desc = "A unique variation of the classic fedora. Now with 'waterproofing' for when business gets messy."
 	icon_state = "gtrim_fedora"
 	item_state = "gtrim_fedora"
