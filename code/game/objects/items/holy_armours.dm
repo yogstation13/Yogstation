@@ -434,7 +434,7 @@
 /obj/item/clothing/head/hooded/flagelantes_chains_hood
 	name = "flagelantes hood"
 	desc = "A cowl worn by flagelantes"
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats/hats.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
 	icon_state = "flagelantes_chains_hood"
 	item_state = "flagelantes_chains_hood"

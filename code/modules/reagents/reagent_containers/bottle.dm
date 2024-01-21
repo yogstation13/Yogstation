@@ -209,6 +209,11 @@
 	desc = "A small bottle. Contains histamine."
 	list_reagents = list(/datum/reagent/toxin/histamine = 30)
 
+/obj/item/reagent_containers/glass/bottle/ambusher_toxin
+	name = "carpenter toxin bottle"
+	desc = "A small bottle. Contains a toxin from an unknown source."
+	list_reagents = list(/datum/reagent/toxin/ambusher_toxin = 30)
+
 /obj/item/reagent_containers/glass/bottle/diphenhydramine
 	name = "antihistamine bottle"
 	desc = "A small bottle of diphenhydramine."

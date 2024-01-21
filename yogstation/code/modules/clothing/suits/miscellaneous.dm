@@ -32,7 +32,7 @@
 /obj/item/clothing/head/hooded/winterhood/bluecoat
     mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
-    icon_state = "winterhood_blue"
+    icon_state = "hood_blue"
 
 /obj/item/clothing/suit/yogs/gothic
 	name = "gothic suit"
