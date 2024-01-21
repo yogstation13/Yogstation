@@ -3580,7 +3580,7 @@
 /area/ruin/syndicate_icemoon/research)
 "wN" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/mineral/random/high_chance/snow,
+/turf/closed/mineral/snowmountain/icemoon,
 /area/icemoon/surface/outdoors)
 "wO" = (
 /obj/machinery/button/door{
@@ -5870,7 +5870,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/powerplant)
 "Kv" = (
-/turf/closed/mineral/random/high_chance/snow,
+/turf/closed/mineral/snowmountain/icemoon,
 /area/icemoon/surface/outdoors)
 "Ky" = (
 /obj/machinery/button/holosign{
