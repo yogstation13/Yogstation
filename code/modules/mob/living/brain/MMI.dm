@@ -14,7 +14,8 @@
 	var/datum/ai_laws/laws = new()
 	var/force_replace_ai_name = FALSE
 	var/overrides_aicore_laws = TRUE // Whether the laws on the MMI are transferred when it's uploaded as an AI
-	var/override_cyborg_laws = FALSE // Do custom laws uploaded to the MMI get transferred to borgs? If yes the borg will be unlinked and have lawsync disabled.
+	/// Do custom laws uploaded to the MMI get transferred to borgs? If yes, the borg will be unlinked, have their lawsync disabled, and get the custom laws.
+	var/override_cyborg_laws = FALSE
 	var/can_update_laws = TRUE //Can we use a lawboard to change the laws of this MMI?
 	var/remove_time = 2 SECONDS /// The time to remove the brain or reset the posi brain
 	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
