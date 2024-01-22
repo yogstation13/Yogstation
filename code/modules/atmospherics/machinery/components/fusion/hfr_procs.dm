@@ -173,13 +173,13 @@
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/update_temperature_status(delta_time)
 	fusion_temperature_archived = fusion_temperature
-	fusion_temperature = internal_fusion.return_temperature()
+	fusion_temperature = internal_fusion.total_moles() == 0 ? 0 : internal_fusion.return_temperature()
 	moderator_temperature_archived = moderator_temperature
-	moderator_temperature = moderator_internal.return_temperature()
+	moderator_temperature = moderator_internal.total_moles() == 0 ? 0 : moderator_internal.return_temperature()
 	coolant_temperature_archived = coolant_temperature
-	coolant_temperature = airs[1].return_temperature()
+	coolant_temperature = airs[1].total_moles() == 0 ? 0 : airs[1].return_temperature()
 	output_temperature_archived = output_temperature
-	output_temperature = linked_output.airs[1].return_temperature()
+	output_temperature = linked_output.airs[1].total_moles() == 0 ? 0 : linked_output.airs[1].return_temperature()
 	temperature_period = delta_time
 
 	//Set the power level of the fusion process
@@ -439,8 +439,7 @@
 	var/devastating_explosion = 0
 	var/em_pulse = selected_fuel.meltdown_flags & HYPERTORUS_FLAG_EMP
 	var/rad_pulse = selected_fuel.meltdown_flags & HYPERTORUS_FLAG_RADIATION_PULSE
-	var/emp_light_size = 0
-	var/emp_heavy_size = 0
+	var/emp_severity = 0
 	var/rad_pulse_size = 0
 	var/rad_pulse_strength = 0
 	var/gas_spread = 0
@@ -464,8 +463,7 @@
 
 	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_MINIMUM_SPREAD)
 		if(em_pulse)
-			emp_light_size = power_level * 3
-			emp_heavy_size = power_level * 1
+			emp_severity = power_level * 3
 		if(rad_pulse)
 			rad_pulse_size = (1 / (power_level + 1))
 			rad_pulse_strength = power_level * 3000
@@ -474,8 +472,7 @@
 
 	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_MEDIUM_SPREAD)
 		if(em_pulse)
-			emp_light_size = power_level * 5
-			emp_heavy_size = power_level * 3
+			emp_severity = power_level * 5
 		if(rad_pulse)
 			rad_pulse_size = (1 / (power_level + 3))
 			rad_pulse_strength = power_level * 5000
@@ -484,8 +481,7 @@
 
 	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_BIG_SPREAD)
 		if(em_pulse)
-			emp_light_size = power_level * 7
-			emp_heavy_size = power_level * 5
+			emp_severity = power_level * 7
 		if(rad_pulse)
 			rad_pulse_size = (1 / (power_level + 5))
 			rad_pulse_strength = power_level * 7000
@@ -494,8 +490,7 @@
 
 	if(selected_fuel.meltdown_flags & HYPERTORUS_FLAG_MASSIVE_SPREAD)
 		if(em_pulse)
-			emp_light_size = power_level * 9
-			emp_heavy_size = power_level * 7
+			emp_severity = power_level * 9
 		if(rad_pulse)
 			rad_pulse_size = (1 / (power_level + 7))
 			rad_pulse_strength = power_level * 9000
@@ -550,8 +545,7 @@
 	if(em_pulse)
 		empulse(
 			epicenter = loc,
-			heavy_range = critical ? emp_heavy_size * 2 : emp_heavy_size,
-			light_range = critical ? emp_light_size * 2 : emp_heavy_size,
+			severity = critical ? emp_severity * 2 : emp_severity,
 			log = TRUE
 			)
 

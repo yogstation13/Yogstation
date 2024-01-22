@@ -207,15 +207,23 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
 	sawn_desc = "I'm just here for the gasoline."
 	unique_reskin = null
-	var/slung = FALSE
 	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
+	var/slung = FALSE
+	var/usage = 0 //how many times it's been used since last maintenance
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
-	if(prob(40))
+	if(prob(usage * 10))//10% chance for each shot to not fire
+		if(prob(max((usage - 5), 0) * 10))//10% chance for each shot to explode, after 6 shots
+			explosion(src, 0, 0, 1, 1)
+			playsound(src, 'sound/effects/break_stone.ogg', 30, TRUE)
+			to_chat(usr, span_warning("The round explodes in the chamber!"))
+			qdel(src)
+			return
 		playsound(src, dry_fire_sound, 30, TRUE)
 		return
 	else
 		. = ..()
+		usage++
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
 	..()
@@ -231,6 +239,27 @@
 			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You need at least ten lengths of cable if you want to make a sling!"))
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(usage == initial(usage))
+		to_chat(user, span_notice("[src] has no need for maintenance yet."))
+		return
+
+	to_chat(user, span_notice("You start to perform some maintenance on [src]."))
+	if(I.use_tool(src, user, 4 SECONDS))
+		to_chat(user, span_notice("You fix up [src] a bit."))
+		usage = max(usage - 2, initial(usage))
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/examine(mob/user)
+	. = ..()
+	switch(usage)
+		if(0 to 1)
+			. += "It looks about as good as it possibly could."
+		if(2 to 6)
+			. += "It's starting to show some wear."
+		if(7 to INFINITY)
+			. += "It's not long before this thing falls apart."
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon_state()
 	. = ..()
@@ -254,3 +283,4 @@
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
 	can_bayonet = FALSE
+	usage = 1 //always slightly worse

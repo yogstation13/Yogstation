@@ -167,12 +167,6 @@
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"gD" = (
-/obj/structure/shuttle/engine/huge{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
 "gE" = (
 /obj/structure/sign/departments/minsky/engineering/engineering{
 	pixel_y = -32
@@ -438,6 +432,12 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned)
+"qp" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/abandoned)
 "qq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/shuttle,
@@ -523,9 +523,6 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/shuttle/abandoned)
-"tr" = (
-/turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
 "ue" = (
 /obj/item/reagent_containers/food/condiment/saltshaker{
@@ -1583,9 +1580,9 @@
 
 (1,1,1) = {"
 aa
-tr
-tr
-gD
+aa
+aa
+aa
 aa
 aa
 EI
@@ -1593,16 +1590,16 @@ PE
 EI
 aa
 aa
-tr
-tr
-gD
+aa
+aa
+aa
 aa
 "}
 (2,1,1) = {"
 aa
-tr
-tr
-tr
+aa
+aa
+aa
 aa
 Ix
 EI
@@ -1610,16 +1607,16 @@ wb
 BO
 sw
 aa
-tr
-tr
-tr
+aa
+aa
+aa
 aa
 "}
 (3,1,1) = {"
 EI
-tr
-tr
-tr
+qp
+qp
+qp
 EI
 Fb
 EI
@@ -1627,9 +1624,9 @@ fJ
 EI
 EI
 EI
-tr
-tr
-tr
+qp
+qp
+qp
 bk
 "}
 (4,1,1) = {"

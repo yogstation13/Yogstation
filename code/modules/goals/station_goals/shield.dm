@@ -170,10 +170,11 @@
 	if(active && (obj_flags & EMAGGED))
 		change_meteor_chance(0.5)
 
-/obj/machinery/satellite/meteor_shield/emag_act(mob/user)
+/obj/machinery/satellite/meteor_shield/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You access the satellite's debug mode, increasing the chance of meteor strikes."))
 	if(active)
 		change_meteor_chance(2)
+	return TRUE

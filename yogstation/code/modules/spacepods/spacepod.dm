@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	icon = 'goon/icons/obj/spacepods/construction_2x2.dmi'
 	icon_state = "pod_1"
 	density = 1
-	opacity = 0
+	opacity = FALSE
 	dir = NORTH // always points north because why not
 	layer = SPACEPOD_LAYER
 	bound_width = 64
@@ -85,10 +85,10 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	cabin_air = new
 	cabin_air.set_temperature(T20C)
 	cabin_air.set_volume(200)
-	/*cabin_air.assert_gas(/datum/gas/oxygen)
-	cabin_air.assert_gas(/datum/gas/nitrogen)
-	cabin_air.gases[/datum/gas/oxygen][MOLES] = ONE_ATMOSPHERE*O2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)
-	cabin_air.gases[/datum/gas/nitrogen][MOLES] = ONE_ATMOSPHERE*N2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)*/
+	/*cabin_air.assert_gas(GAS_O2)
+	cabin_air.assert_gas(GAS_N2)
+	cabin_air.gases[GAS_O2][MOLES] = ONE_ATMOSPHERE*O2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)
+	cabin_air.gases[GAS_N2][MOLES] = ONE_ATMOSPHERE*N2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)*/
 
 /obj/spacepod/Destroy()
 	GLOB.spacepods_list -= src
@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		if(hatch_open)
 			to_chat(user, span_warning("The hatch is shut!"))
 		to_chat(user, span_notice("You begin inserting the canister into [src]"))
-		if(do_after_mob(user, list(A, src), 50) && construction_state == SPACEPOD_ARMOR_WELDED)
+		if(do_after(user, 5 SECONDS, A) && construction_state == SPACEPOD_ARMOR_WELDED)
 			to_chat(user, span_notice("You insert the canister into [src]"))
 			A.forceMove(src)
 			internal_tank = A
@@ -497,7 +497,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 				return
 			if(passengers.len < max_passengers)
 				visible_message(span_danger("[user] starts loading [M] into [src]!"))
-				if(do_after_mob(user, list(M, src), 50) && construction_state == SPACEPOD_ARMOR_WELDED)
+				if(do_after(user, 5 SECONDS, M) && construction_state == SPACEPOD_ARMOR_WELDED)
 					add_rider(M, FALSE)
 			return
 		if(M == user)

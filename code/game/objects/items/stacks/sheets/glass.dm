@@ -23,7 +23,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 100)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/glass
-	grind_results = list(/datum/reagent/silicon = 20)
+	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/sodium = 10)
 	point_value = 5
 	tableVariant = /obj/structure/table/glass
 	matter_amount = 4
@@ -171,8 +171,9 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	return min(round(source.energy / metcost), round(glasource.energy / glacost))
 
 /obj/item/stack/sheet/rglass/cyborg/use(used, transfer = FALSE) // Requires special checks, because it uses two storages
-	source.use_charge(used * metcost)
-	glasource.use_charge(used * glacost)
+	if(source.use_charge(used * metcost) && glasource.use_charge(used * glacost))
+		return TRUE
+	return FALSE
 
 /obj/item/stack/sheet/rglass/cyborg/add(amount)
 	source.add_charge(amount * metcost)

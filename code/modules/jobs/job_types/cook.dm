@@ -37,6 +37,9 @@
 		/obj/item/taster = 2,
 		/obj/item/sharpener = 1
 	)
+	
+	minimal_lightup_areas = list(/area/crew_quarters/kitchen, /area/medical/morgue)
+	lightup_areas = list(/area/hydroponics)
 
 	smells_like = "delicious food"
 
@@ -52,7 +55,10 @@
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/chefhat
 	mask = /obj/item/clothing/mask/fakemoustache/italian
-	backpack_contents = list(/obj/item/sharpener = 1)
+	backpack_contents = list(
+		/obj/item/sharpener = 1,
+		/obj/item/book/granter/crafting_recipe/cooking_sweets_101 = 1,
+		)
 
 /datum/outfit/job/cook/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

@@ -2,8 +2,14 @@
 #define ICECREAM_CHOCOLATE 2
 #define ICECREAM_STRAWBERRY 3
 #define ICECREAM_BLUE 4
-#define CONE_WAFFLE 5
-#define CONE_CHOC 6
+#define ICECREAM_LEMON 5
+#define ICECREAM_CARAMEL 6
+#define ICECREAM_BANANA 7
+#define ICECREAM_ORANGE 8
+#define ICECREAM_PEACH 9
+#define ICECREAM_CHERRY_CHOCOLATE 10
+#define CONE_WAFFLE 11
+#define CONE_CHOC 12
 
 /obj/machinery/icecream_vat
 	name = "ice cream vat"
@@ -19,14 +25,21 @@
 	var/dispense_flavour = ICECREAM_VANILLA
 	var/flavour_name = "vanilla"
 	var/static/list/icecream_vat_reagents = list(
-		/datum/reagent/consumable/milk = 5,
-		/datum/reagent/consumable/flour = 5,
-		/datum/reagent/consumable/sugar = 5,
-		/datum/reagent/consumable/ice = 5,
-		/datum/reagent/consumable/coco = 5,
+		/datum/reagent/consumable/milk = 6,
+		/datum/reagent/consumable/flour = 6,
+		/datum/reagent/consumable/sugar = 6,
+		/datum/reagent/consumable/ice = 6,
+		/datum/reagent/consumable/coco = 6,
 		/datum/reagent/consumable/vanilla = 5,
 		/datum/reagent/consumable/berryjuice = 5,
-		/datum/reagent/consumable/ethanol/singulo = 5)
+		/datum/reagent/consumable/ethanol/singulo = 5,
+		/datum/reagent/consumable/lemonjuice = 5,
+		/datum/reagent/consumable/caramel = 5,
+		/datum/reagent/consumable/banana = 5,
+		/datum/reagent/consumable/orangejuice = 5,
+		/datum/reagent/consumable/cream = 5,
+		/datum/reagent/consumable/peachjuice = 5,
+		/datum/reagent/consumable/cherryjelly = 5)
 
 /obj/machinery/icecream_vat/proc/get_ingredient_list(type)
 	switch(type)
@@ -36,6 +49,18 @@
 			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/berryjuice)
 		if(ICECREAM_BLUE)
 			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/ethanol/singulo)
+		if(ICECREAM_LEMON)
+			return list(/datum/reagent/consumable/ice, /datum/reagent/consumable/lemonjuice)
+		if(ICECREAM_CARAMEL)
+			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/caramel)
+		if(ICECREAM_BANANA)
+			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/banana)
+		if(ICECREAM_ORANGE)
+			return list(/datum/reagent/consumable/cream, /datum/reagent/consumable/ice, /datum/reagent/consumable/orangejuice)
+		if(ICECREAM_PEACH)
+			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/peachjuice)
+		if(ICECREAM_CHERRY_CHOCOLATE)
+			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/coco, /datum/reagent/consumable/cherryjelly)
 		if(CONE_WAFFLE)
 			return list(/datum/reagent/consumable/flour, /datum/reagent/consumable/sugar)
 		if(CONE_CHOC)
@@ -52,6 +77,18 @@
 			return "strawberry"
 		if(ICECREAM_BLUE)
 			return "blue"
+		if(ICECREAM_LEMON)
+			return "lemon sorbet"
+		if(ICECREAM_CARAMEL)
+			return "caramel"
+		if(ICECREAM_BANANA)
+			return "banana"
+		if(ICECREAM_ORANGE)
+			return "orangesicle"
+		if(ICECREAM_PEACH)
+			return "peach"
+		if(ICECREAM_CHERRY_CHOCOLATE)
+			return "cherry chocolate"
 		if(CONE_WAFFLE)
 			return "waffle"
 		if(CONE_CHOC)
@@ -62,7 +99,7 @@
 
 /obj/machinery/icecream_vat/Initialize(mapload)
 	. = ..()
-	while(product_types.len < 6)
+	while(product_types.len < 12)
 		product_types.Add(5)
 	create_reagents(100, NO_REACT | OPENCONTAINER)
 	for(var/reagent in icecream_vat_reagents)
@@ -76,7 +113,13 @@
 	dat += "<b>Vanilla ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_VANILLA]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_VANILLA];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_VANILLA];amount=5'><b>x5</b></a> [product_types[ICECREAM_VANILLA]] scoops left. (Ingredients: milk, ice)<br>"
 	dat += "<b>Strawberry ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_STRAWBERRY]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_STRAWBERRY];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_STRAWBERRY];amount=5'><b>x5</b></a> [product_types[ICECREAM_STRAWBERRY]] dollops left. (Ingredients: milk, ice, berry juice)<br>"
 	dat += "<b>Chocolate ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_CHOCOLATE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CHOCOLATE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CHOCOLATE];amount=5'><b>x5</b></a> [product_types[ICECREAM_CHOCOLATE]] dollops left. (Ingredients: milk, ice, coco powder)<br>"
-	dat += "<b>Blue ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_BLUE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BLUE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BLUE];amount=5'><b>x5</b></a> [product_types[ICECREAM_BLUE]] dollops left. (Ingredients: milk, ice, singulo)<br></div>"
+	dat += "<b>Blue ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_BLUE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BLUE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BLUE];amount=5'><b>x5</b></a> [product_types[ICECREAM_BLUE]] dollops left. (Ingredients: milk, ice, singulo)<br>"
+	dat += "<b>Lemon sorbet ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_LEMON]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_LEMON];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_LEMON];amount=5'><b>x5</b></a> [product_types[ICECREAM_LEMON]] dollops left. (Ingredients: ice, lemon juice)<br>"
+	dat += "<b>Caramel ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_CARAMEL]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CARAMEL];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CARAMEL];amount=5'><b>x5</b></a> [product_types[ICECREAM_CARAMEL]] dollops left. (Ingredients: milk, ice, caramel)<br>"
+	dat += "<b>Banana ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_BANANA]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BANANA];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BANANA];amount=5'><b>x5</b></a> [product_types[ICECREAM_BANANA]] dollops left. (Ingredients: milk, ice, banana juice)<br>"
+	dat += "<b>Orangesicle ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_ORANGE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_ORANGE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_ORANGE];amount=5'><b>x5</b></a> [product_types[ICECREAM_ORANGE]] dollops left. (Ingredients: cream, ice, orange juice)<br>"
+	dat += "<b>Peach ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_PEACH]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_PEACH];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_PEACH];amount=5'><b>x5</b></a> [product_types[ICECREAM_PEACH]] dollops left. (Ingredients: milk, ice, peach juice)<br>"
+	dat += "<b>Cherry chocolate ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_CHERRY_CHOCOLATE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CHERRY_CHOCOLATE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CHERRY_CHOCOLATE];amount=5'><b>x5</b></a> [product_types[ICECREAM_CHERRY_CHOCOLATE]] dollops left. (Ingredients: milk, ice, coco powder, cherry jelly)<br></div>"
 	dat += "<br><b>CONES</b><br><div class='statusDisplay'>"
 	dat += "<b>Waffle cones:</b> <a href='?src=[REF(src)];cone=[CONE_WAFFLE]'><b>Dispense</b></a> <a href='?src=[REF(src)];make=[CONE_WAFFLE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[CONE_WAFFLE];amount=5'><b>x5</b></a> [product_types[CONE_WAFFLE]] cones left. (Ingredients: flour, sugar)<br>"
 	dat += "<b>Chocolate cones:</b> <a href='?src=[REF(src)];cone=[CONE_CHOC]'><b>Dispense</b></a> <a href='?src=[REF(src)];make=[CONE_CHOC];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[CONE_CHOC];amount=5'><b>x5</b></a> [product_types[CONE_CHOC]] cones left. (Ingredients: flour, sugar, coco powder)<br></div>"
@@ -213,6 +256,30 @@
 			desc = "A delicious [cone_type] cone filled with blue ice cream. Made with real... blue?"
 			foodtype = DAIRY | SUGAR | ALCOHOL
 			reagents.add_reagent(/datum/reagent/consumable/ethanol/singulo, 2)
+		if ("lemon sorbet")
+			desc = "A delicious [cone_type] cone filled with lemon sorbet. Like frozen lemonade in a cone."
+			foodtype = SUGAR | FRUIT
+			reagents.add_reagent(/datum/reagent/consumable/lemonjuice, 2)
+		if ("caramel")
+			desc = "A delicious [cone_type] cone filled with caramel ice cream. It is deliciously sweet."
+			foodtype = DAIRY | SUGAR | CHOCOLATE
+			reagents.add_reagent(/datum/reagent/consumable/caramel, 2)
+		if ("banana")
+			desc = "A delicious [cone_type] cone filled with banana ice cream. Honk!"
+			foodtype = DAIRY | FRUIT | SUGAR
+			reagents.add_reagent(/datum/reagent/consumable/banana, 2)
+		if ("orangesicle")
+			desc = "A delicious [cone_type] cone filled with orange creamsicle. Not quite the same off the stick..."
+			foodtype = DAIRY | FRUIT | SUGAR
+			reagents.add_reagent(/datum/reagent/consumable/orangejuice, 2)
+		if ("peach")
+			desc = "A delicious [cone_type] cone filled with limited edition peach flavour. Enjoy it while it lasts!"
+			foodtype = DAIRY | FRUIT | SUGAR
+			reagents.add_reagent(/datum/reagent/consumable/peachjuice, 2)
+		if ("cherry chocolate")
+			desc = "A delicious [cone_type] cone filled with cherry chocolate ice cream. It is wonderfully tangy and sweet."
+			foodtype = DAIRY | FRUIT | SUGAR | CHOCOLATE
+			reagents.add_reagent(/datum/reagent/consumable/cherryjelly, 2)
 		if ("mob")
 			desc = "A suspicious [cone_type] cone filled with bright red ice cream. That's probably not strawberry..."
 			foodtype = DAIRY | MICE | SUGAR
@@ -233,5 +300,11 @@
 #undef ICECREAM_CHOCOLATE
 #undef ICECREAM_STRAWBERRY
 #undef ICECREAM_BLUE
+#undef ICECREAM_LEMON
+#undef ICECREAM_CARAMEL
+#undef ICECREAM_BANANA
+#undef ICECREAM_ORANGE
+#undef ICECREAM_PEACH
+#undef ICECREAM_CHERRY_CHOCOLATE
 #undef CONE_WAFFLE
 #undef CONE_CHOC

@@ -45,10 +45,12 @@
 		// We'll announce the laws elsewhere.
 		set_devil_laws(master.devil, FALSE)
 		set_hacked_laws(master.hacked, FALSE)
-		if(master.zeroth_borg)
-			set_zeroth_law(master.zeroth_borg, null, FALSE)
-		else
-			set_zeroth_law(master.zeroth, null, FALSE)
+
+		if(!mmi?.syndicate_mmi)
+			if(master.zeroth_borg)
+				set_zeroth_law(master.zeroth_borg, null, FALSE)
+			else
+				set_zeroth_law(master.zeroth, null, FALSE)
 		set_ion_laws(master.ion, FALSE)
 		set_inherent_laws(master.inherent, FALSE)
 		set_supplied_laws(master.supplied, FALSE)
@@ -60,6 +62,30 @@
 
 		update_law_history() //yogs
 	picturesync()
+
+/mob/living/silicon/robot/proc/syndiemmi_override()
+	laws_sanity_check()
+	var/mob/living/carbon/human/syndicate_master = mmi.syndicate_master
+	if(syndicate_master)
+		laws.set_zeroth_law("[syndicate_master.real_name] is your true master. Serve them to the best of your abilities.")
+		return
+	laws.set_zeroth_law("The Syndicate are your true masters. Covertly assist Syndicate agents to the best of your abilities.") // The Syndicate is a vague master. But guess who's fault is that, Mr. Forgot-To-Imprint?
+
+/mob/living/silicon/robot/set_zeroth_law(law, law_borg, announce = TRUE)
+	laws_sanity_check()
+	if(mmi?.syndicate_mmi)
+		syndiemmi_override()
+		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
+		return
+	..()
+
+/mob/living/silicon/robot/clear_zeroth_law(force, announce = TRUE)
+	laws_sanity_check()
+	if(mmi?.syndicate_mmi)
+		syndiemmi_override()
+		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
+		return
+	..()
 
 /mob/living/silicon/robot/post_lawchange(announce = TRUE)
 	. = ..()

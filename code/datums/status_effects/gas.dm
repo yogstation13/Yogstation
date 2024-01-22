@@ -27,7 +27,7 @@
 
 /datum/status_effect/freon/proc/owner_resist()
 	to_chat(owner, "You start breaking out of the ice cube!")
-	if(do_mob(owner, owner, 40))
+	if(do_after(owner, 4 SECONDS, owner))
 		if(!QDELETED(src))
 			to_chat(owner, "You break out of the ice cube!")
 			owner.remove_status_effect(/datum/status_effect/freon)
@@ -44,3 +44,7 @@
 /datum/status_effect/freon/watcher
 	duration = 8
 	can_melt = FALSE
+
+/datum/status_effect/freon/lasting
+	id = "lasting_frozen"
+	duration = -1

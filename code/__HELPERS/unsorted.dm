@@ -41,6 +41,9 @@
 	else if(x<0)
 		.+=360
 
+//Better performant than an artisanal proc and more reliable than Turn(). From TGMC.
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
+
 //Returns location. Returns null if no location was found.
 /proc/get_teleport_loc(turf/location,mob/target,distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 /*
@@ -492,17 +495,13 @@ Turf and target are separate in case you want to teleport some distance from a t
 		current = get_step_towards(current, target_turf)
 		while(current != target_turf)
 			if(steps > length)
-				return 0
-			if(current.opacity)
-				return 0
-			for(var/thing in current)
-				var/atom/A = thing
-				if(A.opacity)
-					return 0
+				return FALSE
+			if(IS_OPAQUE_TURF(current))
+				return FALSE
 			current = get_step_towards(current, target_turf)
 			steps++
 
-	return 1
+	return TRUE
 
 /proc/is_anchored_dense_turf(turf/T) //like the older version of the above, fails only if also anchored
 	if(T.density)
@@ -1290,44 +1289,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	temp = ((temp + (temp>>3))&29127) % 63	//070707
 	return temp
 
-//same as do_mob except for movables and it allows both to drift and doesn't draw progressbar
-/proc/do_atom(atom/movable/user , atom/movable/target, time = 30, uninterruptible = 0,datum/callback/extra_checks = null)
-	if(!user || !target)
-		return TRUE
-	var/user_loc = user.loc
-
-	var/drifting = FALSE
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = TRUE
-
-	var/target_drifting = FALSE
-	if(!target.Process_Spacemove(0) && target.inertia_dir)
-		target_drifting = TRUE
-
-	var/target_loc = target.loc
-
-	var/endtime = world.time+time
-	. = TRUE
-	while (world.time < endtime)
-		stoplag(1)
-		if(QDELETED(user) || QDELETED(target))
-			. = 0
-			break
-		if(uninterruptible)
-			continue
-
-		if(drifting && !user.inertia_dir)
-			drifting = FALSE
-			user_loc = user.loc
-
-		if(target_drifting && !target.inertia_dir)
-			target_drifting = FALSE
-			target_loc = target.loc
-
-		if((!drifting && user.loc != user_loc) || (!target_drifting && target.loc != target_loc) || (extra_checks && !extra_checks.Invoke()))
-			. = FALSE
-			break
-
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
@@ -1378,9 +1339,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if(is_servant_of_ratvar(V) || isobserver(V))
 			. += V
 
-#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##target, ##var_name, ##var_value)
+#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
-#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##datum, NAMEOF(##datum, ##var), ##var_value)
+#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##datum, NAMEOF(##datum, ##var), ##var_value)
 
 /proc/___callbackvarset(list_or_datum, var_name, var_value)
 	if(length(list_or_datum))
@@ -1429,6 +1390,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/blue,
 		/mob/living/simple_animal/hostile/retaliate/goat/brown,
 		/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
@@ -1454,6 +1416,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/ras,
 		/mob/living/simple_animal/hostile/retaliate/goat/christmas,
 		/mob/living/simple_animal/hostile/retaliate/goat/confetti,

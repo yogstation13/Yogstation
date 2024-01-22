@@ -26,7 +26,7 @@
 /datum/crafting_recipe/food/clownstears
 	name = "Clown's Tears"
 	reqs = list(
-		/datum/reagent/water = 10,
+		/datum/reagent/lube = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
 		/obj/item/stack/ore/bananium = 1
@@ -251,6 +251,7 @@
 	name = "Pea soup"
 	reqs = list(
 		/datum/reagent/water = 10,
+		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/reagent_containers/food/snacks/grown/peas = 2,
 		/obj/item/reagent_containers/food/snacks/grown/parsnip = 1,
 		/obj/item/reagent_containers/food/snacks/grown/carrot = 1

@@ -29,10 +29,9 @@
 	deathsound = 'sound/voice/mook_death.ogg'
 	aggro_vision_range = 15 //A little more aggressive once in combat to balance out their really low HP
 	attack_vis_effect = ATTACK_EFFECT_SLASH
+	footstep_type = FOOTSTEP_HARD_BAREFOOT
 	var/attack_state = MOOK_ATTACK_NEUTRAL
 	var/struck_target_leap = FALSE
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/jungle/mook/CanAllowThrough(atom/movable/O)
 	. = ..()

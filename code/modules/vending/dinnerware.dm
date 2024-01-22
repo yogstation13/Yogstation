@@ -10,13 +10,16 @@
 					/obj/item/reagent_containers/food/condiment/pack/ketchup = 5,
 					/obj/item/reagent_containers/food/condiment/pack/hotsauce = 5,
 					/obj/item/reagent_containers/food/condiment/pack/astrotame = 5,
+					/obj/item/reagent_containers/food/condiment/pack/bbqsauce = 2,
 					/obj/item/reagent_containers/food/condiment/saltshaker = 5,
 					/obj/item/reagent_containers/food/condiment/peppermill = 5,
 					/obj/item/kitchen/rollingpin = 2,
 					/obj/item/kitchen/knife = 2,
 					/obj/item/reagent_containers/glass/mixbowl = 3, // Yogs -- chef's mixing bowl
 					/obj/item/reagent_containers/food/condiment/cinnamon = 5, // Yogs -- cinnamon shakers!
-					/obj/item/plate = 10)
+					/obj/item/plate/small = 5,
+					/obj/item/plate = 10,
+					/obj/item/plate/large = 5)
 	contraband = list(
 		/obj/item/kitchen/knife/butcher = 2,
 		/obj/item/melee/fryingpan = 2,	// Yogs -- Pan

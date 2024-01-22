@@ -43,7 +43,7 @@
 			if(affecting.brute_dam <= 0)
 				to_chat(user, span_warning("[affecting] is already in good condition!"))
 				return FALSE
-			if(INTERACTING_WITH(user, H))
+			if(DOING_INTERACTION(user, H))
 				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
 			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
@@ -138,13 +138,13 @@
 		if(new_tool)
 			switch_tool(user, new_tool)
 
-/obj/item/holotool/emag_act(mob/user)
+/obj/item/holotool/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_danger("ZZT- ILLEGAL BLUEPRINT UNLOCKED- CONTACT !#$@^%$# NANOTRASEN SUPPORT-@*%$^%!"))
 	do_sparks(5, 0, src)
 	obj_flags |= EMAGGED
-
+	return TRUE
 
 // Spawn in RD closet
 /obj/structure/closet/secure_closet/RD/PopulateContents()

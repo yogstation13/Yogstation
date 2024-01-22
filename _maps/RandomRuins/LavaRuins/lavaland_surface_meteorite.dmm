@@ -671,7 +671,7 @@
 /area/lavaland/surface/outdoors)
 "mf" = (
 /obj/structure/stone_tile/surrounding,
-/obj/structure/altar_of_gods,
+/obj/structure/table/altar_of_gods,
 /obj/item/flashlight/lantern{
 	on = 1
 	},

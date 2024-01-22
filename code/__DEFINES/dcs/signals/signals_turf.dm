@@ -9,3 +9,10 @@
 #define COMSIG_TURF_AFTER_SHUTTLE_MOVE "turf_after_shuttle_move"	//! from base of turf/proc/afterShuttleMove: (turf/new_turf)
 ///from base of /datum/turf_reservation/proc/Release: (datum/turf_reservation/reservation)
 #define COMSIG_TURF_RESERVATION_RELEASED "turf_reservation_released"
+
+///from /datum/element/footstep/prepare_step(): (list/steps)
+#define COMSIG_TURF_PREPARE_STEP_SOUND "turf_prepare_step_sound"
+	//stops element/footstep/proc/prepare_step() from returning null if the turf itself has no sound
+	#define FOOTSTEP_OVERRIDDEN (1<<0)
+///from base of datum/thrownthing/finalize(): (turf/turf, atom/movable/thrownthing) when something is thrown and lands on us
+#define COMSIG_TURF_MOVABLE_THROW_LANDED "turf_movable_throw_landed"

@@ -23,8 +23,8 @@
 
 /obj/item/grenade/plastic/Initialize(mapload)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 	plastic_overlay = mutable_appearance(icon, "[item_state]2", ABOVE_ALL_MOB_LAYER)
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/grenade/plastic/Destroy()
 	qdel(nadeassembly)

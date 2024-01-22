@@ -31,7 +31,7 @@
 	draining = TRUE
 	essence_drained += rand(15, 20)
 	to_chat(src, span_revennotice("You search for the soul of [target]."))
-	if(do_after(src, rand(10, 20), target, FALSE)) //did they get deleted in that second?
+	if(do_after(src, rand(10, 20), target, timed_action_flags = IGNORE_HELD_ITEM)) //did they get deleted in that second?
 		if(target.ckey)
 			to_chat(src, span_revennotice("[target.p_their(TRUE)] soul burns with intelligence."))
 			essence_drained += rand(20, 30)
@@ -40,7 +40,7 @@
 			essence_drained += rand(40, 50)
 		else
 			to_chat(src, span_revennotice("[target.p_their(TRUE)] soul is weak and faltering."))
-		if(do_after(src, rand(15, 20), target, FALSE)) //did they get deleted NOW?
+		if(do_after(src, rand(15, 20), target, timed_action_flags = IGNORE_HELD_ITEM)) //did they get deleted NOW?
 			switch(essence_drained)
 				if(1 to 30)
 					to_chat(src, span_revennotice("[target] will not yield much essence. Still, every bit counts."))
@@ -50,7 +50,7 @@
 					to_chat(src, span_revenboldnotice("Such a feast! [target] will yield much essence to you."))
 				if(90 to INFINITY)
 					to_chat(src, span_revenbignotice("Ah, the perfect soul. [target] will yield massive amounts of essence to you."))
-			if(do_after(src, rand(15, 25), target, FALSE)) //how about now
+			if(do_after(src, rand(15, 25), target, timed_action_flags = IGNORE_HELD_ITEM)) //how about now
 				if(!target.stat)
 					to_chat(src, span_revenwarning("[target.p_theyre(TRUE)] now powerful enough to fight off your draining."))
 					to_chat(target, span_boldannounce("You feel something tugging across your body before subsiding."))
@@ -65,14 +65,14 @@
 				reveal(46)
 				stun(46)
 				target.visible_message(span_warning("[target] suddenly rises slightly into the air, [target.p_their()] skin turning an ashy gray."))
-				if(target.anti_magic_check(FALSE, TRUE))
+				if(target.can_block_magic(MAGIC_RESISTANCE_HOLY))
 					to_chat(src, span_revenminor("Something's wrong! [target] seems to be resisting the siphoning, leaving you vulnerable!"))
 					target.visible_message(span_warning("[target] slumps onto the ground."), \
 											   span_revenwarning("Violet lights, dancing in your vision, receding--"))
 					draining = FALSE
 					return
 				var/datum/beam/B = Beam(target,icon_state="drain_life",time=INFINITY)
-				if(do_after(src, 4.6 SECONDS, target, FALSE)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
+				if(do_after(src, 4.6 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
 					change_essence_amount(essence_drained, FALSE, target)
 					if(essence_drained <= 90 && target.stat != DEAD)
 						essence_regen_cap += 5
@@ -276,10 +276,10 @@
 	
 	if(victim.type == /turf/closed/wall && prob(15))
 		new /obj/effect/temp_visual/revenant(victim)
-		victim.ChangeTurf(/turf/closed/wall/rust)
+		victim.AddElement(/datum/element/rust)
 	if(victim.type == /turf/closed/wall/r_wall && prob(10))
 		new /obj/effect/temp_visual/revenant(victim)
-		victim.ChangeTurf(/turf/closed/wall/r_wall/rust)
+		victim.AddElement(/datum/element/rust)
 	for(var/obj/effect/decal/cleanable/food/salt/salt in victim)
 		new /obj/effect/temp_visual/revenant(victim)
 		qdel(salt)

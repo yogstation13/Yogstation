@@ -93,6 +93,8 @@
 /obj/item/clothing/head/helmet/sec/occupying
 	name = "occupying force helmet"
 	desc = "Standard deployment gear. Protects the head from impacts and has a built in mounted light."
+	icon_state = "occhelm"
+	item_state = "occhelm"
 
 /obj/item/clothing/head/helmet/sec/occupying/Initialize(mapload, mob/user)
 	attached_light = new /obj/item/flashlight/seclite(null)

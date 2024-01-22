@@ -1,23 +1,25 @@
-/stack
-	var/list
-		contents=new
-	proc
-		Push(value)
-			contents+=value
+/datum/stack
+	var/list/contents = new
 
-		Pop()
-			if(!contents.len) return null
-			. = contents[contents.len]
-			contents.len--
+/datum/stack/proc/Push(value)
+	contents += value
 
-		Top() //returns the item on the top of the stack without removing it
-			if(!contents.len) return null
-			return contents[contents.len]
+/datum/stack/proc/Pop()
+	if(!contents.len)
+		return null
+	. = contents[contents.len]
+	contents.len--
 
-		Copy()
-			var/stack/S=new()
-			S.contents=src.contents.Copy()
-			return S
+///returns the item on the top of the stack without removing it
+/datum/stack/proc/Top()
+	if(!contents.len)
+		return null
+	return contents[contents.len]
 
-		Clear()
-			contents.Cut()
+/datum/stack/proc/Copy()
+	var/datum/stack/new_stack = new()
+	new_stack.contents = contents.Copy()
+	return new_stack
+
+/datum/stack/proc/Clear()
+	contents.Cut()

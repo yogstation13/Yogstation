@@ -16,13 +16,12 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
 
-	///How much damage the pitchfork will do while wielded.
+	///How much extra damage the pitchfork will do while wielded.
 	var/force_wielded = 8
 
 /obj/item/pitchfork/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 	)

@@ -601,7 +601,7 @@
 	return 0
 
 /datum/reagents/proc/reaction_check(mob/living/M, datum/reagent/R)
-	return (R.process_flags & M.get_process_flags())
+	return (R.compatible_biotypes & M.mob_biotypes)
 
 /**
   * Applies the relevant reaction_ proc for every reagent in this holder

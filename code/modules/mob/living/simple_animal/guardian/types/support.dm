@@ -132,7 +132,7 @@
 	span_userdanger("You start to faintly glow, and you feel strangely weightless!"))
 	do_attack_animation(A)
 
-	if(!do_mob(src, A, 60)) //now start the channel
+	if(!do_after(src, 6 SECONDS, A)) //now start the channel
 		to_chat(src, "<span class='danger'><B>You need to hold still!</span></B>")
 		return
 

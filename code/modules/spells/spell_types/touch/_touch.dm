@@ -170,9 +170,7 @@
 
 	if(!proximity_flag)
 		return
-	if(victim == caster)
-		return
-	if(!can_cast_spell(feedback = FALSE))
+	if(!can_hit_with_hand(victim, caster))
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(do_hand_hit), source, victim, caster)

@@ -215,5 +215,14 @@
 			body_turf.Beam(parent_turf, icon_state = "lichbeam", time = 1 SECONDS * (num_resurrections + 1))
 
 		corpse.dust(drop_items = TRUE)
+	
+	var/list/guardians = lich.hasparasites()
+	if(guardians)
+		for(var/mob/living/simple_animal/hostile/guardian/G in guardians)
+			if(istype(G))
+				var/datum/guardian_stats/stats = G.stats
+				stats.weaken(4)//-4 stats each death
+				stats.Unapply(G)
+				stats.Apply(G)
 
 	return TRUE

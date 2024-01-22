@@ -36,7 +36,7 @@
 	var/mob/living/carbon/H = M
 	var/mob/living/simple_animal/hostile/guardian/G = M
 	user.visible_message(span_warning("[user] prepares to stab [H] with [src]!"), span_notice("You raise [src] into the air."))
-	if (do_mob(user, H, 5 SECONDS, uninterruptible=FALSE))
+	if (do_after(user, 5 SECONDS, H))
 		if (LAZYLEN(H.hasparasites()) || (H.mind && H.mind.has_antag_datum(/datum/antagonist/changeling)) || (isguardian(M) && (users[G] || G.requiem || G.transforming || !can_requiem)))
 			H.visible_message(span_holoparasite("[src] rejects [H]!"))
 			return

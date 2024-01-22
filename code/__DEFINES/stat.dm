@@ -5,7 +5,7 @@
 //mob/var/stat things
 #define CONSCIOUS	0
 #define SOFT_CRIT	1
-#define UNCONSCIOUS	2
+#define UNCONSCIOUS	2 //THIS MEANS HARD CRIT
 #define DEAD		3
 
 //Maximum healthiness an individual can have

@@ -7,7 +7,6 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	siemens_coefficient = 1
 	var/last_used = 0
 	var/list/voicespan = list(SPAN_COMMAND)
 	
@@ -63,13 +62,14 @@
 			playsound(loc, 'sound/items/megaphone.ogg', 100, 0, 1)
 			speech_args[SPEECH_SPANS] |= voicespan
 
-/obj/item/megaphone/emag_act(mob/user)
+/obj/item/megaphone/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
-	to_chat(user, span_warning("You overload \the [src]'s voice synthesizer."))
+		return FALSE
 	obj_flags |= EMAGGED
 	voicespan = list(SPAN_REALLYBIG, "userdanger")
-
+	to_chat(user, span_warning("You overload \the [src]'s voice synthesizer."))
+	return TRUE
+	
 /obj/item/megaphone/sec
 	name = "security megaphone"
 	icon_state = "megaphone-sec"

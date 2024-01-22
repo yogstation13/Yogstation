@@ -32,6 +32,7 @@
 	set_light_on(on)
 	if(light_system == STATIC_LIGHT)
 		update_light()
+
 /obj/item/flashlight/attack_self(mob/user)
 	on = !on
 	update_brightness(user)
@@ -202,7 +203,7 @@
 
 /obj/item/flashlight/pen/paramedic/advanced
 	name = "advanced penlight"
-	desc = "A stronger version of the UV penlight that paramedics and doctors recieve, it is capable of cauterizing bleeding as well as sterilizing burns."
+	desc = "A stronger version of the UV penlight that paramedics and doctors receive, it is capable of cauterizing bleeding as well as sterilizing burns."
 	icon_state = "penlight_cmo"
 	light_range = 4
 	uv_power = 2
@@ -236,6 +237,7 @@
 	force = 9 // Not as good as a stun baton.
 	light_range = 5 // A little better than the standard flashlight.
 	hitsound = 'sound/weapons/genhit1.ogg'
+	light_system = MOVABLE_LIGHT_DIRECTIONAL
 
 // the desk lamps are a bit special
 /obj/item/flashlight/lamp

@@ -37,6 +37,10 @@
 		return "r"
 	return "l"
 
+/mob/proc/held_index_to_body_zone(i)
+	if(!(i % 2))
+		return BODY_ZONE_R_ARM
+	return BODY_ZONE_L_ARM
 
 //Check we have an organ for this hand slot (Dismemberment), Only relevant for humans
 /mob/proc/has_hand_for_held_index(i)
@@ -350,6 +354,7 @@
 				I.forceMove(newloc)
 		I.dropped(src, silent)
 	SEND_SIGNAL(I, COMSIG_ITEM_POST_UNEQUIP, force, newloc, no_move, invdrop, silent)
+	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, I, force, newloc, no_move, invdrop, silent)
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.

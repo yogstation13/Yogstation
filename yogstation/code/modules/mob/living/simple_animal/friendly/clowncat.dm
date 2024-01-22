@@ -19,10 +19,11 @@
 		visible_message("[name] lets out a honk!")
 		playsound(src, pick(meows), 100)
 
-/mob/living/simple_animal/pet/cat/clown/emag_act(mob/user)
-	if(emagged == FALSE)
-		emagged = TRUE
-		do_sparks(8, FALSE, loc)
+/mob/living/simple_animal/pet/cat/clown/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(emagged)
+		return FALSE
+	emagged = TRUE
+	do_sparks(8, FALSE, loc)
 
 /mob/living/simple_animal/pet/cat/clown/Move(atom/newloc, direct)
 	..()

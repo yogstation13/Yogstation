@@ -408,7 +408,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 26
+	begin_day = 22
 	begin_month = OCTOBER
 	end_day = 2
 	end_month = NOVEMBER
@@ -428,6 +428,11 @@
 		"https://www.youtube.com/watch?v=bRLML36HnzU" // Monster Mash
 		)
 
+/datum/holiday/halloween/shouldCelebrate(dd, mm, yy, ww, ddd)
+	. = ..()
+	if(!.)
+		return (dd == 13 && ddd == FRIDAY)
+	
 /datum/holiday/halloween/greet()
 	return "Have a spooky Halloween!"
 
@@ -602,7 +607,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=Ri-Pmh5X8-c",   //Phyrnna - Sisters of Snow Dissent
 		"https://www.youtube.com/watch?v=W2Dyg4YY2VU",   //Phyrnna - Sisters of Snow Assent
 		"https://www.youtube.com/watch?v=VICEsWdd4Kk",   //Phyrnna - A First Snow with Friends
-		"https://www.youtube.com/watch?v=1HGQlV2AWGs"	// Phineas and Ferb - We Wish You a Merry Christmas
+		"https://www.youtube.com/watch?v=1HGQlV2AWGs",	// Phineas and Ferb - We Wish You a Merry Christmas
+		"https://www.youtube.com/watch?v=0gw8l7iv2Wg"   //Anuc Atittawan and Hera Loani - Chestnuts Roasting on an Open Fire
 
 		)
 	mail_holiday = TRUE

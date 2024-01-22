@@ -111,7 +111,7 @@ All foods are distributed among various categories. Use common sense.
 			if(!isbrain(M))		//If you're feeding it to someone else.
 				if(!C.force_eat_text(fullness, src, C, user))
 					return
-				if(!do_mob(user, M))
+				if(!do_after(user, 3 SECONDS, M))
 					return
 				log_combat(user, M, "fed", reagents.log_list())
 			else

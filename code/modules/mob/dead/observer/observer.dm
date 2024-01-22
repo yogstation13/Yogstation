@@ -283,23 +283,41 @@ Works together with spawning an observer, noted above.
 */
 
 /mob/proc/ghostize(can_reenter_corpse = 1)
-	if(key)
-		if(key[1] != "@") // Skip aghosts.
-			stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
-			if(can_reenter_corpse && client) //yogs start
-				oobe_client = client //yogs end
-			var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
-			SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
-			ghost.can_reenter_corpse = can_reenter_corpse
-			ghost.key = key
-			if(ghost?.client)
-				ghost.client.init_verbs()
-			if(ghost?.client?.holder?.fakekey)
-				ghost.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
-				ghost.alpha = 0 //JUUUUST IN CASE
-				ghost.name = " "
-				ghost.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-			return ghost
+	if(!key)
+		return
+	if(key[1] == "@") // Skip aghosts.
+		return
+
+	if(HAS_TRAIT(src, TRAIT_CORPSELOCKED))
+		if(can_reenter_corpse) //If you can re-enter the corpse you can't leave when corpselocked
+			return
+		if(ishuman(usr)) //following code only applies to those capable of having an ethereal heart, ie humans
+			var/mob/living/carbon/human/crystal_fella = usr
+			var/our_heart = crystal_fella.getorganslot(ORGAN_SLOT_HEART)
+			if(istype(our_heart, /obj/item/organ/heart/ethereal)) //so you got the heart?
+				var/obj/item/organ/heart/ethereal/ethereal_heart = our_heart
+				ethereal_heart.stop_crystalization_process(crystal_fella) //stops the crystallization process
+
+	if(isgolem(usr))
+		var/mob/living/carbon/human/H = usr
+		var/datum/species/golem/golem = H.dna.species
+		if(golem && golem.owner)
+			GLOB.servant_golem_users[usr.ckey] = world.time + (golem.ghost_cooldown ? golem.ghost_cooldown : 0)
+	stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
+	if(can_reenter_corpse && client) //yogs start
+		oobe_client = client //yogs end
+	var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
+	SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
+	ghost.can_reenter_corpse = can_reenter_corpse
+	ghost.key = key
+	if(ghost?.client)
+		ghost.client.init_verbs()
+	if(ghost?.client?.holder?.fakekey)
+		ghost.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
+		ghost.alpha = 0 //JUUUUST IN CASE
+		ghost.name = " "
+		ghost.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	return ghost
 
 /*
 This is the proc mobs get to turn into a ghost. Forked from ghostize due to compatibility issues.

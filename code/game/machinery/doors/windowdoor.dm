@@ -12,7 +12,7 @@
 	armor = list(MELEE = 60, BULLET = -40, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	flags_1 = ON_BORDER_1
-	opacity = 0
+	opacity = FALSE
 	CanAtmosPass = ATMOS_PASS_PROC
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 	var/obj/item/electronics/airlock/electronics = null
@@ -65,17 +65,22 @@
 		close()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM)
-	if( operating || !density )
+	if(operating || !density)
 		return
-	if (!( ismob(AM) ))
+	if(!(ismob(AM)))
 		if(ismecha(AM))
 			var/obj/mecha/mecha = AM
-			if(mecha.occupant && allowed(mecha.occupant))
+			var/has_access = (obj_flags & CMAGGED) ? !check_access_list(mecha.operation_req_access) : check_access_list(mecha.operation_req_access)
+			if(mecha.occupant) // If there is an occupant, check their access too.
+				has_access = (obj_flags & CMAGGED) ? cmag_allowed(mecha.occupant) && has_access : allowed(mecha.occupant) || has_access
+			if(has_access)
 				open_and_close()
-			else
-				do_animate("deny")
+				return
+			if(obj_flags & CMAGGED)
+				try_play_cmagsound()
+			do_animate("deny")
 		return
-	if (!( SSticker ))
+	if(!(SSticker))
 		return
 	var/mob/M = AM
 	if(M.restrained() || ((isdrone(M) || iscyborg(M)) && M.stat))
@@ -89,11 +94,13 @@
 	if(!requiresID())
 		user = null
 
-	if(allowed(user))
+	var/allowed = (obj_flags & CMAGGED) ? cmag_allowed(user) : allowed(user)
+	if(allowed)
 		open_and_close()
-	else
-		do_animate("deny")
-	return
+		return
+	if(obj_flags & CMAGGED)
+		try_play_cmagsound()
+	do_animate("deny")
 
 /obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -151,7 +158,7 @@
 	sleep(1 SECONDS)
 
 	density = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 
 	if(operating == 1) //emag again
@@ -173,7 +180,7 @@
 	icon_state = base_state
 
 	density = TRUE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 	sleep(1 SECONDS)
 
@@ -209,16 +216,28 @@
 		take_damage(round(exposed_volume / 200), BURN, 0, 0)
 	..()
 
-/obj/machinery/door/window/emag_act(mob/user)
-	if(!operating && density && !(obj_flags & EMAGGED))
-		obj_flags |= EMAGGED
-		operating = TRUE
-		flick("[base_state]spark", src)
-		playsound(src, "sparks", 75, 1)
-		sleep(0.6 SECONDS)
-		operating = FALSE
-		desc += "<BR>[span_warning("Its access panel is smoking slightly.")]"
-		open(2)
+/obj/machinery/door/window/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(operating || !density || (obj_flags & CMAGGED))
+		return FALSE
+	obj_flags |= EMAGGED
+	operating = TRUE
+	flick("[base_state]spark", src)
+	playsound(src, "sparks", 75, 1)
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 0.6 SECONDS)
+	return TRUE
+
+/obj/machinery/door/window/proc/finish_emag_act()
+	if(QDELETED(src))
+		return
+	operating = FALSE
+	open(2)
+
+/obj/machinery/door/window/examine(mob/user)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		. += span_warning("The access panel is smoking slightly.")
+	if(obj_flags & CMAGGED)
+		. += span_warning("The access panel is coated in yellow ooze...")
 
 /obj/machinery/door/window/attackby(obj/item/I, mob/living/user, params)
 
@@ -404,7 +423,7 @@
 	return ..()
 
 /obj/machinery/door/window/clockwork/emp_act(severity)
-	if(prob(80/severity))
+	if(prob(8 * severity))
 		open()
 
 /obj/machinery/door/window/clockwork/ratvar_act()

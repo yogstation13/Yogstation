@@ -132,12 +132,6 @@
 /turf/open/floor/plasteel/white/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
-/turf/open/floor/plasteel/yellowsiding
-	icon_state = "yellowsiding"
-
-/turf/open/floor/plasteel/yellowsiding/corner
-	icon_state = "yellowcornersiding"
-
 /turf/open/floor/plasteel/recharge_floor
 	icon_state = "recharge_floor"
 

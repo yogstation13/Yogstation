@@ -98,6 +98,7 @@ Class Procs:
 
 	var/stat = 0
 	var/use_power = IDLE_POWER_USE
+	var/datum/powernet/powernet = null
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
@@ -131,9 +132,13 @@ Class Procs:
 
 	/// For storing and overriding ui id
 	var/tgui_id // ID of TGUI interface
-	var/climb_time = 20
-	var/climb_stun = 20
-	var/mob/living/machineclimber
+	/// world.time of last use by [/mob/living]
+	var/last_used_time = 0
+	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
+	var/mob/living/last_user_mobtype
+
+	///Boolean on whether this machines interact with atmos
+	var/atmos_processing = FALSE
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
@@ -160,7 +165,8 @@ Class Procs:
 	power_change()
 	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(power_change))
 
-/obj/machinery/Destroy()
+/obj/machinery/Destroy(force=FALSE)
+	disconnect_from_network()
 	GLOB.machines.Remove(src)
 	if(!speed_process)
 		STOP_PROCESSING(SSmachines, src)
@@ -185,7 +191,7 @@ Class Procs:
 /obj/machinery/emp_act(severity)
 	. = ..()
 	if(use_power && !stat && !(. & EMP_PROTECT_SELF))
-		use_power(7500/severity)
+		use_power(750 * severity)
 		new /obj/effect/temp_visual/emp(loc)
 
 /obj/machinery/proc/open_machine(drop = TRUE)
@@ -292,13 +298,14 @@ Class Procs:
 	if(is_species(L, /datum/species/lizard/ashwalker))
 		return FALSE // ashwalkers cant use modern machines
 
+	//YOGS EDIT BEGIN
+	if(is_species(L, /datum/species/pod/ivymen))
+		return FALSE // same as ivymen
+	//YOGS EDIT END
+
 	var/mob/living/carbon/H = user
 	if(istype(H) && H.has_dna())
-		if (H.dna.check_mutation(ACTIVE_HULK))
-			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
-			return FALSE // hulks cant use machines
-
-		else if(!Adjacent(user) && !H.dna.check_mutation(TK))
+		if(!Adjacent(user) && !H.dna.check_mutation(TK))
 			return FALSE // need to be close or have telekinesis
 
 	return TRUE
@@ -386,6 +393,14 @@ Class Procs:
 	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
 		return	
 	return ..()
+
+/obj/machinery/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
+	if(SEND_SIGNAL(user, COMSIG_TRY_USE_MACHINE, src) & COMPONENT_CANT_USE_MACHINE_TOOLS)
+		return TOOL_ACT_MELEE_CHAIN_BLOCKING
+	. = ..()
+	if(. & TOOL_ACT_SIGNAL_BLOCKING)
+		return
+	update_last_used(user)
 
 /obj/machinery/CheckParts(list/parts_list)
 	..()
@@ -477,8 +492,8 @@ Class Procs:
 		I.play_tool_sound(src, 50)
 		setDir(turn(dir,-90))
 		to_chat(user, span_notice("You rotate [src]."))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
 	if(!(isfloorturf(loc) || istype(loc, /turf/open/indestructible)) && !anchored)
@@ -607,7 +622,7 @@ Class Procs:
 /obj/machinery/proc/can_be_overridden()
 	. = 1
 
-/obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
+/obj/machinery/tesla_act(power, tesla_flags, shocked_objects, zap_gib = FALSE)
 	..()
 	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		if(prob(60))
@@ -652,3 +667,27 @@ Class Procs:
 
 /obj/machinery/rust_heretic_act()
 	take_damage(500, BRUTE, MELEE, 1)
+
+/obj/machinery/proc/update_last_used(mob/user)
+	if(isliving(user))
+		last_used_time = world.time
+		last_user_mobtype = user.type
+
+/**
+ * Puts passed object in to user's hand
+ *
+ * Puts the passed object in to the users hand if they are adjacent.
+ * If the user is not adjacent then place the object on top of the machine.
+ *
+ * Vars:
+ * * object (obj) The object to be moved in to the users hand.
+ * * user (mob/living) The user to recive the object
+ */
+/obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
+	if(!issilicon(user) && in_range(src, user))
+		user.put_in_hands(object)
+	else
+		object.forceMove(drop_location())
+
+/obj/machinery/proc/set_occupant(atom/movable/new_occupant)
+	SHOULD_CALL_PARENT(TRUE)

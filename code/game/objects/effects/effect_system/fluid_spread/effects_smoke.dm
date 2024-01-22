@@ -220,8 +220,8 @@
  */
 /obj/effect/particle_effect/fluid/smoke/bad/proc/on_entered(datum/source, atom/movable/arrived, atom/oldloc)
 	SIGNAL_HANDLER
-	if(istype(arrived, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/beam = arrived
+	if(istype(arrived, /obj/projectile/beam))
+		var/obj/projectile/beam/beam = arrived
 		beam.damage = (beam.damage/2)
 
 /// A factory which produces smoke that makes you cough.
@@ -294,13 +294,12 @@
 		if(!distcheck || get_dist(location, chilly) < blast) // Otherwise we'll get silliness like people using Nanofrost to kill people through walls with cold air
 			air.set_temperature(temperature)
 		
-		if(air.get_moles(/datum/gas/plasma))
-			air.adjust_moles(/datum/gas/nitrogen, air.get_moles(/datum/gas/plasma))
-			air.set_moles(/datum/gas/plasma, 0)
+		if(air.get_moles(GAS_PLASMA))
+			air.adjust_moles(GAS_N2, air.get_moles(GAS_PLASMA))
+			air.set_moles(GAS_PLASMA, 0)
 
 		for(var/obj/effect/hotspot/fire in chilly)
 			qdel(fire)
-		chilly.air_update_turf()
 
 	if(weldvents)
 		for(var/obj/machinery/atmospherics/components/unary/comp in chilly)

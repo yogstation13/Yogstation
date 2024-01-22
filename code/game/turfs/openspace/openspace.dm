@@ -1,9 +1,10 @@
 /turf/open/openspace
 	name = "open space"
 	desc = "Watch your step!"
-	icon_state = "grey"
+	icon_state = "transparent" // transparent so strongDMM's multi-z rendering works properly
 	baseturfs = /turf/open/openspace
 	CanAtmosPassVertical = ATMOS_PASS_YES
+	flags_1 = NO_RUST
 	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE

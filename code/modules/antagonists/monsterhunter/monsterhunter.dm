@@ -40,7 +40,7 @@
 	fortitude.Grant(owner.current)
 	if(give_objectives)
 		//Give Hunter Objective
-		var/datum/objective/bloodsucker/monsterhunter/monsterhunter_objective = new
+		var/datum/objective/monsterhunter/monsterhunter_objective = new
 		monsterhunter_objective.owner = owner
 		objectives += monsterhunter_objective
 		//Give Theft Objective

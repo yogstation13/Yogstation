@@ -229,6 +229,17 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
+"ec" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/gun/ballistic/automatic/c20r/ultrasecure,
+/obj/item/ammo_box/magazine/smgm45,
+/obj/item/melee/transforming/energy/sword,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
 "eE" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -306,7 +317,7 @@
 	},
 /obj/machinery/power/apc/syndicate{
 	name = "Syndicate Derelict Kitchen";
-	pixel_y = -24;
+	pixel_y = -23;
 	start_charge = 0
 	},
 /obj/machinery/light/broken,
@@ -501,10 +512,10 @@
 	tilted = 1
 	},
 /obj/machinery/power/apc/syndicate{
-	name = "Syndicate Derelict Hydroponics";
 	dir = 1;
-	start_charge = 0;
-	pixel_y = 24
+	name = "Syndicate Derelict Hydroponics";
+	pixel_y = 23;
+	start_charge = 0
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -551,7 +562,7 @@
 	},
 /obj/machinery/power/apc/syndicate{
 	name = "Syndicate Derelict Hallway";
-	pixel_y = -24;
+	pixel_y = -23;
 	start_charge = 0
 	},
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
@@ -1109,9 +1120,9 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/syndicate{
-	name = "Syndicate Derelict Engineering";
-	pixel_x = -24;
 	dir = 8;
+	name = "Syndicate Derelict Engineering";
+	pixel_x = -25;
 	start_charge = 0
 	},
 /obj/effect/mob_spawn/human/syndicate_derelict_engineer{
@@ -2031,9 +2042,9 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/power/apc/syndicate{
-	name = "Syndicate Derelict Research Wing";
-	pixel_x = -24;
 	dir = 8;
+	name = "Syndicate Derelict Research Wing";
+	pixel_x = -25;
 	start_charge = 0
 	},
 /turf/open/floor/plating/broken/three,
@@ -2287,9 +2298,9 @@
 	dir = 5
 	},
 /obj/machinery/power/apc/syndicate{
-	name = "Syndicate Derelict Virology";
-	pixel_x = -24;
 	dir = 8;
+	name = "Syndicate Derelict Virology";
+	pixel_x = -25;
 	start_charge = 0
 	},
 /obj/effect/decal/cleanable/blood/footprints,
@@ -2507,7 +2518,7 @@
 "Xg" = (
 /obj/machinery/power/apc/syndicate{
 	name = "Syndicate Derelict Medbay";
-	pixel_y = -24;
+	pixel_y = -23;
 	start_charge = 0
 	},
 /obj/structure/cable/yellow{
@@ -2534,16 +2545,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plasteel/airless/broken/three,
 /area/ruin/space/has_grav/syndiederelict/research)
-"XA" = (
-/obj/machinery/airalarm/syndicate{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/structure/closet/crate/secure/gear,
-/obj/item/melee/transforming/energy/sword,
-/obj/item/melee/transforming/energy/sword,
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/has_grav/syndiederelict/virology)
 "XC" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
@@ -3028,7 +3029,7 @@ QU
 xQ
 Ya
 Wm
-XA
+ec
 UL
 Yf
 Yf

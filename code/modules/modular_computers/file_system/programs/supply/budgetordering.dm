@@ -27,6 +27,10 @@
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 	/// Can send the shuttle **AWAY** from the station
 	var/can_send = FALSE
+	///Is it being bought from a departmental budget?
+	var/budget_order = FALSE
+	///If this is true, unlock the ability to order through budgets
+	var/unlock_budget = TRUE
 
 /datum/computer_file/program/budgetorders/proc/get_export_categories()
 	. = EXPORT_CARGO
@@ -71,10 +75,13 @@
 	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
 	var/obj/item/card/id/id_card = card_slot?.GetID()
 	if(id_card?.registered_account)
+		unlock_budget = TRUE
+		if(id_card?.registered_account?.account_job?.paycheck_department == ACCOUNT_CAR)
+			unlock_budget = FALSE //cargo tech is already using the same budget.
+		if(id_card?.registered_account?.account_job?.paycheck_department && budget_order)
+			buyer = SSeconomy.get_dep_account(id_card.registered_account.account_job.paycheck_department)
 		if((ACCESS_HEADS in id_card.access) || (ACCESS_QM in id_card.access) || (ACCESS_CARGO in id_card.access))
 			requestonly = FALSE
-			if(id_card?.registered_account?.account_job?.paycheck_department)
-				buyer = SSeconomy.get_dep_account(id_card.registered_account.account_job.paycheck_department)
 			can_approve_requests = TRUE
 			can_send = TRUE
 		else
@@ -83,6 +90,7 @@
 			can_send = FALSE
 	else
 		requestonly = TRUE
+		unlock_budget = FALSE //none registered account shouldnt be using budget order
 	if(buyer)
 		data["points"] = buyer.account_balance
 
@@ -102,16 +110,17 @@
 			continue
 		data["supplies"][P.group]["packs"] += list(list(
 			"name" = P.name,
-			"cost" = P.cost,
+			"cost" = P.get_cost(),
 			"id" = pack,
 			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
 			"access" = P.access
 		))
 
 //Data regarding the User's capability to buy things.
-	data["has_id"] = id_card
 	data["away"] = SSshuttle.supply.getDockedId() == "supply_away"
 	data["self_paid"] = self_paid
+	data["unlock_budget"] = unlock_budget
+	data["budget_order"] = budget_order
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
@@ -128,20 +137,22 @@
 	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 		data["cart"] += list(list(
 			"object" = SO.pack.name,
-			"cost" = SO.pack.cost,
+			"cost" = SO.pack.get_cost(),
 			"id" = SO.id,
 			"orderer" = SO.orderer,
-			"paid" = !isnull(SO.paying_account) //paid by requester
+			"paid" = !isnull(SO.paying_account), //paid by requester
+			"budget" = SO.budget
 		))
 
 	data["requests"] = list()
 	for(var/datum/supply_order/SO in SSshuttle.requestlist)
 		data["requests"] += list(list(
 			"object" = SO.pack.name,
-			"cost" = SO.pack.cost,
+			"cost" = SO.pack.get_cost(),
 			"orderer" = SO.orderer,
 			"reason" = SO.reason,
-			"id" = SO.id
+			"id" = SO.id,
+			"budget" = SO.budget
 		))
 
 	return data
@@ -202,7 +213,7 @@
 			else if(issilicon(usr))
 				name = usr.real_name
 				rank = "Silicon"
-
+			
 			var/datum/bank_account/account
 			if(self_paid && ishuman(usr))
 				var/mob/living/carbon/human/H = usr
@@ -226,16 +237,19 @@
 
 			if(!self_paid && ishuman(usr) && !account)
 				var/obj/item/card/id/id_card = card_slot?.GetID()
-				account = SSeconomy.get_dep_account(id_card?.registered_account?.account_job.paycheck_department)
+				if(budget_order)
+					account = SSeconomy.get_dep_account(id_card?.registered_account?.account_job.paycheck_department)
+					name = account.account_holder
+					rank = "*None Provided*"
 
-			var/turf/T = get_turf(src)
-			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason, account)
+			var/turf/T = get_turf(computer)
+			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason, account, account?.account_holder)
 			SO.generateRequisition(T)
 			if((requestonly && !self_paid) || !(card_slot?.GetID()))
 				SSshuttle.requestlist += SO
 			else
 				SSshuttle.shoppinglist += SO
-				if(self_paid)
+				if(self_paid || budget_order)
 					computer.say("Order processed. The price will be charged to [account.account_holder]'s bank account on delivery.")
 			. = TRUE
 		if("remove")
@@ -252,9 +266,6 @@
 			var/id = text2num(params["id"])
 			for(var/datum/supply_order/SO in SSshuttle.requestlist)
 				if(SO.id == id)
-					var/obj/item/card/id/id_card = card_slot?.GetID()
-					if(id_card && id_card?.registered_account)
-						SO.paying_account = SSeconomy.get_dep_account(id_card?.registered_account?.account_job.paycheck_department)
 					SSshuttle.requestlist -= SO
 					SSshuttle.shoppinglist += SO
 					. = TRUE
@@ -271,6 +282,13 @@
 			. = TRUE
 		if("toggleprivate")
 			self_paid = !self_paid
+			if(budget_order)
+				budget_order = FALSE //incase something fucked
+			. = TRUE
+		if("togglebudget")
+			budget_order = !budget_order
+			if(self_paid)
+				self_paid = FALSE //incase something fucked
 			. = TRUE
 	if(.)
 		post_signal("supply")

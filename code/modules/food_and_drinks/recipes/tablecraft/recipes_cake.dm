@@ -66,6 +66,17 @@
 	result = /obj/item/reagent_containers/food/snacks/store/cake/chocolatecheese
 	category = CAT_CAKE
 
+/datum/crafting_recipe/food/clowncake
+	name = "Clown Cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 1,
+		/obj/item/reagent_containers/food/snacks/sundae = 2,
+		/obj/item/reagent_containers/food/snacks/grown/banana = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/clown_cake
+	category = CAT_CAKE
+	always_available = FALSE
+
 /datum/crafting_recipe/food/donkcake
 	name = "Donk Cake"
 	reqs = list(
@@ -133,6 +144,16 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/cake/slimecake
 	category = CAT_CAKE
+
+/datum/crafting_recipe/food/vanillacake
+	name = "Vanilla Cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 1,
+		/obj/item/reagent_containers/food/snacks/grown/vanillapod = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/vanilla_cake
+	category = CAT_CAKE
+	always_available = FALSE
 
 /datum/crafting_recipe/food/weddingcake
 	name = "Wedding Cake"

@@ -78,6 +78,12 @@ GLOBAL_LIST_EMPTY(lockers)
 	GLOB.lockers -= src
 	return ..()
 
+/obj/structure/closet/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(var_name == NAMEOF(src, locked))
+		update_appearance()
+		. = TRUE
+
 /obj/structure/closet/update_overlays()
 	. = ..()
 	if(opened)
@@ -379,13 +385,12 @@ GLOBAL_LIST_EMPTY(lockers)
 	else if(!isitem(O))
 		return
 	var/turf/T = get_turf(src)
-	var/list/targets = list(O, src)
 	add_fingerprint(user)
 	user.visible_message(span_warning("[user] [actuallyismob ? "tries to ":""]stuff [O] into [src]."), \
 				 	 	span_warning("You [actuallyismob ? "try to ":""]stuff [O] into [src]."), \
 				 	 	span_italics("You hear clanging."))
 	if(actuallyismob)
-		if(do_after_mob(user, targets, 40))
+		if(do_after(user, 4 SECONDS, O))
 			user.visible_message(span_notice("[user] stuffs [O] into [src]."), \
 							 	 span_notice("You stuff [O] into [src]."), \
 							 	 span_italics("You hear a loud metal bang."))
@@ -521,16 +526,18 @@ GLOBAL_LIST_EMPTY(lockers)
 	else if(secure && broken)
 		to_chat(user, span_warning("\The [src] is broken!"))
 
-/obj/structure/closet/emag_act(mob/user)
-	if(secure && !broken)
-		user.visible_message(span_warning("Sparks fly from [src]!"),
-						span_warning("You scramble [src]'s lock, breaking it open!"),
-						span_italics("You hear a faint electrical spark."))
-		playsound(src, "sparks", 50, 1)
-		broken = TRUE
-		locked = FALSE
-		update_appearance(UPDATE_ICON)
-
+/obj/structure/closet/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(!secure || broken)
+		return FALSE
+	user.visible_message(span_warning("Sparks fly from [src]!"),
+					span_warning("You scramble [src]'s lock, breaking it open!"),
+					span_italics("You hear a faint electrical spark."))
+	playsound(src, "sparks", 50, 1)
+	broken = TRUE
+	locked = FALSE
+	update_appearance(UPDATE_ICON)
+	return TRUE
+	
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
 		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
@@ -543,10 +550,10 @@ GLOBAL_LIST_EMPTY(lockers)
 		for(var/obj/O in src)
 			O.emp_act(severity)
 	if(secure && !broken && !(. & EMP_PROTECT_SELF))
-		if(prob(50 / severity))
+		if(prob(5 * severity))
 			locked = !locked
 			update_appearance(UPDATE_ICON)
-		if(prob(20 / severity) && !opened)
+		if(prob(2 * severity) && !opened)
 			if(!locked)
 				open()
 			else
@@ -618,7 +625,6 @@ GLOBAL_LIST_EMPTY(lockers)
 			var/remove_amount = (loc_air.total_moles() + air_contents.total_moles()) * air_contents.return_volume() / (loc_air.return_volume() + air_contents.return_volume())
 			loc.assume_air(air_contents)
 			loc.remove_air(remove_amount)
-			loc.air_update_turf()
 		air_contents = null
 
 /obj/structure/closet/return_air()

@@ -109,25 +109,24 @@
 		return FALSE
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
-		if(ispreternis(H)) //let's charge some dumb robot players
+		if(HAS_TRAIT(H, TRAIT_POWERHUNGRY)) //let's charge some dumb robot players
 			if(user.zone_selected != BODY_ZONE_CHEST)
 				to_chat(user, span_warning("You need to target [A]'s chest with [src] to recharge [H.p_them()]!"))
 				recharging = FALSE
 				return TRUE
 			coefficient = 0.1
 			var/totransfer = min(cell.charge,(powertransfer * coefficient))
-			var/datum/species/preternis/preternis = H.dna.species
 			var/done_any = FALSE
-			if(preternis.charge >= PRETERNIS_LEVEL_FULL - 25)
+			if(H.nutrition >= NUTRITION_LEVEL_FAT - 25)
 				to_chat(user, span_notice("[A] is fully charged!"))
 				recharging = FALSE
 				return TRUE
 			user.visible_message("[user] starts recharging [A] with [src].",span_notice("You start recharging [A] with [src]."))
-			while(preternis.charge < PRETERNIS_LEVEL_FULL - 25)
+			while(H.nutrition < NUTRITION_LEVEL_FAT - 25)
 				if(do_after(user, 1 SECONDS, user) && cell.charge)
 					done_any = TRUE
 					cell.use(totransfer*coefficient)
-					preternis.charge = clamp(preternis.charge + (powertransfer*coefficient), PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
+					H.adjust_nutrition(powertransfer*coefficient)
 					H.apply_damage(totransfer*coefficient, BURN, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 					user.visible_message("Smoke rises off of [A]'s body!",span_notice("You smell something burning as [A] is charged by the [src]!"))
 					do_sparks(1, FALSE, A)

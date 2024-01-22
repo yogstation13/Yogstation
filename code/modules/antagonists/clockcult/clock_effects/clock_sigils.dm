@@ -12,7 +12,6 @@
 	var/sigil_name = "Sigil"
 	var/resist_string = "glows blinding white" //string for when a null rod blocks its effects, "glows [resist_string]"
 	var/check_antimagic = TRUE
-	var/check_holy = FALSE
 
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
@@ -46,7 +45,7 @@
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)
 			if((!is_servant_of_ratvar(L) || (affects_servants && is_servant_of_ratvar(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
-				var/atom/I = L.anti_magic_check(check_antimagic, check_holy)
+				var/atom/I = L.can_block_magic((check_antimagic ? MAGIC_RESISTANCE : NONE))
 				if(I)
 					if(isitem(I))
 						L.visible_message(span_warning("[L]'s [I.name] [resist_string], protecting [L.p_them()] from [src]'s effects!"), \

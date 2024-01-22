@@ -19,7 +19,7 @@
 	COOLDOWN_DECLARE(reflect_cd_2)
 	COOLDOWN_DECLARE(reflect_cd_3)
 
-/datum/species/darkspawn/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/darkspawn/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(prob(50) && (COOLDOWN_FINISHED(src, reflect_cd_1) || COOLDOWN_FINISHED(src, reflect_cd_2) || COOLDOWN_FINISHED(src, reflect_cd_3)))
 		if(COOLDOWN_FINISHED(src, reflect_cd_1))
 			COOLDOWN_START(src, reflect_cd_1, DARKSPAWN_REFLECT_COOLDOWN)

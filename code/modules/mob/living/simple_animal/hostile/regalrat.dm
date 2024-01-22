@@ -72,9 +72,9 @@
 
 /mob/living/simple_animal/hostile/regalrat/handle_environment(datum/gas_mixture/environment)
 	. = ..()
-	if(stat == DEAD || !environment || !environment.get_moles(/datum/gas/miasma))
+	if(stat == DEAD || !environment || !environment.get_moles(GAS_MIASMA))
 		return
-	var/miasma_percentage = environment.get_moles(/datum/gas/miasma)/environment.total_moles()
+	var/miasma_percentage = environment.get_moles(GAS_MIASMA)/environment.total_moles()
 	if(miasma_percentage>=0.25)
 		heal_bodypart_damage(1)
 
@@ -185,7 +185,7 @@
 
 	if (target.reagents && target.is_injectable(src, allowmobs = TRUE) && !istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		src.visible_message(span_warning("[src] starts licking [target] passionately!"), span_notice("You start licking [target]..."))
-		if(do_mob(src, target, 2 SECONDS))
+		if(do_after(src, 2 SECONDS, target))
 			target.reagents.add_reagent(/datum/reagent/rat_spit, rand(1,3), no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
 	else if(istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))

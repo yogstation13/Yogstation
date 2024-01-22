@@ -2008,14 +2008,6 @@
 	name = "Dark Tiger"
 	icon_state = "dtiger"
 
-/datum/sprite_accessory/tails/lizard/ltiger
-	name = "Light Tiger"
-	icon_state = "ltiger"
-
-/datum/sprite_accessory/tails_animated/lizard/ltiger
-	name = "Light Tiger"
-	icon_state = "ltiger"
-
 /datum/sprite_accessory/tails/lizard/spikes
 	name = "Spikes"
 	icon_state = "spikes"
@@ -2242,6 +2234,38 @@
 	dimension_x = 96
 	center = TRUE
 	dimension_y = 32
+
+/datum/sprite_accessory/wings/ethereal
+	name = "Ethereal"
+	icon_state = "ethereal"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	locked = TRUE
+
+/datum/sprite_accessory/wings_open/ethereal
+	name = "Ethereal"
+	icon_state = "ethereal"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+
+/datum/sprite_accessory/wings/etherealdetails
+	name = "Etherealdetails"
+	icon_state = "etherealdetails"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	locked = TRUE
+	color_src = null
+
+/datum/sprite_accessory/wings_open/etherealdetails
+	name = "Etherealdetails"
+	icon_state = "etherealdetails"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	color_src = null
 
 /datum/sprite_accessory/frills
 	icon = 'icons/mob/mutant_bodyparts.dmi'

@@ -2,7 +2,7 @@
 	name = "ragin' mages"
 	config_tag = "raginmages"
 	var/antag_datum = /datum/antagonist/wizard/
-	antag_flag = ROLE_RAGINMAGES
+	antag_flag = ROLE_WIZARD
 	required_players = 40
 	announce_span = "userdanger"
 	announce_text = "There are many, many wizards attacking the station!\n\
@@ -114,7 +114,7 @@
 	name = "very ragin' bullshit mages"
 	config_tag = "veryraginbullshitmages"
 	antag_datum = /datum/antagonist/wizard/
-	antag_flag = ROLE_BULLSHITMAGES
+	antag_flag = ROLE_WIZARD
 	required_players = 40
 	bullshit_mode = TRUE
 	time_check = 250

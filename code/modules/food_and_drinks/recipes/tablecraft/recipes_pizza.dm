@@ -74,7 +74,9 @@
 	name = "Mushroom Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
-		/obj/item/reagent_containers/food/snacks/grown/mushroom = 5
+		/obj/item/reagent_containers/food/snacks/grown/mushroom = 5,
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/mushroom/raw
 	category = CAT_PIZZA
@@ -108,7 +110,8 @@
 		/obj/item/reagent_containers/food/snacks/grown/eggplant = 1,
 		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
 		/obj/item/reagent_containers/food/snacks/grown/corn = 1,
-		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
+		/obj/item/reagent_containers/food/snacks/grown/tomato = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/vegetable/raw
 	category = CAT_PIZZA

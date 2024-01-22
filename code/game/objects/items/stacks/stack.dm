@@ -205,7 +205,7 @@
 				var/adjusted_time = 0
 				usr.visible_message("<span class='notice'>[usr] starts building \a [R.title].</span>", "<span class='notice'>You start building \a [R.title]...</span>")
 				adjusted_time = R.time
-				if(!do_after(usr, adjusted_time, target = usr))
+				if(!do_after(usr, adjusted_time, usr))
 					return
 				if(!building_checks(R, multiplier))
 					return

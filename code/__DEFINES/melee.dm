@@ -18,6 +18,8 @@
 #define MARTIALART_ULTRAVIOLENCE "ultra violence"
 #define MARTIALART_BUSTERSTYLE "buster style"
 #define MARTIALART_WORLDBREAKER "worldbreaker"
+#define MARTIALART_SPACIALLDOMINANCE "absolute spacial dominance"
+#define MARTIALART_LIGHTNINGFLOW "lightning flow"
 
 
 //Weapon stat defines

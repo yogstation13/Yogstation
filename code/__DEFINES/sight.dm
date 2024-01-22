@@ -17,10 +17,11 @@
 
 #define INVISIBILITY_ABSTRACT 101 //only used for abstract objects (e.g. spacevine_controller), things that are not really there.
 
-#define BORGMESON		(1<<0)
-#define BORGTHERM		(1<<1)
-#define BORGXRAY 		(1<<2)
-#define BORGMATERIAL	(1<<3)
+#define BORGMESON				(1<<0)
+#define BORGMESON_NIGHTVISION	(1<<1)
+#define BORGTHERM				(1<<2)
+#define BORGXRAY 				(1<<3)
+#define BORGMATERIAL			(1<<4)
 
 //for clothing visor toggles, these determine which vars to toggle
 #define VISOR_FLASHPROTECT	(1<<0)

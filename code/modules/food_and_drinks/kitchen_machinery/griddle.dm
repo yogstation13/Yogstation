@@ -57,6 +57,15 @@
 	. = ..()
 	if(panel_open)
 		return
+	toggle_mode()
+
+/obj/machinery/griddle/attack_robot(mob/user)
+	. = ..()
+	if(panel_open)
+		return
+	toggle_mode()
+
+/obj/machinery/griddle/proc/toggle_mode()
 	on = !on
 	if(on)
 		begin_processing()
@@ -64,7 +73,6 @@
 		end_processing()
 	update_appearance(UPDATE_ICON)
 	update_grill_audio()
-
 
 /obj/machinery/griddle/proc/AddToGrill(obj/item/item_to_grill, mob/user)
 	vis_contents += item_to_grill

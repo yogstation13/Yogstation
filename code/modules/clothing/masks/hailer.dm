@@ -39,6 +39,7 @@
 		"Copy" = 'sound/voice/cpvoicelines/copy.ogg',
 		"Alright, you can go" = 'sound/voice/cpvoicelines/allrightyoucango.ogg',
 		"Backup" = 'sound/voice/cpvoicelines/backup.ogg',
+		"Anticitizen" = 'sound/voice/cpvoicelines/anticitizen.ogg',
 		"Citizen" = 'sound/voice/cpvoicelines/citizen.ogg',
 		"Get down" = 'sound/voice/cpvoicelines/getdown.ogg',
 		"Get out of here" = 'sound/voice/cpvoicelines/getoutofhere.ogg',
@@ -66,7 +67,6 @@
 		"First warning, move away" = 'sound/voice/cpvoicelines/firstwarningmove.ogg',
 		"Sentence delivered" = 'sound/voice/cpvoicelines/sentencedelivered.ogg',
 		"Issuing malcompliant citation" = 'sound/voice/cpvoicelines/issuingmalcompliantcitation.ogg',
-		"Anticitizen" = 'sound/voice/cpvoicelines/anticitizen.ogg',
 		"Apply" = 'sound/voice/cpvoicelines/apply.ogg',
 		"Hehe" = 'sound/voice/cpvoicelines/chuckle.ogg',
 	)
@@ -129,17 +129,19 @@
 	else
 		adjustmask(user)
 
-/obj/item/clothing/mask/gas/sechailer/emag_act(mob/user as mob)
+/obj/item/clothing/mask/gas/sechailer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		obj_flags |= EMAGGED
-		to_chat(user, span_warning("You silently fry [src]'s vocal circuit with the cryptographic sequencer."))
-
+		return
+	obj_flags |= EMAGGED
+	to_chat(user, span_warning("You silently fry [src]'s vocal circuit with the cryptographic sequencer."))
+	return TRUE
+	
 /obj/item/clothing/mask/gas/sechailer/handle_speech(datum/source, mob/speech_args)
 	if(!voicetoggled)
 		return
 	var/full_message = speech_args[SPEECH_MESSAGE]
 	for(var/lines in sechailer_voicelines)
-		if(findtext(full_message, lines, 1, 30))
+		if(findtext(full_message, lines))
 			playsound(source, sechailer_voicelines[lines], 50, FALSE)
 			return // only play the first.
 

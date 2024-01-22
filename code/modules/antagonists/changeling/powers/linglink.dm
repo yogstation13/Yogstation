@@ -61,7 +61,7 @@
 				addtimer(CALLBACK(src, PROC_REF(sever_connection), user, target), 3 MINUTES)
 				return
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("[name]", "[i]"))
-		if(!do_mob(user, target, 2 SECONDS))
+		if(!do_after(user, 2 SECONDS, target))
 			to_chat(user, span_warning("Our link with [target] has ended!"))
 			changeling.islinking = FALSE
 			target.mind.linglink = FALSE

@@ -15,7 +15,7 @@
 		No additional abilities is gained, nothing is lost, if you want a plain Bloodsucker, this is it. \n\
 		The Favorite Vassal will gain the Brawn ability, to help in combat."
 	///The clan objective that is required to greentext.
-	var/datum/objective/bloodsucker/clan_objective
+	var/datum/objective/clan_objective
 	///The icon of the radial icon to join this clan.
 	var/join_icon = 'icons/mob/bloodsucker_clan_icons.dmi'
 	///Same as join_icon, but the state

@@ -14,7 +14,7 @@
 	outfit = /datum/outfit/job/scientist
 
 	added_access = list(ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
-	base_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_RND, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
 
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
@@ -36,6 +36,16 @@
 		/obj/item/camera_bug = 1
 	)
 
+	lightup_areas = list(/area/storage/tech, /area/science/robotics)
+	minimal_lightup_areas = list(
+		/area/science/explab,
+		/area/science/misc_lab,
+		/area/science/mixing,
+		/area/science/nanite,
+		/area/science/storage,
+		/area/science/xenobiology
+	)
+	
 	smells_like = "slime"
 
 /datum/outfit/job/scientist

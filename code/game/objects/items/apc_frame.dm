@@ -129,8 +129,8 @@
 	if(issilicon(user))
 		var/mob/living/silicon/robot/robotuser = user
 		var/obj/item/held_item = robotuser.get_active_held_item(TRUE)
-		if(istype(held_item, /obj/item/gripper))
-			var/obj/item/gripper/gripper = held_item
+		if(istype(held_item, /obj/item/borg/gripper))
+			var/obj/item/borg/gripper/gripper = held_item
 			if(gripper.wrapped == src)
 				return // Gripper has this electronic held.
 		if(istype(held_item, /obj/item/construction/rcd/borg))

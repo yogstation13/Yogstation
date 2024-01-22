@@ -9,7 +9,7 @@
 /obj/machinery/computer/cargo/express
 	name = "express supply console"
 	desc = "This console allows the user to purchase a package \
-		with 1/40th of the delivery time: made possible by NanoTrasen's new \"1500mm Orbital Railgun\".\
+		with 1/40th of the delivery time: made possible by Nanotrasen's new \"1500mm Orbital Railgun\".\
 		All sales are near instantaneous - please choose carefully"
 	icon_screen = "supply_express"
 	circuit = /obj/item/circuitboard/computer/cargo/express
@@ -53,16 +53,17 @@
 			to_chat(user, span_notice("[src] is already linked to [sb]."))
 	..()
 
-/obj/machinery/computer/cargo/express/emag_act(mob/living/user)
+/obj/machinery/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	user.visible_message(span_warning("[user] swipes a suspicious card through [src]!"),
 	span_notice("You change the routing protocols, allowing the Supply Pod to land anywhere on the station."))
 	obj_flags |= EMAGGED
-	// This also sets this on the circuit board
+	// This also sets this on the circuit board.
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	board.obj_flags |= EMAGGED
 	packin_up()
+	return TRUE
 
 /obj/machinery/computer/cargo/express/proc/packin_up() // oh shit, I'm sorry
 	meme_pack_data = list() // sorry for what?

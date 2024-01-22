@@ -18,7 +18,7 @@
 	current_cycle++
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
+		if(!(HAS_TRAIT(H, TRAIT_NOHUNGER) || HAS_TRAIT(H, TRAIT_POWERHUNGRY)))
 			H.adjust_nutrition(nutriment_factor)
 	holder?.remove_reagent(type, metabolization_rate)
 
@@ -146,7 +146,7 @@
 			M.emote("scream")
 		playsound(M, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
 		ADD_TRAIT(M, TRAIT_OIL_FRIED, "cooking_oil_react")
-		addtimer(CALLBACK(M, /mob/living/proc/unfry_mob), 3)
+		addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living, unfry_mob)), 3)
 	if(FryLoss)
 		M.adjustFireLoss(FryLoss)
 	return TRUE
@@ -209,7 +209,7 @@
 	color = "#792300" // rgb: 121, 35, 0
 	taste_description = "umami"
 	default_container = /obj/item/reagent_containers/food/condiment/soysauce
-	
+
 /datum/reagent/consumable/ketchup
 	name = "Ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
@@ -407,22 +407,23 @@
 
 /datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
 	M.set_slurring_if_lower(1 SECONDS)
-
 	switch(current_cycle)
 		if(1 to 5)
 			M.set_dizzy_if_lower(5 SECONDS)
 			M.set_drugginess_if_lower(30 SECONDS)
 			if(prob(10))
 				M.emote(pick("twitch","giggle"))
-		if(5 to 10)
+
+		if(6 to 10)
 			M.set_jitter_if_lower(20 SECONDS)
 			M.set_dizzy_if_lower(10 SECONDS)
 			M.set_drugginess_if_lower(35 SECONDS)
 			if(prob(20))
 				M.emote(pick("twitch","giggle"))
-		if (10 to INFINITY)
+
+		if (11 to INFINITY)
 			M.set_jitter_if_lower(40 SECONDS)
-			M.adjust_dizzy(20 SECONDS)
+			M.set_dizzy_if_lower(20 SECONDS)
 			M.set_drugginess_if_lower(40 SECONDS)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
@@ -474,10 +475,9 @@
 	T.MakeSlippery(TURF_WET_LUBE, min_wet_time = 10 SECONDS, wet_time_to_add = reac_volume*2 SECONDS)
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
 	if(hotspot)
-		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles())
-		lowertemp.set_temperature(max( min(lowertemp.return_temperature()-2000,lowertemp.return_temperature() / 2) ,0))
+		var/datum/gas_mixture/lowertemp = T.return_air()
+		lowertemp.set_temperature(max( min(lowertemp.return_temperature()-2000,lowertemp.return_temperature() / 2) ,TCMB))
 		lowertemp.react(src)
-		T.assume_air(lowertemp)
 		qdel(hotspot)
 
 /datum/reagent/consumable/enzyme
@@ -753,13 +753,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#97ee63"
 	taste_description = "pure electricity"
-
-/datum/reagent/consumable/liquidelectricity/reaction_mob(mob/living/M, methods=TOUCH, reac_volume) //can't be on life because of the way blood works.
-	if((methods & (INGEST|INJECT|PATCH)) && iscarbon(M))
-		var/mob/living/carbon/C = M
-		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
 	if(!istype(T))
@@ -767,12 +761,15 @@
 	if(reac_volume < 3)
 		return
 
-	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
-		B = new(T)
+		B = new /obj/effect/decal/cleanable/blood/splatter(T)
+		B.Etherealify()
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
-	if(prob(25) && !isethereal(M))
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
+		M.adjust_nutrition(nutriment_factor)
+	else if(prob(25))
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
 		playsound(M, "sparks", 50, 1)
 	return ..()
@@ -930,3 +927,18 @@
 	if(HAS_TRAIT(affected_mob, TRAIT_FAT))
 		affected_mob.gib()
 	return ..()
+
+/datum/reagent/consumable/bbqsauce
+	name = "BBQ Sauce"
+	description = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#78280A" // rgb: 120, 40, 10
+	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
+	taste_description = "smokey sweetness"
+
+/datum/reagent/consumable/peanut_butter
+	name = "Peanut Butter"
+	description = "A creamy paste made from ground peanuts."
+	nutriment_factor = 15 * REAGENTS_METABOLISM
+	color = "#D9A066" // rgb: 217, 160, 102
+	taste_description = "peanuts"

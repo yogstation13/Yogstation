@@ -22,6 +22,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "pool"
 	sound = 'sound/effects/splash.ogg'
+	flags_1 = CAN_BE_DIRTY_1|RAD_CONTAIN_CONTENTS // contains most of the rads on the tile within that tile
 	var/id = null //Set me if you don't want the pool and the pump to be in the same area, or you have multiple pools per area.
 	var/obj/effect/water_overlay = null
 

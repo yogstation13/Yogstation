@@ -57,6 +57,7 @@
 	else
 		icon_state_regular_floor = icon_state
 		icon_regular_floor = icon
+
 	if(mapload && prob(33))
 		MakeDirty()
 	if(is_station_level(z))

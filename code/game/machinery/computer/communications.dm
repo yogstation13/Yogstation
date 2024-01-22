@@ -81,14 +81,15 @@
 	else
 		return ..()
 
-/obj/machinery/computer/communications/emag_act(mob/user)
-	if (obj_flags & EMAGGED)
-		return
+/obj/machinery/computer/communications/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
 	obj_flags |= EMAGGED
 	if (authenticated)
 		authorize_access = get_all_accesses()
 	to_chat(user, span_danger("You scramble the communication routing circuits!"))
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
+	return TRUE
 
 /obj/machinery/computer/communications/ui_act(action, list/params)
 	var/static/list/approved_states = list(STATE_BUYING_SHUTTLE, STATE_CHANGING_STATUS, STATE_MAIN, STATE_MESSAGES)
@@ -251,7 +252,7 @@
 			nuke_request(reason, usr)
 			to_chat(usr, span_notice("Request sent."))
 			usr.log_message("has requested the nuclear codes from CentCom with reason \"[reason]\"", LOG_SAY)
-			priority_announce("The codes for the on-station nuclear self-destruct have been requested by [authorize_name]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self-Destruct Codes Requested", RANDOM_REPORT_SOUND)
+			priority_announce("The codes for the on-station nuclear self-destruct have been requested by [authorize_name]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self-Destruct Codes Requested", SSstation.announcer.get_rand_report_sound())
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("restoreBackupRoutingData")
@@ -363,7 +364,7 @@
 				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
 				new /obj/item/card/id/captains_spare/temporary(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
-				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", RANDOM_REPORT_SOUND)
+				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", SSstation.announcer.get_rand_report_sound())
 		if("printAIControlCode")
 			if(authenticated_as_non_silicon_head(usr))
 				if(!COOLDOWN_FINISHED(src, important_action_cooldown))
@@ -372,7 +373,7 @@
 				GLOB.ai_control_code = random_nukecode(6)
 				new /obj/item/paper/ai_control_code(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
-				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", RANDOM_REPORT_SOUND)
+				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", SSstation.announcer.get_rand_report_sound())
 
 
 /obj/machinery/computer/communications/ui_data(mob/user)

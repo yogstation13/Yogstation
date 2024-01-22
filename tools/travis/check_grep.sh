@@ -46,9 +46,17 @@ if grep -i 'centcomm' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
 fi;
+if grep 'NanoTrasen' code/**/*.dm; then
+    echo "ERROR: Misspelling(s) of Nanotrasen detected in code, please uncapitalize the T."
+    st=1
+fi;
+if grep 'NanoTrasen' _maps/**/*.dmm; then
+    echo "ERROR: Misspelling(s) of Nanotrasen detected in maps, please uncapitalize the T."
+    st=1
+fi;
 if grep -i 'balloon_alert\(.*?, ?"[A-Z]'; then
 	echo
-	echo "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
+	echo "ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT()."
 	st=1
 fi;
 if grep '\.proc/' code/**/*.dm | grep -v 'code/__byond_version_compat.dm'; then
@@ -60,7 +68,11 @@ if ls _maps/*.json | grep -P "[A-Z]"; then
 	st=1
 fi;
 if grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' code/**/*.dm; then
-	echo "ERROR: Initialize override without 'mapload' argument.${NC}"
+	echo "ERROR: Initialize override without 'mapload' argument."
+	st=1
+fi;
+if grep -P '^\s*(\w+)\s*=\s*(\1)\b\s*$' code/**/*.dm; then
+	echo "ERROR: Variable is assigned to itself"
 	st=1
 fi;
 for json in _maps/*.json

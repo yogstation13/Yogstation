@@ -251,8 +251,8 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 4,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 3,
 		/obj/item/reagent_containers/food/snacks/boiledegg = 2,
-		/obj/item/reagent_containers/food/snacks/bun = 1
-
+		/obj/item/reagent_containers/food/snacks/bun = 1,
+		/obj/item/reagent_containers/food/snacks/pickle = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/superbite
 	category = CAT_BURGER
@@ -312,6 +312,18 @@
 		/obj/item/reagent_containers/food/snacks/butter = 1
 		)
 	result = /obj/item/reagent_containers/food/snacks/butterdog
+	category = CAT_BURGER
+
+/datum/crafting_recipe/food/danish_hotdog
+	name = "Danish Hot Dog"
+	reqs = list(
+		/datum/reagent/consumable/ketchup = 5,
+		/obj/item/reagent_containers/food/snacks/bun = 1,
+		/obj/item/reagent_containers/food/snacks/sausage = 1,
+		/obj/item/reagent_containers/food/snacks/pickle = 1,
+		/obj/item/reagent_containers/food/snacks/onion_slice = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/danish_hotdog
 	category = CAT_BURGER
 
 /datum/crafting_recipe/food/roburger

@@ -78,8 +78,8 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/bot/cleanbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/cleanbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			to_chat(user, span_danger("[src] buzzes and beeps."))
@@ -192,7 +192,7 @@
 	if(blood)
 		target_types += /obj/effect/decal/cleanable/xenoblood
 		target_types += /obj/effect/decal/cleanable/blood
-		target_types += /obj/effect/decal/cleanable/trail_holder
+		target_types += /obj/effect/decal/cleanable/blood/trail_holder
 
 	if(pests)
 		target_types += /mob/living/simple_animal/cockroach

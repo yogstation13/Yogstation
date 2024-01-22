@@ -9,6 +9,9 @@
 	mob_size = MOB_SIZE_TINY
 	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be deactivated."
 	weather_immunities = list(WEATHER_ASH)
+	light_on = FALSE
+	light_flags = LIGHT_ATTACHED
+	light_system = MOVABLE_LIGHT
 	health = 500
 	maxHealth = 500
 	layer = BELOW_MOB_LAYER
@@ -67,7 +70,7 @@
 	var/can_receive = TRUE
 	var/obj/item/card/id/access_card = null
 	var/chassis = "repairbot"
-	var/list/possible_chassis = list("cat" = TRUE, "mouse" = TRUE, "monkey" = TRUE, "corgi" = FALSE, "fox" = FALSE, "repairbot" = TRUE, "rabbit" = TRUE)		//assoc value is whether it can be picked up.
+	var/list/possible_chassis = list("cat" = TRUE, "mouse" = TRUE, "monkey" = TRUE, "corgi" = FALSE, "fox" = FALSE, "repairbot" = TRUE, "rabbit" = TRUE, "frog" = TRUE)		//assoc value is whether it can be picked up.
 
 	var/emitterhealth = 20
 	var/emittermaxhealth = 20

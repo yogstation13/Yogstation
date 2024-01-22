@@ -7,8 +7,8 @@
 	throwforce = 0
 	var/zone = BODY_ZONE_CHEST
 	var/slot
-	// Does this organ work in organics, synthetics, or both? Assume it's a flesh-compatible organ by default.
-	var/process_flags = ORGANIC
+	// What biotypes is this organ compatible with? Assume it's a flesh-compatible organ by default.
+	var/compatible_biotypes = MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
 	var/organ_flags = 0
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
@@ -90,7 +90,7 @@
 		if(!C)
 			return
 		life_tick++
-		if((C.stat == DEAD || !(process_flags & owner.get_process_flags())) && !HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS)) // organic organs decompose inside incompatible bodies
+		if((C.stat == DEAD || !(compatible_biotypes & owner.mob_biotypes)) && !HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS)) // organic organs decompose inside incompatible bodies
 			if(damage >= maxHealth)
 				organ_flags |= ORGAN_FAILING
 				damage = maxHealth

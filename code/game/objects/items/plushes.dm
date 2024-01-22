@@ -599,3 +599,13 @@
 	gender = FEMALE
 	icon_state = "plush_cdragon"
 	item_state = "plush_cdragon"
+
+/obj/item/toy/plush/catslug
+	name = "catslug plushie"
+	desc = "What even is this thing?"
+	lefthand_file = 'icons/mob/inhands/plushes_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/plushes_righthand.dmi'
+	gender = MALE
+	icon_state = "slugcat"
+	item_state = "slugcat"
+
