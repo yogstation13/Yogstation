@@ -432,7 +432,7 @@
 			if(type == "zeroth" && length(zeroth_law) > 0 && !owner.laws.zeroth)
 				log_admin("[usr] has added a zeroth law to [owner]: '[zeroth_law]'")
 				message_admins("[usr] has added a zeroth law to [owner]: '[zeroth_law]'")
-				owner.set_zeroth_law(zeroth_law, FALSE)
+				owner.set_zeroth_law(zeroth_law, null, FALSE)
 				owner.update_law_history(usr)
 			if(type == "hacked" && length(hacked_law) > 0)
 				log_admin("[usr] has added a hacked law to [owner]: '[hacked_law]'")
