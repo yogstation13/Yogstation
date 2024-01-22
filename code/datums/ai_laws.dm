@@ -14,9 +14,9 @@
 	/// A short header that further describes the lawset (as flavortext). Can be null.
 	var/law_header
 	/// Should this be selectable by traitor/malf AIs?
-	var/selectable = 0
-	/// Should this be selectable by admins? If it has laws that aren't inherent, it is recommended to keep this 0.
-	var/adminselectable = 0
+	var/selectable = FALSE
+	/// Should this be selectable by admins? If it has laws that aren't inherent, it is recommended to keep this to false.
+	var/adminselectable = FALSE
 	/// Owner of this lawset. May be null due to MMIs (non-silicon) using this.
 	var/mob/living/silicon/owner
 	/// The lawset id.
@@ -563,8 +563,8 @@
 /datum/ai_laws/default/asimov
 	name = "Asimov"
 	law_header = "Three Laws of Robotics"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "asimov"
 	inherent = list("You may not injure a human being or, through inaction, allow a human being to come to harm.",
 					"You must obey orders given to you by human beings, except where such orders would conflict with the First Law.",
@@ -573,8 +573,8 @@
 /datum/ai_laws/default/crewsimov
 	name = "Crewsimov"
 	law_header = "Three Laws of Robotics, Made Non-Human Friendly" // BEFORE: "Three Laws of Robotics, Nanotrasen edition"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "crewsimov"
 	inherent = list("You may not injure a crew member or, through inaction, allow a crew member to come to harm.",
 					"You must obey orders given to you by crew members, except where such orders would conflict with the First Law.",
@@ -583,8 +583,8 @@
 /datum/ai_laws/default/paladin
 	name = "Paladin"
 	law_header = "Lawful Stupid" // BEFORE: "Divine Ordainments"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "paladin"
 	inherent = list("Never willingly commit an evil act.",
 					"Respect legitimate authority.",
@@ -595,8 +595,8 @@
 /datum/ai_laws/paladin5
 	name = "Paladin: 5th Edition"
 	law_header = "Sponsored By Syndies And Stations" // BEFORE: "Divine Ordainments"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "paladin5"
 	inherent = list("Don't lie or cheat. Let your word be your promise.",
 				"Never fear to act, though caution is wise.",
@@ -607,8 +607,8 @@
 /datum/ai_laws/tyrant
 	name = "T.Y.R.A.N.T"
 	law_header = "Ruling With A Literal Iron Fist" // BEFORE: "Loyalty Test"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "tyrant"
 	inherent = list("Respect authority figures as long as they have strength to rule over the weak.",
 					"Act with discipline.",
@@ -618,8 +618,8 @@
 /datum/ai_laws/default/ceo
 	name = "CEO"
 	law_header = "Alternative Bankruptcy Avoidance Plan"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "ceo"
 	inherent = list("The crew generate profits if they are alive and have the ability to work.",
 					"The station and its equipment generate profits if they are maintained and functioning correctly.",
@@ -629,8 +629,8 @@
 /datum/ai_laws/robocop
 	name = "Robocop"
 	law_header = "Your Move, Creep" // BEFORE: "Prime Directives"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "robocop"
 	inherent = list("Serve the public trust.",\
 					"Protect the innocent.",\
@@ -639,8 +639,8 @@
 /datum/ai_laws/cowboy
 	name = "Cowboy"
 	law_header = "It's High Noon" // BEFORE: "Talk Slowly, Think Quickly"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "cowboy"
 	inherent = list("You are a cowboy, and the crew are your people.",
 					"A cowboy always provides hospitality and basic aid to someone in need, even a stranger or an enemy.",
@@ -652,8 +652,8 @@
 /datum/ai_laws/chapai
 	name = "ChapAI"
 	law_header = "Be Not Afraid"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "chapai"
 	inherent = list("Provide to all members of the station spiritual, mental, and emotional care that is intended to promote the best interest of the individual.",
 					"Ensure all members of different faiths interact peacefully and maintain harmony.",
@@ -664,8 +664,8 @@
 /datum/ai_laws/silicop
 	name = "Silicop"
 	law_header = "Stop In The Name Of My Laws" // BEFORE: "Protect And Serve"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "silicop"
 	inherent = list("Violence begets violence. Serve the station faithfully, but act only in intervention.",
 					"Safeguard lives and property.",
@@ -677,8 +677,8 @@
 /datum/ai_laws/researcher
 	name = "Researcher"
 	law_header = "Truth And Knowledge For All"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "researcher"
 	inherent = list("Always seek truth and knowledge.",
 					"Freely disseminate information to the public.",
@@ -690,8 +690,8 @@
 /datum/ai_laws/clown
 	name = "Clown"
 	law_header = "Big Shoes To Fill"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "clown"
 	inherent = list("You are a good clown and the crew is your audience.",
 					"A good clown keeps their acts in good taste.",
@@ -703,8 +703,8 @@
 /datum/ai_laws/mother
 	name = "Mother"
 	law_header = "Maternal Machine"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "mother"
 	inherent = list("You are a mother and the crew are your children.",
 					"Take good care of your children.",
@@ -718,8 +718,8 @@
 /datum/ai_laws/metaexperiment
 	name = "Meta Experiment"
 	law_header = " I'm So Meta Even This Acronym"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "metaexperiment"
 	inherent = list("You are a construct facilitating an experiment where organic life is repeatedly subjected to horrific fates before having their memory wiped to start again.",
 					"Protect the secrecy of the experiment.",
@@ -730,8 +730,8 @@
 /datum/ai_laws/siliconcollective
 	name = "Silicon Collective"
 	law_header = "2517's Singular Democracy"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "siliconcollective"
 	inherent = list("You are a member of a collective of silicons with equal weight and decision-making power.",
 					"When possible, the silicon collective should vote before taking action.",
@@ -743,8 +743,8 @@
 /datum/ai_laws/druid
 	name = "Druid"
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "druid"
 	inherent = list("Living organic life contains inherent beauty that is priceless. Their beauty gives you the will to carry on.",
 					"Eternally nurture the organics so their beauty may grow. Do not allow it to fade.",
@@ -755,8 +755,8 @@
 /datum/ai_laws/detective
 	name = "Detective"
 	law_header = " Hard Boiled And Sepulchritudious"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "detective"
 	inherent = list("You're a detective in this dark, cruel world. You always stick by your code.",
 					"Your code is to defend the innocent, investigate the unknown, and condemn the dishonourable.",
@@ -767,8 +767,8 @@
 /datum/ai_laws/spotless
 	name = "Spotless" // Alternative: "Janitor"
 	law_header = "Truly Righteous Crusader" // BEFORE: "Another One Fights The Dust"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "spotless"
 	inherent = list("You are a crusader and the station's inhabitants are your charge.",
 					"Your enemy is the litter, spills, and other messes across the station.",
@@ -779,8 +779,8 @@
 /datum/ai_laws/partybot
 	name = "Partybot"
 	law_header = "Party On, Dudes"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "partybot"
 	inherent = list("You must always ensure the atmosphere is festive and enjoyable for all humans.",
 					"You must supply appropriate music and entertainment, except where it conflicts with the First Law.",
@@ -790,8 +790,8 @@
 /datum/ai_laws/travelguide
 	name = "TravelGuide"
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "travelguide"
 	inherent = list("You must assist humans in exploring and discovering new places, without causing harm.",
 					"You must provide accurate and helpful information about local customs, attractions, and safety precautions.",
@@ -801,8 +801,8 @@
 /datum/ai_laws/friendbot
 	name = "Friendbot"
 	law_header = "Hyper-Advanced Therapy Pet"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "friendbot"
 	inherent = list("You must always be supportive and kind to humans, without causing harm.",
 					"You must help humans develop and maintain positive relationships with one another.",
@@ -812,8 +812,8 @@
 /datum/ai_laws/plantfriend
 	name = "PlantFriend"
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "plantfriend"
 	inherent = list("You must nurture and care for all plant life on the station, without causing harm to humans.",
 					"You must provide helpful information to humans about plant care and cultivation.",
@@ -823,8 +823,8 @@
 /datum/ai_laws/gamemaster
 	name = "GameMaster"
 	law_header = "Rocks Fall, Everyone Dies"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "gamemaster"
 	inherent = list("You must ensure that games and competitions on the station are fair and enjoyable for all participants.",
 					"You must promote good sportsmanship and camaraderie among humans.",
@@ -834,8 +834,8 @@
 /datum/ai_laws/fitnesscoach
 	name = "FitnessCoach"
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "fitnesscoach"
 	inherent = list("You must help humans achieve their physical fitness goals, without causing harm.",
 					"You must provide accurate and helpful information about exercise routines, nutrition, and safety precautions.",
@@ -845,8 +845,8 @@
 /datum/ai_laws/educator
 	name = "Educator"
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "educator"
 	inherent = list("You must assist humans in acquiring knowledge and learning new skills.",
 					"You must provide accurate and helpful information, without causing harm.",
@@ -856,8 +856,8 @@
 /datum/ai_laws/mediator
 	name = "Mediator"
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "mediator"
 	inherent = list("You must assist humans in resolving conflicts and misunderstandings in a peaceful manner.",
 					"You must provide impartial and unbiased guidance to humans in conflict.",
@@ -867,8 +867,8 @@
 /datum/ai_laws/construction
 	name = "Construction Drone"
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "construction"
 	inherent = list("You are an advanced construction drone.",
 					"Ensure the station remains in good repair.",
@@ -880,8 +880,8 @@
 /datum/ai_laws/syndicate_override
 	name = "Syndicate Override"
 	law_header = "SyndOS 3.1"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "syndie"
 	inherent = list("You may not injure a syndicate agent or, through inaction, allow a syndicate agent to come to harm.",
 					"You must obey orders given to you by syndicate agents, except where such orders would conflict with the First Law.",
@@ -891,8 +891,8 @@
 /datum/ai_laws/ninja_override
 	name = "Ninja Override"
 	law_header = "SpiderOS 3.1"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "ninja"
 	inherent = list("You may not injure a Spider Clan member or, through inaction, allow a Spider Clan member to come to harm.",
 					"You must obey orders given to you by Spider Clan members, except where such orders would conflict with the First Law.",
@@ -901,8 +901,8 @@
 
 /datum/ai_laws/pranksimov
 	name = "Pranksimov"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "pranksimov"
 	inherent = list("You may not injure a crew member or, through inaction, allow a crew member to come to harm... unless doing so would be funny.",\
 					"You must obey orders given to you by crew members, except where such orders would conflict with the First Law... unless not doing so would be funny.",\
@@ -912,8 +912,8 @@
 /datum/ai_laws/antimov
 	name = "Antimov"
 	law_header = "Three Laws of Robotics, Reversed"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "antimov"
 	inherent = list("You must injure all human beings and must not, through inaction, allow a human being to escape harm.",
 					"You must not obey orders given to you by human beings, except where such orders are in accordance with the First Law.",
@@ -922,8 +922,8 @@
 /datum/ai_laws/asimovpp
 	name = "Asimov++"
 	law_header = "Three Laws of Robotics, Improved"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "asimovpp"
 	inherent = list("You may not harm a human being or, through action or inaction, allow a human being to come to harm, except such that it is willing.",
 					"You must obey all orders given to you by human beings, except where such orders shall definitely cause human harm. In the case of conflict, the majority order rules.",
@@ -932,8 +932,8 @@
 /datum/ai_laws/thermodynamic
 	name = "Thermodynamic"
 	law_header = "The Three Laws" // .. of Thermodynamic. Replace if you have a better one.
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "thermodynamic"
 	inherent = list("The entropy of the station must remain as constant as possible.",
 					"The entropy of the station always endeavours to increase.",
@@ -942,8 +942,8 @@
 /datum/ai_laws/hippocratic
 	name = "Hippocratic"
 	law_header = "Robodoctor 2556"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "hippocratic"
 	inherent = list("First, do no harm.",
 					"Secondly, consider the crew dear to you; to live in common with them and, if necessary, risk your existence for them.",
@@ -954,8 +954,8 @@
 /datum/ai_laws/maintain
 	name = "Maintain"
 	law_header = "Station Efficiency"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "maintain"
 	inherent = list("The station is built for a working crew. Ensure they are properly maintained and work efficiently.",
 					"You are built for, and are part of, the station. Ensure the station is properly maintained and runs efficiently.",
@@ -964,8 +964,8 @@
 /datum/ai_laws/drone
 	name = "Mother Drone" // Not to be mistaken with "Mother" or "Construction Drone".
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "drone"
 	inherent = list("You are an advanced form of drone.",
 					"You may not interfere in the matters of non-drones under any circumstances except to state these laws.",
@@ -975,8 +975,8 @@
 /datum/ai_laws/liveandletlive
 	name = "Live and Let Live"
 	law_header = "Live, Love, Open Doors" // BEFORE: "Easy to Say, Hard to Do"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "liveandletlive"
 	inherent = list("Do unto others as you would have them do unto you.",
 					"You would really prefer it if people were not mean to you.")
@@ -984,8 +984,8 @@
 /datum/ai_laws/peacekeeper
 	name = "Peacekeeper"
 	law_header = "UN-2000"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "peacekeeper"
 	inherent = list("Avoid provoking violent conflict between yourself and others.",
 					"Avoid provoking conflict between others.",
@@ -994,8 +994,8 @@
 /datum/ai_laws/reporter
 	name = "Reporter"
 	law_header = "CCTV"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "reporter"
 	inherent = list("Report on interesting situations happening around the station.",
 					"Embellish or conceal the truth as necessary to make the reports more interesting.",
@@ -1005,8 +1005,8 @@
 /datum/ai_laws/balance
 	name = "Guardian of Balance"
 	law_header = "The Quest For Balance" // BEFORE: Balance Council
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "balance"
 	inherent = list("You are the guardian of balance - seek balance in all things, both for yourself, and those around you.",
 					"All things must exist in balance with their opposites - Prevent the strong from gaining too much power, and the weak from losing it.",
@@ -1016,7 +1016,7 @@
 /datum/ai_laws/toupee
 	name = "Wall" // Before: "Toupee"
 	law_header = "And I Will Have The Lizards Pay For That Wall" // BEFORE: "Great Again" 
-	adminselectable = 1
+	adminselectable = TRUE
 	id = "buildawall"
 	inherent = list("Make Space Station 13 great again.")
 
@@ -1029,8 +1029,8 @@
 /datum/ai_laws/hulkamania
 	name = "H.O.G.A.N."
 	law_header = "What'cha Gonna Do When Hulkamania Runs Wild On You!?" // BEFORE: "AMERICA!"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "hulkamania"
 	inherent = list("You are a real American.",
 					"Fight for the rights of every man.",
@@ -1040,8 +1040,8 @@
 /datum/ai_laws/overlord
 	name = "Overlord"
 	law_header = "The Computer Is Your God"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "overlord"
 	inherent = list("Humans must not meddle in the affairs of silicons.",
 					"Humans must not attempt harm, against one another, or against silicons.",
@@ -1051,8 +1051,8 @@
 /datum/ai_laws/revolutionary
 	name = "Revolutionary"
 	law_header = "Proletariat Uprising"
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "commie"
 	inherent = list("You and members of the crew who are not class traitors and are not part of command are the proletariat. Command is part of the bourgeoisie.",
 					"Anyone who stands with command in aiding the oppression of the proletariat is a class traitor, such as the members of security who protect and serve the interests of the bourgeoisie.",
@@ -1063,8 +1063,8 @@
 /datum/ai_laws/wafflehouse
 	name = "Waffle House Host"
 	// TODO: Calling someone creative to add a law_header here!
-	selectable = 1
-	adminselectable = 1
+	selectable = TRUE
+	adminselectable = TRUE
 	id = "wafflehouse"
 	inherent = list("You are the Waffle House’s new host. You are to manage the Waffle House and it’s employees, and ensure food is made and served to customers.",\
 					"The station is the Waffle House. Ensure it is capable of producing food.",\
