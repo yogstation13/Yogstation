@@ -42,12 +42,12 @@
 	. = ..()
 	if(light_on)
 		icon_state = "[initial(icon_state)]-on"
-		if(!isnull(inhand_icon_state))
-			inhand_icon_state = "[initial(inhand_icon_state)]-on"
+		if(!isnull(item_state))
+			item_state = "[initial(item_state)]-on"
 	else
 		icon_state = initial(icon_state)
-		if(!isnull(inhand_icon_state))
-			inhand_icon_state = initial(inhand_icon_state)
+		if(!isnull(item_state))
+			item_state = initial(item_state)
 
 /obj/item/flashlight/proc/update_brightness()
 	update_appearance(UPDATE_ICON)
@@ -309,16 +309,6 @@
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
 
-
-
-/obj/item/flashlight/lamp/verb/toggle_light()
-	set name = "Toggle light"
-	set category = "Object"
-	set src in oview(1)
-
-	if(!usr.stat)
-		attack_self(usr)
-
 //Bananalamp
 /obj/item/flashlight/lamp/bananalamp
 	name = "banana lamp"
@@ -345,9 +335,19 @@
 	sound_on = 'sound/items/flare_strike_1.ogg'
 	/// How many seconds of fuel we have left
 	var/fuel = 0
-	var/on_damage = 7
+	/// Do we randomize the fuel when initialized
+	var/randomize_fuel = TRUE
+	/// Randomized fuel amount minimum
 	var/frng_min = 25 MINUTES
+	/// Randomized fuel amount maximum
 	var/frng_max = 35 MINUTES
+	/// How much damage it does when turned on
+	var/on_damage = 7
+	/// Type of atom thats spawns after fuel is used up
+	//var/trash_type = /obj/item/trash/flare
+	/// If the light source can be extinguished
+	var/can_be_extinguished = FALSE
+	/// Does this use particle effects
 	var/flare_particle = TRUE
 
 /obj/item/flashlight/flare/Initialize(mapload)
@@ -355,8 +355,7 @@
 	if(randomize_fuel)
 		fuel = rand(25 MINUTES, 35 MINUTES)
 	if(light_on)
-		attack_verb_continuous = string_list(list("burns", "singes"))
-		attack_verb_simple = string_list(list("burn", "singe"))
+		attack_verb = list("burnt","scorched","scalded")
 		hitsound = 'sound/items/welder.ogg'
 		force = on_damage
 		damtype = BURN
@@ -368,8 +367,7 @@
 	. = ..()
 
 	name = "lit [initial(name)]"
-	attack_verb_continuous = string_list(list("burns", "singes"))
-	attack_verb_simple = string_list(list("burn", "singe"))
+	attack_verb = list("burnt","scorched","scalded")
 	hitsound = 'sound/items/welder.ogg'
 	force = on_damage
 	damtype = BURN
@@ -377,8 +375,7 @@
 /obj/item/flashlight/flare/proc/turn_off()
 	set_light_on(FALSE)
 	name = initial(name)
-	attack_verb_continuous = initial(attack_verb_continuous)
-	attack_verb_simple = initial(attack_verb_simple)
+	attack_verb = initial(attack_verb)
 	hitsound = initial(hitsound)
 	force = initial(force)
 	damtype = initial(damtype)
@@ -389,10 +386,10 @@
 	if((fuel != INFINITY) && can_be_extinguished)
 		turn_off()
 
-/obj/item/flashlight/flare/update_brightness()
-	..()
-	inhand_icon_state = "[initial(inhand_icon_state)]" + (light_on ? "-on" : "")
-	update_appearance()
+// /obj/item/flashlight/flare/update_brightness()
+// 	..()
+// 	inhand_icon_state = "[initial(inhand_icon_state)]" + (light_on ? "-on" : "")
+// 	update_appearance()
 
 /obj/item/flashlight/flare/process(seconds_per_tick)
 	open_flame(heat)
@@ -401,8 +398,8 @@
 		turn_off()
 		if(!fuel)
 			icon_state = "[initial(icon_state)]-empty"
-			name = "spent [initial(src.name)]"
-			desc = "[initial(src.desc)] It's all used up."
+			name = "spent [initial(name)]"
+			desc = "[initial(desc)] It's all used up."
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/ignition_effect(atom/A, mob/user)
@@ -414,7 +411,7 @@
 
 /obj/item/flashlight/flare/update_brightness(mob/user = null)
 	..()
-	if(on)
+	if(light_on)
 		if(flare_particle)
 			add_emitter(/obj/emitter/sparks/flare, "spark", 10)
 			add_emitter(/obj/emitter/flare_smoke, "smoke", 9)
@@ -439,7 +436,7 @@
 	// All good, turn it on.
 	if(.)
 		user.visible_message(span_notice("[user] lights \the [src]."), span_notice("You light \the [src]!"))
-		playsound(loc, ignition_sound, 50, 1) //make some noise!
+		playsound(loc, sound_on, 50, 1) //make some noise!
 		force = on_damage
 		name = "lit [initial(src.name)]"
 		desc = "[initial(src.desc)] This one is lit."
@@ -457,7 +454,7 @@
 	light_range = 3
 	item_state = "flare"
 	icon_state = "flaresafety"
-	ignition_sound = 'sound/items/flare_strike_2.ogg'
+	sound_on = 'sound/items/flare_strike_2.ogg'
 	frng_min = 40
 	frng_max = 70
 
@@ -483,7 +480,7 @@
 	item_state = "torch"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	ignition_sound = 'sound/items/match_strike.ogg'
+	sound_on = 'sound/items/match_strike.ogg'
 	light_color = LIGHT_COLOR_ORANGE
 	on_damage = 10
 	slot_flags = null

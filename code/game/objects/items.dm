@@ -1044,7 +1044,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		to_y += 10
 		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
 
-	flick_overlay(pickup_animation, GLOB.clients, 4)
+	flick_overlay_global(pickup_animation, GLOB.clients, 4)
 	var/matrix/animation_matrix = new
 	animation_matrix.Turn(pick(-30, 30))
 	animation_matrix.Scale(0.65)
@@ -1119,7 +1119,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!attack_image)
 		return
 
-	flick_overlay(attack_image, GLOB.clients, 10)
+	flick_overlay_global(attack_image, GLOB.clients, 10)
 	// And animate the attack!
 	var/t_color = "#ffffff" //yogs start
 	if(ismob(src) &&  ismob(attacked_atom) && (!used_item))

@@ -30,6 +30,8 @@
 	var/lumcount_range = 0
 	///How much this light affects the dynamic_lumcount of turfs.
 	var/lum_power = 0.5
+	///Transparency value.
+	var/set_alpha = 0
 	///For light sources that can be turned on and off.
 	var/overlay_lighting_flags = NONE
 
@@ -81,9 +83,11 @@
 
 	. = ..()
 	visible_mask = new(src)
+	SET_PLANE_EXPLICIT(visible_mask, O_LIGHTING_VISUAL_PLANE, movable_parent)
 	if(is_directional)
 		directional = TRUE
 		cone = new(src)
+		SET_PLANE_EXPLICIT(cone, O_LIGHTING_VISUAL_PLANE, movable_parent)
 		cone.transform = cone.transform.Translate(-32, -32)
 		set_direction(movable_parent.dir)
 	if(is_beam)
@@ -300,9 +304,9 @@
 	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
 		current_holder.underlays -= visible_mask
 		current_holder.underlays -= cone
-	visible_mask.plane = O_LIGHTING_VISUAL_PLANE
+	SET_PLANE_EXPLICIT(visible_mask, O_LIGHTING_VISUAL_PLANE, source)
 	if(cone)
-		cone.plane = O_LIGHTING_VISUAL_PLANE
+		SET_PLANE_EXPLICIT(cone, O_LIGHTING_VISUAL_PLANE, source)
 	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
 		current_holder.underlays += visible_mask
 		current_holder.underlays += cone

@@ -220,7 +220,7 @@
 		for(var/mob/M in viewers(src))
 			if(M.client && (is_servant_of_ratvar(M) || isobserver(M) || M.stat == DEAD))
 				viewing += M.client
-		flick_overlay(I, viewing, 8)
+		flick_overlay_global(I, viewing, 8)
 		L.adjustToxLoss(-3, TRUE, TRUE)
 
 /turf/open/floor/clockwork/try_replace_tile(obj/item/stack/tile/T, mob/user, params)

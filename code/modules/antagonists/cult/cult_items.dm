@@ -626,7 +626,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	color = "#ff0000"
 	on_damage = 15
 	slot_flags = null
-	on = TRUE
+	light_on = TRUE
 	var/charges = 5
 
 /obj/item/flashlight/flare/culttorch/afterattack(atom/movable/A, mob/user, proximity)

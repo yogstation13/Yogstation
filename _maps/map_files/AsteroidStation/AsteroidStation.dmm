@@ -62058,7 +62058,7 @@
 	pixel_y = 3
 	},
 /obj/item/flashlight/lamp/green{
-	on = 0;
+	light_on = 0;
 	pixel_x = -6;
 	pixel_y = 11
 	},
@@ -70984,7 +70984,7 @@
 /area/crew_quarters/heads/hos)
 "vzg" = (
 /obj/item/flashlight/lantern/jade{
-	on = 1
+	light_on = 1
 	},
 /turf/open/floor/white{
 	icon = 'icons/turf/floors/ice_turf.dmi';

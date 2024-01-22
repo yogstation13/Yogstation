@@ -595,9 +595,9 @@
 		return
 
 	var/mob/living/carbon/human/user = usr
-	gun_light.on = !gun_light.on
+	gun_light.light_on = !gun_light.light_on
 	gun_light.update_brightness()
-	to_chat(user, span_notice("You toggle the gunlight [gun_light.on ? "on":"off"]."))
+	to_chat(user, span_notice("You toggle the gunlight [gun_light.light_on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_appearance(UPDATE_ICON)
@@ -605,7 +605,7 @@
 /obj/item/gun/update_overlays()
 	. = ..()
 	if(gun_light)
-		var/mutable_appearance/flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', "[gunlight_state][gun_light.on? "_on":""]")
+		var/mutable_appearance/flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', "[gunlight_state][gun_light.light_on? "_on":""]")
 		flashlight_overlay.pixel_x = flight_x_offset
 		flashlight_overlay.pixel_y = flight_y_offset
 		. += flashlight_overlay

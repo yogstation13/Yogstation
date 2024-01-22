@@ -25763,7 +25763,7 @@
 "mxY" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
-	on = 0;
+	light_on = 0;
 	pixel_x = -6;
 	pixel_y = 8
 	},

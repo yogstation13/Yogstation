@@ -37,7 +37,7 @@
 		G.preprime()
 	else if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
-		F.on = TRUE
+		F.light_on = TRUE
 		F.update_brightness()
 
 /obj/item/vending_refill/security

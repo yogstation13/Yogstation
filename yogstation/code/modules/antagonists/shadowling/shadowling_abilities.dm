@@ -108,7 +108,7 @@
 	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
-		if(F.light_on || F.on)
+		if(F.light_on)
 			if(cold)
 				if(is_type_in_list(F, blacklisted_lights))
 					F.visible_message(span_warning("The sheer cold shatters [F]!"))
@@ -118,7 +118,7 @@
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message(span_danger("[I] dims slightly before scattering the shadows around it."))
 				return F.light_power //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
-			F.on = FALSE
+			F.light_on = FALSE
 			F.set_light_on(FALSE)
 			F.update_brightness()
 	else if(istype(I, /obj/item/pda))

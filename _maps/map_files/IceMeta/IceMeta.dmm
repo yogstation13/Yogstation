@@ -9717,7 +9717,7 @@
 /area/ai_monitored/security/armory)
 "cUs" = (
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
@@ -30087,7 +30087,7 @@
 /area/ai_monitored/turret_protected/ai)
 "iQK" = (
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored/laborcamp)

@@ -77,7 +77,7 @@ GENE SCANNER
 			I.appearance = MA
 			t_ray_images += I
 	if(t_ray_images.len)
-		flick_overlay(t_ray_images, list(viewer.client), flick_time)
+		flick_overlay_global(t_ray_images, list(viewer.client), flick_time)
 
 /obj/item/healthanalyzer
 	name = "health analyzer"

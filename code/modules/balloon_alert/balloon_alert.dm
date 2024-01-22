@@ -69,7 +69,7 @@
 	animate(
 		balloon_alert,
 		pixel_y = world.icon_size * 1.2,
-		time = BALLOON_TEXT_TOTAL_LIFETIME(1),
+		time = BALLOON_TEXT_TOTAL_LIFETIME(length_mult),
 		easing = SINE_EASING | EASE_OUT,
 	)
 
@@ -82,7 +82,7 @@
 
 	animate(
 		alpha = 0,
-		time = BALLOON_TEXT_FULLY_VISIBLE_TIME*duration_mult,
+		time = BALLOON_TEXT_FULLY_VISIBLE_TIME*length_mult,
 		easing = CUBIC_EASING | EASE_IN,
 	)
 

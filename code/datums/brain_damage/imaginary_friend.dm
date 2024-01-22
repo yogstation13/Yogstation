@@ -168,7 +168,7 @@
 		var/mutable_appearance/bubble = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
 		bubble.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 		SET_PLANE_EXPLICIT(bubble, ABOVE_GAME_PLANE, src)
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, bubble, list(owner.client), 30)
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay_global, bubble, list(owner.client), 30)
 		LAZYADD(update_on_z, bubble)
 
 	for(var/mob/dead/observer/M in GLOB.dead_mob_list)
