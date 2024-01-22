@@ -576,6 +576,7 @@
 #include "code\datums\components\explodable.dm"
 #include "code\datums\components\forced_gravity.dm"
 #include "code\datums\components\forensics.dm"
+#include "code\datums\components\gps.dm"
 #include "code\datums\components\grillable.dm"
 #include "code\datums\components\gunpoint.dm"
 #include "code\datums\components\heal_react.dm"
