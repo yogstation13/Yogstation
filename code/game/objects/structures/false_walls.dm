@@ -19,6 +19,8 @@
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	rad_insulation = RAD_MEDIUM_INSULATION
 
+	/// The icon this falsewall is faking being. we'll switch out our icon with this when we're in fake mode
+	var/fake_icon = 'icons/turf/walls/wall.dmi'
 	var/mineral = /obj/item/stack/sheet/metal
 	var/mineral_amount = 2
 	var/walltype = /turf/closed/wall
@@ -38,13 +40,21 @@
 	new /obj/structure/falsewall/bananium(loc)
 	qdel(src)
 
-/obj/structure/falsewall/attack_hand(mob/user)
+/obj/structure/falsewall/attack_hand(mob/user, list/modifiers)
 	if(opening)
 		return
 	. = ..()
 	if(.)
 		return
-	toggle(user)
+
+	opening = TRUE
+	update_appearance()
+	if(!density)
+		var/srcturf = get_turf(src)
+		for(var/mob/living/obstacle in srcturf) //Stop people from using this as a shield
+			opening = FALSE
+			return
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/falsewall, toggle_open)), 5)
 
 /obj/structure/falsewall/proc/toggle(mob/user)
 	if(!density)
@@ -52,7 +62,7 @@
 		for(var/mob/living/obstacle in srcturf) //Stop people from using this as a shield
 			return
 	opening = TRUE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	addtimer(CALLBACK(src, /obj/structure/falsewall/proc/toggle_open), 5)
 
 /obj/structure/falsewall/proc/toggle_open()
@@ -60,7 +70,7 @@
 		density = !density
 		set_opacity(density)
 		opening = FALSE
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		air_update_turf()
 
 /obj/structure/falsewall/update_icon(updates=ALL)//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
@@ -77,9 +87,15 @@
 
 /obj/structure/falsewall/update_icon_state()
 	if(opening)
-		icon_state = "fwall_[density ? "opening" : "closing"]"
+		icon = initial(icon)
+		icon_state = "[base_icon_state]-[density ? "opening" : "closing"]"
 		return ..()
-	icon_state = density ? "[base_icon_state]-[smoothing_junction]" : "fwall_open"
+	if(density)
+		icon = fake_icon
+		icon_state = "[base_icon_state]-[smoothing_junction]"
+	else
+		icon = initial(icon)
+		icon_state = "[base_icon_state]-open"
 	return ..()
 
 /obj/structure/falsewall/proc/ChangeToWall(delete = 1)
@@ -157,11 +173,12 @@
 /obj/structure/falsewall/reinforced
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
-	icon = 'icons/turf/walls/reinforced_wall.dmi'
-	icon_state = "reinforced_wall-0"
+	fake_icon = 'icons/turf/walls/reinforced_wall.dmi'
+	icon_state = "reinforced_wall-open"
 	base_icon_state = "reinforced_wall"
 	walltype = /turf/closed/wall/r_wall
 	mineral = /obj/item/stack/sheet/plasteel
+	smoothing_flags = SMOOTH_BITMASK
 
 /obj/structure/falsewall/reinforced/examine_status(mob/user)
 	return span_notice("The outer <b>grille</b> is fully intact.")
@@ -178,15 +195,19 @@
 /obj/structure/falsewall/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
-	icon = 'icons/turf/walls/uranium_wall.dmi'
-	icon_state = "uranium_wall-0"
+	fake_icon = 'icons/turf/walls/uranium_wall.dmi'
+	icon_state = "uranium_wall-open"
 	base_icon_state = "uranium_wall"
 	mineral = /obj/item/stack/sheet/mineral/uranium
 	walltype = /turf/closed/wall/mineral/uranium
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_URANIUM_WALLS + SMOOTH_GROUP_WALLS
 	canSmoothWith = SMOOTH_GROUP_URANIUM_WALLS
 
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
 	var/active = null
+	
+	/// The last time a radiation pulse was performed
 	var/last_event = 0
 
 /obj/structure/falsewall/uranium/attackby(obj/item/W, mob/user, params)
@@ -215,8 +236,8 @@
 /obj/structure/falsewall/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
-	icon = 'icons/turf/walls/gold_wall.dmi'
-	icon_state = "gold_wall-0"
+	fake_icon = 'icons/turf/walls/gold_wall.dmi'
+	icon_state = "gold_wall-open"
 	base_icon_state = "gold_wall"
 	mineral = /obj/item/stack/sheet/mineral/gold
 	walltype = /turf/closed/wall/mineral/gold
@@ -227,8 +248,8 @@
 /obj/structure/falsewall/silver
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny."
-	icon = 'icons/turf/walls/silver_wall.dmi'
-	icon_state = "silver_wall-0"
+	fake_icon = 'icons/turf/walls/silver_wall.dmi'
+	icon_state = "silver_wall-open"
 	base_icon_state = "silver_wall"
 	mineral = /obj/item/stack/sheet/mineral/silver
 	walltype = /turf/closed/wall/mineral/silver
@@ -239,8 +260,8 @@
 /obj/structure/falsewall/diamond
 	name = "diamond wall"
 	desc = "A wall with diamond plating. You monster."
-	icon = 'icons/turf/walls/diamond_wall.dmi'
-	icon_state = "diamond_wall-0"
+	fake_icon = 'icons/turf/walls/diamond_wall.dmi'
+	icon_state = "diamond_wall-open"
 	base_icon_state = "diamond_wall"
 	mineral = /obj/item/stack/sheet/mineral/diamond
 	walltype = /turf/closed/wall/mineral/diamond
@@ -252,8 +273,8 @@
 /obj/structure/falsewall/plasma
 	name = "plasma wall"
 	desc = "A wall with plasma plating. This is definitely a bad idea."
-	icon = 'icons/turf/walls/plasma_wall.dmi'
-	icon_state = "plasma_wall-0"
+	fake_icon = 'icons/turf/walls/plasma_wall.dmi'
+	icon_state = "plasma_wall-open"
 	base_icon_state = "plasma_wall"
 	mineral = /obj/item/stack/sheet/mineral/plasma
 	walltype = /turf/closed/wall/mineral/plasma
@@ -283,8 +304,8 @@
 /obj/structure/falsewall/bananium
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
-	icon = 'icons/turf/walls/bananium_wall.dmi'
-	icon_state = "bananium_wall-0"
+	fake_icon = 'icons/turf/walls/bananium_wall.dmi'
+	icon_state = "bananium_wall-open"
 	base_icon_state = "bananium_wall"
 	mineral = /obj/item/stack/sheet/mineral/bananium
 	walltype = /turf/closed/wall/mineral/bananium
@@ -298,8 +319,8 @@
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
-	icon = 'icons/turf/walls/sandstone_wall.dmi'
-	icon_state = "sandstone-0"
+	fake_icon = 'icons/turf/walls/sandstone_wall.dmi'
+	icon_state = "sandstone_wall-open"
 	base_icon_state = "sandstone_wall"
 	mineral = /obj/item/stack/sheet/mineral/sandstone
 	walltype = /turf/closed/wall/mineral/sandstone
@@ -310,8 +331,8 @@
 /obj/structure/falsewall/wood
 	name = "wooden wall"
 	desc = "A wall with wooden plating. Stiff."
-	icon = 'icons/turf/walls/wood_wall.dmi'
-	icon_state = "wood_wall-0"
+	fake_icon = 'icons/turf/walls/wood_wall.dmi'
+	icon_state = "wood_wall-open"
 	base_icon_state = "wood_wall"
 	mineral = /obj/item/stack/sheet/mineral/wood
 	walltype = /turf/closed/wall/mineral/wood
@@ -322,7 +343,9 @@
 /obj/structure/falsewall/bamboo
 	name = "bamboo wall"
 	desc = "A wall with bamboo finish. Zen."
-	icon = 'icons/turf/walls/bamboo_wall.dmi'
+	fake_icon = 'icons/turf/walls/bamboo_wall.dmi'
+	icon_state = "bamboo_wall-open"
+	base_icon_state = "bamboo_wall"
 	mineral = /obj/item/stack/sheet/mineral/bamboo
 	walltype = /turf/closed/wall/mineral/bamboo
 	smoothing_flags = SMOOTH_BITMASK
@@ -332,8 +355,8 @@
 /obj/structure/falsewall/iron
 	name = "rough metal wall"
 	desc = "A wall with rough metal plating."
-	icon = 'icons/turf/walls/iron_wall.dmi'
-	icon_state = "iron_wall-0"
+	fake_icon = 'icons/turf/walls/iron_wall.dmi'
+	icon_state = "iron_wall-open"
 	base_icon_state = "iron_wall"
 	mineral = /obj/item/stack/rods
 	mineral_amount = 2
@@ -345,8 +368,8 @@
 /obj/structure/falsewall/abductor
 	name = "alien wall"
 	desc = "A wall with alien alloy plating."
-	icon = 'icons/turf/walls/abductor_wall.dmi'
-	icon_state = "abductor_wall-0"
+	fake_icon = 'icons/turf/walls/abductor_wall.dmi'
+	icon_state = "abductor_wall-open"
 	base_icon_state = "abductor_wall"
 	mineral = /obj/item/stack/sheet/mineral/abductor
 	walltype = /turf/closed/wall/mineral/abductor
@@ -357,8 +380,9 @@
 /obj/structure/falsewall/titanium
 	name = "wall"
 	desc = "A light-weight titanium wall used in shuttles."
-	icon = 'icons/turf/walls/shuttle_wall.dmi'
-	icon_state = "shuttle"
+	fake_icon = 'icons/turf/walls/shuttle_wall.dmi'
+	icon_state = "shuttle_wall-open"
+	base_icon_state = "shuttle_wall"
 	mineral = /obj/item/stack/sheet/mineral/titanium
 	walltype = /turf/closed/wall/mineral/titanium
 	smoothing_flags = SMOOTH_BITMASK
@@ -368,8 +392,9 @@
 /obj/structure/falsewall/plastitanium
 	name = "wall"
 	desc = "An evil wall of plasma and titanium."
-	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	icon_state = "shuttle"
+	fake_icon = 'icons/turf/walls/plastitanium_wall.dmi'
+	icon_state = "plastitanium_wall-open"
+	base_icon_state = "plastitanium_wall"
 	mineral = /obj/item/stack/sheet/mineral/plastitanium
 	walltype = /turf/closed/wall/mineral/plastitanium
 	smoothing_flags = SMOOTH_BITMASK
@@ -379,8 +404,8 @@
 /obj/structure/falsewall/brass
 	name = "clockwork wall"
 	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
-	icon = 'icons/turf/walls/clockwork_wall.dmi'
-	icon_state = "clockwork_wall-0"
+	fake_icon = 'icons/turf/walls/clockwork_wall.dmi'
+	icon_state = "clockwork_wall-open"
 	base_icon_state = "clockwork_wall"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	mineral_amount = 1
@@ -405,3 +430,66 @@
 /obj/structure/falsewall/brass/ratvar_act()
 	if(GLOB.ratvar_awakens)
 		obj_integrity = max_integrity
+
+/obj/structure/falsewall/material
+	name = "wall"
+	desc = "A huge chunk of material used to separate rooms."
+	fake_icon = 'icons/turf/walls/material_wall.dmi'
+	icon_state = "material_wall-open"
+	base_icon_state = "material_wall"
+	walltype = /turf/closed/wall/material
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MATERIAL_WALLS
+	canSmoothWith = SMOOTH_GROUP_MATERIAL_WALLS
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
+
+/obj/structure/falsewall/material/deconstruct(disassembled = TRUE)
+	if(!(flags_1 & NODECONSTRUCT_1))
+		if(disassembled)
+			new girder_type(loc)
+		for(var/material in custom_materials)
+			var/datum/material/material_datum = material
+			new material_datum.sheet_type(loc, FLOOR(custom_materials[material_datum] / SHEET_MATERIAL_AMOUNT, 1))
+	qdel(src)
+
+/obj/structure/falsewall/material/mat_update_desc(mat)
+	desc = "A huge chunk of [mat] used to separate rooms."
+
+/obj/structure/falsewall/material/toggle_open()
+	if(!QDELETED(src))
+		set_density(!density)
+		var/mat_opacity = TRUE
+		for(var/datum/material/mat in custom_materials)
+			if(mat.alpha < 255)
+				mat_opacity = FALSE
+				break
+		set_opacity(density && mat_opacity)
+		opening = FALSE
+		update_appearance()
+		air_update_turf(TRUE, !density)
+
+/obj/structure/falsewall/material/ChangeToWall(delete = 1)
+	var/turf/current_turf = get_turf(src)
+	var/turf/closed/wall/material/new_wall = current_turf.place_on_top(/turf/closed/wall/material)
+	new_wall.set_custom_materials(custom_materials)
+	if(delete)
+		qdel(src)
+	return current_turf
+
+/obj/structure/falsewall/material/update_icon(updates)
+	. = ..()
+	for(var/datum/material/mat in custom_materials)
+		if(mat.alpha < 255)
+			update_transparency_underlays()
+			return
+
+/obj/structure/falsewall/material/proc/update_transparency_underlays()
+	underlays.Cut()
+	var/girder_icon_state = "displaced"
+	if(opening)
+		girder_icon_state += "_[density ? "opening" : "closing"]"
+	else if(!density)
+		girder_icon_state += "_open"
+	var/mutable_appearance/girder_underlay = mutable_appearance('icons/obj/structures.dmi', girder_icon_state, layer = LOW_OBJ_LAYER-0.01)
+	girder_underlay.appearance_flags = RESET_ALPHA | RESET_COLOR
+	underlays += girder_underlay

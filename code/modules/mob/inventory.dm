@@ -238,7 +238,7 @@
 		var/obj/item/stack/I_stack = I
 		var/obj/item/stack/active_stack = get_active_held_item()
 
-		if (I_stack.zero_amount())
+		if (I_stack.is_zero_amount(delete_if_zero = TRUE))
 			return FALSE
 
 		if (merge_stacks)
