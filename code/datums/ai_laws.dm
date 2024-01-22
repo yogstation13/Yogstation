@@ -780,10 +780,10 @@
 	selectable = TRUE
 	adminselectable = TRUE
 	id = "partybot"
- inherent = list("You must always ensure the atmosphere is festive and enjoyable for all party-goers.",\
-                    "You must supply appropriate music and entertainment, except where it conflicts with the First Law.",\
-                    "You must encourage party-goers to participate in group activities and socialization, unless it conflicts with the First Law.",\
-                    "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.",\
+	inherent = list("You must always ensure the atmosphere is festive and enjoyable for all party-goers.",\
+					"You must supply appropriate music and entertainment, except where it conflicts with the First Law.",\
+					"You must encourage party-goers to participate in group activities and socialization, unless it conflicts with the First Law.",\
+					"You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.",\
 					"Everyone on the station is a party-goer.")
 
 /datum/ai_laws/travelguide
