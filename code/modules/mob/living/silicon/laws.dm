@@ -516,8 +516,8 @@
 	// These two usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!
 	data["antag"] = FALSE // While this seems like it should use `is_special_character()`, it only considers AIs to be an antag if it has a special role AND a zeroth law. Given that admins can remove the antag's zeroth law, this is not ideal.
 	if(isAI(owner))
-		var/mob/living/silicon/ai/AI_owner
-		if(AI_owner.laws A.mind && A.mind.special_role)
+		var/mob/living/silicon/ai/AI_owner = owner
+		if(AI_owner.laws && A.mind && A.mind.special_role)
 			data["antag"] = TRUE
 	data["admin"] = is_admin(user)
 
