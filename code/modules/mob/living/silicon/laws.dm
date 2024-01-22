@@ -501,9 +501,7 @@
 
 /datum/law_manager/ui_data(mob/user)
 	var/list/data = list()
-	// These two usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!
-	data["antag"] = is_special_character(owner)
-	data["admin"] = is_admin(user)
+
 	data["ai"] = isAI(owner)
 	data["cyborg"] = iscyborg(owner)
 	if(data["cyborg"])
@@ -515,6 +513,15 @@
 		data["lawsync"] = FALSE
 	data["pai"] = ispAI(owner) // pAIs are much different from AIs and Cyborgs. They are heavily restricted.
 	
+
+	// These two usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!
+	data["antag"] = FALSE // While this seems like it should use `is_special_character()`, it only considers AIs to be an antag if it has a special role AND a zeroth law. Given that admins can remove the antag's zeroth law, this is not ideal.
+	if(isAI(owner))
+		var/mob/living/silicon/ai/AI_owner
+		if(AI_owner.laws A.mind && A.mind.special_role)
+			data["antag"] = TRUE
+	data["admin"] = is_admin(user)
+
 	handle_laws(data, owner.laws)
 	handle_channels(data)
 	data["zeroth_law"] = zeroth_law
