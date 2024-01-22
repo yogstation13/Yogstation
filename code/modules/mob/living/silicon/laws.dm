@@ -216,8 +216,7 @@
 
 //
 // Law Manager
-// All of these issues related to the menu (which I'm not good at) and can be temporarily fixed by reopening the menu.
-// 1. Extreme spam changing of laws will cause fake duplicate laws to appear.
+//
 /datum/law_manager
 	var/zeroth_law = "ZerothLaw"
 	var/hacked_law = "HackedLaw"
