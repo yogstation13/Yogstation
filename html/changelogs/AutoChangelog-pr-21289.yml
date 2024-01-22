@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Imperial jumpsuits don't have alt styles, stop trying to break the dress code soldier!"
