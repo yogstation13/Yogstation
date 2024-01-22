@@ -208,7 +208,6 @@
 /obj/item/aiModule/core
 	name = "Core Law board"
 	desc = "An AI Module for programming core laws to an AI."
-	bypass_law_amt_check = TRUE // Prevents the laws from overflowing. Prevents issue where people essentially purged the AI by accident due to how overflow is determined.
 
 /obj/item/aiModule/core/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	for(var/law in laws.inherent)
@@ -242,6 +241,7 @@
 // Inherent (Preset)
 /obj/item/aiModule/core/full
 	name = "Core Law board (Preset)"
+	bypass_law_amt_check = TRUE // Prevents the laws from overflowing. Prevents issue where people essentially purged the AI by accident due to how overflow is determined.
 	var/law_id = null // If non-null, the laws will be a lawset that has a matching id.
 
 /obj/item/aiModule/core/full/Initialize(mapload)
