@@ -11,8 +11,8 @@
 /datum/ai_laws
 	/// The lawset name.
 	var/name = "Unknown Laws"
-	/// A short header that further describes the lawset.
-	var/law_header = "Prime Directives"
+	/// A short header that further describes the lawset (as flavortext). Can be null.
+	var/law_header
 	/// Should this be selectable by traitor/malf AIs?
 	var/selectable = 0
 	/// Should this be selectable by admins? If it has laws that aren't inherent, it is recommended to keep this 0.

@@ -298,7 +298,7 @@ const LawsetsView = (props, context) => {
       {lawsets.map((l) => (
         <Section
           key={l.name}
-          title={l.name + ' - ' + l.header}
+          title={l.name + l.header}
           buttons={
             <Button
               content="Load Laws"
