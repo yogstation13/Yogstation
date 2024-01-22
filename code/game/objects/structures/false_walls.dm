@@ -5,17 +5,17 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to separate rooms."
 	anchored = TRUE
-	icon = 'icons/turf/walls/wall.dmi'
-	icon_state = "wall-0"
+	icon = 'icons/turf/walls/false_walls.dmi'
+	icon_state = "wall-open"
 	base_icon_state = "wall"
-	layer = CLOSED_TURF_LAYER
+	layer = LOW_OBJ_LAYER
 	density = TRUE
 	opacity = TRUE
 	max_integrity = 100
-	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_WALLS
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	rad_insulation = RAD_MEDIUM_INSULATION
 
