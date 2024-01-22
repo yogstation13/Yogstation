@@ -236,11 +236,10 @@
 
 	. = TRUE
 
-// TODO: Give this its own file.
 /datum/admins/proc/manage_silicon_laws()
 	set category = "Admin.Player Interaction"
 	set name = "Manage Silicon Laws"
-	set desc = "Manage silicon laws"
+	set desc = "Manage Silicon Laws"
 
 	if(!check_rights(R_ADMIN))
 		return
