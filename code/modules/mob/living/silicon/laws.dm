@@ -260,8 +260,7 @@
 	return (is_admin(user) || owner == user) ? GLOB.always_state : GLOB.never_state
 
 /datum/law_manager/ui_status(mob/user)
-	// TODO: If the owner suddenly stops existing/is deleted, do UI_CLOSE
-	return (is_admin(user) || owner == user) ? UI_INTERACTIVE : UI_CLOSE // This should handle the pains of 'GLOB.always_state'.
+	return (is_admin(user) || owner == user) ? UI_INTERACTIVE : UI_CLOSE
 
 /datum/law_manager/ui_act(action, params)
 	. = ..()
