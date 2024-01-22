@@ -194,7 +194,6 @@
 	. = ..()
 	laws.add_ion_law(generate_ion_law())
 	
-
 /obj/item/aiModule/ion/toyAI/attack_self(mob/user)
 	laws.clear_ion_laws()
 	var/law = generate_ion_law()
@@ -319,6 +318,10 @@
 /obj/item/aiModule/core/full/crewsimov
 	name = "'Crewsimov' Core AI Module"
 	law_id = "crewsimov"
+
+/obj/item/aiModule/core/full/pranksimov
+	name = "'Pranksimov' Core AI Module"
+	law_id = "pranksimov"
 
 // Paladin 3.5e
 /obj/item/aiModule/core/full/paladin
