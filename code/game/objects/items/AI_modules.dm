@@ -227,11 +227,11 @@
 	name = "'Freeform' Core AI Module"
 
 /obj/item/aiModule/core/freeformcore/attack_self(mob/user)
-	var/targName = stripped_input(user, "Please enter a new core law for the AI.", "Freeform Law Entry", laws.inherent.len > 0 ? laws.inherent[1] : "", CONFIG_GET(number/max_law_len))
-	if(!targName)
+	var/input = stripped_input(user, "Please enter a new core law for the AI.", "Freeform Law Entry", laws.inherent.len > 0 ? laws.inherent[1] : "", CONFIG_GET(number/max_law_len))
+	if(!input)
 		return
 	laws.clear_inherent_laws()
-	laws.add_inherent_law(targName)
+	laws.add_inherent_law(input)
 	..()
 
 /obj/item/aiModule/core/freeformcore/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
