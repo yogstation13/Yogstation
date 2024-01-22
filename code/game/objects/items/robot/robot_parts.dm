@@ -315,7 +315,7 @@
 					O.set_connected_ai(forced_ai)
 			if(!lawsync)
 				O.lawupdate = 0
-				if(M.laws.modified && !M.override_cyborg_laws)
+				if(M.laws.modified && !M.override_cyborg_laws) // Obvious warning that their modified laws didn't get passed on since the MMI doesn't allow it.
 					O.make_laws()
 					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transferred!"))
 
