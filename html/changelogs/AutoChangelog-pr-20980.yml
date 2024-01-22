@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Added new maroon organ objective for traitors to roll"
+  - tweak: "Traitor break machinery objective only requires breaking the original machines"
+  - tweak: "Traitor break machinery targets at max 2 areas instead of up to 4"
