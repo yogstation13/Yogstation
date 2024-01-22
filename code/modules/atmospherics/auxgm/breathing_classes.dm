@@ -91,5 +91,5 @@
 	)
 	low_alert_category = "not_enough_nitro"
 	low_alert_datum = /atom/movable/screen/alert/not_enough_nitro
-	high_alert_category = "too_much_oxy"
-	high_alert_datum = /atom/movable/screen/alert/too_much_oxy
+	high_alert_category = "too_much_nitro"
+	high_alert_datum = /atom/movable/screen/alert/too_much_nitro

@@ -117,6 +117,17 @@
 				alert_type = alert["alert_type"]
 		if(alert_category)
 			H.throw_alert(alert_category, alert_type)
+		var/list/too_much_gas_alerts = list()
+		for(var/gas in gas_max)
+			var/gas_alert_category
+			if(ispath(gas))
+				var/datum/breathing_class/breathclass = gas
+				gas_alert_category = breathclass.high_alert_category
+			else
+				gas_alert_category = GLOB.gas_data.breath_alert_info[gas]["too_much_alert"]["alert_category"]
+			too_much_gas_alerts += gas_alert_category
+		for(var/alert as anything in too_much_gas_alerts)
+			H.clear_alert(alert)
 		return FALSE
 
 	#define PP_MOLES(X) ((X / total_moles) * pressure)
@@ -562,37 +573,15 @@
 	name = "vox lungs"
 	icon_state = "lungs-vox"
 	desc = "A pair of very thin, very light lungs that the vox use to process nitrogen. There are small, silver circuits inlaid into the flesh."
-	//safe_oxygen_min = 0 //We don't breathe this
-	//safe_oxygen_max = 1 //This is toxic to us
-	//safe_nitro_min = 16 //We breathe THIS!
-	//oxy_damage_type = TOX //Oxygen poisons us
-	//oxy_damage_multiplier = 6 // BADLY.
-	//status = ORGAN_ROBOTIC
-	//decay_factor = 0
+	status = ORGAN_ROBOTIC
+	decay_factor = 0
 	breathing_class = BREATH_VOX
-	gas_max = list(
-		GAS_O2 = 0.05,
-		GAS_CO2 = 30, // Yes it's an arbitrary value who cares?
-		GAS_PLASMA = MOLES_GAS_VISIBLE,
-	)
-	gas_damage = list(
-		"default" = list(
-			min = MIN_TOXIC_GAS_DAMAGE,
-			max = MAX_TOXIC_GAS_DAMAGE,
-			damage_type = OXY,
-		),
-		GAS_PLASMA = list(
-			min = MIN_TOXIC_GAS_DAMAGE,
-			max = MAX_TOXIC_GAS_DAMAGE,
-			damage_type = TOX,
-		),
-		GAS_O2 = list(
-			min = MIN_TOXIC_GAS_DAMAGE,
-			max = MAX_TOXIC_GAS_DAMAGE,
-			damage_type = TOX,
-		)
-	)
 
+/obj/item/organ/lungs/vox/populate_gas_info()
+	..()
+	gas_max[GAS_O2] = 0.05
+	gas_max -= BREATH_VOX
+	gas_damage[GAS_O2] = list(min = MIN_TOXIC_GAS_DAMAGE, max = MAX_TOXIC_GAS_DAMAGE, damage_type = TOX)
 
 /obj/item/organ/lungs/vox/emp_act()
 	owner.emote("gasp")
