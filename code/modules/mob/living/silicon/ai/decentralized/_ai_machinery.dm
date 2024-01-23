@@ -19,8 +19,7 @@
 	. = ..()
 	connect_to_ai_network()
 	START_PROCESSING(SSmachines, src)
-	SSair_machinery.start_processing_machine(src)
-	
+	SSair.start_processing_machine(src)
 
 //Cooling happens here
 /obj/machinery/ai/process_atmos()
@@ -37,7 +36,7 @@
 	
 /obj/machinery/ai/Destroy()
 	. = ..()
-	SSair_machinery.stop_processing_machine(src)
+	SSair.stop_processing_machine(src)
 	STOP_PROCESSING(SSmachines, src)
 	disconnect_from_ai_network()
 
