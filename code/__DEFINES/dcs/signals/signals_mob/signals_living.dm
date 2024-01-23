@@ -142,3 +142,5 @@
 
 ///from /mob/create_typing_indicator()
 #define COMSIG_MOB_CREATE_TYPING_INDICATOR "create_typing_indicator"
+	///Icon used for the typing indicator
+	#define BUBBLE_ICON_STATE 1

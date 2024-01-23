@@ -316,17 +316,12 @@
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		RegisterSignal(L, COMSIG_MOB_CREATE_TYPING_INDICATOR, PROC_REF(create_typing_indicator))
+		L.AddElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_dropped(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		UnregisterSignal(L, COMSIG_MOB_CREATE_TYPING_INDICATOR)
-		L.bubble_icon = initial(L.bubble_icon)
-
-/obj/item/clothing/accessory/lawyers_badge/proc/create_typing_indicator()
-	SIGNAL_HANDLER
-	return "lawyer"
+		L.RemoveElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 ////////////////
 //HA HA! NERD!//

@@ -115,6 +115,7 @@
 
 //Typing indicator defines, used in /mob/create_typing_indicator()
 #define BUBBLE_DEFAULT "default"
+#define BUBBLE_LAWYER "lawyer"
 #define BUBBLE_ROBOT "robot"
 #define BUBBLE_MACHINE "machine"
 #define BUBBLE_SYNDIBOT "syndibot"
