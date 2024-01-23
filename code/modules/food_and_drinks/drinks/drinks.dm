@@ -650,3 +650,10 @@
 	pixel_y = rand(-4,4)
 	if (random_sprite)
 		icon_state = "colocup[rand(0, 6)]"
+
+/obj/item/reagent_containers/food/drinks/shrimpcocktail
+	name = "shrimp cocktail"
+	desc = "A tall glass of tomato sauce with shrimp and a lemon wedge."
+	icon_state = "shrimpcocktail"
+	list_reagents = list(/datum/reagent/consumable/tomatojuice = 5, /datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 8) //this is tomato juice, a fruit, and seafood. Very good for you
+	foodtype = VEGETABLES | FRUIT | SEAFOOD

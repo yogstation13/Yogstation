@@ -206,18 +206,6 @@
 	foodtype = VEGETABLES
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/sushi
 
-/obj/item/reagent_containers/food/snacks/shrimpcocktail
-	name = "shrimp cocktail"
-	desc = "A tall glass of tomato sauce with shrimp and a lemon wedge."
-	icon_state = "shrimpcocktail"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 8) //this is tomato sauce, a fruit, and seafood. Very good for you
-	filling_color = "#bd0000"
-	trash = /obj/item/reagent_containers/food/drinks/drinkingglass
-	tastes = list("shrimp" = 3, "tomatos" = 1, "lemon" = 1)
-	foodtype = VEGETABLES | FRUIT | SEAFOOD
-	w_class = WEIGHT_CLASS_SMALL
-
 /obj/item/reagent_containers/food/snacks/spaghetti/shrimpalfredo
 	name = "shrimp alfredo"
 	desc = "A dish of fresh fettuccine tossed with creamy butter and parmesan cheese. The proportions are huge. Also has some shrimp tossed in it!"

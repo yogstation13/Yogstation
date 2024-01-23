@@ -150,17 +150,6 @@
 	result = /obj/item/reagent_containers/food/snacks/spicyfiletsushiroll
 	category = CAT_SEAFOOD
 
-/datum/crafting_recipe/food/shrimpcocktail
-	name = "Shrimp Cocktail"
-	reqs = list(
-		/obj/item/reagent_containers/food/drinks/drinkingglass = 1,
-		/obj/item/reagent_containers/food/snacks/fish/shrimp = 3,
-		/datum/reagent/consumable/tomatojuice = 5,
-		/obj/item/reagent_containers/food/snacks/grown/citrus/lemon = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/shrimpcocktail
-	category = CAT_SEAFOOD
-
 /datum/crafting_recipe/food/vegetariansushiroll
 	name ="Vegetarian sushi roll"
 	reqs = list(
