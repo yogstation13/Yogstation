@@ -524,9 +524,11 @@
 		var/mob/living/silicon/robot/R = owner
 		data["connected"] = R.connected_ai ? sanitize(R.connected_ai.name) : null
 		data["lawsync"] = R.lawupdate ? R.lawupdate : FALSE
+		data["syndiemmi"] = R.mmi?.syndicate_mmi ? R.mmi.syndicate_mmi : FALSE
 	else
 		data["connected"] = FALSE
 		data["lawsync"] = FALSE
+		data["syndiemmi"] = FALSE
 	data["pai"] = ispAI(owner) // pAIs are much different from AIs and Cyborgs. They are heavily restricted.
 	
 	// These two usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!

@@ -10,6 +10,7 @@ type LawManagerData = {
   pai: BooleanLike;
   connected: BooleanLike;
   lawsync: BooleanLike;
+  syndiemmi: BooleanLike;
   antag: BooleanLike;
   admin: BooleanLike;
   view: number;
@@ -61,7 +62,7 @@ type LawAddData = {
 
 export const LawManager = (props, context) => {
   const { act, data } = useBackend<LawManagerData>(context);
-  const { cyborg, ai, pai, connected, lawsync, antag, admin, view } = data;
+  const { cyborg, ai, pai, connected, lawsync, syndiemmi, antag, admin, view } = data;
 
   return (
     <Window height="600" width="800" title="Law Manager">
@@ -71,6 +72,9 @@ export const LawManager = (props, context) => {
         ) }
         {!!(admin && ai && antag) && (
           <NoticeBox>This AI is currently an antagonist.</NoticeBox>
+        ) }
+        {!!(admin && cyborg && syndiemmi) && (
+          <NoticeBox>This Cyborg is using a syndicate MMI.</NoticeBox>
         ) }
         {!!(admin && cyborg && !connected) && (
           <NoticeBox>This Cyborg has no master AI.</NoticeBox>
