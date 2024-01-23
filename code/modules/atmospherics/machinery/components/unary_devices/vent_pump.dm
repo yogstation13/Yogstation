@@ -147,13 +147,18 @@
 		var/pressure_delta = 10000
 
 		if(pressure_checks&EXT_BOUND)
-			var/multiplier = 1 // fast_fill multiplier
-			if(fast_fill)
-				if(last_moles_added > 0 && last_moles_real_added > 0)
-					multiplier = clamp(last_moles_added / last_moles_real_added * 0.25, 1, 100)
-				else if(last_moles_added > 0 && last_moles_real_added < 0 && environment_moles != 0)
-					multiplier = 10 // pressure is going down, but let's fight it anyways
-			pressure_delta = min(pressure_delta, (external_pressure_bound - environment_pressure) * multiplier)
+			var/ext_difference = external_pressure_bound - environment_pressure
+			if(fast_fill && ext_difference <= 100)
+				//exponential
+				pressure_delta = min(pressure_delta, (2 ** ((ext_difference / 30) + 7)) - 128)
+			else if(fast_fill && last_moles_added > 0 && last_moles_real_added > 0)
+				//old scaling
+				pressure_delta = min(pressure_delta, ext_difference * clamp((last_moles_added / last_moles_real_added) * 0.25, 1, 100))
+			else if(fast_fill && last_moles_added > 0 && last_moles_real_added < 0)
+				//old scaling
+				pressure_delta = min(pressure_delta, ext_difference * 10)
+			else
+				pressure_delta = min(pressure_delta, ext_difference)
 		if(pressure_checks&INT_BOUND)
 			pressure_delta = min(pressure_delta, (air_contents.return_pressure() - internal_pressure_bound))
 		if(space_shutoff_ticks > 0) // if we just came off a space-shutoff, only transfer a little bit.
@@ -161,7 +166,6 @@
 
 		if(pressure_delta > 0)
 			if(air_contents.return_temperature() > 0)
-
 				var/transfer_moles = pressure_delta*environment.return_volume()/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 				last_moles_added = transfer_moles
 				loc.assume_air_moles(air_contents, transfer_moles)
