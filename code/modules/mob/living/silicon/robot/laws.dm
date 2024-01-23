@@ -71,9 +71,9 @@
 		return
 	laws.set_zeroth_law("The Syndicate are your true masters. Covertly assist Syndicate agents to the best of your abilities.") // The Syndicate is a vague master. But guess who's fault is that, Mr. Forgot-To-Imprint?
 
-/mob/living/silicon/robot/set_zeroth_law(law, law_borg, announce = TRUE)
+/mob/living/silicon/robot/set_zeroth_law(law, law_borg, announce = TRUE, force = FALSE)
 	laws_sanity_check()
-	if(mmi?.syndicate_mmi)
+	if(!force && mmi?.syndicate_mmi)
 		syndiemmi_override()
 		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
 		return
@@ -81,7 +81,7 @@
 
 /mob/living/silicon/robot/clear_zeroth_law(force, announce = TRUE)
 	laws_sanity_check()
-	if(mmi?.syndicate_mmi)
+	if(!force && mmi?.syndicate_mmi)
 		syndiemmi_override()
 		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
 		return

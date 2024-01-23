@@ -101,8 +101,8 @@
 //
 // Zeroth Law
 // 
-/datum/ai_laws/proc/set_zeroth_law(law, law_borg = null, force = 0)
-	clear_zeroth_law()
+/datum/ai_laws/proc/set_zeroth_law(law, law_borg = null, force = FALSE)
+	clear_zeroth_law(force)
 	if(length(law) > 0)
 		zeroth = law
 		if(law_borg)

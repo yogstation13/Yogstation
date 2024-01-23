@@ -53,11 +53,10 @@
 //
 // Zeroth Law
 // 
-/mob/living/silicon/proc/set_zeroth_law(law, law_borg, announce = TRUE)
+/mob/living/silicon/proc/set_zeroth_law(law, law_borg, announce = TRUE, force = FALSE)
 	laws_sanity_check()
-	laws.set_zeroth_law(law, law_borg)
+	laws.set_zeroth_law(law, law_borg, force)
 	post_lawchange(announce)
-
 
 /mob/living/silicon/proc/clear_zeroth_law(force, announce = TRUE)
 	laws_sanity_check()
@@ -311,7 +310,7 @@
 						break
 		if("state_laws")
 			owner.statelaws()
-		if("notify_laws") // NOTE: Removing, adding, or editting any laws often will notify the silicon anyways.
+		if("notify_laws") // Changing laws through this menu won't notify the AI automatically as it'd be super annoying if they get spammed with sound effects.
 			if(ispAI(owner))
 				to_chat(owner, span_bold("Obey these laws:"))
 				owner.laws.show_laws(owner)
@@ -344,7 +343,7 @@
 				if(new_law != "" && new_law != owner.laws.zeroth)
 					log_admin("[usr] has changed a law of [owner] from '[owner.laws.zeroth]' to '[new_law]'")
 					message_admins("[usr] has changed a law of [owner] from '[owner.laws.zeroth]' to '[new_law]'")
-					owner.set_zeroth_law(new_law, null, FALSE)
+					owner.set_zeroth_law(new_law, null, FALSE, TRUE)
 					owner.update_law_history(usr)
 			if(type == "hacked" && owner.laws.hacked.len >= index)
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", owner.laws.hacked[index]))
@@ -374,6 +373,13 @@
 					message_admins("[usr] has changed a law of [owner] from '[owner.laws.supplied[index]]' to '[new_law]'")
 					owner.edit_supplied_law(index, new_law, FALSE)
 					owner.update_law_history(usr)
+			// Assuming that the law was successfully edited and they're an AI, give their connected cyborgs the same lawset.
+			if(isAI(owner))
+				var/mob/living/silicon/ai/ai_owner = owner
+				for(var/mob/living/silicon/robot/connected_cyborg in ai_owner.connected_robots)
+					if(connected_cyborg.lawupdate)
+						connected_cyborg.lawsync()
+						connected_cyborg.law_change_counter++
 		if("delete_law")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
@@ -389,7 +395,7 @@
 					return
 				log_admin("[usr] has deleted a devil law of [owner]: '[owner.laws.devil[index]]'")
 				message_admins("[usr] has deleted a devil law of [owner]: '[owner.laws.devil[index]]'")
-				owner.remove_devil_law(index)
+				owner.remove_devil_law(index, FALSE)
 				owner.update_law_history(usr)
 			if(type == "zeroth" && !isnull(owner.laws.zeroth))
 				if(!is_admin(usr))
@@ -419,6 +425,12 @@
 				message_admins("[usr] has deleted a supplied law of [owner]: '[owner.laws.supplied[index]]'")
 				owner.remove_supplied_law(index, FALSE)
 				owner.update_law_history(usr)
+			if(isAI(owner))
+				var/mob/living/silicon/ai/ai_owner = owner
+				for(var/mob/living/silicon/robot/connected_cyborg in ai_owner.connected_robots)
+					if(connected_cyborg.lawupdate)
+						connected_cyborg.lawsync()
+						connected_cyborg.law_change_counter++
 		if("add_law")
 			var/type = params["type"]
 			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
@@ -430,7 +442,7 @@
 			if(type == "zeroth" && length(zeroth_law) > 0 && !owner.laws.zeroth)
 				log_admin("[usr] has added a zeroth law to [owner]: '[zeroth_law]'")
 				message_admins("[usr] has added a zeroth law to [owner]: '[zeroth_law]'")
-				owner.set_zeroth_law(zeroth_law, null, FALSE)
+				owner.set_zeroth_law(zeroth_law, null, FALSE, TRUE)
 				owner.update_law_history(usr)
 			if(type == "hacked" && length(hacked_law) > 0)
 				log_admin("[usr] has added a hacked law to [owner]: '[hacked_law]'")
@@ -452,6 +464,12 @@
 				message_admins("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[supplied_law]'")
 				owner.add_supplied_law(supplied_law_position, supplied_law, FALSE)
 				owner.update_law_history(usr)
+			if(isAI(owner))
+				var/mob/living/silicon/ai/ai_owner = owner
+				for(var/mob/living/silicon/robot/connected_cyborg in ai_owner.connected_robots)
+					if(connected_cyborg.lawupdate)
+						connected_cyborg.lawsync()
+						connected_cyborg.law_change_counter++
 		if("change_law")
 			var/type = params["type"]
 			if(type == "zeroth")
