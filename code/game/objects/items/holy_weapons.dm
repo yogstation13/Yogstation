@@ -352,7 +352,7 @@
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
 	w_class = WEIGHT_CLASS_BULKY
 	damtype = STAMINA
-	force = 15
+	force = 18
 	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_NONE
