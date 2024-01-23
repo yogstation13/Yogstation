@@ -43,11 +43,12 @@
 	for(var/mob/M in listening)
 		if(M.client && M.client.prefs.chat_toggles & CHAT_TYPING_INDICATOR)
 			speech_bubble_recipients.Add(M.client)
-	var/bubble = "default"
-	if(isliving(src))
-		var/mob/living/L = src
-		bubble = L.bubble_icon
+	var/bubble = SEND_SIGNAL(src, COMSIG_MOB_CREATE_TYPING_INDICATOR)
+	if(!bubble)
+		bubble = bubble_icon
 	typing_overlay = image('yogstation/icons/mob/talk.dmi', src, "[bubble]_talking", FLY_LAYER)
+	if(a_intent == INTENT_HARM) // ANGRY!!!!
+		typing_overlay.add_overlay("angry")
 	typing_overlay.appearance_flags = APPEARANCE_UI
 	typing_overlay.invisibility = invisibility
 	typing_overlay.alpha = alpha

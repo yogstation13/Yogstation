@@ -139,3 +139,6 @@
 
 ///from mind/transfer_to. Sent after the mind has been transferred: (mob/previous_body)
 #define COMSIG_MIND_TRANSFERRED "mind_transferred"
+
+///from /mob/create_typing_indicator()
+#define COMSIG_MOB_CREATE_TYPING_INDICATOR "create_typing_indicator"

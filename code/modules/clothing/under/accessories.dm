@@ -316,13 +316,17 @@
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = "lawyer"
+		RegisterSignal(L, COMSIG_MOB_CREATE_TYPING_INDICATOR, PROC_REF(create_typing_indicator))
 
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_dropped(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
+		UnregisterSignal(L, COMSIG_MOB_CREATE_TYPING_INDICATOR)
 		L.bubble_icon = initial(L.bubble_icon)
 
+/obj/item/clothing/accessory/lawyers_badge/proc/create_typing_indicator()
+	SIGNAL_HANDLER
+	return "lawyer"
 
 ////////////////
 //HA HA! NERD!//

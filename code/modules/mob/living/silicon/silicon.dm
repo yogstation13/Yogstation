@@ -8,7 +8,7 @@
 	initial_language_holder = /datum/language_holder/synthetic
 	see_in_dark = 8
 	infra_luminosity = 0
-	bubble_icon = "machine"
+	bubble_icon = BUBBLE_MACHINE
 	weather_immunities = list("ash")
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	mob_biotypes = MOB_ROBOTIC
