@@ -147,3 +147,8 @@ Des: Removes all infected images from the alien.
 
 /mob/living/carbon/alien/can_hold_items()
 	return has_fine_manipulation
+
+/mob/living/carbon/alien/Life(seconds_per_tick, times_fired)
+	. = ..()
+	if(client)
+		linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, seconds_per_tick * 5) // 5/s, server passive is ~60/s
