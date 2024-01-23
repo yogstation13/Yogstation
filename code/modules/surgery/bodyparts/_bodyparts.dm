@@ -830,7 +830,9 @@
 			var/mob/living/carbon/human/S = C
 			if(isszlachta(S))
 				return
-		species_id = C.dna?.species.husk_id || "husk" //overrides species_id
+		if(!owner?.dna?.species?.generate_husk_icon)
+			species_id = "husk" //overrides species_id
+			
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
 		should_draw_greyscale = FALSE
@@ -936,7 +938,7 @@
 
 	var/icon_gender = (body_gender == FEMALE) ? "f" : "m" //gender of the icon, if applicable
 
-	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
+	if(((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST )) || !owner?.dna?.species?.is_dimorphic)
 		should_draw_gender = FALSE
 
 	if(status == BODYPART_ORGANIC || (status == BODYPART_ROBOTIC && render_like_organic == TRUE)) // So IPC augments can be colorful without disrupting normal BODYPART_ROBOTIC render code.
@@ -985,6 +987,25 @@
 			limb.color = "[draw_color]"
 			if(aux_zone)
 				aux.color = "[draw_color]"
+	if(owner)
+		if(HAS_TRAIT(owner, TRAIT_HUSK) && owner.dna?.species?.generate_husk_icon)
+			var/husk_color_mod = rgb(96, 88, 80)
+			var/icon/husk_limb_icon = new(limb.icon)
+			husk_limb_icon.ColorTone(husk_color_mod, grayscale = TRUE)
+			var/icon/husk_over = new('yogstation/icons/mob/human_parts.dmi',"overlay_[owner.dna.species.id]husk")
+			var/icon/limb_mask = new(limb.icon)
+			limb_mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
+			husk_over.Blend(limb_mask, ICON_ADD)
+			if(aux)
+				var/icon/husk_aux_icon = new(aux.icon)
+				husk_aux_icon.ColorTone(husk_color_mod, grayscale = TRUE)
+				var/icon/aux_mask = new(aux.icon)
+				aux_mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
+				husk_over.Blend(aux_mask, ICON_ADD)
+				husk_aux_icon.Blend(husk_over, ICON_OVERLAY)
+				aux.icon = husk_aux_icon
+			husk_limb_icon.Blend(husk_over, ICON_OVERLAY)
+			limb.icon = husk_limb_icon
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)
 	drop_organs()

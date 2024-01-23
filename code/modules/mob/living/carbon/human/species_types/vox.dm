@@ -2,6 +2,7 @@
 	name = "Vox"
 	id = SPECIES_VOX
 	is_dimorphic = FALSE
+	generate_husk_icon = TRUE
 	species_traits = list(NO_UNDERWEAR, NOTRANSSTING, EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
 	inherent_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings",  "vox_facial_quills", "vox_tail", "vox_body", "vox_tail_markings")

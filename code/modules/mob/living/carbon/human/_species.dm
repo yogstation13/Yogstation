@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/grad_style
 	///The gradient color used to color the gradient.
 	var/grad_color
-
+	var/generate_husk_icon = FALSE
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
 	var/has_icon_variants = FALSE

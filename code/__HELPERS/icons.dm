@@ -228,8 +228,11 @@ world
 /icon/proc/Greyify()
 	MapColors(0.75,0.3,0.3, 0.6,0.75,0.6, 0.10,0.10,0.50, 0,0,0)
 
-/icon/proc/ColorTone(tone)
-	Greyify()
+/icon/proc/ColorTone(tone, grayscale = FALSE)
+	if(grayscale)
+		GrayScale()
+	else
+		Greyify()
 
 	var/list/TONE = ReadRGB(tone)
 	var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, 1)
