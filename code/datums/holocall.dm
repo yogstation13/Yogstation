@@ -444,7 +444,7 @@
     DELAY 10
     NAME Maria Dell
     PRESET /datum/preset_holoimage/engineer/atmos
-    SAY It's fine, don't worry. I've got Plastic on it. And frankly, i'm kinda busy with, the, uhhm, incinerator.
+    SAY It's fine, don't worry. I've got Plastic on it. And frankly, I'm kinda busy with, the, uhhm, incinerator.
     DELAY 30
     NAME Dave Tundrale
     PRESET /datum/preset_holoimage/engineer
