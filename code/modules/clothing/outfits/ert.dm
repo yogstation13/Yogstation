@@ -62,6 +62,28 @@
 	R.keyslot = new /obj/item/encryptionkey/heads/captain
 	R.recalculateChannels()
 
+/datum/outfit/ert/mining
+	name = "A Dwarven Miner"
+
+	id = /obj/item/card/id/ert
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker
+	suit_store = /obj/item/tank/internals/oxygen/tactical
+	glasses = /obj/item/clothing/glasses/hud/health/meson
+	gloves = /obj/item/clothing/gloves/gauntlets
+	back = /obj/item/storage/backpack/explorer
+	belt = /obj/item/storage/belt/mining
+	mask = /obj/item/clothing/mask/gas/explorer
+	shoes = /obj/item/clothing/shoes/bhop
+	backpack_contents = list(
+		/obj/item/storage/box/survival_mining=1,
+		/obj/item/crusher_trophy/demon_claws=1
+		/obj/item/crusher_trophy/watcher_wing=1
+		/obj/item/reagent_containers/autoinjector/medipen/survival=3
+		/obj/item/kinetic_javelin=1
+		/obj/item/kinetic_javelin_core/green=1
+		)
+	l_pocket = /obj/item/reagent_containers/glass/beaker/bluespace/dorf
+
 /datum/outfit/ert/commander/alert
 	name = "ERT Commander - High Alert"
 
