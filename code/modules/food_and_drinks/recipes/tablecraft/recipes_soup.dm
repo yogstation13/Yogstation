@@ -251,6 +251,7 @@
 	name = "Pea soup"
 	reqs = list(
 		/datum/reagent/water = 10,
+		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/reagent_containers/food/snacks/grown/peas = 2,
 		/obj/item/reagent_containers/food/snacks/grown/parsnip = 1,
 		/obj/item/reagent_containers/food/snacks/grown/carrot = 1

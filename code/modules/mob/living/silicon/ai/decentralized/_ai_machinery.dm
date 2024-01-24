@@ -14,7 +14,7 @@
 /obj/machinery/ai/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSmachines, src)
-	SSair_machinery.start_processing_machine(src)
+	SSair.start_processing_machine(src)
 
 //Cooling happens here
 /obj/machinery/ai/process_atmos()
@@ -31,7 +31,7 @@
 	
 /obj/machinery/ai/Destroy()
 	. = ..()
-	SSair_machinery.stop_processing_machine(src)
+	SSair.stop_processing_machine(src)
 	STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/ai/proc/valid_holder()
