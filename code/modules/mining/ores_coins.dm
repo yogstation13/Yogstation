@@ -634,7 +634,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		P.damage *= 1.5
 		P.speed *= 0.5
 		P.ricochets++
-		P.store_hitscan_collision(P.trajectory.copy_to()) // ULTRA-RICOSHOT
+		if(P.hitscan)
+			P.store_hitscan_collision(P.trajectory.copy_to()) // ULTRA-RICOSHOT
 		P.on_ricochet(src)
 		P.impacted = list(src)
 		P.pixel_x = pixel_x
