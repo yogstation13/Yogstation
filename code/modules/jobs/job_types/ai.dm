@@ -32,7 +32,6 @@
 
 /datum/job/ai/after_spawn(mob/living/spawned, mob/M, latejoin)
 	. = ..()
-	log_world("ai after_spawn: mob H is [spawned.type], mob M is [M.type]")
 	var/mob/living/silicon/ai/AI = spawned
 
 	AI.relocate(TRUE)
