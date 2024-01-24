@@ -28,7 +28,7 @@
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_TRACK_HUD)
 
 	var/obj/item/radio/borg/radio = null //All silicons make use of this, with (p)AI's creating headsets
-	// The prefix character to use when they announce their laws. Used for department transmissions, default (common), or none at all.
+	/// The prefix character to use when they announce their laws. Used for department transmissions, default (common), or none at all.
 	var/radiomod = ""
 	/// The channel name of which `/proc/statelaws` will use to broadcast. Can be null.
 	var/radiomodname = null
