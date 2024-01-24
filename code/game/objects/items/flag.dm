@@ -31,6 +31,7 @@
 	update_icon()
 
 /obj/item/flag/update_icon_state()
+	. = ..()
 	updateFlagIcon()
 	item_state = icon_state
 	if(rolled)

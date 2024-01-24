@@ -980,6 +980,11 @@
 			. += aux
 		return
 
+	if(owner?.dna?.species?.generate_husk_icon && HAS_TRAIT(owner, TRAIT_HUSK))
+		huskify_image(limb)
+		if(aux)
+			huskify_image(aux)
+		return .
 
 	if(should_draw_greyscale)
 		var/draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
@@ -987,25 +992,17 @@
 			limb.color = "[draw_color]"
 			if(aux_zone)
 				aux.color = "[draw_color]"
-	if(owner)
-		if(HAS_TRAIT(owner, TRAIT_HUSK) && owner.dna?.species?.generate_husk_icon)
-			var/husk_color_mod = rgb(96, 88, 80)
-			var/icon/husk_limb_icon = new(limb.icon)
-			husk_limb_icon.ColorTone(husk_color_mod, grayscale = TRUE)
-			var/icon/husk_over = new('yogstation/icons/mob/human_parts.dmi',"overlay_[owner.dna.species.id]husk")
-			var/icon/limb_mask = new(limb.icon)
-			limb_mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
-			husk_over.Blend(limb_mask, ICON_ADD)
-			if(aux)
-				var/icon/husk_aux_icon = new(aux.icon)
-				husk_aux_icon.ColorTone(husk_color_mod, grayscale = TRUE)
-				var/icon/aux_mask = new(aux.icon)
-				aux_mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
-				husk_over.Blend(aux_mask, ICON_ADD)
-				husk_aux_icon.Blend(husk_over, ICON_OVERLAY)
-				aux.icon = husk_aux_icon
-			husk_limb_icon.Blend(husk_over, ICON_OVERLAY)
-			limb.icon = husk_limb_icon
+
+/obj/item/bodypart/proc/huskify_image(image/thing_to_husk)
+	var/husk_color_mod = rgb(96, 88, 80)
+	var/icon/husk_icon = new(thing_to_husk.icon)
+	husk_icon.ColorTone(husk_color_mod, grayscale = TRUE)
+	var/mutable_appearance/husk_blood = mutable_appearance(thing_to_husk.icon, "overlay_[owner.dna.species.id]husk")
+	thing_to_husk.icon = husk_icon
+	husk_blood.blend_mode |= BLEND_INSET_OVERLAY
+	husk_blood.appearance_flags |= RESET_COLOR
+	husk_blood.dir = thing_to_husk.dir
+	thing_to_husk.add_overlay(husk_blood)
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)
 	drop_organs()
