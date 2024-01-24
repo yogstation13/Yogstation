@@ -366,11 +366,11 @@
 	switch(health_percent) //Change slowdown based on health
 		if(0.90 to INFINITY)
 			final_slowdown += 1
-		if(0.70 to 0.89)
+		if(0.80 to 0.89)
 			final_slowdown += 0.5
-		if(0.60 to 0.79)
+		if(0.50 to 0.79)
 			final_slowdown += 0
-		if(0.30 to 0.59)
+		if(0.30 to 0.49)
 			final_slowdown += -0.2
 		if(0.10 to 0.29)
 			final_slowdown += -0.4
