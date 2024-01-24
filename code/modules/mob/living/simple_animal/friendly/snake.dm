@@ -34,6 +34,7 @@
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_REPTILE
 	gold_core_spawnable = HOSTILE_SPAWN
+	var/obj/item/udder/snake/udder
 	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_NECK
 	obj_damage = 0
@@ -64,6 +65,29 @@
 		adjustBruteLoss(-2)
 	else
 		return ..()
+/mob/living/simple_animal/hostile/retaliate/poison/snake/Initialize()
+	udder = new()
+	. = ..()
+
+/mob/living/simple_animal/hostile/retaliate/poison/snake/Destroy()
+	qdel(udder)
+	return ..()
+
+/mob/living/simple_animal/hostile/retaliate/poison/snake/attackby(obj/item/O, mob/user, params)
+	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
+		udder.milkAnimal(O, user)
+		return 1
+	else
+		return ..()
+
+/mob/living/simple_animal/hostile/retaliate/poison/snake/Life()
+	. = ..()
+	if(stat == CONSCIOUS)
+		udder.generateMilk()
+
+/obj/item/udder/snake
+	name = "snake venom gland"
+	milktype = /datum/reagent/toxin/snakevenom
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/novenom
 	name = "snake"
