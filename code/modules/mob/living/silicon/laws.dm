@@ -597,7 +597,7 @@
 
 	data["channels"] = channels
 	data["channel"] = "None"
-	if(owner.radiomodname) // TODO: Add check if they actually have access to the radiomodname.
+	if(owner.radiomodname) // Highlights the channel button in which they're using. Should be okay even if they lose access to that channel and didn't change their radiomod.
 		data["channel"] = owner.radiomodname
 
 /datum/law_manager/proc/handle_lawsets(list/datum/ai_laws/laws)
