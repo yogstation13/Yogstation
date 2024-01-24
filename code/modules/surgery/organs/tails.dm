@@ -125,7 +125,7 @@
 	name = "vox tail"
 	desc = "A severed vox tail. Somewhere, no doubt, a vox hater is very pleased with themselves."
 	icon_state = "severedlizardtail" //yogs - so the tail uses the correct sprites
-	color = "#116611"
+	color = "#808D11"
 	tail_type = "grnvox"
 	var/tail_markings = "None"
 

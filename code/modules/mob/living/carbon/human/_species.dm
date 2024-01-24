@@ -135,7 +135,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/grab_sound
 	///yogs - audio of a species' scream
 	var/screamsound  //yogs - grabs scream from screamsound list or string
-	var/husk_id = "husk"
+	var/husk_color = "#A6A6A6"
 	/// The visual effect of the attack.
 	var/attack_effect = ATTACK_EFFECT_PUNCH
 	///is a flying species, just a check for some things
@@ -883,8 +883,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	H.apply_overlay(BODY_LAYER)
 	handle_mutant_bodyparts(H)
 
-/datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
+/datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour, var/list/huskifying = list())
 	var/list/bodyparts_to_add = mutant_bodyparts.Copy()
+	if(length(huskifying))
+		bodyparts_to_add = huskifying
 	var/list/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 	var/list/standing	= list()
 
@@ -1261,7 +1263,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					inner_accessory_overlay = center_image(inner_accessory_overlay, S.dimension_x, S.dimension_y)
 
 				standing += inner_accessory_overlay
-
+			if(length(huskifying))
+				for(var/image/sprite_image as anything in standing)
+					huskify_image(sprite_image, H)
+					sprite_image.color = H.dna.species.husk_color
 		H.overlays_standing[layer] = standing.Copy()
 		standing = list()
 

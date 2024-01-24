@@ -980,24 +980,26 @@
 			. += aux
 		return
 
-	if(owner?.dna?.species?.generate_husk_icon && HAS_TRAIT(owner, TRAIT_HUSK))
-		huskify_image(limb)
-		if(aux)
-			huskify_image(aux)
-		return .
-
+	var/draw_color
 	if(should_draw_greyscale)
-		var/draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
-		if(draw_color)
-			limb.color = "[draw_color]"
-			if(aux_zone)
-				aux.color = "[draw_color]"
+		draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
 
-/obj/item/bodypart/proc/huskify_image(image/thing_to_husk)
+	if(owner?.dna?.species?.generate_husk_icon && HAS_TRAIT(owner, TRAIT_HUSK))
+		huskify_image(limb, owner)
+		if(aux)
+			huskify_image(aux, owner)
+		draw_color = owner.dna.species.husk_color
+
+	if(draw_color)
+		limb.color = "[draw_color]"
+		if(aux_zone)
+			aux.color = "[draw_color]"
+
+/proc/huskify_image(image/thing_to_husk, mob/living/carbon/husked_guy)
 	var/husk_color_mod = rgb(96, 88, 80)
 	var/icon/husk_icon = new(thing_to_husk.icon)
 	husk_icon.ColorTone(husk_color_mod, grayscale = TRUE)
-	var/mutable_appearance/husk_blood = mutable_appearance(thing_to_husk.icon, "overlay_[owner.dna.species.id]husk")
+	var/mutable_appearance/husk_blood = mutable_appearance(thing_to_husk.icon, "overlay_[husked_guy.dna.species.id]husk")
 	thing_to_husk.icon = husk_icon
 	husk_blood.blend_mode |= BLEND_INSET_OVERLAY
 	husk_blood.appearance_flags |= RESET_COLOR

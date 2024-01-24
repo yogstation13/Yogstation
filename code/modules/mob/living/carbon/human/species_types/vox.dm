@@ -28,7 +28,7 @@
 	burnmod = 0.8 // Tough hides.
 	stunmod = 1.1 // Take a bit longer to get up than other species.
 	breathid = "n2"
-	husk_id = "voxhusk"
+	husk_color = null
 	has_icon_variants = TRUE
 	damage_overlay_type = "vox"
 	exotic_bloodtype = "V"
@@ -67,13 +67,33 @@
 	H.open_internals(H.get_item_for_held_index(2))
 	H.grant_language(/datum/language/vox)
 
+/datum/species/vox/start_wagging_tail(mob/living/carbon/human/H)
+	..()
+	var/list/huskifying = list()
+	if(HAS_TRAIT(H, TRAIT_HUSK))
+		huskifying += "wagging_vox_tail"
+		huskifying += "wagging_vox_tail_markings"
+	handle_mutant_bodyparts(H, huskifying = huskifying)
+
+/datum/species/vox/stop_wagging_tail(mob/living/carbon/human/H)
+	..()
+	var/list/huskifying = list()
+	if(HAS_TRAIT(H, TRAIT_HUSK))
+		huskifying += "vox_tail"
+		huskifying += "vox_tail_markings"
+	handle_mutant_bodyparts(H, huskifying = huskifying)
+
 /datum/species/vox/on_husk(mob/living/carbon/C) // Husks the tail
-		C.dna.features["vox_tail"] = "voxhusk"
+	//C.dna.features["vox_tail"] = "voxhusk"
+	if(is_wagging_tail(C))
+		stop_wagging_tail(C)
+	handle_mutant_bodyparts(C, huskifying = list("vox_tail", "vox_tail_markings"))
 
 /datum/species/vox/on_husk_cure(mob/living/carbon/C) // De-husks the to a normal tail based on the body.
-	var/vox_body = C.dna.features["vox_body"]
-	var/datum/sprite_accessory/vox_bodies/vox_body_of_choice = GLOB.vox_bodies_list[vox_body]
-	C.dna.features["vox_tail"] = vox_body_of_choice.limbs_id
+	//var/vox_body = C.dna.features["vox_body"]
+	//var/datum/sprite_accessory/vox_bodies/vox_body_of_choice = GLOB.vox_bodies_list[vox_body]
+	//C.dna.features["vox_tail"] = vox_body_of_choice.limbs_id
+	handle_mutant_bodyparts(C)
 
 /datum/species/vox/create_pref_unique_perks()
 	var/list/to_add = list()
