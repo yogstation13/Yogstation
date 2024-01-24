@@ -1036,3 +1036,10 @@
 /datum/reagent/toxin/ambusher_toxin/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
 	textShown = FALSE
+
+/datum/reagent/toxin/snakevenom
+	name = "Snake Venom"
+	description = "A potent venom extracted from a live snake"
+	color = "#792300" // rgb: 121, 35, 0
+	toxpwr = 2.5
+	taste_description = "bitter"
