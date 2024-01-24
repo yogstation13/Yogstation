@@ -59,11 +59,12 @@
 	polldesc = "an elite Nanotrasen Strike Team"
 
 /datum/ert/mining
+	leader_role = /datum/antagonist/ert/mining
 	roles = list(/datum/antagonist/ert/mining)
 	rename_team = "Megafauna Kill Team"
-	code = "Grey"
+	code = "Rock and STONE"
 	mission = "Eliminate hostile fauna while minimizing casualties."
-	polldesc = "an elite Nanotrasen Strike Team"
+	polldesc = "A merry band of Megafauna-hunting dwarves"
 
 /datum/ert/official
 	code = "Green"

@@ -140,7 +140,7 @@
 
 /datum/antagonist/ert/mining
 	name = "Dwarven Miner"
-	outfit = /datum/outfit/dorf_miner
+	outfit = /datum/outfit/ert/mining
 
 /datum/antagonist/ert/medic/inquisitor
 	outfit = /datum/outfit/ert/medic/inquisitor
