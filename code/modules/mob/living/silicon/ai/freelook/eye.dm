@@ -2,7 +2,6 @@
 //
 // An invisible (no icon) mob that the AI controls to look around the station with.
 // It streams chunks as it moves around, which will show it what the AI can and cannot see.
-
 /mob/camera/ai_eye
 	name = "Inactive AI Eye"
 
@@ -89,7 +88,7 @@
 /mob/camera/ai_eye/proc/setLoc(destination, force_update = FALSE)
 	if(!ai)
 		return
-	if(!isturf(ai.loc))
+	if(!(isturf(ai.loc) || istype(ai.loc, /obj/machinery/ai/data_core)))
 		return
 	destination = get_turf(destination)
 	if(!force_update && (destination == get_turf(src)))
@@ -157,7 +156,7 @@
 /client/proc/AIMove(n, direct, mob/living/silicon/ai/user)
 
 	var/initial = initial(user.sprint)
-	var/max_sprint = user.max_camera_sprint
+	var/max_sprint = 50
 
 	if(user.cooldown && user.cooldown < world.timeofday) // 3 seconds
 		user.sprint = initial
@@ -188,6 +187,8 @@
 
 	if(isvalidAIloc(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
 		to_chat(src, "ERROR: Eyeobj not found. Creating new eye...")
+		stack_trace("AI eye object wasn't found! Location: [loc] / Eyeobj: [eyeobj] / QDELETED: [QDELETED(eyeobj)] / Eye loc: [eyeobj?.loc]")
+		QDEL_NULL(eyeobj)
 		create_eye()
 
 	eyeobj?.setLoc(loc)
@@ -207,7 +208,10 @@
 	if(!eyeobj)
 		return
 	eyeobj.mouse_opacity = state ? MOUSE_OPACITY_ICON : initial(eyeobj.mouse_opacity)
-	eyeobj.invisibility = state ? INVISIBILITY_OBSERVER : initial(eyeobj.invisibility)
+	if(state)
+		eyeobj.SetInvisibility(INVISIBILITY_OBSERVER, id=type)
+	else
+		eyeobj.RemoveInvisibility(type)
 
 /mob/living/silicon/ai/verb/toggle_acceleration()
 	set category = "AI Commands"

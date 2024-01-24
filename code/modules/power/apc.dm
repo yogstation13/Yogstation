@@ -1202,6 +1202,9 @@
 				P.alert = FALSE
 
 /obj/machinery/power/apc/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+	. = ..()
+	if(!.)
+		return
 	if(card.AI)
 		to_chat(user, span_warning("[card] is already occupied!"))
 		return

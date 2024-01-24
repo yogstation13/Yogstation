@@ -462,35 +462,38 @@
   * reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
   */
 /mob/proc/reset_perspective(atom/A)
-	if(client)
-		if(A)
-			if(ismovable(A))
-				//Set the the thing unless it's us
-				if(A != src)
-					client.perspective = EYE_PERSPECTIVE
-					client.eye = A
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
-			else if(isturf(A))
-				//Set to the turf unless it's our current turf
-				if(A != loc)
-					client.perspective = EYE_PERSPECTIVE
-					client.eye = A
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
+	if(!client)
+		return
+	if(A)
+		if(ismovable(A))
+			//Set the the thing unless it's us
+			if(A != src)
+				client.perspective = EYE_PERSPECTIVE
+				client.eye = A
 			else
-				//Do nothing
-		else
-			//Reset to common defaults: mob if on turf, otherwise current loc
-			if(isturf(loc))
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
-			else
+		else if(isturf(A))
+			//Set to the turf unless it's our current turf
+			if(A != loc)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-		return 1
+				client.eye = A
+			else
+				client.eye = client.mob
+				client.perspective = MOB_PERSPECTIVE
+		else
+			//Do nothing
+	else
+		//Reset to common defaults: mob if on turf, otherwise current loc
+		if(isturf(loc))
+			client.eye = client.mob
+			client.perspective = MOB_PERSPECTIVE
+		else
+			client.perspective = EYE_PERSPECTIVE
+			client.eye = loc
+	/// Signal sent after the eye has been successfully updated, with the client existing.
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
+	return TRUE
 
 /// Show the mob's inventory to another mob
 /mob/proc/show_inv(mob/user)

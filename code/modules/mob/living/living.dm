@@ -951,25 +951,26 @@
 
 /mob/living/proc/can_track(mob/living/user)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
+	if(SEND_SIGNAL(src, COMSIG_LIVING_CAN_TRACK, user) & COMPONENT_CANT_TRACK)
+		return FALSE
 	var/turf/T = get_turf(src)
 	if(!T)
-		return 0
+		return FALSE
 	if(is_centcom_level(T.z)) //dont detect mobs on centcom
-		return 0
+		return FALSE
 	if(is_away_level(T.z))
-		return 0
-	if(user != null && src == user)
-		return 0
+		return FALSE
+	if(!isnull(user) && src == user)
+		return FALSE
 	if(invisibility || alpha == 0)//cloaked
-		return 0
+		return FALSE
 	if(digitalcamo || digitalinvis)
-		return 0
-
+		return FALSE
 	// Now, are they viewable by a camera? (This is last because it's the most intensive check)
 	if(!near_camera(src))
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
 	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_POWERHUNGRY) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)

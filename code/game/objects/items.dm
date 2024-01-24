@@ -1020,11 +1020,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
 
-/obj/item/proc/do_pickup_animation(atom/target)
-	if(!istype(loc, /turf))
-		return
+/obj/item/proc/do_pickup_animation(atom/target, turf/source)
+	if(!source)
+		if(!istype(loc, /turf))
+			return
+		source = loc
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
-	pickup_animation.plane = GAME_PLANE
+	SET_PLANE(pickup_animation, GAME_PLANE, source)
 	pickup_animation.transform.Scale(0.75)
 
 	var/turf/current_turf = get_turf(src)

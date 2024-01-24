@@ -128,6 +128,7 @@
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
+		//new/obj/structure/ai_core/deactivated(loc) //New empty terminal.
 		return INITIALIZE_HINT_QDEL //Delete AI.
 
 	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
@@ -140,6 +141,8 @@
 		make_laws()
 
 	update_law_history() //yogs
+
+	create_eye()
 
 	if(target_ai.mind)
 		target_ai.mind.transfer_to(src)
@@ -160,8 +163,8 @@
 
 	job = "AI"
 
+	create_modularInterface()
 
-	create_eye()
 	if(client)
 		INVOKE_ASYNC(src, PROC_REF(apply_pref_name), /datum/preference/name/ai, client)
 
@@ -175,8 +178,6 @@
 	spark_system.attach(src)
 
 	add_verb(src, /mob/living/silicon/ai/proc/show_laws_verb)
-
-	create_modularInterface()
 
 	aiMulti = new(src)
 	radio = new /obj/item/radio/headset/silicon/ai(src)
@@ -861,11 +862,12 @@
 	var/list/obj/machinery/camera/add = list()
 	var/list/obj/machinery/camera/remove = list()
 	var/list/obj/machinery/camera/visible = list()
-	for (var/datum/camerachunk/CC in eyeobj.visibleCameraChunks)
-		for (var/obj/machinery/camera/C in CC.cameras)
-			if (!C.can_use() || get_dist(C, eyeobj) > 7 || !C.internal_light)
-				continue
-			visible |= C
+	for (var/datum/camerachunk/chunk as anything in eyeobj.visibleCameraChunks)
+		for (var/z_key in chunk.cameras)
+			for(var/obj/machinery/camera/camera as anything in chunk.cameras[z_key])
+				if(isnull(camera) || !camera.can_use() || get_dist(camera, eyeobj) > 7 || !camera.internal_light)
+					continue
+				visible |= camera
 
 	add = visible - lit_cameras
 	remove = lit_cameras - visible
@@ -994,35 +996,41 @@
 	malf_picker = new /datum/module_picker
 
 
-/mob/living/silicon/ai/reset_perspective(atom/A)
+/mob/living/silicon/ai/reset_perspective(atom/new_eye)
+	SHOULD_CALL_PARENT(FALSE) // I hate you all
 	if(camera_light_on)
 		light_cameras()
-	if(istype(A, /obj/machinery/camera))
-		current = A
-	if(client)
-		if(ismovable(A))
-			if(A != GLOB.ai_camera_room_landmark)
-				end_multicam()
-			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
-		else
+	if(istype(new_eye, /obj/machinery/camera))
+		current = new_eye
+	if(!client)
+		return
+
+	if(ismovable(new_eye))
+		if(new_eye != GLOB.ai_camera_room_landmark)
 			end_multicam()
-			if(isturf(loc) || istype(loc, /obj/machinery/ai/data_core))
-				if(eyeobj)
-					client.eye = eyeobj
-					client.perspective = EYE_PERSPECTIVE
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
-			else
+		client.perspective = EYE_PERSPECTIVE
+		client.set_eye(new_eye)
+	else
+		end_multicam()
+		if(isturf(loc) || istype(loc, /obj/machinery/ai/data_core))
+			if(eyeobj)
+				client.set_eye(eyeobj)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-		update_sight()
-		if(client.eye != src)
-			var/atom/AT = client.eye
-			AT.get_remote_view_fullscreens(src)
+			else
+				client.set_eye(client.mob)
+				client.perspective = MOB_PERSPECTIVE
 		else
-			clear_fullscreen("remote_view", 0)
+			client.perspective = EYE_PERSPECTIVE
+			client.set_eye(loc)
+	update_sight()
+	if(client.eye != src)
+		var/atom/AT = client.eye
+		AT?.get_remote_view_fullscreens(src)
+	else
+		clear_fullscreen("remote_view", 0)
+
+	// I am so sorry
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 
 /mob/living/silicon/ai/revive(full_heal = 0, admin_revive = 0)
 	. = ..()
@@ -1136,6 +1144,20 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+/mob/living/silicon/ai/up()
+	set name = "Move Upwards"
+	set category = "IC"
+
+	if(eyeobj.zMove(UP, z_move_flags = ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move upwards."))
+
+/mob/living/silicon/ai/down()
+	set name = "Move Down"
+	set category = "IC"
+
+	if(eyeobj.zMove(DOWN, z_move_flags = ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move down."))
 
 /mob/living/silicon/ai/proc/send_borg_death_warning(mob/living/silicon/robot/R)
 	to_chat(src, span_warning("Unit [R] has stopped sending telemetry updates."))

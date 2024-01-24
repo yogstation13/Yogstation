@@ -343,7 +343,7 @@
 			hide_plane(source.mymob)
 		return
 
-	if(force_hidden)
+	if(force_hidden || isaicore(new_eye))
 		unhide_plane(source.mymob)
 
 /atom/movable/screen/plane_master/high_game

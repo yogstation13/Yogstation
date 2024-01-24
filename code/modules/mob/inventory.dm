@@ -189,7 +189,7 @@
 			dropItemToGround(get_item_for_held_index(hand_index), force = TRUE)
 		I.forceMove(src)
 		held_items[hand_index] = I
-		I.plane = ABOVE_HUD_PLANE
+		SET_PLANE_EXPLICIT(I, ABOVE_HUD_PLANE, src)
 		I.equipped(src, ITEM_SLOT_HANDS, no_sound)
 		if(I.pulledby)
 			I.pulledby.stop_pulling()

@@ -30,10 +30,10 @@
 		CRASH("dynamic preview is unsupported")
 	. = H.AIize(latejoin,preference_source)
 
-/datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
+/datum/job/ai/after_spawn(mob/living/spawned, mob/M, latejoin)
 	. = ..()
-			
-	var/mob/living/silicon/ai/AI = H
+	log_world("ai after_spawn: mob H is [spawned.type], mob M is [M.type]")
+	var/mob/living/silicon/ai/AI = spawned
 
 	AI.relocate(TRUE)
 
@@ -54,6 +54,13 @@
 
 	if(latejoin)
 		announce(AI)
+
+/datum/job/ai/after_roundstart_spawn(mob/living/spawning, client/player_client)
+	. = ..()
+	var/mob/living/silicon/ai/AI = spawning
+	AI.reset_perspective(AI.eyeobj)
+	var/datum/plane_master_group/group = spawning.hud_used.master_groups[PLANE_GROUP_MAIN]
+	group.rebuild_hud()
 
 /datum/job/ai/override_latejoin_spawn()
 	return TRUE
