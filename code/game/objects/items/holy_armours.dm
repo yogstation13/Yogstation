@@ -271,7 +271,7 @@
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/dropped(mob/M)
 	. = ..()
-	UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(M, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_MOB_APPLY_HEALING, COMSIG_CARBON_GAIN_WOUND, COMSIG_CARBON_LOSE_WOUND, COMSIG_MOVABLE_MOVED))
 	REMOVE_TRAIT(M, TRAIT_IGNOREDAMAGESLOWDOWN, type)
 	total_wounds = 0
 	slowdown = 0
@@ -317,40 +317,40 @@
 		if(flagelantes_effect)
 			QDEL_NULL(flagelantes_effect)
 
-/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_damage(mob/living/carbon/human/H, damage, damagetype, def_zone)
 
 	SIGNAL_HANDLER
 
 	if(suittoggled) //Make sure it only checks when the hood is up
-		change_slowdown(C, slowdown) //Change speed when damaged
+		change_slowdown(H, slowdown) //Change speed when damaged
 
-/obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_heal(var/mob/living/carbon/C, amount, damtype)
-
-	SIGNAL_HANDLER
-
-	if(suittoggled) //Make sure it only checks when the hood is up
-		change_slowdown(C, slowdown) //Change speed when healed
-
-/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_wound_add(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_heal(mob/living/carbon/human/H, amount, damtype)
 
 	SIGNAL_HANDLER
 
 	if(suittoggled) //Make sure it only checks when the hood is up
-		change_slowdown(C, slowdown, 1) //Change speed when gaining a wound
+		change_slowdown(H, slowdown) //Change speed when healed
 
-
-/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_wound_remove(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_wound_add(mob/living/carbon/human/H, datum/wound/W, obj/item/bodypart/L)
 
 	SIGNAL_HANDLER
 
 	if(suittoggled) //Make sure it only checks when the hood is up
-		change_slowdown(C, slowdown, -1) //Change speed when losing a wound
+		change_slowdown(H, slowdown, 1) //Change speed when gaining a wound
+
+
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/handle_wound_remove(mob/living/carbon/human/H, datum/wound/W, obj/item/bodypart/L)
+
+	SIGNAL_HANDLER
+
+	if(suittoggled) //Make sure it only checks when the hood is up
+		change_slowdown(H, slowdown, -1) //Change speed when losing a wound
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(mob/living/carbon/human/H, starting_slowdown, wound)
 	var/health_percent = H.health / H.maxHealth
 	var/final_slowdown = 0
 
-	total_wounds += wound
+	total_wounds = length(H.all_wounds)
 
 	if(total_wounds < 0)
 		total_wounds = 0
