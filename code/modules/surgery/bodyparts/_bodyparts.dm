@@ -995,16 +995,17 @@
 		if(aux_zone)
 			aux.color = "[draw_color]"
 
-/proc/huskify_image(image/thing_to_husk, mob/living/carbon/husked_guy)
+/proc/huskify_image(image/thing_to_husk, mob/living/carbon/husked_guy, draw_blood = TRUE)
 	var/husk_color_mod = rgb(96, 88, 80)
 	var/icon/husk_icon = new(thing_to_husk.icon)
 	husk_icon.ColorTone(husk_color_mod, grayscale = TRUE)
 	var/mutable_appearance/husk_blood = mutable_appearance(thing_to_husk.icon, "overlay_[husked_guy.dna.species.id]husk")
 	thing_to_husk.icon = husk_icon
-	husk_blood.blend_mode |= BLEND_INSET_OVERLAY
-	husk_blood.appearance_flags |= RESET_COLOR
-	husk_blood.dir = thing_to_husk.dir
-	thing_to_husk.add_overlay(husk_blood)
+	if(draw_blood)
+		husk_blood.blend_mode |= BLEND_INSET_OVERLAY
+		husk_blood.appearance_flags |= RESET_COLOR
+		husk_blood.dir = thing_to_husk.dir
+		thing_to_husk.add_overlay(husk_blood)
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)
 	drop_organs()
