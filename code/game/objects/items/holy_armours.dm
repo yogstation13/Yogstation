@@ -242,7 +242,7 @@
 
 /obj/item/clothing/suit/hooded/flagelantes_chains
 	name = "flagelantes chains"
-	desc = "Chains worn by those who wish to purify themselves through pain. They slow the wearer down initialy, but give divine haste the more hurt they are."
+	desc = "Chains worn by those who wish to purify themselves through pain. They slow the wearer down initialy, but give divine haste the more pain they endure."
 	icon_state = "flagelantes_chains"
 	item_state = "flagelantes_chains"
 	armor = list(MELEE = -15, BULLET = -15, LASER = -15, ENERGY = -15, BOMB = -15, BIO = -15, RAD = 0, FIRE = 0, ACID = 0)
@@ -357,11 +357,11 @@
 
 	switch(total_wounds) //Change slowdown based on wounds
 		if(1)
-			final_slowdown += -0.2
+			final_slowdown += -0.1
 		if(2)
-			final_slowdown += -0.4
+			final_slowdown += -0.2
 		if(3 to INFINITY) //Max of three wounds for slowdown calculation
-			final_slowdown += -0.6
+			final_slowdown += -0.4
 
 	switch(health_percent) //Change slowdown based on health
 		if(0.90 to INFINITY)
@@ -379,7 +379,7 @@
 
 	slowdown = final_slowdown //set slowdown
 
-	if(slowdown == -1.2) //Alert the user and those around that they've achieved MAXIMUM OVERDRIVE
+	if(slowdown == -1) //Alert the user and those around that they've achieved MAXIMUM OVERDRIVE
 		if(!speed_message)
 			to_chat(H, span_notice("You feel yourself grow closer to the divine as your sins seep out of the chains!."))
 			H.visible_message(span_warning("[H] starts sweating profusely!"))
@@ -398,23 +398,23 @@
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/appearance_change(mob/living/carbon/human/H, slowdown)
 	switch(slowdown)
-		if(-1.1 to 1)
+		if(-0.9 to 1)
 			if(flagelantes_effect)
 				QDEL_NULL(flagelantes_effect) //Remove particle effect
-		if(-INFINITY to -1.2)
+		if(-INFINITY to -1)
 			if(!flagelantes_effect)
 				flagelantes_effect = new(H, /particles/droplets)
 				flagelantes_effect.color = "#a41c1c"
 
-/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_footstep(slowdown) //So the chain sounds isn't spammed at higher speeds
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_footstep(slowdown) //So the chain sounds are not spammed at higher speeds
 	switch(slowdown)
 		if(0 to 1)
 			footstep_max = 2
 		if(-0.3 to -0.1)
 			footstep_max = 3
-		if(-1 to -0.4)
+		if(-0.9 to -0.4)
 			footstep_max = 4
-		if(-INFINITY to -1.1)
+		if(-INFINITY to -1)
 			footstep_max = 5
 
 /obj/item/clothing/suit/hooded/flagelantes_chains/proc/on_mob_move()
@@ -429,7 +429,7 @@
 
 /obj/item/clothing/head/hooded/flagelantes_chains_hood
 	name = "flagelantes hood"
-	desc = "A cowl worn by flagelantes"
+	desc = "A hood worn by flagelantes to hide their face."
 	icon = 'icons/obj/clothing/hats/hats.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
 	icon_state = "flagelantes_chains_hood"
