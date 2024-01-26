@@ -21,6 +21,13 @@
 	volume = 35 * device_type
 	return ..()
 
+///I have no idea why there's a new and at this point I'm too afraid to ask
+/obj/machinery/atmospherics/pipe/Initialize(mapload)
+	. = ..()
+
+	if(hide)
+		AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE) //if changing this, change the subtypes RemoveElements too, because thats how bespoke works
+
 /obj/machinery/atmospherics/pipe/nullify_node(i)
 	var/obj/machinery/atmospherics/old_node = nodes[i]
 	. = ..()

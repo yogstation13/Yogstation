@@ -118,7 +118,7 @@
 		space_shutoff_ticks--
 		if(space_shutoff_ticks <= 1 && !on)
 			on = TRUE
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 	if(!nodes[1])
 		on = FALSE
 	if(!on || welded)
@@ -140,7 +140,7 @@
 			last_moles_added = 0
 			on = FALSE
 			space_shutoff_ticks = 20 // shut off for about 20 seconds before trying again.
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			return
 
 	if(pump_direction & RELEASING) // internal -> external
@@ -296,7 +296,7 @@
 
 		// log_admin("DEBUG \[[world.timeofday]\]: vent_pump/receive_signal: unknown command \"[signal.data["command"]]\"\n[signal.debug_print()]")
 	broadcast_status()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/welder_act(mob/living/user, obj/item/I)
 	if(!I.tool_start_check(user, amount=0))

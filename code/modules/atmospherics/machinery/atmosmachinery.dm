@@ -24,23 +24,34 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	var/rebuilding = FALSE
 	///If we should init and immediately start processing
 	var/init_processing = FALSE
-	var/can_unwrench = 0
+	///Check if the object can be unwrenched
+	var/can_unwrench = FALSE
+	///Bitflag of the initialized directions (NORTH | SOUTH | EAST | WEST)
 	var/initialize_directions = 0
-	var/pipe_color
+	///The color of the pipe
+	var/pipe_color = COLOR_VERY_LIGHT_GRAY
+	///What layer the pipe is in (from 1 to 5, default 3)
 	var/piping_layer = PIPING_LAYER_DEFAULT
+	///The flags of the pipe/component (PIPING_ALL_LAYER | PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY | PIPING_CARDINAL_AUTONORMALIZE)
 	var/pipe_flags = NONE
 
 	///This only works on pipes, because they have 1000 subtypes wich need to be visible and invisible under tiles, so we track this here
 	var/hide = TRUE
 
+	///The image of the pipe/device used for ventcrawling
 	var/image/pipe_vision_img = null
 
+	///The type of the device (UNARY, BINARY, TRINARY, QUATERNARY)
 	var/device_type = 0
 	var/list/obj/machinery/atmospherics/nodes
 
 	var/construction_type
 	var/pipe_state //icon_state as a pipe item
 	var/on = FALSE
+
+/obj/machinery/atmospherics/LateInitialize()
+	. = ..()
+	update_name()
 
 /obj/machinery/atmospherics/examine(mob/user)
 	. = ..()
@@ -64,8 +75,6 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/Initialize(mapload)
 	if(init_processing)
 		SSair_machinery.start_processing_machine(src)
-	if(hide)
-		AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE) //if changing this, change the subtypes RemoveElements too, because thats how bespoke works
 	return ..()
 
 /obj/machinery/atmospherics/Destroy()
@@ -294,19 +303,31 @@ GLOBAL_LIST_EMPTY(pipeimages)
 			transfer_fingerprints_to(stored)
 	..()
 
-/obj/machinery/atmospherics/proc/get_pipe_image(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=3, trinary = FALSE)
+/**
+ * Getter for piping layer shifted, pipe colored overlays
+ *
+ * Creates the image for the pipe underlay that all components use, called by get_pipe_underlay() in components_base.dm
+ * Arguments:
+ * * iconfile  - path of the iconstate we are using (ex: 'icons/obj/machines/atmospherics/thermomachine.dmi')
+ * * iconstate - the image we are using inside the file
+ * * direction - the direction of our device
+ * * color - the color (in hex value, like #559900) that the pipe should have
+ * * piping_layer - the piping_layer the device is in, used inside PIPING_LAYER_SHIFT
+ * * trinary - if TRUE we also use PIPING_FORWARD_SHIFT on layer 1 and 5 for trinary devices (filters and mixers)
+ */
+/obj/machinery/atmospherics/proc/get_pipe_image(iconfile, iconstate, direction, color = COLOR_VERY_LIGHT_GRAY, piping_layer = 3, trinary = FALSE)
 
 	//Add identifiers for the iconset
-	if(GLOB.iconsetids[iconset] == null)
-		GLOB.iconsetids[iconset] = num2text(GLOB.iconsetids.len + 1)
+	if(GLOB.iconsetids[iconfile] == null)
+		GLOB.iconsetids[iconfile] = num2text(GLOB.iconsetids.len + 1)
 
 	//Generate a unique identifier for this image combination
-	var/identifier = GLOB.iconsetids[iconset] + "_[iconstate]_[direction]_[col]_[piping_layer]"
+	var/identifier = GLOB.iconsetids[iconfile] + "_[iconstate]_[direction]_[color]_[piping_layer]"
 
 	if((!(. = GLOB.pipeimages[identifier])))
 		var/image/pipe_overlay
-		pipe_overlay = . = GLOB.pipeimages[identifier] = image(iconset, iconstate, dir = direction)
-		pipe_overlay.color = col
+		pipe_overlay = . = GLOB.pipeimages[identifier] = image(iconfile, iconstate, dir = direction)
+		pipe_overlay.color = color
 		PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
 		if(trinary == TRUE && (piping_layer == 1 || piping_layer == 5))
 			PIPING_FORWARD_SHIFT(pipe_overlay, piping_layer, 2)

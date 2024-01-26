@@ -421,7 +421,7 @@
 #define PIPING_LAYER_DEFAULT 3
 #define PIPING_LAYER_P_X 5
 #define PIPING_LAYER_P_Y 5
-#define PIPING_LAYER_LCHANGE 0.05
+#define PIPING_LAYER_LCHANGE 0.005
 
 /// intended to connect with all layers, check for all instead of just one.
 #define PIPING_ALL_LAYER				(1<<0)
@@ -458,41 +458,29 @@
 #define GAS_FLAG_DANGEROUS (1<<0)
 #define GAS_FLAG_BREATH_PROC (1<<1)
 
-//HELPERS
+//Helpers
+///Moves the icon of the device based on the piping layer and on the direction
 #define PIPING_LAYER_SHIFT(T, PipingLayer) \
-	if(T.dir & (NORTH|SOUTH)) {									\
+	if(T.dir & (NORTH|SOUTH)) { \
 		T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
-	}																		\
-	if(T.dir & (EAST|WEST)) {										\
+	} \
+	if(T.dir & (EAST|WEST)) { \
 		T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;\
 	}
 
+///Moves the icon of the device based on the piping layer and on the direction, the shift amount is dictated by more_shift
 #define PIPING_FORWARD_SHIFT(T, PipingLayer, more_shift) \
-	if(T.dir & (NORTH|SOUTH)) {									\
+	if(T.dir & (NORTH|SOUTH)) { \
 		T.pixel_y += more_shift * (PipingLayer - PIPING_LAYER_DEFAULT);\
-	}																		\
-	if(T.dir & (EAST|WEST)) {										\
+	} \
+	if(T.dir & (EAST|WEST)) { \
 		T.pixel_x += more_shift * (PipingLayer - PIPING_LAYER_DEFAULT);\
 	}
 
+///Moves the icon of the device based on the piping layer on both x and y
 #define PIPING_LAYER_DOUBLE_SHIFT(T, PipingLayer) \
 	T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
 	T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;
-
-GLOBAL_LIST_INIT(pipe_paint_colors, list(
-		"amethyst" = rgb(130,43,255), //supplymain
-		"blue" = rgb(0,0,255),
-		"brown" = rgb(178,100,56),
-		"cyan" = rgb(0,255,249),
-		"dark" = rgb(69,69,69),
-		"green" = rgb(30,255,0),
-		"grey" = rgb(255,255,255),
-		"orange" = rgb(255,129,25),
-		"purple" = rgb(128,0,182),
-		"red" = rgb(255,0,0),
-		"violet" = rgb(64,0,128),
-		"yellow" = rgb(255,198,0)
-))
 
 #define MIASMA_CORPSE_MOLES 0.02
 #define MIASMA_GIBS_MOLES 0.005

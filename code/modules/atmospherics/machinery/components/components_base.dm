@@ -4,7 +4,6 @@
 /obj/machinery/atmospherics/components
 	hide = FALSE
 	layer = GAS_PUMP_LAYER
-
 	///Is the component welded?
 	var/welded = FALSE
 	///Should the component should show the pipe underneath it?
@@ -35,10 +34,31 @@
 		component_mixture.set_volume(startingvolume)
 		airs[i] = component_mixture
 
+/obj/machinery/atmospherics/components/Initialize(mapload)
+	. = ..()
+
+	if(hide)
+		RegisterSignal(src, COMSIG_OBJ_HIDE, PROC_REF(hide_pipe))
+
 // Iconnery
 
+/**
+ * Called by update_icon(), used individually by each component to determine the icon state without the pipe in consideration
+ */
 /obj/machinery/atmospherics/components/proc/update_icon_nopipes()
 	return
+
+/**
+ * Called in Initialize(), set the showpipe var to true or false depending on the situation, calls update_icon()
+ */
+/obj/machinery/atmospherics/components/proc/hide_pipe(datum/source, underfloor_accessibility)
+	SIGNAL_HANDLER
+	showpipe = !!underfloor_accessibility
+	if(showpipe)
+		REMOVE_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
+	else
+		ADD_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
+	update_appearance()
 
 /obj/machinery/atmospherics/components/update_icon(updates=ALL)
 	. = ..()
@@ -238,4 +258,4 @@
 	return airs
 
 /obj/machinery/atmospherics/components/update_layer()
-	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE
+	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE + (GLOB.pipe_colors_ordered[pipe_color] * 0.001)
