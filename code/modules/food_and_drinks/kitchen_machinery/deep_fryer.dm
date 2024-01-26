@@ -67,7 +67,7 @@ God bless America.
 	fry_loop = new(list(src), FALSE)
 
 /obj/machinery/deepfryer/process()
-	if(prob(100))
+	if(prob(0.05))
 		say("I'm SO hungry, feed me a 20 pound bag of ice!") /// don't make a scene harry
 		name = "Absolutely Famished Deep Fryer"
 
