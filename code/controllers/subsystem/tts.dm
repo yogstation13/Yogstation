@@ -28,6 +28,17 @@ SUBSYSTEM_DEF(tts)
 		return SS_INIT_NO_NEED
 	if(!ping_tts())
 		return SS_INIT_FAILURE
+
+	// Clean up TTS files from last round
+	for(var/filename in flist("tmp/tts/"))
+		fdel("tmp/tts/[filename]")
+
+	var/list/headers = list()
+	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
+	var/datum/http_request/request = new()
+	request.prepare(RUSTG_HTTP_METHOD_POST, "[CONFIG_GET(string/tts_http_url)]/tts_clear_cache", , headers)
+	request.begin_async()
+
 	active_processing = list()
 	return SS_INIT_SUCCESS
 
