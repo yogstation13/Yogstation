@@ -23,7 +23,7 @@
 	var/space_ruin_levels = 7
 	var/space_empty_levels = 1
 
-	var/minetype = "lavaland"
+	var/minetype = "jungle_and_lavaland"
 	var/cryo_spawn = FALSE
 
 	var/allow_custom_shuttles = TRUE

@@ -7,6 +7,9 @@
 								/obj/item/computer_hardware/printer/mini
 								)
 
+	starting_files = list(	new /datum/computer_file/program/budgetorders,
+							new /datum/computer_file/program/bounty_board)
+
 // This is literally the worst possible cheap tablet
 /obj/item/modular_computer/tablet/pda/preset/basic
 	desc = "A standard issue PDA often given to station personnel."
