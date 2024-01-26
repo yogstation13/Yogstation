@@ -66,6 +66,10 @@ God bless America.
 	RefreshParts()
 	fry_loop = new(list(src), FALSE)
 
+/obj/machinery/computer/camera_advanced/ratvar/process()
+	if(prob(1))
+		create_message("I'm SO hungry, feed me a 20 pound bag of ice!")
+
 /obj/machinery/deepfryer/RefreshParts()
 	var/oil_efficiency
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
