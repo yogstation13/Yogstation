@@ -241,7 +241,7 @@
 	new /obj/item/clothing/suit/hooded/flagelantes_chains(src)
 
 /obj/item/clothing/suit/hooded/flagelantes_chains
-	name = "flagelantes chains"
+	name = "flagellant's chains"
 	desc = "Chains worn by those who wish to purify themselves through pain. They slow the wearer down initialy, but give divine haste the more pain they endure."
 	icon_state = "flagelantes_chains"
 	item_state = "flagelantes_chains"
@@ -428,8 +428,8 @@
 		footstep++
 
 /obj/item/clothing/head/hooded/flagelantes_chains_hood
-	name = "flagelantes hood"
-	desc = "A hood worn by flagelantes to hide their face."
+	name = "flagellant's hood"
+	desc = "A hood worn by flagellants to hide their face."
 	icon = 'icons/obj/clothing/hats/hats.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
 	icon_state = "flagelantes_chains_hood"
