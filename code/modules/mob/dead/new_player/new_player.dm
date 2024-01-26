@@ -425,6 +425,7 @@
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = TRUE
 	close_spawn_windows()
+	//mind.active = FALSE //we wish to transfer the key manually
 
 	var/mob/living/carbon/human/H = new(loc)
 
@@ -473,7 +474,7 @@
 	var/area/joined_area = get_area(new_character.loc)
 	if(joined_area)
 		joined_area.on_joining_game(new_character)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CREWMEMBER_JOINED, new_character, new_character.mind.assigned_role.title)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CREWMEMBER_JOINED, new_character, new_character.mind.assigned_role)
 	new_character = null
 	qdel(src)
 

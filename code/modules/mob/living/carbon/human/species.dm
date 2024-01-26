@@ -207,6 +207,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///Does our species have colors for its' damage overlays?
 	var/use_damage_color = TRUE
 
+	/// Do we try to prevent reset_perspective() from working? Useful for Dullahans to stop perspective changes when they're looking through their head.
+	var/prevent_perspective_change = FALSE
+
 ///////////
 // PROCS //
 ///////////

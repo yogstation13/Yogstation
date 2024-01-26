@@ -28,7 +28,7 @@
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	if(mapload)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	power_change()
 	if(!QDELETED(C))
 		qdel(circuit)
@@ -41,8 +41,8 @@
 
 /obj/machinery/computer/process()
 	if(stat & (NOPOWER|BROKEN))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/computer/ratvar_act()
 	if(!clockwork)
@@ -50,7 +50,7 @@
 		icon_screen = "ratvar[rand(1, 4)]"
 		icon_keyboard = "ratvar_key[rand(1, 6)]"
 		icon_state = "ratvarcomputer[rand(1, 4)]"
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/computer/narsie_act()
 	if(clockwork && clockwork != initial(clockwork)) //if it's clockwork but isn't normally clockwork
@@ -58,7 +58,7 @@
 		icon_screen = initial(icon_screen)
 		icon_keyboard = initial(icon_keyboard)
 		icon_state = initial(icon_state)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/computer/update_appearance(updates)
 	. = ..()
@@ -114,9 +114,9 @@
 	if(!.)
 		return // reduce unneeded light changes
 	if(stat & NOPOWER)
-		set_light_on(FALSE)
+		set_light(0)
 	else
-		set_light_on(brightness_on)
+		set_light(brightness_on)
 
 /obj/machinery/computer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())

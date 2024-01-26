@@ -25,10 +25,10 @@
 	//this should never be seen because of the way olfaction works but just in case
 	smells_like = "chained intellect"
 
-/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
+/datum/job/ai/equip(mob/living/equipping, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
 	if(visualsOnly)
 		CRASH("dynamic preview is unsupported")
-	. = H.AIize(latejoin,preference_source)
+	. = equipping.AIize(preference_source)
 
 /datum/job/ai/after_spawn(mob/living/spawned, mob/M, latejoin)
 	. = ..()
@@ -56,10 +56,9 @@
 
 /datum/job/ai/after_roundstart_spawn(mob/living/spawning, client/player_client)
 	. = ..()
-	var/mob/living/silicon/ai/AI = spawning
-	AI.reset_perspective(AI.eyeobj)
-	var/datum/plane_master_group/group = spawning.hud_used.master_groups[PLANE_GROUP_MAIN]
-	group.rebuild_hud()
+	// var/mob/living/silicon/ai/AI = spawning
+	// AI.reset_perspective(AI.eyeobj)
+	// AI.hud_used.plane_masters_rebuild()
 
 /datum/job/ai/override_latejoin_spawn()
 	return TRUE

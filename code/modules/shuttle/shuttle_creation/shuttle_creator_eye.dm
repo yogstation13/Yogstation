@@ -14,7 +14,7 @@
 	icon_state = "construction_drone"
 
 /mob/camera/ai_eye/remote/shuttle_creation/update_remote_sight(mob/living/user)
-	user.sight = BLIND|SEE_TURFS
+	user.set_sight(BLIND|SEE_TURFS)
 	// Pale blue, should look nice I think
 	user.lighting_color_cutoffs = list(30, 40, 50)
 	user.sync_lighting_plane_cutoff()

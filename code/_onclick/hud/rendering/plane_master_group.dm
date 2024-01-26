@@ -13,11 +13,11 @@
 	var/active_offset = 0
 	/// What, if any, submap we render onto
 	var/map = ""
-
-	/// Due to a Byond bug where secondary maps have improperly offset render targets, we will need to override this to "LEFT,TOP" for clients >515.1614
+	/// Controls the screen_loc that owned plane masters will use when generating relays. Due to a Byond bug, relays using the CENTER positional loc
+	/// Will be improperly offset
 	var/relay_loc = "CENTER"
 
-/datum/plane_master_group/New(key, map = "", relay_loc)
+/datum/plane_master_group/New(key, map = "")
 	. = ..()
 	src.key = key
 	src.map = map
@@ -91,7 +91,7 @@
 		for(var/plane_offset in starting_offset to ending_offset)
 			if(plane_offset != 0 && !initial(mytype.allows_offsetting))
 				continue
-			var/atom/movable/screen/plane_master/instance = new mytype(null, null, src, plane_offset, relay_loc)
+			var/atom/movable/screen/plane_master/instance = new mytype(null, null, src, plane_offset)
 			plane_masters["[instance.plane]"] = instance
 			prep_plane_instance(instance)
 
@@ -190,6 +190,9 @@
 	return ..()
 
 #undef MAX_CLIENT_BUILD_WITH_WORKING_SECONDARY_MAPS
+
+/datum/plane_master_group/popup/transform_lower_turfs(datum/hud/source, new_offset, use_scale = TRUE)
+	return ..(source, new_offset, FALSE)
 
 /// Holds the main plane master
 /datum/plane_master_group/main

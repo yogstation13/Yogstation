@@ -143,12 +143,13 @@
 	return ..()
 
 /atom/proc/move_camera_by_click()
-	if(isAI(usr))
-		var/mob/living/silicon/ai/AI = usr
-		if(AI.eyeobj && (AI.multicam_on || (AI.client.eye == AI.eyeobj)) && (AI.eyeobj.z == z))
-			AI.cameraFollow = null
-			if (isturf(loc) || isturf(src))
-				AI.eyeobj.setLoc(src)
+	if(!isAI(usr))
+		return
+	var/mob/living/silicon/ai/AI = usr
+	if(AI.eyeobj && (AI.multicam_on || (AI.client.eye == AI.eyeobj)) && (AI.eyeobj.z == z))
+		AI.cameraFollow = null
+		if (isturf(loc) || isturf(src))
+			AI.eyeobj.setLoc(src)
 
 // This will move the AIEye. It will also cause lights near the eye to light up, if toggled.
 // This is handled in the proc below this one.

@@ -683,42 +683,43 @@
 	set name = "Jump To Network"
 	unset_machine()
 	cameraFollow = null
-	var/list/network_list = list()
+	
+	var/cameralist[0]
 
 	if(incapacitated())
 		return
 
 	var/mob/living/silicon/ai/U = usr
 
-	//Yogs -- refactors this fucking decade-old, looney camera code
+	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+		var/turf/camera_turf = get_turf(C) //get camera's turf in case it's built into something so we don't get z=0
+
+		var/list/tempnetwork = C.network
+		if(!camera_turf || !(is_station_level(camera_turf.z) || is_mining_level(camera_turf.z) || ("ss13" in tempnetwork)))
+			continue
+		if(!C.can_use())
+			continue
+		tempnetwork.Remove("rd", "toxins", "prison")
+		if(length(tempnetwork))
+			for(var/i in C.network)
+				cameralist[i] = i
+	var/old_network = network
+	network = tgui_input_list(U, "Which network would you like to view?", "Camera Network", sort_list(cameralist))
+
 	if(!U.eyeobj)
 		U.view_core()
 		return
 
-	for (var/x in GLOB.cameranet.cameras)
-		var/obj/machinery/camera/C = x
-		if(!(is_station_level(C.z) || is_mining_level(C.z) || ("ss13" in C.network)))
-			continue
-		if(!C.can_use())
-			continue
-		var/list/tempnetwork = C.network
-		tempnetwork.Remove("rd", "toxins", "prison")
-		if(tempnetwork.len)
-			network_list |= tempnetwork
-	if(network_list.len < 2)
-		return
-
-	var/viewed_network = input(U, "Which network would you like to view?") as null|anything in network_list
-	if(!viewed_network)
-		return
-	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
-		if(!C.can_use())
-			continue
-		if(viewed_network in C.network)
-			U.eyeobj.setLoc(get_turf(C))
-			to_chat(src, span_notice("Switched to a camera in the \"[uppertext(viewed_network)]\" camera network."))
-			return
-	to_chat(src, span_warning("Failed to find any camera on the \"[uppertext(viewed_network)]\" camera network!")) // This is a bug, if it happens.
+	if(isnull(network))
+		network = old_network // If nothing is selected
+	else
+		for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+			if(!C.can_use())
+				continue
+			if(network in C.network)
+				U.eyeobj.setLoc(get_turf(C))
+				break
+	to_chat(src, span_notice("Switched to the \"[uppertext(network)]\" camera network."))
 //End of code by Mord_Sith and others :^)
 //yogs end
 
@@ -1075,20 +1076,22 @@
 
 	for(var/borgie in GLOB.available_ai_shells)
 		var/mob/living/silicon/robot/R = borgie
-		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai ||(R.connected_ai == src)))
+		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src)))
 			possible += R
 
 	if(!LAZYLEN(possible))
 		to_chat(src, "No usable AI shell beacons detected.")
 
 	if(!target || !(target in possible)) //If the AI is looking for a new shell, or its pre-selected shell is no longer valid
-		target = input(src, "Which body to control?") as null|anything in possible
+		target = tgui_input_list(src, "Which body to control?", "Direct Control", sort_names(possible))
 
-	if (!target || target.stat == DEAD || target.deployed || !(!target.connected_ai ||(target.connected_ai == src)))
+	if(isnull(target))
+		return
+	if (target.stat == DEAD || target.deployed || !(!target.connected_ai || (target.connected_ai == src)))
 		return
 
 	else if(mind)
-		soullink(/datum/soullink/sharedbody, src, target)
+		RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(disconnect_shell))
 		deployed_shell = target
 		target.deploy_init(src)
 		mind.transfer_to(target)
@@ -1133,9 +1136,9 @@
 	return
 
 /mob/living/silicon/ai/spawned/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
-	. = ..()
 	if(!target_ai)
 		target_ai = src //cheat! just give... ourselves as the spawned AI, because that's technically correct
+	. = ..()
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/ai_eye/moved_eye)
 	GLOB.cameranet.visibility(moved_eye, client, all_eyes, TRUE)

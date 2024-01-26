@@ -456,21 +456,24 @@
 // 	return SSjob.get_last_resort_spawn_points()
 
 
-/// Spawns the mob to be played as, taking into account preferences and the desired spawn point.
-// /datum/job/proc/get_spawn_mob(client/player_client, atom/spawn_point)
-// 	var/mob/living/spawn_instance
-// 	if(ispath(spawn_type, /mob/living/silicon/ai))
-// 		// This is unfortunately necessary because of snowflake AI init code. To be refactored.
-// 		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob)
-// 	else
-// 		spawn_instance = new spawn_type(player_client.mob.loc)
-// 		spawn_point.JoinPlayerHere(spawn_instance, TRUE)
-// 	spawn_instance.apply_prefs_job(player_client, src)
-// 	if(!player_client)
-// 		qdel(spawn_instance)
-// 		return // Disconnected while checking for the appearance ban.
-// 	return spawn_instance
+// Spawns the mob to be played as, taking into account preferences and the desired spawn point.
+/datum/job/proc/get_spawn_mob(client/player_client, atom/spawn_point)
+	var/mob/living/spawn_instance
+	if(ispath(spawn_type, /mob/living/silicon/ai))
+		// This is unfortunately necessary because of snowflake AI init code. To be refactored.
+		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob)
+	else
+		spawn_instance = new spawn_type(player_client.mob.loc)
+		spawn_point.JoinPlayerHere(spawn_instance, TRUE)
+	spawn_instance.apply_prefs_job(player_client, src)
+	if(!player_client)
+		qdel(spawn_instance)
+		return // Disconnected while checking for the appearance ban.
+	return spawn_instance
 
+
+/// Applies the preference options to the spawning mob, taking the job into account. Assumes the client has the proper mind.
+/mob/living/proc/apply_prefs_job(client/player_client, datum/job/job)
 
 /**
  * Called after a successful roundstart spawn.

@@ -110,16 +110,14 @@
 	diag_hud_set_status()
 
 /mob/living/silicon/ai/update_sight()
-	see_invisible = initial(see_invisible)
-	sight = initial(sight)
+	set_invis_see(initial(see_invisible))
+	set_sight(initial(sight))
 	if(aiRestorePowerRoutine && !available_ai_cores())
-		sight = sight&~SEE_TURFS
-		sight = sight&~SEE_MOBS
-		sight = sight&~SEE_OBJS
+		clear_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 
 	if(see_override)
-		see_invisible = see_override
-	sync_lighting_plane_cutoff()
+		set_invis_see(see_override)
+	return ..()
 
 
 /mob/living/silicon/ai/proc/start_RestorePowerRoutine()

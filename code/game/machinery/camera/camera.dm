@@ -167,7 +167,7 @@
 						addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), severity SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 			for(var/i in GLOB.player_list)
 				var/mob/M = i
-				if (M.client.eye == src)
+				if (M.client?.eye == src)
 					M.unset_machine()
 					M.reset_perspective(null)
 					to_chat(M, "The screen bursts into static.")

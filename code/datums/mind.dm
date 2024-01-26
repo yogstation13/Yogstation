@@ -42,7 +42,7 @@
 	var/memory
 
 	/// Job datum indicating the mind's role. This should always exist after initialization, as a reference to a singleton.
-	var/datum/job/assigned_role
+	var/assigned_role
 
 	var/role_alt_title
 
@@ -115,6 +115,19 @@
 
 	return language_holder
 
+/datum/mind/proc/set_current(mob/new_current)
+	if(new_current && QDELETED(new_current))
+		CRASH("Tried to set a mind's current var to a qdeleted mob, what the fuck")
+	if(current)
+		UnregisterSignal(src, COMSIG_QDELETING)
+	current = new_current
+	if(current)
+		RegisterSignal(src, COMSIG_QDELETING, PROC_REF(clear_current))
+
+/datum/mind/proc/clear_current(datum/source)
+	SIGNAL_HANDLER
+	set_current(null)
+
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = 0)
 	set_original_character(null)
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
@@ -136,18 +149,18 @@
 		SStgui.on_transfer(current, new_character)
 
 	if(key)
-		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
-			new_character.ghostize(1)						//we'll need to ghostize so that key isn't mobless.
+		if(new_character.key != key) //if we're transferring into a body with a key associated which is not ours
+			new_character.ghostize(TRUE) //we'll need to ghostize so that key isn't mobless.
 	else
 		key = new_character.key
 
-	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
-		new_character.mind.current = null
+	if(new_character.mind) //disassociate any mind currently in our new body's mind variable
+		new_character.mind.set_current(null)
 
 	var/mob/living/old_current = current
 	if(current)
 		current.transfer_observers_to(new_character)	//transfer anyone observing the old character to the new one
-	current = new_character								//associate ourself with our new body
+	set_current(new_character) //associate ourself with our new body
 	QDEL_NULL(antag_hud)
 	new_character.mind = src							//and associate our new body with ourself
 	antag_hud = new_character.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/antagonist_hud, "combo_hud", src)

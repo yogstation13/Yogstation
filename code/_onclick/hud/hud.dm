@@ -403,6 +403,12 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		// Plane masters are always shown to OUR mob, never to observers
 		group.refresh_hud()
 
+/datum/hud/proc/plane_masters_rebuild()
+	for(var/group_key in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		// Plane masters are always shown to OUR mob, never to observers
+		group.rebuild_hud()
+
 /datum/hud/human/show_hud(version = 0,mob/viewmob)
 	. = ..()
 	if(!.)

@@ -249,12 +249,16 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	var/obj/item/hilbertshotel/parentSphere
 
 /turf/closed/indestructible/hoteldoor/proc/promptExit(mob/user)
+	if(!isliving(user))
+		return
 	if(!user.mind)
 		return
 	if(!parentSphere)
-		to_chat(user, span_warning("The door seems to be malfunctioned and refuses to operate!"))
+		to_chat(user, span_warning("The door seems to be malfunctioning and refuses to operate!"))
 		return
-	if(alert(user, "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. With that in mind, are you ready to leave?", "Exit", "Leave", "Stay") == "Leave")
+	if(tgui_alert(user, "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. With that in mind, are you ready to leave?", "Exit", list("Leave", "Stay")) == "Leave")
+		if(HAS_TRAIT(user, TRAIT_IMMOBILIZED) || (get_dist(get_turf(src), get_turf(user)) > 1)) //no teleporting around if they're dead or moved away during the prompt.
+			return
 		user.forceMove(get_turf(parentSphere))
 		do_sparks(3, FALSE, get_turf(user))
 
@@ -291,23 +295,22 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	if(get_dist(get_turf(src), get_turf(user)) <= 1)
 		to_chat(user, span_notice("You peak through the door's bluespace peephole..."))
 		user.reset_perspective(parentSphere)
-		user.set_machine(src)
-		var/datum/action/peepholeCancel/PHC = new
+		var/datum/action/peephole_cancel/PHC = new
 		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
 		PHC.Grant(user)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/, check_eye), user)
 
 /turf/closed/indestructible/hoteldoor/check_eye(mob/user)
 	if(get_dist(get_turf(src), get_turf(user)) >= 2)
-		user.unset_machine()
-		for(var/datum/action/peepholeCancel/PHC in user.actions)
-			PHC.Trigger()
+		for(var/datum/action/peephole_cancel/PHC in user.actions)
+			INVOKE_ASYNC(PHC, TYPE_PROC_REF(/datum/action/peephole_cancel, Trigger))
 
-/datum/action/peepholeCancel
+/datum/action/peephole_cancel
 	name = "Cancel View"
 	desc = "Stop looking through the bluespace peephole."
 	button_icon_state = "cancel_peephole"
 
-/datum/action/peepholeCancel/Trigger()
+/datum/action/peephole_cancel/Trigger()
 	. = ..()
 	to_chat(owner, span_warning("You move away from the peephole."))
 	owner.reset_perspective()

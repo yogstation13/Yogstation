@@ -32,24 +32,26 @@
 	name = "base construction console"
 	desc = "An industrial computer integrated with a camera-assisted rapid construction drone."
 	networks = list("ss13")
-	var/obj/item/construction/rcd/internal/RCD //Internal RCD. The computer passes user commands to this in order to avoid massive copypaste.
 	circuit = /obj/item/circuitboard/computer/base_construction
 	off_action = /datum/action/innate/camera_off/base_construction
 	jump_action = null
+	icon_screen = "mining"
+	icon_keyboard = "rd_key"
+	light_color = LIGHT_COLOR_PINK
+	///Area that the eyeobj will be constrained to. If null, eyeobj will be able to build and move anywhere.
+	var/area/allowed_area = /area/shuttle/auxiliary_base
+
+	var/obj/item/construction/rcd/internal/RCD //Internal RCD. The computer passes user commands to this in order to avoid massive copypaste.
+	var/obj/machinery/computer/auxiliary_base/found_aux_console //Tracker for the Aux base console, so the eye can always find it.
 	var/datum/action/innate/aux_base/switch_mode/switch_mode_action = new //Action for switching the RCD's build modes
 	var/datum/action/innate/aux_base/build/build_action = new //Action for using the RCD
 	var/datum/action/innate/aux_base/airlock_type/airlock_mode_action = new //Action for setting the airlock type
 	var/datum/action/innate/aux_base/window_type/window_action = new //Action for setting the window type
-	var/datum/action/innate/aux_base/place_fan/fan_action = new //Action for spawning fans
 	var/fans_remaining = 0 //Number of fans in stock.
-	var/datum/action/innate/aux_base/install_turret/turret_action = new //Action for spawning turrets
+	var/datum/action/innate/aux_base/place_fan/fan_action = new //Action for spawning fans
 	var/turret_stock = 0 //Turrets in stock
-	var/obj/machinery/computer/auxiliary_base/found_aux_console //Tracker for the Aux base console, so the eye can always find it.
-
-	icon_screen = "mining"
-	icon_keyboard = "rd_key"
-
-	light_color = LIGHT_COLOR_PINK
+	var/datum/action/innate/aux_base/install_turret/turret_action = new //Action for spawning turrets
+	
 
 /obj/machinery/computer/camera_advanced/base_construction/Initialize(mapload)
 	. = ..()
@@ -62,20 +64,21 @@
 		fans_remaining = 4
 		turret_stock = 4
 
-/obj/machinery/computer/camera_advanced/base_construction/CreateEye()
-
-	var/spawn_spot
-	for(var/obj/machinery/computer/auxiliary_base/ABC in GLOB.machines)
-		if(istype(get_area(ABC), /area/shuttle/auxiliary_base))
-			found_aux_console = ABC
+///Find a spawn location for the eyeobj. If no allowed_area is defined, spawn ontop of the console.
+/obj/machinery/computer/camera_advanced/base_construction/proc/find_spawn_spot()
+	for(var/obj/machinery/computer/auxiliary_base/aux_base_camera as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/computer/auxiliary_base))
+		if(istype(get_area(aux_base_camera), allowed_area))
+			found_aux_console = aux_base_camera
 			break
 
 	if(found_aux_console)
-		spawn_spot = found_aux_console
-	else
-		spawn_spot = src
+		return get_turf(found_aux_console)
+	return get_turf(src)
 
-
+/obj/machinery/computer/camera_advanced/base_construction/CreateEye()
+	var/turf/spawn_spot = find_spawn_spot()
+	if (!spawn_spot)
+		return FALSE
 	eyeobj = new /mob/camera/ai_eye/remote/base_construction(get_turf(spawn_spot))
 	eyeobj.origin = src
 

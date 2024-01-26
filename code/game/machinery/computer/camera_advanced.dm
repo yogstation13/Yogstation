@@ -330,3 +330,117 @@
 		to_chat(owner, span_notice("You move downwards."))
 	else
 		to_chat(owner, span_notice("You couldn't move downwards!"))
+
+//Used by servants of Ratvar! They let you beam to the station.
+/obj/machinery/computer/camera_advanced/ratvar
+	name = "ratvarian camera observer"
+	desc = "A console used to snoop on the station's goings-on. A jet of steam occasionally whooshes out from slats on its sides."
+	use_power = FALSE
+	networks = list("ss13", "minisat") //:eye:
+	var/datum/action/innate/servant_warp/warp_action = /datum/action/innate/servant_warp
+
+/obj/machinery/computer/camera_advanced/ratvar/Initialize(mapload)
+	. = ..()
+	if(warp_action)
+		actions += new warp_action(src)
+	ratvar_act()
+
+/obj/machinery/computer/camera_advanced/ratvar/process()
+	if(prob(1))
+		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 25, TRUE)
+		new/obj/effect/temp_visual/steam_release(get_turf(src))
+
+/obj/machinery/computer/camera_advanced/ratvar/CreateEye()
+	..()
+	eyeobj.visible_icon = TRUE
+	eyeobj.icon = 'icons/mob/cameramob.dmi' //in case you still had any doubts
+	eyeobj.icon_state = "generic_camera"
+
+/obj/machinery/computer/camera_advanced/ratvar/can_use(mob/living/user)
+	if(!is_servant_of_ratvar(user))
+		to_chat(user, span_warning("[src]'s keys are in a language foreign to you, and you don't understand anything on its screen."))
+		return
+	if(clockwork_ark_active())
+		to_chat(user, span_warning("The Ark is active, and [src] has shut down."))
+		return
+	. = ..()
+
+/datum/action/innate/servant_warp
+	name = "Warp"
+	desc = "Warps to the tile you're viewing. You can use the Abscond scripture to return. Clicking this button again cancels the warp."
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon_state = "warp_down"
+	background_icon_state = "bg_clock"
+	buttontooltipstyle = "clockcult"
+	var/cancel = FALSE //if TRUE, an active warp will be canceled
+	var/obj/effect/temp_visual/ratvar/warp_marker/warping
+
+/datum/action/innate/servant_warp/Activate()
+	if(QDELETED(target) || !(ishuman(owner) || iscyborg(owner)) || !owner.canUseTopic(target))
+		return
+	if(!GLOB.servants_active) //No leaving unless there's servants from the get-go
+		to_chat(owner, "[span_sevtug_small("The Ark doesn't let you leave!")]")
+		return
+	if(warping)
+		cancel = TRUE
+		return
+	var/mob/living/carbon/human/user = owner
+	var/mob/camera/ai_eye/remote/remote_eye = user.remote_control
+	var/obj/machinery/computer/camera_advanced/ratvar/camera_console = target
+	var/turf/teleport_turf = get_turf(remote_eye)
+	if(!is_reebe(user.z) || !is_station_level(teleport_turf.z))
+		return
+	if(isclosedturf(teleport_turf))
+		to_chat(user, "[span_sevtug_small("You can't teleport into a wall.")]")
+		return
+	else if(isspaceturf(teleport_turf))
+		to_chat(user, "[span_sevtug_small("[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]")]")
+		return
+	else if(teleport_turf.turf_flags & NOJAUNT)
+		to_chat(user, "[span_sevtug_small("This tile is blessed by strange energies and deflects the warp.")]")
+		return
+	else if(locate(/obj/effect/blessing, teleport_turf))
+		to_chat(user, "[span_sevtug_small("This tile is blessed by holy water and deflects the warp.")]")
+		return
+	var/area/teleport_area = get_area(teleport_turf)
+	if(!teleport_area.clockwork_warp_allowed)
+		to_chat(user, "[span_sevtug_small("[teleport_area.clockwork_warp_fail]")]")
+		return
+
+	if(user.w_uniform && user.w_uniform.name == initial(user.w_uniform.name))
+		if(tgui_alert(user, "ARE YOU SURE YOU WANT TO WARP WITHOUT CAMOUFLAGING YOUR JUMPSUIT?", "Preflight Check", list("Yes", "No")) == "No" )
+			return
+	
+	if(tgui_alert(user, "Are you sure you want to warp to [teleport_area]?", camera_console.name, list("Warp", "Cancel")) == \
+		"Cancel" || QDELETED(camera_console) || !user.canUseTopic(camera_console))
+		return
+	do_sparks(5, TRUE, user)
+	do_sparks(5, TRUE, teleport_turf)
+	user.visible_message(span_warning("[user]'s [camera_console.name] flares!"), "<span class='bold sevtug_small'>You begin warping to [teleport_area]...</span>")
+	button_icon_state = "warp_cancel"
+	owner.update_action_buttons()
+	var/warp_time = 5 SECONDS
+	if(!istype(teleport_turf, /turf/open/floor/clockwork) && GLOB.clockwork_hardmode_active)
+		to_chat(user, "[span_sevtug_small("The [camera_console.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...")]")
+		warp_time = 30 SECONDS
+	warping = new(teleport_turf, user, warp_time)
+	if(!do_after(user, warp_time, warping, extra_checks = CALLBACK(src, PROC_REF(is_canceled))))
+		to_chat(user, "<span class='bold sevtug_small'>Warp interrupted.</span>")
+		QDEL_NULL(warping)
+		button_icon_state = "warp_down"
+		owner.update_action_buttons()
+		cancel = FALSE
+		return
+	button_icon_state = "warp_down"
+	owner.update_action_buttons()
+	teleport_turf.visible_message(span_warning("[user] warps in!"))
+	playsound(user, 'sound/magic/magic_missile.ogg', 15, TRUE)
+	playsound(teleport_turf, 'sound/magic/magic_missile.ogg', 15, TRUE)
+	user.forceMove(get_turf(teleport_turf))
+	user.setDir(SOUTH)
+	flash_color(user, flash_color = "#AF0AAF", flash_time = 5)
+	camera_console.remove_eye_control(user)
+	QDEL_NULL(warping)
+
+/datum/action/innate/servant_warp/proc/is_canceled()
+	return !cancel
