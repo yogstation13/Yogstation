@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Shooting a cyborg snack dispenser while in a zero gravity environment correctly starts moving you in the opposite direction that you shot it."
