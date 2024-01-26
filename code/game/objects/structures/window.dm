@@ -806,8 +806,8 @@
 	name = "brass window"
 	desc = "A paper-thin pane of translucent yet reinforced brass."
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
-	icon_state = "clockwork_window_single-0"
-	base_icon_state = "clockwork_window_single"
+	icon_state = "clockwork_window-0"
+	base_icon_state = "clockwork_window"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	max_integrity = 150
 	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
