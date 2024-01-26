@@ -245,7 +245,7 @@
 	desc = "Chains worn by those who wish to purify themselves through pain. They slow the wearer down initialy, but give divine haste the more hurt they are."
 	icon_state = "flagelantes_chains"
 	item_state = "flagelantes_chains"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = -15, BULLET = -15, LASER = -15, ENERGY = -15, BOMB = -15, BIO = -15, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	mutantrace_variation = MUTANTRACE_VARIATION //No leg squishing
 	resistance_flags = FIRE_PROOF | ACID_PROOF //No turning to ash/mush in the quest for pain
@@ -350,7 +350,7 @@
 	var/health_percent = H.health / H.maxHealth
 	var/final_slowdown = 0
 
-	total_wounds = length(H.all_wounds)
+	total_wounds = length(H.all_wounds) //Thanks Molti, Baimo, and Bibby
 
 	if(total_wounds < 0)
 		total_wounds = 0
@@ -434,7 +434,7 @@
 	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
 	icon_state = "flagelantes_chains_hood"
 	item_state = "flagelantes_chains_hood"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = -15, BULLET = -15, LASER = -15, ENERGY = -15, BOMB = -15, BIO = -15, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = HEAD
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR|HIDEMASK
 	resistance_flags = FIRE_PROOF | ACID_PROOF
