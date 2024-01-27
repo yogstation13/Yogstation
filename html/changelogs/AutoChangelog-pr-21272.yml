@@ -1,0 +1,4 @@
+author: " ktlwjec"
+delete-after: true 
+changes: 
+  - imageadd: "Removes a line in the sith cloak sprite."
