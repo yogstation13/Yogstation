@@ -554,6 +554,26 @@
 			playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		sheath.swords = TRUE
 
+/obj/item/nullrod/dragonslayer
+	name = "Dragon Slayer"
+	desc = "It was much too big to be called a sword. Massive, thick, heavy, and far too rough. Indeed, it was like a heap of raw iron."
+	icon_state = "gutssword"
+	item_state = "gutssword"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	force = 30
+	throw_speed = 1
+	throw_range = 1 //you cant throw that shit
+	slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	hitsound = 'sound/weapons/gigaclang.ogg'
+	attack_verb = list("attacked", "cleaved", "hacked", "crushed", "demolished")
+	menutab = MENU_WEAPON
+	additional_desc = "It'd take a lot of guts to lift this thing, let alone swing it."
+/obj/item/nullrod/dragonslayer/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+
 
 /*---------------------------------------------------------------------------
 |
