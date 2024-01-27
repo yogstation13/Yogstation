@@ -272,7 +272,7 @@
 	owner.physiology.punchdamagehigh_bonus += strength_punchpower
 	owner.physiology.punchdamagelow_bonus += strength_punchpower
 	owner.physiology.punchstunthreshold_bonus += strength_punchpower //So we dont change the stun chance
-	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
+	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, TRAIT_STRONK, src)
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -281,7 +281,7 @@
 	owner.physiology.punchdamagehigh_bonus -= strength_punchpower
 	owner.physiology.punchdamagelow_bonus -= strength_punchpower
 	owner.physiology.punchstunthreshold_bonus -= strength_punchpower
-	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
+	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, TRAIT_STRONK, src)
 
 //Yogs end
 
