@@ -14162,7 +14162,7 @@
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "ekK" = (
-/turf/open/openspace/icemoon,
+/turf/open/openspace/icemoon/keep_below,
 /area/icemoon/surface/outdoors/unexplored/danger)
 "elv" = (
 /turf/open/floor/carpet,
@@ -29621,7 +29621,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
 "iJR" = (
-/turf/open/openspace/icemoon,
+/turf/open/openspace/icemoon/keep_below,
 /area/icemoon/surface/outdoors)
 "iJT" = (
 /obj/structure/cable/yellow{
@@ -49831,7 +49831,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "orI" = (
-/turf/open/openspace/icemoon,
+/turf/open/openspace/icemoon/keep_below,
 /area/icemoon/top_layer/outdoors)
 "orP" = (
 /obj/machinery/flasher{
@@ -51821,10 +51821,6 @@
 	},
 /turf/open/floor/engine/air,
 /area/engine/atmos/distro)
-"oZy" = (
-/obj/structure/stairs/north,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/underground/explored)
 "oZN" = (
 /obj/machinery/light/small,
 /obj/machinery/camera{
@@ -73256,7 +73252,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "viQ" = (
-/turf/open/openspace/icemoon,
+/turf/open/openspace/icemoon/keep_below,
 /area/icemoon/top_layer/outdoors/unexplored)
 "vjd" = (
 /obj/machinery/porta_turret/ai{
@@ -80791,13 +80787,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"xoj" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/caution{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "xou" = (
 /turf/closed/wall,
 /area/ai_monitored/storage/eva)
@@ -84276,6 +84265,12 @@
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"yfD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "yfM" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 10
@@ -232050,8 +232045,8 @@ tRh
 ueX
 cAc
 jnA
-dFy
-uTS
+vzg
+abf
 cAc
 ueX
 ueX
@@ -232307,8 +232302,8 @@ ueX
 ueX
 swJ
 oFu
-dFy
 eVL
+yfD
 swJ
 cAc
 cAc
