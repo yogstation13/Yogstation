@@ -23,11 +23,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "aj" = (
-/obj/effect/turf_decal/siding/white,
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/light_switch{
 	pixel_y = 24
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
@@ -57,7 +59,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "ar" = (
-/obj/structure/closet/crate,
+/obj/structure/closet/crate{
+	name = "material storage crate"
+	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/toolbox/electrical{
 	pixel_y = 4
@@ -373,6 +377,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
+"dL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "syndicate_jungle_refinery_belt"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "dN" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing{
@@ -495,6 +508,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
+"eP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor{
+	id = "syndicate_jungle_refinery_belt";
+	dir = 6
+	},
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "eU" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
@@ -642,6 +664,14 @@
 /obj/item/clothing/head/fishing,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/jungleland/toxic_pit)
+"gA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "gC" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -705,17 +735,37 @@
 /obj/machinery/button/door{
 	id = "lavalandsyndi_telecomms";
 	name = "Telecomms Blast Door Control";
-	pixel_y = 28;
-	req_access_txt = "150"
+	pixel_y = 36;
+	req_access_txt = "150";
+	pixel_x = -6
 	},
 /obj/machinery/button/door{
 	id = "lavalandsyndi_centralwindows";
 	name = "Exterior Windows Blast Door Control";
 	pixel_y = 36;
-	req_access_txt = "150"
+	req_access_txt = "150";
+	pixel_x = 6
+	},
+/obj/item/radio/intercom{
+	syndicate = 1;
+	freerange = 1;
+	pixel_y = 24;
+	name = "syndicate interception intercom";
+	desc = "A quite wonderful device that can access all Nanotrasen radio frequencies with up-to-date encryption keys. Its components are quite fragile, and moving it will damage them severely."
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
+"hg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "hl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -852,6 +902,19 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"iV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor_switch/oneway{
+	id = "syndicate_jungle_refinery_belt";
+	name = "Refinery Conveyor Control";
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "iX" = (
 /turf/open/water/toxic_pit,
 /area/jungleland/toxic_pit)
@@ -1236,6 +1299,18 @@
 	},
 /turf/open/floor/plating/jungle_baseturf,
 /area/jungleland/toxic_pit)
+"lS" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Refinery"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "lX" = (
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/grass,
@@ -1323,7 +1398,9 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "mI" = (
-/obj/structure/closet/crate,
+/obj/structure/closet/crate{
+	name = "material storage crate"
+	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/box/lights/bulbs,
 /obj/item/storage/box/lights/bulbs,
@@ -1340,6 +1417,10 @@
 /obj/item/soap/syndie,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"mK" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "mL" = (
 /obj/machinery/turretid{
 	ailock = 1;
@@ -1609,9 +1690,18 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
 "oV" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/toxic_pit,
-/area/jungleland/toxic_pit)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor{
+	id = "syndicate_jungle_refinery_belt";
+	dir = 4
+	},
+/obj/machinery/mineral/processing_unit{
+	dir = 1;
+	input_dir = 8;
+	output_dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "pf" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1788,6 +1878,12 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"qy" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/main)
 "qF" = (
 /turf/open/floor/plating/jungle_baseturf,
 /area/jungleland/toxic_pit)
@@ -1807,6 +1903,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/engine,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "qX" = (
@@ -1833,6 +1930,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
+"rc" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/powered/syndicate_lava_base/vault)
 "rd" = (
 /obj/effect/turf_decal/siding/green,
 /turf/open/floor/plasteel/white,
@@ -2896,6 +2997,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
+"BA" = (
+/obj/item/pickaxe{
+	name = "rusty pickaxe";
+	desc = "An old pickaxe, rusted away by time. It theoretically still works."
+	},
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "BC" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -3117,7 +3225,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "Dq" = (
-/obj/effect/turf_decal/siding/white,
 /obj/item/kirbyplants/random,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/power/apc/auto_name/north{
@@ -3125,6 +3232,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
@@ -3282,6 +3392,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/main)
+"EO" = (
+/obj/structure/ore_box,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/jungleland/toxic_pit)
 "EX" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3535,7 +3649,9 @@
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/jungleland/toxic_pit)
 "GX" = (
-/obj/structure/closet/crate,
+/obj/structure/closet/crate{
+	name = "material storage crate"
+	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/box/donkpockets{
 	pixel_x = -2;
@@ -3665,6 +3781,9 @@
 /obj/structure/lattice/catwalk,
 /turf/open/water/toxic_pit,
 /area/jungleland/toxic_pit)
+"HI" = (
+/turf/open/floor/plating,
+/area/jungleland/toxic_pit)
 "HM" = (
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -3739,7 +3858,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
 "Ih" = (
-/obj/structure/closet/crate,
+/obj/structure/closet/crate{
+	name = "material storage crate"
+	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/vending_refill/snack,
 /obj/item/vending_refill/snack,
@@ -3756,7 +3877,7 @@
 	name = "Syndicate Jungle Base: Cargo Bay Dock";
 	width = 11
 	},
-/turf/open/water/deep_toxic_pit,
+/turf/open/floor/plating,
 /area/jungleland/toxic_pit)
 "Im" = (
 /obj/structure/table/wood,
@@ -3866,6 +3987,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/chemistry)
+"IZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "syndicate_jungle_refinery_belt"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "Ja" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -4192,6 +4321,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"MS" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/main)
 "Nf" = (
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_interior,
 /obj/machinery/door/firedoor/border_only{
@@ -4203,6 +4336,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/engine,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Np" = (
@@ -4286,12 +4420,10 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ND" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "NE" = (
-/obj/structure/flora/ausbushes/reedbush,
-/turf/open/water/deep_toxic_pit,
+/turf/open/floor/plating/dirt/jungleland/quarry,
 /area/jungleland/toxic_pit)
 "NI" = (
 /obj/machinery/disposal/bin,
@@ -4344,6 +4476,14 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/chemistry)
+"Od" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/brown/end{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "Oe" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -4369,9 +4509,6 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "Oy" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -4419,6 +4556,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"OV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor{
+	id = "syndicate_jungle_refinery_belt";
+	dir = 5
+	},
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "Pa" = (
 /turf/open/floor/engine/air,
 /area/ruin/powered/syndicate_lava_base/engineering)
@@ -4431,6 +4577,12 @@
 	},
 /turf/open/floor/grass,
 /area/ruin/powered/syndicate_lava_base/virology)
+"Pe" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "Pi" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -4611,8 +4763,10 @@
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "Rj" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "Rk" = (
@@ -4674,7 +4828,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "RK" = (
-/obj/structure/closet/crate,
+/obj/structure/closet/crate{
+	name = "material storage crate"
+	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/box/stockparts/deluxe,
 /obj/item/storage/box/stockparts/deluxe,
@@ -4692,6 +4848,7 @@
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/circuitboard/machine/holopad,
 /obj/item/storage/part_replacer/bluespace/tier4,
+/obj/item/circuitboard/machine/ore_redemption,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "RN" = (
@@ -4970,6 +5127,14 @@
 /obj/structure/closet/emcloset/anchored,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
+"Tp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor/inverted{
+	dir = 9;
+	id = "syndicate_jungle_refinery_belt"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "Tq" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 10
@@ -5005,6 +5170,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/chemistry)
+"TO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor{
+	id = "syndicate_jungle_refinery_belt";
+	dir = 4
+	},
+/obj/machinery/mineral/unloading_machine{
+	icon_state = "unloader-corner";
+	input_dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "TR" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
 	use_power = 0
@@ -5121,6 +5298,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"VA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate{
+	name = "material storage crate"
+	},
+/obj/effect/turf_decal/siding/brown/end{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "VG" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -5171,6 +5359,9 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Wn" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/chemistry)
 "Wp" = (
@@ -5185,6 +5376,14 @@
 	},
 /turf/open/floor/circuit/red/anim,
 /area/ruin/powered/syndicate_lava_base/vault)
+"Wq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/mineral/processing_unit_console{
+	input_dir = 8;
+	machinedir = 2
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "Wz" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
@@ -5416,7 +5615,9 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Yg" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/closet/crate,
+/obj/structure/closet/crate{
+	name = "material storage crate"
+	},
 /obj/item/reagent_containers/glass/beaker/waterbottle/large{
 	pixel_x = -3;
 	pixel_y = 3
@@ -5443,6 +5644,9 @@
 /obj/item/reagent_containers/glass/beaker/waterbottle/large{
 	pixel_x = 3;
 	pixel_y = -3
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -5975,7 +6179,7 @@ iX
 Fi
 Fi
 Fi
-ZW
+Fi
 Fi
 Fi
 iX
@@ -6030,7 +6234,6 @@ Fi
 Fi
 Fi
 Fi
-ZW
 Fi
 Fi
 Fi
@@ -6041,7 +6244,8 @@ Fi
 Fi
 Fi
 Fi
-NE
+Fi
+Fi
 Fi
 iX
 iX
@@ -6229,8 +6433,8 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
+PW
+PW
 Fi
 Fi
 Fi
@@ -6251,8 +6455,8 @@ Fi
 Fi
 Fi
 Fi
-oV
-oV
+iX
+iX
 iX
 iX
 iX
@@ -6268,7 +6472,7 @@ iX
 iX
 Fi
 Fi
-NE
+Fi
 Fi
 Fi
 Fi
@@ -6289,11 +6493,11 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-Fi
+PW
+PW
+PW
+PW
+Lj
 Fi
 Fi
 Fi
@@ -6349,13 +6553,13 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
+PW
+PW
+NE
+NE
+NE
+PW
+PW
 Fi
 Fi
 Nz
@@ -6370,7 +6574,7 @@ QM
 Pa
 Oz
 Nz
-NE
+Fi
 Fi
 Fi
 Fi
@@ -6409,14 +6613,14 @@ dw
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
+mK
+PW
+NE
+NE
+NE
+NE
+NE
+PW
 Fi
 Fi
 Nz
@@ -6470,14 +6674,14 @@ dw
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
 PW
-zH
 PW
-Fi
-ZW
+NE
+NE
+NE
+NE
+PW
+PW
 Fi
 Fi
 Nz
@@ -6530,13 +6734,13 @@ Df
 dw
 Fi
 Fi
-ZW
+Fi
 Fi
 PW
-PW
-Lj
-PW
-PW
+BA
+NE
+NE
+NE
 lt
 Fi
 Fi
@@ -6592,7 +6796,7 @@ dw
 Fi
 Fi
 Fi
-PW
+EO
 PW
 PW
 PW
@@ -6660,7 +6864,7 @@ PW
 PW
 PW
 PW
-PW
+HA
 Fi
 CO
 lm
@@ -6833,7 +7037,7 @@ WL
 ML
 Uc
 dw
-IJ
+qy
 xN
 qF
 JU
@@ -6845,7 +7049,7 @@ fw
 JU
 qF
 xN
-IJ
+MS
 CO
 Bg
 jt
@@ -6878,7 +7082,7 @@ iX
 iX
 Fi
 Fi
-ZW
+Fi
 Fi
 Fi
 Fi
@@ -6943,7 +7147,7 @@ Fi
 Fi
 Fi
 Fi
-NE
+Fi
 Fi
 kH
 iL
@@ -6979,7 +7183,7 @@ FX
 TW
 Su
 Fi
-ZW
+Fi
 Fi
 Fi
 Fi
@@ -7345,7 +7549,7 @@ Jr
 Su
 Su
 Su
-wk
+Su
 Fi
 Fi
 Fi
@@ -7405,9 +7609,9 @@ Su
 IL
 Qb
 Su
-Su
-Fi
-Fi
+VA
+El
+El
 Fi
 Fi
 iX
@@ -7466,10 +7670,10 @@ Su
 FI
 Dr
 Su
-Fi
-Fi
-Fi
-Fi
+gA
+TO
+El
+rc
 Fi
 iX
 iX
@@ -7527,11 +7731,11 @@ El
 El
 El
 El
+iV
+eP
+Tp
+El
 Fi
-Fi
-Fi
-Fi
-ZW
 iX
 iX
 iX
@@ -7565,7 +7769,7 @@ AT
 iZ
 KL
 JU
-IJ
+qy
 xN
 qF
 JU
@@ -7577,7 +7781,7 @@ fw
 JU
 qF
 xN
-IJ
+MS
 El
 yY
 UX
@@ -7588,10 +7792,10 @@ Yg
 ar
 Ih
 El
-Fi
-Fi
-Fi
-Fi
+hg
+Wq
+oV
+El
 Fi
 Fi
 iX
@@ -7646,13 +7850,13 @@ Hw
 LJ
 Rj
 Oy
-Ja
+Pe
 ND
+lS
+gA
+OV
+IZ
 El
-Fi
-Fi
-Fi
-Fi
 Fi
 Fi
 iX
@@ -7710,10 +7914,10 @@ Ja
 mI
 RK
 El
+Od
+dL
 El
-Fi
-Fi
-Fi
+rc
 Fi
 Fi
 Fi
@@ -7772,8 +7976,8 @@ El
 El
 El
 El
-wk
-Fi
+El
+El
 Fi
 Fi
 Fi
@@ -7881,7 +8085,7 @@ pw
 PW
 PW
 Fi
-ZW
+Fi
 Fi
 Zo
 oj
@@ -8062,7 +8266,7 @@ Fi
 Fi
 Fi
 Fi
-NE
+Fi
 Fi
 Fi
 Fi
@@ -8139,7 +8343,7 @@ El
 BL
 El
 El
-Fi
+PW
 Fi
 Fi
 Fi
@@ -8188,10 +8392,10 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
+PW
+PW
+PW
+PW
 El
 Zo
 El
@@ -8199,8 +8403,8 @@ FN
 El
 Zo
 wk
-Fi
-Fi
+PW
+PW
 Fi
 Fi
 Fi
@@ -8250,23 +8454,23 @@ Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
+PW
+PW
+PW
+PW
+PW
+HI
 Ik
+HI
+PW
+PW
+PW
+PW
 Fi
 Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-iX
 iX
 iX
 iX
@@ -8283,7 +8487,6 @@ Fi
 Fi
 Fi
 Fi
-NE
 Fi
 Fi
 Fi
@@ -8313,21 +8516,22 @@ Fi
 Fi
 Fi
 Fi
+PW
+PW
+PW
+PW
+PW
+HI
+PW
+PW
+PW
+PW
 Fi
 Fi
 Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-Fi
-iX
-iX
 iX
 iX
 iX
@@ -8375,19 +8579,19 @@ Fi
 Fi
 Fi
 Fi
+PW
+PW
+PW
+PW
+PW
+PW
+PW
 Fi
 Fi
-ZW
 Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-ZW
-Fi
-iX
-iX
 iX
 iX
 iX
@@ -8437,17 +8641,17 @@ Fi
 Fi
 Fi
 Fi
+PW
+PW
+PW
+PW
+PW
 Fi
 Fi
 Fi
 Fi
 Fi
 Fi
-Fi
-Fi
-iX
-iX
-iX
 iX
 iX
 iX
@@ -8475,7 +8679,7 @@ iX
 Fi
 Fi
 Fi
-ZW
+Fi
 iX
 iX
 iX
@@ -8503,10 +8707,10 @@ Fi
 Fi
 Fi
 Fi
-iX
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -8555,18 +8759,18 @@ iX
 iX
 iX
 iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -8618,15 +8822,15 @@ iX
 iX
 iX
 iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
-iX
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
+Fi
 iX
 iX
 iX
@@ -8682,8 +8886,8 @@ iX
 iX
 iX
 iX
-iX
-iX
+Fi
+Fi
 iX
 iX
 iX
@@ -8737,9 +8941,9 @@ Kp
 Kp
 Kp
 Kp
-Kp
-Kp
-Kp
+iX
+iX
+iX
 iX
 iX
 iX
@@ -8800,17 +9004,17 @@ Kp
 Kp
 Kp
 Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
-Kp
+iX
+iX
+iX
+iX
+iX
+iX
+iX
+iX
+iX
+iX
+iX
 Kp
 Kp
 Kp

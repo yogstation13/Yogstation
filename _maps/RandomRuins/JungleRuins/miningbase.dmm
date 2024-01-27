@@ -3024,10 +3024,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"Ow" = (
-/obj/structure/fans/tiny,
-/turf/template_noop,
-/area/template_noop)
 "OC" = (
 /obj/machinery/power/smes/engineering,
 /obj/structure/cable{
@@ -3991,7 +3987,7 @@ ab
 ab
 Ap
 ab
-Ow
+ab
 ab
 ab
 ab
