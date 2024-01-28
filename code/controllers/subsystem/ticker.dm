@@ -423,7 +423,7 @@ SUBSYSTEM_DEF(ticker)
 	var/no_clerk = TRUE
 	var/no_chaplain = TRUE
 
-	for(var/mob/dead/new_player/new_player_mob in GLOB.new_player_list)
+	for(var/mob/dead/new_player/new_player_mob in GLOB.player_list)
 		var/mob/living/new_player_living = new_player_mob.new_character
 		var/datum/job/player_assigned_role = SSjob.GetJob(new_player_living.mind.assigned_role)
 		if(istype(new_player_living) && new_player_living.mind && player_assigned_role)
