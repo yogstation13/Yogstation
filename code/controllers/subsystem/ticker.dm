@@ -423,22 +423,21 @@ SUBSYSTEM_DEF(ticker)
 	var/no_clerk = TRUE
 	var/no_chaplain = TRUE
 
-	for(var/mob/dead/new_player/new_player_mob in GLOB.player_list)
-		var/mob/living/new_player_living = new_player_mob.new_character
-		var/datum/job/player_assigned_role = SSjob.GetJob(new_player_living.mind.assigned_role)
-		if(istype(new_player_living) && new_player_living.mind && player_assigned_role)
-			if(player_assigned_role.title == "Captain")
+	for(var/mob/dead/new_player/N in GLOB.player_list)
+		var/mob/living/carbon/human/player = N.new_character
+		if(istype(player) && player.mind && player.mind.assigned_role)
+			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
-			if(player_assigned_role.title == "Cyborg")
+			if(player.mind.assigned_role == "Cyborg")
 				no_cyborgs = FALSE
-			if(player_assigned_role.title == "Clerk")
+			if(player.mind.assigned_role == "Clerk")
 				no_clerk = FALSE
-			if(player_assigned_role.title == "Chaplain")
+			if(player.mind.assigned_role == "Chaplain")
 				no_chaplain = FALSE
-			if(player_assigned_role.title != new_player_living.mind.special_role)
-				SSjob.EquipRank(new_player_mob, player_assigned_role.title, FALSE)
-				if(CONFIG_GET(flag/roundstart_traits) && ishuman(new_player_mob.new_character))
-					SSquirks.AssignQuirks(new_player_mob.new_character, new_player_mob.client, TRUE)
+			if(player.mind.assigned_role != player.mind.special_role)
+				SSjob.EquipRank(N, player.mind.assigned_role, FALSE)
+				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
+					SSquirks.AssignQuirks(N.new_character, N.client, TRUE)
 		CHECK_TICK
 	if(no_cyborgs)
 		var/obj/S = null
