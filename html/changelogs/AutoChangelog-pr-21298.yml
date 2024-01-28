@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "IPCs, androids, polysmorphs, and slimepeople now have unique typing indicators"
+  - imageadd: "Using harm intent makes your typing indicator angry"

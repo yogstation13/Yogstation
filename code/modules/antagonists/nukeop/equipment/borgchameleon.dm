@@ -134,7 +134,7 @@
 	savedName = user.name
 	user.name = friendlyName
 	user.module.cyborg_base_icon = initial(selected_module.cyborg_base_icon)
-	user.bubble_icon = "robot"
+	user.bubble_icon = BUBBLE_ROBOT
 	user.module.name = input_module
 	active = TRUE
 	user.update_icons()

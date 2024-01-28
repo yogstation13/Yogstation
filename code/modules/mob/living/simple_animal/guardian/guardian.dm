@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	speak_emote = list("hisses")
 	gender = NEUTER
 	mob_biotypes = MOB_INORGANIC|MOB_SPIRIT
-	bubble_icon = "guardian"
+	bubble_icon = BUBBLE_GUARDIAN
 	response_help  = "passes through"
 	response_disarm = "flails at"
 	response_harm   = "punches"

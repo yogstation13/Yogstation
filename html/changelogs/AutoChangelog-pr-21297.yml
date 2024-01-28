@@ -1,0 +1,4 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - bugfix: "fixed the faded eyepatch not giving you night vision despite it telling you it does"

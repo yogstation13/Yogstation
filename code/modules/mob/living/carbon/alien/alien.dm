@@ -8,7 +8,7 @@
 	sight = SEE_MOBS
 	verb_say = "hisses"
 	initial_language_holder = /datum/language_holder/alien
-	bubble_icon = "alien"
+	bubble_icon = BUBBLE_ALIEN
 	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 

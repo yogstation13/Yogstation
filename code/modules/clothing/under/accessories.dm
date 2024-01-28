@@ -316,13 +316,12 @@
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = "lawyer"
+		L.AddElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_dropped(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = initial(L.bubble_icon)
-
+		L.RemoveElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 ////////////////
 //HA HA! NERD!//

@@ -4,6 +4,7 @@
 	name = "Darkspawn"
 	id = "darkspawn"
 	limbs_id = "darkspawn"
+	bubble_icon = BUBBLE_DARKSPAWN
 	sexes = FALSE
 	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | ERT_SPAWN //never put this in the pride pool because they look super valid
@@ -46,7 +47,6 @@
 
 /datum/species/darkspawn/spec_life(mob/living/carbon/human/H)
 	handle_upgrades(H)
-	H.bubble_icon = "darkspawn"
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()

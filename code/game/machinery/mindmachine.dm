@@ -316,6 +316,10 @@
 				if(DEAD)
 					.["firstStat"] = "Dead"
 			.["firstMindType"] = firstLiving.key ? "Sentient" : "Non-Sentient"
+		else
+			.["firstName"] = null
+			.["firstStat"] = null
+			.["firstMindType"] = null
 	else // If you don't null it and keep the ui open, then above data doesn't change until you reopen.
 		.["firstOpen"] = null
 		.["firstLocked"] = null
@@ -338,6 +342,10 @@
 				if(DEAD)
 					.["secondStat"] = "Dead"
 			.["secondMindType"] = secondLiving.key ? "Sentient" : "Non-Sentient"
+		else
+			.["secondName"] = null
+			.["secondStat"] = null
+			.["secondMindType"] = null
 	else
 		.["secondOpen"] = null
 		.["secondLocked"] = null

@@ -320,6 +320,8 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
 	var/image/say_popup = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
+	if(a_intent == INTENT_HARM) // ANGRY!!!!
+		I.add_overlay("angry")
 	SET_PLANE_EXPLICIT(say_popup, ABOVE_GAME_PLANE, src)
 	say_popup.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay_global), say_popup, speech_bubble_recipients, 3 SECONDS)

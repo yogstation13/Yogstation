@@ -144,3 +144,10 @@
 #define COMSIG_LIVING_LIFE "living_life"
 	/// Block the Life() proc from proceeding... this should really only be done in some really wacky situations.
 	#define COMPONENT_LIVING_CANCEL_LIFE_PROCESSING (1<<0)
+///from mind/transfer_to. Sent after the mind has been transferred: (mob/previous_body)
+#define COMSIG_MIND_TRANSFERRED "mind_transferred"
+
+///from /mob/create_typing_indicator()
+#define COMSIG_MOB_CREATE_TYPING_INDICATOR "create_typing_indicator"
+	///Icon used for the typing indicator
+	#define BUBBLE_ICON_STATE 1

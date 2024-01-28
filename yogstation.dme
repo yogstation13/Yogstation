@@ -737,6 +737,7 @@
 #include "code\datums\elements\movetype_handler.dm"
 #include "code\datums\elements\regenerator.dm"
 #include "code\datums\elements\rust.dm"
+#include "code\datums\elements\speech_bubble_override.dm"
 #include "code\datums\elements\squish.dm"
 #include "code\datums\elements\turf_transparency.dm"
 #include "code\datums\elements\undertile.dm"
