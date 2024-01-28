@@ -5,6 +5,7 @@
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
+	bubble_icon = BUBBLE_SLIME
 	species_traits = list(MUTCOLORS, EYECOLOR, NOBLOOD, HAIR)
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime

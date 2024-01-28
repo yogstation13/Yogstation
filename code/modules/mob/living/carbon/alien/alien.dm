@@ -9,7 +9,7 @@
 	see_in_dark = 4
 	verb_say = "hisses"
 	initial_language_holder = /datum/language_holder/alien
-	bubble_icon = "alien"
+	bubble_icon = BUBBLE_ALIEN
 	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
