@@ -38418,6 +38418,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"lbJ" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "lbX" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 1
@@ -45603,6 +45618,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"nFb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "nFd" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -65316,24 +65340,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"uSq" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "uTd" = (
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
@@ -126395,7 +126401,7 @@ bDU
 oGT
 oGM
 bNA
-uSq
+lbJ
 kQW
 iwk
 mNK
@@ -127419,7 +127425,7 @@ cOe
 cNW
 bMB
 cOe
-cOe
+nFb
 cOe
 cOe
 cOe
