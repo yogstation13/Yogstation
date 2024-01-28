@@ -484,7 +484,7 @@ datum/crafting_recipe/food/donut/meat
 /datum/crafting_recipe/food/raw_croissant
 	name = "Raw Croissant"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/rawpastrybase = 1,
 		/datum/reagent/consumable/sugar = 1,
 		/obj/item/reagent_containers/food/snacks/butterslice = 2
 	)
