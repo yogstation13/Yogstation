@@ -620,7 +620,6 @@ SUBSYSTEM_DEF(job)
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.bar_landmarks)
 		template.load(B.loc, centered = FALSE)
-		//qdel(B)
 
 
 /datum/controller/subsystem/job/proc/random_chapel_init()
@@ -668,7 +667,7 @@ SUBSYSTEM_DEF(job)
 
 		for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.chapel_landmarks)
 			template.load(B.loc, centered = FALSE)
-			//qdel(B)
+
 	catch(var/exception/e)
 		message_admins("RUNTIME IN RANDOM_CHAPEL_INIT")
 		spawn_chapel()
@@ -685,7 +684,7 @@ SUBSYSTEM_DEF(job)
 
 	for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.chapel_landmarks)
 		template.load(B.loc, centered = FALSE)
-		//qdel(B)
+
 
 /datum/controller/subsystem/job/proc/random_clerk_init()
 	try
@@ -732,7 +731,7 @@ SUBSYSTEM_DEF(job)
 
 		for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.clerk_office_landmarks)
 			template.load(B.loc, centered = FALSE)
-			//qdel(B)
+
 	catch(var/exception/e)
 		message_admins("RUNTIME IN RANDOM_CLERK_INIT")
 		spawn_clerk()
@@ -749,7 +748,7 @@ SUBSYSTEM_DEF(job)
 	
 	for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.clerk_office_landmarks)
 		template.load(B.loc, centered = FALSE)
-		//qdel(B)
+
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
 	if(!C?.holder)
