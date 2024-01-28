@@ -680,6 +680,8 @@ generate/load female uniform sprites matching all previously decided variables
 		. += "-coloured-[dna.species.forced_skintone]"
 	else if(dna.species.fixed_mut_color)
 		. += "-coloured-[dna.species.fixed_mut_color]"
+	else if(dna.species.limb_icon_variant)
+		. += "-limb-variant-[dna.species.limb_icon_variant]"
 	else if(dna.features["mcolor"])
 		. += "-coloured-[dna.features["mcolor"]]"
 	else

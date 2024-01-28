@@ -28,7 +28,6 @@ GLOBAL_LIST_EMPTY(spines_list)
 GLOBAL_LIST_EMPTY(legs_list)
 GLOBAL_LIST_EMPTY(animated_spines_list)
 	// Vox
-GLOBAL_LIST_EMPTY(vox_bodies_list)
 GLOBAL_LIST_EMPTY(vox_quills_list)
 GLOBAL_LIST_EMPTY(vox_facial_quills_list)
 GLOBAL_LIST_EMPTY(vox_tails_list)

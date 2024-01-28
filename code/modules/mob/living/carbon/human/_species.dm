@@ -33,7 +33,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/generate_husk_icon = FALSE
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
-	var/has_icon_variants = FALSE
+	var/limb_icon_variant
+	var/limb_icon_file
+	var/icon_husk
+	var/list/parts_to_husk = list()
+	var/eyes_icon
+	var/list/static_part_body_zones = list()
 	var/forced_skintone
 
 	/// What genders can this race be?
@@ -394,7 +399,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					new_lizard_tail.spines = C.dna.features["spines"]
 				if(isvox(C))
 					var/obj/item/organ/tail/vox/new_vox_tail = neworgan
-					new_vox_tail.tail_type = C.dna.features["vox_tail"]
+					new_vox_tail.tail_type = capitalize(C.dna.features["vox_skin_tone"])
 					new_vox_tail.tail_markings = C.dna.features["vox_tail_markings"]
 
 	// if(tail && (!should_have_tail || replace_current))
@@ -883,10 +888,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	H.apply_overlay(BODY_LAYER)
 	handle_mutant_bodyparts(H)
 
-/datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour, var/list/huskifying = list())
+/datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	var/list/bodyparts_to_add = mutant_bodyparts.Copy()
-	if(length(huskifying))
-		bodyparts_to_add = huskifying
+	if(HAS_TRAIT(H, TRAIT_HUSK))
+		bodyparts_to_add &= parts_to_husk
 	var/list/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 	var/list/standing	= list()
 
@@ -1151,12 +1156,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.ipc_antennas_list[H.dna.features["ipc_antenna"]]
 				if("ipc_chassis")
 					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
-				if("vox_body")
-					S = GLOB.vox_bodies_list[H.dna.features["vox_body"]]
+				if("vox_skin_tone")
+					S = GLOB.vox_skin_tones[H.dna.features["vox_skin_tone"]]
 				if("vox_tail")
-					S = GLOB.vox_tails_list[H.dna.features["vox_tail"]]
+					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
+					if(vox_tail)
+						S = GLOB.vox_tails_list[vox_tail.tail_type]
 				if("wagging_vox_tail")
-					S = GLOB.animated_vox_tails_list[H.dna.features["vox_tail"]]
+					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
+					if(vox_tail)
+						S = GLOB.animated_vox_tails_list[vox_tail.tail_type]
 				if("vox_body_markings")
 					S = GLOB.vox_body_markings_list[H.dna.features["vox_body_markings"]]
 				if("vox_tail_markings")
@@ -1263,7 +1272,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					inner_accessory_overlay = center_image(inner_accessory_overlay, S.dimension_x, S.dimension_y)
 
 				standing += inner_accessory_overlay
-			if(length(huskifying))
+			if(HAS_TRAIT(H, TRAIT_HUSK))
 				for(var/image/sprite_image as anything in standing)
 					huskify_image(sprite_image, H, draw_blood = FALSE)
 					sprite_image.color = H.dna.species.husk_color
@@ -2527,6 +2536,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		. |= BIO_JUST_FLESH
 	if(HAS_BONE in species_traits)
 		. |= BIO_JUST_BONE
+
+/datum/species/proc/get_icon_variant(mob/living/carbon/person_to_check)
+	return
 
 /datum/species/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE

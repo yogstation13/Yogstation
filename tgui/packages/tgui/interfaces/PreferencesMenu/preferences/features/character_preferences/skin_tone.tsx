@@ -2,17 +2,17 @@ import { sortBy } from "common/collections";
 import { Box, Stack } from "../../../../../components";
 import { Feature, FeatureChoicedServerData, FeatureValueProps, StandardizedDropdown } from "../base";
 
-type HexValue = {
+export type HexValue = {
   lightness: number,
   value: string,
 };
 
-type SkinToneServerData = FeatureChoicedServerData & {
+export type SkinToneServerData = FeatureChoicedServerData & {
   display_names: NonNullable<FeatureChoicedServerData["display_names"]>,
   to_hex: Record<string, HexValue>,
 };
 
-const sortHexValues
+export const sortHexValues
   = sortBy<[string, HexValue]>(([_, hexValue]) => -hexValue.lightness);
 
 export const skin_tone: Feature<string, string, SkinToneServerData> = {

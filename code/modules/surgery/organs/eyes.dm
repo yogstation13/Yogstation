@@ -23,6 +23,7 @@
 	var/tint = 0
 	var/eye_color = "" //set to a hex code to override a mob's eye color
 	var/eye_icon_state = "eyes"
+	var/static_sprite_part = FALSE
 	var/old_eye_color = "fff"
 	var/flash_protect = 0
 	var/see_invisible = SEE_INVISIBLE_LIVING
@@ -94,12 +95,20 @@
 /obj/item/organ/eyes/proc/generate_body_overlay(mob/living/carbon/human/parent)
 	if(!istype(parent) || parent.getorgan(/obj/item/organ/eyes) != src)
 		CRASH("Generating a body overlay for [src] targeting an invalid parent '[parent]'.")
-
-	var/mutable_appearance/eye_overlay = mutable_appearance('icons/mob/human_face.dmi', eye_icon_state, -BODY_LAYER)
+	var/obj/item/bodypart/head/head = parent.get_bodypart(BODY_ZONE_HEAD)
+	var/mutable_appearance/eye_overlay = mutable_appearance(head.eyes_icon, eye_icon_state, -BODY_LAYER)
 	var/list/overlays = list(eye_overlay)
 
 	if((EYECOLOR in parent.dna.species.species_traits))
 		eye_overlay.color = eye_color
+
+	if(static_sprite_part)
+		var/static_icon_state = "[eye_overlay.icon_state]_static"
+		if(icon_exists(eye_overlay.icon, "[static_icon_state]_[head.limb_icon_variant]"))
+			static_icon_state += "_[head.limb_icon_variant]" 
+		var/mutable_appearance/eyes_static_sprite = mutable_appearance(eye_overlay.icon, "[static_icon_state]", eye_overlay.layer)
+		eyes_static_sprite.appearance_flags |= RESET_COLOR
+		eye_overlay.add_overlay(eyes_static_sprite)
 
 	// Cry emote overlay
 	if (HAS_TRAIT(parent, TRAIT_CRYING)) // Caused by the *cry emote
@@ -538,9 +547,9 @@
 	name = "vox eyes"
 	desc = "Vox perceive the universe through these strange, circuitry-embedded eyes."
 	icon_state = "eyes-vox"
-	eye_icon_state = "vox_eyes"
 	decay_factor = 0
 	status = ORGAN_ROBOTIC
+	static_sprite_part = TRUE
 
 /obj/item/organ/eyes/vox/emp_act()
 	owner.adjust_hallucinations(10 SECONDS)

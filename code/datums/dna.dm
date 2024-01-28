@@ -241,8 +241,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_VOX_TAIL_MARKINGS_BLOCK] = construct_block(GLOB.vox_tail_markings_list.Find(features["vox_tail_markings"]), GLOB.vox_tail_markings_list.len)
 	if(features["vox_body_markings"])
 		L[DNA_VOX_BODY_MARKINGS_BLOCK] = construct_block(GLOB.vox_body_markings_list.Find(features["vox_body_markings"]), GLOB.vox_body_markings_list.len)
-	if(features["vox_body"])
-		L[DNA_VOX_BODY_BLOCK] = construct_block(GLOB.vox_bodies_list.Find(features["vox_body"]), GLOB.vox_bodies_list.len)
+	if(features["vox_skin_tone"])
+		L[DNA_VOX_SKIN_TONE_BLOCK] = construct_block(GLOB.vox_skin_tones.Find(features["vox_skin_tone"]), GLOB.vox_skin_tones.len)
 
 	for(var/blocknum in 1 to DNA_FEATURE_BLOCKS)
 		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
@@ -410,8 +410,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_tail_markings_list.Find(features["vox_tail_markings"]), GLOB.vox_tail_markings_list.len))
 		if(DNA_VOX_BODY_MARKINGS_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_body_markings_list.Find(features["vox_body_markings"]), GLOB.vox_body_markings_list.len))
-		if(DNA_VOX_BODY_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_bodies_list.Find(features["vox_body"]), GLOB.vox_bodies_list.len))
+		if(DNA_VOX_SKIN_TONE_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(GLOB.vox_skin_tones.Find(features["vox_skin_tone"]), GLOB.vox_skin_tones.len))
 
 //Please use add_mutation or activate_mutation instead
 /datum/dna/proc/force_give(datum/mutation/human/HM)
@@ -679,8 +679,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.features["vox_tail_markings"] = GLOB.vox_tail_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_TAIL_MARKINGS_BLOCK), GLOB.vox_tail_markings_list.len)]
 	if(dna.features["vox_body_markings"])
 		dna.features["vox_body_markings"] = GLOB.vox_body_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_BODY_MARKINGS_BLOCK), GLOB.vox_body_markings_list.len)]
-	if(dna.features["vox_body"])
-		dna.features["vox_body"] = GLOB.vox_bodies_list[deconstruct_block(get_uni_feature_block(features, DNA_VOX_BODY_BLOCK), GLOB.vox_bodies_list.len)]
+	if(dna.features["vox_skin_tone"])
+		dna.features["vox_skin_tone"] = GLOB.vox_skin_tones[deconstruct_block(get_uni_feature_block(features, DNA_VOX_SKIN_TONE_BLOCK), GLOB.vox_skin_tones.len)]
 
 	if(icon_update)
 		dna.species.handle_body(src) // We want 'update_body_parts()' to be called only if mutcolor_update is TRUE, so no 'update_body()' here.

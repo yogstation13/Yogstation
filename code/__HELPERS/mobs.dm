@@ -95,8 +95,6 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
 	if(!GLOB.ipc_chassis_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
-	if(!GLOB.vox_bodies_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_bodies, GLOB.vox_bodies_list)
 	if(!GLOB.vox_quills_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/vox_quills, GLOB.vox_quills_list)
 	if(!GLOB.vox_facial_quills_list.len)
@@ -140,7 +138,7 @@
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
 		"ipc_chassis" = pick(GLOB.ipc_chassis_list),
-		"vox_body" = pick(GLOB.vox_bodies_list),
+		"vox_skin_tone" = pick(GLOB.vox_skin_tones),
 		"vox_quills" = pick(GLOB.vox_quills_list),
 		"vox_facial_quills" = pick(GLOB.vox_facial_quills_list),
 		"vox_body_markings" = pick(GLOB.vox_body_markings_list),
@@ -277,6 +275,11 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	"mixed3" = "Coffee",
 	"mixed4" = "Macadamia",
 ))
+
+GLOBAL_LIST_INIT(vox_skin_tones, sortList(list(
+	"green",
+	"crimson"
+	)))
 
 GLOBAL_LIST_EMPTY(species_list)
 

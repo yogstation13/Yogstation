@@ -5,8 +5,8 @@
 	generate_husk_icon = TRUE
 	species_traits = list(NO_UNDERWEAR, NOTRANSSTING, EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
 	inherent_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_NOCLONE)
-	mutant_bodyparts = list("vox_quills", "vox_body_markings",  "vox_facial_quills", "vox_tail", "vox_body", "vox_tail_markings")
-	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "grnvox", "vox_tail_markings" = "None", "vox_body" = "Green")
+	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
+	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "Green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -29,7 +29,12 @@
 	stunmod = 1.1 // Take a bit longer to get up than other species.
 	breathid = "n2"
 	husk_color = null
-	has_icon_variants = TRUE
+	eyes_icon = 'icons/mob/species/vox/eyes.dmi'
+	icon_husk = 'icons/mob/species/vox/bodyparts.dmi'
+	limb_icon_file = 'icons/mob/species/vox/bodyparts.dmi'
+	limb_icon_variant = "green"
+	static_part_body_zones = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	parts_to_husk = list("vox_tail", "vox_tail_markings", "wagging_vox_tail", "wagging_vox_tail_markings")
 	damage_overlay_type = "vox"
 	exotic_bloodtype = "V"
 
@@ -54,10 +59,8 @@
 
 /datum/species/vox/on_species_gain(mob/living/carbon/C) // The body color choice feature
 	. = ..()
-	var/vox_body = C.dna.features["vox_body"]
-	var/datum/sprite_accessory/vox_bodies/vox_body_of_choice = GLOB.vox_bodies_list[vox_body]
-	C.dna.species.limbs_id = vox_body_of_choice.limbs_id
-	C.dna.features["vox_tail"] = vox_body_of_choice.limbs_id // The tail has to match the bodytype
+	var/obj/item/organ/tail/vox/vox_tail = C.getorganslot(ORGAN_SLOT_TAIL)
+	vox_tail.tail_type = capitalize(limb_icon_variant)
 
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
 	H.grant_language(/datum/language/vox)
@@ -67,33 +70,8 @@
 	H.open_internals(H.get_item_for_held_index(2))
 	H.grant_language(/datum/language/vox)
 
-/datum/species/vox/start_wagging_tail(mob/living/carbon/human/H)
-	..()
-	var/list/huskifying = list()
-	if(HAS_TRAIT(H, TRAIT_HUSK))
-		huskifying += "wagging_vox_tail"
-		huskifying += "wagging_vox_tail_markings"
-	handle_mutant_bodyparts(H, huskifying = huskifying)
-
-/datum/species/vox/stop_wagging_tail(mob/living/carbon/human/H)
-	..()
-	var/list/huskifying = list()
-	if(HAS_TRAIT(H, TRAIT_HUSK))
-		huskifying += "vox_tail"
-		huskifying += "vox_tail_markings"
-	handle_mutant_bodyparts(H, huskifying = huskifying)
-
-/datum/species/vox/on_husk(mob/living/carbon/C) // Husks the tail
-	//C.dna.features["vox_tail"] = "voxhusk"
-	if(is_wagging_tail(C))
-		stop_wagging_tail(C)
-	handle_mutant_bodyparts(C, huskifying = list("vox_tail", "vox_tail_markings"))
-
-/datum/species/vox/on_husk_cure(mob/living/carbon/C) // De-husks the to a normal tail based on the body.
-	//var/vox_body = C.dna.features["vox_body"]
-	//var/datum/sprite_accessory/vox_bodies/vox_body_of_choice = GLOB.vox_bodies_list[vox_body]
-	//C.dna.features["vox_tail"] = vox_body_of_choice.limbs_id
-	handle_mutant_bodyparts(C)
+/datum/species/vox/get_icon_variant(mob/living/carbon/person_to_check)
+	return person_to_check.dna?.features["vox_skin_tone"]
 
 /datum/species/vox/create_pref_unique_perks()
 	var/list/to_add = list()

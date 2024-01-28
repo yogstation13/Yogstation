@@ -2998,55 +2998,21 @@
 	name = "Beard"
 	icon_state = "beard"
 
-/datum/sprite_accessory/vox_bodies
-	icon_state = "yaya" // In order to pull the body correctly, we need AN icon_state(see line 36-39). PROBABLY NEED TO REFACTOR THIS. SKREK.
-//	var/eye_type = "two_eyes"
-
-/datum/sprite_accessory/vox_bodies/green
-	name = "Green"
-	limbs_id = "grnvox"
-
-/*/datum/sprite_accessory/vox_bodies/darkgreen
-	name = "Dark Green"
-	limbs_id = "dgrvox"
-
-/datum/sprite_accessory/vox_bodies/brown
-	name = "Brown"
-	limbs_id = "brnvox"
-
-/datum/sprite_accessory/vox_bodies/grey
-	name = "Grey"
-	limbs_id = "gryvox"
-
-/datum/sprite_accessory/vox_bodies/emerald
-	name = "Emerald"
-	limbs_id = "emdvox"
-
-/datum/sprite_accessory/vox_bodies/azure
-	name = "Azure"
-	limbs_id = "azevox"
-
-/datum/sprite_accessory/vox_bodies/auroras
-//	name = "Auroras"
-//	limbs_id = "aurvox"
-//	eye_type = "three_eyes"
-*/
-
 /datum/sprite_accessory/vox_tails
 	icon = 'icons/mob/species/vox/tails.dmi'
 	color_src = NONE
 
-/datum/sprite_accessory/vox_tails/grnvox
-	name = "grnvox"
-	icon_state = "grnvox"
+/datum/sprite_accessory/vox_tails/green
+	name = "Green"
+	icon_state = "green"
 
 /datum/sprite_accessory/tails_animated/vox
 	icon = 'icons/mob/species/vox/tails.dmi'
 	color_src = NONE
 
-/datum/sprite_accessory/tails_animated/vox/grnvox
-	name = "grnvox"
-	icon_state = "grnvox"
+/datum/sprite_accessory/tails_animated/vox/green
+	name = "Green"
+	icon_state = "green"
 
 /*/datum/sprite_accessory/vox_tails/dgrvox
 	name = "dgrvox"

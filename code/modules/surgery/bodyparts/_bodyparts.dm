@@ -52,6 +52,10 @@
 	var/skin_tone = ""
 	var/body_gender = ""
 	var/species_id = ""
+	var/has_static_sprite_part = FALSE
+	var/is_husked = FALSE
+	var/limb_icon_variant
+	var/limb_icon_file
 	var/should_draw_gender = FALSE
 	var/should_draw_greyscale = FALSE
 	var/species_color = ""
@@ -824,18 +828,27 @@
 			no_update = TRUE
 		else
 			no_update = FALSE
-
+	is_husked = FALSE
+	var/datum/species/id_to_species
+	var/species_type = GLOB.species_list[species_id]
+	if(species_type)
+		id_to_species = new species_type()
+	if(body_zone in id_to_species?.static_part_body_zones)
+		has_static_sprite_part = TRUE
+	else
+		has_static_sprite_part = FALSE
 	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
 		if(ishuman(C))
 			var/mob/living/carbon/human/S = C
 			if(isszlachta(S))
 				return
-		if(!owner?.dna?.species?.generate_husk_icon)
+		if(!id_to_species?.generate_husk_icon)
 			species_id = "husk" //overrides species_id
 			
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
 		should_draw_greyscale = FALSE
+		is_husked = TRUE
 		no_update = TRUE
 
 	if(no_update)
@@ -863,9 +876,11 @@
 		body_gender = H.gender
 		if(S.is_dimorphic)
 			should_draw_gender = (FEMALE in S.possible_genders)
+		limb_icon_variant = S.get_icon_variant(H)
+		limb_icon_file = S.limb_icon_file
 		use_damage_color = S.use_damage_color
 
-		if((MUTCOLORS in S.species_traits) && !S.has_icon_variants || (DYNCOLORS in S.species_traits))
+		if((MUTCOLORS in S.species_traits) && !limb_icon_variant || (DYNCOLORS in S.species_traits))
 			if(S.fixed_mut_color)
 				species_color = S.fixed_mut_color
 			else
@@ -921,6 +936,7 @@
 				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
 
 	var/image/limb = image(layer = -BODYPARTS_LAYER, dir = image_dir)
+	var/image/limb_static
 	var/image/aux
 	. += limb
 
@@ -937,8 +953,11 @@
 		return
 
 	var/icon_gender = (body_gender == FEMALE) ? "f" : "m" //gender of the icon, if applicable
-
-	if(((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST )) || !owner?.dna?.species?.is_dimorphic)
+	var/datum/species/id_to_species
+	var/species_type = GLOB.species_list[species_id]
+	if(species_type)
+		id_to_species = new species_type()
+	if(((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST )) || !id_to_species?.is_dimorphic)
 		should_draw_gender = FALSE
 
 	if(status == BODYPART_ORGANIC || (status == BODYPART_ROBOTIC && render_like_organic == TRUE)) // So IPC augments can be colorful without disrupting normal BODYPART_ROBOTIC render code.
@@ -964,7 +983,15 @@
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
 			. += aux
-
+		if(limb_icon_file)
+			limb.icon = limb_icon_file
+			if(aux)
+				aux.icon = limb_icon_file
+		if(has_static_sprite_part)
+			limb_static = image(limb.icon, "[limb.icon_state]_static", limb.layer, limb.dir)
+			. += limb_static
+		if(limb_icon_variant)
+			limb.icon_state += "_[limb_icon_variant]"
 	else
 		limb.icon = icon
 		if(should_draw_gender)
@@ -984,25 +1011,28 @@
 	if(should_draw_greyscale)
 		draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
 
-	if(owner?.dna?.species?.generate_husk_icon && HAS_TRAIT(owner, TRAIT_HUSK))
-		huskify_image(limb, owner)
+	if(is_husked)
+		huskify_image(limb, owner, TRUE, id_to_species)
 		if(aux)
-			huskify_image(aux, owner)
-		draw_color = owner.dna.species.husk_color
+			huskify_image(aux, owner, TRUE, id_to_species)
+		if(limb_static)
+			huskify_image(limb_static, owner, TRUE, id_to_species)
+		draw_color = id_to_species?.husk_color || owner?.dna?.species?.husk_color
 
 	if(draw_color)
 		limb.color = "[draw_color]"
 		if(aux_zone)
 			aux.color = "[draw_color]"
 
-/proc/huskify_image(image/thing_to_husk, mob/living/carbon/husked_guy, draw_blood = TRUE)
+/proc/huskify_image(image/thing_to_husk, mob/living/carbon/husked_guy, draw_blood = TRUE, datum/species/passed_species)
 	var/husk_color_mod = rgb(96, 88, 80)
 	var/icon/husk_icon = new(thing_to_husk.icon)
 	husk_icon.ColorTone(husk_color_mod, grayscale = TRUE)
-	var/mutable_appearance/husk_blood = mutable_appearance(thing_to_husk.icon, "overlay_[husked_guy.dna.species.id]husk")
 	thing_to_husk.icon = husk_icon
+	var/icon_of_husk = husked_guy?.dna?.species?.icon_husk || passed_species?.icon_husk
 	if(draw_blood)
-		husk_blood.blend_mode |= BLEND_INSET_OVERLAY
+		var/mutable_appearance/husk_blood = mutable_appearance(icon_of_husk || 'yogstation/icons/mob/human_parts.dmi', "overlay_[husked_guy?.dna?.species?.id || passed_species?.id]husk")
+		husk_blood.blend_mode = BLEND_INSET_OVERLAY
 		husk_blood.appearance_flags |= RESET_COLOR
 		husk_blood.dir = thing_to_husk.dir
 		thing_to_husk.add_overlay(husk_blood)
