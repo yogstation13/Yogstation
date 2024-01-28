@@ -136,7 +136,7 @@
 	helptext = "The victim will form an armblade much like a changeling would, except the armblade is less sharp and powerful."
 	button_icon_state = "sting_armblade"
 	sting_icon = "sting_armblade"
-	chemical_cost = 20
+	chemical_cost = 5
 	dna_cost = 1
 	xenoling_available = FALSE
 
@@ -223,11 +223,11 @@
 
 /datum/action/changeling/sting/blind
 	name = "Blind Sting"
-	desc = "We temporarily blind our victim. Costs 40 chemicals."
+	desc = "We temporarily blind our victim. Costs 20 chemicals."
 	helptext = "This sting completely blinds a target for a short time, and leaves them with blurred vision for a long time."
 	button_icon_state = "sting_blind"
 	sting_icon = "sting_blind"
-	chemical_cost = 40
+	chemical_cost = 20
 	dna_cost = 1
 
 /datum/action/changeling/sting/blind/sting_action(mob/user, mob/living/carbon/target)
@@ -240,11 +240,11 @@
 
 /datum/action/changeling/sting/LSD
 	name = "Hallucination Sting"
-	desc = "We cause mass terror to our victim. Costs 10 chemicals."
+	desc = "We cause mass terror to our victim. Costs 30 chemicals."
 	helptext = "We evolve the ability to sting a target with a powerful hallucinogenic chemical. The target does not notice they have been stung, and the effect occurs after 30 to 60 seconds."
 	button_icon_state = "sting_lsd"
 	sting_icon = "sting_lsd"
-	chemical_cost = 10
+	chemical_cost = 30
 	dna_cost = 1
 
 /datum/action/changeling/sting/LSD/sting_action(mob/user, mob/living/carbon/target)
@@ -259,7 +259,7 @@
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing."
 	button_icon_state = "sting_cryo"
 	sting_icon = "sting_cryo"
-	chemical_cost = 30
+	chemical_cost = 25
 	dna_cost = 2
 	xenoling_available = FALSE
 

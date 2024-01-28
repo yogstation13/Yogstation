@@ -41,7 +41,7 @@
 	name = "Dissonant Shriek"
 	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Costs 40 chemicals."
 	button_icon_state = "dissonant_shriek"
-	chemical_cost = 40
+	chemical_cost = 30
 	dna_cost = 1
 	xenoling_available = FALSE
 
