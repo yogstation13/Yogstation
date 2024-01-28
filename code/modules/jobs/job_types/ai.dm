@@ -54,12 +54,6 @@
 	if(latejoin)
 		announce(AI)
 
-/datum/job/ai/after_roundstart_spawn(mob/living/spawning, client/player_client)
-	. = ..()
-	// var/mob/living/silicon/ai/AI = spawning
-	// AI.reset_perspective(AI.eyeobj)
-	// AI.hud_used.plane_masters_rebuild()
-
 /datum/job/ai/override_latejoin_spawn()
 	return TRUE
 
