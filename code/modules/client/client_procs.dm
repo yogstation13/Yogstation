@@ -225,7 +225,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(copytext(tdata, 1, 3) == "/?")
 		tdata = copytext(tdata, 3)
 
-
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
 
@@ -233,7 +232,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
-	tgui_panel = new(src)
+	tgui_panel = new(src, "browseroutput")
 
 	//tgui_panel.send_connected()
 
