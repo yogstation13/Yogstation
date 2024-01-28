@@ -82,7 +82,6 @@
 			lighting_cutoff_blue = 50
 			msg = "You maximize your night vision."
 		else
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 			lighting_cutoff_red = 0
 			lighting_cutoff_green = 0
 			lighting_cutoff_blue = 0

@@ -85,7 +85,6 @@
 	flash_protect = -1
 	// Night vision mesons get the same but more intense
 	color_cutoffs = list(10, 30, 10)
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/meson/gar
@@ -149,7 +148,7 @@
 	flash_protect = -1
 	// Real vivid purple
 	color_cutoffs = list(50, 10, 30)
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/night
 	name = "night vision goggles"
@@ -175,7 +174,9 @@
 	name = "faded eyepatch"
 	desc = "Offers night vision and protection from flashes. Another mission, right boss?"
 	flash_protect = 1
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Dark green
+	color_cutoffs = list(10, 30, 10)
+	
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
