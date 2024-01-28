@@ -3,8 +3,8 @@
 	desc = "Our lungs and vocal cords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded. Costs 60 chemicals."
 	helptext = "Emits a high-frequency sound that confuses and deafens humans, blows out nearby lights and overloads cyborg sensors."
 	button_icon_state = "resonant_shriek"
-	chemical_cost = 60
-	dna_cost = 1
+	chemical_cost = 45
+	dna_cost = 2
 	req_human = 1
 	xenoling_available = FALSE
 
@@ -23,8 +23,8 @@
 			var/mob/living/carbon/C = M
 			if(!C.mind || !C.mind.has_antag_datum(/datum/antagonist/changeling))
 				C.adjustEarDamage(0, 30)
-				C.adjust_confusion(25 SECONDS)
-				C.adjust_jitter(50 SECONDS)
+				C.adjust_confusion(5 SECONDS)
+				C.adjust_jitter(10 SECONDS)
 			else
 				SEND_SOUND(C, sound('sound/effects/screech.ogg'))
 
