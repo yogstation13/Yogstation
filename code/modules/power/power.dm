@@ -355,10 +355,6 @@
 
 	if(victim.getarmor(zone, ELECTRIC) >= 100)
 		SEND_SIGNAL(victim, COMSIG_LIVING_SHOCK_PREVENTED, power_source, source, siemens_coeff, dist_check)
-		var/obj/item/clothing/gloves/G = victim.gloves
-		if(istype(G, /obj/item/clothing/gloves/color/fyellow))
-			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			greytide.get_shocked()
 		return FALSE //to avoid spamming with insulated glvoes on
 
 	var/list/powernet_info = get_powernet_info_from_source(power_source)
