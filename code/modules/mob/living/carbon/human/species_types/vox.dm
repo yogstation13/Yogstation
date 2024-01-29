@@ -34,7 +34,7 @@
 	limb_icon_file = 'icons/mob/species/vox/bodyparts.dmi'
 	limb_icon_variant = "green"
 	static_part_body_zones = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	parts_to_husk = list("vox_tail", "vox_tail_markings", "wagging_vox_tail", "wagging_vox_tail_markings")
+	parts_to_husk = list("vox_tail", "vox_tail_markings", "wagging_vox_tail", "wagging_vox_tail_markings", "vox_body_markings")
 	damage_overlay_type = "vox"
 	exotic_bloodtype = "V"
 
@@ -57,11 +57,6 @@
 		newname += pick("ti","hi","ki","ya","ta","ha","ka","yi","chi","cha","kah")
 	return capitalize(newname)
 
-/datum/species/vox/on_species_gain(mob/living/carbon/C) // The body color choice feature
-	. = ..()
-	var/obj/item/organ/tail/vox/vox_tail = C.getorganslot(ORGAN_SLOT_TAIL)
-	vox_tail.tail_type = limb_icon_variant
-
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
 	H.grant_language(/datum/language/vox)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), ITEM_SLOT_MASK)
@@ -73,6 +68,13 @@
 
 /datum/species/vox/get_icon_variant(mob/living/carbon/person_to_check)
 	return person_to_check.dna?.features["vox_skin_tone"]
+
+/datum/species/vox/proc/update_skin_tone(skin_tone, mob/living/carbon/human/vox)
+	vox.dna.features["vox_skin_tone"] = skin_tone
+	limb_icon_variant = skin_tone
+	var/obj/item/organ/tail/vox/vox_tail = vox.getorganslot(ORGAN_SLOT_TAIL)
+	vox_tail?.tail_type = skin_tone
+	vox.update_body()
 
 /datum/species/vox/create_pref_unique_perks()
 	var/list/to_add = list()

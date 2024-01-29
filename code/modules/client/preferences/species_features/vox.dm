@@ -27,11 +27,10 @@
 	main_feature_name = "Skin Tone"
 
 /datum/preference/choiced/vox_skin_tone/apply_to_human(mob/living/carbon/human/target, value)
-	target.dna.features["vox_skin_tone"] = value
-	target.dna.species.limb_icon_variant = value
-	var/obj/item/organ/tail/vox/vox_tail = target.getorganslot(ORGAN_SLOT_TAIL)
-	if(vox_tail)
-		vox_tail.tail_type = value
+	var/datum/species/vox/vox_species = target.dna.species
+	if(!istype(vox_species))
+		return
+	vox_species.update_skin_tone(value, target)
 
 /datum/preference/choiced/vox_skin_tone/init_possible_values()
 	return GLOB.vox_skin_tones
