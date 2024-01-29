@@ -165,7 +165,7 @@ There are several things that need to be remembered:
 
 		var/mutable_appearance/uniform_overlay
 
-		if(gender == FEMALE && uniform.fitted != NO_FEMALE_UNIFORM)
+		if(gender == FEMALE && dna.species.is_dimorphic && uniform.fitted != NO_FEMALE_UNIFORM)
 			uniform_overlay = uniform.build_worn_icon(
 				default_layer = UNIFORM_LAYER, 
 				default_icon_file = icon_file, 
@@ -620,6 +620,10 @@ generate/load female uniform sprites matching all previously decided variables
 	var/layer2use = alternate_worn_layer ? alternate_worn_layer : default_layer
 
 	var/mob/living/carbon/human/H = loc
+	if(icon_override)
+		file2use = icon_override
+	else if(sprite_sheets?[H?.dna?.species?.name])
+		file2use = sprite_sheets[H.dna.species.name]
 	var/mutable_appearance/standing
 	if(femaleuniform)
 		if(HAS_TRAIT(H, TRAIT_SKINNY) && (H.underwear == "Nude"))
