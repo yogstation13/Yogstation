@@ -1,4 +1,0 @@
-author: "wonderinghost"
-delete-after: true 
-changes: 
-  - tweak: "updates min and max values of byond_version_combat"
