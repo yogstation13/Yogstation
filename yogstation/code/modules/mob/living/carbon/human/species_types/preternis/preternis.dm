@@ -51,7 +51,7 @@
 	//deathsound = //change this when sprite gets reworked
 	
 	mutant_bodyparts = list("preternis_weathering", "preternis_antenna", "preternis_eye")
-	default_features = list("weathering" = "None", "antenna" = "None", "preternis_eye" = "None")
+	default_features = list("weathering" = "None", "antenna" = "None", "preternis_eye" = "1")
 	wings_icon = "Robotic"
 
 	//new variables
