@@ -381,9 +381,12 @@ GLOBAL_VAR(final_zone)
 	var/datum/antagonist/battleroyale/last_hit
 	resistance_flags = INDESTRUCTIBLE //no escaping
 
-/obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
+/obj/item/clothing/neck/tie/gamer/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "I will kill you if you take this off somehow") //can't be a clothing trait because those get applied to the mob, not the item
+	
+/obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
+	. = ..()
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(death))
 
 /obj/item/clothing/neck/tie/gamer/proc/death()
