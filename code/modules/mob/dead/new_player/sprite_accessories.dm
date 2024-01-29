@@ -2702,31 +2702,31 @@
 	color_src = EYECOLOR
 
 /datum/sprite_accessory/preternis_eye/one
-	name = "Eyes"
+	name = "Standard"
 	icon_state = "1"
 
 /datum/sprite_accessory/preternis_eye/two
-	name = "Eyes"
+	name = "Focused"
 	icon_state = "2"
 	
 /datum/sprite_accessory/preternis_eye/three
-	name = "Eyes"
+	name = "Fanned"
 	icon_state = "3"
 
 /datum/sprite_accessory/preternis_eye/four
-	name = "Eyes"
+	name = "Horizontal"
 	icon_state = "4"
 
 /datum/sprite_accessory/preternis_eye/five
-	name = "Eyes"
+	name = "Chambered"
 	icon_state = "5"
 
 /datum/sprite_accessory/preternis_eye/six
-	name = "Eyes"
+	name = "Vertical"
 	icon_state = "6"
 
 /datum/sprite_accessory/preternis_eye/seven
-	name = "Eyes"
+	name = "Compound"
 	icon_state = "7"
 
 //Phytosian hair
