@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added option for admins to spawn items directly in a storage container"
