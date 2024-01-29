@@ -399,7 +399,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					new_lizard_tail.spines = C.dna.features["spines"]
 				if(isvox(C))
 					var/obj/item/organ/tail/vox/new_vox_tail = neworgan
-					new_vox_tail.tail_type = capitalize(C.dna.features["vox_skin_tone"])
+					new_vox_tail.tail_type = C.dna.features["vox_skin_tone"]
 					new_vox_tail.tail_markings = C.dna.features["vox_tail_markings"]
 
 	// if(tail && (!should_have_tail || replace_current))

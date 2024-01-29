@@ -31,7 +31,7 @@
 	target.dna.species.limb_icon_variant = value
 	var/obj/item/organ/tail/vox/vox_tail = target.getorganslot(ORGAN_SLOT_TAIL)
 	if(vox_tail)
-		vox_tail.tail_type = capitalize(value)
+		vox_tail.tail_type = value
 
 /datum/preference/choiced/vox_skin_tone/init_possible_values()
 	return GLOB.vox_skin_tones

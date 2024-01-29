@@ -6,7 +6,7 @@
 	species_traits = list(NO_UNDERWEAR, NOTRANSSTING, EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
 	inherent_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
-	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "Green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
+	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -60,13 +60,14 @@
 /datum/species/vox/on_species_gain(mob/living/carbon/C) // The body color choice feature
 	. = ..()
 	var/obj/item/organ/tail/vox/vox_tail = C.getorganslot(ORGAN_SLOT_TAIL)
-	vox_tail.tail_type = capitalize(limb_icon_variant)
+	vox_tail.tail_type = limb_icon_variant
 
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
 	H.grant_language(/datum/language/vox)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), ITEM_SLOT_MASK)
-	H.put_in_r_hand(new /obj/item/tank/internals/emergency_oxygen/vox(H))
-	to_chat(H, span_notice("You are now running on nitrogen internals from the emergency tank in your hand. Your species finds oxygen EXTREMELY TOXIC, so you must breathe nitrogen only."))
+	var/obj/item/tank/internal_tank = /obj/item/tank/internals/emergency_oxygen/vox
+	H.put_in_r_hand(new internal_tank(H))
+	to_chat(H, span_notice("You are now running on nitrogen internals from [internal_tank]. Your species finds oxygen toxic, so you must breathe nitrogen only."))
 	H.open_internals(H.get_item_for_held_index(2))
 	H.grant_language(/datum/language/vox)
 
