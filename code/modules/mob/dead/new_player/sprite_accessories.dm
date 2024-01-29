@@ -2619,6 +2619,50 @@
 	name = "None"
 	icon_state = "none"
 
+/datum/sprite_accessory/preternis_weathering/damaged
+	name = "Damaged"
+	icon_state = "damaged"
+
+/datum/sprite_accessory/preternis_weathering/rusted
+	name = "Rusted"
+	icon_state = "rusted"
+
+/datum/sprite_accessory/preternis_weathering/repaired
+	name = "Repaired"
+	icon_state = "repaired"
+
+/datum/sprite_accessory/preternis_weathering/fullchasis
+	name = "Full chassis"
+	icon_state = "fullchassis"
+
+/datum/sprite_accessory/preternis_weathering/fullbody
+	name = "Upper body"
+	icon_state = "fullbody"
+
+/datum/sprite_accessory/preternis_weathering/halfbody
+	name = "Upper body (minor)"
+	icon_state = "halfbody"
+
+/datum/sprite_accessory/preternis_weathering/rightarm
+	name = "Right arm"
+	icon_state = "rightarm"
+
+/datum/sprite_accessory/preternis_weathering/leftarm
+	name = "Left arm"
+	icon_state = "leftarm"
+
+/datum/sprite_accessory/preternis_weathering/fullarm
+	name = "Both arms"
+	icon_state = "fullarm"
+
+/datum/sprite_accessory/preternis_weathering/halfarm
+	name = "Both arms (minor)"
+	icon_state = "halfarm"
+
+/datum/sprite_accessory/preternis_weathering/waist
+	name = "Waist"
+	icon_state = "waist"
+
 //Preternis body weathering
 /datum/sprite_accessory/preternis_antenna
 	icon = 'icons/mob/mutant_bodyparts.dmi'
