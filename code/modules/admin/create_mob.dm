@@ -41,6 +41,7 @@
 	human.dna.features["preternis_weathering"] = pick(GLOB.preternis_weathering_list)
 	human.dna.features["preternis_antenna"] = pick(GLOB.preternis_antenna_list)
 	human.dna.features["preternis_eye"] = pick(GLOB.preternis_eye_list)
+	human.dna.features["preternis_core"] = pick(GLOB.preternis_core_list)
 	human.dna.features["pod_hair"] = pick(GLOB.pod_hair_list)
 	human.dna.features["pod_flower"] = GLOB.pod_flower_list[human.dna.features["pod_hair"]]
 

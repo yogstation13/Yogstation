@@ -50,7 +50,7 @@
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
 	//deathsound = //change this when sprite gets reworked
 	
-	mutant_bodyparts = list("preternis_weathering", "preternis_antenna", "preternis_eye")
+	mutant_bodyparts = list("preternis_weathering", "preternis_antenna", "preternis_eye", "preternis_core")
 	default_features = list("weathering" = "None", "antenna" = "None", "preternis_eye" = "Standard", "preternis_core" = "Core")
 	wings_icon = "Robotic"
 

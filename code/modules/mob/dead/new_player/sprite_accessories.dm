@@ -2734,9 +2734,9 @@
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 	color_src = EYECOLOR
 
-/datum/sprite_accessory/preternis_core/standard
+/datum/sprite_accessory/preternis_core/core
 	name = "Core"
-	icon_state = "standard"
+	icon_state = "core"
 
 //Phytosian hair
 /datum/sprite_accessory/pod_hair
