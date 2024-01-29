@@ -243,12 +243,11 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/ResetOccupations()
 	JobDebug("Occupations reset.")
-	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
-		if(!player?.mind)
-			continue
-		player.mind.assigned_role = null
-		player.mind.special_role = null
-		SSpersistence.antag_rep_change[player.ckey] = 0
+	for(var/mob/dead/new_player/player in GLOB.player_list)
+		if((player) && (player.mind))
+			player.mind.assigned_role = null
+			player.mind.special_role = null
+			SSpersistence.antag_rep_change[player.ckey] = 0
 	SetupOccupations()
 	unassigned = list()
 	return
@@ -748,7 +747,6 @@ SUBSYSTEM_DEF(job)
 	
 	for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.clerk_office_landmarks)
 		template.load(B.loc, centered = FALSE)
-
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
 	if(!C?.holder)

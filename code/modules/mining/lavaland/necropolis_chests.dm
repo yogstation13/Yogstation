@@ -316,6 +316,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(orbits.parent, span_notice("Your vision returns to normal."))
 
 /obj/effect/wisp/proc/update_user_sight(mob/user)
+	SIGNAL_HANDLER
 	user.sight |= sight_flags
 	if(!isnull(color_cutoffs))
 		user.lighting_color_cutoffs = blend_cutoff_colors(user.lighting_color_cutoffs, color_cutoffs)
