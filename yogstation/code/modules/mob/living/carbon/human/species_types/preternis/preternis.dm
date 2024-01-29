@@ -5,7 +5,7 @@
 
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN)
-	species_traits = list(NOEYESPRITES, DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
+	species_traits = list(NOEYESPRITES, DYNCOLORS, EYECOLOR,  AGENDER, NOHUSK)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = MOB_ORGANIC|MOB_ROBOTIC|MOB_HUMANOID
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
 	no_equip = list(ITEM_SLOT_FEET)
@@ -255,6 +255,9 @@
 	var/list/features = ..()
 
 	features += "feature_pretcolor"
+	features += "feature_preternis_weathering"
+	features += "feature_preternis_antenna"
+	features += "feature_preternis_eye"
 
 	return features
 

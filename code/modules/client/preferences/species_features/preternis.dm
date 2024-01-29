@@ -70,3 +70,4 @@
 
 /datum/preference/choiced/preternis_eye/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["preternis_eye"] = value
+	target.dna.features["preternis_core"] = "Core" //core is reliant on eye colour and it needs to get added to features somewhere
