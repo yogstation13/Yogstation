@@ -2617,7 +2617,7 @@
 
 /datum/sprite_accessory/preternis_weathering/none
 	name = "None"
-	icon_state = null
+	icon_state = "none"
 
 //Preternis body weathering
 /datum/sprite_accessory/preternis_antenna
@@ -2626,16 +2626,64 @@
 
 /datum/sprite_accessory/preternis_antenna/none
 	name = "None"
-	icon_state = null
+	icon_state = "none"
+
+/datum/sprite_accessory/preternis_antenna/dracula
+	name = "Dracula"
+	icon_state = "dracula"
+
+/datum/sprite_accessory/preternis_antenna/ghost
+	name = "Ghost"
+	icon_state = "ghost"
+
+/datum/sprite_accessory/preternis_antenna/army
+	name = "Army"
+	icon_state = "army"
+
+/datum/sprite_accessory/preternis_antenna/praetor
+	name = "Praetor"
+	icon_state = "praetor"
+
+/datum/sprite_accessory/preternis_antenna/field
+	name = "Field"
+	icon_state = "field"
+
+/datum/sprite_accessory/preternis_antenna/driver
+	name = "Driver"
+	icon_state = "driver"
 
 //Preternis eye
 /datum/sprite_accessory/preternis_eye
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 	color_src = EYECOLOR
 
-/datum/sprite_accessory/preternis_eye/eyes
+/datum/sprite_accessory/preternis_eye/one
 	name = "Eyes"
-	icon_state = "eyes"
+	icon_state = "1"
+
+/datum/sprite_accessory/preternis_eye/two
+	name = "Eyes"
+	icon_state = "2"
+	
+/datum/sprite_accessory/preternis_eye/three
+	name = "Eyes"
+	icon_state = "3"
+
+/datum/sprite_accessory/preternis_eye/four
+	name = "Eyes"
+	icon_state = "4"
+
+/datum/sprite_accessory/preternis_eye/five
+	name = "Eyes"
+	icon_state = "5"
+
+/datum/sprite_accessory/preternis_eye/six
+	name = "Eyes"
+	icon_state = "6"
+
+/datum/sprite_accessory/preternis_eye/seven
+	name = "Eyes"
+	icon_state = "7"
 
 //Phytosian hair
 /datum/sprite_accessory/pod_hair
