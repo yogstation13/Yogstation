@@ -484,6 +484,7 @@
 			icecream.add_ice_cream("vanilla")
 			icecream.desc = "Eat the ice cream."
 		user.visible_message(span_notice("[src] launches a [snack.name] at [target]!"))
+		user.newtonian_move(get_dir(target, user)) // For no gravity.
 	else if(user.Adjacent(target) && is_allowed(target, user))
 		COOLDOWN_START(src, last_snack_disp, cooldown)
 		snack = new selected_snack(get_turf(target))

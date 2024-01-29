@@ -29,7 +29,7 @@
 	verb_ask = "queries"
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
-	bubble_icon = "machine"
+	bubble_icon = BUBBLE_MACHINE
 	speech_span = SPAN_ROBOT
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
