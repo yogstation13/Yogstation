@@ -10,7 +10,6 @@
 	if(yogs_draw_robot_hair)
 		for(var/obj/item/bodypart/BP in C.bodyparts)
 			BP.yogs_draw_robot_hair = TRUE
-	limb_icon_variant = get_icon_variant(C)
 		
 /datum/species/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()

@@ -33,7 +33,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/generate_husk_icon = FALSE
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/use_skintones = FALSE
-	var/limb_icon_variant
 	var/limb_icon_file
 	var/icon_husk
 	var/list/parts_to_husk = list()
