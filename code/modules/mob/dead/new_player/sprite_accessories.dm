@@ -2729,6 +2729,15 @@
 	name = "Compound"
 	icon_state = "7"
 
+//preternis core
+/datum/sprite_accessory/preternis_core
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = EYECOLOR
+
+/datum/sprite_accessory/preternis_core/standard
+	name = "Core"
+	icon_state = "standard"
+
 //Phytosian hair
 /datum/sprite_accessory/pod_hair
 	icon = 'icons/mob/pod_hair.dmi'

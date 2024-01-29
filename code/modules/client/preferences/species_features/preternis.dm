@@ -13,7 +13,7 @@
 	preternis_base.Blend(icon('icons/mob/human_parts_greyscale.dmi', "preternis_l_arm"), ICON_OVERLAY)
 	preternis_base.Blend(icon('icons/mob/human_parts_greyscale.dmi', "preternis_r_arm"), ICON_OVERLAY)
 
-	var/icon/eyes = icon('icons/mob/human_face.dmi', "eyes")
+	var/icon/eyes = icon('icons/mob/mutant_bodyparts.dmi', "m_preternis_eye_1_ADJ")
 	eyes.Blend(COLOR_RED, ICON_MULTIPLY)
 	preternis_base.Blend(eyes, ICON_OVERLAY)
 

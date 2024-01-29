@@ -1019,6 +1019,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.preternis_antenna_list[H.dna.features["preternis_antenna"]]
 				if("preternis_eye")
 					S = GLOB.preternis_eye_list[H.dna.features["preternis_eye"]]
+				if("preternis_core")
+					S = GLOB.preternis_core_list[H.dna.features["preternis_core"]]
 				if("ipc_screen")
 					S = GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
 				if("ipc_antenna")
