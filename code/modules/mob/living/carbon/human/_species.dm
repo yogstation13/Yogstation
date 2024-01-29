@@ -865,6 +865,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(HAS_TRAIT(H, TRAIT_SKINNY))
 					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
 				else
+					if(icon_exists(underwear.sprite_sheets?[H.dna.species.name], underwear.icon_state))
+						underwear.icon = underwear.sprite_sheets[H.dna.species.name]
 					standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 
 		if(H.undershirt)
@@ -872,14 +874,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(undershirt)
 				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
-				else if(H.gender == FEMALE && (FEMALE in possible_genders))
+				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
+					if(icon_exists(undershirt.sprite_sheets?[H.dna.species.name], undershirt.icon_state))
+						undershirt.icon = undershirt.sprite_sheets[H.dna.species.name]
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 
 		if(H.socks && H.get_num_legs(FALSE) >= 2 && !(DIGITIGRADE in species_traits))
 			var/datum/sprite_accessory/socks/socks = GLOB.socks_list[H.socks]
 			if(socks)
+				if(icon_exists(socks.sprite_sheets?[H.dna.species.name], socks.icon_state))
+					socks.icon = socks.sprite_sheets[H.dna.species.name]
 				standing += mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
 
 	if(standing.len)
