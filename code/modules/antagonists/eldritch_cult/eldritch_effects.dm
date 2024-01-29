@@ -378,7 +378,7 @@
 					var/obj/item/bodypart/BP
 					while(!BP)
 						if(!LAZYLEN(unspooked_limbs))
-							message_admins(span_notice("Someone managed to break brazil limb sacrificing stuff"))
+							to_chat(C, span_warning("Something you did managed to break brazil limb sacrificing stuff, make a bug report!"))
 							return
 						var/target_zone = pick_n_take(unspooked_limbs)
 						BP = C.get_bodypart(target_zone)
@@ -388,7 +388,7 @@
 					var/obj/item/bodypart/BP
 					while(!BP || BP.species_id == "skeleton")
 						if(!LAZYLEN(unspooked_limbs))
-							message_admins(span_notice("Someone managed to break brazil limb sacrificing stuff"))
+							to_chat(C, span_warning("Something you did managed to break brazil limb sacrificing stuff, make a bug report!"))
 							return
 						var/target_zone = pick_n_take(unspooked_limbs)
 						BP = C.get_bodypart(target_zone)
