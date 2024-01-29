@@ -77,6 +77,12 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
 	if(!GLOB.ethereal_mark_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ethereal_mark, GLOB.ethereal_mark_list)
+	if(!GLOB.preternis_weathering_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_weathering, GLOB.preternis_weathering_list)
+	if(!GLOB.preternis_antenna_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_antenna, GLOB.preternis_antenna_list)
+	if(!GLOB.preternis_eye_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_eye, GLOB.preternis_eye_list)
 	if(!GLOB.pod_hair_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
 	if(!GLOB.pod_flower_list.len)
@@ -111,6 +117,9 @@
 		"dome" = pick(GLOB.dome_list),
 		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
 		"ethereal_mark" = pick(GLOB.ethereal_mark_list),
+		"preternis_weathering" = pick(GLOB.preternis_weathering_list),
+		"preternis_antenna" = pick(GLOB.preternis_antenna_list),
+		"preternis_eye" = pick(GLOB.preternis_eye_list),
 		"pod_hair" = pick(GLOB.pod_hair_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),

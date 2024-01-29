@@ -58,6 +58,9 @@ GLOBAL_LIST_INIT(plasmaman_helmet_list, list(
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 
+GLOBAL_LIST_EMPTY(preternis_weathering_list) //preternis body weathering
+GLOBAL_LIST_EMPTY(preternis_antenna_list) //preternis head antenna
+GLOBAL_LIST_EMPTY(preternis_eye_list) //preternis eyes
 GLOBAL_LIST_INIT(color_list_preternis, list(
 	"Factory Default" = "#FFFFFF", 
 	"Rust" = "#B7410E", 

@@ -2,20 +2,21 @@
 	name = "Preternis"
 	plural_form = "Preterni"
 	id = "preternis"
+
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN)
-	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
+	species_traits = list(NOEYESPRITES, DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = MOB_ORGANIC|MOB_ROBOTIC|MOB_HUMANOID
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
-	no_equip = list(ITEM_SLOT_FEET)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
+	no_equip = list(ITEM_SLOT_FEET)
+
 	say_mod = "intones"
 	attack_verb = "assault"
-	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
-	exotic_bloodtype = "Synthetic" //synthetic blood
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
+
+	//stat mods
 	burnmod = 1.2 //The plasteel has a really high heat capacity, however, it's not great at dispersing the heat to concentrated heat is gonna burn
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
@@ -26,21 +27,33 @@
 	punchdamagehigh = 7 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //technically better stunning
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
-	//mutant_bodyparts = list("head", "body_markings")
-	mutanteyes = /obj/item/organ/eyes/robotic/preternis
-	mutantlungs = /obj/item/organ/lungs/preternis
-	mutantstomach = /obj/item/organ/stomach/cell/preternis
 	yogs_virus_infect_chance = 25
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
 	virus_stage_rate_boost = 5 //Not designed with viruses in mind since it doesn't usually get in
-	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
-	attack_sound = 'sound/items/trayhit2.ogg'
-	//deathsound = //change this when sprite gets reworked
-	yogs_draw_robot_hair = TRUE //remove their hair when they get the new sprite
-	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
-	wings_icon = "Robotic"
+
+	//organs
+	mutanteyes = /obj/item/organ/eyes/robotic/preternis
+	mutantlungs = /obj/item/organ/lungs/preternis
+	mutantstomach = /obj/item/organ/stomach/cell/preternis
+
+	//misc things
 	species_language_holder = /datum/language_holder/machine
 	inert_mutation = RAVENOUS
+	smells_like = "lemony steel" //transcendent olfaction
+	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
+	exotic_bloodtype = "Synthetic" //synthetic blood
+
+	//sounds
+	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
+	attack_sound = 'sound/items/trayhit2.ogg'
+	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
+	//deathsound = //change this when sprite gets reworked
+	
+	mutant_bodyparts = list("preternis_weathering", "preternis_antenna", "preternis_eye")
+	default_features = list("weathering" = "None", "antenna" = "None", "preternis_eye" = "None", "mcolor" = "#ffffff")
+	wings_icon = "Robotic"
+
 	//new variables
 	var/datum/action/innate/maglock/maglock
 	var/lockdown = FALSE
@@ -50,7 +63,6 @@
 	var/soggy = FALSE
 	var/low_power_warning = FALSE
 
-	smells_like = "lemony steel"
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()

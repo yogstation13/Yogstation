@@ -2610,6 +2610,33 @@
 	name = "X"
 	icon_state = "x"
 
+//Preternis body weathering
+/datum/sprite_accessory/preternis_weathering
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/preternis_weathering/none
+	name = "None"
+	icon_state = null
+
+//Preternis body weathering
+/datum/sprite_accessory/preternis_antenna
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = MUTCOLORS
+
+/datum/sprite_accessory/preternis_antenna/none
+	name = "None"
+	icon_state = null
+
+//Preternis eye
+/datum/sprite_accessory/preternis_eye
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = EYECOLOR
+
+/datum/sprite_accessory/preternis_eye/eyes
+	name = "Eyes"
+	icon_state = "eyes"
+
 //Phytosian hair
 /datum/sprite_accessory/pod_hair
 	icon = 'icons/mob/pod_hair.dmi'
