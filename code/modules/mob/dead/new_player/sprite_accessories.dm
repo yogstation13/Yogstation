@@ -2717,13 +2717,13 @@
 	name = "Horizontal"
 	icon_state = "4"
 
-/datum/sprite_accessory/preternis_eye/five
-	name = "Chambered"
-	icon_state = "5"
-
 /datum/sprite_accessory/preternis_eye/six
 	name = "Vertical"
 	icon_state = "6"
+
+/datum/sprite_accessory/preternis_eye/five
+	name = "Chambered"
+	icon_state = "5"
 
 /datum/sprite_accessory/preternis_eye/seven
 	name = "Compound"
