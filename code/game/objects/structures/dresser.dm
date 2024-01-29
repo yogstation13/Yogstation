@@ -28,11 +28,23 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
+
+		var/list/choices = list("Underwear", "Undershirt", "Socks")
+
 		if(H.dna && H.dna.species && (NO_UNDERWEAR in H.dna.species.species_traits))
-			to_chat(user, span_warning("You are not capable of wearing underwear."))
+			choices -= "Underwear"
+
+		if(H.dna && H.dna.species && (NO_UNDERSHIRT in H.dna.species.species_traits))
+			choices -= "Undershirt"
+
+		if(H.dna && H.dna.species && (NO_SOCKS in H.dna.species.species_traits))
+			choices -= "Socks"
+
+		if(!length(choices))
+			to_chat(user, span_warning("You are not capable of wearing undergarments."))
 			return
 
-		var/choice = input(user, "Underwear, Undershirt, or Socks?", "Changing") as null|anything in list("Underwear","Undershirt","Socks")
+		var/choice = input(user, "What would you like to change?", "Changing") as null|anything in choices
 
 		if(!Adjacent(user))
 			return
