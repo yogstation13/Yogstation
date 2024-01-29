@@ -1,16 +1,22 @@
-/proc/generate_values_for_underwear(icon_file, list/accessory_list, list/icons)
+/proc/generate_values_for_underwear(icon_file, list/accessory_list, list/icons, bodyparts_file = 'icons/mob/human_parts_greyscale.dmi')
 	var/icon/lower_half = icon('icons/blanks/32x32.dmi', "nothing")
 
 	for (var/icon in icons)
-		lower_half.Blend(icon('icons/mob/human_parts_greyscale.dmi', icon), ICON_OVERLAY)
+		lower_half.Blend(icon(bodyparts_file, icon), ICON_OVERLAY)
 
 	var/list/values = list()
-
-	for (var/accessory_name in accessory_list)
+	var/list/undergarment_list = accessory_list.Copy()
+	for(var/undergarment_accessory in undergarment_list)
+		if(undergarment_accessory == "Nude")
+			continue
+		var/datum/sprite_accessory/undergarment = undergarment_list[undergarment_accessory]
+		if(!icon_exists(icon_file, undergarment.icon_state))
+			undergarment_list -= undergarment_accessory
+	for (var/accessory_name in undergarment_list)
 		var/icon/icon_with_socks = new(lower_half)
 
 		if (accessory_name != "Nude")
-			var/datum/sprite_accessory/accessory = accessory_list[accessory_name]
+			var/datum/sprite_accessory/accessory = undergarment_list[accessory_name]
 
 			var/icon/accessory_icon = icon(icon_file, accessory.icon_state)
 			icon_with_socks.Blend(accessory_icon, ICON_OVERLAY)
@@ -80,6 +86,7 @@
 	main_feature_name = "Socks"
 	category = PREFERENCE_CATEGORY_CLOTHING
 	should_generate_icons = TRUE
+	blacklisted_species = list(/datum/species/vox)
 
 /datum/preference/choiced/socks/init_possible_values()
 	return generate_values_for_underwear('icons/mob/clothing/sprite_accessories/socks.dmi', GLOB.socks_list, list("human_r_leg", "human_l_leg"))
@@ -102,6 +109,7 @@
 	main_feature_name = "Undershirt"
 	category = PREFERENCE_CATEGORY_CLOTHING
 	should_generate_icons = TRUE
+	blacklisted_species = list(/datum/species/vox)
 
 /datum/preference/choiced/undershirt/init_possible_values()
 	var/icon/body = icon('icons/mob/human_parts_greyscale.dmi', "human_r_leg")
@@ -145,6 +153,7 @@
 	main_feature_name = "Underwear"
 	category = PREFERENCE_CATEGORY_CLOTHING
 	should_generate_icons = TRUE
+	blacklisted_species = list(/datum/species/vox)
 
 /datum/preference/choiced/underwear/init_possible_values()
 	return generate_values_for_underwear('icons/mob/clothing/sprite_accessories/underwear.dmi', GLOB.underwear_list, list("human_chest_m", "human_r_leg", "human_l_leg"))

@@ -130,3 +130,57 @@
 	relevant_mutant_bodypart = "vox_tail_markings"
 	relevant_species_traits = null
 	blacklisted_species = null
+
+/datum/preference/choiced/underwear/vox
+	savefile_key = "feature_vox_underwear"
+	relevant_mutant_bodypart = "vox_tail"
+	blacklisted_species = null
+
+/datum/preference/choiced/underwear/vox/init_possible_values()
+	return generate_values_for_underwear('icons/mob/clothing/species/vox/underwear.dmi', GLOB.underwear_list, list("vox_chest_green", "vox_r_leg_green", "vox_l_leg_green", "vox_r_leg_static", "vox_l_leg_static"), 'icons/mob/species/vox/bodyparts.dmi')
+
+/datum/preference/choiced/socks/vox
+	savefile_key = "feature_vox_socks"
+	relevant_mutant_bodypart = "vox_tail"
+	blacklisted_species = null
+
+/datum/preference/choiced/socks/vox/init_possible_values()
+	return generate_values_for_underwear('icons/mob/clothing/species/vox/socks.dmi', GLOB.socks_list, list("vox_r_leg_green", "vox_l_leg_green", "vox_r_leg_static", "vox_l_leg_static"), 'icons/mob/species/vox/bodyparts.dmi')
+
+/datum/preference/choiced/undershirt/vox
+	savefile_key = "feature_vox_undershirt"
+	should_generate_icons = TRUE
+	relevant_mutant_bodypart = "vox_tail"
+	blacklisted_species = null
+
+/datum/preference/choiced/undershirt/vox/init_possible_values()
+	var/bodyparts_icon = 'icons/mob/species/vox/bodyparts.dmi'
+	var/icon/body = icon(bodyparts_icon, "vox_r_leg_green")
+	body.Blend(icon(bodyparts_icon, "vox_l_leg_green"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_r_arm_green"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_l_arm_green"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_r_hand"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_l_hand"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_chest_green"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_l_arm_static"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_r_arm_static"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_l_leg_static"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_r_leg_static"), ICON_OVERLAY)
+	var/vox_undershirt_icon = 'icons/mob/clothing/species/vox/undershirt.dmi'
+	var/list/values = list()
+	var/list/undershirt_list = GLOB.undershirt_list.Copy()
+	for(var/undershirt in undershirt_list)
+		if(undershirt == "Nude")
+			continue
+		var/datum/sprite_accessory/undershirt_accessory = undershirt_list[undershirt]
+		if(!icon_exists(vox_undershirt_icon, undershirt_accessory.icon_state))
+			undershirt_list -= undershirt
+	for(var/accessory_name in undershirt_list)
+		var/icon/icon_with_undershirt = icon(body)
+		if(accessory_name != "Nude")
+			var/datum/sprite_accessory/accessory = undershirt_list[accessory_name]
+			icon_with_undershirt.Blend(icon(vox_undershirt_icon, accessory.icon_state), ICON_OVERLAY)
+		icon_with_undershirt.Crop(9, 9, 23, 23)
+		icon_with_undershirt.Scale(32, 32)
+		values[accessory_name] = icon_with_undershirt
+	return values

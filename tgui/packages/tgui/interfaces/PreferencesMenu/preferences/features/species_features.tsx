@@ -233,3 +233,18 @@ export const feature_vox_skin_tone: Feature<string, string, SkinToneServerData> 
     );
   },
 };
+
+export const feature_vox_underwear: FeatureChoiced = {
+  name: 'Underwear',
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_socks: FeatureChoiced = {
+  name: 'Socks',
+  component: FeatureDropdownInput,
+};
+
+export const feature_vox_undershirt: FeatureChoiced = {
+  name: 'Undershirt',
+  component: FeatureDropdownInput,
+};

@@ -566,7 +566,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(!HD) //Decapitated
 		return
 
-	if(HAS_TRAIT(H, TRAIT_HUSK))
+	if(HD.is_husked)
 		return
 	var/datum/sprite_accessory/S
 	var/list/standing = list()
@@ -603,19 +603,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(S)
 				var/hair_state = S.icon_state
 				var/hair_file = S.icon
-				
 				facial_quills_overlay.icon = hair_file
 				facial_quills_overlay.icon_state = hair_state
 				if(!forced_colour)
-					if(hair_color)
-						if(hair_color == "mutcolor")
-							facial_quills_overlay.color = H.dna.features["mcolor"]
-						else if(hair_color == "fixedmutcolor")
-							facial_quills_overlay.color = fixed_mut_color
-						else
-							facial_quills_overlay.color = hair_color
-					else
-						facial_quills_overlay.color = H.facial_hair_color
+					facial_quills_overlay.color = H.facial_hair_color
 				if(S.color_blend_mode == "add")
 					var/icon/hairs = new(hair_file)
 					hairs.Blend(facial_quills_overlay.color, ICON_ADD)
@@ -791,24 +782,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if("vox_quills" in H.dna.species.mutant_bodyparts)
 			S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
 			if(S)
-				//var/icon/hairs = new(S.icon)
-				//hairs.Blend(H.hair_color, ICON_ADD)
 				var/hair_state = S.icon_state
-				//var/hair_file = hairs
 				var/hair_file = S.icon
-				
 				hair_overlay.icon = hair_file
 				hair_overlay.icon_state = hair_state
 				if(!forced_colour)
-					if(hair_color)
-						if(hair_color == "mutcolor")
-							hair_overlay.color = H.dna.features["mcolor"]
-						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = fixed_mut_color
-						else
-							hair_overlay.color = hair_color
-					else
-						hair_overlay.color = H.hair_color
+					hair_overlay.color = H.hair_color
 				if(S.color_blend_mode == "add")
 					var/icon/hairs = new(hair_file)
 					hairs.Blend(hair_overlay.color, ICON_ADD)
@@ -828,7 +807,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/obj/item/bodypart/head/HD = H.get_bodypart(BODY_ZONE_HEAD)
 
-	if(HD && !(HAS_TRAIT(H, TRAIT_HUSK)))
+	if(HD && !HD.is_husked)
 		// lipstick
 		if(H.lip_style && (LIPS in species_traits))
 			var/mutable_appearance/lip_overlay = mutable_appearance('icons/mob/human_face.dmi', "lips_[H.lip_style]", -BODY_LAYER)
