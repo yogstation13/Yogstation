@@ -255,7 +255,7 @@
 
 /datum/action/changeling/sting/cryo
 	name = "Cryogenic Sting"
-	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 30 chemicals."
+	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 25 chemicals."
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing."
 	button_icon_state = "sting_cryo"
 	sting_icon = "sting_cryo"
