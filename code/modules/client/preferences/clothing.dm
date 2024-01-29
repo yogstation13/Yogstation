@@ -87,14 +87,6 @@
 /datum/preference/choiced/socks/apply_to_human(mob/living/carbon/human/target, value)
 	target.socks = value
 
-/datum/preference/choiced/socks/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-
-	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-	return !(NO_SOCKS in species.species_traits)
-
 /// Undershirt preference
 /datum/preference/choiced/undershirt
 	savefile_key = "undershirt"
@@ -129,14 +121,6 @@
 
 /datum/preference/choiced/undershirt/apply_to_human(mob/living/carbon/human/target, value)
 	target.undershirt = value
-
-/datum/preference/choiced/undershirt/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-
-	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-	return !(NO_UNDERSHIRT in species.species_traits)
 
 /// Underwear preference
 /datum/preference/choiced/underwear

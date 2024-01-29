@@ -188,8 +188,6 @@
 /// has a tail
 #define HAS_TAIL		27
 #define NONANITES		28
-#define NO_SOCKS		29
-#define NO_UNDERSHIRT	30
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
