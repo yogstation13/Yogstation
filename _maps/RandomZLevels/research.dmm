@@ -4719,8 +4719,7 @@
 	icon = 'icons/obj/smooth_structures/wood_table.dmi';
 	icon_state = "wood_table";
 	max_integrity = 55;
-	name = "flipped table";
-	atom_integrity = 55
+	name = "flipped table"
 	},
 /turf/open/floor/plasteel/yellowsiding{
 	dir = 1
@@ -4898,8 +4897,7 @@
 	icon = 'icons/obj/smooth_structures/wood_table.dmi';
 	icon_state = "wood_table";
 	max_integrity = 55;
-	name = "flipped table";
-	atom_integrity = 55
+	name = "flipped table"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/research/interior/dorm)
@@ -5089,8 +5087,7 @@
 	icon = 'icons/obj/smooth_structures/wood_table.dmi';
 	icon_state = "wood_table";
 	max_integrity = 55;
-	name = "flipped table";
-	atom_integrity = 55
+	name = "flipped table"
 	},
 /turf/open/floor/plasteel/yellowsiding,
 /area/awaymission/research/interior/dorm)
