@@ -2928,61 +2928,97 @@
 	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/vox_quills/crestedquills
-	name = "Crested Quills"
-	icon_state = "crestedquills"
+/datum/sprite_accessory/vox_quills/crested
+	name = "Crested"
+	icon_state = "crested"
 
-/datum/sprite_accessory/vox_quills/emperorquills
-	name = "Emperor Quills"
-	icon_state = "emperorquills"
+/datum/sprite_accessory/vox_quills/emperor
+	name = "Emperor"
+	icon_state = "emperor"
 
-/datum/sprite_accessory/vox_quills/keelquills
-	name = "Keel Quills"
-	icon_state = "keelquills"
+/datum/sprite_accessory/vox_quills/keel
+	name = "Keel"
+	icon_state = "keel"
 
-/datum/sprite_accessory/vox_quills/keetquills
-	name = "Keet Quills"
-	icon_state = "keetquills"
+/datum/sprite_accessory/vox_quills/keet
+	name = "Keet"
+	icon_state = "keet"
 
-/datum/sprite_accessory/vox_quills/shortquills
-	name = "Short Quills"
-	icon_state = "shortquills"
+/datum/sprite_accessory/vox_quills/short
+	name = "Short"
+	icon_state = "short"
 
-/datum/sprite_accessory/vox_quills/tielquills
-	name = "Tiel Quills"
-	icon_state = "tielquills"
+/datum/sprite_accessory/vox_quills/tiel
+	name = "Tiel"
+	icon_state = "tiel"
 
 /datum/sprite_accessory/vox_quills/kingly
-	name = "Kingly Quills"
+	name = "Kingly"
 	icon_state = "kingly"
 
 /datum/sprite_accessory/vox_quills/afro
-	name = "Fluffy Quills"
+	name = "Fluffy"
 	icon_state = "afro"
 
-/datum/sprite_accessory/vox_quills/yasu
-	name = "Yasu Quills"
+/datum/sprite_accessory/vox_quills/yasuhiro
+	name = "Long"
 	icon_state = "yasuhiro"
 
 /datum/sprite_accessory/vox_quills/razor
-	name = "Razor Quills"
+	name = "Razorback"
 	icon_state = "razor"
 
-/datum/sprite_accessory/vox_quills/clipped
-	name = "Clipped Quills"
-	icon_state = "clipped"
+/datum/sprite_accessory/vox_quills/razor_clipped
+	name = "Clipped Razorback"
+	icon_state = "razor_clipped"
+
+/datum/sprite_accessory/vox_quills/long_braid
+	name = "Long Braided"
+	icon_state = "long_braid"
+
+/datum/sprite_accessory/vox_quills/short_braid
+	name = "Short Braided"
+	icon_state = "short_braid"
 
 /datum/sprite_accessory/vox_quills/mowhawk
-	name = "Mohawk Quills"
+	name = "Mohawk"
 	icon_state = "mohawk"
+
+/datum/sprite_accessory/vox_quills/hawk
+	name = "Hawk"
+	icon_state = "hawk"
 
 /datum/sprite_accessory/vox_quills/horns
 	name = "Horns"
 	icon_state = "horns"
 
+/datum/sprite_accessory/vox_quills/mange
+	name = "Mange"
+	icon_state = "mange"
+
+/datum/sprite_accessory/vox_quills/ponytail
+	name = "Ponytail"
+	icon_state = "ponytail"
+
+/datum/sprite_accessory/vox_quills/rows
+	name = "Rows"
+	icon_state = "rows"
+
+/datum/sprite_accessory/vox_quills/surf
+	name = "Surf"
+	icon_state = "surf"
+
+/datum/sprite_accessory/vox_quills/flowing
+	name = "Flowing"
+	icon_state = "flowing"
+
 /datum/sprite_accessory/vox_quills/nights
 	name = "Nights"
 	icon_state = "nights"
+
+/datum/sprite_accessory/vox_quills/cropped
+	name = "Cropped"
+	icon_state = "cropped"
 
 /datum/sprite_accessory/vox_facial_quills
 	icon = 'icons/mob/species/vox/facial_quills.dmi'
@@ -3002,16 +3038,16 @@
 	icon_state = "fu"
 
 /datum/sprite_accessory/vox_facial_quills/neck
-	name = "Neck Quills"
+	name = "Neck"
 	icon_state = "neck"
 
 /datum/sprite_accessory/vox_facial_quills/beard
-	name = "Quill Beard"
+	name = "Beard"
 	icon_state = "beard"
 
-/datum/sprite_accessory/vox_facial_quills/mane
-	name = "Mane Beard"
-	icon_state = "mane"
+/datum/sprite_accessory/vox_facial_quills/ruff
+	name = "Ruff"
+	icon_state = "ruff"
 
 /datum/sprite_accessory/vox_tails
 	icon = 'icons/mob/species/vox/tails.dmi'
