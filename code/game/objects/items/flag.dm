@@ -11,15 +11,15 @@
 	custom_fire_overlay = "fire"
 	var/rolled = FALSE
 
-/obj/item/flag/attackby(obj/item/W, mob/user, params)
+/obj/item/flag/attackby(obj/item/item, mob/user, params)
 	. = ..()
-	if(W.is_hot() && !(resistance_flags & ON_FIRE))
-		user.visible_message("<span class='notice'>[user] lights [src] with [W].</span>", "<span class='notice'>You light [src] with [W].</span>", "<span class='warning'>You hear a low whoosh.</span>")
+	if(item.is_hot() && !(resistance_flags & ON_FIRE))
+		user.visible_message(span_notice("[user] lights [src] with [item]."), span_notice("You light [src] with [item]."), span_warning("You hear a low whoosh."))
 		fire_act()
 
 /obj/item/flag/attack_self(mob/user)
 	rolled = !rolled
-	user.visible_message("<span class='notice'>[user] [rolled ? "rolls up" : "unfurls"] [src].</span>", "<span class='notice'>You [rolled ? "roll up" : "unfurl"] [src].</span>", "<span class='warning'>You hear fabric rustling.</span>")
+	user.visible_message(span_notice("[user] [rolled ? "rolls up" : "unfurls"] [src]."), span_notice("You [rolled ? "roll up" : "unfurl"] [src]."), span_warning("You hear fabric rustling."))
 	update_icon()
 
 /obj/item/flag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume, global_overlay = FALSE)
@@ -32,7 +32,7 @@
 
 /obj/item/flag/update_icon_state()
 	. = ..()
-	updateFlagIcon()
+	icon_state = initial(icon_state)
 	item_state = icon_state
 	if(rolled)
 		icon_state = "[icon_state]_rolled"
@@ -45,16 +45,13 @@
 		var/mob/M = loc
 		M.update_inv_hands()
 
-/obj/item/flag/proc/updateFlagIcon()
-	icon_state = initial(icon_state)
-
 /obj/item/flag/nt
 	name = "\improper Nanotrasen flag"
 	desc = "A flag proudly boasting the logo of NT."
 	icon_state = "ntflag"
 
 /obj/item/flag/clown
-	name = "\improper Clown Unity flag"
+	name = "\improper Clown Planet flag"
 	desc = "The universal banner of clowns everywhere. It smells faintly of bananas."
 	icon_state = "clownflag"
 
@@ -116,10 +113,10 @@
 	desc = "A flag proudly proclaiming the superior heritage of Tajaran."
 	icon_state = "tajflag"
 
-/obj/item/flag/species/unathi
-	name = "\improper Unathi flag"
-	desc = "A flag proudly proclaiming the superior heritage of Unathi."
-	icon_state = "unathiflag"
+/obj/item/flag/species/lizard
+	name = "\improper Vuulek flag"
+	desc = "A flag proudly proclaiming the superior heritage of Vuulek."
+	icon_state = "lizardflag"
 
 /obj/item/flag/species/vulp
 	name = "\improper Vulpkanin flag"
@@ -136,10 +133,10 @@
 	desc = "A flag proudly proclaiming the superior heritage of Plasmamen."
 	icon_state = "plasmaflag"
 
-/obj/item/flag/species/nian
-	name ="\improper Nian flag"
-	desc = "An eccentric handmade standard, luxuriously soft due to exotic silks and embossed with lustrous gold. Although inspired by the pride that Nianae take in their baubles, it ultimately feels melancholic. Beauty knows no pain, afterall."
-	icon_state = "nianflag"
+/obj/item/flag/species/moth
+	name ="\improper Ex'hai flag"
+	desc = "An eccentric handmade standard, luxuriously soft due to exotic silks and embossed with lustrous gold. Although inspired by the pride that Ex'hai take in their baubles, it ultimately feels melancholic. Beauty knows no pain, afterall."
+	icon_state = "mothflag"
 
 //Department Flags
 

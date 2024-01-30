@@ -195,3 +195,6 @@
 
 /datum/preference/choiced/vox_tank_type/init_possible_values()
 	return list("Large N² Tank", "Specialized N² Tank")
+
+/datum/preference/choiced/vox_tank_type/create_default_value()
+	return "Specialized N² Tank"
