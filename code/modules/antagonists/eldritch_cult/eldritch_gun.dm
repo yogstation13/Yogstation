@@ -20,7 +20,7 @@
 /obj/item/ammo_box/magazine/internal/boltaction/lionhunter
 	name = "lionhunter rifle internal magazine"
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter
-	caliber = "CALIBER_STRILKA310"
+	caliber = CALIBER_310
 	max_ammo = 3
 	multiload = 1
 
@@ -28,7 +28,7 @@
 	name = "strilka310 bullet casing"
 	desc = "A .310 bullet casing."
 	icon_state = "310-casing"
-	caliber = "CALIBER_STRILKA310"
+	caliber = CALIBER_310
 	projectile_type = /obj/projectile/bullet/strilka310/lionhunter
 	/// Whether we're currently aiming this casing at something
 	var/currently_aiming = FALSE
@@ -120,7 +120,7 @@
 		BB.stamina *= 2
 		BB.knockdown = 0.5 SECONDS
 		BB.stutter = 6 SECONDS
-		BB.projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOORS
+		BB.projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOOR
 
 		BB.homing = TRUE
 		BB.homing_turn_speed = 80

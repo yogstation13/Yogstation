@@ -67,7 +67,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/update_icon_nopipes()
 	cut_overlays()
 	if(showpipe)
-		var/image/cap = getpipeimage(icon, "vent_cap", initialize_directions)
+		var/image/cap = get_pipe_image(icon, "vent_cap", initialize_directions)
 		add_overlay(cap)
 	else
 		PIPING_LAYER_SHIFT(src, PIPING_LAYER_DEFAULT)
@@ -111,8 +111,7 @@
 		icon_state = "vent_in"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/process_atmos()
-	..()
-	if(!is_operational())
+	if(!is_operational() || !isopenturf(loc))
 		last_moles_added = 0
 		return
 	if(space_shutoff_ticks > 0)
@@ -128,6 +127,10 @@
 
 	var/datum/gas_mixture/air_contents = airs[1]
 	var/datum/gas_mixture/environment = loc.return_air()
+
+	if(!environment)
+		return
+
 	var/environment_pressure = environment.return_pressure()
 	var/environment_moles = environment.total_moles()
 	var/last_moles_real_added = environment_moles - last_moles
@@ -144,13 +147,18 @@
 		var/pressure_delta = 10000
 
 		if(pressure_checks&EXT_BOUND)
-			var/multiplier = 1 // fast_fill multiplier
-			if(fast_fill)
-				if(last_moles_added > 0 && last_moles_real_added > 0)
-					multiplier = clamp(last_moles_added / last_moles_real_added * 0.25, 1, 100)
-				else if(last_moles_added > 0 && last_moles_real_added < 0 && environment_moles != 0)
-					multiplier = 10 // pressure is going down, but let's fight it anyways
-			pressure_delta = min(pressure_delta, (external_pressure_bound - environment_pressure) * multiplier)
+			var/ext_difference = external_pressure_bound - environment_pressure
+			if(fast_fill && ext_difference <= 100)
+				//exponential
+				pressure_delta = min(pressure_delta, (2 ** ((ext_difference / 30) + 7)) - 128)
+			else if(fast_fill && last_moles_added > 0 && last_moles_real_added > 0)
+				//old scaling
+				pressure_delta = min(pressure_delta, ext_difference * clamp((last_moles_added / last_moles_real_added) * 0.25, 1, 100))
+			else if(fast_fill && last_moles_added > 0 && last_moles_real_added < 0)
+				//old scaling
+				pressure_delta = min(pressure_delta, ext_difference * 10)
+			else
+				pressure_delta = min(pressure_delta, ext_difference)
 		if(pressure_checks&INT_BOUND)
 			pressure_delta = min(pressure_delta, (air_contents.return_pressure() - internal_pressure_bound))
 		if(space_shutoff_ticks > 0) // if we just came off a space-shutoff, only transfer a little bit.
@@ -158,14 +166,9 @@
 
 		if(pressure_delta > 0)
 			if(air_contents.return_temperature() > 0)
-
 				var/transfer_moles = pressure_delta*environment.return_volume()/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 				last_moles_added = transfer_moles
-
-				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
-
-				loc.assume_air(removed)
-				air_update_turf()
+				loc.assume_air_moles(air_contents, transfer_moles)
 
 	else // external -> internal
 		last_moles_added = 0
@@ -178,12 +181,7 @@
 				moles_delta = min(moles_delta, (internal_pressure_bound - air_contents.return_pressure()) * our_multiplier)
 
 			if(moles_delta > 0)
-				var/datum/gas_mixture/removed = loc.remove_air(moles_delta)
-				if (isnull(removed)) // in space
-					return
-
-				air_contents.merge(removed)
-				air_update_turf()
+				loc.transfer_air(air_contents, moles_delta)
 	last_moles = environment_moles
 	update_parents()
 
@@ -222,7 +220,7 @@
 	radio_connection.post_signal(src, signal, radio_filter_out)
 
 
-/obj/machinery/atmospherics/components/unary/vent_pump/atmosinit()
+/obj/machinery/atmospherics/components/unary/vent_pump/atmos_init()
 	//some vents work his own spesial way
 	radio_filter_in = frequency==FREQ_ATMOS_CONTROL?(RADIO_FROM_AIRALARM):null
 	radio_filter_out = frequency==FREQ_ATMOS_CONTROL?(RADIO_TO_AIRALARM):null
@@ -495,6 +493,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/siphon/atmos/air_output
 	name = "air mix tank output inlet"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_AIR
+
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on/server
+	name = "server vent"
+
+/obj/machinery/atmospherics/components/unary/vent_pump/on/server
+	name = "server vent"
+	external_pressure_bound = 4000
+	internal_pressure_bound = 0
 
 #undef INT_BOUND
 #undef EXT_BOUND

@@ -363,7 +363,10 @@
 
 //same as above
 /mob/living/pointed(atom/A as mob|obj|turf in view())
-	if(incapacitated())
+	var/obj/item/clothing/suit/straight_jacket/straightjacket = get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(straightjacket))
+		return FALSE
+	if(incapacitated(ignore_restraints = TRUE))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_DEATHCOMA))
 		return FALSE
@@ -666,7 +669,7 @@
 /mob/living/proc/makeTrail(turf/target_turf, turf/start, direction)
 	if(!has_gravity() || !isturf(start) || !blood_volume)
 		return
-	var/blood_exists = locate(/obj/effect/decal/cleanable/trail_holder) in start
+	var/blood_exists = locate(/obj/effect/decal/cleanable/blood/trail_holder) in start
 
 	var/trail_type = getTrail()
 	if(!trail_type)
@@ -688,15 +691,15 @@
 	if((newdir in GLOB.cardinals) && (prob(50)))
 		newdir = turn(get_dir(target_turf, start), 180)
 	if(!blood_exists)
-		var/obj/effect/decal/cleanable/trail_holder/TH = new(start, get_static_viruses())
-		if(isethereal(src))//ethereal blood glows
-			TH.Etherealify()
+		new /obj/effect/decal/cleanable/blood/trail_holder(start, get_static_viruses())
 
-	for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
+	for(var/obj/effect/decal/cleanable/blood/trail_holder/TH in start)
 		if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
 			TH.existing_dirs += newdir
 			TH.add_overlay(image('icons/effects/blood.dmi', trail_type, dir = newdir))
 			TH.transfer_mob_blood_dna(src)
+		if(isethereal(src))//ethereal blood glows
+			TH.Etherealify()
 
 /mob/living/carbon/human/makeTrail(turf/T)
 	if((NOBLOOD in dna.species.species_traits) || !is_bleeding() || bleedsuppress)
@@ -717,16 +720,8 @@
 
 /mob/living/proc/getTrail()
 	if(getBruteLoss() < 300)
-		if(ispolysmorph(src))
-			return pick("xltrails_1", "xltrails_2")
-		if(isethereal(src))
-			return pick("wltrails_1", "wltrails_2")
 		return pick("ltrails_1", "ltrails_2")
 	else
-		if(ispolysmorph(src))
-			return pick("xttrails_1", "xttrails_2")
-		if(isethereal(src))
-			return pick("wttrails_1", "wttrails_2")
 		return pick("trails_1", "trails_2")
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
@@ -941,7 +936,7 @@
 			loc_temp = obj_temp
 	else if(isspaceturf(get_turf(src)))
 		var/turf/heat_turf = get_turf(src)
-		loc_temp = heat_turf.temperature
+		loc_temp = heat_turf.return_temperature()
 	return loc_temp
 
 /mob/living/proc/get_standard_pixel_x_offset(lying = 0)

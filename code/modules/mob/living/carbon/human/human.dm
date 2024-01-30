@@ -11,8 +11,11 @@
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
+	physiology = new() //create physiology early so organs and bodyparts can modify it
+
 	//initialize limbs first
 	create_bodyparts()
+
 
 	setup_human_dna()
 
@@ -26,13 +29,13 @@
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
-	physiology = new()
 
 	. = ..()
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
+	AddComponent(/datum/component/bloodysoles/feet)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -709,7 +712,7 @@
 #undef CPR_PANIC_SPEED
 
 /mob/living/carbon/human/cuff_resist(obj/item/I)
-	if(dna && (dna.check_mutation(HULK) || dna.check_mutation(ACTIVE_HULK)))
+	if(dna && (dna.check_mutation(HULK)))
 		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		if(..(I, cuff_break = FAST_CUFFBREAK))
 			dropItemToGround(I)
@@ -1129,12 +1132,8 @@
 		remove_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE)
 
 /mob/living/carbon/human/updatehealth()
-	var/oldhealth = health
 	. = ..()
 	dna?.species.spec_updatehealth(src)
-	if(!dna)
-		return
-	hulk_health_check(oldhealth)
 
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
@@ -1186,9 +1185,9 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize(mapload)
-	. = ..()
-	set_species(race)
+/mob/living/carbon/human/species/create_dna()
+	dna = new /datum/dna(src)
+	dna.species = new race()
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
@@ -1395,36 +1394,3 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
-
-/mob/living/carbon/human/proc/hulk_health_check(oldhealth)
-	if(!dna)
-		return
-
-	if(dna.check_mutation(ACTIVE_HULK))
-		if(health < HEALTH_THRESHOLD_CRIT)
-			dna.remove_mutation(ACTIVE_HULK)
-			return
-		if(health < oldhealth)
-			adjustStaminaLoss(-1.5 * (oldhealth - health))
-	else
-		if(!dna.check_mutation(HULK) && dna.check_mutation(GENETICS_HULK) && stat == CONSCIOUS && (oldhealth >= health + 10 || health < (0.5 * maxHealth)))
-			dna.add_mutation(ACTIVE_HULK)
-
-/mob/living/carbon/human/proc/hulk_stamina_check()
-	if(dna.check_mutation(ACTIVE_HULK))
-		if(staminaloss < 60 && prob(1))
-			adjust_confusion(7 SECONDS)
-			say("HULK SMASH!!")
-		if(staminaloss >= 90)
-			dna.remove_mutation(ACTIVE_HULK)
-			to_chat(src, span_notice("You have calm down enough to become human again."))
-			Knockdown(6)
-		return TRUE
-	else
-		return FALSE
-
-/mob/living/carbon/human/Bump(atom/movable/AM)
-	..()
-	if(dna.check_mutation(ACTIVE_HULK) && has_status_effect(/datum/status_effect/confusion) && (world.time - last_bumped) > 15)
-		Bumped(AM)
-		return AM.attack_hulk(src)

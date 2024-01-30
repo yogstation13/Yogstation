@@ -3197,7 +3197,7 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	id = "whiteship_lavaland";
+	id = "whiteship_mining";
 	name = "lavaland wastes";
 	width = 35
 	},

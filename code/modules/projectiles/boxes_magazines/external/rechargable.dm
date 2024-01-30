@@ -102,7 +102,7 @@
 	. = ..()
 	if(!(. & EMP_PROTECT_CONTENTS))
 		var/bullet_count = ammo_count()
-		var/bullets_to_remove = round(bullet_count / (severity*2))
+		var/bullets_to_remove = round(bullet_count * (0.5**(severity/EMP_HEAVY)))
 		for(var/i = 0; i < bullets_to_remove, i++)
 			qdel(get_round())
 		update_appearance(UPDATE_ICON)
@@ -111,8 +111,8 @@
 			if(!G.magazine == src)
 				return
 			G.semicd = TRUE
-			// 5-10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
-			var/unjam_time = ((10/severity) + (rand(-20,20)*0.01)) SECONDS
+			// up to 10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
+			var/unjam_time = (min(severity, EMP_HEAVY) + (rand(-20,20)*0.01)) SECONDS
 			addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/gun, reset_semicd)), unjam_time)
 
 /obj/item/ammo_casing/caseless/c22hl

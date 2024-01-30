@@ -1,0 +1,5 @@
+author: " ktlwjec"
+delete-after: true 
+changes: 
+  - bugfix: "Mime finger guns properly show what was shot at, and by who."
+  - imageadd: "Mime finger gun button has a working icon."

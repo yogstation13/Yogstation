@@ -322,7 +322,7 @@
 			Y1+=s
 			while(Y1!=Y2)
 				T=locate(X1,Y1,Z)
-				if(T.opacity)
+				if(IS_OPAQUE_TURF(T))
 					return 0
 				Y1+=s
 	else
@@ -338,7 +338,7 @@
 			else
 				X1+=signX //Line exits tile horizontally
 			T=locate(X1,Y1,Z)
-			if(T.opacity)
+			if(IS_OPAQUE_TURF(T))
 				return 0
 	return 1
 #undef SIGNV
@@ -707,11 +707,15 @@
 	if(!istype(T))
 		return
 	var/datum/gas_mixture/environment = T.return_air()
-	if(!istype(environment))
+	if(!environment)
 		return
 	var/pressure = environment.return_pressure()
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
+	//YOGS EDIT
+	if(pressure >= JUNGLELAND_EQUIPMENT_EFFECT_PRESSURE)
+		. = TRUE
+	//YOGS END
 
 /proc/ispipewire(item)
 	var/static/list/pire_wire = list(

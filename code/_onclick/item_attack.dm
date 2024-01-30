@@ -114,17 +114,26 @@
 	user.do_attack_animation(O)
 	O.attacked_by(src, user)
 	user.weapon_slow(src)
-	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
+	if(!QDELETED(src))
+		take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
 
 /atom/movable/proc/attacked_by()
 	return
 
-/obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force)
-		visible_message(span_danger("[user] has hit [src] with [I]!"), null, null, COMBAT_MESSAGE_RANGE)
-		//only witnesses close by and the victim see a hit message.
-		log_combat(user, src, "attacked", I)
-	take_damage(I.force, I.damtype, MELEE, 1)
+/obj/attacked_by(obj/item/attacking_item, mob/living/user)
+	if(!attacking_item.force)
+		return
+	
+	var/damage = take_damage(attacking_item.force * attacking_item.demolition_mod, attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
+	var/damage_verb = "hit"
+	if(attacking_item.demolition_mod > 1 && damage)
+		damage_verb = "pulverized"
+	if(attacking_item.demolition_mod < 1 || !damage)
+		damage_verb = "ineffectively pierced"
+
+	visible_message(span_danger("[user] [damage_verb] [src] with [attacking_item][damage ? "" : ", without leaving a mark"]!"), null, null, COMBAT_MESSAGE_RANGE)
+	//only witnesses close by and the victim see a hit message.
+	log_combat(user, src, "attacked", attacking_item)
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)

@@ -133,7 +133,7 @@
 			if(scooldown < world.time)
 				if(M.health >= 0)
 					if(ishuman(M)||ismonkey(M))
-						M.electrocute_act(5, "[user]", safety = 1, tesla_shock = 1)
+						M.electrocute_act(5, "[user]", zone=user.zone_selected, tesla_shock = 1)
 						user.visible_message(span_userdanger("[user] electrocutes [M] with [user.p_their()] touch!"), \
 							span_danger("You electrocute [M] with your touch!"))
 						M.update_mobility()
@@ -484,6 +484,7 @@
 			icecream.add_ice_cream("vanilla")
 			icecream.desc = "Eat the ice cream."
 		user.visible_message(span_notice("[src] launches a [snack.name] at [target]!"))
+		user.newtonian_move(get_dir(target, user)) // For no gravity.
 	else if(user.Adjacent(target) && is_allowed(target, user))
 		COOLDOWN_START(src, last_snack_disp, cooldown)
 		snack = new selected_snack(get_turf(target))

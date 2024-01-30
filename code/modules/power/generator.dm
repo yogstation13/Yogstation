@@ -21,14 +21,16 @@
 	. = ..()
 	find_circs()
 	connect_to_network()
-	SSair.atmos_machinery += src
+	SSair.start_processing_machine(src)
+	START_PROCESSING(SSmachines, src)
 	update_appearance(UPDATE_ICON)
 	component_parts = list(new /obj/item/circuitboard/machine/generator)
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
 
 /obj/machinery/power/generator/Destroy()
 	kill_circs()
-	SSair.atmos_machinery -= src
+	SSair.stop_processing_machine(src)
+	STOP_PROCESSING(SSmachines, src)
 	return ..()
 
 /obj/machinery/power/generator/update_icon_state()
@@ -120,7 +122,8 @@
 	lastgenlev = power_output
 	lastgen -= power_output
 	lastgen = max(lastgen, 0)
-	..()
+	update_icon()
+	src.updateDialog()
 
 /obj/machinery/power/generator/proc/get_menu(include_link = TRUE)
 	var/t = ""

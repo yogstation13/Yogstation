@@ -26,6 +26,7 @@
 #define COMSIG_LIVING_EXTINGUISHED "living_extinguished"
 ///from base of mob/living/electrocute_act(): (shock_damage, source, siemens_coeff, flags)
 #define COMSIG_LIVING_ELECTROCUTE_ACT "living_electrocute_act"
+	#define COMPONENT_NO_ELECTROCUTE_ACT (1<<0)
 ///sent when items with siemen coeff. of 0 block a shock: (power_source, source, siemens_coeff, dist_check)
 #define COMSIG_LIVING_SHOCK_PREVENTED "living_shock_prevented"
 ///sent by stuff like stunbatons and tasers: ()
@@ -138,3 +139,8 @@
 
 ///from mind/transfer_to. Sent after the mind has been transferred: (mob/previous_body)
 #define COMSIG_MIND_TRANSFERRED "mind_transferred"
+
+///from /mob/create_typing_indicator()
+#define COMSIG_MOB_CREATE_TYPING_INDICATOR "create_typing_indicator"
+	///Icon used for the typing indicator
+	#define BUBBLE_ICON_STATE 1
