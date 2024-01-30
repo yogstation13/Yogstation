@@ -4,13 +4,13 @@
 	is_dimorphic = FALSE
 	generate_husk_icon = TRUE
 	species_traits = list(NOTRANSSTING, EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
-	inherent_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_NOCLONE)
+	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
 	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	screamsound = 'sound/voice/vox/shriek1.ogg'
+	screamsound = list('sound/voice/vox/shriek1.ogg', 'sound/voice/vox/ashriek.ogg')
 	cough_sound = 'sound/voice/vox/shriekcough.ogg'
 	sneeze_sound = 'sound/voice/vox/shrieksneeze.ogg'
 	mutantbrain = /obj/item/organ/brain/vox // Brain damage on EMP
