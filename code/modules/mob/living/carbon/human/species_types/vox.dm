@@ -40,15 +40,19 @@
 	parts_to_husk = list("vox_tail", "vox_tail_markings", "wagging_vox_tail", "wagging_vox_tail_markings", "vox_body_markings")
 	damage_overlay_type = "vox"
 	exotic_bloodtype = "V"
+	smells_like = "musty quills"
 
 /datum/species/vox/get_species_description()
 	return "The Vox are remnants of an ancient race, that originate from arkships. \
-	These bioengineered, reptilian, beaked, and quilled beings have a physiological caste system and follow 'The Inviolate' tenets.<br/><br/> \
+	These bioengineered, reptilian, beaked, and quilled beings have a physiological caste system and follow 'The Inviolate' tenets. \
 	Breathing pure nitrogen, they need specialized masks and tanks for survival outside their arkships. \
 	Their insular nature limits their involvement in broader galactic affairs, maintaining a distinct, yet isolated presence away from other species."
 	
 /datum/species/vox/get_species_lore()
-	return list("imma be real witchu chief...i aint got any lore")
+	return list("Vox have no colonies of their own to speak of. Most Vox originate from a location known as the Shoal, a sprawling, labyrinth-like space megalith of debris and asteroids fused together over countless orbits. It is there where their cutthroat and opportunistic behavior stems from.",\
+	"Little is known of Vox history itself, as the Vox do not keep many records beyond personal accomplishments and tales of profit and triumph. They have lived among the Shoal and the stars as long as they or anyone else can remember.",\
+	"It is possible the species went through a dark age before being introduced to the greater galactic community. Those taken by Vox raiders are rumored to be taken back to the Shoal to be sold as slaves. Other rumors speculate those not cut out to be slaves are sold by fleshpeddlers for “extraction”.",\
+	"Many Vox have grown fond of life among the stars, and typically avoid living on planetary colonies. They have a penchant for capitalism and goods peddling, deep space salvage, and sometimes interstellar crime. Many Vox now seek their fortune on the border of civilized space. Some trading with stations and worlds as (questionably legal) merchants, or applying to work for any one of the countless mega-corporations on the frontier. Others profit off crime and marauding, hijacking ships, cargo, and sometimes people to bring back to the Shoal.")
 
 /datum/species/vox/get_butt_sprite()
 	return BUTT_SPRITE_VOX
@@ -67,10 +71,10 @@
 		internal_tank = new /obj/item/tank/internals/nitrogen
 	else
 		internal_tank = new /obj/item/tank/internals/emergency_oxygen/vox
-	H.put_in_r_hand(internal_tank)
+	if(!H.equip_to_appropriate_slot(internal_tank))
+		H.put_in_hands(internal_tank)
 	to_chat(H, span_notice("You are now running on nitrogen internals from [internal_tank]. Your species finds oxygen toxic, so you must breathe nitrogen only."))
-	H.open_internals(H.get_item_for_held_index(2))
-	H.grant_language(/datum/language/vox)
+	H.open_internals(internal_tank)
 
 /datum/species/vox/get_icon_variant(mob/living/carbon/person_to_check)
 	return person_to_check.dna.features["vox_skin_tone"]
@@ -101,7 +105,7 @@
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "bolt",
 			SPECIES_PERK_NAME = "EMP Sensitivity",
-			SPECIES_PERK_DESC = "Due to their organs being synthetic, they are susceptible to emps.",
+			SPECIES_PERK_DESC = "Due to their organs being synthetic, they are susceptible to EMPs.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

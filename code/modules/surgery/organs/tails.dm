@@ -124,7 +124,7 @@
 /obj/item/organ/tail/vox
 	name = "vox tail"
 	desc = "A severed vox tail. Somewhere, no doubt, a vox hater is very pleased with themselves."
-	icon_state = "severedlizardtail" //yogs - so the tail uses the correct sprites
+	icon_state = "severedlizardtail"
 	color = "#808D11"
 	var/tail_markings = "None"
 	var/original_owner
