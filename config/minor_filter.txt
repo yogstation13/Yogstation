@@ -46,5 +46,6 @@ pls=please
 plz=please
 \btf\b=the fuck
 \bi\b=I
+\bu\b=you
 auxmos=La Li Lu Le Lo
 aux mos=La Li Lu Le Lo
