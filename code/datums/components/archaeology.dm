@@ -15,7 +15,7 @@
 			archdrops[i][ARCH_PROB] = 100
 			stack_trace("ARCHAEOLOGY WARNING: [parent] contained a null probability value in [i].")
 	callback = _callback
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(Dig))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(Dig))
 	RegisterSignal(parent, COMSIG_ATOM_EX_ACT, PROC_REF(BombDig))
 	RegisterSignal(parent, COMSIG_ATOM_SING_PULL, PROC_REF(SingDig))
 

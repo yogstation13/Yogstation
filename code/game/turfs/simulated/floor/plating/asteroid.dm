@@ -82,7 +82,7 @@
 				return TRUE
 		else if(istype(W, /obj/item/storage/bag/ore))
 			for(var/obj/item/stack/ore/O in src)
-				SEND_SIGNAL(W, COMSIG_PARENT_ATTACKBY, O)
+				SEND_SIGNAL(W, COMSIG_ATOM_ATTACKBY, O)
 
 /turf/open/floor/plating/asteroid/ex_act(severity, target)
 	. = SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)

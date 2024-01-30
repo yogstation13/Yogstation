@@ -170,10 +170,10 @@
 	if(glass)
 		airlock_material = "glass"
 	if(security_level > AIRLOCK_SECURITY_METAL)
-		obj_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
+		atom_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
 		max_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
 	else
-		obj_integrity = normal_integrity
+		atom_integrity = normal_integrity
 		max_integrity = normal_integrity
 	if(damage_deflection == AIRLOCK_DAMAGE_DEFLECTION_N && security_level > AIRLOCK_SECURITY_METAL)
 		damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
@@ -187,7 +187,7 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/door/airlock/obj_break(damage_flag)
+/obj/machinery/door/airlock/atom_break(damage_flag)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -705,9 +705,9 @@
 					SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_emergency", FLOAT_LAYER, FLOAT_PLANE, dir)
 			if(welded)
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "welded", FLOAT_LAYER, FLOAT_PLANE, dir)
-			if(obj_integrity <integrity_failure)
+			if(atom_integrity <integrity_failure)
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_broken", FLOAT_LAYER, FLOAT_PLANE, dir)
-			else if(obj_integrity < (0.75 * max_integrity))
+			else if(atom_integrity < (0.75 * max_integrity))
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_damaged", FLOAT_LAYER, FLOAT_PLANE, dir)
 
 		if(AIRLOCK_DENY)
@@ -716,18 +716,18 @@
 			SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_denied", FLOAT_LAYER, FLOAT_PLANE, dir)
 			if(welded)
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "welded", FLOAT_LAYER, FLOAT_PLANE, dir)
-			if(obj_integrity <integrity_failure)
+			if(atom_integrity <integrity_failure)
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_broken", FLOAT_LAYER, FLOAT_PLANE, dir)
-			else if(obj_integrity < (0.75 * max_integrity))
+			else if(atom_integrity < (0.75 * max_integrity))
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_damaged", FLOAT_LAYER, FLOAT_PLANE, dir)
 
 		if(AIRLOCK_EMAG)
 			if(welded)
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "welded", FLOAT_LAYER, FLOAT_PLANE, dir)
 			SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks", FLOAT_LAYER, FLOAT_PLANE, dir)
-			if(obj_integrity <integrity_failure)
+			if(atom_integrity <integrity_failure)
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_broken", FLOAT_LAYER, FLOAT_PLANE, dir)
-			else if(obj_integrity < (0.75 * max_integrity))
+			else if(atom_integrity < (0.75 * max_integrity))
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_damaged", FLOAT_LAYER, FLOAT_PLANE, dir)
 
 		if(AIRLOCK_CLOSING)
@@ -735,7 +735,7 @@
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_closing", FLOAT_LAYER, FLOAT_PLANE, dir)
 
 		if(AIRLOCK_OPEN)
-			if(obj_integrity < (0.75 * max_integrity))
+			if(atom_integrity < (0.75 * max_integrity))
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_open", FLOAT_LAYER, FLOAT_PLANE, dir)
 
 		if(AIRLOCK_OPENING)
@@ -1209,7 +1209,7 @@
 					return
 				user.visible_message(span_boldwarning("[user] starts slamming [T] into [src]!"), \
 				"<span class='velvet italics'>You loudly begin smashing down [src].</span>")
-				while(obj_integrity > max_integrity * 0.25)
+				while(atom_integrity > max_integrity * 0.25)
 					if(T.twin)
 						if(!do_after(user, rand(4, 6), src))
 							T.darkspawn.use_psi(30)
@@ -1245,14 +1245,14 @@
 									span_notice("You [welded ? "weld the airlock shut":"unweld the airlock"]."))
 				update_appearance(UPDATE_ICON)
 		else
-			if(obj_integrity < max_integrity)
+			if(atom_integrity < max_integrity)
 				if(!W.tool_start_check(user, amount=0))
 					return
 				user.visible_message("[user] is welding the airlock.", \
 								span_notice("You begin repairing the airlock..."), \
 								span_italics("You hear welding."))
 				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
-					obj_integrity = max_integrity
+					atom_integrity = max_integrity
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
 										span_notice("You finish repairing the airlock."))
@@ -1610,7 +1610,7 @@
 
 /obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	if(obj_integrity < (0.75 * max_integrity))
+	if(atom_integrity < (0.75 * max_integrity))
 		update_appearance(UPDATE_ICON)
 
 
@@ -1632,7 +1632,7 @@
 
 		if(!disassembled)
 			if(A)
-				A.obj_integrity = A.max_integrity * 0.5
+				A.update_integrity(A.max_integrity * 0.5)
 		else if(obj_flags & EMAGGED)
 			if(user)
 				to_chat(user, span_warning("You discard the damaged electronics."))

@@ -372,4 +372,4 @@
 
 /obj/structure/falsewall/brass/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		obj_integrity = max_integrity
+		atom_integrity = max_integrity

@@ -115,6 +115,14 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+	
+	if(uses_integrity)
+		atom_integrity = max_integrity
+		if(islist(armor))
+			armor = getArmor(arglist(armor))
+		else if(!armor)
+			armor = getArmor()
+
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/__auxtools_update_turf_temp_info()

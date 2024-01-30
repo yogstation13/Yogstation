@@ -113,7 +113,7 @@
 
 
 /obj/machinery/shieldgen/deconstruct(disassembled = TRUE)
-	obj_break()
+	atom_break()
 	locked = pick(0,1)
 
 /obj/machinery/shieldgen/interact(mob/user)
@@ -160,7 +160,7 @@
 			if(coil.get_amount() < 1)
 				return
 			coil.use(1)
-			obj_integrity = max_integrity
+			atom_integrity = max_integrity
 			stat &= ~BROKEN
 			to_chat(user, span_notice("You repair \the [src]."))
 			update_appearance(UPDATE_ICON)

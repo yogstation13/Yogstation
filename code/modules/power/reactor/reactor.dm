@@ -78,7 +78,7 @@
 	if(isnull(id))
 		id = getnewid()
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/get_integrity()
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/get_integrity()
 	return round(100 * vessel_integrity / initial(vessel_integrity), 0.01)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/examine(mob/user)
