@@ -22,11 +22,13 @@ export const Gps = (props, context) => {
     map((signal, index) => {
       // Calculate distance to the target. BYOND distance is capped to 127,
       // that's why we roll our own calculations here.
-      const dist = signal.dist && (
-        Math.round(vecLength(vecSubtract(
-          coordsToVec(currentCoords),
-          coordsToVec(signal.coords))))
-      );
+      const dist =
+        signal.dist &&
+        Math.round(
+          vecLength(
+            vecSubtract(coordsToVec(currentCoords), coordsToVec(signal.coords)),
+          ),
+        );
       return { ...signal, dist, index };
     }),
     sortBy(
@@ -87,34 +89,32 @@ export const Gps = (props, context) => {
                   <Table.Cell collapsing content="Direction" />
                   <Table.Cell collapsing content="Coordinates" />
                 </Table.Row>
-                {signals.map(signal => (
+                {signals.map((signal) => (
                   <Table.Row
                     key={signal.entrytag + signal.coords + signal.index}
-                    className="candystripe">
+                    className="candystripe"
+                  >
                     <Table.Cell bold color="label">
                       {signal.entrytag}
                     </Table.Cell>
                     <Table.Cell
                       collapsing
-                      opacity={signal.dist !== undefined && (
-                        clamp(
-                          1.2 / Math.log(Math.E + signal.dist / 20),
-                          0.4, 1)
-                      )}>
+                      opacity={
+                        signal.dist !== undefined &&
+                        clamp(1.2 / Math.log(Math.E + signal.dist / 20), 0.4, 1)
+                      }
+                    >
                       {signal.degrees !== undefined && (
                         <Icon
                           mr={1}
                           size={1.2}
                           name="arrow-up"
-                          rotation={signal.degrees} />
+                          rotation={signal.degrees}
+                        />
                       )}
-                      {signal.dist !== undefined && (
-                        signal.dist + 'm'
-                      )}
+                      {signal.dist !== undefined && signal.dist + 'm'}
                     </Table.Cell>
-                    <Table.Cell collapsing>
-                      {signal.coords}
-                    </Table.Cell>
+                    <Table.Cell collapsing>{signal.coords}</Table.Cell>
                   </Table.Row>
                 ))}
               </Table>

@@ -49,6 +49,9 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	var/pipe_state //icon_state as a pipe item
 	var/on = FALSE
 
+	///The bitflag that's being checked on ventcrawling. Default is to allow ventcrawling and seeing pipes.
+	var/vent_movement = VENTCRAWL_ALLOWED | VENTCRAWL_CAN_SEE
+
 /obj/machinery/atmospherics/LateInitialize()
 	. = ..()
 	update_name()
@@ -373,6 +376,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 					return
 				user.forceMove(target_move.loc) //handle entering and so on.
 				user.visible_message(span_notice("You hear something squeezing through the ducts..."), "<span class='notice'>You climb out the ventilation system.")
+				REMOVE_TRAIT(user, TRAIT_MOVE_VENTCRAWLING, VENTCRAWLING_TRAIT)
 			else
 				var/list/pipenetdiff = return_pipenets() ^ target_move.return_pipenets()
 				if(pipenetdiff.len)
@@ -385,6 +389,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	else if(is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 		user.forceMove(loc)
 		user.visible_message(span_notice("You hear something squeezing through the ducts..."), "<span class='notice'>You climb out the ventilation system.")
+		REMOVE_TRAIT(user, TRAIT_MOVE_VENTCRAWLING, VENTCRAWLING_TRAIT)
 
 	//PLACEHOLDER COMMENT FOR ME TO READD THE 1 (?) DS DELAY THAT WAS IMPLEMENTED WITH A... TIMER?
 

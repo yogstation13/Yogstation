@@ -12,6 +12,7 @@
 	circuit = /obj/item/circuitboard/machine/thermomachine
 
 	pipe_flags = PIPING_ONE_PER_TURF
+	vent_movement = NONE
 
 	var/icon_state_off = "freezer"
 	var/icon_state_on = "freezer_1"

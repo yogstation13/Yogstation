@@ -43,6 +43,7 @@
 	var/obj/machinery/advanced_airlock_controller/aac = null
 
 	pipe_state = "uvent"
+	vent_movement = VENTCRAWL_ALLOWED | VENTCRAWL_CAN_SEE | VENTCRAWL_ENTRANCE_ALLOWED
 
 /obj/machinery/atmospherics/components/unary/vent_pump/New()
 	..()

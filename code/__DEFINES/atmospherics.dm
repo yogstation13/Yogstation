@@ -432,6 +432,20 @@
 /// north/south east/west doesn't matter, auto normalize on build.
 #define PIPING_CARDINAL_AUTONORMALIZE	(1<<3)
 
+// Ventcrawling bitflags, handled in var/vent_movement
+///Allows for ventcrawling to occur. All atmospheric machines have this flag on by default. Cryo is the exception
+#define VENTCRAWL_ALLOWED (1<<0)
+///Allows mobs to enter or leave from atmospheric machines. On for passive, unary, and scrubber vents.
+#define VENTCRAWL_ENTRANCE_ALLOWED (1<<1)
+///Used to check if a machinery is visible. Called by update_pipe_vision(). On by default for all except cryo.
+#define VENTCRAWL_CAN_SEE (1<<2)
+
+DEFINE_BITFIELD(vent_movement, list(
+	"Ventcrawl Allowed" = VENTCRAWL_ALLOWED,
+	"Ventcrawl Entrance Allowed" = VENTCRAWL_ENTRANCE_ALLOWED,
+	"Ventcrawl Can See" = VENTCRAWL_CAN_SEE,
+))
+
 // Gas defines because i hate typepaths
 #define GAS_O2 "o2"
 #define GAS_N2 "n2"
