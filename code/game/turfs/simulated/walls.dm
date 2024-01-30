@@ -126,7 +126,7 @@
 		if(EXPLODE_HEAVY)
 			dismantle_wall(pick(FALSE, TRUE), TRUE)
 		if(EXPLODE_LIGHT)
-			take_damage(100, BRUTE, BOMB) // less kaboom
+			take_damage(150, BRUTE, BOMB) // less kaboom
 	if(!density)
 		..()
 

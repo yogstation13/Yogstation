@@ -65,16 +65,6 @@
 ///from internal loop in atom/movable/proc/CanReach(): (list/next)
 #define COMSIG_ATOM_CANREACH "atom_can_reach"
 	#define COMPONENT_BLOCK_REACH 1
-/// from /atom/proc/atom_break: ()
-#define COMSIG_ATOM_BREAK "atom_break"
-/// from base of [/atom/proc/atom_fix]: ()
-#define COMSIG_ATOM_FIX "atom_fix"
-///from base of [/atom/proc/update_integrity]: (old_value, new_value)
-#define COMSIG_ATOM_INTEGRITY_CHANGED "atom_integrity_changed"
-///from base of [/atom/proc/take_damage]: (damage_amount, damage_type, damage_flag, sound_effect, attack_dir, aurmor_penetration)
-#define COMSIG_ATOM_TAKE_DAMAGE "atom_take_damage"
-	/// Return bitflags for the above signal which prevents the atom taking any damage.
-	#define COMPONENT_NO_TAKE_DAMAGE (1<<0)
 ///for when an atom has been created through processing (atom/original_atom, list/chosen_processing_option)
 #define COMSIG_ATOM_CREATEDBY_PROCESSING "atom_createdby_processing"
 ///when an atom is processed (mob/living/user, obj/item/I, list/atom/results)
