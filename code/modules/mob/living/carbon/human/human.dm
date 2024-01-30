@@ -11,8 +11,11 @@
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
+	physiology = new() //create physiology early so organs and bodyparts can modify it
+
 	//initialize limbs first
 	create_bodyparts()
+
 
 	setup_human_dna()
 
@@ -26,7 +29,6 @@
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
-	physiology = new()
 
 	. = ..()
 
