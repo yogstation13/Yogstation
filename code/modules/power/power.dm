@@ -115,7 +115,7 @@
   * Returns TRUE if the NOPOWER flag was toggled
   */
 /obj/machinery/proc/power_change()
-	SIGNAL_HANDLER
+	//SIGNAL_HANDLER
 	if(stat & BROKEN)
 		update_appearance()
 		return
