@@ -24,6 +24,7 @@
 	mutanttail = /obj/item/organ/tail/vox
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/vox
 	skinned_type = /obj/item/stack/sheet/animalhide/vox
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	toxmod = 2 // Weak immune systems.
 	burnmod = 0.8 // Tough hides.
 	stunmod = 1.1 // Take a bit longer to get up than other species.
