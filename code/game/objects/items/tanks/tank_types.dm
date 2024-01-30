@@ -80,6 +80,16 @@
 	air_contents.set_moles(GAS_O2, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD)
 	air_contents.set_moles(GAS_N2, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
+/obj/item/tank/internals/nitrogen
+	name = "nitrogen tank"
+	desc = "A tank of nitrogen."
+	icon_state = "oxygen_fr"
+	force = 10
+	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
+
+/obj/item/tank/internals/nitrogen/populate_gas()
+	air_contents.set_moles(GAS_N2, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+
 /*
  * Plasma
  */

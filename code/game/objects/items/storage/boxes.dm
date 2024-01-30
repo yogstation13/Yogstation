@@ -146,13 +146,21 @@
 	new /obj/item/radio/off(src)
 
 /obj/item/storage/box/survival/proc/wardrobe_removal()
-	if(!isplasmaman(loc)) //We need to specially fill the box with plasmaman gear, since it's intended for one
+	if(!isplasmaman(loc) && !isvox(loc)) //We need to specially fill the box with plasmaman gear, since it's intended for one
 		return
-	var/obj/item/mask = locate(/obj/item/clothing/mask/breath) in src
-	var/obj/item/internals = locate(/obj/item/tank/internals/emergency_oxygen) in src
-	new /obj/item/tank/internals/plasmaman/belt(src)
-	qdel(mask) // Get rid of the items that shouldn't be
-	qdel(internals)
+	if(isplasmaman(loc))
+		var/obj/item/mask = locate(/obj/item/clothing/mask/breath) in src
+		var/obj/item/internals = locate(/obj/item/tank/internals/emergency_oxygen) in src
+		new /obj/item/tank/internals/plasmaman/belt(src)
+		qdel(mask) // Get rid of the items that shouldn't be
+		qdel(internals)
+	else
+		var/obj/item/mask = locate(/obj/item/clothing/mask/breath) in src
+		var/obj/item/internals = locate(/obj/item/tank/internals/emergency_oxygen) in src
+		new /obj/item/tank/internals/emergency_oxygen/nitrogen(src)
+		new /obj/item/clothing/mask/breath/vox(src)
+		qdel(mask) // Get rid of the items that shouldn't be
+		qdel(internals)
 
 /obj/item/storage/box/survival/mining
 	mask_type = /obj/item/clothing/mask/gas/explorer

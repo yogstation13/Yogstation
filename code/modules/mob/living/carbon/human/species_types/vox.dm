@@ -29,6 +29,9 @@
 	burnmod = 0.8 // Tough hides.
 	stunmod = 1.1 // Take a bit longer to get up than other species.
 	breathid = "n2"
+	suicide_messages = list(
+		"is jamming their claws into their eye sockets!",
+		"is deeply inhaling oxygen!")
 	husk_color = null
 	eyes_icon = 'icons/mob/species/vox/eyes.dmi'
 	icon_husk = 'icons/mob/species/vox/bodyparts.dmi'
@@ -47,15 +50,23 @@
 /datum/species/vox/get_species_lore()
 	return list("imma be real witchu chief...i aint got any lore")
 
-/datum/species/vox/random_name(gender,unique,lastname)
+/datum/species/vox/get_butt_sprite()
+	return BUTT_SPRITE_VOX
+
+/datum/species/vox/random_name(unique)
 	if(unique)
 		return random_unique_vox_name()
 	return capitalize(vox_name())
 
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
 	H.grant_language(/datum/language/vox)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), ITEM_SLOT_MASK)
-	var/obj/item/tank/internal_tank = new /obj/item/tank/internals/emergency_oxygen/vox
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox/respirator(H), ITEM_SLOT_MASK)
+	var/obj/item/tank/internal_tank
+	var/tank_pref = H.client?.prefs?.read_preference(/datum/preference/choiced/vox_tank_type)
+	if(tank_pref == "Large N² Tank")
+		internal_tank = new /obj/item/tank/internals/nitrogen
+	else
+		internal_tank = new /obj/item/tank/internals/emergency_oxygen/vox
 	H.put_in_r_hand(internal_tank)
 	to_chat(H, span_notice("You are now running on nitrogen internals from [internal_tank]. Your species finds oxygen toxic, so you must breathe nitrogen only."))
 	H.open_internals(H.get_item_for_held_index(2))
@@ -73,7 +84,8 @@
 		skin_tone = vox.dna.features["vox_skin_tone"]
 	vox.dna.features["vox_skin_tone"] = skin_tone
 	var/obj/item/organ/tail/vox/vox_tail = vox.getorganslot(ORGAN_SLOT_TAIL)
-	vox_tail?.tail_type = skin_tone
+	if(vox == vox_tail?.original_owner)
+		vox_tail.tail_type = skin_tone
 
 /datum/species/vox/create_pref_unique_perks()
 	var/list/to_add = list()

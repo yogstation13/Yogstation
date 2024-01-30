@@ -248,3 +248,8 @@ export const feature_vox_undershirt: FeatureChoiced = {
   name: 'Undershirt',
   component: FeatureDropdownInput,
 };
+
+export const feature_vox_tank_type: FeatureChoiced = {
+  name: 'N² Tank',
+  component: FeatureDropdownInput,
+};

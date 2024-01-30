@@ -136,7 +136,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/list/sprite_sheets = null
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 	var/sprite_sheets_obj = null //Used to override hardcoded clothing inventory object dmis in human clothing proc.
-	var/list/species_fit = null //This object has a different appearance when worn by these species
 
 	// Needs to be in /obj/item because corgis can wear a lot of
 	// non-clothing items

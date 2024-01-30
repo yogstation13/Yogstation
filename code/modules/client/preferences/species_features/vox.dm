@@ -185,3 +185,13 @@
 		icon_with_undershirt.Scale(32, 32)
 		values[accessory_name] = icon_with_undershirt
 	return values
+
+/datum/preference/choiced/vox_tank_type
+	savefile_key = "feature_vox_tank_type"
+	relevant_mutant_bodypart = "vox_tail"
+	main_feature_name = "N² Tank"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+
+/datum/preference/choiced/vox_tank_type/init_possible_values()
+	return list("Large N² Tank", "Specialized N² Tank")

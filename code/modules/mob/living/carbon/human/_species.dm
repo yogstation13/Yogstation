@@ -67,6 +67,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// Weighted list. NOTE: Picks one of the list component and then does a prob() on it, since we can't do a proper weighted pick, since we need to take into account the regular say_mod.
 	//TL;DR "meows" = 75 and "rawr" = 25 isn't actually 75% and 25%. It's 75% * 50% = 37.5% and 25% * 50% = 12.5%. Chance is divided by number of elements
 	var/list/rare_say_mod = list()
+	var/list/suicide_messages = list()
 	///Used if you want to give your species thier own language
 	var/species_language_holder = /datum/language_holder
 	/// Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
