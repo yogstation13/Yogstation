@@ -47,15 +47,10 @@
 /datum/species/vox/get_species_lore()
 	return list("imma be real witchu chief...i aint got any lore")
 
-/datum/species/vox/random_name(unique)
-	var/sounds = rand(2,8)
-	var/i = 0
-	var/newname = ""
-
-	while(i<=sounds)
-		i++
-		newname += pick("ti","hi","ki","ya","ta","ha","ka","yi","chi","cha","kah")
-	return capitalize(newname)
+/datum/species/vox/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_vox_name()
+	return capitalize(vox_name())
 
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
 	H.grant_language(/datum/language/vox)
