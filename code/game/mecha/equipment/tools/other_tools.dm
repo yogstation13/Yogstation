@@ -255,7 +255,7 @@
 		chassis.take_damage(-h_boost)
 		repaired = 1
 	if(chassis.get_integrity() < chassis.max_integrity && h_boost > 0)
-		chassis.atom_integrity += min(h_boost, chassis.max_integrity-chassis.get_integrity())
+		chassis.update_integrity(chassis.get_integrity() + min(h_boost, chassis.max_integrity-chassis.get_integrity()))
 		repaired = 1
 	if(repaired)
 		if(!chassis.use_power(energy_drain))
