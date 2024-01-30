@@ -1,19 +1,20 @@
-#define VOX_HAIR_COLOR "#614f19"
-
-/proc/generate_vox_side_shots(list/sprite_accessories, key, accessory_color = VOX_HAIR_COLOR)
+/proc/generate_vox_side_shots(list/sprite_accessories, accessory_color = COLOR_DARKER_BROWN)
 	var/list/values = list()
 	var/icon/vox_head = icon('icons/mob/species/vox/bodyparts.dmi', "vox_head_green")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 	var/icon/eyes = icon('icons/mob/species/vox/eyes.dmi', "eyes")
+	var/icon/eyes_static = icon('icons/mob/species/vox/eyes.dmi', "eyes_static")
 	eyes.Blend(COLOR_CYAN, ICON_MULTIPLY)
 	vox_head.Blend(eyes, ICON_OVERLAY)
+	vox_head.Blend(eyes_static, ICON_OVERLAY)
 	var/icon/beak = icon('icons/mob/species/vox/bodyparts.dmi', "vox_head_static")
 	vox_head.Blend(beak, ICON_OVERLAY)
 	for(var/name in sprite_accessories)
 		var/datum/sprite_accessory/sprite_accessory = sprite_accessories[name]
 		var/icon/final_icon = icon(vox_head)
-		var/icon/accessory_icon = icon(sprite_accessory.icon, "m_[key]_[sprite_accessory.icon_state]_ADJ")
-		accessory_icon.Blend(accessory_color, sprite_accessory.color_blend_mode == "add" ? ICON_ADD : ICON_MULTIPLY)
-		final_icon.Blend(accessory_icon, ICON_OVERLAY)
+		if(name != "None")
+			var/icon/accessory_icon = icon(sprite_accessory.icon, sprite_accessory.icon_state)
+			accessory_icon.Blend(accessory_color, sprite_accessory.color_blend_mode == "add" ? ICON_ADD : ICON_MULTIPLY)
+			final_icon.Blend(accessory_icon, ICON_OVERLAY)
 		final_icon.Crop(10, 19, 22, 31)
 		final_icon.Scale(32, 32)
 		values[name] = final_icon
@@ -77,7 +78,7 @@
 /datum/preference/choiced/vox_body_markings/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["vox_body_markings"] = value
 
-/datum/preference/choiced/vox_hair
+/datum/preference/choiced/vox_quills
 	savefile_key = "feature_vox_quills"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
@@ -85,14 +86,14 @@
 	relevant_mutant_bodypart =  "vox_quills"
 	main_feature_name = "Quillstyle"
 
-/datum/preference/choiced/vox_hair/init_possible_values()
-	return generate_vox_side_shots(GLOB.vox_quills_list, "vox_hair")
+/datum/preference/choiced/vox_quills/init_possible_values()
+	return generate_vox_side_shots(GLOB.vox_quills_list)
 
-/datum/preference/choiced/vox_hair/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/vox_quills/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["vox_quills"] = value
 
-/datum/preference/choiced/vox_facial_hair
-	savefile_key = "feature_vox_facial_hair"
+/datum/preference/choiced/vox_facial_quiils
+	savefile_key = "feature_vox_facial_quills"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
 	should_generate_icons = TRUE
@@ -100,10 +101,10 @@
 	main_feature_name = "Facial Quillstyle"
 
 
-/datum/preference/choiced/vox_facial_hair/init_possible_values()
-	return generate_vox_side_shots(GLOB.vox_facial_quills_list, "vox_facial_hair")
+/datum/preference/choiced/vox_facial_quiils/init_possible_values()
+	return generate_vox_side_shots(GLOB.vox_facial_quills_list)
 
-/datum/preference/choiced/vox_facial_hair/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/vox_facial_quiils/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["vox_facial_quills"] = value
 
 /datum/preference/color/hair_color/quill_color
