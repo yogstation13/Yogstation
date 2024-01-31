@@ -37,7 +37,7 @@
 	throw_speed = 3
 	throw_range = 5
 	materials = list(/datum/material/iron=500)
-	breakouttime = 600 //Deciseconds = 60s = 1 minute
+	breakouttime = 500 //Deciseconds = 50s
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	break_strength = 4
 	var/cuffsound = 'sound/weapons/handcuffs.ogg'
@@ -110,6 +110,10 @@
 	if(trashtype && !dispense)
 		qdel(src)
 	return
+
+/obj/item/restraints/handcuffs/energy/used/swarmer //energy cuffs are in abductor, why would you do this
+	breakouttime= 200 // you already get teleported across the map
+	trashtype = /obj/item/restraints/handcuffs/energy/used
 
 /obj/item/restraints/handcuffs/cable/sinew
 	name = "sinew restraints"
