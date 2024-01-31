@@ -297,7 +297,7 @@
 	if(air.return_temperature() < (FUSION_TEMPERATURE_THRESHOLD - FUSION_TEMPERATURE_THRESHOLD_MINIMUM) * NUM_E**( - air.get_moles(GAS_DILITHIUM) * DILITHIUM_LAMBDA) + FUSION_TEMPERATURE_THRESHOLD_MINIMUM)
 		// This is an exponential decay equation, actually. Horizontal Asymptote is FUSION_TEMPERATURE_THRESHOLD_MINIMUM.
 		return NO_REACTION
-	return fusion_react(air, holder, id)
+	return fusion_react(air, holder)
 
 /datum/gas_reaction/fusion
 	exclude = FALSE
@@ -313,9 +313,9 @@
 		GAS_CO2 = FUSION_MOLE_THRESHOLD)
 
 /datum/gas_reaction/fusion/react(datum/gas_mixture/air, datum/holder)
-	return fusion_react(air, holder, id)
+	return fusion_react(air, holder)
 
-/proc/fusion_react(datum/gas_mixture/air, datum/holder, id)
+/proc/fusion_react(datum/gas_mixture/air, datum/holder)
 	var/turf/open/location = get_holder_turf(holder)
 	if(!location)
 		return NO_REACTION
@@ -332,7 +332,7 @@
 	for (var/gas_id in air.get_gases())
 		gas_power += (GLOB.gas_data.fusion_powers[gas_id]*air.get_moles(gas_id))
 	var/instability = MODULUS((gas_power*INSTABILITY_GAS_POWER_FACTOR)**2,toroidal_size) //Instability effects how chaotic the behavior of the reaction is
-	cached_scan_results[id] = instability//used for analyzer feedback
+	cached_scan_results["fusion"] = instability //used for analyzer feedback
 
 	var/plasma = (initial_plasma-FUSION_MOLE_THRESHOLD)/(scale_factor) //We have to scale the amounts of carbon and plasma down a significant amount in order to show the chaotic dynamics we want
 	var/carbon = (initial_carbon-FUSION_MOLE_THRESHOLD)/(scale_factor) //We also subtract out the threshold amount to make it harder for fusion to burn itself out.

@@ -162,6 +162,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///what type of gas is breathed
 	var/breathid = "o2"
 
+	/// Special typing indicators
+	var/bubble_icon = BUBBLE_DEFAULT
+
 	/// The icon_state of the fire overlay added when sufficently ablaze and standing. see onfire.dmi
 	var/fire_overlay = "human" //not used until monkey is added as a species type rather than a mob
 
@@ -434,6 +437,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.Digitigrade_Leg_Swap(FALSE)
 
 	C.mob_biotypes = inherent_biotypes
+	C.bubble_icon = bubble_icon
 
 	regenerate_organs(C,old_species)
 

@@ -62,7 +62,7 @@
 
 /datum/antagonist/cult/greet()
 	to_chat(owner.current, "<B><font size=3 color=red>You are a member of the cult!</font><B>")
-	to_chat(owner.current, "<b>If you are new to Blood Cult, please review <a href='https://forums.yogstation.net/threads/how-to-newbloodcult-for-hyperdunces.16896/'>this tutorial!</a><b>") //Yogs
+	to_chat(owner.current, "<b>If you are new to Blood Cult, please review <a href='https://forums.yogstation.net/threads/how-to-newbloodcult-for-hyperdunces.16896/'>this tutorial</a>!<b>") //Yogs
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/bloodcult.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
 	owner.announce_objectives()
 
