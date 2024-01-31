@@ -28,7 +28,7 @@
 	var/O_limit
 	var/atom/target = get_edge_target_turf(src, dir)
 	for(var/atom/movable/O in loc)
-		if(!O.anchored || ismecha(O))	//Mechs need their launch platforms.
+		if(!O.anchored || ismecha(O))	//MECH LAUNCHING HELL YEAH
 			if(ismob(O) && !isliving(O))
 				continue
 			O_limit++
