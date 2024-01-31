@@ -68,7 +68,6 @@
 	item_state = "suit-orange"
 	alt_covers_chest = TRUE
 	mutantrace_variation = NONE
-	sprite_sheets = null
 
 /obj/item/clothing/under/rank/engineering/engineer/skirt
 	name = "engineer's jumpskirt"

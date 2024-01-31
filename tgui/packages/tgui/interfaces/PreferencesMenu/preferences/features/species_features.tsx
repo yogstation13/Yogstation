@@ -1,7 +1,5 @@
-import { sortBy } from "../../../../../common/collections";
 import { Box, Stack } from "../../../../components";
 import { FeatureColorInput, FeatureChoicedServerData, FeatureValueProps, StandardizedDropdown, Feature, FeatureChoiced, FeatureDropdownInput } from "./base";
-import { HexValue } from "./character_preferences/skin_tone";
 import { SkinToneServerData } from "./character_preferences/skin_tone";
 import { sortHexValues } from "./character_preferences/skin_tone";
 
@@ -56,7 +54,7 @@ export const feature_mcolor: Feature<string> = {
 };
 
 export const feature_mcolor_secondary: Feature<string> = {
-  name: "Secondary mutant color",
+  name: "Secondary Mutant color",
   component: FeatureColorInput,
 };
 

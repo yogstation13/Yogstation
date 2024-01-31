@@ -247,8 +247,8 @@
 				var/datum/sprite_accessory/S2 = GLOB.hair_styles_list[hair_style]
 				if(S2)
 					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
-					if(S2.color_blend_mode == "add")
-						hair_overlay.color = list(null,null,null,null,hair_color)
+					if(S2.color_blend_mode == COLOR_BLEND_ADD)
+						hair_overlay.color = COLOR_MATRIX_ADD(hair_color)
 					else
 						hair_overlay.color = hair_color
 					hair_overlay.alpha = hair_alpha

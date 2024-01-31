@@ -81,24 +81,18 @@
 
 //BS12: Species-restricted clothing check.
 /obj/item/clothing/mob_can_equip(mob/M, slot)
-
 	//if we can't equip the item anyway, don't bother with species_restricted (also cuts down on spam)
 	if(!..())
 		return FALSE
-
 	// Skip species restriction checks on non-equipment slots
 	if(slot in list(ITEM_SLOT_BACKPACK, ITEM_SLOT_LPOCKET, ITEM_SLOT_RPOCKET))
 		return TRUE
-
 	if(species_restricted && ishuman(M))
-
-		var/wearable = null
-		var/exclusive = null
+		var/wearable
+		var/exclusive
 		var/mob/living/carbon/human/H = M
-
 		if("exclude" in species_restricted)
 			exclusive = TRUE
-
 		if(H.dna.species)
 			if(exclusive)
 				if(!(H.dna.species.name in species_restricted))
@@ -106,11 +100,9 @@
 			else
 				if(H.dna.species.name in species_restricted)
 					wearable = TRUE
-
 			if(!wearable)
-				to_chat(M, "<span class='warning'>Your species cannot wear [src].</span>")
+				to_chat(M, span_warning("Your species cannot wear [src]."))
 				return FALSE
-
 	return TRUE
 
 /obj/item/clothing/proc/refit_for_species(target_species)
@@ -119,7 +111,6 @@
 		icon_override = sprite_sheets[target_species]
 	else
 		icon_override = initial(icon_override)
-
 	if(sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
 	else

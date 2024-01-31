@@ -608,7 +608,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				facial_quills_overlay.icon_state = hair_state
 				if(!forced_colour)
 					facial_quills_overlay.color = H.facial_hair_color
-				if(S.color_blend_mode == "add")
+				if(S.color_blend_mode == COLOR_BLEND_ADD)
 					var/icon/hairs = new(hair_file)
 					hairs.Blend(facial_quills_overlay.color, ICON_ADD)
 					facial_quills_overlay.color = initial(facial_quills_overlay.color)
@@ -789,7 +789,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				hair_overlay.icon_state = hair_state
 				if(!forced_colour)
 					hair_overlay.color = H.hair_color
-				if(S.color_blend_mode == "add")
+				if(S.color_blend_mode == COLOR_BLEND_ADD)
 					var/icon/hairs = new(hair_file)
 					hairs.Blend(hair_overlay.color, ICON_ADD)
 					hair_overlay.color = initial(hair_overlay.color)
@@ -1204,8 +1204,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							accessory_overlay.color = H.eye_color
 				else
 					accessory_overlay.color = forced_colour
-			if(S.color_blend_mode == "add")
-				accessory_overlay.color = list(null, null, null, null, accessory_overlay.color)
+			if(S.color_blend_mode == COLOR_BLEND_ADD)
+				accessory_overlay.color = COLOR_MATRIX_ADD(accessory_overlay.color)
 			standing += accessory_overlay
 
 			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)) && !istype(H, /mob/living/carbon/human/dummy))//don't put emissives on dummy mobs as they're used for the preference menu, which doesn't draw emissives properly

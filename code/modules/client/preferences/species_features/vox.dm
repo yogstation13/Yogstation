@@ -13,7 +13,7 @@
 		var/icon/final_icon = icon(vox_head)
 		if(name != "None")
 			var/icon/accessory_icon = icon(sprite_accessory.icon, sprite_accessory.icon_state)
-			accessory_icon.Blend(accessory_color, sprite_accessory.color_blend_mode == "add" ? ICON_ADD : ICON_MULTIPLY)
+			accessory_icon.Blend(accessory_color, sprite_accessory.color_blend_mode == COLOR_BLEND_ADD ? ICON_ADD : ICON_MULTIPLY)
 			final_icon.Blend(accessory_icon, ICON_OVERLAY)
 		final_icon.Crop(10, 19, 22, 31)
 		final_icon.Scale(32, 32)
@@ -198,3 +198,6 @@
 
 /datum/preference/choiced/vox_tank_type/create_default_value()
 	return "Specialized N² Tank"
+
+/datum/preference/choiced/vox_tank_type/apply_to_human()
+	return

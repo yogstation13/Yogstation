@@ -52,12 +52,12 @@
 
 /obj/item/flag/clown
 	name = "\improper Clown Planet flag"
-	desc = "The universal banner of clowns everywhere. It smells faintly of bananas."
+	desc = "The banner of His Majesty, King Squiggles the Eighth."
 	icon_state = "clownflag"
 
 /obj/item/flag/mime
-	name = "\improper Mime Unity flag"
-	desc = "The standard by which all mimes march to war, as cold as ice and silent as the grave."
+	name = "\improper Mime Revolution flag"
+	desc = "The banner of the glorious revolutionary forces fighting the oppressors on Clown Planet."
 	icon_state = "mimeflag"
 
 /obj/item/flag/ian
@@ -74,8 +74,8 @@
 	icon_state = "slimeflag"
 
 /obj/item/flag/species/skrell
-	name = "\improper Skrell flag"
-	desc = "A flag proudly proclaiming the superior heritage of Skrell."
+	//name = "\improper Skrell flag"
+	//desc = "A flag proudly proclaiming the superior heritage of Skrell."
 	icon_state = "skrellflag"
 
 /obj/item/flag/species/vox
@@ -89,8 +89,8 @@
 	icon_state = "machineflag"
 
 /obj/item/flag/species/diona
-	name = "\improper Diona flag"
-	desc = "A flag proudly proclaiming the superior heritage of Dionae."
+	//name = "\improper Diona flag" //phytosians maybe?
+	//desc = "A flag proudly proclaiming the superior heritage of Dionae."
 	icon_state = "dionaflag"
 
 /obj/item/flag/species/human
@@ -99,18 +99,18 @@
 	icon_state = "humanflag"
 
 /obj/item/flag/species/greys
-	name = "\improper Greys flag"
-	desc = "A flag proudly proclaiming the superior heritage of Greys."
+	//name = "\improper Greys flag"
+	//desc = "A flag proudly proclaiming the superior heritage of Greys."
 	icon_state = "greysflag"
 
 /obj/item/flag/species/kidan
-	name = "\improper Kidan flag"
-	desc = "A flag proudly proclaiming the superior heritage of Kidan."
+	//name = "\improper Kidan flag" //preternis maybe?
+	//desc = "A flag proudly proclaiming the superior heritage of Kidan."
 	icon_state = "kidanflag"
 
 /obj/item/flag/species/taj
-	name = "\improper Tajaran flag"
-	desc = "A flag proudly proclaiming the superior heritage of Tajaran."
+	//name = "\improper Tajaran flag"
+	//desc = "A flag proudly proclaiming the superior heritage of Tajaran."
 	icon_state = "tajflag"
 
 /obj/item/flag/species/lizard
@@ -119,13 +119,13 @@
 	icon_state = "lizardflag"
 
 /obj/item/flag/species/vulp
-	name = "\improper Vulpkanin flag"
-	desc = "A flag proudly proclaiming the superior heritage of Vulpkanin."
+	//name = "\improper Vulpkanin flag"
+	//desc = "A flag proudly proclaiming the superior heritage of Vulpkanin."
 	icon_state = "vulpflag"
 
 /obj/item/flag/species/drask
-	name = "\improper Drask flag"
-	desc = "A flag proudly proclaiming the superior heritage of Drask."
+	//name = "\improper Drask flag"
+	//desc = "A flag proudly proclaiming the superior heritage of Drask."
 	icon_state = "draskflag"
 
 /obj/item/flag/species/plasma

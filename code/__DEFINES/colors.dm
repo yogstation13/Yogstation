@@ -371,6 +371,13 @@ GLOBAL_LIST_INIT(cable_colors, list(
 #define COLOR_INPUT_DISABLED "#F0F0F0"
 #define COLOR_INPUT_ENABLED "#D3B5B5"
 
+//Color blending modes
+#define COLOR_BLEND_MULTIPLY "multiply"
+#define COLOR_BLEND_ADD "add"
+
+//Color matrix
+#define COLOR_MATRIX_ADD(color) list(null, null, null, null, color)
+
 /// Change color to red on ANSI terminal output, if enabled with -DANSICOLORS.
 #ifdef ANSICOLORS
 #define TEST_OUTPUT_RED(text) "\x1B\x5B1;31m[text]\x1B\x5B0m"
