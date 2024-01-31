@@ -16,6 +16,9 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	worn_icon = 'icons/mob/clothing/uniform/security.dmi'
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/clothing/species/vox/under/security.dmi',
+	)
 
 /obj/item/clothing/under/rank/security/officer
 	name = "security jumpsuit"
@@ -81,6 +84,9 @@
 	icon_state = "detective"
 	item_state = "det"
 	mutantrace_variation = DIGITIGRADE_VARIATION
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/clothing/species/vox/under/security.dmi',
+	)
 
 /obj/item/clothing/under/rank/security/detective/skirt
 	name = "detective's suitskirt"
@@ -108,6 +114,7 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NONE
+	sprite_sheets = null
 
 /*
  * Head of Security
@@ -120,6 +127,9 @@
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 	strip_delay = 60
 	mutantrace_variation = DIGITIGRADE_VARIATION
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/clothing/species/vox/under/security.dmi',
+	)
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt
 	name = "head of security's jumpskirt"
@@ -143,6 +153,7 @@
 	desc = "A stylish alternative to the normal head of security jumpsuit, complete with tactical pants."
 	icon_state = "hosalt"
 	item_state = "bl_suit"
+	sprite_sheets = null
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
 	name = "head of security's turtleneck skirt"
@@ -182,6 +193,7 @@
 	icon_state = "officerblueclothes"
 	item_state = "officerblueclothes"
 	alt_covers_chest = TRUE
+	sprite_sheets = null
 
 /obj/item/clothing/under/rank/security/navyblue/russian
 	name = "\improper Russian officer's uniform"
@@ -196,6 +208,7 @@
 	icon_state = "hosblueclothes"
 	item_state = "hosblueclothes"
 	alt_covers_chest = TRUE
+	sprite_sheets = null
 
 /obj/item/clothing/under/rank/security/warden/navyblue
 	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
@@ -203,6 +216,7 @@
 	icon_state = "wardenblueclothes"
 	item_state = "wardenblueclothes"
 	alt_covers_chest = TRUE
+	sprite_sheets = null
 
 /*
  *Blueshirt
@@ -214,6 +228,7 @@
 	icon_state = "blueshift"
 	item_state = "blueshift"
 	can_adjust = FALSE
+	sprite_sheets = null
 
 /*
  *Spacepol
@@ -225,6 +240,7 @@
 	icon_state = "spacepol"
 	item_state = "spacepol"
 	can_adjust = FALSE
+	sprite_sheets = null
 
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
@@ -264,3 +280,4 @@
 	desc = "A pale blue and black uniform supposedly made from 90% Space Indian cotton."
 	icon_state = "secconuniform"
 	item_state = "secconuniform"
+	sprite_sheets = null
