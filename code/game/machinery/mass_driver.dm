@@ -21,7 +21,6 @@
 	QDEL_NULL(wires)
 	. = ..()
 
-
 /obj/machinery/mass_driver/proc/drive(amount)
 	if(stat & (BROKEN|NOPOWER) || panel_open)
 		return
@@ -45,7 +44,7 @@
 	if(is_wire_tool(I) && panel_open)
 		wires.interact(user)
 		return
-	if(default_deconstruction_screwdriver(user, "mass_driver_o", "mass_driver", I))
+	if(default_deconstruction_screwdriver(user, "mass_driveropen", "mass_driver", I))
 		return
 	if(default_change_direction_wrench(user, I))
 		return
