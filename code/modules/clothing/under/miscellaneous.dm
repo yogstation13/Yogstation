@@ -993,3 +993,29 @@
 /obj/item/clothing/under/ash_robe/hunter/jungle
 	name = "primal rags"
 	desc = "Light primal rags that are fashionable and practical, while still maximizing photosynthesis capability for plantpeople."
+
+/obj/item/clothing/under/vox
+	icon = 'icons/obj/clothing/species/vox/uniforms.dmi'
+	species_restricted = list("Vox")
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/clothing/species/vox/under/misc.dmi'
+		)
+
+/obj/item/clothing/under/vox/vox_casual
+	name = "alien clothing"
+	desc = "This doesn't look very comfortable."
+	icon_state = "vox-casual-1"
+	item_state = "vox-casual-1"
+
+/obj/item/clothing/under/vox/vox_robes
+	name = "alien robes"
+	desc = "Weird and flowing!"
+	icon_state = "vox-casual-2"
+	item_state = "vox-casual-2"
+
+/obj/item/clothing/under/vox/vox_casual
+	name = "alien jumpsuit"
+	desc = "These loose clothes are optimized for the labors of the lower castes onboard the arkships. Large openings in the top allow for breathability while the pants are durable yet flexible enough to not restrict movement."
+	icon = 'icons/mob/clothing/species/vox/under/misc.dmi'
+	icon_state = "vox-jumpsuit"
+	item_state = "vox-jumpsuit"

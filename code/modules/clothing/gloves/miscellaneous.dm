@@ -280,3 +280,13 @@
 	desc = "These gloves provide excellent thermal and electrical insulation."
 	icon_state = "ce_insuls"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 90, RAD = 0, FIRE = 100, ACID = 90, ELECTRIC = 100)
+
+/obj/item/clothing/gloves/color/yellow/vox
+	name = "insulated gauntlets"
+	desc = "These bizarre gauntlets seem to be fitted for...bird claws?"
+	icon_state = "gloves-vox"
+	item_state = "gloves-vox"
+	icon = 'icons/obj/clothing/species/vox/gloves.dmi'
+	species_restricted = list("Vox")
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/clothing/species/vox/gloves.dmi')

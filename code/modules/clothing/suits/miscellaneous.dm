@@ -598,3 +598,38 @@
 	icon_state = "pocketcat"
 	item_state = "pocketcat"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+
+/obj/item/clothing/suit/hooded/vox_robes
+	name = "alien hooded robes"
+	desc = "Large, comfortable robes worn by those who need a bit more covering. The thick fabric contains a pocket suitable for those that need their hands free during their work, while the cloth serves to cover scars or other injuries to the wearer's body."
+	icon = 'icons/mob/clothing/species/vox/suit.dmi'
+	icon_state = "vox-robes"
+	item_state = "vox-robes"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	hoodtype = /obj/item/clothing/head/hooded/vox_robe_hood
+	species_restricted = list("Vox")
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/clothing/species/vox/suit.dmi'
+	)
+
+/obj/item/clothing/head/hooded/vox_robe_hood
+	name = "alien hood"
+	desc = "The thick fabric of this hood serves a variety of purposes to the vox wearing it - serving as a method to hide a scarred face or a way to keep warm in the coldest areas onboard the ship."
+	icon = 'icons/mob/clothing/species/vox/head.dmi'
+	icon_state = "vox-robes-hood"
+	item_state = "vox-robes-hood"
+	flags_inv = HIDEHAIR
+	flags_cover = HEADCOVERSEYES
+	species_restricted = list("Vox")
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/clothing/species/vox/head.dmi'
+	)
+
+/obj/item/clothing/suit/armor/vox_scrap
+	name = "rusted metal armor"
+	desc = "A hodgepodge of various pieces of metal scrapped together into a rudimentary vox-shaped piece of armor."
+	allowed = list(/obj/item/gun, /obj/item/tank)
+	armor = list(MELEE = 70, BULLET = 30, LASER = 20, ENERGY = 5, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15) //Higher melee armor versus lower everything else.
+	icon_state = "vox-scrap"
+	body_parts_covered = CHEST|ARMS|GROIN|LEGS
+	species_restricted = list("Vox")

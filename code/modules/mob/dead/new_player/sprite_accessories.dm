@@ -3057,6 +3057,10 @@
 	name = "green"
 	icon_state = "green"
 
+/datum/sprite_accessory/vox_tails/crimson
+	name = "crimson"
+	icon_state = "crimson"
+
 /datum/sprite_accessory/tails_animated/vox
 	icon = 'icons/mob/species/vox/tails.dmi'
 	color_src = NONE
@@ -3064,6 +3068,10 @@
 /datum/sprite_accessory/tails_animated/vox/green
 	name = "green"
 	icon_state = "green"
+
+/datum/sprite_accessory/tails_animated/vox/crimson
+	name = "crimson"
+	icon_state = "crimson"
 
 /*/datum/sprite_accessory/vox_tails/dgrvox
 	name = "dgrvox"
