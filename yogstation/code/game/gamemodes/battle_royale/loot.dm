@@ -228,6 +228,7 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 		/obj/item/storage/firstaid/brute = 3,
 		/obj/item/reagent_containers/autoinjector/medipen/stimpack = 3,
 		/obj/item/clothing/mask/cigarette/syndicate = 3,
+		/obj/item/bonesetter = 3,
 		/obj/item/storage/firstaid/advanced = 2,
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 2,
 		/obj/item/organ/heart/cursed/wizard = 2, //Rarely used, albiet the healing is incredibly strong
