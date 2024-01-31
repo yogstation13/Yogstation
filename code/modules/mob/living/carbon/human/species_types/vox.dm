@@ -10,7 +10,7 @@
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	screamsound = list('sound/voice/vox/shriek1.ogg', 'sound/voice/vox/ashriek.ogg')
+	screamsound = list('sound/voice/vox/shriek1.ogg'/*, 'sound/voice/vox/ashriek.ogg'*/)
 	cough_sound = 'sound/voice/vox/shriekcough.ogg'
 	sneeze_sound = 'sound/voice/vox/shrieksneeze.ogg'
 	mutantbrain = /obj/item/organ/brain/vox // Brain damage on EMP

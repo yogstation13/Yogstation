@@ -60,6 +60,7 @@
 /obj/item/clothing/mask/breath/vox
 	name = "vox breath mask"
 	desc = "A weirdly-shaped breath mask."
+	icon_state = "vox_mask"
 	species_restricted = list("Vox")
 	flags_cover = NONE
 	visor_flags_cover = NONE
