@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "beam rifles now create turf fires instead of hotspots"
+  - tweak: "beam rifle projectiles can always reflect off of coins"
+  - bugfix: "fixed hitscan projectiles not rendering properly when reflected"
+  - bugfix: "fixed beam rifle projectiles not doing damage when fired from turrets or emitters"
