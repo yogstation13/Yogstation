@@ -556,7 +556,7 @@
 	custom_premium_price = 30
 
 /obj/item/reagent_containers/glass/bottle/vial/sal_acid
-	name = "vial (Salicyclic Acid)"
+	name = "vial (Salicylic Acid)"
 	icon_state = "viallarge_white"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 15)
 	custom_premium_price = 50
