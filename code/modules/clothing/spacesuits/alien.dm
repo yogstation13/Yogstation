@@ -92,6 +92,7 @@
 /obj/item/clothing/under/vox/vox_casual
 	name = "alien jumpsuit"
 	desc = "These loose clothes are optimized for the labors of the lower castes onboard the arkships. Large openings in the top allow for breathability while the pants are durable yet flexible enough to not restrict movement."
+	icon = 'icons/mob/clothing/species/vox/under/misc.dmi'
 	icon_state = "vox-jumpsuit"
 	item_state = "vox-jumpsuit"
 
@@ -141,11 +142,11 @@
 	species_restricted = list("Vox")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/clothing/species/vox/feet.dmi')
-	generic_name = "magclaws"
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(magpulse)
-		clothing_flags &= ~NODROP | ~NOSLIP
+		clothing_flags &= ~NOSLIP
+		REMOVE_TRAIT(src, TRAIT_NODROP, "vox_magclaws")
 		to_chat(user, "You relax your deathgrip on the flooring.")
 	else
 		//make sure these can only be used when equipped.
@@ -155,9 +156,11 @@
 		if(H.shoes != src)
 			to_chat(user, span_warning("You will have to put on [src] before you can do that."))
 			return
-		clothing_flags |= NODROP | NOSLIP	//kinda hard to take off magclaws when you are gripping them tightly.
+		clothing_flags |= NOSLIP	//kinda hard to take off magclaws when you are gripping them tightly.
+		ADD_TRAIT(src, TRAIT_NODROP, "vox_magclaws")
 		to_chat(user, "You dig your claws deeply into the flooring, bracing yourself.")
 		to_chat(user, "It would be hard to take off [src] without relaxing your grip first.")
+	magpulse = !magpulse
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_gravity(user.has_gravity())
 	for(var/X in actions)
@@ -170,7 +173,8 @@
 	if(magpulse)
 		user.visible_message("[src] go limp as they are removed from [usr]'s feet.", "[src] go limp as they are removed from your feet.")
 		magpulse = FALSE
-		clothing_flags &= ~NODROP | ~NOSLIP
+		clothing_flags &= ~NOSLIP
+		REMOVE_TRAIT(src, TRAIT_NODROP, "vox_magclaws")
 
 /obj/item/clothing/shoes/magboots/vox/examine(mob/user)
 	. = ..()

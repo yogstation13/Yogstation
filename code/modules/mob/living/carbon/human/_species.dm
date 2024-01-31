@@ -780,7 +780,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
-		if("vox_quills" in H.dna.species.mutant_bodyparts)
+		if(("vox_quills" in H.dna.species.mutant_bodyparts) && !hair_hidden)
 			S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
 			if(S)
 				var/hair_state = S.icon_state
@@ -1002,7 +1002,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			H.dna.features["pod_flower"] = H.dna.features["pod_hair"]
 	
 	if("vox_quills" in mutant_bodyparts)
-		if(H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if(!H.dna.features["vox_quills"] || H.dna.features["vox_quills"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "vox_quills"
 
 	if("vox_facial_quills" in mutant_bodyparts)

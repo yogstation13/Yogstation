@@ -60,7 +60,7 @@
 /obj/item/clothing/mask/breath/vox
 	name = "vox breath mask"
 	desc = "A weirdly-shaped breath mask."
-	icon_state = "vox_mask"
+	icon_state = "voxmask"
 	species_restricted = list("Vox")
 	flags_cover = NONE
 	visor_flags_cover = NONE
@@ -70,10 +70,7 @@
 	desc = "A weirdly-shaped breath mask, this one seems to be designed for a vox beak."
 	icon_state = "voxmask2"
 	item_state = "voxmask2"
-	species_restricted = list("Vox")
 	actions_types = list()
-	flags_cover = NONE
-	visor_flags_cover = NONE
 
 /obj/item/clothing/mask/breath/vox/respirator/attack_self(mob/user)
 	return

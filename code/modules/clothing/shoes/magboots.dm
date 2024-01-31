@@ -5,7 +5,6 @@
 	var/magboot_state = "magboots"
 	var/magpulse = 0
 	var/slowdown_active = 2
-	var/generic_name = "magboots"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 	actions_types = list(/datum/action/item_action/toggle)
 	strip_delay = 70
@@ -14,13 +13,12 @@
 	cryo_preserve = TRUE
 
 /obj/item/clothing/shoes/magboots/verb/toggle()
-	set name = "Toggle [capitalize(generic_name)]"
+	set name = "Toggle Magboots"
 	set category = "Object"
 	set src in usr
 	if(!can_use(usr))
 		return
 	attack_self(usr)
-
 
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
 	if(magpulse)
@@ -44,7 +42,6 @@
 /obj/item/clothing/shoes/magboots/examine(mob/user)
 	. = ..()
 	. += "Its mag-pulse traction system appears to be [magpulse ? "enabled" : "disabled"]."
-
 
 /obj/item/clothing/shoes/magboots/advance
 	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
