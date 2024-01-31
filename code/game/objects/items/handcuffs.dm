@@ -354,7 +354,7 @@
 	breakouttime = 30
 	item_flags = DROPDEL
 	flags_1 = NONE
-	break_strength = 2 SECONDS
+	break_strength = 2 
 
 /obj/item/restraints/legcuffs/beartrap/energy/Initialize(mapload)
 	. = ..()
@@ -419,7 +419,7 @@
 	item_state = "bola_r"
 	breakouttime = 70
 	immobilize = 20
-	break_strength = 4 SECONDS
+	break_strength = 4 
 
 /obj/item/restraints/legcuffs/bola/watcher //tribal bola for tribal lizards
 	name = "watcher Bola"
