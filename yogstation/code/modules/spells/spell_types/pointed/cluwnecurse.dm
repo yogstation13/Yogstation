@@ -11,7 +11,7 @@
 
 	base_icon_state = "cluwne"
 	cast_range = 3
-	cooldown_time = 1 MINUTES
+	cooldown_time = 3 MINUTES
 	cooldown_reduction_per_rank = 12.5 SECONDS
 
 /datum/action/cooldown/spell/pointed/cluwnecurse/is_valid_target(atom/cast_on)
