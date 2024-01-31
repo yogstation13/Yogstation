@@ -417,7 +417,7 @@
 	desc = "A strong bola, made with a long steel chain. It looks heavy, enough so that it could trip somebody."
 	icon_state = "bola_r"
 	item_state = "bola_r"
-	breakouttime = 70
+	breakouttime = 7 SECONDS
 	immobilize = 20
 	break_strength = 4 
 
@@ -452,7 +452,7 @@
 	icon_state = "gonbola"
 	icon_state_preview = "gonbola_preview"
 	item_state = "bola_r"
-	breakouttime = 30 SECONDS
+	breakouttime = 3 SECONDS
 	slowdown = 0
 	var/datum/status_effect/gonbolaPacify/effectReference
 
