@@ -621,10 +621,16 @@ generate/load female uniform sprites matching all previously decided variables
 
 	var/mob/living/carbon/human/H = loc
 	if(!isinhands)
+		var/previous_icon = file2use
+		var/previous_state = t_state
 		if(icon_override)
 			file2use = icon_override
 		else if(sprite_sheets?[H?.dna?.species?.name])
 			file2use = sprite_sheets[H.dna.species.name]
+		if(!icon_exists(file2use, t_state))
+			file2use = previous_icon
+			t_state = previous_state
+
 	var/mutable_appearance/standing
 	if(femaleuniform)
 		if(HAS_TRAIT(H, TRAIT_SKINNY) && (H.underwear == "Nude"))

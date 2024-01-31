@@ -10,6 +10,7 @@
 	/// Can land on someones head
 	var/hattable = TRUE
 	dynamic_hair_suffix = "+generic"
+	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/head.dmi')
 
 /obj/item/clothing/head/Initialize(mapload)
 	. = ..()

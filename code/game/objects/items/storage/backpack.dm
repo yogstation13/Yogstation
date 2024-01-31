@@ -20,6 +20,7 @@
 	slot_flags = ITEM_SLOT_BACK	//ERROOOOO
 	resistance_flags = NONE
 	max_integrity = 300
+	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/back.dmi')
 
 /obj/item/storage/backpack/Initialize(mapload)
 	. = ..()
