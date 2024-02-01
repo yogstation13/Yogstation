@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(cargo_marks)
 
 /obj/item/cargo_teleporter
-	name = "QM personal teleporter"
+	name = "cargo handheld teleporter"
 	desc = "Specialised personal teleporter based on modern bluespace technology. This one issued to QM for moving crates, closets and none-living objects to previously marked locations."
 	icon = 'modular_dripstation/icons/obj/cargo/cargo_teleporter.dmi'
 	mob_overlay_icon = 'modular_dripstation/icons/mob/clothing/belt.dmi'
