@@ -81,8 +81,6 @@
 	icon_state = "boots-vox"
 	icon = 'icons/obj/clothing/species/vox/shoes.dmi'
 	species_restricted = list("Vox")
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/species/vox/feet.dmi')
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(magpulse)
