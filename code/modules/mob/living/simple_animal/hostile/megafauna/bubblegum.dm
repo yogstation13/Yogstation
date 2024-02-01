@@ -60,7 +60,7 @@ Difficulty: Hard
 	var/enrage_till = 0
 	var/enrage_time = 70
 	var/revving_charge = FALSE
-	internal_type = /obj/item/gps/internal/bubblegum
+	gps_name = "Bloody Signal"
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
 	deathsound = 'sound/magic/enter_blood.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/triple_charge,

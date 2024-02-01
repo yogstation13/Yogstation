@@ -65,6 +65,7 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, PROC_REF(vehicle_mob_buckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
+	RegisterSignal(parent, COMSIG_BUCKLED_CAN_Z_MOVE, PROC_REF(riding_can_z_move))
 
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	var/atom/movable/AM = parent
@@ -314,6 +315,19 @@
 	user.Knockdown(60)
 	user.visible_message(span_warning("[AM] pushes [user] off of [AM.p_them()]!"))
 
+/datum/component/riding/human/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS))
+		return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+	// if(!can_be_driven)
+	// 	if(z_move_flags & ZMOVE_FEEDBACK)
+	// 		to_chat(rider, span_warning("[movable_parent] cannot be driven around. Unbuckle from [movable_parent.p_them()] first."))
+	// 	return COMPONENT_RIDDEN_STOP_Z_MOVE
+	if(!ride_check(rider, FALSE))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You're unable to ride [movable_parent] right now!"))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+
 /datum/component/riding/cyborg
 	del_on_unbuckle_all = TRUE
 
@@ -390,6 +404,19 @@
 	S.throwcooldown = TRUE
 	addtimer(VARSET_CALLBACK(S, throwcooldown, FALSE), 10 SECONDS)
 
+/datum/component/riding/cyborg/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS))
+		return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+	// if(!can_be_driven)
+	// 	if(z_move_flags & ZMOVE_FEEDBACK)
+	// 		to_chat(rider, span_warning("[movable_parent] cannot be driven around. Unbuckle from [movable_parent.p_them()] first."))
+	// 	return COMPONENT_RIDDEN_STOP_Z_MOVE
+	if(!ride_check(rider, FALSE))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You're unable to ride [movable_parent] right now!"))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+
 /datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override = null)
 	var/atom/movable/AM = parent
 	var/amount_equipped = 0
@@ -423,6 +450,11 @@
 		else
 			qdel(O)
 	return TRUE
+
+/// Extra checks before buckled.can_z_move can be called in mob/living/can_z_move()
+/datum/component/riding/proc/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	SIGNAL_HANDLER
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
 /obj/item/riding_offhand
 	name = "offhand"

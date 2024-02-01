@@ -63,7 +63,7 @@
 	// may result.
 	if(force)
 		..()
-		. = QDEL_HINT_QUEUE
+		return QDEL_HINT_QUEUE
 	else
 		return QDEL_HINT_LETMELIVE
 
@@ -241,7 +241,7 @@
 
 	if(SSshuttle.initialized)
 		INVOKE_ASYNC(SSshuttle, TYPE_PROC_REF(/datum/controller/subsystem/shuttle, setup_shuttles), list(src))
-	
+
 	#ifdef DOCKING_PORT_HIGHLIGHT
 	highlight("#f00")
 	#endif
@@ -273,7 +273,7 @@
 
 		roundstart_template = SSmapping.shuttle_templates[sid]
 		if(!roundstart_template)
-			CRASH("Invalid path ([roundstart_template]) passed to docking port.")
+			CRASH("Invalid path ([sid]/[roundstart_template]) passed to docking port.")
 
 	if(roundstart_template)
 		SSshuttle.action_load(roundstart_template, src)
@@ -639,7 +639,6 @@
 		for(var/atom/individual_atoms in place)
 			individual_atoms.connect_to_shuttle(TRUE, src, dock)
 
-
 //this is a hook for custom behaviour. Maybe at some point we could add checks to see if engines are intact
 /obj/docking_port/mobile/proc/canMove()
 	return TRUE
@@ -677,14 +676,13 @@
 
 	return SHUTTLE_CAN_DOCK
 
-/obj/docking_port/mobile/proc/check_dock(obj/docking_port/stationary/S, silent=FALSE)
+/obj/docking_port/mobile/proc/check_dock(obj/docking_port/stationary/S, silent = FALSE)
 	var/status = canDock(S)
 	if(status == SHUTTLE_CAN_DOCK)
 		return TRUE
 	else
 		if(status != SHUTTLE_ALREADY_DOCKED && !silent) // SHUTTLE_ALREADY_DOCKED is no cause for error
-			var/msg = "Shuttle [src] cannot dock at [S], error: [status]"
-			message_admins(msg)
+			message_admins("Shuttle [src] cannot dock at [S], error: [status]")
 		// We're already docked there, don't need to do anything.
 		// Triggering shuttle movement code in place is weird
 		return FALSE
@@ -732,7 +730,7 @@
 	mode = SHUTTLE_RECALL
 
 /obj/docking_port/mobile/proc/enterTransit()
-	if((SSshuttle.lockdown && is_station_level(z)) || !canMove())	//emp went off, no escape
+	if((SSshuttle.lockdown && is_station_level(z)) || !canMove()) //emp went off, no escape
 		mode = SHUTTLE_IDLE
 		return
 	previous = null
@@ -751,7 +749,6 @@
 				previous = S0
 	else
 		WARNING("shuttle \"[shuttle_id]\" could not enter transit space. S0=[S0 ? S0.shuttle_id : "null"] S1=[S1 ? S1.shuttle_id : "null"]")
-
 
 /obj/docking_port/mobile/proc/jumpToNullSpace()
 	// Destroys the docking port and the shuttle contents.
@@ -813,14 +810,10 @@
 	var/list/L1 = return_ordered_turfs(S1.x, S1.y, S1.z, S1.dir)
 
 	var/list/ripple_turfs = list()
-
-	for(var/i in 1 to L0.len)
+	var/stop = min(L0.len, L1.len)
+	for(var/i in 1 to stop)
 		var/turf/T0 = L0[i]
 		var/turf/T1 = L1[i]
-		if(!T0 || !T1)
-			continue  // out of bounds
-		if(T0.type == T0.baseturfs)
-			continue  // indestructible
 		if(!istype(T0.loc, area_type) || istype(T0.loc, /area/shuttle/transit))
 			continue  // not part of the shuttle
 		ripple_turfs += T1
@@ -841,6 +834,7 @@
 //used by shuttle subsystem to check timers
 /obj/docking_port/mobile/proc/check()
 	check_effects()
+	//process_events() if you were to add events to non-escape shuttles, uncomment this
 
 	if(mode == SHUTTLE_IGNITING)
 		check_transit_zone()
@@ -974,11 +968,13 @@
 			return "RCH"
 		if(SHUTTLE_PREARRIVAL)
 			return "LDN"
+		if(SHUTTLE_DISABLED)
+			return "DIS"
 	return ""
 
 // returns 5-letter timer string, used by status screens and mob status panel
 /obj/docking_port/mobile/proc/getTimerStr()
-	if(mode == SHUTTLE_STRANDED)
+	if(mode == SHUTTLE_STRANDED || mode == SHUTTLE_DISABLED)
 		return "--:--"
 
 	var/timeleft = timeLeft()
@@ -1042,12 +1038,13 @@
 
 
 // attempts to locate /obj/machinery/computer/shuttle with matching ID inside the shuttle
-/obj/docking_port/mobile/proc/getControlConsole()
-	for(var/place in shuttle_areas)
-		var/area/shuttle/shuttle_area = place
-		for(var/obj/machinery/computer/shuttle/S in shuttle_area)
-			if(S.shuttleId == shuttle_id)
-				return S
+/obj/docking_port/mobile/proc/get_control_console()
+	for(var/area/shuttle/shuttle_area as anything in shuttle_areas)
+		var/obj/machinery/computer/shuttle/shuttle_computer = locate(/obj/machinery/computer/shuttle) in shuttle_area
+		if(!shuttle_computer)
+			continue
+		if(shuttle_computer.shuttleId == shuttle_id)
+			return shuttle_computer
 	return null
 
 /obj/docking_port/mobile/proc/hyperspace_sound(phase, list/areas)
@@ -1147,8 +1144,7 @@
 			return TRUE
 		if(SHUTTLE_IDLE,SHUTTLE_IGNITING)
 			return FALSE
-		else
-			return FALSE // hmm
+	return FALSE // hmm
 
 /obj/docking_port/mobile/emergency/in_flight()
 	switch(mode)
@@ -1156,9 +1152,7 @@
 			return TRUE
 		if(SHUTTLE_STRANDED,SHUTTLE_ENDGAME)
 			return FALSE
-		else
-			return ..()
-
+	return ..()
 
 //Called when emergency shuttle leaves the station
 /obj/docking_port/mobile/proc/on_emergency_launch()

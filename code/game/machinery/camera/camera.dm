@@ -97,6 +97,11 @@
 	else //this is handled by toggle_camera, so no need to update it twice.
 		update_appearance()
 
+/obj/machinery/camera/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	for(var/i in network)
+		network -= i
+		network += "[port.shuttle_id]_[i]"
+
 /obj/machinery/camera/Destroy()
 	if(can_use())
 		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks

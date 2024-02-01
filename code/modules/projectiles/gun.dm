@@ -120,7 +120,7 @@
 		pin = null
 	if(A == chambered)
 		chambered = null
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	if(A == bayonet)
 		clear_bayonet()
 	if(A == gun_light)
@@ -493,7 +493,7 @@
 			return
 		to_chat(user, span_notice("You attach [K] to [src]'s bayonet lug."))
 		bayonet = K
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	else
 		return ..()
 
@@ -582,7 +582,7 @@
 			old_gun_light.forceMove(get_turf(src))
 		remove_item_action(gunlight_toggle)
 		gunlight_toggle = null
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/gun/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, gunlight_toggle))
@@ -595,12 +595,11 @@
 		return
 
 	var/mob/living/carbon/human/user = usr
-	gun_light.light_on = !gun_light.light_on
-	gun_light.update_brightness()
+	gun_light.toggle_light(user)
 	to_chat(user, span_notice("You toggle the gunlight [gun_light.light_on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/gun/update_overlays()
 	. = ..()

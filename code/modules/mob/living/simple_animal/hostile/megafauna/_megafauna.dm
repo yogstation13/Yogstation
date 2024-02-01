@@ -29,22 +29,39 @@
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
 	flags_1 = HEAR_1 | PREVENT_CONTENTS_EXPLOSION_1
+	/// Crusher loot dropped when the megafauna is killed with a crusher
 	var/list/crusher_loot
-	var/elimination = FALSE
+	/// Achievement given to surrounding players when the megafauna is killed
+	var/achievement_type
+	/// Crusher achievement given to players when megafauna is killed
+	var/crusher_achievement_type
+	/// Score given to players when megafauna is killed
+	var/score_achievement_type
+	/// If the megafauna was actually killed (not just dying, then transforming into another type)
+	var/elimination = 0
+	/// Modifies attacks when at lower health
 	var/anger_modifier = 0
-	var/obj/item/gps/internal
-	var/internal_type
+	/// Name for the GPS signal of the megafauna
+	var/gps_name = null
+	/// Next time the megafauna can use a melee attack
 	var/recovery_time = 0
-	var/true_spawn = TRUE // if this is a megafauna that should grant achievements, or have a gps signal
-	var/nest_range = 10
-	var/chosen_attack = 1 // chosen attack num
+	/// If this is a megafauna that is real (has achievements, gps signal)
+	var/true_spawn = TRUE
+	/// The chosen attack by the megafauna
+	var/chosen_attack = 1
+	/// Attack actions, sets chosen_attack to the number in the action
 	var/list/attack_action_types = list()
+	/// Summoning line, said when summoned via megafauna vents.
+	var/summon_line = "I'll kick your ass!"
+	
+	var/nest_range = 10
+	
 	var/small_sprite_type
 
 /mob/living/simple_animal/hostile/megafauna/Initialize(mapload)
 	. = ..()
-	if(internal_type && true_spawn)
-		internal = new internal_type(src)
+	if(gps_name && true_spawn)
+		AddComponent(/datum/component/gps, gps_name)
 	ADD_TRAIT(src, TRAIT_NO_TELEPORT, MEGAFAUNA_TRAIT)
 	for(var/action_type in attack_action_types)
 		var/datum/action/innate/megafauna_attack/attack_action = new action_type()
@@ -53,9 +70,6 @@
 		var/datum/action/small_sprite/small_action = new small_sprite_type()
 		small_action.Grant(src)
 
-/mob/living/simple_animal/hostile/megafauna/Destroy()
-	QDEL_NULL(internal)
-	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	if(nest && nest.parent && get_dist(nest.parent, src) > nest_range)

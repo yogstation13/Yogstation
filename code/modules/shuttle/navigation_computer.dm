@@ -2,7 +2,7 @@
 	name = "navigation computer"
 	desc = "Used to designate a precise transit location for a spacecraft."
 	jump_action = null
-	should_supress_view_changes  = FALSE
+	should_supress_view_changes = FALSE
 	
 	// Docking cameras should only interact with their current z-level.
 	move_up_action = null
@@ -22,8 +22,7 @@
 	var/view_range = 0
 	var/x_offset = 0
 	var/y_offset = 0
-	var/list/whitelist_turfs = list(/turf/open/space, /turf/open/floor/plating/asteroid, /turf/open/lava, /turf/closed/mineral, /turf/open/floor/plating/ice/icemoon )
-	var/space_turfs_only = TRUE
+	var/list/whitelist_turfs = list(/turf/open/space, /turf/open/floor/plating/asteroid, /turf/open/lava, /turf/open/openspace, /turf/open/floor/plating/ice/icemoon)
 	var/see_hidden = FALSE
 	var/designate_time = 0
 	var/turf/designating_target_loc
@@ -144,7 +143,7 @@
 	if(designate_time && (landing_clear != SHUTTLE_DOCKER_BLOCKED))
 		to_chat(current_user, span_warning("Targeting transit location, please wait [DisplayTimeText(designate_time)]..."))
 		designating_target_loc = the_eye.loc
-		var/wait_completed = do_after(current_user, designate_time, designating_target_loc, timed_action_flags = IGNORE_HELD_ITEM, extra_checks = CALLBACK(src, /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget))
+		var/wait_completed = do_after(current_user, designate_time, designating_target_loc, timed_action_flags = IGNORE_HELD_ITEM, extra_checks = CALLBACK(src, TYPE_PROC_REF(/obj/machinery/computer/camera_advanced/shuttle_docker, canDesignateTarget)))
 		designating_target_loc = null
 		if(!current_user)
 			return
@@ -156,13 +155,22 @@
 	if(landing_clear != SHUTTLE_DOCKER_LANDING_CLEAR)
 		switch(landing_clear)
 			if(SHUTTLE_DOCKER_BLOCKED)
-				to_chat(current_user, span_warning("Invalid transit location"))
+				to_chat(current_user, span_warning("Invalid transit location."))
 			if(SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT)
 				to_chat(current_user, span_warning("Unknown object detected in landing zone. Please designate another location."))
 		return
 
+	///Make one use port that deleted after fly off, to don't lose info that need on to properly fly off.
+	if(my_port?.get_docked())
+		my_port.unregister()
+		my_port.delete_after = TRUE
+		my_port.shuttle_id = null
+		my_port.name = "Old [my_port.name]"
+		my_port = null
+
 	if(!my_port)
 		my_port = new()
+		my_port.unregister()
 		my_port.name = shuttlePortName
 		my_port.shuttle_id = shuttlePortId
 		my_port.height = shuttle_port.height
@@ -170,12 +178,14 @@
 		my_port.dheight = shuttle_port.dheight
 		my_port.dwidth = shuttle_port.dwidth
 		my_port.hidden = shuttle_port.hidden
+		my_port.register(TRUE)
 	my_port.setDir(the_eye.dir)
 	my_port.forceMove(locate(eyeobj.x - x_offset, eyeobj.y - y_offset, eyeobj.z))
+
 	if(current_user.client)
 		current_user.client.images -= the_eye.placed_images
 
-	QDEL_LIST(the_eye.placed_images)
+	LAZYCLEARLIST(the_eye.placed_images)
 
 	for(var/image/place_spots as anything in the_eye.placement_images)
 		var/image/newI = image('icons/effects/alphacolors.dmi', the_eye.loc, "blue")
@@ -187,7 +197,7 @@
 
 	if(current_user.client)
 		current_user.client.images += the_eye.placed_images
-		to_chat(current_user, span_notice("Transit location designated"))
+		to_chat(current_user, span_notice("Transit location designated."))
 	return TRUE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget()
@@ -259,12 +269,6 @@
 		if(!is_type_in_typecache(turf_type, whitelist_turfs))
 			return SHUTTLE_DOCKER_BLOCKED
 
-	if(space_turfs_only)
-		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
-		var/area/A = get_area(T)
-		if(!ispath(turf_type, /turf/open/space) && !ispath(A.type, /area/icemoon))
-			return SHUTTLE_DOCKER_BLOCKED
-			
 	// Checking for overlapping dock boundaries
 	for(var/i in 1 to overlappers.len)
 		var/obj/docking_port/port = overlappers[i]
@@ -298,8 +302,8 @@
 /mob/camera/ai_eye/remote/shuttle_docker
 	visible_icon = FALSE
 	use_static = FALSE
-	var/list/placement_images = list()
-	var/list/placed_images = list()
+	var/list/image/placement_images = list()
+	var/list/image/placed_images = list()
 
 /mob/camera/ai_eye/remote/shuttle_docker/Initialize(mapload, obj/machinery/computer/camera_advanced/origin)
 	src.origin = origin
@@ -323,10 +327,9 @@
 	button_icon_state = "mech_cycle_equip_off"
 
 /datum/action/innate/shuttledocker_rotate/Activate()
-	if(QDELETED(target) || !isliving(target))
+	if(QDELETED(owner) || !isliving(owner))
 		return
-	var/mob/living/C = target
-	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
+	var/mob/camera/ai_eye/remote/remote_eye = owner.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
 	origin.rotateLandingSpot()
 
@@ -336,12 +339,11 @@
 	button_icon_state = "mech_zoom_off"
 
 /datum/action/innate/shuttledocker_place/Activate()
-	if(QDELETED(target) || !isliving(target))
+	if(QDELETED(owner) || !isliving(owner))
 		return
-	var/mob/living/C = target
-	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
+	var/mob/camera/ai_eye/remote/remote_eye = owner.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
-	origin.placeLandingSpot(target)
+	origin.placeLandingSpot(owner)
 
 /datum/action/innate/camera_jump/shuttle_docker
 	name = "Jump to Location"

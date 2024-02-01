@@ -20,19 +20,23 @@
 	layer = LARGE_MOB_LAYER
 	sentience_type = SENTIENCE_BOSS
 	hud_type = /datum/hud/lavaland_elite
+	/// Name for the GPS signal of the megafauna
+	var/gps_name = null
+	/// If this is a megafauna that is real (has achievements, gps signal)
+	var/true_spawn = TRUE
+	/// The chosen attack by the megafauna
 	var/chosen_attack = 1
+	/// Attack actions, sets chosen_attack to the number in the action
 	var/list/attack_action_types = list()
+	
 	var/can_talk = FALSE
 	var/obj/loot_drop = null
-	var/obj/item/gps/internal
-	var/internal_type
-	var/true_spawn = TRUE // If this elite fauna should have a signal, same gps system used in megafauna.
 
 //Gives player-controlled variants the ability to swap attacks
 /mob/living/simple_animal/hostile/asteroid/elite/Initialize(mapload)
 	. = ..()
-	if(internal_type && true_spawn)
-		internal = new internal_type(src)
+	if(gps_name && true_spawn)
+		AddComponent(/datum/component/gps, gps_name)
 	for(var/action_type in attack_action_types)
 		var/datum/action/innate/elite_attack/attack_action = new action_type()
 		attack_action.Grant(src)
@@ -173,7 +177,6 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	light_range = 3
 	anchored = TRUE
 	density = FALSE
-	var/obj/item/gps/internal
 
 /obj/structure/elite_tumor/attack_hand(mob/user)
 	. = ..()
@@ -208,14 +211,7 @@ obj/structure/elite_tumor/proc/return_elite()
 /obj/structure/elite_tumor/Initialize(mapload)
 	. = ..()
 	//AddComponent(/datum/component/gps, "Menacing Signal")
-	internal = new /obj/item/gps/internal/elite(src)
 	START_PROCESSING(SSobj, src)
-
-/obj/item/gps/internal/elite
-	icon_state = null
-	gpstag = "Menacing Signal"
-	desc = "Something strange sleeps beneath the planet."
-	invisibility = 100
 
 /obj/structure/elite_tumor/Destroy()
 	STOP_PROCESSING(SSobj, src)

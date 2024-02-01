@@ -10,7 +10,6 @@
 	name = "stairs"
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
-	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = TRUE
 	move_resist = INFINITY
 
@@ -36,6 +35,7 @@
 		force_open_above()
 		build_signal_listener()
 	update_surrounding()
+	
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
 	)
@@ -94,6 +94,7 @@
 		climber.pulling?.move_from_pull(climber, loc, climber.glide_size)
 		for(var/mob/living/buckled as anything in climber.buckled_mobs)
 			buckled.pulling?.move_from_pull(buckled, loc, buckled.glide_size)
+
 
 /obj/structure/stairs/update_icon_state()
 	. = ..()

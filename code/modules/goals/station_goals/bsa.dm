@@ -283,12 +283,20 @@
 	else if(istype(target, /obj/item/gps))
 		var/obj/item/gps/G = target
 		return G.gpstag
+	else if(istype(target, /datum/component/gps))
+		var/datum/component/gps/G = target
+		return G.gpstag
 
 /obj/machinery/computer/bsa_control/proc/get_impact_turf()
-	if(istype(target, /area))
+	if(obj_flags & EMAGGED)
+		return get_turf(src)
+	else if(istype(target, /area))
 		return pick(get_area_turfs(target))
 	else if(istype(target, /obj/item/gps))
 		return get_turf(target)
+	else if(istype(target, /datum/component/gps))
+		var/datum/component/gps/G = target
+		return get_turf(G.parent)
 
 /**
   * Fires the BSA (duh) if it has power

@@ -2,6 +2,7 @@ import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { clamp } from 'common/math';
 import { vecLength, vecSubtract } from 'common/vector';
+
 import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -10,14 +11,7 @@ const coordsToVec = coords => map(parseFloat)(coords.split(', '));
 
 export const Gps = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    currentArea,
-    currentCoords,
-    globalmode,
-    power,
-    tag,
-    updating,
-  } = data;
+  const { currentArea, currentCoords, globalmode, power, tag, updating } = data;
   const signals = flow([
     map((signal, index) => {
       // Calculate distance to the target. BYOND distance is capped to 127,
@@ -33,15 +27,13 @@ export const Gps = (props, context) => {
     }),
     sortBy(
       // Signals with distance metric go first
-      signal => signal.dist === undefined,
+      (signal) => signal.dist === undefined,
       // Sort alphabetically
-      signal => signal.entrytag),
+      (signal) => signal.entrytag,
+    ),
   ])(data.signals || []);
   return (
-    <Window
-      width={470}
-      height={700}
-      resizable>
+    <Window title="Global Positioning System" width={470} height={700} resizable>
       <Window.Content scrollable>
         <Section
           title="Control"

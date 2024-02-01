@@ -40,7 +40,7 @@ Difficulty: Medium
 	ranged_cooldown_time = 20
 	var/size = 5
 	var/charging = FALSE
-	internal_type = /obj/item/gps/internal/legion
+	gps_name = "Echoing Signal"
 	pixel_y = -90
 	pixel_x = -75
 	loot = list(/obj/item/stack/sheet/bone = 3)

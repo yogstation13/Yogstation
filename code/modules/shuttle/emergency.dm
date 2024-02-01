@@ -476,7 +476,7 @@
 	launch_status = UNLAUNCHED
 
 /obj/docking_port/mobile/pod/request(obj/docking_port/stationary/S)
-	var/obj/machinery/computer/shuttle/C = getControlConsole()
+	var/obj/machinery/computer/shuttle/C = get_control_console()
 	if(!istype(C, /obj/machinery/computer/shuttle/pod))
 		return ..()
 	if(GLOB.security_level >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))

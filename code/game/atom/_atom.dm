@@ -561,18 +561,19 @@
   * deleted shortly after hitting something (during explosions or other massive events that
   * throw lots of items around - singularity being a notable example)
   */
-/atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-	if(density && !has_gravity(AM)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
-		addtimer(CALLBACK(src, PROC_REF(hitby_react), AM), 2)
+/atom/proc/hitby(atom/movable/hitting_atom, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, hitting_atom, skipcatch, hitpush, blocked, throwingdatum)
+	if(density && !has_gravity(hitting_atom)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
+		addtimer(CALLBACK(src, PROC_REF(hitby_react), hitting_atom), 2)
 
 /**
   * We have have actually hit the passed in atom
   *
   * Default behaviour is to move back from the item that hit us
   */
-/atom/proc/hitby_react(atom/movable/AM)
-	if(AM && isturf(AM.loc))
-		step(AM, turn(AM.dir, 180))
+/atom/proc/hitby_react(atom/movable/harmed_atom)
+	if(harmed_atom && isturf(harmed_atom.loc))
+		step(harmed_atom, REVERSE_DIR(harmed_atom.dir))
 
 ///Handle the atom being slipped over
 /atom/proc/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun, force_drop)
@@ -1160,8 +1161,9 @@
 		var/datum/action/A = X
 		A.build_all_button_icons()
 
-/atom/proc/intercept_zImpact(atom/movable/AM, levels = 1)
-	return FALSE
+/atom/proc/intercept_zImpact(atom/movable/falling_movables, levels = 1)
+	SHOULD_CALL_PARENT(TRUE)
+	. |= SEND_SIGNAL(src, COMSIG_ATOM_INTERCEPT_Z_FALL, falling_movables, levels)
 
 ///Setter for the `density` variable to append behavior related to its changing.
 /atom/proc/set_density(new_value)

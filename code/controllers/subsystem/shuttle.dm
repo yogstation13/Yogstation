@@ -726,17 +726,17 @@ SUBSYSTEM_DEF(shuttle)
 
 /datum/controller/subsystem/shuttle/proc/get_containing_dock(atom/A)
 	. = list()
-	var/list/stationary_cache = stationary_docking_ports
-	for(var/i in 1 to stationary_cache.len)
-		var/obj/docking_port/port = stationary_cache[i]
+	var/list/stationary_docking_ports_cache = stationary_docking_ports
+	for(var/i in 1 to stationary_docking_ports_cache.len)
+		var/obj/docking_port/port = stationary_docking_ports_cache[i]
 		if(port.is_in_shuttle_bounds(A))
 			. += port
 
 /datum/controller/subsystem/shuttle/proc/get_dock_overlap(x0, y0, x1, y1, z)
 	. = list()
-	var/list/stationary_cache = stationary_docking_ports
-	for(var/i in 1 to stationary_cache.len)
-		var/obj/docking_port/port = stationary_cache[i]
+	var/list/stationary_docking_ports_cache = stationary_docking_ports
+	for(var/i in 1 to stationary_docking_ports_cache.len)
+		var/obj/docking_port/port = stationary_docking_ports_cache[i]
 		if(!port || port.z != z)
 			continue
 		var/list/bounds = port.return_coords()
@@ -926,28 +926,6 @@ SUBSYSTEM_DEF(shuttle)
 		ui = new(user, src, "ShuttleManipulator")
 		ui.open()
 
-/proc/shuttlemode2str(mode)
-	switch(mode)
-		if(SHUTTLE_IDLE)
-			. = "idle"
-		if(SHUTTLE_IGNITING)
-			. = "engines charging"
-		if(SHUTTLE_RECALL)
-			. = "recalled"
-		if(SHUTTLE_CALL)
-			. = "called"
-		if(SHUTTLE_DOCKED)
-			. = "docked"
-		if(SHUTTLE_STRANDED)
-			. = "stranded"
-		if(SHUTTLE_ESCAPE)
-			. = "escape"
-		if(SHUTTLE_ENDGAME)
-			. = "endgame"
-	if(!.)
-		CRASH("shuttlemode2str(): invalid mode [mode]")
-
-
 /datum/controller/subsystem/shuttle/ui_data(mob/user)
 	var/list/data = list()
 	data["tabs"] = list("Status", "Templates", "Modification")
@@ -1002,7 +980,7 @@ SUBSYSTEM_DEF(shuttle)
 		else if(!M.destination)
 			L["can_fast_travel"] = FALSE
 		if (M.mode != SHUTTLE_IDLE)
-			L["mode"] = capitalize(shuttlemode2str(M.mode))
+			L["mode"] = capitalize(M.mode)
 		L["status"] = M.getDbgStatusText()
 		if(M == existing_shuttle)
 			data["existing_shuttle"] = L

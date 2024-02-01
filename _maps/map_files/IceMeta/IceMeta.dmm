@@ -9145,6 +9145,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"cLh" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
 "cLu" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -12106,10 +12110,6 @@
 /obj/structure/closet/secure_closet/miner,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
-"dEb" = (
-/obj/structure/grille/broken,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/underground/explored)
 "dEg" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -17159,6 +17159,9 @@
 	},
 /turf/open/floor/engine/n2,
 /area/engine/atmos/distro)
+"fiM" = (
+/turf/open/floor/plating,
+/area/icemoon/underground/explored)
 "fiU" = (
 /obj/machinery/computer/prisoner{
 	dir = 4
@@ -27558,6 +27561,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"igO" = (
+/obj/item/flashlight/lantern{
+	light_on = 1
+	},
+/turf/open/floor/plating/snowed/colder,
+/area/icemoon/underground/explored)
 "ihb" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -29623,6 +29632,9 @@
 "iJR" = (
 /turf/open/openspace/icemoon/keep_below,
 /area/icemoon/surface/outdoors)
+"iJS" = (
+/turf/open/floor/plating/snowed/colder,
+/area/icemoon/underground/explored)
 "iJT" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -34077,10 +34089,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"jVj" = (
-/obj/structure/grille,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/underground/explored)
 "jVn" = (
 /obj/machinery/door/airlock/external{
 	glass = 1;
@@ -35698,6 +35706,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"kss" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
 "ksA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -37106,6 +37118,11 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"kNa" = (
+/obj/effect/spawner/structure/window/ice,
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
 "kNi" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -43967,6 +43984,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
+"mLB" = (
+/obj/effect/spawner/structure/window/ice,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
 "mLD" = (
 /obj/machinery/light{
 	dir = 8
@@ -45332,6 +45353,10 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
+"ncA" = (
+/obj/structure/stairs/north,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "ncH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -65207,6 +65232,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"sVd" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/icemoon/underground/explored)
 "sVf" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -69173,6 +69202,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
+"ucZ" = (
+/obj/structure/barricade/wooden/crude/snow,
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
 "udj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -75184,6 +75219,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"vLm" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
 "vLp" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -83693,6 +83733,9 @@
 /obj/effect/landmark/start/head_of_security,
 /turf/open/floor/carpet,
 /area/bridge)
+"xXW" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
 "xXZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -84265,12 +84308,6 @@
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"yfD" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "yfM" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 10
@@ -100456,19 +100493,19 @@ lbu
 lbu
 lbu
 lbu
+lbu
+lbu
+lbu
+lbu
+lbu
+lbu
+lbu
 iwT
-jVj
-hqG
-jVj
 iwT
-lbu
-lbu
-lbu
-lbu
-lbu
-lbu
-lbu
-lbu
+iwT
+ucZ
+kNa
+iwT
 lbu
 lbu
 lbu
@@ -100713,11 +100750,6 @@ lbu
 lbu
 lbu
 lbu
-jVj
-hqG
-hqG
-hqG
-jVj
 lbu
 lbu
 lbu
@@ -100725,7 +100757,12 @@ lbu
 lbu
 lbu
 lbu
-lbu
+iwT
+ncA
+sVd
+cLh
+xXW
+kNa
 lbu
 lbu
 lbu
@@ -100970,11 +101007,6 @@ lbu
 lbu
 lbu
 lbu
-hqG
-hqG
-bVk
-hqG
-hqG
 lbu
 lbu
 lbu
@@ -100982,7 +101014,12 @@ lbu
 lbu
 lbu
 lbu
-lbu
+iwT
+ncA
+fiM
+iJS
+xXW
+vLm
 lbu
 lbu
 lbu
@@ -101227,11 +101264,6 @@ lbu
 lbu
 lbu
 lbu
-jVj
-cUs
-hqG
-hqG
-jVj
 lbu
 lbu
 lbu
@@ -101239,7 +101271,12 @@ lbu
 lbu
 lbu
 lbu
-lbu
+iwT
+ncA
+igO
+xXW
+kss
+mLB
 lbu
 lbu
 lbu
@@ -101484,19 +101521,19 @@ lbu
 lbu
 lbu
 lbu
+lbu
+lbu
+lbu
+lbu
+lbu
+lbu
+lbu
 iwT
-dEb
-hqG
-jVj
 iwT
-lbu
-lbu
-lbu
-lbu
-lbu
-lbu
-lbu
-lbu
+iwT
+ucZ
+mLB
+iwT
 lbu
 lbu
 lbu
@@ -231534,7 +231571,7 @@ cAc
 cAc
 cAc
 cAc
-ueX
+cAc
 tRh
 ozK
 ozK
@@ -231790,8 +231827,8 @@ cAc
 wkl
 sRc
 abf
+abf
 cAc
-ueX
 tRh
 ozK
 ozK
@@ -232047,8 +232084,8 @@ cAc
 jnA
 vzg
 abf
+abf
 cAc
-ueX
 ueX
 ueX
 ueX
@@ -232302,10 +232339,10 @@ ueX
 ueX
 swJ
 oFu
-eVL
-yfD
+vzg
+abf
+abf
 swJ
-cAc
 cAc
 swJ
 ueX
@@ -232559,7 +232596,7 @@ rNk
 rNk
 swJ
 sdx
-dFy
+eVL
 cFE
 nIB
 kYj

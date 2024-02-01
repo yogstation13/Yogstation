@@ -485,6 +485,7 @@
 	. = pulledby
 	pulledby = new_pulledby
 
+
 /atom/movable/proc/Move_Pulled(atom/moving_atom)
 	if(!pulling)
 		return FALSE
@@ -511,6 +512,10 @@
 	var/mob/living/pulled_mob = moving_atom
 	set_pull_offsets(pulled_mob, grab_state)
 
+/**
+ * Checks if the pulling and pulledby should be stopped because they're out of reach.
+ * If z_allowed is TRUE, the z level of the pulling will be ignored.This is to allow things to be dragged up and down stairs.
+ */
 /atom/movable/proc/check_pulling(only_pulling = FALSE, z_allowed = FALSE)
 	if(pulling)
 		if(get_dist(src, pulling) > 1 || (z != pulling.z && !z_allowed))
@@ -631,7 +636,6 @@
 	//Early override for some cases like diagonal movement
 	if(glide_size_override && glide_size != glide_size_override)
 		set_glide_size(glide_size_override)
-
 
 	if(loc != newloc)
 		if (!(direct & (direct - 1))) //Cardinal move
@@ -800,27 +804,21 @@
 /atom/movable/Uncrossed(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UNCROSSED, AM)
 
-/atom/movable/Bump(atom/A)
-	if(!A)
+/atom/movable/Bump(atom/bumped_atom)
+	if(!bumped_atom)
 		CRASH("Bump was called with no argument.")
-	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, bumped_atom)
 	. = ..()
 	if(!QDELETED(throwing))
-		throwing.hit_atom(A)
+		throwing.hit_atom(bumped_atom)
 		. = TRUE
-		if(QDELETED(A))
+		if(QDELETED(bumped_atom))
 			return
-	A.Bumped(src)
+	bumped_atom.Bumped(src)
 
 /atom/movable/proc/forceMove(atom/destination)
 	. = FALSE
 	if(destination)
-		var/turf/new_turf = get_turf(destination)
-		if(new_turf && ismob(src))
-			var/mob/M = src
-			if(is_secret_level(new_turf.z) && !M.client?.holder)
-				return
-
 		. = doMove(destination)
 	else
 		CRASH("No valid destination passed into forceMove")
@@ -831,8 +829,10 @@
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
 	if(destination)
-		if(pulledby)
+		///zMove already handles whether a pull from another movable should be broken.
+		if(pulledby && !currently_z_moving)
 			pulledby.stop_pulling()
+
 		var/atom/oldloc = loc
 		var/same_loc = oldloc == destination
 		var/area/old_area = get_area(oldloc)

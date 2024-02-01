@@ -19,13 +19,6 @@
 	/// All the plane masters that need to be applied.
 	var/atom/movable/screen/background/cam_background
 
-	var/datum/plane_master_group/popup/pop_planes
-
-	var/list/cam_plane_masters
-
-	var/size_x = 0
-	var/size_y = 0
-
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_REQUIRES_SIGHT
 
 /obj/machinery/computer/security/Initialize(mapload)
@@ -41,27 +34,19 @@
 	// Initialize map objects
 	cam_screen = new
 	cam_screen.generate_view(map_name)
-	pop_planes = cam_screen.pop_planes
-	cam_plane_masters = list()
-	//subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/rendering_plate
-	// for(var/plane in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/rendering_plate)
-	// 	var/atom/movable/screen/plane_master/instance = new plane()
-	// 	instance.assigned_map = map_name
-	// 	instance.del_on_map_removal = FALSE
-	// 	instance.screen_loc = "[map_name]:CENTER"
-	// 	cam_plane_masters += instance
-
 	cam_background = new
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
 
-	
-
 /obj/machinery/computer/security/Destroy()
 	QDEL_NULL(cam_screen)
-	QDEL_LIST(cam_plane_masters)
 	QDEL_NULL(cam_background)
 	return ..()
+
+/obj/machinery/computer/security/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	for(var/i in network)
+		network -= i
+		network += "[port.shuttle_id]_[i]"
 
 /obj/machinery/computer/security/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -171,8 +156,8 @@
 
 	//Get coordinates for a rectangle area that contains the turfs we see so we can then clear away the static in the resulting rectangle area
 	var/list/bbox = get_bbox_of_atoms(visible_turfs)
-	size_x = bbox[3] - bbox[1] + 1
-	size_y = bbox[4] - bbox[2] + 1
+	var/size_x = bbox[3] - bbox[1] + 1
+	var/size_y = bbox[4] - bbox[2] + 1
 
 	cam_screen.vis_contents = visible_turfs
 	cam_background.icon_state = "clear"

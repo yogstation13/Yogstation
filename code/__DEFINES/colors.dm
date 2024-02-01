@@ -209,6 +209,8 @@
 #define LIGHT_COLOR_RED "#FA8282"
 /// Bright but quickly dissipating neon green. rgb(100, 200, 100)
 #define LIGHT_COLOR_GREEN "#64C864"
+/// Vivid, slightly blue green. rgb(60, 240, 70)
+#define LIGHT_COLOR_VIVID_GREEN "#3CF046"
 /// Electric green. rgb(0, 255, 0)
 #define LIGHT_COLOR_ELECTRIC_GREEN "#00FF00"
 /// Cold, diluted blue. rgb(100, 150, 250)
