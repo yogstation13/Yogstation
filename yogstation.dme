@@ -185,7 +185,6 @@
 #include "code\__DEFINES\dcs\signals\signals_mob\signals_xenobiology.dm"
 #include "code\__DEFINES\{dripstation_defines}\blackmarket.dm"
 #include "code\__DEFINES\{dripstation_defines}\cargo.dm"
-#include "code\__DEFINES\{dripstation_defines}\directional.dm"
 #include "code\__DEFINES\{dripstation_defines}\dcs\signals\signals_transform.dm"
 #include "code\__DEFINES\{yogs_defines}\admin.dm"
 #include "code\__DEFINES\{yogs_defines}\antagonists.dm"
