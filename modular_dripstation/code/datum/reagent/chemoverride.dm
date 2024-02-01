@@ -1,6 +1,6 @@
 /datum/reagent/medicine/mannitol
-	name = "Mannitol"
-	description = "Efficiently restores brain damage. Requires very cold temperatures to properly metabolize."
+	name = "Mannitolin"
+	description = "Generic drug that uses a patented active substance molecule to restore brain damage. Unfortunately it isn`t too effective and requires very cold temperatures to properly metabolize."
 	color = "#DCDCFF"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
@@ -14,8 +14,8 @@
 	..()
 
 /datum/reagent/medicine/mannitol/advanced
-	name = "Advanced mannitol"
-	description = "Efficiently restores brain damage. Really."
+	name = "Mannitol"
+	description = "Efficiently restores brain damage. Brand patented."
 	color = "#4CE8E2"
 	metabolization_rate = REAGENTS_METABOLISM
 
