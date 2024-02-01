@@ -99,7 +99,7 @@ jobs:
       - name: Find Maps
         id: map_finder
         run: |
-          echo "$(ls -mw0 _maps/*.json)" > maps_output.txt
+          echo "$(ls -mw0 _maps/yogstation.json)" > maps_output.txt
           sed -i -e s+_maps/+\"+g -e s+.json+\"+g maps_output.txt
           echo "Maps: $(cat maps_output.txt)"
           echo "maps={\"paths\":[$(cat maps_output.txt)]}" >> $GITHUB_OUTPUT
