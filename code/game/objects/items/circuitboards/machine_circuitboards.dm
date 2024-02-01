@@ -1443,4 +1443,4 @@
 	name = "Mass Driver"
 	build_path = /obj/machinery/mass_driver
 	req_components = list(
-		/obj/item/stock_parts/capacitor = 1,)
+		/obj/item/stock_parts/capacitor = 1)

@@ -1,6 +1,6 @@
 /obj/machinery/mass_driver
 	name = "mass driver"
-	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."
+	desc = "A miniaturized mass driver, the finest in hydraulic piston technology." // Imagine what an actual mass driver would look like
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mass_driver"
 	circuit = /obj/item/circuitboard/machine/mass_driver
@@ -28,7 +28,7 @@
 	var/O_limit
 	var/atom/target = get_edge_target_turf(src, dir)
 	for(var/atom/movable/O in loc)
-		if(!O.anchored || ismecha(O))	//MECH LAUNCHING HELL YEAH
+		if(!O.anchored || ismecha(O))	//Mechs need their launch platforms.
 			if(ismob(O) && !isliving(O))
 				continue
 			O_limit++
@@ -57,7 +57,7 @@
 /obj/machinery/mass_driver/RefreshParts()
 	. = ..()
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		drive_range += 10 *C.rating
+		drive_range += 10 * C.rating
 
 /obj/machinery/mass_driver/emp_act(severity)
 	. = ..()
