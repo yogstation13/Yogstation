@@ -51,7 +51,7 @@
 					/obj/item/clothing/head/yogs/tricornhat = 5,
 					/obj/item/clothing/under/rank/security/skirt = 3,
 					/obj/item/clothing/under/rank/security/grey = 3,
-					/obj/item/clothing/under/yogs/shitcurity = 3,
+					/obj/item/clothing/under/rank/security/shitcurity = 3,
 					/obj/item/clothing/under/pants/khaki = 3,
 					/obj/item/clothing/under/rank/security/blueshirt = 3,
 					/obj/item/clothing/under/rank/security/secconuniform = 3,

@@ -297,9 +297,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/nullrod/unrestricted = -2,
 		/obj/effect/spawner/lootdrop/ammobox = -2,
 
-		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
-		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
-		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = -3,
 		/obj/item/storage/box/syndie_kit/augmentation = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,

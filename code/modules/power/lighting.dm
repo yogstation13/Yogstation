@@ -265,6 +265,8 @@
 	///Basecolor of the nightshift light
 	var/nightshift_light_color = "#FFDDCC"
 
+	var/nightshift_powercheck = FALSE
+
 	///if true, the light is in emergency mode
 	var/emergency_mode = FALSE	
 	///if true, this light cannot ever have an emergency mode
@@ -446,11 +448,9 @@
 			turning_on = TRUE
 			addtimer(CALLBACK(src, PROC_REF(turn_on), trigger, quiet), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
-		use_power = IDLE_POWER_USE
 		emergency_mode = TRUE
 		START_PROCESSING(SSmachines, src)
 	else
-		use_power = IDLE_POWER_USE
 		set_light(l_range = 0)
 	
 	update_appearance()
@@ -463,6 +463,19 @@
 			addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 		else
 			removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
+			nightshift_powercheck = FALSE
+
+	if(on)
+		if(nightshift_enabled != nightshift_powercheck)
+			nightshift_powercheck = nightshift_enabled
+			if(nightshift_enabled)
+				removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
+				static_power_used =	brightness * 8 //8W per unit luminosity
+				addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
+			else
+				removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
+				static_power_used = brightness * 20 //20W per unit luminosity
+				addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 
 	broken_sparks(start_only=TRUE)
 
@@ -499,7 +512,6 @@
 			if(trigger)
 				burn_out()
 		else
-			use_power = ACTIVE_POWER_USE
 			set_light(
 				l_range = brightness_set,
 				l_power = power_set,
