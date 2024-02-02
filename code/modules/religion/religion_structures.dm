@@ -1,4 +1,4 @@
-/obj/structure/altar_of_gods
+/obj/structure/table/altar_of_gods
 	name = "\improper Altar of the Gods"
 	desc = "An altar which allows the head of the church to choose a sect of religious teachings as well as provide sacrifices to earn favor."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
@@ -8,32 +8,28 @@
 	layer = TABLE_LAYER
 	pass_flags = LETPASSTHROW
 	can_buckle = TRUE
+	smooth = SMOOTH_FALSE
+	canSmoothWith = null
+	flags_1 = NODECONSTRUCT_1 // no, don't
 	buckle_lying = 90 //we turn to you!
+	max_integrity = 300
+	integrity_failure = 0
+	buildstackamount = 6
+	buildstack = /obj/item/stack/sheet/ruinous_metal
 	///Avoids having to check global everytime by referencing it locally.
 	var/datum/religion_sect/sect_to_altar
 
-/obj/structure/altar_of_gods/Initialize(mapload)
+/obj/structure/table/altar_of_gods/Initialize(mapload)
 	. = ..()
 	reflect_sect_in_icons()
-	AddElement(/datum/element/climbable)
 	AddComponent(/datum/component/religious_tool, ALL, FALSE, CALLBACK(src, PROC_REF(reflect_sect_in_icons)))
 
-/obj/structure/altar_of_gods/attack_hand(mob/living/user)
-	if(!Adjacent(user) || !user.pulling)
-		return ..()
-	if(!isliving(user.pulling))
-		return ..()
-	var/mob/living/pushed_mob = user.pulling
-	if(pushed_mob.buckled)
-		to_chat(user, span_warning("[pushed_mob] is buckled to [pushed_mob.buckled]!"))
-		return ..()
-	to_chat(user, span_notice("You try to coax [pushed_mob] onto [src]..."))
-	if(!do_after(user, 5 SECONDS, pushed_mob))
-		return ..()
-	pushed_mob.forceMove(loc)
+/obj/structure/table/altar_of_gods/attackby(obj/item/I, mob/user, params)
+	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
+		return TRUE // this signal needs to be sent early so the bible can actually be used on it
 	return ..()
 
-/obj/structure/altar_of_gods/proc/reflect_sect_in_icons()
+/obj/structure/table/altar_of_gods/proc/reflect_sect_in_icons()
 	if(GLOB.religious_sect)
 		sect_to_altar = GLOB.religious_sect
 		if(sect_to_altar.altar_icon)

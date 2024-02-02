@@ -228,6 +228,7 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 		/obj/item/storage/firstaid/brute = 3,
 		/obj/item/reagent_containers/autoinjector/medipen/stimpack = 3,
 		/obj/item/clothing/mask/cigarette/syndicate = 3,
+		/obj/item/bonesetter = 3,
 		/obj/item/storage/firstaid/advanced = 2,
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 2,
 		/obj/item/organ/heart/cursed/wizard = 2, //Rarely used, albiet the healing is incredibly strong
@@ -296,9 +297,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/nullrod/unrestricted = -2,
 		/obj/effect/spawner/lootdrop/ammobox = -2,
 
-		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
-		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
-		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = -3,
 		/obj/item/storage/box/syndie_kit/augmentation = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,

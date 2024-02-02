@@ -334,7 +334,7 @@
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/hypernoblium)
 			H.reagents.add_reagent(/datum/reagent/hypernoblium, max(0, eff - existing))
 		breath.adjust_moles(GAS_HYPERNOB, -gas_breathed)
-	
+
 	// Anti-noblium
 		gas_breathed = breath.get_moles(GAS_ANTINOB)
 		if(gas_breathed > gas_stimulation_min)
@@ -565,7 +565,7 @@
 		owner.blood_volume += (0.2 * plasma_pp) // 10/s when breathing literally nothing but plasma, which will suffocate you.
 
 /obj/item/organ/lungs/ghetto
-	name = "oxygen tanks welded to a modular reciever"
+	name = "oxygen tanks welded to a modular receiver"
 	desc = "A pair of oxygen tanks which have been attached to a modular (oxygen) receiver. They are incapable of supplying air, but can work as a replacement for lungs."
 	icon_state = "lungs-g"
 	organ_efficiency = 0.5

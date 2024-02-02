@@ -20,7 +20,7 @@
 	desc = "Robotic constructs of unknown design, swarmers seek only to consume materials and replicate themselves indefinitely."
 	speak_emote = list("tones")
 	initial_language_holder = /datum/language_holder/swarmer
-	bubble_icon = "swarmer"
+	bubble_icon = BUBBLE_SWARMER
 	mob_biotypes = MOB_ROBOTIC
 	health = 40
 	maxHealth = 40
