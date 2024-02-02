@@ -328,6 +328,8 @@
 /obj/item/reagent_containers/spray/chemsprayer/bioterror
 	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 100, /datum/reagent/toxin/coniine = 100, /datum/reagent/toxin/venom = 100, /datum/reagent/consumable/condensedcapsaicin = 100, /datum/reagent/toxin/initropidril = 100, /datum/reagent/toxin/polonium = 100)
 
+/obj/item/reagent_containers/spray/chemsprayer/freeze
+	list_reagents = list(/datum/reagent/consumable/frostoil = 600)
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor
 	name = "janitor chem sprayer"

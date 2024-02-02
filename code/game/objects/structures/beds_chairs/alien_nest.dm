@@ -34,7 +34,7 @@
 					span_warning("[M.name] struggles to break free from the gelatinous resin!"),\
 					span_notice("You struggle to break free from the gelatinous resin... (Stay still for two minutes.)"),\
 					span_italics("You hear squelching..."))
-				if(!do_after(M, 2 MINUTES, src))
+				if(!do_after(M, 15 SECONDS, src))
 					if(M && M.buckled)
 						to_chat(M, span_warning("You fail to unbuckle yourself!"))
 					return
@@ -65,6 +65,8 @@
 			"[user.name] secretes a thick vile goo, securing [M.name] into [src]!",\
 			span_danger("[user.name] drenches you in a foul-smelling resin, trapping you in [src]!"),\
 			span_italics("You hear squelching..."))
+		var/obj/item/restraints/handcuffs/xeno/cuffs = new(M)
+		cuffs.apply_cuffs(M, user)
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/M)
 	M.pixel_y = 0
@@ -90,3 +92,9 @@
 		return attack_hand(user)
 	else
 		return ..()
+
+/obj/item/restraints/handcuffs/xeno
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "sinewcuff"
+	item_flags = DROPDEL
+	color = COLOR_MAGENTA

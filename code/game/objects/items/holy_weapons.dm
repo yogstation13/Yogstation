@@ -352,12 +352,17 @@
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
 	w_class = WEIGHT_CLASS_BULKY
 	damtype = STAMINA
-	force = 15
+	force = 18
 	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_NONE
 	menutab = MENU_WEAPON
 	additional_desc = "The weapon of choice for a devout monk. Block incoming blows while striking weak points until your opponent is too exhausted to continue."
+
+/obj/item/nullrod/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(attack_type == PROJECTILE_ATTACK)
+		final_block_chance = 0 //Don't bring a stick to a gunfight
+	return ..()
 
 /obj/item/nullrod/tribal_knife
 	name = "arrhythmic knife"
@@ -647,7 +652,7 @@
 	icon_state = "fedora"
 	item_state = "fedora"
 	slot_flags = ITEM_SLOT_HEAD
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats/hats.dmi'
 	force = 0
 	throw_speed = 4
 	throw_range = 7

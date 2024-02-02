@@ -91,6 +91,9 @@
 	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
+/obj/item/cautery/ignition_effect(atom/A, mob/living/user)
+	. = span_danger("[user] carefully lights their [A.name] with [src].")
+
 /obj/item/cautery/augment
 	name = "cautery"
 	desc = "A heated element that cauterizes wounds."
