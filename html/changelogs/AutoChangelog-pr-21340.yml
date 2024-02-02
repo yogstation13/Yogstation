@@ -1,5 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - spellcheck: "Added \"np\" and \"thx\" to the netspeak filter"
-  - tweak: "Saying \"auxmos\" IC now becomes \"space wind\""
