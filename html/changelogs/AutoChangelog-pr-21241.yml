@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "xeno embryos now burst significantly faster if the host is alive and buckled to a xeno bed"
+  - tweak: "xeno embryos now burst significantly slower if the host is dead or not buckled to a xeno bed"
+  - tweak: "xeno beds now handcuff the person buckled to it"
+  - tweak: "xeno beds are significantly faster to unbuckle from (if not handcuffed)"
