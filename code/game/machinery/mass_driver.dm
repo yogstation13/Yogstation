@@ -37,7 +37,7 @@
 				break
 			use_power(power_per_obj)
 			O.throw_at(target, drive_range * power, power)
-	playsound(get_turf(src), 'sound/machines/mass_driver.ogg', 50)
+	playsound(get_turf(src), 'sound/machines/mass_driver.ogg', 75)
 	flick("mass_driver1", src)
 
 /obj/machinery/mass_driver/attackby(obj/item/I, mob/living/user, params)
