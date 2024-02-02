@@ -85,7 +85,7 @@
 	chem_desc = "Reduces massive amounts of radiation and toxin damage while purging other chemicals from the body."
 
 /datum/horror_chem/sal_acid
-	chemname = "salicyclic acid"
+	chemname = "salicylic acid"
 	R = /datum/reagent/medicine/sal_acid
 	chem_desc = "Stimulates the healing of severe bruises. Rapidly heals severe bruising and slowly heals minor ones."
 
