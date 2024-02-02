@@ -132,6 +132,7 @@
 		enqueue()
 		state = SS_PAUSED
 		queued_time = QT
+		OnPause("SS ignite()")
 
 ///previously, this would have been named 'process()' but that name is used everywhere for different things!
 ///fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
@@ -255,6 +256,11 @@
 			state = SS_PAUSED
 		if(SS_SLEEPING)
 			state = SS_PAUSING
+	OnPause("SS pause()")
+
+//for annoying logging
+/datum/controller/subsystem/proc/OnPause(source)
+	return
 
 /// Called after the config has been loaded or reloaded.
 /datum/controller/subsystem/proc/OnConfigLoad()

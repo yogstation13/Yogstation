@@ -768,3 +768,8 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
+
+/datum/controller/subsystem/ticker/OnPause(source)
+	message_admins(span_boldannounce("Ticker SS was set to pause from source: [source]."))
+	message_admins(span_boldannounce("Call enqueue() on the Ticker SS or round will not end properly."))
+	log_game("Ticker SS was set to pause from source: [source].")
