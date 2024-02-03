@@ -60,6 +60,12 @@
 	description = "A seedvault launched from far away. Thousands of exact copies litter planets across the entire universe, so finding one here isn't too much of a surprise."
 	suffix = "jungleland_jungle_seed_vault.dmm"	
 
+/datum/map_template/ruin/jungle/proper/sinden
+	name = "Den of Sin"
+	id = "jungle-sinden"
+	description = "A vile den of sin, run by a demon contracted to make as much profit as possible off everyone planetside."
+	suffix = "jungleland_jungle_sinden.dmm"	
+
 /datum/map_template/ruin/jungle/swamp/cave
 	name = "Cave"
 	id = "jungle-cave"
