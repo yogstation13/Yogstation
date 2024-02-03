@@ -118,7 +118,7 @@
 /obj/item/clothing/under/rank/chief_medical_officer/turtleneck
 	desc = "It's a jumpsuit worn by those with the experience, and the style, to be \"Chief Medical Officer\". It provides minor biological protection."
 	name = "chief medical officer's turtleneck jumpsuit"
-	icon_state = "turtle"
+	icon_state = "cmoturtle"
 	item_state = "w_suit"
 
 /obj/item/clothing/under/rank/chief_medical_officer/skirt
