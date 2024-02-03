@@ -38,7 +38,7 @@
 	mob_biotypes = MOB_ROBOTIC
 	speak_emote = list("chirps")
 	speech_span = SPAN_ROBOT
-	bubble_icon = "machine"
+	bubble_icon = BUBBLE_MACHINE
 	initial_language_holder = /datum/language_holder/drone
 	mob_size = MOB_SIZE_SMALL
 	has_unlimited_silicon_privilege = 1

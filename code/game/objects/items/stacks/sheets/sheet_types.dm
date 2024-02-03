@@ -907,7 +907,7 @@ GLOBAL_LIST_INIT(cheese_recipes, list (
 	merge_type = /obj/item/stack/sheet/ruinous_metal
 
 GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
-	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("altar of the gods", /obj/structure/table/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40), \
 	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1, time = 40 )))
 
 /obj/item/stack/sheet/ruinous_metal/Initialize(mapload, new_amount, merge = TRUE)

@@ -11,8 +11,11 @@
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
+	physiology = new() //create physiology early so organs and bodyparts can modify it
+
 	//initialize limbs first
 	create_bodyparts()
+
 
 	setup_human_dna()
 
@@ -26,13 +29,13 @@
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
-	physiology = new()
 
 	. = ..()
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
+	AddComponent(/datum/component/bloodysoles/feet)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -1182,9 +1185,9 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize(mapload)
-	. = ..()
-	set_species(race)
+/mob/living/carbon/human/species/create_dna()
+	dna = new /datum/dna(src)
+	dna.species = new race()
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor

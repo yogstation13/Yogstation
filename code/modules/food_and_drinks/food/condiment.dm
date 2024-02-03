@@ -392,25 +392,25 @@
 /obj/item/reagent_containers/food/condiment/pack/astrotame
 	name = "astrotame pack"
 	originalname = "astrotame"
-	list_reagents = list(/datum/reagent/consumable/astrotame = 5)
+	list_reagents = list(/datum/reagent/consumable/astrotame = 10)
 
 /obj/item/reagent_containers/food/condiment/pack/bbqsauce
 	name = "bbq sauce pack"
 	originalname = "bbq sauce"
-	list_reagents = list(/datum/reagent/consumable/bbqsauce = 5)
+	list_reagents = list(/datum/reagent/consumable/bbqsauce = 10)
 
 /obj/item/reagent_containers/food/condiment/pack/sugar
 	name = "sugar pack"
 	originalname = "sugar"
-	list_reagents = list(/datum/reagent/consumable/sugar = 5)
+	list_reagents = list(/datum/reagent/consumable/sugar = 10)
 
 /obj/item/reagent_containers/food/condiment/pack/creamer
 	name = "creamer" /// dont laugh you child
 	originalname = "cream"
-	list_reagents = list(/datum/reagent/consumable/cream = 5)
+	list_reagents = list(/datum/reagent/consumable/cream = 10)
 
 /obj/item/reagent_containers/food/condiment/pack/chocolate
-	name = "creamer"
-	originalname = "cream"
-	list_reagents = list(/datum/reagent/consumable/chocolate = 5)
+	name = "chocolate"
+	originalname = "chocolate"
+	list_reagents = list(/datum/reagent/consumable/chocolate = 10)
 

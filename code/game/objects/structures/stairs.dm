@@ -10,11 +10,24 @@
 	name = "stairs"
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
+	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = TRUE
 
 	var/force_open_above = FALSE // replaces the turf above this stair obj with /turf/open/openspace
 	var/terminator_mode = STAIR_TERMINATOR_AUTOMATIC
 	var/turf/listeningTo
+
+/obj/structure/stairs/north
+	dir = NORTH
+
+/obj/structure/stairs/south
+	dir = SOUTH
+
+/obj/structure/stairs/east
+	dir = EAST
+
+/obj/structure/stairs/west
+	dir = WEST
 
 /obj/structure/stairs/Initialize(mapload)
 	if(force_open_above)

@@ -2056,7 +2056,7 @@
 /datum/supply_pack/service/syrup
 	name = "Coffee Syrups Box"
 	desc = "A packaged box of various syrups, perfect for making your delicious coffee even more diabetic."
-	cost = 200
+	cost = 1400
 	contains = list(
 		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/caramel,
 		/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/liqueur,
