@@ -108,7 +108,7 @@
 	if(paying_account)
 		account_holder = paying_account.account_holder
 	else
-		account_holder = "Cargo"
+		account_holder = "Cargo Budget"						//dripstation edit
 	var/obj/structure/closet/crate/C = pack.generate(A, paying_account)
 	generateManifest(C, account_holder, pack)
 	return C

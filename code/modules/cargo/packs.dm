@@ -317,7 +317,7 @@
 					/obj/item/toy/crayon/white,
 					/obj/item/clothing/head/fedora/det_hat)
 	crate_name = "forensics crate"
-
+/*
 /datum/supply_pack/security/laser
 	name = "Lasers Crate"
 	desc = "Contains three lethal, high-energy laser guns. Requires Security access to open."
@@ -326,7 +326,7 @@
 					/obj/item/gun/energy/laser,
 					/obj/item/gun/energy/laser)
 	crate_name = "laser crate"
-
+*/
 /datum/supply_pack/security/secfiringpins
 	name = "Mindshield Firing Pins Crate"
 	desc = "Upgrade your arsenal with 10 mindshield firing pins. Requires Security access to open."

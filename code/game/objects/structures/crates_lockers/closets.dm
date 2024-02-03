@@ -49,6 +49,8 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/door_anim_angle = 136
 	var/door_hinge_x = -6.5
 	var/door_anim_time = 2.5 // set to 0 to make the door not animate at all
+	/// true whenever someone with the strong pull component (or magnet modsuit module) is dragging this, preventing opening
+	var/strong_grab = FALSE		//dripstation edit
 
 /obj/structure/closet/Initialize(mapload)
 	. = ..()
@@ -171,7 +173,11 @@ GLOBAL_LIST_EMPTY(lockers)
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
-		return FALSE
+		to_chat(user, span_danger("[src] locked or welded to be opened."))	//dripstation edit
+		return FALSE		//dripstation edit
+	if(strong_grab)			//dripstation edit
+		to_chat(user, span_danger("[pulledby] has an incredibly strong grip on [src], preventing it from opening."))	//dripstation edit
+		return FALSE		//dripstation edit
 
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T)
