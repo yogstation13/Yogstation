@@ -258,6 +258,7 @@
 
 	pulling = AM
 	AM.set_pulledby(src)
+	SEND_SIGNAL(src, COMSIG_LIVING_START_PULL, AM, state, force)		//dripstation edit
 	if(!supress_message)
 		var/sound_to_play = 'sound/weapons/thudswoosh.ogg'
 		if(ishuman(src))

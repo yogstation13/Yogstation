@@ -139,6 +139,7 @@
 #define TRAIT_INCAPACITATED 	"incapacitated"
 #define HANDCUFFED_TRAIT 		"handcuffed"
 #define TRAIT_BLIND 			"blind"
+#define HYPNOCHAIR_TRAIT		"hypnochair" //dripstation edit
 #define TRAIT_ECHOLOCATION_RECEIVER "echolocation_receiver"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
@@ -242,6 +243,7 @@
 #define TRAIT_QUICK_CARRY		"quick-carry"
 #define TRAIT_QUICKER_CARRY		"quicker-carry"
 #define TRAIT_QUICKEST_CARRY	"quickest-carry"
+#define TRAIT_QUICK_BUILD 		"quick-build" //dripstation edit
 #define TRAIT_STRONG_GRIP		"strong-grip"
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
@@ -343,6 +345,7 @@
 #define TRAIT_ANXIOUS			"anxious"
 #define TRAIT_SEE_REAGENTS		"see_reagents"
 #define TRAIT_STARGAZED			"stargazed"
+#define TRAIT_TRANSFORM_ACTIVE "active_transform" //dripstation edit
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
