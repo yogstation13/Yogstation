@@ -240,7 +240,7 @@
 
 			//Knockdown regardless of blocking, immobilize reduced significantly on block, lizard gets immobilized momentarily
 			L.Knockdown(10 SECONDS)
-			L.Immobilize(blocked ? 1 SECONDS : 6 SECONDS)	
+			L.Immobilize(1 SECONDS)	
 			A.Immobilize(blocked ? 2 SECONDS : 1 SECONDS)
 
 			//Blocking knocks the lizard down too
