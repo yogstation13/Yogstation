@@ -135,7 +135,7 @@
 	D.blur_eyes(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
 		D.dna.species.aiminginaccuracy += 25
-		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS, 0)
+		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS)
 	D.visible_message(span_danger("[A] headbutts [D]!"), \
 					  span_userdanger("[A] headbutts you!"))
 	log_combat(A, D, "headbutted (Flying Fang)")
@@ -214,7 +214,8 @@
 		return
 	linked_martial.leaping = TRUE
 	COOLDOWN_START(linked_martial, next_leap, 5 SECONDS)
-	unbuckle_mob(A)
+	if(A.buckled)
+		buckled.unbuckle_mob(A, force = TRUE)
 	A.Knockdown(5 SECONDS)
 	A.Immobilize(3 SECONDS, TRUE, TRUE) //prevents you from breaking out of your pounce
 	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), A))
