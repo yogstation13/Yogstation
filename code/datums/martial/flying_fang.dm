@@ -214,6 +214,7 @@
 		return
 	linked_martial.leaping = TRUE
 	COOLDOWN_START(linked_martial, next_leap, 5 SECONDS)
+	unbuckle_mob(A)
 	A.Knockdown(5 SECONDS)
 	A.Immobilize(3 SECONDS, TRUE, TRUE) //prevents you from breaking out of your pounce
 	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), A))
