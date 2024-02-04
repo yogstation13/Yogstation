@@ -37,7 +37,7 @@
 	throw_speed = 3
 	throw_range = 5
 	materials = list(/datum/material/iron=500)
-	breakouttime = 50 SECONDS // add SECONDS or another unit becuase it will think deciseconds (100ds= 10s)
+	breakouttime = 60 SECONDS // add SECONDS or another unit becuase it will think deciseconds (100ds= 10s)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	break_strength = 4
 	var/cuffsound = 'sound/weapons/handcuffs.ogg'
@@ -351,7 +351,7 @@
 	armed = 1
 	icon_state = "e_snare"
 	trap_damage = 0
-	breakouttime = 30
+	breakouttime = 3 SECONDS
 	item_flags = DROPDEL
 	flags_1 = NONE
 	break_strength = 2 
@@ -369,7 +369,7 @@
 	Crossed(user) //honk
 
 /obj/item/restraints/legcuffs/beartrap/energy/cyborg
-	breakouttime = 20 // Cyborgs shouldn't have a strong restraint
+	breakouttime = 2 SECONDS // Cyborgs shouldn't have a strong restraint
 
 /obj/item/restraints/legcuffs/bola
 	name = "bola"
@@ -379,9 +379,9 @@
 	item_state = "bola"
 	lefthand_file = 'icons/mob/inhands/weapons/thrown_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/thrown_righthand.dmi'
-	breakouttime = 35//easy to apply, easy to break out of
+	breakouttime = 3.5 SECONDS //easy to apply, easy to break out of
 	gender = NEUTER
-	break_strength = 3 SECONDS
+	break_strength = 3 
 	var/immobilize = 0
 
 /obj/item/restraints/legcuffs/bola/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, quickstart = TRUE)
@@ -452,7 +452,7 @@
 	icon_state = "gonbola"
 	icon_state_preview = "gonbola_preview"
 	item_state = "bola_r"
-	breakouttime = 3 SECONDS
+	breakouttime = 30 SECONDS
 	slowdown = 0
 	var/datum/status_effect/gonbolaPacify/effectReference
 
