@@ -135,7 +135,7 @@
 	D.blur_eyes(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
 		D.dna.species.aiminginaccuracy += 25
-		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS, 0)
 	D.visible_message(span_danger("[A] headbutts [D]!"), \
 					  span_userdanger("[A] headbutts you!"))
 	log_combat(A, D, "headbutted (Flying Fang)")
@@ -234,14 +234,24 @@
 			var/blocked = FALSE
 			if(ishuman(hit_atom))
 				var/mob/living/carbon/human/H = hit_atom
-				if(H.check_shields(src, 0, "[A]", attack_type = LEAP_ATTACK))
+				if(H.check_shields(H, 0, "[A]", attack_type = LEAP_ATTACK))
 					blocked = TRUE
 			L.visible_message("<span class ='danger'>[A] pounces on [L]!</span>", "<span class ='userdanger'>[A] pounces on you!</span>")
-			L.Paralyze(blocked ? 6 SECONDS : 0)
+
+			//Knockdown regardless of blocking, immobilize reduced significantly on block, lizard gets immobilized momentarily
 			L.Knockdown(10 SECONDS)
-			L.Immobilize(6 SECONDS)
-			A.SetKnockdown(0)
-			A.SetImmobilized(10 SECONDS) //due to our stun resistance this is actually about 6.6 seconds
+			L.Immobilize(blocked ? 1 SECONDS : 6 SECONDS)	
+			A.Immobilize(blocked ? 2 SECONDS : 1 SECONDS)
+
+			//Blocking knocks the lizard down too
+			if(blocked)
+				A.SetKnockdown(10 SECONDS)
+			
+			//Otherwise the not-blocker gets stunned and the lizard is okay
+			else
+				L.Paralyze(6 SECONDS)
+				A.SetKnockdown(0)
+
 			if(linked_leap && !blocked)
 				COOLDOWN_RESET(src, next_leap) // landing the leap resets the cooldown
 			sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
