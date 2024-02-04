@@ -210,14 +210,21 @@
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/clothing/under/rank/head_of_personnel
-	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	name = "head of personnel's jumpsuit"
+	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	icon_state = "hop"
 	item_state = "b_suit"
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/head_of_personnel/turtleneck
+	name = "head of personnel's turtleneck jumpsuit"
+	desc = "It's a comfy turtleneck jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
+	icon_state = "hopturtle"
+	item_state = "b_suit"
+	can_adjust = TRUE
 
 /obj/item/clothing/under/rank/head_of_personnel/skirt
 	name = "head of personnel's jumpskirt"
@@ -229,6 +236,13 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/head_of_personnel/skirt/turtleneck
+	name = "head of personnel's skirtleneck"
+	desc = "It's a fashionable skirtleneck worn by someone who works in the position of \"Head of Personnel\"."
+	icon_state = "hopturtle_skirt"
+	item_state = "b_suit"
+	can_adjust = TRUE
 
 /obj/item/clothing/under/rank/hydroponics
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."

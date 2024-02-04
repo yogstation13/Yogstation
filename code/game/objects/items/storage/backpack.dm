@@ -713,6 +713,8 @@
 /obj/item/storage/backpack/duffelbag/clothing/hop/PopulateContents()
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
+	new /obj/item/clothing/under/rank/head_of_personnel/turtleneck(src)
+	new /obj/item/clothing/under/rank/head_of_personnel/skirt/turtleneck(src)
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/clothing/head/beret/hop(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
