@@ -134,8 +134,8 @@
 	// If fired without aiming or at someone too close, it will do much less
 	damage = 30
 	stamina = 30
-	penetration_type = 2
-	penetrating = TRUE
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS
+	penetrations = INFINITY
 
 // Extra ammunition can be made with a heretic ritual.
 /obj/item/ammo_box/strilka310/lionhunter
