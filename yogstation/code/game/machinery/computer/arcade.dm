@@ -93,8 +93,7 @@
 			if(!diff)
 				return
 			board.play_snd('yogstation/sound/arcade/minesweeper_boardpress.ogg')
-			board.difficulty = diff
-			return TRUE
+			return board.change_difficulty(diff)
 
 		if("PRG_height")
 			var/cin = params["height"]
