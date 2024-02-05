@@ -243,7 +243,7 @@
 
 /obj/effect/mine/sound
 	name = "honkblaster 1000"
-	var/sound = 'yogstation/sound/misc/quack.ogg'
+	var/sound = 'sound/items/bikehorn.ogg'
 	disarm_time = 60 SECONDS // very long disarm time to expand the annoying factor
 	disarm_product = /obj/item/deployablemine/honk
 
