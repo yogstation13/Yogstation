@@ -480,8 +480,52 @@
 				adjustEarDamage(15,60)
 			Knockdown(max(120 - (bomb_armor * 2),0))	//60 bomb armor prevents knockdown entirely
 
-	take_overall_damage(brute_loss,burn_loss)
+		if (EXPLODE_NONE)						//dripstation edit
+			Knockdown(max(60 - bomb_armor,0))	//short knock, 60 bomb armor prevents knockdown entirely, dripstation edit
 
+	take_overall_damage(brute_loss,burn_loss)
+//dripstation edit start, tg-like bomb defence, more violent
+	var/max_limb_loss = 0
+	var/probability = 0
+	var/violent = FALSE
+	switch(severity)
+		if(EXPLODE_NONE)
+			max_limb_loss = 1
+			probability = 20
+		if(EXPLODE_LIGHT)
+			max_limb_loss = 2
+			probability = 30
+		if(EXPLODE_HEAVY)
+			max_limb_loss = 3
+			probability = 40
+		if(EXPLODE_DEVASTATE)
+			max_limb_loss = 4
+			probability = 50
+			violent = TRUE
+	if(HAS_TRAIT(src, TRAIT_EASYDISMEMBER))
+		max_limb_loss += 1
+		probability += 20
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(probability <= 0)
+			break
+		if(prob(probability) && BP.body_zone != BODY_ZONE_HEAD)
+			if(BP.body_zone == BODY_ZONE_CHEST && !violent)
+				continue
+			var/bomb_part_armor = getarmor(BP, BOMB)
+			var/fracture_probability = 70 - probability + round(bomb_part_armor/1.5, 10)	//EXPLODE_LIGHT = 40+(armor/1.5)% chance, EXPLODE_HEAVY = 30+(armor/1.5)%
+			if(severity == EXPLODE_NONE || fracture_probability >= 100 || prob(fracture_probability))
+				BP.brute_dam += 6*(2 - round(bomb_part_armor/60, 0.05))	//2-12 damage total depending on bomb armor
+				var/datum/wound/blunt/critical/fracture = new
+				fracture.apply_wound(BP)
+			else
+				BP.brute_dam = BP.max_damage
+				BP.dismember()
+			probability -= 10
+			max_limb_loss--
+			if(!max_limb_loss)
+				break				//dripstation edit end
+/*
 	//attempt to dismember bodyparts
 	if(severity <= 2 || HAS_TRAIT(src, TRAIT_EASYDISMEMBER)) //light explosions only can dismember those with easy dismember
 		var/max_limb_loss = round(4/severity) //so you don't lose more than 2 limbs on severity 2
@@ -493,6 +537,7 @@
 				max_limb_loss--
 				if(!max_limb_loss)
 					break
+*/
 
 
 /mob/living/carbon/human/blob_act(obj/structure/blob/B)

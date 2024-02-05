@@ -285,3 +285,6 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define WEATHER_RAD "rad"
 #define WEATHER_SNOW "snow"
 #define WEATHER_ALL "all"
+
+#define BULLET_DISMEMBER_THRESHOLD 60	//dripstation edit. Blocks dismemberment in code\modules\mob\living\carbon\carbon_defense.dm if 
+#define LASER_DISMEMBER_THRESHOLD 50	//dripstation edit, same as above

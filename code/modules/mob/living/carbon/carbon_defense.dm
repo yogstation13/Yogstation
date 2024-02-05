@@ -36,6 +36,14 @@
 
 /mob/living/carbon/check_projectile_dismemberment(obj/projectile/P, def_zone)
 	var/obj/item/bodypart/affecting = get_bodypart(def_zone)
+	if(P.damtype == BRUTE)	// dripstation edit start
+		var/brute_armor = getarmor(affecting, BULLET)	// so here we hardblocking projectile-based dismemberment if the armor protection is 60 and more. On station it`s only bulletproof helmet, that protects head from violent falling
+		if(brute_armor >= BULLET_DISMEMBER_THRESHOLD)
+			return ..()
+	if(P.damtype == BURN)
+		var/burn_armor = getarmor(affecting, LASER)
+		if(burn_armor >= LASER_DISMEMBER_THRESHOLD)
+			return ..()	// dripstation edit end
 	if(affecting && affecting.dismemberable && affecting.get_damage() >= (affecting.max_damage - P.dismemberment))
 		affecting.dismember(P.damtype)
 
