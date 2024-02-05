@@ -308,7 +308,7 @@
 	host.say("You cleared the board of all mines! Congratulations!")
 	if(emaggable && host.obj_flags & EMAGGED && value >= 1 && !emagwin)
 		
-		if(!MINESWEEPER_EXPERT)
+		if(difficulty != MINESWEEPER_EXPERT)
 			ticket_count += value
 			return
 		else
