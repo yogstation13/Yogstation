@@ -240,19 +240,20 @@
 					blocked = TRUE
 			L.visible_message("<span class ='danger'>[A] pounces on [L]!</span>", "<span class ='userdanger'>[A] pounces on you!</span>")
 
-			//Knockdown regardless of blocking, immobilize reduced significantly on block, lizard gets immobilized momentarily
+			//Knockdown regardless of blocking, immobilize reduced significantly on block
 			L.Knockdown(10 SECONDS)
 			L.Immobilize(1 SECONDS)	
-			A.Immobilize(blocked ? 2 SECONDS : 1 SECONDS)
 
-			//Blocking knocks the lizard down too
+			//Blocking knocks the lizard down too and immobilizes longer
 			if(blocked)
 				A.SetKnockdown(10 SECONDS)
+				A.Immobilize(2 SECONDS)
 			
-			//Otherwise the not-blocker gets stunned and the lizard is okay
+			//Otherwise the not-blocker gets stunned and the lizard is okay but stops for a moment
 			else
 				L.Paralyze(6 SECONDS)
 				A.SetKnockdown(0)
+				A.Immobilize(1 SECONDS)
 
 			if(linked_leap && !blocked)
 				COOLDOWN_RESET(src, next_leap) // landing the leap resets the cooldown
