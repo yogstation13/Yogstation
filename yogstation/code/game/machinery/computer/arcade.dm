@@ -26,6 +26,7 @@
 		QDEL_NULL(board)
 	. = ..()
 
+
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user, special_state)
 	. = ..()
 	if(!is_operational())
