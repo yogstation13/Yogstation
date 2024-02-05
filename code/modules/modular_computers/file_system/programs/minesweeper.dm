@@ -306,10 +306,10 @@
 /datum/minesweeper/proc/winner_chicken_dinner(mob/user)
 	play_snd('yogstation/sound/arcade/minesweeper_win.ogg')
 	host.say("You cleared the board of all mines! Congratulations!")
+	ticket_count += value
 	if(emaggable && host.obj_flags & EMAGGED && value >= 1 && !emagwin)
 		
 		if(difficulty != MINESWEEPER_EXPERT)
-			ticket_count += value
 			return
 		else
 			var/itemname
@@ -328,8 +328,8 @@
 			emagwin = TRUE
 			message_admins("[user] won emagged Minesweeper and got [itemname]!")
 			vis_msg(span_notice("[host] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
-			ticket_count += value
 			return
+
 
 /datum/minesweeper/proc/generate_new_board(diff)
 	board_data = new /list(31,18) // Fresh board
@@ -347,7 +347,7 @@
 		if(MINESWEEPER_EXPERT) // 30x16, 99 mines
 			width = 30
 			height = 16
-			mines = 0
+			mines = 99
 		if(MINESWEEPER_CUSTOM)
 			width = custom_width
 			height = custom_height
