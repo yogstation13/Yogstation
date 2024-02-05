@@ -240,20 +240,17 @@
 					blocked = TRUE
 			L.visible_message("<span class ='danger'>[A] pounces on [L]!</span>", "<span class ='userdanger'>[A] pounces on you!</span>")
 
-			//Knockdown regardless of blocking, immobilize reduced significantly on block
+			//Knockdown regardless of blocking,
 			L.Knockdown(10 SECONDS)
-			L.Immobilize(1 SECONDS)	
 
-			//Blocking knocks the lizard down too and immobilizes longer
+			//Blocking knocks the lizard down too
 			if(blocked)
 				A.SetKnockdown(10 SECONDS)
-				A.Immobilize(2 SECONDS)
 			
-			//Otherwise the not-blocker gets stunned and the lizard is okay but stops for a moment
+			//Otherwise the not-blocker gets stunned and the lizard is okayt
 			else
 				L.Paralyze(6 SECONDS)
 				A.SetKnockdown(0)
-				A.Immobilize(1 SECONDS)
 
 			if(linked_leap && !blocked)
 				COOLDOWN_RESET(src, next_leap) // landing the leap resets the cooldown
@@ -261,7 +258,6 @@
 			step_towards(src,L)
 		else if(hit_atom.density && !hit_atom.CanPass(A))
 			A.visible_message("<span class ='danger'>[A] smashes into [hit_atom]!</span>", "<span class ='danger'>You smash into [hit_atom]!</span>")
-			A.Immobilize(1.5 SECONDS)
 			A.Knockdown(6 SECONDS)
 			playsound(A, 'sound/weapons/punch2.ogg', 50, 1) // ow oof ouch my head
 		if(leaping)
