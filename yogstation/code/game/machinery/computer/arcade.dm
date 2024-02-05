@@ -3,6 +3,7 @@
 	desc = "An arcade machine that generates grids. It seems that the machine sparks and screeches when a grid is generated, as if it cannot cope with the intensity of generating the grid."
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/minesweeper
+	var/isEmagged = FALSE
 	
 	var/datum/minesweeper/board
 
@@ -11,6 +12,13 @@
 	board = new /datum/minesweeper()
 	board.emaggable = TRUE
 	board.host = src
+
+/obj/machinery/computer/arcade/minesweeper/screwdriver_act(mob/living/user, obj/item/I)
+	if(isEmagged == TRUE)
+		explosion(get_turf(src), 0, 1, 5, flame_range = 5)
+	else
+		. = ..()
+		return
 
 /obj/machinery/computer/arcade/minesweeper/Destroy(force)
 	board.host = null
@@ -146,6 +154,7 @@
 			return TRUE
 
 /obj/machinery/computer/arcade/minesweeper/emag_act(mob/user, obj/item/card/emag/emag_card)
+	isEmagged = TRUE
 	if(obj_flags & EMAGGED)
 		return FALSE
 	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"

@@ -307,24 +307,29 @@
 	play_snd('yogstation/sound/arcade/minesweeper_win.ogg')
 	host.say("You cleared the board of all mines! Congratulations!")
 	if(emaggable && host.obj_flags & EMAGGED && value >= 1 && !emagwin)
-		var/itemname
-		switch(rand(1,3))
-			if(1)
-				itemname = "a syndicate bomb beacon"
-				new /obj/item/sbeacondrop/bomb(host.loc)
-			if(2)
-				itemname = "two deployable syndicate mines disguised as ducks"
-				new /obj/item/deployablemine/traitor(host.loc)
-				new /obj/item/deployablemine/traitor(host.loc)
-			if(3)
-				itemname = "a bag of c4 & x4 charges"
-				new /obj/item/storage/backpack/duffelbag/syndie/c4(host.loc)
-				new /obj/item/storage/backpack/duffelbag/syndie/x4(host.loc)
-		emagwin = TRUE
-		message_admins("[user] won emagged Minesweeper and got [itemname]!")
-		vis_msg(span_notice("[host] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
-	else
-		ticket_count += value
+		
+		if(!MINESWEEPER_EXPERT)
+			ticket_count += value
+			return
+		else
+			var/itemname
+			switch(rand(1,3))
+				if(1)
+					itemname = "a syndicate bomb beacon"
+					new /obj/item/sbeacondrop/bomb(host.loc)
+				if(2)
+					itemname = "two deployable syndicate mines disguised as ducks"
+					new /obj/item/deployablemine/traitor(host.loc)
+					new /obj/item/deployablemine/traitor(host.loc)
+				if(3)
+					itemname = "a bag of c4 & x4 charges"
+					new /obj/item/storage/backpack/duffelbag/syndie/c4(host.loc)
+					new /obj/item/storage/backpack/duffelbag/syndie/x4(host.loc)
+			emagwin = TRUE
+			message_admins("[user] won emagged Minesweeper and got [itemname]!")
+			vis_msg(span_notice("[host] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
+			ticket_count += value
+			return
 
 /datum/minesweeper/proc/generate_new_board(diff)
 	board_data = new /list(31,18) // Fresh board
@@ -342,7 +347,7 @@
 		if(MINESWEEPER_EXPERT) // 30x16, 99 mines
 			width = 30
 			height = 16
-			mines = 99
+			mines = 0
 		if(MINESWEEPER_CUSTOM)
 			width = custom_width
 			height = custom_height
