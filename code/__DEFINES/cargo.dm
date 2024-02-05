@@ -38,7 +38,7 @@
 #define SUPPLYPOD_X_OFFSET -16
 
 GLOBAL_LIST_EMPTY(supplypod_loading_bays)
-
+/*
 GLOBAL_LIST_INIT(podstyles, list(\
     list(POD_SHAPE_NORML, "pod",         TRUE, "default",		"yellow",   RUBBLE_NORMAL,	"supply pod", 						    "A Nanotrasen supply drop pod."),\
     list(POD_SHAPE_NORML, "advpod",      TRUE, "bluespace",	"blue",     RUBBLE_NORMAL,	"bluespace supply pod" , 			    "A Nanotrasen Bluespace supply pod. Teleports back to CentCom after delivery."),\
@@ -55,5 +55,5 @@ GLOBAL_LIST_INIT(podstyles, list(\
     list(POD_SHAPE_OTHER, "gondola",     FALSE, FALSE,			FALSE,   RUBBLE_NONE,	    "gondola", 							    "The silent walker. This one seems to be part of a delivery agency."),\
     list(POD_SHAPE_OTHER, FALSE,         FALSE,    FALSE,            FALSE,   RUBBLE_NONE,	        FALSE,      FALSE,      "rl_click", "give_po")\
 ))
-
+*/
 GLOBAL_LIST_INIT(junkmail_messages, world.file2list("strings/junkmail.txt"))

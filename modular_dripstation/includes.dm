@@ -54,6 +54,7 @@
 #include "code\modules\antagonists\cult\cult_items.dm"
 #include "code\modules\antagonists\cult\cult_structures.dm"
 #include "code\modules\antagonists\wizard\equipment\wizard_spellbook.dm"
+#include "code\modules\cargo\supplypod.dm"
 #include "code\modules\assembly\assembly.dm"
 #include "code\modules\assembly\holder.dm"
 #include "code\modules\assembly\signaler.dm"
