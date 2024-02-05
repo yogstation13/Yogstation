@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Chemist ID card no longer looks like the prisoner ID card"
