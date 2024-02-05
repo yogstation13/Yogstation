@@ -705,6 +705,7 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(world, span_boldannounce("An admin has delayed the round end."))
 		return
 	//yogs start - yogs tickets
+	/* //Dripstation edit - removal of ticket delay
 	if(GLOB.ahelp_tickets && GLOB.ahelp_tickets.ticketAmount)
 		var/list/adm = get_admin_counts(R_BAN)
 		var/list/activemins = adm["present"]
@@ -713,6 +714,7 @@ SUBSYSTEM_DEF(ticker)
 			return
 		else
 			to_chat(world, span_boldannounce("Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response."))
+	*/
 	 //yogs end - yogs tickets
 	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 	webhook_send_roundstatus("endgame") //yogs - webhook support
