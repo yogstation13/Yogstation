@@ -5,6 +5,7 @@
 #include "code\datum\reagent\chemoverride.dm"
 #include "code\datum\reagent\leadacetate.dm"
 #include "code\datum\strong_pull.dm"
+#include "code\datum\keybinding\communication.dm"
 #include "code\game\effects\effects_foam.dm"
 #include "code\game\mecha\cargo_hauler.dm"
 #include "code\game\objects\items\bepis_items\boomerang.dm"

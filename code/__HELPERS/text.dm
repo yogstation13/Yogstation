@@ -94,7 +94,13 @@
 				return
 			if(32)
 				continue
+/* Dripstation edit start - russian cyrillic support
 			if(127 to INFINITY)
+*/
+			if(127 to 1039)
+				return
+			if(1104 to INFINITY)	
+//Dripstation edit end		
 				if(ascii_only)
 					return
 			else
@@ -152,7 +158,20 @@
 
 				number_of_alphanumeric++
 				last_char_group = LETTERS_DETECTED
+//Dripstation edit start - russian cyrillic support
+			// А  .. Я
+			if(1040 to 1071)            //Uppercase Letters
+				number_of_alphanumeric++
+				last_char_group = LETTERS_DETECTED
 
+			// а  .. я
+			if(1072 to 1103)            //Lowercase Letters
+				if(last_char_group == NO_CHARS_DETECTED || last_char_group == SPACES_DETECTED || last_char_group == SYMBOLS_DETECTED) //start of a word
+					char = uppertext(char)
+
+				number_of_alphanumeric++
+				last_char_group = LETTERS_DETECTED
+//Dripstation edit end
 			// 0  .. 9
 			if(48 to 57)			//Numbers
 				if(last_char_group == NO_CHARS_DETECTED || !allow_numbers) //suppress at start of string

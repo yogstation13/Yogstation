@@ -1009,6 +1009,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					movement_keys[key] = WEST
 				if("South")
 					movement_keys[key] = SOUTH
+/* Dripstation edit - cyrillic support
 				if(SAY_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=.say")
 				if(ME_CHANNEL)
@@ -1017,12 +1018,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=ooc")
 				if(LOOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=looc")
+*/
 				if(ASAY_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=asay")
+/* Dripstation edit - cyrillic support
 				if(MSAY_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=msay")
 				if(DONORSAY_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=.donorsay")
+*/
 				if(DEADSAY_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=dsay")
 
