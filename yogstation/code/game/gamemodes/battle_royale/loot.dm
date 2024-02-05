@@ -154,13 +154,14 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/nullrod/tribal_knife = 3,
 		/obj/item/nullrod/vibro = 3,
 
+		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised = 2,
+		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn = 2,
 		/obj/item/pen/red/edagger = 2,
 		/obj/item/flamethrower/full/tank = 2,
 		/obj/item/melee/chainsaw = 2,
 		/obj/item/fireaxe/metal_h2_axe = 2,
 		/obj/item/nullrod/whip = 2,
 
-		/obj/item/gun/ballistic/shotgun/riot = 1,
 		/obj/item/gun/ballistic/revolver/detective = 1,
 		/obj/item/melee/baseball_bat/homerun = 1,
 		/obj/item/fireaxe = 1,
@@ -336,8 +337,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 /obj/structure/closet/crate/battleroyale
 	name = "Supply Crate"
 	icon_state = "trashcart"
-	light_range = 5
-	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
 	dense_when_open = FALSE
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
@@ -362,7 +361,12 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
 
 	if(type != 5)//don't remove healing crates
-		addtimer(CALLBACK(src, PROC_REF(declutter)), 6 MINUTES)//remove obsolete outscaled crates after a bit
+		addtimer(CALLBACK(src, PROC_REF(declutter)), 3 MINUTES)//remove obsolete outscaled crates after a bit
+
+	if(rand(0, 100000) == 1)
+		for(var/i = 0, i < 10, i++)
+			new /mob/living/simple_animal/hostile/retaliate/clown(src)// you've been clowned
+		return //no items, just clowns
 
 	var/selected
 	switch(type)
@@ -376,12 +380,10 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 				selected = pickweightAllowZero(GLOB.battleroyale_armour)
 				new selected(src)
 
-		if(3)//allrounder, technically has more items than the others
+		if(3)//allrounder, no longer has healing since healing crates don't despawn
 			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
 			new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_healing)
 			new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_utility)
 			new selected(src)
@@ -395,10 +397,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
-
-	if(rand(0, 10000) == 1)
-		for(var/i = 0, i < 10, i++)
-			new /mob/living/simple_animal/hostile/retaliate/clown(src)// you've been clowned
 
 /obj/structure/closet/crate/battleroyale/proc/declutter()
 	if(QDELETED(src))
