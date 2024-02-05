@@ -478,9 +478,9 @@
 		M.visible_message(span_notice("[M] shakes [src] trying to get [p_them()] up!"), \
 						span_notice("You shake [src] trying to get [p_them()] up!"))
 
-	else if(check_zone(M.zone_selected) == BODY_ZONE_L_ARM || check_zone(M.zone_selected) == BODY_ZONE_R_ARM) //Headpats are too extreme, we have to pat shoulders on yogs
-		M.visible_message(span_notice("[M] gives [src] a pat on the shoulder to make [p_them()] feel better!"), \
-					span_notice("You give [src] a pat on the shoulder to make [p_them()] feel better!"))
+	else if(check_zone(M.zone_selected) == BODY_ZONE_HEAD) //For the f sake, yogs, stop this. dripstation edit
+		M.visible_message(span_notice("[M] gives [src] a headpat to make [p_them()] feel better!"), \
+					span_notice("You give [src] a a headpat to make [p_them()] feel better!"))	//dripstation edit
 
 	else
 		M.visible_message(span_notice("[M] hugs [src] to make [p_them()] feel better!"), \
@@ -513,7 +513,7 @@
 
 	adjust_status_effects_on_shake_up()
 
-//	adjustStaminaLoss(-10) if you want hugs to recover stamina damage, uncomment this
+	adjustStaminaLoss(-10) //dripstation edit, now shakes and hugs recovers stamina again
 	set_resting(FALSE)
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -610,7 +610,7 @@
 /mob/living/carbon/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)
 		return
-	damage_amount *= 0.5 //0.5 multiplier for balance reason, we don't want clothes to be too easily destroyed
+	damage_amount *= 0.2 //0.5 multiplier for balance reason, we don't want clothes to be too easily destroyed, dripstation edited for 0.2
 	if(!def_zone || def_zone == BODY_ZONE_HEAD)
 		var/obj/item/clothing/hit_clothes
 		if(wear_mask)
