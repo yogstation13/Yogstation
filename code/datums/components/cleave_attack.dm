@@ -81,3 +81,4 @@
 	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
 	user.do_attack_animation(center, no_effect=TRUE)
 	user.weapon_slow(item)
+	playsound(item, 'sound/weapons/punchmiss.ogg', 50, TRUE)
