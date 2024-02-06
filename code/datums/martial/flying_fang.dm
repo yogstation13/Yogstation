@@ -117,6 +117,8 @@
 
 //headbutt, deals moderate brute and stamina damage with an eye blur, causes poor aim for a few seconds to the target if they have no helmet on
 /datum/martial_art/flyingfang/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(!(A.mobility_flags & MOBILITY_STAND))	//No fancy tail slaps whe you're prone
+		return harm_act(A, D)
 	add_to_streak("D",D)
 	if(!can_use(A))
 		return
