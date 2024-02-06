@@ -247,7 +247,7 @@
 			if(blocked)
 				A.SetKnockdown(10 SECONDS)
 			
-			//Otherwise the not-blocker gets stunned and the lizard is okayt
+			//Otherwise the not-blocker gets stunned and the lizard is okay
 			else
 				L.Paralyze(6 SECONDS)
 				A.SetKnockdown(0)
