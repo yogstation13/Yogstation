@@ -71,6 +71,13 @@
 	cost = 3
 	no_coexistance_typecache = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun)
 
+/datum/spellbook_entry/FearAndHunger
+	name = "The Source of Fear and Hunger"
+	desc = "Call forth a spectral coin, casting it at your target while immobilizing them and forcing them to call heads or tails. If they all it incorrectly, they'll lose all their limbs."
+	spell_type = /datum/action/cooldown/spell/pointed/coinflip
+	category = "Offensive"
+	cost = 5 //5 because its a 50/50 chance aren't I so smart
+
 /datum/spellbook_entry/barnyard
 	name = "Barnyard Curse"
 	desc = "This spell dooms an unlucky soul to possess the speech and facial attributes of a barnyard animal."
