@@ -539,7 +539,6 @@
 	icon_state = "victorianblackdress"
 	item_state = "victorianblackdress"
 	can_adjust = FALSE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/dress.dmi')
 
 /obj/item/clothing/under/yogs/victorianreddress
 	name = "victorian red dress"
@@ -547,7 +546,6 @@
 	icon_state = "victorianreddress"
 	item_state = "victorianreddress"
 	can_adjust = FALSE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/dress.dmi')
 
 /obj/item/clothing/under/yogs/victoriouscaptainuniform
 	name = "very fancy captain uniform"

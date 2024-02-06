@@ -55,7 +55,6 @@
 	can_adjust = FALSE
 	strip_delay = 100
 	resistance_flags = NONE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
@@ -108,7 +107,6 @@
 	icon_state = "psyche"
 	item_state = "p_suit"
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/color.dmi')
 */
 
 /obj/item/clothing/under/rank/clown/sexy
@@ -203,7 +201,6 @@
 	icon_state = "owl"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/griffin
 	name = "griffon uniform"
@@ -211,7 +208,6 @@
 	icon_state = "griffin"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/cloud
 	name = "cloud"
@@ -339,7 +335,6 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/dress.dmi')
 
 /obj/item/clothing/under/skirt/blue
 	name = "blue skirt"
@@ -412,7 +407,6 @@
 	item_state = "pirate"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/pirate/space
 	name = "syndicate pirate outfit"
@@ -427,7 +421,6 @@
 	item_state = "soviet"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/redcoat
 	name = "redcoat uniform"
@@ -436,7 +429,6 @@
 	item_state = "redcoat"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/kilt
 	name = "kilt"
@@ -447,7 +439,6 @@
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/kilt/highlander
 	desc = "You're the only one worthy of this kilt."
@@ -465,7 +456,6 @@
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/civilian.dmi')
 
 /obj/item/clothing/under/twosexytwomime
 	name = "REALLY sexy mime outfit"
@@ -486,7 +476,6 @@
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 	resistance_flags = NONE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/gladiator/ash_walker
 	desc = "This gladiator uniform appears to be covered in ash and fairly dated."
@@ -508,7 +497,6 @@
 	item_state = "by_suit"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/captain.dmi')
 
 /obj/item/clothing/under/hosparademale
 	name = "head of security's parade uniform"
@@ -542,7 +530,6 @@
 	item_state = "wcoat"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/dress.dmi')
 
 /obj/item/clothing/under/stripeddress
 	name = "striped dress"
@@ -569,7 +556,6 @@
 	item_state = "redeveninggown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/dress.dmi')
 
 /obj/item/clothing/under/maid
 	name = "maid costume"
@@ -593,7 +579,6 @@
 	body_parts_covered = CHEST|GROIN|FEET|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
 
 /obj/item/clothing/under/plaid_skirt
 	name = "red plaid skirt"
@@ -1012,7 +997,6 @@
 /obj/item/clothing/under/vox
 	icon = 'icons/obj/clothing/species/vox/uniforms.dmi'
 	species_restricted = list("Vox")
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/misc.dmi')
 
 /obj/item/clothing/under/vox/vox_casual
 	name = "alien clothing"
