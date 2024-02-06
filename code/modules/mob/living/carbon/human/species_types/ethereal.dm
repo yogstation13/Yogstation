@@ -8,7 +8,9 @@
 	mutantlungs = /obj/item/organ/lungs/ethereal
 	mutantstomach = /obj/item/organ/stomach/cell/ethereal
 	mutantheart = /obj/item/organ/heart/ethereal
+	mutanteyes = /obj/item/organ/eyes/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
+	exotic_bloodtype = "E" //this isn't used for anything other than bloodsplatter colours
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
 	burnmod = 0.8 //Bodies are resilient to heat and energy
@@ -17,7 +19,6 @@
 	speedmod = -0.1 //Light and energy move quickly
 	punchdamagehigh  = 11 //Fire hand more painful
 	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
-	payday_modifier = 0.7 //Moths have to be compensated slightly more to be willing to work for NT bcuz drug therapy, both ethereal and moth are neutral though
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(NOEYESPRITES, EYECOLOR, MUTCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
@@ -73,6 +74,9 @@
 	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
 	if(ethereal_heart)
 		ethereal_heart.ethereal_color = default_color
+	var/obj/item/organ/eyes/ethereal/ethereal_eyes = ethereal.getorganslot(ORGAN_SLOT_EYES)
+	if(ethereal_eyes)
+		ethereal_eyes.ethereal_color = default_color
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	QDEL_NULL(ethereal_light)

@@ -222,7 +222,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 	. = ..()
 	uid = gl_uid++
-	SSair_machinery.start_processing_machine(src)
+	SSair.start_processing_machine(src)
 	countdown = new(src)
 	countdown.start()
 	GLOB.poi_list |= src
@@ -238,7 +238,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/Destroy()
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
-	SSair_machinery.stop_processing_machine(src)
+	SSair.stop_processing_machine(src)
 	QDEL_NULL(radio)
 	GLOB.poi_list -= src
 	QDEL_NULL(countdown)
@@ -599,14 +599,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(produces_gas)
 			env.merge(removed)
 
-	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
-		if((!HAS_TRAIT(l, TRAIT_MESONS)) || corruptor_attached)
-			visible_hallucination_pulse(
-				center = src,
-				radius = HALLUCINATION_RANGE(power),
-				hallucination_duration = power * 0.1,
-				hallucination_max_duration = 400 SECONDS,
-			)
+	visible_hallucination_pulse(
+		center = src,
+		radius = HALLUCINATION_RANGE(power),
+		hallucination_duration = power * 0.1,
+		hallucination_max_duration = 400 SECONDS,
+	)
 
 	power -= ((power/500)**3) * powerloss_inhibitor
 
@@ -1007,6 +1005,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		empulse(src, EMP_HEAVY, 6)
 		qdel(W)
 		return
+	if(istype(W, /obj/item/demon_core))
+		investigate_log("[user] has inserted demon core into the SM, doubling it's rad production.")
+		to_chat(user,"<span class='danger'>You insert the demon core into the [src], it begins to glow with dark purple fire, you notice the area around you noticeably heating up...")
+		radmodifier *= 2
+		add_overlay(mutable_appearance('yogstation/icons/effects/effects.dmi',"tar_shield"))
+		qdel(W)
 	else if(user.dropItemToGround(W))
 		user.visible_message(span_danger("As [user] touches \the [src] with \a [W], silence fills the room..."),\
 			"[span_userdanger("You touch \the [src] with \the [W], and everything suddenly goes silent.")]\n[span_notice("\The [W] flashes into dust as you flinch away from \the [src].")]",\

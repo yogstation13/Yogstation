@@ -20,7 +20,7 @@
 	heatmod = 1.5 //Don't let the plasma actually heat up though
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
 	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
-	payday_modifier = 1 //Former humans, employment restrictions arise from psychological and practical concerns; they won't be able to be some head positions, but they get human pay and NT can't weasel out of it
+	species_gibs = "plasma"
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
 	disliked_food = NONE

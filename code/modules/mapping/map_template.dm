@@ -7,6 +7,9 @@
 	var/datum/parsed_map/cached_map
 	var/keep_cached_map = FALSE
 
+	//yogs edit
+	var/place_on_top = TRUE
+
 /datum/map_template/New(path = null, rename = null, cache = FALSE)
 	if(path)
 		mappath = path
@@ -137,7 +140,7 @@
 	// ruins clogging up memory for the whole round.
 	var/datum/parsed_map/parsed = cached_map || new(file(mappath))
 	cached_map = keep_cached_map ? parsed : null
-	if(!parsed.load(T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE))
+	if(!parsed.load(T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=place_on_top))
 		return
 	var/list/bounds = parsed.bounds
 	if(!bounds)

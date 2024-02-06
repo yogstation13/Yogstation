@@ -135,7 +135,7 @@
 	else
 		visible_message(span_warning("[src]'s gate creaks open with a loud whining noise."))
 	playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
-	for(var/obj/item/item in contents)	
+	for(var/obj/item/item in contents)
 		QDEL_NULL(item)
 	shock()
 	open_machine(0)
@@ -144,7 +144,7 @@
 
 /obj/machinery/decontamination_unit/proc/decon_eject()
 	var/mob/living/mob_occupant = occupant
-	say("The decontamination process is completed, thank you for your patient.")
+	say("The decontamination process is completed, thank you for your patience.")
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 	if(mob_occupant)
 		visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
@@ -393,7 +393,7 @@
 			var/mob/living/mob_occupant = occupant
 			if(!occupant && !contents.len)
 				return
-			else 
+			else
 				if(uv_emagged)
 					say("ERROR: Decontamination process is going over safety limit!!")
 					uv_cycles = 7

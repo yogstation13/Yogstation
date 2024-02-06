@@ -18,6 +18,7 @@
 	desc = "A set of khaki fatigues. Standard issue for Imperial Guardsmen"
 	icon_state = "guard_uniform"
 	item_state = "guard_uniform"
+	can_adjust = 0
 
 /obj/item/clothing/shoes/combat/imperial
 	name = "flak boots"
@@ -59,7 +60,7 @@
 /obj/item/clothing/suit/armor/imperial/commissar
 	name = "armored commisar coat"
 	desc = "A black and red coat. Armored and padded, it instils fear into all that see it, friend and foe alike."
-	icon = 'icons/obj/clothing/suits.dmi'
+	icon = 'icons/obj/clothing/suits/suits.dmi'
 	icon_state = "commissar"
 	item_state = "commissar"
 
@@ -67,7 +68,7 @@
 /obj/item/clothing/head/helmet/imperial/commissar
 	name = "commissar cap"
 	desc = "An armored cap, protecting your head from stray rounds and your eyes from splashes of blood."
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats/hats.dmi'
 	icon_state = "commissar"
 	item_state = "commissar"
 
