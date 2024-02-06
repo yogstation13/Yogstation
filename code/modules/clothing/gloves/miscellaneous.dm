@@ -288,5 +288,3 @@
 	item_state = "gloves-vox"
 	icon = 'icons/obj/clothing/species/vox/gloves.dmi'
 	species_restricted = list("Vox")
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/species/vox/gloves.dmi')

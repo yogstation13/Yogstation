@@ -5,6 +5,8 @@
 	item_state = "gy_suit"
 	can_adjust = FALSE
 	mutantrace_variation = DIGITIGRADE_VARIATION
+	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/costumes.dmi')
+
 /obj/item/clothing/under/yogs/rank/clerk
 	desc = "Oh, look it comes with its own vest."
 	name = "clerk's uniform"

@@ -608,9 +608,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/vox_robe_hood
 	species_restricted = list("Vox")
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/species/vox/suit.dmi'
-	)
 
 /obj/item/clothing/head/hooded/vox_robe_hood
 	name = "alien hood"
@@ -621,9 +618,6 @@
 	flags_inv = HIDEHAIR
 	flags_cover = HEADCOVERSEYES
 	species_restricted = list("Vox")
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/species/vox/head.dmi'
-	)
 
 /obj/item/clothing/suit/armor/vox_scrap
 	name = "rusted metal armor"

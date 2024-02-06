@@ -16,9 +16,7 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	worn_icon = 'icons/mob/clothing/uniform/security.dmi'
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/species/vox/under/security.dmi',
-	)
+	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/security.dmi')
 
 /obj/item/clothing/under/rank/security/officer
 	name = "security jumpsuit"
@@ -84,9 +82,7 @@
 	icon_state = "detective"
 	item_state = "det"
 	mutantrace_variation = DIGITIGRADE_VARIATION
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/species/vox/under/security.dmi',
-	)
+	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/security.dmi')
 
 /obj/item/clothing/under/rank/security/detective/skirt
 	name = "detective's suitskirt"
@@ -126,9 +122,7 @@
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 	strip_delay = 60
 	mutantrace_variation = DIGITIGRADE_VARIATION
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/species/vox/under/security.dmi',
-	)
+	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/under/security.dmi')
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt
 	name = "head of security's jumpskirt"

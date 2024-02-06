@@ -14,9 +14,6 @@
 	visor_flags_cover = MASKCOVERSMOUTH
 	resistance_flags = NONE
 	mutantrace_variation = DIGITIGRADE_VARIATION
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/species/vox/mask.dmi',
-	)
 
 /obj/item/clothing/mask/breath/tactical
 	name = "tactical breath mask"
