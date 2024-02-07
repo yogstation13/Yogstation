@@ -959,32 +959,44 @@
 
 // update the icon state and description of the light
 
-/obj/item/light/proc/update()
+/obj/item/light/update_icon_state()
+	. = ..()
 	switch(status)
 		if(LIGHT_OK)
 			icon_state = base_state
-			desc = "A replacement [name]."
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
-			desc = "A burnt-out [name]."
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
+
+/obj/item/light/update_desc()
+	. = ..()
+	switch(status)
+		if(LIGHT_OK)
+			desc = "A replacement [name]."
+		if(LIGHT_BURNED)
+			desc = "A burnt-out [name]."
+		if(LIGHT_BROKEN)
 			desc = "A broken [name]."
 
 /obj/item/light/Initialize(mapload)
 	. = ..()
-	update()
-	AddComponent(/datum/component/caltrop, force)
+	AddComponent(/datum/component/caltrop, min_damage = force)
+	update_icon_state()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
-/obj/item/light/Crossed(atom/movable/AM)
-	. = ..()
-	if(!isliving(AM))
+/obj/item/light/proc/on_entered(datum/source, atom/movable/moving_atom)
+	SIGNAL_HANDLER
+	if(!isliving(moving_atom))
 		return
-	var/mob/living/L = AM
-	if(istype(L) && !(L.is_flying() || L.buckled))
-		playsound(src, 'sound/effects/glass_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
+	var/mob/living/moving_mob = moving_atom
+	if(!(moving_mob.movement_type & MOVETYPES_NOT_TOUCHING_GROUND) || moving_mob.buckled)
+		playsound(src, 'sound/effects/glass_step.ogg', HAS_TRAIT(moving_mob, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
 		if(status == LIGHT_BURNED || status == LIGHT_OK)
-			shatter()
+			shatter(moving_mob)
 
 // attack bulb/tube with object
 // if a syringe, can inject plasma to make it explode
@@ -1017,10 +1029,11 @@
 		visible_message(span_danger("[src] shatters."),span_italics("You hear a small glass object shatter."))
 		status = LIGHT_BROKEN
 		force = 5
+		sharpness = SHARP_POINTY
 		playsound(src.loc, 'sound/effects/glasshit.ogg', 75, 1)
 		if(rigged)
 			atmos_spawn_air("plasma=5") //5u of plasma are required to rig a light bulb/tube
-		update()
+		update_appearance(UPDATE_DESC | UPDATE_ICON)
 
 
 /obj/machinery/light/floor

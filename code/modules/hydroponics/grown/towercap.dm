@@ -144,7 +144,7 @@
 
 /obj/structure/punji_sticks/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/caltrop, 20, 30, 100, CALTROP_BYPASS_SHOES)
+	AddComponent(/datum/component/caltrop, min_damage = 20, max_damage = 30, flags = CALTROP_BYPASS_SHOES)
 	build_stab_overlay()
 
 /obj/structure/punji_sticks/proc/build_stab_overlay()
