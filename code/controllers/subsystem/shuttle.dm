@@ -490,22 +490,22 @@ SUBSYSTEM_DEF(shuttle)
 			You have 3 minutes to board the Emergency Shuttle.",
 			null, ANNOUNCER_SHUTTLEDOCK, "Priority")
 
-//try to move/request to dockHome if possible, otherwise dockAway. Mainly used for admin buttons
-/datum/controller/subsystem/shuttle/proc/toggleShuttle(shuttleId, dockHome, dockAway, timed)
-	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
-	if(!M)
-		return 1
-	var/obj/docking_port/stationary/dockedAt = M.get_docked()
-	var/destination = dockHome
-	if(dockedAt && dockedAt.shuttle_id == dockHome)
-		destination = dockAway
+//try to move/request to dock_home if possible, otherwise dock_away. Mainly used for admin buttons
+/datum/controller/subsystem/shuttle/proc/toggleShuttle(shuttle_id, dock_home, dock_away, timed)
+	var/obj/docking_port/mobile/shuttle_port = getShuttle(shuttle_id)
+	if(!shuttle_port)
+		return DOCKING_BLOCKED
+	var/obj/docking_port/stationary/docked_at = shuttle_port.get_docked()
+	var/destination = dock_home
+	if(docked_at && docked_at.shuttle_id == dock_home)
+		destination = dock_away
 	if(timed)
-		if(M.request(getDock(destination)))
-			return 2
+		if(shuttle_port.request(getDock(destination)))
+			return DOCKING_IMMOBILIZED
 	else
-		if(M.initiate_docking(getDock(destination)) != DOCKING_SUCCESS)
-			return 2
-	return 0	//dock successful
+		if(shuttle_port.initiate_docking(getDock(destination)) != DOCKING_SUCCESS)
+			return DOCKING_IMMOBILIZED
+	return DOCKING_SUCCESS //dock successful
 
 
 /**
@@ -582,7 +582,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/datum/turf_reservation/proposal = SSmapping.request_turf_block_reservation(
 		transit_width,
 		transit_height,
-		1,
+		z_size = 1, //if this is changed the turf uncontain code below has to be updated to support multiple zs
 		reservation_type = /datum/turf_reservation/transit,
 		turf_type_override = transit_path,
 	)
@@ -618,15 +618,17 @@ SUBSYSTEM_DEF(shuttle)
 		return FALSE
 	var/area/old_area = midpoint.loc
 	old_area.turfs_to_uncontain += proposal.reserved_turfs
-	var/area/shuttle/transit/A = new()
-	A.parallax_movedir = travel_dir
-	A.contents = proposal.reserved_turfs
-	A.contained_turfs = proposal.reserved_turfs
+	
+	var/area/shuttle/transit/new_area = new()
+	new_area.parallax_movedir = travel_dir
+	new_area.contents = proposal.reserved_turfs
+	new_area.contained_turfs = proposal.reserved_turfs
+	
 	var/obj/docking_port/stationary/transit/new_transit_dock = new(midpoint)
 	new_transit_dock.reserved_area = proposal
 	new_transit_dock.name = "Transit for [M.shuttle_id]/[M.name]"
 	new_transit_dock.owner = M
-	new_transit_dock.assigned_area = A
+	new_transit_dock.assigned_area = new_area
 
 	// Add 180, because ports point inwards, rather than outwards
 	new_transit_dock.setDir(angle2dir(dock_angle))

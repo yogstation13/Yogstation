@@ -8,7 +8,6 @@
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	CanAtmosPassVertical = ATMOS_PASS_YES
 	plane = TRANSPARENT_FLOOR_PLANE
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE

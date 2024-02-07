@@ -4,29 +4,22 @@ All ShuttleMove procs go here
 
 /************************************Base procs************************************/
 
-// Called on every turf in the shuttle region, returns a bitflag for allowed movements of that turf
-// returns the new move_mode (based on the old)
-// /turf/proc/beforeShuttleMove(turf/newT)
-// 	clear_adjacencies()
-// 	newT.clear_adjacencies()
-
-// Called on every turf in the shuttle region, returns a bitflag for allowed movements of that turf
-// returns the new move_mode (based on the old)
+/// Called on every turf in the shuttle region, returns a bitflag for allowed movements of that turf
+/// returns the new move_mode (based on the old)
 /turf/proc/fromShuttleMove(turf/newT, move_mode)
 	if(!(move_mode & MOVE_AREA) || !isshuttleturf(src))
 		return move_mode
 	
-	//newT.clear_adjacencies()
 	return move_mode | MOVE_TURF | MOVE_CONTENTS
 
-// Called from the new turf before anything has been moved
-// Only gets called if fromShuttleMove returns true first
-// returns the new move_mode (based on the old)
+/// Called from the new turf before anything has been moved
+/// Only gets called if fromShuttleMove returns true first
+/// returns the new move_mode (based on the old)
 /turf/proc/toShuttleMove(turf/oldT, move_mode, obj/docking_port/mobile/shuttle)
 	. = move_mode
 	if(!(. & MOVE_TURF))
 		return
-	//clear_adjacencies()
+
 	var/shuttle_dir = shuttle.dir
 	for(var/i in contents)
 		var/atom/movable/thing = i
@@ -64,6 +57,7 @@ All ShuttleMove procs go here
 	newT.blocks_air = TRUE
 	newT.air_update_turf(TRUE, FALSE)
 	blocks_air = TRUE
+	air_update_turf(TRUE, TRUE)
 	if(isopenturf(newT))
 		var/turf/open/new_open = newT
 		new_open.copy_air_with_tile(src)
@@ -99,7 +93,7 @@ All ShuttleMove procs go here
 /atom/movable/proc/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	return move_mode
 
-// Called on atoms to move the atom to the new location
+/// Called on atoms to move the atom to the new location
 /atom/movable/proc/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
 	if(newT == oldT) // In case of in place shuttle rotation shenanigans.
 		return
@@ -123,11 +117,6 @@ All ShuttleMove procs go here
 		shuttleRotate(rotation)
 
 	update_parallax_contents()
-
-	// //Yog code: i'm not sure if this is actually still needed but taking a closer look will be another PR having to do with shuttles
-	// var/turf/newT = get_turf(src)
-	// if (newT.z != oldT.z)
-	// 	on_changed_z_level(oldT, newT)
 
 	return TRUE
 
@@ -157,20 +146,11 @@ All ShuttleMove procs go here
 	if(newT == oldT) // In case of in place shuttle rotation shenanigans.
 		return TRUE
 
-	contents -= oldT
-	turfs_to_uncontain += oldT
-	underlying_old_area.contents += oldT
-	underlying_old_area.contained_turfs += oldT
 	oldT.change_area(src, underlying_old_area)
 	//The old turf has now been given back to the area that turf originaly belonged to
 
 	var/area/old_dest_area = newT.loc
 	parallax_movedir = old_dest_area.parallax_movedir
-
-	old_dest_area.contents -= newT
-	old_dest_area.turfs_to_uncontain += newT
-	contents += newT
-	contained_turfs += newT
 	newT.change_area(old_dest_area, src)
 	return TRUE
 

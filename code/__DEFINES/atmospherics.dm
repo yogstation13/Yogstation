@@ -224,13 +224,34 @@
 //CANATMOSPASS
 #define ATMOS_PASS_YES 1
 #define ATMOS_PASS_NO 0
-/// ask CanAtmosPass()
+/// ask can_atmos_pass()
 #define ATMOS_PASS_PROC -1
 /// just check density
 #define ATMOS_PASS_DENSITY -2
 
-#define CANATMOSPASS(A, O) ( A.CanAtmosPass == ATMOS_PASS_PROC ? A.CanAtmosPass(O) : ( A.CanAtmosPass == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPass ) )
-#define CANVERTICALATMOSPASS(A, O) ( A.CanAtmosPassVertical == ATMOS_PASS_PROC ? A.CanAtmosPass(O, TRUE) : ( A.CanAtmosPassVertical == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPassVertical ) )
+#define CANATMOSPASS(A, O, V) ( A.can_atmos_pass == ATMOS_PASS_PROC ? A.can_atmos_pass(O, V) : ( A.can_atmos_pass == ATMOS_PASS_DENSITY ? !A.density : A.can_atmos_pass ) )
+
+#ifdef TESTING
+GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
+#define CALCULATE_ADJACENT_TURFS(T, state) if (SSair.adjacent_rebuild[T]) { GLOB.atmos_adjacent_savings[1] += 1 } else { GLOB.atmos_adjacent_savings[2] += 1; SSair.adjacent_rebuild[T] = state}
+#else
+#define CALCULATE_ADJACENT_TURFS(T, state) SSair.adjacent_rebuild[T] = state
+#endif
+
+//If you're doing spreading things related to atmos, DO NOT USE CANATMOSPASS, IT IS NOT CHEAP. use this instead, the info is cached after all. it's tweaked just a bit to allow for circular checks
+#define TURFS_CAN_SHARE(T1, T2) (LAZYACCESS(T2.atmos_adjacent_turfs, T1) || LAZYLEN(T1.atmos_adjacent_turfs & T2.atmos_adjacent_turfs))
+//Use this to see if a turf is fully blocked or not, think windows or firelocks. Fails with 1x1 non full tile windows, but it's not worth the cost.
+#define TURF_SHARES(T) (LAZYLEN(T.atmos_adjacent_turfs))
+
+
+//Adjacent turf related defines, they dictate what to do with a turf once it's been recalculated
+//Used as "state" in CALCULATE_ADJACENT_TURFS
+///Normal non-active turf
+#define NORMAL_TURF 1
+///Set the turf to be activated on the next calculation
+#define MAKE_ACTIVE 2
+///Disable excited group
+#define KILL_EXCITED 3
 
 ///Used to define the temperature of a tile, arg is the temperature it should be at. Should always be put at the end of the atmos list.
 ///This is solely to be used after compile-time.
@@ -503,8 +524,6 @@ DEFINE_BITFIELD(vent_movement, list(
 #define PIPENET_UPDATE_STATUS_DORMANT 0
 #define PIPENET_UPDATE_STATUS_REACT_NEEDED 1
 #define PIPENET_UPDATE_STATUS_RECONCILE_NEEDED 2
-
-#define TURF_SHARES(T) (LAZYLEN(T.atmos_adjacent_turfs))
 
 //Defines for air alarm severities in areas.
 #define ATMOS_ALARM_SEVERE "severe"

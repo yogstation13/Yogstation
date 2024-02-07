@@ -35,7 +35,7 @@
 		overlays += GLOB.starlight_overlays[GET_TURF_PLANE_OFFSET(src) + 1]
 	
 	if (!mapload)
-		// if(requires_activation)
+		// if(requires_activation) //yog code we don't use this
 		// 	SSair.add_to_active(src, TRUE)
 
 		if(SSmapping.max_plane_offset)

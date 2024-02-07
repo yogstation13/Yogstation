@@ -479,7 +479,7 @@ Difficulty: Medium
 	anchored = TRUE
 	opacity = FALSE
 	density = TRUE
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	duration = 8.2 SECONDS
 	color = COLOR_DARK_ORANGE
 

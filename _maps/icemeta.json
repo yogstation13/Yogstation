@@ -30,7 +30,7 @@
 			"Mining": true,
 			"Gravity": true,
 			"Bombcap Multiplier": 2.5,
-			"Ice Ruins Underground": true,
+			"Ice Ruins": true,
 			"Baseturf": "/turf/open/openspace/icemoon/keep_below",
 			"No Parallax": true
 		},

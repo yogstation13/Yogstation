@@ -801,6 +801,12 @@
 	turf_type = /turf/open/floor/plating/asteroid/snow
 	defer_change = TRUE
 
+/// Near exact same subtype as parent, just used in ruins to prevent other ruins/chasms from spawning on top of it.
+/turf/closed/mineral/snowmountain/do_not_chasm
+	turf_type = /turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm
+	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm
+	turf_flags = NO_RUINS
+
 /turf/closed/mineral/snowmountain/icemoon
 	turf_type = /turf/open/floor/plating/asteroid/snow/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon

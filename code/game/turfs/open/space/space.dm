@@ -52,14 +52,16 @@ GLOBAL_LIST_EMPTY(starlight)
 	initial_temperature = TCMB
 	thermal_conductivity = 0
 	heat_capacity = 700000
-
 	var/starlight_source_count = 0
 
 	var/destination_z
 	var/destination_x
 	var/destination_y
 
-	var/global/datum/gas_mixture/immutable/space/space_gas
+	var/static/datum/gas_mixture/immutable/space/space_gas
+	// We do NOT want atmos adjacent turfs
+	//init_air = FALSE
+	//run_later = TRUE
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
 	light_power = 1

@@ -140,16 +140,7 @@ Always compile, always use that verb, and always make sure that it works for wha
     ZTRAIT_LAVA_RUINS = TRUE, \
     ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
     ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
-#define ZTRAITS_ICEMOON list(\
-    ZTRAIT_MINING = TRUE, \
-    ZTRAIT_ICE_RUINS = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
-    ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow/icemoon)
-#define ZTRAITS_ICEMOON_UNDERGROUND list(\
-    ZTRAIT_MINING = TRUE, \
-    ZTRAIT_ICE_RUINS_UNDERGROUND = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
-    ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
+
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.60)
 
 ///Z level traits for Away Missions

@@ -20,11 +20,6 @@
 	var/damaged_dmi = null
 	var/broken = FALSE
 	var/burnt = FALSE
-	
-	/// How much fuel this open turf provides to turf fires, and how easily they can be ignited in the first place. Can be negative to make fires die out faster.
-	var/flammability = 0.3
-	var/obj/effect/abstract/turf_fire/turf_fire
-	var/obj/effect/hotspot/hotspot
 
 /// Returns a list of every turf state considered "broken".
 /// Will be randomly chosen if a turf breaks at runtime.
@@ -441,7 +436,7 @@
 
 /turf/open/indestructible/binary
 	name = "tear in the fabric of reality"
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 	baseturfs = /turf/open/indestructible/binary
 	icon_state = "binary"
 	footstep = null
@@ -577,7 +572,7 @@
 			air = new(2500,src)
 		air.copy_from_turf(src)
 		update_air_ref(planetary_atmos ? 1 : 2)
-	ImmediateCalculateAdjacentTurfs()
+	immediate_calculate_adjacent_turfs()
 
 /turf/open/proc/GetHeatCapacity()
 	. = air.heat_capacity()

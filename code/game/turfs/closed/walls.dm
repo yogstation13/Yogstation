@@ -76,7 +76,7 @@
 	P.setAngle(new_angle_s)
 	return TRUE
 
-/turf/closed/wall/proc/dismantle_wall(devastated=0, explode=0)
+/turf/closed/wall/proc/dismantle_wall(devastated = FALSE, explode = FALSE)
 	if(devastated)
 		devastate_wall()
 	else
@@ -124,6 +124,8 @@
 				dismantle_wall(0,1)
 	if(!density)
 		..()
+	
+	return TRUE
 
 
 /turf/closed/wall/blob_act(obj/structure/blob/B)

@@ -15,9 +15,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	if(turf_type)
 		ChangeTurf(turf_type, baseturf_type, flags)
-		// var/turf/new_turf = ChangeTurf(turf_type, baseturf_type, flags)
-		// SSair.remove_from_active(new_turf)
-		// CALCULATE_ADJACENT_TURFS(new_turf, KILL_EXCITED)
 
 /turf/proc/copyTurf(turf/copy_to_turf)
 	if(copy_to_turf.type != type)
@@ -114,7 +111,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/carryover_turf_flags = (RESERVATION_TURF | UNUSED_RESERVATION_TURF) & turf_flags
 	var/turf/new_turf = new path(src)
 	new_turf.turf_flags |= carryover_turf_flags
-
 	// WARNING WARNING
 	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
 	// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
@@ -242,8 +238,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 //If you modify this function, ensure it works correctly with lateloaded map templates.
 /turf/proc/AfterChange(flags, oldType) //called after a turf has been replaced in ChangeTurf()
 	levelupdate()
-	if(flags & CHANGETURF_RECALC_ADJACENT)
-		ImmediateCalculateAdjacentTurfs()
+	immediate_calculate_adjacent_turfs()
 
 	//update firedoor adjacency
 	var/list/turfs_to_check = get_adjacent_open_turfs(src) | src

@@ -81,9 +81,13 @@
 	for(var/turf/cordon_turf as anything in cordon_turfs)
 		var/area/misc/cordon/cordon_area = GLOB.areas_by_type[/area/misc/cordon] || new
 		var/area/old_area = cordon_turf.loc
+		
+		//LISTASSERTLEN(old_area.turfs_to_uncontain, cordon_turf.z, list())
+		//LISTASSERTLEN(cordon_area.contained_turfs, cordon_turf.z, list())
 		old_area.turfs_to_uncontain += cordon_turf
 		cordon_area.contained_turfs += cordon_turf
 		cordon_area.contents += cordon_turf
+		
 		// Its no longer unused, but its also not "used"
 		cordon_turf.turf_flags &= ~UNUSED_RESERVATION_TURF
 		cordon_turf.ChangeTurf(/turf/cordon, /turf/cordon)
@@ -200,6 +204,8 @@
 
 /// Calculates the effective bounds information for the given turf. Returns a list of the information, or null if not applicable.
 /datum/turf_reservation/proc/calculate_turf_bounds_information(turf/target)
+	if(!length(bottom_left_turfs) || !length(top_right_turfs))
+		return null
 	for(var/z_idx in 1 to z_size)
 		var/turf/bottom_left = bottom_left_turfs[z_idx]
 		var/turf/top_right = top_right_turfs[z_idx]

@@ -23,6 +23,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	///The max temperature of the fire which it was subjected to
 	var/max_fire_temperature_sustained = 0
 
+	/// Does this turf block air from existing on it
 	var/blocks_air = FALSE
 	
 	/// If there's a tile over a basic floor that can be ripped out
@@ -148,7 +149,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		add_overlay(GLOB.starlight_overlays[GET_TURF_PLANE_OFFSET(src) + 1])
 
 	if(requires_activation)
-		ImmediateCalculateAdjacentTurfs()
+		immediate_calculate_adjacent_turfs()
 
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
@@ -177,7 +178,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/set_temperature()
 
 /turf/proc/Initalize_Atmos(times_fired)
-	ImmediateCalculateAdjacentTurfs()
+	immediate_calculate_adjacent_turfs()
 
 /turf/Destroy(force)
 	. = QDEL_HINT_IWILLGC
@@ -228,8 +229,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	//move the turf
 	old_area.turfs_to_uncontain += src
-	new_area.contents += src
 	new_area.contained_turfs += src
+	new_area.contents += src
 
 	//changes to make after turf has moved
 	on_change_area(old_area, new_area)

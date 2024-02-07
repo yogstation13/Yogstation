@@ -64,6 +64,14 @@
 	new /obj/effect/landmark/ruin(center, src)
 	return center
 
+/**
+ * Loads the ruins for a given z level.
+ * @param z_levels The z levels to load ruins on.
+ * @param budget The budget to spend on ruins. Compare against the cost of the ruins in /datum/map_template/ruin.
+ * @param whitelist A list of areas to allow ruins to be placed in.
+ * @param potentialRuins A list of ruins to choose from.
+ * @param clear_below Whether to clear the area below the ruin. Used for multiz ruins.
+ */
 /proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins, clear_below = FALSE)
 	if(!z_levels || !z_levels.len)
 		WARNING("No Z levels provided - Not generating ruins")
