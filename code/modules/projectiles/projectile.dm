@@ -1,7 +1,4 @@
 
-#define MOVES_HITSCAN -1		//Not actually hitscan but close as we get without actual hitscan.
-#define MUZZLE_EFFECT_PIXEL_INCREMENT 17	//How many pixels to move the muzzle flash up so your character doesn't look like they're shitting out lasers.
-
 /obj/projectile
 	name = "projectile"
 	icon = 'icons/obj/projectiles.dmi'
@@ -49,10 +46,12 @@
 	var/ricochet_chance = 30
 	var/force_hit = FALSE //If the object being hit can pass ths damage on to something else, it should not do it for this bullet.
 
-	//Atom penetration, set to mobs by default
-	var/penetrating = FALSE
-	var/penetrations = INFINITY
-	var/penetration_type = 0 //Set to 1 if you only want to have it penetrate objects. Set to 2 if you want it to penetrate objects and mobs.
+	///Whether this projectile can ricochet off of coins
+	var/can_ricoshot = FALSE
+	///How many things can this penetrate?
+	var/penetrations = 0
+	///Flags used to specify what this projectile can penetrate. Default is mobs only.
+	var/penetration_flags = PENETRATE_MOBS
 
 	//Hitscan
 	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
@@ -210,7 +209,7 @@
 
 		W.add_dent(WALL_DENT_SHOT, hitx, hity)
 
-		if(penetrating && (penetration_type == 1 || penetration_type == 2) && penetrations > 0)
+		if((penetration_flags & PENETRATE_OBJECTS) && penetrations > 0)
 			penetrations -= 1
 			return BULLET_ACT_FORCE_PIERCE
 
@@ -220,7 +219,7 @@
 		if(impact_effect_type && !hitscan)
 			new impact_effect_type(target_loca, hitx, hity)
 
-		if(penetrating && (penetration_type == 1 || penetration_type == 2) && penetrations > 0)
+		if((penetration_flags & PENETRATE_OBJECTS) && penetrations > 0)
 			penetrations -= 1
 			return BULLET_ACT_FORCE_PIERCE
 

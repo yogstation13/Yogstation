@@ -208,7 +208,7 @@
 /mob/living/simple_animal/drone/snowflake/mafia
 	name = "Mafiosdrone"
 	icon_state = "drone_synd"
-	desc = "An indestructable drone \"\ probably\"\ involved in some shady buisness. Good thing its pacificm circuits are still there."
+	desc = "An indestructable drone \"\ probably\"\ involved in some shady business. Good thing its pacificm circuits are still there."
 	hacked = TRUE
 	laws = "1. Be loyal to members of the organization.\n\
 		2. Be rational.\n\

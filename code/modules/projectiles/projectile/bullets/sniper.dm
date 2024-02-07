@@ -26,8 +26,8 @@
 	name = ".50 penetrator bullet"
 	icon_state = "gauss"
 	damage = 60
-	penetrating = TRUE //Passes through everything and anything until it reaches the end of its range
-	penetration_type = 2
+	penetrations = INFINITY //Passes through everything and anything until it reaches the end of its range
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS
 	dismemberment = 0 //It goes through you cleanly.
 	paralyze = 0
 
