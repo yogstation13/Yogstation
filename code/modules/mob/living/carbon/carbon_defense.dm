@@ -129,7 +129,7 @@
 			body_part.receive_damage(stamina = damage_amount * 0.25, sharpness = SHARP_EDGED)//Non-harmful stuff causes stamina damage when removed
 
 		if(!silent && damage_amount)
-			emote("scream")
+			INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 
 	if(!has_embedded_objects())
 		clear_alert("embeddedobject")

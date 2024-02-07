@@ -60,7 +60,7 @@
 		src.soundfile = soundfile
 
 /datum/component/caltrop/proc/on_entered(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	SIGNAL_HANDLER
+	//SIGNAL_HANDLER //we're not ready
 	
 	if(!prob(probability))
 		return
