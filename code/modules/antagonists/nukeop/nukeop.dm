@@ -39,6 +39,7 @@
 	to_chat(owner, span_notice("You are a [nuke_team ? nuke_team.syndicate_name : "syndicate"] agent!"))
 	owner.announce_objectives()
 
+/*	//dripstation edit
 /datum/antagonist/nukeop/on_gain()
 	give_alias()
 	. = ..()
@@ -51,6 +52,7 @@
 		var/datum/component/uplink/U = owner.find_syndicate_uplink()
 		if (U)
 			U.telecrystals += extra_tc
+*/	//dripstation edit
 
 
 

@@ -1,3 +1,6 @@
+#include "code\modules\antagonists\_common\antag_spawner.dm"
+#include "code\game\gamemodes\nuclear\nuclear.dm"
+#include "code\modules\antagonists\nukeop\nukeop.dm"
 #include "code\controllers\subsystem\blackmarket.dm"
 #include "code\datum\brain_damage\severe.dm"
 #include "code\datum\component\transforming.dm"
