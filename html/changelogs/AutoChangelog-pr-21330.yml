@@ -1,0 +1,5 @@
+author: "Identification, Molti, lore team (rip skrem)"
+delete-after: true 
+changes: 
+  - imageadd: "new preternis sprites"
+  - imagedel: "old preternis sprites"

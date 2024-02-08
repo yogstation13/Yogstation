@@ -4,7 +4,7 @@
 	name = "7.62mm bullet casing"
 	desc = "A 7.62mm bullet casing."
 	icon_state = "762-casing"
-	caliber = "a762"
+	caliber = CALIBER_762X54R
 	projectile_type = /obj/projectile/bullet/a762
 
 /obj/item/ammo_casing/a762/raze
@@ -34,7 +34,7 @@
 	name = "5.56mm bullet casing"
 	desc = "A 5.56mm bullet casing."
 	icon_state = "556-casing"
-	caliber = "a556"
+	caliber = CALIBER_556NATO
 	projectile_type = /obj/projectile/bullet/a556
 
 /obj/item/ammo_casing/a556/ap
@@ -61,7 +61,7 @@
 	name = ".308 bullet casing"
 	desc = "A .308 bullet casing."
 	icon_state = "556-casing"
-	caliber = "m308"
+	caliber = CALIBER_308
 	projectile_type = /obj/projectile/bullet/m308
 
 /obj/item/ammo_casing/m308/pen
@@ -81,6 +81,6 @@
 /obj/item/ammo_casing/a40mm
 	name = "40mm HE shell"
 	desc = "A cased high explosive grenade that can only be activated once fired out of a grenade launcher."
-	caliber = "40mm"
+	caliber = CALIBER_40GL
 	icon_state = "40mmHE"
 	projectile_type = /obj/projectile/bullet/a40mm

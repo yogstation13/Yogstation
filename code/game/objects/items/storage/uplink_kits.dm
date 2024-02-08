@@ -225,7 +225,7 @@
 			new /obj/item/reagent_containers/glass/bottle/beesease(src) // 10 tc?
 			new /obj/item/gun/magic/staff/spellblade/beesword(src) //priceless
 
-		if("mr_freeze") // ~17 tc
+		if("mr_freeze") // ~25 tc
 			new /obj/item/clothing/glasses/cold(src) // 0 tc
 			new /obj/item/clothing/gloves/color/black(src) // 0 tc
 			new /obj/item/clothing/mask/chameleon/syndicate(src) // 0 tc on its own
@@ -237,8 +237,9 @@
 			new /obj/item/grenade/gluon(src) //
 			new /obj/item/dnainjector/geladikinesis(src) // 0 tc
 			new /obj/item/dnainjector/cryokinesis(src) // 1 or 2 tc, kind of useful
-			new /obj/item/gun/energy/temperature/security(src) // the crutch of this kit, alongside esword, ~4 tc
+			new /obj/item/gun/energy/temperature/security(src) // ~4 tc
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue, 8 tc
+			new /obj/item/reagent_containers/spray/chemsprayer/freeze(src) // filled with frost oil and you can refill it with whatever, ~8 tc
 
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
@@ -270,12 +271,11 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
-		if("solo") //14 + 6x4 + 1 = 3 tc = 39 tc, or 37 if molti's pr gets merged. wow thats really costly this is probably going to busted. eh
-			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //14 tc as of writing, 12 if molti's pr gets merged
+		if("solo") //14 + 6x3 + 1 = 3 tc = 31 tc. it was, in fact, busted
+			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //12 tc
 			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
-			new /obj/item/storage/box/syndie_kit/emp_shield(src) //6 tc
 			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
 			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
 			
@@ -300,7 +300,8 @@
 /obj/item/clothing/suit/toggle/cyberpunk/solo
 	name = "David's Jacket"
 	desc = "A jacket once owned by a legendary edgerunner, or so they say. Armored."
-	armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 15, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF //it's too stylish to be destroyed
 
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
