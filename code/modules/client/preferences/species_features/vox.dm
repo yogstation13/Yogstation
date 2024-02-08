@@ -2,7 +2,7 @@
 	var/list/values = list()
 	var/icon/vox_head = icon('icons/mob/species/vox/bodyparts.dmi', "vox_head_green")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 	var/icon/eyes = icon('icons/mob/species/vox/eyes.dmi', "eyes")
-	var/icon/eyes_static = icon('icons/mob/species/vox/eyes.dmi', "eyes_static")
+	var/icon/eyes_static = icon('icons/mob/species/vox/eyes.dmi', "eyes_static_green")
 	eyes.Blend(COLOR_CYAN, ICON_MULTIPLY)
 	vox_head.Blend(eyes, ICON_OVERLAY)
 	vox_head.Blend(eyes_static, ICON_OVERLAY)
@@ -41,7 +41,14 @@
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = capitalized_skin_tones
 	var/list/skin_tones_to_hex = list(
 		"green" = "#00ff00",
-		"crimson" = "#ff0000"
+		"crimson" = "#ff0000",
+		"plum" = "#5B3256",
+		"azure" = "#0b322a",
+		"emerald" = "#024716",
+		"brown" = "#592810",
+		"grey" = "#2b3326",
+		"nebula" = "#282b63",
+		"mossy" = "#407436"
 	)
 	var/list/to_hex = list()
 	for (var/choice in get_choices())

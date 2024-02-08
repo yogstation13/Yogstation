@@ -981,14 +981,20 @@
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
 		if(aux_zone)
-			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
+			var/aux_icon_name = "[species_id]_[aux_zone]"
+			if(icon_exists(limb.icon, "[aux_icon_name]_[limb_icon_variant]"))
+				aux_icon_name += "_[limb_icon_variant]"
+			aux = image(limb.icon, aux_icon_name, -aux_layer, image_dir)
 			. += aux
 		if(limb_icon_file)
 			limb.icon = limb_icon_file
 			if(aux)
 				aux.icon = limb_icon_file
 		if(has_static_sprite_part)
-			limb_static = image(limb.icon, "[limb.icon_state]_static", limb.layer, limb.dir)
+			var/limb_static_icon_name = "[limb.icon_state]_static"
+			if(icon_exists(limb.icon, "[limb_static_icon_name]_[limb_icon_variant]"))
+				limb_static_icon_name += "_[limb_icon_variant]"
+			limb_static = image(limb.icon, limb_static_icon_name, limb.layer, limb.dir)
 			. += limb_static
 		if(limb_icon_variant)
 			limb.icon_state += "_[limb_icon_variant]"

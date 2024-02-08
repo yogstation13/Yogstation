@@ -3055,6 +3055,34 @@
 	name = "crimson"
 	icon_state = "crimson"
 
+/datum/sprite_accessory/vox_tails/grey
+	name = "grey"
+	icon_state = "grey"
+
+/datum/sprite_accessory/vox_tails/nebula
+	name = "nebula"
+	icon_state = "nebula"
+
+/datum/sprite_accessory/vox_tails/azure
+	name = "azure"
+	icon_state = "azure"
+
+/datum/sprite_accessory/vox_tails/emerald
+	name = "emerald"
+	icon_state = "emerald"
+
+/datum/sprite_accessory/vox_tails/brown
+	name = "brown"
+	icon_state = "brown"
+
+/datum/sprite_accessory/vox_tails/plum
+	name = "plum"
+	icon_state = "plum"
+
+/datum/sprite_accessory/vox_tails/mossy
+	name = "mossy"
+	icon_state = "mossy"
+
 /datum/sprite_accessory/tails_animated/vox
 	icon = 'icons/mob/species/vox/tails.dmi'
 	color_src = NONE
@@ -3067,30 +3095,33 @@
 	name = "crimson"
 	icon_state = "crimson"
 
-/*/datum/sprite_accessory/vox_tails/dgrvox
-	name = "dgrvox"
-	icon_state = "dgrvox"
+/datum/sprite_accessory/tails_animated/vox/grey
+	name = "grey"
+	icon_state = "grey"
 
-/datum/sprite_accessory/vox_tails/brnvox
-	name = "brnvox"
-	icon_state = "brnvox"
+/datum/sprite_accessory/tails_animated/vox/nebula
+	name = "nebula"
+	icon_state = "nebula"
 
-/datum/sprite_accessory/vox_tails/gryvox
-	name = "gryvox"
-	icon_state = "gryvox"
+/datum/sprite_accessory/tails_animated/vox/azure
+	name = "azure"
+	icon_state = "azure"
 
-/datum/sprite_accessory/vox_tails/emdvox
-	name = "emdvox"
-	icon_state = "emdvox"
+/datum/sprite_accessory/tails_animated/vox/emerald
+	name = "emerald"
+	icon_state = "emerald"
 
-/datum/sprite_accessory/vox_tails/azevox
-	name = "azevox"
-	icon_state = "azevox"
+/datum/sprite_accessory/tails_animated/vox/brown
+	name = "brown"
+	icon_state = "brown"
 
-/datum/sprite_accessory/vox_tails/aurvox
-	name = "aurvox"
-	icon_state = "aurvox"
-*/
+/datum/sprite_accessory/tails_animated/vox/plum
+	name = "plum"
+	icon_state = "plum"
+
+/datum/sprite_accessory/tails_animated/vox/mossy
+	name = "mossy"
+	icon_state = "mossy"
 
 /datum/sprite_accessory/vox_body_markings
 	icon = 'icons/mob/species/vox/body_markings.dmi'

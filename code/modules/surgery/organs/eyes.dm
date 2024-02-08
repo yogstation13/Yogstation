@@ -23,7 +23,7 @@
 	var/tint = 0
 	var/eye_color = "" //set to a hex code to override a mob's eye color
 	var/eye_icon_state = "eyes"
-	var/static_sprite_part = FALSE
+	var/static_sprite_part
 	var/old_eye_color = "fff"
 	var/flash_protect = 0
 	var/see_invisible = SEE_INVISIBLE_LIVING
@@ -47,6 +47,7 @@
 		HMN.update_body()
 	M.update_tint()
 	owner.update_sight()
+	update_static_sprite_part(M)
 
 /obj/item/organ/eyes/Remove(mob/living/carbon/M, special = 0)
 	..()
@@ -60,6 +61,9 @@
 	M.set_eye_blur(0) // no eyes to blur
 	M.update_tint()
 	M.update_sight()
+
+/obj/item/organ/eyes/proc/update_static_sprite_part()
+	return
 
 //Gotta reset the eye color, because that persists
 /obj/item/organ/eyes/enter_wardrobe()
@@ -103,10 +107,7 @@
 		eye_overlay.color = eye_color
 
 	if(static_sprite_part)
-		var/static_icon_state = "[eye_overlay.icon_state]_static"
-		if(icon_exists(eye_overlay.icon, "[static_icon_state]_[head.limb_icon_variant]"))
-			static_icon_state += "_[head.limb_icon_variant]" 
-		var/mutable_appearance/eyes_static_sprite = mutable_appearance(eye_overlay.icon, "[static_icon_state]", eye_overlay.layer)
+		var/mutable_appearance/eyes_static_sprite = mutable_appearance(eye_overlay.icon, "[eye_overlay.icon_state]_static_[static_sprite_part]", eye_overlay.layer)
 		eyes_static_sprite.appearance_flags |= RESET_COLOR
 		eye_overlay.add_overlay(eyes_static_sprite)
 
@@ -549,7 +550,12 @@
 	icon_state = "eyes-vox"
 	decay_factor = 0
 	status = ORGAN_ROBOTIC
-	static_sprite_part = TRUE
+	static_sprite_part = "green"
+
+/obj/item/organ/eyes/vox/update_static_sprite_part(mob/living/carbon/eyes_owner)
+	var/list/blue_static_skin_tones = list("crimson", "mossy")
+	if(eyes_owner.dna.features["vox_skin_tone"] in blue_static_skin_tones)
+		static_sprite_part = "blue"
 
 /obj/item/organ/eyes/vox/emp_act()
 	owner.adjust_hallucinations(10 SECONDS)

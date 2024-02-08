@@ -269,10 +269,7 @@
 			if(eyes.eye_color)
 				eyes_overlay.color = eyes.eye_color
 			if(eyes.static_sprite_part)
-				var/static_icon_state = "[eyes_overlay.icon_state]_static"
-				if(icon_exists(eyes_overlay.icon, "[static_icon_state]_[limb_icon_variant]"))
-					static_icon_state += "_[limb_icon_variant]" 
-				var/mutable_appearance/eyes_static_sprite = mutable_appearance(eyes_overlay.icon, "[static_icon_state]", eyes_overlay.layer)
+				var/mutable_appearance/eyes_static_sprite = mutable_appearance(eyes_overlay.icon, "[eyes_overlay.icon_state]_static_[eyes.static_sprite_part]", eyes_overlay.layer)
 				eyes_static_sprite.dir = eyes_overlay.dir
 				eyes_static_sprite.appearance_flags |= RESET_COLOR
 				eyes_overlay.add_overlay(eyes_static_sprite)
