@@ -295,12 +295,12 @@ RLD
 		"Construction" = list( //Stuff you use to make & decorate areas
 			//Walls & Windows
 			"Structures" = list(
-				list(CONSTRUCTION_MODE = RCD_DECONSTRUCT, ICON = "no", TITLE = "Deconstruct"),
 				list(CONSTRUCTION_MODE = RCD_FLOORWALL, ICON = "wallfloor", TITLE = "Wall/Floor"),
-				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window, WINDOW_GLASS = RCD_WINDOW_NORMAL, WINDOW_SIZE =  RCD_WINDOW_DIRECTIONAL, ICON = "windowsize", TITLE = "Directional Window"),
-				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window/reinforced, WINDOW_GLASS = RCD_WINDOW_REINFORCED, WINDOW_SIZE =  RCD_WINDOW_DIRECTIONAL, ICON = "windowtype", TITLE = "Directional Reinforced Window"),
-				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window/fulltile, WINDOW_GLASS = RCD_WINDOW_NORMAL, WINDOW_SIZE =  RCD_WINDOW_FULLTILE, ICON = "window0", TITLE = "Full Tile Window"),
-				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window/reinforced/fulltile, WINDOW_GLASS = RCD_WINDOW_REINFORCED, WINDOW_SIZE =  RCD_WINDOW_FULLTILE, ICON = "rwindow0", TITLE = "Full Tile Reinforced Window"),
+				list(CONSTRUCTION_MODE = RCD_DECONSTRUCT, ICON = "delete", TITLE = "Deconstruct"),
+				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window, WINDOW_GLASS = RCD_WINDOW_NORMAL, WINDOW_SIZE =  RCD_WINDOW_DIRECTIONAL, ICON = "dirwindow", TITLE = "Directional Window"),
+				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window/fulltile, WINDOW_GLASS = RCD_WINDOW_NORMAL, WINDOW_SIZE =  RCD_WINDOW_FULLTILE, ICON = "fullwindow", TITLE = "Full Tile Window"),
+				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window/reinforced, WINDOW_GLASS = RCD_WINDOW_REINFORCED, WINDOW_SIZE =  RCD_WINDOW_DIRECTIONAL, ICON = "dirwindow_r", TITLE = "Directional Reinforced Window"),
+				list(CONSTRUCTION_MODE = RCD_WINDOWGRILLE, WINDOW_TYPE = /obj/structure/window/reinforced/fulltile, WINDOW_GLASS = RCD_WINDOW_REINFORCED, WINDOW_SIZE =  RCD_WINDOW_FULLTILE, ICON = "fullwindow_r", TITLE = "Full Tile Reinforced Window"),
 			),
 
 			//Computers & Machine Frames

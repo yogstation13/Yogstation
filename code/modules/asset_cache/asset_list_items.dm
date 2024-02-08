@@ -660,8 +660,7 @@
 
 	//load all category essential icon_states. format is icon_file = list of icon states we need from that file
 	var/list/essentials = list(
-		'icons/turf/decals.dmi' = list("no"),
-		'icons/mob/radial.dmi' = list("wallfloor", "windowsize", "windowtype", "cnorth", "csouth", "ceast", "cwest", "chair", "stool", "windoor", "secure_windoor"),
+		'icons/mob/radial.dmi' = list("wallfloor", "delete", "dirwindow", "fullwindow", "dirwindow_r", "fullwindow_r", "cnorth", "csouth", "ceast", "cwest", "chair", "stool", "windoor", "secure_windoor"),
 		'icons/obj/structures.dmi' = list("window0", "rwindow0", "table", "glass_table"),
 		'icons/obj/stock_parts.dmi' = list("box_1"),
 	)
@@ -670,8 +669,6 @@
 	for(var/icon_file as anything in essentials)
 		for(var/icon_state as anything in essentials[icon_file])
 			icon = icon(icon = icon_file, icon_state = icon_state)
-			if(icon_state == "window0" || icon_state == "rwindow0")
-				icon.Blend(icon(icon = 'icons/obj/structures.dmi', icon_state = "grille"), ICON_UNDERLAY)
 			Insert(sanitize_css_class_name(icon_state), icon)
 
 	//for each airlock type we create its overlayed version with the suffix Glass in the sprite name
