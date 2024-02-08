@@ -112,7 +112,7 @@
 		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
 	if(istype(Proj, /obj/projectile/ion))
-		return BULLET_ACT_HIT
+		return ..()
 	var/booster_deflection_modifier = 1
 	var/booster_damage_modifier = 1
 	var/attack_dir = get_dir(src, Proj)
