@@ -16,4 +16,3 @@
 	var/light_dab_angle = rand(35,55)
 	var/light_dab_speed = rand(3,7)
 	INVOKE_ASYNC(dabber, TYPE_PROC_REF(/atom, DabAnimation), light_dab_speed, 0, 0, 0, light_dab_angle)
-	//H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)

@@ -80,7 +80,5 @@
 		var/mob/living/carbon/human/dabber = user
 		var/light_dab_angle = rand(35,55)
 		var/light_dab_speed = rand(3,7)
-		///atom/proc/DabAnimation(speed = 1, loops = 1, direction = 1 , hold_seconds = 0  , angle = 1 , stay = FALSE) // Hopek 2019  
 		INVOKE_ASYNC(dabber, TYPE_PROC_REF(/atom, DabAnimation), light_dab_speed, 0, 0, 0, light_dab_angle)
-		//H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
 		SSachievements.unlock_achievement(/datum/achievement/dab, dabber.client)
