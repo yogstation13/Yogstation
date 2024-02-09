@@ -67,6 +67,7 @@
 	main_feature_name = "Jumpsuit"
 	category = PREFERENCE_CATEGORY_CLOTHING
 	should_generate_icons = TRUE
+	blacklisted_species = list(/datum/species/vox)
 
 /datum/preference/choiced/jumpsuit/init_possible_values()
 	var/list/values = list()
@@ -78,6 +79,9 @@
 
 /datum/preference/choiced/jumpsuit/apply_to_human(mob/living/carbon/human/target, value)
 	target.jumpsuit_style = value
+
+/datum/preference/choiced/jumpsuit/create_default_value()
+	return PREF_SUIT
 
 /// Socks preference
 /datum/preference/choiced/socks

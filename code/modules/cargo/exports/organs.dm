@@ -96,6 +96,11 @@
 	unit_name = "lizard tail"
 	export_types = list(/obj/item/organ/tail/lizard)
 
+/datum/export/organ/mutant/vox_tail
+	cost = 300
+	unit_name = "vox tail"
+	export_types = list(/obj/item/organ/tail/vox)
+
 // Human organs.
 
 // Do not put human brains here, they are not sellable for a purpose.

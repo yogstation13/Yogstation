@@ -58,6 +58,12 @@
 	reward = 3000
 	wanted_types = list(/obj/item/organ/tail/cat)
 
+/datum/bounty/item/medical/vox_tail
+	name = "Vox Tail"
+	description = "Negotiations have broken down between Central Command and a group of Vox Raiders. Ship us a vox tail so we can show them we mean business."
+	reward = 3000
+	wanted_types = list(/obj/item/organ/tail/vox)
+
 /datum/bounty/item/medical/flystomach
 	name = "Fly Stomach"
 	description = "Central Command's research team would like a fly stomach to research how they work."

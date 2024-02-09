@@ -3,7 +3,7 @@
 	id = SPECIES_VOX
 	is_dimorphic = FALSE
 	generate_husk_icon = TRUE
-	species_traits = list(NOTRANSSTING, EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
+	species_traits = list(EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
 	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
@@ -80,16 +80,17 @@
 	return person_to_check.dna.features["vox_skin_tone"]
 
 /datum/species/vox/handle_body(mob/living/carbon/human/H)
-	update_skin_tone(vox = H)
+	update_skin_tone(H)
 	..()
 
-/datum/species/vox/proc/update_skin_tone(skin_tone, mob/living/carbon/human/vox)
+/datum/species/vox/proc/update_skin_tone(mob/living/carbon/human/vox, skin_tone)
 	if(!skin_tone)
 		skin_tone = vox.dna.features["vox_skin_tone"]
 	vox.dna.features["vox_skin_tone"] = skin_tone
+	vox.dna.update_uf_block(DNA_VOX_SKIN_TONE_BLOCK)
 	var/obj/item/organ/tail/vox/vox_tail = vox.getorganslot(ORGAN_SLOT_TAIL)
-	if(vox == vox_tail?.original_owner)
-		vox_tail.tail_type = skin_tone
+	if(vox_tail)
+		vox_tail.update_tail_appearance(vox)
 
 /datum/species/vox/create_pref_unique_perks()
 	var/list/to_add = list()

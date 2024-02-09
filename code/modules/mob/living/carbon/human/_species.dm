@@ -1141,8 +1141,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.ipc_antennas_list[H.dna.features["ipc_antenna"]]
 				if("ipc_chassis")
 					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
-				if("vox_skin_tone")
-					S = GLOB.vox_skin_tones[H.dna.features["vox_skin_tone"]]
 				if("vox_tail")
 					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
 					if(vox_tail)
@@ -1154,9 +1152,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if("vox_body_markings")
 					S = GLOB.vox_body_markings_list[H.dna.features["vox_body_markings"]]
 				if("vox_tail_markings")
-					S = GLOB.vox_tail_markings_list[H.dna.features["vox_tail_markings"]]
+					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
+					if(vox_tail)
+						S = GLOB.vox_tail_markings_list[vox_tail.tail_markings]
 				if("wagging_vox_tail_markings")
-					S = GLOB.animated_vox_tail_markings_list[H.dna.features["vox_tail_markings"]]
+					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
+					if(vox_tail)
+						S = GLOB.animated_vox_tail_markings_list[vox_tail.tail_markings]
 			if(!S || S.icon_state == "none")
 				continue
 
