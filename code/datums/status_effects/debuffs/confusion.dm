@@ -21,7 +21,7 @@
 
 	var/new_dir
 
-	if(prob(25))
+	if(prob(50))
 		new_dir = angle2dir(dir2angle(direction) + pick(45, -45))
 
 	if(!isnull(new_dir))
