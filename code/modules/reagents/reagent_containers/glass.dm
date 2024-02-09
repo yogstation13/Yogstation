@@ -209,6 +209,11 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
 
+/obj/item/reagent_containers/glass/beaker/bluespace/dorf
+	name = "A perfectly normal bottle of beer"
+	list_reagents = list(/datum/reagent/consumable/ethanol/manly_dorf = 300)
+
+
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
 
