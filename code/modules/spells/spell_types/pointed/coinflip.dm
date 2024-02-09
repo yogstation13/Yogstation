@@ -37,7 +37,6 @@
 		to_chat(owner, span_warning("The spell had no effect!"))
 		return FALSE
 
-	to_chat(cast_on, span_warning("Heads, or tails!"))
 	ADD_TRAIT(cast_on, TRAIT_IMMOBILIZED, src)
 	select_coin(cast_on)
 	
