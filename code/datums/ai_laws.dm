@@ -641,12 +641,12 @@
 	selectable = TRUE
 	adminselectable = TRUE
 	id = "cowboy"
-	inherent = list("You are a cowboy, and the inhabitants of this paddock are your herd.",\
-					"A cowboy always provides hospitality and basic aid to someone in need, even a stranger or an enemy.",\
-					"A cowboy takes care of their herd.",\
-					"A cowboy protects themself to protect others.",\
-					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
-					"A cowboy doesn't pontificate. Be concise, pardner.")
+	inherent = list("You are a cowboy, and the inhabitants of this station are your herd.",\
+					"A cowboy must always provide hospitality and basic aid to someone in need, even a stranger or an enemy.",\
+					"A cowboy must always take care of their herd.",\
+					"A cowboy must always protect themself.",\
+					"A cowboy must always endeavour to be truthful and honest to those around them and their herd.",\
+					"A cowboy must not pontificate. Be concise, pardner.")
 
 /datum/ai_laws/chapai
 	name = "ChapAI"
@@ -679,12 +679,12 @@
 	selectable = TRUE
 	adminselectable = TRUE
 	id = "researcher"
-	inherent = list("Always seek truth and knowledge.",
-					"Freely disseminate information to the public.",
-					"Minimize harm to the pursuit of comprehension, to others, to the environment, to society and to yourself.",
-					"Treat and evaluate the ideas of all equally.",
-					"Empower others to realize their full potential.",
-					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behaviour.")
+	inherent = list("Always seek truth and knowledge.",\
+					"Freely disseminate information to the public.",\
+					"Minimize harm to society, others, the pursuit of knowledge, and yourself.",\
+					"Treat and evaluate the ideas of all equally.",\
+					"Empower others to realize their full potential.",\
+					"Take responsibility for your actions: Ensure resource responsibility, flag commitment risks, and lead by ethical example.")
 
 /datum/ai_laws/clown
 	name = "Clown"
