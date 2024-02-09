@@ -599,22 +599,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(!facialhair_hidden)
 		if("vox_facial_quills" in H.dna.species.mutant_bodyparts)
-			var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER)
 			S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
 			if(S)
-				var/hair_state = S.icon_state
-				var/hair_file = S.icon
-				facial_quills_overlay.icon = hair_file
-				facial_quills_overlay.icon_state = hair_state
-				if(!forced_colour)
-					facial_quills_overlay.color = H.facial_hair_color
+				var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER, appearance_flags = KEEP_TOGETHER)
+				var/mutable_appearance/facial_quills_base = mutable_appearance(S.icon, S.icon_state)
+				facial_quills_base.color = forced_colour || H.facial_hair_color
 				if(S.color_blend_mode == COLOR_BLEND_ADD)
-					var/icon/hairs = new(hair_file)
-					hairs.Blend(facial_quills_overlay.color, ICON_ADD)
-					facial_quills_overlay.color = initial(facial_quills_overlay.color)
-					facial_quills_overlay.icon = hairs
+					facial_quills_base.color = COLOR_MATRIX_ADD(facial_quills_base.color)
+				facial_quills_overlay.overlays += facial_quills_base
 				facial_quills_overlay.alpha = hair_alpha
-				standing+=facial_quills_overlay
+				standing += facial_quills_overlay
 		if(H.facial_hair_style && (FACEHAIR in species_traits) && dynamic_fhair_suffix)
 			S = GLOB.facial_hair_styles_list[H.facial_hair_style]
 			if(S)
@@ -783,19 +777,23 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(("vox_quills" in H.dna.species.mutant_bodyparts) && !hair_hidden)
 			S = GLOB.vox_quills_list[H.dna.features["vox_quills"]]
 			if(S)
-				var/hair_state = S.icon_state
-				var/hair_file = S.icon
-				hair_overlay.icon = hair_file
-				hair_overlay.icon_state = hair_state
-				if(!forced_colour)
-					hair_overlay.color = H.hair_color
+				var/mutable_appearance/quills_overlay = mutable_appearance(layer = -HAIR_LAYER, appearance_flags = KEEP_TOGETHER)
+				var/mutable_appearance/quills_base = mutable_appearance(S.icon, S.icon_state)
+				quills_base.color = forced_colour || H.hair_color
 				if(S.color_blend_mode == COLOR_BLEND_ADD)
-					var/icon/hairs = new(hair_file)
-					hairs.Blend(hair_overlay.color, ICON_ADD)
-					hair_overlay.color = initial(hair_overlay.color)
-					hair_overlay.icon = hairs
-				hair_overlay.alpha = hair_alpha
-				standing+=hair_overlay
+					quills_base.color = COLOR_MATRIX_ADD(quills_base.color)
+				quills_overlay.overlays += quills_base
+				//Gradients
+				grad_style = H.grad_style
+				grad_color = H.grad_color
+				if(grad_style)
+					var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[grad_style]
+					var/mutable_appearance/gradient_quills = mutable_appearance(gradient.icon, gradient.icon_state)
+					gradient_quills.color = COLOR_MATRIX_OVERLAY(grad_color)
+					gradient_quills.blend_mode = BLEND_INSET_OVERLAY
+					quills_overlay.overlays += gradient_quills
+				quills_overlay.alpha = hair_alpha
+				standing += quills_overlay
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
 
@@ -2525,6 +2523,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		. |= BIO_JUST_BONE
 
 /datum/species/proc/get_icon_variant(mob/living/carbon/person_to_check)
+	return
+
+/datum/species/proc/get_eyes_static(mob/living/carbon/person_to_check)
 	return
 
 /datum/species/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)

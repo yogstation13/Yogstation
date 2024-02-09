@@ -376,7 +376,9 @@ GLOBAL_LIST_INIT(cable_colors, list(
 #define COLOR_BLEND_ADD "add"
 
 //Color matrix
-#define COLOR_MATRIX_ADD(color) list(null, null, null, null, color)
+//#define COLOR_MATRIX_ADD(color) list(null, null, null, null, color)
+#define COLOR_MATRIX_ADD(color) list(COLOR_RED, COLOR_VIBRANT_LIME, COLOR_BLUE, color)
+#define COLOR_MATRIX_OVERLAY(color) list(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK, color)
 
 /// Change color to red on ANSI terminal output, if enabled with -DANSICOLORS.
 #ifdef ANSICOLORS

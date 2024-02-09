@@ -99,7 +99,12 @@
 /datum/preference/choiced/vox_quills/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["vox_quills"] = value
 
-/datum/preference/choiced/vox_facial_quiils
+/datum/preference/choiced/vox_quills/compile_constant_data()
+	var/list/data = ..()
+	data[SUPPLEMENTAL_FEATURE_KEY] = "feature_quill_color"
+	return data
+
+/datum/preference/choiced/vox_facial_quills
 	savefile_key = "feature_vox_facial_quills"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
@@ -107,19 +112,25 @@
 	relevant_mutant_bodypart = "vox_facial_quills"
 	main_feature_name = "Facial Quillstyle"
 
-
-/datum/preference/choiced/vox_facial_quiils/init_possible_values()
+/datum/preference/choiced/vox_facial_quills/init_possible_values()
 	return generate_vox_side_shots(GLOB.vox_facial_quills_list)
 
-/datum/preference/choiced/vox_facial_quiils/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/vox_facial_quills/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["vox_facial_quills"] = value
 
-/datum/preference/color/hair_color/quill_color
+/datum/preference/choiced/vox_facial_quills/compile_constant_data()
+	var/list/data = ..()
+	data[SUPPLEMENTAL_FEATURE_KEY] = "feature_facial_quill_color"
+	return data
+
+/datum/preference/color/hair_color/vox
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "feature_quill_color"
 	relevant_species_traits = null
 	relevant_mutant_bodypart = "vox_quills"
 
-/datum/preference/color/facial_hair_color/facial_quill_color
+/datum/preference/color/facial_hair_color/vox
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "feature_facial_quill_color"
 	relevant_species_traits = null
 	relevant_mutant_bodypart = "vox_facial_quills"
@@ -208,3 +219,13 @@
 
 /datum/preference/choiced/vox_tank_type/apply_to_human()
 	return
+
+/datum/preference/choiced/hair_gradient/vox
+	savefile_key = "feature_quill_gradientstyle"
+	relevant_species_traits = null
+	relevant_mutant_bodypart = "vox_quills"
+/datum/preference/color/hair_gradient/vox
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	savefile_key = "feature_quill_gradientcolor"
+	relevant_species_traits = null
+	relevant_mutant_bodypart = "vox_quills"

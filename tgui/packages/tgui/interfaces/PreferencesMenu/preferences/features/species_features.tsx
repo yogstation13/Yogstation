@@ -4,7 +4,8 @@ import { SkinToneServerData } from "./character_preferences/skin_tone";
 import { sortHexValues } from "./character_preferences/skin_tone";
 
 export const eye_color: Feature<string> = {
-  name: "Eye color",
+  name: "Eye Color",
+  sortingPrefix: "aaaa",
   component: FeatureColorInput,
 };
 
@@ -68,13 +69,27 @@ export const feature_facial_quill_color: Feature<string> = {
   component: FeatureColorInput,
 };
 
+export const feature_quill_gradientstyle: FeatureChoiced = {
+  name: "Quill Gradient",
+  sortingPrefix: "v1",
+  component: FeatureDropdownInput,
+};
+
+export const feature_quill_gradientcolor: Feature<string> = {
+  name: "Quill Gradient Color",
+  sortingPrefix: "v2",
+  component: FeatureColorInput,
+};
+
 export const feature_body_markings_color: Feature<string> = {
   name: "Body Markings Color",
+  sortingPrefix: "v6",
   component: FeatureColorInput,
 };
 
 export const feature_tail_markings_color: Feature<string> = {
   name: "Tail Markings Color",
+  sortingPrefix: "v4",
   component: FeatureColorInput,
 };
 
@@ -175,16 +190,19 @@ export const feature_vox_facial_quills: FeatureChoiced = {
 
 export const feature_vox_tail_markings: FeatureChoiced = {
   name: 'Tail Markings',
+  sortingPrefix: "v3",
   component: FeatureDropdownInput,
 };
 
 export const feature_vox_body_markings: FeatureChoiced = {
   name: 'Body Markings',
+  sortingPrefix: "v5",
   component: FeatureDropdownInput,
 };
 
 export const feature_vox_skin_tone: Feature<string, string, SkinToneServerData> = {
   name: "Skin Tone",
+  sortingPrefix: "a",
   component: (props: FeatureValueProps<string, string, SkinToneServerData>) => {
     const {
       handleSetValue,

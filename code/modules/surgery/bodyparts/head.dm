@@ -23,6 +23,7 @@
 	var/obj/item/organ/ears/ears
 	var/obj/item/organ/tongue/tongue
 	var/eyes_icon = 'icons/mob/human_face.dmi'
+	var/eyes_static
 	//Limb appearance info:
 	var/real_name = "" //Replacement name
 	//Hair colour and style
@@ -203,6 +204,7 @@
 			lip_color = "white"
 		if(S.eyes_icon)
 			eyes_icon = S.eyes_icon
+		eyes_static = S.get_eyes_static(H)
 	..()
 
 /obj/item/bodypart/head/update_icon_dropped()
@@ -268,8 +270,8 @@
 			eyes_overlay.icon_state = eyes.eye_icon_state
 			if(eyes.eye_color)
 				eyes_overlay.color = eyes.eye_color
-			if(eyes.static_sprite_part)
-				var/mutable_appearance/eyes_static_sprite = mutable_appearance(eyes_overlay.icon, "[eyes_overlay.icon_state]_static_[eyes.static_sprite_part]", eyes_overlay.layer)
+			if(eyes_static)
+				var/mutable_appearance/eyes_static_sprite = mutable_appearance(eyes_overlay.icon, "[eyes_overlay.icon_state]_static_[eyes_static]", eyes_overlay.layer)
 				eyes_static_sprite.dir = eyes_overlay.dir
 				eyes_static_sprite.appearance_flags |= RESET_COLOR
 				eyes_overlay.add_overlay(eyes_static_sprite)
