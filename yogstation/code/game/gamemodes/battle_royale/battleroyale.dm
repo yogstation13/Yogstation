@@ -18,7 +18,8 @@ GLOBAL_VAR(final_zone)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale bridge")
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale the bridge")
+	var/list/weathered = list() //list of all the places currently covered by weather
 	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
 	var/borderstage = 0
@@ -30,7 +31,7 @@ GLOBAL_VAR(final_zone)
 	title_icon = "ss13"
 
 /datum/game_mode/fortnite/pre_setup()
-	GLOB.stormdamage = 2
+	GLOB.stormdamage = 3
 	INVOKE_ASYNC(src, PROC_REF(spawn_bus))//so if a runtime happens with the spawn_bus proc, the rest of pre_setup still happens
 	for(var/mob/L in GLOB.player_list)
 		if(!L.mind || !L.client || isobserver(L))
@@ -161,32 +162,30 @@ GLOBAL_VAR(final_zone)
 		if(9)
 			set_security_level("epsilon")
 
+	var/datum/weather/royale/W
 	switch(borderstage)
 		if(0)
-			SSweather.run_weather("royale start",2)
+			W = SSweather.run_weather("royale start",2)
 		if(1)
-			SSweather.run_weather("royale maint",2)
+			W = SSweather.run_weather("royale maint",2)
 		if(2 to 7)//close off the map
 			var/weather = pick(randomweathers)
-			SSweather.run_weather(weather, 2)
+			W = SSweather.run_weather(weather, 2)
 			randomweathers -= weather
 		if(8)
-			var/weather = pick(randomweathers) //whichever one is left
-			weather = replacetext(weather, "royale ", "")
-			if(weather == "bridge")
-				weather = "the bridge"
-			GLOB.final_zone = weather
-			SSweather.run_weather("royale hallway", 2)//force them to the final department
+			GLOB.final_zone = replacetext(pick(randomweathers), "royale ", "")
+			W = SSweather.run_weather("royale hallway", 2)//force them to the final department
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
+
+	if(W && istype(W))
+		weathered |= W.areasToWeather
 
 	if(borderstage)//doesn't cull during round start
 		ItemCull()
 
+	GLOB.stormdamage *= 1.1
 	borderstage++
-
-	if(borderstage % 2 == 0) //so it scales, but not too hard
-		GLOB.stormdamage *= 1.5
 	
 	if(borderstage <= 9)
 		var/remainingpercent = LAZYLEN(GLOB.battleroyale_players) / original_num
@@ -260,6 +259,8 @@ GLOBAL_VAR(final_zone)
 	loot_spawn()
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 
+/// How many tiles in a given room gives a 100% guaranteed crate
+#define ROOMSIZESCALING 60
 /datum/game_mode/fortnite/proc/loot_spawn()
 	for(var/area/lootlake as anything in GLOB.areas)
 		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
@@ -270,7 +271,10 @@ GLOBAL_VAR(final_zone)
 			continue
 		if(istype(lootlake, /area/maintenance))//no maintenance, it's too large, it'd lag the hell out of the server and it's not as popular as main hallways
 			continue //also, ideally keeps people out of maints, and in larger open areas that are more interesting
-		var/amount = round(LAZYLEN(lootlake.get_contained_turfs()) / 40)//so bigger areas spawn more crates
+		if(is_type_in_list(lootlake, weathered))
+			continue //if the area is covered with a storm, don't spawn loot (less lag)
+		var/number = LAZYLEN(lootlake.get_contained_turfs())//so bigger areas spawn more crates
+		var/amount = round(number / ROOMSIZESCALING) + prob(((number % ROOMSIZESCALING)/ROOMSIZESCALING)*100) //any remaining tiles gives a probability to have an extra crate
 		for(var/I = 0, I < amount, I++)
 			var/turf/turfy = pick(get_area_turfs(lootlake))
 			for(var/L = 0, L < 15, L++)//cap so it doesn't somehow end in an infinite loop
@@ -278,6 +282,8 @@ GLOBAL_VAR(final_zone)
 					break
 				turfy = pick(get_area_turfs(lootlake))
 			addtimer(CALLBACK(src, PROC_REF(drop_pod), turfy), rand(1,50))//to even out the lag that creating a drop pod causes
+
+#undef ROOMSIZESCALING
 
 /datum/game_mode/fortnite/proc/drop_pod(turf/turfy)
 	var/obj/structure/closet/supplypod/centcompod/pod = new()
@@ -373,9 +379,12 @@ GLOBAL_VAR(final_zone)
 	name = "very cool tie (do not remove)"
 	desc = "Totally not just here for keeping track of kills."
 	var/datum/antagonist/battleroyale/last_hit
-	clothing_traits = (TRAIT_NODROP)
 	resistance_flags = INDESTRUCTIBLE //no escaping
 
+/obj/item/clothing/neck/tie/gamer/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, "I will kill you if you take this off somehow") //can't be a clothing trait because those get applied to the mob, not the item
+	
 /obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
 	. = ..()
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(death))

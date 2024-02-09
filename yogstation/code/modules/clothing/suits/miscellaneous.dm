@@ -9,7 +9,7 @@
 /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	icon_state = "hood_signaltech"
+	icon_state = "winterhood_signaltech"
 
 /obj/item/clothing/suit/yogs/zebrasweat
 	name = "White and black sweatshirt"
