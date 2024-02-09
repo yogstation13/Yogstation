@@ -38,7 +38,7 @@
 		return FALSE
 
 	to_chat(cast_on, span_warning("Heads, or tails!"))
-	cast_on.SetImmobilized(10 HOURS)
+	ADD_TRAIT(cast_on, TRAIT_IMMOBILIZED, [insert defined trait source here])
 	select_coin(cast_on)
 	
 	return TRUE
@@ -58,6 +58,6 @@
 				if(!(bodypart.body_part & (HEAD|CHEST)))
 					if(bodypart.dismemberable)
 						bodypart.dismember()
-						user.SetImmobilized(0 SECONDS)
+						REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, [insert defined trait source here])
 	else
-		user.SetImmobilized(0 HOURS)
+		REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, [insert defined trait source here])
