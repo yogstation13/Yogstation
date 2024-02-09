@@ -71,7 +71,7 @@
 	cost = 3
 	no_coexistance_typecache = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun)
 
-/datum/spellbook_entry/FearAndHunger
+/datum/spellbook_entry/fear_and_hunger
 	name = "The Source of Fear and Hunger"
 	desc = "Call forth a spectral coin, casting it at your target while immobilizing them and forcing them to call heads or tails. If they all it incorrectly, they'll lose all their limbs."
 	spell_type = /datum/action/cooldown/spell/pointed/coinflip
