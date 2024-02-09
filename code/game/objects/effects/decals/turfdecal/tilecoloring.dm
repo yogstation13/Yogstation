@@ -308,6 +308,7 @@ TRIMLINE_SUBTYPE_HELPER(/obj/effect/turf_decal/trimline/blue)
 /// Dark blue trimlines
 /obj/effect/turf_decal/trimline/dark_blue
 	color = "#384e6d"
+	alpha = 220
 
 TRIMLINE_SUBTYPE_HELPER(/obj/effect/turf_decal/trimline/dark_blue)
 
