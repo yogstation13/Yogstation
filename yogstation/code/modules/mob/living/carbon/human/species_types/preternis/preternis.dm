@@ -52,7 +52,7 @@
 	
 	mutant_bodyparts = list("preternis_weathering", "preternis_antenna", "preternis_eye", "preternis_core")
 	default_features = list("weathering" = "None", "antenna" = "None", "preternis_eye" = "Standard", "preternis_core" = "Core")
-	wings_icon = "Robotic"
+	wings_icon = "Elytra"
 
 	//new variables
 	var/datum/action/innate/maglock/maglock

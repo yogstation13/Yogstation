@@ -2267,6 +2267,23 @@
 	dimension_y = 34
 	color_src = null
 
+/datum/sprite_accessory/wings/elytra
+	name = "Elytra"
+	icon_state = "elytra"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	locked = TRUE
+	color_src = null
+
+/datum/sprite_accessory/wings_open/elytra
+	name = "Elytra"
+	icon_state = "elytra"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	color_src = null
+
 /datum/sprite_accessory/frills
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
@@ -2728,6 +2745,10 @@
 /datum/sprite_accessory/preternis_eye/seven
 	name = "Compound"
 	icon_state = "7"
+
+/datum/sprite_accessory/preternis_eye/visionary
+	name = "Visionary"
+	icon_state = "8"
 
 //preternis core
 /datum/sprite_accessory/preternis_core
