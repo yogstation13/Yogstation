@@ -686,9 +686,9 @@
 	plane = SPLASHSCREEN_PLANE
 	var/client/holder
 
-INITIALIZE_IMMEDIATE(/atom/movable/screen/splash)
-
-/atom/movable/screen/splash/Initialize(datum/hud/new_hud, client/C, visible, use_previous_title)
+//INITIALIZE_IMMEDIATE(/atom/movable/screen/splash)
+//We need to change this from /New to /Initialize but i really don't feel like changing the 200 instances of new(src) to new(null, src) in this already massive PR
+/atom/movable/screen/splash/New(datum/hud/new_hud, client/C, visible, use_previous_title)
 	. = ..()
 	if(!istype(C))
 		return
