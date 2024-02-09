@@ -837,6 +837,7 @@
 
 /turf/closed/mineral/gibtonite
 	mineralAmt = 1
+	MAP_SWITCH(, icon_state = "rock_Gibtonite_inactive")
 	spreadChance = 0
 	spread = 0
 	scan_state = "rock_Gibtonite"
@@ -865,7 +866,7 @@
 
 /turf/closed/mineral/gibtonite/proc/explosive_reaction(mob/user = null, triggered_by_explosion = 0)
 	if(stage == GIBTONITE_UNSTRUCK)
-		activated_overlay = mutable_appearance('icons/turf/smoothrocks.dmi', "rock_Gibtonite_active", ON_EDGED_TURF_LAYER)
+		activated_overlay = mutable_appearance('icons/turf/smoothrocks_overlays.dmi', "rock_Gibtonite_inactive", ON_EDGED_TURF_LAYER) //shows in gaps between pulses if there are any
 		add_overlay(activated_overlay)
 		name = "gibtonite deposit"
 		desc = "An active gibtonite reserve. Run!"
@@ -886,6 +887,7 @@
 /turf/closed/mineral/gibtonite/proc/countdown(notify_admins = 0)
 	set waitfor = 0
 	while(istype(src, /turf/closed/mineral/gibtonite) && stage == GIBTONITE_ACTIVE && det_time > 0 && mineralAmt >= 1)
+		flick_overlay_view(mutable_appearance('icons/turf/smoothrocks_overlays.dmi', "rock_Gibtonite_active", ON_EDGED_TURF_LAYER + 0.1), 0.5 SECONDS) //makes the animation pulse one time per tick
 		det_time--
 		sleep(0.5 SECONDS)
 	if(istype(src, /turf/closed/mineral/gibtonite))
@@ -930,11 +932,12 @@
 			G.icon_state = "Gibtonite ore 2"
 
 	var/flags = NONE
+	var/old_type = type
 	if(defer_change)
 		flags = CHANGETURF_DEFER_CHANGE
-	ScrapeAway(null, flags)
-	addtimer(CALLBACK(src, PROC_REF(AfterChange)), 1, TIMER_UNIQUE)
-
+	var/turf/open/mined = ScrapeAway(null, flags)
+	addtimer(CALLBACK(src, PROC_REF(AfterChange), flags, old_type), 1, TIMER_UNIQUE)
+	mined.update_visuals()
 
 /turf/closed/mineral/gibtonite/volcanic
 	environment_type = "basalt"
