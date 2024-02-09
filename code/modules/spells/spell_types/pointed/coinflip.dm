@@ -58,6 +58,6 @@
 				if(!(bodypart.body_part & (HEAD|CHEST)))
 					if(bodypart.dismemberable)
 						bodypart.dismember()
-						user.SetImmobilized(0 SECONDS)
+						REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, [insert defined trait source here])
 	else
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, [insert defined trait source here])
