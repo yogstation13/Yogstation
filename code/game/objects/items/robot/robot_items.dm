@@ -484,6 +484,7 @@
 			icecream.add_ice_cream("vanilla")
 			icecream.desc = "Eat the ice cream."
 		user.visible_message(span_notice("[src] launches a [snack.name] at [target]!"))
+		user.newtonian_move(get_dir(target, user)) // For no gravity.
 	else if(user.Adjacent(target) && is_allowed(target, user))
 		COOLDOWN_START(src, last_snack_disp, cooldown)
 		snack = new selected_snack(get_turf(target))
@@ -925,16 +926,24 @@
 		/obj/item/stock_parts,
 		/obj/item/tank/internals,
 		/obj/item/conveyor_switch_construct,
-		/obj/item/stack/conveyor
+		/obj/item/stack/conveyor,
+		/obj/item/server_rack,
+		/obj/item/ai_cpu,
 	)
 
 /obj/item/borg/gripper/medical
 	name = "medical gripper"
 	desc = "A simple grasping tool for interacting with various medical related items."
 	can_hold = list(
-		/obj/item/reagent_containers/glass/bottle, // Bottles & Vials
+		/obj/item/reagent_containers/medspray, // Without this, just syringe the content out and put it into a beaker to get around it.
+		/obj/item/reagent_containers/blood, // To insert blood bags into IV drips.
+		/obj/item/reagent_containers/food/snacks/lollipop, // Given that they have a snack dispenser, might as well.
+		// All chemistry specific concerns:
+		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/blood // Blood Bags.
+		/obj/item/reagent_containers/pill, // Includes patches... because they're are pills too?
+		/obj/item/reagent_containers/gummy,
+		/obj/item/storage/bag/chemistry // QOL for moving a billion pills into the chemfridge.
 	)
   
 /obj/item/borg/gripper/service
