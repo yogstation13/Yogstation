@@ -22,7 +22,7 @@
 
 /mob/dead/new_player/Initialize(mapload)
 	if(client && SSticker.state == GAME_STATE_STARTUP)
-		var/atom/movable/screen/splash/S = new(null, client, TRUE, TRUE)
+		var/atom/movable/screen/splash/S = new(null, client, TRUE)
 		S.Fade(TRUE)
 
 	if(length(GLOB.newplayer_start))

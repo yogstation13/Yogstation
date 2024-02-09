@@ -56,6 +56,10 @@
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
 
+/// Returns the mob this is being displayed to, if any
+/atom/movable/screen/proc/get_mob()
+	return hud?.mymob
+
 /atom/movable/screen/text
 	icon = null
 	icon_state = null
@@ -684,7 +688,7 @@
 
 INITIALIZE_IMMEDIATE(/atom/movable/screen/splash)
 
-/atom/movable/screen/splash/Initialize(mapload, datum/hud/hud_owner, client/C, visible, use_previous_title)
+/atom/movable/screen/splash/Initialize(datum/hud/new_hud, client/C, visible, use_previous_title)
 	. = ..()
 	if(!istype(C))
 		return
