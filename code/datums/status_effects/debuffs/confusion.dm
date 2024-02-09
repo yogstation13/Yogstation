@@ -33,3 +33,4 @@
 		source = get_step(owner, new_dir)
 		direction = new_dir
 
+#undef CONFUSION_STRONG_THRESHOLD
