@@ -38,7 +38,7 @@
 		return FALSE
 
 	to_chat(cast_on, span_warning("Heads, or tails!"))
-	ADD_TRAIT(cast_on, TRAIT_IMMOBILIZED, [insert defined trait source here])
+	ADD_TRAIT(cast_on, TRAIT_IMMOBILIZED, src)
 	select_coin(cast_on)
 	
 	return TRUE
@@ -58,6 +58,6 @@
 				if(!(bodypart.body_part & (HEAD|CHEST)))
 					if(bodypart.dismemberable)
 						bodypart.dismember()
-						REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, [insert defined trait source here])
+						REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, src)
 	else
-		REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, [insert defined trait source here])
+		REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, src)
