@@ -60,4 +60,4 @@
 						bodypart.dismember()
 						user.SetImmobilized(0 SECONDS)
 	else
-		user.SetImmobilized(0 HOURS)
+		REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, [insert defined trait source here])
