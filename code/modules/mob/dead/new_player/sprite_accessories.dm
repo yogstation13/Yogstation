@@ -2270,19 +2270,19 @@
 /datum/sprite_accessory/wings/elytra
 	name = "Elytra"
 	icon_state = "elytra"
-	dimension_x = 46
+	dimension_x = 32
 	center = TRUE
-	dimension_y = 34
+	dimension_y = 32
 	locked = TRUE
-	color_src = null
+	color_src = EYECOLOR
 
 /datum/sprite_accessory/wings_open/elytra
 	name = "Elytra"
 	icon_state = "elytra"
-	dimension_x = 46
+	dimension_x = 64
 	center = TRUE
-	dimension_y = 34
-	color_src = null
+	dimension_y = 32
+	color_src = EYECOLOR
 
 /datum/sprite_accessory/frills
 	icon = 'icons/mob/mutant_bodyparts.dmi'

@@ -66,6 +66,8 @@
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
+	if(!C.dna.features["pretcolor"])
+		C.dna.features["pretcolor"] = pick(GLOB.color_list_preternis)
 	fixed_mut_color = C.dna.features["pretcolor"]
 
 	for (var/obj/item/bodypart/BP in C.bodyparts)
