@@ -14,7 +14,9 @@
 	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEHAIR
 	hattable = FALSE
+
 	dog_fashion = /datum/dog_fashion/head/helmet
+
 	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/helmet.dmi')
 	var/can_flashlight = FALSE //if a flashlight can be mounted. if it has a flashlight and this is false, it is permanently attached.
 	var/obj/item/flashlight/seclite/attached_light

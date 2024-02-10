@@ -93,8 +93,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.features["vox_facial_quills"] = "None"
 	target.dna.features["vox_skin_tone"] = "green"
 	target.dna.features["vox_tail_markings"] = "None"
-
-
+	target.dna.features["vox_body_markings"] = "None"
 
 /// Provides a dummy that is consistently bald, white, naked, etc.
 /mob/living/carbon/human/dummy/consistent

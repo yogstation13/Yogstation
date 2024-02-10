@@ -69,7 +69,6 @@
 	var/list/external_slots = list()
 	var/list/sprite_sheets = list() //For accessories common across species but need to use 'fitted' sprites (like underwear). e.g. list("Vox" = 'icons/mob/species/vox/iconfile.dmi')
 
-
 //////////////////////
 // Hair Definitions //
 //////////////////////

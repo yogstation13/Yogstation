@@ -154,7 +154,6 @@
 #define BREATH_PLASMA /datum/breathing_class/plasma
 #define BREATH_VOX /datum/breathing_class/vox
 
-
 /turf/open/floor/plating/asteroid/snow
 	gender = PLURAL
 	name = "snow"

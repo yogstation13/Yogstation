@@ -60,7 +60,7 @@
 
 /datum/bounty/item/medical/vox_tail
 	name = "Vox Tail"
-	description = "Negotiations have broken down between Central Command and a group of Vox Raiders. Ship us a vox tail so we can show them we mean business."
+	description = "Negotiations have broken down between Central Command and a group of Vox Raiders. Ship us a Vox tail so we can show them we mean business."
 	reward = 3000
 	wanted_types = list(/obj/item/organ/tail/vox)
 

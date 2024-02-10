@@ -146,8 +146,10 @@
 	new /obj/item/radio/off(src)
 
 /obj/item/storage/box/survival/proc/wardrobe_removal()
-	if(!isplasmaman(loc) && !isvox(loc)) //We need to specially fill the box with plasmaman gear, since it's intended for one
+	if(!ishuman(loc))
 		return
+	var/mob/living/carbon/human/box_owner = loc
+	box_owner.dna?.species?.survival_box_replacement(src)
 	if(isplasmaman(loc))
 		var/obj/item/mask = locate(/obj/item/clothing/mask/breath) in src
 		var/obj/item/internals = locate(/obj/item/tank/internals/emergency_oxygen) in src

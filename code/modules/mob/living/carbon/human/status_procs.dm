@@ -29,7 +29,6 @@
 /mob/living/carbon/human/cure_husk(list/sources)
 	. = ..()
 	if(.)
-		dna?.species.on_husk_cure(src)
 		update_hair()
 
 /mob/living/carbon/human/become_husk(source)
@@ -38,6 +37,5 @@
 		return
 	. = ..()
 	if(.)
-		dna?.species.on_husk(src)
 		update_hair()
 

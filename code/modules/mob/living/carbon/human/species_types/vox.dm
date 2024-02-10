@@ -7,7 +7,8 @@
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
 	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
-	attack_verb = "slash"
+	attack_verbs = list("scratch", "claw")
+	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	screamsound = list('sound/voice/vox/shriek1.ogg'/*, 'sound/voice/vox/ashriek.ogg'*/)
@@ -38,6 +39,8 @@
 	limb_icon_file = 'icons/mob/species/vox/bodyparts.dmi'
 	static_part_body_zones = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	parts_to_husk = list("vox_tail", "vox_tail_markings", "wagging_vox_tail", "wagging_vox_tail_markings", "vox_body_markings")
+	survival_box_replacements = list(items_to_delete = list(/obj/item/clothing/mask/breath, /obj/item/tank/internals/emergency_oxygen),\
+											 new_items = list(/obj/item/tank/internals/emergency_oxygen/nitrogen, /obj/item/clothing/mask/breath/vox))
 	damage_overlay_type = "vox"
 	exotic_bloodtype = "V"
 	smells_like = "musty quills"
