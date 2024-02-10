@@ -245,8 +245,12 @@
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) * TURBGENQ * productivity
 
 	var/output_blocked = TRUE
-	if(!TURF_SHARES(outturf))
-		output_blocked = TRUE
+	if(!isclosedturf(outturf))
+		output_blocked = FALSE
+		for(var/atom/A in outturf)
+			if(!CANATMOSPASS(A, outturf, FALSE))
+				output_blocked = TRUE
+				break
 
 	if(!output_blocked)
 		var/datum/gas_mixture/environment = outturf.return_air()
