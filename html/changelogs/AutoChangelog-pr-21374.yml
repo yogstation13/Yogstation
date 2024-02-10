@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Decreases the unintended burn damage reduction from 2 to 1 for preternis limbs."
