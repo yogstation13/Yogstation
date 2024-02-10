@@ -143,6 +143,7 @@
 #include "code\__DEFINES\space.dm"
 #include "code\__DEFINES\spaceman_dmm.dm"
 #include "code\__DEFINES\span.dm"
+#include "code\__DEFINES\species_clothing_paths.dm"
 #include "code\__DEFINES\speech_channels.dm"
 #include "code\__DEFINES\stat.dm"
 #include "code\__DEFINES\stat_tracking.dm"

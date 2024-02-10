@@ -142,6 +142,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/screamsound  //yogs - grabs scream from screamsound list or string
 	var/husk_color = "#A6A6A6"
 	var/list/survival_box_replacements = list(items_to_delete = list(), new_items = list())
+	var/creampie_id = "creampie_human"
 	/// The visual effect of the attack.
 	var/attack_effect = ATTACK_EFFECT_PUNCH
 	///is a flying species, just a check for some things

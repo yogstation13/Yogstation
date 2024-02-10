@@ -16,7 +16,7 @@
 	flags_cover = HEADCOVERSEYES
 	icon = 'icons/obj/clothing/species/vox/hats.dmi'
 	species_restricted = list("Vox")
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/head.dmi')
+	sprite_sheets = list("Vox" = VOX_HEAD_FILE)
 
 /obj/item/clothing/head/helmet/space/vox/pressure
 	name = "alien helmet"

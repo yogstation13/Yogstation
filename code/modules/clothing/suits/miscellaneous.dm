@@ -372,7 +372,7 @@
 /obj/item/clothing/head/hooded/human_head
 	name = "bloated human head"
 	desc = "A horribly bloated and mismatched human head."
-	icon_state = "lingspacehelmet"
+	icon_state = "humanheadhat"
 	body_parts_covered = HEAD
 	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
@@ -602,7 +602,7 @@
 /obj/item/clothing/suit/hooded/vox_robes
 	name = "alien hooded robes"
 	desc = "Large, comfortable robes worn by those who need a bit more covering. The thick fabric contains a pocket suitable for those that need their hands free during their work, while the cloth serves to cover scars or other injuries to the wearer's body."
-	icon = 'icons/mob/clothing/species/vox/suit.dmi'
+	icon = VOX_SUIT_FILE
 	icon_state = "vox-robes"
 	item_state = "vox-robes"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
@@ -612,7 +612,7 @@
 /obj/item/clothing/head/hooded/vox_robe_hood
 	name = "alien hood"
 	desc = "The thick fabric of this hood serves a variety of purposes to the vox wearing it - serving as a method to hide a scarred face or a way to keep warm in the coldest areas onboard the ship."
-	icon = 'icons/mob/clothing/species/vox/head.dmi'
+	icon = VOX_HEAD_FILE
 	icon_state = "vox-robes-hood"
 	item_state = "vox-robes-hood"
 	flags_inv = HIDEHAIR

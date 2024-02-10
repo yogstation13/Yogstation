@@ -6,7 +6,7 @@
 	throwforce = 0
 	slot_flags = ITEM_SLOT_EARS
 	resistance_flags = NONE
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/ears.dmi')
+	sprite_sheets = list("Vox" = VOX_EARS_FILE)
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
