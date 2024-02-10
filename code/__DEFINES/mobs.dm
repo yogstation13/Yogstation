@@ -107,6 +107,7 @@
 #define DEVIL_BODYPART "devil"
 
 #define SPECIES_VOX "vox"
+#define SPECIES_MOTH "moth"
 
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 

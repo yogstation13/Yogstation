@@ -101,12 +101,11 @@
 	vox.dna.features["vox_skin_tone"] = skin_tone
 	vox.dna.update_uf_block(DNA_VOX_SKIN_TONE_BLOCK)
 	var/obj/item/organ/tail/vox/vox_tail = vox.getorganslot(ORGAN_SLOT_TAIL)
-	if(vox_tail)
+	if(vox_tail && istype(vox_tail))
 		vox_tail.update_tail_appearance(vox)
 
-/datum/species/vox/prepare_human_for_preview(mob/living/carbon/human/vox)
-	vox.eye_color = COLOR_CYAN
-	vox.update_body()
+/datum/species/vox/get_special_statics(mob/living/carbon/human/vox)
+	return list("mossy")
 
 /datum/species/vox/create_pref_unique_perks()
 	var/list/to_add = list()

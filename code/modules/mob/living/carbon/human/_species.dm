@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/limb_icon_file
 	var/icon_husk
 	var/list/parts_to_husk = list()
-	var/eyes_icon
+	var/eyes_icon = 'icons/mob/human_face.dmi'
 	var/list/static_part_body_zones = list()
 	var/forced_skintone
 
@@ -838,8 +838,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(HAS_TRAIT(H, TRAIT_SKINNY))
 					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
 				else
-					if(icon_exists(underwear.sprite_sheets?[H.dna.species.name], underwear.icon_state))
-						underwear.icon = underwear.sprite_sheets[H.dna.species.name]
+					var/old_icon = underwear.icon
+					underwear.icon = underwear.sprite_sheets?[H.dna.species.name]
+					if(!icon_exists(underwear.sprite_sheets?[H.dna.species.name], underwear.icon_state))
+						underwear.icon = old_icon
 					standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 
 		if(H.undershirt)
@@ -850,15 +852,19 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
-					if(icon_exists(undershirt.sprite_sheets?[H.dna.species.name], undershirt.icon_state))
-						undershirt.icon = undershirt.sprite_sheets[H.dna.species.name]
+					var/old_icon = undershirt.icon
+					undershirt.icon = undershirt.sprite_sheets[H.dna.species.name]
+					if(!icon_exists(undershirt.sprite_sheets?[H.dna.species.name], undershirt.icon_state))
+						undershirt.icon = old_icon
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 
 		if(H.socks && H.get_num_legs(FALSE) >= 2 && !(DIGITIGRADE in species_traits))
 			var/datum/sprite_accessory/socks/socks = GLOB.socks_list[H.socks]
 			if(socks)
-				if(icon_exists(socks.sprite_sheets?[H.dna.species.name], socks.icon_state))
-					socks.icon = socks.sprite_sheets[H.dna.species.name]
+				var/old_icon = socks.icon
+				socks.icon = socks.sprite_sheets[H.dna.species.name]
+				if(!icon_exists(socks.sprite_sheets?[H.dna.species.name], socks.icon_state))
+					socks.icon = old_icon
 				standing += mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
 
 	if(standing.len)
@@ -1136,21 +1142,21 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
 				if("vox_tail")
 					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
-					if(vox_tail)
+					if(vox_tail && istype(vox_tail))
 						S = GLOB.vox_tails_list[vox_tail.tail_type]
 				if("wagging_vox_tail")
 					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
-					if(vox_tail)
+					if(vox_tail && istype(vox_tail))
 						S = GLOB.animated_vox_tails_list[vox_tail.tail_type]
 				if("vox_body_markings")
 					S = GLOB.vox_body_markings_list[H.dna.features["vox_body_markings"]]
 				if("vox_tail_markings")
 					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
-					if(vox_tail)
+					if(vox_tail && istype(vox_tail))
 						S = GLOB.vox_tail_markings_list[vox_tail.tail_markings]
 				if("wagging_vox_tail_markings")
 					var/obj/item/organ/tail/vox/vox_tail = H.getorganslot(ORGAN_SLOT_TAIL)
-					if(vox_tail)
+					if(vox_tail && istype(vox_tail))
 						S = GLOB.animated_vox_tail_markings_list[vox_tail.tail_markings]
 			if(!S || S.icon_state == "none")
 				continue
@@ -2522,6 +2528,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/get_eyes_static(mob/living/carbon/person_to_check)
 	return
+
+/datum/species/proc/get_special_statics(mob/living/carbon/person_to_check)
+	return list()
 
 /datum/species/proc/survival_box_replacement(obj/item/storage/box/survival_box)
 	for(var/item as anything in survival_box_replacements["items_to_delete"])
