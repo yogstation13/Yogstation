@@ -140,6 +140,7 @@
 	else
 		move_delay = world.time
 
+	//this is in two areas, i have no clue why, all i know is that i hate it and don't have the time to fix it
 	if(L.has_status_effect(/datum/status_effect/confusion))
 		var/newdir = 0
 		if(prob(50))
