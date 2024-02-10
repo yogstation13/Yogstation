@@ -293,6 +293,5 @@
 	name = "vox heart"
 	desc = "A vox's heart. It appears to have circuitry and components woven into it."
 	icon_state = "heart-vox"
-	status = ORGAN_ROBOTIC
 	decay_factor = 0
 

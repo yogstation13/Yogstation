@@ -541,10 +541,9 @@
 
 /obj/item/organ/eyes/vox
 	name = "vox eyes"
-	desc = "Vox perceive the universe through these strange, circuitry-embedded eyes."
+	desc = "A keen eye is essential for successful raiding and trading."
 	icon_state = "eyes-vox"
 	decay_factor = 0
-	status = ORGAN_ROBOTIC
 
 /obj/item/organ/eyes/vox/emp_act()
 	owner.adjust_hallucinations(10 SECONDS)

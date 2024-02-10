@@ -572,8 +572,7 @@
 /obj/item/organ/lungs/vox
 	name = "vox lungs"
 	icon_state = "lungs-vox"
-	desc = "A pair of very thin, very light lungs that the vox use to process nitrogen. There are small, silver circuits inlaid into the flesh."
-	status = ORGAN_ROBOTIC
+	desc = "Contain no dust."
 	decay_factor = 0
 	breathing_class = BREATH_VOX
 
