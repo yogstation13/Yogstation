@@ -69,8 +69,9 @@ GLOBAL_LIST_INIT(color_list_preternis, list( //welcome to preternis body colours
 	"Gunmetal Gray" = "#818589", 
 	"Bronze" = "#CD7F32",
 	"Silver" = "#C0C0C0",
-	"Gold" = "#FFD700"
-	))
+	"Gold" = "#FFD700",
+	"Cobalt" = "#5fa1ff"
+	))//make sure they aren't too dark or it'll just become a mass of one colour
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
 GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks
