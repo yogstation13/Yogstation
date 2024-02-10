@@ -126,19 +126,19 @@
 /datum/preference/color/hair_color/vox
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "feature_quill_color"
-	relevant_species_traits = null
+	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_quills"
 
 /datum/preference/color/facial_hair_color/vox
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "feature_facial_quill_color"
-	relevant_species_traits = null
+	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_facial_quills"
 
 /datum/preference/color/mutant_color/vox_body_markings_color
 	savefile_key = "feature_body_markings_color"
 	relevant_mutant_bodypart = "vox_body_markings"
-	relevant_species_traits = null
+	relevant_species_trait = null
 	blacklisted_species = null
 
 /datum/preference/color/mutant_color/vox_body_markings_color/is_valid(value)
@@ -147,7 +147,7 @@
 /datum/preference/color/mutant_color_secondary/vox_tail_markings_color
 	savefile_key = "feature_tail_markings_color"
 	relevant_mutant_bodypart = "vox_tail_markings"
-	relevant_species_traits = null
+	relevant_species_trait = null
 	blacklisted_species = null
 
 /datum/preference/choiced/underwear/vox
@@ -222,10 +222,10 @@
 
 /datum/preference/choiced/hair_gradient/vox
 	savefile_key = "feature_quill_gradientstyle"
-	relevant_species_traits = null
+	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_quills"
 /datum/preference/color/hair_gradient/vox
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_quill_gradientcolor"
-	relevant_species_traits = null
+	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_quills"

@@ -593,56 +593,55 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(M.flags_inv & HIDEFACIALHAIR)
 			facialhair_hidden = TRUE
 
-	if(!facialhair_hidden)
-		if("vox_facial_quills" in H.dna.species.mutant_bodyparts)
-			S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
-			if(S)
-				var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER, appearance_flags = KEEP_TOGETHER)
-				var/mutable_appearance/facial_quills_base = mutable_appearance(S.icon, S.icon_state)
-				facial_quills_base.color = forced_colour || H.facial_hair_color
-				if(S.color_blend_mode == COLOR_BLEND_ADD)
-					facial_quills_base.color = COLOR_MATRIX_ADD(facial_quills_base.color)
-				facial_quills_overlay.overlays += facial_quills_base
-				facial_quills_overlay.alpha = hair_alpha
-				standing += facial_quills_overlay
-		if(H.facial_hair_style && (FACEHAIR in species_traits) && dynamic_fhair_suffix)
-			S = GLOB.facial_hair_styles_list[H.facial_hair_style]
-			if(S)
+	if("vox_facial_quills" in H.dna.species.mutant_bodyparts && !facialhair_hidden)
+		S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
+		if(S)
+			var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER, appearance_flags = KEEP_TOGETHER)
+			var/mutable_appearance/facial_quills_base = mutable_appearance(S.icon, S.icon_state)
+			facial_quills_base.color = forced_colour || H.facial_hair_color
+			if(S.color_blend_mode == COLOR_BLEND_ADD)
+				facial_quills_base.color = COLOR_MATRIX_ADD(facial_quills_base.color)
+			facial_quills_overlay.overlays += facial_quills_base
+			facial_quills_overlay.alpha = hair_alpha
+			standing += facial_quills_overlay
+	if(H.facial_hair_style && (FACEHAIR in species_traits) && (!facialhair_hidden || dynamic_fhair_suffix))
+		S = GLOB.facial_hair_styles_list[H.facial_hair_style]
+		if(S)
 
-				//List of all valid dynamic_fhair_suffixes
-				var/static/list/fextensions
-				if(!fextensions)
-					var/icon/fhair_extensions = icon('icons/mob/facialhair_extensions.dmi')
-					fextensions = list()
-					for(var/s in fhair_extensions.IconStates(1))
-						fextensions[s] = TRUE
-					qdel(fhair_extensions)
+			//List of all valid dynamic_fhair_suffixes
+			var/static/list/fextensions
+			if(!fextensions)
+				var/icon/fhair_extensions = icon('icons/mob/facialhair_extensions.dmi')
+				fextensions = list()
+				for(var/s in fhair_extensions.IconStates(1))
+					fextensions[s] = TRUE
+				qdel(fhair_extensions)
 
-				//Is hair+dynamic_fhair_suffix a valid iconstate?
-				var/fhair_state = S.icon_state
-				var/fhair_file = S.icon
-				if(fextensions[fhair_state+dynamic_fhair_suffix])
-					fhair_state += dynamic_fhair_suffix
-					fhair_file = 'icons/mob/facialhair_extensions.dmi'
+			//Is hair+dynamic_fhair_suffix a valid iconstate?
+			var/fhair_state = S.icon_state
+			var/fhair_file = S.icon
+			if(fextensions[fhair_state+dynamic_fhair_suffix])
+				fhair_state += dynamic_fhair_suffix
+				fhair_file = 'icons/mob/facialhair_extensions.dmi'
 
-				var/mutable_appearance/facial_overlay = mutable_appearance(fhair_file, fhair_state, -HAIR_LAYER)
+			var/mutable_appearance/facial_overlay = mutable_appearance(fhair_file, fhair_state, -HAIR_LAYER)
 
-				if(!forced_colour)
-					if(hair_color)
-						if(hair_color == "mutcolor")
-							facial_overlay.color =  H.dna.features["mcolor"]
-						else if(hair_color == "fixedmutcolor")
-							facial_overlay.color = fixed_mut_color
-						else
-							facial_overlay.color = hair_color
+			if(!forced_colour)
+				if(hair_color)
+					if(hair_color == "mutcolor")
+						facial_overlay.color =  H.dna.features["mcolor"]
+					else if(hair_color == "fixedmutcolor")
+						facial_overlay.color = fixed_mut_color
 					else
-						facial_overlay.color = H.facial_hair_color
+						facial_overlay.color = hair_color
 				else
-					facial_overlay.color = forced_colour
+					facial_overlay.color = H.facial_hair_color
+			else
+				facial_overlay.color = forced_colour
 
-				facial_overlay.alpha = hair_alpha
+			facial_overlay.alpha = hair_alpha
 
-				standing += facial_overlay
+			standing += facial_overlay
 
 	if(H.head)
 		var/obj/item/I = H.head
@@ -2605,17 +2604,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	for (var/preference_type in GLOB.preference_entries)
 		var/datum/preference/preference = GLOB.preference_entries[preference_type]
-		var/required_species_traits_found = FALSE
-		for(var/species_trait in species_traits)
-			if(species_trait in preference.relevant_species_traits)
-				required_species_traits_found = TRUE
-				break
-			else
-				continue
 
 		if ( \
 			(preference.relevant_mutant_bodypart in mutant_bodyparts) \
-			|| required_species_traits_found \
+			|| (preference.relevant_species_trait in species_traits) \
 		)
 			features += preference.savefile_key
 

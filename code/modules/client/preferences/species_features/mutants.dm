@@ -2,7 +2,7 @@
 	savefile_key = "feature_mcolor"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	relevant_species_traits = list(MUTCOLORS)
+	relevant_species_trait = MUTCOLORS
 	blacklisted_species = list(/datum/species/vox)
 
 /datum/preference/color/mutant_color/create_default_value()
@@ -24,7 +24,7 @@
 	savefile_key = "feature_mcolor_secondary"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	relevant_species_traits = list(MUTCOLORS_SECONDARY)
+	relevant_species_trait = MUTCOLORS_SECONDARY
 	blacklisted_species = list(/datum/species/vox)
 
 /datum/preference/color/mutant_color_secondary/create_default_value()
