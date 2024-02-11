@@ -22,6 +22,9 @@
 		return
 	switch(action)
 		if ("jump")
+			if(!isobserver(usr))
+				return
+
 			var/ref = params["ref"]
 			var/list/pois = GLOB.mob_list
 			var/atom/movable/poi = (locate(ref) in pois) || (locate(ref) in GLOB.areas)

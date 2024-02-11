@@ -184,6 +184,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	updateallghostimages()
 
 	QDEL_NULL(orbit_ui)
+	QDEL_NULL(jump_ui)
 	QDEL_NULL(spawners_menu)
 	return ..()
 
