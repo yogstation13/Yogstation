@@ -118,7 +118,8 @@
 		/obj/item/toy/plush/inorixplushie,
 		/obj/item/toy/plush/flowerbunch,
 		/obj/item/toy/plush/goatplushie,
-		/obj/item/toy/plush/realgoat
+		/obj/item/toy/plush/realgoat,
+		/obj/item/toy/plush/voxplushie
 	)
 
 /obj/effect/spawner/lootdrop/techshell

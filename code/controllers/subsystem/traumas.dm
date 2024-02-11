@@ -139,7 +139,10 @@ SUBSYSTEM_DEF(traumas)
 						/obj/item/clothing/suit/chickensuit, /obj/item/clothing/head/chicken,
 						/obj/item/clothing/suit/toggle/owlwings, /obj/item/clothing/under/costume/owl, /obj/item/clothing/mask/gas/owl_mask,
 						/obj/item/clothing/under/costume/griffin, /obj/item/clothing/shoes/griffin, /obj/item/clothing/head/griffin,
-						/obj/item/clothing/head/helmet/space/freedom, /obj/item/clothing/suit/space/freedom)),
+						/obj/item/clothing/head/helmet/space/freedom, /obj/item/clothing/suit/space/freedom, /obj/item/toy/plush/voxplushie,
+						/obj/item/clothing/mask/breath/vox, /obj/item/clothing/suit/space/vox, /obj/item/clothing/head/helmet/vox,
+						/obj/item/clothing/shoes/magboots/vox, /obj/item/clothing/gloves/color/yellow/vox, /obj/item/flag/vox, /obj/item/stack/sheet/animalhide/vox,
+						/obj/item/organ/tail/vox)),
 
 					   "anime" = typecacheof(list(/obj/item/clothing/under/costume/schoolgirl, /obj/item/katana, /obj/item/reagent_containers/food/snacks/sashimi, /obj/item/reagent_containers/food/snacks/chawanmushi,
 					   /obj/item/reagent_containers/food/drinks/bottle/sake, /obj/item/throwing_star, /obj/item/clothing/head/kitty/genuine, /obj/item/clothing/suit/space/space_ninja,

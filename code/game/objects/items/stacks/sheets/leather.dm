@@ -95,9 +95,9 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	item_state = "sheet-xeno"
 
 /obj/item/stack/sheet/animalhide/vox
-	name = "vox skin"
+	name = "vox hide"
 	desc = "SKREE!"
-	singular_name = "vox skin piece"
+	singular_name = "vox hide piece"
 	icon_state = "sheet-vox"
 
 GLOBAL_LIST_INIT(xeno_recipes, list ( \

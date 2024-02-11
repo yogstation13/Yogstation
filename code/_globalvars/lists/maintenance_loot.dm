@@ -365,6 +365,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/stack/sheet/animalhide/gorilla = W_RARE,
 	/obj/item/stack/sheet/animalhide/human = W_RARE,
 	/obj/item/stack/sheet/animalhide/lizard = W_RARE,
+	/obj/item/stack/sheet/animalhide/vox = W_RARE,
 	/obj/item/stack/sheet/animalhide/monkey = W_RARE,
 	/obj/item/stack/sheet/animalhide/xeno = W_RARE,
 	/obj/item/storage/bag/money = W_RARE,
