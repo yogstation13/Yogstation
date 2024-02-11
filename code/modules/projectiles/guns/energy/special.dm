@@ -284,10 +284,6 @@
 	if(I.type in installed_upgrades)
 		to_chat(user, span_notice("[I] has already been installed in [src]"))
 		return FALSE
-	if(istype(I, /obj/item/upgrade/plasmacutter/capacity))
-		cell.maxcharge = initial(cell.maxcharge)*2
-		installed_upgrades += I.type
-		return TRUE
 	return TRUE
 
 /obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I, mob/user)
@@ -297,6 +293,10 @@
 	if(istype(I, /obj/item/upgrade/plasmacutter/defuser))
 		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
 		ammo_type = list(kaboom)
+		installed_upgrades += I.type
+		return TRUE
+	if(istype(I, /obj/item/upgrade/plasmacutter/capacity))
+		cell.maxcharge = initial(cell.maxcharge)*2
 		installed_upgrades += I.type
 		return TRUE
 	return FALSE
