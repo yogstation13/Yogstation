@@ -78,7 +78,7 @@
 	. = ..()
 
 /obj/item/toy/boomerang/violent
-	throw_force = 10
+	throwforce = 10
 
 /obj/item/toy/frisbee
 	name = "frisbee"
