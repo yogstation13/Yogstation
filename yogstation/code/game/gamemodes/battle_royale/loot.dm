@@ -125,17 +125,18 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/shield/energy = -4,
 		/obj/item/clothing/suit/space/hardsuit/syndi/elite = -4,
 		/obj/item/clothing/suit/space/hardsuit/carp/dragon = -4,
-		//Weight of -5 - ERT level shit
+
 		/obj/item/shield/energy/bananium = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/sec = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/engi = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/med = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/jani = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -5,
-		//Weight of -8 - you won't see this, but if you do you become a (still-killable) god (weight of 1 after the final ring closes)
-		/obj/item/clothing/suit/space/hardsuit/deathsquad = -8,
-		/obj/item/clothing/suit/space/hardsuit/shielded/swat = -8,
-		/obj/item/clothing/suit/space/hardsuit/shielded/swat/honk = -8,
+		//Weight of -6 - ERT level shit
+		/obj/item/clothing/suit/space/hardsuit/ert/sec = -6,
+		/obj/item/clothing/suit/space/hardsuit/ert/engi = -6,
+		/obj/item/clothing/suit/space/hardsuit/ert/med = -6,
+		/obj/item/clothing/suit/space/hardsuit/ert/jani = -6,
+		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -6,
+		//Weight of -7 - you won't see this, but if you do you become a (still-killable) god (weight of 2 after the final ring closes)
+		/obj/item/clothing/suit/space/hardsuit/deathsquad = -7,
+		/obj/item/clothing/suit/space/hardsuit/shielded/swat = -7,
+		/obj/item/clothing/suit/space/hardsuit/shielded/swat/honk = -7,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_weapon, list(
