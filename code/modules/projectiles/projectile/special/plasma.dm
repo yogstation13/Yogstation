@@ -24,7 +24,14 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	light_color = LIGHT_COLOR_RED
 	mine_range = 0
+//yogs begin
+/obj/projectile/plasma/Move(atom/newloc, dir)
+	. = ..()
+	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland))
+		var/turf/open/floor/plating/dirt/jungleland/JG = newloc
+		JG.spawn_rock()
 
+//yogs end
 /obj/projectile/plasma/on_hit(atom/target)
 	. = ..()
 	if(ismineralturf(target))
@@ -35,6 +42,15 @@
 			range++
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
+// yogs begin
+	if(istype(target,/obj/structure/flora))
+		qdel(target)
+		if(mine_range)
+			mine_range--
+			range++
+		if(range > 0)
+			return BULLET_ACT_FORCE_PIERCE
+// yogs end
 
 /obj/projectile/plasma/scatter/adv/on_hit(atom/target)
 	if(istype(target, /turf/closed/mineral/gibtonite))

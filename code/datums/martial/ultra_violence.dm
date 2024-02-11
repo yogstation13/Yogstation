@@ -150,13 +150,13 @@
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
 	ammo_type = /obj/item/ammo_casing/ipcmartial
-	caliber = "357"
+	caliber = CALIBER_357MAG
 	max_ammo = 3
 
 /obj/item/ammo_casing/ipcmartial
 	name = ".357 sharpshooter bullet casing"
 	desc = "A .357 sharpshooter bullet casing."
-	caliber = "357"
+	caliber = CALIBER_357MAG
 	projectile_type = /obj/projectile/bullet/ipcmartial
 	click_cooldown_override = 0.1 //this gun shoots faster
 
@@ -168,7 +168,8 @@
 	wound_falloff_tile = -2.5
 	ricochets_max = 1 // so you can't use it in a small room to obliterate everyone inside
 	ricochet_chance = INFINITY // ALWAYS ricochet
-	penetrating = TRUE
+	penetrations = INFINITY
+	can_ricoshot = ALWAYS_RICOSHOT // +RICOSHOT
 
 /obj/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
 	. = ..()
@@ -196,7 +197,7 @@
 /obj/projectile/bullet/ipcmartial/on_ricochet(atom/A)
 	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
 	speed *= 0.5 // faster so it can hit more reliably
-	penetrating = FALSE
+	penetrations = 0
 	return ..()
 
 /obj/projectile/bullet/ipcmartial/check_ricochet()

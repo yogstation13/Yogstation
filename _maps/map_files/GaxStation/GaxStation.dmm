@@ -6606,6 +6606,12 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 1;
+	icon_state = "right";
+	layer = 3
+	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "diG" = (
@@ -10568,9 +10574,6 @@
 	},
 /obj/machinery/light/small{
 	dir = 1
-	},
-/obj/machinery/airalarm{
-	pixel_y = 24
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
@@ -15231,12 +15234,6 @@
 "hoO" = (
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/machinery/door/window{
-	base_state = "right";
-	dir = 1;
-	icon_state = "right";
-	layer = 3
 	},
 /obj/machinery/disposal/deliveryChute{
 	dir = 1
@@ -44408,7 +44405,7 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
 "vPc" = (
-/obj/structure/altar_of_gods,
+/obj/structure/table/altar_of_gods,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/purple,

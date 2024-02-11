@@ -29,10 +29,14 @@
 /datum/action/cooldown/spell/touch/shock/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		if(carbon_victim.electrocute_act(15, caster, 1, zone=caster.zone_selected, stun = FALSE))//doesnt stun. never let this stun
+		var returned_damage = carbon_victim.electrocute_act(15, caster, 1, zone = caster.zone_selected, stun = FALSE) // Does not stun. Never let this stun.
+		if(returned_damage != FALSE && returned_damage > 0)
 			carbon_victim.dropItemToGround(carbon_victim.get_active_held_item())
 			carbon_victim.dropItemToGround(carbon_victim.get_inactive_held_item())
-			carbon_victim.adjust_timed_status_effect(15 SECONDS, /datum/status_effect/confusion)
+			// Confusion is more or less expected to happen due to the rarity of electric armor and the ability to select zones.
+			// Expected defense items: hardsuit (all @ 100), insulated gloves (arms @ 100), any engineering shoes (legs @ 100), hardsuit (head @ 100), hazard vest / engineering coat (chest @ 20).
+			var/shock_multiplier = returned_damage / 15 // Accounts for armor, siemens_coeff, and future changes.
+			carbon_victim.adjust_timed_status_effect(max(3 SECONDS * shock_multiplier, 5), /datum/status_effect/confusion)
 			carbon_victim.visible_message(
 				span_danger("[caster] electrocutes [victim]!"),
 				span_userdanger("[caster] electrocutes you!"),

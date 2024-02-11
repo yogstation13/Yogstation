@@ -579,6 +579,9 @@
 		sight |= E.sight_flags
 		if(!isnull(E.lighting_alpha))
 			lighting_alpha = E.lighting_alpha
+		if(istype(E, /obj/item/organ/eyes/ethereal) && client) //special view range ethereal eyes
+			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
+			client.view_size.addTo("2x2")
 
 	for(var/image/I in infra_images)
 		if(client)
@@ -1269,7 +1272,15 @@
 /mob/living/carbon/proc/spray_blood(splatter_direction, splatter_strength = 3)
 	if(!isturf(loc))
 		return
-	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
+	var/splatter_color = null
+	if(dna?.blood_type)
+		splatter_color = dna.blood_type.color
+	else
+		var/blood_id = get_blood_id()
+		if(blood_id != /datum/reagent/blood)//special blood substance
+			var/datum/reagent/R = GLOB.chemical_reagents_list[blood_id]
+			splatter_color = R.color
+	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc, splatter_strength, splatter_color)
 	our_splatter.add_blood_DNA(return_blood_DNA())
 	our_splatter.blood_dna_info = get_blood_dna_list()
 	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)
