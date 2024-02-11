@@ -186,7 +186,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/pickaxe/silver = 3,
 		/obj/item/melee/stinger_sword = 3,
 		/obj/item/adamantineshield = 3,
-		/obj/item/kitchen/knife/rainbowknife = 3, //has possible cloning damage, watch out
 		/obj/item/rune_scimmy = 3, //starts at 20 force, surprisingly good
 		/obj/item/storage/toolbox/mechanical/old/clean = 3,
 
@@ -202,6 +201,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/melee/cutlass = 2,
 		/obj/item/melee/transforming/cleaving_saw = 2,
 		/obj/item/storage/toolbox/syndicate = 2,
+		/obj/item/kitchen/knife/rainbowknife = 2, //has possible cloning damage, watch out
 
 		/obj/item/melee/spear/bonespear = 1,
 		/obj/item/stinger_trident = 1,
