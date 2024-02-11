@@ -107,6 +107,12 @@
 	item_path = /obj/item/gun/magic/staff/spellblade
 	category = "Offensive"
 
+/datum/spellbook_entry/appendicitis
+	name = "Bestow Appendicitis"
+	desc = "Give someone appendicitis."
+	spell_type = /datum/action/cooldown/spell/pointed/appendicitis
+	category = "Offensive"
+
 /datum/spellbook_entry/item/highfrequencyblade
 	name = "High Frequency Blade"
 	desc = "An incredibly swift enchanted blade resonating at a frequency high enough to be able to slice through anything."
