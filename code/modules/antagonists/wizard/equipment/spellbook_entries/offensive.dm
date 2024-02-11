@@ -30,6 +30,13 @@
 	category = "Offensive"
 	cost = 1
 
+/datum/spellbook_entry/appendicitis
+	name = "Bestow Appendicitis"
+	desc = "Give someone appendicitis."
+	spell_type = /datum/action/cooldown/spell/pointed/appendicitis
+	category = "Offensive"
+	cost = 1
+	
 /datum/spellbook_entry/mutate
 	name = "Mutate"
 	desc = "Causes you to turn into a hulk and gain laser vision for a short while."
@@ -105,12 +112,6 @@
 	name = "Spellblade"
 	desc = "A sword capable of firing blasts of energy which rip targets limb from limb."
 	item_path = /obj/item/gun/magic/staff/spellblade
-	category = "Offensive"
-
-/datum/spellbook_entry/appendicitis
-	name = "Bestow Appendicitis"
-	desc = "Give someone appendicitis."
-	spell_type = /datum/action/cooldown/spell/pointed/appendicitis
 	category = "Offensive"
 
 /datum/spellbook_entry/item/highfrequencyblade
