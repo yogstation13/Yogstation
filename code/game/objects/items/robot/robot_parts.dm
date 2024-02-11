@@ -320,6 +320,7 @@
 					O.laws = M.laws
 					M.laws.associate(O)
 				else if(!M.override_cyborg_laws) // MMI's laws were changed. Do not want to upload them if we say so.
+					// Give random default lawset.
 					O.make_laws()
 					// Obvious warning that their modified laws didn't get passed on.
 					to_chat(user, span_warning("Any laws uploaded to this MMI have not been transferred!"))
