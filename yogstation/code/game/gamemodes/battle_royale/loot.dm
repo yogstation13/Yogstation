@@ -262,7 +262,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/energy/laser/captain = -4,
 		/obj/item/gun/ballistic/automatic/m90/unrestricted = -4,
 		/obj/item/gun/ballistic/automatic/pistol/deagle = -4,
-		/obj/item/gun/ballistic/automatic/ar = -4,
 		/obj/item/gun/ballistic/automatic/c20r/unrestricted = -4,
 		/obj/item/gun/ballistic/automatic/mini_uzi = -4,
 		/obj/item/gun/ballistic/automatic/tommygun = -4,
@@ -271,6 +270,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 
 		/obj/item/battleroyale/itemspawner/breakbow = -5, //Strong melee weapon, along with infinte arrows
 		/obj/item/gun/ballistic/automatic/l6_saw/unrestricted = -5,
+		/obj/item/gun/ballistic/automatic/ar = -5,
 		/obj/item/gun/ballistic/automatic/lwt650 = -5,
 		/obj/item/gun/ballistic/automatic/k41s = -5,
 
