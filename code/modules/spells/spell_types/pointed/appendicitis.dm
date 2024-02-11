@@ -31,7 +31,7 @@
 		return FALSE
 
 	if(cast_on.can_block_magic(antimagic_flags) || !cast_on.getorgan(/obj/item/organ/appendix) || LAZYFIND(cast_on.diseases, /datum/disease/appendicitis))
-		owner.balloon_alert(owner, "The spell had no effect!")
+		owner.balloon_alert(owner, "no effect!")
 		return FALSE
 
 	var/datum/disease/D = new /datum/disease/appendicitis()
