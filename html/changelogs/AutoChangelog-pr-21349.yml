@@ -1,8 +1,0 @@
-author: " AMyriad, Wallem, Vincent938, The-Moon-Itself"
-delete-after: true 
-changes: 
-  - rscadd: "You can now construct, deconstruct, and print mass drivers"
-  - tweak: "You can also hack mass drivers now"
-  - tweak: "Mass driver base power reduced from 50 to 10, can be upgraded or hacked to increase it"
-  - soundadd: "Mass drivers also have sound effects now!"
-  - imageadd: "Updated the mass driver sprite(s)"
