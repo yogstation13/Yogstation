@@ -77,6 +77,9 @@
 		returning = TRUE
 	. = ..()
 
+/obj/item/toy/boomerang/violent
+	throw_force = 10
+
 /obj/item/toy/frisbee
 	name = "frisbee"
 	desc = "Comes further in life than you."
