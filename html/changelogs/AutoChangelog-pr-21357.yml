@@ -1,0 +1,7 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Flying fang inaccuracy debuff now actually goes away fully instead of stacking infinitely"
+  - bugfix: "Leaping with air shoes makes you fall over"
+  - tweak: "Blocking the flying fang leap helps significantly but won't totally save you"
+  - tweak: "Disarm chain defaults to basic harm intent attacks when prone"
