@@ -808,6 +808,7 @@
 #include "code\datums\wires\emitter.dm"
 #include "code\datums\wires\explosive.dm"
 #include "code\datums\wires\igniter.dm"
+#include "code\datums\wires\mass_driver.dm"
 #include "code\datums\wires\mech_fabricator.dm"
 #include "code\datums\wires\microwave.dm"
 #include "code\datums\wires\mulebot.dm"
