@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		
 		/obj/item/vibro_weapon = -3, //Strong melee weapon, but not enough to be -5
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -3,
-		/obj/item/melee/chainsaw/demon -3,
+		/obj/item/melee/chainsaw/demon = -3,
 
 		/obj/item/melee/dualsaber = -4,
 
