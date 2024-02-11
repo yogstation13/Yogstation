@@ -397,7 +397,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/necromantic_stone = -4,
 		/obj/item/slimecross/stabilized/sepia = -4,
 		/obj/item/melee/skateboard/hoverboard/admin = -4,
-		/obj/item/demon_core = - 4,
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
@@ -407,6 +406,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/book/granter/martial/carp = -5,
 		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 		/obj/item/bodypart/l_arm/robot/buster = -5,
+		/obj/item/demon_core = -5,
 
 		/obj/item/autosurgeon/syndicate/spinalspeed = -6, // No opportunity cost speed boost
 
