@@ -316,7 +316,7 @@
 			if(!lawsync)
 				O.lawupdate = 0
 				if(!M.laws.modified)
-					// Give the non-modified laws you can see on the MMI.
+					// Give the non-modified laws which is visible on the MMI.
 					O.laws = M.laws
 					M.laws.associate(O)
 				else if(!M.override_cyborg_laws) // MMI's laws were changed. Do not want to upload them if we say so.
