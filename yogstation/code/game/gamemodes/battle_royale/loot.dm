@@ -120,7 +120,6 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		//Weight of -3 - strong suits with additional utility
 		/obj/item/clothing/suit/space/hardsuit/shielded = -3,
 		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -3,
-		/obj/item/clothing/suit/wizrobe/armor = -3,
 		//Weight of -4 - nukie level shit
 		/obj/item/shield/energy = -4,
 		/obj/item/clothing/suit/space/hardsuit/syndi/elite = -4,
