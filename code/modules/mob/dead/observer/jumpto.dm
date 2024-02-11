@@ -49,14 +49,14 @@
 	var/list/mobs = list()
 	var/list/areas
 
-	var/mob/list/mob_list = GLOB.mob_list
+	var/list/mob_list = GLOB.mob_list
 	for (var/mob/M in mob_list)
 		var/list/serialized = list()
 		serialized["name"] = M.name
 		serialized["ref"] = REF(M) // Apparently name isn't a direct ref.
 		mobs += list(serialized)
 
-	var/area/list/Alist = GLOB.areas
+	var/list/Alist = GLOB.areas
 	for (var/area/A in Alist)
 		if(A.hidden)
 			continue
