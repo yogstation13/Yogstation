@@ -905,6 +905,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "ethereal_mark"
 
+	if("preternis_antenna" in mutant_bodyparts)
+		if(H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD)
+			bodyparts_to_add -= "preternis_antenna"
+
+	if("preternis_eye" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD)
+			bodyparts_to_add -= "preternis_eye"
+
 	if("pod_hair" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "pod_hair"
@@ -1013,6 +1021,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
 				if("ethereal_mark")
 					S = GLOB.ethereal_mark_list[H.dna.features["ethereal_mark"]]
+				if("preternis_weathering")
+					S = GLOB.preternis_weathering_list[H.dna.features["preternis_weathering"]]
+				if("preternis_antenna")
+					S = GLOB.preternis_antenna_list[H.dna.features["preternis_antenna"]]
+				if("preternis_eye")
+					S = GLOB.preternis_eye_list[H.dna.features["preternis_eye"]]
+				if("preternis_core")
+					S = GLOB.preternis_core_list[H.dna.features["preternis_core"]]
 				if("ipc_screen")
 					S = GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
 				if("ipc_antenna")

@@ -528,7 +528,6 @@
 	buildstack = /obj/item/stack/sheet/mineral/silver
 	smooth = SMOOTH_FALSE
 	can_buckle = TRUE
-	buckle_requires_restraints = TRUE
 
 /obj/structure/table/optable/Initialize(mapload)
 	. = ..()

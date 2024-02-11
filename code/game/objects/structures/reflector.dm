@@ -72,6 +72,8 @@
 	P.ignore_source_check = TRUE
 	P.range = P.decayedRange
 	P.decayedRange = max(P.decayedRange--, 0)
+	if(P.hitscan)
+		P.store_hitscan_collision(P.trajectory.copy_to())
 	return BULLET_ACT_FORCE_PIERCE
 
 /obj/structure/reflector/attackby(obj/item/W, mob/user, params)

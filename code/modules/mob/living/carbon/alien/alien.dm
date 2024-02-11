@@ -25,6 +25,7 @@
 
 	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|queen)( \\(\\d+\\))?")
 	blood_volume = BLOOD_VOLUME_XENO //Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
+	var/datum/techweb/linked_techweb
 
 /mob/living/carbon/alien/Initialize(mapload)
 	add_verb(src, /mob/living/proc/mob_sleep)
@@ -33,6 +34,9 @@
 	create_bodyparts() //initialize bodyparts
 
 	create_internal_organs()
+
+	if(!linked_techweb)
+		linked_techweb = SSresearch.science_tech
 
 	. = ..()
 
@@ -109,7 +113,7 @@ Des: Gives the client of the alien an image on each infected mob.
 			if(HAS_TRAIT(L, TRAIT_XENO_HOST))
 				var/obj/item/organ/body_egg/alien_embryo/A = L.getorgan(/obj/item/organ/body_egg/alien_embryo)
 				if(A)
-					var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[A.stage]")
+					var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[A.current_stage]")
 					client.images += I
 	return
 

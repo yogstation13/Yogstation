@@ -79,7 +79,7 @@
 			apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.sharpness, attack_direction = attack_direction)
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
-	if(P.penetrating && (P.penetration_type == 0 || P.penetration_type == 2) && P.penetrations > 0)
+	if((P.penetration_flags & PENETRATE_MOBS) && P.penetrations > 0)
 		P.penetrations -= 1
 		return P.on_hit(src, armor) && BULLET_ACT_FORCE_PIERCE
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK

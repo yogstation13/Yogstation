@@ -218,9 +218,6 @@
 	desc = "A lighting fixture."
 	layer = WALL_OBJ_LAYER
 	max_integrity = 100
-	use_power = ACTIVE_POWER_USE
-	idle_power_usage = 2
-	active_power_usage = 20
 	power_channel = AREA_USAGE_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = FALSE					// 1 if on, 0 if off
 	var/on_gs = FALSE
@@ -242,6 +239,7 @@
 	var/start_with_cell = TRUE	// if true, this fixture generates a very weak cell at roundstart
 
 	var/nightshift_enabled = FALSE	//Currently in night shift mode?
+	var/nightshift_powercheck = FALSE
 	var/nightshift_allowed = TRUE	//Set to FALSE to never let this light get switched to night mode.
 	var/nightshift_brightness = 8
 	var/nightshift_light_power = 0.45
@@ -424,11 +422,9 @@
 			turning_on = TRUE
 			addtimer(CALLBACK(src, PROC_REF(turn_on), trigger, quiet), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
-		use_power = IDLE_POWER_USE
 		emergency_mode = TRUE
 		START_PROCESSING(SSmachines, src)
 	else
-		use_power = IDLE_POWER_USE
 		set_light(0)
 	update_appearance(UPDATE_ICON)
 
@@ -440,6 +436,19 @@
 			addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 		else
 			removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
+			nightshift_powercheck = FALSE
+
+	if(on)
+		if(nightshift_enabled != nightshift_powercheck)
+			nightshift_powercheck = nightshift_enabled
+			if(nightshift_enabled)
+				removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
+				static_power_used =	brightness * 8 //8W per unit luminosity
+				addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
+			else
+				removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
+				static_power_used = brightness * 20 //20W per unit luminosity
+				addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 
 	broken_sparks(start_only=TRUE)
 
@@ -476,7 +485,6 @@
 			if(trigger)
 				burn_out()
 		else
-			use_power = ACTIVE_POWER_USE
 			set_light(BR, PO, CO)
 			if(!quiet)
 				playsound(src.loc, 'sound/effects/light_on.ogg', 50)
