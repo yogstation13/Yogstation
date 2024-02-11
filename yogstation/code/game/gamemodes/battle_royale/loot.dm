@@ -202,7 +202,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/melee/cutlass = 2,
 		/obj/item/melee/transforming/cleaving_saw = 2,
 		/obj/item/storage/toolbox/syndicate = 2,
-		/obj/item/reagent_containers/food/snacks/powercrepe = 2, //lol what?
 
 		/obj/item/melee/spear/bonespear = 1,
 		/obj/item/stinger_trident = 1,
@@ -224,6 +223,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/cane/cursed = -1, //shhhhh, don't worry about it, it'll be fine
 		/obj/item/cult_spear = -1,
 		/obj/item/melee/spear/grey_tide = -1,
+		/obj/item/reagent_containers/food/snacks/powercrepe = -1, //lol what?
 
 		/obj/item/fireaxe/energy = -2, //lol, this is the energy fire axe, not the debug energy axe
 		/obj/item/melee/vxtvulhammer = -2,
