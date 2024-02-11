@@ -34,11 +34,10 @@
 	if(!brain)
 		icon_state = "mmi_off"
 		return
+	icon_state = brain.get_mmi_brain_sprite()
 	if(istype(brain, /obj/item/organ/brain/alien))
-		icon_state = "mmi_brain_alien"
 		braintype = "Xenoborg" //HISS....Beep.
 	else
-		icon_state = "mmi_brain"
 		braintype = "Cyborg"
 
 /obj/item/mmi/update_overlays()
@@ -73,7 +72,7 @@
 			return
 		var/mob/living/brain/B = newbrain.brainmob
 		if(!B.key)
-			B.notify_ghost_cloning("Someone has put your brain in a MMI!", source = src)
+			B.notify_ghost_cloning("Someone has put your [newbrain.brain_name] in an MMI!", source = src)
 		user.visible_message("[user] sticks \a [newbrain] into [src].", span_notice("[src]'s indicator light turn on as you insert [newbrain]."))
 
 		brainmob = newbrain.brainmob
@@ -130,14 +129,15 @@
 
 /obj/item/mmi/attack_self(mob/user)
 	if(brain)
-		user.visible_message(span_notice("[user] begins to remove the brain from [src]."), span_danger("You begin to pry the brain out of [src], ripping out the wires and probes."))
+		var/brain_flavor_name = brain.brain_name
+		user.visible_message(span_notice("[user] begins to remove the [brain_flavor_name] from [src]."), span_danger("You begin to pry the [brain_flavor_name] out of [src], ripping out the wires and probes."))
 		to_chat(brainmob, span_userdanger("You feel your mind failing as you are slowly ripped from the [src]."))
 		if(do_after(user, remove_time, src))
-			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg." : ""]."))
+			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your [brain_flavor_name] being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg." : ""]."))
 			eject_brain(user)
 			update_appearance(UPDATE_ICON)
 			name = initial(name)
-			user.visible_message(span_notice("[user] rips the brain out of [src]."), span_danger("You successfully remove the brain from the [src][rebooting ? ", interrupting the reboot process." : ""]."))
+			user.visible_message(span_notice("[user] rips the [brain_flavor_name] out of [src]."), span_danger("You successfully remove the [brain_flavor_name] from the [src][rebooting ? ", interrupting the reboot process." : ""]."))
 			if(rebooting)
 				rebooting = FALSE
 				deltimer(reboot_timer)
@@ -192,7 +192,7 @@
 		brain = newbrain
 	else if(!brain)
 		brain = new(src)
-		brain.name = "[L.real_name]'s brain"
+		brain.name = "[L.real_name]'s [brain.brain_name]"
 
 	name = "[initial(name)]: [brainmob.real_name]"
 	to_chat(brainmob, welcome_message)
@@ -262,13 +262,13 @@
 	if(brainmob)
 		var/mob/living/brain/B = brainmob
 		if(!B.key || !B.mind || B.stat == DEAD)
-			. += span_warning("The MMI indicates the brain is completely unresponsive.")
+			. += span_warning("The MMI indicates the [brain.brain_name] is completely unresponsive.")
 
 		else if(!B.client)
-			. += span_warning("The MMI indicates the brain is currently inactive; it might change.")
+			. += span_warning("The MMI indicates the [brain.brain_name] is currently inactive; it might change.")
 
 		else
-			. += span_notice("The MMI indicates the brain is active.")
+			. += span_notice("The MMI indicates the [brain.brain_name] is active.")
 	. += span_notice("It has a port for reading AI law modules.")
 	if(laws)
 		. += span_notice("Any AI created using this MMI will use these uploaded laws:")

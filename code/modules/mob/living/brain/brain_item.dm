@@ -266,10 +266,16 @@
 	prev_damage = damage
 	return
 
+/obj/item/organ/brain/proc/get_mmi_brain_sprite()
+	return "mmi_brain"
+
 /obj/item/organ/brain/alien
 	name = "alien brain"
 	desc = "We barely understand the brains of terrestial animals. Who knows what we may find in the brain of such an advanced species?"
 	icon_state = "brain-x"
+
+/obj/item/organ/brain/alien/get_mmi_brain_sprite()
+	return "mmi_brain_alien"
 
 /obj/item/organ/brain/vox
 	name = "cortical stack"
@@ -277,6 +283,9 @@
 	desc = "A peculiarly advanced bio-electronic device that seems to hold the memories and identity of a Vox."
 	icon_state = "cortical-stack"
 	decay_factor = 0
+
+/obj/item/organ/brain/vox/get_mmi_brain_sprite()
+	return "mmi_cortical_stack"
 
 /obj/item/organ/brain/vox/emp_act(severity)
 	to_chat(owner, span_warning("Your head hurts."))

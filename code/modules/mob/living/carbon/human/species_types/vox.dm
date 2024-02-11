@@ -5,7 +5,7 @@
 	is_dimorphic = FALSE
 	generate_husk_icon = TRUE
 	species_traits = list(EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
-	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_NOCLONE)
+	inherent_traits = list(TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
 	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
 	attack_verbs = list("scratch", "claw")
@@ -24,10 +24,10 @@
 	mutantears = /obj/item/organ/ears/vox // Very brief deafness
 	mutanteyes = /obj/item/organ/eyes/vox // Quick hallucination
 	mutanttail = /obj/item/organ/tail/vox
+	mutantappendix = /obj/item/organ/appendix/vox
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/vox
 	skinned_type = /obj/item/stack/sheet/animalhide/vox
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
-	toxmod = 2 // Weak immune systems.
 	burnmod = 0.8 // Tough hides.
 	stunmod = 1.1 // Take a bit longer to get up than other species.
 	breathid = "n2"
@@ -78,7 +78,7 @@
 		internal_tank = new /obj/item/tank/internals/emergency_oxygen/vox
 	if(!H.equip_to_appropriate_slot(internal_tank))
 		H.put_in_hands(internal_tank)
-	to_chat(H, span_notice("You are now running on nitrogen internals from [internal_tank]. Your species finds oxygen toxic, so you must breathe nitrogen only."))
+	to_chat(H, span_notice("You are now running on nitrogen internals from [internal_tank]. Your species finds oxygen toxic, so you must breathe pure nitrogen."))
 	H.open_internals(internal_tank)
 
 /datum/species/vox/get_icon_variant(mob/living/carbon/person_to_check)
@@ -113,22 +113,35 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "temperature-low",
-			SPECIES_PERK_NAME = "Cold Resistance",
-			SPECIES_PERK_DESC = "Vox have their organs heavily modified to resist the coldness of space",
+			SPECIES_PERK_ICON = "heart-circle-check",
+			SPECIES_PERK_NAME = "Imperishable Organs",
+			SPECIES_PERK_DESC = "Vox organs contain advanced cybernetics that prevent them from decaying.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "bolt",
 			SPECIES_PERK_NAME = "EMP Sensitivity",
-			SPECIES_PERK_DESC = "Due to their organs being synthetic, they are susceptible to EMPs.",
+			SPECIES_PERK_DESC = "Due to their organs being partially synthetic, they are susceptible to EMP damage.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "wind",
+			SPECIES_PERK_ICON = "head-side-mask",
 			SPECIES_PERK_NAME = "Nitrogen Breathing",
-			SPECIES_PERK_DESC = "Vox must breathe nitrogen to survive. You receive a tank when you arrive.",
+			SPECIES_PERK_DESC = "Oxygen is toxic to Vox, they must breathe pure nitrogen.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "dna",
+			SPECIES_PERK_NAME = "Unclonable",
+			SPECIES_PERK_DESC = "Their peculiar physiology prevents Vox from being cloned.",
 		),
 	)
 
 	return to_add
+
+/datum/species/vox/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	if(chem.type == /datum/reagent/oxygen)
+		H.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
+		return FALSE
+	return ..()

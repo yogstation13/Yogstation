@@ -241,7 +241,7 @@
 		qdel(B)
 
 /obj/item/organ/stomach/vox
-	name = "vox stomach"
+	name = "gizzard"
 	icon_state = "stomach-vox"
 	desc = "Mechanical digestion."
 	decay_factor = 0

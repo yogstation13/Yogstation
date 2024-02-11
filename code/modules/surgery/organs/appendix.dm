@@ -85,3 +85,8 @@
 		return
 	if(severity > EMP_LIGHT)
 		damage += 20 * (severity - EMP_HEAVY)
+
+/obj/item/organ/appendix/vox
+	name = "vox appendix"
+	icon_state = "appendix-vox"
+	decay_factor = 0
