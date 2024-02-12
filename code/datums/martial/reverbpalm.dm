@@ -163,7 +163,7 @@
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	COOLDOWN_START(src, next_lariat, COOLDOWN_LARIAT)
-		dashattack(user, user.dir, jumpdistance, 1) 
+	dashattack(user, user.dir, jumpdistance, 1) 
 
 /datum/martial_art/reverberating_palm/proc/dashattack(mob/living/user, dir, distance = 0, type = 0, list/rushed)
 	var/turf/Q = get_step(get_turf(user), dir)
