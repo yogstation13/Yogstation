@@ -29558,7 +29558,7 @@
 /area/crew_quarters/kitchen)
 "mPO" = (
 /obj/machinery/doppler_array/research/science{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/science/research)

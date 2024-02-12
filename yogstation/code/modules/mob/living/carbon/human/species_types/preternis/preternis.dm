@@ -52,7 +52,7 @@
 	
 	mutant_bodyparts = list("preternis_weathering", "preternis_antenna", "preternis_eye", "preternis_core")
 	default_features = list("weathering" = "None", "antenna" = "None", "preternis_eye" = "Standard", "preternis_core" = "Core")
-	wings_icon = "Robotic"
+	wings_icon = "Elytra"
 
 	//new variables
 	var/datum/action/innate/maglock/maglock
@@ -66,12 +66,14 @@
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
+	if(!C.dna.features["pretcolor"])
+		C.dna.features["pretcolor"] = pick(GLOB.color_list_preternis)
 	fixed_mut_color = C.dna.features["pretcolor"]
 
 	for (var/obj/item/bodypart/BP in C.bodyparts)
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		BP.emp_reduction = EMP_LIGHT
-		BP.burn_reduction = 2
+		BP.burn_reduction = 1
 		BP.brute_reduction = 1
 		if(BP.body_zone == BODY_ZONE_CHEST)
 			continue

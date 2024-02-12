@@ -120,95 +120,171 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		//Weight of -3 - strong suits with additional utility
 		/obj/item/clothing/suit/space/hardsuit/shielded = -3,
 		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -3,
-		/obj/item/clothing/suit/wizrobe/armor = -3,
 		//Weight of -4 - nukie level shit
 		/obj/item/shield/energy = -4,
 		/obj/item/clothing/suit/space/hardsuit/syndi/elite = -4,
 		/obj/item/clothing/suit/space/hardsuit/carp/dragon = -4,
-		//Weight of -5 - ERT level shit
+
 		/obj/item/shield/energy/bananium = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/sec = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/engi = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/med = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/jani = -5,
-		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -5,
-		//Weight of -8 - you won't see this, but if you do you become a (still-killable) god (weight of 1 after the final ring closes)
-		/obj/item/clothing/suit/space/hardsuit/deathsquad = -8,
-		/obj/item/clothing/suit/space/hardsuit/shielded/swat = -8,
-		/obj/item/clothing/suit/space/hardsuit/shielded/swat/honk = -8,
+		//Weight of -6 - ERT level shit
+		/obj/item/clothing/suit/space/hardsuit/ert/sec = -6,
+		/obj/item/clothing/suit/space/hardsuit/ert/engi = -6,
+		/obj/item/clothing/suit/space/hardsuit/ert/med = -6,
+		/obj/item/clothing/suit/space/hardsuit/ert/jani = -6,
+		/obj/item/clothing/suit/space/hardsuit/ert/paranormal = -6,
+		//Weight of -7 - you won't see this, but if you do you become a (still-killable) god (weight of 2 after the final ring closes)
+		/obj/item/clothing/suit/space/hardsuit/deathsquad = -7,
+		/obj/item/clothing/suit/space/hardsuit/shielded/swat = -7,
+		/obj/item/clothing/suit/space/hardsuit/shielded/swat/honk = -7,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_weapon, list(
+		//melee weapons
+		//meme weapons (can probably just be dead items) (no higher than 10 force)
 		/obj/item/kitchen/knife/carrotshiv = 5,
-		/obj/item/storage/toolbox/mechanical = 5,
-		/obj/item/weldingtool/experimental = 5,
+		/obj/item/toy/boomerang/violent = 5,
+		/obj/item/melee/flyswatter = 5,
+		/obj/item/banhammer = 5,
+		/obj/item/kirbyplants/random = 5,
+		/obj/item/clothing/glasses/sunglasses/gar = 5,
+		/obj/item/reagent_containers/food/drinks/trophy/silver_cup = 5,
+		/obj/item/storage/bag/money = 5,
+		/obj/item/pickaxe/mini = 5,
+		/obj/item/scalpel/advanced = 5, //channel your inner lizbay
+		/obj/item/toy/plush/goatplushie/angry/guardgoat = 5,
 
-		/obj/item/kitchen/knife/combat/survival = 4,
-		/obj/item/melee/baseball_bat = 4,
-		/obj/item/melee/spear = 4,
-		/obj/item/melee/spear/bonespear = 4,
+		//weapons that are better than punches but only by a really small bit
+		/obj/item/mop/advanced = 4,
+		/obj/item/scythe = 4,
+		/obj/item/crowbar/large = 4,
+		/obj/item/hatchet = 4,
+		/obj/item/instrument/eguitar = 4,
+		/obj/item/melee/fryingpan = 4,
+		/obj/item/oar = 4,
+		/obj/item/weldingtool/experimental = 4,
+		/obj/item/nullrod/fedora = 4, //you throw it away
+		/obj/item/bigspoon = 4,
+		/obj/item/nullrod/tribal_knife = 4,
+		/obj/item/storage/toolbox/mechanical = 4,
+		/obj/item/statuebust = 4,
+		/obj/item/statuebust/hippocratic = 4,
+		/obj/item/melee/chainofcommand/tailwhip = 4, //YAY RACISM
+		/obj/item/melee/chainofcommand/tailwhip/kitty = 4,
+		/obj/item/tailclub = 4,
+		/obj/item/melee/skateboard = 4,
+		/obj/item/melee/skateboard/pro = 4,
+		/obj/item/reagent_containers/food/drinks/trophy/gold_cup = 4,
+		/obj/item/pickaxe = 4,
+		/obj/item/storage/secure/briefcase/syndie = 4,
 
-		/obj/item/bigspoon = 3,
-		/obj/item/kitchen/knife/combat = 3,
-		/obj/item/nullrod/hammer = 3,
-		/obj/item/nullrod/tribal_knife = 3,
-		/obj/item/nullrod/vibro = 3,
+		/obj/item/kitchen/knife/combat/survival = 3,
+		/obj/item/storage/belt/sabre = 3,
+		/obj/item/melee/baseball_bat = 3,
+		/obj/item/nullrod/spear = 3,
+		/obj/item/claymore/bone = 3,
+		/obj/item/melee/skateboard/hoverboard = 3,
+		/obj/item/pickaxe/silver = 3,
+		/obj/item/melee/stinger_sword = 3,
+		/obj/item/adamantineshield = 3,
+		/obj/item/rune_scimmy = 3, //starts at 20 force, surprisingly good
+		/obj/item/storage/toolbox/mechanical/old/clean = 3,
 
-		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised = 2,
-		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn = 2,
-		/obj/item/pen/red/edagger = 2,
-		/obj/item/flamethrower/full/tank = 2,
-		/obj/item/melee/chainsaw = 2,
-		/obj/item/fireaxe/metal_h2_axe = 2,
-		/obj/item/nullrod/whip = 2,
+		/obj/item/pickaxe/diamond = 2,
+		/obj/item/kitchen/knife/combat = 2,
+		/obj/item/melee/spear = 2,
+		/obj/item/melee/spear/bamboospear = 2,
+		/obj/item/nullrod/hammer = 2,
+		/obj/item/nullrod/vibro = 2,
+		/obj/item/nullrod/claymore = 2,
+		/obj/item/nullrod/dualsword = 2,
+		/obj/item/melee/baseball_bat/homerun = 2,
+		/obj/item/melee/cutlass = 2,
+		/obj/item/melee/transforming/cleaving_saw = 2,
+		/obj/item/storage/toolbox/syndicate = 2,
+		/obj/item/kitchen/knife/rainbowknife = 2, //has possible cloning damage, watch out
 
-		/obj/item/gun/ballistic/revolver/detective = 1,
-		/obj/item/melee/baseball_bat/homerun = 1,
-		/obj/item/fireaxe = 1,
-		/obj/item/nullrod/talking = 1,
-		/obj/item/clothing/gloves/powerfist/filled = 1,
+		/obj/item/melee/spear/bonespear = 1,
+		/obj/item/stinger_trident = 1,
+		/obj/item/pen/red/edagger = 1,
+		/obj/item/melee/chainsaw = 1,
+		/obj/item/fireaxe/metal_h2_axe = 1,
+		/obj/item/nullrod/whip = 1,
+		/obj/item/katana/basalt = 1,
 
-		/obj/item/melee/vxtvulhammer = 0,
-		/obj/item/gun/ballistic/automatic/pistol = 0,
-		/obj/item/gun/ballistic/shotgun/doublebarrel = 0,
+		/obj/item/melee/spear/bonespear/stalwartpike = 0,
+		/obj/item/fireaxe = 0,
+		/obj/item/clothing/gloves/powerfist/filled = 0,
 		/obj/item/melee/transforming/energy/sword = 0,
-		/obj/item/gun/energy/laser/retro/old = 0,
+		/obj/item/switchblade = 0,
+		/obj/item/melee/spear/bonespear/chitinspear = 0,
 
 		/obj/item/melee/baseball_bat/metal_bat = -1,
 		/obj/item/melee/ghost_sword = -1, //snowballer
-		/obj/item/gun/ballistic/shotgun/automatic/combat = -1,
-		/obj/item/gun/energy/laser = -1,
+		/obj/item/cane/cursed = -1, //shhhhh, don't worry about it, it'll be fine
+		/obj/item/cult_spear = -1,
+		/obj/item/melee/spear/grey_tide = -1,
+		/obj/item/reagent_containers/food/snacks/powercrepe = -1, //lol what?
 
-		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = -2,
-		/obj/item/gun/ballistic/automatic/wt550 = -2,
-		/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = -2,
-		/obj/item/gun/energy/kinetic_accelerator/crossbow = -2,
 		/obj/item/fireaxe/energy = -2, //lol, this is the energy fire axe, not the debug energy axe
-
-		/obj/item/gun/ballistic/revolver = -3,
-		/obj/item/gun/ballistic/bow/energy = -3,
-		/obj/item/gun/energy/laser/captain = -3,
-
-		/obj/item/gun/ballistic/automatic/m90/unrestricted = -3,
-		/obj/item/gun/ballistic/automatic/pistol/deagle = -3,
-		/obj/item/gun/ballistic/automatic/ar = -3,
-		/obj/item/gun/ballistic/automatic/c20r/unrestricted = -3,
-		/obj/item/gun/ballistic/automatic/mini_uzi = -3,
-		/obj/item/gun/ballistic/automatic/tommygun = -3,
-		/obj/item/gun/ballistic/rifle/sniper_rifle = -3, //Not a stun anymore
+		/obj/item/melee/vxtvulhammer = -2,
+		/obj/item/singularityhammer = -2,
+		
 		/obj/item/vibro_weapon = -3, //Strong melee weapon, but not enough to be -5
+		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -3,
+		/obj/item/melee/chainsaw/demon = -3,
 
-		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -4,
 		/obj/item/melee/dualsaber = -4,
-		/obj/item/battleroyale/itemspawner/breakbow = -4, //Strong melee weapon, along with infinte arrows
-		/obj/item/gun/energy/beam_rifle = -4,
 
 		/obj/item/melee/fryingpan/bananium = -5,
 		/obj/item/his_grace = -5,
 		/obj/item/melee/chainsaw/doomslayer = -5,
-		/obj/item/gun/ballistic/bow/energy/ert = -5,
-		/obj/item/minigunpack = -5,
-		/obj/item/minigunbackpack = -5,
+
+		//guns (no higher than 0, first wave should never have guns)
+		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised = 0,
+		/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn = 0,
+		/obj/item/gun/ballistic/revolver/detective = 0,
+		/obj/item/flamethrower/full/tank = 0,
+
+		/obj/item/gun/ballistic/automatic/pistol = -1,
+		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
+
+		/obj/item/gun/ballistic/shotgun/automatic/combat = -2,
+		/obj/item/gun/energy/laser = -2,
+		/obj/item/gun/energy/laser/retro/old = -2,
+
+		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = -3,
+		/obj/item/gun/ballistic/automatic/wt550 = -3,
+		/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = -3,
+		/obj/item/gun/energy/kinetic_accelerator/crossbow = -3,
+		/obj/item/gun/ballistic/automatic/proto/unrestricted = -3,
+
+		/obj/item/gun/ballistic/revolver = -4,
+		/obj/item/gun/ballistic/bow/energy = -4,
+		/obj/item/gun/energy/laser/captain = -4,
+		/obj/item/gun/ballistic/automatic/m90/unrestricted = -4,
+		/obj/item/gun/ballistic/automatic/pistol/deagle = -4,
+		/obj/item/gun/ballistic/automatic/c20r/unrestricted = -4,
+		/obj/item/gun/ballistic/automatic/mini_uzi = -4,
+		/obj/item/gun/ballistic/automatic/tommygun = -4,
+		/obj/item/gun/ballistic/automatic/surplus = -4,
+		/obj/item/gun/ballistic/automatic/laser = -4,
+
+		/obj/item/battleroyale/itemspawner/breakbow = -5, //Strong melee weapon, along with infinte arrows
+		/obj/item/gun/ballistic/automatic/l6_saw/unrestricted = -5,
+		/obj/item/gun/ballistic/automatic/ar = -5,
+		/obj/item/gun/ballistic/automatic/lwt650 = -5,
+		/obj/item/gun/ballistic/automatic/k41s = -5,
+
+		/obj/item/gun/energy/beam_rifle = -6,
+		/obj/item/gun/ballistic/rifle/sniper_rifle = -6,
+		/obj/item/gun/ballistic/automatic/laser/lasgun = -6,
+		/obj/item/gun/ballistic/automatic/laser/laspistol = -6,
+
+		/obj/item/gun/ballistic/bow/energy/ert = -7,
+		/obj/item/minigunpack = -7,
+		/obj/item/minigunbackpack = -7,
+		/obj/item/gun/ballistic/automatic/laser/longlas = -7,
+		/obj/item/gun/ballistic/automatic/laser/hotshot = -7,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
@@ -282,6 +358,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/slimecross/stabilized/red = -1,
 		/obj/item/autosurgeon/reviver = -1,
 		/obj/effect/spawner/lootdrop/ammobox = -1,
+		/obj/item/slime_sling = -1,
 
 		/obj/item/multisurgeon/airshoes = -2,
 		/obj/item/grenade/syndieminibomb = -2,
@@ -294,14 +371,13 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/martial/plasmaman = -2,
 		/obj/item/battleroyale/martial/lizard = -2,
 		/obj/item/book/granter/action/spell/summonitem = -2,
-		/obj/item/nullrod/hermes = -2,
 		/obj/item/nullrod/unrestricted = -2,
 		/obj/effect/spawner/lootdrop/ammobox = -2,
+		/obj/item/stand_arrow = -2, //possibly OP but it's 50/50 to get dusted
 
 		/obj/item/storage/box/syndie_kit/augmentation = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
-		/obj/item/stand_arrow = -3, //possibly OP but it's 50/50 to get dusted
 		/obj/item/book/granter/action/spell/forcewall = -3,
 		/obj/item/antag_spawner/slaughter_demon = -3, //why the hell not
 		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //people still get disqualified, but they at least get to come back
@@ -309,25 +385,30 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/effect/spawner/lootdrop/stronggene = -3,
 		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
 		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
+		/obj/item/nullrod/hermes = -3,
 		/obj/item/battleroyale/extraarm = -3,
+		/obj/item/clothing/head/yogs/tar_king_crown = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
 		/obj/item/implanter/empshield = -4, //EMP Shields are fairly useful, especially with the now wealth of xray / thermal eyes, among others
 		/obj/item/guardiancreator/carp/random = -4,
-		/obj/item/bodypart/l_arm/robot/buster = -4, // Buster is strong, but most people aren't too good with it. Especially useful for closing the gap
 		/obj/item/battleroyale/martial/ipc = -4,
-		/obj/item/book/granter/martial/carp = -4,
-		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
 		/obj/item/necromantic_stone = -4,
 		/obj/item/slimecross/stabilized/sepia = -4,
+		/obj/item/melee/skateboard/hoverboard/admin = -4,
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
 		/obj/item/stand_arrow/safe = -5,
 		/obj/item/mdrive = -5, //get out of jail free card
-		/obj/item/autosurgeon/syndicate/spinalspeed = -5, // No opportunity cost speed boost
+		/obj/item/book/granter/martial/carp = -5,
+		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
+		/obj/item/bodypart/l_arm/robot/buster = -5,
+		/obj/item/demon_core = -5,
+
+		/obj/item/autosurgeon/syndicate/spinalspeed = -6, // No opportunity cost speed boost
 
 		/obj/item/storage/belt/wands/full = -7, //not quite spellbook, but some of these wands are FUCKED
 
