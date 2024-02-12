@@ -13,8 +13,8 @@
 	COOLDOWN_DECLARE(next_rush)
 	COOLDOWN_DECLARE(next_suplex)
 	COOLDOWN_DECLARE(next_palm)
-	var/recalibration = /mob/living/carbon/human/proc/seismic_recalibration
-	var/deactivation = /mob/living/carbon/human/proc/seismic_deactivation
+	var/recalibration = /datum/action/cooldown/seismic_recalibrate
+	var/deactivation = /datum/action/cooldown/seismic_deactivate
 
 //proc the moves will use for damage dealing
 
@@ -93,6 +93,10 @@
 		suplex(H,target)
 	if(H.a_intent == INTENT_GRAB)
 		lariat(H)
+
+/datum/martial_art/reverberating_palm/harm_act(mob/living/carbon/human/A, mob/living/D)
+	if(usr.click_intercept == null)
+		return FALSE // no punching plus slamming please
 
 /datum/martial_art/reverberating_palm/proc/supercharge(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, next_palm))
@@ -243,34 +247,40 @@
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
-/mob/living/carbon/human/proc/seismic_recalibration()
-	set name = "Recalibrate Arm"
-	set desc = "You recalibrate the arm to restore missing functionality."
-	set category = "Reverberating Palm"
-	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You recalibrate your arm in an attempt to restore its functionality.</i></b>"
-	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
+
+/datum/action/cooldown/seismic_recalibrate
+	name = "Recalibrate Arm"
+	desc = "You recalibrate the arm to restore missing functionality."
+	button_icon = 'icons/obj/implants.dmi'
+	button_icon_state = "lightning_bolt"
+
+/datum/action/cooldown/seismic_recalibrate/Activate()
+	var/list/combined_msg = list()
+	combined_msg +=  "<b><i>You fidget with the arm in an attempt to get it working.</i></b>"
+	to_chat(usr, examine_block(combined_msg.Join("\n")))
 	usr.click_intercept = usr.mind.martial_art
 
-/mob/living/carbon/human/proc/seismic_deactivation()
-	set name = "Deactivate Arm"
-	set desc = "You power down the arm."
-	set category = "Reverberating Palm"
+
+/datum/action/cooldown/seismic_deactivate
+	name = "Deactivate Arm"
+	desc = "Wind down the arm temporarily, restoring your normal capabilities."
+	button_icon = 'icons/obj/implants.dmi'
+	button_icon_state = "emp"
+
+/datum/action/cooldown/seismic_deactivate/Activate()
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You temporarily power off the arm.</i></b>"
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 	usr.click_intercept = null
 
+
+
 /datum/martial_art/reverberating_palm/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
-	add_verb(H, recalibration)
-	add_verb(H, deactivation)
 	usr.click_intercept = src 
 
 /datum/martial_art/reverberating_palm/on_remove(mob/living/carbon/human/H)
-	remove_verb(H, recalibration)
-	remove_verb(H, deactivation)
 	usr?.click_intercept = null 
 	..()
