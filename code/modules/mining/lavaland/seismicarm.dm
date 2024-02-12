@@ -1,7 +1,7 @@
 
 /obj/item/bodypart/r_arm/robot/seismic
 	name = "seismic right arm"
-	desc = "A robotic arm adorned with woofers capable of emitting shockwaves."
+	desc = "A prototype arm adorned with woofers capable of emitting shockwaves to excavate basalt."
 	icon = 'icons/mob/augmentation/augments_seismic.dmi'
 	icon_state = "seismic_r_arm"
 	max_damage = 60
