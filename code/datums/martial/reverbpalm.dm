@@ -177,9 +177,6 @@
 	for(var/mob/living/target in rushed)
 		(crash(target, Q))
 	if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
-		for(var/obj/D in Q)
-			if(D.density)
-				return
 		return
 	user.forceMove(Q)
 	var/turf/R = get_step(Q, dir)
