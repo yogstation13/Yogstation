@@ -4737,10 +4737,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"aQd" = (
-/obj/machinery/vending/donksofttoyvendor,
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
 "aQh" = (
 /turf/closed/wall,
 /area/science/explab)
@@ -93537,7 +93533,7 @@ wsD
 qTR
 new
 uVl
-aQd
+aeM
 sfH
 jdd
 aXp
@@ -93794,7 +93790,7 @@ eXm
 aAw
 mSV
 uVl
-aeM
+aii
 lEF
 wNI
 aXp

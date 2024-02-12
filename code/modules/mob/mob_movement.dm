@@ -140,14 +140,13 @@
 	else
 		move_delay = world.time
 
+	//this is in two areas, i have no clue why, all i know is that i hate it and don't have the time to fix it
 	if(L.has_status_effect(/datum/status_effect/confusion))
 		var/newdir = 0
-		if(L.get_timed_status_effect_duration(/datum/status_effect/confusion) > 40)
-			newdir = pick(GLOB.alldirs)
-		else if(prob(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 1.5))
-			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
-		else if(prob(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 3))
+		if(prob(50))
 			newdir = angle2dir(dir2angle(direct) + pick(45, -45))
+		else if(prob(50) && L.get_timed_status_effect_duration(/datum/status_effect/confusion) > 10 SECONDS)
+			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
 		if(newdir)
 			direct = newdir
 			n = get_step(L, direct)

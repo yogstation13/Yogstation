@@ -2466,7 +2466,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A freezing pint of malt liquor."
 
 /datum/reagent/consumable/ethanol/ratvarnac
-	name = "Justicars Juice"
+	name = "Justiciar's Juice"
 	description = "I don't even know what an eminence is, but I want him to recall."
 	metabolization_rate = INFINITY
 	boozepwr = 30

@@ -543,7 +543,6 @@
 	smoothing_groups = null
 	canSmoothWith = null
 	can_buckle = TRUE
-	buckle_requires_restraints = TRUE
 
 /obj/structure/table/optable/Initialize(mapload)
 	. = ..()

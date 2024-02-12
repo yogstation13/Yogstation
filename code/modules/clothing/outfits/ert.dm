@@ -311,6 +311,41 @@
 		/obj/item/melee/classic_baton/telescopic=1,\
 		/obj/item/grenade/clusterbuster/cleaner=3)
 
+/datum/outfit/ert/mining
+	name = "A Dwarven Miner"
+
+	id = /obj/item/card/id/ert
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker
+	suit_store = /obj/item/tank/internals/oxygen/tactical
+	r_hand = /obj/item/kinetic_crusher/mega
+	glasses = /obj/item/clothing/glasses/hud/health/meson
+	gloves = /obj/item/clothing/gloves/gauntlets
+	back = /obj/item/storage/backpack/explorer
+	belt = /obj/item/storage/belt/mining
+	mask = /obj/item/clothing/mask/gas/explorer
+	shoes = /obj/item/clothing/shoes/bhop
+	uniform = /obj/item/clothing/under/rank/miner/lavaland
+	backpack_contents = list(
+		/obj/item/storage/box/survival_mining=1,
+		/obj/item/crusher_trophy/demon_claws=1,
+		/obj/item/crusher_trophy/watcher_wing=1,
+		/obj/item/reagent_containers/autoinjector/medipen/survival=3,
+		/obj/item/kinetic_javelin=1,
+		/obj/item/kinetic_javelin_core/green=1
+		)
+	l_pocket = /obj/item/reagent_containers/glass/beaker/bluespace/dorf
+
+/datum/outfit/ert/mining/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+
+	if(visualsOnly)
+		return
+
+	var/obj/item/radio/R = H.ears
+	R.keyslot = new /obj/item/encryptionkey/heads/cmo
+	R.recalculateChannels()
+	H.dna.add_mutation(DWARFISM)
+
 /datum/outfit/centcom_clown
 	name = "Code Banana ERT"
 	id = /obj/item/card/id/centcom
