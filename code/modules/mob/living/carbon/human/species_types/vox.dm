@@ -5,7 +5,7 @@
 	is_dimorphic = FALSE
 	generate_husk_icon = TRUE
 	species_traits = list(EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
-	inherent_traits = list(TRAIT_NOCLONE)
+	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
 	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
 	attack_verbs = list("scratch", "claw")
@@ -28,8 +28,6 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/vox
 	skinned_type = /obj/item/stack/sheet/animalhide/vox
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
-	burnmod = 0.8 // Tough hides.
-	stunmod = 1.1 // Take a bit longer to get up than other species.
 	breathid = "n2"
 	suicide_messages = list(
 		"is jamming their claws into their eye sockets!",
@@ -46,6 +44,7 @@
 	exotic_bloodtype = "V"
 	smells_like = "musty quills"
 	liked_food = MEAT | FRIED
+	species_language_holder = /datum/language_holder/vox
 
 /datum/species/vox/get_species_description()
 	return "The Vox are remnants of an ancient race, that originate from arkships. \
@@ -68,7 +67,6 @@
 	return capitalize(vox_name())
 
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
-	H.grant_language(/datum/language/vox)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox/respirator(H), ITEM_SLOT_MASK)
 	var/obj/item/tank/internal_tank
 	var/tank_pref = H.client?.prefs?.read_preference(/datum/preference/choiced/vox_tank_type)
@@ -111,6 +109,12 @@
 	var/list/to_add = list()
 
 	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "temperature-low",
+			SPECIES_PERK_NAME = "Cold Resistance",
+			SPECIES_PERK_DESC = "Vox hides provide excellent insulation against the coldness of space.",
+		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "heart-circle-check",

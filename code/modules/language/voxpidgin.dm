@@ -5,6 +5,7 @@
 	ask_verb = "creels"
 	exclaim_verb = "loudly skrees"
 	key = "v"
-	syllables = list("ti","ti","ti","hi","hi","ki","ki","ki","ki","ya","ta","ha","ka","ya", "yi", "chi","cha","kah", \
+	syllables = list("ti","ti","ti","hi","hi","ki","ki","ki","ki","ya","ta","ha","ka","ya","yi","chi","cha","kah", \
 	"SKRE","AHK","EHK","RAWK","KRA","AAA","EEE","KI","II","KRI","KA")
+	default_priority = 90
 	icon_state = "voxpidgin"
