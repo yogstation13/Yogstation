@@ -94,9 +94,6 @@
 	if(H.a_intent == INTENT_GRAB)
 		lariat(H)
 
-/datum/martial_art/reverberating_palm/harm_act(mob/living/carbon/human/A, mob/living/D)
-	return TRUE // no punching plus slamming please
-
 /datum/martial_art/reverberating_palm/proc/supercharge(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, next_palm))
 		to_chat(user, span_warning("You can't do that yet!"))
