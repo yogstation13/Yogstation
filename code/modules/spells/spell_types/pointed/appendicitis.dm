@@ -12,6 +12,7 @@
 	sound = 'sound/magic/enter_blood.ogg'
 	school = SCHOOL_TRANSMUTATION
 	cooldown_time = 60 SECONDS
+	cooldown_reduction_per_rank = 6 SECONDS
 
 	invocation = "OW'MI'SEID"
 	invocation_type = INVOCATION_WHISPER
