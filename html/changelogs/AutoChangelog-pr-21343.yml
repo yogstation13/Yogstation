@@ -1,0 +1,7 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - bugfix: "fixes holoparasites ability to break cuffs"
+  - tweak: "swarmer cuffs take 20 seconds instead of 45"
+  - tweak: "converts cuff deci seconds to seconds"
+  - bugfix: "added sprite to alien cuffs"
