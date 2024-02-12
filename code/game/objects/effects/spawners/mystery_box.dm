@@ -67,6 +67,8 @@
 #define REGENERATION_DELAY 6 SECONDS  // After taking damage, how long it takes for automatic regeneration to begin
 /datum/species/preternis/zombie
 	name = "High-Functioning Zombie"
+	id = "preterniszombie"
+	limbs_id = "preternis"
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN, TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_FAKEDEATH, TRAIT_STUNIMMUNE, TRAIT_NODEATH)
 	mutanthands = /obj/item/zombie_hand
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
@@ -74,6 +76,9 @@
 	speedmod = 1.6
 	var/heal_rate = 1
 	var/regen_cooldown = 0
+
+/datum/species/preternis/zombie/check_roundstart_eligible()
+	return FALSE
 
 /datum/species/preternis/zombie/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
 	. = ..()
@@ -90,7 +95,7 @@
 		var/heal_amt = heal_rate
 		if(C.InCritical())
 			heal_amt *= 2
-		C.heal_overall_damage(heal_amt,heal_amt)
+		C.heal_overall_damage(heal_amt,heal_amt, o, BODYPART_ANY)
 		C.adjustToxLoss(-heal_amt)
 		for(var/i in C.all_wounds)
 			var/datum/wound/iter_wound = i
