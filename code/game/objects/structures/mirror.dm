@@ -28,11 +28,16 @@
 /obj/structure/mirror/proc/get_choices(mob/living/carbon/human/H)
 	. = list()
 	var/datum/species/S = H.dna.species
-	if((FACEHAIR in S.species_traits))
-		. += list(FACIAL_HAIR = list("select a facial hair style", GLOB.facial_hair_styles_list))
+	var/list/facial_hair_list = GLOB.facial_hair_styles_list
+	var/list/hair_list = GLOB.hair_styles_list
+	if(isvox(H))
+		facial_hair_list = GLOB.vox_facial_quills_list
+		hair_list = GLOB.vox_quills_list
+	if((FACEHAIR in S.species_traits) || (FACEHAIRCOLOR in S.species_traits))
+		. += list(FACIAL_HAIR = list("select a facial hair style", facial_hair_list))
 		. += list(FACE_HAIR_COLOR)
-	if((HAIR in S.species_traits))
-		. += list(HEAD_HAIR = list("select a hair style", GLOB.hair_styles_list))
+	if((HAIR in S.species_traits) || (HAIRCOLOR in S.species_traits))
+		. += list(HEAD_HAIR = list("select a hair style", hair_list))
 		. += list(HAIR_COLOR)
 
 // for things that dont use a list style syntax
@@ -60,14 +65,22 @@
 		return
 	switch(selectiontype)
 		if(FACIAL_HAIR)
-			H.facial_hair_style = selection
+			if(isvox(H))
+				H.dna.features["vox_facial_quills"] = selection
+				H.dna.update_uf_block(DNA_VOX_FACIAL_QUILLS_BLOCK)
+			else
+				H.facial_hair_style = selection
 			H.update_hair()
 			return TRUE
 		if(HEAD_HAIR)
-			if(HAS_TRAIT(H, TRAIT_BALD) && selection != "Bald")
+			if(HAS_TRAIT(H, TRAIT_BALD) && selection != ("Bald" || "None"))
 				to_chat(H, span_notice("If only growing back hair were that easy for you..."))
 				return TRUE
-			H.hair_style = selection
+			if(isvox(H))
+				H.dna.features["vox_quills"] = selection
+				H.dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
+			else
+				H.hair_style = selection
 			H.update_hair()
 			return TRUE
 

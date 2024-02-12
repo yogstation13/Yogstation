@@ -593,7 +593,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(M.flags_inv & HIDEFACIALHAIR)
 			facialhair_hidden = TRUE
 
-	if("vox_facial_quills" in H.dna.species.mutant_bodyparts && !facialhair_hidden)
+	if(("vox_facial_quills" in H.dna.species.mutant_bodyparts) && !facialhair_hidden)
 		S = GLOB.vox_facial_quills_list[H.dna.features["vox_facial_quills"]]
 		if(S)
 			var/mutable_appearance/facial_quills_overlay = mutable_appearance(layer = -HAIR_LAYER, appearance_flags = KEEP_TOGETHER)

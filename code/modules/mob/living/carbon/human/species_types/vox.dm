@@ -66,6 +66,15 @@
 		return random_unique_vox_name()
 	return capitalize(vox_name())
 
+/datum/species/vox/go_bald(mob/living/carbon/human/vox)
+	if(QDELETED(H))	//may be called from a timer
+		return
+	vox.dna.features["vox_facial_quills"] = "None"
+	vox.dna.features["vox_quills"] = "None"
+	vox.dna.update_uf_block(DNA_VOX_FACIAL_QUILLS_BLOCK)
+	vox.dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
+	vox.update_hair()
+	
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox/respirator(H), ITEM_SLOT_MASK)
 	var/obj/item/tank/internal_tank

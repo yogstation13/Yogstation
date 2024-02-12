@@ -620,7 +620,11 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	eye_color = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_BLOCK))
 	facial_hair_style = GLOB.facial_hair_styles_list[deconstruct_block(get_uni_identity_block(structure, DNA_FACIAL_HAIR_STYLE_BLOCK), GLOB.facial_hair_styles_list.len)]
 	if(HAS_TRAIT(src, TRAIT_BALD))
-		hair_style = "Bald"	
+		if(isvox(src))
+			dna.features["vox_quills"] = "None"
+			dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
+		else
+			hair_style = "Bald"	
 	else
 		hair_style = GLOB.hair_styles_list[deconstruct_block(get_uni_identity_block(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
 	var/features = dna.unique_features
