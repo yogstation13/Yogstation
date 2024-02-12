@@ -31,7 +31,15 @@
 	if(cast_on.stat == DEAD)
 		return FALSE
 
-	if(cast_on.can_block_magic(antimagic_flags) || !cast_on.getorgan(/obj/item/organ/appendix) || LAZYFIND(cast_on.diseases, /datum/disease/appendicitis))
+	if(cast_on.can_block_magic(antimagic_flags) || !cast_on.getorgan(/obj/item/organ/appendix))
+		owner.balloon_alert(owner, "no effect!")
+		return FALSE
+
+	var/foundAlready = FALSE	//don't infect someone that already has appendicitis
+	for(var/datum/disease/appendicitis/A in cast_on.diseases)
+		foundAlready = TRUE
+		break
+	if(foundAlready)
 		owner.balloon_alert(owner, "no effect!")
 		return FALSE
 
