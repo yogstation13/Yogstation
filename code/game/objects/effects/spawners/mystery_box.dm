@@ -1,5 +1,6 @@
 /obj/structure/closet/crate/mystery_box
-	name = "Supply Crate"
+	name = "mystery box"
+	desc = "A mysterious box that seems to contain limitless guns, for a price."
 	icon_state = "trashcart"
 	color = "#644a11"
 	var/guncost = 950
@@ -9,7 +10,12 @@
 	. = ..()
 	gunlist |= subtypesof(/obj/item/gun) //huge fucking list, don't spawn too many of these @hisa
 
+/obj/structure/closet/crate/mystery_box/examine(mob/user)
+	. = ..()
+	. += span_notice("It costs [guncost ? guncost : "nothing"] to open.")
+
 /obj/structure/closet/crate/mystery_box/open(mob/living/user)
+	welded = FALSE 
 	if(opened || !can_open(user) || !ishuman(user))
 		return
 
