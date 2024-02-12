@@ -67,7 +67,7 @@
 	if(isobj(target))
 		var/obj/I = target
 		I.take_damage(objdam)
-		if(O.anchored == TRUE)
+		if(I.anchored == TRUE)
 			return
 	if(ismovable(target))
 		addtimer(CALLBACK(src, PROC_REF(fly), target, user.dir, flightdist))	
