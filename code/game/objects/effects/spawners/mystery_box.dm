@@ -5,6 +5,7 @@
 	color = "#644a11"
 	var/guncost = 950
 	var/list/gunlist = list()
+	var/opening = FALSE
 
 /obj/structure/closet/crate/mystery_box/Initialize(mapload)
 	. = ..()
@@ -16,7 +17,7 @@
 
 /obj/structure/closet/crate/mystery_box/open(mob/living/user)
 	welded = FALSE 
-	if(opened || !can_open(user) || !ishuman(user))
+	if(opened || !can_open(user) || !ishuman(user) || opening)
 		return
 
 	var/mob/living/carbon/human/H = user
@@ -30,6 +31,11 @@
 	if(!id_card.registered_account.account_balance < guncost)
 		H.balloon_alert(H, "Not enough money")
 		return
+
+	opening = TRUE
+	playsound(src, 'yogstation/sound/effects/mysterybox.ogg', 60, FALSE)
+	sleep(5 SECONDS)
+	opening = FALSE
 
 	id_card.registered_account.account_balance -= guncost
 	var/gunpath = pick(gunlist)
