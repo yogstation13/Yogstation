@@ -509,7 +509,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		fly.Grant(C)
 
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
-
+	C.regenerate_icons()
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 
 
@@ -999,14 +999,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "pod_flower"
 		if(H.dna.features["pod_flower"] != H.dna.features["pod_hair"])
 			H.dna.features["pod_flower"] = H.dna.features["pod_hair"]
-	
-	if("vox_quills" in mutant_bodyparts)
-		if(!H.dna.features["vox_quills"] || H.dna.features["vox_quills"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "vox_quills"
-
-	if("vox_facial_quills" in mutant_bodyparts)
-		if(!H.dna.features["vox_facial_quills"] || H.dna.features["vox_facial_quills"] == "None" || H.head && (H.head.flags_inv & HIDEFACE) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "vox_facial_quills"
 
 	if("vox_tail" in mutant_bodyparts)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))

@@ -1,6 +1,6 @@
 /proc/generate_vox_side_shots(list/sprite_accessories, accessory_color = COLOR_DARKER_BROWN)
 	var/list/values = list()
-	var/icon/vox_head = icon('icons/mob/species/vox/bodyparts.dmi', "vox_head_green")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	var/icon/vox_head = icon('icons/mob/species/vox/bodyparts.dmi', "vox_head_lime")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 	var/icon/eyes = icon('icons/mob/species/vox/eyes.dmi', "eyes")
 	var/icon/eyes_static = icon('icons/mob/species/vox/eyes.dmi', "eyes_static_green")
 	eyes.Blend(COLOR_CYAN, ICON_MULTIPLY)
@@ -40,15 +40,15 @@
 		capitalized_skin_tones[skin_tone] = capitalize(skin_tone)
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = capitalized_skin_tones
 	var/list/skin_tones_to_hex = list(
-		"green" = "#00ff00",
-		"crimson" = "#ff0000",
-		"plum" = "#5B3256",
-		"azure" = "#0b322a",
-		"emerald" = "#024716",
-		"brown" = "#592810",
-		"grey" = "#2b3326",
-		"nebula" = "#282b63",
-		"mossy" = "#407436"
+		"lime" = "#617b0f",
+		"crimson" = "#a32e2e",
+		"plum" = "#564759",
+		"azure" = "#124746",
+		"emerald" = "#04572d",
+		"brown" = "#774c22",
+		"grey" = "#4a514b",
+		"nebula" = "#5a4787",
+		"mossy" = "#626d0d"
 	)
 	var/list/to_hex = list()
 	for (var/choice in get_choices())
@@ -156,7 +156,7 @@
 	blacklisted_species = null
 
 /datum/preference/choiced/underwear/vox/init_possible_values()
-	return generate_values_for_underwear('icons/mob/clothing/species/vox/underwear.dmi', GLOB.underwear_list, list("vox_chest_green", "vox_r_leg_green", "vox_l_leg_green", "vox_r_leg_static", "vox_l_leg_static"), 'icons/mob/species/vox/bodyparts.dmi')
+	return generate_values_for_underwear('icons/mob/clothing/species/vox/underwear.dmi', GLOB.underwear_list, list("vox_chest_lime", "vox_r_leg_lime", "vox_l_leg_lime", "vox_r_leg_static", "vox_l_leg_static"), 'icons/mob/species/vox/bodyparts.dmi')
 
 /datum/preference/choiced/socks/vox
 	savefile_key = "feature_vox_socks"
@@ -164,7 +164,7 @@
 	blacklisted_species = null
 
 /datum/preference/choiced/socks/vox/init_possible_values()
-	return generate_values_for_underwear('icons/mob/clothing/species/vox/socks.dmi', GLOB.socks_list, list("vox_r_leg_green", "vox_l_leg_green", "vox_r_leg_static", "vox_l_leg_static"), 'icons/mob/species/vox/bodyparts.dmi')
+	return generate_values_for_underwear('icons/mob/clothing/species/vox/socks.dmi', GLOB.socks_list, list("vox_r_leg_lime", "vox_l_leg_lime", "vox_r_leg_static", "vox_l_leg_static"), 'icons/mob/species/vox/bodyparts.dmi')
 
 /datum/preference/choiced/undershirt/vox
 	savefile_key = "feature_vox_undershirt"
@@ -174,13 +174,13 @@
 
 /datum/preference/choiced/undershirt/vox/init_possible_values()
 	var/bodyparts_icon = 'icons/mob/species/vox/bodyparts.dmi'
-	var/icon/body = icon(bodyparts_icon, "vox_r_leg_green")
-	body.Blend(icon(bodyparts_icon, "vox_l_leg_green"), ICON_OVERLAY)
-	body.Blend(icon(bodyparts_icon, "vox_r_arm_green"), ICON_OVERLAY)
-	body.Blend(icon(bodyparts_icon, "vox_l_arm_green"), ICON_OVERLAY)
+	var/icon/body = icon(bodyparts_icon, "vox_r_leg_lime")
+	body.Blend(icon(bodyparts_icon, "vox_l_leg_lime"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_r_arm_lime"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_l_arm_lime"), ICON_OVERLAY)
 	body.Blend(icon(bodyparts_icon, "vox_r_hand"), ICON_OVERLAY)
 	body.Blend(icon(bodyparts_icon, "vox_l_hand"), ICON_OVERLAY)
-	body.Blend(icon(bodyparts_icon, "vox_chest_green"), ICON_OVERLAY)
+	body.Blend(icon(bodyparts_icon, "vox_chest_lime"), ICON_OVERLAY)
 	body.Blend(icon(bodyparts_icon, "vox_l_arm_static"), ICON_OVERLAY)
 	body.Blend(icon(bodyparts_icon, "vox_r_arm_static"), ICON_OVERLAY)
 	body.Blend(icon(bodyparts_icon, "vox_l_leg_static"), ICON_OVERLAY)

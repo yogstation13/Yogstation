@@ -73,7 +73,7 @@
 			H.update_hair()
 			return TRUE
 		if(HEAD_HAIR)
-			if(HAS_TRAIT(H, TRAIT_BALD) && selection != ("Bald" || "None"))
+			if(HAS_TRAIT(H, TRAIT_BALD) && !((selection == "Bald") || (selection == ("None"))))
 				to_chat(H, span_notice("If only growing back hair were that easy for you..."))
 				return TRUE
 			if(isvox(H))

@@ -125,9 +125,9 @@
 	name = "vox tail"
 	desc = "A severed vox tail. Somewhere, no doubt, a vox hater is very pleased with themselves."
 	icon = 'icons/mob/species/vox/tails.dmi'
-	icon_state = "m_tail_green_BEHIND"
-	tail_type = "green"
-	var/icon_state_text = "m_tail_green"
+	icon_state = "m_tail_lime_BEHIND"
+	tail_type = "lime"
+	var/icon_state_text = "m_tail_lime"
 	var/icon/constructed_tail_icon
 	var/tail_markings = "None"
 	var/tail_markings_color

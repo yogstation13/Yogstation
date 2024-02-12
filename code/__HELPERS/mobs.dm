@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 ))
 
 GLOBAL_LIST_INIT(vox_skin_tones, sortList(list(
-	"green",
+	"lime",
 	"crimson",
 	"nebula",
 	"azure",

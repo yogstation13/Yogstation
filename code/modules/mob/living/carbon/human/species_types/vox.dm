@@ -7,7 +7,7 @@
 	species_traits = list(EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_NOCLONE)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
-	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "green", "vox_tail_markings" = "None", "vox_skin_tone" = "green")
+	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "lime", "vox_tail_markings" = "None", "vox_skin_tone" = "lime")
 	attack_verbs = list("scratch", "claw")
 	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
@@ -67,7 +67,7 @@
 	return capitalize(vox_name())
 
 /datum/species/vox/go_bald(mob/living/carbon/human/vox)
-	if(QDELETED(H))	//may be called from a timer
+	if(QDELETED(vox))	//may be called from a timer
 		return
 	vox.dna.features["vox_facial_quills"] = "None"
 	vox.dna.features["vox_quills"] = "None"

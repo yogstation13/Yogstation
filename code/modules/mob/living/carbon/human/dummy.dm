@@ -91,7 +91,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.features["pod_hair"] = "Ivy"
 	target.dna.features["vox_quills"] = "None"
 	target.dna.features["vox_facial_quills"] = "None"
-	target.dna.features["vox_skin_tone"] = "green"
+	target.dna.features["vox_skin_tone"] = "lime"
 	target.dna.features["vox_tail_markings"] = "None"
 	target.dna.features["vox_body_markings"] = "None"
 

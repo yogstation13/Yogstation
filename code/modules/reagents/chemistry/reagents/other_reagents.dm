@@ -624,6 +624,11 @@
 	race = /datum/species/human/felinid
 	mutationtext = span_danger("The pain subsides. You feel... like a degenerate.")
 
+/datum/reagent/mutationtoxin/vox
+	name = "Vox Mutation Toxin"
+	race = /datum/species/vox
+	mutationtext = span_danger("The pain subsides. You feel... beaked.")
+
 /datum/reagent/mutationtoxin/lizard
 	name = "Lizard Mutation Toxin"
 	description = "A lizarding toxin."
