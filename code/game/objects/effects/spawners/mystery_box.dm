@@ -95,7 +95,7 @@
 		var/heal_amt = heal_rate
 		if(C.InCritical())
 			heal_amt *= 2
-		C.heal_overall_damage(heal_amt,heal_amt, o, BODYPART_ANY)
+		C.heal_overall_damage(heal_amt,heal_amt, 0, BODYPART_ANY)
 		C.adjustToxLoss(-heal_amt)
 		for(var/i in C.all_wounds)
 			var/datum/wound/iter_wound = i
