@@ -414,13 +414,13 @@
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
 				if(!M.onCentCom() && !M.onSyndieBase())
 					parts += "<div class='panel stationborder'>"
-					parts += span_marooned("You managed to survive, but were marooned on [station_name()]...")
+					parts += span("You managed to survive, but were marooned on [station_name()]...")
 				else
 					parts += "<div class='panel greenborder'>"
-					parts += span_greentext("You managed to survive the events on [station_name()] as [M.real_name].")
+					parts += span("You managed to survive the events on [station_name()] as [M.real_name].")
 			else
 				parts += "<div class='panel greenborder'>"
-				parts += span_greentext("You managed to survive the events on [station_name()] as [M.real_name].")
+				parts += span("You managed to survive the events on [station_name()] as [M.real_name].")
 				if(M.mind.assigned_role in GLOB.engineering_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
 					SSachievements.unlock_achievement(/datum/achievement/engineering, C)
 				else if(M.mind.assigned_role in GLOB.supply_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
@@ -429,7 +429,7 @@
 
 		else
 			parts += "<div class='panel redborder'>"
-			parts += span_redtext("You did not survive the events on [station_name()]...")
+			parts += span("You did not survive the events on [station_name()]...")
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
@@ -453,10 +453,10 @@
 	for (var/i in GLOB.ai_list)
 		var/mob/living/silicon/ai/aiPlayer = i
 		if(aiPlayer.mind)
-			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:"
+			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws at the end of the round were:"
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 		else if(aiPlayer.deployed_shell?.mind)
-			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.deployed_shell.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:"
+			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.deployed_shell.mind.key]</b>)'s laws at the end of the round were:"
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
 
@@ -466,14 +466,14 @@
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				borg_num--
 				if(robo.mind)
-					robolist += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " [span_redtext("(Deactivated)")]" : ""][borg_num ?", ":""]<br>"
+					robolist += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)"
 			parts += "[robolist]"
 		if(!borg_spacer)
 			borg_spacer = TRUE
 
 	for (var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
 		if (!robo.connected_ai && robo.mind)
-			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "[span_greentext("survived")] as an AI-less borg!" : "was [span_redtext("unable to survive")] the rigors of being a cyborg without an AI."] Its laws were:"
+			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) was an AI-less borg. Its laws were:"
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				parts += robo.laws.get_law_list(include_zeroth=TRUE)
@@ -606,7 +606,7 @@
 		result += span_header("Security Officers:<br>")
 		for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 			if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
-				result += "<ul class='player report'><b>[player.name]</b> (Played by: <b>[player.mind.key]</b>) [(player.stat != DEAD)? "[span_greentext("survived")] as a <b>[player.mind.assigned_role]</b>" : "[span_redtext("fell in the line of duty")] as a <b>[player.mind.assigned_role]</b>"]<br></ul>"
+				result += "<ul class='player report'><b>[player.name]</b> (Played by: <b>[player.mind.key]</b>)<br></ul>"
 
 		return "<div class='panel stationborder'><ul>[result.Join()]</ul></div>"
 	return ""
@@ -645,20 +645,7 @@
 	var/jobtext = ""
 	if(ply.assigned_role)
 		jobtext = " the <b>[ply.assigned_role]</b>"
-	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b>[jobtext] and"
-	if(ply.current)
-		if(ply.current.stat == DEAD)
-			text += " [span_redtext("died")]"
-		else
-			text += " [span_greentext("survived")]"
-		if(fleecheck)
-			var/turf/T = get_turf(ply.current)
-			if(!T || !is_station_level(T.z))
-				text += " while [span_redtext("fleeing the station")]"
-		if(ply.current.real_name != ply.name)
-			text += " as <b>[ply.current.real_name]</b>"
-	else
-		text += " [span_redtext("had their body destroyed")]"
+	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b>[jobtext]"
 	return text
 
 /proc/printplayerlist(list/players,fleecheck)
@@ -678,9 +665,9 @@
 	var/count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
+			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text]"
 		else
-			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
+			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text]"
 		count++
 	return objective_parts.Join("<br>")
 
