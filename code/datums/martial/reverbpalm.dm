@@ -37,9 +37,6 @@
 				if(target.stat == DEAD)
 					target.visible_message(span_warning("[target] crashes and explodes!"))
 					target.gib()
-		if(isobj(ram))
-			var/obj/O = ram
-			O.take_damage(20)
 		if(ismineralturf(Q))
 			var/turf/closed/mineral/M = Q
 			M.attempt_drill()
@@ -144,6 +141,8 @@
 	var/turf/Q = get_step(get_turf(user), turn(user.dir,180))
 	user.visible_message(span_warning("[user] outstretches [user.p_their()] arm and goes for a grab!"))
 	wakeup(target)
+	for(var/mob/living/L in Q.contents)
+		damagefilter(user, L, simpledam, persondam, borgdam)
 	if(!(crash(target, Q)))
 		target.forceMove(Z)
 	damagefilter(user, target, simpledam, persondam, borgdam)
@@ -178,6 +177,9 @@
 	for(var/mob/living/target in rushed)
 		(crash(target, Q))
 	if(Q.density || (!(Q.reachableTurftestdensity(T = Q))))
+		for(var/obj/D in Q)
+			if(D.density)
+				return
 		return
 	user.forceMove(Q)
 	var/turf/R = get_step(Q, dir)
