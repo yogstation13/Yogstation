@@ -13,7 +13,7 @@
 
 /obj/structure/closet/crate/mystery_box/examine(mob/user)
 	. = ..()
-	. += span_notice("It costs [guncost ? guncost : "nothing"] to open.")
+	. += span_notice("It costs [guncost ? "[guncost] credits" : "nothing"] to open.")
 
 /obj/structure/closet/crate/mystery_box/open(mob/living/user)
 	welded = FALSE 
@@ -39,8 +39,9 @@
 
 	id_card.registered_account.account_balance -= guncost
 	var/gunpath = pick(gunlist)
-	new gunpath(src)
-
+	var/obj/item/gun/thing = new gunpath(src)
+	thing.no_pin_required = TRUE
+	
 	playsound(loc, open_sound, 15, 1, -3)
 	opened = TRUE
 	dump_contents()
