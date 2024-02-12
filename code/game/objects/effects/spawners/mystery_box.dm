@@ -63,7 +63,7 @@
 	update_appearance(UPDATE_ICON)
 	update_airtightness()
 
-//The zombie in question
+//The zombie in question (probably don't let this get merged if the box is going to be)
 #define REGENERATION_DELAY 6 SECONDS  // After taking damage, how long it takes for automatic regeneration to begin
 /datum/species/preternis/zombie
 	name = "Low-Functioning Preternis"
