@@ -66,7 +66,7 @@
 //The zombie in question
 #define REGENERATION_DELAY 6 SECONDS  // After taking damage, how long it takes for automatic regeneration to begin
 /datum/species/preternis/zombie
-	name = "High-Functioning Zombie"
+	name = "Low-Functioning Preternis"
 	id = "preterniszombie"
 	limbs_id = "preternis"
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN, TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_FAKEDEATH, TRAIT_STUNIMMUNE, TRAIT_NODEATH)
@@ -101,7 +101,7 @@
 			var/datum/wound/iter_wound = i
 			if(prob(4-iter_wound.severity))
 				iter_wound.remove_wound()
-	if(!C.InCritical() && prob(4))
+	if(!C.InCritical() && prob(5))
 		playsound(C, pick(spooks), 50, TRUE, 10)
 
 #undef REGENERATION_DELAY
