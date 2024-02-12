@@ -18,6 +18,7 @@ GLOBAL_VAR(final_zone)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
+	var/list/roundstart_traits = list(TRAIT_XRAY_VISION, TRAIT_NOHUNGER, TRAIT_NOBREATH, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_SAFEWELD, TRAIT_HARDLY_WOUNDED)
 	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale the bridge")
 	var/list/weathered = list() //list of all the places currently covered by weather
 	var/stage_interval = 3 MINUTES
@@ -66,11 +67,8 @@ GLOBAL_VAR(final_zone)
 		virgin.current.forceMove(GLOB.thebattlebus)
 		original_num ++
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_GAMER) //to prevent space from hurting
-		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
-		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
-		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
-		ADD_TRAIT(virgin.current, TRAIT_NOSOFTCRIT, "KEEP GOING, FIGHT MORE") //because no sleepy
-		ADD_TRAIT(virgin.current, TRAIT_NOHARDCRIT, "Son always remember, dying is gay. @margot") //fight fight fight
+		for(var/i in roundstart_traits)
+			ADD_TRAIT(virgin.current, i, "battleroyale")
 		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i guess pacifists get to fight too
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
@@ -457,7 +455,7 @@ GLOBAL_VAR(final_zone)
 
 /obj/structure/battle_bus/proc/exit(mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
-	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
+	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "battleroyale")
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 
