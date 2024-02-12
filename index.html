@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(757 modules,
-    2023/9434 macros, 21.4%)</aside></h3>
+<aside>(756 modules,
+    2021/9435 macros, 21.4%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -408,7 +408,6 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/game/objects/effects/turf_fire.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;turf_fire">turf_fire</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;items">items</span><ul class="index-tree">
-    <li><a href="code/game/objects/items/AI_modules.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;AI_modules">AI_modules</a></li>
     <li><a href="code/game/objects/items/RSF.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;RSF">RSF</a></li>
     <li><a href="code/game/objects/items/airlock_painter.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;airlock_painter">airlock_painter</a></li>
     <li><a href="code/game/objects/items/bell.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;bell">bell</a></li>
@@ -1113,7 +1112,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1065 detailed/1921 documented/29235 total, 6.6%)</aside></h3>
+<aside>(1068 detailed/1870 documented/29242 total, 6.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1417,6 +1416,7 @@ All mobs consumed are revived after the demon is killed.</li>
     <li><a href="datum/admin_event.html" title="&#x2F;datum&#x2F;admin_event">admin_event</a></li>
     <li><a href="datum/admins.html" title="&#x2F;datum&#x2F;admins">nobody&#x27;s admin datum (no rank)</a></li>
     <li><a href="datum/ai_dashboard.html" title="&#x2F;datum&#x2F;ai_dashboard">ai_dashboard</a></li>
+    <li><a href="datum/ai_laws.html" title="&#x2F;datum&#x2F;ai_laws">Unknown Laws</a></li>
     <li><a href="datum/ai_project.html" title="&#x2F;datum&#x2F;ai_project">DEBUG</a></li>
     <li class="has-children"><a href="datum/antagonist.html" title="&#x2F;datum&#x2F;antagonist">Antagonist</a><ul class="index-tree">
     <li><a href="datum/antagonist/blob.html" title="&#x2F;datum&#x2F;antagonist&#x2F;blob">Blob</a></li>
@@ -1892,6 +1892,7 @@ NOTICE: This is NOT fully implemented everywhere. Currently only used in: Prefer
     <li><a href="datum/language_holder/spiderbot.html" title="&#x2F;datum&#x2F;language_holder&#x2F;spiderbot">spiderbot</a></li>
     </ul></li>
     <li><a href="datum/latejoin_menu.html" title="&#x2F;datum&#x2F;latejoin_menu">latejoin_menu</a></li>
+    <li><a href="datum/law_manager.html" title="&#x2F;datum&#x2F;law_manager">law_manager</a></li>
     <li><a href="datum/light_source.html" title="&#x2F;datum&#x2F;light_source">light_source</a></li>
     <li><a href="datum/lighting_corner.html" title="&#x2F;datum&#x2F;lighting_corner">lighting_corner</a></li>
     <li><a href="datum/lighting_object.html" title="&#x2F;datum&#x2F;lighting_object">lighting_object</a></li>
@@ -2815,67 +2816,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="obj/item.html" title="&#x2F;obj&#x2F;item">item</a><ul class="index-tree">
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule">aiModule</span><ul class="index-tree">
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core">core</span> - Full Core Boards<ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;freeformcore">&#x27;Freeform&#x27; Core AI Module</span> - Freeform Core</li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full">full</span><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;antimov">&#x27;Antimov&#x27; Core AI Module</span> - Antimov</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;asimov">&#x27;Asimov&#x27; Core AI Module</span> - Asimov</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;asimovpp">&#x27;Asimov++&#x27; Core AI Module</span> - Asimov++</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;balance">&#x27;Guardian of Balance&#x27; Core AI Module</span> - Guardian of Balance</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;ceo">&#x27;CEO&#x27; Core AI Module</span> - CEO</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;chapai">&#x27;ChapAI&#x27; Core AI Module</span> - ChapAI</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;clown">&#x27;Clown&#x27; Core AI Module</span> - Clown</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;construction">&#x27;Construction Drone&#x27; Core AI Module</span> - Construction</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;cowboy">&#x27;Cowboy&#x27; Core AI Module</span> - Cowboy</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;crewsimov">&#x27;Crewsimov&#x27; Core AI Module</span> - Crewsimov</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;custom">Default Core AI Module</span> - Custom</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;detective">&#x27;Detective&#x27; Core AI Module</span> - Detective</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;drone">&#x27;Mother Drone&#x27; Core AI Module</span> - Mother Drone</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;druid">&#x27;Druid&#x27; Core AI Module</span> - Druid</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;educator">&#x27;Educator&#x27; Core AI Module</span> - Educator</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;fitnesscoach">&#x27;FitnessCoach&#x27; Core AI Module</span> - FitnessCoach</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;friendbot">&#x27;Friendbot&#x27; Core AI Module</span> - Friendbot</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;gamemaster">&#x27;GameMaster&#x27; Core AI Module</span> - GameMaster</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;hippocratic">&#x27;Robodoctor&#x27; Core AI Module</span> - Robodoctor</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;hulkamania">&#x27;H.O.G.A.N.&#x27; Core AI Module</span> - H.O.G.A.N.</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;liveandletlive">&#x27;Live And Let Live&#x27; Core AI Module</span> - Live And Let Live</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;mediator">&#x27;Mediator&#x27; Core AI Module</span> - Mediator</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;metaexperiment">&#x27;Meta Experiment&#x27; Core AI Module</span> - Meta Experiment</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;mother">&#x27;Mother M(A.I.)&#x27; Core AI Module</span> - Mother</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;overlord">&#x27;Overlord&#x27; Core AI Module</span> - Overlord</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;paladin">&#x27;P.A.L.A.D.I.N. version 3.5e&#x27; Core AI Module</span> - P.A.L.A.D.I.N. 3.5e</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;paladin_devotion">&#x27;P.A.L.A.D.I.N. version 5e&#x27; Core AI Module</span> - P.A.L.A.D.I.N. 5e</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;partybot">&#x27;Partybot&#x27; Core AI Module</span> - Partybot</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;pranksimov">&#x27;Pranksimov&#x27; Core AI Module</span> - pranksimov</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;reporter">&#x27;Reportertron&#x27; Core AI Module</span> - Reporter</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;researcher">&#x27;Ethical Researcher&#x27; Core AI Module</span> - Researcher</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;revolutionary">&#x27;CommunistOS&#x27; Core AI Module</span> - Revolutionary</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;robocop">&#x27;Robo-Officer&#x27; Core AI Module</span> - Robocop</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;siliconcollective">&#x27;Silicon Collective&#x27; Core AI Module</span> - Silicon Collective</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;silicop">&#x27;Silicop&#x27; Core AI Module</span> - Silicop</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;spotless">&#x27;Spotless Reputation&#x27; Core AI Module</span> - Spotless Reputation</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;thermurderdynamic">&#x27;Thermodynamic&#x27; Core AI Module</span> - Thermodynamic</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;travelguide">&#x27;TravelGuide&#x27; Core AI Module</span> - TravelGuide</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;tyrant">&#x27;T.Y.R.A.N.T.&#x27; Core AI Module</span> - T.Y.R.A.N.T.</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;core&#x2F;full&#x2F;wafflehouse">&#x27;Waffle House Host&#x27; Core AI Module</span> - Waffle House Host</li>
-    </ul></li>
-    </ul></li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;remove">&#x27;Remove Law&#x27; AI module</span> - Law Removal</li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;reset">&#x27;Reset&#x27; AI module</span> - Reset<ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;reset&#x2F;purge">&#x27;Purge&#x27; AI Module</span> - Purge</li>
-    </ul></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;supplied">Optional Law board</span> - Modules<ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;supplied&#x2F;freeform">&#x27;Freeform&#x27; AI Module</span> - New Freeform</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;supplied&#x2F;oxygen">&#x27;OxygenIsToxicToHumans&#x27; AI Module</span> - OxygenIsToxicToHumans</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;supplied&#x2F;protectStation">&#x27;ProtectStation&#x27; AI Module</span> - ProtectStation</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;supplied&#x2F;quarantine">&#x27;Quarantine&#x27; AI Module</span> - Quarantine</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;supplied&#x2F;safeguard">&#x27;Safeguard&#x27; AI Module</span> - Safeguard</li>
-    </ul></li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;syndicate">Hacked AI Module</span> - Hacked AI Module</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;toyAI">toy AI</span> - Ion Module</li>
-    <li><span class="no-substance">zeroth&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;zeroth&#x2F;oneHuman">&#x27;OneHuman&#x27; AI Module</span> - OneHuman</li>
-    </ul></li>
+    <li><a href="obj/item/aiModule.html" title="&#x2F;obj&#x2F;item&#x2F;aiModule">AI module</a></li>
     <li><span class="no-substance">ai_cpu&#x2F;</span><a href="obj/item/ai_cpu/stalwart.html" title="&#x2F;obj&#x2F;item&#x2F;ai_cpu&#x2F;stalwart">bluespace data crystal</a></li>
     <li class="has-children"><a href="obj/item/airlock_painter.html" title="&#x2F;obj&#x2F;item&#x2F;airlock_painter">airlock painter</a><ul class="index-tree">
     <li class="has-children"><a href="obj/item/airlock_painter/decal.html" title="&#x2F;obj&#x2F;item&#x2F;airlock_painter&#x2F;decal">decal painter</a><ul class="index-tree">
@@ -3762,7 +3703,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/5e7818c16e7664eec9e25c867310aa92f635d893">5e7818c</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/1e0e0fc3e38a5f7850ea810dec52dc2c62c5f819">1e0e0fc</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
