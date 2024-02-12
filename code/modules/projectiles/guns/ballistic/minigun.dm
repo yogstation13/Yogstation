@@ -2,7 +2,7 @@
 
 /obj/item/minigunbackpack
 	name = "The back stash"
-	desc = "The massive back stash can hold alot of ammo on your back."
+	desc = "The massive back stash can hold a lot of ammo on your back."
 	icon = 'yogstation/icons/obj/guns/minigunosprey.dmi'
 	icon_state = "holstered"
 	item_state = "backpack"

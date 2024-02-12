@@ -16,7 +16,7 @@
 	verb_whisper = "imparts"
 	verb_yell = "harangues"
 	initial_language_holder = /datum/language_holder/clockmob
-	bubble_icon = "clock"
+	bubble_icon = BUBBLE_CLOCK
 	light_color = "#E42742"
 	deathsound = 'sound/magic/clockwork/anima_fragment_death.ogg'
 	speech_span = SPAN_ROBOT

@@ -141,6 +141,8 @@
 	var/datum/hud/hud_used = null
 	/// I have no idea tbh
 	var/research_scanner = FALSE
+	/// What icon the mob uses for typing indicators
+	var/bubble_icon = BUBBLE_DEFAULT
 
 	/// Is the mob throw intent on
 	var/in_throw_mode = 0

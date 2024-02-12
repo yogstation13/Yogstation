@@ -1,5 +1,5 @@
 /datum/mood_event/ally_power
-	description= "<span class='nicegreen'>There are Allies everywhere.</span>\n"
+	description= "<span class='nicegreen'>You feel at ease, from being surrounded by your friends.</span>\n"
 	mood_change = 1
 	timeout = 2 MINUTES
 

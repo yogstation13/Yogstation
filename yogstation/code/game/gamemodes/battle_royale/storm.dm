@@ -92,7 +92,7 @@
 	areaTypesToWeather = list(/area/quartermaster, /area/vacant_room, /area/shuttle)
 
 /datum/weather/royale/bridge
-	name = "royale bridge"
+	name = "royale the bridge"
 	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from the bridge!</i>")
 	areasToWeather = list(/area/teleporter, /area/crew_quarters/heads/captain, /area/crew_quarters/heads/hop)
 	areaTypesToWeather = list(/area/bridge)
@@ -110,4 +110,5 @@
 
 /datum/weather/royale/final
 	name = "royale centre" //final wave, takes out the centre ring.
+	telegraph_duration = 30 SECONDS //the zone annihilates people, give some time for them to "make their final stand"
 	telegraph_message = span_narsiesmall("<i>The eye of the storm is closing, make your final stand!</i>")

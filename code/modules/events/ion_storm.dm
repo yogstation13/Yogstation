@@ -63,7 +63,7 @@
 				to_chat(M, span_alert("Your lawset has been changed by the ion storm!"))
 
 			if(prob(removeRandomLawChance))
-				M.remove_law(rand(1, M.laws.get_law_amount(list(LAW_INHERENT, LAW_SUPPLIED))))
+				M.laws.remove_random_inherent_or_supplied_law()
 
 			if(prob(addIonLawChance))
 				var/message = ionMessage || generate_ion_law()

@@ -195,14 +195,14 @@
 			destroy_objective.owner = owner
 			destroy_objective.find_target()
 			add_objective(destroy_objective)
-		else if(prob(30))
-			var/datum/objective/maroon/maroon_objective = new
-			maroon_objective.owner = owner
-			maroon_objective.find_target()
-			add_objective(maroon_objective)
+		else if(prob(20))
+			var/datum/objective/maroon_organ/organ_objective = new
+			organ_objective.owner = owner
+			organ_objective.finalize()
+			add_objective(organ_objective)
 		else
-			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
-			var/datum/objective/assassinate/kill_objective = new N
+			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon)
+			var/datum/objective/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()
 			add_objective(kill_objective)
