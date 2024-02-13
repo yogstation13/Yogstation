@@ -48,6 +48,8 @@
 
 	id_card.registered_account.account_balance -= guncost
 	var/gunpath = pick(gunlist)
+	if(prob(2)) //bypass regular % and just get a raygun, so it's not near impossible to get with how many guns there are
+		gunpath = /obj/item/gun/energy/kinetic_accelerator/raygun
 	var/obj/item/gun/thing = new gunpath(src)
 	thing.no_pin_required = TRUE
 
