@@ -84,16 +84,27 @@
 	icon_state = "raygun"
 	item_state = "raygun"
 	ammo_type = list(/obj/item/ammo_casing/energy/raygun)
+	fire_sound = 'yogstation/sound/effects/raygun.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 100
+	dry_fire_sound = 'sound/weapons/gun_dry_fire.ogg'
 	overheat_time = 10
 	max_mod_capacity = 0
 	can_flashlight = FALSE
 	can_bayonet = FALSE
 
+/obj/item/gun/energy/kinetic_accelerator/raygun/reload()
+	cell.give(cell.maxcharge)
+	recharge_newshot(TRUE)
+	update_appearance(UPDATE_ICON)
+	overheat = FALSE
+
 /obj/item/ammo_casing/energy/raygun
 	projectile_type = /obj/projectile/raygun
 	select_name = "kinetic"
 	e_cost = 500
-	fire_sound = 'yogstation/sound/effects/raygun.ogg' // fine spelling there chap
+	fire_sound = null
+	firing_effect_type = null
 
 /obj/projectile/raygun
 	name = "kinetic force"
@@ -101,7 +112,7 @@
 	damage = 40
 	damage_type = BURN
 	armor_flag = RAD
-	range = 5
+	range = 6
 	log_override = TRUE
 	color = "#00ff00"
 
@@ -124,6 +135,7 @@
 
 	//yogs end
 	var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
+	K.transform = matrix()*2
 	K.color = color
 
 //The zombie in question (probably don't let this get merged if the box is going to be)
