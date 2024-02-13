@@ -386,11 +386,6 @@
 	if((fuel != INFINITY) && can_be_extinguished)
 		turn_off()
 
-// /obj/item/flashlight/flare/update_brightness()
-// 	..()
-// 	inhand_icon_state = "[initial(inhand_icon_state)]" + (light_on ? "-on" : "")
-// 	update_appearance()
-
 /obj/item/flashlight/flare/process(seconds_per_tick)
 	open_flame(heat)
 	fuel = max(fuel - seconds_per_tick * (1 SECONDS), 0)
@@ -494,6 +489,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	desc = "A mining lantern."
 	light_range = 6			// luminosity when on
+	light_system = MOVABLE_LIGHT
 
 /obj/item/flashlight/lantern/heirloom_moth
 	name = "old lantern"
@@ -524,6 +520,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	materials = list()
 	light_range = 6 //luminosity when on
+	light_system = MOVABLE_LIGHT
 
 /obj/item/flashlight/emp
 	var/emp_max_charges = 4
@@ -592,16 +589,17 @@
 	custom_price = 10
 	w_class = WEIGHT_CLASS_SMALL
 	light_range = 4
+	light_system = MOVABLE_LIGHT
 	color = LIGHT_COLOR_GREEN
 	icon_state = "glowstick"
 	item_state = "glowstick"
 	grind_results = list(/datum/reagent/phenol = 15, /datum/reagent/hydrogen = 10, /datum/reagent/oxygen = 5) //Meth-in-a-stick
+	sound_on = 'sound/effects/wounds/crack2.ogg' // the cracking sound isn't just for wounds silly
 	var/fuel = 0
 
 /obj/item/flashlight/glowstick/Initialize(mapload)
 	fuel = rand(1600, 2000)
-	light_color = color
-
+	set_light_color(color)
 	. = ..()
 
 /obj/item/flashlight/glowstick/Destroy()
@@ -613,25 +611,28 @@
 	if(fuel <=  0)
 		turn_off()
 		STOP_PROCESSING(SSobj, src)
-		update_appearance(UPDATE_ICON)
 
 /obj/item/flashlight/glowstick/proc/turn_off()
 	light_on = FALSE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
-/obj/item/flashlight/glowstick/update_icon(updates=ALL)
+/obj/item/flashlight/glowstick/update_appearance(updates=ALL)
 	. = ..()
 	if(fuel <= 0)
 		set_light_on(FALSE)
-	else if(light_on)
+		return
+	if(light_on)
 		set_light_on(TRUE)
+		return
 
 /obj/item/flashlight/glowstick/update_overlays()
 	. = ..()
-	if(light_on)
-		var/mutable_appearance/glowstick_overlay = mutable_appearance(icon, "glowstick-glow")
-		glowstick_overlay.color = color
-		. += glowstick_overlay
+	if(fuel <= 0 && !light_on)
+		return
+	
+	var/mutable_appearance/glowstick_overlay = mutable_appearance(icon, "glowstick-glow")
+	glowstick_overlay.color = color
+	. += glowstick_overlay
 
 /obj/item/flashlight/glowstick/update_icon_state()
 	. = ..()
@@ -705,6 +706,7 @@
 	name = "disco light"
 	desc = "Groovy..."
 	icon_state = null
+	light_system = MOVABLE_LIGHT
 	light_range = 4
 	light_power = 10
 	alpha = 0
@@ -749,6 +751,7 @@
 /obj/item/flashlight/eyelight
 	name = "eyelight"
 	desc = "This shouldn't exist outside of someone's head, how are you seeing this?"
+	light_system = MOVABLE_LIGHT
 	light_range = 15
 	light_power = 1
 	flags_1 = CONDUCT_1
