@@ -39,7 +39,7 @@
 	excludefromjob = list("Head Of Security")
 
 /datum/objective_item/steal/handtele
-	name = "a hand teleporter."
+	name = "a portal gun."
 	targetitem = /obj/item/hand_tele
 	difficulty = 5
 	excludefromjob = list("Captain", "Research Director")
