@@ -33,9 +33,17 @@
 		H.balloon_alert(H, "Not enough money")
 		return
 
+	add_filter("glowing filter", 2, list("type" = "outline", "color" = "#dcc600", "alpha" = 0, "size" = 1))
+	var/filter = get_filter("glowing filter")
+	animate(filter, alpha = 150, time = 0.5 SECONDS, loop = -1)
+	animate(alpha = 0, time = 0.5 SECONDS)
+	
 	opening = TRUE
 	playsound(src, 'yogstation/sound/effects/mysterybox.ogg', 60, FALSE)
 	sleep(5 SECONDS)
+
+	animate(filter)
+	remove_filter("glowing filter")
 	opening = FALSE
 
 	id_card.registered_account.account_balance -= guncost
