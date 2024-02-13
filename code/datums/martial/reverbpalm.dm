@@ -1,7 +1,7 @@
 #define COOLDOWN_LARIAT 7 SECONDS
 #define COOLDOWN_RUSH 7 SECONDS
 #define COOLDOWN_SUPLEX 0.8 SECONDS
-#define COOLDOWN_RPALM 15 SECONDS
+#define COOLDOWN_RPALM 3 SECONDS
 
 
 /datum/martial_art/reverberating_palm
@@ -13,8 +13,7 @@
 	COOLDOWN_DECLARE(next_rush)
 	COOLDOWN_DECLARE(next_suplex)
 	COOLDOWN_DECLARE(next_palm)
-	var/recalibration = /datum/action/cooldown/seismic_recalibrate
-	var/deactivation = /datum/action/cooldown/seismic_deactivate
+	var/normalharm = TRUE
 
 //proc the moves will use for damage dealing
 
@@ -95,8 +94,8 @@
 		lariat(H)
 
 /datum/martial_art/reverberating_palm/harm_act(mob/living/carbon/human/A, mob/living/D)
-	if(usr.click_intercept == null)
-		return FALSE // no punching plus slamming please
+	if(normalharm)
+		return TRUE // no punching plus slamming please
 
 /datum/martial_art/reverberating_palm/proc/supercharge(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, next_palm))
@@ -253,12 +252,14 @@
 	name = "Recalibrate Arm"
 	desc = "You recalibrate the arm to restore missing functionality."
 	button_icon = 'icons/obj/implants.dmi'
-	button_icon_state = "lightning_bolt"
+	button_icon_state = "lighting_bolt"
 
 /datum/action/cooldown/seismic_recalibrate/Activate()
 	var/list/combined_msg = list()
+	var/datum/martial_art/reverberating_palm/rpalm = usr.mind.martial_art
 	combined_msg +=  "<b><i>You fidget with the arm in an attempt to get it working.</i></b>"
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
+	rpalm.normalharm = TRUE
 	usr.click_intercept = usr.mind.martial_art
 
 
@@ -270,9 +271,10 @@
 
 /datum/action/cooldown/seismic_deactivate/Activate()
 	var/list/combined_msg = list()
+	var/datum/martial_art/reverberating_palm/rpalm = usr.mind.martial_art
 	combined_msg +=  "<b><i>You temporarily power off the arm.</i></b>"
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
-
+	rpalm.normalharm = FALSE
 	usr.click_intercept = null
 
 
