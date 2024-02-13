@@ -414,13 +414,13 @@
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
 				if(!M.onCentCom() && !M.onSyndieBase())
 					parts += "<div class='panel stationborder'>"
-					parts += span("You managed to survive, but were marooned on [station_name()]...")
+					parts += "You managed to survive, but were marooned on [station_name()]..."
 				else
-					parts += "<div class='panel greenborder'>"
-					parts += span("You managed to survive the events on [station_name()] as [M.real_name].")
+					parts += "<div class='panel stationborder'>"
+					parts += "You managed to survive the events on [station_name()] as [M.real_name]."
 			else
-				parts += "<div class='panel greenborder'>"
-				parts += span("You managed to survive the events on [station_name()] as [M.real_name].")
+				parts += "<div class='panel stationborder'>"
+				parts += "You managed to survive the events on [station_name()] as [M.real_name]."
 				if(M.mind.assigned_role in GLOB.engineering_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
 					SSachievements.unlock_achievement(/datum/achievement/engineering, C)
 				else if(M.mind.assigned_role in GLOB.supply_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
@@ -428,8 +428,8 @@
 
 
 		else
-			parts += "<div class='panel redborder'>"
-			parts += span("You did not survive the events on [station_name()]...")
+			parts += "<div class='panel stationborder'>"
+			parts += "You did not survive the events on [station_name()]..."
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
