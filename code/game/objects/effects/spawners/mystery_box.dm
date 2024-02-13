@@ -33,7 +33,7 @@
 		H.balloon_alert(H, "Not enough money")
 		return
 
-	add_filter("glowing filter", 2, list("type" = "outline", "color" = "#ffff00", "alpha" = 0, "size" = 1))
+	add_filter("glowing filter", 2, list("type" = "outline", "color" = "#ffffff", "alpha" = 0, "size" = 2))
 	var/filter = get_filter("glowing filter")
 	animate(filter, alpha = 150, time = 0.5 SECONDS, loop = -1)
 	animate(alpha = 0, time = 0.5 SECONDS)
@@ -86,11 +86,12 @@
 	item_state = "raygun"
 	ammo_type = list(/obj/item/ammo_casing/energy/raygun)
 	dry_fire_sound = 'sound/weapons/revolverdry.ogg'
-	overheat_time = 10
-	max_mod_capacity = 0
-	fire_sound_volume = 100
+	fire_sound_volume = 130 //the ammo sound effect is very quiet
 	can_flashlight = FALSE
 	can_bayonet = FALSE
+	overheat_time = 10
+	max_mod_capacity = 0
+	holds_charge = TRUE
 
 /obj/item/gun/energy/kinetic_accelerator/raygun/reload()
 	cell.give(cell.maxcharge)
@@ -107,7 +108,8 @@
 
 /obj/projectile/raygun
 	name = "kinetic force"
-	icon_state = null
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "kinetic_blast"
 	damage = 20
 	damage_type = BURN
 	armor_flag = RAD
