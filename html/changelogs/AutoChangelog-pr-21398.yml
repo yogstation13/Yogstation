@@ -1,0 +1,4 @@
+author: " ktlwjec"
+delete-after: true 
+changes: 
+  - imagedel: "Removes stray pixels from a couple of medikits."
