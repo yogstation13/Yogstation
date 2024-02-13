@@ -72,6 +72,49 @@
 	update_appearance(UPDATE_ICON)
 	update_airtightness()
 
+//cod zombies raygun i guess
+/obj/item/gun/energy/kinetic_accelerator/raygun
+	ammo_type = list(/obj/item/ammo_casing/energy/raygun)
+	overheat_time = 10
+	max_mod_capacity = 0
+
+/obj/item/ammo_casing/energy/raygun
+	projectile_type = /obj/projectile/raygun
+	select_name = "kinetic"
+	e_cost = 500
+	fire_sound = 'yogstation/sound/effects/raygun.ogg' // fine spelling there chap
+
+/obj/projectile/raygun
+	name = "kinetic force"
+	icon_state = null
+	damage = 40
+	damage_type = BURN
+	armor_flag = RAD
+	range = 5
+	log_override = TRUE
+	color = "#00ff00"
+
+/obj/projectile/raygun/on_range()
+	strike_thing()
+	..()
+
+/obj/projectile/raygun/on_hit(atom/target)
+	strike_thing(target)
+	
+/obj/projectile/raygun/proc/strike_thing(atom/target)
+	var/turf/target_turf = get_turf(target)
+	if(!target_turf)
+		target_turf = get_turf(src)
+
+	for(var/mob/living/L in range(1, target_turf) - firer - target)
+		var/armor = L.run_armor_check(def_zone, armor_flag, "", "", armour_penetration)
+		L.apply_damage(damage, damage_type, def_zone, armor)
+		to_chat(L, span_userdanger("You're struck by a [name]!"))
+
+	//yogs end
+	var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
+	K.color = color
+
 //The zombie in question (probably don't let this get merged if the box is going to be)
 #define REGENERATION_DELAY 6 SECONDS  // After taking damage, how long it takes for automatic regeneration to begin
 /datum/species/preternis/zombie
