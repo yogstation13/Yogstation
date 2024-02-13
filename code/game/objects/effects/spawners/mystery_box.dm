@@ -74,9 +74,13 @@
 
 //cod zombies raygun i guess
 /obj/item/gun/energy/kinetic_accelerator/raygun
+	name = "Raygun"
+	desc = "A self recharging raygun."
 	ammo_type = list(/obj/item/ammo_casing/energy/raygun)
 	overheat_time = 10
 	max_mod_capacity = 0
+	can_flashlight = FALSE
+	can_bayonet = FALSE
 
 /obj/item/ammo_casing/energy/raygun
 	projectile_type = /obj/projectile/raygun
