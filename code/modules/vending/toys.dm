@@ -43,6 +43,7 @@
 	icon_state = "refill_donksoft"
 
 /obj/machinery/vending/donksofttoyvendor/hugbox
+	name = "\improper Hugsoft Toy Vendor"
 	desc = "An ages 8 and up approved vendor that dispenses toys. This one feels noticably less fun..."
 	circuit = /obj/item/circuitboard/machine/vending/donksofttoyvendor/hugbox
 	products = list(
