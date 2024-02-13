@@ -80,8 +80,8 @@
 	name = "Raygun"
 	desc = "A self recharging raygun."
 	icon = 'yogstation/icons/obj/guns/raygun.dmi'
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	lefthand_file = 'yogstation/icons/mob/inhands/weapons/raygun_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/weapons/raygun_righthand.dmi'
 	icon_state = "raygun"
 	item_state = "raygun"
 	ammo_type = list(/obj/item/ammo_casing/energy/raygun)
