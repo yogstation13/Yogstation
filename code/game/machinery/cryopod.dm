@@ -413,8 +413,11 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 			tgui_alert(target, "You're a Head of Staff![generic_plsnoleave_message]")
 			caught = TRUE
 		if(A)
-			tgui_alert(target, "You're a [A.name]![generic_plsnoleave_message]")
-			caught = TRUE
+			if(A.name == "valentine")
+				caught = TRUE
+			else
+				tgui_alert(target, "You're a [A.name]![generic_plsnoleave_message]")
+				caught = TRUE
 		if(caught)
 			target.client.cryo_warned = world.time
 			return
