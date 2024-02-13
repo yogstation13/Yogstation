@@ -1,5 +1,5 @@
 //We only call a camera static update if we have successfully moved and the camera is present and working
-/mob/living/silicon/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+/mob/living/silicon/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(builtInCamera?.can_use())
 		update_camera_location(old_loc)
@@ -18,8 +18,7 @@
  * helping us to avoid running out of the camera's FoV.
 */
 /mob/living/silicon/proc/do_camera_update(oldLoc)
-	if(!QDELETED(builtInCamera) && oldLoc != get_turf(src))
+	if(oldLoc != get_turf(src))
 		GLOB.cameranet.updatePortableCamera(builtInCamera, SILICON_CAMERA_BUFFER)
 	updating = FALSE
-
 #undef SILICON_CAMERA_BUFFER

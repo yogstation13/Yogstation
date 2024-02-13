@@ -186,6 +186,7 @@
 #include "code\__DEFINES\dcs\signals\signals_lazy_templates.dm"
 #include "code\__DEFINES\dcs\signals\signals_mind.dm"
 #include "code\__DEFINES\dcs\signals\signals_mining.dm"
+#include "code\__DEFINES\dcs\signals\signals_modular_computer.dm"
 #include "code\__DEFINES\dcs\signals\signals_mood.dm"
 #include "code\__DEFINES\dcs\signals\signals_moveloop.dm"
 #include "code\__DEFINES\dcs\signals\signals_movetype.dm"

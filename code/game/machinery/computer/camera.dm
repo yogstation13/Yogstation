@@ -71,9 +71,6 @@
 			use_power(active_power_usage)
 		// Register map objects
 		cam_screen.display_to(user)
-		// user.client.register_map_obj(cam_screen)
-		// for(var/atom/movable/screen/plane_master/instance in cam_plane_masters)
-		// 	instance.show_to(user)
 		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, "CameraConsole", name)
@@ -119,7 +116,7 @@
 	if(action == "switch_camera")
 		var/obj/machinery/camera/selected_camera = locate(params["camera"]) in GLOB.cameranet.cameras
 		active_camera = selected_camera
-		playsound(src, get_sfx("terminal_type"), 25, FALSE)
+		playsound(src, get_sfx(SFX_TERMINAL_TYPE), 25, FALSE)
 
 		if(isnull(active_camera))
 			return TRUE
