@@ -78,6 +78,11 @@
 /obj/item/gun/energy/kinetic_accelerator/raygun
 	name = "Raygun"
 	desc = "A self recharging raygun."
+	icon = 'yogstation/icons/obj/guns/raygun.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	icon_state = "raygun"
+	item_state = "raygun"
 	ammo_type = list(/obj/item/ammo_casing/energy/raygun)
 	overheat_time = 10
 	max_mod_capacity = 0
