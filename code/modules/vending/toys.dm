@@ -44,7 +44,7 @@
 
 /obj/machinery/vending/donksofttoyvendor/hugbox
 	desc = "Ages 8 and up approved vendor that dispenses toys. This one feels noticably less fun..."
-		circuit = /obj/item/circuitboard/machine/vending/donksofttoyvendor
+	circuit = /obj/item/circuitboard/machine/vending/donksofttoyvendor/hugbox
 	products = list(
 		/obj/item/gun/ballistic/automatic/toy/unrestricted/hugbox = 10,
 		/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted/hugbox = 10,
