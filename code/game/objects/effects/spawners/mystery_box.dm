@@ -87,7 +87,7 @@
 	fire_sound = 'yogstation/sound/effects/raygun.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 100
-	dry_fire_sound = 'sound/weapons/gun_dry_fire.ogg'
+	dry_fire_sound = 'sound/weapons/revolverdry.ogg'
 	overheat_time = 10
 	max_mod_capacity = 0
 	can_flashlight = FALSE
@@ -109,7 +109,7 @@
 /obj/projectile/raygun
 	name = "kinetic force"
 	icon_state = null
-	damage = 40
+	damage = 10
 	damage_type = BURN
 	armor_flag = RAD
 	range = 6
