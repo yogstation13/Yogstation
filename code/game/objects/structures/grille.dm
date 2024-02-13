@@ -1,8 +1,9 @@
 /obj/structure/grille
 	desc = "A flimsy framework of metal rods."
 	name = "grille"
-	icon = 'icons/obj/structures.dmi'
-	icon_state = "grille"
+	icon = 'icons/obj/smooth_structures/grille.dmi'
+	icon_state = "grille-0"
+	base_icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
 	flags_1 = CONDUCT_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
@@ -12,6 +13,9 @@
 	integrity_failure = 20
 	appearance_flags = KEEP_TOGETHER
 	can_be_unanchored = TRUE
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_GRILLE
+	canSmoothWith = SMOOTH_GROUP_GRILLE
 	var/holes = 0 //bitflag
 	var/rods_type = /obj/item/stack/rods
 	var/rods_amount = 2
@@ -40,7 +44,7 @@
 	update_appearance()
 
 /obj/structure/grille/update_appearance(updates)
-	if(QDELETED(src) || broken)
+	if(QDELETED(src))
 		return
 
 	. = ..()
