@@ -2,7 +2,7 @@
 	name = "mystery box"
 	desc = "A mysterious box that seems to contain limitless guns, for a price."
 	icon_state = "trashcart"
-	color = "#644a11"
+	color = "#755716"
 	max_integrity = INFINITY
 	var/guncost = 950
 	var/list/gunlist = list()
