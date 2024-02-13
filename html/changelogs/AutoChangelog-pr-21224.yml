@@ -1,7 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "Give HFR gas monitoring bar a decreasement/increasement rate rate"
-  - tweak: "Moderator now list all sticky gases"
-  - tweak: "increase HFR effciency due to recent process change that decreased HFR performance"
-  - tweak: "dirty production rate no longer relies on fuel injection rate and instead fully rely on the amount of byproduct gas in the reaction"
