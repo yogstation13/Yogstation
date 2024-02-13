@@ -30,6 +30,10 @@
 	var/innate_accuracy_penalty = 0
 	var/last_effect = 0
 
+/obj/effect/portal/tele
+	icon_state = "portal2"
+	desc = "I don't know captain! This seems a bit u-u-unstable!"
+
 /obj/effect/portal/anom
 	name = "wormhole"
 	icon = 'icons/obj/objects.dmi'

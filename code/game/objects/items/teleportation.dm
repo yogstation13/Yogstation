@@ -118,10 +118,10 @@
  * Hand-tele
  */
 /obj/item/hand_tele
-	name = "hand tele"
-	desc = "A portable item using blue-space technology."
+	name = "Portal Gun"
+	desc = "You know the worst part about inventing teleportation? Suddenly, you're able to travel the whole galaxy, and the first thing you learn is, you're the last guy to invent teleportation."
 	icon = 'icons/obj/device.dmi'
-	icon_state = "hand_tele"
+	icon_state = "portal_gun"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
@@ -232,7 +232,7 @@
 		to_chat(user, span_notice("\The [src] is malfunctioning."))
 		return
 	user.show_message(span_notice("Locked In."), MSG_AUDIBLE)
-	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(T)), src, 300, 1, null, atmos_link_override)
+	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(T)), src, 300, 1, /obj/effect/portal/tele, atmos_link_override)
 	if(!(LAZYLEN(created) == 2))
 		return
 	try_move_adjacent(created[1])
