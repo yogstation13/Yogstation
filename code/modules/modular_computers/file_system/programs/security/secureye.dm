@@ -9,7 +9,7 @@
 	extended_desc = "This program allows access to standard security camera networks."
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_BRIG
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_INTEGRATED // Probably not a good idea to let borgs use this, though im curious how it will pan out
+	usage_flags = PROGRAM_LAPTOP |PROGRAM_STATIONARY| PROGRAM_INTEGRATED // Probably not a good idea to let borgs use this, though im curious how it will pan out
 	size = 10
 	tgui_id = "NtosSecurEye"
 	program_icon = "eye"

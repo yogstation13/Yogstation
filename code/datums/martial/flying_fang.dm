@@ -117,6 +117,8 @@
 
 //headbutt, deals moderate brute and stamina damage with an eye blur, causes poor aim for a few seconds to the target if they have no helmet on
 /datum/martial_art/flyingfang/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(!(A.mobility_flags & MOBILITY_STAND))	//No fancy tail slaps whe you're prone
+		return harm_act(A, D)
 	add_to_streak("D",D)
 	if(!can_use(A))
 		return
@@ -135,7 +137,7 @@
 	D.blur_eyes(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
 		D.dna.species.aiminginaccuracy += 25
-		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS)
 	D.visible_message(span_danger("[A] headbutts [D]!"), \
 					  span_userdanger("[A] headbutts you!"))
 	log_combat(A, D, "headbutted (Flying Fang)")
@@ -214,6 +216,8 @@
 		return
 	linked_martial.leaping = TRUE
 	COOLDOWN_START(linked_martial, next_leap, 5 SECONDS)
+	if(A.buckled)
+		A.buckled.unbuckle_mob(A, force = TRUE)
 	A.Knockdown(5 SECONDS)
 	A.Immobilize(3 SECONDS, TRUE, TRUE) //prevents you from breaking out of your pounce
 	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), A))
@@ -234,21 +238,28 @@
 			var/blocked = FALSE
 			if(ishuman(hit_atom))
 				var/mob/living/carbon/human/H = hit_atom
-				if(H.check_shields(src, 0, "[A]", attack_type = LEAP_ATTACK))
+				if(H.check_shields(H, 0, "[A]", attack_type = LEAP_ATTACK))
 					blocked = TRUE
 			L.visible_message("<span class ='danger'>[A] pounces on [L]!</span>", "<span class ='userdanger'>[A] pounces on you!</span>")
-			L.Paralyze(blocked ? 6 SECONDS : 0)
+
+			//Knockdown regardless of blocking,
 			L.Knockdown(10 SECONDS)
-			L.Immobilize(6 SECONDS)
-			A.SetKnockdown(0)
-			A.SetImmobilized(10 SECONDS) //due to our stun resistance this is actually about 6.6 seconds
+
+			//Blocking knocks the lizard down too
+			if(blocked)
+				A.SetKnockdown(10 SECONDS)
+			
+			//Otherwise the not-blocker gets stunned and the lizard is okay
+			else
+				L.Paralyze(6 SECONDS)
+				A.SetKnockdown(0)
+
 			if(linked_leap && !blocked)
 				COOLDOWN_RESET(src, next_leap) // landing the leap resets the cooldown
 			sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 			step_towards(src,L)
 		else if(hit_atom.density && !hit_atom.CanPass(A))
 			A.visible_message("<span class ='danger'>[A] smashes into [hit_atom]!</span>", "<span class ='danger'>You smash into [hit_atom]!</span>")
-			A.Immobilize(1.5 SECONDS)
 			A.Knockdown(6 SECONDS)
 			playsound(A, 'sound/weapons/punch2.ogg', 50, 1) // ow oof ouch my head
 		if(leaping)

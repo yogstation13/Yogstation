@@ -92,10 +92,10 @@
 			new /obj/item/implanter/storage(src) //8 TC
 
 		if("hacker") //29 TC cost
-			new /obj/item/aiModule/syndicate(src) //4 TC
+			new /obj/item/aiModule/hacked(src) //4 TC
 			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
-			new /obj/item/aiModule/toyAI(src) //Um, free...?
+			new /obj/item/aiModule/ion/toyAI(src) //Um, free...?
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/storage/toolbox/syndicate/real(src) //2 TC
 			new /obj/item/camera_bug(src) //1 TC
