@@ -61,7 +61,7 @@
 		/obj/item/gun/magic/sickly_blade_toy = 1,
 		/obj/item/gun/magic/sickly_blade_toy/rust_toy = 1,
 		/obj/item/gun/magic/sickly_blade_toy/ash_toy = 1,
-		/obj/item/gun/magic/sickly_blade_toy/flesh_toy =1
+		/obj/item/gun/magic/sickly_blade_toy/flesh_toy =1,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow/hugbox = 10, // No more contraband section because they cant load riot darts anymore.
 		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/hugbox = 10,
 		/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/hugbox = 10,
