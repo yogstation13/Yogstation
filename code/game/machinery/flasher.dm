@@ -34,6 +34,9 @@
 	else
 		bulb = new(src)
 
+/obj/machinery/flasher/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	id = "[port.shuttle_id]_[id]"
+
 /obj/machinery/flasher/Destroy()
 	QDEL_NULL(bulb)
 	return ..()
