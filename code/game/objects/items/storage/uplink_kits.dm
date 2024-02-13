@@ -92,10 +92,10 @@
 			new /obj/item/implanter/storage(src) //8 TC
 
 		if("hacker") //29 TC cost
-			new /obj/item/aiModule/syndicate(src) //4 TC
+			new /obj/item/aiModule/hacked(src) //4 TC
 			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
-			new /obj/item/aiModule/toyAI(src) //Um, free...?
+			new /obj/item/aiModule/ion/toyAI(src) //Um, free...?
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/storage/toolbox/syndicate/real(src) //2 TC
 			new /obj/item/camera_bug(src) //1 TC
@@ -225,7 +225,7 @@
 			new /obj/item/reagent_containers/glass/bottle/beesease(src) // 10 tc?
 			new /obj/item/gun/magic/staff/spellblade/beesword(src) //priceless
 
-		if("mr_freeze") // ~17 tc
+		if("mr_freeze") // ~25 tc
 			new /obj/item/clothing/glasses/cold(src) // 0 tc
 			new /obj/item/clothing/gloves/color/black(src) // 0 tc
 			new /obj/item/clothing/mask/chameleon/syndicate(src) // 0 tc on its own
@@ -237,8 +237,9 @@
 			new /obj/item/grenade/gluon(src) //
 			new /obj/item/dnainjector/geladikinesis(src) // 0 tc
 			new /obj/item/dnainjector/cryokinesis(src) // 1 or 2 tc, kind of useful
-			new /obj/item/gun/energy/temperature/security(src) // the crutch of this kit, alongside esword, ~4 tc
+			new /obj/item/gun/energy/temperature/security(src) // ~4 tc
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue, 8 tc
+			new /obj/item/reagent_containers/spray/chemsprayer/freeze(src) // filled with frost oil and you can refill it with whatever, ~8 tc
 
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)

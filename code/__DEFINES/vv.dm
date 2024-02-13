@@ -118,6 +118,7 @@
 
 // misc
 #define VV_HK_SPACEVINE_PURGE "spacevine_purge"
+#define VV_HK_SPAWN_ITEM_INSIDE "spawn_item_inside"
 
 // /mob/living/carbon
 #define VV_HK_MAKE_AI "aiify"

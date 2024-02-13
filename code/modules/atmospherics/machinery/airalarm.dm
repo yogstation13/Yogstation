@@ -587,7 +587,7 @@
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
-					"widenet" = 0,
+					"widenet" = 1,
 					"scrubbing" = 0
 				), signal_source)
 			for(var/device_id in A.air_vent_names)
