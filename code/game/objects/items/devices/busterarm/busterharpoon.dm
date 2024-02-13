@@ -1,4 +1,3 @@
-@ -1,52 +0,0 @@
 /datum/action/cooldown/buster/megabuster/megaharpoon
 	name = "Whalebone Harpoon"
 	desc = "Charge up your harpoon and ready it to be fired, if it makes contact with a person it will drag them to you and knock them down, or pull you towards whatever you hit."
