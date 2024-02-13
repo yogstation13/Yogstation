@@ -33,11 +33,10 @@
 		H.balloon_alert(H, "Not enough money")
 		return
 
-	add_filter("glowing filter", 2, list("type" = "outline", "color" = "#dcc600", "alpha" = 0, "size" = 1))
+	add_filter("glowing filter", 2, list("type" = "outline", "color" = "#ffff00", "alpha" = 0, "size" = 1))
 	var/filter = get_filter("glowing filter")
 	animate(filter, alpha = 150, time = 0.5 SECONDS, loop = -1)
 	animate(alpha = 0, time = 0.5 SECONDS)
-	
 	opening = TRUE
 	playsound(src, 'yogstation/sound/effects/mysterybox.ogg', 60, FALSE)
 	sleep(5 SECONDS)
@@ -47,10 +46,12 @@
 	opening = FALSE
 
 	id_card.registered_account.account_balance -= guncost
+
 	var/gunpath = pick(gunlist)
 	if(prob(2)) //bypass regular % and just get a raygun, so it's not near impossible to get with how many guns there are
 		gunpath = /obj/item/gun/energy/kinetic_accelerator/raygun
 	var/obj/item/gun/thing = new gunpath(src)
+	
 	thing.no_pin_required = TRUE
 
 	playsound(loc, open_sound, 15, 1, -3)
@@ -84,12 +85,10 @@
 	icon_state = "raygun"
 	item_state = "raygun"
 	ammo_type = list(/obj/item/ammo_casing/energy/raygun)
-	fire_sound = 'yogstation/sound/effects/raygun.ogg'
-	vary_fire_sound = FALSE
-	fire_sound_volume = 100
 	dry_fire_sound = 'sound/weapons/revolverdry.ogg'
 	overheat_time = 10
 	max_mod_capacity = 0
+	fire_sound_volume = 100
 	can_flashlight = FALSE
 	can_bayonet = FALSE
 
@@ -103,13 +102,13 @@
 	projectile_type = /obj/projectile/raygun
 	select_name = "kinetic"
 	e_cost = 500
-	fire_sound = null
+	fire_sound = 'yogstation/sound/effects/raygun.ogg'
 	firing_effect_type = null
 
 /obj/projectile/raygun
 	name = "kinetic force"
 	icon_state = null
-	damage = 10
+	damage = 20
 	damage_type = BURN
 	armor_flag = RAD
 	range = 6
