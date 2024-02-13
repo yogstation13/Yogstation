@@ -131,7 +131,7 @@ There is no strict process when it comes to merging pull requests. Pull requests
 
 * While we have no issue helping contributors (and especially new contributors) bring reasonably sized contributions up to standards via the pull request review process, larger contributions are expected to pass a higher bar of completeness and code quality *before* you open a pull request. Maintainers may close such pull requests that are deemed to be substantially flawed. You should take some time to discuss with maintainers or other contributors on how to improve the changes.
 
-* Any PR submitted after February 13th, 2024 must be accompanied by giving visual evidence of testing if the changes in the PR have any visual indication of changes. Omitting or filling out the testing part of the template with "I tested it" does not show these changes. Maintainers may hold your PR until testing is provided at the discretion of the Head Developers.
+* Any PR submitted after February 13th, 2024 must be accompanied by giving visual evidence (images, gifs, videos) of testing if the changes in the PR have any visual indication of changes. Omitting or filling out the testing part of the template with "I tested it" does not show these changes. Maintainers may hold your PR until testing is provided at the discretion of the Head Developers.
 
 ## Porting features/sprites/sounds/tools from other codebases
 
