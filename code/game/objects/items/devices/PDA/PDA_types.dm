@@ -1,10 +1,10 @@
 //Clown PDA is slippery.
 /obj/item/pda/clown
-	name = "clown PDA"
+	name = "antique clown PDA"
 	default_cartridge = /obj/item/cartridge/virus/clown
 	insert_type = /obj/item/toy/crayon/rainbow
 	icon_state = "pda-clown"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
+	desc = "An outdated, portable microcomputer developed by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
 	ttone = "honk"
 
 /obj/item/pda/clown/Initialize(mapload)
@@ -36,49 +36,49 @@
 	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(pda_no_detonate))
 
 /obj/item/pda/medical
-	name = "medical PDA"
+	name = "antique medical PDA"
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-medical"
 
 /obj/item/pda/viro
-	name = "virology PDA"
+	name = "antique virology PDA"
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-virology"
 
 /obj/item/pda/engineering
-	name = "engineering PDA"
+	name = "antique engineering PDA"
 	default_cartridge = /obj/item/cartridge/engineering
 	icon_state = "pda-engineer"
 
 /obj/item/pda/security
-	name = "security PDA"
+	name = "antique security PDA"
 	default_cartridge = /obj/item/cartridge/security
 	icon_state = "pda-security"
 
 /obj/item/pda/detective
-	name = "detective PDA"
+	name = "antique detective PDA"
 	default_cartridge = /obj/item/cartridge/detective
 	icon_state = "pda-detective"
 
 /obj/item/pda/warden
-	name = "warden PDA"
+	name = "antique warden PDA"
 	default_cartridge = /obj/item/cartridge/security
 	icon_state = "pda-warden"
 
 /obj/item/pda/janitor
-	name = "janitor PDA"
+	name = "antique janitor PDA"
 	default_cartridge = /obj/item/cartridge/janitor
 	icon_state = "pda-janitor"
 	ttone = "slip"
 
 /obj/item/pda/toxins
-	name = "scientist PDA"
+	name = "antique scientist PDA"
 	default_cartridge = /obj/item/cartridge/signal/toxins
 	icon_state = "pda-science"
 	ttone = "boom"
 
 /obj/item/pda/mime
-	name = "mime PDA"
+	name = "antique mime PDA"
 	default_cartridge = /obj/item/cartridge/virus/mime
 	insert_type = /obj/item/toy/crayon/mime
 	icon_state = "pda-mime"
@@ -90,33 +90,33 @@
 	icon_state = "pda-hop"
 
 /obj/item/pda/heads/hop
-	name = "head of personnel PDA"
+	name = "antique head of personnel PDA"
 	default_cartridge = /obj/item/cartridge/hop
 	icon_state = "pda-hop"
 
 /obj/item/pda/heads/hos
-	name = "head of security PDA"
+	name = "antique head of security PDA"
 	default_cartridge = /obj/item/cartridge/hos
 	icon_state = "pda-hos"
 
 /obj/item/pda/heads/ce
-	name = "chief engineer PDA"
+	name = "antique chief engineer PDA"
 	default_cartridge = /obj/item/cartridge/ce
 	icon_state = "pda-ce"
 
 /obj/item/pda/heads/cmo
-	name = "chief medical officer PDA"
+	name = "antique chief medical officer PDA"
 	default_cartridge = /obj/item/cartridge/cmo
 	icon_state = "pda-cmo"
 
 /obj/item/pda/heads/rd
-	name = "research director PDA"
+	name = "antique research director PDA"
 	default_cartridge = /obj/item/cartridge/rd
 	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-rd"
 
 /obj/item/pda/captain
-	name = "captain PDA"
+	name = "antique captain PDA"
 	default_cartridge = /obj/item/cartridge/captain
 	insert_type = /obj/item/pen/fountain/captain
 	icon_state = "pda-captain"
@@ -126,51 +126,51 @@
 	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(pda_no_detonate))
 
 /obj/item/pda/cargo
-	name = "cargo technician PDA"
+	name = "antique cargo technician PDA"
 	default_cartridge = /obj/item/cartridge/quartermaster
 	icon_state = "pda-cargo"
 
 /obj/item/pda/quartermaster
-	name = "quartermaster PDA"
+	name = "antique quartermaster PDA"
 	default_cartridge = /obj/item/cartridge/quartermaster
 	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-qm"
 
 /obj/item/pda/shaftminer
-	name = "shaft miner PDA"
+	name = "antique shaft miner PDA"
 	icon_state = "pda-miner"
 
 /obj/item/pda/syndicate
 	default_cartridge = /obj/item/cartridge/virus/syndicate
 	icon_state = "pda-syndi"
-	name = "military PDA"
+	name = "antique military PDA"
 	owner = "John Doe"
 	hidden = 1
 
 /obj/item/pda/chaplain
-	name = "chaplain PDA"
+	name = "antique chaplain PDA"
 	icon_state = "pda-chaplain"
 	ttone = "holy"
 
 /obj/item/pda/lawyer
-	name = "lawyer PDA"
+	name = "antique lawyer PDA"
 	default_cartridge = /obj/item/cartridge/lawyer
 	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-lawyer"
 	ttone = "objection"
 
 /obj/item/pda/botanist
-	name = "botanist PDA"
+	name = "antique botanist PDA"
 	//default_cartridge = /obj/item/cartridge/botanist
 	icon_state = "pda-hydro"
 
 /obj/item/pda/roboticist
-	name = "roboticist PDA"
+	name = "antique roboticist PDA"
 	icon_state = "pda-roboticist"
 	default_cartridge = /obj/item/cartridge/roboticist
 
 /obj/item/pda/curator
-	name = "curator PDA"
+	name = "antique curator PDA"
 	icon_state = "pda-library"
 	icon_alert = "pda-r-library"
 	default_cartridge = /obj/item/cartridge/curator
@@ -181,35 +181,35 @@
 	overlays_x_offset = -3
 
 /obj/item/pda/clear
-	name = "clear PDA"
+	name = "antique clear PDA"
 	icon_state = "pda-clear"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a special edition with a transparent case."
 	note = "Congratulations, you have chosen the Thinktronic 5230 Personal Data Assistant Deluxe Special Max Turbo Limited Edition!"
 
 /obj/item/pda/artist
-	name = "aesthetic PDA"
+	name = "antique aesthetic PDA"
 	icon_state = "pda-artist"
 
 /obj/item/pda/cook
-	name = "cook PDA"
+	name = "antique cook PDA"
 	icon_state = "pda-cook"
 
 /obj/item/pda/bar
-	name = "bartender PDA"
+	name = "antique bartender PDA"
 	icon_state = "pda-bartender"
 	insert_type = /obj/item/pen/fountain
 
 /obj/item/pda/atmos
-	name = "atmospherics PDA"
+	name = "antique atmospherics PDA"
 	default_cartridge = /obj/item/cartridge/atmos
 	icon_state = "pda-atmos"
 
 /obj/item/pda/chemist
-	name = "chemist PDA"
+	name = "antique chemist PDA"
 	default_cartridge = /obj/item/cartridge/chemistry
 	icon_state = "pda-chemistry"
 
 /obj/item/pda/geneticist
-	name = "geneticist PDA"
+	name = "antique geneticist PDA"
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-genetics"
