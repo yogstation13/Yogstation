@@ -33,6 +33,21 @@
 /obj/item/reagent_containers/food/snacks/carpmeat/imitation/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked, rand(40 SECONDS, 60 SECONDS), TRUE, TRUE)
 
+/obj/item/reagent_containers/food/snacks/carpmeat/crab //crab meat
+	name = "crab meat"
+	desc = "The meat of a crab's claws. Smells funky."
+	icon_state = "raw_crab"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("fish" = 3, "crab" = 3, "crustacean" = 2, "krab" = 1)
+
+/obj/item/reagent_containers/food/snacks/carpmeat/crab/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/carpmeat/crab/cooked, rand(30 SECONDS, 60 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/carpmeat/crab/cooked
+	name = "cooked crab meat"
+	desc = "The meat of a crab's claws. Somewhere out there a crab isn't too happy."
+	icon_state = "crab"
+
 /obj/item/reagent_containers/food/snacks/carpmeat/fish //basic fish fillet (no carpotoxin) for fish butchering
 	name = "fish fillet"
 	desc = "A fillet of spess fish meat. You should cook this."
