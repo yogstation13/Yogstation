@@ -14341,7 +14341,6 @@
 	pixel_x = -2
 	},
 /obj/item/book/manual/wiki/security_space_law,
-/obj/item/cartridge/detective,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -27194,18 +27193,6 @@
 /area/engine/atmos/distro)
 "hZV" = (
 /obj/structure/closet/secure_closet/quartermaster,
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
 /obj/item/gps{
 	gpstag = "QM0"
 	},
@@ -46991,18 +46978,6 @@
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/cartridge/engineering{
-	pixel_x = 4;
-	pixel_y = 5
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = 3
-	},
-/obj/item/cartridge/atmos,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "nDh" = (
@@ -62581,15 +62556,6 @@
 	pixel_y = -30
 	},
 /obj/structure/table,
-/obj/item/cartridge/signal/toxins,
-/obj/item/cartridge/signal/toxins{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/cartridge/signal/toxins{
-	pixel_x = 4;
-	pixel_y = 6
-	},
 /obj/item/storage/pencil_holder/crew/fancy{
 	pixel_x = -8;
 	pixel_y = 10
