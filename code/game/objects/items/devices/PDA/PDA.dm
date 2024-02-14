@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		inserted_item = null
 
 /obj/item/pda/proc/update_label()
-	name = "PDA-[owner] ([ownjob])" //Name generalisation
+	name = "\improper PDA-[owner] ([ownjob])" //Name generalisation
 
 /obj/item/pda/GetAccess()
 	if(id)
