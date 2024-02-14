@@ -1,0 +1,5 @@
+author: " ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Ice cream vat tells you that vanilla ice cream needs vanilla powder to make."
+  - tweak: "Grape snowcone recipe changed from 5u berry juice to 5u grape juice."
