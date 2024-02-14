@@ -2690,6 +2690,7 @@
 #include "code\modules\mob\dead\new_player\poll.dm"
 #include "code\modules\mob\dead\new_player\preferences_setup.dm"
 #include "code\modules\mob\dead\new_player\sprite_accessories.dm"
+#include "code\modules\mob\dead\observer\jumpto.dm"
 #include "code\modules\mob\dead\observer\login.dm"
 #include "code\modules\mob\dead\observer\logout.dm"
 #include "code\modules\mob\dead\observer\notificationprefs.dm"
