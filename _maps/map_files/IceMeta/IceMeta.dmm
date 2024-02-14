@@ -9148,7 +9148,7 @@
 "cLh" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "cLu" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -17160,8 +17160,9 @@
 /turf/open/floor/engine/n2,
 /area/engine/atmos/distro)
 "fiM" = (
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "fiU" = (
 /obj/machinery/computer/prisoner{
 	dir = 4
@@ -27565,8 +27566,9 @@
 /obj/item/flashlight/lantern{
 	light_on = 1
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating/snowed/colder,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "ihb" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -28757,7 +28759,7 @@
 /area/science/research)
 "iwT" = (
 /turf/closed/wall,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "iwV" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/metal/fifty{
@@ -29634,7 +29636,7 @@
 /area/icemoon/surface/outdoors)
 "iJS" = (
 /turf/open/floor/plating/snowed/colder,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "iJT" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -35709,7 +35711,7 @@
 "kss" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "ksA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -37122,7 +37124,7 @@
 /obj/effect/spawner/structure/window/ice,
 /obj/structure/barricade/wooden/crude/snow,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "kNi" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -43987,7 +43989,7 @@
 "mLB" = (
 /obj/effect/spawner/structure/window/ice,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "mLD" = (
 /obj/machinery/light{
 	dir = 8
@@ -45355,8 +45357,8 @@
 /area/mine/break_room)
 "ncA" = (
 /obj/structure/stairs/north,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/underground/explored)
+/turf/open/floor/plating,
+/area/mine/abandoned)
 "ncH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -65234,8 +65236,9 @@
 /area/ai_monitored/security/armory)
 "sVd" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "sVf" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -69204,10 +69207,9 @@
 /area/crew_quarters/heads/chief)
 "ucZ" = (
 /obj/structure/barricade/wooden/crude/snow,
-/obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "udj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -75220,10 +75222,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "vLm" = (
-/obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "vLp" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -83735,7 +83736,7 @@
 /area/bridge)
 "xXW" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/explored)
+/area/mine/abandoned)
 "xXZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
