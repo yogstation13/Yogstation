@@ -264,7 +264,7 @@
 	range = MECHA_MELEE|MECHA_RANGED
 	item_flags = NO_MAT_REDEMPTION
 	equip_actions = list(/datum/action/innate/mecha/equipment/rcd)
-	var/rcd_type = /obj/item/construction/rcd/arcd/mech
+	var/rcd_type = /obj/item/construction/rcd/exosuit
 	var/obj/item/construction/rcd/internal_rcd
 
 /obj/item/mecha_parts/mecha_equipment/rcd/Initialize(mapload)
@@ -309,7 +309,7 @@
 /obj/item/mecha_parts/mecha_equipment/rcd/mime //special silent RCD
 	name = "silenced mounted RCD"
 	desc = "An expertly mimed exosuit-mounted Rapid Construction Device. Not a sound is made."
-	rcd_type = /obj/item/construction/rcd/arcd/mech/mime
+	rcd_type = /obj/item/construction/rcd/exosuit/mime
 
 
 /obj/item/mecha_parts/mecha_equipment/pipe_dispenser

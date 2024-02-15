@@ -661,6 +661,7 @@
 	//load all category essential icon_states. format is icon_file = list of icon states we need from that file
 	var/list/essentials = list(
 		'icons/mob/radial.dmi' = list("wallfloor", "delete", "dirwindow", "fullwindow", "dirwindow_r", "fullwindow_r", "cnorth", "csouth", "ceast", "cwest", "chair", "stool", "windoor", "secure_windoor"),
+		'icons/obj/recycling.dmi' = list("conveyor_construct", "switch-off"),
 		'icons/obj/structures.dmi' = list("window0", "rwindow0", "table", "glass_table"),
 		'icons/obj/stock_parts.dmi' = list("box_1"),
 	)

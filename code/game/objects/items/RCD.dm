@@ -267,6 +267,7 @@ RLD
 #define FURNISH_COST "furnish_cost"
 #define FURNISH_DELAY "furnish_delay"
 #define AIRLOCK_TYPE "airlock_type"
+#define CONVEYOR_TYPE "conveyor_type"
 
 ///flags to be sent to UI
 #define TITLE "title"
@@ -319,6 +320,12 @@ RLD
 				list(FURNISH_TYPE = /obj/structure/table, FURNISH_COST = 16, FURNISH_DELAY = 20, ICON = "table",TITLE = "Table"),
 				list(FURNISH_TYPE = /obj/structure/table/glass, FURNISH_COST = 16, FURNISH_DELAY = 20, ICON = "glass_table", TITLE = "Glass Table"),
 			),
+
+			//Conveyors & Switches
+			"Conveyors" = list(
+				list(CONSTRUCTION_MODE = RCD_CONVEYOR, ICON = "conveyor_construct", TITLE = "Conveyor Belt"),
+				list(CONSTRUCTION_MODE = RCD_SWITCH, ICON = "switch-off", TITLE = "Conveyor Switch"),
+			)
 		),
 
 		//2ND ROOT CATEGORY[construction_mode = RCD_AIRLOCK is implied,"icon=closed"]
@@ -413,13 +420,14 @@ RLD
 		return FALSE
 	var/delay = rcd_results["delay"] * delay_mod
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
+	var/datum/beam/rcd_beam
 	if(checkResource(rcd_results["cost"], user))
 		if(!A.Adjacent(owner ? owner : user)) // ranged RCDs create beams
 			if(isatom(owner))
 				var/atom/owner_atom = owner
-				owner_atom.Beam(A,icon_state="rped_upgrade",time=10)
+				rcd_beam = owner_atom.Beam(A,icon_state="rped_upgrade",time=delay)
 			else
-				Beam(A,icon_state="rped_upgrade",time=10)
+				rcd_beam = Beam(A,icon_state="rped_upgrade",time=delay)
 		if(do_after(user, delay, (owner ? owner : A)))
 			if(checkResource(rcd_results["cost"], user))
 				if(A.rcd_act(user, src, rcd_results["mode"]))
@@ -429,43 +437,10 @@ RLD
 					if(!silent)
 						playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					return TRUE
+	if(rcd_beam)
+		qdel(rcd_beam)
 	qdel(rcd_effect)
 	return FALSE
-
-/obj/item/construction/rcd/proc/rcd_switch(atom/A, mob/user)
-	var/cost = 1
-	var/delay = 1
-	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
-	if(checkResource(cost, user))
-		if(do_after(user, delay, (owner ? owner : A)))
-			if(checkResource(cost, user))
-				rcd_effect.end_animation()
-				useResource(cost, user)
-				activate()
-				if(!silent)
-					playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-				new /obj/item/conveyor_switch_construct(A)
-	qdel(rcd_effect)
-
-/obj/item/construction/rcd/proc/rcd_conveyor(atom/A, mob/user)
-	var/delay = 5
-	var/cost = 5
-	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.construction_mode)
-	if(checkResource(cost, user))
-		if(do_after(user, delay, target = (owner ? owner : A)))
-			if(checkResource(cost, user))
-				rcd_effect.end_animation()
-				useResource(cost, user)
-				activate()
-				if(!silent)
-					playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-				var/cdir = get_dir(A, user)
-				if (last_placed)
-					cdir = get_dir(A, last_placed)
-					if(cdir in GLOB.cardinals)
-						last_placed.setDir(get_dir(last_placed, A))
-				last_placed = new/obj/machinery/conveyor(A, cdir, linked_switch_id)
-	qdel(rcd_effect)
 
 /obj/item/construction/rcd/Initialize(mapload)
 	. = ..()
@@ -523,6 +498,8 @@ RLD
 		if(sub_category == "Machines" && !(upgrade & RCD_UPGRADE_FRAMES))
 			continue
 		if(sub_category == "Furniture" && !(upgrade & RCD_UPGRADE_FURNISHING))
+			continue
+		if(sub_category == "Conveyors" && !(upgrade & RCD_UPGRADE_CONVEYORS))
 			continue
 		category_icon_state = ""
 		category_icon_suffix = ""
@@ -606,6 +583,8 @@ RLD
 				furnish_type = design[FURNISH_TYPE]
 				furnish_cost = design[FURNISH_COST]
 				furnish_delay = design[FURNISH_DELAY]
+			else if(category_name == "Conveyors")
+				construction_mode = design[CONSTRUCTION_MODE]
 
 			if(root_category == "Airlocks")
 				construction_mode = RCD_AIRLOCK
@@ -628,30 +607,21 @@ RLD
 
 /obj/item/construction/rcd/afterattack(atom/A, mob/user, proximity)
 	. = ..()
-	if (construction_mode == RCD_CONVEYOR)
-		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/machinery/conveyor) || !isopenturf(A) || istype(A, /area/shuttle))
-			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
-			return
-		if (!linked_switch_id)
-			to_chat(user, "<span class='warning'>Error! [src] is not linked!</span>")
-			return
-		if (get_turf(A) == get_turf(user))
-			to_chat(user, "<span class='notice'>Cannot place conveyor below your feet!</span>")
-			return
-		if(!proximity)
-			return
-		rcd_conveyor(A, user)
-	if (construction_mode == RCD_SWITCH)
-		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/item/conveyor_switch_construct) || !isopenturf(A) || istype(A, /area/shuttle))
-			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
-			return
-		if(!proximity)
-			return
-		rcd_switch(A, user)
-	else
-		if(!prox_check(proximity))
-			return
-		rcd_create(A, user)
+	if(!prox_check(proximity) && !(ranged && range_check(A, user)))
+		return
+	if((upgrade & RCD_UPGRADE_CONVEYORS) && istype(A, /obj/machinery/conveyor_switch))
+		var/obj/machinery/conveyor_switch/C = A
+		linked_switch_id = C.id
+		balloon_alert(user, "linked")
+		return
+	rcd_create(A, user)
+
+/obj/item/construction/rcd/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if((upgrade & RCD_UPGRADE_CONVEYORS) && istype(I, /obj/item/conveyor_switch_construct))
+		var/obj/item/conveyor_switch_construct/C = I
+		linked_switch_id = C.id
+		balloon_alert(user, "linked")
 
 /obj/item/construction/rcd/proc/detonate_pulse()
 	audible_message("<span class='danger'><b>[src] begins to vibrate and \
@@ -781,27 +751,31 @@ RLD
 		return
 	return ..()
 
-/obj/item/construction/rcd/arcd/mech
+/obj/item/construction/rcd/exosuit
 	name = "mounted RCD"
 	desc = "You're not supposed to see this!"
-	item_flags = NO_MAT_REDEMPTION | DROPDEL | NOBLUDGEON
-	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | UNACIDABLE // would be weird if it could somehow be destroyed inside the equipment item
 	max_matter = 1000
 	matter = 0 // starts off empty, load materials into the mech itself
+	delay_mod = 0.5
+	ranged = TRUE
+	has_ammobar = FALSE // don't bother, you can't see it
+	item_flags = NO_MAT_REDEMPTION | DROPDEL | NOBLUDGEON
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | UNACIDABLE // would be weird if it could somehow be destroyed inside the equipment item
 
-/obj/item/construction/rcd/arcd/mech/ui_state(mob/user)
+/obj/item/construction/rcd/exosuit/ui_state(mob/user)
 	return GLOB.pilot_state
 
-// don't allow using this thing unless you're piloting the mech it's attached to
-/obj/item/construction/rcd/arcd/mech/can_interact(mob/user)
+/obj/item/construction/rcd/exosuit/ui_status(mob/user)
 	if(!(owner && ismecha(owner)))
-		return FALSE
+		return UI_CLOSE
 	var/obj/mecha/gundam = owner
-	if(user == gundam.occupant && !gundam.equipment_disabled && gundam.selected == loc)
-		return TRUE
-	return FALSE
+	if(user != gundam.occupant)
+		return UI_CLOSE
+	if(!gundam.equipment_disabled && gundam.selected == loc)
+		return UI_INTERACTIVE
+	return UI_UPDATE
 
-/obj/item/construction/rcd/arcd/mech/mime
+/obj/item/construction/rcd/exosuit/mime
 	name = "silenced mounted RCD"
 	silent = TRUE
 
@@ -892,13 +866,6 @@ RLD
 			to_chat(user, span_notice("You change RLD's mode to 'Deconstruct'."))
 		else
 			ui_act("toggle_silo", list())
-
-/obj/item/construction/rcd/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(upgrade & RCD_UPGRADE_CONVEYORS && istype(I, /obj/item/conveyor_switch_construct))
-		to_chat(user, "<span class='notice'>You link the switch to the [src].</span>")
-		var/obj/item/conveyor_switch_construct/C = I
-		linked_switch_id = C.id
 
 /obj/item/construction/rld/proc/checkdupes(target)
 	. = list()
