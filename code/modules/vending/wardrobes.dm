@@ -174,6 +174,8 @@
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/cargo = 3,
 					/obj/item/clothing/under/rank/cargotech = 3,
 					/obj/item/clothing/under/rank/cargotech/skirt = 3,
+					/obj/item/clothing/under/rank/cargotech/turtleneck = 3,
+					/obj/item/clothing/under/rank/cargotech/skirt/turtleneck = 3,					
 					/obj/item/clothing/shoes/sneakers/black = 3,
 					/obj/item/clothing/shoes/xeno_wraps/cargo = 3,
 					/obj/item/clothing/gloves/fingerless = 3,

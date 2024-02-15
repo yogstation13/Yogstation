@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "New wizard spell, bestow appendicitis"
+  - tweak: "Bad wizard that previously had curse of cluwne (before it was removed) now gets appendicitis"
