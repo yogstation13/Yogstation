@@ -1,6 +1,6 @@
 //Clown PDA is slippery.
 /obj/item/pda/clown
-	name = "antique clown PDA"
+	name = "\improper antique clown PDA"
 	default_cartridge = /obj/item/cartridge/virus/clown
 	insert_type = /obj/item/toy/crayon/rainbow
 	icon_state = "pda-clown"
@@ -66,13 +66,13 @@
 	icon_state = "pda-warden"
 
 /obj/item/pda/janitor
-	name = "antique janitor PDA"
+	name = "\improper antique janitor PDA"
 	default_cartridge = /obj/item/cartridge/janitor
 	icon_state = "pda-janitor"
 	ttone = "slip"
 
 /obj/item/pda/toxins
-	name = "antique scientist PDA"
+	name = "\improper antique scientist PDA"
 	default_cartridge = /obj/item/cartridge/signal/toxins
 	icon_state = "pda-science"
 	ttone = "boom"
