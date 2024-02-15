@@ -36,7 +36,7 @@
 	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(pda_no_detonate))
 
 /obj/item/pda/medical
-	name = "antique medical PDA"
+	name = "\improper antique medical PDA"
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-medical"
 
