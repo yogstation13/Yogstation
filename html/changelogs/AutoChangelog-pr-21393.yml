@@ -1,5 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Light switches are no longer a free source of frames"
-  - spellcheck: "Fixed RLS description"
