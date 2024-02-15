@@ -202,7 +202,7 @@
 
 /obj/item/clothing/under/cloud
 	name = "cloud"
-	desc = "cloud"
+	desc = "Cloud."
 	icon_state = "cloud"
 	can_adjust = FALSE
 
