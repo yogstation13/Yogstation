@@ -20030,10 +20030,10 @@
 	name = "Chief Engineer RC";
 	pixel_y = 32
 	},
-/obj/machinery/computer/card/minor/ce,
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 1
 	},
+/obj/machinery/modular_computer/console/preset/command/ce,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "fYh" = (
@@ -22754,9 +22754,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 4
 	},
@@ -35403,12 +35400,6 @@
 	pixel_y = 5;
 	req_access_txt = "11"
 	},
-/obj/machinery/modular_computer/console/preset/command/ce{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 8
 	},
@@ -40109,9 +40100,6 @@
 /turf/open/floor/carpet,
 /area/library)
 "lJe" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "lJh" = (
@@ -40419,9 +40407,6 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "lNo" = (
@@ -41752,9 +41737,6 @@
 /area/chapel/office)
 "meY" = (
 /obj/machinery/holopad,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "mfh" = (
@@ -57855,9 +57837,6 @@
 	pixel_y = 3
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "qKv" = (
