@@ -1,5 +1,7 @@
 /mob/living/carbon/alien/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	findQueen()
+	if(linked_techweb && is_station_level(z)) // 5/s, server passive is ~60/s
+		linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, seconds_per_tick * 5)
 	return..()
 
 /mob/living/carbon/alien/check_breath(datum/gas_mixture/breath)

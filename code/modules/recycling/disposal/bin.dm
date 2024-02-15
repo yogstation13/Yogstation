@@ -340,7 +340,7 @@
 			AM.forceMove(src)
 			if(ismob(AM))
 				do_flush()
-				visible_message(span_notice("[AM] lands in [src] and triggers the flush system!."))
+				visible_message(span_notice("[AM] lands in [src] and triggers the flush system!"))
 			else
 				visible_message(span_notice("[AM] lands in [src]."))
 			update_appearance(UPDATE_ICON)

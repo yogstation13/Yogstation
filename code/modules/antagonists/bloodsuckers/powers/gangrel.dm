@@ -471,7 +471,7 @@
 	base_background_icon_state = "wolf_power_off"
 	power_explanation = "Rabidism:\n\
 		Rabidism will deal reduced damage to everyone in range including you.\n\
-		During Rabidism's ten second rage you'll deal alot more damage to structures.\n\
+		During Rabidism's ten second rage you'll deal a lot more damage to structures.\n\
 		Be aware of it's long cooldown time.\n\
 		Created from your Tresspass ability"
 	power_flags = BP_AM_TOGGLE

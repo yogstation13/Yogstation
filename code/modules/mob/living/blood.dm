@@ -331,6 +331,10 @@
 	var/datum/blood_type/blood_type = blood_dna[blood_print]
 	if(!blood_type)
 		return null
+	if(!istype(blood_type))//maybe a letter somehow got passed here, check anyways
+		blood_type = get_blood_type(blood_type)
+	if(!blood_type || !istype(blood_type))
+		return null
 	return blood_type.color
 
 //to add a splatter of blood or other mob liquid.
