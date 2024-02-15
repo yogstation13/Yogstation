@@ -311,29 +311,19 @@
 	return ..()
 
 /obj/machinery/light/built
+	status = LIGHT_EMPTY
 	icon_state = "tube-empty"
 	start_with_cell = FALSE
 
-/obj/machinery/light/built/Initialize(mapload)
-	. = ..()
-	status = LIGHT_EMPTY
-	update(FALSE)
-
 /obj/machinery/light/floor/built
-	icon_state = "floor-empty"
-
-/obj/machinery/light/floor/built/Initialize(mapload)
-	. = ..()
 	status = LIGHT_EMPTY
-	update(FALSE)
+	icon_state = "floor-empty"
+	start_with_cell = FALSE
 
 /obj/machinery/light/small/built
-	icon_state = "bulb-empty"
-
-/obj/machinery/light/small/built/Initialize(mapload)
-	. = ..()
 	status = LIGHT_EMPTY
-	update(FALSE)
+	icon_state = "bulb-empty"
+	start_with_cell = FALSE
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
@@ -359,9 +349,10 @@
 
 	if(start_with_cell && !no_emergency)
 		cell = new/obj/item/stock_parts/cell/emergency_light(src)
-	
+
 	// Light projects out backwards from the dir of the light
-	//set_light(l_dir = REVERSE_DIR(dir))
+	set_light(l_dir = REVERSE_DIR(dir))
+
 	if(mapload && our_area.lights_always_start_on)
 		turn_on(trigger = FALSE, quiet = TRUE)
 
@@ -386,8 +377,11 @@
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/machinery/light/update_icon_state(updates=ALL)
+/obj/machinery/light/setDir(newdir)
 	. = ..()
+	set_light(l_dir = REVERSE_DIR(dir))
+
+/obj/machinery/light/update_icon_state(updates=ALL)
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			if(forced_off)
@@ -406,7 +400,7 @@
 			icon_state = "[base_state]-burned"
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-	return
+	return ..()
 
 /obj/machinery/light/update_overlays()
 	. = ..()
@@ -452,8 +446,6 @@
 		START_PROCESSING(SSmachines, src)
 	else
 		set_light(l_range = 0)
-	
-	update_appearance()
 
 	active_power_usage = (brightness * 10)
 	if(on != on_gs)
@@ -476,7 +468,7 @@
 				removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 				static_power_used = brightness * 20 //20W per unit luminosity
 				addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
-
+	update_appearance()
 	broken_sparks(start_only=TRUE)
 
 /obj/machinery/light/proc/turn_on(trigger, quiet = FALSE)
@@ -548,9 +540,8 @@
 		status = LIGHT_BURNED
 		icon_state = "[base_state]-burned"
 		on = FALSE
-		set_light(0)
+		set_light(l_range = 0)
 		playsound(src.loc, 'sound/effects/burnout.ogg', 65)
-		update_appearance()
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
@@ -580,63 +571,65 @@
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/attackby(obj/item/W, mob/living/user, params)
+/obj/machinery/light/attackby(obj/item/tool, mob/living/user, params)
 
 	//Light replacer code
-	if(istype(W, /obj/item/lightreplacer))
-		var/obj/item/lightreplacer/LR = W
+	if(istype(tool, /obj/item/lightreplacer))
+		var/obj/item/lightreplacer/LR = tool
 		LR.ReplaceLight(src, user)
+		return
 
 	// attempt to insert light
-	else if(istype(W, /obj/item/light))
+	if(istype(tool, /obj/item/light))
 		if(status == LIGHT_OK)
 			to_chat(user, span_warning("There is a [fitting] already inserted!"))
+			return
+		add_fingerprint(user)
+		var/obj/item/light/light_object = tool
+		if(!istype(light_object, light_type))
+			to_chat(user, span_warning("This type of light requires a [fitting]!"))
+			return
+
+		if(!user.temporarilyRemoveItemFromInventory(light_object))
+			return
+
+		add_fingerprint(user)
+		if(status != LIGHT_EMPTY)
+			drop_light_tube(user)
+			to_chat(user, span_notice("You replace [light_object]."))
 		else
-			src.add_fingerprint(user)
-			var/obj/item/light/L = W
-			if(istype(L, light_type))
-				if(!user.temporarilyRemoveItemFromInventory(L))
-					return
+			to_chat(user, span_notice("You insert [light_object]."))
+		status = light_object.status
+		switchcount = light_object.switchcount
+		rigged = light_object.rigged
+		brightness = light_object.brightness
+		on = has_power() && !forced_off
+		update()
 
-				src.add_fingerprint(user)
-				if(status != LIGHT_EMPTY)
-					drop_light_tube(user)
-					to_chat(user, span_notice("You replace [L]."))
-				else
-					to_chat(user, span_notice("You insert [L]."))
-				status = L.status
-				switchcount = L.switchcount
-				rigged = L.rigged
-				brightness = L.brightness
-				on = has_power() && !forced_off
-				update()
+		qdel(light_object)
 
-				qdel(L)
+		return
 
-				if(on && rigged)
-					explode()
-			else
-				to_chat(user, span_warning("This type of light requires a [fitting]!"))
 	// hit the light socket with umbral tendrils, instantly breaking the light as opposed to RNG //yogs
-	else if(istype(W, /obj/item/umbral_tendrils))
+	else if(istype(tool, /obj/item/umbral_tendrils))
 		break_light_tube()
 		return ..() //yogs end
 
 	// attempt to stick weapon into light socket
-	else if(status == LIGHT_EMPTY)
-		if(W.tool_behaviour == TOOL_SCREWDRIVER) //If it's a screwdriver open it.
-			W.play_tool_sound(src, 75)
-			user.visible_message("[user.name] opens [src]'s casing.", \
-				span_notice("You open [src]'s casing."), span_italics("You hear a noise."))
-			deconstruct()
-		else
-			to_chat(user, span_userdanger("You stick \the [W] into the light socket!"))
-			if(has_power() && (W.flags_1 & CONDUCT_1))
-				do_sparks(3, TRUE, src)
-				if (prob(75))
-					electrocute_mob(user, get_area(src), src, rand(0.7,1.0), TRUE)
-
-	return ..()
+	if(status != LIGHT_EMPTY)
+		return ..()
+	if(tool.tool_behaviour == TOOL_SCREWDRIVER) //If it's a screwdriver open it.
+		tool.play_tool_sound(src, 75)
+		user.visible_message("[user.name] opens [src]'s casing.", \
+			span_notice("You open [src]'s casing."), span_italics("You hear a noise."))
+		deconstruct()
+		return
+	
+	to_chat(user, span_userdanger("You stick \the [tool] into the light socket!"))
+	if(has_power() && (tool.flags_1 & CONDUCT_1))
+		do_sparks(3, TRUE, src)
+		if (prob(75))
+			electrocute_mob(user, get_area(src), src, (rand(7,10) * 0.1), TRUE)
 
 /obj/machinery/light/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -854,7 +847,7 @@
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/break_light_tube(skip_sound_and_sparks = 0)
+/obj/machinery/light/proc/break_light_tube(skip_sound_and_sparks = FALSE)
 	if(status == LIGHT_EMPTY || status == LIGHT_BROKEN)
 		return
 
@@ -912,13 +905,27 @@
 	force = 2
 	throwforce = 5
 	w_class = WEIGHT_CLASS_TINY
-	var/status = LIGHT_OK		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
-	var/base_state
-	var/switchcount = 0	// number of times switched
 	materials = list(/datum/material/glass=100)
 	grind_results = list(/datum/reagent/silicon = 5, /datum/reagent/nitrogen = 10) //Nitrogen is used as a cheaper alternative to argon in incandescent lighbulbs
-	var/rigged = FALSE		// true if rigged to explode
-	var/brightness = 2 //how much light it gives off
+	///How much light it gives off
+	var/brightness = 2
+	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
+	var/status = LIGHT_OK
+	///Base icon state for each bulb types
+	var/base_state
+	///Number of times switched on and off
+	var/switchcount = 0
+	///True if rigged to explode
+	var/rigged = FALSE		
+
+/obj/item/light/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/caltrop, min_damage = force)
+	update_icon_state()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/item/light/suicide_act(mob/living/carbon/user)
 	if (status == LIGHT_BROKEN)
@@ -939,6 +946,7 @@
 
 /obj/item/light/tube/broken
 	status = LIGHT_BROKEN
+	sharpness = SHARP_POINTY
 
 /obj/item/light/bulb
 	name = "light bulb"
@@ -952,6 +960,7 @@
 
 /obj/item/light/bulb/broken
 	status = LIGHT_BROKEN
+	sharpness = SHARP_POINTY
 
 /obj/item/light/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) //not caught by a mob
@@ -979,14 +988,6 @@
 		if(LIGHT_BROKEN)
 			desc = "A broken [name]."
 
-/obj/item/light/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/caltrop, min_damage = force)
-	update_icon_state()
-	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-	)
-	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/item/light/proc/on_entered(datum/source, atom/movable/moving_atom)
 	SIGNAL_HANDLER
@@ -1042,7 +1043,9 @@
 	base_state = "floor"		// base description and icon_state
 	icon_state = "floor"
 	brightness = 4
+	light_angle = 360
 	layer = LOW_OBJ_LAYER
+	plane = FLOOR_PLANE
 	light_type = /obj/item/light/bulb
 	fitting = "floor bulb"
 
