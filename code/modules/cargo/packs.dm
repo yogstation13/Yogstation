@@ -2375,6 +2375,22 @@
 	crate_name = "potted plants crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
+/datum/supply_pack/organic/seafood
+	name = "Imported Fish Crate"
+	desc = "Various 'fresh' imported seafood assortments when someone can't be bothered to fish. Contains several canned fish to enjoy."
+	cost = 1300
+	contains = list(/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish,
+					/obj/item/reagent_containers/food/snacks/cannedfish)
+	crate_name = "canned fish crate"
+
 /datum/supply_pack/organic/seeds
 	name = "Seeds Crate"
 	desc = "Big things have small beginnings. Contains fourteen different seeds."
