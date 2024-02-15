@@ -279,7 +279,7 @@
 
 /obj/item/organ/brain/vox
 	name = "cortical stack"
-	brain_name = "cortical_stack"
+	brain_name = "cortical stack"
 	desc = "A peculiarly advanced bio-electronic device that seems to hold the memories and identity of a Vox."
 	icon_state = "cortical-stack"
 	decay_factor = 0

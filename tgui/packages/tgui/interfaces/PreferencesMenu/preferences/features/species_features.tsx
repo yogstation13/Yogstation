@@ -269,3 +269,8 @@ export const feature_vox_tank_type: FeatureChoiced = {
   name: 'N² Tank',
   component: FeatureDropdownInput,
 };
+
+export const feature_vox_mask: FeatureChoiced = {
+  name: 'Mask',
+  component: FeatureDropdownInput,
+};

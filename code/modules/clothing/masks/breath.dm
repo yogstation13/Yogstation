@@ -61,16 +61,16 @@
 	species_restricted = list("Vox")
 	flags_cover = NONE
 	visor_flags_cover = NONE
+	actions_types = list()
+
+/obj/item/clothing/mask/breath/vox/attack_self(mob/user)
+	return
+
+/obj/item/clothing/mask/breath/vox/AltClick(mob/user)
+	return
 
 /obj/item/clothing/mask/breath/vox/respirator
 	name = "vox respirator"
 	desc = "A weirdly-shaped breath mask, this one seems to be designed for a vox beak."
 	icon_state = "voxmask2"
 	item_state = "voxmask2"
-	actions_types = list()
-
-/obj/item/clothing/mask/breath/vox/respirator/attack_self(mob/user)
-	return
-
-/obj/item/clothing/mask/breath/vox/respirator/AltClick(mob/user)
-	return

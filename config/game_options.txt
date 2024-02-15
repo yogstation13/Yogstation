@@ -18,7 +18,7 @@ REVIVAL_BRAIN_LIFE -1
 ## Creates Command roles species based exceptions; comma delineated list - /datum/job/[JOB] [SPECIES 1],[SPECIES 2], etc.
 
 JOB_SPECIES_WHITELIST /datum/job/captain human
-JOB_SPECIES_WHITELIST /datum/job/hop human,lizard,plasmaman,ipc,vox
+JOB_SPECIES_WHITELIST /datum/job/hop human,lizard,plasmaman,ipc
 JOB_SPECIES_WHITELIST /datum/job/hos human,lizard,pod,preternis,polysmorph,vox
 JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc,vox
 JOB_SPECIES_WHITELIST /datum/job/rd human,lizard,pod,plasmaman,moth,ethereal,preternis,polysmorph,ipc,vox

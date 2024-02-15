@@ -75,18 +75,36 @@
 	vox.dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
 	vox.update_hair()
 	
-/datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H) // Don't forget your voxygen tank
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox/respirator(H), ITEM_SLOT_MASK)
-	var/obj/item/tank/internal_tank
-	var/tank_pref = H.client?.prefs?.read_preference(/datum/preference/choiced/vox_tank_type)
-	if(tank_pref == "Large N² Tank")
-		internal_tank = new /obj/item/tank/internals/nitrogen
+/datum/species/vox/survival_box_replacement(mob/living/carbon/human/box_holder, obj/item/storage/box/survival_box, list/soon_deleted_items, list/soon_added_items)
+	var/mask_to_replace = /obj/item/clothing/mask/breath/vox
+	if(mask_to_replace in soon_added_items)
+		var/list/possible_masks = list(/obj/item/clothing/mask/breath/vox, /obj/item/clothing/mask/breath/vox/respirator)
+		soon_added_items -= mask_to_replace
+		soon_added_items += pick(possible_masks)
+	..()
+
+/datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE) // Don't forget your voxygen tank
+	if(!H.can_breathe_mask())
+		var/obj/item/clothing/mask/current_mask = H.get_item_by_slot(ITEM_SLOT_MASK)
+		if(!H.equip_to_slot_if_possible(current_mask, ITEM_SLOT_BACKPACK, disable_warning = TRUE))
+			H.put_in_hands(current_mask)
+	var/obj/item/clothing/mask/vox_mask
+	var/mask_pref = H.client?.prefs?.read_preference(/datum/preference/choiced/vox_mask)
+	if(mask_pref == "Respirator")
+		vox_mask = new /obj/item/clothing/mask/breath/vox/respirator
 	else
-		internal_tank = new /obj/item/tank/internals/emergency_oxygen/vox
-	if(!H.equip_to_appropriate_slot(internal_tank))
-		H.put_in_hands(internal_tank)
-	to_chat(H, span_notice("You are now running on nitrogen internals from [internal_tank]. Your species finds oxygen toxic, so you must breathe pure nitrogen."))
-	H.open_internals(internal_tank)
+		vox_mask = new /obj/item/clothing/mask/breath/vox
+	H.equip_to_slot_or_del(vox_mask, ITEM_SLOT_MASK)
+	var/obj/item/tank/internals_tank
+	var/tank_pref = H.client?.prefs?.read_preference(/datum/preference/choiced/vox_tank_type)
+	if(tank_pref == "Large")
+		internals_tank = new /obj/item/tank/internals/nitrogen
+	else
+		internals_tank = new /obj/item/tank/internals/emergency_oxygen/vox
+	if(!H.equip_to_appropriate_slot(internals_tank))
+		H.put_in_hands(internals_tank)
+	to_chat(H, span_notice("You are now running on nitrogen internals from [internals_tank]. Your species finds oxygen toxic, so you must breathe pure nitrogen."))
+	H.open_internals(internals_tank)
 
 /datum/species/vox/get_icon_variant(mob/living/carbon/person_to_check)
 	return person_to_check.dna.features["vox_skin_tone"]

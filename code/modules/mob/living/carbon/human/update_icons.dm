@@ -625,7 +625,7 @@ generate/load female uniform sprites matching all previously decided variables
 		var/previous_state = t_state
 		if(icon_override)
 			file2use = icon_override
-		else if(sprite_sheets?[H?.dna?.species?.name])
+		else if(H.dna.species.name in sprite_sheets)
 			file2use = sprite_sheets[H.dna.species.name]
 		if(!icon_exists(file2use, t_state))
 			file2use = previous_icon

@@ -91,7 +91,7 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	should_generate_icons = TRUE
 	relevant_mutant_bodypart =  "vox_quills"
-	main_feature_name = "Quillstyle"
+	main_feature_name = "Quills"
 
 /datum/preference/choiced/vox_quills/init_possible_values()
 	return generate_vox_side_shots(GLOB.vox_quills_list)
@@ -110,7 +110,7 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	should_generate_icons = TRUE
 	relevant_mutant_bodypart = "vox_facial_quills"
-	main_feature_name = "Facial Quillstyle"
+	main_feature_name = "Facial Quills"
 
 /datum/preference/choiced/vox_facial_quills/init_possible_values()
 	return generate_vox_side_shots(GLOB.vox_facial_quills_list)
@@ -128,18 +128,21 @@
 	savefile_key = "feature_quill_color"
 	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_quills"
+	unique = TRUE
 
 /datum/preference/color/facial_hair_color/vox
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_key = "feature_facial_quill_color"
 	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_facial_quills"
+	unique = TRUE
 
 /datum/preference/color/mutant_color/vox_body_markings_color
 	savefile_key = "feature_body_markings_color"
 	relevant_mutant_bodypart = "vox_body_markings"
 	relevant_species_trait = null
 	blacklisted_species = null
+	unique = TRUE
 
 /datum/preference/color/mutant_color/vox_body_markings_color/is_valid(value)
 	return findtext(value, GLOB.is_color)
@@ -149,11 +152,13 @@
 	relevant_mutant_bodypart = "vox_tail_markings"
 	relevant_species_trait = null
 	blacklisted_species = null
+	unique = TRUE
 
 /datum/preference/choiced/underwear/vox
 	savefile_key = "feature_vox_underwear"
 	relevant_mutant_bodypart = "vox_tail"
 	blacklisted_species = null
+	unique = TRUE
 
 /datum/preference/choiced/underwear/vox/init_possible_values()
 	return generate_values_for_underwear('icons/mob/clothing/species/vox/underwear.dmi', GLOB.underwear_list, list("vox_chest_lime", "vox_r_leg_lime", "vox_l_leg_lime", "vox_r_leg_static", "vox_l_leg_static"), 'icons/mob/species/vox/bodyparts.dmi')
@@ -162,6 +167,7 @@
 	savefile_key = "feature_vox_socks"
 	relevant_mutant_bodypart = "vox_tail"
 	blacklisted_species = null
+	unique = TRUE
 
 /datum/preference/choiced/socks/vox/init_possible_values()
 	return generate_values_for_underwear('icons/mob/clothing/species/vox/socks.dmi', GLOB.socks_list, list("vox_r_leg_lime", "vox_l_leg_lime", "vox_r_leg_static", "vox_l_leg_static"), 'icons/mob/species/vox/bodyparts.dmi')
@@ -171,6 +177,7 @@
 	should_generate_icons = TRUE
 	relevant_mutant_bodypart = "vox_tail"
 	blacklisted_species = null
+	unique = TRUE
 
 /datum/preference/choiced/undershirt/vox/init_possible_values()
 	var/bodyparts_icon = 'icons/mob/species/vox/bodyparts.dmi'
@@ -207,25 +214,41 @@
 /datum/preference/choiced/vox_tank_type
 	savefile_key = "feature_vox_tank_type"
 	relevant_mutant_bodypart = "vox_tail"
-	main_feature_name = "N² Tank"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 
 /datum/preference/choiced/vox_tank_type/init_possible_values()
-	return list("Large N² Tank", "Specialized N² Tank")
+	return list("Large", "Specialized")
 
 /datum/preference/choiced/vox_tank_type/create_default_value()
-	return "Specialized N² Tank"
+	return "Specialized"
 
 /datum/preference/choiced/vox_tank_type/apply_to_human()
+	return
+
+/datum/preference/choiced/vox_mask
+	savefile_key = "feature_vox_mask"
+	relevant_mutant_bodypart = "vox_tail"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+
+/datum/preference/choiced/vox_mask/init_possible_values()
+	return list("Breath Mask", "Respirator")
+
+/datum/preference/choiced/vox_mask/create_default_value()
+	return "Breath Mask"
+
+/datum/preference/choiced/vox_mask/apply_to_human()
 	return
 
 /datum/preference/choiced/hair_gradient/vox
 	savefile_key = "feature_quill_gradientstyle"
 	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_quills"
+	unique = TRUE
 /datum/preference/color/hair_gradient/vox
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_quill_gradientcolor"
 	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_quills"
+	unique = TRUE

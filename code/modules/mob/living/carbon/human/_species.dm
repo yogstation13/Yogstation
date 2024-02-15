@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///yogs - audio of a species' scream
 	var/screamsound  //yogs - grabs scream from screamsound list or string
 	var/husk_color = "#A6A6A6"
-	var/list/survival_box_replacements = list(items_to_delete = list(), new_items = list())
+	var/list/survival_box_replacements = list(/*items_to_delete= list(), new_items= list()*/)
 	var/creampie_id = "creampie_human"
 	/// The visual effect of the attack.
 	var/attack_effect = ATTACK_EFFECT_PUNCH
@@ -837,10 +837,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(HAS_TRAIT(H, TRAIT_SKINNY))
 					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
 				else
-					var/old_icon = underwear.icon
-					underwear.icon = underwear.sprite_sheets?[H.dna.species.name]
-					if(!icon_exists(underwear.sprite_sheets?[H.dna.species.name], underwear.icon_state))
-						underwear.icon = old_icon
+					if(H.dna.species.name in underwear.sprite_sheets)
+						if(icon_exists(underwear.sprite_sheets[H.dna.species.name], underwear.icon_state))
+							underwear.icon = underwear.sprite_sheets[H.dna.species.name]
 					standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 
 		if(H.undershirt)
@@ -851,19 +850,17 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
-					var/old_icon = undershirt.icon
-					undershirt.icon = undershirt.sprite_sheets[H.dna.species.name]
-					if(!icon_exists(undershirt.sprite_sheets?[H.dna.species.name], undershirt.icon_state))
-						undershirt.icon = old_icon
+					if(H.dna.species.name in undershirt.sprite_sheets)
+						if(icon_exists(undershirt.sprite_sheets[H.dna.species.name], undershirt.icon_state))
+							undershirt.icon = undershirt.sprite_sheets[H.dna.species.name]
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 
 		if(H.socks && H.get_num_legs(FALSE) >= 2 && !(DIGITIGRADE in species_traits))
 			var/datum/sprite_accessory/socks/socks = GLOB.socks_list[H.socks]
 			if(socks)
-				var/old_icon = socks.icon
-				socks.icon = socks.sprite_sheets[H.dna.species.name]
-				if(!icon_exists(socks.sprite_sheets?[H.dna.species.name], socks.icon_state))
-					socks.icon = old_icon
+				if(H.dna.species.name in socks.sprite_sheets)
+					if(icon_exists(socks.sprite_sheets[H.dna.species.name], socks.icon_state))
+						socks.icon = socks.sprite_sheets[H.dna.species.name]
 				standing += mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
 
 	if(standing.len)
@@ -2523,11 +2520,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_special_statics(mob/living/carbon/person_to_check)
 	return list()
 
-/datum/species/proc/survival_box_replacement(obj/item/storage/box/survival_box)
-	for(var/item as anything in survival_box_replacements["items_to_delete"])
-		var/obj/item/item_to_delete = locate(item) in survival_box
-		qdel(item_to_delete)
-	for(var/item as anything in survival_box_replacements["new_items"])
+/datum/species/proc/survival_box_replacement(mob/living/carbon/human/box_holder, obj/item/storage/box/survival_box, list/soon_deleted_items, list/soon_added_items)
+	for(var/item as anything in soon_deleted_items)
+		var/obj/item/item_to_delete = (locate(item) in survival_box)
+		if(item_to_delete)
+			qdel(item_to_delete)
+	for(var/item as anything in soon_added_items)
 		new item(survival_box)
 
 /datum/species/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
