@@ -189,7 +189,7 @@
 		var/insertpos = rand(1, message_list.len - 1)
 		var/inserttext = message_list[insertpos]
 
-		if(!(copytext(inserttext, -3) == "..."))//3 == length("...")
+		if(!(copytext_char(inserttext, -3) == "..."))//3 == length("...") //Dripstation edit
 			message_list[insertpos] = inserttext + "..."
 
 		if(prob(20) && message_list.len > 3)

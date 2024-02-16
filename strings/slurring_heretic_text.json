@@ -2,31 +2,31 @@
 	"replacements": {
 		"characters": {
 			"common": {
-				"o": "u",
+				"о": "у",
 				"t": "ch",
-				"a": "ah",
-				"c": "th",
-				"i": "ks",
-				"m": "nth"
+				"а": "аэ",
+				"с": "з",
+				"и": "кс",
+				"м": "ннмм"
 			},
 			"uncommon": {
-				" ": " endless... ",
-				"H": " THE HANDS... ",
-				"h": " BRIGHT ",
-				"s": " LEAK ",
-				"r": " CRACK "
+				" ": " бесконечность... ",
+				"H": " РУКИ... ",
+				"h": " ЯРКИЙ ",
+				"s": " ТЕЧЬ",
+				"r": " РАЗЛОМ "
 			}
 		},
 		"string_replacements": [
 			"'",
-			"br",
-			"th",
-			"see",
-			"etch"
+			"бр",
+			"з",
+			"сии",
+			"ич"
 		],
 		"string_additions": [
-			"ah",
-			"wth"
+			"ах",
+			"втх"
 		]
 	}
 }

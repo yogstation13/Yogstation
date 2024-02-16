@@ -9,4 +9,4 @@
 
 /datum/language/mouse/scramble(input)
 	. = "Squeak"
-	. += (copytext(input, length(input)) == "?") ? "?" : "!"
+	. += (copytext_char(input, length(input)) == "?") ? "?" : "!" //Dripstation edit

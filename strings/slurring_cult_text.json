@@ -2,26 +2,25 @@
 	"replacements": {
 		"characters": {
 			"common": {
-				"o": "u",
-				"t": "ch",
-				"a": "ah",
-				"u": "oo",
-				"c": " NAR ",
-				"s": " SIE "
+				"о": "у",
+				"а": "аэ",
+				"к": "х",
+				"ц": " НАР ",
+				"с": " СИ "
 			},
 			"uncommon": {
-				" ": " no hope... ",
-				"H": " IT COMES... "
+				" ": " надежды нет... ",
+				"H": " ОНО ИДЁТ... "
 			}
 		},
 		"string_replacements": [
 			"'",
-			"fth",
-			"nglu",
-			"glor"
+			"фх",
+			"нглу",
+			"глор"
 		],
 		"string_additions": [
-			"agn"
+			"агн"
 		]
 	}
 }

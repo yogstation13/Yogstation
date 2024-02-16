@@ -56,6 +56,7 @@
   *
   * This proc is dangerously laggy, avoid it or die
   */
+/* //Dripstation edit - russian language support
 /proc/stars(n, pr)
 	n = html_encode(n)
 	if (pr == null)
@@ -233,6 +234,7 @@
 
 
 
+*/
 ///Shake the camera of the person viewing the mob SO REAL!
 /proc/shake_camera(mob/M, duration, strength=1)
 	if(!M || !M.client || duration < 1)
