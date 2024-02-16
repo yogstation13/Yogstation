@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - imageadd: "Tweaked female neck pixel to make clothes look better on non-humans"
