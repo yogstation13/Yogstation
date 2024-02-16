@@ -7,10 +7,10 @@ SUBSYSTEM_DEF(lighting)
 	var/static/list/corners_queue = list() // List of lighting corners queued for update.
 	var/static/list/objects_queue = list() // List of lighting objects queued for update.
 	var/static/list/current_sources = list()
-// #ifdef VISUALIZE_LIGHT_UPDATES
-// 	var/allow_duped_values = FALSE
-// 	var/allow_duped_corners = FALSE
-// #endif
+#ifdef VISUALIZE_LIGHT_UPDATES
+	var/allow_duped_values = FALSE
+	var/allow_duped_corners = FALSE
+#endif
 	loading_points = 6 SECONDS // Yogs -- loading times
 
 /datum/controller/subsystem/lighting/stat_entry(msg)
