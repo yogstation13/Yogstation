@@ -4,10 +4,10 @@
 
 
 /obj/item/gun/magic/wire/harpoon
-	name = "Whalebone Harpoon Head"
-	desc = "A harpoon head made of pure whalebone, hits like a freighter."
+	name = "Harpoon Head"
+	desc = "A harpoon head made of pure plasteel, hits like a freighter."
 	ammo_type = /obj/item/ammo_casing/magic/wire/harpoon
-	icon_state = "hook"
+	icon_state = "gasharpoon"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -22,11 +22,16 @@
 	desc = "A harpoon."
 	projectile_type = /obj/projectile/wire/harpoon
 	caliber = CALIBER_HOOK
-	icon_state = "hook"
+	icon_state = "harpoonhead"
+
+/obj/projectile/wire/harpoon/fire(setAngle)
+	if(firer)
+		wire = firer.Beam(src, icon_state = "harpoonrope", time = INFINITY, maxdistance = INFINITY)
+	..()
 
 /obj/projectile/wire/harpoon
 	name = "harpoon"
-	icon_state = "hook"
+	icon_state = "harpoonhead"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	pass_flags = PASSTABLE
 	damage = 10
@@ -41,12 +46,12 @@
 /datum/action/cooldown/buster/megabuster/megaharpoon/l/Activate()
 	var/obj/item/gun/magic/wire/harpoon/B = new()
 	owner.visible_message(span_userdanger("[owner]'s arm lets out a harrowing sound!"))
-	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
+	playsound(owner,'sound/weapons/bladeslice.ogg', 60, 1)
 	if(do_after(owner, 2 SECONDS, owner, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		if(!owner.put_in_l_hand(B))
 			to_chat(owner, span_warning("You can't do this with your left hand full!"))
 		else
-			owner.visible_message(span_danger("[owner]'s arm begins billowing out steam!"))
+			owner.visible_message(span_danger("[owner]'s readies the harpoon to fire!"))
 			if(owner.active_hand_index % 2 == 0)
 				owner.swap_hand(0)
 			StartCooldown()

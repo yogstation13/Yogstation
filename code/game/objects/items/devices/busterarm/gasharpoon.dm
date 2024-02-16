@@ -1,17 +1,17 @@
 /obj/item/clothing/gloves/gasharpoon
 	name = "gasharpoon"
 	desc = "A metal gauntlet with a harpoon attatched, powered by gasoline and traditionally used by space-whalers."
-	///reminder to channge all thiss
+	///reminder to channge all this -- I changed it :)
 	icon = 'icons/obj/traitor.dmi'
-	icon_state = "powerfist"
-	item_state = "powerfist"
+	icon_state = "gasharpoon"
+	item_state = "gasharpoon"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	attack_verb = list("sliced", "diced", "pierced")
+	attack_verb = list("harpooned", "gouged", "pierced")
 	force = 10
 	throwforce = 10
 	throw_range = 7
-	strip_delay = 120 SECONDS
+	strip_delay = 15 SECONDS
 	cold_protection = HANDS
 	heat_protection = HANDS
 	w_class = WEIGHT_CLASS_NORMAL
@@ -40,13 +40,12 @@
 	if(!user || user.a_intent!=INTENT_HARM || (!isliving(target) && !isobj(target)) || isitem(target))
 		return
 	do_attack(user, target, force * 2)
-	playsound(loc, 'sound/weapons/mechasword.ogg', 50, 1)
-	target.visible_message(span_danger("[user]'s gasharpoon lets out a harrowing scream as [user.p_they()] slic[user.p_es()] [target.name]!"))
+	playsound(loc, 'sound/misc/desceration-01.ogg', 50, 1)
+	target.visible_message(span_danger("[user]'s gasharpoon pierces through [target.name]!"))
 	return COMPONENT_NO_ATTACK_HAND
 
 /obj/item/clothing/gloves/gasharpoon/attack(mob/living/target, mob/living/user)
 	power_harpoon(user, target)
-
 
 /obj/item/clothing/gloves/gasharpoon/proc/do_attack(mob/living/user, atom/target, punch_force)
 	if(isliving(target))
