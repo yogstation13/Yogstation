@@ -78,6 +78,8 @@
 						return BULLET_ACT_BLOCK
 					else
 						P.firer = src
+						if(P.hitscan)
+							P.store_hitscan_collision(P.trajectory.copy_to())
 						P.setAngle(rand(0, 360))//SHING
 						return BULLET_ACT_FORCE_PIERCE
 
@@ -86,6 +88,8 @@
 			if(check_reflect(def_zone)) // Checks if you've passed a reflection% check
 				visible_message(span_danger("The [P.name] gets reflected by [src]!"), \
 								span_userdanger("The [P.name] gets reflected by [src]!"))
+				if(P.hitscan) // hitscan check
+					P.store_hitscan_collision(P.trajectory.copy_to())
 				// Find a turf near or on the original location to bounce to
 				if(!isturf(loc)) //Open canopy mech (ripley) check. if we're inside something and still got hit
 					P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.

@@ -57,7 +57,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	// Used for displaying in ghost chat, without changing the actual name
 	// of the mob
 	var/deadchat_name
-	var/datum/orbit_menu/orbit_menu
+	var/datum/orbit_menu/orbit_ui
+	var/datum/jump_menu/jump_ui
 	var/datum/spawners_menu/spawners_menu
 
 	///Action to quickly unobserve someone
@@ -182,7 +183,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	updateallghostimages()
 
-	QDEL_NULL(orbit_menu)
+	QDEL_NULL(orbit_ui)
+	QDEL_NULL(jump_ui)
 	QDEL_NULL(spawners_menu)
 	return ..()
 
@@ -435,42 +437,22 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/proc/dead_tele()
 	set category = "Ghost"
 	set name = "Teleport"
-	set desc= "Teleport to a location"
-	if(!isobserver(usr))
-		to_chat(usr, span_warning("Not when you're not dead!"))
-		return
-	var/list/filtered = list()
-	for(var/area/A as anything in get_sorted_areas())
-		if(!A.hidden)
-			filtered += A
-	var/area/thearea = tgui_input_list(usr, "Area to jump to", "BOOYEA", filtered)
+	set desc= "Ghostly Magic"
 
-	if(!thearea)
-		return
-	if(!isobserver(usr))
-		to_chat(usr, span_warning("Not when you're not dead!"))
-		return
+	if(!jump_ui)
+		jump_ui = new(src)
 
-	var/list/L = list()
-	for(var/turf/T in get_area_turfs(thearea.type))
-		L+=T
-
-	if(!L || !length(L))
-		to_chat(usr, span_warning("No area available."))
-		return	
-
-	usr.forceMove(pick(L))
-	update_parallax_contents()
+	jump_ui.ui_interact(src)
 
 /mob/dead/observer/verb/follow()
 	set category = "Ghost"
 	set name = "Orbit" // "Haunt"
 	set desc = "Follow and orbit a mob."
 
-	if(!orbit_menu)
-		orbit_menu = new(src)
+	if(!orbit_ui)
+		orbit_ui = new(src)
 
-	orbit_menu.ui_interact(src)
+	orbit_ui.ui_interact(src)
 
 // This is the ghost's follow verb with an argument
 /mob/dead/observer/proc/ManualFollow(atom/movable/target)
@@ -507,32 +489,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	//restart our floating animation after orbit is done.
 	pixel_y = 0
 	animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
-
-/mob/dead/observer/verb/jump_to_mob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
-	set category = "Ghost"
-	set name = "Jump to Mob"
-	set desc = "Teleport to a mob"
-
-	if(isobserver(usr)) //Make sure they're an observer!
-
-
-		var/list/possible_destinations = getpois(mobs_only = TRUE) //List of possible destinations (mobs)
-		var/target = null	   //Chosen target.
-
-		target = tgui_input_list(usr, "Please, select a player!", "Jump to Mob", possible_destinations)
-
-		if (!target)//Make sure we actually have a target
-			return
-		else
-			var/mob/M = possible_destinations[target] //Destination mob
-			var/mob/A = src			 //Source mob
-			var/turf/T = get_turf(M) //Turf of the destination mob
-
-			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
-				A.forceMove(T)
-				A.update_parallax_contents()
-			else
-				to_chat(A, "This mob is not located in the game world.")
 
 /mob/dead/observer/verb/change_view_range()
 	set category = "Ghost"

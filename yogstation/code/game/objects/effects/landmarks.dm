@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 30, "Engine Nuclear Reactor" = 20)
+	template_names = list("Engine SM" = 40, "Engine Singulo And Tesla" = 20, "Engine Nuclear Reactor" = 20,"Engine TEG" = 20)
 
 /obj/effect/landmark/stationroom/box/engine/choose()
 	. = ..()
@@ -123,6 +123,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
 			return "Engine Nuclear Reactor"
+		if(5)
+			return "Engine TEG"
 
 
 /obj/effect/landmark/stationroom/box/testingsite
@@ -148,7 +150,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/meta/engine
-	template_names = list("Meta SM" = 25, "Meta Nuclear Reactor" = 75) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
+	template_names = list("Meta SM" = 25, "Meta Nuclear Reactor" = 45, "Meta TEG" = 25) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
 
 /obj/effect/landmark/stationroom/meta/engine/choose()
 	. = ..()
@@ -162,6 +164,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
 			return "Meta Nuclear Reactor"
+		if(5)
+			return "Meta TEG"
 
 
 /obj/effect/landmark/stationroom/maint/

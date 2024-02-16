@@ -71,7 +71,7 @@
 
 /obj/structure/lattice/clockwork
 	name = "cog lattice"
-	desc = "A lightweight support lattice. These hold the Justicar's station together."
+	desc = "A lightweight support lattice. These hold the Justiciar's station together."
 	icon = 'icons/obj/smooth_structures/lattice_clockwork.dmi'
 
 /obj/structure/lattice/clockwork/Initialize(mapload)
