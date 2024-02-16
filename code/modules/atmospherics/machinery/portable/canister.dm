@@ -43,7 +43,6 @@
 		"generic striped" = /obj/machinery/portable_atmospherics/canister/generic/stripe,
 		"generic hazard" = /obj/machinery/portable_atmospherics/canister/generic/hazard,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"danger" = /obj/machinery/portable_atmospherics/canister/fusion_test,
 		"n2" = /obj/machinery/portable_atmospherics/canister/nitrogen,
 		"o2" = /obj/machinery/portable_atmospherics/canister/oxygen,
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
