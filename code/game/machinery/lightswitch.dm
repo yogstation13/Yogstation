@@ -167,6 +167,7 @@
 				W.play_tool_sound(src)
 				to_chat(user, span_notice("You remove the frame."))
 				new /obj/item/wallframe/light_switch(loc)
+				qdel(src)
 				return
 		if(LIGHT_WIRE)
 			if(W.tool_behaviour == TOOL_WIRECUTTER && wires.is_cut(WIRE_POWER))

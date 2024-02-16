@@ -382,6 +382,17 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		return
 	return ..()
 
+/mob/living/simple_animal/hostile/guardian/proc/break_cuffs(mob/living/carbon/target, obj/item/restraints/cuffs)
+	. = TRUE
+	if (!target || !istype(target) || !cuffs || !istype(cuffs))
+		return FALSE
+	if (stats.damage < cuffs.break_strength)
+		to_chat(src, span_warning("You are not strong enough to free your master from their restraints..."))
+		return FALSE
+	playsound(target, 'sound/effects/bang.ogg', 50, TRUE)
+	visible_message(span_danger("[src] smashes \the [cuffs] restraining [target]!"))
+	qdel(cuffs)
+
 /mob/living/simple_animal/hostile/guardian/AttackingTarget()
 	if (transforming)
 		to_chat(src, span_italics(span_holoparasite("No... no... you can't!")))
@@ -399,6 +410,22 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 			to_chat(src, span_bolddanger("You can't attack yourself!"))
 			return FALSE
 		else if (target == summoner?.current)
+			if (iscarbon(target))
+				var/mob/living/carbon/stando_master = target
+				if (stando_master.handcuffed || stando_master.legcuffed)
+					if (stando_master.handcuffed && break_cuffs(stando_master, stando_master.handcuffed))
+						stando_master.handcuffed = null
+						stando_master.update_handcuffed()
+						for (var/zone in list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+							stando_master.apply_damage(5, BRUTE, zone)
+					else if (stando_master.legcuffed && break_cuffs(stando_master, stando_master.legcuffed)) // you gotta do it twice for both hand and leg cuffs
+						stando_master.legcuffed = null
+						stando_master.update_inv_legcuffed()
+						for (var/zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
+							stando_master.apply_damage(5, BRUTE, zone)
+					if (stando_master.pulledby && stando_master.pulledby != src)
+						stando_master.pulledby.stop_pulling()
+					return
 			to_chat(src, span_bolddanger("You can't attack your summoner!"))
 			return FALSE
 		else if (istype(target, /mob/living/simple_animal/hostile/guardian))
