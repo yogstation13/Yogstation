@@ -130,7 +130,15 @@
 	var/light_intensity = 1
 	var/charge_weld = 25 //amount of charge used up to start action (multiplied by amount) and per progress_flash_divisor ticks of welding
 	/// Contains the type paths for installed upgrades
-	var/installed_upgrades = list()
+	var/list/installed_upgrades = list()
+	var/mod_capacity = 100
+
+/obj/item/gun/energy/plasmacutter/proc/get_remaining_mod_capacity()
+	. = mod_capacity
+	for(var/obj/item/upgrade/plasmacutter/a in installed_upgrades)
+		. -= a.cost
+	return .
+
 
 /obj/item/gun/energy/plasmacutter/mini
 	name = "mini plasma cutter"
@@ -139,6 +147,7 @@
 	item_state = "plasmacutter_mini"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
 	toolspeed = 2
+	mod_capacity = 50
 
 /obj/item/gun/energy/plasmacutter/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
@@ -149,6 +158,18 @@
 	. = ..()
 	if(cell)
 		. += span_notice("[src] is [round(cell.percent())]% charged.")
+	. += span_boldnotice("[get_remaining_mod_capacity()]%</b> mod capacity remaining.")
+	for(var/obj/item/upgrade/plasmacutter/a in installed_upgrades)
+		. += span_notice("There is \a [a] installed, using [span_bold("[a.cost]%")] capacity.")
+
+/obj/item/gun/energy/plasmacutter/proc/modify_projectile(obj/projectile/plasma/K)
+	K.gun = src //do something special on-hit, easy!
+	for(var/obj/item/upgrade/plasmacutter/A in installed_upgrades)
+		A.modify_projectile(K)
+
+/obj/item/gun/energy/plasmacutter/proc/modify_casing(obj/item/ammo_casing/energy/plasma/C)
+	for(var/obj/item/upgrade/plasmacutter/A in installed_upgrades)
+		A.modify_casing(C)
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	var/charge_multiplier = 0 //2 = Refined stack, 1 = Ore
@@ -233,14 +254,34 @@
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter)
 
-
-
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	. = ..()
-	if(try_upgrade(I, user))
+	if(istype(I, /obj/item/upgrade/plasmacutter))
+		var/obj/item/upgrade/plasmacutter/PC = I
+		if(!PC.stackable && is_type_in_list(PC, installed_upgrades))
+			to_chat(user, span_notice("[I] has already been installed in [src]"))
+			return
 		to_chat(user, span_notice("You install [I] into [src]"))
 		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
-		qdel(I)
+		installed_upgrades += I
+		PC.install(src)
+		I.forceMove(src)
+
+/obj/item/gun/energy/plasmacutter/crowbar_act(mob/living/user, obj/item/I)
+	. = TRUE
+	if(installed_upgrades.len)
+		to_chat(user, span_notice("You pry the modifications out."))
+		I.play_tool_sound(src, 100)
+		for(var/obj/item/upgrade/plasmacutter/M in installed_upgrades)
+			M.forceMove(drop_location()) // Uninstallation handled in Exited().
+	else
+		to_chat(user, span_notice("There are no modifications currently installed."))
+
+/obj/item/gun/energy/plasmacutter/Exited(atom/movable/gone, direction)
+	..()
+	if(gone in installed_upgrades)
+		var/obj/item/upgrade/plasmacutter/MK = gone
+		MK.uninstall(src)
 
 /obj/item/gun/energy/plasmacutter/scatter/mega
 	name = "mega plasma cutter shotgun"
@@ -272,14 +313,30 @@
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
 
+	var/cost = 10
+	var/stackable = FALSE
+
+/obj/item/upgrade/plasmacutter/proc/modify_projectile(obj/projectile/plasma/K)
+
+/obj/item/upgrade/plasmacutter/proc/modify_casing(obj/item/ammo_casing/energy/plasma/C)
+
+/obj/item/upgrade/plasmacutter/proc/install(obj/item/gun/energy/plasmacutter/P)
+
+/obj/item/upgrade/plasmacutter/proc/uninstall(obj/item/gun/energy/plasmacutter/P)
+
 /obj/item/upgrade/plasmacutter/defuser
 	name = "plasma cutter defusal kit"
 	desc = "An upgrade for plasma shotguns that allows it to automatically defuse gibtonite."
 
+/obj/item/upgrade/plasmacutter/defuser/modify_projectile(obj/projectile/plasma/K)
+	K.defuse = TRUE
+
 /obj/item/upgrade/plasmacutter/capacity
 	name = "plasma cutter capacity kit"
 	desc = "An upgrade for plasma shotguns that doubles the tank capacity."
+	cost = 20
 
+<<<<<<< Updated upstream
 /obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I, mob/user)
 	if(I.type in installed_upgrades)
 		to_chat(user, span_notice("[I] has already been installed in [src]"))
@@ -300,10 +357,34 @@
 		installed_upgrades += I.type
 		return TRUE
 	return FALSE
+=======
+/obj/item/upgrade/plasmacutter/capacity/install(obj/item/gun/energy/plasmacutter/P)
+	P.cell.maxcharge = initial(P.cell.maxcharge)*2
 
-//no upgrading this one either (for now)
-/obj/item/gun/energy/plasmacutter/scatter/mega/try_upgrade(obj/item/I, mob/user)
-	return
+/obj/item/upgrade/plasmacutter/capacity/uninstall(obj/item/gun/energy/plasmacutter/P)
+	P.cell.maxcharge = initial(P.cell.maxcharge)
+	P.cell.charge = min(P.cell.charge, P.cell.maxcharge)
+>>>>>>> Stashed changes
+
+/obj/item/upgrade/plasmacutter/cooldown
+	name = "plasma cutter cooldown kit"
+	desc = "An upgrade for plasma shotguns that reduces the cooldown."
+	cost = 40
+	stackable = TRUE
+
+/obj/item/upgrade/plasmacutter/cooldown/install(obj/item/gun/energy/plasmacutter/P)
+	P.fire_delay *= 0.5
+
+/obj/item/upgrade/plasmacutter/cooldown/uninstall(obj/item/gun/energy/plasmacutter/P)
+	P.fire_delay *= 2
+
+/obj/item/upgrade/plasmacutter/range
+	name = "plasma cutter range kit"
+	desc = "An upgrade for plasma shotguns that increases the range."
+	cost = 30
+
+obj/item/upgrade/plasmacutter/range/modify_projectile(obj/projectile/plasma/K)
+	K.range += 4
 
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"

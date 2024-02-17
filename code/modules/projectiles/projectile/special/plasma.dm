@@ -16,6 +16,9 @@
 	light_color = LIGHT_COLOR_PURPLE
 	light_range = 2
 
+	var/obj/item/gun/energy/plasmacutter/gun
+	var/defuse = FALSE
+
 /obj/projectile/plasma/weak
 	name = "weak plasma blast"
 	icon_state = "plasmacutter_weak"
@@ -34,6 +37,9 @@
 //yogs end
 /obj/projectile/plasma/on_hit(atom/target)
 	. = ..()
+	if(defuse && istype(target, /turf/closed/mineral/gibtonite))
+		var/turf/closed/mineral/gibtonite/gib = target
+		gib.defuse()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
 		M.attempt_drill(firer)
@@ -51,12 +57,6 @@
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
 // yogs end
-
-/obj/projectile/plasma/scatter/adv/on_hit(atom/target)
-	if(istype(target, /turf/closed/mineral/gibtonite))
-		var/turf/closed/mineral/gibtonite/gib = target
-		gib.defuse()
-	. = ..()
 
 /obj/projectile/plasma/adv
 	damage = 7
