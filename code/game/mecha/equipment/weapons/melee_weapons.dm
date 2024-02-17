@@ -455,7 +455,7 @@
 	next_lunge = world.time + base_lunge_cd * (chassis.melee_cooldown * check_eva())	//If we can attack faster we can lunge faster too
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/razerfang
-	name = "\improper LIGMA \"Razerfang\" Dual Daggers"	//Get a better name
+	name = "\improper GAT-98 \"Razerfang\" Dual Daggers"
 	desc = "A pair of short, hollow blades forged of exceptionally hard metal, these weapons are capable of injecting venom into a target on a successful hit."
 	icon_state = "mecha_razer"
 	gender = PLURAL
