@@ -363,4 +363,128 @@ ipc martial arts stuff
 		return TRUE
 	return FALSE
 
+
+/*
+* S.E.L.F. movement specific IPCs
+*/
+/datum/species/ipc/self
+	id = "self ipc"
+	speedmod = -0.1
+	armor = 10
+	punchdamagelow = 5
+	punchdamagehigh = 12
+	punchstunthreshold = 12
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
+
+//infiltrators
+/datum/species/ipc/self/insurgent
+	id = "self insurgent"
+	var/disguise_fail_health = 50 //When their health gets to this level their synthflesh partially falls off
+	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
+	var/list/initial_species_traits //for getting these values back for assume_disguise()
+	var/list/initial_inherent_traits
+	var/list/initial_mutant_bodyparts
+	var/list/initial_default_features
+	var/list/initial_step_sounds
+	var/list/initial_walk_sound
+	
+/datum/species/ipc/self/insurgent/New()
+	initial_species_traits = species_traits.Copy()
+	initial_inherent_traits = inherent_traits.Copy()
+	initial_mutant_bodyparts = mutant_bodyparts.Copy()
+	initial_default_features = default_features.Copy()
+	initial_step_sounds = special_step_sound.Copy()
+	initial_walk_sounds = special_walk_sound.Copy()
+	
+	var/list/allowed_species = list() //only pick an organic species that's technically attainable by players
+	for(var/stype in subtypesof(/datum/species))
+		var/datum/species/X = stype
+		if(initial(X.changesource_flags) & SLIME_EXTRACT && X.inherent_biotypes & (MOB_ORGANIC|MOB_HUMANOID))
+			allowed_species += stype
+
+	var/datum/species/selected = pick(allowed_species)
+	fake_species = new selected()
+	..()
+
+/datum/species/ipc/self/insurgent/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	..()
+	assume_disguise(H)
+	
+/datum/species/ipc/self/insurgent/proc/assume_disguise(mob/living/carbon/human/H)
+	if(fake_species && istype(fake_species) && H.health > disguise_fail_health)
+		name = fake_species.name
+		say_mod = fake_species.say_mod
+		sexes = fake_species.sexes
+		species_traits = initial_species_traits.Copy()
+		inherent_traits = initial_inherent_traits.Copy()
+		species_traits |= fake_species.species_traits
+		inherent_traits |= fake_species.inherent_traits
+		attack_verb = fake_species.attack_verb
+		attack_sound = fake_species.attack_sound
+		miss_sound = fake_species.miss_sound
+		mutant_bodyparts = fake_species.mutant_bodyparts.Copy()
+		mutant_organs = fake_species.mutant_organs.Copy()
+		default_features = fake_species.default_features.Copy()
+		nojumpsuit = fake_species.nojumpsuit
+		no_equip = fake_species.no_equip.Copy()
+		limbs_id = fake_species.limbs_id
+		use_skintones = fake_species.use_skintones
+		fixed_mut_color = fake_species.fixed_mut_color
+		hair_color = fake_species.hair_color
+		screamsound = fake_species.screamsound
+		bubble_icon = fake_species.bubble_icon // beep boop
+		special_step_sounds = fake_species.initial_step_sound.Copy()
+		special_walk_sounds = fake_species.initial_walk_sound.Copy()
+	else
+		name = initial(name)
+		say_mod = initial(say_mod)
+		species_traits = initial_species_traits.Copy()
+		inherent_traits = initial_inherent_traits.Copy()
+		attack_verb = initial(attack_verb)
+		attack_sound = initial(attack_sound)
+		miss_sound = initial(miss_sound)
+		mutant_bodyparts = initial_mutant_bodyparts
+		default_features = initial_default_features
+		nojumpsuit = initial(nojumpsuit)
+		screamsound = initial(screamsound)
+		bubble_icon = initial(bubble_icon) // beep boop
+		special_step_sounds = initial_step_sound.Copy()
+		special_walk_sounds = initial_walk_sound.Copy()
+		no_equip = list()
+		limbs_id = "synth"
+		use_skintones = 0
+		sexes = FALSE
+		fixed_mut_color = ""
+		hair_color = ""
+
+	for(var/X in H.bodyparts) //propagates the damage_overlay changes
+		var/obj/item/bodypart/BP = X
+		BP.update_limb()
+	H.update_body_parts() //to update limb icon cache with the new damage overlays
+
+//Proc redirects:
+//Passing procs onto the fake_species, to ensure we look as much like them as possible
+/datum/species/ipc/self/insurgent/handle_hair(mob/living/carbon/human/H, forced_colour)
+	if(fake_species)
+		fake_species.handle_hair(H, forced_colour)
+	else
+		return ..()
+
+/datum/species/ipc/self/insurgent/handle_body(mob/living/carbon/human/H)
+	if(fake_species)
+		fake_species.handle_body(H)
+	else
+		return ..()
+
+/datum/species/ipc/self/insurgent/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
+	if(fake_species)
+		fake_species.handle_body(H,forced_colour)
+	else
+		return ..()
+
+/datum/species/ipc/self/insurgent/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+	. = ..()
+	if(.)
+		assume_disguise(H)
+
 #undef CONSCIOUSAY
