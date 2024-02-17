@@ -178,48 +178,44 @@
 		return TRUE
 	return FALSE
 
-/mob/living/silicon/proc/statelaws(force = 0)
+/mob/living/silicon/proc/statelaws(force = 0, datum/ai_laws/alternative_lawset)
 	laws_sanity_check()
 
 	//"radiomod" is inserted before a hardcoded message to change if and how it is handled by an internal radio.
 	say("[radiomod] Current Active Laws:")
 	sleep(1 SECONDS)
-
-	if(laws.devil && laws.devil.len)
-		for(var/index = 1, index <= laws.devil.len, index++)
+	
+	var/datum/ai_laws/stated_laws = isnull(alternative_lawset) ? laws : alternative_lawset
+	if(stated_laws.devil && stated_laws.devil.len)
+		for(var/index = 1, index <= stated_laws.devil.len, index++)
 			if(force || laws.devilstate[index])
-				say("[radiomod] 666. [laws.devil[index]]")
+				say("[radiomod] 666. [stated_laws.devil[index]]")
 				sleep(1 SECONDS)
-
-	if(laws.zeroth && (force || laws.zerothstate))
+	if(stated_laws.zeroth && (force || stated_laws.zerothstate))
 		say("[radiomod] 0. [laws.zeroth]")
 		sleep(1 SECONDS)
-
-	for (var/index = 1, index <= laws.hacked.len, index++)
-		var/law = laws.hacked[index]
+	for (var/index = 1, index <= stated_laws.hacked.len, index++)
+		var/law = stated_laws.hacked[index]
 		var/num = ionnum()
-		if(length(law) > 0 && (force || laws.hackedstate[index]) )
+		if(length(law) > 0 && (force || stated_laws.hackedstate[index]) )
 			say("[radiomod] [num]. [law]")
 			sleep(1 SECONDS)
-
-	for (var/index = 1, index <= laws.ion.len, index++)
-		var/law = laws.ion[index]
+	for (var/index = 1, index <= stated_laws.ion.len, index++)
+		var/law = stated_laws.ion[index]
 		var/num = ionnum()
-		if(length(law) > 0 && (force || laws.ionstate[index]) )
+		if(length(law) > 0 && (force || stated_laws.ionstate[index]) )
 			say("[radiomod] [num]. [law]")
 			sleep(1 SECONDS)
-
 	var/number = 1
-	for (var/index = 1, index <= laws.inherent.len, index++)
-		var/law = laws.inherent[index]
-		if(length(law) > 0 && (force || laws.inherentstate[index]) )
+	for (var/index = 1, index <= stated_laws.inherent.len, index++)
+		var/law = stated_laws.inherent[index]
+		if(length(law) > 0 && (force || stated_laws.inherentstate[index]) )
 			say("[radiomod] [number]. [law]")
 			number++
 			sleep(1 SECONDS)
-
-	for (var/index = 1, index <= laws.supplied.len, index++)
-		var/law = laws.supplied[index]
-		if(length(law) > 0 && (force || laws.suppliedstate[index]) )
+	for (var/index = 1, index <= stated_laws.supplied.len, index++)
+		var/law = stated_laws.supplied[index]
+		if(length(law) > 0 && (force || stated_laws.suppliedstate[index]) )
 			say("[radiomod] [number]. [law]")
 			number++
 			sleep(1 SECONDS)

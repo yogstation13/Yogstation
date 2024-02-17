@@ -229,11 +229,26 @@
 	var/list/datum/ai_laws/admin_laws
 	/// All laws that players can view/transfer.
 	var/list/datum/ai_laws/player_laws
+	/// A seperate set of laws that can be used to spread misinformation.
+	var/datum/ai_laws/fake_laws
+	var/viewing_fake_laws = FALSE
+
 	var/mob/living/silicon/owner = null
 
 /datum/law_manager/New(mob/living/silicon/S)
 	..()
 	owner = S
+	
+	fake_laws = new /datum/ai_laws
+	fake_laws.set_laws_config()
+	if(owner.laws){
+		fake_laws.set_devil_laws(owner.laws.devil)
+		fake_laws.set_zeroth_law(owner.laws.zeroth)
+		fake_laws.set_hacked_laws(owner.laws.hacked)
+		fake_laws.set_ion_laws(owner.laws.ion)
+		fake_laws.set_inherent_laws(owner.laws.inherent)
+		fake_laws.set_supplied_laws(owner.laws.supplied)
+	}
 
 	if(!admin_laws)
 		admin_laws = new()
@@ -274,6 +289,8 @@
 		// Normal actions:
 		if("set_view")
 			current_view = text2num(params["set_view"])
+		if("set_fake_view")
+			viewing_fake_laws = FORCE_BOOLEAN(text2num(params["set_fake_view"]))
 		if("state_law")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
@@ -318,7 +335,7 @@
 				owner.show_laws()
 			if(usr != owner)
 				to_chat(usr, span_notice("Laws displayed."))
-		//Admin actions:
+		// Admin actions:
 		if("edit_law")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
@@ -470,6 +487,95 @@
 					if(connected_cyborg.lawupdate)
 						connected_cyborg.lawsync()
 						connected_cyborg.law_change_counter++
+		if("transfer_laws")
+			if(owner == usr && !is_admin(usr))
+				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to transfer themselves a lawset!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot transfer laws to a pAI."))
+				return
+			var/transfer_id = params["id"]
+			var/list/datum/ai_laws/law_list = (is_admin(usr) ? admin_laws : player_laws)
+			for(var/datum/ai_laws/law_set in law_list)
+				if(law_set.id == transfer_id)
+					log_admin("[usr] has transfered the [law_set.name] laws to [owner].")
+					message_admins("[usr] has transfered the [law_set.name] laws to [owner].")
+					var/lawtype = law_set.lawid_to_type(transfer_id) 
+					var/datum/ai_laws/temp_laws = new lawtype
+					owner.set_inherent_laws(temp_laws.inherent, FALSE)
+					current_view = 0
+					break
+		// 'Fake Laws' Abilities:
+		// Note: Little to no logging is done in this section as all of this has no gameplay impact besides making it very easy to state fake laws.
+		if("state_law_fake")
+			var/index = text2num(params["index"])
+			var/type = params["type"]
+			if(type == "devil")
+				fake_laws.flip_devil_state(index)
+			if(type == "zeroth")
+				fake_laws.flip_zeroth_state()
+			if(type == "hacked")
+				fake_laws.flip_hacked_state(index)
+			if(type == "ion")
+				fake_laws.flip_ion_state(index)
+			if(type == "inherent")
+				fake_laws.flip_inherent_state(index)
+			if(type == "supplied")
+				fake_laws.flip_supplied_state(index)
+		if("state_laws_fake")
+			owner.statelaws(0, fake_laws)
+		if("edit_law_fake")
+			var/index = text2num(params["index"])
+			var/type = params["type"]
+			if(owner != usr && !is_admin(usr))
+				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to edit one of their fake laws!")
+				return
+			if(type == "devil" && fake_laws.devil.len >= index)
+				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.devil[index]))
+				if(new_law != "" && new_law != fake_laws.devil[index])
+					fake_laws.edit_devil_law(index, new_law)
+			if(type == "zeroth" && !isnull(fake_laws.zeroth))
+				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.zeroth))
+				if(new_law != "" && new_law != fake_laws.zeroth)
+					fake_laws.set_zeroth_law(new_law, null, TRUE)
+			if(type == "hacked" && fake_laws.hacked.len >= index)
+				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.hacked[index]))
+				if(new_law != "" && new_law != fake_laws.hacked[index])
+					fake_laws.edit_hacked_law(index, new_law)
+			if(type == "ion" && fake_laws.ion.len >= index)
+				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.ion[index]))
+				if(new_law != "" && new_law != fake_laws.ion[index])
+					fake_laws.edit_ion_law(index, new_law)
+			if(type == "inherent" && fake_laws.inherent.len >= index)
+				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.inherent[index]))
+				if(new_law != "" && new_law != fake_laws.inherent[index])
+					fake_laws.edit_inherent_law(index, new_law)
+			if(type == "supplied" && fake_laws.supplied.len >= index)
+				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.supplied[index]))
+				if(new_law != "" && new_law != fake_laws.supplied[index])
+					fake_laws.edit_supplied_law(index, new_law)
+		if("delete_law_fake")
+			var/index = text2num(params["index"])
+			var/type = params["type"]
+			if(owner != usr && !is_admin(usr))
+				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to delete one of their laws!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot delete a law from a pAI."))
+				return
+			if(type == "devil" && fake_laws.devil.len >= index)
+				owner.remove_devil_law(index)
+			if(type == "zeroth" && !isnull(fake_laws.zeroth))
+				owner.clear_zeroth_law(TRUE)
+			if(type == "hacked" && fake_laws.hacked.len >= index)
+				owner.remove_hacked_law(index)
+			if(type == "ion" && fake_laws.ion.len >= index)
+				owner.remove_ion_law(index)
+			if(type == "inherent" && fake_laws.inherent.len >= index)
+				owner.remove_inherent_law(index)
+			if(type == "supplied" && fake_laws.supplied.len >= index && length(fake_laws.supplied[index]) > 0 )
+				owner.remove_supplied_law(index)
+		// 'Add Law' Settings:
 		if("change_law")
 			var/type = params["type"]
 			if(type == "zeroth")
@@ -496,24 +602,6 @@
 			var/new_position = input(usr, "Enter new supplied law position between [MIN_SUPPLIED_LAW_NUMBER] and [MAX_SUPPLIED_LAW_NUMBER].", "Law Position", supplied_law_position) as num|null
 			if(isnum(new_position) && (!..()))
 				supplied_law_position = clamp(new_position, MIN_SUPPLIED_LAW_NUMBER, MAX_SUPPLIED_LAW_NUMBER)
-		if("transfer_laws")
-			if(owner == usr && !is_admin(usr))
-				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to transfer themselves a lawset!")
-				return
-			if(ispAI(owner))
-				to_chat(usr, span_warning("You cannot transfer laws to a pAI."))
-				return
-			var/transfer_id = params["id"]
-			var/list/datum/ai_laws/law_list = (is_admin(usr) ? admin_laws : player_laws)
-			for(var/datum/ai_laws/law_set in law_list)
-				if(law_set.id == transfer_id)
-					log_admin("[usr] has transfered the [law_set.name] laws to [owner].")
-					message_admins("[usr] has transfered the [law_set.name] laws to [owner].")
-					var/lawtype = law_set.lawid_to_type(transfer_id) 
-					var/datum/ai_laws/temp_laws = new lawtype
-					owner.set_inherent_laws(temp_laws.inherent, FALSE)
-					current_view = 0
-					break
 
 /datum/law_manager/ui_data(mob/user)
 	var/list/data = list()
@@ -533,8 +621,14 @@
 	
 	// This usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!
 	data["admin"] = is_admin(user)
-
-	handle_laws(data, owner.laws)
+	
+	data["fake_view"] = viewing_fake_laws
+	if(viewing_fake_laws){
+		handle_laws(data, fake_laws)
+	}
+	else{
+		handle_laws(data, owner.laws)
+	}
 	handle_channels(data)
 	data["zeroth_law"] = zeroth_law
 	data["hacked_law"] = hacked_law

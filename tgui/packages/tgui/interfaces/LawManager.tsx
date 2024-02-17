@@ -14,12 +14,14 @@ type LawManagerData = {
   antag: BooleanLike;
   admin: BooleanLike;
   view: number;
+  fake_view: BooleanLike;
 };
 
 type LawManagementData = {
   pai: BooleanLike;
   antag: BooleanLike;
   admin: BooleanLike;
+  fake_view: BooleanLike;
 };
 
 type LawSectionData = {
@@ -42,7 +44,8 @@ type LawTableData = {
 
 type LawStatementSectionData = {
   channel: string;
-  channels: ChannelInfo[]
+  channels: ChannelInfo[];
+  fake_laws: BooleanLike;
 };
 
 type ChannelInfo = {
@@ -62,7 +65,7 @@ type LawAddData = {
 
 export const LawManager = (props, context) => {
   const { act, data } = useBackend<LawManagerData>(context);
-  const { cyborg, ai, pai, connected, lawsync, syndiemmi, admin, view } = data;
+  const { cyborg, ai, pai, connected, lawsync, syndiemmi, admin, view, fake_view } = data;
 
   return (
     <Window height="600" width="800" title="Law Manager">
@@ -85,22 +88,33 @@ export const LawManager = (props, context) => {
         {!!(admin && pai) && (
           <NoticeBox>This pAI has less editing features due to their nature of being a pAI.</NoticeBox>
         ) }
+        {!!fake_view && (
+          <NoticeBox>You are viewing your fake laws. Switch back in order to see your real laws.</NoticeBox>
+        ) }
         <Box>
           <Button
-            content="Law Management"
+            content={(!!fake_view && "Law Management (Fake)") || "Law Management"}
             selected={view === 0}
             onClick={() => act('set_view', { set_view: 0 })}
           />
           {!!(admin) && !pai && (
             <Button
-              content="Lawsets"
+              content={(!!fake_view && "Lawsets (Fake)") || "Lawsets"}
               selected={view === 1}
               onClick={() => act('set_view', { set_view: 1 })}
             />
           )}
+          {!pai && (
+            <Button
+              content={(!!fake_view && "Switch to Real View") || "Switch to Fake View"}
+              selected={false}
+              onClick={() => act('set_fake_view', { set_fake_view: !fake_view })}
+            />
+          )}
+
         </Box>
         {!!(view === 0) && <LawManagementView />}
-        {!!(view === 1) && <LawsetsView />}
+        {!!(view === 1) && (fake_view ? <LawsetsViewFake /> : <LawsetsView />)}
       </Window.Content>
     </Window>
   );
@@ -108,14 +122,12 @@ export const LawManager = (props, context) => {
 
 const LawManagementView = (props, context) => {
   const { data } = useBackend<LawManagementData>(context);
-  const { pai, admin } = data;
+  const { pai, admin, fake_view } = data;
   return (
     <Fragment>
-      <LawSection />
+      {!!(fake_view ? <LawSectionFake /> : <LawSection />)}
       <LawStatementSection />
-      {!!(admin && !pai) && (
-        <LawAddSection />
-      )}
+      {!!(admin && !pai) && !!(fake_view ? <LawAddSectionFake /> : <LawAddSection />)}
     </Fragment>
   );
 };
@@ -142,6 +154,33 @@ const LawSection = (props, context) => {
       )}
       {!!(supplied.length > 0) && (
         <LawTable color="#990099" title="Supplied" laws={supplied} />
+      )}
+    </Section>
+  );
+};
+
+const LawSectionFake = (props, context) => {
+  const { data } = useBackend<LawSectionData>(context);
+  const { devil, zeroth, hacked, ion, inherent, supplied } = data;
+  return (
+    <Section title="Laws">
+      {!!(devil.length > 0) && (
+        <LawTableFake color="#cc5500" title="Devil" laws={devil} />
+      )}
+      {!!(zeroth.length > 0) && (
+        <LawTableFake color="#ff0000" title="Zeroth" laws={zeroth} />
+      )}
+      {!!(hacked.length > 0) && (
+        <LawTableFake color="#660000" title="Hacked" laws={hacked} />
+      )}
+      {!!(ion.length > 0) && (
+        <LawTableFake color="#547DFE" title="Ion" laws={ion} />
+      )}
+      {!!(inherent.length > 0) && (
+        <LawTableFake title="Inherent" laws={inherent} />
+      )}
+      {!!(supplied.length > 0) && (
+        <LawTableFake color="#990099" title="Supplied" laws={supplied} />
       )}
     </Section>
   );
@@ -203,9 +242,65 @@ const LawTable = (props, context) => {
   );
 };
 
+const LawTableFake = (props, context) => {
+  const { act, data } = useBackend<LawTableData>(context);
+  const { pai, antag, admin } = data;
+  return (
+    <Section>
+      <Table>
+        <Table.Row header>
+          <Table.Cell width="10%">Index</Table.Cell>
+          <Table.Cell width="69%">{props.title}</Table.Cell>
+          <Table.Cell width="21%">State?</Table.Cell>
+        </Table.Row>
+        {props.laws.map((l) => (
+          <Table.Row key={l.law}>
+            <Table.Cell>{l.indexdisplay}</Table.Cell>
+            {props.color ? (
+              <Table.Cell color={props.color}>
+                  {l.law}
+              </Table.Cell>
+            ) : (
+              <Table.Cell>
+                  {l.law}
+              </Table.Cell>
+            ) }
+            <Table.Cell>
+              <Button
+                content={l.state ? 'Yes' : 'No'}
+                selected={l.state}
+                onClick={() =>
+                  act('state_law_fake', { index: l.index, type: l.type })
+                }
+              />
+              {!!((antag || admin) && !l.hidebuttons)&& (
+                <Fragment>
+                  <Button
+                    content="Edit"
+                    icon="pencil-alt"
+                    onClick={() => act('edit_law_fake', { index: l.index, type: l.type })}
+                  />
+                  {!!(true && !pai) && ( // 'true' clears double negation warning
+                    <Button
+                      content="Delete"
+                      icon="trash"
+                      color="red"
+                      onClick={() => act('delete_law_fake', { index: l.index, type: l.type })}
+                    />
+                  )}
+                </Fragment>
+              )}
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
+    </Section>
+  );
+};
+
 const LawStatementSection = (props, context) => {
   const { act, data } = useBackend<LawStatementSectionData>(context);
-  const { channel, channels } = data;
+  const { channel, channels, fake_laws } = data;
   return (
     <Section title="Statement Settings">
       <LabeledList>
@@ -220,7 +315,7 @@ const LawStatementSection = (props, context) => {
           ))}
         </LabeledList.Item>
         <LabeledList.Item label="State Laws">
-          <Button content="State Laws" onClick={() => act('state_laws')} />
+          <Button content="State Laws" onClick={() => (!fake_laws ? act('state_laws') : act('state_laws_fake'))} />
         </LabeledList.Item>
         <LabeledList.Item label="Law Notification">
           <Button content="Notify" onClick={() => act('notify_laws')} />
