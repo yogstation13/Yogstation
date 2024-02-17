@@ -369,6 +369,7 @@ ipc martial arts stuff
 */
 /datum/species/ipc/self
 	id = "self ipc"
+	limbs_id = "mcgipc"
 	speedmod = -0.1
 	armor = 10
 	punchdamagelow = 5
@@ -387,7 +388,7 @@ ipc martial arts stuff
 	var/list/initial_step_sounds
 	var/list/initial_walk_sounds
 	var/original_color
-	var/disguised = TRUE
+	var/disguised = FALSE
 	
 /datum/species/ipc/self/insurgent/New()
 	initial_species_traits = LAZYCOPY(species_traits)
@@ -401,6 +402,8 @@ ipc martial arts stuff
 
 /datum/species/ipc/self/insurgent/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
+	for(var/obj/item/bodypart/O in H.bodyparts)
+		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 	assume_disguise(H)
 	
 /datum/species/ipc/self/insurgent/proc/assume_disguise(mob/living/carbon/human/H)
@@ -416,8 +419,8 @@ ipc martial arts stuff
 	inherent_traits = LAZYCOPY(initial_inherent_traits)
 	mutant_bodyparts = LAZYCOPY(fake_species.mutant_bodyparts)
 	H.dna.features["mcolor"] = skintone2hex(random_skin_tone())
-	special_step_sounds = LAZYCOPY(fake_species.special_step_sounds)
-	special_walk_sounds = LAZYCOPY(fake_species.special_walk_sounds)
+	special_step_sounds = null
+	special_walk_sounds = null
 	species_traits |= fake_species.species_traits
 	inherent_traits |= fake_species.inherent_traits
 	attack_verb = fake_species.attack_verb
@@ -460,7 +463,7 @@ ipc martial arts stuff
 
 /datum/species/ipc/self/insurgent/get_scream_sound(mob/living/carbon/human/H)
 	if(fake_species && disguised)
-		fake_species.get_scream_sound(H)
+		return fake_species.get_scream_sound(H)
 	else
 		return ..()
 	
