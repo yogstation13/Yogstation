@@ -12,6 +12,7 @@
 /obj/structure/closet/crate/mystery_box/Initialize(mapload)
 	. = ..()
 	gunlist |= subtypesof(/obj/item/gun) //huge fucking list, don't spawn too many of these @hisa
+	gunlist -= blacklist
 
 /obj/structure/closet/crate/mystery_box/examine(mob/user)
 	. = ..()
