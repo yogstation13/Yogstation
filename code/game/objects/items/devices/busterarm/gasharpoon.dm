@@ -40,7 +40,7 @@
 	if(!user || user.a_intent!=INTENT_HARM || (!isliving(target) && !isobj(target)) || isitem(target))
 		return
 	do_attack(user, target, force * 2)
-	playsound(loc, 'sound/misc/desceration-01.ogg', 50, 1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1)
 	target.visible_message(span_danger("[user]'s gasharpoon pierces through [target.name]!"))
 	return COMPONENT_NO_ATTACK_HAND
 
