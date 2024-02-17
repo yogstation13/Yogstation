@@ -90,7 +90,6 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		//weight of 0 - all round good things
 		/obj/item/shield/riot = 0,
 		/obj/item/clothing/suit/armor/elder_atmosian = 0,
-		/obj/item/clothing/head/det_hat/evil = 0,
 		/obj/item/clothing/suit/space/hardsuit/mining = 0,
 		/obj/item/clothing/suit/armor/bulletproof = 0,
 		/obj/item/clothing/head/helmet/space/pirate = 0,
@@ -274,6 +273,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/automatic/ar = -5,
 		/obj/item/gun/ballistic/automatic/lwt650 = -5,
 		/obj/item/gun/ballistic/automatic/k41s = -5,
+		/obj/item/clothing/head/det_hat/evil = -5, //infinite ammo ranged weapon with high dps
 
 		/obj/item/gun/energy/beam_rifle = -6,
 		/obj/item/gun/ballistic/rifle/sniper_rifle = -6,
