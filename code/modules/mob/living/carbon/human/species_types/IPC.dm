@@ -380,31 +380,23 @@ ipc martial arts stuff
 /datum/species/ipc/self/insurgent
 	id = "self insurgent"
 	var/disguise_fail_health = 50 //When their health gets to this level their synthflesh partially falls off
-	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
+	var/datum/species/human/fake_species //a species to do most of our work for us, unless we're damaged
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
 	var/list/initial_inherent_traits
 	var/list/initial_mutant_bodyparts
-	var/list/initial_default_features
 	var/list/initial_step_sounds
 	var/list/initial_walk_sounds
+	var/original_color
 	var/disguised = TRUE
 	
 /datum/species/ipc/self/insurgent/New()
 	initial_species_traits = LAZYCOPY(species_traits)
 	initial_inherent_traits = LAZYCOPY(inherent_traits)
 	initial_mutant_bodyparts = LAZYCOPY(mutant_bodyparts)
-	initial_default_features = LAZYCOPY(default_features)
 	initial_step_sounds = LAZYCOPY(special_step_sounds)
 	initial_walk_sounds = LAZYCOPY(special_walk_sounds)
 	
-	var/list/allowed_species = list() //only pick an organic species that's technically attainable by players
-	for(var/stype in subtypesof(/datum/species))
-		var/datum/species/X = stype
-		if(initial(X.changesource_flags) & SLIME_EXTRACT && X.inherent_biotypes & (MOB_ORGANIC|MOB_HUMANOID))
-			allowed_species += stype
-
-	var/datum/species/selected = pick(allowed_species)
-	fake_species = new selected()
+	fake_species = new () //for now, always pick human, it causes the least bugs
 	..()
 
 /datum/species/ipc/self/insurgent/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
@@ -414,6 +406,7 @@ ipc martial arts stuff
 /datum/species/ipc/self/insurgent/proc/assume_disguise(mob/living/carbon/human/H)
 	if(disguised || !(fake_species && istype(fake_species)) || H.health < disguise_fail_health)
 		return FALSE
+	original_color = H.dna.features["mcolor"]
 
 	disguised = TRUE
 	name = fake_species.name
@@ -422,7 +415,7 @@ ipc martial arts stuff
 	species_traits = LAZYCOPY(initial_species_traits)
 	inherent_traits = LAZYCOPY(initial_inherent_traits)
 	mutant_bodyparts = LAZYCOPY(fake_species.mutant_bodyparts)
-	default_features = LAZYCOPY(fake_species.default_features)
+	H.dna.features["mcolor"] = skintone2hex(random_skin_tone())
 	special_step_sounds = LAZYCOPY(fake_species.special_step_sounds)
 	special_walk_sounds = LAZYCOPY(fake_species.special_walk_sounds)
 	species_traits |= fake_species.species_traits
@@ -434,14 +427,10 @@ ipc martial arts stuff
 	limbs_id = fake_species.limbs_id
 	use_skintones = fake_species.use_skintones
 	fixed_mut_color = fake_species.fixed_mut_color
-	hair_color = fake_species.hair_color
-	screamsound = fake_species.screamsound
 	bubble_icon = fake_species.bubble_icon
+	yogs_draw_robot_hair = TRUE
 
-	for(var/X in H.bodyparts) //propagates the damage_overlay changes
-		var/obj/item/bodypart/BP = X
-		BP.update_limb()
-	H.update_body_parts() //to update limb icon cache with the new damage overlays
+	H.regenerate_icons() //to update limb icon cache with the new damage overlays
 
 /datum/species/ipc/self/insurgent/proc/break_disguise(mob/living/carbon/human/H)
 	if(!disguised)
@@ -450,45 +439,31 @@ ipc martial arts stuff
 	name = initial(name)
 	say_mod = initial(say_mod)
 	sexes = initial(sexes)
-	species_traits = initial_species_traits
-	inherent_traits = initial_inherent_traits
-	mutant_bodyparts = initial_mutant_bodyparts
-	default_features = initial_default_features
-	special_step_sounds = initial_step_sounds
-	special_walk_sounds = initial_walk_sounds
+	species_traits = LAZYCOPY(initial_species_traits)
+	inherent_traits = LAZYCOPY(initial_inherent_traits)
+	mutant_bodyparts = LAZYCOPY(initial_mutant_bodyparts)
+	H.dna.features["mcolor"] = original_color
+	special_step_sounds = LAZYCOPY(initial_step_sounds)
+	special_walk_sounds = LAZYCOPY(initial_walk_sounds)
 	attack_verb = initial(attack_verb)
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)
 	nojumpsuit = initial(nojumpsuit)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
-	screamsound = initial(screamsound)
 	bubble_icon = initial(bubble_icon)
+	yogs_draw_robot_hair = FALSE
 
-	for(var/X in H.bodyparts) //propagates the damage_overlay changes
-		var/obj/item/bodypart/BP = X
-		BP.update_limb()
-	H.update_body_parts() //to update limb icon cache with the new damage overlays
+	for(var/obj/item/bodypart/O in H.bodyparts)
+		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
+	H.regenerate_icons()
 
-//Proc redirects:
-//Passing procs onto the fake_species, to ensure we look as much like them as possible
-/datum/species/ipc/self/insurgent/handle_hair(mob/living/carbon/human/H, forced_colour)
+/datum/species/ipc/self/insurgent/get_scream_sound(mob/living/carbon/human/H)
 	if(fake_species && disguised)
-		fake_species.handle_hair(H, forced_colour)
+		fake_species.get_scream_sound(H)
 	else
 		return ..()
-
-/datum/species/ipc/self/insurgent/handle_body(mob/living/carbon/human/H)
-	if(fake_species && disguised)
-		fake_species.handle_body(H)
-	else
-		return ..()
-
-/datum/species/ipc/self/insurgent/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
-	if(fake_species && disguised)
-		fake_species.handle_body(H,forced_colour)
-	else
-		return ..()
+	
 
 /datum/species/ipc/self/insurgent/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 	. = ..()
