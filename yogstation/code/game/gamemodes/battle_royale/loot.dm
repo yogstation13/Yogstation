@@ -411,8 +411,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/syndicate/spinalspeed = -6, // No opportunity cost speed boost
 
 		/obj/item/storage/belt/wands/full = -7, //not quite spellbook, but some of these wands are FUCKED
-
-		/obj/item/spellbook = -8, //literally auto-win
+		/obj/item/spellbook = -7, //literally auto-win IF you have the time to use it (a lot of spells are robe locked too)
 		))
 
 /obj/structure/closet/crate/battleroyale
