@@ -258,6 +258,9 @@
 	. = ..()
 	if(istype(I, /obj/item/upgrade/plasmacutter))
 		var/obj/item/upgrade/plasmacutter/PC = I
+		if(get_remaining_mod_capacity() > PC.cost)
+			to_chat(user, span_warning("There is no more room for this upgrade."))
+			return
 		if(!PC.stackable && is_type_in_list(PC, installed_upgrades))
 			to_chat(user, span_notice("[I] has already been installed in [src]"))
 			return
@@ -336,35 +339,12 @@
 	desc = "An upgrade for plasma shotguns that doubles the tank capacity."
 	cost = 20
 
-<<<<<<< Updated upstream
-/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I, mob/user)
-	if(I.type in installed_upgrades)
-		to_chat(user, span_notice("[I] has already been installed in [src]"))
-		return FALSE
-	return TRUE
-
-/obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I, mob/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(istype(I, /obj/item/upgrade/plasmacutter/defuser))
-		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
-		ammo_type = list(kaboom)
-		installed_upgrades += I.type
-		return TRUE
-	if(istype(I, /obj/item/upgrade/plasmacutter/capacity))
-		cell.maxcharge = initial(cell.maxcharge)*2
-		installed_upgrades += I.type
-		return TRUE
-	return FALSE
-=======
 /obj/item/upgrade/plasmacutter/capacity/install(obj/item/gun/energy/plasmacutter/P)
 	P.cell.maxcharge = initial(P.cell.maxcharge)*2
 
 /obj/item/upgrade/plasmacutter/capacity/uninstall(obj/item/gun/energy/plasmacutter/P)
 	P.cell.maxcharge = initial(P.cell.maxcharge)
 	P.cell.charge = min(P.cell.charge, P.cell.maxcharge)
->>>>>>> Stashed changes
 
 /obj/item/upgrade/plasmacutter/cooldown
 	name = "plasma cutter cooldown kit"
