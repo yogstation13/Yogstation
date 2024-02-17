@@ -280,6 +280,7 @@
 	if(.)
 		return
 
+	// They must be either the silicon owner OR admin.
 	if(owner != usr && !is_admin(usr))
 		message_admins("Warning: Non-silicon and non-admin [usr] attempted to open [owner]'s Law Manager!")
 		return
@@ -338,8 +339,8 @@
 		if("edit_law")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
-			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
-				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to edit one of their laws!")
+			if(!is_admin(usr))
+				message_admins("Warning: Non-admin [usr] attempted to edit one of their laws!")
 				return
 			if(type == "devil" && owner.laws.devil.len >= index)
 				if(!is_admin(usr))
@@ -399,8 +400,8 @@
 		if("delete_law")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
-			if(owner == usr && !is_admin(usr))
-				message_admins("Warning: Non-antag silicon and non-admin[usr] attempted to delete one of their laws!")
+			if(!is_admin(usr))
+				message_admins("Warning: Non-admin [usr] attempted to delete one of their laws!")
 				return
 			if(ispAI(owner))
 				to_chat(usr, span_warning("You cannot delete a law from a pAI."))
@@ -449,8 +450,8 @@
 						connected_cyborg.law_change_counter++
 		if("add_law")
 			var/type = params["type"]
-			if(owner == usr && !is_admin(usr))
-				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to give themselves a law!")
+			if(!is_admin(usr))
+				message_admins("Warning: Non-admin [usr] attempted to give themselves a law!")
 				return
 			if(ispAI(owner))
 				to_chat(usr, span_warning("You cannot add laws to a pAI."))
@@ -487,8 +488,8 @@
 						connected_cyborg.lawsync()
 						connected_cyborg.law_change_counter++
 		if("transfer_laws")
-			if(owner == usr && !is_admin(usr))
-				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to transfer themselves a lawset!")
+			if(!is_admin(usr))
+				message_admins("Warning: Non-admin [usr] attempted to transfer themselves a lawset!")
 				return
 			if(ispAI(owner))
 				to_chat(usr, span_warning("You cannot transfer laws to a pAI."))
@@ -527,9 +528,6 @@
 		if("edit_law_fake")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
-			if(owner != usr && !is_admin(usr))
-				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to edit one of their fake laws!")
-				return
 			if(type == "devil" && fake_laws.devil.len >= index)
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.devil[index]))
 				if(new_law != "" && new_law != fake_laws.devil[index])
@@ -557,9 +555,6 @@
 		if("delete_law_fake")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
-			if(owner != usr && !is_admin(usr))
-				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to delete one of their fake laws!")
-				return
 			if(ispAI(owner))
 				to_chat(usr, span_warning("You cannot delete a law from a pAI."))
 				return
@@ -577,9 +572,6 @@
 				fake_laws.remove_supplied_law(index)
 		if("add_law_fake")
 			var/type = params["type"]
-			if(owner != usr && !is_admin(usr))
-				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to give themselves a fake law!")
-				return
 			if(ispAI(owner))
 				to_chat(usr, span_warning("You cannot add laws to a pAI."))
 				return
@@ -594,9 +586,6 @@
 			if(type == "supplied" && length(supplied_law) > 0 && supplied_law_position >= MIN_SUPPLIED_LAW_NUMBER && supplied_law_position <= MAX_SUPPLIED_LAW_NUMBER)
 				fake_laws.add_supplied_law(supplied_law_position, supplied_law, FALSE)
 		if("transfer_laws_fake")
-			if(owner != usr && !is_admin(usr))
-				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to transfer themselves a fake lawset!")
-				return
 			if(ispAI(owner))
 				to_chat(usr, span_warning("You cannot transfer laws to a pAI."))
 				return
@@ -610,9 +599,6 @@
 					current_view = 0
 					break
 		if("reset_fake_view")
-			if(owner != usr && !is_admin(usr))
-				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to reset their fake laws!")
-				return
 			if(!owner.laws)
 				return
 			fake_laws.set_devil_laws(owner.laws.devil)
