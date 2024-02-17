@@ -509,7 +509,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		to_chat(user,span_warning("You already know [user.mind.martial_art.name]!"))
 		return
 
-	if(do_after(user, 6 SECONDS, user))
+	if(do_after(user, 2 SECONDS, user))
 		var/datum/martial_art/MA = new martial
 		user.set_species(species)
 		MA.teach(user)
