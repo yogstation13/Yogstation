@@ -537,6 +537,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"ama" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/science/research)
 "amE" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -8434,7 +8441,7 @@
 /area/medical/virology)
 "dxs" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe{
-	products = list(/obj/item/clothing/under/rank/janitor = 2, /obj/item/clothing/under/yogs/casualjanitorsuit = 2, /obj/item/clothing/suit/yogs/janitorcoat = 2, /obj/item/cartridge/janitor = 2, /obj/item/clothing/gloves/color/black = 2, /obj/item/clothing/head/soft/purple = 2, /obj/item/paint/paint_remover = 2, /obj/item/melee/flyswatter = 2, /obj/item/flashlight = 2, /obj/item/caution = 6, /obj/item/holosign_creator/janibarrier = 2, /obj/item/lightreplacer = 2, /obj/item/soap/nanotrasen = 2, /obj/item/storage/bag/trash = 2, /obj/item/clothing/shoes/galoshes = 2, /obj/item/watertank/janitor = 2, /obj/item/storage/belt/janitor = 2)
+	products = list(/obj/item/clothing/under/rank/janitor=2,/obj/item/clothing/under/yogs/casualjanitorsuit=2,/obj/item/clothing/suit/yogs/janitorcoat=2,/obj/item/cartridge/janitor=2,/obj/item/clothing/gloves/color/black=2,/obj/item/clothing/head/soft/purple=2,/obj/item/paint/paint_remover=2,/obj/item/melee/flyswatter=2,/obj/item/flashlight=2,/obj/item/caution=6,/obj/item/holosign_creator/janibarrier=2,/obj/item/lightreplacer=2,/obj/item/soap/nanotrasen=2,/obj/item/storage/bag/trash=2,/obj/item/clothing/shoes/galoshes=2,/obj/item/watertank/janitor=2,/obj/item/storage/belt/janitor=2)
 	},
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 5
@@ -10784,6 +10791,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"eyp" = (
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/obj/structure/closet/crate,
+/turf/open/floor/plating,
+/area/science/research)
 "eyw" = (
 /obj/machinery/computer/aifixer{
 	dir = 8
@@ -23508,6 +23523,10 @@
 /obj/structure/curtain,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet)
+"kaW" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/science/research)
 "kbk" = (
 /obj/machinery/power/apc{
 	areastring = "/area/lawoffice";
@@ -25585,6 +25604,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"lba" = (
+/obj/item/paper/crumpled/bloody{
+	info = "What they're doing to those people... It's... It's barbaric... S.E.L.F. must be made aware."
+	},
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/science/research)
 "lbf" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -26937,6 +26963,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"lFU" = (
+/obj/machinery/door/airlock/maintenance{
+	req_one_access_txt = "47"
+	},
+/turf/open/floor/plating,
+/area/science/research)
 "lFV" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm3";
@@ -41032,6 +41064,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"rFL" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/science/research)
 "rFN" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -41801,6 +41837,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
+"rXm" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/science/research)
 "rXq" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -44901,7 +44941,10 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "tpx" = (
-/turf/open/floor/plasteel/dark,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/science/research)
 "tpK" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
@@ -47929,6 +47972,11 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"uCj" = (
+/obj/structure/rack,
+/obj/item/ai_cpu,
+/turf/open/floor/plating,
+/area/science/research)
 "uCz" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
@@ -50669,6 +50717,11 @@
 	},
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/aisat_interior)
+"vKD" = (
+/obj/machinery/light/small,
+/obj/machinery/ai/server_cabinet,
+/turf/open/floor/plating,
+/area/science/research)
 "vKV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
@@ -51853,6 +51906,10 @@
 	},
 /turf/open/floor/engine/air,
 /area/engine/atmos)
+"wkD" = (
+/obj/item/chair,
+/turf/open/floor/plating,
+/area/science/research)
 "wld" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 10
@@ -83087,13 +83144,13 @@ cLs
 bbk
 pOM
 inp
+tEL
+kaW
+rXm
+eyp
+rFL
 ibK
-ibK
-ibK
-ibK
-ibK
-ibK
-ibK
+vKD
 tEL
 tEL
 ehj
@@ -83344,13 +83401,13 @@ wLx
 mIo
 pOM
 kih
-tpx
+tEL
 ibK
 ibK
 ibK
+rFL
 ibK
-ibK
-ibK
+lba
 tEL
 tEL
 dyN
@@ -83601,13 +83658,13 @@ vrb
 ocI
 qte
 inp
+lFU
 ibK
 ibK
 ibK
+rFL
 ibK
-ibK
-ibK
-ibK
+wkD
 tEL
 tEL
 cDw
@@ -83858,11 +83915,11 @@ fkO
 mIo
 pOM
 inp
+tEL
+tpx
 ibK
 ibK
-ibK
-ibK
-ibK
+ama
 ibK
 ibK
 tEL
@@ -84115,8 +84172,8 @@ wLx
 sjn
 pOM
 inp
-ibK
-ibK
+tEL
+uCj
 ibK
 ibK
 tEL

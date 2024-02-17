@@ -227,11 +227,6 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
-"bF" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel/white,
-/area/awaymission/vr/combat_robot_factory)
 "bG" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating,
@@ -314,7 +309,6 @@
 /area/awaymission/vr/abandoned_mine)
 "cJ" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes/cigars/havana,
 /obj/item/storage/box/matches{
 	pixel_x = -5;
 	pixel_y = 13
@@ -1056,10 +1050,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
-"ih" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
 "ij" = (
 /mob/living/simple_animal/hostile/robot/advanced/ranged,
 /turf/open/floor/plasteel/dark,
@@ -1427,6 +1417,7 @@
 /obj/item/storage/secure/safe/scientist_raid{
 	pixel_x = 32
 	},
+/obj/item/storage/fancy/cigarettes/cigars/havana,
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 "lk" = (
@@ -1448,10 +1439,10 @@
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
 "ls" = (
-/obj/item/twohanded/required/kirbyplants/dead,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "lF" = (
@@ -1553,11 +1544,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
-"mu" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/white,
-/area/awaymission/vr/combat_robot_factory)
 "mv" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -2136,7 +2122,6 @@
 	dir = 9
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "rh" = (
@@ -2360,13 +2345,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"te" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 9
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
 "tf" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 4
@@ -2567,7 +2545,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 6
 	},
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "uI" = (
@@ -2663,7 +2640,6 @@
 /area/awaymission/vr/combat_robot_factory)
 "vu" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3080,7 +3056,6 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 10
 	},
-/obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "ze" = (
@@ -3145,10 +3120,6 @@
 /obj/item/paper/fluff/awaymissions/scientist_raid/report3,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"zI" = (
-/obj/item/twohanded/required/kirbyplants/dead,
-/turf/open/floor/mineral/titanium/white,
-/area/awaymission/vr/hub)
 "zK" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 4
@@ -3429,6 +3400,7 @@
 /obj/item/toy/cards/deck{
 	pixel_x = 2
 	},
+/obj/item/fireaxe,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "BQ" = (
@@ -3475,7 +3447,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
 "Cn" = (
@@ -3799,7 +3770,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "Fk" = (
@@ -4071,7 +4041,7 @@
 /area/awaymission/vr/abandoned_mine)
 "Hy" = (
 /obj/item/clothing/suit/armor/riot/knight{
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25, "wound" = 30)
+	armor = list("melee"=25,"bullet"=10,"laser"=10,"energy"=10,"bomb"=0,"bio"=0,"rad"=0,"fire"=25,"acid"=25,"wound"=30)
 	},
 /turf/open/floor/plating/asteroid,
 /area/awaymission/vr/abandoned_mine)
@@ -4151,7 +4121,6 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
 "HW" = (
-/obj/item/twohanded/required/kirbyplants/dead,
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
@@ -4255,10 +4224,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"IX" = (
-/obj/item/twohanded/fireaxe,
-/turf/open/floor/wood,
-/area/awaymission/vr/scientist_raid)
 "Jb" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
@@ -4345,7 +4310,6 @@
 	},
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "JG" = (
@@ -4441,16 +4405,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"Kq" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/vr/combat_robot_factory)
 "Kr" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel,
@@ -4468,7 +4424,6 @@
 /area/awaymission/vr/scientist_raid)
 "KD" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/blue,
 /area/awaymission/vr/combat_robot_factory)
@@ -4986,7 +4941,6 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
 "OK" = (
@@ -5194,7 +5148,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "PY" = (
@@ -5219,7 +5172,6 @@
 /turf/open/floor/plating/asteroid,
 /area/awaymission/vr/abandoned_mine)
 "Qb" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5542,7 +5494,6 @@
 /turf/open/floor/plating/asteroid,
 /area/awaymission/vr/abandoned_mine)
 "Sl" = (
-/obj/item/twohanded/required/kirbyplants/dead,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
@@ -5947,7 +5898,6 @@
 "Vv" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
 "Vx" = (
@@ -6226,6 +6176,7 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 9
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
 "Xp" = (
@@ -6554,7 +6505,6 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/abandoned_mine)
 "ZC" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 10
 	},
@@ -7545,7 +7495,7 @@ KW
 Jt
 ZC
 qj
-ih
+Je
 jG
 Je
 Je
@@ -7557,7 +7507,7 @@ hU
 Je
 Bm
 mQ
-ih
+Je
 qj
 qj
 qj
@@ -9081,7 +9031,7 @@ jD
 WG
 Ee
 qj
-ih
+Je
 Je
 ae
 qj
@@ -9103,7 +9053,7 @@ Je
 mp
 mT
 Rc
-mu
+DS
 qj
 Yo
 bc
@@ -10623,7 +10573,7 @@ IS
 WG
 Ee
 qj
-ih
+Je
 Je
 hn
 yh
@@ -10698,7 +10648,7 @@ Mr
 Mr
 Mr
 ai
-zI
+db
 db
 db
 db
@@ -12697,7 +12647,7 @@ aq
 qj
 Nd
 Je
-Kq
+qp
 qj
 UA
 UA
@@ -13978,7 +13928,7 @@ zg
 jr
 um
 qj
-te
+rQ
 Bz
 fd
 Je
@@ -15775,7 +15725,7 @@ qj
 lk
 Rc
 Ya
-bF
+DS
 qj
 Zm
 hU
@@ -18638,7 +18588,7 @@ lR
 lR
 oT
 tO
-IX
+wJ
 oT
 wJ
 wJ
