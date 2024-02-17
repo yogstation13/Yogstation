@@ -29,7 +29,7 @@
 	if(!id_card.registered_account)
 		H.balloon_alert(H, "Need a bank account")
 		return
-	if(!id_card.registered_account.account_balance < guncost)
+	if(id_card.registered_account.account_balance < guncost)
 		H.balloon_alert(H, "Not enough money")
 		return
 
