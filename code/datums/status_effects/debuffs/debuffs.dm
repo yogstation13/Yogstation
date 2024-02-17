@@ -1306,7 +1306,7 @@
 	id = "harpooned"
 	duration = 2 SECONDS
 	///damage multiplier
-	power = 1.5
+	power = 1.3
 
 /datum/status_effect/exposed/harpooned/on_apply()
 	. = ..()
