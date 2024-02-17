@@ -325,7 +325,7 @@
 // Upgrades for plasma cutters
 /obj/item/upgrade/plasmacutter
 	name = "generic upgrade kit"
-	desc = "An upgrade for plasma shotguns."
+	desc = "An upgrade for plasma cutters."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
@@ -341,14 +341,14 @@
 
 /obj/item/upgrade/plasmacutter/defuser
 	name = "plasma cutter defusal kit"
-	desc = "An upgrade for plasma shotguns that allows it to automatically defuse gibtonite."
+	desc = "An upgrade for plasma cutters that allows it to automatically defuse gibtonite."
 
 /obj/item/upgrade/plasmacutter/defuser/modify_projectile(obj/projectile/plasma/K)
 	K.defuse = TRUE
 
 /obj/item/upgrade/plasmacutter/capacity
 	name = "plasma cutter capacity kit"
-	desc = "An upgrade for plasma shotguns that doubles the tank capacity."
+	desc = "An upgrade for plasma cutters that doubles the tank capacity."
 	cost = 20
 
 /obj/item/upgrade/plasmacutter/capacity/install(obj/item/gun/energy/plasmacutter/P)
@@ -360,7 +360,7 @@
 
 /obj/item/upgrade/plasmacutter/cooldown
 	name = "plasma cutter cooldown kit"
-	desc = "An upgrade for plasma shotguns that reduces the cooldown."
+	desc = "An upgrade for plasma cutters that reduces the cooldown."
 	cost = 40
 	stackable = TRUE
 
@@ -372,10 +372,10 @@
 
 /obj/item/upgrade/plasmacutter/range
 	name = "plasma cutter range kit"
-	desc = "An upgrade for plasma shotguns that increases the range."
+	desc = "An upgrade for plasma cutters that increases the range."
 	cost = 30
 
-obj/item/upgrade/plasmacutter/range/modify_projectile(obj/projectile/plasma/K)
+/obj/item/upgrade/plasmacutter/range/modify_projectile(obj/projectile/plasma/K)
 	K.range += 4
 
 /obj/item/gun/energy/wormhole_projector
