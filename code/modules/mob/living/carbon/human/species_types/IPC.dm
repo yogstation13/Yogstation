@@ -423,6 +423,7 @@ ipc martial arts stuff
 	special_walk_sounds = null
 	species_traits |= fake_species.species_traits
 	inherent_traits |= fake_species.inherent_traits
+	damage_overlay_type = fake_species.damage_overlay_type
 	attack_verb = fake_species.attack_verb
 	attack_sound = fake_species.attack_sound
 	miss_sound = fake_species.miss_sound
@@ -448,6 +449,7 @@ ipc martial arts stuff
 	H.dna.features["mcolor"] = original_color
 	special_step_sounds = LAZYCOPY(initial_step_sounds)
 	special_walk_sounds = LAZYCOPY(initial_walk_sounds)
+	damage_overlay_type = initial(damage_overlay_type)
 	attack_verb = initial(attack_verb)
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)
@@ -466,8 +468,7 @@ ipc martial arts stuff
 		return fake_species.get_scream_sound(H)
 	else
 		return ..()
-	
-
+		
 /datum/species/ipc/self/insurgent/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 	. = ..()
 	if(. && H.health < disguise_fail_health)
