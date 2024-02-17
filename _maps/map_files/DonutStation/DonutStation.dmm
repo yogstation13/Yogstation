@@ -10154,6 +10154,10 @@
 /obj/item/stack/rods,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
+"eie" = (
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/science/research)
 "eio" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -84174,7 +84178,7 @@ pOM
 inp
 tEL
 uCj
-ibK
+eie
 ibK
 tEL
 tEL

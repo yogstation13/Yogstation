@@ -1417,7 +1417,6 @@
 /obj/item/storage/secure/safe/scientist_raid{
 	pixel_x = 32
 	},
-/obj/item/storage/fancy/cigarettes/cigars/havana,
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 "lk" = (
@@ -6324,6 +6323,7 @@
 	pixel_x = -1;
 	pixel_y = 10
 	},
+/obj/item/storage/fancy/cigarettes/cigars/havana,
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 "Yg" = (
