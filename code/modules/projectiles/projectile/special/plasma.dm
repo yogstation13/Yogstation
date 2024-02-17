@@ -78,6 +78,7 @@
 
 // Same as the scatter but with automatic defusing
 /obj/projectile/plasma/scatter/adv
+	defuse = TRUE
 
 // Megafauna loot, possibly best cutter?
 /obj/projectile/plasma/scatter/adv/stalwart
