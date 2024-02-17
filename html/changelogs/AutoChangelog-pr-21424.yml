@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscdel: "Traitor AIs can no longer edit their laws."
+  - bugfix: "Paladin now has the correct laws again."
