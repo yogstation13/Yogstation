@@ -45,7 +45,7 @@
 	return ..()
 
 /obj/mecha/combat/sidewinder/mamba
-	desc = "Otherwise nearly identical to the original sidewinder chassis in form, this one has been heavily modified for stealthier, longer-range combat engagements."
+	desc = "Otherwise nearly identical to the original sidewinder chassis in form, this one has been heavily modified for stealthier, longer-range combat engagements. The fangs are purely aesthetic, though."
 	name = "\improper Black Mamba"
 	icon_state = "mamba"
 	wreckage = /obj/structure/mecha_wreckage/sidewinder/mamba
