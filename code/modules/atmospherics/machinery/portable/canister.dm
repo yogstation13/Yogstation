@@ -43,7 +43,7 @@
 		"generic striped" = /obj/machinery/portable_atmospherics/canister/generic/stripe,
 		"generic hazard" = /obj/machinery/portable_atmospherics/canister/generic/hazard,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"danger" = /obj/machinery/portable_atmospherics/canister/fusion_test,
+		"danger" = /obj/machinery/portable_atmospherics/canister/fusion,
 		"n2" = /obj/machinery/portable_atmospherics/canister/nitrogen,
 		"o2" = /obj/machinery/portable_atmospherics/canister/oxygen,
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -171,35 +171,35 @@
 
 /obj/machinery/portable_atmospherics/canister/freon
 	name = "Freon canister"
-	desc = "Freon. Can absorb heat"
+	desc = "Freon. Can absorb heat."
 	icon_state = "freon"
 	gas_type = GAS_FREON
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/hydrogen
 	name = "Hydrogen canister"
-	desc = "Hydrogen, highly flammable"
+	desc = "Hydrogen, highly flammable."
 	icon_state = "h2"
 	gas_type = GAS_H2
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/healium
 	name = "Healium canister"
-	desc = "Healium, causes deep sleep"
+	desc = "Healium, causes deep sleep."
 	icon_state = "healium"
 	gas_type = GAS_HEALIUM
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/pluonium
 	name = "Pluonium canister"
-	desc = "Pluonium, reacts differently with various gases"
+	desc = "Pluonium, reacts differently with various gases."
 	icon_state = "pluonium"
 	gas_type = GAS_PLUONIUM
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/halon
 	name = "Halon canister"
-	desc = "Halon, remove oxygen from high temperature fires and cool down the area"
+	desc = "Halon, remove oxygen from high temperature fires and cool down the area."
 	icon_state = "halon"
 	gas_type = GAS_HALON
 	filled = 1
@@ -213,14 +213,14 @@
 
 /obj/machinery/portable_atmospherics/canister/zauker
 	name = "Zauker canister"
-	desc = "Zauker, highly toxic"
+	desc = "Zauker, highly toxic."
 	icon_state = "zauker"
 	gas_type = GAS_ZAUKER
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/antinoblium
 	name = "Antinoblium canister"
-	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
+	desc = "Antinoblium, we still don't know what it does, but it sells for a lot."
 	icon_state = "antino"
 	gas_type = GAS_ANTINOB
 	filled = 1
@@ -568,6 +568,11 @@
 	if(istype(user))
 		analyzer_act(user, src)
 	return ..()
+
+/obj/machinery/portable_atmospherics/canister/fusion
+	name = "Fusion Canister"
+	desc = "A violent mix of gases creating a fusion reaction inside the canister. A note on the side reads: \"DANGER: DO NOT OPEN"\"
+	icon_state = "danger"
 
 /* yog- ADMEME CANISTERS */
 
