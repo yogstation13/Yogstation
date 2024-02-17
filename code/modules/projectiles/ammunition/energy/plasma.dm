@@ -10,7 +10,6 @@
 	if(loc && istype(loc, /obj/item/gun/energy/plasmacutter))
 		var/obj/item/gun/energy/plasmacutter/PC = loc
 		PC.modify_projectile(BB)
-		PC.modify_casing(src)
 
 /obj/item/ammo_casing/energy/plasma/weak
 	projectile_type = /obj/projectile/plasma/weak
