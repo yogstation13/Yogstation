@@ -21,17 +21,19 @@
 	if(opened || !can_open(user) || !ishuman(user) || opening)
 		return
 
-	var/mob/living/carbon/human/H = user
-	var/obj/item/card/id/id_card = H.get_idcard()
-	if(!id_card)
-		H.balloon_alert(H, "Need an id card")
-		return
-	if(!id_card.registered_account)
-		H.balloon_alert(H, "Need a bank account")
-		return
-	if(id_card.registered_account.account_balance < guncost)
-		H.balloon_alert(H, "Not enough money")
-		return
+	if(guncost)
+		var/mob/living/carbon/human/H = user
+		var/obj/item/card/id/id_card = H.get_idcard()
+		if(!id_card)
+			H.balloon_alert(H, "Need an id card")
+			return
+		if(!id_card.registered_account)
+			H.balloon_alert(H, "Need a bank account")
+			return
+		if(id_card.registered_account.account_balance < guncost)
+			H.balloon_alert(H, "Not enough money")
+			return
+		id_card.registered_account.account_balance -= guncost
 
 	add_filter("glowing filter", 2, list("type" = "outline", "color" = "#ffffff", "alpha" = 0, "size" = 2))
 	var/filter = get_filter("glowing filter")
@@ -44,8 +46,6 @@
 	animate(filter)
 	remove_filter("glowing filter")
 	opening = FALSE
-
-	id_card.registered_account.account_balance -= guncost
 
 	var/gunpath = pick(gunlist)
 	if(prob(2)) //bypass regular % and just get a raygun, so it's not near impossible to get with how many guns there are
