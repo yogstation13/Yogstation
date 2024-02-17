@@ -566,6 +566,7 @@
 	item_state = "bigSword"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	weapon_stats = list(SWING_SPEED = 1.6, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 1 SECONDS)
 	force = 30
 	throw_speed = 1
 	throw_range = 1 //you cant throw that shit
