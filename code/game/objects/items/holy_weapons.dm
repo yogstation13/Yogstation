@@ -562,6 +562,7 @@
 /obj/item/nullrod/dragonslayer
 	name = "Dragon Slayer"
 	desc = "It was much too big to be called a sword. Massive, thick, heavy, and far too rough. Indeed, it was like a heap of raw iron."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "bigSwordTwoHanded"
 	item_state = "bigSword"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
