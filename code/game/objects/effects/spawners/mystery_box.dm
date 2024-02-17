@@ -6,6 +6,7 @@
 	max_integrity = INFINITY
 	var/guncost = 950
 	var/list/gunlist = list()
+	var/list/blacklist = list(/obj/item/gun/energy/laser/instakill, /obj/item/gun/energy/laser/instakill/red, /obj/item/gun/energy/laser/instakill/blue)//guns that should never spawn
 	var/opening = FALSE
 
 /obj/structure/closet/crate/mystery_box/Initialize(mapload)
