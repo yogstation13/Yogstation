@@ -19,6 +19,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/click_delay = 1.5
 
+
 /obj/item/clothing/gloves/gasharpoon/equipped(mob/user, slot)
 	. = ..()
 	if(slot & ITEM_SLOT_GLOVES)
