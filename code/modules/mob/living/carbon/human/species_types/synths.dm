@@ -30,15 +30,6 @@
 	initial_inherent_traits = inherent_traits.Copy()
 	..()
 
-/datum/species/synth/military
-	name = "Military Synth"
-	id = "military_synth"
-	armor = 25
-	punchdamagelow = 10
-	punchdamagehigh = 19
-	punchstunthreshold = 14 //about 50% chance to stun
-	disguise_fail_health = 50
-
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
 	assume_disguise(old_species, H)
