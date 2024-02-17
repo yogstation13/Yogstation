@@ -3408,6 +3408,9 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 1
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "aYL" = (
@@ -14678,6 +14681,9 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "esC" = (
@@ -20034,6 +20040,9 @@
 	dir = 1
 	},
 /obj/machinery/modular_computer/console/preset/command/ce,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "fYh" = (
@@ -20446,6 +20455,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "gdG" = (
@@ -33807,6 +33819,9 @@
 	},
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
@@ -48514,6 +48529,9 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "nZd" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "nZg" = (
