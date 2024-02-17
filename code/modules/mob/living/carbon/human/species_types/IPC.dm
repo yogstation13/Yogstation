@@ -412,7 +412,7 @@ ipc martial arts stuff
 	assume_disguise(H)
 	
 /datum/species/ipc/self/insurgent/proc/assume_disguise(mob/living/carbon/human/H)
-	if(disguised || !(fake_species && istype(fake_species)))
+	if(disguised || !(fake_species && istype(fake_species)) || H.health < disguise_fail_health)
 		return FALSE
 
 	disguised = TRUE

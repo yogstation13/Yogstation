@@ -730,7 +730,9 @@
 		//yogs start - snowflake synth check
 		if(!istype(R, /datum/reagent/medicine/synthflesh) && ishuman(my_atom)) 
 			var/mob/living/carbon/human/H = my_atom
-			if(istype(H.dna.species, /datum/species/ipc/self/insurgent))
+			if(H?.dna?.species && istype(H.dna.species, /datum/species/ipc/self/insurgent))
+				var/datum/species/ipc/self/insurgent/sneaky = H.dna.species
+				sneaky.assume_disguise(H)
 				return
 		R.on_mob_add(my_atom) //Must occur befor it could posibly run on_mob_delete
 		//yogs end
