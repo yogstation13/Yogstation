@@ -530,6 +530,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
+"eq" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/storage/secure/safe/scientist_raid{
+	pixel_x = 32
+	},
+/obj/item/storage/fancy/cigarettes/cigars/havana,
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
 "er" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass,
@@ -1411,14 +1420,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"lg" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/storage/secure/safe/scientist_raid{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/awaymission/vr/scientist_raid)
 "lk" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -2397,6 +2398,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"tJ" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c500,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/awaymission/vr/scientist_raid)
 "tK" = (
 /obj/machinery/door/password/floppy_disk{
 	id = "mine_floppy";
@@ -4040,7 +4050,7 @@
 /area/awaymission/vr/abandoned_mine)
 "Hy" = (
 /obj/item/clothing/suit/armor/riot/knight{
-	armor = list("melee"=25,"bullet"=10,"laser"=10,"energy"=10,"bomb"=0,"bio"=0,"rad"=0,"fire"=25,"acid"=25,"wound"=30)
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25, "wound" = 30)
 	},
 /turf/open/floor/plating/asteroid,
 /area/awaymission/vr/abandoned_mine)
@@ -6315,16 +6325,6 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/awaymission/vr/scientist_raid)
-"Yf" = (
-/obj/structure/table/wood,
-/obj/item/stack/spacecash/c500,
-/obj/item/stack/spacecash/c1000{
-	pixel_x = -1;
-	pixel_y = 10
-	},
-/obj/item/storage/fancy/cigarettes/cigars/havana,
-/turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 "Yg" = (
 /obj/structure/chair/office/light{
@@ -18848,8 +18848,8 @@ oT
 oT
 oT
 VZ
-Yf
-lg
+tJ
+eq
 wJ
 oT
 oT
