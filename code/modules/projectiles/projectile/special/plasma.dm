@@ -18,6 +18,7 @@
 
 	var/obj/item/gun/energy/plasmacutter/gun
 	var/defuse = FALSE
+	var/explosive = FALSE
 
 /obj/projectile/plasma/weak
 	name = "weak plasma blast"
@@ -27,6 +28,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	light_color = LIGHT_COLOR_RED
 	mine_range = 0
+
 //yogs begin
 /obj/projectile/plasma/Move(atom/newloc, dir)
 	. = ..()
@@ -42,7 +44,7 @@
 		gib.defuse()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.attempt_drill(firer)
+		M.attempt_drill(firer, explosive)
 		if(mine_range)
 			mine_range--
 			range++

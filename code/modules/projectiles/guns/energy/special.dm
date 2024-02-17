@@ -378,6 +378,14 @@
 /obj/item/upgrade/plasmacutter/range/modify_projectile(obj/projectile/plasma/K)
 	K.range += 4
 
+/obj/item/upgrade/plasmacutter/ore
+	name = "plasma cutter ore kit"
+	desc = "An upgrade for plasma cutters that doubles ore output."
+	cost = 30
+
+/obj/item/upgrade/plasmacutter/ore/modify_projectile(obj/projectile/plasma/K)
+	K.explosive = TRUE
+
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"
 	desc = "A projector that emits high density quantum-coupled bluespace beams."
