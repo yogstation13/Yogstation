@@ -111,7 +111,6 @@
 		"spines" = pick(GLOB.spines_list),
 		"body_markings" = pick(GLOB.body_markings_list),
 		"legs" = "Normal Legs",
-		"caps" = pick(GLOB.caps_list),
 		"moth_wings" = pick(GLOB.moth_wings_list),
 		"tail_polysmorph" = pick(GLOB.tails_list_polysmorph),
 		"teeth" = pick(GLOB.teeth_list),

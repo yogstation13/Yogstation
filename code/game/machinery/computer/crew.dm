@@ -221,8 +221,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 						species = "Ethereal"
 					if (iszombie(H))
 						species = "Zombie"
-					if (issnail(H))
-						species = "Snail"
 					if (isabductor(H))
 						species = "Alien"
 					if (isandroid(H))

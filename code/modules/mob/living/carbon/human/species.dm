@@ -1011,8 +1011,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("moth_wingsopen")
 					S = GLOB.moth_wingsopen_list[H.dna.features["moth_wings"]]
-				if("caps")
-					S = GLOB.caps_list[H.dna.features["caps"]]
 				if("teeth")
 					S = GLOB.teeth_list[H.dna.features["teeth"]]
 				if("dome")

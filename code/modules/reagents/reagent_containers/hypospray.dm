@@ -252,12 +252,6 @@
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 5, /datum/reagent/medicine/coagulant = 2.5, /datum/reagent/iron = 3.5, /datum/reagent/medicine/salglu_solution = 4)
 
-/*/obj/item/reagent_containers/autoinjector/medipen/snail
-	name = "snail shot"
-	desc = "All-purpose snail medicine! Do not use on non-snails!"
-	list_reagents = list(/datum/reagent/snail = 10)
-	icon_state = "snail" */ //yogs we removed snail people cause we are bad people who hate fun
-
 //A vial-loaded hypospray. Cartridge-based!
 /obj/item/hypospray
 	name = "hypospray"
