@@ -353,6 +353,7 @@
 
 /// Color used for default blood
 #define COLOR_BLOOD "#CC0000"
+#define COLOR_BLOOD_VOX "#2299FC"
 
 GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_BLUE = CABLE_HEX_COLOR_BLUE,

@@ -582,6 +582,7 @@ GLOBAL_LIST_INIT(maintenance_loot_makeshift,list(
 	/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem/adamantine = W_MYTHICAL,
 	/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/gorilla = W_MYTHICAL,
 	/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard = W_MYTHICAL,
+	/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/vox = W_MYTHICAL,
 	/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth = W_MYTHICAL,
 	/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant = W_MYTHICAL,
 	/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow = W_MYTHICAL,

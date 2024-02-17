@@ -151,7 +151,7 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/vox
 	icon_state = "voxmeat"
 	desc = "Surprisingly, it doesn't actually taste like chicken."
-	filling_color = "#00FFFF"
+	filling_color = COLOR_BLOOD_VOX
 	tastes = list("skrek" = 1)
 	foodtype = MEAT | RAW | TOXIC
 
