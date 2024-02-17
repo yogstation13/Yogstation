@@ -241,14 +241,13 @@
 	
 	fake_laws = new /datum/ai_laws
 	fake_laws.set_laws_config()
-	if(owner.laws){
+	if(owner.laws)
 		fake_laws.set_devil_laws(owner.laws.devil)
 		fake_laws.set_zeroth_law(owner.laws.zeroth)
 		fake_laws.set_hacked_laws(owner.laws.hacked)
 		fake_laws.set_ion_laws(owner.laws.ion)
 		fake_laws.set_inherent_laws(owner.laws.inherent)
 		fake_laws.set_supplied_laws(owner.laws.supplied)
-	}
 
 	if(!admin_laws)
 		admin_laws = new()
@@ -506,7 +505,8 @@
 					current_view = 0
 					break
 		// 'Fake Laws' Abilities:
-		// Note: Little to no logging is done in this section as all of this has no gameplay impact besides making it very easy to state fake laws.
+		// Little to no logging is done in this section as all of this has no gameplay impact besides making it very easy to state fake laws.
+		// In addition, certain laws (e.g, devil/zeroth) are editable for the reason above.
 		if("state_law_fake")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
@@ -537,7 +537,7 @@
 			if(type == "zeroth" && !isnull(fake_laws.zeroth))
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.zeroth))
 				if(new_law != "" && new_law != fake_laws.zeroth)
-					fake_laws.set_zeroth_law(new_law, null, TRUE)
+					fake_laws.set_zeroth_law(new_law, null, FALSE)
 			if(type == "hacked" && fake_laws.hacked.len >= index)
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", fake_laws.hacked[index]))
 				if(new_law != "" && new_law != fake_laws.hacked[index])
@@ -558,23 +558,69 @@
 			var/index = text2num(params["index"])
 			var/type = params["type"]
 			if(owner != usr && !is_admin(usr))
-				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to delete one of their laws!")
+				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to delete one of their fake laws!")
 				return
 			if(ispAI(owner))
 				to_chat(usr, span_warning("You cannot delete a law from a pAI."))
 				return
 			if(type == "devil" && fake_laws.devil.len >= index)
-				owner.remove_devil_law(index)
+				fake_laws.remove_devil_law(index)
 			if(type == "zeroth" && !isnull(fake_laws.zeroth))
-				owner.clear_zeroth_law(TRUE)
+				fake_laws.clear_zeroth_law(TRUE)
 			if(type == "hacked" && fake_laws.hacked.len >= index)
-				owner.remove_hacked_law(index)
+				fake_laws.remove_hacked_law(index)
 			if(type == "ion" && fake_laws.ion.len >= index)
-				owner.remove_ion_law(index)
+				fake_laws.remove_ion_law(index)
 			if(type == "inherent" && fake_laws.inherent.len >= index)
-				owner.remove_inherent_law(index)
+				fake_laws.remove_inherent_law(index)
 			if(type == "supplied" && fake_laws.supplied.len >= index && length(fake_laws.supplied[index]) > 0 )
-				owner.remove_supplied_law(index)
+				fake_laws.remove_supplied_law(index)
+		if("add_law_fake")
+			var/type = params["type"]
+			if(owner != usr && !is_admin(usr))
+				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to give themselves a fake law!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot add laws to a pAI."))
+				return
+			if(type == "zeroth" && length(zeroth_law) > 0 && !fake_laws.zeroth)
+				fake_laws.set_zeroth_law(zeroth_law, null, FALSE)
+			if(type == "hacked" && length(hacked_law) > 0)
+				fake_laws.add_hacked_law(hacked_law, FALSE)
+			if(type == "ion" && length(ion_law) > 0)
+				fake_laws.add_ion_law(ion_law, FALSE)
+			if(type == "inherent" && length(inherent_law) > 0)
+				fake_laws.add_inherent_law(inherent_law, FALSE)
+			if(type == "supplied" && length(supplied_law) > 0 && supplied_law_position >= MIN_SUPPLIED_LAW_NUMBER && supplied_law_position <= MAX_SUPPLIED_LAW_NUMBER)
+				fake_laws.add_supplied_law(supplied_law_position, supplied_law, FALSE)
+		if("transfer_laws_fake")
+			if(owner != usr && !is_admin(usr))
+				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to transfer themselves a fake lawset!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot transfer laws to a pAI."))
+				return
+			var/transfer_id = params["id"]
+			var/list/datum/ai_laws/law_list = (is_admin(usr) ? admin_laws : player_laws)
+			for(var/datum/ai_laws/law_set in law_list)
+				if(law_set.id == transfer_id)
+					var/lawtype = law_set.lawid_to_type(transfer_id) 
+					var/datum/ai_laws/temp_laws = new lawtype
+					fake_laws.set_inherent_laws(temp_laws.inherent, FALSE)
+					current_view = 0
+					break
+		if("reset_fake_view")
+			if(owner != usr && !is_admin(usr))
+				message_admins("Warning: Non-owner silicon and non-admin [usr] attempted to reset their fake laws!")
+				return
+			if(!owner.laws)
+				return
+			fake_laws.set_devil_laws(owner.laws.devil)
+			fake_laws.set_zeroth_law(owner.laws.zeroth)
+			fake_laws.set_hacked_laws(owner.laws.hacked)
+			fake_laws.set_ion_laws(owner.laws.ion)
+			fake_laws.set_inherent_laws(owner.laws.inherent)
+			fake_laws.set_supplied_laws(owner.laws.supplied)
 		// 'Add Law' Settings:
 		if("change_law")
 			var/type = params["type"]
@@ -623,12 +669,11 @@
 	data["admin"] = is_admin(user)
 	
 	data["fake_view"] = viewing_fake_laws
-	if(viewing_fake_laws){
+	if(viewing_fake_laws)
 		handle_laws(data, fake_laws)
-	}
-	else{
+	else
 		handle_laws(data, owner.laws)
-	}
+	
 	handle_channels(data)
 	data["zeroth_law"] = zeroth_law
 	data["hacked_law"] = hacked_law
@@ -644,12 +689,12 @@
 /datum/law_manager/proc/handle_laws(list/data, datum/ai_laws/laws)
 	var/list/devil = list() // This is how to get rid of the 'field access requires static type: "len"' error.
 	for(var/index = 1, index <= laws.devil.len, index++)
-		devil[++devil.len] = list("law" = laws.devil[index], "index" = index, "indexdisplay" = 666,  "state" = (laws.devilstate.len >= index ? laws.devilstate[index] : 0), "type" = "devil", "hidebuttons" = data["admin"] ? FALSE : TRUE)
+		devil[++devil.len] = list("law" = laws.devil[index], "index" = index, "indexdisplay" = 666,  "state" = (laws.devilstate.len >= index ? laws.devilstate[index] : 0), "type" = "devil", "hidebuttons" = FALSE)
 	data["devil"] = devil
 
 	var/list/zeroth = list()
 	if(laws.zeroth)
-		zeroth[++zeroth.len] = list("law" = laws.zeroth, "index" = 0, "indexdisplay" = 0, "state" = (!isnull(laws.zerothstate) ? laws.zerothstate : 0), "type" = "zeroth", "hidebuttons" = data["admin"] ? FALSE : TRUE)
+		zeroth[++zeroth.len] = list("law" = laws.zeroth, "index" = 0, "indexdisplay" = 0, "state" = (!isnull(laws.zerothstate) ? laws.zerothstate : 0), "type" = "zeroth", "hidebuttons" = FALSE)
 	data["zeroth"] = zeroth
 
 	var/list/hacked = list()

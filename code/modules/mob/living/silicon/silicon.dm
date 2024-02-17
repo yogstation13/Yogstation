@@ -192,7 +192,7 @@
 				say("[radiomod] 666. [stated_laws.devil[index]]")
 				sleep(1 SECONDS)
 	if(stated_laws.zeroth && (force || stated_laws.zerothstate))
-		say("[radiomod] 0. [laws.zeroth]")
+		say("[radiomod] 0. [stated_laws.zeroth]")
 		sleep(1 SECONDS)
 	for (var/index = 1, index <= stated_laws.hacked.len, index++)
 		var/law = stated_laws.hacked[index]
