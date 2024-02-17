@@ -103,7 +103,8 @@
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=cEwZpejd4rM", // Charlie Wilson - Forever Valentine
 		"https://www.youtube.com/watch?v=4j-cPYewjn4", // David Bowie - Valentine's Day
-		"https://www.youtube.com/watch?v=yvUPEW8bdHA" // On The Street Where You Live
+		"https://www.youtube.com/watch?v=yvUPEW8bdHA", // On The Street Where You Live
+		"https://www.youtube.com/watch?v=J2w8Gubp3x0"  // Tim McMorris - Be My Valentine
 		)
 
 /datum/holiday/valentines/getStationPrefix()
