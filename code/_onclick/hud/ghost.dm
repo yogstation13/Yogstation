@@ -10,7 +10,7 @@
 
 /atom/movable/screen/ghost/jump_to_mob/Click()
 	var/mob/dead/observer/G = usr
-	G.jump_to_mob()
+	G.dead_tele()
 
 /atom/movable/screen/ghost/orbit
 	name = "Orbit"

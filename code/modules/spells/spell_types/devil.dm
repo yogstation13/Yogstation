@@ -30,6 +30,7 @@
 	invocation_type = INVOCATION_WHISPER
 
 	item_type = /obj/item/instrument/violin/golden
+	spell_requirements = NONE
 
 /datum/action/cooldown/spell/pointed/summon_contract
 	name = "Summon infernal contract"
