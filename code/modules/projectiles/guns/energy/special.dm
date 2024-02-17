@@ -258,7 +258,7 @@
 	. = ..()
 	if(istype(I, /obj/item/upgrade/plasmacutter))
 		var/obj/item/upgrade/plasmacutter/PC = I
-		if(get_remaining_mod_capacity() > PC.cost)
+		if(get_remaining_mod_capacity() < PC.cost)
 			to_chat(user, span_warning("There is no more room for this upgrade."))
 			return
 		if(!PC.stackable && is_type_in_list(PC, installed_upgrades))
