@@ -2378,14 +2378,6 @@
 /datum/sprite_accessory/legs/digitigrade_lizard
 	name = "Digitigrade Legs"
 
-/datum/sprite_accessory/caps
-	icon = 'icons/mob/mutant_bodyparts.dmi'
-	color_src = HAIR
-
-/datum/sprite_accessory/caps/round
-	name = "Round"
-	icon_state = "round"
-
 /datum/sprite_accessory/moth_wings
 	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null

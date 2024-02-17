@@ -1,9 +1,6 @@
 /mob/living/carbon/human/species/gorilla
 	race = /datum/species/gorilla
 
-/mob/living/carbon/human/species/egg
-	race = /datum/species/egg
-
 /mob/living/carbon/human/species/preternis
 	race = /datum/species/preternis
 

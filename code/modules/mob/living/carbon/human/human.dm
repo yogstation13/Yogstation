@@ -1333,9 +1333,6 @@
 /mob/living/carbon/human/species/moth
 	race = /datum/species/moth
 
-/mob/living/carbon/human/species/mush
-	race = /datum/species/mush
-
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
 
@@ -1376,9 +1373,6 @@
 
 /mob/living/carbon/human/species/synth
 	race = /datum/species/synth
-
-/mob/living/carbon/human/species/synth/military
-	race = /datum/species/synth/military
 
 /mob/living/carbon/human/species/vampire
 	race = /datum/species/vampire

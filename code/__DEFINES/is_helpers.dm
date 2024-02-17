@@ -88,7 +88,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define ispreternis(A) (is_species(A,/datum/species/preternis))
 #define isszlachta(A) (is_species(A, /datum/species/szlachta))
 #define isipc(A) (is_species(A, /datum/species/ipc))
-#define issnail(A) (is_species(A, /datum/species/snail))
 #define isandroid(A) (is_species(A, /datum/species/android))
 #define isdummy(A) (istype(A, /mob/living/carbon/human/dummy))
 

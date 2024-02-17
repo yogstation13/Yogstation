@@ -30,15 +30,6 @@
 	initial_inherent_traits = inherent_traits.Copy()
 	..()
 
-/datum/species/synth/military
-	name = "Military Synth"
-	id = "military_synth"
-	armor = 25
-	punchdamagelow = 10
-	punchdamagehigh = 19
-	punchstunthreshold = 14 //about 50% chance to stun
-	disguise_fail_health = 50
-
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
 	assume_disguise(old_species, H)
@@ -120,7 +111,6 @@
 	else
 		return ..()
 
-
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if (isliving(source)) // yeah it's gonna be living but just to be clean
 		var/mob/living/L = source
@@ -130,21 +120,3 @@
 					speech_args[SPEECH_SPANS] |= SPAN_CLOWN
 				if (/datum/species/golem/clockwork)
 					speech_args[SPEECH_SPANS] |= SPAN_ROBOT
-
-/datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
-
-	if(H.reagents.has_reagent(/datum/reagent/teslium,10)) //10 u otherwise it wont update and they will remain quikk
-		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
-		if(H.health < 50 && H.health > 0)
-			H.adjustOxyLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
-			H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-			H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-		H.AdjustParalyzed(-3)
-		H.AdjustStun(-3)
-		H.AdjustKnockdown(-3)
-		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
-		burnmod = 200
-	else
-		H.remove_movespeed_modifier("preternis_teslium")
-		burnmod = initial(burnmod)

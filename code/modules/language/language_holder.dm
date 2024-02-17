@@ -289,12 +289,6 @@ Key procs
 								/datum/language/monkey = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/monkey = list(LANGUAGE_ATOM))
 
-/datum/language_holder/mushroom
-	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/mushroom = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/mushroom = list(LANGUAGE_ATOM))
-
 /datum/language_holder/slime
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/slime = list(LANGUAGE_ATOM))
@@ -405,12 +399,6 @@ Key procs
 /datum/language_holder/mouse
 	understood_languages = list(/datum/language/mouse = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/mouse = list(LANGUAGE_ATOM))
-
-/datum/language_holder/egg
-	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/egg = list(LANGUAGE_ATOM),)
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/egg = list(LANGUAGE_ATOM),)
 
 /datum/language_holder/english
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
