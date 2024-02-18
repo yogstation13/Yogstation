@@ -45,9 +45,6 @@ SUBSYSTEM_DEF(atoms)
 
 	set_tracked_initalized(INITIALIZATION_INNEW_MAPLOAD, SUBSYSTEM_INIT_SOURCE)
 
-	if(atoms_to_return)
-		LAZYINITLIST(created_atoms)
-
 	// This may look a bit odd, but if the actual atom creation runtimes for some reason, we absolutely need to set initialized BACK
 	CreateAtoms(atoms, atoms_to_return)
 	clear_tracked_initalize(SUBSYSTEM_INIT_SOURCE)
