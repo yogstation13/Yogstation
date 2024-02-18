@@ -104,7 +104,7 @@
 	else if(!(stat & NOPOWER))
 		. += screen_icon_screensaver
 
-	if(cpu.obj_integrity <= cpu.integrity_failure)
+	if(cpu.get_integrity() <= cpu.integrity_failure)
 		. += "bsod"
 		. += "broken"
 	return .
