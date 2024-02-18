@@ -249,6 +249,9 @@
 		user.visible_message(span_notice("[user] scoops up the gems beneath [user.p_them()]."), \
 		span_notice("You scoop up the gems beneath you with your [name]."))
 	spam_protection = FALSE
+
+/obj/item/storage/bag/gem/cyborg
+	name = "cyborg gem satchel"
 // -----------------------------
 //          Plant bag
 // -----------------------------
@@ -284,14 +287,14 @@
 		seedify(O, 1)
 
 // -----------------------------
-//        Sheet Snatcher
+//        Stack Snatcher
 // -----------------------------
 // Because it stacks stacks, this doesn't operate normally.
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 
 /obj/item/storage/bag/sheetsnatcher
-	name = "sheet snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
+	name = "stack snatcher"
+	desc = "A patented Nanotrasen storage system designed for any kind of stacks. This is geared towards sheets, rods, and tiles."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 
@@ -303,15 +306,15 @@
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
-	STR.set_holdable(list(/obj/item/stack/sheet), list(/obj/item/stack/sheet/mineral/sandstone, /obj/item/stack/sheet/mineral/wood))
+	STR.set_holdable(list(/obj/item/stack/sheet, /obj/item/stack/tile, /obj/item/stack/rods))
 	STR.max_items = 500
 
 // -----------------------------
-//    Sheet Snatcher (Cyborg)
+//    Stack Snatcher (Cyborg)
 // -----------------------------
 
 /obj/item/storage/bag/sheetsnatcher/borg
-	name = "sheet snatcher 9000"
+	name = "stack snatcher 9000"
 	desc = ""
 	capacity = 1000//Borgs get more because >specialization
 
@@ -423,7 +426,7 @@
 	STR.max_combined_w_class = 50
 	STR.max_items = 40
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/autoinjector/medipen))
+	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/gummy))
 
 /*
  *  Biowaste bag (mostly for xenobiologists)
@@ -464,7 +467,7 @@
 	STR.max_items = 40
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics, /obj/item/modular_computer))
+	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics, /obj/item/modular_computer, /obj/item/computer_hardware))
 
 
 /obj/item/storage/bag/construction/admin/full/Initialize(mapload)

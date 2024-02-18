@@ -30,6 +30,8 @@
 	COOLDOWN_DECLARE(next_parry) // so you can't just spam it
 
 /datum/martial_art/ultra_violence/can_use(mob/living/carbon/human/H)
+	if(H.stat == DEAD || H.IsUnconscious() || H.incapacitated(TRUE, TRUE) || HAS_TRAIT(H, TRAIT_PACIFISM))//extra pacifism check because it does weird shit
+		return FALSE
 	return isipc(H)
 
 /datum/martial_art/ultra_violence/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)//A is user, D is target
@@ -67,12 +69,14 @@
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	check_streak(A,D)
-	handle_style(A, 0.1, STYLE_PUNCH)
+	if(A != D) // why are you hitting yourself
+		handle_style(A, 0.1, STYLE_PUNCH)
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A) //moved this here because it's not just for dashing anymore
-	if(!(H.a_intent in list(INTENT_DISARM, INTENT_GRAB)) || H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || get_turf(H) == get_turf(A))
+	if(!(H.a_intent in list(INTENT_DISARM, INTENT_GRAB)) || !can_use(H) || get_turf(H) == get_turf(A))
 		return FALSE
+
 	H.face_atom(A)
 	if(H.a_intent == INTENT_DISARM)
 		dash(H, A)
@@ -123,10 +127,15 @@
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
-	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = new /obj/item/gun/ballistic/revolver/ipcmartial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
-	gun.gun_owner = A
+	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = locate() in A // check if they already had one
+	if(gun)
+		to_chat(A, span_notice("You reload your revolver."))
+		gun.magazine.top_off()
+	if(style >= 8 || !gun) // can dual wield at the max style level
+		gun = new(A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+		to_chat(A, span_notice("You whip out your revolver."))
+		gun.gun_owner = A
 	A.put_in_hands(gun)
-	to_chat(A, span_notice("You whip out your revolver."))
 	streak = ""
 
 /obj/item/gun/ballistic/revolver/ipcmartial
@@ -141,17 +150,17 @@
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
 	ammo_type = /obj/item/ammo_casing/ipcmartial
-	caliber = "357"
+	caliber = CALIBER_357MAG
 	max_ammo = 3
 
 /obj/item/ammo_casing/ipcmartial
 	name = ".357 sharpshooter bullet casing"
 	desc = "A .357 sharpshooter bullet casing."
-	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/ipcmartial
+	caliber = CALIBER_357MAG
+	projectile_type = /obj/projectile/bullet/ipcmartial
 	click_cooldown_override = 0.1 //this gun shoots faster
 
-/obj/item/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
+/obj/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
 	name = ".357 sharpshooter bullet"
 	damage = 30 // can't 3-shot against sec armor
 	armour_penetration = 15
@@ -159,16 +168,17 @@
 	wound_falloff_tile = -2.5
 	ricochets_max = 1 // so you can't use it in a small room to obliterate everyone inside
 	ricochet_chance = INFINITY // ALWAYS ricochet
-	penetrating = TRUE
+	penetrations = INFINITY
+	can_ricoshot = ALWAYS_RICOSHOT // +RICOSHOT
 
-/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
+/obj/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
 	. = ..()
 	if(!isliving(target)) // don't gain style from hitting an object
 		return .
 	var/mob/living/L = target
 	if(L.stat == DEAD)
 		return . // no using dead bodies to gain style, that's boring and uncool KILL SOME REAL THINGS
-	if(ishuman(firer))
+	if(ishuman(firer) && firer != target) // WHY ARE YOU SHOOTING YOURSELF
 		var/mob/living/carbon/human/H = firer
 		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
 			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
@@ -184,16 +194,16 @@
 	if(damage <= 0)
 		qdel(src)
 
-/obj/item/projectile/bullet/ipcmartial/on_ricochet(atom/A)
+/obj/projectile/bullet/ipcmartial/on_ricochet(atom/A)
 	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
 	speed *= 0.5 // faster so it can hit more reliably
-	penetrating = FALSE
+	penetrations = 0
 	return ..()
 
-/obj/item/projectile/bullet/ipcmartial/check_ricochet()
+/obj/projectile/bullet/ipcmartial/check_ricochet()
 	return TRUE
 
-/obj/item/projectile/bullet/ipcmartial/check_ricochet_flag(atom/A)
+/obj/projectile/bullet/ipcmartial/check_ricochet_flag(atom/A)
 	return !ismob(A) // don't ricochet off of mobs, that would be weird
 
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
@@ -281,7 +291,7 @@
 	dashing = FALSE
 	H.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 
-/datum/martial_art/ultra_violence/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+/datum/martial_art/ultra_violence/handle_throw(atom/hit_atom, mob/living/carbon/human/A, datum/thrownthing/throwingdatum)
 	if(!dashing)
 		return ..()
 	return TRUE
@@ -311,11 +321,11 @@
 			continue
 		for(var/thing in parried_tile.contents)
 			if(isprojectile(thing))
-				var/obj/item/projectile/P = thing
+				var/obj/projectile/P = thing
 				P.firer = H
 				P.damage *= 1.5
 				P.speed *= 0.5
-				P.permutated = list()
+				P.impacted = list()
 				P.fire(get_angle(H, A)) // parry the projectile towards wherever you clicked
 				successful_parry = TRUE
 	if(successful_parry)

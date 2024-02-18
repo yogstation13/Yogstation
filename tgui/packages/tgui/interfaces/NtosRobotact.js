@@ -328,7 +328,7 @@ export const NtosRobotactContent = (props, context) => {
             buttons={(
               <Fragment>
                 <Button
-                  content="State Laws"
+                  content="Law Manager"
                   onClick={() => act('lawstate')} />
                 <Button
                   icon="volume-off"
@@ -348,17 +348,18 @@ export const NtosRobotactContent = (props, context) => {
       {tab_main === 3 && (
         <Flex.Item>
           <Section
+            fill
+            scrollable
             backgroundColor="black"
             height={24}>
-            <NtosWindow.Content scrollable>
-              {borgLog.map(log => (
-                <Box
-                  mb={1}
-                  key={log}>
-                  <font color="green">{log}</font>
-                </Box>
-              ))}
-            </NtosWindow.Content>
+            {borgLog.map(log => (
+              <Box
+                mb={1}
+                key={log}
+                color="green">
+                {log}
+              </Box>
+            ))}
           </Section>
         </Flex.Item>
       )}

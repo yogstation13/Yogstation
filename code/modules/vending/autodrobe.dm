@@ -3,6 +3,7 @@
 	desc = "A vending machine for costumes."
 	icon_state = "theater"
 	icon_deny = "theater-deny"
+	panel_type = "panel16"
 	req_access = list(ACCESS_THEATRE)
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
@@ -200,6 +201,8 @@
 					/obj/item/clothing/shoes/clown_shoes/beeshoes = 1,
 					/obj/item/clothing/suit/santa = 1,
 					/obj/item/clothing/head/santa = 1,
+					/obj/item/clothing/suit/pocketcat = 1,
+					/obj/item/clothing/mask/pocketcatmask = 1,
 					/obj/item/clothing/neck/skillcape/admin = 1,
 					/obj/item/clothing/neck/skillcape/trimmed/admin = 1,
 					/obj/item/clothing/neck/skillcape/mentor = 1,
@@ -232,6 +235,7 @@
 	default_price = 50
 	extra_price = 75
 	payment_department = ACCOUNT_SRV
+	light_mask="theater-light-mask"
 
 /obj/machinery/vending/autodrobe/canLoadItem(obj/item/I,mob/user)
 	return (I.type in products)
@@ -247,8 +251,10 @@
 /obj/machinery/vending/autodrobe/capdrobe
 	name = "\improper CapDrobe"
 	desc = "A vending machine for captain outfits."
+	icon = 'yogstation/icons/obj/vending.dmi'
 	icon_state = "capdrobe"
 	icon_deny = "capdrobe-deny"
+	panel_type = "panel-capdrobe"
 	req_access = list(ACCESS_CAPTAIN)
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use the Captain's Autodrobe!"
 	vend_reply = "Thank you for using the Captain's Autodrobe!"

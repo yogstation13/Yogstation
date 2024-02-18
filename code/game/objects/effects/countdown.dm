@@ -7,7 +7,7 @@
 
 	invisibility = INVISIBILITY_OBSERVER
 	anchored = TRUE
-	layer = GHOST_LAYER
+	plane = GHOST_PLANE
 	color = "#ff0000" // text color
 	var/text_size = 3 // larger values clip when the displayed text is larger than 2 digits.
 	var/started = FALSE
@@ -107,7 +107,7 @@
 	name = "gateway countdown"
 	text_size = 1
 	color = "#BE8700"
-	layer = POINT_LAYER
+	plane = POINT_PLANE
 
 /obj/effect/countdown/clockworkgate/get_value()
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = attached_to

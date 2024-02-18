@@ -20,7 +20,7 @@
 	initial_language_holder = /datum/language_holder/drone/syndicate
 	faction = list(ROLE_SYNDICATE)
 	speak_emote = list("hisses")
-	bubble_icon = "syndibot"
+	bubble_icon = BUBBLE_SYNDIBOT
 	heavy_emp_damage = 10
 	laws = \
 	"1. Interfere.\n"+\
@@ -112,11 +112,9 @@
 	icon_dead = "drone_clock_dead"
 	picked = TRUE
 	pass_flags = PASSTABLE
-	health = 50
-	maxHealth = 50
 	harm_intent_damage = 5
 	density = TRUE
-	speed = 1
+	speed = 0
 	ventcrawler = VENTCRAWLER_NONE
 	faction = list("neutral", "ratvar")
 	speak_emote = list("clanks", "clinks", "clunks", "clangs")
@@ -124,7 +122,7 @@
 	verb_exclaim = "proclaims"
 	verb_whisper = "imparts"
 	verb_yell = "harangues"
-	bubble_icon = "clock"
+	bubble_icon = BUBBLE_CLOCK
 	initial_language_holder = /datum/language_holder/clockmob
 	light_color = "#E42742"
 	heavy_emp_damage = 0

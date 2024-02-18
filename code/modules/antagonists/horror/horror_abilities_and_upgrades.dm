@@ -137,6 +137,17 @@
 /datum/action/innate/horror/make_chems/Activate()
 	B.secrete_chemicals()
 
+/datum/action/innate/horror/scan_host
+	name = "Host Scan"
+	desc = "Analyze your host's body and chemical content."
+	button_icon = 'icons/obj/device.dmi'
+	button_icon_state = "health"
+	blacklisted = TRUE
+	category = list("infest")
+
+/datum/action/innate/horror/scan_host/Activate()
+	B.scan_host()
+
 /datum/action/innate/horror/freeze_victim
 	name = "Knockdown victim"
 	desc = "Use your tentacle to trip a victim, stunning for a short duration."
@@ -265,7 +276,7 @@
 				delay = 3 SECONDS
 
 	transferring = TRUE
-	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, PROC_REF(is_transferring), C), stayStill = FALSE))
+	if(!do_after(B.victim, delay, C, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_transferring), C)))
 		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return
@@ -426,7 +437,7 @@
 /datum/horror_upgrade/upgraded_chems
 	name = "Advanced reagent synthesis"
 	id = "upgraded_chems"
-	desc = "Lets you synthetize adrenaline, salicyclic acid, oxandrolone, pentetic acid and rezadone into your host."
+	desc = "Lets you synthesize adrenaline, salicylic acid, oxandrolone, pentetic acid and rezadone into your host."
 	soul_price = 2
 
 /datum/horror_upgrade/upgraded_chems/apply_effects()

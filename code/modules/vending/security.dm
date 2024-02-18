@@ -4,10 +4,13 @@
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
+	panel_type = "panel6"
+	light_mask = "sec-light-mask"
 	req_access = list(ACCESS_SECURITY)
 	products = list(/obj/item/clothing/head/helmet/plated = 6,
 					/obj/item/clothing/suit/armor/plated = 6,
 					/obj/item/restraints/handcuffs = 8,
+					/obj/item/clothing/neck/anti_magic_collar = 3,
 					/obj/item/restraints/handcuffs/cable/zipties = 10,
 					/obj/item/grenade/flashbang = 4,
 					/obj/item/assembly/flash/handheld = 5,
@@ -34,7 +37,7 @@
 		G.preprime()
 	else if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
-		F.on = TRUE
+		F.light_on = TRUE
 		F.update_brightness()
 
 /obj/item/vending_refill/security

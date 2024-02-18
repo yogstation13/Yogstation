@@ -3,18 +3,19 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = OPEN_DOOR_LAYER
 	power_channel = AREA_USAGE_ENVIRON
 	max_integrity = 350
 	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 70)
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	flags_1 = PREVENT_CLICK_UNDER_1
 	damage_deflection = 10
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	/// TRUE means density will be set as soon as the door begins to close
 	var/air_tight = FALSE
@@ -57,6 +58,7 @@
 	var/unres_sides = 0
 	// door open speed.
 	var/open_speed = 0.5 SECONDS
+	COOLDOWN_DECLARE(cmagsound_cooldown)
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
@@ -82,7 +84,7 @@
 	. = ..()
 	set_init_door_layer()
 	update_freelook_sight()
-	air_update_turf(1)
+	air_update_turf()
 	GLOB.airlocks += src
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(2, 1, src)
@@ -102,12 +104,13 @@
 	else
 		layer = initial(layer)
 
-/obj/machinery/door/Destroy()
+/obj/machinery/door/Destroy(force=FALSE)
 	update_freelook_sight()
 	GLOB.airlocks -= src
 	if(spark_system)
 		qdel(spark_system)
 		spark_system = null
+	air_update_turf()
 	return ..()
 
 /obj/machinery/door/Bumped(atom/movable/AM)
@@ -129,24 +132,34 @@
 
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
-		if(density)
-			if(mecha.occupant)
-				if(world.time - mecha.occupant.last_bumped <= 10)
-					return
-				mecha.occupant.last_bumped = world.time
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
-				open()
-			else
-				do_animate("deny")
+		if(!density)
+			return
+		// If an empty mech somehow bumps into something that it has access to, it should open:
+		var/has_access = (obj_flags & CMAGGED) ? !check_access_list(mecha.operation_req_access) : check_access_list(mecha.operation_req_access)
+		if(mecha.occupant)
+			if(world.time - mecha.occupant.last_bumped <= 10)
+				return
+			mecha.occupant.last_bumped = world.time
+			// If there is an occupant, check their access too.
+			has_access = (obj_flags & CMAGGED) ? cmag_allowed(mecha.occupant) && has_access : allowed(mecha.occupant) || has_access
+		if(has_access)
+			open()
+		else
+			if(obj_flags & CMAGGED)
+				try_play_cmagsound()
+			do_animate("deny")
 		return
 
 	if(isitem(AM))
 		var/obj/item/I = AM
 		if(!density || (I.w_class < WEIGHT_CLASS_NORMAL && !LAZYLEN(I.GetAccess())))
 			return
-		if(check_access(I))
+		var/has_access = obj_flags & CMAGGED ? !check_access(I) : check_access(I)
+		if(has_access)
 			open()
 		else
+			if(obj_flags & CMAGGED)
+				try_play_cmagsound()
 			do_animate("deny")
 		return
 
@@ -164,18 +177,7 @@
 			return !opacity //yogs end
 
 /obj/machinery/door/proc/bumpopen(mob/user)
-	if(operating)
-		return
-	src.add_fingerprint(user)
-	if(!src.requiresID())
-		user = null
-
-	if(density && !(obj_flags & EMAGGED))
-		if(allowed(user))
-			open()
-		else
-			do_animate("deny")
-	return
+	return try_to_activate_door(user)
 
 /obj/machinery/door/attack_hand(mob/user)
 	. = ..()
@@ -194,14 +196,41 @@
 		return
 	if(!requiresID())
 		user = null //so allowed(user) always succeeds
-	if(allowed(user))
-		if(density)
-			open()
-		else
+	if(obj_flags & CMAGGED)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			var/obj/item/card/id/idcard = H.get_idcard()
+			if(!idcard?.assignment) // You cannot game the inverted access by taking off your ID or wearing a blank ID.
+				if(density)
+					to_chat(H, span_warning("The airlock speaker chuckles: 'What's wrong, pal? Lost your ID? Nyuk nyuk nyuk!'")) // We also will include this too.
+					try_play_cmagsound()
+					do_animate("deny")
+				return FALSE
+		if(!cmag_allowed(user))
+			try_play_cmagsound()
+			if(density)
+				do_animate("deny")
+			return FALSE
+		if(!density)
 			close()
+		else
+			open()
 		return TRUE
-	if(density)
-		do_animate("deny")
+	if(!allowed(user))
+		if(density)
+			do_animate("deny")
+		return FALSE
+
+	if(!density)
+		close()
+	else
+		open()
+	return TRUE
+
+/obj/machinery/door/proc/try_play_cmagsound()
+	if(COOLDOWN_FINISHED(src, cmagsound_cooldown))
+		playsound(loc, 'sound/machines/honkbot_evil_laugh.ogg', 25, TRUE, ignore_walls = FALSE)
+		COOLDOWN_START(src, cmagsound_cooldown, 1 SECONDS)
 
 /obj/machinery/door/allowed(mob/M)
 	if(emergency)
@@ -209,6 +238,12 @@
 	if(unrestricted_side(M))
 		return TRUE
 	return ..()
+
+/// Returns the opposite of '/allowed', but makes exceptions for things like IsAdminGhost().
+/obj/machinery/door/proc/cmag_allowed(mob/M)
+	if(IsAdminGhost(M))
+		return TRUE
+	return !allowed(M)
 
 /obj/machinery/door/proc/unrestricted_side(mob/M) //Allows for specific side of airlocks to be unrestrected (IE, can exit maint freely, but need access to enter)
 	return get_dir(src, M) & unres_sides
@@ -230,9 +265,9 @@
 	var/max_moles = min_moles
 	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
 	density = FALSE
-	T.ImmediateCalculateAdjacentTurfs()
+	var/list/adj_turfs = TURF_SHARES(T)
 	// then we use those adjacent turfs to figure out what the difference between the lowest and highest pressures we'd be holding is
-	for(var/turf/open/T2 in T.atmos_adjacent_turfs)
+	for(var/turf/open/T2 in adj_turfs)
 		if((flags_1 & ON_BORDER_1) && get_dir(src, T2) != dir)
 			continue
 		var/moles = T2.air.total_moles()
@@ -241,7 +276,6 @@
 		if(moles > max_moles)
 			max_moles = moles
 	density = TRUE
-	T.ImmediateCalculateAdjacentTurfs() // alright lets put it back
 	return max_moles - min_moles > 20
 
 /obj/machinery/door/attackby(obj/item/I, mob/user, params)
@@ -283,9 +317,9 @@
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	if(prob(20/severity) && (istype(src, /obj/machinery/door/airlock) || istype(src, /obj/machinery/door/window)) )
+	if(prob(2 * severity) && (istype(src, /obj/machinery/door/airlock) || istype(src, /obj/machinery/door/window)) )
 		INVOKE_ASYNC(src, PROC_REF(open))
-	if(prob(severity*10 - 20))
+	if(prob(severity*2 - 20))
 		if(secondsElectrified == MACHINE_NOT_ELECTRIFIED)
 			secondsElectrified = MACHINE_ELECTRIFIED_PERMANENT
 			LAZYADD(shockedby, "\[[time_stamp()]\]EM Pulse")
@@ -330,10 +364,10 @@
 	density = FALSE
 	sleep(open_speed)
 	layer = initial(layer)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	set_opacity(0)
 	operating = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 	if(autoclose)
 		spawn(autoclose)
@@ -361,11 +395,11 @@
 	sleep(open_speed)
 	density = TRUE
 	sleep(open_speed)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(visible && !glass)
 		set_opacity(1)
 	operating = FALSE
-	air_update_turf(1)
+	air_update_turf()
 	update_freelook_sight()
 	if(safe)
 		CheckForMobs()
@@ -421,8 +455,8 @@
 	if(!glass && GLOB.cameranet)
 		GLOB.cameranet.updateVisibility(src, 0)
 
-/obj/machinery/door/BlockSuperconductivity() // All non-glass airlocks block heat, this is intended.
-	if(opacity || heat_proof)
+/obj/machinery/door/BlockThermalConductivity() // All non-glass airlocks block heat, this is intended.
+	if(heat_proof && density)
 		return TRUE
 	return FALSE
 

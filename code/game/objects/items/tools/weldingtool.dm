@@ -23,6 +23,7 @@
 	light_on = FALSE
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.5 // not very good at smashing
 	w_class = WEIGHT_CLASS_SMALL
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
@@ -41,9 +42,11 @@
 	toolspeed = 1
 	wound_bonus = 10
 	bare_wound_bonus = 15
+	var/mutable_appearance/sparks
 
 /obj/item/weldingtool/Initialize(mapload)
 	. = ..()
+	sparks =  mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 	create_reagents(max_fuel)
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
 	update_appearance(UPDATE_ICON)
@@ -75,7 +78,7 @@
 			return
 	//Welders left on now use up fuel, but lets not have them run out quite that fast
 		if(1)
-			force = 15
+			force = 12
 			damtype = BURN
 			burned_fuel_for += delta_time
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
@@ -122,7 +125,7 @@
 			if(affecting.brute_dam <= 0)
 				to_chat(user, span_warning("[affecting] is already in good condition!"))
 				return FALSE
-			if(INTERACTING_WITH(user, H))
+			if(DOING_INTERACTION_WITH_TARGET(user, H))
 				return FALSE
 			if(!tool_start_check(user, 1))
 				return FALSE
@@ -166,7 +169,6 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
-	var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 	target.add_overlay(sparks)
 	. = ..()
 	target.cut_overlay(sparks)
@@ -222,8 +224,9 @@
 		if(get_fuel() >= 1)
 			to_chat(user, span_notice("You switch [src] on."))
 			playsound(loc, acti_sound, 50, 1)
-			force = 15
+			force = 12
 			damtype = BURN
+			demolition_mod = 1.5 // pretty good at cutting
 			hitsound = 'sound/items/welder.ogg'
 			update_appearance(UPDATE_ICON)
 			START_PROCESSING(SSobj, src)
@@ -242,6 +245,7 @@
 	force = 3
 	damtype = "brute"
 	hitsound = "swing_hit"
+	demolition_mod = initial(demolition_mod)
 	update_appearance(UPDATE_ICON)
 
 
@@ -260,10 +264,8 @@
 /obj/item/weldingtool/tool_start_check(mob/living/user, amount=0)
 	. = tool_use_check(user, amount)
 	if(. && user)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(istype(H.head,/obj/item/clothing/head/helmet/space/plasmaman))
-				return
+		if(HAS_TRAIT(user, TRAIT_SAFEWELD))
+			return
 		user.flash_act(light_range)
 
 // Flash the user during welding progress
@@ -271,12 +273,10 @@
 	. = ..()
 	if(. && user)
 		if (progress_flash_divisor == 0)
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				if(istype(H.head,/obj/item/clothing/head/helmet/space/plasmaman))
-					return
-			user.flash_act(min(light_range,1))
 			progress_flash_divisor = initial(progress_flash_divisor)
+			if(HAS_TRAIT(user, TRAIT_SAFEWELD))
+				return
+			user.flash_act(min(light_range,1))
 		else
 			progress_flash_divisor--
 
@@ -402,6 +402,10 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "brasswelder"
 	item_state = "brasswelder"
+
+/obj/item/weldingtool/experimental/Initialize(mapload)
+	. = ..()
+	sparks = mutable_appearance('icons/effects/welding_effect.dmi', "exp_welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 
 
 /obj/item/weldingtool/experimental/process()

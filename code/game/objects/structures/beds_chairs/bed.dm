@@ -25,7 +25,7 @@
 /obj/structure/bed/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
-		success_chance = 0.8, \
+		success_chance = 0.85, \
 	)
 
 /obj/structure/bed/examine(mob/user)
@@ -100,7 +100,7 @@
 	icon_state = "up"
 	M.pixel_y = initial(M.pixel_y)
 
-/obj/structure/bed/roller/Moved()
+/obj/structure/bed/roller/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	if(has_gravity())
 		playsound(src, 'sound/effects/roll.ogg', 100, 1)

@@ -33,6 +33,8 @@
 		/obj/item/grenade/gas_crystal/nitrous_oxide_crystal = 5,
 		/obj/item/clothing/suit/space/hardsuit/engine/atmos = 1,
 	)
+	
+	minimal_lightup_areas = list(/area/engine/atmos)
 
 	smells_like = "a gas leak"
 

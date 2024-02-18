@@ -1,5 +1,4 @@
 /obj/item/assembly/signaler
-	icon = 'yogstation/icons/obj/assemblies/new_assemblies.dmi'
 	var/static/list/label_colors = list("red", "green", "blue", "cyan", "magenta", "yellow", "white")
 	var/label_color = "green"
 

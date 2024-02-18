@@ -251,7 +251,7 @@
 			owner.special_role = TRAITOR_AGENT_ROLE
 			special_role = TRAITOR_AGENT_SROLE
 			marauder = TRUE
-			forge_single_objective()
+			forge_single_human_objective()
 			greentext_achieve = /datum/achievement/greentext/external
 
 /datum/antagonist/traitor/internal_affairs/forge_traitor_objectives()

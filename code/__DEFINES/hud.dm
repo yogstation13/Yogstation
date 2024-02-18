@@ -106,7 +106,6 @@
 #define ui_borg_intents "EAST-2:26,SOUTH:5"
 #define ui_language_menu "EAST-4:6,SOUTH:21"
 
-
 //Upper-middle right (alerts)
 #define ui_alert1 "EAST-1:28,CENTER+5:27"
 #define ui_alert2 "EAST-1:28,CENTER+4:25"
@@ -234,3 +233,8 @@
 #define SCRN_OBJ_INSERT_FIRST "first"
 /// The filter name for the hover outline
 #define HOVER_OUTLINE_FILTER "hover_outline"
+// Plane group keys, used to group swaths of plane masters that need to appear in subwindows
+/// The primary group, holds everything on the main window
+#define PLANE_GROUP_MAIN "main"
+/// A secondary group, used when a client views a generic window
+#define PLANE_GROUP_POPUP_WINDOW(screen) "popup-[REF(screen)]"

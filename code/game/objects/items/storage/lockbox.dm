@@ -50,15 +50,16 @@
 		to_chat(user, span_danger("Access Denied."))
 		return
 
-/obj/item/storage/lockbox/emag_act(mob/user)
-	if(!broken)
-		broken = TRUE
-		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)
-		desc += "It appears to be broken."
-		icon_state = src.icon_broken
-		if(user)
-			visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))
-			return
+/obj/item/storage/lockbox/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(broken)
+		return FALSE
+	broken = TRUE
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)
+	desc += "It appears to be broken."
+	icon_state = src.icon_broken
+	if(user)
+		visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))
+	return TRUE
 
 /obj/item/storage/lockbox/Entered()
 	. = ..()
@@ -77,19 +78,18 @@
 	togglelock(user)
 
 /obj/item/storage/lockbox/emp_act(severity)
-	switch(severity)
-		if(EMP_HEAVY)
-			emag_act()
-		if(EMP_LIGHT)
-			if(prob(60))
-				var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
-				locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-				if(locked)
-					icon_state = icon_locked
-					SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
-				else
-					icon_state = icon_closed
+	if(severity > EMP_LIGHT)
+		emag_act()
+		return
+	if(prob(6 * severity))
+		var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
+		locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+		if(locked)
+			icon_state = icon_locked
+			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
+		else
+			icon_state = icon_closed
 
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of mindshield implants"

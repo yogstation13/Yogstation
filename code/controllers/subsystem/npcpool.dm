@@ -11,6 +11,10 @@ SUBSYSTEM_DEF(npcpool)
 	msg = "NPCS:[length(activelist)]"
 	return ..()
 
+/datum/controller/subsystem/npcpool/get_metrics()
+	. = ..()
+	.["npcs"] = length(GLOB.simple_animals[AI_ON])
+
 /datum/controller/subsystem/npcpool/fire(resumed = FALSE)
 
 	if (!resumed)

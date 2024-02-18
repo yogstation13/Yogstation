@@ -14,7 +14,8 @@
 	var/oreAmount = 5
 	var/material_drop_type = /obj/item/stack/sheet/metal
 	var/impressiveness = 15
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 /obj/structure/statue/Initialize(mapload)
 	. = ..()
@@ -117,7 +118,7 @@
 		PlasmaBurn(exposed_temperature)
 
 
-/obj/structure/statue/plasma/bullet_act(obj/item/projectile/Proj)
+/obj/structure/statue/plasma/bullet_act(obj/projectile/Proj)
 	var/burn = FALSE
 	if(!(Proj.nodamage) && Proj.damage_type == BURN && !QDELETED(src))
 		burn = TRUE

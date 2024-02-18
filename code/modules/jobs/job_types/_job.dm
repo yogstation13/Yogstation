@@ -43,6 +43,10 @@
 	var/current_positions = 0
 	/// Supervisors, who this person answers to directly
 	var/supervisors = ""
+
+	/// What kind of mob type joining players with this job as their assigned role are spawned as.
+	var/spawn_type = /mob/living/carbon/human
+
 	/// Selection Color for job preferences
 	var/selection_color = "#ffffff"
 	/// Alternate titles for the job
@@ -94,6 +98,18 @@
 	/// Icons to be displayed in the orbit ui. Source: FontAwesome v5.
 	var/orbit_icon
 
+		/**
+	 * A list of job-specific areas to enable lights for if this job is present at roundstart, whenever minimal access is not in effect.
+	 * This will be combined with minimal_lightup_areas, so no need to duplicate entries.
+	 * Areas within their department will have their lights turned on automatically, so you should really only use this for areas outside of their department.
+	 */
+	var/list/lightup_areas = list()
+	/**
+	 * A list of job-specific areas to enable lights for if this job is present at roundstart.
+	 * Areas within their department will have their lights turned on automatically, so you should really only use this for areas outside of their department.
+	 */
+	var/list/minimal_lightup_areas = list()
+
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
 	and add said map's name to the changed_maps list, like so:
@@ -128,6 +144,9 @@
 
 /datum/job/New()
 	.=..()
+	lightup_areas = typecacheof(lightup_areas)
+	minimal_lightup_areas = typecacheof(minimal_lightup_areas)
+
 	if(changed_maps.len)
 		for(var/map in changed_maps)
 			RegisterSignal(src, map, text2path("[type]/proc/[map]Changes"))
@@ -174,7 +193,7 @@
 			H.apply_pref_name(/datum/preference/name/backup_human, preference_source)
 
 	if(!visualsOnly)
-		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
+		var/datum/bank_account/bank_account = new(H.real_name, src)
 		bank_account.adjust_money(rand(STARTING_PAYCHECKS_MIN, STARTING_PAYCHECKS_MAX), TRUE)
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
@@ -212,7 +231,7 @@
 /datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
@@ -220,6 +239,26 @@
 		return TRUE	//Available in 0 days = available right now = player is old enough to play.
 	return FALSE
 
+/datum/job/proc/areas_to_light_up(minimal_access = TRUE)
+	. = minimal_lightup_areas.Copy()
+	if(!minimal_access)
+		. |= lightup_areas
+	for(var/department in departments_list)
+		var/datum/job_department/place = new department()
+		if(istype(place))
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_COMMAND)
+				. |= GLOB.command_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
+				. |= GLOB.engineering_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
+				. |= GLOB.medical_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_SCIENCE)
+				. |= GLOB.science_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_CARGO)
+				. |= GLOB.supply_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_SECURITY)
+				. |= GLOB.security_lightup_areas
+		qdel(place)
 
 /datum/job/proc/available_in_days(client/C)
 	if(!C)
@@ -362,6 +401,97 @@
 /// An overridable getter for more dynamic goodies.
 /datum/job/proc/get_mail_goodies(mob/recipient)
 	return mail_goodies
+
+
+/datum/job/proc/award_service(client/winner, award)
+	return
+
+
+/datum/job/proc/get_captaincy_announcement(mob/living/captain)
+	return "Due to extreme staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+
+/// Returns an atom where the mob should spawn in.
+// /datum/job/proc/get_roundstart_spawn_point()
+// 	if(random_spawns_possible)
+// 		if(HAS_TRAIT(SSstation, STATION_TRAIT_LATE_ARRIVALS))
+// 			return get_latejoin_spawn_point()
+// 		if(HAS_TRAIT(SSstation, STATION_TRAIT_RANDOM_ARRIVALS))
+// 			return get_safe_random_station_turf(typesof(/area/station/hallway)) || get_latejoin_spawn_point()
+// 		if(HAS_TRAIT(SSstation, STATION_TRAIT_HANGOVER))
+// 			var/obj/effect/landmark/start/hangover_spawn_point
+// 			for(var/obj/effect/landmark/start/hangover/hangover_landmark in GLOB.start_landmarks_list)
+// 				hangover_spawn_point = hangover_landmark
+// 				if(hangover_landmark.used) //so we can revert to spawning them on top of eachother if something goes wrong
+// 					continue
+// 				hangover_landmark.used = TRUE
+// 				break
+// 			return hangover_spawn_point || get_latejoin_spawn_point()
+// 	if(length(GLOB.jobspawn_overrides[title]))
+// 		return pick(GLOB.jobspawn_overrides[title])
+// 	var/obj/effect/landmark/start/spawn_point = get_default_roundstart_spawn_point()
+// 	if(!spawn_point) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
+// 		return get_latejoin_spawn_point()
+// 	return spawn_point
+
+
+/// Handles finding and picking a valid roundstart effect landmark spawn point, in case no uncommon different spawning events occur.
+/datum/job/proc/get_default_roundstart_spawn_point()
+	for(var/obj/effect/landmark/start/spawn_point as anything in GLOB.start_landmarks_list)
+		if(spawn_point.name != title)
+			continue
+		. = spawn_point
+		if(spawn_point.used) //so we can revert to spawning them on top of eachother if something goes wrong
+			continue
+		spawn_point.used = TRUE
+		break
+	if(!.)
+		log_mapping("Job [title] ([type]) couldn't find a round start spawn point.")
+
+/// Finds a valid latejoin spawn point, checking for events and special conditions.
+// /datum/job/proc/get_latejoin_spawn_point()
+// 	if(length(GLOB.jobspawn_overrides[title])) //We're doing something special today.
+// 		return pick(GLOB.jobspawn_overrides[title])
+// 	if(length(SSjob.latejoin_trackers))
+// 		return pick(SSjob.latejoin_trackers)
+// 	return SSjob.get_last_resort_spawn_points()
+
+
+// Spawns the mob to be played as, taking into account preferences and the desired spawn point.
+/datum/job/proc/get_spawn_mob(client/player_client, atom/spawn_point)
+	var/mob/living/spawn_instance
+	if(ispath(spawn_type, /mob/living/silicon/ai))
+		// This is unfortunately necessary because of snowflake AI init code. To be refactored.
+		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob)
+	else
+		spawn_instance = new spawn_type(player_client.mob.loc)
+		spawn_point.JoinPlayerHere(spawn_instance, TRUE)
+	spawn_instance.apply_prefs_job(player_client, src)
+	if(!player_client)
+		qdel(spawn_instance)
+		return // Disconnected while checking for the appearance ban.
+	return spawn_instance
+
+
+/// Applies the preference options to the spawning mob, taking the job into account. Assumes the client has the proper mind.
+/mob/living/proc/apply_prefs_job(client/player_client, datum/job/job)
+
+/**
+ * Called after a successful roundstart spawn.
+ * Client is not yet in the mob.
+ * This happens after after_spawn()
+ */
+/datum/job/proc/after_roundstart_spawn(mob/living/spawning, client/player_client)
+	SHOULD_CALL_PARENT(TRUE)
+
+
+/**
+ * Called after a successful latejoin spawn.
+ * Client is in the mob.
+ * This happens after after_spawn()
+ */
+/datum/job/proc/after_latejoin_spawn(mob/living/spawning)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_LATEJOIN_SPAWN, src, spawning)
 
 //Warden and regular officers add this result to their get_access()
 /datum/job/proc/check_config_for_sec_maint()

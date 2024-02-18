@@ -51,7 +51,7 @@
 	mutanthands = /obj/item/zombie_hand
 	armor = 20 // 120 damage to KO a zombie, which kills it
 	speedmod = 1.6
-	mutanteyes = /obj/item/organ/eyes/night_vision/zombie
+	mutanteyes = /obj/item/organ/eyes/zombie
 	var/heal_rate = 1
 	var/regen_cooldown = 0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
@@ -120,6 +120,48 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	mutanttongue = /obj/item/organ/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+
+//Hecata necromancy bloodsucker zombie. Kind of like a weakened Szlachta that can also wear clothes still
+/datum/species/zombie/hecata
+	name = "Sanguine Zombie"
+	id = "hecatazombie"
+	limbs_id = "zombie"
+	say_mod = "moans"
+	brutemod = 1.1
+	burnmod = 1.1 //more fragile, though they also dont enter soft crit
+	brutemod = 1.1 //more fragile, though they also dont enter soft crit.
+	speedmod = 0.33 //slightly slower
+	stunmod = 0.5
+	staminamod = 0.5 //difficult to subdue via nonlethal means
+	punchdamagelow = 13
+	punchdamagehigh = 16
+	punchstunthreshold = 17 //pretty good punch damage but no knockdown
+	///no guns or soft crit
+	inherent_traits = list(
+		TRAIT_STABLELIVER,
+		TRAIT_STABLEHEART,
+		TRAIT_RESISTCOLD,
+		TRAIT_RESISTHIGHPRESSURE,
+		TRAIT_RESISTLOWPRESSURE,
+		TRAIT_RADIMMUNE,
+		TRAIT_EASYDISMEMBER,
+		TRAIT_EASILY_WOUNDED,
+		TRAIT_LIMBATTACHMENT,
+		TRAIT_NOBREATH,
+		TRAIT_NODEATH,
+		TRAIT_FAKEDEATH,
+		TRAIT_NOGUNS,
+		TRAIT_NOSOFTCRIT,
+	)
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+
+/datum/species/zombie/hecata/on_species_gain(mob/living/carbon/mob_changing_species, datum/species/old_species)
+	. = ..()
+	mob_changing_species.faction |= "bloodhungry"
+
+/datum/species/zombie/hecata/on_species_loss(mob/living/carbon/mob_changing_species)
+	. = ..()
+	mob_changing_species.faction -= "bloodhungry"
 
 //The special zombie you get turned into in the zombie gamemode
 /datum/species/zombie/infectious/gamemode

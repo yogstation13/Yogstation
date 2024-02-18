@@ -225,6 +225,11 @@
 	if(HAS_TRAIT(owner.current, TRAIT_DEATHCOMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
 		to_chat(owner.current, "We lack the energy to evolve new abilities right now.")
 		return
+	//this checks for conflicting abilities that you dont want players to have at the same time (movement speed abilities for example)
+	for(var/conflictingpower in thepower.conflicts) 
+		if(has_sting(conflictingpower))
+			to_chat(owner.current, "This power conflicts with another power we currently have!")
+			return
 
 	geneticpoints -= thepower.dna_cost
 	purchasedpowers += thepower
@@ -514,16 +519,10 @@
 			objectives += ac
 
 	if(prob(60))
-		if(prob(85))
-			var/datum/objective/steal/steal_objective = new
-			steal_objective.owner = owner
-			steal_objective.find_target()
-			objectives += steal_objective
-		else
-			var/datum/objective/download/download_objective = new
-			download_objective.owner = owner
-			download_objective.gen_amount_goal()
-			objectives += download_objective
+		var/datum/objective/steal/steal_objective = new
+		steal_objective.owner = owner
+		steal_objective.find_target()
+		objectives += steal_objective
 
 	var/list/active_ais = active_ais()
 	if(active_ais.len && prob(100/GLOB.joined_player_list.len))

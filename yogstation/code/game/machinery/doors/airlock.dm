@@ -31,16 +31,18 @@
 	playsound(src, 'sound/items/jaws_pry.ogg', 100)
 
 /obj/machinery/door/airlock/proc/dir_to_cardinal(dir)
-	if((dir & NORTH) && (!is_blocked_turf(get_step(src, NORTH), TRUE)))
+	var/turf/north_turf = get_step(src, NORTH)
+	if((dir & NORTH) && (!north_turf.is_blocked_turf(TRUE)))
 		return NORTH
-	if((dir & SOUTH) && (!is_blocked_turf(get_step(src, SOUTH), TRUE)))
+	var/turf/south_turf = get_step(src, SOUTH)
+	if((dir & SOUTH) && (!south_turf.is_blocked_turf(TRUE)))
 		return SOUTH
 	if(dir & EAST)
 		return EAST
 	if(dir & WEST)
 		return WEST
 
-/obj/machinery/door/airlock/Moved()
+/obj/machinery/door/airlock/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	if(brace)
 		brace.remove()
 	return ..()

@@ -27,6 +27,14 @@
 	icon_state = "security"
 	item_state = "gy_suit"
 
+/obj/item/clothing/under/rank/security/shitcurity
+	name = "shitcurity uniform"
+	desc = "For the security members that want to show their true colors."
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
+	icon = 'yogstation/icons/obj/clothing/uniforms.dmi'
+	icon_state = "altsecurity"
+	item_state = "altsecurity"
+
 /obj/item/clothing/under/rank/security/skirt
 	name = "security jumpskirt"
 	desc = "A \"tactical\" security jumpsuit with the legs replaced by a skirt."

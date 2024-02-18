@@ -44,7 +44,7 @@
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[i]"))
-		if(!do_mob(user, target, absorbtimer))
+		if(!do_after(user, absorbtimer, target))
 			to_chat(user, span_warning("Our absorption of [target] has been interrupted!"))
 			changeling.isabsorbing = 0
 			return

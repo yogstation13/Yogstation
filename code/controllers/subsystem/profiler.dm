@@ -1,10 +1,11 @@
 #define PROFILER_FILENAME "profiler.json"
+#define SENDMAPS_FILENAME "sendmaps.json"
 
 SUBSYSTEM_DEF(profiler)
 	name = "Profiler"
 	init_order = INIT_ORDER_PROFILER
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
-	wait = 5 MINUTES
+	wait = 3000
 	var/fetch_cost = 0
 	var/write_cost = 0
 
@@ -17,47 +18,57 @@ SUBSYSTEM_DEF(profiler)
 	if(CONFIG_GET(flag/auto_profile))
 		StartProfiling()
 	else
-		StopProfiling() //Stop the early start from world/New
+		StopProfiling() //Stop the early start profiler
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/profiler/fire()
+/datum/controller/subsystem/profiler/OnConfigLoad()
 	if(CONFIG_GET(flag/auto_profile))
-		DumpFile()
+		StartProfiling()
+		can_fire = TRUE
+	else
+		StopProfiling()
+		can_fire = FALSE
+
+/datum/controller/subsystem/profiler/fire()
+	DumpFile()
 
 /datum/controller/subsystem/profiler/Shutdown()
 	if(CONFIG_GET(flag/auto_profile))
-		DumpFile()
+		DumpFile(allow_yield = FALSE)
+		world.Profile(PROFILE_CLEAR, type = "sendmaps")
 	return ..()
 
 /datum/controller/subsystem/profiler/proc/StartProfiling()
-#if DM_BUILD < 1506 || DM_VERSION < 513
-	stack_trace("Auto profiling unsupported on this byond version")
-	CONFIG_SET(flag/auto_profile, FALSE)
-#else
 	world.Profile(PROFILE_START)
-#endif
+	world.Profile(PROFILE_START, type = "sendmaps")
 
 /datum/controller/subsystem/profiler/proc/StopProfiling()
-#if DM_BUILD >= 1506 && DM_VERSION >= 513
 	world.Profile(PROFILE_STOP)
-#endif
+	world.Profile(PROFILE_STOP, type = "sendmaps")
 
-/datum/controller/subsystem/profiler/proc/DumpFile()
-#if DM_BUILD < 1506 || DM_VERSION < 513
-	stack_trace("Auto profiling unsupported on this byond version")
-	CONFIG_SET(flag/auto_profile, FALSE)
-#else
+/datum/controller/subsystem/profiler/proc/DumpFile(allow_yield = TRUE)
 	var/timer = TICK_USAGE_REAL
-	var/current_profile_data = world.Profile(PROFILE_REFRESH,format="json")
+	var/current_profile_data = world.Profile(PROFILE_REFRESH, format = "json")
+	var/current_sendmaps_data = world.Profile(PROFILE_REFRESH, type = "sendmaps", format="json")
 	fetch_cost = MC_AVERAGE(fetch_cost, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-	CHECK_TICK
+	if(allow_yield)
+		CHECK_TICK
+
 	if(!length(current_profile_data)) //Would be nice to have explicit proc to check this
 		stack_trace("Warning, profiling stopped manually before dump.")
-	var/json_file = file("[GLOB.log_directory]/[PROFILER_FILENAME]")
-	if(fexists(json_file))
-		fdel(json_file)
+	var/prof_file = file("[GLOB.log_directory]/[PROFILER_FILENAME]")
+	if(fexists(prof_file))
+		fdel(prof_file)
+	if(!length(current_sendmaps_data)) //Would be nice to have explicit proc to check this
+		stack_trace("Warning, sendmaps profiling stopped manually before dump.")
+	var/sendmaps_file = file("[GLOB.log_directory]/[SENDMAPS_FILENAME]")
+	if(fexists(sendmaps_file))
+		fdel(sendmaps_file)
+
 	timer = TICK_USAGE_REAL
-	WRITE_FILE(json_file, current_profile_data)
+	WRITE_FILE(prof_file, current_profile_data)
+	WRITE_FILE(sendmaps_file, current_sendmaps_data)
 	write_cost = MC_AVERAGE(write_cost, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-	WRITE_FILE(json_file, current_profile_data)
-#endif
+
+#undef PROFILER_FILENAME
+#undef SENDMAPS_FILENAME

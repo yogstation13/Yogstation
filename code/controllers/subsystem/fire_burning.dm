@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(fire_burning)
 	name = "Fire Burning"
-	priority = FIRE_PRIOTITY_BURNING
+	priority = FIRE_PRIORITY_BURNING
 	flags = SS_NO_INIT|SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
@@ -12,6 +12,9 @@ SUBSYSTEM_DEF(fire_burning)
 	msg = "P:[length(processing)]"
 	return ..()
 
+/datum/controller/subsystem/fire_burning/get_metrics()
+	. = ..()
+	.["queued"] = length(processing)
 
 /datum/controller/subsystem/fire_burning/fire(resumed = 0)
 	if (!resumed)

@@ -72,17 +72,21 @@
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
 
-	if(!istype(S, /obj/item/organ/stomach/preternis))//need a fancy stomach for it
+	if(!istype(S, /obj/item/organ/stomach/cell/preternis))//need a fancy stomach for it
 		return ..()
 
+	if(!get_location_accessible(H, BODY_ZONE_PRECISE_MOUTH))
+		to_chat(H, span_notice("You can't eat with your mouth covered!"))
+		return
+
 	if(!eaten(H))
-		return ..()
+		to_chat(H, span_notice("You don't feel like eating this ore."))
+		return
 
 	use(1)//only eat one at a time
 
-	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."))
 	if(eaten_text)
-		to_chat(H, span_notice(eaten_text))
+		H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."), span_notice(eaten_text))
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
 
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
@@ -102,7 +106,7 @@
 	eaten_text = "The uranium ore tingles a bit as it goes down."
 
 /obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
-	radiation_pulse(H, 20)
+	radiation_pulse(H, 100)
 	return TRUE
 
 /obj/item/stack/ore/iron
@@ -117,6 +121,7 @@
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
 	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/glass
 	name = "sand pile"
@@ -134,7 +139,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		))
 
 /obj/item/stack/ore/glass/eaten(mob/living/carbon/human/H)
-	H.take_overall_damage(3)
+	H.apply_damage(2, BRUTE, BODY_ZONE_HEAD)
 	H.heal_overall_damage(0, 1, 0, BODYPART_ROBOTIC)
 	return TRUE
 
@@ -149,7 +154,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(C.is_eyes_covered())
 		C.visible_message(span_danger("[C]'s eye protection blocks the sand!"), span_warning("Your eye protection blocks the sand!"))
 		return
-	C.adjust_blurriness(6)
+	C.adjust_eye_blur(6)
 	C.adjustStaminaLoss(15)//the pain from your eyes burning does stamina damage
 	C.adjust_confusion(5 SECONDS)
 	to_chat(C, span_userdanger("\The [src] gets into your eyes! The pain, it burns!"))
@@ -192,6 +197,16 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 16
 	materials = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/silver
+	eaten_text = "You eat some silver ore, you're pretty sure this is healthy or something."
+
+/obj/item/stack/ore/silver/eaten(mob/living/carbon/human/H)
+	if(prob(1))//can cure viruses if you either get really lucky or eat a lot
+		for(var/thing in H.diseases)
+			var/datum/disease/D = thing
+			D.cure()
+	else
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2)//eating too much silver can cause brain problems
+	return TRUE
 
 /obj/item/stack/ore/gold
 	name = "gold ore"
@@ -201,6 +216,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 18
 	materials = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/gold
+	eaten_text = "As you eat the gold ore, you think it almost looks like butter."
+
+/obj/item/stack/ore/gold/eaten(mob/living/carbon/human/H)
+	return TRUE //what do you expect? it's an inert metal
 
 /obj/item/stack/ore/diamond
 	name = "diamond ore"
@@ -210,6 +229,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 50
 	materials = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/diamond
+	eaten_text = "The diamonds, while \"tasty\" leaves a weird sensation throughout your body."
+					
+/obj/item/stack/ore/diamond/eaten(mob/living/carbon/human/H)
+	H.apply_status_effect(STATUS_EFFECT_DIAMONDSKIN)	
+	return TRUE
 
 /obj/item/stack/ore/bananium
 	name = "bananium ore"
@@ -221,7 +245,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	refined_type = /obj/item/stack/sheet/mineral/bananium
 
 /obj/item/stack/ore/bananium/eaten(mob/living/carbon/human/H)//why are you eating bananium ore?
-	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
+	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."), span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
 	H.emote("scream")
 	playsound(H, 'sound/effects/supermatter.ogg', 100)
 	var/petrified = H.petrify(5 MINUTES, TRUE)
@@ -249,6 +273,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	icon_state = "slag"
 	item_state = "slag"
 	singular_name = "slag chunk"
+	eaten_text = "This slag is the most utterly vile thing you've ever eaten."
+	
+/obj/item/stack/ore/slag/eaten(mob/living/carbon/human/H)
+	H.adjust_disgust(30)
+	return TRUE
 
 /obj/item/melee/gibtonite
 	name = "gibtonite ore"
@@ -315,7 +344,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	else
 		..()
 
-/obj/item/melee/gibtonite/bullet_act(obj/item/projectile/P)
+/obj/item/melee/gibtonite/bullet_act(obj/projectile/P)
 	GibtoniteReaction(P.firer)
 	. = ..()
 
@@ -386,7 +415,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/value = 1
 	var/coinflip
 	var/coin_stack_icon_state = "coin_stack"
-	var/list/allowed_ricochet_types = list(/obj/item/projectile/bullet/c38, /obj/item/projectile/bullet/a357, /obj/item/projectile/bullet/ipcmartial)
 
 /obj/item/coin/get_item_credit_value()
 	return value
@@ -574,7 +602,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		flick("coin_[cmineral]_flip", src)
 		icon_state = "coin_[cmineral]_[coinflip]"
 		if(flash)
-			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, unique = TRUE)
+			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_PLANE, unique = TRUE)
 		playsound(loc, 'sound/items/coinflip.ogg', 50, TRUE)
 		var/oldloc = loc
 		sleep(1.5 SECONDS)
@@ -594,11 +622,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	. = ..()
 	transform = initial(transform)
 
-/obj/item/coin/bullet_act(obj/item/projectile/P)
-	if(P.flag != LASER && P.flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
+/obj/item/coin/bullet_act(obj/projectile/P)
+	if(P.armor_flag != LASER && P.armor_flag != ENERGY && !P.can_ricoshot) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
 
-	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
+	if(cooldown >= world.time || P.can_ricoshot == ALWAYS_RICOSHOT)//we ricochet the projectile
 		var/list/targets = list()
 		for(var/mob/living/T in viewers(5, src))
 			if(istype(T) && T != P.firer && T.stat != DEAD) //don't fire at someone if they're dead or if we already hit them
@@ -606,8 +634,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		P.damage *= 1.5
 		P.speed *= 0.5
 		P.ricochets++
+		if(P.hitscan)
+			P.store_hitscan_collision(P.trajectory.copy_to()) // ULTRA-RICOSHOT
 		P.on_ricochet(src)
-		P.permutated = list(src)
+		P.impacted = list(src)
 		P.pixel_x = pixel_x
 		P.pixel_y = pixel_y
 		if(!targets.len)
@@ -651,6 +681,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coinstack/Initialize(mapload)
 	. = ..()
 	coins = list()
+	var/turf/T = get_turf(src)
+	if(T)
+		for(var/obj/item/coin/C in T.contents)
+			add_to_stack(C, null, FALSE)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/coinstack/examine(mob/user)
@@ -692,8 +726,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	C.forceMove(src)
 	C.pixel_x = 0
 	C.pixel_y = 0
-	src.add_fingerprint(user)
-	to_chat(user,span_notice("You add [C] to the stack of coins."))
+	if(user)
+		src.add_fingerprint(user)
+		to_chat(user,span_notice("You add [C] to the stack of coins."))
 	update_appearance(UPDATE_ICON)
 	return TRUE
 

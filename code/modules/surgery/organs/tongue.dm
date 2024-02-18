@@ -123,7 +123,7 @@
 	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."
 	icon_state = "tongueayylmao"
 	say_mod = "gibbers"
-	process_flags = ORGANIC | SYNTHETIC // fuck it, alien technology
+	compatible_biotypes = ALL_BIOTYPES // fuck it, alien technology
 	taste_sensitivity = NO_TASTE_SENSITIVITY // ayys cannot taste anything.
 	modifies_speech = TRUE
 	var/mothership
@@ -255,7 +255,7 @@
 	name = "robotic voicebox"
 	desc = "A voice synthesizer that can interface with organic lifeforms."
 	status = ORGAN_ROBOTIC
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	organ_flags = ORGAN_SYNTHETIC
 	icon_state = "tonguerobot"
 	say_mod = "states"
@@ -266,9 +266,9 @@
 /obj/item/organ/tongue/robot/emp_act(severity)
 	if(prob(5))
 		return 
-	owner.apply_effect(EFFECT_STUTTER, rand(5 SECONDS, 2 MINUTES))
+	owner.apply_effect(EFFECT_STUTTER, rand(1, severity) * 6 SECONDS)
 	owner.emote("scream")
-	to_chat(owner, "<span class='warning'>Alert: Vocal cords are malfunctioning.</span>")
+	to_chat(owner, "<span class='warning'>Alert: Voice synthesizer is malfunctioning.</span>")
 
 /obj/item/organ/tongue/robot/can_speak_language(language)
 	return TRUE // THE MAGIC OF ELECTRONICS

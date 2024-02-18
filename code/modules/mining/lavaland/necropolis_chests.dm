@@ -188,9 +188,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(active_owner && user == active_owner)
 		var/safety = alert(user, "Doing this will instantly kill you, reducing you to nothing but dust.", "Take off [src]?", "Abort", "Proceed")
 		if(safety != "Proceed")
-			return 
+			return
 	. = ..()
-	
+
 /obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
 	..()
 	if(active_owner)
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	light_flags = LIGHT_ATTACHED
 	layer = ABOVE_ALL_MOB_LAYER
 	var/sight_flags = SEE_MOBS
-	var/lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	var/list/color_cutoffs = list(10, 25, 25)
 
 /obj/effect/wisp/orbit(atom/thing, radius, clockwise, rotation_speed, rotation_segments, pre_rotation, lockinorbit)
 	. = ..()
@@ -316,9 +316,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(orbits.parent, span_notice("Your vision returns to normal."))
 
 /obj/effect/wisp/proc/update_user_sight(mob/user)
+	SIGNAL_HANDLER
 	user.sight |= sight_flags
-	if(!isnull(lighting_alpha))
-		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
+	if(!isnull(color_cutoffs))
+		user.lighting_color_cutoffs = blend_cutoff_colors(user.lighting_color_cutoffs, color_cutoffs)
 
 //Red/Blue Cubes
 /obj/item/warp_cube
@@ -412,11 +413,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/ammo_casing/magic/hook
 	name = "hook"
 	desc = "A hook."
-	projectile_type = /obj/item/projectile/hook
-	caliber = "hook"
+	projectile_type = /obj/projectile/hook
+	caliber = CALIBER_HOOK
 	icon_state = "hook"
 
-/obj/item/projectile/hook
+/obj/projectile/hook
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -428,13 +429,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	knockdown = 30
 	var/chain
 
-/obj/item/projectile/hook/fire(setAngle)
+/obj/projectile/hook/fire(setAngle)
 	if(firer)
 		chain = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
 	..()
 	//TODO: root the firer until the chain returns
 
-/obj/item/projectile/hook/on_hit(atom/target, blocked)
+/obj/projectile/hook/on_hit(atom/target, blocked)
 	. = ..()
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
@@ -445,7 +446,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		//TODO: keep the chain beamed to A
 		//TODO: needs a callback to delete the chain
 
-/obj/item/projectile/hook/Destroy()
+/obj/projectile/hook/Destroy()
 	qdel(chain)
 	return ..()
 
@@ -458,11 +459,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon_state = "talisman"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/immortality)
-	var/cooldown = 0
+	var/cooldown_time = 1 MINUTES
+	COOLDOWN_DECLARE(void_cd_index)
 
 /obj/item/immortality_talisman/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
+	AddComponent(/datum/component/anti_magic, ALL)
 
 /datum/action/item_action/immortality
 	name = "Immortality"
@@ -470,9 +472,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/immortality_talisman/attack_self(mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
-		if(cooldown < world.time)
+		if(COOLDOWN_FINISHED(src, void_cd_index))
 			SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
-			cooldown = world.time + 600
+			COOLDOWN_START(src, void_cd_index, cooldown_time)
 			L.apply_status_effect(STATUS_EFFECT_VOIDED)
 
 		else
@@ -490,6 +492,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/effect/immortality_talisman/Initialize(mapload, mob/new_user)
 	. = ..()
+	if(new_user)
+		vanish(new_user)
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message(span_danger("[user] [vanish_description], leaving a hole in [user.p_their()] place!"))
@@ -524,8 +528,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/effect/immortality_talisman/Destroy(force)
 	if(!can_destroy && !force)
 		return QDEL_HINT_LETMELIVE
-	else
-		. = ..()
+	return ..()
 
 /obj/effect/immortality_talisman/void
 	vanish_description = "is dragged into the void"
@@ -607,15 +610,15 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L,/mob/living/simple_animal/hostile/yog_jungle)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH, PROC_REF(roll_loot), TRUE)
+				RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
 ///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
 /obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
-	UnregisterSignal(target, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_LIVING_DEATH)
 	if(mobs_grinded<max_grind)
 		mobs_grinded++
 	var/spot = get_turf(target)
@@ -677,7 +680,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "syndi_potionflask"
 	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
-	
+
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
@@ -701,13 +704,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "Flight Potion"
 	description = "Strange mutagenic compound of unknown origins."
 	reagent_state = LIQUID
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	color = "#FFEBEB"
 
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
-		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
+		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C) || isethereal(C))
 		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni can get wings
 			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
 			return ..()
@@ -1087,6 +1090,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
+			H.weather_immunities |= "ash"
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
@@ -1225,7 +1229,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/melee/knuckles(src)
+			new /obj/item/bloodbook(src)
 		if(2)
 			new /obj/item/clothing/gloves/bracer/cuffs(src)
 
@@ -1373,7 +1377,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(target == user)
 				continue
 			for(var/obj/effect/decal/cleanable/decal in range(0, target))
-				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/trail_holder))
+				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/blood/trail_holder))
 					valid_reaching = TRUE
 					target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 		if(!valid_reaching)
@@ -1398,8 +1402,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
 
-/obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/colossus))
+/obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/colossus))
 		return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
@@ -1471,6 +1475,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
+	if(isitem(target))//don't attack if we're clicking on our inventory
+		var/obj/item/thing = target
+		if(thing.item_flags & IN_INVENTORY)
+			return
 	if(!is_mining_level(T.z) && z_level_check)
 		to_chat(user, span_warning("The club fizzles weakly, it seem its power doesn't reach this area.") )
 		return
@@ -1560,7 +1568,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(get_dist(user, beacon) <= 2) //beacon too close abort
 		to_chat(user, span_warning("You are too close to the beacon to teleport to it!"))
 		return
-	if(is_blocked_turf(get_turf(beacon), TRUE))
+	var/turf/beacon_turf = get_turf(beacon)
+	if(beacon_turf.is_blocked_turf(TRUE))
 		to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 		return
 	if(!isturf(user.loc))
@@ -1577,7 +1586,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(do_after(user, 4 SECONDS, user) && user && beacon)
 		var/turf/T = get_turf(beacon)
 		var/turf/source = get_turf(user)
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_mob_action_buttons()
@@ -1598,7 +1607,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(beacon)
 				beacon.icon_state = "hierophant_tele_off"
 			return
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_mob_action_buttons()
@@ -1633,7 +1642,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/hierophant_club/proc/teleport_mob(turf/source, mob/M, turf/target, mob/user)
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
-	if(!turf_to_teleport_to || is_blocked_turf(turf_to_teleport_to, TRUE))
+	if(!turf_to_teleport_to || turf_to_teleport_to.is_blocked_turf_ignore_climbable())
 		return
 	animate(M, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
 	sleep(0.1 SECONDS)
@@ -1738,7 +1747,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "ancient control rod"
 	//don't want your rare megafauna loot shattering easily
 	max_integrity = 2000
-	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
+	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unwieldy for use in one hand."
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	force = 0
@@ -1850,7 +1859,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/band)
 	var/limit = 3
-	var/telerange = 20 
+	var/telerange = 20
 	var/next_tap = 0
 	var/next_band = 0
 	var/next_teleport = 0
@@ -1964,7 +1973,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 						aide.forceMove(O)
 						playsound(aide, 'sound/magic/teleport_app.ogg', 20, 1)
 		next_band = world.time + COOLDOWN_BAND
-				
+
 
 /obj/item/cane/cursed/afterattack(mob/living/target , mob/living/carbon/user, proximity)
 	.=..()

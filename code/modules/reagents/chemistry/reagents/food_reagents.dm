@@ -18,7 +18,7 @@
 	current_cycle++
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
+		if(!(HAS_TRAIT(H, TRAIT_NOHUNGER) || HAS_TRAIT(H, TRAIT_POWERHUNGRY)))
 			H.adjust_nutrition(nutriment_factor)
 	holder?.remove_reagent(type, metabolization_rate)
 
@@ -146,7 +146,7 @@
 			M.emote("scream")
 		playsound(M, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
 		ADD_TRAIT(M, TRAIT_OIL_FRIED, "cooking_oil_react")
-		addtimer(CALLBACK(M, /mob/living/proc/unfry_mob), 3)
+		addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living, unfry_mob)), 3)
 	if(FryLoss)
 		M.adjustFireLoss(FryLoss)
 	return TRUE
@@ -179,13 +179,18 @@
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	overdose_threshold = 100 // Hyperglycaemic shock
 	taste_description = "sweetness"
+	default_container = /obj/item/reagent_containers/food/condiment/sugar
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
+	if(HAS_TRAIT(M, TRAIT_BOTTOMLESS_STOMACH))
+		return
 	to_chat(M, span_userdanger("You go into hyperglycaemic shock! Lay off the twinkies!"))
 	M.AdjustSleeping(600, FALSE)
 	. = 1
 
 /datum/reagent/consumable/sugar/overdose_process(mob/living/M)
+	if(HAS_TRAIT(M, TRAIT_BOTTOMLESS_STOMACH))
+		return
 	M.AdjustSleeping(40, FALSE)
 	..()
 	. = 1
@@ -203,6 +208,7 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#792300" // rgb: 121, 35, 0
 	taste_description = "umami"
+	default_container = /obj/item/reagent_containers/food/condiment/soysauce
 
 /datum/reagent/consumable/ketchup
 	name = "Ketchup"
@@ -210,7 +216,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#731008" // rgb: 115, 16, 8
 	taste_description = "ketchup"
-
+	default_container = /obj/item/reagent_containers/food/condiment/pack/ketchup
 
 /datum/reagent/consumable/capsaicin
 	name = "Capsaicin Oil"
@@ -218,6 +224,7 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "hot peppers"
 	taste_mult = 1.5
+	default_container = /obj/item/reagent_containers/food/condiment/pack/hotsauce
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/carbon/M)
 	var/heating = 0
@@ -310,7 +317,7 @@
 		else if ( mouth_covered )	// Reduced effects if partially protected
 			if(prob(50))
 				victim.emote("scream")
-			victim.blur_eyes(14)
+			victim.adjust_eye_blur(14)
 			victim.blind_eyes(10)
 			victim.set_confusion_if_lower(10 SECONDS)
 			victim.damageoverlaytemp = 75
@@ -320,7 +327,7 @@
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
 			if(prob(20))
 				victim.emote("cough")
-			victim.blur_eyes(4)
+			victim.adjust_eye_blur(4)
 			victim.set_confusion_if_lower(5 SECONDS)
 			victim.damageoverlaytemp = 50
 			M.adjustStaminaLoss(3)
@@ -328,7 +335,7 @@
 		else // Oh dear :D
 			if(prob(60))
 				victim.emote("scream")
-			victim.blur_eyes(14)
+			victim.adjust_eye_blur(14)
 			victim.blind_eyes(10)
 			victim.set_confusion_if_lower(12 SECONDS)
 			victim.damageoverlaytemp = 100
@@ -352,6 +359,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	taste_description = "salt"
+	default_container = /obj/item/reagent_containers/food/condiment/saltshaker
 
 /datum/reagent/consumable/sodiumchloride/reaction_turf(turf/T, reac_volume) //Creates an umbra-blocking salt pile
 	if(!istype(T))
@@ -366,6 +374,7 @@
 	reagent_state = SOLID
 	// no color (ie, black)
 	taste_description = "pepper"
+	default_container = /obj/item/reagent_containers/food/condiment/peppermill
 
 /datum/reagent/consumable/coco
 	name = "Coco Powder"
@@ -398,22 +407,23 @@
 
 /datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
 	M.set_slurring_if_lower(1 SECONDS)
-
 	switch(current_cycle)
 		if(1 to 5)
 			M.set_dizzy_if_lower(5 SECONDS)
 			M.set_drugginess_if_lower(30 SECONDS)
 			if(prob(10))
 				M.emote(pick("twitch","giggle"))
-		if(5 to 10)
+
+		if(6 to 10)
 			M.set_jitter_if_lower(20 SECONDS)
 			M.set_dizzy_if_lower(10 SECONDS)
 			M.set_drugginess_if_lower(35 SECONDS)
 			if(prob(20))
 				M.emote(pick("twitch","giggle"))
-		if (10 to INFINITY)
+
+		if (11 to INFINITY)
 			M.set_jitter_if_lower(40 SECONDS)
-			M.adjust_dizzy(20 SECONDS)
+			M.set_dizzy_if_lower(20 SECONDS)
 			M.set_drugginess_if_lower(40 SECONDS)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
@@ -465,10 +475,9 @@
 	T.MakeSlippery(TURF_WET_LUBE, min_wet_time = 10 SECONDS, wet_time_to_add = reac_volume*2 SECONDS)
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
 	if(hotspot)
-		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles())
-		lowertemp.set_temperature(max( min(lowertemp.return_temperature()-2000,lowertemp.return_temperature() / 2) ,0))
+		var/datum/gas_mixture/lowertemp = T.return_air()
+		lowertemp.set_temperature(max( min(lowertemp.return_temperature()-2000,lowertemp.return_temperature() / 2) ,TCMB))
 		lowertemp.react(src)
-		T.assume_air(lowertemp)
 		qdel(hotspot)
 
 /datum/reagent/consumable/enzyme
@@ -512,6 +521,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 0, 0, 0
 	taste_description = "chalky wheat"
+	default_container = /obj/item/reagent_containers/food/condiment/flour
 
 /datum/reagent/consumable/flour/reaction_turf(turf/T, reac_volume)
 	if(!isspaceturf(T))
@@ -627,13 +637,13 @@
 			if(!M.eye_blurry)
 				to_chat(M, "<span class = 'warning'>Tears well up in your eyes!</span>")
 			M.blind_eyes(2)
-			M.blur_eyes(5)
+			M.adjust_eye_blur(5)
 	return ..()
 
 /datum/reagent/consumable/tearjuice/on_mob_life(mob/living/carbon/M)
 	..()
 	if(M.eye_blurry)	//Don't worsen vision if it was otherwise fine
-		M.blur_eyes(4)
+		M.adjust_eye_blur(4)
 		if(prob(10))
 			to_chat(M, "<span class = 'warning'>Your eyes sting!</span>")
 			M.blind_eyes(2)
@@ -669,7 +679,7 @@
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM, 150)
 		M.adjustToxLoss(3*REM,0)
 		M.adjustStaminaLoss(10*REM,0)
-		M.blur_eyes(5)
+		M.adjust_eye_blur(5)
 		. = TRUE
 	..()
 
@@ -694,10 +704,10 @@
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = living_holder.mob_light(2)
 	mob_light_obj.set_light_color("#b5a213")
 	LAZYSET(mobs_affected, living_holder, mob_light_obj)
-	RegisterSignal(living_holder, COMSIG_PARENT_QDELETING, PROC_REF(on_living_holder_deletion))
+	RegisterSignal(living_holder, COMSIG_QDELETING, PROC_REF(on_living_holder_deletion))
 
 /datum/reagent/consumable/tinlux/proc/remove_reagent_light(mob/living/living_holder)
-	UnregisterSignal(living_holder, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(living_holder, COMSIG_QDELETING)
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = LAZYACCESS(mobs_affected, living_holder)
 	LAZYREMOVE(mobs_affected, living_holder)
 	if(mob_light_obj)
@@ -743,13 +753,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#97ee63"
 	taste_description = "pure electricity"
-
-/datum/reagent/consumable/liquidelectricity/reaction_mob(mob/living/M, methods=TOUCH, reac_volume) //can't be on life because of the way blood works.
-	if((methods & (INGEST|INJECT|PATCH)) && iscarbon(M))
-		var/mob/living/carbon/C = M
-		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
 	if(!istype(T))
@@ -757,12 +761,15 @@
 	if(reac_volume < 3)
 		return
 
-	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
-		B = new(T)
+		B = new /obj/effect/decal/cleanable/blood/splatter(T)
+		B.Etherealify()
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
-	if(prob(25) && !isethereal(M))
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
+		M.adjust_nutrition(nutriment_factor)
+	else if(prob(25))
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
 		playsound(M, "sparks", 50, 1)
 	return ..()
@@ -920,3 +927,22 @@
 	if(HAS_TRAIT(affected_mob, TRAIT_FAT))
 		affected_mob.gib()
 	return ..()
+
+/datum/reagent/consumable/bbqsauce
+	name = "BBQ Sauce"
+	description = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#78280A" // rgb: 120, 40, 10
+	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
+	taste_description = "smokey sweetness"
+
+/datum/reagent/consumable/peanut_butter
+	name = "Peanut Butter"
+	description = "A creamy paste made from ground peanuts."
+	nutriment_factor = 15 * REAGENTS_METABOLISM
+	color = "#D9A066" // rgb: 217, 160, 102
+	taste_description = "peanuts"
+
+/// Gets just how much nutrition this reagent is worth for the passed mob
+/datum/reagent/consumable/proc/get_nutriment_factor(mob/living/carbon/eater)
+	return nutriment_factor * REAGENTS_METABOLISM * 2

@@ -1,9 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ae" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "Atmos to External Gas"
+"ad" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 4
 	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"ae" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -11,6 +14,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 9
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "am" = (
@@ -18,7 +24,7 @@
 	dir = 9
 	},
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "ap" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -32,12 +38,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"ba" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "bg" = (
-/obj/machinery/atmospherics/pipe/manifold4w/purple/visible,
-/obj/machinery/meter,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/manifold/purple/visible,
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "bA" = (
@@ -46,9 +58,16 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"bN" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible{
+"bI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 5
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -57,7 +76,7 @@
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "cv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -70,25 +89,20 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ef" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/components/binary/circulator{
+	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/valve/digital,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ex" = (
-/obj/machinery/atmospherics/pipe/manifold/dark/visible,
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
+/obj/effect/mapping_helpers/teleport_anchor,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ey" = (
@@ -97,6 +111,12 @@
 	},
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Gas to Cooling Loop"
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"eN" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 9
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -134,9 +154,9 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"fI" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 5
+"fw" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -171,12 +191,14 @@
 	req_access_txt = "10"
 	},
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "gZ" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 10
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -212,7 +234,10 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "hL" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/mixer/flipped,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "hO" = (
@@ -268,13 +293,8 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
-"je" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/obj/machinery/meter,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "jG" = (
 /obj/machinery/atmospherics/pipe/manifold/orange/visible{
 	dir = 1
@@ -290,9 +310,8 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "External Gas to Cold Loop"
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -306,13 +325,9 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ky" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "External Gas to Burn Chamber"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "kI" = (
@@ -320,10 +335,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/engine,
-/area/engine/engineering)
-"kK" = (
-/obj/machinery/atmospherics/pipe/manifold/orange/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ls" = (
@@ -334,14 +345,14 @@
 /area/engine/engineering)
 "lU" = (
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "ma" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "me" = (
 /obj/effect/turf_decal/stripes/line{
@@ -358,21 +369,21 @@
 	dir = 4
 	},
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
+"mC" = (
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ni" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"nj" = (
-/obj/machinery/atmospherics/pipe/manifold/yellow/visible,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "nI" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible,
-/obj/machinery/atmospherics/components/binary/valve/digital{
-	dir = 4;
-	name = "Hot to Waste"
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -381,7 +392,7 @@
 	id = "teghot"
 	},
 /obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/engine/engineering)
 "oc" = (
 /obj/machinery/door/airlock/external{
@@ -395,12 +406,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
-"oq" = (
-/obj/machinery/atmospherics/components/unary/heat_exchanger{
-	dir = 4
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "oJ" = (
 /obj/machinery/door/airlock/external{
@@ -420,24 +425,17 @@
 	dir = 10
 	},
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "oZ" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"ph" = (
-/obj/machinery/atmospherics/components/binary/valve/digital{
-	dir = 8;
-	name = "Cold to Waste"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "pl" = (
-/obj/machinery/atmospherics/pipe/simple/purple/visible{
+/obj/machinery/atmospherics/components/unary/heat_exchanger{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "pn" = (
@@ -445,7 +443,7 @@
 	dir = 8
 	},
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "po" = (
 /obj/machinery/atmospherics/components/unary/heat_exchanger{
@@ -464,11 +462,12 @@
 	dir = 9
 	},
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "pK" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
-	dir = 1
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -495,16 +494,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"qa" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 6
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "qh" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "qj" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -513,7 +506,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ql" = (
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "rS" = (
@@ -535,12 +528,14 @@
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
 "td" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 9
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -560,22 +555,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"uL" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "uT" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
 	},
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/engine/engineering)
 "uW" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 8
 	},
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"vi" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "External Gas to Cold Loop"
+"ve" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -595,16 +597,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/orange/visible{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/manifold/orange/visible{
+	dir = 8
+	},
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "vO" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -612,11 +612,14 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 9
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"wh" = (
-/obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 8
+"wu" = (
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -625,11 +628,12 @@
 	dir = 6
 	},
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "xc" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 9
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "xp" = (
@@ -646,10 +650,9 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/structure/closet/crate/engineering,
-/obj/item/circuitboard/machine/circulator,
-/obj/item/circuitboard/machine/circulator,
-/obj/item/circuitboard/machine/generator,
+/obj/machinery/power/generator{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "xI" = (
@@ -659,13 +662,10 @@
 "xR" = (
 /turf/template_noop,
 /area/template_noop)
-"yq" = (
-/obj/effect/turf_decal/box,
-/obj/structure/frame/machine,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "yB" = (
-/obj/machinery/atmospherics/pipe/manifold4w/dark/visible,
+/obj/machinery/atmospherics/pipe/manifold/dark/visible{
+	dir = 1
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "yP" = (
@@ -680,8 +680,10 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "yS" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "Gas to TEG"
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "zs" = (
@@ -704,7 +706,7 @@
 	dir = 5
 	},
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "zW" = (
 /obj/effect/turf_decal/stripes/line{
@@ -719,33 +721,39 @@
 /obj/item/stack/cable_coil,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"zZ" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 5
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Ar" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"Ay" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/manifold/dark/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Az" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
-	dir = 8;
-	id = "teghot_in"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
 	},
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
 "AW" = (
-/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
 	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"AX" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Bm" = (
@@ -776,10 +784,10 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "BU" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -801,28 +809,14 @@
 "DE" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
-"Eb" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Ec" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 8
 	},
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "Es" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -844,9 +838,11 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Eu" = (
-/obj/machinery/atmospherics/components/trinary/filter/critical,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -859,9 +855,8 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "FQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
-	dir = 8;
-	id_tag = "teghot_out"
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8
 	},
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
@@ -896,17 +891,27 @@
 	pixel_x = -8;
 	pixel_y = -32
 	},
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "GA" = (
 /obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Hq" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
+"Hc" = (
+/obj/machinery/atmospherics/components/unary/tank/toxins{
+	dir = 4;
+	volume = 6e+006
 	},
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Hz" = (
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	dir = 4;
+	name = "Cold to Waste"
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "HB" = (
@@ -917,9 +922,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Ii" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold4w/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Io" = (
@@ -927,7 +930,7 @@
 	dir = 10
 	},
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "Is" = (
 /obj/machinery/atmospherics/pipe/manifold/dark/visible,
@@ -949,6 +952,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Ju" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Jy" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/engine,
@@ -958,8 +968,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "Gas to Heating Loop"
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -973,18 +982,25 @@
 	output_tag = "teghot_out";
 	sensors = list("tegburn_sensor" = "Chamber")
 	},
-/obj/machinery/atmospherics/pipe/simple/purple/visible{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"KI" = (
+/obj/machinery/atmospherics/pipe/manifold/dark/visible{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Lc" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/machinery/atmospherics/components/unary/portables_connector,
+/obj/machinery/atmospherics/components/binary/circulator,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Lg" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 6
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Lt" = (
@@ -1006,9 +1022,15 @@
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"LZ" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Mb" = (
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "Md" = (
 /obj/structure/sign/warning/securearea{
@@ -1036,12 +1058,13 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Nm" = (
-/obj/machinery/atmospherics/pipe/manifold/purple/visible{
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/valve/digital,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Ns" = (
@@ -1057,10 +1080,9 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "NH" = (
-/obj/structure/grille,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/machinery/atmospherics/pipe/manifold4w/orange/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "NU" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
@@ -1084,13 +1106,13 @@
 	dir = 6
 	},
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "OR" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/corner{
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -1098,6 +1120,13 @@
 "OT" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"OV" = (
+/obj/machinery/atmospherics/components/unary/tank/oxygen{
+	dir = 4;
+	volume = 9e+006
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1128,19 +1157,12 @@
 "PP" = (
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
-"PS" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible,
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "QN" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 1
 	},
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "QP" = (
 /obj/structure/cable{
@@ -1165,9 +1187,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 9
-	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -1188,21 +1207,37 @@
 "Rz" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "RG" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "External Gas to Loop"
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "RI" = (
-/obj/machinery/atmospherics/components/binary/valve/digital{
-	name = "Burn to Waste"
-	},
-/obj/effect/turf_decal/stripes/line{
+/obj/effect/mapping_helpers/teleport_anchor,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"RW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	locked = 0;
+	pixel_y = -24
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1216,11 +1251,9 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Sl" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/meter,
-/turf/open/floor/engine,
-/area/engine/engineering)
+"Sp" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space/nearstation)
 "St" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1264,21 +1297,17 @@
 /obj/item/storage/belt/utility,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"SD" = (
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/template_noop)
 "SL" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"ST" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "Cooling Loop Bypass"
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Ta" = (
@@ -1304,35 +1333,51 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "UH" = (
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space)
 "UK" = (
 /obj/structure/grille,
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
+"Va" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Vs" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 6
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Vu" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	dir = 1;
+	name = "Hot to Waste"
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Vv" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 9
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Vz" = (
-/turf/open/floor/engine,
-/area/engine/engineering)
-"VP" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible{
-	dir = 9
-	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "VQ" = (
@@ -1376,7 +1421,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
-/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "WL" = (
@@ -1395,6 +1439,11 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"Xj" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Xo" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating/airless,
@@ -1404,20 +1453,19 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "Gas to Cooling Loop"
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "XX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Yf" = (
 /obj/structure/grille,
-/turf/template_noop,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
 "Yg" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
@@ -1473,15 +1521,19 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Zz" = (
-/turf/closed/wall/r_wall,
-/area/maintenance/starboard/fore)
-"ZL" = (
-/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+"YO" = (
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/airalarm{
+	locked = 0;
+	pixel_y = 24
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Zz" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/starboard/fore)
 
 (1,1,1) = {"
 xR
@@ -1594,18 +1646,18 @@ aF
 pN
 xI
 fm
-Vz
-Vz
-Vz
-Jy
-Vz
-Pt
-Vz
-Vz
-Jy
-Vz
-Hq
-Eb
+Wb
+iq
+ve
+ex
+uW
+Va
+Lv
+Yh
+ky
+Lv
+fw
+bI
 xR
 xR
 xR
@@ -1620,18 +1672,18 @@ Tl
 xI
 Tl
 Jc
-Wb
-iq
-ZL
-Sl
-uW
+ap
+Vz
+ap
+Vz
+ap
+Pt
+qj
+Vz
 ef
-Lv
-je
-Lv
-HB
-yB
-ex
+qj
+Xj
+Ay
 xR
 xR
 xR
@@ -1647,17 +1699,17 @@ Mb
 Tl
 Jc
 ap
-Vz
-RG
+Xj
+Is
 ni
 dw
 NU
 JC
 Dq
-qj
 Vz
-vi
-ae
+qj
+Xj
+Ay
 xR
 xR
 xR
@@ -1671,19 +1723,19 @@ oJ
 Tl
 Mb
 Tl
-Lt
+YO
 ap
-Lc
+Xj
 Is
 TJ
 eO
 xs
-yq
+eO
 Os
-qj
-Jy
-bN
-Yz
+LZ
+RI
+wu
+ae
 xR
 xR
 xR
@@ -1699,16 +1751,16 @@ ma
 Tl
 hi
 ap
-Lc
+Xj
 Is
 OT
 XS
 rS
 WF
 Rv
-qj
-Vz
-bN
+ba
+jG
+HB
 vN
 Ns
 xR
@@ -1725,16 +1777,16 @@ oN
 bA
 ey
 Fb
-Lc
+Xj
 Is
 Jy
 ap
+Lc
+uL
 Vz
-jG
-Yh
-kK
+ba
+RG
 Vz
-bN
 Es
 Tl
 xR
@@ -1750,17 +1802,17 @@ am
 Mb
 Tl
 Lt
-ST
-Lc
+ap
+Vz
 yB
-GA
+KI
 kf
-hL
-PS
-hL
-nI
-hL
-VP
+GA
+Ju
+GA
+eN
+qj
+Vz
 jR
 Tl
 xR
@@ -1776,18 +1828,18 @@ wY
 zt
 Tl
 Lt
-ap
+nI
 Vz
 RG
-Vz
-pK
-fI
-po
-Vz
+yB
+Vu
+Yh
+NH
+XX
 XX
 xc
-zZ
-vO
+Vz
+RW
 Tl
 xR
 xR
@@ -1803,17 +1855,17 @@ Io
 bA
 me
 OR
-iq
+AX
 Ii
-iq
+ad
 ho
-ph
-oq
+Vz
+po
 Jy
-XX
-xc
-nj
-vO
+OV
+Hc
+Vz
+Yz
 Tl
 xR
 xR
@@ -1830,15 +1882,15 @@ Tl
 Ar
 Ms
 Vz
-qa
-Lg
+Hz
+mC
 Lg
 ql
 pl
-Lg
+pK
+Vv
 Vv
 yS
-wh
 vO
 Tl
 xR
@@ -1857,12 +1909,12 @@ vx
 Vs
 SL
 BU
-RI
+BU
 Nm
 Eu
 bg
-ky
 gZ
+hL
 td
 AW
 QQ
@@ -1911,7 +1963,7 @@ Mb
 UH
 Mb
 uT
-Mb
+Sp
 uT
 Mb
 UH
@@ -1972,15 +2024,15 @@ lU
 lU
 lU
 Mb
-xR
-xR
-xR
-xR
+SD
+SD
+SD
+SD
 "}
 (20,1,1) = {"
 UK
 BX
-NH
+UK
 UH
 Mb
 UH
@@ -1998,10 +2050,10 @@ UH
 lU
 Mb
 UH
-xR
-xR
-xR
-xR
+SD
+SD
+SD
+SD
 "}
 (21,1,1) = {"
 UK

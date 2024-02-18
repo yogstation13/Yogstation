@@ -6,21 +6,24 @@
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
+	exotic_bloodtype = "X" //this isn't used for anything other than bloodsplatter colours
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT | MICE
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
 	say_mod = "hisses"
+	bubble_icon = BUBBLE_ALIEN
 	species_language_holder = /datum/language_holder/polysmorph
 	brutemod = 0.9 //exoskeleton protects against brute
 	burnmod = 1.35 //residual plasma inside them, highly flammable
 	coldmod = 0.75
 	heatmod = 1.5
+	pressuremod = 0.75 //Xenos are completely pressure immune, they're bargain bin xenos
 	acidmod = 0.2 //Their blood is literally acid
 	action_speed_coefficient = 1.1 //claws aren't dextrous like hands
 	speedmod = -0.1 //apex predator humanoid hybrid
+	inert_mutation = ACIDSPIT
 	punchdamagehigh = 11 //slightly better high end of damage
 	punchstunthreshold = 11 //technically slightly worse stunchance
-	payday_modifier = 0.3 //Some are quite literally slaves + they HAVE to work for NT
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
@@ -32,7 +35,7 @@
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	fixed_mut_color = "444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
+	fixed_mut_color = "#444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
 	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth", "legs")
 	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT

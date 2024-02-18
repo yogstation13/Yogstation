@@ -33,6 +33,21 @@
 							'sound/misc/clap2.ogg',
 							'sound/misc/clap3.ogg',
 							'sound/misc/clap4.ogg')
+/datum/emote/living/carbon/clap/run_emote(user, params, type_override, intentional = FALSE)
+	. = ..()
+	if(!.)
+		return
+	var/area/A = get_area(user)
+	if(A)
+		if(rand(0, 10000) == 0)
+			A.lightswitch = !A.lightswitch
+			A.update_appearance(UPDATE_ICON)
+		
+			for(var/obj/machinery/light_switch/L in A)
+				L.update_appearance(UPDATE_ICON)
+		
+			A.power_change()
+
 
 /datum/emote/living/carbon/crack
 	key = "crack"
@@ -51,6 +66,19 @@
 	key_third_person = "gnarls"
 	message = "gnarls and shows its teeth..."
 	mob_type_allowed_typecache = list(/mob/living/carbon/monkey)
+
+/datum/emote/living/carbon/meow
+	key = "meow"
+	key_third_person = "meows"
+	message = "meows."
+	emote_type = EMOTE_AUDIBLE
+	cooldown = 10 SECONDS
+
+/datum/emote/living/carbon/meow/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	. = ..()
+	if(!.)
+		return FALSE
+	return iscatperson(user)
 
 /datum/emote/living/carbon/moan
 	key = "moan"
@@ -114,15 +142,3 @@
 	key = "wink"
 	key_third_person = "winks"
 	message = "winks."
-
-/datum/emote/living/snap
-	key = "snap"
-	key_third_person = "snaps"
-	message = "snaps their fingers."
-	message_param = "snaps their fingers at %t."
-	emote_type = EMOTE_AUDIBLE
-	mob_type_allowed_typecache = list(/mob/living/carbon/human)
-	hands_use_check = TRUE
-
-/datum/emote/living/snap/get_sound(mob/living/user)
-	return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')

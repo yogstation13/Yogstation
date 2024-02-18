@@ -167,7 +167,7 @@
 	user.visible_message(span_warning("[user] begins aiming [lasgun] directly at [victim]'s [limb.name]..."), span_userdanger("You begin aiming [lasgun] directly at [user == victim ? "your" : "[victim]'s"] [limb.name]..."))
 	playsound(lasgun, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff_exponent = 1)
 
-	if(!do_after(user, base_treat_time  * self_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
+	if(!do_after(user, base_treat_time * self_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	playsound(lasgun, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff_exponent = 1)

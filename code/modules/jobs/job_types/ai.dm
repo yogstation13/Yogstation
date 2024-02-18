@@ -25,15 +25,14 @@
 	//this should never be seen because of the way olfaction works but just in case
 	smells_like = "chained intellect"
 
-/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
+/datum/job/ai/equip(mob/living/equipping, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
 	if(visualsOnly)
 		CRASH("dynamic preview is unsupported")
-	. = H.AIize(latejoin,preference_source)
+	. = equipping.AIize(preference_source)
 
-/datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
+/datum/job/ai/after_spawn(mob/living/spawned, mob/M, latejoin)
 	. = ..()
-			
-	var/mob/living/silicon/ai/AI = H
+	var/mob/living/silicon/ai/AI = spawned
 
 	AI.relocate(TRUE)
 
@@ -75,7 +74,7 @@
 
 /datum/job/ai/announce(mob/living/silicon/ai/AI)
 	. = ..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(minor_announce), "[AI] has been downloaded to the central AI network.")) //YOGS - removed the co-ordinates
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "[AI] has been downloaded to the central AI network.")) //YOGS - removed the co-ordinates
 
 /datum/job/ai/config_check()
 	return CONFIG_GET(flag/allow_ai)

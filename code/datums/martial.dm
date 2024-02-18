@@ -153,7 +153,7 @@
   *returns TRUE if the default throw impact shouldn't do anything, FALSE if you still slam into something at mach 20 and eat a stun
   */
 
-/datum/martial_art/proc/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+/datum/martial_art/proc/handle_throw(atom/hit_atom, mob/living/carbon/human/A, datum/thrownthing/throwingdatum)
 	return FALSE
 
 /**

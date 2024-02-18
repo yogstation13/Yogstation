@@ -27,7 +27,6 @@ By design, d1 is the smallest direction and d2 is the highest
 	desc = "A flexible, superconducting insulated cable for heavy-duty power transfer."
 	icon = 'icons/obj/power_cond/cables.dmi'
 	icon_state = "0-1"
-	level = 1 //is underfloor
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
@@ -43,6 +42,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		pipe_interference_group = list("cable"),\
 		pipe_group = "cable-[cable_color]"\
 	)
+
+	var/image/wire_vision_img //specifically for wirecrawling
 
 /obj/structure/cable/yellow
 	cable_color = "yellow"
@@ -81,9 +82,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	d1 = text2num( copytext( icon_state, 1, dash ) )
 	d2 = text2num( copytext( icon_state, dash+1 ) )
 
-	var/turf/T = get_turf(src)			// hide if turf is not intact
-	if(level==1)
-		hide(T.intact)
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 	GLOB.cable_list += src //add it to the global cable list
 
 	var/list/cable_colors = GLOB.cable_colors
@@ -96,6 +95,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(powernet)
 		cut_cable_from_powernet()				// update the powernets
 	GLOB.cable_list -= src							//remove it from global cable list
+	if(wire_vision_img)
+		qdel(wire_vision_img)
 	return ..()									// then go ahead and delete the cable
 
 /obj/structure/cable/deconstruct(disassembled = TRUE)
@@ -112,13 +113,6 @@ By design, d1 is the smallest direction and d2 is the highest
 // General procedures
 ///////////////////////////////////
 
-//If underfloor, hide the cable
-/obj/structure/cable/hide(i)
-
-	if(level == 1 && isturf(loc))
-		invisibility = i ? INVISIBILITY_MAXIMUM : 0
-	update_appearance(UPDATE_ICON)
-
 /obj/structure/cable/update_icon(updates=ALL)
 	. = ..()
 	icon_state = "[d1]-[d2]"
@@ -127,7 +121,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/proc/handlecable(obj/item/W, mob/user, params)
 	var/turf/T = get_turf(src)
-	if(T.intact)
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		return
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
 		if (shock(user, 50))
@@ -493,7 +487,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/stack/cable_coil/proc/set_cable_color(new_color)
 	color = GLOB.cable_colors[new_color]
@@ -538,7 +532,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				if(use(CABLE_RESTRAINTS_COST))
 					var/obj/item/restraints/handcuffs/cable/restraints = new(null, cable_color)
 					user.put_in_hands(restraints)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 ///////////////////////////////////
 // General procedures
@@ -555,7 +549,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		to_chat(user, span_warning("[affecting] is already in good condition!"))
 		return FALSE
 	if(affecting && affecting.status == BODYPART_ROBOTIC)
-		if(INTERACTING_WITH(user, H))
+		if(DOING_INTERACTION(user, H))
 			return FALSE
 		user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.name]."), span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))
 		heal_robo_limb(src, H, user, 0, 10, 1)
@@ -565,14 +559,16 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/cable_coil/update_icon_state()
 	. = ..()
-	if(novariants)
+	if(!novariants)
 		return
 	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
 	item_state = "coil_[cable_color]"
+	color = null
+	add_atom_colour(cable_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/stack/cable_coil/update_name(updates=ALL)
 	. = ..()
-	if(novariants)
+	if(!novariants)
 		return
 	name = "cable [amount < 3 ? "piece" : "coil"]"
 
@@ -583,7 +579,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/obj/item/stack/cable_coil/new_cable = ..()
 	if(istype(new_cable))
 		new_cable.cable_color = cable_color
-		new_cable.update_appearance(UPDATE_ICON)
+		new_cable.update_appearance()
 
 //add cables to the stack
 /obj/item/stack/cable_coil/proc/give(extra)
@@ -591,7 +587,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		amount = max_amount
 	else
 		amount += extra
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 
 
@@ -608,8 +604,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(!isturf(user.loc))
 		return
 
-	if(!isturf(T) || T.intact || !T.can_have_cabling())
-		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
+	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
+		to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
 		return
 
 	if(get_amount() < 1) // Out of cable
@@ -640,7 +636,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	C.d1 = 0 //it's a O-X node cable
 	C.d2 = dirn
 	C.add_fingerprint(user)
-	C.update_appearance(UPDATE_ICON)
+	C.update_appearance()
 
 	//create a new powernet with the cable, if needed it will be merged later
 	var/datum/powernet/PN = new()
@@ -670,13 +666,17 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	var/turf/T = C.loc
 
-	if(!isturf(T) || T.intact)		// sanity checks, also stop use interacting with T-scanner revealed cable
+	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
+		to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
+		return
+	
+	if(get_amount() < 1) // Out of cable
+		to_chat(user, span_warning("There is no cable left!"))
 		return
 
-	if(get_dist(C, user) > 1)		// make sure it's close enough
+	if(get_dist(C, user) > 1) // make sure it's close enough
 		to_chat(user, span_warning("You can't lay cable at a place that far away!"))
 		return
-
 
 	if(U == T && !forceddir) //if clicked on the turf we're standing on and a direction wasn't supplied, try to put a cable in the direction we're facing
 		place_turf(T,user)
@@ -692,7 +692,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			if (showerror)
 				to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
 			return
-		if(U.intact)						//can't place a cable if it's a plating with a tile on it
+		if(U.underfloor_accessibility < UNDERFLOOR_INTERACTABLE) //can't place a cable if it's a plating with a tile on it
 			to_chat(user, span_warning("You can't lay cable there unless the floor tiles are removed!"))
 			return
 		else
@@ -712,7 +712,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			NC.d1 = 0
 			NC.d2 = fdirn
 			NC.add_fingerprint(user)
-			NC.update_appearance(UPDATE_ICON)
+			NC.update_appearance()
 
 			//create a new powernet with the cable, if needed it will be merged later
 			var/datum/powernet/newPN = new(loc.z)
@@ -754,7 +754,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				return
 
 
-		C.update_appearance(UPDATE_ICON)
+		C.update_appearance()
 
 		C.d1 = nd1
 		C.d2 = nd2
@@ -762,7 +762,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		//updates the stored cable coil
 
 		C.add_fingerprint(user)
-		C.update_appearance(UPDATE_ICON)
+		C.update_appearance()
 
 
 		C.mergeConnectedNetworks(C.d1) //merge the powernets...
@@ -850,12 +850,9 @@ By design, d1 is the smallest direction and d2 is the highest
 	icon_state = "coil2"
 
 /obj/item/stack/cable_coil/cut/Initialize(mapload)
-	. = ..()
 	if(!amount)
 		amount = rand(1,2)
-	pixel_x = rand(-2,2)
-	pixel_y = rand(-2,2)
-	update_appearance(UPDATE_ICON)
+	return ..()
 
 /obj/item/stack/cable_coil/cut/red
 	cable_color = "red"

@@ -66,6 +66,12 @@
 
 #define STATUS_EFFECT_DOUBLEDOWN /datum/status_effect/doubledown //Greatly reduced damage taken
 
+#define STATUS_EFFECT_DIAMONDSKIN /datum/status_effect/diamondskin //Increases heat and pressure resistance
+
+#define STATUS_EFFECT_HOLYLIGHT_ANTIMAGIC /datum/status_effect/holylight_antimagic //long-term temporary antimagic that makes you blue
+
+#define STATUS_EFFECT_HOLYLIGHT_HEALBOOST /datum/status_effect/holylight_healboost //short-term heal boost that grants the chaplain favor
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -147,6 +153,8 @@
 
 #define STATUS_EFFECT_CATCHUP /datum/status_effect/catchup //momentarily slows the victim
 
+#define STATUS_EFFECT_VOID_CHILL /datum/status_effect/void_chill
+
 /////////////
 // NEUTRAL //
 /////////////
@@ -177,7 +185,7 @@
 
 #define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
 
-#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade 
+#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade
 
 /////////////
 //  SLIME  //
@@ -288,3 +296,11 @@
 #define adjust_temp_blindness_up_to(duration, up_to) adjust_timed_status_effect(duration, /datum/status_effect/temporary_blindness, up_to)
 #define set_temp_blindness(duration) set_timed_status_effect(duration, /datum/status_effect/temporary_blindness)
 #define set_temp_blindness_if_lower(duration) set_timed_status_effect(duration, /datum/status_effect/temporary_blindness, TRUE)
+
+//Incapacitated status effect flags
+/// If the incapacitated status effect will ignore a mob in restraints (handcuffs)
+#define IGNORE_RESTRAINTS (1<<0)
+/// If the incapacitated status effect will ignore a mob in stasis (stasis beds)
+#define IGNORE_STASIS (1<<1)
+/// If the incapacitated status effect will ignore a mob being agressively grabbed
+#define IGNORE_GRAB (1<<2)

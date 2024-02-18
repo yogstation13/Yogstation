@@ -16,6 +16,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	item_flags = NOBLUDGEON
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
+	grind_results = list(/datum/reagent/uranium/radium = 5)
 
 	var/grace = RAD_GEIGER_GRACE_PERIOD
 	var/datum/looping_sound/geiger/soundloop
@@ -178,16 +179,15 @@
 	to_chat(usr, span_notice("You flush [src]'s radiation counts, resetting it to normal."))
 	update_appearance(UPDATE_ICON)
 
-/obj/item/geiger_counter/emag_act(mob/user)
+/obj/item/geiger_counter/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	if(scanning)
 		to_chat(user, span_warning("Turn off [src] before you perform this action!"))
-		return 0
-	to_chat(user, span_warning("You override [src]'s radiation storing protocols. It will now generate small doses of radiation, and stored rads are now projected into creatures you scan."))
+		return FALSE
 	obj_flags |= EMAGGED
-
-
+	to_chat(user, span_warning("You override [src]'s radiation storing protocols. It will now generate small doses of radiation, and stored rads are now projected into creatures you scan."))
+	return TRUE
 
 /obj/item/geiger_counter/cyborg
 	var/mob/listeningTo

@@ -129,7 +129,7 @@
 
 /obj/item/toy/mballoon
 	name = "toy mballoon"
-	desc = "A blue baloon, it looks.. mentory?"
+	desc = "A blue balloon, it looks.. mentory?"
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
@@ -1627,8 +1627,8 @@ obj/item/toy/turn_tracker
 	toysay = "I got this scroll from a dead assistant!"
 
 /obj/item/toy/figure/traitor/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/pen/edagger))
-		var/obj/item/pen/edagger/pen = I
+	if(istype(I, /obj/item/pen/red/edagger))
+		var/obj/item/pen/red/edagger/pen = I
 		if(pen.on)
 			icon_state += "_pen" // edagger buddies
 			playsound(I.loc, 'sound/weapons/saberon.ogg', 35, TRUE)
@@ -1750,9 +1750,9 @@ obj/item/toy/turn_tracker
 	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
 
 /obj/item/ammo_casing/magic/sickly_blade_toy
-	projectile_type = /obj/item/projectile/sickly_blade_toy
+	projectile_type = /obj/projectile/sickly_blade_toy
 	harmful = FALSE
-/obj/item/projectile/sickly_blade_toy
+/obj/projectile/sickly_blade_toy
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -1765,7 +1765,7 @@ obj/item/toy/turn_tracker
 	knockdown = 0
 	hitsound = 'sound/effects/gravhit.ogg'
 
-/obj/item/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
+/obj/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
 	. = ..()
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target

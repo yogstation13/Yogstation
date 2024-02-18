@@ -17,18 +17,43 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
 	anchored = TRUE
+	density = TRUE // dense for receiving bumbs
+	layer = HIGH_OBJ_LAYER
+	light_system = STATIC_LIGHT
+	light_range = 3
+	light_power = 1
+	light_on = TRUE
+	light_color = COLOR_BLUE_LIGHT
+	/// Are mechs able to enter this portal?
 	var/mech_sized = FALSE
+	/// A reference to another "linked" destination portal
 	var/obj/effect/portal/linked
-	var/hardlinked = TRUE			//Requires a linked portal at all times. Destroy if there's no linked portal, if there is destroy it when this one is deleted.
+	/// Requires a linked portal at all times. Destroy if there's no linked portal, if there is destroy it when this one is deleted.
+	var/hardlinked = TRUE
+	/// What teleport channel does this portal use?
 	var/teleport_channel = TELEPORT_CHANNEL_BLUESPACE
 	var/creator
-	var/turf/hard_target			//For when a portal needs a hard target and isn't to be linked.
-	var/atmos_link = FALSE			//Link source/destination atmos.
-	var/turf/open/atmos_source		//Atmos link source
-	var/turf/open/atmos_destination	//Atmos link destination
+	/// For when a portal needs a hard target and isn't to be linked.
+	var/turf/hard_target
+	/// Do we teleport anchored objects?
 	var/allow_anchored = FALSE
+	/// What precision value do we pass to do_teleport (how far from the target destination we will pop out at).
 	var/innate_accuracy_penalty = 0
+	/// Used to track how often sparks should be output. Might want to turn this into a cooldown.
 	var/last_effect = 0
+	/// Does this portal bypass teleport restrictions? like TRAIT_NO_TELEPORT and NOTELEPORT flags.
+	var/force_teleport = FALSE
+	/// Does this portal create spark effect when teleporting?
+	var/sparkless = FALSE
+	/// If FALSE, the wibble filter will not be applied to this portal (only a visual effect).
+	var/wibbles = TRUE
+	
+	///Link source/destination atmos.
+	var/atmos_link = FALSE			
+	/// Atmos link source
+	var/turf/open/atmos_source		
+	/// Atmos link destination
+	var/turf/open/atmos_destination	
 
 /obj/effect/portal/anom
 	name = "wormhole"
@@ -37,6 +62,8 @@
 	layer = RIPPLE_LAYER
 	mech_sized = TRUE
 	teleport_channel = TELEPORT_CHANNEL_WORMHOLE
+	light_on = FALSE
+	wibbles = FALSE
 
 /obj/effect/portal/Move(newloc)
 	for(var/T in newloc)
@@ -44,32 +71,33 @@
 			return FALSE
 	return ..()
 
+// Prevents portals spawned by jaunter/handtele from floating into space when relocated to an adjacent tile.
+/obj/effect/portal/newtonian_move(direction, instant = FALSE, start_delay = 0)
+	return TRUE
+
 /obj/effect/portal/attackby(obj/item/W, mob/user, params)
 	if(user && Adjacent(user))
 		user.forceMove(get_turf(src))
 		return TRUE
 
-/obj/effect/portal/Crossed(atom/movable/AM, oldloc, force_stop = 0)
-	if(force_stop)
-		return ..()
-	if(isobserver(AM))
-		return ..()
-	if(linked && (get_turf(oldloc) == get_turf(linked)))
-		return ..()
-	if(!teleport(AM))
-		return ..()
+/obj/effect/portal/CanAllowThrough(atom/movable/mover, border_dir)
+	. = ..()
+	if(HAS_TRAIT(mover, TRAIT_NO_TELEPORT) && !force_teleport)
+		return TRUE
 
-/obj/effect/portal/attack_tk(mob/user)
-	return
+/obj/effect/portal/Bumped(atom/movable/bumper)
+	teleport(bumper)
 
 /obj/effect/portal/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(get_turf(user) == get_turf(src))
-		teleport(user)
 	if(Adjacent(user))
-		user.forceMove(get_turf(src))
+		teleport(user)
+
+/obj/effect/portal/attack_robot(mob/living/user)
+	if(Adjacent(user))
+		teleport(user)
 
 /obj/effect/portal/Initialize(mapload, _creator, _lifespan = 0, obj/effect/portal/_linked, automatic_link = FALSE, turf/hard_target_override, atmos_link_override)
 	. = ..()
@@ -83,9 +111,12 @@
 		atmos_link = atmos_link_override
 	link_portal(_linked)
 	hardlinked = automatic_link
-	creator = _creator
 	if(isturf(hard_target_override))
 		hard_target = hard_target_override
+	if(wibbles)
+		apply_wibbly_filters(src)
+	
+	creator = _creator
 
 /obj/effect/portal/singularity_pull()
 	return
@@ -121,20 +152,19 @@
 		return FALSE
 	atmos_source.atmos_adjacent_turfs[atmos_destination] = TRUE
 	atmos_destination.atmos_adjacent_turfs[atmos_source] = TRUE
-	atmos_source.air_update_turf(FALSE)
-	atmos_destination.air_update_turf(FALSE)
 
 /obj/effect/portal/proc/unlink_atmos()
 	if(istype(atmos_source))
-		if(istype(atmos_destination) && !atmos_source.Adjacent(atmos_destination) && !CANATMOSPASS(atmos_destination, atmos_source))
+		if(istype(atmos_destination) && !atmos_source.Adjacent(atmos_destination) && !TURFS_CAN_SHARE(atmos_destination, atmos_source))
 			LAZYREMOVE(atmos_source.atmos_adjacent_turfs, atmos_destination)
 		atmos_source = null
 	if(istype(atmos_destination))
-		if(istype(atmos_source) && !atmos_destination.Adjacent(atmos_source) && !CANATMOSPASS(atmos_source, atmos_destination))
+		if(istype(atmos_source) && !atmos_destination.Adjacent(atmos_source) && !TURFS_CAN_SHARE(atmos_source, atmos_destination))
 			LAZYREMOVE(atmos_destination.atmos_adjacent_turfs, atmos_source)
 		atmos_destination = null
 
-/obj/effect/portal/Destroy()				//Calls on_portal_destroy(destroyed portal, location of destroyed portal) on creator if creator has such call.
+/// Calls on_portal_destroy(destroyed portal, location of destroyed portal) on creator if creator has such call.
+/obj/effect/portal/Destroy()				
 	if(creator && hascall(creator, "on_portal_destroy"))
 		call(creator, "on_portal_destroy")(src, src.loc)
 	creator = null
@@ -156,7 +186,7 @@
 	var/turf/real_target = get_link_target_turf()
 	if(!istype(real_target))
 		return FALSE
-	if(!force && (!ismecha(M) && !istype(M, /obj/item/projectile) && M.anchored && !allow_anchored))
+	if(!force && (!ismecha(M) && !istype(M, /obj/projectile) && M.anchored && !allow_anchored))
 		return
 	if(ismegafauna(M))
 		message_admins("[M] has used a portal at [ADMIN_VERBOSEJMP(src)] made by [usr].")
@@ -165,9 +195,9 @@
 		no_effect = TRUE
 	else
 		last_effect = world.time
-	if(do_teleport(M, real_target, innate_accuracy_penalty, no_effects = no_effect, channel = teleport_channel))
-		if(istype(M, /obj/item/projectile))
-			var/obj/item/projectile/P = M
+	if(do_teleport(M, real_target, innate_accuracy_penalty, no_effects = no_effect, channel = teleport_channel, forced = force_teleport))
+		if(istype(M, /obj/projectile))
+			var/obj/projectile/P = M
 			P.ignore_source_check = TRUE
 		return TRUE
 	return FALSE
@@ -190,12 +220,9 @@
 /obj/effect/portal/permanent
 	name = "permanent portal"
 	desc = "An unwavering portal that will never fade."
-	var/id // var edit or set id in map editor
 	hardlinked = FALSE // dont qdel my portal nerd
-
-/obj/effect/portal/permanent/Initialize(mapload, _creator, _lifespan = 0, obj/effect/portal/_linked, automatic_link = FALSE, turf/hard_target_override, atmos_link_override)
-	. = ..()
-	set_linked()
+	force_teleport = TRUE // force teleports because they're a mapmaker tool
+	var/id // var edit or set id in map editor
 
 /obj/effect/portal/permanent/proc/get_linked()
 	if(!id)

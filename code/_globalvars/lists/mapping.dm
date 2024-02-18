@@ -1,24 +1,111 @@
-GLOBAL_LIST_INIT(cardinals, list(NORTH, SOUTH, EAST, WEST))
-GLOBAL_LIST_INIT(cardinals_multiz, list(NORTH, SOUTH, EAST, WEST, UP, DOWN))
-GLOBAL_LIST_INIT(diagonals, list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
-GLOBAL_LIST_INIT(corners_multiz, list(UP|NORTHEAST, UP|NORTHWEST, UP|SOUTHEAST, UP|SOUTHWEST, DOWN|NORTHEAST, DOWN|NORTHWEST, DOWN|SOUTHEAST, DOWN|SOUTHWEST))
+GLOBAL_LIST_INIT(cardinals, list(
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+))
+GLOBAL_LIST_INIT(cardinals_multiz, list(
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	UP,
+	DOWN,
+))
+GLOBAL_LIST_INIT(diagonals, list(
+	NORTHEAST,
+	NORTHWEST,
+	SOUTHEAST,
+	SOUTHWEST,
+))
+GLOBAL_LIST_INIT(corners_multiz, list(
+	UP|NORTHEAST,
+	UP|NORTHWEST,
+	UP|SOUTHEAST,
+	UP|SOUTHWEST,
+	DOWN|NORTHEAST,
+	DOWN|NORTHWEST,
+	DOWN|SOUTHEAST,
+	DOWN|SOUTHWEST,
+))
 GLOBAL_LIST_INIT(diagonals_multiz, list(
-	NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST,
-	UP|NORTH, UP|SOUTH, UP|EAST, UP|WEST, UP|NORTHEAST, UP|NORTHWEST, UP|SOUTHEAST, UP|SOUTHWEST,
-	DOWN|NORTH, DOWN|SOUTH, DOWN|EAST, DOWN|WEST, DOWN|NORTHEAST, DOWN|NORTHWEST, DOWN|SOUTHEAST, DOWN|SOUTHWEST))
+	NORTHEAST,
+	NORTHWEST,
+	SOUTHEAST,
+	SOUTHWEST,
+
+	UP|NORTH,
+	UP|SOUTH,
+	UP|EAST,
+	UP|WEST,
+	UP|NORTHEAST,
+	UP|NORTHWEST,
+	UP|SOUTHEAST,
+	UP|SOUTHWEST,
+
+	DOWN|NORTH,
+	DOWN|SOUTH,
+	DOWN|EAST,
+	DOWN|WEST,
+	DOWN|NORTHEAST,
+	DOWN|NORTHWEST,
+	DOWN|SOUTHEAST,
+	DOWN|SOUTHWEST,
+))
 GLOBAL_LIST_INIT(alldirs_multiz, list(
-	NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST,
-	UP, UP|NORTH, UP|SOUTH, UP|EAST, UP|WEST, UP|NORTHEAST, UP|NORTHWEST, UP|SOUTHEAST, UP|SOUTHWEST,
-	DOWN, DOWN|NORTH, DOWN|SOUTH, DOWN|EAST, DOWN|WEST, DOWN|NORTHEAST, DOWN|NORTHWEST, DOWN|SOUTHEAST, DOWN|SOUTHWEST))
-GLOBAL_LIST_INIT(alldirs, list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	NORTHEAST,
+	NORTHWEST,
+	SOUTHEAST,
+	SOUTHWEST,
 
-GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created
-GLOBAL_LIST_EMPTY(start_landmarks_list)			//list of all spawn points created
-GLOBAL_LIST_EMPTY(department_security_spawns)	//list of all department security spawns
+	UP,
+	UP|NORTH,
+	UP|SOUTH,
+	UP|EAST,
+	UP|WEST,
+	UP|NORTHEAST,
+	UP|NORTHWEST,
+	UP|SOUTHEAST,
+	UP|SOUTHWEST,
 
-GLOBAL_LIST_EMPTY(generic_event_spawns)			//handles clockwork portal+eminence teleport destinations
-GLOBAL_LIST_EMPTY(jobspawn_overrides)			//These will take precedence over normal spawnpoints if created.
-GLOBAL_LIST_EMPTY(stationroom_landmarks)		//yogs - list of all spawns for stationrooms
+	DOWN,
+	DOWN|NORTH,
+	DOWN|SOUTH,
+	DOWN|EAST,
+	DOWN|WEST,
+	DOWN|NORTHEAST,
+	DOWN|NORTHWEST,
+	DOWN|SOUTHEAST,
+	DOWN|SOUTHWEST,
+))
+GLOBAL_LIST_INIT(alldirs, list(
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	NORTHEAST,
+	NORTHWEST,
+	SOUTHEAST,
+	SOUTHWEST,
+))
+
+/// list of all landmarks created
+GLOBAL_LIST_EMPTY(landmarks_list)
+/// list of all job spawn points created
+GLOBAL_LIST_EMPTY(start_landmarks_list)
+/// list of all department security spawns
+GLOBAL_LIST_EMPTY(department_security_spawns)
+/// List of generic landmarks placed around the map where there are likely to be players and are identifiable at a glance -
+/// Such as public hallways, department rooms, head of staff offices, and non-generic maintenance locations
+GLOBAL_LIST_EMPTY(generic_event_spawns)
+/// Assoc list of "job titles" to "job landmarks"
+/// These will take precedence over normal job spawnpoints if created,
+/// essentially allowing a user to override generic job spawnpoints with a specific one
+GLOBAL_LIST_EMPTY(jobspawn_overrides)
 
 GLOBAL_LIST_EMPTY(wizardstart)
 GLOBAL_LIST_EMPTY(nukeop_start)
@@ -33,17 +120,15 @@ GLOBAL_LIST_EMPTY(tdomeobserve)
 GLOBAL_LIST_EMPTY(tdomeadmin)
 GLOBAL_LIST_EMPTY(prisonwarped)	//list of players already warped
 GLOBAL_LIST_EMPTY(blobstart) //stationloving objects, blobs, santa, respawning devils
+GLOBAL_LIST_EMPTY(navigate_destinations) //list of all destinations used by the navigate verb
 GLOBAL_LIST_EMPTY(secequipment) //sec equipment lockers that scale with the number of sec players
 GLOBAL_LIST_EMPTY(deathsquadspawn)
 GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)
-GLOBAL_LIST_EMPTY(servant_spawns) //Servants of Ratvar spawn here
-GLOBAL_LIST_EMPTY(servant_spawns_scarabs) //Servants of Ratvar spawn here
-GLOBAL_LIST_EMPTY(city_of_cogs_spawns) //Anyone entering the City of Cogs spawns here
-GLOBAL_LIST_EMPTY(brazil_reception) //teleport receive spots for heretic sacrifices
 GLOBAL_LIST_EMPTY(ruin_landmarks)
 GLOBAL_LIST_EMPTY(bar_areas)
-// IF YOU ARE MAKING A NEW BAR TEMPLATE AND WANT IT ROUNDSTART ADD IT TO THIS LIST!
-GLOBAL_LIST_INIT(potential_box_bars, list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Grassy", "Bar Clock", "Bar Arcade"))
+
+/// List of all the maps that have been cached for /proc/load_map
+GLOBAL_LIST_EMPTY(cached_maps)
 
 /// Away missions
 GLOBAL_LIST_EMPTY(awaydestinations)	//a list of landmarks that the warpgate can take you to
@@ -67,3 +152,32 @@ GLOBAL_LIST_INIT(megafauna_spawn_list, list(
 	/mob/living/simple_animal/hostile/megafauna/dragon = 4,
 	/mob/living/simple_animal/hostile/megafauna/stalwart = 3,
 ))
+
+//Yog Vars
+///list of all spawns for stationrooms
+GLOBAL_LIST_EMPTY(stationroom_landmarks)
+
+///Servants of Ratvar spawn here
+GLOBAL_LIST_EMPTY(servant_spawns)
+///Servants of Ratvar spawn here
+GLOBAL_LIST_EMPTY(servant_spawns_scarabs)
+///Anyone entering the City of Cogs spawns here
+GLOBAL_LIST_EMPTY(city_of_cogs_spawns)
+///teleport receive spots for heretic sacrifices
+GLOBAL_LIST_EMPTY(brazil_reception)
+GLOBAL_LIST_EMPTY(delta_areas)
+
+GLOBAL_LIST_EMPTY(bar_landmarks)
+GLOBAL_LIST_INIT(potential_box_bars, list(
+	"Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", 
+	"Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", 
+	"Bar Grassy", "Bar Clock", "Bar Arcade"))
+
+GLOBAL_LIST_EMPTY(clerk_office_landmarks)
+// IF YOU ARE MAKING A NEW TEMPLATE AND WANT IT ROUNDSTART ADD IT TO THIS LIST!
+GLOBAL_LIST_INIT(potential_box_clerk, list(
+	"Clerk Box", "Clerk Pod", "Clerk Meta", "Clerk Gambling Hall"))
+
+GLOBAL_LIST_EMPTY(chapel_landmarks)
+GLOBAL_LIST_INIT(potential_box_chapels, list(
+	"Chapel 1", "Chapel 2"))

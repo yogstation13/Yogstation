@@ -13,13 +13,15 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	icon_state = "marker"
 	mouse_opacity = MOUSE_OPACITY_ICON
 	move_on_shuttle = 1
-	see_in_dark = 8
 	invisibility = INVISIBILITY_OBSERVER
 	layer = FLY_LAYER
 
+	// Vivid blue green, would be cool to make this change with strain
+	lighting_cutoff_red = 0
+	lighting_cutoff_green = 35
+	lighting_cutoff_blue = 20
 	pass_flags = PASSBLOB
 	faction = list(ROLE_BLOB)
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	hud_type = /datum/hud/blob_overmind
 	var/obj/structure/blob/core/blob_core = null // The blob overmind's core
 	var/blob_points = 0
@@ -44,7 +46,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/has_announced = FALSE
 	var/basemodifier = 1
 
-/mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1)
+/mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1, announcement_delay = 6000)
 	validate_location()
 	blob_points = starting_points
 	basemodifier = pointmodifier
@@ -61,7 +63,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(blob_core)
 		blob_core.update_appearance(UPDATE_ICON)
 	SSshuttle.registerHostileEnvironment(src)
-	announcement_time = world.time + 6000
+	announcement_time = world.time + announcement_delay
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

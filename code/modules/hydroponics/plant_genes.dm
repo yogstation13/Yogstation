@@ -198,7 +198,7 @@
 	..()
 	if(istype(G) && ispath(G.trash, /obj/item/grown))
 		return
-	var/obj/item/seeds/seed = G.seed
+	var/obj/item/seeds/seed = G.get_plant_seed()
 	var/stun_len = seed.potency * rate
 
 	if(!istype(G, /obj/item/grown/bananapeel) && (!G.reagents || !G.reagents.has_reagent(/datum/reagent/lube)))
@@ -221,14 +221,14 @@
 /datum/plant_gene/trait/cell_charge/on_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/C)
 	var/power = G.seed.potency*rate
 	if(prob(power))
-		C.electrocute_act(round(power), G, 1, 1)
+		C.electrocute_act(round(power), G, 1, zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)) // you stepped on it, so check protection on the legs
 
 /datum/plant_gene/trait/cell_charge/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		var/power = G.seed.potency*rate
 		if(prob(power))
-			C.electrocute_act(round(power), G, 1, 1)
+			C.electrocute_act(round(power), G, 1, zone = null)
 
 /datum/plant_gene/trait/cell_charge/on_consume(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/target)
 	if(!G.reagents.total_volume)
@@ -256,16 +256,20 @@
 	trait_id = "glow"
 	var/glow_color = "#C3E381"
 
-/datum/plant_gene/trait/glow/proc/glow_range(obj/item/seeds/S)
-	return 1.4 + S.potency*rate
+/datum/plant_gene/trait/glow/proc/glow_range(obj/item/seeds/seed)
+	return 1.4 + seed.potency * rate
 
-/datum/plant_gene/trait/glow/proc/glow_power(obj/item/seeds/S)
-	return max(S.potency*(rate + 0.01), 0.1)
+/datum/plant_gene/trait/glow/proc/glow_power(obj/item/seeds/seed)
+	return max(seed.potency * (rate + 0.01), 0.1)
 
-/datum/plant_gene/trait/glow/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
+/datum/plant_gene/trait/glow/on_new(obj/item/our_plant, newloc)
 	. = ..()
-	G.light_system = MOVABLE_LIGHT
-	G.AddComponent(/datum/component/overlay_lighting, glow_range(G.seed), glow_power(G.seed), glow_color)
+	if(!.)
+		return
+
+	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
+	our_plant.light_system = MOVABLE_LIGHT
+	our_plant.AddComponent(/datum/component/overlay_lighting, glow_range(our_seed), glow_power(our_seed), glow_color)
 
 /datum/plant_gene/trait/glow/shadow
 	//makes plant emit slightly purple shadows

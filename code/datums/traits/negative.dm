@@ -53,10 +53,11 @@
 	gain_text = span_danger("You can't see anything.")
 	lose_text = span_notice("You miraculously gain back your vision.")
 	medical_record_text = "Patient has permanent blindness."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/blindness/add()
 	quirk_holder.become_blind(ROUNDSTART_TRAIT)
-//	quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
+	quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -100,6 +101,7 @@
 	gain_text = span_danger("You can't hear anything.")
 	lose_text = span_notice("You're able to hear again!")
 	medical_record_text = "Patient's cochlear nerve is incurably damaged."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/depression
 	name = "Depression"
@@ -157,11 +159,11 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
+	var/disallowed_trait = (NOMOUTH in species.species_traits) || !(species.inherent_biotypes & MOB_ORGANIC)// Cant drink or process alcohol
 	qdel(species)
 
 	if(disallowed_trait)
-		return "You don't have the ability to drink!"
+		return "You don't have the ability to consume alcohol!"
 	return FALSE
 
 /datum/quirk/nearsighted //t. errorage
@@ -215,6 +217,7 @@
 	gain_text = span_danger("You feel repulsed by the thought of violence!")
 	lose_text = span_notice("You think you can defend yourself again.")
 	medical_record_text = "Patient is unusually pacifistic and cannot bring themselves to cause physical harm."
+	job_blacklist = list("Head of Security", "Security Officer", "Warden")
 
 
 /datum/quirk/paraplegic
@@ -226,6 +229,7 @@
 	gain_text = null // Handled by trauma.
 	lose_text = null
 	medical_record_text = "Patient has an untreatable impairment in motor function in the lower extremities."
+	job_blacklist = list("Head of Security", "Security Officer")
 
 /datum/quirk/paraplegic/add()
 	var/datum/brain_trauma/severe/paralysis/paraplegic/T = new()
@@ -303,17 +307,13 @@
 			slot_string = "right arm"
 		if(BODY_ZONE_L_LEG)
 			var/obj/item/bodypart/l_leg/L = H.get_bodypart(BODY_ZONE_L_LEG)
-			if(L.use_digitigrade)
-				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus/digitigrade(quirk_holder)
-			else
-				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
+			prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
+			prosthetic.set_digitigrade(L.use_digitigrade)
 			slot_string = "left leg"
 		if(BODY_ZONE_R_LEG)
 			var/obj/item/bodypart/r_leg/R = H.get_bodypart(BODY_ZONE_R_LEG)
-			if(R.use_digitigrade)
-				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus/digitigrade(quirk_holder)
-			else
-				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
+			prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
+			prosthetic.set_digitigrade(R.use_digitigrade)
 			slot_string = "right leg"
 	prosthetic.replace_limb(H)
 	qdel(old_part)
@@ -384,6 +384,7 @@
 	gain_text = span_danger("You start worrying about what you're saying.")
 	lose_text = span_notice("You feel easier about talking again.") //if only it were that easy!
 	medical_record_text = "Patient is usually anxious in social encounters and prefers to avoid them."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 	var/dumb_thing = TRUE
 	mob_trait = TRAIT_ANXIOUS
 
@@ -452,7 +453,7 @@
 	if(prob(85) || (istype(mind_check) && mind_check.mind))
 		return
 
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
 
 /datum/quirk/social_anxiety/proc/eye_contact(datum/source, mob/living/other_mob, triggering_examiner)
 	var/mob/living/carbon/human/quirker = quirk_holder
@@ -476,7 +477,7 @@
 			msg += "causing you to freeze up!"
 
 	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "anxiety_eyecontact", /datum/mood_event/anxiety_eyecontact)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/mood_event/anxiety_eyecontact
@@ -504,6 +505,7 @@
 	var/obj/item/accessory_type //If this is null, it won't be spawned.
 	var/obj/item/accessory_instance
 	var/tick_counter = 0
+	var/junkie_warning = null
 
 /datum/quirk/junkie/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -513,6 +515,8 @@
 		reagent_type = prot_holder.type
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
+	if (!junkie_warning)
+		junkie_warning = ("You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again...")
 	var/current_turf = get_turf(quirk_holder)
 	if (!drug_container_type)
 		drug_container_type = /obj/item/storage/pill_bottle
@@ -555,7 +559,7 @@
 		if(!in_list)
 			H.reagents.addiction_list += reagent_instance
 			reagent_instance.addiction_stage = 0
-			to_chat(quirk_holder, span_danger("You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again..."))
+			to_chat(quirk_holder, span_danger("[junkie_warning]"))
 		tick_counter = 0
 	else
 		++tick_counter
@@ -573,7 +577,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = !(species.process_flags & ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
 	qdel(species)
 
 	if(disallowed_trait)
@@ -618,6 +622,37 @@
 			return
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "wrong_cigs", /datum/mood_event/wrong_brand)
 
+
+/datum/quirk/junkie/drunkard
+	name = "Drunkard"
+	desc = "In space there's no such thing as day drinking."
+	icon = "beer" 
+	value = -2
+	mood_quirk = TRUE
+	gain_text = span_danger("You could really go for a stiff drink right about now.")
+	lose_text = span_notice("You no longer feel dependent on alcohol to function.")
+	medical_record_text = "Patient is known to be dependent on alcohol."
+	reagent_type = /datum/reagent/consumable/ethanol
+	junkie_warning = "You suddenly feel like you need another drink..."
+	
+/datum/quirk/junkie/drunkard/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.reagents.add_reagent(/datum/reagent/consumable/ethanol, 20)
+	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
+	. = ..()
+
+	
+/datum/quirk/junkie/drunkard/check_quirk(datum/preferences/prefs)
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC)
+	qdel(species)
+
+	if(disallowed_trait)
+		return "You don't process normal chemicals!"
+	return FALSE
+
 /datum/quirk/unstable
 	name = "Unstable"
 	desc = "Due to past troubles, you are unable to recover your sanity if you lose it. Be very careful managing your mood!"
@@ -628,28 +663,6 @@
 	gain_text = span_danger("There's a lot on your mind right now.")
 	lose_text = span_notice("Your mind finally feels calm.")
 	medical_record_text = "Patient's mind is in a vulnerable state, and cannot recover from traumatic events."
-
-/datum/quirk/sheltered
-	name = "Sheltered"
-	desc = "You never learned to speak galactic common."
-	icon = "comment-dots"
-	value = -2
-	mob_trait = TRAIT_SHELTERED
-	gain_text = span_danger("You do not speak galactic common.")
-	lose_text = span_notice("You start to put together how to speak galactic common.")
-	medical_record_text = "Patient looks perplexed when questioned in galactic common."
-
-/datum/quirk/sheltered/on_clone(data)
-	var/mob/living/carbon/human/H = quirk_holder
-	H.remove_language(/datum/language/common, FALSE, TRUE)
-	if(!H.get_selected_language())
-		H.grant_language(/datum/language/japanese)
-
-/datum/quirk/sheltered/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.remove_language(/datum/language/common, FALSE, TRUE)
-	if(!H.get_selected_language())
-		H.grant_language(/datum/language/japanese)
 
 /datum/quirk/allergic
 	name = "Allergic Reaction"
@@ -704,7 +717,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = !(species.process_flags & ORGANIC) // why would robots be allergic to things
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC) // why would robots be allergic to things
 	qdel(species)
 
 	if(disallowed_trait)
@@ -744,6 +757,7 @@
 	gain_text = "You feel your vocabulary slipping away."
 	lose_text = "You regrasp the full extent of your linguistic prowess."
 	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/ineloquent/add()
 	var/datum/brain_trauma/mild/expressive_aphasia/T = new()
@@ -779,6 +793,7 @@
 	gain_text = span_danger("Your head hurts.")
 	lose_text = span_notice("Your head feels good again.")
 	medical_record_text = "Patient appears to have brain damage."
+	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/brain_damage/add()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -793,7 +808,8 @@
 	name = "Monochromacy"
 	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
 	icon = "palette"
-	value = -2
+	value = -4
+	mob_trait = TRAIT_COLORBLIND
 	medical_record_text = "Patient is afflicted with almost complete color blindness."
 
 /datum/quirk/monochromatic/add()

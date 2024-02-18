@@ -9,7 +9,6 @@
 	turns_per_move = 5
 	maxHealth = 70
 	health = 70
-	see_in_dark = 15
 	obj_damage = 10
 	butcher_results = list(/obj/item/clothing/head/crown = 1,)
 	response_help = "glares at"
@@ -24,7 +23,11 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	unique_name = TRUE
 	faction = list("rat")
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Slightly brown red, for the eyes
+	// Might be a bit too dim
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 8
+	lighting_cutoff_blue = 5
 	var/datum/action/cooldown/riot
 	var/datum/action/cooldown/domain
 	var/opening_airlock = FALSE
@@ -72,9 +75,9 @@
 
 /mob/living/simple_animal/hostile/regalrat/handle_environment(datum/gas_mixture/environment)
 	. = ..()
-	if(stat == DEAD || !environment || !environment.get_moles(/datum/gas/miasma))
+	if(stat == DEAD || !environment || !environment.get_moles(GAS_MIASMA))
 		return
-	var/miasma_percentage = environment.get_moles(/datum/gas/miasma)/environment.total_moles()
+	var/miasma_percentage = environment.get_moles(GAS_MIASMA)/environment.total_moles()
 	if(miasma_percentage>=0.25)
 		heal_bodypart_damage(1)
 
@@ -185,7 +188,7 @@
 
 	if (target.reagents && target.is_injectable(src, allowmobs = TRUE) && !istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		src.visible_message(span_warning("[src] starts licking [target] passionately!"), span_notice("You start licking [target]..."))
-		if(do_mob(src, target, 2 SECONDS))
+		if(do_after(src, 2 SECONDS, target))
 			target.reagents.add_reagent(/datum/reagent/rat_spit, rand(1,3), no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
 	else if(istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))

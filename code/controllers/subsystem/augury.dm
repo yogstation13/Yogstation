@@ -12,13 +12,18 @@ SUBSYSTEM_DEF(augury)
 	msg = "W:[watchers.len]|D:[length(doombringers)]"
 	return ..()
 
+/datum/controller/subsystem/augury/get_metrics()
+	. = ..()
+	.["watchers"] = watchers.len
+	.["doombringers"] = length(doombringers)
+
 /datum/controller/subsystem/augury/proc/register_doom(atom/A, severity)
 	doombringers[A] = severity
-	RegisterSignal(A, COMSIG_PARENT_QDELETING, PROC_REF(unregister_doom))
+	RegisterSignal(A, COMSIG_QDELETING, PROC_REF(unregister_doom))
 
 /datum/controller/subsystem/augury/proc/unregister_doom(atom/A)
 	SIGNAL_HANDLER
-	UnregisterSignal(A, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(A, COMSIG_QDELETING)
 	doombringers -= A
 
 /datum/controller/subsystem/augury/fire()

@@ -3,7 +3,12 @@
 								/obj/item/stock_parts/cell/computer/micro,
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot)
+								/obj/item/computer_hardware/card_slot,
+								/obj/item/computer_hardware/printer/mini
+								)
+
+	starting_files = list(	new /datum/computer_file/program/budgetorders,
+							new /datum/computer_file/program/bounty_board)
 
 // This is literally the worst possible cheap tablet
 /obj/item/modular_computer/tablet/pda/preset/basic
@@ -43,6 +48,7 @@
 	starting_files |= list(
 		new /datum/computer_file/program/alarm_monitor,
 		new /datum/computer_file/program/supermatter_monitor,
+		new /datum/computer_file/program/nuclear_monitor,
 		new /datum/computer_file/program/power_monitor
 	)	
 	. = ..()
@@ -82,7 +88,8 @@
 	starting_files |= list(
 		new /datum/computer_file/program/atmosscan,
 		new /datum/computer_file/program/alarm_monitor,
-		new /datum/computer_file/program/supermatter_monitor
+		new /datum/computer_file/program/supermatter_monitor,
+		new /datum/computer_file/program/nuclear_monitor
 	)	
 	. = ..()
 

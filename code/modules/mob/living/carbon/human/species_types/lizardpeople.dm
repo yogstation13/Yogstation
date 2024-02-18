@@ -15,9 +15,7 @@
 	mutanttail = /obj/item/organ/tail/lizard
 	coldmod = 0.67 //used to being cold, just doesn't like it much
 	heatmod = 0.67 //greatly appreciate heat, just not too much
-	action_speed_coefficient = 1.05 //claws aren't as dextrous as hands
-	payday_modifier = 0.85 //Full SIC citizens, but not quite given all the same rights- it's been an ongoing process for about half a decade
-	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
+	default_features = list("mcolor" = "#00FF00", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
@@ -113,7 +111,11 @@
 
 /datum/species/lizard/proc/regrow_tail(mob/living/carbon/human/H)
 	if(!H.getorganslot(ORGAN_SLOT_TAIL) && H.stat != DEAD)
-		mutant_bodyparts |= "tail_lizard"
+		var/obj/item/organ/tail/lizard/tail = new mutanttail()
+		tail.color = H.dna.features["mcolor"]
+		tail.tail_type = H.dna.features["tail_lizard"]
+		tail.spines = H.dna.features["spines"]
+		tail.Insert(H, TRUE)
 		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
 	
 /datum/species/lizard/get_species_description()
@@ -262,7 +264,7 @@
 	name = "Draconid"
 	id = "draconid"
 	limbs_id = "lizard"
-	fixed_mut_color = "A02720" 	//Deep red
+	fixed_mut_color = "#A02720" 	//Deep red
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_RESISTHEAT)	//Dragons like fire, not cold blooded because they generate fire inside themselves or something
 	burnmod = 0.8

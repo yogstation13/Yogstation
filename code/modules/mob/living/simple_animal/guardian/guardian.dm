@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	speak_emote = list("hisses")
 	gender = NEUTER
 	mob_biotypes = MOB_INORGANIC|MOB_SPIRIT
-	bubble_icon = "guardian"
+	bubble_icon = BUBBLE_GUARDIAN
 	response_help  = "passes through"
 	response_disarm = "flails at"
 	response_harm   = "punches"
@@ -130,29 +130,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself."))
 	to_chat(src, playstyle_string)
 
-/mob/living/simple_animal/hostile/guardian/Life(seconds_per_tick = SSMOBS_DT, times_fired) //Dies if the summoner dies
-	. = ..()
-	update_health_hud() //we need to update all of our health displays to match our summoner and we can't practically give the summoner a hook to do it
-	med_hud_set_health()
-	med_hud_set_status()
-	if(!QDELETED(summoner))
-		if(summoner.stat == DEAD)
-			forceMove(summoner.loc)
-			to_chat(src, span_danger("Your summoner has died!"))
-			visible_message(span_danger("<B>\The [src] dies along with its user!</B>"))
-			summoner.visible_message(span_danger("<B>[summoner]'s body is completely consumed by the strain of sustaining [src]!</B>"))
-			for(var/obj/item/W in summoner)
-				if(!summoner.dropItemToGround(W))
-					qdel(W)
-			summoner.dust()
-			death(TRUE)
-			qdel(src)
-	else
-		to_chat(src, span_danger("Your summoner has died!"))
-		visible_message(span_danger("<B>[src] dies along with its user!</B>"))
-		death(TRUE)
-		qdel(src)
-	snapback()
+//mob/living/simple_animal/hostile/guardian/Life is in the yogstation folder
 
 /mob/living/simple_animal/hostile/guardian/get_status_tab_items()
 	. += ..()
@@ -291,8 +269,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		hands_overlays += r_hand.build_worn_icon(state = r_state, default_layer = GUARDIAN_HANDS_LAYER, default_icon_file = r_hand.righthand_file, isinhands = TRUE)
 
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
-			r_hand.layer = ABOVE_HUD_LAYER
-			r_hand.plane = ABOVE_HUD_PLANE
+			SET_PLANE_EXPLICIT(r_hand, ABOVE_HUD_PLANE, src)
 			r_hand.screen_loc = ui_hand_position(get_held_index_of_item(r_hand))
 			client.screen |= r_hand
 
@@ -304,8 +281,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		hands_overlays +=  l_hand.build_worn_icon(state = l_state, default_layer = GUARDIAN_HANDS_LAYER, default_icon_file = l_hand.lefthand_file, isinhands = TRUE)
 
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
-			l_hand.layer = ABOVE_HUD_LAYER
-			l_hand.plane = ABOVE_HUD_PLANE
+			SET_PLANE_EXPLICIT(l_hand, ABOVE_HUD_PLANE, src)
 			l_hand.screen_loc = ui_hand_position(get_held_index_of_item(l_hand))
 			client.screen |= l_hand
 

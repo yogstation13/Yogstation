@@ -27,10 +27,12 @@
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/baguette = 15,
-		/obj/item/reagent_containers/food/snacks/store/cheesewheel = 10,
+		/obj/item/reagent_containers/food/snacks/store/cheesewheel/brie = 10,
 		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 10,
 		/obj/item/book/mimery = 1,
 	)
+
+	minimal_lightup_areas = list(/area/crew_quarters/theatre)
 
 	smells_like = "complete nothingness"
 
@@ -87,7 +89,8 @@
 	var/list/spell_icons = list(
 		"Invisible Wall" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_wall"),
 		"Invisible Chair" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_chair"),
-		"Invisible Box" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_box")
+		"Invisible Box" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_box"),
+		"Invisible Touch" = image(icon = 'icons/mob/actions/actions_mime.dmi', icon_state = "invisible_touch")
 		)
 	var/picked_spell = show_radial_menu(user, src, spell_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	var/datum/action/cooldown/spell/picked_spell_type
@@ -100,6 +103,9 @@
 
 		if("Invisible Box")
 			picked_spell_type = /datum/action/cooldown/spell/conjure_item/invisible_box
+
+		if("Invisible Touch")
+			picked_spell_type = /datum/action/cooldown/spell/touch/invisible_touch
 
 	if(ispath(picked_spell_type))
 		// Gives the user a vow ability too, if they don't already have one

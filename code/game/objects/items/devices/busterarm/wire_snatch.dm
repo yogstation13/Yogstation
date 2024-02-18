@@ -94,12 +94,12 @@
 /obj/item/ammo_casing/magic/wire
 	name = "hook"
 	desc = "A hook."
-	projectile_type = /obj/item/projectile/wire
-	caliber = "hook"
+	projectile_type = /obj/projectile/wire
+	caliber = CALIBER_HOOK
 	icon_state = "hook"
 
 /// Projectile
-/obj/item/projectile/wire
+/obj/projectile/wire
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -113,23 +113,23 @@
 	knockdown = 0
 	var/wire
 
-/obj/item/projectile/wire/fire(setAngle)
+/obj/projectile/wire/fire(setAngle)
 	if(firer)
 		wire = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
 	..()
 
 /// Helper proc exclusively used for pulling the buster arm USER towards something anchored
-/obj/item/projectile/wire/proc/zip(mob/living/user, turf/open/target)
+/obj/projectile/wire/proc/zip(mob/living/user, turf/open/target)
 	to_chat(user, span_warning("You pull yourself towards [target]."))
 	playsound(user, 'sound/magic/tail_swing.ogg', 10, TRUE)
 	user.Immobilize(0.2 SECONDS)//so it's not cut short by walking
 	user.forceMove(get_step_towards(target, user))
 
-/obj/item/projectile/wire/on_hit(atom/target)
+/obj/projectile/wire/on_hit(atom/target)
 	var/mob/living/carbon/human/H = firer
 	if(!H)
 		return
-	H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
+	H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
 	if(isobj(target)) // If it's an object
 		var/obj/item/I = target
 		if(!I?.anchored) // Give it to us if it's not anchored
@@ -152,7 +152,7 @@
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 		if(!L.anchored) // Only pull them if they're unanchored
 			if(istype(H))
-				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))				
+				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))
 				L.Immobilize(1.0 SECONDS)
 				if(prob(5))
 					firer.say("GET OVER HERE!!")//slicer's request
@@ -166,7 +166,7 @@
 				// If we happen to be facing a dense object after the wire snatches them, like a table or window
 				for(var/obj/D in T.contents)
 					if(D.density == TRUE)
-						D.take_damage(50)	
+						D.take_damage(50)
 						L.apply_damage(15, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 						L.forceMove(Q)
 						to_chat(H, span_warning("[H] catches [L] throws [L.p_them()] against [D]!"))
@@ -177,6 +177,6 @@
 		var/turf/W = target
 		zip(H, W)
 
-/obj/item/projectile/wire/Destroy()
+/obj/projectile/wire/Destroy()
 	qdel(wire) // Cleans up the beam that we generate once we hit something
 	return ..()

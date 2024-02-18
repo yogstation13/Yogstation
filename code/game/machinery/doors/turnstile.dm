@@ -14,7 +14,6 @@
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
-	climbable = FALSE
 
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
@@ -27,7 +26,7 @@
 	. = ..()
 	icon_state = "turnstile"
 
-/obj/machinery/turnstile/CanAtmosPass(turf/T)
+/obj/machinery/turnstile/can_atmos_pass(turf/target_turf, vertical = FALSE)
 	return TRUE
 
 /obj/machinery/turnstile/Cross(atom/movable/mover)

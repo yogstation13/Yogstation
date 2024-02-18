@@ -1,5 +1,5 @@
 /datum/weather/royale
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from the edge!</i>")
+	telegraph_message = null //don't clutter chat at the start
 	weather_message = null
 	protected_areas = list(/area/shuttle/arrival)
 	area_type = /area
@@ -48,32 +48,32 @@
 
 /datum/weather/royale/maint
 	name = "royale maint" //First wave, hits maintenance
-	telegraph_message = span_userdanger("<i>The storm is closing, get away from maintenance!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing, get away from maintenance!</i>")
 	area_type = /area/maintenance
 
 /datum/weather/royale/security
 	name = "royale security" //North wave, takes out security, EVA, dorms and associated areas.
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from security and controlled areas!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from security!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/hos)
-	areaTypesToWeather = list(/area/security, /area/ai_monitored, /area/lawoffice)
+	areaTypesToWeather = list(/area/security, /area/lawoffice)
 	areaIgnore = list(/area/security/checkpoint/science, /area/security/checkpoint/engineering, //ignore all department security offices
-	/area/security/checkpoint/medical, /area/security/checkpoint/supply)
+	/area/security/checkpoint/medical, /area/security/checkpoint/supply, /area/ai_monitored/security/armory)
 
 /datum/weather/royale/science
 	name = "royale science" //takes out science
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from science!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from science!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/hor, /area/security/checkpoint/science)
-	areaTypesToWeather = list(/area/science)
+	areaTypesToWeather = list(/area/science, /area/ai_monitored)
 
 /datum/weather/royale/engineering
 	name = "royale engineering" //takes out engineering and atmos
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from engineering and storage!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from engineering and storage!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/chief, /area/security/checkpoint/engineering)
 	areaTypesToWeather = list(/area/engine, /area/tcommsat, /area/construction, /area/storage)
 
 /datum/weather/royale/service //this one is more annoying because head offices are considered a type of crew_quarters
 	name = "royale service" //takes out service
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from service!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from service!</i>")
 	areasToWeather = list(/area/security/checkpoint/service)
 	areaTypesToWeather = list(/area/chapel, /area/library, /area/hydroponics, /area/holodeck, /area/janitor, /area/crew_quarters, /area/clerk)
 	areaIgnore = list(/area/crew_quarters/heads/hos, /area/crew_quarters/heads/hor, /area/crew_quarters/heads/cmo, //ignore all the head offices
@@ -81,21 +81,34 @@
 
 /datum/weather/royale/medbay
 	name = "royale medbay" //takes out medbay
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from medbay!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from medbay!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/cmo, /area/security/checkpoint/medical)
 	areaTypesToWeather = list(/area/medical)
 
 /datum/weather/royale/cargo
 	name = "royale cargo" //takes out arrivals and cargo (shuttle included)
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from cargo and any vacant rooms!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from cargo and any vacant rooms!</i>")
 	areasToWeather = list(/area/security/checkpoint/supply)
 	areaTypesToWeather = list(/area/quartermaster, /area/vacant_room, /area/shuttle)
 
-/datum/weather/royale/hallway//
+/datum/weather/royale/bridge
+	name = "royale the bridge"
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from the bridge!</i>")
+	areasToWeather = list(/area/teleporter, /area/crew_quarters/heads/captain, /area/crew_quarters/heads/hop)
+	areaTypesToWeather = list(/area/bridge)
+
+/datum/weather/royale/hallway
 	name = "royale hallway"
-	telegraph_message = span_userdanger("<i>The storm is closing in, get out of the hallways!</i>")
+	telegraph_duration = 30 SECONDS //hallway's a bit bigger
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get out of the hallways!</i>")
 	areaTypesToWeather = list(/area/hallway)
 
-/datum/weather/royale/six
+/datum/weather/royale/hallway/telegraph() //message changes depending on which one is left
+	if(GLOB.final_zone) 
+		telegraph_message = span_narsiesmall("<i>The storm is closing in, it all ends in [GLOB.final_zone]!</i>")
+	. = ..()
+
+/datum/weather/royale/final
 	name = "royale centre" //final wave, takes out the centre ring.
-	telegraph_message = span_userdanger("<i>The eye of the storm is closing, make your final stand!</i>")
+	telegraph_duration = 30 SECONDS //the zone annihilates people, give some time for them to "make their final stand"
+	telegraph_message = span_narsiesmall("<i>The eye of the storm is closing, make your final stand!</i>")

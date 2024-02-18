@@ -114,7 +114,7 @@
 	if(!ishuman(loc))
 		return
 	var/mob/living/carbon/human/loc_human = loc
-	add_atom_colour("#[loc_human.hair_color]", FIXED_COLOUR_PRIORITY)
+	add_atom_colour(loc_human.hair_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/clothing/head/collectable/rabbitears
 	name = "collectable rabbit ears"

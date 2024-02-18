@@ -2,8 +2,9 @@ SUBSYSTEM_DEF(demo)
 	name = "Demo"
 	wait = 1
 	flags = SS_TICKER | SS_BACKGROUND
-	init_order = INIT_ORDER_DEMO
+	///Adding Lobby to the runlevel because we want it to start writing before the game starts since there's a of atoms queued to be written during init
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
+	init_order = INIT_ORDER_DEMO
 
 	loading_points = 12.6 SECONDS // Yogs -- loading times
 
@@ -200,8 +201,11 @@ SUBSYSTEM_DEF(demo)
 				loc_string = "\ref[M.loc]"
 			M.demo_last_loc = M.loc
 		var/appearance_string = "="
-		if(M.appearance != M.demo_last_appearance)
-			appearance_string = encode_appearance(M.appearance, M.demo_last_appearance)
+		if(ismob(M))
+			appearance_string = encode_appearance(M.appearance, target = M)
+			M.demo_last_appearance = M.appearance
+		else if(M.appearance != M.demo_last_appearance)
+			appearance_string = encode_appearance(M.appearance, M.demo_last_appearance, TRUE, M)
 			M.demo_last_appearance = M.appearance
 		dirty_updates += "\ref[M] [loc_string] [appearance_string]"
 		if(MC_TICK_CHECK)
@@ -228,7 +232,7 @@ SUBSYSTEM_DEF(demo)
 		else if(ismovable(M.loc))
 			loc_string = "\ref[M.loc]"
 		M.demo_last_appearance = M.appearance
-		new_updates += "\ref[M] [loc_string] [encode_appearance(M.appearance)]"
+		new_updates += "\ref[M] [loc_string] [encode_appearance(M.appearance, target = M)]"
 		if(MC_TICK_CHECK)
 			canceled = TRUE
 			break
@@ -260,7 +264,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/encode_init_obj(atom/movable/M)
 	M.demo_last_loc = M.loc
 	M.demo_last_appearance = M.appearance
-	var/encoded_appearance = encode_appearance(M.appearance)
+	var/encoded_appearance = encode_appearance(M.appearance, target = M)
 	var/list/encoded_contents = list()
 	for(var/C in M.contents)
 		if(isobj(C) || ismob(C))
@@ -268,7 +272,7 @@ SUBSYSTEM_DEF(demo)
 	return "\ref[M]=[encoded_appearance][(encoded_contents.len ? "([jointext(encoded_contents, ",")])" : "")]"
 
 // please make sure the order you call this function in is the same as the order you write
-/datum/controller/subsystem/demo/proc/encode_appearance(image/appearance, image/diff_appearance, diff_remove_overlays = FALSE)
+/datum/controller/subsystem/demo/proc/encode_appearance(image/appearance, image/diff_appearance, diff_remove_overlays = FALSE, atom/movable/target)
 	if(appearance == null)
 		return "n"
 	if(appearance == diff_appearance)
@@ -300,19 +304,21 @@ SUBSYSTEM_DEF(demo)
 			inted[i] += round(old_list[i] * 255)
 		color_string = jointext(inted, ",")
 	var/overlays_string = "\[]"
-	if(appearance.overlays.len)
+	var/list/appearance_overlays = appearance.overlays
+	if(appearance_overlays.len)
 		var/list/overlays_list = list()
-		for(var/i in 1 to appearance.overlays.len)
-			var/image/overlay = appearance.overlays[i]
-			overlays_list += encode_appearance(overlay, appearance, TRUE)
+		for(var/i in 1 to appearance_overlays.len)
+			var/image/overlay = appearance_overlays[i]
+			overlays_list += encode_appearance(overlay, appearance, TRUE, target = target)
 		overlays_string = "\[[jointext(overlays_list, ",")]]"
 
 	var/underlays_string = "\[]"
-	if(appearance.underlays.len)
+	var/list/appearance_underlays = appearance.underlays
+	if(appearance_underlays.len)
 		var/list/underlays_list = list()
-		for(var/i in 1 to appearance.underlays.len)
-			var/image/underlay = appearance.underlays[i]
-			underlays_list += encode_appearance(underlay, appearance, TRUE)
+		for(var/i in 1 to appearance_underlays.len)
+			var/image/underlay = appearance_underlays[i]
+			underlays_list += encode_appearance(underlay, appearance, TRUE, target = target)
 		underlays_string = "\[[jointext(underlays_list, ",")]]"
 
 	var/appearance_transform_string = "i"
@@ -321,14 +327,20 @@ SUBSYSTEM_DEF(demo)
 		appearance_transform_string = "[M.a],[M.b],[M.c],[M.d],[M.e],[M.f]"
 		if(appearance_transform_string == "1,0,0,0,1,0")
 			appearance_transform_string = "i"
+	
+	var/tmp_dir = appearance.dir
+	
+	if(target)
+		tmp_dir = target.dir
+	
 	var/list/appearance_list = list(
 		json_encode(cached_icon),
 		json_encode(cached_icon_state),
 		json_encode(cached_name),
 		appearance.appearance_flags,
 		appearance.layer,
-		appearance.plane == -32767 ? "" : appearance.plane,
-		appearance.dir == 2 ? "" : appearance.dir,
+		appearance.plane == -32767 ? "" : PLANE_TO_TRUE(appearance.plane),
+		tmp_dir == 2 ? "" : tmp_dir,
 		appearance.color ? color_string : "",
 		appearance.alpha == 255 ? "" : appearance.alpha,
 		appearance.pixel_x == 0 ? "" : appearance.pixel_x,
@@ -382,7 +394,7 @@ SUBSYSTEM_DEF(demo)
 			json_encode(cached_name),
 			appearance.appearance_flags == diff_appearance.appearance_flags ? "" : appearance.appearance_flags,
 			appearance.layer == diff_appearance.layer ? "" : appearance.layer,
-			appearance.plane == diff_appearance.plane ? "" : appearance.plane,
+			PLANE_TO_TRUE(appearance.plane) == PLANE_TO_TRUE(diff_appearance.plane) ? "" : PLANE_TO_TRUE(appearance.plane),
 			appearance.dir == diff_appearance.dir ? "" : appearance.dir,
 			appearance.color == diff_appearance.color ? "" : color_string,
 			appearance.alpha == diff_appearance.alpha ? "" : appearance.alpha,
@@ -413,6 +425,13 @@ SUBSYSTEM_DEF(demo)
 	msg += "}"
 	return ..(msg)
 
+/datum/controller/subsystem/demo/get_metrics()
+	. = ..()
+	.["remaining_turfs"] = marked_turfs.len
+	.["remaining_new"] = marked_new.len
+	.["remaining_updated"] = marked_dirty.len
+	.["remaining_deleted"] = del_list.len
+
 /datum/controller/subsystem/demo/proc/mark_turf(turf/T)
 	if(!can_fire)
 		return
@@ -423,9 +442,9 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_new(atom/movable/M)
 	if(!can_fire)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!ismovable(M))
 		return
-	if(M.gc_destroyed)
+	if(M.gc_destroyed || QDELETED(M))
 		return
 	marked_new[M] = TRUE
 	if(marked_dirty[M])
@@ -435,17 +454,21 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_dirty(atom/movable/M)
 	if(!can_fire)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!ismovable(M))
 		return
-	if(M.gc_destroyed)
+	if(M.gc_destroyed || QDELETED(M))
 		return
-	if(!marked_new[M])
-		marked_dirty[M] = TRUE
+	if(isturf(M))
+		mark_turf(M)
+		return
+	if(marked_new[M])
+		return
+	marked_dirty[M] = TRUE
 
 /datum/controller/subsystem/demo/proc/mark_destroyed(atom/movable/M)
 	if(!can_fire)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!ismovable(M))
 		return
 	if(marked_new[M])
 		marked_new -= M

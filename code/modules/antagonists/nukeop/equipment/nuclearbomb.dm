@@ -1,8 +1,9 @@
 /obj/machinery/nuclearbomb
 	name = "nuclear fission explosive"
-	desc = "A stolen NanoTrasen branded nuclear bomb. You probably shouldn't stick around to see if this is armed."
+	desc = "A stolen Nanotrasen branded nuclear bomb. You probably shouldn't stick around to see if this is armed."
 	icon = 'icons/obj/machines/nuke.dmi'
 	icon_state = "nuclearbomb_base"
+	base_icon_state = "nuclearbomb"
 	anchored = FALSE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -27,8 +28,6 @@
 	var/previous_level = ""
 	var/obj/item/nuke_core/core = null
 	var/deconstruction_state = NUKESTATE_INTACT
-	var/lights = ""
-	var/interior = ""
 	var/proper_bomb = TRUE //Please
 	var/obj/effect/countdown/nuclearbomb/countdown
 
@@ -65,7 +64,6 @@
 	name = "station self-destruct terminal"
 	desc = "For when it all gets too much to bear. Do not taunt."
 	icon = 'icons/obj/machines/nuke_terminal.dmi'
-	icon_state = "nuclearbomb_base"
 	anchored = TRUE //stops it being moved
 
 /obj/machinery/nuclearbomb/syndicate
@@ -181,53 +179,41 @@
 
 /obj/machinery/nuclearbomb/update_icon_state()
 	if(deconstruction_state != NUKESTATE_INTACT)
-		icon_state = "nuclearbomb_base"
+		icon_state = "[base_icon_state]_base"
 		return ..()
 
 	switch(get_nuke_state())
 		if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)
-			icon_state = "nuclearbomb_base"
+			icon_state = "[base_icon_state]_base"
 		if(NUKE_ON_TIMING)
-			icon_state = "nuclearbomb_timing"
+			icon_state = "[base_icon_state]_timing"
 		if(NUKE_ON_EXPLODING)
-			icon_state = "nuclearbomb_exploding"
+			icon_state = "[base_icon_state]_exploding"
 
 	return ..()
 
 /obj/machinery/nuclearbomb/update_overlays()
 	. = ..()
 
-	if(lights)
-		cut_overlay(lights)
-	cut_overlay(interior)
-
 	switch(deconstruction_state)
 		if(NUKESTATE_UNSCREWED)
-			interior = "panel-unscrewed"
+			. += "panel-unscrewed"
 		if(NUKESTATE_PANEL_REMOVED)
-			interior = "panel-removed"
+			. += "panel-removed"
 		if(NUKESTATE_WELDED)
-			interior = "plate-welded"
+			. += "plate-welded"
 		if(NUKESTATE_CORE_EXPOSED)
-			interior = "plate-removed"
+			. += "plate-removed"
 		if(NUKESTATE_CORE_REMOVED)
-			interior = "core-removed"
-		if(NUKESTATE_INTACT)
-			return
+			. += "core-removed"
 
 	switch(get_nuke_state())
-		if(NUKE_OFF_LOCKED)
-			lights = ""
-			return
 		if(NUKE_OFF_UNLOCKED)
-			lights = "lights-safety"
+			. += "lights-safety"
 		if(NUKE_ON_TIMING)
-			lights = "lights-timing"
+			. += "lights-timing"
 		if(NUKE_ON_EXPLODING)
-			lights = "lights-exploding"
-
-	add_overlay(lights)
-	add_overlay(interior)
+			. += "lights-exploding"
 
 /obj/machinery/nuclearbomb/process()
 	if(timing && !exploding)
@@ -442,7 +428,7 @@
 		return
 	qdel(src)
 
-/obj/machinery/nuclearbomb/tesla_act(power, tesla_flags)
+/obj/machinery/nuclearbomb/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	..()
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over
@@ -473,8 +459,8 @@
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)
 	var/area/A = get_area(bomb_location)
-	if(istype(A, /area/fabric_of_reality))
-		var/area/fabric_of_reality/fabric = A
+	if(istype(A, /area/centcom/fabric_of_reality))
+		var/area/centcom/fabric_of_reality/fabric = A
 		new /obj/singularity(fabric.origin, 2000) // Stage five singulo back on the station, as a gift
 	else if(bomb_location && is_station_level(bomb_location.z))
 		if(istype(A, /area/space) || istype(A, /area/shuttle/syndicate))
@@ -498,8 +484,8 @@
 /obj/machinery/nuclearbomb/proc/really_actually_explode(off_station)
 	Cinematic(get_cinematic_type(off_station),world,CALLBACK(SSticker,/datum/controller/subsystem/ticker/proc/station_explosion_detonation,src))
 	var/area/A = get_area(src)
-	if(istype(A, /area/fabric_of_reality))
-		var/area/fabric_of_reality/fabric = A
+	if(istype(A, /area/centcom/fabric_of_reality))
+		var/area/centcom/fabric_of_reality/fabric = A
 		var/turf/T = fabric.origin
 		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(KillEveryoneOnZLevel), T.z)
 	else
@@ -588,7 +574,7 @@
 /proc/KillEveryoneOnZLevel(z)
 	if(!z)
 		return
-	for(var/mob/M in GLOB.mob_list)
+	for(var/mob/living/M in GLOB.mob_list)
 		var/turf/t = get_turf(M)
 		if(M.stat != DEAD && t.z == z && !istype(M.loc, /obj/structure/closet/secure_closet/freezer))
 			M.gib()

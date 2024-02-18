@@ -6,6 +6,9 @@
 	extra_price = 75
 	payment_department = NO_FREEBIES
 	input_display_header = "Returned Clothing"
+	panel_type = "panel19"
+	light_mask = "wardrobe-light-mask"
+
 
 /obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
 	if(I.type in products)
@@ -48,7 +51,7 @@
 					/obj/item/clothing/head/yogs/tricornhat = 5,
 					/obj/item/clothing/under/rank/security/skirt = 3,
 					/obj/item/clothing/under/rank/security/grey = 3,
-					/obj/item/clothing/under/yogs/shitcurity = 3,
+					/obj/item/clothing/under/rank/security/shitcurity = 3,
 					/obj/item/clothing/under/pants/khaki = 3,
 					/obj/item/clothing/under/rank/security/blueshirt = 3,
 					/obj/item/clothing/under/rank/security/secconuniform = 3,
@@ -61,6 +64,7 @@
 					/obj/item/clothing/head/beret/sec/navyofficer = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 	payment_department = ACCOUNT_SEC
+	light_color = COLOR_MOSTLY_PURE_RED
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
 	machine_name = "SecDrobe"
@@ -77,6 +81,7 @@
 					/obj/item/storage/backpack/satchel/med = 4,
 					/obj/item/clothing/head/beret/med = 4,
 					/obj/item/clothing/suit/hooded/wintercoat/medical = 4,
+					/obj/item/clothing/suit/hooded/wintercoat/medical/paramedic = 4,
 					/obj/item/clothing/under/rank/nursesuit = 4,
 					/obj/item/clothing/head/nursehat = 4,
 					/obj/item/clothing/under/yogs/nursedress = 4,
@@ -95,6 +100,7 @@
 					/obj/item/clothing/accessory/armband/medblue = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/medi_wardrobe
 	payment_department = ACCOUNT_MED
+
 /obj/item/vending_refill/wardrobe/medi_wardrobe
 	machine_name = "MediDrobe"
 
@@ -123,6 +129,7 @@
 					/obj/item/clothing/head/hardhat/weldhat = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/engi_wardrobe
 	payment_department = ACCOUNT_ENG
+	light_color = COLOR_VIVID_YELLOW
 /obj/item/vending_refill/wardrobe/engi_wardrobe
 	machine_name = "EngiDrobe"
 
@@ -143,13 +150,17 @@
 					/obj/item/clothing/shoes/sneakers/black = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	payment_department = ACCOUNT_ENG
+	light_color = COLOR_VIVID_YELLOW
+
 /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	machine_name = "AtmosDrobe"
 
 /obj/machinery/vending/wardrobe/sig_wardrobe
 	name = "NetDrobe"
 	desc = "A rarely used vending machine that provides clothing for Network Admins."
+	icon = 'yogstation/icons/obj/vending.dmi'
 	icon_state = "sigdrobe"
+	panel_type = "panel-sigdrobe"
 	product_ads = "Dress to impress yourself!;The drones will love you!;Get your clothing here!"
 	vend_reply = "Thank you for using the NetDrobe!"
 	products = list(/obj/item/storage/backpack/duffelbag/engineering = 1,
@@ -173,6 +184,8 @@
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/cargo = 3,
 					/obj/item/clothing/under/rank/cargotech = 3,
 					/obj/item/clothing/under/rank/cargotech/skirt = 3,
+					/obj/item/clothing/under/rank/cargotech/turtleneck = 3,
+					/obj/item/clothing/under/rank/cargotech/skirt/turtleneck = 3,					
 					/obj/item/clothing/shoes/sneakers/black = 3,
 					/obj/item/clothing/shoes/xeno_wraps/cargo = 3,
 					/obj/item/clothing/gloves/fingerless = 3,
@@ -201,6 +214,7 @@
 					/obj/item/clothing/suit/toggle/labcoat = 2,
 					/obj/item/clothing/suit/toggle/labcoat/wardtlab = 2,
 					/obj/item/clothing/suit/toggle/labcoat/aeneasrinil = 2,
+					/obj/item/clothing/suit/hooded/wintercoat/science/robotics = 3,
 					/obj/item/clothing/shoes/sneakers/black = 2,
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
@@ -253,6 +267,8 @@
 					/obj/item/clothing/accessory/armband/hydro = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/hydro_wardrobe
 	payment_department = ACCOUNT_SRV
+	light_color = LIGHT_COLOR_ELECTRIC_GREEN
+
 /obj/item/vending_refill/wardrobe/hydro_wardrobe
 	machine_name = "HyDrobe"
 
@@ -351,6 +367,7 @@
 	products = list(/obj/item/clothing/under/rank/janitor = 2,
 					/obj/item/clothing/under/yogs/casualjanitorsuit = 2,
 					/obj/item/clothing/suit/yogs/janitorcoat = 2,
+					/obj/item/clothing/suit/hooded/wintercoat/janitor = 2,
 					/obj/item/cartridge/janitor = 2,
 					/obj/item/clothing/under/rank/janitor/skirt = 2,
 					/obj/item/clothing/under/janimaid = 2,
@@ -372,6 +389,8 @@
 					/obj/item/reagent_containers/spray/cleaner = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/jani_wardrobe
 	payment_department = ACCOUNT_SRV
+	light_color = COLOR_STRONG_MAGENTA
+
 /obj/item/vending_refill/wardrobe/jani_wardrobe
 	machine_name = "JaniDrobe"
 
@@ -456,6 +475,7 @@
 					/obj/item/clothing/under/rank/chemist/skirt = 2,
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/chemist = 2,
+					/obj/item/clothing/suit/hooded/wintercoat/medical/chemistry = 2,
 					/obj/item/clothing/head/beret/chem = 2,
 					/obj/item/storage/backpack/chemistry = 2,
 					/obj/item/storage/backpack/satchel/chem = 2,
@@ -475,6 +495,7 @@
 					/obj/item/clothing/under/rank/geneticist/skirt = 2,
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/genetics = 2,
+					/obj/item/clothing/suit/hooded/wintercoat/science/genetics = 2,
 					/obj/item/storage/backpack/genetics = 2,
 					/obj/item/storage/backpack/satchel/gen = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/gene_wardrobe
@@ -492,6 +513,7 @@
 					/obj/item/clothing/under/rank/virologist/skirt = 2,
 					/obj/item/clothing/shoes/sneakers/white = 2,
 					/obj/item/clothing/suit/toggle/labcoat/virologist = 2,
+					/obj/item/clothing/suit/hooded/wintercoat/medical/viro = 2,
 					/obj/item/clothing/mask/surgical = 2,
 					/obj/item/storage/backpack/virology = 2,
 					/obj/item/storage/backpack/satchel/vir = 2)

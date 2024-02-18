@@ -64,13 +64,15 @@
 	normalspeed = TRUE
 	explosion_block = 1
 	hud_possible = list(DIAG_AIRLOCK_HUD)
+	smoothing_groups = SMOOTH_GROUP_AIRLOCK
 
 	FASTDMM_PROP(\
 		pinned_vars = list("req_access_txt", "req_one_access_txt", "name")\
 	)
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
-
+	blocks_emissive = EMISSIVE_BLOCK_NONE
+	
 	/// How much are wires secured
 	var/security_level = 0
 	/// If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
@@ -151,7 +153,7 @@
 	///Whether wires should all cut themselves when this door is broken.
 	var/cut_wires_on_break = TRUE
 
-	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1 | HTML_USE_INITAL_ICON_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 
 	var/static/list/airlock_overlays = list()
@@ -187,6 +189,10 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
+/obj/machinery/door/airlock/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	if(id_tag)
+		id_tag = "[port.shuttle_id]_[id_tag]"
+
 /obj/machinery/door/airlock/obj_break(damage_flag)
 	. = ..()
 	if(!.)
@@ -211,10 +217,10 @@
 				for(var/obj/machinery/door/firedoor/FD in here)
 					qdel(FD)
 				for(var/turf/closed/T in range(2, src))
-					here.PlaceOnTop(T.type)
+					here.place_on_top(T.type)
 					qdel(src)
 					return
-				here.PlaceOnTop(/turf/closed/wall)
+				here.place_on_top(/turf/closed/wall)
 				qdel(src)
 				return
 			if(10 to 11)
@@ -475,18 +481,24 @@
 		return
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
-		if(density)
-			if(mecha.occupant)
-				if(world.time - mecha.occupant.last_bumped <= 10)
-					return
-				mecha.occupant.last_bumped = world.time
-			if(locked && (allowed(mecha.occupant) || check_access_list(mecha.operation_req_access)) && aac)
-				aac.request_from_door(src)
+		if(!density) // Somehow bumped into it while it's already open.
+			return
+		var/has_access = (obj_flags & CMAGGED) ? !check_access_list(mecha.operation_req_access) : check_access_list(mecha.operation_req_access)
+		if(mecha.occupant)
+			if(world.time - mecha.occupant.last_bumped <= 10)
 				return
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
-				open()
-			else
-				do_animate("deny")
+			mecha.occupant.last_bumped = world.time
+			// If there is an occupant, check their access too.
+			has_access = (obj_flags & CMAGGED) ? cmag_allowed(mecha.occupant) && has_access : allowed(mecha.occupant) || has_access
+		if(aac && locked && has_access)
+			aac.request_from_door(src)
+			return
+		if(has_access)
+			open()
+		else
+			if(obj_flags & CMAGGED)
+				try_play_cmagsound()
+			do_animate("deny")
 		return
 	. = ..()
 
@@ -501,19 +513,17 @@
 			else
 				return
 		else if(user.has_status_effect(/datum/status_effect/hallucination) && ishuman(user) && prob(1) && !operating)
-			var/mob/living/carbon/human/H = user
-			if(H.gloves)
-				var/obj/item/clothing/gloves/G = H.gloves
-				if(G.siemens_coefficient)//not insulated
-					new /datum/hallucination/shock(H)
-					return
+			if(user.getarmor(user.held_index_to_body_zone(user.active_hand_index), ELECTRIC) < 100)
+				new /datum/hallucination/shock(user)
+				return
+	var/allowed = (obj_flags & CMAGGED) ? cmag_allowed(user) : allowed(user)
 	if (cyclelinkedairlock)
-		if (!shuttledocked && !emergency && !cyclelinkedairlock.shuttledocked && !cyclelinkedairlock.emergency && allowed(user))
+		if (!shuttledocked && !emergency && !cyclelinkedairlock.shuttledocked && !cyclelinkedairlock.emergency && allowed)
 			if(cyclelinkedairlock.operating)
 				cyclelinkedairlock.delayed_close_requested = TRUE
 			else
 				addtimer(CALLBACK(cyclelinkedairlock, PROC_REF(close)), 2)
-	if(locked && allowed(user) && aac)
+	if(locked && aac && allowed)
 		aac.request_from_door(src)
 		return
 	..()
@@ -742,7 +752,7 @@
 		for(var/heading in list(NORTH,SOUTH,EAST,WEST))
 			if(!(unres_sides & heading))
 				continue
-			var/mutable_appearance/floorlight = mutable_appearance('icons/obj/doors/airlocks/station/overlays.dmi', "unres_[heading]", FLOAT_LAYER, ABOVE_LIGHTING_PLANE)
+			var/mutable_appearance/floorlight = mutable_appearance('icons/obj/doors/airlocks/station/overlays.dmi', "unres_[heading]", FLOAT_LAYER, src, ABOVE_LIGHTING_PLANE)
 			switch (heading)
 				if (NORTH)
 					floorlight.pixel_x = 0
@@ -782,7 +792,9 @@
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning("Its access panel is smoking slightly.")
+		. += span_warning("The access panel is smoking slightly.")
+	if(obj_flags & CMAGGED)
+		. += span_warning("The access panel is coated in yellow ooze...")
 	if(charge && !panel_open && in_range(user, src))
 		. += span_warning("The maintenance panel seems haphazardly fastened.")
 	if(charge && panel_open)
@@ -826,10 +838,23 @@
 	if(!canAIControl(user))
 		if(canAIHack())
 			hack(user)
-			return
 		else
 			to_chat(user, span_warning("Airlock AI control has been blocked with a firewall. Unable to hack."))
-	if(obj_flags & EMAGGED)
+		return
+	if((obj_flags & EMAGGED) || (obj_flags & CMAGGED))
+		to_chat(user, span_warning("Unable to interface: Airlock is unresponsive."))
+		return
+	if(detonated)
+		to_chat(user, span_warning("Unable to interface. Airlock control panel damaged."))
+		return
+
+	ui_interact(user)
+
+/obj/machinery/door/airlock/attack_robot(mob/user)
+	if(!canAIControl(user))
+		to_chat(user, span_warning("Airlock AI control has been blocked. Unable to access.")) // Hacking should be AI-exclusive.
+		return
+	if((obj_flags & EMAGGED) || (obj_flags & CMAGGED))
 		to_chat(user, span_warning("Unable to interface: Airlock is unresponsive."))
 		return
 	if(detonated)
@@ -894,7 +919,8 @@
 	return attack_hand(user)
 
 /obj/machinery/door/airlock/attack_hand(mob/user)
-	if(locked && allowed(user) && aac)
+	var/allowed = (obj_flags & CMAGGED) ? cmag_allowed(user) : allowed(user)
+	if(locked && allowed && aac)
 		aac.request_from_door(src)
 		. = TRUE
 	else
@@ -1404,7 +1430,7 @@
 	sleep(0.1 SECONDS)
 	density = FALSE
 	sleep(0.3 SECONDS)
-	air_update_turf(1)
+	air_update_turf()
 	sleep(0.1 SECONDS)
 	layer = OPEN_DOOR_LAYER
 	update_icon(state = AIRLOCK_OPEN, override = TRUE)
@@ -1446,11 +1472,11 @@
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
 		density = TRUE
-		air_update_turf(1)
+		air_update_turf()
 	sleep(0.1 SECONDS)
 	density = TRUE
 	if(!air_tight)
-		air_update_turf(1)
+		air_update_turf()
 	sleep(0.4 SECONDS)
 	if(!safe)
 		crush()
@@ -1505,21 +1531,26 @@
 //Airlock is passable if it is open (!density), bot has access, and is not bolted shut or powered off)
 	return !density || (check_access(ID) && !locked && hasPower())
 
-/obj/machinery/door/airlock/emag_act(mob/user)
-	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
-		operating = TRUE
-		update_icon(state = AIRLOCK_EMAG, override = TRUE)
-		sleep(0.6 SECONDS)
-		if(QDELETED(src))
-			return
-		operating = FALSE
-		if(!open())
-			update_icon(state = AIRLOCK_CLOSED, override = TRUE)
-		obj_flags |= EMAGGED
-		lights = FALSE
-		locked = TRUE
-		loseMainPower()
-		loseBackupPower()
+/obj/machinery/door/airlock/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(operating || !density || !hasPower() || (obj_flags & EMAGGED))
+		return FALSE
+	operating = TRUE
+	update_icon(state = AIRLOCK_EMAG, override = TRUE)
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 0.6 SECONDS)
+	return TRUE
+
+/obj/machinery/door/airlock/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(QDELETED(src))
+		return
+	operating = FALSE
+	
+	if(!open()) // Something prevented it from being opened. For example, bolted/welded shut.
+		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
+	obj_flags |= EMAGGED
+	lights = FALSE
+	locked = TRUE
+	loseMainPower()
+	loseBackupPower()
 
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/alien/humanoid/user)
 	add_fingerprint(user)

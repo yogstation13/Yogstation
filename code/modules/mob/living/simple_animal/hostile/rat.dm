@@ -13,8 +13,6 @@
 	obj_damage = 5
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	maxHealth = 15
 	health = 15
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/mouse = 1)
@@ -81,7 +79,7 @@
 	if (!mind)
 		if(prob(40))
 			var/turf/open/floor/F = get_turf(src)
-			if(istype(F) && !F.intact)
+			if(istype(F) && F.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 				var/obj/structure/cable/C = locate() in F
 				if(C && prob(15))
 					if(C.avail())
@@ -128,7 +126,7 @@
 		return FALSE
 	layer = MOB_LAYER
 	visible_message(span_danger("[src] starts eating away [A]..."),span_notice("You start eating the [A]..."))
-	if(do_after(src, 3 SECONDS, A, FALSE))
+	if(do_after(src, 3 SECONDS, A, timed_action_flags = IGNORE_HELD_ITEM))
 		if(QDELETED(A))
 			return
 		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))
@@ -177,7 +175,7 @@
 			if(C.getBruteLoss_nonProsthetic() >= 100)
 				return
 			src.visible_message(span_warning("[src] starts biting into [C]!"),span_notice("You start eating [C]..."))
-			if(!do_after(src, 3 SECONDS, FALSE, target))
+			if(!do_after(src, 3 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM))
 				return
 			to_chat(src, span_notice("You finish eating [C]."))
 			heal_bodypart_damage(5)
@@ -190,10 +188,10 @@
 			if(target.reagents.has_reagent(/datum/reagent/plaguebacteria))
 				to_chat(src, span_warning("[target] is already infected!"))
 				return
-			if(INTERACTING_WITH(src, target))
+			if(DOING_INTERACTION(src, target))
 				return
 			src.visible_message(span_warning("[src] starts licking [target]!"),span_notice("You start licking [target]..."))
-			if(!do_after(src, 2 SECONDS, FALSE, target))
+			if(!do_after(src, 2 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM))
 				to_chat(src, span_warning("You stop licking [target]."))
 				return
 			target.reagents.add_reagent(/datum/reagent/plaguebacteria, rand(1,2), no_react = TRUE)

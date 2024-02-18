@@ -5,7 +5,7 @@
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
-	icon_state = null
+	icon_state = "pineapplejuice" // Shouldn't see this anyways.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	reagent_flags = OPENCONTAINER
@@ -44,7 +44,7 @@
 		else
 			if(!C.force_drink_text(src, C, user))
 				return
-			if(!do_mob(user, M))
+			if(!do_after(user, 3 SECONDS, M))
 				return
 			if(!reagents || !reagents.total_volume)
 				return // The drink might be empty after the delay, such as by spam-feeding
@@ -204,11 +204,25 @@
 /obj/item/reagent_containers/food/drinks/coffee
 	name = "robust coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
+	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/coffee = 30)
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	foodtype = BREAKFAST
+	var/lid_open = 0
+
+/obj/item/reagent_containers/food/drinks/coffee/no_lid
+	icon_state = "coffee_empty"
+	list_reagents = null
+
+
+/obj/item/reagent_containers/food/drinks/coffee/update_icon_state()
+	if(lid_open)
+		icon_state = reagents.total_volume ? "[base_icon_state]_full" : "[base_icon_state]_empty"
+	else
+		icon_state = base_icon_state
+	return ..()
 
 /obj/item/reagent_containers/food/drinks/ice
 	name = "ice cup"
@@ -273,6 +287,10 @@
 	desc = "Brewed with \"Pure Ice Asteroid Spring Water\"."
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 30)
 
+/obj/item/reagent_containers/food/drinks/beer/light/plastic
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 15)
+	isGlass = FALSE
+
 /obj/item/reagent_containers/food/drinks/ale
 	name = "Magm-Ale"
 	desc = "A true dorf's drink of choice."
@@ -299,6 +317,7 @@
 	name = "small carton"
 	desc = "A small carton, intended for holding drinks."
 	icon_state = "juicebox"
+	icon_state_preview = "juicebox"
 	volume = 15 //I figure if you have to craft these it should at least be slightly better than something you can get for free from a watercooler
 
 /obj/item/reagent_containers/food/drinks/sillycup/smallcarton/smash(atom/target, mob/thrower, ranged = FALSE)
@@ -415,6 +434,7 @@
 
 /obj/item/reagent_containers/food/drinks/soda_cans
 	name = "soda can"
+	icon_state_preview = "cola"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	reagent_flags = NONE

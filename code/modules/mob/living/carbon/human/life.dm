@@ -62,27 +62,32 @@
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
-	if(stat != DEAD)
-		var/datum/component/mood/moody = GetComponent(/datum/component/mood)
-		if(moody && moody.mood_level >= 7) // heal 0.2hp per second if you have 7 or more mood(I feel pretty good)
-			if(prob(50))
-				if(prob(50))
-					heal_bodypart_damage(0.4, 0, 0, TRUE, BODYPART_ORGANIC)
-				else
-					heal_bodypart_damage(0, 0.4, 0, TRUE, BODYPART_ORGANIC)
+	if(stat != DEAD)// heal 0.2hp per second to organic limbs (they are self repairing by virtue of being organic)
+		if(HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_POWERHUNGRY) || (nutrition > NUTRITION_LEVEL_FED && satiety > 80))//either if they don't have hunger at all, or if they're fed enough
+			if(prob(50) && bruteloss)//50/50 to heal brute or burn, but won't heal a damage type if you don't have it
+				heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
+			else if(fireloss)
+				heal_bodypart_damage(0, 0.2, 0, TRUE, BODYPART_ORGANIC)
+			else
+				heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 
 /mob/living/carbon/human/calculate_affecting_pressure(pressure)
-	if (wear_suit && head && istype(wear_suit, /obj/item/clothing) && istype(head, /obj/item/clothing))
-		var/obj/item/clothing/CS = wear_suit
-		var/obj/item/clothing/CH = head
-		if (CS.clothing_flags & CH.clothing_flags & STOPSPRESSUREDAMAGE)
-			return ONE_ATMOSPHERE
-	else if(!get_bodypart(BODY_ZONE_HEAD) && wear_suit && istype(wear_suit, /obj/item/clothing)) // you don't need a helmet if you don't have a head
-		var/obj/item/clothing/CS = wear_suit
-		if(CS.clothing_flags & STOPSPRESSUREDAMAGE)
-			return ONE_ATMOSPHERE
+	var/obj/item/clothing/CS = wear_suit
+	if(CS && istype(CS))
+		if(get_bodypart(BODY_ZONE_HEAD))
+			var/obj/item/clothing/CH = head
+			if(CH && istype(CH))
+				if(pressure > ONE_ATMOSPHERE && (CS.clothing_flags & CH.clothing_flags & STOPSHIGHPRESSURE))
+					return ONE_ATMOSPHERE
+				else if(pressure < ONE_ATMOSPHERE && (CS.clothing_flags & CH.clothing_flags & STOPSLOWPRESSURE))
+					return ONE_ATMOSPHERE
+		else // you don't need a helmet if you don't have a head
+			if(pressure > ONE_ATMOSPHERE && (CS.clothing_flags & STOPSHIGHPRESSURE))
+				return ONE_ATMOSPHERE
+			else if(pressure < ONE_ATMOSPHERE && (CS.clothing_flags & STOPSLOWPRESSURE))
+				return ONE_ATMOSPHERE
 	return pressure
 
 
@@ -93,7 +98,7 @@
 		else
 			adjust_blindness(-1)
 	if(eye_blurry)			//blurry eyes heal slowly
-		adjust_blurriness(-1)
+		adjust_eye_blur(-1)
 
 	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 60)
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
@@ -102,7 +107,7 @@
 
 	if(!dna)
 		return
-	if(prob(3) && dna.check_mutation(ACTIVE_HULK))
+	if(prob(3) && dna.check_mutation(HULK))
 		say(pick_list_replacements(BRAIN_DAMAGE_FILE, "hulk"))
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
@@ -149,27 +154,11 @@
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	dna.species.handle_environment(environment, src)
 
-///FIRE CODE
-/mob/living/carbon/human/handle_fire()
-	. = ..()
-	if(.) //if the mob isn't on fire anymore
-		return
-
-	if(dna)
-		. = dna.species.handle_fire(src) //do special handling based on the mob's species. TRUE = they are immune to the effects of the fire.
-
-	if(!last_fire_update)
-		last_fire_update = fire_stacks
-	if((fire_stacks > HUMAN_FIRE_STACK_ICON_NUM && last_fire_update <= HUMAN_FIRE_STACK_ICON_NUM) || (fire_stacks <= HUMAN_FIRE_STACK_ICON_NUM && last_fire_update > HUMAN_FIRE_STACK_ICON_NUM))
-		last_fire_update = fire_stacks
-		update_fire()
-
-
 /mob/living/carbon/human/proc/get_thermal_protection()
 	var/thermal_protection = 0 //Simple check to estimate how protected we are against multiple temperatures
 	if(wear_suit)
 		if(wear_suit.max_heat_protection_temperature >= FIRE_SUIT_MAX_TEMP_PROTECT)
-			thermal_protection += (wear_suit.max_heat_protection_temperature*0.7)
+			thermal_protection += (wear_suit.max_heat_protection_temperature*(1-THERMAL_PROTECTION_HEAD))
 	if(head)
 		if(head.max_heat_protection_temperature >= FIRE_HELM_MAX_TEMP_PROTECT)
 			thermal_protection += (head.max_heat_protection_temperature*THERMAL_PROTECTION_HEAD)

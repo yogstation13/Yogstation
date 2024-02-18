@@ -54,12 +54,29 @@
 		"scrambledcodes" = borg.scrambledcodes
 	)
 	.["upgrades"] = list()
-	for (var/upgradetype in subtypesof(/obj/item/borg/upgrade)-/obj/item/borg/upgrade/hypospray) //hypospray is a dummy parent for hypospray upgrades
-		var/obj/item/borg/upgrade/upgrade = upgradetype
-		if (initial(upgrade.module_type) && !istype(borg.module, initial(upgrade.module_type))) // Upgrade requires a different module
-			continue
+	var/list/excluded_upgrades = list(/obj/item/borg/upgrade/hypospray, // Parent/base upgrades.
+		/obj/item/borg/upgrade/language,
+		/obj/item/borg/upgrade/transform,
+		/obj/item/borg/upgrade/modkit,
+		/obj/item/borg/upgrade/modkit/aoe,
+		/obj/item/borg/upgrade/modkit/minebot_passthrough, // Non-proper upgrades (not rated for cyborgs, useless, or don't work properly here).
+		/obj/item/borg/upgrade/modkit/cooldown/minebot,
+		/obj/item/borg/upgrade/modkit/trigger_guard,
+		/obj/item/borg/upgrade/rename,
+		/obj/item/borg/upgrade/restart)
+	for(var/upgradetype in subtypesof(/obj/item/borg/upgrade)-excluded_upgrades)
+		var/obj/item/borg/upgrade/upgrade = new upgradetype() // Probably a bad idea to new(), but it makes things work!
+		if(upgrade.module_types) // Only show upgrades that can be given. Cannot initial() lists either.
+			// is_type_in_list() doesn't work, so this:
+			var/has_req_module = FALSE
+			for(var/req_module_type in upgrade.module_types)
+				if(borg.module.type == req_module_type)
+					has_req_module = TRUE
+					break
+			if(!has_req_module)
+				continue
 		var/installed = FALSE
-		if (locate(upgradetype) in borg)
+		if(locate(upgradetype) in borg.upgrades)
 			installed = TRUE
 		.["upgrades"] += list(list("name" = initial(upgrade.name), "installed" = installed, "type" = upgradetype))
 	.["laws"] = borg.laws ? borg.laws.get_law_list(include_zeroth = TRUE) : list()
@@ -149,19 +166,20 @@
 			borg.fully_replace_character_name(borg.real_name,new_name)
 		if ("toggle_upgrade")
 			var/upgradepath = text2path(params["upgrade"])
-			var/obj/item/borg/upgrade/installedupgrade = locate(upgradepath) in borg
-			if (installedupgrade)
-				installedupgrade.deactivate(borg, user)
-				borg.upgrades -= installedupgrade
-				message_admins("[key_name_admin(user)] removed the [installedupgrade] upgrade from [ADMIN_LOOKUPFLW(borg)].")
-				log_admin("[key_name(user)] removed the [installedupgrade] upgrade from [key_name(borg)].")
+			var/obj/item/borg/upgrade/installedupgrade = locate(upgradepath) in borg.upgrades
+			if(installedupgrade)
+				message_admins("[key_name_admin(user)] removed [installedupgrade] upgrade from [ADMIN_LOOKUPFLW(borg)].")
+				log_admin("[key_name(user)] removed [installedupgrade] upgrade from [key_name(borg)].")
+				installedupgrade.forceMove(get_turf(borg)) // For the deactivate signals, etc.
 				qdel(installedupgrade)
 			else
 				var/obj/item/borg/upgrade/upgrade = new upgradepath(borg)
-				upgrade.action(borg, user)
-				borg.upgrades += upgrade
-				message_admins("[key_name_admin(user)] added the [upgrade] borg upgrade to [ADMIN_LOOKUPFLW(borg)].")
-				log_admin("[key_name(user)] added the [upgrade] borg upgrade to [key_name(borg)].")
+				var/success = borg.add_to_upgrades(upgrade, user, TRUE)
+				if(success)
+					message_admins("[key_name_admin(user)] added [upgrade] borg upgrade to [ADMIN_LOOKUPFLW(borg)].")
+					log_admin("[key_name(user)] added [upgrade] borg upgrade to [key_name(borg)].")
+				else
+					qdel(upgrade) // Otherwise the upgrade will be on the floor (which is bad).
 		if ("toggle_radio")
 			var/channel = params["channel"]
 			if (channel in borg.radio.channels) // We're removing a channel
@@ -218,24 +236,21 @@
 
 	. = TRUE
 
-/datum/admins/proc/change_laws()
+/datum/admins/proc/manage_silicon_laws()
 	set category = "Admin.Player Interaction"
-	set name = "Change Silicon Laws"
-	set desc = "Change Silicon Laws"
+	set name = "Manage Silicon Laws"
+	set desc = "Manage Silicon Laws"
 
 	if(!check_rights(R_ADMIN))
 		return
-	var/chosensilicon = input("Select a Silicon", "Select a Silicon", null, null) as null|anything in GLOB.silicon_mobs
-	if (!istype(chosensilicon, /mob/living/silicon))
-		to_chat(usr, span_warning("Silicon is required for law changes"), confidential=TRUE)
-		return
-	var/chosen = pick_closest_path(null, make_types_fancy(typesof(/obj/item/aiModule)))
-	if (!chosen)
-		return
-	var/new_board = new chosen(src)
-	var/obj/item/aiModule/chosenboard = new_board
-	var/mob/living/silicon/beepboop = chosensilicon
-	chosenboard.install(beepboop.laws, usr)
-	message_admins("[key_name_admin(usr)] added [chosenboard] to [ADMIN_LOOKUPFLW(beepboop)].")
-	log_admin("[key_name(usr)] added [chosenboard] to [key_name(beepboop)].")
-	qdel(new_board)
+
+	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in GLOB.silicon_mobs
+	if(!S) return
+
+	var/datum/law_manager/L = new(S)
+	L.ui_interact(usr)
+
+	log_admin("[key_name(usr)] has opened [S]'s law manager.")
+	message_admins("[key_name(usr)] has opened [S]'s law manager.")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Manage Silicon Laws") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	

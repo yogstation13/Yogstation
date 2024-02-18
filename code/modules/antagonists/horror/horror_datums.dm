@@ -143,7 +143,7 @@
 		to_chat(user, span_notice("Take a breath before you blow [src] again."))
 		return
 	to_chat(user, span_notice("You take a deep breath and prepare to blow into [src]..."))
-	if(do_mob(user, src, 10 SECONDS))
+	if(do_after(user, 10 SECONDS, src))
 		if(cooldown > world.time)
 			return
 		cooldown = world.time + 10 SECONDS

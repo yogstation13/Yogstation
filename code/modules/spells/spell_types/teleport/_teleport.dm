@@ -36,8 +36,8 @@
 		return FALSE
 	if(selected.density && (destination_flags & TELEPORT_SPELL_SKIP_DENSE))
 		return FALSE
-//	if(selected.is_blocked_turf(exclude_mobs = TRUE) && (destination_flags & TELEPORT_SPELL_SKIP_BLOCKED))
-//		return FALSE
+	if(selected.is_blocked_turf(exclude_mobs = TRUE) && (destination_flags & TELEPORT_SPELL_SKIP_BLOCKED))
+		return FALSE
 
 	return TRUE
 

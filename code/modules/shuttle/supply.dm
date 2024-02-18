@@ -20,19 +20,18 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/item/warp_cube,
 		/obj/machinery/rnd/production, //print tracking beacons, send shuttle
 		/obj/machinery/autolathe, //same
-		/obj/item/projectile/beam/wormhole,
+		/obj/projectile/beam/wormhole,
 		/obj/effect/portal,
 		/obj/item/shared_storage,
 		/obj/structure/extraction_point,
 		/obj/machinery/syndicatebomb,
 		/obj/item/hilbertshotel,
-		/obj/structure/closet/crate/secure/owned,
 		/obj/structure/closet/bluespace // yogs - nope nice try
 	)))
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
-	id = "supply"
+	shuttle_id = "supply"
 	callTime = 30 SECONDS
 
 	dir = WEST
@@ -61,6 +60,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/trf in shuttle_area)
 			var/turf/T = trf
 			for(var/a in T.get_all_contents())
+				for(var/obj/structure/closet/crate/secure/owned/crate in a)
+					if(crate.locked)
+						return FALSE
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
 	return TRUE
@@ -84,20 +86,20 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/list/obj/miscboxes = list() //miscboxes are combo boxes that contain all small_item orders grouped
 	var/list/misc_order_num = list() //list of strings of order numbers, so that the manifest can show all orders in a box
 	var/list/misc_contents = list() //list of lists of items that each box will contain
-	if(!SSshuttle.shoppinglist.len)
+	if(!SSshuttle.shopping_list.len)
 		return
 
 	var/list/empty_turfs = list()
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/turf/open/floor/T in shuttle_area)
-			if(is_blocked_turf(T))
+			if(T.is_blocked_turf())
 				continue
 			empty_turfs += T
 
 	var/value = 0
 	var/purchases = 0
-	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
+	for(var/datum/supply_order/SO in SSshuttle.shopping_list)
 		if(!empty_turfs.len)
 			break
 		var/price = SO.pack.get_cost()
@@ -118,13 +120,26 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			var/datum/bank_account/department/cargo = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			cargo.adjust_money(price - SO.pack.get_cost()) //Cargo gets the handling fee
 		value += SO.pack.get_cost()
-		SSshuttle.shoppinglist -= SO
-		SSshuttle.orderhistory += SO
+		SSshuttle.shopping_list -= SO
+		SSshuttle.order_history += SO
 
 		if(SO.pack.small_item) //small_item means it gets piled in the miscbox
 			if(SO.paying_account)
 				if(!miscboxes.len || !miscboxes[D.account_holder]) //if there's no miscbox for this person
-					miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned(pick_n_take(empty_turfs), SO.paying_account)
+					if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/medical(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/engineering(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_SCI))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/science(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_SRV))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/hydroponics(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_SEC))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/gear(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_CIV))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/civ(pick_n_take(empty_turfs), SO.paying_account)
+					else
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap(pick_n_take(empty_turfs), SO.paying_account)
 					miscboxes[D.account_holder].name = "small items crate - purchased by [D.account_holder]"
 					misc_contents[D.account_holder] = list()
 				for (var/item in SO.pack.contains)
@@ -227,7 +242,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/place as anything in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/turf/open/floor/shuttle_floor in shuttle_area)
-			if(is_blocked_turf(shuttle_floor))
+			if(shuttle_floor.is_blocked_turf())
 				continue
 			empty_turfs += shuttle_floor
 

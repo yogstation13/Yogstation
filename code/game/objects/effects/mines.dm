@@ -115,7 +115,7 @@
 			if(!(MM.movement_type & FLYING))
 				checksmartmine(AM)
 		else
-			if(istype(AM, /obj/item/projectile))
+			if(istype(AM, /obj/projectile))
 				return
 			triggermine(AM)
 
@@ -150,7 +150,7 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
-	var/sound = 'sound/items/bikehorn.ogg'
+	var/sound = 'yogstation/sound/misc/quack.ogg'
 	range_heavy = 2
 	range_light = 3
 	range_flash = 4
@@ -248,7 +248,7 @@
 	disarm_product = /obj/item/deployablemine/honk
 
 /obj/effect/mine/sound/mineEffect(mob/victim)
-	playsound(loc, sound, 100, 1)
+	playsound(loc, sound, 150, 1)
 
 
 /obj/effect/mine/sound/bwoink

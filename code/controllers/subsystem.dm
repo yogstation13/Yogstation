@@ -65,6 +65,9 @@
 
 	/// Tracks the current execution state of the subsystem. Used to handle subsystems that sleep in fire so the mc doesn't run them again while they are sleeping
 	var/state = SS_IDLE
+	
+	/// Tracks how many times a subsystem has ever slept in fire().
+	var/slept_count = 0
 
 	/// Tracks how many fires the subsystem has consecutively paused on in the current run
 	var/paused_ticks = 0
@@ -126,8 +129,10 @@
 	fire(resumed)
 	. = state
 	if (state == SS_SLEEPING)
+		slept_count++
 		state = SS_IDLE
 	if (state == SS_PAUSING)
+		slept_count++
 		var/QT = queued_time
 		enqueue()
 		state = SS_PAUSED
@@ -303,3 +308,17 @@
 		if (NAMEOF(src, queued_priority)) //editing this breaks things.
 			return FALSE
 	. = ..()
+
+/datum/controller/subsystem/proc/get_metrics()
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	.["@measurement"] = "subsystem"
+	.["@tags"] = list("subsystem" = type)
+	.["$cost"] = cost
+	.["$tick_usage"] = tick_usage
+	.["$tick_overrun"] = tick_overrun
+	.["$last_fire"] = last_fire
+	.["$next_fire"] = next_fire
+	.["$tick_allocation_avg"] = tick_allocation_avg
+	.["$times_fired"] = times_fired
+	.["$postponed_fires"] = postponed_fires

@@ -105,7 +105,6 @@
 	opacity=0
 	light_power = 7
 	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
-	step_energy_drain = 0
 	enclosed = TRUE
 	enter_delay = 40
 	silicon_icon_state = null

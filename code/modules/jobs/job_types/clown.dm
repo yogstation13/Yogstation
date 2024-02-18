@@ -32,6 +32,8 @@
 		/obj/item/clothing/shoes/clown_shoes/combat = 10
 		///obj/item/reagent_containers/spray/waterflower/superlube = 1 // Superlube, good lord.
 	)
+	
+	minimal_lightup_areas = list(/area/crew_quarters/theatre)
 
 	smells_like = "kinda funny"
 

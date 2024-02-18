@@ -146,7 +146,7 @@ Made by Xhuis
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE)
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_EYES, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	nojumpsuit = TRUE
-	mutanteyes = /obj/item/organ/eyes/night_vision/alien/sling
+	mutanteyes = /obj/item/organ/eyes/alien/sling
 	burnmod = 1.5 //1.5x burn damage, 2x is excessive
 	heatmod = 1.5
 	var/mutable_appearance/eyes_overlay
@@ -195,7 +195,7 @@ Made by Xhuis
 		shadow_charges = min(shadow_charges + 1, 3)
 		last_charge = world.time
 
-/datum/species/shadow/ling/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/shadow/ling/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T) && shadow_charges > 0)
 		var/light_amount = T.get_lumcount()

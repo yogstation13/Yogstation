@@ -20,7 +20,7 @@
 	if (mode)
 		if (!guardian.Adjacent(target))
 			return ..()
-		if (istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/trail_holder))
+		if (istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/blood/trail_holder))
 			guardian.visible_message(span_notice("[guardian] swirls it's finger around in [target] for a bit, before shaking it off."))
 			var/obj/effect/decal/D = target
 			var/list/blood = D.return_blood_DNA()
@@ -37,7 +37,7 @@
 			var/list/prints = O.return_fingerprints()
 			if (LAZYLEN(prints))
 				for (var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-					if (H.dna && prints[md5(H.dna.uni_identity)])
+					if (H.dna && prints[md5(H.dna.unique_identity)])
 						if (!(H in can_track))
 							to_chat(guardian, span_italics(span_notice("We learn the identity of [H.real_name].")))
 							can_track += H

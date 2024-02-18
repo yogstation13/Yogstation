@@ -80,7 +80,7 @@
 
 	currently_channeling = TRUE
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
-	if(!do_after(cast_on, channel_time, stayStill = FALSE, needhand = FALSE))
+	if(!do_after(cast_on, channel_time, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM))
 		stop_channel_effect(cast_on)
 		return . | SPELL_CANCEL_CAST
 

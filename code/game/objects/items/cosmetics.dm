@@ -4,6 +4,7 @@
 	desc = "A generic brand of lipstick."
 	icon = 'icons/obj/cosmetics.dmi'
 	icon_state = "lipstick"
+	grind_results = list(/datum/reagent/phenol = 5)
 	w_class = WEIGHT_CLASS_TINY
 	var/colour = "red"
 	var/open = FALSE
@@ -236,6 +237,7 @@
 /obj/item/dyespray
 	name = "hair dye spray"
 	desc = "A spray to dye your hair any gradients you'd like."
+	grind_results = list(/datum/reagent/phenol = 10, /datum/reagent/hair_dye = 5)
 	icon = 'icons/obj/cosmetics.dmi'
 	icon_state = "dyespray"
 
@@ -262,7 +264,7 @@
 	if(!new_grad_style)
 		return
 
-	var/new_grad_color = input(usr, "Choose a secondary hair color:", "Character Preference","#"+human_target.grad_color) as color|null
+	var/new_grad_color = input(usr, "Choose a secondary hair color:", "Character Preference",human_target.grad_color) as color|null
 	if(!new_grad_color)
 		return
 

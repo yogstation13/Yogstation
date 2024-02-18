@@ -17,8 +17,8 @@
 	active_msg = "You prepare to cast your fireball spell!"
 	deactive_msg = "You extinguish your fireball... for now."
 	cast_range = 8
-	projectile_type = /obj/item/projectile/magic/fireball
+	projectile_type = /obj/projectile/magic/fireball
 
-/datum/action/cooldown/spell/pointed/projectile/fireball/ready_projectile(obj/item/projectile/to_fire, atom/target, mob/user, iteration)
+/datum/action/cooldown/spell/pointed/projectile/fireball/ready_projectile(obj/projectile/to_fire, atom/target, mob/user, iteration)
 	. = ..()
 	to_fire.range = (6 + 2 * spell_level)

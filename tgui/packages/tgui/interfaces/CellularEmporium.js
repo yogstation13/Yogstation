@@ -49,6 +49,14 @@ export const CellularEmporium = (props, context) => {
                 <Box color="good">
                   {ability.helptext}
                 </Box>
+                {!!ability.conflicting_powers.length && (
+                  <Box color="bad">
+
+                    {"This ability conflicts with: "
+                    + ability.conflicting_powers.join(", ")}
+
+                  </Box>
+                )}
               </LabeledList.Item>
             ))}
           </LabeledList>

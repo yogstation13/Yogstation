@@ -87,8 +87,8 @@
 	data["location_name"] = get_area(current_turf)
 
 	data["location_coords"] = "[current_turf.x], [current_turf.y], [current_turf.z]"
-	var/datum/gas_mixture/env = current_turf.return_air()
-	data["temperature"] = env.return_temperature()
+	var/obj/machinery/ai/current_machine = owner.loc
+	data["temperature"] = current_machine.core_temp ? current_machine.core_temp : 0
 
 	for(var/datum/ai_project/AP as anything in available_projects)
 		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.canResearch(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
@@ -283,6 +283,8 @@
 	if(total_ram_used > current_ram)
 		for(var/I in ram_usage)
 			var/datum/ai_project/project = get_project_by_name(I)
+			if(!ram_usage[I]) //We only stop the program if it actually has any RAM usage
+				continue
 			total_ram_used -= stop_project(project)
 			reduction_of_resources = TRUE
 			if(total_ram_used <= current_ram)

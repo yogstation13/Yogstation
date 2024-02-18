@@ -30,17 +30,22 @@
 */
 
 /datum/mind
+	/// Key of the mob
 	var/key
-	var/name				//replaces mob/var/original_name
+	/// The name linked to this mind
+	var/name
+	/// Current mob this mind datum is attached to
 	var/mob/living/current
-	var/active = 0
+	/// Is this mind active?
+	var/active = FALSE
 
 	var/memory
 
+	/// Job datum indicating the mind's role. This should always exist after initialization, as a reference to a singleton.
 	var/assigned_role
 
 	var/role_alt_title
-	
+
 	var/special_role
 	var/list/restricted_roles = list()
 	var/list/datum/objective/objectives = list()
@@ -74,12 +79,12 @@
 	var/flavour_text = null
 	///Are we zombified/uncloneable?
 	var/zombified = FALSE
-	///What character we joined in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
-	var/mob/original_character
-	/// What scar slot we have loaded, so we don't have to constantly check the savefile
-	var/current_scar_slot
+	///Weakref to thecharacter we joined in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
+	var/datum/weakref/original_character
 	/// The index for what character slot, if any, we were loaded from, so we can track persistent scars on a per-character basis. Each character slot gets PERSISTENT_SCAR_SLOTS scar slots
 	var/original_character_slot_index
+	/// What scar slot we have loaded, so we don't have to constantly check the savefile
+	var/current_scar_slot
 	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
 	var/current_scar_slot_index
 	/// Is set to true if an antag was used to get this person picked as an antag
@@ -110,8 +115,21 @@
 
 	return language_holder
 
+/datum/mind/proc/set_current(mob/new_current)
+	if(new_current && QDELETED(new_current))
+		CRASH("Tried to set a mind's current var to a qdeleted mob, what the fuck")
+	if(current)
+		UnregisterSignal(src, COMSIG_QDELETING)
+	current = new_current
+	if(current)
+		RegisterSignal(src, COMSIG_QDELETING, PROC_REF(clear_current))
+
+/datum/mind/proc/clear_current(datum/source)
+	SIGNAL_HANDLER
+	set_current(null)
+
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = 0)
-	original_character = null
+	set_original_character(null)
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		// Yogs start -- Mood preferences
@@ -123,7 +141,7 @@
 				mood_was_enabled = TRUE
 				var/datum/component/mood/c = H.GetComponent(/datum/component/mood)
 				if(c)
-					c.RemoveComponent()
+					qdel(c)
 		// Yogs End
 		current.mind = null
 		UnregisterSignal(current, COMSIG_GLOB_MOB_DEATH)
@@ -131,18 +149,18 @@
 		SStgui.on_transfer(current, new_character)
 
 	if(key)
-		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
-			new_character.ghostize(1)						//we'll need to ghostize so that key isn't mobless.
+		if(new_character.key != key) //if we're transferring into a body with a key associated which is not ours
+			new_character.ghostize(TRUE) //we'll need to ghostize so that key isn't mobless.
 	else
 		key = new_character.key
 
-	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
-		new_character.mind.current = null
+	if(new_character.mind) //disassociate any mind currently in our new body's mind variable
+		new_character.mind.set_current(null)
 
 	var/mob/living/old_current = current
 	if(current)
 		current.transfer_observers_to(new_character)	//transfer anyone observing the old character to the new one
-	current = new_character								//associate ourself with our new body
+	set_current(new_character) //associate ourself with our new body
 	QDEL_NULL(antag_hud)
 	new_character.mind = src							//and associate our new body with ourself
 	antag_hud = new_character.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/antagonist_hud, "combo_hud", src)
@@ -170,6 +188,10 @@
 	current.update_atom_languages()
 	SEND_SIGNAL(src, COMSIG_MIND_TRANSFERRED, old_current)
 	SEND_SIGNAL(current, COMSIG_MOB_MIND_TRANSFERRED_INTO)
+
+//I cannot trust you fucks to do this properly
+/datum/mind/proc/set_original_character(new_original_character)
+	original_character = WEAKREF(new_original_character)
 
 /datum/mind/proc/set_death_time()
 	last_death = world.time
@@ -346,7 +368,7 @@
 
 	if(!uplink_loc) // We've looked everywhere, let's just implant you
 		implant = TRUE
-	
+
 	if(!implant)
 		. = uplink_loc
 		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
@@ -422,6 +444,8 @@
 		var/obj_count = 1
 		for(var/datum/objective/objective in all_objectives)
 			output += "<br><B>Objective #[obj_count++]</B>: [objective.explanation_text]"
+			if (objective.optional)
+				output += " - This objective is optional and not tracked, so just have fun with it!"
 			var/list/datum/mind/other_owners = objective.get_owners() - src
 			if(other_owners.len)
 				output += "<ul>"
@@ -553,7 +577,6 @@
 		for(var/datum/antagonist/A in antag_datums)
 			objective = locate(href_list["obj_completed"]) in A.objectives
 			if(istype(objective))
-				objective = objective
 				break
 		if(!objective)
 			to_chat(usr,"Invalid objective.")
@@ -623,6 +646,9 @@
 	var/list/all_objectives = list()
 	for(var/datum/antagonist/A in antag_datums)
 		all_objectives |= A.objectives
+		if(A.get_team())
+			var/datum/team/antag_team = A.get_team()
+			all_objectives |= antag_team.objectives
 	return all_objectives
 
 /datum/mind/proc/announce_objectives()
@@ -755,7 +781,7 @@
 
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
-	mind.active = 1		//indicates that the mind is currently synced with a client
+	mind.active = TRUE		//indicates that the mind is currently synced with a client
 
 /datum/mind/proc/has_martialart(string)
 	if(martial_art && martial_art.id == string)
@@ -781,6 +807,7 @@
 	mind.current = src
 	// There's nowhere else to set this up, mind code makes me depressed
 	mind.antag_hud = add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/antagonist_hud, "combo_hud", mind)
+	SEND_SIGNAL(src, COMSIG_MOB_MIND_INITIALIZED, mind)
 
 /mob/living/carbon/mind_initialize()
 	..()

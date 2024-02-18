@@ -235,6 +235,10 @@
 		/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/emitter/particle
+	name = "Particle Emitter (Machine Board)"
+	build_path = /obj/machinery/power/emitter/particle
+
 /obj/item/circuitboard/machine/generator
 	name = "Thermo-Electric Generator (Machine Board)"
 	icon_state = "engineering"
@@ -521,9 +525,6 @@
 	icon_state = "generic"
 	build_path = /obj/machinery/inspector_booth
 	req_components = list(
-		// Make sure stamp is second because otherwise the machine frame will treat the denied stamp as granted
-		/obj/item/stamp/denied = 1,
-		/obj/item/stamp = 1,
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/scanning_module = 1,
@@ -897,6 +898,25 @@
 	name = "\improper Departmental Techfab (Machine Board) - Medical"
 	icon_state = "medical"
 	build_path = /obj/machinery/rnd/production/techfab/department/medical
+
+/obj/item/circuitboard/machine/mindmachine_hub
+	name = "Mind Machine Hub (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/mindmachine_hub
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stack/ore/bluespace_crystal = 2)
+
+/obj/item/circuitboard/machine/mindmachine_pod
+	name = "Mind Machine Pod (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/mindmachine_pod
+	req_components = list(
+		/obj/item/stock_parts/scanning_module = 2,
+		/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stack/ore/bluespace_crystal = 1)
 
 //Science
 
@@ -1418,3 +1438,9 @@
 	req_components = list(
 		/obj/item/stock_parts/capacitor = 3,
 		/obj/item/stock_parts/micro_laser = 1)
+
+/obj/item/circuitboard/machine/mass_driver
+	name = "Mass Driver"
+	build_path = /obj/machinery/mass_driver
+	req_components = list(
+		/obj/item/stock_parts/capacitor = 1)

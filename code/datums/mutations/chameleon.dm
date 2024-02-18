@@ -40,6 +40,7 @@
 /datum/mutation/human/chameleon/super // Changeling chameleon
 	conflicts = list(/datum/mutation/human/chameleon)
 	allow_transfer = FALSE
+	allow_cloning = FALSE
 	mutadone_proof = TRUE
 	locked = TRUE
 	efficiency = 50

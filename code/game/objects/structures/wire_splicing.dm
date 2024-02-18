@@ -6,7 +6,7 @@
 	density = FALSE
 	anchored = TRUE
 	flags_1 = CONDUCT_1
-	layer = UNDER_CATWALK
+	layer = CATWALK_LAYER
 	var/messiness = 0 // How bad the splicing was, determines the chance of shock
 
 /obj/structure/wire_splicing/Initialize(mapload)
@@ -98,7 +98,7 @@
 	var/obj/structure/cable/C = locate(/obj/structure/cable) in T
 	if(!C)
 		return FALSE
-	if (electrocute_mob(user, C.powernet, src, siemens_coeff))
+	if(electrocute_mob(user, C.powernet, src, siemens_coeff, zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
 		do_sparks(5, TRUE, src)
 		return TRUE
 	else

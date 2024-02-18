@@ -5,6 +5,6 @@
 	icon_state = "TheSingGen"
 	creation_type = /obj/singularity/energy_ball
 
-/obj/machinery/the_singularitygen/tesla/tesla_act(power, tesla_flags)
+/obj/machinery/the_singularitygen/tesla/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		energy += power

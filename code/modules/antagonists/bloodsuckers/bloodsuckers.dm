@@ -114,7 +114,7 @@
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
-	RegisterSignal(current_mob, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
@@ -139,7 +139,7 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
-	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_PARENT_EXAMINE, COMSIG_LIVING_DEATH))
+	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH))
 
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -564,8 +564,9 @@
 	if(user_eyes)
 		user_eyes.flash_protect = initial(user_eyes.flash_protect)
 		user_eyes.sight_flags = initial(user_eyes.sight_flags)
-		user_eyes.see_in_dark = initial(user_eyes.see_in_dark)
-		user_eyes.lighting_alpha = initial(user_eyes.lighting_alpha)
+		user.lighting_cutoff_red += 5
+		user.lighting_cutoff_green += 15
+		user.lighting_cutoff_blue += 5
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/give_masquerade_infraction()
@@ -626,32 +627,18 @@
 
 /datum/antagonist/bloodsucker/proc/forge_bloodsucker_objectives()
 
-	// Claim a Lair Objective
-	var/datum/objective/bloodsucker/lair/lair_objective = new
-	lair_objective.owner = owner
-	objectives += lair_objective
-
-	// Survive Objective
 	var/datum/objective/survive/bloodsucker/survive_objective = new
 	survive_objective.owner = owner
 	objectives += survive_objective
 
-	// Objective 1: Vassalize a Head/Command, or a specific target
-	var/list/rolled_objectives = list()
-	switch(rand(1, 4))
-		if(1) //Drink Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/gourmand)
-		if(2) //Protege Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege)
-		if(3) //Heart Thief Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief)
-		if(4) //Vassal Specific Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/vassalhim)
+	var/datum/objective/bloodsucker_lair/lair_objective = new
+	lair_objective.owner = owner
+	objectives += lair_objective
 
-	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-		objective.owner = owner
-		objective.objective_name = "Optional Objective"
-		objectives += objective
+	var/datum/objective/vassal/vassalize = new
+	vassalize.owner = owner
+	objectives += vassalize
+
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()

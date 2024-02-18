@@ -4,13 +4,14 @@
 	desc = "For connecting portables devices related to atmospherics control."
 	can_unwrench = TRUE
 	use_power = NO_POWER_USE
-	level = 0
 	layer = GAS_FILTER_LAYER
+	hide = TRUE
 	shift_underlay_only = FALSE
 	pipe_flags = PIPING_ONE_PER_TURF
 	pipe_state = "connector"
 	piping_layer = 3
 	showpipe = TRUE
+	custom_reconcilation = TRUE
 
 	var/obj/machinery/portable_atmospherics/connected_device
 
@@ -24,11 +25,22 @@
 		connected_device.disconnect()
 	return ..()
 
+/obj/machinery/atmospherics/components/unary/portables_connector/return_airs_for_reconcilation(datum/pipeline/requester)
+	. = ..()
+	if(!connected_device)
+		return
+	if(istype(connected_device, /obj/mecha))
+		var/obj/mecha/connected_mech = connected_device
+		if(connected_mech.internal_tank)
+			. += connected_mech.internal_tank.return_air()
+	else
+		. += connected_device.return_air()
+
 /obj/machinery/atmospherics/components/unary/portables_connector/update_icon_nopipes()
 	icon_state = "connector"
 	if(showpipe)
 		cut_overlays()
-		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions)
+		var/image/cap = get_pipe_image(icon, "connector_cap", initialize_directions)
 		add_overlay(cap)
 
 /obj/machinery/atmospherics/components/unary/portables_connector/process_atmos()
@@ -51,8 +63,8 @@
 	icon_state = "connector_map-4"
 
 /obj/machinery/atmospherics/components/unary/portables_connector/visible
-	level = 3
 	piping_layer = 3
+	hide = FALSE
 
 /obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2
 	piping_layer = 2

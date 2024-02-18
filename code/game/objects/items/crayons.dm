@@ -74,15 +74,16 @@
 
 /obj/item/toy/crayon/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is jamming [src] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.add_atom_colour(paint_color, ADMIN_COLOUR_PRIORITY)
 	return (BRUTELOSS|OXYLOSS)
 
-/obj/item/toy/crayon/proc/min_value() // Makes the paint color brighter if it is below quarter bright (V < 64)
-	var/list/read = ReadRGB(paint_color) // Converts the RGB string into a list
+/obj/item/toy/crayon/proc/min_value(color = "#000000") // Makes the paint color brighter if it is below quarter bright (V < 64)
+	var/list/read = ReadRGB(color) // Converts the RGB string into a list
 	var/value = max(read) // Reads the V from HSV, essentially the brightness
 
 	if(value >= 64) // Min V is 64, 3 quarters to black from white
-		return
-	
+		return color
+
 	if(value > 0) // Div by zero avoidance
 		var/difference = 64/value
 		read[1] *= difference
@@ -93,7 +94,7 @@
 		read[2] = 64
 		read[3] = 64
 
-	paint_color = rgb(read[1], read[2], read[3])
+	return rgb(read[1], read[2], read[3])
 
 /obj/item/toy/crayon/Initialize(mapload)
 	. = ..()
@@ -253,7 +254,6 @@
 		if("select_colour")
 			if(can_change_colour)
 				paint_color = input(usr,"","Choose Color",paint_color) as color|null
-				min_value()
 				. = TRUE
 		if("enter_text")
 			var/txt = stripped_input(usr,"Choose what to write.",
@@ -372,7 +372,7 @@
 	if(!instant)
 		if(!do_after(user, 5 SECONDS, target))
 			return
-	
+
 	var/charges_used = use_charges(user, cost)
 	if(!charges_used)
 		return
@@ -392,7 +392,7 @@
 	if(actually_paints)
 		switch(paint_mode)
 			if(PAINT_NORMAL)
-				var/obj/effect/decal/cleanable/crayon/C = new(target, paint_color, drawing, temp, graf_rot)
+				var/obj/effect/decal/cleanable/crayon/C = new(target, min_value(paint_color), drawing, temp, graf_rot)
 				C.add_hiddenprint(user)
 				C.pixel_x = clickx
 				C.pixel_y = clicky
@@ -401,7 +401,7 @@
 				var/turf/left = locate(target.x-1,target.y,target.z)
 				var/turf/right = locate(target.x+1,target.y,target.z)
 				if(isValidSurface(left) && isValidSurface(right))
-					var/obj/effect/decal/cleanable/crayon/C = new(left, paint_color, drawing, temp, graf_rot, PAINT_LARGE_HORIZONTAL_ICON)
+					var/obj/effect/decal/cleanable/crayon/C = new(left, min_value(paint_color), drawing, temp, graf_rot, PAINT_LARGE_HORIZONTAL_ICON)
 					C.add_hiddenprint(user)
 					affected_turfs += left
 					affected_turfs += right
@@ -434,6 +434,8 @@
 	if(edible && (M == user))
 		to_chat(user, "You take a bite of the [src.name]. Delicious!")
 		var/eaten = use_charges(user, 5, FALSE)
+		if(!HAS_TRAIT(M, TRAIT_MARINE))
+			M.adjust_disgust(10)
 		if(check_empty(user)) //Prevents divsion by zero
 			return
 		var/fraction = min(eaten / reagents.total_volume, 1)
@@ -520,7 +522,6 @@
 
 /obj/item/toy/crayon/rainbow/afterattack(atom/target, mob/user, proximity, params)
 	paint_color = rgb(rand(0,255), rand(0,255), rand(0,255))
-	min_value()
 	. = ..()
 
 /*
@@ -538,7 +539,13 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
-	STR.set_holdable(list(/obj/item/toy/crayon))
+	STR.set_holdable(list(/obj/item/toy/crayon),
+		list(
+			/obj/item/toy/crayon/spraycan,
+			/obj/item/toy/crayon/mime,
+			/obj/item/toy/crayon/rainbow,
+			/obj/item/toy/crayon/white
+		))
 
 /obj/item/storage/crayons/PopulateContents()
 	new /obj/item/toy/crayon/red(src)
@@ -665,7 +672,7 @@
 		to_chat(target, span_userdanger("[user] sprays [src] into your face!"))
 
 		if(C.client)
-			C.blur_eyes(3)
+			C.adjust_eye_blur(3)
 			C.blind_eyes(1)
 		if(C.get_eye_protection() <= 0) // no eye protection? ARGH IT BURNS.
 			C.adjust_confusion(3)
@@ -673,7 +680,7 @@
 		if(ishuman(C) && actually_paints)
 			var/mob/living/carbon/human/H = C
 			H.lip_style = "spray_face"
-			H.lip_color = paint_color
+			H.lip_color = min_value(paint_color)
 			H.update_body()
 
 		. = use_charges(user, 10, FALSE)
@@ -684,9 +691,9 @@
 
 	if(isobj(target))
 		if(actually_paints)
-			target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
+			target.add_atom_colour(min_value(paint_color), WASHABLE_COLOUR_PRIORITY)
 			if(istype(target, /obj/structure/window))
-				if(color_hex2num(paint_color) < 255)
+				if(color_hex2num(min_value(paint_color)) < 255)
 					target.set_opacity(255)
 				else
 					target.set_opacity(initial(target.opacity))
@@ -726,7 +733,7 @@
 			to_chat(user, span_warning("ERR ERR. ASIMOV SPRAYCAN FIRMWARE DOES NOT ALLOW THIS."))
 			return // are you fucking nuts
 
-		else 
+		else
 			explosion(get_turf(src), 0, 0, 1, flame_range = 0) //1 light for default cans
 
 		log_bomber(user, "detonated a", src, "via [S.name]")

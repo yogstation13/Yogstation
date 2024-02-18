@@ -3,7 +3,6 @@
 	name = "massive gear"
 	icon_state = "wall_gear"
 	unanchored_icon = "wall_gear"
-	climbable = TRUE
 	max_integrity = 100
 	construction_value = 3
 	desc = "A massive brass gear. You could probably secure or unsecure it with a wrench, or just climb over it."
@@ -11,6 +10,10 @@
 	debris = list(/obj/item/clockwork/alloy_shards/large = 1, \
 	/obj/item/clockwork/alloy_shards/medium = 4, \
 	/obj/item/clockwork/alloy_shards/small = 2) //slightly more debris than the default, totals 26 alloy
+
+/obj/structure/destructible/clockwork/wall_gear/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/destructible/clockwork/wall_gear/displaced
 	anchored = FALSE
@@ -57,9 +60,9 @@
 				brass_floor = TRUE
 			if(W.use(2 - brass_floor))
 				if(anchored)
-					T.PlaceOnTop(/turf/closed/wall/clockwork)
+					T.place_on_top(/turf/closed/wall/clockwork)
 				else
-					T.PlaceOnTop(/turf/open/floor/clockwork, flags = CHANGETURF_INHERIT_AIR)
+					T.place_on_top(/turf/open/floor/clockwork, flags = CHANGETURF_INHERIT_AIR)
 					new /obj/structure/falsewall/brass(T)
 				qdel(src)
 			else
