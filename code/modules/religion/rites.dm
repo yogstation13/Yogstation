@@ -778,3 +778,21 @@
 	new /obj/item/organ/eyes/night_vision/augur (altar_turf)
 	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
 	return TRUE
+
+/datum/religion_rites/augurliver
+	name = "Augur Liver"
+	desc = "Creates a liver from phantasms. When surgically implanted into someone, it will grant higher toxin tolerance."
+	ritual_length = 5 SECONDS
+	ritual_invocations = list(
+	"To aid in our journey of the blood...",
+	"...Grant upon us your messengers...",
+	)
+	invoke_msg = "So that we may give eyes to all!"
+	favor_cost = 50
+
+/datum/religion_rites/augurliver/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/organ/liver/augur (altar_turf)
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
+	return TRUE
+

@@ -135,3 +135,14 @@
 		return
 	to_chat(owner, "<span class='warning'>Alert: Your Substance Processor has been damaged. An internal chemical leak is affecting performance.</span>")
 	owner.adjustToxLoss(severity)
+
+/obj/item/organ/liver/augur
+	name = "augur liver"
+	icon_state = "liver-w"
+	desc = "A bundle of phantasms near perfectly imitating the shape and function of a liver, though preforming its duties more efficiently."
+	alcohol_tolerance = 0.0005
+	decay_factor = 0
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //200% health of a normal liver
+	healing_factor = 2 * STANDARD_ORGAN_HEALING //Can regenerate from damage quicker
+	toxTolerance = 5
+

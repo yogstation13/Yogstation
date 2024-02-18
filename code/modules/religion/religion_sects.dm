@@ -463,7 +463,7 @@
 	desc = "A sect dedicated to unorthodox healing and blood extraction."
 	convert_opener = "Welcome to the church, oh disciple. <br>Minister to people with your bible to draw blood, then create blood vials and other such things at the altar. You can also gain a small amount of favor from sacrificing hearts."
 	alignment = ALIGNMENT_NEUT // they end up wanting to heal people, but their way is pretty weird
-	rites_list = list(/datum/religion_rites/goodblood, /datum/religion_rites/churchattire, /datum/religion_rites/bloodsight, /datum/religion_rites/augurheart, /datum/religion_rites/augureyes)
+	rites_list = list(/datum/religion_rites/goodblood, /datum/religion_rites/churchattire, /datum/religion_rites/bloodsight, /datum/religion_rites/augurheart, /datum/religion_rites/augureyes, /datum/religion_rites/augurliver)
 	altar_icon_state = "convertaltar-blood"
 	desired_items = list(/obj/item/organ/heart)
 	COOLDOWN_DECLARE(last_heal)
