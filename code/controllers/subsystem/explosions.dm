@@ -66,9 +66,24 @@ SUBSYSTEM_DEF(explosions)
 	msg += "} "
 	return ..()
 
-
-#define SSEX_TURF "turf"
-#define SSEX_OBJ "obj"
+/datum/controller/subsystem/explosions/get_metrics()
+	. = ..()
+	.["cost_lowturf"] = cost_lowturf
+	.["cost_medturf"] = cost_medturf
+	.["cost_highturf"] = cost_highturf
+	.["cost_flameturf"] = cost_flameturf
+	.["cost_low_mov_atom"] = cost_low_mov_atom
+	.["cost_med_mov_atom"] = cost_med_mov_atom
+	.["cost_high_mov_atom"] = cost_high_mov_atom
+	.["cost_throwturf"] = cost_throwturf
+	.["lowturfs"] = lowturf.len
+	.["medturfs"] = medturf.len
+	.["highturfs"] = highturf.len
+	.["flameturfs"] = flameturf.len
+	.["low_mov_atom"] = low_mov_atom.len
+	.["med_mov_atom"] = med_mov_atom.len
+	.["high_mov_atom"] = high_mov_atom.len
+	.["throwturf"] = throwturf.len
 
 /datum/controller/subsystem/explosions/proc/is_exploding()
 	return (lowturf.len || medturf.len || highturf.len || flameturf.len || throwturf.len || low_mov_atom.len || med_mov_atom.len || high_mov_atom.len)
@@ -84,7 +99,7 @@ SUBSYSTEM_DEF(explosions)
 	set name = "Check Bomb Impact"
 	set category = "Misc.Server Debug"
 
-	var/newmode = alert("Use reactionary explosions?","Check Bomb Impact", "Yes", "No")
+	var/newmode = tgui_alert(usr, "Use reactionary explosions?","Check Bomb Impact", list("Yes", "No"))
 	var/turf/epicenter = get_turf(mob)
 	if(!epicenter)
 		return
@@ -93,7 +108,7 @@ SUBSYSTEM_DEF(explosions)
 	var/heavy = 0
 	var/light = 0
 	var/list/choices = list("Small Bomb","Medium Bomb","Big Bomb","Custom Bomb")
-	var/choice = input("Bomb Size?") in choices
+	var/choice = input(usr, "Pick the bomb size", "Bomb Size?", choices)
 	switch(choice)
 		if(null)
 			return 0
@@ -145,7 +160,7 @@ SUBSYSTEM_DEF(explosions)
 		else
 			continue
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/wipe_color_and_text, wipe_colours), 100)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(wipe_color_and_text), wipe_colours), 100)
 
 /proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)
@@ -210,6 +225,12 @@ SUBSYSTEM_DEF(explosions)
 		light_impact_range = min(GLOB.MAX_EX_LIGHT_RANGE * cap_multiplier, light_impact_range)
 		flash_range = min(GLOB.MAX_EX_FLASH_RANGE * cap_multiplier, flash_range)
 		flame_range = min(GLOB.MAX_EX_FLAME_RANGE * cap_multiplier, flame_range)
+	else // If they don't respect the bomb cap, still make them affected by the z-level bomb multiplier
+		devastation_range *= cap_multiplier
+		heavy_impact_range *= cap_multiplier
+		light_impact_range *= cap_multiplier
+		flash_range *= cap_multiplier
+		flame_range *= cap_multiplier
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
 	var/started_at = REALTIMEOFDAY
@@ -245,6 +266,7 @@ SUBSYSTEM_DEF(explosions)
 
 		if(prob(devastation_range*DEVASTATION_PROB+heavy_impact_range*HEAVY_IMPACT_PROB) && on_station) // Huge explosions are near guaranteed to make the station creak and whine, smaller ones might.
 			creaking_explosion = TRUE // prob over 100 always returns true
+			flicker_all_lights()
 
 		for(var/MN in GLOB.player_list)
 			var/mob/M = MN
@@ -283,7 +305,7 @@ SUBSYSTEM_DEF(explosions)
 					M.playsound_local(epicenter, null, echo_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0)
 
 				if(creaking_explosion) // 5 seconds after the bang, the station begins to creak
-					addtimer(CALLBACK(M, /mob/proc/playsound_local, epicenter, null, rand(FREQ_LOWER, FREQ_UPPER), 1, frequency, null, null, FALSE, hull_creaking_sound, 0), CREAK_DELAY)
+					addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, playsound_local), epicenter, null, rand(FREQ_LOWER, FREQ_UPPER), 1, frequency, null, null, FALSE, hull_creaking_sound, 0), CREAK_DELAY)
 
 	if(heavy_impact_range > 1)
 		var/datum/effect_system/explosion/E
@@ -337,7 +359,7 @@ SUBSYSTEM_DEF(explosions)
 			for(var/I in T)
 				var/atom/A = I
 				if (length(A.contents) && !(A.flags_1 & PREVENT_CONTENTS_EXPLOSION_1)) //The atom/contents_explosion() proc returns null if the contents ex_acting has been handled by the atom, and TRUE if it hasn't.
-					items += A.GetAllContents()
+					items += A.get_all_contents()
 				if(istype(A, /mob/living))
 					items -= A				//So we don't do double damage to mobs for balance raisins
 			for(var/thing in items)
@@ -500,7 +522,7 @@ SUBSYSTEM_DEF(explosions)
 		for(var/thing in flame_turf)
 			if(thing)
 				var/turf/T = thing
-				new /obj/effect/hotspot(T) //Mostly for ambience!
+				T.IgniteTurf(rand(4, 24)) //Mostly for ambience!
 		cost_flameturf = MC_AVERAGE(cost_flameturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		if (low_turf.len || med_turf.len || high_turf.len)
@@ -564,3 +586,5 @@ SUBSYSTEM_DEF(explosions)
 		cost_throwturf = MC_AVERAGE(cost_throwturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 	currentpart = SSEXPLOSIONS_TURFS
+
+#undef SSAIR_REBUILD_PIPENETS

@@ -4,7 +4,7 @@
 	id = "divulge"
 	desc = "Sheds your human disguise. This is obvious and so should be done in a secluded area. You cannot reverse this."
 	button_icon_state = "divulge"
-	check_flags = AB_CHECK_STUN | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
+	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	blacklisted = TRUE
 
 /datum/action/innate/darkspawn/divulge/Activate()
@@ -14,6 +14,8 @@
 	if(!ishuman(user))
 		to_chat(user, span_warning("You need to be human-er to do that!"))
 		return
+	if(isethereal(user))
+		user.set_light(0)
 	if(spot.get_lumcount() > DARKSPAWN_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return

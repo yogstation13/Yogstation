@@ -126,5 +126,5 @@
 			else //Adding uses to an existing module
 				action.uses += initial(action.uses)
 				action.desc = "[initial(action.desc)] It has [action.uses] use\s remaining."
-				action.UpdateButtonIcon()
+				action.build_all_button_icons()
 	processing_time -= AM.cost

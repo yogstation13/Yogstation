@@ -22,7 +22,7 @@
 	icon_living = "syndicate"
 	icon_dead = "syndicate_dead"
 	icon_gib = "syndicate_gib"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 0
 	turns_per_move = 5
 	response_help = "pokes"
@@ -48,8 +48,7 @@
 	del_on_death = 1
 	dodging = TRUE
 	rapid_melee = 2
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/syndicate/sentience_act()
 	faction -= ROLE_SYNDICATE
@@ -66,7 +65,7 @@
 	speed = 1
 	spacewalk = TRUE
 
-/mob/living/simple_animal/hostile/syndicate/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -80,6 +79,7 @@
 /mob/living/simple_animal/hostile/syndicate/melee //dude with a knife and no shields
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	icon_state = "syndicate_knife"
 	icon_living = "syndicate_knife"
 	loot = list(/obj/effect/gibspawner/human)
@@ -100,7 +100,7 @@
 	spacewalk = TRUE
 	projectile_deflect_chance = 50
 
-/mob/living/simple_animal/hostile/syndicate/melee/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/melee/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -125,7 +125,7 @@
 	var/obj/effect/light_emitter/red_energy_sword/sord
 	projectile_deflect_chance = 50
 
-/mob/living/simple_animal/hostile/syndicate/melee/sword/Initialize()
+/mob/living/simple_animal/hostile/syndicate/melee/sword/Initialize(mapload)
 	. = ..()
 	set_light(2)
 
@@ -133,7 +133,7 @@
 	QDEL_NULL(sord)
 	return ..()
 
-/mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/projectile/Proj)
 	if(prob(projectile_deflect_chance))
 		visible_message(span_danger("[src] blocks [Proj] with its shield!"))
 		return BULLET_ACT_BLOCK
@@ -151,7 +151,7 @@
 	spacewalk = TRUE
 	projectile_deflect_chance = 50
 
-/mob/living/simple_animal/hostile/syndicate/melee/sword/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/melee/sword/space/Initialize(mapload)
 	. = ..()
 	sord = new(src)
 	set_light(4)
@@ -197,7 +197,7 @@
 	speed = 1
 	spacewalk = TRUE
 
-/mob/living/simple_animal/hostile/syndicate/ranged/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/ranged/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -230,7 +230,7 @@
 	speed = 1
 	spacewalk = TRUE
 
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -260,7 +260,7 @@
 	speed = 1
 	spacewalk = TRUE
 
-/mob/living/simple_animal/hostile/syndicate/ranged/shotgun/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/ranged/shotgun/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -292,11 +292,12 @@
 	icon_living = "viscerator_attack"
 	pass_flags = PASSTABLE | PASSMOB | PASSCOMPUTER
 	a_intent = INTENT_HARM
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 	health = 25
 	maxHealth = 25
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	wound_bonus = -10
 	bare_wound_bonus = 20
 	sharpness = SHARP_EDGED
@@ -311,11 +312,11 @@
 	movement_type = FLYING
 	limb_destroyer = 1
 	speak_emote = list("states")
-	bubble_icon = "syndibot"
+	bubble_icon = BUBBLE_SYNDIBOT
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
 	deathmessage = "is smashed into pieces!"
 
-/mob/living/simple_animal/hostile/viscerator/Initialize()
+/mob/living/simple_animal/hostile/viscerator/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/swarming)

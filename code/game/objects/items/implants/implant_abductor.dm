@@ -3,7 +3,6 @@
 	desc = "Returns you to the mothership."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "implant"
-	activated = 1
 	var/obj/machinery/abductor/pad/home
 	var/cooldown = 30
 
@@ -26,7 +25,7 @@
 	if(..())
 		var/obj/machinery/abductor/console/console
 		if(ishuman(target))
-			var/datum/antagonist/abductor/A = target.mind.has_antag_datum(/datum/antagonist/abductor)
+			var/datum/antagonist/abductor/A = target?.mind?.has_antag_datum(/datum/antagonist/abductor)
 			if(A)
 				console = get_abductor_console(A.team.team_number)
 				home = console.pad

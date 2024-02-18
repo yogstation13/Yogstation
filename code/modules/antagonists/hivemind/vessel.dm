@@ -4,6 +4,7 @@
 /datum/antagonist/hivevessel
 	name = "Awoken Vessel"
 	job_rank = ROLE_BRAINWASHED
+	antag_hud_name = "hivevessel"
 	roundend_category = "awoken vessels"
 	show_in_antagpanel = TRUE
 	antagpanel_category = "Other"
@@ -26,7 +27,8 @@
 		if(ishuman(M.current))
 			vessel.glow = mutable_appearance('icons/effects/hivemind.dmi', "awoken", -BODY_BEHIND_LAYER)
 			M.current.add_overlay(vessel.glow)
-		M.AddSpell(new/obj/effect/proc_holder/spell/self/hive_comms)
+		var/datum/action/cooldown/spell/hive_comms/comms = new(src)
+		comms.Grant(src)
 		vessel.one_mind = final_form
 		vessel.one_mind.add_member(M)
 		vessel.objectives |= vessel.one_mind.objectives
@@ -40,24 +42,7 @@
 		M.add_antag_datum(vessel)
 
 /datum/antagonist/hivevessel/apply_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Our newfound powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_HIVE]
-	hud.join_hud(owner.current)
-	set_antag_hud(owner.current, "hivevessel")
-
-/datum/antagonist/hivevessel/remove_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			traitor_mob.dna.add_mutation(CLOWNMUT)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_HIVE]
-	hud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
+	handle_clown_mutation(owner.current, "Our newfound powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
 
 /datum/antagonist/hivevessel/greet()
 	to_chat(owner, span_assimilator("Your mind is suddenly opened, as you see the pinnacle of evolution..."))

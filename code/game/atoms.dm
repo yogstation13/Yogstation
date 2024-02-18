@@ -20,10 +20,16 @@
 	///Reagents holder
 	var/datum/reagents/reagents = null
 
-	///This atom's HUD (med/sec, etc) images. Associative list.
+	///all of this atom's HUD (med/sec, etc) images. Associative list of the form: list(hud category = hud image or images for that category).
+	///most of the time hud category is associated with a single image, sometimes its associated with a list of images.
+	///not every hud in this list is actually used. for ones available for others to see, look at active_hud_list.
 	var/list/image/hud_list = null
+	///all of this atom's HUD images which can actually be seen by players with that hud
+	var/list/image/active_hud_list = null
 	///HUD images that this atom can provide.
 	var/list/hud_possible
+
+	var/list/alternate_appearances
 
 	///Value used to increment ex_act() if reactionary_explosions is on
 	var/explosion_block = 0
@@ -35,6 +41,30 @@
 	  */
 	var/list/atom_colours
 
+	var/datum/wires/wires = null
+	var/obj/effect/abstract/particle_holder/master_holder
+
+	///Light systems, both shouldn't be active at the same time.
+	var/light_system = STATIC_LIGHT
+	///Range of the light in tiles. Zero means no light.
+	var/light_range = 0
+	///Intensity of the light. The stronger, the less shadows you will see on the lit area.
+	var/light_power = 1
+	///Hexadecimal RGB string representing the colour of the light. White by default.
+	var/light_color = COLOR_WHITE
+	/// Angle of light to show in light_dir
+	/// 360 is a circle, 90 is a cone, etc.
+	var/light_angle = 360
+	/// What angle to project light in
+	var/light_dir = NORTH
+	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
+	var/light_on = TRUE
+	///Bitflags to determine lighting-related atom properties.
+	var/light_flags = NONE
+	///Our light source. Don't fuck with this directly unless you have a good reason!
+	var/tmp/datum/light_source/light
+	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
+	var/tmp/list/light_sources
 
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
@@ -45,6 +75,8 @@
 
 	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
 	var/list/managed_vis_overlays
+	///overlays managed by [update_overlays][/atom/proc/update_overlays] to prevent removing overlays that weren't added by the same proc. Single items are stored on their own, not in a list.
+	var/list/managed_overlays
 
 	///Proximity monitor associated with this atom
 	var/datum/proximity_monitor/proximity_monitor
@@ -78,6 +110,12 @@
 
 	var/chat_color_darkened // A luminescence-shifted value of the last color calculated for chatmessage overlays
 
+	///Default pixel x shifting for the atom's icon.
+	var/base_pixel_x = 0
+	///Default pixel y shifting for the atom's icon.
+	var/base_pixel_y = 0
+	///the base icon state used for anything that changes their icon state.
+	var/base_icon_state
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
 
@@ -94,7 +132,7 @@
   */
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
-	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
 		world.preloader_load(src)
 
 	if(datum_flags & DF_USE_TAG)
@@ -152,12 +190,8 @@
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
-	if (light_power && light_range)
+	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
-
-	if (opacity && isturf(loc))
-		var/turf/T = loc
-		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
@@ -170,8 +204,6 @@
 
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
-
-	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -190,10 +222,6 @@
 /atom/proc/LateInitialize()
 	return
 
-/// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize()
-	return
-
 /**
   * Top level of the destroy chain for most atoms
   *
@@ -206,16 +234,18 @@
   */
 /atom/Destroy()
 	if(alternate_appearances)
-		for(var/K in alternate_appearances)
-			var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
-			AA.remove_from_hud(src)
+		for(var/current_alternate_appearance in alternate_appearances)
+			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = alternate_appearances[current_alternate_appearance]
+			selected_alternate_appearance.remove_atom_from_hud(src)
 
 	if(reagents)
 		qdel(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
-	LAZYCLEARLIST(overlays)
+	// Checking length(overlays) before cutting has significant speed benefits
+	if (length(overlays))
+		overlays.Cut()
 	LAZYCLEARLIST(priority_overlays)
 
 	for(var/i in targeted_by)
@@ -225,10 +255,12 @@
 	targeted_by = null
 
 	QDEL_NULL(light)
+	if (length(light_sources))
+		light_sources.Cut()
 
 	return ..()
 
-/atom/proc/handle_ricochet(obj/item/projectile/P)
+/atom/proc/handle_ricochet(obj/projectile/P)
 	return
 
 ///Can the mover object pass this atom, while heading for the target turf
@@ -349,19 +381,37 @@
 
 ///Take air from the passed in gas mixture datum
 /atom/proc/assume_air(datum/gas_mixture/giver)
-	qdel(giver)
+	return null
+
+/atom/proc/assume_air_moles(datum/gas_mixture/giver, moles)
+	return null
+
+/atom/proc/assume_air_ratio(datum/gas_mixture/giver, ratio)
 	return null
 
 ///Remove air from this atom
 /atom/proc/remove_air(amount)
 	return null
 
+/atom/proc/remove_air_ratio(ratio)
+	return null
+
+/atom/proc/transfer_air(datum/gas_mixture/taker, amount)
+	return null
+
+/atom/proc/transfer_air_ratio(datum/gas_mixture/taker, ratio)
+	return null
+
 ///Return the current air environment in this atom
 /atom/proc/return_air()
 	if(loc)
 		return loc.return_air()
-	else
-		return null
+	return null
+
+///Return the air if we can analyze it
+/atom/proc/return_analyzable_air()
+	return null
+
 
 ///Return the air if we can analyze it
 ///Check if this atoms eye is still alive (probably)
@@ -391,6 +441,10 @@
 /atom/proc/is_drainable()
 	return reagents && (reagents.flags & DRAINABLE)
 
+/// Can this atom spill its reagents
+/atom/proc/is_spillable()
+	return reagents && (reagents.flags & SPILLABLE)
+
 /// Are you allowed to drop this atom
 /atom/proc/AllowDrop()
 	return FALSE
@@ -414,8 +468,13 @@
   * We then return the protection value
   */
 /atom/proc/emp_act(severity)
-	var/protection = SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
-	if(!(protection & EMP_PROTECT_WIRES) && istype(wires))
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
+	var/protection = NONE
+	if(HAS_TRAIT(src, TRAIT_EMPPROOF_CONTENTS))
+		protection |= EMP_PROTECT_CONTENTS
+	if(HAS_TRAIT(src, TRAIT_EMPPROOF_SELF))
+		protection |= EMP_PROTECT_SELF
+	if(!(protection & EMP_PROTECT_CONTENTS) && istype(wires))
 		wires.emp_pulse()
 	return protection // Pass the protection value collected here upwards
 
@@ -424,8 +483,10 @@
   *
   * Default behaviour is to send the COMSIG_ATOM_BULLET_ACT and then call on_hit() on the projectile
   */
-/atom/proc/bullet_act(obj/item/projectile/P, def_zone)
-	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone)
+/atom/proc/bullet_act(obj/projectile/P, def_zone)
+	var/sig_return = SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone)
+	if(sig_return != NONE)
+		return sig_return
 	. = P.on_hit(src, 0, def_zone)
 
 ///Return true if we're inside the passed in atom
@@ -444,10 +505,10 @@
   * COMSIG_ATOM_GET_EXAMINE_NAME signal
   */
 /atom/proc/get_examine_name(mob/user)
-	. = "\a [src]"
+	. = "\a <b>[src]</b>"
 	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
 	if(article)
-		. = "[article] [src]"
+		. = "[article] <b>[src]</b>"
 		override[EXAMINE_POSITION_ARTICLE] = article
 	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
 		. = override.Join("")
@@ -465,7 +526,11 @@
   * Produces a signal COMSIG_PARENT_EXAMINE
   */
 /atom/proc/examine(mob/user)
-	. = list("[get_examine_string(user, TRUE)].")
+	var/examine_string = get_examine_string(user, thats = TRUE)
+	if(examine_string)
+		. = list("[examine_string].")
+	else
+		. = list()
 
 	if(desc)
 		. += desc
@@ -480,8 +545,8 @@
 			. += "It contains:"
 			if(length(reagents.reagent_list))
 				if(user.can_see_reagents()) //Show each individual reagent
-					for(var/datum/reagent/R in reagents.reagent_list)
-						. += "[R.volume] units of [R.name]"
+					for(var/datum/reagent/current_reagent in reagents.reagent_list)
+						. += "&bull; [round(current_reagent.volume, 0.01)] units of [current_reagent.name]"
 				else //Otherwise, just show the total volume
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)
@@ -498,6 +563,24 @@
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 /**
+ * Shows any and all examine text related to any status effects the user has.
+ */
+/mob/living/proc/get_status_effect_examinations()
+	var/list/examine_list = list()
+
+	for(var/datum/status_effect/effect as anything in status_effects)
+		var/effect_text = effect.get_examine_text()
+		if(!effect_text)
+			continue
+
+		examine_list += effect_text
+
+	if(!length(examine_list))
+		return
+
+	return examine_list.Join("\n")
+
+/**
   * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_WINDOW (default 1.5 seconds)
   *
   * This is where you can put extra information on something that may be superfluous or not important in critical gameplay
@@ -510,6 +593,74 @@
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE_MORE, user, .)
 	if(!LAZYLEN(.)) // lol ..length
 		return FALSE
+
+/**
+ * Updates the appearence of the icon
+ *
+ * Mostly delegates to update_name, update_desc, and update_icon
+ *
+ * Arguments:
+ * - updates: A set of bitflags dictating what should be updated. Defaults to [ALL]
+ */
+/atom/proc/update_appearance(updates=ALL)
+	SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = NONE
+	updates &= ~SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_APPEARANCE, updates)
+	if(updates & UPDATE_NAME)
+		. |= update_name(updates)
+	if(updates & UPDATE_DESC)
+		. |= update_desc(updates)
+	if(updates & UPDATE_ICON)
+		. |= update_icon(updates)
+
+/// Updates the name of the atom
+/atom/proc/update_name(updates=ALL)
+	SHOULD_CALL_PARENT(TRUE)
+	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_NAME, updates)
+
+/// Updates the description of the atom
+/atom/proc/update_desc(updates=ALL)
+	SHOULD_CALL_PARENT(TRUE)
+	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_DESC, updates)
+
+/// Updates the icon of the atom
+/atom/proc/update_icon(updates=ALL)
+	SIGNAL_HANDLER
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = NONE
+	updates &= ~SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON, updates)
+	if(updates & UPDATE_ICON_STATE)
+		update_icon_state()
+		. |= UPDATE_ICON_STATE
+
+	if(updates & UPDATE_OVERLAYS)
+		if(LAZYLEN(managed_vis_overlays))
+			SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+
+		var/list/new_overlays = update_overlays()
+		if(managed_overlays)
+			cut_overlay(managed_overlays)
+			managed_overlays = null
+		if(length(new_overlays))
+			managed_overlays = new_overlays
+			add_overlay(new_overlays)
+		. |= UPDATE_OVERLAYS
+
+	. |= SEND_SIGNAL(src, COMSIG_ATOM_UPDATED_ICON, updates, .)
+
+/// Updates the icon state of the atom
+/atom/proc/update_icon_state()
+	SHOULD_CALL_PARENT(TRUE)
+	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON_STATE)
+
+/// Updates the overlays of the atom
+/atom/proc/update_overlays()
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
 
 /**
   * An atom we are buckled or is contained within us has tried to move
@@ -562,7 +713,7 @@
   */
 /atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(density && !has_gravity(AM)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
-		addtimer(CALLBACK(src, .proc/hitby_react, AM), 2)
+		addtimer(CALLBACK(src, PROC_REF(hitby_react), AM), 2)
 
 /**
   * We have have actually hit the passed in atom
@@ -581,11 +732,11 @@
 /mob/living/proc/get_blood_dna_list()
 	if(get_blood_id() != /datum/reagent/blood)
 		return
-	return list("ANIMAL DNA" = "Y-")
+	return list("ANIMAL DNA" = get_blood_type("Y-"))
 
 ///Get the mobs dna list
 /mob/living/carbon/get_blood_dna_list()
-	if(!(get_blood_id() in list(/datum/reagent/blood, /datum/reagent/toxin/acid))) //polysmorphs have DNA located in literal acid, don't ask me why
+	if(!(get_blood_id() in list(/datum/reagent/blood, /datum/reagent/toxin/acid, /datum/reagent/consumable/liquidelectricity))) //polysmorphs have DNA located in literal acid, don't ask me why
 		return
 	var/list/blood_dna = list()
 	if(dna)
@@ -595,10 +746,10 @@
 	return blood_dna
 
 /mob/living/carbon/alien/get_blood_dna_list()
-	return list("UNKNOWN DNA" = "X*")
+	return list("UNKNOWN DNA" = get_blood_type("X"))
 
 /mob/living/silicon/get_blood_dna_list()
-	return list("MOTOR OIL" = "SAE 5W-30") //just a little flavor text.
+	return list("SYNTHETIC COOLANT" = get_blood_type("Coolant"))
 
 ///to add a mob's dna info into an object's blood_dna list.
 /atom/proc/transfer_mob_blood_dna(mob/living/L)
@@ -642,6 +793,7 @@
 	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
 		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		return TRUE
+	return FALSE //needs this here so it won't return true if things don't wash
 
 ///Is this atom in space
 /atom/proc/isinspace()
@@ -678,18 +830,28 @@
 /**
   * Respond to an emag being used on our atom
   *
-  * Default behaviour is to send COMSIG_ATOM_EMAG_ACT and return
+  * Args:
+  * * mob/user: The mob that used the emag. Nullable.
+  * * obj/item/card/emag/emag_card: The emag that was used. Nullable.
+  *
+  * Returns:
+  * TRUE if the emag had any effect, falsey otherwise.
   */
-/atom/proc/emag_act()
-	SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT)
+/atom/proc/emag_act(mob/user, obj/item/card/emag/emag_card)
+	SHOULD_CALL_PARENT(FALSE) // Emag act should either be: overridden (no signal) or default (signal).
+	return (SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT, user, emag_card))
 
 /**
   * Respond to a radioactive wave hitting this atom
   *
   * Default behaviour is to send COMSIG_ATOM_RAD_ACT and return
   */
-/atom/proc/rad_act(strength)
-	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength)
+/atom/proc/rad_act(strength, collectable_radiation)
+	if(flags_1 & RAD_CONTAIN_CONTENTS)
+		return
+	if(loc && (loc.flags_1 & RAD_CONTAIN_CONTENTS))
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength, collectable_radiation)
 
 /**
   * Respond to narsie eating our atom
@@ -754,16 +916,14 @@
   */
 /atom/proc/component_storage_contents_dump_act(datum/component/storage/src_object, mob/user)
 	var/list/things = src_object.contents()
-	var/datum/progressbar/progress = new(user, things.len, src)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	//yogs start -- stops things from dumping into themselves
 	if(STR == src_object)
 		to_chat(user,span_warning("You can't dump the contents of [src_object.parent] into itself!"))
 		return
 	//yogs end
-	while (do_after(user, 1 SECONDS, src, TRUE, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
+	while (do_after(user, 1 SECONDS, src, TRUE, FALSE, CALLBACK(STR, TYPE_PROC_REF(/datum/component/storage, handle_mass_item_insertion), things, src_object, user)))
 		stoplag(1)
-	qdel(progress)
 	to_chat(user, span_notice("You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can."))
 	STR.orient2hud(user)
 	src_object.orient2hud(user)
@@ -821,8 +981,33 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
 
+/**
+  * Used to change the pixel shift of an atom
+  */
+/atom/proc/setShift(dir)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_SHIFT_CHANGE, dir)
+
+	var/new_x = pixel_x
+	var/new_y = pixel_y
+
+	if (dir & NORTH)
+		new_y++
+
+	if (dir & EAST)
+		new_x++
+
+	if (dir & SOUTH)
+		new_y--
+
+	if (dir & WEST)
+		new_x--
+
+	pixel_x = clamp(new_x, -16, 16)
+	pixel_y = clamp(new_y, -16, 16)
+
 ///Handle melee attack by a mech
-/atom/proc/mech_melee_attack(obj/mecha/M)
+/atom/proc/mech_melee_attack(obj/mecha/M, equip_allowed = TRUE)
 	return
 
 /**
@@ -894,12 +1079,63 @@
   * the object has been admin edited
   */
 /atom/vv_edit_var(var_name, var_value)
+	var/old_light_flags = light_flags
+	// Disable frozen lights for now, so we can actually modify it
+	light_flags &= ~LIGHT_FROZEN	
+	switch(var_name)
+		
+		if(NAMEOF(src, light_range))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_range = var_value)
+			else
+				set_light_range(var_value)
+			. = TRUE
+		if(NAMEOF(src, light_power))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_power = var_value)
+			else
+				set_light_power(var_value)
+			. = TRUE
+		if(NAMEOF(src, light_color))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_color = var_value)
+			else
+				set_light_color(var_value)
+			. = TRUE
+		if(NAMEOF(src, light_angle))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_angle = var_value)
+				. = TRUE
+		if(NAMEOF(src, light_dir))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_dir = var_value)
+				. = TRUE
+		if(NAMEOF(src, light_on))
+			set_light_on(var_value)
+			. = TRUE
+		if(NAMEOF(src, light_flags))
+			set_light_flags(var_value)
+			// I'm sorry
+			old_light_flags = var_value
+			. = TRUE
+
+	light_flags = old_light_flags
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
 	if(!GLOB.Debug2)
 		flags_1 |= ADMIN_SPAWNED_1
-	. = ..()
+
+	. = ..()	
+	
 	switch(var_name)
-		if("color")
+		if(NAMEOF(src, color))
 			add_atom_colour(color, ADMIN_COLOUR_PRIORITY)
+			update_appearance()
+		if(NAMEOF(src, opacity))
+			set_opacity(var_value)
+			. = TRUE
 
 /**
   * Return the markup to for the dropdown list for the VV panel for this atom
@@ -930,7 +1166,7 @@
 
 		if(reagents)
 			var/chosen_id
-			switch(alert(usr, "Choose a method.", "Add Reagents", "Search", "Choose from a list", "I'm feeling lucky"))
+			switch(tgui_alert(usr, "Choose a method.", "Add Reagents", list("Search", "Choose from a list", "I'm feeling lucky")))
 				if("Search")
 					var/valid_id
 					while(!valid_id)
@@ -998,6 +1234,8 @@
 		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
 		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
 		if(newname)
+			log_admin("[key_name(usr)] renamed [src] to [newname].")
+			message_admins("Admin [key_name_admin(usr)] renamed [ADMIN_FLW(src)] to [newname].")
 			vv_auto_rename(newname)
 
 /atom/proc/vv_auto_rename(newname)
@@ -1050,28 +1288,48 @@
 	return
 
 /**
-  *Tool behavior procedure. Redirects to tool-specific procs by default.
-  *
-  * You can override it to catch all tool interactions, for use in complex deconstruction procs.
-  *
-  * Must return  parent proc ..() in the end if overridden
-  */
-/atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
+ * Tool behavior procedure. Redirects to tool-specific procs by default.
+ *
+ * You can override it to catch all tool interactions, for use in complex deconstruction procs.
+ *
+ * Must return  parent proc ..() in the end if overridden
+ */
+/atom/proc/tool_act(mob/living/user, obj/item/tool, tool_type)
+	var/act_result
+	var/signal_result
+
+	signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, tool)
+	if(signal_result & COMPONENT_BLOCK_TOOL_ATTACK) // The COMSIG_ATOM_TOOL_ACT signal is blocking the act
+		return TOOL_ACT_SIGNAL_BLOCKING
+	if(QDELETED(tool))
+		return TRUE
+
 	switch(tool_type)
 		if(TOOL_CROWBAR)
-			return crowbar_act(user, I)
+			act_result = crowbar_act(user, tool)
 		if(TOOL_MULTITOOL)
-			return multitool_act(user, I)
+			act_result = multitool_act(user, tool)
 		if(TOOL_SCREWDRIVER)
-			return screwdriver_act(user, I)
+			act_result = screwdriver_act(user, tool)
 		if(TOOL_WRENCH)
-			return wrench_act(user, I)
+			act_result = wrench_act(user, tool)
 		if(TOOL_WIRECUTTER)
-			return wirecutter_act(user, I)
+			act_result = wirecutter_act(user, tool)
 		if(TOOL_WELDER)
-			return welder_act(user, I)
+			act_result = welder_act(user, tool)
 		if(TOOL_ANALYZER)
-			return analyzer_act(user, I)
+			act_result = analyzer_act(user, tool)
+	if(!act_result)
+		return
+	
+	if(. && tool.toolspeed < 1) //nice tool bro
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nice_tool", /datum/mood_event/nice_tool)
+
+	// A tooltype_act has completed successfully
+//	log_tool("[key_name(user)] used [tool] on [src] at [AREACOORD(src)]")
+	SEND_SIGNAL(tool, COMSIG_TOOL_ATOM_ACTED_PRIMARY(tool_type), src)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
 
 //! Tool-specific behavior procs. To be overridden in subtypes.
 ///
@@ -1094,7 +1352,7 @@
 
 ///Screwdriver act
 /atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), user, I)
 
 ///Wrench act
 /atom/proc/wrench_act(mob/living/user, obj/item/I)
@@ -1151,6 +1409,8 @@
 			log_ooc(log_text)
 		if(LOG_LOOC) // yogs - LOOC log
 			log_looc(log_text) // yogs - LOOC log
+		if(LOG_DONATOR) // yogs - Donator log
+			log_donator(log_text) // yogs - Donator log
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)
@@ -1270,11 +1530,16 @@
 	. = ..()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /atom/movable/proc/get_filter(name)
 	if(filter_data && filter_data[name])
 		return filters[filter_data.Find(name)]
+
+/// Returns the indice in filters of the given filter name.
+/// If it is not found, returns null.
+/atom/proc/get_filter_index(name)
+	return filter_data?.Find(name)
 
 /atom/movable/proc/remove_filter(name)
 	if(filter_data && filter_data[name])
@@ -1304,13 +1569,20 @@
 		for(var/comp_mat in material_comp)
 			.[comp_mat] += material_comp[comp_mat]
 
+///Setter for the `density` variable to append behavior related to its changing.
+/atom/proc/set_density(new_value)
+	SHOULD_CALL_PARENT(TRUE)
+	if(density == new_value)
+		return
+	. = density
+	density = new_value
+
 /**
   * Causes effects when the atom gets hit by a rust effect from heretics
   *
   * Override this if you want custom behaviour in whatever gets hit by the rust
   */
 /atom/proc/rust_heretic_act()
-	return
 
 /**
  * Used to set something as 'open' if it's being used as a supplypod
@@ -1348,7 +1620,7 @@
 	return output
 
 ///Sets the custom materials for an item.
-/atom/proc/set_custom_materials(var/list/materials, multiplier = 1)
+/atom/proc/set_custom_materials(list/materials, multiplier = 1)
 	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
 		for(var/i in custom_materials)
 			var/datum/material/custom_material = i

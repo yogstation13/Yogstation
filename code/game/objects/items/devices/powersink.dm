@@ -26,7 +26,8 @@
 
 	var/obj/structure/cable/attached		// the attached cable
 
-/obj/item/powersink/update_icon()
+/obj/item/powersink/update_icon_state()
+	. = ..()
 	icon_state = "powersink[mode == OPERATING]"
 
 /obj/item/powersink/proc/set_mode(value)
@@ -56,7 +57,7 @@
 			density = TRUE
 
 	mode = value
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	set_light(0)
 
 /obj/item/powersink/attackby(obj/item/I, mob/user, params)

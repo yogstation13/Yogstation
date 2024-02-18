@@ -1,12 +1,27 @@
 /datum/outfit/ert
 	name = "ERT Common"
 
+	id = /obj/item/card/id/ert
+	back = /obj/item/storage/backpack
 	uniform = /obj/item/clothing/under/rank/centcom_officer
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
+	backpack_contents = list(
+		/obj/item/clothing/mask/gas/sechailer/swat=1,
+		/obj/item/tank/internals/oxygen/tactical=1,
+		/obj/item/tank/internals/emergency_oxygen/double=1,
+		)
 
+/datum/outfit/ert/commonleader
+	head = /obj/item/clothing/head/beret/sec
+	backpack_contents = list(
+		/obj/item/clothing/mask/gas/sechailer/swat=1,
+		/obj/item/tank/internals/oxygen/tactical=1,
+		/obj/item/tank/internals/emergency_oxygen/double=1,
+		/obj/item/stack/ore/bluespace_crystal/refined/nt/five=1
+		)
 
 /datum/outfit/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -106,7 +121,7 @@
 	back = /obj/item/storage/backpack/ert/medical
 	belt = /obj/item/melee/classic_baton/telescopic
 	mask = /obj/item/clothing/mask/gas/sechailer
-	l_pocket = /obj/item/reagent_containers/hypospray/combat
+	l_pocket = /obj/item/reagent_containers/autoinjector/combat
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	backpack_contents = list(
 		/obj/item/storage/firstaid/toxin=1,
@@ -129,7 +144,7 @@
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	suit_store = /obj/item/gun/medbeam
 	belt = /obj/item/defibrillator/compact/combat/loaded
-	l_pocket = /obj/item/reagent_containers/hypospray/combat/nanites
+	l_pocket = /obj/item/reagent_containers/autoinjector/combat/nanites
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 
 	backpack_contents = list(
@@ -155,7 +170,7 @@
 	l_pocket = /obj/item/rcd_ammo
 	r_pocket= /obj/item/rcd_ammo
 	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen=1,
+		/obj/item/reagent_containers/autoinjector/medipen=1,
 		/obj/item/melee/classic_baton/telescopic=1,
 		/obj/item/construction/rcd/loaded=1
 		)
@@ -176,7 +191,7 @@
 	belt = /obj/item/storage/belt/utility/full/engi
 
 	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen=1,
+		/obj/item/reagent_containers/autoinjector/medipen=1,
 		/obj/item/storage/box/smart_metal_foam=1,
 		/obj/item/construction/rcd/combat=1
 		)
@@ -184,7 +199,7 @@
 /datum/outfit/ert/commander/inquisitor
 	name = "Inquisition Commander"
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal
-	belt = /obj/item/nullrod/scythe/talking/chainsword
+	belt = /obj/item/nullrod/talking/chainsword
 	suit_store = /obj/item/gun/energy/e_gun
 	mask = /obj/item/clothing/mask/gas/sechailer
 	backpack_contents = list(
@@ -213,8 +228,8 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
 	belt = /obj/item/gun/energy/e_gun
 	mask = /obj/item/clothing/mask/gas/sechailer
-	l_pocket = /obj/item/reagent_containers/hypospray/combat
-	r_pocket = /obj/item/reagent_containers/hypospray/combat/heresypurge
+	l_pocket = /obj/item/reagent_containers/autoinjector/combat
+	r_pocket = /obj/item/reagent_containers/autoinjector/combat/heresypurge
 	suit_store = /obj/item/gun/medbeam
 
 	backpack_contents = list(
@@ -296,6 +311,41 @@
 		/obj/item/melee/classic_baton/telescopic=1,\
 		/obj/item/grenade/clusterbuster/cleaner=3)
 
+/datum/outfit/ert/mining
+	name = "A Dwarven Miner"
+
+	id = /obj/item/card/id/ert
+	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker
+	suit_store = /obj/item/tank/internals/oxygen/tactical
+	r_hand = /obj/item/kinetic_crusher/mega
+	glasses = /obj/item/clothing/glasses/hud/health/meson
+	gloves = /obj/item/clothing/gloves/gauntlets
+	back = /obj/item/storage/backpack/explorer
+	belt = /obj/item/storage/belt/mining
+	mask = /obj/item/clothing/mask/gas/explorer
+	shoes = /obj/item/clothing/shoes/bhop
+	uniform = /obj/item/clothing/under/rank/miner/lavaland
+	backpack_contents = list(
+		/obj/item/storage/box/survival_mining=1,
+		/obj/item/crusher_trophy/demon_claws=1,
+		/obj/item/crusher_trophy/watcher_wing=1,
+		/obj/item/reagent_containers/autoinjector/medipen/survival=3,
+		/obj/item/kinetic_javelin=1,
+		/obj/item/kinetic_javelin_core/green=1
+		)
+	l_pocket = /obj/item/reagent_containers/glass/beaker/bluespace/dorf
+
+/datum/outfit/ert/mining/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+
+	if(visualsOnly)
+		return
+
+	var/obj/item/radio/R = H.ears
+	R.keyslot = new /obj/item/encryptionkey/heads/cmo
+	R.recalculateChannels()
+	H.dna.add_mutation(DWARFISM)
+
 /datum/outfit/centcom_clown
 	name = "Code Banana ERT"
 	id = /obj/item/card/id/centcom
@@ -323,6 +373,8 @@
 
 	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)
 	L.implant(H, null, 1)
+	var/obj/item/implant/biosig_ert/B = new/obj/item/implant/biosig_ert(H)
+	B.implant(H, null, 1)
 
 	var/obj/item/radio/R = H.ears
 	R.set_frequency(FREQ_CENTCOM)

@@ -7,8 +7,13 @@
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
 #define READ_FILE(file, text) DIRECT_INPUT(file, text)
 //This is an external call, "true" and "false" are how rust parses out booleans
-#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
+#ifdef EXTOOLS_LOGGING
+#define WRITE_LOG(log, text) extools_log_write(log, text, TRUE)
+#define WRITE_LOG_NO_FORMAT(log, text) extools_log_write(log, text, FALSE)
+#else
+#define WRITE_LOG(log, text) rustg_log_write(log, "\[[worldtime2text()]\] [text]", "true")
 #define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
+#endif
 
 //print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
@@ -34,7 +39,6 @@
 	WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
 #endif
-
 
 /* Items with ADMINPRIVATE prefixed are stripped from public logs. */
 /proc/log_admin(text)
@@ -160,6 +164,9 @@
 	if (CONFIG_GET(flag/log_vote))
 		WRITE_LOG(GLOB.world_game_log, "VOTE: [text]")
 
+/proc/log_donator(text)
+	if (CONFIG_GET(flag/log_donator))
+		WRITE_LOG(GLOB.world_game_log, "DONATOR: [text]")
 
 /proc/log_topic(text)
 	WRITE_LOG(GLOB.world_game_log, "TOPIC: [text]")
@@ -180,6 +187,11 @@
 	if (CONFIG_GET(flag/log_job_debug))
 		WRITE_LOG(GLOB.world_job_debug_log, "JOB: [text]")
 
+/// Logging for wizard powers learned
+/proc/log_spellbook(text)
+	if (CONFIG_GET(flag/log_uplink))
+		WRITE_LOG(GLOB.world_uplink_log, "SPELLBOOK: [text]")
+
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 #ifdef USE_CUSTOM_ERROR_HANDLER
@@ -191,13 +203,20 @@
 /proc/log_runtime(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
 
+/proc/log_signal(text)
+	WRITE_LOG(GLOB.signals_log, text)
+
 /* Rarely gets called; just here in case the config breaks. */
 /proc/log_config(text)
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
 
 /proc/log_mapping(text)
+#ifdef UNIT_TESTS
+	GLOB.unit_test_mapping_logs += text
+#endif
 	WRITE_LOG(GLOB.world_map_error_log, text)
+	
 
 /**
  * Appends a tgui-related log entry. All arguments are optional.
@@ -236,7 +255,12 @@
 
 /* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
 /proc/shutdown_logging()
+#ifdef EXTOOLS_LOGGING
+	extools_finalize_logging()
+#else
 	rustg_log_close_all()
+#endif
+
 
 
 /* Helper procs for building detailed log lines */

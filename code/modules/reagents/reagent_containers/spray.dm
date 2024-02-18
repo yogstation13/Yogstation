@@ -7,7 +7,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	item_flags = NOBLUDGEON
-	reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER_NOSPILL
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
@@ -112,12 +112,12 @@
 				if(isliving(T))
 					var/mob/living/M = T
 					if((M.mobility_flags & MOBILITY_STAND) || !range_left)
-						D.reagents.reaction(M, VAPOR)
+						D.reagents.reaction(M, TOUCH)
 						puff_reagent_left -= 1
 						var/contained = D.reagents.log_list() // looks like more copypasta but now the reagents are in a different place fuck you old coder
 						log_combat(user, M,  "sprayed with", src, addition="which had [contained]")
 				else if(!range_left)
-					D.reagents.reaction(T, VAPOR)
+					D.reagents.reaction(T, TOUCH)
 			else
 				D.reagents.reaction(T, VAPOR)
 				if(ismob(T))
@@ -155,7 +155,7 @@
 	set src in usr
 	if(usr.incapacitated())
 		return
-	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
+	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc) && src.loc == usr)
 		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
@@ -188,7 +188,7 @@
 
 /obj/item/reagent_containers/spray/cleaner/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is putting the nozzle of \the [src] in [user.p_their()] mouth.  It looks like [user.p_theyre()] trying to commit suicide!"))
-	if(do_mob(user,user,30))
+	if(do_after(user, 3 SECONDS))
 		if(reagents.total_volume >= amount_per_transfer_from_this)//if not empty
 			user.visible_message(span_suicide("[user] pulls the trigger!"))
 			src.spray(user)
@@ -220,7 +220,7 @@
 	volume = 60
 	stream_range = 4
 	amount_per_transfer_from_this = 5
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40, /datum/reagent/colorful_reagent/crayonpowder/red = 20) //red dye)
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40, /datum/reagent/colorful_reagent/crayonpowder/red/pepperspray = 20) //red dye)
 
 /obj/item/reagent_containers/spray/pepper/empty //for protolathe printing
 	list_reagents = null
@@ -268,7 +268,7 @@
 	generate_amount = 1
 	generate_delay = 40		//deciseconds
 
-/obj/item/reagent_containers/spray/waterflower/cyborg/Initialize()
+/obj/item/reagent_containers/spray/waterflower/cyborg/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
@@ -328,6 +328,8 @@
 /obj/item/reagent_containers/spray/chemsprayer/bioterror
 	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 100, /datum/reagent/toxin/coniine = 100, /datum/reagent/toxin/venom = 100, /datum/reagent/consumable/condensedcapsaicin = 100, /datum/reagent/toxin/initropidril = 100, /datum/reagent/toxin/polonium = 100)
 
+/obj/item/reagent_containers/spray/chemsprayer/freeze
+	list_reagents = list(/datum/reagent/consumable/frostoil = 600)
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor
 	name = "janitor chem sprayer"
@@ -345,7 +347,7 @@
 	var/last_generate = 0
 	var/generate_delay = 10	//deciseconds
 
-/obj/item/reagent_containers/spray/chemsprayer/janitor/Initialize()
+/obj/item/reagent_containers/spray/chemsprayer/janitor/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
@@ -378,3 +380,11 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
 	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
+
+// Rad-B-Gone
+/obj/item/reagent_containers/spray/radbgone
+	name = "Rad-B-Gone"
+	desc = "Warning, do not consume."
+	volume = 100
+	list_reagents = list(/datum/reagent/medicine/radscrub = 100)
+	stream_amount = 5

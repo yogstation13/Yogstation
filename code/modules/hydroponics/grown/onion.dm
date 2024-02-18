@@ -28,6 +28,13 @@
 	slices_num = 2
 	wine_power = 30
 
+/obj/item/reagent_containers/food/snacks/grown/onion/slice(accuracy, obj/item/W, mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(!L.is_eyes_covered())
+			user.emote("cry")
+	. = ..()
+
 /obj/item/seeds/onion/red
 	name = "pack of red onion seeds"
 	desc = "For growing exceptionally potent onions."
@@ -49,10 +56,10 @@
 	wine_power = 60
 
 /obj/item/reagent_containers/food/snacks/grown/onion/slice(accuracy, obj/item/W, mob/user)
-	var/datum/effect_system/smoke_spread/chem/S = new	//Since the onion is destroyed when it's sliced,
+	var/datum/effect_system/fluid_spread/smoke/chem/S = new	//Since the onion is destroyed when it's sliced,
 	var/splat_location = get_turf(src)	//we need to set up the smoke beforehand
 	S.attach(splat_location)
-	S.set_up(reagents, 0, splat_location, 0)
+	S.set_up(0, location = splat_location, carry = reagents)
 	if(..())
 		S.start()
 		return TRUE

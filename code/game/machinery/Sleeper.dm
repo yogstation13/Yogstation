@@ -14,9 +14,11 @@
 	desc = "An enclosed machine used to stabilize and heal patients."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
+	base_icon_state = "sleeper"
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
+	clicksound = 'sound/machines/pda_button1.ogg'
 
 	///efficiency, used to increase the effect of some healing methods
 	var/efficiency = 1
@@ -41,10 +43,17 @@
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
 
-/obj/machinery/sleeper/Initialize()
+	///what chemical we're injecting with the "sedate" function
+	var/sedate_chem = /datum/reagent/medicine/morphine
+	///maximum allowed chemical volume
+	var/sedate_limit = 20
+	///what are we putting in the tgui
+	var/sedate_button_text = "Sedate"
+
+/obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/sleeper/RefreshParts()
 	var/E
@@ -62,11 +71,9 @@
 		available_treatments |= treatments[i]
 	stasis = (I >= 4)
 
-/obj/machinery/sleeper/update_icon()
-	if(state_open)
-		icon_state = "[initial(icon_state)]-open"
-	else
-		icon_state = initial(icon_state)
+/obj/machinery/sleeper/update_icon_state()
+	icon_state = "[base_icon_state][state_open ? "-open" : null]"
+	return ..()
 
 /obj/machinery/sleeper/container_resist(mob/living/user)
 	visible_message(span_notice("[occupant] emerges from [src]!"),
@@ -87,20 +94,20 @@
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant)
 			mob_occupant.remove_status_effect(STATUS_EFFECT_STASIS)
-		flick("[initial(icon_state)]-anim", src)
+		flick("[base_icon_state]-anim", src)
 		if(open_sound)
 			playsound(src, open_sound, 40)
 		..()
 
 /obj/machinery/sleeper/close_machine(mob/user)
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
-		flick("[initial(icon_state)]-anim", src)
+		flick("[base_icon_state]-anim", src)
 		..(user)
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "[enter_message]")
 		if(mob_occupant && stasis)
-			mob_occupant.ExtinguishMob()
+			mob_occupant.extinguish_mob()
 		if(close_sound)
 			playsound(src, close_sound, 40)
 
@@ -111,11 +118,12 @@
 	if(is_operational() && occupant)
 		open_machine()
 
-/obj/machinery/sleeper/emag_act(mob/user)
+/obj/machinery/sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_danger("You disable the chemical injection inhibitors on the sleeper..."))
 	obj_flags |= EMAGGED
+	return TRUE
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
@@ -136,7 +144,7 @@
 	if(state_open)
 		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
-	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
+	if(default_deconstruction_screwdriver(user, "[base_icon_state]-o", base_icon_state, I))
 		return
 	return FALSE
 
@@ -185,10 +193,12 @@
 /obj/machinery/sleeper/process()
 	..()
 	check_nap_violations()
+	if(issilicon(occupant))
+		return
 	var/mob/living/carbon/C = occupant
 	if(C)
 		if(stasis && (C.stat == DEAD || C.health < 0))
-			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, -1)
 		else
 			C.remove_status_effect(STATUS_EFFECT_STASIS)
 		if(obj_flags & EMAGGED)
@@ -196,7 +206,7 @@
 			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1.5 - existing)) //this should be enough that you immediately eat shit on exiting but not before
 		switch(active_treatment)
 			if(SLEEPER_TEND)
-				C.heal_bodypart_damage(SLEEPER_HEAL_RATE,SLEEPER_HEAL_RATE) //this is slow as hell, use the rest of medbay you chumps
+				C.heal_bodypart_damage(SLEEPER_HEAL_RATE + efficiency, SLEEPER_HEAL_RATE + efficiency)
 			if(SLEEPER_ORGANS)
 				var/heal_reps = efficiency * 2
 				var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
@@ -206,13 +216,13 @@
 						var/healed = FALSE
 						var/obj/item/organ/heal_target = C.getorganslot(o)
 						if(heal_target?.damage >= 1)
-							var/organ_healing = C.stat == DEAD ? 0.05 : 0.2
+							var/organ_healing = C.stat == DEAD ? 0.5 : 1
 							heal_target.applyOrganDamage(-organ_healing)
 							healed = TRUE
 						if(healed)
 							break
 			if(SLEEPER_CHEMPURGE)
-				C.adjustToxLoss(-SLEEPER_HEAL_RATE)
+				C.adjustToxLoss(-(SLEEPER_HEAL_RATE + efficiency))
 				if(obj_flags & EMAGGED)
 					return
 				var/purge_rate = 0.5 * efficiency
@@ -234,6 +244,7 @@
 	data["open"] = state_open
 	data["active_treatment"] = active_treatment
 	data["can_sedate"] = can_sedate()
+	data["sedate_text"] = sedate_button_text
 
 	data["treatments"] = list()
 	for(var/T in available_treatments)
@@ -278,6 +289,7 @@
 /obj/machinery/sleeper/ui_act(action, params)
 	if(..())
 		return
+	playsound(src, pick('sound/items/hypospray.ogg','sound/items/hypospray2.ogg'), 50, TRUE, 2)
 	var/mob/living/mob_occupant = occupant
 	check_nap_violations()
 	switch(action)
@@ -295,7 +307,7 @@
 			. = TRUE
 		if("sedate")
 			if(can_sedate())
-				mob_occupant.reagents.add_reagent(/datum/reagent/medicine/morphine, 10)
+				mob_occupant.reagents.add_reagent(sedate_chem, 10)
 				if(usr)
 					log_combat(usr,occupant, "injected morphine into", addition = "via [src]")
 				. = TRUE
@@ -304,13 +316,14 @@
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
-	return mob_occupant.reagents.get_reagent_amount(/datum/reagent/medicine/morphine) + 10 <= 20
+	return mob_occupant.reagents.get_reagent_amount(sedate_chem) + 10 <= sedate_limit
 
 /obj/machinery/sleeper/syndie
 	icon_state = "sleeper_s"
+	base_icon_state = "sleeper_s"
 	controls_inside = TRUE
 
-/obj/machinery/sleeper/syndie/fullupgrade/Initialize()
+/obj/machinery/sleeper/syndie/fullupgrade/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
@@ -324,6 +337,7 @@
 	name = "soothing sleeper"
 	desc = "A large cryogenics unit built from brass. Its surface is pleasantly cool the touch."
 	icon_state = "sleeper_clockwork"
+	base_icon_state = "sleeper_clockwork"
 	enter_message = "<span class='bold inathneq_small'>You hear the gentle hum and click of machinery, and are lulled into a sense of peace.</span>"
 	efficiency = 3
 	available_treatments = list(SLEEPER_TEND, SLEEPER_ORGANS, SLEEPER_CHEMPURGE)
@@ -343,6 +357,7 @@
 
 /obj/machinery/sleeper/old
 	icon_state = "oldpod"
+	base_icon_state = "oldpod"
 
 #undef SLEEPER_TEND
 #undef SLEEPER_ORGANS

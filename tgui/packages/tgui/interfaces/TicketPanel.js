@@ -128,8 +128,7 @@ export const TicketPanel = (props, context) => {
             </Section>
             <Section
               m="-5px"
-              level="2"
-              inline="true">
+              level="2">
               {buttons.map((button_row, i) => (
                 <Flex key={i} direction="row">
                   {button_row.map(button => (

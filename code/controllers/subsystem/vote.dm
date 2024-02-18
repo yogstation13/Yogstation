@@ -42,12 +42,7 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
 	var/greatest_votes = 0
-	var/total_votes = 0
-	for(var/option in choices)
-		var/votes = choices[option]
-		total_votes += votes
-		if(votes > greatest_votes)
-			greatest_votes = votes
+	
 	//default-vote for everyone who didn't vote
 	if(!CONFIG_GET(flag/default_no_vote) && choices.len)
 		var/list/non_voters = GLOB.directory.Copy()
@@ -69,20 +64,22 @@ SUBSYSTEM_DEF(vote)
 			else if(mode == "map")
 				for (var/non_voter_ckey in non_voters)
 					var/client/C = non_voters[non_voter_ckey]
-					var/preferred_map = C.prefs.preferred_map
-					if(isnull(global.config.defaultmap))
-						continue
-					if(!preferred_map)
-						if(global.config.defaultmap.map_name)
-							preferred_map = global.config.defaultmap.map_name
+					var/preferred_map = C.prefs.read_preference(/datum/preference/choiced/preferred_map)
 					if(preferred_map)
 						choices[preferred_map] += 1
-					greatest_votes = max(greatest_votes, choices[preferred_map])
+
 	. = list()
-	if(greatest_votes)
-		for(var/option in choices)
-			if(choices[option] == greatest_votes)
-				. += option
+	for(var/option in choices)
+		var/weight = 1
+		if(mode == "map")
+			var/datum/map_config/VM = config.maplist[option]
+			weight = VM.voteweight
+		var/votes = choices[option] * weight
+		if(votes == greatest_votes)
+			. += option
+		if(votes > greatest_votes)
+			. = list(option)
+			greatest_votes = votes
 	return .
 
 /datum/controller/subsystem/vote/proc/announce_result()
@@ -134,7 +131,7 @@ SUBSYSTEM_DEF(vote)
 				SSmapping.map_voted = TRUE
 	if(restart)
 		var/active_admins = FALSE
-		for(var/client/C in GLOB.admins + GLOB.deadmins)
+		for(var/client/C in GLOB.permissions.admins + GLOB.permissions.deadmins)
 			if(!C.is_afk() && check_rights_for(C, R_SERVER))
 				active_admins = TRUE
 				break
@@ -170,7 +167,7 @@ SUBSYSTEM_DEF(vote)
 		return FALSE
 	var/lower_admin = FALSE
 	var/ckey = ckey(initiator_key)
-	if(GLOB.admin_datums[ckey])
+	if(GLOB.permissions.admin_datums[ckey])
 		lower_admin = TRUE
 
 	if(!mode)
@@ -193,6 +190,7 @@ SUBSYSTEM_DEF(vote)
 				if(!lower_admin && SSmapping.map_voted)
 					to_chat(usr, span_warning("The next map has already been selected."))
 					return FALSE
+				var/list/previous_maps = SSmapping.get_map_weights()
 				// Randomizes the list so it isn't always METASTATION
 				var/list/maps = list()
 				for(var/map in global.config.maplist)
@@ -202,6 +200,8 @@ SUBSYSTEM_DEF(vote)
 					if(VM.config_min_users > 0 && GLOB.clients.len < VM.config_min_users)
 						continue
 					if(VM.config_max_users > 0 && GLOB.clients.len > VM.config_max_users)
+						continue
+					if(previous_maps[VM.map_name] > 7)
 						continue
 					maps += VM.map_name
 					shuffle_inplace(maps)
@@ -339,6 +339,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote
 	name = "Vote!"
 	button_icon_state = "vote"
+	show_to_observers = FALSE
 
 /datum/action/vote/Trigger()
 	if(owner)
@@ -346,7 +347,7 @@ SUBSYSTEM_DEF(vote)
 		remove_from_client()
 		Remove(owner)
 
-/datum/action/vote/IsAvailable()
+/datum/action/vote/IsAvailable(feedback = FALSE)
 	return TRUE
 
 /datum/action/vote/proc/remove_from_client()

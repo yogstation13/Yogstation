@@ -74,7 +74,7 @@
 	item_state = "cap-trimmed"
 
 /obj/item/clothing/neck/skillcape/hop
-	name = "cape of the head of personel"
+	name = "cape of the head of personnel"
 	desc = "A slick, blue cape. The owner must have granted passage to many."
 	icon_state = "hop-skillcape"
 	item_state = "hop-skillcape"
@@ -189,11 +189,13 @@
 	name = "cape of the atmospheric technician"
 	icon_state = "atmos-skillcape"
 	item_state = "atmos-skillcape"
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/skillcape/trimmed/atmos
 	name = "cape of the grand atmospheric technician"
 	icon_state = "atmos-trimmed"
 	item_state = "atmos-trimmed"
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/skillcape/engineer
 	name = "cape of the station engineer"

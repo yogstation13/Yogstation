@@ -1,10 +1,10 @@
 
 
-/mob/living/carbon/alien/larva/Life()
+/mob/living/carbon/alien/larva/Life(seconds, times_fired)
 	set invisibility = 0
 	if (notransform)
 		return
-	if(..() && !IS_IN_STASIS(src)) //not dead and not in stasis
+	if(..() && SHOULD_LIFETICK(src, times_fired)) //not dead and not in stasis
 		// GROW!
 		if(amount_grown < max_grown)
 			amount_grown++
@@ -20,12 +20,12 @@
 			return
 		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || health <= crit_threshold)
 			if(stat == CONSCIOUS)
-				stat = UNCONSCIOUS
+				set_stat(UNCONSCIOUS)
 				blind_eyes(1)
 				update_mobility()
 		else
 			if(stat == UNCONSCIOUS)
-				stat = CONSCIOUS
+				set_stat(CONSCIOUS)
 				set_resting(FALSE)
 				adjust_blindness(-1)
 	update_damage_hud()

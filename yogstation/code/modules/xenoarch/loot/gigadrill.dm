@@ -13,20 +13,20 @@
 
 /obj/vehicle/ridden/gigadrill/after_add_occupant(mob/M)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	
 /obj/vehicle/ridden/gigadrill/after_remove_occupant(mob/M)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/vehicle/ridden/gigadrill/update_icon()
+/obj/vehicle/ridden/gigadrill/update_icon_state()
 	. = ..()
 	if(occupant_amount())
 		icon_state = "gigadrill_mov"
 	else
 		icon_state = "gigadrill"
 
-/obj/vehicle/ridden/gigadrill/Initialize()
+/obj/vehicle/ridden/gigadrill/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 1
@@ -104,8 +104,12 @@
 		return
 	
 	for(var/turf/closed/mineral/M in range(src,1))
-		if(get_dir(src,M)&src.dir)
+		if(get_dir(src,M) & src.dir)
 			M.attempt_drill()
+	
+	for(var/turf/open/floor/plating/dirt/jungleland/J in range(src,1))
+		if(get_dir(src,J) & src.dir)
+			J.spawn_rock()
 
 	if(!QDELETED(OB))
 		for(var/obj/item/stack/ore/ore in range(1, src))

@@ -20,32 +20,30 @@
 		pipe_interference_group = "atmos-[piping_layer]"\
 	)
 
-	var/mutable_appearance/center
-
-/* We use New() instead of Initialize() because these values are used in update_icon()
- * in the mapping subsystem init before Initialize() is called in the atoms subsystem init.
+/* We use New() instead of Initialize(mapload) because these values are used in update_appearance(UPDATE_ICON)
+ * in the mapping subsystem init before Initialize(mapload) is called in the atoms subsystem init.
  * This is true for the other manifolds (the 4 ways and the heat exchanges) too.
  */
-/obj/machinery/atmospherics/pipe/manifold/New()
+/obj/machinery/atmospherics/pipe/manifold/New(mapload)
 	icon_state = ""
-	center = mutable_appearance(icon, "manifold_center")
 	return ..()
 
-/obj/machinery/atmospherics/pipe/manifold/SetInitDirections()
-	initialize_directions = NORTH|SOUTH|EAST|WEST
+/obj/machinery/atmospherics/pipe/manifold/set_init_directions()
+	initialize_directions = ALL_CARDINALS
 	initialize_directions &= ~dir
 
-/obj/machinery/atmospherics/pipe/manifold/update_icon()
-	cut_overlays()
+/obj/machinery/atmospherics/pipe/manifold/update_overlays()
+	. = ..()
+	var/mutable_appearance/center = mutable_appearance(icon, "manifold_center")
 	if(!center)
 		center = mutable_appearance(icon, "manifold_center")
 	PIPING_LAYER_DOUBLE_SHIFT(center, piping_layer)
-	add_overlay(center)
+	. += center
 
 	//Add non-broken pieces
 	for(var/i in 1 to device_type)
 		if(nodes[i])
-			add_overlay( getpipeimage(icon, "pipe-[piping_layer]", get_dir(src, nodes[i])) )
+			. += get_pipe_image(icon, "pipe-[piping_layer]", get_dir(src, nodes[i]))
 
 	update_layer()
 	update_alpha()

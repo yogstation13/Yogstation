@@ -1,34 +1,42 @@
-// Symptoms are the effects that engineered advanced diseases do.
-
+/// # Disease Symptoms
+/// Symptoms are the effects that engineered advanced diseases do.
 /datum/symptom
-	// Buffs/Debuffs the symptom has to the overall engineered disease.
+	/// Friendly symptom name
 	var/name = ""
-	var/desc = "If you see this something went very wrong." //Basic symptom description
-	var/threshold_descs = list() //Descriptions of threshold effects
+	/// Basic symptom description
+	var/desc = "If you see this something went very wrong."
+	/// Asset representing this symptom in Pandemic UI
+	var/icon = "symptom.invalid.png"
+	/// Descriptions of threshold effects
+	var/threshold_descs = list()
 	var/stealth = 0
 	var/resistance = 0
 	var/stage_speed = 0
 	var/transmittable = 0
-	// The type level of the symptom. Higher is harder to generate.
+	/// The type level of the symptom. Higher is harder to generate.
 	var/level = 0
-	// The severity level of the symptom. Higher is more dangerous.
+	/// The severity level of the symptom. Higher is more dangerous.
 	var/severity = 0
-	// The hash tag for our diseases, we will add it up with our other symptoms to get a unique id! ID MUST BE UNIQUE!!!
+	/// The hash tag for our diseases, we will add it up with our other symptoms to get a unique id! ID MUST BE UNIQUE!!!
 	var/id = ""
-	//Base chance of sending warning messages, so it can be modified
+	/// Chance of warning the affected mob about this symptom
 	var/base_message_chance = 10
-	//If the early warnings are suppressed or not
+	/// If the early warning messages are suppressed or not
 	var/suppress_warning = FALSE
-	//Ticks between each activation
+	/// Ticks between each activation
 	var/next_activation = 0
 	var/symptom_delay_min = 1
 	var/symptom_delay_max = 1
-	//Can be used to multiply virus effects
+	/// Can be used to multiply virus effects
 	var/power = 1
-	//A neutered symptom has no effect, and only affects statistics.
+	/// A neutered symptom has no effect, and only affects statistics.
 	var/neutered = FALSE
 	var/list/thresholds
-	var/naturally_occuring = TRUE //if this symptom can appear from /datum/disease/advance/GenerateSymptoms()
+	/// True if this symptom can appear from [/datum/disease/advance/proc/GenerateSymptoms]
+	var/naturally_occuring = TRUE
+	/// Types of mob this symptom should affect.
+	/// Checked against [/mob/living/proc/get_process_flags]
+	var/compatible_biotypes = MOB_ORGANIC
 
 /datum/symptom/New()
 	var/list/S = SSdisease.list_symptoms
@@ -56,7 +64,7 @@
 		return FALSE
 	if(world.time < next_activation)
 		return FALSE
-	else
+	if(compatible_biotypes & A.affected_mob.mob_biotypes)
 		next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
 		return TRUE
 

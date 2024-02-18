@@ -13,16 +13,16 @@
 		return 0
 	. = ..()
 
-/obj/structure/closet/crate/secure/update_icon()
-	..()
+/obj/structure/closet/crate/secure/update_overlays()
+	. = ..()
 	if(broken)
-		add_overlay("securecrateemag")
+		. += "securecrateemag"
 	else if(locked)
-		add_overlay("securecrater")
+		. += "securecrater"
 	else
-		add_overlay("securecrateg")
+		. += "securecrateg"
 
-/obj/structure/closet/crate/secure/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/structure/closet/crate/secure/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	if(prob(tamperproof) && damage_amount >= DAMAGE_PRECISION)
 		boom()
 	else
@@ -55,6 +55,15 @@
 	name = "gear crate"
 	icon_state = "secgearcrate"
 
+/obj/structure/closet/crate/secure/gear/donut
+	var/donutsleft = 10
+
+/obj/structure/closet/crate/secure/gear/donut/open(mob/living/user)
+	. = ..()
+	if(donutsleft > 0)
+		new /obj/item/reagent_containers/food/snacks/donut(src)
+		donutsleft--
+
 /obj/structure/closet/crate/secure/hydroponics
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	name = "secure hydroponics crate"
@@ -64,6 +73,12 @@
 	desc = "A crate with a lock on it, painted in the scheme of the station's engineers."
 	name = "secure engineering crate"
 	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/radiation
+	desc = "A crate with a lock and is painted with a radiation sign on it. This crate is designed to prevent radiation from leaking outside of the crate."
+	name = "secure radiation crate"
+	icon_state = "radiation_secure"
+	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
 
 /obj/structure/closet/crate/secure/science
 	name = "secure science crate"
@@ -79,8 +94,56 @@
 	name = "private crate"
 	desc = "A crate cover designed to only open for who purchased its contents."
 	icon_state = "privatecrate"
+	///Account of the person buying the crate if private purchasing.
 	var/datum/bank_account/buyer_account
+	///Department of the person buying the crate if buying via the NIRN app.
+	var/datum/bank_account/department/department_account
+	///Is the secure crate opened or closed?
 	var/privacy_lock = TRUE
+	///Is the crate being bought by a person, or a budget card?
+	var/department_purchase = FALSE
+
+/obj/structure/closet/crate/secure/owned/hydroponics
+	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/owned/engineering
+	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/owned/science
+	icon_state = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/owned/medical
+	icon_state = "medsecurecrate"
+
+/obj/structure/closet/crate/secure/owned/gear
+	icon_state = "secgearcrate"
+
+/obj/structure/closet/crate/secure/owned/civ
+	icon_state = "plasmacrate"
+
+/obj/structure/closet/crate/secure/owned/radiation
+	icon_state = "radiation_secure"
+	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
+
+/obj/structure/closet/crate/secure/owned/cheap
+
+/obj/structure/closet/crate/secure/owned/cheap/hydroponics
+	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/engineering
+	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/owned/cheap/science
+	icon_state = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/medical
+	icon_state = "medsecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/gear
+	icon_state = "secgearcrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/civ
+	icon_state = "plasmacrate"
 
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
@@ -89,22 +152,31 @@
 /obj/structure/closet/crate/secure/owned/Initialize(mapload, datum/bank_account/_buyer_account)
 	. = ..()
 	buyer_account = _buyer_account
+	if(istype(buyer_account, /datum/bank_account/department))
+		department_purchase = TRUE
+		department_account = buyer_account
 
 /obj/structure/closet/crate/secure/owned/togglelock(mob/living/user, silent)
-	if(secure && !broken)
-		if(allowed(user))
-			if(privacy_lock)
-				var/obj/item/card/id/id_card = user.get_idcard(TRUE)
-				if(!id_card || !id_card.registered_account || (id_card.registered_account != buyer_account))
-					to_chat(user, span_notice("Bank account does not match with buyer!"))
-					return
-			if(iscarbon(user))
-				add_fingerprint(user)
-			locked = !locked
-			user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
-							span_notice("You [locked ? null : "un"]lock [src]."))
-			update_icon()
-		else if(!silent)
-			to_chat(user, span_notice("Access Denied"))
-	else if(secure && broken)
+	if(!secure)
+		return
+	if(broken)
 		to_chat(user, span_warning("\The [src] is broken!"))
+		return
+	if(!allowed(user))
+		if(!silent)
+			to_chat(user, span_notice("Access Denied"))
+		return
+	if(privacy_lock)
+		var/obj/item/card/id/id_card = user.get_idcard(TRUE)
+		if(!id_card || !id_card.registered_account)
+			to_chat(user, span_notice("No bank account found!"))
+			return
+		if((id_card.registered_account != buyer_account) && !(department_purchase && (id_card.registered_account?.account_job?.paycheck_department) == (department_account.department_id)))
+			to_chat(user, span_notice("Bank account does not match with buyer!"))
+			return
+	if(iscarbon(user))
+		add_fingerprint(user)
+	locked = !locked
+	user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
+	span_notice("You [locked ? null : "un"]lock [src]."))
+	update_appearance(UPDATE_ICON)

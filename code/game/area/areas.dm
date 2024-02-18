@@ -14,6 +14,17 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
 
+	/// List of all turfs currently inside this area. Acts as a filtered bersion of area.contents
+	/// For faster lookup (area.contents is actually a filtered loop over world)
+	/// Semi fragile, but it prevents stupid so I think it's worth it
+	var/list/turf/contained_turfs = list()
+	/// Contained turfs is a MASSIVE list, so rather then adding/removing from it each time we have a problem turf
+	/// We should instead store a list of turfs to REMOVE from it, then hook into a getter for it
+	/// There is a risk of this and contained_turfs leaking, so a subsystem will run it down to 0 incrementally if it gets too large
+	var/list/turf/turfs_to_uncontain = list()
+
+	var/area_flags = NONE
+
 	var/map_name // Set in New(); preserves the name set by the map maker, even if renamed by the Blueprints.
 
 	var/valid_territory = TRUE // If it's a valid territory for gangs to claim
@@ -21,20 +32,17 @@
 	var/clockwork_warp_allowed = TRUE // Can servants warp into this area from Reebe?
 	var/clockwork_warp_fail = "The structure there is too dense for warping to pierce. (This is normal in high-security areas.)"
 
-	var/tunnel_allowed = FALSE // if tunnels can be created on this area for mining generation
-	var/flora_allowed = FALSE // if plants may spawn in this area
-	var/mob_spawn_allowed = FALSE // if mobs can be spawned by natural generation
-	var/megafauna_spawn_allowed = FALSE // if megafauna can be spawned by natural generation in this area
-
-	var/fire = null
+	///If true, that means one of any fire alarms in the area is active
+	var/fire = FALSE
 	var/atmos = TRUE
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
 	var/vacuum = null //yogs- yellow vacuum lights
+	var/mining_speed = FALSE
 
 	var/requires_power = TRUE
-	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize().
+	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize(mapload).
 
 	var/outdoors = FALSE //For space, the asteroid, lavaland, etc. Used with blueprints to determine if we are adding a new area (vs editing a station room)
 
@@ -44,6 +52,13 @@
 	var/mood_bonus = 0
 	/// Mood message for being here, only shows up if mood_bonus != 0
 	var/mood_message = span_nicegreen("This area is pretty nice!\n")
+
+	/// The color of the light tubes' light in this area
+	var/lighting_colour_tube = "#FFF6ED"
+	/// The color of the light bulb's light in this area
+	var/lighting_colour_bulb = "#FFE6CC"
+
+	var/lighting_colour_night = "#FFDBB5"
 
 	var/power_equip = TRUE
 	var/power_light = TRUE
@@ -66,6 +81,8 @@
 	var/unique = TRUE
 	/// If false, then this area will show up as gibberish on suit sensors.
 	var/show_on_sensors = TRUE
+	/// a simple check to determine whether the lights in an area should go red during delta alert
+	var/delta_light = FALSE
 
 	var/no_air = null
 
@@ -73,12 +90,31 @@
 
 	var/global/global_uid = 0
 	var/uid
-	var/list/ambientsounds = GENERIC
+
+	var/ambience_index = AMBIENCE_GENERIC
+	var/list/ambientsounds
+
+	///Ambient buzz of the station, plays repeatedly, also IC
+	var/ambient_buzz = 'sound/ambience/shipambience.ogg'
+	///The volume of the ambient buzz
+	var/ambient_buzz_vol = 30
+	///Used to decide what the minimum time between ambience is
+	var/min_ambience_cooldown = 30 SECONDS
+	///Used to decide what the maximum time between ambience is
+	var/max_ambience_cooldown = 175 SECONDS
+	///Used to decide what kind of reverb the area makes sound have
+	var/sound_environment = SOUND_ENVIRONMENT_NONE
+
+	var/ambient_music_index
+	var/list/ambientmusic
+
+
 	flags_1 = CAN_BE_DIRTY_1
 
 	var/list/firedoors
 	var/list/cameras
 	var/list/firealarms
+	var/list/airalarms
 	var/firedoors_last_closed_on = 0
 	/// Can the Xenobio management console transverse this area by default?
 	var/xenobiology_compatible = FALSE
@@ -90,7 +126,15 @@
 	/// Wire assignment for airlocks in this area
 	var/airlock_wires = /datum/wires/airlock
 
+	///This datum, if set, allows terrain generation behavior to be ran on Initialize()
+	var/datum/map_generator/map_generator
+	
 	var/turf/teleport_anchors = list()	//ist of tiles we prefer to teleport to. this is for areas that are partially hazardous like for instance atmos_distro
+
+
+	/// Whether the lights in this area aren't turned off when it's empty at roundstart
+	var/lights_always_start_on = FALSE
+	
 /**
   * A list of teleport locations
   *
@@ -109,19 +153,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * The returned list of turfs is sorted by name
   */
 /proc/process_teleport_locs()
-	for(var/V in GLOB.sortedAreas)
-		var/area/AR = V
+	for(var/area/AR as anything in get_sorted_areas())
 		if(istype(AR, /area/shuttle) || AR.noteleport)
 			continue
 		if(GLOB.teleportlocs[AR.name])
 			continue
-		if (!AR.contents.len)
+		if (!AR.has_contained_turfs())
 			continue
-		var/turf/picked = AR.contents[1]
-		if (picked && is_station_level(picked.z))
+		if (is_station_level(AR.z))
 			GLOB.teleportlocs[AR.name] = AR
-
-	sortTim(GLOB.teleportlocs, /proc/cmp_text_dsc)
 
 /**
   * Called when an area loads
@@ -142,6 +182,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	// rather than waiting for atoms to initialize.
 	if (unique)
 		GLOB.areas_by_type[type] = src
+	GLOB.areas += src
 	return ..()
 
 /**
@@ -152,12 +193,20 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * returns INITIALIZE_HINT_LATELOAD
   */
-/area/Initialize()
+/area/Initialize(mapload)
 	icon_state = ""
 	layer = AREA_LAYER
 	uid = ++global_uid
 	map_name = name // Save the initial (the name set in the map) name of the area.
 	canSmoothWithAreas = typecacheof(canSmoothWithAreas)
+
+	add_delta_areas()
+
+	if(!ambientsounds && ambience_index)
+		ambientsounds = GLOB.ambience_assoc[ambience_index]
+
+	if(!ambientmusic && ambient_music_index)
+		ambientmusic = GLOB.ambient_music_assoc[ambient_music_index]
 
 	if(requires_power)
 		luminosity = 0
@@ -191,6 +240,40 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
 
+/area/proc/RunGeneration()
+	if(map_generator)
+		map_generator = new map_generator()
+		var/list/turfs = list()
+		for(var/turf/T in contents)
+			turfs += T
+		map_generator.generate_terrain(turfs, src)
+
+/area/proc/test_gen()
+	if(map_generator)
+		var/list/turfs = list()
+		for(var/turf/T in contents)
+			turfs += T
+		map_generator.generate_terrain(turfs, src)
+
+/area/proc/get_contained_turfs()
+	if(length(turfs_to_uncontain))
+		cannonize_contained_turfs()
+	return contained_turfs
+
+/// Ensures that the contained_turfs list properly represents the turfs actually inside us
+/area/proc/cannonize_contained_turfs()
+	// This is massively suboptimal for LARGE removal lists
+	// Try and keep the mass removal as low as you can. We'll do this by ensuring
+	// We only actually add to contained turfs after large changes (Also the management subsystem)
+	// Do your damndest to keep turfs out of /area/space as a stepping stone
+	// That sucker gets HUGE and will make this take actual tens of seconds if you stuff turfs_to_uncontain
+	contained_turfs -= turfs_to_uncontain
+	turfs_to_uncontain = list()
+
+/// Returns TRUE if we have contained turfs, FALSE otherwise
+/area/proc/has_contained_turfs()
+	return length(contained_turfs) - length(turfs_to_uncontain) > 0
+
 /**
   * Register this area as belonging to a z level
   *
@@ -201,22 +284,20 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * areas don't have a valid z themself or something
   */
 /area/proc/reg_in_areas_in_z()
-	if(contents.len)
-		var/list/areas_in_z = SSmapping.areas_in_z
-		var/z
-		update_areasize()
-		for(var/i in 1 to contents.len)
-			var/atom/thing = contents[i]
-			if(!thing)
-				continue
-			z = thing.z
-			break
-		if(!z)
-			WARNING("No z found for [src]")
-			return
-		if(!areas_in_z["[z]"])
-			areas_in_z["[z]"] = list()
-		areas_in_z["[z]"] += src
+	if(!has_contained_turfs())
+		return
+	var/list/areas_in_z = SSmapping.areas_in_z
+	update_areasize()
+	if(!z)
+		WARNING("No z found for [src]")
+		return
+	if(!areas_in_z["[z]"])
+		areas_in_z["[z]"] = list()
+	areas_in_z["[z]"] += src
+
+/area/proc/add_delta_areas()
+	if(is_station_level(z) && !istype(src, /area/shuttle) && !istype(src, /area/ruin) && !istype(src, /area/space))
+		GLOB.delta_areas += src
 
 /**
   * Destroy an area and clean it up
@@ -229,6 +310,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/Destroy()
 	if(GLOB.areas_by_type[type] == src)
 		GLOB.areas_by_type[type] = null
+	GLOB.sortedAreas -= src
+	GLOB.areas -= src
+	GLOB.delta_areas -= src
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -263,10 +347,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 					D.triggerAlarm("Power", src, cameras, source)
 			for(var/item in GLOB.alarmdisplay)
 				var/datum/computer_file/program/alarm_monitor/p = item
-				if(state == 1)
-					p.cancelAlarm("Power", src, source)
-				else
-					p.triggerAlarm("Power", src, cameras, source)
+				p.update_alarm_display()
 
 /**
   * Generate an atmospheric alert for this area
@@ -274,40 +355,34 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Sends to all ai players, alert consoles, drones and alarm monitor programs in the world
   */
 /area/proc/atmosalert(danger_level, obj/source)
-	if(danger_level != atmosalm)
-		if (danger_level==2)
+	atmosalm = danger_level
+	if (atmosalm==2)
+		for (var/item in GLOB.silicon_mobs)
+			var/mob/living/silicon/aiPlayer = item
+			aiPlayer.triggerAlarm("Atmosphere", src, cameras, source)
+		for (var/item in GLOB.alert_consoles)
+			var/obj/machinery/computer/station_alert/a = item
+			a.triggerAlarm("Atmosphere", src, cameras, source)
+		for (var/item in GLOB.drones_list)
+			var/mob/living/simple_animal/drone/D = item
+			D.triggerAlarm("Atmosphere", src, cameras, source)
+		for(var/item in GLOB.alarmdisplay)
+			var/datum/computer_file/program/alarm_monitor/p = item
+			p.update_alarm_display()
 
-			for (var/item in GLOB.silicon_mobs)
-				var/mob/living/silicon/aiPlayer = item
-				aiPlayer.triggerAlarm("Atmosphere", src, cameras, source)
-			for (var/item in GLOB.alert_consoles)
-				var/obj/machinery/computer/station_alert/a = item
-				a.triggerAlarm("Atmosphere", src, cameras, source)
-			for (var/item in GLOB.drones_list)
-				var/mob/living/simple_animal/drone/D = item
-				D.triggerAlarm("Atmosphere", src, cameras, source)
-			for(var/item in GLOB.alarmdisplay)
-				var/datum/computer_file/program/alarm_monitor/p = item
-				p.triggerAlarm("Atmosphere", src, cameras, source)
-
-		else if (src.atmosalm == 2)
-			for (var/item in GLOB.silicon_mobs)
-				var/mob/living/silicon/aiPlayer = item
-				aiPlayer.cancelAlarm("Atmosphere", src, source)
-			for (var/item in GLOB.alert_consoles)
-				var/obj/machinery/computer/station_alert/a = item
-				a.cancelAlarm("Atmosphere", src, source)
-			for (var/item in GLOB.drones_list)
-				var/mob/living/simple_animal/drone/D = item
-				D.cancelAlarm("Atmosphere", src, source)
-			for(var/item in GLOB.alarmdisplay)
-				var/datum/computer_file/program/alarm_monitor/p = item
-				p.cancelAlarm("Atmosphere", src, source)
-
-		src.atmosalm = danger_level
-		return 1
-	return 0
-
+	else
+		for (var/item in GLOB.silicon_mobs)
+			var/mob/living/silicon/aiPlayer = item
+			aiPlayer.cancelAlarm("Atmosphere", src, source)
+		for (var/item in GLOB.alert_consoles)
+			var/obj/machinery/computer/station_alert/a = item
+			a.cancelAlarm("Atmosphere", src, source)
+		for (var/item in GLOB.drones_list)
+			var/mob/living/simple_animal/drone/D = item
+			D.cancelAlarm("Atmosphere", src, source)
+		for(var/item in GLOB.alarmdisplay)
+			var/datum/computer_file/program/alarm_monitor/p = item
+			p.update_alarm_display()
 /**
   * Try to close all the firedoors in the area
   */
@@ -327,7 +402,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 				if(D.operating)
 					D.nextstate = opening ? FIREDOOR_OPEN : FIREDOOR_CLOSED
 				else if(!(D.density ^ opening))
-					INVOKE_ASYNC(D, (opening ? /obj/machinery/door/firedoor.proc/open : /obj/machinery/door/firedoor.proc/close))
+					INVOKE_ASYNC(D, (opening ? TYPE_PROC_REF(/obj/machinery/door/firedoor, open) : TYPE_PROC_REF(/obj/machinery/door/firedoor, close)))
 
 /**
   * Generate an firealarm alert for this area
@@ -345,7 +420,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		ModifyFiredoors(FALSE)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 
 	for (var/item in GLOB.alert_consoles)
 		var/obj/machinery/computer/station_alert/a = item
@@ -358,7 +433,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		D.triggerAlarm("Fire", src, cameras, source)
 	for(var/item in GLOB.alarmdisplay)
 		var/datum/computer_file/program/alarm_monitor/p = item
-		p.triggerAlarm("Fire", src, cameras, source)
+		p.update_alarm_display()
 
 	START_PROCESSING(SSobj, src)
 
@@ -370,13 +445,13 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Also cycles the icons of all firealarms and deregisters the area from processing on SSOBJ
   */
-/area/proc/firereset(obj/source)
-	if (fire)
+/area/proc/firereset(obj/source, alert_only=FALSE)
+	if (fire && !alert_only)
 		unset_fire_alarm_effects()
 		ModifyFiredoors(TRUE)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 
 	for (var/item in GLOB.silicon_mobs)
 		var/mob/living/silicon/aiPlayer = item
@@ -389,7 +464,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		D.cancelAlarm("Fire", src, source)
 	for(var/item in GLOB.alarmdisplay)
 		var/datum/computer_file/program/alarm_monitor/p = item
-		p.cancelAlarm("Fire", src, source)
+		p.update_alarm_display()
 
 	STOP_PROCESSING(SSobj, src)
 
@@ -432,7 +507,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		var/mob/living/silicon/SILICON = i
 		if(SILICON.triggerAlarm("Burglar", src, cameras, trigger))
 			//Cancel silicon alert after 1 minute
-			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,trigger), 600)
+			addtimer(CALLBACK(SILICON, TYPE_PROC_REF(/mob/living/silicon, cancelAlarm),"Burglar",src,trigger), 600)
 
 	var/obj/item/radio/radio = new /obj/item/radio(trigger)
 	radio.set_frequency(FREQ_SECURITY)
@@ -447,61 +522,69 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/set_fire_alarm_effect()
-	fire = TRUE
+/area/proc/set_fire_alarm_effect(delta_alert=FALSE)
+	if(delta_alert)
+		delta_light = TRUE
+	else
+		fire = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
-		F.update_fire_light(fire)
+		F.update_fire_light(TRUE)
 	for(var/obj/machinery/light/L in src)
-		L.update()
+		L.update(TRUE, TRUE, TRUE)
 
 /**
   * unset the fire alarm visual affects in an area
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/unset_fire_alarm_effects()
-	fire = FALSE
+/area/proc/unset_fire_alarm_effects(delta_alert=FALSE)
+	if(delta_alert)
+		delta_light = FALSE
+	else
+		fire = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
-		F.update_fire_light(fire)
+		if(!delta_light)
+			F.update_fire_light(FALSE)
 	for(var/obj/machinery/light/L in src)
-		L.update()
+		L.update(TRUE, TRUE, TRUE)
 
 /area/proc/set_vacuum_alarm_effect() //Just like fire alarm but blue
 	vacuum = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/obj/machinery/light/L in src)
-		L.update()
+		L.update(TRUE, TRUE, TRUE)
 
 /area/proc/unset_vacuum_alarm_effect()
 	vacuum = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/obj/machinery/light/L in src)
-		L.update()
+		L.update(TRUE, TRUE, TRUE)
 
 /**
-  * Update the icon of the area
+  * Update the icon state of the area
   *
   * Im not sure what the heck this does, somethign to do with weather being able to set icon
   * states on areas?? where the heck would that even display?
   */
-/area/proc/update_icon()
+/area/update_icon_state()
 	var/weather_icon
-	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
+	for(var/datum/weather/W as anything in SSweather.processing)
 		if(W.stage != END_STAGE && (src in W.impacted_areas))
 			W.update_areas()
 			weather_icon = TRUE
 	if(!weather_icon)
 		icon_state = null
+	return ..()
 
 /**
   * Update the icon of the area (overridden to always be null for space
   */
-/area/space/update_icon()
+/area/space/update_icon_state()
+	SHOULD_CALL_PARENT(FALSE)
 	icon_state = null
 
 
@@ -518,11 +601,11 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(always_unpowered)
 		return 0
 	switch(chan)
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			return power_equip
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			return power_light
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			return power_environ
 
 	return 0
@@ -541,7 +624,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()				// reverify power status (to update icons etc.)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Return the usage of power per channel
@@ -549,19 +632,19 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/usage(chan)
 	var/used = 0
 	switch(chan)
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			used += used_light
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			used += used_equip
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			used += used_environ
-		if(TOTAL)
+		if(AREA_USAGE_TOTAL)
 			used += used_light + used_equip + used_environ
-		if(STATIC_EQUIP)
+		if(AREA_USAGE_STATIC_EQUIP)
 			used += static_equip
-		if(STATIC_LIGHT)
+		if(AREA_USAGE_STATIC_LIGHT)
 			used += static_light
-		if(STATIC_ENVIRON)
+		if(AREA_USAGE_STATIC_ENVIRON)
 			used += static_environ
 	return used
 
@@ -569,17 +652,17 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Add a static amount of power load to an area
   *
   * Possible channels
-  * *STATIC_EQUIP
-  * *STATIC_LIGHT
-  * *STATIC_ENVIRON
+  * *AREA_USAGE_STATIC_EQUIP
+  * *AREA_USAGE_STATIC_LIGHT
+  * *AREA_USAGE_STATIC_ENVIRON
   */
 /area/proc/addStaticPower(value, powerchannel)
 	switch(powerchannel)
-		if(STATIC_EQUIP)
+		if(AREA_USAGE_STATIC_EQUIP)
 			static_equip += value
-		if(STATIC_LIGHT)
+		if(AREA_USAGE_STATIC_LIGHT)
 			static_light += value
-		if(STATIC_ENVIRON)
+		if(AREA_USAGE_STATIC_ENVIRON)
 			static_environ += value
 
 /**
@@ -596,13 +679,13 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Add a power value amount to the stored used_x variables
   */
 /area/proc/use_power(amount, chan)
-
+	amount *= POWER_MOD
 	switch(chan)
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			used_equip += amount
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			used_light += amount
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			used_environ += amount
 
 /**
@@ -616,28 +699,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	set waitfor = FALSE
 	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, M)
 	SEND_SIGNAL(M, COMSIG_ENTER_AREA, src) //The atom that enters the area
-	if(!isliving(M))
-		return
-
-	var/mob/living/L = M
-	if(!L.ckey)
-		return
-
-	// Ambience goes down here -- make sure to list each area separately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(L.client && !L.client.ambience_playing && L.client.prefs.toggles & SOUND_SHIP_AMBIENCE)
-		L.client.ambience_playing = 1
-		SEND_SOUND(L, sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 35, channel = CHANNEL_BUZZ))
-
-	if(!(L.client && (L.client.prefs.toggles & SOUND_AMBIENCE)))
-		return //General ambience check is below the ship ambience so one can play without the other
-
-	if(prob(35))
-		var/sound = pick(ambientsounds)
-
-		if(!L.client.played)
-			SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE))
-			L.client.played = TRUE
-			addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
 
 /**
   * Called when an atom exits an area
@@ -647,12 +708,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/Exited(atom/movable/M)
 	SEND_SIGNAL(src, COMSIG_AREA_EXITED, M)
 	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
-
-/**
-  * Reset the played var to false on the client
-  */
-/client/proc/ResetAmbiencePlayed()
-	played = FALSE
 
 /**
   * Returns true if this atom has gravity for the passed in turf
@@ -719,7 +774,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	always_unpowered = FALSE
 	valid_territory = FALSE
 	blob_allowed = FALSE
-	addSorted()
+	require_area_resort()
 /**
   * Set the area size of the area
   *
@@ -730,7 +785,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(outdoors)
 		return FALSE
 	areasize = 0
-	for(var/turf/open/T in contents)
+	for(var/turf/open/T in get_contained_turfs())
 		areasize++
 
 /**

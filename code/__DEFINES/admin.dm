@@ -37,8 +37,8 @@
 #define R_SOUNDS		(1<<11)
 #define R_SPAWN			(1<<12)
 #define R_AUTOLOGIN		(1<<13)
-#define R_DBRANKS		(1<<14)
-#define R_DEV			(1<<15) // Stuff NOONE should be touching except for head-dev/maints, I guess council too..
+#define R_DEV			(1<<14) // Stuff NOONE should be touching except for head-dev/maints, I guess council too..
+#define R_PERSIST_PERMS (1<<15) // Allow modification of persistent perms
 #define R_EVERYTHING 	(1<<16)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define R_DEFAULT R_AUTOLOGIN
@@ -98,6 +98,13 @@
 #define SPAM_TRIGGER_WARNING	5
 /// Number of identical messages required before the spam-prevention will automute you
 #define SPAM_TRIGGER_AUTOMUTE	10
+
+///Maximum keys that can be bound to one button
+#define MAX_COMMANDS_PER_KEY 5
+///Maximum keys per keybind
+#define MAX_KEYS_PER_KEYBIND 3
+///Length of held key buffer
+#define HELD_KEY_BUFFER_LENGTH 15
 
 #define STICKYBAN_DB_CACHE_TIME 10 SECONDS
 #define STICKYBAN_ROGUE_CHECK_TIME 5

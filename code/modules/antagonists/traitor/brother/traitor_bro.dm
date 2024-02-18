@@ -1,6 +1,6 @@
 /datum/status_effect/agent_pinpointer/brother
 	id = "brother_pinpointer"
-	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/brother
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/brother
 	var/datum/mind/set_target
 	var/list/datum/mind/allowed_targets
 
@@ -8,7 +8,7 @@
 	minimum_range = 2
 	range_fuzz_factor = 0
 
-/obj/screen/alert/status_effect/agent_pinpointer/brother
+/atom/movable/screen/alert/status_effect/agent_pinpointer/brother
 	name = "Blood Brother Integrated Pinpointer"
 	desc = "Even stealthier than a normal implant."
 	icon = 'icons/obj/device.dmi'
@@ -22,7 +22,7 @@
 	var/datum/mind/picked = pick(allowed_targets)
 	scan_target = picked.current
 
-/obj/screen/alert/status_effect/agent_pinpointer/brother/Click()
+/atom/movable/screen/alert/status_effect/agent_pinpointer/brother/Click()
 	if(attached_effect)
 		var/datum/status_effect/agent_pinpointer/brother/E = attached_effect
 		E.set_target = input(usr,"Select target to track","Pinpointer") as null|anything in E.allowed_targets

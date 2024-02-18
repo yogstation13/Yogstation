@@ -55,7 +55,8 @@ Credit where due:
 	if(M.mind)
 		if(ishuman(M) && (M.mind.assigned_role in list("Captain", "Chaplain")))
 			return FALSE
-		if(M.mind.enslaved_to && !is_servant_of_ratvar(M.mind.enslaved_to))
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
@@ -94,7 +95,7 @@ Credit where due:
 		var/datum/antagonist/clockcult/servant = .
 		var/datum/team/clockcult/cult = servant.get_team()
 		cult.check_size()
-
+	
 	if(!silent && L)
 		if(.)
 			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
@@ -139,8 +140,8 @@ Credit where due:
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	false_report_weight = 10
 	required_players = 24
-	required_enemies = 4
-	recommended_enemies = 4
+	required_enemies = 3
+	recommended_enemies = 3
 	enemy_minimum_age = 14
 	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Brig Physician") //Silicons can eventually be converted //Yogs: Added Brig Physician
 	restricted_jobs = list("Chaplain", "Captain")
@@ -160,13 +161,13 @@ Credit where due:
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	var/starter_servants = 4 //Guaranteed four servants
+	var/starter_servants = required_enemies
 	var/number_players = num_players()
 	roundstart_player_count = number_players
-	if(number_players > 30) //plus one servant for every additional 10 players above 30
+	if(number_players > 30) //plus one servant for every additional 8 players above 30
 		number_players -= 30
-		starter_servants += round(number_players / 10)
-	starter_servants = min(starter_servants, 8) //max 8 servants (that sould only happen with a ton of players)
+		starter_servants += round(number_players / 8)
+	starter_servants = min(starter_servants, 8) //max 8 servants (that should only happen with a ton of players)
 	while(starter_servants)
 		var/datum/mind/servant = antag_pick(antag_candidates)
 		servants_to_serve += servant
@@ -191,6 +192,8 @@ Credit where due:
 		greet_servant(L)
 		equip_servant(L)
 		add_servant_of_ratvar(L, TRUE)
+		GLOB.data_core.manifest_inject(L)
+
 	var/list/cog_spawns = GLOB.servant_spawns_scarabs.Copy()
 	for(var/turf/T in cog_spawns)
 		new /obj/item/clockwork/construct_chassis/cogscarab(T)
@@ -203,9 +206,13 @@ Credit where due:
 	if(!M)
 		return 0
 	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
+	to_chat(M, span_brass("He came to you in a dream, whispering softly in your ear, showing you visions of a majestic city, covered in brass. You were not the first to be reached out to by him, and you will not be the last."))
+	to_chat(M, span_brass("However, you are one of the few worthy enough to have found his home, hidden among the stars, and as such you shall be rewarded for your dedication. One last trial remains."))
+	to_chat(M, span_brass("Start the ark to weaken the veil and ensure the return of your lord; but beware, as there are those that seek to hinder you. They are unenlightened, show them Ratvars light to help them gain understanding and join your cause."))
 	to_chat(M, span_brass("You have approximately <b>[ark_time]</b> minutes until the Ark activates."))
 	to_chat(M, span_brass("Unlock <b>Script</b> scripture by converting a new servant."))
 	to_chat(M, span_brass("<b>Application</b> scripture will be unlocked halfway until the Ark's activation."))
+	to_chat(M, span_brass("Soon, Ratvar shall create a new City of Cogs, and forge a golden age for all sentient beings."))
 	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
 	return 1
 
@@ -216,7 +223,7 @@ Credit where due:
 	L.equipOutfit(/datum/outfit/servant_of_ratvar)
 	var/obj/item/clockwork/slab/S = new
 	var/slot = "At your feet"
-	var/list/slots = list("In your left pocket" = SLOT_L_STORE, "In your right pocket" = SLOT_R_STORE, "In your backpack" = SLOT_IN_BACKPACK, "On your belt" = SLOT_BELT)
+	var/list/slots = list("In your left pocket" = ITEM_SLOT_LPOCKET, "In your right pocket" = ITEM_SLOT_RPOCKET, "In your backpack" = ITEM_SLOT_BACKPACK, "On your belt" = ITEM_SLOT_BELT)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		slot = H.equip_in_one_of_slots(S, slots)
@@ -258,18 +265,6 @@ Credit where due:
 	working for this entity and utilizing highly-advanced technology to cross the great distance at will. If they should turn out to be a credible threat, the task falls on you and \
 	your crew to dispatch it in a timely manner."
 
-/datum/game_mode/proc/update_servant_icons_added(datum/mind/M)
-	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
-	A.join_hud(M.current)
-	set_antag_hud(M.current, "clockwork")
-
-/datum/game_mode/proc/update_servant_icons_removed(datum/mind/M)
-	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
-	A.leave_hud(M.current)
-	set_antag_hud(M.current, null)
-
-
-
 //Servant of Ratvar outfit
 /datum/outfit/servant_of_ratvar
 	name = "Servant of Ratvar"
@@ -277,11 +272,13 @@ Credit where due:
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	back = /obj/item/storage/backpack
 	ears = /obj/item/radio/headset
-	gloves = /obj/item/clothing/gloves/color/yellow
-	belt = /obj/item/storage/belt/utility/servant
+	gloves = /obj/item/clothing/gloves/color/yellow //Take them off if you want
+	belt = /obj/item/storage/belt/utility/servant //Take this off and pour it into a toolbox if you want
 	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
 	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
-	id = /obj/item/pda
+
+	var/obj/item/id_type = /obj/item/card/id
+	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -293,23 +290,29 @@ Credit where due:
 		plasmaman = TRUE
 
 /datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/card/id/W = new(H)
-	var/obj/item/pda/PDA = H.wear_id
-	W.assignment = "Assistant"
-	W.originalassignment = "Assistant"
-	W.access += ACCESS_MAINT_TUNNELS
-	W.registered_name = H.real_name
-	W.update_label()
-	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
-		H.internal = H.get_item_for_held_index(2)
-		H.update_internals_hud_icon(1)
-	PDA.hidden = TRUE
-	PDA.owner = H.real_name
-	PDA.ownjob = "Assistant"
-	PDA.update_label()
-	PDA.id_check(H, W)
-	H.sec_hud_set_ID()
+	var/obj/item/card/id/C = new id_type()
+	if(istype(C))
+		C.access += ACCESS_MAINT_TUNNELS
+		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
+		C.registered_name = H.real_name
+		C.assignment = "Assistant"
+		C.originalassignment = "Assistant"
+		if(H.age)
+			C.registered_age = H.age
+		C.update_label()
+		H.sec_hud_set_ID()
 
+	var/obj/item/modular_computer/PDA = new pda_type()
+	if(istype(PDA))
+		PDA.InsertID(C)
+		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
+
+		PDA.update_label()
+		PDA.update_appearance(UPDATE_ICON)
+		PDA.update_filters()
+
+	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
+		H.open_internals(H.get_item_for_held_index(2))
 
 //This paper serves as a quick run-down to the cult as well as a changelog to refer to.
 //Check strings/clockwork_cult_changelog.txt for the changelog, and update it when you can!
@@ -320,7 +323,7 @@ Credit where due:
 	Here's a quick primer on what you should know here.\
 	<ol>\
 	<li>You're in a place called Reebe right now. The crew can't get here normally.</li>\
-	<li>In the center is your base camp, with supplies, consoles, and the Ark. In the area sorunding you is an inaccessible area that the crew can walk between \
+	<li>In the center is your base camp, with supplies, consoles, and the Ark. In the area surrounding you is an inaccessible area that the crew can walk between \
 	once they arrive (more on that later.) Everything between that space is an open area.</li>\
 	<li>Your job as a servant is to build fortifications and defenses to protect the Ark and your base once the Ark activates. You can do this \
 	however you like, but work with your allies and coordinate your efforts.</li>\
@@ -329,15 +332,15 @@ Credit where due:
 	crew and defend it accordingly.</li>\
 	</ol>\
 	<hr>\
-	Here is the layout of Reebe, from inner to outter:\
+	Here is the layout of Reebe, from inner to outer:\
 	<ul>\
 	<li><b>Ark Chamber:</b> Houses the Ark in the very center.</li>\
 	<li><b>Listening Station:</b> (Bottom Left Corner of Circle) Contains intercoms, a telecomms relay, and a list of frequencies.</li>\
 	<li><b>Observation Room:</b> (Bottom Right Corner of Circle) Contains six camera observers. These can be used to watch the station through its cameras, as well as to teleport down \
 	to most areas. To do this, use the Warp action while hovering over the tile you want to warp to.</li>\
-	<li><b>Infirmary:</b> (Uper Right Corner of Circle) Contains sleepers and basic medical supplies for superficial wounds. The sleepers can consume Vitality to heal any occupants. \
+	<li><b>Infirmary:</b> (Upper Right Corner of Circle) Contains sleepers and basic medical supplies for superficial wounds. The sleepers can consume Vitality to heal any occupants. \
 	This room is generally more useful during the preparation phase; when defending the Ark, scripture is more useful.</li>\
-	<li><b>Summoning Room:</b> (Uper Left Corner of Circle) Holds two scarabs as well as extra clockwork slabs. Also houses the eminence spire to pick an eminence as well has the herald's beacon which alows the clock cult to declare war.</li>\
+	<li><b>Summoning Room:</b> (Upper Left Corner of Circle) Holds two scarabs as well as extra clockwork slabs. Also houses the eminence spire to pick an eminence as well has the herald's beacon which allows the clock cult to declare war.</li>\
 	</ul>\
 	<hr>\
 	<h2>Things that have changed:</h2>\
@@ -347,7 +350,7 @@ Credit where due:
 	<hr>\
 	<b>Good luck!</b>"
 
-/obj/item/paper/servant_primer/Initialize()
+/obj/item/paper/servant_primer/Initialize(mapload)
 	. = ..()
 	var/changelog = world.file2list("strings/clockwork_cult_changelog.txt")
 	var/changelog_contents = ""
@@ -359,6 +362,10 @@ Credit where due:
 	. = ..()
 	if(!is_servant_of_ratvar(user) && !isobserver(user))
 		. += span_danger("You can't understand any of the words on [src].")
+
+/obj/item/paper/servant_primer/infirmarypaper
+	name = "IOU"
+	info = "We pawned the sleepers and medkits in here off for some tomato sauce so we wouldn't have to eat dry pasta anymore. Shouldn't be an issue, if you need to heal yourself or a fellow servant cast Sentinel's Compromise or use a Vitality Matrix."
 
 /obj/effect/spawner/lootdrop/clockcult
 	name = "clock tile"

@@ -8,19 +8,21 @@
 	visor_flags = MASKINTERNALS
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.1
-	permeability_coefficient = 0.5
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0)
 	actions_types = list(/datum/action/item_action/adjust)
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
 	resistance_flags = NONE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/breath/tactical
 	name = "tactical breath mask"
-	desc = "A close-fitting 'tactical' mask that can be connected to an air supply. This model is not translucent for anonymity."
-	color = "#736e35"
+	desc = "A close-fitting 'tactical' mask that can be connected to an air supply."
+	icon_state = "tacmask"
+	item_state = "sechailer"
 	visor_flags_inv = HIDEFACE
 
-/obj/item/clothing/mask/breath/tactical/Initialize()
+/obj/item/clothing/mask/breath/tactical/Initialize(mapload)
 	. = ..()
 	adjustmask() // this mask starts lowered
 
@@ -33,7 +35,7 @@
 
 /obj/item/clothing/mask/breath/AltClick(mob/user)
 	..()
-	if(!user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+	if(user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	else
 		adjustmask(user)
@@ -47,5 +49,6 @@
 	name = "medical mask"
 	icon_state = "medical"
 	item_state = "m_mask"
-	permeability_coefficient = 0.01
 	equip_delay_other = 10
+	mutantrace_variation = MUTANTRACE_VARIATION
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)

@@ -38,13 +38,40 @@ GLOBAL_LIST_EMPTY(animated_tails_list_human)
 GLOBAL_LIST_EMPTY(ears_list)
 GLOBAL_LIST_EMPTY(wings_list)
 GLOBAL_LIST_EMPTY(wings_open_list)
-GLOBAL_LIST_EMPTY(r_wings_list)
 GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(moth_wingsopen_list)
 GLOBAL_LIST_EMPTY(caps_list)
+GLOBAL_LIST_EMPTY(ipc_screens_list)
+GLOBAL_LIST_EMPTY(ipc_antennas_list)
+GLOBAL_LIST_EMPTY(ipc_chassis_list)
+GLOBAL_LIST_INIT(plasmaman_helmet_list, list(
+	"None" = "",
+	"Slit" = "slit",
+	"Nyan" = "nyan",
+	"Gassy" = "gassy",
+	"Bane V1" = "banev1",
+	"Bane V2" = "banev2",
+	"Halo" = "halo",
+	"Wizard" = "wizard",
+	"Plate" = "plate",
+	"Low" = "low")) //for icon making -> use "enviro" before this
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
-GLOBAL_LIST_INIT(color_list_ethereal, list("F Class(Green)" = "97ee63", "F2 Class (Light Green)" = "00fa9a", "F3 Class (Dark Green)" = "37835b", "M Class (Red)" = "9c3030", "M1 Class (Purple)" = "ee82ee", "G Class (Yellow)" = "fbdf56", "O Class (Blue)" = "3399ff", "A Class (Cyan)" = "00ffff"))
+
+GLOBAL_LIST_EMPTY(preternis_weathering_list) //preternis body weathering
+GLOBAL_LIST_EMPTY(preternis_antenna_list) //preternis head antenna
+GLOBAL_LIST_EMPTY(preternis_eye_list) //preternis eyes
+GLOBAL_LIST_EMPTY(preternis_core_list) //preternis core (only one option, not changeable)
+GLOBAL_LIST_INIT(color_list_preternis, list( //welcome to preternis body colours, where we have colors ranging from gray to grey
+	"Factory Default" = "#FFFFFF", 
+	"Stainless Steel" = "#b4bdc7",
+	"Chrome" = "#9cb9df", 
+	"Gunmetal Gray" = "#818589", 
+	"Bronze" = "#CD7F32",
+	"Silver" = "#C0C0C0",
+	"Gold" = "#FFD700",
+	"Cobalt" = "#5fa1ff"
+	))//make sure they aren't too dark or it'll just become a mass of one colour
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
 GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks
@@ -95,17 +122,25 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Triumvirate-M",
 	"Weird"))
 
-/proc/resolve_ai_icon(input)
+/// A form of resolve_ai_icon that is guaranteed to never sleep.
+/// Not always accurate, but always synchronous.
+/proc/resolve_ai_icon_sync(input)
+	SHOULD_NOT_SLEEP(TRUE)
+
 	if(!input || !(input in GLOB.ai_core_display_screens))
 		return "ai"
 	else
 		if(input == "Random")
 			input = pick(GLOB.ai_core_display_screens - "Random")
-		if(input == "Portrait")
-			var/datum/portrait_picker/tgui  = new(usr)//create the datum
-			tgui.ui_interact(usr)//datum has a tgui component, here we open the window
-			return "ai-portrait" //just take this until they decide
 		return "ai-[lowertext(input)]"
+
+/proc/resolve_ai_icon(input)
+	if (input == "Portrait")
+		var/datum/portrait_picker/tgui = new(usr)//create the datum
+		tgui.ui_interact(usr)//datum has a tgui component, here we open the window
+		return "ai-portrait" //just take this until they decide
+
+	return resolve_ai_icon_sync(input)
 
 GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
 
@@ -197,6 +232,16 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 	"Bar", "Kitchen", "Hydroponics", "Janitor Closet","Genetics",
 	"Testing Range", "Toxins", "Dormitories", "Virology",
 	"Xenobiology", "Law Office","Detective's Office"))
+
+GLOBAL_LIST_INIT(TAGGERLOCATIONS_DEPARTMENTAL, list(
+	"Security" = list("Security", "Detective's Office", "HoS Office"),
+	"Medical" = list("Medbay", "Chemistry", "Genetics", "Virology", "CMO Office"),
+	"Science" = list("Research", "Robotics", "Xenobiology", "Toxins", "Testing Range", "RD Office"),
+	"Engineering" = list("Engineering", "Atmospherics", "CE Office"),
+	"Cargo" = list("Disposals", "Cargo Bay", "QM Office"),
+	"Service" = list("Bar", "Kitchen", "Hydroponics", "Janitor Closet", "HoP Office"),
+	"Civilian" = list("Dormitories", "Theatre", "Chapel", "Law Office", "Library")
+))
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
 

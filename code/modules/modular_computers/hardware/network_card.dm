@@ -11,7 +11,7 @@
 	device_type = MC_NET
 	var/global/ntnet_card_uid = 1
 
-/obj/item/computer_hardware/network_card/diagnostics(var/mob/user)
+/obj/item/computer_hardware/network_card/diagnostics(mob/user)
 	..()
 	to_chat(user, "NIX Unique ID: [identification_id]")
 	to_chat(user, "NIX User Tag: [identification_string]")
@@ -22,7 +22,7 @@
 	if(ethernet)
 		to_chat(user, "OpenEth (Physical Connection) - Physical network connection port")
 
-/obj/item/computer_hardware/network_card/New(var/l)
+/obj/item/computer_hardware/network_card/New(l)
 	..()
 	identification_id = ntnet_card_uid++
 
@@ -31,7 +31,7 @@
 	return "[identification_string] (NID [identification_id])"
 
 // 0 - No signal, 1 - Low signal, 2 - High signal. 3 - Wired Connection
-/obj/item/computer_hardware/network_card/proc/get_signal(var/specific_action = 0)
+/obj/item/computer_hardware/network_card/proc/get_signal(specific_action = 0)
 	if(!holder) // Hardware is not installed in anything. No signal. How did this even get called?
 		return 0
 
@@ -68,7 +68,7 @@
 	icon_state = "radio"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/computer_hardware/network_card/wired
 	name = "wired network card"
@@ -76,7 +76,7 @@
 	ethernet = 1
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "net_wired"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/computer_hardware/network_card/integrated //Borg tablet version, only works while the borg has power and is not locked
 	name = "cyborg data link"
@@ -87,13 +87,15 @@
 	if(!modularInterface || !istype(modularInterface))
 		return FALSE //wrong type of tablet
 
-	if(!modularInterface.borgo)
-		return FALSE //No borg found
+	if(istype(modularInterface.borgo, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = modularInterface.borgo
+		if(!R)
+			return FALSE //No borg found
 
-	if(modularInterface.borgo.lockcharge)
-		return FALSE //lockdown restricts borg networking
+		if(R.lockcharge)
+			return FALSE //lockdown restricts borg networking
 
-	if(!modularInterface.borgo.cell || modularInterface.borgo.cell.charge == 0)
-		return FALSE //borg cell dying restricts borg networking
+		if(!R.cell || R.cell.charge == 0)
+			return FALSE //borg cell dying restricts borg networking
 
 	return ..()

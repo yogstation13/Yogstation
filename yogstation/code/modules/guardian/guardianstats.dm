@@ -63,6 +63,7 @@
 
 /datum/guardian_stats/proc/short_info()
 	var/list/stats_info = list()
+	stats_info += "Ranged: [ranged ? "Yes" : "No"]"
 	stats_info += "Damage [level_to_grade(damage)]"
 	stats_info += "Defense [level_to_grade(defense)]"
 	stats_info += "Speed [level_to_grade(speed)]"
@@ -74,3 +75,33 @@
 		var/datum/guardian_ability/minor/minor_ability = A
 		stats_info += minor_ability.name
 	return stats_info.Join(", ")
+
+/datum/guardian_stats/proc/weaken(times = 1)//reduces a random stat x times
+	for(var/i = 0; i < times; i++)
+		var/list/reduction = list("damage", "defense", "speed", "potential", "range")
+		shuffle(reduction)
+		var/found = FALSE
+		for(var/option in reduction)
+			switch(option)
+				if("damage")
+					if(damage > 1)
+						damage --
+						found = TRUE
+				if("defense")
+					if(defense > 1)
+						defense --
+						found = TRUE
+				if("speed")
+					if(speed > 1)
+						speed --
+						found = TRUE
+				if("potential")
+					if(potential > 1)
+						potential --
+						found = TRUE
+				if("range")
+					if(range > 1)
+						range --
+						found = TRUE
+			if(found)
+				break

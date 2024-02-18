@@ -154,10 +154,29 @@
 	req_components = list(/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/suit_storage_unit
+	name = "Suit Storage Unit (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/suit_storage_unit
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 5,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/manipulator = 5)
+
+/obj/item/circuitboard/machine/decontamination_unit
+	name = "Decontamination Storage Unit (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/decontamination_unit
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 5,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/matter_bin = 5)
+
+
 #define PATH_POWERCOIL /obj/machinery/power/tesla_coil/power
 #define PATH_RPCOIL /obj/machinery/power/tesla_coil/research
 
-/obj/item/circuitboard/machine/tesla_coil/Initialize()
+/obj/item/circuitboard/machine/tesla_coil/Initialize(mapload)
 	. = ..()
 	if(build_path)
 		build_path = PATH_POWERCOIL
@@ -215,6 +234,10 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/emitter/particle
+	name = "Particle Emitter (Machine Board)"
+	build_path = /obj/machinery/power/emitter/particle
 
 /obj/item/circuitboard/machine/generator
 	name = "Thermo-Electric Generator (Machine Board)"
@@ -345,7 +368,7 @@
 /obj/item/circuitboard/machine/thermomachine
 	name = "Thermomachine (Machine Board)"
 	icon_state = "engineering"
-	desc = "You can use a screwdriver to switch between heater and freezer."
+	build_path = /obj/machinery/atmospherics/components/unary/thermomachine/freezer
 	var/pipe_layer = PIPING_LAYER_DEFAULT
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
@@ -353,56 +376,15 @@
 		/obj/item/stack/cable_coil = 1,
 		/obj/item/stack/sheet/glass = 1)
 
-#define PATH_FREEZER /obj/machinery/atmospherics/components/unary/thermomachine/freezer
-#define PATH_HEATER  /obj/machinery/atmospherics/components/unary/thermomachine/heater
-
-/obj/item/circuitboard/machine/thermomachine/Initialize()
+/obj/item/circuitboard/machine/thermomachine/multitool_act(mob/living/user, obj/item/multitool/I)
 	. = ..()
-	if(!build_path)
-		if(prob(50))
-			name = "Freezer (Machine Board)"
-			build_path = PATH_FREEZER
-		else
-			name = "Heater (Machine Board)"
-			build_path = PATH_HEATER
-
-/obj/item/circuitboard/machine/thermomachine/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		var/obj/item/circuitboard/new_type
-		var/new_setting
-		switch(build_path)
-			if(PATH_FREEZER)
-				new_type = /obj/item/circuitboard/machine/thermomachine/heater
-				new_setting = "Heater"
-			if(PATH_HEATER)
-				new_type = /obj/item/circuitboard/machine/thermomachine/freezer
-				new_setting = "Freezer"
-		name = initial(new_type.name)
-		build_path = initial(new_type.build_path)
-		I.play_tool_sound(src)
-		to_chat(user, span_notice("You change the circuitboard setting to \"[new_setting]\"."))
-		return
-
-	if(I.tool_behaviour == TOOL_MULTITOOL)
+	if(istype(I))
 		pipe_layer = (pipe_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (pipe_layer + 1)
 		to_chat(user, "<span class='notice'>You change the circuitboard to layer [pipe_layer].</span>")
-		return
-
-	. = ..()
 
 /obj/item/circuitboard/machine/thermomachine/examine()
 	. = ..()
 	. += "<span class='notice'>It is set to layer [pipe_layer].</span>"
-
-
-/obj/item/circuitboard/machine/thermomachine/heater
-	name = "Heater (Machine Board)"
-	build_path = PATH_HEATER
-
-/obj/item/circuitboard/machine/thermomachine/freezer
-	name = "Freezer (Machine Board)"
-	build_path = PATH_FREEZER
-
 /obj/item/circuitboard/machine/crystallizer
 	name = "Crystallizer (Machine Board)"
 	icon_state = "engineering"
@@ -412,8 +394,51 @@
 		/obj/item/stack/sheet/glass = 10,
 		/obj/item/stack/sheet/plasteel = 5)
 
-#undef PATH_FREEZER
-#undef PATH_HEATER
+/obj/item/circuitboard/machine/HFR_fuel_input
+	name = "HFR Fuel Input (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_waste_output
+	name = "HFR Waste Output (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_moderator_input
+	name = "HFR Moderator Input (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_core
+	name = "HFR core (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/core
+	req_components = list(
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stack/sheet/glass = 10,
+		/obj/item/stack/sheet/plasteel = 10)
+
+/obj/item/circuitboard/machine/HFR_corner
+	name = "HFR Corner (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/hypertorus/corner
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_interface
+	name = "HFR Interface (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/hypertorus/interface
+	req_components = list(
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stack/sheet/glass = 10,
+		/obj/item/stack/sheet/plasteel = 5)
 
 //Generic
 
@@ -470,7 +495,21 @@
 	name = "Pay Stand (Machine Board)"
 	icon_state = "generic"
 	build_path = /obj/machinery/paystand
+	var/cash_register = FALSE
 	req_components = list()
+
+/obj/item/circuitboard/machine/paystand/attackby(obj/item/held_item, mob/user, params)
+	if(held_item.tool_behaviour)
+		if(held_item.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent == INTENT_HELP)
+			if(cash_register)
+				to_chat(user,span_info("You change the holo-emitter selector to it's default setting."))
+				build_path = /obj/machinery/paystand
+				return
+			to_chat(user,span_info("You change the holo-emitter selector to 'cash register.'"))
+			build_path = /obj/machinery/paystand/register
+			return
+	return ..()
+
 
 /obj/item/circuitboard/machine/ticketmachine
 	name = "Ticket Machine (Machine Board)"
@@ -480,6 +519,17 @@
 	req_components = list(
 		/obj/item/hand_labeler = 1,
 		/obj/item/stack/sheet/glass = 1)
+
+/obj/item/circuitboard/machine/inspector_booth
+	name = "Inspector Booth (Machine Board)"
+	icon_state = "generic"
+	build_path = /obj/machinery/inspector_booth
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stack/sheet/glass = 1
+	)
 
 /obj/item/circuitboard/machine/protolathe
 	name = "Protolathe (Machine Board)"
@@ -604,10 +654,11 @@
 		/obj/machinery/vending/wardrobe/chem_wardrobe = "ChemDrobe",
 		/obj/machinery/vending/wardrobe/gene_wardrobe = "GeneDrobe",
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
-		/obj/machinery/vending/wardrobe/sig_wardrobe = "SigDrobe",
+		/obj/machinery/vending/wardrobe/sig_wardrobe = "NetDrobe",
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",
+		/obj/machinery/vending/wallhypo = "HypoMed",
 		/obj/machinery/vending/assist  = "Vendomat",
 		/obj/machinery/vending/engivend = "Engi-Vend",
 		/obj/machinery/vending/hydronutrients = "NutriMax",
@@ -618,7 +669,8 @@
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
 		/obj/machinery/vending/sovietsoda = "BODA",
-		/obj/machinery/vending/security = "SecTech")//Yogs
+		/obj/machinery/vending/security = "SecTech",
+		/obj/machinery/vending/fishing = "Tackle Box 2000")//Yogs
 		//obj/machinery/vending/modularpc = "Deluxe Silicate Selections") // Yogs comment-out, because ktlwjec is bad at merging mirrors
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
@@ -723,6 +775,7 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/scanning_module = 2,
 		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/reagent_containers/glass/beaker = 2,
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/clonepod/experimental
@@ -845,6 +898,25 @@
 	name = "\improper Departmental Techfab (Machine Board) - Medical"
 	icon_state = "medical"
 	build_path = /obj/machinery/rnd/production/techfab/department/medical
+
+/obj/item/circuitboard/machine/mindmachine_hub
+	name = "Mind Machine Hub (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/mindmachine_hub
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stack/ore/bluespace_crystal = 2)
+
+/obj/item/circuitboard/machine/mindmachine_pod
+	name = "Mind Machine Pod (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/mindmachine_pod
+	req_components = list(
+		/obj/item/stock_parts/scanning_module = 2,
+		/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stack/ore/bluespace_crystal = 1)
 
 //Science
 
@@ -1003,7 +1075,7 @@
 		/obj/item/stock_parts/capacitor = 2,
 		/obj/item/stack/sheet/glass = 2,
 		/obj/item/stack/cable_coil = 1)
-		
+
 /obj/item/circuitboard/machine/ai_core_display
 	name = "AI Core Display (Machine Board)"
 	icon_state = "science"
@@ -1017,7 +1089,8 @@
 		/obj/item/stock_parts/capacitor = 4,
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stack/sheet/glass = 2,
-		/obj/item/stack/cable_coil = 2)
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/cell/high = 1)
 
 /obj/item/circuitboard/machine/rack_creator
 	name = "Rack Creator (Machine Board)"
@@ -1027,6 +1100,13 @@
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/reagent_containers/glass/beaker = 2)
 
+/obj/item/circuitboard/machine/plort
+	name = "Machine Design (Plort Redemption Machine)"
+	icon_state = "science"
+	build_path = /obj/machinery/plortrefinery
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 3,
+		/obj/item/stack/cable_coil = 2)
 
 //Security
 
@@ -1332,6 +1412,13 @@
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/micro_laser = 1)
 
+/obj/item/circuitboard/machine/shuttle/engine/ion
+	name = "Ion Thruster (Machine Board)"
+	build_path = /obj/machinery/shuttle/engine/ion
+	req_components = list(/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/stock_parts/micro_laser = 1)
+
 /obj/item/circuitboard/machine/shuttle/engine/void
 	name = "Void Thruster (Machine Board)"
 	build_path = /obj/machinery/shuttle/engine/void
@@ -1344,3 +1431,16 @@
 	build_path = /obj/machinery/atmospherics/components/unary/shuttle/heater
 	req_components = list(/obj/item/stock_parts/micro_laser = 2,
 		/obj/item/stock_parts/matter_bin = 1)
+
+/obj/item/circuitboard/machine/shuttle/capacitor_bank
+	name = "ion thruster capacitor bank (Machine Board)"
+	build_path = /obj/machinery/power/engine_capacitor_bank
+	req_components = list(
+		/obj/item/stock_parts/capacitor = 3,
+		/obj/item/stock_parts/micro_laser = 1)
+
+/obj/item/circuitboard/machine/mass_driver
+	name = "Mass Driver"
+	build_path = /obj/machinery/mass_driver
+	req_components = list(
+		/obj/item/stock_parts/capacitor = 1)

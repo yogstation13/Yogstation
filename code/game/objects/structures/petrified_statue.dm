@@ -5,7 +5,7 @@
 	density = TRUE
 	anchored = TRUE
 	max_integrity = 200
-	var/timer = 240 //eventually the person will be freed
+	var/timer = 480 //eventually the person will be freed
 	var/mob/living/petrified_mob
 
 /obj/structure/statue/petrified/New(loc, mob/living/L, statue_timer, pan) // Yogs -- pan
@@ -16,7 +16,7 @@
 		if(L.buckled)
 			L.buckled.unbuckle_mob(L,force=1)
 		//yogs start -- pan
-		if(pan == TRUE)
+		if(pan)
 			L.visible_message(span_warning("[L]'s skin rapidly turns to bananium!"), "<span_class='ratvar'>BONK!</span>")
 		else
 			L.visible_message(span_warning("[L]'s skin rapidly turns to marble!"), span_userdanger("Your body freezes up! Can't... move... can't...  think..."))
@@ -30,10 +30,10 @@
 		START_PROCESSING(SSobj, src)
 	..()
 
-/obj/structure/statue/petrified/process()
+/obj/structure/statue/petrified/process(delta_time)
 	if(!petrified_mob)
 		STOP_PROCESSING(SSobj, src)
-	timer--
+	timer -= delta_time
 	petrified_mob.Stun(40) //So they can't do anything while petrified
 	if(timer <= 0)
 		STOP_PROCESSING(SSobj, src)
@@ -80,10 +80,10 @@
 
 /mob/proc/petrify(statue_timer)
 
-/mob/living/carbon/human/petrify(statue_timer)
+/mob/living/carbon/human/petrify(statue_timer, bananium = FALSE)
 	if(!isturf(loc))
 		return 0
-	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer)
+	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer, bananium)
 	S.name = "statue of [name]"
 	bleedsuppress = 1
 	S.copy_overlays(src)

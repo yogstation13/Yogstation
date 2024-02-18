@@ -16,7 +16,8 @@
 					/obj/machinery/golfhole/blue = 4,
 					/obj/item/golfclub = 4,
 					/obj/item/golfball = 8,
-					/obj/item/dyespray=3)
+					/obj/item/dyespray = 3,
+					/obj/item/balloonbox = 3)
 	contraband = list(/obj/item/dice/fudge = 9)
 	premium = list(/obj/item/melee/skateboard/pro = 3,
 					/obj/item/melee/skateboard/hoverboard = 1)

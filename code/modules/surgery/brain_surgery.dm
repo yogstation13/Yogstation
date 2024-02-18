@@ -13,22 +13,59 @@
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_HEAD)
-	requires_bodypart_type = 0
+
+/datum/surgery/brain_surgery/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/fix_brain,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
+
+/datum/surgery/brain_surgery/mechanic/positron
+	name = "Positronic Brain Recalibration"
+	desc = "Recalibrate a positronic brain, fixing all severe and basic traumas while repairing it significantly. Failing to fix the brain causes further damage." 
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "posibrain-ipc"
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/fix_brain/positron,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	possible_locs = list(BODY_ZONE_CHEST)
 
 /datum/surgery_step/fix_brain
 	name = "fix brain"
 	implements = list(TOOL_HEMOSTAT = 85, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15) //don't worry, pouring some alcohol on their open brain will get that chance to 100
+	repeatable = TRUE
 	time = 12 SECONDS //long and complicated
 	preop_sound = 'sound/surgery/hemostat1.ogg'
 	success_sound = 'sound/surgery/hemostat1.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
 	fuckup_damage = 20
 
+/datum/surgery_step/fix_brain/positron
+	name = "recalibrate brain"
+	implements = list(TOOL_MULTITOOL = 100, TOOL_SCREWDRIVER = 40, TOOL_HEMOSTAT = 25) //sterilizine doesn't work on IPCs so they get 100% chance, besides it's likely easier than fixing an organic brain
+	preop_sound = 'sound/items/tape_flip.ogg'
+	success_sound = 'sound/items/taperecorder_close.ogg'
+	failure_sound = 'sound/machines/defib_zap.ogg'
+
 /datum/surgery/brain_surgery/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
 	if(!B)
 		return FALSE
-	return TRUE
+	return !istype(target.getorganslot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
+
+/datum/surgery/brain_surgery/mechanic/positron/can_start(mob/user, mob/living/carbon/target)
+	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	if(!B)
+		return FALSE
+	return istype(target.getorganslot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
 
 /datum/surgery_step/fix_brain/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to fix [target]'s brain..."),
@@ -36,13 +73,16 @@
 		"[user] begins to perform surgery on [target]'s brain.")
 
 /datum/surgery_step/fix_brain/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_notice("You succeed in fixing [target]'s brain."),
-		"[user] successfully fixes [target]'s brain!",
-		"[user] completes the surgery on [target]'s brain.")
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.getOrganLoss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
+	var/msg = "You succeed in fixing [target]'s brain"
+	if(target.getOrganLoss(ORGAN_SLOT_BRAIN) > 0)
+		msg += ", though it looks like it could be repaired further"
+	display_results(user, target, span_notice(msg + "."),
+		"[user] successfully fixes [target]'s brain!",
+		"[user] completes the surgery on [target]'s brain.")
 	return TRUE
 
 /datum/surgery_step/fix_brain/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

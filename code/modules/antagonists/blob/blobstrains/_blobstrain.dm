@@ -22,12 +22,16 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 		stack_trace("blobstrain created without overmind")
 	overmind = new_overmind
 
+/datum/blobstrain/Destroy()
+	overmind = null
+	return ..()
+
 /datum/blobstrain/proc/on_gain()
 	overmind.color = complementary_color
 	point_rate = point_rate * overmind.basemodifier
 	for(var/BL in GLOB.blobs)
 		var/obj/structure/blob/B = BL
-		B.update_icon()
+		B.update_appearance(UPDATE_ICON)
 	for(var/BLO in overmind.blob_mobs)
 		var/mob/living/simple_animal/hostile/blob/BM = BLO
 		BM.update_icons() //If it's getting a new strain, tell it what it does!
@@ -51,7 +55,7 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 		overmind.add_points(point_rate)
 	overmind.blob_core.obj_integrity = min(overmind.blob_core.max_integrity, overmind.blob_core.obj_integrity+core_regen)
 
-/datum/blobstrain/proc/attack_living(var/mob/living/L, var/list/nearby_blobs) // When the blob attacks people
+/datum/blobstrain/proc/attack_living(mob/living/L, list/nearby_blobs) // When the blob attacks people
 	send_message(L)
 
 /datum/blobstrain/proc/blobbernaut_attack(mob/living/L, blobbernaut) // When this blob's blobbernaut attacks people

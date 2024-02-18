@@ -2,11 +2,10 @@ import { toFixed } from 'common/math';
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, NumberInput, Section } from '../components';
-import { getGasLabel } from '../constants';
+import { Box, Button, LabeledList, Section, Icon } from '../components';
 import { Window } from '../layouts';
+import { Scrubber, Vent } from './common/AtmosControls';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
-import { Vent, Scrubber } from './common/AtmosControls';
 
 export const AirAlarm = (props, context) => {
   const { act, data } = useBackend(context);
@@ -50,7 +49,7 @@ const AirAlarmStatus = (props, context) => {
     <Section title="Air Status">
       <LabeledList>
         {entries.length > 0 && (
-          <Fragment>
+          <>
             {entries.map(entry => {
               const status = dangerMap[entry.danger_level] || dangerMap[0];
               return (
@@ -74,7 +73,11 @@ const AirAlarmStatus = (props, context) => {
                 || data.fire_alarm && 'Fire Alarm'
                 || 'Nominal'}
             </LabeledList.Item>
-          </Fragment>
+            <LabeledList.Item
+              label="Alarm override">
+              {data.manual_atmosalm? <Icon name="toggle-on" color="good" size={1.3} /> : <Icon name="toggle-off" color="bad" size={1.3} />}
+            </LabeledList.Item>
+          </>
         ) || (
           <LabeledList.Item
             label="Warning"
@@ -145,16 +148,17 @@ const AirAlarmControlHome = (props, context) => {
   const {
     mode,
     atmos_alarm,
+    manual_atmosalm,
   } = data;
   return (
-    <Fragment>
+    <>
       <Button
-        icon={atmos_alarm
+        icon={atmos_alarm>1 && manual_atmosalm
           ? 'exclamation-triangle'
           : 'exclamation'}
-        color={atmos_alarm && 'caution'}
+        color={atmos_alarm>1 && manual_atmosalm && 'caution'}
         content="Area Atmosphere Alarm"
-        onClick={() => act(atmos_alarm ? 'reset' : 'alarm')} />
+        onClick={() => act(atmos_alarm>1 && manual_atmosalm ? 'reset' : 'alarm')} />
       <Box mt={1} />
       <Button
         icon={mode === 3
@@ -185,7 +189,7 @@ const AirAlarmControlHome = (props, context) => {
         icon="chart-bar"
         content="Alarm Thresholds"
         onClick={() => setScreen('thresholds')} />
-    </Fragment>
+    </>
   );
 };
 
@@ -231,17 +235,22 @@ const AirAlarmControlModes = (props, context) => {
   if (!modes || modes.length === 0) {
     return 'Nothing to show';
   }
-  return modes.map(mode => (
-    <Fragment key={mode.mode}>
-      <Button
-        icon={mode.selected ? 'check-square-o' : 'square-o'}
-        selected={mode.selected}
-        color={mode.selected && mode.danger && 'danger'}
-        content={mode.name}
-        onClick={() => act('mode', { mode: mode.mode })} />
-      <Box mt={1} />
-    </Fragment>
-  ));
+  return (
+    <>
+      {modes.map((mode) => (
+        <Fragment key={mode.mode}>
+          <Button
+            icon={mode.selected ? 'check-square-o' : 'square-o'}
+            color={mode.selected && mode.danger && 'danger'}
+            selected={mode.selected}
+            content={mode.name}
+            onClick={() => act('mode', { mode: mode.mode })}
+          />
+          <Box mt={1} />
+        </Fragment>
+      ))}
+    </>
+  );
 };
 
 

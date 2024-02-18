@@ -30,7 +30,7 @@
 /datum/mood_event/creampie
 	description = "<span class='warning'>I've been creamed. Tastes like pie flavor.</span>\n"
 	mood_change = -2
-	timeout = 1800
+	timeout = 3 MINUTES
 
 /datum/mood_event/slipped
 	description = "<span class='warning'>I slipped. I should be more careful next time...</span>\n"
@@ -90,15 +90,6 @@
 	description = "<span class='warning'>Someone threw me on a table!</span>\n"
 	mood_change = -2
 	timeout = 2 MINUTES
-
-/datum/mood_event/table/add_effects()
-	if(ishuman(owner.parent))
-		var/mob/living/carbon/human/H = owner.parent
-		if(iscatperson(H))
-			H.dna.species.start_wagging_tail(H)
-			addtimer(CALLBACK(H.dna.species, /datum/species.proc/stop_wagging_tail, H), 30)
-			description =  "<span class='nicegreen'>They want to play on the table!</span>\n"
-			mood_change = 2
 
 /datum/mood_event/brain_damage
   mood_change = -3
@@ -213,6 +204,32 @@
 	mood_change = -25
 	timeout = 4 MINUTES
 
+/datum/mood_event/dripless
+	description = "<span class='warning'>My confidence is in shambles. My style, ruined...</span>\n"
+	mood_change = -10
+
+/datum/mood_event/nojordans
+	description = "<span class='warning'>They're gone... my fashion is ruined. I can feel my self esteem decaying... </span>\n"
+	mood_change = -10
+
+/datum/mood_event/bald
+	description = "I need something to cover my head..."
+	mood_change = -3
+  
+/datum/mood_event/type_bait
+	description = "<span class='warning'>I caught that fish mid-conversation... I can't believe I did that...</span>\n"
+	mood_change = -1
+
+/datum/mood_event/ate_without_table
+	description = "<span class='warning'>I had to eat a meal off the ground. Can't we get a table around here?</span>\n"
+	mood_change = -3
+	timeout = 1 MINUTES
+
+/datum/mood_event/wet_preternis
+	description = "<span class='boldwarning'>MY EVERYTHING HURTS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>\n"
+	mood_change = -10
+	timeout = 10 SECONDS
+
 //These are unused so far but I want to remember them to use them later
 /datum/mood_event/cloned_corpse
 	description = "<span class='boldwarning'>I recently saw my own corpse...</span>\n"
@@ -221,4 +238,3 @@
 /datum/mood_event/surgery
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
-

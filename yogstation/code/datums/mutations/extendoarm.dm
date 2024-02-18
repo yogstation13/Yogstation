@@ -5,32 +5,60 @@
 	difficulty = 16
 	text_gain_indication = span_notice("Your arms feel stretchy.")
 	text_lose_indication = span_warning("Your arms feel solid again.")
-	power = /obj/effect/proc_holder/spell/aimed/extendoarm
+	power_path = /datum/action/cooldown/spell/pointed/projectile/extendoarm
 	instability = 30
 
-/obj/effect/proc_holder/spell/aimed/extendoarm
+/datum/action/cooldown/spell/pointed/projectile/extendoarm
 	name = "Arm"
 	desc = "Stretch your arm to grab or put stuff down."
-	charge_max = 50
-	cooldown_min = 50
-	clothes_req = FALSE
-	range = 50
-	projectile_type = /obj/item/projectile/bullet/arm
-	action_icon = 'yogstation/icons/mob/actions/actions_spells.dmi'
+	button_icon = 'yogstation/icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "arm"
 	base_icon_state = "arm"
-	action_icon_state = "arm"
+
+	cooldown_time = 5 SECONDS
+	spell_requirements = NONE
+
+	cast_range = 50
+	projectile_type = /obj/projectile/bullet/arm
 	active_msg = "You loosen up your arm!"
 	deactive_msg = "You relax your arm."
-	active = FALSE
 	projectile_amount = 64
 
-/obj/effect/proc_holder/spell/aimed/extendoarm/ready_projectile(obj/item/projectile/bullet/arm/P, atom/target, mob/user, iteration)
+/datum/action/cooldown/spell/pointed/projectile/extendoarm/IsAvailable(feedback = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!iscarbon(owner))
+		return FALSE
+
+	var/mob/living/carbon/carbon_user = owner
+	if(carbon_user.handcuffed) //this doesnt mix well with the whole arm removal thing
+		return FALSE
+
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/projectile/extendoarm/can_cast_spell(feedback = TRUE)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/carbon_user = owner
+	if(!carbon_user.hand_bodyparts[carbon_user.active_hand_index]) //all these checks are here, because we dont want to adjust the spell icon thing in your screen and break it. wich it otherwise does in can_cast
+		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_NODISMEMBER))
+		owner.balloon_alert(owner, "can't dismember limbs!")
+		return FALSE
+	if(!owner.canUnEquip(owner.get_active_held_item()))
+		owner.balloon_alert(owner, "can't drop active item!")
+		return FALSE
+
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/projectile/extendoarm/ready_projectile(obj/projectile/bullet/arm/P, atom/target, mob/user, iteration)
+	. = ..()
 	var/mob/living/carbon/C = user
 	var/new_color
-	if(C.dna?.species && !C.dna.species.use_skintones)
-		new_color = C.dna.species.default_features["mcolor"]
-		if(!("#" in new_color))
-			new_color = "#[new_color]"
+	if(C.dna && !C.dna.species.use_skintones)
+		new_color = C.dna.features["mcolor"]
 		P.add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
 
 	P.homing = target
@@ -39,33 +67,13 @@
 
 	var/obj/item/I = C.get_active_held_item()
 	if(I && C.dropItemToGround(I, FALSE))
-		var/obj/item/projectile/bullet/arm/ARM = P
+		var/obj/projectile/bullet/arm/ARM = P
 		ARM.grab(I)
 	P.arm = C.hand_bodyparts[C.active_hand_index]
 	P.arm.drop_limb()
 	P.arm.forceMove(P)
 
-/obj/effect/proc_holder/spell/aimed/extendoarm/InterceptClickOn(mob/living/caller, params, atom/target)
-	if(!iscarbon(caller))
-		return
-	var/mob/living/carbon/C = caller
-	if(!C.hand_bodyparts[C.active_hand_index]) //all these checks are here, because we dont want to adjust the spell icon thing in your screen and break it. wich it otherwise does in can_cast
-		return
-	if(HAS_TRAIT(caller, TRAIT_NODISMEMBER))
-		return
-	if(!caller.canUnEquip(caller.get_active_held_item()))
-		return
-	return ..()
-
-/obj/effect/proc_holder/spell/aimed/extendoarm/can_cast(mob/user = usr)
-	. = ..()
-	if(!iscarbon(user))
-		return FALSE
-	var/mob/living/carbon/C = user
-	if(C.handcuffed) //this doesnt mix well with the whole arm removal thing
-		return FALSE
-
-/obj/item/projectile/bullet/arm
+/obj/projectile/bullet/arm
 	name = "arm"
 	icon = 'yogstation/icons/obj/projectiles.dmi'
 	icon_state = "arm"
@@ -81,7 +89,7 @@
 	var/returning = FALSE
 	var/datum/beam/beam
 
-/obj/item/projectile/bullet/arm/prehit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/arm/prehit(atom/target, blocked = FALSE)
 	if(returning)
 		if(target == firer)
 			var/mob/living/L = firer
@@ -102,14 +110,14 @@
 				grab(target)
 		go_home()
 
-/obj/item/projectile/bullet/arm/proc/go_home()
+/obj/projectile/bullet/arm/proc/go_home()
 	homing_target = firer
 	returning = TRUE
 	icon_state += "-reverse"
 	range = decayedRange
 	ignore_source_check = TRUE
 
-/obj/item/projectile/bullet/arm/proc/grab(obj/item/I)
+/obj/projectile/bullet/arm/proc/grab(obj/item/I)
 	if(!I)
 		return
 	I.forceMove(src)
@@ -118,7 +126,7 @@
 	grabbed = I
 	overlays += IM
 
-/obj/item/projectile/bullet/arm/proc/ungrab()
+/obj/projectile/bullet/arm/proc/ungrab()
 	if(!grabbed)
 		return
 	grabbed.forceMove(drop_location())
@@ -126,7 +134,7 @@
 	. = grabbed
 	grabbed = null
 
-/obj/item/projectile/bullet/arm/Destroy()
+/obj/projectile/bullet/arm/Destroy()
 	if(grabbed)
 		grabbed.forceMove(drop_location())
 	if(arm)

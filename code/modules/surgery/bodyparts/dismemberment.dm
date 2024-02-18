@@ -17,12 +17,13 @@
 	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50), wound_bonus=CANT_WOUND) //Damage the chest based on limb's existing damage
 	if(!silent)
 		C.visible_message(span_danger("<B>[C]'s [name] is violently dismembered!</B>"))
-	INVOKE_ASYNC(C, /mob.proc/emote, "scream")
+	INVOKE_ASYNC(C, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
+	var/should_disintegrate = !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if their limb falls off easily it should just fall off instead
 	drop_limb()
 
-	if(dam_type == BURN)
+	if(dam_type == BURN && should_disintegrate)
 		burn()
 		return 1
 	add_mob_blood(C)
@@ -81,7 +82,9 @@
 	owner.bodyparts -= src
 
 	if(held_index)
-		owner.dropItemToGround(owner.get_item_for_held_index(held_index), 1)
+		var/obj/item/I = owner.get_item_for_held_index(held_index)
+		if(I)
+			owner.dropItemToGround(I, TRUE)
 		owner.hand_bodyparts[held_index] = null
 
 	for(var/thing in wounds)
@@ -198,7 +201,7 @@
 		LB.brainmob = brainmob
 		brainmob = null
 		LB.brainmob.forceMove(LB)
-		LB.brainmob.stat = DEAD
+		LB.brainmob.set_stat(DEAD)
 
 /obj/item/organ/eyes/transfer_to_limb(obj/item/bodypart/head/LB, mob/living/carbon/human/C)
 	LB.eyes = src
@@ -223,12 +226,12 @@
 		if(C.handcuffed)
 			C.handcuffed.forceMove(drop_location())
 			C.handcuffed.dropped(C)
-			C.handcuffed = null
+			C.set_handcuffed(null)
 			C.update_handcuffed()
 		if(C.hud_used)
-			var/obj/screen/inventory/hand/R = C.hud_used.hand_slots["[held_index]"]
+			var/atom/movable/screen/inventory/hand/R = C.hud_used.hand_slots["[held_index]"]
 			if(R)
-				R.update_icon()
+				R.update_appearance(UPDATE_ICON)
 		if(C.gloves)
 			C.dropItemToGround(C.gloves, TRUE)
 		C.update_inv_gloves() //to remove the bloody hands overlay
@@ -241,12 +244,12 @@
 		if(C.handcuffed)
 			C.handcuffed.forceMove(drop_location())
 			C.handcuffed.dropped(C)
-			C.handcuffed = null
+			C.set_handcuffed(null)
 			C.update_handcuffed()
 		if(C.hud_used)
-			var/obj/screen/inventory/hand/L = C.hud_used.hand_slots["[held_index]"]
+			var/atom/movable/screen/inventory/hand/L = C.hud_used.hand_slots["[held_index]"]
 			if(L)
-				L.update_icon()
+				L.update_appearance(UPDATE_ICON)
 		if(C.gloves)
 			C.dropItemToGround(C.gloves, TRUE)
 		C.update_inv_gloves() //to remove the bloody hands overlay
@@ -329,9 +332,9 @@
 		if(C.dna.species.mutanthands && !is_pseudopart)
 			C.put_in_hand(new C.dna.species.mutanthands(), held_index)
 		if(C.hud_used)
-			var/obj/screen/inventory/hand/hand = C.hud_used.hand_slots["[held_index]"]
+			var/atom/movable/screen/inventory/hand/hand = C.hud_used.hand_slots["[held_index]"]
 			if(hand)
-				hand.update_icon()
+				hand.update_appearance(UPDATE_ICON)
 		C.update_inv_gloves()
 
 	if(special) //non conventional limb attachment
@@ -361,13 +364,14 @@
 		LAZYADD(C.all_scars, thing)
 
 	update_bodypart_damage_state()
+	if(C.dna && C.dna.species && (C.mob_biotypes & MOB_ROBOTIC) && src.status == BODYPART_ROBOTIC)
+		src.render_like_organic = TRUE
 
 	C.updatehealth()
 	C.update_body()
 	C.update_hair()
 	C.update_damage_overlays()
 	C.update_mobility()
-
 
 /obj/item/bodypart/head/attach_limb(mob/living/carbon/C, special)
 	//Transfer some head appearance vars over
@@ -437,6 +441,16 @@
 			L.set_burn_dam(0)
 			L.brutestate = 0
 			L.burnstate = 0
+
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if(H.dna && H.dna.species && (H.mob_biotypes & MOB_ROBOTIC))
+				L.change_bodypart_status(BODYPART_ROBOTIC)
+				L.render_like_organic = TRUE
+			if(limb_zone == "head" && H.dna && H.dna.species && (NOMOUTH in H.dna.species.species_traits))
+				var/obj/item/bodypart/head/head = L
+				if(head)
+					head.mouth = FALSE
 
 		L.attach_limb(src, 1)
 		var/datum/scar/scaries = new

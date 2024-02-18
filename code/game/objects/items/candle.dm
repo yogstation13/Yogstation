@@ -1,4 +1,5 @@
 #define CANDLE_LUMINOSITY	2
+
 /obj/item/candle
 	name = "red candle"
 	desc = "In Greek myth, Prometheus stole fire from the Gods and gave it to \
@@ -7,21 +8,25 @@
 	icon_state = "candle1"
 	item_state = "candle1"
 	w_class = WEIGHT_CLASS_TINY
+	light_system = MOVABLE_LIGHT
+	light_range = CANDLE_LUMINOSITY
 	light_color = LIGHT_COLOR_FIRE
+	light_on = FALSE
 	heat = 1000
-	var/wax = 1000
+	var/wax = 2000
 	var/lit = FALSE
 	var/infinite = FALSE
 	var/start_lit = FALSE
 	var/candle_type = "red"
 
-/obj/item/candle/Initialize()
+/obj/item/candle/Initialize(mapload)
 	. = ..()
 	if(start_lit)
 		light()
 
-/obj/item/candle/update_icon()
-	icon_state = "candle[(wax > 400) ? ((wax > 750) ? 1 : 2) : 3][lit ? "_lit" : ""]"
+/obj/item/candle/update_icon_state()
+	. = ..()
+	icon_state = "candle[(wax > 800) ? ((wax > 1500) ? 1 : 2) : 3][lit ? "_lit" : ""]"
 
 /obj/item/candle/attackby(obj/item/W, mob/user, params)
 	var/msg = W.ignition_effect(src, user)
@@ -43,35 +48,35 @@
 		lit = TRUE
 		if(show_message)
 			usr.visible_message(show_message)
-		set_light(CANDLE_LUMINOSITY)
+		set_light_on(TRUE)
 		START_PROCESSING(SSobj, src)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/candle/proc/put_out_candle()
 	if(!lit)
 		return
 	lit = FALSE
-	update_icon()
-	set_light(0)
+	update_appearance(UPDATE_ICON)
+	set_light_on(FALSE)
 	return TRUE
 
 /obj/item/candle/extinguish()
 	put_out_candle()
 	return ..()
 
-/obj/item/candle/process()
+/obj/item/candle/process(delta_time)
 	if(!lit)
 		return PROCESS_KILL
 	if(!infinite)
-		wax--
-	if(!wax)
+		wax -= delta_time
+	if(wax <= 0)
 		if(candle_type == "resin")
 			new /obj/item/trash/candle/resin(loc)
 			qdel(src)
 		else
 			new /obj/item/trash/candle(loc)
 			qdel(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	open_flame()
 
 /obj/item/candle/attack_self(mob/user)
@@ -95,7 +100,8 @@
 	wax = 2000
 	candle_type = "resin"
 
-/obj/item/candle/resin/update_icon()
+/obj/item/candle/resin/update_icon_state()
+	. = ..()
 	icon_state = "resincandle[(wax > 800) ? ((wax > 1500) ? 1 : 2) : 3][lit ? "_lit" : ""]"
 
 #undef CANDLE_LUMINOSITY

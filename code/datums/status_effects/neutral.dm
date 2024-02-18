@@ -49,7 +49,7 @@
 	get_kill()
 	. = ..()
 
-/obj/screen/alert/status_effect/in_love
+/atom/movable/screen/alert/status_effect/in_love
 	name = "In Love"
 	desc = "You feel so wonderfully in love!"
 	icon_state = "in_love"
@@ -58,7 +58,7 @@
 	id = "in_love"
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /obj/screen/alert/status_effect/in_love
+	alert_type = /atom/movable/screen/alert/status_effect/in_love
 	var/mob/living/date
 
 /datum/status_effect/in_love/on_creation(mob/living/new_owner, mob/living/love_interest)
@@ -98,7 +98,7 @@
 
 /datum/status_effect/bounty/on_apply()
 	to_chat(owner, "[span_boldnotice("You hear something behind you talking...")] [span_notice("You have been marked for death by [rewarded]. If you die, they will be rewarded.")]")
-	playsound(owner, 'sound/weapons/shotgunpump.ogg', 75, 0)
+	playsound(owner, 'sound/weapons/shotgunpump.ogg', 75, FALSE)
 	return ..()
 
 /datum/status_effect/bounty/tick()
@@ -109,12 +109,10 @@
 /datum/status_effect/bounty/proc/rewards()
 	if(rewarded && rewarded.mind && rewarded.stat != DEAD)
 		to_chat(owner, "[span_boldnotice("You hear something behind you talking...")] [span_notice("Bounty claimed.")]")
-		playsound(owner, 'sound/weapons/shotgunshot.ogg', 75, 0)
+		playsound(owner, 'sound/weapons/shotgunshot.ogg', 75, FALSE)
 		to_chat(rewarded, span_greentext("You feel a surge of mana flow into you!"))
-		for(var/obj/effect/proc_holder/spell/spell in rewarded.mind.spell_list)
-			spell.charge_counter = spell.charge_max
-			spell.recharging = FALSE
-			spell.update_icon()
+		for(var/datum/action/cooldown/spell/spell in rewarded.actions)
+			spell.reset_spell_cooldown()
 		rewarded.adjustBruteLoss(-25)
 		rewarded.adjustFireLoss(-25)
 		rewarded.adjustToxLoss(-25)
@@ -131,7 +129,7 @@
 /datum/status_effect/bugged/on_apply(mob/living/new_owner, mob/living/tracker)
 	. = ..()
 	if (.)
-		RegisterSignal(new_owner, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+		RegisterSignal(new_owner, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 
 /datum/status_effect/bugged/on_remove()
 	. = ..()
@@ -149,7 +147,7 @@
 	id = "tagalong"
 	duration = 3000
 	tick_interval = 1 //as fast as possible
-	alert_type = /obj/screen/alert/status_effect/tagalong
+	alert_type = /atom/movable/screen/alert/status_effect/tagalong
 	var/mob/living/shadowing
 	var/turf/cached_location //we store this so if the mob is somehow gibbed we aren't put into nullspace
 
@@ -168,7 +166,7 @@
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
 	owner.setDir(SOUTH)
 
-/datum/status_effect/tagalong/process()
+/datum/status_effect/tagalong/tick()
 	if(!shadowing)
 		owner.forceMove(cached_location)
 		qdel(src)
@@ -178,7 +176,7 @@
 		owner.forceMove(cached_location)
 		shadowing.visible_message(span_warning("[owner] suddenly appears from the dark!"))
 		to_chat(owner, span_warning("You are forced out of [shadowing]'s shadow!"))
-		owner.Knockdown(30)
+		owner.Knockdown(3 SECONDS)
 		qdel(src)
 	var/obj/item/I = owner.get_active_held_item()
 	if(I)
@@ -188,12 +186,12 @@
 			owner.Stun(5) //short delay so they can't click as soon as they're out
 		qdel(src)
 
-/obj/screen/alert/status_effect/tagalong
+/atom/movable/screen/alert/status_effect/tagalong
 	name = "Tagalong"
 	desc = "You are accompanying TARGET_NAME. Use the Tagalong ability to break away at any time."
 	icon_state = "shadow_mend"
 
-/obj/screen/alert/status_effect/tagalong/MouseEntered()
+/atom/movable/screen/alert/status_effect/tagalong/MouseEntered()
 	var/datum/status_effect/tagalong/tagalong = attached_effect
 	desc = replacetext(desc, "TARGET_NAME", tagalong.shadowing.real_name)
 	..()
@@ -205,9 +203,9 @@
 	duration = -1
 	tick_interval = -1
 	status_type = STATUS_EFFECT_MULTIPLE
-	alert_type = /obj/screen/alert/status_effect/heldup
+	alert_type = /atom/movable/screen/alert/status_effect/heldup
 
-/obj/screen/alert/status_effect/heldup
+/atom/movable/screen/alert/status_effect/heldup
 	name = "Held Up"
 	desc = "Making any sudden moves would probably be a bad idea!"
 	icon_state = "aimed"
@@ -218,9 +216,9 @@
 	duration = -1
 	tick_interval = -1
 	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /obj/screen/alert/status_effect/holdup
+	alert_type = /atom/movable/screen/alert/status_effect/holdup
 
-/obj/screen/alert/status_effect/holdup
+/atom/movable/screen/alert/status_effect/holdup
 	name = "Holding Up"
 	desc = "You're currently pointing a gun at someone."
 	icon_state = "aimed"

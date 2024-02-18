@@ -20,7 +20,7 @@
 	var/busy_message
 	var/message_cooldown = 0
 
-/obj/machinery/nanite_chamber/Initialize()
+/obj/machinery/nanite_chamber/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
 
@@ -38,7 +38,7 @@
 	busy = status
 	busy_message = message
 	busy_icon_state = working_icon
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/nanite_chamber/proc/set_safety(threshold)
 	if(!occupant)
@@ -63,11 +63,11 @@
 
 	//TODO OMINOUS MACHINE SOUNDS
 	set_busy(TRUE, "Initializing injection protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Priming nanites...", "[initial(icon_state)]_active"),40)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Injecting...", "[initial(icon_state)]_active"),70)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Activating nanites...", "[initial(icon_state)]_falling"),110)
-	addtimer(CALLBACK(src, .proc/complete_injection, locked_state),130)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Priming nanites...", "[initial(icon_state)]_active"),40)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Injecting...", "[initial(icon_state)]_active"),70)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Activating nanites...", "[initial(icon_state)]_falling"),110)
+	addtimer(CALLBACK(src, PROC_REF(complete_injection), locked_state),130)
 
 /obj/machinery/nanite_chamber/proc/complete_injection(locked_state)
 	//TODO MACHINE DING
@@ -90,11 +90,11 @@
 
 	//TODO OMINOUS MACHINE SOUNDS
 	set_busy(TRUE, "Initializing cleanup protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Pinging nanites...", "[initial(icon_state)]_active"),40)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Initiating graceful self-destruct sequence...", "[initial(icon_state)]_active"),70)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Removing debris...", "[initial(icon_state)]_falling"),110)
-	addtimer(CALLBACK(src, .proc/complete_removal, locked_state),130)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Pinging nanites...", "[initial(icon_state)]_active"),40)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Initiating graceful self-destruct sequence...", "[initial(icon_state)]_active"),70)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Removing debris...", "[initial(icon_state)]_falling"),110)
+	addtimer(CALLBACK(src, PROC_REF(complete_removal), locked_state),130)
 
 /obj/machinery/nanite_chamber/proc/complete_removal(locked_state)
 	//TODO MACHINE DING
@@ -104,19 +104,19 @@
 		return
 	SEND_SIGNAL(occupant, COMSIG_NANITE_DELETE)
 
-/obj/machinery/nanite_chamber/update_icon()
-	cut_overlays()
+/obj/machinery/nanite_chamber/update_overlays()
+	. = ..()
 
 	if((stat & MAINT) || panel_open)
-		add_overlay("maint")
+		. += "maint"
 
 	else if(!(stat & (NOPOWER|BROKEN)))
 		if(busy || locked)
-			add_overlay("red")
+			. += "red"
 			if(locked)
-				add_overlay("bolted")
+				. += "bolted"
 		else
-			add_overlay("green")
+			. += "green"
 
 	//running and someone in there
 	if(occupant)
@@ -155,7 +155,7 @@
 	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
 		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a metallic creaking from [src]."))
-	if(do_after(user, (breakout_time), src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked || busy)
 			return
 		locked = FALSE
@@ -188,7 +188,7 @@
 
 /obj/machinery/nanite_chamber/attackby(obj/item/I, mob/user, params)
 	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
-		update_icon()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
+		update_appearance(UPDATE_ICON)//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
 		return
 
 	if(default_pry_open(I))

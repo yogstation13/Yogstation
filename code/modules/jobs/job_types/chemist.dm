@@ -1,8 +1,9 @@
 /datum/job/chemist
 	title = "Chemist"
-	flag = CHEMIST
+	description = "Supply the doctors with chemicals, make medicine, as well as \
+		less likable substances in the comfort of a fully reinforced room."
+	orbit_icon = "prescription-bottle"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
@@ -12,31 +13,47 @@
 	exp_requirements = 120
 	exp_type_department = EXP_TYPE_MEDICAL
 
-	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist")
+	alt_titles = list("Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist", "Druggist") // Yes Druggist is a real thing.
 
 	outfit = /datum/outfit/job/chemist
 
-	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_GENETICS, ACCESS_CLONING)
+	base_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
+	minimal_character_age = 24 //A lot of experimental drugs plus understanding the facilitation and purpose of several subtances; what treats what and how to safely manufacture it
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
-/datum/job/chemist/proc/OmegaStationChanges()
-	return TRUE
+	mail_goodies = list(
+		/obj/item/reagent_containers/glass/bottle/flash_powder = 15,
+		/obj/item/reagent_containers/glass/beaker/meta = 15,
+		/obj/item/reagent_containers/glass/beaker/large/lemoline = 10,
+		/obj/item/storage/pill_bottle/gummies/floorbear = 1,
+		/obj/item/paper/secretrecipe = 1
+	)
 
-/datum/job/chemist/proc/EclipseStationChanges()
-	total_positions = 3
-	spawn_positions = 3
+	lightup_areas = list(
+		/area/medical/surgery,
+		/area/medical/virology,
+		/area/medical/genetics
+	)
+	minimal_lightup_areas = list(
+		/area/medical/morgue,
+		/area/medical/chemistry
+	)
+
+	smells_like = "chemicals"
 
 /datum/outfit/job/chemist
 	name = "Chemist"
 	jobtype = /datum/job/chemist
 
-	pda_type = /obj/item/pda/chemist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/chem
 
 	glasses = /obj/item/clothing/glasses/science
 	ears = /obj/item/radio/headset/headset_med

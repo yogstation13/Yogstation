@@ -17,11 +17,12 @@
 	poddoor = TRUE
 	var/special = FALSE // Prevents ERT or whatever from breaking into their shutters
 	var/constructionstate = INTACT // Decounstruction Stuff
+	rad_insulation = RAD_FULL_INSULATION
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
 	density = FALSE
-	opacity = 0
+	opacity = FALSE
 
 /obj/machinery/door/poddoor/ert
 	name = "ERT Armory door"
@@ -43,9 +44,9 @@
 /obj/machinery/door/poddoor/shuttledock/proc/check()
 	var/turf/T = get_step(src, checkdir)
 	if(!istype(T, turftype))
-		INVOKE_ASYNC(src, .proc/open)
+		INVOKE_ASYNC(src, PROC_REF(open))
 	else
-		INVOKE_ASYNC(src, .proc/close)
+		INVOKE_ASYNC(src, PROC_REF(close))
 
 /obj/machinery/door/poddoor/incinerator_toxmix
 	name = "combustion chamber vent"
@@ -88,7 +89,8 @@
 			flick("closing", src)
 			playsound(src, 'sound/machines/blastdoor.ogg', 30, 1)
 
-/obj/machinery/door/poddoor/update_icon()
+/obj/machinery/door/poddoor/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = "closed"
 	else
@@ -134,7 +136,7 @@
 		if(W.tool_behaviour == TOOL_WIRECUTTER)
 			if(id != null)
 				to_chat(user, span_notice("You start to unlink the door."))
-				if(do_after(user, 10 SECONDS, src))
+				if(W.use_tool(src, user, 10 SECONDS))
 					to_chat(user, span_notice("You unlink the door."))
 					id = null
 			else
@@ -145,7 +147,9 @@
 		if(W.tool_behaviour == TOOL_WELDER && constructionstate == INTACT)
 			to_chat(user, span_notice("You start to remove the outer plasteel cover."))
 			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
-			if(do_after(user, 10 SECONDS, src))
+			if(W.use_tool(src, user, 10 SECONDS))
+				if(constructionstate != INTACT)
+					return
 				to_chat(user, span_notice("You remove the outer plasteel cover."))
 				constructionstate = CUT_COVER
 				id = null // Effectivley breaks the door
@@ -156,7 +160,9 @@
 		
 		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == CUT_COVER)
 			to_chat(user, span_notice("You start to remove all of the internal components"))
-			if(do_after(user, 15 SECONDS, src))
+			if(W.use_tool(src, user, 15 SECONDS))
+				if(QDELETED(src))
+					return
 				if(istype(src, /obj/machinery/door/poddoor/shutters)) // Simplified Code 
 					new /obj/item/stack/sheet/plasteel(loc, 5)
 					new /obj/item/electronics/airlock(loc)

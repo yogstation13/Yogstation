@@ -6,26 +6,31 @@
 	var/list/blood_DNA			//assoc dna = bloodtype
 	var/list/fibers				//assoc print = print
 
+	
+	var/list/scents				//assoc dna = carbon mob 
+
 /datum/component/forensics/InheritComponent(datum/component/forensics/F, original)		//Use of | and |= being different here is INTENTIONAL.
-	fingerprints = fingerprints | F.fingerprints
-	hiddenprints = hiddenprints | F.hiddenprints
-	blood_DNA = blood_DNA | F.blood_DNA
-	fibers = fibers | F.fibers
+	fingerprints = LAZY_LISTS_OR(fingerprints, F.fingerprints)
+	hiddenprints = LAZY_LISTS_OR(hiddenprints, F.hiddenprints)
+	blood_DNA = LAZY_LISTS_OR(blood_DNA, F.blood_DNA)
+	fibers = LAZY_LISTS_OR(fibers, F.fibers)
+	check_blood()
 	check_blood()
 	return ..()
 
-/datum/component/forensics/Initialize(new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers)
+/datum/component/forensics/Initialize(new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers, new_scents)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	fingerprints = new_fingerprints
 	hiddenprints = new_hiddenprints
 	blood_DNA = new_blood_DNA
 	fibers = new_fibers
+	scents = new_scents
 	check_blood()
 
 /datum/component/forensics/RegisterWithParent()
 	check_blood()
-	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_act)
+	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_act))
 
 /datum/component/forensics/UnregisterFromParent()
     UnregisterSignal(parent, list(COMSIG_COMPONENT_CLEAN_ACT))
@@ -43,15 +48,23 @@
 
 /datum/component/forensics/proc/wipe_blood_DNA()
 	blood_DNA = null
-	if(isitem(parent))
-		qdel(parent.GetComponent(/datum/component/decal/blood))
+
 	return TRUE
+
+/datum/component/forensics/proc/is_bloody(datum/source, clean_types)
+	if(!isitem(parent))
+		return FALSE
+
+	return length(blood_DNA) > 0
 
 /datum/component/forensics/proc/wipe_fibers()
 	fibers = null
 	return TRUE
 
 /datum/component/forensics/proc/clean_act(datum/source, clean_types)
+	if(clean_types)
+		wipe_scents()
+		. = TRUE
 	if(clean_types & CLEAN_TYPE_FINGERPRINTS)
 		wipe_fingerprints()
 		. = TRUE
@@ -80,6 +93,7 @@
 				return
 			M = ai_camera.ai
 	add_hiddenprint(M)
+	add_scent(M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		add_fibers(H)
@@ -90,7 +104,7 @@
 			if(!ignoregloves)
 				H.gloves.add_fingerprint(H, TRUE) //ignoregloves = 1 to avoid infinite loop.
 				return
-		var/full_print = md5(H.dna.uni_identity)
+		var/full_print = md5(H.dna.unique_identity)
 		LAZYSET(fingerprints, full_print, full_print)
 	return TRUE
 
@@ -184,4 +198,28 @@
 		return
 	if(!length(blood_DNA))
 		return
-	parent.LoadComponent(/datum/component/decal/blood)
+	parent.AddElement(/datum/element/decal/blood, _color = get_blood_dna_color(blood_DNA))
+
+//yog code for olfaction
+/datum/component/forensics/proc/wipe_scents()
+	scents = null
+	return TRUE
+
+/datum/component/forensics/proc/add_scent_list(list/_scents)	//list(text)
+	if(!length(_scents))
+		return
+	LAZYINITLIST(scents)
+	for(var/i in _scents)	//We use an associative list, make sure we don't just merge a non-associative list into ours.
+		scents[i] = i
+	return TRUE
+
+/datum/component/forensics/proc/add_scent(mob/M)
+	if(!iscarbon(M))
+		return
+	var/mob/living/carbon/smelly = M
+	if(!smelly?.dna?.unique_identity)
+		return
+	
+	var/smell_print = md5(smelly.dna.unique_identity)
+	LAZYSET(scents, smell_print, smelly)
+	return TRUE

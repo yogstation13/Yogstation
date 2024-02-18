@@ -1,7 +1,9 @@
-/client/verb/mentorhelp(msg as text, fromadmins as null|num)
+/client/verb/mentorhelp(msg as text)
 	set category = "Mentor"
 	set name = "Mentorhelp"
+	mhelp(msg, FALSE)
 
+/client/proc/mhelp(msg as text, fromadmins as num)
 	//clean the input msg
 	if(!msg)	return
 
@@ -25,12 +27,12 @@
 
 	var/admininfo = "MENTORHELP:"
 	if(fromadmins)
-		admininfo = "MENTORHELP(From Admins):"
+		admininfo = "MENTORHELP (From Admins):"
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
 	var/mentor_msg = "<span class='mentornotice purple'><b>[admininfo]</b> <b>[key_name_mentor(src, 1, 0, 1, show_char)]</b>: [msg]</span>"
 	log_mentor("[admininfo] [key_name_mentor(src, 0, 0, 0, 0)]: [msg]")
 
-	for(var/client/X in GLOB.mentors | GLOB.admins)
+	for(var/client/X in GLOB.mentors | GLOB.permissions.admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
 			send_mentor_sound(X)
 		to_chat(X, mentor_msg, confidential=TRUE)
@@ -55,7 +57,7 @@
 		else
 			.["present"]++
 
-/proc/key_name_mentor(var/whom, var/include_link = null, var/include_name = 0, var/include_follow = 0, var/char_name_only = 0)
+/proc/key_name_mentor(whom, include_link = null, include_name = 0, include_follow = 0, char_name_only = 0)
 	var/mob/M
 	var/client/C
 	var/key
@@ -117,5 +119,5 @@
 
 	return .
 
-/proc/discord_mentor_link(var/display_name, var/id)
+/proc/discord_mentor_link(display_name, id)
 	return "<a href='?_src_=mentor;mentor_msg=[list2params(list(display_name))];mentor_discord_id=[id];[MentorHrefToken(TRUE)]'>[display_name]</a>"

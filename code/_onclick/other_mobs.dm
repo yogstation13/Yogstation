@@ -5,6 +5,10 @@
 	Otherwise pretty standard.
 */
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		if(src == A)
+			check_self_for_injuries()
+		return
 	if(HAS_TRAIT(A, TRAIT_NOINTERACT))
 		to_chat(A, span_notice("You can't touch things!"))
 		return
@@ -80,19 +84,12 @@
 /atom/proc/interact(mob/user)
 	if(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_INTERACT)
 		add_hiddenprint(user)
+		add_scent(user)
 	else
 		add_fingerprint(user)
 	if(interaction_flags_atom & INTERACT_ATOM_UI_INTERACT)
 		return ui_interact(user)
 	return FALSE
-
-/*
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A) ---carbons will handle this
-	return
-*/
-
-/mob/living/carbon/RestrainedClickOn(atom/A)
-	return 0
 
 /mob/living/carbon/human/RangedAttack(atom/A, mouseparams)
 	. = ..()
@@ -176,9 +173,6 @@
 	attack_paw(user)
 	return
 
-/mob/living/carbon/alien/RestrainedClickOn(atom/A)
-	return
-
 // Babby aliens
 /mob/living/carbon/alien/larva/UnarmedAttack(atom/A)
 	A.attack_larva(src)
@@ -198,9 +192,6 @@
 /atom/proc/attack_slime(mob/user)
 	return
 
-/mob/living/simple_animal/slime/RestrainedClickOn(atom/A)
-	return
-
 
 /*
 	Drones
@@ -210,10 +201,6 @@
 
 /atom/proc/attack_drone(mob/living/simple_animal/drone/user)
 	attack_hand(user) //defaults to attack_hand. Override it when you don't want drones to do same stuff as humans.
-
-/mob/living/simple_animal/slime/RestrainedClickOn(atom/A)
-	return
-
 
 /*
 	True Devil

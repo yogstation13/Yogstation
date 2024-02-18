@@ -17,17 +17,14 @@
 /obj/structure/chair/examine(mob/user)
 	. = ..()
 	. += span_notice("It's held together by a couple of <b>bolts</b>.")
-	if(!has_buckled_mobs())
+	if(can_buckle && !has_buckled_mobs())
 		. += span_notice("Drag your sprite to sit in it.")
 
-/obj/structure/chair/Initialize()
+/obj/structure/chair/Initialize(mapload)
 	. = ..()
 	if(!anchored)	//why would you put these on the shuttle?
-		addtimer(CALLBACK(src, .proc/RemoveFromLatejoin), 0)
-
-/obj/structure/chair/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, .proc/can_user_rotate),CALLBACK(src, .proc/can_be_rotated),null)
+		addtimer(CALLBACK(src, PROC_REF(RemoveFromLatejoin)), 0)
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
 /obj/structure/chair/proc/can_be_rotated(mob/user)
 	return TRUE
@@ -158,13 +155,13 @@
 	item_chair = null
 	var/mutable_appearance/armrest
 
-/obj/structure/chair/comfy/Initialize()
+/obj/structure/chair/comfy/Initialize(mapload)
 	armrest = GetArmrest()
 	armrest.layer = ABOVE_MOB_LAYER
 	return ..()
 
 /obj/structure/chair/comfy/proc/GetArmrest()
-	return mutable_appearance('icons/obj/chairs.dmi', "comfychair_armrest")
+	return mutable_appearance(icon, "[icon_state]_armrest")
 
 /obj/structure/chair/comfy/Destroy()
 	QDEL_NULL(armrest)
@@ -299,6 +296,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/chairs_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BACK
 	force = 8
 	throwforce = 10
 	throw_range = 3
@@ -496,3 +494,46 @@
 
 /obj/structure/chair/mime/post_unbuckle_mob(mob/living/M)
 	M.pixel_y -= 5
+
+/obj/structure/chair/comfy/plastic
+	icon_state = "plastic_chair"
+	name = "plastic chair"
+	desc = "Sitting in this chair is all you need to get motivated for work."
+	custom_materials = list(/datum/material/plastic = 10000)
+	buildstacktype = /obj/item/stack/sheet/plastic
+	buildstackamount = 5
+	COOLDOWN_DECLARE(scrape)
+	var/music_time = 0
+
+/obj/structure/chair/comfy/plastic/GetArmrest()
+	return mutable_appearance('icons/obj/chairs.dmi', "plastic_chair_armrest")
+
+/obj/structure/chair/comfy/plastic/AltClick(mob/living/user)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, scrape))
+		return
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return
+	if(has_buckled_mobs())
+		playsound(src, pick('sound/items/chairscrape1.ogg','sound/items/chairscrape2.ogg'), 50, TRUE)
+		COOLDOWN_START(src, scrape, 1 SECONDS) //prevents spam of a mildly annoying sound
+
+/obj/structure/chair/comfy/plastic/post_buckle_mob(mob/living/M)
+	. = ..()
+	music_time = world.time + 60 SECONDS
+	addtimer(CALLBACK(src, PROC_REF(motivate), M), 60 SECONDS)
+
+/obj/structure/chair/comfy/plastic/post_unbuckle_mob(mob/living/M)
+	. = ..()
+	if(world.time >= music_time)
+		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation) //lets refresh the moodlet
+		M.stop_sound_channel(CHANNEL_AMBIENT_EFFECTS)
+	music_time = 0
+
+/obj/structure/chair/comfy/plastic/proc/motivate(mob/living/M)
+	if(world.time < music_time || music_time == 0)
+		return
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation)
+	if(M.client && (M.client.prefs.toggles & SOUND_JUKEBOX))
+		M.stop_sound_channel(CHANNEL_AMBIENT_EFFECTS)
+		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENT_EFFECTS)

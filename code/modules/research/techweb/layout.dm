@@ -23,6 +23,10 @@
 	ui_x = -448
 	ui_y = 0
 
+/datum/techweb_node/clarke
+	ui_x = -458
+	ui_y = -10
+
 /datum/techweb_node/mech_tools
 	ui_x = -448
 	ui_y = -64
@@ -119,6 +123,10 @@
 	ui_x = 192
 	ui_y = -320
 
+/datum/techweb_node/ipc_organs
+        ui_x = -160
+        ui_y = 32
+
 /datum/techweb_node/cyber_implants
 	ui_x = 352
 	ui_y = -32
@@ -143,9 +151,37 @@
 	ui_x = 32
 	ui_y = -320
 
-/datum/techweb_node/cyborg_upg_util
+/datum/techweb_node/cyborg_upgrades_utility
 	ui_x = -96
 	ui_y = 160
+
+/datum/techweb_node/cyborg_upgrades_engineering
+	ui_x = -32
+	ui_y = 160
+
+/datum/techweb_node/cyborg_upgrades_engineering_adv
+	ui_x = 32
+	ui_y = 160
+
+/datum/techweb_node/cyborg_upgrades_nvg
+	ui_x = 96
+	ui_y = 160
+
+/datum/techweb_node/cyborg_upgrades_medical
+	ui_x = -32
+	ui_y = 224
+
+/datum/techweb_node/cyborg_upgrades_medical_adv
+	ui_x = 32
+	ui_y = 224
+
+/datum/techweb_node/cyborg_upgrades_mining
+	ui_x = -32
+	ui_y = 288
+
+/datum/techweb_node/cyborg_upgrades_service
+	ui_x = -32
+	ui_y = 352
 
 /datum/techweb_node/basic_mining
 	ui_x = 96
@@ -218,10 +254,6 @@
 /datum/techweb_node/xenoorgan_biotech
 	ui_x = 256
 	ui_y = -64
-
-/datum/techweb_node/cyborg_upg_med
-	ui_x = 352
-	ui_y = -160
 
 /datum/techweb_node/cyber_organs
 	ui_x = 352
@@ -327,6 +359,10 @@
 	ui_x = -224
 	ui_y = -288
 
+/datum/techweb_node/nerd_suit
+	ui_x = -272
+	ui_y = -288
+
 /datum/techweb_node/NVGtech
 	ui_x = -160
 	ui_y = -64
@@ -396,8 +432,12 @@
 	ui_y = -640
 
 /datum/techweb_node/ballistic_weapons
-	ui_x = -736
+	ui_x = -690
 	ui_y = -416
+
+/datum/techweb_node/hardlight_weapons
+	ui_x = -672
+	ui_y = -352
 
 /datum/techweb_node/gygax
 	ui_x = -672
@@ -406,6 +446,10 @@
 /datum/techweb_node/phazon
 	ui_x = -736
 	ui_y = -128
+
+/datum/techweb_node/sidewinder
+	ui_x = -736
+	ui_y = -196
 
 /datum/techweb_node/adv_mecha
 	ui_x = -576
@@ -434,10 +478,6 @@
 /datum/techweb_node/shuttle_route_upgrade_hyper
 	ui_x = -224
 	ui_y = -736
-
-/datum/techweb_node/cyborg_upg_surgkit
-	ui_x = 416
-	ui_y = -160
 
 /datum/techweb_node/cyber_organs_upgraded
 	ui_x = 416
@@ -491,10 +531,6 @@
 	ui_x = -736
 	ui_y = -576
 
-/datum/techweb_node/exotic_ammo
-	ui_x = -704
-	ui_y = -672
-
 /datum/techweb_node/gravity_gun
 	ui_x = -320
 	ui_y = -288
@@ -531,6 +567,14 @@
 	ui_x = -800
 	ui_y = -352
 
+/datum/techweb_node/exotic_ammo
+	ui_x = -736
+	ui_y = -466
+
+/datum/techweb_node/experimental_ammo
+	ui_x = -800
+	ui_y = -466
+
 /datum/techweb_node/mech_carbine
 	ui_x = -800
 	ui_y = -416
@@ -563,10 +607,6 @@
 	ui_x = -640
 	ui_y = -832
 
-/datum/techweb_node/mech_laser
-	ui_x = -704
-	ui_y = -896
-
 /datum/techweb_node/mech_disabler
 	ui_x = -448
 	ui_y = -224
@@ -583,10 +623,82 @@
 	ui_x = -800
 	ui_y = -576
 
-/datum/techweb_node/mech_laser_heavy
-	ui_x = -576
+/datum/techweb_node/mech_bfg
+	ui_x = -768
+	ui_y = -896
+
+/datum/techweb_node/mech_laser
+	ui_x = -704
 	ui_y = -896
 
 /datum/techweb_node/mech_xray
 	ui_x = -640
 	ui_y = -896
+
+/datum/techweb_node/mech_laser_heavy
+	ui_x = -576
+	ui_y = -896
+
+/datum/techweb_node/mech_rocket_fist
+	ui_x = -576
+	ui_y = 32
+
+/datum/techweb_node/mech_shortsword
+	ui_x = -640
+	ui_y = 32
+
+/datum/techweb_node/mech_katana
+	ui_x = -704
+	ui_y = -32
+
+/datum/techweb_node/mech_batong
+	ui_x = -512
+	ui_y = -32
+
+/datum/techweb_node/mech_trogdor
+	ui_x = -704
+	ui_y = 32
+
+/datum/techweb_node/mech_maul
+	ui_x = -704
+	ui_y = -96
+
+/datum/techweb_node/mech_spear
+	ui_x = -512
+	ui_y = 32
+
+/datum/techweb_node/bshipc
+	ui_x = -224
+	ui_y = 32
+
+/datum/techweb_node/bs2ipc
+	ui_x = -288
+	ui_y = 32
+
+/datum/techweb_node/hsiipc
+	ui_x = -224
+	ui_y = 96
+
+/datum/techweb_node/hi2ipc
+	ui_x = -288
+	ui_y = 96
+
+/datum/techweb_node/sgmipc
+	ui_x = -224
+	ui_y = 160
+
+/datum/techweb_node/wtmipc
+	ui_x = -288
+	ui_y = 160
+
+/datum/techweb_node/xmgipc
+	ui_x = -224
+	ui_y = 224
+
+/datum/techweb_node/xm2ipc
+	ui_x = -288
+	ui_y = 224
+
+/datum/techweb_node/zhpipc
+	ui_x = -224
+	ui_y = 288

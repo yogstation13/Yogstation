@@ -4,8 +4,6 @@
 
 //Defines copying names of mutations in all cases, make sure to change this if you change mutation's type
 #define HULK		/datum/mutation/human/hulk
-#define ACTIVE_HULK /datum/mutation/human/active_hulk
-#define GENETICS_HULK	/datum/mutation/human/genetics_hulk
 #define XRAY		/datum/mutation/human/thermal/x_ray
 #define SPACEMUT	/datum/mutation/human/space_adaptation
 #define HEATMUT		/datum/mutation/human/heat_adaptation
@@ -24,6 +22,7 @@
 #define BADSIGHT	/datum/mutation/human/nearsight
 #define LASEREYES	/datum/mutation/human/laser_eyes
 #define CHAMELEON	/datum/mutation/human/chameleon
+#define SUPER_CHAMELEON		/datum/mutation/human/chameleon/super
 #define WACKY		/datum/mutation/human/wacky
 #define MUT_MUTE	/datum/mutation/human/mute
 #define SMILE		/datum/mutation/human/smile
@@ -33,6 +32,9 @@
 #define CHAV		/datum/mutation/human/chav
 #define ELVIS		/datum/mutation/human/elvis
 #define RADIOACTIVE	/datum/mutation/human/radioactive
+#define RAVENOUS	/datum/mutation/human/ravenous
+#define RADPROOF	/datum/mutation/human/radproof
+#define SAPBLOOD	/datum/mutation/human/sapblood
 #define GLOWY		/datum/mutation/human/glow
 #define ANTIGLOWY	/datum/mutation/human/glow/anti
 #define TELEPATHY	/datum/mutation/human/telepathy
@@ -54,13 +56,20 @@
 #define EXTRASTUN	/datum/mutation/human/extrastun
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
-
+#define ACIDSPIT	/datum/mutation/human/acidspit
+#define CEREBRAL	/datum/mutation/human/cerebral
+#define THICKSKIN	/datum/mutation/human/thickskin
+#define DENSEBONES	/datum/mutation/human/densebones
+#define RADIANTBURST	/datum/mutation/human/radiantburst
 
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
+#define UF_CHANGED "uf changed"
 
-#define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 204
+#define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 255
+#define CHAMELEON_MUTATION_MINIMUM_TRANSPARENCY 30
+
 
 // String identifiers for associative list lookup
 
@@ -78,6 +87,8 @@
 //DNA - Because fuck you and your magic numbers being all over the codebase.
 #define DNA_BLOCK_SIZE				3
 
+#define DNA_BLOCK_SIZE_COLOR DEFAULT_HEX_COLOR_LEN
+
 #define DNA_UNI_IDENTITY_BLOCKS		7
 #define DNA_HAIR_COLOR_BLOCK		1
 #define DNA_FACIAL_HAIR_COLOR_BLOCK	2
@@ -86,6 +97,33 @@
 #define DNA_GENDER_BLOCK			5
 #define DNA_FACIAL_HAIR_STYLE_BLOCK	6
 #define DNA_HAIR_STYLE_BLOCK		7
+
+/// This number needs to equal the total number of DNA blocks
+#define DNA_FEATURE_BLOCKS 22
+
+#define DNA_MUTANT_COLOR_BLOCK 1
+#define DNA_ETHEREAL_COLOR_BLOCK 2
+#define DNA_LIZARD_MARKINGS_BLOCK 3
+#define DNA_LIZARD_TAIL_BLOCK 4
+#define DNA_SNOUT_BLOCK 5
+#define DNA_HORNS_BLOCK 6
+#define DNA_FRILLS_BLOCK 7
+#define DNA_SPINES_BLOCK 8
+#define DNA_HUMAN_TAIL_BLOCK 9
+#define DNA_EARS_BLOCK 10
+#define DNA_MOTH_WINGS_BLOCK 11
+#define DNA_MUSHROOM_CAPS_BLOCK 12
+#define DNA_POD_HAIR_BLOCK 13
+//Yog specific DNA Blocks
+#define DNA_POD_FLOWER_BLOCK 14
+#define DNA_POLY_TAIL_BLOCK 15
+#define DNA_POLY_TEETH_BLOCK 16
+#define DNA_POLY_DOME_BLOCK 17
+#define DNA_POLY_DORSAL_BLOCK 18
+#define DNA_ETHEREAL_MARK_BLOCK 19
+#define DNA_PRETERNIS_WEATHERING_BLOCK 20
+#define DNA_PRETERNIS_ANTENNA_BLOCK 21
+#define DNA_PRETERNIS_EYE_BLOCK 22
 
 #define DNA_SEQUENCE_LENGTH			4
 #define DNA_MUTATION_BLOCKS			8
@@ -143,31 +181,41 @@
 #define HAS_FLESH	23
 /// if we have bones (can suffer bone wounds)
 #define HAS_BONE	24
+/// Can't be husked.
+#define NOHUSK			25
+/// have no mouth to ingest/eat with
+#define NOMOUTH			26
+/// has a tail
+#define HAS_TAIL		27
+#define NONANITES		28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_APPENDIX "appendix"
-#define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
-#define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
 #define ORGAN_SLOT_STOMACH "stomach"
-#define ORGAN_SLOT_STOMACH_AID "stomach_aid"
-#define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
 #define ORGAN_SLOT_EARS "ears"
 #define ORGAN_SLOT_EYES "eye_sight"
 #define ORGAN_SLOT_LUNGS "lungs"
 #define ORGAN_SLOT_HEART "heart"
 #define ORGAN_SLOT_ZOMBIE "zombie_infection"
-#define ORGAN_SLOT_THRUSTERS "thrusters"
-#define ORGAN_SLOT_HUD "eye_hud"
 #define ORGAN_SLOT_LIVER "liver"
 #define ORGAN_SLOT_TONGUE "tongue"
 #define ORGAN_SLOT_VOICE "vocal_cords"
 #define ORGAN_SLOT_ADAMANTINE_RESONATOR "adamantine_resonator"
-#define ORGAN_SLOT_HEART_AID "heartdrive"
-#define ORGAN_SLOT_BRAIN_ANTIDROP "brain_antidrop"
-#define ORGAN_SLOT_BRAIN_ANTISTUN "brain_antistun"
 #define ORGAN_SLOT_TAIL "tail"
 #define ORGAN_SLOT_PARASITE_EGG "parasite_egg"
+
+//implants
+#define ORGAN_SLOT_BRAIN_IMPLANT "brain_implant"
+#define ORGAN_SLOT_HUD "eye_hud"
+#define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
+#define ORGAN_SLOT_TORSO_IMPLANT "torso_implant"
+#define ORGAN_SLOT_HEART_AID "heartdrive"
+#define ORGAN_SLOT_STOMACH_AID "stomach_aid"
+#define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
+#define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
+#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
+#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 
 //organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100
@@ -183,3 +231,19 @@
 #define G_MALE 1
 #define G_FEMALE 2
 #define G_PLURAL 3
+
+// Defines for used in creating "perks" for the species preference pages.
+/// A key that designates UI icon displayed on the perk.
+#define SPECIES_PERK_ICON "ui_icon"
+/// A key that designates the name of the perk.
+#define SPECIES_PERK_NAME "name"
+/// A key that designates the description of the perk.
+#define SPECIES_PERK_DESC "description"
+/// A key that designates what type of perk it is (see below).
+#define SPECIES_PERK_TYPE "perk_type"
+
+// The possible types each perk can be.
+// Positive perks are shown in green, negative in red, and neutral in grey.
+#define SPECIES_POSITIVE_PERK "positive"
+#define SPECIES_NEGATIVE_PERK "negative"
+#define SPECIES_NEUTRAL_PERK "neutral"

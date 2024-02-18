@@ -1,5 +1,4 @@
 /obj/spacepod/process(time)
-	time /= 10 // fuck off with your deciseconds // uh oh
 
 	if(world.time > last_slowprocess + 15)
 		last_slowprocess = world.time
@@ -208,7 +207,7 @@
 		C.pixel_y = last_offset_y*32
 		animate(C, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time SECONDS, flags=ANIMATION_END_NOW)
 	user_thrust_dir = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/spacepod/Bumped(atom/movable/A)
 	if(A.dir & NORTH)
@@ -285,7 +284,7 @@
 			this_y += 32
 		if(!T)
 			continue
-		var/obj/item/projectile/proj = new proj_type(T)
+		var/obj/projectile/proj = new proj_type(T)
 		proj.starting = T
 		proj.firer = usr
 		proj.def_zone = "chest"

@@ -81,16 +81,28 @@
 
 	overlays_standing[HANDS_LAYER] = hands
 	apply_overlay(HANDS_LAYER)
+	
+/mob/living/carbon/update_fire_overlay(stacks, on_fire, last_icon_state, suffix = "")
+	var/fire_icon = "[dna?.species.fire_overlay || "human"]_[stacks > MOB_BIG_FIRE_STACK_THRESHOLD ? "big_fire" : "small_fire"][suffix]"
 
+	if(!GLOB.fire_appearances[fire_icon])
+		GLOB.fire_appearances[fire_icon] = mutable_appearance('icons/mob/effects/onfire.dmi', fire_icon, -FIRE_LAYER, appearance_flags = RESET_COLOR)
 
-/mob/living/carbon/update_fire(var/fire_icon = "Generic_mob_burning")
+	if((stacks > 0 && on_fire))
+		if(fire_icon == last_icon_state)
+			return last_icon_state
+
+		remove_overlay(FIRE_LAYER)
+		overlays_standing[FIRE_LAYER] = GLOB.fire_appearances[fire_icon]
+		apply_overlay(FIRE_LAYER)
+		return fire_icon
+
+	if(!last_icon_state)
+		return last_icon_state
+
 	remove_overlay(FIRE_LAYER)
-	if(on_fire || islava(loc))
-		var/mutable_appearance/new_fire_overlay = mutable_appearance('icons/mob/OnFire.dmi', fire_icon, -FIRE_LAYER)
-		new_fire_overlay.appearance_flags = RESET_COLOR
-		overlays_standing[FIRE_LAYER] = new_fire_overlay
-
 	apply_overlay(FIRE_LAYER)
+	return null
 
 /mob/living/carbon/update_damage_overlays()
 	remove_overlay(DAMAGE_LAYER)
@@ -102,7 +114,10 @@
 		var/obj/item/bodypart/BP = X
 		if(BP.dmg_overlay_type)
 			if(BP.brutestate)
-				damage_overlay.add_overlay("[BP.dmg_overlay_type]_[BP.body_zone]_[BP.brutestate]0")	//we're adding icon_states of the base image as overlays
+				var/image/brute_overlay = image('icons/mob/dam_mob.dmi', "[BP.dmg_overlay_type]_[BP.body_zone]_[BP.brutestate]0")
+				if(BP.use_damage_color)
+					brute_overlay.color = BP.damage_color
+				damage_overlay.add_overlay(brute_overlay)
 			if(BP.burnstate)
 				damage_overlay.add_overlay("[BP.dmg_overlay_type]_[BP.body_zone]_0[BP.burnstate]")
 
@@ -115,12 +130,12 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used && hud_used.inv_slots[SLOT_WEAR_MASK])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_WEAR_MASK]
-		inv.update_icon()
+	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_MASK) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_MASK) + 1]
+		inv.update_appearance(UPDATE_ICON)
 
 	if(wear_mask)
-		if(!(SLOT_WEAR_MASK in check_obscured_slots()))
+		if(!(ITEM_SLOT_MASK in check_obscured_slots()))
 			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask/mask.dmi')
 		update_hud_wear_mask(wear_mask)
 
@@ -129,12 +144,12 @@
 /mob/living/carbon/update_inv_neck()
 	remove_overlay(NECK_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[SLOT_NECK])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_NECK]
-		inv.update_icon()
+	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1]
+		inv.update_appearance(UPDATE_ICON)
 
 	if(wear_neck)
-		if(!(SLOT_NECK in check_obscured_slots()))
+		if(!(ITEM_SLOT_NECK in check_obscured_slots()))
 			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = 'icons/mob/clothing/neck/neck.dmi')
 		update_hud_neck(wear_neck)
 
@@ -143,9 +158,9 @@
 /mob/living/carbon/update_inv_back()
 	remove_overlay(BACK_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[SLOT_BACK])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_BACK]
-		inv.update_icon()
+	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1]
+		inv.update_appearance(UPDATE_ICON)
 
 	if(back)
 		overlays_standing[BACK_LAYER] = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi')
@@ -159,9 +174,9 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used && hud_used.inv_slots[SLOT_BACK])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_HEAD]
-		inv.update_icon()
+	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1]
+		inv.update_appearance(UPDATE_ICON)
 
 	if(head)
 		overlays_standing[HEAD_LAYER] = head.build_worn_icon(default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/clothing/head/head.dmi')
@@ -184,11 +199,11 @@
 	clear_alert("legcuffed")
 	if(legcuffed)
 		var/mutable_appearance/legcuffs = mutable_appearance('icons/mob/restraints.dmi', legcuffed.item_state, -LEGCUFF_LAYER)
-		legcuffs.color = handcuffed.color
+		legcuffs.color = legcuffed.color
 
-		overlays_standing[HANDCUFF_LAYER] = legcuffs
+		overlays_standing[LEGCUFF_LAYER] = legcuffs
 		apply_overlay(LEGCUFF_LAYER)
-		throw_alert("legcuffed", /obj/screen/alert/restrained/legcuffed, new_master = legcuffed)
+		throw_alert("legcuffed", /atom/movable/screen/alert/restrained/legcuffed, new_master = legcuffed)
 
 //mob HUD updates for items in our inventory
 
@@ -196,9 +211,9 @@
 /mob/living/carbon/proc/update_hud_handcuffed()
 	if(hud_used)
 		for(var/hand in hud_used.hand_slots)
-			var/obj/screen/inventory/hand/H = hud_used.hand_slots[hand]
+			var/atom/movable/screen/inventory/hand/H = hud_used.hand_slots[hand]
 			if(H)
-				H.update_icon()
+				H.update_appearance(UPDATE_ICON)
 
 //update whether our head item appears on our hud.
 /mob/living/carbon/proc/update_hud_head(obj/item/I)

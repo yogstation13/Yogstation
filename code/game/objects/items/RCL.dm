@@ -1,29 +1,44 @@
-/obj/item/twohanded/rcl
+/obj/item/rcl
 	name = "rapid cable layer"
 	desc = "A device used to rapidly deploy cables. It has screws on the side which can be removed to slide off the cables. Do not use without insulation!"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcl-0"
 	item_state = "rcl-0"
-	var/obj/structure/cable/last
-	var/obj/item/stack/cable_coil/loaded
 	opacity = FALSE
 	force = 5 //Plastic is soft
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
+	actions_types = list(/datum/action/item_action/rcl_col,/datum/action/item_action/rcl_gui)
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	var/obj/structure/cable/last
+	var/obj/item/stack/cable_coil/loaded
 	var/max_amount = 90
 	var/active = FALSE
-	actions_types = list(/datum/action/item_action/rcl_col,/datum/action/item_action/rcl_gui,)
 	var/list/colors = list("red", "yellow", "green", "blue", "pink", "orange", "cyan", "white")
 	var/current_color_index = 1
 	var/ghetto = FALSE
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	var/datum/radial_menu/persistent/wiring_gui_menu
 	var/mob/listeningTo
 
-/obj/item/twohanded/rcl/attackby(obj/item/W, mob/user)
+/obj/item/rcl/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+
+/// triggered on wield of two handed item
+/obj/item/rcl/proc/on_wield(obj/item/source, mob/user)
+	active = TRUE
+
+/// triggered on unwield of two handed item
+/obj/item/rcl/proc/on_unwield(obj/item/source, mob/user)
+	active = FALSE
+
+/obj/item/rcl/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 
@@ -42,7 +57,7 @@
 			loaded.amount += transfer_amount
 		else
 			return
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You add the cables to [src]. It now contains [loaded.amount]."))
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(!loaded)
@@ -74,23 +89,24 @@
 			loaded.forceMove(get_turf(user))
 
 		loaded = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		..()
 
-/obj/item/twohanded/rcl/examine(mob/user)
+/obj/item/rcl/examine(mob/user)
 	. = ..()
 	if(loaded)
 		. += span_info("It contains [loaded.amount]/[max_amount] cables.")
 
-/obj/item/twohanded/rcl/Destroy()
+/obj/item/rcl/Destroy()
 	QDEL_NULL(loaded)
 	last = null
 	listeningTo = null
 	QDEL_NULL(wiring_gui_menu)
 	return ..()
 
-/obj/item/twohanded/rcl/update_icon()
+/obj/item/rcl/update_icon_state()
+	. = ..()
 	if(!loaded)
 		icon_state = "rcl-0"
 		item_state = "rcl-0"
@@ -109,8 +125,8 @@
 			icon_state = "rcl-0"
 			item_state = "rcl-0"
 
-/obj/item/twohanded/rcl/proc/is_empty(mob/user, loud = 1)
-	update_icon()
+/obj/item/rcl/proc/is_empty(mob/user, loud = 1)
+	update_appearance(UPDATE_ICON)
 	if(!loaded || !loaded.amount)
 		if(loud)
 			to_chat(user, span_notice("The last of the cables unreel from [src]."))
@@ -118,26 +134,23 @@
 			QDEL_NULL(loaded)
 			loaded = null
 		QDEL_NULL(wiring_gui_menu)
-		unwield(user)
-		active = wielded
 		return TRUE
 	return FALSE
 
-/obj/item/twohanded/rcl/pickup(mob/user)
+/obj/item/rcl/pickup(mob/user)
 	..()
 	getMobhook(user)
 
 
-/obj/item/twohanded/rcl/dropped(mob/wearer)
+/obj/item/rcl/dropped(mob/wearer)
 	..()
 	UnregisterSignal(wearer, COMSIG_MOVABLE_MOVED)
 	listeningTo = null
 	last = null
 	QDEL_NULL(wiring_gui_menu)
 
-/obj/item/twohanded/rcl/attack_self(mob/user)
+/obj/item/rcl/attack_self(mob/user)
 	..()
-	active = wielded
 	if(!active)
 		last = null
 	else if(!last)
@@ -146,16 +159,16 @@
 				last = C
 				break
 
-/obj/item/twohanded/rcl/proc/getMobhook(mob/to_hook)
+/obj/item/rcl/proc/getMobhook(mob/to_hook)
 	if(listeningTo == to_hook)
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	listeningTo = to_hook
-	RegisterSignal(listeningTo, COMSIG_MOVABLE_MOVED, .proc/trigger)
+	RegisterSignal(listeningTo, COMSIG_MOVABLE_MOVED, PROC_REF(trigger))
 
 
-/obj/item/twohanded/rcl/proc/trigger(mob/user)
+/obj/item/rcl/proc/trigger(mob/user)
 	if(active)
 		layCable(user)
 	if(wiring_gui_menu) //update the wire options as you move
@@ -163,7 +176,7 @@
 
 
 //previous contents of trigger(), lays cable each time the player moves
-/obj/item/twohanded/rcl/proc/layCable(mob/user)
+/obj/item/rcl/proc/layCable(mob/user)
 	if(!isturf(user.loc))
 		return
 	if(is_empty(user, 0))
@@ -172,7 +185,6 @@
 
 	if(prob(2) && ghetto) //Give ghetto RCLs a 2% chance to jam, requiring it to be reactviated manually.
 		to_chat(user, span_warning("[src]'s wires jam!"))
-		active = FALSE
 		return
 	else
 		if(last)
@@ -193,11 +205,11 @@
 		loaded.color = colors[current_color_index]
 		last = loaded.place_turf(get_turf(src), user, turn(user.dir, 180))
 		is_empty(user) //If we've run out, display message
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 //searches the current tile for a stub cable of the same colour
-/obj/item/twohanded/rcl/proc/findLinkingCable(mob/user)
+/obj/item/rcl/proc/findLinkingCable(mob/user)
 	var/turf/T
 	if(!isturf(user.loc))
 		return
@@ -216,7 +228,7 @@
 	return
 
 
-/obj/item/twohanded/rcl/proc/wiringGuiGenerateChoices(mob/user)
+/obj/item/rcl/proc/wiringGuiGenerateChoices(mob/user)
 	var/fromdir = 0
 	var/obj/structure/cable/linkingCable = findLinkingCable(user)
 	if(linkingCable)
@@ -233,12 +245,12 @@
 		wiredirs[icondir] = img
 	return wiredirs
 
-/obj/item/twohanded/rcl/proc/showWiringGui(mob/user)
+/obj/item/rcl/proc/showWiringGui(mob/user)
 	var/list/choices = wiringGuiGenerateChoices(user)
 
-	wiring_gui_menu = show_radial_menu_persistent(user, src , choices, select_proc = CALLBACK(src, .proc/wiringGuiReact, user), radius = 42)
+	wiring_gui_menu = show_radial_menu_persistent(user, src , choices, select_proc = CALLBACK(src, PROC_REF(wiringGuiReact), user), radius = 42)
 
-/obj/item/twohanded/rcl/proc/wiringGuiUpdate(mob/user)
+/obj/item/rcl/proc/wiringGuiUpdate(mob/user)
 	if(!wiring_gui_menu)
 		return
 
@@ -249,7 +261,7 @@
 
 
 //Callback used to respond to interactions with the wiring menu
-/obj/item/twohanded/rcl/proc/wiringGuiReact(mob/living/user,choice)
+/obj/item/rcl/proc/wiringGuiReact(mob/living/user,choice)
 	if(!choice) //close on a null choice (the center button)
 		QDEL_NULL(wiring_gui_menu)
 		return
@@ -281,18 +293,18 @@
 	wiringGuiUpdate(user)
 
 
-/obj/item/twohanded/rcl/pre_loaded/Initialize() //Comes preloaded with cable, for testing stuff
+/obj/item/rcl/pre_loaded/Initialize(mapload) //Comes preloaded with cable, for testing stuff
 	. = ..()
-	loaded = new()
+	loaded = new(src)
 	loaded.max_amount = max_amount
 	loaded.amount = max_amount
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/twohanded/rcl/Initialize()
+/obj/item/rcl/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/twohanded/rcl/ui_action_click(mob/user, action)
+/obj/item/rcl/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/rcl_col))
 		current_color_index++;
 		if (current_color_index > colors.len)
@@ -309,13 +321,14 @@
 		else //open the menu
 			showWiringGui(user)
 
-/obj/item/twohanded/rcl/ghetto
+/obj/item/rcl/ghetto
 	actions_types = list()
 	max_amount = 30
 	name = "makeshift rapid cable layer"
 	ghetto = TRUE
 
-/obj/item/twohanded/rcl/ghetto/update_icon()
+/obj/item/rcl/ghetto/update_icon_state()
+	. = ..()
 	if(!loaded)
 		icon_state = "rclg-0"
 		item_state = "rclg-0"
@@ -327,3 +340,13 @@
 		else
 			icon_state = "rclg-1"
 			item_state = "rclg-1"
+
+/datum/action/item_action/rcl_col
+	name = "Change Cable Color"
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "rcl_rainbow"
+
+/datum/action/item_action/rcl_gui
+	name = "Toggle Fast Wiring Gui"
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "rcl_gui"

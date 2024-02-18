@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(nightshift)
 	name = "Night Shift"
-	wait = 600
-	flags = SS_NO_TICK_CHECK
+	wait = 1 MINUTES
 
 	var/nightshift_active = FALSE
 	var/nightshift_start_time = 702000		//7:30 PM, station time
@@ -13,7 +12,8 @@ SUBSYSTEM_DEF(nightshift)
 /datum/controller/subsystem/nightshift/Initialize()
 	if(!CONFIG_GET(flag/enable_night_shifts))
 		can_fire = FALSE
-	return ..()
+		return SS_INIT_NO_NEED
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/nightshift/fire(resumed = FALSE)
 	if(world.time - SSticker.round_start_time < nightshift_first_check)

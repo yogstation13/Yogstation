@@ -15,7 +15,7 @@
 	var/list/region_access = list(1) //See access.dm
 	var/list/access_list
 
-/obj/item/door_remote/Initialize()
+/obj/item/door_remote/Initialize(mapload)
 	. = ..()
 	for(var/i in region_access)
 		access_list += get_region_accesses(i)

@@ -52,7 +52,7 @@
 	var/datum/supply_pack/SP = new pack_type
 	var/obj/structure/closet/crate/crate = SP.generate(null)
 	crate.locked = FALSE //Unlock secure crates
-	crate.update_icon()
+	crate.update_appearance(UPDATE_ICON)
 	var/obj/structure/closet/supplypod/pod = make_pod()
 	new /obj/effect/DPtarget(LZ, pod, crate)
 
@@ -76,6 +76,6 @@
 		///Subtypes from the above that actually should explode.
 		var/list/unsafe_area_subtypes = typecacheof(list(/area/engine/break_room))
 		allowed_areas = make_associative(GLOB.the_station_areas) - safe_area_types + unsafe_area_subtypes
-	var/list/possible_areas = typecache_filter_list(GLOB.sortedAreas,allowed_areas)
+	var/list/possible_areas = typecache_filter_list(GLOB.areas, allowed_areas)
 	if (length(possible_areas))
 		return pick(possible_areas)

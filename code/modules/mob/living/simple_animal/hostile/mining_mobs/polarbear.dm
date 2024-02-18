@@ -6,7 +6,7 @@
 	icon_living = "polarbear"
 	icon_dead = "polarbear_dead"
 	friendly = "wails at"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
 	friendly = "growls at"
 	speak_emote = list("growls")
@@ -17,6 +17,7 @@
 	obj_damage = 40
 	melee_damage_lower = 25
 	melee_damage_upper = 25
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	vision_range = 2 // don't aggro unless you basically antagonize it, though they will kill you worse than a goliath will
@@ -41,7 +42,7 @@
 	else
 		rapid_melee = initial(rapid_melee)
 
-/mob/living/simple_animal/hostile/asteroid/polarbear/Life()
+/mob/living/simple_animal/hostile/asteroid/polarbear/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)

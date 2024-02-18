@@ -3,16 +3,23 @@
 	var/datum/effect_system/spark_spread/spark_system	//the spark system, used for generating... sparks?
 
 /obj/structure/fireaxecabinet/bridge
-	req_access = list(ACCESS_CAPTAIN)
+	//bridge fireaxe has different access
+	req_one_access = list(ACCESS_CAPTAIN, ACCESS_CE)
 
-/obj/structure/fireaxecabinet/Initialize()//<-- mirrored/overwritten proc
+/obj/structure/fireaxecabinet/Initialize(mapload)//<-- mirrored/overwritten proc
 	. = ..()
 	fireaxe = new
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	//Sets up a spark system
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(2, 1, src)
 	spark_system.attach(src)
+
+/obj/structure/fireaxecabinet/update_desc(updates=ALL)
+	. = ..()
+	desc = initial(desc)
+	if(obj_flags & EMAGGED)
+		desc += "<BR>[span_warning("The access panel is smoking slightly.")]"
 
 /obj/structure/fireaxecabinet/Destroy()//<-- mirrored/overwritten proc
 	if(fireaxe)
@@ -28,7 +35,7 @@
 		user.visible_message(span_warning("[user] disassembles the [name]."), \
 							 "You start to disassemble the [name]...", \
 							 span_italics("You hear wrenching."))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/ratchet.ogg', 50, 1)
 		if(do_after(user, 4 SECONDS/I.toolspeed, src))
 			to_chat(user, span_notice("You disassemble the [name]."))
 			var/obj/item/stack/sheet/metal/M = new (loc, 3)//spawn three metal for deconstruction
@@ -38,7 +45,7 @@
 			if (prob(50))
 				G.add_fingerprint(user)
 			deconstruct()//deconstruct then spawns an additional 2 metal, so you recover more mats using a wrench to decon than just destroying it.
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/ratchet.ogg', 50, 1)
 			return
 	else if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !broken && !open)
 		//User is attempting to wrench a closed & non-broken fireaxe cab
@@ -85,24 +92,23 @@
 		audible_message("You hear an audible clunk as the [name]'s bolt [locked ? "retracts" : "locks into place"].")
 		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
 		locked = !locked
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/structure/fireaxecabinet/emag_act(mob/user)
-	//this allows you to emag the fireaxe cabinet, unlocking it immediately.
+/obj/structure/fireaxecabinet/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
-	if(!open && locked)
-		user.visible_message(span_warning("Sparks fly out of the [src]'s locking modules!"), \
-							 span_caution("You short out the [name]'s locking modules."), \
-							 span_italics("You hear electricity arcing."))
-		spark_system.start()
-
-		src.add_fingerprint(user)
-		obj_flags |= EMAGGED
-		desc += "<BR>[span_warning("Its access panel is smoking slightly.")]"
-
-		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
-		locked = 0
-		audible_message("You hear an audible clunk as the [name]'s bolt retracts.")
-		update_icon()
-		//Fireaxe Cabinet is now permanently unlocked.
+		return FALSE
+	if(open || !locked) // You won't need the emag to get what you want. Just open it normally!
+		return FALSE
+	// This allows you to emag the fireaxe cabinet, unlocking it immediately.
+	user.visible_message(span_warning("Sparks fly out of the [src]'s locking modules!"), \
+							span_caution("You short out the [name]'s locking modules."), \
+							span_italics("You hear electricity arcing."))
+	spark_system.start()
+	add_fingerprint(user)
+	obj_flags |= EMAGGED
+	playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
+	locked = FALSE
+	audible_message("You hear an audible clunk as the [name]'s bolt retracts.")
+	update_appearance()
+	// The fireaxe cabinet is now permanently unlocked.
+	return TRUE

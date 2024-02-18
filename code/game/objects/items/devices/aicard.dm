@@ -9,6 +9,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	item_flags = NOBLUDGEON
+	cryo_preserve = TRUE
 	var/flush = FALSE
 	var/mob/living/silicon/ai/AI
 
@@ -37,21 +38,29 @@
 		target.transfer_ai(AI_TRANS_TO_CARD, user, null, src)
 		if(AI)
 			log_combat(user, AI, "carded", src)
-	update_icon() //Whatever happened, update the card's state (icon, name) to match.
+	update_appearance(UPDATE_ICON) //Whatever happened, update the card's state (icon, name) to match.
 
-/obj/item/aicard/update_icon()
-	cut_overlays()
+/obj/item/aicard/update_name(updates=ALL)
+	. = ..()
 	if(AI)
 		name = "[initial(name)] - [AI.name]"
+	else
+		name = initial(name)
+
+/obj/item/aicard/update_overlays()
+	. = ..()
+	if(AI && !AI.control_disabled)
+		. += "[initial(icon_state)]-on"
+
+/obj/item/aicard/update_icon_state()
+	. = ..()
+	if(AI)
 		if(AI.stat == DEAD)
 			icon_state = "[initial(icon_state)]-404"
 		else
 			icon_state = "[initial(icon_state)]-full"
-		if(!AI.control_disabled)
-			add_overlay("[initial(icon_state)]-on")
 		AI.cancel_camera()
 	else
-		name = initial(name)
 		icon_state = initial(icon_state)
 
 /obj/item/aicard/ui_state(mob/user)
@@ -84,7 +93,7 @@
 			if(flush)
 				flush = FALSE
 			else
-				var/confirm = alert("Are you sure you want to wipe this card's memory?", name, "Yes", "No")
+				var/confirm = tgui_alert(usr, "Are you sure you want to wipe this card's memory?", name, list("Yes", "No"))
 				if(confirm == "Yes" && !..())
 					flush = TRUE
 					if(AI && AI.loc == src)
@@ -103,4 +112,4 @@
 			AI.radio_enabled = !AI.radio_enabled
 			to_chat(AI, "Your Subspace Transceiver has been [AI.radio_enabled ? "enabled" : "disabled"]!")
 			. = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)

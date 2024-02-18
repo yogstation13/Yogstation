@@ -7,6 +7,7 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
+	cryo_preserve = TRUE
 	var/mob/living/silicon/pai/pai
 	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
 
@@ -14,14 +15,14 @@
 	user.visible_message(span_suicide("[user] is staring sadly at [src]! [user.p_they()] can't keep living without real human intimacy!"))
 	return OXYLOSS
 
-/obj/item/paicard/Initialize()
-	SSpai.pai_card_list += src
+/obj/item/paicard/Initialize(mapload)
+	SSpai.paicard_list += src
 	add_overlay("pai-off")
 	return ..()
 
 /obj/item/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
-	SSpai.pai_card_list -= src
+	SSpai.paicard_list -= src
 	if (!QDELETED(pai))
 		QDEL_NULL(pai)
 	return ..()
@@ -89,7 +90,7 @@
 				to_chat(pai, span_notice("You have been bound to a new master."))
 				pai.emittersemicd = FALSE
 		if(href_list["wipe"])
-			var/confirm = input("Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe") in list("Yes", "No")
+			var/confirm = tgui_alert(usr, "Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No"))
 			if(confirm == "Yes")
 				if(pai)
 					to_chat(pai, span_warning("You feel yourself slipping away from reality."))
@@ -109,9 +110,9 @@
 			to_chat(usr,span_warning("You [transmit_holder ? "enable" : "disable"] your pAI's [transmitting ? "outgoing" : "incoming"] radio transmissions!"))
 			to_chat(pai,span_warning("Your owner has [transmit_holder ? "enabled" : "disabled"] your [transmitting ? "outgoing" : "incoming"] radio transmissions!"))
 		if(href_list["setlaws"])
-			var/newlaws = stripped_multiline_input(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.laws.supplied[1], MAX_MESSAGE_LEN)
-			if(newlaws && pai)
-				pai.add_supplied_law(0,newlaws)
+			var/newlaw = stripped_multiline_input(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.laws.supplied[1], MAX_MESSAGE_LEN)
+			if(newlaw && pai)
+				pai.set_supplied_laws(list(newlaw))
 		if(href_list["toggle_holo"])
 			if(pai.canholo)
 				to_chat(pai, span_userdanger("Your owner has disabled your holomatrix projectors!"))

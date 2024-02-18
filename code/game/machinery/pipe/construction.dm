@@ -37,10 +37,6 @@ Buildable meters
 /obj/item/pipe/quaternary
 	RPD_type = PIPE_ONEDIR
 
-/obj/item/pipe/ComponentInitialize()
-	//Flipping handled manually due to custom handling for trinary pipes
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
-
 /obj/item/pipe/Initialize(mapload, _pipe_type, _dir, obj/machinery/atmospherics/make_from)
 	if(make_from)
 		make_from_existing(make_from)
@@ -51,6 +47,8 @@ Buildable meters
 	update()
 	pixel_x += rand(-5, 5)
 	pixel_y += rand(-5, 5)
+	//Flipping handled manually due to custom handling for trinary pipes
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
 	return ..()
 
 /obj/item/pipe/proc/make_from_existing(obj/machinery/atmospherics/make_from)
@@ -66,10 +64,10 @@ Buildable meters
 
 /obj/item/pipe/dropped()
 	if(loc)
-		setPipingLayer(piping_layer)
+		set_piping_layer(piping_layer)
 	return ..()
 
-/obj/item/pipe/proc/setPipingLayer(new_layer = PIPING_LAYER_DEFAULT)
+/obj/item/pipe/proc/set_piping_layer(new_layer = PIPING_LAYER_DEFAULT)
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 
 	if(initial(fakeA.pipe_flags) & PIPING_ALL_LAYER)
@@ -141,7 +139,7 @@ Buildable meters
 			return TRUE
 		if((M.piping_layer != piping_layer) && !((M.pipe_flags | flags) & PIPING_ALL_LAYER)) //don't continue if either pipe goes across all layers
 			continue
-		if(M.GetInitDirections() & SSair.get_init_dirs(pipe_type, fixed_dir()))	// matches at least one direction on either type of pipe
+		if(M.get_init_directions() & SSair.get_init_dirs(pipe_type, fixed_dir()))	// matches at least one direction on either type of pipe
 			to_chat(user, span_warning("There is already a pipe at that location!"))
 			return TRUE
 	// no conflicts found
@@ -161,7 +159,7 @@ Buildable meters
 
 /obj/item/pipe/proc/build_pipe(obj/machinery/atmospherics/A)
 	A.setDir(fixed_dir())
-	A.SetInitDirections()
+	A.set_init_directions()
 
 	if(pipename)
 		A.name = pipename

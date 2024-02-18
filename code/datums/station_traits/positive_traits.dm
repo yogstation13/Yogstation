@@ -95,7 +95,7 @@
 		/obj/item/clothing/neck/stripedbluescarf,
 	)
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, .proc/on_job_after_spawn)
+	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
 
 /datum/station_trait/scarves/proc/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/M, joined_late)
 	var/scarf_type = pick(scarves)
@@ -107,7 +107,7 @@
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Our workers accidentaly forgot more of their personal belongings in the maintenace areas."
+	report_message = "Our workers accidentaly forgot more of their personal belongings in the maintenance areas."
 	blacklist = list(/datum/station_trait/empty_maint)
 	trait_to_give = STATION_TRAIT_FILLED_MAINT
 

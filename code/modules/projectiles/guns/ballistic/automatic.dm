@@ -23,16 +23,17 @@
 	pin = null
 	bolt_type = BOLT_TYPE_LOCKING
 	mag_display = TRUE
+	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/proto/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/update_icon()
-	..()
+/obj/item/gun/ballistic/automatic/update_overlays()
+	. = ..()
 	if(!select)
-		add_overlay("[initial(icon_state)]_semi")
+		. += "[initial(icon_state)]_semi"
 	if(select == 1)
-		add_overlay("[initial(icon_state)]_burst")
+		. += "[initial(icon_state)]_burst"
 
 /obj/item/gun/ballistic/automatic/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
@@ -42,21 +43,24 @@
 
 /obj/item/gun/ballistic/automatic/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
+	var/spread_difference = initial(spread) - semi_auto_spread //Set this way so laser sights work properly. Default value of 0
 	select = !select
 	if(!select)
 		burst_size = 1
 		fire_delay = 0
+		spread -= spread_difference //Has to be subtraction because laser sight
 		to_chat(user, span_notice("You switch to semi-automatic."))
 	else
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
+		spread += spread_difference //Has to be addition because laser sight
 		to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/gun/ballistic/automatic/c20r
 	name = "\improper C-20r SMG"
@@ -74,23 +78,30 @@
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 
+/obj/item/gun/ballistic/automatic/c20r/ultrasecure
+	pin = /obj/item/firing_pin/fucked
+
 /obj/item/gun/ballistic/automatic/c20r/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/c20r/Initialize()
+/obj/item/gun/ballistic/automatic/c20r/ultrasecure
+	pin = /obj/item/firing_pin/fucked
+
+/obj/item/gun/ballistic/automatic/c20r/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "security auto rifle"
-	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle. Has a two-round burst or a semi-automatic firing mode."
+	name = "\improper security auto carbine"
+	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Carbine. Has a two-round burst or a semi-automatic firing mode."
 	icon_state = "wt550"
 	item_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
 	burst_size = 2
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
-	can_suppress = FALSE
+	can_suppress = TRUE // its been 6 years, get with the times old man!
 	can_bayonet = TRUE
 	knife_x_offset = 25
 	knife_y_offset = 12
@@ -98,10 +109,8 @@
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 
-/obj/item/gun/ballistic/automatic/wt550/occupying
-	name = "surplus security auto rifle"
-	desc = "Crude surplus variant of the WT-550 Automatic Rifle meant for mass deployment. Does not come with the benefits of a two round burst, but has a single fire burst mode for all the advantages that it has over semi automatic mode (i.e none)."
-	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
+/obj/item/gun/ballistic/automatic/wt550/armory
+	starting_mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
@@ -111,11 +120,12 @@
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
+	show_bolt_icon = FALSE
 	rack_sound = "sound/weapons/pistollock.ogg"
 
 /obj/item/gun/ballistic/automatic/m90
-	name = "\improper M-90gl Carbine"
-	desc = "A three-round burst 5.56 toploading carbine, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
+	name = "\improper M-90gl Rifle"
+	desc = "A three-round burst 5.56 toploading rifle, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
 	icon_state = "m90"
 	item_state = "m90"
 	mag_type = /obj/item/ammo_box/magazine/m556
@@ -128,18 +138,18 @@
 	mag_display = TRUE
 	empty_indicator = TRUE
 
-/obj/item/gun/ballistic/automatic/m90/Initialize()
+/obj/item/gun/ballistic/automatic/m90/Initialize(mapload)
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/m90/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/m90/unrestricted/Initialize()
+/obj/item/gun/ballistic/automatic/m90/unrestricted/Initialize(mapload)
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/m90/afterattack(atom/target, mob/living/user, flag, params)
 	if(select == 2)
@@ -155,24 +165,25 @@
 	else
 		..()
 
-/obj/item/gun/ballistic/automatic/m90/update_icon()
-	..()
+/obj/item/gun/ballistic/automatic/m90/update_overlays()
+	. = ..()
 	switch(select)
 		if(0)
-			add_overlay("[initial(icon_state)]_semi")
+			. += "[initial(icon_state)]_semi"
 		if(1)
-			add_overlay("[initial(icon_state)]_burst")
+			. += "[initial(icon_state)]_burst"
 		if(2)
-			add_overlay("[initial(icon_state)]_gren")
-	return
+			. += "[initial(icon_state)]_gren"
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
+	var/spread_difference = initial(spread) - semi_auto_spread //It shouldn't need this but just in case someone decides to nerf the M90-gl's accuracy for whatever reason
 	switch(select)
 		if(0)
 			select = 1
 			burst_size = initial(burst_size)
 			fire_delay = initial(fire_delay)
+			spread += spread_difference
 			to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 		if(1)
 			select = 2
@@ -181,9 +192,10 @@
 			select = 0
 			burst_size = 1
 			fire_delay = 0
+			spread -= spread_difference
 			to_chat(user, span_notice("You switch to semi-auto."))
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/gun/ballistic/automatic/tommygun
@@ -197,16 +209,18 @@
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	burst_size = 4
+	spread = 30
 	fire_delay = 1
 	bolt_type = BOLT_TYPE_OPEN
+	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/ar
-	name = "\improper NT-ARG 'Boarder'"
+	name = "\improper NT-ARG 'Boarder' Rifle"
 	desc = "A robust assault rifle used by Nanotrasen fighting forces."
 	icon_state = "arg"
 	item_state = "arg"
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/m556
+	mag_type = /obj/item/ammo_box/magazine/r556
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	burst_size = 3
@@ -217,7 +231,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw
 	name = "\improper L6 SAW"
-	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
+	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2503' engraved on the receiver below the designation."
 	icon_state = "l6"
 	item_state = "l6closedmag"
 	w_class = WEIGHT_CLASS_HUGE
@@ -227,11 +241,13 @@
 	var/cover_open = FALSE
 	can_suppress = FALSE
 	fire_delay = 1
-	spread = 7
+	burst_size = 3
+	spread = 14
 	pin = /obj/item/firing_pin/implant/pindicate
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
 	mag_display_ammo = TRUE
+	show_bolt_icon = FALSE
 	tac_reloads = FALSE
 	automatic = TRUE
 	fire_sound = 'sound/weapons/rifleshot.ogg'
@@ -255,12 +271,12 @@
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
 	else
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
-/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
+/obj/item/gun/ballistic/automatic/l6_saw/update_overlays()
 	. = ..()
-	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
+	. += "l6_door_[cover_open ? "open" : "closed"]"
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
@@ -269,7 +285,7 @@
 		return
 	else
 		. = ..()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/gun/ballistic/automatic/l6_saw/attack_hand(mob/user)
@@ -289,63 +305,88 @@
 
 
 
-// SNIPER //
+// LWT-650 DMR //
 
-/obj/item/gun/ballistic/automatic/sniper_rifle
-	name = "sniper rifle"
-	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
-	icon_state = "sniper"
-	item_state = "sniper"
-	fire_sound = "sound/weapons/sniper_shot.ogg"
-	fire_sound_volume = 90
-	vary_fire_sound = FALSE
-	load_sound = "sound/weapons/sniper_mag_insert.ogg"
-	rack_sound = "sound/weapons/sniper_rack.ogg"
-	recoil = 2
-	weapon_weight = WEAPON_HEAVY
-	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
-	fire_delay = 40
+/obj/item/gun/ballistic/automatic/lwt650
+	name = "\improper LWT-650 DMR"
+	desc = "A long-barreled designated marksman rifle vaguely based on the WT platform. Slowly fires powerful .308 rounds."
+	icon_state = "lwt650"
+	item_state = "lwt650"
+	fire_sound = "sound/weapons/dmrshot.ogg"
+	vary_fire_sound = FALSE //Pure DMR bliss my beloved
+	load_sound = "sound/weapons/rifleload.ogg"
+	load_empty_sound = "sound/weapons/rifleload.ogg"
+	rack_sound = "sound/weapons/riflerack.ogg"
+	eject_sound = "sound/weapons/rifleunload.ogg"
+	eject_empty_sound = "sound/weapons/rifleunload.ogg"
+	mag_type = /obj/item/ammo_box/magazine/m308
+	fire_delay = 6
 	burst_size = 1
-	w_class = WEIGHT_CLASS_NORMAL
-	zoomable = TRUE
-	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
-	zoom_out_amt = 5
-	slot_flags = ITEM_SLOT_BACK
-	actions_types = list()
+	spread = 2 //Marksman rifle == accurate?
+	can_suppress = FALSE
+	can_bayonet = TRUE
+	knife_x_offset = 27
+	knife_y_offset = 12
+	actions_types = list() //So you can't avoid the fire_delay
 	mag_display = TRUE
+	weapon_weight = WEAPON_MEDIUM
+	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
-	name = "syndicate sniper rifle"
-	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
-	can_suppress = TRUE
-	can_unsuppress = TRUE
+// K-41s DMR //
+
+/obj/item/gun/ballistic/automatic/k41s
+	name = "\improper K-41s DMR"
+	desc = "A sleek, urban camouflage rifle that fires powerful 7.62mm rounds. Comes with a mid-range scope."
+	icon_state = "dmr"
+	item_state = "dmr"
+	fire_sound = "sound/weapons/dmrshot.ogg"
+	fire_sound_volume = 70 //Might be too loud
+	vary_fire_sound = FALSE
+	load_sound = "sound/weapons/rifleload.ogg"
+	load_empty_sound = "sound/weapons/rifleload.ogg"
+	rack_sound = "sound/weapons/riflerack.ogg"
+	eject_sound = "sound/weapons/rifleunload.ogg"
+	eject_empty_sound = "sound/weapons/rifleunload.ogg"
+	mag_type = /obj/item/ammo_box/magazine/ks762
+	fire_delay = 5 //Can fire slightly faster than the LWT-650
+	burst_size = 1
+	spread = 2 //DMR gets to be special
+	can_suppress = FALSE
+	zoomable = TRUE
+	zoom_amt = 5 //Not as significant a scope as the sniper
+	actions_types = list() //So you can't avoid the fire_delay
 	pin = /obj/item/firing_pin/implant/pindicate
+	mag_display = TRUE
+	empty_indicator = TRUE
+	weapon_weight = WEAPON_MEDIUM
+	w_class = WEIGHT_CLASS_NORMAL //Just stuff it in the bag
 
-/obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure
-	pin = /obj/item/firing_pin/fucked
+/obj/item/gun/ballistic/automatic/k41s/unrestricted
+	pin = /obj/item/firing_pin
 
-// Old Semi-Auto Rifle //
+// Old Semi-Auto Carbine //
 
 /obj/item/gun/ballistic/automatic/surplus
-	name = "Surplus Rifle"
-	desc = "One of countless obsolete ballistic rifles that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
+	name = "\improper surplus carbine"
+	desc = "One of several antique carbines that still sees use as a cheap deterrent. Uses .45 ammo, and its bulky frame prevents one-hand firing."
 	icon_state = "surplus"
 	item_state = "moistnugget"
 	weapon_weight = WEAPON_HEAVY
 	mag_type = /obj/item/ammo_box/magazine/m10mm/rifle
-	fire_delay = 30
+	fire_delay = 10
 	burst_size = 1
 	can_unsuppress = TRUE
 	can_suppress = TRUE
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list()
 	mag_display = TRUE
+	can_bayonet = TRUE
 
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
-	name = "laser rifle"
+	name = "\improper laser rifle"
 	desc = "Though sometimes mocked for the relatively weak firepower of their energy weapons, the logistic miracle of rechargeable ammunition has given Nanotrasen a decisive edge over many a foe."
 	icon_state = "oldrifle"
 	item_state = "arg"
@@ -356,3 +397,51 @@
 	actions_types = list()
 	fire_sound = 'sound/weapons/laser.ogg'
 	casing_ejector = FALSE
+
+// 40k Laser Weaponry
+
+/obj/item/gun/ballistic/automatic/laser/lasgun
+	name ="Imperial Lasgun"
+	desc = "A relic of a weapon. Despite being immensely powerful, it has acquired a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "lasgun"
+	item_state = "lasgun"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun
+
+/obj/item/gun/ballistic/automatic/laser/longlas
+	name ="Imperial Longlas"
+	desc = "A sniper variant of the lasgun. Despite being immensely powerful, it has acquired  a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "longlas"
+	item_state = "longlas"
+	mag_display = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/sniper
+	zoomable = TRUE
+	zoom_amt = 8
+
+/obj/item/gun/ballistic/automatic/laser/laspistol
+	name ="Imperial Laspistol"
+	desc = "A smaller, pistol sized version of the lasgun. Despite being immensely powerful, it has acquired a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "laspistol"
+	item_state = "laspistol"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/pistol
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/gun/ballistic/automatic/laser/hotshot
+	name ="Imperial Hotshot Lasgun"
+	desc = "An amped-up version of the lasgun. One of the few models to not be regarded as completely useless by its users."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "hotshot"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	item_state = "hotshot"
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/hotshot

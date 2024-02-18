@@ -24,7 +24,7 @@
 	severity = rand(1,3)
 	for(var/i in 1 to severity)
 		var/picked_area = pick_n_take(potential_areas)
-		for(var/area/A in world)
+		for(var/area/A as anything in GLOB.areas)
 			if(istype(A, picked_area))
 				areasToOpen += A
 
@@ -49,7 +49,7 @@
 			if(istype(O, /obj/structure/closet/secure_closet))
 				var/obj/structure/closet/secure_closet/temp = O
 				temp.locked = FALSE
-				temp.update_icon()
+				temp.update_appearance(UPDATE_ICON)
 			else if(istype(O, /obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/temp = O
 				//Skip doors in critical positions, such as the SM chamber, and skip doors the AI can't control since it's a virus

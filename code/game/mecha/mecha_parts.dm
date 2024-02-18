@@ -13,6 +13,11 @@
 	if(!user.transferItemToLoc(src, M))
 		to_chat(user, span_warning("\The [src] is stuck to your hand, you cannot put it in \the [M]!"))
 		return FALSE
+	
+	// If there is an occupant and it is not a posibrain
+	if(M.occupant && !istype(M.occupant.loc, /obj/item/mmi)) 
+		to_chat(user, span_warning("Someone is driving \the [M]!"))
+		return FALSE
 	user.visible_message("[user] attaches [src] to [M].", span_notice("You attach [src] to [M]."))
 	return TRUE
 
@@ -25,7 +30,7 @@
 	interaction_flags_item = NONE			//Don't pick us up!!
 	var/construct_type
 
-/obj/item/mecha_parts/chassis/Initialize()
+/obj/item/mecha_parts/chassis/Initialize(mapload)
 	. = ..()
 	if(construct_type)
 		AddComponent(construct_type)
@@ -188,6 +193,32 @@
 	name = "\improper Firefighter chassis"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/firefighter
 
+////////// Clarke
+
+/obj/item/mecha_parts/chassis/clarke
+	name = "\improper Clarke chassis"
+	construct_type = /datum/component/construction/unordered/mecha_chassis/clarke
+
+/obj/item/mecha_parts/part/clarke_torso
+	name = "\improper Clarke torso"
+	desc = "A torso part of Clarke. Contains power unit, processing core and life support systems."
+	icon_state = "clarke_harness"
+
+/obj/item/mecha_parts/part/clarke_head
+	name = "\improper Clarke head"
+	desc = "A Clarke head. Contains an integrated diagnostic HUD scanner."
+	icon_state = "clarke_head"
+
+/obj/item/mecha_parts/part/clarke_left_arm
+	name = "\improper Clarke left arm"
+	desc = "A Clarke left arm. Data and power sockets are compatible with most exosuit tools."
+	icon_state = "clarke_l_arm"
+
+/obj/item/mecha_parts/part/clarke_right_arm
+	name = "\improper Clarke right arm"
+	desc = "A Clarke right arm. Data and power sockets are compatible with most exosuit tools."
+	icon_state = "clarke_r_arm"
+
 
 ////////// HONK
 
@@ -266,6 +297,49 @@
 	name="Phazon armor"
 	desc="Phazon armor plates. They are layered with plasma to protect the pilot from the stress of phasing and have unusual properties."
 	icon_state = "phazon_armor"
+
+
+///////// sidewinder
+
+/obj/item/mecha_parts/chassis/sidewinder
+	name = "\improper Sidewinder chassis"
+	construct_type = /datum/component/construction/unordered/mecha_chassis/sidewinder
+
+/obj/item/mecha_parts/part/sidewinder_torso
+	name = "\improper Sidewinder torso"
+	desc = "A Sidewinder torso part. Contains a light power unit, processing units, and life support systems."
+	icon_state = "sidewinder_harness"
+
+/obj/item/mecha_parts/part/sidewinder_head
+	name = "\improper Sidewinder head"
+	desc = "A Sidewinder head. A light armor shell houses advanced surveillance and environmental sensors."
+	icon_state = "sidewinder_head"
+
+/obj/item/mecha_parts/part/sidewinder_left_arm
+	name = "\improper Sidewinder left arm"
+	desc = "A Sidewinder left arm. Data and power sockets are compatible with most exosuit tools and it has the dexterity to use them effectively."
+	icon_state = "sidewinder_l_arm"
+
+/obj/item/mecha_parts/part/sidewinder_right_arm
+	name = "\improper Sidewinder right arm"
+	desc = "A Sidewinder right arm. Data and power sockets are compatible with most exosuit tools and it has the dexterity to use them effectively."
+	icon_state = "sidewinder_r_arm"
+
+/obj/item/mecha_parts/part/sidewinder_left_leg
+	name = "\improper Sidewinder left leg"
+	desc = "A Sidewinder left leg. Wrapped in advanced synthetic muscle fibers, it grants remarkable agility to the exosuit."
+	icon_state = "sidewinder_l_leg"
+
+/obj/item/mecha_parts/part/sidewinder_right_leg
+	name = "\improper Sidewinder right leg"
+	desc = "A sidewinder right leg. Wrapped in advanced synthetic muscle fibers, it grants remarkable agility to the exosuit."
+	icon_state = "sidewinder_r_leg"
+
+/obj/item/mecha_parts/part/sidewinder_armor
+	gender = PLURAL
+	name = "\improper Sidewinder armor plates"
+	desc = "A set of armor plates designed for the Sidewinder. They act as a thin shell to protect the most vulnerable areas without limiting mobility."
+	icon_state = "sidewinder_armor"
 
 
 ///////// Circuitboards
@@ -347,3 +421,23 @@
 
 /obj/item/circuitboard/mecha/phazon/main
 	name = "Phazon Central Control module (Exosuit Board)"
+
+/obj/item/circuitboard/mecha/clarke/peripherals
+	name = "Clarke Peripherals Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/clarke/main
+	name = "Clarke Central Control module (Exosuit Board)"
+	icon_state = "mainboard"
+
+/obj/item/circuitboard/mecha/sidewinder/peripherals
+	name = "Sidewinder Peripherals Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/sidewinder/targeting
+	name = "Sidewinder Kinetics and Mobility Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/sidewinder/main
+	name = "Sidewinder Central Control module (Exosuit Board)"
+	icon_state = "mainboard"

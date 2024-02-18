@@ -24,11 +24,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	desc = "This shouldn't exist. If it does, create an issue report."
 
-/obj/item/storage/secure/ComponentInitialize()
+/obj/item/storage/secure/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_combined_w_class = 14
+	cut_overlays()
+	add_overlay(icon_opened)
 
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
@@ -48,6 +50,8 @@
 				to_chat(user, span_danger("Now attempting to reset internal memory, please hold."))
 				l_hacking = 1
 				if (W.use_tool(src, user, 400))
+					cut_overlays()
+					add_overlay(icon_sparking)
 					to_chat(user, span_danger("Internal memory reset - lock has been disengaged."))
 					l_set = 0
 					l_hacking = 0
@@ -134,7 +138,7 @@
 	new /obj/item/paper(src)
 	new /obj/item/pen(src)
 
-/obj/item/storage/secure/briefcase/ComponentInitialize()
+/obj/item/storage/secure/briefcase/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 21
@@ -168,11 +172,11 @@
 	anchored = TRUE
 	density = FALSE
 
-/obj/item/storage/secure/safe/ComponentInitialize()
+/obj/item/storage/secure/safe/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(null, list(/obj/item/storage/secure/briefcase))
-	STR.max_w_class = 8						//??
+	STR.max_w_class = 8 //??
 
 /obj/item/storage/secure/safe/PopulateContents()
 	new /obj/item/paper(src)

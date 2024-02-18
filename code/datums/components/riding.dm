@@ -25,9 +25,9 @@
 /datum/component/riding/Initialize()
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, .proc/vehicle_mob_buckle)
-	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/vehicle_moved)
+	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, PROC_REF(vehicle_mob_buckle))
+	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
 
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	var/atom/movable/AM = parent
@@ -35,6 +35,8 @@
 	restore_position(M)
 	unequip_buckle_inhands(M)
 	M.updating_glide_size = TRUE
+	if(AM.movement_type & FLYING)
+		M.movement_type &= ~FLYING
 	if(del_on_unbuckle_all && !AM.has_buckled_mobs())
 		qdel(src)
 
@@ -44,6 +46,8 @@
 	M.updating_glide_size = FALSE
 	parent_initial_layer = AM.layer
 	handle_vehicle_offsets()
+	if(AM.movement_type & FLYING)
+		M.movement_type |= FLYING
 
 /datum/component/riding/proc/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
@@ -68,6 +72,10 @@
 /datum/component/riding/proc/ride_check(mob/living/M)
 	var/atom/movable/AM = parent
 	var/mob/AMM = AM
+	if(AM.movement_type & FLYING)
+		AMM.movement_type |= FLYING
+	else
+		AMM.movement_type &= ~FLYING
 	if((ride_check_rider_restrained && M.restrained(TRUE)) || (ride_check_rider_incapacitated && M.incapacitated(FALSE, TRUE)) || (ride_check_ridden_incapacitated && istype(AMM) && AMM.incapacitated(FALSE, TRUE)))
 		AM.visible_message(span_warning("[M] falls off of [AM]!"))
 		AM.unbuckle_mob(M)
@@ -195,7 +203,7 @@
 		to_chat(user, span_notice("You'll need the keys in one of your hands to [drive_verb] [AM]."))
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
-	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)
+	addtimer(CALLBACK(parent, TYPE_PROC_REF(/atom/movable, unbuckle_mob), M), 0, TIMER_UNIQUE)
 
 /datum/component/riding/proc/Process_Spacemove(direction)
 	var/atom/movable/AM = parent
@@ -215,7 +223,7 @@
 
 /datum/component/riding/human/Initialize()
 	. = ..()
-	RegisterSignal(parent, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_host_unarmed_melee)
+	RegisterSignal(parent, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_host_unarmed_melee))
 
 /datum/component/riding/human/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	unequip_buckle_inhands(parent)

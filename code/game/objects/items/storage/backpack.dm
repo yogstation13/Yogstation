@@ -21,7 +21,7 @@
 	resistance_flags = NONE
 	max_integrity = 300
 
-/obj/item/storage/backpack/ComponentInitialize()
+/obj/item/storage/backpack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 21
@@ -32,10 +32,27 @@
  * Backpack Types
  */
 
-/obj/item/storage/backpack/old/ComponentInitialize()
+/obj/item/storage/backpack/old/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 12
+
+/obj/item/boh_shell
+	name = "bag of holding shell"
+	desc = "An inert shell, it looks like you could activate it with an anomaly core."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "brokenpack"
+	item_state = "brokenpack"
+	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
+
+/obj/item/boh_shell/attackby(obj/item/I, mob/user, params)
+	..()
+	if(istype(I, /obj/item/assembly/signaler/anomaly))
+		to_chat(user, "[src] roars to life as you insert the anomaly core!")
+		new /obj/item/storage/backpack/holding(get_turf(src))
+		qdel(src)
+		qdel(I)
 
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
@@ -47,6 +64,10 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 60, ACID = 50)
 	component_type = /datum/component/storage/concrete/bluespace/bag_of_holding
 
+/obj/item/storage/backpack/holding/rd
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
+
 /obj/item/storage/backpack/holding/clown
 	name = "bag of honking"
 	desc = "An advanced clowning backpack for holding large quantities of pranking gear."
@@ -54,7 +75,7 @@
 	icon_state = "clownpack"
 	item_state = "clownpack"
 
-/obj/item/storage/backpack/holding/ComponentInitialize()
+/obj/item/storage/backpack/holding/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.allow_big_nesting = TRUE
@@ -80,22 +101,19 @@
 	item_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/storage/backpack/santabag/Initialize()
-	. = ..()
-	regenerate_presents()
-
-/obj/item/storage/backpack/santabag/ComponentInitialize()
+/obj/item/storage/backpack/santabag/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 60
+	regenerate_presents()
 
 /obj/item/storage/backpack/santabag/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] places [src] over [user.p_their()] head and pulls it tight! It looks like [user.p_they()] [user.p_are()]n't in the Christmas spirit..."))
 	return (OXYLOSS)
 
 /obj/item/storage/backpack/santabag/proc/regenerate_presents()
-	addtimer(CALLBACK(src, .proc/regenerate_presents), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(regenerate_presents)), 30 SECONDS)
 
 	var/mob/M = get(loc, /mob)
 	if(!istype(M))
@@ -299,7 +317,7 @@
 	w_class = WEIGHT_CLASS_NORMAL //Can fit in backpacks itself.
 	level = 1
 
-/obj/item/storage/backpack/satchel/flat/ComponentInitialize()
+/obj/item/storage/backpack/satchel/flat/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 15
@@ -339,12 +357,26 @@
 	desc = "A large duffel bag for holding extra things."
 	icon_state = "duffel"
 	item_state = "duffel"
-	slowdown = 1
+	slowdown = 0.5
 
-/obj/item/storage/backpack/duffelbag/ComponentInitialize()
+/obj/item/storage/backpack/duffelbag/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 30
+
+/obj/item/storage/backpack/duffelbag/cursed
+	name = "living duffel bag"
+	desc = "A cursed clown duffel bag that hungers for food of any kind. A warning label suggests that it eats food inside. \
+		If that food happens to be a horribly ruined mess or the chef scrapped out of the microwave, or poisoned in some way, \
+		then it might have negative effects on the bag..."
+	icon_state = "duffel-curse"
+	item_state = "duffel-curse"
+	slowdown = 1.5
+	max_integrity = 100
+
+/obj/item/storage/backpack/duffelbag/cursed/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/curse_of_hunger, add_dropdel = TRUE)
 
 /obj/item/storage/backpack/duffelbag/captain
 	name = "captain's duffel bag"
@@ -371,7 +403,6 @@
 	new /obj/item/cautery(src)
 	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/bonesetter(src)
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/razor(src)
 
@@ -393,7 +424,6 @@
 	new /obj/item/bonesetter(src)
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/clothing/mask/surgical(src)
 
@@ -441,7 +471,7 @@
 	slowdown = 0
 	resistance_flags = FIRE_PROOF
 
-/obj/item/storage/backpack/duffelbag/syndie/ComponentInitialize()
+/obj/item/storage/backpack/duffelbag/syndie/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.silent = TRUE
@@ -481,10 +511,10 @@
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
 	new /obj/item/stack/medical/bone_gel(src)
-	new /obj/item/surgical_drapes(src)
+	new /obj/item/surgical_mat/syndicate(src)
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
-	new /obj/item/mmi/syndie(src)
+	new /obj/item/mmi(src)
 	new /obj/item/implantcase(src)
 	for(var/obj/item/I in contents)
 		I.toolspeed = 0.5
@@ -499,18 +529,55 @@
 	desc = "A large duffel bag, packed to the brim with Bulldog shotgun magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in 1 to 3)
 		new /obj/item/ammo_box/magazine/m12g(src)
-	new /obj/item/ammo_box/magazine/m12g/slug(src)
-	new /obj/item/ammo_box/magazine/m12g/slug(src)
-	new /obj/item/ammo_box/magazine/m12g/dragon(src)
+	for(var/i in 4 to 6)
+		new /obj/item/ammo_box/magazine/m12g/slug(src)
+	for(var/i in 7 to 8)
+		new /obj/item/ammo_box/magazine/m12g/flechette(src)
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random
+	desc = "A large duffel bag, packed to the brim with random Bulldog shotgun magazines."
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/m12g,
+		/obj/item/ammo_box/magazine/m12g/dragon,
+		/obj/item/ammo_box/magazine/m12g/frag,
+		/obj/item/ammo_box/magazine/m12g/meteor,
+		/obj/item/ammo_box/magazine/m12g/slug,
+		/obj/item/ammo_box/magazine/m12g/flechette
+	)
+
+	for(var/i in 1 to 10)
+		var/item = pick(item_list)
+		new item(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	desc = "A large duffel bag, packed to the brim with C-20r magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/PopulateContents()
-	for(var/i in 1 to 9)
+	for(var/i in 1 to 5)
 		new /obj/item/ammo_box/magazine/smgm45(src)
+	for(var/i in 6 to 7)
+		new /obj/item/ammo_box/magazine/smgm45/ap(src)
+	for(var/i in 8 to 9)
+		new /obj/item/ammo_box/magazine/smgm45/hp(src)
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random
+	desc = "A large duffel bag, packed to the brim with random C-20r magazines."
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/smgm45,
+		/obj/item/ammo_box/magazine/smgm45/ap,
+		/obj/item/ammo_box/magazine/smgm45/hp,
+		/obj/item/ammo_box/magazine/smgm45/venom
+	)
+
+	for(var/i in 1 to 11)
+		var/item = pick(item_list)
+		new item(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
@@ -610,7 +677,7 @@
 	new /obj/item/grenade/syndieminibomb(src)
 
 // For ClownOps.
-/obj/item/storage/backpack/duffelbag/clown/syndie/ComponentInitialize()
+/obj/item/storage/backpack/duffelbag/clown/syndie/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	slowdown = 0
@@ -631,7 +698,7 @@
 	name = "Clothing Dufflebag"
 	desc = "Dufflebag designed for clothing in mind"
 
-/obj/item/storage/backpack/duffelbag/clothing/ComponentInitialize()
+/obj/item/storage/backpack/duffelbag/clothing/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 35
@@ -646,10 +713,15 @@
 /obj/item/storage/backpack/duffelbag/clothing/hop/PopulateContents()
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
+	new /obj/item/clothing/under/rank/head_of_personnel/turtleneck(src)
+	new /obj/item/clothing/under/rank/head_of_personnel/skirt/turtleneck(src)
 	new /obj/item/clothing/head/hopcap(src)
+	new /obj/item/clothing/head/beret/hop(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
+	new /obj/item/clothing/suit/armor/vest/hop_formal(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/hop(src)
 
@@ -668,7 +740,9 @@
 	new /obj/item/clothing/under/rank/research_director/turtleneck(src)
 	new /obj/item/clothing/under/rank/research_director/turtleneck/skirt(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/science/rd(src)
+	new /obj/item/clothing/head/beret/rd(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/under/yogs/rdema(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/ce
@@ -686,6 +760,7 @@
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/gloves/color/yellow(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/under/yogs/ceturtleneck(src)
 	new /obj/item/clothing/under/yogs/cecasual(src)
 	new /obj/item/clothing/head/beret/ce(src)
@@ -712,16 +787,17 @@
 	new /obj/item/clothing/accessory/waistcoat(src)
 	new /obj/item/clothing/suit/det_suit/grey(src)
 	new /obj/item/clothing/suit/det_suit/noir(src)
-	new /obj/item/clothing/head/fedora(src)
+	new /obj/item/clothing/suit/det_suit/tan(src)
+	new /obj/item/clothing/head/fedora/det_hat/grey(src)
 	new /obj/item/clothing/shoes/laceup(src)
-	new /obj/item/clothing/under/yogs/forensictech(src)
-	new /obj/item/clothing/under/yogs/bluedetective(src)
-	new /obj/item/clothing/under/yogs/golddetective(src)
-	new /obj/item/clothing/under/yogs/greydetective(src)
-	new /obj/item/clothing/under/yogs/blackdetective(src)
-	new /obj/item/clothing/suit/yogs/golddetective(src)
-	new /obj/item/clothing/suit/yogs/detectivecoat(src)
-	new /obj/item/clothing/suit/yogs/bluedetective(src)
+	new /obj/item/clothing/under/rank/det/yogs(src)
+	new /obj/item/clothing/under/rank/det/yogs/forensictech(src)
+	new /obj/item/clothing/under/rank/det/yogs/bluedetective(src)
+	new /obj/item/clothing/under/rank/det/yogs/golddetective(src)
+	new /obj/item/clothing/under/rank/det/yogs/greydetective(src)
+	new /obj/item/clothing/suit/det_suit/yogs(src)
+	new /obj/item/clothing/suit/det_suit/yogs/golddetective(src)
+	new /obj/item/clothing/suit/det_suit/yogs/bluedetective(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/sec/warden
 	name = "Warden's clothing duffelbag"
@@ -776,6 +852,9 @@
 	new /obj/item/clothing/suit/toggle/labcoat/cmo(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
+	new /obj/item/clothing/under/rank/chief_medical_officer/turtleneck(src)
+	new /obj/item/clothing/under/rank/chief_medical_officer/skirt/turtleneck(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/head/beret/cmo(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/medical/cmo(src)

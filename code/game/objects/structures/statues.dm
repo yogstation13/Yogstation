@@ -16,7 +16,7 @@
 	var/impressiveness = 15
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
-/obj/structure/statue/Initialize()
+/obj/structure/statue/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/art, impressiveness)
 
@@ -117,7 +117,7 @@
 		PlasmaBurn(exposed_temperature)
 
 
-/obj/structure/statue/plasma/bullet_act(obj/item/projectile/Proj)
+/obj/structure/statue/plasma/bullet_act(obj/projectile/Proj)
 	var/burn = FALSE
 	if(!(Proj.nodamage) && Proj.damage_type == BURN && !QDELETED(src))
 		burn = TRUE

@@ -200,4 +200,4 @@
 					user.visible_message("[user] welds [src]'s armor.", "You weld [src]'s armor.")
 					// finally this took too fucking long
 					// somehow this takes up 40 lines less code than the original, code-less version. And it actually works
-	update_icon()
+	update_appearance(UPDATE_ICON)

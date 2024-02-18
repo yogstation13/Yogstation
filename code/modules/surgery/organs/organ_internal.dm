@@ -7,6 +7,8 @@
 	throwforce = 0
 	var/zone = BODY_ZONE_CHEST
 	var/slot
+	// What biotypes is this organ compatible with? Assume it's a flesh-compatible organ by default.
+	var/compatible_biotypes = MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
 	var/organ_flags = 0
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
@@ -17,6 +19,7 @@
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
 	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
 	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
+	var/life_tick	 	= 0
 	var/high_threshold	= STANDARD_ORGAN_THRESHOLD * 0.45		//when severe organ damage occurs
 	var/low_threshold	= STANDARD_ORGAN_THRESHOLD * 0.1		//when minor organ damage occurs
 
@@ -28,6 +31,9 @@
 	var/now_fixed
 	var/high_threshold_cleared
 	var/low_threshold_cleared
+
+	///Do we effect the appearance of our mob. Used to save time in preference code
+	var/visual = TRUE
 
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
 	if(!iscarbon(M) || owner == M)
@@ -83,7 +89,8 @@
 		var/mob/living/carbon/C = owner
 		if(!C)
 			return
-		if(C.stat == DEAD && !(IS_IN_STASIS(C) || HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS)))
+		life_tick++
+		if((C.stat == DEAD || !(compatible_biotypes & owner.mob_biotypes)) && !HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS)) // organic organs decompose inside incompatible bodies
 			if(damage >= maxHealth)
 				organ_flags |= ORGAN_FAILING
 				damage = maxHealth
@@ -115,7 +122,7 @@
   * description: By checking our current damage against our previous damage, we can decide whether we've passed an organ threshold.
   *				 If we have, send the corresponding threshold message to the owner, if such a message exists.
   */
-/obj/item/organ/proc/check_damage_thresholds(var/M)
+/obj/item/organ/proc/check_damage_thresholds(M)
 	if(damage == prev_damage)
 		return
 	var/delta = damage - prev_damage
@@ -169,9 +176,17 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	foodtype = RAW | MEAT | GROSS
 
-/obj/item/organ/Initialize()
+/obj/item/organ/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	return ..()
+
+///Used as callbacks by object pooling
+/obj/item/organ/proc/exit_wardrobe()
+	START_PROCESSING(SSobj, src)
+
+//See above
+/obj/item/organ/proc/enter_wardrobe()
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/organ/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -201,18 +216,32 @@
 	return damage < low_threshold ? organ_efficiency : round(organ_efficiency * 1-(damage/maxHealth), 0.1)
 
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
-/obj/item/organ/proc/applyOrganDamage(var/d, var/maximum = maxHealth)	//use for damaging effects
+/obj/item/organ/proc/applyOrganDamage(d, maximum = maxHealth)	//use for damaging effects
 	if(maximum < d + damage)
 		d = max(0, maximum - damage)
 	damage = max(0, damage + d)
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
-/obj/item/organ/proc/setOrganDamage(var/d)	//use mostly for admin heals
+/obj/item/organ/proc/setOrganDamage(d)	//use mostly for admin heals
 	damage = clamp(d, 0 ,maxHealth)
 	if(d >= maxHealth)
 		organ_flags |= ORGAN_FAILING
 	else
 		organ_flags &= ~ORGAN_FAILING
+
+
+/** get_availability
+ * returns whether the species should innately have this organ.
+ *
+ * regenerate organs works with generic organs, so we need to get whether it can accept certain organs just by what this returns.
+ * This is set to return true or false, depending on if a species has a trait that would nulify the purpose of the organ.
+ * For example, lungs won't be given if you have NO_BREATH, stomachs check for NO_HUNGER, and livers check for NO_METABOLISM.
+ * If you want a carbon to have a trait that normally blocks an organ but still want the organ. Attach the trait to the organ using the organ_traits var
+ * Arguments:
+ * owner_species - species, needed to return whether the species has an organ specific trait
+ */
+/obj/item/organ/proc/get_availability(datum/species/owner_species)
+	return TRUE
 
 //Looking for brains?
 //Try code/modules/mob/living/carbon/brain/brain_item.dm

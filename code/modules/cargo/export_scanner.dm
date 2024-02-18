@@ -8,7 +8,6 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
-	siemens_coefficient = 1
 	var/obj/machinery/computer/cargo/cargo_console = null
 
 /obj/item/export_scanner/examine(user)

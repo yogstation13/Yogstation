@@ -2,6 +2,7 @@
 //they are the easiest to cure, which means that if you want
 //to keep them, you can't cure your other traumas
 /datum/brain_trauma/special
+	random_cure_chance = 15
 
 /datum/brain_trauma/special/godwoken
 	name = "Godwoken Syndrome"
@@ -101,7 +102,7 @@
 	var/obj/effect/hallucination/simple/bluespace_stream/linked_to
 	var/mob/living/carbon/seer
 
-/obj/effect/hallucination/simple/bluespace_stream/Initialize()
+/obj/effect/hallucination/simple/bluespace_stream/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 300)
 
@@ -185,7 +186,7 @@
 /datum/brain_trauma/special/death_whispers/proc/whispering()
 	ADD_TRAIT(owner, TRAIT_SIXTHSENSE, TRAUMA_TRAIT)
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/cease_whispering), rand(50, 300))
+	addtimer(CALLBACK(src, PROC_REF(cease_whispering)), rand(50, 300))
 
 /datum/brain_trauma/special/death_whispers/proc/cease_whispering()
 	REMOVE_TRAIT(owner, TRAIT_SIXTHSENSE, TRAUMA_TRAIT)

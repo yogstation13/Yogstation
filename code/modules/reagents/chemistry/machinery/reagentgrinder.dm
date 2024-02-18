@@ -1,4 +1,5 @@
-#define MILK_TO_BUTTER_COEFF 15
+#define MILK_TO_BUTTER_COEFF 20
+#define LIQUID_TO_SOLID_COEFF 25
 
 /obj/machinery/reagentgrinder
 	name = "\improper All-In-One Grinder"
@@ -27,16 +28,16 @@
 /obj/machinery/reagentgrinder/kitchen //starts with a mixing bowl inside instead
 	container = /obj/item/reagent_containers/glass/mixbowl
 
-/obj/machinery/reagentgrinder/Initialize()
+/obj/machinery/reagentgrinder/Initialize(mapload)
 	. = ..()
 	holdingitems = list()
 	container = new container(src)
 
-/obj/machinery/reagentgrinder/constructed/Initialize()
+/obj/machinery/reagentgrinder/constructed/Initialize(mapload)
 	. = ..()
 	holdingitems = list()
 	QDEL_NULL(container)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/reagentgrinder/Destroy()
 	if(container)
@@ -88,7 +89,7 @@
 	. = ..()
 	if(A == container)
 		container = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	if(holdingitems[A])
 		holdingitems -= A
 
@@ -98,11 +99,11 @@
 		AM.forceMove(drop_location())
 	holdingitems = list()
 
-/obj/machinery/reagentgrinder/update_icon()
+/obj/machinery/reagentgrinder/update_icon_state()
+	. = ..()
 	if(!container)
 		icon_state = "juicer"
 		return
-
 	if(istype(container, /obj/item/reagent_containers/glass/mixbowl))
 		icon_state = "juicer_bowl"
 	else
@@ -117,7 +118,7 @@
 		container = new_container
 	else
 		container = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
@@ -141,7 +142,7 @@
 			return
 		replace_container(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE //no afterattack
 
 	if(holdingitems.len >= limit)
@@ -241,7 +242,7 @@
 	var/offset = prob(50) ? -2 : 2
 	var/old_pixel_x = pixel_x
 	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = -1) //start shaking
-	addtimer(CALLBACK(src, .proc/stop_shaking, old_pixel_x), duration)
+	addtimer(CALLBACK(src, PROC_REF(stop_shaking), old_pixel_x), duration)
 
 /obj/machinery/reagentgrinder/proc/stop_shaking(old_px)
 	cut_overlays()
@@ -256,7 +257,7 @@
 			playsound(src, 'sound/machines/blender.ogg', 50, 1)
 		else
 			playsound(src, 'sound/machines/juicer.ogg', 20, 1)
-	addtimer(CALLBACK(src, .proc/stop_operating), time / speed)
+	addtimer(CALLBACK(src, PROC_REF(stop_operating)), time / speed)
 
 /obj/machinery/reagentgrinder/proc/stop_operating()
 	operating = FALSE
@@ -329,9 +330,17 @@
 			var/amount = container.reagents.get_reagent_amount(/datum/reagent/consumable/eggyolk)
 			container.reagents.remove_reagent(/datum/reagent/consumable/eggyolk, amount)
 			container.reagents.add_reagent(/datum/reagent/consumable/mayonnaise, amount)
+		//Recipe to make Soap
+		var/soap_amt = FLOOR(container.reagents.get_reagent_amount(/datum/reagent/liquidsoap) / LIQUID_TO_SOLID_COEFF, 1)
+		container.reagents.remove_reagent(/datum/reagent/liquidsoap, LIQUID_TO_SOLID_COEFF * soap_amt)
+		for(var/i in 1 to soap_amt)
+			new /obj/item/soap/homemade(drop_location())
 
 /obj/machinery/reagentgrinder/MouseDrop_T(atom/dropping, mob/user)
 	if(istype(dropping, /obj/item/reagent_containers/glass))
 		attackby(dropping, user)
 	else
 		..()
+
+#undef MILK_TO_BUTTER_COEFF
+#undef LIQUID_TO_SOLID_COEFF

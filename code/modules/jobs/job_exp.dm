@@ -61,7 +61,7 @@ GLOBAL_PROTECT(exp_to_update)
 	if(!prefs.exp || !prefs.exp[EXP_TYPE_LIVING])
 		return pure_numeric ? 0 : "No data"
 	var/exp_living = text2num(prefs.exp[EXP_TYPE_LIVING])
-	return get_exp_format(exp_living)
+	return pure_numeric ? exp_living : get_exp_format(exp_living)
 
 /proc/get_exp_format(expnum)
 	if(expnum > 60)

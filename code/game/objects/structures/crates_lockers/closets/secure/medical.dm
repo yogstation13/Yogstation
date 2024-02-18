@@ -42,7 +42,7 @@
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/clothing/glasses/hud/health(src)
-	return
+	new /obj/item/gun/syringe(src)
 
 /obj/structure/closet/secure_closet/CMO
 	name = "\proper chief medical officer's locker"
@@ -59,7 +59,7 @@
 	new /obj/item/defibrillator/compact/loaded(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 	new /obj/item/assembly/flash/handheld(src)
-	new /obj/item/reagent_containers/hypospray/CMO(src)
+	new /obj/item/storage/firstaid/hypospray/deluxe/cmo(src)
 	new /obj/item/autosurgeon/cmo(src)
 	new /obj/item/door_remote/chief_medical_officer(src)
 	new /obj/item/clothing/neck/petcollar(src)
@@ -85,7 +85,7 @@
 		new /obj/item/storage/backpack/medic(src)
 	else
 		new /obj/item/storage/backpack/satchel/med(src)
-	new /obj/item/storage/firstaid/regular(src)
+	new /obj/item/storage/firstaid/hypospray/paramedic(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	switch(pick("blue", "green", "purple"))
 		if ("blue")
@@ -103,6 +103,8 @@
 			new /obj/item/clothing/under/rank/medical/purple(src)
 	new /obj/item/clothing/under/rank/medical(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
+	new /obj/item/clothing/head/beret/emt/green(src)
+	new /obj/item/clothing/head/beret/emt(src)
 	new /obj/item/clothing/head/soft/emt(src)
 	new /obj/item/defibrillator/loaded(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt/green(src)
@@ -119,30 +121,30 @@
 
 /obj/structure/closet/secure_closet/mmedical/PopulateContents()
 	..()
-	new /obj/item/reagent_containers/hypospray/mixi(src)
-	new /obj/item/reagent_containers/hypospray/derm(src)
 	if(prob(50))
 		new /obj/item/storage/backpack/medic(src)
 	else
 		new /obj/item/storage/backpack/satchel/med(src)
 	new /obj/item/defibrillator/loaded(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt/explorer(src)
+	new /obj/item/clothing/head/beret/emt/mining(src)
 	new /obj/item/clothing/under/yogs/rank/miner/medic(src)
+	new /obj/item/clothing/suit/toggle/labcoat/explorer(src)
+	new /obj/item/storage/belt/medical/mining(src)
+	new /obj/item/clothing/glasses/hud/health/meson(src)
+	new /obj/item/clothing/gloves/color/latex/fireproof(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
-	new /obj/item/cartridge/medical(src)
-	new /obj/item/radio/headset/headset_cargo(src)
-	new /obj/item/storage/firstaid/toxin(src)
+	new	/obj/item/radio/headset/headset_medcargo(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/pickaxe(src)
-	new /obj/item/twohanded/binoculars(src)
-	new /obj/item/clothing/ears/earmuffs(src)
+	new /obj/item/binoculars(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/sensor_device(src)
 	new /obj/item/bodybag/environmental(src)
 	new /obj/item/extinguisher/mini(src)
+	new /obj/item/reagent_containers/medspray/synthflesh(src)
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
-	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers get it."
+	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers or plantpeople get it."
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control"
@@ -180,3 +182,21 @@
 	new /obj/item/storage/box/syringes/variety(src)
 	new /obj/item/storage/box/beakers/variety(src)
 	new /obj/item/clothing/glasses/science(src)
+
+/obj/structure/closet/secure_closet/psych
+	name = "psychiatrist's cabinet"
+	desc = "Packed with a psychiatrist's tools of the trade"
+	req_access = list(ACCESS_PSYCH)
+	icon_state = "cabinet"
+
+/obj/structure/closet/secure_closet/psych/PopulateContents()
+	..()
+	new /obj/item/clothing/suit/straight_jacket(src)
+	new /obj/item/clothing/mask/muzzle(src)
+	new /obj/item/storage/pill_bottle/happiness(src)
+	new /obj/item/storage/pill_bottle/dice(src)
+	new /obj/item/storage/pill_bottle/happy(src)
+	new /obj/item/storage/pill_bottle/lsd(src)
+	new /obj/item/storage/pill_bottle/psicodine(src)
+	new /obj/item/assembly/flash(src)
+	new /obj/item/assembly/flash(src)

@@ -17,6 +17,7 @@ Bonus
 
 /datum/symptom/hallucigen
 	name = "Hallucigen"
+	icon = "hallucigen"
 	desc = "The virus stimulates the brain, causing occasional hallucinations."
 	stealth = -2
 	resistance = -3
@@ -32,6 +33,7 @@ Bonus
 		"Stage Speed 7" = "Increases the amount of hallucinations.",
 		"Stealth 4" = "The virus mimics positive symptoms.",
 	)
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/hallucigen/Start(datum/disease/advance/A)
 	. = ..()
@@ -66,4 +68,4 @@ Bonus
 		else
 			if(prob(base_message_chance))
 				to_chat(M, span_userdanger("[pick("Oh, your head...", "Your head pounds.", "They're everywhere! Run!", "Something in the shadows...")]"))
-			M.hallucination += (45 * power)
+			M.adjust_hallucinations(45 * power)

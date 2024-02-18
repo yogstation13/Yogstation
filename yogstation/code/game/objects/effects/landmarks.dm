@@ -58,6 +58,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 				stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
 				template_names -= t
 		template_name = choose()
+	if(!template_name)
+		stack_trace("Station room spawner [src] at ([T.x], [T.y], [T.z]) has a null template.")
 	if(!template_name || template_name == EMPTY_SPAWN)
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
@@ -94,16 +96,20 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")
-	icon = 'yogstation/icons/rooms/box/bar.dmi'
-	icon_state = "bar_box"
 
 /obj/effect/landmark/stationroom/box/bar/load(template_name)
 	GLOB.stationroom_landmarks -= src
 	return TRUE
 
+/obj/effect/landmark/stationroom/box/clerk
+	template_names = list("Clerk Box", "Clerk Pod", "Clerk Meta", "Clerk Gambling Hall")
+
+/obj/effect/landmark/stationroom/box/clerk/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
+
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 30, "Engine TEG" = 20)
-	icon = 'yogstation/icons/rooms/box/engine.dmi'
+	template_names = list("Engine SM" = 40, "Engine Singulo And Tesla" = 20, "Engine Nuclear Reactor" = 20,"Engine TEG" = 20)
 
 /obj/effect/landmark/stationroom/box/engine/choose()
 	. = ..()
@@ -116,6 +122,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(3)
 			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
+			return "Engine Nuclear Reactor"
+		if(5)
 			return "Engine TEG"
 
 
@@ -134,8 +142,31 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/stationroom/box/execution
 	template_names = list("Transfer 1", "Transfer 2", "Transfer 3", "Transfer 4", "Transfer 5", "Transfer 6", "Transfer 7", "Transfer 8", "Transfer 9", "Transfer 10")
 
-/obj/effect/landmark/stationroom/eclipse/bar
-	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
+/obj/effect/landmark/stationroom/box/chapel
+	template_names = list("Chapel 1", "Chapel 2")
+
+/obj/effect/landmark/stationroom/box/chapel/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
+
+/obj/effect/landmark/stationroom/meta/engine
+	template_names = list("Meta SM" = 25, "Meta Nuclear Reactor" = 45, "Meta TEG" = 25) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
+
+/obj/effect/landmark/stationroom/meta/engine/choose()
+	. = ..()
+	var/enginepicked = CONFIG_GET(number/engine_type)
+	switch(enginepicked)
+		if(1)
+			return "Meta SM"
+		if(2)
+			return "Meta Singulo And Tesla"
+		if(3)
+			return . //We let the normal choose() do the work if we want to have all of them in play
+		if(4)
+			return "Meta Nuclear Reactor"
+		if(5)
+			return "Meta TEG"
+
 
 /obj/effect/landmark/stationroom/maint/
 	unique = TRUE
@@ -144,15 +175,15 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Maint 2storage", "Maint 9storage", "Maint airstation", "Maint biohazard", "Maint boxbedroom", "Maint boxchemcloset", "Maint boxclutter2", "Maint boxclutter3", "Maint boxclutter4", "Maint boxclutter5", "Maint boxclutter6", "Maint boxclutter8",
 	"Maint boxwindow", "Maint bubblegumaltar", "Maint deltajanniecloset", "Maint deltaorgantrade", "Maint donutcapgun", "Maint dronehole", "Maint gibs", "Maint hazmat", "Maint hobohut", "Maint hullbreach", "Maint kilolustymaid", "Maint kilomechcharger", "Maint kilotheatre",
 	"Maint medicloset", "Maint memorial", "Maint metaclutter2", "Maint metaclutter4", "Maint metagamergear", "Maint owloffice", "Maint plasma", "Maint pubbyartism", "Maint pubbyclutter1", "Maint pubbyclutter2", "Maint pubbyclutter3", "Maint radspill", "Maint shrine", "Maint singularity",
-	"Maint tanning", "Maint tranquility", "Maint wash", "Maint command", "Maint dummy", "Maint spaceart", "Maint containmentcell", "Maint naughtyroom")
+	"Maint tanning", "Maint tranquility", "Maint wash", "Maint command", "Maint dummy", "Maint spaceart", "Maint containmentcell", "Maint naughtyroom", "Maint vendoraccident", "Maint donut", "Maint lair" = 0.25, "Maint lair2" = 0.25, "Maint lair3" = 0.25, "Maint lair4" = 0.25)
 
 /obj/effect/landmark/stationroom/maint/threexfive
 	template_names = list("Maint airlockstorage", "Maint boxclutter7", "Maint boxkitchen", "Maint boxmaintfreezers", "Maint canisterroom", "Maint checkpoint", "Maint hank", "Maint junkcloset", "Maint kilomobden", "Maint laststand", "Maint monky", "Maint onioncult", "Maint pubbyclutter5",
-	"Maint pubbyclutter6", "Maint pubbyrobotics", "Maint ripleywreck", "Maint churchroach", "Maint mirror", "Maint chromosomes", "Maint clutter", "Maint dissection", "Maint emergencyoxy", "Maint oreboxes")
+	"Maint pubbyclutter6", "Maint pubbyrobotics", "Maint ripleywreck", "Maint churchroach", "Maint mirror", "Maint chromosomes", "Maint clutter", "Maint dissection", "Maint emergencyoxy", "Maint oreboxes", "Maint gaxbotany")
 
 /obj/effect/landmark/stationroom/maint/fivexthree
 	template_names = list("Maint boxclutter1", "Maint breach", "Maint cloner", "Maint deltaclutter2", "Maint deltaclutter3", "Maint incompletefloor", "Maint kiloclutter1", "Maint metaclutter1", "Maint metaclutter3", "Maint minibreakroom", "Maint nastytrap", "Maint pills", "Maint pubbybedroom",
-	"Maint pubbyclutter4", "Maint pubbyclutter7", "Maint pubbykitchen", "Maint storeroom", "Maint yogsmaintdet", "Maint yogsmaintrpg", "Maint waitingroom", "Maint podmin", "Maint highqualitysurgery", "Maint chestburst", "Maint gloveroom", "Maint magicroom", "Maint spareparts")
+	"Maint pubbyclutter4", "Maint pubbyclutter7", "Maint pubbykitchen", "Maint storeroom", "Maint yogsmaintdet", "Maint yogsmaintrpg", "Maint waitingroom", "Maint podmin", "Maint highqualitysurgery", "Maint chestburst", "Maint gloveroom", "Maint magicroom", "Maint spareparts", "Maint smallfish")
 
 /obj/effect/landmark/stationroom/maint/fivexfour
 	template_names = list("Maint blasted", "Maint boxbar", "Maint boxdinner", "Maint boxsurgery", "Maint comproom", "Maint deltabar", "Maint deltadetective", "Maint deltadressing", "Maint deltaEVA", "Maint deltagamble", "Maint deltalounge", "Maint deltasurgery", "Maint firemanroom", "Maint icicle",
@@ -160,11 +191,11 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/maint/tenxfive
 	template_names = list("Maint barbershop", "Maint deltaarcade", "Maint deltabotnis", "Maint deltacafeteria", "Maint deltaclutter1", "Maint deltarobotics", "Maint factory", "Maint maintmedical", "Maint meetingroom", "Maint phage", "Maint skidrow", "Maint transit", "Maint ballpit", "Maint commie", "Maint firingrange", "Maint clothingstore",
-	"Maint butchersden", "Maint courtroom", "Maint gaschamber", "Maint oldaichamber", "Maint radiationtherapy", "Maint ratburger")
+	"Maint butchersden", "Maint courtroom", "Maint gaschamber", "Maint oldaichamber", "Maint radiationtherapy", "Maint ratburger", "Maint tank_heaven", "Maint bamboo", "Maint medicalmaint")
 
 /obj/effect/landmark/stationroom/maint/tenxten
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
-	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
+	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops", "Maint fishinghole", "Maint fakewalls", "Maint wizard", "Maint halloween")
 
 /// Type of landmark that find all others of the same type, and only spawns count number of ruins at them
 /obj/effect/landmark/stationroom/limited_spawn
@@ -182,9 +213,14 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	for(var/i = 0, i < count, i++)
 		var/obj/effect/landmark/stationroom/limited_spawn/L = pick_n_take(landmarks)
 		L.choose_result = pick(L.template_names)
+		var/turf/T = get_turf(L)
+		message_admins(span_adminnotice("Spawning limited_spawn landmark at [ADMIN_COORDJMP(T)]"))
+		log_game("Spawning limited_spawn landmark at: [AREACOORD(T)]")
 	
 	for(var/obj/effect/landmark/stationroom/limited_spawn/L in landmarks)
 		L.choose_result = EMPTY_SPAWN
+	
+	return choose_result
 
 /obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale
 	template_names = list("AI Whale")
@@ -194,7 +230,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "snukeop_spawn"
 
-/obj/effect/landmark/start/infiltrator/Initialize()
+/obj/effect/landmark/start/infiltrator/Initialize(mapload)
 	..()
 	GLOB.infiltrator_start += loc
 	return INITIALIZE_HINT_QDEL
@@ -204,7 +240,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "random_loot"
 
-/obj/effect/landmark/start/infiltrator_objective/Initialize()
+/obj/effect/landmark/start/infiltrator_objective/Initialize(mapload)
 	..()
 	GLOB.infiltrator_objective_items += loc
 	return INITIALIZE_HINT_QDEL 

@@ -7,11 +7,12 @@
 
 /datum/action/innate/slime
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
 	var/needs_growth = NO_GROWTH_NEEDED
 
-/datum/action/innate/slime/IsAvailable()
+/datum/action/innate/slime/IsAvailable(feedback = FALSE)
 	if(..())
 		var/mob/living/simple_animal/slime/S = owner
 		if(needs_growth == GROWTH_NEEDED)
@@ -82,6 +83,12 @@
 		to_chat(src, span_warning("<i>I can't latch onto another slime...</i>"))
 		return FALSE
 
+	if(isipc(M))
+		if(silent)
+			return FALSE
+		to_chat(src, "<span class='warning'><i>This subject does not have life energy...</i></span>")
+		return FALSE
+
 	if(docile)
 		if(silent)
 			return FALSE
@@ -145,7 +152,7 @@
 			for(var/datum/action/innate/slime/evolve/E in actions)
 				E.Remove(src)
 			regenerate_icons()
-			update_name()
+			update_appearance(UPDATE_NAME)
 		else
 			to_chat(src, "<i>I am not ready to evolve yet...</i>")
 	else

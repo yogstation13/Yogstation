@@ -5,7 +5,7 @@
 	icon_state = "default_human_head"
 	max_damage = 200
 	body_zone = BODY_ZONE_HEAD
-	body_part = HEAD
+	body_part = HEAD|NECK
 	w_class = WEIGHT_CLASS_BULKY //Quite a hefty load
 	slowdown = 1 //Balancing measure
 	throw_range = 2 //No head bowling
@@ -14,7 +14,7 @@
 	stam_damage_coeff = 1
 	max_stamina_damage = 100
 	wound_resistance = 5
-	disabled_wound_penalty = 25
+	disabled_wound_penalty = 50
 	scars_covered_by_clothes = FALSE
 
 	var/mob/living/brain/brainmob = null //The current occupant.
@@ -36,6 +36,7 @@
 
 	var/lip_style = null
 	var/lip_color = "white"
+	var/mouth = TRUE
 
 
 /obj/item/bodypart/head/Destroy()
@@ -94,6 +95,8 @@
 
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
+	if(owner && isipc(owner))
+		return TRUE
 	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
 	return ..()
@@ -133,6 +136,10 @@
 	else
 		C = owner
 
+	if(isipc(C))
+		max_damage = 50
+		disabled_wound_penalty = 250 // 200 Makes it possible to delimb so 250 for some better chance
+
 	real_name = C.real_name
 	if(HAS_TRAIT(C, TRAIT_HUSK))
 		real_name = "Unknown"
@@ -151,7 +158,7 @@
 				if(S.hair_color == "mutcolor")
 					facial_hair_color = H.dna.features["mcolor"]
 				else if(hair_color == "fixedmutcolor")
-					facial_hair_color = "#[S.fixed_mut_color]"
+					facial_hair_color = "[S.fixed_mut_color]"
 				else
 					facial_hair_color = S.hair_color
 			else
@@ -168,7 +175,7 @@
 				if(S.hair_color == "mutcolor")
 					hair_color = H.dna.features["mcolor"]
 				else if(hair_color == "fixedmutcolor")
-					hair_color = "#[S.fixed_mut_color]"
+					hair_color = "[S.fixed_mut_color]"
 				else
 					hair_color = S.hair_color
 			else
@@ -176,7 +183,10 @@
 			hair_alpha = S.hair_alpha
 		else
 			hair_style = "Bald"
-			hair_color = "000"
+			if(H && H.hair_color)
+				hair_color = H.hair_color
+			else
+				hair_color = "000"
 			hair_alpha = initial(hair_alpha)
 		// lipstick
 		if(H.lip_style && (LIPS in S.species_traits))
@@ -208,7 +218,7 @@
 				var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facial_hair_style]
 				if(S)
 					var/image/facial_overlay = image(S.icon, "[S.icon_state]", -HAIR_LAYER, SOUTH)
-					facial_overlay.color = "#" + facial_hair_color
+					facial_overlay.color = facial_hair_color
 					facial_overlay.alpha = hair_alpha
 					. += facial_overlay
 
@@ -229,7 +239,7 @@
 				var/datum/sprite_accessory/S2 = GLOB.hair_styles_list[hair_style]
 				if(S2)
 					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
-					hair_overlay.color = "#" + hair_color
+					hair_overlay.color = hair_color
 					hair_overlay.alpha = hair_alpha
 					. += hair_overlay
 
@@ -247,7 +257,7 @@
 			eyes_overlay.icon_state = eyes.eye_icon_state
 
 			if(eyes.eye_color)
-				eyes_overlay.color = "#" + eyes.eye_color
+				eyes_overlay.color = eyes.eye_color
 
 /obj/item/bodypart/head/monkey
 	icon = 'icons/mob/animal_parts.dmi'

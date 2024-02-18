@@ -4,7 +4,7 @@
 	icon_state = "monkeycubebox"
 	illustration = null
 
-/obj/item/storage/box/goatcubes/ComponentInitialize()
+/obj/item/storage/box/goatcubes/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4

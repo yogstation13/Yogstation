@@ -9,7 +9,7 @@
 	id = "zoo"
 	suffix = "abandonedzoo.dmm"
 	name = "Biological Storage Facility"
-	description = "In case society crumbles, we will be able to restore our zoos to working order with the breeding stock kept in these 100% secure and unbreachable storage facilities. \
+	description = "In case society crumbles, we will be able to restore our zoos to working order with the breeding stock kept in these 100% secure and impenetrable storage facilities. \
 	At no point has anything escaped. That's our story, and we're sticking to it."
 
 /datum/map_template/ruin/space/asteroid1
@@ -55,7 +55,7 @@
 	id = "bigderelict1"
 	suffix = "bigderelict1.dmm"
 	name = "Derelict Tradepost"
-	description = "A once-bustling tradestation that handled imports and exports from nearby stations now lays eerily dormant. \
+	description = "A once-bustling trade station that handled imports and exports from nearby stations now lays eerily dormant. \
 	The last received message was a distress call from one of the on-board officers, but we had no success in making contact again."
 
 /datum/map_template/ruin/space/derelict1
@@ -149,7 +149,7 @@
 	suffix = "spacehotel.dmm"
 	unpickable = TRUE
 	name = "The Twin-Nexus Hotel"
-	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residental staff will not murder them in their sleep. Probably."
+	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residential staff will not murder them in their sleep. Probably."
 
 /datum/map_template/ruin/space/turreted_outpost
 	id = "turreted-outpost"
@@ -214,8 +214,8 @@
 	id = "listeningstation"
 	suffix = "listeningstation.dmm"
 	name = "Syndicate Listening Station"
-	description = "Listening stations form the backbone of the syndicate's information-gathering operations. \
-	Assignment to these stations is dreaded by most agents, as it entails long and lonely shifts listening to nearby stations chatter incessantly about the most meaningless things."
+	description = "Listening stations form the backbone of the Syndicate's information-gathering operations. \
+	Assignment to these stations used to be one of the Syndicate's loneliest postings, but recent protests by workers have resulted in two-person outposts. They still, however, often get bored to death listening to nearby stations talking about the most useless things you could dream of."
 
 /datum/map_template/ruin/space/oldAIsat
 	id = "oldAIsat"
@@ -252,12 +252,6 @@
 	description = "The crew of a space station awaken one hundred years after a crisis. Awaking to a derelict space station on the verge of collapse, and a hostile force of invading \
 	hivebots. Can the surviving crew overcome the odds and survive and rebuild, or will the cold embrace of the stars become their new home?"
 
-/datum/map_template/ruin/space/miracle
-	id = "miracle"
-	suffix = "miracle.dmm"
-	name = "Ordinary Space Tile"
-	description = "Absolutely nothing strange going on here, please move along, plenty more space to see right this way!"
-
 /datum/map_template/ruin/space/gondoland
 	id = "gondolaasteroid"
 	suffix = "gondolaasteroid.dmm"
@@ -281,7 +275,7 @@
 	id = "meow"
 	suffix = "mrow_thats_right.dmm"
 	name = "Feline-Human Combination Den"
-	description = "With heated debates over the legality of the catperson and their status in the workforce, there's always a place for the blackmarket to slip in for some cash. Whether the results \
+	description = "With heated debates over the legality of the catperson and their status in the workforce, there's always a place for the black market to slip in for some cash. Whether the results \
 	are morally sound or not is another issue entirely."
 
 /datum/map_template/ruin/space/cloning_facility
@@ -364,4 +358,9 @@
 	suffix = "nicelittlenest.dmm"
 	name = "Cozy Home"
 	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
-	
+
+/datum/map_template/ruin/space/syndicate_derelict_station
+	id = "syndicatederelictstation"
+	suffix = "syndicate_derelict_station.dmm"
+	name = "Syndicate Derelict Station"
+	description = "A remote station once used to be a syndicate research wing. Due to an unknown issue, it has been since abandoned as a bunch of floating debris."

@@ -14,7 +14,7 @@
 
 /obj/item/choice_beacon
 	name = "choice beacon"
-	desc = "Hey, why are you viewing this?!! Please let Centcom know about this odd occurance."
+	desc = "Hey, why are you viewing this?!! Please let Centcom know about this odd occurrence."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-blue"
 	item_state = "radio"
@@ -62,6 +62,16 @@
 	to_chat(M, msg)
 
 	new /obj/effect/DPtarget(get_turf(src), pod)
+
+/obj/item/choice_beacon/supermatter
+	name = "Supermatter Kit"
+	desc = "Kit containing a supermatter shard."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-blue"
+	item_state = "radio"
+
+/obj/item/choice_beacon/supermatter/generate_display_names()
+	return list("Supermatter Shard" = /obj/machinery/power/supermatter_crystal/shard)
 
 /obj/item/choice_beacon/hero
 	name = "heroic beacon"

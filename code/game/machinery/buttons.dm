@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl"
 	var/skin = "doorctrl"
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	var/obj/item/assembly/device
 	var/obj/item/electronics/airlock/board
 	var/device_type = null
@@ -25,7 +25,7 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		panel_open = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
 	if(!built && !device && device_type)
@@ -42,26 +42,30 @@
 			board.accesses = req_one_access
 
 
-/obj/machinery/button/update_icon()
-	cut_overlays()
+/obj/machinery/button/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "button-open"
-		if(device)
-			add_overlay("button-device")
-		if(board)
-			add_overlay("button-board")
-
 	else
 		if(stat & (NOPOWER|BROKEN))
 			icon_state = "[skin]-p"
 		else
 			icon_state = skin
 
+/obj/machinery/button/update_overlays()
+	. = ..()
+	if(!panel_open)
+		return
+	if(device)
+		. += "button-device"
+	if(board)
+		. += "button-board"
+
 /obj/machinery/button/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(panel_open || allowed(user))
 			default_deconstruction_screwdriver(user, "button-open", "[skin]",W)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_danger("Maintenance Access Denied"))
 			flick("[skin]-denied", src)
@@ -97,9 +101,12 @@
 
 		if(W.tool_behaviour == TOOL_MULTITOOL)
 			if(istype(device, /obj/item/assembly/control)) // User Feedback
+				var/obj/item/assembly/control/controller = device
 				var/obj/item/multitool/P = W
-				if(!id) // Generate New ID if none exists
-					id = rand(1, 25565) // rare enough that ids should never conflict
+				if(controller.id)
+					id = controller.id
+				else if(!id) // Generate New ID if none exists
+					id = getnewid()
 					to_chat(user, span_notice("No ID found. Generating New ID"))
 
 				P.buffer = id
@@ -115,7 +122,7 @@
 				to_chat(user, span_notice("You wipe the button's ID."))
 				id = null
 
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(user.a_intent != INTENT_HARM && !(W.item_flags & NOBLUDGEON))
@@ -126,14 +133,15 @@
 	else
 		return ..()
 
-/obj/machinery/button/emag_act(mob/user)
+/obj/machinery/button/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	req_access = list()
 	req_one_access = list()
 	playsound(src, "sparks", 100, 1)
 	obj_flags |= EMAGGED
-
+	return TRUE
+	
 /obj/machinery/button/attack_ai(mob/user)
 	if(!panel_open)
 		return attack_hand(user)
@@ -154,6 +162,7 @@
 	if(!initialized_button)
 		setup_device()
 	add_fingerprint(user)
+	play_click_sound("button")
 	if(panel_open)
 		if(device || board)
 			if(device)
@@ -164,7 +173,7 @@
 				req_access = list()
 				req_one_access = list()
 				board = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			to_chat(user, span_notice("You remove electronics from the button frame."))
 
 		else
@@ -192,7 +201,7 @@
 	if(device)
 		device.pulsed()
 
-	addtimer(CALLBACK(src, .proc/update_icon), 15)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 15)
 
 /obj/machinery/button/door
 	name = "door button"

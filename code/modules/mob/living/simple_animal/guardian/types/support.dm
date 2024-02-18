@@ -10,15 +10,15 @@
 	magic_fluff_string = span_holoparasite("..And draw the CMO, a potent force of life... and death.")
 	carp_fluff_string = span_holoparasite("CARP CARP CARP! You caught a support carp. It's a kleptocarp!")
 	tech_fluff_string = span_holoparasite("Boot sequence complete. Support modules active. Holoparasite swarm online.")
-	toggle_button_type = /obj/screen/guardian/ToggleMode
+	toggle_button_type = /atom/movable/screen/guardian/ToggleMode
 	var/obj/structure/receiving_pad/beacon
 	var/beacon_cooldown = 0
 	var/toggle = FALSE
 
-/mob/living/simple_animal/hostile/guardian/healer/Initialize()
+/mob/living/simple_animal/hostile/guardian/healer/Initialize(mapload)
 	. = ..()
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.add_hud_to(src)
+	medsensor.show_to(src)
 
 /mob/living/simple_animal/hostile/guardian/healer/get_status_tab_items()
 	. = ..()
@@ -132,7 +132,7 @@
 	span_userdanger("You start to faintly glow, and you feel strangely weightless!"))
 	do_attack_animation(A)
 
-	if(!do_mob(src, A, 60)) //now start the channel
+	if(!do_after(src, 6 SECONDS, A)) //now start the channel
 		to_chat(src, "<span class='danger'><B>You need to hold still!</span></B>")
 		return
 

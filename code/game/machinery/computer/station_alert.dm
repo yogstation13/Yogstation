@@ -7,7 +7,7 @@
 
 	light_color = LIGHT_COLOR_CYAN
 
-/obj/machinery/computer/station_alert/Initialize()
+/obj/machinery/computer/station_alert/Initialize(mapload)
 	. = ..()
 	GLOB.alert_consoles += src
 
@@ -45,6 +45,7 @@
 			var/list/sources = alarm[3]
 			if (!(source in sources))
 				sources += source
+			update_appearance(UPDATE_ICON)
 			return 1
 	var/obj/machinery/camera/C = null
 	var/list/CL = null
@@ -55,6 +56,7 @@
 	else if(O && istype(O, /obj/machinery/camera))
 		C = O
 	L[A.name] = list(A, (C ? C : O), list(source))
+	update_appearance(UPDATE_ICON)
 	return 1
 
 
@@ -72,10 +74,11 @@
 			if (srcs.len == 0)
 				cleared = 1
 				L -= I
+	update_appearance(UPDATE_ICON)
 	return !cleared
 
-/obj/machinery/computer/station_alert/update_icon()
-	..()
+/obj/machinery/computer/station_alert/update_overlays()
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	var/active_alarms = FALSE
@@ -84,4 +87,4 @@
 		if(L.len)
 			active_alarms = TRUE
 	if(active_alarms)
-		add_overlay("alert:2")
+		. += "alert:2"

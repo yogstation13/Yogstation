@@ -1,11 +1,12 @@
 {
-	"map_name": "[BETA] GaxStation",
+	"map_name": "NVS Gax",
+	"internal_name": "GaxStation",
 	"map_path": "map_files/GaxStation",
 	"map_file": "GaxStation.dmm",
 	"shuttles": {
 		"cargo": "cargo_gax",
 		"ferry": "ferry_fancy",
-		"whiteship": "whiteship_meta",
 		"emergency": "emergency_box"
-	}
+	},
+	"cryo_spawn": true
 }

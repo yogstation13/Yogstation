@@ -1,4 +1,4 @@
-/obj/item/projectile/glockroachbullet
+/obj/projectile/glockroachbullet
 	damage = 10 //same damage as a hivebot
 	damage_type = BRUTE
 
@@ -6,7 +6,7 @@
 /obj/item/ammo_casing/glockroach
 	name = "0.9mm bullet casing"
 	desc = "A... 0.9mm bullet casing? What?"
-	projectile_type = /obj/item/projectile/glockroachbullet
+	projectile_type = /obj/projectile/glockroachbullet
 
 /mob/living/simple_animal/hostile/glockroach //copypasted from cockroach.dm so i could use the shooting code in hostile.dm
 	name = "glockroach"
@@ -31,9 +31,11 @@
 	verb_exclaim = "chitters loudly"
 	verb_yell = "chitters loudly"
 	projectilesound = 'sound/weapons/shot.ogg'
-	projectiletype = /obj/item/projectile/glockroachbullet
+	projectiletype = /obj/projectile/glockroachbullet
 	casingtype = /obj/item/ammo_casing/glockroach
 	ranged = 1
+	retreat_distance = 3
+	minimum_distance = 3
 	var/squish_chance = 50
 	del_on_death = 1
 
@@ -42,7 +44,7 @@
 		return
 	..()
 
-/mob/living/simple_animal/hostile/glockroach/Crossed(var/atom/movable/AM)
+/mob/living/simple_animal/hostile/glockroach/Crossed(atom/movable/AM)
 	. = ..()
 	if(ismob(AM))
 		if(isliving(AM))

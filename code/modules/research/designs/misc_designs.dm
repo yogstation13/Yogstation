@@ -73,6 +73,17 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/thermal_goggles
+	name = "Thermal Goggles"
+	desc = "These high-tech goggles are like the ones you see in magazines, except they actually work."
+	id = "thermal_goggles"
+	build_type = PROTOLATHE
+	construction_time = 60
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/clothing/glasses/thermal
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/security_hud_night
 	name = "Night Vision Security HUD"
 	desc = "A heads-up display which provides ID data and vision in complete darkness."
@@ -136,7 +147,7 @@
 	build_path = /obj/item/bikehorn/airhorn
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//HONK!
-	
+
 /datum/design/clownshot
 	name = "Clownshot Shell"
 	desc = "A tactical round used by the clown planet's finest soldiers."
@@ -146,6 +157,16 @@
 	build_path = /obj/item/ammo_casing/shotgun/clownshot
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/clownshoesimplant
+	name = "Clownshoes Implant"
+	desc = "Advanced clown technology has allowed the implanting of bananium to allow for heightened prankage."
+	id = "clownshoesimplant"
+	build_type = PROTOLATHE | MECHFAB
+	materials = list(/datum/material/iron = 4000, /datum/material/bananium = 1000)
+	build_path = /obj/item/organ/cyberimp/leg/clownshoes
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/mesons
 	name = "Optical Meson Scanners"
@@ -176,6 +197,16 @@
 	build_path = /obj/item/clothing/glasses/meson/engine/tray
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/atmos_thermal
+	name = "Atmospheric Thermal Imaging Goggles"
+	desc = "Used by Atmospheric Technicians to determine the temperature of the air."
+	id = "atmos_thermal"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/plasma = 100)
+	build_path = /obj/item/clothing/glasses/meson/engine/atmos_imaging
+	category = list("Equipment")
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/nvgmesons
 	name = "Night Vision Optical Meson Scanners"
@@ -225,7 +256,17 @@
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
 	build_path = /obj/item/clothing/glasses/science
 	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/night_sci_goggles
+	name = "Night Vision Science Goggles"
+	desc = "Goggles fitted with a portable analyzer, capable of determining the research worth of an item or components of a machine. Now with night vision!"
+	id = "nightscigoggles"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/silver = 350, /datum/material/plastic = 150)
+	build_path = /obj/item/clothing/glasses/science/night
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/diskplantgene
 	name = "Plant Data Disk"
@@ -318,14 +359,14 @@
 
 /datum/design/ticket_remote
 	name = "Ticket Machine Remote"
-	desc = "A remote for operating a ticket machine (sold seperately)"
+	desc = "A remote for operating a ticket machine (sold seperately)."
 	id = "ticket_remote"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
 	build_path = /obj/item/ticket_machine_remote
 	category = list ("Electronics")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_MEDICAL
-	
+
 /datum/design/wallframe/flasher
 	name = "Mounted Flash Frame"
 	id =  "wallframe/flasher"
@@ -394,22 +435,22 @@
 /////////////////////////////////////////
 
 /datum/design/holosign
-	name = "Holographic Sign Projector"
-	desc = "A holograpic projector used to project various warning signs."
+	name = "Custodial Holobarrier Projector"
+	desc = "A holograpic projector used to project hard light wet floor barriers."
 	id = "holosign"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/plastic = 500)
-	build_path = /obj/item/holosign_creator
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/plastic = 500)
+	build_path = /obj/item/holosign_creator/janibarrier
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
-/datum/design/holobarrier_jani
-	name = "Custodial Holobarrier Projector"
-	desc = "A holograpic projector used to project hard light wet floor barriers."
-	id = "holobarrier_jani"
+/datum/design/holosignclown
+	name = "HONK Holobanana Projector"
+	desc = "A holographic projector that creates hardlight bananas."
+	id = "holosignclown"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/plastic = 500)
-	build_path = /obj/structure/holosign/barrier/wetsign
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/plastic = 500, /datum/material/bananium = 1000)
+	build_path = /obj/item/holosign_creator/clown
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
@@ -453,6 +494,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/holobed
+	name = "First Aid Holobed Projector"
+	desc = "A holographic projector that can create holobed, a sterile mat that slows down metabolism and acts as a clean workplace for surgery."
+	build_type = PROTOLATHE
+	build_path = /obj/item/holosign_creator/firstaid
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 100, /datum/material/plastic = 500)
+	id = "holobed_projector"
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /////////////////////////////////////////
 ////////////////Armor///////////////////
 /////////////////////////////////////////
@@ -466,6 +517,56 @@
 	build_path = /obj/item/reactive_armor_shell
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/anomaly_quiver
+	name = "Anomaly Quiver"
+	desc = "An empty, experimental quiver with not much space inside. A bluespace, pyroclastic, or gravitational anomaly can be inserted for varying effects."
+	id = "anomaly_quiver"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 7500, /datum/material/diamond = 3750, /datum/material/uranium = 6000, /datum/material/silver = 3500, /datum/material/gold = 3750)
+	build_path = /obj/item/storage/belt/quiver/anomaly
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/platingmki
+	name = "MK.I Bluespace Plating"
+	desc = "Plating fitted for a plated vest or helmet. Makes you faster, but gives less armor."
+	id = "platingmki"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 10000, /datum/material/silver = 5000, /datum/material/plastic = 5000, /datum/material/bluespace = 1500)
+	build_path = /obj/item/kevlar_plating/mki
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkii
+	name = "MK.II Ceramic Plating"
+	desc = "Plating fitted for a plated vest or helmet. Better than what you get at the start of the shift."
+	id = "platingmkii"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/silver = 5000, /datum/material/plasma = 7500)
+	build_path = /obj/item/kevlar_plating/mkii
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkiii
+	name = "MK.III Plasteel Plating"
+	desc = "Plating fitted for a plated vest or helmet. Makes you slower, but gives more armor."
+	id = "platingmkiii"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 7500, /datum/material/gold = 5000, /datum/material/uranium = 2500, /datum/material/plasma = 7500)
+	build_path = /obj/item/kevlar_plating/mkiii
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkiv
+	name = "MK.IV Titanium Plating"
+	desc = "Plating fitted for a plated vest or helmet. Turns you into a walking tank."
+	id = "platingmkiv"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 10000, /datum/material/gold = 7500, /datum/material/diamond = 2000)
+	build_path = /obj/item/kevlar_plating/mkiv
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /////////////////////////////////////////
 /////////////Security////////////////////
@@ -498,6 +599,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/titanium = 5000, /datum/material/glass = 1000, /datum/material/gold = 2500, /datum/material/silver = 3000) // made of titanium instead of metal + extra silver
 	build_path = /obj/item/detective_scanner/advanced
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/pinpointer_tracker
+	name = "Tracking Pinpointer"
+	desc = "Allows tracking of creatures with active tracking implants."
+	id = "pinpointer_tracker"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/gold = 200)
+	build_path = /obj/item/pinpointer/tracker
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 

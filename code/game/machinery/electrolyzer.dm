@@ -4,15 +4,14 @@
 /obj/machinery/electrolyzer
 	anchored = FALSE
 	density = TRUE
-	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OFFLINE
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "electrolyzer-off"
 	name = "space electrolyzer"
 	desc = "Thanks to the fast and dynamic response of our electrolyzers, on-site hydrogen production is guaranteed. Warranty void if used by clowns"
 	max_integrity = 250
 	circuit = /obj/item/circuitboard/machine/electrolyzer
-	/// We don't use area power, we always use the cell
-	use_power = NO_POWER_USE
+	use_power = ACTIVE_POWER_USE
 	///used to check if there is a cell in the machine
 	var/obj/item/stock_parts/cell/cell
 	///check if the machine is on or off
@@ -23,15 +22,17 @@
 	var/workingPower = 1
 	///Decrease the amount of power usage, changed by upgrading the capacitor tier
 	var/efficiency = 0.5
+	//Recharge cell when drawing power from apc
+	var/charge_rate = 10
 
 /obj/machinery/electrolyzer/get_cell()
 	return cell
 
-/obj/machinery/electrolyzer/Initialize()
+/obj/machinery/electrolyzer/Initialize(mapload)
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/electrolyzer/Destroy()
 	if(cell)
@@ -53,52 +54,83 @@
 	else
 		. += "There is no power cell installed."
 
-/obj/machinery/electrolyzer/update_icon()
-	cut_overlays()
+/obj/machinery/electrolyzer/update_icon_state()
+	. = ..()
 	icon_state = "electrolyzer-[on ? "[mode]" : "off"]"
-	if(panel_open)
-		add_overlay("electrolyzer-open")
 
-/obj/machinery/electrolyzer/process(delta_time)
-	if(!is_operational() && on)
+/obj/machinery/electrolyzer/update_overlays()
+	. = ..()
+	if(panel_open)
+		. += "electrolyzer-open"
+
+/obj/machinery/electrolyzer/process_atmos()
+	if((stat & (BROKEN|MAINT)) && on)
 		on = FALSE
 	if(!on)
+		active_power_usage = 0
+		update_appearance(UPDATE_ICON)
 		return PROCESS_KILL
 
-	if(!cell || cell.charge <= 0)
+	if((stat & NOPOWER) && (!cell || cell.charge <= 0))
 		on = FALSE
-		update_icon()
-		return PROCESS_KILL
+		update_appearance(UPDATE_ICON)
+		return FALSE
 
-	var/turf/L = loc
-	if(!istype(L))
+	if(!isopenturf(get_turf(src)))
 		if(mode != ELECTROLYZER_MODE_STANDBY)
 			mode = ELECTROLYZER_MODE_STANDBY
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		return
 
 	var/newMode = on ? ELECTROLYZER_MODE_WORKING : ELECTROLYZER_MODE_STANDBY //change the mode to working if the machine is on
 
 	if(mode != newMode) //check if the mode is set correctly
 		mode = newMode
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	if(mode == ELECTROLYZER_MODE_STANDBY)
 		return
 
-	var/datum/gas_mixture/env = L.return_air() //get air from the turf
+	var/datum/gas_mixture/env = return_air() //get air from the turf
 	var/datum/gas_mixture/removed = env.remove(0.1 * env.total_moles())
 
 	if(!removed)
 		return
 
-	var/proportion = min(removed.get_moles(/datum/gas/water_vapor), (1.5 * delta_time * workingPower))//Works to max 12 moles at a time.
-	removed.adjust_moles(/datum/gas/water_vapor, -(proportion * 2 * workingPower))
-	removed.adjust_moles(/datum/gas/oxygen, (proportion * workingPower))
-	removed.adjust_moles(/datum/gas/hydrogen, (proportion * 2 * workingPower))
+	var/proportion = 0
+	if(removed.get_moles(GAS_H2O))
+		proportion = min(removed.get_moles(GAS_H2O), (3 * workingPower)) //Works to max 12 moles at a time.
+		removed.adjust_moles(GAS_H2O, -proportion)
+		removed.adjust_moles(GAS_O2, proportion / 2)
+		removed.adjust_moles(GAS_H2, proportion)
+	if(removed.get_moles(GAS_HYPERNOB))
+		proportion = min(removed.get_moles(GAS_HYPERNOB), workingPower) // up to 4 moles at a time
+		removed.adjust_moles(GAS_HYPERNOB, -proportion)
+		removed.adjust_moles(GAS_ANTINOB, proportion)
 	env.merge(removed) //put back the new gases in the turf
-	air_update_turf()
-	cell.use((5 * proportion * workingPower) / (efficiency + workingPower))
+
+	var/working = TRUE
+
+	if(stat & NOPOWER)
+		if (!cell.use((5 * proportion) / (efficiency + workingPower)))
+			//automatically turn off machine when cell depletes
+			on = FALSE
+			update_appearance(UPDATE_ICON)
+			working = FALSE
+	else
+		active_power_usage = (5 * proportion) / (efficiency + workingPower)
+		if(cell)
+			cell.give(charge_rate)
+
+	if(!working)
+		return PROCESS_KILL
+
+/obj/machinery/electrolyzer/power_change()
+	. = ..()
+	if(stat & NOPOWER)
+		use_power = NO_POWER_USE
+	else
+		use_power = ACTIVE_POWER_USE
 
 /obj/machinery/electrolyzer/RefreshParts()
 	var/lasers = 0
@@ -107,6 +139,7 @@
 		lasers += L.rating
 	for(var/obj/item/stock_parts/capacitor/M in component_parts)
 		cap += M.rating
+		charge_rate = initial(charge_rate)*M.rating
 
 	workingPower = lasers / 2 //used in the amount of moles processed
 
@@ -135,7 +168,7 @@
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		panel_open = !panel_open
 		user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -168,9 +201,11 @@
 			on = !on
 			mode = ELECTROLYZER_MODE_STANDBY
 			usr.visible_message(span_notice("[usr] switches [on ? "on" : "off"] \the [src]."), span_notice("You switch [on ? "on" : "off"] \the [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if (on)
-				START_PROCESSING(SSmachines, src)
+				SSair.start_processing_machine(src)
+			else
+				SSair.stop_processing_machine(src)
 			. = TRUE
 		if("eject")
 			if(panel_open && cell)

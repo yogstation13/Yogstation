@@ -6,6 +6,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "improvised_grenade"
+	icon_state_preview = "ied_preview"
 	item_state = "flashbang"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
@@ -19,7 +20,7 @@
 	var/range = 3
 	var/list/times
 
-/obj/item/grenade/iedcasing/Initialize()
+/obj/item/grenade/iedcasing/Initialize(mapload)
 	. = ..()
 	add_overlay("improvised_grenade_filled")
 	add_overlay("improvised_grenade_wired")
@@ -74,7 +75,7 @@
 	var/armed = 0
 	display_timer = 0
 
-/obj/item/grenade/pipebomb/Initialize()
+/obj/item/grenade/pipebomb/Initialize(mapload)
 	. = ..()
 
 /obj/item/grenade/pipebomb/attack_self(mob/user)

@@ -188,13 +188,13 @@
 	item_path = /obj/item/switchblade
 
 /datum/gang_item/weapon/surplus
-	name = "Surplus Rifle"
+	name = "Surplus Carbine"
 	id = "surplus"
 	weapon_cost = 8
 	item_path = /obj/item/gun/ballistic/automatic/surplus
 
 /datum/gang_item/weapon/ammo/surplus_ammo
-	name = "Surplus Rifle Ammo"
+	name = "Surplus Carbine Ammo"
 	id = "surplus_ammo"
 	weapon_cost = 5
 	item_path = /obj/item/ammo_box/magazine/m10mm/rifle
@@ -305,7 +305,7 @@
 /obj/item/clothing/shoes/combat/gang
 	name = "Wetwork boots"
 	desc = "A gang's best hitmen are prepared for anything."
-	permeability_coefficient = 0.01
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 0, FIRE = 70, ACID = 50)
 	clothing_flags = NOSLIP
 
 /datum/gang_item/equipment/pen

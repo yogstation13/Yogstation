@@ -59,8 +59,6 @@
 	var/atom/my_atom = null
 	/// Current temp of the holder volume
 	var/chem_temp = 150
-	/// unused
-	var/last_tick = 1
 	/// see [/datum/reagents/proc/metabolize] for usage
 	var/addiction_tick = 1
 	/// currently addicted reagents
@@ -90,6 +88,13 @@
 	if(my_atom && my_atom.reagents == src)
 		my_atom.reagents = null
 	my_atom = null
+
+/datum/reagents/proc/get_total_accelerant_quality()
+	var/quality = 0
+	for(var/datum/reagent/reagent in reagent_list)
+		if(istype(reagent))
+			quality += reagent.volume * reagent.accelerant_quality
+	return quality
 
 /**
   * Used in attack logs for reagents in pills and such
@@ -195,7 +200,7 @@
   * * no_react - passed through to [/datum/reagents/proc/add_reagent]
   * * mob/transfered_by - used for logging
   * * remove_blacklisted - skips transferring of reagents with can_synth = FALSE
-  * * method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
+  * * methods - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
   * * show_message - passed through to [/datum/reagents/proc/react_single]
   * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
   */
@@ -322,14 +327,17 @@
 			continue
 		if(liverless && !R.self_consuming) //need to be metabolized
 			continue
+		if(C.reagent_check(R))
+			continue
 		if(!C)
 			C = R.holder.my_atom
+		//If you got this far, that means we can process whatever reagent this iteration is for. Handle things normally from here.
 		if(!R.metabolizing)
 			R.metabolizing = TRUE
 			R.on_mob_metabolize(C)
 
 		if(C && R)
-			if(C.reagent_check(R) != 1)
+			if(C.reagent_check(R) != 1) //Most relevant to Humans, this handles species-specific chem interactions.
 				if(can_overdose)
 					if(R.overdose_threshold)
 						if(R.volume >= R.overdose_threshold && !R.overdosed)
@@ -453,6 +461,9 @@
 				var/is_cold_recipe = C.is_cold_recipe
 				var/meets_temp_requirement = 0
 
+				if(has_reagent(/datum/reagent/hypernoblium) && C.noblium_suppression)
+					continue
+
 				for(var/B in cached_required_reagents)
 					if(!has_reagent(B, cached_required_reagents[B]))
 						break
@@ -559,7 +570,6 @@
 			if(my_atom && isliving(my_atom))
 				var/mob/living/M = my_atom
 				if(R.metabolizing)
-					R.metabolizing = FALSE
 					R.on_mob_end_metabolize(M)
 				R.on_mob_delete(M)
 			qdel(R)
@@ -590,17 +600,20 @@
 		del_reagent(R.type)
 	return 0
 
+/datum/reagents/proc/reaction_check(mob/living/M, datum/reagent/R)
+	return (R.compatible_biotypes & M.mob_biotypes)
+
 /**
   * Applies the relevant reaction_ proc for every reagent in this holder
   * * [/datum/reagent/proc/reaction_mob]
   * * [/datum/reagent/proc/reaction_turf]
   * * [/datum/reagent/proc/reaction_obj]
   */
-/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1)
+/datum/reagents/proc/reaction(atom/A, methods = TOUCH, volume_modifier = 1, show_message = 1)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
-		if(method == INGEST)
+		if(methods & INGEST)
 			var/mob/living/L = A
 			L.taste(src)
 	else if(isturf(A))
@@ -614,11 +627,14 @@
 		var/datum/reagent/R = reagent
 		switch(react_type)
 			if("LIVING")
-				var/touch_protection = 0
-				if(method == VAPOR)
+				var/check = reaction_check(A, R)
+				if(!check)
+					continue
+				var/permeability = 1
+				if(methods & (TOUCH|VAPOR))
 					var/mob/living/L = A
-					touch_protection = L.get_permeability_protection()
-				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
+					permeability = L.get_permeability()
+				R.reaction_mob(A, methods, R.volume * volume_modifier, show_message, permeability)
 			if("TURF")
 				R.reaction_turf(A, R.volume * volume_modifier, show_message)
 			if("OBJ")
@@ -920,7 +936,7 @@
 	return english_list(out, "something indescribable")
 
 /// Applies heat to this holder
-/datum/reagents/proc/expose_temperature(var/temperature, var/coeff=0.02)
+/datum/reagents/proc/expose_temperature(temperature, coeff=0.02)
 	var/temp_delta = (temperature - chem_temp) * coeff
 	if(temp_delta > 0)
 		chem_temp = min(chem_temp + max(temp_delta, 1), temperature)

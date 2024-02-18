@@ -6,7 +6,7 @@
 	icon_living = "bear"
 	icon_dead = "bear_dead"
 	icon_gib = "bear_gib"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
 	emote_hear = list("rawrs.","grumbles.","grawls.")
@@ -27,6 +27,7 @@
 	obj_damage = 60
 	melee_damage_lower = 15 // i know it's like half what it used to be, but bears cause bleeding like crazy now so it works out
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	wound_bonus = -5
 	bare_wound_bonus = 10 // BEAR wound bonus am i right
 	sharpness = SHARP_EDGED
@@ -41,8 +42,7 @@
 
 	faction = list("russian")
 	gold_core_spawnable = HOSTILE_SPAWN
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/hostile/bear/loan
 	faction = list("hostile")

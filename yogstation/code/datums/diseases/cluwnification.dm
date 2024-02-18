@@ -25,7 +25,7 @@
 				playsound(affected_mob, 'sound/items/bikehorn.ogg', 30, FALSE)
 			if(prob(2))
 				to_chat(affected_mob, span_danger("Your head starts to spin."))
-				affected_mob.confused += 5
+				affected_mob.adjust_confusion(5 SECONDS)
 
 		if(3)
 			if(prob(5))
@@ -37,7 +37,7 @@
 				affected_mob.updatehealth()
 			if(prob(5))
 				to_chat(affected_mob, span_danger("Your head starts to spin."))
-				affected_mob.confused += 5
+				affected_mob.adjust_confusion(5 SECONDS)
 		if(4)
 			if(prob(10))
 				to_chat(affected_mob, span_danger("OH GOD THE HONKING!!"))
@@ -51,7 +51,7 @@
 			if(prob(10))
 				to_chat(affected_mob, span_danger("You fail to form any kind of coherent thought"))
 				affected_mob.set_drugginess(10)
-				affected_mob.confused += 10
+				affected_mob.adjust_confusion(10 SECONDS)
 		if(5)
 			if(prob(30))
 				if (!(affected_mob.dna.check_mutation(CLUWNEMUT)))

@@ -14,24 +14,14 @@
 	if(HasDisease(D))
 		return FALSE
 
-	var/can_infect = FALSE
-	for(var/host_type in D.infectable_biotypes)
-		if(host_type in mob_biotypes)
-			can_infect = TRUE
-			break
-	if(!can_infect)
+	if(!(mob_biotypes & D.infectable_biotypes))
 		return FALSE
 
-	can_infect = FALSE // var reuse
 	for(var/viable_types in D.viable_mobtypes)
 		if(typesof(src,viable_types))
-			can_infect = TRUE
-			break
+			return TRUE
 
-	if(!can_infect)
-		return FALSE
-
-	return TRUE
+	return FALSE
 
 
 /mob/living/proc/ContactContractDisease(datum/disease/D)
@@ -44,7 +34,6 @@
 	if(!CanContractDisease(D))
 		return FALSE
 
-	var/obj/item/clothing/Cl = null
 	var/passed = TRUE
 
 	var/head_ch = 80
@@ -58,57 +47,10 @@
 	if(satiety>0 && prob(satiety/10)) // positive satiety makes it harder to contract the disease.
 		return
 
-	//Lefts and rights do not matter for arms and legs, they both run the same checks
+	//Checks your protection on a random bodypart, should work with precise zones too if specified
 	if(!target_zone)
-		target_zone = pick(head_ch;BODY_ZONE_HEAD,body_ch;BODY_ZONE_CHEST,hands_ch;BODY_ZONE_L_ARM,feet_ch;BODY_ZONE_L_LEG)
-	else
-		target_zone = check_zone(target_zone)
-
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-
-		switch(target_zone)
-			if(BODY_ZONE_HEAD)
-				if(isobj(H.head) && !istype(H.head, /obj/item/paper))
-					Cl = H.head
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(H.wear_mask))
-					Cl = H.wear_mask
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(H.wear_neck))
-					Cl = H.wear_neck
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(BODY_ZONE_CHEST)
-				if(isobj(H.wear_suit))
-					Cl = H.wear_suit
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(SLOT_W_UNIFORM))
-					Cl = SLOT_W_UNIFORM
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
-				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered&HANDS)
-					Cl = H.wear_suit
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-
-				if(passed && isobj(H.gloves))
-					Cl = H.gloves
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered&FEET)
-					Cl = H.wear_suit
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-
-				if(passed && isobj(H.shoes))
-					Cl = H.shoes
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-
-	else if(ismonkey(src))
-		var/mob/living/carbon/monkey/M = src
-		switch(target_zone)
-			if(BODY_ZONE_HEAD)
-				if(M.wear_mask && isobj(M.wear_mask))
-					Cl = M.wear_mask
-					passed = prob((Cl.permeability_coefficient*100) - 1)
+		target_zone = pick(head_ch;BODY_ZONE_HEAD,body_ch;BODY_ZONE_CHEST,hands_ch/2;BODY_ZONE_L_ARM,feet_ch/2;BODY_ZONE_L_LEG,hands_ch/2;BODY_ZONE_R_ARM,feet_ch/2;BODY_ZONE_R_LEG)
+	passed = prob(get_permeability(target_zone) * 100)
 
 	if(passed)
 		D.try_infect(src)

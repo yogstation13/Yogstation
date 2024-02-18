@@ -7,21 +7,21 @@
 /datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, list(COMSIG_MOVABLE_Z_CHANGED), .proc/check_in_bounds)
-	RegisterSignal(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), .proc/relocate)
-	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED), .proc/check_deletion)
-	RegisterSignal(parent, list(COMSIG_ITEM_IMBUE_SOUL), .proc/check_soul_imbue)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_Z_CHANGED), PROC_REF(check_in_bounds))
+	RegisterSignals(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), PROC_REF(relocate))
+	RegisterSignals(parent, list(COMSIG_PARENT_PREQDELETED), PROC_REF(check_deletion))
+	RegisterSignals(parent, list(COMSIG_ITEM_IMBUE_SOUL), PROC_REF(check_soul_imbue))
 	src.inform_admins = inform_admins
 	src.allow_death = allow_death
 	check_in_bounds() // Just in case something is being created outside of station/centcom
 
-/datum/component/stationloving/InheritComponent(datum/component/stationloving/newc, original, list/arguments)
+/datum/component/stationloving/InheritComponent(datum/component/stationloving/newc, original, _inform_admins, allow_death)
 	if (original)
-		if (istype(newc))
+		if (newc)
 			inform_admins = newc.inform_admins
 			allow_death = newc.allow_death
-		else if (LAZYLEN(arguments))
-			inform_admins = arguments[1]
+		else
+			inform_admins = _inform_admins
 
 /datum/component/stationloving/proc/relocate()
 	var/targetturf = find_safe_turf()
@@ -47,7 +47,7 @@
 		if(inform_admins)
 			message_admins("[parent] has been moved out of bounds in [ADMIN_VERBOSEJMP(currentturf)]. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
 
-/datum/component/stationloving/proc/check_soul_imbue()
+/datum/component/stationloving/proc/check_soul_imbue(datum/source)
 	return disallow_soul_imbue
 
 /datum/component/stationloving/proc/in_bounds()

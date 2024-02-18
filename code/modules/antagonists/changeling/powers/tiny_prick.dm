@@ -21,17 +21,17 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chosen_sting = src
 
-	user.hud_used.lingstingdisplay.icon = 'icons/obj/changeling.dmi'
-	user.hud_used.lingstingdisplay.icon_state = sting_icon
-	user.hud_used.lingstingdisplay.invisibility = 0
+	changeling.lingstingdisplay.icon = 'icons/obj/changeling.dmi'
+	changeling.lingstingdisplay.icon_state = sting_icon
+	changeling.lingstingdisplay.invisibility = 0
 
 /datum/action/changeling/sting/proc/unset_sting(mob/user)
 	to_chat(user, span_warning("We retract our sting, we can't sting anyone for now."))
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chosen_sting = null
 
-	user.hud_used.lingstingdisplay.icon_state = null
-	user.hud_used.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
+	changeling.lingstingdisplay.icon_state = null
+	changeling.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
 
 /mob/living/carbon/proc/unset_sting()
 	if(mind)
@@ -67,12 +67,12 @@
 
 /datum/action/changeling/sting/transformation
 	name = "Transformation Sting"
-	desc = "We silently sting a human, injecting a retrovirus that forces them to transform. Costs 50 chemicals."
-	helptext = "The victim will transform much like a changeling would. Does not provide a warning to others. Mutations will not be transferred, and monkeys will become human."
+	desc = "We silently sting a human, injecting a retrovirus that forces them to transform for a short time. Costs 20 chemicals."
+	helptext = "The victim will transform much like a changeling would. Does not provide a warning to others. Mutations will not be transferred, and monkeys will become human. Stings on already transformed targets won't last as long."
 	button_icon_state = "sting_transform"
 	sting_icon = "sting_transform"
-	chemical_cost = 50
-	dna_cost = 3
+	chemical_cost = 20
+	dna_cost = 1
 	var/datum/changelingprofile/selected_dna = null
 
 /datum/action/changeling/sting/transformation/Trigger()
@@ -104,14 +104,31 @@
 		to_chat(user, span_notice("Our genes cry out as we sting [target.name]!"))
 
 	var/mob/living/carbon/C = target
+
 	. = TRUE
 	if(istype(C))
+
+		if(!HAS_TRAIT(C, CHANGESTING_TRAIT))
+			//block that stores the old identity for use in reverting
+			var/mob/living/carbon/human/OldDNA = new /mob/living/carbon/human()
+			OldDNA.real_name = C.real_name
+			C.dna.transfer_identity(OldDNA)
+			addtimer(CALLBACK(src, PROC_REF(revert), C, OldDNA), 10 MINUTES, TIMER_UNIQUE)
+			ADD_TRAIT(C, CHANGESTING_TRAIT, "recentsting")
+		else
+			to_chat(user, span_notice("We notice that [target.name]'s DNA is already in turmoil from the previous sting."))
+
 		C.real_name = NewDNA.real_name
 		NewDNA.transfer_identity(C)
 		if(ismonkey(C))
 			C.humanize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG)
 		C.updateappearance(mutcolor_update=1)
 
+/datum/action/changeling/sting/transformation/proc/revert(mob/living/carbon/target, mob/living/carbon/original)
+	REMOVE_TRAIT(target, CHANGESTING_TRAIT, "recentsting")
+	target.real_name = original.real_name
+	original.dna.transfer_identity(target)
+	qdel(original)
 
 /datum/action/changeling/sting/false_armblade
 	name = "False Armblade Sting"
@@ -155,7 +172,7 @@
 	target.visible_message(span_warning("A grotesque blade forms around [target.name]\'s arm!"), span_userdanger("Your arm twists and mutates, transforming into a horrific monstrosity!"), span_italics("You hear organic matter ripping and tearing!"))
 	playsound(target, 'sound/effects/blobattack.ogg', 30, 1)
 
-	addtimer(CALLBACK(src, .proc/remove_fake, target, blade), 600)
+	addtimer(CALLBACK(src, PROC_REF(remove_fake), target, blade), 600)
 	return TRUE
 
 /datum/action/changeling/sting/false_armblade/proc/remove_fake(mob/target, obj/item/melee/arm_blade/false/blade)
@@ -191,11 +208,11 @@
 
 /datum/action/changeling/sting/mute
 	name = "Mute Sting"
-	desc = "We silently sting a human, completely silencing them for a short time. Costs 20 chemicals."
+	desc = "We silently sting a human, completely silencing them for a short time. Costs 40 chemicals."
 	helptext = "Does not provide a warning to the victim that they have been stung, until they try to speak and cannot."
 	button_icon_state = "sting_mute"
 	sting_icon = "sting_mute"
-	chemical_cost = 20
+	chemical_cost = 40
 	dna_cost = 2
 
 /datum/action/changeling/sting/mute/sting_action(mob/user, mob/living/carbon/target)
@@ -206,11 +223,11 @@
 
 /datum/action/changeling/sting/blind
 	name = "Blind Sting"
-	desc = "We temporarily blind our victim. Costs 25 chemicals."
+	desc = "We temporarily blind our victim. Costs 40 chemicals."
 	helptext = "This sting completely blinds a target for a short time, and leaves them with blurred vision for a long time."
 	button_icon_state = "sting_blind"
 	sting_icon = "sting_blind"
-	chemical_cost = 25
+	chemical_cost = 40
 	dna_cost = 1
 
 /datum/action/changeling/sting/blind/sting_action(mob/user, mob/living/carbon/target)
@@ -223,7 +240,7 @@
 
 /datum/action/changeling/sting/LSD
 	name = "Hallucination Sting"
-	desc = "We cause mass terror to our victim."
+	desc = "We cause mass terror to our victim. Costs 10 chemicals."
 	helptext = "We evolve the ability to sting a target with a powerful hallucinogenic chemical. The target does not notice they have been stung, and the effect occurs after 30 to 60 seconds."
 	button_icon_state = "sting_lsd"
 	sting_icon = "sting_lsd"
@@ -238,11 +255,11 @@
 
 /datum/action/changeling/sting/cryo
 	name = "Cryogenic Sting"
-	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 15 chemicals."
+	desc = "We silently sting our victim with a cocktail of chemicals that freezes them from the inside. Costs 30 chemicals."
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing."
 	button_icon_state = "sting_cryo"
 	sting_icon = "sting_cryo"
-	chemical_cost = 15
+	chemical_cost = 30
 	dna_cost = 2
 	xenoling_available = FALSE
 

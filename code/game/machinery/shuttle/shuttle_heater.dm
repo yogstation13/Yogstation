@@ -28,14 +28,14 @@
 
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 
-	var/gas_type = /datum/gas/plasma
+	var/gas_type = GAS_PLASMA
 	var/efficiency_multiplier = 1
 	var/gas_capacity = 0
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater/New()
 	. = ..()
 	GLOB.custom_shuttle_machines += src
-	SetInitDirections()
+	set_init_directions()
 	update_adjacent_engines()
 	updateGasStats()
 
@@ -46,27 +46,27 @@
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater/on_construction()
 	..(dir, dir)
-	SetInitDirections()
+	set_init_directions()
 	update_adjacent_engines()
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater/default_change_direction_wrench(mob/user, obj/item/I)
 	if(!..())
 		return FALSE
-	SetInitDirections()
+	set_init_directions()
 	var/obj/machinery/atmospherics/node = nodes[1]
 	if(node)
 		node.disconnect(src)
 		nodes[1] = null
 	if(!parents[1])
 		return
-	nullifyPipenet(parents[1])
+	nullify_pipenet(parents[1])
 
-	atmosinit()
+	atmos_init()
 	node = nodes[1]
 	if(node)
-		node.atmosinit()
-		node.addMember(src)
-	build_network()
+		node.atmos_init()
+		node.add_member(src)
+	SSair.add_to_rebuild_queue(src)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater/RefreshParts()
@@ -91,15 +91,13 @@
 		return
 	air_contents.set_volume(gas_capacity)
 	air_contents.set_temperature(T20C)
-	if(gas_type)
-		air_contents.set_moles(gas_type)
 
-/obj/machinery/atmospherics/components/unary/shuttle/heater/proc/hasFuel(var/required)
+/obj/machinery/atmospherics/components/unary/shuttle/heater/proc/hasFuel(required)
 	var/datum/gas_mixture/air_contents = airs[1]
 	var/moles = air_contents.total_moles()
 	return moles >= required
 
-/obj/machinery/atmospherics/components/unary/shuttle/heater/proc/consumeFuel(var/amount)
+/obj/machinery/atmospherics/components/unary/shuttle/heater/proc/consumeFuel(amount)
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.remove(amount)
 	return
@@ -132,3 +130,118 @@
 		return
 	for(var/obj/machinery/shuttle/engine/E in engine_turf)
 		E.check_setup()
+
+//=============================
+// Capacitor Bank
+//=============================
+
+/obj/machinery/power/engine_capacitor_bank
+	name = "thruster capacitor bank"
+	desc = "A capacitor bank that stores power for high-energy ion thrusters."
+	icon_state = "heater_ion"
+	icon = 'icons/turf/shuttle.dmi'
+	density = TRUE
+	use_power = NO_POWER_USE
+	circuit = /obj/item/circuitboard/machine/shuttle/capacitor_bank
+	var/icon_state_closed = "heater_ion"
+	var/icon_state_open = "heater_ion_open"
+	var/icon_state_off = "heater_ion"
+	var/stored_power = 0
+	var/charge_rate = 20
+	var/maximum_stored_power = 500
+
+/obj/machinery/power/engine_capacitor_bank/Initialize(mapload)
+	. = ..()
+	GLOB.custom_shuttle_machines += src
+	update_adjacent_engines()
+
+/obj/machinery/power/engine_capacitor_bank/Destroy()
+	GLOB.custom_shuttle_machines -= src
+	. = ..()
+	update_adjacent_engines()
+
+/obj/machinery/power/engine_capacitor_bank/RefreshParts()
+	maximum_stored_power = 0
+	charge_rate = 0
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		maximum_stored_power += C.rating * 200
+	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
+		charge_rate += L.rating * 20
+	stored_power = min(stored_power, maximum_stored_power)
+
+/obj/machinery/power/engine_capacitor_bank/examine(mob/user)
+	. = ..()
+	. += "The capacitor bank reads [stored_power]W of power stored.<br>"
+
+/obj/machinery/power/engine_capacitor_bank/process(delta_time)
+	take_power(delta_time)
+
+/obj/machinery/power/engine_capacitor_bank/proc/take_power(delta_time)
+	var/turf/T = get_turf(src)
+	var/obj/structure/cable/C = T.get_cable_node()
+	if(!C)
+		return
+	var/datum/powernet/powernet = C.powernet
+	if(!powernet)
+		return
+	//Consume power
+	var/surplus = max(powernet.avail - powernet.load, 0)
+	var/available_power = min(charge_rate * delta_time, surplus, maximum_stored_power - stored_power)
+	if(available_power)
+		powernet.load += available_power
+		stored_power += available_power
+
+//Annoying copy and paste because atmos machines aren't a component so engine heaters
+//can't share from the same supertype
+/obj/machinery/power/engine_capacitor_bank/proc/update_adjacent_engines()
+	var/engine_turf
+	switch(dir)
+		if(NORTH)
+			engine_turf = get_offset_target_turf(src, 0, -1)
+		if(SOUTH)
+			engine_turf = get_offset_target_turf(src, 0, 1)
+		if(EAST)
+			engine_turf = get_offset_target_turf(src, -1, 0)
+		if(WEST)
+			engine_turf = get_offset_target_turf(src, 1, 0)
+	if(!engine_turf)
+		return
+	for(var/obj/machinery/shuttle/engine/E in engine_turf)
+		E.check_setup()
+
+/obj/machinery/power/engine_capacitor_bank/attackby(obj/item/I, mob/living/user, params)
+	if(default_deconstruction_screwdriver(user, icon_state_open, icon_state_closed, I))
+		update_adjacent_engines()
+		return
+	if(default_pry_open(I))
+		update_adjacent_engines()
+		return
+	if(panel_open)
+		if(default_change_direction_wrench(user, I))
+			update_adjacent_engines()
+			return
+	if(default_deconstruction_crowbar(I))
+		update_adjacent_engines()
+		return
+	update_adjacent_engines()
+	return ..()
+
+/obj/machinery/power/engine_capacitor_bank/emp_act(severity)
+	. = ..()
+	stored_power = stored_power * (0.9**(severity)) // exponential decay based on EMP severity, heavy EMPs (10 severity) reduce to 35% power
+
+/obj/machinery/power/engine_capacitor_bank/escape_pod
+	name = "emergency thruster capacitor bank"
+	desc = "A single-use, non-rechargeable, high-capacitor capacitor bank used for getting shuttles away from a location fast."
+	//Starts with maximum power
+	stored_power = 600
+	//Cannot be recharged
+	charge_rate = 0
+	//Provides 2 minutes of thrust when using burst thrusters
+	maximum_stored_power = 600
+
+/obj/machinery/power/engine_capacitor_bank/escape_pod/emp_act(severity)
+	return
+
+/obj/machinery/power/engine_capacitor_bank/escape_pod/RefreshParts()
+	return

@@ -1,8 +1,6 @@
 import { decodeHtmlEntities } from 'common/string';
-import { useBackend, useLocalState } from '../../backend';
-import { Box, Button, LabeledList, NumberInput, Section } from '../../components';
-import { getGasLabel } from '../../constants';
-
+import { useBackend } from '../../backend';
+import { Button, LabeledList, NumberInput, Section } from '../../components';
 
 export const Vent = (props, context) => {
   const { vent } = props;
@@ -162,7 +160,7 @@ export const Scrubber = (props, context) => {
             && filter_types.map(filter => (
               <Button key={filter.gas_id}
                 icon={filter.enabled ? 'check-square-o' : 'square-o'}
-                content={getGasLabel(filter.gas_id, filter.gas_name)}
+                content={filter.gas_name}
                 title={filter.gas_name}
                 selected={filter.enabled}
                 onClick={() => act('toggle_filter', {

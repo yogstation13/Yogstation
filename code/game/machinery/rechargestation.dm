@@ -7,16 +7,16 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 1000
-	req_access = list(ACCESS_ROBOTICS)
+	req_access = list(ACCESS_ROBO_CONTROL)
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/cyborgrecharger
 	occupant_typecache = list(/mob/living/silicon/robot, /mob/living/carbon/human)
 	var/recharge_speed
 	var/repairs
 
-/obj/machinery/recharge_station/Initialize()
+/obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/recharge_station/RefreshParts()
 	recharge_speed = 0
@@ -35,12 +35,12 @@
 		if(repairs)
 			. += "<span class='notice'>[src] has been upgraded to support automatic repairs.<span>"
 
-/obj/machinery/recharge_station/process()
+/obj/machinery/recharge_station/process(delta_time)
 	if(!is_operational())
 		return
 
 	if(occupant)
-		process_occupant()
+		process_occupant(delta_time)
 	return 1
 
 /obj/machinery/recharge_station/relaymove(mob/user)
@@ -88,7 +88,8 @@
 		use_power = ACTIVE_POWER_USE //It always tries to charge, even if it can't.
 		add_fingerprint(occupant)
 
-/obj/machinery/recharge_station/update_icon()
+/obj/machinery/recharge_station/update_icon_state()
+	. = ..()
 	if(is_operational())
 		if(state_open)
 			icon_state = "borgcharger0"
@@ -97,7 +98,21 @@
 	else
 		icon_state = (state_open ? "borgcharger-u0" : "borgcharger-u1")
 
-/obj/machinery/recharge_station/proc/process_occupant()
+/obj/machinery/recharge_station/proc/process_occupant(delta_time)
 	if(!occupant)
 		return
-	SEND_SIGNAL(occupant, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, recharge_speed, repairs)
+	SEND_SIGNAL(occupant, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, recharge_speed * delta_time / 2, repairs)
+
+/obj/machinery/recharge_station/fullupgrade
+	flags_1 = NODECONSTRUCT_1
+
+/obj/machinery/recharge_station/fullupgrade/Initialize(mapload)
+	. = ..()
+	update_appearance(UPDATE_ICON)
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/cyborgrecharger(null)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	RefreshParts()

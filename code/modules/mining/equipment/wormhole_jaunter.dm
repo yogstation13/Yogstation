@@ -47,10 +47,12 @@
 	var/obj/effect/portal/jaunt_tunnel/J = new (get_turf(src), src, 100, null, FALSE, get_turf(chosen_beacon))
 	if(adjacent)
 		try_move_adjacent(J)
+	else
+		J.teleport(user) // send the user through instantly if it appears directly on top of them
 	playsound(src,'sound/effects/sparks4.ogg',50,1)
 	qdel(src)
 
-/obj/item/wormhole_jaunter/emp_act(power)
+/obj/item/wormhole_jaunter/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
@@ -58,11 +60,8 @@
 	var/mob/M = loc
 	if(istype(M))
 		var/triggered = FALSE
-		if(M.get_item_by_slot(SLOT_BELT) == src)
-			if(power == 1)
-				triggered = TRUE
-			else if(power == 2 && prob(50))
-				triggered = TRUE
+		if(M.get_item_by_slot(ITEM_SLOT_BELT) == src && prob(10 * severity))
+			triggered = TRUE
 
 		if(triggered)
 			M.visible_message(span_warning("[src] overloads and activates!"))
@@ -93,4 +92,4 @@
 			L.Paralyze(60)
 			if(ishuman(L))
 				shake_camera(L, 20, 1)
-				addtimer(CALLBACK(L, /mob/living/carbon.proc/vomit), 20)
+				addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living/carbon, vomit)), 20)

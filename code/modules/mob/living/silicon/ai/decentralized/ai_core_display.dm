@@ -13,7 +13,7 @@
 	var/mode = SD_BLANK
 	var/emotion = "Neutral"
 
-/obj/machinery/status_display/ai_core/Initialize()
+/obj/machinery/status_display/ai_core/Initialize(mapload)
 	. = ..()
 	GLOB.ai_core_displays.Add(src)
 

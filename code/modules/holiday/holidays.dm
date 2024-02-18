@@ -11,9 +11,13 @@
 	var/current_year = 0
 	var/year_offset = 0
 	var/obj/item/drone_hat //If this is defined, drones without a default hat will spawn with this one during the holiday; check drones_as_items.dm to see this used
+	///When this holiday is active, does this prevent mail from arriving to cargo? Try not to use this for longer holidays.
+	var/mail_holiday = FALSE
 
 // This proc gets run before the game starts when the holiday is activated. Do festive shit here.
 /datum/holiday/proc/celebrate()
+	if(mail_holiday)
+		SSeconomy.mail_blocked = TRUE
 	return
 
 // When the round starts, this proc is ran to get a text message to display to everyone to wish them a happy holiday
@@ -71,6 +75,7 @@
 	end_day = 2
 	end_month = JANUARY
 	drone_hat = /obj/item/clothing/head/festive
+	mail_holiday = TRUE
 
 /datum/holiday/new_year/getStationPrefix()
 	return pick("Party","New","Hangover","Resolution","Auld")
@@ -98,7 +103,8 @@
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=cEwZpejd4rM", // Charlie Wilson - Forever Valentine
 		"https://www.youtube.com/watch?v=4j-cPYewjn4", // David Bowie - Valentine's Day
-		"https://www.youtube.com/watch?v=yvUPEW8bdHA" // On The Street Where You Live
+		"https://www.youtube.com/watch?v=yvUPEW8bdHA", // On The Street Where You Live
+		"https://www.youtube.com/watch?v=J2w8Gubp3x0"  // Tim McMorris - Be My Valentine
 		)
 
 /datum/holiday/valentines/getStationPrefix()
@@ -237,6 +243,7 @@
 	begin_day = 1
 	begin_month = MAY
 	drone_hat = /obj/item/clothing/head/hardhat
+	mail_holiday = TRUE
 
 /datum/holiday/labor/getStationPrefix()
 	return pick("Union","Labor","Worker","Trade")
@@ -306,6 +313,7 @@
 		"https://www.youtube.com/watch?v=FAVQsnr4uYg",  // Lone Star - Tony Marcus
 		"https://www.youtube.com/watch?v=kQzdJUiALBk"	// wyoming - In the Shadow of the Valley - Don Burnham
 	)
+	mail_holiday = TRUE
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
 
@@ -324,8 +332,8 @@
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
-		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà
 		)
+	mail_holiday = TRUE
 
 /datum/holiday/france/getStationPrefix()
 	return pick("Francais","Fromage", "Zut", "Merde")
@@ -401,7 +409,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 26
+	begin_day = 22
 	begin_month = OCTOBER
 	end_day = 2
 	end_month = NOVEMBER
@@ -411,12 +419,21 @@
 		"https://www.youtube.com/watch?v=m9We2XsVZfc", // Ghostbusters Theme
 		"https://www.youtube.com/watch?v=xIx_HbmRnQY", // Thriller
 		"https://www.youtube.com/watch?v=7-D83f33pAE", // Spooky Scary Skeletons
+		"https://www.youtube.com/watch?v=1mrGdGMNsv0", // Spooky Scary Skeletons, Living Tombstone Remix
 		"https://www.youtube.com/watch?v=bebUeWgNkAM", // Halloween Theme Michael Myers
 		"https://www.youtube.com/watch?v=qaQ6oJL1qQA", // Lucifer My Love - Twin Temple
 		"https://www.youtube.com/watch?v=vCYLUZyWeDs&t", // "Unforgiving Cold"- Godzilla NES Creepypasta OST
-		"https://www.youtube.com/watch?v=OPDDFdyKOgU" // Red Signal - The Bifrost Incident - The Mechanisms
+		"https://www.youtube.com/watch?v=OPDDFdyKOgU", // Red Signal - The Bifrost Incident - The Mechanisms
+		"https://www.youtube.com/watch?v=d1itZiNY5pY", // Todd Rollins - The Boogie Man
+		"https://www.youtube.com/watch?v=fixc63xMXeY", // Plok Boss Theme - HD Remastered
+		"https://www.youtube.com/watch?v=bRLML36HnzU" // Monster Mash
 		)
 
+/datum/holiday/halloween/shouldCelebrate(dd, mm, yy, ww, ddd)
+	. = ..()
+	if(!.)
+		return (dd == 13 && ddd == FRIDAY)
+	
 /datum/holiday/halloween/greet()
 	return "Have a spooky Halloween!"
 
@@ -446,7 +463,7 @@
     begin_month = NOVEMBER
 
 /datum/holiday/remembrance/celebrate()
-    SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
+    SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
 
 /datum/holiday/remembrance/proc/roundstart_celebrate()
     for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -586,19 +603,46 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://soundcloud.com/garym03062/beacons-in-the-darkness",	// Gary McGath - Beacons in the Darkness
 		"https://www.youtube.com/watch?v=KGEfBop0nkI",	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
 		"https://www.youtube.com/watch?v=1twga61Kd14",	// Julia Ecklar - #1 - Christmas Time
-		"https://www.youtube.com/watch?v=imjMjnczqkU"	// Pete Gold - Ive Been a Bad Boy
+		"https://www.youtube.com/watch?v=imjMjnczqkU",	// Pete Gold - Ive Been a Bad Boy
+		"https://www.youtube.com/watch?v=aAkMkVFwAoo",   //Mariah Carey, All I Want For Christmas Is You
+		"https://www.youtube.com/watch?v=Ri-Pmh5X8-c",   //Phyrnna - Sisters of Snow Dissent
+		"https://www.youtube.com/watch?v=W2Dyg4YY2VU",   //Phyrnna - Sisters of Snow Assent
+		"https://www.youtube.com/watch?v=VICEsWdd4Kk",   //Phyrnna - A First Snow with Friends
+		"https://www.youtube.com/watch?v=1HGQlV2AWGs",	// Phineas and Ferb - We Wish You a Merry Christmas
+		"https://www.youtube.com/watch?v=0gw8l7iv2Wg"   //Anuc Atittawan and Hera Loani - Chestnuts Roasting on an Open Fire
+
 		)
+	mail_holiday = TRUE
+
+/datum/holiday/xmas/getStationPrefix()
+	return pick(
+		"Birthday",
+		"Chimney",
+		"Claus",
+		"Elf",
+		"Fir",
+		"Ho Ho Ho",
+		"Jolly",
+		"Merry",
+		"Present",
+		"Sack",
+		"Santa",
+		"Sleigh",
+		"Yule",
+	)
 
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
 
 /datum/holiday/xmas/celebrate()
-	SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
-	GLOB.maintenance_loot += list(
-		/obj/item/toy/xmas_cracker = 3,
-		/obj/item/clothing/head/santa = 1,
-		/obj/item/a_gift/anything = 1
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
+	//Start of yogstation loot changes.
+	GLOB.maintenance_loot_traditional += list(
+		/obj/item/toy/xmas_cracker = 300,
+		/obj/item/clothing/head/santa = 100,
+		/obj/item/a_gift/anything = 100
 	)
+	//End of yogstation loot changes.
 
 /datum/holiday/xmas/proc/roundstart_celebrate()
 	for(var/obj/machinery/computer/security/telescreen/entertainment/Monitor in GLOB.machines)
@@ -664,9 +708,11 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return ..()
 
 /datum/holiday/easter/celebrate()
-	GLOB.maintenance_loot += list(
-		/obj/item/reagent_containers/food/snacks/egg/loaded = 15,
-		/obj/item/storage/bag/easterbasket = 15)
+	//Start of yogstation loot changes.
+	GLOB.maintenance_loot_traditional += list(
+		/obj/item/reagent_containers/food/snacks/egg/loaded = 1500,
+		/obj/item/storage/bag/easterbasket = 1500)
+	//End of yogstation loot changes.
 
 /datum/holiday/easter/greet()
 	return "Greetings! Have a Happy Easter and keep an eye out for Easter Bunnies!"
@@ -695,7 +741,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=P2csnVNai-o", // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
 		"https://www.youtube.com/watch?v=Jr5DG6QheEc",  // Look! Professor Angell Brings - H. P. Lovecraft Historical Society - An Even Scarier Solstice
 		"https://www.youtube.com/watch?v=LA4TMacjYMw",  // Slay Ride - H. P. Lovecraft Historical Society - An Even Scarier Solstice
-		"https://www.youtube.com/watch?v=tM08p2sxDVE"	// Embrace the Darkness - Andrew Hulshult - DUSK
+		"https://www.youtube.com/watch?v=tM08p2sxDVE",	// Embrace the Darkness - Andrew Hulshult - DUSK
+		"https://www.youtube.com/watch?v=hKJM4qUU-I4"	// Prelude to Darkness - Miro Haverinen - Fear & Hunger
 		)
 
 /datum/holiday/twofoursixohfive

@@ -86,7 +86,7 @@
 								span_userdanger("You miss the map and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
-			user.IgniteMob()
+			user.ignite_mob()
 			return
 
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
@@ -102,19 +102,19 @@
 	name = "station map"
 	desc = "A handy map showing the locations of all the departments on the station so you don't get lost"
 
-/obj/item/map/station/Initialize()
+/obj/item/map/station/Initialize(mapload)
 	..()
 	minimaps += SSmapping.station_minimaps
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/map/update_icon()
-	cut_overlays()
+/obj/item/map/update_overlays()
+	. = ..()
 	var/datum/minimap/map = minimaps[1]
 	if(!map) return
 	var/image/I = image(map.overlay_icon)
 	I.pixel_x = 8
 	I.pixel_y = 8
-	add_overlay(I)
+	. += I
 
 /obj/item/map/interact(mob/user)
 	if(!in_range(user, src) && !isobserver(user))

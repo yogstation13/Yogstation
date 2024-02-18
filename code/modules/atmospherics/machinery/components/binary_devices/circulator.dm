@@ -34,12 +34,9 @@
 	icon_state = "circ-unassembled-1"
 
 /obj/machinery/atmospherics/components/binary/circulator/Initialize(mapload)
-	.=..()
-	component_parts = list(new /obj/item/circuitboard/machine/circulator)
-	update_icon()
-
-/obj/machinery/atmospherics/components/binary/circulator/ComponentInitialize()
 	. = ..()
+	component_parts = list(new /obj/item/circuitboard/machine/circulator)
+	update_appearance(UPDATE_ICON)
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
 
 /obj/machinery/atmospherics/components/binary/circulator/Destroy()
@@ -79,25 +76,22 @@
 		last_pressure_delta = 0
 
 /obj/machinery/atmospherics/components/binary/circulator/process_atmos()
-	..()
 	update_icon_nopipes()
 
-/obj/machinery/atmospherics/components/binary/circulator/update_icon()
-	cut_overlays()
+/obj/machinery/atmospherics/components/binary/circulator/update_overlays()
+	. = ..()
 
 	if(anchored)
 		for(var/direction in GLOB.cardinals)
 			if(!(direction & initialize_directions))
 				continue
-			var/obj/machinery/atmospherics/node = findConnecting(direction)
+			var/obj/machinery/atmospherics/node = find_connecting(direction)
 
 			var/image/cap
 			if(node)
-				cap = getpipeimage(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer)
+				cap = get_pipe_image(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer)
 
-			add_overlay(cap)
-
-	return ..()
+			. += cap
 
 /obj/machinery/atmospherics/components/binary/circulator/update_icon_nopipes()
 	cut_overlays()
@@ -169,37 +163,37 @@
 	if(node1)
 		node1.disconnect(src)
 		nodes[1] = null
-		nullifyPipenet(parents[1])
+		nullify_pipenet(parents[1])
 	if(node2)
 		node2.disconnect(src)
 		nodes[2] = null
-		nullifyPipenet(parents[2])
+		nullify_pipenet(parents[2])
 
 	if(anchored)
-		SetInitDirections()
-		atmosinit()
+		set_init_directions()
+		atmos_init()
 		node1 = nodes[1]
 		if(node1)
-			node1.atmosinit()
-			node1.addMember(src)
+			node1.atmos_init()
+			node1.add_member(src)
 		node2 = nodes[2]
 		if(node2)
-			node2.atmosinit()
-			node2.addMember(src)
+			node2.atmos_init()
+			node2.add_member(src)
 		SSair.add_to_rebuild_queue(src)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	return TRUE
 
-/obj/machinery/atmospherics/components/binary/circulator/SetInitDirections()
+/obj/machinery/atmospherics/components/binary/circulator/set_init_directions()
 	switch(dir)
 		if(NORTH, SOUTH)
 			initialize_directions = EAST|WEST
 		if(EAST, WEST)
 			initialize_directions = NORTH|SOUTH
 
-/obj/machinery/atmospherics/components/binary/circulator/getNodeConnects()
+/obj/machinery/atmospherics/components/binary/circulator/get_node_connects()
 	if(flipped)
 		return list(turn(dir, 270), turn(dir, 90))
 	return list(turn(dir, 90), turn(dir, 270))
@@ -257,10 +251,10 @@
 		generator.cold_circ = null
 	else
 		generator.hot_circ = null
-	generator.update_icon()
+	generator.update_appearance(UPDATE_ICON)
 	generator = null
 
-/obj/machinery/atmospherics/components/binary/circulator/setPipingLayer(new_layer)
+/obj/machinery/atmospherics/components/binary/circulator/set_piping_layer(new_layer)
 	..()
 	pixel_x = 0
 	pixel_y = 0
@@ -281,5 +275,5 @@
 /obj/machinery/atmospherics/components/binary/circulator/obj_break(damage_flag)
 	if(generator)
 		generator.kill_circs()
-		generator.update_icon()
+		generator.update_appearance(UPDATE_ICON)
 	..()

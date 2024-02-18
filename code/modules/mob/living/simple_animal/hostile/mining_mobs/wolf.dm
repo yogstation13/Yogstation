@@ -5,7 +5,7 @@
 	icon_state = "whitewolf"
 	icon_living = "whitewolf"
 	icon_dead = "whitewolf_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
 	friendly = "howls at"
 	speak_emote = list("howls")
@@ -16,6 +16,7 @@
 	obj_damage = 15
 	melee_damage_lower = 7.5
 	melee_damage_upper = 7.5
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	rapid_melee = 2 // every second attack
 	dodging = TRUE
 	dodge_prob = 50
@@ -47,7 +48,7 @@
 	else
 		retreat_distance = initial(retreat_distance)
 
-/mob/living/simple_animal/hostile/asteroid/wolf/Life()
+/mob/living/simple_animal/hostile/asteroid/wolf/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)

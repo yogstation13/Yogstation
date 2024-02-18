@@ -33,6 +33,7 @@
 	results = list(/datum/reagent/nitroglycerin = 2)
 	required_reagents = list(/datum/reagent/glycerol = 1, /datum/reagent/toxin/acid/fluacid = 1, /datum/reagent/toxin/acid = 1)
 	strengthdiv = 2
+	mob_react = FALSE
 
 /datum/chemical_reaction/reagent_explosion/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
 	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
@@ -46,17 +47,24 @@
 	required_reagents = list(/datum/reagent/nitroglycerin = 1)
 	required_temp = 474
 	strengthdiv = 2
+	mob_react = FALSE
 
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion
 	name = "Explosion"
 	id = "potassium_explosion"
+	var/size_cap = 50
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/potassium = 1)
 	strengthdiv = 10
+
+/datum/chemical_reaction/reagent_explosion/potassium_explosion/on_reaction(datum/reagents/holder, created_volume)
+	created_volume = min(created_volume, size_cap)
+	..()
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom
 	name = "Holy Explosion"
 	id = "holyboom"
+	size_cap = 100
 	required_reagents = list(/datum/reagent/water/holywater = 1, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom/on_reaction(datum/reagents/holder, created_volume)
@@ -73,7 +81,7 @@
 			R.stun(20)
 			R.reveal(100)
 			R.adjustHealth(50)
-		addtimer(CALLBACK(src, .proc/divine_explosion, round(created_volume/48,1),get_turf(holder.my_atom)), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(divine_explosion), round(created_volume/48,1),get_turf(holder.my_atom)), 2 SECONDS)
 	..()
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom/proc/divine_explosion(size, turf/T)
@@ -82,25 +90,21 @@
 			to_chat(C, span_userdanger("The divine explosion sears you!"))
 			C.Paralyze(40)
 			C.adjust_fire_stacks(5)
-			C.IgniteMob()
+			C.ignite_mob()
 
 /datum/chemical_reaction/blackpowder
 	name = "Black Powder"
 	id = /datum/reagent/blackpowder
 	results = list(/datum/reagent/blackpowder = 3)
-	required_reagents = list(/datum/reagent/saltpetre = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/sulfur = 1)
+	required_reagents = list(/datum/reagent/saltpetre = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/sulphur = 1)
 
 /datum/chemical_reaction/reagent_explosion/blackpowder_explosion
 	name = "Black Powder Kaboom"
 	id = "blackpowder_explosion"
 	required_reagents = list(/datum/reagent/blackpowder = 1)
-	required_temp = 474
-	strengthdiv = 6
-	modifier = 1
-	mix_message = span_boldannounce("Sparks start flying around the black powder!")
-
-/datum/chemical_reaction/reagent_explosion/blackpowder_explosion/on_reaction(datum/reagents/holder, created_volume)
-	addtimer(CALLBACK(src, .proc/explode, holder, created_volume), rand(5,10) SECONDS)
+	required_temp = 737		//Yogs change - 464 C, actual ignition temp
+	strengthdiv = 12
+	modifier = 5
 
 /datum/chemical_reaction/thermite
 	name = "Thermite"
@@ -115,10 +119,10 @@
 
 /datum/chemical_reaction/emp_pulse/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	// 100 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
-	// 200 created volume = 16 heavy range & 28 light range. 12 tiles larger than traitor EMP grenades. This is the maximum
+	// 100 created volume = 8 severity & 14 range. 4 tiles larger than traitor EMP grenades.
+	// 200 created volume = 16 (capped to 10) severity & 28 range. 12 tiles larger than traitor EMP grenades. This is the maximum
 	created_volume = min(created_volume, 200)
-	empulse(location, round(created_volume / 12), round(created_volume / 7), 1)
+	empulse(location, min(round(created_volume / 12), EMP_HEAVY), round(created_volume / 7), 1)
 	holder.clear_reagents()
 
 
@@ -239,7 +243,7 @@
 	name = "Flash powder"
 	id = /datum/reagent/flash_powder
 	results = list(/datum/reagent/flash_powder = 3)
-	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1 )
+	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/potassium = 1, /datum/reagent/sulphur = 1 )
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
@@ -249,7 +253,7 @@
 	var/range = created_volume/3
 	if(isatom(holder.my_atom))
 		var/atom/A = holder.my_atom
-		A.flash_lighting_fx(_range = (range + 2), _reset_lighting = FALSE)
+		A.flash_lighting_fx(_range = (range + 2))
 	for(var/mob/living/carbon/C in get_hearers_in_view(range, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 4)
@@ -270,7 +274,7 @@
 	var/range = created_volume/10
 	if(isatom(holder.my_atom))
 		var/atom/A = holder.my_atom
-		A.flash_lighting_fx(_range = (range + 2), _reset_lighting = FALSE)
+		A.flash_lighting_fx(_range = (range + 2))
 	for(var/mob/living/carbon/C in get_hearers_in_view(range, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 4)
@@ -290,11 +294,11 @@
 	holder.remove_reagent(/datum/reagent/smoke_powder, created_volume*3)
 	var/smoke_radius = round(sqrt(created_volume * 1.5), 1)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect_system/smoke_spread/chem/S = new
+	var/datum/effect_system/fluid_spread/smoke/chem/S = new
 	S.attach(location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	if(S)
-		S.set_up(holder, smoke_radius, location, 0)
+		S.set_up(smoke_radius, location = location, carry = holder)
 		S.start()
 	if(holder && holder.my_atom)
 		holder.clear_reagents()
@@ -309,11 +313,11 @@
 /datum/chemical_reaction/smoke_powder_smoke/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	var/smoke_radius = round(sqrt(created_volume / 2), 1)
-	var/datum/effect_system/smoke_spread/chem/S = new
+	var/datum/effect_system/fluid_spread/smoke/chem/S = new
 	S.attach(location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	if(S)
-		S.set_up(holder, smoke_radius, location, 0)
+		S.set_up(smoke_radius, location = location, carry = holder)
 		S.start()
 	if(holder && holder.my_atom)
 		holder.clear_reagents()
@@ -436,34 +440,27 @@
 	var/T2 = created_volume * 50
 	var/T3 = created_volume * 120
 	var/added_delay = 0.5 SECONDS
+	var/turf/T = get_turf(holder.my_atom)
 	if(created_volume >= 75)
-		addtimer(CALLBACK(src, .proc/zappy_zappy, holder, T1), added_delay)
+		addtimer(CALLBACK(src, PROC_REF(zappy_zappy), T, T1), added_delay)
 		added_delay += 1.5 SECONDS
 	if(created_volume >= 40)
-		addtimer(CALLBACK(src, .proc/zappy_zappy, holder, T2), added_delay)
+		addtimer(CALLBACK(src, PROC_REF(zappy_zappy), T, T2), added_delay)
 		added_delay += 1.5 SECONDS
 	if(created_volume >= 10)			//10 units minimum for lightning, 40 units for secondary blast, 75 units for tertiary blast.
-		addtimer(CALLBACK(src, .proc/zappy_zappy, holder, T3), added_delay)
-	addtimer(CALLBACK(src, .proc/explode, holder, created_volume), added_delay)
+		addtimer(CALLBACK(src, PROC_REF(zappy_zappy), T, T3), added_delay)
+	addtimer(CALLBACK(src, PROC_REF(explode), holder, created_volume), added_delay)
 
-/datum/chemical_reaction/reagent_explosion/teslium_lightning/proc/zappy_zappy(datum/reagents/holder, power)
-	if(QDELETED(holder.my_atom))
+/datum/chemical_reaction/reagent_explosion/teslium_lightning/proc/zappy_zappy(turf/T, power)
+	if(QDELETED(T))
 		return
-	tesla_zap(holder.my_atom, 7, power, tesla_flags)
-	playsound(holder.my_atom, 'sound/machines/defib_zap.ogg', 50, TRUE)
+	tesla_zap(T, 7, power, tesla_flags)
+	playsound(T, 'sound/machines/defib_zap.ogg', 50, TRUE)
 
 /datum/chemical_reaction/reagent_explosion/teslium_lightning/heat
 	id = "teslium_lightning2"
 	required_temp = 474
 	required_reagents = list(/datum/reagent/teslium = 1)
-
-/datum/chemical_reaction/reagent_explosion/nitrous_oxide
-	name = "N2O explosion"
-	id = "n2o_explosion"
-	required_reagents = list(/datum/reagent/nitrous_oxide = 1)
-	strengthdiv = 7
-	required_temp = 575
-	modifier = 1
 
 /datum/chemical_reaction/firefighting_foam
 	name = "Firefighting Foam"
@@ -471,4 +468,32 @@
 	results = list(/datum/reagent/firefighting_foam = 3)
 	required_reagents = list(/datum/reagent/stabilizing_agent = 1,/datum/reagent/fluorosurfactant = 1,/datum/reagent/carbon = 1)
 	required_temp = 200
-	is_cold_recipe = 1
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/reagent_explosion/noblium_annihilation
+	name = "Hypernoblium-Antinoblium Annihilation"
+	id = "noblium_annihilation"
+	required_reagents = list(/datum/reagent/hypernoblium = 1, /datum/reagent/antinoblium = 1)
+	strengthdiv = 1
+	noblium_suppression = FALSE
+	mob_react = FALSE // no
+
+/datum/chemical_reaction/frigorific_mixture
+	name = /datum/reagent/frigorific_mixture
+	id = /datum/reagent/frigorific_mixture
+	results = list(/datum/reagent/frigorific_mixture = 2)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/ice = 1)
+
+/datum/chemical_reaction/frigorific_mixture/on_reaction(datum/reagents/holder, created_volume)
+	holder.chem_temp = 20 // cools the fuck down
+	return
+
+/datum/chemical_reaction/frigorific_mixture_water
+	name = "ephemeral salty reaction"
+	id = "frigorific_mixture_water"
+	results = list(/datum/reagent/frigorific_mixture = 1)
+	required_reagents = list(/datum/reagent/frigorific_mixture = 1, /datum/reagent/water = 1)
+	mob_react = FALSE
+
+/datum/chemical_reaction/frigorific_mixture_water/on_reaction(datum/reagents/holder, created_volume)
+	holder.chem_temp = max(holder.chem_temp - 10*created_volume,0)

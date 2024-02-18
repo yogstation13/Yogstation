@@ -9,7 +9,7 @@
 	response_help = "brushes aside"
 	response_disarm = "flails at"
 	response_harm = "hits"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
 	maxHealth = 15
 	health = 15
@@ -24,6 +24,7 @@
 	pass_flags = PASSTABLE
 	faction = list("hostile")
 	attack_sound = 'sound/weapons/bite.ogg'
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	ventcrawler = VENTCRAWLER_ALWAYS

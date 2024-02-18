@@ -18,7 +18,7 @@
 	playing.play(watcher)
 	qdel(playing)
 
-/obj/screen/cinematic
+/atom/movable/screen/cinematic
 	icon = 'icons/effects/station_explosion.dmi'
 	icon_state = "station_intact"
 	plane = SPLASHSCREEN_PLANE
@@ -32,7 +32,7 @@
 	var/list/watching = list() //List of clients watching this
 	var/list/locked = list() //Who had notransform set during the cinematic
 	var/is_global = FALSE //Global cinematics will override mob-specific ones
-	var/obj/screen/cinematic/screen
+	var/atom/movable/screen/cinematic/screen
 	var/datum/callback/special_callback //For special effects synced with animation (explosions after the countdown etc)
 	var/cleanup_time = 30 SECONDS //How long for the final screen to remain
 	var/stop_ooc = TRUE //Turns off ooc when played globally.
@@ -66,7 +66,7 @@
 	//We are now playing this cinematic
 
 	//Handle what happens when a different cinematic tries to play over us
-	RegisterSignal(SSdcs, COMSIG_GLOB_PLAY_CINEMATIC, .proc/replacement_cinematic)
+	RegisterSignal(SSdcs, COMSIG_GLOB_PLAY_CINEMATIC, PROC_REF(replacement_cinematic))
 
 	//Pause OOC
 	var/ooc_toggled = FALSE
@@ -78,7 +78,7 @@
 	for(var/MM in watchers)
 		var/mob/M = MM
 		show_to(M, M.client)
-		RegisterSignal(M, COMSIG_MOB_CLIENT_LOGIN, .proc/show_to)
+		RegisterSignal(M, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(show_to))
 		//Close watcher ui's
 		SStgui.close_user_uis(M)
 
@@ -99,7 +99,7 @@
 	if(!C)
 		return
 	watching += C
-	M.overlay_fullscreen("cinematic",/obj/screen/fullscreen/cinematic_backdrop)
+	M.overlay_fullscreen("cinematic",/atom/movable/screen/fullscreen/cinematic_backdrop)
 	C.screen += screen
 
 //Sound helper
@@ -206,6 +206,20 @@
 	special()
 	screen.icon_state = "summary_cult"
 
+/datum/cinematic/cult_fail
+	id = CINEMATIC_CULT_FAIL
+
+/datum/cinematic/cult_fail/content()
+	screen.icon_state = "station_intact"
+	sleep(2 SECONDS)
+	cinematic_sound(sound('sound/creatures/narsie_rises.ogg'))
+	sleep(6 SECONDS)
+	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
+	sleep(1 SECONDS)
+	cinematic_sound(sound('sound/magic/demon_dies.ogg'))
+	sleep(3 SECONDS)
+	special()
+	
 /datum/cinematic/nuke_annihilation
 	id = CINEMATIC_ANNIHILATION
 

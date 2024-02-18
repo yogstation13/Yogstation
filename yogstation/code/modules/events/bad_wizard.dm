@@ -39,52 +39,46 @@
 	switch(rand(1,9)) //keep this consistent with the amount of loadouts.
 
 		if(1) //5x jaunt
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt, 4)
+			SpellAdd(/datum/action/cooldown/spell/jaunt/ethereal_jaunt, 5)
 
 		if(2) //5x blink
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/turf_teleport/blink, 4)
+			SpellAdd(/datum/action/cooldown/spell/teleport/radius_turf/blink, 5)
 
 		if(3) //2x smoke, 2x blind, and 2x barnyard :)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/smoke, 1)
-			SpellAdd(/obj/effect/proc_holder/spell/pointed/trigger/blind, 1)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/barnyardcurse, 1)
+			SpellAdd(/datum/action/cooldown/spell/smoke, 2)
+			SpellAdd(/datum/action/cooldown/spell/aoe/blindness, 2)
+			SpellAdd(/datum/action/cooldown/spell/pointed/barnyardcurse, 2)
 
 		if(4) //5x summon guns - no
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/infinite_guns, 4, "Greater Summon Guns")
+			SpellAdd(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun, 5, "Greater Summon Guns")
 
 		if(5)
 			//1x space-time distortion, 2x knock, and 2x blink
-			SpellAdd(/obj/effect/proc_holder/spell/spacetime_dist)
-			SpellAdd(/obj/effect/proc_holder/spell/aoe_turf/knock, 1)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/turf_teleport/blink, 1)
+			SpellAdd(/datum/action/cooldown/spell/spacetime_dist)
+			SpellAdd(/datum/action/cooldown/spell/aoe/knock, 2)
+			SpellAdd(/datum/action/cooldown/spell/teleport/radius_turf/blink, 2)
 
 		if(6) //5x forcewall, and 5x repulse (AKA the safe space loadout)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/forcewall, 4)
-			SpellAdd(/obj/effect/proc_holder/spell/aoe_turf/repulse, 4)
+			SpellAdd(/datum/action/cooldown/spell/forcewall, 5)
+			SpellAdd(/datum/action/cooldown/spell/aoe/repulse/wizard, 5)
 
-		if(7) //5x Cluwne Curse and 2x blink
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/cluwnecurse, 4)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/turf_teleport/blink, 1)
+		if(7) //5x Slip 5x Appendicitis, and 2x blink (god have mercy, for this wizard has none)
+			SpellAdd(/datum/action/cooldown/spell/aoe/slip, 5)
+			SpellAdd(/datum/action/cooldown/spell/pointed/appendicitis, 5)
+			SpellAdd(/datum/action/cooldown/spell/teleport/radius_turf/blink, 2)
 
 		if(8) // 5x Flesh to stone 5x Animation Spell 2x Blind (Weeping Angels)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone, 4)
-			SpellAdd(/obj/effect/proc_holder/spell/aimed/animation, 4)
-			SpellAdd(/obj/effect/proc_holder/spell/pointed/trigger/blind, 1)
+			SpellAdd(/datum/action/cooldown/spell/touch/flesh_to_stone, 5)
+			SpellAdd(/datum/action/cooldown/spell/pointed/projectile/animation, 5)
+			SpellAdd(/datum/action/cooldown/spell/pointed/blind, 2)
 
-		if(9) // 5x Mouse Shapeshift 5x Mindswap (From Men to Mice)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/shapeshift/mouse, 4)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/mind_transfer, 4)
+		if(9) // 5x Mouse Shapeshift 5x Mindswap (From Men to Mice) //may that video rest in peace
+			SpellAdd(/datum/action/cooldown/spell/shapeshift/mouse, 5)
+			SpellAdd(/datum/action/cooldown/spell/pointed/mind_transfer, 5)
 
-/datum/antagonist/wizard/meme/proc/SpellAdd(spellType, level = 0, custom_name) //0 is the first level (cause logic (arrays start at one))
-	var/obj/effect/proc_holder/spell/S = new spellType
-	owner.AddSpell(S)
-	if(level)
-		S.spell_level = level
-		S.charge_max = round(initial(S.charge_max) - S.spell_level * (initial(S.charge_max) - S.cooldown_min)/ S.level_max)
-		if(S.charge_max < S.charge_counter)
-			S.charge_counter = S.charge_max
-	if(custom_name)
-		S.name = custom_name
-	else
-		S.name = "Instant [S.name]"
-	to_chat(owner, "[S.name]")
+/datum/antagonist/wizard/meme/proc/SpellAdd(spellType, level = 1, custom_name = "") //0 is the first level (cause logic (arrays start at one))
+	var/datum/action/cooldown/spell/spell_to_add = new spellType(owner)
+	spell_to_add.Grant(owner.current)
+	spell_to_add.spell_level = level
+	spell_to_add.name = length(custom_name) ? custom_name : "Instant [spell_to_add.name]"
+	to_chat(owner, "[spell_to_add.name]")

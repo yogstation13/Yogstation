@@ -1,4 +1,4 @@
-/datum/map_template/ruin/proc/try_to_place(z,allowed_areas,turf/forced_turf)
+/datum/map_template/ruin/proc/try_to_place(z, list/allowed_areas_typecache, turf/forced_turf, clear_below)
 	var/sanity = forced_turf ? 1 : PLACEMENT_TRIES
 	while(sanity > 0)
 		sanity--
@@ -6,18 +6,22 @@
 		var/height_border = TRANSITIONEDGE + SPACERUIN_MAP_EDGE_PAD + round(height / 2)
 		var/turf/central_turf = locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z)
 		var/valid = TRUE
+		var/list/affected_turfs = get_affected_turfs(central_turf,1)
+		var/list/affected_areas = list()
 
-		for(var/turf/check in get_affected_turfs(central_turf,1))
-			var/area/new_area = get_area(check)
+		for(var/turf/check in affected_turfs)
+			// Use assoc lists to move this out, it's easier that way
 			if(check.flags_1 & NO_RUINS_1)
 				valid = FALSE
-			else
-				valid = FALSE // set to false before we check
-				for(var/type in allowed_areas)
-					if(istype(new_area, type)) // it's at least one of our types so it's whitelisted
-						valid = TRUE
-						break
-			if(!valid)
+				break
+			
+			var/area/new_area = get_area(check)
+			affected_areas[new_area] = TRUE
+
+		// This is faster yes. Only BARELY but it is faster
+		for(var/area/affct_area as anything in affected_areas)
+			if(!allowed_areas_typecache[affct_area.type])
+				valid = FALSE
 				break
 
 		if(!valid)
@@ -25,29 +29,33 @@
 
 		testing("Ruin \"[name]\" placed at ([central_turf.x], [central_turf.y], [central_turf.z])")
 
-		for(var/i in get_affected_turfs(central_turf, 1))
-			var/turf/T = i
-			for(var/obj/structure/spawner/nest in T)
-				qdel(nest)
-			for(var/mob/living/simple_animal/monster in T)
-				qdel(monster)
-			for(var/obj/structure/flora/ash/plant in T)
-				qdel(plant)
+		if(clear_below)
+			var/list/static/clear_below_typecache = typecacheof(list(
+				/obj/structure/spawner,
+				/mob/living/simple_animal,
+				/obj/structure/flora,
+				/obj/structure/herb //YOGS EDIT
+			))
+			for(var/turf/T as anything in affected_turfs)
+				for(var/atom/thing as anything in T)
+					if(clear_below_typecache[thing.type])
+						qdel(thing)
 
 		load(central_turf,centered = TRUE)
 		loaded++
 
-		for(var/turf/T in get_affected_turfs(central_turf, 1))
+		for(var/turf/T in affected_turfs)
 			T.flags_1 |= NO_RUINS_1
 
 		new /obj/effect/landmark/ruin(central_turf, src)
 		return central_turf
 
 
-/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins)
+/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins, clear_below = FALSE)
 	if(!z_levels || !z_levels.len)
 		WARNING("No Z levels provided - Not generating ruins")
 		return
+	var/list/whitelist_typecache = typecacheof(whitelist)
 
 	for(var/zl in z_levels)
 		var/turf/T = locate(1, 1, zl)
@@ -61,9 +69,18 @@
 	var/list/ruins_availible = list()	//we can try these in the current pass
 	var/list/ruins_placed = list() // yogs
 
+	if(PERFORM_ALL_TESTS(log_mapping))
+		log_mapping("All ruins being loaded for map testing")
+
 	//Set up the starting ruin list
 	for(var/key in ruins)
 		var/datum/map_template/ruin/R = ruins[key]
+
+		if(PERFORM_ALL_TESTS(log_mapping))
+			R.cost = 0
+			R.allow_duplicates = FALSE // no multiples for testing
+			R.always_place = !R.unpickable // unpickable ruin means it spawns as a set with another ruin
+
 		if(R.cost > budget) //Why would you do that
 			continue
 		if(R.always_place)
@@ -111,7 +128,7 @@
 								else
 									break outer
 
-				placed_turf = current_pick.try_to_place(target_z,whitelist,forced_turf)
+				placed_turf = current_pick.try_to_place(target_z,whitelist_typecache,forced_turf,clear_below)
 				if(!placed_turf)
 					continue
 				else

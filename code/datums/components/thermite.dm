@@ -13,11 +13,12 @@
 	var/static/list/immunelist = typecacheof(list(
 		/turf/closed/wall/mineral/diamond,
 		/turf/closed/indestructible,
-		/turf/open/indestructible)
+		/turf/open/indestructible,
+		/turf/closed/wall/r_wall)
 		)
 	
 	var/static/list/resistlist = typecacheof(
-		/turf/closed/wall/r_wall
+		/turf/closed/wall/mineral
 		)
 
 /datum/component/thermite/Initialize(_amount)
@@ -34,22 +35,22 @@
 	overlay = mutable_appearance('icons/effects/effects.dmi', "thermite")
 	master.add_overlay(overlay)
 
-	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_react)
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby_react)
-	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, .proc/flame_react)
+	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_react))
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby_react))
+	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, PROC_REF(flame_react))
 
 /datum/component/thermite/Destroy()
 	var/turf/master = parent
 	master.cut_overlay(overlay)
 	return ..()
 
-/datum/component/thermite/InheritComponent(datum/component/thermite/newC, i_am_original, list/arguments)
+/datum/component/thermite/InheritComponent(datum/component/thermite/newC, i_am_original, _amount)
 	if(!i_am_original)
 		return
 	if(newC)
 		amount += newC.amount
 	else
-		amount += arguments[1]
+		amount += _amount
 
 /datum/component/thermite/proc/thermite_melt(mob/user)
 	var/turf/master = parent

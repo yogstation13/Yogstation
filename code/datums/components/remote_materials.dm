@@ -23,11 +23,11 @@ handles linking back and forth.
 	src.category = category
 	src.allow_standalone = allow_standalone
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/OnAttackBy)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
 
 	var/turf/T = get_turf(parent)
 	if (force_connect || (mapload && is_station_level(T.z)))
-		addtimer(CALLBACK(src, .proc/LateInitialize))
+		addtimer(CALLBACK(src, PROC_REF(LateInitialize)))
 	else if (allow_standalone)
 		_MakeLocal()
 
@@ -53,11 +53,22 @@ handles linking back and forth.
 
 /datum/component/remote_materials/proc/_MakeLocal()
 	silo = null
-	mat_container = parent.AddComponent(/datum/component/material_container,
-		list(/datum/material/iron, /datum/material/glass, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/plasma, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace, /datum/material/plastic),
-		local_size,
-		FALSE,
-		/obj/item/stack)
+	var/static/list/allowed_mats = list(
+		/datum/material/iron,
+		/datum/material/glass,
+		/datum/material/silver,
+		/datum/material/gold,
+		/datum/material/diamond,
+		/datum/material/plasma,
+		/datum/material/uranium,
+		/datum/material/bananium,
+		/datum/material/titanium,
+		/datum/material/bluespace,
+		/datum/material/dilithium,
+		/datum/material/plastic,
+		)
+
+	mat_container = parent.AddComponent(/datum/component/material_container, allowed_mats, local_size, allowed_types=/obj/item/stack)
 
 /datum/component/remote_materials/proc/set_local_size(size)
 	local_size = size

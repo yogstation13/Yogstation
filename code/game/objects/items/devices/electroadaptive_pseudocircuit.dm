@@ -11,7 +11,7 @@
 	var/static/recycleable_circuits = typecacheof(list(/obj/item/electronics/firelock, /obj/item/electronics/airalarm, /obj/item/electronics/firealarm, \
 	/obj/item/electronics/apc, /obj/item/electronics/advanced_airlock_controller))//A typecache of circuits consumable for material
 
-/obj/item/electroadaptive_pseudocircuit/Initialize()
+/obj/item/electroadaptive_pseudocircuit/Initialize(mapload)
 	. = ..()
 	maptext = "[circuits]"
 
@@ -43,7 +43,7 @@
 	maptext = "[circuits]"
 	icon_state = "[initial(icon_state)]_recharging"
 	var/recharge_time = min(600, circuit_cost * 5)  //40W of cost for one fabrication = 20 seconds of recharge time; this is to prevent spamming
-	addtimer(CALLBACK(src, .proc/recharge), recharge_time)
+	addtimer(CALLBACK(src, PROC_REF(recharge)), recharge_time)
 	return TRUE //The actual circuit magic itself is done on a per-object basis
 
 /obj/item/electroadaptive_pseudocircuit/afterattack(atom/target, mob/living/user, proximity)

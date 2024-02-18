@@ -66,7 +66,10 @@
 	for (var/mob/living/silicon/aiPlayer in GLOB.player_list)
 		if (status)
 			aiPlayer.triggerAlarm("Motion", get_area(src), list(src), src)
-			visible_message(span_warning("A red light flashes on the [src]!"))
+	visible_message(span_warning("A red light flashes on the [src]!"))
+	if(armory)
+		alertradio.talk_into(src, "ALERT: Motion detected in the Armory.")
+
 	detectTime = -1
 	return TRUE
 
@@ -76,13 +79,16 @@
 		if(isliving(AM))
 			newTarget(AM)
 
+/obj/machinery/camera/motion/armory
+	armory = TRUE
+
 /obj/machinery/camera/motion/thunderdome
 	name = "entertainment camera"
 	network = list("thunder")
 	c_tag = "Arena"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 
-/obj/machinery/camera/motion/thunderdome/Initialize()
+/obj/machinery/camera/motion/thunderdome/Initialize(mapload)
 	. = ..()
 	proximity_monitor.SetRange(7)
 

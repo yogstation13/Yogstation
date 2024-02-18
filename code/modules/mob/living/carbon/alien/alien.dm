@@ -9,7 +9,7 @@
 	see_in_dark = 4
 	verb_say = "hisses"
 	initial_language_holder = /datum/language_holder/alien
-	bubble_icon = "alien"
+	bubble_icon = BUBBLE_ALIEN
 	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
@@ -25,14 +25,18 @@
 
 	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|queen)( \\(\\d+\\))?")
 	blood_volume = BLOOD_VOLUME_XENO //Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
+	var/datum/techweb/linked_techweb
 
-/mob/living/carbon/alien/Initialize()
+/mob/living/carbon/alien/Initialize(mapload)
 	add_verb(src, /mob/living/proc/mob_sleep)
 	add_verb(src, /mob/living/proc/lay_down)
 
 	create_bodyparts() //initialize bodyparts
 
 	create_internal_organs()
+
+	if(!linked_techweb)
+		linked_techweb = SSresearch.science_tech
 
 	. = ..()
 
@@ -69,7 +73,7 @@
 
 	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
 		//Body temperature is too hot.
-		throw_alert("alien_fire", /obj/screen/alert/alien_fire)
+		throw_alert("alien_fire", /atom/movable/screen/alert/alien_fire)
 		switch(bodytemperature)
 			if(360 to 400)
 				apply_damage(HEAT_DAMAGE_LEVEL_1, BURN)
@@ -109,7 +113,7 @@ Des: Gives the client of the alien an image on each infected mob.
 			if(HAS_TRAIT(L, TRAIT_XENO_HOST))
 				var/obj/item/organ/body_egg/alien_embryo/A = L.getorgan(/obj/item/organ/body_egg/alien_embryo)
 				if(A)
-					var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[A.stage]")
+					var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[A.current_stage]")
 					client.images += I
 	return
 
@@ -133,8 +137,10 @@ Des: Removes all infected images from the alien.
 	return initial(pixel_y)
 
 /mob/living/carbon/alien/proc/alien_evolve(mob/living/carbon/alien/new_xeno)
-	to_chat(src, span_noticealien("You begin to evolve!"))
-	visible_message(span_alertalien("[src] begins to twist and contort!"))
+	visible_message(
+		span_alertalien("[src] begins to twist and contort!"),
+		span_noticealien("You begin to evolve!"),
+	)
 	new_xeno.setDir(dir)
 	if(!alien_name_regex.Find(name))
 		new_xeno.name = name

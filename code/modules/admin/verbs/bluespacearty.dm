@@ -21,6 +21,6 @@
 		target.gib(1, 1)
 	else
 		target.adjustBruteLoss(min(99,(target.health - 1)))
-		target.Paralyze(400)
-		target.stuttering = 20
+		target.Paralyze(40 SECONDS)
+		target.set_stutter_if_lower(20 SECONDS)
 

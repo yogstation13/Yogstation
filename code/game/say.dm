@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//yogs end
 	))
 
-/atom/movable/proc/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(!can_speak(message))
 		return
 	if(message == "" || !message)
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, radio)
 	. = ..()
-	radio = radio
+	src.radio = radio
 	source = M
 	if (istype(M))
 		name = M.GetVoice()

@@ -20,9 +20,10 @@
 	obj_damage = 60
 	melee_damage_lower = 25
 	melee_damage_upper = 25
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "slashes"
 	speak_emote = list("hisses")
-	bubble_icon = "alien"
+	bubble_icon = BUBBLE_ALIEN
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -36,8 +37,7 @@
 	gold_core_spawnable = NO_SPAWN
 	deathsound = 'sound/voice/hiss6.ogg'
 	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
@@ -70,7 +70,7 @@
 	ranged = 1
 	retreat_distance = 5
 	minimum_distance = 5
-	projectiletype = /obj/item/projectile/neurotox
+	projectiletype = /obj/projectile/neurotox
 	projectilesound = 'sound/weapons/pierce.ogg'
 
 
@@ -89,7 +89,7 @@
 	move_to_delay = 4
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 4,
 							/obj/item/stack/sheet/animalhide/xeno = 1)
-	projectiletype = /obj/item/projectile/neurotox
+	projectiletype = /obj/projectile/neurotox
 	projectilesound = 'sound/weapons/pierce.ogg'
 	status_flags = 0
 	unique_name = 0
@@ -133,7 +133,7 @@
 	icon_state = "alienq"
 	icon_living = "alienq"
 	icon_dead = "alienq_dead"
-	bubble_icon = "alienroyal"
+	bubble_icon = BUBBLE_ALIENROYAL
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
@@ -142,7 +142,7 @@
 	mob_size = MOB_SIZE_LARGE
 	gold_core_spawnable = NO_SPAWN
 
-/obj/item/projectile/neurotox
+/obj/projectile/neurotox
 	name = "neurotoxin"
 	damage = 30
 	icon_state = "toxin"
@@ -169,7 +169,7 @@
 
 /mob/living/simple_animal/hostile/alien/maid/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/cleaning)
+	AddElement(/datum/element/cleaning)
 
 /mob/living/simple_animal/hostile/alien/maid/AttackingTarget()
 	if(ismovable(target))

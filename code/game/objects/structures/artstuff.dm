@@ -61,7 +61,7 @@
 	pixel_x = 10
 	pixel_y = 9
 
-/obj/item/canvas/Initialize()
+/obj/item/canvas/Initialize(mapload)
 	. = ..()
 	reset_grid()
 
@@ -119,7 +119,7 @@
 			var/y = text2num(params["y"])
 			grid[x][y] = color
 			used = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("finalize")
 			. = TRUE
@@ -132,19 +132,19 @@
 	generate_proper_overlay()
 	try_rename(user)
 
-/obj/item/canvas/update_icon()
-	cut_overlays()
+/obj/item/canvas/update_overlays()
+	. = ..()
 	if(!icon_generated)
 		if(used)
 			var/mutable_appearance/detail = mutable_appearance(icon,"[icon_state]wip")
 			detail.pixel_x = 1
 			detail.pixel_y = 1
-			add_overlay(detail)
+			. += detail
 	else
 		var/mutable_appearance/detail = mutable_appearance(generated_icon)
 		detail.pixel_x = 1
 		detail.pixel_y = 1
-		add_overlay(detail)
+		. += detail
 
 /obj/item/canvas/proc/generate_proper_overlay()
 	if(icon_generated)
@@ -155,7 +155,7 @@
 		CRASH("Error generating painting png : [result]")
 	generated_icon = new(png_filename)
 	icon_generated = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/canvas/proc/get_data_string()
 	var/list/data = list()
@@ -247,7 +247,7 @@
 
 /obj/structure/sign/painting/Initialize(mapload, dir, building)
 	. = ..()
-	SSpersistence.painting_frames += src
+	SSpersistent_paintings.painting_frames += src
 	AddComponent(/datum/component/art, 20)
 	if(dir)
 		setDir(dir)
@@ -257,7 +257,7 @@
 
 /obj/structure/sign/painting/Destroy()
 	. = ..()
-	SSpersistence.painting_frames -= src
+	SSpersistent_paintings.painting_frames -= src
 
 /obj/structure/sign/painting/attackby(obj/item/I, mob/user, params)
 	if(!C && istype(I, /obj/item/canvas))
@@ -281,7 +281,7 @@
 		C.forceMove(drop_location())
 		C = null
 		to_chat(user, span_notice("You remove the painting from the frame."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
@@ -290,13 +290,13 @@
 		if(!C.finalized)
 			C.finalize(user)
 		to_chat(user,span_notice("You frame [C]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/sign/painting/proc/try_rename(mob/user)
 	if(C.painting_name == initial(C.painting_name))
 		C.try_rename(user)
 
-/obj/structure/sign/painting/update_icon()
+/obj/structure/sign/painting/update_icon_state()
 	. = ..()
 
 	if(C && C.generated_icon)
@@ -304,16 +304,17 @@
 	else
 		icon_state = "frame-empty"
 
-	cut_overlays()
+/obj/structure/sign/painting/update_overlays()
+	. = ..()
 	if(C && C.generated_icon)
 		var/mutable_appearance/MA = mutable_appearance(C.generated_icon)
 		MA.pixel_x = C.framed_offset_x
 		MA.pixel_y = C.framed_offset_y
-		add_overlay(MA)
+		. += MA
 		var/mutable_appearance/frame = mutable_appearance(C.icon,"[C.icon_state]frame")
 		frame.pixel_x = C.framed_offset_x - 1
 		frame.pixel_y = C.framed_offset_y - 1
-		add_overlay(frame)
+		. += frame
 
 /**
  * Loads a painting from SSpersistence. Called globally by said subsystem when it inits
@@ -321,12 +322,12 @@
  * Deleting paintings leaves their json, so this proc will remove the json and try again if it finds one of those.
  */
 /obj/structure/sign/painting/proc/load_persistent()
-	if(!persistence_id || !SSpersistence.paintings || !SSpersistence.paintings[persistence_id])
+	if(!persistence_id || !SSpersistent_paintings.paintings[persistence_id])
 		return
-	var/list/painting_category = SSpersistence.paintings[persistence_id]
+	var/list/painting_category = SSpersistent_paintings.paintings[persistence_id]
 	var/list/painting
 	while(!painting)
-		if(!length(SSpersistence.paintings[persistence_id]))
+		if(!length(SSpersistent_paintings.paintings[persistence_id]))
 			return //aborts loading anything this category has no usable paintings
 		var/list/chosen = pick(painting_category)
 		if(!fexists("data/paintings/[persistence_id]/[chosen["md5"]].png")) //shitmin deleted this art, lets remove json entry to avoid errors
@@ -356,7 +357,7 @@
 	new_canvas.author_ckey = author
 	new_canvas.name = "painting - [title]"
 	C = new_canvas
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/sign/painting/proc/save_persistent()
 	if(!persistence_id || !C || C.no_save)
@@ -368,7 +369,7 @@
 		C.painting_name = "Untitled Artwork"
 	var/data = C.get_data_string()
 	var/md5 = md5(lowertext(data))
-	var/list/current = SSpersistence.paintings[persistence_id]
+	var/list/current = SSpersistent_paintings.paintings[persistence_id]
 	if(!current)
 		current = list()
 	for(var/list/entry in current)
@@ -380,7 +381,7 @@
 	if(result)
 		CRASH("Error saving persistent painting: [result]")
 	current += list(list("title" = C.painting_name , "md5" = md5, "ckey" = C.author_ckey))
-	SSpersistence.paintings[persistence_id] = current
+	SSpersistent_paintings.paintings[persistence_id] = current
 
 /obj/item/canvas/proc/fill_grid_from_icon(icon/I)
 	var/h = I.Height() + 1
@@ -410,15 +411,15 @@
 		return
 	var/md5 = md5(C.get_data_string())
 	var/author = C.author_ckey
-	var/list/current = SSpersistence.paintings[persistence_id]
+	var/list/current = SSpersistent_paintings.paintings[persistence_id]
 	if(current)
 		for(var/list/entry in current)
 			if(entry["md5"] == md5)
 				current -= entry
 		var/png = "data/paintings/[persistence_id]/[md5].png"
 		fdel(png)
-	for(var/obj/structure/sign/painting/PA in SSpersistence.painting_frames)
-		if(PA.C && md5(PA.C.get_data_string()) == md5)
-			QDEL_NULL(PA.C)
+	for(var/obj/structure/sign/painting/painting in SSpersistent_paintings.painting_frames)
+		if(painting.C && md5(painting.C.get_data_string()) == md5)
+			QDEL_NULL(painting.C)
 	log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
 	message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

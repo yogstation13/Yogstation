@@ -5,7 +5,7 @@
 	clockwork_desc = "A trap that shouldn't exist, and you should report this as a bug."
 	var/list/wired_to
 
-/obj/structure/destructible/clockwork/trap/Initialize()
+/obj/structure/destructible/clockwork/trap/Initialize(mapload)
 	. = ..()
 	wired_to = list()
 
@@ -84,3 +84,8 @@
 		if(istype(T, /obj/structure/destructible/clockwork/trap/trigger)) //Triggers don't go off multiple times
 			continue
 		T.activate()
+
+/obj/structure/destructible/clockwork/trap/trigger/attack_eminence(mob/camera/eminence/user, params)
+	visible_message(span_danger("[src] clunks as it's activated remotely."))
+	to_chat(user, span_brass("You activate [src]."))
+	activate()

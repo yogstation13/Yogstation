@@ -5,7 +5,7 @@
 	step_in = 5
 	max_integrity = 500
 	deflect_chance = 25
-	armor = list(MELEE = 50, BULLET = 55, LASER = 40, ENERGY = 30, BOMB = 30, BIO = 0, RAD = 60, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 50, BULLET = 55, LASER = 40, ENERGY = 0, BOMB = 30, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 60000
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	infra_luminosity = 3
@@ -14,7 +14,7 @@
 	wreckage = /obj/structure/mecha_wreckage/marauder
 	add_req_access = 0
 	internal_damage_threshold = 25
-	force = 45
+	force = 40
 	max_equip = 4
 	bumpsmash = 1
 
@@ -30,7 +30,7 @@
 	thrusters_action.Remove(user)
 	zoom_action.Remove(user)
 
-/obj/mecha/combat/marauder/loaded/Initialize()
+/obj/mecha/combat/marauder/loaded/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse(src)
 	ME.attach(src)
@@ -52,11 +52,15 @@
 	max_integrity = 550
 	wreckage = /obj/structure/mecha_wreckage/seraph
 	internal_damage_threshold = 20
-	force = 55
+	force = 50
 	max_equip = 5
 
-/obj/mecha/combat/marauder/seraph/Initialize()
+/obj/mecha/combat/marauder/seraph/unloaded
+
+/obj/mecha/combat/marauder/seraph/Initialize(mapload)
 	. = ..()
+	if(istype(src,/obj/mecha/combat/marauder/seraph/unloaded))
+		return
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack(src)
@@ -76,10 +80,11 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/mauler
-	max_equip = 5
+	max_equip = 7
 	destruction_sleep_duration = 20
+	ejection_distance = 8
 
-/obj/mecha/combat/marauder/mauler/loaded/Initialize()
+/obj/mecha/combat/marauder/mauler/loaded/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg(src)
 	ME.attach(src)
@@ -90,6 +95,10 @@
 	ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe(src)		//NOT BECAUSE IT'S USEFUL, BUT BECAUSE IT'S AWESOME
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/emergency_eject(src) // YEET
 	ME.attach(src)
 	max_ammo()
 

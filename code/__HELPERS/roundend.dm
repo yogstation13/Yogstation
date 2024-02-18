@@ -163,6 +163,8 @@
 	set waitfor = FALSE
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
+	log_admin("The round has ended.")
+
 	if(LAZYLEN(GLOB.round_end_notifiees))
 		send2irc("Notice", "[GLOB.round_end_notifiees.Join(", ")] the round has ended.")
 
@@ -172,8 +174,14 @@
 	LAZYCLEARLIST(round_end_events)
 
 	RollCredits()
-	for(var/client/C in GLOB.clients)
-		C.playtitlemusic(40)
+	// Don't interrupt admin music
+	if(REALTIMEOFDAY >= SSticker.music_available)
+		for(var/client/C in GLOB.clients)
+			C.playtitlemusic(40)
+	else // this looks worse but is better than uselessly comparing for every client
+		for(var/client/C in GLOB.clients)
+			if(!(C.prefs.toggles & SOUND_MIDI))
+				C.playtitlemusic(40)
 
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)
@@ -181,10 +189,9 @@
 	CHECK_TICK
 
 	// Add AntagHUD to everyone, see who was really evil the whole time!
-	for(var/datum/atom_hud/antag/H in GLOB.huds)
-		for(var/m in GLOB.player_list)
-			var/mob/M = m
-			H.add_hud_to(M)
+	for(var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antagonist_hud in GLOB.active_alternate_appearances)
+		for(var/mob/player as anything in GLOB.player_list)
+			antagonist_hud.show_to(player)
 
 	CHECK_TICK
 
@@ -216,6 +223,21 @@
 
 	CHECK_TICK
 
+	// Reward people who stayed alive and escaped
+	if(CONFIG_GET(flag/use_antag_rep))
+		for(var/mob/M in GLOB.player_list)
+			if(M.stat == DEAD || !M.ckey) // Skip dead or clientless players
+				continue
+			if(SSpersistence.antag_rep_change[M.ckey] < 0) // don't want to punish antags for being alive hehe
+				continue
+			else if(M.onCentCom() || SSticker.force_ending || SSticker.mode.station_was_nuked)
+				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/escaped_alive_bonus) // Reward for escaping alive
+			else
+				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
+			SSpersistence.antag_rep_change[M.ckey] = round(SSpersistence.antag_rep_change[M.ckey]) // rounds down
+
+	CHECK_TICK
+
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")
 	for(var/antag_name in total_antagonists)
@@ -232,6 +254,47 @@
 	SSblackbox.Seal()
 
 	toggle_all_ctf()
+
+	// Give all donors their griff toys
+	// Create a fake uplink for purposes of stealing its component
+	// We create the one and use it for every item, as initializing 50 uplink components is expensive
+	var/obj/item/uplink/fake_uplink = new
+	var/datum/component/uplink/fake_uplink_component = fake_uplink.GetComponent(/datum/component/uplink)
+	for(var/mob/living/donor_mob in GLOB.player_list)
+		if(!is_donator(donor_mob))
+			continue
+
+		// Get their pref
+		var/eorg_path_string = donor_mob.client?.prefs?.read_preference(/datum/preference/choiced/donor_eorg)
+		if(!eorg_path_string)
+			continue
+
+		// Parse their pref
+		var/uplink_path = text2path(eorg_path_string)
+		if(!uplink_path || !ispath(uplink_path, /datum/uplink_item))
+			continue
+
+		// Initialize the uplink item because we need spawn_item()
+		var/datum/uplink_item/uplink_datum = new uplink_path
+		if(!uplink_datum.item || uplink_datum.cost <= 0 || uplink_datum.cost > TELECRYSTALS_DEFAULT) // Safety
+			qdel(uplink_datum)
+			continue
+		// The uplink item datum will handle the spawning. This is important for things like additional arm.
+		var/atom/spawned_thing = uplink_datum.spawn_item(uplink_datum.item, donor_mob, fake_uplink_component)
+		// Replace any firing pins with default pins, so that players can fire them
+		if(isgun(spawned_thing))
+			var/obj/item/gun/spawned_gun = spawned_thing
+			qdel(spawned_gun.pin)
+			spawned_gun.pin = new /obj/item/firing_pin(spawned_gun)
+		else if(spawned_thing)
+			for(var/obj/item/gun/spawned_gun in spawned_thing.get_all_contents())
+				qdel(spawned_gun.pin)
+				spawned_gun.pin = new /obj/item/firing_pin(spawned_gun)
+		// Clean up
+		QDEL_NULL(uplink_datum)
+	// Clean up the fake uplink we created earlier
+	QDEL_NULL(fake_uplink) // component will be destroyed automatically by /datum/Destroy()
+	// End donor griff toys
 
 	sleep(5 SECONDS)
 	ready_for_reboot = TRUE
@@ -561,12 +624,13 @@
 /datum/action/report
 	name = "Show roundend report"
 	button_icon_state = "round_end"
+	show_to_observers = FALSE
 
 /datum/action/report/Trigger()
 	if(owner && GLOB.common_report && SSticker.current_state == GAME_STATE_FINISHED)
 		SSticker.show_roundend_report(owner.client, FALSE)
 
-/datum/action/report/IsAvailable()
+/datum/action/report/IsAvailable(feedback = FALSE)
 	return 1
 
 /datum/action/report/Topic(href,href_list)
@@ -614,81 +678,11 @@
 	var/count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
+			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
 		else
-			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
+			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
 		count++
 	return objective_parts.Join("<br>")
-
-/datum/controller/subsystem/ticker/proc/save_admin_data()
-	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin rank DB Sync blocked: Advanced ProcCall detected.</span>")
-		return
-	if(CONFIG_GET(flag/admin_legacy_system)) //we're already using legacy system so there's nothing to save
-		return
-	else if(load_admins(TRUE)) //returns true if there was a database failure and the backup was loaded from
-		return
-	sync_ranks_with_db()
-	var/list/sql_admins = list()
-	for(var/i in GLOB.protected_admins)
-		var/datum/admins/A = GLOB.protected_admins[i]
-		sql_admins += list(list("ckey" = A.target, "rank" = A.rank.name))
-	SSdbcore.MassInsert(format_table_name("admin"), sql_admins, duplicate_key = TRUE)
-	var/datum/DBQuery/query_admin_rank_update = SSdbcore.NewQuery("UPDATE [format_table_name("player")] p INNER JOIN [format_table_name("admin")] a ON p.ckey = a.ckey SET p.lastadminrank = a.rank")
-	query_admin_rank_update.Execute()
-	qdel(query_admin_rank_update)
-
-	//json format backup file generation stored per server
-	var/json_file = file("data/admins_backup.json")
-	var/list/file_data = list("ranks" = list(), "admins" = list())
-	for(var/datum/admin_rank/R in GLOB.admin_ranks)
-		file_data["ranks"]["[R.name]"] = list()
-		file_data["ranks"]["[R.name]"]["include rights"] = R.include_rights
-		file_data["ranks"]["[R.name]"]["exclude rights"] = R.exclude_rights
-		file_data["ranks"]["[R.name]"]["can edit rights"] = R.can_edit_rights
-	for(var/i in GLOB.admin_datums+GLOB.deadmins)
-		var/datum/admins/A = GLOB.admin_datums[i]
-		if(!A)
-			A = GLOB.deadmins[i]
-			if (!A)
-				continue
-		file_data["admins"]["[i]"] = list()
-		file_data["admins"]["[i]"]["rank"] = A.rank.name
-		file_data["admins"]["[i]"]["ip_cache"] = A.ip_cache
-		file_data["admins"]["[i]"]["cid_cache"] = A.cid_cache
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(file_data))
-
-/datum/controller/subsystem/ticker/proc/update_everything_flag_in_db()
-	for(var/datum/admin_rank/R in GLOB.admin_ranks)
-		var/list/flags = list()
-		if(R.include_rights == R_EVERYTHING)
-			flags += "flags"
-		if(R.exclude_rights == R_EVERYTHING)
-			flags += "exclude_flags"
-		if(R.can_edit_rights == R_EVERYTHING)
-			flags += "can_edit_flags"
-		if(!flags.len)
-			continue
-		var/flags_to_check = flags.Join(" != [R_EVERYTHING] AND ") + " != [R_EVERYTHING]"
-		var/datum/DBQuery/query_check_everything_ranks = SSdbcore.NewQuery(
-			"SELECT flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] WHERE rank = :rank AND ([flags_to_check])",
-			list("rank" = R.name)
-		)
-		if(!query_check_everything_ranks.Execute())
-			qdel(query_check_everything_ranks)
-			return
-		if(query_check_everything_ranks.NextRow()) //no row is returned if the rank already has the correct flag value
-			var/flags_to_update = flags.Join(" = [R_EVERYTHING], ") + " = [R_EVERYTHING]"
-			var/datum/DBQuery/query_update_everything_ranks = SSdbcore.NewQuery(
-				"UPDATE [format_table_name("admin_ranks")] SET [flags_to_update] WHERE rank = :rank",
-				list("rank" = R.name)
-			)
-			if(!query_update_everything_ranks.Execute())
-				qdel(query_update_everything_ranks)
-				return
-			qdel(query_update_everything_ranks)
-		qdel(query_check_everything_ranks)
 
 /datum/controller/subsystem/ticker/proc/cargoking()
 	var/datum/achievement/cargoking/CK = SSachievements.get_achievement(/datum/achievement/cargoking)

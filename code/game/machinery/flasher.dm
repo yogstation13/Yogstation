@@ -13,7 +13,7 @@
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
-	var/strength = 100 //How knocked down targets are when flashed.
+	var/strength = 100 //The "power" of the flash. At time of writing, this affects confusion stacks.
 	var/base_state = "mflash"
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
@@ -24,6 +24,9 @@
 	anchored = FALSE
 	base_state = "pflash"
 	density = TRUE
+	light_system = MOVABLE_LIGHT //Used as a flash here.
+	light_range = FLASH_LIGHT_RANGE
+	light_on = FALSE
 
 /obj/machinery/flasher/Initialize(mapload, ndir = 0, built = 0)
 	. = ..() // ..() is EXTREMELY IMPORTANT, never forget to add it
@@ -43,14 +46,15 @@
 		return FALSE
 	return ..()
 
-/obj/machinery/flasher/update_icon()
-	if (powered())
-		if(bulb.burnt_out)
-			icon_state = "[base_state]1-p"
-		else
-			icon_state = "[base_state]1"
-	else
+/obj/machinery/flasher/update_icon_state()
+	. = ..()
+	if(!powered())
 		icon_state = "[base_state]1-p"
+		return
+	if(bulb.burnt_out)
+		icon_state = "[base_state]1-p"
+	else
+		icon_state = "[base_state]1"
 
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/W, mob/user, params)
@@ -108,7 +112,9 @@
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	flick("[base_state]_flash", src)
-	flash_lighting_fx(FLASH_LIGHT_RANGE, light_power, light_color)
+	set_light_on(TRUE)
+	addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
+
 	last_flash = world.time
 	use_power(1000)
 
@@ -118,7 +124,10 @@
 			continue
 
 		if(L.flash_act(affect_silicon = 1))
-			L.Paralyze(strength)
+			if(iscarbon(L))
+				bulb.flash_carbon(L, src, strength / 10, TRUE)
+			else if(iscyborg(L) && bulb.borgstun)
+				bulb.flash_borg(L, src)
 			flashed = TRUE
 
 	if(flashed)
@@ -126,11 +135,13 @@
 
 	return 1
 
+/obj/machinery/flasher/proc/flash_end()
+	set_light_on(FALSE)
 
 /obj/machinery/flasher/emp_act(severity)
 	. = ..()
 	if(!(stat & (BROKEN|NOPOWER)) && !(. & EMP_PROTECT_SELF))
-		if(bulb && prob(75/severity))
+		if(bulb && prob(8 * severity))
 			flash()
 			bulb.burn_out()
 			power_change()
@@ -155,7 +166,7 @@
 			new /obj/item/stack/sheet/metal (loc, 2)
 	qdel(src)
 
-/obj/machinery/flasher/portable/Initialize()
+/obj/machinery/flasher/portable/Initialize(mapload)
 	. = ..()
 	proximity_monitor = new(src, 0)
 
@@ -200,7 +211,7 @@
 	. = ..()
 	. += span_notice("Its channel ID is '[id]'.")
 
-/obj/item/wallframe/flasher/after_attach(var/obj/O)
+/obj/item/wallframe/flasher/after_attach(obj/O)
 	..()
 	var/obj/machinery/flasher/F = O
 	F.id = id

@@ -13,9 +13,8 @@
 	if(!istype(parent, /turf))
 		return COMPONENT_INCOMPATIBLE
 
-/datum/component/fishable/proc/get_reward(var/fishing_power = 0)
+/datum/component/fishable/proc/get_reward(fishing_power = 0)
 	var/chance = list(
-		FISHING_LOOT_NOTHING = min(max(0,100 - fishing_power),50),
 		FISHING_LOOT_JUNK = min(max(0,50 - fishing_power),25),
 		FISHING_LOOT_COMMON = min(fishing_power / 5,50),
 		FISHING_LOOT_UNCOMMON = min(fishing_power / 10,33),
@@ -53,15 +52,18 @@
 		/obj/item/reagent_containers/food/snacks/fish/goldfish,
 		/obj/item/reagent_containers/food/snacks/fish/salmon,
 		/obj/item/reagent_containers/food/snacks/fish/bass,
-		/obj/item/reagent_containers/food/snacks/bait/leech
+		/obj/item/reagent_containers/food/snacks/bait/worm/leech
 		)
 	uncommon_loot = list(
 		/obj/item/reagent_containers/food/snacks/fish/goldfish/giant,
 		/obj/item/reagent_containers/food/snacks/fish/shrimp,
 		/obj/item/reagent_containers/food/snacks/fish/puffer,
-		/obj/item/reagent_containers/food/snacks/fish/tuna
+		/obj/item/reagent_containers/food/snacks/fish/tuna,
+		/mob/living/simple_animal/pet/axolotl
 	)
 	rare_loot = list(
 		/obj/item/reagent_containers/food/snacks/fish/squid,
-		/obj/item/stack/sheet/bluespace_crystal
+		/obj/item/stack/sheet/bluespace_crystal,
+		/obj/item/clothing/head/soft/fishfear/legendary,
+		/mob/living/simple_animal/hostile/retaliate/gator
 	)

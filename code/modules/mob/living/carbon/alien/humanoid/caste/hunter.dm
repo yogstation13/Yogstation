@@ -4,7 +4,7 @@
 	maxHealth = 125
 	health = 125
 	icon_state = "alienh"
-	var/obj/screen/leap_icon = null
+	var/atom/movable/screen/leap_icon = null
 
 /mob/living/carbon/alien/humanoid/hunter/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/small
@@ -47,7 +47,7 @@
 		leaping = 1
 		weather_immunities += WEATHER_LAVA
 		update_icons()
-		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end))
+		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end)))
 
 /mob/living/carbon/alien/humanoid/hunter/proc/leap_end()
 	leaping = 0

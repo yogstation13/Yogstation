@@ -2,6 +2,7 @@
 
 /obj/item/storage/bag/money
 	name = "money bag"
+	desc = "A bag for storing your profits."
 	icon_state = "moneybag"
 	force = 10
 	throwforce = 0
@@ -9,7 +10,7 @@
 	max_integrity = 100
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/storage/bag/money/Initialize()
+/obj/item/storage/bag/money/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL

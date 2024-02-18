@@ -11,7 +11,7 @@
 	desc = "This plaque seems to memorialize those who fell while constructing the station. The names have been redacted, and they cover the entire plaque.";
 	pixel_y = 32
 	},
-/obj/item/twohanded/required/kirbyplants/dead{
+/obj/item/kirbyplants/dead{
 	desc = "Some flowers have been placed lovingly here in a pot. They have not been watered quite as lovingly...";
 	name = "Dead Flowers";
 	pixel_y = 19

@@ -21,6 +21,12 @@
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	var/datum/mind/mind
 	var/static/next_mob_id = 0
+	/// The current client inhabiting this mob. Managed by login/logout
+	/// This exists so we can do cleanup in logout for occasions where a client was transfere rather then destroyed
+	/// We need to do this because the mob on logout never actually has a reference to client
+	/// We also need to clear this var/do other cleanup in client/Destroy, since that happens before logout
+	/// HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+	var/client/canon_client
 
 	/// List of movement speed modifiers applying to this mob
 	var/list/movespeed_modification				//Lazy list, see mob_movespeed.dm
@@ -28,8 +34,11 @@
 	var/cached_multiplicative_slowdown
 	/// List of action hud items the user has
 	var/list/datum/action/actions = list()
-	/// A special action? No idea why this lives here
-	var/list/datum/action/chameleon_item_actions
+	/// Actions that belong to this mob used in observers
+	var/list/datum/action/originalactions = list()
+	/// A list of chameleon actions we have specifically
+	/// This can be unified with the actions list
+	var/list/datum/action/item_action/chameleon/chameleon_item_actions
 
 	/// Whether a mob is alive or dead. TODO: Move this to living - Nodrak (2019, still here)
 	var/stat = CONSCIOUS
@@ -41,8 +50,11 @@
 	Changing this around would probably require a good look-over the pre-existing code.
 	*/
 
+	///How many legs does this mob currently have. Should only be changed through set_num_legs()
+	var/num_legs = 2
+
 	/// The zone this mob is currently targeting
-	var/zone_selected = null
+	var/zone_selected = BODY_ZONE_CHEST
 
 	var/computer_id = null
 	var/list/logging = list()
@@ -83,13 +95,6 @@
 
 	/// Default body temperature
 	var/bodytemperature = BODYTEMP_NORMAL	//310.15K / 98.6F
-	/// Drowsyness level of the mob
-	var/drowsyness = 0//Carbon
-	/// Dizziness level of the mob
-	var/dizziness = 0//Carbon
-	/// Jitteryness level of the mob
-	var/jitteriness = 0//Carbon
-	/// Hunger level of the mob
 	var/nutrition = NUTRITION_LEVEL_START_MIN // randomised in Initialize
 	/// Satiation level of the mob
 	var/satiety = 0//Carbon
@@ -136,6 +141,8 @@
 	var/datum/hud/hud_used = null
 	/// I have no idea tbh
 	var/research_scanner = FALSE
+	/// What icon the mob uses for typing indicators
+	var/bubble_icon = BUBBLE_DEFAULT
 
 	/// Is the mob throw intent on
 	var/in_throw_mode = 0
@@ -149,17 +156,8 @@
 	/// Can this mob enter shuttles
 	var/move_on_shuttle = 1
 
-	///The last mob/living/carbon to push/drag/grab this mob (exclusively used by slimes friend recognition)
-	var/mob/living/carbon/LAssailant = null
-
-	/**
-	  * construct spells and mime spells.
-	  *
-	  * Spells that do not transfer from one mob to another and can not be lost in mindswap.
-	  * obviously do not live in the mind
-	  */
-	var/list/mob_spell_list = list()
-
+	///A weakref to the last mob/living/carbon to push/drag/grab this mob (exclusively used by slimes friend recognition)
+	var/datum/weakref/LAssailant = null
 
 	/// bitflags defining which status effects can be inflicted (replaces canknockdown, canstun, etc)
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANUNCONSCIOUS|CANPUSH
@@ -203,7 +201,7 @@
 	var/datum/click_intercept
 
 	///For storing what do_after's someone has, in case we want to restrict them to only one of a certain do_after at a time
-	var/list/do_afters	
+	var/list/do_afters
 
 	///THe z level this mob is currently registered in
 	var/registered_z = null
@@ -221,3 +219,23 @@
 	var/datum/client_interface/mock_client
 
 	var/create_area_cooldown
+
+	var/sound_environment_override = SOUND_ENVIRONMENT_NONE
+
+	var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
+
+	var/list/alerts = list() // contains /atom/movable/screen/alert only // On /mob so clientless mobs will throw alerts properly
+
+	///Contains the fullscreen overlays the mob can see (from 'code/_onclick/hud/fullscreen.dm')
+	var/list/screens = list()
+
+	///The HUD type the mob will gain on Initialize. (from 'code/_onclick/hud/hud.dm')
+	var/hud_type = /datum/hud
+
+	///The client colors the mob is looking at. (from 'code/modules/client/client_color.dm')
+	var/list/client_colours = list()
+
+	///What receives our keyboard inputs. src by default. (from 'code/modules/keybindings/focus.dm')
+	var/datum/focus
+
+	var/fake_client = FALSE // Currently only used for examines

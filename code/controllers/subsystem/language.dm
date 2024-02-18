@@ -15,4 +15,4 @@ SUBSYSTEM_DEF(language)
 
 		GLOB.language_datum_instances[language] = instance
 
-	return ..()
+	return SS_INIT_SUCCESS

@@ -30,7 +30,7 @@
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Our workers cleaned out most of the junk in the maintenace areas."
+	report_message = "Our workers cleaned out most of the junk in the maintenance areas."
 	blacklist = list(/datum/station_trait/filled_maint)
 	trait_to_give = STATION_TRAIT_EMPTY_MAINT
 
@@ -46,7 +46,7 @@
 /datum/station_trait/overflow_job_bureacracy/New()
 	. = ..()
 	chosen_job = pick(jobs_to_use)
-	RegisterSignal(SSjob, COMSIG_SUBSYSTEM_POST_INITIALIZE, .proc/set_overflow_job_override)
+	RegisterSignal(SSjob, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(set_overflow_job_override))
 
 /datum/station_trait/overflow_job_bureacracy/get_report()
 	return "[name] - It seems for some reason we put out the wrong job-listing for the overflow role this shift...I hope you like [chosen_job]s."

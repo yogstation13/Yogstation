@@ -3,7 +3,7 @@
 	desc = "Used to control the White Ship."
 	circuit = /obj/item/circuitboard/computer/white_ship
 	shuttleId = "whiteship"
-	possible_destinations = "whiteship_away;whiteship_home;whiteship_z4;whiteship_lavaland;spacebar;whiteship_custom"
+	possible_destinations = "whiteship_away;whiteship_home;whiteship_z4;whiteship_mining;spacebar;whiteship_custom"
 
 /obj/machinery/computer/shuttle/white_ship/pod
 	name = "Salvage Pod Console"
@@ -41,7 +41,7 @@
 	y_offset = 0
 	designate_time = 0
 
-/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/Initialize()
+/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/Initialize(mapload)
 	. = ..()
 	GLOB.jam_on_wardec += src
 

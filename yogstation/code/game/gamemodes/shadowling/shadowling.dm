@@ -1,5 +1,5 @@
 #define LIGHT_HEAL_THRESHOLD 2
-#define LIGHT_DAMAGE_TAKEN 7
+#define LIGHT_DAMAGE_TAKEN 6
 #define LIGHT_DAM_THRESHOLD 0.25
 
 /*
@@ -51,7 +51,7 @@ Made by Xhuis
 	name = "shadowling"
 	config_tag = "shadowling"
 	antag_flag = ROLE_SHADOWLING
-	required_players = 26
+	required_players = 38
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 14
@@ -144,7 +144,7 @@ Made by Xhuis
 	say_mod = "chitters"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE)
-	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
+	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_EYES, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	nojumpsuit = TRUE
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien/sling
 	burnmod = 1.5 //1.5x burn damage, 2x is excessive
@@ -160,7 +160,7 @@ Made by Xhuis
 	C.draw_yogs_parts(TRUE)
 	eyes_overlay = mutable_appearance('yogstation/icons/mob/sling.dmi', "eyes", 25)
 	C.add_overlay(eyes_overlay)
-	RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/apply_darkness_speed)
+	RegisterSignal(C, COMSIG_MOVABLE_MOVED, PROC_REF(apply_darkness_speed))
 	. = ..()
 
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)
@@ -178,7 +178,7 @@ Made by Xhuis
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
-			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN)
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN) 
 			if(H.stat != DEAD)
 				to_chat(H, span_userdanger("The light burns you!")) //Message spam to say "GET THE FUCK OUT"
 				H.playsound_local(get_turf(H), 'sound/weapons/sear.ogg', 150, 1, pressure_affected = FALSE)
@@ -186,7 +186,7 @@ Made by Xhuis
 			H.heal_overall_damage(5,5)
 			H.adjustToxLoss(-5)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
-			H.adjustCloneLoss(-1)
+			H.adjustCloneLoss(-5)
 			H.SetKnockdown(0)
 			H.SetStun(0)
 			H.SetParalyzed(0)
@@ -195,7 +195,7 @@ Made by Xhuis
 		shadow_charges = min(shadow_charges + 1, 3)
 		last_charge = world.time
 
-/datum/species/shadow/ling/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/shadow/ling/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T) && shadow_charges > 0)
 		var/light_amount = T.get_lumcount()
@@ -231,22 +231,12 @@ Made by Xhuis
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD && !H.incorporeal_move)
-			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN/2)
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN/2)
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)
 			H.heal_overall_damage(4,4)
 			H.adjustToxLoss(-5)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
-			H.adjustCloneLoss(-1)
-
-/datum/game_mode/proc/update_shadow_icons_added(datum/mind/shadow_mind)
-	var/datum/atom_hud/antag/shadow_hud = GLOB.huds[ANTAG_HUD_SHADOW]
-	shadow_hud.join_hud(shadow_mind.current)
-	set_antag_hud(shadow_mind.current, ((is_shadow(shadow_mind.current)) ? "shadowling" : "thrall"))
-
-/datum/game_mode/proc/update_shadow_icons_removed(datum/mind/shadow_mind)
-	var/datum/atom_hud/antag/shadow_hud = GLOB.huds[ANTAG_HUD_SHADOW]
-	shadow_hud.leave_hud(shadow_mind.current)
-	set_antag_hud(shadow_mind.current, null)
+			H.adjustCloneLoss(-5)
 
 /mob/living/proc/add_thrall()
 	if(!istype(mind))

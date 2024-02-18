@@ -7,38 +7,42 @@
 	item_state = "atoxinbottle"
 	possible_transfer_amounts = list(5,10,15,25,30)
 	volume = 30
+	/// Base icon state of the filling overlay. Leave blank to use the default icon state
+	var/filling_icon_state
 
 
-/obj/item/reagent_containers/glass/bottle/Initialize()
+/obj/item/reagent_containers/glass/bottle/Initialize(mapload)
 	. = ..()
 	if(!icon_state)
 		icon_state = "bottle"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/glass/bottle/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/glass/bottle/update_icon()
-	cut_overlays()
-	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]-10")
+/obj/item/reagent_containers/glass/bottle/update_overlays()
+	. = ..()
+	if(!filling_icon_state)
+		filling_icon_state = icon_state
+	if(!reagents.total_volume)
+		return
+	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[filling_icon_state]-10")
 
-		var/percent = round((reagents.total_volume / volume) * 100)
-		switch(percent)
-			if(0 to 9)
-				filling.icon_state = "[icon_state]-10"
-			if(10 to 29)
-				filling.icon_state = "[icon_state]25"
-			if(30 to 49)
-				filling.icon_state = "[icon_state]50"
-			if(50 to 69)
-				filling.icon_state = "[icon_state]75"
-			if(70 to INFINITY)
-				filling.icon_state = "[icon_state]100"
+	var/percent = round((reagents.total_volume / volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			filling.icon_state = "[filling_icon_state]-10"
+		if(10 to 29)
+			filling.icon_state = "[filling_icon_state]25"
+		if(30 to 49)
+			filling.icon_state = "[filling_icon_state]50"
+		if(50 to 69)
+			filling.icon_state = "[filling_icon_state]75"
+		if(70 to INFINITY)
+			filling.icon_state = "[filling_icon_state]100"
 
-		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
-
+	filling.color = mix_color_from_reagents(reagents.reagent_list)
+	. += filling
 
 /obj/item/reagent_containers/glass/bottle/epinephrine
 	name = "epinephrine bottle"
@@ -113,8 +117,8 @@
 	list_reagents = list(/datum/reagent/diethylamine = 30)
 
 /obj/item/reagent_containers/glass/bottle/facid
-	name = "Fluorosulfuric Acid Bottle"
-	desc = "A small bottle. Contains a small amount of fluorosulfuric acid."
+	name = "Fluorosulphuric Acid Bottle"
+	desc = "A small bottle. Contains a small amount of fluorosulphuric acid."
 	list_reagents = list(/datum/reagent/toxin/acid/fluacid = 30)
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
@@ -140,7 +144,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	var/extra_reagent = null
 
-/obj/item/reagent_containers/glass/bottle/traitor/Initialize()
+/obj/item/reagent_containers/glass/bottle/traitor/Initialize(mapload)
 	. = ..()
 	extra_reagent = pick(/datum/reagent/toxin/polonium, /datum/reagent/toxin/histamine, /datum/reagent/toxin/formaldehyde, /datum/reagent/toxin/venom, /datum/reagent/toxin/fentanyl, /datum/reagent/toxin/cyanide)
 	reagents.add_reagent(extra_reagent, 3)
@@ -204,6 +208,11 @@
 	name = "histamine bottle"
 	desc = "A small bottle. Contains histamine."
 	list_reagents = list(/datum/reagent/toxin/histamine = 30)
+
+/obj/item/reagent_containers/glass/bottle/ambusher_toxin
+	name = "carpenter toxin bottle"
+	desc = "A small bottle. Contains a toxin from an unknown source."
+	list_reagents = list(/datum/reagent/toxin/ambusher_toxin = 30)
 
 /obj/item/reagent_containers/glass/bottle/diphenhydramine
 	name = "antihistamine bottle"
@@ -376,9 +385,9 @@
 	name = "phosphorus bottle"
 	list_reagents = list(/datum/reagent/phosphorus = 30)
 
-/obj/item/reagent_containers/glass/bottle/sulfur
-	name = "sulfur bottle"
-	list_reagents = list(/datum/reagent/sulfur = 30)
+/obj/item/reagent_containers/glass/bottle/sulphur
+	name = "sulphur bottle"
+	list_reagents = list(/datum/reagent/sulphur = 30)
 
 /obj/item/reagent_containers/glass/bottle/chlorine
 	name = "chlorine bottle"
@@ -435,7 +444,7 @@
 /obj/item/reagent_containers/glass/bottle/bromine
 	name = "bromine bottle"
 	list_reagents = list(/datum/reagent/bromine = 30)
-
+	
 /obj/item/reagent_containers/glass/woodmug
 	name = "wooden mug"
 	desc = "Style is everything, whether it be an ashtray or a keychain or a kitchen timer, we’re living in an age of design, where the physical contours of an object are paramount. Look at this wooden mug, for instance, and see how much it deviates, in its conception, from the ordinary mug. Not much. It is round, tallish, has a handle just like any coffee mug. But it’s not an ordinary coffee mug. First of all its form is totally different; it’s made of wood, not ceramic or plastic. It’s an object that cannot be used casually and put it away, you would love to possess it."
@@ -443,15 +452,144 @@
 	icon = 'icons/obj/drinks.dmi'
 	volume = 30
 
+/obj/item/reagent_containers/glass/coffee_cup
+	name = "coffee cup"
+	desc = "A heat-formed plastic coffee cup. Can theoretically be used for other hot drinks, if you're feeling adventurous."
+	icon = 'icons/obj/machines/coffeemaker.dmi'
+	icon_state = "coffee_cup_e"
+	base_icon_state = "coffee_cup"
+	possible_transfer_amounts = list(10)
+	volume = 30
+	spillable = TRUE
+
+/obj/item/reagent_containers/glass/coffee_cup/update_icon_state()
+	icon_state = reagents.total_volume ? base_icon_state : "[base_icon_state]_e"
+	return ..()
+
+
 //Yogs: Vials
 /obj/item/reagent_containers/glass/bottle/vial
 	name = "vial"
-	desc = "A small vial for holding small amounts of reagents."
-	icon_state = "vial"
-	item_state = "atoxinbottle"
-	possible_transfer_amounts = list(5,10,15)
-	volume = 15
-	disease_amount = 15
+	desc = "A vial for holding smaller amounts of reagents than a beaker."
+	icon_state = "viallarge"
+	base_icon_state = "viallarge"
+	item_state = "atoxinbottle"	
+	unique_reskin = list(
+		"vial" = "viallarge",
+		"white vial" = "viallarge_white",
+		"red vial" = "viallarge_red",
+		"blue vial" = "viallarge_blue",
+		"green vial" = "viallarge_green",
+		"orange vial" = "viallarge_orange",
+		"purple vial" = "viallarge_purple",
+		"black vial" = "viallarge_black"
+	)
+	possible_transfer_amounts = list(5, 10, 15, 30)
+	reagent_flags = OPENCONTAINER_NOSPILL
+	volume = 30
+	disease_amount = 30
+	/// Name that used as the base for pen renaming, so subtypes can have different names without having to worry about messing with it
+	var/base_name = "vial"
+	/// List of icon_states that require the stripe overlay to look good. Not a very good way of doing it, but its the best I can come up with right now.
+	var/list/striped_vial_skins = list("vial_white", "vial_red", "vial_blue", "vial_green", "vial_orange", "vial_purple", "vial_black", "viallarge_white", "viallarge_red", "viallarge_blue", "viallarge_green", "viallarge_orange", "viallarge_purple", "viallarge_black")
+
+/obj/item/reagent_containers/glass/bottle/vial/Initialize(mapload)
+	if(icon_state in striped_vial_skins)
+		filling_icon_state = "[base_icon_state]stripe"
+	return ..()
+
+/obj/item/reagent_containers/glass/bottle/vial/attackby(obj/P, mob/user, params)
+	add_fingerprint(user)
+	if(istype(P, /obj/item/pen))
+		if(!user.is_literate())
+			to_chat(user, span_notice("You scribble illegibly on the label of [src]!"))
+			return
+		var/t = pretty_filter(stripped_input(user, "What would you like the label to be?", text("[]", name), null))
+		if (user.get_active_held_item() != P)
+			return
+		if(!user.canUseTopic(src, BE_CLOSE))
+			return
+		name = "[base_name][t ? " ([t])" : ""]"
+	else
+		return ..()
+
+/obj/item/reagent_containers/glass/bottle/vial/libital
+	name = "vial (Libital)"
+	icon_state = "viallarge_red"
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 15)
+	custom_premium_price = 25
+
+/obj/item/reagent_containers/glass/bottle/vial/aiuri
+	name = "vial (Aiuri)"
+	icon_state = "viallarge_orange"
+	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 15)
+	custom_premium_price = 25
+
+/obj/item/reagent_containers/glass/bottle/vial/charcoal
+	name = "vial (Charcoal)"
+	icon_state = "viallarge_green"
+	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
+	custom_premium_price = 25
+
+/obj/item/reagent_containers/glass/bottle/vial/perfluorodecalin
+	name = "vial (Perfluorodecalin)"
+	icon_state = "viallarge_blue"
+	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 15)
+	custom_premium_price = 25
+
+/obj/item/reagent_containers/glass/bottle/vial/epi
+	name = "vial (Epinephrine)"
+	icon_state = "viallarge_white"
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 3)
+	custom_premium_price = 25
+
+/obj/item/reagent_containers/glass/bottle/vial/styptic
+	name = "vial (Styptic Powder)"
+	icon_state = "viallarge_orange"
+	list_reagents = list(/datum/reagent/medicine/styptic_powder = 15)
+	custom_premium_price = 30
+
+/obj/item/reagent_containers/glass/bottle/vial/silver_sulfadiazine
+	name = "vial (Silver Sulfadiazine)"
+	icon_state = "viallarge_red"
+	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 15)
+	custom_premium_price = 30
+
+/obj/item/reagent_containers/glass/bottle/vial/sal_acid
+	name = "vial (Salicylic Acid)"
+	icon_state = "viallarge_white"
+	list_reagents = list(/datum/reagent/medicine/sal_acid = 15)
+	custom_premium_price = 50
+
+/obj/item/reagent_containers/glass/bottle/vial/oxandrolone
+	name = "vial (Oxandrolone)"
+	icon_state = "viallarge_black"
+	list_reagents = list(/datum/reagent/medicine/oxandrolone = 15)
+	custom_premium_price = 50
+
+/obj/item/reagent_containers/glass/bottle/vial/calomel
+	name = "vial (Calomel)"
+	icon_state = "viallarge_black"
+	list_reagents = list(/datum/reagent/medicine/calomel = 15)
+	custom_premium_price = 50
+
+/obj/item/reagent_containers/glass/bottle/vial/salbutamol
+	name = "vial (Salbutamol)"
+	icon_state = "viallarge_white"
+	list_reagents = list(/datum/reagent/medicine/salbutamol = 15)
+	custom_premium_price = 50
+
+/obj/item/reagent_containers/glass/bottle/vial/coagulant
+	name = "vial (Sanguirite)"
+	icon_state = "viallarge_red"
+	list_reagents = list(/datum/reagent/medicine/coagulant = 15)
+	custom_premium_price = 50
+
+/obj/item/reagent_containers/glass/bottle/vial/lavaland
+	name = "vial (Lavaland Extract Mix)"
+	icon_state = "viallarge_black"
+	reagent_flags = 0
+	list_reagents = list(/datum/reagent/medicine/tricordrazine = 3, /datum/reagent/medicine/epinephrine = 6, /datum/reagent/medicine/lavaland_extract = 3, /datum/reagent/medicine/omnizine = 3)
 
 /obj/item/reagent_containers/glass/bottle/vial/random_virus
 	name = "Experimental disease culture vial"
@@ -467,3 +605,201 @@
 	name = "Flu virion culture vial"
 	desc = "A small vial for holding small amounts of reagents. Contains H13N1 flu virion culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/flu
+
+
+// Bottles for mail goodies.
+
+/obj/item/reagent_containers/glass/bottle/clownstears
+	name = "bottle of distilled clown misery"
+	desc = "A small bottle. Contains a mythical liquid used by sublime bartenders; made from the unhappiness of clowns."
+	list_reagents = list(/datum/reagent/consumable/clownstears = 30)
+
+/obj/item/reagent_containers/glass/bottle/saltpetre
+	name = "saltpetre bottle"
+	desc = "A small bottle. Contains saltpetre."
+	list_reagents = list(/datum/reagent/saltpetre = 30)
+
+/obj/item/reagent_containers/glass/bottle/flash_powder
+	name = "flash powder bottle"
+	desc = "A small bottle. Contains flash powder."
+	list_reagents = list(/datum/reagent/flash_powder = 30)
+
+///obj/item/reagent_containers/glass/bottle/exotic_stabilizer
+	//name = "exotic stabilizer bottle"
+	//desc = "A small bottle. Contains exotic stabilizer."
+	//list_reagents = list(/datum/reagent/exotic_stabilizer = 30)
+
+///obj/item/reagent_containers/glass/bottle/leadacetate
+	//name = "lead acetate bottle"
+	//desc = "A small bottle. Contains lead acetate."
+	//list_reagents = list(/datum/reagent/toxin/leadacetate = 30)
+
+/obj/item/reagent_containers/glass/bottle/caramel
+	name = "bottle of caramel"
+	desc = "A bottle containing caramalized sugar, also known as caramel. Do not lick."
+	list_reagents = list(/datum/reagent/consumable/caramel = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/omnizine
+	name = "vial (Omnizine)"
+	icon_state = "viallarge_white"
+	list_reagents = list(/datum/reagent/medicine/omnizine = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/brute
+	name = "vial (Brute)"
+	icon_state = "viallarge_red"
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/burn
+	name = "vial (Burn)"
+	icon_state = "viallarge_orange"
+	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/tox
+	name = "vial (Toxic)"
+	icon_state = "viallarge_green"
+	list_reagents = list(/datum/reagent/medicine/charcoal = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/oxy
+	name = "vial (Oxygen)"
+	icon_state = "viallarge_blue"
+	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/epi/full
+	name = "vial (Epinephrine)"
+	icon_state = "viallarge_white"
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 24, /datum/reagent/medicine/coagulant = 6)
+
+/obj/item/reagent_containers/glass/bottle/vial/combat
+	name = "vial (Combat Hypospray Mix)"
+	icon_state = "viallarge_black"
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/medicine/omnizine = 10, /datum/reagent/medicine/leporazine = 9, /datum/reagent/medicine/atropine = 9)
+
+/obj/item/reagent_containers/glass/bottle/vial/stimulants
+	name = "vial (Stimulants)"
+	icon_state = "viallarge_purple"
+	list_reagents = list(/datum/reagent/medicine/stimulants = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/morphine
+	name = "vial (Morphine)"
+	icon_state = "viallarge_blue"
+	list_reagents = list(/datum/reagent/medicine/morphine = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/bluespace
+	name = "bluespace vial"
+	base_name = "bluespace vial"
+	desc = "A vial powered by experimental bluespace technology capable of holding 60 units."
+	icon_state = "vialbluespace"
+	base_icon_state = "vialbluespace"
+	unique_reskin = list("bluespace vial" = "vialbluespace",
+						"white bluespace vial" = "vialbluespace_white",
+						"red bluespace vial" = "vialbluespace_red",
+						"blue bluespace vial" = "vialbluespace_blue",
+						"green bluespace vial" = "vialbluespace_green",
+						"orange bluespace vial" = "vialbluespace_orange",
+						"purple bluespace vial" = "vialbluespace_purple",
+						"black bluespace vial" = "vialbluespace_black"
+						)
+	possible_transfer_amounts = list(5,10,15,30,45)
+	volume = 60
+
+/*
+ *	Syrup bottles, basically a unspillable cup that transfers reagents upon clicking on it with a cup
+ */
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle
+	name = "syrup bottle"
+	desc = "A bottle with a syrup pump to dispense the delicious substance directly into your coffee cup."
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "syrup"
+	fill_icon_state = "syrup"
+	fill_icon_thresholds = list(0, 20, 40, 60, 80, 100)
+	possible_transfer_amounts = list(5, 10)
+	amount_per_transfer_from_this = 5
+	spillable = FALSE
+	///variable to tell if the bottle can be refilled
+	var/cap_on = TRUE
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click to toggle the pump cap.")
+	. += span_notice("Use a pen on it to rename it.")
+	return
+
+//when you attack the syrup bottle with a container it refills it
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/attackby(obj/item/attacking_item, mob/user, params)
+
+	if(!cap_on)
+		return ..()
+
+	if(!check_allowed_items(attacking_item,target_self = TRUE))
+		return
+
+	if(attacking_item.is_refillable())
+		if(!reagents.total_volume)
+			balloon_alert(user, "bottle empty!")
+			return TRUE
+
+		if(attacking_item.reagents.holder_full())
+			balloon_alert(user, "container full!")
+			return TRUE
+
+		flick("syrup_anim",src)
+
+	attacking_item.update_appearance()
+	update_appearance()
+
+	return TRUE
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/AltClick(mob/user)
+	cap_on = !cap_on
+	if(!cap_on)
+		icon_state = "syrup_open"
+		balloon_alert(user, "removed pump cap")
+	else
+		icon_state = "syrup"
+		balloon_alert(user, "put pump cap on")
+	update_icon_state()
+	return ..()
+
+//types of syrups
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/caramel
+	name = "bottle of caramel syrup"
+	desc = "A pump bottle containing caramalized sugar, also known as caramel. Do not lick."
+	list_reagents = list(/datum/reagent/consumable/caramel = 50)
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/liqueur
+	name = "bottle of coffee liqueur syrup"
+	desc = "A pump bottle containing mexican coffee-flavoured liqueur syrup. In production since 1936, HONK."
+	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 50)
+
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/korta_nectar
+	name = "bottle of korta syrup"
+	desc = "A pump bottle containing korta syrup. A sweet, sugary substance made from crushed sweet korta nuts."
+	list_reagents = list(/datum/reagent/consumable/korta_nectar = 50)
+
+//secret syrup
+/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/laughsyrup
+	name = "bottle of laugh syrup"
+	desc = "A pump bottle containing laugh syrup. The product of juicing Laughin' Peas. Fizzy, and seems to change flavour based on what it's used with!"
+	list_reagents = list(/datum/reagent/consumable/laughsyrup = 50)
+
+
+//Coffeepots: for reference, a standard cup is 30u, to allow 20u for sugar/sweetener/milk/creamer
+/obj/item/reagent_containers/food/drinks/bottle/coffeepot
+	icon = 'icons/obj/food/containers.dmi'
+	name = "coffeepot"
+	desc = "A large pot for dispensing that ambrosia of corporate life known to mortals only as coffee. Contains 4 standard cups."
+	volume = 120
+	icon_state = "coffeepot"
+	fill_icon_state = "coffeepot"
+	fill_icon_thresholds = list(0, 1, 30, 60, 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/coffeepot/bluespace
+	icon = 'icons/obj/food/containers.dmi'
+	name = "bluespace coffeepot"
+	desc = "The most advanced coffeepot the eggheads could cook up: sleek design; graduated lines; connection to a pocket dimension for coffee containment; yep, it's got it all. Contains 8 standard cups."
+	volume = 240
+	icon_state = "coffeepot_bluespace"
+	fill_icon_thresholds = list(0)

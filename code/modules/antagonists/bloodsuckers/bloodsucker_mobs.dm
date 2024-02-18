@@ -1,6 +1,5 @@
 /mob/living/simple_animal/hostile/bloodsucker
 	icon = 'icons/mob/bloodsucker_mobs.dmi'
-	harm_intent_damage = 20
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	see_in_dark = 10
@@ -25,10 +24,9 @@
 	speed = -1.5
 	maxHealth = 450
 	health = 450
-	harm_intent_damage = 25
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attacktext = "violently mawls"
+	attacktext = "violently mauls"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 5)
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_WALLS
@@ -62,6 +60,7 @@
 	response_help = "pokes"
 	response_disarm = "pushes"
 	response_harm = "punches"
+	faction = list("hostile", "bloodhungry")
 	maxHealth = 250
 	health = 250
 	attacktext = "rends"
@@ -76,7 +75,6 @@
 	icon_living = "posarmor_sword"
 	upgraded = TRUE
 	obj_damage = 55
-	harm_intent_damage = 25
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 
@@ -87,7 +85,7 @@
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce
 
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest
-	name = "gigantous monstrosity"
+	name = "gigantic monstrosity"
 	desc = "You wouldn't think a being so messed up like this would be able to even breathe."
 	icon_state = "triplechest"
 	icon_living = "triplechest"
@@ -96,11 +94,10 @@
 	maxHealth = 175
 	health = 175
 	environment_smash = ENVIRONMENT_SMASH_WALLS
-	harm_intent_damage = 25
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	obj_damage = 50
-	
+
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium
 	name = "boney monstrosity"
 	desc = "Heretical being beyond comprehesion, now with bones free of charge!"
@@ -112,7 +109,6 @@
 	health = 110
 	mob_size = MOB_SIZE_SMALL
 	ventcrawler = VENTCRAWLER_ALWAYS
-	harm_intent_damage = 7
 	melee_damage_lower = 7
 	melee_damage_upper = 7
 	obj_damage = 20
@@ -129,7 +125,6 @@
 	mob_size = MOB_SIZE_TINY
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE
-	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -155,9 +150,9 @@
 	. = ..()
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
-		bloodsucker.adjustBruteLoss(200)
 		if(bloodsucker.status_flags & GODMODE)
 			bloodsucker.status_flags -= GODMODE
+		bloodsucker.adjustBruteLoss(200)
 
 /mob/living/simple_animal/hostile/bloodsucker/proc/devour(mob/living/target)
 	if(maxHealth > target.maxHealth / 4 + health)
@@ -192,7 +187,6 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()
-	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
@@ -201,6 +195,7 @@
 				user.blood_volume += 10
 		adjustFireLoss(2.5)
 		updatehealth() //3 minutes to die
+
 	if(satiation >= 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
 		qdel(src)
@@ -221,21 +216,22 @@
 				additionalmessage = "You have mutated a collar made out of fur!"
 				user_species.armor += 10
 				mutation = /obj/item/clothing/neck/wolfcollar
-				slot = SLOT_NECK
+				slot = ITEM_SLOT_NECK
 			if(2)
 				additionalmessage = "You have mutated werewolf ears!"
 				mutation = /obj/item/radio/headset/wolfears
-				slot = SLOT_EARS
+				slot = ITEM_SLOT_EARS
 			if(3)
 				additionalmessage = "You have mutated werewolf claws!"
-				user_species.punchdamagelow += 2.5
-				user_species.punchdamagehigh += 2.5
+				user.physiology.punchdamagehigh_bonus += 2.5
+				user.physiology.punchdamagelow_bonus += 2.5
+				user.physiology.punchstunthreshold_bonus += 2.5
 				mutation = /obj/item/clothing/gloves/wolfclaws
-				slot = SLOT_GLOVES
+				slot = ITEM_SLOT_GLOVES
 			if(4)
 				additionalmessage = "You have mutated werewolf legs!"
 				mutation = /obj/item/clothing/shoes/wolflegs
-				slot = SLOT_SHOES
+				slot = ITEM_SLOT_FEET
 				if(DIGITIGRADE in user.dna.species.species_traits)
 					mutation = /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 			if(5 to INFINITY)
@@ -249,6 +245,15 @@
 ////////////////////////
 ///      Armor       ///
 ////////////////////////
+/mob/living/simple_animal/hostile/bloodsucker/possessedarmor/ListTargets()
+	. = ..()
+	for(var/mob/living/carbon/letsnotmeet in .)
+		if(!istype(letsnotmeet))
+			continue
+		if(IS_BLOODSUCKER(letsnotmeet) || IS_VASSAL(letsnotmeet)) //don't attack our owners!
+			. -= letsnotmeet
+		if(letsnotmeet.restrained()) //or any guests!
+			. -= letsnotmeet
 
 /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/death()
 	. = ..()
@@ -257,3 +262,43 @@
 	else
 		new /obj/structure/bloodsucker/possessedarmor(src.loc)
 	qdel(src)
+
+//Wraith - Hecata mob
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith
+	name = "wraith"
+	real_name = "Wraith"
+	desc = "An angry, tormented spirit, which looks to let out its wrath on whoever is nearby."
+	gender = PLURAL
+	icon_state = "wraith"
+	icon_living = "wraith"
+	mob_biotypes = list(MOB_SPIRIT)
+	maxHealth = 30
+	health = 30
+	spacewalk = TRUE
+	healable = 0
+	speak_emote = list("hisses")
+	emote_hear = list("wails.","screeches.")
+	response_help = "puts their hand through"
+	response_disarm = "flails at"
+	response_harm = "punches"
+	speak_chance = 1
+	melee_damage_lower = 6
+	melee_damage_upper = 6
+	attacktext = "torments"
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	status_flags = 0
+	status_flags = CANPUSH
+	movement_type = FLYING
+	loot = list(/obj/item/ectoplasm)
+	deathmessage = "withers away into nothing."
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/life_draining)
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith/death()
+	qdel(src) //Del on death for some reason doesn't work, might be due to previous code preventing it for /bloodsucker mobs.
+	..()

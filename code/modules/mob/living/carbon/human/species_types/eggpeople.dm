@@ -8,9 +8,9 @@
 	name = "Eggperson"
 	id = "egg"
 	say_mod = "blurbles"
-	fixed_mut_color = "FFE7C9"
+	fixed_mut_color = "#FFE7C9"
 	offset_features = list(OFFSET_EARS = list(0,2), OFFSET_HEAD = list(0,2))
-	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	brutemod = EGG_MAXBRUTEMOD // not the toughest egg in the dozen (handled by the #defines above)
 	heatmod = 1.1 // weak to being boiled
 	default_features = list()
@@ -26,7 +26,7 @@
 	screamsound = 'yogstation/sound/voice/eggperson/egg_scream.ogg' // (Hopefully) the sound of an egg cracking
 	species_language_holder = /datum/language_holder/egg
 
-/datum/species/egg/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE)
+/datum/species/egg/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE, attack_direction = null)
 	if(damagetype == BRUTE) // Dynamic brute resist based on burn damage. The more fried the egg, the harder the shell!!
 		var/x = H.getFireLoss()
 		brutemod = EGG_ALPHA * x*x + EGG_BETA * x + EGG_MAXBRUTEMOD //A polynomial, to determine how much brute we take. https://www.desmos.com/calculator/dwxdxwt0rl

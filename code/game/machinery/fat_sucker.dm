@@ -11,7 +11,7 @@
 	var/start_at = NUTRITION_LEVEL_WELL_FED
 	var/stop_at = NUTRITION_LEVEL_STARVING
 	var/free_exit = TRUE //set to false to prevent people from exiting before being completely stripped of fat
-	var/bite_size = 15 //amount of nutrients we take per process
+	var/bite_size = 7.5 //amount of nutrients we take per second
 	var/nutrients //amount of nutrients we got build up
 	var/nutrient_to_meat = 90 //one slab of meat gives about 52 nutrition
 	var/datum/looping_sound/microwave/soundloop //100% stolen from microwaves
@@ -27,17 +27,17 @@
 	"Unsaturated fat, that is monounsaturated fats, polyunsaturated fats and omega-3 fatty acids, is found in plant foods and fish." \
 	)
 
-/obj/machinery/fat_sucker/Initialize()
+/obj/machinery/fat_sucker/Initialize(mapload)
 	. = ..()
 	soundloop = new(list(src),  FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/fat_sucker/RefreshParts()
 	..()
 	var/rating = 0
 	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
 		rating += L.rating
-	bite_size = initial(bite_size) + rating * 5
+	bite_size = initial(bite_size) + rating * 2.5
 	nutrient_to_meat = initial(nutrient_to_meat) - rating * 5
 
 /obj/machinery/fat_sucker/examine(mob/user)
@@ -58,8 +58,8 @@
 			occupant = null
 			return
 		to_chat(occupant, span_notice("You enter [src]"))
-		addtimer(CALLBACK(src, .proc/start_extracting), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
-		update_icon()
+		addtimer(CALLBACK(src, PROC_REF(start_extracting)), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/fat_sucker/open_machine(mob/user)
 	make_meat()
@@ -106,31 +106,31 @@
 	free_exit = !free_exit
 	to_chat(user, span_notice("Safety hatch [free_exit ? "unlocked" : "locked"]."))
 
-/obj/machinery/fat_sucker/update_icon()
-	overlays.Cut()
+/obj/machinery/fat_sucker/update_overlays()
+	. = ..()
 	if(!state_open)
 		if(processing)
-			overlays += "[icon_state]_door_on"
-			overlays += "[icon_state]_stack"
-			overlays += "[icon_state]_smoke"
-			overlays += "[icon_state]_green"
+			. += "[icon_state]_door_on"
+			. += "[icon_state]_stack"
+			. += "[icon_state]_smoke"
+			. += "[icon_state]_green"
 		else
-			overlays += "[icon_state]_door_off"
+			. += "[icon_state]_door_off"
 			if(occupant)
-				if(powered(EQUIP))
-					overlays += "[icon_state]_stack"
-					overlays += "[icon_state]_yellow"
+				if(powered(AREA_USAGE_EQUIP))
+					. += "[icon_state]_stack"
+					. += "[icon_state]_yellow"
 			else
-				overlays += "[icon_state]_red"
-	else if(powered(EQUIP))
-		overlays += "[icon_state]_red"
+				. += "[icon_state]_red"
+	else if(powered(AREA_USAGE_EQUIP))
+		. += "[icon_state]_red"
 	if(panel_open)
-		overlays += "[icon_state]_panel"
+		. += "[icon_state]_panel"
 
-/obj/machinery/fat_sucker/process()
+/obj/machinery/fat_sucker/process(delta_time)
 	if(!processing)
 		return
-	if(!powered(EQUIP) || !occupant || !iscarbon(occupant))
+	if(!powered(AREA_USAGE_EQUIP) || !occupant || !iscarbon(occupant))
 		open_machine()
 		return
 
@@ -139,8 +139,8 @@
 		open_machine()
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 		return
-	C.adjust_nutrition(-bite_size)
-	nutrients += bite_size
+	C.adjust_nutrition(-bite_size * delta_time)
+	nutrients += bite_size * delta_time
 
 	if(next_fact <= 0)
 		next_fact = initial(next_fact)
@@ -151,14 +151,14 @@
 	use_power(500)
 
 /obj/machinery/fat_sucker/proc/start_extracting()
-	if(state_open || !occupant || processing || !powered(EQUIP))
+	if(state_open || !occupant || processing || !powered(AREA_USAGE_EQUIP))
 		return
 	if(iscarbon(occupant))
 		var/mob/living/carbon/C = occupant
 		if(C.nutrition > start_at)
 			processing = TRUE
 			soundloop.start()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			set_light(2, 1, "#ff0000")
 		else
 			say("Subject not fat enough.")
@@ -195,7 +195,7 @@
 		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	return FALSE
 
@@ -203,10 +203,11 @@
 	if(default_deconstruction_crowbar(I))
 		return TRUE
 
-/obj/machinery/fat_sucker/emag_act(mob/living/user)
+/obj/machinery/fat_sucker/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
+	obj_flags |= EMAGGED
 	start_at = 100
 	stop_at = 0
 	to_chat(user, span_notice("You remove the access restrictions and lower the automatic ejection threshold!"))
-	obj_flags |= EMAGGED
+	return TRUE

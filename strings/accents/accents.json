@@ -7,6 +7,7 @@
 		"Heavy French": "accent_french.json",
 		"Kraut": "accent_kraut.json",
 		"German": "accent_germanlight.json",
+		"Nordic": "accent_nordic.json",
 		"Old English": "accent_oldenglish.json",
 		"Ork": "accent_ork.json",
 		"Pirate": "accent_pirate.json",
@@ -18,6 +19,8 @@
 		"Heavy Shakespearean": "accent_shakespearean.json",
 		"Muppet": "accent_chef_muppet.json",
 		"Valley": "accent_valspeak.json",
-		"Skaven": "accent_skaven.json"
+		"Skaven": "accent_skaven.json",
+		"Russian": "accent_russian.json",
+		"Punk" : "accent_punk.json"
 	}
 }

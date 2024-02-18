@@ -8,7 +8,11 @@
 	max_capacity = 16
 	device_type = MC_SDD
 
-/obj/item/computer_hardware/hard_drive/portable/on_remove(obj/item/modular_computer/MC, mob/user)
+/obj/item/computer_hardware/hard_drive/portable/examine(mob/user)
+	. = ..()
+	. += span_notice("Insert this disk into a modular computer and open the File Manager program to interact with it.")
+
+/obj/item/computer_hardware/hard_drive/portable/on_remove(obj/item/modular_computer/remove_from, mob/user)
 	return //this is a floppy disk, let's not shut the computer down when it gets pulled out.
 
 /obj/item/computer_hardware/hard_drive/portable/install_default_programs()
@@ -53,6 +57,20 @@
 	..()
 	store_file(new/datum/computer_file/program/ntnet_dos(src))
 
+/obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman/install_default_programs()
+	..()
+	var/datum/computer_file/program/bomberman/B = new /datum/computer_file/program/bomberman(src)
+	var/datum/ntosbombcode/C = new /datum/ntosbombcode
+	B.bombcode = C.code
+	store_file(B)
+
+/obj/item/computer_hardware/hard_drive/portable/syndicate/frame/install_default_programs()
+	..()
+	var/datum/computer_file/program/frame/F = new /datum/computer_file/program/frame(src)
+	var/datum/ntosframecode/C = new /datum/ntosframecode
+	F.framecode = C.code
+	store_file(F)
+
 //////////////
 //Trap Disks//
 //////////////
@@ -68,7 +86,7 @@
 	if(IS_JOB(user, "Network Admin"))
 		. += span_notice("It appears to be rigged with explosives!")
 
-/obj/item/computer_hardware/hard_drive/portable/syndicate/trap/diagnostics(var/mob/user)
+/obj/item/computer_hardware/hard_drive/portable/syndicate/trap/diagnostics(mob/user)
 	..()
 	to_chat(user, "Payload Status: TRIGGERED!") // A little too late
 	trigger()

@@ -15,7 +15,7 @@
 	var/watts_per_second = 20
 	var/depowered_multiplier = 0.5
 
-/obj/item/clockwork/integration_cog/Initialize()
+/obj/item/clockwork/integration_cog/Initialize(mapload)
 	. = ..()
 	transform *= 0.5 //little cog!
 

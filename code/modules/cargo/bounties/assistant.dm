@@ -35,7 +35,7 @@
 	description = "CentCom's security forces are going through budget cuts. You will be paid if you ship a set of spears."
 	reward = 2000
 	required_count = 5
-	wanted_types = list(/obj/item/twohanded/spear)
+	wanted_types = list(/obj/item/melee/spear)
 
 /datum/bounty/item/assistant/toolbox
 	name = "Toolboxes"
@@ -63,12 +63,12 @@
 	required_count = 5
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/cheesiehonkers)
 
-/*/datum/bounty/item/assistant/baseball_bat //yogs: we don't even have these
+/datum/bounty/item/assistant/baseball_bat
 	name = "Baseball Bat"
 	description = "Baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream."
-	reward = 2000
+	reward = 3500
 	required_count = 5
-	wanted_types = list(/obj/item/melee/baseball_bat)*/
+	wanted_types = list(/obj/item/melee/baseball_bat)
 
 /datum/bounty/item/assistant/extendohand
 	name = "Extendo-Hand"
@@ -143,14 +143,14 @@
 	name = "Shady Jim's"
 	description = "There's an irate officer at CentCom demanding that he receive a box of Shady Jim's cigarettes. Please ship one. He's starting to make threats."
 	reward = 500
-	wanted_types = list(/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims)
+	wanted_types = list(/obj/item/storage/fancy/cigarettes/cigpack_shadyjims)
 
 /datum/bounty/item/assistant/potted_plants
 	name = "Potted Plants"
 	description = "Central Command is looking to commission a new BirdBoat-class station. You've been ordered to supply the potted plants."
 	reward = 2000
 	required_count = 8
-	wanted_types = list(/obj/item/twohanded/required/kirbyplants)
+	wanted_types = list(/obj/item/kirbyplants)
 
 /datum/bounty/item/assistant/earmuffs
 	name = "Earmuffs"
@@ -176,7 +176,7 @@
 	name = "Chainsaw"
 	description = "The chef at CentCom is having trouble butchering her animals. She requests one chainsaw, please."
 	reward = 2500
-	wanted_types = list(/obj/item/twohanded/required/chainsaw)
+	wanted_types = list(/obj/item/melee/chainsaw)
 
 /datum/bounty/item/assistant/ied
 	name = "IED"
@@ -234,7 +234,7 @@
 	name = "Pump-up"
 	description = "We are attempting to make a combat drug to increase the effectiveness of our soldiers, and we would like to examine pump-up's effects for our drug. Ship one of the syringes over for us to look at."
 	reward = 900
-	wanted_types = list(/obj/item/reagent_containers/hypospray/medipen/pumpup)
+	wanted_types = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup)
 
 /datum/bounty/item/assistant/candy
 	name = "Candy Bars"

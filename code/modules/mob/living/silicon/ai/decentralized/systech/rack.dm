@@ -44,7 +44,7 @@
 	usage += contained_ram * AI_RAM_POWER_USAGE
 	return usage
 
-/obj/item/server_rack/roundstart/Initialize()
+/obj/item/server_rack/roundstart/Initialize(mapload)
 	. = ..()
 	var/obj/item/ai_cpu/CPU = new(src)
 	contained_cpus += CPU

@@ -78,7 +78,6 @@
 /obj/item/cultivator/bone
 	name = "bone cultivator"
 	desc = "A handle and a few bones tied together to resemble a hoe. Should work for removing weeds."
-	icon = 'icons/obj/mining.dmi'
 	icon_state = "cultivator_bone"
 
 /obj/item/hatchet
@@ -101,7 +100,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
-/obj/item/hatchet/Initialize()
+/obj/item/hatchet/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 70, 100)
 
@@ -119,7 +118,6 @@
 /obj/item/hatchet/bone
 	name = "bone hatchet"
 	desc = "A primitive hatchet made out of mostly bone, with some sinew to keep it together. It just might do for cutting logs into planks."
-	icon = 'icons/obj/mining.dmi'
 	icon_state = "hatchet_bone"
 
 /obj/item/scythe
@@ -142,7 +140,7 @@
 	sharpness = SHARP_POINTY
 	var/swiping = FALSE
 
-/obj/item/scythe/Initialize()
+/obj/item/scythe/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 90, 105)
 
@@ -182,7 +180,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,5,10,15,25,50)
 
-/obj/item/reagent_containers/glass/bottle/nutrient/Initialize()
+/obj/item/reagent_containers/glass/bottle/nutrient/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)

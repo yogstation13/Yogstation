@@ -77,7 +77,7 @@
 	charges = 0
 	infinite = FALSE
 	SpinAnimation(1000,1)
-	addtimer(CALLBACK(src, .proc/do_time_jump_return), 50)
+	addtimer(CALLBACK(src, PROC_REF(do_time_jump_return)), 50)
 
 /obj/item/shoe_protector/proc/do_time_jump_return()
 	playsound(src.loc, 'sound/effects/empulse.ogg', 100, 1)

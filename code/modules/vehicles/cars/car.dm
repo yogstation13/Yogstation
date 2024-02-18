@@ -8,7 +8,7 @@
 	var/engine_sound_length = 20 //Set this to the length of the engine sound
 	var/escape_time = 60 //Time it takes to break out of the car
 
-/obj/vehicle/sealed/car/Initialize()
+/obj/vehicle/sealed/car/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = movedelay
@@ -80,7 +80,7 @@
 	if(occupant_amount() >= max_occupants)
 		return FALSE
 	var/atom/old_loc = loc
-	if(do_mob(forcer, M, get_enter_delay(M), extra_checks=CALLBACK(src, /obj/vehicle/sealed/car/proc/is_car_stationary, old_loc)))
+	if(do_after(forcer, get_enter_delay(M), M, extra_checks=CALLBACK(src, /obj/vehicle/sealed/car/proc/is_car_stationary, old_loc)))
 		mob_forced_enter(M, silent)
 		return TRUE
 	return FALSE

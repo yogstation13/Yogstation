@@ -45,7 +45,7 @@
 
 /obj/effect/projectile/tracer/plasma_cutter
 	name = "plasma blast"
-	icon_state = "plasmacutter"
+	icon_state = "beam_purple"
 
 /obj/effect/projectile/tracer/stun
 	name = "stun beam"

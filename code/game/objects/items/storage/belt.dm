@@ -17,17 +17,16 @@
 	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
-/obj/item/storage/belt/update_icon()
-	cut_overlays()
+/obj/item/storage/belt/update_overlays()
+	. = ..()
 	if(content_overlays)
 		for(var/obj/item/I in contents)
 			var/mutable_appearance/M = I.get_belt_overlay()
-			add_overlay(M)
-	..()
+			. += M
 
-/obj/item/storage/belt/Initialize()
+/obj/item/storage/belt/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/utility
 	name = "toolbelt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
@@ -39,7 +38,7 @@
 	drop_sound = 'sound/items/handling/toolbelt_drop.ogg'
 	pickup_sound =  'sound/items/handling/toolbelt_pickup.ogg'
 
-/obj/item/storage/belt/utility/ComponentInitialize()
+/obj/item/storage/belt/utility/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 11
@@ -69,7 +68,7 @@
 		/obj/item/construction/rcd,
 		/obj/item/pipe_dispenser,
 		/obj/item/inducer,
-		/obj/item/holosign_creator/multi/CE,
+		/obj/item/holosign_creator/multi/chief_engineer,
 		/obj/item/airlock_painter,
 		/obj/item/grenade/chem_grenade/smart_metal_foam,
 		/obj/item/grenade/chem_grenade/metalfoam,
@@ -77,8 +76,22 @@
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
 		/obj/item/shuttle_creator, //Yogs: Added this here cause I felt it fits
-		/obj/item/barrier_taperoll/engineering
-		))
+		/obj/item/barrier_taperoll/engineering,
+		/obj/item/storage/bag/sheetsnatcher,
+		/obj/item/holotool,
+	))
+
+/obj/item/storage/belt/utility/makeshift
+	name = "makeshift toolbelt"
+	desc = "A shoddy holder of tools."
+	icon_state = "makeshiftbelt"
+	item_state = "makeshiftutility"
+
+/obj/item/storage/belt/utility/makeshift/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7 //It's a very crappy belt
+	STR.max_combined_w_class = 16
 
 /obj/item/storage/belt/utility/chief
 	name = "\improper Chief Engineer's toolbelt" //"the Chief Engineer's toolbelt", because "Chief Engineer's toolbelt" is not a proper noun
@@ -86,65 +99,132 @@
 	icon_state = "utilitybelt_ce"
 	item_state = "utility_ce"
 
+/obj/item/storage/belt/utility/chief/full
+	preload = TRUE
+
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
-	new /obj/item/handdrill(src)
-	new /obj/item/jawsoflife(src)
-	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
-	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
-	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
-	new /obj/item/extinguisher/mini(src)
-	new /obj/item/holosign_creator/multi/CE(src)
+	SSwardrobe.provide_type(/obj/item/handdrill, src)
+	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much //It's been 5 years
+	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
+	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
+	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
+	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/chief_engineer, src)
 	//much roomier now that we've managed to remove two tools
 
+/obj/item/storage/belt/utility/chief/full/ert
+	name = "advanced nanotrasen toolbelt"
+	desc = "Full of top of the line tools for all of your engineering needs."
+
+/obj/item/storage/belt/utility/chief/full/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/handdrill
+	to_preload += /obj/item/jawsoflife
+	to_preload += /obj/item/weldingtool/experimental
+	to_preload += /obj/item/multitool/tricorder
+	to_preload += /obj/item/stack/cable_coil
+	to_preload += /obj/item/extinguisher/mini
+	to_preload += /obj/item/holosign_creator/multi/chief_engineer
+	return to_preload
+
+/obj/item/storage/belt/utility/chief/admin/full
+	preload = FALSE
+
 /obj/item/storage/belt/utility/chief/admin/full/PopulateContents()
-	new /obj/item/construction/rcd/combat/admin(src)
-	new /obj/item/pipe_dispenser(src)
-	new /obj/item/shuttle_creator/admin(src)
-	new /obj/item/handdrill(src)
-	new /obj/item/jawsoflife(src)
-	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
-	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
-	new /obj/item/storage/bag/construction/admin/full(src)
-	new /obj/item/extinguisher/mini(src)
-	new /obj/item/holosign_creator/multi/CE(src)
+	SSwardrobe.provide_type(/obj/item/construction/rcd/combat/admin, src)
+	SSwardrobe.provide_type(/obj/item/pipe_dispenser, src)
+	SSwardrobe.provide_type(/obj/item/shuttle_creator/admin, src)
+	SSwardrobe.provide_type(/obj/item/handdrill, src)
+	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much
+	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
+	SSwardrobe.provide_type(/obj/item/storage/bag/construction/admin/full, src)
+	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
+	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/chief_engineer, src)
 
 /obj/item/storage/belt/utility/full/PopulateContents()
-	new /obj/item/screwdriver(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/wirecutters(src)
-	new /obj/item/multitool(src)
-	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
+	SSwardrobe.provide_type(/obj/item/screwdriver, src)
+	SSwardrobe.provide_type(/obj/item/wrench, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool, src)
+	SSwardrobe.provide_type(/obj/item/crowbar, src)
+	SSwardrobe.provide_type(/obj/item/wirecutters, src)
+	SSwardrobe.provide_type(/obj/item/multitool, src)
+	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
+
+/obj/item/storage/belt/utility/full/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/screwdriver
+	to_preload += /obj/item/wrench
+	to_preload += /obj/item/weldingtool
+	to_preload += /obj/item/crowbar
+	to_preload += /obj/item/wirecutters
+	to_preload += /obj/item/multitool
+	to_preload += /obj/item/stack/cable_coil
+	return to_preload
 
 /obj/item/storage/belt/utility/full/engi/PopulateContents()
-	new /obj/item/screwdriver(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool/largetank(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/wirecutters(src)
-	new /obj/item/multitool(src)
-	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
-	new /obj/item/barrier_taperoll/engineering(src)
+	SSwardrobe.provide_type(/obj/item/screwdriver, src)
+	SSwardrobe.provide_type(/obj/item/wrench, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool/largetank, src)
+	SSwardrobe.provide_type(/obj/item/crowbar, src)
+	SSwardrobe.provide_type(/obj/item/wirecutters, src)
+	SSwardrobe.provide_type(/obj/item/multitool, src)
+	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/engineering, src)
+
+/obj/item/storage/belt/utility/full/engi/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/screwdriver
+	to_preload += /obj/item/wrench
+	to_preload += /obj/item/weldingtool/largetank
+	to_preload += /obj/item/crowbar
+	to_preload += /obj/item/wirecutters
+	to_preload += /obj/item/multitool
+	to_preload += /obj/item/stack/cable_coil
+	to_preload += /obj/item/barrier_taperoll/engineering
+	return to_preload
 
 /obj/item/storage/belt/utility/atmostech/PopulateContents()
-	new /obj/item/screwdriver(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/wirecutters(src)
-	new /obj/item/t_scanner(src)
-	new /obj/item/extinguisher/mini(src)
-	new /obj/item/barrier_taperoll/engineering()
+	SSwardrobe.provide_type(/obj/item/screwdriver, src)
+	SSwardrobe.provide_type(/obj/item/wrench, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool, src)
+	SSwardrobe.provide_type(/obj/item/crowbar, src)
+	SSwardrobe.provide_type(/obj/item/wirecutters, src)
+	SSwardrobe.provide_type(/obj/item/t_scanner, src)
+	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/engineering, src)
+
+/obj/item/storage/belt/utility/atmostech/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/screwdriver
+	to_preload += /obj/item/wrench
+	to_preload += /obj/item/weldingtool
+	to_preload += /obj/item/crowbar
+	to_preload += /obj/item/wirecutters
+	to_preload += /obj/item/t_scanner
+	to_preload += /obj/item/extinguisher/mini
+	to_preload += /obj/item/barrier_taperoll/engineering
+	return to_preload
 
 /obj/item/storage/belt/utility/servant/PopulateContents()
-	new /obj/item/screwdriver/brass(src)
-	new /obj/item/wirecutters/brass(src)
-	new /obj/item/wrench/brass(src)
-	new /obj/item/crowbar/brass(src)
-	new /obj/item/weldingtool/experimental/brass(src)
-	new /obj/item/multitool(src)
-	new /obj/item/stack/cable_coil(src, MAXCOIL, "yellow")
+	SSwardrobe.provide_type(/obj/item/screwdriver/brass, src)
+	SSwardrobe.provide_type(/obj/item/wirecutters/brass, src)
+	SSwardrobe.provide_type(/obj/item/wrench/brass, src)
+	SSwardrobe.provide_type(/obj/item/crowbar/brass, src)
+	SSwardrobe.provide_type(/obj/item/weldingtool/experimental/brass, src)
+	SSwardrobe.provide_type(/obj/item/multitool, src)
+	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
+
+/obj/item/storage/belt/utility/servant/get_types_to_preload()
+	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	to_preload += /obj/item/screwdriver/brass
+	to_preload += /obj/item/wirecutters/brass
+	to_preload += /obj/item/wrench/brass
+	to_preload += /obj/item/crowbar/brass
+	to_preload += /obj/item/weldingtool/experimental/brass
+	to_preload += /obj/item/multitool
+	to_preload += /obj/item/stack/cable_coil
+	return to_preload
 
 /obj/item/storage/belt/medical
 	name = "medical belt"
@@ -153,7 +233,7 @@
 	item_state = "medical"
 	content_overlays = TRUE
 
-/obj/item/storage/belt/medical/ComponentInitialize()
+/obj/item/storage/belt/medical/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_BULKY
@@ -169,12 +249,13 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/medspray,
 		/obj/item/lighter,
-		/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/extinguisher/mini,
-		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/autoinjector,
+		/obj/item/hypospray,
 		/obj/item/sensor_device,
 		/obj/item/radio,
 		/obj/item/clothing/gloves/,
@@ -183,7 +264,6 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/breath/medical,
-		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
@@ -205,7 +285,8 @@
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
 		/obj/item/stack/medical/bone_gel,
-		/obj/item/holosign_creator/medical
+		/obj/item/holosign_creator/medical,
+		/obj/item/holosign_creator/firstaid
 		))
 
 /obj/item/storage/belt/medical/chief
@@ -215,13 +296,12 @@
 	item_state = "medical_cmo"
 
 /obj/item/storage/belt/medical/chief/full/PopulateContents()
-	new /obj/item/surgical_drapes(src)
-	new /obj/item/scalpel/advanced(src)
-	new /obj/item/retractor/advanced(src)
-	new /obj/item/cautery/advanced(src)
-	new /obj/item/pinpointer/crew(src)
-	new /obj/item/sensor_device(src)
-	new /obj/item/healthanalyzer/advanced(src)
+	SSwardrobe.provide_type(/obj/item/scalpel/advanced, src)
+	SSwardrobe.provide_type(/obj/item/retractor/advanced, src)
+	SSwardrobe.provide_type(/obj/item/cautery/advanced, src)
+	SSwardrobe.provide_type(/obj/item/pinpointer/crew, src)
+	SSwardrobe.provide_type(/obj/item/sensor_device, src)
+	SSwardrobe.provide_type(/obj/item/healthanalyzer/advanced, src)
 
 /obj/item/storage/belt/security
 	name = "security belt"
@@ -231,7 +311,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	content_overlays = TRUE
 
-/obj/item/storage/belt/security/ComponentInitialize()
+/obj/item/storage/belt/security/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -256,21 +336,23 @@
 		/obj/item/flashlight/seclite,
 		/obj/item/melee/classic_baton/telescopic,
 		/obj/item/radio,
+		/obj/item/pinpointer/tracker,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
+		/obj/item/gun/ballistic/revolver/tracking,
 		/obj/item/holosign_creator/security,
 		/obj/item/shield/riot/tele,
 		/obj/item/barrier_taperoll/police
 		))
 
 /obj/item/storage/belt/security/full/PopulateContents()
-	new /obj/item/reagent_containers/spray/pepper(src)
-	new /obj/item/restraints/handcuffs(src)
-	new /obj/item/grenade/flashbang(src)
-	new /obj/item/assembly/flash/handheld(src)
-	new /obj/item/melee/baton/loaded(src)
-	new /obj/item/barrier_taperoll/police(src)
-	update_icon()
+	SSwardrobe.provide_type(/obj/item/reagent_containers/spray/pepper, src)
+	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
+	SSwardrobe.provide_type(/obj/item/grenade/flashbang, src)
+	SSwardrobe.provide_type(/obj/item/assembly/flash/handheld, src)
+	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/security/chief
 	name = "\improper Head of Security's toolbelt"
@@ -278,21 +360,21 @@
 	icon_state = "securitybelt_hos"
 	item_state = "security_hos"
 
-/obj/item/storage/belt/security/chief/ComponentInitialize()
+/obj/item/storage/belt/security/chief/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
 	STR.max_combined_w_class = 21
 
 /obj/item/storage/belt/security/chief/full/PopulateContents()
-	new /obj/item/reagent_containers/spray/pepper(src)
-	new /obj/item/restraints/handcuffs(src)
-	new /obj/item/grenade/flashbang(src)
-	new /obj/item/assembly/flash/handheld(src)
-	new /obj/item/melee/baton/loaded(src)
-	new /obj/item/barrier_taperoll/police(src)
-	new /obj/item/shield/riot/tele(src)
-	update_icon()
+	SSwardrobe.provide_type(/obj/item/reagent_containers/spray/pepper, src)
+	SSwardrobe.provide_type(/obj/item/restraints/handcuffs, src)
+	SSwardrobe.provide_type(/obj/item/grenade/flashbang, src)
+	SSwardrobe.provide_type(/obj/item/assembly/flash/handheld, src)
+	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
+	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
+	SSwardrobe.provide_type(/obj/item/shield/riot/tele, src)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/security/webbing
 	name = "security webbing"
@@ -302,7 +384,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	custom_premium_price = 200
 
-/obj/item/storage/belt/security/webbing/ComponentInitialize()
+/obj/item/storage/belt/security/webbing/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -314,7 +396,7 @@
 	icon_state = "explorer1"
 	item_state = "explorer1"
 
-/obj/item/storage/belt/mining/ComponentInitialize()
+/obj/item/storage/belt/mining/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 8
@@ -341,11 +423,11 @@
 		/obj/item/stack/sheet/sinew,
 		/obj/item/stack/sheet/bone,
 		/obj/item/lighter,
-		/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/fancy/cigarettes,
 		/obj/item/reagent_containers/food/drinks/bottle,
 		/obj/item/stack/medical,
 		/obj/item/kitchen/knife,
-		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/autoinjector,
 		/obj/item/lazarus_injector,
 		/obj/item/gps,
 		/obj/item/storage/bag/ore,
@@ -363,12 +445,18 @@
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
-		/obj/item/restraints/legcuffs/bola/watcher
+		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/stack/sheet/mineral,
+		/obj/item/grenade/plastic/miningcharge,
+		/obj/item/gem
 		))
 
 
 /obj/item/storage/belt/mining/vendor
-	contents = newlist(/obj/item/survivalcapsule)
+	contents = newlist(/obj/item/survivalcapsule,
+	/obj/item/grenade/plastic/miningcharge/lesser,
+	/obj/item/grenade/plastic/miningcharge/lesser,
+	/obj/item/grenade/plastic/miningcharge/lesser,)
 
 /obj/item/storage/belt/mining/alt
 	icon_state = "explorer2"
@@ -380,7 +468,7 @@
 	icon_state = "ebelt"
 	item_state = "ebelt"
 
-/obj/item/storage/belt/mining/primitive/ComponentInitialize()
+/obj/item/storage/belt/mining/primitive/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -391,7 +479,7 @@
 	icon_state = "soulstonebelt"
 	item_state = "soulstonebelt"
 
-/obj/item/storage/belt/soulstone/ComponentInitialize()
+/obj/item/storage/belt/soulstone/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -414,7 +502,7 @@
 	item_state = "champion"
 	materials = list(/datum/material/gold=400)
 
-/obj/item/storage/belt/champion/ComponentInitialize()
+/obj/item/storage/belt/champion/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
@@ -429,7 +517,7 @@
 	item_state = "militarywebbing"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/storage/belt/military/ComponentInitialize()
+/obj/item/storage/belt/military/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -437,12 +525,12 @@
 /obj/item/storage/belt/military/snack
 	name = "tactical snack rig"
 
-/obj/item/storage/belt/military/snack/Initialize()
+/obj/item/storage/belt/military/snack/Initialize(mapload)
 	. = ..()
 	var/sponsor = pick("DonkCo", "Waffle Co.", "Roffle Co.", "Gorlax Marauders", "Tiger Cooperative")
 	desc = "A set of snack-tical webbing worn by athletes of the [sponsor] VR sports division."
 
-/obj/item/storage/belt/military/snack/ComponentInitialize()
+/obj/item/storage/belt/military/snack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -499,7 +587,6 @@
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"white")
 
 /obj/item/storage/belt/military/abductor/scientist/PopulateContents()
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/scalpel/alien(src)
 	new /obj/item/hemostat/alien(src)
 	new /obj/item/retractor/alien(src)
@@ -515,7 +602,7 @@
 	item_state = "security"
 	content_overlays = TRUE // This won't end well
 
-/obj/item/storage/belt/military/snack/ComponentInitialize()
+/obj/item/storage/belt/admin/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1000
@@ -532,12 +619,11 @@
 	new /obj/item/multitool/tricorder(src)
 	new /obj/item/storage/bag/construction/admin/full(src)
 	new /obj/item/extinguisher/mini(src)
-	new /obj/item/holosign_creator/multi/CE(src)
+	new /obj/item/holosign_creator/multi/chief_engineer(src)
 	new /obj/item/restraints/handcuffs/alien(src)
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/melee/baton/loaded(src)
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/scalpel/alien(src)
 	new /obj/item/hemostat/alien(src)
 	new /obj/item/retractor/alien(src)
@@ -566,7 +652,7 @@
 	icon_state = "grenadebeltnew"
 	item_state = "security"
 
-/obj/item/storage/belt/grenade/ComponentInitialize()
+/obj/item/storage/belt/grenade/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 30
@@ -606,7 +692,7 @@
 	icon_state = "soulstonebelt"
 	item_state = "soulstonebelt"
 
-/obj/item/storage/belt/wands/ComponentInitialize()
+/obj/item/storage/belt/wands/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -631,7 +717,7 @@
 	icon_state = "janibelt"
 	item_state = "janibelt"
 
-/obj/item/storage/belt/janitor/ComponentInitialize()
+/obj/item/storage/belt/janitor/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -648,7 +734,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/melee/flyswatter,
 		/obj/item/assembly/mousetrap,
-		/obj/item/paint/paint_remover
+		/obj/item/paint/paint_remover,
 		))
 
 /obj/item/storage/belt/janitor/full/PopulateContents()
@@ -660,19 +746,30 @@
 
 /obj/item/storage/belt/bandolier
 	name = "bandolier"
-	desc = "A bandolier for holding shotgun ammunition."
+	desc = "A bandolier for holding ballistic ammunition."
 	icon_state = "bandolier"
 	item_state = "bandolier"
 
-/obj/item/storage/belt/bandolier/ComponentInitialize()
+/obj/item/storage/belt/bandolier/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 24
 	STR.max_combined_w_class = 24
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
-		/obj/item/ammo_casing/shotgun
+		//Can hold just about every ballistic bullet type
+		/obj/item/ammo_casing
+		), list(
+		//Can't hold arrows, rockets, and the like (but it can hold foam darts!)
+		/obj/item/ammo_casing/caseless,
+		/obj/item/ammo_casing/reusable/arrow
 		))
+
+/obj/item/storage/belt/bandolier/sharpshooter/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_casing/m308 = 24
+	)
+	generate_items_inside(items_inside, src)
 
 /obj/item/storage/belt/holster
 	name = "shoulder holster"
@@ -682,7 +779,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	alternate_worn_layer = UNDER_SUIT_LAYER
 
-/obj/item/storage/belt/holster/ComponentInitialize()
+/obj/item/storage/belt/holster/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
@@ -697,45 +794,301 @@
 /obj/item/storage/belt/holster/full/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/gun/ballistic/revolver/detective = 1,
-		/obj/item/ammo_box/c38 = 2)
+		/obj/item/ammo_box/c38/rubber = 2)
 	generate_items_inside(items_inside, src)
+
+/obj/item/storage/belt/holster/syndicate
+	name = "syndicate shoulder holster"
+	desc = "A modified holster that can carry more than enough firepower."
+
+/obj/item/storage/belt/holster/syndicate/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 4
 
 /obj/item/storage/belt/quiver
 	name = "leather quiver"
 	desc = "A quiver made from the hide of some animal. Used to hold arrows."
 	icon_state = "quiver"
 	item_state = "quiver"
+	content_overlays = TRUE
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 
-/obj/item/storage/belt/quiver/ComponentInitialize()
+/obj/item/storage/belt/quiver/update_icon(updates=ALL)
+	. = ..()
+	if(content_overlays && ismob(loc))
+		var/mob/M = loc
+		M.update_inv_belt()
+		M.update_inv_back()
+
+/obj/item/storage/belt/quiver/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null)
+	if(!override_state && !isinhands && !(locate(/obj/item/ammo_casing/reusable/arrow) in contents))
+		override_state = "[icon_state]_empty"
+	return ..()
+
+/obj/item/storage/belt/quiver/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 15
+	STR.max_items = 20
+	STR.max_combined_w_class = 20
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
-		/obj/item/ammo_casing/caseless/arrow,
+		/obj/item/ammo_casing/caseless/bolts,
+		/obj/item/ammo_casing/reusable/arrow,
 		/obj/item/stand_arrow,
 		/obj/item/throwing_star/magspear
 		))
 
-/obj/item/storage/belt/quiver/ashwalker/PopulateContents()
+/obj/item/storage/belt/quiver/full/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/ammo_casing/caseless/arrow/bone(src)
+		new /obj/item/ammo_casing/reusable/arrow(src)
+
+/obj/item/storage/belt/quiver/unlimited
+	name = "quiver of unlimited arrows"
+	desc = "Gives +1 to holding arrows. Also contains unlimited arrows."
+	var/new_arrow_type = /obj/item/ammo_casing/reusable/arrow
+
+/obj/item/storage/belt/quiver/unlimited/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(check_arrow_refresh))
+
+/obj/item/storage/belt/quiver/unlimited/PopulateContents()
+	new new_arrow_type(src)
+
+/obj/item/storage/belt/quiver/unlimited/proc/check_arrow_refresh()
+	var/list/inv = list()
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_RETURN_INVENTORY, inv)
+	for(var/item in inv)
+		if(istype(item, new_arrow_type))
+			return
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, new new_arrow_type(), null, TRUE, TRUE)
+	playsound(src, 'sound/magic/blink.ogg', 10, 1)
+
+/obj/item/storage/belt/quiver/returning
+	name = "quiver of returning"
+	desc = "A quiver that uses magic to return arrows after a few seconds of them being removed. The arrow doesn't return if the wearer is holding it still."
+	/// The type that are returned to this quiver after being fired
+	var/return_type = /obj/item/ammo_casing/reusable/arrow
+	/// The time it takes for an arrow to return
+	var/return_time = 5 SECONDS
+	/// If the return is blocked by anti-magic
+	var/check_for_antimagic = TRUE
+
+/obj/item/storage/belt/quiver/returning/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(mark_arrow_return))
+
+/obj/item/storage/belt/quiver/returning/proc/mark_arrow_return(target, atom/movable/AM, atom/new_location)
+	if(!istype(AM, return_type))
+		return
+	addtimer(CALLBACK(src, PROC_REF(check_arrow_return), AM), return_time)
+
+/obj/item/storage/belt/quiver/returning/proc/check_arrow_return(atom/movable/arrow)
+	if(!istype(arrow, return_type) || arrow.loc == src || (ismob(loc) && (loc == arrow.loc) || (istype(arrow.loc) && loc == arrow.loc.loc)))
+		return
+	if(ismob(arrow.loc))
+		var/mob/arrow_holder = arrow.loc
+		if(check_for_antimagic && arrow_holder.can_block_magic(charge_cost = 0))
+			to_chat(arrow_holder, span_notice("You feel [arrow] tugging on you."))
+			return
+		var/mob/living/carbon/carbon = arrow.loc
+
+		if(iscarbon(carbon))
+			var/obj/item/bodypart/part = carbon.get_embedded_part(arrow)
+			if(part)
+				if(!carbon.remove_embedded_object(src, unsafe = TRUE))
+					to_chat(carbon, span_notice("You feel [arrow] tugging on you."))
+					return
+				to_chat(carbon, span_userdanger("[arrow] suddenly rips out of you!"))
+	else if(istype(arrow.loc, /obj/item/ammo_box))
+		var/obj/item/ammo_box/box = arrow.loc
+		box.stored_ammo -= arrow
+		if(istype(box.loc, /obj/item/gun/ballistic/bow))
+			var/obj/item/gun/ballistic/bow/bow = box.loc
+			if(bow.chambered == arrow)
+				bow.chambered = null
+			bow.update_slowdown()
+			bow.update_appearance(UPDATE_ICON)
+
+	if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, arrow, null, TRUE, TRUE))
+		return
+
+	if(ismob(loc))
+		to_chat(loc, span_notice("[arrow] suddenly returns to your [src]!"))
+	playsound(src, 'sound/magic/blink.ogg', 10, 1)
+
+/obj/item/storage/belt/quiver/returning/bone
+	name = "ash-covered quiver"
+	desc = "A quiver caked in ash, it seems to have a magical aura."
+	icon_state = "quiver_weaver"
+	item_state = "quiver_weaver"
+	resistance_flags = FIRE_PROOF
+	return_type = /obj/item/ammo_casing/reusable/arrow/bone
+
+/obj/item/storage/belt/quiver/returning/bone/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/reusable/arrow/bone(src)
+
+/obj/item/storage/belt/quiver/returning/holding
+	name = "quiver of holding"
+	desc = "The pinnacle of conventional archery technology, can store a vast amount of arrows and return those removed after a short while using bluespace micro tags and short-ranged teleportation. Probably safe."
+	icon_state = "quiver_holding"
+	item_state = "quiver_holding"
+	content_overlays = FALSE // The arrows are stored in the quiver, so none of it hangs out
+	check_for_antimagic = FALSE
+
+/obj/item/storage/belt/quiver/returning/holding/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 50
+	STR.max_combined_w_class = 50
+
+/obj/item/storage/belt/quiver/anomaly
+	name = "anomaly quiver"
+	desc = "A specialized quiver with an empty slot for an anomaly core to give it a special function."
+	icon_state = "quiver_anomaly_empty"
+	item_state = "quiver_anomaly_empty"
+
+/obj/item/storage/belt/quiver/anomaly/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 10	// Less space for arrows due to all the parts inside
+	STR.max_combined_w_class = 10
+
+/obj/item/storage/belt/quiver/anomaly/attackby(obj/item/I, mob/user, params)
+	..()
+	var/static/list/anomaly_quiver_types = list(
+		/obj/effect/anomaly/grav = /obj/item/storage/belt/quiver/anomaly/vacuum,
+		/obj/effect/anomaly/pyro = /obj/item/storage/belt/quiver/anomaly/pyro,
+		/obj/effect/anomaly/bluespace = /obj/item/storage/belt/quiver/returning/holding,
+	)
+
+	if(istype(I, /obj/item/assembly/signaler/anomaly))
+		var/obj/item/assembly/signaler/anomaly/A = I
+		var/quiver_path = anomaly_quiver_types[A.anomaly_type]
+		if(!quiver_path)
+			to_chat(user, span_warning("[A] can't be used in \the [src]."))
+			return
+		var/list/inv = list()
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_RETURN_INVENTORY, inv)
+		if(inv.len) // Want to tell them after so that they don't empty the quiver just to find out they can't use the core
+			to_chat(user, span_warning("You need to empty [src] before [A] can be inserted."))
+			return
+		to_chat(user, span_notice("You insert [A] into \the [src], and it gently hums to life."))
+		new quiver_path(get_turf(src))
+		qdel(src)
+		qdel(A)
+
+/obj/item/storage/belt/quiver/anomaly/vacuum
+	name = "vacuum quiver"
+	desc = "A specialized quiver with a gravitational anomaly core inside, sucking in arrows towards the user and pulling them inside."
+	icon_state = "quiver_anomaly"
+	item_state = "quiver_anomaly"
+
+/obj/item/storage/belt/quiver/anomaly/vacuum/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/storage/belt/quiver/anomaly/vacuum/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/storage/belt/quiver/anomaly/vacuum/process(delta_time)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	var/turf/T = loc ? get_turf(loc) : get_turf(src)
+	var/processed = 0
+	for(var/thing in T)
+		if(processed > 50) // So we dont kill the server with tons of items
+			return
+		var/obj/I = thing
+		if(I && SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, I))
+			++processed
+	
+	for(var/thing in orange(5, src))
+		if(processed > 50)
+			return
+		var/obj/I = thing
+		if(I && STR.can_be_inserted(I))
+			step_towards(I, T)
+			++processed
+
+/obj/item/storage/belt/quiver/anomaly/pyro
+	name = "incendiary quiver"
+	desc = "A specialized quiver with a pyroclastic anomaly core inside, igniting arrows when the user removes them."
+	icon_state = "quiver_anomaly"
+	item_state = "quiver_anomaly"
+	/// Time after igniting an arrow for it to allow you to light another
+	var/ignite_cooldown = 1 SECONDS
+
+/obj/item/storage/belt/quiver/anomaly/pyro/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(ignite_arrow))
+
+/obj/item/storage/belt/quiver/anomaly/pyro/proc/ignite_arrow(target, obj/item/ammo_casing/reusable/arrow/arrow, atom/new_location)
+	if(!istype(arrow) || arrow.flaming || TIMER_COOLDOWN_CHECK(src, ignite_cooldown))
+		return
+	TIMER_COOLDOWN_START(src, "ignite_cooldown", ignite_cooldown)
+	arrow.add_flame()
+	visible_message(span_notice("\The [src] ignites \the [arrow]."))
+
+/obj/item/storage/belt/quiver/anomaly/pyro/emp_act(severity)
+	. = ..()
+	if((. & EMP_PROTECT_SELF) || TIMER_COOLDOWN_CHECK(src, ignite_cooldown))
+		return
+	TIMER_COOLDOWN_START(src, "ignite_cooldown", ignite_cooldown)
+	visible_message(span_danger("\The [src] backfires and spews fire!"))
+	fire_act()
+	if(istype(loc))
+		loc.fire_act()
+
+/obj/item/storage/belt/quiver/weaver
+	name = "weaver chitin quiver"
+	desc = "A fireproof quiver made from the chitin of a marrow weaver. Used to hold arrows."
+	icon_state = "quiver_weaver"
+	item_state = "quiver_weaver"
+	resistance_flags = FIRE_PROOF
+
+/obj/item/storage/belt/quiver/weaver/ashwalker/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/reusable/arrow/bone(src)
 
 /obj/item/storage/belt/quiver/admin
+	name = "admin quiver"
+	content_overlays = FALSE
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/storage/belt/quiver/admin/ComponentInitialize()
+/obj/item/storage/belt/quiver/admin/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 100
 	STR.max_items = 100
 
 /obj/item/storage/belt/quiver/admin/full/PopulateContents()
-	for(var/arrow in typesof(/obj/item/ammo_casing/caseless/arrow))
-		if(istype(arrow, /obj/item/ammo_casing/caseless/arrow/energy))
+	for(var/arrow in typesof(/obj/item/ammo_casing/reusable/arrow))
+		if(ispath(arrow, /obj/item/ammo_casing/reusable/arrow/energy))
 			continue
 		for(var/i in 1 to 10)
 			new arrow(src)
+
+/obj/item/storage/belt/quiver/blue
+	name = "toy blue quiver"
+	desc = "A quiver that holds toy arrows that look suspiciously like the pulse arrows fabricated by certain hardlight bows."
+	icon_state = "quiver_blue"
+	item_state = "quiver_blue"
+
+/obj/item/storage/belt/quiver/blue/full/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/reusable/arrow/toy/pulse(src)
+
+/obj/item/storage/belt/quiver/red
+	name = "toy red quiver"
+	desc = "A strange quiver filled with toy energy arrows, meant to be used in games of pretend."
+	icon_state = "quiver_red"
+	item_state = "quiver_red"
+
+/obj/item/storage/belt/quiver/red/full/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/reusable/arrow/toy/energy(src)
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"
@@ -745,7 +1098,7 @@
 	dying_key = DYE_REGISTRY_FANNYPACK
 	custom_price = 15
 
-/obj/item/storage/belt/fannypack/ComponentInitialize()
+/obj/item/storage/belt/fannypack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
@@ -807,7 +1160,7 @@
 	icon_state = "sheath"
 	item_state = "sheath"
 
-/obj/item/storage/belt/sabre/ComponentInitialize()
+/obj/item/storage/belt/sabre/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
@@ -829,11 +1182,12 @@
 		var/obj/item/I = contents[1]
 		user.visible_message("[user] takes [I] out of [src].", span_notice("You take [I] out of [src]."))
 		user.put_in_hands(I)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, "[src] is empty.")
 
-/obj/item/storage/belt/sabre/update_icon()
+/obj/item/storage/belt/sabre/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "sheath"
 	item_state = "sheath"
 	if(contents.len)
@@ -842,11 +1196,10 @@
 	if(loc && isliving(loc))
 		var/mob/living/L = loc
 		L.regenerate_icons()
-	..()
 
 /obj/item/storage/belt/sabre/PopulateContents()
 	new /obj/item/melee/sabre(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/multi
 	name = "multi-belt"

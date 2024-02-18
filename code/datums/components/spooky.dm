@@ -2,15 +2,15 @@
 	var/too_spooky = TRUE //will it spawn a new instrument?
 
 /datum/component/spooky/Initialize()
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/spectral_attack)
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(spectral_attack))
 
 /datum/component/spooky/proc/spectral_attack(datum/source, mob/living/carbon/C, mob/user)
 	if(ishuman(user)) //this weapon wasn't meant for mortals.
 		var/mob/living/carbon/human/U = user
 		if(!istype(U.dna.species, /datum/species/skeleton))
 			U.adjustStaminaLoss(35) //Extra Damage
-			U.Jitter(35)
-			U.stuttering = 20
+			U.adjust_jitter(35 SECONDS)
+			U.adjust_stutter(20 SECONDS)
 			if(U.getStaminaLoss() > 95)
 				to_chat(U, "<font color ='red', size ='4'><B>Your ears weren't meant for this spectral sound.</B></font>")
 				spectral_change(U)
@@ -23,20 +23,20 @@
 		if(istype(H.dna.species, /datum/species/zombie))
 			H.adjustStaminaLoss(25)
 			H.Paralyze(15) //zombies can't resist the doot
-		C.Jitter(35)
-		C.stuttering = 20
+		C.adjust_jitter(35 SECONDS)
+		C.adjust_stutter(20 SECONDS)
 		if((!istype(H.dna.species, /datum/species/skeleton)) && (!istype(H.dna.species, /datum/species/golem)) && (!istype(H.dna.species, /datum/species/android)) && (!istype(H.dna.species, /datum/species/jelly)))
 			C.adjustStaminaLoss(25) //boneless humanoids don't lose the will to live
 		to_chat(C, "<font color='red' size='4'><B>DOOT</B></font>")
 		spectral_change(H)
 
 	else //the sound will spook monkeys.
-		C.Jitter(15)
-		C.stuttering = 20
+		C.adjust_jitter(15 SECONDS)
+		C.adjust_stutter(20 SECONDS)
 
 /datum/component/spooky/proc/spectral_change(mob/living/carbon/human/H, mob/user)
 	if((H.getStaminaLoss() > 95) && (!istype(H.dna.species, /datum/species/skeleton)) && (!istype(H.dna.species, /datum/species/golem)) && (!istype(H.dna.species, /datum/species/android)) && (!istype(H.dna.species, /datum/species/jelly)))
-		H.Paralyze(20)
+		H.Paralyze(2 SECONDS)
 		H.set_species(/datum/species/skeleton)
 		H.visible_message(span_warning("[H] has given up on life as a mortal."))
 		var/T = get_turf(H)

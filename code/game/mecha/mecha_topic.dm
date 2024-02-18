@@ -75,6 +75,14 @@
 	var/tank_pressure = 0
 	var/tank_temperature = 0
 	var/cabin_pressure = 0
+	var/datum/gas_mixture/env_air = 0
+	var/environment_pressure = 0
+	var/environment_temperature = 0
+	var/turf/T = get_turf(src)
+	if (T)
+		env_air = T.return_air()
+		environment_pressure = round(env_air.return_pressure(),0.01)
+		environment_temperature = env_air.return_temperature()
 	if (internal_tank)
 		int_tank_air = internal_tank.return_air()
 		tank_pressure = internal_tank ? round(int_tank_air.return_pressure(),0.01) : "None"
@@ -89,9 +97,11 @@
 						<b>Airtank temperature: </b>[internal_tank?"[tank_temperature]&deg;K|[tank_temperature - T0C]&deg;C":"N/A"]<br>
 						<b>Cabin pressure: </b>[internal_tank?"[cabin_pressure>WARNING_HIGH_PRESSURE ? span_danger("[cabin_pressure]"): cabin_pressure]kPa":"N/A"]<br>
 						<b>Cabin temperature: </b> [internal_tank?"[return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C":"N/A"]<br>
+						<b>Environment pressure: </b>[environment_pressure>WARNING_HIGH_PRESSURE ? span_danger("[environment_pressure]"): environment_pressure]kPa<br>
+						<b>Environment temperature: </b> [environment_temperature]&deg;K|[environment_temperature - T0C]&deg;C<br>
 						[dna_lock?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna_lock]</span> \[<a href='?src=[REF(src)];reset_dna=1'>Reset</a>\]<br>":""]<br>
 						[thrusters_action.owner ? "<b>Thrusters: </b> [thrusters_active ? "Enabled" : "Disabled"]<br>" : ""]
-						[defense_action.owner ? "<b>Defence Mode: </b> [defence_mode ? "Enabled" : "Disabled"]<br>" : ""]
+						[defence_action.owner ? "<b>Defence Mode: </b> [defence_mode ? "Enabled" : "Disabled"]<br>" : ""]
 						[overload_action.owner ? "<b>Leg Actuators Overload: </b> [leg_overload_mode ? "Enabled" : "Disabled"]<br>" : ""]
 						[smoke_action.owner ? "<b>Smoke: </b> [smoke]<br>" : ""]
 						[zoom_action.owner ? "<b>Zoom: </b> [zoom_mode ? "Enabled" : "Disabled"]<br>" : ""]
@@ -200,6 +210,7 @@
 				[(state == 3) ?"[cell?"<a href='?src=[REF(src)];drop_cell=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop power cell</a>":"No cell installed</br>"]":null]
 				[(state == 3) ?"[scanmod?"<a href='?src=[REF(src)];drop_scanmod=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop scanning module</a>":"No scanning module installed</br>"]":null]
 				[(state == 3) ?"[capacitor?"<a href='?src=[REF(src)];drop_cap=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop capacitor</a>":"No capacitor installed</br>"]":null]
+				[(state == 3) ?"[(silicon_pilot&&occupant)?"<a href='?src=[REF(src)];drop_mmi=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop neural interface</a>":"No neural interface installed</br>"]":null]
 				[(state == 3) ?"--------------------</br>":null]
 				[(state>0) ?"<a href='?src=[REF(src)];set_internal_tank_valve=1;user=[REF(user)]'>Set Cabin Air Pressure</a>":null]
 			</body>
@@ -224,9 +235,15 @@
 
 	if(in_range(src, usr))
 		var/obj/item/card/id/id_card
-		if (href_list["id_card"])
+		if(href_list["id_card"])
 			id_card = locate(href_list["id_card"])
-			if (!istype(id_card))
+			if(!istype(id_card))
+				return
+		
+		var/mob/user
+		if(href_list["user"])
+			user = locate(href_list["user"])
+			if(!istype(user))
 				return
 
 		if(href_list["req_access"] && add_req_access && id_card)
@@ -248,20 +265,28 @@
 
 		if(href_list["drop_cell"])
 			if(state == 3)
-				cell.forceMove(get_turf(src))
+				if(!user.put_in_hands(cell))
+					cell.forceMove(get_turf(user))
 				cell = null
 			output_maintenance_dialog(id_card,usr)
 			return
 		if(href_list["drop_scanmod"])
 			if(state == 3)
-				scanmod.forceMove(get_turf(src))
+				if(!user.put_in_hands(scanmod))
+					scanmod.forceMove(get_turf(user))
 				scanmod = null
 			output_maintenance_dialog(id_card,usr)
 			return
 		if(href_list["drop_cap"])
 			if(state == 3)
-				capacitor.forceMove(get_turf(src))
+				if(!user.put_in_hands(capacitor))
+					capacitor.forceMove(get_turf(user))
 				capacitor = null
+			output_maintenance_dialog(id_card,usr)
+			return
+		if(href_list["drop_mmi"])
+			if(state == 3)
+				remove_mmi(user)
 			output_maintenance_dialog(id_card,usr)
 			return
 
@@ -296,7 +321,11 @@
 	if(href_list["select_equip"])
 		var/obj/item/mecha_parts/mecha_equipment/equip = locate(href_list["select_equip"]) in src
 		if(equip && equip.selectable)
+			if(selected)
+				var/obj/item/mecha_parts/mecha_equipment/unequip = selected	//What we're lowering
+				unequip.on_deselect()
 			selected = equip
+			equip.on_select()
 			occupant_message("You switch to [equip]")
 			visible_message("[src] raises [equip]")
 			send_byjax(usr,"exosuit.browser","eq_list",src.get_equipment_list())

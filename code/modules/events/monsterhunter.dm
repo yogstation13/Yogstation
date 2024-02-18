@@ -35,7 +35,7 @@
 	for(var/mob/living/carbon/human/all_players in shuffle(GLOB.player_list))
 		if(!all_players.client || !all_players.mind || !(ROLE_MONSTERHUNTER in all_players.client.prefs.be_special))
 			continue
-		if(all_players.client.prefs.yogtoggles & QUIET_ROUND)
+		if(all_players.mind.quiet_round)
 			continue
 		if(all_players.stat == DEAD)
 			continue

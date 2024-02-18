@@ -2,6 +2,7 @@
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
 	icon_state = "heart"
+	visual = FALSE
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
 	healing_factor = STANDARD_ORGAN_HEALING
@@ -20,21 +21,22 @@
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
 
-/obj/item/organ/heart/Initialize()
+/obj/item/organ/heart/Initialize(mapload)
 	. = ..()
 	icon_base = icon_state
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/heart/update_icon()
+/obj/item/organ/heart/update_icon_state()
+	. = ..()
 	if(beating)
 		icon_state = "[icon_base]-on"
 	else
-		icon_state = "[icon_base]-off"
+		icon_state = "[icon_base]"
 
 /obj/item/organ/heart/Remove(mob/living/carbon/M, special = 0)
 	..()
 	if(!special)
-		addtimer(CALLBACK(src, .proc/stop_if_unowned), 120)
+		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 120)
 
 /obj/item/organ/heart/proc/stop_if_unowned()
 	if(!owner)
@@ -46,16 +48,16 @@
 		user.visible_message("<span class='notice'>[user] squeezes [src] to \
 			make it beat again!</span>",span_notice("You squeeze [src] to make it beat again!"))
 		Restart()
-		addtimer(CALLBACK(src, .proc/stop_if_unowned), 80)
+		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 80)
 
 /obj/item/organ/heart/proc/Stop()
 	beating = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/organ/heart/proc/Restart()
 	beating = 1
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/organ/heart/prepare_eat()
@@ -71,7 +73,6 @@
 		var/sound/fastbeat = sound('sound/health/fastbeat.ogg', repeat = TRUE)
 		var/mob/living/carbon/H = owner
 
-
 		if(H.health <= H.crit_threshold && beat != BEAT_SLOW)
 			beat = BEAT_SLOW
 			H.playsound_local(get_turf(H), slowbeat,40,0, channel = CHANNEL_HEARTBEAT)
@@ -80,7 +81,7 @@
 			H.stop_sound_channel(CHANNEL_HEARTBEAT)
 			beat = BEAT_NONE
 
-		if(H.jitteriness)
+		if(owner.has_status_effect(/datum/status_effect/jitter))
 			if(H.health > HEALTH_THRESHOLD_FULLCRIT && (!beat || beat == BEAT_SLOW))
 				H.playsound_local(get_turf(H),fastbeat,40,0, channel = CHANNEL_HEARTBEAT)
 				beat = BEAT_FAST
@@ -92,13 +93,22 @@
 		if(damage >= 80 && beating)
 			if(prob(1))
 				if(owner.stat == CONSCIOUS)
-					owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+					if(owner.get_num_arms(FALSE) >= 1) //gotta have an arm to clutch your chest
+						owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+					else
+						owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? " and stares off into space." : "."]")) //ok you also need eyes
 				owner.set_heartattack(TRUE) //yogs end
 	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
-			owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+			if(owner.get_num_arms(FALSE) >= 1)
+				owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+			else
+				owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? " and stares off into space." : "."]"))
 		owner.set_heartattack(TRUE)
 		failed = TRUE
+
+/obj/item/organ/heart/get_availability(datum/species/species)
+	return !(NOBLOOD in species.species_traits)
 
 /obj/item/organ/heart/cursed
 	name = "cursed heart"
@@ -193,7 +203,7 @@
 	fakingit = FALSE
 	return ..()
 
-/obj/item/organ/heart/vampheart/proc/FakeStart()
+/obj/item/organ/heart/vampheart/proc/fake_start_heart()
 	fakingit = TRUE // We're pretending to beat, to fool people.
 
 /// Bloodsuckers don't have a heartbeat at all when stopped (default is "an unstable")
@@ -220,22 +230,29 @@
 	name = "cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart."
 	icon_state = "heart-c"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 2
 	organ_flags = ORGAN_SYNTHETIC
+	var/restartTimer = 10 SECONDS
 
-/obj/item/organ/heart/cybernetic/emp_act()
+/obj/item/organ/heart/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	Stop()
+	if(severity > EMP_LIGHT)
+		Stop()
+		addtimer(CALLBACK(src, PROC_REF(Restart)), restartTimer * min(severity / EMP_HEAVY, 1)) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart. Fitted with a blood synthesizer, it also holds an emergency epinephrine synthesizer that supplies a dosage if the body is critically damaged."
 	icon_state = "heart-c-u"
-	organ_efficiency = 1.5
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 3
 	var/dose_available = TRUE
 	var/rid = /datum/reagent/medicine/epinephrine
 	var/ramount = 10
+	restartTimer = 5 SECONDS //restarts faster
 
 /obj/item/organ/heart/cybernetic/upgraded/on_life()
 	. = ..()
@@ -247,9 +264,15 @@
 	dose_available = FALSE
 	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
 
-/obj/item/organ/heart/cybernetic/upgraded/emp_act()
+/obj/item/organ/heart/cybernetic/ipc
+	desc = "An electronic device that appears to mimic the functions of an organic heart."
+
+/obj/item/organ/heart/cybernetic/ipc/emp_act(severity)
+	if(prob(30))
+		return
 	. = ..()
-	addtimer(CALLBACK(src, .proc/Restart), 8 SECONDS) //Can restart itself after an EMP so it isnt an insta death
+	to_chat(owner, "<span class='warning'>Alert: Cybernetic heart failed one heartbeat</span>")
+	addtimer(CALLBACK(src, PROC_REF(Restart)), severity SECONDS)
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"

@@ -46,6 +46,10 @@
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			. += "The panel is open."
 
+/obj/structure/particle_accelerator/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
+
 /obj/structure/particle_accelerator/Destroy()
 	construction_state = PA_CONSTRUCTION_UNSECURED
 	if(master)
@@ -54,63 +58,55 @@
 		master = null
 	return ..()
 
-/obj/structure/particle_accelerator/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
-
-
 /obj/structure/particle_accelerator/attackby(obj/item/W, mob/user, params)
-	var/did_something = FALSE
-
+	if(user.a_intent == INTENT_HARM)
+		return ..()
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED)
 			if(W.tool_behaviour == TOOL_WRENCH && !isinspace())
-				W.play_tool_sound(src, 75)
-				anchored = TRUE
-				user.visible_message("[user.name] secures the [name] to the floor.", \
-					"You secure the external bolts.")
-				construction_state = PA_CONSTRUCTION_UNWIRED
-				did_something = TRUE
+				if(W.use_tool(src, user, 0.8 SECONDS, volume = 75))
+					anchored = TRUE
+					user.visible_message("[user.name] secures the [name] to the floor.", \
+						"You secure the external bolts.")
+					construction_state = PA_CONSTRUCTION_UNWIRED
+
 		if(PA_CONSTRUCTION_UNWIRED)
 			if(W.tool_behaviour == TOOL_WRENCH)
-				W.play_tool_sound(src, 75)
-				anchored = FALSE
-				user.visible_message("[user.name] detaches the [name] from the floor.", \
-					"You remove the external bolts.")
-				construction_state = PA_CONSTRUCTION_UNSECURED
-				did_something = TRUE
+				if(W.use_tool(src, user, 0.8 SECONDS, volume = 75))
+					anchored = FALSE
+					user.visible_message("[user.name] detaches the [name] from the floor.", \
+						"You remove the external bolts.")
+					construction_state = PA_CONSTRUCTION_UNSECURED
+
 			else if(istype(W, /obj/item/stack/cable_coil))
-				var/obj/item/stack/cable_coil/CC = W
-				if(CC.use(1))
+				if(!W.tool_start_check(user, amount = 1))
+					return
+				to_chat(user, span_notice("You start to add cables to the frame..."))
+				if(W.use_tool(src, user, 0.8 SECONDS, volume = 50, amount = 1))
 					user.visible_message("[user.name] adds wires to the [name].", \
 						"You add some wires.")
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
-					did_something = TRUE
+
 		if(PA_CONSTRUCTION_PANEL_OPEN)
-			if(W.tool_behaviour == TOOL_WIRECUTTER)//TODO:Shock user if its on?
-				user.visible_message("[user.name] removes some wires from the [name].", \
-					"You remove some wires.")
-				construction_state = PA_CONSTRUCTION_UNWIRED
-				did_something = TRUE
+			if(W.tool_behaviour == TOOL_WIRECUTTER)
+				if(W.use_tool(src, user, 0.4 SECONDS, volume = 75))
+					user.visible_message("[user.name] removes some wires from the [name].", \
+						"You remove some wires.")
+					construction_state = PA_CONSTRUCTION_UNWIRED
+
 			else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				user.visible_message("[user.name] closes the [name]'s access panel.", \
 					"You close the access panel.")
 				construction_state = PA_CONSTRUCTION_COMPLETE
-				did_something = TRUE
+
 		if(PA_CONSTRUCTION_COMPLETE)
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				user.visible_message("[user.name] opens the [name]'s access panel.", \
 					"You open the access panel.")
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN
-				did_something = TRUE
 
-	if(did_something)
-		user.changeNext_move(CLICK_CD_MELEE)
-		update_state()
-		update_icon()
-		return
-
-	return ..()
+	update_state()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/particle_accelerator/deconstruct(disassembled = TRUE)
@@ -125,7 +121,8 @@
 		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 
 
-/obj/structure/particle_accelerator/update_icon()
+/obj/structure/particle_accelerator/update_icon_state()
+	. = ..()
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED,PA_CONSTRUCTION_UNWIRED)
 			icon_state="[reference]"

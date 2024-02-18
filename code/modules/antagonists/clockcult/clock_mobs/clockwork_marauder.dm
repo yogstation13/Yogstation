@@ -6,7 +6,7 @@
 	name = "clockwork marauder"
 	desc = "The stalwart apparition of a soldier, blazing with crimson flames. It's armed with a gladius and shield."
 	icon_state = "clockwork_marauder"
-	mob_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_INORGANIC|MOB_HUMANOID
 	health = 150
 	maxHealth = 150
 	force_threshold = 8
@@ -34,7 +34,7 @@
 	if(!shield_health)
 		return span_warning("Its shield has been destroyed!")
 
-/mob/living/simple_animal/hostile/clockwork/marauder/Life()
+/mob/living/simple_animal/hostile/clockwork/marauder/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(!GLOB.ratvar_awakens && health / maxHealth <= MARAUDER_SLOWDOWN_PERCENTAGE)
 		speed = initial(speed) + 1 //Yes, this slows them down
@@ -80,15 +80,15 @@
 				break
 	. = ..()
 
-/mob/living/simple_animal/hostile/clockwork/marauder/bullet_act(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/clockwork/marauder/bullet_act(obj/projectile/P)
 	if(deflect_projectile(P))
 		return BULLET_ACT_BLOCK
 	return ..()
 
-/mob/living/simple_animal/hostile/clockwork/marauder/proc/deflect_projectile(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/clockwork/marauder/proc/deflect_projectile(obj/projectile/P)
 	if(!shield_health)
 		return
-	var/energy_projectile = istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam)
+	var/energy_projectile = istype(P, /obj/projectile/energy) || istype(P, /obj/projectile/beam)
 	visible_message(span_danger("[src] deflects [P] with [p_their()] shield!"), \
 	span_danger("You block [P] with your shield! <i>Blocks left:</i> <b>[shield_health - 1]</b>"))
 	if(energy_projectile)

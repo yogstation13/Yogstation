@@ -9,7 +9,11 @@
 	max_integrity = 200
 	integrity_failure = 100
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 20)
-	var/brightness_on = 1
+	clicksound = "keyboard"
+	light_system = STATIC_LIGHT
+	light_range = 2
+	light_power = 1
+	light_on = TRUE
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
@@ -19,7 +23,7 @@
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	if(mapload)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	power_change()
 	if(!QDELETED(C))
 		qdel(circuit)
@@ -41,7 +45,7 @@
 		icon_screen = "ratvar[rand(1, 4)]"
 		icon_keyboard = "ratvar_key[rand(1, 6)]"
 		icon_state = "ratvarcomputer[rand(1, 4)]"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/narsie_act()
 	if(clockwork && clockwork != initial(clockwork)) //if it's clockwork but isn't normally clockwork
@@ -49,12 +53,10 @@
 		icon_screen = initial(icon_screen)
 		icon_keyboard = initial(icon_keyboard)
 		icon_state = initial(icon_state)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/machinery/computer/update_icon()
-	cut_overlays()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
+/obj/machinery/computer/update_appearance(updates)
+	. = ..()
 	//Prevents fuckery with subtypes that are meant to be pixel shifted or map shifted shit
 	if(pixel_x == 0 && pixel_y == 0)
 		// this bit of code makes the computer hug the wall its next to
@@ -80,27 +82,30 @@
 			if(istype(T, /turf/closed/wall) || W)
 				pixel_x = offet_matrix[1]
 				pixel_y = offet_matrix[2]
-		
+
+
+/obj/machinery/computer/update_overlays()
+	. = ..()
 	if(stat & NOPOWER)
-		add_overlay("[icon_keyboard]_off")
+		. += "[icon_keyboard]_off"
 		return
-	add_overlay(icon_keyboard)
+	. += icon_keyboard
 
 	// This whole block lets screens ignore lighting and be visible even in the darkest room
 	var/overlay_state = icon_screen
 	if(stat & BROKEN)
 		overlay_state = "[icon_state]_broken"
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, plane, dir)
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, EMISSIVE_PLANE, dir)
+	. += mutable_appearance(icon, overlay_state)
+	. += mutable_appearance(icon, overlay_state, layer, EMISSIVE_PLANE)
 
 /obj/machinery/computer/power_change()
 	. = ..()
 	if(!.)
 		return // reduce unneeded light changes
 	if(stat & NOPOWER)
-		set_light(0)
+		set_light_on(FALSE)
 	else
-		set_light(brightness_on)
+		set_light_on(TRUE)
 
 /obj/machinery/computer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
@@ -128,18 +133,14 @@
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
-		set_light(0)
+		set_light_on(FALSE)
 
 /obj/machinery/computer/emp_act(severity)
 	. = ..()
-	if (!(. & EMP_PROTECT_SELF))
-		switch(severity)
-			if(1)
-				if(prob(50))
-					obj_break(ENERGY)
-			if(2)
-				if(prob(10))
-					obj_break(ENERGY)
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(prob(5 * severity))
+		obj_break(ENERGY)
 
 /obj/machinery/computer/deconstruct(disassembled = TRUE, mob/user)
 	on_deconstruction()

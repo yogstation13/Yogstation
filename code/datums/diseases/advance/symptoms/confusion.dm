@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/confusion
 
 	name = "Confusion"
+	icon = "confusion"
 	desc = "The virus interferes with the proper function of the neural system, leading to bouts of confusion and erratic movement."
 	stealth = 1
 	resistance = -1
@@ -57,7 +58,7 @@ Bonus
 				to_chat(M, span_warning("[pick("Your head hurts.", "Your mind blanks for a moment.")]"))
 		else
 			to_chat(M, span_userdanger("You can't think straight!"))
-			M.confused = min(100 * power, M.confused + 8)
+			M.adjust_confusion_up_to(100 * power, 800 * power)
 			if(brain_damage)
 				M.adjustOrganLoss(ORGAN_SLOT_BRAIN,3 * power, 80)
 				M.updatehealth()

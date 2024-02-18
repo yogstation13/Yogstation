@@ -18,7 +18,7 @@
 	name = "radiant dance machine mark IV"
 	desc = "The first three prototypes were discontinued after mass casualty incidents."
 	icon_state = "disco"
-	req_access = list(ACCESS_BAR)
+	req_access = null
 	anchored = FALSE
 	var/list/spotlights = list()
 	var/list/sparkles = list()
@@ -29,6 +29,9 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	flags_1 = NODECONSTRUCT_1
+
+/obj/machinery/jukebox/disco/bar
+	req_access = list(ACCESS_BAR)
 
 /datum/track
 	var/song_name = "generic"
@@ -42,7 +45,7 @@
 	song_length = length
 	song_beat = beat
 
-/obj/machinery/jukebox/Initialize()
+/obj/machinery/jukebox/Initialize(mapload)
 	. = ..()
 	var/list/tracks = flist("[global.config.directory]/jukebox_music/sounds/")
 
@@ -77,7 +80,8 @@
 			return
 	return ..()
 
-/obj/machinery/jukebox/update_icon()
+/obj/machinery/jukebox/update_icon_state()
+	. = ..()
 	if(active)
 		icon_state = "[initial(icon_state)]-active"
 	else
@@ -171,8 +175,19 @@
 
 /obj/machinery/jukebox/proc/activate_music()
 	active = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	START_PROCESSING(SSobj, src)
+	var/sound/song_played = sound(selection.song_path)
+	var/list/close = range(10,src)
+	for(var/mob/L in GLOB.player_list)
+		if(!L || !L.client)
+			continue
+		// it doesn't send at 0 volume so you get 0.001 volume on init
+		L.playsound_local(get_turf(L), null, 0.001, channel = CHANNEL_JUKEBOX, S = song_played)
+		if(L in close && L.client.prefs.toggles & SOUND_JUKEBOX)
+			L.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // TURN THAT SHIT UP!!!!
+		else
+			L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	stop = world.time + selection.song_length
 
 /obj/machinery/jukebox/disco/activate_music()
@@ -182,62 +197,31 @@
 
 /obj/machinery/jukebox/disco/proc/dance_setup()
 	var/turf/cen = get_turf(src)
-	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
+	var/turf/t
+	FOR_DVIEW(t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_RED
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_RED)
 			continue
 		if(t.x == cen.x && t.y < cen.y)
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_PURPLE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_PURPLE)
 			continue
 		if(t.x > cen.x && t.y == cen.y)
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_YELLOW
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_YELLOW)
 			continue
 		if(t.x < cen.x && t.y == cen.y)
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_GREEN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_GREEN)
 			continue
 		if((t.x+1 == cen.x && t.y+1 == cen.y) || (t.x+2==cen.x && t.y+2 == cen.y))
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_ORANGE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1.4 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_ORANGE)
 			continue
 		if((t.x-1 == cen.x && t.y-1 == cen.y) || (t.x-2==cen.x && t.y-2 == cen.y))
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_CYAN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1.4 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_CYAN)
 			continue
 		if((t.x-1 == cen.x && t.y+1 == cen.y) || (t.x-2==cen.x && t.y+2 == cen.y))
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_BLUEGREEN
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1.4 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_BLUEGREEN)
 			continue
 		if((t.x+1 == cen.x && t.y-1 == cen.y) || (t.x+2==cen.x && t.y-2 == cen.y))
-			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			L.light_color = LIGHT_COLOR_BLUE
-			L.light_power = 30-(get_dist(src,L)*8)
-			L.range = 1.4+get_dist(src, L)
-			spotlights+=L
+			spotlights += new /obj/item/flashlight/spotlight(t, 1.4 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_BLUE)
 			continue
 		continue
 	FOR_DVIEW_END
@@ -269,65 +253,84 @@
 		sleep(0.7 SECONDS)
 	if(selection.song_name == "Engineering's Ultimate High-Energy Hustle")
 		sleep(28 SECONDS)
-	for(var/obj/reveal in sparkles)
+	for(var/s in sparkles)
+		var/obj/effect/overlay/sparkles/reveal = s
 		reveal.alpha = 255
 	while(active)
-		for(var/obj/item/flashlight/spotlight/glow in spotlights) // The multiples reflects custom adjustments to each colors after dozens of tests
-			if(QDELETED(src) || !active || QDELETED(glow))
+		for(var/g in spotlights) // The multiples reflects custom adjustments to each colors after dozens of tests
+			var/obj/item/flashlight/spotlight/glow = g
+			if(QDELETED(glow))
+				stack_trace("[glow?.gc_destroyed ? "Qdeleting glow" : "null entry"] found in [src].[gc_destroyed ? " Source qdeleting at the time." : ""]")
 				return
-			if(glow.light_color == LIGHT_COLOR_RED)
-				glow.light_color = LIGHT_COLOR_BLUE
-				glow.light_power = glow.light_power * 1.48
-				glow.light_range = 0
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_BLUE)
-				glow.light_color = LIGHT_COLOR_GREEN
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.light_power = glow.light_power * 2 // Any changes to power must come in pairs to neutralize it for other colors
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_GREEN)
-				glow.light_color = LIGHT_COLOR_ORANGE
-				glow.light_power = glow.light_power * 0.5
-				glow.light_range = 0
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_ORANGE)
-				glow.light_color = LIGHT_COLOR_PURPLE
-				glow.light_power = glow.light_power * 2.27
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_PURPLE)
-				glow.light_color = LIGHT_COLOR_BLUEGREEN
-				glow.light_power = glow.light_power * 0.44
-				glow.light_range = 0
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_BLUEGREEN)
-				glow.light_color = LIGHT_COLOR_YELLOW
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_YELLOW)
-				glow.light_color = LIGHT_COLOR_CYAN
-				glow.light_range = 0
-				glow.update_light()
-				continue
-			if(glow.light_color == LIGHT_COLOR_CYAN)
-				glow.light_color = LIGHT_COLOR_RED
-				glow.light_power = glow.light_power * 0.68
-				glow.light_range = glow.range * DISCO_INFENO_RANGE
-				glow.update_light()
-				continue
+			switch(glow.light_color)
+				if(LIGHT_COLOR_RED)
+					if(glow.even_cycle)
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_BLUE)
+					else
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 1.48, LIGHT_COLOR_BLUE)
+						glow.set_light_on(TRUE)
+				if(LIGHT_COLOR_BLUE)
+					if(glow.even_cycle)
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 2, LIGHT_COLOR_GREEN)
+						glow.set_light_on(TRUE)
+					else
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_GREEN)
+				if(LIGHT_COLOR_GREEN)
+					if(glow.even_cycle)
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_ORANGE)
+					else
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 0.5, LIGHT_COLOR_ORANGE)
+						glow.set_light_on(TRUE)
+				if(LIGHT_COLOR_ORANGE)
+					if(glow.even_cycle)
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 2.27, LIGHT_COLOR_PURPLE)
+						glow.set_light_on(TRUE)
+					else
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_PURPLE)
+				if(LIGHT_COLOR_PURPLE)
+					if(glow.even_cycle)
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_BLUEGREEN)
+					else
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 0.44, LIGHT_COLOR_BLUEGREEN)
+						glow.set_light_on(TRUE)
+				if(LIGHT_COLOR_BLUEGREEN)
+					if(glow.even_cycle)
+						glow.set_light_range(glow.base_light_range * DISCO_INFENO_RANGE)
+						glow.set_light_color(LIGHT_COLOR_YELLOW)
+						glow.set_light_on(TRUE)
+					else
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_YELLOW)
+				if(LIGHT_COLOR_YELLOW)
+					if(glow.even_cycle)
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_CYAN)
+					else
+						glow.set_light_range(glow.base_light_range * DISCO_INFENO_RANGE)
+						glow.set_light_color(LIGHT_COLOR_CYAN)
+						glow.set_light_on(TRUE)
+				if(LIGHT_COLOR_CYAN)
+					if(glow.even_cycle)
+						glow.set_light_range_power_color(glow.base_light_range * DISCO_INFENO_RANGE, glow.light_power * 0.68, LIGHT_COLOR_RED)
+						glow.set_light_on(TRUE)
+					else
+						glow.set_light_on(FALSE)
+						glow.set_light_color(LIGHT_COLOR_RED)
+			glow.even_cycle = !glow.even_cycle
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
-			INVOKE_ASYNC(src, .proc/hierofunk)
+			INVOKE_ASYNC(src, PROC_REF(hierofunk))
 		sleep(selection.song_beat)
+		if(QDELETED(src))
+			return
 
 #undef DISCO_INFENO_RANGE
 
-/obj/machinery/jukebox/disco/proc/dance(var/mob/living/M) //Show your moves
+/obj/machinery/jukebox/disco/proc/dance(mob/living/M) //Show your moves
 	set waitfor = FALSE
 	switch(rand(0,6))
 		if(0 to 1)
@@ -339,14 +342,14 @@
 
 /obj/machinery/jukebox/disco/proc/dance2(mob/living/M)
 	for(var/i in 0 to 9)
-		dance_rotate(M, CALLBACK(M, /mob.proc/dance_flip))
+		dance_rotate(M, CALLBACK(M, TYPE_PROC_REF(/mob, dance_flip)))
 		sleep(2 SECONDS)
 
 /mob/proc/dance_flip()
 	if(dir == WEST)
 		emote("flip")
 
-/obj/machinery/jukebox/disco/proc/dance3(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance3(mob/living/M)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 75)
 		if (!M)
@@ -393,7 +396,7 @@
 		sleep(0.1 SECONDS)
 	M.lying_fix()
 
-/obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance4(mob/living/M)
 	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 60)
@@ -433,7 +436,7 @@
 	lying_prev = 0
 
 /obj/machinery/jukebox/proc/dance_over()
-	for(var/mob/living/L in rangers)
+	for(var/mob/L in GLOB.player_list)
 		if(!L || !L.client)
 			continue
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
@@ -446,26 +449,24 @@
 
 /obj/machinery/jukebox/process()
 	if(world.time < stop && active)
-		var/sound/song_played = sound(selection.song_path)
-
 		for(var/mob/M in range(10,src))
 			if(!M.client || !(M.client.prefs.toggles & SOUND_JUKEBOX))
 				continue
 			if(!(M in rangers))
 				rangers[M] = TRUE
-				M.playsound_local(get_turf(M), null, volume, channel = CHANNEL_JUKEBOX, S = song_played)
+			M.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // We want volume updated without having to walk away!!
 		for(var/mob/L in rangers)
 			if(get_dist(src,L) > 10)
 				rangers -= L
 				if(!L || !L.client)
 					continue
-				L.stop_sound_channel(CHANNEL_JUKEBOX)
+				L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	else if(active)
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
 		dance_over()
 		playsound(src,'sound/machines/terminal_off.ogg',50,TRUE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		stop = world.time + 100
 
 /obj/machinery/jukebox/disco/process()

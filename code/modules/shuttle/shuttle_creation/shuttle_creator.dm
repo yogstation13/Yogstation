@@ -36,12 +36,12 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	var/overwritten_area = /area/space
 	var/list/loggedTurfs = list()
 	var/loggedOldArea
-	var/recorded_shuttle_area
+	var/area/recorded_shuttle_area
 	var/datum/shuttle_creator_overlay_holder/overlay_holder
 	//After designation
 	var/linkedShuttleId
 
-/obj/item/shuttle_creator/Initialize()
+/obj/item/shuttle_creator/Initialize(mapload)
 	. = ..()
 	internal_shuttle_creator = new()
 	internal_shuttle_creator.owner_rsd = src
@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 		position = WEST
 	return position
 
-/obj/item/shuttle_creator/proc/invertDir(var/input_dir)
+/obj/item/shuttle_creator/proc/invertDir(input_dir)
 	if(input_dir == NORTH)
 		return SOUTH
 	else if(input_dir == SOUTH)
@@ -184,12 +184,13 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 
 	var/obj/docking_port/mobile/port = new /obj/docking_port/mobile(get_turf(target))
 	var/obj/docking_port/stationary/stationary_port = new /obj/docking_port/stationary(get_turf(target))
+	stationary_port.delete_after = TRUE
+	stationary_port.name = "[recorded_shuttle_area.name] Custom Shuttle construction site"
 	port.callTime = 50
 	port.dir = 1	//Point away from space.
 	port.id = "custom_[GLOB.custom_shuttle_count]"
 	linkedShuttleId = port.id
 	port.ignitionTime = 25
-	port.name = "Custom Shuttle"
 	port.port_direction = 2
 	port.preferred_direction = EAST
 	port.preferred_direction = 4

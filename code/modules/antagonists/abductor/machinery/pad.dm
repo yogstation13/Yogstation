@@ -38,7 +38,7 @@
 
 /obj/machinery/abductor/pad/proc/MobToLoc(place,mob/living/target)
 	new /obj/effect/temp_visual/teleport_abductor(place)
-	addtimer(CALLBACK(src, .proc/doMobToLoc, place, target), 80)
+	addtimer(CALLBACK(src, PROC_REF(doMobToLoc), place, target), 80)
 
 /obj/machinery/abductor/pad/proc/doPadToLoc(place)
 	flick("alien-pad", src)
@@ -48,7 +48,7 @@
 
 /obj/machinery/abductor/pad/proc/PadToLoc(place)
 	new /obj/effect/temp_visual/teleport_abductor(place)
-	addtimer(CALLBACK(src, .proc/doPadToLoc, place), 80)
+	addtimer(CALLBACK(src, PROC_REF(doPadToLoc), place), 80)
 
 /obj/effect/temp_visual/teleport_abductor
 	name = "Huh"
@@ -56,7 +56,7 @@
 	icon_state = "teleport"
 	duration = 80
 
-/obj/effect/temp_visual/teleport_abductor/Initialize()
+/obj/effect/temp_visual/teleport_abductor/Initialize(mapload)
 	. = ..()
 	var/datum/effect_system/spark_spread/S = new
 	S.set_up(10,0,loc)

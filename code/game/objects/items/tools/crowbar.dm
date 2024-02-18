@@ -10,6 +10,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 7
+	demolition_mod = 2 // the right tool in the wrong place can make all the difference
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=50)
 	drop_sound = 'sound/items/handling/crowbar_drop.ogg'
@@ -21,7 +22,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 
 /obj/item/crowbar/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/crowbar/suicide_act(mob/user)

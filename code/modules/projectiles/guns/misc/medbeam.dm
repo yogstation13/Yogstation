@@ -16,7 +16,7 @@
 
 	weapon_weight = WEAPON_MEDIUM
 
-/obj/item/gun/medbeam/Initialize()
+/obj/item/gun/medbeam/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -53,7 +53,7 @@
 	current_target = target
 	active = TRUE
 	current_beam = new(user,current_target,time=6000,beam_icon_state="medbeam",btype=/obj/effect/ebeam/medical)
-	INVOKE_ASYNC(current_beam, /datum/beam.proc/Start)
+	INVOKE_ASYNC(current_beam, TYPE_PROC_REF(/datum/beam, Start))
 
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
 
@@ -108,10 +108,10 @@
 	qdel(dummy)
 	return 1
 
-/obj/item/gun/medbeam/proc/on_beam_hit(var/mob/living/target)
+/obj/item/gun/medbeam/proc/on_beam_hit(mob/living/target)
 	return
 
-/obj/item/gun/medbeam/proc/on_beam_tick(var/mob/living/target)
+/obj/item/gun/medbeam/proc/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth)
 		new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
 	target.adjustBruteLoss(-4)
@@ -120,7 +120,7 @@
 	target.adjustOxyLoss(-1)
 	return
 
-/obj/item/gun/medbeam/proc/on_beam_release(var/mob/living/target)
+/obj/item/gun/medbeam/proc/on_beam_release(mob/living/target)
 	return
 
 /obj/effect/ebeam/medical
@@ -130,7 +130,7 @@
 /obj/item/gun/medbeam/mech
 	mounted = 1
 
-/obj/item/gun/medbeam/mech/Initialize()
+/obj/item/gun/medbeam/mech/Initialize(mapload)
 	. = ..()
 	STOP_PROCESSING(SSobj, src) //Mech mediguns do not process until installed, and are controlled by the holder obj
 
@@ -166,10 +166,10 @@
 	if(current_target && !ubering)
 
 		if(current_target.health == current_target.maxHealth)
-			ubercharge += 1.25*delta_time/10 // 80 seconds
+			ubercharge += 1.25*delta_time // 80 seconds
 
 		if(current_target.health < current_target.maxHealth)
-			ubercharge += 2.5*delta_time/10 // 40 seconds
+			ubercharge += 2.5*delta_time // 40 seconds
 
 	if(ubering)
 		// No uber flashing
@@ -177,7 +177,7 @@
 			uber_act()
 			ubercharge = 0
 		else
-			ubercharge -= 12.5*delta_time/10
+			ubercharge -= 12.5*delta_time // 8 second uber
 		if(ubercharge <= 0)
 			uber_act()
 
@@ -189,7 +189,7 @@
 
 	if(ubercharge < 0)
 		ubercharge = 0
-	
+
 	icon_state = "chronogun[round(ubercharge/10)]"
 
 /// Sets last_holder for uber_act() to prevent exploits
@@ -212,11 +212,11 @@
 		uber_target = current_target
 
 		last_holder.status_flags |= GODMODE
-		last_holder.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
+		last_holder.overlay_fullscreen("uber", /atom/movable/screen/fullscreen/uber)
 		last_holder.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
 
 		uber_target.status_flags |= GODMODE
-		uber_target.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
+		uber_target.overlay_fullscreen("uber", /atom/movable/screen/fullscreen/uber)
 		uber_target.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
 
 	else /// this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue
@@ -232,7 +232,7 @@
 
 /datum/action/item_action/activate_uber
 	name = "Activate Übercharge"
-	icon_icon = 'icons/obj/chronos.dmi'
+	button_icon = 'icons/obj/chronos.dmi'
 	button_icon_state = "chronogun"
 
 /// Activates über if ubercharge is ready
@@ -243,7 +243,7 @@
 
 	var/obj/item/gun/medbeam/uber/gun = target
 
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 
 	if(gun.ubering)
@@ -255,3 +255,32 @@
 		return
 
 	gun.uber_act()
+
+//////////////////////////////Arm Version///////////////////////////////
+/obj/item/gun/medbeam/arm
+	name = "medical beamgun arm"
+	desc = "A bulky medical beam gun based on syndicate designs, can only be used when attached to an arm."
+
+/obj/item/gun/medbeam/arm/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+
+/obj/item/gun/medbeam/arm/Destroy()
+	var/obj/item/bodypart/part
+	new /obj/item/medbeam_arm(get_turf(src))
+	if(iscarbon(loc))
+		var/mob/living/carbon/holder = loc
+		var/index = holder.get_held_index_of_item(src)
+		if(index)
+			part = holder.hand_bodyparts[index]
+	. = ..()
+	if(part)
+		part.drop_limb()
+
+/// Just a placeholder until its put on as to not let people use it when its detached
+/obj/item/medbeam_arm
+	name = "medical beamgun arm"
+	desc = "A bulky medical beam gun based on syndicate designs, can only be used when attached to an arm."
+	icon = 'icons/obj/chronos.dmi'
+	icon_state = "chronogun"
+	item_state = "chronogun"

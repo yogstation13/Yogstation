@@ -24,7 +24,7 @@
 	var/list/quirks = null
 	var/contains_sample = 0
 
-/obj/item/seeds/replicapod/Initialize()
+/obj/item/seeds/replicapod/Initialize(mapload)
 	. = ..()
 
 	create_reagents(volume, INJECTABLE|DRAWABLE)
@@ -120,7 +120,8 @@
 		podman.set_cloned_appearance()
 		podman.dna.species.exotic_blood = max(reagents_add) || /datum/reagent/water
 		log_cloning("[key_name(mind)] cloned as a podman via [src] in [parent] at [AREACOORD(parent)].")
-		to_chat(podman, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
+		to_chat(podman, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
+		log_combat(user, podman, "was revived with memory loss", src)
 
 	else //else, one packet of seeds. maybe two
 		var/seed_count = 1

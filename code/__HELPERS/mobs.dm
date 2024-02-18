@@ -1,24 +1,21 @@
-/proc/random_blood_type()
-	return pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
-
 /proc/random_eye_color()
 	switch(pick(20;"brown",20;"hazel",20;"grey",15;"blue",15;"green",1;"amber",1;"albino"))
 		if("brown")
-			return "630"
+			return "#663300"
 		if("hazel")
-			return "542"
+			return "#554422"
 		if("grey")
-			return pick("666","777","888","999","aaa","bbb","ccc")
+			return pick("#666666","#777777","#888888","#999999","#aaaaaa","#bbbbbb","#cccccc")
 		if("blue")
-			return "36c"
+			return "#3366cc"
 		if("green")
-			return "060"
+			return "#006600"
 		if("amber")
-			return "fc0"
+			return "#ffcc00"
 		if("albino")
-			return pick("c","d","e","f") + pick("0","1","2","3","4","5","6","7","8","9") + pick("0","1","2","3","4","5","6","7","8","9")
+			return "#" + pick("cc","dd","ee","ff") + pick("00","11","22","33","44","55","66","77","88","99") + pick("00","11","22","33","44","55","66","77","88","99")
 		else
-			return "000"
+			return "#000000"
 
 /proc/random_underwear(gender)
 	if(!GLOB.underwear_list.len)
@@ -80,17 +77,30 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
 	if(!GLOB.ethereal_mark_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ethereal_mark, GLOB.ethereal_mark_list)
+	if(!GLOB.preternis_weathering_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_weathering, GLOB.preternis_weathering_list)
+	if(!GLOB.preternis_antenna_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_antenna, GLOB.preternis_antenna_list)
+	if(!GLOB.preternis_eye_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_eye, GLOB.preternis_eye_list)
+	if(!GLOB.preternis_core_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_core, GLOB.preternis_core_list)
 	if(!GLOB.pod_hair_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
 	if(!GLOB.pod_flower_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_flower, GLOB.pod_flower_list)
+	if(!GLOB.ipc_screens_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
+	if(!GLOB.ipc_antennas_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
+	if(!GLOB.ipc_chassis_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
 
 	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
 	return(list(
-		"mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		"mcolor" = "#[pick("7F","FF")][pick("7F","FF")][pick("7F","FF")]",
 		"gradientstyle" = random_hair_gradient_style(10),
-		"gradientcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
+		"gradientcolor" = "#[pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")]",
 		"tail_lizard" = pick(GLOB.tails_list_lizard),
 		"tail_human" = "None",
 		"wings" = "None",
@@ -103,12 +113,20 @@
 		"legs" = "Normal Legs",
 		"caps" = pick(GLOB.caps_list),
 		"moth_wings" = pick(GLOB.moth_wings_list),
-		"tail_polysmorph" = "Polys",
+		"tail_polysmorph" = pick(GLOB.tails_list_polysmorph),
 		"teeth" = pick(GLOB.teeth_list),
 		"dome" = pick(GLOB.dome_list),
 		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
 		"ethereal_mark" = pick(GLOB.ethereal_mark_list),
-		"pod_hair" = pick(GLOB.pod_hair_list)
+		"pretcolor" = pick(GLOB.color_list_preternis),
+		"preternis_weathering" = pick(GLOB.preternis_weathering_list),
+		"preternis_antenna" = pick(GLOB.preternis_antenna_list),
+		"preternis_eye" = pick(GLOB.preternis_eye_list),
+		"preternis_core" = pick(GLOB.preternis_core_list),
+		"pod_hair" = pick(GLOB.pod_hair_list),
+		"ipc_screen" = pick(GLOB.ipc_screens_list),
+		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
+		"ipc_chassis" = pick(GLOB.ipc_chassis_list)
 	))
 
 /proc/random_hair_style(gender)
@@ -152,6 +170,20 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_pod_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(pod_name(gender))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_preternis_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(preternis_name())
+
+		if(!findname(.))
+			break
+
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(plasmaman_name())
@@ -180,10 +212,17 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_ipc_name(attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(ipc_name())
+
+		if(!findname(.))
+			break
+
 /proc/random_skin_tone()
 	return pick(GLOB.skin_tones)
 
-GLOBAL_LIST_INIT(skin_tones, list(
+GLOBAL_LIST_INIT(skin_tones, sortList(list(
 	"albino",
 	"caucasian1",
 	"caucasian2",
@@ -194,9 +233,32 @@ GLOBAL_LIST_INIT(skin_tones, list(
 	"asian2",
 	"arab",
 	"indian",
+	"mixed1",
+	"mixed2",
+	"mixed3",
+	"mixed4",
 	"african1",
 	"african2"
-	))
+	)))
+
+GLOBAL_LIST_INIT(skin_tone_names, list(
+	"african1" = "Medium brown",
+	"african2" = "Dark brown",
+	"albino" = "Albino",
+	"arab" = "Light brown",
+	"asian1" = "Ivory",
+	"asian2" = "Beige",
+	"caucasian1" = "Porcelain",
+	"caucasian2" = "Light peach",
+	"caucasian3" = "Peach",
+	"indian" = "Brown",
+	"latino" = "Light beige",
+	"mediterranean" = "Olive",
+	"mixed1" = "Chestnut",
+	"mixed2" = "Walnut",
+	"mixed3" = "Coffee",
+	"mixed4" = "Macadamia",
+))
 
 GLOBAL_LIST_EMPTY(species_list)
 
@@ -223,51 +285,6 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
-
-/mob/var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
-/mob/var/action_speed_adjust = 0 //Value to add or remove to action delays //yogs end
-
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
-	if(!user || !target)
-		return 0
-	var/user_loc = user.loc
-
-	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
-
-	var/target_loc = target.loc
-
-	var/holding = user.get_active_held_item()
-	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
-	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, time, target)
-
-	var/endtime = world.time+time
-	var/starttime = world.time
-	. = 1
-	while (world.time < endtime)
-		stoplag(1)
-		if (progress)
-			progbar.update(world.time - starttime)
-		if(QDELETED(user) || QDELETED(target))
-			. = 0
-			break
-		if(uninterruptible)
-			continue
-
-		if(drifting && !user.inertia_dir)
-			drifting = 0
-			user_loc = user.loc
-
-		if((!drifting && user.loc != user_loc) || target.loc != target_loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
-			. = 0
-			break
-	if (progress)
-		qdel(progbar)
-
-
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks)
 	if(check_clicks && next_move > world.time)
@@ -282,18 +299,29 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, datum/callback/extra_checks = null, stayStill = TRUE)
+/**
+ * Timed action involving one mob user. Target is optional.
+ *
+ * Checks that `user` does not move, change hands, get stunned, etc. for the
+ * given `delay`. Returns `TRUE` on success or `FALSE` on failure.
+ * Interaction_key is the assoc key under which the do_after is capped, with max_interact_count being the cap. Interaction key will default to target if not set.
+ */
+/proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1)
 	if(!user)
 		return FALSE
-	var/atom/target_loc = null
-	if(target && !isturf(target))
-		target_loc = target.loc
+	if(!isnum(delay))
+		CRASH("do_after was passed a non-number delay: [delay || "null"].")
 
-	if(target)
-		LAZYADD(user.do_afters, target)
-		LAZYADD(target.targeted_by, user)
+	if(!interaction_key && target)
+		interaction_key = target //Use the direct ref to the target
+	if(interaction_key) //Do we have a interaction_key now?
+		var/current_interaction_count = LAZYACCESS(user.do_afters, interaction_key) || 0
+		if(current_interaction_count >= max_interact_count) //We are at our peak
+			return
+		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
 	var/atom/user_loc = user.loc
+	var/atom/target_loc = target?.loc
 
 	var/drifting = FALSE
 	if(!user.Process_Spacemove() && user.inertia_dir)
@@ -301,120 +329,51 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/holding = user.get_active_held_item()
 
-	var/holdingnull = TRUE //User's hand started out empty, check for an empty hand
-	if(holding)
-		holdingnull = FALSE //Users hand started holding something, check to see if it's still holding that
-
-	delay = ((delay + user.action_speed_adjust) * user.action_speed_modifier * user.do_after_coefficent()) //yogs: darkspawn
+	if(!(timed_action_flags & IGNORE_SLOWDOWNS))
+		delay *= user.action_speed_modifier * user.do_after_coefficent() //yogs: darkspawn
 
 	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, delay, target)
+	if(progress)
+		progbar = new(user, delay, target || user)
+
+	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
-		if (progress)
+
+		if(!QDELETED(progbar))
 			progbar.update(world.time - starttime)
 
 		if(drifting && !user.inertia_dir)
 			drifting = FALSE
 			user_loc = user.loc
 
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != user_loc && stayStill) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) \
+			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
+			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding) \
+			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
+			|| (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
-		if(isliving(user))
-			var/mob/living/L = user
-			if(L.IsStun() || L.IsParalyzed())
-				. = FALSE
-				break
-
-		if(!QDELETED(target_loc) && (QDELETED(target) || target_loc != target.loc))
-			if((user_loc != target_loc || target_loc != user) && !drifting && stayStill)
-				. = FALSE
-				break
-
-		if(target && !(target in user.do_afters))
+		if(target && (user != target) && \
+			(QDELETED(target) \
+			|| (!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc)))
 			. = FALSE
 			break
 
-		if(needhand)
-			//This might seem like an odd check, but you can still need a hand even when it's empty
-			//i.e the hand is used to pull some item/tool out of the construction
-			if(!holdingnull)
-				if(!holding)
-					. = FALSE
-					break
-			if(user.get_active_held_item() != holding)
-				. = FALSE
-				break
-	if (progress)
-		qdel(progbar)
+	if(!QDELETED(progbar))
+		progbar.end_progress()
 
-	if(!QDELETED(target))
-		LAZYREMOVE(user.do_afters, target)
-		LAZYREMOVE(target.targeted_by, user)
+	if(interaction_key)
+		LAZYREMOVE(user.do_afters, interaction_key)
+	SEND_SIGNAL(user, COMSIG_DO_AFTER_ENDED)
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
 	. = 1
-	return
-
-/proc/do_after_mob(mob/user, list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks, required_mobility_flags = MOBILITY_STAND)
-	if(!user || !targets)
-		return 0
-	if(!islist(targets))
-		targets = list(targets)
-	var/user_loc = user.loc
-
-	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
-
-	var/list/originalloc = list()
-	for(var/atom/target in targets)
-		originalloc[target] = target.loc
-
-	var/holding = user.get_active_held_item()
-	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
-	var/datum/progressbar/progbar
-	if(progress)
-		progbar = new(user, time, targets[1])
-
-	var/endtime = world.time + time
-	var/starttime = world.time
-	var/mob/living/L
-	if(isliving(user))
-		L = user
-	. = 1
-	mainloop:
-		while(world.time < endtime)
-			stoplag(1)
-			if(progress)
-				progbar.update(world.time - starttime)
-			if(QDELETED(user) || !targets)
-				. = 0
-				break
-			if(uninterruptible)
-				continue
-
-			if(drifting && !user.inertia_dir)
-				drifting = 0
-				user_loc = user.loc
-
-			if(L && !CHECK_MULTIPLE_BITFIELDS(L.mobility_flags, required_mobility_flags))
-				. = 0
-				break
-
-			for(var/atom/target in targets)
-				if((!drifting && user_loc != user.loc) || QDELETED(target) || originalloc[target] != target.loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
-					. = 0
-					break mainloop
-	if(progbar)
-		qdel(progbar)
 
 /proc/is_species(A, species_datum)
 	. = FALSE
@@ -471,10 +430,10 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	return spawned_mobs
 
-// Displays a message in deadchat, sent by source. Source is not linkified, message is, to avoid stuff like character names to be linkified.
+// Displays a message in deadchat, sent by source.
 // Automatically gives the class deadsay to the whole message (message + source)
 /proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
-	message = span_deadsay("[source][span_linkify("[message]")]")
+	message = span_deadsay("[source][message]")
 	for(var/mob/M in GLOB.player_list)
 		var/datum/preferences/prefs
 		if(M.client && M.client.prefs)
@@ -518,9 +477,9 @@ GLOBAL_LIST_EMPTY(species_list)
 				var/turf_link = TURF_LINK(M, turf_target)
 				rendered_message = "[turf_link] [message]"
 
-			to_chat(M, rendered_message)
+			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
 		else
-			to_chat(M, message)
+			to_chat(M, message, avoid_highlighting = speaker_key == M.key)
 
 //Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
 /proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)

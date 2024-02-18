@@ -61,6 +61,11 @@
 	deltimer(timerid)
 	timerid = null
 
+/// The proc that handles starting the actual core sound loop.
+/datum/looping_sound/proc/start_sound_loop()
+	timerid = null // Because we're done with our starting sound.
+	sound_loop()
+
 /datum/looping_sound/proc/sound_loop(starttime)
 	if(max_loops && world.time >= starttime + mid_length * max_loops)
 		stop()
@@ -68,7 +73,7 @@
 	if(!chance || prob(chance))
 		play(get_sound(starttime))
 	if(!timerid)
-		timerid = addtimer(CALLBACK(src, .proc/sound_loop, world.time), mid_length, TIMER_CLIENT_TIME | TIMER_STOPPABLE | TIMER_LOOP)
+		timerid = addtimer(CALLBACK(src, PROC_REF(sound_loop), world.time), mid_length, TIMER_CLIENT_TIME | TIMER_DELETE_ME | TIMER_STOPPABLE | TIMER_LOOP)
 
 /datum/looping_sound/proc/play(soundfile)
 	var/list/atoms_cache = output_atoms
@@ -93,8 +98,11 @@
 	if(start_sound)
 		play(start_sound)
 		start_wait = start_length
-	addtimer(CALLBACK(src, .proc/sound_loop), start_wait, TIMER_CLIENT_TIME)
+	timerid = addtimer(CALLBACK(src, PROC_REF(start_sound_loop)), start_wait, TIMER_CLIENT_TIME | TIMER_DELETE_ME | TIMER_STOPPABLE)
 
 /datum/looping_sound/proc/on_stop()
 	if(end_sound)
 		play(end_sound)
+
+/datum/looping_sound/proc/is_active()
+	return !!timerid

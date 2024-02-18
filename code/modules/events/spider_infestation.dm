@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/spider_infestation
 	weight = 5
 	max_occurrences = 1
-	min_players = 15
+	min_players = 25
 	dynamic_should_hijack = TRUE
 
 /datum/round_event/spider_infestation
@@ -27,7 +27,7 @@
 			continue
 		if(is_station_level(temp_vent.loc.z) && !temp_vent.welded)
 			var/datum/pipeline/temp_vent_parent = temp_vent.parents[1]
-			if(temp_vent_parent.other_atmosmch.len > 20)
+			if(temp_vent_parent.other_atmos_machines.len > 20)
 				vents += temp_vent
 
 	while((spawncount >= 1) && vents.len)

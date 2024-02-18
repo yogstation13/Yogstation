@@ -2,6 +2,51 @@
 /datum/team/ert
 	name = "Emergency Response Team"
 	var/datum/objective/mission //main mission
+	var/obj/item/ntuplink/uplink_type
+
+/datum/team/ert/roundend_report()
+	if(!show_roundend_report)
+		return
+
+	var/list/report = list()
+
+	report += span_header("[name]:")
+	report += "The [member_name]s were:"
+	report += printplayerlist(members)
+
+	var/win = FALSE
+	if(objectives.len)
+		report += span_header("ERT had following objectives:")
+		win = TRUE
+		var/objective_count = 1
+		for(var/datum/objective/objective in objectives)
+			if(objective.check_completion())
+				report += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
+			else
+				report += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
+				win = FALSE
+			objective_count++
+		if(win)
+			report += span_greentext("The [name] was successful!")
+		else
+			report += span_redtext("The [name] have failed!")
+
+	if(uplink_type)
+		var/purchases = ""
+		var/TC_uses = 0
+		LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
+		for(var/I in members)
+			var/datum/mind/ertmember = I
+			var/datum/uplink_purchase_log/H = GLOB.uplink_purchase_logs_by_key[ertmember.key]
+			if(H)
+				TC_uses += H.total_spent
+				purchases += H.generate_render(show_key = FALSE, currency = "WC")
+		report += "<br>"
+		report += "(ERT was equipped with [initial(uplink_type.name)]s and used [TC_uses] WC) [purchases]"
+		if(TC_uses == 0 && win)
+			report += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
+
+	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
 /datum/antagonist/ert
 	name = "Emergency Response Officer"
@@ -17,7 +62,6 @@
 
 /datum/antagonist/ert/on_gain()
 	update_name()
-	forge_objectives()
 	equipERT()
 	. = ..()
 
@@ -34,7 +78,7 @@
 /datum/antagonist/ert/deathsquad/New()
 	. = ..()
 	name_source = GLOB.commando_names
-	
+
 /datum/antagonist/ert/clown/New()
 	. = ..()
 	name_source = GLOB.clown_names
@@ -64,6 +108,24 @@
 /datum/antagonist/ert/medic/red
 	outfit = /datum/outfit/ert/medic/alert
 
+/datum/antagonist/ert/common
+	outfit = /datum/outfit/ert
+
+/datum/antagonist/ert/common/trooper
+	outfit = /datum/outfit/ert
+
+/datum/antagonist/ert/common/medic
+	outfit = /datum/outfit/ert
+	name = "Emergency Response Medic"
+
+/datum/antagonist/ert/common/engineer
+	name = "Emergency Response Engineer"
+
+/datum/antagonist/ert/common/leader
+	name = "Emergency Response Commander"
+	role = "Commander"
+	outfit = /datum/outfit/ert/commonleader
+
 /datum/antagonist/ert/commander
 	role = "Commander"
 	outfit = /datum/outfit/ert/commander
@@ -75,6 +137,10 @@
 	name = "Deathsquad Trooper"
 	outfit = /datum/outfit/death_commando
 	role = "Trooper"
+
+/datum/antagonist/ert/mining
+	name = "Dwarven Miner"
+	outfit = /datum/outfit/ert/mining
 
 /datum/antagonist/ert/medic/inquisitor
 	outfit = /datum/outfit/ert/medic/inquisitor
@@ -145,7 +211,7 @@
 	name = "Occupying Riot Officer"
 	outfit = /datum/outfit/occupying/heavy
 	role = "Riot Officer"
-	
+
 /datum/antagonist/ert/occupying/commander
 	name = "Occupying Commander"
 	outfit = /datum/outfit/occupying/commander
@@ -161,13 +227,34 @@
 	outfit = /datum/outfit/centcom_clown/honk_squad
 	role = "HONKER"
 
+/datum/antagonist/ert/imperial
+	name = "Imperial Guardsman"
+	outfit = /datum/outfit/imperial
+	role = "Guardsman"
+
+/datum/antagonist/ert/imperial/hotshot
+	name = "Imperial Guardsman Veteran"
+	outfit = /datum/outfit/imperial/veteran
+	role = "Guard Veteran"
+
+/datum/antagonist/ert/imperial/plasma
+	name = "Imperial Guardsman Plasma Gunner"
+	outfit = /datum/outfit/imperial/plasma
+	role = "Plasma Gunner"
+
+/datum/antagonist/ert/imperial/sniper
+	name = "Imperial Guardsman Marksman"
+	outfit = /datum/outfit/imperial/marksman
+	role = "Marksman"
+
+/datum/antagonist/ert/imperial/sergeant
+	name = "Imperial Sergeant"
+	outfit = /datum/outfit/imperial/commander
+	role = "Sergeant"
+
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team
-
-/datum/antagonist/ert/proc/forge_objectives()
-	if(ert_team)
-		objectives |= ert_team.objectives
 
 /datum/antagonist/ert/proc/equipERT()
 	var/mob/living/carbon/human/H = owner.current

@@ -1,5 +1,6 @@
 /datum/symptom/heal/conversion
 	name = "Rapid Protein Synthesis"
+	icon = "rapid_protein_synthesis"
 	desc = "The virus rapidly consumes nutrients in blood to heal wounds."
 	stealth = 0
 	resistance = -2
@@ -32,7 +33,7 @@
 	switch(M.nutrition)
 		if(0)
 			return FALSE
-		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_STARVING)
+		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
 			return 0.5
 		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
 			return 1

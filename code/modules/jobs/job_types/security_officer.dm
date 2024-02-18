@@ -1,9 +1,10 @@
 /datum/job/officer
 	title = "Security Officer"
-	flag = OFFICER
+	description = "Protect company assets, follow Space Law\
+		, eat donuts."
+	orbit_icon = "shield-halved"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
@@ -15,32 +16,33 @@
 
 	outfit = /datum/outfit/job/security
 
-	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer")
+	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Corporate Officer", "Peacekeeper")
 
-	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) // See /datum/job/officer/get_access()
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS)
+	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) // See /datum/job/officer/get_access()
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	minimal_character_age = 18 //Just a few months of boot camp, not a whole year
 
-	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/security,
+	)
 
-/datum/job/officer/proc/EclipseStationChanges()
-	total_positions = 14
-	spawn_positions = 10
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 10,
+		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
+		/obj/item/reagent_containers/food/snacks/donut/spaghetti = 5,
+		/obj/item/grenade/chem_grenade/teargas = 4,
+		/obj/item/grenade/flashbang = 2,
+		/obj/item/clothing/mask/gas/sechailer/swat = 1
+	)
 
-/datum/job/officer/proc/YogsPubbyChanges()
-	access += ACCESS_CREMATORIUM
-	minimal_access += ACCESS_CREMATORIUM
+	minimal_lightup_areas = list(/area/construction/mining/aux_base)
 
-/datum/job/officer/proc/OmegaStationChanges()
-	total_positions = 3
-	spawn_positions = 3
-	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	supervisors = "the captain"
+	smells_like = "donuts"
 
 /datum/job/officer/get_access()
 	var/list/L = list()
@@ -54,7 +56,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	// Assign department security
 	var/department
 	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.prefered_security_department
+		department = M.client?.prefs?.read_preference(/datum/preference/choiced/security_department)
 		if(!LAZYLEN(GLOB.available_depts_sec) || department == "None")
 			return
 		else if(department in GLOB.available_depts_sec)
@@ -73,24 +75,28 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 			destination = /area/security/checkpoint/supply
 			spawn_point = locate(/obj/effect/landmark/start/depsec/supply) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/cargo
+			minimal_lightup_areas |= GLOB.supply_lightup_areas
 		if(SEC_DEPT_ENGINEERING)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/engi
 			dep_access = list(ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 			destination = /area/security/checkpoint/engineering
 			spawn_point = locate(/obj/effect/landmark/start/depsec/engineering) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/engine
+			minimal_lightup_areas |= GLOB.engineering_lightup_areas
 		if(SEC_DEPT_MEDICAL)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/med
 			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING)
 			destination = /area/security/checkpoint/medical
 			spawn_point = locate(/obj/effect/landmark/start/depsec/medical) in GLOB.department_security_spawns
 			accessory =  /obj/item/clothing/accessory/armband/medblue
+			minimal_lightup_areas |= GLOB.medical_lightup_areas
 		if(SEC_DEPT_SCIENCE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/sci
-			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX)
+			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY)
 			destination = /area/security/checkpoint/science
 			spawn_point = locate(/obj/effect/landmark/start/depsec/science) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/science
+			minimal_lightup_areas |= GLOB.science_lightup_areas
 		if(SEC_DEPT_SERVICE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/service
 			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING )
@@ -104,7 +110,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	if(ears)
 		if(H.ears)
 			qdel(H.ears)
-		H.equip_to_slot_or_del(new ears(H),SLOT_EARS)
+		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
 
 	var/obj/item/card/id/W = H.get_idcard()
 	W.access |= dep_access
@@ -121,12 +127,26 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 		else
 			var/safety = 0
 			while(safety < 25)
-				T = safepick(get_area_turfs(destination))
+				T = pick(get_area_turfs(destination))
 				if(T && !H.Move(T))
 					safety += 1
 					continue
 				else
 					break
+
+	if(M?.client?.prefs)
+		var/obj/item/badge/security/badge
+		switch(M.client.prefs.exp[title] / 60)
+			if(200 to INFINITY)
+				badge = new /obj/item/badge/security/officer3
+			if(50 to 200)
+				badge = new /obj/item/badge/security/officer2
+			else
+				badge = new /obj/item/badge/security/officer1
+		badge.owner_string = H.real_name
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(badge)
+
 	if(department)
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
 	else
@@ -138,7 +158,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	name = "Security Officer"
 	jobtype = /datum/job/officer
 
-	pda_type = /obj/item/pda/security
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security
@@ -150,7 +170,6 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
-	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(/obj/item/melee/baton/loaded=1)
 
 	backpack = /obj/item/storage/backpack/security
@@ -164,7 +183,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	//The helmet is necessary because /obj/item/clothing/head/helmet/sec is overwritten in the chameleon list by the standard helmet, which has the same name and icon state
 
 
-/obj/item/radio/headset/headset_sec/alt/department/Initialize()
+/obj/item/radio/headset/headset_sec/alt/department/Initialize(mapload)
 	. = ..()
 	wires = new/datum/wires/radio(src)
 	secure_radio_connections = new

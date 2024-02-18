@@ -28,7 +28,7 @@
 /obj/machinery/power/tesla_coil/power
 	circuit = /obj/item/circuitboard/machine/tesla_coil/power
 
-/obj/machinery/power/tesla_coil/Initialize()
+/obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/tesla_coil(src)
 	linked_techweb = SSresearch.science_tech
@@ -78,7 +78,7 @@
 
 	return ..()
 
-/obj/machinery/power/tesla_coil/tesla_act(power, tesla_flags, shocked_targets)
+/obj/machinery/power/tesla_coil/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(anchored && !panel_open)
 		obj_flags |= BEING_SHOCKED
 		add_avail((power * (1 - percentage_power_loss))*input_power_multiplier)
@@ -88,7 +88,7 @@
 			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
-		addtimer(CALLBACK(src, .proc/reset_shocked), zap_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), zap_cooldown)
 		tesla_buckle_check(power)
 	else
 		..()
@@ -114,7 +114,7 @@
 	research_points_per_zap = 6 // level 1 coil: 44/m, level coil 2: 60/m, level coil 3: 90/m, level coil 4: 180/m
 	money_per_zap = 6
 
-/obj/machinery/power/tesla_coil/research/tesla_act(power, tesla_flags, shocked_things)
+/obj/machinery/power/tesla_coil/research/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(anchored && !panel_open)
 		obj_flags |= BEING_SHOCKED
 		add_avail((power * (1 - percentage_power_loss))*input_power_multiplier)
@@ -124,7 +124,7 @@
 			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
-		addtimer(CALLBACK(src, .proc/reset_shocked), zap_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), zap_cooldown)
 		tesla_buckle_check(power)
 	else
 		..()
@@ -178,7 +178,7 @@
 
 	return ..()
 
-/obj/machinery/power/grounding_rod/tesla_act(var/power)
+/obj/machinery/power/grounding_rod/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(anchored && !panel_open)
 		flick("grounding_rodhit", src)
 		tesla_buckle_check(power)

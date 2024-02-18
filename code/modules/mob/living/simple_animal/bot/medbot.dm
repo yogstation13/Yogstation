@@ -68,6 +68,7 @@
 	var/treatment_virus = /datum/reagent/medicine/spaceacillin
 	var/treat_virus = 1 //If on, the bot will attempt to treat viral infections, curing them if possible.
 	var/shut_up = 0 //self explanatory :)
+	var/holy = FALSE //if it injects holy water
 
 /mob/living/simple_animal/bot/medbot/mysterious
 	name = "\improper Mysterious Medibot"
@@ -91,10 +92,8 @@
 	treatment_tox_avoid = null
 	treatment_tox = /datum/reagent/toxin/sodium_thiopental
 
-/mob/living/simple_animal/bot/medbot/update_icon()
-	cut_overlays()
-	if(skin)
-		add_overlay("medskin_[skin]")
+/mob/living/simple_animal/bot/medbot/update_icon_state()
+	. = ..()
 	if(!on)
 		icon_state = "medibot0"
 		return
@@ -109,6 +108,11 @@
 	else
 		icon_state = "medibot1"
 
+/mob/living/simple_animal/bot/medbot/update_overlays()
+	. = ..()
+	if(skin)
+		. += "medskin_[skin]"
+
 /mob/living/simple_animal/bot/medbot/Initialize(mapload, new_skin)
 	. = ..()
 	var/datum/job/doctor/J = new /datum/job/doctor
@@ -116,11 +120,11 @@
 	prev_access = access_card.access
 	qdel(J)
 	skin = new_skin
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/update_mobility()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/bot_reset()
 	..()
@@ -129,14 +133,14 @@
 	oldloc = null
 	last_found = world.time
 	declare_cooldown = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/proc/soft_reset() //Allows the medibot to still actively perform its medical duties without being completely halted as a hard reset does.
 	path = list()
 	patient = null
 	mode = BOT_IDLE
 	last_found = world.time
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/set_custom_texts()
 
@@ -222,7 +226,7 @@
 	else if(href_list["stationary"])
 		stationary_mode = !stationary_mode
 		path = list()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(href_list["virus"])
 		treat_virus = !treat_virus
@@ -252,7 +256,7 @@
 		if(health < current_health) //if medbot took some damage
 			step_to(src, (get_step_away(src,user)))
 
-/mob/living/simple_animal/bot/medbot/emag_act(mob/user)
+/mob/living/simple_animal/bot/medbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	..()
 	if(emagged == 2)
 		declare_crit = 0
@@ -301,7 +305,10 @@
 		if(user.name == tipper_name)
 			messagevoice = list("I forgive you." = 'sound/voice/medbot/forgive.ogg')
 		else
-			messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
+			if(prob(1)) // if you're reading this you are a good
+				messagevoice = list("You are a good." = 'sound/voice/medbot/you_are_a_good.ogg')
+			else
+				messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
 	else
 		visible_message(span_notice("[src] manages to writhe wiggle enough to right itself."))
 		messagevoice = list("Fuck you." = 'sound/voice/medbot/fuck_you.ogg', "Your behavior has been reported, have a nice day." = 'sound/voice/medbot/reported.ogg')
@@ -390,7 +397,15 @@
 				var/list/i_need_scissors = list('sound/voice/medbot/fuck_you.ogg', 'sound/voice/medbot/turn_off.ogg', 'sound/voice/medbot/im_different.ogg', 'sound/voice/medbot/close.ogg', 'sound/voice/medbot/shindemashou.ogg')
 				playsound(src, pick(i_need_scissors), 70)
 			else
-				var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg', "Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg')
+				var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg', "Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg')
+				if(prob( 100 / (LAZYLEN(messagevoice) + 1) )) // Simulate the odds of it still being in the list
+					var/any_dead = FALSE
+					for(var/mob/living/carbon/C in view(6))
+						if(C.stat == DEAD)
+							any_dead = TRUE
+							break
+					if(any_dead) // But only actually choose to insult medbay if they actually have dead patients
+						messagevoice = list("What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg')
 				var/message = pick(messagevoice)
 				speak(message)
 				playsound(src, messagevoice[message], 50)
@@ -402,7 +417,7 @@
 	if(patient && (get_dist(src,patient) <= 1)) //Patient is next to us, begin treatment!
 		if(mode != BOT_HEALING)
 			mode = BOT_HEALING
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			frustration = 0
 			medicate_patient(patient)
 		return
@@ -454,10 +469,18 @@
 	if(C.suiciding)
 		return FALSE //Kevorkian school of robotic medical assistants.
 
+	if(HAS_TRAIT(C,TRAIT_MEDICALIGNORE))
+		return FALSE
+
 	if(emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
 		return TRUE
 
-	if(HAS_TRAIT(C,TRAIT_MEDICALIGNORE))
+	var/can_inject = FALSE
+	for(var/X in C.bodyparts)
+		var/obj/item/bodypart/part = X
+		if(part.status == BODYPART_ORGANIC)
+			can_inject = TRUE
+	if(!can_inject)
 		return FALSE
 
 	if(ishuman(C))
@@ -478,17 +501,23 @@
 			if(!C.reagents.has_reagent(R.type))
 				return TRUE
 
+	var/robotic_brute = 0 // brute damage to robotic limbs
+	var/robotic_burn = 0 // burn damage to robotic limbs
+	for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
+		robotic_brute += limb.get_damage(TRUE, FALSE, FALSE)
+		robotic_burn += limb.get_damage(FALSE, TRUE, FALSE)
+
 	//They're injured enough for it!
-	if((!C.reagents.has_reagent(treatment_brute_avoid)) && (C.getBruteLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_brute)))
+	if((!C.reagents.has_reagent(treatment_brute_avoid)) && ((C.getBruteLoss()-robotic_brute) >= heal_threshold) && (!C.reagents.has_reagent(treatment_brute)))
 		return TRUE //If they're already medicated don't bother!
 
 	if((!C.reagents.has_reagent(treatment_oxy_avoid)) && (C.getOxyLoss() >= (15 + heal_threshold)) && (!C.reagents.has_reagent(treatment_oxy)))
 		return TRUE
 
-	if((!C.reagents.has_reagent(treatment_fire_avoid)) && (C.getFireLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_fire)))
+	if((!C.reagents.has_reagent(treatment_fire_avoid)) && ((C.getFireLoss()-robotic_burn) >= heal_threshold) && (!C.reagents.has_reagent(treatment_fire)))
 		return TRUE
 
-	if((!C.reagents.has_reagent(treatment_tox_avoid)) && (C.getToxLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_tox)))
+	if((!C.reagents.has_reagent(treatment_tox_avoid)) && (C.getToxLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_tox)) && !(TRAIT_TOXINLOVER in C?.dna?.species?.inherent_traits))
 		return TRUE
 
 	if(treat_virus && !C.reagents.has_reagent(treatment_virus_avoid) && !C.reagents.has_reagent(treatment_virus))
@@ -529,9 +558,9 @@
 		var/mob/living/carbon/C = A
 		patient = C
 		mode = BOT_HEALING
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		medicate_patient(C)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		..()
 
@@ -590,7 +619,7 @@
 			if(!C.reagents.has_reagent(treatment_fire) && !C.reagents.has_reagent(treatment_fire_avoid))
 				reagent_id = treatment_fire
 
-		if(!reagent_id && (C.getToxLoss() >= heal_threshold))
+		if(!reagent_id && (C.getToxLoss() >= heal_threshold) && !(TRAIT_TOXINLOVER in C?.dna?.species?.inherent_traits))
 			if(!C.reagents.has_reagent(treatment_tox) && !C.reagents.has_reagent(treatment_tox_avoid))
 				reagent_id = treatment_tox
 
@@ -618,7 +647,7 @@
 			span_userdanger("[src] is trying to inject you!"))
 
 		var/failed = FALSE
-		if(do_mob(src, patient, 30))
+		if(do_after(src, 3 SECONDS, patient))
 			if((get_dist(src, patient) <= 1) && (on) && assess_patient(patient))
 				if(reagent_id == "internal_beaker")
 					if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
@@ -630,6 +659,8 @@
 				else
 					patient.reagents.add_reagent(reagent_id,injection_amount)
 					log_combat(src, patient, "injected", "internal synthesizer", "[reagent_id]:[injection_amount]")
+					if(holy)
+						patient.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_HEALBOOST)	
 				C.visible_message(span_danger("[src] injects [patient] with its syringe!"), \
 					span_userdanger("[src] injects you with its syringe!"))
 			else
@@ -639,7 +670,7 @@
 
 		if(failed)
 			visible_message("[src] retracts its syringe.")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		soft_reset()
 		return
 
@@ -681,7 +712,7 @@
 	declare_cooldown = world.time + 200
 
 /obj/machinery/bot_core/medbot
-	req_one_access = list(ACCESS_MEDICAL, ACCESS_ROBOTICS)
+	req_one_access = list(ACCESS_MEDICAL, ACCESS_ROBO_CONTROL)
 
 #undef MEDBOT_PANIC_NONE
 #undef MEDBOT_PANIC_LOW

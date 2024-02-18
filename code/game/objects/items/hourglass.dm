@@ -29,7 +29,8 @@
 		to_chat(user,span_notice("You stop the [src].")) //Sand magically flows back because that's more convinient to use.
 		stop()
 
-/obj/item/hourglass/update_icon()
+/obj/item/hourglass/update_icon_state()
+	. = ..()
 	if(timing_id)
 		icon_state = "hourglass_active"
 	else
@@ -37,7 +38,7 @@
 
 /obj/item/hourglass/proc/start()
 	finish_time = world.time + time
-	timing_id = addtimer(CALLBACK(src, .proc/finish), time, TIMER_STOPPABLE)
+	timing_id = addtimer(CALLBACK(src, PROC_REF(finish)), time, TIMER_STOPPABLE)
 	countdown.start()
 	timing_animation()
 
@@ -54,7 +55,7 @@
 	countdown.stop()
 	finish_time = null
 	animate(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/hourglass/proc/finish()
 	visible_message(span_notice("[src] stops."))

@@ -38,7 +38,7 @@
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(!pod.moving && !pod.cargo)
 				AM.forceMove(pod)
-				pod.update_icon()
+				pod.update_appearance(UPDATE_ICON)
 				return
 
 
@@ -152,7 +152,7 @@
 							continue
 						S.forceMove(pod)
 						playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
-				pod.update_icon()
+				pod.update_appearance(UPDATE_ICON)
 			sleep(SleepTime)
 			if(open_status == STATION_TUBE_CLOSED && pod && pod.loc == loc)
 				pod.follow_tube()
@@ -177,11 +177,9 @@
 		sleep(OPEN_DURATION + 0.2 SECONDS)
 		pod_moving = FALSE
 		if(!QDELETED(pod))
-			var/datum/gas_mixture/floor_mixture = loc.return_air()
-			floor_mixture.archive()
-			pod.air_contents.archive()
-			pod.air_contents.share(floor_mixture, 1) //mix the pod's gas mixture with the tile it's on
-			air_update_turf()
+			var/datum/gas_mixture/floor_mixture = loc?.return_air()
+			if(floor_mixture)
+				equalize_all_gases_in_list(list(pod.air_contents,floor_mixture))
 
 /obj/structure/transit_tube/station/init_tube_dirs()
 	switch(dir)

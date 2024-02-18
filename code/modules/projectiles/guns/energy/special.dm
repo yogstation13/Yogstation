@@ -1,6 +1,6 @@
 /obj/item/gun/energy/ionrifle
 	name = "ion rifle"
-	desc = "A man-portable anti-armor weapon designed to disable mechanical threats at range."
+	desc = "Invented in 2506 to quell attacks from SELF aligned IPCs, the NT-I1 is a bulky rifle designed to disable mechanical and electronic threats at range."
 	icon_state = "ionrifle"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	can_flashlight = TRUE
@@ -17,11 +17,12 @@
 
 /obj/item/gun/energy/ionrifle/carbine
 	name = "ion carbine"
-	desc = "The MK.II Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
+	desc = "The NT-I2 Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
 	icon_state = "ioncarbine"
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
 	pin = null
+	ammo_type = list(/obj/item/ammo_casing/energy/ion/weak)
 	ammo_x_offset = 2
 	flight_x_offset = 18
 	flight_y_offset = 11
@@ -34,11 +35,11 @@
 	pin = null
 	ammo_x_offset = 1
 
-/obj/item/gun/energy/decloner/update_icon()
-	..()
+/obj/item/gun/energy/decloner/update_overlays()
+	. = ..()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	if(!QDELETED(cell) && (cell.charge > shot.e_cost))
-		add_overlay("decloner_spin")
+		. += "decloner_spin"
 
 /obj/item/gun/energy/decloner/unrestricted
 	pin = /obj/item/firing_pin
@@ -76,25 +77,27 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/gun/energy/mindflayer
-	name = "\improper Mind Flayer"
-	desc = "A prototype weapon recovered from the ruins of Research-Station Epsilon."
-	icon_state = "xray"
-	item_state = null
+	name = "mind flayer"
+	desc = "A vicious weapon with the ability to lock up the motor neurons of the respiratory system and take advantage of the increasing suffocation of the brain to destroy it." //god this is such warcrime
+	icon_state = "mindflayer"
+	item_state = "mindflayer"
+	w_class = WEIGHT_CLASS_SMALL
 	ammo_type = list(/obj/item/ammo_casing/energy/mindflayer)
+	pin = null
 	ammo_x_offset = 2
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow
 	name = "mini energy crossbow"
-	desc = "A weapon favored by syndicate stealth specialists."
+	desc = "A weapon favored by syndicate stealth specialists. Each bolt injects some poison into the victim."
 	icon_state = "crossbow"
-	item_state = "crossbow"
+	item_state = "ecrossbow"
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=2000)
 	suppressed = TRUE
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
 	weapon_weight = WEAPON_LIGHT
 	obj_flags = 0
-	overheat_time = 20
+	overheat_time = 10 SECONDS
 	holds_charge = TRUE
 	unique_frequency = TRUE
 	can_flashlight = FALSE
@@ -104,23 +107,8 @@
 	name = "candy corn crossbow"
 	desc = "A weapon favored by Syndicate trick-or-treaters."
 	icon_state = "crossbow_halloween"
-	item_state = "crossbow"
+	item_state = "ecrossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
-
-/obj/item/gun/energy/kinetic_accelerator/crossbow/large
-	name = "energy crossbow"
-	desc = "A reverse engineered weapon using syndicate technology, substantially bulkier than its illegal counterpart."
-	icon_state = "crossbowlarge"
-	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/iron=4000)
-	suppressed = null
-	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
-	pin = null
-	holds_charge = FALSE
-	unique_frequency = FALSE
-	weapon_weight = WEIGHT_CLASS_HUGE
-	overheat_time = 10 SECONDS
-
 
 /obj/item/gun/energy/plasmacutter
 	name = "plasma cutter"
@@ -141,8 +129,19 @@
 	var/progress_flash_divisor = 10  //copypasta is best pasta
 	var/light_intensity = 1
 	var/charge_weld = 25 //amount of charge used up to start action (multiplied by amount) and per progress_flash_divisor ticks of welding
+	/// Contains the type paths for installed upgrades
+	var/installed_upgrades = list()
 
-/obj/item/gun/energy/plasmacutter/Initialize()
+/obj/item/gun/energy/plasmacutter/mini
+	name = "mini plasma cutter"
+	desc = "A weak plasma based mining tool."
+	icon_state = "plasmacutter_mini"
+	item_state = "plasmacutter_mini"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
+	toolspeed = 2
+
+/obj/item/gun/energy/plasmacutter/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
 
@@ -203,15 +202,14 @@
 		else
 			progress_flash_divisor--
 
-/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks)
+/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, robo_check)
 	if(amount)
+		var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
+		target.add_overlay(sparks)
 		. = ..()
+		target.cut_overlay(sparks)
 	else
 		. = ..(amount=1)
-
-
-/obj/item/gun/energy/plasmacutter/update_icon()
-	return
 
 /obj/item/gun/energy/plasmacutter/adv
 	name = "advanced plasma cutter"
@@ -239,7 +237,7 @@
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	. = ..()
-	if(try_upgrade(I))
+	if(try_upgrade(I, user))
 		to_chat(user, span_notice("You install [I] into [src]"))
 		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
 		qdel(I)
@@ -258,6 +256,14 @@
 	selfcharge = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg)
 
+/obj/item/gun/energy/plasmacutter/adv/malf // Can't be subtype of cyborg or it will interfere with upgrades
+	name = "cyborg malfunctioning plasma cutter"
+	desc = "A mining tool capable o=#9v@3-M!a%R=KILLING AND MURDERING ORGANICS."
+	color = "red"
+	force = 15
+	selfcharge = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg/malf)
+
 // Upgrades for plasma cutters
 /obj/item/upgrade/plasmacutter
 	name = "generic upgrade kit"
@@ -270,20 +276,33 @@
 	name = "plasma cutter defusal kit"
 	desc = "An upgrade for plasma shotguns that allows it to automatically defuse gibtonite."
 
-/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I)
-	return // no upgrades for the plasmacutter
+/obj/item/upgrade/plasmacutter/capacity
+	name = "plasma cutter capacity kit"
+	desc = "An upgrade for plasma shotguns that doubles the tank capacity."
 
-/obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I)
+/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I, mob/user)
+	if(I.type in installed_upgrades)
+		to_chat(user, span_notice("[I] has already been installed in [src]"))
+		return FALSE
+	return FALSE
+
+/obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I, mob/user)
+	. = ..()
 	if(.)
-		return
+		return TRUE
 	if(istype(I, /obj/item/upgrade/plasmacutter/defuser))
 		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
 		ammo_type = list(kaboom)
+		installed_upgrades += I.type
+		return TRUE
+	if(istype(I, /obj/item/upgrade/plasmacutter/capacity))
+		cell.maxcharge = initial(cell.maxcharge)*2
+		installed_upgrades += I.type
 		return TRUE
 	return FALSE
 
 //no upgrading this one either (for now)
-/obj/item/gun/energy/plasmacutter/scatter/mega/try_upgrade(obj/item/I)
+/obj/item/gun/energy/plasmacutter/scatter/mega/try_upgrade(obj/item/I, mob/user)
 	return
 
 /obj/item/gun/energy/wormhole_projector
@@ -300,7 +319,8 @@
 	desc = "A projector that emits high density quantum-coupled bluespace beams. This one seems to be modified to go through glass."
 	ammo_type = list(/obj/item/ammo_casing/energy/wormhole/upgraded, /obj/item/ammo_casing/energy/wormhole/orange/upgraded)
 
-/obj/item/gun/energy/wormhole_projector/update_icon()
+/obj/item/gun/energy/wormhole_projector/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][select]"
 	item_state = icon_state
 
@@ -310,7 +330,7 @@
 		var/obj/item/ammo_casing/energy/wormhole/W = ammo_type[i]
 		if(istype(W))
 			W.gun = src
-			var/obj/item/projectile/beam/wormhole/WH = W.BB
+			var/obj/projectile/beam/wormhole/WH = W.BB
 			if(istype(WH))
 				WH.gun = src
 
@@ -346,9 +366,9 @@
 	p_orange.link_portal(p_blue)
 	p_blue.link_portal(p_orange)
 
-/obj/item/gun/energy/wormhole_projector/proc/create_portal(obj/item/projectile/beam/wormhole/W, turf/target)
+/obj/item/gun/energy/wormhole_projector/proc/create_portal(obj/projectile/beam/wormhole/W, turf/target)
 	var/obj/effect/portal/P = new /obj/effect/portal(target, src, 300, null, FALSE, null, atmos_link)
-	if(istype(W, /obj/item/projectile/beam/wormhole/orange))
+	if(istype(W, /obj/projectile/beam/wormhole/orange))
 		qdel(p_orange)
 		p_orange = P
 		P.icon_state = "portal1"
@@ -369,8 +389,18 @@
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
 
-/obj/item/gun/energy/printer/update_icon()
-	return
+/obj/item/gun/energy/printer/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
+
+/obj/item/gun/energy/printer/flamethrower
+	name = "cyborg flame projector"
+	desc = "Originally intended for cyborgs to assist in atmospherics projects, was soon scrapped due to safety concerns."
+	icon = 'yogstation/icons/obj/flamethrower.dmi'
+	icon_state = "flamethrowerbase"
+	ammo_type = list(/obj/item/ammo_casing/energy/flamethrower)
+	can_charge = FALSE
+	use_cyborg_cell = TRUE
 
 /obj/item/gun/energy/printer/emp_act()
 	return
@@ -395,6 +425,9 @@
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit."
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill)
 	force = 60
+	charge_sections = 5
+	ammo_x_offset = 2
+	shaded_charge = FALSE
 
 /obj/item/gun/energy/laser/instakill/red
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a red design."
@@ -418,3 +451,64 @@
 	item_state = "gravity_gun"
 	icon_state = "gravity_gun"
 	var/power = 4
+
+// 40K Weapons Below
+
+/obj/item/gun/energy/grimdark
+	name = "Plasma Weapon"
+	desc = "A very deadly weapon. Fires plasma."
+	icon_state = "ppistol"
+	item_state = "plaspistol"
+	icon = 'icons/obj/guns/grimdark.dmi'
+	ammo_type = list(/obj/item/ammo_casing/energy/grimdark)
+	cell_type = "/obj/item/stock_parts/cell/high"
+	COOLDOWN_DECLARE(overheat_alert)
+
+/obj/item/gun/energy/grimdark/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/gun/energy/grimdark/process()
+	if(heat > 0)
+		heat --
+	if(icon_state == "[initial(icon_state)]-crit" && heat < 25)
+		icon_state = "[initial(icon_state)]"
+
+/obj/item/gun/energy/grimdark/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+	..()
+	heat += 2
+	if(heat >= 25)
+		icon_state = "[initial(icon_state)]-crit"
+		if(COOLDOWN_FINISHED(src, overheat_alert))
+			to_chat(user, span_warning("The gun begins to heat up in your hands! Careful!"))
+			COOLDOWN_START(src, overheat_alert, 2 SECONDS)
+	if(heat >= 30 && prob(20))
+		var/turf/T = get_turf(src.loc)
+		if (isliving(loc))
+			var/mob/living/M = loc
+			M.show_message("\red Your [src] critically overheats!", 1)
+			M.adjust_fire_stacks(3)
+		if(T)
+			T.hotspot_expose(700,125)
+			explosion(T, -1, -1, 2, 3)
+		STOP_PROCESSING(SSobj, src)
+		qdel(src)
+	return
+
+/obj/item/gun/energy/grimdark/pistol
+	name = "Plasma Pistol"
+	desc = "A very deadly weapon used by high-ranking members of the Imperium."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "ppistol"
+	item_state = "ppistol"
+	ammo_type = list(/obj/item/ammo_casing/energy/grimdark/pistol)
+	w_class = WEIGHT_CLASS_SMALL
+
+
+/obj/item/gun/energy/grimdark/rifle
+	name = "Heavy Plasma Rifle"
+	desc = "A very deadly weapon used by high-ranking members of the Imperium."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "prifle"
+	item_state = "prifle"
+	ammo_type = list(/obj/item/ammo_casing/energy/grimdark)	

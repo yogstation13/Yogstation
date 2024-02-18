@@ -2,14 +2,17 @@ SUBSYSTEM_DEF(machines)
 	name = "Machines"
 	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
+	wait = 2 SECONDS
 	var/list/processing = list()
 	var/list/currentrun = list()
 	var/list/powernets = list()
+	/// Assosciative list of all machines that exist.
+	VAR_PRIVATE/list/machines_by_type = list()
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	fire()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/machines/proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
@@ -26,6 +29,10 @@ SUBSYSTEM_DEF(machines)
 	msg = "M:[length(processing)]|PN:[length(powernets)]"
 	return ..()
 
+/datum/controller/subsystem/machines/get_metrics()
+	. = ..()
+	.["machines"] = length(processing)
+	.["powernets"] = length(powernets)
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
 	if (!resumed)
@@ -36,11 +43,10 @@ SUBSYSTEM_DEF(machines)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 
-	var/seconds = wait * 0.1
 	while(currentrun.len)
 		var/obj/machinery/thing = currentrun[currentrun.len]
 		currentrun.len--
-		if(!QDELETED(thing) && thing.process(seconds) != PROCESS_KILL)
+		if(!QDELETED(thing) && thing.process(wait * 0.1) != PROCESS_KILL)
 			if(thing.use_power)
 				thing.auto_use_power() //add back the power state
 		else
@@ -63,3 +69,16 @@ SUBSYSTEM_DEF(machines)
 		processing = SSmachines.processing
 	if (istype(SSmachines.powernets))
 		powernets = SSmachines.powernets
+
+/// Gets a list of all machines that are either the passed type or a subtype.
+/datum/controller/subsystem/machines/proc/get_machines_by_type_and_subtypes(obj/machinery/machine_type)
+	if(!ispath(machine_type))
+		machine_type = machine_type.type
+	if(!ispath(machine_type, /obj/machinery))
+		CRASH("called get_machines_by_type_and_subtypes with a non-machine type [machine_type]")
+	var/list/machines = list()
+	for(var/next_type in typesof(machine_type))
+		var/list/found_machines = machines_by_type[next_type]
+		if(found_machines)
+			machines += found_machines 
+	return machines

@@ -14,9 +14,10 @@
 	var/last_signal = 0 // Marks the last time an NTSL script called signal() from this server, to stop spam.
 	var/list/compile_warnings = list()
 	//End-NTSL
+	COOLDOWN_DECLARE(compile_cooldown)
 
 //NTSL-related procs
-/obj/machinery/telecomms/server/Initialize()
+/obj/machinery/telecomms/server/Initialize(mapload)
 	Compiler = new()
 	Compiler.Holder = src
 	server_radio = new()
@@ -51,9 +52,15 @@
 /obj/machinery/telecomms/server/proc/compile(mob/user = usr)
 	if(is_banned_from(user.ckey, "Network Admin"))
 		to_chat(user, span_warning("You are banned from using NTSL."))
-		return
+		return "Unauthorized access."
 	if(Compiler)
+		if(!reject_bad_text(rawcode, 20000, require_pretty = FALSE, allow_newline = TRUE, allow_code = TRUE))
+			rawcode = null
+			return "Please use galactic common characters only."
+		if(!COOLDOWN_FINISHED(src, compile_cooldown))
+			return "Servers are recharging, please wait."
 		var/list/compileerrors = Compiler.Compile(rawcode)
+		COOLDOWN_START(src, compile_cooldown, 2 SECONDS)
 		if(!compileerrors.len && (compiledcode != rawcode))
 			user.log_message(rawcode, LOG_NTSL)
 			compiledcode = rawcode
@@ -70,11 +77,11 @@
 			var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, /datum/language/common, "test", list(), )
 			signal.data["server"] = src
 			Compiler.Run(signal)
-			if(signal.data["reject"] == 1)
+			if(signal.data["reject"] == TRUE)
 				signal.data["name"] = ""
-				signal.data["reject"] = 0
+				signal.data["reject"] = FALSE
 				Compiler.Run(signal)
-				if(signal.data["reject"] == 0)
+				if(!signal.data["reject"] == FALSE)
 					SSachievements.unlock_achievement(/datum/achievement/engineering/Poly_silent, user.client)
 			else
 				for(var/sample in signal.data["spans"])

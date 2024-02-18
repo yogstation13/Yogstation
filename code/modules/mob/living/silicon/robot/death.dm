@@ -38,4 +38,7 @@
 
 	unbuckle_all_mobs(TRUE)
 
+	if(connected_ai)
+		connected_ai.send_borg_death_warning(src)
+
 	SSblackbox.ReportDeath(src)

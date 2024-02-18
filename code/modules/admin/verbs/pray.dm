@@ -31,7 +31,7 @@
 		cross.icon_state = "tome"
 		font_color = "red"
 		prayer_type = "CULTIST PRAYER"
-		deity = "Nar-Sie"
+		deity = "Nar'sie"
 	else if(isliving(usr))
 		var/mob/living/L = usr
 		if(HAS_TRAIT(L, TRAIT_SPIRITUAL))
@@ -40,14 +40,14 @@
 			prayer_type = "SPIRITUAL PRAYER"
 
 	var/msg_tmp = msg
-	msg = span_adminnotice("[icon2html(cross, GLOB.admins)]<b><font color=[font_color]>[prayer_type][deity ? " (to [deity])" : ""]: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> [span_linkify("[msg]")]")
+	msg = span_adminnotice("[icon2html(cross, GLOB.permissions.admins)]<b><font color=[font_color]>[prayer_type][deity ? " (to [deity])" : ""]: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> [msg]")
 
-	for(var/client/C in GLOB.admins)
-		if(C.prefs.chat_toggles & CHAT_PRAYER)
+	for(var/client/C in GLOB.permissions.admins)
+		if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX)
 			to_chat(C, msg, confidential=TRUE)
-			if(C.prefs.toggles & SOUND_PRAYERS)
+			if(C.prefs.toggles & SOUND_PRAYER_N_FAX)
 				if(usr.job == "Chaplain")
-					SEND_SOUND(C, sound('sound/effects/pray.ogg'))
+					SEND_SOUND(C, sound('sound/effects/pray.ogg', volume=40))
 	to_chat(usr, span_info("You pray to the gods: \"[msg_tmp]\""), confidential=TRUE)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Prayer") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -57,7 +57,7 @@
 /proc/message_centcom(text, mob/sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=orange>CENTCOM:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_CENTCOM_REPLY(sender)]:</b> [msg]")
-	to_chat(GLOB.admins, msg, confidential = TRUE)
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
 	for(var/obj/machinery/computer/communications/console in GLOB.machines)
 		console.override_cooldown()
 
@@ -65,7 +65,16 @@
 /proc/message_syndicate(text, mob/sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=crimson>SYNDICATE:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_SYNDICATE_REPLY(sender)]:</b> [msg]")
-	to_chat(GLOB.admins, msg, confidential = TRUE)
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
+	for(var/obj/machinery/computer/communications/console in GLOB.machines)
+		console.override_cooldown()
+
+/// Used by the red phone to message the Syndicate
+/// Specifies CENTCOM/SYNDICATE: to indicate both receive the message
+/proc/message_redphone_syndicate(text, mob/sender)
+	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
+	msg = span_adminnotice("<b><font color=orange>CENTCOM</font>/<font color=crimson>SYNDICATE:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_SYNDICATE_REPLY(sender)]:</b> [msg]")
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
 	for(var/obj/machinery/computer/communications/console in GLOB.machines)
 		console.override_cooldown()
 
@@ -73,13 +82,20 @@
 /proc/nuke_request(text, mob/sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=orange>NUKE CODE REQUEST:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_CENTCOM_REPLY(sender)] [ADMIN_SET_SD_CODE] [ADMIN_SET_BC_CODE]:</b> [msg]")
-	to_chat(GLOB.admins, msg, confidential = TRUE)
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
 	for(var/obj/machinery/computer/communications/console in GLOB.machines)
 		console.override_cooldown()
 
 /proc/Clown_announce(text , mob/Sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=violet>CLOWN PLANET:</font>[ADMIN_FULLMONTY(Sender)] [ADMIN_SYNDICATE_REPLY(Sender)]:</b> [msg]")
-	to_chat(GLOB.admins, msg, confidential=TRUE)
+	to_chat(GLOB.permissions.admins, msg, confidential=TRUE)
 	for(var/obj/machinery/computer/communications/C in GLOB.machines)
 		C.override_cooldown()
+
+/proc/message_redphone_syndicateruin(text, mob/sender) //meant for Syndicate Lavaland and the listening post, doesn't trigger comms console cooldown and marks it as a ghostrole
+	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
+	msg = span_adminnotice("<b><font color=crimson>SYNDICATE GHOSTROLE:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_SYNDICATE_REPLY(sender)]:</b> [msg]")
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
+
+

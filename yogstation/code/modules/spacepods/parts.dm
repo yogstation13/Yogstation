@@ -14,7 +14,8 @@
 	var/link_to = null
 	var/link_angle = 0
 
-/obj/item/pod_parts/pod_frame/ComponentInitialize()
+/obj/item/pod_parts/pod_frame/Initialize(mapload)
+	. = ..()
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
 
 /obj/item/pod_parts/pod_frame/proc/find_square()
@@ -52,7 +53,7 @@
 			return FALSE
 	return connectedparts
 
-/obj/item/pod_parts/pod_frame/attackby(var/obj/item/O, mob/user)
+/obj/item/pod_parts/pod_frame/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = O
 		var/list/linkedparts = find_square()
@@ -158,14 +159,14 @@
 /obj/item/pod_parts/armor/security
 	name = "security pod armor"
 	icon_state = "pod_armor_mil"
-	desc = "Tough military-grade pod armor, meant for use by the NanoTrasen military and it's sub-divisons for space combat."
+	desc = "Tough military-grade pod armor, meant for use by the Nanotrasen military and it's sub-divisons for space combat."
 	pod_icon_state = "pod_mil"
 	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the Nanotrasen Military insignia"
 	pod_integrity = 350
 /obj/item/pod_parts/armor/security/red
 	name = "security pod armor"
 	icon_state = "pod_armor_synd"
-	desc = "Tough military-grade pod armor, meant for use by the NanoTrasen military and it's sub-divisons for space combat."
+	desc = "Tough military-grade pod armor, meant for use by the Nanotrasen military and it's sub-divisons for space combat."
 	pod_icon_state = "pod_synd"
 	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the Nanotrasen Military insignia"
 	pod_integrity = 350

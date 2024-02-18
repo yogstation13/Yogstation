@@ -92,7 +92,7 @@
 /obj/item/clothing/suit/space/space_ninja/lockIcons(mob/living/carbon/human/H)
 	return
 
-/obj/item/clothing/suit/space/space_ninja/Initialize()
+/obj/item/clothing/suit/space/space_ninja/Initialize(mapload)
 	actions_types += /datum/action/item_action/ninjacolour
 	.=..()
 

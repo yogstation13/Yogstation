@@ -1,3 +1,4 @@
-/mob/living/carbon/alien/humanoid/Initialize(null)
-	AddAbility(new/obj/effect/proc_holder/alien/regurgitate())
+/mob/living/carbon/alien/humanoid/Initialize(mapload, null)
+	var/datum/action/cooldown/alien/regurgitate/regurgitate = new(src)
+	regurgitate.Grant(src)
 	. = ..()

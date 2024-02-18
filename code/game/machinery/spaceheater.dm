@@ -5,7 +5,7 @@
 /obj/machinery/space_heater
 	anchored = FALSE
 	density = TRUE
-	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
+	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OFFLINE
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater-off"
 	name = "space heater"
@@ -13,31 +13,32 @@
 	max_integrity = 250
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 100, FIRE = 80, ACID = 10)
 	circuit = /obj/item/circuitboard/machine/space_heater
-	use_power = NO_POWER_USE
+	use_power = ACTIVE_POWER_USE
 	var/obj/item/stock_parts/cell/cell
 	var/on = FALSE
 	var/mode = HEATER_MODE_STANDBY
 	var/setMode = "auto" // Anything other than "heat" or "cool" is considered auto.
 	var/targetTemperature = T20C
-	var/heatingPower = 40000
+	var/heatingPower = 20000
 	var/efficiency = 20000
 	var/temperatureTolerance = 1
 	var/settableTemperatureMedian = 30 + T0C
 	var/settableTemperatureRange = 30
+	var/charge_rate = 10
 
 /obj/machinery/space_heater/get_cell()
 	return cell
 
-/obj/machinery/space_heater/Initialize()
+/obj/machinery/space_heater/Initialize(mapload)
 	. = ..()
 	cell = new(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/space_heater/on_construction()
 	qdel(cell)
 	cell = null
 	panel_open = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/space_heater/on_deconstruction()
@@ -56,63 +57,87 @@
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Temperature range at <b>[settableTemperatureRange]°C</b>.<br>Heating power at <b>[heatingPower*0.001]kJ</b>.<br>Power consumption at <b>[(efficiency*-0.0025)+150]%</b>.<span>" //100%, 75%, 50%, 25%
 
-/obj/machinery/space_heater/update_icon()
-	if(on)
-		icon_state = "sheater-[mode]"
-	else
-		icon_state = "sheater-off"
+/obj/machinery/space_heater/update_icon_state()
+	. = ..()
+	icon_state = "sheater-[on ? "[mode]" : "off"]"
 
-	cut_overlays()
+/obj/machinery/space_heater/update_overlays()
+	. = ..()
 	if(panel_open)
-		add_overlay("sheater-open")
+		. += "sheater-open"
 
-/obj/machinery/space_heater/process()
-	if(!on || !is_operational())
+/obj/machinery/space_heater/process_atmos()
+	if(!on || stat & (BROKEN|MAINT))
 		if (on) // If it's broken, turn it off too
 			on = FALSE
+		active_power_usage = 0
+		update_appearance(UPDATE_ICON)
 		return PROCESS_KILL
 
-	if(cell && cell.charge > 0)
-		var/turf/L = loc
-		if(!istype(L))
-			if(mode != HEATER_MODE_STANDBY)
-				mode = HEATER_MODE_STANDBY
-				update_icon()
-			return
-
-		var/datum/gas_mixture/env = L.return_air()
-
-		var/newMode = HEATER_MODE_STANDBY
-		if(setMode != HEATER_MODE_COOL && env.return_temperature() < targetTemperature - temperatureTolerance)
-			newMode = HEATER_MODE_HEAT
-		else if(setMode != HEATER_MODE_HEAT && env.return_temperature() > targetTemperature + temperatureTolerance)
-			newMode = HEATER_MODE_COOL
-
-		if(mode != newMode)
-			mode = newMode
-			update_icon()
-
-		if(mode == HEATER_MODE_STANDBY)
-			return
-
-		var/heat_capacity = env.heat_capacity()
-		var/requiredPower = abs(env.return_temperature() - targetTemperature) * heat_capacity
-		requiredPower = min(requiredPower, heatingPower)
-
-		if(requiredPower < 1)
-			return
-
-		var/deltaTemperature = requiredPower / heat_capacity
-		if(mode == HEATER_MODE_COOL)
-			deltaTemperature *= -1
-		if(deltaTemperature)
-			env.set_temperature(env.return_temperature() + deltaTemperature)
-			air_update_turf()
-		cell.use(requiredPower / efficiency)
-	else
+	if((stat & NOPOWER) && (!cell || cell.charge <= 0))
 		on = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return PROCESS_KILL
+
+	var/turf/L = loc
+	if(!istype(L))
+		if(mode != HEATER_MODE_STANDBY)
+			mode = HEATER_MODE_STANDBY
+			update_appearance(UPDATE_ICON)
+		return
+
+	var/datum/gas_mixture/env = L.return_air()
+
+	var/newMode = HEATER_MODE_STANDBY
+	if(setMode != HEATER_MODE_COOL && env.return_temperature() < targetTemperature - temperatureTolerance)
+		newMode = HEATER_MODE_HEAT
+	else if(setMode != HEATER_MODE_HEAT && env.return_temperature() > targetTemperature + temperatureTolerance)
+		newMode = HEATER_MODE_COOL
+
+	if(mode != newMode)
+		mode = newMode
+		update_appearance(UPDATE_ICON)
+
+	if(mode == HEATER_MODE_STANDBY)
+		return
+
+	var/heat_capacity = env.heat_capacity()
+	var/requiredEnergy = abs(env.return_temperature() - targetTemperature) * heat_capacity
+	requiredEnergy = min(requiredEnergy, heatingPower)
+
+	if(requiredEnergy < 1)
+		return
+
+	var/deltaTemperature = requiredEnergy / heat_capacity
+	if(mode == HEATER_MODE_COOL)
+		deltaTemperature *= -1
+	if(deltaTemperature)
+		for (var/turf/open/turf in ((L.atmos_adjacent_turfs || list()) + L))
+			var/datum/gas_mixture/turf_gasmix = turf.return_air()
+			turf_gasmix.set_temperature(turf_gasmix.return_temperature() + deltaTemperature)
+
+	var/working = TRUE
+
+	if(stat & NOPOWER)
+		if (!cell.use(requiredEnergy / efficiency))
+			//automatically turn off machine when cell depletes
+			on = FALSE
+			update_appearance(UPDATE_ICON)
+			working = FALSE		
+	else
+		active_power_usage = requiredEnergy / efficiency
+		cell.give(charge_rate)
+	
+	if(!working)
+		return PROCESS_KILL
+
+/obj/machinery/space_heater/power_change()
+	. = ..()
+	if(stat & NOPOWER)
+		use_power = NO_POWER_USE
+	else
+		use_power = ACTIVE_POWER_USE
+
 
 /obj/machinery/space_heater/RefreshParts()
 	var/laser = 2
@@ -121,8 +146,9 @@
 		laser += M.rating
 	for(var/obj/item/stock_parts/capacitor/M in component_parts)
 		cap += M.rating
+		charge_rate = initial(charge_rate)*M.rating
 
-	heatingPower = laser * 40000
+	heatingPower = laser * 20000
 
 	settableTemperatureRange = cap * 30
 	efficiency = (cap + 1) * 10000
@@ -157,7 +183,7 @@
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		panel_open = !panel_open
 		user.visible_message("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src].", span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(default_deconstruction_crowbar(I))
 		return
 	else
@@ -186,13 +212,10 @@
 	data["minTemp"] = max(settableTemperatureMedian - settableTemperatureRange - T0C, TCMB)
 	data["maxTemp"] = settableTemperatureMedian + settableTemperatureRange - T0C
 
-	var/turf/L = get_turf(loc)
 	var/curTemp
-	if(istype(L))
-		var/datum/gas_mixture/env = L.return_air()
-		curTemp = env.return_temperature()
-	else if(isturf(L))
-		curTemp = L.return_temperature()
+	if(isopenturf(get_turf(src)))
+		var/datum/gas_mixture/env = return_air()
+		curTemp = env?.return_temperature()
 	if(isnull(curTemp))
 		data["currentTemp"] = "N/A"
 	else
@@ -239,9 +262,11 @@
 	on = !on
 	mode = HEATER_MODE_STANDBY
 	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", span_notice("You switch [on ? "on" : "off"] \the [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if (on)
-		START_PROCESSING(SSmachines, src)
+		SSair.start_processing_machine(src)
+	else
+		SSair.stop_processing_machine(src)
 
 /obj/machinery/space_heater/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))

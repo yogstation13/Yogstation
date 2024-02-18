@@ -34,7 +34,7 @@
 	var/datum/action/innate/dash/ninja/jaunt
 	var/dash_toggled = TRUE
 
-/obj/item/energy_katana/Initialize()
+/obj/item/energy_katana/Initialize(mapload)
 	. = ..()
 	jaunt = new(src)
 	spark_system = new /datum/effect_system/spark_spread()
@@ -55,8 +55,16 @@
 		playsound(user, 'sound/weapons/blade1.ogg', 50, 1)
 		target.emag_act(user)
 
-/obj/item/energy_katana/pickup(mob/living/user)
+/obj/item/energy_katana/pickup(mob/living/carbon/human/user)
 	. = ..()
+	if(!is_ninja(user)) //stolen directly from the bloody bastard sword
+		if(user.electrocute_act(15, src, 1, user.held_index_to_body_zone(user.active_hand_index))) // you tried to grab it with this hand, so we'll shock it
+			to_chat(user, span_userdanger("[src] shocks you!"))
+			user.emote("scream")
+			user.dropItemToGround(src, TRUE)
+			user.Paralyze(50)
+		else
+			to_chat(user, span_warning("[src] attempts to shock you."))
 	jaunt.Grant(user, src)
 	user.update_icons()
 	playsound(src, 'sound/items/unsheath.ogg', 25, 1)
@@ -93,7 +101,7 @@
 
 	if(user.put_in_hands(src))
 		msg = "Your Energy Katana teleports into your hand!"
-	else if(user.equip_to_slot_if_possible(src, SLOT_BELT, 0, 1, 1))
+	else if(user.equip_to_slot_if_possible(src, ITEM_SLOT_BELT, 0, 1, 1))
 		msg = "Your Energy Katana teleports back to you, sheathing itself as it does so!</span>"
 	else
 		msg = "Your Energy Katana teleports to your location!"

@@ -25,6 +25,7 @@
 #_maps/RandomRuins/SpaceRuins/derelict5.dmm
 #_maps/RandomRuins/SpaceRuins/derelict6.dmm
 #_maps/RandomRuins/SpaceRuins/djstation.dmm
+#_maps/RandomRuins/SpaceRuins/drifting_spacepod.dmm
 #_maps/RandomRuins/SpaceRuins/emptyshell.dmm
 #_maps/RandomRuins/SpaceRuins/gasthelizards.dmm
 #_maps/RandomRuins/SpaceRuins/gondolaasteroid.dmm
@@ -51,3 +52,4 @@
 #_maps/RandomRuins/SpaceRuins/pubby_monastery.dmm
 #_maps/RandomRuins/SpaceRuins/bigape.dmm
 #_maps/RandomRuins/SpaceRuins/nicelittlenest.dmm
+#_maps/RandomRuins/SpaceRuins/syndicate_derelict_station.dmm

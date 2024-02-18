@@ -2,7 +2,7 @@
 
 /obj/item/minigunbackpack
 	name = "The back stash"
-	desc = "The massive back stash can hold alot of ammo on your back."
+	desc = "The massive back stash can hold a lot of ammo on your back."
 	icon = 'yogstation/icons/obj/guns/minigunosprey.dmi'
 	icon_state = "holstered"
 	item_state = "backpack"
@@ -14,11 +14,11 @@
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 30
+	var/overheat_max = 50
 	var/heat_stage = 0
 	var/heat_diffusion = 2
 
-/obj/item/minigunbackpack/Initialize()
+/obj/item/minigunbackpack/Initialize(mapload)
 	. = ..()
 	gun = new(src)
 	START_PROCESSING(SSobj, src)
@@ -33,16 +33,16 @@
 		heat_stage = 0
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/minigunbackpack/attack_hand(var/mob/living/carbon/user)
+/obj/item/minigunbackpack/attack_hand(mob/living/carbon/user)
 	if(loc == user)
 		if(!armed)
-			if(user.get_item_by_slot(SLOT_BACK) == src)
+			if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 				armed = TRUE
 				if(!user.put_in_hands(gun))
 					armed = FALSE
 					to_chat(user, span_warning("You need a free hand to hold the gun!"))
 					return
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				user.update_inv_back()
 		else
 			to_chat(user, span_warning("You are already holding the gun!"))
@@ -76,18 +76,19 @@
 
 		if(!M.incapacitated())
 
-			if(istype(over_object, /obj/screen/inventory/hand))
-				var/obj/screen/inventory/hand/H = over_object
+			if(istype(over_object, /atom/movable/screen/inventory/hand))
+				var/atom/movable/screen/inventory/hand/H = over_object
 				M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 
 
-/obj/item/minigunbackpack/update_icon()
+/obj/item/minigunbackpack/update_icon_state()
+	. = ..()
 	if(armed)
 		icon_state = "notholstered"
 	else
 		icon_state = "holstered"
 
-/obj/item/minigunbackpack/proc/attach_gun(var/mob/user)
+/obj/item/minigunbackpack/proc/attach_gun(mob/user)
 	if(!gun)
 		gun = new(src)
 	gun.forceMove(src)
@@ -96,7 +97,7 @@
 		to_chat(user, span_notice("You attach the [gun.name] to the [name]."))
 	else
 		visible_message(span_warning("The [gun.name] snaps back onto the [name]!"))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	user.update_inv_back()
 
 
@@ -109,7 +110,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_left.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_right.dmi'
 	flags_1 = CONDUCT_1
-	slowdown = 2
+	slowdown = 1.4
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
@@ -129,7 +130,7 @@
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
 	var/obj/item/minigunbackpack/ammo_pack
 
-/obj/item/gun/ballistic/minigunosprey/Initialize()
+/obj/item/gun/ballistic/minigunosprey/Initialize(mapload)
 	if(istype(loc, /obj/item/minigunbackpack)) //We should spawn inside an ammo pack so let's use that one.
 		ammo_pack = loc
 		START_PROCESSING(SSfastprocess, src)
@@ -137,6 +138,10 @@
 		return INITIALIZE_HINT_QDEL //No pack, no gun
 
 	return ..()
+
+//To prevent unloading the gun
+/obj/item/gun/ballistic/minigunosprey/attack_hand(mob/user)
+	return
 
 /obj/item/gun/ballistic/minigunosprey/attack_self(mob/living/user)
 	return

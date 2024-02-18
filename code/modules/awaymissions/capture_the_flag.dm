@@ -9,7 +9,7 @@
 
 
 
-/obj/item/twohanded/ctf
+/obj/item/ctf_flag
 	name = "banner"
 	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
@@ -31,16 +31,16 @@
 	var/obj/effect/ctf/flag_reset/reset
 	var/reset_path = /obj/effect/ctf/flag_reset
 
-/obj/item/twohanded/ctf/Destroy()
+/obj/item/ctf_flag/Destroy()
 	QDEL_NULL(reset)
 	return ..()
 
-/obj/item/twohanded/ctf/Initialize()
+/obj/item/ctf_flag/Initialize(mapload)
 	. = ..()
 	if(!reset)
 		reset = new reset_path(get_turf(src))
 
-/obj/item/twohanded/ctf/process()
+/obj/item/ctf_flag/process()
 	if(is_ctf_target(loc)) //don't reset from someone's hands.
 		return PROCESS_KILL
 	if(world.time > reset_cooldown)
@@ -52,7 +52,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/twohanded/ctf/attack_hand(mob/living/user)
+/obj/item/ctf_flag/attack_hand(mob/living/user)
 	if(!is_ctf_target(user) && !anyonecanpickup)
 		to_chat(user, "Non players shouldn't be moving the flag!")
 		return
@@ -76,7 +76,7 @@
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/twohanded/ctf/dropped(mob/user)
+/obj/item/ctf_flag/dropped(mob/user)
 	..()
 	user.anchored = FALSE
 	user.status_flags |= CANPUSH
@@ -89,7 +89,7 @@
 	anchored = TRUE
 
 
-/obj/item/twohanded/ctf/red
+/obj/item/ctf_flag/red
 	name = "red flag"
 	icon_state = "banner-red"
 	item_state = "banner-red"
@@ -98,7 +98,7 @@
 	reset_path = /obj/effect/ctf/flag_reset/red
 
 
-/obj/item/twohanded/ctf/blue
+/obj/item/ctf_flag/blue
 	name = "blue flag"
 	icon_state = "banner-blue"
 	item_state = "banner-blue"
@@ -163,7 +163,7 @@
 	var/static/arena_reset = FALSE
 	var/static/list/people_who_want_to_play = list()
 
-/obj/machinery/capture_the_flag/Initialize()
+/obj/machinery/capture_the_flag/Initialize(mapload)
 	. = ..()
 	GLOB.poi_list |= src
 
@@ -171,7 +171,7 @@
 	GLOB.poi_list.Remove(src)
 	..()
 
-/obj/machinery/capture_the_flag/process()
+/obj/machinery/capture_the_flag/process(delta_time)
 	for(var/i in spawned_mobs)
 		if(!i)
 			spawned_mobs -= i
@@ -183,8 +183,8 @@
 		else
 			// The changes that you've been hit with no shield but not
 			// instantly critted are low, but have some healing.
-			M.adjustBruteLoss(-5)
-			M.adjustFireLoss(-5)
+			M.adjustBruteLoss(-2.5 * delta_time)
+			M.adjustFireLoss(-2.5 * delta_time)
 
 /obj/machinery/capture_the_flag/red
 	name = "Red CTF Controller"
@@ -257,15 +257,15 @@
 		var/turf/T = get_turf(body)
 		new /obj/effect/ctf/ammo(T)
 		recently_dead_ckeys += body.ckey
-		addtimer(CALLBACK(src, .proc/clear_cooldown, body.ckey), respawn_cooldown, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(clear_cooldown), body.ckey), respawn_cooldown, TIMER_UNIQUE)
 		body.dust()
 
-/obj/machinery/capture_the_flag/proc/clear_cooldown(var/ckey)
+/obj/machinery/capture_the_flag/proc/clear_cooldown(ckey)
 	recently_dead_ckeys -= ckey
 
 /obj/machinery/capture_the_flag/proc/spawn_team_member(client/new_team_member)
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(get_turf(src))
-	new_team_member.prefs.copy_to(M)
+	new_team_member.prefs.apply_prefs_to(M)
 	M.set_species(/datum/species/synth)
 	M.key = new_team_member.key
 	M.faction += team
@@ -279,8 +279,8 @@
 			attack_ghost(ghost)
 
 /obj/machinery/capture_the_flag/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/twohanded/ctf))
-		var/obj/item/twohanded/ctf/flag = I
+	if(istype(I, /obj/item/ctf_flag))
+		var/obj/item/ctf_flag/flag = I
 		if(flag.team != src.team)
 			user.transferItemToLoc(flag, get_turf(flag.reset), TRUE)
 			points++
@@ -292,12 +292,12 @@
 			victory()
 
 /obj/machinery/capture_the_flag/proc/victory()
-	for(var/mob/M in GLOB.mob_list)
+	for(var/mob/living/M as anything in GLOB.mob_list)
 		var/area/mob_area = get_area(M)
 		if(istype(mob_area, /area/ctf))
 			to_chat(M, "<span class='narsie [team_span]'>[team] team wins!</span>")
 			to_chat(M, span_userdanger("Teams have been cleared. Click on the machines to vote to begin another round."))
-			for(var/obj/item/twohanded/ctf/W in M)
+			for(var/obj/item/ctf_flag/W in M)
 				M.dropItemToGround(W)
 			M.dust()
 	for(var/obj/machinery/control_point/control in GLOB.machines)
@@ -338,7 +338,7 @@
 	var/list/ctf_object_typecache = typecacheof(list(
 				/obj/machinery,
 				/obj/effect/ctf,
-				/obj/item/twohanded/ctf
+				/obj/item/ctf_flag
 			))
 	for(var/atm in A)
 		if (isturf(A) || ismob(A) || isarea(A))
@@ -354,8 +354,7 @@
 	ctf_enabled = FALSE
 	arena_reset = FALSE
 	var/area/A = get_area(src)
-	for(var/i in GLOB.mob_list)
-		var/mob/M = i
+	for(var/mob/living/M as anything in GLOB.mob_list)
 		if((get_area(A) == A) && (M.ckey in team_members))
 			M.dust()
 	team_members.Cut()
@@ -381,7 +380,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/ctf/dropped()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/floor_vanish), 1)
+	addtimer(CALLBACK(src, PROC_REF(floor_vanish)), 1)
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/ctf/proc/floor_vanish()
 	if(isturf(loc))
@@ -391,12 +390,12 @@
 	ammo_type = /obj/item/ammo_casing/a50/ctf
 
 /obj/item/ammo_casing/a50/ctf
-	projectile_type = /obj/item/projectile/bullet/ctf
+	projectile_type = /obj/projectile/bullet/ctf
 
-/obj/item/projectile/bullet/ctf
+/obj/projectile/bullet/ctf
 	damage = 0
 
-/obj/item/projectile/bullet/ctf/prehit(atom/target)
+/obj/projectile/bullet/ctf/prehit(atom/target)
 	if(is_ctf_target(target))
 		damage = 60
 	. = ..()
@@ -408,7 +407,7 @@
 
 /obj/item/gun/ballistic/automatic/laser/ctf/dropped()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/floor_vanish), 1)
+	addtimer(CALLBACK(src, PROC_REF(floor_vanish)), 1)
 
 /obj/item/gun/ballistic/automatic/laser/ctf/proc/floor_vanish()
 	if(isturf(loc))
@@ -419,20 +418,20 @@
 
 /obj/item/ammo_box/magazine/recharge/ctf/dropped()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/floor_vanish), 1)
+	addtimer(CALLBACK(src, PROC_REF(floor_vanish)), 1)
 
 /obj/item/ammo_box/magazine/recharge/ctf/proc/floor_vanish()
 	if(isturf(loc))
 		qdel(src)
 
 /obj/item/ammo_casing/caseless/laser/ctf
-	projectile_type = /obj/item/projectile/beam/ctf
+	projectile_type = /obj/projectile/beam/ctf
 
-/obj/item/projectile/beam/ctf
+/obj/projectile/beam/ctf
 	damage = 0
 	icon_state = "omnilaser"
 
-/obj/item/projectile/beam/ctf/prehit(atom/target)
+/obj/projectile/beam/ctf/prehit(atom/target)
 	if(is_ctf_target(target))
 		damage = 150
 	. = ..()
@@ -455,9 +454,9 @@
 	ammo_type = /obj/item/ammo_casing/caseless/laser/ctf/red
 
 /obj/item/ammo_casing/caseless/laser/ctf/red
-	projectile_type = /obj/item/projectile/beam/ctf/red
+	projectile_type = /obj/projectile/beam/ctf/red
 
-/obj/item/projectile/beam/ctf/red
+/obj/projectile/beam/ctf/red
 	icon_state = "laser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 
@@ -470,9 +469,9 @@
 	ammo_type = /obj/item/ammo_casing/caseless/laser/ctf/blue
 
 /obj/item/ammo_casing/caseless/laser/ctf/blue
-	projectile_type = /obj/item/projectile/beam/ctf/blue
+	projectile_type = /obj/projectile/beam/ctf/blue
 
-/obj/item/projectile/beam/ctf/blue
+/obj/projectile/beam/ctf/blue
 	icon_state = "bluelaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
@@ -499,11 +498,11 @@
 	W.registered_name = H.real_name
 	W.update_label(W.registered_name, W.assignment)
 
-	no_drops += H.get_item_by_slot(SLOT_WEAR_SUIT)
-	no_drops += H.get_item_by_slot(SLOT_GLOVES)
-	no_drops += H.get_item_by_slot(SLOT_SHOES)
-	no_drops += H.get_item_by_slot(SLOT_W_UNIFORM)
-	no_drops += H.get_item_by_slot(SLOT_EARS)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_GLOVES)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_FEET)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_ICLOTHING)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_EARS)
 	for(var/i in no_drops)
 		var/obj/item/I = i
 		ADD_TRAIT(I, TRAIT_NODROP, CAPTURE_THE_FLAG_TRAIT)
@@ -660,11 +659,11 @@
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/machinery/capture_the_flag/controlling
 	var/team = "none"
-	var/point_rate = 1
+	var/point_rate = 0.5
 
-/obj/machinery/control_point/process()
+/obj/machinery/control_point/process(delta_time)
 	if(controlling)
-		controlling.control_points += point_rate
+		controlling.control_points += point_rate * delta_time
 		if(controlling.control_points >= controlling.control_points_to_win)
 			controlling.victory()
 

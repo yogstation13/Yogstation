@@ -6,8 +6,8 @@ export const NtosCrewMonitor = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <NtosWindow
-      width={1000}
-      height={800}
+      width={775}
+      height={415}
       resizable>
       <NtosWindow.Content scrollable>
         <CrewConsoleContent />

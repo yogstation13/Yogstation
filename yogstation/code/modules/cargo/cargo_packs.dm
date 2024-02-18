@@ -45,7 +45,7 @@
 
 /datum/supply_pack/misc/sphere
 	name = "Advanced Crates"
-	desc = "Contains a Advanced Crate that defies all known cargo standards!"
+	desc = "Contains an advanced crate that defies all known cargo standards!"
 	cost = 10000
 	contains = list(/obj/structure/closet/crate/sphere)
 	crate_name = "Advanced Crate Container"
@@ -57,7 +57,7 @@
 	cost = 800
 	contains = list(/obj/item/storage/box/cheese)
 	crate_name = "cheese culture crate"
-	
+
 /datum/supply_pack/organic/randomized/cheesewheel
 	name = "Cheese Wheel Crate"
 	desc = "Contains 6 various cheese wheels, for stations that don't have a chef or work ethic."
@@ -105,14 +105,29 @@
 					/obj/item/toy/plush/flowerbunch,
 					/obj/item/toy/plush/inorixplushie,
 					/obj/item/toy/plush/beeplushie,
-					/obj/item/toy/plush/slimeplushie)
+					/obj/item/toy/plush/slimeplushie,
+					/obj/item/toy/plush/cdragon)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/balloons
+	name = "Balloon Crate"
+	desc = "A crate filled with 6 fun filled balloon boxes!"
+	cost = 2000
+	contains = list(
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox
+	)
 
 /datum/supply_pack/security/prisonclothes
 	name = "Prison Jumpsuit Crate"
 	desc = "A crate containing a five cheap looking orange jumpsuits."
 	cost = 500
+	small_item = TRUE
 	contains = list(/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner,
@@ -136,30 +151,6 @@
 					/obj/item/skub)
 	crate_name = "skub crate"
 
-/datum/supply_pack/emergency/syndicate
-	name = "NULL_ENTRY"
-	desc = "(#@&^$THIS PACKAGE CONTAINS 30TC WORTH OF SOME RANDOM SYNDICATE GEAR WE HAD LYING AROUND THE WAREHOUSE. GIVE EM HELL, OPERATIVE@&!*() "
-	hidden = TRUE
-	cost = 20000
-	contains = list()
-	crate_name = "emergency crate"
-	crate_type = /obj/structure/closet/crate/internals
-	dangerous = TRUE
-
-/datum/supply_pack/emergency/syndicate/fill(obj/structure/closet/crate/C)
-	var/crate_value = 30
-	var/list/uplink_items = get_uplink_items(SSticker.mode)
-	while(crate_value)
-		var/category = pick(uplink_items)
-		var/item = pick(uplink_items[category])
-		var/datum/uplink_item/I = uplink_items[category][item]
-		if(!I.surplus_nullcrates || prob(100 - I.surplus_nullcrates))
-			continue
-		if(crate_value < I.cost)
-			continue
-		crate_value -= I.cost
-		new I.item(C)
-
 /datum/supply_pack/misc/milliondollarhat
 	name = "Half Off Million Dollar Hat"
 	desc = "Contains a hat that defies both logic and fashion sense. Now half off!"
@@ -167,3 +158,16 @@
 	contains = list(/obj/item/clothing/head/milliondollarhat)
 	crate_name = "million dollar hat crate"
 	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/critter/carp
+	name = "Exotic Fish Crate"
+	desc = "°@$#|TIRED OF THOSE BORING SEAFARING FISHES? WANT TO SEE REAL FAUNA FROM SPACE? WELL WE GOT 3 OF ITS FINEST SPECIMENS IN A BOX JUST FOR YOU! WE COULDN'T FIND DECENT FOOD FOR THEM SO THEY MIGHT BE VERY HUNGRY, GET SOME FOOD READY FOR THEM!(@/!&"
+	hidden = TRUE
+	cost = 2000
+	contains = list(/mob/living/simple_animal/hostile/carp)
+	crate_name = "fish crate"
+
+/datum/supply_pack/critter/carp/generate()
+	. = ..()
+	for(var/i in 1 to 2)
+		new /mob/living/simple_animal/hostile/carp(.)

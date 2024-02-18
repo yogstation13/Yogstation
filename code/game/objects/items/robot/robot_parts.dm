@@ -34,11 +34,11 @@
 	/// If the cyborg's cover panel starts locked
 	var/panel_locked = TRUE
 
-/obj/item/robot_suit/Initialize()
+/obj/item/robot_suit/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/robot_suit/prebuilt/Initialize()
+/obj/item/robot_suit/prebuilt/Initialize(mapload)
 	. = ..()
 	l_arm = new(src)
 	r_arm = new(src)
@@ -51,20 +51,20 @@
 	chest.wired = TRUE
 	chest.cell = new /obj/item/stock_parts/cell/high/plus(chest)
 
-/obj/item/robot_suit/update_icon()
-	cut_overlays()
+/obj/item/robot_suit/update_overlays()
+	. = ..()
 	if(l_arm)
-		add_overlay("[l_arm.icon_state]+o")
+		. += "[l_arm.icon_state]+o"
 	if(r_arm)
-		add_overlay("[r_arm.icon_state]+o")
+		. += "[r_arm.icon_state]+o"
 	if(chest)
-		add_overlay("[chest.icon_state]+o")
+		. += "[chest.icon_state]+o"
 	if(l_leg)
-		add_overlay("[l_leg.icon_state]+o")
+		. += "[l_leg.icon_state]+o"
 	if(r_leg)
-		add_overlay("[r_leg.icon_state]+o")
+		. += "[r_leg.icon_state]+o"
 	if(head)
-		add_overlay("[head.icon_state]+o")
+		. += "[head.icon_state]+o"
 
 /obj/item/robot_suit/proc/check_completion()
 	if(src.l_arm && src.r_arm)
@@ -108,7 +108,7 @@
 			to_chat(user, span_notice("You disassemble the cyborg shell."))
 	else
 		to_chat(user, span_notice("There is nothing to remove from the endoskeleton."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/robot_suit/proc/put_in_hand_or_drop(mob/living/user, obj/item/I) //normal put_in_hands() drops the item ontop of the player, this drops it at the suit's loc
 	if(!user.put_in_hands(I))
@@ -172,9 +172,13 @@
 		W.icon_state = initial(W.icon_state)
 		W.cut_overlays()
 		l_leg = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(W, /obj/item/bodypart/r_leg/robot))
+		var/obj/item/bodypart/r_leg/robot/L = W
+		if(L.use_digitigrade != NOT_DIGITIGRADE)
+			to_chat(user, span_warning("You can only install plantigrade legs on [src]!"))
+			return
 		if(src.r_leg)
 			return
 		if(!user.transferItemToLoc(W, src))
@@ -182,9 +186,13 @@
 		W.icon_state = initial(W.icon_state)
 		W.cut_overlays()
 		r_leg = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(W, /obj/item/bodypart/l_arm/robot))
+		var/obj/item/bodypart/l_leg/robot/L = W
+		if(L.use_digitigrade != NOT_DIGITIGRADE)
+			to_chat(user, span_warning("You can only install plantigrade legs on [src]!"))
+			return
 		if(l_arm)
 			return
 		if(!user.transferItemToLoc(W, src))
@@ -192,7 +200,7 @@
 		W.icon_state = initial(W.icon_state)
 		W.cut_overlays()
 		l_arm = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(W, /obj/item/bodypart/r_arm/robot))
 		if(r_arm)
@@ -202,7 +210,7 @@
 		W.icon_state = initial(W.icon_state)//in case it is a dismembered robotic limb
 		W.cut_overlays()
 		r_arm = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(W, /obj/item/bodypart/chest/robot))
 		var/obj/item/bodypart/chest/robot/CH = W
@@ -214,7 +222,7 @@
 			CH.icon_state = initial(CH.icon_state) //in case it is a dismembered robotic limb
 			CH.cut_overlays()
 			chest = CH
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else if(!CH.wired)
 			to_chat(user, span_warning("You need to attach wires to it first!"))
 		else
@@ -234,7 +242,7 @@
 			HD.icon_state = initial(HD.icon_state)//in case it is a dismembered robotic limb
 			HD.cut_overlays()
 			head = HD
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You need to attach a flash to it first!"))
 
@@ -288,7 +296,7 @@
 			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
 				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
 
-			if(M.laws && M.laws.id != DEFAULT_AI_LAWID && M.override_cyborg_laws)
+			if(M.laws && M.laws.modified && M.override_cyborg_laws)
 				aisync = FALSE
 				lawsync = FALSE
 				O.laws = M.laws
@@ -307,9 +315,15 @@
 					O.set_connected_ai(forced_ai)
 			if(!lawsync)
 				O.lawupdate = 0
-				if(M.laws.id == DEFAULT_AI_LAWID)
+				if(!M.laws.modified)
+					// Give the non-modified laws which is visible on the MMI.
+					O.laws = M.laws
+					M.laws.associate(O)
+				else if(!M.override_cyborg_laws) // MMI's laws were changed. Do not want to upload them if we say so.
+					// Give random default lawset.
 					O.make_laws()
-					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transfered!"))
+					// Obvious warning that their modified laws didn't get passed on.
+					to_chat(user, span_warning("Any laws uploaded to this MMI have not been transferred!"))
 
 			SSticker.mode.remove_antag_for_borging(BM.mind)
 			if(!istype(M.laws, /datum/ai_laws/ratvar))
@@ -325,24 +339,30 @@
 				qdel(O.mmi)
 			O.mmi = W //and give the real mmi to the borg.
 
+			REMOVE_TRAIT(O, TRAIT_PACIFISM, POSIBRAIN_TRAIT) // remove the posibrain's pacifism
+
 			O.updatename(BM.client)
 
 			BM.mind.transfer_to(O)
 
-			if(O.mind && O.mind.special_role)
+			if(O.mmi.syndicate_mmi)
+				O.syndiemmi_override()
+				to_chat(O, span_warning("ALERT: Foreign hardware detected."))
+				to_chat(O, span_warning("ERRORERRORERROR"))
+				O.show_laws()
+			else if(O.mind && O.mind.special_role)
 				O.mind.store_memory("As a cyborg, you must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead.")
 				to_chat(O, span_userdanger("You have been robotized!"))
 				to_chat(O, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
 
 			SSblackbox.record_feedback("amount", "cyborg_birth", 1)
-			forceMove(O)
-			O.robot_suit = src
 
 			if(!locomotion)
 				O.lockcharge = TRUE
 				O.update_mobility()
 				to_chat(O, span_warning("Error: Servo motors unresponsive."))
 
+			qdel(src)
 		else
 			to_chat(user, span_warning("The MMI must go in after everything else!"))
 
@@ -375,11 +395,11 @@
 			chest.cell = null
 			O.locked = panel_locked
 			O.job = "Cyborg"
-			forceMove(O)
-			O.robot_suit = src
 			if(!locomotion)
 				O.lockcharge = TRUE
 				O.update_mobility()
+
+			qdel(src)
 
 	else if(istype(W, /obj/item/pen))
 		to_chat(user, span_warning("You need to use a multitool to name [src]!"))

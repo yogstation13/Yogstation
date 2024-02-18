@@ -13,6 +13,8 @@
 	var/running_projects
 	///Should we be contributing spare CPU to generate research points?
 	var/contribute_spare_cpu = TRUE
+	///Are we using 50% of our spare CPU to mine bitcoin?
+	var/crypto_mining = FALSE
 
 /datum/ai_dashboard/New(mob/living/silicon/ai/new_owner)
 	if(!istype(new_owner))
@@ -85,8 +87,8 @@
 	data["location_name"] = get_area(current_turf)
 
 	data["location_coords"] = "[current_turf.x], [current_turf.y], [current_turf.z]"
-	var/datum/gas_mixture/env = current_turf.return_air()
-	data["temperature"] = env.return_temperature()
+	var/obj/machinery/ai/current_machine = owner.loc
+	data["temperature"] = current_machine.core_temp ? current_machine.core_temp : 0
 
 	for(var/datum/ai_project/AP as anything in available_projects)
 		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.canResearch(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
@@ -258,6 +260,11 @@
 	if(notify_user)
 		to_chat(owner, span_notice("'[ability.name]' has been recharged."))
 
+/datum/ai_dashboard/proc/is_project_running(datum/ai_project/project)
+	var/datum/ai_project/found_project = locate(project) in running_projects
+	if(found_project)
+		return found_project.running
+
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
@@ -276,6 +283,8 @@
 	if(total_ram_used > current_ram)
 		for(var/I in ram_usage)
 			var/datum/ai_project/project = get_project_by_name(I)
+			if(!ram_usage[I]) //We only stop the program if it actually has any RAM usage
+				continue
 			total_ram_used -= stop_project(project)
 			reduction_of_resources = TRUE
 			if(total_ram_used <= current_ram)
@@ -290,9 +299,20 @@
 	for(var/I in cpu_usage)
 		remaining_cpu -= cpu_usage[I]
 
-	if(remaining_cpu > 0)
-		var/points = round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster)
+	if(remaining_cpu > 0 && contribute_spare_cpu)
+		var/points = max(round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster), 0)
+
+		if(crypto_mining)
+			points *= 0.5
+			var/bitcoin_mined = points * (1-0.05*sqrt(points))	
+			bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money(bitcoin_mined * AI_BITCOIN_PRICE)
+
 		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
+		
+
 
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])

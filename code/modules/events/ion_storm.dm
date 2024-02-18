@@ -1,5 +1,6 @@
 #define ION_RANDOM 0
 #define ION_ANNOUNCE 1
+
 /datum/round_event_control/ion_storm
 	name = "Ion Storm"
 	typepath = /datum/round_event/ion_storm
@@ -7,14 +8,31 @@
 	min_players = 2
 
 /datum/round_event/ion_storm
-	var/addIonLawChance = 100 // chance a new ion law will be added in addition to other ion effects
-	var/replaceLawsetChance = 25 //chance the AI's lawset is completely replaced with something else per config weights
-	var/removeRandomLawChance = 10 //chance the AI has one random supplied or inherent law removed
-	var/removeDontImproveChance = 10 //chance the randomly created law replaces a random law instead of simply being added
-	var/shuffleLawsChance = 10 //chance the AI's laws are shuffled afterwards
+	/// Chance a new ion law will be added in addition to other ion effects.
+	var/addIonLawChance = 100
+	/// Chance the AI's lawset is completely replaced with something else per config weights.
+	var/replaceLawsetChance = 25
+	/// Chance the AI has one random supplied or inherent law removed.
+	var/removeRandomLawChance = 10
+	/// Chance the ion law will replace a random law instead of simply being added.
+	var/removeDontImproveChance = 10
+	/// Chance the AI's laws are shuffled afterwards.
+	var/shuffleLawsChance = 10
+	/// Chance that bots on the station will become emagged.
 	var/botEmagChance = 10
-	var/announceEvent = ION_RANDOM // -1 means don't announce, 0 means have it randomly announce, 1 means
+	/// Chance that an airlock on the station will be messed with, if there are no AIs.
+	var/airlockChance = 5
+	/// Maximum number of airlocks that can be messed with.
+	var/airlockAmount = 20
+	/// Chance that an APC on the station will be messed with, if there are no AIs.
+	var/apcChance = 5
+	/// Maximum number of APCs that can be messed with.
+	var/apcAmount = 10
+	/// Should it announce? -1 = No | 0 = Random | 1 = Always.
+	var/announceEvent = ION_RANDOM
+	/// Custom ion law, if not null.
 	var/ionMessage = null
+	/// If announceEvent is 0, what is the chance it is will accounce?
 	var/ionAnnounceChance = 33
 	announceWhen	= 1
 
@@ -24,23 +42,28 @@
 	removeDontImproveChance = 0
 	shuffleLawsChance = 0
 	botEmagChance = 0
+	airlockChance = 0
+	airlockAmount = 0
+	apcChance = 0
+	apcAmount = 0
 
 /datum/round_event/ion_storm/announce(fake)
 	if(announceEvent == ION_ANNOUNCE || (announceEvent == ION_RANDOM && prob(ionAnnounceChance)) || fake)
 		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", ANNOUNCER_IONSTORM)
 
-
 /datum/round_event/ion_storm/start()
 	//AI laws
+	var/anyAliveAI = FALSE
 	for(var/mob/living/silicon/ai/M in GLOB.alive_mob_list)
 		M.laws_sanity_check()
 		if(M.stat != DEAD && M.see_in_dark != 0)
+			anyAliveAI = TRUE
 			if(prob(replaceLawsetChance))
 				M.laws.pick_ion_lawset()
 				to_chat(M, span_alert("Your lawset has been changed by the ion storm!"))
 
 			if(prob(removeRandomLawChance))
-				M.remove_law(rand(1, M.laws.get_law_amount(list(LAW_INHERENT, LAW_SUPPLIED))))
+				M.laws.remove_random_inherent_or_supplied_law()
 
 			if(prob(addIonLawChance))
 				var/message = ionMessage || generate_ion_law()
@@ -56,11 +79,152 @@
 			log_game("Ion storm changed laws of [key_name(M)] to [english_list(M.laws.get_law_list(TRUE, TRUE))]")
 			message_admins("[ADMIN_LOOKUPFLW(M)] has had their laws changed by an ion storm to [english_list(M.laws.get_law_list(TRUE, TRUE))]")
 			M.post_lawchange()
-
 	if(botEmagChance)
 		for(var/mob/living/simple_animal/bot/bot in GLOB.alive_mob_list)
 			if(prob(botEmagChance))
 				bot.emag_act()
+
+	if(!anyAliveAI)
+		if(airlockChance)
+			var/list/airlocks = get_acceptable_airlocks()
+			var/amountSince = 0
+			for(var/obj/machinery/door/airlock/airlock in airlocks)
+				if(!prob(airlockChance))
+					continue
+				if(!airlock.hasPower() || !airlock.canAIControl() || (airlock.obj_flags & EMAGGED) )
+					continue
+				var/turf/turf = get_turf(airlock)
+				var/luck = rand(1, 4)
+				switch(luck)
+					if(1)
+						if(airlock.locked)
+							airlock.unbolt()
+							log_game("Ion storm unbolted airlock ([airlock.name]) at [COORD(turf)].")
+						else
+							airlock.bolt()
+							log_game("Ion storm bolted airlock ([airlock.name]) at [COORD(turf)].")
+					if(3)
+						airlock.emergency = !airlock.emergency
+						airlock.update_appearance(UPDATE_ICON)
+						log_game("Ion storm [airlock.emergency ? "enabled" : "disabled"] emergency access on airlock ([airlock.name]) at [COORD(turf)].")
+					if(4)
+						airlock.set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME)
+						log_game("Ion storm electrified for [MACHINE_DEFAULT_ELECTRIFY_TIME] seconds airlock ([airlock.name]) at [COORD(turf)].")
+					if(5)
+						airlock.safe = !airlock.safe
+						airlock.normalspeed = airlock.safe // Intentional. They should match for maximum crushing (or maximum safety).
+						log_game("Ion storm [airlock.safe ? "enabled" : "disabled"] safety & speed on airlock ([airlock.name]) at [COORD(turf)].")
+				amountSince += 1
+				if(amountSince >= airlockAmount)
+					break
+		if(apcChance)
+			var/list/apcs = get_acceptable_apcs()
+			var/amountSince = 0
+			for(var/obj/machinery/power/apc/apc in apcs)
+				if(!prob(apcChance))
+					continue
+				if(apc.aidisabled)
+					continue
+				var/turf/turf = get_turf(apc)
+				var/luck = rand(1, 4)
+				switch(luck)
+					if(1)
+						if(apc.lighting)
+							apc.lighting = 0
+							log_game("Ion storm disabled lighting on APC ([apc.name]) at [COORD(turf)].")
+					if(2)
+						if(apc.equipment)
+							apc.equipment = 0
+							log_game("Ion storm disabled equipment on APC ([apc.name]) at [COORD(turf)].")
+					if(3)
+						if(apc.environ)
+							apc.environ = 0
+							log_game("Ion storm disabled environment on APC ([apc.name]) at [COORD(turf)].")
+					if(4)
+						if(apc.lighting || apc.equipment || apc.environ)
+							apc.environ = 0
+							apc.equipment = 0
+							apc.lighting = 0
+							log_game("Ion storm disabled lightning, equipment, and environment on APC ([apc.name]) at [COORD(turf)].")
+				apc.update()
+				amountSince += 1
+				if(amountSince >= apcAmount)
+					break
+
+/datum/round_event/ion_storm/malicious
+	var/location_name
+
+/datum/round_event/ion_storm/malicious/announce(fake)
+	// Unlike normal ion storm, this always announces.
+	priority_announce("Abnormal ion activity detected. Please check all AI-controlled equipment for errors. Additional data has been downloaded and printed out at all communications consoles.", "Anomaly Alert", ANNOUNCER_IONSTORM)
+	
+	var/message = "Malicious Interference with standard AI-Subsystems detected. Investigation recommended.<br><br>"
+	message += (location_name ? "Signal traced to <B>[location_name]</B>.<br>" : "Signal untracable.<br>")
+	print_command_report(message, null, FALSE)
+
+/// Returns acceptable apcs that are safe to mess with that shouldn't cause excessive/extreme damage.
+/datum/round_event/ion_storm/proc/get_acceptable_apcs()
+	var/list/data_core_areas = list()
+	for(var/obj/machinery/ai/data_core/core as anything in GLOB.data_cores)
+		if(!core.valid_data_core())
+			continue
+		if(!isarea(core.loc))
+			continue
+		var/area/A = core.loc
+		data_core_areas[A.type] = TRUE
+	var/list/acceptable_apcs = list()
+	for(var/obj/machinery/power/apc/apc in GLOB.apcs_list)
+		if(!apc.cell || !SSmapping.level_trait(apc.z, ZTRAIT_STATION)) // Must have power and be on station.
+			continue
+		var/area/area = apc.area
+		if(GLOB.typecache_powerfailure_safe_areas[area.type]) // No touching safe areas.
+			continue
+		if(data_core_areas[area.type]) // No touching areas with data cores in them.
+			continue
+		var/critical = FALSE
+		for(var/obj/machinery/M in area.contents) // No touching areas that have critical machines.
+			if(M.critical_machine)
+				critical = TRUE
+				break
+		for(var/mob/living/silicon/ai/AI in GLOB.ai_list) // No touching areas with AIs in them.
+			if(get_area(AI) == area)
+				critical = TRUE
+				break
+		if(critical)
+			continue
+		acceptable_apcs += apc
+	return acceptable_apcs
+
+/// Returns acceptable airlocks that are safe to mess with that shouldn't cause excessive/extreme damage.
+/datum/round_event/ion_storm/proc/get_acceptable_airlocks()
+	var/list/data_core_areas = list()
+	for(var/obj/machinery/ai/data_core/core as anything in GLOB.data_cores)
+		if(!core.valid_data_core())
+			continue
+		if(!isarea(core.loc))
+			continue
+		var/area/A = core.loc
+		data_core_areas[A.type] = TRUE
+	var/list/acceptable_airlocks = list()
+	for(var/obj/machinery/door/airlock/airlock in GLOB.airlocks)
+		if(SSmapping.level_trait(airlock.z, ZTRAIT_STATION))
+			var/area/area = get_area(airlock)
+			if(data_core_areas[area.type]) // No touching areas with data cores in them.
+				continue
+			var/critical = FALSE
+			for(var/obj/machinery/M in area.contents) // No touching areas that have critical machines.
+				if(M.critical_machine)
+					critical = TRUE
+					break
+			for(var/A in GLOB.ai_list) // No touching areas with AIs in them.
+				var/mob/living/silicon/ai/I = A
+				if(get_area(I) == area)
+					critical = TRUE
+					break
+			if(critical)
+				continue
+			acceptable_airlocks += airlock
+	return acceptable_airlocks
 
 /*/proc/generate_ion_law() //yogs - start mirrored in the yogs folder
 	//Threats are generally bad things, silly or otherwise. Plural.

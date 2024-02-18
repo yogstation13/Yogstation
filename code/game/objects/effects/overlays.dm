@@ -13,7 +13,7 @@
 	icon_state="b_beam"
 	var/atom/BeamSource
 
-/obj/effect/overlay/beam/Initialize()
+/obj/effect/overlay/beam/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 10)
 
@@ -50,7 +50,7 @@
 /obj/effect/overlay/vis
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
-	vis_flags = NONE
+	vis_flags = VIS_INHERIT_DIR
 	var/unused = 0 //When detected to be unused it gets set to world.time, after a while it gets removed
 	var/cache_expiration = 2 MINUTES // overlays which go unused for 2 minutes get cleaned up
 	vis_flags = VIS_INHERIT_ID
@@ -77,3 +77,18 @@
 	layer = FLOAT_LAYER
 	vis_flags = VIS_INHERIT_ID
 	appearance_flags = KEEP_TOGETHER | LONG_GLIDE | PIXEL_SCALE
+
+/obj/effect/overlay/light_visible
+	name = ""
+	icon = 'icons/effects/light_overlays/light_32.dmi'
+	icon_state = "light"
+	layer = O_LIGHTING_VISUAL_LAYER
+	plane = O_LIGHTING_VISUAL_PLANE
+	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 0
+	vis_flags = NONE
+
+/obj/effect/overlay/light_visible/cone
+	icon = 'icons/effects/light_overlays/light_cone.dmi'
+	alpha = 110

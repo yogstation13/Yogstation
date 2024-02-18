@@ -31,7 +31,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "l" = (
-/obj/item/circuitboard/machine/thermomachine/freezer,
+/obj/item/circuitboard/machine/thermomachine,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "n" = (

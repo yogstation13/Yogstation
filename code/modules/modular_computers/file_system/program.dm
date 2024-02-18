@@ -68,7 +68,7 @@
 // Relays icon update to the computer.
 /datum/computer_file/program/proc/update_computer_icon()
 	if(computer)
-		computer.update_icon()
+		computer.update_appearance(UPDATE_ICON)
 
 // Attempts to create a log in global ntnet datum. Returns 1 on success, 0 on fail.
 /datum/computer_file/program/proc/generate_network_log(text)
@@ -91,6 +91,9 @@
 /datum/computer_file/program/proc/tap(atom/A, mob/living/user, params)
 	return FALSE
 
+/datum/computer_file/program/proc/clickon(atom/A, mob/living/user, params)
+	return FALSE
+
 /datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = 0, loud = 0, mob/user = null)
 	if(!(hardware_flag & usage_flags))
 		if(loud && computer && user)
@@ -104,7 +107,7 @@
 	return FALSE
 
 // Called by Process() on device that runs us, once every tick.
-/datum/computer_file/program/proc/process_tick()
+/datum/computer_file/program/proc/process_tick(delta_time)
 	return TRUE
 
 /**
@@ -118,7 +121,7 @@
   *transfer, if TRUE and access_to_check is null, will tell this proc to use the program's transfer_access in place of access_to_check
   *access can contain a list of access numbers to check against. If access is not empty, it will be used istead of checking any inserted ID.
 */
-/datum/computer_file/program/proc/can_run(mob/user, loud = FALSE, access_to_check, transfer = FALSE, var/list/access)
+/datum/computer_file/program/proc/can_run(mob/user, loud = FALSE, access_to_check, transfer = FALSE, list/access)
 	// Defaults to required_access
 	if(!access_to_check)
 		if(transfer && transfer_access)
@@ -234,7 +237,7 @@
 				program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
 
 				computer.active_program = null
-				computer.update_icon()
+				computer.update_appearance(UPDATE_ICON)
 				ui.close()
 
 				if(user && istype(user))

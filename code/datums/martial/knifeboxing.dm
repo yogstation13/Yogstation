@@ -15,7 +15,7 @@
 
 	var/atk_verb = pick("left hook","right hook","straight punch")
 
-	var/damage = rand(8, 12) + A.dna.species.punchdamagelow
+	var/damage = rand(8, 12) + A.get_punchdamagehigh()
 	if(!damage)
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
 		D.visible_message(span_warning("[A] has attempted to [atk_verb] [D]!"), \
@@ -42,7 +42,7 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		var/mob/living/carbon/human/H = user
 		style.teach(H,1)
 	return
@@ -53,6 +53,6 @@
 		return
 	var/mob/living/carbon/human/H = user
 	if(H)
-		if(H.get_item_by_slot(SLOT_GLOVES) == src)
+		if(H.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
 			style.remove(H)
 		return 

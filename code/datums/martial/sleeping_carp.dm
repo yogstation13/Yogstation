@@ -46,7 +46,7 @@
 		playsound(get_turf(A), 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		D.emote("scream")
 		D.dropItemToGround(D.get_active_held_item())
-		D.apply_damage(A.dna.species.punchdamagehigh / 2, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM), wound_bonus = CANT_WOUND)	//5 damage
+		D.apply_damage(A.get_punchdamagehigh() / 2, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM), wound_bonus = CANT_WOUND)	//5 damage
 		D.Stun(60)
 		return TRUE
 
@@ -88,7 +88,7 @@
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.visible_message(span_warning("[A] kicks [D] in the head!"), \
 						  span_userdanger("[A] kicks you in the jaw!"))
-		D.apply_damage(A.dna.species.punchdamagehigh + 10, A.dna.species.attack_type, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)	//20 damage
+		D.apply_damage(A.get_punchdamagehigh() + 10, A.dna.species.attack_type, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)	//20 damage
 		D.drop_all_held_items()
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		D.Stun(80)
@@ -98,7 +98,7 @@
 /datum/martial_art/the_sleeping_carp/proc/elbowDrop(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!(D.mobility_flags & MOBILITY_STAND))
 		log_combat(A, D, "elbow dropped (Sleeping Carp)")
-		var/dunk_damage = A.dna.species.punchdamagehigh * 3 + 20 //50 damage, get dunked on
+		var/dunk_damage = A.get_punchdamagehigh() * 3 + 20 //50 damage, get dunked on
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.visible_message(span_warning("[A] elbow drops [D]!"), \
 							span_userdanger("[A] piledrives you with their elbow!"))
@@ -118,7 +118,7 @@
 		D.grabbedby(A, 1)
 		if(old_grab_state == GRAB_PASSIVE)
 			D.drop_all_held_items()
-			A.grab_state = GRAB_AGGRESSIVE //Instant agressive grab if on grab intent
+			A.setGrabState(GRAB_AGGRESSIVE) //Instant agressive grab if on grab intent
 			log_combat(A, D, "grabbed", addition="aggressively")
 			D.visible_message(span_warning("[A] violently grabs [D]!"), \
 								span_userdanger("[A] violently grabs you!"))
@@ -132,7 +132,7 @@
 		return TRUE
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/atk_verb = pick("punches", "kicks", "chops", "hits", "slams")
-	var/harm_damage = A.dna.species.punchdamagehigh + rand(0,5)	//10-15 damage
+	var/harm_damage = A.get_punchdamagehigh() + rand(0,5)	//10-15 damage
 	D.visible_message(span_danger("[A] [atk_verb] [D]!"), \
 					  span_userdanger("[A] [atk_verb] you!"))
 	D.apply_damage(harm_damage, BRUTE, wound_bonus = CANT_WOUND)
@@ -165,27 +165,33 @@
 
 	to_chat(usr, "<b><i>You will only deflect projectiles while throwmode is enabled.</i></b>")
 
-/obj/item/twohanded/bostaff
+/obj/item/melee/bostaff
 	name = "bo staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts. Can be wielded to both kill and incapacitate."
 	force = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	slot_flags = ITEM_SLOT_BACK
-	force_wielded = 14
+	slot_flags = ITEM_SLOT_BACK	
 	throwforce = 20
 	throw_speed = 2
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "bostaff0"
+	base_icon_state = "bostaff"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	block_chance = 50
 
-/obj/item/twohanded/bostaff/update_icon()
-	icon_state = "bostaff[wielded]"
-	return
+/obj/item/melee/bostaff/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		force_wielded = 14, \
+	)
 
-/obj/item/twohanded/bostaff/attack(mob/target, mob/living/user)
+/obj/item/melee/bostaff/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]0"
+
+/obj/item/melee/bostaff/attack(mob/target, mob/living/user)
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='warning'>You club yourself over the head with [src].</span>")
@@ -205,7 +211,7 @@
 		to_chat(user, span_warning("It would be dishonorable to attack a foe while they cannot retaliate."))
 		return
 	if(user.a_intent == INTENT_DISARM)
-		if(!wielded)
+		if(!HAS_TRAIT(src, TRAIT_WIELDED))
 			return ..()
 		if(!ishuman(target))
 			return ..()
@@ -235,12 +241,12 @@
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
 				H.visible_message(span_warning("[user] delivers a heavy hit to [H]'s head, knocking [H.p_them()] out cold!"), \
 									   span_userdanger("[user] knocks you unconscious!"))
-				H.SetSleeping(300)
+				H.SetUnconscious(30 SECONDS)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 150)
 	else
 		return ..()
 
-/obj/item/twohanded/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(wielded)
+/obj/item/melee/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(HAS_TRAIT(src, TRAIT_WIELDED))
 		return ..()
 	return FALSE

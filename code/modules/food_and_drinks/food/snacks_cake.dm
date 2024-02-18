@@ -16,22 +16,22 @@
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/store/cake/plain
-	name = "vanilla cake"
+	name = "plain cake"
 	desc = "A plain cake, not a lie."
 	icon_state = "plaincake"
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/cake
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("vanilla" = 1, "sweetness" = 2,"cake" = 5)
+	tastes = list("sweetness" = 2, "cake" = 5)
 	foodtype = GRAIN | DAIRY | SUGAR
 	burns_in_oven = TRUE
 
 /obj/item/reagent_containers/food/snacks/cakeslice/plain
-	name = "vanilla cake slice"
+	name = "plain cake slice"
 	desc = "Just a slice of cake, it is enough for everyone."
 	icon_state = "plaincake_slice"
 	filling_color = "#FFD700"
 	customfoodfilling = 1
-	tastes = list("vanilla" = 1, "sweetness" = 2,"cake" = 5)
+	tastes = list("sweetness" = 2, "cake" = 5)
 	foodtype = GRAIN | DAIRY | SUGAR
 
 /obj/item/reagent_containers/food/snacks/store/cake/carrot
@@ -252,7 +252,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/slimecake
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("cake" = 5, "sweetness" = 1, "slime" = 1)
-	foodtype = GRAIN | DAIRY | SUGAR
+	foodtype = GRAIN | DAIRY | SUGAR | TOXIC
 
 /obj/item/reagent_containers/food/snacks/cakeslice/slimecake
 	name = "slime cake slice"
@@ -278,3 +278,54 @@
 	filling_color = "#FFD700"
 	tastes = list("cake" = 5, "sweetness" = 1, "pumpkin" = 1)
 	foodtype = GRAIN | DAIRY | VEGETABLES | SUGAR
+
+/obj/item/reagent_containers/food/snacks/store/cake/wedding
+	name = "wedding cake"
+	desc = "An expensive, multi-tiered cake."
+	icon_state = "weddingcake"
+	slices_num = 10
+	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/wedding
+	list_reagents = list(/datum/reagent/consumable/nutriment = 40, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/sugar = 30)
+	tastes = list("cake" = 5, "sweetness" = 2, "frosting" = 1)
+	foodtype = GRAIN | DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/cakeslice/wedding
+	name = "wedding cake slice"
+	desc = "Traditionally, those getting married feed each other a slice of cake."
+	icon_state = "weddingcake_slice"
+	tastes = list("cake" = 3, "frosting" = 1)
+	foodtype = GRAIN | DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/store/cake/vanilla_cake
+	name = "vanilla cake"
+	desc = "A vanilla frosted cake."
+	icon_state = "vanillacake"
+	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/vanilla_slice
+	bonus_reagents = list(/datum/reagent/consumable/sugar = 15, /datum/reagent/consumable/vanilla = 15)
+	tastes = list("cake" = 1, "sugar" = 1, "vanilla" = 10)
+	foodtype = GRAIN | SUGAR | DAIRY
+
+/obj/item/reagent_containers/food/snacks/cakeslice/vanilla_slice
+	name = "vanilla cake slice"
+	desc = "A slice of vanilla frosted cake."
+	icon_state = "vanillacake_slice"
+	filling_color = "#00FFFF"
+	tastes = list("cake" = 1, "sugar" = 1, "vanilla" = 10)
+	foodtype = GRAIN | SUGAR | DAIRY
+
+/obj/item/reagent_containers/food/snacks/store/cake/clown_cake
+	name = "clown cake"
+	desc = "A funny cake with a clown face on it."
+	icon_state = "clowncake"
+	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/clown_slice
+	bonus_reagents = list(/datum/reagent/consumable/sugar = 15)
+	tastes = list("cake" = 1, "sugar" = 1, "joy" = 10)
+	foodtype = GRAIN | SUGAR | DAIRY
+
+/obj/item/reagent_containers/food/snacks/cakeslice/clown_slice
+	name = "clown cake slice"
+	desc = "A slice of bad jokes, and silly props."
+	icon_state = "clowncake_slice"
+	filling_color = "#00FFFF"
+	tastes = list("cake" = 1, "sugar" = 1, "joy" = 10)
+	foodtype = GRAIN | SUGAR | DAIRY

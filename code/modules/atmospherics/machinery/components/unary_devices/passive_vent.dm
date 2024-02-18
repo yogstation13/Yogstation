@@ -1,9 +1,7 @@
 /obj/machinery/atmospherics/components/unary/passive_vent
 	icon_state = "passive_vent_map-3"
-
 	name = "passive vent"
 	desc = "It is an open vent."
-
 	can_unwrench = TRUE
 	layer = GAS_SCRUBBER_LAYER
 	shift_underlay_only = FALSE
@@ -13,48 +11,31 @@
 /obj/machinery/atmospherics/components/unary/passive_vent/update_icon_nopipes()
 	cut_overlays()
 	if(showpipe)
-		var/image/cap = getpipeimage(icon, "vent_cap", initialize_directions)
+		var/image/cap = get_pipe_image(icon, "vent_cap", initialize_directions)
 		add_overlay(cap)
 	icon_state = "passive_vent"
 
 /obj/machinery/atmospherics/components/unary/passive_vent/process_atmos()
-	return
-	/*  MONSTER EXTOOLS PROC NEEDED (EQUALIZE)
-////////////////////////////////////////////////////////////////////////
-	/datum/gas_mixture/proc/equalize(datum/gas_mixture/other)
-	. = FALSE
-	if(abs(return_temperature() - other.return_temperature()) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
-		. = TRUE
-		var/self_heat_cap = heat_capacity()
-		var/other_heat_cap = other.heat_capacity()
-		var/new_temp = (temperature * self_heat_cap + other.temperature * other_heat_cap) / (self_heat_cap + other_heat_cap)
-		temperature = new_temp
-		other.temperature = new_temp
+	var/turf/location = get_turf(loc)
+	if(isclosedturf(location))
+		return
 
-	var/min_p_delta = 0.1
-	var/total_volume = volume + other.volume
-	var/list/gas_list = gases | other.gases
-	for(var/gas_id in gas_list)
-		assert_gas(gas_id)
-		other.assert_gas(gas_id)
-		//math is under the assumption temperatures are equal
-		if(abs(gases[gas_id][MOLES] / volume - other.gases[gas_id][MOLES] / other.volume) > min_p_delta / (R_IDEAL_GAS_EQUATION * temperature))
-			. = TRUE
-			var/total_moles = gases[gas_id][MOLES] + other.gases[gas_id][MOLES]
-			gases[gas_id][MOLES] = total_moles * (volume/total_volume)
-			other.gases[gas_id][MOLES] = total_moles * (other.volume/total_volume)
-	////////////////////////////////////////////////////////////////////////////////
-
-
-	..()
-
-	var/datum/gas_mixture/external = loc.return_air()
+	var/active = FALSE
+	var/datum/gas_mixture/external = location.return_air()
 	var/datum/gas_mixture/internal = airs[1]
+	var/external_pressure = external.return_pressure()
+	var/internal_pressure = internal.return_pressure()
+	var/pressure_delta = abs(external_pressure - internal_pressure)
 
-	if(internal.equalize(external))
-		air_update_turf()
+	if(pressure_delta > 0.5)
+		equalize_all_gases_in_list(list(internal,external))
+		active = TRUE
+
+	active = internal.temperature_share(external, OPEN_HEAT_TRANSFER_COEFFICIENT) || active
+
+	if(active)
 		update_parents()
-*/
+
 /obj/machinery/atmospherics/components/unary/passive_vent/can_crawl_through()
 	return TRUE
 

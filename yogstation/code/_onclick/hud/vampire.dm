@@ -1,4 +1,4 @@
-/obj/screen/vampire
+/atom/movable/screen/vampire
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "power_display"
 	name = "usable blood"

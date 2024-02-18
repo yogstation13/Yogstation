@@ -169,7 +169,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "aD" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-02"
 	},
 /turf/open/floor/wood,
@@ -212,7 +212,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "aL" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-16"
 	},
 /turf/open/floor/wood,
@@ -258,7 +258,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "aT" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-16"
 	},
 /turf/open/floor/wood,
@@ -301,7 +301,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "bb" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-18"
 	},
 /turf/open/floor/wood,
@@ -1159,7 +1159,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
 "cY" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-02"
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1311,7 +1311,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "dq" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /turf/open/floor/wood,
@@ -1379,7 +1379,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "dy" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-14"
 	},
 /turf/open/floor/wood,
@@ -2371,10 +2371,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/bar)
-"fZ" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/hotel/bar)
 "ga" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -2420,7 +2416,7 @@
 	},
 /area/ruin/space/has_grav/hotel/dock)
 "gh" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /turf/open/floor/wood,
@@ -2622,14 +2618,6 @@
 "gK" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/hotel/workroom)
-"gL" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets,
-/obj/structure/sign/warning/nosmoking/circle{
-	pixel_y = 32
-	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/workroom)
 "gM" = (
@@ -2871,7 +2859,7 @@
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "hq" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-18"
 	},
 /turf/open/floor/plasteel/dark,
@@ -3521,7 +3509,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "iM" = (
-/obj/item/twohanded/required/kirbyplants,
+/obj/item/kirbyplants,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
 "iO" = (
@@ -3988,7 +3976,7 @@
 /area/ruin/space/has_grav/hotel/security)
 "kA" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "kB" = (
@@ -4772,7 +4760,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/pool)
 "mD" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -4980,6 +4968,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
+"xy" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/hotel/bar)
 "xO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/carpet,
@@ -5045,6 +5040,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
+"LM" = (
+/obj/structure/table,
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_y = 32
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/hotel/workroom)
 "ON" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/freezer,
@@ -6166,7 +6171,7 @@ eK
 eL
 fi
 fQ
-fZ
+xy
 go
 gk
 go
@@ -7848,7 +7853,7 @@ de
 cF
 cF
 di
-gL
+LM
 gG
 gG
 hF

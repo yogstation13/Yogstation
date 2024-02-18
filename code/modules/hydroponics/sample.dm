@@ -5,7 +5,7 @@
 	yield = -1
 	var/sample_color = "#FFFFFF"
 
-/obj/item/seeds/sample/Initialize()
+/obj/item/seeds/sample/Initialize(mapload)
 	. = ..()
 	if(sample_color)
 		var/mutable_appearance/filling = mutable_appearance(icon, "sample-filling")
@@ -13,7 +13,7 @@
 		add_overlay(filling)
 
 /obj/item/seeds/sample/get_analyzer_text()
-	return " The DNA of this sample is damaged beyond recovery, it can't support life on its own.\n*---------*"
+	return " The DNA of this sample is damaged beyond recovery, it can't support life on its own."
 
 /obj/item/seeds/sample/alienweed
 	name = "alien weed sample"

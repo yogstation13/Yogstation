@@ -1,8 +1,8 @@
-/obj/effect/proc_holder/zombie/necromance
+/*/obj/effect/proc_holder/zombie/necromance
 	name = "Summon a Minion"
 	desc = "Summons a zombie to help you."
-	action_icon = 'icons/mob/actions/actions_cult.dmi'
-	action_icon_state = "equip"
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "equip"
 	cooldown_time = 5 MINUTES
 	var/list/summoned_minions = list()
 	var/max_minions = 5
@@ -58,3 +58,4 @@
 
 	necromance()
 	return ..()
+*/

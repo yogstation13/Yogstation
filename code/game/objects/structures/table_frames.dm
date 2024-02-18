@@ -103,7 +103,7 @@
 	framestack = /obj/item/stack/tile/brass
 	framestackamount = 1
 
-/obj/structure/table_frame/brass/Initialize()
+/obj/structure/table_frame/brass/Initialize(mapload)
 	. = ..()
 	change_construction_value(1)
 

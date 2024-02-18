@@ -22,17 +22,8 @@
 	var/useramount = 30 // Last used amount
 	var/list/pillStyles = null
 
-/obj/machinery/chem_master/Initialize()
+/obj/machinery/chem_master/Initialize(mapload)
 	create_reagents(100)
-
-	//Calculate the span tags and ids fo all the available pill icons
-	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
-	pillStyles = list()
-	for (var/x in 1 to PILL_STYLE_COUNT)
-		var/list/SL = list()
-		SL["id"] = x
-		SL["className"] = assets.icon_class_name("pill[x]")
-		pillStyles += list(SL)
 
 	. = ..()
 
@@ -74,14 +65,17 @@
 	if(A == beaker)
 		beaker = null
 		reagents.clear_reagents()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(A == bottle)
 		bottle = null
 
-/obj/machinery/chem_master/update_icon()
-	cut_overlays()
+/obj/machinery/chem_master/update_overlays()
+	. = ..()
 	if (stat & BROKEN)
-		add_overlay("waitlight")
+		. += "waitlight"
+
+/obj/machinery/chem_master/update_icon_state()
+	. = ..()
 	if(beaker)
 		icon_state = "mixer1"
 	else
@@ -112,7 +106,7 @@
 		replace_beaker(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(!condi && istype(I, /obj/item/storage/pill_bottle))
 		if(bottle)
 			to_chat(user, span_warning("A pill bottle is already loaded into [src]!"))
@@ -140,7 +134,7 @@
 		beaker = new_beaker
 	else
 		beaker = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/chem_master/on_deconstruction()
@@ -150,6 +144,16 @@
 		adjust_item_drop_location(bottle)
 		bottle = null
 	return ..()
+
+/obj/machinery/chem_master/proc/load_styles()
+	//Calculate the span tags and ids fo all the available pill icons
+	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
+	pillStyles = list()
+	for (var/x in 1 to PILL_STYLE_COUNT)
+		var/list/SL = list()
+		SL["id"] = x
+		SL["className"] = assets.icon_class_name("pill[x]")
+		pillStyles += list(SL)
 
 /obj/machinery/chem_master/ui_assets(mob/user)
 	return list(
@@ -190,7 +194,9 @@
 			bufferContents.Add(list(list("name" = N.name, "id" = ckey(N.name), "volume" = N.volume))) // ^
 	data["bufferContents"] = bufferContents
 
-	//Calculated at init time as it never changes
+	//Calculated once since it'll never change
+	if(!pillStyles)
+		load_styles()
 	data["pillStyles"] = pillStyles
 	return data
 
@@ -260,10 +266,12 @@
 		var/vol_each_text = params["volume"]
 		var/vol_each_max = reagents.total_volume / amount
 		if (item_type == "pill")
-			vol_each_max = min(50, vol_each_max)
+			vol_each_max = min(15, vol_each_max)
 		else if (item_type == "patch")
 			vol_each_max = min(40, vol_each_max)
 		else if (item_type == "bottle")
+			vol_each_max = min(30, vol_each_max)
+		else if (item_type == "gummy")
 			vol_each_max = min(30, vol_each_max)
 		else if (item_type == "condimentPack")
 			vol_each_max = min(10, vol_each_max)
@@ -333,6 +341,14 @@
 			for(var/i = 0; i < amount; i++)
 				P = new/obj/item/reagent_containers/glass/bottle(drop_location())
 				P.name = trim("[name] bottle")
+				adjust_item_drop_location(P)
+				reagents.trans_to(P, vol_each, transfered_by = usr)
+			return TRUE
+		if(item_type == "gummy")
+			var/obj/item/reagent_containers/gummy/P
+			for(var/i = 0; i < amount; i++)
+				P = new/obj/item/reagent_containers/gummy(drop_location())
+				P.name = trim("[name] gummy bear")
 				adjust_item_drop_location(P)
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE

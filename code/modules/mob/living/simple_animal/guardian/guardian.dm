@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 #define GUARDIAN_HANDS_LAYER 1
 #define GUARDIAN_TOTAL_LAYERS 1
+#define GUARDIAN_SCAN_DISTANCE 50
 
 /mob/living/simple_animal/hostile/guardian
 	name = "Guardian Spirit"
@@ -10,8 +11,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	desc = "A mysterious being that stands by its charge, ever vigilant."
 	speak_emote = list("hisses")
 	gender = NEUTER
-	mob_biotypes = list(MOB_INORGANIC)
-	bubble_icon = "guardian"
+	mob_biotypes = MOB_INORGANIC|MOB_SPIRIT
+	bubble_icon = BUBBLE_GUARDIAN
 	response_help  = "passes through"
 	response_disarm = "flails at"
 	response_harm   = "punches"
@@ -38,6 +39,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	melee_damage_upper = 15
 	butcher_results = list(/obj/item/ectoplasm = 1)
 	AIStatus = AI_OFF
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_on = FALSE
 	hud_type = /datum/hud/guardian
 	dextrous_hud_type = /datum/hud/dextrous/guardian //if we're set to dextrous, account for it.
 	var/list/guardian_overlays[GUARDIAN_TOTAL_LAYERS]
@@ -45,7 +49,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/cooldown = 0
 	var/mob/living/summoner
 	var/range = 10 //how far from the user the spirit can be
-	var/toggle_button_type = /obj/screen/guardian/ToggleMode/Inactive //what sort of toggle button the hud uses
+	var/toggle_button_type = /atom/movable/screen/guardian/ToggleMode/Inactive //what sort of toggle button the hud uses
 	var/datum/guardianname/namedatum = new/datum/guardianname()
 	var/playstyle_string = "<span class='holoparasite bold'>You are a standard Guardian. You shouldn't exist!</span>"
 	var/magic_fluff_string = span_holoparasite("You draw the Coder, symbolizing bugs and errors. This shouldn't happen! Submit a bug report!")
@@ -126,29 +130,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself."))
 	to_chat(src, playstyle_string)
 
-/mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
-	. = ..()
-	update_health_hud() //we need to update all of our health displays to match our summoner and we can't practically give the summoner a hook to do it
-	med_hud_set_health()
-	med_hud_set_status()
-	if(!QDELETED(summoner))
-		if(summoner.stat == DEAD)
-			forceMove(summoner.loc)
-			to_chat(src, span_danger("Your summoner has died!"))
-			visible_message(span_danger("<B>\The [src] dies along with its user!</B>"))
-			summoner.visible_message(span_danger("<B>[summoner]'s body is completely consumed by the strain of sustaining [src]!</B>"))
-			for(var/obj/item/W in summoner)
-				if(!summoner.dropItemToGround(W))
-					qdel(W)
-			summoner.dust()
-			death(TRUE)
-			qdel(src)
-	else
-		to_chat(src, span_danger("Your summoner has died!"))
-		visible_message(span_danger("<B>[src] dies along with its user!</B>"))
-		death(TRUE)
-		qdel(src)
-	snapback()
+//mob/living/simple_animal/hostile/guardian/Life is in the yogstation folder
 
 /mob/living/simple_animal/hostile/guardian/get_status_tab_items()
 	. += ..()
@@ -338,12 +320,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, "<span class='danger'><B>You don't have another mode!</span></B>")
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleLight()
-	if(light_range<3)
+	if(!light_on)
 		to_chat(src, span_notice("You activate your light."))
-		set_light(3)
+		set_light_on(TRUE)
 	else
 		to_chat(src, span_notice("You deactivate your light."))
-		set_light(0)
+		set_light_on(FALSE)
 
 /mob/living/simple_animal/hostile/guardian/verb/ShowType()
 	set name = "Check Guardian Type"
@@ -395,7 +377,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	src.log_talk(input, LOG_SAY, tag="guardian")
 
 //FORCE RECALL/RESET
-
 /mob/living/proc/guardian_recall()
 	set name = "Recall Guardian"
 	set category = "Guardian"
@@ -503,7 +484,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		used = FALSE
 
 
-/obj/item/guardiancreator/proc/spawn_guardian(var/mob/living/user, var/key)
+/obj/item/guardiancreator/proc/spawn_guardian(mob/living/user, key)
 	var/guardiantype = "Standard"
 	if(random)
 		guardiantype = pick(possible_guardians)
@@ -572,7 +553,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 	add_verb(user, list(/mob/living/proc/guardian_comm, \
 						/mob/living/proc/guardian_recall, \
-						/mob/living/proc/guardian_reset))
+						/mob/living/proc/guardian_reset, \
+						/mob/living/proc/finduser))
 	G?.client.init_verbs()
 
 /obj/item/guardiancreator/choose
@@ -589,7 +571,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	name = "holoparasite injector"
 	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
 	icon = 'icons/obj/syringe.dmi'
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	theme = "tech"
 	mob_name = "Holoparasite"
 	use_message = span_holoparasite("You start to power on the injector...")
@@ -632,8 +614,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
  <br>
 "}
 
-/obj/item/paper/guides/antag/guardian/update_icon()
-	return
+/obj/item/paper/guides/antag/guardian/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/guides/antag/guardian/wizard
 	name = "Guardian Guide"

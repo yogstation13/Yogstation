@@ -7,8 +7,9 @@
 	var/move_dir //The direction of movement
 	var/list/__dirs //The directions to the side of the wave, stored for easy looping
 	var/can_contaminate
+	var/collectable_radiation = FALSE //If this radiation is collectable by a rad collector, passed from creating radiation pulse
 
-/datum/radiation_wave/New(atom/_source, dir, _intensity=0, _range_modifier=RAD_DISTANCE_COEFFICIENT, _can_contaminate=TRUE)
+/datum/radiation_wave/New(atom/_source, dir, _intensity=0, _range_modifier=RAD_DISTANCE_COEFFICIENT, _can_contaminate=TRUE, _collectable_radiation=FALSE)
 
 	source = "[_source] \[[REF(_source)]\]"
 
@@ -22,6 +23,7 @@
 	intensity = _intensity
 	range_modifier = _range_modifier
 	can_contaminate = _can_contaminate
+	collectable_radiation = _collectable_radiation
 
 	START_PROCESSING(SSradiation, src)
 
@@ -30,12 +32,12 @@
 	STOP_PROCESSING(SSradiation, src)
 	..()
 
-/datum/radiation_wave/process()
+/datum/radiation_wave/process(delta_time)
 	master_turf = get_step(master_turf, move_dir)
 	if(!master_turf)
 		qdel(src)
 		return
-	steps++
+	steps += delta_time
 	var/list/atoms = get_rad_atoms()
 
 	var/strength
@@ -87,6 +89,11 @@
 			continue
 		if (thing.rad_insulation != RAD_NO_INSULATION)
 			intensity *= (1-((1-thing.rad_insulation)/width))
+		if (thing.rad_insulation == RAD_FULL_INSULATION)
+			if(intensity <= 5000)
+				intensity = log(intensity+1)/RAD_CONTAMINATION_STR_COEFFICIENT*width
+			else
+				intensity = (log(intensity+1)+RAD_MINIMUM_CONTAMINATION)/RAD_CONTAMINATION_STR_COEFFICIENT + 350
 
 /datum/radiation_wave/proc/radiate(list/atoms, strength)
 	var/contamination_chance = (strength-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_CHANCE_COEFFICIENT * min(1, 1/(steps*range_modifier))
@@ -94,7 +101,7 @@
 		var/atom/thing = atoms[k]
 		if(!thing)
 			continue
-		thing.rad_act(strength)
+		thing.rad_act(strength, collectable_radiation)
 
 		// This list should only be for types which don't get contaminated but you want to look in their contents
 		// If you don't want to look in their contents and you don't want to rad_act them:
@@ -111,8 +118,9 @@
 			continue
 		if(thing.flags_1 & RAD_NO_CONTAMINATE_1 || SEND_SIGNAL(thing, COMSIG_ATOM_RAD_CONTAMINATING, strength) & COMPONENT_BLOCK_CONTAMINATION)
 			continue
-		if(prob(contamination_chance)) // Only stronk rads get to have little baby rads
+		if(prob(contamination_chance) && strength > 0 && thing.rad_insulation != RAD_FULL_INSULATION) // Only stronk rads get to have little baby rads
 			if(SEND_SIGNAL(thing, COMSIG_ATOM_RAD_CONTAMINATING, strength) & COMPONENT_BLOCK_CONTAMINATION)
 				continue
-			var/rad_strength = (strength-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_STR_COEFFICIENT
-			thing.AddComponent(/datum/component/radioactive, rad_strength, source)
+			var/rad_strength =  log(strength/RAD_MINIMUM_CONTAMINATION) * RAD_MINIMUM_CONTAMINATION * RAD_CONTAMINATION_STR_COEFFICIENT
+			if(rad_strength>0)
+				thing.AddComponent(/datum/component/radioactive, rad_strength, source)

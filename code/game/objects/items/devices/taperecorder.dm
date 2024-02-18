@@ -27,7 +27,7 @@
 	. = ..()
 	if(starting_tape_type)
 		mytape = new starting_tape_type(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/taperecorder/examine(mob/user)
@@ -62,7 +62,7 @@
 			return
 		mytape = I
 		to_chat(user, span_notice("You insert [I] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
 /obj/item/taperecorder/proc/eject(mob/user)
@@ -71,7 +71,7 @@
 		stop()
 		user.put_in_hands(mytape)
 		mytape = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/taperecorder/fire_act(exposed_temperature, exposed_volume)
 	mytape.ruin() //Fires destroy the tape
@@ -103,7 +103,8 @@
 	eject(usr)
 
 
-/obj/item/taperecorder/update_icon()
+/obj/item/taperecorder/update_icon_state()
+	. = ..()
 	if(!mytape)
 		icon_state = "taperecorder_empty"
 	else if(recording)
@@ -136,7 +137,7 @@
 	if(mytape.used_capacity < mytape.max_capacity)
 		to_chat(usr, span_notice("Recording started."))
 		recording = 1
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		mytape.timestamp += mytape.used_capacity
 		mytape.storedinfo += "\[[time2text(mytape.used_capacity * 10,"mm:ss")]\] Recording started."
 		var/used = mytape.used_capacity	//to stop runtimes when you eject the tape
@@ -146,7 +147,7 @@
 			used++
 			sleep(1 SECONDS)
 		recording = 0
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		to_chat(usr, span_notice("The tape is full."))
 
@@ -168,7 +169,7 @@
 		playing = 0
 		var/turf/T = get_turf(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Playback stopped.</font>")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/taperecorder/verb/play()
@@ -185,7 +186,7 @@
 		return
 
 	playing = 1
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	to_chat(usr, span_notice("Playing started."))
 	var/used = mytape.used_capacity	//to stop runtimes when you eject the tape
 	var/max = mytape.max_capacity
@@ -210,7 +211,7 @@
 		i++
 
 	playing = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/taperecorder/attack_self(mob/user)
@@ -326,6 +327,6 @@
 /obj/item/tape/random
 	icon_state = "random_tape"
 
-/obj/item/tape/random/Initialize()
+/obj/item/tape/random/Initialize(mapload)
 	. = ..()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"

@@ -83,12 +83,12 @@
 	pre_noise = FALSE
 	post_noise = TRUE
 
-/obj/item/toy/crayon/spraycan/gang/Initialize(loc, datum/team/gang/G)
+/obj/item/toy/crayon/spraycan/gang/Initialize(mapload, datum/team/gang/G)
 	.=..()
 	if(G)
 		gang = G
 		paint_color = G.color
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/toy/crayon/spraycan/gang/examine(mob/user)
 	. = ..()

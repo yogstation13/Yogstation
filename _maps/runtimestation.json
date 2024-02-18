@@ -2,6 +2,9 @@
     "map_name": "Runtime Station",
     "map_path": "map_files/debug",
     "map_file": "runtimestation.dmm",
+	"ignored_unit_tests": [
+		"/datum/unit_test/job_roundstart_spawnpoints"
+	],
 	"shuttles": {
 	    "cargo": "cargo_delta"
     }

@@ -4,7 +4,7 @@
 // DNA vaults require high tier stock parts and cold
 // After completion each crewmember can receive single upgrade chosen out of 2 for the mob.
 #define VAULT_TOXIN "Toxin Adaptation"
-#define VAULT_NOBREATH "Lung Enhancement"
+#define VAULT_SELFSUFFICIENT "Cellular Self-Sufficiency"
 #define VAULT_FIREPROOF "Thermal Regulation"
 #define VAULT_STUNTIME "Neural Repathing"
 #define VAULT_ARMOUR "Bone Reinforcement"
@@ -66,7 +66,7 @@
 	item_state = "hypo"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	icon_state = "hypo"
+	icon_state = "old_hypo"
 	item_flags = NOBLUDGEON
 	var/list/animals = list()
 	var/list/plants = list()
@@ -112,10 +112,10 @@
 	//humans
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(dna[H.dna.uni_identity])
+		if(dna[H.dna.unique_identity])
 			to_chat(user, span_notice("Humanoid data already present in local storage."))
 			return
-		dna[H.dna.uni_identity] = 1
+		dna[H.dna.unique_identity] = 1
 		to_chat(user, span_notice("Humanoid data added to local storage."))
 
 /obj/machinery/dna_vault
@@ -147,7 +147,7 @@
 
 	var/list/obj/structure/fillers = list()
 
-/obj/machinery/dna_vault/Initialize()
+/obj/machinery/dna_vault/Initialize(mapload)
 	//TODO: Replace this,bsa and gravgen with some big machinery datum
 	var/list/occupied = list()
 	for(var/direct in list(EAST,WEST,SOUTHEAST,SOUTHWEST))
@@ -188,7 +188,7 @@
 	if(user in power_lottery)
 		return
 	var/list/L = list()
-	var/list/possible_powers = list(VAULT_TOXIN,VAULT_NOBREATH,VAULT_FIREPROOF,VAULT_STUNTIME,VAULT_ARMOUR,VAULT_SPEED,VAULT_QUICK)
+	var/list/possible_powers = list(VAULT_TOXIN,VAULT_SELFSUFFICIENT,VAULT_FIREPROOF,VAULT_STUNTIME,VAULT_ARMOUR,VAULT_SPEED,VAULT_QUICK)
 	L += pick_n_take(possible_powers)
 	L += pick_n_take(possible_powers)
 	power_lottery[user] = L
@@ -255,29 +255,34 @@
 /obj/machinery/dna_vault/proc/upgrade(mob/living/carbon/human/H,upgrade_type)
 	if(!(upgrade_type in power_lottery[H]))
 		return
-	var/datum/species/S = H.dna.species
+	var/datum/physiology/P = H.physiology
 	switch(upgrade_type)
 		if(VAULT_TOXIN)
-			to_chat(H, span_notice("You feel resistant to airborne toxins."))
+			to_chat(H, span_notice("You feel resistant to toxins."))
 			if(locate(/obj/item/organ/lungs) in H.internal_organs)
 				var/obj/item/organ/lungs/L = H.internal_organs_slot[ORGAN_SLOT_LUNGS]
-				L.tox_breath_dam_min = 0
-				L.tox_breath_dam_max = 0
+				L.gas_max -= GAS_PLASMA
 			ADD_TRAIT(H, TRAIT_VIRUSIMMUNE, "dna_vault")
-		if(VAULT_NOBREATH)
-			to_chat(H, span_notice("Your lungs feel great."))
+			P.tox_mod *= 0.2
+			H.dna.species.acidmod *= 0.2	//Remind me to move this to physiolgy later - Mqiib
+		if(VAULT_SELFSUFFICIENT)
+			to_chat(H, span_notice("You feel suddenly rejuvenated."))
 			ADD_TRAIT(H, TRAIT_NOBREATH, "dna_vault")
+			H.dna.species.species_traits += NOBLOOD	//This will definitely not create some strange interactions
+			P.oxy_mod *= 0							//To be triple hella sure
+			P.hunger_mod *= 0.1
 		if(VAULT_FIREPROOF)
 			to_chat(H, span_notice("You feel fireproof."))
-			S.burnmod *= 0.5
+			P.burn_mod *= 0.5
 			ADD_TRAIT(H, TRAIT_RESISTHEAT, "dna_vault")
 			ADD_TRAIT(H, TRAIT_NOFIRE, "dna_vault")
 		if(VAULT_STUNTIME)
 			to_chat(H, span_notice("Nothing can keep you down for long."))
-			S.stunmod *= 0.5
+			P.stun_mod *= 0.5
+			P.stamina_mod *= 0.5
 		if(VAULT_ARMOUR)
 			to_chat(H, span_notice("You feel tough."))
-			S.armor += 30
+			P.armor += 30
 			ADD_TRAIT(H, TRAIT_PIERCEIMMUNE, "dna_vault")
 		if(VAULT_SPEED)
 			to_chat(H, span_notice("Your legs feel faster."))

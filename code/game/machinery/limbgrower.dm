@@ -33,7 +33,7 @@
 		/obj/item/stack/sheet/animalhide/human = 50
 		)
 	var/biomass_per_slab = 20
-/obj/machinery/limbgrower/Initialize()
+/obj/machinery/limbgrower/Initialize(mapload)
 	create_reagents(100, OPENCONTAINER)
 	stored_research = new /datum/techweb/specialized/autounlocking/limbgrower
 	. = ..()
@@ -137,7 +137,7 @@
 			"<span class='hear'>You hear the clatter of a floppy drive.</span>")
 		busy = TRUE
 		var/obj/item/disk/design_disk/limbs/limb_design_disk = user_item
-		if(do_after(user, 2 SECONDS, target = src))
+		if(do_after(user, 2 SECONDS, src))
 			for(var/datum/design/found_design in limb_design_disk.blueprints)
 				stored_research.add_design(found_design)
 			update_static_data(user)
@@ -210,7 +210,7 @@
 			flick("limbgrower_fill",src)
 			icon_state = "limbgrower_idleon"
 			selected_category = params["active_tab"]
-			addtimer(CALLBACK(src, .proc/build_item, consumed_reagents_list), production_speed * production_coefficient)
+			addtimer(CALLBACK(src, PROC_REF(build_item), consumed_reagents_list), production_speed * production_coefficient)
 			. = TRUE
 
 	return
@@ -302,9 +302,9 @@
 	return TRUE
 
 /// Emagging a limbgrower allows you to build synthetic armblades.
-/obj/machinery/limbgrower/emag_act(mob/user)
+/obj/machinery/limbgrower/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	for(var/design_id in SSresearch.techweb_designs)
 		var/datum/design/found_design = SSresearch.techweb_design_by_id(design_id)
 		if((found_design.build_type & LIMBGROWER) && ("emagged" in found_design.category))
@@ -312,3 +312,4 @@
 	to_chat(user, span_warning("A warning flashes onto the screen, stating that safety overrides have been deactivated!"))
 	obj_flags |= EMAGGED
 	update_static_data(user)
+	return TRUE

@@ -198,7 +198,7 @@
 
 /datum/action/innate/end_holocall
 	name = "End Holocall"
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 	var/datum/holocall/hcall
 
@@ -227,7 +227,7 @@
 	name = "holorecord disk"
 	desc = "Stores recorder holocalls."
 	icon_state = "holodisk"
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	var/datum/holorecord/record
 	//Preset variables
 	var/preset_image_type
@@ -316,7 +316,6 @@
 		if(outfit_type)
 			mannequin.equipOutfit(outfit_type,TRUE)
 		mannequin.setDir(SOUTH)
-		COMPILE_OVERLAYS(mannequin)
 		. = image(mannequin)
 		unset_busy_human_dummy("HOLODISK_PRESET")
 
@@ -445,7 +444,7 @@
     DELAY 10
     NAME Maria Dell
     PRESET /datum/preset_holoimage/engineer/atmos
-    SAY It's fine, don't worry. I've got Plastic on it. And frankly, i'm kinda busy with, the, uhhm, incinerator.
+    SAY It's fine, don't worry. I've got Plastic on it. And frankly, I'm kinda busy with, the, uhhm, incinerator.
     DELAY 30
     NAME Dave Tundrale
     PRESET /datum/preset_holoimage/engineer

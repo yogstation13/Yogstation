@@ -44,7 +44,7 @@
 	item_state = "facehugger_impregnated"
 	stat = DEAD
 
-/obj/item/clothing/mask/facehugger/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/item/clothing/mask/facehugger/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	..()
 	if(obj_integrity < 90)
 		Die()
@@ -60,6 +60,9 @@
 	if((stat == CONSCIOUS && !sterile) && !isalien(user))
 		if(Leap(user))
 			return
+	if(!sterile && stat == CONSCIOUS && !do_after(user, 2 SECONDS, src))
+		to_chat(user, "You fail to pry [src] off your face.")
+		return
 	. = ..()
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M, mob/user)
@@ -107,7 +110,7 @@
 		return
 	if(stat == CONSCIOUS)
 		icon_state = "[initial(icon_state)]_thrown"
-		addtimer(CALLBACK(src, .proc/clear_throw_icon_state), 15)
+		addtimer(CALLBACK(src, PROC_REF(clear_throw_icon_state)), 15)
 
 /obj/item/clothing/mask/facehugger/proc/clear_throw_icon_state()
 	if(icon_state == "[initial(icon_state)]_thrown")
@@ -170,7 +173,7 @@
 			if(target.dropItemToGround(W))
 				target.visible_message(span_danger("[src] tears [W] off of [target]'s face!"), \
 									span_userdanger("[src] tears [W] off of [target]'s face!"))
-		target.equip_to_slot_if_possible(src, SLOT_WEAR_MASK, 0, 1, 1)
+		target.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, 0, 1, 1)
 	return TRUE // time for a smoke
 
 /obj/item/clothing/mask/facehugger/proc/Attach(mob/living/M)
@@ -179,16 +182,16 @@
 	// early returns and validity checks done: attach.
 	attached++
 	//ensure we detach once we no longer need to be attached
-	addtimer(CALLBACK(src, .proc/detach), MAX_IMPREGNATION_TIME)
+	addtimer(CALLBACK(src, PROC_REF(detach)), MAX_IMPREGNATION_TIME)
 
 
 	if(!sterile)
 		M.take_bodypart_damage(strength,0) //done here so that humans in helmets take damage
-		M.Unconscious(MAX_IMPREGNATION_TIME/0.3) //something like 25 ticks = 20 seconds with the default settings
+		M.Unconscious(MAX_IMPREGNATION_TIME) //knock them out for the longest time needed to finish the deed
 
 	GoIdle() //so it doesn't jump the people that tear it off
 
-	addtimer(CALLBACK(src, .proc/Impregnate, M), rand(MIN_IMPREGNATION_TIME, MAX_IMPREGNATION_TIME))
+	addtimer(CALLBACK(src, PROC_REF(Impregnate), M), rand(MIN_IMPREGNATION_TIME, MAX_IMPREGNATION_TIME))
 
 /obj/item/clothing/mask/facehugger/proc/detach()
 	attached = 0
@@ -233,7 +236,7 @@
 	stat = UNCONSCIOUS
 	icon_state = "[initial(icon_state)]_inactive"
 
-	addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME, MAX_ACTIVE_TIME))
+	addtimer(CALLBACK(src, PROC_REF(GoActive)), rand(MIN_ACTIVE_TIME, MAX_ACTIVE_TIME))
 
 /obj/item/clothing/mask/facehugger/proc/Die()
 	if(stat == DEAD)
@@ -257,7 +260,7 @@
 		return 1
 
 	var/mob/living/carbon/C = M
-	if(ishuman(C) && !(SLOT_WEAR_MASK in C.dna.species.no_equip))
+	if(ishuman(C) && !(ITEM_SLOT_MASK in C.dna.species.no_equip))
 		var/mob/living/carbon/human/H = C
 		if(H.is_mouth_covered(head_only = 1))
 			return 0

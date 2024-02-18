@@ -4,7 +4,7 @@
 	var/sort_scan = TRUE
 	var/panel_open = FALSE
 
-/obj/structure/disposalpipe/sorting/Initialize()
+/obj/structure/disposalpipe/sorting/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/disposals(src)
 
@@ -27,17 +27,16 @@
 	if(!wires.is_cut(WIRE_SORT_SCAN))
 		sort_scan = TRUE
 
-/obj/structure/disposalpipe/sorting/update_icon()
-	cut_overlays()
+/obj/structure/disposalpipe/sorting/update_overlays()
 	. = ..()
 	if(panel_open)
-		add_overlay(image('yogstation/icons/obj/atmospherics/pipes/disposal.dmi', "[icon_state]-open"))
+		. += image('yogstation/icons/obj/atmospherics/pipes/disposal.dmi', "[icon_state]-open")
 
 /obj/structure/disposalpipe/sorting/screwdriver_act(mob/living/user, obj/item/I)
 	panel_open = !panel_open
 	I.play_tool_sound(src)
 	to_chat(user, span_notice("You [panel_open ? "open" : "close"] the wire panel."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/structure/disposalpipe/sorting/attackby(obj/item/I, mob/user)

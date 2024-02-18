@@ -33,6 +33,6 @@
 	for (var/mob/dead/new_player/NP in queue)
 		to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a>"))
 		SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
-		NP.LateChoices()
+		GLOB.latejoin_menu.ui_interact(NP)
 	queue.len = 0
 	SSticker.queue_delay = 0

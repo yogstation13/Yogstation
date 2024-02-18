@@ -6,11 +6,32 @@ GLOBAL_LIST_INIT(original_command_positions, list(
 	"Research Director",
 	"Chief Medical Officer"))
 
+GLOBAL_LIST_INIT(command_lightup_areas, typecacheof(list(
+	/area/bridge,
+	/area/gateway,
+	/area/security/brig,
+	/area/teleporter
+)))
+
 GLOBAL_LIST_INIT(original_engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
 	"Atmospheric Technician",
 	"Network Admin"))
+
+GLOBAL_LIST_INIT(engineering_lightup_areas,		\
+	typecacheof(list(							\
+		/area/construction,						\
+		/area/engine,							\
+		/area/security/checkpoint/engineering,	\
+		/area/solar,							\
+		/area/tcommsat,							\
+		/area/vacant_room						\
+	)) - typecacheof(list(						\
+		/area/engine/atmos,						\
+		/area/engine/gravity_generator			\
+	))											\
+)
 
 GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Chief Medical Officer",
@@ -23,16 +44,55 @@ GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Mining Medic",
 	"Brig Physician"))
 
+GLOBAL_LIST_INIT(medical_lightup_areas, 	\
+	typecacheof(list(						\
+		/area/medical,						\
+		/area/security/checkpoint/medical	\
+	)) - typecacheof(list(					\
+		/area/medical/abandoned,			\
+		/area/medical/chemistry,			\
+		/area/medical/genetics,				\
+		/area/medical/morgue,				\
+		/area/medical/surgery,				\
+		/area/medical/virology				\
+	))										\
+)
+
 GLOBAL_LIST_INIT(original_science_positions, list(
 	"Research Director",
 	"Scientist",
 	"Roboticist"))
+
+GLOBAL_LIST_INIT(science_lightup_areas, 		\
+	typecacheof(list(							\
+		/area/science,							\
+		/area/security/checkpoint/science		\
+	)) - typecacheof(list(						\
+		/area/science/explab,					\
+		/area/science/misc_lab,					\
+		/area/science/mixing,					\
+		/area/science/nanite,					\
+		/area/science/robotics,					\
+		/area/science/server,					\
+		/area/science/storage,					\
+		/area/science/xenobiology				\
+	))											\
+)
 
 GLOBAL_LIST_INIT(original_supply_positions, list(
 	"Head of Personnel",
 	"Quartermaster",
 	"Cargo Technician",
 	"Shaft Miner"))
+
+GLOBAL_LIST_INIT(supply_lightup_areas,			\
+	typecacheof(list(							\
+		/area/quartermaster,					\
+		/area/security/checkpoint/supply		\
+	)) - typecacheof(list(						\
+		/area/quartermaster/qm					\
+	))											\
+)
 
 GLOBAL_LIST_INIT(original_civilian_positions, list(
 	"Bartender",
@@ -55,61 +115,71 @@ GLOBAL_LIST_INIT(original_security_positions, list(
 	"Detective",
 	"Security Officer"))
 
+GLOBAL_LIST_INIT(security_lightup_areas,	\
+	typecacheof(list(						\
+		/area/security						\
+	)) - typecacheof(list(					\
+		/area/security/detectives_office,	\
+		/area/security/nuke_storage,		\
+		/area/security/warden				\
+	))										\
+)
+
 GLOBAL_LIST_INIT(original_nonhuman_positions, list(
 	"AI",
 	"Cyborg",
-	ROLE_PAI))
+	"pAI"))
 
 GLOBAL_LIST_INIT(alt_command_positions, list(
-	"Station Commander", "Facility Director",
+	"Station Commander", "Facility Director", "Chief Executive Officer",
 	"Chief of Staff", "Head of Internal Affairs", "First Officer",
 	"Security Commander", "Security Chief",
-	"Head of Engineering", "Engineering Director",
-	"Chief Science Officer", "Head of Research",
+	"Head of Engineering", "Engineering Director", "Senior Engineer",
+	"Chief Science Officer", "Head of Research", "Chief Technology Officer",
 	"Medical Director", "Head of Medical"))
 
 GLOBAL_LIST_INIT(alt_engineering_positions, list(
-	"Head of Engineering", "Engineering Director",
+	"Head of Engineering", "Engineering Director", "Senior Engineer",
 	"Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist",
-	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer",
-	"NTSL Programmer", "Comms Tech", "Station IT Support"
+	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer", "Fusion Specialist",
+	"AI Tech Support", "SysOp"
 	))
 
 GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"Medical Director", "Head of Medical",
-	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
-	"DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer",
-	"Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist",
-	"Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist",
-	"EMT", "Paramedic Trainee", "Rapid Response Medic",
-	"Councilor", "Therapist", "Mentalist",
-	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer",
-	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer",))
+	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
+	"DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer", "Mutation Specialist",
+	"Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist", "Disease Control Expert",
+	"Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist", "Druggist",
+	"EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue",
+	"Counsellor", "Therapist", "Mentalist",
+	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue",
+	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer"))
 
 GLOBAL_LIST_INIT(alt_science_positions, list(
-	"Chief Science Officer", "Head of Research",
-	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Xenobiologist", "Explosives Technician",
-	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer"))
+	"Chief Science Officer", "Head of Research", "Chief Technology Officer",
+	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Theoretical Physicist", "Xenobiologist", "Explosives Technician", "Hypothetical Physicist",
+	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer", "Machinist", "Chrome Shaman", "Ripperdoc"))
 
 GLOBAL_LIST_INIT(alt_supply_positions, list(
 	"Chief of Staff", "Head of Internal Affairs",
-	"Stock Controller", "Cargo Coordinator", "Shipping Overseer",
-	"Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher",
-	"Lavaland Scout", "Prospector", "Junior Miner", "Major Miner"))
+	"Stock Controller", "Cargo Coordinator", "Shipping Overseer", "Postmaster General",
+	"Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher", "Courier",
+	"Lavaland Scout", "Prospector", "Junior Miner", "Major Miner", "Surveyor"))
 
 GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Barkeep", "Tapster", "Barista", "Mixologist",
-	"Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist",
-	"Chef", "Hash Slinger", "Sous-chef", "Culinary Artist",
-	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker",
-	"Librarian", "Journalist", "Archivist",
+	"Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist", "Gardener",
+	"Chef", "Hash Slinger", "Sous-chef", "Culinary Artist", "Culinarian",
+	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid",
+	"Librarian", "Journalist", "Archivist", "Cartographer", "Space Archaeologist",
 	"Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney",
-	"Priest", "Preacher", "Cleric", "Exorcist",
-	"Entertainer", "Comedian", "Jester",
+	"Priest", "Preacher", "Cleric", "Exorcist", "Vicar",
+	"Entertainer", "Comedian", "Jester", "Improv Artist",
 	"Mute Entertainer", "Silent Jokester", "Pantomimist",
 	"Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate",
 	"Salesman", "Gift Shop Attendent", "Retail Worker",
-	"Visitor", "Traveler", "Siteseer",
+	"Visitor", "Traveler", "Siteseer", "Fisher",
 	"Composer", "Artisan"
 	))
 
@@ -117,7 +187,7 @@ GLOBAL_LIST_INIT(alt_security_positions, list(
 	"Security Commander", "Security Chief",
 	"Brig Watchman", "Brig Superintendent", "Security Staff Sergeant", "Security Dispatcher", "Prison Supervisor",
 	"Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector",
-	"Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer",
+	"Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer", "Peacekeeper",
 	))
 
 GLOBAL_LIST_INIT(alt_nonhuman_positions, list(
@@ -162,7 +232,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 //this is necessary because antags happen before job datums are handed out, but NOT before they come into existence
 //so I can't simply use job datum.department_head straight from the mind datum, laaaaame.
-/proc/get_department_heads(var/job_title)
+/proc/get_department_heads(job_title)
 	if(!job_title)
 		return list()
 
@@ -219,7 +289,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	// yogs end
 	return job
 
-/proc/get_alternate_titles(var/job)
+/proc/get_alternate_titles(job)
 	var/list/jobs = SSjob.occupations
 	var/list/titles = list()
 

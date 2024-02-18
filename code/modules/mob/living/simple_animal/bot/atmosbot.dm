@@ -51,18 +51,18 @@
 
 /mob/living/simple_animal/bot/atmosbot/turn_on()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/atmosbot/turn_off()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/atmosbot/set_custom_texts()
 	text_hack = "You corrupt [name]'s safety protocols."
 	text_dehack = "You detect errors in [name] and reset his programming."
 	text_dehack_fail = "[name] is not responding to reset commands!"
 
-/mob/living/simple_animal/bot/atmosbot/emag_act(mob/user)
+/mob/living/simple_animal/bot/atmosbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if(emagged == 2)
 		audible_message("<span class='danger'>[src] ominously whirs....</span>")
@@ -82,7 +82,7 @@
 				if(last_barrier_tick + ATMOSBOT_HOLOBARRIER_COOLDOWN < world.time)
 					target = return_nearest_breach()
 					action = ATMOSBOT_DEPLOY_FOAM
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	if(!target)
 		if(auto_patrol)
@@ -124,7 +124,7 @@
 		explosion(src.loc,1,2,4,flame_range = 2)
 		qdel(src)
 	else
-		deployed_smartmetal = WEAKREF(new /obj/effect/particle_effect/foam/metal/smart(get_turf(src)))
+		deployed_smartmetal = WEAKREF(new /obj/effect/particle_effect/fluid/foam/metal/smart(get_turf(src)))
 		qdel(src)
 	return
 
@@ -136,7 +136,7 @@
 		return ATMOSBOT_CHECK_BREACH
 	//Too little oxygen or too little pressure
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * gas_mix.return_temperature() / gas_mix.return_volume()
-	var/oxygen_moles = gas_mix.get_moles(/datum/gas/oxygen) * partial_pressure
+	var/oxygen_moles = gas_mix.get_moles(GAS_O2) * partial_pressure
 	if(oxygen_moles < 20 || gas_mix.return_pressure() < WARNING_LOW_PRESSURE)
 		return ATMOSBOT_LOW_OXYGEN
 
@@ -194,9 +194,10 @@
 			return
 		breached_pressure = new_breach_pressure
 	update_controls()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/bot/atmosbot/update_icon()
+/mob/living/simple_animal/bot/atmosbot/update_icon_state()
+	. = ..()
 	icon_state = "atmosbot[on][on?"_[action]":""]"
 
 /mob/living/simple_animal/bot/atmosbot/UnarmedAttack(atom/A, proximity)

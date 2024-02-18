@@ -15,6 +15,7 @@
 
 	// Config actually from the JSON - should default to Box
 	var/map_name = "YogStation"
+	var/internal_name = "" //if we have a super secret name that isn't just the display one
 	var/map_path = "map_files/YogStation"
 	var/map_file = "YogStation.dmm"
 
@@ -22,17 +23,24 @@
 	var/space_ruin_levels = 7
 	var/space_empty_levels = 1
 
-	var/minetype = "lavaland"
+	var/minetype = "jungle_and_lavaland"
+	var/cryo_spawn = FALSE
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
 		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
-		"whiteship" = "whiteship_box",
-		"emergency" = "emergency_box")
+		"whiteship" = "whiteship_1",
+		"emergency" = "emergency_box",
+	)
+	
+	/// List of unit tests that are skipped when running this map
+	var/list/skipped_tests
 
 /proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
+	var/whiteship = pick("whiteship_1", "whiteship_2", "whiteship_3", "whiteship_4", "whiteship_5")
+	config.shuttles["whiteship"] = whiteship
 	if (default_to_box)
 		return config
 	if (!config.LoadConfig(filename, error_if_missing))
@@ -70,6 +78,8 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
+	if("internal_name" in json)
+		internal_name = json["internal_name"]
 
 	map_file = json["map_file"]
 	// "map_file": "BoxStation.dmm"
@@ -126,7 +136,20 @@
 	if ("minetype" in json)
 		minetype = json["minetype"]
 
+	if("cryo_spawn" in json)
+		cryo_spawn = json["cryo_spawn"]
+
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
+
+#ifdef UNIT_TESTS
+	// Check for unit tests to skip, no reason to check these if we're not running tests
+	for(var/path_as_text in json["ignored_unit_tests"])
+		var/path_real = text2path(path_as_text)
+		if(!ispath(path_real, /datum/unit_test))
+			stack_trace("Invalid path in mapping config for ignored unit tests: \[[path_as_text]\]")
+			continue
+		LAZYADD(skipped_tests, path_real)
+#endif
 
 	defaulted = FALSE
 	return TRUE

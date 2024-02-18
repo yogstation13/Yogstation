@@ -55,7 +55,7 @@ They *could* go in their appropriate files, but this is supposed to be modular
 			playsound(loc, "sparks", 50, 1)
 			obj_flags |= EMAGGED
 			locked = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 
 
@@ -112,7 +112,7 @@ They *could* go in their appropriate files, but this is supposed to be modular
 				S.cell.give(charge)
 			charge = 0
 			corrupt()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/machinery/proc/AI_notify_hack()
 	var/turf/location = get_turf(src)
@@ -120,21 +120,29 @@ They *could* go in their appropriate files, but this is supposed to be modular
 	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		to_chat(AI, alertstr)
 
-//RDCONSOLE//
-/obj/machinery/computer/rdconsole/ninjadrain_act(obj/item/clothing/suit/space/space_ninja/S, mob/living/carbon/human/H, obj/item/clothing/gloves/space_ninja/G)
+//RD SERVER//
+/obj/machinery/rnd/server/master/ninjadrain_act(obj/item/clothing/suit/space/space_ninja/S, mob/living/carbon/human/H, obj/item/clothing/gloves/space_ninja/G)
 	if(!S || !H || !G)
 		return INVALID_DRAIN
 
 	. = DRAIN_RD_HACK_FAILED
 
+	// If the traitor theft objective is still present, this will destroy it...
+	if(!source_code_hdd)
+		return ..()
+
 	to_chat(H, span_notice("Hacking \the [src]..."))
 	AI_notify_hack()
-
-	if(stored_research)
-		to_chat(H, span_notice("Copying files..."))
-		if(do_after(H, S.s_delay, src) && G.candrain && src)
-			stored_research.copy_research_to(S.stored_research)
-	to_chat(H, span_notice("Data analyzed. Process finished."))
+	to_chat(H, span_notice("Encrypted source code detected. Overloading storage device..."))
+	if(do_after(H, 30 SECONDS, target = src))
+		overload_source_code_hdd()
+		to_chat(H, span_notice("Sabotage complete. Storage device overloaded."))
+		var/datum/antagonist/ninja/ninja_antag = H.mind.has_antag_datum(/datum/antagonist/ninja)
+		if(!ninja_antag)
+			return
+		var/datum/objective/research_secrets/objective = locate() in ninja_antag.objectives
+		if(objective)
+			objective.completed = TRUE
 
 //RD SERVER//
 //Shamelessly copypasted from above, since these two used to be the same proc, but with MANY colon operators
@@ -144,14 +152,20 @@ They *could* go in their appropriate files, but this is supposed to be modular
 
 	. = DRAIN_RD_HACK_FAILED
 
-	to_chat(H, span_notice("Hacking \the [src]..."))
+	to_chat(H, span_notice("Research notes detected. Corrupting data..."))
 	AI_notify_hack()
 
-	if(stored_research)
-		to_chat(H, span_notice("Copying files..."))
-		if(do_after(H, S.s_delay, src) && G.candrain && src)
-			stored_research.copy_research_to(S.stored_research)
-	to_chat(H, span_notice("Data analyzed. Process finished."))
+	if(!do_after(H, 30 SECONDS, target = src))
+		return
+
+	stored_research.set_points_all(0)
+	to_chat(H, span_notice("Sabotage complete. Research notes corrupted."))
+	var/datum/antagonist/ninja/ninja_antag = H.mind.has_antag_datum(/datum/antagonist/ninja)
+	if(!ninja_antag)
+		return
+	var/datum/objective/research_secrets/objective = locate() in ninja_antag.objectives
+	if(objective)
+		objective.completed = TRUE
 
 
 //WIRE//

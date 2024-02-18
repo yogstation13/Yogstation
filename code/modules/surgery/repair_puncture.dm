@@ -56,13 +56,13 @@
 
 	display_results(user, target, span_notice("You successfully realign some of the blood vessels in [target]'s [parse_zone(target_zone)], and prepare to cauterize them shut."),
 		span_notice("[user] successfully realigns some of the blood vessels in [target]'s [parse_zone(target_zone)] with [tool]!"),
-		span_notice("[user] successfully realigns some of the blood vessels in  [target]'s [parse_zone(target_zone)]!"))
+		span_notice("[user] successfully realigns some of the blood vessels in [target]'s [parse_zone(target_zone)]!"))
 	log_combat(user, target, "excised infected flesh in", addition="INTENT: [uppertext(user.a_intent)]")
 	surgery.operated_bodypart.receive_damage(brute=3, wound_bonus=CANT_WOUND)
 	pierce_wound.blood_flow -= 0.25
 	return ..()
 
-/datum/surgery_step/repair_innards/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/repair_innards/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	. = ..()
 	display_results(user, target, span_notice("You jerk apart some of the blood vessels in [target]'s [parse_zone(target_zone)]."),
 		span_notice("[user] jerks apart some of the blood vessels in [target]'s [parse_zone(target_zone)] with [tool]!"),
@@ -74,6 +74,8 @@
 	name = "weld veins" // if your doctor says they're going to weld your blood vessels back together, you're either A) on SS13, or B) in grave mortal peril
 	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70, /obj/item = 30)
 	time = 4 SECONDS
+	preop_sound = 'sound/surgery/cautery1.ogg'
+	success_sound = 'sound/surgery/cautery2.ogg'
 
 /datum/surgery_step/seal_veins/tool_check(mob/user, obj/item/tool)
 	if(implement_type == TOOL_WELDER || implement_type == /obj/item)

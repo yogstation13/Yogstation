@@ -12,6 +12,15 @@
 #define MARTIALART_FLYINGFANG "flying fang"
 #define MARTIALART_HUNTERFU "hunterfu"
 #define MARTIALART_FRENZYGRAB "frenzy grabbing"
+#define MARTIALART_LIQUIDATOR "remnant liquidator"
+#define MARTIALART_EXPLOSIVEFIST "explosive fist"
+#define MARTIALART_GARDENWARFARE "garden warfare"
+#define MARTIALART_ULTRAVIOLENCE "ultra violence"
+#define MARTIALART_BUSTERSTYLE "buster style"
+#define MARTIALART_WORLDBREAKER "worldbreaker"
+#define MARTIALART_SPACIALLDOMINANCE "absolute spacial dominance"
+#define MARTIALART_LIGHTNINGFLOW "lightning flow"
+#define MARTIALART_REVERBPALM "reverberating palm"
 
 
 //Weapon stat defines

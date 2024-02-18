@@ -6,7 +6,7 @@
 	icon_living = "skeleton"
 	icon_dead = "skeleton"
 	gender = NEUTER
-	mob_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
+	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	turns_per_move = 5
 	speak_emote = list("rattles")
 	emote_see = list("rattles")
@@ -17,6 +17,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	minbodytemp = 0
 	maxbodytemp = 1500
 	healable = 0 //they're skeletons how would bruise packs help them??
@@ -33,8 +34,7 @@
 	deathmessage = "collapses into a pile of bones!"
 	del_on_death = 1
 	loot = list(/obj/effect/decal/remains/human)
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/skeleton/eskimo
 	name = "undead eskimo"
@@ -50,7 +50,7 @@
 	melee_damage_upper = 20
 	deathmessage = "collapses into a pile of bones, its gear falling to the floor!"
 	loot = list(/obj/effect/decal/remains/human,
-				/obj/item/twohanded/spear,
+				/obj/item/melee/spear,
 				/obj/item/clothing/shoes/winterboots,
 				/obj/item/clothing/suit/hooded/wintercoat)
 
@@ -115,10 +115,11 @@
 	harm_intent_damage = 15
 	melee_damage_lower = 20
 	melee_damage_upper = 25
+	attack_vis_effect = null // jackhammer moment
 	attacktext = "blasts"
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)
 
-/mob/living/simple_animal/hostile/skeleton/plasmaminer/Initialize()
+/mob/living/simple_animal/hostile/skeleton/plasmaminer/Initialize(mapload)
 	. = ..()
 	set_light(2)

@@ -9,9 +9,9 @@
 	var/footstep = 1
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
 
-/obj/item/clothing/shoes/yogs/cluwne/Initialize()
+/obj/item/clothing/shoes/yogs/cluwne/Initialize(mapload)
 	.=..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 /obj/item/clothing/shoes/yogs/cluwne/step_action()
 	if(footstep > 1)
@@ -24,7 +24,7 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_SHOES)
+	if(slot == ITEM_SLOT_FEET)
 		var/mob/living/carbon/human/H = user
 		H.dna.add_mutation(CLUWNEMUT)
 	return

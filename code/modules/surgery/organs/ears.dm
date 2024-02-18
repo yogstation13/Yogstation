@@ -4,6 +4,7 @@
 	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EARS
+	visual = FALSE
 	gender = PLURAL
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
@@ -90,8 +91,10 @@
 
 /obj/item/organ/ears/cat
 	name = "cat ears"
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats/hats.dmi'
 	icon_state = "kitty"
+	visual = TRUE
+	compatible_biotypes = ALL_BIOTYPES // meowchine... turn back now
 	damage_multiplier = 2
 
 /obj/item/organ/ears/cat/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
@@ -117,6 +120,7 @@
 	damage_multiplier = 0.8
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /obj/item/organ/ears/penguin
 	name = "penguin ears"
@@ -140,3 +144,24 @@
 	desc = "The robust ears of a bronze golem. "
 	damage_multiplier = 0.1 //STRONK
 	bang_protect = 1 //Fear me weaklings.
+
+/obj/item/organ/ears/robot
+	name = "auditory sensors"
+	icon_state = "robotic_ears"
+	desc = "A pair of microphones intended to be installed in an IPC head, that grant the ability to hear."
+	zone = "head"
+	slot = "ears"
+	gender = PLURAL
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC // for IPCs
+
+/obj/item/organ/ears/robot/emp_act(severity)
+	owner.adjust_jitter(3 * severity)
+	owner.adjust_dizzy(3 * severity)
+	owner.Knockdown(severity SECONDS)
+	if(severity > EMP_LIGHT)
+		deaf = 3 * severity
+		to_chat(owner, span_warning("Your robotic ears are uselessly ringing."))
+		return
+	to_chat(owner, span_warning("Your robotic ears buzz."))  

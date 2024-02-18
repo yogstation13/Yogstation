@@ -10,11 +10,11 @@
 
 /datum/guardian_ability/major/healing/Apply()
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.add_hud_to(guardian)
+	medsensor.show_to(guardian)
 
 /datum/guardian_ability/major/healing/Remove()
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.remove_hud_from(guardian)
+	medsensor.hide_from(guardian)
 
 /datum/guardian_ability/major/healing/Attack(atom/target)
 	if (mode)
@@ -45,7 +45,7 @@
 			guardian.do_attack_animation(O)
 			O.obj_integrity = min(O.obj_integrity + (O.max_integrity * 0.1), O.max_integrity)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(O))
-			O.update_icon()
+			O.update_appearance(UPDATE_ICON)
 			if (guardian.namedatum)
 				H.color = guardian.namedatum.color
 			guardian.changeNext_move(CLICK_CD_MELEE)

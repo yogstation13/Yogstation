@@ -5,7 +5,10 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(ACCESS_SECURITY)
-	products = list(/obj/item/restraints/handcuffs = 8,
+	products = list(/obj/item/clothing/head/helmet/plated = 6,
+					/obj/item/clothing/suit/armor/plated = 6,
+					/obj/item/restraints/handcuffs = 8,
+					/obj/item/clothing/neck/anti_magic_collar = 3,
 					/obj/item/restraints/handcuffs/cable/zipties = 10,
 					/obj/item/grenade/flashbang = 4,
 					/obj/item/assembly/flash/handheld = 5,
@@ -14,7 +17,7 @@
 					/obj/item/flashlight/seclite = 4,
 					/obj/item/restraints/legcuffs/bola/energy = 7)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,
-					  /obj/item/storage/box/fancy/donut_box = 2)
+					  /obj/item/storage/fancy/donut_box = 2)
 	premium = list(/obj/item/storage/belt/security/webbing = 5,
 				   /obj/item/coin/antagtoken = 1,
 				   /obj/item/clothing/head/helmet/warhelmet = 5,

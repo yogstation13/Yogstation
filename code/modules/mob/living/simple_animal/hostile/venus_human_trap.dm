@@ -14,14 +14,19 @@
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "flower_bud"
 	layer = SPACEVINE_MOB_LAYER
-	opacity = 0
+	opacity = FALSE
 	canSmoothWith = list()
 	smooth = SMOOTH_FALSE
 	/// The amount of time it takes to create a venus human trap, in deciseconds
 	var/growth_time = 1200
+	/// Used by countdown to check time, this is when the timer will complete and the venus trap will spawn.
+	var/finish_time
+	/// The countdown ghosts see to when the plant will hatch
+	var/obj/effect/countdown/flower_bud/countdown
 
-/obj/structure/alien/resin/flower_bud_enemy/Initialize()
+/obj/structure/alien/resin/flower_bud_enemy/Initialize(mapload)
 	. = ..()
+	countdown = new(src)
 	var/list/anchors = list()
 	anchors += locate(x-2,y+2,z)
 	anchors += locate(x+2,y+2,z)
@@ -31,7 +36,9 @@
 	for(var/turf/T in anchors)
 		var/datum/beam/B = Beam(T, "vine", time=INFINITY, maxdistance=5, beam_type=/obj/effect/ebeam/vine)
 		B.sleep_time = 10 //these shouldn't move, so let's slow down updates to 1 second (any slower and the deletion of the vines would be too slow)
-	addtimer(CALLBACK(src, .proc/bear_fruit), growth_time)
+	finish_time = world.time + growth_time
+	addtimer(CALLBACK(src, PROC_REF(bear_fruit)), growth_time)
+	countdown.start()
 
 /**
   * Spawns a venus human trap, then qdels itself.
@@ -72,6 +79,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap
 	name = "venus human trap"
 	desc = "Now you know how the fly feels."
+	unique_name = TRUE
 	icon_state = "venus_human_trap"
 	layer = SPACEVINE_MOB_LAYER
 	health = 50
@@ -99,23 +107,26 @@
 	/// Whether or not this plant is ghost possessable
 	var/playable_plant = TRUE
 
-/mob/living/simple_animal/hostile/venus_human_trap/Life()
+/mob/living/simple_animal/hostile/venus_human_trap/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/life_draining, damage_overtime = 5, check_damage_callback = CALLBACK(src, PROC_REF(kudzu_need)))
+
+/mob/living/simple_animal/hostile/venus_human_trap/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	pull_vines()
-	if(!kudzu_need())
-		adjustHealth(5) 
-		if(prob(20))
-			to_chat(src, span_danger("You wither away without the support of the kudzu..."))
-	if(check_gas())
-		adjustHealth(6)
-		to_chat(src, span_danger("The gas reacts with you and starts to melt you away!"))
+	if(kudzu_need(FALSE))
+		adjustHealth(-5)
 	
+/mob/living/simple_animal/hostile/venus_human_trap/proc/weedkiller(damage = 6)
+	adjustHealth(damage)
+	to_chat(src, span_danger("The chemical reacts with you and starts to melt you away!"))
+
 /mob/living/simple_animal/hostile/venus_human_trap/AttackingTarget()
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.stat != DEAD)
-			adjustHealth(-maxHealth * 0.1)
+		if(L.stat != DEAD && kudzu_need(FALSE))
+			adjustHealth(-maxHealth * 0.2)
 
 /mob/living/simple_animal/hostile/venus_human_trap/OpenFire(atom/the_target)
 	for(var/datum/beam/B in vines)
@@ -133,11 +144,16 @@
 				return
 	
 	var/datum/beam/newVine = Beam(the_target, "vine", time=INFINITY, maxdistance = vine_grab_distance, beam_type=/obj/effect/ebeam/vine)
-	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, .proc/remove_vine, newVine)
+	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, PROC_REF(remove_vine), newVine)
+	listclearnulls(vines)
 	vines += newVine
 	if(isliving(the_target))
 		var/mob/living/L = the_target
-		L.Paralyze(20)
+		if(iscarbon(the_target))
+			L.Immobilize(0.25 SECONDS)
+			L.Knockdown(2 SECONDS)
+		else
+			L.Paralyze(2 SECONDS)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/venus_human_trap/Login()
@@ -162,7 +178,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap/proc/humanize_plant(mob/user)
 	if(key || !playable_plant || stat)
 		return
-	var/plant_ask = alert("Become a venus human trap?", "Are you reverse vegan?", "Yes", "No")
+	var/plant_ask = tgui_alert(usr,"Become a venus human trap?", "Are you reverse vegan?", list("Yes", "No"))
 	if(plant_ask == "No" || QDELETED(src))
 		return
 	if(key)
@@ -204,15 +220,9 @@
   * Checks if there is a kudzu within 3 tiles
   * Damages the mob if not
   */
-/mob/living/simple_animal/hostile/venus_human_trap/proc/kudzu_need()
-	for(var/obj/structure/spacevine/vine_found in view(3,src))
+/mob/living/simple_animal/hostile/venus_human_trap/proc/kudzu_need(feedback = TRUE)
+	for(var/obj/structure/spacevine/vine_found in view(3, src))
 		return TRUE
-	return FALSE
-
-/mob/living/simple_animal/hostile/venus_human_trap/proc/check_gas()
-	for(var/contents in src.loc)
-		if(istype(contents, /obj/effect/particle_effect/smoke/chem))
-			var/obj/effect/particle_effect/smoke/chem/gas = contents
-			if(gas.reagents.has_reagent(/datum/reagent/toxin/plantbgone, 1))
-				return TRUE
+	if(feedback && prob(20))
+		to_chat(src, span_danger("You wither away without the support of the kudzu..."))
 	return FALSE

@@ -80,6 +80,7 @@
 #define SPAN_CLOWN "clown"
 #define SPAN_SINGING "singing"
 #define SPAN_CULTLARGE "cultlarge"
+#define SPAN_HELIUM "small"
 
 //bitflag #defines for return value of the radio() proc.
 #define ITALICS			(1<<0)
@@ -111,3 +112,18 @@
 
 //Used in visible_message_flags, audible_message_flags and runechat_flags
 #define EMOTE_MESSAGE (1<<0)
+
+//Typing indicator defines, used in /mob/create_typing_indicator()
+#define BUBBLE_DEFAULT "default"
+#define BUBBLE_LAWYER "lawyer"
+#define BUBBLE_ROBOT "robot"
+#define BUBBLE_MACHINE "machine"
+#define BUBBLE_SYNDIBOT "syndibot"
+#define BUBBLE_SWARMER "swarmer"
+#define BUBBLE_SLIME "slime"
+#define BUBBLE_CLOCK "clock"
+#define BUBBLE_ALIEN "alien"
+#define BUBBLE_ALIENROYAL "alienroyal"
+#define BUBBLE_DARKSPAWN "darkspawn"
+#define BUBBLE_GUARDIAN "guardian"
+#define BUBBLE_BLOB "blob"

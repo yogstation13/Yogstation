@@ -17,7 +17,7 @@
 		)
 
 /datum/surgery/organ_manipulation/soft
-	possible_locs = list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+	possible_locs = list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	steps = list(
 		/datum/surgery_step/incise,
 		/datum/surgery_step/retract_skin,
@@ -29,7 +29,7 @@
 
 /datum/surgery/organ_manipulation/alien
 	name = "Alien organ manipulation"
-	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	target_mobtypes = list(/mob/living/carbon/alien/humanoid)
 	steps = list(
 		/datum/surgery_step/saw,
@@ -42,7 +42,7 @@
 
 /datum/surgery/organ_manipulation/mechanic
 	name = "Prosthesis organ manipulation"
-	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
+	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	requires_bodypart_type = BODYPART_ROBOTIC
 	lying_required = FALSE
 	self_operable = TRUE
@@ -94,6 +94,7 @@
 			to_chat(user, span_notice("You cannot put [I] into [target]'s [parse_zone(target_zone)]!"))
 			return -1
 		tool = I
+
 	if(isorgan(tool))
 		current_type = "insert"
 		preop_sound = initial(preop_sound)
@@ -101,6 +102,11 @@
 		I = tool
 		if(target_zone != I.zone || target.getorganslot(I.slot))
 			to_chat(user, span_notice("There is no room for [I] in [target]'s [parse_zone(target_zone)]!"))
+			return -1
+
+		var/obj/item/organ/O = tool
+		if(!(O.compatible_biotypes & target.mob_biotypes))
+			to_chat(user, span_notice("[target] is not compatible with [O]!"))
 			return -1
 
 		display_results(user, target, span_notice("You begin to insert [tool] into [target]'s [parse_zone(target_zone)]..."),
@@ -115,22 +121,18 @@
 		var/mob/living/simple_animal/horror/H = target.has_horror_inside()
 		if(H)
 			user.visible_message("[user] begins to extract [H] from [target]'s [parse_zone(target_zone)].",
-					"<span class='notice'>You begin to extract [H] from [target]'s [parse_zone(target_zone)]...</span>")
+					span_notice("You begin to extract [H] from [target]'s [parse_zone(target_zone)]..."))
 			return TRUE
 		if(!organs.len)
 			to_chat(user, span_notice("There are no removable organs in [target]'s [parse_zone(target_zone)]!"))
 			return -1
 		else
+			var/list/radial_menu = list()
 			for(var/obj/item/organ/O in organs)
 				O.on_find(user)
-				organs -= O
-				organs[O.name] = O
-
-			I = input("Remove which organ?", "Surgery", null, null) as null|anything in organs
+				radial_menu[O] = image(O)
+			I = show_radial_menu(user, target, radial_menu, tooltips = TRUE)
 			if(I && user && target && user.Adjacent(target) && user.get_active_held_item() == tool)
-				I = organs[I]
-				if(!I)
-					return -1
 				display_results(user, target, span_notice("You begin to extract [I] from [target]'s [parse_zone(target_zone)]..."),
 					"[user] begins to extract [I] from [target]'s [parse_zone(target_zone)].",
 					"[user] begins to extract something from [target]'s [parse_zone(target_zone)].")

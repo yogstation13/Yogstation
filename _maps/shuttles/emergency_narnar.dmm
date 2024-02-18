@@ -83,7 +83,7 @@
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
 "ap" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /turf/open/floor/plasteel/cult,

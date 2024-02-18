@@ -7,11 +7,11 @@
 	invisibility = INVISIBILITY_ABSTRACT 		//nope, can't see this
 	anchored = TRUE
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 
 	var/static/list/AllTeleporters
 
-/obj/effect/bump_teleporter/Initialize()
+/obj/effect/bump_teleporter/Initialize(mapload)
 	. = ..()
 	LAZYADD(AllTeleporters, src)
 

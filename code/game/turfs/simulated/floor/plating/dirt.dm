@@ -19,3 +19,6 @@
 
 /turf/open/floor/plating/dirt/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
+
+/turf/open/floor/plating/dirt/station
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS

@@ -5,76 +5,6 @@
 /datum/map_template/ruin/station/box
 	prefix = "_maps/RandomRuins/StationRuins/BoxStation/"
 
-/datum/map_template/ruin/station/box/bar
-	id = "bar_box"
-	suffix = "bar_box.dmm"
-	name = "Bar Box"
-
-/datum/map_template/ruin/station/box/bar/trek
-	id = "bar_trek"
-	suffix = "bar_trek.dmm"
-	name = "Bar Trek"
-
-/datum/map_template/ruin/station/box/bar/spacious
-	id = "bar_spacious"
-	suffix = "bar_spacious.dmm"
-	name = "Bar Spacious"
-
-/datum/map_template/ruin/station/box/bar/casino
-	id = "bar_casino"
-	suffix = "bar_casino.dmm"
-	name = "Bar Casino"
-
-/datum/map_template/ruin/station/box/bar/citadel
-	id = "bar_citadel"
-	suffix = "bar_citadel.dmm"
-	name = "Bar Citadel"
-
-/datum/map_template/ruin/station/box/bar/conveyor
-	id = "bar_conveyor"
-	suffix = "bar_conveyor.dmm"
-	name = "Bar Conveyor"
-
-/datum/map_template/ruin/station/box/bar/diner
-	id = "bar_diner"
-	suffix = "bar_diner.dmm"
-	name = "Bar Diner"
-
-/datum/map_template/ruin/station/box/bar/disco
-	id = "bar_disco"
-	suffix = "bar_disco.dmm"
-	name = "Bar Disco"
-
-/datum/map_template/ruin/station/box/bar/purple
-	id = "bar_purple"
-	suffix = "bar_purple.dmm"
-	name = "Bar Purple"
-
-/datum/map_template/ruin/station/box/bar/irishman
-	id = "bar_irish"
-	suffix = "bar_irish.dmm"
-	name = "Bar Irish"
-
-/datum/map_template/ruin/station/box/bar/cheese
-	id = "bar_cheese"
-	suffix = "bar_cheese.dmm"
-	name = "Bar Cheese"
-
-/datum/map_template/ruin/station/box/bar/grassy
-	id = "bar_grassy"
-	suffix = "bar_grassy.dmm"
-	name = "Bar Grassy"
-
-/datum/map_template/ruin/station/box/bar/clock
-	id = "bar_clock"
-	suffix = "bar_clock.dmm"
-	name = "Bar Clock"
-
-/datum/map_template/ruin/station/box/bar/arcade
-	id = "bar_arcade"
-	suffix = "bar_arcade.dmm"
-	name = "Bar Arcade"
-
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
 	suffix = "engine_sm.dmm"
@@ -89,6 +19,11 @@
 	id = "engine_teg"
 	suffix = "engine_teg.dmm"
 	name = "Engine TEG"
+
+/datum/map_template/ruin/station/box/engine/reactor
+	id = "engine_reactor"
+	suffix = "engine_reactor.dmm"
+	name = "Engine Nuclear Reactor"
 
 /datum/map_template/ruin/station/box/testingsite/bunker
 	id = "testing_site_1"
@@ -260,38 +195,58 @@
 	suffix = "transfer10.dmm"
 	name = "Transfer 10"
 
-/datum/map_template/ruin/station/eclipse
-    prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"
+/datum/map_template/ruin/station/box/chapel/chapel1
+	id = "chapel1"
+	suffix = "chapel1.dmm"
+	name = "Chapel 1"
 
-/datum/map_template/ruin/station/eclipse/bar
-	id = "ebar_eclipse"
-	suffix = "ebar_eclipse.dmm"
-	name = "Eclipse Bar Default"
+/datum/map_template/ruin/station/box/chapel/chapel2
+	id = "chapel2"
+	suffix = "chapel2.dmm"
+	name = "Chapel 2"
 
-/datum/map_template/ruin/station/eclipse/bar/beach
-	id = "ebar_beach"
-	suffix = "ebar_beach.dmm"
-	name = "Eclipse Bar Beach"
+/datum/map_template/ruin/station/box/clerk/box
+	id = "clerk_box"
+	suffix = "clerk_box.dmm"
+	name = "Clerk Box"
 
-/datum/map_template/ruin/station/eclipse/bar/saloon
-	id = "ebar_saloon"
-	suffix = "ebar_saloon.dmm"
-	name = "Eclipse Bar Western"
+/datum/map_template/ruin/station/box/clerk/pod
+	id = "clerk_pod"
+	suffix = "clerk_pod.dmm"
+	name = "Clerk Pod"
 
-/datum/map_template/ruin/station/eclipse/bar/clock
-	id = "ebar_clock"
-	suffix = "ebar_clock.dmm"
-	name = "Eclipse Bar Clock"
+/datum/map_template/ruin/station/box/clerk/meta
+	id = "clerk_meta"
+	suffix = "clerk_meta.dmm"
+	name = "Clerk Meta"
 
-/datum/map_template/ruin/station/eclipse/bar/disco
-	id = "ebar_disco"
-	suffix = "ebar_disco.dmm"
-	name = "Eclipse Bar Disco"
+/datum/map_template/ruin/station/box/clerk/gamble
+	id = "clerk_gamble"
+	suffix = "clerk_gamble.dmm"
+	name = "Clerk Gambling Hall"
 
-/datum/map_template/ruin/station/eclipse/bar/casino
-	id = "ebar_casino"
-	suffix = "ebar_casino.dmm"
-	name = "Eclipse Bar Casino"
+/datum/map_template/ruin/station/meta
+	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
+
+/datum/map_template/ruin/station/meta/supermatter
+	id = "meta_sm"
+	suffix = "meta_sm.dmm"
+	name = "Meta SM"
+
+/datum/map_template/ruin/station/meta/tesla_singulo
+	id = "meta_singulo_tesla"
+	suffix = "meta_singulo_tesla.dmm"
+	name = "Meta Singulo And Tesla"
+
+/datum/map_template/ruin/station/meta/teg
+	id = "meta_teg"
+	suffix = "meta_teg.dmm"
+	name = "Meta TEG"
+
+/datum/map_template/ruin/station/meta/reactor
+	id = "meta_reactor"
+	suffix = "meta_reactor.dmm"
+	name = "Meta Nuclear Reactor"
 
 //GaxStation
 
@@ -557,6 +512,36 @@
 	suffix = "3x3_vendoraccident.dmm"
 	name = "Maint vendoraccident"
 
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/threexthree/donut
+	id = "donut" 
+	suffix = "3x3_donut.dmm"
+	name = "Maint donut"
+
+///Author: Marmio64
+/datum/map_template/ruin/station/maint/threexthree/lair
+	id = "lair" 
+	suffix = "3x3_lair.dmm"
+	name = "Maint lair"
+
+///Author: Marmio64
+/datum/map_template/ruin/station/maint/threexthree/lair2
+	id = "lair2" 
+	suffix = "3x3_lair2.dmm"
+	name = "Maint lair2"
+
+///Author: Marmio64
+/datum/map_template/ruin/station/maint/threexthree/lair3
+	id = "lair3" 
+	suffix = "3x3_lair3.dmm"
+	name = "Maint lair3"
+
+///Author: Marmio64
+/datum/map_template/ruin/station/maint/threexthree/lair4
+	id = "lair4" 
+	suffix = "3x3_lair4.dmm"
+	name = "Maint lair4"
+
 ///The base for the 3x5 rooms.
 /datum/map_template/ruin/station/maint/threexfive
 	prefix = "_maps/RandomRuins/StationRuins/maint/3x5/"
@@ -588,6 +573,11 @@
 	suffix = "3x5_checkpoint.dmm"
 	name = "Maint checkpoint"
 
+/datum/map_template/ruin/station/maint/threexfive/experimental
+	id = "experimental"
+	suffix = "3x5_experimental.dmm"
+	name = "Secure Loot"
+
 /datum/map_template/ruin/station/maint/threexfive/hank
 	id = "hank"
 	suffix = "3x5_hank.dmm"
@@ -602,6 +592,12 @@
 	id = "kilomobden"
 	suffix = "3x5_kilomobden.dmm"
 	name = "Maint kilomobden"
+
+//Author: Vaelophis
+/datum/map_template/ruin/station/maint/threexfive/gaxbotany
+	id = "gaxbotany"
+	suffix = "3x5_gaxbotany.dmm"
+	name = "Maint gaxbotany"
 
 /datum/map_template/ruin/station/maint/threexfive/laststand
 	id = "laststand"
@@ -780,6 +776,12 @@
 	id = "yogsmaintrpg"
 	suffix = "5x3_yogsmaintrpg.dmm"
 	name = "Maint yogsmaintrpg"
+
+///Author: Vaelophis
+/datum/map_template/ruin/station/maint/fivexthree/smallfish
+	id = "smallfish"
+	suffix = "5x3_smallfish.dmm"
+	name = "Maint smallfish"
 
 ///Author: Veeblefetzer
 /datum/map_template/ruin/station/maint/fivexthree/podmin
@@ -1106,6 +1108,24 @@
 	suffix = "10x5_ratburger.dmm"
 	name = "Maint ratburger"
 
+///Author: Vaelophis
+/datum/map_template/ruin/station/maint/tenxfive/tank_heaven
+	id = "tank_heaven"
+	suffix = "10x5_tank_heaven.dmm"
+	name = "Maint tank_heaven"
+
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/tenxfive/bamboo
+	id = "bamboo"
+	suffix = "10x5_bamboo.dmm"
+	name = "Maint bamboo"
+
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/tenxfive/medicalmaint
+	id = "medicalmaint"
+	suffix = "10x5_medicalmaint.dmm"
+	name = "Maint medicalmaint"
+
 ///The base for the 10x10 rooms.
 /datum/map_template/ruin/station/maint/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/maint/10x10/"
@@ -1141,7 +1161,7 @@
 	id = "junction"
 	suffix = "10x10_junction.dmm"
 	name = "Maint junction"
-
+	
 ///Lasertag-Author: Jcat
 /datum/map_template/ruin/station/maint/tenxten/lasertag
 	id = "lasertag"
@@ -1260,3 +1280,18 @@
 	id= "fishinghole"
 	suffix = "10x10_fishinghole.dmm"
 	name = "Maint fishinghole"
+
+/datum/map_template/ruin/station/maint/tenxten/fakewalls
+	id= "fakewalls"
+	suffix = "10x10_fakewalls.dmm"
+	name = "Maint fakewalls"
+
+/datum/map_template/ruin/station/maint/tenxten/wizard
+	id = "wizard"
+	suffix = "10x10_wizard.dmm"
+	name = "Maint wizard"
+
+/datum/map_template/ruin/station/maint/tenxten/halloween
+	id = "halloween"
+	suffix = "10x10_halloween.dmm"
+	name = "Maint halloween"

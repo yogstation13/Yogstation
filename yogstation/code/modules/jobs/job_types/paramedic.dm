@@ -1,45 +1,56 @@
 /datum/job/paramedic
 	title = "Paramedic"
-	flag = PARAMEDIC
+	description = "Constantly reminder the crew about their suit sensor. Come to their aid when they die."
+	orbit_icon = "truck-medical"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
-	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic")
+	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue")
 
 	outfit = /datum/outfit/job/paramedic
 
-	minimal_character_age = 24 // "According to age statistics published by the Association of American Medical Colleges, the average age among medical students who matriculated at U.S. medical schools in the 2017-2018 school year was 24"
-
-	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC, ACCESS_CLONING, ACCESS_MECH_MEDICAL)
-	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC, ACCESS_MECH_MEDICAL)
+	added_access = list(ACCESS_SURGERY, ACCESS_CLONING)
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PARAMEDIC
+	minimal_character_age = 20 //As a paramedic you just need to know basic first aid and handling of patients in shock. Ideally you're also strong and able to stay cool. You don't know surgery
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
-/datum/job/paramedic/proc/OmegaStationChanges()
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the captain and the head of personnel"
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen = 10,//these are already super plentiful
+		/obj/item/reagent_containers/autoinjector/medipen/atropine = 15,
+		/obj/item/reagent_containers/autoinjector/medipen/ekit = 15,
+		/obj/item/reagent_containers/autoinjector/medipen/blood_loss = 10,
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 5
+	)
 
-/datum/job/paramedic/proc/EclipseStationChanges()
-	total_positions = 4
-	spawn_positions = 2
+	lightup_areas = list(/area/medical/surgery)
+	minimal_lightup_areas = list(
+		/area/storage/eva,
+		/area/medical/morgue,
+		/area/medical/genetics/cloning
+	)
+
+	smells_like = "pre-packaged oxygen"
 
 /datum/outfit/job/paramedic
 	name = "Paramedic"
 	jobtype = /datum/job/paramedic
 
-	pda_type = /obj/item/pda/para
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
 
 	backpack_contents = list(/obj/item/storage/firstaid/regular)
 	ears = /obj/item/radio/headset/headset_med
+	belt = /obj/item/storage/belt/medical
 	uniform = /obj/item/clothing/under/rank/medical
+	uniform_skirt = /obj/item/clothing/under/rank/medical/skirt
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	l_hand = /obj/item/roller
@@ -48,3 +59,4 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	gloves = /obj/item/clothing/gloves/color/latex/nitrile

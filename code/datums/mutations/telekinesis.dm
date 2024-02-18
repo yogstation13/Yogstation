@@ -17,4 +17,4 @@
 	return visual_indicators[type][1]
 
 /datum/mutation/human/telekinesis/on_ranged_attack(atom/target)
-	INVOKE_ASYNC(target, /atom.proc/attack_tk, owner)
+	INVOKE_ASYNC(target, TYPE_PROC_REF(/atom, attack_tk), owner)

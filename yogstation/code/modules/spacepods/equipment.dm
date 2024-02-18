@@ -38,7 +38,7 @@
 /obj/item/spacepod_equipment/weaponry/on_install(obj/spacepod/SP)
 	. = ..()
 	SP.weapon = src
-	SP.update_icon()
+	SP.update_appearance(UPDATE_ICON)
 
 /obj/item/spacepod_equipment/weaponry/on_uninstall()
 	. = ..()
@@ -86,7 +86,7 @@
 	// Okay here's a better name: It's a fucking *event handler*. Like the ones in javascript.
 	// a much more descriptive and less scary name than fucking "COMSIG". But noooooooooo
 	// the TG coders were too self important to pick a descriptive name and wanted to sound all scientific
-	RegisterSignal(SP, COMSIG_MOUSEDROPPED_ONTO, .proc/spacepod_mousedrop)
+	RegisterSignal(SP, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(spacepod_mousedrop))
 	SP.verbs |= /obj/spacepod/proc/unload_cargo
 
 /obj/item/spacepod_equipment/cargo/large/on_uninstall()
@@ -128,7 +128,7 @@
 	if(istype(A, storage_type) && SP.Adjacent(A)) // For loading ore boxes
 		if(!storage)
 			to_chat(user, span_notice("You begin loading [A] into [SP]'s [src]"))
-			if(do_after_mob(user, list(A, SP), 40))
+			if(do_after(user, 4 SECONDS, A))
 				storage = A
 				A.forceMove(src)
 				to_chat(user, span_notice("You load [A] into [SP]'s [src]!"))
@@ -147,7 +147,7 @@
 
 /obj/item/spacepod_equipment/cargo/large/ore/on_install(obj/spacepod/SP)
 	..()
-	RegisterSignal(SP, COMSIG_MOVABLE_MOVED, .proc/spacepod_moved)
+	RegisterSignal(SP, COMSIG_MOVABLE_MOVED, PROC_REF(spacepod_moved))
 
 /obj/item/spacepod_equipment/cargo/large/ore/on_uninstall()
 	UnregisterSignal(spacepod, COMSIG_MOVABLE_MOVED)
@@ -189,7 +189,7 @@
 	name = "disabler system"
 	desc = "A weak disabler system for space pods, fires disabler beams."
 	icon_state = "weapon_taser"
-	projectile_type = /obj/item/projectile/beam/disabler
+	projectile_type = /obj/projectile/beam/disabler
 	shot_cost = 400
 	fire_sound = 'sound/weapons/taser2.ogg'
 	overlay_icon = 'yogstation/icons/obj/spacepods/2x2.dmi'
@@ -199,7 +199,7 @@
 	name = "burst disabler system"
 	desc = "A weak disabler system for space pods, this one fires 3 at a time."
 	icon_state = "weapon_burst_taser"
-	projectile_type = /obj/item/projectile/beam/disabler
+	projectile_type = /obj/projectile/beam/disabler
 	shot_cost = 1200
 	shots_per = 3
 	fire_sound = 'sound/weapons/taser2.ogg'
@@ -211,7 +211,7 @@
 	name = "laser system"
 	desc = "A weak laser system for space pods, fires concentrated bursts of energy."
 	icon_state = "weapon_laser"
-	projectile_type = /obj/item/projectile/beam/laser
+	projectile_type = /obj/projectile/beam/laser
 	shot_cost = 600
 	fire_sound = 'sound/weapons/Laser.ogg'
 	overlay_icon = 'yogstation/icons/obj/spacepods/2x2.dmi'
@@ -223,7 +223,7 @@
 	desc = "A weak kinetic accelerator for space pods, fires bursts of energy that cut through rock."
 	icon = 'goon/icons/obj/spacepods/parts.dmi'
 	icon_state = "pod_taser"
-	projectile_type = /obj/item/projectile/kinetic/pod
+	projectile_type = /obj/projectile/kinetic/pod
 	shot_cost = 300
 	fire_delay = 14
 	fire_sound = 'sound/weapons/Kenetic_accel.ogg'
@@ -233,15 +233,15 @@
 	desc = "A kinetic accelerator system for space pods, fires bursts of energy that cut through rock."
 	icon = 'goon/icons/obj/spacepods/parts.dmi'
 	icon_state = "pod_m_laser"
-	projectile_type = /obj/item/projectile/kinetic/pod/regular
+	projectile_type = /obj/projectile/kinetic/pod/regular
 	shot_cost = 250
 	fire_delay = 10
 	fire_sound = 'sound/weapons/Kenetic_accel.ogg'
 
-/obj/item/projectile/kinetic/pod
+/obj/projectile/kinetic/pod
 	range = 4
 
-/obj/item/projectile/kinetic/pod/regular
+/obj/projectile/kinetic/pod/regular
 	damage = 50
 	pressure_decrease = 0.5
 
@@ -250,7 +250,7 @@
 	desc = "A plasma cutter system for space pods. It is capable of expelling concentrated plasma bursts to mine or cut off xeno limbs!"
 	icon = 'goon/icons/obj/spacepods/parts.dmi'
 	icon_state = "pod_p_cutter"
-	projectile_type = /obj/item/projectile/plasma
+	projectile_type = /obj/projectile/plasma
 	shot_cost = 250
 	fire_delay = 10
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
@@ -261,7 +261,7 @@
 	name = "enhanced plasma cutter system"
 	desc = "An enhanced plasma cutter system for space pods. It is capable of expelling concentrated plasma bursts to mine or cut off xeno faces!"
 	icon_state = "pod_ap_cutter"
-	projectile_type = /obj/item/projectile/plasma/adv
+	projectile_type = /obj/projectile/plasma/adv
 	shot_cost = 200
 	fire_delay = 8
 
@@ -291,7 +291,7 @@
 
 /obj/item/spacepod_equipment/lock/on_install(obj/spacepod/SP)
 	..()
-	RegisterSignal(SP, COMSIG_PARENT_ATTACKBY, .proc/spacepod_attackby)
+	RegisterSignal(SP, COMSIG_PARENT_ATTACKBY, PROC_REF(spacepod_attackby))
 	SP.lock = src
 
 /obj/item/spacepod_equipment/lock/on_uninstall()
@@ -312,7 +312,7 @@
 	var/static/id_source = 0
 	var/id = null
 
-/obj/item/spacepod_equipment/lock/keyed/Initialize()
+/obj/item/spacepod_equipment/lock/keyed/Initialize(mapload)
 	. = ..()
 	if(id == null)
 		id = ++id_source

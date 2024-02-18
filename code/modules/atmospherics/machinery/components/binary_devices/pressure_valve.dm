@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/components/binary/pressure_valve
 	icon_state = "pvalve_map-3"
 	name = "pressure valve"
-	desc = "An activable one-way valve that let gas pass through if the pressure on the input side is higher than the set pressure."
+	desc = "An activatable one-way valve that lets gas pass through if the pressure on the input side is higher than the set pressure."
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
@@ -24,14 +24,15 @@
 	if(can_interact(user))
 		on = !on
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/AltClick(mob/user)
 	if(can_interact(user))
 		target_pressure = MAX_OUTPUT_PRESSURE
 		investigate_log("was set to [target_pressure] kPa by [key_name(user)]", INVESTIGATE_ATMOS)
-		update_icon()
+		balloon_alert(user, "pressure output set to [target_pressure] kPa")
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/Destroy()
@@ -49,7 +50,7 @@
 		icon_state = "pvalve_off-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/process_atmos()
-	if(!on || is_operational())
+	if(!on || !is_operational())
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]
@@ -59,8 +60,10 @@
 		if(air1.release_gas_to(air2, air1.return_pressure()))
 			update_parents()
 			is_gas_flowing = TRUE
+		else
+			is_gas_flowing = FALSE //unable to release gas (valve mechanism underpressurized, or etc)
 	else
-		is_gas_flowing = FALSE
+		is_gas_flowing = FALSE //simply not enough pressure to activate
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/proc/set_frequency(new_frequency)
@@ -114,9 +117,9 @@
 			if(.)
 				target_pressure = clamp(pressure, 0, ONE_ATMOSPHERE*100)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/atmospherics/components/binary/pressure_valve/atmosinit()
+/obj/machinery/atmospherics/components/binary/pressure_valve/atmos_init()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
@@ -144,7 +147,7 @@
 		return
 
 	broadcast_status()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/can_unwrench(mob/user)
 	. = ..()

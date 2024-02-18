@@ -58,28 +58,28 @@ Difficulty: Very Hard
 
 /datum/action/innate/megafauna_attack/spiral_attack
 	name = "Spiral Shots"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = span_colossus("You are now firing in a spiral.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/aoe_attack
 	name = "All Directions"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "at_shield2"
 	chosen_message = span_colossus("You are now firing in all directions.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/shotgun
 	name = "Shotgun Fire"
-	icon_icon = 'icons/obj/guns/projectile.dmi'
+	button_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "shotgun"
 	chosen_message = span_colossus("You are now firing shotgun shots where you aim.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/alternating_cardinals
 	name = "Alternating Shots"
-	icon_icon = 'icons/obj/guns/projectile.dmi'
+	button_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "pistol"
 	chosen_message = span_colossus("You are now firing in alternating cardinal directions.")
 	chosen_attack_num = 4
@@ -127,6 +127,9 @@ Difficulty: Very Hard
 		if(H.mind)
 			if(H.mind.martial_art && prob(H.mind.martial_art.deflection_chance))
 				. = TRUE
+		if(H.mind)
+			if(H.dna.species == /datum/species/golem/sand)
+				. = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/alternating_dir_shots()
 	ranged_cooldown = world.time + 40
@@ -149,8 +152,8 @@ Difficulty: Very Hard
 	visible_message(span_colossus("\"<b>Die.</b>\""))
 
 	SLEEP_CHECK_DEATH(10)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), FALSE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/spiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
@@ -172,7 +175,7 @@ Difficulty: Very Hard
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/colossus(startloc)
+	var/obj/projectile/P = new /obj/projectile/colossus(startloc)
 	P.preparePixelProjectile(marker, startloc)
 	P.firer = src
 	if(target)
@@ -211,6 +214,7 @@ Difficulty: Very Hard
 	for(var/mob/M in range(10,src))
 		if(M.client)
 			flash_color(M.client, "#C80000", 1)
+			sleep(0.5 SECONDS)
 			shake_camera(M, 4, 3)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, 1)
 
@@ -222,7 +226,7 @@ Difficulty: Very Hard
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)
 	visible_message(span_colossus("[src] disintegrates [L]!"))
-	L.dust()
+	L.dust(drop_items = TRUE)
 
 /obj/effect/temp_visual/at_shield
 	name = "anti-toolbox field"
@@ -230,6 +234,7 @@ Difficulty: Very Hard
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
+	light_system = MOVABLE_LIGHT
 	light_range = 2
 	duration = 8
 	var/target
@@ -237,9 +242,9 @@ Difficulty: Very Hard
 /obj/effect/temp_visual/at_shield/Initialize(mapload, new_target)
 	. = ..()
 	target = new_target
-	INVOKE_ASYNC(src, /atom/movable/proc/orbit, target, 0, FALSE, 0, 0, FALSE, TRUE)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable/, orbit), target, 0, FALSE, 0, 0, FALSE, TRUE)
 
-/mob/living/simple_animal/hostile/megafauna/colossus/bullet_act(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/megafauna/colossus/bullet_act(obj/projectile/P)
 	if(!stat)
 		var/obj/effect/temp_visual/at_shield/AT = new /obj/effect/temp_visual/at_shield(loc, src)
 		var/random_x = rand(-32, 32)
@@ -249,7 +254,7 @@ Difficulty: Very Hard
 		AT.pixel_y += random_y
 	return ..()
 
-/obj/item/projectile/colossus
+/obj/projectile/colossus
 	name ="death bolt"
 	icon_state= "chronobolt"
 	damage = 25
@@ -259,7 +264,7 @@ Difficulty: Very Hard
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
 
-/obj/item/projectile/colossus/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/colossus/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(isturf(target) || isobj(target))
 		if(isobj(target))
@@ -295,9 +300,6 @@ Difficulty: Very Hard
 	var/list/stored_items = list()
 	var/list/blacklist = list()
 
-/obj/machinery/smartfridge/black_box/update_icon()
-	return
-
 /obj/machinery/smartfridge/black_box/accept_check(obj/item/O)
 	if(!istype(O))
 		return FALSE
@@ -306,7 +308,8 @@ Difficulty: Very Hard
 		return FALSE
 	return TRUE
 
-/obj/machinery/smartfridge/black_box/Initialize()
+/obj/machinery/smartfridge/black_box/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	var/static/obj/machinery/smartfridge/black_box/current
 	if(current && current != src)
@@ -445,12 +448,12 @@ Difficulty: Very Hard
 		ActivationReaction(user, ACTIVATE_WEAPON)
 	..()
 
-/obj/machinery/anomalous_crystal/bullet_act(obj/item/projectile/P, def_zone)
+/obj/machinery/anomalous_crystal/bullet_act(obj/projectile/P, def_zone)
 	. = ..()
-	if(istype(P, /obj/item/projectile/magic))
+	if(istype(P, /obj/projectile/magic))
 		ActivationReaction(P.firer, ACTIVATE_MAGIC, P.damage_type)
 		return
-	ActivationReaction(P.firer, P.flag, P.damage_type)
+	ActivationReaction(P.firer, P.armor_flag, P.damage_type)
 
 /obj/machinery/anomalous_crystal/proc/ActivationReaction(mob/user, method, damtype)
 	if(world.time < last_use_timer)
@@ -471,21 +474,6 @@ Difficulty: Very Hard
 /obj/machinery/anomalous_crystal/ex_act()
 	ActivationReaction(null, ACTIVATE_BOMB)
 
-/obj/machinery/anomalous_crystal/honk //Strips and equips you as a clown. I apologize for nothing
-	observer_desc = "This crystal strips and equips its targets as clowns."
-	possible_methods = list(ACTIVATE_MOB_BUMP, ACTIVATE_SPEECH)
-	activation_sound = 'sound/items/bikehorn.ogg'
-
-/obj/machinery/anomalous_crystal/honk/ActivationReaction(mob/user)
-	if(..() && ishuman(user) && !(user in affected_targets))
-		var/mob/living/carbon/human/H = user
-		for(var/obj/item/W in H)
-			H.dropItemToGround(W)
-		var/datum/job/clown/C = new /datum/job/clown()
-		C.equip(H)
-		qdel(C)
-		affected_targets.Add(H)
-
 /obj/machinery/anomalous_crystal/theme_warp //Warps the area you're in to look like a new one
 	observer_desc = "This crystal warps the area around it to a theme."
 	activation_method = ACTIVATE_TOUCH
@@ -498,7 +486,7 @@ Difficulty: Very Hard
 	var/list/NewFlora = list()
 	var/florachance = 8
 
-/obj/machinery/anomalous_crystal/theme_warp/Initialize()
+/obj/machinery/anomalous_crystal/theme_warp/Initialize(mapload)
 	. = ..()
 	terrain_theme = pick("lavaland","winter","jungle","ayy lmao")
 	observer_desc = "This crystal changes the area around it to match the theme of \"[terrain_theme]\"."
@@ -538,7 +526,7 @@ Difficulty: Very Hard
 					var/turf/T = Stuff
 					if((isspaceturf(T) || isfloorturf(T)) && NewTerrainFloors)
 						var/turf/open/O = T.ChangeTurf(NewTerrainFloors, flags = CHANGETURF_INHERIT_AIR)
-						if(prob(florachance) && NewFlora.len && !is_blocked_turf(O, TRUE))
+						if(prob(florachance) && NewFlora.len && !O.is_blocked_turf(TRUE))
 							var/atom/Picked = pick(NewFlora)
 							new Picked(O)
 						continue
@@ -560,18 +548,18 @@ Difficulty: Very Hard
 	observer_desc = "This crystal generates a projectile when activated."
 	activation_method = ACTIVATE_TOUCH
 	cooldown_add = 50
-	var/obj/item/projectile/generated_projectile = /obj/item/projectile/beam/emitter
+	var/obj/projectile/generated_projectile = /obj/projectile/beam/emitter
 
-/obj/machinery/anomalous_crystal/emitter/Initialize()
+/obj/machinery/anomalous_crystal/emitter/Initialize(mapload)
 	. = ..()
-	generated_projectile = pick(/obj/item/projectile/colossus)
+	generated_projectile = pick(/obj/projectile/colossus)
 
 	var/proj_name = initial(generated_projectile.name)
 	observer_desc = "This crystal generates \a [proj_name] when activated."
 
 /obj/machinery/anomalous_crystal/emitter/ActivationReaction(mob/user, method)
 	if(..())
-		var/obj/item/projectile/P = new generated_projectile(get_turf(src))
+		var/obj/projectile/P = new generated_projectile(get_turf(src))
 		P.setDir(dir)
 		switch(dir)
 			if(NORTH)
@@ -630,7 +618,7 @@ Difficulty: Very Hard
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = alert("Become a Lightgeist? (Warning, You can no longer be cloned!)",,"Yes","No")
+		var/be_helper = tgui_alert(usr,"Become a Lightgeist? (Warning, You can no longer be revived!)",,list("Yes","No"))
 		if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
 			var/mob/living/simple_animal/hostile/lightgeist/healing/W = new /mob/living/simple_animal/hostile/lightgeist/healing(get_turf(loc))
 			W.key = user.key
@@ -681,12 +669,32 @@ Difficulty: Very Hard
 	AIStatus = AI_OFF
 	stop_automated_movement = TRUE
 
+/mob/living/simple_animal/hostile/lightgeist/healing/Initialize(mapload)
+	. = ..()
+	remove_verb(src, /mob/living/verb/pulled)
+	remove_verb(src, /mob/verb/me_verb)
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+	medsensor.show_to(src)
+
+/mob/living/simple_animal/hostile/lightgeist/ghostize()
+	. = ..()
+	if(.)
+		death()
+
 /mob/living/simple_animal/hostile/lightgeist/healing
 	var/heal_power = 5
+	var/heal_color = "#80F5FF"
 
-/mob/living/simple_animal/hostile/lightgeist/photogeist
+/mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
+	. = ..()
+	if(isliving(target) && target != src)
+		var/mob/living/L = target
+		if(L.stat != DEAD)
+			L.heal_overall_damage(heal_power, heal_power)
+			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
+
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist
 	name = "photogeist"
-	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
 	icon_state = "photogeist"
 	icon_living = "photogeist"
 	friendly = "shines on"
@@ -696,25 +704,33 @@ Difficulty: Very Hard
 	health = 10
 	light_range = 6
 	ventcrawler = VENTCRAWLER_NONE //they dont really need to be ventcrawling
-	var/heal_power = 3
+	heal_power = 3
+	heal_color = "#5bf563"
 
-/mob/living/simple_animal/hostile/lightgeist/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/Initialize(mapload)
 	. = ..()
-	remove_verb(src, /mob/living/verb/pulled)
-	remove_verb(src, /mob/verb/me_verb)
-	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.add_hud_to(src)
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/plants)
+	var/datum/action/cooldown/spell/conjure/plants/terrarium = new(src)
+	terrarium.Grant(src)
 
-/obj/effect/proc_holder/spell/aoe_turf/conjure/plants
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/AttackingTarget() //photogeists can heal non plant stuff, but its incredibly low healing
+	var/mob/living/L = target
+	if(L.stat != DEAD)
+		if(!("vines" in L.faction) && !("plants" in L.faction))
+			L.heal_overall_damage(heal_power/6, heal_power/6)
+			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
+		else
+			L.heal_overall_damage(heal_power, heal_power)
+			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
+
+/datum/action/cooldown/spell/conjure/plants
 	name = "Seed Plants"
 	desc = "This spell seeds a random plant into the floor."
-	school = "conjuration"
-	charge_max = 200
-	clothes_req = FALSE
-	invocation = "none"
-	invocation_type = "none"
-	range = 0
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon_state = "plant"
+
+	invocation_type = INVOCATION_NONE
+
+	cooldown_time = 20 SECONDS
 	summon_type = list(
 		/obj/structure/flora/ausbushes,
 		/obj/structure/flora/ausbushes/leafybush,
@@ -724,25 +740,7 @@ Difficulty: Very Hard
 		/obj/structure/flora/ausbushes/ppflowers,
 		/obj/structure/flora/ausbushes/fullgrass
 	)
-	action_icon = 'icons/mob/actions/actions_animal.dmi'
-	action_icon_state = "plant"
-
-/mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
-	. = ..()
-	if(isliving(target) && target != src)
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			L.heal_overall_damage(heal_power, heal_power)
-			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
-
-/mob/living/simple_animal/hostile/lightgeist/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
-	. = ..()
-	if(isliving(target) && target != src)
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(("vines" in L.faction) || ("plants" in L.faction))
-				L.heal_overall_damage(heal_power, heal_power)
-				new /obj/effect/temp_visual/heal(get_turf(target), "#5bf563")
+	spell_requirements = NONE
 
 /obj/effect/mob_spawn/photogeist
 	name = "dormant photogeist"
@@ -752,28 +750,23 @@ Difficulty: Very Hard
 	density = FALSE
 	anchored = FALSE
 
-	mob_type = /mob/living/simple_animal/hostile/lightgeist/photogeist
+	mob_type = /mob/living/simple_animal/hostile/lightgeist/healing/photogeist
 	mob_name = "photogeist"
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
-	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor."
+	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor. Healing non plantlike creatures is possible, but far slower."
 
-/obj/effect/mob_spawn/photogeist/Initialize()
+/obj/effect/mob_spawn/photogeist/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
 		notify_ghosts("A photogeist has been summoned in [A.name].", 'sound/effects/shovel_dig.ogg', source = src, action = NOTIFY_ATTACKORBIT, flashwindow = FALSE)
 
-/mob/living/simple_animal/hostile/lightgeist/ghostize()
-	. = ..()
-	if(.)
-		death()
-
 /mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
 
-/mob/living/simple_animal/hostile/lightgeist/healing/slime/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/slime/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_MUTE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_EMOTEMUTE, INNATE_TRAIT)
@@ -783,7 +776,7 @@ Difficulty: Very Hard
 	activation_method = ACTIVATE_TOUCH
 	cooldown_add = 50
 	activation_sound = 'sound/magic/timeparadox2.ogg'
-	var/static/list/banned_items_typecache = typecacheof(list(/obj/item/storage, /obj/item/implant, /obj/item/implanter, /obj/item/disk/nuclear, /obj/item/projectile, /obj/item/spellbook))
+	var/static/list/banned_items_typecache = typecacheof(list(/obj/item/storage, /obj/item/implant, /obj/item/implanter, /obj/item/disk/nuclear, /obj/projectile, /obj/item/spellbook))
 
 /obj/machinery/anomalous_crystal/refresher/ActivationReaction(mob/user, method)
 	if(..())
@@ -847,22 +840,26 @@ Difficulty: Very Hard
 		ADD_TRAIT(L, TRAIT_MUTE, STASIS_MUTE)
 		L.status_flags |= GODMODE
 		L.mind.transfer_to(holder_animal)
-		var/obj/effect/proc_holder/spell/targeted/exit_possession/P = new /obj/effect/proc_holder/spell/targeted/exit_possession
-		holder_animal.mind.AddSpell(P)
+		var/datum/action/exit_possession/escape = new(holder_animal)
+		escape.Grant(holder_animal)
 		remove_verb(holder_animal, /mob/living/verb/pulled)
 
-/obj/structure/closet/stasis/dump_contents(var/kill = 1)
+/obj/structure/closet/stasis/dump_contents(kill = TRUE)
 	STOP_PROCESSING(SSobj, src)
-	for(var/mob/living/L in src)
-		REMOVE_TRAIT(L, TRAIT_MUTE, STASIS_MUTE)
-		L.status_flags &= ~GODMODE
-		L.notransform = 0
-		if(holder_animal)
-			holder_animal.mind.transfer_to(L)
-			L.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/exit_possession)
+	for(var/mob/living/possessor in src)
+		REMOVE_TRAIT(possessor, TRAIT_MUTE, STASIS_MUTE)
+		possessor.status_flags &= ~GODMODE
+		possessor.notransform = FALSE
 		if(kill || !isanimal(loc))
-			L.death(0)
-	..()
+			possessor.investigate_log("has died from [src].", INVESTIGATE_DEATHS)
+			possessor.death(FALSE)
+		if(holder_animal)
+			possessor.forceMove(get_turf(holder_animal))
+			holder_animal.mind.transfer_to(possessor)
+			possessor.mind.grab_ghost(force = TRUE)
+			holder_animal.gib()
+			return ..()
+	return ..()
 
 /obj/structure/closet/stasis/emp_act()
 	return
@@ -870,32 +867,28 @@ Difficulty: Very Hard
 /obj/structure/closet/stasis/ex_act()
 	return
 
-/obj/effect/proc_holder/spell/targeted/exit_possession
+/datum/action/exit_possession
 	name = "Exit Possession"
-	desc = "Exits the body you are possessing."
-	charge_max = 60
-	clothes_req = 0
-	invocation_type = "none"
-	max_targets = 1
-	range = -1
-	include_user = TRUE
-	selection_type = "view"
-	action_icon = 'icons/mob/actions/actions_spells.dmi'
-	action_icon_state = "exit_possession"
-	sound = null
+	desc = "Exits the body you are possessing. They will explode violently when this occurs."
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "exit_possession"
 
-/obj/effect/proc_holder/spell/targeted/exit_possession/cast(list/targets, mob/user = usr)
-	if(!isfloorturf(user.loc))
-		return
-	var/datum/mind/target_mind = user.mind
-	for(var/i in user)
-		if(istype(i, /obj/structure/closet/stasis))
-			var/obj/structure/closet/stasis/S = i
-			S.dump_contents(0)
-			qdel(S)
-			break
-	user.gib()
-	target_mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/exit_possession)
+/datum/action/exit_possession/IsAvailable(feedback = FALSE)
+	return ..() && isfloorturf(owner.loc)
+
+
+/datum/action/exit_possession/Trigger(trigger_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/obj/structure/closet/stasis/stasis = locate() in owner
+	if(!stasis)
+		CRASH("[type] did not find a stasis closet thing in the owner.")
+
+	stasis.dump_contents(FALSE)
+	qdel(stasis)
+	qdel(src)
 
 
 #undef ACTIVATE_TOUCH

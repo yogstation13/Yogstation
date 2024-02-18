@@ -1,8 +1,8 @@
 /datum/job/network_admin
 	title = "Network Admin"
-	flag = NETWORKADMIN
+	description = "Maintain and upgrade the AI, try not to break radio communications."
+	orbit_icon = "satellite-dish"
 	department_head = list("Chief Engineer", "Research Director")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -14,29 +14,35 @@
 
 	outfit = /datum/outfit/job/network_admin
 
-	access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,
-					ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_NETWORK, ACCESS_RESEARCH)
-	minimal_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_NETWORK, ACCESS_RESEARCH, ACCESS_TOX, ACCESS_MINISAT)
+	added_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MAINT_TUNNELS)
+	base_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_NETWORK, ACCESS_RESEARCH, ACCESS_MINISAT, ACCESS_RND)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_NETWORK_ADMIN
+	minimal_character_age = 22 //Feasibly same level as engineer, mostly a data engineer instead of a mechanical or construction-based one, though is still capable of making certain machines
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/engineering,
+	)
 
-/datum/job/network_admin/proc/OmegaStationChanges()
-	access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_RESEARCH, ACCESS_TOX)
-	minimal_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_RESEARCH, ACCESS_TOX)
-	supervisors = "the captain and the head of personnel"
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/plushies = 20,
+		/obj/item/pizzabox = 10,
+		/obj/item/ai_cpu/experimental = 5
+	)
+
+	smells_like = "thermal paste"
 
 /datum/outfit/job/network_admin
 	name = "Network Admin"
 	jobtype = /datum/job/network_admin
 
-	pda_type = /obj/item/pda/network_admin
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_network
 	uniform = /obj/item/clothing/under/yogs/rank/network_admin
+	uniform_skirt = /obj/item/clothing/under/yogs/rank/network_admin/skirt
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots
@@ -48,4 +54,4 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET

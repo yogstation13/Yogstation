@@ -87,7 +87,7 @@
 		var/regex/reg = regex("(\\b|\\A)[REGEX_QUOTE(word)]'?s*(\\b|\\Z)", "i")
 
 		if(findtext(hearing_args[HEARING_RAW_MESSAGE], reg))
-			addtimer(CALLBACK(src, .proc/freak_out, null, word), 10) //to react AFTER the chat message
+			addtimer(CALLBACK(src, PROC_REF(freak_out), null, word), 10) //to react AFTER the chat message
 			hearing_args[HEARING_MESSAGE] = reg.Replace(hearing_args[HEARING_MESSAGE], span_phobia("$1"))
 			break
 
@@ -117,22 +117,22 @@
 		if(1)
 			to_chat(owner, span_warning("You are paralyzed with fear!"))
 			owner.Stun(70)
-			owner.Jitter(8)
+			owner.adjust_jitter(8 SECONDS)
 		if(2)
 			owner.emote("scream")
-			owner.Jitter(5)
+			owner.adjust_jitter(5 SECONDS)
 			owner.say("AAAAH!!", forced = "phobia")
 			if(reason)
 				owner.pointed(reason)
 		if(3)
 			to_chat(owner, span_warning("You shut your eyes in terror!"))
-			owner.Jitter(5)
+			owner.adjust_jitter(5 SECONDS)
 			owner.blind_eyes(10)
 		if(4)
-			owner.dizziness += 10
-			owner.confused += 10
-			owner.Jitter(10)
-			owner.stuttering += 10
+			owner.adjust_dizzy(10 SECONDS)
+			owner.adjust_confusion(10 SECONDS)
+			owner.adjust_jitter(10 SECONDS)
+			owner.adjust_stutter(10 SECONDS)
 
 // Defined phobia types for badminry, not included in the RNG trauma pool to avoid diluting.
 

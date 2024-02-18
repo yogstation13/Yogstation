@@ -14,6 +14,8 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_OPEN //Intentionally no allow_silicon flag
 	pipe_flags = PIPING_CARDINAL_AUTONORMALIZE
 
+	custom_reconcilation = TRUE
+
 	var/frequency = 0
 	var/id = null
 
@@ -23,6 +25,26 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	pipe_state = "mvalve"
 
 	var/switching = FALSE
+
+
+/obj/machinery/atmospherics/components/binary/valve/Destroy()
+	//Should only happen on extreme circumstances
+	if(on)
+		//Let's give presumably now-severed pipenets a chance to scramble for what's happening at next SSair fire()
+		if(parents[1])
+			parents[1].update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
+		if(parents[2])
+			parents[2].update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
+	. = ..()
+
+// This is what handles the actual functionality of combining 2 pipenets when the valve is open
+// Basically when a pipenet updates it will consider both sides to be the same for the purpose of the gas update
+/obj/machinery/atmospherics/components/binary/valve/return_pipenets_for_reconcilation(datum/pipeline/requester)
+	. = ..()
+	if(!on)
+		return
+	. |= parents[1]
+	. |= parents[2]
 
 /obj/machinery/atmospherics/components/binary/valve/update_icon_nopipes(animation = FALSE)
 	normalize_cardinal_directions()
@@ -51,7 +73,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		return
 	update_icon_nopipes(TRUE)
 	switching = TRUE
-	addtimer(CALLBACK(src, .proc/finish_interact), 10)
+	addtimer(CALLBACK(src, PROC_REF(finish_interact)), 10)
 
 /obj/machinery/atmospherics/components/binary/valve/proc/finish_interact()
 	toggle()

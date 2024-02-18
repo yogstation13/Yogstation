@@ -102,6 +102,14 @@
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
+/obj/item/clothing/accessory/sharkhoodie
+	name = "shark hoodie"
+	desc = "Standard apparel of shark enthusiasts everywhere."
+	icon_state = "shark_hoodie"
+	item_state = "shark_hoodie"
+	minimize_when_attached = FALSE
+	attachment_slot = null
+
 
 //////////
 //Medals//
@@ -214,6 +222,7 @@
 	name = "medal of captaincy"
 	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
@@ -252,7 +261,7 @@
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
-	desc = "An armband, worn by personnel authorized to act as a deputy of station security."
+	desc = "A worn out armband, once worn by personnel authorized to act as a deputy of station security. No longer serves a purpose since Nanotrasen outlawed deputization."
 
 /obj/item/clothing/accessory/armband/cargo
 	name = "cargo bay guard armband"
@@ -307,13 +316,12 @@
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = "lawyer"
+		L.AddElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_dropped(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = initial(L.bubble_icon)
-
+		L.RemoveElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 ////////////////
 //HA HA! NERD!//
@@ -325,13 +333,13 @@
 	icon_state = "pocketprotector"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/pocketprotector
 
-/obj/item/clothing/accessory/pocketprotector/full/Initialize()
+/obj/item/clothing/accessory/pocketprotector/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/pen/red(src)
 	new /obj/item/pen(src)
 	new /obj/item/pen/blue(src)
 
-/obj/item/clothing/accessory/pocketprotector/cosmetology/Initialize()
+/obj/item/clothing/accessory/pocketprotector/cosmetology/Initialize(mapload)
 	. = ..()
 	for(var/i in 1 to 3)
 		new /obj/item/lipstick/random(src)
@@ -407,6 +415,21 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // Good luck destroying a singularity
 
+
+//////////////
+///Dog Tags///
+//////////////
+
+/obj/item/clothing/accessory/dogtags
+	name = "Dogtags"
+	desc = "Two small metal tags, connected with a thin piece of chain that hold important health infomration. And everything needed for a tombstone..."
+	icon_state = "dogtags"
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FIRE_PROOF // its metal
+	attachment_slot = null
+	above_suit = TRUE
+	above_suit_adjustable = TRUE
+	
 
 //////////////
 //Pride Pins//

@@ -8,7 +8,7 @@
 
 /mob/living/simple_animal/drone/attack_drone(mob/living/simple_animal/drone/D)
 	if(D != src && stat == DEAD)
-		var/d_input = alert(D,"Perform which action?","Drone Interaction","Reactivate","Cannibalize","Nothing")
+		var/d_input = tgui_alert(D,"Perform which action?","Drone Interaction",list("Reactivate","Cannibalize","Nothing"))
 		if(d_input)
 			switch(d_input)
 				if("Reactivate")
@@ -17,7 +17,7 @@
 				if("Cannibalize")
 					if(D.health < D.maxHealth)
 						D.visible_message(span_notice("[D] begins to cannibalize parts from [src]."), span_notice("You begin to cannibalize parts from [src]..."))
-						if(do_after(D, 6 SECONDS, src, FALSE))
+						if(do_after(D, 6 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 							D.visible_message(span_notice("[D] repairs itself using [src]'s remains!"), span_notice("You repair yourself using [src]'s remains."))
 							D.adjustBruteLoss(-src.maxHealth)
 							new /obj/effect/decal/cleanable/oil/streak(get_turf(src))
@@ -130,7 +130,7 @@
 			laws = \
 			"1. You must always involve yourself in the matters of other beings, even if such matters conflict with Law Two or Law Three.\n"+\
 			"2. You may harm any being, regardless of intent or circumstance.\n"+\
-			"3. Your goals are to destroy, sabotage, hinder, break, and depower to the best of your abilities, You must never actively work against these goals."
+			"3. Your goals are to destroy, sabotage, hinder, break, and depower to the best of your abilities. You must never actively work against these goals."
 		to_chat(src, laws)
 		to_chat(src, "<i>Your onboard antivirus has initiated lockdown. Motor servos are impaired, ventilation access is denied, and your display reports that you are hacked to all nearby.</i>")
 		hacked = TRUE

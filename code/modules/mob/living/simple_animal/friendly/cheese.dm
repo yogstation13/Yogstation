@@ -7,7 +7,7 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	mob_biotypes = list(MOB_ORGANIC)
+	mob_biotypes = MOB_ORGANIC
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/cheesewedge/parmesan = 2)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -22,9 +22,14 @@
 	can_be_held = TRUE
 	density = FALSE
 	var/mob/living/stored_mob
+	var/temporary = FALSE //permanent until made temporary
 
-/mob/living/simple_animal/cheese/Life()
+/mob/living/simple_animal/cheese/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
+	if(stored_mob)
+		stored_mob.life_tickrate = 0
+	if(temporary)
+		addtimer(CALLBACK(src, PROC_REF(uncheeseify), src), 1 MINUTES, TIMER_UNIQUE)
 	if(stat)
 		return
 	if(health < maxHealth)
@@ -67,3 +72,20 @@
 		uncheeseify(src)
 	. = ..()
 	
+/mob/living/simple_animal/cheese/proc/uncheeseify(mob/living/simple_animal/cheese/cheese)
+	if(cheese.stored_mob)
+		var/mob/living/L = cheese.stored_mob
+		var/mob/living/simple_animal/cheese/C = cheese
+		L.life_tickrate = initial(L.life_tickrate)
+		L.forceMove(get_turf(C))
+		C.stored_mob = null
+		if(L.mind)
+			C.mind.transfer_to(L)
+		else
+			L.key = C.key
+		C.transfer_observers_to(L)
+		to_chat(L, "<span class='big bold'>You have fallen out of the cheese wheel!</b>")
+		qdel(C)
+
+/mob/living/simple_animal/cheese/canSuicide()
+	return FALSE

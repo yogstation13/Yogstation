@@ -20,7 +20,7 @@
 	desc = "Robotic constructs of unknown design, swarmers seek only to consume materials and replicate themselves indefinitely."
 	speak_emote = list("tones")
 	initial_language_holder = /datum/language_holder/swarmer
-	bubble_icon = "swarmer"
+	bubble_icon = BUBBLE_SWARMER
 	mob_biotypes = MOB_ROBOTIC
 	health = 40
 	maxHealth = 40
@@ -52,7 +52,7 @@
 	mob_size = MOB_SIZE_TINY
 	ventcrawler = VENTCRAWLER_ALWAYS
 	ranged = 1
-	projectiletype = /obj/item/projectile/beam/disabler/swarmer
+	projectiletype = /obj/projectile/beam/disabler/swarmer
 	ranged_cooldown_time = 20
 	projectilesound = 'sound/weapons/taser2.ogg'
 	loot = list(/obj/effect/decal/cleanable/robot_debris, /obj/item/stack/ore/bluespace_crystal)
@@ -69,12 +69,16 @@
 	var/list/mob/living/simple_animal/hostile/swarmer/melee/dronelist
 	///Prevents alert spam
 	var/last_alert = 0
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	///Bitflags to store boolean conditions, such as whether the light is on or off.
+	var/swarmer_flags = NONE
 
-/mob/living/simple_animal/hostile/swarmer/Initialize()
+/mob/living/simple_animal/hostile/swarmer/Initialize(mapload)
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 
 /mob/living/simple_animal/hostile/swarmer/med_hud_set_health()
 	var/image/holder = hud_list[DIAG_HUD]
@@ -92,18 +96,19 @@
 	. = ..()
 	. += "Resources: [resources]"
 
-/mob/living/simple_animal/hostile/swarmer/emp_act()
+/mob/living/simple_animal/hostile/swarmer/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(health > 1)
-		adjustHealth(health-1)
+	var/emp_damage = severity/EMP_HEAVY
+	if(health > emp_damage)
+		adjustHealth(health - emp_damage)
 	else
 		death()
 
 /mob/living/simple_animal/hostile/swarmer/CanAllowThrough(atom/movable/O)
 	. = ..()
-	if(istype(O, /obj/item/projectile/beam/disabler))//Allows for swarmers to fight as a group without wasting their shots hitting each other
+	if(istype(O, /obj/projectile/beam/disabler))//Allows for swarmers to fight as a group without wasting their shots hitting each other
 		return TRUE
 	if(isswarmer(O))
 		return TRUE
@@ -152,13 +157,18 @@
   */
 /mob/living/simple_animal/hostile/swarmer/proc/Fabricate(atom/fabrication_object,fabrication_cost = 0)
 	if(!isturf(loc))
-		to_chat(src, span_warning("This is not a suitable location for fabrication. We need more space."))
+		balloon_or_message(src, "not a suitable location", \
+			span_warning("This is not a suitable location for fabrication. We need more space."))
 		return
 	if(resources < fabrication_cost)
-		to_chat(src, span_warning("You do not have the necessary resources to fabricate this object."))
+		balloon_or_message(src, "not enough resources", \
+			span_warning("You do not have the necessary resources to fabricate this object."))
 		return
 	resources -= fabrication_cost
-	return new fabrication_object(drop_location())
+	var/atom/fabricated_object = new fabrication_object(drop_location())
+	fabricated_object.balloon_or_message(src, "successfully fabricated", \
+			span_notice("Sucessfully fabricated [fabricated_object]."))
+	return fabricated_object
 
 /**
   * Called when a swarmer attempts to consume an object
@@ -170,10 +180,12 @@
 /mob/living/simple_animal/hostile/swarmer/proc/Integrate(obj/target)
 	var/resource_gain = target.integrate_amount()
 	if(resources + resource_gain > max_resources)
-		to_chat(src, span_warning("We cannot hold more materials!"))
+		balloon_or_message(src, "storage is full", \
+			span_warning("We cannot hold more materials!"))
 		return TRUE
 	if(!resource_gain)
-		to_chat(src, span_warning("[target] is incompatible with our internal matter recycler."))
+		target.balloon_or_message(src, "incompatible, aborting", \
+			span_warning("[target] is incompatible with our internal matter recycler."))
 		return FALSE
 	resources += resource_gain
 	do_attack_animation(target)
@@ -215,12 +227,13 @@
 		return
 
 	if(!is_station_level(z) && !is_mining_level(z))
-		to_chat(src, span_warning("Our bluespace transceiver cannot locate a viable bluespace link, our teleportation abilities are useless in this area."))
+		balloon_or_message(src, "cannot locate a bluespace link", \
+			span_warning("Our bluespace transceiver cannot locate a viable bluespace link, our teleportation abilities are useless in this area."))
 		return
 
 	to_chat(src, span_info("Attempting to remove this being from our presence."))
 
-	if(!do_mob(src, target, 30))
+	if(!do_after(src, 3 SECONDS, target))
 		return
 
 	teleport_target(target)
@@ -236,7 +249,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/victim = target
 		if(!victim.handcuffed)
-			victim.handcuffed = new /obj/item/restraints/handcuffs/energy/used(victim)
+			victim.set_handcuffed(new /obj/item/restraints/handcuffs/energy/used/swarmer(victim))
 			victim.update_handcuffed()
 			log_combat(src, victim, "handcuffed")
 
@@ -246,7 +259,7 @@
 	playsound(src, 'sound/effects/sparks4.ogg', 50, TRUE)
 	do_teleport(target, safe_turf , 0, channel = TELEPORT_CHANNEL_BLUESPACE)
 
-/mob/living/simple_animal/hostile/swarmer/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE)
+/mob/living/simple_animal/hostile/swarmer/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(!tesla_shock)
 		return FALSE
 	return ..()
@@ -271,8 +284,9 @@
 		if(last_alert < world.time)
 			last_alert = world.time + 5 SECONDS
 			priority_announce("Connection encryption violation in machine: [target]! Deconstruction projected to complete in: 30 SECONDS")
-	if(do_mob(src, target, dismantle_time))
-		to_chat(src, span_info("Dismantling complete."))
+	if(do_after(src, dismantle_time, target))
+		balloon_or_message(src, "dismantling complete", \
+			span_info("Dismantling complete."))
 		var/atom/target_loc = target.drop_location()
 		new /obj/item/stack/sheet/metal(target_loc, 5)
 		for(var/p in target.component_parts)
@@ -299,10 +313,12 @@
 	set category = "Swarmer"
 	set desc = "Creates a simple trap that will non-lethally electrocute anything that steps on it. Costs 4 resources."
 	if(locate(/obj/structure/swarmer/trap) in loc)
-		to_chat(src, span_warning("There is already a trap here. Aborting."))
+		balloon_or_message(src, "already a trap here", \
+			span_warning("There is already a trap here. Aborting."))
 		return
 	if(resources < 4)
-		to_chat(src, span_warning("We do not have the resources for this!"))
+		balloon_or_message(src, "not enough resources", \
+			span_warning("We do not have the resources for this!"))
 		return
 	Fabricate(/obj/structure/swarmer/trap, 4)
 
@@ -316,12 +332,14 @@
 	set category = "Swarmer"
 	set desc = "Creates a barricade that will stop anything but swarmers and disabler beams from passing through.  Costs 4 resources."
 	if(locate(/obj/structure/swarmer/blockade) in loc)
-		to_chat(src, span_warning("There is already a blockade here. Aborting."))
+		balloon_or_message(src, "already a blockade here", \
+			span_warning("There is already a blockade here. Aborting."))
 		return
 	if(resources < 4)
-		to_chat(src, span_warning("We do not have the resources for this!"))
+		balloon_or_message(src, "not enough resources", \
+			span_warning("We do not have the resources for this!"))
 		return
-	if(!do_mob(src, src, 1 SECONDS))
+	if(!do_after(src, 1 SECONDS))
 		return
 	Fabricate(/obj/structure/swarmer/blockade, 4)
 
@@ -336,19 +354,21 @@
 	set desc = "Creates a duplicate of ourselves, capable of protecting us while we complete our objectives."
 	to_chat(src, span_info("We are attempting to replicate ourselves. We will need to stand still until the process is complete."))
 	if(resources < 20)
-		to_chat(src, span_warning("We do not have the resources for this!"))
+		balloon_or_message(src, "not enough resources", \
+			span_warning("We do not have the resources for this!"))
 		return
 	if(!isturf(loc))
-		to_chat(src, span_warning("This is not a suitable location for replicating ourselves. We need more room."))
+		balloon_or_message(src, "not a suitable location", \
+			span_warning("This is not a suitable location for replicating ourselves. We need more room."))
 		return
-	if(!do_mob(src, src, 5 SECONDS))
+	if(!do_after(src, 5 SECONDS))
 		return
 	var/createtype = swarmer_type_to_create()
 	if(!createtype)
 		return
 	var/mob/newswarmer = Fabricate(createtype, 20)
 	LAZYADD(dronelist, newswarmer)
-	RegisterSignal(newswarmer, COMSIG_PARENT_QDELETING, .proc/remove_drone, newswarmer)
+	RegisterSignal(newswarmer, COMSIG_PARENT_QDELETING, PROC_REF(remove_drone), newswarmer)
 	playsound(loc,'sound/items/poster_being_created.ogg', 20, TRUE, -1)
 
 /**
@@ -371,10 +391,11 @@
 	if(!isturf(loc))
 		return
 	to_chat(src, span_info("Attempting to repair damage to our body, stand by..."))
-	if(!do_mob(src, src, 10 SECONDS))
+	if(!do_after(src, 10 SECONDS))
 		return
 	adjustHealth(-maxHealth)
-	to_chat(src, span_info("We successfully repaired ourselves."))
+	balloon_or_message(src, "successfully repaired" ,\
+		span_info("We successfully repaired ourselves."))
 
 /**
   * Called when a swarmer toggles its light
@@ -382,20 +403,27 @@
   * Proc used to allow a swarmer to toggle its  light on and off.  If a swarmer has any drones, change their light settings to match their master's.
   */
 /mob/living/simple_animal/hostile/swarmer/proc/toggle_light()
-	if(!light_range)
-		set_light(3)
+	if(swarmer_flags & SWARMER_LIGHT_ON)
+		swarmer_flags = ~SWARMER_LIGHT_ON
+		set_light_on(FALSE)
 		if(!mind)
 			return
 		for(var/d in dronelist)
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
-			drone.set_light(3)
-	else
-		set_light(0)
-		if(!mind)
-			return
-		for(var/d in dronelist)
-			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
-			drone.set_light(0)
+			drone.swarmer_flags = ~SWARMER_LIGHT_ON
+			drone.set_light_on(FALSE)
+		return
+	swarmer_flags |= SWARMER_LIGHT_ON
+	set_light_on(TRUE)
+	if(!mind)
+		return
+
+	for(var/d in dronelist)
+		var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
+		drone.swarmer_flags |= SWARMER_LIGHT_ON
+		drone.set_light_on(TRUE)
+
+	balloon_alert(src, "light toggled")
 
 /**
   * Proc which is used for swarmer comms
@@ -449,7 +477,7 @@ mob/living/simple_animal/hostile/swarmer/proc/remove_drone(mob/drone, force)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 
-/obj/item/projectile/beam/disabler/swarmer/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/beam/disabler/swarmer/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(!.)
 		return

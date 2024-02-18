@@ -8,7 +8,7 @@
 					/obj/item/clothing/glasses/welding = 3,
 					/obj/item/multitool = 4,
 					/obj/item/construction/rcd = 5,
-					/obj/item/rcd_ammo = 3,
+					/obj/item/rcd_ammo = 5,
 					/obj/item/grenade/chem_grenade/smart_metal_foam = 10,
 					/obj/item/geiger_counter = 5,
 					/obj/item/stock_parts/cell/high = 10,
@@ -22,7 +22,8 @@
 					/obj/item/laserlevel = 3)
 	contraband = list(/obj/item/stock_parts/cell/potato = 3)
 	premium = list(/obj/item/storage/belt/utility = 3,
-				   /obj/item/storage/box/smart_metal_foam = 1)
+				   /obj/item/storage/box/smart_metal_foam = 6,
+				   /obj/item/storage/bag/sheetsnatcher = 6)
 	refill_canister = /obj/item/vending_refill/engivend
 	default_price = 20
 	extra_price = 50

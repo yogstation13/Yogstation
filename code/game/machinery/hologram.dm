@@ -27,6 +27,8 @@ Possible to do for anyone motivated enough:
 #define HOLOPAD_PASSIVE_POWER_USAGE 1
 #define HOLOGRAM_POWER_USAGE 2
 
+GLOBAL_LIST_EMPTY(holopads)
+
 /obj/machinery/holopad
 	name = "holopad"
 	desc = "It's a floor-mounted device for projecting holographic images."
@@ -45,8 +47,6 @@ Possible to do for anyone motivated enough:
 	var/list/masters
 	/// Holoray-mob link
 	var/list/holorays
-	/// To prevent request spam. ~Carn
-	var/last_request = 0
 	/// Change to change how far the AI can move away from the holopad before deactivating
 	var/holo_range = 5
 	/// Array of /datum/holocalls
@@ -69,22 +69,28 @@ Possible to do for anyone motivated enough:
 	var/obj/effect/overlay/holo_pad_hologram/replay_holo
 	/// Calls will be automatically answered after a couple rings, here for debugging
 	var/static/force_answer_call = FALSE
-	var/static/list/holopads = list()
 	var/obj/effect/overlay/holoray/ray
+	/// Is it ringing
 	var/ringing = FALSE
+	/// Used to push the holopad replay off the pad (1-4) for direction
 	var/offset = FALSE
+	/// Does it show on the holopad list
 	var/on_network = TRUE
-	/// For pads in secure areas; do not allow forced connecting
+	/// For pads in secure areas; do not allow forced connecting unless they are a head
 	var/secure = FALSE
 	/// If we are currently calling another holopad
 	var/calling = FALSE
+	/// Name of the holopad
+	var/padname = null
+	/// Holopad Harassment Cooldown
+	var/holopad_cooldown = 20 SECONDS
 
 /obj/machinery/holopad/secure
 	name = "secure holopad"
 	desc = "It's a floor-mounted device for projecting holographic images. This one will refuse to auto-connect incoming calls."
 	secure = TRUE
 
-obj/machinery/holopad/secure/Initialize()
+obj/machinery/holopad/secure/Initialize(mapload)
 	. = ..()
 	var/obj/item/circuitboard/machine/holopad/board = circuit
 	board.secure = TRUE
@@ -122,10 +128,13 @@ obj/machinery/holopad/secure/Initialize()
 	if(!replay_mode && (disk && disk.record))
 		replay_start()
 
-/obj/machinery/holopad/Initialize()
+/obj/machinery/holopad/Initialize(mapload)
 	. = ..()
+	if(!padname)
+		var/area/A = get_area(src)
+		padname = A.name
 	if(on_network)
-		holopads += src
+		GLOB.holopads += src
 
 /obj/machinery/holopad/Destroy()
 	if(outgoing_call)
@@ -145,7 +154,7 @@ obj/machinery/holopad/secure/Initialize()
 
 	QDEL_NULL(disk)
 
-	holopads -= src
+	GLOB.holopads -= src
 	return ..()
 
 /obj/machinery/holopad/power_change()
@@ -171,6 +180,7 @@ obj/machinery/holopad/secure/Initialize()
 
 /obj/machinery/holopad/examine(mob/user)
 	. = ..()
+	. += span_notice("Its pad name is [padname]")
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Current projection range: <b>[holo_range]</b> units.")
 
@@ -182,6 +192,10 @@ obj/machinery/holopad/secure/Initialize()
 		return
 
 	if(default_unfasten_wrench(user, P))
+		if(replay_mode)
+			replay_stop()
+		if(record_mode)
+			record_stop()
 		return
 
 	if(default_deconstruction_crowbar(P))
@@ -195,6 +209,14 @@ obj/machinery/holopad/secure/Initialize()
 			return
 		to_chat(user,span_notice("You insert [P] into [src]."))
 		disk = P
+		return
+
+	if(istype(P, /obj/item/pen))
+		var/name = input(user, "New holopad name:", "Rename Holopad") as null|text
+		if(!name)
+			return
+		padname = name
+		to_chat(user, span_notice("You change the pad name to [name]"))
 		return
 
 	return ..()
@@ -216,7 +238,7 @@ obj/machinery/holopad/secure/Initialize()
 	var/list/data = list()
 	data["calling"] = calling
 	data["on_network"] = on_network
-	data["on_cooldown"] = last_request + 200 < world.time ? FALSE : TRUE
+	data["on_cooldown"] = TIMER_COOLDOWN_CHECK(src, "holopad")
 	data["allowed"] = allowed(user)
 	data["disk"] = disk ? TRUE : FALSE
 	data["disk_record"] = disk?.record ? TRUE : FALSE
@@ -241,39 +263,36 @@ obj/machinery/holopad/secure/Initialize()
 
 	switch(action)
 		if("AIrequest")
-			if(last_request + 200 < world.time)
-				last_request = world.time
-				to_chat(usr, span_info("You requested an AI's presence."))
-				var/area/area = get_area(src)
-				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
-					if(!AI.client)
-						continue
-					to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>."))
-				return TRUE
-			else
+			if(TIMER_COOLDOWN_CHECK(src, "holopad"))
 				to_chat(usr, span_info("A request for AI presence was already sent recently."))
 				return
+			TIMER_COOLDOWN_START(src, "holopad", holopad_cooldown)
+			to_chat(usr, span_info("You requested an AI's presence."))
+			var/area/A = get_area(src)
+			for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+				if(!AI.client)
+					continue
+				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [A]</a>."))
+			return TRUE
 		if("holocall")
 			if(outgoing_call)
 				return
-			if(usr.loc == loc)
-				var/list/callnames = list()
-				for(var/I in holopads)
-					var/area/A = get_area(I)
-					if(A)
-						LAZYADD(callnames[A], I)
-				callnames -= get_area(src)
-				var/result = input(usr, "Choose an area to call", "Holocall") as null|anything in sortNames(callnames)
-				if(QDELETED(usr) || !result || outgoing_call)
-					return
-				if(usr.loc == loc)
-					var/input = text2num(params["headcall"])
-					var/headcall = input == 1 ? TRUE : FALSE
-					new /datum/holocall(usr, src, callnames[result], headcall)
-					calling = TRUE
-					return TRUE
-			else
+			if(usr.loc != loc)
 				to_chat(usr, span_warning("You must stand on the holopad to make a call!"))
+				return TRUE
+			var/list/callnames = list()
+			for(var/obj/machinery/holopad/pad in GLOB.holopads)
+				if(pad == src)
+					continue
+				if(pad.is_operational())
+					LAZYADD(callnames[pad.padname], pad)
+			var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortList(callnames))
+			if(QDELETED(usr) || !result || outgoing_call) // Is this even needed? could trigger but holocall will catch it
+				return
+			var/datum/hcall = new /datum/holocall(usr, src, callnames[result], text2num(params["headcall"]))
+			if(!QDELETED(hcall))
+				calling = TRUE
+			return TRUE
 		if("connectcall")
 			var/datum/holocall/call_to_connect = locate(params["holopad"]) in holo_calls
 			if(!QDELETED(call_to_connect))
@@ -371,7 +390,7 @@ obj/machinery/holopad/secure/Initialize()
 			if(force_answer_call && world.time > (HC.call_start_time + (HOLOPAD_MAX_DIAL_TIME / 2)))
 				HC.Answer(src)
 				break
-			if(HC.head_call && !secure)
+			if(HC.head_call) //captain is calling: ACCEPT | ACCEPT
 				HC.Answer(src)
 				break
 			if(outgoing_call)
@@ -380,7 +399,7 @@ obj/machinery/holopad/secure/Initialize()
 				playsound(src, 'sound/machines/twobeep.ogg', 100)	//bring, bring!
 				ringing = TRUE
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/holopad/proc/activate_holo(mob/living/user)
 	var/mob/living/silicon/ai/AI = user
@@ -408,8 +427,10 @@ obj/machinery/holopad/secure/Initialize()
 		Hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 		Hologram.setAnchored(TRUE)//So space wind cannot drag it.
 		Hologram.name = "[user.name] (Hologram)"//If someone decides to right click.
-		Hologram.set_light(2)	//hologram lighting
 		move_hologram()
+
+		if(AI)
+			AI.pad = src
 
 		set_holo(user, Hologram)
 		visible_message(span_notice("A holographic image of [user] flickers to life before your eyes!"))
@@ -443,12 +464,13 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	use_power = total_users > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	active_power_usage = HOLOPAD_PASSIVE_POWER_USAGE + (HOLOGRAM_POWER_USAGE * total_users)
 	if(total_users || replay_mode)
-		set_light(2)
+		set_light_on(TRUE)
 	else
-		set_light(0)
-	update_icon()
+		set_light_on(FALSE)
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/holopad/update_icon()
+/obj/machinery/holopad/update_icon_state()
+	. = ..()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
 	if(ringing)
 		icon_state = "holopad_ringing"
@@ -468,6 +490,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	return TRUE
 
 /obj/machinery/holopad/proc/clear_holo(mob/living/user)
+	if(isAI(user))
+		var/mob/living/silicon/ai/AI = user
+		AI.pad = null
 	qdel(masters[user]) // Get rid of user's hologram
 	unset_holo(user)
 	return TRUE
@@ -487,8 +512,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	var/obj/effect/overlay/holo_pad_hologram/h = masters[holo_owner]
 	if(!h || h.HC) //Holocalls can't change source.
 		return FALSE
-	for(var/pad in holopads)
-		var/obj/machinery/holopad/another = pad
+	for(var/obj/machinery/holopad/another in GLOB.holopads)
 		if(another == src)
 			continue
 		if(another.validate_location(T))
@@ -528,6 +552,15 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			update_holoray(user,new_turf)
 	return TRUE
 
+/obj/machinery/holopad/proc/refresh_holo(mob/living/silicon/ai/AI)
+	if(AI && istype(AI))
+		var/obj/effect/overlay/holo_pad_hologram/Hologram = new(loc)//Spawn a blank effect at the location.
+		Hologram.icon = AI.holo_icon
+		qdel(masters[AI]) // Get rid of previous hologram
+		qdel(holorays[AI])
+		var/turf/T = get_turf(AI.eyeobj)
+		set_holo(AI, Hologram)
+		move_hologram(AI, T) // Now move the new hologram
 
 /obj/machinery/holopad/proc/update_holoray(mob/living/user, turf/new_turf)
 	var/obj/effect/overlay/holo_pad_hologram/holo = masters[user]
@@ -566,7 +599,6 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	Hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 	Hologram.setAnchored(TRUE)//So space wind cannot drag it.
 	Hologram.name = "[record.caller_name] (Hologram)"//If someone decides to right click.
-	Hologram.set_light(2)	//hologram lighting
 	visible_message(span_notice("A holographic image of [record.caller_name] flickers to life before your eyes!"))
 	return Hologram
 
@@ -640,7 +672,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if(HOLORECORD_SOUND)
 			playsound(src,entry[2],50,TRUE)
 		if(HOLORECORD_DELAY)
-			addtimer(CALLBACK(src,.proc/replay_entry,entry_number+1),entry[2])
+			addtimer(CALLBACK(src, PROC_REF(replay_entry),entry_number+1),entry[2])
 			return
 		if(HOLORECORD_LANGUAGE)
 			var/datum/language_holder/holder = replay_holo.get_language_holder()
@@ -667,6 +699,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	initial_language_holder = /datum/language_holder/universal
 	var/mob/living/Impersonation
 	var/datum/holocall/HC
+
+	light_system = MOVABLE_LIGHT
+	light_range = 4
+	light_color = COLOR_CYAN
 
 /obj/effect/overlay/holo_pad_hologram/Destroy()
 	Impersonation = null

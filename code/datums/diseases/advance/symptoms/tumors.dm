@@ -2,11 +2,12 @@
 
 /datum/symptom/tumor
 	name = "Benign tumors"
+	icon = "benign_tumor"
 	desc = "The virus causes benign growths all over your body."
 	stealth = 0
 	resistance = 4
-	stage_speed = -4
-	transmittable = -4
+	stage_speed = -2
+	transmittable = -2
 	level = 3
 	severity = 2
 	symptom_delay_min = 5
@@ -18,15 +19,15 @@
 	)
 	var/regeneration = FALSE
 	var/helpful = FALSE
-	var/tumor_chance = 0.5
+	var/tumor_chance = 1
 	var/obj/item/organ/tumor/tumortype = /obj/item/organ/tumor
-	var/datum/disease/advance/ownerdisease //what disease it comes from
+	var/datum/disease/advance/disease //what disease we are owned by
 
 /datum/symptom/tumor/Start(datum/disease/advance/A)
 	. = ..()
 	if(!.)
 		return
-	ownerdisease = A;
+	disease = A
 	if(A.totalTransmittable() >= 7) //visible growths
 		if(ishuman(A.affected_mob))
 			A.affected_mob.visible_tumors = TRUE
@@ -49,13 +50,13 @@
 		if(A.stage > 2)
 			var/datum/species/S = M.dna?.species
 			if(S)
-				S.add_no_equip_slot(M, SLOT_WEAR_MASK)
-				S.add_no_equip_slot(M, SLOT_HEAD)
+				S.add_no_equip_slot(M, ITEM_SLOT_MASK, src)
+				S.add_no_equip_slot(M, ITEM_SLOT_HEAD, src)
 
 		if(A.stage == 5)
 			var/datum/species/S = M.dna?.species
 			if(S)
-				S.add_no_equip_slot(M, SLOT_WEAR_SUIT)
+				S.add_no_equip_slot(M, ITEM_SLOT_OCLOTHING, src)
 
 	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
@@ -76,7 +77,7 @@
 		T.name = T.name + " (" + parse_zone(insertionZone) + ")"
 		T.helpful = helpful
 		T.regeneration = regeneration
-		T.ownerdisease = ownerdisease
+		T.owner_symptom = src
 		T.Insert(M,FALSE,FALSE,insertionZone)
 		if(from_tumor)
 			to_chat(M, span_warning("[pick("Your insides writhe.", "You feel your insides squirm.")]"))
@@ -91,22 +92,18 @@
 		M.visible_tumors = FALSE
 		var/datum/species/S = M.dna?.species
 		if(S)
-			S.remove_no_equip_slot(M, SLOT_WEAR_MASK)
-			S.remove_no_equip_slot(M, SLOT_HEAD)
-			S.remove_no_equip_slot(M, SLOT_WEAR_SUIT)
-
-/datum/symptom/tumor/premalignant
-	name = "Premalignant tumors"
-	desc = "The virus causes premalignant growths all over your body."
-	level = 5
-	severity = 4
-	tumor_chance = 1
-	tumortype = /obj/item/organ/tumor/premalignant
+			S.remove_no_equip_slot(M, ITEM_SLOT_MASK, src)
+			S.remove_no_equip_slot(M, ITEM_SLOT_HEAD, src)
+			S.remove_no_equip_slot(M, ITEM_SLOT_OCLOTHING, src)
 
 /datum/symptom/tumor/malignant
 	name = "Malignant tumors"
+	icon = "malignant_tumors"
 	desc = "The virus causes malignant growths all over your body."
 	level = 7
+	resistance = 4
+	stage_speed = -4
+	transmittable = -4
 	severity = 6
 	tumor_chance = 2
 	tumortype = /obj/item/organ/tumor/malignant

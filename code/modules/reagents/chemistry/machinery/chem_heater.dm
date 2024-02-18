@@ -10,7 +10,7 @@
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
 	/// Multiplier for heat
-	var/heater_coefficient = 0.025
+	var/heater_coefficient = 0.0125
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -21,16 +21,17 @@
 	. = ..()
 	if(A == beaker)
 		beaker = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/machinery/chem_heater/update_icon()
+/obj/machinery/chem_heater/update_icon_state()
+	. = ..()
 	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
 
 /obj/machinery/chem_heater/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	on = !on
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -47,7 +48,7 @@
 		beaker = new_beaker
 	else
 		beaker = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
@@ -60,14 +61,14 @@
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>"
 
-/obj/machinery/chem_heater/process()
+/obj/machinery/chem_heater/process(delta_time)
 	..()
 	if(stat & NOPOWER)
 		return
 	if(on)
 		if(beaker && beaker.reagents.total_volume)
 			var/direction = beaker.reagents.chem_temp > target_temperature // is it cooling? used to allow it to snap to the target temp
-			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * (direction ? -1 : 1) // How much to increase the heat by
+			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * delta_time * (direction ? -1 : 1) // How much to increase the heat by
 			if(heating + beaker.reagents.chem_temp >= target_temperature && !direction) // Heat snapping condition
 				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
 			else if(heating + beaker.reagents.chem_temp <= target_temperature && direction) // Cooling snapping condition
@@ -91,7 +92,7 @@
 		replace_beaker(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	return ..()
 
@@ -129,7 +130,7 @@
 		if("power")
 			on = !on
 			. = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		if("temperature")
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])

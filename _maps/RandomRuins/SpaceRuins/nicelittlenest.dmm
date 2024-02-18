@@ -37,7 +37,7 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "dc" = (
-/obj/item/twohanded/required/kirbyplants/photosynthetic,
+/obj/item/kirbyplants/photosynthetic,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "dm" = (
@@ -139,11 +139,6 @@
 "kr" = (
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
-"ky" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel/checker,
-/area/ruin/space/has_grav/powered)
 "kJ" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -211,6 +206,13 @@
 /obj/structure/sink/kitchen{
 	dir = 8;
 	pixel_x = 11
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
+"op" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
 	},
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
@@ -308,7 +310,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "uf" = (
@@ -1106,7 +1108,7 @@ Qa
 Qa
 Hj
 Gk
-ky
+op
 MJ
 MJ
 kr

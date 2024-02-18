@@ -8,7 +8,7 @@
 	key_third_person = "dabs"
 	message = "dabs."
 	message_param = "dabs on %t."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/dead/dab/run_emote(mob/user, params)
 	. = ..()

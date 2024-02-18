@@ -15,8 +15,6 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 
 	var/cooldown_check = 0
-	/// if the baton is on cooldown from being  dropped
-	var/dropcheck = FALSE
 	///how long we can't use this baton for after slapping someone with it. Does not account for melee attack cooldown (default of 0.8 seconds).
 	var/cooldown = 1.2 SECONDS
 	///how long a clown stuns themself for, or someone is stunned for if they are hit to >90 stamina damage
@@ -35,44 +33,25 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
-	var/makeshift = FALSE
-	var/obj/item/firing_pin/pin = /obj/item/firing_pin
-	var/obj/item/batonupgrade/upgrade
-	var/thrown = FALSE
 
 /obj/item/melee/baton/get_cell()
 	return cell
 
 /obj/item/melee/baton/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return (FIRELOSS)
+	if(status)
+		user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
+		return FIRELOSS
+	user.visible_message(span_suicide("[user] is putting the [name] in [user.p_their()] mouth! But forgot to turn the [name] on."))
+	return SHAME
 
-/obj/item/melee/baton/Initialize()
+/obj/item/melee/baton/Initialize(mapload)
 	. = ..()
-	status = FALSE
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type,/obj/item/stock_parts/cell))
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
-	if(pin)
-		pin = new pin(src)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, .proc/throwbaton)
-	update_icon()
-
-/obj/item/melee/baton/Destroy()
-	. = ..()
-	if(isobj(pin)) //Can still be the initial path, then we skip
-		QDEL_NULL(pin)
-	if(isobj(upgrade)) //Can still be the initial path, then we skip
-		QDEL_NULL(upgrade)
-
-/obj/item/melee/baton/handle_atom_del(atom/A)
-	. = ..()
-	if(A == pin)
-		pin = null
-	if(A == upgrade)
-		upgrade = null
+	update_appearance(UPDATE_ICON)
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(..())
@@ -81,22 +60,6 @@
 	if(status && prob(throw_hit_chance) && iscarbon(hit_atom))
 		baton_stun(hit_atom)
 
-/obj/item/melee/baton/proc/throwbaton()
-	thrown = TRUE
-
-/obj/item/melee/baton/dropped(mob/user, silent)
-	if(loc != user.loc)
-		return
-	. = ..()
-	if(!thrown)
-		dropcheck = TRUE
-		status = FALSE
-		visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
-		addtimer(VARSET_CALLBACK(src, dropcheck, FALSE), 8 SECONDS)
-		update_icon()
-	else
-		thrown = FALSE
-
 /obj/item/melee/baton/loaded //this one starts with a cell pre-installed.
 	preload_cell_type = /obj/item/stock_parts/cell/high
 
@@ -104,16 +67,22 @@
 	if(cell)
 		//Note this value returned is significant, as it will determine
 		//if a stun is applied or not
-		. = cell.use(chrgdeductamt)
+		var/mob/living/M = loc
+		if(M && iscyborg(M)) 
+			var/mob/living/silicon/robot/R = loc
+			R.cell.use(chrgdeductamt)
+		else
+			. = cell.use(chrgdeductamt)
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(loc, "sparks", 75, 1, -1)
 			STOP_PROCESSING(SSobj, src) // no more charge? stop checking for discharge
 
 
-/obj/item/melee/baton/update_icon()
+/obj/item/melee/baton/update_icon_state()
+	. = ..()
 	if(status)
 		icon_state = "[initial(icon_state)]_active"
 	else if(!cell)
@@ -148,64 +117,20 @@
 				return
 			cell = W
 			to_chat(user, span_notice("You install a cell in [src]."))
-			update_icon()
-	else if(istype(W, /obj/item/firing_pin))
-		if(makeshift)
-			return
-		if(upgrade)
-			if(W.type != /obj/item/firing_pin)
-				to_chat("You are unable to add a non default firing pin whilst [src] has an upgrade. Remove the upgrade first with a crowbar.")
-				return
-		if(pin)
-			to_chat(user, span_notice("[src] already has a firing pin. You can remove it with crowbar."))
-		else
-			W.forceMove(src)
-			pin = W
-	else if(istype(W, /obj/item/batonupgrade))
-		if(makeshift)
-			return
-		if(pin)
-			if(pin.type != /obj/item/firing_pin)
-				to_chat("You are unable to upgrade the baton whilst it has a non default firing pin.")
-				return
-		if(upgrade)
-			to_chat(user, span_notice("[src] already has an upgrade installed. You can remove it with crowbar"))
-		else
-			to_chat(user, span_notice("You apply the [W.name] to the [src]"))
-			W.forceMove(src)
-			upgrade = W	
-	else if(W.tool_behaviour == TOOL_CROWBAR)
-		if(makeshift)
-			return
-		if(pin)
-			pin.forceMove(get_turf(src))
-			pin = null
-			status = FALSE
-			to_chat(user, span_notice("You remove the firing pin from [src]."))
-		if(upgrade)
-			upgrade.forceMove(get_turf(src))
-			upgrade = null
-			status = FALSE
-			to_chat(user, span_notice("You remove the upgrade from [src]."))
-		update_icon()
+			update_appearance(UPDATE_ICON)
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
-			cell.update_icon()
+			cell.update_appearance(UPDATE_ICON)
 			cell.forceMove(get_turf(src))
 			cell = null
 			to_chat(user, span_notice("You remove the cell from [src]."))
 			status = FALSE
 			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
-	if(!handle_pins(user))
-		return FALSE
-	if(dropcheck)
-		to_chat(user, "[src]'s emergency shutoff is still active!")
-		return
 	if(cell && cell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
@@ -221,7 +146,7 @@
 			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
 			to_chat(user, span_warning("[src] is out of charge."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
@@ -235,12 +160,9 @@
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return
 	//yogs edit begin ---------------------------------
-	if(status && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(20)
-			to_chat(M,span_notice("You get charged by [src]."))
+	if(status && isethereal(M))
+		M.adjust_nutrition(40)
+		to_chat(M,span_notice("You get charged by [src]."))
 	//yogs edit end  ----------------------------------
 	if(iscyborg(M))
 		..()
@@ -272,13 +194,6 @@
 
 
 /obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
-	if(!handle_pins(user))
-		return FALSE
-	if(upgrade)
-		stamina_damage = initial(stamina_damage)*2
-		hitcost = initial(hitcost)*1.5
-	else
-		stamina_damage = initial(stamina_damage)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
@@ -292,8 +207,6 @@
 		if(!deductcharge(hitcost))
 			return FALSE
 
-	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
-
 	var/obj/item/bodypart/affecting = L.get_bodypart(user? user.zone_selected : BODY_ZONE_CHEST)
 	var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
 	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
@@ -304,20 +217,16 @@
 
 	if(current_stamina_damage >= 90)
 		if(!L.IsParalyzed())
-			to_chat(L, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
-		if(trait_check)
-			L.Paralyze(stunforce * 0.1)
+			to_chat(L, span_warning("You muscles seize, making you collapse!"))
 		else
 			L.Paralyze(stunforce)
-		L.Jitter(20)
-		L.confused = max(8, L.confused)
+		L.adjust_jitter(20 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
-		L.Jitter(10)
-		L.confused = max(8, L.confused)
+		L.adjust_jitter(10 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
-		L.Jitter(5)
+		L.adjust_jitter(5 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 
 	if(user)
@@ -348,7 +257,7 @@
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
 	if (!(. & EMP_PROTECT_SELF))
-		deductcharge(1000 / severity)
+		deductcharge(100 * severity)
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod
@@ -366,10 +275,9 @@
 	hitcost = 2000
 	throw_hit_chance = 10
 	slot_flags = ITEM_SLOT_BACK
-	makeshift = TRUE
 	var/obj/item/assembly/igniter/sparkler = 0
 
-/obj/item/melee/baton/cattleprod/Initialize()
+/obj/item/melee/baton/cattleprod/Initialize(mapload)
 	. = ..()
 	sparkler = new (src)
 
@@ -380,19 +288,18 @@
 /obj/item/melee/baton/cattleprod/tactical
 	name = "tactical stunprod"
 	desc = "A cost-effective, mass-produced, tactical stun prod."
+	icon_state = "tacprod"
+	item_state = "tacprod"
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
-	color = "#aeb08c" // super tactical
 
-/obj/item/melee/baton/proc/handle_pins(mob/living/user)
-	if(pin)
-		if(pin.pin_auth(user) || (pin.obj_flags & EMAGGED))
-			return TRUE
-		else
-			pin.auth_fail(user)
-			return FALSE
+/obj/item/melee/baton/cattleprod/tactical/update_icon_state()
+	. = ..()
+	if(status)
+		item_state = "[initial(item_state)]_active"
+	else if(!cell)
+		item_state = "[initial(item_state)]_nocell"
 	else
-		to_chat(user, span_warning("[src]'s trigger is locked. This weapon doesn't have a firing pin installed!"))
-	return FALSE
+		item_state = "[initial(item_state)]"
 
 /obj/item/batonupgrade
 	name = "baton power upgrade"

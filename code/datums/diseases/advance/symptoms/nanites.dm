@@ -1,5 +1,6 @@
 /datum/symptom/nano_boost
 	name = "Nano-symbiosis"
+	icon = "nano_symbiosis"
 	desc = "The virus reacts to nanites in the host's bloodstream by enhancing their replication cycle."
 	stealth = 0
 	resistance = 2
@@ -14,6 +15,7 @@
 		"Transmission 5" = "Increases the virus' growth rate while nanites are present.",
 		"Stage Speed 7" = "Increases the replication boost."
 	)
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/nano_boost/Start(datum/disease/advance/A)
 	. = ..()
@@ -36,6 +38,7 @@
 			
 /datum/symptom/nano_destroy
 	name = "Silicolysis"
+	icon = "symptom.silicolysis.gif"
 	desc = "The virus reacts to nanites in the host's bloodstream by attacking and consuming them."
 	stealth = 0
 	resistance = 4
@@ -50,6 +53,7 @@
 		"Stage Speed 5" = "Increases the virus' growth rate while nanites are present.",
 		"Resistance 7" = "Severely increases the rate at which the nanites are destroyed."
 	)
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/nano_destroy/Start(datum/disease/advance/A)
 	. = ..()

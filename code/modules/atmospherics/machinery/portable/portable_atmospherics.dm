@@ -14,22 +14,17 @@
 
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/New()
-	..()
-	SSair.atmos_machinery += src
+/obj/machinery/portable_atmospherics/Initialize(mapload)
+	. = ..()
+	SSair.start_processing_machine(src)
 
 	air_contents = new(volume)
 	air_contents.set_temperature(T20C)
 
-	return 1
-
 /obj/machinery/portable_atmospherics/Destroy()
-	SSair.atmos_machinery -= src
-
+	SSair.stop_processing_machine(src)
 	disconnect()
-	qdel(air_contents)
-	air_contents = null
-
+	QDEL_NULL(air_contents)
 	return ..()
 
 /obj/machinery/portable_atmospherics/ex_act(severity, target)
@@ -40,15 +35,17 @@
 		//This explosion will destroy the can, release its air.
 		var/turf/T = get_turf(src)
 		T.assume_air(air_contents)
-		T.air_update_turf()
 
 	return ..()
 
 /obj/machinery/portable_atmospherics/process_atmos()
-	if(!connected_port) // Pipe network handles reactions if connected.
+	if(!connected_port && air_contents != null && src != null) // Pipe network handles reactions if connected.
 		air_contents.react(src)
 
 /obj/machinery/portable_atmospherics/return_air()
+	return air_contents
+
+/obj/machinery/portable_atmospherics/return_analyzable_air()
 	return air_contents
 
 /obj/machinery/portable_atmospherics/proc/connect(obj/machinery/atmospherics/components/unary/portables_connector/new_port)
@@ -63,13 +60,12 @@
 	//Perform the connection
 	connected_port = new_port
 	connected_port.connected_device = src
-	var/datum/pipeline/connected_port_parent = connected_port.parents[1]
-	connected_port_parent.reconcile_air()
+	connected_port.parents[1].update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
 
 	anchored = TRUE //Prevent movement
 	pixel_x = new_port.pixel_x
 	pixel_y = new_port.pixel_y
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/portable_atmospherics/Move()
@@ -85,7 +81,7 @@
 	connected_port = null
 	pixel_x = 0
 	pixel_y = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/portable_atmospherics/AltClick(mob/living/user)
@@ -110,7 +106,7 @@
 		holding = new_tank
 	else
 		holding = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/portable_atmospherics/attackby(obj/item/W, mob/user, params)
@@ -121,7 +117,7 @@
 				return
 			to_chat(user, span_notice("[holding ? "In one smooth motion you pop [holding] out of [src]'s connector and replace it with [T]" : "You insert [T] into [src]"]."))
 			replace_tank(user, FALSE, T)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else if(W.tool_behaviour == TOOL_WRENCH)
 		if(!(stat & BROKEN))
 			if(connected_port)
@@ -131,7 +127,7 @@
 					"[user] disconnects [src].", \
 					span_notice("You unfasten [src] from the port."), \
 					span_italics("You hear a ratchet."))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				return
 			else
 				var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate(/obj/machinery/atmospherics/components/unary/portables_connector) in loc
@@ -146,12 +142,9 @@
 					"[user] connects [src].", \
 					span_notice("You fasten [src] to the port."), \
 					span_italics("You hear a ratchet."))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 	else
 		return ..()
-
-/obj/machinery/portable_atmospherics/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(air_contents, user, src)
 
 /obj/machinery/portable_atmospherics/attacked_by(obj/item/I, mob/user)
 	if(I.force < 10 && !(stat & BROKEN))

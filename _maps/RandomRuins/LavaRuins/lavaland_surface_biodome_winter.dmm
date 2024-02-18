@@ -334,7 +334,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered/snow_biodome)
 "As" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/ruin/powered/snow_biodome)
 "AM" = (
@@ -372,7 +372,7 @@
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "KS" = (
-/obj/item/twohanded/required/chainsaw,
+/obj/item/melee/chainsaw,
 /obj/structure/closet,
 /obj/machinery/light/small{
 	dir = 4
@@ -403,7 +403,7 @@
 /area/ruin/powered/snow_biodome)
 "QK" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
+/obj/item/storage/fancy/cigarettes/cigpack_carp,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "QN" = (

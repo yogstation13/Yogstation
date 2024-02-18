@@ -18,16 +18,17 @@
 	floor_tile = /obj/item/stack/tile/circuit
 	var/on = TRUE
 
-/turf/open/floor/circuit/Initialize()
+/turf/open/floor/circuit/Initialize(mapload)
 	SSmapping.nuke_tiles += src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	. = ..()
 
 /turf/open/floor/circuit/Destroy()
 	SSmapping.nuke_tiles -= src
 	return ..()
 
-/turf/open/floor/circuit/update_icon()
+/turf/open/floor/circuit/update_icon(updates=ALL)
+	. = ..()
 	if(on)
 		if(LAZYLEN(SSmapping.nuke_threats))
 			icon_state = "rcircuitanim"
@@ -129,6 +130,23 @@
 /turf/open/floor/noslip/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
 	return
 
+/turf/open/floor/noslip/broken
+	icon_state = "noslip-damaged1"
+	broken = TRUE
+
+/turf/open/floor/noslip/broken/two
+	icon_state = "noslip-damaged2"
+
+/turf/open/floor/noslip/broken/three
+	icon_state = "noslip-damaged3"
+
+/turf/open/floor/noslip/burnt
+	icon_state = "noslip-scorched1"
+	broken = TRUE
+
+/turf/open/floor/noslip/burnt/two
+	icon_state = "noslip-scorched2"
+
 /turf/open/floor/oldshuttle
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "floor"
@@ -139,7 +157,6 @@
 	name = "clockwork floor"
 	desc = "Tightly-pressed brass tiles. They emit minute vibration."
 	icon_state = "plating"
-	baseturfs = /turf/open/floor/clockwork
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
@@ -147,11 +164,12 @@
 	var/dropped_brass
 	var/uses_overlay = TRUE
 	var/obj/effect/clockwork/overlay/floor/realappearence
+	var/made_baseturf = FALSE
 
 /turf/open/floor/clockwork/Bless() //Who needs holy blessings when you have DADDY RATVAR?
 	return
 
-/turf/open/floor/clockwork/Initialize()
+/turf/open/floor/clockwork/Initialize(mapload)
 	. = ..()
 	if(uses_overlay)
 		new /obj/effect/temp_visual/ratvar/floor(src)
@@ -175,6 +193,9 @@
 	START_PROCESSING(SSobj, src)
 
 /turf/open/floor/clockwork/process()
+	if(!made_baseturf)
+		made_baseturf = TRUE
+		assemble_baseturfs(/turf/open/floor/plating)
 	if(!healservants())
 		STOP_PROCESSING(SSobj, src)
 
@@ -239,6 +260,7 @@
 	baseturfs = /turf/open/floor/clockwork/reebe
 	uses_overlay = FALSE
 	planetary_atmos = TRUE
+	made_baseturf = TRUE // prevent spacing reebe
 
 /turf/open/floor/bluespace
 	slowdown = -1
@@ -277,12 +299,14 @@
 	icon_state = "black"
 
 /turf/open/floor/plating/rust
-	name = "rusted plating"
-	desc = "Corrupted steel."
-	icon_state = "plating_rust"
+	//SDMM supports colors, this is simply for easier mapping
+	//and should be removed on initialize
+	color = COLOR_BROWN
 
-/turf/open/floor/plating/rust/rust_heretic_act()
-	return
+/turf/open/floor/plating/rust/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rust)
+	color = null
 	
 /turf/open/floor/eighties
 	name = "retro floor"
@@ -290,3 +314,13 @@
 	icon_state = "eighties"
 	floor_tile = /obj/item/stack/tile/eighties
 	broken_states = list("eighties_damaged")
+
+/turf/open/floor/eighties/broken
+	icon_state = "eighties_damaged"
+	broken = TRUE
+
+/turf/open/floor/stone
+	name = "stone brick floor"
+	desc = "Some stone brick tiles, how rustic."
+	icon_state = "stone_floor"
+	floor_tile = /obj/item/stack/tile/plasteel

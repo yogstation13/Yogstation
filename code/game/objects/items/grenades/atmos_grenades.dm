@@ -16,12 +16,13 @@
 	active = TRUE
 	icon_state = initial(icon_state) + "_active"
 	playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', volume, TRUE)
-	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
+	addtimer(CALLBACK(src, PROC_REF(prime)), isnull(delayoverride)? det_time : delayoverride)
 
 /obj/item/grenade/gas_crystal/healium_crystal
 	name = "Healium crystal"
 	desc = "A crystal made from the Healium gas, it's cold to the touch."
 	icon_state = "healium_crystal"
+	grind_results = list(/datum/reagent/healium = 20)
 	///Amount of stamina damage mobs will take if in range
 	var/stamina_damage = 30
 	///Range of the grenade that will cool down and affect mobs
@@ -43,9 +44,8 @@
 		if(floor_loc.air.return_temperature() > 370)
 			floor_loc.atmos_spawn_air("n2=[gas_amount / distance_from_center];TEMP=30")
 			floor_loc.MakeSlippery(TURF_WET_PERMAFROST, (5 / distance_from_center) MINUTES)
-		if(floor_loc.air.get_gases(/datum/gas/plasma))
-			floor_loc.air.adjust_moles(/datum/gas/plasma, -(floor_loc.air.get_moles(/datum/gas/plasma) * 0.5 / distance_from_center))
-		floor_loc.air_update_turf()
+		if(floor_loc.air.get_gases(GAS_PLASMA))
+			floor_loc.air.adjust_moles(GAS_PLASMA, -(floor_loc.air.get_moles(GAS_PLASMA) * 0.5 / distance_from_center))
 		for(var/mob/living/carbon/live_mob in turf_loc)
 			live_mob.adjustStaminaLoss(stamina_damage / distance_from_center)
 			live_mob.adjust_bodytemperature(-150 / distance_from_center)
@@ -93,4 +93,34 @@
 		var/distance_from_center = max(get_dist(turf_loc, loc), 1)
 		var/turf/open/floor_loc = turf_loc
 		floor_loc.atmos_spawn_air("n2o=[n2o_gas_amount / distance_from_center];TEMP=273")
+	qdel(src)
+
+/obj/item/grenade/gas_crystal/crystal_foam
+	name = "crystal foam"
+	desc = "A crystal with a foggy inside"
+	icon_state = "crystal_foam"
+	var/breach_range = 7
+
+/obj/item/grenade/gas_crystal/crystal_foam/prime(mob/living/lanced_by)
+	. = ..()
+
+	var/datum/reagents/first_batch = new
+	var/datum/reagents/second_batch = new
+	var/list/datum/reagents/reactants = list()
+
+	first_batch.add_reagent(/datum/reagent/aluminium, 75)
+	second_batch.add_reagent(/datum/reagent/smart_foaming_agent, 25)
+	second_batch.add_reagent(/datum/reagent/toxin/acid/fluacid, 25)
+	reactants += first_batch
+	reactants += second_batch
+
+	var/turf/detonation_turf = get_turf(src)
+
+	chem_splash(detonation_turf, breach_range, reactants)
+
+	playsound(src, 'sound/effects/spray2.ogg', 100, TRUE)
+	log_game("A grenade detonated at [AREACOORD(detonation_turf)]")
+
+	update_mob()
+
 	qdel(src)

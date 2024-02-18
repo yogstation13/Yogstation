@@ -42,9 +42,10 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	. = ..()
 
 	recipes = GLOB.rod_recipes
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/stack/rods/update_icon()
+/obj/item/stack/rods/update_icon_state()
+	. = ..()
 	var/amount = get_amount()
 	if((amount <= 5) && (amount > 0))
 		icon_state = "rods-[amount]"
@@ -71,13 +72,16 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 
 	else if(istype(W, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = W
-		if(amount != 1)
-			to_chat(user, span_warning("You must use a single rod!"))
-		else if(S.w_class > WEIGHT_CLASS_SMALL)
+		if(S.w_class > WEIGHT_CLASS_SMALL)
 			to_chat(user, span_warning("The ingredient is too big for [src]!"))
 		else
+			amount -= 1
 			var/obj/item/reagent_containers/food/snacks/customizable/A = new/obj/item/reagent_containers/food/snacks/customizable/kebab(get_turf(src))
-			A.initialize_custom_food(src, S, user)
+			if (amount == 0)
+				A.initialize_custom_food(src, S, user)
+			else
+				A.initialize_custom_food(src, S, user, TRUE)
+				update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -86,8 +90,9 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	is_cyborg = 1
 	cost = 250
 
-/obj/item/stack/rods/cyborg/update_icon()
-	return
+/obj/item/stack/rods/cyborg/Initialize(mapload, new_amount, merge)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/stack/rods/ten
 	amount = 10

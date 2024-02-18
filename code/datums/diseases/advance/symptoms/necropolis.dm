@@ -1,5 +1,6 @@
 /datum/symptom/necroseed
 	name = "Necropolis Seed"
+	icon = "necropolis_seed"
 	desc = "An infantile form of the root of Lavaland's tendrils. Forms a symbiotic bond with the host, making them stronger and hardier, at the cost of speed. Should the disease be cured, the host will be severely weakened."
 	stealth = 0
 	resistance = 3
@@ -21,6 +22,7 @@
 	var/list/cached_tentacle_turfs
 	var/turf/last_location
 	var/tentacle_recheck_cooldown = 100
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/necroseed/Start(datum/disease/advance/A)
 	. = ..()
@@ -53,9 +55,9 @@
 			if(!(fullpower) && ishuman(M))							//if we haven't gotten the buff yet
 				var/mob/living/carbon/human/H = M
 				fullpower = TRUE
-				H.dna.species.punchdamagelow += 4
-				H.dna.species.punchdamagehigh += 4
-				H.dna.species.punchstunthreshold += 1				//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
+				H.physiology.punchdamagehigh_bonus += 4
+				H.physiology.punchdamagelow_bonus += 4
+				H.physiology.punchstunthreshold_bonus += 1				//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
 				H.physiology.brute_mod *= 0.6			
 				H.physiology.burn_mod *= 0.6
 				H.physiology.heat_mod *= 0.6
@@ -99,9 +101,9 @@
 		var/mob/living/carbon/human/H = M
 		to_chat(M, span_danger("You feel weakened as the necropolis' blessing leaves your body."))
 		H.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
-		H.dna.species.punchdamagelow -= 4
-		H.dna.species.punchdamagehigh -= 4
-		H.dna.species.punchstunthreshold -= 1
+		H.physiology.punchdamagehigh_bonus -= 4
+		H.physiology.punchdamagelow_bonus -= 4
+		H.physiology.punchstunthreshold_bonus -= 1	
 		H.physiology.brute_mod /= 0.6
 		H.physiology.burn_mod /= 0.6
 		H.physiology.heat_mod /= 0.6

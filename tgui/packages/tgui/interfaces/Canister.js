@@ -1,5 +1,4 @@
 import { toFixed } from 'common/math';
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { AnimatedNumber, Box, Button, Icon, Knob, LabeledControls, LabeledList, Section, Tooltip, Slider } from '../components';
 import { formatSiUnit } from '../format';
@@ -21,12 +20,12 @@ export const Canister = (props, context) => {
     restricted,
   } = data;
   return (
-    <Window width={300} height={232} resizable>
+    <Window width={300} height={254} resizable>
       <Window.Content>
         <Section
           title="Canister"
           buttons={(
-            <Fragment>
+            <>
               {!!isPrototype && (
                 <Button
                   mr={1}
@@ -41,9 +40,9 @@ export const Canister = (props, context) => {
                 icon="pencil-alt"
                 content="Relabel"
                 onClick={() => act('relabel')} />
-            </Fragment>
+            </>
           )}>
-          <LabeledControls>
+          <LabeledControls justify="center">
             <LabeledControls.Item
               minWidth="66px"
               label="Pressure">
@@ -67,7 +66,7 @@ export const Canister = (props, context) => {
                   maxValue={maxReleasePressure}
                   step={5}
                   stepPixelSize={0.75}
-                  width={10}
+                  width={8}
                   format={value => value + "kPa"}
                   onDrag={(e, value) => act('pressure', {
                     pressure: value,
@@ -94,18 +93,8 @@ export const Canister = (props, context) => {
                   })} />
               </Box>
             </LabeledControls.Item>
-            <LabeledControls.Item label="Valve">
-              <Button
-                my={0.5}
-                width="75px"
-                lineHeight={2}
-                fontSize="11px"
-                color={valveOpen
-                  ? (hasHoldingTank ? 'caution' : 'danger')
-                  : null}
-                content={valveOpen ? 'Open' : 'Closed'}
-                onClick={() => act('valve')} />
-            </LabeledControls.Item>
+          </LabeledControls>
+          <LabeledControls justify="center">
             <LabeledControls.Item
               mr={1}
               label="Port">
@@ -120,6 +109,18 @@ export const Canister = (props, context) => {
                     : 'Disconnected'}
                   position="top" />
               </Box>
+            </LabeledControls.Item>
+            <LabeledControls.Item label="Valve">
+              <Button
+                my={0.5}
+                width="75px"
+                lineHeight={2}
+                fontSize="11px"
+                color={valveOpen
+                  ? (hasHoldingTank ? 'caution' : 'danger')
+                  : null}
+                content={valveOpen ? 'Open' : 'Closed'}
+                onClick={() => act('valve')} />
             </LabeledControls.Item>
           </LabeledControls>
         </Section>

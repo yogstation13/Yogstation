@@ -9,7 +9,7 @@
 	name = "darkspawn"
 	config_tag = "darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	required_players = 26
+	required_players = 38
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 15
@@ -90,16 +90,6 @@
 	else
 		SSticker.mode_result = "loss - staff stopped the darkspawn"
 
-/datum/game_mode/proc/update_darkspawn_icons_added(datum/mind/darkspawn_mind)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_DARKSPAWN]
-	hud.join_hud(darkspawn_mind.current)
-	set_antag_hud(darkspawn_mind.current, ((isdarkspawn(darkspawn_mind.current)) ? "darkspawn" : "veil"))
-
-/datum/game_mode/proc/update_darkspawn_icons_removed(datum/mind/darkspawn_mind)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_DARKSPAWN]
-	hud.leave_hud(darkspawn_mind.current)
-	set_antag_hud(darkspawn_mind.current, null)
-
 /mob/living/proc/add_darkspawn()
 	if(!istype(mind))
 		return FALSE
@@ -120,7 +110,8 @@
 		Of a vast, empty Void in the deep of space.\n\
 		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \n\
 		Eyes filled with stars.</b>\n\
-		[span_boldwarning("It needs to die.")]")
+		[span_boldwarning("The creature's gaze swallows the universe into blackness.")])\n\
+		[span_boldwarning("It cannot be permitted to succeed.")]")
 		return FALSE
 	return mind.add_antag_datum(/datum/antagonist/veil)
 

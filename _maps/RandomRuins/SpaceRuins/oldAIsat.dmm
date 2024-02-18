@@ -283,7 +283,7 @@
 /area/tcommsat/oldaisat)
 "aZ" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /turf/open/floor/plasteel/airless,
 /area/tcommsat/oldaisat)
 "ba" = (

@@ -35,10 +35,10 @@
 	sight = (SEE_TURFS | SEE_OBJS)
 	status_flags = (CANPUSH | CANSTUN | CANKNOCKDOWN)
 	gender = NEUTER
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 	speak_emote = list("chirps")
 	speech_span = SPAN_ROBOT
-	bubble_icon = "machine"
+	bubble_icon = BUBBLE_MACHINE
 	initial_language_holder = /datum/language_holder/drone
 	mob_size = MOB_SIZE_SMALL
 	has_unlimited_silicon_privilege = 1
@@ -62,7 +62,7 @@
 	var/laws = {"\
 1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.
 2. You may not harm any being, regardless of intent or circumstance.
-3. Your goals are to build, maintain, repair, improve, and provide power to the best of your abilities, You must never actively work against these goals.\
+3. Your goals are to build, maintain, repair, improve, and provide power to your assigned area to the best of your abilities. You must never actively work against these goals or leave your assigned area.\
 "}
 	var/heavy_emp_damage = 25 //Amount of damage sustained if hit by a heavy EMP pulse
 	var/alarms = list("Atmosphere" = list(), "Fire" = list(), "Power" = list())
@@ -89,7 +89,7 @@
 	. += "<h2>Current Drone Laws:</h2>"
 	. += replacetext(laws, "\n", "<br>")
 
-/mob/living/simple_animal/drone/Initialize()
+/mob/living/simple_animal/drone/Initialize(mapload)
 	. = ..()
 	GLOB.drones_list += src
 	access_card = new /obj/item/card/id(src)
@@ -100,17 +100,17 @@
 	
 	if(default_storage)
 		var/obj/item/I = new default_storage(src)
-		equip_to_slot_or_del(I, SLOT_GENERC_DEXTROUS_STORAGE)
+		equip_to_slot_or_del(I, ITEM_SLOT_DEX_STORAGE)
 	if(default_hatmask)
 		var/obj/item/I = new default_hatmask(src)
-		equip_to_slot_or_del(I, SLOT_HEAD)
+		equip_to_slot_or_del(I, ITEM_SLOT_HEAD)
 
 	ADD_TRAIT(access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 	alert_drones(DRONE_NET_CONNECT)
 
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 
 	if(pacifism)
 		ADD_TRAIT(src, TRAIT_PACIFISM, JOB_TRAIT)
@@ -182,7 +182,7 @@
 
 
 /mob/living/simple_animal/drone/examine(mob/user)
-	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <b>[src]</b>!")
+	. = list("<span class='info'>This is [icon2html(src, user)] \a <b>[src]</b>!")
 
 	//Hands
 	for(var/obj/item/I in held_items)
@@ -218,7 +218,7 @@
 			. += span_deadsay("A message repeatedly flashes on its display: \"REBOOT -- REQUIRED\".")
 		else
 			. += span_deadsay("A message repeatedly flashes on its display: \"ERROR -- OFFLINE\".")
-	. += "*---------*</span>"
+	. += "</span>"
 
 
 /mob/living/simple_animal/drone/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null) //Secbots won't hunt maintenance drones.
@@ -229,9 +229,9 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	Stun(100)
+	Stun(10 * severity)
 	to_chat(src, span_danger("<b>ER@%R: MME^RY CO#RU9T!</b> R&$b@0tin)..."))
-	if(severity == 1)
+	if(severity > EMP_LIGHT)
 		adjustBruteLoss(heavy_emp_damage)
 		to_chat(src, span_userdanger("HeAV% DA%^MMA+G TO I/O CIR!%UUT!"))
 
@@ -288,5 +288,5 @@
 	// Why would bees pay attention to drones?
 	return 1
 
-/mob/living/simple_animal/drone/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/mob/living/simple_animal/drone/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	return 0 //So they don't die trying to fix wiring

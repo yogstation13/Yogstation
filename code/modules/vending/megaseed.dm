@@ -19,14 +19,18 @@
 					/obj/item/seeds/coffee = 3,
 					/obj/item/seeds/corn = 3,
 					/obj/item/seeds/cotton = 3,
+					/obj/item/seeds/cucumber = 3,
 					/obj/item/seeds/eggplant = 3,
 					/obj/item/seeds/garlic = 3,
 					/obj/item/seeds/grape = 3,
 					/obj/item/seeds/grass = 3,
+					/obj/item/seeds/ute_nut = 3,
+					/obj/item/seeds/lanternfruit = 3,
 					/obj/item/seeds/lemon = 3,
 					/obj/item/seeds/lime = 3,
 					/obj/item/seeds/onion = 3,
 					/obj/item/seeds/orange = 3,
+					/obj/item/seeds/peanut = 3,
 					/obj/item/seeds/peas = 3,
 					/obj/item/seeds/pineapple = 3,
 					/obj/item/seeds/potato = 3,
@@ -64,3 +68,22 @@
 /obj/item/vending_refill/hydroseeds
 	machine_name = "MegaSeed Servitor"
 	icon_state = "refill_plant"
+
+/obj/machinery/vending/hydroseeds/weak
+	name = "\improper Seed Servitor"
+	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station for intrepid gardeners!"
+	products = list(/obj/item/seeds/apple = 2,
+					/obj/item/seeds/banana = 2,
+					/obj/item/seeds/cocoapod = 2,
+					/obj/item/seeds/grape = 2,
+					/obj/item/seeds/grass = 2,
+					/obj/item/seeds/orange = 2,
+					/obj/item/seeds/poppy = 2,
+					/obj/item/seeds/watermelon = 2,
+					/obj/item/seeds/wheat = 2)
+	contraband = list(/obj/item/seeds/cannabis = 1)
+	premium = list(/obj/item/seeds/sugarcane = 2,
+					/obj/item/seeds/tower = 2)
+	refill_canister = /obj/item/vending_refill/hydroseeds
+	default_price = 15
+	extra_price = 40

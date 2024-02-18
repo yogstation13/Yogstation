@@ -124,20 +124,32 @@
 /datum/clockwork_scripture/clockwork_armaments/scripture_effects()
 	invoker.visible_message(span_warning("A shimmer of yellow light infuses [invoker]!"), \
 	span_brass("You bind clockwork equipment to yourself. Use Clockwork Armaments and Call Spear to summon them."))
-	var/datum/action/innate/call_weapon/ratvarian_spear/S = new()
-	S.Grant(invoker)
 	var/datum/action/innate/clockwork_armaments/A = new()
 	A.Grant(invoker)
+	var/choice = input(invoker,"What weapon do you want to call upon?", "Clockwork Armaments") as anything in list("Brass Spear","Brass Battlehammer","Brass Sword", "Brass Bow")
+	switch(choice)
+		if("Brass Spear")
+			var/datum/action/innate/call_weapon/ratvarian_spear/S = new()
+			S.Grant(invoker)
+		if("Brass Battlehammer")
+			var/datum/action/innate/call_weapon/battlehammer/H = new()
+			H.Grant(invoker)
+		if("Brass Sword")
+			var/datum/action/innate/call_weapon/sword/SW = new()
+			SW.Grant(invoker)
+		if("Brass Bow")
+			var/datum/action/innate/call_weapon/brass_bow/B = new()
+			B.Grant(invoker)
 	return TRUE
 
 //Clockwork Armaments: Equips a set of clockwork armor. Three-minute cooldown.
 /datum/action/innate/clockwork_armaments
 	name = "Clockwork Armaments"
 	desc = "Outfits you in a full set of Ratvarian armor."
-	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "clockwork_armor"
 	background_icon_state = "bg_clock"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	buttontooltipstyle = "clockcult"
 	var/cooldown = 0
 	var/static/list/ratvarian_armor_typecache = typecacheof(list(
@@ -150,7 +162,7 @@
 	/obj/item/clothing/head/helmet/space,
 	/obj/item/clothing/shoes/magboots)) //replace this only if ratvar is up
 
-/datum/action/innate/clockwork_armaments/IsAvailable()
+/datum/action/innate/clockwork_armaments/IsAvailable(feedback = FALSE)
 	if(!is_servant_of_ratvar(owner))
 		qdel(src)
 		return
@@ -160,24 +172,24 @@
 
 /datum/action/innate/clockwork_armaments/Activate()
 	var/do_message = 0
-	var/obj/item/I = owner.get_item_by_slot(SLOT_WEAR_SUIT)
+	var/obj/item/I = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(remove_item_if_better(I, owner))
-		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/suit/armor/clockwork(null), SLOT_WEAR_SUIT)
-	I = owner.get_item_by_slot(SLOT_HEAD)
+		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/suit/armor/clockwork(null), ITEM_SLOT_OCLOTHING)
+	I = owner.get_item_by_slot(ITEM_SLOT_HEAD)
 	if(remove_item_if_better(I, owner))
-		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/head/helmet/clockwork(null), SLOT_HEAD)
-	I = owner.get_item_by_slot(SLOT_GLOVES)
+		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/head/helmet/clockwork(null), ITEM_SLOT_HEAD)
+	I = owner.get_item_by_slot(ITEM_SLOT_GLOVES)
 	if(remove_item_if_better(I, owner))
-		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/gloves/clockwork(null), SLOT_GLOVES)
-	I = owner.get_item_by_slot(SLOT_SHOES)
+		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/gloves/clockwork(null), ITEM_SLOT_GLOVES)
+	I = owner.get_item_by_slot(ITEM_SLOT_FEET)
 	if(remove_item_if_better(I, owner))
-		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/shoes/clockwork(null), SLOT_SHOES)
+		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/shoes/clockwork(null), ITEM_SLOT_FEET)
 	if(do_message)
 		owner.visible_message(span_warning("Strange armor appears on [owner]!"), "[span_heavy_brass("A bright shimmer runs down your body, equipping you with Ratvarian armor.")]")
 		playsound(owner, 'sound/magic/clockwork/fellowship_armory.ogg', 15 * do_message, TRUE) //get sound loudness based on how much we equipped
 	cooldown = CLOCKWORK_ARMOR_COOLDOWN + world.time
-	owner.update_action_buttons_icon()
-	addtimer(CALLBACK(owner, /mob.proc/update_action_buttons_icon), CLOCKWORK_ARMOR_COOLDOWN)
+	owner.update_mob_action_buttons()
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_mob_action_buttons)), CLOCKWORK_ARMOR_COOLDOWN)
 	return TRUE
 
 /datum/action/innate/clockwork_armaments/proc/remove_item_if_better(obj/item/I, mob/user)
@@ -195,24 +207,23 @@
 	desc = "Calls a Ratvarian spear into your hands to fight your enemies."
 	weapon_type = /obj/item/clockwork/weapon/ratvarian_spear
 
-//Brass Bow: Creates a brass bow, which is capable of firing redlight arrows.
-/datum/clockwork_scripture/create_object/brass_bow
-	descname = "Self Recharging Ranged Weapon"
-	name = "Brass Bow"
-	desc = "Creates a bow capable of firing redlight arrows, doing moderate damage but recharges after use. The bow will recharge after 1 1/2 seconds."
-	invocations = list("Grant me armaments...", "...from the forge of Armorer!") // Temp text
-	channel_time = 10
-	power_cost = 400
-	whispered = TRUE
-	object_path = /obj/item/gun/ballistic/bow/energy/clockwork
-	creator_message = span_brass("You form a Brass Bow, which is capable of firing redlight arrows.")
-	usage_tip = "The bow will recharge after 1 1/2 seconds."
-	tier = SCRIPTURE_SCRIPT
-	space_allowed = TRUE
-	primary_component = BELLIGERENT_EYE
-	sort_priority = 6
-	quickbind = TRUE
-	quickbind_desc = "Creates a brass bow capable of firing redlight arrows, doing moderate damage but recharges after use."
+//Call Sword: Calls forth a brass sword.
+/datum/action/innate/call_weapon/sword
+	name = "Call Sword"
+	desc = "Calls a brass longsword into your hands to fight your enemies."
+	weapon_type = /obj/item/clockwork/weapon/brass_sword
+
+//Call Spear: Calls forth a brass hammer.
+/datum/action/innate/call_weapon/battlehammer
+	name = "Call Battlehammer"
+	desc = "Calls a brass battlehammer into your hands to fight your enemies."
+	weapon_type = /obj/item/clockwork/weapon/brass_battlehammer
+
+//Call brass bow: Creates or calls a brass bow, which is capable of firing redlight arrows.
+/datum/action/innate/call_weapon/brass_bow
+	name = "Call Brass Bow"
+	desc = "Calls a rechargable brass bow capable of firing redlight arrows that do moderate damage. The bow will recharge after 1.5 seconds."
+	weapon_type = /obj/item/gun/ballistic/bow/energy/clockwork
 
 
 //Spatial Gateway: Allows the invoker to teleport themselves and any nearby allies to a conscious servant or clockwork obelisk.

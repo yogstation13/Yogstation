@@ -10,8 +10,8 @@
 	var/used_capacity = 0
 	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
 
-/obj/item/computer_hardware/hard_drive/on_remove(obj/item/modular_computer/MC, mob/user)
-	MC.shutdown_computer()
+/obj/item/computer_hardware/hard_drive/on_remove(obj/item/modular_computer/remove_from, mob/user)
+	remove_from.shutdown_computer()
 
 /obj/item/computer_hardware/hard_drive/proc/install_default_programs()
 	store_file(new/datum/computer_file/program/computerconfig(src)) 	// Computer configuration utility, allows hardware control and displays more info than status bar
@@ -22,14 +22,14 @@
 	. = ..()
 	. += span_notice("It has [max_capacity] GQ of storage capacity.")
 
-/obj/item/computer_hardware/hard_drive/diagnostics(var/mob/user)
+/obj/item/computer_hardware/hard_drive/diagnostics(mob/user)
 	..()
 	// 999 is a byond limit that is in place. It's unlikely someone will reach that many files anyway, since you would sooner run out of space.
 	to_chat(user, "NT-NFS File Table Status: [stored_files.len]/999")
 	to_chat(user, "Storage capacity: [used_capacity]/[max_capacity]GQ")
 
 // Use this proc to add file to the drive. Returns the file on success and FALSE on failure. Contains necessary sanity checks.
-/obj/item/computer_hardware/hard_drive/proc/store_file(var/datum/computer_file/F)
+/obj/item/computer_hardware/hard_drive/proc/store_file(datum/computer_file/F)
 	if(!F || !istype(F))
 		return FALSE
 
@@ -51,13 +51,13 @@
 	if(istype(F, /datum/computer_file/program))
 		var/datum/computer_file/program/P = F
 		P.computer = holder
-	
+
 	stored_files.Add(F)
 	recalculate_size()
 	return F
 
 // Use this proc to remove file from the drive. Returns TRUE on success and FALSE on failure. Contains necessary sanity checks.
-/obj/item/computer_hardware/hard_drive/proc/remove_file(var/datum/computer_file/F)
+/obj/item/computer_hardware/hard_drive/proc/remove_file(datum/computer_file/F)
 	if(!F || !istype(F))
 		return FALSE
 
@@ -83,7 +83,7 @@
 	used_capacity = total_size
 
 // Checks whether file can be stored on the hard drive. We can only store unique files, so this checks whether we wouldn't get a duplicity by adding a file.
-/obj/item/computer_hardware/hard_drive/proc/can_store_file(var/datum/computer_file/F)
+/obj/item/computer_hardware/hard_drive/proc/can_store_file(datum/computer_file/F)
 	if(!F || !istype(F))
 		return FALSE
 
@@ -106,7 +106,7 @@
 
 
 // Tries to find the file by filename. Returns null on failure
-/obj/item/computer_hardware/hard_drive/proc/find_file_by_name(var/filename)
+/obj/item/computer_hardware/hard_drive/proc/find_file_by_name(filename)
 	if(!check_functionality())
 		return null
 
@@ -121,11 +121,23 @@
 			return F
 	return null
 
+/obj/item/computer_hardware/hard_drive/try_insert(obj/item/I, mob/living/user)
+	if(!holder)
+		return FALSE
+
+	for(var/datum/computer_file/file in stored_files)
+		if(file.try_insert(I, user))
+			return TRUE
+
+	return FALSE
+
 /obj/item/computer_hardware/hard_drive/Destroy()
+	for(var/F in stored_files)
+		qdel(F)
 	stored_files = null
 	return ..()
 
-/obj/item/computer_hardware/hard_drive/Initialize()
+/obj/item/computer_hardware/hard_drive/Initialize(mapload)
 	. = ..()
 	install_default_programs()
 
@@ -164,10 +176,32 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_price = 15
 
-// For borg integrated tablets.
+// For silicon integrated tablets.
 /obj/item/computer_hardware/hard_drive/small/integrated/install_default_programs()
 	..()
-	store_file(new /datum/computer_file/program/robotact(src))
+	var/datum/computer_file/program/pdamessager/P = store_file(new/datum/computer_file/program/pdamessager(src))
+	var/obj/item/modular_computer/stored = holder
+	if(!stored && istype(loc, /obj/item/modular_computer))
+		stored = loc
+	if(P && istype(stored?.loc, /mob/living/silicon))
+		var/mob/living/silicon/R = stored.loc
+		var/jobname
+		if(R.job)
+			jobname = R.job
+		else if(istype(R, /mob/living/silicon/robot))
+			jobname = "[R.designation ? "[R.designation] " : ""]Cyborg"
+		else if(R.designation)
+			jobname = R.designation
+		else if(istype(R, /mob/living/silicon/ai))
+			jobname = "AI"
+		else if(istype(R, /mob/living/silicon/pai))
+			jobname = "pAI"
+		else
+			jobname = "Silicon"
+		P.username = "[R.real_name] ([jobname])" // This is (and hopefully remains to be) created after silicons are named
+		P.receiving = TRUE
+	if(istype(stored?.loc, /mob/living/silicon/robot)) // RoboTact is for cyborgs only, not AIs
+		store_file(new /datum/computer_file/program/robotact(src))
 
 // Syndicate variant - very slight better
 /obj/item/computer_hardware/hard_drive/small/syndicate
@@ -180,6 +214,13 @@
 	store_file(new/datum/computer_file/program/computerconfig(src))
 	store_file(new/datum/computer_file/program/ntnetdownload/emagged(src))
 	store_file(new/datum/computer_file/program/filemanager(src))
+
+/// For PDAs, comes pre-equipped with PDA messaging
+/obj/item/computer_hardware/hard_drive/small/pda
+/obj/item/computer_hardware/hard_drive/small/pda/install_default_programs()
+	..()
+	store_file(new/datum/computer_file/program/themeify(src))
+	store_file(new/datum/computer_file/program/pdamessager(src))
 
 /// For tablets given to nuke ops
 /obj/item/computer_hardware/hard_drive/small/nukeops

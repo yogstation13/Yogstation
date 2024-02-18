@@ -1,8 +1,9 @@
 import { map } from 'common/collections';
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Box, Button, Collapsible, Grid, Input, LabeledList, NoticeBox, Section } from '../components';
+import { Box, Button, Collapsible, Grid, Input, LabeledList, NoticeBox, Section, Table } from '../components';
 import { Window } from '../layouts';
+import { resolveAssetOptional } from "../assets";
+import { classes } from "common/react";
 
 export const PandemicBeakerDisplay = (props, context) => {
   const { act, data } = useBackend(context);
@@ -17,7 +18,7 @@ export const PandemicBeakerDisplay = (props, context) => {
     <Section
       title="Beaker"
       buttons={(
-        <Fragment>
+        <>
           <Button
             icon="times"
             content="Empty and Eject"
@@ -34,7 +35,7 @@ export const PandemicBeakerDisplay = (props, context) => {
             content="Eject"
             disabled={!has_beaker}
             onClick={() => act('eject_beaker')} />
-        </Fragment>
+        </>
       )}>
       {has_beaker ? (
         !beaker_empty ? (
@@ -116,7 +117,7 @@ export const PandemicDiseaseDisplay = (props, context) => {
             </Grid.Column>
           </Grid>
           {!!virus.is_adv && (
-            <Fragment>
+            <>
               <Section
                 title="Statistics"
                 level={2}>
@@ -156,7 +157,7 @@ export const PandemicDiseaseDisplay = (props, context) => {
                   </Collapsible>
                 ))}
               </Section>
-            </Fragment>
+            </>
           )}
         </Section>
       );
@@ -164,11 +165,39 @@ export const PandemicDiseaseDisplay = (props, context) => {
   );
 };
 
+export const PandemicSymptomIcon = (props) => {
+  const { icon } = props;
+
+  const iconUrl = resolveAssetOptional(icon);
+  const isAnimated = iconUrl !== undefined;
+
+  if (isAnimated) {
+    return (
+      <img src={iconUrl} width="56px" height="56px" style={{
+        'vertical-align': 'middle',
+        '-ms-interpolation-mode': 'nearest-neighbor',
+        margin: '4px',
+        }}
+      />);
+  } else {
+    return (
+      <span
+        className={classes(["virology_symptoms64x64", icon])}
+        style={{
+          'vertical-align': 'middle',
+          'horizontal-align': 'middle',
+        }}
+      />
+    );
+  }
+};
+
 export const PandemicSymptomDisplay = (props, context) => {
   const { symptom } = props;
   const {
     name,
     desc,
+    icon,
     stealth,
     resistance,
     stage_speed,
@@ -178,6 +207,7 @@ export const PandemicSymptomDisplay = (props, context) => {
   } = symptom;
   const thresholds = map((desc, label) => ({ desc, label }))(
     symptom.threshold_desc || {});
+
   return (
     <Section
       title={name}
@@ -190,29 +220,42 @@ export const PandemicSymptomDisplay = (props, context) => {
         </Box>
       )}>
       <Grid>
-        <Grid.Column size={2}>
-          {desc}
+        <Grid.Column style={{ width: '64px' }}>
+          <PandemicSymptomIcon icon={icon} />
         </Grid.Column>
-        <Grid.Column>
-          <LabeledList>
-            <LabeledList.Item label="Level">
-              {level}
-            </LabeledList.Item>
-            <LabeledList.Item label="Resistance">
-              {resistance}
-            </LabeledList.Item>
-            <LabeledList.Item label="Stealth">
-              {stealth}
-            </LabeledList.Item>
-            <LabeledList.Item label="Stage Speed">
-              {stage_speed}
-            </LabeledList.Item>
-            <LabeledList.Item label="Transmission">
-              {transmission}
-            </LabeledList.Item>
-          </LabeledList>
+        <Grid.Column style={{
+          width: 'calc(100% - 64px)',
+          'vertical-align': 'baseline',
+        }}>
+          <Table>
+            <Table.Row header>
+              <Table.Cell header textAlign="center">Level</Table.Cell>
+              <Table.Cell header textAlign="center">Resistance</Table.Cell>
+              <Table.Cell header textAlign="center">Stealth</Table.Cell>
+              <Table.Cell header textAlign="center">Stage Speed</Table.Cell>
+              <Table.Cell header textAlign="center">Transmission</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell textAlign="center">
+                {level}
+              </Table.Cell>
+              <Table.Cell textAlign="center">
+                {resistance}
+              </Table.Cell>
+              <Table.Cell textAlign="center">
+                {stealth}
+              </Table.Cell>
+              <Table.Cell textAlign="center">
+                {stage_speed}
+              </Table.Cell>
+              <Table.Cell textAlign="center">
+                {transmission}
+              </Table.Cell>
+            </Table.Row>
+          </Table>
         </Grid.Column>
       </Grid>
+      <Box my={2}>{desc}</Box>
       {thresholds.length > 0 && (
         <Section
           title="Thresholds"
@@ -272,15 +315,14 @@ export const Pandemic = (props, context) => {
   return (
     <Window
       width={520}
-      height={550}
-      resizable>
+      height={550}>
       <Window.Content scrollable>
         <PandemicBeakerDisplay />
         {!!data.has_blood && (
-          <Fragment>
+          <>
             <PandemicDiseaseDisplay />
             <PandemicAntibodyDisplay />
-          </Fragment>
+          </>
         )}
       </Window.Content>
     </Window>

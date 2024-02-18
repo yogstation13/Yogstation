@@ -4,6 +4,8 @@
 ///// Debride burnt flesh
 /datum/surgery/debride
 	name = "Debride infected flesh"
+	icon = 'icons/obj/stack_medical.dmi'
+	icon_state = "gauze"
 	steps = list(/datum/surgery_step/debride_infected, /datum/surgery_step/dress)
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
@@ -53,7 +55,7 @@
 	if(burn_wound)
 		display_results(user, target, span_notice("You successfully excise some of the infected flesh from [target]'s [parse_zone(target_zone)]."),
 			span_notice("[user] successfully excises some of the infected flesh from [target]'s [parse_zone(target_zone)] with [tool]!"),
-			span_notice("[user] successfully excises some of the infected flesh from  [target]'s [parse_zone(target_zone)]!"))
+			span_notice("[user] successfully excises some of the infected flesh from [target]'s [parse_zone(target_zone)]!"))
 		log_combat(user, target, "excised infected flesh in", addition="INTENT: [uppertext(user.a_intent)]")
 		surgery.operated_bodypart.receive_damage(brute=3, wound_bonus=CANT_WOUND)
 		burn_wound.infestation -= infestation_removed
@@ -64,11 +66,11 @@
 		to_chat(user, span_warning("[target] has no infected flesh there!"))
 	return ..()
 
-/datum/surgery_step/debride_infected/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/debride_infected/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	..()
 	display_results(user, target, span_notice("You carve away some of the healthy flesh from [target]'s [parse_zone(target_zone)]."),
 		span_notice("[user] carves away some of the healthy flesh from [target]'s [parse_zone(target_zone)] with [tool]!"),
-		span_notice("[user] carves away some of the healthy flesh from  [target]'s [parse_zone(target_zone)]!"))
+		span_notice("[user] carves away some of the healthy flesh from [target]'s [parse_zone(target_zone)]!"))
 	surgery.operated_bodypart.receive_damage(brute=rand(4,8), sharpness=TRUE)
 
 /datum/surgery_step/debride_infected/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
@@ -111,7 +113,7 @@
 		to_chat(user, span_warning("[target] has no burns there!"))
 	return ..()
 
-/datum/surgery_step/dress/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/dress/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool

@@ -6,7 +6,7 @@
 		var/leg_amount = get_num_legs()
 		. += max(6 - 3*leg_amount, 0) //the fewer the legs, the slower the mob
 		if(!leg_amount)
-			. += max((6 - 3*get_num_arms()), 0) //crawling is harder with fewer arms
+			. += max((12 - 6*get_num_arms()), 0) //crawling is harder with fewer arms
 		if(legcuffed)
 			. += legcuffed.slowdown
 
@@ -19,25 +19,25 @@
 	var/wagging = FALSE
 	if(src.dna.species.is_wagging_tail())
 		wagging = TRUE
-	loc.handle_slip(src, knockdown_amount, O, lube, stun, force_drop)
+	. = loc.handle_slip(src, knockdown_amount, O, lube, stun, force_drop)
 	if(wagging)
 		src.dna.species.start_wagging_tail(src)
-	return
 	
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
-	if(..())
-		return 1
+	if(!.)
+		. = ..()
 	if(!isturf(loc))
-		return 0
-
+		return FALSE
 	// Do we have a jetpack implant (and is it on)?
-	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_THRUSTERS)
-	if(istype(T) && movement_dir && T.allow_thrust(0.01))
-		return 1
+	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_TORSO_IMPLANT)
+	if(istype(T))
+		if(movement_dir && T.allow_thrust(0.01))
+			. = TRUE
 
 	var/obj/item/tank/jetpack/J = get_jetpack()
-	if(istype(J) && (movement_dir || J.stabilizers) && J.allow_thrust(0.01, src))
-		return 1
+	if(istype(J))
+		if((movement_dir || J.stabilizers) && J.allow_thrust(0.01, src))
+			. =  TRUE
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()

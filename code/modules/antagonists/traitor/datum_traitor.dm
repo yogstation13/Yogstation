@@ -6,7 +6,9 @@
 	roundend_category = "traitors"
 	antagpanel_category = "Traitor"
 	job_rank = ROLE_TRAITOR
+	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/focused
+	preview_outfit = /datum/outfit/traitor
 	var/special_role = ROLE_TRAITOR
 	var/employer = "The Syndicate"
 	var/give_objectives = TRUE
@@ -15,6 +17,7 @@
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
 	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	var/datum/contractor_hub/contractor_hub
+	var/obj/item/uplink_holder
 	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/traitor/on_gain()
@@ -37,23 +40,22 @@
 	if(give_objectives)
 		forge_traitor_objectives()
 	finalize_traitor()
-	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 	..()
 
 
-/datum/antagonist/traitor/apply_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
+/datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/silicon/ai/A = mob_override || owner.current
+	if(istype(A) && traitor_kind == TRAITOR_AI)
+		A.hack_software = TRUE
+	handle_clown_mutation(owner.current, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 
-/datum/antagonist/traitor/remove_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			traitor_mob.dna.add_mutation(CLOWNMUT)
+/datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/silicon/ai/A = mob_override || owner.current
+	if(istype(A)  && traitor_kind == TRAITOR_AI)
+		A.hack_software = FALSE
 
 /datum/antagonist/traitor/on_removal()
 	//Remove malf powers.
@@ -65,6 +67,10 @@
 			A.malf_picker.remove_malf_verbs(A)
 			qdel(A.malf_picker)
 	owner.remove_employee(company)
+	if(uplink_holder)
+		var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
+		if(uplink)//remove uplink so they can't keep using it if admin abuse happens
+			uplink.RemoveComponent()
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
@@ -97,7 +103,7 @@
 		is_hijacker = prob(10)
 	var/martyr_chance = prob(20)
 	var/objective_count = is_hijacker 			//Hijacking counts towards number of objectives
-	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 8) 	//Set up an exchange if there are enough traitors
+	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 6) 	//Set up an exchange if there are enough traitors. YOGSTATION CHANGE: 8 TO 6.
 		if(!SSticker.mode.exchange_red)
 			SSticker.mode.exchange_red = owner
 		else
@@ -107,15 +113,24 @@
 		objective_count += 1					//Exchange counts towards number of objectives
 	var/toa = CONFIG_GET(number/traitor_objectives_amount)
 	for(var/i = objective_count, i < toa, i++)
-		forge_single_objective()
+		forge_single_human_objective()
+
+	forge_single_human_optional()
 
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
-		if (!(locate(/datum/objective/hijack) in objectives))
-			var/datum/objective/hijack/hijack_objective = new
-			hijack_objective.owner = owner
-			add_objective(hijack_objective)
+		//Start of Yogstation change: adds /datum/objective/sole_survivor
+		if(!(locate(/datum/objective/hijack) in objectives) && !(locate(/datum/objective/hijack/sole_survivor) in objectives))
+			if(SSticker.mode.has_hijackers)
+				var/datum/objective/hijack/sole_survivor/survive_objective = new
+				survive_objective.owner = owner
+				add_objective(survive_objective)
+			else
+				var/datum/objective/hijack/hijack_objective = new
+				hijack_objective.owner = owner
+				add_objective(hijack_objective)
+			SSticker.mode.has_hijackers = TRUE
 			return
-
+		//End of yogstation change.
 
 	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
 	for(var/datum/objective/O in objectives)
@@ -153,7 +168,7 @@
 	var/objective_count = 0
 
 	if(prob(30))
-		objective_count += forge_single_objective()
+		objective_count += forge_single_AI_objective()
 
 	for(var/i = objective_count, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 		var/datum/objective/assassinate/kill_objective = new
@@ -165,13 +180,11 @@
 	exist_objective.owner = owner
 	add_objective(exist_objective)
 
-
-/datum/antagonist/traitor/proc/forge_single_objective()
-	switch(traitor_kind)
-		if(TRAITOR_AI)
-			return forge_single_AI_objective()
-		else
-			return forge_single_human_objective()
+/datum/antagonist/traitor/proc/forge_single_human_optional() //adds this for if/when soft-tracked objectives are added, so they can be a 50/50
+	var/datum/objective/gimmick/gimmick_objective = new
+	gimmick_objective.owner = owner
+	gimmick_objective.find_target()
+	add_objective(gimmick_objective) //Does not count towards the number of objectives, to allow hijacking as well
 
 /datum/antagonist/traitor/proc/forge_single_human_objective() //Returns how many objectives are added
 	.=1
@@ -182,28 +195,30 @@
 			destroy_objective.owner = owner
 			destroy_objective.find_target()
 			add_objective(destroy_objective)
-		else if(prob(30))
-			var/datum/objective/maroon/maroon_objective = new
-			maroon_objective.owner = owner
-			maroon_objective.find_target()
-			add_objective(maroon_objective)
+		else if(prob(20))
+			var/datum/objective/maroon_organ/organ_objective = new
+			organ_objective.owner = owner
+			organ_objective.finalize()
+			add_objective(organ_objective)
 		else
-			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
-			var/datum/objective/assassinate/kill_objective = new N
+			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon)
+			var/datum/objective/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()
 			add_objective(kill_objective)
 	else
-		if(prob(15) && !(locate(/datum/objective/download) in objectives) && !(owner.assigned_role in list("Research Director", "Scientist", "Roboticist")))
-			var/datum/objective/download/download_objective = new
-			download_objective.owner = owner
-			download_objective.gen_amount_goal()
-			add_objective(download_objective)
-		else
+		if(prob(50))
 			var/datum/objective/steal/steal_objective = new
 			steal_objective.owner = owner
 			steal_objective.find_target()
 			add_objective(steal_objective)
+		else
+			var/datum/objective/break_machinery/break_objective = new
+			break_objective.owner = owner
+			if(break_objective.finalize())
+				add_objective(break_objective)
+			else
+				forge_single_human_objective()
 
 /datum/antagonist/traitor/proc/forge_single_AI_objective()
 	.=1
@@ -240,16 +255,6 @@
 		give_codewords()
 	to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
 
-/datum/antagonist/traitor/proc/update_traitor_icons_added(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]
-	traitorhud.join_hud(owner.current)
-	set_antag_hud(owner.current, "traitor")
-
-/datum/antagonist/traitor/proc/update_traitor_icons_removed(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]
-	traitorhud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
-
 /datum/antagonist/traitor/proc/finalize_traitor()
 	switch(traitor_kind)
 		if(TRAITOR_AI)
@@ -260,20 +265,6 @@
 			if(should_equip)
 				equip(silent)
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
-
-/datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
-	. = ..()
-	update_traitor_icons_added()
-	var/mob/living/silicon/ai/A = mob_override || owner.current
-	if(istype(A) && traitor_kind == TRAITOR_AI)
-		A.hack_software = TRUE
-
-/datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
-	. = ..()
-	update_traitor_icons_removed()
-	var/mob/living/silicon/ai/A = mob_override || owner.current
-	if(istype(A)  && traitor_kind == TRAITOR_AI)
-		A.hack_software = FALSE
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
@@ -305,7 +296,7 @@
 	if(malf)
 		killer.add_malf_picker()
 
-/datum/antagonist/traitor/proc/equip(var/silent = FALSE)
+/datum/antagonist/traitor/proc/equip(silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
 		uplink_holder = owner.equip_traitor(employer, silent, src) //yogs - uplink_holder =
 
@@ -337,9 +328,9 @@
 		folder = new/obj/item/folder/syndicate/blue(mob.loc)
 
 	var/list/slots = list (
-		"backpack" = SLOT_IN_BACKPACK,
-		"left pocket" = SLOT_L_STORE,
-		"right pocket" = SLOT_R_STORE
+		"backpack" = ITEM_SLOT_BACKPACK,
+		"left pocket" = ITEM_SLOT_LPOCKET,
+		"right pocket" = ITEM_SLOT_RPOCKET
 	)
 
 	var/where = "At your feet"
@@ -370,7 +361,9 @@
 	if(objectives.len)//If the traitor had no objectives, don't need to process this.
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
-			if(objective.check_completion())
+			if(objective.optional)
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Optional.")]"
+			else if(objective.check_completion())
 				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
 			else
 				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
@@ -445,6 +438,19 @@
 
 	return message
 
-
 /datum/antagonist/traitor/is_gamemode_hero()
 	return SSticker.mode.name == "traitor"
+
+/datum/outfit/traitor
+	name = "Traitor (Preview only)"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/armor/laserproof
+	gloves = /obj/item/clothing/gloves/color/yellow
+	mask = /obj/item/clothing/mask/gas
+	l_hand = /obj/item/melee/transforming/energy/sword
+	r_hand = /obj/item/gun/energy/kinetic_accelerator/crossbow
+	head = /obj/item/clothing/head/helmet
+
+/datum/outfit/traitor/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/melee/transforming/energy/sword/sword = locate() in H.held_items
+	sword.transform_weapon(H)

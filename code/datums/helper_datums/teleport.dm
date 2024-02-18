@@ -39,12 +39,14 @@
 				precision = rand(1,100)
 
 			var/static/list/bag_cache = typecacheof(/obj/item/storage/backpack/holding)
-			var/list/bagholding = typecache_filter_list(teleatom.GetAllContents(), bag_cache)
+			var/list/bagholding = typecache_filter_list(teleatom.get_all_contents(), bag_cache)
 			if(bagholding.len)
 				precision = max(rand(1,100)*bagholding.len,100)
 				if(isliving(teleatom))
 					var/mob/living/MM = teleatom
 					to_chat(MM, span_warning("The bluespace interface on your bag of holding interferes with the teleport!"))
+					MM.adjust_disgust(20+(precision/10))	//20-30 disgust, pretty nasty
+					MM.adjust_confusion(10 + precision/20)		//10-15 confusion, little wobbly
 
 			// if effects are not specified and not explicitly disabled, sparks
 			if ((!effectin || !effectout) && !no_effects)
@@ -153,11 +155,11 @@
 		// Can most things breathe?
 		if(trace_gases)
 			continue
-		if(A.get_moles(/datum/gas/oxygen) < 16)
+		if(A.get_moles(GAS_O2) < 16)
 			continue
-		if(A.get_moles(/datum/gas/plasma))
+		if(A.get_moles(GAS_PLASMA))
 			continue
-		if(A.get_moles(/datum/gas/carbon_dioxide) >= 10)
+		if(A.get_moles(GAS_CO2) >= 10)
 			continue
 
 		// Aim for goldilocks temperatures and pressure
@@ -202,3 +204,28 @@
 
 /proc/get_teleport_turf(turf/center, precision = 0)
 	return safepick(get_teleport_turfs(center, precision))
+
+/// Validates that the teleport being attempted is valid or not
+/proc/check_teleport_valid(atom/teleported_atom, atom/destination, channel)
+	var/area/origin_area = get_area(teleported_atom)
+	var/turf/origin_turf = get_turf(teleported_atom)
+
+	var/area/destination_area = get_area(destination)
+	var/turf/destination_turf = get_turf(destination)
+
+	if(HAS_TRAIT(teleported_atom, TRAIT_NO_TELEPORT))
+		return FALSE
+
+	if((origin_area.area_flags & NOTELEPORT) || (destination_area.area_flags & NOTELEPORT))
+		return FALSE
+
+	if(SEND_SIGNAL(teleported_atom, COMSIG_MOVABLE_TELEPORTING, destination, channel) & COMPONENT_BLOCK_TELEPORT)
+		return FALSE
+
+	if(SEND_SIGNAL(destination_turf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, origin_turf, destination_turf) & COMPONENT_BLOCK_TELEPORT)
+		return FALSE
+
+	SEND_SIGNAL(teleported_atom, COMSIG_MOVABLE_TELEPORTED, destination, channel)
+	SEND_SIGNAL(destination_turf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, origin_turf, destination_turf)
+
+	return TRUE

@@ -7,7 +7,7 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	flags_1 = CONDUCT_1
 	throwforce = 10
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 7
 	force = 10
@@ -15,9 +15,10 @@
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	dog_fashion = /datum/dog_fashion/back
 	resistance_flags = FIRE_PROOF
-	var/max_water = 50
+	var/max_water = 200
 	var/last_use = 1
 	var/chem = /datum/reagent/water
+	var/chem_amount = 2 //how much of the chem is added to each spray (x5 because of how many sprays per shot)
 	var/safety = TRUE
 	var/refilling = FALSE
 	var/tanktype = /obj/structure/reagent_dispensers/watertank
@@ -38,6 +39,7 @@
 	force = 3
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 40)
 	max_water = 30
+	chem_amount = 1
 	sprite_name = "miniFE"
 	dog_fashion = null
 
@@ -45,7 +47,7 @@
 	create_reagents(max_water, AMOUNT_VISIBLE)
 	reagents.add_reagent(chem, max_water)
 
-/obj/item/extinguisher/Initialize()
+/obj/item/extinguisher/Initialize(mapload)
 	. = ..()
 	refill()
 
@@ -53,7 +55,10 @@
 	name = "advanced fire extinguisher"
 	desc = "Used to stop thermonuclear fires from spreading inside your engine."
 	icon_state = "foam_extinguisher0"
-	//item_state = "foam_extinguisher" needs sprite
+	item_state = "foam_extinguisher"
+	max_water = 150
+	chem_amount = 1
+	w_class = WEIGHT_CLASS_NORMAL
 	dog_fashion = null
 	chem = /datum/reagent/firefighting_foam
 	tanktype = /obj/structure/reagent_dispensers/foamtank
@@ -116,9 +121,9 @@
 		else
 			to_chat(user, span_warning("\The [W] is empty!"))
 		safety = safety_save
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/item/extinguisher/afterattack(atom/target, mob/user , flag)
 	. = ..()
@@ -163,46 +168,15 @@
 			var/turf/T4 = get_step(T2,turn(direction, -90))
 			the_targets.Add(T3,T4)
 
-		var/list/water_particles=list()
 		for(var/a=0, a<5, a++)
-			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
 			var/my_target = pick(the_targets)
-			water_particles[W] = my_target
-			// If precise, remove turf from targets so it won't be picked more than once
+			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src), my_target)
+			reagents.trans_to(W, chem_amount, transfered_by = user)
 			if(precision)
 				the_targets -= my_target
-			var/datum/reagents/R = new/datum/reagents(5)
-			W.reagents = R
-			R.my_atom = W
-			reagents.trans_to(W,1, transfered_by = user)
-
-		//Make em move dat ass, hun
-		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, water_particles), 2)
-
-//Particle movement loop
-/obj/item/extinguisher/proc/move_particles(var/list/particles, var/repetition=0)
-	//Check if there's anything in here first
-	if(!particles || particles.len == 0)
-		return
-	// Second loop: Get all the water particles and make them move to their target
-	for(var/obj/effect/particle_effect/water/W in particles)
-		var/turf/my_target = particles[W]
-		if(!W)
-			continue
-		step_towards(W,my_target)
-		if(!W.reagents)
-			continue
-		W.reagents.reaction(get_turf(W))
-		for(var/A in get_turf(W))
-			W.reagents.reaction(A)
-		if(W.loc == my_target)
-			particles -= W
-	if(repetition < power)
-		repetition++
-		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, particles, repetition), 2)
 
 //Chair movement loop
-/obj/item/extinguisher/proc/move_chair(var/obj/B, var/movementdirection, var/repetition=0)
+/obj/item/extinguisher/proc/move_chair(obj/B, movementdirection, repetition=0)
 	step(B, movementdirection)
 
 	var/timer_seconds
@@ -224,7 +198,7 @@
 		return
 	EmptyExtinguisher(user)
 
-/obj/item/extinguisher/proc/EmptyExtinguisher(var/mob/user)
+/obj/item/extinguisher/proc/EmptyExtinguisher(mob/user)
 	if(loc == user && reagents.total_volume)
 		reagents.clear_reagents()
 

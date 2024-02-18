@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	icon_state = "swarmer_console"
 	health = 750
 	maxHealth = 750 //""""low-ish"""" HP because it's a passive boss, and the swarm itself is the real foe
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 	internal_type = /obj/item/gps/internal/swarmer_beacon
 	faction = list("mining", "boss", "swarmer")
 	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
@@ -55,14 +55,16 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	wander = FALSE
 	layer = BELOW_MOB_LAYER
 	AIStatus = AI_OFF
+	loot = list(/obj/item/bodypart/r_arm/robot/seismic)
+	deathmessage = "falls to pieces, leaving an odd prosthesis behind."
 	var/swarmer_spawn_cooldown = 0
 	var/swarmer_spawn_cooldown_amt = 150 //Deciseconds between the swarmers we spawn
 	var/call_help_cooldown = 0
 	var/call_help_cooldown_amt = 150 //Deciseconds between calling swarmers to help us when attacked
 	var/static/list/swarmer_caps
+	
 
-
-/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/Initialize()
+/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/Initialize(mapload)
 	. = ..()
 	swarmer_caps = GLOB.AISwarmerCapsByType //for admin-edits
 	for(var/ddir in GLOB.cardinals)
@@ -71,7 +73,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		step(R, ddir) //Step the swarmers, instead of spawning them there, incase the turf is solid
 
 
-/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/Life()
+/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(.)
 		var/createtype = GetUncappedAISwarmerType()
@@ -98,6 +100,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	desc = "Transmitted over the signal is a strange message repeated in every language you know of, and some you don't too..." //the message is "nom nom nom"
 	invisibility = 100
 
+
 //SWARMER AI
 //AI versions of the swarmer mini-antag
 //This is an Abstract Base, it re-enables AI, but does not give the swarmer any goals/targets
@@ -107,7 +110,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	weather_immunities = list(WEATHER_ASH) //wouldn't be fun otherwise
 	AIStatus = AI_ON
 
-/mob/living/simple_animal/hostile/swarmer/ai/Initialize()
+/mob/living/simple_animal/hostile/swarmer/ai/Initialize(mapload)
 	. = ..()
 	toggle_light() //so you can see them eating you out of house and home/shooting you/stunlocking you for eternity
 	LAZYINITLIST(GLOB.AISwarmersByType[type])
@@ -155,7 +158,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai/proc/StartAction(deci = 0)
 	stop_automated_movement = TRUE
 	AIStatus = AI_OFF
-	addtimer(CALLBACK(src, .proc/EndAction), deci)
+	addtimer(CALLBACK(src, PROC_REF(EndAction)), deci)
 
 
 /mob/living/simple_animal/hostile/swarmer/ai/proc/EndAction()
@@ -250,7 +253,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat
 	icon_state = "swarmer_ranged"
 	icon_living = "swarmer_ranged"
-	projectiletype = /obj/item/projectile/beam/laser
+	projectiletype = /obj/projectile/beam/laser
 	projectilesound = 'sound/weapons/laser.ogg'
 	check_friendly_fire = TRUE //you're supposed to protect the resource swarmers, you poop
 	retreat_distance = 3
@@ -282,7 +285,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		else
 			var/mob/living/L = target
 			L.attack_animal(src)
-			L.electrocute_act(10, src, safety = TRUE) //safety = TRUE means we don't check gloves... Ok?
+			L.electrocute_act(10, src, zone = null) //zone=null means we don't only check gloves... Ok?
 		return TRUE
 	else
 		return ..()

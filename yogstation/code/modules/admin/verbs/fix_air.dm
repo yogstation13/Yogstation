@@ -1,4 +1,4 @@
-/client/proc/fix_air(var/turf/open/T in world)
+/client/proc/fix_air(turf/open/T in world)
 	set name = "Fix Air"
 	set category = "Misc.Unused"
 	set desc = "Fixes air in specified radius."
@@ -17,7 +17,6 @@
 				continue
 			GM.parse_gas_string(F.initial_gas_mix)
 			F.copy_air(GM)
-			F.update_visuals()
 
 /client/proc/fix_air_z()
 	set name = "Fix Air on current Z-level"
@@ -27,7 +26,7 @@
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN, 1))
 		return
 
 	if(Master.current_runlevel < log(2, RUNLEVEL_GAME) + 1)
@@ -41,6 +40,7 @@
 	message_admins("[key_name_admin(usr)] fixed air on zlevel [mob.z]")
 	log_game("[key_name_admin(usr)] fixed air on zlevel [mob.z]")
 
+	SSair.can_fire = 0
 	var/z = mob.z
 	for(var/x=1, x<=world.maxx, x++)
 		for(var/y=1, y<=world.maxy, y++)
@@ -48,6 +48,34 @@
 			var/turf/open/T = locate(x, y, z)
 			//Not an early return to allow check_tick to do its thing
 			//Verfied to be an open turf here
-			if(!istype(T, /turf/open/space) && T.is_openturf && !T.blocks_air)
+			if(!istype(T, /turf/open/space) && !T.blocks_air)
 				T.air?.parse_gas_string(T.initial_gas_mix)
-				T.update_visuals()
+	SSair.can_fire = 1
+
+/client/proc/clear_all_pipenets()
+	set name = "Empties all gases from pipenets"
+	set category = "Misc.Unused"
+	set desc = "Empties all gases from pipenets, temporarily disables atmos"
+
+	if(!holder)
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
+		return
+	if(!check_rights(R_ADMIN, 1))
+		return
+
+	if(Master.current_runlevel < log(2, RUNLEVEL_GAME) + 1)
+		to_chat(src, "This command may not be used before the game has started!", confidential=TRUE)
+		message_admins("[src] has attempted to clear pipenets before the game has started.")
+		return
+
+	if(alert("Do you want to clear ALL pipenets?", "Clear all pipenets", "No", "Yes") != "Yes")
+		return
+
+	message_admins("[key_name_admin(usr)] cleared all pipenets")
+	log_game("[key_name_admin(usr)] cleared all pipenets")
+
+	SSair.can_fire = 0
+	for(var/datum/pipeline/pipenetwork in SSair.networks)
+		pipenetwork.empty()
+	SSair.can_fire = 1
+

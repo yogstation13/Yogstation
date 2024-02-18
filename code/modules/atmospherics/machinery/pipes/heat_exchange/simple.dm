@@ -14,7 +14,7 @@
 	construction_type = /obj/item/pipe/binary/bendable
 	pipe_state = "he"
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple/SetInitDirections()
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple/set_init_directions()
 	if(dir in GLOB.diagonals)
 		initialize_directions = dir
 		return
@@ -24,7 +24,8 @@
 		if(EAST, WEST)
 			initialize_directions = EAST|WEST
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple/update_icon()
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "pipe[nodes[1] ? "1" : "0"][nodes[2] ? "1" : "0"]-[piping_layer]"
 	update_layer()
 	update_alpha()

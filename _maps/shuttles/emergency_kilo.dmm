@@ -17,7 +17,7 @@
 /area/shuttle/escape)
 "ae" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/computer/communications,
+/obj/machinery/computer/communications/unlocked,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "af" = (
@@ -304,7 +304,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "aG" = (
@@ -511,7 +511,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "applebush"
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -535,7 +535,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -872,7 +872,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /turf/open/floor/mineral/titanium/white,
@@ -1237,7 +1237,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /turf/open/floor/mineral/titanium/white,
@@ -1267,7 +1267,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "applebush"
 	},
 /obj/effect/turf_decal/stripes/line,
@@ -1374,7 +1374,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-05"
 	},
 /obj/machinery/portable_atmospherics/canister/air,
@@ -1445,7 +1445,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-10"
 	},
 /turf/open/floor/mineral/titanium/white,
@@ -1706,11 +1706,11 @@
 "cX" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/reagent_containers/hypospray/medipen,
-/obj/item/reagent_containers/hypospray/medipen{
+/obj/item/reagent_containers/autoinjector/medipen,
+/obj/item/reagent_containers/autoinjector/medipen{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen{
+/obj/item/reagent_containers/autoinjector/medipen{
 	pixel_y = -6
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal,

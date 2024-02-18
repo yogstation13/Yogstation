@@ -4,8 +4,8 @@
 	name = "\proper space"
 	intact = 0
 
-	temperature = TCMB
-	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	initial_temperature = TCMB
+	thermal_conductivity = 0
 	heat_capacity = 700000
 
 	FASTDMM_PROP(\
@@ -16,7 +16,7 @@
 	var/destination_x
 	var/destination_y
 
-	var/global/datum/gas_mixture/immutable/space/space_gas = new
+	var/global/datum/gas_mixture/immutable/space/space_gas
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
 	light_power = 0.25
@@ -27,32 +27,30 @@
 	//This is used to optimize the map loader
 	return
 
-/turf/open/space/Initialize()
+/turf/open/space/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
 	icon_state = SPACE_ICON_STATE
+	if(!space_gas)
+		space_gas = new
 	air = space_gas
-	update_air_ref()
+	update_air_ref(0)
 	vis_contents.Cut() //removes inherited overlays
 	visibilityChanged()
 
-	if(flags_1 & INITIALIZED_1)
-		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	if (PERFORM_ALL_TESTS(focus_only/multiple_space_initialization))
+		if(flags_1 & INITIALIZED_1)
+			stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 
 	var/area/A = loc
 	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
 		add_overlay(/obj/effect/fullbright)
 
-	if(requires_activation)
-		SSair.add_to_active(src)
-
-	if (light_power && light_range)
+	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 
 	if (opacity)
-		has_opaque_atom = TRUE
-
-	ComponentInitialize()
+		directional_opacity = ALL_CARDINALS
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -76,6 +74,13 @@
 
 /turf/open/space/Assimilate_Air()
 	return
+
+//IT SHOULD RETURN NULL YOU MONKEY, WHY IN TARNATION WHAT THE FUCKING FUCK
+/turf/open/space/remove_air(amount)
+	return null
+
+/turf/open/space/remove_air_ratio(amount)
+	return null
 
 //IT SHOULD RETURN NULL YOU MONKEY, WHY IN TARNATION WHAT THE FUCKING FUCK
 /turf/open/space/remove_air(amount)

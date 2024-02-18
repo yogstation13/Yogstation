@@ -8,6 +8,7 @@
 	tastes = list("fishy" = 1)
 	foodtype = MEAT | SEAFOOD
 	slice_path = /obj/item/reagent_containers/food/snacks/carpmeat/fish
+	juice_results = list(/datum/reagent/consumable/cooking_oil/fish = 5)
 
 	//fish handling stuff
 	var/length = 0
@@ -46,7 +47,7 @@
 	showoffer = M
 	M.visible_message("[M] shows off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!", \
 						 span_notice("You show off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!"))
-	RegisterSignal(M,COMSIG_ATOM_DIR_CHANGE,.proc/stop_overlay,TRUE)
+	RegisterSignal(M,COMSIG_ATOM_DIR_CHANGE, PROC_REF(stop_overlay),TRUE)
 
 /obj/item/reagent_containers/food/snacks/fish/proc/stop_overlay()
 	if(showoffer && showoff_overlay)
@@ -134,11 +135,3 @@
 	min_weight = 1
 	max_weight = 2
 	slices_num = 2
-
-/obj/item/reagent_containers/food/snacks/carpmeat/fish //basic fish fillet (no carpotoxin) for fish butchering
-	name = "fish fillet"
-	desc = "A fillet of spess fish meat."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
-
-
-	

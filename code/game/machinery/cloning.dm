@@ -27,6 +27,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/efficiency
 	// the three variables that handle meatcloning
 	var/biomass = 0 //Start with no biomass inserted.
+	var/maxbiomass = 100
 	///List of special meat that gives extra/less biomass
 	var/list/accepted_biomass = list(
 		/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 25, 
@@ -53,7 +54,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	fair_market_price = 5 // He nodded, because he knew I was right. Then he swiped his credit card to pay me for arresting him.
 	payment_department = ACCOUNT_MED
 
-/obj/machinery/clonepod/Initialize()
+/obj/machinery/clonepod/Initialize(mapload)
 	. = ..()
 
 	countdown = new(src)
@@ -77,10 +78,13 @@ GLOBAL_VAR_INIT(clones, 0)
 /obj/machinery/clonepod/RefreshParts()
 	speed_coeff = 0
 	efficiency = 0
+	maxbiomass = 0
 	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
 		efficiency += S.rating
 	for(var/obj/item/stock_parts/manipulator/P in component_parts)
 		speed_coeff += P.rating
+	for(var/obj/item/reagent_containers/glass/beaker/B in component_parts)
+		maxbiomass += B.reagents.maximum_volume
 	heal_level = (efficiency * 15) + 10
 	if(heal_level < MINIMUM_HEAL_LEVEL)
 		heal_level = MINIMUM_HEAL_LEVEL
@@ -92,7 +96,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	. += span_notice("The <i>linking</i> device can be <i>scanned<i> with a multitool.")
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>"
-		. += "<span class='notice'>The status display reads: Biomass levels at <b>[biomass]%</b><span>" // read out the amount of biomass if you examine
+		. += "<span class='notice'>The status display reads: Biomass levels at <b>[round((biomass/maxbiomass)*100)]%</b><span>" // read out the amount of biomass if you examine
 		if(efficiency > 5)
 			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
 
@@ -108,7 +112,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/read_only = FALSE //Well,it's still a floppy disk
 
 //Disk stuff.
-/obj/item/disk/data/Initialize()
+/obj/item/disk/data/Initialize(mapload)
 	. = ..()
 	icon_state = "datadisk[rand(0,6)]"
 	add_overlay("datadisk_gene")
@@ -124,15 +128,14 @@ GLOBAL_VAR_INIT(clones, 0)
 // Biomass
 
 /obj/machinery/clonepod/proc/handle_biomass(W, tempbiomass, user) // updates the value
-	if(biomass >= 100)
+	if(biomass >= maxbiomass)
 		to_chat(user, "<span class = 'notice'>[src]'s biomass containers are full!.</span>")
 		return // if biomass is already 100 then yell at those stupid idiots
 	else
 		to_chat(user, "<span class = 'notice'>You insert [W] into [src].</span>") // feel free to fill it.
 		biomass = tempbiomass
 		qdel(W)
-		if(biomass > 100) // hidden check to make sure we don't get an end value of like 106 or something.
-			biomass = 100
+		biomass = clamp(biomass, 0, maxbiomass)
 	return
 
 /obj/machinery/clonepod/attackby(obj/item/W, mob/user, params)
@@ -150,6 +153,9 @@ GLOBAL_VAR_INIT(clones, 0)
 	else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // If no special slab was picked it reverts to var/biomass_per_slab
 		tempbiomass += biomass_per_slab
 		handle_biomass(W, tempbiomass, user)
+
+	else
+		return ..()
 
 //Clonepod
 
@@ -181,7 +187,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	return examine(user)
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, makeup, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty)
+/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, makeup, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty, mood)
 	if(panel_open)
 		return NONE
 	if(mess || attempting)
@@ -206,16 +212,16 @@ GLOBAL_VAR_INIT(clones, 0)
 			if(G.suiciding) // The ghost came from a body that is suiciding.
 				return NONE
 		if(clonemind.damnation_type) //Can't clone the damned.
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return NONE
 		if(clonemind.zombified) //Can't clone the damned x2
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!
@@ -231,9 +237,9 @@ GLOBAL_VAR_INIT(clones, 0)
 			var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations)
 			H.dna.remove_mutation_group(unclean_mutations)
 		if(efficiency > 5 && prob(20))
-			H.easy_randmut(POSITIVE)
+			H.easy_random_mutate(POSITIVE)
 		if(efficiency < 3 && prob(50))
-			var/mob/M = H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			var/mob/M = H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			if(ismob(M))
 				H = M
 	if((AGENDER || MGENDER || FGENDER) in H.dna.species.species_traits)
@@ -243,6 +249,8 @@ GLOBAL_VAR_INIT(clones, 0)
 			H.gender = MALE
 		if((AGENDER in H.dna.species.species_traits) && (H.gender != PLURAL))
 			H.gender = PLURAL
+	if(!H.GetComponent(/datum/component/mood) && mood)
+		H.AddComponent(/datum/component/mood)
 
 	H.silent = 20 //Prevents an extreme edge case where clones could speak if they said something at exactly the right moment.
 	occupant = H
@@ -333,7 +341,8 @@ GLOBAL_VAR_INIT(clones, 0)
 			mob_occupant.Unconscious(80)
 			var/dmg_mult = CONFIG_GET(number/damage_multiplier)
 			 //Slowly get that clone healed and finished.
-			mob_occupant.adjustCloneLoss(-((speed_coeff / 2) * dmg_mult))
+			var/telomere_boost = HAS_TRAIT(mob_occupant,TRAIT_LONG_TELOMERES) ? 1.2 : 1.0 //clone 20% faster with long telomere quirk
+			mob_occupant.adjustCloneLoss(-((speed_coeff / 2) * dmg_mult * telomere_boost))
 			var/progress = CLONE_INITIAL_DAMAGE - mob_occupant.getCloneLoss()
 			// To avoid the default cloner making incomplete clones
 			progress += (100 - MINIMUM_HEAL_LEVEL)
@@ -426,14 +435,15 @@ GLOBAL_VAR_INIT(clones, 0)
 	else
 		return ..()
 
-/obj/machinery/clonepod/emag_act(mob/user)
+/obj/machinery/clonepod/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!occupant)
-		return
+		return FALSE
 	to_chat(user, span_warning("You corrupt the genetic compiler."))
 	malfunction()
 	add_fingerprint(user)
 	log_cloning("[key_name(user)] emagged [src] at [AREACOORD(src)], causing it to malfunction.")
 	log_combat(user, src, "emagged", null, occupant ? "[occupant] inside, killing them via malfunction." : null)
+	return TRUE
 
 //Put messages in the connected computer's temp var for display.
 /obj/machinery/clonepod/proc/connected_message(message)
@@ -477,7 +487,8 @@ GLOBAL_VAR_INIT(clones, 0)
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()
 		to_chat(occupant, span_notice("<b>There is a bright flash!</b><br><i>You feel like a new being.</i>"))
-		to_chat(occupant, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
+		to_chat(occupant, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
+		occupant.log_message("was cloned with memory loss", LOG_ATTACK, color="green")
 		mob_occupant.flash_act()
 		GLOB.clones++
 
@@ -521,7 +532,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	. = ..()
 	if (!(. & EMP_PROTECT_SELF))
 		var/mob/living/mob_occupant = occupant
-		if(mob_occupant && prob(100/(severity*efficiency)))
+		if(mob_occupant && prob(10 * severity / efficiency))
 			log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to EMP pulse.")
 			connected_message(Gibberish("EMP-caused Accidental Ejection", 0))
 			SPEAK(Gibberish("Exposure to electromagnetic fields has caused the ejection of [mob_occupant.real_name] prematurely." ,0))

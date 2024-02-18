@@ -41,6 +41,7 @@
 	icon_state = "captain_skirt"
 	item_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -52,15 +53,28 @@
 	item_state = "lb_suit"
 	mutantrace_variation = MUTANTRACE_VARIATION
 
+/obj/item/clothing/under/rank/cargo/turtleneck
+	name = "quartermaster's turtleneck jumpsuit"
+	desc = "It's a fashionable turtleneck worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
+	icon_state = "turtleneck_qm"
+	item_state = "lb_suit"
+
 /obj/item/clothing/under/rank/cargo/skirt
 	name = "quartermaster's jumpskirt"
 	desc = "It's a jumpskirt worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
 	icon_state = "qm_skirt"
 	item_state = "lb_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/cargo/skirt/turtleneck
+	name = "quartermaster's skirtleneck"
+	desc = "It's a stylish skirtleneck worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
+	icon_state = "skirtleneckQM"
+	item_state = "lb_suit"
 
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo technician's jumpsuit"
@@ -72,6 +86,12 @@
 	alt_covers_chest = TRUE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
+/obj/item/clothing/under/rank/cargotech/turtleneck
+	name = "cargo technician's turtleneck jumpsuit"
+	desc = "Perfect for pushing crates and looking good while doing it! Shorts not included."
+	icon_state = "turtleneck_cargo"
+	item_state = "lb_suit"
+
 /obj/item/clothing/under/rank/cargotech/skirt
 	name = "cargo technician's jumpskirt"
 	desc = "Skiiiiirts! They're comfy and easy to wear!"
@@ -82,6 +102,12 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/cargotech/skirt/turtleneck
+	name = "cargo technician's skirtleneck"
+	desc = "Skiiiiirtlenecks! Even comfier and easier to wear!"
+	icon_state = "skirtleneck"
+	item_state = "lb_suit"
 
 /obj/item/clothing/under/rank/chaplain
 	desc = "It's a black jumpsuit, often worn by religious folk."
@@ -179,17 +205,26 @@
 	can_adjust = FALSE
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
-/obj/item/clothing/under/rank/clown/Initialize()
+/obj/item/clothing/under/rank/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/clothing/under/rank/head_of_personnel
-	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	name = "head of personnel's jumpsuit"
+	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	icon_state = "hop"
 	item_state = "b_suit"
 	can_adjust = FALSE
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/head_of_personnel/turtleneck
+	name = "head of personnel's turtleneck jumpsuit"
+	desc = "It's a comfy turtleneck jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
+	icon_state = "hopturtle"
+	item_state = "b_suit"
+	can_adjust = TRUE
 
 /obj/item/clothing/under/rank/head_of_personnel/skirt
 	name = "head of personnel's jumpskirt"
@@ -197,16 +232,24 @@
 	icon_state = "hop_skirt"
 	item_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/rank/head_of_personnel/skirt/turtleneck
+	name = "head of personnel's skirtleneck"
+	desc = "It's a fashionable skirtleneck worn by someone who works in the position of \"Head of Personnel\"."
+	icon_state = "hopturtle_skirt"
+	item_state = "b_suit"
+	can_adjust = TRUE
 
 /obj/item/clothing/under/rank/hydroponics
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
 	item_state = "g_suit"
-	permeability_coefficient = 0.5
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 5, RAD = 0, FIRE = 0, ACID = 0)
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/hydroponics/skirt
@@ -333,6 +376,7 @@
 	icon_state = "reallyblack_suit_skirt"
 	item_state = "bar_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -374,6 +418,7 @@
 	icon_state = "mime_skirt"
 	item_state = "mime"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION

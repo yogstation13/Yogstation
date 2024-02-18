@@ -95,6 +95,7 @@
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
 	thermal_conductivity = 0.04
 	canSmoothWith = list(/turf/closed/wall/mineral/plasma, /obj/structure/falsewall/plasma)
+	rad_insulation = RAD_FULL_INSULATION
 
 /turf/closed/wall/mineral/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot() > 300)//If the temperature of the object is over 300, then ignite
@@ -118,10 +119,10 @@
 	if(exposed_temperature > 300)
 		PlasmaBurn(exposed_temperature)
 
-/turf/closed/wall/mineral/plasma/bullet_act(obj/item/projectile/Proj)
-	if(istype(Proj, /obj/item/projectile/beam))
+/turf/closed/wall/mineral/plasma/bullet_act(obj/projectile/Proj)
+	if(istype(Proj, /obj/projectile/beam))
 		PlasmaBurn(2500)
-	else if(istype(Proj, /obj/item/projectile/ion))
+	else if(istype(Proj, /obj/projectile/ion))
 		PlasmaBurn(500)
 	. = ..()
 
@@ -147,7 +148,7 @@
 /turf/closed/wall/mineral/wood/attackby(obj/item/W, mob/user)
 	if(W.is_sharp() && W.force)
 		var/duration = (48/W.force) * 2 //In seconds, for now.
-		if(istype(W, /obj/item/hatchet) || istype(W, /obj/item/twohanded/fireaxe))
+		if(istype(W, /obj/item/hatchet) || istype(W, /obj/item/fireaxe))
 			duration /= 4 //Much better with hatchets and axes.
 		if(do_after(user, duration*10, src)) //Into deciseconds.
 			dismantle_wall(FALSE,FALSE)
@@ -268,6 +269,7 @@
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	smooth = SMOOTH_MORE|SMOOTH_DIAGONAL
 	canSmoothWith = list(/turf/closed/wall/mineral/plastitanium, /obj/machinery/door/airlock/shuttle, /obj/machinery/door/airlock, /obj/structure/window/plastitanium, /obj/structure/shuttle/engine, /obj/structure/falsewall/plastitanium)
+	rad_insulation = RAD_FULL_INSULATION
 
 /turf/closed/wall/mineral/plastitanium/nodiagonal
 	smooth = SMOOTH_MORE

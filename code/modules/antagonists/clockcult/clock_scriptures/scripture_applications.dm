@@ -113,7 +113,7 @@
 /datum/clockwork_scripture/create_object/construct/clockwork_marauder/scripture_effects()
 	. = ..()
 	recent_marauders++
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/marauder_reset),MARAUDER_SCRIPTURE_SCALING_THRESHOLD)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(marauder_reset)),MARAUDER_SCRIPTURE_SCALING_THRESHOLD)
 
 /proc/marauder_reset()
 	var/datum/clockwork_scripture/create_object/construct/clockwork_marauder/CM = new()

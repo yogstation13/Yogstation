@@ -16,12 +16,31 @@
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
 
+/proc/cmp_username_asc(datum/computer_file/program/pdamessager/a, datum/computer_file/program/pdamessager/b)
+	return sorttext(b.username, a.username)
+
+/proc/cmp_username_dsc(datum/computer_file/program/pdamessager/a, datum/computer_file/program/pdamessager/b)
+	return sorttext(a.username, b.username)
+
 GLOBAL_VAR_INIT(cmp_field, "name")
 /proc/cmp_records_asc(datum/data/record/a, datum/data/record/b)
 	return sorttext(b.fields[GLOB.cmp_field], a.fields[GLOB.cmp_field])
 
 /proc/cmp_records_dsc(datum/data/record/a, datum/data/record/b)
 	return sorttext(a.fields[GLOB.cmp_field], b.fields[GLOB.cmp_field])
+
+// Datum cmp with vars is always slower than a specialist cmp proc, use your judgement.
+/proc/cmp_datum_numeric_asc(datum/a, datum/b, variable)
+	return cmp_numeric_asc(a.vars[variable], b.vars[variable])
+
+/proc/cmp_datum_numeric_dsc(datum/a, datum/b, variable)
+	return cmp_numeric_dsc(a.vars[variable], b.vars[variable])
+
+/proc/cmp_datum_text_asc(datum/a, datum/b, variable)
+	return sorttext(b.vars[variable], a.vars[variable])
+
+/proc/cmp_datum_text_dsc(datum/a, datum/b, variable)
+	return sorttext(a.vars[variable], b.vars[variable])
 
 /proc/cmp_ckey_asc(client/a, client/b)
 	return sorttext(b.ckey, a.ckey)
@@ -103,6 +122,9 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 /proc/cmp_job_display_asc(datum/job/A, datum/job/B)
 	return A.display_order - B.display_order
 
+/proc/cmp_department_display_asc(datum/job_department/A, datum/job_department/B)
+	return A.display_order - B.display_order
+
 /proc/cmp_reagents_asc(datum/reagent/a, datum/reagent/b)
     return sorttext(initial(b.name),initial(a.name))
 
@@ -111,3 +133,20 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_typepaths_asc(A, B)
 	return sorttext("[B]","[A]")
+
+
+/**
+ * Sorts crafting recipe requirements before the crafting recipe is inserted into GLOB.crafting_recipes
+ *
+ * Prioritises [/datum/reagent] to ensure reagent requirements are always processed first when crafting.
+ * This prevents any reagent_containers from being consumed before the reagents they contain, which can
+ * lead to runtimes and item duplication when it happens.
+ */
+/proc/cmp_crafting_req_priority(A, B)
+	var/lhs
+	var/rhs
+
+	lhs = ispath(A, /datum/reagent) ? 0 : 1
+	rhs = ispath(B, /datum/reagent) ? 0 : 1
+
+	return lhs - rhs

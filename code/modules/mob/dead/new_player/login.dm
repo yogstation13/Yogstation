@@ -23,7 +23,11 @@
 	sight |= SEE_TURFS
 
 	new_player_panel()
-	client.playtitlemusic()
+	client?.playtitlemusic()
+
+	if(GLOB.admin_event)
+		GLOB.admin_event.show_info(src)
+
 	if(SSticker.current_state < GAME_STATE_SETTING_UP)
 		var/tl = SSticker.GetTimeLeft()
 		var/postfix

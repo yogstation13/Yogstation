@@ -11,7 +11,7 @@
 	var/calibrating
 	var/turf/target
 
-/obj/machinery/computer/teleporter/Initialize()
+/obj/machinery/computer/teleporter/Initialize(mapload)
 	. = ..()
 	id = "[rand(1000, 9999)]"
 	link_power_station()
@@ -66,13 +66,13 @@
 	switch(action)
 		if("regimeset")
 			power_station.engaged = FALSE
-			power_station.teleporter_hub.update_icon()
+			power_station.teleporter_hub.update_appearance(UPDATE_ICON)
 			power_station.teleporter_hub.calibrated = FALSE
 			reset_regime()
 			. = TRUE
 		if("settarget")
 			power_station.engaged = FALSE
-			power_station.teleporter_hub.update_icon()
+			power_station.teleporter_hub.update_appearance(UPDATE_ICON)
 			power_station.teleporter_hub.calibrated = FALSE
 			set_target(usr)
 			. = TRUE
@@ -86,7 +86,7 @@
 
 			say("Processing hub calibration to target...")
 			calibrating = TRUE
-			power_station.update_icon()
+			power_station.update_appearance(UPDATE_ICON)
 			spawn(50 * (3 - power_station.teleporter_hub.accuracy)) //Better parts mean faster calibration
 				calibrating = FALSE
 				if(check_hub_connection())
@@ -94,7 +94,7 @@
 					say("Calibration complete.")
 				else
 					say("Error: Unable to detect hub.")
-				power_station.update_icon()
+				power_station.update_appearance(UPDATE_ICON)
 			. = TRUE
 
 /obj/machinery/computer/teleporter/proc/check_hub_connection()
@@ -159,10 +159,10 @@
 		target_station.stat &= ~NOPOWER
 		if(target_station.teleporter_hub)
 			target_station.teleporter_hub.stat &= ~NOPOWER
-			target_station.teleporter_hub.update_icon()
+			target_station.teleporter_hub.update_appearance(UPDATE_ICON)
 		if(target_station.teleporter_console)
 			target_station.teleporter_console.stat &= ~NOPOWER
-			target_station.teleporter_console.update_icon()
+			target_station.teleporter_console.update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/teleporter/proc/is_eligible(atom/movable/AM)
 	var/turf/T = get_turf(AM)

@@ -25,7 +25,7 @@
 /obj/effect/accelerated_particle/New(loc)
 	..()
 
-	addtimer(CALLBACK(src, .proc/move), 1)
+	addtimer(CALLBACK(src, PROC_REF(move)), 1)
 
 
 /obj/effect/accelerated_particle/Bump(atom/A)
@@ -55,6 +55,9 @@
 /obj/effect/accelerated_particle/singularity_pull()
 	return
 
+/obj/effect/accelerated_particle/singularity_act()
+	return
+
 /obj/effect/accelerated_particle/proc/toxmob(mob/living/M)
 	M.rad_act(energy*6)
 
@@ -67,4 +70,4 @@
 		qdel(src)
 		return
 	movement_range--
-	addtimer(CALLBACK(src, .proc/move), speed)
+	addtimer(CALLBACK(src, PROC_REF(move)), speed)

@@ -8,7 +8,7 @@
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	ventcrawler = VENTCRAWLER_NUDE
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mob_size = MOB_SIZE_HUMAN //monkeeeee
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 5, /obj/item/stack/sheet/animalhide/monkey = 1)
 	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/monkey
@@ -45,6 +45,7 @@
 
 	create_dna(src)
 	dna.initialize_dna(random_blood_type())
+	AddComponent(/datum/component/bloodysoles/feet)
 
 /mob/living/carbon/monkey/Destroy()
 	SSmobs.cubemonkeys -= src
@@ -99,13 +100,6 @@
 			. += ""
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
-
-/mob/living/carbon/monkey/verb/removeinternal()
-	set name = "Remove Internals"
-	set category = "IC"
-	internal = null
-	return
-
 
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
 	if(mind && is_monkey(mind))
@@ -165,9 +159,9 @@
 /mob/living/carbon/monkey/angry
 	aggressive = TRUE
 
-/mob/living/carbon/monkey/angry/Initialize()
+/mob/living/carbon/monkey/angry/Initialize(mapload)
 	. = ..()
 	if(prob(10))
 		var/obj/item/clothing/head/helmet/justice/escape/helmet = new(src)
-		equip_to_slot_or_del(helmet,SLOT_HEAD)
+		equip_to_slot_or_del(helmet,ITEM_SLOT_HEAD)
 		helmet.attack_self(src) // todo encapsulate toggle

@@ -12,10 +12,11 @@
 	maxbodytemp = INFINITY
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
+	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	response_help  = "pokes"
 	response_disarm = "shoos"
 	response_harm   = "splats"
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	speak_emote = list("chitters")
 	density = FALSE
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -32,7 +33,7 @@
 		return
 	..()
 
-/mob/living/simple_animal/cockroach/Crossed(var/atom/movable/AM)
+/mob/living/simple_animal/cockroach/Crossed(atom/movable/AM)
 	. = ..()
 	if(ismob(AM))
 		if(isliving(AM))

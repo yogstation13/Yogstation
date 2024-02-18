@@ -133,7 +133,7 @@ Contains:
 
 /obj/item/clothing/suit/space/pirate
 	name = "syndicate pirate coat"
-	desc = "Argh! The standard armor of freelance forces contracted by the Syndicate to terrorize and disrupt commercial operations."
+	desc = "Arrrgh! The standard armor of freelance forces contracted by the Syndicate to terrorize and disrupt commercial operations."
 	icon_state = "pirate"
 	item_state = "pirate"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -146,7 +146,7 @@ Contains:
 
 /obj/item/clothing/suit/space/pirate/captain
 	name = "syndicate pirate captain coat"
-	desc = "Argh! Adorned with immeasurable protection, this coat serves the most fearsome Syndicate pirates in their neverending quest of loot."
+	desc = "Arrrgh! Adorned with immeasurable protection, this coat serves the most fearsome Syndicate pirates in their neverending quest of loot."
 	armor = list(MELEE = 40, BULLET = 60, LASER = 40, ENERGY = 25, BOMB = 50, BIO = 30, RAD = 30, FIRE = 100, ACID = 100, WOUND = 10)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "hgpirate"

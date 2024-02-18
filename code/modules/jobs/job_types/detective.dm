@@ -1,46 +1,69 @@
 /datum/job/detective
 	title = "Detective"
-	flag = DETECTIVE
+	description = "Investigate crimes, gather evidence, perform interrogations, \
+		look badass, smoke cigarettes."
+	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
 	selection_color = "#ffeeee"
 	minimal_player_age = 7
-	exp_requirements = 300
-	exp_type = EXP_TYPE_CREW
+	exp_requirements = 180
+	exp_type = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/detective
 
-	alt_titles = list("Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector")
+	alt_titles = list("Forensic Analyst", "Private Eye")
 
-	access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
+	added_access = list()
+	base_access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SEC
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
+	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/security,
+	)
 
-/datum/job/detective/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 2
+	mail_goodies = list(
+		///obj/item/storage/fancy/cigarettes = 25,
+		/obj/item/ammo_box/c38/rubber = 25,
+		/obj/item/ammo_box/c38 = 5,
+		///obj/item/ammo_box/c38/dumdum = 5,
+		///obj/item/ammo_box/c38/match = 5,
+		///obj/item/storage/belt/holster/detective/full = 1
+	)
+	
+	minimal_lightup_areas = list(/area/medical/morgue, /area/security/detectives_office)
 
-/datum/job/detective/proc/OmegaStationChanges()
-	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	supervisors = "the captain"
+	smells_like = "whisky-soaked despair"
+
+/datum/job/detective/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	if(M?.client?.prefs)
+		var/obj/item/badge/security/badge
+		switch(M.client.prefs.exp[title] / 60)
+			if(200 to INFINITY)
+				badge = new /obj/item/badge/security/det3
+			if(50 to 200)
+				badge = new /obj/item/badge/security/det2
+			else
+				badge = new /obj/item/badge/security/det1
+		badge.owner_string = H.real_name
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(badge)
 
 /datum/outfit/job/detective
 	name = "Detective"
 	jobtype = /datum/job/detective
 
-	pda_type = /obj/item/pda/detective
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/det
@@ -55,8 +78,7 @@
 	r_pocket = /obj/item/lighter
 	backpack_contents = list(/obj/item/storage/box/evidence=1,\
 		/obj/item/detective_scanner=1,\
-		/obj/item/melee/classic_baton=1,\
-		/obj/item/modular_computer/tablet/pda/preset/basic=1)
+		/obj/item/melee/classic_baton=1)
 	mask = /obj/item/clothing/mask/cigarette
 
 	implants = list(/obj/item/implant/mindshield)

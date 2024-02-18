@@ -3,7 +3,13 @@
 	desc = "Used to order supplies, approve requests, and control the shuttle."
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
+	light_color = "#E2853D"//orange
+	///Can the supply console send the shuttle back and forth? Used in the UI backend.
+	var/can_send = TRUE
+	///Can this console only send requests?
 	var/requestonly = FALSE
+	///Can you approve requests placed for cargo? Works differently between the app and the computer.
+	var/can_approve_requests = TRUE
 	var/contraband = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
 		cannot transport live organisms, human remains, classified nuclear weaponry \
@@ -11,16 +17,16 @@
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 	var/self_paid = FALSE
 
-	light_color = "#E2853D"//orange
-
 /obj/machinery/computer/cargo/request
 	name = "supply request console"
 	desc = "Used to request supplies from cargo."
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/computer/cargo/request
 	requestonly = TRUE
+	can_send = FALSE
+	can_approve_requests = FALSE
 
-/obj/machinery/computer/cargo/Initialize()
+/obj/machinery/computer/cargo/Initialize(mapload)
 	. = ..()
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	contraband = board.contraband
@@ -36,9 +42,9 @@
 	if(obj_flags & EMAGGED)
 		. |= EXPORT_EMAG
 
-/obj/machinery/computer/cargo/emag_act(mob/user)
+/obj/machinery/computer/cargo/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	user.visible_message(span_warning("[user] swipes a suspicious card through [src]!"),
 	span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
 
@@ -50,6 +56,7 @@
 	board.contraband = TRUE
 	board.obj_flags |= EMAGGED
 	update_static_data(user)
+	return TRUE
 
 /obj/machinery/computer/cargo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -68,6 +75,8 @@
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
+	data["can_send"] = can_send
+	data["can_approve_requests"] = can_approve_requests
 	var/message = "Remember to stamp and send back the supply manifests."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
@@ -81,7 +90,8 @@
 			"cost" = SO.pack.get_cost(),
 			"id" = SO.id,
 			"orderer" = SO.orderer,
-			"paid" = !isnull(SO.paying_account) //paid by requester
+			"paid" = !isnull(SO.paying_account), //paid by requester
+			"budget" = SO.budget
 		))
 
 	data["requests"] = list()
@@ -91,7 +101,8 @@
 			"cost" = SO.pack.get_cost(),
 			"orderer" = SO.orderer,
 			"reason" = SO.reason,
-			"id" = SO.id
+			"id" = SO.id,
+			"budget" = SO.budget
 		))
 
 	return data

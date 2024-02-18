@@ -1,4 +1,4 @@
-/obj/item/ammo_casing/proc/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
+/obj/item/ammo_casing/proc/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from, cd_override_arg = FALSE)
 	distro += variance
 	for (var/i = max(1, pellets), i > 0, i--)
 		var/targloc = get_turf(target)
@@ -12,12 +12,14 @@
 			return 0
 		if(i > 1)
 			newshot()
-	if(click_cooldown_override)
+	if(cd_override_arg)
+		user.changeNext_move(cd_override_arg)
+	else if (click_cooldown_override)
 		user.changeNext_move(click_cooldown_override)
 	else
 		user.changeNext_move(CLICK_CD_RANGE)
 	user.newtonian_move(get_dir(target, user))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/ammo_casing/proc/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
@@ -53,8 +55,9 @@
 			direct_target = target
 	if(!direct_target)
 		BB.preparePixelProjectile(target, user, params, spread)
-	BB.fire(null, direct_target)
+	var/obj/projectile/old_BB = BB // Need to set BB to null first, otherwise casings that create new projectiles when they land witll break if fired point blank
 	BB = null
+	old_BB.fire(null, direct_target)
 	return TRUE
 
 /obj/item/ammo_casing/proc/spread(turf/target, turf/current, distro)

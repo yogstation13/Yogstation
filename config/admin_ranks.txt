@@ -4,13 +4,12 @@
 # Rank is CASE-SENSITIVE, all punctuation save for '-', '_' and '@' will be stripped so spaces don't matter. #
 # You can then define permissions for each rank by adding a '=' followed by keywords                         #
 # These keywords represent groups of verbs and abilities.                                                    #
-# keywords are preceded by a '+', '-' or '*' + adds permissions, - takes them away.							 #
-# * is used only with SQL-based admin loading to denote what permissions the rank is allowed to edit		 #
+# keywords are preceded by a '+'.																			 #
 # +@ (or +prev) is a special shorthand which adds all the rights of the rank above it.                       #
 # Ranks with no keywords will just be given the most basic verbs and abilities                ~Carn          #
 ##############################################################################################################
 # PLEASE NOTE: depending on config options, some abilities will be unavailable regardless if you have permission to use them!
-# If SQL-based admin loading is enabled, ranks and their keywords listed here will be loaded first and override any with the same name loaded from the database.
+# If network-based admin loading is enabled, ranks and their keywords listed here will be used for protected admins and temporary rank changes
 
 # Follow the format below when documenting new keywords so the server tools may parse it
 
@@ -35,37 +34,16 @@
 # END_KEYWORDS
 
  
-Host	=	+EVERYTHING *EVERYTHING
+Host	=	+EVERYTHING
  
-Council Member	=	+EVERYTHING *EVERYTHING
+Council Member	=	+EVERYTHING
  
-Head Developer	=	+EVERYTHING *EVERYTHING
+Head Developer	=	+EVERYTHING
 
-SysOp	=	+EVERYTHING *EVERYTHING
- 
-#Senior Admin	=	+EVERYTHING *EVERYTHING -DEV
- 
-#Community Manager	=	+EVERYTHING *EVERYTHING -DEV
- 
-#Primary Admin	=	+STEALTH +ADMIN +BASIC +BAN +SPAWN +VAREDIT +DEBUG +SERVER +FUN +POSSESS +BUILD +TICKET +SOUND
- 
-#Administrator-Mainterino	=	+STEALTH +ADMIN +BASIC +BAN +SPAWN +VAREDIT +DEBUG +SERVER +FUN +TICKET +BUILD +POLL +DEV
- 
-#Administrator	=	+STEALTH +ADMIN +BASIC +BAN +SPAWN +VAREDIT +DEBUG +SERVER +FUN +TICKET +BUILD
- 
-#Moderator-Mainterino	=	+STEALTH +ADMIN +VAREDIT +DEBUG +SERVER +BASIC +SPAWN +POLL +BAN +DEV
- 
-#Moderator	=	+STEALTH +ADMIN +BASIC +BAN +TICKET
- 
-#Retired Admin	=	+ADMIN +STEALTH +BASIC +SERVER +BAN +TICKET +VAREDIT
- 
-#Admin Observer	=	+STEALTH
-  
-#Maintainer	=	+STEALTH +ADMIN +VAREDIT +DEBUG +SERVER +BASIC +SPAWN +POLL -AUTOLOGIN +DEV
- 
-#LogDiver	=	
- 
-#Forum Mod	=	
- 
-#Bot	=	+EVERYTHING *EVERYTHING
+SysOp	=	+EVERYTHING
 
+Administrator	=	+STEALTH +ADMIN +BASIC +BAN +SPAWN +VAREDIT +DEBUG +SERVER +FUN +TICKET +BUILD +AUTOLOGIN
+
+Admin Observer	=	+STEALTH +AUTOLOGIN
+
+Maintainer	=	+STEALTH +ADMIN +VAREDIT +DEBUG +SERVER +BASIC +SPAWN +POLL +DEV

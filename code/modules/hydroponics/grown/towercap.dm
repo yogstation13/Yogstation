@@ -162,7 +162,7 @@
 /obj/structure/bonfire/dense
 	density = TRUE
 
-/obj/structure/bonfire/prelit/Initialize()
+/obj/structure/bonfire/prelit/Initialize(mapload)
 	. = ..()
 	StartBurning()
 
@@ -219,7 +219,7 @@
 		return
 	if(!has_buckled_mobs() && do_after(user, 5 SECONDS, src))
 		for(var/I in 1 to 5)
-			var/obj/item/grown/log/L = new /obj/item/grown/log(src.loc)
+			var/obj/item/grown/log/L = new /obj/item/grown/log(loc)
 			L.pixel_x += rand(1,4)
 			L.pixel_y += rand(1,4)
 		if(can_buckle || grill)
@@ -231,12 +231,15 @@
 	if(isopenturf(loc))
 		var/turf/open/O = loc
 		if(O.air)
-			if(O.air.get_moles(/datum/gas/oxygen) > 13)
+			if(O.air.get_moles(GAS_O2) > 13)
 				return TRUE
 	return FALSE
 
 /obj/structure/bonfire/proc/StartBurning()
 	if(!burning && CheckOxygen())
+		add_emitter(/obj/emitter/fire, "fire")
+		add_emitter(/obj/emitter/sparks/fire, "fire_spark")
+		add_emitter(/obj/emitter/fire_smoke, "smoke", 9)
 		icon_state = burn_icon
 		burning = TRUE
 		set_light(6)
@@ -251,21 +254,21 @@
 	if(burning & !grill)
 		Burn()
 
-/obj/structure/bonfire/proc/Burn()
+/obj/structure/bonfire/proc/Burn(delta_time = 2)
 	var/turf/current_location = get_turf(src)
-	current_location.hotspot_expose(1000,500,1)
+	current_location.hotspot_expose(1000,250 * delta_time,1)
 	for(var/A in current_location)
 		if(A == src)
 			continue
 		if(isobj(A))
 			var/obj/O = A
-			O.fire_act(1000, 500)
+			O.fire_act(1000, 250 * delta_time)
 		else if(isliving(A))
 			var/mob/living/L = A
-			L.adjust_fire_stacks(fire_stack_strength)
-			L.IgniteMob()
+			L.adjust_fire_stacks(fire_stack_strength * 0.5 * delta_time)
+			L.ignite_mob()
 
-/obj/structure/bonfire/proc/Cook()
+/obj/structure/bonfire/proc/Cook(delta_time = 2)
 	var/turf/current_location = get_turf(src)
 	for(var/A in current_location)
 		var/obj/G = A
@@ -273,29 +276,32 @@
 			continue
 		else if(isliving(A)) //It's still a fire, idiot.
 			var/mob/living/L = A
-			L.adjust_fire_stacks(fire_stack_strength)
-			L.IgniteMob()
+			L.adjust_fire_stacks(fire_stack_strength * 0.5 * delta_time)
+			L.ignite_mob()
 		else if(G.GetComponent(/datum/component/grillable))
 			if(SEND_SIGNAL(G, COMSIG_ITEM_GRILLED, src) & COMPONENT_HANDLED_GRILLING)
 				continue
 			G.fire_act(1000) //Hot hot hot!
-			if(prob(10))
+			if(DT_PROB(5, delta_time))
 				visible_message("<span class='danger'>[G] doesn't seem to be doing too great on [src]!</span>")
-		else if(istype(A, /obj/item) && prob(20))
+		else if(istype(A, /obj/item) && DT_PROB(10, delta_time))
 			var/obj/item/O = A
 			O.microwave_act()
 
-/obj/structure/bonfire/process()
+/obj/structure/bonfire/process(delta_time)
 	if(!CheckOxygen())
 		extinguish()
 		return
 	if(!grill)
-		Burn()
+		Burn(delta_time)
 	else
-		Cook()
+		Cook(delta_time)
 
 /obj/structure/bonfire/extinguish()
 	if(burning)
+		remove_emitter("fire")
+		remove_emitter("fire_spark")
+		remove_emitter("smoke")
 		icon_state = "bonfire"
 		burning = 0
 		set_light(0)

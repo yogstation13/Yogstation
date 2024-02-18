@@ -49,6 +49,7 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/cracker/ = 1)
 	melee_damage_upper = 10
 	melee_damage_lower = 5
+	attack_vis_effect = ATTACK_EFFECT_BITE
 
 	response_help  = "pets"
 	response_disarm = "gently moves aside"
@@ -98,7 +99,7 @@
 	var/obj/item/held_item = null
 
 
-/mob/living/simple_animal/parrot/Initialize()
+/mob/living/simple_animal/parrot/Initialize(mapload)
 	. = ..()
 	if(!ears)
 		var/headset = pick(/obj/item/radio/headset/headset_sec, \
@@ -233,7 +234,7 @@
 					ears = headset_to_add
 					to_chat(usr, span_notice("You fit the headset onto [src]."))
 
-					clearlist(available_channels)
+					LAZYCLEARLIST(available_channels)
 					for(var/ch in headset_to_add.channels)
 						switch(ch)
 							if(RADIO_CHANNEL_ENGINEERING)
@@ -331,7 +332,7 @@
 	return
 
 //Bullets
-/mob/living/simple_animal/parrot/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/parrot/bullet_act(obj/projectile/Proj)
 	. = ..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)
@@ -346,7 +347,7 @@
 /*
  * AI - Not really intelligent, but I'm calling it AI anyway.
  */
-/mob/living/simple_animal/parrot/Life()
+/mob/living/simple_animal/parrot/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 
 	//Sprite update for when a parrot gets pulled
@@ -870,7 +871,7 @@
 	var/longest_survival = 0
 	var/longest_deathstreak = 0
 
-/mob/living/simple_animal/parrot/Poly/Initialize()
+/mob/living/simple_animal/parrot/Poly/Initialize(mapload)
 	ears = new /obj/item/radio/headset/headset_eng(src)
 	available_channels = list(":e")
 	Read_Memory()
@@ -891,7 +892,7 @@
 
 	. = ..()
 
-/mob/living/simple_animal/parrot/Poly/Life()
+/mob/living/simple_animal/parrot/Poly/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE
@@ -966,7 +967,7 @@
 	sentience_type = SENTIENCE_BOSS
 	butcher_results = list(/obj/item/ectoplasm = 1)
 
-/mob/living/simple_animal/parrot/Poly/ghost/Initialize()
+/mob/living/simple_animal/parrot/Poly/ghost/Initialize(mapload)
 	LoadComponent(/datum/component/walk/jaunt)
 	memory_saved = TRUE //At this point nothing is saved
 	. = ..()

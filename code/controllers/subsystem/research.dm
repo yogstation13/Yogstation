@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(research)
 	var/list/techweb_designs = list()			//associative id = node datum
 	var/list/datum/techweb/techwebs = list()
 	var/datum/techweb/science/science_tech
+	var/datum/techweb/ruin/ruin_tech
 	var/datum/techweb/admin/admin_tech
 	var/datum/techweb_node/error_node/error_node	//These two are what you get if a node/design is deleted and somehow still stored in a console.
 	var/datum/design/error_design/error_design
@@ -37,6 +38,11 @@ SUBSYSTEM_DEF(research)
 	var/last_income = 0
 	//^^^^^^^^ ALL OF THESE ARE PER SECOND! ^^^^^^^^
 
+	/// A list of all master servers. If none of these have a source code HDD, research point generation is lowered.
+	var/list/obj/machinery/rnd/server/master/master_servers = list()
+	/// The multiplier to research points when no source code HDD is present.
+	var/no_source_code_income_modifier = 0.5
+
 	//Aiming for 1.5 hours to max R&D
 	//[88nodes * 5000points/node] / [1.5hr * 90min/hr * 60s/min]
 	//Around 450000 points max???
@@ -46,11 +52,12 @@ SUBSYSTEM_DEF(research)
 	initialize_all_techweb_designs()
 	initialize_all_techweb_nodes()
 	science_tech = new /datum/techweb/science
+	ruin_tech = new /datum/techweb/ruin
 	admin_tech = new /datum/techweb/admin
 	autosort_categories()
 	error_design = new
 	error_node = new
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/research/fire()
 	handle_research_income()
@@ -59,25 +66,32 @@ SUBSYSTEM_DEF(research)
 	var/list/bitcoins = list()
 	if(multiserver_calculation)
 		var/eff = calculate_server_coefficient()
-		for(var/obj/machinery/rnd/server/miner in servers)
+		for(var/obj/machinery/rnd/server/miner as anything in servers)
 			var/list/result = (miner.mine())	//SLAVE AWAY, SLAVE.
 			for(var/i in result)
 				result[i] *= eff
 				bitcoins[i] = bitcoins[i]? bitcoins[i] + result[i] : result[i]
 	else
-		for(var/obj/machinery/rnd/server/miner in servers)
+		for(var/obj/machinery/rnd/server/miner as anything in servers)
 			if(miner.working)
 				bitcoins = single_server_income.Copy()
 				break			//Just need one to work.
+	var/bitcoin_multiplier = no_source_code_income_modifier
+	for(var/obj/machinery/rnd/server/master/master_server as anything in master_servers)
+		if(master_server.source_code_hdd)
+			bitcoin_multiplier = 1
+			break
 	var/income_time_difference = world.time - last_income
 	science_tech.last_bitcoins = bitcoins  // Doesn't take tick drift into account
 	for(var/i in bitcoins)
 		bitcoins[i] *= income_time_difference / 10
 		if(science_tech.stored_research_points[i])
 			var/boost_amt = clamp(0, bitcoins[i], science_tech.stored_research_points[i]) //up to 2x research speed when burning stored research
-			bitcoins[i] += boost_amt
+			bitcoins[i] += boost_amt * bitcoin_multiplier
 			science_tech.remove_stored_point_type(i, boost_amt)
 	science_tech.add_point_list(bitcoins)
+	//add RUIN_GENERATION_PER_TICK even without any servers, for things like freeminers
+	ruin_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = RUIN_GENERATION_PER_TICK, TECHWEB_POINT_TYPE_NANITES = NANITES_RESEARCH_RUIN_PER_TICK))
 	last_income = world.time
 
 /datum/controller/subsystem/research/proc/calculate_server_coefficient()	//Diminishing returns.

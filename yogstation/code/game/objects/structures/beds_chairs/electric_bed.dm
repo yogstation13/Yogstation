@@ -26,9 +26,9 @@
 	var/area/A = get_area(src)
 	if(!isarea(A))
 		return
-	if(!A.powered(EQUIP))
+	if(!A.powered(AREA_USAGE_EQUIP))
 		return
-	A.use_power(EQUIP, 5000)
+	A.use_power(AREA_USAGE_EQUIP, 5000)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, src)
@@ -41,8 +41,8 @@
 			var/mob/living/buckled_mob = m
 			buckled_mob.electrocute_act(170, src, 1)
 			to_chat(buckled_mob, span_userdanger("You feel a deep shock course through your body!"))
-		addtimer(CALLBACK(src, /obj/structure/bed/roller/e_roller.proc/after_shock), 10)
-		addtimer(CALLBACK(src, /obj/structure/bed/roller/e_roller.proc/correct_mobs), 30)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/bed/roller/e_roller, after_shock)), 10)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/bed/roller/e_roller, correct_mobs)), 30)
 	visible_message(span_danger("The electric roller bed went off!"), span_italics("You hear a deep sharp shock!"))
 
 /obj/structure/bed/roller/e_roller/proc/after_shock()
@@ -53,7 +53,7 @@
 	for(var/M in buckled_mobs)
 		var/mob/living/buckled_mob = M
 		buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
-		buckled_mob.jitteriness = 0
+		buckled_mob.remove_status_effect(/datum/status_effect/jitter)
 
 /obj/structure/bed/roller/e_roller/MouseDrop()
 	return

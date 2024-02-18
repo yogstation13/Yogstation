@@ -15,7 +15,7 @@
 	var/votes_needed = 0 //How many votes are needed to activate the beacon
 	var/available = FALSE //If the beacon can be used
 
-/obj/structure/destructible/clockwork/heralds_beacon/Initialize()
+/obj/structure/destructible/clockwork/heralds_beacon/Initialize(mapload)
 	. = ..()
 	voters = list()
 	START_PROCESSING(SSprocessing, src)

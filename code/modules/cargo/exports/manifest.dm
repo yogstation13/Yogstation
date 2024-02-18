@@ -17,7 +17,7 @@
 // Correctly denied manifest.
 // Refunds the package cost minus the cost of crate.
 /datum/export/manifest_error_denied
-	cost = -500
+	cost = 500
 	unit_name = "correctly denied manifest"
 	export_types = list(/obj/item/paper/fluff/jobs/cargo/manifest)
 
@@ -58,7 +58,7 @@
 // Erroneously denied manifest.
 // Substracts the package cost minus the cost of crate.
 /datum/export/manifest_correct_denied
-	cost = 500
+	cost = -500
 	unit_name = "erroneously denied manifest"
 	export_types = list(/obj/item/paper/fluff/jobs/cargo/manifest)
 

@@ -12,7 +12,7 @@
 	item_state = "scaryclownuniform"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/rank/yogs/scaryclown/Initialize()
+/obj/item/clothing/under/rank/yogs/scaryclown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
@@ -220,32 +220,39 @@
 	item_state = "cowboy"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/bluedetective
+/obj/item/clothing/under/rank/det/yogs
+	name = "black detective suit"
+	desc = "A suit often worn by those detective types. Now in black!"
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/uniform/uniform.dmi'
+	icon = 'yogstation/icons/obj/clothing/uniforms.dmi'
+	icon_state = "black_detective"
+	item_state = "black_detective"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/det/yogs/bluedetective
 	name = "blue detective suit"
 	desc = "A suit often worn by those detective types. Now in blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_detective"
-	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/golddetective
+/obj/item/clothing/under/rank/det/yogs/golddetective
 	name = "gold detective suit"
 	desc = "A suit often worn by those detective types. Now in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_detective"
+	can_adjust = TRUE
 
-/obj/item/clothing/under/yogs/greydetective
+/obj/item/clothing/under/rank/det/yogs/greydetective
 	name = "grey detective suit"
 	desc = "A suit often worn by those detective types. Now in boring old grey!"
 	icon_state = "grey_detective"
 	item_state = "grey_detective"
-	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/blackdetective
-	name = "black detective suit"
-	desc = "A suit often worn by those detective types. Now in black!"
-	icon_state = "black_detective"
-	item_state = "black_detective"
-	can_adjust = FALSE
+/obj/item/clothing/under/rank/det/yogs/forensictech
+	name = "forensic technician suit"
+	desc = "Hmm, this bloody toolbox has insulated fibers on it..."
+	icon_state = "forensic_tech"
+	item_state = "forensic_tech"
 
 /obj/item/clothing/under/yogs/whitetuxedo
 	name = "white tuxedo"
@@ -301,7 +308,7 @@
 	desc = "Are we making meth or growing plants?"
 	icon_state = "botany_uniform"
 	item_state = "botany_uniform"
-	permeability_coefficient = 0.5
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0)
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/casualcaptain
@@ -390,13 +397,6 @@
 	desc = "Even the HoP has to take a break from giving all access to the crew sometimes."
 	icon_state = "hop_suit"
 	item_state = "hop_suit"
-	can_adjust = FALSE
-
-/obj/item/clothing/under/yogs/forensictech
-	name = "forensic technician suit"
-	desc = "Hmm, this bloody toolbox has insulated fibers on it..."
-	icon_state = "forensic_tech"
-	item_state = "forensic_tech"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/bluetunic
@@ -546,12 +546,6 @@
 	icon_state = "victorianreddress"
 	item_state = "victorianreddress"
 	can_adjust = FALSE
-
-/obj/item/clothing/under/yogs/shitcurity
-	name = "shitcurity uniform"
-	desc = "For the security members that want to show their true colors."
-	icon_state = "altsecurity"
-	item_state = "altsecurity"
 
 /obj/item/clothing/under/yogs/victoriouscaptainuniform
 	name = "very fancy captain uniform"

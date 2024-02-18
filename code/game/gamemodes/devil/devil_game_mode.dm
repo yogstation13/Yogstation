@@ -5,12 +5,14 @@
 	antag_flag = ROLE_DEVIL
 	false_report_weight = 1
 	protected_jobs = list("Lawyer", "Curator", "Chaplain", "Head of Security", "Captain", "AI")
-	required_players = 0
+	required_players = 25
 	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
 	enemy_minimum_age = 0
 	title_icon = "devil"
+	restricted_jobs = list("Cyborg", "AI")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician") //YOGS -  added the hop and brig physician
 
 	var/traitors_possible = 4 //hard limit on devils if scaling is turned off
 	var/num_modifier = 0 // Used for gamemodes, that are a child of traitor, that need more than the usual.

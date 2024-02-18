@@ -6,8 +6,7 @@
 /mob/living/carbon/human/canBeHandcuffed()
 	if(get_num_arms(FALSE) >= 2)
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
@@ -31,8 +30,11 @@
 	if(id)
 		return id.registered_name
 	var/obj/item/pda/pda = wear_id
+	var/obj/item/modular_computer/tablet/tablet = wear_id
 	if(istype(pda))
 		return pda.owner
+	if(istype(tablet))
+		return tablet.name
 	return if_no_id
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a separate proc as it'll be useful elsewhere
@@ -140,17 +142,15 @@
 	. = ..()
 
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
-		if(src.dna.check_mutation(HULK) || src.dna.check_mutation(ACTIVE_HULK))
+		if(src.dna.check_mutation(HULK))
 			to_chat(src, span_warning("Your meaty finger is much too large for the trigger guard!"))
 			return FALSE
 		if(HAS_TRAIT(src, TRAIT_NOGUNS))
 			to_chat(src, span_warning("Your fingers don't fit in the trigger guard!"))
 			return FALSE
-	if(mind)
-		if(mind.martial_art && mind.martial_art.no_guns) //great dishonor to famiry
-			to_chat(src, span_warning("Use of ranged weaponry would bring dishonor to the clan."))
-			return FALSE
-
+	if(mind?.martial_art?.no_guns && !(G.type in mind?.martial_art?.gun_exceptions)) //great dishonor to famiry
+		to_chat(src, span_warning(mind.martial_art.no_gun_message))
+		return FALSE
 	return .
 
 /mob/living/carbon/human/proc/get_bank_account()
@@ -184,7 +184,7 @@
 /// When we're joining the game in [/mob/dead/new_player/proc/create_character], we increment our scar slot then store the slot in our mind datum.
 /mob/living/carbon/human/proc/increment_scar_slot()
 	var/check_ckey = ckey || client?.ckey
-	if(!check_ckey || !mind || !client?.prefs.persistent_scars)
+	if(!check_ckey || !mind || !client?.prefs.read_preference(/datum/preference/toggle/persistent_scars))
 		return
 
 	var/path = "data/player_saves/[check_ckey[1]]/[check_ckey]/scars.sav"
@@ -229,7 +229,7 @@
 
 /// Read all the scars we have for the designated character/scar slots, verify they're good/dump them if they're old/wrong format, create them on the user, and write the scars that passed muster back to the file
 /mob/living/carbon/human/proc/load_persistent_scars()
-	if(!ckey || !mind?.original_character_slot_index || !client?.prefs.persistent_scars)
+	if(!ckey || !mind?.original_character_slot_index || !client?.prefs.read_preference(/datum/preference/toggle/persistent_scars))
 		return
 
 	var/path = "data/player_saves/[ckey[1]]/[ckey]/scars.sav"
@@ -255,7 +255,7 @@
 
 /// Save any scars we have to our designated slot, then write our current slot so that the next time we call [/mob/living/carbon/human/proc/increment_scar_slot] (the next round we join), we'll be there
 /mob/living/carbon/human/proc/save_persistent_scars(nuke=FALSE)
-	if(!ckey || !mind?.original_character_slot_index || !client?.prefs.persistent_scars)
+	if(!ckey || !mind?.original_character_slot_index || !client?.prefs.read_preference(/datum/preference/toggle/persistent_scars))
 		return
 
 	var/path = "data/player_saves/[ckey[1]]/[ckey]/scars.sav"
@@ -277,3 +277,164 @@
 
 /mob/living/carbon/human/get_biological_state()
 	return dna.species.get_biological_state()
+
+/mob/living/carbon/human/proc/get_punchdamagehigh()	//Gets the total maximum punch damage
+	return dna.species.punchdamagehigh + physiology.punchdamagehigh_bonus
+
+/mob/living/carbon/human/proc/get_punchdamagelow()	//Gets the total minimum punch damage
+	return dna.species.punchdamagelow + physiology.punchdamagelow_bonus
+
+/mob/living/carbon/human/proc/get_punchstunthreshold()	//Gets the total punch damage needed to knock down someone
+	return dna.species.punchstunthreshold + physiology.punchstunthreshold_bonus
+
+/// Fully randomizes everything according to the given flags.
+/mob/living/carbon/human/proc/randomize_human_appearance(randomize_flags = ALL)
+	var/datum/preferences/preferences = new
+
+	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if (!preference.included_in_randomization_flags(randomize_flags))
+			continue
+
+		if (preference.is_randomizable())
+			preferences.write_preference(preference, preference.create_random_value(preferences))
+
+/proc/visually_duplicate_human(mob/living/carbon/human/copied_human_mob, dropdel = FALSE)
+	if(!istype(copied_human_mob))
+		return FALSE
+
+	var/mob/living/carbon/human/new_human_mob = new copied_human_mob.type // in case it's a special type with special inits
+
+	if(copied_human_mob.dna?.species)
+		INVOKE_ASYNC(new_human_mob, TYPE_PROC_REF(/mob,set_species), new copied_human_mob.dna.species.type)
+		new_human_mob.dna.features = LAZYCOPY(copied_human_mob.dna.features)
+
+	new_human_mob.real_name = copied_human_mob.name
+	new_human_mob.name = copied_human_mob.name
+	new_human_mob.gender = copied_human_mob.gender
+	new_human_mob.eye_color = copied_human_mob.eye_color
+	var/obj/item/organ/eyes/organ_eyes = new_human_mob.getorgan(/obj/item/organ/eyes)
+	if(organ_eyes)
+		organ_eyes.eye_color = copied_human_mob.eye_color
+		organ_eyes.old_eye_color = copied_human_mob.eye_color
+	new_human_mob.hair_color = copied_human_mob.hair_color
+	new_human_mob.facial_hair_color = copied_human_mob.facial_hair_color
+	new_human_mob.skin_tone = copied_human_mob.skin_tone
+	new_human_mob.hair_style = copied_human_mob.hair_style
+	new_human_mob.facial_hair_style = copied_human_mob.facial_hair_style
+	new_human_mob.underwear = copied_human_mob.underwear
+	new_human_mob.undershirt = copied_human_mob.undershirt
+	new_human_mob.socks = copied_human_mob.socks
+	new_human_mob.update_body()
+	new_human_mob.update_hair()
+	new_human_mob.update_body_parts()
+
+	// Clothes for humans
+	if(copied_human_mob.w_uniform)
+		visually_duplicate_and_equip_item(copied_human_mob.w_uniform, ITEM_SLOT_ICLOTHING, new_human_mob, dropdel)
+	if(copied_human_mob.wear_suit)
+		visually_duplicate_and_equip_item(copied_human_mob.wear_suit, ITEM_SLOT_OCLOTHING, new_human_mob, dropdel)
+	if(copied_human_mob.s_store)
+		visually_duplicate_and_equip_item(copied_human_mob.s_store, ITEM_SLOT_SUITSTORE, new_human_mob, dropdel)
+	if(copied_human_mob.back)
+		visually_duplicate_and_equip_item(copied_human_mob.back, ITEM_SLOT_BACK, new_human_mob, dropdel)
+	if(copied_human_mob.belt)
+		visually_duplicate_and_equip_item(copied_human_mob.belt, ITEM_SLOT_BELT, new_human_mob, dropdel)
+	if(copied_human_mob.wear_mask)
+		visually_duplicate_and_equip_item(copied_human_mob.wear_mask, ITEM_SLOT_MASK, new_human_mob, dropdel)
+	if(copied_human_mob.wear_neck)
+		visually_duplicate_and_equip_item(copied_human_mob.wear_neck, ITEM_SLOT_NECK, new_human_mob, dropdel)
+	if(copied_human_mob.ears)
+		visually_duplicate_and_equip_item(copied_human_mob.ears, ITEM_SLOT_EARS, new_human_mob, dropdel)
+	if(copied_human_mob.glasses)
+		visually_duplicate_and_equip_item(copied_human_mob.glasses, ITEM_SLOT_EYES, new_human_mob, dropdel)
+	if(copied_human_mob.gloves)
+		visually_duplicate_and_equip_item(copied_human_mob.gloves, ITEM_SLOT_GLOVES, new_human_mob, dropdel)
+	if(copied_human_mob.shoes)
+		visually_duplicate_and_equip_item(copied_human_mob.shoes, ITEM_SLOT_FEET, new_human_mob, dropdel)
+	if(copied_human_mob.head)
+		visually_duplicate_and_equip_item(copied_human_mob.head, ITEM_SLOT_HEAD, new_human_mob, dropdel)
+	if(copied_human_mob.wear_id)
+		visually_duplicate_and_equip_item(copied_human_mob.wear_id, ITEM_SLOT_ID, new_human_mob, dropdel)
+		new_human_mob.sec_hud_set_ID()
+
+	for(var/obj/item/implant/implant_instance in copied_human_mob.implants)
+		var/obj/item/implant/implant_copy
+		if(istype(implant_instance, /obj/item/implant/dusting/iaa))
+			implant_copy = new /obj/item/implant/dusting/iaa/fake ()
+		else 
+			implant_copy = new implant_instance.type
+		if(!implant_copy)
+			continue //if somehow it doesn't create a copy, don't runtime
+		implant_copy.implant(new_human_mob, null, TRUE)
+		if(dropdel)
+			QDEL_IN(implant_copy, 7 SECONDS)
+
+	if(dropdel)
+		for(var/organ in new_human_mob.internal_organs)
+			QDEL_IN(organ, 7 SECONDS)
+
+	copied_human_mob.sec_hud_set_implants()
+
+	return new_human_mob
+
+/proc/visually_duplicate_and_equip_item(obj/item/item_instance, slot, mob/living/carbon/human/new_human_mob, dropdel = FALSE)
+	var/obj/item/item_copy = new item_instance.type
+
+	// Update ID + HUD
+	if(istype(item_instance, /obj/item/card/id))
+		var/obj/item/card/id/id_copy = item_copy
+		var/obj/item/card/id/id_instance = item_instance
+		id_copy.registered_name = id_instance.registered_name
+		id_copy.assignment = id_instance.assignment
+		id_copy.originalassignment = id_instance.originalassignment
+
+	// Update ID + HUD but if it's in a PDA
+	if(istype(item_instance, /obj/item/modular_computer/tablet))
+		var/obj/item/modular_computer/tablet/tablet_copy = item_copy
+		var/obj/item/modular_computer/tablet/tablet_instance = item_instance
+		tablet_copy.finish_color = tablet_instance.finish_color
+		var/obj/item/computer_hardware/card_slot/card_slot = tablet_instance.all_components[MC_CARD]
+		if(card_slot?.stored_card)
+			var/obj/item/card/id/id_copy = new card_slot.stored_card.type
+			var/obj/item/card/id/id_instance = card_slot.stored_card
+			id_copy.registered_name = id_instance.registered_name
+			id_copy.assignment = id_instance.assignment
+			id_copy.originalassignment = id_instance.originalassignment
+			var/obj/item/computer_hardware/card_slot/card_slot_copy = tablet_copy.all_components[MC_CARD]
+			if(!card_slot_copy)
+				card_slot_copy = new
+				tablet_copy.install_component(card_slot_copy)
+			id_copy.forceMove(card_slot_copy)
+			card_slot_copy.stored_card = id_copy
+
+			tablet_copy.update_label()
+
+
+	// Update damaged clothing
+	if(isclothing(item_instance))
+		var/obj/item/clothing/cloth_copy = item_copy
+		var/obj/item/clothing/cloth_instance = item_instance
+		cloth_copy.damaged_clothes = cloth_instance.damaged_clothes
+
+	// Swap the lights, don't want the seccies following our trail of light!
+	if(dropdel && item_instance.light_on)
+		item_instance.set_light_on(FALSE)
+		item_copy.set_light_on(TRUE)
+
+	// In case of chameleon clothes or otherwise
+	item_copy.name = item_instance.name
+	item_copy.icon = item_instance.icon
+	item_copy.icon_state = item_instance.icon_state
+	item_copy.item_state = item_instance.item_state
+
+	if(HAS_BLOOD_DNA(item_instance))
+		var/datum/component/forensics/detective_work = item_instance.GetComponent(/datum/component/forensics)
+		item_copy.add_blood_DNA(detective_work.blood_DNA) // authentic lol
+
+	item_copy.update_icon(UPDATE_OVERLAYS)
+
+	// So you can attempt to take off the clothes to prevent meta, but they will be deleted anyways
+	if(dropdel)
+		item_copy.item_flags |= DROPDEL
+
+	new_human_mob.equip_to_slot_if_possible(item_copy, slot, TRUE, TRUE, TRUE, TRUE, TRUE) // he's TRUE you know

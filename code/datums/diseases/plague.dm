@@ -25,7 +25,7 @@
 		if(4)
 			if(prob(2))
 				to_chat(affected_mob, span_userdanger("You can't keep steady!"))
-				affected_mob.Dizzy(5)
+				affected_mob.adjust_dizzy(5)
 			if(prob(2))
 				to_chat(affected_mob, span_danger("You can barely breathe!"))
 				affected_mob.adjustOxyLoss(5)

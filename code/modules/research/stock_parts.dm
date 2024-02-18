@@ -19,11 +19,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 		return ..()
 	if(user.Adjacent(T)) // no TK upgrading.
 		if(works_from_distance)
-			if(in_view_range(user, T))
-				user.Beam(T, icon_state = "rped_upgrade", time = 5)
-			else
-				to_chat(user, span_warning("Out of range!"))
-				return
+			user.Beam(T, icon_state = "rped_upgrade", time = 5)
 		T.exchange_parts(user, src)
 		return FALSE
 	return ..()
@@ -32,8 +28,11 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	if(adjacent || !istype(T) || (!T.component_parts && !T.works_with_rped_anyways))
 		return ..()
 	if(works_from_distance)
-		user.Beam(T, icon_state = "rped_upgrade", time = 5)
-		T.exchange_parts(user, src)
+		if(in_view_range(user, T))
+			user.Beam(T, icon_state = "rped_upgrade", time = 5)
+			T.exchange_parts(user, src)
+		else
+			to_chat(user, span_warning("Out of range!"))
 		return
 	return ..()
 
@@ -48,6 +47,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	name = "bluespace rapid part exchange device"
 	desc = "A version of the RPED that allows for the replacement of parts and scanning from a distance, along with a higher capacity for parts."
 	icon_state = "BS_RPED"
+	item_state = "BS_RPED"
 	w_class = WEIGHT_CLASS_NORMAL
 	works_from_distance = TRUE
 	pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/pshoom.ogg'
@@ -105,12 +105,16 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 		new /obj/item/stock_parts/matter_bin(src)
 
 /obj/item/storage/part_replacer/cyborg
-	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	name = "cyborg rapid part exchange device"
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts."
 	icon_state = "borgrped"
 	item_state = "RPED"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+
+/obj/item/storage/part_replacer/bluespace/cyborg
+	name = "cyborg bluespace rapid part exchange device"
+	desc = "A bluespace-variant of the special mechanical module made to store, sort, and apply standard machine parts."
 
 /proc/cmp_rped_sort(obj/item/A, obj/item/B)
 	return B.get_part_rating() - A.get_part_rating()
@@ -122,7 +126,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	w_class = WEIGHT_CLASS_SMALL
 	var/rating = 1
 
-/obj/item/stock_parts/Initialize()
+/obj/item/stock_parts/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)

@@ -16,7 +16,7 @@
 	var/hierophant_cost = MIN_CLOCKCULT_POWER //how much it costs to broadcast with large text
 	var/gateway_cost = 2000 //how much it costs to open a gateway
 
-/obj/structure/destructible/clockwork/powered/clockwork_obelisk/Initialize()
+/obj/structure/destructible/clockwork/powered/clockwork_obelisk/Initialize(mapload)
 	. = ..()
 	toggle(1)
 

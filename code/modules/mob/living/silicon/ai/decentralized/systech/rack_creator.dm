@@ -310,7 +310,7 @@
 			ram_expansions = list()
 
 			flick("circuit_imprinter_ani", src)
-			addtimer(CALLBACK(src, .proc/finalize_post, new_rack), 1.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(finalize_post), new_rack), 1.5 SECONDS)
 			. = TRUE
 
 /obj/machinery/rack_creator/proc/finalize_post(obj/item/server_rack/rack)

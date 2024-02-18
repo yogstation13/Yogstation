@@ -8,28 +8,7 @@
 GLOBAL_LIST_EMPTY(cryopods)
 GLOBAL_LIST_EMPTY(cryopod_computers)
 
-// These items are preserved when the process() despawn proc occurs.
-GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
-		/obj/item/hand_tele,
-		/obj/item/card/id/captains_spare,
-		/obj/item/aicard,
-		/obj/item/mmi,
-		/obj/item/paicard,
-		/obj/item/gun,
-		/obj/item/pinpointer,
-		/obj/item/clothing/shoes/magboots,
-		/obj/item/areaeditor/blueprints,
-		/obj/item/clothing/head/helmet/space,
-		/obj/item/clothing/suit/space,
-		/obj/item/clothing/suit/armor,
-		/obj/item/defibrillator/compact,
-		/obj/item/reagent_containers/hypospray/CMO,
-		/obj/item/clothing/accessory/medal/gold/captain,
-		/obj/item/clothing/gloves/krav_maga,
-		/obj/item/nullrod,
-		/obj/item/tank/jetpack,
-		/obj/item/documents,
-		/obj/item/nuke_core_container)))
+#define JOIN_SLEEP_DURATION 6 SECONDS
 
 //Main cryopod console.
 
@@ -51,7 +30,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 	var/storage_name = "Cryogenic Oversight Control"
 	var/allow_items = TRUE
 
-/obj/machinery/computer/cryopod/Initialize()
+/obj/machinery/computer/cryopod/Initialize(mapload)
 	. = ..()
 	GLOB.cryopod_computers += src
 
@@ -172,6 +151,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	var/on_store_name = "Cryogenic Oversight"
 	var/open_sound = 'sound/machines/podopen.ogg'
 	var/close_sound = 'sound/machines/podclose.ogg'
+	var/join_sound = 'sound/machines/hiss.ogg'
 
 	// 5 minutes-ish safe period before being despawned.
 	var/time_till_despawn = 15 MINUTES // Time if a player gets forced into cryo
@@ -185,7 +165,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/despawn_timer
 
-/obj/machinery/cryopod/Initialize()
+/obj/machinery/cryopod/Initialize(mapload)
 	..()
 	GLOB.cryopods += src
 	return INITIALIZE_HINT_LATELOAD //Gotta populate the cryopod computer GLOB first
@@ -195,7 +175,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	..()
 
 /obj/machinery/cryopod/LateInitialize()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	find_control_computer()
 
 /obj/machinery/cryopod/proc/PowerOn()
@@ -222,13 +202,15 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	return control_computer != null
 
-/obj/machinery/cryopod/close_machine(mob/user)
+/obj/machinery/cryopod/close_machine(mob/user, waking = FALSE)
 	if(!control_computer)
 		find_control_computer(TRUE)
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
 		..(user)
 		icon_state = "cryopod"
 		var/mob/living/mob_occupant = occupant
+		if(waking) // waking up, not going to sleep. don't continue past this point
+			return
 		if(close_sound)
 			playsound(src, close_sound, 40)
 		if(mob_occupant && mob_occupant.stat != DEAD)
@@ -237,7 +219,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 			return
 		if(mob_occupant.client)//if they're logged in
 			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
-			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No") == "Yes")
+			if(tgui_alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", list("Yes", "No")) != "No")
 				deltimer(despawn_timer) //Player wants to offer, cancel the timer
 				if(!offer_control(occupant))
 					//Player is a jackass that noone wants the body of, restart the timer
@@ -301,6 +283,8 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 				to_chat(M.current, "<BR>[span_userdanger("Your target is no longer within reach. Objective removed!")]")
 				M.announce_objectives()
 		else if(O.target == mob_occupant.mind)
+			if((O.type in subtypesof(/datum/objective/assassinate)) && O.check_completion()) //kill once/kill+clone objective that's already been completed, don't give a new objective
+				continue
 			O.target = null
 			O.find_target()
 			O.update_explanation_text()
@@ -356,13 +340,13 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		announcer.announce("CRYOSTORAGE", mob_occupant.real_name, announce_rank, list())
 		visible_message(span_notice("\The [src] hums and hisses as it moves [mob_occupant.real_name] into storage."))
 
-	for(var/obj/item/W in mob_occupant.GetAllContents())
+	for(var/obj/item/W in mob_occupant.get_all_contents())
 		if(QDELETED(W))
 			continue
 		if(W.loc.loc && (( W.loc.loc == loc ) || (W.loc.loc == control_computer)))
 			continue//means we already moved whatever this thing was in
 			//I'm a professional, okay
-		if(is_type_in_typecache(W, GLOB.typecache_cryoitems))
+		if(W.cryo_preserve)
 			if(control_computer && control_computer.allow_items)
 				control_computer.frozen_items += W
 				mob_occupant.transferItemToLoc(W, control_computer, TRUE)
@@ -384,7 +368,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	handle_objectives()
 	QDEL_NULL(occupant)
 	for(var/obj/item/I in get_turf(src))
-		if(is_type_in_typecache(I, GLOB.typecache_cryoitems))
+		if(I.cryo_preserve)
 			continue //Double safety check
 		qdel(I) //Cleanup anything left
 	open_machine()
@@ -395,7 +379,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		return
 
 	if(!GLOB.cryopods_enabled)
-		to_chat(user, span_boldnotice("NanoTrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
+		to_chat(user, span_boldnotice("Nanotrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 
 	if(occupant)
@@ -417,7 +401,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 			to_chat(user, span_danger("You can't put [target] into [src]. They're conscious."))
 		return
 	else if(target.client)
-		if(alert(target,"Would you like to enter cryosleep?",,"Yes","No") == "No")
+		if(tgui_alert(target,"Would you like to enter cryosleep?",,list("Yes","No")) != "Yes")
 			return
 
 	var/generic_plsnoleave_message = " Please adminhelp before leaving the round, even if there are no administrators online!"
@@ -426,10 +410,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		var/caught = FALSE
 		var/datum/antagonist/A = target.mind.has_antag_datum(/datum/antagonist)
 		if(target.mind.assigned_role in GLOB.command_positions)
-			alert("You're a Head of Staff![generic_plsnoleave_message]")
+			tgui_alert(target, "You're a Head of Staff![generic_plsnoleave_message]")
 			caught = TRUE
-		if(A)
-			alert("You're a [A.name]![generic_plsnoleave_message]")
+		if(A && A.name != "valentine")
+			tgui_alert(target, "You're a [A.name]![generic_plsnoleave_message]")
 			caught = TRUE
 		if(caught)
 			target.client.cryo_warned = world.time
@@ -453,3 +437,31 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	log_admin(span_notice("[key_name(target)] entered a stasis pod."))
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
+
+/obj/machinery/cryopod/JoinPlayerHere(mob/M, buckle)
+	. = ..()
+	close_machine(M, TRUE) // put the mob inside instead of on the turf
+	playsound(src, join_sound, 30)
+	if(iscarbon(M))
+		apply_effects_to_mob(M)
+	addtimer(CALLBACK(src, PROC_REF(open_machine)), JOIN_SLEEP_DURATION)
+
+/obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
+	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
+	sleepyhead.set_nutrition(200) //works for IPCs and stuff too
+	sleepyhead.SetSleeping(JOIN_SLEEP_DURATION)
+	//but it can be worse.
+	if(prob(90))
+		sleepyhead.adjust_drowsiness(rand(3 SECONDS, 10 SECONDS))
+	if(prob(75))
+		sleepyhead.blur_eyes(rand(3, 6))
+	//so much worse
+	if(prob(66))
+		sleepyhead.adjust_disgust(rand(25,35))
+	if(prob(33))
+		sleepyhead.adjust_disgust(rand(20,30))
+	if(prob(16))
+		sleepyhead.adjust_disgust(rand(10, 17))
+	to_chat(sleepyhead, span_danger("The symptoms of cryosleep set in as you awaken..."))
+
+#undef JOIN_SLEEP_DURATION

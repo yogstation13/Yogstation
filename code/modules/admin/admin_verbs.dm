@@ -5,14 +5,13 @@ GLOBAL_PROTECT(admin_verbs_default)
 /world/proc/AVerbsDefault()
 	return list(
 	/client/proc/deadmin,				/*destroys our own admin datum so we can play as a regular player*/
-	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
+	/client/verb/cmd_admin_say,			/*admin-only ooc chat*/
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
-	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
+	/client/verb/dsay,					/*talk in deadchat using our ckey/fakekey*/
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,
-	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
 	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
@@ -21,8 +20,10 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
 	/client/proc/fix_air_z,
+	/client/proc/clear_all_pipenets,
 	/client/proc/debugstatpanel,
 	/client/proc/clear_mfa,
+	/client/proc/show_rights
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -51,6 +52,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_headset_message,	/*send an message to somebody through their headset as CentCom*/
 	/client/proc/cmd_admin_rejuvenate,	/*Rejuvivates Mobs*/
+	/client/proc/cmd_admin_offer_rename, /*offers a mob the ability to change its name variables for itself*/
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_admin_check_contents,	/*displays the contents of an instance*/
 	/client/proc/check_antagonists,		/*shows all antags*/
@@ -61,7 +63,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 //	/client/proc/sendmob,				/*sends a mob somewhere*/ -Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage
 	/client/proc/jumptoarea,
 	/client/proc/jumptokey,				/*allows us to jump to the location of a mob with a certain ckey*/
-	/client/proc/jumptomob,				/*allows us to jump to a specific mob*/
+	/client/proc/jump_to_mob,				/*allows us to jump to a specific mob*/
 	/client/proc/jumptoturf,			/*allows us to jump to a specific turf*/
 	/client/proc/admin_call_shuttle,	/*allows us to call the emergency shuttle*/
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcom*/
@@ -75,16 +77,10 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/toggle_combo_hud, // toggle display of the combination pizza antag and taco sci/med/eng hud
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
 	/datum/admins/proc/open_shuttlepanel, /* Opens shuttle manipulator UI */
-	/client/proc/deadchat,
-	/client/proc/toggleprayers,
-	/client/proc/toggle_prayer_sound,
-	/client/proc/colorasay,
-	/client/proc/resetasaycolor,
-	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
 	/client/proc/discord_id_manipulation,
+	/datum/admins/proc/manage_silicon_laws,
 	/datum/admins/proc/open_borgopanel,
-	/datum/admins/proc/change_laws,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history
@@ -134,7 +130,9 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/rejuv_all, // yogs - Revive All
 	/client/proc/admin_vox, // yogs - Admin AI Vox
 	/client/proc/admin_away,
-	/client/proc/centcom_podlauncher/*Open a window to launch a Supplypod and configure it or it's contents*/
+	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
+	/client/proc/load_json_admin_event,
+	/client/proc/event_role_manager
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
@@ -158,9 +156,9 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
 	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
-	/client/proc/dump_memory_usage,
 	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
-	/client/proc/toggle_cdn
+	/client/proc/toggle_cdn,
+	/client/proc/set_next_minetype
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -179,6 +177,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,
 	#endif
+	/client/proc/debug_spell_requirements,
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
@@ -201,6 +200,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/toggle_view_range,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_rejuvenate,
+	/client/proc/cmd_admin_offer_rename,
 	/client/proc/cmd_admin_headset_message,
 	/client/proc/cmd_admin_check_contents,
 	/datum/admins/proc/access_news_network,
@@ -262,7 +262,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(holder)
 		control_freak = CONTROL_FREAK_SKIN | CONTROL_FREAK_MACROS
 
-		var/rights = holder.rank.rights
+		var/rights = GLOB.permissions.get_rights_for(src)
 		add_verb(src, GLOB.admin_verbs_default)
 		add_verb(src, GLOB.mentor_verbs) // yogs - give admins mentor verbs
 		if(rights & R_BUILDMODE)
@@ -495,12 +495,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stealth Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_bomb()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
 	var/list/choices = list("Small Bomb (1, 2, 3, 3)", "Medium Bomb (2, 3, 4, 4)", "Big Bomb (3, 5, 7, 5)", "Maxcap", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce? NOTE: You can do all this rapidly and in an IC manner (using cruise missiles!) with the Config/Launch Supplypod verb. WARNING: These ignore the maxcap") as null|anything in choices
+	var/choice = tgui_input_list(usr, "What size explosion would you like to produce? NOTE: You can do all this rapidly and in an IC manner (using cruise missiles!) with the Config/Launch Supplypod verb. WARNING: These ignore the maxcap", "Drop Bomb", choices)
 	var/turf/epicenter = mob.loc
 
 	switch(choice)
@@ -528,7 +528,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			if(flash_range == null)
 				return
 			if(devastation_range > GLOB.MAX_EX_DEVESTATION_RANGE || heavy_impact_range > GLOB.MAX_EX_HEAVY_RANGE || light_impact_range > GLOB.MAX_EX_LIGHT_RANGE || flash_range > GLOB.MAX_EX_FLASH_RANGE)
-				if(alert("Bomb is bigger than the maxcap. Continue?",,"Yes","No") != "Yes")
+				if(tgui_alert(usr, "Bomb is bigger than the maxcap. Continue?",,list("Yes","No")) != "Yes")
 					return
 			epicenter = mob.loc //We need to reupdate as they may have moved again
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, TRUE, TRUE)
@@ -583,45 +583,83 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[key_name(usr)] has modified Dynamic Explosion Scale: [ex_scale]")
 	message_admins("[key_name_admin(usr)] has  modified Dynamic Explosion Scale: [ex_scale]")
 
-/client/proc/give_spell(mob/T in GLOB.mob_list)
-	set category = "Misc"
+/client/proc/give_spell(mob/spell_recipient in GLOB.mob_list)
+	set category = "Admin.Player Interaction"
 	set name = "Give Spell"
 	set desc = "Gives a spell to a mob."
 
+	var/which = tgui_alert(usr, "Chose by name or by type path?", "Chose option", list("Name", "Typepath"))
+	if(!which)
+		return
+	if(QDELETED(spell_recipient))
+		to_chat(usr, span_warning("The intended spell recipient no longer exists."))
+		return
+
 	var/list/spell_list = list()
-	var/type_length = length_char("/obj/effect/proc_holder/spell") + 2
-	for(var/A in GLOB.spells)
-		spell_list[copytext_char("[A]", type_length)] = A
-	var/obj/effect/proc_holder/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spell_list
-	if(!S)
+	for(var/datum/action/cooldown/spell/to_add as anything in subtypesof(/datum/action/cooldown/spell))
+		var/spell_name = initial(to_add.name)
+		if(spell_name == "Spell") // abstract or un-named spells should be skipped.
+			continue
+
+		if(which == "Name")
+			spell_list[spell_name] = to_add
+		else
+			spell_list += to_add
+
+	var/chosen_spell = tgui_input_list(usr, "Choose the spell to give to [spell_recipient]", "ABRAKADABRA", sortList(spell_list))
+	if(isnull(chosen_spell))
+		return
+	var/datum/action/cooldown/spell/spell_path = which == "Typepath" ? chosen_spell : spell_list[chosen_spell]
+	if(!ispath(spell_path))
+		return
+
+	var/robeless = (tgui_alert(usr, "Would you like to force this spell to be robeless?", "Robeless Casting?", list("Force Robeless", "Use Spell Setting")) == "Force Robeless")
+
+	if(QDELETED(spell_recipient))
+		to_chat(usr, span_warning("The intended spell recipient no longer exists."))
 		return
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins(span_adminnotice("[key_name_admin(usr)] gave [key_name_admin(T)] the spell [S]."))
+	log_admin("[key_name(usr)] gave [key_name(spell_recipient)] the spell [chosen_spell][robeless ? " (Forced robeless)" : ""].")
+	message_admins("[key_name_admin(usr)] gave [key_name_admin(spell_recipient)] the spell [chosen_spell][robeless ? " (Forced robeless)" : ""].")
 
-	S = spell_list[S]
-	if(T.mind)
-		T.mind.AddSpell(new S)
-	else
-		T.AddSpell(new S)
-		message_admins(span_danger("Spells given to mindless mobs will not be transferred in mindswap or cloning!"))
+	var/datum/action/cooldown/spell/new_spell = new spell_path(spell_recipient.mind || spell_recipient)
 
-/client/proc/remove_spell(mob/T in GLOB.mob_list)
-	set category = "Misc"
+	if(robeless)
+		new_spell.spell_requirements &= ~SPELL_REQUIRES_WIZARD_GARB
+
+	new_spell.Grant(spell_recipient)
+
+	if(!spell_recipient.mind)
+		to_chat(usr, span_userdanger("Spells given to mindless mobs will belong to the mob and not their mind, \
+			and as such will not be transferred if their mind changes body (Such as from Mindswap)."))
+
+/client/proc/remove_spell(mob/removal_target in GLOB.mob_list)
+	set category = "Admin.Player Interaction"
 	set name = "Remove Spell"
 	set desc = "Remove a spell from the selected mob."
 
-	if(T && T.mind)
-		var/obj/effect/proc_holder/spell/S = input("Choose the spell to remove", "NO ABRAKADABRA") as null|anything in T.mind.spell_list
-		if(S)
-			T.mind.RemoveSpell(S)
-			log_admin("[key_name(usr)] removed the spell [S] from [key_name(T)].")
-			message_admins(span_adminnotice("[key_name_admin(usr)] removed the spell [S] from [key_name_admin(T)]."))
-			SSblackbox.record_feedback("tally", "admin_verb", 1, "Remove Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	var/list/target_spell_list = list()
+	for(var/datum/action/cooldown/spell/spell in removal_target.actions)
+		target_spell_list[spell.name] = spell
+
+	if(!length(target_spell_list))
+		return
+
+	var/chosen_spell = tgui_input_list(usr, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sortList(target_spell_list))
+	if(isnull(chosen_spell))
+		return
+	var/datum/action/cooldown/spell/to_remove = target_spell_list[chosen_spell]
+	if(!istype(to_remove))
+		return
+
+	qdel(to_remove)
+	log_admin("[key_name(usr)] removed the spell [chosen_spell] from [key_name(removal_target)].")
+	message_admins("[key_name_admin(usr)] removed the spell [chosen_spell] from [key_name_admin(removal_target)].")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Remove Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/give_disease(mob/living/T in GLOB.mob_living_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
 	if(!istype(T))
@@ -650,7 +688,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Admin.Round Interaction"
-	if (!(holder.rank.rights & R_BUILDMODE))
+	if (!(check_rights(R_BUILDMODE)))
 		return
 	if(src.mob)
 		togglebuildmode(src.mob)
@@ -671,7 +709,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!holder)
 		return
 
-	if(has_antag_hud())
+	if(combo_hud_enabled)
 		toggle_combo_hud()
 
 	holder.deactivate()
@@ -695,7 +733,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!holder)
 		return
 	
-	if(alert("Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", "Yes", "No") == "Yes")
+	if(tgui_alert(usr, "Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", list("Yes", "No")) == "Yes")
 		mfa_reset(ckey, TRUE)
 
 /client/proc/readmin()
@@ -703,10 +741,10 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set category = "Admin"
 	set desc = "Regain your admin powers."
 
-	var/datum/admins/A = GLOB.deadmins[ckey]
+	var/datum/admins/A = GLOB.permissions.deadmins[ckey]
 
 	if(!A)
-		A = GLOB.admin_datums[ckey]
+		A = GLOB.permissions.admin_datums[ckey]
 		if (!A)
 			var/msg = " is trying to readmin but they have no deadmin entry"
 			message_admins("[key_name_admin(src)][msg]")
@@ -722,6 +760,13 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[src] re-adminned themselves.")
 	log_admin("[src] re-adminned themselves.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Readmin")
+
+/client/proc/show_rights()
+	set name = "Show Rights"
+	set category = "Admin"
+	set desc = "Shows access rights"
+
+	to_chat(src, span_interface("You have the following permissions:\n[rights2text(GLOB.permissions.get_rights_for_ckey(ckey), "\n")]"))
 
 /client/proc/populate_world(amount = 50 as num)
 	set name = "Populate World"
@@ -768,7 +813,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
-
+/*
 /client/proc/dump_memory_usage()
 	set name = "Dump Server Memory Usage"
 	set category = "Server"
@@ -778,7 +823,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(GLOB.enable_memdump == 0)
 		to_chat(world, span_userdanger("You should not be touching this without contacting developers!"))
 		return
-	if(alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", list("Yes", "No")) != "Yes")
 		return
 
 	var/fname = "[GLOB.round_id ? GLOB.round_id : "NULL"]-[time2text(world.timeofday, "MM-DD-hhmm")].json"
@@ -797,6 +842,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		to_chat(usr, span_warning("File creation failed. Please check to see if the data/logs/memory folder actually exists."))
 	else
 		to_chat(usr, span_notice("Memory dump completed."))
+*/
 
 
 /client/proc/debugstatpanel()
@@ -804,3 +850,41 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set category = "Misc.Server Debug"
 
 	src << output("", "statbrowser:create_debug")
+
+/// Debug verb for seeing at a glance what all spells have as set requirements
+/client/proc/debug_spell_requirements()
+	set name = "Show Spell Requirements"
+	set category = "Debug"
+
+	var/header = "<tr><th>Name</th> <th>Requirements</th>"
+	var/all_requirements = list()
+	for(var/datum/action/cooldown/spell/spell as anything in typesof(/datum/action/cooldown/spell))
+		if(initial(spell.name) == "Spell")
+			continue
+
+		var/list/real_reqs = list()
+		var/reqs = initial(spell.spell_requirements)
+		if(reqs & SPELL_CASTABLE_AS_BRAIN)
+			real_reqs += "Castable as brain"
+		if(reqs & SPELL_CASTABLE_WHILE_PHASED)
+			real_reqs += "Castable phased"
+		if(reqs & SPELL_REQUIRES_HUMAN)
+			real_reqs += "Must be human"
+		if(reqs & SPELL_REQUIRES_MIME_VOW)
+			real_reqs += "Must be miming"
+		if(reqs & SPELL_REQUIRES_MIND)
+			real_reqs += "Must have a mind"
+		if(reqs & SPELL_REQUIRES_NO_ANTIMAGIC)
+			real_reqs += "Must have no antimagic"
+		if(reqs & SPELL_REQUIRES_STATION)
+			real_reqs += "Must be off central command z-level"
+		if(reqs & SPELL_REQUIRES_WIZARD_GARB)
+			real_reqs += "Must have wizard clothes"
+
+		all_requirements += "<tr><td>[initial(spell.name)]</td> <td>[english_list(real_reqs, "No requirements")]</td></tr>"
+
+	var/page_style = "<style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style>"
+	var/page_contents = "[page_style]<table style=\"width:100%\">[header][jointext(all_requirements, "")]</table>"
+	var/datum/browser/popup = new(mob, "spellreqs", "Spell Requirements", 600, 400)
+	popup.set_content(page_contents)
+	popup.open()

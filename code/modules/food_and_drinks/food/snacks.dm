@@ -19,7 +19,7 @@ Here is an example of the new formatting for anyone who wants to add more food i
 	name = "Xenoburger"													//Name that displays in the UI.
 	desc = "Smells caustic. Tastes like heresy."						//Duh
 	icon_state = "xburger"												//Refers to an icon in food.dmi
-/obj/item/reagent_containers/food/snacks/xenoburger/Initialize()		//Don't mess with this. | nO I WILL MESS WITH THIS
+/obj/item/reagent_containers/food/snacks/xenoburger/Initialize(mapload)		//Don't mess with this. | nO I WILL MESS WITH THIS
 	. = ..()														//Same here.
 	reagents.add_reagent(/datum/reagent/xenomicrobes, 10)						//This is what is in the food item. you may copy/paste
 	reagents.add_reagent(/datum/reagent/consumable/nutriment, 2)							//this line of code for all the contents.
@@ -35,7 +35,7 @@ All foods are distributed among various categories. Use common sense.
 	icon_state = null
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	grind_results = list() //To let them be ground up to transfer their reagents
 	var/bitesize = 2
 	var/bitecount = 0
@@ -92,49 +92,44 @@ All foods are distributed among various categories. Use common sense.
 		qdel(src)
 		return FALSE
 	if(iscarbon(M))
+		var/mob/living/carbon/C = M
 		if(!canconsume(M, user))
 			return FALSE
 
 		var/fullness = M.nutrition + 10
-		for(var/datum/reagent/consumable/C in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
-			fullness += C.nutriment_factor * C.volume / C.metabolization_rate
+		for(var/datum/reagent/consumable/con in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
+			fullness += con.nutriment_factor * con.volume / con.metabolization_rate
 
 		if(M == user)								//If you're eating it yourself.
 			if(junkiness && M.satiety < -150 && M.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(user, TRAIT_VORACIOUS))
 				to_chat(M, span_notice("You don't feel like eating any more junk food at the moment."))
 				return FALSE
-			else if(fullness <= 50)
-				user.visible_message(span_notice("[user] hungrily [eatverb]s \the [src], gobbling it down!"), span_notice("You hungrily [eatverb] \the [src], gobbling it down!"))
-			else if(fullness > 50 && fullness < 150)
-				user.visible_message(span_notice("[user] hungrily [eatverb]s \the [src]."), span_notice("You hungrily [eatverb] \the [src]."))
-			else if(fullness > 150 && fullness < 500)
-				user.visible_message(span_notice("[user] [eatverb]s \the [src]."), span_notice("You [eatverb] \the [src]."))
-			else if(fullness > 500 && fullness < 600)
-				user.visible_message(span_notice("[user] unwillingly [eatverb]s a bit of \the [src]."), span_notice("You unwillingly [eatverb] a bit of \the [src]."))
-			else if(fullness > (600 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				user.visible_message(span_warning("[user] cannot force any more of \the [src] to go down [user.p_their()] throat!"), span_warning("You cannot force any more of \the [src] to go down your throat!"))
-				return FALSE
+
 			if(HAS_TRAIT(M, TRAIT_VORACIOUS))
 				M.changeNext_move(CLICK_CD_MELEE * 0.5) //nom nom nom
 		else
 			if(!isbrain(M))		//If you're feeding it to someone else.
-				if(fullness <= (600 * (1 + M.overeatduration / 1000)))
-					M.visible_message(span_danger("[user] attempts to feed [M] [src]."), \
-										span_userdanger("[user] attempts to feed [M] [src]."))
-				else
-					M.visible_message(span_warning("[user] cannot force any more of [src] down [M]'s throat!"), \
-										span_warning("[user] cannot force any more of [src] down [M]'s throat!"))
-					return FALSE
-
-				if(!do_mob(user, M))
+				if(!C.force_eat_text(fullness, src, C, user))
+					return
+				if(!do_after(user, 3 SECONDS, M))
 					return
 				log_combat(user, M, "fed", reagents.log_list())
-				M.visible_message(span_danger("[user] forces [M] to eat [src]."), \
-									span_userdanger("[user] forces [M] to eat [src]."))
-
 			else
 				to_chat(user, span_warning("[M] doesn't seem to have a mouth!"))
 				return
+
+		if(!C.eat_text(fullness, eatverb, src, C, user))
+			return
+
+		if(!junkiness)
+			var/ate_without_table = TRUE
+			for(var/obj/structure/table/table in range(1, M))
+				ate_without_table = FALSE
+				break
+			if(ate_without_table)
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "no_table", /datum/mood_event/ate_without_table)
+			else
+				SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "no_table")
 
 		if(reagents)								//Handle ingestion of the reagent.
 			if(M.satiety > -200)
@@ -194,6 +189,7 @@ All foods are distributed among various categories. Use common sense.
 /obj/item/reagent_containers/food/snacks/CheckParts(list/parts_list, datum/crafting_recipe/food/R)
 	..()
 	reagents.clear_reagents()
+	reagents.maximum_volume = 100
 	for(var/obj/item/reagent_containers/RC in contents)
 		RC.reagents.trans_to(reagents, RC.reagents.maximum_volume)
 	for(var/reagent in R.reqs)
@@ -261,7 +257,7 @@ All foods are distributed among various categories. Use common sense.
 			trash = null
 			return
 
-/obj/item/reagent_containers/food/snacks/proc/update_overlays(obj/item/reagent_containers/food/snacks/S)
+/obj/item/reagent_containers/food/snacks/proc/update_snack_overlays(obj/item/reagent_containers/food/snacks/S)
 	cut_overlays()
 	var/mutable_appearance/filling = mutable_appearance(icon, "[initial(icon_state)]_filling")
 	if(S.filling_color == "#FFFFFF")

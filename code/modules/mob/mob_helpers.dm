@@ -310,14 +310,9 @@
 	SHOULD_BE_PURE(TRUE)
 	if(ismob(A))
 		var/mob/B = A
-		return B.eye_blind
+		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
 	return FALSE
-
-///Is the mob hallucinating?
-/mob/proc/hallucinating()
-	return FALSE
-
-
+	
 // moved out of admins.dm because things other than admin procs were calling this.
 /**
   * Is this mob special to the gamemode?
@@ -379,7 +374,7 @@
   * The kitchen sink of notification procs
   *
   * Arguments:
-  * * message 
+  * * message
   * * ghost_sound sound to play
   * * enter_link Href link to enter the ghost role being notified for
   * * source The source of the notification
@@ -391,7 +386,7 @@
   * * notify_suiciders If it should notify suiciders (who do not qualify for many ghost roles)
   * * notify_volume How loud the sound should be to spook the user
   */
-/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_suiciders = TRUE, var/notify_volume = 100) //Easy notification of ghosts.
+/proc/notify_ghosts(message, ghost_sound = null, enter_link = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_suiciders = TRUE, notify_volume = 100) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/mob/dead/observer/O in GLOB.player_list)
@@ -409,10 +404,11 @@
 			if(flashwindow)
 				window_flash(O.client)
 			if(source)
-				var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+				var/atom/movable/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /atom/movable/screen/alert/notify_action)
 				if(A)
-					if(O.client.prefs && O.client.prefs.UI_style)
-						A.icon = ui_style2icon(O.client.prefs.UI_style)
+					var/ui_style = O.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)
+					if(ui_style)
+						A.icon = ui_style2icon(ui_style)
 					if (header)
 						A.name = header
 					A.desc = message
@@ -429,6 +425,9 @@
   */
 /proc/item_heal_robotic(mob/living/carbon/human/H, mob/user, brute_heal, burn_heal)
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+	var/list/damaged_parts = H.get_damaged_bodyparts(brute_heal, burn_heal, status = BODYPART_ROBOTIC) // list of damaged parts we can heal
+	if(damaged_parts.len && !(affecting in damaged_parts))
+		affecting = pick(damaged_parts) // pick a random damaged part if the selected one is fine
 	if(affecting && affecting.status == BODYPART_ROBOTIC)
 		var/dam //changes repair text based on how much brute/burn was supplied
 		if(brute_heal > burn_heal)
@@ -440,12 +439,12 @@
 				H.update_damage_overlays()
 			user.visible_message("[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].", \
 			span_notice("You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [affecting.name]."))
-			return 1 //successful heal
+			return TRUE //successful heal
 		else
-			to_chat(user, span_warning("[affecting] is already in good condition!"))
+			return FALSE
 
 ///Is the passed in mob an admin ghost
-/proc/IsAdminGhost(var/mob/user)
+/proc/IsAdminGhost(mob/user)
 	if(!user)		//Are they a mob? Auto interface updates call this with a null src
 		return
 	if(!user.client) // Do they have a client?
@@ -458,7 +457,7 @@
 		return
 	return TRUE
 
-/** 
+/**
   * Offer control of the passed in mob to dead player
   *
   * Automatic logging and uses pollCandidatesForMob, how convenient
@@ -538,7 +537,7 @@
 			colored_message = "<font color=[color]>[message]</font>"
 		else
 			colored_message = "<font color='[color]'>[message]</font>"
-	
+
 	//This makes readability a bit better for admins.
 	switch(message_type)
 		if(LOG_WHISPER)
@@ -549,8 +548,8 @@
 			colored_message = "(ASAY) [colored_message]"
 		if(LOG_EMOTE)
 			colored_message = "(EMOTE) [colored_message]"
-	
-	var/list/timestamped_message = list("\[[time_stamp()]\] [key_name(src)] [loc_name(src)] (Event #[LAZYLEN(logging[smessage_type])])" = colored_message)
+
+	var/list/timestamped_message = list("\[[worldtime2text()]\] [key_name(src)] [loc_name(src)] (Event #[LAZYLEN(logging[smessage_type])])" = colored_message)
 
 	logging[smessage_type] += timestamped_message
 
@@ -562,6 +561,9 @@
 ///Can the mob hear
 /mob/proc/can_hear()
 	. = TRUE
+
+/mob/proc/has_mouth()
+	return FALSE
 
 /**
   * Examine text for traits shared by multiple types.

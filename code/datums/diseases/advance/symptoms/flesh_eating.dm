@@ -14,7 +14,8 @@ Bonus
 /datum/symptom/flesh_eating
 
 	name = "Necrotizing Fasciitis"
-	desc = "The virus aggressively attacks body cells, necrotizing tissues and organs."
+	icon = "symptom.necrotizing_fasciitis.gif"
+	desc = "The virus aggressively attacks body cells, necrosing tissues and organs."
 	stealth = -3
 	resistance = -4
 	stage_speed = 0
@@ -81,6 +82,7 @@ Bonus
 /datum/symptom/flesh_death
 
 	name = "Autophagocytosis Necrosis"
+	icon = "symptom.autophago_necrosis.gif"
 	desc = "The virus rapidly consumes infected cells, leading to heavy and widespread damage."
 	stealth = -2
 	resistance = -2

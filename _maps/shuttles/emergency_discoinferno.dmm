@@ -26,7 +26,7 @@
 /area/shuttle/escape)
 "g" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes/cigars/havana,
+/obj/item/storage/fancy/cigarettes/cigars/havana,
 /obj/item/lighter{
 	pixel_x = -4;
 	pixel_y = 6
@@ -74,7 +74,7 @@
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "o" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /turf/open/floor/mineral/gold,

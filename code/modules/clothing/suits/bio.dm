@@ -3,30 +3,30 @@
 	name = "bio hood"
 	icon_state = "bio"
 	desc = "A hood that protects the head and face from biological contaminants."
-	permeability_coefficient = 0.01
-	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT
+	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | HEADINTERNALS
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 100, RAD = 80, FIRE = 30, ACID = 100)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR|HIDEFACE
 	resistance_flags = ACID_PROOF
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	hattable = FALSE
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
 	desc = "A suit that protects against biological contamination."
 	icon_state = "bio"
-	item_state = "bio_suit"
+	item_state = "bio"
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.01
 	clothing_flags = THICKMATERIAL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 1
-	allowed = list(/obj/item/tank/internals, /obj/item/pen, /obj/item/flashlight/pen, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/hypospray)
+	allowed = list(/obj/item/tank/internals, /obj/item/pen, /obj/item/flashlight/pen, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/autoinjector)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 100, RAD = 80, FIRE = 30, ACID = 100)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	strip_delay = 70
 	equip_delay_other = 70
 	resistance_flags = ACID_PROOF
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 //Standard biosuit, orange stripe
 /obj/item/clothing/head/bio_hood/general
@@ -86,3 +86,4 @@
 	item_state = "bio_suit"
 	strip_delay = 40
 	equip_delay_other = 20
+	mutantrace_variation = NO_MUTANTRACE_VARIATION

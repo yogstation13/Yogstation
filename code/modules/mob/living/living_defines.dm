@@ -4,6 +4,7 @@
 	see_in_dark = 2
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
+	infra_luminosity = 10
 
 	hud_type = /datum/hud/living
 
@@ -31,10 +32,6 @@
 	var/lying = 0			//number of degrees. DO NOT USE THIS IN CHECKS. CHECK FOR MOBILITY FLAGS INSTEAD!!
 	var/lying_prev = 0		//last value of lying on update_mobility
 
-	var/confused = 0	//Makes the mob move in random directions.
-
-	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
-
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
 
@@ -55,6 +52,9 @@
 
 	var/tod = null // Time of death
 
+	/// How often biological functions tick. For example, 3 would be a 1/3 of every tick
+	var/life_tickrate = 1 
+
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is usually 20
 
@@ -64,18 +64,18 @@
 	var/limb_destroyer = 0 //1 Sets AI behavior that allows mobs to target and dismember limbs with their basic attack.
 
 	var/mob_size = MOB_SIZE_HUMAN
-	var/list/mob_biotypes = list(MOB_ORGANIC)
+	var/mob_biotypes = MOB_ORGANIC
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and regulate body temperature..
 	var/has_limbs = 0 //does the mob have distinct limbs?(arms,legs, chest,head)
 
 	var/list/pipes_shown = list()
+	var/list/wires_shown = list()
 	var/last_played_vent
 
-	var/smoke_delay = 0 //used to prevent spam with smoke reagent reaction on mob.
+	var/smoke_delay = FALSE //used to prevent spam with smoke reagent reaction on mob.
+	var/foam_delay = FALSE //used to prevent spam with foam reagent reaction on mob.
 
 	var/health_doll_icon //if this exists AND the normal sprite is bigger than 32x32, this is the replacement icon state (because health doll size limitations). the icon will always be screen_gen.dmi
-
-	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
 
 	var/last_bumped = 0
 	var/unique_name = 0 //if a mob's name should be appended with an id when created e.g. Mob (666)
@@ -91,12 +91,10 @@
 	var/stun_absorption = null //converted to a list of stun absorption sources this mob has when one is added
 
 	var/blood_volume = 0 //how much blood the mob has
-	var/obj/effect/proc_holder/ranged_ability //Any ranged ability the mob has, as a click override
 
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/list/status_effects //a list of all status effects the mob has
-	var/druggy = 0
 
 	/// List of changes to body temperature, used by desease symtoms like fever
 	var/list/body_temp_changes = list()
@@ -109,19 +107,12 @@
 	var/worn_layer //use to set if you want your inhand mob sprite to be hidden or not
 
 	//Speech
-	var/stuttering = 0
-	var/slurring = 0
 	var/cultslurring = 0
-	var/derpspeech = 0
 	var/lizardspeech = 0
 
 	var/list/implants = null
 
-	var/datum/riding/riding_datum
-
 	var/last_words	//used for database logging
-
-	var/list/obj/effect/proc_holder/abilities = list()
 
 	var/can_be_held = FALSE	//whether this can be picked up and held.
 	var/worn_slot_flags = NONE //if it can be held, can it be equipped to any slots?
@@ -140,5 +131,19 @@
 	//Allergies
 	var/allergies
 
-	//Last item/projectile that damaged this mob, not including surgery
+	//Last projectile that damaged this mob, not including surgery
 	var/last_damage = ""
+
+	/// Variable to track the body position of a mob, regardgless of the actual angle of rotation (usually matching it, but not necessarily).
+	var/body_position = STANDING_UP
+	///The x amount a mob's sprite should be offset due to the current position they're in
+	var/body_position_pixel_x_offset = 0
+	///The y amount a mob's sprite should be offset due to the current position they're in or size (e.g. lying down moves your sprite down)
+	var/body_position_pixel_y_offset = 0
+
+	///How many hands does this mob have by default. This shouldn't change at runtime.
+	var/default_num_hands = 2
+	///How many hands hands does this mob currently have. Should only be changed through set_num_hands()
+	var/num_hands = 2
+	///How many usable hands does this mob currently have. Should only be changed through set_usable_hands()
+	var/usable_hands = 2

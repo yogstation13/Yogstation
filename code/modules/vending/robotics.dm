@@ -4,7 +4,7 @@
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
-	req_access = list(ACCESS_ROBOTICS)
+	req_access = list(ACCESS_ROBO_CONTROL)
 	products = list(/obj/item/stack/cable_coil = 4,
 					/obj/item/assembly/flash/handheld = 6,
 					/obj/item/stock_parts/cell/high = 2,

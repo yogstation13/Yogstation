@@ -13,7 +13,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/retractor/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/retractor/augment
@@ -49,7 +49,7 @@
 	attack_verb = list("attacked", "pinched")
 
 /obj/item/hemostat/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/hemostat/augment
@@ -83,11 +83,16 @@
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_CAUTERY
 	w_class = WEIGHT_CLASS_TINY
+	force = 3
+	damtype = BURN
 	attack_verb = list("burnt")
 
 /obj/item/cautery/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
+
+/obj/item/cautery/ignition_effect(atom/A, mob/living/user)
+	. = span_danger("[user] carefully lights their [A.name] with [src].")
 
 /obj/item/cautery/augment
 	name = "cautery"
@@ -97,7 +102,6 @@
 	materials = list(/datum/material/iron=2500, /datum/material/glass=750)
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
-	attack_verb = list("burnt")
 
 
 /obj/item/cautery/bone
@@ -119,23 +123,23 @@
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_DRILL
-	force = 15
+	force = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("drilled")
 	sharpness = SHARP_POINTY
-	wound_bonus = 10
-	bare_wound_bonus = 10
+	wound_bonus = 7
+	bare_wound_bonus = 5
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
-	addtimer(CALLBACK(user, /mob/living/carbon.proc/gib, null, null, TRUE, TRUE), 25)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, gib), null, null, TRUE, TRUE), 25)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
 	SSachievements.unlock_achievement(/datum/achievement/likearecord, user.client)
 	return (MANUAL_SUICIDE)
 
 /obj/item/surgicaldrill/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/surgicaldrill/augment
@@ -163,24 +167,25 @@
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_SCALPEL
 
-	force = 10
+	force = 4
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.25
 	materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
-	wound_bonus = 10
-	bare_wound_bonus = 15
+	wound_bonus = 2
+	bare_wound_bonus = 4
 
-/obj/item/scalpel/Initialize()
+/obj/item/scalpel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
 
 /obj/item/scalpel/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/scalpel/augment
@@ -188,7 +193,7 @@
 	desc = "Ultra-sharp blade attached directly to your bone for extra-accuracy."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel"
-	force = 10
+	force = 4
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3
@@ -223,7 +228,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_SAW
-	force = 15
+	force = 8
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 9
 	throw_speed = 2
@@ -231,15 +236,15 @@
 	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = SHARP_EDGED
-	wound_bonus = 15
-	bare_wound_bonus = 10
+	wound_bonus = 5
+	bare_wound_bonus = 3
 
-/obj/item/circular_saw/Initialize()
+/obj/item/circular_saw/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
 /obj/item/circular_saw/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/circular_saw/augment
@@ -247,7 +252,7 @@
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw"
-	force = 10
+	force = 8
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9
 	throw_speed = 2
@@ -279,7 +284,7 @@
 	attack_verb = list("corrected", "properly set")
 
 /obj/item/bonesetter/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/bonesetter/bone
@@ -288,6 +293,7 @@
 	icon_state = "bone setter_bone"
 	toolspeed = 1.25
 
+// Pointless now that tools can initiate surgery
 /obj/item/surgical_drapes
 	name = "surgical drapes"
 	desc = "Nanotrasen brand surgical drapes provide optimal safety and infection control."
@@ -300,7 +306,7 @@
 	attack_verb = list("slapped")
 
 /obj/item/surgical_drapes/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/surgical_drapes/goliath
@@ -391,9 +397,13 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel_a"
 	hitsound = 'sound/weapons/blade1.ogg'
-	force = 16
+	force = 10
 	toolspeed = 0.7
+	light_system = MOVABLE_LIGHT
+	light_range = 1
 	light_color = LIGHT_COLOR_GREEN
+	light_power = 0.2	//Barely glows on low power
+	demolition_mod = 1.5 // lasers are good at cutting metal
 	sharpness = SHARP_EDGED
 
 
@@ -402,13 +412,15 @@
 	if(tool_behaviour == TOOL_SCALPEL)
 		tool_behaviour = TOOL_SAW
 		to_chat(user, span_notice("You increase the power, now it can cut bones."))
-		set_light(2)
+		set_light_range(2)
+		set_light_power(1)
 		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "saw_a"
 	else
 		tool_behaviour = TOOL_SCALPEL
 		to_chat(user, span_notice("You lower the power, it can now make precise incisions."))
-		set_light(1)
+		set_light_range(1)
+		set_light_power(0.2)
 		force -= 1
 		icon_state = "scalpel_a"
 
@@ -447,23 +459,102 @@
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_RED
 
-/obj/item/cautery/advanced/Initialize()
-	. = ..()
-	set_light(1)
-
 /obj/item/cautery/advanced/attack_self(mob/user)
 
 	if(tool_behaviour == TOOL_CAUTERY)
 		playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
 		to_chat(user, span_notice("You focus the lensess, it is now set to drilling mode."))
 		tool_behaviour = TOOL_DRILL
+		sharpness = SHARP_POINTY
+		force += 1
 		icon_state = "surgicaldrill_a"
 	else
 		playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
 		to_chat(user, span_notice("You dilate the lenses, setting it to mending mode."))
 		tool_behaviour = TOOL_CAUTERY
+		sharpness = SHARP_NONE
+		force -= 1
 		icon_state = "cautery_a"
 
 /obj/item/cautery/advanced/examine()
 	. = ..()
 	. += " It's set to [tool_behaviour == TOOL_DRILL ? "drilling" : "mending"] mode."
+
+/obj/structure/bed/surgical_mat
+	name = "surgical mat"
+	desc = "A sanitized mat for preforming simple triage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "opmat"
+	can_buckle = FALSE
+	bolts = FALSE
+	var/obj/picked_up = /obj/item/surgical_mat
+
+/obj/structure/bed/surgical_mat/Initialize(mapload)
+	..()
+	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
+	SB.success_chance = 0.95
+
+/obj/structure/bed/surgical_mat/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	if(over_object == usr && Adjacent(usr))
+		if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+			return FALSE
+		if(has_buckled_mobs())
+			return FALSE
+		usr.visible_message("[usr] rolls up \the [src.name].", span_notice("You roll up \the [src.name]."))
+		var/obj/O = new picked_up(get_turf(src))
+		usr.put_in_hands(O)
+		qdel(src)
+
+/obj/item/surgical_mat
+	name = "surgical mat"
+	desc = "A rolled up, sanitized mat for preforming simple triage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "surgical_drapes"
+	w_class = WEIGHT_CLASS_NORMAL
+	var/obj/placed = /obj/structure/bed/surgical_mat
+
+/obj/item/surgical_mat/attack_self(mob/user)
+	deploy_mat(user, user.loc)
+
+/obj/item/surgical_mat/afterattack(obj/target, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(isopenturf(target))
+		deploy_mat(user, target)
+
+/obj/item/surgical_mat/proc/deploy_mat(mob/user, atom/location)
+	var/obj/structure/bed/surgical_mat/M = new placed(location)
+	M.add_fingerprint(user)
+	qdel(src)
+
+/obj/structure/bed/surgical_mat/syndicate
+	name = "syndicate surgical mat"
+	desc = "A sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
+	icon_state = "opmat"
+	can_buckle = TRUE
+	picked_up = /obj/item/surgical_mat/syndicate
+
+/obj/item/surgical_mat/syndicate
+	name = "syndicate surgical mat"
+	desc = "A rolled up, sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
+	icon_state = "surgical_drapes"
+	placed = /obj/structure/bed/surgical_mat/syndicate
+
+/obj/structure/bed/surgical_mat/goliath
+	name = "goliath hide surgical mat"
+	desc = "An improvised mat for preforming primative surgery on patients."
+	icon_state = "opmat_goli"
+	picked_up = /obj/item/surgical_mat/goliath
+
+/obj/structure/bed/surgical_mat/goliath/Initialize(mapload)
+	..()
+	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
+	SB.success_chance = 0.97
+
+/obj/item/surgical_mat/goliath
+	name = "goliath hide surgical mat"
+	desc = "A rolled up, improvised mat for preforming primative surgery on patients."
+	icon_state = "surgical_drapes_goli"
+	placed = /obj/structure/bed/surgical_mat/goliath

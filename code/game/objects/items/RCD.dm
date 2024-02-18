@@ -12,7 +12,7 @@ RLD
 /obj/item/construction
 	name = "not for ingame use"
 	desc = "A device used to rapidly build and deconstruct. Reload with metal, plasteel, glass or compressed matter cartridges."
-	opacity = 0
+	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
 	flags_1 = CONDUCT_1
@@ -38,6 +38,9 @@ RLD
 	var/banned_upgrades = NONE
 	var/datum/component/remote_materials/silo_mats //remote connection to the silo
 	var/silo_link = FALSE //switch to use internal or remote storage
+	var/linked_switch_id = null	//integer variable, the id for the assigned conveyor switch
+	var/obj/machinery/conveyor/last_placed
+	var/color_choice = null
 
 /obj/item/construction/Initialize(mapload)
 	. = ..()
@@ -111,7 +114,7 @@ RLD
 		loaded = loadwithsheets(O, user)
 	if(loaded)
 		to_chat(user, span_notice("[src] now holds [matter]/[max_matter] matter-units."))
-		update_icon()	//ensures that ammo counters (if present) get updated
+		update_appearance(UPDATE_ICON)	//ensures that ammo counters (if present) get updated
 	return loaded
 
 /obj/item/construction/proc/loadwithsheets(obj/item/stack/S, mob/user)
@@ -145,7 +148,7 @@ RLD
 				to_chat(user, no_ammo_message)
 			return FALSE
 		matter -= amount
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	else
 		if(silo_mats.on_hold())
@@ -241,6 +244,11 @@ RLD
 	var/obj/item/electronics/airlock/airlock_electronics
 
 /obj/item/construction/rcd/suicide_act(mob/user)
+	mode = RCD_FLOORWALL
+	if(!rcd_create(get_turf(user), user))
+		return SHAME
+	if(isfloorturf(get_turf(user)))
+		return SHAME
 	user.visible_message(span_suicide("[user] sets the RCD to 'Wall' and points it down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide.."))
 	return (BRUTELOSS)
 
@@ -341,7 +349,7 @@ RLD
 		"SOUTH" = image(icon = 'icons/mob/radial.dmi', icon_state = "csouth"),
 		"WEST" = image(icon = 'icons/mob/radial.dmi', icon_state = "cwest")
 		)
-	var/computerdirs = show_radial_menu(user, src, computer_dirs, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/computerdirs = show_radial_menu(user, src, computer_dirs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(computerdirs)
@@ -409,11 +417,11 @@ RLD
 		"External Maintenance" = get_airlock_image(/obj/machinery/door/airlock/maintenance/external/glass)
 	)
 
-	var/airlockcat = show_radial_menu(user, remote_anchor || src, solid_or_glass_choices, custom_check = CALLBACK(src, .proc/check_menu, user, remote_anchor), require_near = remote_anchor ? FALSE : TRUE, tooltips = TRUE)
+	var/airlockcat = show_radial_menu(user, remote_anchor || src, solid_or_glass_choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user, remote_anchor), require_near = remote_anchor ? FALSE : TRUE, tooltips = TRUE)
 	switch(airlockcat)
 		if("Solid")
 			if(advanced_airlock_setting == 1)
-				var/airlockpaint = show_radial_menu(user, remote_anchor || src, solid_choices, radius = 42, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = remote_anchor ? FALSE : TRUE, tooltips = TRUE)
+				var/airlockpaint = show_radial_menu(user, remote_anchor || src, solid_choices, radius = 42, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = remote_anchor ? FALSE : TRUE, tooltips = TRUE)
 				switch(airlockpaint)
 					if("Standard")
 						airlock_type = /obj/machinery/door/airlock
@@ -456,7 +464,7 @@ RLD
 
 		if("Glass")
 			if(advanced_airlock_setting == 1)
-				var/airlockpaint = show_radial_menu(user, remote_anchor || src, glass_choices, radius = 42, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = remote_anchor ? FALSE : TRUE, tooltips = TRUE)
+				var/airlockpaint = show_radial_menu(user, remote_anchor || src, glass_choices, radius = 42, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = remote_anchor ? FALSE : TRUE, tooltips = TRUE)
 				if(!check_menu(user))
 					return
 				switch(airlockpaint)
@@ -512,7 +520,7 @@ RLD
 		"Table" = image(icon = 'icons/mob/radial.dmi', icon_state = "table"),
 		"Glass Table" = image(icon = 'icons/mob/radial.dmi', icon_state = "glass_table")
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
@@ -549,8 +557,42 @@ RLD
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					return TRUE
 	qdel(rcd_effect)
+	return FALSE
 
-/obj/item/construction/rcd/Initialize()
+/obj/item/construction/rcd/proc/rcd_switch(atom/A, mob/user)
+	var/cost = 1
+	var/delay = 1
+	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
+	if(checkResource(cost, user))
+		if(do_after(user, delay, A))
+			if(checkResource(cost, user))
+				rcd_effect.end_animation()
+				useResource(cost, user)
+				activate()
+				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+				new /obj/item/conveyor_switch_construct(A)
+	qdel(rcd_effect)
+
+/obj/item/construction/rcd/proc/rcd_conveyor(atom/A, mob/user)
+	var/delay = 5
+	var/cost = 5
+	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
+	if(checkResource(cost, user))
+		if(do_after(user, delay, target = A))
+			if(checkResource(cost, user))
+				rcd_effect.end_animation()
+				useResource(cost, user)
+				activate()
+				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+				var/cdir = get_dir(A, user)
+				if (last_placed)
+					cdir = get_dir(A, last_placed)
+					if(cdir in GLOB.cardinals)
+						last_placed.setDir(get_dir(last_placed, A))
+				last_placed = new/obj/machinery/conveyor(A, cdir, linked_switch_id)
+	qdel(rcd_effect)
+
+/obj/item/construction/rcd/Initialize(mapload)
 	. = ..()
 	airlock_electronics = new(src)
 	airlock_electronics.name = "Access Control"
@@ -596,7 +638,12 @@ RLD
 		choices += list(
 		"Change Furnishing Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "chair")
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	if(upgrade & RCD_UPGRADE_CONVEYORS)
+		choices += list(
+		"Conveyor" = image(icon = 'icons/obj/recycling.dmi', icon_state = "conveyor_construct"),
+		"Switch" = image(icon = 'icons/obj/recycling.dmi', icon_state = "switch-off")
+		)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
@@ -634,7 +681,13 @@ RLD
 		if("Silo Link")
 			toggle_silo_link(user)
 			return
-		else
+		if("Conveyor")
+			mode = RCD_CONVEYOR
+			linked_switch_id = null
+			last_placed = null
+		if("Switch")
+			mode = RCD_SWITCH
+		else 
 			return
 	playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
 	to_chat(user, span_notice("You change RCD's mode to '[choice]'."))
@@ -647,36 +700,55 @@ RLD
 
 /obj/item/construction/rcd/afterattack(atom/A, mob/user, proximity)
 	. = ..()
-	if(!prox_check(proximity))
-		return
-	rcd_create(A, user)
+	if (mode == RCD_CONVEYOR)
+		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/machinery/conveyor) || !isopenturf(A) || istype(A, /area/shuttle))
+			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
+			return
+		if (!linked_switch_id)
+			to_chat(user, "<span class='warning'>Error! [src] is not linked!</span>")
+			return
+		if (get_turf(A) == get_turf(user))
+			to_chat(user, "<span class='notice'>Cannot place conveyor below your feet!</span>")
+			return
+		if(!proximity)
+			return
+		rcd_conveyor(A, user)
+	if (mode == RCD_SWITCH)
+		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/item/conveyor_switch_construct) || !isopenturf(A) || istype(A, /area/shuttle))
+			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
+			return
+		if(!proximity)
+			return
+		rcd_switch(A, user)
+	else
+		if(!prox_check(proximity))
+			return
+		rcd_create(A, user)
 
 /obj/item/construction/rcd/proc/detonate_pulse()
 	audible_message("<span class='danger'><b>[src] begins to vibrate and \
 		buzz loudly!</b></span>","<span class='danger'><b>[src] begins \
 		vibrating violently!</b></span>")
 	// 5 seconds to get rid of it
-	addtimer(CALLBACK(src, .proc/detonate_pulse_explode), 50)
+	addtimer(CALLBACK(src, PROC_REF(detonate_pulse_explode)), 50)
 
 /obj/item/construction/rcd/proc/detonate_pulse_explode()
 	explosion(src, 0, 0, 3, 1, flame_range = 1)
 	qdel(src)
 
-/obj/item/construction/rcd/update_icon()
-	..()
+/obj/item/construction/rcd/update_overlays()
+	. = ..()
 	if(has_ammobar)
 		var/ratio = CEILING((matter / max_matter) * ammo_sections, 1)
-		cut_overlays()	//To prevent infinite stacking of overlays
-		add_overlay("[icon_state]_charge[ratio]")
+		. += "[icon_state]_charge[ratio]"
 
-/obj/item/construction/rcd/Initialize()
+/obj/item/construction/rcd/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/construction/rcd/borg
 	no_ammo_message = span_warning("Insufficient charge.")
 	desc = "A device used to rapidly build walls and floors."
-	canRturf = TRUE
 	banned_upgrades = RCD_UPGRADE_SILO_LINK
 	var/energyfactor = 72
 
@@ -710,6 +782,7 @@ RLD
 /obj/item/construction/rcd/borg/syndicate
 	icon_state = "ircd"
 	item_state = "ircd"
+	canRturf = TRUE
 	energyfactor = 66
 
 /obj/item/construction/rcd/loaded
@@ -740,6 +813,7 @@ RLD
 	name = "admin RCD"
 	max_matter = INFINITY
 	matter = INFINITY
+	ranged = TRUE
 	upgrade = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS | RCD_UPGRADE_FURNISHING
 
 
@@ -758,7 +832,7 @@ RLD
 	has_ammobar = FALSE
 
 /obj/item/construction/rcd/arcd/afterattack(atom/A, mob/user)
-	. = ..()
+	..()
 	if(!range_check(A,user))
 		return
 	if(target_check(A,user))
@@ -794,19 +868,15 @@ RLD
 	var/floordelay = 10
 	var/decondelay = 15
 
-	var/color_choice = null
-
-
 /obj/item/construction/rld/ui_action_click(mob/user, datum/action/A)
 	if(istype(A, /datum/action/item_action/pick_color))
 		color_choice = input(user,"","Choose Color",color_choice) as color
 	else
 		..()
 
-/obj/item/construction/rld/update_icon()
+/obj/item/construction/rld/update_icon_state()
+	. = ..()
 	icon_state = "rld-[round(matter/35)]"
-	..()
-
 
 /obj/item/construction/rld/attack_self(mob/user)
 	..()
@@ -821,8 +891,14 @@ RLD
 			mode = REMOVE_MODE
 			to_chat(user, span_notice("You change RLD's mode to 'Deconstruct'."))
 
+/obj/item/construction/rcd/attackby(obj/item/I, mob/user, params)
+	..()
+	if(upgrade & RCD_UPGRADE_CONVEYORS && istype(I, /obj/item/conveyor_switch_construct))
+		to_chat(user, "<span class='notice'>You link the switch to the [src].</span>")
+		var/obj/item/conveyor_switch_construct/C = I
+		linked_switch_id = C.id
 
-/obj/item/construction/rld/proc/checkdupes(var/target)
+/obj/item/construction/rld/proc/checkdupes(target)
 	. = list()
 	var/turf/checking = get_turf(target)
 	for(var/obj/machinery/light/dupe in checking)
@@ -831,7 +907,7 @@ RLD
 
 
 /obj/item/construction/rld/afterattack(atom/A, mob/user)
-	. = ..()
+	..()
 	if(!range_check(A,user))
 		return
 	var/turf/start = get_turf(src)
@@ -951,6 +1027,13 @@ RLD
 	desc = "It contains the design for chairs, stools, tables, and glass tables."
 	upgrade = RCD_UPGRADE_FURNISHING
 
+/obj/item/rcd_upgrade/conveyor
+	desc = "The disk warns against building an endless conveyor trap, but we know what you're gonna do."
+	upgrade = RCD_UPGRADE_CONVEYORS
+
+/datum/action/item_action/pick_color
+	name = "Choose A Color"
+	
 #undef GLOW_MODE
 #undef LIGHT_MODE
 #undef REMOVE_MODE

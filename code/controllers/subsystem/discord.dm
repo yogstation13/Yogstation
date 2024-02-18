@@ -12,7 +12,7 @@ Then their Discord ID is linked to their Ckey in the databse
 
 SUBSYSTEM_DEF(discord)
 	name = "Discord"
-	flags = SS_NO_FIRE
+	flags = SS_NO_FIRE|SS_NO_INIT
 
 	var/notify_file = file("data/notify.json")
 

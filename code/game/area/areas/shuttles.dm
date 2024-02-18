@@ -11,8 +11,12 @@
 	icon_state = "shuttle"
 	// Loading the same shuttle map at a different time will produce distinct area instances.
 	unique = FALSE
+	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
+	var/list/gem_payout = list()
+	lighting_colour_tube = "#fff0dd"
+	lighting_colour_bulb = "#ffe1c1"
 
-/area/shuttle/Initialize()
+/area/shuttle/Initialize(mapload)
 	if(!canSmoothWithAreas)
 		canSmoothWithAreas = type
 	. = ..()
@@ -31,7 +35,7 @@
 /area/shuttle/syndicate
 	name = "Syndicate Infiltrator"
 	blob_allowed = FALSE
-	ambientsounds = HIGHSEC
+	ambience_index = AMBIENCE_DANGER
 	canSmoothWithAreas = /area/shuttle/syndicate
 
 /area/shuttle/syndicate/bridge
@@ -137,6 +141,7 @@
 /area/shuttle/supply
 	name = "Supply Shuttle"
 	blob_allowed = FALSE
+	area_flags = NOTELEPORT
 
 /area/shuttle/ai
 	name = "AI Ship Shuttle"
@@ -150,10 +155,12 @@
 
 /area/shuttle/escape/luxury
 	name = "Luxurious Emergency Shuttle"
+	area_flags = NOTELEPORT
 
 /area/shuttle/escape/arena
 	name = "The Arena"
 	noteleport = TRUE
+	area_flags = NOTELEPORT
 
 /area/shuttle/escape/meteor
 	name = "\proper a meteor with engines strapped to it"
@@ -186,10 +193,12 @@
 /area/shuttle/syndicate_scout
 	name = "Syndicate Scout"
 	blob_allowed = FALSE
+	noteleport = TRUE
 
 /area/shuttle/caravan
 	blob_allowed = FALSE
 	requires_power = TRUE
+	noteleport = TRUE
 
 /area/shuttle/caravan/syndicate1
 	name = "Syndicate Fighter"

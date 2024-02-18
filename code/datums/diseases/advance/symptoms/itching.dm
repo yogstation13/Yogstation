@@ -19,6 +19,7 @@ BONUS
 /datum/symptom/itching
 
 	name = "Itching"
+	icon = "itching"
 	desc = "The virus irritates the skin, causing itching."
 	stealth = 0
 	resistance = 3
@@ -31,7 +32,7 @@ BONUS
 	var/scratch = FALSE
 	threshold_descs = list(
 		"Transmission 6" = "Increases frequency of itching.",
-		"Stage Speed 7" = "The host will scrath itself when itching, causing superficial damage.",
+		"Stage Speed 7" = "The host will scratch itself when itching, causing superficial damage.",
 	)
 
 /datum/symptom/itching/Start(datum/disease/advance/A)

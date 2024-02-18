@@ -1,8 +1,8 @@
 /datum/job/clown
 	title = "Clown"
-	flag = CLOWN
+	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
+	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -11,25 +11,42 @@
 
 	outfit = /datum/outfit/job/clown
 
-	alt_titles = list("Entertainer", "Comedian", "Jester")
+	alt_titles = list("Entertainer", "Comedian", "Jester", "Improv Artist")
 
-	access = list(ACCESS_THEATRE)
-	minimal_access = list(ACCESS_THEATRE)
+	added_access = list()
+	base_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
+	minimal_character_age = 18 //Honk
+	
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/grown/banana = 100,
+		/obj/item/reagent_containers/food/snacks/pie/cream = 50,
+		/obj/item/reagent_containers/spray/waterflower/lube = 20, // lube
+		/obj/item/clothing/shoes/clown_shoes/combat = 10
+		///obj/item/reagent_containers/spray/waterflower/superlube = 1 // Superlube, good lord.
+	)
+	
+	minimal_lightup_areas = list(/area/crew_quarters/theatre)
+
+	smells_like = "kinda funny"
 
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	H.apply_pref_name("clown", M.client)
+	H.apply_pref_name(/datum/preference/name/clown, M.client)
 
 /datum/outfit/job/clown
 	name = "Clown"
 	jobtype = /datum/job/clown
 
-	pda_type = /obj/item/pda/clown
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/clown
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/clown
@@ -52,11 +69,16 @@
 	box = /obj/item/storage/box/hug/survival
 
 	chameleon_extras = /obj/item/stamp/clown
-	
+
 /datum/outfit/job/clown/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
 		backpack_contents[/obj/item/stack/sheet/mineral/bananium/five] = 1
+
+/datum/outfit/job/clown/get_types_to_preload()
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
+		. += /obj/item/stack/sheet/mineral/bananium/five
 
 /datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

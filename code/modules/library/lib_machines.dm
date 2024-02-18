@@ -297,12 +297,13 @@ GLOBAL_LIST_EMPTY(checkouts)
 				
 			cooldown = world.time + PRINTER_COOLDOWN
 
-/obj/machinery/computer/libraryconsole/emag_act(mob/user)
+/obj/machinery/computer/libraryconsole/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
 		to_chat(user, "<font color='red'>You short out the safeties on [src]!</font>")
 	else
 		to_chat(user, "<font color='red'>You reset the safeties on [src]!</font>")
+	return TRUE
 
 /*
  * Cachedbook datum
@@ -363,7 +364,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 	pass_flags = PASSTABLE
 	librarianconsole = TRUE
 
-/obj/machinery/computer/libraryconsole/bookmanagement/Initialize()
+/obj/machinery/computer/libraryconsole/bookmanagement/Initialize(mapload)
 	. = ..()
 	if(circuit)
 		circuit.name = "Book Inventory Management Console (Machine Board)"
@@ -459,7 +460,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 			visible_message("[src] whirs as it prints and binds a new book.")
 			var/obj/item/book/B = new(src.loc)
 			for(var/datum/langtext/L in P.written)
-				B.dat = L.text
+				B.dat += L.text
 			var/title = "Print Job #" + "[rand(100, 999)]"
 			B.name = title
 			B.title = title

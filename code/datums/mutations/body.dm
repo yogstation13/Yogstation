@@ -13,14 +13,15 @@
 	if(prob(1 * GET_MUTATION_SYNCHRONIZER(src)) && owner.stat == CONSCIOUS)
 		owner.visible_message(span_danger("[owner] starts having a seizure!"), span_userdanger("You have a seizure!"))
 		owner.Unconscious(200 * GET_MUTATION_POWER(src))
-		owner.Jitter(1000 * GET_MUTATION_POWER(src))
+		owner.adjust_jitter(1000 * GET_MUTATION_POWER(src))
 		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "epilepsy", /datum/mood_event/epilepsy)
-		addtimer(CALLBACK(src, .proc/jitter_less), 90)
+		addtimer(CALLBACK(src, PROC_REF(jitter_less)), 90)
 
 /datum/mutation/human/epilepsy/proc/jitter_less()
-	if(owner)
-		owner.jitteriness = 10
+	if(QDELETED(owner))
+		return
 
+	owner.set_jitter(20 SECONDS)
 
 //Unstable DNA induces random mutations!
 /datum/mutation/human/bad_dna
@@ -36,12 +37,15 @@
 	to_chat(owner, text_gain_indication)
 	var/mob/new_mob
 	if(prob(95))
-		if(prob(50))
-			new_mob = owner.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
-		else
-			new_mob = owner.randmuti()
+		switch(rand(1,3))
+			if(1)
+				new_mob = owner.easy_random_mutate(NEGATIVE + MINOR_NEGATIVE)
+			if(2)
+				new_mob = owner.random_mutate_unique_identity()
+			if(3)
+				new_mob = owner.random_mutate_unique_features()
 	else
-		new_mob = owner.easy_randmut(POSITIVE)
+		new_mob = owner.easy_random_mutate(POSITIVE)
 	if(new_mob && ismob(new_mob))
 		owner = new_mob
 	. = owner
@@ -77,7 +81,7 @@
 	if(prob(5) && owner.stat == CONSCIOUS)
 		owner.emote("scream")
 		if(prob(25))
-			owner.hallucination += 20
+			owner.adjust_hallucinations(20 SECONDS)
 
 //Dwarfism shrinks your body and lets you pass tables.
 /datum/mutation/human/dwarfism
@@ -191,46 +195,42 @@
 	quality = POSITIVE
 	text_gain_indication = span_notice("Your skin begins to glow softly.")
 	instability = 5
-	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
-	var/glow = 2.5
-	var/range = 2.5
-	var/color 
 	power_coeff = 1
-	conflicts = list(/datum/mutation/human/glow/anti)
+	conflicts = list(/datum/mutation/human/glow/anti, /datum/mutation/human/radiantburst)
+
+	var/glow_power = 3.5
+	var/glow_range = 2.5
+	var/glow_color
+	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
+
+	var/obj/effect/dummy/lighting_obj/moblight/glow
 
 /datum/mutation/human/glow/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
 	if(.)
 		return
-	glowth = new(owner)
+	glow_color = owner.dna.features["mcolor"]
+	glow = owner.mob_light()
 	modify()
 
+// Override modify here without a parent call, because we don't actually give an action.
 /datum/mutation/human/glow/modify()
-	if(!glowth)
+	if(!glow)
 		return
-	var/power = GET_MUTATION_POWER(src)
-	if(owner.dna.features["mcolor"][1] != "#")
-		//if it doesn't start with a pound, it needs that for the color
-		color += "#"
-	if(length(owner.dna.features["mcolor"]) < 6)
-		//this atrocity converts shorthand hex rgb back into full hex that's required for light to be given a functional value
-		color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
-	else
-		color += owner.dna.features["mcolor"]
-	glowth.set_light(range * power, glow * power, color)
+	glow.set_light_range_power_color(glow_range * GET_MUTATION_POWER(src), glow_power, glow_color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()
 	if(.)
 		return
-	QDEL_NULL(glowth)
+	QDEL_NULL(glow)
 
 /datum/mutation/human/glow/anti
 	name = "Anti-Glow"
 	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
 	text_gain_indication = span_notice("Your light around you seems to disappear.")
-	glow = -3.5 //Slightly stronger, since negating light tends to be harder than making it.
-	conflicts = list(/datum/mutation/human/glow)
+	glow_power = -3.5
+	conflicts = list(/datum/mutation/human/glow, /datum/mutation/human/radiantburst)
 	locked = TRUE
 
 /datum/mutation/human/thickskin
@@ -269,17 +269,20 @@
 	if(..())
 		return
 	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1 //Normally +1, strength chromosome increases it to +2
-	owner.dna.species.punchdamagelow += strength_punchpower
-	owner.dna.species.punchdamagehigh += strength_punchpower
-	owner.dna.species.punchstunthreshold += strength_punchpower //So we dont change the stun chance
+	owner.physiology.punchdamagehigh_bonus += strength_punchpower
+	owner.physiology.punchdamagelow_bonus += strength_punchpower
+	owner.physiology.punchstunthreshold_bonus += strength_punchpower //So we dont change the stun chance
+	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1
-	owner.dna.species.punchdamagelow -= strength_punchpower
-	owner.dna.species.punchdamagehigh -= strength_punchpower
-	owner.dna.species.punchstunthreshold -= strength_punchpower
+	owner.physiology.punchdamagehigh_bonus -= strength_punchpower
+	owner.physiology.punchdamagelow_bonus -= strength_punchpower
+	owner.physiology.punchstunthreshold_bonus -= strength_punchpower
+	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
+
 //Yogs end
 
 /datum/mutation/human/insulated
@@ -290,6 +293,7 @@
 	text_lose_indication = span_notice("Your fingertips regain feeling.")
 	difficulty = 16
 	instability = 25
+	conflicts = list(/datum/mutation/human/shock, /datum/mutation/human/shock/far)
 
 /datum/mutation/human/insulated/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -314,7 +318,7 @@
 /datum/mutation/human/fire/on_life()
 	if(prob((1+(100-dna.stability)/10)) * GET_MUTATION_SYNCHRONIZER(src))
 		owner.adjust_fire_stacks(2 * GET_MUTATION_POWER(src))
-		owner.IgniteMob()
+		owner.ignite_mob()
 
 /datum/mutation/human/fire/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -430,3 +434,67 @@
 			owner.SetStun(owner.AmountStun()*2)
 			owner.visible_message(span_danger("[owner] tries to stand up, but trips!"), span_userdanger("You trip over your own feet!"))
 			stun_cooldown = world.time + 300
+
+/datum/mutation/human/hypermarrow
+	name = "Hyperactive Bone Marrow"
+	desc = "A mutation that stimulates the subject's bone marrow causes it to work three times faster than usual."
+	quality = POSITIVE
+	text_gain_indication = span_notice("You feel your bones ache for a moment.")
+	text_lose_indication = span_notice("You feel something in your bones calm down.")
+	difficulty = 12
+	instability = 20
+	power_coeff = 1
+
+/datum/mutation/human/hypermarrow/on_life()
+	if(HAS_TRAIT(owner, TRAIT_NO_BLOOD_REGEN))
+		return	//no bone marrow to regenerate blood in the first place
+	if(owner.blood_volume < BLOOD_VOLUME_NORMAL(owner))
+		owner.blood_volume += GET_MUTATION_POWER(src) * 2 - 1
+		owner.adjust_nutrition((GET_MUTATION_POWER(src) * 2 - 0.8) * HUNGER_FACTOR)
+
+/datum/mutation/human/densebones
+	name = "Bone Densification"
+	desc = "A mutation that gives the subject a rare form of increased bone density, making their entire body slightly more resilient to low kinetic blows."
+	quality = POSITIVE
+	text_gain_indication = span_notice("You feel your bones get denser.")
+	text_lose_indication = span_notice("You feel your bones get lighter.")
+	difficulty = 16
+	instability = 25
+	power_coeff = 1
+
+/datum/mutation/human/densebones/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.physiology.armor.melee += 5
+	owner.physiology.armor.wound += 10
+	if(GET_MUTATION_POWER(src) > 1)
+		ADD_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
+
+/datum/mutation/human/densebones/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.physiology.armor.melee -= 5
+	owner.physiology.armor.wound -= 10
+	if(GET_MUTATION_POWER(src) > 1)
+		REMOVE_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
+
+/datum/mutation/human/cerebral
+	name = "Cerebral Neuroplasticity"
+	desc = "A mutation that reorganizes the subject's brain, giving them more stamina while allowing for a slightly quicker recovery speed if exhausted."
+	quality = POSITIVE
+	locked = TRUE
+	text_gain_indication = span_notice("You feel your brain get sturdier.")
+	text_lose_indication = span_notice("You feel your brain getting weaker. ")
+	instability = 70
+
+/datum/mutation/human/cerebral/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.physiology.stamina_mod *= 0.7
+	owner.physiology.stun_mod *= 0.85
+
+/datum/mutation/human/cerebral/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.physiology.stamina_mod /= 0.7
+	owner.physiology.stun_mod /= 0.85

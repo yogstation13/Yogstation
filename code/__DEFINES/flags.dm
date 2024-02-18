@@ -4,6 +4,10 @@
 #define ALL (~0) //For convenience.
 #define NONE 0
 
+/* Directions */
+///All the cardinal direction bitflags.
+#define ALL_CARDINALS (NORTH|SOUTH|EAST|WEST)
+
 //for convenience
 #define ENABLE_BITFIELD(variable, flag) (variable |= (flag))
 #define DISABLE_BITFIELD(variable, flag) (variable &= ~(flag))
@@ -30,25 +34,27 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define CONDUCT_1					(1<<5)
 /// For machines and structures that should not break into parts, eg, holodeck stuff
 #define NODECONSTRUCT_1				(1<<7)
-/// atom queued to SSoverlay
-#define OVERLAY_QUEUED_1			(1<<8)
 /// item has priority to check when entering or leaving
-#define ON_BORDER_1					(1<<9)
+#define ON_BORDER_1					(1<<8)
 /// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
-#define PREVENT_CLICK_UNDER_1		(1<<11)
-#define HOLOGRAM_1					(1<<12)
+#define PREVENT_CLICK_UNDER_1		(1<<9)
+#define HOLOGRAM_1					(1<<10)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
-#define TESLA_IGNORE_1				(1<<13)
-///Whether /atom/Initialize() has already run for the object
-#define INITIALIZED_1				(1<<14)
+#define TESLA_IGNORE_1				(1<<11)
+///Whether /atom/Initialize(mapload) has already run for the object
+#define INITIALIZED_1				(1<<12)
 /// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED_1			    (1<<15)
+#define ADMIN_SPAWNED_1			    (1<<13)
 /// should not get harmed if this gets caught by an explosion?
-#define PREVENT_CONTENTS_EXPLOSION_1 (1<<16)
+#define PREVENT_CONTENTS_EXPLOSION_1 (1<<14)
 /// should the contents of this atom be acted upon
-#define RAD_PROTECT_CONTENTS_1 (1 << 17)
+#define RAD_PROTECT_CONTENTS_1 (1 << 15)
 /// should this object be allowed to be contaminated
-#define RAD_NO_CONTAMINATE_1 (1 << 18)
+#define RAD_NO_CONTAMINATE_1 (1 << 16)
+/// Prevents most radiation on this turf from leaving it
+#define RAD_CONTAIN_CONTENTS (1<<17)
+/// Is the thing currently spinning?
+#define IS_SPINNING_1 (1<<18)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -58,24 +64,57 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// Blocks lava rivers being generated on the turf
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
-#define NO_RUINS_1					(1<<10)
+#define NO_RUINS_1					(1<<18)
+/// Blocks this turf from being rusted
+#define NO_RUST 					(1<<19)
 
+//AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.
 #define BLOBS_ALLOWED (1<<1)
+/// If mining tunnel generation is allowed in this area
+#define CAVES_ALLOWED (1<<2)
+/// If flora are allowed to spawn in this area randomly through tunnel generation
+#define FLORA_ALLOWED (1<<3)
+/// If mobs can be spawned by natural random generation
+#define MOB_SPAWN_ALLOWED (1<<4)
+/// If megafauna can be spawned by natural random generation
+#define MEGAFAUNA_SPAWN_ALLOWED (1<<5)
+/// Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
+#define NOTELEPORT (1<<6)
+
+// Update flags for [/atom/proc/update_appearance]
+/// Update the atom's name
+#define UPDATE_NAME (1<<0)
+/// Update the atom's desc
+#define UPDATE_DESC (1<<1)
+/// Update the atom's icon state
+#define UPDATE_ICON_STATE (1<<2)
+/// Update the atom's overlays
+#define UPDATE_OVERLAYS (1<<3)
+/// Update the atom's greyscaling
+#define UPDATE_GREYSCALE (1<<4)
+/// Update the atom's smoothing. (More accurately, queue it for an update)
+#define UPDATE_SMOOTHING (1<<5)
+/// Update the atom's icon
+#define UPDATE_ICON (UPDATE_ICON_STATE|UPDATE_OVERLAYS)
+
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
 	the atom/checkpass() proc uses them (tables will call movable atom checkpass(PASSTABLE) for example)
 */
 //flags for pass_flags
-#define PASSTABLE		(1<<0)
-#define PASSGLASS		(1<<1)
-#define PASSGRILLE		(1<<2)
-#define PASSBLOB		(1<<3)
-#define PASSMOB			(1<<4)
-#define PASSCLOSEDTURF	(1<<5)
-#define LETPASSTHROW	(1<<6)
-#define PASSMACHINES	(1<<7)
-#define PASSCOMPUTER	(1<<8)
+#define PASSTABLE (1<<0)
+#define PASSGLASS (1<<1)
+#define PASSGRILLE (1<<2)
+#define PASSBLOB (1<<3)
+#define PASSMOB (1<<4)
+#define PASSCLOSEDTURF (1<<5)
+#define LETPASSTHROW (1<<6)
+#define PASSMACHINES (1<<7)
+#define PASSCOMPUTER (1<<8)
+#define PASSSTRUCTURE (1<<9)
+#define PASSDOOR (1<<10)
+#define PASSMECH (1<<11)
 
 //Movement Types
 #define GROUND			(1<<0)
@@ -113,7 +152,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //EMP protection
 #define EMP_PROTECT_SELF 		(1<<0)
 #define EMP_PROTECT_CONTENTS 	(1<<1)
-#define EMP_PROTECT_WIRES 		(1<<2)
 
 //Mob mobility var flags
 /// can move
@@ -143,7 +181,33 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RELIGION_TOOL_SACRIFICE 	(1<<1)
 #define RELIGION_TOOL_SECTSELECT 	(1<<2)
 
+//dir macros
+///Returns true if the dir is diagonal, false otherwise
+#define ISDIAGONALDIR(d) (d&(d-1))
+///True if the dir is north or south, false therwise
 #define NSCOMPONENT(d)   (d&(NORTH|SOUTH))
+///True if the dir is east/west, false otherwise
+#define EWCOMPONENT(d)   (d&(EAST|WEST))
+///Flips the dir for north/south directions
+#define NSDIRFLIP(d)     (d^(NORTH|SOUTH))
+///Flips the dir for east/west directions
+#define EWDIRFLIP(d)     (d^(EAST|WEST))
+///Turns the dir by 180 degrees
+#define DIRFLIP(d)       turn(d, 180)
 
 /// 33554431 (2^24 - 1) is the maximum value our bitflags can reach.
 #define MAX_BITFLAG_DIGITS 8
+
+// timed_action_flags parameter for `/proc/do_after`
+/// Can do the action even if mob moves location
+#define IGNORE_USER_LOC_CHANGE (1<<0)
+/// Can do the action even if the target moves location
+#define IGNORE_TARGET_LOC_CHANGE (1<<1)
+/// Can do the action even if the item is no longer being held
+#define IGNORE_HELD_ITEM (1<<2)
+/// Can do the action even if the mob is incapacitated (ex. handcuffed)
+#define IGNORE_INCAPACITATED (1<<3)
+/// Used to prevent important slowdowns from being abused by drugs like kronkaine
+#define IGNORE_SLOWDOWNS (1<<4)
+
+#define IGNORE_ALL (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM|IGNORE_INCAPACITATED|IGNORE_SLOWDOWNS)

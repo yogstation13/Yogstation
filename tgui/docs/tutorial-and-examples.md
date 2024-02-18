@@ -84,7 +84,7 @@ input. The input's `action` and `params` are passed to the proc.
       return FALSE
     color = new_color
     . = TRUE
-  update_icon()
+  update_appearance(UPDATE_ICON)
 ```
 
 The `..()` (parent call) is very important here, as it is how we check that the
@@ -127,7 +127,7 @@ export const SampleInterface = (props, context) => {
     color,
   } = data;
   return (
-    <Window resizable>
+    <Window>
       <Window.Content scrollable>
         <Section title="Health status">
           <LabeledList>
@@ -253,7 +253,7 @@ import { Window } from '../layouts';
 
 export const SampleInterface = (props, context) => {
   return (
-    <Window resizable>
+    <Window>
       <Window.Content scrollable>
         <HealthStatus user="Jerry" />
       </Window.Content>
@@ -312,7 +312,7 @@ upon code review):
       // A demo of proper input sanitation.
       var = CLAMP(newvar, min_val, max_val)
       . = TRUE
-  update_icon() // Not applicable to all objects.
+  update_appearance(UPDATE_ICON) // Not applicable to all objects.
 ```
 
 And the template:
@@ -330,7 +330,7 @@ export const SampleInterface = (props, context) => {
     color,
   } = data;
   return (
-    <Window resizable>
+    <Window>
       <Window.Content scrollable>
         <Section title="Health status">
           <LabeledList>

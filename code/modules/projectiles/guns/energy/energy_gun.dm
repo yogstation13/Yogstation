@@ -1,18 +1,23 @@
 /obj/item/gun/energy/e_gun
 	name = "energy gun"
-	desc = "A basic hybrid energy gun with two settings: disable and kill."
+	desc = "Created in 2514, the NT-E3 hybrid energy gun is the newest generation of standardized energy equipment for use by security. This basic hybrid energy gun comes equipped with two settings: disable and kill."
 	icon_state = "energy"
-	item_state = null	//so the human update icon uses the icon_state instead.
+	item_state = null //so the human update icon uses the icon_state instead.
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
-	modifystate = 1
+	modifystate = TRUE
 	can_flashlight = TRUE
 	ammo_x_offset = 3
 	flight_x_offset = 15
 	flight_y_offset = 10
 
+/obj/item/gun/energy/e_gun/ancient
+	name = "old energy gun"
+	desc = "What the fuck?"
+	icon_state = "energyold"
+
 /obj/item/gun/energy/e_gun/mini
 	name = "miniature energy gun"
-	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: disable and kill."
+	desc = "A small, pistol-sized version of the energy gun with a built-in flashlight. The NT-E2 functions as a popular self defense weapon among the elite due to its small size and cheap price. It has two settings: disable and kill."
 	icon_state = "mini"
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_SMALL
@@ -20,15 +25,14 @@
 	ammo_x_offset = 2
 	charge_sections = 3
 	can_flashlight = FALSE // Can't attach or detach the flashlight, and override it's icon update
+	gunlight_state = "mini-light"
+	flight_x_offset = 19
+	flight_y_offset = 13
 
-/obj/item/gun/energy/e_gun/mini/Initialize()
-	gun_light = new /obj/item/flashlight/seclite(src)
-	return ..()
-
-/obj/item/gun/energy/e_gun/mini/update_icon()
-	..()
-	if(gun_light && gun_light.on)
-		add_overlay("mini-light")
+/obj/item/gun/energy/e_gun/mini/Initialize(mapload)
+	. = ..()
+	var/obj/item/flashlight/seclite/new_seclite = new()
+	set_gun_light(new_seclite)
 
 /obj/item/gun/energy/e_gun/stun
 	name = "tactical energy gun"
@@ -39,7 +43,7 @@
 
 /obj/item/gun/energy/e_gun/old
 	name = "prototype energy gun"
-	desc = "NT-P:01 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command."
+	desc = "NT-E1 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command. Was quickly made useless by the NT-E2 and NT-E3 Hybrid Energy Guns, which utilized a more efficient power system."
 	icon_state = "protolaser"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/electrode/old)
@@ -51,8 +55,8 @@
 	icon_state = "decloner"
 
 /obj/item/gun/energy/e_gun/hos
-	name = "\improper X-01 MultiPhase Energy Gun"
-	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time."
+	name = "\improper NT-S02 MultiPhase Energy Gun"
+	desc = "An expensive, modern recreation of the antique laser gun, and the second of the 'S' or special class weapons meant for the use of space station command staff. Like the standard energy gun, it has a stun and kill setting, but due to the increase in demand of portable EMP-based weaponry, this weapon is equipped with an ion mode. Lacks the ability to recharge on its own."
 	icon_state = "hoslaser"
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/ion/hos)
@@ -109,7 +113,7 @@
 		teletarget = T
 		user.show_message(span_notice("Locked In."), MSG_AUDIBLE)
 
-/obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
+/obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/projectile/energy/net/N)
 	N.teletarget = teletarget
 
 /obj/item/gun/energy/e_gun/dragnet/snare
@@ -132,58 +136,45 @@
 
 /obj/item/gun/energy/e_gun/nuclear
 	name = "advanced energy gun"
-	desc = "An energy gun with an experimental miniaturized nuclear reactor that automatically charges the internal power cell."
+	desc = "An experimental energy gun with many settings and a miniaturized nuclear reactor that can be refueled with uranium."
 	icon_state = "nucgun"
 	item_state = "nucgun"
-	charge_delay = 5
 	pin = null
 	can_charge = FALSE
 	ammo_x_offset = 1
-	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/disabler)
-	selfcharge = 1
-	var/reactor_overloaded
-	var/fail_tick = 0
-	var/fail_chance = 0
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/xray, /obj/item/ammo_casing/energy/anoxia) //a lot of firemodes so it's really an ADVANCED egun
+	dead_cell = TRUE //Fuel not included, you will have to get irradiated to shoot this gun
 
-/obj/item/gun/energy/e_gun/nuclear/process()
-	if(fail_tick > 0)
-		fail_tick--
-	..()
-
-/obj/item/gun/energy/e_gun/nuclear/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
-	failcheck()
-	update_icon()
-	..()
-
-/obj/item/gun/energy/e_gun/nuclear/proc/failcheck()
-	if(prob(fail_chance) && isliving(loc))
-		var/mob/living/M = loc
-		switch(fail_tick)
-			if(0 to 200)
-				fail_tick += (2*(fail_chance))
-				M.rad_act(40)
-				to_chat(M, span_userdanger("Your [name] feels warmer."))
-			if(201 to INFINITY)
-				SSobj.processing.Remove(src)
-				M.rad_act(80)
-				reactor_overloaded = TRUE
-				to_chat(M, span_userdanger("Your [name]'s reactor overloads!"))
-
-/obj/item/gun/energy/e_gun/nuclear/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	fail_chance = min(fail_chance + round(15/severity), 100)
-
-/obj/item/gun/energy/e_gun/nuclear/update_icon()
-	..()
-	if(reactor_overloaded)
-		add_overlay("[icon_state]_fail_3")
+/obj/item/gun/energy/e_gun/nuclear/attackby(obj/item/I, mob/living/carbon/user) //plasmacutter but using uranium and devoid of any safety measures
+	var/charge_multiplier = 0 //2 = Refined stack, 1 = Ore
+	var/previous_loc = user.loc
+	if(istype(I, /obj/item/stack/sheet/mineral/uranium))
+		charge_multiplier = 2
+	if(istype(I, /obj/item/stack/ore/uranium))
+		charge_multiplier = 1
+	if(charge_multiplier)
+		if(cell.charge == cell.maxcharge)
+			to_chat(user, span_notice("You try to insert [I] into [src]'s nulear reactor, but it's full."))
+			return
+		to_chat(user, span_notice("You start delicately inserting [I] in [src]'s reactor, refueling it."))
+		if(do_after(user, 1 SECONDS, src))
+			I.use(1)
+			cell.give(250*charge_multiplier)
+			user.radiation += (75*charge_multiplier) //You are putting you hand into a nuclear reactor to put more uranium in it
+			update_appearance(UPDATE_ICON)
+		else
+			if(!(previous_loc == user.loc))
+				to_chat(user, span_boldwarning("You move, bumping your hand on [src]'s nulear reactor's core!")) //when I said devoid of ANY safety measures I meant it
+				user.adjustToxLoss(5*charge_multiplier) //straigth toxin damage rather than rads because we want the user to be punished immediately for moving, not in 2 hours
+				user.radiation += (100*charge_multiplier) //but also rads because you touched a fucking nuclear reactor's core
 	else
-		switch(fail_tick)
-			if(0)
-				add_overlay("[icon_state]_fail_0")
-			if(1 to 150)
-				add_overlay("[icon_state]_fail_1")
-			if(151 to INFINITY)
-				add_overlay("[icon_state]_fail_2")
+		..()
+
+/obj/item/gun/energy/e_gun/bouncer
+	name = "bouncer energy gun"
+	desc = "A special energy gun shooting ricocheting projectiles, has two settings: disable and freeze."
+	icon_state = "bouncer"
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/bounce, /obj/item/ammo_casing/energy/temp/bounce)
+	can_flashlight = FALSE
+	ammo_x_offset = 2
+	pin = null

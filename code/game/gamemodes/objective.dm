@@ -5,14 +5,16 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/datum/mind/owner				//The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
 	var/datum/team/team					//An alternative to 'owner': a team. Use this when writing new code.
 	var/name = "generic objective" 		//Name for admin prompts
+	var/objective_name = "Objective"	///name used in printing this objective (Objective #1)		//Name for admin prompts
 	var/explanation_text = "Nothing"	//What that person is supposed to do.
 	var/team_explanation_text			//For when there are multiple owners.
 	var/datum/mind/target = null		//If they are focused on a particular person.
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = 0					//currently only used for custom objectives.
 	var/martyr_compatible = 0			//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
+	var/optional = FALSE				//Whether the objective should show up as optional in the roundend screen
 
-/datum/objective/New(var/text)
+/datum/objective/New(text)
 	GLOB.objectives += src
 	if(text)
 		explanation_text = text
@@ -33,6 +35,9 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/proc/admin_edit(mob/admin)
 	return
+
+/datum/objective/proc/is_valid_target(possible_target)
+	return TRUE
 
 //Shared by few objective types
 /datum/objective/proc/admin_simple_target_pick(mob/admin)
@@ -59,8 +64,8 @@ GLOBAL_LIST_EMPTY(objectives)
 
 	update_explanation_text()
 
-/datum/objective/proc/considered_escaped(datum/mind/M)
-	if(!considered_alive(M))
+/datum/objective/proc/considered_escaped(datum/mind/M, needs_living = TRUE)
+	if((needs_living && !considered_alive(M)))
 		return FALSE
 	if(M.force_escaped)
 		return TRUE
@@ -124,10 +129,10 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(O.late_joiner)
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
-		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
+		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
-			if(possible_target.antag_datums || !(guy.client && (guy.client.prefs.yogtoggles & QUIET_ROUND)))
+			if(possible_target.antag_datums || !(guy.mind.quiet_round))
 				if (!(possible_target in blacklist))
 					possible_targets += possible_target//yogs indent
 			//yogs end
@@ -190,7 +195,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(receiver && receiver.current)
 		if(ishuman(receiver.current))
 			var/mob/living/carbon/human/H = receiver.current
-			var/list/slots = list("backpack" = SLOT_IN_BACKPACK)
+			var/list/slots = list("backpack" = ITEM_SLOT_BACKPACK)
 			for(var/eq_path in special_equipment)
 				var/obj/O = new eq_path
 				H.equip_in_one_of_slots(O, slots)
@@ -199,7 +204,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/proc/copy_target(datum/objective/old_obj)
 	target = old_obj.get_target()
 	target_amount = old_obj.target_amount
-	explanation_text = explanation_text
+	explanation_text = old_obj.explanation_text
 
 /datum/objective/assassinate
 	name = "assassinate"
@@ -219,7 +224,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(target && target.current)
 		if(ishuman(target.current))
 			var/mob/living/carbon/human/H = target.current
-			explanation_text = "Assassinate [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
+			// This should just check for an uppercase flag
+			explanation_text = "Assassinate [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
 		else
 			explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 	else
@@ -458,7 +464,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.mind && player.stat != DEAD && !issilicon(player))
+		if(player.mind && player.stat != DEAD && ((player.mob_biotypes & MOB_ORGANIC) && !(player.mob_biotypes & MOB_ROBOTIC))) // kill everything that's not purely robotic
 			if(get_area(player) in SSshuttle.emergency.shuttle_areas)
 				return FALSE
 	return TRUE
@@ -482,8 +488,13 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/robot_army
 	name = "robot army"
-	explanation_text = "Have at least eight active cyborgs synced to you."
 	martyr_compatible = 0
+	var/number_of_borgs = 2
+
+/datum/objective/robot_army/New()
+	. = ..()
+	number_of_borgs = ROUND_UP((length(GLOB.joined_player_list) / 10) + 2)
+	explanation_text = "Have at least [number_of_borgs] active cyborgs synced to you."
 
 /datum/objective/robot_army/check_completion()
 	if(..())
@@ -497,7 +508,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		for(var/mob/living/silicon/robot/R in A.connected_robots)
 			if(R.stat != DEAD)
 				counter++
-	return counter >= 8
+	return counter >= number_of_borgs
 
 /datum/objective/escape
 	name = "escape"
@@ -512,6 +523,39 @@ GLOBAL_LIST_EMPTY(objectives)
 	for(var/datum/mind/M in owners)
 		if(!considered_escaped(M))
 			return FALSE
+	return TRUE
+
+/datum/objective/escape/onesurvivor
+	name = "escape team can die"
+	team_explanation_text = "Have all members of your team escape outside custody on a shuttle or pod, with at least one surviving member."
+
+/datum/objective/escape/onesurvivor/check_completion()
+	if(completed)
+		return TRUE
+	var/has_survivor = FALSE	//is there a surviving member of the team?
+	var/list/datum/mind/owners = get_owners()
+	for(var/O in owners)
+		var/datum/mind/M = O
+		if(!considered_escaped(M, FALSE)) //NO MAN LEFT BEHIND
+			return FALSE
+		if(considered_alive(M))
+			has_survivor = TRUE
+	return has_survivor
+
+/datum/objective/escape/escape_with_identity/is_valid_target(possible_target)
+	var/list/datum/mind/owners = get_owners()
+	for(var/datum/mind/M in owners)
+		if(!M)
+			continue
+		if(!M.has_antag_datum(/datum/antagonist/changeling))
+			continue
+		var/datum/mind/T = possible_target
+		if(!istype(T)) // if you can't absorb them you shouldn't have an objective to do so
+			return FALSE
+		if(ishuman(T.current))
+			var/mob/living/carbon/human/H = T.current
+			if((NO_DNA_COPY in H.dna.species.species_traits) || (NOHUSK in H.dna.species.species_traits))
+				return FALSE
 	return TRUE
 
 /datum/objective/escape/escape_with_identity
@@ -540,8 +584,11 @@ GLOBAL_LIST_EMPTY(objectives)
 		explanation_text = "Free Objective."
 
 /datum/objective/escape/escape_with_identity/check_completion()
-	if(..())
+	. = ..()
+	if(completed)
 		return TRUE
+	if(!.)
+		return
 	if(!target || !target_real_name)
 		return TRUE
 	var/list/datum/mind/owners = get_owners()
@@ -638,10 +685,10 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(!is_unique_objective(possible_item.targetitem,dupe_search_range))
 				continue
 			for(var/datum/mind/M in owners)
-				if(M.current.mind.assigned_role in possible_item.excludefromjob)
+				if(M.assigned_role in possible_item.excludefromjob)
 					continue check_items
 			approved_targets += possible_item
-	return set_target(safepick(approved_targets))
+	return set_target(pick(approved_targets))
 
 /datum/objective/steal/proc/set_target(datum/objective_item/item)
 	if(item)
@@ -690,7 +737,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 		if(!isliving(M.current))
 			continue
 
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
+		var/list/all_items = M.current.get_all_contents()	//this should get things in cheesewheels, books, etc.
 
 		for(var/obj/I in all_items) //Check for items
 			if(istype(I, steal_target))
@@ -705,7 +752,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	if (istype(team, /datum/team/infiltrator))
 		for (var/area/A in world)
 			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/I in A.GetAllContents()) //Check for items
+				for (var/obj/item/I in A.get_all_contents()) //Check for items
 					if (istype(I, steal_target))
 						if (!targetinfo)
 							return TRUE
@@ -768,51 +815,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Do not give up or lose [targetinfo.name]."
 	steal_target = targetinfo.targetitem
 
-
-/datum/objective/download
-	name = "download"
-
-/datum/objective/download/proc/gen_amount_goal()
-	target_amount = rand(20,40)
-	update_explanation_text()
-	return target_amount
-
-/datum/objective/download/update_explanation_text()
-	..()
-	explanation_text = "Download [target_amount] research node\s."
-
-/datum/objective/download/check_completion()
-	if(..())
-		return TRUE
-	var/datum/techweb/checking = new
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/owner in owners)
-		if(ismob(owner.current))
-			var/mob/M = owner.current			//Yeah if you get morphed and you eat a quantum tech disk with the RD's latest backup good on you soldier.
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H && (H.stat != DEAD) && istype(H.wear_suit, /obj/item/clothing/suit/space/space_ninja))
-					var/obj/item/clothing/suit/space/space_ninja/S = H.wear_suit
-					S.stored_research.copy_research_to(checking)
-			var/list/otherwise = M.GetAllContents()
-			for(var/obj/item/disk/tech_disk/TD in otherwise)
-				TD.stored_research.copy_research_to(checking)
-	if (istype(team, /datum/team/infiltrator))
-		for (var/area/A in world)
-			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/disk/tech_disk/TD in A.GetAllContents()) //Check for items
-					TD.stored_research.copy_research_to(checking)
-				CHECK_TICK
-			CHECK_TICK
-		CHECK_TICK
-	return checking.researched_nodes.len >= target_amount
-
-/datum/objective/download/admin_edit(mob/admin)
-	var/count = input(admin,"How many nodes ?","Nodes",target_amount) as num|null
-	if(count)
-		target_amount = count
-	update_explanation_text()
-
 /datum/objective/capture
 	name = "capture"
 
@@ -866,7 +868,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/capture/living/update_explanation_text()
 	. = ..()
-	explanation_text = "Capture [target_amount] living lifeform\s with an energy net. Only alive specimens count."
+	explanation_text = "Capture [target_amount] sapient lifeform\s with an energy net. Only living specimens count."
 
 /datum/objective/protect_object
 	name = "protect object"
@@ -1019,10 +1021,101 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy/internal
 	var/stolen = FALSE 		//Have we already eliminated this target?
 
-/datum/objective/steal_five_of_type
+/datum/objective/steal_n_of_type
 	name = "steal five of"
-	explanation_text = "Steal at least five items!"
+	explanation_text = "Steal some items!"
+	//what types we want to steal
 	var/list/wanted_items = list()
+	//how many we want to steal
+	var/amount = 5
+
+/datum/objective/steal_n_of_type/New()
+	..()
+	wanted_items = typecacheof(wanted_items)
+
+/datum/objective/steal_n_of_type/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	var/stolen_count = 0
+	for(var/datum/mind/M in owners)
+		if(!isliving(M.current))
+			continue
+		var/list/all_items = M.current.get_all_contents() //this should get things in cheesewheels, books, etc.
+		for(var/obj/current_item in all_items) //Check for wanted items
+			if(is_type_in_typecache(current_item, wanted_items))
+				if(check_if_valid_item(current_item))
+					stolen_count++
+	return stolen_count >= amount
+
+/datum/objective/steal_n_of_type/proc/check_if_valid_item(obj/item/current_item)
+	return TRUE
+
+/datum/objective/steal_n_of_type/summon_guns
+	name = "steal guns"
+	explanation_text = "Steal at least five guns!"
+	wanted_items = list(/obj/item/gun)
+	amount = 5
+
+/datum/objective/steal_n_of_type/summon_guns/check_if_valid_item(obj/item/current_item)
+	var/obj/item/gun/gun = current_item
+//	return !(gun.gun_flags & NOT_A_REAL_GUN)
+	return istype(gun)
+
+/datum/objective/steal_n_of_type/summon_magic
+	name = "steal magic"
+	explanation_text = "Steal at least five magical artefacts!"
+	wanted_items = list()
+	amount = 5
+
+/datum/objective/steal_n_of_type/summon_magic/New()
+	wanted_items = GLOB.summoned_magic_objectives
+	..()
+
+/datum/objective/steal_n_of_type/summon_magic/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	var/stolen_count = 0
+	for(var/datum/mind/M in owners)
+		if(!isliving(M.current))
+			continue
+		var/list/all_items = M.current.get_all_contents() //this should get things in cheesewheels, books, etc.
+		for(var/obj/thing in all_items) //Check for wanted items
+			if(istype(thing, /obj/item/book/granter/action/spell))
+				var/obj/item/book/granter/action/spell/spellbook = thing
+				if(spellbook.uses > 0) //if the book still has powers...
+					stolen_count++ //it counts. nice.
+			else if(is_type_in_typecache(thing, wanted_items))
+				stolen_count++
+	return stolen_count >= amount
+
+/datum/objective/steal_n_of_type/organs
+	name = "steal organs"
+	explanation_text = "Steal at least 5 organic organs! They must be kept healthy."
+	wanted_items = list(/obj/item/organ)
+	amount = 5 //i want this to be higher, but the organs must be fresh at roundend
+
+/datum/objective/steal_n_of_type/organs/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	var/stolen_count = 0
+	for(var/datum/mind/mind in owners)
+		if(!isliving(mind.current))
+			continue
+		var/list/all_items = mind.current.get_all_contents() //this should get things in cheesewheels, books, etc.
+		for(var/obj/item/stolen in all_items) //Check for wanted items
+			var/found = FALSE
+			for(var/wanted_type in wanted_items)
+				if(istype(stolen, wanted_type))
+					found = TRUE
+					break
+			if(!found)
+				continue
+			//this is an objective item
+			var/obj/item/organ/wanted = stolen
+			if(!(wanted.organ_flags & ORGAN_FAILING) && !(wanted.organ_flags & ORGAN_SYNTHETIC))
+				stolen_count++
+	return stolen_count >= amount
+
+/datum/objective/research_secrets
+	explanation_text = "Use your gloves on a research & development server to sabotage research efforts.  Note that the AI will be alerted once you begin!"
+
 
 //Created by admin tools
 /datum/objective/custom
@@ -1092,6 +1185,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/datum/mind/M in SSticker.minds)
 		if(M in lings)
 			continue
+		if(isipc(M.current))
+			continue
 		if(department_head in get_department_heads(M.assigned_role))
 			if(ling_count)
 				ling_count--
@@ -1120,6 +1215,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/heads = SSjob.get_living_heads()
 	for(var/datum/mind/head in heads)
 		if(head in lings) //Looking at you HoP.
+			continue
+		if(isipc(head.current))
 			continue
 		if(needed_heads)
 			department_minds += head
@@ -1218,7 +1315,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /**
   * Sets up the achievement, returns TRUE if it was set up successfully and can be used, FALSE otherwise
   */
-/datum/objective/minor/proc/finalize()
+/datum/objective/proc/finalize()
 	return FALSE
 
 
@@ -1288,8 +1385,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		return
 	var/chosen_pet = rand(1, possible_pets.len)
 	pet = locate(possible_pets[chosen_pet]) in GLOB.mob_living_list
-	name = "Kill [pet.name]]"
-	explanation_text = "Assasinate the important animal, [pet.name]"
+	name = "Kill [pet.name]"
+	explanation_text = "Assassinate the important animal, [pet.name]."
 	return pet
 
 /datum/objective/minor/pet/admin_edit(mob/admin)
@@ -1349,7 +1446,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/minor/deadpics/check_completion()
 	if(..())
 		return TRUE
-	var/list/all_items = owner.current.GetAllContents()
+	var/list/all_items = owner.current.get_all_contents()
 	for(var/obj/item/photo/P in all_items)
 		for(var/mob/M in P.picture.dead_seen)
 			if(M.real_name == target.name)
@@ -1401,10 +1498,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/minor/staffpics/check_completion()
 	if(..())
 		return TRUE
-	var/list/all_items = owner.current.GetAllContents()
+	var/list/all_items = owner.current.get_all_contents()
 	for(var/obj/item/photo/P in all_items)
-		for(var/mob/M in P.picture.mobs_seen)
-			if(M.real_name == target.name)
+		for(var/datum/mind/M in P.picture.minds_seen)
+			if(M == target)
 				return TRUE
 	return FALSE
 
@@ -1417,20 +1514,14 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/assassinate/cloned,
 		/datum/objective/assassinate/once,
 		/datum/objective/maroon,
+		/datum/objective/maroon_organ,
 		/datum/objective/debrain,
 		/datum/objective/protect,
 		/datum/objective/assist,
 		// Fulp edit START - Bloodsuckers
 		// DEFAULT OBJECTIVES //
-		/datum/objective/bloodsucker/lair,
+		/datum/objective/bloodsucker_lair,
 		/datum/objective/survive/bloodsucker,
-		/datum/objective/bloodsucker/protege,
-		/datum/objective/bloodsucker/heartthief,
-		/datum/objective/bloodsucker/gourmand,
-		// MISC OBJECTIVES //
-		/datum/objective/bloodsucker/monsterhunter,
-		/datum/objective/bloodsucker/vassalhim,
-		/datum/objective/bloodsucker/frenzy,
 		// Fulp edit END
 		/datum/objective/destroy,
 		/datum/objective/hijack,
@@ -1438,12 +1529,12 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/survive,
 		/datum/objective/martyr,
 		/datum/objective/steal,
-		/datum/objective/download,
 		/datum/objective/nuclear,
 		/datum/objective/capture,
 		/datum/objective/absorb,
 		/datum/objective/minor/pet,
-		/datum/objective/custom
+		/datum/objective/custom,
+		/datum/objective/gimmick //bee port
 	)
 
 	for(var/T in allowed_types)
@@ -1459,7 +1550,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/contract/proc/generate_dropoff()
 	var/found = FALSE
 	while (!found)
-		var/area/dropoff_area = pick(GLOB.sortedAreas)
+		var/area/dropoff_area = pick(GLOB.areas)
 		if(dropoff_area && is_station_level(dropoff_area.z) && !dropoff_area.outdoors)
 			dropoff = dropoff_area
 			found = TRUE
@@ -1470,3 +1561,189 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/area/target_area = get_area(target)
 
 	return (istype(user_area, dropoff) && istype(target_area, dropoff))
+
+
+///////////////////////////////////////////////////////////////////////
+//----------------Break specific machines in an area once------------//
+///////////////////////////////////////////////////////////////////////
+/datum/objective/break_machinery
+	name = "Destroy some machines"
+	explanation_text = "Destroy all of something in the areas it spawns in."
+	var/obj/machinery/target_obj_type
+	var/list/potential_target_types
+	var/list/area/target_areas
+	var/list/machines_to_break = list()
+
+/datum/objective/break_machinery/finalize()
+	target_areas = list()
+	var/station_z = SSmapping.levels_by_trait(ZTRAIT_STATION)[1]
+	if(!target_obj_type) // Select our target machine if there is none pre-set
+		potential_target_types = list(
+			// SCIENCE
+			/obj/machinery/rnd/server,
+			// ENGINEERING
+			/obj/machinery/power/smes,
+			/obj/machinery/telecomms, // hard-mode
+			/obj/machinery/power/supermatter_crystal,
+			// MEDICAL
+			/obj/machinery/stasis,
+			/obj/machinery/sleeper,
+			/obj/machinery/clonepod,
+			// OTHER
+			/obj/machinery/autolathe,
+			/obj/machinery/ore_silo,
+			/obj/machinery/teleport/hub,
+			/obj/machinery/rnd/production/protolathe, // hard-mode 2.0
+		)
+		potential_target_types = shuffle(potential_target_types)
+		var/targets_len = potential_target_types.len
+		var/iteration = 1
+		while(!target_obj_type && targets_len >= iteration)
+			for(var/obj/machinery/machine as anything in GLOB.machines)
+				if(machine.z == station_z && istype(machine, potential_target_types[iteration]))
+					target_obj_type = potential_target_types[iteration]
+					break
+			iteration++
+
+	if(!target_obj_type)
+		return FALSE
+
+	var/machine_name = initial(target_obj_type.name)
+	name = "Destroy [machine_name][machine_name[length(machine_name)] == "s" ? "es" : "s"]"
+	// Find and shuffle machines for random area selection
+	var/list/eligible_machines = list()
+	for(var/obj/machinery/machine as anything in GLOB.machines)
+		if(!istype(machine, target_obj_type))
+			continue
+		if(machine.z != station_z)
+			continue
+		if(!istype(get_area(machine), /area))
+			continue
+		eligible_machines |= machine
+
+	eligible_machines = shuffle(eligible_machines)
+	// Store areas
+	for(var/obj/machinery/machine as anything in eligible_machines)
+		target_areas |= get_area(machine)
+		for(var/obj/machinery/specific as anything in get_area(machine))
+			if(istype(specific, target_obj_type))
+				machines_to_break |= specific
+		if(target_areas.len >= 2)
+			break
+
+	// Format explanation text
+	explanation_text = "Destroy the original [machine_name][machine_name[length(machine_name)] == "s" ? "es" : "s"] in "
+	switch(target_areas.len)
+		if(0)
+			return FALSE
+		if(1)
+			explanation_text += "[target_areas[1].name]."
+		if(2)
+			explanation_text += "[target_areas[1].name] and [target_areas[2].name]."
+	return TRUE
+
+/datum/objective/break_machinery/check_completion()
+	if(!target_obj_type)
+		return TRUE
+	if(target_areas.len == 0)
+		return TRUE
+	if(machines_to_break.len == 0)
+		return TRUE
+	for(var/obj/machinery/thing as anything in machines_to_break)
+		if(thing && istype(thing, target_obj_type))
+			return FALSE
+	return TRUE
+
+//Bee port, gimmick objectives
+#define GIMMICK_OBJ_FILE "strings/gimmick_objectives.txt"
+#define DEPT_GIMMICK_OBJ_FILE "strings/dept_gimmick_objectives.txt"
+#define TARGET_GIMMICK_OBJ_FILE "strings/target_gimmick_objectives.txt"
+
+/datum/objective/gimmick
+	name = "gimmick"
+	martyr_compatible = TRUE
+	optional = TRUE
+
+/datum/objective/gimmick/update_explanation_text()
+	var/selected_department = pick(list( //Select a department for department-based objectives
+		DEPT_SCIENCE,
+		DEPT_ENGINEERING,
+		DEPT_SECURITY,
+		DEPT_MEDICAL,
+		DEPT_SERVICE,
+		DEPT_SUPPLY,
+		DEPT_COMMAND
+	))
+
+	var/list/gimmick_list = world.file2list(GIMMICK_OBJ_FILE) //gimmick_objectives.txt is for objectives without a specific target/department/etc
+	gimmick_list.Add(world.file2list(DEPT_GIMMICK_OBJ_FILE))
+	if(target?.current)
+		gimmick_list.Add(world.file2list(TARGET_GIMMICK_OBJ_FILE))
+
+	var/selected_gimmick = pick(gimmick_list)
+	selected_gimmick = replacetext(selected_gimmick, "%DEPARTMENT", selected_department)
+	if(target?.current)
+		selected_gimmick = replacetext(selected_gimmick, "%TARGET", target.name)
+
+	explanation_text = "[selected_gimmick]"
+
+/datum/objective/gimmick/check_completion()
+	return TRUE
+	
+/datum/objective/gimmick/admin_edit(mob/admin)
+	update_explanation_text()
+
+///////////////////////////////////////////////////////////////////////
+//-----------------------Maroon a specific organ---------------------//
+///////////////////////////////////////////////////////////////////////
+/datum/objective/maroon_organ
+	name = "maroon organ"
+	var/obj/item/organ/original_organ
+
+/datum/objective/maroon_organ/is_valid_target(datum/mind/possible_target)
+	if(iscarbon(possible_target?.current))
+		var/mob/living/carbon/possible_carbon_target = possible_target.current
+		return LAZYLEN(possible_carbon_target.internal_organs)
+
+/datum/objective/maroon_organ/finalize()
+	find_target()
+	if(!target)
+		return FALSE
+
+	// This will always be a carbon with organs, because of is_valid_target()
+	var/mob/living/carbon/carbon_target = target.current
+	var/list/eligible_organs = LAZYCOPY(carbon_target.internal_organs) //make a copy so we don't accidentally remove their brain
+	for(var/thing in eligible_organs)
+		if(istype(thing, /obj/item/organ/brain)) //make sure it doesn't pick the brain
+			eligible_organs -= thing
+	original_organ = pick(eligible_organs)
+	if(original_organ)
+		update_explanation_text()
+		return TRUE
+
+/datum/objective/maroon_organ/update_explanation_text()
+	if(target && original_organ)
+		var/mob/living/carbon/human/H = target.current
+		explanation_text = "Ensure that [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [target.assigned_role] does not escape alive with their original [original_organ]."
+	else
+		explanation_text = "Free Objective"
+	. = ..()
+
+/datum/objective/maroon_organ/admin_edit(mob/admin)
+	finalize()
+	update_explanation_text()
+	return
+
+/datum/objective/maroon_organ/check_completion()
+	if(..())
+		return TRUE
+
+	//if they're considered marooned
+	if(!target || !considered_alive(target) || (!target.current.onCentCom() && !target.current.onSyndieBase()))
+		return TRUE
+
+	var/mob/living/carbon/carbon_target = target.current
+	//if they don't have the original organ inside them
+	if(carbon_target && istype(carbon_target) && (original_organ in carbon_target.internal_organs))
+		return FALSE
+	return TRUE

@@ -47,8 +47,8 @@
 	if(burn_stuff(AM))
 		START_PROCESSING(SSobj, src)
 
-/turf/open/lava/process()
-	if(!burn_stuff())
+/turf/open/lava/process(delta_time)
+	if(!burn_stuff(null, delta_time))
 		STOP_PROCESSING(SSobj, src)
 
 /turf/open/lava/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
@@ -65,6 +65,9 @@
 			return TRUE
 	return FALSE
 
+/turf/open/lava/rust_heretic_act()
+	return FALSE
+	
 /turf/open/lava/singularity_act()
 	return
 
@@ -95,7 +98,7 @@
 	return LAZYLEN(found_safeties)
 
 
-/turf/open/lava/proc/burn_stuff(AM)
+/turf/open/lava/proc/burn_stuff(AM, delta_time = 1)
 	. = 0
 
 	if(is_safe())
@@ -118,7 +121,7 @@
 				O.resistance_flags &= ~FIRE_PROOF
 			if(O.armor.fire > 50) //obj with 100% fire armor still get slowly burned away.
 				O.armor = O.armor.setRating(fire = 50)
-			O.fire_act(10000, 1000)
+			O.fire_act(10000, 1000 * delta_time)
 
 		else if (isliving(thing))
 			. = 1
@@ -142,8 +145,8 @@
 
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
-				var/obj/item/clothing/S = C.get_item_by_slot(SLOT_WEAR_SUIT)
-				var/obj/item/clothing/H = C.get_item_by_slot(SLOT_HEAD)
+				var/obj/item/clothing/S = C.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+				var/obj/item/clothing/H = C.get_item_by_slot(ITEM_SLOT_HEAD)
 
 				if(S && H && S.clothing_flags & LAVAPROTECT && H.clothing_flags & LAVAPROTECT)
 					return
@@ -151,10 +154,10 @@
 			if("lava" in L.weather_immunities)
 				continue
 
-			L.adjustFireLoss(20)
+			L.adjustFireLoss(20 * delta_time)
 			if(L) //mobs turning into object corpses could get deleted here.
-				L.adjust_fire_stacks(20)
-				L.IgniteMob()
+				L.adjust_fire_stacks(20 * delta_time)
+				L.ignite_mob()
 
 /turf/open/lava/smooth
 	name = "lava"
@@ -168,6 +171,8 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
+
+/turf/open/lava/smooth/lava_land_surface/no_shelter //snowflake version that survival pods won't spawn in
 
 /turf/open/lava/smooth/airless
 	initial_gas_mix = AIRLESS_ATMOS

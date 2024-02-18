@@ -82,11 +82,17 @@
 	desc = "Better stay away from that thing."
 	density = FALSE
 	anchored = TRUE
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
+	alpha = 30
 	var/triggered = 0
 	var/smartmine = FALSE
 	var/disarm_time = 12 SECONDS
 	var/disarm_product = /obj/item/deployablemine // ie what drops when the mine is disarmed
+
+/obj/effect/mine/Initialize(mapload)
+	. = ..()
+	layer = ABOVE_MOB_LAYER
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
@@ -109,7 +115,7 @@
 			if(!(MM.movement_type & FLYING))
 				checksmartmine(AM)
 		else
-			if(istype(AM, /obj/item/projectile))
+			if(istype(AM, /obj/projectile))
 				return
 			triggermine(AM)
 
@@ -124,7 +130,7 @@
 		return
 	visible_message(span_danger("[victim] sets off [icon2html(src, viewers(src))] [src]!"))
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-	s.set_up(3, 1, src)
+	s.set_up(1, 0, src)
 	s.start()
 	mineEffect(victim)
 	triggered = 1
@@ -144,7 +150,7 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
-	var/sound = 'sound/items/bikehorn.ogg'
+	var/sound = 'yogstation/sound/misc/quack.ogg'
 	range_heavy = 2
 	range_light = 3
 	range_flash = 4
@@ -163,6 +169,16 @@
 
 /obj/effect/mine/explosive/traitor/mineEffect(mob/victim)
 	playsound(loc, sound, 100, 1)
+	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
+
+/obj/effect/mine/explosive/ancient
+	name = "rusty mine"
+	range_heavy = 0
+	range_light = 1
+	range_flash = 2
+	disarm_product = null
+
+/obj/effect/mine/explosive/ancient/mineEffect(mob/victim)
 	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
 
 /obj/effect/mine/stun
@@ -232,7 +248,7 @@
 	disarm_product = /obj/item/deployablemine/honk
 
 /obj/effect/mine/sound/mineEffect(mob/victim)
-	playsound(loc, sound, 100, 1)
+	playsound(loc, sound, 150, 1)
 
 
 /obj/effect/mine/sound/bwoink
@@ -245,9 +261,10 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 	density = FALSE
+	alpha = 255
 	var/duration = 0
 
-/obj/effect/mine/pickup/Initialize()
+/obj/effect/mine/pickup/Initialize(mapload)
 	. = ..()
 	animate(src, pixel_y = 4, time = 2 SECONDS, loop = -1)
 
@@ -266,6 +283,8 @@
 	duration = 2 MINUTES //2min
 	color = "#FF0000"
 
+	var/obj/item/melee/chainsaw/doomslayer/chainsaw
+
 /obj/effect/mine/pickup/bloodbath/mineEffect(mob/living/carbon/victim)
 	if(!victim.client || !istype(victim))
 		return
@@ -278,16 +297,16 @@
 	spawn(0)
 		new /datum/hallucination/delusion(victim, TRUE, "demon",duration,0)
 
-	var/obj/item/twohanded/required/chainsaw/doomslayer/chainsaw = new(victim.loc)
 	victim.log_message("entered a blood frenzy", LOG_ATTACK)
 
-	ADD_TRAIT(chainsaw, TRAIT_NODROP, CHAINSAW_FRENZY_TRAIT)
-	victim.drop_all_held_items()
-	victim.put_in_hands(chainsaw, forced = TRUE)
-	chainsaw.attack_self(victim)
-	chainsaw.wield(victim)
-	victim.reagents.add_reagent(/datum/reagent/medicine/adminordrazine,25)
-	to_chat(victim, span_warning("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, KILL THEM ALL!"))
+	if(iscarbon(victim))
+		chainsaw = new(victim.loc)
+		ADD_TRAIT(chainsaw, TRAIT_NODROP, CHAINSAW_FRENZY_TRAIT)
+		victim.drop_all_held_items()
+		victim.put_in_hands(chainsaw, forced = TRUE)
+		chainsaw.attack_self(victim)
+		victim.reagents.add_reagent(/datum/reagent/medicine/adminordrazine,25)
+		to_chat(victim, span_warning("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, KILL THEM ALL!"))
 
 	victim.client.color = pure_red
 	animate(victim.client,color = red_splash, time = 1 SECONDS, easing = SINE_EASING|EASE_OUT)
@@ -324,3 +343,20 @@
 	sleep(duration)
 	victim.remove_movespeed_modifier(MOVESPEED_ID_YELLOW_ORB)
 	to_chat(victim, span_notice("You slow down."))
+
+/obj/item/deployablemine/creampie
+	name = "deployable creampie mine"
+	desc = "An unarmed creampie mine designed to be rapidly placeable."
+	mine_type = /obj/effect/mine/creampie
+	arming_time = 1 SECONDS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/effect/mine/creampie
+	name = "creampie landmine"
+	desc = "Creampie?"
+	disarm_time = 60 SECONDS
+	disarm_product = /obj/item/deployablemine/creampie
+
+/obj/effect/mine/creampie/mineEffect(mob/victim)
+	var/obj/item/reagent_containers/food/snacks/pie/cream/P = new /obj/item/reagent_containers/food/snacks/pie/cream(src)
+	P.splat(victim)

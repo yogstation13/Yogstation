@@ -2,22 +2,30 @@
 	name = "mecha weapon"
 	range = MECHA_RANGED
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
+	/// Typepath of the projectile
 	var/projectile
+	/// Firing Sound
 	var/fire_sound
+	/// How many projectiles does it shoot
 	var/projectiles_per_shot = 1
+	/// Amount of preditable spread in the shot
 	var/variance = 0
-	var/randomspread = 0 //use random spread for machineguns, instead of shotgun scatter
+	/// Amount of unpredictable spread in the shot
+	var/randomspread = 0
+	/// Firing delay
 	var/projectile_delay = 0
-	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the weapon is fired.
-	var/kickback = TRUE //Will using this weapon in no grav push mecha back.
+	/// Visual effect when fired
+	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect
+	/// Will this push the mech back when used in no gravity
+	var/kickback = TRUE
 	mech_flags = EXOSUIT_MODULE_COMBAT
 
 /obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/M)
 	if(!..())
 		return FALSE
-	if(istype(M, /obj/mecha/combat))
+	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !((locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) || (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in M.equipment) ))
 		return TRUE
-	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !(locate(/obj/item/mecha_parts/mecha_equipment/weapon) in M.equipment))
+	if(M.guns_allowed)
 		return TRUE
 	return FALSE
 
@@ -37,7 +45,7 @@
 
 	set_ready_state(0)
 	for(var/i=1 to get_shot_amount())
-		var/obj/item/projectile/A = new projectile(curloc)
+		var/obj/projectile/A = new projectile(curloc)
 		A.firer = chassis.occupant
 		A.original = target
 		if(!A.suppressed && firing_effect_type)
@@ -73,15 +81,15 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain*get_shot_amount())
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1), equip_cooldown)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
-	equip_cooldown = 8
+	equip_cooldown = 5
 	name = "\improper CH-PS \"Immolator\" laser"
 	desc = "A weapon for combat exosuits. Shoots basic lasers."
 	icon_state = "mecha_laser"
 	energy_drain = 30
-	projectile = /obj/item/projectile/beam/laser
+	projectile = /obj/projectile/beam/laser
 	fire_sound = 'sound/weapons/laser.ogg'
 	harmful = TRUE
 
@@ -91,7 +99,7 @@
 	desc = "A weapon for combat exosuits. Shoots basic disablers."
 	icon_state = "mecha_disabler"
 	energy_drain = 30
-	projectile = /obj/item/projectile/beam/disabler
+	projectile = /obj/projectile/beam/disabler
 	fire_sound = 'sound/weapons/taser2.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
@@ -100,7 +108,7 @@
 	desc = "A weapon for combat exosuits. Shoots heavy lasers."
 	icon_state = "mecha_laser"
 	energy_drain = 60
-	projectile = /obj/item/projectile/beam/laser/heavylaser
+	projectile = /obj/projectile/beam/laser/heavylaser
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
@@ -109,7 +117,7 @@
 	desc = "A weapon for combat exosuits. Shoots concentrated X-ray blasts."
 	icon_state = "mecha_xray"
 	energy_drain = 60
-	projectile = /obj/item/projectile/beam/xray
+	projectile = /obj/projectile/beam/xray
 	fire_sound = 'sound/weapons/laser3.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
@@ -117,8 +125,8 @@
 	name = "\improper MKIV ion heavy cannon"
 	desc = "A weapon for combat exosuits. Shoots technology-disabling ion beams. Don't catch yourself in the blast!"
 	icon_state = "mecha_ion"
-	energy_drain = 120
-	projectile = /obj/item/projectile/ion
+	energy_drain = 200
+	projectile = /obj/projectile/ion/heavy	//Big boy 2/2 EMP bolts
 	fire_sound = 'sound/weapons/laser.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/tesla
@@ -127,7 +135,7 @@
 	desc = "A weapon for combat exosuits. Fires bolts of electricity similar to the experimental tesla engine."
 	icon_state = "mecha_ion"
 	energy_drain = 500
-	projectile = /obj/item/projectile/energy/tesla/cannon
+	projectile = /obj/projectile/energy/tesla/cannon
 	fire_sound = 'sound/magic/lightningbolt.ogg'
 	harmful = TRUE
 
@@ -137,7 +145,7 @@
 	desc = "A weapon for combat exosuits. Shoots powerful destructive blasts capable of demolishing obstacles."
 	icon_state = "mecha_pulse"
 	energy_drain = 120
-	projectile = /obj/item/projectile/beam/pulse/heavy
+	projectile = /obj/projectile/beam/pulse/heavy
 	fire_sound = 'sound/weapons/marauder.ogg'
 	harmful = TRUE
 
@@ -150,12 +158,34 @@
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	energy_drain = 30
-	projectile = /obj/item/projectile/plasma/adv/mech
+	projectile = /obj/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
-	harmful = TRUE
+	harmful = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
-	if(..()) //combat mech
+	if(M.melee_allowed && !M.guns_allowed)	//Should only hold true for melee mechs
+		return 0
+	else if(..()) 	//combat mech
+		return 1
+	else if(M.equipment.len < M.max_equip && istype(M))
+		return 1
+	return 0
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
+	equip_cooldown = 10
+	name = "Exosuit Proto-kinetic Accelerator"
+	desc = "An exosuit-mounted mining tool that does increased damage in low pressure. Drawing from an onboard power source allows it to project further than the handheld version."
+	icon_state = "mecha_kineticgun"
+	energy_drain = 30
+	projectile = /obj/projectile/kinetic/mech
+	fire_sound = 'sound/weapons/kenetic_accel.ogg'
+	harmful = FALSE
+
+//attachable to all mechas, like the plasma cutter
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun/can_attach(obj/mecha/M)
+	if(M.melee_allowed && !M.guns_allowed)	//Should only hold true for melee mechs
+		return 0
+	else if(..()) 	//combat mech
 		return 1
 	else if(M.equipment.len < M.max_equip && istype(M))
 		return 1
@@ -167,7 +197,7 @@
 	icon_state = "mecha_taser"
 	energy_drain = 20
 	equip_cooldown = 8
-	projectile = /obj/item/projectile/energy/electrode
+	projectile = /obj/projectile/energy/electrode
 	fire_sound = 'sound/weapons/taser.ogg'
 
 
@@ -202,14 +232,14 @@
 			continue
 		to_chat(M, "<font color='red' size='7'>HONK</font>")
 		M.SetSleeping(0)
-		M.stuttering += 20
+		M.adjust_stutter(2 SECONDS)
 		M.adjustEarDamage(0, 30)
-		M.Paralyze(60)
+		M.Knockdown(6 SECONDS)
 		if(prob(30))
-			M.Stun(200)
-			M.Unconscious(80)
+			M.Stun(10 SECONDS)
+			M.Unconscious(8 SECONDS)
 		else
-			M.Jitter(500)
+			M.adjust_jitter(50 SECONDS)
 
 	log_message("Honked from [src.name]. HONK!", LOG_MECHA)
 	var/turf/T = get_turf(src)
@@ -291,7 +321,7 @@
 	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
 	icon_state = "mecha_carbine"
 	equip_cooldown = 10
-	projectile = /obj/item/projectile/bullet/incendiary/fnx99
+	projectile = /obj/projectile/bullet/incendiary/fnx99
 	projectiles = 24
 	projectiles_cache = 24
 	projectiles_cache_max = 96
@@ -301,10 +331,10 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced
 	name = "\improper S.H.H. \"Quietus\" Carbine"
 	desc = "A weapon for combat exosuits. A mime invention, field tests have shown that targets cannot even scream before going down."
-	fire_sound = 'sound/weapons/gunshot_silenced.ogg'
+	fire_sound = null
 	icon_state = "mecha_mime"
 	equip_cooldown = 30
-	projectile = /obj/item/projectile/bullet/mime
+	projectile = /obj/projectile/bullet/mime
 	projectiles = 6
 	projectile_energy_cost = 50
 	harmful = TRUE
@@ -314,7 +344,7 @@
 	desc = "A weapon for combat exosuits. Shoots a spread of pellets."
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
-	projectile = /obj/item/projectile/bullet/scattershot
+	projectile = /obj/projectile/bullet/scattershot
 	projectiles = 72
 	projectiles_cache = 72
 	projectiles_cache_max = 288
@@ -328,7 +358,7 @@
 	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
-	projectile = /obj/item/projectile/bullet/lmg
+	projectile = /obj/projectile/bullet/lmg
 	projectiles = 300
 	projectiles_cache = 300
 	projectiles_cache_max = 1200
@@ -339,11 +369,24 @@
 	harmful = TRUE
 	ammo_type = "lmg"
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/bfg
+	name = "\improper BFG-90 \"Graze\" Radioactive Cannon"
+	desc = "A weapon for combat exosuits. Shoots an incredibly hot beam surrounded by a field of plasma."
+	icon_state = "mecha_laser"
+	equip_cooldown = 2 SECONDS
+	projectile = /obj/projectile/beam/bfg
+	projectiles = 5
+	projectiles_cache = 0
+	projectiles_cache_max = 10
+	harmful = TRUE
+	ammo_type = "bfg"
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
 	name = "\improper SRM-8 missile rack"
 	desc = "A weapon for combat exosuits. Launches light explosive missiles."
 	icon_state = "mecha_missilerack"
-	projectile = /obj/item/projectile/bullet/a84mm_he
+	projectile = /obj/projectile/bullet/a84mm_he
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	projectiles = 8
 	projectiles_cache = 0
@@ -357,7 +400,7 @@
 	name = "\improper BRM-6 missile rack"
 	desc = "A weapon for combat exosuits. Launches low-explosive breaching missiles designed to explode only when striking a sturdy target."
 	icon_state = "mecha_missilerack_six"
-	projectile = /obj/item/projectile/bullet/a84mm_br
+	projectile = /obj/projectile/bullet/a84mm_br
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	projectiles = 6
 	projectiles_cache = 0
@@ -385,7 +428,7 @@
 	return 1
 
 //used for projectile initilisation (priming flashbang) and additional logging
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/proc/proj_init(var/obj/O)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/proc/proj_init(obj/O)
 	return
 
 
@@ -403,11 +446,11 @@
 	var/det_time = 20
 	ammo_type = "flashbang"
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/proj_init(var/obj/item/grenade/flashbang/F)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/proj_init(obj/item/grenade/flashbang/F)
 	var/turf/T = get_turf(src)
 	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] fired a [src] in [ADMIN_VERBOSEJMP(T)]")
 	log_game("[key_name(chassis.occupant)] fired a [src] in [AREACOORD(T)]")
-	addtimer(CALLBACK(F, /obj/item/grenade/flashbang.proc/prime), det_time)
+	addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/item/grenade/flashbang, prime)), det_time)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang //Because I am a heartless bastard -Sieve //Heartless? for making the poor man's honkblast? - Kaze
 	name = "\improper SOB-3 grenade launcher"
@@ -456,7 +499,7 @@
 			return 1
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar/proj_init(var/obj/item/assembly/mousetrap/armed/M)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar/proj_init(obj/item/assembly/mousetrap/armed/M)
 	M.secured = 1
 
 

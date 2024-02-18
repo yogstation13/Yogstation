@@ -2,7 +2,7 @@
 /obj/vehicle/ridden/space
 	name = "Generic Space Vehicle!"
 
-/obj/vehicle/ridden/space/Initialize()
+/obj/vehicle/ridden/space/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.override_allow_spacemove = TRUE
@@ -15,7 +15,7 @@
 	var/overlay_state = "cover_blue"
 	var/mutable_appearance/overlay
 
-/obj/vehicle/ridden/space/speedbike/Initialize()
+/obj/vehicle/ridden/space/speedbike/Initialize(mapload)
 	. = ..()
 	overlay = mutable_appearance(icon, overlay_state, ABOVE_MOB_LAYER)
 	add_overlay(overlay)
@@ -44,14 +44,17 @@
 	icon = 'icons/obj/car.dmi'
 	icon_state = "speedwagon"
 	layer = LYING_MOB_LAYER
-	var/static/mutable_appearance/overlay = mutable_appearance(icon, "speedwagon_cover", ABOVE_MOB_LAYER)
+	var/static/mutable_appearance/overlay // Yogs -- fixes potential game crash or something
+	var/damage = TRUE
 	max_buckled_mobs = 4
 	var/crash_all = FALSE //CHAOS
 	pixel_y = -48
 	pixel_x = -48
 
-/obj/vehicle/ridden/space/speedwagon/Initialize()
+/obj/vehicle/ridden/space/speedwagon/Initialize(mapload)
 	. = ..()
+	if(isnull(overlay)) // yogs
+		overlay = mutable_appearance(icon, "speedwagon_cover", ABOVE_MOB_LAYER) // yogs
 	add_overlay(overlay)
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 0
@@ -69,8 +72,12 @@
 /obj/vehicle/ridden/space/speedwagon/Bump(atom/A)
 	. = ..()
 	if(A.density && has_buckled_mobs())
+		if(!damage)
+			return
 		var/atom/throw_target = get_edge_target_turf(A, dir)
 		if(crash_all)
+			if(A == src)
+				return
 			if(ismovable(A))
 				var/atom/movable/AM = A
 				AM.throw_at(throw_target, 4, 3)
@@ -92,3 +99,7 @@
 		for(var/atom/A in range(2, src))
 			if(!(A in buckled_mobs))
 				Bump(A)
+
+/obj/vehicle/ridden/space/speedwagon/nodamage
+	damage = FALSE
+	

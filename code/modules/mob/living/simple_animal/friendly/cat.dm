@@ -17,7 +17,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSCOMPUTER
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	minbodytemp = 200
 	maxbodytemp = 400
 	unsuitable_atmos_damage = 1
@@ -27,14 +27,17 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	var/turns_since_scan = 0
 	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "cat"
 	can_be_held = TRUE
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
+	wuv_happy = "purrs!"
+	wuv_angy = "hisses!"
 
-/mob/living/simple_animal/pet/cat/Initialize()
+/mob/living/simple_animal/pet/cat/Initialize(mapload)
 	. = ..()
 	add_verb(src, /mob/living/proc/lay_down)
 
@@ -81,9 +84,9 @@
 	pass_flags = PASSMOB
 	collar_type = "kitten"
 	var/list/pet_kitten_names = list("Fajita", "Pumpkin", "Meowchael", "Catrick", "Genghis Kat", "Sir Isaac Mewton", "Nugget", "Meowchelangelo", "Meowgaret", "Lemon", "Meowria", "Todd Meoward", "Dolly Purrton", "Pickle", "Runt", "Claws", "Patches", "Skippy", "Teddy", "Frank", "Quilt", "Lenny", "Benny", "Hubert", "Scrungemuffin", "Pizza", "Pawl Meowcartney")
-	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative", "Dumbass Cat", "Backup Ian")
+	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative", "Dumbass Cat", "Backup Ian", "Mischief")
 
-/mob/living/simple_animal/pet/cat/kitten/Initialize()
+/mob/living/simple_animal/pet/cat/kitten/Initialize(mapload)
 	. = ..()
 	if(prob(5))
 		name = pick(rare_pet_kitten_names)
@@ -105,7 +108,7 @@
 	var/cats_deployed = 0
 	var/memory_saved = FALSE
 
-/mob/living/simple_animal/pet/cat/Runtime/Initialize()
+/mob/living/simple_animal/pet/cat/Runtime/Initialize(mapload)
 	if(prob(5))
 		icon_state = "original"
 		icon_living = "original"
@@ -113,7 +116,7 @@
 	Read_Memory()
 	. = ..()
 
-/mob/living/simple_animal/pet/cat/Runtime/Life()
+/mob/living/simple_animal/pet/cat/Runtime/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!cats_deployed && SSticker.current_state >= GAME_STATE_SETTING_UP)
 		Deploy_The_Cats()
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
@@ -175,7 +178,7 @@
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 
-/mob/living/simple_animal/pet/cat/Life()
+/mob/living/simple_animal/pet/cat/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!stat && !buckled && !client)
 		if(prob(1))
 			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."), TRUE)
@@ -234,26 +237,6 @@
 				stop_automated_movement = 1
 				walk_to(src,movement_target,0,3)
 
-/mob/living/simple_animal/pet/cat/attack_hand(mob/living/carbon/human/M)
-	. = ..()
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			wuv(M)
-		if(INTENT_HARM)
-			wuv(M, FALSE)
-
-/mob/living/simple_animal/pet/cat/wuv(mob/M, change = TRUE)
-	if(change)
-		if(M && stat != DEAD)
-			new /obj/effect/temp_visual/heart(loc)
-			emote("me", 1, "purrs!", TRUE)
-			if(flags_1 & HOLOGRAM_1)
-				return
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
-	else
-		if(M && stat != DEAD)
-			emote("me", 1, "hisses!", TRUE)
-
 /mob/living/simple_animal/pet/cat/cak //I told you I'd do it, Remie
 	name = "Keeki"
 	desc = "It's a cat made out of cake."
@@ -285,7 +268,7 @@
 		to_chat(src, span_notice("Your name is now <b>\"new_name\"</b>!"))
 		name = new_name
 
-/mob/living/simple_animal/pet/cat/cak/Life()
+/mob/living/simple_animal/pet/cat/cak/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(stat)
 		return

@@ -26,7 +26,7 @@
 	override_cyborg_laws = TRUE
 	can_update_laws = TRUE
 
-/obj/item/mmi/posibrain/soul_vessel/Initialize()
+/obj/item/mmi/posibrain/soul_vessel/Initialize(mapload)
 	. = ..()
 	radio.on = FALSE
 	laws = new /datum/ai_laws/ratvar()

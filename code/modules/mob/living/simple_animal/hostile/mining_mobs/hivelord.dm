@@ -7,7 +7,7 @@
 	icon_aggro = "Hivelord_alert"
 	icon_dead = "Hivelord_dead"
 	icon_gib = "syndicate_gib"
-	mob_biotypes = list(MOB_ORGANIC)
+	mob_biotypes = MOB_ORGANIC
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	move_to_delay = 14
 	ranged = 1
@@ -75,6 +75,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 2
 	melee_damage_upper = 2
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "slashes"
 	speak_emote = list("telepathically cries")
 	attack_sound = 'sound/weapons/pierce.ogg'
@@ -84,9 +85,16 @@
 	pass_flags = PASSTABLE
 	del_on_death = 1
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), 100)
+	addtimer(CALLBACK(src, PROC_REF(death)), 100)
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/CanAllowThrough(atom/movable/mover, turf/target)
+	if(istype(mover, /mob/living/simple_animal/hostile/asteroid/hivelord))
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/HL = mover
+		if(istype(src, HL.brood_type))
+			return TRUE
+	return ..()
 
 //Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion
@@ -98,11 +106,12 @@
 	icon_aggro = "legion"
 	icon_dead = "legion"
 	icon_gib = "syndicate_gib"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_UNDEAD
 	mouse_opacity = MOUSE_OPACITY_ICON
 	obj_damage = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "lashes out at"
 	speak_emote = list("echoes")
 	attack_sound = 'sound/weapons/pierce.ogg'
@@ -118,7 +127,7 @@
 	var/dwarf_mob = FALSE
 	var/mob/living/carbon/human/stored_mob
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize(mapload)
 	. = ..()
 	if(prob(5))
 		new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(loc)
@@ -204,7 +213,7 @@
 	icon_aggro = "snowlegion_head"
 	icon_dead = "snowlegion_head"
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(isturf(loc))
 		for(var/mob/living/carbon/human/H in view(src,1)) //Only for corpse right next to/on same tile
 			if(H.stat == UNCONSCIOUS || (can_infest_dead && H.stat == DEAD))
@@ -274,7 +283,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 
-/mob/living/simple_animal/hostile/big_legion/Initialize()
+/mob/living/simple_animal/hostile/big_legion/Initialize(mapload)
 	.=..()
 	AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion), 200, faction, "peels itself off from", 3)
 
@@ -294,7 +303,7 @@
 	. = ..()
 	H.dna.add_mutation(DWARFISM)
 
-/obj/effect/mob_spawn/human/corpse/damaged/legioninfested/Initialize()
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested/Initialize(mapload)
 	var/type = pickweight(list("Miner" = 66, "Ashwalker" = 10, "Golem" = 10,"Clown" = 10, pick(list("Shadow", "YeOlde","Operative", "Cultist")) = 4))
 	switch(type)
 		if("Miner")
@@ -318,9 +327,9 @@
 			if(prob(20))
 				suit = pickweight(list(/obj/item/clothing/suit/hooded/explorer = 18, /obj/item/clothing/suit/hooded/cloak/goliath = 2))
 			if(prob(30))
-				r_pocket = pickweight(list(/obj/item/stack/marker_beacon = 20, /obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/hypospray/medipen/survival = 2, /obj/item/borg/upgrade/modkit/damage = 1 ))
+				r_pocket = pickweight(list(/obj/item/stack/marker_beacon = 20, /obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/autoinjector/medipen/survival = 2, /obj/item/borg/upgrade/modkit/damage = 1 ))
 			if(prob(10))
-				l_pocket = pickweight(list(/obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/hypospray/medipen/survival = 2, /obj/item/borg/upgrade/modkit/cooldown = 1 ))
+				l_pocket = pickweight(list(/obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/autoinjector/medipen/survival = 2, /obj/item/borg/upgrade/modkit/cooldown = 1 ))
 		if("Ashwalker")
 			mob_species = /datum/species/lizard/ashwalker
 			uniform = /obj/item/clothing/under/gladiator/ash_walker
@@ -331,7 +340,7 @@
 				suit = /obj/item/clothing/suit/armor/bone
 				gloves = /obj/item/clothing/gloves/bracer
 			if(prob(5))
-				back = pickweight(list(/obj/item/twohanded/bonespear = 3, /obj/item/twohanded/fireaxe/boneaxe = 2))
+				back = pickweight(list(/obj/item/melee/spear/bonespear = 3, /obj/item/fireaxe/boneaxe = 2))
 			if(prob(10))
 				belt = /obj/item/storage/belt/mining/primitive
 			if(prob(30))
@@ -396,56 +405,78 @@
 			backpack_contents = list(/obj/item/reagent_containers/glass/beaker/unholywater = 1, /obj/item/cult_shift = 1, /obj/item/flashlight/flare/culttorch = 1, /obj/item/stack/sheet/runed_metal = 15)
 	. = ..()
 
-//Bloodman
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman
-	name = "bloodman"
-	desc = "It's contantly dripping and absorbing blood."
+//aide
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide
+	name = "aide"
+	desc = "A being aggressive to anybody it doesn't see as its charge."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
-	faction = list("blooded")
-	icon_state = "bloodman"
-	icon_living = "bloodman"
-	icon_aggro = "bloodman"
-	icon_dead = "bloodman"
+	faction = list("cane")
+	icon_state = "legion"
+	icon_living = "legion"
+	icon_aggro = "legion"
+	icon_dead = "legion"
 	maxHealth = 30
 	health = 30 //dont want crew to have a hard time killing actual fodder
 	loot = null
-	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
+	color = "#7422a3"
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/Initialize(mapload)
 	. = ..()
-	GLOB.bloodmen_list += src
+	GLOB.aide_list += src
 	return
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/death()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/death()
 	. = ..()
-	GLOB.bloodmen_list -= src
+	GLOB.aide_list -= src
 	return
 
-//Bloodling
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
-	name = "bloodling"
-	desc = "Blood that hates."
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide
+	name = "aide"
+	desc = "They bruise but they try not to kill."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
-	icon_state = "bloodling"
-	icon_living = "bloodling"
-	icon_aggro = "bloodling"
-	icon_dead = "bloodling"
+	icon_state = "legion_head"
+	icon_living = "legion_head"
+	icon_aggro = "legion_head"
+	icon_dead = "legion_head"
 	icon_gib = "syndicate_gib"
 	friendly = "buzzes near"
-	faction = list("blooded")
+	faction = list("cane")
 	harm_intent_damage = 2
 	melee_damage_lower = 2
-	melee_damage_upper = 2 //fodder isnt supposed to be strong
+	melee_damage_upper = 2
 	attacktext = "gnashes at"
-	stat_attack = DEAD
+	color = "#7422a3"
+	var/fauna_damage_bonus = 10
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/Life()
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/L
 	if(isturf(loc))
-		for(var/mob/living/carbon/human/M in view(src,1))
-			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2) //max of 3 bloodmen to minimize shitshows
+		for(var/mob/living/M in view(src,1))
+			if(M.stat == DEAD && GLOB.aide_list.len <= 2 && (!M.has_status_effect(STATUS_EFFECT_EXHUMED))) //max of 3 bloodmen to minimize shitshows
 				L = new(M.loc)
+				L.faction = src.faction
 				L.stored_mob = M
 				M.forceMove(L)
+				M.apply_status_effect(/datum/status_effect/exhumed)
 				qdel(src)
-	..() //couldnt figure out how to make infesting work without getting duplicate def errors so just doing this
+	..()
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/AttackingTarget()
+	. = ..()
+	var/mob/living/L = target
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		L.apply_damage(fauna_damage_bonus, BRUTE)
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/CanAttack(atom/the_target)
+	. = ..()
+	var/mob/living/T = the_target
+	if(T.health < T.maxHealth/10)
+		return FALSE
+
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/CanAttack(atom/the_target)
+	. = ..()
+	var/mob/living/T = the_target
+	if(T.health < T.maxHealth/10)
+		return FALSE
+

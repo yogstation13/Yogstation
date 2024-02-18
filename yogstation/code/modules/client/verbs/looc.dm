@@ -29,7 +29,7 @@
 		to_chat(src, span_danger("You have been banned from LOOC."))
 		return
 
-	msg = copytext(sanitize(to_utf8(msg)), 1, MAX_MESSAGE_LEN)
+	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
@@ -85,7 +85,7 @@
 
 	for(var/T in GLOB.clients)
 		var/client/C = T
-		if(C in GLOB.admins)
+		if(C in GLOB.permissions.admins)
 			if(C in clients_to_hear)
 				to_chat(C, message_admin)
 			else
@@ -121,7 +121,3 @@
 			return
 	else
 		GLOB.dlooc_allowed = !GLOB.dlooc_allowed
-
-/client/proc/get_looc()
-	var/msg = input(src, null, "looc \"text\"") as text|null
-	looc(msg)

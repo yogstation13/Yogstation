@@ -8,7 +8,7 @@
 	resistance_flags = FLAMMABLE
 	var/obj/item/seeds/seed = null // type path, gets converted to item on New(). It's safe to assume it's always a seed item.
 
-/obj/item/grown/Initialize(newloc, obj/item/seeds/new_seed)
+/obj/item/grown/Initialize(mapload, newloc, obj/item/seeds/new_seed)
 	. = ..()
 	create_reagents(50)
 
@@ -29,27 +29,28 @@
 		if(istype(src, seed.product)) // no adding reagents if it is just a trash item
 			seed.prepare_result(src)
 		transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5
+		w_class = round((seed.potency / 100) * 2, 1) + 1 //more potent plants are larger
 		add_juice()
 
 /// Ghost attack proc
 /obj/item/grown/attack_ghost(mob/user)
 	..()
-	var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")]\n"
+	var/msg = "<span class='info'>This is \a [span_name("[src]")]\n"
 	if(seed)
 		msg += seed.get_analyzer_text()
 	msg += "</span>"
-	to_chat(usr, msg)
+	to_chat(usr, examine_block(msg))
 	return
 
 /obj/item/grown/attackby(obj/item/O, mob/user, params)
 	..()
 	if (istype(O, /obj/item/plant_analyzer))
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
-		var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")]\n"
+		var/msg = "<span class='info'>This is \a [span_name("[src]")]\n"
 		if(seed)
 			msg += seed.get_analyzer_text()
 		msg += "</span>"
-		to_chat(usr, msg)
+		to_chat(usr, examine_block(msg))
 		return
 
 /obj/item/grown/proc/add_juice()

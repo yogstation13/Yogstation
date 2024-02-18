@@ -6,6 +6,7 @@
 	desc = "This is rubbish."
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
+	fryable = TRUE
 
 /obj/item/trash/raisins
 	name = "\improper 4no raisins"
@@ -96,3 +97,8 @@
 	name = "top kakes"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "topkakesded"
+
+/obj/item/trash/vermin
+	name = "vermin bites"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "verminded"

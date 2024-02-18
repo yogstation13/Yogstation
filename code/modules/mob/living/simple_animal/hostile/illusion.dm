@@ -6,7 +6,7 @@
 	icon_living = "static"
 	icon_dead = "null"
 	gender = NEUTER
-	mob_biotypes = list()
+	mob_biotypes = NONE
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	a_intent = INTENT_HARM
@@ -22,7 +22,7 @@
 	deathmessage = "vanishes into thin air! It was a fake!"
 
 
-/mob/living/simple_animal/hostile/illusion/Life()
+/mob/living/simple_animal/hostile/illusion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(world.time > life_span)
 		death()

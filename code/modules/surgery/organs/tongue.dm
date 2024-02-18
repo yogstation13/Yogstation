@@ -2,6 +2,7 @@
 	name = "tongue"
 	desc = "A fleshy muscle mostly used for lying."
 	icon_state = "tonguenormal"
+	visual = FALSE
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_TONGUE
 	attack_verb = list("licked", "slobbered", "slapped", "frenched", "tongued")
@@ -30,17 +31,18 @@
 		/datum/language/darkspawn, //also yogs
 		/datum/language/encrypted,
 		/datum/language/felinid,
-		/datum/language/english
+		/datum/language/english,
+		/datum/language/french
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)
 	. = ..()
 	languages_possible = languages_possible_base
 
-/obj/item/organ/tongue/update_icon()
+/obj/item/organ/tongue/update_overlays()
 	. = ..()
 	if(honked) // This tongue has a bike horn inside of it. Let's draw it
-		add_overlay("honked")
+		. += "honked"
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
 	if(honked) // you have a bike horn inside of your tongue. Time to honk
@@ -52,7 +54,7 @@
 	if(say_mod && M.dna && M.dna.species)
 		M.dna.species.say_mod = say_mod
 	if (modifies_speech)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech, override = TRUE)
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech), override = TRUE)
 	M.UnregisterSignal(M, COMSIG_MOB_SAY)
 
 /obj/item/organ/tongue/Remove(mob/living/carbon/M, special = 0)
@@ -60,7 +62,7 @@
 	if(say_mod && M.dna && M.dna.species)
 		M.dna.species.say_mod = initial(M.dna.species.say_mod)
 	UnregisterSignal(M, COMSIG_MOB_SAY)
-	M.RegisterSignal(M, COMSIG_MOB_SAY, /mob/living/carbon/.proc/handle_tongueless_speech)
+	M.RegisterSignal(M, COMSIG_MOB_SAY, TYPE_PROC_REF(/mob/living/carbon, handle_tongueless_speech))
 
 /obj/item/organ/tongue/could_speak_language(language)
 	return is_type_in_typecache(language, languages_possible)
@@ -71,9 +73,9 @@
 /obj/item/organ/tongue/honked/boowomp
 	honkednoise = 'yogstation/sound/items/boowomp.ogg'
 
-/obj/item/organ/tongue/Initialize() // this only exists to make sure the spawned tongue has a horn inside of it visually
+/obj/item/organ/tongue/Initialize(mapload) // this only exists to make sure the spawned tongue has a horn inside of it visually
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/tongue/examine(mob/user)
 	. = ..()
@@ -121,7 +123,8 @@
 	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."
 	icon_state = "tongueayylmao"
 	say_mod = "gibbers"
-	taste_sensitivity = 101 // ayys cannot taste anything.
+	compatible_biotypes = ALL_BIOTYPES // fuck it, alien technology
+	taste_sensitivity = NO_TASTE_SENSITIVITY // ayys cannot taste anything.
 	modifies_speech = TRUE
 	var/mothership
 
@@ -222,13 +225,13 @@
 	icon_state = "tonguebone"
 	say_mod = "rattles"
 	attack_verb = list("bitten", "chattered", "chomped", "enamelled", "boned")
-	taste_sensitivity = 101 // skeletons cannot taste anything
+	taste_sensitivity = NO_TASTE_SENSITIVITY // skeletons cannot taste anything
 	modifies_speech = TRUE
 	var/chattering = FALSE
 	var/phomeme_type = "sans"
 	var/list/phomeme_types = list("sans", "papyrus")
 
-/obj/item/organ/tongue/bone/Initialize()
+/obj/item/organ/tongue/bone/Initialize(mapload)
 	. = ..()
 	phomeme_type = pick(phomeme_types)
 
@@ -252,11 +255,20 @@
 	name = "robotic voicebox"
 	desc = "A voice synthesizer that can interface with organic lifeforms."
 	status = ORGAN_ROBOTIC
+	compatible_biotypes = ALL_BIOTYPES
+	organ_flags = ORGAN_SYNTHETIC
 	icon_state = "tonguerobot"
 	say_mod = "states"
 	attack_verb = list("beeped", "booped")
 	modifies_speech = TRUE
-	taste_sensitivity = 25 // not as good as an organic tongue
+	taste_sensitivity = NO_TASTE_SENSITIVITY // not as good as an organic tongue
+
+/obj/item/organ/tongue/robot/emp_act(severity)
+	if(prob(5))
+		return 
+	owner.apply_effect(EFFECT_STUTTER, rand(1, severity) * 6 SECONDS)
+	owner.emote("scream")
+	to_chat(owner, "<span class='warning'>Alert: Voice synthesizer is malfunctioning.</span>")
 
 /obj/item/organ/tongue/robot/can_speak_language(language)
 	return TRUE // THE MAGIC OF ELECTRONICS
@@ -294,12 +306,29 @@
 	..()
 	var/static/regex/polysmorph_hiss = new("s+", "g")
 	var/static/regex/polysmorph_hiSS = new("S+", "g")
+	var/static/regex/polysmorph_ecks = new("(?<!^)x+", "g")//only affects Xs in the middle of a sentence
+	var/static/regex/polysmorph_eckS = new("(?<!^)X+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = polysmorph_hiss.Replace(message, "ssssss")
 		message = polysmorph_hiSS.Replace(message, "SSSSSS")
+		message = polysmorph_ecks.Replace(message, "ksssss")
+		message = polysmorph_eckS.Replace(message, "KSSSSS")
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/polysmorph/Initialize(mapload)
 	. = ..()
 	languages_possible = languages_possible_polysmorph
+
+/obj/item/organ/tongue/slime
+	name = "slime tongue"
+	desc = "A rudimentary tongue made of slime, just barely able to make every sound needed to talk normally."
+	icon_state = "tonguezombie"
+	say_mod = "garbles"
+	var/static/list/languages_possible_jelly = typecacheof(list(
+		/datum/language/common,
+		/datum/language/slime))
+
+/obj/item/organ/tongue/slime/Initialize(mapload)
+	. = ..()
+	languages_possible |= languages_possible_jelly

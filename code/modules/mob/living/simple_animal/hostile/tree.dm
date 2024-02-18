@@ -24,6 +24,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 8
 	melee_damage_upper = 12
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("pines")
@@ -40,17 +41,17 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
 
-/mob/living/simple_animal/hostile/tree/Life()
+/mob/living/simple_animal/hostile/tree/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(isopenturf(loc))
 		var/turf/open/T = src.loc
 		if(T.air)
-			var/co2 = T.air.get_moles(/datum/gas/carbon_dioxide)
+			var/co2 = T.air.get_moles(GAS_CO2)
 			if(co2 > 0)
 				if(prob(25))
 					var/amt = min(co2, 9)
-					T.air.adjust_moles(/datum/gas/carbon_dioxide, -amt)
-					T.atmos_spawn_air("o2=[amt]")
+					T.air.adjust_moles(GAS_CO2, -amt)
+					T.atmos_spawn_air("o2=[amt];TEMP=293.15")
 
 /mob/living/simple_animal/hostile/tree/AttackingTarget()
 	. = ..()

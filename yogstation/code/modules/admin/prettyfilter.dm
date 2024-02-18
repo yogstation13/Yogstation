@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 
 	return text
 
-/proc/isnotpretty(var/text) // A simpler version of pretty_filter(), where all it returns is whether it had to replace something or not.
+/proc/isnotpretty(text) // A simpler version of pretty_filter(), where all it returns is whether it had to replace something or not.
 	//Useful for the "You fumble your words..." business.
 	for(var/line in GLOB.pretty_filter_items)
 		var/list/parts = splittext(line, "=")

@@ -47,7 +47,7 @@
 				return
 			var/p_dir = text2num(href_list["dir"])
 			var/obj/item/pipe/P = new (loc, p_type, p_dir)
-			P.setPipingLayer(piping_layer)
+			P.set_piping_layer(piping_layer)
 			P.add_fingerprint(usr)
 			wait = world.time + 10
 	if(href_list["makemeter"])
@@ -154,7 +154,7 @@
 			if(href_list["dir"])
 				C.setDir(text2num(href_list["dir"]))
 			C.add_fingerprint(usr)
-			C.update_icon()
+			C.update_appearance(UPDATE_ICON)
 			wait = world.time + 15
 	return
 

@@ -17,7 +17,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 40)
 
 /obj/item/clothing/under/syndicate/sniper
-	name = "Tactical turtleneck suit"
+	name = "tactical turtleneck suit"
 	desc = "A double seamed tactical turtleneck disguised as a civilian grade silk suit. Intended for the most formal operator. The collar is really sharp."
 	icon_state = "really_black_suit"
 	item_state = "bl_suit"
@@ -31,7 +31,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/syndicate/soviet
-	name = "Ratnik 5 tracksuit"
+	name = "ratnik 5 tracksuit"
 	desc = "Badly translated labels tell you to clean this in Vodka. Great for squatting in."
 	icon_state = "trackpants"
 	can_adjust = FALSE

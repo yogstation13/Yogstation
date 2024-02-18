@@ -15,7 +15,7 @@
 	var/static/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
 
 
-/datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, var/atom/nref = null)
+/datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 
 	user = nuser
 	window_id = nwindow_id
@@ -152,11 +152,35 @@
 	opentime = 0
 	close()
 
-//designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
-/proc/tgalert(var/mob/User, Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
+/**
+ * **DEPRECATED: USE tgui_alert(...) INSTEAD**
+ *
+ * Designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
+ * Arguments:
+ * * User - The user to show the alert to.
+ * * Message - The textual body of the alert.
+ * * Title - The title of the alert's window.
+ * * Button1 - The first button option.
+ * * Button2 - The second button option.
+ * * Button3 - The third button option.
+ * * StealFocus - Boolean operator controlling if the alert will steal the user's window focus.
+ * * Timeout - The timeout of the window, after which no responses will be valid.
+ */
+/proc/tgalert(mob/User, Message, Title, Button1="Ok", Button2, Button3, StealFocus = TRUE, Timeout = 6000)
 	if (!User)
 		User = usr
-	switch(askuser(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout))
+	if (!istype(User))
+		if (istype(User, /client))
+			var/client/client = User
+			User = client.mob
+		else
+			return
+
+	// Get user's response using a modal
+	var/datum/browser/modal/alert/A = new(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout)
+	A.open()
+	A.wait()
+	switch(A.selectedbutton)
 		if (1)
 			return Button1
 		if (2)
@@ -165,14 +189,14 @@
 			return Button3
 
 //Same shit, but it returns the button number, could at some point support unlimited button amounts.
-/proc/askuser(var/mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
-	if (!istype(User))
-		if (istype(User, /client/))
-			var/client/C = User
-			User = C.mob
+/proc/askuser(mob/asked_user, Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
+	if (!istype(asked_user))
+		if (istype(asked_user, /client))
+			var/client/C = asked_user
+			asked_user = C.mob
 		else
 			return
-	var/datum/browser/modal/alert/A = new(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout)
+	var/datum/browser/modal/alert/A = new(asked_user, Message, Title, Button1, Button2, Button3, StealFocus, Timeout)
 	A.open()
 	A.wait()
 	if (A.selectedbutton)
@@ -184,7 +208,7 @@
 	var/selectedbutton = 0
 	var/stealfocus
 
-/datum/browser/modal/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, var/atom/nref = null, StealFocus = 1, Timeout = 6000)
+/datum/browser/modal/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null, StealFocus = 1, Timeout = 6000)
 	..()
 	stealfocus = StealFocus
 	if (!StealFocus)
@@ -216,7 +240,7 @@
 					winset(user, "mapwindow", "focus=true")
 				break
 	if (timeout)
-		addtimer(CALLBACK(src, .proc/close), timeout)
+		addtimer(CALLBACK(src, PROC_REF(close)), timeout)
 
 /datum/browser/modal/proc/wait()
 	while (opentime && selectedbutton <= 0 && (!timeout || opentime+timeout > world.time))
@@ -276,7 +300,7 @@
 	opentime = 0
 	close()
 
-/proc/presentpicker(var/mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1,Timeout = 6000,list/values, inputtype = "checkbox", width, height, slidecolor)
+/proc/presentpicker(mob/User, Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1,Timeout = 6000,list/values, inputtype = "checkbox", width, height, slidecolor)
 	if (!istype(User))
 		if (istype(User, /client/))
 			var/client/C = User
@@ -289,7 +313,7 @@
 	if (A.selectedbutton)
 		return list("button" = A.selectedbutton, "values" = A.valueslist)
 
-/proc/input_bitfield(var/mob/User, title, bitfield, current_value, nwidth = 350, nheight = 350, nslidecolor, allowed_edit_list = null)
+/proc/input_bitfield(mob/User, title, bitfield, current_value, nwidth = 350, nheight = 350, nslidecolor, allowed_edit_list = null)
 	if (!User || !(bitfield in GLOB.bitfields))
 		return
 	var/list/pickerlist = list()
@@ -398,7 +422,7 @@
 	opentime = 0
 	close()
 
-/proc/presentpreflikepicker(var/mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1,Timeout = 6000,list/settings, width, height, slidecolor)
+/proc/presentpreflikepicker(mob/User, Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1,Timeout = 6000, list/settings, width, height, slidecolor)
 	if (!istype(User))
 		if (istype(User, /client/))
 			var/client/C = User

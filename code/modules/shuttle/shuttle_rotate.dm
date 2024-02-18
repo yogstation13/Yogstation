@@ -42,7 +42,7 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 
 /mob/dead/observer/shuttleRotate(rotation, params)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /************************************Structure rotate procs************************************/
 
@@ -59,7 +59,7 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 		var/temp = d1
 		d1 = d2
 		d2 = temp
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //Fixes dpdir on shuttle rotation
 /obj/structure/disposalpipe/shuttleRotate(rotation, params)
@@ -85,13 +85,13 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 /************************************Machine rotate procs************************************/
 
 /obj/machinery/atmospherics/shuttleRotate(rotation, params)
-	var/list/real_node_connect = getNodeConnects()
+	var/list/real_node_connect = get_node_connects()
 	for(var/i in 1 to device_type)
 		real_node_connect[i] = angle2dir(rotation+dir2angle(real_node_connect[i]))
 
 	. = ..()
-	SetInitDirections()
-	var/list/supposed_node_connect = getNodeConnects()
+	set_init_directions()
+	var/list/supposed_node_connect = get_node_connects()
 	var/list/nodes_copy = nodes.Copy()
 
 	for(var/i in 1 to device_type)

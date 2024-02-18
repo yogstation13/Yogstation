@@ -14,9 +14,9 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"r" = (
-/turf/open/space/basic,
-/area/space)
+"s" = (
+/turf/baseturf_bottom,
+/area/template_noop)
 "w" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
@@ -36,7 +36,7 @@
 /area/template_noop)
 "T" = (
 /obj/structure/chair,
-/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+/obj/item/storage/fancy/cigarettes/cigpack_uplift,
 /turf/open/floor/plating,
 /area/template_noop)
 
@@ -44,7 +44,7 @@
 x
 f
 R
-r
+s
 "}
 (2,1,1) = {"
 e
@@ -68,5 +68,5 @@ R
 f
 T
 R
-r
+s
 "}

@@ -44,9 +44,9 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 		if (bomb_cooldown <= world.time && !guardian.stat)
 			to_chat(guardian, span_bolddanger("Success! Bomb armed!"))
 			bomb_cooldown = world.time + 200
-			RegisterSignal(target, COMSIG_PARENT_EXAMINE, .proc/display_examine)
-			RegisterSignal(target, boom_signals, .proc/kaboom)
-			addtimer(CALLBACK(src, .proc/disable, target), GLOB.guardian_bomb_life[guardian.stats.potential], TIMER_UNIQUE|TIMER_OVERRIDE)
+			RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(display_examine))
+			RegisterSignal(target, boom_signals, PROC_REF(kaboom))
+			addtimer(CALLBACK(src, PROC_REF(disable), target), GLOB.guardian_bomb_life[guardian.stats.potential], TIMER_UNIQUE|TIMER_OVERRIDE)
 			bombs += target
 		else
 			to_chat(guardian, span_bolddanger("Your powers are on cooldown! You must wait 20 seconds between bombs."))
@@ -58,6 +58,7 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 		return
 	to_chat(explodee, span_bolddanger("[source] was boobytrapped!"))
 	to_chat(guardian, span_bolddanger("Success! Your trap caught [explodee]"))
+	log_bomber(guardian, "boobytrapped a", source, "which blew up [explodee]")
 	var/turf/T = get_turf(source)
 	playsound(T,'sound/effects/explosion2.ogg', 200, 1)
 	new /obj/effect/temp_visual/explosion(T)
@@ -85,6 +86,7 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 		ability.bombs -= picked_bomb
 		UnregisterSignal(picked_bomb, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND));
 		UnregisterSignal(picked_bomb, COMSIG_PARENT_EXAMINE);
+		log_bomber(user, "detonated a", picked_bomb)
 		explosion(picked_bomb, -1, 1, 1, 1)
 		to_chat(user, span_bolddanger("Bomb detonated."))
 

@@ -4,20 +4,18 @@
 
 #define SHADOWWALK_THRESHOLD 0.02
 
+#define WALK_COMPONENT_TRAIT "walk_component_trait"
+
 /datum/component/walk
 
 /datum/component/walk/Initialize()
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_PROCESS_MOVE, .proc/handle_move)
-	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
-	if(footsteps)
-		footsteps.signal_enabled = FALSE
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(handle_move))
+	ADD_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 
 /datum/component/walk/RemoveComponent()
-	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
-	if(footsteps)
-		footsteps.signal_enabled = TRUE
+	REMOVE_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 	return ..()
 
 /datum/component/walk/proc/handle_move(datum/source, direction)
@@ -51,7 +49,8 @@
 	var/atom/movable/pulled
 
 /datum/component/walk/shadow/can_walk(mob/living/user, turf/destination)
-	return (destination.get_lumcount() <= SHADOWWALK_THRESHOLD ? MOVE_ALLOWED : DEFER_MOVE)
+	var/turf/closed/mineral/obstruction = destination
+	return ((destination.get_lumcount() <= SHADOWWALK_THRESHOLD && !istype(obstruction)) ? MOVE_ALLOWED : DEFER_MOVE)
 
 /datum/component/walk/shadow/preprocess_move(mob/living/user, turf/destination)
 	if(user.pulling)

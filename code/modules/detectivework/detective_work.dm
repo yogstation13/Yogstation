@@ -77,8 +77,9 @@
 	var/obj/effect/decal/cleanable/blood/splatter/B = locate() in src
 	if(!B)
 		B = new /obj/effect/decal/cleanable/blood/splatter(src, diseases)
-	B.add_blood_DNA(blood_dna) //give blood info to the blood decal.
-	return TRUE //we bloodied the floor
+	if(!QDELETED(B))
+		B.add_blood_DNA(blood_dna) //give blood info to the blood decal.
+		return TRUE //we bloodied the floor
 
 /mob/living/carbon/human/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
 	if(wear_suit)
@@ -96,7 +97,28 @@
 	update_inv_gloves()	//handles bloody hands overlays and updating
 	return TRUE
 
+/obj/effect/decal/cleanable/blood/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
+	. = ..()
+	if(blood_dna)
+		color = get_blood_dna_color(blood_dna)
+
 /atom/proc/transfer_fingerprints_to(atom/A)
 	A.add_fingerprint_list(return_fingerprints())
 	A.add_hiddenprint_list(return_hiddenprints())
 	A.fingerprintslast = fingerprintslast
+
+	A.add_scent_list(return_scents())
+
+//yog code for olfaction mutation
+/atom/proc/add_scent_list(list/scents)
+	if(length(scents))
+		. = AddComponent(/datum/component/forensics, null, null, null, null, scents)
+
+/atom/proc/add_scent(mob/M)
+	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
+	. = D.add_scent(M)
+
+/atom/proc/return_scents()
+	var/datum/component/forensics/D = GetComponent(/datum/component/forensics)
+	if(D)
+		. = D.scents

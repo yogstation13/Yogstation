@@ -26,7 +26,7 @@
 			to_chat(src, span_boldnotice("You need [C.chemuse] chemicals stored to use this chemical!"))
 			return
 
-		to_chat(src, span_danger("You squirt a measure of [C.chemname] from your reservoirs into [victim]'s bloodstream."))
+		to_chat(src, span_danger("You squirt [C.quantity] units of [C.chemname] from your reservoirs into [victim]'s bloodstream."))
 		victim.reagents.add_reagent(C.R, C.quantity)
 		chemicals -= C.chemuse
 		log_game("[src]/([src.ckey]) has injected [C.chemname] into their host [victim]/([victim.ckey])")
@@ -51,7 +51,6 @@
 	chemname = "mannitol"
 	R = /datum/reagent/medicine/mannitol
 	chem_desc = "Heals brain damage."
-
 /datum/horror_chem/bicaridine
 	chemname = "bicaridine"
 	R = /datum/reagent/medicine/bicaridine
@@ -86,7 +85,7 @@
 	chem_desc = "Reduces massive amounts of radiation and toxin damage while purging other chemicals from the body."
 
 /datum/horror_chem/sal_acid
-	chemname = "salicyclic acid"
+	chemname = "salicylic acid"
 	R = /datum/reagent/medicine/sal_acid
 	chem_desc = "Stimulates the healing of severe bruises. Rapidly heals severe bruising and slowly heals minor ones."
 

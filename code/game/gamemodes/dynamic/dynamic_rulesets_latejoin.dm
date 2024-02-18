@@ -94,6 +94,7 @@
 	var/required_heads_of_staff = 3
 	var/finished = FALSE
 	var/datum/team/revolution/revolution
+	minimum_players = 30
 
 /datum/dynamic_ruleset/latejoin/provocateur/ready(forced=FALSE)
 	if (forced)
@@ -152,7 +153,7 @@
 
 
 /// Checks for revhead loss conditions and other antag datums.
-/datum/dynamic_ruleset/latejoin/provocateur/proc/check_eligible(var/datum/mind/M)
+/datum/dynamic_ruleset/latejoin/provocateur/proc/check_eligible(datum/mind/M)
 	var/turf/T = get_turf(M.current)
 	if(!considered_afk(M) && considered_alive(M) && is_station_level(T.z) && !M.antag_datums?.len && !HAS_TRAIT(M, TRAIT_MINDSHIELD))
 		return TRUE
@@ -202,7 +203,7 @@
 	weight = 4
 	cost = 15
 	requirements = list(45,40,40,35,30,30,20,20,20,20)
-	minimum_players = 30
+	minimum_players = 15
 	repeatable = TRUE
 
 
@@ -246,7 +247,15 @@
 	weight = 5
 	cost = 10
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
+	minimum_players = 25
 	repeatable = FALSE
+
+/datum/dynamic_ruleset/latejoin/bloodsucker/trim_candidates()
+	. = ..()
+	for(var/mob/living/carbon/C in candidates)
+		if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))
+			candidates -= C
+			continue
 
 /datum/dynamic_ruleset/latejoin/bloodsucker/execute()
 	var/mob/latejoiner = pick(candidates) // This should contain a single player, but in case.
@@ -259,7 +268,7 @@
 			assigned -= selected_player
 			message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
 			return FALSE
-		sucker.bloodsucker_level_unspent = rand(2,3)
+		sucker.bloodsucker_level_unspent = rand(3,4)
 		message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 		log_game("DYNAMIC: [key_name(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 	return TRUE

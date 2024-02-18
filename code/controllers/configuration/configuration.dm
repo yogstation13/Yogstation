@@ -48,6 +48,8 @@
 				for(var/J in legacy_configs)
 					LoadEntries(J)
 				break
+	if (fexists("[directory]/ezdb.txt"))
+		LoadEntries("ezdb.txt")
 	loadmaplist(CONFIG_MAPS_FILE)
 	LoadMOTD()
 	LoadPolicy()
@@ -158,7 +160,7 @@
 			var/good_update = istext(new_value)
 			log_config("Entry [entry] is deprecated and will be removed soon. Migrate to [new_ver.name]![good_update ? " Suggested new value is: [new_value]" : ""]")
 			if(!warned_deprecated_configs)
-				addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, "This server is using deprecated configuration settings. Please check the logs and update accordingly."), 0)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(message_admins), "This server is using deprecated configuration settings. Please check the logs and update accordingly."), 0)
 				warned_deprecated_configs = TRUE
 			if(good_update)
 				value = new_value
@@ -196,6 +198,8 @@
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
 	if(entry_is_abstract)
 		CRASH("Tried to retrieve an abstract config_entry: [entry_type]")
+	if(!islist(entries_by_type))
+		CRASH("entries_by_type is not a list when trying to get: [entry_type]")
 	E = entries_by_type[entry_type]
 	if(!E)
 		CRASH("Missing config entry for [entry_type]!")
@@ -404,4 +408,4 @@ Example config:
 	
 //Message admins when you can.
 /datum/controller/configuration/proc/DelayedMessageAdmins(text)
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, text), 0)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(message_admins), text), 0)

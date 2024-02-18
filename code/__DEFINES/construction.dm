@@ -31,6 +31,12 @@
 #define RWINDOW_BOLTS_HEATED 7
 #define RWINDOW_SECURE 8
 
+//mecha wreckage repair states
+#define MECHA_WRECK_CUT 0
+#define MECHA_WRECK_DENTED 1
+#define MECHA_WRECK_LOOSE 2
+#define MECHA_WRECK_UNWIRED 3
+
 //airlock assembly construction states
 #define AIRLOCK_ASSEMBLY_NEEDS_WIRES 0
 #define AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS 1
@@ -61,7 +67,7 @@
 
 //other construction-related things
 
-//windows affected by nar-sie turn this color.
+//windows affected by Nar'sie turn this color.
 #define NARSIE_WINDOW_COLOUR "#7D1919"
 
 //let's just pretend fulltile windows being children of border windows is fine
@@ -74,20 +80,40 @@
 //maximum amount of cable in a coil
 #define MAXCOIL 40
 
-//tablecrafting defines
-#define CAT_NONE	""
-#define CAT_WEAPONRY	"Weaponry"
-#define CAT_WEAPON	"Weapons"
-#define CAT_AMMO	"Ammunition"
-#define CAT_TOOLS	"Tools"
-#define CAT_ROBOT	"Robots"
-#define CAT_MISC	"Misc"
-#define CAT_PRIMAL  "Tribal"
+// Crafting defines.
+// When adding new defines, please make sure to also add them to the encompassing list.
+#define CAT_WEAPON_RANGED "Weapons: Ranged"
+#define CAT_WEAPON_MELEE "Weapons: Melee"
+#define CAT_WEAPON_AMMO "Weapon Ammo"
+#define CAT_TOOLS "Tools"
+#define CAT_ROBOT "Robotics"
+#define CAT_CLOTHING "Clothing"
+#define CAT_ARMOR "Armor"
+#define CAT_EQUIPMENT "Equipment"
 #define CAT_STRUCTURES "Structures"
-#define CAT_APPAREL	"Apparel"
-#define CAT_CLOTHING	"Clothing"
-#define CAT_ARMOR	"Armor"
-#define CAT_EQUIPMENT	"Equipment"
+#define CAT_PRIMAL "Tribal"
+#define CAT_BAIT "Fishing Bait"
+#define CAT_MEDICAL "Medical"
+#define CAT_MISC "Misc"
+
+GLOBAL_LIST_INIT(crafting_category, list(
+	CAT_WEAPON_RANGED,
+	CAT_WEAPON_MELEE,
+	CAT_WEAPON_AMMO,
+	CAT_TOOLS,
+	CAT_ROBOT,
+	CAT_CLOTHING,
+	CAT_ARMOR,
+	CAT_STRUCTURES,
+	CAT_EQUIPMENT,
+	CAT_PRIMAL,
+	CAT_BAIT,
+	CAT_MEDICAL,
+	CAT_MISC
+))
+
+// Food/Drink crafting defines.
+// When adding new defines, please make sure to also add them to the encompassing list.
 #define CAT_FOOD	"Foods"
 #define CAT_BREAD	"Breads"
 #define CAT_BURGER	"Burgers"
@@ -104,6 +130,27 @@
 #define CAT_SPAGHETTI	"Spaghettis"
 #define CAT_ICE	"Frozen"
 #define CAT_DRINK   "Drinks"
+#define CAT_SEAFOOD   "Seafood"
+
+GLOBAL_LIST_INIT(crafting_category_food, list(
+	CAT_FOOD,
+	CAT_BREAD,
+	CAT_BURGER,
+	CAT_CAKE,
+	CAT_EGG,
+	CAT_MEAT,
+	CAT_SEAFOOD,
+	CAT_MISCFOOD,
+	CAT_PASTRY,
+	CAT_PIE,
+	CAT_PIZZA,
+	CAT_SALAD,
+	CAT_SANDWICH,
+	CAT_SOUP,
+	CAT_SPAGHETTI,
+	CAT_ICE,
+	CAT_DRINK,
+))
 
 #define RCD_FLOORWALL (1<<0)
 #define RCD_AIRLOCK (1<<1)
@@ -112,11 +159,14 @@
 #define RCD_MACHINE (1<<4)
 #define RCD_COMPUTER (1<<5)
 #define RCD_FURNISHING (1<<6)
+#define RCD_CONVEYOR (1<<7)
+#define RCD_SWITCH (1<<8)
 
 #define RCD_UPGRADE_FRAMES (1<<0)
 #define RCD_UPGRADE_SIMPLE_CIRCUITS	(1<<1)
 #define RCD_UPGRADE_SILO_LINK (1<<2)
 #define RCD_UPGRADE_FURNISHING (1<<3)
+#define RCD_UPGRADE_CONVEYORS (1<<4)
 
 #define RCD_WINDOW_FULLTILE "full tile"
 #define RCD_WINDOW_DIRECTIONAL "directional"

@@ -26,7 +26,7 @@
 	var/mob/living/oldform
 	var/list/devil_overlays[DEVIL_TOTAL_LAYERS]
 
-/mob/living/carbon/true_devil/Initialize()
+/mob/living/carbon/true_devil/Initialize(mapload)
 	create_bodyparts() //initialize bodyparts
 	create_internal_organs()
 	grant_all_languages()
@@ -45,7 +45,7 @@
 	health = maxHealth
 	icon_state = "arch_devil"
 
-/mob/living/carbon/true_devil/proc/set_name()
+/mob/living/carbon/true_devil/set_name()
 	var/datum/antagonist/devil/devilinfo = mind.has_antag_datum(/datum/antagonist/devil)
 	name = devilinfo.truename
 	real_name = name
@@ -57,14 +57,14 @@
 	mind.announce_objectives()
 
 /mob/living/carbon/true_devil/death(gibbed)
-	stat = DEAD
+	set_stat(DEAD)
 	..(gibbed)
 	drop_all_held_items()
 	INVOKE_ASYNC(mind.has_antag_datum(/datum/antagonist/devil), /datum/antagonist/devil/proc/beginResurrectionCheck, src)
 
 
 /mob/living/carbon/true_devil/examine(mob/user)
-	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] <b>[src]</b>!")
+	. = list("<span class='info'>This is [icon2html(src, user)] <b>[src]</b>!")
 
 	//Left hand items
 	for(var/obj/item/I in held_items)
@@ -82,7 +82,7 @@
 		. += span_warning("You can see hellfire inside its gaping wounds.")
 	else if(health < (maxHealth/2))
 		. += span_warning("You can see hellfire inside its wounds.")
-	. += "*---------*</span>"
+	. += "</span>"
 
 /mob/living/carbon/true_devil/IsAdvancedToolUser()
 	return 1
@@ -107,7 +107,6 @@
 
 /mob/living/carbon/true_devil/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)
 	if(mind && has_bane(BANE_LIGHT))
-		mind.disrupt_spells(-500)
 		return ..() //flashes don't stop devils UNLESS it's their bane.
 
 /mob/living/carbon/true_devil/soundbang_act()
@@ -143,7 +142,7 @@
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /mob/living/carbon/true_devil/attack_ghost(mob/dead/observer/user as mob)
-	if(ascended || user.mind.soulOwner == src.mind)
+	if(ascended || user.mind?.soulOwner == src.mind)
 		var/mob/living/simple_animal/imp/S = new(get_turf(loc))
 		S.key = user.key
 		var/datum/antagonist/imp/A = new()

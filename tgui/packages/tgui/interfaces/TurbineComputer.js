@@ -1,6 +1,6 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
+import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
 export const TurbineComputer = (props, context) => {
@@ -12,12 +12,12 @@ export const TurbineComputer = (props, context) => {
   return (
     <Window
       width={310}
-      height={150}>
+      height={180}>
       <Window.Content>
         <Section
           title="Status"
           buttons={(
-            <Fragment>
+            <>
               <Button
                 icon={data.online ? 'power-off' : 'times'}
                 content={data.online ? 'Online' : 'Offline'}
@@ -28,7 +28,7 @@ export const TurbineComputer = (props, context) => {
                 icon="sync"
                 content="Reconnect"
                 onClick={() => act('reconnect')} />
-            </Fragment>
+            </>
           )}>
           {!operational && (
             <LabeledList>
@@ -58,6 +58,9 @@ export const TurbineComputer = (props, context) => {
               </LabeledList.Item>
               <LabeledList.Item label="Internal Temp">
                 {data.temp} K
+              </LabeledList.Item>
+              <LabeledList.Item label="Internal Pressure">
+                {formatSiUnit(data.pressure * 1000, 1, 'Pa')}
               </LabeledList.Item>
               <LabeledList.Item label="Generated Power">
                 {data.power}

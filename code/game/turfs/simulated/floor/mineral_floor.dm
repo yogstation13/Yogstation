@@ -16,18 +16,19 @@
 	tiled_dirt = FALSE
 
 
-/turf/open/floor/mineral/Initialize()
+/turf/open/floor/mineral/Initialize(mapload)
 	if(!broken_states)
 		broken_states = list("[initial(icon_state)]_dam")
 	. = ..()
 	icons = typelist("icons", icons)
 
 
-/turf/open/floor/mineral/update_icon()
-	if(!..())
-		return 0
+/turf/open/floor/mineral/update_icon_state()
+	. = ..()
+	if(!.)
+		return
 	if(!broken && !burnt)
-		if( !(icon_state in icons) )
+		if(!(icon_state in icons))
 			icon_state = initial(icon_state)
 
 //PLASMA
@@ -37,6 +38,7 @@
 	icon_state = "plasma"
 	floor_tile = /obj/item/stack/tile/mineral/plasma
 	icons = list("plasma","plasma_dam")
+	flammability = 25 // oh fuck-
 
 /turf/open/floor/mineral/plasma/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
@@ -58,6 +60,9 @@
 	if(exposed_temperature > 300)
 		PlasmaBurn(exposed_temperature)
 
+/turf/open/floor/mineral/plasma/broken
+	icon_state = "plasma_dam"
+	broken = TRUE
 
 //GOLD
 
@@ -67,6 +72,10 @@
 	floor_tile = /obj/item/stack/tile/mineral/gold
 	icons = list("gold","gold_dam")
 
+/turf/open/floor/mineral/gold/broken
+	icon_state = "gold_dam"
+	broken = TRUE
+
 //SILVER
 
 /turf/open/floor/mineral/silver
@@ -75,16 +84,53 @@
 	floor_tile = /obj/item/stack/tile/mineral/silver
 	icons = list("silver","silver_dam")
 
+/turf/open/floor/mineral/silver/broken
+	icon_state = "gold_dam"
+	broken = TRUE
+
 //TITANIUM (shuttle)
 
 /turf/open/floor/mineral/titanium
 	name = "shuttle floor"
 	icon_state = "titanium"
+	flags_1 = NO_RUST | CAN_BE_DIRTY_1
 	floor_tile = /obj/item/stack/tile/mineral/titanium
 	broken_states = list("titanium_dam1","titanium_dam2","titanium_dam3","titanium_dam4","titanium_dam5")
 
+/turf/open/floor/mineral/titanium/broken
+	icon_state = "titanium_dam1"
+	broken = TRUE
+
+/turf/open/floor/mineral/titanium/broken/two
+	icon_state = "titanium_dam2"
+
+/turf/open/floor/mineral/titanium/broken/three
+	icon_state = "titanium_dam3"
+
+/turf/open/floor/mineral/titanium/broken/four
+	icon_state = "titanium_dam4"
+
+/turf/open/floor/mineral/titanium/broken/fice
+	icon_state = "titanium_dam5"
+
 /turf/open/floor/mineral/titanium/airless
 	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/mineral/titanium/airless/broken
+	icon_state = "titanium_dam1"
+	broken = TRUE
+
+/turf/open/floor/mineral/titanium/airless/broken/two
+	icon_state = "titanium_dam2"
+
+/turf/open/floor/mineral/titanium/airless/broken/three
+	icon_state = "titanium_dam3"
+
+/turf/open/floor/mineral/titanium/airless/broken/four
+	icon_state = "titanium_dam4"
+
+/turf/open/floor/mineral/titanium/airless/broken/five
+	icon_state = "titanium_dam5"
 
 /turf/open/floor/mineral/titanium/yellow
 	icon_state = "titanium_yellow"
@@ -117,8 +163,26 @@
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium
 	broken_states = list("plastitanium_dam1","plastitanium_dam2","plastitanium_dam3","plastitanium_dam4","plastitanium_dam5")
 
+/turf/open/floor/mineral/plastitanium/broken
+	icon_state = "plastitanium_dam1"
+
+/turf/open/floor/mineral/plastitanium/broken/two
+	icon_state = "plastitanium_dam2"
+
+/turf/open/floor/mineral/plastitanium/broken/three
+	icon_state = "plastitanium_dam3"
+
+/turf/open/floor/mineral/plastitanium/broken/four
+	icon_state = "plastitanium_dam4"
+
+/turf/open/floor/mineral/plastitanium/broken/five
+	icon_state = "plastitanium_dam5"
+
 /turf/open/floor/mineral/plastitanium/airless
 	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/mineral/plastitanium/airless/broken
+	broken = TRUE
 
 /turf/open/floor/mineral/plastitanium/red
 	icon_state = "plastitanium_red"
@@ -184,6 +248,14 @@
 /turf/open/floor/mineral/bananium/honk_act()
 	return FALSE
 
+/turf/open/floor/mineral/bananium/broken
+	icon_state = "bananium_dam"
+	broken = TRUE
+
+/turf/open/floor/mineral/bananium/airless/broken
+	icon_state = "bananium_dam"
+	broken = TRUE
+
 //DIAMOND
 
 /turf/open/floor/mineral/diamond
@@ -191,6 +263,10 @@
 	icon_state = "diamond"
 	floor_tile = /obj/item/stack/tile/mineral/diamond
 	icons = list("diamond","diamond_dam")
+
+/turf/open/floor/mineral/diamond/broken
+	icon_state = "diamond_dam"
+	broken = TRUE
 
 //URANIUM
 
@@ -235,6 +311,10 @@
 			active = 0
 			return
 
+/turf/open/floor/mineral/uranium/broken
+	icon_state = "uranium_dam"
+	broken = TRUE
+
 // ALIEN ALLOY
 /turf/open/floor/mineral/abductor
 	name = "alien floor"
@@ -243,7 +323,7 @@
 	icons = list("alienpod1", "alienpod2", "alienpod3", "alienpod4", "alienpod5", "alienpod6", "alienpod7", "alienpod8", "alienpod9")
 	baseturfs = /turf/open/floor/plating/abductor2
 
-/turf/open/floor/mineral/abductor/Initialize()
+/turf/open/floor/mineral/abductor/Initialize(mapload)
 	. = ..()
 	icon_state = "alienpod[rand(1,9)]"
 

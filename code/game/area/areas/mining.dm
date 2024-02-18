@@ -3,7 +3,13 @@
 /area/mine
 	icon_state = "mining"
 	has_gravity = STANDARD_GRAVITY
-	flora_allowed = TRUE
+	area_flags = FLORA_ALLOWED
+	ambient_buzz = 'sound/ambience/magma.ogg'
+	lighting_colour_tube = "#ffe8d2"
+	lighting_colour_bulb = "#ffdcb7"
+	
+	ambient_buzz_vol = 10
+	mining_speed = TRUE
 
 /area/mine/explored
 	name = "Mine"
@@ -16,8 +22,10 @@
 	power_light = FALSE
 	outdoors = TRUE
 	flags_1 = NONE
-	ambientsounds = MINING
-	flora_allowed = FALSE
+	ambience_index = AMBIENCE_MINING
+	area_flags = NONE
+	ambient_buzz = 'sound/ambience/magma.ogg'
+	ambient_buzz_vol = 20
 
 /area/mine/unexplored
 	name = "Mine"
@@ -30,8 +38,10 @@
 	power_light = FALSE
 	outdoors = TRUE
 	flags_1 = NONE
-	ambientsounds = MINING
-	tunnel_allowed = TRUE
+	ambience_index = AMBIENCE_MINING
+	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+	ambient_buzz = 'sound/ambience/magma.ogg'
+	map_generator = /datum/map_generator/cave_generator
 
 /area/mine/lobby
 	name = "Mining Station"
@@ -45,7 +55,7 @@
 	icon_state = "mining_storage"
 
 /area/mine/production
-	name = "Mining Station Starboard Wing"
+	name = "Mining Station Starboard (E) Wing"
 	icon_state = "mining_production"
 
 /area/mine/abandoned
@@ -70,6 +80,8 @@
 /area/mine/maintenance
 	name = "Mining Station Communications"
 	icon_state = "mining_engineering"
+	lighting_colour_tube = "#edfdff"
+	lighting_colour_bulb = "#dafffd"
 
 /area/mine/vacant
 	name = "Mining Station Vacant Room"
@@ -90,7 +102,7 @@
 /area/mine/laborcamp/security
 	name = "Labor Camp Security"
 	icon_state = "security"
-	ambientsounds = HIGHSEC
+	ambience_index = AMBIENCE_DANGER
 
 
 
@@ -101,7 +113,9 @@
 	icon_state = "mining"
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
-	flora_allowed = TRUE
+	area_flags = FLORA_ALLOWED
+	ambient_buzz = 'sound/ambience/magma.ogg'
+	mining_speed = TRUE
 
 /area/lavaland/surface
 	name = "Lavaland"
@@ -112,7 +126,8 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
+	ambient_buzz = 'sound/ambience/magma.ogg'
 
 /area/lavaland/underground
 	name = "Lavaland Caves"
@@ -123,7 +138,8 @@
 	power_environ = FALSE
 	power_equip = FALSE
 	power_light = FALSE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
+	ambient_buzz = 'sound/ambience/magma.ogg'
 
 
 /area/lavaland/surface/outdoors
@@ -132,16 +148,16 @@
 
 /area/lavaland/surface/outdoors/unexplored //monsters and ruins spawn here
 	icon_state = "unexplored"
-	tunnel_allowed = TRUE
-	mob_spawn_allowed = TRUE
+	area_flags = CAVES_ALLOWED | MOB_SPAWN_ALLOWED
 
 /area/lavaland/surface/outdoors/unexplored/danger //megafauna will also spawn here
 	icon_state = "danger"
-	megafauna_spawn_allowed = TRUE
+	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/lavaland
 
 /area/lavaland/surface/outdoors/explored
 	name = "Lavaland Labor Camp"
-	flora_allowed = FALSE
+	area_flags = NONE
 
 
 
@@ -151,8 +167,35 @@
 	icon_state = "mining"
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
-	flora_allowed = TRUE
+	area_flags = FLORA_ALLOWED
 	blob_allowed = FALSE
+	mining_speed = TRUE
+
+/area/icemoon/top_layer
+	name = "Icemoon Surface"
+	icon_state = "explored"
+	always_unpowered = TRUE
+	poweralm = FALSE
+	power_environ = FALSE
+	power_equip = FALSE
+	power_light = FALSE
+	requires_power = TRUE
+	ambience_index = AMBIENCE_MINING
+
+/area/icemoon/top_layer/outdoors
+	name = "Icemoon Wastes"
+	outdoors = TRUE
+
+/area/icemoon/top_layer/outdoors/unexplored
+	icon_state = "unexplored"
+	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/icemoon/top_layer
+	
+/area/icemoon/top_layer/outdoors/unexplored/danger
+	icon_state = "danger"	
+
+/area/icemoon/top_layer/outdoors/explored
+	area_flags = NONE
 
 /area/icemoon/surface
 	name = "Icemoon"
@@ -163,7 +206,23 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
+
+/area/icemoon/surface/outdoors
+	name = "Icemoon Wastes"
+	outdoors = TRUE
+
+/area/icemoon/surface/outdoors/unexplored //monsters and ruins spawn here
+	icon_state = "unexplored"
+	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/icemoon/surface
+
+/area/icemoon/surface/outdoors/unexplored/danger
+	icon_state = "danger"
+
+/area/icemoon/surface/outdoors/explored
+	name = "Icemoon Labor Camp"
+	area_flags = NONE
 
 /area/icemoon/underground
 	name = "Icemoon Caves"
@@ -174,31 +233,17 @@
 	power_environ = FALSE
 	power_equip = FALSE
 	power_light = FALSE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
 
 /area/icemoon/underground/unexplored // mobs and megafauna and ruins spawn here
 	name = "Icemoon Caves"
 	icon_state = "unexplored"
-	tunnel_allowed = TRUE
-	mob_spawn_allowed = TRUE
-	megafauna_spawn_allowed = TRUE
-
+	area_flags = CAVES_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/icemoon
+	
 /area/icemoon/underground/explored
 	name = "Icemoon Underground"
-	flora_allowed = FALSE
+	area_flags = NONE
 
-/area/icemoon/surface/outdoors
-	name = "Icemoon Wastes"
-	outdoors = TRUE
-
-/area/icemoon/surface/outdoors/unexplored //monsters and ruins spawn here
-	icon_state = "unexplored"
-	tunnel_allowed = TRUE
-	mob_spawn_allowed = TRUE
-
-/area/icemoon/surface/outdoors/unexplored/danger
-	icon_state = "danger"
-
-/area/icemoon/surface/outdoors/explored
+/area/icemoon/underground/explored/laborcamp
 	name = "Icemoon Labor Camp"
-	flora_allowed = FALSE

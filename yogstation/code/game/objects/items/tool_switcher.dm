@@ -38,7 +38,7 @@
 
 	))
 
-/obj/item/storage/belt/tool_switcher/ComponentInitialize()
+/obj/item/storage/belt/tool_switcher/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	var/static/list/can_hold = typecacheof(list(
@@ -57,9 +57,6 @@
 		/obj/item/hemostat,
 		))
 	STR.can_hold = can_hold
-
-/obj/item/storage/belt/tool_switcher/Initialize()
-	. = ..()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -208,8 +205,8 @@
 /obj/item/storage/belt/tool_switcher/melee_attack_chain(mob/user, atom/target)
 	var/obj/item/tool = find_current_tool()
 	if(tool)
-		if(tool.tool_attack_chain(user, target))
-			return
+		if(tool_behaviour && (target.tool_act(user, src, tool_behaviour) & TOOL_ACT_MELEE_CHAIN_BLOCKING))
+			return TRUE
 		if(is_type_in_typecache(target, default_use_objs))
 			. = ..()
 			return

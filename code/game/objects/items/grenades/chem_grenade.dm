@@ -15,16 +15,14 @@
 	var/no_splash = FALSE //If the grenade deletes even if it has no reagents to splash with. Used for slime core reactions.
 	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition." // Appears when examining empty casings.
 	var/obj/item/assembly/prox_sensor/landminemode = null
+	var/can_dismantle = TRUE
 
-/obj/item/grenade/chem_grenade/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
-
-/obj/item/grenade/chem_grenade/Initialize()
+/obj/item/grenade/chem_grenade/Initialize(mapload)
 	. = ..()
 	create_reagents(1000)
 	stage_change() // If no argument is set, it will change the stage to the current stage, useful for stock grenades that start READY.
 	wires = new /datum/wires/explosive/chem_grenade(src)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
 /obj/item/grenade/chem_grenade/examine(mob/user)
 	display_timer = (stage == GRENADE_READY)	//show/hide the timer based on assembly state
@@ -55,24 +53,7 @@
 /obj/item/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(istype(I,/obj/item/assembly) && stage == GRENADE_WIRED)
 		wires.interact(user)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		if(stage == GRENADE_WIRED)
-			if(beakers.len)
-				stage_change(GRENADE_READY)
-				to_chat(user, span_notice("You lock the [initial(name)] assembly."))
-				I.play_tool_sound(src, 25)
-			else
-				to_chat(user, span_warning("You need to add at least one beaker before locking the [initial(name)] assembly!"))
-		else if(stage == GRENADE_READY)
-			det_time = det_time == 50 ? 30 : 50 //toggle between 30 and 50
-			if(landminemode)
-				landminemode.time = det_time * 0.1	//overwrites the proxy sensor activation timer
-
-			to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
-		else
-			to_chat(user, span_warning("You need to add a wire!"))
-		return
-	else if(stage == GRENADE_WIRED && is_type_in_list(I, allowed_containers))
+	if(stage == GRENADE_WIRED && is_type_in_list(I, allowed_containers))
 		. = TRUE //no afterattack
 		if(is_type_in_list(I, banned_containers))
 			to_chat(user, span_warning("[src] is too small to fit [I]!")) // this one hits home huh anon?
@@ -101,11 +82,42 @@
 			to_chat(user, span_warning("You need one length of coil to wire the assembly!"))
 			return
 
-	else if(stage == GRENADE_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
-		stage_change(GRENADE_WIRED)
-		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
+	else
+		return ..()
 
-	else if(stage == GRENADE_WIRED && I.tool_behaviour == TOOL_WRENCH)
+/obj/item/grenade/chem_grenade/screwdriver_act(mob/living/user, obj/item/I)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), user, I)
+	if(stage == GRENADE_WIRED)
+		if(beakers.len)
+			I.play_tool_sound(src, 25)
+			to_chat(user, span_notice("You begin to secure the grenade assembly."))
+			if(I.use_tool(src, user, 3 SECONDS))
+				embedding = initial(embedding)
+				stage_change(GRENADE_READY)
+				to_chat(user, span_notice("You lock the [initial(name)] assembly."))
+		else
+			to_chat(user, span_warning("You need to add at least one beaker before locking the [initial(name)] assembly!"))
+	else if(stage == GRENADE_READY)
+		det_time = det_time == 50 ? 30 : 50 //toggle between 30 and 50
+		if(landminemode)
+			landminemode.time = det_time * 0.1	//overwrites the proxy sensor activation timer
+
+		to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
+	else
+		to_chat(user, span_warning("You need to add a wire!"))
+
+/obj/item/grenade/chem_grenade/wirecutter_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(stage == GRENADE_READY && !active)
+		if(can_dismantle)
+			stage_change(GRENADE_WIRED)
+			to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
+		else
+			to_chat(user, span_notice("There's no way to open [src]'s assembly."))
+	
+/obj/item/grenade/chem_grenade/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(stage == GRENADE_WIRED)
 		if(beakers.len)
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
@@ -120,8 +132,6 @@
 		new /obj/item/stack/cable_coil(get_turf(src),1)
 		stage_change(GRENADE_EMPTY)
 		to_chat(user, span_notice("You remove the activation mechanism from the [initial(name)] assembly."))
-	else
-		return ..()
 
 /obj/item/grenade/chem_grenade/proc/stage_change(N)
 	if(N)
@@ -138,6 +148,11 @@
 		name = initial(name)
 		desc = initial(desc)
 		icon_state = "[initial(icon_state)]_locked"
+
+/obj/item/grenade/chem_grenade/emp_act(severity)
+	..()
+	if(prob(4 * severity))
+		prime()
 
 /obj/item/grenade/chem_grenade/on_found(mob/finder)
 	var/obj/item/assembly/A = wires.get_attached(wires.get_wire(1))
@@ -172,7 +187,7 @@
 		landminemode.activate()
 		return
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
+	addtimer(CALLBACK(src, PROC_REF(prime)), isnull(delayoverride)? det_time : delayoverride)
 
 /obj/item/grenade/chem_grenade/prime()
 	if(stage != GRENADE_READY)
@@ -219,6 +234,7 @@
 	for(var/obj/item/slime_extract/S in beakers)
 		if(S.Uses)
 			for(var/obj/item/reagent_containers/glass/G in beakers)
+				S.react_time = 0 SECONDS
 				G.reagents.trans_to(S, G.reagents.total_volume)
 
 			//If there is still a core (sometimes it's used up)
@@ -297,7 +313,7 @@
 	chem_splash(get_turf(src), affected_area, list(reactants), ignition_temp, threatscale)
 
 	var/turf/DT = get_turf(src)
-	addtimer(CALLBACK(src, .proc/prime), det_time)
+	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
 	log_game("A grenade detonated at [AREACOORD(DT)]")
 
 
@@ -312,7 +328,7 @@
 	desc = "Used for emergency sealing of hull breaches."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/metalfoam/Initialize()
+/obj/item/grenade/chem_grenade/metalfoam/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -329,7 +345,7 @@
 	desc = "the best grenade to irridiate the fuck out of someone"
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/radiation/Initialize()
+/obj/item/grenade/chem_grenade/radiation/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -348,7 +364,7 @@
 	desc = "Used for emergency sealing of hull breaches, while keeping areas accessible."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/smart_metal_foam/Initialize()
+/obj/item/grenade/chem_grenade/smart_metal_foam/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -366,7 +382,7 @@
 	desc = "Used for clearing rooms of living things."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/incendiary/Initialize()
+/obj/item/grenade/chem_grenade/incendiary/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -384,7 +400,7 @@
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/antiweed/Initialize()
+/obj/item/grenade/chem_grenade/antiweed/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -403,7 +419,7 @@
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/cleaner/Initialize()
+/obj/item/grenade/chem_grenade/cleaner/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -420,8 +436,9 @@
 	name = "cleaner grenade"
 	desc = "Waffle Co.-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
 	stage = GRENADE_READY
+	can_dismantle = FALSE
 
-/obj/item/grenade/chem_grenade/ez_clean/Initialize()
+/obj/item/grenade/chem_grenade/ez_clean/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
@@ -440,7 +457,7 @@
 	desc = "Used for nonlethal riot control. Contents under pressure. Do not directly inhale contents."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/teargas/Initialize()
+/obj/item/grenade/chem_grenade/teargas/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
@@ -459,7 +476,7 @@
 	desc = "Used for melting armoured opponents."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/facid/Initialize()
+/obj/item/grenade/chem_grenade/facid/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/bluespace/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/bluespace/B2 = new(src)
@@ -479,7 +496,7 @@
 	desc = "Used for wide scale painting projects."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/colorful/Initialize()
+/obj/item/grenade/chem_grenade/colorful/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -498,7 +515,7 @@
 	stage = GRENADE_READY
 	var/glitter_type = /datum/reagent/glitter
 
-/obj/item/grenade/chem_grenade/glitter/Initialize()
+/obj/item/grenade/chem_grenade/glitter/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -531,7 +548,7 @@
 	desc = "BURN!-brand foaming clf3. In a special applicator for rapid purging of wide areas."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/clf3/Initialize()
+/obj/item/grenade/chem_grenade/clf3/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/bluespace/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/bluespace/B2 = new(src)
@@ -546,10 +563,10 @@
 
 /obj/item/grenade/chem_grenade/bioterrorfoam
 	name = "Bio terror foam grenade"
-	desc = "Tiger Cooperative chemical foam grenade. Causes temporary irration, blindness, confusion, mutism, and mutations to carbon based life forms. Contains additional spore toxin."
+	desc = "Tiger Cooperative chemical foam grenade. Causes temporary irritation, blindness, confusion, mutism, and mutations to carbon based life forms. Contains additional spore toxin."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/bioterrorfoam/Initialize()
+/obj/item/grenade/chem_grenade/bioterrorfoam/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/bluespace/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/bluespace/B2 = new(src)
@@ -569,7 +586,7 @@
 	desc = "WARNING: GRENADE WILL RELEASE DEADLY SPORES CONTAINING ACTIVE AGENTS. SEAL SUIT AND AIRFLOW BEFORE USE."
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/tuberculosis/Initialize()
+/obj/item/grenade/chem_grenade/tuberculosis/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/bluespace/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/bluespace/B2 = new(src)
@@ -589,13 +606,32 @@
 	icon_state = "holy_grenade"
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/holy/Initialize()
+/obj/item/grenade/chem_grenade/holy/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
 
 	B1.reagents.add_reagent(/datum/reagent/potassium, 100)
 	B2.reagents.add_reagent(/datum/reagent/water/holywater, 100)
+
+	beakers += B1
+	beakers += B2
+
+/obj/item/grenade/chem_grenade/holywater
+	name = "holy foam grenade"
+	desc = "A vessel of concentrated religious foam."
+	icon_state = "holy_grenade"
+	stage = GRENADE_READY
+
+/obj/item/grenade/chem_grenade/holywater/Initialize(mapload)
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/fluorosurfactant, 30)
+	B2.reagents.add_reagent(/datum/reagent/water, 30)
+	B2.reagents.add_reagent(/datum/reagent/water/holywater, 30)
+	B2.reagents.add_reagent(/datum/reagent/consumable/sodiumchloride, 30)
 
 	beakers += B1
 	beakers += B2
