@@ -386,7 +386,8 @@
 	name = "\improper LIGMA \"Snakebite\" Carbine"
 	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
 	icon_state = "mecha_carbine"
-	equip_cooldown = 8
+	equip_cooldown = 10
+	fire_sound = 'sound/weapons/smgshot.ogg'
 	projectile = /obj/projectile/bullet/c45/venom	//yes the same one
 	projectiles = 24
 	projectiles_cache = 24

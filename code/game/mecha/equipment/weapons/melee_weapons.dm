@@ -237,7 +237,7 @@
 		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Half damage on mechs to prolong COOL MECH FIGHTS
 		O.take_damage(object_damage, dam_type, "melee", 0, armour_penetration = base_armor_piercing * 2)
 	else
-		return FALSE
+		return
 	chassis.do_attack_animation(target, hit_effect)
 	playsound(chassis, attack_sound, 50, 1)
 
@@ -409,7 +409,7 @@
 		do_lunge_at(target)
 	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)	//If we weren't able to get within range we don't attack
 		addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1, chassis.melee_cooldown * check_eva() * 0.5) )	//half cooldown on a failed lunge attack
-		return FALSE
+		return
 	for(var/i in 1 to stab_number)
 		special_hit(target)
 		if(isliving(target))						
@@ -436,13 +436,13 @@
 			var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Nukie mech, slightly less bad at killing mechs
 			O.take_damage(object_damage, dam_type, "melee", 0, armour_penetration = base_armor_piercing * 2)
 		else
-			return FALSE
+			return
 		chassis.do_attack_animation(target, hit_effect)
 		playsound(chassis, attack_sound, 50, 1)
 		set_ready_state(0)	//Wait till we're done multi-stabbing before we do it again
 		if(i != stab_number)	//Only sleep between attacks
 			sleep(0.2 SECONDS)	//Slight delay
-		return TRUE
+		return
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/proc/do_lunge_at(atom/target)
 	if(world.time < next_lunge)	//On cooldown
@@ -468,10 +468,10 @@
 	precise_weapon_damage = -25	//Tiny dagger
 	minimum_damage = 10			//So we don't do negative damage
 	extended_range = 1			//So we can jump at people
-	attack_sound = 'sound/weapons/rapierhit.ogg'
+	attack_sound = 'sound/weapons/sword2.ogg'
 	sword_wound_bonus = 10		//Stabby
 	stab_number = 2				//Stabby stabby
-	base_lunge_cd = 2			//Cooldown for lunge (in seconds because math)
+	base_lunge_cd = 5			//Cooldown for lunge (in seconds because math)
 	var/venom_cd = 5 SECONDS	//No infinite stacking of venom in people super easily please
 	var/next_venom = 0
 
@@ -480,11 +480,9 @@
 		return
 	var/mob/living/carbon/C = target
 	if(world.time > next_venom)
-		C.reagents.add_reagent(/datum/reagent/toxin/venom, 7)	//14 units total, should ruin your day without charcoal
+		C.reagents.add_reagent(/datum/reagent/toxin/venom, 14)	//Should ruin your day without charcoal
+		next_venom = world.time + venom_cd
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/razerfang/precise_attack(atom/target)
-	if(..())
-		next_venom = world.time + venom_cd	//We won't modify this because it's a limit of the weapon, not the mech
 
 
 	//		//=========================================================\\
