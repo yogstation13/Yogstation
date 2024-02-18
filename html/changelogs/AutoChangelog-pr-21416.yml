@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds stuff for Hisa to bus with"
+  - soundadd: "Sound for bussing stuff"
+  - imageadd: "Images for bussing stuff"
