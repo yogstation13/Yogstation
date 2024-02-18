@@ -454,6 +454,11 @@
 		return
 	H.dna.add_mutation(STONER)
 
+
+/obj/effect/mob_spawn/human/corpse/felinid
+	name = "Felinid"
+	mob_species = /datum/species/human/felinid
+
 /obj/effect/mob_spawn/human/fishing/alive
 	death = FALSE
 	roundstart = FALSE
@@ -480,6 +485,7 @@
 	suit = /obj/item/clothing/suit/fishing
 	shoes = /obj/item/clothing/shoes/fishing
 	id = /obj/item/card/id
+
 
 /////////////////Officers+Nanotrasen Security//////////////////////
 

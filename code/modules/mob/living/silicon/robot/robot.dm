@@ -5,7 +5,7 @@
 	icon_state = "robot"
 	maxHealth = 100
 	health = 100
-	bubble_icon = "robot"
+	bubble_icon = BUBBLE_ROBOT
 	designation = "Default" ///used for displaying the prefix & getting the current module of cyborg
 	has_limbs = 1
 	hud_type = /datum/hud/robot
@@ -782,7 +782,7 @@
 
 /mob/living/silicon/robot/verb/outputlaws()
 	set category = "Robot Commands"
-	set name = "State Laws"
+	set name = "Law Manager"
 
 	if(usr.stat == DEAD)
 		return //won't work if dead
@@ -795,15 +795,6 @@
 	if(usr.stat == DEAD)
 		return //won't work if dead
 	accentchange()
-
-/mob/living/silicon/robot/verb/set_automatic_say_channel() //Borg version of setting the radio for autosay messages.
-	set name = "Set Auto Announce Mode"
-	set desc = "Modify the default radio setting for stating your laws."
-	set category = "Robot Commands"
-
-	if(usr.stat == DEAD)
-		return //won't work if dead
-	set_autosay()
 
 /**
   * Handles headlamp smashing
@@ -920,7 +911,7 @@
 /mob/living/silicon/robot/modules/syndicate
 	icon_state = "synd_sec"
 	faction = list(ROLE_SYNDICATE)
-	bubble_icon = "syndibot"
+	bubble_icon = BUBBLE_SYNDIBOT
 	req_access = list(ACCESS_SYNDICATE)
 	lawupdate = FALSE
 	scrambledcodes = TRUE // These are rogue borgs.

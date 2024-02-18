@@ -1,7 +1,6 @@
 /client/verb/dsay(msg as text)
 	set category = "Misc.Unused"
 	set name = "Dsay"
-	set hidden = TRUE
 
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.", confidential=TRUE)

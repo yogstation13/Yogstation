@@ -58,13 +58,20 @@ GLOBAL_LIST_INIT(plasmaman_helmet_list, list(
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 
-GLOBAL_LIST_INIT(color_list_preternis, list(
+GLOBAL_LIST_EMPTY(preternis_weathering_list) //preternis body weathering
+GLOBAL_LIST_EMPTY(preternis_antenna_list) //preternis head antenna
+GLOBAL_LIST_EMPTY(preternis_eye_list) //preternis eyes
+GLOBAL_LIST_EMPTY(preternis_core_list) //preternis core (only one option, not changeable)
+GLOBAL_LIST_INIT(color_list_preternis, list( //welcome to preternis body colours, where we have colors ranging from gray to grey
 	"Factory Default" = "#FFFFFF", 
-	"Rust" = "#B7410E", 
-	"Chrome" = "#B0C4DE", 
-	"Overgrown" = "#b2ee69", 
-	"Gunmetal Gray" = "#8D918D", 
-	"Gold" = "#D4AF37"))
+	"Stainless Steel" = "#b4bdc7",
+	"Chrome" = "#9cb9df", 
+	"Gunmetal Gray" = "#818589", 
+	"Bronze" = "#CD7F32",
+	"Silver" = "#C0C0C0",
+	"Gold" = "#FFD700",
+	"Cobalt" = "#5fa1ff"
+	))//make sure they aren't too dark or it'll just become a mass of one colour
 
 GLOBAL_LIST_EMPTY(pod_hair_list) //ethereal face marks
 GLOBAL_LIST_EMPTY(pod_flower_list) //ethereal face marks

@@ -642,7 +642,7 @@
 //adrenaline rush from combat damage
 /atom/movable/screen/alert/status_effect/adrenaline
 	name = "Adrenaline rush"
-	desc = "The sudden injuries you've recieved have put your body into fight-or-flight mode! Now's the time to look for an exit!"
+	desc = "The sudden injuries you've received have put your body into fight-or-flight mode! Now's the time to look for an exit!"
 	icon_state = "default"
 
 /datum/status_effect/adrenaline
@@ -667,7 +667,7 @@
 	to_chat(owner, span_warning(printout))
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()
-	
+
 /datum/status_effect/diamondskin
 	id = "diamondskin"
 	duration = 20 SECONDS
@@ -693,8 +693,9 @@
 		var/mob/living/carbon/human/H = owner
 		H.physiology.pressure_mod /= 0.5
 		H.physiology.heat_mod /= 0.5
-	
+
 //holy light specific buffs
+
 /datum/status_effect/holylight_antimagic
 	id = "holy antimagic"
 	duration = 2 MINUTES

@@ -4737,10 +4737,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"aQd" = (
-/obj/machinery/vending/donksofttoyvendor,
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
 "aQh" = (
 /turf/closed/wall,
 /area/science/explab)
@@ -18123,7 +18119,7 @@
 /turf/open/floor/plating,
 /area/science/misc_lab)
 "eTa" = (
-/obj/structure/altar_of_gods,
+/obj/structure/table/altar_of_gods,
 /obj/item/storage/book/bible{
 	pixel_x = -2;
 	pixel_y = -2
@@ -93538,7 +93534,7 @@ wsD
 qTR
 new
 uVl
-aQd
+aeM
 sfH
 jdd
 aXp
@@ -93795,7 +93791,7 @@ eXm
 aAw
 mSV
 uVl
-aeM
+aii
 lEF
 wNI
 aXp

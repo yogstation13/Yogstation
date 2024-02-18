@@ -1,6 +1,6 @@
 /obj/item/rls
 	name = "Rapid Light Switch (RLS)"
-	desc = "A device used to remotley switch lighting."
+	desc = "A device used to remotely switch lighting."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "multitool_red"
 	item_state = "multitool"
