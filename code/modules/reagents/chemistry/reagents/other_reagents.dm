@@ -2357,7 +2357,6 @@
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
 	..()
 
-///longer lasting healing, but it doesn't heal much and also can overdose
 /datum/reagent/goodblood
 	name = "Good Blood"
 	description = "Pure, refined blood. Oh, the taste is intoxicating. Just be sure not to over induldge."
@@ -2370,9 +2369,9 @@
 
 /datum/reagent/goodblood/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(-0.5*REM, 0)
-	M.adjustFireLoss(-0.5*REM, 0)
-	M.adjustOxyLoss(-0.5*REM, 0)
-	M.adjustToxLoss(-0.5*REM, 0, TRUE) //heals TOXINLOVERs
+	M.adjustFireLoss(-0.25*REM, 0) // burns were always more damaging to the beasts
+	M.adjustOxyLoss(-0.25*REM, 0)
+	M.adjustToxLoss(-0.25*REM, 0, TRUE) //heals TOXINLOVERs
 	. = 1
 	..()
 
@@ -2395,10 +2394,10 @@
 			M.adjustFireLoss(-1.5*REM, 0)
 			M.adjustStaminaLoss(-10*REM, 0)
 			M.adjust_hallucinations(5 SECONDS)
-			M.adjust_blurriness(3)
 			M.adjustToxLoss(1*REM, 0)
 			if(prob(10))
 				to_chat(M, "Oh, the sweetly sickness, how it calls...")
+				M.adjust_blurriness(3)
 				M.emote("laugh")
 	..()
 	return TRUE
