@@ -109,3 +109,4 @@ GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
 	// We use underlays because objects on each tile would fuck with maptick. if that ever changes, use an object for this instead
 	affected_turf.underlays += current_underlay
 	affected_turf.luminosity = set_luminosity
+	SSdemo.mark_turf(affected_turf)
