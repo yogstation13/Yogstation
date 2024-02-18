@@ -10,8 +10,8 @@
 	icon_state = "jump_to_mob"
 
 /atom/movable/screen/ghost/jump_to_mob/Click()
-	var/mob/dead/observer/observer = usr
-	observer.open_spawners_menu()
+	var/mob/dead/observer/G = usr
+	G.dead_tele()
 
 /atom/movable/screen/ghost/orbit
 	name = "Orbit"

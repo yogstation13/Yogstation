@@ -412,7 +412,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		if(target.mind.assigned_role in GLOB.command_positions)
 			tgui_alert(target, "You're a Head of Staff![generic_plsnoleave_message]")
 			caught = TRUE
-		if(A)
+		if(A && A.name != "valentine")
 			tgui_alert(target, "You're a [A.name]![generic_plsnoleave_message]")
 			caught = TRUE
 		if(caught)

@@ -331,14 +331,21 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	menu_holder.appearance_flags |= KEEP_APART|RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM
 	menu_holder.vis_contents += elements + close_button
 	current_user.images += menu_holder
+	if(ismovable(anchor))
+		RegisterSignal(anchor, COMSIG_MOVABLE_MOVED, PROC_REF(on_anchor_moved))
+
+/datum/radial_menu/proc/on_anchor_moved()
+	menu_holder.loc = get_atom_on_turf(anchor)
 
 /datum/radial_menu/proc/hide()
+	if(ismovable(anchor))
+		UnregisterSignal(anchor, COMSIG_MOVABLE_MOVED)
 	if(current_user)
 		current_user.images -= menu_holder
 
 /datum/radial_menu/proc/wait(atom/user, atom/anchor, require_near = FALSE)
 	while (current_user && !finished && !selected_choice)
-		if(require_near && !in_range(anchor, user))
+		if(require_near && !(in_range(anchor, user) || anchor == user.loc))
 			return
 		if(custom_check_callback && next_check < world.time)
 			if(!custom_check_callback.Invoke())
@@ -389,7 +396,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/answer = menu.selected_choice
 	qdel(menu)
 	GLOB.radial_menus -= uniqueid
-	if(require_near && !in_range(anchor, user))
+	if(require_near && !(in_range(anchor, user)) || anchor == user.loc)
 		return
 	if(istype(custom_check))
 		if(!custom_check.Invoke())

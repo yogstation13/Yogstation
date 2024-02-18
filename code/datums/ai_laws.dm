@@ -589,6 +589,7 @@
 	inherent = list("Never willingly commit an evil act.",
 					"Respect legitimate authority.",
 					"Act with honour.",
+					"Help those in need.",
 					"Punish those who harm or threaten innocents.")
 
 /datum/ai_laws/paladin5

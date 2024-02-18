@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(statpanels)
 	for(var/action_data in actions)
 		target.spell_tabs |= action_data[1]
 
-	target << output("[url_encode(json_encode(target.spell_tabs))];[actions]", "statbrowser:update_spells")
+	target << output("[url_encode(json_encode(target.spell_tabs))];[url_encode(json_encode(actions))]", "statbrowser:update_spells")
 
 /datum/controller/subsystem/statpanels/proc/set_turf_examine_tab(client/target, mob/target_mob)
 	var/list/overrides = list()
