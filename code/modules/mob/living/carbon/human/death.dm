@@ -7,7 +7,7 @@
 		if("plasma")
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-h") //This will have more use in the near future
 		if("polysmorph")
-			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-a")
+			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-h")
 
 /mob/living/carbon/human/dust(just_ash, drop_items, force)
 	if(drop_items)
