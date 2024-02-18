@@ -213,6 +213,11 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 		COOLDOWN_START(src, holodeck_cooldown, (damaged ? HOLODECK_CD + HOLODECK_DMG_CD : HOLODECK_CD))
 		if (damaged && floorcheck())
 			damaged = FALSE
+	
+	template = SSmapping.holodeck_templates[map_id]
+	if(template.minimum_sec_level > GLOB.security_level && !force && !(obj_flags & EMAGGED))
+		say("ERROR. Program currently unavailiable, the security level is not high enough.")
+		return
 
 	spawning_simulation = TRUE
 	active = (map_id != offline_program)
@@ -221,7 +226,6 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 
 	clear_projection()
 
-	template = SSmapping.holodeck_templates[map_id]
 	template.load(bottom_left) //this is what actually loads the holodeck simulation into the map
 
 	if(template.restricted)

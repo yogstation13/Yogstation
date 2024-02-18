@@ -1,14 +1,16 @@
 /datum/map_template/holodeck
-	var/template_id
-	var/description
-	var/restricted = FALSE
-	var/datum/parsed_map/lastparsed
-
 	should_place_on_top = FALSE
 	returns_created_atoms = TRUE
 	keep_cached_map = TRUE
 
-	var/obj/machinery/computer/holodeck/linked
+	var/template_id
+	var/description
+	var/datum/parsed_map/lastparsed
+
+	///Boolean if the holodeck is restricted to only being ran when emagged.
+	var/restricted = NONE
+	///The minimum security level required for the program to be ran.
+	var/minimum_sec_level = SEC_LEVEL_GREEN
 
 /datum/map_template/holodeck/offline
 	name = "Holodeck - Offline"
@@ -151,14 +153,15 @@
 	template_id = "holodeck_medicalsim"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_medicalsim.dmm"
-//	restricted = TRUE //yogs edit: Medical is not restricted.
+//	restricted = EMAGGED //yogs edit: Medical is not restricted, we instead require red-alert.
+	minimum_sec_level = SEC_LEVEL_RED
 
 /datum/map_template/holodeck/thunderdome1218
 	name = "Holodeck - 1218 AD"
 	template_id = "holodeck_thunderdome1218"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_thunderdome1218.dmm"
-	restricted = TRUE
+	restricted = EMAGGED
 
 /* //disabled because the lava immediately destroys the holodeck
 /datum/map_template/holodeck/burntest
@@ -166,7 +169,7 @@
 	template_id = "holodeck_burntest"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_burntest.dmm"
-	restricted = TRUE
+	restricted = EMAGGED
 */
 
 /datum/map_template/holodeck/wildlifesim
@@ -174,25 +177,25 @@
 	template_id = "holodeck_wildlifesim"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_wildlifesim.dmm"
-	restricted = TRUE
+	restricted = EMAGGED
 
 /datum/map_template/holodeck/holdoutbunker
 	name = "Holodeck - Holdout Bunker"
 	template_id = "holodeck_holdoutbunker"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_holdoutbunker.dmm"
-	restricted = TRUE
+	restricted = EMAGGED
 
 /datum/map_template/holodeck/anthophillia
 	name = "Holodeck - Anthophillia"
 	template_id = "holodeck_anthophillia"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_anthophillia.dmm"
-	restricted = TRUE
+	restricted = EMAGGED
 
 /datum/map_template/holodeck/refuelingstation
 	name = "Holodeck - Refueling Station"
 	template_id = "holodeck_refuelingstation"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_refuelingstation.dmm"
-	restricted = TRUE
+	restricted = EMAGGED

@@ -6,9 +6,8 @@
 	base_lighting_alpha = 255
 	flags_1 = NONE
 
+	///The holodeck computer that the area is being hosted by, which we use for power and such.
 	var/obj/machinery/computer/holodeck/linked
-	var/restricted = FALSE // if true, program goes on emag list
-	var/minimum_sec_level = SEC_LEVEL_GREEN //override this var if you want the program to be locked to a different alert-level (eg. SEC_LEVEL_BLUE, SEC_LEVEL_RED, SEC_LEVEL_DELTA)
 
 /*
 	Power tracking: Use the holodeck computer's power grid
