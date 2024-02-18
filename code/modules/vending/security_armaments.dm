@@ -2,7 +2,7 @@
 /obj/machinery/armaments_dispenser
 	name = "armaments dispenser"
 	desc = "A standard issue security armaments dispenser."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'yogstation/icons/obj/vending.dmi'
 	icon_state = "armament" // BAIOMU REPLACE THIS WITH YOUR SPRITE
 	layer = 2.9
 	density = TRUE

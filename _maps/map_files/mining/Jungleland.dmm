@@ -9,7 +9,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 5;
-	id = "laborcamp_away";
+	shuttle_id = "laborcamp_away";
 	name = "labor camp";
 	width = 9
 	},
@@ -203,7 +203,7 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	id = "whiteship_mining";
+	shuttle_id = "whiteship_mining";
 	name = "jungleland pits";
 	width = 35
 	},
@@ -703,9 +703,7 @@
 	name = "Labor Camp Maintenance";
 	req_access_txt = "2"
 	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1

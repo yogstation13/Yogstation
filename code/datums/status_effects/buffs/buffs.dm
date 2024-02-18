@@ -744,7 +744,8 @@
 
 /datum/status_effect/holylight_healboost/on_remove()
 	var/datum/component/heal_react/boost/holylight/healing = owner.GetComponent(/datum/component/heal_react/boost/holylight)
-	healing?.RemoveComponent()
+	if(healing)
+		qdel(healing)
 	var/filter = owner.get_filter(HEALBOOST_FILTER)
 	if(filter)
 		animate(filter)
