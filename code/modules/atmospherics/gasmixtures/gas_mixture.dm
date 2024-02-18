@@ -299,6 +299,7 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 		//math is under the assumption temperatures are equal
 		var/self_moles = get_moles(gas_id)
 		var/other_moles = other.get_moles(gas_id)
+		
 		if(abs(self_moles / return_volume() - other_moles / other.return_volume()) > min_p_delta / (R_IDEAL_GAS_EQUATION * return_temperature()))
 			. = TRUE
 			var/total_moles = self_moles + other_moles

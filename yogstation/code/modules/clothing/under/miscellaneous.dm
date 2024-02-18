@@ -547,12 +547,6 @@
 	item_state = "victorianreddress"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/shitcurity
-	name = "shitcurity uniform"
-	desc = "For the security members that want to show their true colors."
-	icon_state = "altsecurity"
-	item_state = "altsecurity"
-
 /obj/item/clothing/under/yogs/victoriouscaptainuniform
 	name = "very fancy captain uniform"
 	desc = "Ask not the sparrow how the eagle soars!"

@@ -11,6 +11,7 @@
 	liked_food = GROSS | MEAT | MICE
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
 	say_mod = "hisses"
+	bubble_icon = BUBBLE_ALIEN
 	species_language_holder = /datum/language_holder/polysmorph
 	brutemod = 0.9 //exoskeleton protects against brute
 	burnmod = 1.35 //residual plasma inside them, highly flammable

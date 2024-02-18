@@ -1,25 +1,37 @@
 /datum/component/spawner
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
-	var/spawn_time = 300 //30 seconds default
-	var/list/spawned_mobs = list()
-	var/spawn_delay = 0
-	var/max_mobs = 5
+	/// Time to wait between spawns
+	var/spawn_time
+	/// Maximum number of atoms we can have active at one time
+	var/max_spawned
+	/// Visible message to show when something spawns
 	var/spawn_text = "emerges from"
-	var/list/faction = list("mining")
+	/// List of atom types to spawn, picked randomly
+	var/list/spawn_types = list(/mob/living/simple_animal/hostile/carp)
+	/// Faction to grant to mobs (only applies to mobs)
+	var/list/faction = list(FACTION_MINING)
+	/// List of weak references to things we have already created
+	var/list/spawned_things = list()
+	/// How many mobs can we spawn maximum each time we try to spawn? (1 - max)
+	var/max_spawn_per_attempt
+	/// Distance from the spawner to spawn mobs
+	var/spawn_distance
+	/// Distance from the spawner to exclude mobs from spawning
+	var/spawn_distance_exclude
+	COOLDOWN_DECLARE(spawn_delay)
 
-/datum/component/spawner/Initialize(_mob_types, _spawn_time, _faction, _spawn_text, _max_mobs)
-	if(_spawn_time)
-		spawn_time=_spawn_time
-	if(_mob_types)
-		mob_types=_mob_types
-	if(_faction)
-		faction=_faction
-	if(_spawn_text)
-		spawn_text=_spawn_text
-	if(_max_mobs)
-		max_mobs=_max_mobs
+/datum/component/spawner/Initialize(spawn_types = list(), spawn_time = 30 SECONDS, max_spawned = 5, max_spawn_per_attempt = 2 , faction = list(FACTION_MINING), spawn_text = null, spawn_distance = 1, spawn_distance_exclude = 0)
+	if (!islist(spawn_types))
+		CRASH("invalid spawn_types to spawn specified for spawner component!")
+	src.spawn_time = spawn_time
+	src.spawn_types = spawn_types
+	src.faction = faction
+	src.spawn_text = spawn_text
+	src.max_spawned = max_spawned
+	src.max_spawn_per_attempt = max_spawn_per_attempt
+	src.spawn_distance = spawn_distance
+	src.spawn_distance_exclude = spawn_distance_exclude
 
-	RegisterSignals(parent, list(COMSIG_PARENT_QDELETING), PROC_REF(stop_spawning))
+	RegisterSignals(parent, list(COMSIG_QDELETING), PROC_REF(stop_spawning))
 	START_PROCESSING(SSprocessing, src)
 
 /datum/component/spawner/process()
@@ -29,22 +41,24 @@
 /datum/component/spawner/proc/stop_spawning(force, hint)
 	SIGNAL_HANDLER
 	STOP_PROCESSING(SSprocessing, src)
-	for(var/mob/living/simple_animal/L in spawned_mobs)
+	for(var/mob/living/simple_animal/L in spawned_things)
 		if(L.nest == src)
 			L.nest = null
-	spawned_mobs = null
+	spawned_things = null
 
 /datum/component/spawner/proc/try_spawn_mob()
-	var/atom/P = parent
-	if(spawned_mobs.len >= max_mobs)
-		return 0
-	if(spawn_delay > world.time)
-		return 0
-	spawn_delay = world.time + spawn_time
-	var/chosen_mob_type = pick(mob_types)
-	var/mob/living/simple_animal/L = new chosen_mob_type(P.loc)
-	L.flags_1 |= (P.flags_1 & ADMIN_SPAWNED_1)
-	spawned_mobs += L
+	if(!length(spawn_types))
+		return
+	if(!COOLDOWN_FINISHED(src, spawn_delay))
+		return
+	if(length(spawned_things) >= max_spawned)
+		return
+	var/atom/spawner = parent
+	COOLDOWN_START(src, spawn_delay, spawn_time)
+	var/chosen_mob_type = pick(spawn_types)
+	var/mob/living/simple_animal/L = new chosen_mob_type(spawner.loc)
+	L.flags_1 |= (spawner.flags_1 & ADMIN_SPAWNED_1)
+	spawned_things += L
 	L.nest = src
 	L.faction = src.faction
-	P.visible_message(span_danger("[L] [spawn_text] [P]."))
+	spawner.visible_message(span_danger("[L] [spawn_text] [spawner]."))

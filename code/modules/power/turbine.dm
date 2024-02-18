@@ -29,7 +29,7 @@
 	icon_state = "compressor"
 	density = TRUE
 	resistance_flags = FIRE_PROOF
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	use_power = NO_POWER_USE // powered by gas flow
 	circuit = /obj/item/circuitboard/machine/power_compressor
 	var/obj/machinery/power/turbine/turbine
@@ -44,7 +44,7 @@
 	var/intake_ratio = 0.1 // might add a way to adjust this in-game later
 
 /obj/machinery/power/compressor/Destroy()
-	SSair_machinery.stop_processing_machine(src)
+	SSair.stop_processing_machine(src)
 	if (turbine && turbine.compressor == src)
 		turbine.compressor = null
 	var/turf/T = get_turf(src)
@@ -62,7 +62,7 @@
 	icon_state = "turbine"
 	density = TRUE
 	resistance_flags = FIRE_PROOF
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	use_power = NO_POWER_USE // powered by gas flow
 	circuit = /obj/item/circuitboard/machine/power_turbine
 	var/opened = 0
@@ -72,7 +72,7 @@
 	var/productivity = 1
 
 /obj/machinery/power/turbine/Destroy()
-	SSair_machinery.stop_processing_machine(src)
+	SSair.stop_processing_machine(src)
 	if (compressor && compressor.turbine == src)
 		compressor.turbine = null
 	compressor = null
@@ -91,7 +91,7 @@
 
 /obj/machinery/power/compressor/Initialize(mapload)
 	. = ..()
-	SSair_machinery.start_processing_machine(src)
+	SSair.start_processing_machine(src)
 	// The inlet of the compressor is the direction it faces
 	gas_contained = new
 	inturf = get_step(src, dir)
@@ -194,7 +194,7 @@
 
 /obj/machinery/power/turbine/Initialize(mapload)
 	. = ..()
-	SSair_machinery.start_processing_machine(src)
+	SSair.start_processing_machine(src)
 	// The outlet is pointed at the direction of the turbine component
 	outturf = get_step(src, dir)
 	locate_machinery()
@@ -248,7 +248,7 @@
 	if(!isclosedturf(outturf))
 		output_blocked = FALSE
 		for(var/atom/A in outturf)
-			if(!CANATMOSPASS(A, outturf))
+			if(!CANATMOSPASS(A, outturf, FALSE))
 				output_blocked = TRUE
 				break
 

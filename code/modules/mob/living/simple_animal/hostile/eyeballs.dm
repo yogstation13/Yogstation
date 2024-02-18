@@ -26,3 +26,7 @@
 	faction = list("spooky")
 	del_on_death = 1
 	random_color = FALSE
+	// Redish ethereal glow. These lads live on the cult ship
+	lighting_cutoff_red = 40
+	lighting_cutoff_green = 20
+	lighting_cutoff_blue = 30

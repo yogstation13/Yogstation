@@ -168,7 +168,8 @@
 	wound_falloff_tile = -2.5
 	ricochets_max = 1 // so you can't use it in a small room to obliterate everyone inside
 	ricochet_chance = INFINITY // ALWAYS ricochet
-	penetrating = TRUE
+	penetrations = INFINITY
+	can_ricoshot = ALWAYS_RICOSHOT // +RICOSHOT
 
 /obj/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
 	. = ..()
@@ -196,7 +197,7 @@
 /obj/projectile/bullet/ipcmartial/on_ricochet(atom/A)
 	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
 	speed *= 0.5 // faster so it can hit more reliably
-	penetrating = FALSE
+	penetrations = 0
 	return ..()
 
 /obj/projectile/bullet/ipcmartial/check_ricochet()

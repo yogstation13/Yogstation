@@ -26,7 +26,7 @@
 	modifystate = FALSE
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
-	ammo_type = list(/obj/item/ammo_casing/energy/beam_rifle/hitscan)
+	ammo_type = list(/obj/item/ammo_casing/energy/beam_rifle/hitscan/piercing, /obj/item/ammo_casing/energy/beam_rifle/hitscan/impact)
 	actions_types = list(/datum/action/item_action/zoom_lock_action)
 	cell_type = /obj/item/stock_parts/cell/beam_rifle
 	canMouseDown = TRUE
@@ -44,20 +44,6 @@
 	var/aiming_lastangle = 0
 	var/mob/current_user = null
 
-	var/structure_piercing = 2				//Amount * 2. For some reason structures aren't respecting this unless you have it doubled. Probably with the objects in question's Bump() code instead of this but I'll deal with this later.
-	var/structure_bleed_coeff = 0.7
-	var/wall_pierce_amount = 0
-	var/wall_devastate = 0
-	var/aoe_structure_range = 1
-	var/aoe_structure_damage = 50
-	var/aoe_fire_range = 2
-	var/aoe_fire_chance = 40
-	var/aoe_mob_range = 1
-	var/aoe_mob_damage = 30
-	var/impact_structure_damage = 60
-	var/projectile_damage = 30
-	var/projectile_stun = 0
-	var/projectile_setting_pierce = TRUE
 	var/delay = 25
 	var/lastfire = 0
 
@@ -156,9 +142,8 @@
 	else
 		. += drained_overlay
 
-/obj/item/gun/energy/beam_rifle/attack_self(mob/user)
-	projectile_setting_pierce = !projectile_setting_pierce
-	to_chat(user, span_boldnotice("You set \the [src] to [projectile_setting_pierce? "pierce":"impact"] mode."))
+/obj/item/gun/energy/beam_rifle/select_fire(mob/living/user)
+	. = ..()
 	aiming_beam()
 
 /obj/item/gun/energy/beam_rifle/proc/update_slowdown()
@@ -179,13 +164,6 @@
 	listeningTo = null
 	return ..()
 
-/obj/item/gun/energy/beam_rifle/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	chambered = null
-	recharge_newshot()
-
 /obj/item/gun/energy/beam_rifle/proc/aiming_beam(force_update = FALSE)
 	var/diff = abs(aiming_lastangle - lastangle)
 	check_user()
@@ -193,10 +171,7 @@
 		return
 	aiming_lastangle = lastangle
 	var/obj/projectile/beam/beam_rifle/hitscan/aiming_beam/P = new
-	P.gun = src
-	P.wall_pierce_amount = wall_pierce_amount
-	P.structure_pierce_amount = structure_piercing
-	P.do_pierce = projectile_setting_pierce
+	P.fired_from = src
 	if(aiming_time)
 		var/percent = ((100/aiming_time)*aiming_time_left)
 		P.color = rgb(255 * percent,255 * ((100 - percent) / 100),0)
@@ -299,7 +274,6 @@
 		return
 	process_aim()
 	if(aiming_time_left <= aiming_time_fire_threshold && check_user())
-		sync_ammo()
 		var/atom/target = M.client.mouse_object_ref?.resolve()
 		if(target)
 			afterattack(target, M, FALSE, M.client.mouseParams, passthrough = TRUE)
@@ -323,73 +297,15 @@
 	. = ..()
 	stop_aiming()
 
-/obj/item/gun/energy/beam_rifle/proc/sync_ammo()
-	for(var/obj/item/ammo_casing/energy/beam_rifle/AC in contents)
-		AC.sync_stats()
-
 /obj/item/gun/energy/beam_rifle/proc/delay_penalty(amount)
 	aiming_time_left = clamp(aiming_time_left + amount, 0, aiming_time)
 
 /obj/item/ammo_casing/energy/beam_rifle
 	name = "particle acceleration lens"
 	desc = "Don't look into barrel!"
-	var/wall_pierce_amount = 0
-	var/wall_devastate = 0
-	var/aoe_structure_range = 1
-	var/aoe_structure_damage = 30
-	var/aoe_fire_range = 2
-	var/aoe_fire_chance = 66
-	var/aoe_mob_range = 1
-	var/aoe_mob_damage = 20
-	var/impact_structure_damage = 50
-	var/projectile_damage = 40
-	var/projectile_stun = 0
-	var/structure_piercing = 2
-	var/structure_bleed_coeff = 0.7
-	var/do_pierce = TRUE
-	var/obj/item/gun/energy/beam_rifle/host
-
-/obj/item/ammo_casing/energy/beam_rifle/proc/sync_stats()
-	var/obj/item/gun/energy/beam_rifle/BR = loc
-	if(!istype(BR))
-		stack_trace("Beam rifle syncing error")
-	host = BR
-	do_pierce = BR.projectile_setting_pierce
-	wall_pierce_amount = BR.wall_pierce_amount
-	wall_devastate = BR.wall_devastate
-	aoe_structure_range = BR.aoe_structure_range
-	aoe_structure_damage = BR.aoe_structure_damage
-	aoe_fire_range = BR.aoe_fire_range
-	aoe_fire_chance = BR.aoe_fire_chance
-	aoe_mob_range = BR.aoe_mob_range
-	aoe_mob_damage = BR.aoe_mob_damage
-	impact_structure_damage = BR.impact_structure_damage
-	projectile_damage = BR.projectile_damage
-	projectile_stun = BR.projectile_stun
-	delay = BR.delay
-	structure_piercing = BR.structure_piercing
-	structure_bleed_coeff = BR.structure_bleed_coeff
-
-/obj/item/ammo_casing/energy/beam_rifle/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
-	. = ..()
-	var/obj/projectile/beam/beam_rifle/hitscan/HS_BB = BB
-	if(!istype(HS_BB))
-		return
-	HS_BB.impact_direct_damage = projectile_damage
-	HS_BB.stun = projectile_stun
-	HS_BB.impact_structure_damage = impact_structure_damage
-	HS_BB.aoe_mob_damage = aoe_mob_damage
-	HS_BB.aoe_mob_range = clamp(aoe_mob_range, 0, 15)				//Badmin safety lock
-	HS_BB.aoe_fire_chance = aoe_fire_chance
-	HS_BB.aoe_fire_range = aoe_fire_range
-	HS_BB.aoe_structure_damage = aoe_structure_damage
-	HS_BB.aoe_structure_range = clamp(aoe_structure_range, 0, 15)	//Badmin safety lock
-	HS_BB.wall_devastate = wall_devastate
-	HS_BB.wall_pierce_amount = wall_pierce_amount
-	HS_BB.structure_pierce_amount = structure_piercing
-	HS_BB.structure_bleed_coeff = structure_bleed_coeff
-	HS_BB.do_pierce = do_pierce
-	HS_BB.gun = host
+	select_name = "beam"
+	e_cost = 10000
+	fire_sound = 'sound/weapons/beam_sniper.ogg'
 
 /obj/item/ammo_casing/energy/beam_rifle/throw_proj(atom/target, turf/targloc, mob/living/user, params, spread)
 	var/turf/curloc = get_turf(user)
@@ -412,125 +328,30 @@
 
 /obj/item/ammo_casing/energy/beam_rifle/hitscan
 	projectile_type = /obj/projectile/beam/beam_rifle/hitscan
-	select_name = "beam"
-	e_cost = 10000
-	fire_sound = 'sound/weapons/beam_sniper.ogg'
+
+/obj/item/ammo_casing/energy/beam_rifle/hitscan/impact
+	projectile_type = /obj/projectile/beam/beam_rifle/hitscan/impact
+	select_name = "impact"
+
+/obj/item/ammo_casing/energy/beam_rifle/hitscan/piercing
+	projectile_type = /obj/projectile/beam/beam_rifle/hitscan/piercing
+	select_name = "pierce"
 
 /obj/projectile/beam/beam_rifle
 	name = "particle beam"
 	icon = null
 	hitsound = 'sound/effects/explosion3.ogg'
-	damage = 0				//Handled manually.
+	damage = 0
 	damage_type = BURN
 	armor_flag = ENERGY
 	range = 150
 	jitter = 10
 	demolition_mod = 4
-	var/obj/item/gun/gun
-	var/structure_pierce_amount = 0				//All set to 0 so the gun can manually set them during firing.
-	var/structure_bleed_coeff = 0
-	var/structure_pierce = 0
-	var/do_pierce = TRUE
-	var/wall_pierce_amount = 0
-	var/wall_pierce = 0
-	var/wall_devastate = 0
-	var/aoe_structure_range = 0
-	var/aoe_structure_damage = 0
-	var/aoe_fire_range = 0
+	can_ricoshot = ALWAYS_RICOSHOT
+	var/aoe_range = 0
 	var/aoe_fire_chance = 0
-	var/aoe_mob_range = 0
-	var/aoe_mob_damage = 0
-	var/impact_structure_damage = 0
-	var/impact_direct_damage = 0
-	var/turf/cached
-	var/list/pierced = list()
-
-/obj/projectile/beam/beam_rifle/proc/AOE(turf/epicenter)
-	set waitfor = FALSE
-	if(!epicenter)
-		return
-	new /obj/effect/temp_visual/explosion/fast(epicenter)
-	for(var/mob/living/L in range(aoe_mob_range, epicenter))		//handle aoe mob damage
-		L.adjustFireLoss(aoe_mob_damage)
-		to_chat(L, span_userdanger("\The [src] sears you!"))
-	for(var/turf/T in range(aoe_fire_range, epicenter))		//handle aoe fire
-		if(prob(aoe_fire_chance))
-			new /obj/effect/hotspot(T)
-	for(var/obj/O in range(aoe_structure_range, epicenter))
-		if(!isitem(O))
-			if(O.level == 1)	//Please don't break underfloor items!
-				continue
-			O.take_damage(aoe_structure_damage * get_damage_coeff(O), BURN, LASER, FALSE)
-
-/obj/projectile/beam/beam_rifle/proc/check_pierce(atom/target)
-	if(!do_pierce)
-		return FALSE
-	if(pierced[target])		//we already pierced them go away
-		return TRUE
-	if(isclosedturf(target))
-		if(wall_pierce++ < wall_pierce_amount)
-			if(prob(wall_devastate))
-				if(iswallturf(target))
-					var/turf/closed/wall/W = target
-					W.dismantle_wall(TRUE, TRUE)
-				else
-					SSexplosions.medturf += target
-			return TRUE
-	if(ismovable(target))
-		var/atom/movable/AM = target
-		if(AM.density && !AM.CanPass(src, get_turf(target)) && !ismob(AM))
-			if(structure_pierce < structure_pierce_amount)
-				if(isobj(AM))
-					var/obj/O = AM
-					O.take_damage((impact_structure_damage + aoe_structure_damage) * structure_bleed_coeff * get_damage_coeff(AM), BURN, ENERGY, FALSE)
-				pierced[AM] = TRUE
-				structure_pierce++
-				return TRUE
-	return FALSE
-
-/obj/projectile/beam/beam_rifle/proc/get_damage_coeff(atom/target)
-	if(istype(target, /obj/machinery/door))
-		return 0.4
-	if(istype(target, /obj/structure/window))
-		return 0.5
-	return 1
-
-/obj/projectile/beam/beam_rifle/proc/handle_impact(atom/target)
-	if(isobj(target))
-		var/obj/O = target
-		O.take_damage(impact_structure_damage * get_damage_coeff(target), BURN, LASER, FALSE)
-	if(isliving(target))
-		var/mob/living/L = target
-		L.adjustFireLoss(impact_direct_damage)
-		L.emote("scream")
-
-/obj/projectile/beam/beam_rifle/proc/handle_hit(atom/target)
-	set waitfor = FALSE
-	if(!cached && !QDELETED(target))
-		cached = get_turf(target)
-	if(nodamage)
-		return FALSE
-	playsound(cached, 'sound/effects/explosion3.ogg', 100, 1)
-	AOE(cached)
-	if(!QDELETED(target))
-		handle_impact(target)
-
-/obj/projectile/beam/beam_rifle/Bump(atom/target)
-	if(check_pierce(target))
-		impacted += target
-		trajectory_ignore_forcemove = TRUE
-		forceMove(target.loc)
-		trajectory_ignore_forcemove = FALSE
-		return FALSE
-	if(!QDELETED(target))
-		cached = get_turf(target)
-	return ..()
-
-/obj/projectile/beam/beam_rifle/on_hit(atom/target, blocked = FALSE)
-	if(!QDELETED(target))
-		cached = get_turf(target)
-	handle_hit(target)
-	return ..()
+	var/tracer_fire_chance = 0
+	var/fire_color = "green"
 
 /obj/projectile/beam/beam_rifle/hitscan
 	icon_state = ""
@@ -538,17 +359,64 @@
 	tracer_type = /obj/effect/projectile/tracer/tracer/beam_rifle
 	var/constant_tracer = FALSE
 
+/obj/projectile/beam/beam_rifle/hitscan/piercing
+	damage = 60 // same as the impact version, but applied all at once
+	aoe_range = 0 // no AOE, has piercing instead
+	penetrations = 2
+	tracer_fire_chance = 50
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS
+
+/obj/projectile/beam/beam_rifle/hitscan/impact
+	damage = 30 // total of 60 on direct hit
+	aoe_range = 2
+	aoe_fire_chance = 50
+	tracer_fire_chance = 20
+
+/obj/projectile/beam/beam_rifle/Move(atom/newloc, dir)
+	. = ..()
+	if(prob(tracer_fire_chance))
+		var/turf/new_turf = newloc
+		new_turf.IgniteTurf(rand(16, 22), fire_color) // FIRE IN THE HOLE!!!!
+
+/obj/projectile/beam/beam_rifle/proc/do_area_damage(turf/epicenter)
+	set waitfor = FALSE
+	if(!epicenter)
+		return
+	new /obj/effect/temp_visual/explosion/fast(epicenter)
+	for(var/turf/T in spiral_range_turfs(aoe_range, epicenter))
+		var/modified_damage = damage / max(get_dist(epicenter, T), 1) // damage decreases with range
+		if(prob(aoe_fire_chance))
+			T.IgniteTurf(rand(16, 22), fire_color)
+		for(var/mob/living/L in T) //handle aoe mob damage
+			L.apply_damage(modified_damage, BURN, null, L.getarmor(null, BOMB))
+			to_chat(L, span_userdanger("\The [src] sears you!"))
+		for(var/obj/O in T)
+			O.take_damage(modified_damage, BURN, BOMB, FALSE)
+
+/obj/projectile/beam/beam_rifle/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/turf/target_turf = (isclosedturf(target) && penetrations <= 0) ? get_turf(src) : get_turf(target)
+	playsound(target_turf, 'sound/effects/explosion3.ogg', 100, 1)
+	if(isclosedturf(target)) // if hitting a wall
+		SSexplosions.lowturf += target
+	target_turf.IgniteTurf(rand(16, 22), fire_color)
+	if(aoe_range)
+		do_area_damage(target_turf)
+
 /obj/projectile/beam/beam_rifle/hitscan/generate_hitscan_tracers(cleanup = TRUE, duration = 5, impacting = TRUE, highlander)
 	set waitfor = FALSE
 	if(isnull(highlander))
 		highlander = constant_tracer
-	if(highlander && istype(gun))
+
+	if(highlander && istype(fired_from, /obj/item/gun))
+		var/obj/item/gun/gun = fired_from
 		QDEL_LIST(gun.current_tracers)
 		for(var/datum/point/p in beam_segments)
 			gun.current_tracers += generate_tracer_between_points(p, beam_segments[p], tracer_type, color, 0, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity)
 	else
 		for(var/datum/point/p in beam_segments)
 			generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity)
+
 	if(cleanup)
 		QDEL_LIST(beam_segments)
 		beam_segments = null
@@ -561,6 +429,7 @@
 	hitsound_wall = null
 	nodamage = TRUE
 	damage = 0
+	aoe_range = 0
 	constant_tracer = TRUE
 	hitscan_light_range = 0
 	hitscan_light_intensity = 0

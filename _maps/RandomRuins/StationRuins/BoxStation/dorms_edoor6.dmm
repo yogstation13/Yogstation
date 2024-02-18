@@ -6,13 +6,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/template_noop)
 "o" = (
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/template_noop)
 "x" = (
 /obj/structure/bed,
@@ -23,7 +23,7 @@
 	dir = 8
 	},
 /obj/item/bedsheet/nanotrasen,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/template_noop)
 "y" = (
 /obj/machinery/light/small{
@@ -33,7 +33,7 @@
 	dir = 4
 	},
 /obj/structure/table,
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/template_noop)
 "D" = (
 /obj/effect/landmark/xeno_spawn,
@@ -43,7 +43,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/template_noop)
 "H" = (
 /obj/structure/closet/secure_closet/personal,
@@ -53,7 +53,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
-/turf/open/floor/carpet/exoticblue,
+/turf/open/floor/carpet/blue,
 /area/template_noop)
 
 (1,1,1) = {"

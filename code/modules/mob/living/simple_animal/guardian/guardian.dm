@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	speak_emote = list("hisses")
 	gender = NEUTER
 	mob_biotypes = MOB_INORGANIC|MOB_SPIRIT
-	bubble_icon = "guardian"
+	bubble_icon = BUBBLE_GUARDIAN
 	response_help  = "passes through"
 	response_disarm = "flails at"
 	response_harm   = "punches"
@@ -269,8 +269,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		hands_overlays += r_hand.build_worn_icon(state = r_state, default_layer = GUARDIAN_HANDS_LAYER, default_icon_file = r_hand.righthand_file, isinhands = TRUE)
 
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
-			r_hand.layer = ABOVE_HUD_LAYER
-			r_hand.plane = ABOVE_HUD_PLANE
+			SET_PLANE_EXPLICIT(r_hand, ABOVE_HUD_PLANE, src)
 			r_hand.screen_loc = ui_hand_position(get_held_index_of_item(r_hand))
 			client.screen |= r_hand
 
@@ -282,8 +281,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		hands_overlays +=  l_hand.build_worn_icon(state = l_state, default_layer = GUARDIAN_HANDS_LAYER, default_icon_file = l_hand.lefthand_file, isinhands = TRUE)
 
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
-			l_hand.layer = ABOVE_HUD_LAYER
-			l_hand.plane = ABOVE_HUD_PLANE
+			SET_PLANE_EXPLICIT(l_hand, ABOVE_HUD_PLANE, src)
 			l_hand.screen_loc = ui_hand_position(get_held_index_of_item(l_hand))
 			client.screen |= l_hand
 
