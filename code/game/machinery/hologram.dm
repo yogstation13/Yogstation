@@ -192,6 +192,10 @@ obj/machinery/holopad/secure/Initialize(mapload)
 		return
 
 	if(default_unfasten_wrench(user, P))
+		if(replay_mode)
+			replay_stop()
+		if(record_mode)
+			record_stop()
 		return
 
 	if(default_deconstruction_crowbar(P))

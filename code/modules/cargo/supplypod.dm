@@ -289,7 +289,7 @@
 	if (openingSound)
 		playsound(get_turf(holder), openingSound, soundVolume, FALSE, FALSE) //Special admin sound to play
 	for (var/turf_type in turfs_in_cargo)
-		turf_underneath.PlaceOnTop(turf_type)
+		turf_underneath.place_on_top(turf_type)
 	for (var/cargo in contents)
 		var/atom/movable/movable_cargo = cargo
 		movable_cargo.forceMove(turf_underneath)
@@ -371,14 +371,10 @@
 			return FALSE
 		if(istype(obj_to_insert, /obj/effect/supplypod_rubble))
 			return FALSE
-		if((obj_to_insert.comp_lookup && obj_to_insert.comp_lookup[COMSIG_OBJ_HIDE]) && reverse_option_list["Underfloor"])
-			return TRUE
-		else if ((obj_to_insert.comp_lookup && obj_to_insert.comp_lookup[COMSIG_OBJ_HIDE]) && !reverse_option_list["Underfloor"])
-			return FALSE
-		if(isProbablyWallMounted(obj_to_insert) && reverse_option_list["Wallmounted"])
-			return TRUE
-		else if (isProbablyWallMounted(obj_to_insert) && !reverse_option_list["Wallmounted"])
-			return FALSE
+		if(HAS_TRAIT(obj_to_insert, TRAIT_UNDERFLOOR))
+			return !!reverse_option_list["Underfloor"]
+		if(isProbablyWallMounted(obj_to_insert))
+			return !!reverse_option_list["Wallmounted"]
 		if(!obj_to_insert.anchored && reverse_option_list["Unanchored"])
 			return TRUE
 		if(obj_to_insert.anchored && !ismecha(obj_to_insert) && reverse_option_list["Anchored"]) //Mecha are anchored but there is a separate option for them
@@ -434,7 +430,7 @@
 	rubble.setStyle(rubble_type, src)
 	update_appearance(UPDATE_ICON)
 
-/obj/structure/closet/supplypod/Moved()
+/obj/structure/closet/supplypod/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	deleteRubble()
 	return ..()
 

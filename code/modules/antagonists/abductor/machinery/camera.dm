@@ -13,6 +13,8 @@
 
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "camera"
+	icon_keyboard = null
+	icon_screen = null
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/machinery/computer/camera_advanced/abductor/CreateEye()
@@ -67,7 +69,7 @@
 	if(!target || !iscarbon(owner))
 		return
 	var/mob/living/carbon/human/C = owner
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
 	var/obj/machinery/abductor/pad/P = target
 
 	if(GLOB.cameranet.checkTurfVis(remote_eye.loc))
@@ -94,7 +96,7 @@
 	if(!target || !iscarbon(owner))
 		return
 	var/mob/living/carbon/human/C = owner
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
 	var/obj/machinery/abductor/pad/P = target
 
 	if(GLOB.cameranet.checkTurfVis(remote_eye.loc))
@@ -133,7 +135,7 @@
 		return
 
 	var/mob/living/carbon/human/C = owner
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
 
 	var/obj/machinery/abductor/console/console = target
 	console.SetDroppoint(remote_eye.loc,owner)

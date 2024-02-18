@@ -152,7 +152,7 @@
 			L.set_blindness(20)
 			SEND_SIGNAL(L,COMSIG_JUNGLELAND_TAR_CURSE_PROC)	
 		else 
-			L.set_blurriness(20)
+			L.adjust_eye_blur(20)
 	return ..()
 /obj/effect/timed_attack/tar_priest/tendril 
 	replace_icon_state = "tar_shade_tendril"

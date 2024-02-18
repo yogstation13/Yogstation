@@ -9,16 +9,33 @@
 /atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen_gen.dmi'
-	layer = HUD_LAYER
+	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
+	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
-	vis_flags = VIS_INHERIT_PLANE
 	appearance_flags = APPEARANCE_UI
 	/// A reference to the object in the slot. Grabs or items, generally.
-	var/obj/master = null
+	var/datum/weakref/master_ref = null
 	/// A reference to the owner HUD, if any.
 	VAR_PRIVATE/datum/hud/hud = null
+
+	/**
+	 * Map name assigned to this object.
+	 * Automatically set by /client/proc/add_obj_to_map.
+	 */
+	var/assigned_map
+	/**
+	 * Mark this object as garbage-collectible after you clean the map
+	 * it was registered on.
+	 *
+	 * This could probably be changed to be a proc, for conditional removal.
+	 * But for now, this works.
+	 */
+	var/del_on_map_removal = TRUE
+
+	/// If FALSE, this will not be cleared when calling /client/clear_screen()
+	var/clear_with_screen = TRUE
 
 /atom/movable/screen/New(datum/hud/new_hud)
 	. = ..()
@@ -26,7 +43,7 @@
 		hud = new_hud
 
 /atom/movable/screen/Destroy()
-	master = null
+	master_ref = null
 	hud = null
 	return ..()
 
@@ -39,6 +56,10 @@
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
 
+/// Returns the mob this is being displayed to, if any
+/atom/movable/screen/proc/get_mob()
+	return hud?.mymob
+
 /atom/movable/screen/text
 	icon = null
 	icon_state = null
@@ -48,7 +69,6 @@
 	maptext_width = 480
 
 /atom/movable/screen/swap_hand
-	layer = HUD_LAYER
 	plane = HUD_PLANE
 	name = "swap hand"
 
@@ -152,23 +172,26 @@
 	screen_loc = ui_ghost_language_menu
 
 /atom/movable/screen/inventory
-	var/slot_id	// The indentifier for the slot. It has nothing to do with ID cards.
-	var/icon_empty // Icon when empty. For now used only by humans.
-	var/icon_full  // Icon when contains an item. For now used only by humans.
-	var/list/object_overlays = list()
-	layer = HUD_LAYER
+	/// The identifier for the slot. It has nothing to do with ID cards.
+	var/slot_id
+	/// Icon when empty. For now used only by humans.
+	var/icon_empty
+	/// Icon when contains an item. For now used only by humans.
+	var/icon_full
+	/// The overlay when hovering over with an item in your hand
+	var/image/object_overlay
 	plane = HUD_PLANE
 
 /atom/movable/screen/inventory/Click(location, control, params)
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(world.time <= usr.next_move)
-		return 1
+		return TRUE
 
 	if(usr.incapacitated())
-		return 1
+		return TRUE
 	if(ismecha(usr.loc)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 
 	if(hud && hud.mymob && slot_id)
 		var/obj/item/inv_item = hud.mymob.get_item_by_slot(slot_id)
@@ -177,7 +200,7 @@
 
 	if(usr.attack_ui(slot_id))
 		usr.update_inv_hands()
-	return 1
+	return TRUE
 
 /atom/movable/screen/inventory/MouseEntered()
 	..()
@@ -185,8 +208,8 @@
 
 /atom/movable/screen/inventory/MouseExited()
 	..()
-	cut_overlay(object_overlays)
-	object_overlays.Cut()
+	cut_overlay(object_overlay)
+	QDEL_NULL(object_overlay)
 
 /atom/movable/screen/inventory/update_icon_state()
 	if(!icon_empty)
@@ -197,24 +220,27 @@
 	return ..()
 
 /atom/movable/screen/inventory/proc/add_overlays()
-	var/mob/user = hud.mymob
+	var/mob/user = hud?.mymob
 
-	if(hud && user && slot_id)
-		var/obj/item/holding = user.get_active_held_item()
+	if(!user || !slot_id)
+		return
 
-		if(!holding || user.get_item_by_slot(slot_id))
-			return
+	var/obj/item/holding = user.get_active_held_item()
 
-		var/image/item_overlay = image(holding)
-		item_overlay.alpha = 92
+	if(!holding || user.get_item_by_slot(slot_id))
+		return
 
-		if(!user.can_equip(holding, slot_id, TRUE))
-			item_overlay.color = "#FF0000"
-		else
-			item_overlay.color = "#00ff00"
+	var/image/item_overlay = image(holding)
+	item_overlay.alpha = 92
 
-		object_overlays += item_overlay
-		add_overlay(object_overlays)
+	if(!user.can_equip(holding, slot_id, TRUE))
+		item_overlay.color = "#FF0000"
+	else
+		item_overlay.color = "#00ff00"
+
+	cut_overlay(object_overlay)
+	object_overlay = item_overlay
+	add_overlay(object_overlay)
 
 /atom/movable/screen/inventory/hand
 	var/mutable_appearance/handcuff_overlay
@@ -264,24 +290,24 @@
 
 /atom/movable/screen/close
 	name = "close"
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
 
 /atom/movable/screen/close/Initialize(mapload, new_master)
 	. = ..()
-	master = new_master
+	master_ref = WEAKREF(new_master)
 
 /atom/movable/screen/close/Click()
-	var/datum/component/storage/S = master
-	S.hide_from(usr)
+	var/datum/component/storage/storage = master_ref?.resolve()
+	if(!storage)
+		return
+	storage.hide_from(usr)
 	return TRUE
 
 /atom/movable/screen/drop
 	name = "drop"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_drop"
-	layer = HUD_LAYER
 	plane = HUD_PLANE
 
 /atom/movable/screen/drop/Click()
@@ -362,7 +388,6 @@
 	name = "resist"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_resist"
-	layer = HUD_LAYER
 	plane = HUD_PLANE
 
 /atom/movable/screen/resist/Click()
@@ -374,7 +399,6 @@
 	name = "rest"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_rest"
-	layer = HUD_LAYER
 	plane = HUD_PLANE
 
 /atom/movable/screen/rest/Click()
@@ -393,24 +417,27 @@
 	name = "storage"
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
-	layer = HUD_LAYER
 	plane = HUD_PLANE
 
 /atom/movable/screen/storage/Initialize(mapload, new_master)
 	. = ..()
-	master = new_master
+	master_ref = WEAKREF(new_master)
 
 /atom/movable/screen/storage/Click(location, control, params)
+	var/datum/component/storage/storage_master = master_ref?.resolve()
+	if(!istype(storage_master))
+		return FALSE
+
 	if(world.time <= usr.next_move)
 		return TRUE
 	if(usr.incapacitated())
 		return TRUE
 	if (ismecha(usr.loc)) // stops inventory actions in a mech
 		return TRUE
-	if(master)
-		var/obj/item/I = usr.get_active_held_item()
-		if(I)
-			master.attackby(null, I, usr, params)
+
+	var/obj/item/inserted = usr.get_active_held_item()
+	if(inserted)
+		storage_master.attackby(null, inserted, usr, params)
 	return TRUE
 
 /atom/movable/screen/throw_catch
@@ -474,7 +501,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 128
 	anchored = TRUE
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 
 /atom/movable/screen/zone_sel/MouseExited(location, control, params)
@@ -657,12 +683,15 @@
 	icon = 'icons/blanks/blank_title.png'
 	icon_state = ""
 	screen_loc = "1,1"
-	layer = SPLASHSCREEN_LAYER
 	plane = SPLASHSCREEN_PLANE
 	var/client/holder
 
-/atom/movable/screen/splash/New(client/C, visible, use_previous_title) //TODO: Make this use INITIALIZE_IMMEDIATE, except its not easy
+//INITIALIZE_IMMEDIATE(/atom/movable/screen/splash)
+//We need to change this from /New to /Initialize but i really don't feel like changing the 200 instances of new(src) to new(null, src) in this already massive PR
+/atom/movable/screen/splash/New(datum/hud/new_hud, client/C, visible, use_previous_title)
 	. = ..()
+	if(!istype(C))
+		return
 
 	holder = C
 
@@ -674,8 +703,7 @@
 			icon = SStitle.icon
 	else
 		if(!SStitle.previous_icon)
-			qdel(src)
-			return
+			return INITIALIZE_HINT_QDEL
 		icon = SStitle.previous_icon
 
 	holder.screen += src

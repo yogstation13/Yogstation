@@ -43,26 +43,28 @@
 	startup_sound = machinery_computer.startup_sound
 	shutdown_sound = machinery_computer.shutdown_sound
 	interact_sounds = machinery_computer.interact_sounds
+	machinery_computer.RegisterSignal(src, COMSIG_ATOM_UPDATED_ICON, TYPE_PROC_REF(/obj/machinery/modular_computer, relay_icon_update)) //when we update_icon, also update the computer
 
 	..()
 
 	STOP_PROCESSING(SSobj, src) // Processed by its machine
 
+/obj/item/modular_computer/processor/Destroy(force)
+	if(machinery_computer && (machinery_computer.cpu == src))
+		machinery_computer.cpu = null
+		machinery_computer.UnregisterSignal(src, COMSIG_ATOM_UPDATED_ICON)
+	machinery_computer = null
+	return ..()
+
 /obj/item/modular_computer/processor/relay_qdel()
 	qdel(machinery_computer)
 
-// This thing is not meant to be used on it's own, get topic data from our machinery owner.
-//obj/item/modular_computer/processor/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
-//	if(!machinery_computer)
-//		return 0
-
-//	return machinery_computer.canUseTopic(user, state)
 
 /obj/item/modular_computer/processor/shutdown_computer()
 	if(!machinery_computer)
 		return
 	..()
-	machinery_computer.update_appearance(UPDATE_ICON)
+	machinery_computer.update_appearance()
 	return
 
 /obj/item/modular_computer/processor/attack_ghost(mob/user)

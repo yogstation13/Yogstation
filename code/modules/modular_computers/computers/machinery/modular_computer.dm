@@ -3,22 +3,28 @@
 /obj/machinery/modular_computer
 	name = "modular computer"
 	desc = "An advanced computer."
-
+	icon = 'icons/obj/modular_console.dmi'
+	icon_state = "console"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
-	var/hardware_flag = 0								// A flag that describes this device type
-	var/last_power_usage = 0							// Power usage during last tick
+	density = TRUE
+	///A flag that describes this device type
+	var/hardware_flag = PROGRAM_CONSOLE
+	/// Power usage during last tick
+	var/last_power_usage = 0
 
 	// Modular computers can run on various devices. Each DEVICE (Laptop, Console, Tablet,..)
 	// must have it's own DMI file. Icon states must be called exactly the same in all files, but may look differently
 	// If you create a program which is limited to Laptops and Consoles you don't have to add it's icon_state overlay for Tablets too, for example.
 
-	icon = null
-	icon_state = null
-	var/icon_state_unpowered = null						// Icon state when the computer is turned off.
-	var/icon_state_powered = null						// Icon state when the computer is turned on.
-	var/screen_icon_state_menu = "menu"					// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
-	var/screen_icon_screensaver = "standby"				// Icon state overlay when the computer is powered, but not 'switched on'.
+	///Icon state when the computer is turned off.
+	var/icon_state_unpowered = "console-off"
+	///Icon state when the computer is turned on.
+	var/icon_state_powered = "console"
+	///Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
+	var/screen_icon_state_menu = "menu"
+	///Icon state overlay when the computer is powered, but not 'switched on'.
+	var/screen_icon_screensaver = "standby"
 	var/overlay_skin = null
 	var/max_hardware_size = 0							// Maximal hardware size. Currently, tablets have 1, laptops 2 and consoles 3. Limits what hardware types can be installed.
 	var/steel_sheet_cost = 10							// Amount of steel sheets refunded when disassembling an empty frame of this computer.
@@ -42,6 +48,8 @@
 	. = ..()
 	cpu = new(src)
 	cpu.physical = src
+	cpu.screen_on = TRUE
+	update_appearance()
 
 /obj/machinery/modular_computer/Destroy()
 	QDEL_NULL(cpu)
@@ -75,9 +83,36 @@
 		return FALSE
 	return (cpu.emag_act(user, emag_card))
 
-/obj/machinery/modular_computer/update_icon(updates=ALL)
+/obj/machinery/modular_computer/update_appearance(updates)
 	. = ..()
-	cpu.update_appearance(UPDATE_ICON)
+	set_light(cpu?.enabled ? light_strength : 0)
+
+/obj/machinery/modular_computer/update_icon_state()
+	if(!cpu || !cpu.enabled || (stat & NOPOWER))
+		icon_state = icon_state_unpowered
+	else
+		icon_state = icon_state_powered
+	return ..()
+
+/obj/machinery/modular_computer/update_overlays()
+	. = ..()
+	if(!cpu)
+		return .
+
+	if(cpu.enabled)
+		. += cpu.active_program?.program_icon_state || screen_icon_state_menu
+	else if(!(stat & NOPOWER))
+		. += screen_icon_screensaver
+
+	if(cpu.obj_integrity <= cpu.integrity_failure)
+		. += "bsod"
+		. += "broken"
+	return .
+
+/// Eats the "source" arg because update_icon actually expects args now.
+/obj/machinery/modular_computer/proc/relay_icon_update(datum/source, updates, updated)
+	SIGNAL_HANDLER
+	return update_icon(updates)
 
 /obj/machinery/modular_computer/AltClick(mob/user)
 	if(cpu)

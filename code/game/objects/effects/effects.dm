@@ -6,7 +6,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	move_resist = INFINITY
 	uses_integrity = FALSE
-	obj_flags = 0
+	obj_flags = NONE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 /obj/effect/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	return

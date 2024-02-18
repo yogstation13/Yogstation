@@ -391,10 +391,7 @@
 			L.apply_damage(modified_damage, BURN, null, L.getarmor(null, BOMB))
 			to_chat(L, span_userdanger("\The [src] sears you!"))
 		for(var/obj/O in T)
-			if(!isitem(O))
-				if(O.level == 1) //Please don't break underfloor items!
-					continue
-				O.take_damage(modified_damage, BURN, BOMB, FALSE)
+			O.take_damage(modified_damage, BURN, BOMB, FALSE)
 
 /obj/projectile/beam/beam_rifle/on_hit(atom/target, blocked = FALSE)
 	. = ..()

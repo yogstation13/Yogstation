@@ -6,6 +6,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	closingLayer = ABOVE_WINDOW_LAYER
 	resistance_flags = ACID_PROOF
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	var/base_state = "left"
 	max_integrity = 150 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
 	integrity_failure = 0
@@ -13,7 +14,7 @@
 	visible = FALSE
 	flags_1 = ON_BORDER_1
 	opacity = FALSE
-	CanAtmosPass = ATMOS_PASS_PROC
+	can_atmos_pass = ATMOS_PASS_PROC
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 	var/obj/item/electronics/airlock/electronics = null
 	var/reinf = 0
@@ -22,20 +23,40 @@
 	var/cable = 1
 	var/list/debris = list()
 
-/obj/machinery/door/window/Initialize(mapload, set_dir)
+/obj/machinery/door/window/Initialize(mapload, set_dir, unres_sides)
 	. = ..()
 	AddComponent(/datum/component/ntnet_interface)
 	if(set_dir)
 		setDir(set_dir)
-	if(req_access && req_access.len)
+	if(LAZYLEN(req_access))
 		icon_state = "[icon_state]"
 		base_state = icon_state
+	
+	if(unres_sides)
+		//remove unres_sides from directions it can't be bumped from
+		switch(dir)
+			if(NORTH,SOUTH)
+				unres_sides &= ~EAST
+				unres_sides &= ~WEST
+			if(EAST,WEST)
+				unres_sides &= ~NORTH
+				unres_sides &= ~SOUTH
+
+	src.unres_sides = unres_sides
 	for(var/i in 1 to shards)
 		debris += new /obj/item/shard(src)
 	if(rods)
 		debris += new /obj/item/stack/rods(src, rods)
 	if(cable)
 		debris += new /obj/item/stack/cable_coil(src, cable)
+	
+	update_appearance(UPDATE_ICON)
+	
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
+	)
+
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
@@ -47,10 +68,13 @@
 
 /obj/machinery/door/window/update_icon_state()
 	. = ..()
-	if(density)
-		icon_state = base_state
-	else
-		icon_state = "[base_state]open"
+	icon_state = "[base_state][density ? null : "open"]"
+
+	if(hasPower() && unres_sides)
+		set_light(l_range = 2, l_power = 1)
+		return
+
+	set_light(l_range = 0)
 	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/window/proc/open_and_close()
@@ -121,25 +145,30 @@
 	else
 		return TRUE
 
-/obj/machinery/door/window/CanAtmosPass(turf/T)
-	if(get_dir(loc, T) == dir)
+/obj/machinery/door/window/can_atmos_pass(turf/target_turf, vertical = FALSE)
+	if(get_dir(loc, target_turf) == dir)
 		return !density
 	else
-		return 1
+		return TRUE
 
 //used in the AStar algorithm to determinate if the turf the door is on is passable
 /obj/machinery/door/window/CanAStarPass(obj/item/card/id/ID, to_dir)
 	return !density || (dir != to_dir) || (check_access(ID) && hasPower())
 
-/obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target)
-	if(istype(mover) && (mover.pass_flags & PASSDOOR)) // Since it's a door, allow em through
-		return TRUE
-	if(istype(mover) && (mover.pass_flags & PASSGLASS))
-		return TRUE
-	if(get_dir(loc, target) == dir)
-		return !density
-	else
-		return TRUE
+/obj/machinery/door/window/proc/on_exit(datum/source, atom/movable/leaving, direction)
+	SIGNAL_HANDLER
+	if(leaving.movement_type & PHASING)
+		return
+
+	if(leaving == src)
+		return // Let's not block ourselves.
+
+	if((leaving.pass_flags & PASSGLASS) || (leaving.pass_flags & PASSDOOR))
+		return
+
+	if(direction == dir && density)
+		leaving.Bump(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/window/open(forced=FALSE)
 	if (operating) //doors can still open when emag-disabled

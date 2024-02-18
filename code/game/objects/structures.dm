@@ -4,6 +4,7 @@
 	max_integrity = 300
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 	layer = BELOW_OBJ_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/broken = 0 //similar to machinery's stat BROKEN
 
@@ -12,16 +13,17 @@
 	if (!armor)
 		armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	. = ..()
-	if(smooth)
-		queue_smooth(src)
-		queue_smooth_neighbors(src)
-		icon_state = ""
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+		if(smoothing_flags & SMOOTH_CORNERS)
+			icon_state = ""
 	GLOB.cameranet.updateVisibility(src)
 
 /obj/structure/Destroy()
 	GLOB.cameranet.updateVisibility(src)
-	if(smooth)
-		queue_smooth_neighbors(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
 /obj/structure/CanAllowThrough(atom/movable/mover, turf/target)

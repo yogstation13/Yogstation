@@ -207,7 +207,7 @@
 
 /datum/component/spawner/megafauna/try_spawn_mob()
 	STOP_PROCESSING(SSprocessing, src)
-	if(spawned_mobs.len < max_mobs && initial_spawned)
+	if(spawned_things.len < max_spawned && initial_spawned)
 		var/obj/structure/spawner/megafauna/MS = parent
 		MS.cleanup_arena()
 		spawn_delay = world.time + spawn_wait_time

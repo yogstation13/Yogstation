@@ -112,13 +112,13 @@
 		else
 			. += image(other.icon, "[other.icon_state]_open")
 
-/obj/structure/closet/bluespace/external/onTransitZ(old_z,new_z)
+/obj/structure/closet/bluespace/external/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	var/obj/structure/closet/O = get_other_locker()
 	if(O)
 		var/area/A = get_area(O)
 		if(A)
 			for(var/atom/movable/M in A)
-				M.onTransitZ(old_z,new_z)
+				M.on_changed_z_level(old_turf, new_turf)
 	return ..()
 
 /obj/structure/closet/bluespace/internal/proc/update_mirage()
@@ -163,7 +163,7 @@
 	return TRUE
 
 
-/obj/structure/closet/bluespace/external/Moved()
+/obj/structure/closet/bluespace/external/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	var/obj/structure/closet/bluespace/internal/C = get_other_locker()
 	if(C)
 		C.update_mirage()
@@ -184,7 +184,7 @@
 	blocks_air = 1
 	name = "holographic projection"
 	desc = "A holographic projection of the area surrounding the bluespace locker"
-	flags_1 = NOJAUNT_1
+	turf_flags = NOJAUNT
 	var/turf/internal_origin
 	var/turf/external_origin
 	var/turf/external_origin_prev
@@ -233,7 +233,7 @@
 				dx--
 			var/list/fullbrights = list()
 			var/area/A = target_turf.loc
-			if(!IS_DYNAMIC_LIGHTING(A))
+			if(!A.static_lighting)
 				fullbrights += new /obj/effect/fullbright()
 			for(var/cdir in GLOB.cardinals)
 				if(!(glide_dir & cdir))
@@ -248,7 +248,7 @@
 					if(odir == 2)
 						py = -32
 					A = target_turf.loc
-					if(!IS_DYNAMIC_LIGHTING(A))
+					if(!A.static_lighting)
 						var/obj/effect/fullbright/F = new()
 						switch(odir)
 							if(1)

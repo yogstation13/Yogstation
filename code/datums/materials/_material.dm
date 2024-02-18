@@ -35,6 +35,12 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 	if(istype(source, /obj)) //objs
 		on_applied_obj(source, amount, material_flags)
+	
+	source.mat_update_desc(src)
+
+///This proc is called when a material updates an object's description
+/atom/proc/mat_update_desc(datum/material/mat)
+	return
 
 ///This proc is called when the material is added to an object specifically.
 /datum/material/proc/on_applied_obj(obj/o, amount, material_flags)

@@ -1,4 +1,3 @@
-#define ALERT_FIRE "fire"
 // If a mob has a higher threshold than this, the icon shown will be increased to the big fire icon.
 #define MOB_BIG_FIRE_STACK_THRESHOLD 3
 

@@ -9,6 +9,7 @@
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
 	base_icon_state = "standard"
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	layer = OBJ_LAYER
 	invisibility = INVISIBILITY_OBSERVER	//the turret is invisible if it's inside its cover
 	density = TRUE

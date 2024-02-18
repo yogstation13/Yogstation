@@ -450,7 +450,7 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 /atom/movable/screen/action_landing/Destroy()
 	if(owner)
 		owner.landing = null
-		owner?.owner?.mymob?.client?.screen -= src
+		owner?.owner?.mymob?.canon_client?.screen -= src
 		owner.refresh_actions()
 		owner = null
 	return ..()

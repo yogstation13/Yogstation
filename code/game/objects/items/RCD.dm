@@ -942,7 +942,7 @@ RLD
 						for(var/direction in GLOB.cardinals)
 							var/turf/C = get_step(W, direction)
 							var/list/dupes = checkdupes(C)
-							if(start.CanAtmosPass(C) && !dupes.len)
+							if(start.can_atmos_pass(C) && !dupes.len)
 								candidates += C
 						if(!candidates.len)
 							to_chat(user, span_warning("Valid target not found..."))
@@ -1000,7 +1000,7 @@ RLD
 				G.color = color_choice
 				G.light_color = G.color
 				G.throw_at(A, 9, 3, user)
-				G.on = TRUE
+				G.light_on = TRUE
 				G.update_brightness()
 				return TRUE
 			return FALSE

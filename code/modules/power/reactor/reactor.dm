@@ -593,10 +593,10 @@
 	T.assume_air(coolant_input)
 	T.assume_air(moderator_input)
 	T.assume_air(coolant_output)
-	var/turf/lower_turf = SSmapping.get_turf_below(T)
+	var/turf/lower_turf = GET_TURF_BELOW(T)
 	if(lower_turf) // reactor fuel will melt down into the lower levels on multi-z maps like icemeta
 		new /obj/structure/reactor_corium(lower_turf)
-		var/turf/lowest_turf = SSmapping.get_turf_below(lower_turf)
+		var/turf/lowest_turf = GET_TURF_BELOW(lower_turf)
 		if(lowest_turf) // WE NEED TO GO DEEPER
 			new /obj/structure/reactor_corium(lower_turf)
 	explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
