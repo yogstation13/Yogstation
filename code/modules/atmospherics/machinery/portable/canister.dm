@@ -224,7 +224,7 @@
 
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()
 	if(timing)
-		. = round(max(0, valve_timer - world.time) / 10, 1)
+		. = round(max(0, valve_timer - world.time) / 10u, 1)
 	else
 		. = timer_set
 
