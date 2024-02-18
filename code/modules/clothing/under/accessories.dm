@@ -454,6 +454,9 @@
 	. = ..()
 	var/list/radial_menu = list()
 	for(var/pin_type in pride_reskins)
-		radial_menu[pin_type] =  new/datum/radial_menu_choice(icon(icon, pride_reskins[pin_type]["icon"]), pride_reskins[pin_type]["info"])
+		var/datum/radial_menu_choice/choice = new()
+		choice.image = icon(icon, pride_reskins[pin_type]["icon"])
+		choice.info = pride_reskins[pin_type]["info"]
+		radial_menu[pin_type] =  choice
 	var/P = show_radial_menu(user, user, radial_menu, tooltips = TRUE)
 	icon_state = P ? pride_reskins[P]["icon"] : initial(icon_state)
