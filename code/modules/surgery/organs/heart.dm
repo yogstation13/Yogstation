@@ -295,7 +295,7 @@
 	icon_state = "heart_w"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	organ_efficiency = 2
-	organ_flags = ORGAN_SYNTHETIC
+	decay_factor = 0
 	var/min_next_blood = 0
 
 /obj/item/organ/heart/augur/on_life()

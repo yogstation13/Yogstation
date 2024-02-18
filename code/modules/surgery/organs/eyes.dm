@@ -162,6 +162,7 @@
 	icon_state = "augur_eyeballs"
 	desc = "Eyes infested with phantasms. These will let you see in the dark better."
 	see_in_dark = 6
+	decay_factor = 0
 
 ///Robotic
 
