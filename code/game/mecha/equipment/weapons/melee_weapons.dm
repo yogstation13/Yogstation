@@ -442,7 +442,7 @@
 		set_ready_state(0)	//Wait till we're done multi-stabbing before we do it again
 		if(i != stab_number)	//Only sleep between attacks
 			sleep(0.2 SECONDS)	//Slight delay
-		return
+			
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/proc/do_lunge_at(atom/target)
 	if(world.time < next_lunge)	//On cooldown
