@@ -442,6 +442,7 @@
 		set_ready_state(0)	//Wait till we're done multi-stabbing before we do it again
 		if(i != stab_number)	//Only sleep between attacks
 			sleep(0.2 SECONDS)	//Slight delay
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/proc/do_lunge_at(atom/target)
 	if(world.time < next_lunge)	//On cooldown
@@ -473,14 +474,20 @@
 	base_lunge_cd = 5			//Cooldown for lunge (in seconds because math)
 	var/venom_cd = 5 SECONDS	//No infinite stacking of venom in people super easily please
 	var/next_venom = 0
+	var/venom_type = /datum/reagent/toxin/venom
+	var/inject_volume = 6		//12 units per hit by default
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/razerfang/special_hit(atom/target)
 	if(!iscarbon(target))
 		return
 	var/mob/living/carbon/C = target
 	if(world.time > next_venom)
-		C.reagents.add_reagent(/datum/reagent/toxin/venom, 14)	//Should ruin your day without charcoal
-		next_venom = world.time + venom_cd
+		C.reagents.add_reagent(venom_type, inject_volume)	//Should ruin your day without charcoal
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/razerfang/precise_attack(atom/target)
+	if(..() && iscarbon(target))
+		next_venom = world.time + venom_cd	//do this here so that we only reset the cooldown after a full attack on a carbon
+
 
 
 
