@@ -2356,3 +2356,76 @@
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25*REM)
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
 	..()
+
+///longer lasting healing, but it doesn't heal much and also can overdose
+/datum/reagent/goodblood
+	name = "Good Blood"
+	description = "Pure, refined blood. Oh, the taste is intoxicating. Just be sure not to over induldge."
+	color = "#ff1a1a" 
+	taste_description = "cravings"
+	overdose_threshold = 20
+	metabolization_rate = 0.9 * REAGENTS_METABOLISM
+	addiction_threshold = 30
+	var/overdose_progress = 0 // to track overdose progress
+
+/datum/reagent/goodblood/on_mob_life(mob/living/carbon/M)
+	M.adjustBruteLoss(-0.5*REM, 0)
+	M.adjustFireLoss(-0.5*REM, 0)
+	M.adjustOxyLoss(-0.5*REM, 0)
+	M.adjustToxLoss(-0.5*REM, 0, TRUE) //heals TOXINLOVERs
+	. = 1
+	..()
+
+///Controlled use of the overdose can bring more healing, at the cost of your mind.
+/datum/reagent/goodblood/overdose_process(mob/living/M)
+	overdose_progress++
+	switch(overdose_progress)
+		if(1 to 60)
+			M.adjust_dizzy(5)
+			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,2))
+			M.adjustBruteLoss(-1*REM, 0)
+			M.adjustFireLoss(-1*REM, 0)
+			M.adjustStaminaLoss(-10*REM, 0)
+			if(prob(10))
+				to_chat(M, "The blood! Oh how it's sweetness beckons! More, you must have more!")
+		if(61 to INFINITY)
+			M.adjust_dizzy(5)
+			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,2))
+			M.adjustBruteLoss(-1.5*REM, 0)
+			M.adjustFireLoss(-1.5*REM, 0)
+			M.adjustStaminaLoss(-10*REM, 0)
+			M.adjust_hallucinations(5 SECONDS)
+			M.adjust_blurriness(3)
+			M.adjustToxLoss(1*REM, 0)
+			if(prob(10))
+				to_chat(M, "Oh, the sweetly sickness, how it calls...")
+				M.emote("laugh")
+	..()
+	return TRUE
+
+///Addiction is very non harmful, more of an annoyance than anything.
+/datum/reagent/goodblood/addiction_act_stage1(mob/living/M)
+	if(prob(20))
+		to_chat(M, "The blood, the blood...")
+		M.adjust_jitter(2 SECONDS)
+	..()
+
+/datum/reagent/goodblood/addiction_act_stage2(mob/living/M)
+	if(prob(20))
+		to_chat(M, "Oh but a drop of it is all I need, just one more drop...")
+		M.adjust_jitter(2 SECONDS)
+	..()
+
+/datum/reagent/goodblood/addiction_act_stage3(mob/living/M)
+	if(prob(20))
+		to_chat(M, "Please, it is calling! Oh, the beast tightly wound inside!")
+		M.emote("laugh")
+		M.adjust_jitter(2 SECONDS)
+	..()
+
+/datum/reagent/goodblood/addiction_act_stage4(mob/living/M)
+	if(prob(10))
+		to_chat(M, "The blood, the good blood...! I need it now!")
+		M.adjust_jitter(3 SECONDS)
+		M.adjust_hallucinations(10 SECONDS)
+	..()

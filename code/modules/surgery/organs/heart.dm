@@ -288,3 +288,20 @@
 		owner.heal_overall_damage(15, 15, 0, BODYPART_ORGANIC)
 		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
 			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)
+
+/obj/item/organ/heart/augur
+	name = "augur heart"
+	desc = "A bundle of slug like creatures that have come together to form a near perfect replica of a heart. It should probably make you stronger..."
+	icon_state = "heart_w"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 2
+	organ_flags = ORGAN_SYNTHETIC
+	var/min_next_blood = 0
+
+/obj/item/organ/heart/augur/on_life()
+	. = ..()
+	if(owner.health < 25 && world.time > min_next_blood)
+		min_next_blood = world.time + rand(250, 600) //anywhere from 4.5 to 10 minutes
+		to_chat(owner, span_userdanger("You can feel your body beginning to weaken, before filling up once more with blood..."))
+		if(owner.reagents.get_reagent_amount(/datum/reagent/goodblood) < 20)
+			owner.reagents.add_reagent(/datum/reagent/goodblood, 10)

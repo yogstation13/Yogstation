@@ -157,6 +157,12 @@
 	name = "fung-eye"
 	desc = "While on the outside they look inert and dead, the eyes of mushroom people are actually very advanced."
 
+/obj/item/organ/eyes/night_vision/augur
+	name = "augur eyes"
+	icon_state = "augur_eyeballs"
+	desc = "Eyes infested with phantasms. These will let you see in the dark better."
+	see_in_dark = 6
+
 ///Robotic
 
 /obj/item/organ/eyes/robotic

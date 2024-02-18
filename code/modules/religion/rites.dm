@@ -696,3 +696,85 @@
 	var/altar_turf = get_turf(religious_tool)
 	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 100, TRUE)
 	return TRUE
+
+/*********Blood Church**********/
+
+/datum/religion_rites/goodblood
+	name = "Good Blood Vial"
+	desc = "Creates a vial of the most esteemed good blood. May it guide your way, and make sure to consume responsibly."
+	ritual_length = 3 SECONDS
+	invoke_msg = "Oh church forefathers, let the good blood guide our way..."
+	favor_cost = 50
+
+/datum/religion_rites/goodblood/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/reagent_containers/glass/bottle/goodblood (altar_turf)
+	playsound(get_turf(religious_tool), 'sound/magic/enter_blood.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/churchattire
+	name = "Church Attire"
+	desc = "It's about time we are welcomed to the ranks of the choir..."
+	ritual_length = 15 SECONDS
+	invoke_msg = "Church forefathers, we embrace you now and forever..."
+	favor_cost = 150
+
+/datum/religion_rites/churchattire/invoke_effect(atom/religious_tool, mob/user)
+	var/location = get_turf(user)
+	new /obj/item/clothing/head/helmet/chaplain/witchunter_hat/choir(location)
+	new /obj/item/clothing/gloves/color/black(location)
+	new /obj/item/clothing/suit/armor/riot/chaplain/witchhunter/choir(location)
+	new /obj/item/clothing/shoes/jackboots(location)
+	return TRUE
+
+/datum/religion_rites/bloodsight
+	name = "Churchblood Sight"
+	desc = "Creates a medhud implant."
+	ritual_length = 15 SECONDS
+	ritual_invocations = list(
+	"To aid in our journey of the blood...",
+	"...Guide us towards those who need it most...",
+	)
+	invoke_msg = "So that we may give eyes to all!"
+	favor_cost = 150
+
+/datum/religion_rites/bloodsight/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	var/atom/newitem = new /obj/item/autosurgeon/cmo (altar_turf)
+	newitem.name = "autosurgeon of bloodsight"
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/augurheart
+	name = "Augur Heart"
+	desc = "Creates a heart from phantasms. When surgically implanted into someone, it will fill their body with the good blood if they are on the brink of death."
+	ritual_length = 5 SECONDS
+	ritual_invocations = list(
+	"To aid in our journey of the blood...",
+	"...Grant upon us your messengers...",
+	)
+	invoke_msg = "So that we may give eyes to all!"
+	favor_cost = 50
+
+/datum/religion_rites/augurheart/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/organ/heart/augur (altar_turf)
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/augureyes
+	name = "Augur Eyes"
+	desc = "Creates a pair of eyes from phantasms. When surgically implanted into someone, it will grant a form of nightvision."
+	ritual_length = 5 SECONDS
+	ritual_invocations = list(
+	"To aid in our journey of the blood...",
+	"...Grant upon us your messengers...",
+	)
+	invoke_msg = "So that we may give eyes to all!"
+	favor_cost = 50
+
+/datum/religion_rites/augureyes/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/organ/eyes/night_vision/augur (altar_turf)
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
+	return TRUE

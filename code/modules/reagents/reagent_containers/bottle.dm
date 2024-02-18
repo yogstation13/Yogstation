@@ -245,6 +245,11 @@
 	desc = "A small bottle of romerol. The REAL zombie powder."
 	list_reagents = list(/datum/reagent/romerol = 30)
 
+/obj/item/reagent_containers/glass/bottle/goodblood
+	name = "The Good Blood"
+	desc = "A vial of blood blessed by the healing church. Consume responsibly to mend your wounds."
+	list_reagents = list(/datum/reagent/goodblood = 30)
+
 /obj/item/reagent_containers/glass/bottle/random_virus
 	name = "Experimental disease culture bottle"
 	desc = "A small bottle. Contains an untested viral culture in synthblood medium."

@@ -158,6 +158,8 @@
 			B.name = "A tenders tale"
 		if("the holy flame","holy flame","okran")
 			B.name = "The Holy Flame"
+		if("healing church","bloodborne","oedon")
+			B.name = "Guide to the Good Blood"
 		if("egotism")
 			B.name = "Marjes guide to robustness" //yogs end
 		else

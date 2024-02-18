@@ -233,3 +233,20 @@
 	icon_state = "darktemplar-chaplain1"
 	item_state = "darktemplar-chaplain1"
 	armor = list(MELEE = 30, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 60, RAD = 40, FIRE = 90, ACID = 80)
+
+///choir equipment is identical to witch hunter stuff
+/obj/item/clothing/suit/armor/riot/chaplain/witchhunter/choir
+	name = "choir garb"
+	desc = "An armored garb worn by high ranking members of the church."
+	icon_state = "choirgarb"
+	item_state = "choirgarb"
+	armor = list(MELEE = 40, BULLET = 10, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 40)
+	slowdown = 0.1
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/head/helmet/chaplain/witchunter_hat/choir
+	name = "blindfold cap"
+	desc = "The hat of a high ranking member of the church."
+	icon_state = "blindfoldcap"
+	item_state = "blindfoldcap"

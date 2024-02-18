@@ -455,3 +455,57 @@
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		return TRUE
 	return FALSE
+
+///////////// Church of the Blood /////////////
+///somewhat similar to the Holy Light, but with an unorthodox way of healing.
+/datum/religion_sect/blood
+	name = "Church of the Blood"
+	desc = "A sect dedicated to unorthodox healing and blood extraction."
+	convert_opener = "Welcome to the church, oh disciple. <br>Minister to people with your bible to draw blood, then create blood vials and other such things at the altar. You can also gain a small amount of favor from sacrificing hearts."
+	alignment = ALIGNMENT_NEUT // they end up wanting to heal people, but their way is pretty weird
+	rites_list = list(/datum/religion_rites/goodblood, /datum/religion_rites/churchattire, /datum/religion_rites/bloodsight, /datum/religion_rites/augurheart, /datum/religion_rites/augureyes)
+	altar_icon_state = "convertaltar-blood"
+	desired_items = list(/obj/item/organ/heart)
+	COOLDOWN_DECLARE(last_heal)
+
+/datum/religion_sect/blood/on_sacrifice(obj/item/organ/heart/offering, mob/living/user)
+	if(!istype(offering))
+		return
+	adjust_favor(15, user)
+	to_chat(user, span_notice("The church will surely be pleased..."))
+	qdel(offering)
+	return
+
+/datum/religion_sect/blood/on_conversion(mob/living/L)
+	. = ..()
+	for(var/obj/item/storage/book/bible/da_bible in L.get_all_contents())
+		da_bible.success_heal_chance = 100
+
+///Very small healing, draws some blood, and gives favor.
+/datum/religion_sect/blood/sect_bless(mob/living/L, mob/living/user)
+	if(!ishuman(L))
+		return FALSE
+
+	if(!L.client)
+		return FALSE
+
+	if(!COOLDOWN_FINISHED(src, last_heal))
+		to_chat(user, span_notice("The Church can take no more blood for now. It may minister again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
+	var/heal_amt = 5 //no chance to mess up, and this is mostly for gathering blood, so it heals much less.
+	var/mob/living/carbon/human/H = L
+
+	if(H.blood_volume >= 15 && !(NOBLOOD in H.dna.species.species_traits))
+		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
+		H.update_damage_overlays()
+
+		COOLDOWN_START(src, last_heal, 10 SECONDS)
+		H.visible_message(span_notice("[user] draws blood from [H] with the power of [GLOB.deity]!"))
+		to_chat(H, span_boldnotice("You feel your blood seeping away from you. All for the good of the Church..."))
+		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+		H.blood_volume -= 15
+		adjust_favor(20, user)
+		return TRUE
+	return FALSE
