@@ -151,8 +151,8 @@
 	var/mob/living/carbon/human/box_owner = loc
 	var/list/survival_box_replacements_delete = box_owner.dna?.species?.survival_box_replacements["items_to_delete"]
 	var/list/survival_box_replacements_add = box_owner.dna?.species?.survival_box_replacements["new_items"]
-	var/list/items_to_delete = survival_box_replacements_delete.Copy()
-	var/list/new_items = survival_box_replacements_add.Copy()
+	var/list/items_to_delete = survival_box_replacements_delete?.Copy() || list()
+	var/list/new_items = survival_box_replacements_add?.Copy() || list()
 	box_owner.dna?.species?.survival_box_replacement(box_owner, src, items_to_delete, new_items)
 
 /obj/item/storage/box/survival/mining

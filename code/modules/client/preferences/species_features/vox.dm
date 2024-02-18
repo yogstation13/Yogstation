@@ -246,6 +246,7 @@
 	relevant_species_trait = null
 	relevant_mutant_bodypart = "vox_quills"
 	unique = TRUE
+
 /datum/preference/color/hair_gradient/vox
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_quill_gradientcolor"

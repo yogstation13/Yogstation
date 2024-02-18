@@ -837,10 +837,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(HAS_TRAIT(H, TRAIT_SKINNY))
 					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
 				else
+					var/mutable_appearance/underwear_overlay = mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 					if(H.dna.species.name in underwear.sprite_sheets)
 						if(icon_exists(underwear.sprite_sheets[H.dna.species.name], underwear.icon_state))
-							underwear.icon = underwear.sprite_sheets[H.dna.species.name]
-					standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
+							underwear_overlay.icon = underwear.sprite_sheets[H.dna.species.name]
+					standing += underwear_overlay
 
 		if(H.undershirt)
 			var/datum/sprite_accessory/undershirt/undershirt = GLOB.undershirt_list[H.undershirt]
@@ -850,18 +851,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
+					var/mutable_appearance/undershirt_overlay = mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 					if(H.dna.species.name in undershirt.sprite_sheets)
 						if(icon_exists(undershirt.sprite_sheets[H.dna.species.name], undershirt.icon_state))
-							undershirt.icon = undershirt.sprite_sheets[H.dna.species.name]
-					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
+							undershirt_overlay.icon = undershirt.sprite_sheets[H.dna.species.name]
+					standing += undershirt_overlay
 
 		if(H.socks && H.get_num_legs(FALSE) >= 2 && !(DIGITIGRADE in species_traits))
 			var/datum/sprite_accessory/socks/socks = GLOB.socks_list[H.socks]
 			if(socks)
+				var/mutable_appearance/socks_overlay = mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
 				if(H.dna.species.name in socks.sprite_sheets)
 					if(icon_exists(socks.sprite_sheets[H.dna.species.name], socks.icon_state))
-						socks.icon = socks.sprite_sheets[H.dna.species.name]
-				standing += mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
+						socks_overlay.icon = socks.sprite_sheets[H.dna.species.name]
+				standing += socks_overlay
 
 	if(standing.len)
 		H.overlays_standing[BODY_LAYER] = standing
