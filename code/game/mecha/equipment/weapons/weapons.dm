@@ -383,7 +383,7 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/venom
-	name = "\improper LIGMA \"Snakebite\" Carbine"
+	name = "\improper C-40M \"Snakebite\" Carbine"
 	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
 	icon_state = "mecha_carbine"
 	equip_cooldown = 10

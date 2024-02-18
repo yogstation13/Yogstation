@@ -51,6 +51,8 @@
 	wreckage = /obj/structure/mecha_wreckage/sidewinder/mamba
 	infra_luminosity = 0	//Cold-blooded
 	guns_allowed = TRUE		//Syndicate bullshit
+	operation_req_access = list(ACCESS_SYNDICATE)
+	internals_req_access = list(ACCESS_SYNDICATE)
 	stepsound = null
 	turnsound = null
 
