@@ -307,7 +307,7 @@
 
 /obj/machinery/light/Move()
 	if(status != LIGHT_BROKEN)
-		break_light_tube(1)
+		break_light_tube(TRUE)
 	return ..()
 
 /obj/machinery/light/built
@@ -611,7 +611,7 @@
 		return
 
 	// hit the light socket with umbral tendrils, instantly breaking the light as opposed to RNG //yogs
-	else if(istype(tool, /obj/item/umbral_tendrils))
+	if(istype(tool, /obj/item/umbral_tendrils))
 		break_light_tube()
 		return ..() //yogs end
 
@@ -632,37 +632,40 @@
 			electrocute_mob(user, get_area(src), src, (rand(7,10) * 0.1), TRUE)
 
 /obj/machinery/light/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		var/obj/structure/light_construct/newlight = null
-		var/cur_stage = 2
-		if(!disassembled)
-			cur_stage = 1
-		switch(fitting)
-			if("tube")
-				newlight = new /obj/structure/light_construct(src.loc)
-				newlight.icon_state = "tube-construct-stage[cur_stage]"
+	if(flags_1 & NODECONSTRUCT_1)
+		qdel(src)
+		return
+	var/obj/structure/light_construct/newlight = null
+	var/current_stage = 2
+	if(!disassembled)
+		current_stage = 1
+	switch(fitting)
+		if("tube")
+			newlight = new /obj/structure/light_construct(loc)
+			newlight.icon_state = "tube-construct-stage[current_stage]"
 
-			if("bulb")
-				newlight = new /obj/structure/light_construct/small(src.loc)
-				newlight.icon_state = "bulb-construct-stage[cur_stage]"
+		if("bulb")
+			newlight = new /obj/structure/light_construct/small(loc)
+			newlight.icon_state = "bulb-construct-stage[current_stage]"
 
-			if("floor bulb")
-				newlight = new /obj/structure/light_construct/floor(src.loc)
-				newlight.icon_state = "floor-construct-stage[cur_stage]"
-		newlight.setDir(src.dir)
-		newlight.stage = cur_stage
-		if(!disassembled)
-			newlight.obj_integrity = newlight.max_integrity * 0.5
-			if(status != LIGHT_BROKEN)
-				break_light_tube()
-			if(status != LIGHT_EMPTY)
-				drop_light_tube()
-			new /obj/item/stack/cable_coil(loc, 1, "red")
-		transfer_fingerprints_to(newlight)
-		if(cell)
-			newlight.cell = cell
-			cell.forceMove(newlight)
-			cell = null
+		if("floor bulb")
+			newlight = new /obj/structure/light_construct/floor(loc)
+			newlight.icon_state = "floor-construct-stage[current_stage]"
+	newlight.setDir(dir)
+	newlight.stage = current_stage
+	if(!disassembled)
+		newlight.obj_integrity = newlight.max_integrity * 0.5
+		if(status != LIGHT_BROKEN)
+			break_light_tube()
+		if(status != LIGHT_EMPTY)
+			drop_light_tube()
+		new /obj/item/stack/cable_coil(loc, 1, "red")
+	transfer_fingerprints_to(newlight)
+	
+	if(cell)
+		newlight.cell = cell
+		cell.forceMove(newlight)
+		cell = null
 	qdel(src)
 
 /obj/machinery/light/attacked_by(obj/item/I, mob/living/user)
@@ -677,9 +680,6 @@
 	if(. && !QDELETED(src))
 		if(prob(damage_amount * 5))
 			break_light_tube()
-
-
-
 
 /obj/machinery/light/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
@@ -766,46 +766,49 @@
 		return
 
 	// make it burn hands unless you're wearing heat insulated gloves or have the RESISTHEAT/RESISTHEATHANDS traits
-	if(on && status == LIGHT_OK)
-		var/prot = 0
-		var/mob/living/carbon/human/H = user
-
-		if(istype(H))
-			if(isethereal(H))
-				to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
-				if(do_after(user, 1 SECONDS, src))
-					if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
-						to_chat(H, span_notice("You receive some charge from the [fitting]."))
-						H.adjust_nutrition(100)
-					else
-						to_chat(H, span_notice("You can't receive charge from the [fitting]."))
-				return
-
-			if(H.gloves)
-				var/obj/item/clothing/gloves/G = H.gloves
-				if(G.max_heat_protection_temperature)
-					prot = (G.max_heat_protection_temperature > 360)
-		else
-			prot = 1
-
-		if(prot > 0 || HAS_TRAIT(user, TRAIT_RESISTHEAT) || HAS_TRAIT(user, TRAIT_RESISTHEATHANDS))
-			to_chat(user, span_notice("You remove the light [fitting]."))
-		else if(istype(user) && user.dna.check_mutation(TK))
-			to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
-		else
-			to_chat(user, span_warning("You try to remove the light [fitting], but you burn your hand on it!"))
-
-			var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
-			if(affecting && affecting.receive_damage( 0, 5 ))		// 5 burn damage
-				H.update_damage_overlays()
-			return				// if burned, don't remove the light
-	else
+	if(!on)
 		to_chat(user, span_notice("You remove the light [fitting]."))
+		// create a light tube/bulb item and put it in the user's hand
+		drop_light_tube(user)
+		return
+		
+	var/protected = FALSE
+	var/mob/living/carbon/human/H = user
+
+	if(istype(H))
+		if(isethereal(H))
+			to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
+			if(do_after(user, 1 SECONDS, src))
+				if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+					to_chat(H, span_notice("You receive some charge from the [fitting]."))
+					H.adjust_nutrition(100)
+				else
+					to_chat(H, span_notice("You can't receive charge from the [fitting]."))
+			return
+
+		if(H.gloves)
+			var/obj/item/clothing/gloves/G = H.gloves
+			if(G.max_heat_protection_temperature)
+				protected = (G.max_heat_protection_temperature > 360)
+	else
+		protected = TRUE
+
+	if(protected > FALSE || HAS_TRAIT(user, TRAIT_RESISTHEAT) || HAS_TRAIT(user, TRAIT_RESISTHEATHANDS))
+		to_chat(user, span_notice("You remove the light [fitting]."))
+	else if(istype(user) && user.dna.check_mutation(TK))
+		to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
+	else
+		var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+		if(affecting && affecting.receive_damage( 0, 5 ))		// 5 burn damage
+			H.update_damage_overlays()
+		to_chat(user, span_warning("You try to remove the light [fitting], but you burn your hand on it!"))
+		return				// if burned, don't remove the light
 	// create a light tube/bulb item and put it in the user's hand
 	drop_light_tube(user)
 
 /obj/machinery/light/proc/drop_light_tube(mob/user)
 	var/obj/item/light/light_object = new light_type()
+	
 	light_object.status = status
 	light_object.rigged = rigged
 	light_object.brightness = brightness
@@ -843,7 +846,7 @@
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	to_chat(user, span_brass("You sucessfully break [src]!"))
-	break_light_tube(0)
+	break_light_tube(FALSE)
 
 // break the light and make sparks if was on
 
