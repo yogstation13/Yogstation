@@ -28,15 +28,6 @@
 	///What baseturfs to set when replacing openspace when has_ceiling is true
 	var/list/ceiling_baseturfs = list()
 
-	///if true, turfs loaded from this template are placed on top of the turfs already there, defaults to TRUE
-	var/should_place_on_top = TRUE
-
-	///if true, creates a list of all atoms created by this template loading, defaults to FALSE
-	var/returns_created_atoms = FALSE
-
-	///the list of atoms created by this template being loaded, only populated if returns_created_atoms is TRUE
-	var/list/created_atoms = list()
-
 /datum/map_template/New(path = null, rename = null, cache = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()

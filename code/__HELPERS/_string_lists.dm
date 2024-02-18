@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(string_lists)
 	. = GLOB.string_lists[string_id]
 
 	if(.)
-		return
+		return .
 
 	return GLOB.string_lists[string_id] = values
 

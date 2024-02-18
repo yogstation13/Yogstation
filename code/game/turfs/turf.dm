@@ -760,27 +760,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			continue
 		movable_content.wash(clean_types)
 
-/// Replaces all instances of needle_type in baseturfs with replacement_type
-/turf/proc/replace_baseturf(needle_type, replacement_type)
-	if (islist(baseturfs))
-		var/list/new_baseturfs
-
-		while (TRUE)
-			var/found_index = baseturfs.Find(needle_type)
-			if (found_index == 0)
-				break
-
-			new_baseturfs ||= baseturfs.Copy()
-			new_baseturfs[found_index] = replacement_type
-
-		if (!isnull(new_baseturfs))
-			baseturfs = baseturfs_string_list(new_baseturfs, src)
-	else if (baseturfs == needle_type)
-		baseturfs = replacement_type
-
 /// Called when attempting to set fire to a turf
 /turf/proc/IgniteTurf(power, fire_color="red")
 	return
+
 /// Returns whether it is safe for an atom to move across this turf
 /turf/proc/can_cross_safely(atom/movable/crossing)
 	return TRUE
