@@ -244,14 +244,16 @@
 			continue	//so we don't burn the tile we be standin on
 		var/cached_damage = 0
 
-		for(var/obj/structure/blob/B in T)
+		for(var/obj/structure/blob/blob in T)
 			// This is run before atmos checks because blob can be atmos blocking but we still want to hit them
 			// See /proc/default_ignite
 			if(!cached_damage)
 				cached_damage = process_fuel(T)
 			if(!lit)
 				break // stopped running, don't continue
-			B.take_damage(cached_damage * 2, BURN, FIRE) // strong against blobs
+			if(QDELETED(blob))
+				continue
+			blob.take_damage(cached_damage * 2, BURN, FIRE) // strong against blobs
 
 		for(var/obj/structure/spacevine/vine in T)
 			// This is run before atmos checks because vines can be on top of a window or some other atmos-blocking structure
@@ -259,6 +261,8 @@
 				cached_damage = process_fuel(T)
 			if(!lit)
 				break // stopped running, don't continue
+			if(QDELETED(vine))
+				continue
 			vine.take_damage(cached_damage * 3, BURN, FIRE, TRUE) // very strong against vines
 
 		var/list/turfs_sharing_with_prev = previousturf.GetAtmosAdjacentTurfs(alldir=1)
