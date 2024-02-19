@@ -858,6 +858,7 @@
 /datum/sprite_accessory/ipc_screens
 	icon = 'icons/mob/ipc_accessories.dmi'
 	color_src = EYECOLOR
+	emissive = TRUE
 
 /datum/sprite_accessory/ipc_screens/blue
 	name = "Blue"
@@ -876,6 +877,7 @@
 /datum/sprite_accessory/ipc_screens/blank
 	name = "Null"
 	icon_state = "blank"
+	emissive = FALSE
 
 /datum/sprite_accessory/ipc_screens/console
 	name = "Console"
