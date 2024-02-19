@@ -11,7 +11,7 @@
 
 //If you update these values, update the message in the #error
 #define MAX_BYOND_MAJOR 515
-#define MAX_BYOND_MINOR 1628
+#define MAX_BYOND_MINOR 1630
 
 // You can define IGNORE_MAX_BYOND_VERSION to bypass the max version check.
 // Note: This will likely break the game, especially any extools/auxtools linkage. Only use if you know what you're doing!
@@ -25,7 +25,7 @@
 
 #if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
 // Not updating until we fully move to 515
-#error Your version of BYOND is too new to compile this project. Download version 515.1627 at www.byond.com/download/build/515/515.1627_byond.exe
+#error Your version of BYOND is too new to compile this project. Download version 515.1630 at www.byond.com/download/build/515/515.1630_byond.exe
 #endif
 
 // 515 split call for external libraries into call_ext
