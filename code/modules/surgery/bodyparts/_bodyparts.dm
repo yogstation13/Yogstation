@@ -430,6 +430,9 @@
   */
 /obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus, attack_direction)
 	// note that these are fed into an exponent, so these are magnified
+	if(HAS_TRAIT(owner, TRAIT_HARDLY_WOUNDED))
+		damage *= 0.33
+
 	if(HAS_TRAIT(owner, TRAIT_EASILY_WOUNDED))
 		damage *= 1.5
 	else
@@ -633,7 +636,7 @@
 		if(!HAS_TRAIT(owner, TRAIT_STUNIMMUNE) && stamina_dam >= max_damage)
 			if(!last_maxed)
 				if(owner.stat < UNCONSCIOUS)
-					owner.emote("scream")
+					INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 				last_maxed = TRUE
 			set_disabled(TRUE)
 			return
@@ -651,7 +654,7 @@
 	if(total_damage >= max_damage * disable_threshold)
 		if(!last_maxed)
 			if(owner.stat < UNCONSCIOUS)
-				owner.emote("scream")
+				INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 			last_maxed = TRUE
 		set_disabled(TRUE)
 		return

@@ -1,7 +1,7 @@
 #define UNREGISTER_BOMB_SIGNALS(A) \
 	do { \
 		UnregisterSignal(A, boom_signals); \
-		UnregisterSignal(A, COMSIG_PARENT_EXAMINE); \
+		UnregisterSignal(A, COMSIG_ATOM_EXAMINE); \
 	} while (0)
 
 GLOBAL_LIST_INIT(guardian_bomb_life, list(
@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 		if (bomb_cooldown <= world.time && !guardian.stat)
 			to_chat(guardian, span_bolddanger("Success! Bomb armed!"))
 			bomb_cooldown = world.time + 200
-			RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(display_examine))
+			RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(display_examine))
 			RegisterSignal(target, boom_signals, PROC_REF(kaboom))
 			addtimer(CALLBACK(src, PROC_REF(disable), target), GLOB.guardian_bomb_life[guardian.stats.potential], TIMER_UNIQUE|TIMER_OVERRIDE)
 			bombs += target
@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 	if (picked_bomb)
 		ability.bombs -= picked_bomb
 		UnregisterSignal(picked_bomb, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND));
-		UnregisterSignal(picked_bomb, COMSIG_PARENT_EXAMINE);
+		UnregisterSignal(picked_bomb, COMSIG_ATOM_EXAMINE);
 		log_bomber(user, "detonated a", picked_bomb)
 		explosion(picked_bomb, -1, 1, 1, 1)
 		to_chat(user, span_bolddanger("Bomb detonated."))

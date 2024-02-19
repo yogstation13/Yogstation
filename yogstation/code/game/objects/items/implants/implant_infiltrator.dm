@@ -137,7 +137,7 @@
 
 /datum/status_effect/infiltrator_pinpointer/New()
 	. = ..()
-	scan_target = SSshuttle.getShuttle("syndicatecutter")
+	//scan_target = SSshuttle.getShuttle("syndicatecutter")
 
 /datum/status_effect/infiltrator_pinpointer/proc/point_to_target() //If we found what we're looking for, show the distance and direction
 	linked_alert.cut_overlays()

@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	max_integrity = 200
 	integrity_failure = 50
 	armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 70, ACID = 60)
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	var/breakout_time = 1200
 	var/message_cooldown
 	var/can_weld_shut = TRUE
@@ -33,6 +34,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
 	var/anchorable = TRUE
 	var/icon_welded = "welded"
+	var/icon_broken = "sparking"
 	/// Protection against weather that being inside of it provides.
 	var/list/weather_protection = null
 	/// How close being inside of the thing provides complete pressure safety. Must be between 0 and 1!
@@ -52,24 +54,32 @@ GLOBAL_LIST_EMPTY(lockers)
 	/// true whenever someone with the strong pull component (or magnet modsuit module) is dragging this, preventing opening
 	var/strong_grab = FALSE		//dripstation edit
 
+	var/is_maploaded = FALSE
+
 /obj/structure/closet/Initialize(mapload)
 	. = ..()
 
-	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
-		. = INITIALIZE_HINT_LATELOAD
+	if(is_station_level(z) && mapload)
+		add_to_roundstart_list()
 
-	update_appearance(UPDATE_ICON)
+	// if closed, any item at the crate's loc is put in the contents
+	if (mapload)
+		is_maploaded = TRUE
+	. = INITIALIZE_HINT_LATELOAD
+
 	PopulateContents()
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
-	GLOB.lockers += src
+	
+	update_appearance()
 
 /obj/structure/closet/LateInitialize()
 	. = ..()
 
-	take_contents()
+	if(!opened && is_maploaded)
+		take_contents()
 
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
@@ -86,8 +96,16 @@ GLOBAL_LIST_EMPTY(lockers)
 		update_appearance()
 		. = TRUE
 
+/obj/structure/closet/update_appearance(updates=ALL)
+	. = ..()
+	if(opened || broken || !secure)
+		luminosity = 0
+		return
+	luminosity = 1
+
 /obj/structure/closet/update_overlays()
 	. = ..()
+	//SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(opened)
 		layer = BELOW_OBJ_LAYER
 		if(is_animating_door)
@@ -106,11 +124,17 @@ GLOBAL_LIST_EMPTY(lockers)
 			. += "[icon_state]_door"
 		if(welded)
 			. += icon_welded
-		if(secure && !broken)
-			if(locked)
-				. += "locked"
-			else
-				. += "unlocked"
+		if(broken && secure)
+			. += mutable_appearance(icon, icon_broken, alpha = alpha)
+			. += emissive_appearance(icon, icon_broken, src, alpha = alpha)
+			return
+		if(broken || !secure)
+			return
+		//Overlay is similar enough for both that we can use the same mask for both
+		//luminosity = 1
+		//SSvis_overlays.add_vis_overlay(src, icon, "locked", EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
+		. += emissive_appearance(icon, "locked", src, alpha = src.alpha)
+		. += locked ? "locked" : "unlocked"
 
 /obj/structure/closet/proc/animate_door(closing = FALSE)
 	if(!door_anim_time)
@@ -140,7 +164,7 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/proc/end_door_animation()
 	is_animating_door = FALSE
 	vis_contents -= door_obj
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/structure/closet/proc/get_door_transform(angle)
 	var/matrix/M = matrix()
@@ -223,7 +247,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		density = FALSE
 	dump_contents()
 	animate_door(FALSE)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	update_airtightness()
 	return 1
 
@@ -276,7 +300,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	opened = FALSE
 	density = TRUE
 	animate_door(TRUE)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	update_airtightness()
 	close_storage(user)
 	return TRUE
@@ -350,7 +374,7 @@ GLOBAL_LIST_EMPTY(lockers)
 			user.visible_message(span_notice("[user] [welded ? "welds shut" : "unwelded"] \the [src]."),
 							span_notice("You [welded ? "weld" : "unwelded"] \the [src] with \the [W]."),
 							span_italics("You hear welding."))
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 	else if(W.tool_behaviour == TOOL_WRENCH && anchorable)
 		if(isinspace() && !anchored)
 			return
@@ -526,7 +550,7 @@ GLOBAL_LIST_EMPTY(lockers)
 			locked = !locked
 			user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
 							span_notice("You [locked ? null : "un"]lock [src]."))
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 		else if(!silent)
 			to_chat(user, span_notice("Access Denied"))
 	else if(secure && broken)
@@ -541,7 +565,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	playsound(src, "sparks", 50, 1)
 	broken = TRUE
 	locked = FALSE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	return TRUE
 	
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
@@ -558,7 +582,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(secure && !broken && !(. & EMP_PROTECT_SELF))
 		if(prob(5 * severity))
 			locked = !locked
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 		if(prob(2 * severity) && !opened)
 			if(!locked)
 				open()
@@ -669,3 +693,8 @@ GLOBAL_LIST_EMPTY(lockers)
 	. = ..()
 	if(user in contents)
 		return FALSE
+
+///Adds the closet to a global list. Placed in its own proc so that crates may be excluded.
+/obj/structure/closet/proc/add_to_roundstart_list()
+	//GLOB.roundstart_station_closets += src
+	GLOB.lockers += src

@@ -4,6 +4,7 @@
 
 /datum/map_template/ruin/station/box
 	prefix = "_maps/RandomRuins/StationRuins/BoxStation/"
+	should_place_on_top = FALSE
 
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"

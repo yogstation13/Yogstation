@@ -20,14 +20,16 @@
 	low_threshold_cleared = span_info("Your vision is cleared of any ailment.")
 
 	var/sight_flags = 0
-	var/see_in_dark = 2
 	var/tint = 0
 	var/eye_color = "" //set to a hex code to override a mob's eye color
 	var/eye_icon_state = "eyes"
 	var/old_eye_color = "fff"
 	var/flash_protect = 0
 	var/see_invisible = SEE_INVISIBLE_LIVING
-	var/lighting_alpha
+	/// How much darkness to cut out of your view (basically, night vision)
+	var/lighting_cutoff = null
+	/// List of color cutoffs from eyes, or null if not applicable
+	var/list/color_cutoffs = null
 	var/no_glasses
 	var/damaged	= TRUE	//damaged indicates that our eyes are undergoing some level of negative effect,starts as true so it removes the impaired vision overlay if it is replacing damaged eyes
 
@@ -40,8 +42,6 @@
 			HMN.eye_color = eye_color
 		else
 			eye_color = HMN.eye_color
-		if(HAS_TRAIT(HMN, TRAIT_NIGHT_VISION) && !lighting_alpha)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	M.update_tint()
 	owner.update_sight()
 	if(M.has_dna() && ishuman(M))
@@ -55,7 +55,7 @@
 		HMN.update_body()
 	M.cure_blind(list(EYE_DAMAGE)) // can't be blind from eye damage if there's no eye to be damaged, still blind from not having eyes though
 	M.cure_nearsighted(list(EYE_DAMAGE)) // likewise for nearsightedness
-	M.set_blurriness(0) // no eyes to blur
+	M.set_eye_blur(0) // no eyes to blur
 	M.update_tint()
 	M.update_sight()
 
@@ -117,48 +117,83 @@
 #undef OFFSET_X
 #undef OFFSET_Y
 
+#define NIGHTVISION_LIGHT_OFF 0
+#define NIGHTVISION_LIGHT_LOW 1
+#define NIGHTVISION_LIGHT_MID 2
+#define NIGHTVISION_LIGHT_HIG 3
+
 /obj/item/organ/eyes/night_vision
 	name = "shadow eyes"
 	desc = "A spooky set of eyes that can see in the dark."
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	var/night_vision = TRUE
+	// These lists are used as the color cutoff for the eye
+	// They need to be filled out for subtypes
+	var/list/low_light_cutoff
+	var/list/medium_light_cutoff
+	var/list/high_light_cutoff
+	var/light_level = NIGHTVISION_LIGHT_OFF
+
+/obj/item/organ/eyes/night_vision/Initialize(mapload)
+	. = ..()
+
+	if(length(low_light_cutoff) != 3 || length(medium_light_cutoff) != 3 || length(high_light_cutoff) != 3)
+		stack_trace("[type] did not have fully filled out color cutoff lists")
+	if(low_light_cutoff)
+		color_cutoffs = low_light_cutoff.Copy()
+	light_level = NIGHTVISION_LIGHT_LOW
 
 /obj/item/organ/eyes/night_vision/ui_action_click()
 	sight_flags = initial(sight_flags)
-	switch(lighting_alpha)
-		if (LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	switch(light_level)
+		if (NIGHTVISION_LIGHT_OFF)
+			color_cutoffs = low_light_cutoff.Copy()
+			light_level = NIGHTVISION_LIGHT_LOW
+		if (NIGHTVISION_LIGHT_LOW)
+			color_cutoffs = medium_light_cutoff.Copy()
+			light_level = NIGHTVISION_LIGHT_MID
+		if (NIGHTVISION_LIGHT_MID)
+			color_cutoffs = high_light_cutoff.Copy()
+			light_level = NIGHTVISION_LIGHT_HIG
 		else
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			sight_flags &= ~SEE_BLACKNESS
+			color_cutoffs = null
+			light_level = NIGHTVISION_LIGHT_OFF
 	owner.update_sight()
 
-/obj/item/organ/eyes/night_vision/alien
-	name = "alien eyes"
-	desc = "It turned out they had them after all!"
-	sight_flags = SEE_MOBS
-
-/obj/item/organ/eyes/night_vision/zombie
-	name = "undead eyes"
-	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
-
-/obj/item/organ/eyes/night_vision/nightmare
-	name = "burning red eyes"
-	desc = "Even without their shadowy owner, looking at these eyes gives you a sense of dread."
-	icon_state = "burning_eyes"
+#undef NIGHTVISION_LIGHT_OFF
+#undef NIGHTVISION_LIGHT_LOW
+#undef NIGHTVISION_LIGHT_MID
+#undef NIGHTVISION_LIGHT_HIG
 
 /obj/item/organ/eyes/night_vision/mushroom
 	name = "fung-eye"
 	desc = "While on the outside they look inert and dead, the eyes of mushroom people are actually very advanced."
+	low_light_cutoff = list(0, 15, 20)
+	medium_light_cutoff = list(0, 20, 35)
+	high_light_cutoff = list(0, 40, 50)
+
+//innate nightvision eyes
+/obj/item/organ/eyes/alien
+	name = "alien eyes"
+	desc = "It turned out they had them after all!"
+	sight_flags = SEE_MOBS
+	color_cutoffs = list(25, 5, 42)
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+
+/obj/item/organ/eyes/zombie
+	name = "undead eyes"
+	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
+	color_cutoffs = list(25, 35, 5)
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+
+/obj/item/organ/eyes/shadow
+	name = "burning red eyes"
+	desc = "Even without their shadowy owner, looking at these eyes gives you a sense of dread."
+	icon_state = "burning_eyes"
+	color_cutoffs = list(20, 10, 40)
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 ///Robotic
-
 /obj/item/organ/eyes/robotic
 	name = "robotic eyes"
 	icon_state = "cybernetic_eyeballs"
@@ -171,19 +206,21 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
+	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	to_chat(owner, span_danger("your eyes overload and blind you!"))
 	owner.flash_act(override_blindness_check = 1)
-	owner.blind_eyes(severity / 2)
-	owner.blur_eyes(8)
-	applyOrganDamage(2 * severity)
+	owner.blind_eyes(5)
+	owner.adjust_eye_blur(8)
+	eyes.applyOrganDamage(20 / severity)
 
 /obj/item/organ/eyes/robotic/xray
 	name = "\improper meson eyes"
 	desc = "These cybernetic eyes will give you meson-vision. Looks like it could withstand seeing a supermatter crystal!."
 	eye_color = "00FF00"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	// We're gonna downshift green and blue a bit so darkness looks yellow
+	color_cutoffs = list(25, 8, 5)
 	sight_flags = SEE_TURFS
-	see_in_dark = 4
+	
 
 /obj/item/organ/eyes/robotic/xray/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, initialising)
 	. = ..()
@@ -198,16 +235,15 @@
 	desc = "These cybernetic eyes will give you true X-ray vision. Blinking is futile."
 	eye_color = "000"
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
-	see_in_dark = 8
 
 /obj/item/organ/eyes/robotic/thermals
 	name = "thermal eyes"
 	desc = "These cybernetic eye implants will give you thermal vision. Vertical slit pupil included."
 	eye_color = "FC0"
 	sight_flags = SEE_MOBS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	// We're gonna downshift green and blue a bit so darkness looks yellow
+	color_cutoffs = list(25, 8, 5)
 	flash_protect = -1
-	see_in_dark = 8
 
 /obj/item/organ/eyes/robotic/flashlight
 	name = "flashlight eyes"
@@ -226,14 +262,14 @@
 	..()
 	if(!eye)
 		eye = new /obj/item/flashlight/eyelight()
-	eye.on = TRUE
+	eye.light_on = TRUE
 	eye.forceMove(M)
 	eye.update_brightness(M)
 	M.become_blind("flashlight_eyes")
 
 
 /obj/item/organ/eyes/robotic/flashlight/Remove(mob/living/carbon/M, special = 0)
-	eye.on = FALSE
+	eye.light_on = FALSE
 	eye.update_brightness(M)
 	eye.forceMove(src)
 	M.cure_blind("flashlight_eyes")
@@ -454,8 +490,7 @@
 /obj/item/organ/eyes/polysmorph
 	name = "polysmorph eyes"
 	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
-	see_in_dark = 5
+	lighting_cutoff = LIGHTING_CUTOFF_REAL_LOW
 
 /obj/item/organ/eyes/ethereal
 	name = "fractal eyes"

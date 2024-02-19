@@ -1,10 +1,10 @@
 /datum/action/changeling/adrenaline
 	name = "Adrenaline Sacs"
-	desc = "We evolve additional sacs of adrenaline throughout our body. Costs 50 chemicals."
+	desc = "We evolve additional sacs of adrenaline throughout our body. Costs 75 chemicals."
 	helptext = "Removes all stuns instantly. Can be used while unconscious. Continued use poisons the body." //yogs - changed text to suit the below change
 	button_icon_state = "adrenaline"
-	chemical_cost = 50
-	dna_cost = 2
+	chemical_cost = 75
+	dna_cost = 3
 	req_human = 1
 	req_stat = UNCONSCIOUS
 	conflicts = list(/datum/action/changeling/strained_muscles)

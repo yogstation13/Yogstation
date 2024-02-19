@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
-	id = "supply"
+	shuttle_id = "supply"
 	callTime = 30 SECONDS
 
 	dir = WEST
@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/list/obj/miscboxes = list() //miscboxes are combo boxes that contain all small_item orders grouped
 	var/list/misc_order_num = list() //list of strings of order numbers, so that the manifest can show all orders in a box
 	var/list/misc_contents = list() //list of lists of items that each box will contain
-	if(!SSshuttle.shoppinglist.len)
+	if(!SSshuttle.shopping_list.len)
 		return
 
 	var/list/empty_turfs = list()
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 	var/value = 0
 	var/purchases = 0
-	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
+	for(var/datum/supply_order/SO in SSshuttle.shopping_list)
 		if(!empty_turfs.len)
 			break
 		var/price = SO.pack.get_cost()
@@ -120,8 +120,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			var/datum/bank_account/department/cargo = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			cargo.adjust_money(price - SO.pack.get_cost()) //Cargo gets the handling fee
 		value += SO.pack.get_cost()
-		SSshuttle.shoppinglist -= SO
-		SSshuttle.orderhistory += SO
+		SSshuttle.shopping_list -= SO
+		SSshuttle.order_history += SO
 		SO.pack.times_ordered_in_one_order = 0 //dripstation edit
 
 		if(SO.pack.small_item) //small_item means it gets piled in the miscbox

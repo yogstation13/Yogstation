@@ -11,10 +11,10 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 /atom/movable/screen/radial/proc/set_parent(new_value)
 	if(parent)
-		UnregisterSignal(parent, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(parent, COMSIG_QDELETING)
 	parent = new_value
 	if(parent)
-		RegisterSignal(parent, COMSIG_PARENT_QDELETING, PROC_REF(handle_parent_del))
+		RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(handle_parent_del))
 
 /atom/movable/screen/radial/proc/handle_parent_del()
 	SIGNAL_HANDLER
@@ -263,7 +263,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			E.add_overlay(choices_icons[choice_id])
 		if (choice_datum?.info)
 			var/obj/effect/abstract/info/info_button = new(E, choice_datum.info)
-			info_button.plane = ABOVE_HUD_PLANE
+			SET_PLANE_EXPLICIT(info_button, ABOVE_HUD_PLANE, anchor)
 			info_button.layer = RADIAL_CONTENT_LAYER
 			E.vis_contents += info_button
 
@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 	var/mutable_appearance/MA = new /mutable_appearance(to_extract_from)
 	if(MA)
-		MA.plane = ABOVE_HUD_PLANE
+		SET_PLANE_EXPLICIT(MA, ABOVE_HUD_PLANE, anchor)
 		MA.layer = RADIAL_CONTENT_LAYER
 		MA.appearance_flags |= RESET_TRANSFORM
 	return MA
@@ -326,19 +326,26 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		return
 	current_user = M.client
 	//Blank
-	menu_holder = image(icon='icons/effects/effects.dmi',loc=anchor,icon_state="nothing",layer = ABOVE_HUD_LAYER)
-	menu_holder.plane = ABOVE_HUD_PLANE
-	menu_holder.appearance_flags |= KEEP_APART
+	menu_holder = image(icon='icons/effects/effects.dmi',loc=anchor,icon_state="nothing",layer = RADIAL_BACKGROUND_LAYER)
+	SET_PLANE_EXPLICIT(menu_holder, ABOVE_HUD_PLANE, M)
+	menu_holder.appearance_flags |= KEEP_APART|RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM
 	menu_holder.vis_contents += elements + close_button
 	current_user.images += menu_holder
+	if(ismovable(anchor))
+		RegisterSignal(anchor, COMSIG_MOVABLE_MOVED, PROC_REF(on_anchor_moved))
+
+/datum/radial_menu/proc/on_anchor_moved()
+	menu_holder.loc = get_atom_on_turf(anchor)
 
 /datum/radial_menu/proc/hide()
+	if(ismovable(anchor))
+		UnregisterSignal(anchor, COMSIG_MOVABLE_MOVED)
 	if(current_user)
 		current_user.images -= menu_holder
 
 /datum/radial_menu/proc/wait(atom/user, atom/anchor, require_near = FALSE)
 	while (current_user && !finished && !selected_choice)
-		if(require_near && !in_range(anchor, user))
+		if(require_near && !(in_range(anchor, user) || anchor == user.loc))
 			return
 		if(custom_check_callback && next_check < world.time)
 			if(!custom_check_callback.Invoke())
@@ -358,9 +365,13 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	Choices should be a list where list keys are movables or text used for element names and return value
 	and list values are movables/icons/images used for element icons
 */
-/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE, no_repeat_close = FALSE, radial_slice_icon = "radial_slice", check_delay)
+/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE, no_repeat_close = FALSE, radial_slice_icon = "radial_slice", autopick_single_option = TRUE)
 	if(!user || !anchor || !length(choices))
 		return
+
+	if(length(choices)==1 && autopick_single_option)
+		return choices[1]
+
 	if(!uniqueid)
 		uniqueid = "defmenu_[REF(user)]_[REF(anchor)]"
 
@@ -376,8 +387,6 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		menu.radius = radius
 	if(istype(custom_check))
 		menu.custom_check_callback = custom_check
-	if(check_delay)
-		menu.check_delay = check_delay
 	menu.anchor = anchor
 	menu.radial_slice_icon = radial_slice_icon
 	menu.check_screen_border(user) //Do what's needed to make it look good near borders or on hud
@@ -387,7 +396,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/answer = menu.selected_choice
 	qdel(menu)
 	GLOB.radial_menus -= uniqueid
-	if(require_near && !in_range(anchor, user))
+	if(require_near && !(in_range(anchor, user)) || anchor == user.loc)
 		return
 	if(istype(custom_check))
 		if(!custom_check.Invoke())

@@ -81,7 +81,7 @@
 					S.use(5)
 					to_chat(user, span_notice("You add the plating."))
 					var/turf/T = get_turf(src)
-					T.PlaceOnTop(/turf/closed/wall/mineral/iron)
+					T.place_on_top(/turf/closed/wall/mineral/iron)
 					transfer_fingerprints_to(T)
 					qdel(src)
 				return
@@ -115,7 +115,7 @@
 					S.use(2)
 					to_chat(user, span_notice("You add the plating."))
 					var/turf/T = get_turf(src)
-					T.PlaceOnTop(/turf/closed/wall)
+					T.place_on_top(/turf/closed/wall)
 					transfer_fingerprints_to(T)
 					qdel(src)
 				return
@@ -145,7 +145,7 @@
 						S.use(1)
 						to_chat(user, span_notice("You fully reinforce the wall."))
 						var/turf/T = get_turf(src)
-						T.PlaceOnTop(/turf/closed/wall/r_wall)
+						T.place_on_top(/turf/closed/wall/r_wall)
 						transfer_fingerprints_to(T)
 						qdel(src)
 					return
@@ -189,7 +189,7 @@
 					S.use(2)
 					to_chat(user, span_notice("You add the plating."))
 					var/turf/T = get_turf(src)
-					T.PlaceOnTop(text2path("/turf/closed/wall/mineral/[M]"))
+					T.place_on_top(text2path("/turf/closed/wall/mineral/[M]"))
 					transfer_fingerprints_to(T)
 					qdel(src)
 				return
@@ -362,7 +362,7 @@
 			user.visible_message(span_notice("[user] plates [src] with runed metal."), span_notice("You construct a runed wall."))
 			R.use(1)
 			var/turf/T = get_turf(src)
-			T.PlaceOnTop(/turf/closed/wall/mineral/cult)
+			T.place_on_top(/turf/closed/wall/mineral/cult)
 			qdel(src)
 
 	else
@@ -389,7 +389,7 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, span_notice("You finish a wall."))
-			T.PlaceOnTop(/turf/closed/wall)
+			T.place_on_top(/turf/closed/wall)
 			qdel(src)
 			return TRUE
 		if(RCD_DECONSTRUCT)
@@ -429,7 +429,7 @@
 			user.visible_message(span_notice("[user] plates [src] with bronze!"), span_notice("You construct a bronze wall."))
 			B.use(2)
 			var/turf/T = get_turf(src)
-			T.PlaceOnTop(/turf/closed/wall/mineral/bronze)
+			T.place_on_top(/turf/closed/wall/mineral/bronze)
 			qdel(src)
 
 	else

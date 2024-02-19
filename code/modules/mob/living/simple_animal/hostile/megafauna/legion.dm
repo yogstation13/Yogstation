@@ -40,7 +40,7 @@ Difficulty: Medium
 	ranged_cooldown_time = 20
 	var/size = 5
 	var/charging = FALSE
-	internal_type = /obj/item/gps/internal/legion
+	gps_name = "Echoing Signal"
 	pixel_y = -90
 	pixel_x = -75
 	loot = list(/obj/item/stack/sheet/bone = 3)
@@ -52,6 +52,10 @@ Difficulty: Medium
 	attack_action_types = list(/datum/action/innate/megafauna_attack/create_skull,
 							   /datum/action/innate/megafauna_attack/charge_target)
 	small_sprite_type = /datum/action/small_sprite/megafauna/legion
+	// Purple, but bright cause we're gonna need to spot mobs on lavaland
+	lighting_cutoff_red = 35
+	lighting_cutoff_green = 20
+	lighting_cutoff_blue = 45
 
 /datum/action/innate/megafauna_attack/create_skull
 	name = "Create Legion Skull"
@@ -205,7 +209,7 @@ Difficulty: Medium
 	hitsound = 'sound/weapons/sear.ogg'
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
-	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
+	var/static/list/excluded_areas = list(/area/centcom/reebe/city_of_cogs)
 
 /obj/item/staff/storm/attack_self(mob/user)
 	if(storm_cooldown > world.time)

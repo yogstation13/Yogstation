@@ -83,11 +83,11 @@
 	var/message = "Remember to stamp and send back the supply manifests."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
-	if(SSshuttle.supplyBlocked)
+	if(SSshuttle.supply_blocked)
 		message = blockade_warning
 	data["message"] = message
 	data["cart"] = list()
-	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
+	for(var/datum/supply_order/SO in SSshuttle.shopping_list)
 		data["cart"] += list(list(
 			"object" = SO.pack.name,
 			"cost" = SO.pack.get_cost(),
@@ -98,7 +98,7 @@
 		))
 
 	data["requests"] = list()
-	for(var/datum/supply_order/SO in SSshuttle.requestlist)
+	for(var/datum/supply_order/SO in SSshuttle.request_list)
 		data["requests"] += list(list(
 			"object" = SO.pack.name,
 			"cost" = SO.pack.get_cost(),
@@ -144,7 +144,7 @@
 			if(!SSshuttle.supply.canMove())
 				say(safety_warning)
 				return
-			if(SSshuttle.supplyBlocked)
+			if(SSshuttle.supply_blocked)
 				say(blockade_warning)
 				return
 			if(SSshuttle.supply.getDockedId() == "supply_home")
@@ -160,7 +160,7 @@
 		if("loan")
 			if(!SSshuttle.shuttle_loan)
 				return
-			if(SSshuttle.supplyBlocked)
+			if(SSshuttle.supply_blocked)
 				say(blockade_warning)
 				return
 			else if(SSshuttle.supply.mode != SHUTTLE_IDLE)
@@ -219,9 +219,9 @@
 			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason, account)
 			SO.generateRequisition(T)
 			if(requestonly && !self_paid)
-				SSshuttle.requestlist += SO
+				SSshuttle.request_list += SO
 			else
-				SSshuttle.shoppinglist += SO
+				SSshuttle.shopping_list += SO
 				SO.pack.times_ordered += 1	//dripstation edit
 				SO.pack.times_ordered_in_one_order += 1	//dripstation edit
 				if(self_paid)
@@ -229,22 +229,22 @@
 			. = TRUE
 		if("remove")
 			var/id = text2num(params["id"])
-			for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
+			for(var/datum/supply_order/SO in SSshuttle.shopping_list)
 				if(SO.id == id)
-					SSshuttle.shoppinglist -= SO
+					SSshuttle.shopping_list -= SO
 					SO.pack.times_ordered -= 1	//dripstation edit
 					SO.pack.times_ordered_in_one_order -= 1	//dripstation edit
 					. = TRUE
 					break
 		if("clear")
-			for(var/datum/supply_order/SO in SSshuttle.shoppinglist)	//dripstation edit
+			for(var/datum/supply_order/SO in SSshuttle.shopping_list)	//dripstation edit
 				SO.pack.times_ordered -= 1								//dripstation edit
 				SO.pack.times_ordered_in_one_order = 0					//dripstation edit
-			SSshuttle.shoppinglist.Cut()
+			SSshuttle.shopping_list.Cut()
 			. = TRUE
 		if("approve")
 			var/id = text2num(params["id"])
-			for(var/datum/supply_order/SO in SSshuttle.requestlist)
+			for(var/datum/supply_order/SO in SSshuttle.request_list)
 				if(SO.id == id)
 					if(SO.pack.times_ordered >= SO.pack.order_limit && SO.pack.order_limit != -1) //If the crate has reached the limit, do not allow it to be ordered.	dripstation edit start
 						say("[SO.pack.name] is out of stock and can no longer be ordered.")
@@ -252,21 +252,21 @@
 					if(SO.pack.times_ordered_in_one_order >= SO.pack.order_limit_in_one_order && SO.pack.order_limit_in_one_order != -1) 
 						say("[SO.pack.name] is out of stock for now and can no longer be ordered in this package. Try again later.")
 						return	//dripstation edit end
-					SSshuttle.requestlist -= SO
-					SSshuttle.shoppinglist += SO
+					SSshuttle.request_list -= SO
+					SSshuttle.shopping_list += SO
 					SO.pack.times_ordered += 1	//dripstation edit
 					SO.pack.times_ordered_in_one_order += 1	//dripstation edit
 					. = TRUE
 					break
 		if("deny")
 			var/id = text2num(params["id"])
-			for(var/datum/supply_order/SO in SSshuttle.requestlist)
+			for(var/datum/supply_order/SO in SSshuttle.request_list)
 				if(SO.id == id)
-					SSshuttle.requestlist -= SO
+					SSshuttle.request_list -= SO
 					. = TRUE
 					break
 		if("denyall")
-			SSshuttle.requestlist.Cut()
+			SSshuttle.request_list.Cut()
 			. = TRUE
 		if("toggleprivate")
 			self_paid = !self_paid

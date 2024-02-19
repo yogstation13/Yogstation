@@ -9,14 +9,31 @@
 	var/max_capacity = 128
 	var/used_capacity = 0
 	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
+	///Static list of default programs that come with ALL computers, here so computers don't have to repeat this.
+	///Yog TODO: IT SHOULD BE STATIC BUT IT ISN'T BECAUSE WE HANDLE THE HARD DRIVES AWKWARDLY
+	var/list/datum/computer_file/default_programs = list(
+		/datum/computer_file/program/computerconfig,
+		/datum/computer_file/program/ntnetdownload,
+		/datum/computer_file/program/filemanager,
+	)
+
+/obj/item/computer_hardware/hard_drive/Initialize(mapload)
+	. = ..()
+	install_default_programs()
+
+/obj/item/computer_hardware/hard_drive/Destroy()
+	for(var/file in stored_files)
+		qdel(file)
+	stored_files = null
+	return ..()
 
 /obj/item/computer_hardware/hard_drive/on_remove(obj/item/modular_computer/remove_from, mob/user)
 	remove_from.shutdown_computer()
 
 /obj/item/computer_hardware/hard_drive/proc/install_default_programs()
-	store_file(new/datum/computer_file/program/computerconfig(src)) 	// Computer configuration utility, allows hardware control and displays more info than status bar
-	store_file(new/datum/computer_file/program/ntnetdownload(src))		// NTNet Downloader Utility, allows users to download more software from NTNet repository
-	store_file(new/datum/computer_file/program/filemanager(src))		// File manager, allows text editor functions and basic file manipulation.
+	for(var/programs in default_programs)
+		var/datum/computer_file/program_type = new programs
+		store_file(program_type)
 
 /obj/item/computer_hardware/hard_drive/examine(user)
 	. = ..()
@@ -29,11 +46,8 @@
 	to_chat(user, "Storage capacity: [used_capacity]/[max_capacity]GQ")
 
 // Use this proc to add file to the drive. Returns the file on success and FALSE on failure. Contains necessary sanity checks.
-/obj/item/computer_hardware/hard_drive/proc/store_file(datum/computer_file/F)
-	if(!F || !istype(F))
-		return FALSE
-
-	if(!can_store_file(F))
+/obj/item/computer_hardware/hard_drive/proc/store_file(datum/computer_file/file_storing)
+	if(!can_store_file(file_storing))
 		return FALSE
 
 	if(!check_functionality())
@@ -43,22 +57,22 @@
 		return FALSE
 
 	// This file is already stored. Don't store it again.
-	if(F in stored_files)
-		return FALSE
+	if(file_storing in stored_files)
+		return TRUE
 
-	F.holder = src
+	file_storing.holder = src
 
-	if(istype(F, /datum/computer_file/program))
-		var/datum/computer_file/program/P = F
+	if(istype(file_storing, /datum/computer_file/program))
+		var/datum/computer_file/program/P = file_storing
 		P.computer = holder
 
-	stored_files.Add(F)
+	stored_files.Add(file_storing)
 	recalculate_size()
-	return F
+	return file_storing
 
 // Use this proc to remove file from the drive. Returns TRUE on success and FALSE on failure. Contains necessary sanity checks.
-/obj/item/computer_hardware/hard_drive/proc/remove_file(datum/computer_file/F)
-	if(!F || !istype(F))
+/obj/item/computer_hardware/hard_drive/proc/remove_file(datum/computer_file/file_removing)
+	if(!file_removing || !istype(file_removing))
 		return FALSE
 
 	if(!stored_files)
@@ -67,8 +81,8 @@
 	if(!check_functionality())
 		return FALSE
 
-	if(F in stored_files)
-		stored_files -= F
+	if(file_removing in stored_files)
+		stored_files -= file_removing
 		recalculate_size()
 		return TRUE
 	else
@@ -83,14 +97,14 @@
 	used_capacity = total_size
 
 // Checks whether file can be stored on the hard drive. We can only store unique files, so this checks whether we wouldn't get a duplicity by adding a file.
-/obj/item/computer_hardware/hard_drive/proc/can_store_file(datum/computer_file/F)
-	if(!F || !istype(F))
+/obj/item/computer_hardware/hard_drive/proc/can_store_file(datum/computer_file/file_storing)
+	if(!file_storing || !istype(file_storing))
 		return FALSE
 
-	if(F in stored_files)
+	if(file_storing in stored_files)
 		return FALSE
 
-	var/name = F.filename + "." + F.filetype
+	var/name = file_storing.filename + "." + file_storing.filetype
 	for(var/datum/computer_file/file in stored_files)
 		if((file.filename + "." + file.filetype) == name)
 			return FALSE
@@ -99,7 +113,7 @@
 	// BYOND is acting weird with numbers above 999 in loops (infinite loop prevention)
 	if(stored_files.len >= 999)
 		return FALSE
-	if((used_capacity + F.size) > max_capacity)
+	if((used_capacity + file_storing.size) > max_capacity)
 		return FALSE
 	else
 		return TRUE
@@ -130,17 +144,6 @@
 			return TRUE
 
 	return FALSE
-
-/obj/item/computer_hardware/hard_drive/Destroy()
-	for(var/F in stored_files)
-		qdel(F)
-	stored_files = null
-	return ..()
-
-/obj/item/computer_hardware/hard_drive/Initialize(mapload)
-	. = ..()
-	install_default_programs()
-
 
 /obj/item/computer_hardware/hard_drive/advanced
 	name = "advanced hard disk drive"
@@ -209,11 +212,11 @@
 	power_usage = 8
 	max_capacity = 70
 	var/datum/antagonist/traitor/traitor_data // Syndicate hard drive has the user's data baked directly into it on creation
-
-/obj/item/computer_hardware/hard_drive/small/syndicate/install_default_programs()
-	store_file(new/datum/computer_file/program/computerconfig(src))
-	store_file(new/datum/computer_file/program/ntnetdownload/emagged(src))
-	store_file(new/datum/computer_file/program/filemanager(src))
+	default_programs = list(
+		/datum/computer_file/program/computerconfig,
+		/datum/computer_file/program/ntnetdownload/emagged,
+		/datum/computer_file/program/filemanager,
+	)
 
 /// For PDAs, comes pre-equipped with PDA messaging
 /obj/item/computer_hardware/hard_drive/small/pda
@@ -226,11 +229,11 @@
 /obj/item/computer_hardware/hard_drive/small/nukeops
 	power_usage = 8
 	max_capacity = 70
-
-/obj/item/computer_hardware/hard_drive/small/nukeops/install_default_programs()
-	store_file(new/datum/computer_file/program/computerconfig(src))
-	store_file(new/datum/computer_file/program/ntnetdownload/syndicate(src)) // Syndicate version; automatic access to syndicate apps and no NT apps
-	store_file(new/datum/computer_file/program/filemanager(src))
+	default_programs = list(
+		/datum/computer_file/program/computerconfig,
+		/datum/computer_file/program/ntnetdownload/syndicate,
+		/datum/computer_file/program/filemanager,
+	)
 
 /obj/item/computer_hardware/hard_drive/micro
 	name = "micro solid state drive"

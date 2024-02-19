@@ -614,3 +614,8 @@
 		if(chosen_bodypart.status < BODYPART_ROBOTIC)
 			amount += chosen_bodypart.burn_dam
 	return amount
+
+/mob/proc/default_lighting_cutoff()
+	if(client?.combo_hud_enabled && client?.prefs?.toggles & COMBOHUD_LIGHTING)
+		return LIGHTING_CUTOFF_FULLBRIGHT
+	return initial(lighting_cutoff)
