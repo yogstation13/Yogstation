@@ -917,7 +917,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "preternis_eye"
 
 	if("preternis_core" in mutant_bodyparts)
-		if(H.w_uniform || (H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT)))
+		if(H.w_uniform || H.wear_suit)
 			bodyparts_to_add -= "preternis_core"
 
 	if("pod_hair" in mutant_bodyparts)
@@ -1046,7 +1046,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				continue
 
 			var/mutable_appearance/accessory_overlay 
-			accessory_overlay = mutable_appearance(S.icon)
+			accessory_overlay = mutable_appearance(S.icon, layer = -layer)
 
 			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
 			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph")
@@ -1087,9 +1087,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay
 
-			if(S.emissive)
+			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)))
 				var/mutable_appearance/emissive_accessory_overlay 
 				emissive_accessory_overlay  = emissive_appearance(S.icon, "placeholder", H)
+
 				//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
 				if(S.gender_specific)
 					emissive_accessory_overlay.icon_state = "[g]_[bodypart]_[S.icon_state]_[layertext]"
@@ -1099,29 +1100,28 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(S.center)
 					emissive_accessory_overlay = center_image(emissive_accessory_overlay, S.dimension_x, S.dimension_y)
 
-				if(!(HAS_TRAIT(H, TRAIT_HUSK)))
-					if(!forced_colour)
-						switch(S.color_src)
-							if(MUTCOLORS)
-								if(H.dna.check_mutation(HULK))			//HULK GO FIRST
-									emissive_accessory_overlay.color = "#00aa00"
-								else if(fixed_mut_color)													//Then fixed color if applicable
-									emissive_accessory_overlay.color = fixed_mut_color
-								else																		//Then snowflake color
-									emissive_accessory_overlay.color = H.dna.features["mcolor"]
-							if(HAIR)
-								if(hair_color == "mutcolor")
-									emissive_accessory_overlay.color = H.dna.features["mcolor"]
-								else if(hair_color == "fixedmutcolor")
-									emissive_accessory_overlay.color = fixed_mut_color
-								else
-									emissive_accessory_overlay.color = H.hair_color
-							if(FACEHAIR)
-								emissive_accessory_overlay.color = H.facial_hair_color
-							if(EYECOLOR)
-								emissive_accessory_overlay.color = H.eye_color
-					else
-						emissive_accessory_overlay.color = forced_colour
+				if(!forced_colour)
+					switch(S.color_src)
+						if(MUTCOLORS)
+							if(H.dna.check_mutation(HULK))			//HULK GO FIRST
+								emissive_accessory_overlay.color = "#00aa00"
+							else if(fixed_mut_color)													//Then fixed color if applicable
+								emissive_accessory_overlay.color = fixed_mut_color
+							else																		//Then snowflake color
+								emissive_accessory_overlay.color = H.dna.features["mcolor"]
+						if(HAIR)
+							if(hair_color == "mutcolor")
+								emissive_accessory_overlay.color = H.dna.features["mcolor"]
+							else if(hair_color == "fixedmutcolor")
+								emissive_accessory_overlay.color = fixed_mut_color
+							else
+								emissive_accessory_overlay.color = H.hair_color
+						if(FACEHAIR)
+							emissive_accessory_overlay.color = H.facial_hair_color
+						if(EYECOLOR)
+							emissive_accessory_overlay.color = H.eye_color
+				else
+					emissive_accessory_overlay.color = forced_colour
 				standing += emissive_accessory_overlay
 
 			if(S.hasinner)
