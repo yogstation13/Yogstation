@@ -303,7 +303,7 @@
 				heat_output *= 1.025
 				var/remove_amount = round(min(moderator_internal.get_moles(GAS_PLUONIUM), scaled_production * 1.35), 0.01)
 				moderator_internal.adjust_moles(GAS_PLUONIUM, -remove_amount)
-				delta_mod_list[GAS_PLUONIUM] += remove_amount
+				delta_mod_list[GAS_PLUONIUM] -= remove_amount
 
 		if(3, 4)
 			if(moderator_list[GAS_PLASMA] > 10)
