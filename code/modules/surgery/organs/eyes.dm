@@ -172,26 +172,23 @@
 	medium_light_cutoff = list(0, 20, 35)
 	high_light_cutoff = list(0, 40, 50)
 
+/obj/item/organ/eyes/zombie
+	name = "undead eyes"
+	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
+	color_cutoffs = list(25, 35, 5)
+
 //innate nightvision eyes
 /obj/item/organ/eyes/alien
 	name = "alien eyes"
 	desc = "It turned out they had them after all!"
 	sight_flags = SEE_MOBS
 	color_cutoffs = list(25, 5, 42)
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
-
-/obj/item/organ/eyes/zombie
-	name = "undead eyes"
-	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
-	color_cutoffs = list(25, 35, 5)
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 /obj/item/organ/eyes/shadow
 	name = "burning red eyes"
 	desc = "Even without their shadowy owner, looking at these eyes gives you a sense of dread."
 	icon_state = "burning_eyes"
 	color_cutoffs = list(20, 10, 40)
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 ///Robotic
 /obj/item/organ/eyes/robotic
@@ -243,7 +240,7 @@
 	sight_flags = SEE_MOBS
 	// We're gonna downshift green and blue a bit so darkness looks yellow
 	color_cutoffs = list(25, 8, 5)
-	flash_protect = -1
+	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/eyes/robotic/flashlight
 	name = "flashlight eyes"
@@ -279,7 +276,7 @@
 /obj/item/organ/eyes/robotic/shield
 	name = "shielded robotic eyes"
 	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
-	flash_protect = 2
+	flash_protect = FLASH_PROTECTION_WELDER
 
 /obj/item/organ/eyes/robotic/shield/emp_act(severity)
 	return
