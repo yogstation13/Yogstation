@@ -201,8 +201,7 @@
 	user.set_invis_see(SEE_INVISIBLE_LIVING) //can't see ghosts through cameras
 	user.set_sight(SEE_TURFS)
 	if(nightvision)
-		to_chat(world, "how does new night vision work")
-		///CHUBBY HOW DOES NEW NIGHT VISION WORK
+		lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	return TRUE
 
 /mob/camera/ai_eye/remote/Destroy()

@@ -331,10 +331,11 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/toggle/nightvision/Enable()
-	owner.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	owner.see_in_dark = 10
+	owner.lighting_color_cutoffs = list(12, 0, 50)
+	owner.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	owner.update_sight()
 
 /datum/action/cooldown/spell/toggle/nightvision/Disable()
-	owner.lighting_alpha = initial(owner.lighting_alpha)
-	owner.see_in_dark = initial(owner.see_in_dark)
+	owner.lighting_color_cutoffs = list(0, 0, 0)
+	owner.lighting_cutoff = 0
 	owner.update_sight()

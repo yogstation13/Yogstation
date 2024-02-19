@@ -67,9 +67,7 @@
 
 	current_mob.cut_overlay(veil_sigils)
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
-	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
-	if(cam)
-		cam.RemoveComponent()
+	qdel(current_mob.GetComponent(/datum/component/internal_cam))
 	QDEL_NULL(veil_sigils)
 	for(var/datum/action/cooldown/spell/spells in current_mob.actions)
 		if(spells.type in abilities) //I dont want big mobs to be able to use ash jaunt

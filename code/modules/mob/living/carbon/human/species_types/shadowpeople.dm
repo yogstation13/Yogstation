@@ -199,10 +199,10 @@
 /obj/item/organ/eyes/darkspawn //special eyes that innately have night vision without having a toggle that adds action clutter
 	name = "darkspawn eyes"
 	desc = "It turned out they had them after all!"
-	see_in_dark = 10
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable eyes than most
 	healing_factor = 2 * STANDARD_ORGAN_HEALING
-	lighting_alpha = 175 //enough to see well in darkness, but dark enough it's still possible to see where dark is
+	lighting_cutoff = 40 //stronger than any defines
+	color_cutoffs = list(12, 0, 50)
 	sight_flags = SEE_MOBS
 
 /obj/item/organ/ears/darkspawn //special ears that are a bit tankier and have innate sound protection

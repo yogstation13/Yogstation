@@ -30,8 +30,8 @@
 	mob_size = MOB_SIZE_HUGE
 
 	//night vision
-	see_in_dark = INFINITY
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	lighting_color_cutoffs = list(12, 0, 50)
+	lighting_cutoff = 40
 
 	//flavour
 	attack_sound = 'yogstation/sound/creatures/progenitor_attack.ogg'

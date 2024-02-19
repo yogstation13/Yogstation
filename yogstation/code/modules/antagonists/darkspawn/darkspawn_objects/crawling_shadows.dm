@@ -26,8 +26,8 @@
 	melee_damage_upper = 5
 
 	//sight variables
-	lighting_alpha = 175 //same as darkspawn eyes
-	see_in_dark = 10
+	lighting_color_cutoffs = list(12, 0, 50)
+	lighting_cutoff = 40
 
 	//death variables
 	del_on_death = TRUE

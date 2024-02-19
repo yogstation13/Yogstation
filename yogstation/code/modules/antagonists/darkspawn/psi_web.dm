@@ -84,9 +84,7 @@
 	owner.AddComponent(/datum/component/shadow_step)
 
 /datum/psi_web/scout/on_loss()
-	var/datum/component/mood/shadow_walk = owner.GetComponent(/datum/component/shadow_step)
-	if(shadow_walk)
-		shadow_walk.RemoveComponent()
+	qdel(owner.GetComponent(/datum/component/shadow_step))
 
 /datum/psi_web/warlock
 	name = "warlock ability"

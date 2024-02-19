@@ -116,9 +116,7 @@
 	owner.current.remove_language(/datum/language/darkspawn)
 	owner.current.faction -= ROLE_DARKSPAWN
 	if(owner.current)
-		var/datum/component/internal_cam/cam = owner.current.GetComponent(/datum/component/internal_cam)
-		if(cam)
-			cam.RemoveComponent()
+		qdel(owner.current.GetComponent(/datum/component/internal_cam))
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Greet and Objective---------------------------------//
