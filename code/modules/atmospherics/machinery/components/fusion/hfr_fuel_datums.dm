@@ -149,6 +149,6 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 	gas_production_multiplier = 3
 	temperature_change_multiplier = 0.6
 	requirements = list(GAS_PLUOXIUM, GAS_ANTINOB)
-	primary_products = list(GAS_FREON, GAS_HYPERNOB)
+	primary_products = list(GAS_FREON, GAS_BZ)
 	secondary_products = list(GAS_HALON, GAS_HEXANE, GAS_MIASMA, GAS_NITRIUM, GAS_HEALIUM, GAS_ZAUKER)
 	meltdown_flags = HYPERTORUS_FLAG_DEVASTATING_EXPLOSION | HYPERTORUS_FLAG_RADIATION_PULSE | HYPERTORUS_FLAG_EMP | HYPERTORUS_FLAG_MASSIVE_SPREAD | HYPERTORUS_FLAG_CRITICAL_MELTDOWN
