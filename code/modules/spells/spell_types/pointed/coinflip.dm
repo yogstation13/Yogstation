@@ -41,7 +41,7 @@
 	cast_on.add_atom_colour("#802796", ADMIN_COLOUR_PRIORITY)
 	cast_on.SetImmobilized(10 HOURS)
 	cast_on.adjust_blindness(10 HOURS)
-	select_coin(cast_on) ///chhange this back to cast_on from owner after done testing
+	select_coin(cast_on)
 	cast_on.remove_atom_colour(ADMIN_COLOUR_PRIORITY)
 
 	return TRUE
