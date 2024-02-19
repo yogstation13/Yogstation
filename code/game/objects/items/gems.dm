@@ -110,17 +110,10 @@
 	light_power = 1
 	light_color = "#b714cc"
 
-	var/obj/item/gps/internal //stolen from the world anvil
 
 /obj/item/gem/purple/Initialize(mapload)
 	. = ..()
-	internal = new /obj/item/gps/internal/purple(src)
-
-/obj/item/gps/internal/purple
-	icon_state = null
-	gpstag = "Harmonic Signal"
-	desc = "It's ringing."
-	invisibility = 100
+	AddComponent(/datum/component/gps,"Harmonic Signal")
 
 /obj/item/gem/amber
 	name = "draconic amber"

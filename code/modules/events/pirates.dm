@@ -22,15 +22,12 @@
 	var/paid_off = FALSE
 	var/ship_name = "Space Privateers Association"
 	var/shuttle_spawned = FALSE
-	/// The beacon that the crew can shoot to cancel the event. See [/obj/item/gps/pirate] and [/obj/machinery/computer/bsa_control]
-	var/obj/item/gps/pirate/beacon
 
 /datum/round_event/pirates/setup()
 	var/the = prob(50) ? "The " : ""
 	var/start = pick(strings(PIRATE_NAMES_FILE, "ship_name_start"))
 	var/end = pick(strings(PIRATE_NAMES_FILE, "ship_name_end"))
 	ship_name = "[the][start] [end]"
-	beacon = new(ship_name)
 
 /datum/round_event/pirates/announce(fake)
 	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", SSstation.announcer.get_rand_report_sound())
@@ -83,7 +80,6 @@
 		spawn_shuttle()
 
 /datum/round_event/pirates/proc/spawn_shuttle()
-	qdel(beacon)
 	shuttle_spawned = TRUE
 
 	var/list/candidates = pollGhostCandidates("Do you wish to be considered for pirate crew?", ROLE_TRAITOR)
@@ -128,34 +124,33 @@
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	density = TRUE
+	/// Is the machine siphoning right now
 	var/active = FALSE
-	var/obj/item/gps/gps
+	/// The amount of money stored in the machine
 	var/credits_stored = 0
+	/// The amount of money removed per tick
 	var/siphon_per_tick = 5
 
 /obj/machinery/shuttle_scrambler/Initialize(mapload)
 	. = ..()
-	gps = new/obj/item/gps/internal/pirate(src)
-	gps.tracking = FALSE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/shuttle_scrambler/process()
-	if(active)
-		if(is_station_level(z))
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				var/siphoned = min(D.account_balance,siphon_per_tick)
-				D.adjust_money(-siphoned)
-				credits_stored += siphoned
-			interrupt_research()
-		else
-			return
-	else
-		STOP_PROCESSING(SSobj,src)
+	if(!active)
+		return PROCESS_KILL
+
+	if(!is_station_level(z))
+		return
+	
+	var/datum/bank_account/account = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	var/siphoned = min(account.account_balance,siphon_per_tick)
+	account.adjust_money(-siphoned)
+	credits_stored += siphoned
+	interrupt_research()
 
 /obj/machinery/shuttle_scrambler/proc/toggle_on(mob/user)
 	SSshuttle.registerTradeBlockade(src)
-	gps.tracking = TRUE
+	AddComponent(/datum/component/gps, "Nautical Signal")
 	active = TRUE
 	to_chat(user,span_notice("You toggle [src] [active ? "on":"off"]."))
 	to_chat(user,span_warning("The scrambling signal can be now tracked by GPS."))
@@ -191,20 +186,15 @@
 
 /obj/machinery/shuttle_scrambler/proc/toggle_off(mob/user)
 	SSshuttle.clearTradeBlockade(src)
-	gps.tracking = FALSE
 	active = FALSE
 	STOP_PROCESSING(SSobj,src)
 
 /obj/machinery/shuttle_scrambler/update_icon_state()
-	. = ..()
-	if(active)
-		icon_state = "dominator-blue"
-	else
-		icon_state = "dominator"
+	icon_state = active ? "dominator-Blue" : "dominator"
+	return ..()
 
 /obj/machinery/shuttle_scrambler/Destroy()
 	toggle_off()
-	QDEL_NULL(gps)
 	return ..()
 
 /obj/item/gps/internal/pirate
@@ -231,7 +221,7 @@
 
 /obj/docking_port/mobile/pirate
 	name = "pirate shuttle"
-	id = "pirateship"
+	shuttle_id = "pirateship"
 	rechargeTime = 3 MINUTES
 
 /obj/machinery/suit_storage_unit/pirate

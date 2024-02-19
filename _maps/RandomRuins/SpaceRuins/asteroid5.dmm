@@ -13,7 +13,7 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	id = "whiteship_mining1";
+	shuttle_id = "whiteship_mining1";
 	name = "Small Asteroid";
 	width = 35
 	},

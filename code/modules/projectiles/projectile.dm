@@ -10,6 +10,9 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	movement_type = FLYING
 	wound_bonus = CANT_WOUND // can't wound by default
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	layer = MOB_LAYER
+	//The sound this plays on impact.
 	var/hitsound = 'sound/weapons/pierce.ogg'
 	var/hitsound_wall = ""
 
@@ -35,7 +38,14 @@
 	var/datum/point/vector/trajectory
 	var/trajectory_ignore_forcemove = FALSE	//instructs forceMove to NOT reset our trajectory to the new location!
 
-	var/speed = 0.8			//Amount of deciseconds it takes for projectile to travel
+	/// If objects are below this layer, we pass through them
+	var/hit_threshhold = PROJECTILE_HIT_THRESHHOLD_LAYER
+
+	/// During each fire of SSprojectiles, the number of deciseconds since the last fire of SSprojectiles
+	/// is divided by this var, and the result truncated to the next lowest integer is
+	/// the number of times the projectile's `pixel_move` proc will be called.
+	var/speed = 0.8
+
 	var/Angle = 0
 	var/original_angle = 0		//Angle at firing
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
@@ -338,13 +348,13 @@
 
 	return process_hit(T, select_target(T, A))
 
-#define QDEL_SELF 1			//Delete if we're not UNSTOPPABLE flagged non-temporarily
+#define QDEL_SELF 1			//Delete if we're not PHASING flagged non-temporarily
 #define DO_NOT_QDEL 2		//Pass through.
 #define FORCE_QDEL 3		//Force deletion.
 
 /obj/projectile/proc/process_hit(turf/T, atom/target, qdel_self, hit_something = FALSE)		//probably needs to be reworked entirely when pixel movement is done.
 	if(QDELETED(src) || !T || !target)		//We're done, nothing's left.
-		if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, UNSTOPPABLE)))
+		if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, PHASING)))
 			qdel(src)
 		return hit_something
 	impacted |= target		//Make sure we're never hitting it again. If we ever run into weirdness with piercing projectiles needing to hit something multiple times.. well.. that's a to-do.
@@ -352,9 +362,9 @@
 		return process_hit(T, select_target(T), qdel_self, hit_something)		//Hit whatever else we can since that didn't work.
 	var/result = target.bullet_act(src, def_zone)
 	if(result == BULLET_ACT_FORCE_PIERCE)
-		if(!CHECK_BITFIELD(movement_type, UNSTOPPABLE))
+		if(!CHECK_BITFIELD(movement_type, PHASING))
 			temporary_unstoppable_movement = TRUE
-			ENABLE_BITFIELD(movement_type, UNSTOPPABLE)
+			ENABLE_BITFIELD(movement_type, PHASING)
 		return process_hit(T, select_target(T), qdel_self, TRUE)		//Hit whatever else we can since we're piercing through but we're still on the same tile.
 	else if(result == BULLET_ACT_PENETRATE) // This is slightly different from ACT_TURF in that it goes through the first thing
 		return process_hit(T, select_target(T), qdel_self, TRUE)
@@ -363,7 +373,7 @@
 	else		//Whether it hit or blocked, we're done!
 		qdel_self = QDEL_SELF
 		hit_something = TRUE
-	if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, UNSTOPPABLE)))
+	if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, PHASING)))
 		qdel(src)
 	return hit_something
 
@@ -641,7 +651,7 @@
 	if(target.density)		//This thing blocks projectiles, hit it regardless of layer/mob stuns/etc.
 		return TRUE
 	if(!isliving(target))
-		if(target.layer < PROJECTILE_HIT_THRESHHOLD_LAYER)
+		if(target.layer < hit_threshhold)
 			return FALSE
 	else
 		var/mob/living/L = target
@@ -721,7 +731,7 @@
 	if(.)
 		if(temporary_unstoppable_movement)
 			temporary_unstoppable_movement = FALSE
-			DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+			DISABLE_BITFIELD(movement_type, PHASING)
 		if(fired && can_hit_target(original, impacted, TRUE))
 			Bump(original)
 

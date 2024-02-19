@@ -803,7 +803,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 
 //Has moderate mechanical usage; stuff that would actually benefit the player with the right situation and the right access.
 GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
-	/obj/item/aiModule/toyAI = W_MYTHICAL,
+	/obj/item/aiModule/ion/toyAI = W_MYTHICAL,
 	/obj/item/a_gift/anything = W_UNCOMMON,
 	/obj/item/aicard/aitater = W_RARE,
 	/obj/item/ammo_box/foambox/riot = W_RARE,

@@ -77,7 +77,6 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.sec_hud_set_ID()
-
 	return TRUE
 
 

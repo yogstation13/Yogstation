@@ -47,7 +47,7 @@
 	if(!silent)
 		to_chat(src, span_danger("Alternative data core detected. Rerouting connection..."))
 	new_data_core.transfer_AI(src)
-	
+
 
 /mob/living/silicon/ai/proc/death_prompt()
 	to_chat(src, span_userdanger("Unable to re-establish connection to data core. System shutting down..."))

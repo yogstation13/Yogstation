@@ -50,7 +50,6 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	light_range = 3
 	light_on = FALSE
 	hud_type = /datum/hud/guardian
-	see_in_dark = 8
 	var/list/barrier_images = list()
 	var/custom_name = FALSE
 	var/atk_cooldown = 10
@@ -113,17 +112,17 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	if (sx - range - 1 < 1 || sx + range + 1 > world.maxx || sy - range - 1 < 1 || sy + range + 1 > world.maxy)
 		return
 	for (var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
-		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, SOUTH)
+		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_PLANE, SOUTH)
 	for (var/turf/T in getline(locate(sx - range, sy - range - 1, sz), locate(sx + range, sy - range - 1, sz)))
-		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, NORTH)
+		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_PLANE, NORTH)
 	for (var/turf/T in getline(locate(sx - range - 1, sy - range, sz), locate(sx - range - 1, sy + range, sz)))
-		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
+		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_PLANE, EAST)
 	for (var/turf/T in getline(locate(sx + range + 1, sy - range, sz), locate(sx + range + 1, sy + range, sz)))
-		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, WEST)
-	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1 , sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHEAST)
-	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHWEST)
-	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHWEST)
-	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHEAST)
+		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_PLANE, WEST)
+	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1 , sy + range + 1, sz), "barrier", ABOVE_LIGHTING_PLANE, SOUTHEAST)
+	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy + range + 1, sz), "barrier", ABOVE_LIGHTING_PLANE, SOUTHWEST)
+	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_PLANE, NORTHWEST)
+	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_PLANE, NORTHEAST)
 	for (var/image/I in barrier_images)
 		I.layer = ABOVE_LIGHTING_PLANE
 		I.plane = FLOOR_PLANE
@@ -382,6 +381,17 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		return
 	return ..()
 
+/mob/living/simple_animal/hostile/guardian/proc/break_cuffs(mob/living/carbon/target, obj/item/restraints/cuffs)
+	. = TRUE
+	if (!target || !istype(target) || !cuffs || !istype(cuffs))
+		return FALSE
+	if (stats.damage < cuffs.break_strength)
+		to_chat(src, span_warning("You are not strong enough to free your master from their restraints..."))
+		return FALSE
+	playsound(target, 'sound/effects/bang.ogg', 50, TRUE)
+	visible_message(span_danger("[src] smashes \the [cuffs] restraining [target]!"))
+	qdel(cuffs)
+
 /mob/living/simple_animal/hostile/guardian/AttackingTarget()
 	if (transforming)
 		to_chat(src, span_italics(span_holoparasite("No... no... you can't!")))
@@ -399,6 +409,22 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 			to_chat(src, span_bolddanger("You can't attack yourself!"))
 			return FALSE
 		else if (target == summoner?.current)
+			if (iscarbon(target))
+				var/mob/living/carbon/stando_master = target
+				if (stando_master.handcuffed || stando_master.legcuffed)
+					if (stando_master.handcuffed && break_cuffs(stando_master, stando_master.handcuffed))
+						stando_master.handcuffed = null
+						stando_master.update_handcuffed()
+						for (var/zone in list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+							stando_master.apply_damage(5, BRUTE, zone)
+					else if (stando_master.legcuffed && break_cuffs(stando_master, stando_master.legcuffed)) // you gotta do it twice for both hand and leg cuffs
+						stando_master.legcuffed = null
+						stando_master.update_inv_legcuffed()
+						for (var/zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
+							stando_master.apply_damage(5, BRUTE, zone)
+					if (stando_master.pulledby && stando_master.pulledby != src)
+						stando_master.pulledby.stop_pulling()
+					return
 			to_chat(src, span_bolddanger("You can't attack your summoner!"))
 			return FALSE
 		else if (istype(target, /mob/living/simple_animal/hostile/guardian))

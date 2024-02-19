@@ -98,7 +98,7 @@ GLOBAL_LIST_EMPTY(zombies)
 
 /datum/game_mode/zombie/proc/call_shuttle()
 	priority_announce("Foreign Biosignatures present onboard station. Activating automatic evacuation system...")
-	SSshuttle.emergencyNoRecall = TRUE
+	SSshuttle.emergency_no_recall = TRUE
 	if(EMERGENCY_IDLE_OR_RECALLED)
 		SSshuttle.emergency.request(null, set_coefficient=0.5)
 

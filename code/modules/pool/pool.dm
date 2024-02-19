@@ -22,7 +22,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "pool"
 	sound = 'sound/effects/splash.ogg'
-	flags_1 = CAN_BE_DIRTY_1|RAD_CONTAIN_CONTENTS // contains most of the rads on the tile within that tile
+	flags_1 = RAD_CONTAIN_CONTENTS // contains most of the rads on the tile within that tile
 	var/id = null //Set me if you don't want the pool and the pump to be in the same area, or you have multiple pools per area.
 	var/obj/effect/water_overlay = null
 
@@ -74,20 +74,22 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	. = ..()
 	if(!istype(newloc, /turf/open/indestructible/sound/pool))
 		var/datum/component/swimming/S = Obj.GetComponent(/datum/component/swimming) //Handling admin TPs here.
-		S?.RemoveComponent()
+		if(S)
+			qdel(S)
 
 /turf/open/MouseDrop_T(atom/dropping, mob/user)
+	. = ..()
 	if(!isliving(user) || !isliving(dropping)) //No I don't want ghosts to be able to dunk people into the pool.
 		return
 	var/atom/movable/AM = dropping
 	var/datum/component/swimming/S = dropping.GetComponent(/datum/component/swimming)
-	if(S)
-		if(do_after(user, 1 SECONDS, src))
-			S.RemoveComponent()
-			visible_message("<span class='notice'>[dropping] climbs out of the pool.</span>")
-			AM.forceMove(src)
-	else
-		. = ..()
+	if(!S)
+		return
+	if(!do_after(user, 1 SECONDS, src))
+		return
+	qdel(S)
+	visible_message("<span class='notice'>[dropping] climbs out of the pool.</span>")
+	AM.forceMove(src)
 
 /turf/open/indestructible/sound/pool/MouseDrop_T(atom/dropping, mob/user)
 	if(!isliving(user) || !isliving(dropping)) //No I don't want ghosts to be able to dunk people into the pool.
@@ -314,7 +316,7 @@ GLOBAL_LIST_EMPTY(pool_filters)
 	if(S)
 		to_chat(user, "<span class='notice'>You start to climb out of the pool...</span>")
 		if(do_after(user, 1 SECONDS, src))
-			S.RemoveComponent()
+			qdel(S)
 			visible_message("<span class='notice'>[user] climbs out of the pool.</span>")
 			if(!reversed)
 				user.forceMove(get_turf(get_step(src, NORTH))) //Ladders shouldn't adjoin another pool section. Ever.

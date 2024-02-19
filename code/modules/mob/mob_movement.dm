@@ -140,14 +140,13 @@
 	else
 		move_delay = world.time
 
+	//this is in two areas, i have no clue why, all i know is that i hate it and don't have the time to fix it
 	if(L.has_status_effect(/datum/status_effect/confusion))
 		var/newdir = 0
-		if(L.get_timed_status_effect_duration(/datum/status_effect/confusion) > 40)
-			newdir = pick(GLOB.alldirs)
-		else if(prob(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 1.5))
-			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
-		else if(prob(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 3))
+		if(prob(50))
 			newdir = angle2dir(dir2angle(direct) + pick(45, -45))
+		else if(prob(50) && L.get_timed_status_effect_duration(/datum/status_effect/confusion) > 10 SECONDS)
+			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
 		if(newdir)
 			direct = newdir
 			n = get_step(L, direct)
@@ -261,7 +260,7 @@
 						R.reveal(20)
 						R.stun(20)
 					return
-				if(stepTurf.flags_1 & NOJAUNT_1)
+				if(stepTurf.turf_flags & NOJAUNT)
 					to_chat(L, span_warning("Some strange aura is blocking the way."))
 					return
 				if (locate(/obj/effect/blessing, stepTurf))
@@ -502,11 +501,30 @@
 	set name = "Move Upwards"
 	set category = "IC"
 
+	if(remote_control)
+		return remote_control.relaymove(src, UP)
+
+	var/turf/current_turf = get_turf(src)
+	var/turf/above_turf = GET_TURF_ABOVE(current_turf)
+
+	if(!above_turf)
+		to_chat(src, span_warning("There's nowhere to go in that direction!"))
+		return
+
 	if(ismovable(loc)) //Inside an object, tell it we moved
 		var/atom/loc_atom = loc
 		return loc_atom.relaymove(src, UP)
 
-	if(zMove(UP, TRUE))
+	var/ventcrawling_flag = HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING) ? ZMOVE_VENTCRAWLING : 0
+
+	if(can_z_move(DOWN, above_turf, current_turf, ZMOVE_FALL_FLAGS|ventcrawling_flag)) //Will we fall down if we go up?
+		if(buckled)
+			to_chat(src, span_warning("[buckled] is is not capable of flight."))
+		else
+			to_chat(src, span_warning("You are not Superman."))
+		return
+
+	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK|ventcrawling_flag))
 		to_chat(src, span_notice("You move upwards."))
 
 ///Moves a mob down a z level
@@ -514,35 +532,28 @@
 	set name = "Move Down"
 	set category = "IC"
 
+	if(remote_control)
+		return remote_control.relaymove(src, DOWN)
+
+	var/turf/current_turf = get_turf(src)
+	var/turf/below_turf = GET_TURF_BELOW(current_turf)
+	
+	if(!below_turf)
+		to_chat(src, span_warning("There's nowhere to go in that direction!"))
+		return
+
 	if(ismovable(loc)) //Inside an object, tell it we moved
 		var/atom/loc_atom = loc
 		return loc_atom.relaymove(src, DOWN)
 
-	if(zMove(DOWN, TRUE))
+	var/ventcrawling_flag = HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING) ? ZMOVE_VENTCRAWLING : 0
+
+	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK|ventcrawling_flag))
 		to_chat(src, span_notice("You move down."))
+	return FALSE
 
 /mob/abstract_move(atom/destination)
 	var/turf/new_turf = get_turf(destination)
 	if(new_turf && (istype(new_turf, /turf/cordon/secret) || is_secret_level(new_turf.z)) && !client?.holder)
 		return
 	return ..()
-
-///Move a mob between z levels, if it's valid to move z's on this turf
-/mob/proc/zMove(dir, feedback = FALSE)
-	if(dir != UP && dir != DOWN)
-		return FALSE
-	var/turf/target = get_step_multiz(src, dir)
-	if(!target)
-		if(feedback)
-			to_chat(src, span_warning("There's nothing [dir == DOWN ? "below" : "above"] you!"))
-		return FALSE
-	if(!canZMove(dir, target))
-		if(feedback)
-			to_chat(src, span_warning("You couldn't move there!"))
-		return FALSE
-	forceMove(target)
-	return TRUE
-
-/// Can this mob move between z levels
-/mob/proc/canZMove(direction, turf/target)
-	return FALSE

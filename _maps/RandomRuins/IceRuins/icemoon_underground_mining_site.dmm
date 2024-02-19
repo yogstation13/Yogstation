@@ -11,7 +11,7 @@
 /area/template_noop)
 "f" = (
 /obj/item/flashlight/lantern{
-	on = 1
+	light_on = 1
 	},
 /turf/open/floor/plating/ice/icemoon,
 /area/icemoon/underground/explored)
