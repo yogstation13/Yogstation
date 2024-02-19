@@ -383,9 +383,9 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/venom
-	name = "\improper C-40M \"Snakebite\" Carbine"
+	name = "\improper K0-B3 \"Snakebite\" Carbine"
 	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
-	icon_state = "mecha_carbine"
+	icon_state = "mecha_venom"
 	equip_cooldown = 10
 	fire_sound = 'sound/weapons/smgshot.ogg'
 	projectile = /obj/projectile/bullet/c45/venom	//yes the same one
