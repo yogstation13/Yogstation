@@ -16,7 +16,7 @@
 <h1>machinery <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/machinery/_machinery.dm#L86">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L86">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 86"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -25,42 +25,69 @@
             <tr><th><a href="obj/machinery.html#var/last_user_mobtype">last_user_mobtype</a></th><td>Mobtype of last user. Typecast to <a href="mob/living.html" title="/mob/living">/mob/living</a> for initial() usage</td></tr>
             <tr><th><a href="obj/machinery.html#var/subsystem_type">subsystem_type</a></th><td>What subsystem this machine will use, which is generally SSmachines or SSfastprocess. By default all machinery use SSmachines. This fires a machine's process() roughly every 2 seconds.</td></tr>
             <tr><th><a href="obj/machinery.html#var/tgui_id">tgui_id</a></th><td>For storing and overriding ui id</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery.html#proc/dropContents">dropContents</a></th><td>Drop every movable atom in the machine's contents list, including any components and circuit.</td></tr>
+            <tr><th><a href="obj/machinery.html#proc/get_room_area">get_room_area</a></th><td>Get a valid powered area to reference for power use, mainly for wall-mounted machinery that isn't always mapped directly in a powered location.</td></tr>
+            <tr><th><a href="obj/machinery.html#proc/open_machine">open_machine</a></th><td>Opens the machine.</td></tr>
             <tr><th><a href="obj/machinery.html#proc/power_change">power_change</a></th><td>Called whenever the power settings of the containing area change</td></tr>
             <tr><th><a href="obj/machinery.html#proc/try_put_in_hand">try_put_in_hand</a></th><td>Puts passed object in to user's hand</td></tr></table>
     <h2 id="var">Var Details</h2><h3 id="var/atmos_processing"><aside class="declaration">var </aside>atmos_processing
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/machinery/_machinery.dm#L141">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 141"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 142"/></a></h3>
         <p>Boolean on whether this machines interact with atmos</p><h3 id="var/last_used_time"><aside class="declaration">var </aside>last_used_time
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/machinery/_machinery.dm#L136">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 136"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 137"/></a></h3>
         <p>world.time of last use by <a href="mob/living.html" title="/mob/living">/mob/living</a></p><h3 id="var/last_user_mobtype"><aside class="declaration">var </aside>last_user_mobtype
             <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/machinery/_machinery.dm#L138">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 138"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 139"/></a></h3>
         <p>Mobtype of last user. Typecast to <a href="mob/living.html" title="/mob/living">/mob/living</a> for initial() usage</p><h3 id="var/subsystem_type"><aside class="declaration">var </aside>subsystem_type
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/machinery/_machinery.dm#L122">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 122"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 123"/></a></h3>
         <p>What subsystem this machine will use, which is generally SSmachines or SSfastprocess. By default all machinery use SSmachines. This fires a machine's process() roughly every 2 seconds.</p><h3 id="var/tgui_id"><aside class="declaration">var </aside>tgui_id
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/machinery/_machinery.dm#L134">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 134"/></a></h3>
-        <p>For storing and overriding ui id</p><h2 id="proc">Proc Details</h2><h3 id="proc/power_change"><aside class="declaration">proc </aside>power_change<aside>() 
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 135"/></a></h3>
+        <p>For storing and overriding ui id</p><h2 id="proc">Proc Details</h2><h3 id="proc/dropContents"><aside class="declaration">proc </aside>dropContents<aside>(/list/subset) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/power/power.dm#L117">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 221"/></a></aside>
+        </h3>
+        <p>Drop every movable atom in the machine's contents list, including any components and circuit.</p><h3 id="proc/get_room_area"><aside class="declaration">proc </aside>get_room_area<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L716">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 716"/></a></aside>
+        </h3>
+        <p>Get a valid powered area to reference for power use, mainly for wall-mounted machinery that isn't always mapped directly in a powered location.</p><h3 id="proc/open_machine"><aside class="declaration">proc </aside>open_machine<aside>(drop, density_to_set) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 210"/></a></aside>
+        </h3>
+        <p>Opens the machine.</p>
+<p>Will update the machine icon and any user interfaces currently open.
+Arguments:</p>
+<ul>
+<li>drop - Boolean. Whether to drop any stored items in the machine. Does not include components.</li>
+<li>density - Boolean. Whether to make the object dense when it's open.</li>
+</ul><h3 id="proc/power_change"><aside class="declaration">proc </aside>power_change<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/power/power.dm#L117">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;power.dm 117"/></a></aside>
         </h3>
         <p>Called whenever the power settings of the containing area change</p>
@@ -68,8 +95,8 @@
 <p>Returns TRUE if the NOPOWER flag was toggled</p><h3 id="proc/try_put_in_hand"><aside class="declaration">proc </aside>try_put_in_hand<aside>(/<a href="obj.html">obj</a>/object, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/machinery/_machinery.dm#L686">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 686"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/machinery/_machinery.dm#L703">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 703"/></a></aside>
         </h3>
         <p>Puts passed object in to user's hand</p>
 <p>Puts the passed object in to the users hand if they are adjacent.
@@ -81,7 +108,7 @@ If the user is not adjacent then place the object on top of the machine.</p>
 </ul></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/556f8c788c797a4d3ce54024aaeb6827d8bca32a">556f8c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;riding - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/riding.html#var">Var Details</a> - <a href="datum/component/riding.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/riding.html">riding</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 8"/></a></h1>
+
+<p>This is the riding component, which is applied to a movable atom by the <a href="datum/element.html" title="/datum/element">ridable element</a> when a mob is successfully buckled to said movable.</p>
+<p>This component lives for as long as at least one mob is buckled to the parent. Once all mobs are unbuckled, the component is deleted, until another mob is buckled in
+and we make a new riding component, so on and so forth until the sun explodes.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/riding.html#var/allowed_turf_typecache">allowed_turf_typecache</a></th><td>allow typecache for only certain turfs, forbid to allow all but those. allow only certain turfs will take precedence.</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/can_force_unbuckle">can_force_unbuckle</a></th><td>can anyone other than the rider unbuckle the rider?</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/directional_vehicle_layers">directional_vehicle_layers</a></th><td>[&quot;[DIRECTION]&quot;] = layer. Don't set it for a direction for default, set a direction to null for no change.</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/directional_vehicle_offsets">directional_vehicle_offsets</a></th><td>same as above but instead of layer you have a list(px, py)</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/forbid_turf_typecache">forbid_turf_typecache</a></th><td>allow typecache for only certain turfs, forbid to allow all but those. allow only certain turfs will take precedence.</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/keytype">keytype</a></th><td>If the driver needs a certain item in hand (or inserted, for vehicles) to drive this. For vehicles, this must be duplicated on the actual vehicle object in their
+[/obj/vehicle/var/key_type] variable because the vehicle objects still have a few special checks/functions of their own I'm not porting over to the riding component
+quite yet. Make sure if you define it on the vehicle, you define it here too.</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/message_cooldown">message_cooldown</a></th><td>For telling someone they can't drive</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/override_allow_spacemove">override_allow_spacemove</a></th><td>We don't need roads where we're going if this is TRUE, allow normal movement in space tiles</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/ride_check_flags">ride_check_flags</a></th><td>Ride check flags defined for the specific riding component types, so we know if we need arms, legs, or whatever.
+Takes additional flags from the ridable element and the buckle proc (buckle_mob_flags) for riding cyborgs/humans in case we need to reserve arms</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/riding_offsets">riding_offsets</a></th><td>position_of_user = list(dir = list(px, py)), or RIDING_OFFSET_ALL for a generic one.</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/vehicle_move_cooldown">vehicle_move_cooldown</a></th><td>For telling someone they can't drive</td></tr>
+            <tr><th><a href="datum/component/riding.html#var/vehicle_move_delay">vehicle_move_delay</a></th><td>tick delay between movements, lower = faster, higher = slower</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/riding.html#proc/handle_vehicle_layer">handle_vehicle_layer</a></th><td>Some ridable atoms may want to only show on top of the rider in certain directions, like wheelchairs</td></tr>
+            <tr><th><a href="datum/component/riding.html#proc/riding_can_z_move">riding_can_z_move</a></th><td>Extra checks before buckled.can_z_move can be called in mob/living/can_z_move()</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/allowed_turf_typecache"><aside class="declaration">var </aside>allowed_turf_typecache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 35"/></a></h3>
+        <p>allow typecache for only certain turfs, forbid to allow all but those. allow only certain turfs will take precedence.</p><h3 id="var/can_force_unbuckle"><aside class="declaration">var </aside>can_force_unbuckle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 41"/></a></h3>
+        <p>can anyone other than the rider unbuckle the rider?</p><h3 id="var/directional_vehicle_layers"><aside class="declaration">var </aside>directional_vehicle_layers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 31"/></a></h3>
+        <p>[&quot;[DIRECTION]&quot;] = layer. Don't set it for a direction for default, set a direction to null for no change.</p><h3 id="var/directional_vehicle_offsets"><aside class="declaration">var </aside>directional_vehicle_offsets
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 33"/></a></h3>
+        <p>same as above but instead of layer you have a list(px, py)</p><h3 id="var/forbid_turf_typecache"><aside class="declaration">var </aside>forbid_turf_typecache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 37"/></a></h3>
+        <p>allow typecache for only certain turfs, forbid to allow all but those. allow only certain turfs will take precedence.</p><h3 id="var/keytype"><aside class="declaration">var </aside>keytype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 23"/></a></h3>
+        <p>If the driver needs a certain item in hand (or inserted, for vehicles) to drive this. For vehicles, this must be duplicated on the actual vehicle object in their
+[/obj/vehicle/var/key_type] variable because the vehicle objects still have a few special checks/functions of their own I'm not porting over to the riding component
+quite yet. Make sure if you define it on the vehicle, you define it here too.</p><h3 id="var/message_cooldown"><aside class="declaration">var </aside>message_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 49"/></a></h3>
+        <p>For telling someone they can't drive</p><h3 id="var/override_allow_spacemove"><aside class="declaration">var </aside>override_allow_spacemove
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 39"/></a></h3>
+        <p>We don't need roads where we're going if this is TRUE, allow normal movement in space tiles</p><h3 id="var/ride_check_flags"><aside class="declaration">var </aside>ride_check_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 47"/></a></h3>
+        <p>Ride check flags defined for the specific riding component types, so we know if we need arms, legs, or whatever.
+Takes additional flags from the ridable element and the buckle proc (buckle_mob_flags) for riding cyborgs/humans in case we need to reserve arms</p><h3 id="var/riding_offsets"><aside class="declaration">var </aside>riding_offsets
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 29"/></a></h3>
+        <p>position_of_user = list(dir = list(px, py)), or RIDING_OFFSET_ALL for a generic one.</p><h3 id="var/vehicle_move_cooldown"><aside class="declaration">var </aside>vehicle_move_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 51"/></a></h3>
+        <p>For telling someone they can't drive</p><h3 id="var/vehicle_move_delay"><aside class="declaration">var </aside>vehicle_move_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 13"/></a></h3>
+        <p>tick delay between movements, lower = faster, higher = slower</p><h2 id="proc">Proc Details</h2><h3 id="proc/handle_vehicle_layer"><aside class="declaration">proc </aside>handle_vehicle_layer<aside>(dir) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 89"/></a></aside>
+        </h3>
+        <p>Some ridable atoms may want to only show on top of the rider in certain directions, like wheelchairs</p><h3 id="proc/riding_can_z_move"><aside class="declaration">proc </aside>riding_can_z_move<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/movable_parent, direction, /<a href="turf.html">turf</a>/start, /<a href="turf.html">turf</a>/destination, z_move_flags, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/rider) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/riding.dm#L455">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding.dm 455"/></a></aside>
+        </h3>
+        <p>Extra checks before buckled.can_z_move can be called in mob/living/can_z_move()</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;unsorted.dm - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/__HELPERS/unsorted.dm 
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/__HELPERS/unsorted.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;unsorted.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/proc/<a href="global.html#proc/get_nested_locs">get_nested_locs</a></th>
+                <td>Returns a list of all locations (except the area) the movable is within.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/stoplag">stoplag</a></th>
+                <td>returns the number of ticks slept</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/REF">REF</a></th>
+                <td>\ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+If it ever becomes necesary to get a more performant REF(), this lies here in wait
+#define REF(thing) (thing &amp;&amp; isdatum(thing) &amp;&amp; (thing:datum_flags &amp; DF_USE_TAG) &amp;&amp; thing:tag ? &quot;[thing:tag]&quot; : text_ref(thing))</td></tr></table></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

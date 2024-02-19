@@ -16,32 +16,40 @@
 <h1>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/_onclick/hud/map_popups.dm#L10">
-        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 10"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/screen_objects.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects.dm 9"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
             <tr><th><a href="atom/movable/screen.html#var/assigned_map">assigned_map</a></th><td>Map name assigned to this object.
 Automatically set by /client/proc/add_obj_to_map.</td></tr>
+            <tr><th><a href="atom/movable/screen.html#var/clear_with_screen">clear_with_screen</a></th><td>If FALSE, this will not be cleared when calling /client/clear_screen()</td></tr>
             <tr><th><a href="atom/movable/screen.html#var/del_on_map_removal">del_on_map_removal</a></th><td>Mark this object as garbage-collectible after you clean the map
 it was registered on.</td></tr>
             <tr><th><a href="atom/movable/screen.html#var/hud">hud</a></th><td>A reference to the owner HUD, if any.</td></tr>
-            <tr><th><a href="atom/movable/screen.html#var/master">master</a></th><td>A reference to the object in the slot. Grabs or items, generally.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="atom/movable/screen.html#var/master_ref">master_ref</a></th><td>A reference to the object in the slot. Grabs or items, generally.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="atom/movable/screen.html#proc/fill_rect">fill_rect</a></th><td>Sets screen_loc to fill a rectangular area of the map.</td></tr>
+            <tr><th><a href="atom/movable/screen.html#proc/get_mob">get_mob</a></th><td>Returns the mob this is being displayed to, if any</td></tr>
             <tr><th><a href="atom/movable/screen.html#proc/set_position">set_position</a></th><td>Sets screen_loc of this screen object, in form of point coordinates,
 with optional pixel offset (px, py).</td></tr></table>
     <h2 id="var">Var Details</h2><h3 id="var/assigned_map"><aside class="declaration">var </aside>assigned_map
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/_onclick/hud/map_popups.dm#L15">
-        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 15"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/screen_objects.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects.dm 27"/></a></h3>
         <p>Map name assigned to this object.
-Automatically set by /client/proc/add_obj_to_map.</p><h3 id="var/del_on_map_removal"><aside class="declaration">var </aside>del_on_map_removal
+Automatically set by /client/proc/add_obj_to_map.</p><h3 id="var/clear_with_screen"><aside class="declaration">var </aside>clear_with_screen
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/_onclick/hud/map_popups.dm#L23">
-        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 23"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/screen_objects.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects.dm 38"/></a></h3>
+        <p>If FALSE, this will not be cleared when calling /client/clear_screen()</p><h3 id="var/del_on_map_removal"><aside class="declaration">var </aside>del_on_map_removal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/screen_objects.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects.dm 35"/></a></h3>
         <p>Mark this object as garbage-collectible after you clean the map
 it was registered on.</p>
 <p>This could probably be changed to be a proc, for conditional removal.
@@ -49,33 +57,39 @@ But for now, this works.</p><h3 id="var/hud"><aside class="declaration">var </as
             <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/hud.html">hud</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/_onclick/hud/screen_objects.dm#L21">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/screen_objects.dm#L21">
         <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects.dm 21"/></a></h3>
-        <p>A reference to the owner HUD, if any.</p><h3 id="var/master"><aside class="declaration">var </aside>master
-            <aside>&ndash; /<a href="obj.html">obj</a></aside>
+        <p>A reference to the owner HUD, if any.</p><h3 id="var/master_ref"><aside class="declaration">var </aside>master_ref
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/_onclick/hud/screen_objects.dm#L19">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/screen_objects.dm#L19">
         <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects.dm 19"/></a></h3>
         <p>A reference to the object in the slot. Grabs or items, generally.</p><h2 id="proc">Proc Details</h2><h3 id="proc/fill_rect"><aside class="declaration">proc </aside>fill_rect<aside>(x1, y1, x2, y2) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/_onclick/hud/map_popups.dm#L63">
-        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 63"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/map_popups.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 30"/></a></aside>
         </h3>
         <p>Sets screen_loc to fill a rectangular area of the map.</p>
-<p>If applicable, &quot;assigned_map&quot; has to be assigned before this proc call.</p><h3 id="proc/set_position"><aside class="declaration">proc </aside>set_position<aside>(x, y, px, py) 
+<p>If applicable, &quot;assigned_map&quot; has to be assigned before this proc call.</p><h3 id="proc/get_mob"><aside class="declaration">proc </aside>get_mob<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/_onclick/hud/map_popups.dm#L52">
-        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 52"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/screen_objects.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects.dm 60"/></a></aside>
+        </h3>
+        <p>Returns the mob this is being displayed to, if any</p><h3 id="proc/set_position"><aside class="declaration">proc </aside>set_position<aside>(x, y, px, py) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/_onclick/hud/map_popups.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 19"/></a></aside>
         </h3>
         <p>Sets screen_loc of this screen object, in form of point coordinates,
 with optional pixel offset (px, py).</p>
 <p>If applicable, &quot;assigned_map&quot; has to be assigned before this proc call.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/556f8c788c797a4d3ce54024aaeb6827d8bca32a">556f8c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

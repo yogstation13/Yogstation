@@ -16,8 +16,8 @@
 <h1>venus human trap <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/simple_animal.html">simple_animal</a>/<a href="mob/living/simple_animal/hostile.html">hostile</a>/<a href="mob/living/simple_animal/hostile/venus_human_trap.html">venus_human_trap</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L79">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 79"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 95"/></a></h1>
 
 <p>Venus Human Trap</p>
 <p>The result of a kudzu flower bud, these enemies use vines to drag prey close to them for attack.</p>
@@ -28,6 +28,7 @@ Once the prey is in melee range, melee attacks from the venus human trap heals i
 Akin to certain spiders, venus human traps can also be possessed and controlled by ghosts.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
             <tr><th><a href="mob/living/simple_animal/hostile/venus_human_trap.html#var/max_vines">max_vines</a></th><td>The maximum amount of vines a plant can have at one time</td></tr>
             <tr><th><a href="mob/living/simple_animal/hostile/venus_human_trap.html#var/playable_plant">playable_plant</a></th><td>Whether or not this plant is ghost possessable</td></tr>
+            <tr><th><a href="mob/living/simple_animal/hostile/venus_human_trap.html#var/vine_duration">vine_duration</a></th><td>how long does a vine attached to something last (and its leash) (lasts twice as long on nonliving things)</td></tr>
             <tr><th><a href="mob/living/simple_animal/hostile/venus_human_trap.html#var/vine_grab_distance">vine_grab_distance</a></th><td>How far away a plant can attach a vine to something</td></tr>
             <tr><th><a href="mob/living/simple_animal/hostile/venus_human_trap.html#var/vines">vines</a></th><td>A list of all the plant's vines</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="mob/living/simple_animal/hostile/venus_human_trap.html#proc/humanize_plant">humanize_plant</a></th><td>Sets a ghost to control the plant if the plant is eligible</td></tr>
@@ -38,31 +39,37 @@ Akin to certain spiders, venus human traps can also be possessed and controlled 
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L104">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 104"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 123"/></a></h3>
         <p>The maximum amount of vines a plant can have at one time</p><h3 id="var/playable_plant"><aside class="declaration">var </aside>playable_plant
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L108">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 108"/></a></h3>
-        <p>Whether or not this plant is ghost possessable</p><h3 id="var/vine_grab_distance"><aside class="declaration">var </aside>vine_grab_distance
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 129"/></a></h3>
+        <p>Whether or not this plant is ghost possessable</p><h3 id="var/vine_duration"><aside class="declaration">var </aside>vine_duration
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L106">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 106"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 127"/></a></h3>
+        <p>how long does a vine attached to something last (and its leash) (lasts twice as long on nonliving things)</p><h3 id="var/vine_grab_distance"><aside class="declaration">var </aside>vine_grab_distance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 125"/></a></h3>
         <p>How far away a plant can attach a vine to something</p><h3 id="var/vines"><aside class="declaration">var </aside>vines
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L102">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 102"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 121"/></a></h3>
         <p>A list of all the plant's vines</p><h2 id="proc">Proc Details</h2><h3 id="proc/humanize_plant"><aside class="declaration">proc </aside>humanize_plant<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L178">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 178"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 199"/></a></aside>
         </h3>
         <p>Sets a ghost to control the plant if the plant is eligible</p>
 <p>Asks the interacting ghost if they would like to control the plant.
@@ -73,25 +80,25 @@ Arguments:</p>
 </ul><h3 id="proc/kudzu_need"><aside class="declaration">proc </aside>kudzu_need<aside>(feedback) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L223">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 223"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 244"/></a></aside>
         </h3>
         <p>Damages the human trap if they're &gt;3 tiles away from a kudzu</p>
 <p>Checks if there is a kudzu within 3 tiles
 Damages the mob if not</p><h3 id="proc/pull_vines"><aside class="declaration">proc </aside>pull_vines<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L197">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 197"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 218"/></a></aside>
         </h3>
         <p>Manages how the vines should affect the things they're attached to.</p>
 <p>Pulls all movable targets of the vines closer to the plant
 If the target is on the same tile as the plant, destroy the vine
-Removes any QDELETED vines from the vines list.</p><h3 id="proc/remove_vine"><aside class="declaration">proc </aside>remove_vine<aside>(/<a href="datum.html">datum</a>/beam/vine, force) 
+Removes any QDELETED vines from the vines list.</p><h3 id="proc/remove_vine"><aside class="declaration">proc </aside>remove_vine<aside>(/<a href="datum.html">datum</a>/<a href="datum/beam.html">beam</a>/vine, force) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L214">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 214"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/mob/living/simple_animal/hostile/venus_human_trap.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap.dm 235"/></a></aside>
         </h3>
         <p>Removes a vine from the list.</p>
 <p>Removes the vine from our list.
@@ -102,7 +109,7 @@ Arguments:</p>
 </ul></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/556f8c788c797a4d3ce54024aaeb6827d8bca32a">556f8c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

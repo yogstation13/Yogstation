@@ -16,46 +16,78 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/element.html">element</a>/<a href="datum/element/decal.html">decal</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/elements/decals/_decals.dm#L1">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decals.dm 1"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 1"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/element/decal.html#var/base_icon_state">base_icon_state</a></th><td>The base icon state that this decal was initialized with.</td></tr>
             <tr><th><a href="datum/element/decal.html#var/cleanable">cleanable</a></th><td>Whether this decal can be cleaned.</td></tr>
             <tr><th><a href="datum/element/decal.html#var/description">description</a></th><td>A description this decal appends to the target's examine message.</td></tr>
-            <tr><th><a href="datum/element/decal.html#var/pic">pic</a></th><td>The overlay applied by this decal to the target.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
-            <tr><th><a href="datum/element/decal.html#proc/generate_appearance">generate_appearance</a></th><td></td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/cleanable"><aside class="declaration">var </aside>cleanable
+            <tr><th><a href="datum/element/decal.html#var/directional">directional</a></th><td>If true this was initialized with no set direction - will follow the parent dir.</td></tr>
+            <tr><th><a href="datum/element/decal.html#var/pic">pic</a></th><td>The overlay applied by this decal to the target.</td></tr>
+            <tr><th><a href="datum/element/decal.html#var/smoothing">smoothing</a></th><td>What smoothing junction this was initialized with.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/element/decal.html#proc/generate_appearance">generate_appearance</a></th><td></td></tr>
+            <tr><th><a href="datum/element/decal.html#proc/smooth_react">smooth_react</a></th><td>Reacts to the source atom smoothing.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/base_icon_state"><aside class="declaration">var </aside>base_icon_state
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/elements/decals/_decals.dm#L5">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decals.dm 5"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 11"/></a></h3>
+        <p>The base icon state that this decal was initialized with.</p><h3 id="var/cleanable"><aside class="declaration">var </aside>cleanable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 5"/></a></h3>
         <p>Whether this decal can be cleaned.</p><h3 id="var/description"><aside class="declaration">var </aside>description
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/elements/decals/_decals.dm#L7">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decals.dm 7"/></a></h3>
-        <p>A description this decal appends to the target's examine message.</p><h3 id="var/pic"><aside class="declaration">var </aside>pic
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 7"/></a></h3>
+        <p>A description this decal appends to the target's examine message.</p><h3 id="var/directional"><aside class="declaration">var </aside>directional
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 9"/></a></h3>
+        <p>If true this was initialized with no set direction - will follow the parent dir.</p><h3 id="var/pic"><aside class="declaration">var </aside>pic
             <aside>&ndash; /mutable_appearance</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/elements/decals/_decals.dm#L9">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decals.dm 9"/></a></h3>
-        <p>The overlay applied by this decal to the target.</p><h2 id="proc">Proc Details</h2><h3 id="proc/generate_appearance"><aside class="declaration">proc </aside>generate_appearance<aside>(_icon, _icon_state, _dir, _layer, _color, _alpha, source) 
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 17"/></a></h3>
+        <p>The overlay applied by this decal to the target.</p><h3 id="var/smoothing"><aside class="declaration">var </aside>smoothing
+            <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/elements/decals/_decals.dm#L52">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decals.dm 52"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 13"/></a></h3>
+        <p>What smoothing junction this was initialized with.</p><h2 id="proc">Proc Details</h2><h3 id="proc/generate_appearance"><aside class="declaration">proc </aside>generate_appearance<aside>(_icon, _icon_state, _dir, _plane, _layer, _color, _alpha, _smoothing, source) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 104"/></a></aside>
         </h3>
         <hh2 id="generate-appearance">generate_appearance</hh2>
 <p>If the decal was not given an appearance, it will generate one based on the other given arguments.
 element won't be compatible if it cannot do either
 all args are fed into creating an image, they are byond vars for images you'll recognize in the byond docs
-(except source, source is the object whose appearance we're copying.)</p></main>
+(except source, source is the object whose appearance we're copying.)</p><h3 id="proc/smooth_react"><aside class="declaration">proc </aside>smooth_react<aside>(/<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/decals/_decal.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;decals&#x2F;_decal.dm 168"/></a></aside>
+        </h3>
+        <p>Reacts to the source atom smoothing.</p>
+<p>Arguments:</p>
+<ul>
+<li><a href="atom.html" title="/atom">source</a>: The source of the signal and recently smoothed atom.</li>
+</ul></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/556f8c788c797a4d3ce54024aaeb6827d8bca32a">556f8c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

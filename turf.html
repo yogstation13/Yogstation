@@ -16,98 +16,298 @@
 <h1>/<a href="turf.html">turf</a><aside> inherits /<a href="atom.html">atom</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L3">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 3"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 4"/></a></h1>
 
-<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+<p>Any floor or wall. What makes up the station and the rest of the map.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="turf.html#var/blocks_air">blocks_air</a></th><td>Does this turf block air from existing on it</td></tr>
             <tr><th><a href="turf.html#var/conductivity_blocked_directions">conductivity_blocked_directions</a></th><td>bitfield of dirs in which we thermal conductivity is blocked</td></tr>
             <tr><th><a href="turf.html#var/directional_opacity">directional_opacity</a></th><td>Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.</td></tr>
             <tr><th><a href="turf.html#var/dynamic_lumcount">dynamic_lumcount</a></th><td>Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.</td></tr>
+            <tr><th><a href="turf.html#var/fixed_underlay">fixed_underlay</a></th><td>Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.</td></tr>
+            <tr><th><a href="turf.html#var/force_no_gravity">force_no_gravity</a></th><td>whether or not this turf forces movables on it to have no gravity (unless they themselves have forced gravity)</td></tr>
+            <tr><th><a href="turf.html#var/heat_capacity">heat_capacity</a></th><td>Amount of heat necessary to activate some atmos processes (there is a weird usage of this var because is compared directly to the temperature instead of heat energy)</td></tr>
+            <tr><th><a href="turf.html#var/holodeck_compatible">holodeck_compatible</a></th><td>the holodeck can load onto this turf if TRUE</td></tr>
+            <tr><th><a href="turf.html#var/in_contents_of">in_contents_of</a></th><td>For the area_contents list unit test
+Allows us to know our area without needing to preassign it
+Sorry for the mess</td></tr>
+            <tr><th><a href="turf.html#var/inherent_explosive_resistance">inherent_explosive_resistance</a></th><td>How much explosive resistance this turf is providing to itself
+Defaults to -1, interpreted as initial(explosive_resistance)
+This is an optimization to prevent turfs from needing to set these on init
+This would either be expensive, or impossible to manage. Let's just avoid it yes?
+Never directly access this, use get_explosive_block() instead</td></tr>
+            <tr><th><a href="turf.html#var/initial_gas_mix">initial_gas_mix</a></th><td>used for mapping and for breathing while in walls (because that's a thing that needs to be accounted for...)
+string parsed by /datum/gas/proc/copy_from_turf
+approximation of MOLES_O2STANDARD and MOLES_N2STANDARD pending byond allowing constant expressions to be embedded in constant strings
+If someone will place 0 of some gas there, SHIT WILL BREAK. Do not do that.</td></tr>
+            <tr><th><a href="turf.html#var/lattice_underneath">lattice_underneath</a></th><td>If there is a lattice underneat this turf. Used for the attempt_lattice_replacement proc to determine if it should place lattice.</td></tr>
             <tr><th><a href="turf.html#var/lighting_corner_NE">lighting_corner_NE</a></th><td>Lighting Corner datums.</td></tr>
             <tr><th><a href="turf.html#var/lighting_object">lighting_object</a></th><td>Our lighting object.</td></tr>
-            <tr><th><a href="turf.html#var/opacity_sources">opacity_sources</a></th><td>Lazylist of movable atoms providing opacity sources.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="turf.html#var/max_fire_temperature_sustained">max_fire_temperature_sustained</a></th><td>The max temperature of the fire which it was subjected to</td></tr>
+            <tr><th><a href="turf.html#var/opacity_sources">opacity_sources</a></th><td>Lazylist of movable atoms providing opacity sources.</td></tr>
+            <tr><th><a href="turf.html#var/overfloor_placed">overfloor_placed</a></th><td>If there's a tile over a basic floor that can be ripped out</td></tr>
+            <tr><th><a href="turf.html#var/pathing_pass_method">pathing_pass_method</a></th><td>How pathing algorithm will check if this turf is passable by itself (not including content checks). By default it's just density check.
+WARNING: Currently to use a density shortcircuiting this does not support dense turfs with special allow through function</td></tr>
+            <tr><th><a href="turf.html#var/rcd_memory">rcd_memory</a></th><td>If this turf contained an RCD'able object (or IS one, for walls)
+but is now destroyed, this will preserve the value.
+See _<em>DEFINES/construction.dm for RCD_MEMORY</em>*.</td></tr>
+            <tr><th><a href="turf.html#var/space_lit">space_lit</a></th><td>Bool, whether this turf will always be illuminated no matter what area it is in
+Makes it look blue, be warned</td></tr>
+            <tr><th><a href="turf.html#var/to_be_destroyed">to_be_destroyed</a></th><td>Used for fire, if a melting temperature was reached, it will be destroyed</td></tr>
+            <tr><th><a href="turf.html#var/turf_flags">turf_flags</a></th><td>Turf bitflags, see code/__DEFINES/flags.dm</td></tr>
+            <tr><th><a href="turf.html#var/underfloor_accessibility">underfloor_accessibility</a></th><td>How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="turf.html#proc/IgniteTurf">IgniteTurf</a></th><td>Called when attempting to set fire to a turf</td></tr>
             <tr><th><a href="turf.html#proc/LinkBlockedWithAccess">LinkBlockedWithAccess</a></th><td>Check if there is a door that needs access in its way</td></tr>
+            <tr><th><a href="turf.html#proc/ScrapeAway">ScrapeAway</a></th><td>Take off the top layer turf and replace it with the next baseturf down</td></tr>
+            <tr><th><a href="turf.html#proc/__auxtools_update_turf_temp_info">__auxtools_update_turf_temp_info</a></th><td>We do NOT use the shortcut here, because this is faster</td></tr>
             <tr><th><a href="turf.html#proc/add_opacity_source">add_opacity_source</a></th><td>Proc to add movable sources of opacity on the turf and let it handle lighting code.</td></tr>
-            <tr><th><a href="turf.html#proc/beforeShuttleMove">beforeShuttleMove</a></th><td>Base procs</td></tr>
+            <tr><th><a href="turf.html#proc/attempt_lattice_replacement">attempt_lattice_replacement</a></th><td>Attempts to replace a tile with lattice. Amount is the amount of tiles to scrape away.</td></tr>
+            <tr><th><a href="turf.html#proc/baseturf_at_depth">baseturf_at_depth</a></th><td>Returns the baseturf at the given depth.
+For example, baseturf_at_depth(1) will give the baseturf that would show up when scraping once.</td></tr>
+            <tr><th><a href="turf.html#proc/can_cross_safely">can_cross_safely</a></th><td>Returns whether it is safe for an atom to move across this turf</td></tr>
             <tr><th><a href="turf.html#proc/clear_signal_refs">clear_signal_refs</a></th><td>WARNING WARNING
 Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
 It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
 We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code</td></tr>
             <tr><th><a href="turf.html#proc/consider_pressure_difference">consider_pressure_difference</a></th><td>SPACEWIND</td></tr>
+            <tr><th><a href="turf.html#proc/count_baseturfs">count_baseturfs</a></th><td>Returns the total number of baseturfs</td></tr>
+            <tr><th><a href="turf.html#proc/depth_to_find_baseturf">depth_to_find_baseturf</a></th><td>Tries to find the given type in baseturfs.
+If found, returns how deep it is for use in other baseturf procs, or null if it cannot be found.
+For example, this number can be passed into ScrapeAway to scrape everything until that point.</td></tr>
+            <tr><th><a href="turf.html#proc/fromShuttleMove">fromShuttleMove</a></th><td>Base procs
+Called on every turf in the shuttle region, returns a bitflag for allowed movements of that turf
+returns the new move_mode (based on the old)</td></tr>
+            <tr><th><a href="turf.html#proc/insert_baseturf">insert_baseturf</a></th><td>Inserts a baseturf at the given level.
+&quot;Level&quot; here doesn't mean depth.
+For example, <code>insert_baseturf(2, /turf/open/floor/plating)</code> will make it so
+the 2nd to last turf in the list is plating.
+This is different from <em>depth</em>, since depth is the level from the top.</td></tr>
             <tr><th><a href="turf.html#proc/is_blocked_turf">is_blocked_turf</a></th><td>Check whether the specified turf is blocked by something dense inside it with respect to a specific atom.</td></tr>
             <tr><th><a href="turf.html#proc/is_blocked_turf_ignore_climbable">is_blocked_turf_ignore_climbable</a></th><td>Checks whether the specified turf is blocked by something dense inside it, but ignores anything with the climbable trait</td></tr>
+            <tr><th><a href="turf.html#proc/load_on_top">load_on_top</a></th><td>Places a turf on top - for map loading</td></tr>
+            <tr><th><a href="turf.html#proc/on_change_area">on_change_area</a></th><td>Allows for reactions to an area change without inherently requiring change_area() be called (I hate maploading)</td></tr>
+            <tr><th><a href="turf.html#proc/place_on_bottom">place_on_bottom</a></th><td>Places the given turf on the bottom of the turf stack.</td></tr>
+            <tr><th><a href="turf.html#proc/place_on_top">place_on_top</a></th><td>Places a turf at the top of the stack</td></tr>
             <tr><th><a href="turf.html#proc/process_cell">process_cell</a></th><td>SIMULATION</td></tr>
             <tr><th><a href="turf.html#proc/reachableAdjacentAtmosTurfs">reachableAdjacentAtmosTurfs</a></th><td>Returns adjacent turfs in cardinal directions that are reachable via atmos</td></tr>
             <tr><th><a href="turf.html#proc/reachableAdjacentTurfs">reachableAdjacentTurfs</a></th><td>Returns a list the src/caller can cross into</td></tr>
             <tr><th><a href="turf.html#proc/recalculate_directional_opacity">recalculate_directional_opacity</a></th><td>Calculate on which directions this turfs block view.</td></tr>
+            <tr><th><a href="turf.html#proc/remove_baseturfs_from_typecache">remove_baseturfs_from_typecache</a></th><td>Removes all baseturfs that are found in the given typecache.</td></tr>
             <tr><th><a href="turf.html#proc/remove_opacity_source">remove_opacity_source</a></th><td>Proc to remove movable sources of opacity on the turf and let it handle lighting code.</td></tr>
-            <tr><th><a href="turf.html#proc/wash">wash</a></th><td>Called when this turf is being washed. Washing a turf will also wash any mopable floor decals</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/conductivity_blocked_directions"><aside class="declaration">var </aside>conductivity_blocked_directions
+            <tr><th><a href="turf.html#proc/replace_baseturf">replace_baseturf</a></th><td>Replaces all instances of needle_type in baseturfs with replacement_type</td></tr>
+            <tr><th><a href="turf.html#proc/stack_ontop_of_baseturf">stack_ontop_of_baseturf</a></th><td>Places a baseturf ontop of a searched for baseturf.</td></tr>
+            <tr><th><a href="turf.html#proc/toShuttleMove">toShuttleMove</a></th><td>Called from the new turf before anything has been moved
+Only gets called if fromShuttleMove returns true first
+returns the new move_mode (based on the old)</td></tr>
+            <tr><th><a href="turf.html#proc/transfer_area_lighting">transfer_area_lighting</a></th><td>Transfer the lighting of one area to another</td></tr>
+            <tr><th><a href="turf.html#proc/wash">wash</a></th><td>Called when this turf is being washed. Washing a turf will also wash any mopable floor decals</td></tr>
+            <tr><th><a href="turf.html#proc/zFall">zFall</a></th><td>Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()</td></tr>
+            <tr><th><a href="turf.html#proc/zImpact">zImpact</a></th><td>Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/blocks_air"><aside class="declaration">var </aside>blocks_air
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/atmospherics/environmental/LINDA_turf_tile.dm#L9">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;LINDA_turf_tile.dm 9"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 27"/></a></h3>
+        <p>Does this turf block air from existing on it</p><h3 id="var/conductivity_blocked_directions"><aside class="declaration">var </aside>conductivity_blocked_directions
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/atmospherics/environmental/LINDA_turf_tile.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;LINDA_turf_tile.dm 10"/></a></h3>
         <p>bitfield of dirs in which we thermal conductivity is blocked</p><h3 id="var/directional_opacity"><aside class="declaration">var </aside>directional_opacity
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L56">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 56"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 73"/></a></h3>
         <p>Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.</p><h3 id="var/dynamic_lumcount"><aside class="declaration">var </aside>dynamic_lumcount
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L43">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 43"/></a></h3>
-        <p>Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.</p><h3 id="var/lighting_corner_NE"><aside class="declaration">var </aside>lighting_corner_NE
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 55"/></a></h3>
+        <p>Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.</p><h3 id="var/fixed_underlay"><aside class="declaration">var </aside>fixed_underlay
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 52"/></a></h3>
+        <p>Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.</p><h3 id="var/force_no_gravity"><aside class="declaration">var </aside>force_no_gravity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 85"/></a></h3>
+        <p>whether or not this turf forces movables on it to have no gravity (unless they themselves have forced gravity)</p><h3 id="var/heat_capacity"><aside class="declaration">var </aside>heat_capacity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/atmospherics/environmental/LINDA_turf_tile.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;LINDA_turf_tile.dm 5"/></a></h3>
+        <p>Amount of heat necessary to activate some atmos processes (there is a weird usage of this var because is compared directly to the temperature instead of heat energy)</p><h3 id="var/holodeck_compatible"><aside class="declaration">var </aside>holodeck_compatible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 78"/></a></h3>
+        <p>the holodeck can load onto this turf if TRUE</p><h3 id="var/in_contents_of"><aside class="declaration">var </aside>in_contents_of
+            <aside>&ndash; /<a href="area.html">area</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 95"/></a></h3>
+        <p>For the area_contents list unit test
+Allows us to know our area without needing to preassign it
+Sorry for the mess</p><h3 id="var/inherent_explosive_resistance"><aside class="declaration">var </aside>inherent_explosive_resistance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 102"/></a></h3>
+        <p>How much explosive resistance this turf is providing to itself
+Defaults to -1, interpreted as initial(explosive_resistance)
+This is an optimization to prevent turfs from needing to set these on init
+This would either be expensive, or impossible to manage. Let's just avoid it yes?
+Never directly access this, use get_explosive_block() instead</p><h3 id="var/initial_gas_mix"><aside class="declaration">var </aside>initial_gas_mix
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/atmospherics/environmental/LINDA_turf_tile.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;LINDA_turf_tile.dm 18"/></a></h3>
+        <p>used for mapping and for breathing while in walls (because that's a thing that needs to be accounted for...)
+string parsed by /datum/gas/proc/copy_from_turf
+approximation of MOLES_O2STANDARD and MOLES_N2STANDARD pending byond allowing constant expressions to be embedded in constant strings
+If someone will place 0 of some gas there, SHIT WILL BREAK. Do not do that.</p><h3 id="var/lattice_underneath"><aside class="declaration">var </aside>lattice_underneath
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 35"/></a></h3>
+        <p>If there is a lattice underneat this turf. Used for the attempt_lattice_replacement proc to determine if it should place lattice.</p><h3 id="var/lighting_corner_NE"><aside class="declaration">var </aside>lighting_corner_NE
             <aside>&ndash; /tmp/<a href="datum.html">datum</a>/<a href="datum/lighting_corner.html">lighting_corner</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L50">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 50"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 66"/></a></h3>
         <p>Lighting Corner datums.</p><h3 id="var/lighting_object"><aside class="declaration">var </aside>lighting_object
             <aside>&ndash; /tmp/<a href="datum.html">datum</a>/<a href="datum/lighting_object.html">lighting_object</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L48">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 48"/></a></h3>
-        <p>Our lighting object.</p><h3 id="var/opacity_sources"><aside class="declaration">var </aside>opacity_sources
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 64"/></a></h3>
+        <p>Our lighting object.</p><h3 id="var/max_fire_temperature_sustained"><aside class="declaration">var </aside>max_fire_temperature_sustained
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 24"/></a></h3>
+        <p>The max temperature of the fire which it was subjected to</p><h3 id="var/opacity_sources"><aside class="declaration">var </aside>opacity_sources
             <aside>&ndash; /list/atom/movable</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L60">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 60"/></a></h3>
-        <p>Lazylist of movable atoms providing opacity sources.</p><h2 id="proc">Proc Details</h2><h3 id="proc/IgniteTurf"><aside class="declaration">proc </aside>IgniteTurf<aside>(power, fire_color) 
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 75"/></a></h3>
+        <p>Lazylist of movable atoms providing opacity sources.</p><h3 id="var/overfloor_placed"><aside class="declaration">var </aside>overfloor_placed
+            <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L663">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 663"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 30"/></a></h3>
+        <p>If there's a tile over a basic floor that can be ripped out</p><h3 id="var/pathing_pass_method"><aside class="declaration">var </aside>pathing_pass_method
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 89"/></a></h3>
+        <p>How pathing algorithm will check if this turf is passable by itself (not including content checks). By default it's just density check.
+WARNING: Currently to use a density shortcircuiting this does not support dense turfs with special allow through function</p><h3 id="var/rcd_memory"><aside class="declaration">var </aside>rcd_memory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 83"/></a></h3>
+        <p>If this turf contained an RCD'able object (or IS one, for walls)
+but is now destroyed, this will preserve the value.
+See _<em>DEFINES/construction.dm for RCD_MEMORY</em>*.</p><h3 id="var/space_lit"><aside class="declaration">var </aside>space_lit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 59"/></a></h3>
+        <p>Bool, whether this turf will always be illuminated no matter what area it is in
+Makes it look blue, be warned</p><h3 id="var/to_be_destroyed"><aside class="declaration">var </aside>to_be_destroyed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 22"/></a></h3>
+        <p>Used for fire, if a melting temperature was reached, it will be destroyed</p><h3 id="var/turf_flags"><aside class="declaration">var </aside>turf_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 11"/></a></h3>
+        <p>Turf bitflags, see code/__DEFINES/flags.dm</p><h3 id="var/underfloor_accessibility"><aside class="declaration">var </aside>underfloor_accessibility
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 32"/></a></h3>
+        <p>How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.</p><h2 id="proc">Proc Details</h2><h3 id="proc/IgniteTurf"><aside class="declaration">proc </aside>IgniteTurf<aside>(power, fire_color) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L764">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 764"/></a></aside>
         </h3>
         <p>Called when attempting to set fire to a turf</p><h3 id="proc/LinkBlockedWithAccess"><aside class="declaration">proc </aside>LinkBlockedWithAccess<aside>(/<a href="turf.html">turf</a>/T, caller, ID) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/__HELPERS/AStar.dm#L205">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/__HELPERS/AStar.dm#L205">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;AStar.dm 205"/></a></aside>
         </h3>
-        <p>Check if there is a door that needs access in its way</p><h3 id="proc/add_opacity_source"><aside class="declaration">proc </aside>add_opacity_source<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/new_source) 
+        <p>Check if there is a door that needs access in its way</p><h3 id="proc/ScrapeAway"><aside class="declaration">proc </aside>ScrapeAway<aside>(amount, flags) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/lighting/lighting_turf.dm#L63">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 63"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 2"/></a></aside>
         </h3>
-        <p>Proc to add movable sources of opacity on the turf and let it handle lighting code.</p><h3 id="proc/beforeShuttleMove"><aside class="declaration">proc </aside>beforeShuttleMove<aside>(/<a href="turf.html">turf</a>/newT) 
+        <p>Take off the top layer turf and replace it with the next baseturf down</p><h3 id="proc/__auxtools_update_turf_temp_info"><aside class="declaration">proc </aside>__auxtools_update_turf_temp_info<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/shuttle/on_move.dm#L7">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;on_move.dm 7"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 172"/></a></aside>
         </h3>
-        <p>Base procs</p><h3 id="proc/clear_signal_refs"><aside class="parent"><a title="/datum" href="datum.html#proc/clear_signal_refs">&uarr;</a></aside>clear_signal_refs<aside>() 
+        <p>We do NOT use the shortcut here, because this is faster</p><h3 id="proc/add_opacity_source"><aside class="declaration">proc </aside>add_opacity_source<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/new_source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L161">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 161"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/lighting/lighting_turf.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 60"/></a></aside>
+        </h3>
+        <p>Proc to add movable sources of opacity on the turf and let it handle lighting code.</p><h3 id="proc/attempt_lattice_replacement"><aside class="declaration">proc </aside>attempt_lattice_replacement<aside>(amount) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/change_turf.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 273"/></a></aside>
+        </h3>
+        <p>Attempts to replace a tile with lattice. Amount is the amount of tiles to scrape away.</p><h3 id="proc/baseturf_at_depth"><aside class="declaration">proc </aside>baseturf_at_depth<aside>(index) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 103"/></a></aside>
+        </h3>
+        <p>Returns the baseturf at the given depth.
+For example, baseturf_at_depth(1) will give the baseturf that would show up when scraping once.</p><h3 id="proc/can_cross_safely"><aside class="declaration">proc </aside>can_cross_safely<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/crossing) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L767">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 767"/></a></aside>
+        </h3>
+        <p>Returns whether it is safe for an atom to move across this turf</p><h3 id="proc/clear_signal_refs"><aside class="parent"><a title="/datum" href="datum.html#proc/clear_signal_refs">&uarr;</a></aside>clear_signal_refs<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L214">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 214"/></a></aside>
         </h3>
         <p>WARNING WARNING
 Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
@@ -115,14 +315,46 @@ It's possible because turfs are fucked, and if you have one in a list and it's r
 We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code</p><h3 id="proc/consider_pressure_difference"><aside class="declaration">proc </aside>consider_pressure_difference<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/atmospherics/environmental/LINDA_turf_tile.dm#L203">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;LINDA_turf_tile.dm 203"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/atmospherics/environmental/LINDA_turf_tile.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;LINDA_turf_tile.dm 218"/></a></aside>
         </h3>
-        <p>SPACEWIND</p><h3 id="proc/is_blocked_turf"><aside class="declaration">proc </aside>is_blocked_turf<aside>(exclude_mobs, source_atom, /list/ignore_atoms, type_list) 
+        <p>SPACEWIND</p><h3 id="proc/count_baseturfs"><aside class="declaration">proc </aside>count_baseturfs<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L421">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 421"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 148"/></a></aside>
+        </h3>
+        <p>Returns the total number of baseturfs</p><h3 id="proc/depth_to_find_baseturf"><aside class="declaration">proc </aside>depth_to_find_baseturf<aside>(baseturf_type) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 93"/></a></aside>
+        </h3>
+        <p>Tries to find the given type in baseturfs.
+If found, returns how deep it is for use in other baseturf procs, or null if it cannot be found.
+For example, this number can be passed into ScrapeAway to scrape everything until that point.</p><h3 id="proc/fromShuttleMove"><aside class="declaration">proc </aside>fromShuttleMove<aside>(/<a href="turf.html">turf</a>/newT, move_mode) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/shuttle/on_move.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;on_move.dm 9"/></a></aside>
+        </h3>
+        <p>Base procs
+Called on every turf in the shuttle region, returns a bitflag for allowed movements of that turf
+returns the new move_mode (based on the old)</p><h3 id="proc/insert_baseturf"><aside class="declaration">proc </aside>insert_baseturf<aside>(level, turf_type) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 156"/></a></aside>
+        </h3>
+        <p>Inserts a baseturf at the given level.
+&quot;Level&quot; here doesn't mean depth.
+For example, <code>insert_baseturf(2, /turf/open/floor/plating)</code> will make it so
+the 2nd to last turf in the list is plating.
+This is different from <em>depth</em>, since depth is the level from the top.</p><h3 id="proc/is_blocked_turf"><aside class="declaration">proc </aside>is_blocked_turf<aside>(exclude_mobs, source_atom, /list/ignore_atoms, type_list) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L518">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 518"/></a></aside>
         </h3>
         <p>Check whether the specified turf is blocked by something dense inside it with respect to a specific atom.</p>
 <p>Returns truthy value TURF_BLOCKED_TURF_DENSE if the turf is blocked because the turf itself is dense.
@@ -138,50 +370,118 @@ Returns falsey value TURF_NOT_BLOCKED if the turf is not blocked.</p>
 </ul><h3 id="proc/is_blocked_turf_ignore_climbable"><aside class="declaration">proc </aside>is_blocked_turf_ignore_climbable<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L449">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 449"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L546">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 546"/></a></aside>
         </h3>
         <p>Checks whether the specified turf is blocked by something dense inside it, but ignores anything with the climbable trait</p>
-<p>Works similar to is_blocked_turf(), but ignores climbables and has less options. Primarily added for jaunting checks</p><h3 id="proc/process_cell"><aside class="declaration">proc </aside>process_cell<aside>(fire_count) 
+<p>Works similar to is_blocked_turf(), but ignores climbables and has less options. Primarily added for jaunting checks</p><h3 id="proc/load_on_top"><aside class="declaration">proc </aside>load_on_top<aside>(/<a href="turf.html">turf</a>/added_layer, flags) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/atmospherics/environmental/LINDA_turf_tile.dm#L177">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;LINDA_turf_tile.dm 177"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 41"/></a></aside>
+        </h3>
+        <p>Places a turf on top - for map loading</p><h3 id="proc/on_change_area"><aside class="declaration">proc </aside>on_change_area<aside>(/<a href="area.html">area</a>/old_area, /<a href="area.html">area</a>/new_area) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L239">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 239"/></a></aside>
+        </h3>
+        <p>Allows for reactions to an area change without inherently requiring change_area() be called (I hate maploading)</p><h3 id="proc/place_on_bottom"><aside class="declaration">proc </aside>place_on_bottom<aside>(/<a href="turf.html">turf</a>/bottom_turf) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 24"/></a></aside>
+        </h3>
+        <p>Places the given turf on the bottom of the turf stack.</p><h3 id="proc/place_on_top"><aside class="declaration">proc </aside>place_on_top<aside>(/<a href="turf.html">turf</a>/added_layer, flags) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 31"/></a></aside>
+        </h3>
+        <p>Places a turf at the top of the stack</p><h3 id="proc/process_cell"><aside class="declaration">proc </aside>process_cell<aside>(fire_count) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/atmospherics/environmental/LINDA_turf_tile.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;LINDA_turf_tile.dm 192"/></a></aside>
         </h3>
         <p>SIMULATION</p><h3 id="proc/reachableAdjacentAtmosTurfs"><aside class="declaration">proc </aside>reachableAdjacentAtmosTurfs<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/__HELPERS/AStar.dm#L201">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/__HELPERS/AStar.dm#L201">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;AStar.dm 201"/></a></aside>
         </h3>
         <p>Returns adjacent turfs in cardinal directions that are reachable via atmos</p><h3 id="proc/reachableAdjacentTurfs"><aside class="declaration">proc </aside>reachableAdjacentTurfs<aside>(caller, ID, simulated_only) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/__HELPERS/AStar.dm#L183">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/__HELPERS/AStar.dm#L183">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;AStar.dm 183"/></a></aside>
         </h3>
         <p>Returns a list the src/caller can cross into</p><h3 id="proc/recalculate_directional_opacity"><aside class="declaration">proc </aside>recalculate_directional_opacity<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/lighting/lighting_turf.dm#L78">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 78"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/lighting/lighting_turf.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 76"/></a></aside>
         </h3>
-        <p>Calculate on which directions this turfs block view.</p><h3 id="proc/remove_opacity_source"><aside class="declaration">proc </aside>remove_opacity_source<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/old_source) 
+        <p>Calculate on which directions this turfs block view.</p><h3 id="proc/remove_baseturfs_from_typecache"><aside class="declaration">proc </aside>remove_baseturfs_from_typecache<aside>(/list/typecache) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/lighting/lighting_turf.dm#L71">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 71"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 131"/></a></aside>
         </h3>
-        <p>Proc to remove movable sources of opacity on the turf and let it handle lighting code.</p><h3 id="proc/wash"><aside class="parent"><a title="/atom" href="atom.html#proc/wash">&uarr;</a></aside>wash<aside>(clean_types) 
+        <p>Removes all baseturfs that are found in the given typecache.</p><h3 id="proc/remove_opacity_source"><aside class="declaration">proc </aside>remove_opacity_source<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/old_source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/game/turfs/turf.dm#L651">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 651"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/lighting/lighting_turf.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 68"/></a></aside>
         </h3>
-        <p>Called when this turf is being washed. Washing a turf will also wash any mopable floor decals</p></main>
+        <p>Proc to remove movable sources of opacity on the turf and let it handle lighting code.</p><h3 id="proc/replace_baseturf"><aside class="declaration">proc </aside>replace_baseturf<aside>(needle_type, replacement_type) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 113"/></a></aside>
+        </h3>
+        <p>Replaces all instances of needle_type in baseturfs with replacement_type</p><h3 id="proc/stack_ontop_of_baseturf"><aside class="declaration">proc </aside>stack_ontop_of_baseturf<aside>(floor, roof) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/baseturfs.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;baseturfs.dm 167"/></a></aside>
+        </h3>
+        <p>Places a baseturf ontop of a searched for baseturf.</p><h3 id="proc/toShuttleMove"><aside class="declaration">proc </aside>toShuttleMove<aside>(/<a href="turf.html">turf</a>/oldT, move_mode, /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a>/shuttle) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/shuttle/on_move.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;on_move.dm 18"/></a></aside>
+        </h3>
+        <p>Called from the new turf before anything has been moved
+Only gets called if fromShuttleMove returns true first
+returns the new move_mode (based on the old)</p><h3 id="proc/transfer_area_lighting"><aside class="declaration">proc </aside>transfer_area_lighting<aside>(/<a href="area.html">area</a>/old_area, /<a href="area.html">area</a>/new_area) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/lighting/lighting_turf.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 95"/></a></aside>
+        </h3>
+        <p>Transfer the lighting of one area to another</p><h3 id="proc/wash"><aside class="parent"><a title="/atom" href="atom.html#proc/wash">&uarr;</a></aside>wash<aside>(clean_types) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L752">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 752"/></a></aside>
+        </h3>
+        <p>Called when this turf is being washed. Washing a turf will also wash any mopable floor decals</p><h3 id="proc/zFall"><aside class="declaration">proc </aside>zFall<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/falling, levels, force, falling_from_move) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 266"/></a></aside>
+        </h3>
+        <p>Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()</p><h3 id="proc/zImpact"><aside class="declaration">proc </aside>zImpact<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/falling, levels, /<a href="turf.html">turf</a>/prev_turf, flags) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/turfs/turf.dm#L295">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 295"/></a></aside>
+        </h3>
+        <p>Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/556f8c788c797a4d3ce54024aaeb6827d8bca32a">556f8c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

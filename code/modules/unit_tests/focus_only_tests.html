@@ -14,7 +14,7 @@
 </header>
 <main>
 <h1>code/modules/unit_tests/focus_only_tests.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/unit_tests/focus_only_tests.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/unit_tests/focus_only_tests.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;unit_tests&#x2F;focus_only_tests.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -24,10 +24,17 @@ but is not useful to right a test for.
 This file exists so that you can change any of these to TEST_FOCUS and only check for that test.
 For example, change /datum/unit_test/focus_only/invalid_overlays to TEST_FOCUS(/datum/unit_test/focus_only/invalid_overlays),
 and you will only test the check for invalid overlays in appearance building.</td></tr>
-        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a>/focus_only/multiple_space_initialization</th><td>Checks that every created emissive has a valid icon_state</td></tr></table></main>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a>/focus_only/invalid_overlays</th><td>Checks that every overlay passed into build_appearance_list exists in the icon
+Checks that every overlay passed into build_appearance_list exists in the icon</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a>/focus_only/invalid_emissives</th><td>Checks that every created emissive has a valid icon_state</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a>/focus_only/multiple_space_initialization</th><td>Checks that every created emissive has a valid icon_state</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a>/focus_only/sorted_smoothing_groups</th><td>Checks that smoothing_groups and canSmoothWith are properly sorted in /atom/Initialize</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a>/focus_only/nightvision_color_cutoffs</th><td>Checks that nightvision eyes have a full set of color lists</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a>/focus_only/stacked_lights</th><td>Checks that no light shares a tile/pixel offsets with another</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a>/focus_only/openspace_clear</th><td>Ensures openspace never spawns on the bottom of a z stack</td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/556f8c788c797a4d3ce54024aaeb6827d8bca32a">556f8c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

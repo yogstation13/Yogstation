@@ -16,7 +16,7 @@
 <h1>/<a href="datum.html">datum</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L12">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L12">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 12"/></a></h1>
 
 <p>The absolute base class for everything</p>
@@ -25,24 +25,30 @@ that actually lives in the world</p>
 <p>Be very mindful about adding variables to this class, they are inherited by every single
 thing in the entire game, and so you can easily cause memory usage to rise a lot with careless
 use of variables at this level</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
-            <tr><th><a href="datum.html#var/active_timers">active_timers</a></th><td>Active timers with this datum as the target</td></tr>
+            <tr><th><a href="datum.html#var/_active_timers">_active_timers</a></th><td>Active timers with this datum as the target</td></tr>
+            <tr><th><a href="datum.html#var/_datum_components">_datum_components</a></th><td>Components attached to this datum</td></tr>
+            <tr><th><a href="datum.html#var/_listen_lookup">_listen_lookup</a></th><td>Any datum registered to receive signals from this datum is in this list</td></tr>
+            <tr><th><a href="datum.html#var/_signal_procs">_signal_procs</a></th><td>Lazy associated list in the structure of <code>target -&gt; list(signal -&gt; proctype)</code> that are run when the datum receives that signal</td></tr>
+            <tr><th><a href="datum.html#var/_status_traits">_status_traits</a></th><td>Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))</td></tr>
             <tr><th><a href="datum.html#var/cached_ref">cached_ref</a></th><td>A cached version of our \ref
 The brunt of \ref costs are in creating entries in the string tree (a tree of immutable strings)
 This avoids doing that more then once per datum by ensuring ref strings always have a reference to them after they're first pulled</td></tr>
-            <tr><th><a href="datum.html#var/comp_lookup">comp_lookup</a></th><td>Any datum registered to receive signals from this datum is in this list</td></tr>
-            <tr><th><a href="datum.html#var/datum_components">datum_components</a></th><td>Components attached to this datum</td></tr>
             <tr><th><a href="datum.html#var/datum_flags">datum_flags</a></th><td>Datum level flags</td></tr>
+            <tr><th><a href="datum.html#var/filter_data">filter_data</a></th><td>List for handling persistent filters.</td></tr>
             <tr><th><a href="datum.html#var/gc_destroyed">gc_destroyed</a></th><td>Tick count time when this object was destroyed.</td></tr>
-            <tr><th><a href="datum.html#var/signal_procs">signal_procs</a></th><td>List of callbacks for signal procs</td></tr>
-            <tr><th><a href="datum.html#var/status_traits">status_traits</a></th><td>Status traits attached to this datum</td></tr>
             <tr><th><a href="datum.html#var/tgui_shared_states">tgui_shared_states</a></th><td>global</td></tr>
             <tr><th><a href="datum.html#var/weak_reference">weak_reference</a></th><td>A weak reference to another datum</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="datum.html#proc/Destroy">Destroy</a></th><td>Default implementation of clean-up code.</td></tr>
+            <tr><th><a href="datum.html#proc/GenerateTag">GenerateTag</a></th><td>Generate a tag for this /datum, if it implements one
+Should be called as early as possible, best would be in New, to avoid weakref mistargets
+Really just don't use this, you don't need it, global lists will do just fine MOST of the time
+We really only use it for mobs to make id'ing people easier</td></tr>
             <tr><th><a href="datum.html#proc/GetComponent">GetComponent</a></th><td>Return any component assigned to this datum of the given type</td></tr>
             <tr><th><a href="datum.html#proc/GetComponents">GetComponents</a></th><td>Get all components of a given type that are attached to this datum</td></tr>
             <tr><th><a href="datum.html#proc/GetExactComponent">GetExactComponent</a></th><td>Return any component assigned to this datum of the exact given type</td></tr>
             <tr><th><a href="datum.html#proc/RegisterSignal">RegisterSignal</a></th><td>Register to listen for a signal from the passed in target</td></tr>
             <tr><th><a href="datum.html#proc/RegisterSignals">RegisterSignals</a></th><td>Registers multiple signals to the same proc.</td></tr>
+            <tr><th><a href="datum.html#proc/RemoveComponentSource">RemoveComponentSource</a></th><td>Removes a component source from this datum</td></tr>
             <tr><th><a href="datum.html#proc/TakeComponent">TakeComponent</a></th><td>Transfer this component to another parent</td></tr>
             <tr><th><a href="datum.html#proc/Topic">Topic</a></th><td>Called when a href for this datum is clicked</td></tr>
             <tr><th><a href="datum.html#proc/TransferComponents">TransferComponents</a></th><td>Transfer all components to target</td></tr>
@@ -53,16 +59,28 @@ This avoids doing that more then once per datum by ensuring ref strings always h
             <tr><th><a href="datum.html#proc/_RemoveElement">_RemoveElement</a></th><td>Finds the singleton for the element type given and detaches it from src
 You only need additional arguments beyond the type if you're using <a href="code/__DEFINES/dcs/flags.html#define/ELEMENT_BESPOKE" title="ELEMENT_BESPOKE">ELEMENT_BESPOKE</a></td></tr>
             <tr><th><a href="datum.html#proc/_SendSignal">_SendSignal</a></th><td>Internal proc to handle most all of the signaling procedure</td></tr>
+            <tr><th><a href="datum.html#proc/add_filter">add_filter</a></th><td></td></tr>
             <tr><th><a href="datum.html#proc/add_traits">add_traits</a></th><td>Proc that handles adding multiple traits to a target via a list. Must have a common source and target.</td></tr>
+            <tr><th><a href="datum.html#proc/change_filter_priority">change_filter_priority</a></th><td>Updates the priority of the passed filter key</td></tr>
             <tr><th><a href="datum.html#proc/clear_signal_refs">clear_signal_refs</a></th><td>Only override this if you know what you're doing. You do not know what you're doing
 This is a threat</td></tr>
             <tr><th><a href="datum.html#proc/deserialize_json">deserialize_json</a></th><td>Deserializes from JSON. Does not parse type.</td></tr>
             <tr><th><a href="datum.html#proc/deserialize_list">deserialize_list</a></th><td>Accepts a LIST from deserialize_datum. Should return src or another datum.</td></tr>
+            <tr><th><a href="datum.html#proc/dump_harddel_info">dump_harddel_info</a></th><td>Return text from this proc to provide extra context to hard deletes that happen to it
+Optional, you should use this for cases where replication is difficult and extra context is required
+Can be called more then once per object, use harddel_deets_dumped to avoid duplicate calls (I am so sorry)</td></tr>
+            <tr><th><a href="datum.html#proc/get_filter">get_filter</a></th><td>Returns the filter associated with the passed key</td></tr>
+            <tr><th><a href="datum.html#proc/get_filter_index">get_filter_index</a></th><td>Returns the indice in filters of the given filter name.
+If it is not found, returns null.</td></tr>
+            <tr><th><a href="datum.html#proc/modify_filter">modify_filter</a></th><td></td></tr>
             <tr><th><a href="datum.html#proc/process">process</a></th><td>This proc is called on a datum on every &quot;cycle&quot; if it is being processed by a subsystem. The time between each cycle is determined by the subsystem's &quot;wait&quot; setting.
 You can start and stop processing a datum using the START_PROCESSING and STOP_PROCESSING defines.</td></tr>
+            <tr><th><a href="datum.html#proc/remove_filter">remove_filter</a></th><td>Removes the passed filter, or multiple filters, if supplied with a list.</td></tr>
             <tr><th><a href="datum.html#proc/remove_traits">remove_traits</a></th><td>Proc that handles removing multiple traits from a target via a list. Must have a common source and target.</td></tr>
             <tr><th><a href="datum.html#proc/serialize_json">serialize_json</a></th><td>Serializes into JSON. Does not encode type.</td></tr>
             <tr><th><a href="datum.html#proc/serialize_list">serialize_list</a></th><td>Return a LIST for serialize_datum to encode! Not the actual json!</td></tr>
+            <tr><th><a href="datum.html#proc/string_assoc_list">string_assoc_list</a></th><td>Caches associative lists with non-numeric stringify-able index keys and stringify-able values (text/typepath -&gt; text/path/number).</td></tr>
+            <tr><th><a href="datum.html#proc/transition_filter">transition_filter</a></th><td></td></tr>
             <tr><th><a href="datum.html#proc/ui_act">ui_act</a></th><td>public</td></tr>
             <tr><th><a href="datum.html#proc/ui_assets">ui_assets</a></th><td>public</td></tr>
             <tr><th><a href="datum.html#proc/ui_close">ui_close</a></th><td>public</td></tr>
@@ -73,64 +91,76 @@ You can start and stop processing a datum using the START_PROCESSING and STOP_PR
             <tr><th><a href="datum.html#proc/ui_static_data">ui_static_data</a></th><td>public</td></tr>
             <tr><th><a href="datum.html#proc/ui_status">ui_status</a></th><td>Base state and helpers for states. Just does some sanity checks,
 implement a proper state for in-depth checks.</td></tr>
-            <tr><th><a href="datum.html#proc/update_static_data">update_static_data</a></th><td>public</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/active_timers"><aside class="declaration">var </aside>active_timers
+            <tr><th><a href="datum.html#proc/update_filters">update_filters</a></th><td>Reapplies all the filters.</td></tr>
+            <tr><th><a href="datum.html#proc/update_static_data">update_static_data</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/vv_do_topic">vv_do_topic</a></th><td>This proc is only called if everything topic-wise is verified. The only verifications that should happen here is things like permission checks!
+href_list is a reference, modifying it in these procs WILL change the rest of the proc in topic.dm of admin/view_variables!
+This proc is for &quot;high level&quot; actions like admin heal/set species/etc/etc. The low level debugging things should go in admin/view_variables/topic_basic.dm incase this runtimes.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/_active_timers"><aside class="declaration">var </aside>_active_timers
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L22">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L22">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 22"/></a></h3>
-        <p>Active timers with this datum as the target</p><h3 id="var/cached_ref"><aside class="declaration">var </aside>cached_ref
+        <p>Active timers with this datum as the target</p><h3 id="var/_datum_components"><aside class="declaration">var </aside>_datum_components
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 31"/></a></h3>
+        <p>Components attached to this datum</p>
+<p>Lazy associated list in the structure of <code>type -&gt; component/list of components</code></p><h3 id="var/_listen_lookup"><aside class="declaration">var </aside>_listen_lookup
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 38"/></a></h3>
+        <p>Any datum registered to receive signals from this datum is in this list</p>
+<p>Lazy associated list in the structure of <code>signal -&gt; registree/list of registrees</code></p><h3 id="var/_signal_procs"><aside class="declaration">var </aside>_signal_procs
+            <aside>&ndash; /list/list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 40"/></a></h3>
+        <p>Lazy associated list in the structure of <code>target -&gt; list(signal -&gt; proctype)</code> that are run when the datum receives that signal</p><h3 id="var/_status_traits"><aside class="declaration">var </aside>_status_traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 24"/></a></h3>
+        <p>Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))</p><h3 id="var/cached_ref"><aside class="declaration">var </aside>cached_ref
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L37">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 37"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 48"/></a></h3>
         <p>A cached version of our \ref
 The brunt of \ref costs are in creating entries in the string tree (a tree of immutable strings)
-This avoids doing that more then once per datum by ensuring ref strings always have a reference to them after they're first pulled</p><h3 id="var/comp_lookup"><aside class="declaration">var </aside>comp_lookup
-            <aside>&ndash; /list</aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L28">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 28"/></a></h3>
-        <p>Any datum registered to receive signals from this datum is in this list</p><h3 id="var/datum_components"><aside class="declaration">var </aside>datum_components
-            <aside>&ndash; /list</aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L24">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 24"/></a></h3>
-        <p>Components attached to this datum</p><h3 id="var/datum_flags"><aside class="declaration">var </aside>datum_flags
+This avoids doing that more then once per datum by ensuring ref strings always have a reference to them after they're first pulled</p><h3 id="var/datum_flags"><aside class="declaration">var </aside>datum_flags
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L32">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 32"/></a></h3>
-        <p>Datum level flags</p><h3 id="var/gc_destroyed"><aside class="declaration">var </aside>gc_destroyed
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 43"/></a></h3>
+        <p>Datum level flags</p><h3 id="var/filter_data"><aside class="declaration">var </aside>filter_data
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 72"/></a></h3>
+        <p>List for handling persistent filters.</p><h3 id="var/gc_destroyed"><aside class="declaration">var </aside>gc_destroyed
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L19">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L19">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 19"/></a></h3>
         <p>Tick count time when this object was destroyed.</p>
 <p>If this is non zero then the object has been garbage collected and is awaiting either
-a hard del by the GC subsystme, or to be autocollected (if it has no references)</p><h3 id="var/signal_procs"><aside class="declaration">var </aside>signal_procs
-            <aside>&ndash; /list/list/datum/callback</aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L30">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 30"/></a></h3>
-        <p>List of callbacks for signal procs</p><h3 id="var/status_traits"><aside class="declaration">var </aside>status_traits
+a hard del by the GC subsystme, or to be autocollected (if it has no references)</p><h3 id="var/tgui_shared_states"><aside class="declaration">var </aside>tgui_shared_states
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L26">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 26"/></a></h3>
-        <p>Status traits attached to this datum</p><h3 id="var/tgui_shared_states"><aside class="declaration">var </aside>tgui_shared_states
-            <aside>&ndash; /list</aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L117">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L117">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 117"/></a></h3>
         <p>global</p>
 <p>Associative list of JSON-encoded shared states that were set by
@@ -138,13 +168,13 @@ tgui clients.</p><h3 id="var/weak_reference"><aside class="declaration">var </as
             <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L40">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 40"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 51"/></a></h3>
         <p>A weak reference to another datum</p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="declaration">proc </aside>Destroy<aside>(force, ...) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L84">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 84"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 97"/></a></aside>
         </h3>
         <p>Default implementation of clean-up code.</p>
 <p>This should be overridden to remove all references pointing to the object being destroyed, if
@@ -157,11 +187,20 @@ in most cases this is QDEL_HINT_QUEUE.</p>
 <li>Erasing compenents on this datum</li>
 <li>Notifying datums listening to signals from this datum that we are going away</li>
 </ul>
-<p>Returns QDEL_HINT_QUEUE</p><h3 id="proc/GetComponent"><aside class="declaration">proc </aside>GetComponent<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/c_type) 
+<p>Returns QDEL_HINT_QUEUE</p><h3 id="proc/GenerateTag"><aside class="declaration">proc </aside>GenerateTag<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L323">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 323"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/game/atom/_atom.dm#L1151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atom&#x2F;_atom.dm 1151"/></a></aside>
+        </h3>
+        <p>Generate a tag for this /datum, if it implements one
+Should be called as early as possible, best would be in New, to avoid weakref mistargets
+Really just don't use this, you don't need it, global lists will do just fine MOST of the time
+We really only use it for mobs to make id'ing people easier</p><h3 id="proc/GetComponent"><aside class="declaration">proc </aside>GetComponent<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/c_type) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/_component.dm#L256">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 256"/></a></aside>
         </h3>
         <p>Return any component assigned to this datum of the given type</p>
 <p>This will throw an error if it's possible to have more than one component of that type on the parent</p>
@@ -171,8 +210,8 @@ in most cases this is QDEL_HINT_QUEUE.</p>
 </ul><h3 id="proc/GetComponents"><aside class="declaration">proc </aside>GetComponents<aside>(c_type) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L364">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 364"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/_component.dm#L297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 297"/></a></aside>
         </h3>
         <p>Get all components of a given type that are attached to this datum</p>
 <p>Arguments:</p>
@@ -181,8 +220,8 @@ in most cases this is QDEL_HINT_QUEUE.</p>
 </ul><h3 id="proc/GetExactComponent"><aside class="declaration">proc </aside>GetExactComponent<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/c_type) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L343">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 343"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/_component.dm#L276">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 276"/></a></aside>
         </h3>
         <p>Return any component assigned to this datum of the exact given type</p>
 <p>This will throw an error if it's possible to have more than one component of that type on the parent</p>
@@ -192,8 +231,8 @@ in most cases this is QDEL_HINT_QUEUE.</p>
 </ul><h3 id="proc/RegisterSignal"><aside class="declaration">proc </aside>RegisterSignal<aside>(/<a href="datum.html">datum</a>/target, signal_type, proctype, override) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L158">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 158"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/signals.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;signals.dm 16"/></a></aside>
         </h3>
         <p>Register to listen for a signal from the passed in target</p>
 <p>This sets up a listening relationship such that when the target object emits a signal
@@ -210,14 +249,20 @@ Return values from procs registered must be a bitfield</p>
 </ul><h3 id="proc/RegisterSignals"><aside class="declaration">proc </aside>RegisterSignals<aside>(/<a href="datum.html">datum</a>/target, /list/signal_types, proctype, override) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L194">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 194"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/signals.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;signals.dm 56"/></a></aside>
         </h3>
-        <p>Registers multiple signals to the same proc.</p><h3 id="proc/TakeComponent"><aside class="declaration">proc </aside>TakeComponent<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/target) 
+        <p>Registers multiple signals to the same proc.</p><h3 id="proc/RemoveComponentSource"><aside class="declaration">proc </aside>RemoveComponentSource<aside>(source, /<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/component_type) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L483">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 483"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/_component.dm#L414">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 414"/></a></aside>
+        </h3>
+        <p>Removes a component source from this datum</p><h3 id="proc/TakeComponent"><aside class="declaration">proc </aside>TakeComponent<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/_component.dm#L456">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 456"/></a></aside>
         </h3>
         <p>Transfer this component to another parent</p>
 <p>Component is taken from source datum</p>
@@ -227,15 +272,15 @@ Return values from procs registered must be a bitfield</p>
 </ul><h3 id="proc/Topic"><aside class="declaration">proc </aside>Topic<aside>(href, /list/href_list) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L64">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 64"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 77"/></a></aside>
         </h3>
         <p>Called when a href for this datum is clicked</p>
 <p>Sends a COMSIG_TOPIC signal</p><h3 id="proc/TransferComponents"><aside class="declaration">proc </aside>TransferComponents<aside>(/<a href="datum.html">datum</a>/target) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L507">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 507"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/_component.dm#L480">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 480"/></a></aside>
         </h3>
         <p>Transfer all components to target</p>
 <p>All components from source datum are taken</p>
@@ -245,8 +290,8 @@ Return values from procs registered must be a bitfield</p>
 </ul><h3 id="proc/UnregisterSignal"><aside class="declaration">proc </aside>UnregisterSignal<aside>(/<a href="datum.html">datum</a>/target, sig_type_or_types) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L209">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 209"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/signals.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;signals.dm 71"/></a></aside>
         </h3>
         <p>Stop listening to a given signal from target</p>
 <p>Breaks the relationship between target and source datum, removing the callback when the signal fires</p>
@@ -255,11 +300,11 @@ Return values from procs registered must be a bitfield</p>
 <ul>
 <li>datum/target Datum to stop listening to signals from</li>
 <li>sig_typeor_types Signal string key or list of signal keys to stop listening to specifically</li>
-</ul><h3 id="proc/_AddComponent"><aside class="declaration">proc </aside>_AddComponent<aside>(/list/raw_args) 
+</ul><h3 id="proc/_AddComponent"><aside class="declaration">proc </aside>_AddComponent<aside>(/list/raw_args, source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L383">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 383"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/_component.dm#L314">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 314"/></a></aside>
         </h3>
         <p>Creates an instance of <code>new_type</code> in the datum and attaches to it as parent</p>
 <p>Sends the <a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_COMPONENT_ADDED" title="COMSIG_COMPONENT_ADDED">COMSIG_COMPONENT_ADDED</a> signal to the datum</p>
@@ -268,14 +313,14 @@ Return values from procs registered must be a bitfield</p>
 <p>Properly handles duplicate situations based on the <code>dupe_mode</code> var</p><h3 id="proc/_AddElement"><aside class="declaration">proc </aside>_AddElement<aside>(/list/arguments) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/elements/_element.dm#L60">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 60"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/_element.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 52"/></a></aside>
         </h3>
         <p>Finds the singleton for the element type given and attaches it to src</p><h3 id="proc/_LoadComponent"><aside class="declaration">proc </aside>_LoadComponent<aside>(/list/arguments) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L457">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 457"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/components/_component.dm#L430">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 430"/></a></aside>
         </h3>
         <p>Get existing component of type, or create it and return a reference to it</p>
 <p>Use this if the item needs to exist at the time of this call, but may not have been created before now</p>
@@ -286,47 +331,136 @@ Return values from procs registered must be a bitfield</p>
 </ul><h3 id="proc/_RemoveElement"><aside class="declaration">proc </aside>_RemoveElement<aside>(/list/arguments) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/elements/_element.dm#L74">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 74"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/elements/_element.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 69"/></a></aside>
         </h3>
         <p>Finds the singleton for the element type given and detaches it from src
 You only need additional arguments beyond the type if you're using <a href="code/__DEFINES/dcs/flags.html#define/ELEMENT_BESPOKE" title="ELEMENT_BESPOKE">ELEMENT_BESPOKE</a></p><h3 id="proc/_SendSignal"><aside class="declaration">proc </aside>_SendSignal<aside>(sigtype, /list/arguments) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/components/_component.dm#L299">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 299"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/signals.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;signals.dm 118"/></a></aside>
         </h3>
         <p>Internal proc to handle most all of the signaling procedure</p>
-<p>Will runtime if used on datums with an empty component list</p>
-<p>Use the <a href="code/__DEFINES/dcs/helpers.html#define/SEND_SIGNAL" title="SEND_SIGNAL">SEND_SIGNAL</a> define instead</p><h3 id="proc/add_traits"><aside class="declaration">proc </aside>add_traits<aside>(/list/list_of_traits, source) 
+<p>Will runtime if used on datums with an empty lookup list</p>
+<p>Use the <a href="code/__DEFINES/dcs/helpers.html#define/SEND_SIGNAL" title="SEND_SIGNAL">SEND_SIGNAL</a> define instead</p><h3 id="proc/add_filter"><aside class="declaration">proc </aside>add_filter<aside>(name, priority, /list/params) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/__HELPERS/traits.dm#L34">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L277">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 277"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Add a filter to the datum.</p>
+</li>
+<li>
+<p>This is on datum level, despite being most commonly / primarily used on atoms, so that filters can be applied to images / mutable appearances.</p>
+</li>
+<li>
+<p>Can also be used to assert a filter's existence. I.E. update a filter regardless if it exists or not.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li>name - Filter name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>priority - Priority used when sorting the filter.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>params - Parameters of the filter.</li>
+</ul>
+</li>
+</ul><h3 id="proc/add_traits"><aside class="declaration">proc </aside>add_traits<aside>(/list/list_of_traits, source) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/__HELPERS/traits.dm#L34">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;traits.dm 34"/></a></aside>
         </h3>
-        <p>Proc that handles adding multiple traits to a target via a list. Must have a common source and target.</p><h3 id="proc/clear_signal_refs"><aside class="declaration">proc </aside>clear_signal_refs<aside>() 
+        <p>Proc that handles adding multiple traits to a target via a list. Must have a common source and target.</p><h3 id="proc/change_filter_priority"><aside class="declaration">proc </aside>change_filter_priority<aside>(name, new_priority) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L116">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 116"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L339">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 339"/></a></aside>
+        </h3>
+        <p>Updates the priority of the passed filter key</p><h3 id="proc/clear_signal_refs"><aside class="declaration">proc </aside>clear_signal_refs<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 130"/></a></aside>
         </h3>
         <p>Only override this if you know what you're doing. You do not know what you're doing
 This is a threat</p><h3 id="proc/deserialize_json"><aside class="declaration">proc </aside>deserialize_json<aside>(/list/input, /list/options) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L176">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 176"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 190"/></a></aside>
         </h3>
         <p>Deserializes from JSON. Does not parse type.</p><h3 id="proc/deserialize_list"><aside class="declaration">proc </aside>deserialize_list<aside>(json, /list/options) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L164">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 164"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 178"/></a></aside>
         </h3>
-        <p>Accepts a LIST from deserialize_datum. Should return src or another datum.</p><h3 id="proc/process"><aside class="declaration">proc </aside>process<aside>(delta_time) 
+        <p>Accepts a LIST from deserialize_datum. Should return src or another datum.</p><h3 id="proc/dump_harddel_info"><aside class="declaration">proc </aside>dump_harddel_info<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/controllers/subsystem/processing/processing.dm#L52">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L379">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 379"/></a></aside>
+        </h3>
+        <p>Return text from this proc to provide extra context to hard deletes that happen to it
+Optional, you should use this for cases where replication is difficult and extra context is required
+Can be called more then once per object, use harddel_deets_dumped to avoid duplicate calls (I am so sorry)</p><h3 id="proc/get_filter"><aside class="declaration">proc </aside>get_filter<aside>(name) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L347">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 347"/></a></aside>
+        </h3>
+        <p>Returns the filter associated with the passed key</p><h3 id="proc/get_filter_index"><aside class="declaration">proc </aside>get_filter_index<aside>(name) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 355"/></a></aside>
+        </h3>
+        <p>Returns the indice in filters of the given filter name.
+If it is not found, returns null.</p><h3 id="proc/modify_filter"><aside class="declaration">proc </aside>modify_filter<aside>(name, /list/new_params, overwrite) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 308"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Update a filter's parameter to the new one. If the filter doesnt exist we won't do anything.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li>name - Filter name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>new_params - New parameters of the filter</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>overwrite - TRUE means we replace the parameter list completely. FALSE means we only replace the things on new_params.</li>
+</ul>
+</li>
+</ul><h3 id="proc/process"><aside class="declaration">proc </aside>process<aside>(delta_time) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/controllers/subsystem/processing/processing.dm#L52">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;processing&#x2F;processing.dm 52"/></a></aside>
         </h3>
         <p>This proc is called on a datum on every &quot;cycle&quot; if it is being processed by a subsystem. The time between each cycle is determined by the subsystem's &quot;wait&quot; setting.
@@ -339,28 +473,81 @@ Examples where this must be considered:</p>
 <li>Damaging a mob, do <code>L.adjustFireLoss(20 * delta_time)</code>, not <code>L.adjustFireLoss(20)</code>. This way, the damage per second stays constant even if the wait of the subsystem is changed</li>
 <li>Probability of something happening, do <code>if(DT_PROB(25, delta_time))</code>, not <code>if(prob(25))</code>. This way, if the subsystem wait is e.g. lowered, there won't be a higher chance of this event happening per second</li>
 </ul>
-<p>If you override this do not call parent, as it will return PROCESS_KILL. This is done to prevent objects that dont override process() from staying in the processing list</p><h3 id="proc/remove_traits"><aside class="declaration">proc </aside>remove_traits<aside>(/list/list_of_traits, source) 
+<p>If you override this do not call parent, as it will return PROCESS_KILL. This is done to prevent objects that dont override process() from staying in the processing list</p><h3 id="proc/remove_filter"><aside class="declaration">proc </aside>remove_filter<aside>(name_or_names) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/__HELPERS/traits.dm#L40">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L359">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 359"/></a></aside>
+        </h3>
+        <p>Removes the passed filter, or multiple filters, if supplied with a list.</p><h3 id="proc/remove_traits"><aside class="declaration">proc </aside>remove_traits<aside>(/list/list_of_traits, source) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/__HELPERS/traits.dm#L40">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;traits.dm 40"/></a></aside>
         </h3>
         <p>Proc that handles removing multiple traits from a target via a list. Must have a common source and target.</p><h3 id="proc/serialize_json"><aside class="declaration">proc </aside>serialize_json<aside>(/list/options) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L168">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 168"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 182"/></a></aside>
         </h3>
         <p>Serializes into JSON. Does not encode type.</p><h3 id="proc/serialize_list"><aside class="declaration">proc </aside>serialize_list<aside>(/list/options) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/datum.dm#L160">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 160"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 174"/></a></aside>
         </h3>
-        <p>Return a LIST for serialize_datum to encode! Not the actual json!</p><h3 id="proc/ui_act"><aside class="declaration">proc </aside>ui_act<aside>(action, /list/params, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+        <p>Return a LIST for serialize_datum to encode! Not the actual json!</p><h3 id="proc/string_assoc_list"><aside class="declaration">proc </aside>string_assoc_list<aside>(/list/values) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L76">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/__HELPERS/string_assoc_lists.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;string_assoc_lists.dm 6"/></a></aside>
+        </h3>
+        <p>Caches associative lists with non-numeric stringify-able index keys and stringify-able values (text/typepath -&gt; text/path/number).</p><h3 id="proc/transition_filter"><aside class="declaration">proc </aside>transition_filter<aside>(name, /list/new_params, time, easing, loop) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L329">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 329"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Update a filter's parameter and animate this change. If the filter doesnt exist we won't do anything.</p>
+</li>
+<li>
+<p>Basically a <a href="datum.html#proc/modify_filter" title="/datum">datum/proc/modify_filter</a> call but with animations. Unmodified filter parameters are kept.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li>name - Filter name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>new_params - New parameters of the filter</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>time - time arg of the BYOND animate() proc.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>easing - easing arg of the BYOND animate() proc.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>loop - loop arg of the BYOND animate() proc.</li>
+</ul>
+</li>
+</ul><h3 id="proc/ui_act"><aside class="declaration">proc </aside>ui_act<aside>(action, /list/params, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L76">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 76"/></a></aside>
         </h3>
         <p>public</p>
@@ -371,7 +558,7 @@ required params list A list of parameters attached to the button.</p>
 <p>return bool If the UI should be updated or not.</p><h3 id="proc/ui_assets"><aside class="declaration">proc </aside>ui_assets<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L89">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L89">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 89"/></a></aside>
         </h3>
         <p>public</p>
@@ -380,7 +567,7 @@ push various assets to tgui, for examples spritesheets.</p>
 <p>return list List of asset datums or file paths.</p><h3 id="proc/ui_close"><aside class="declaration">proc </aside>ui_close<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L146">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L146">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 146"/></a></aside>
         </h3>
         <p>public</p>
@@ -388,7 +575,7 @@ push various assets to tgui, for examples spritesheets.</p>
 client/verb/uiclose(), which closes the ui window</p><h3 id="proc/ui_data"><aside class="declaration">proc </aside>ui_data<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L30">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L30">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 30"/></a></aside>
         </h3>
         <p>public</p>
@@ -398,7 +585,7 @@ This must be implemented for a UI to work.</p>
 <p>return list Data to be sent to the UI.</p><h3 id="proc/ui_host"><aside class="declaration">proc </aside>ui_host<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L99">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L99">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 99"/></a></aside>
         </h3>
         <p>private</p>
@@ -407,7 +594,7 @@ This allows modules/datums to have the UI attached to them,
 and be a part of another object.</p><h3 id="proc/ui_interact"><aside class="declaration">proc </aside>ui_interact<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L17">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L17">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 17"/></a></aside>
         </h3>
         <p>External tgui definitions, such as src_object APIs.</p>
@@ -420,7 +607,7 @@ If this proc is not implemented properly, the UI will not update correctly.</p>
 optional ui datum/tgui The UI to be updated, if it exists.</p><h3 id="proc/ui_state"><aside class="declaration">proc </aside>ui_state<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L108">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L108">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 108"/></a></aside>
         </h3>
         <p>private</p>
@@ -428,7 +615,7 @@ optional ui datum/tgui The UI to be updated, if it exists.</p><h3 id="proc/ui_st
 This is a proc over a var for memory reasons</p><h3 id="proc/ui_static_data"><aside class="declaration">proc </aside>ui_static_data<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L47">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L47">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 47"/></a></aside>
         </h3>
         <p>public</p>
@@ -441,7 +628,7 @@ object on the frontend side, but the static part is cached.</p>
 <p>return list Statuic Data to be sent to the UI.</p><h3 id="proc/ui_status"><aside class="declaration">proc </aside>ui_status<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/states.dm#L19">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/states.dm#L19">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states.dm 19"/></a></aside>
         </h3>
         <p>Base state and helpers for states. Just does some sanity checks,
@@ -452,20 +639,34 @@ SPDX-License-Identifier: MIT</p>
 <p>Checks the UI state for a mob.</p>
 <p>required user mob The mob who opened/is using the UI.
 required state datum/ui_state The state to check.</p>
-<p>return UI_state The state of the UI.</p><h3 id="proc/update_static_data"><aside class="declaration">proc </aside>update_static_data<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
+<p>return UI_state The state of the UI.</p><h3 id="proc/update_filters"><aside class="declaration">proc </aside>update_filters<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/modules/tgui/external.dm#L59">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datum.dm#L285">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 285"/></a></aside>
+        </h3>
+        <p>Reapplies all the filters.</p><h3 id="proc/update_static_data"><aside class="declaration">proc </aside>update_static_data<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/tgui/external.dm#L59">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 59"/></a></aside>
         </h3>
         <p>public</p>
 <p>Forces an update on static data. Should be done manually whenever something
 happens to change static data.</p>
 <p>required user the mob currently interacting with the ui
-optional ui ui to be updated</p></main>
+optional ui ui to be updated</p><h3 id="proc/vv_do_topic"><aside class="declaration">proc </aside>vv_do_topic<aside>(/list/href_list) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/datumvars.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datumvars.dm 45"/></a></aside>
+        </h3>
+        <p>This proc is only called if everything topic-wise is verified. The only verifications that should happen here is things like permission checks!
+href_list is a reference, modifying it in these procs WILL change the rest of the proc in topic.dm of admin/view_variables!
+This proc is for &quot;high level&quot; actions like admin heal/set species/etc/etc. The low level debugging things should go in admin/view_variables/topic_basic.dm incase this runtimes.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/556f8c788c797a4d3ce54024aaeb6827d8bca32a">556f8c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

@@ -11,33 +11,68 @@
     <a href="index.html">Yogstation 13</a> -
     <a href="index.html#modules">Modules</a> -
     <a href="index.html#types">Types</a>
- &mdash; <a href="obj/machinery/modular_computer.html#var">Var Details</a></header>
+ &mdash; <a href="obj/machinery/modular_computer.html#var">Var Details</a> - <a href="obj/machinery/modular_computer.html#proc">Proc Details</a></header>
 <main>
 <h1>modular computer <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/modular_computer.html">modular_computer</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/42dcfc0bb242ed3d0cf0b23827b7728aaccd2991/code/modules/modular_computers/computers/machinery/modular_computer.dm#L3">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/modular_computers/computers/machinery/modular_computer.dm#L3">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 3"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
-            <tr><th><a href="obj/machinery/modular_computer.html#var/cpu">cpu</a></th><td>Number of total expansion bays this computer has available.</td></tr>
-            <tr><th><a href="obj/machinery/modular_computer.html#var/max_bays">max_bays</a></th><td>Lazy List of extra hardware slots that can be used modularly.</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/cpu"><aside class="declaration">var </aside>cpu
-            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/modular_computer.html">modular_computer</a>/processor</aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/42dcfc0bb242ed3d0cf0b23827b7728aaccd2991/code/modules/modular_computers/computers/machinery/modular_computer.dm#L31">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 31"/></a></h3>
-        <p>Number of total expansion bays this computer has available.</p><h3 id="var/max_bays"><aside class="declaration">var </aside>max_bays
+            <tr><th><a href="obj/machinery/modular_computer.html#var/hardware_flag">hardware_flag</a></th><td>A flag that describes this device type</td></tr>
+            <tr><th><a href="obj/machinery/modular_computer.html#var/icon_state_powered">icon_state_powered</a></th><td>Icon state when the computer is turned on.</td></tr>
+            <tr><th><a href="obj/machinery/modular_computer.html#var/icon_state_unpowered">icon_state_unpowered</a></th><td>Icon state when the computer is turned off.</td></tr>
+            <tr><th><a href="obj/machinery/modular_computer.html#var/last_power_usage">last_power_usage</a></th><td>Power usage during last tick</td></tr>
+            <tr><th><a href="obj/machinery/modular_computer.html#var/screen_icon_screensaver">screen_icon_screensaver</a></th><td>Icon state overlay when the computer is powered, but not 'switched on'.</td></tr>
+            <tr><th><a href="obj/machinery/modular_computer.html#var/screen_icon_state_menu">screen_icon_state_menu</a></th><td>Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/modular_computer.html#proc/relay_icon_update">relay_icon_update</a></th><td>Eats the &quot;source&quot; arg because update_icon actually expects args now.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/hardware_flag"><aside class="declaration">var </aside>hardware_flag
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/42dcfc0bb242ed3d0cf0b23827b7728aaccd2991/code/modules/modular_computers/computers/machinery/modular_computer.dm#L29">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 29"/></a></h3>
-        <p>Lazy List of extra hardware slots that can be used modularly.</p></main>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/modular_computers/computers/machinery/modular_computer.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 12"/></a></h3>
+        <p>A flag that describes this device type</p><h3 id="var/icon_state_powered"><aside class="declaration">var </aside>icon_state_powered
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/modular_computers/computers/machinery/modular_computer.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 23"/></a></h3>
+        <p>Icon state when the computer is turned on.</p><h3 id="var/icon_state_unpowered"><aside class="declaration">var </aside>icon_state_unpowered
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/modular_computers/computers/machinery/modular_computer.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 21"/></a></h3>
+        <p>Icon state when the computer is turned off.</p><h3 id="var/last_power_usage"><aside class="declaration">var </aside>last_power_usage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/modular_computers/computers/machinery/modular_computer.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 14"/></a></h3>
+        <p>Power usage during last tick</p><h3 id="var/screen_icon_screensaver"><aside class="declaration">var </aside>screen_icon_screensaver
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/modular_computers/computers/machinery/modular_computer.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 27"/></a></h3>
+        <p>Icon state overlay when the computer is powered, but not 'switched on'.</p><h3 id="var/screen_icon_state_menu"><aside class="declaration">var </aside>screen_icon_state_menu
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/modular_computers/computers/machinery/modular_computer.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 25"/></a></h3>
+        <p>Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.</p><h2 id="proc">Proc Details</h2><h3 id="proc/relay_icon_update"><aside class="declaration">proc </aside>relay_icon_update<aside>(/<a href="datum.html">datum</a>/source, updates, updated) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/modules/modular_computers/computers/machinery/modular_computer.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;machinery&#x2F;modular_computer.dm 113"/></a></aside>
+        </h3>
+        <p>Eats the &quot;source&quot; arg because update_icon actually expects args now.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/42dcfc0bb242ed3d0cf0b23827b7728aaccd2991">42dcfc0</a>
-        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

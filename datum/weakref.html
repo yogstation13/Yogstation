@@ -16,7 +16,7 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/weakrefs.dm#L55">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/weakrefs.dm#L55">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;weakrefs.dm 55"/></a></h1>
 
 <p>A weakref holds a non-owning reference to a datum.
@@ -55,7 +55,7 @@ will always hard delete.</p><table class="summary" cellspacing="0"><tr><td colsp
             <tr><th><a href="datum/weakref.html#proc/resolve">resolve</a></th><td>Retrieves the datum that this weakref is referencing.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/hard_resolve"><aside class="declaration">proc </aside>hard_resolve<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/weakrefs.dm#L93">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/weakrefs.dm#L93">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;weakrefs.dm 93"/></a></aside>
         </h3>
         <p>SERIOUSLY READ THE AUTODOC COMMENT FOR THIS PROC BEFORE EVEN THINKING ABOUT USING IT</p>
@@ -64,18 +64,18 @@ will always hard delete.</p><table class="summary" cellspacing="0"><tr><td colsp
 <p>Do not do anything that would create a lasting reference to the return value, such as giving it a tag, putting it on the map,
 adding it to an atom's contents or vis_contents, giving it a key (if it's a mob), attaching it to an atom (if it's an image),
 or assigning it to a datum or list referenced somewhere other than a temporary value.</p>
-<p>Unless you're resolving a weakref to a datum in a COMSIG_PARENT_QDELETING signal handler registered on that very same datum,
+<p>Unless you're resolving a weakref to a datum in a COMSIG_QDELETING signal handler registered on that very same datum,
 just use resolve instead.</p><h3 id="proc/resolve"><aside class="declaration">proc </aside>resolve<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/556f8c788c797a4d3ce54024aaeb6827d8bca32a/code/datums/weakrefs.dm#L75">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac/code/datums/weakrefs.dm#L75">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;weakrefs.dm 75"/></a></aside>
         </h3>
         <p>Retrieves the datum that this weakref is referencing.</p>
 <p>This will return <code>null</code> if the datum was deleted. This MUST be respected.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/556f8c788c797a4d3ce54024aaeb6827d8bca32a">556f8c7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dbd9dda3f3350ab71b2b79f0b7adc48a600853ac">dbd9dda</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
