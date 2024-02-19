@@ -318,7 +318,7 @@
 				owner.show_laws()
 			if(usr != owner)
 				to_chat(usr, span_notice("Laws displayed."))
-		// Antag && Admin actions:
+		//Admin actions:
 		if("edit_law")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
@@ -383,7 +383,7 @@
 		if("delete_law")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
-			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
+			if(owner == usr && !is_admin(usr))
 				message_admins("Warning: Non-antag silicon and non-admin[usr] attempted to delete one of their laws!")
 				return
 			if(ispAI(owner))
@@ -433,7 +433,7 @@
 						connected_cyborg.law_change_counter++
 		if("add_law")
 			var/type = params["type"]
-			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
+			if(owner == usr && !is_admin(usr))
 				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to give themselves a law!")
 				return
 			if(ispAI(owner))
@@ -497,7 +497,7 @@
 			if(isnum(new_position) && (!..()))
 				supplied_law_position = clamp(new_position, MIN_SUPPLIED_LAW_NUMBER, MAX_SUPPLIED_LAW_NUMBER)
 		if("transfer_laws")
-			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
+			if(owner == usr && !is_admin(usr))
 				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to transfer themselves a lawset!")
 				return
 			if(ispAI(owner))
@@ -531,12 +531,7 @@
 		data["syndiemmi"] = FALSE
 	data["pai"] = ispAI(owner) // pAIs are much different from AIs and Cyborgs. They are heavily restricted.
 	
-	// These two usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!
-	data["antag"] = FALSE // While this seems like it should use `is_special_character()`, it only considers AIs to be an antag if it has a special role AND a zeroth law. Given that admins can remove the antag's zeroth law, this is not ideal.
-	if(isAI(owner))
-		var/mob/living/silicon/ai/AI_owner = owner
-		if(AI_owner.laws && AI_owner.mind && AI_owner.mind.special_role)
-			data["antag"] = TRUE
+	// This usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!
 	data["admin"] = is_admin(user)
 
 	handle_laws(data, owner.laws)
