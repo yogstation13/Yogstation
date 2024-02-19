@@ -108,7 +108,6 @@
 	wire.visible_message(span_warning("[jaunter] zips into [wire]!"))
 	jaunter.extinguish_mob()
 
-	jaunter.sight |= (SEE_TURFS|BLIND)
 	jaunter.add_wirevision(wire)
 	holder.travelled = wire.powernet
 	do_sparks(10, FALSE, jaunter)
@@ -135,7 +134,6 @@
 	if(!exit_jaunt(jaunter, get_turf(wire)))
 		return FALSE
 
-	jaunter.sight &= ~(SEE_TURFS|BLIND)
 	jaunter.remove_wirevision()
 	do_sparks(10, FALSE, jaunter)
 
@@ -214,6 +212,8 @@
 
 	if(!totalMembers.len)
 		return
+		
+	sight |= (SEE_TURFS|BLIND)
 
 	if(client)
 		for(var/object in totalMembers)//cables and power machinery are not the same unfortunately
@@ -221,16 +221,18 @@
 				if(istype(object, /obj/structure/cable))
 					var/obj/structure/cable/display = object
 					if(!display.wire_vision_img)
-						display.wire_vision_img = image(display, display.loc, layer = ABOVE_HUD_LAYER, dir = display.dir)
-						display.wire_vision_img.plane = ABOVE_HUD_PLANE
+						var/turf/their_turf = get_turf(display)
+						display.wire_vision_img = image(display, display.loc, dir = display.dir)
+						SET_PLANE(display.wire_vision_img, ABOVE_HUD_PLANE, their_turf)
 					client.images += display.wire_vision_img
 					wires_shown += display.wire_vision_img
 				
 				else if(istype(object, /obj/machinery/power))
 					var/obj/machinery/power/display = object
 					if(!display.wire_vision_img)
-						display.wire_vision_img = image(display, display.loc, layer = ABOVE_HUD_LAYER, dir = display.dir)
-						display.wire_vision_img.plane = ABOVE_HUD_PLANE
+						var/turf/their_turf = get_turf(display)
+						display.wire_vision_img = image(display, display.loc, dir = display.dir)
+						SET_PLANE(display.wire_vision_img, ABOVE_HUD_PLANE, their_turf)
 					client.images += display.wire_vision_img
 					wires_shown += display.wire_vision_img
 
@@ -239,6 +241,7 @@
 		for(var/image/current_image in wires_shown)
 			client.images -= current_image
 		wires_shown.len = 0
+	sight &= ~(SEE_TURFS|BLIND)
 
 
 /obj/item/wirecrawl

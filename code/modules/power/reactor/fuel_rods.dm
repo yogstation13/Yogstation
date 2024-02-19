@@ -138,7 +138,7 @@
 				to_chat(user, "<span class='notice'>You insert [adding] [material_name_singular] into \the [src].</span>")
 			else
 				to_chat(user, "<span class='notice'>You insert [adding] [material_name] into \the [src].</span>")
-			M.zero_amount()
+			M.is_zero_amount(delete_if_zero = TRUE)
 		else
 			to_chat(user, "<span class='warning'>\The [src]'s material slots are full!</span>")
 			return

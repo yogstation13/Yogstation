@@ -30,6 +30,13 @@
 	category = "Offensive"
 	cost = 1
 
+/datum/spellbook_entry/appendicitis
+	name = "Bestow Appendicitis"
+	desc = "Give someone appendicitis."
+	spell_type = /datum/action/cooldown/spell/pointed/appendicitis
+	category = "Offensive"
+	cost = 1
+	
 /datum/spellbook_entry/mutate
 	name = "Mutate"
 	desc = "Causes you to turn into a hulk and gain laser vision for a short while."

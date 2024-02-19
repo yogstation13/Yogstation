@@ -1,5 +1,5 @@
 //Aux base construction console
-/mob/camera/aiEye/remote/base_construction
+/mob/camera/ai_eye/remote/base_construction
 	name = "construction holo-drone"
 	move_on_shuttle = 1 //Allows any curious crew to watch the base after it leaves. (This is safe as the base cannot be modified once it leaves)
 	icon = 'icons/obj/mining.dmi'
@@ -7,18 +7,18 @@
 	var/area/starting_area
 	invisibility = 0 //Not invisible
 
-/mob/camera/aiEye/remote/base_construction/Initialize(mapload)
+/mob/camera/ai_eye/remote/base_construction/Initialize(mapload)
 	. = ..()
 	starting_area = get_area(loc)
-	icon_state = "construction_drone" // Overrides /mob/camera/aiEye/Initialize(mapload) in \modules\mob\living\silicon\ai\freelook\eye
+	icon_state = "construction_drone" // Overrides /mob/camera/ai_eye/Initialize(mapload) in \modules\mob\living\silicon\ai\freelook\eye
 
-/mob/camera/aiEye/remote/base_construction/setLoc(t)
-	var/area/curr_area = get_area(t)
+/mob/camera/ai_eye/remote/base_construction/setLoc(turf/destination, force_update = FALSE)
+	var/area/curr_area = get_area(destination)
 	if(curr_area == starting_area || istype(curr_area, /area/shuttle/auxiliary_base))
 		return ..()
 	//While players are only allowed to build in the base area, but consoles starting outside the base can move into the base area to begin work.
 
-/mob/camera/aiEye/remote/base_construction/relaymove(mob/user, direct)
+/mob/camera/ai_eye/remote/base_construction/relaymove(mob/user, direct)
 	dir = direct //This camera eye is visible as a drone, and needs to keep the dir updated
 	..()
 
@@ -32,24 +32,26 @@
 	name = "base construction console"
 	desc = "An industrial computer integrated with a camera-assisted rapid construction drone."
 	networks = list("ss13")
-	var/obj/item/construction/rcd/internal/RCD //Internal RCD. The computer passes user commands to this in order to avoid massive copypaste.
 	circuit = /obj/item/circuitboard/computer/base_construction
-	off_action = new/datum/action/innate/camera_off/base_construction
+	off_action = /datum/action/innate/camera_off/base_construction
 	jump_action = null
+	icon_screen = "mining"
+	icon_keyboard = "rd_key"
+	light_color = LIGHT_COLOR_PINK
+	///Area that the eyeobj will be constrained to. If null, eyeobj will be able to build and move anywhere.
+	var/area/allowed_area = /area/shuttle/auxiliary_base
+
+	var/obj/item/construction/rcd/internal/RCD //Internal RCD. The computer passes user commands to this in order to avoid massive copypaste.
+	var/obj/machinery/computer/auxiliary_base/found_aux_console //Tracker for the Aux base console, so the eye can always find it.
 	var/datum/action/innate/aux_base/switch_mode/switch_mode_action = new //Action for switching the RCD's build modes
 	var/datum/action/innate/aux_base/build/build_action = new //Action for using the RCD
 	var/datum/action/innate/aux_base/airlock_type/airlock_mode_action = new //Action for setting the airlock type
 	var/datum/action/innate/aux_base/window_type/window_action = new //Action for setting the window type
-	var/datum/action/innate/aux_base/place_fan/fan_action = new //Action for spawning fans
 	var/fans_remaining = 0 //Number of fans in stock.
-	var/datum/action/innate/aux_base/install_turret/turret_action = new //Action for spawning turrets
+	var/datum/action/innate/aux_base/place_fan/fan_action = new //Action for spawning fans
 	var/turret_stock = 0 //Turrets in stock
-	var/obj/machinery/computer/auxiliary_base/found_aux_console //Tracker for the Aux base console, so the eye can always find it.
-
-	icon_screen = "mining"
-	icon_keyboard = "rd_key"
-
-	light_color = LIGHT_COLOR_PINK
+	var/datum/action/innate/aux_base/install_turret/turret_action = new //Action for spawning turrets
+	
 
 /obj/machinery/computer/camera_advanced/base_construction/Initialize(mapload)
 	. = ..()
@@ -62,21 +64,22 @@
 		fans_remaining = 4
 		turret_stock = 4
 
-/obj/machinery/computer/camera_advanced/base_construction/CreateEye()
-
-	var/spawn_spot
-	for(var/obj/machinery/computer/auxiliary_base/ABC in GLOB.machines)
-		if(istype(get_area(ABC), /area/shuttle/auxiliary_base))
-			found_aux_console = ABC
+///Find a spawn location for the eyeobj. If no allowed_area is defined, spawn ontop of the console.
+/obj/machinery/computer/camera_advanced/base_construction/proc/find_spawn_spot()
+	for(var/obj/machinery/computer/auxiliary_base/aux_base_camera as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/computer/auxiliary_base))
+		if(istype(get_area(aux_base_camera), allowed_area))
+			found_aux_console = aux_base_camera
 			break
 
 	if(found_aux_console)
-		spawn_spot = found_aux_console
-	else
-		spawn_spot = src
+		return get_turf(found_aux_console)
+	return get_turf(src)
 
-
-	eyeobj = new /mob/camera/aiEye/remote/base_construction(get_turf(spawn_spot))
+/obj/machinery/computer/camera_advanced/base_construction/CreateEye()
+	var/turf/spawn_spot = find_spawn_spot()
+	if (!spawn_spot)
+		return FALSE
+	eyeobj = new /mob/camera/ai_eye/remote/base_construction(get_turf(spawn_spot))
 	eyeobj.origin = src
 
 
@@ -132,7 +135,7 @@
 /datum/action/innate/aux_base //Parent aux base action
 	button_icon = 'icons/mob/actions/actions_construction.dmi'
 	var/mob/living/C //Mob using the action
-	var/mob/camera/aiEye/remote/base_construction/remote_eye //Console's eye mob
+	var/mob/camera/ai_eye/remote/base_construction/remote_eye //Console's eye mob
 	var/obj/machinery/computer/camera_advanced/base_construction/B //Console itself
 
 /datum/action/innate/aux_base/Activate()

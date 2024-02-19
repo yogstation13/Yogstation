@@ -1,4 +1,7 @@
-#define SENSORS_UPDATE_PERIOD 100 //How often the sensor data updates.
+/// How often the sensor data is updated
+#define SENSORS_UPDATE_PERIOD (10 SECONDS) //How often the sensor data updates.
+/// The job sorting ID associated with otherwise unknown jobs
+#define UNKNOWN_JOB_ID 81
 
 /obj/machinery/computer/crew
 	name = "crew monitoring console"
@@ -305,3 +308,4 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			AI.ai_camera_track(params["name"])
 
 #undef SENSORS_UPDATE_PERIOD
+#undef UNKNOWN_JOB_ID

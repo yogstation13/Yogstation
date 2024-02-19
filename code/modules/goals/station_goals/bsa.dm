@@ -255,21 +255,26 @@
 		if("recalibrate")
 			calibrate(usr)
 			. = TRUE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/computer/bsa_control/proc/calibrate(mob/user)
 	if(!GLOB.bsa_unlock)
 		return
 	var/list/gps_locators = list()
-	for(var/obj/item/gps/G in GLOB.GPS_list) //nulls on the list somehow
+	for(var/datum/component/gps/G in GLOB.GPS_list) //nulls on the list somehow
 		if(G.tracking)
 			gps_locators[G.gpstag] = G
 
 	var/list/options = gps_locators
 	if(area_aim)
 		options += GLOB.teleportlocs
-	var/V = input(user,"Select target", "Select target",null) in options|null
-	target = options[V]
+	var/victim = tgui_input_list(user, "Select target", "Artillery Targeting", options)
+	if(isnull(victim))
+		return
+	if(isnull(options[victim]))
+		return
+	target = options[victim]
+	log_game("[key_name(user)] has aimed the bluespace artillery strike at [target].")
 
 
 /obj/machinery/computer/bsa_control/proc/get_target_name()
@@ -278,12 +283,20 @@
 	else if(istype(target, /obj/item/gps))
 		var/obj/item/gps/G = target
 		return G.gpstag
+	else if(istype(target, /datum/component/gps))
+		var/datum/component/gps/G = target
+		return G.gpstag
 
 /obj/machinery/computer/bsa_control/proc/get_impact_turf()
-	if(istype(target, /area))
+	if(obj_flags & EMAGGED)
+		return get_turf(src)
+	else if(istype(target, /area))
 		return pick(get_area_turfs(target))
 	else if(istype(target, /obj/item/gps))
 		return get_turf(target)
+	else if(istype(target, /datum/component/gps))
+		var/datum/component/gps/G = target
+		return get_turf(G.parent)
 
 /**
   * Fires the BSA (duh) if it has power
@@ -298,13 +311,8 @@
 		notice = "Cannon unpowered!"
 		return
 	notice = null
-	if(istype(target, /obj/item/gps/pirate))
-		var/obj/item/gps/pirate/p = target
-		p.on_shoot()
-		cannon.fire(user, cannon.get_target_turf())
-		target = null
-		return
-	cannon.fire(user, get_impact_turf())
+	var/turf/target_turf = get_impact_turf()
+	cannon.fire(user, target_turf)
 
 /obj/machinery/computer/bsa_control/proc/deploy(force=FALSE)
 	var/obj/machinery/bsa/full/prebuilt = locate() in range(7) //In case of adminspawn

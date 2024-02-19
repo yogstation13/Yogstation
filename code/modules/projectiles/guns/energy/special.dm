@@ -129,6 +129,8 @@
 	var/progress_flash_divisor = 10  //copypasta is best pasta
 	var/light_intensity = 1
 	var/charge_weld = 25 //amount of charge used up to start action (multiplied by amount) and per progress_flash_divisor ticks of welding
+	/// Contains the type paths for installed upgrades
+	var/installed_upgrades = list()
 
 /obj/item/gun/energy/plasmacutter/mini
 	name = "mini plasma cutter"
@@ -235,7 +237,7 @@
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	. = ..()
-	if(try_upgrade(I))
+	if(try_upgrade(I, user))
 		to_chat(user, span_notice("You install [I] into [src]"))
 		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
 		qdel(I)
@@ -274,20 +276,33 @@
 	name = "plasma cutter defusal kit"
 	desc = "An upgrade for plasma shotguns that allows it to automatically defuse gibtonite."
 
-/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I)
-	return // no upgrades for the plasmacutter
+/obj/item/upgrade/plasmacutter/capacity
+	name = "plasma cutter capacity kit"
+	desc = "An upgrade for plasma shotguns that doubles the tank capacity."
 
-/obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I)
+/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I, mob/user)
+	if(I.type in installed_upgrades)
+		to_chat(user, span_notice("[I] has already been installed in [src]"))
+		return FALSE
+	return FALSE
+
+/obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I, mob/user)
+	. = ..()
 	if(.)
-		return
+		return TRUE
 	if(istype(I, /obj/item/upgrade/plasmacutter/defuser))
 		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
 		ammo_type = list(kaboom)
+		installed_upgrades += I.type
+		return TRUE
+	if(istype(I, /obj/item/upgrade/plasmacutter/capacity))
+		cell.maxcharge = initial(cell.maxcharge)*2
+		installed_upgrades += I.type
 		return TRUE
 	return FALSE
 
 //no upgrading this one either (for now)
-/obj/item/gun/energy/plasmacutter/scatter/mega/try_upgrade(obj/item/I)
+/obj/item/gun/energy/plasmacutter/scatter/mega/try_upgrade(obj/item/I, mob/user)
 	return
 
 /obj/item/gun/energy/wormhole_projector

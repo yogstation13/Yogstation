@@ -279,9 +279,10 @@
 	weather_immunities = list(WEATHER_LAVA, WEATHER_ASH)
 	obj_damage = 30
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-
+	// Purple, but bright cause we're gonna need to spot mobs on lavaland
+	lighting_cutoff_red = 35
+	lighting_cutoff_green = 20
+	lighting_cutoff_blue = 45
 
 /mob/living/simple_animal/hostile/big_legion/Initialize(mapload)
 	.=..()
