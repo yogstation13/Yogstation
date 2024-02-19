@@ -8,7 +8,7 @@
 
 //The gateway to Reebe, from which Ratvar emerges.
 /obj/structure/destructible/clockwork/massive/celestial_gateway
-	name = "\improper Ark of the Clockwork Justicar"
+	name = "\improper Ark of the Clockwork Justiciar"
 	desc = "A massive, hulking amalgamation of parts. It seems to be maintaining a very unstable bluespace anomaly."
 	clockwork_desc = "Nezbere's magnum opus: a hulking clockwork machine capable of combining bluespace and steam power to summon Ratvar. Once activated, \
 	its instability will cause one-way bluespace rifts to open across the station to the City of Cogs, so be prepared to defend it at all costs."
@@ -124,7 +124,7 @@
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/spawn_animation()
 	hierophant_message("<span class='bold large_brass'>The Ark has activated! [grace_period ? "You have [round(grace_period / 60)] minutes until the crew invades! " : ""]Defend it at all costs!</span>", FALSE, src)
-	sound_to_playing_players(volume = 10, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
+	sound_to_playing_players(volume = 10, channel = CHANNEL_JUSTICIAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
 	seconds_until_activation = 0
 	SSshuttle.registerHostileEnvironment(src)
 
@@ -157,7 +157,7 @@
 	SSshuttle.clearHostileEnvironment(src)
 	if(!purpose_fulfilled)
 		hierophant_message("<span class='bold large_brass'>The Ark has fallen!</span>")
-		sound_to_playing_players(null, channel = CHANNEL_JUSTICAR_ARK)
+		sound_to_playing_players(null, channel = CHANNEL_JUSTICIAR_ARK)
 		if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
 			SSticker.force_ending = TRUE //rip
 	if(glow)
@@ -190,7 +190,7 @@
 			resistance_flags |= INDESTRUCTIBLE
 			countdown.stop()
 			visible_message(span_userdanger("[src] begins to pulse uncontrollably... you might want to run!"))
-			sound_to_playing_players(volume = 25, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_disrupted.ogg'))
+			sound_to_playing_players(volume = 25, channel = CHANNEL_JUSTICIAR_ARK, S = sound('sound/effects/clockcult_gateway_disrupted.ogg'))
 			for(var/mob/M in GLOB.player_list)
 				var/turf/T = get_turf(M)
 				if((T && T.z == z) || is_servant_of_ratvar(M))
@@ -314,19 +314,19 @@
 				for(var/V in GLOB.generic_event_spawns)
 					addtimer(CALLBACK(src, PROC_REF(open_portal), get_turf(V)), rand(100, 600))
 				sound_to_playing_players('sound/magic/clockwork/invoke_general.ogg', 30, FALSE)
-				sound_to_playing_players(volume = 15, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
+				sound_to_playing_players(volume = 15, channel = CHANNEL_JUSTICIAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
 				second_sound_played = TRUE
 			make_glow()
 			glow.icon_state = "clockwork_gateway_charging"
 		if(GATEWAY_REEBE_FOUND to GATEWAY_RATVAR_COMING)
 			if(!third_sound_played)
-				sound_to_playing_players(volume = 20, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_active.ogg', TRUE))
+				sound_to_playing_players(volume = 20, channel = CHANNEL_JUSTICIAR_ARK, S = sound('sound/effects/clockcult_gateway_active.ogg', TRUE))
 				third_sound_played = TRUE
 			make_glow()
 			glow.icon_state = "clockwork_gateway_active"
 		if(GATEWAY_RATVAR_COMING to GATEWAY_RATVAR_ARRIVAL)
 			if(!fourth_sound_played)
-				sound_to_playing_players(volume = 25, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_closing.ogg', TRUE))
+				sound_to_playing_players(volume = 25, channel = CHANNEL_JUSTICIAR_ARK, S = sound('sound/effects/clockcult_gateway_closing.ogg', TRUE))
 				fourth_sound_played = TRUE
 			make_glow()
 			glow.icon_state = "clockwork_gateway_closing"
@@ -338,7 +338,7 @@
 				purpose_fulfilled = TRUE
 				make_glow()
 				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 12.5 SECONDS)
-				sound_to_playing_players(volume = 100, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
+				sound_to_playing_players(volume = 100, channel = CHANNEL_JUSTICIAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
 				sleep(12.5 SECONDS)
 				make_glow()
 				animate(glow, transform = matrix() * 3, alpha = 0, time = 0.5 SECONDS)
@@ -389,7 +389,7 @@
 			return
 		initiate_mass_recall() //wHOOPS LOOKS LIKE A HULK GOT THROUGH
 
-//the actual appearance of the Ark of the Clockwork Justicar; an object so the edges of the gate can be clicked through.
+//the actual appearance of the Ark of the Clockwork Justiciar; an object so the edges of the gate can be clicked through.
 /obj/effect/clockwork/overlay/gateway_glow
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "clockwork_gateway_components"
