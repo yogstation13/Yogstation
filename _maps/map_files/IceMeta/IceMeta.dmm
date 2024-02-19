@@ -22678,7 +22678,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
-	},w
+	},
 /obj/effect/landmark/start/depsec/science,
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
