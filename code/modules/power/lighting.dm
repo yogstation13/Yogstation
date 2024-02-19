@@ -353,9 +353,6 @@
 	// Light projects out backwards from the dir of the light
 	set_light(l_dir = REVERSE_DIR(dir))
 
-	if(mapload && our_area.lights_always_start_on)
-		turn_on(trigger = FALSE, quiet = TRUE)
-
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/light/LateInitialize()

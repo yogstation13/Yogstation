@@ -5,7 +5,6 @@
 	name = "Shuttle"
 	requires_power = FALSE
 	static_lighting = TRUE
-	lights_always_start_on = TRUE
 	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
 	valid_territory = FALSE
