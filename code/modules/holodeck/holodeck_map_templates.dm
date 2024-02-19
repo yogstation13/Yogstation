@@ -153,7 +153,7 @@
 	template_id = "holodeck_medicalsim"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_medicalsim.dmm"
-//	restricted = EMAGGED //yogs edit: Medical is not restricted, we instead require red-alert.
+//	restricted = TRUE //yogs edit: Medical is not restricted, we instead require red-alert.
 	minimum_sec_level = SEC_LEVEL_RED
 
 /datum/map_template/holodeck/thunderdome1218
@@ -161,7 +161,7 @@
 	template_id = "holodeck_thunderdome1218"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_thunderdome1218.dmm"
-	restricted = EMAGGED
+	restricted = TRUE
 
 /* //disabled because the lava immediately destroys the holodeck
 /datum/map_template/holodeck/burntest
@@ -169,7 +169,7 @@
 	template_id = "holodeck_burntest"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_burntest.dmm"
-	restricted = EMAGGED
+	restricted = TRUE
 */
 
 /datum/map_template/holodeck/wildlifesim
@@ -177,25 +177,25 @@
 	template_id = "holodeck_wildlifesim"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_wildlifesim.dmm"
-	restricted = EMAGGED
+	restricted = TRUE
 
 /datum/map_template/holodeck/holdoutbunker
 	name = "Holodeck - Holdout Bunker"
 	template_id = "holodeck_holdoutbunker"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_holdoutbunker.dmm"
-	restricted = EMAGGED
+	restricted = TRUE
 
 /datum/map_template/holodeck/anthophillia
 	name = "Holodeck - Anthophillia"
 	template_id = "holodeck_anthophillia"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_anthophillia.dmm"
-	restricted = EMAGGED
+	restricted = TRUE
 
 /datum/map_template/holodeck/refuelingstation
 	name = "Holodeck - Refueling Station"
 	template_id = "holodeck_refuelingstation"
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_refuelingstation.dmm"
-	restricted = EMAGGED
+	restricted = TRUE
