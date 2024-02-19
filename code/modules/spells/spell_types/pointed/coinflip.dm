@@ -15,7 +15,7 @@
 
 	sound = 'sound/items/coinflip.ogg'
 	school = SCHOOL_CONJURATION
-	cooldown_time = 120 SECONDS
+	cooldown_time = 5 SECONDS
 
 	invocation = "F'R ND H'NGR"
 	invocation_type = INVOCATION_WHISPER
@@ -34,29 +34,33 @@
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
 		to_chat(cast_on, span_notice("You hear a coin flipping in the distance, but nothing more."))
+		playsound(usr.loc, 'sound/items/coinflip.ogg', 25, 1)
 		to_chat(owner, span_warning("The spell had no effect!"))
 		return FALSE
 
+	cast_on.add_atom_colour("#802796", ADMIN_COLOUR_PRIORITY)
 	ADD_TRAIT(cast_on, TRAIT_IMMOBILIZED, src)
-	select_coin(cast_on)
-	
+	select_coin(owner) ///chhange this back to cast_on from owner after done testing
+	cast_on.remove_atom_colour(ADMIN_COLOUR_PRIORITY)
+
 	return TRUE
 
 
-/datum/action/cooldown/spell/pointed/coinflip/proc/select_coin(mob/living/user, title = "Heads, or Tails?")
+/datum/action/cooldown/spell/pointed/coinflip/proc/select_coin(mob/living/user)
 	var/answerChoice = tgui_input_list(user, "Heads or tails", "Call it", list("heads","tails"))
 	var/list/sideslist = list("heads","tails")
 	var/coinflip
 
 	coinflip = pick(sideslist)
 
-	if(answerChoice != coinflip)
-		if(iscarbon(user))
-			var/mob/living/carbon/CM = user
-			for(var/obj/item/bodypart/bodypart in CM.bodyparts)
-				if(!(bodypart.body_part & (HEAD|CHEST)))
-					if(bodypart.dismemberable)
-						bodypart.dismember()
-						REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, src)
-	else
-		REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, src)
+	if(answerChoice == coinflip)
+		return
+	if(!iscarbon(user))
+		return
+	var/mob/living/carbon/CM = user
+	for(var/obj/item/bodypart/bodypart in CM.bodyparts)
+		if(!(bodypart.body_part & (HEAD|CHEST)))
+			if(bodypart.dismemberable)
+				bodypart.dismember()
+	
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, src)
