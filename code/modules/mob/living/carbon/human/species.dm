@@ -1045,8 +1045,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(!S || S.icon_state == "none")
 				continue
 
-			var/mutable_appearance/accessory_overlay 
-			accessory_overlay = mutable_appearance(S.icon, layer = -layer)
+			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
 
 			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
 			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph")
@@ -1088,8 +1087,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			standing += accessory_overlay
 
 			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)))
-				var/mutable_appearance/emissive_accessory_overlay 
-				emissive_accessory_overlay  = emissive_appearance(S.icon, "placeholder", H)
+				var/mutable_appearance/emissive_accessory_overlay = emissive_appearance(S.icon, "placeholder", H)
 
 				//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
 				if(S.gender_specific)
