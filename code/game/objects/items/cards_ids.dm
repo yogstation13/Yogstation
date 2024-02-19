@@ -758,7 +758,7 @@ update_label("John Doe", "Clowny")
 	access = list(ACCESS_SYNDICATE)
 
 /obj/item/card/id/captains_spare
-	name = "\improper captain's spare ID"
+	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
