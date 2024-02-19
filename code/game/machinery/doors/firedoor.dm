@@ -154,7 +154,7 @@
 	if(W.use_tool(src, user, 40, volume=50))
 		welded = !welded
 		to_chat(user, span_danger("[user] [welded?"welds":"unwelds"] [src]."), span_notice("You [welded ? "weld" : "unweld"] [src]."))
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/I, mob/user)
 	if(welded || operating)
@@ -320,13 +320,21 @@
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_1 = ON_BORDER_1
-	CanAtmosPass = ATMOS_PASS_PROC
+	can_atmos_pass = ATMOS_PASS_PROC
 	assemblytype = /obj/structure/firelock_frame/border
 
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
 	opacity = TRUE
 	density = TRUE
+
+/obj/machinery/door/firedoor/border_only/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
+	)
+
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/machinery/door/firedoor/border_only/close()
 	if(density)
@@ -395,18 +403,8 @@
 	if(!(get_dir(loc, target) == dir)) //Make sure looking at appropriate border
 		return TRUE
 
-/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
-	if(istype(mover) && (mover.pass_flags & PASSDOOR)) // I mean it's a door
-		return TRUE
-	if(istype(mover) && (mover.pass_flags & PASSGLASS))
-		return TRUE
-	if(get_dir(loc, target) == dir)
-		return !density
-	else
-		return TRUE
-
-/obj/machinery/door/firedoor/border_only/CanAtmosPass(turf/T)
-	if(get_dir(loc, T) == dir)
+/obj/machinery/door/firedoor/border_only/can_atmos_pass(turf/target_turf, vertical = FALSE)
+	if(get_dir(loc, target_turf) == dir)
 		return !density
 	else
 		return TRUE
@@ -415,6 +413,17 @@
 	if(opp_dir == dir)
 		return density
 	return FALSE
+
+/obj/machinery/door/firedoor/border_only/proc/on_exit(datum/source, atom/movable/leaving, direction)
+	SIGNAL_HANDLER
+	if(leaving.movement_type & PHASING)
+		return
+	if(leaving == src)
+		return // Let's not block ourselves.
+
+	if(direction == dir && density)
+		leaving.Bump(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"

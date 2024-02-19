@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Newly created cyborgs with an closed AI Connection Port do not inherit an AI's laws (if any) before getting desynced."

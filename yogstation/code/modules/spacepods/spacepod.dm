@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	density = 1
 	opacity = FALSE
 	dir = NORTH // always points north because why not
-	layer = SPACEPOD_LAYER
+	layer = VEHICLE_LAYER
 	bound_width = 64
 	bound_height = 64
 	animate_movement = NO_STEPS // we do our own gliding here
@@ -67,10 +67,10 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 
 	var/lights = 0
 	var/lights_power = 6
-	var/static/list/icon_light_color = list("pod_civ" = LIGHT_COLOR_WHITE, \
+	var/static/list/icon_light_color = list("pod_civ" = LIGHT_COLOR_DEFAULT, \
 									 "pod_mil" = "#BBF093", \
 									 "pod_synd" = LIGHT_COLOR_RED, \
-									 "pod_gold" = LIGHT_COLOR_WHITE, \
+									 "pod_gold" = LIGHT_COLOR_DEFAULT, \
 									 "pod_black" = "#3B8FE5", \
 									 "pod_industrial" = "#CCCC00")
 
@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	if(weapon && weapon.overlay_icon_state)
 		. += image(icon=weapon.overlay_icon,icon_state=weapon.overlay_icon_state)
 
-	light_color = icon_light_color[icon_state] || LIGHT_COLOR_WHITE
+	light_color = icon_light_color[icon_state] || LIGHT_COLOR_DEFAULT
 
 	// Thrust!
 	var/list/left_thrusts = list()

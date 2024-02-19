@@ -214,10 +214,10 @@
 
 /obj/machinery/shuttle/engine/ion/proc/register_capacitor_bank(new_bank)
 	if(capacitor_bank)
-		UnregisterSignal(capacitor_bank, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(capacitor_bank, COMSIG_QDELETING)
 	capacitor_bank = new_bank 
 	if(capacitor_bank)
-		RegisterSignal(capacitor_bank, COMSIG_PARENT_QDELETING, PROC_REF(on_capacitor_deleted))
+		RegisterSignal(capacitor_bank, COMSIG_QDELETING, PROC_REF(on_capacitor_deleted))
 	update_engine()
 
 /obj/machinery/shuttle/engine/ion/proc/on_capacitor_deleted(datum/source, force)

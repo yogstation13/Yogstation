@@ -1,10 +1,3 @@
-#define FORWARD 1
-#define BACKWARD -1
-
-#define ITEM_DELETE "delete"
-#define ITEM_MOVE_INSIDE "move_inside"
-
-
 /datum/component/construction
 	var/list/steps
 	var/result
@@ -15,7 +8,7 @@
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(action))
 	update_parent(index)
 

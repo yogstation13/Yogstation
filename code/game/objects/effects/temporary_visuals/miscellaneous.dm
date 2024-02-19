@@ -168,7 +168,7 @@
 
 /obj/effect/temp_visual/dir_setting/curse/hand/Initialize(mapload, set_dir, handedness)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/effect/temp_visual/bsa_splash
 	name = "\improper Bluespace energy wave"
