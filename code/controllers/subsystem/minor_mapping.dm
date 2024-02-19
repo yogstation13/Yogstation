@@ -37,14 +37,21 @@ SUBSYSTEM_DEF(minor_mapping)
 			num_mice -= 1
 			M = null
 
-/datum/controller/subsystem/minor_mapping/proc/place_satchels(amount=10)
+/datum/controller/subsystem/minor_mapping/proc/place_satchels(satchel_amount = 10)
 	var/list/turfs = find_satchel_suitable_turfs()
+	///List of areas where satchels should not be placed.
+	var/list/blacklisted_area_types = list(
+		/area/holodeck,
+		)
 
-	while(turfs.len && amount > 0)
-		var/turf/T = pick_n_take(turfs)
-		var/obj/item/storage/backpack/satchel/flat/S = new(T)
-		S.hide(intact=TRUE)
-		amount--
+	while(turfs.len && satchel_amount > 0)
+		var/turf/turf = pick_n_take(turfs)
+		if(is_type_in_list(get_area(turf), blacklisted_area_types))
+			continue
+		var/obj/item/storage/backpack/satchel/flat/flat_satchel = new(turf)
+
+		SEND_SIGNAL(flat_satchel, COMSIG_OBJ_HIDE, turf.underfloor_accessibility)
+		satchel_amount--
 
 
 /proc/find_exposed_wires()

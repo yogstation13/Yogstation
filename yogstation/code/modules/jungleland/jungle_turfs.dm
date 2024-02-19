@@ -13,12 +13,16 @@ Temperature: 126.85 °C (400 K)
 	icon = 'yogstation/icons/turf/floors/jungle.dmi'
 	icon_state = "pregen"
 	map_generator = /datum/map_generator/jungleland
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	has_gravity = TRUE
 
 /area/jungleland
 	name = "Jungleland"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	outdoors = TRUE
 	has_gravity = TRUE
 	always_unpowered = TRUE
@@ -297,8 +301,9 @@ Temperature: 126.85 °C (400 K)
 	desc = "Obsidian wal tearing out of the earth, it reflects light in all the colours you could ever imagine, and you can see something shining brightly within it. You can't quite seem to destroy it with a pickaxe, but maybe an explosion mau suffice?"
 	icon = 'yogstation/icons/turf/walls/obsidian.dmi'	
 	icon_state = "wall"
-	canSmoothWith = list(/turf/closed/obsidian, /turf/closed/obsidian/hard )
-	smooth = SMOOTH_TRUE
+	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS
+	canSmoothWith = SMOOTH_GROUP_MINERAL_WALLS
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	var/list/explosion_threshold = list(EXPLODE_DEVASTATE, EXPLODE_HEAVY, EXPLODE_LIGHT)
 	var/list/droppable_gems = list(
 		null = 25,

@@ -77,6 +77,14 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
 	if(!GLOB.ethereal_mark_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ethereal_mark, GLOB.ethereal_mark_list)
+	if(!GLOB.preternis_weathering_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_weathering, GLOB.preternis_weathering_list)
+	if(!GLOB.preternis_antenna_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_antenna, GLOB.preternis_antenna_list)
+	if(!GLOB.preternis_eye_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_eye, GLOB.preternis_eye_list)
+	if(!GLOB.preternis_core_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/preternis_core, GLOB.preternis_core_list)
 	if(!GLOB.pod_hair_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
 	if(!GLOB.pod_flower_list.len)
@@ -93,7 +101,6 @@
 		"mcolor" = "#[pick("7F","FF")][pick("7F","FF")][pick("7F","FF")]",
 		"gradientstyle" = random_hair_gradient_style(10),
 		"gradientcolor" = "#[pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")]",
-		"pretcolor" = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)],
 		"tail_lizard" = pick(GLOB.tails_list_lizard),
 		"tail_human" = "None",
 		"wings" = "None",
@@ -111,6 +118,11 @@
 		"dome" = pick(GLOB.dome_list),
 		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
 		"ethereal_mark" = pick(GLOB.ethereal_mark_list),
+		"pretcolor" = pick(GLOB.color_list_preternis),
+		"preternis_weathering" = pick(GLOB.preternis_weathering_list),
+		"preternis_antenna" = pick(GLOB.preternis_antenna_list),
+		"preternis_eye" = pick(GLOB.preternis_eye_list),
+		"preternis_core" = pick(GLOB.preternis_core_list),
 		"pod_hair" = pick(GLOB.pod_hair_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),

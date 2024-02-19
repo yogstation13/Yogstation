@@ -516,7 +516,7 @@ SUBSYSTEM_DEF(job)
 			RejectPlayer(player)
 
 //Gives the player the stuff he should have with his rank
-/datum/controller/subsystem/job/proc/EquipRank(mob/M, rank, joined_late = FALSE)
+/datum/controller/subsystem/job/proc/EquipRank(mob/living/M, rank, joined_late = FALSE)
 	var/mob/dead/new_player/newplayer
 	var/mob/living/living_mob
 	if(!joined_late)
@@ -617,9 +617,8 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/irish_override()
 	var/datum/map_template/template = SSmapping.station_room_templates["Bar Irish"]
 
-	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.bar_landmarks)
 		template.load(B.loc, centered = FALSE)
-		qdel(B)
 
 
 /datum/controller/subsystem/job/proc/random_chapel_init()
@@ -665,9 +664,9 @@ SUBSYSTEM_DEF(job)
 			log_game("WARNING: CHAPEL RECOVERY FAILED! THERE WILL BE NO CHAPEL FOR THIS ROUND!")
 			return
 
-		for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.landmarks_list)
+		for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.chapel_landmarks)
 			template.load(B.loc, centered = FALSE)
-			qdel(B)
+
 	catch(var/exception/e)
 		message_admins("RUNTIME IN RANDOM_CHAPEL_INIT")
 		spawn_chapel()
@@ -682,9 +681,9 @@ SUBSYSTEM_DEF(job)
 	if(isnull(template))
 		message_admins("UNABLE TO SPAWN CHAPEL")
 
-	for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.landmarks_list)
+	for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.chapel_landmarks)
 		template.load(B.loc, centered = FALSE)
-		qdel(B)
+
 
 /datum/controller/subsystem/job/proc/random_clerk_init()
 	try
@@ -729,9 +728,9 @@ SUBSYSTEM_DEF(job)
 			log_game("WARNING: CLERK RECOVERY FAILED! THERE WILL BE NO CLERK SHOP FOR THIS ROUND!")
 			return
 
-		for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
+		for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.clerk_office_landmarks)
 			template.load(B.loc, centered = FALSE)
-			qdel(B)
+
 	catch(var/exception/e)
 		message_admins("RUNTIME IN RANDOM_CLERK_INIT")
 		spawn_clerk()
@@ -746,9 +745,8 @@ SUBSYSTEM_DEF(job)
 	if(isnull(template))
 		message_admins("UNABLE TO SPAWN CLERK")
 	
-	for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
+	for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.clerk_office_landmarks)
 		template.load(B.loc, centered = FALSE)
-		qdel(B)
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
 	if(!C?.holder)

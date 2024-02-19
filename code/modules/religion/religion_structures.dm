@@ -8,7 +8,7 @@
 	layer = TABLE_LAYER
 	pass_flags = LETPASSTHROW
 	can_buckle = TRUE
-	smooth = SMOOTH_FALSE
+	smoothing_flags = null
 	canSmoothWith = null
 	flags_1 = NODECONSTRUCT_1 // no, don't
 	buckle_lying = 90 //we turn to you!

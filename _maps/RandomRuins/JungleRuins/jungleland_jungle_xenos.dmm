@@ -164,7 +164,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "aV" = (
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/ruin/unpowered)
 "aW" = (
 /obj/structure/flora/grass/jungle/b,
@@ -218,7 +218,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
 "uP" = (
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/template_noop)
 "vl" = (
 /obj/structure/mineral_door/wood,
@@ -275,7 +275,7 @@
 /obj/structure/sign/warning{
 	desc = "A warning sign denoting landmines ahead."
 	},
-/turf/closed/indestructible/rock/wood,
+/turf/closed/indestructible/wood,
 /area/template_noop)
 "Ou" = (
 /obj/structure/alien/weeds,

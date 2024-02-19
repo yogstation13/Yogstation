@@ -1,27 +1,28 @@
 #define LINKIFY_READY(string, value) "<a href='byond://?src=[REF(src)];ready=[value]'>[string]</a>"
+///Cooldown for the Reset Lobby Menu HUD verb
+#define RESET_HUD_INTERVAL 15 SECONDS
 
 /mob/dead/new_player
-	var/ready = 0
-	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
-
 	flags_1 = NONE
-
 	invisibility = INVISIBILITY_ABSTRACT
-
 	density = FALSE
 	stat = DEAD
 
-	var/mob/living/new_character	//for instant transfer once the round is set up
-
-	//Used to make sure someone doesn't get spammed with messages if they're ineligible for roles
+	var/ready = FALSE
+	/// Referenced when you want to delete the new_player later on in the code.
+	var/spawning = FALSE
+	/// For instant transfer once the round is set up
+	var/mob/living/new_character
+	///Used to make sure someone doesn't get spammed with messages if they're ineligible for roles.
 	var/ineligible_for_roles = FALSE
-
 	/// Used to track if the player's jobs menu sent a message saying it successfully mounted.
 	var/jobs_menu_mounted = FALSE
+	///Cooldown for the Reset Lobby Menu HUD verb
+	COOLDOWN_DECLARE(reset_hud_cooldown)
 
 /mob/dead/new_player/Initialize(mapload)
 	if(client && SSticker.state == GAME_STATE_STARTUP)
-		var/atom/movable/screen/splash/S = new(client, TRUE, TRUE)
+		var/atom/movable/screen/splash/S = new(null, client, TRUE)
 		S.Fade(TRUE)
 
 	if(length(GLOB.newplayer_start))
@@ -29,11 +30,10 @@
 	else
 		forceMove(locate(1,1,1))
 
-	add_verb(usr, /datum/latejoin_menu/verb/open_fallback_ui)
-
 	. = ..()
 
 	GLOB.new_player_list += src
+	add_verb(usr, /datum/latejoin_menu/verb/open_fallback_ui)
 
 /mob/dead/new_player/Destroy()
 	GLOB.new_player_list -= src
@@ -355,7 +355,6 @@
 		tgui_alert(usr, "An administrator has disabled late join spawning.")
 		return FALSE
 
-	var/arrivals_docked = TRUE
 	if(SSshuttle.arrivals)
 		close_spawn_windows()	//In case we get held up
 		if(SSshuttle.arrivals.damaged && CONFIG_GET(flag/arrivals_shuttle_require_safe_latejoin))
@@ -364,30 +363,26 @@
 
 		if(CONFIG_GET(flag/arrivals_shuttle_require_undocked))
 			SSshuttle.arrivals.RequireUndocked(src)
-		arrivals_docked = SSshuttle.arrivals.mode != SHUTTLE_CALL
 
 	//Remove the player from the join queue if he was in one and reset the timer
 	SSticker.queued_players -= src
 	SSticker.queue_delay = 4
-
-	SSjob.AssignRole(src, rank, 1)
+	
+	var/datum/job/job = SSjob.GetJob(rank)
+	
+	if(!SSjob.AssignRole(src, rank, TRUE))
+		tgui_alert(usr, "There was an unexpected error putting you into your requested job. If you cannot join with any job, you should contact an admin.")
+		return FALSE
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
 	character.mind.quiet_round = character.client.prefs.read_preference(/datum/preference/toggle/quiet_mode) // yogs - Donor Features
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
+	job.after_latejoin_spawn(character)
 	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
 		character = equip
 
-	var/datum/job/job = SSjob.GetJob(rank)
-
 	if(job && !job.override_latejoin_spawn(character))
 		SSjob.SendToLateJoin(character)
-		if(!arrivals_docked)
-			var/atom/movable/screen/splash/Spl = new(character.client, TRUE)
-			Spl.Fade(TRUE)
-			character.playsound_local(get_turf(character), 'sound/voice/ApproachingTG.ogg', 25)
-
-		character.update_parallax_teleport()
 
 	SSticker.minds += character.mind
 	character.client.init_verbs() // init verbs for the late join
@@ -421,7 +416,7 @@
 				if(SHUTTLE_RECALL, SHUTTLE_IDLE)
 					SSticker.mode.make_antag_chance(humanc)
 				if(SHUTTLE_CALL)
-					if(SSshuttle.emergency.timeLeft(1) > initial(SSshuttle.emergencyCallTime)*0.5)
+					if(SSshuttle.emergency.timeLeft(1) > initial(SSshuttle.emergency_call_time)*0.5)
 						SSticker.mode.make_antag_chance(humanc)
 
 	if(humanc && CONFIG_GET(flag/roundstart_traits))
@@ -432,6 +427,7 @@
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = TRUE
 	close_spawn_windows()
+	//mind.active = FALSE //we wish to transfer the key manually
 
 	var/mob/living/carbon/human/H = new(loc)
 
@@ -462,7 +458,7 @@
 				accent_name = null
 			mind.accent_name = accent_name
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
-		mind.original_character = H
+		mind.set_original_character(H)
 
 	H.name = real_name
 	client.init_verbs()
@@ -473,11 +469,16 @@
 
 /mob/dead/new_player/proc/transfer_character()
 	. = new_character
-	if(.)
-		new_character.key = key		//Manually transfer the key to log them in
-		new_character.stop_sound_channel(CHANNEL_LOBBYMUSIC)
-		new_character = null
-		qdel(src)
+	if(!.)
+		return
+	new_character.key = key		//Manually transfer the key to log them in
+	new_character.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+	var/area/joined_area = get_area(new_character.loc)
+	if(joined_area)
+		joined_area.on_joining_game(new_character)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CREWMEMBER_JOINED, new_character, new_character.mind.assigned_role)
+	new_character = null
+	qdel(src)
 
 /mob/dead/new_player/proc/ViewManifest()
 	if(!client)
@@ -530,3 +531,5 @@
 
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE
+
+#undef RESET_HUD_INTERVAL

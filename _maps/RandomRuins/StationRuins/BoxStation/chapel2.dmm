@@ -68,14 +68,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/chapel/office)
-"cH" = (
-/obj/effect/turf_decal/ramp_middle,
-/obj/machinery/camera{
-	c_tag = "Chapel South";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "dd" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Chapel"
@@ -85,9 +77,6 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -255,6 +244,14 @@
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/plating,
 /area/chapel/office)
+"kU" = (
+/obj/effect/turf_decal/ramp_middle,
+/obj/machinery/camera{
+	c_tag = "Chapel South";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "ln" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -283,13 +280,6 @@
 "mq" = (
 /obj/structure/chair/wood/normal,
 /turf/open/floor/carpet/red,
-/area/chapel/main)
-"nm" = (
-/obj/structure/table/wood/fancy/black,
-/obj/machinery/camera{
-	c_tag = "Chapel Central"
-	},
-/turf/open/floor/carpet/black,
 /area/chapel/main)
 "oG" = (
 /obj/structure/table/wood/fancy,
@@ -346,6 +336,13 @@
 	dir = 8
 	},
 /area/chapel/main)
+"rx" = (
+/obj/structure/table/wood/fancy/black,
+/obj/machinery/camera{
+	c_tag = "Chapel Central"
+	},
+/turf/open/floor/carpet/black,
+/area/chapel/main)
 "rG" = (
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
@@ -375,24 +372,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"uR" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/chapel/office";
-	name = "Chapel Office APC";
-	pixel_y = -23
-	},
-/obj/machinery/camera{
-	c_tag = "Chapel Crematorium";
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "vK" = (
 /obj/structure/table/wood/fancy,
 /obj/structure/railing{
@@ -488,17 +467,6 @@
 	},
 /turf/open/floor/plasteel/chapel{
 	dir = 1
-	},
-/area/chapel/main)
-"BR" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Chapel North"
-	},
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
-	dir = 4
 	},
 /area/chapel/main)
 "Cq" = (
@@ -695,9 +663,38 @@
 	},
 /turf/open/floor/carpet/black,
 /area/chapel/main)
+"Im" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Chapel North"
+	},
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
+	dir = 4
+	},
+/area/chapel/main)
 "IL" = (
 /turf/open/floor/carpet/red,
 /area/chapel/main)
+"IS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/chapel/office";
+	name = "Chapel Office APC";
+	pixel_y = -23
+	},
+/obj/machinery/camera{
+	c_tag = "Chapel Crematorium";
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "Jc" = (
 /obj/structure/closet/crate/coffin,
 /obj/structure/window/reinforced{
@@ -1076,7 +1073,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock{
 	name = "Crematorium";
 	req_access_txt = "27"
@@ -1229,7 +1225,7 @@ kI
 kI
 kI
 xL
-BR
+Im
 FB
 iO
 xL
@@ -1343,7 +1339,7 @@ NN
 Kc
 VJ
 zg
-nm
+rx
 Pv
 FD
 Lo
@@ -1381,7 +1377,7 @@ dR
 (13,1,1) = {"
 zg
 Nh
-uR
+IS
 zg
 Cv
 im
@@ -1436,7 +1432,7 @@ EV
 qK
 EV
 Tc
-cH
+kU
 Df
 sy
 tP

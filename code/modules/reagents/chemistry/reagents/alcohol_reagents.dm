@@ -752,7 +752,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
 /datum/reagent/consumable/ethanol/moonshine/on_mob_life(mob/living/carbon/M)
-	M.adjust_blurriness(1.5)
+	M.adjust_eye_blur(1.5)
 	return ..()
 
 /datum/reagent/consumable/ethanol/b52
@@ -2387,7 +2387,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/inocybeshine/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
 		M.adjustStaminaLoss(10,0)
-		M.blur_eyes(3)
+		M.adjust_eye_blur(3)
 		M.adjust_disgust(1)
 		. = TRUE
 	return ..()
@@ -2466,7 +2466,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A freezing pint of malt liquor."
 
 /datum/reagent/consumable/ethanol/ratvarnac
-	name = "Justicars Juice"
+	name = "Justiciar's Juice"
 	description = "I don't even know what an eminence is, but I want him to recall."
 	metabolization_rate = INFINITY
 	boozepwr = 30

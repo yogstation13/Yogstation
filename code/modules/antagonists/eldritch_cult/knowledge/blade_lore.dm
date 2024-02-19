@@ -12,6 +12,7 @@
 	name = "knife"
 	icon = 'icons/obj/kitchen.dmi';
 	icon_state = "knife"
+	layer = LOW_MOB_LAYER
 	/// The color the knife glows around it.
 	var/glow_color = "#ececff"
 
@@ -209,7 +210,7 @@
 /datum/eldritch_knowledge/duel_stance/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 	ADD_TRAIT(user, TRAIT_NODISMEMBER, type)
-	RegisterSignal(user, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(user, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(user, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(on_health_update))
 
 	on_health_update(user) // Run this once, so if the knowledge is learned while hurt it activates properly
@@ -219,7 +220,7 @@
 	if(in_duelist_stance)
 		user.remove_traits(list(TRAIT_HARDLY_WOUNDED, TRAIT_REDUCED_DAMAGE_SLOWDOWN), type)
 
-	UnregisterSignal(user, list(COMSIG_PARENT_EXAMINE, COMSIG_CARBON_GAIN_WOUND, COMSIG_LIVING_HEALTH_UPDATE))
+	UnregisterSignal(user, list(COMSIG_ATOM_EXAMINE, COMSIG_CARBON_GAIN_WOUND, COMSIG_LIVING_HEALTH_UPDATE))
 
 /datum/eldritch_knowledge/duel_stance/proc/on_examine(mob/living/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER

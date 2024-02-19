@@ -1,6 +1,6 @@
 /obj/item/restraints
 	icon = 'icons/obj/handcuffs.dmi'
-	breakouttime = 600
+	breakouttime = 60 SECONDS
 	var/break_strength = 2 // Minimum strength required for a holopara to break it
 
 /obj/item/restraints/suicide_act(mob/living/carbon/user)
@@ -37,7 +37,7 @@
 	throw_speed = 3
 	throw_range = 5
 	materials = list(/datum/material/iron=500)
-	breakouttime = 600 //Deciseconds = 60s = 1 minute
+	breakouttime = 60 SECONDS // add SECONDS or another unit becuase it will think deciseconds (100ds= 10s)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	break_strength = 4
 	var/cuffsound = 'sound/weapons/handcuffs.ogg'
@@ -110,6 +110,10 @@
 	if(trashtype && !dispense)
 		qdel(src)
 	return
+
+/obj/item/restraints/handcuffs/energy/used/swarmer //energy cuffs are in abductor, why would you do this
+	breakouttime= 20 SECONDS // you already get teleported across the map
+	trashtype = /obj/item/restraints/handcuffs/energy/used
 
 /obj/item/restraints/handcuffs/cable/sinew
 	name = "sinew restraints"
@@ -232,7 +236,7 @@
 /obj/item/restraints/handcuffs/fake
 	name = "fake handcuffs"
 	desc = "Fake handcuffs meant for gag purposes."
-	breakouttime = 10 //Deciseconds = 1s
+	breakouttime = 1 SECONDS
 	break_strength = 1
 
 //Legcuffs
@@ -249,7 +253,7 @@
 	throwforce = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	slowdown = 7
-	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
+	breakouttime = 30 SECONDS
 	break_strength = 4
 
 /obj/item/restraints/legcuffs/beartrap
@@ -347,10 +351,10 @@
 	armed = 1
 	icon_state = "e_snare"
 	trap_damage = 0
-	breakouttime = 30
+	breakouttime = 3 SECONDS
 	item_flags = DROPDEL
 	flags_1 = NONE
-	break_strength = 2
+	break_strength = 2 
 
 /obj/item/restraints/legcuffs/beartrap/energy/Initialize(mapload)
 	. = ..()
@@ -365,7 +369,7 @@
 	Crossed(user) //honk
 
 /obj/item/restraints/legcuffs/beartrap/energy/cyborg
-	breakouttime = 20 // Cyborgs shouldn't have a strong restraint
+	breakouttime = 2 SECONDS // Cyborgs shouldn't have a strong restraint
 
 /obj/item/restraints/legcuffs/bola
 	name = "bola"
@@ -375,9 +379,9 @@
 	item_state = "bola"
 	lefthand_file = 'icons/mob/inhands/weapons/thrown_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/thrown_righthand.dmi'
-	breakouttime = 35//easy to apply, easy to break out of
+	breakouttime = 3.5 SECONDS //easy to apply, easy to break out of
 	gender = NEUTER
-	break_strength = 3
+	break_strength = 3 
 	var/immobilize = 0
 
 /obj/item/restraints/legcuffs/bola/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, quickstart = TRUE)
@@ -413,9 +417,9 @@
 	desc = "A strong bola, made with a long steel chain. It looks heavy, enough so that it could trip somebody."
 	icon_state = "bola_r"
 	item_state = "bola_r"
-	breakouttime = 70
+	breakouttime = 7 SECONDS
 	immobilize = 20
-	break_strength = 4
+	break_strength = 4 
 
 /obj/item/restraints/legcuffs/bola/watcher //tribal bola for tribal lizards
 	name = "watcher Bola"
@@ -423,7 +427,7 @@
 	icon_state = "bola_watcher"
 	icon_state_preview = "bola_watcher_preview"
 	item_state = "bola_watcher"
-	breakouttime = 45
+	breakouttime = 4.5 SECONDS
 
 /obj/item/restraints/legcuffs/bola/energy //For Security
 	name = "energy bola"
@@ -448,7 +452,7 @@
 	icon_state = "gonbola"
 	icon_state_preview = "gonbola_preview"
 	item_state = "bola_r"
-	breakouttime = 300
+	breakouttime = 30 SECONDS
 	slowdown = 0
 	var/datum/status_effect/gonbolaPacify/effectReference
 

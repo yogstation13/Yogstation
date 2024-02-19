@@ -78,7 +78,7 @@
 /datum/antagonist/ert/deathsquad/New()
 	. = ..()
 	name_source = GLOB.commando_names
-	
+
 /datum/antagonist/ert/clown/New()
 	. = ..()
 	name_source = GLOB.clown_names
@@ -137,6 +137,10 @@
 	name = "Deathsquad Trooper"
 	outfit = /datum/outfit/death_commando
 	role = "Trooper"
+
+/datum/antagonist/ert/mining
+	name = "Dwarven Miner"
+	outfit = /datum/outfit/ert/mining
 
 /datum/antagonist/ert/medic/inquisitor
 	outfit = /datum/outfit/ert/medic/inquisitor
@@ -207,7 +211,7 @@
 	name = "Occupying Riot Officer"
 	outfit = /datum/outfit/occupying/heavy
 	role = "Riot Officer"
-	
+
 /datum/antagonist/ert/occupying/commander
 	name = "Occupying Commander"
 	outfit = /datum/outfit/occupying/commander
@@ -222,7 +226,7 @@
 	name = "HONK Squad Trooper"
 	outfit = /datum/outfit/centcom_clown/honk_squad
 	role = "HONKER"
-	
+
 /datum/antagonist/ert/imperial
 	name = "Imperial Guardsman"
 	outfit = /datum/outfit/imperial

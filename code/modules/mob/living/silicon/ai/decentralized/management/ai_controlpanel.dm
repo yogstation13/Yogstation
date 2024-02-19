@@ -456,7 +456,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				return
 			var/mob/living/silicon/ai/A = target
 			if(A.mind && is_servant_of_ratvar(A))
-				to_chat(user, span_brass("[A] has already seen the light of the Justicar!"))
+				to_chat(user, span_brass("[A] has already seen the light of the Justiciar!"))
 				return
 			if(A.stat == DEAD)
 				to_chat(user, span_warning("[A] is dead!"))

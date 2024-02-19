@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		CRASH("item add_item_action got a type or instance of something that wasn't an action.")
 
 	LAZYADD(actions, action)
-	RegisterSignal(action, COMSIG_PARENT_QDELETING, PROC_REF(on_action_deleted))
+	RegisterSignal(action, COMSIG_QDELETING, PROC_REF(on_action_deleted))
 	if(ismob(loc))
 		// We're being held or are equipped by someone while adding an action?
 		// Then they should also probably be granted the action, given it's in a correct slot
@@ -242,7 +242,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!action)
 		return
 
-	UnregisterSignal(action, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(action, COMSIG_QDELETING)
 	LAZYREMOVE(actions, action)
 	qdel(action)
 
@@ -641,10 +641,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
 	if (!eyes)
 		return
-	M.adjust_blurriness(3)
+	M.adjust_eye_blur(3)
 	eyes.applyOrganDamage(rand(2,4))
 	if(eyes.damage >= 10)
-		M.adjust_blurriness(15)
+		M.adjust_eye_blur(15)
 		if(M.stat != DEAD)
 			to_chat(M, span_danger("Your eyes start to bleed profusely!"))
 		if(!(HAS_TRAIT(M, TRAIT_BLIND) || HAS_TRAIT(M, TRAIT_NEARSIGHT)))
@@ -654,7 +654,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(M.stat != DEAD)
 				if(M.drop_all_held_items())
 					to_chat(M, span_danger("You drop what you're holding and clutch at your eyes!"))
-			M.adjust_blurriness(10)
+			M.adjust_eye_blur(10)
 			M.Unconscious(20)
 			M.Paralyze(40)
 		if (prob(eyes.damage - 10 + 1))
@@ -996,7 +996,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(M.client)
 				M.client.screen -= src
 			layer = initial(layer)
-			plane = initial(plane)
+			SET_PLANE_IMPLICIT(src, initial(plane))
 			appearance_flags &= ~NO_CLIENT_COLOR
 			dropped(M, FALSE)
 	return ..()
@@ -1020,11 +1020,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
 
-/obj/item/proc/do_pickup_animation(atom/target)
-	if(!istype(loc, /turf))
-		return
+/obj/item/proc/do_pickup_animation(atom/target, turf/source)
+	if(!source)
+		if(!istype(loc, /turf))
+			return
+		source = loc
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
-	pickup_animation.plane = GAME_PLANE
+	SET_PLANE(pickup_animation, GAME_PLANE, source)
 	pickup_animation.transform.Scale(0.75)
 
 	var/turf/current_turf = get_turf(src)
@@ -1044,7 +1046,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		to_y += 10
 		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
 
-	flick_overlay(pickup_animation, GLOB.clients, 4)
+	flick_overlay_global(pickup_animation, GLOB.clients, 4)
 	var/matrix/animation_matrix = new
 	animation_matrix.Turn(pick(-30, 30))
 	animation_matrix.Scale(0.65)
@@ -1119,7 +1121,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!attack_image)
 		return
 
-	flick_overlay(attack_image, GLOB.clients, 10)
+	flick_overlay_global(attack_image, GLOB.clients, 10)
 	// And animate the attack!
 	var/t_color = "#ffffff" //yogs start
 	if(ismob(src) &&  ismob(attacked_atom) && (!used_item))
@@ -1141,3 +1143,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE
+
+/**
+ * Updates all action buttons associated with this item
+ *
+ * Arguments:
+ * * update_flags - Which flags of the action should we update
+ * * force - Force buttons update even if the given button icon state has not changed
+ */
+/obj/item/proc/update_item_action_buttons(update_flags = ALL, force = FALSE)
+	for(var/datum/action/current_action as anything in actions)
+		current_action.build_all_button_icons(update_flags, force)

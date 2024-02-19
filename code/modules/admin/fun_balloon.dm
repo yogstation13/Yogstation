@@ -94,9 +94,9 @@
 
 /obj/effect/station_crash/Initialize(mapload)
 	..()
-	for(var/S in SSshuttle.stationary)
+	for(var/S in SSshuttle.stationary_docking_ports)
 		var/obj/docking_port/stationary/SM = S
-		if(SM.id == "emergency_home")
+		if(SM.shuttle_id == "emergency_home")
 			var/new_dir = turn(SM.dir, 180)
 			SM.forceMove(get_ranged_target_turf(SM, new_dir, rand(3,15)))
 			break
