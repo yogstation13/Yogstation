@@ -33,7 +33,7 @@
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			original_eye_color = H.eye_color
-			H.eye_color = COLOR_VELVET
+			H.eye_color = "#8b60ff"
 			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 			H.update_body()
 	else
