@@ -362,7 +362,11 @@
 	icon_state = "mecha_t_scanner"
 	equip_actions = list(/datum/action/innate/mecha/equipment/t_scanner)
 	selectable = FALSE
+	/// Scanning distance
+	var/distance = 6
+	/// Whether the scanning is enabled
 	var/scanning = FALSE
+	/// Stored t-ray scan images
 	var/list/t_ray_images
 
 /obj/item/mecha_parts/mecha_equipment/t_scanner/attach(obj/mecha/M)
@@ -393,11 +397,8 @@
 		return FALSE
 
 	t_ray_images = list()
-	for(var/obj/O in orange(6, chassis))
-		if(O.level != 1)
-			continue
-
-		if(O.invisibility == INVISIBILITY_MAXIMUM || HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
+	for(var/obj/O in orange(distance, chassis))
+		if(HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
 			var/image/I = new(loc = get_turf(O))
 			var/mutable_appearance/MA = new(O)
 			MA.alpha = 128

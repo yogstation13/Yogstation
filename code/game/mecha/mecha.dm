@@ -607,10 +607,9 @@
 /obj/mecha/proc/domove(direction)
 	if(can_move >= world.time)
 		return FALSE
-	var/turf/mech_turf = get_turf(src)
-	if(direction == DOWN && (!SSmapping.get_turf_below(mech_turf) || !isspaceturf(mech_turf)))
-		return FALSE
-	if(direction == UP && !isspaceturf(SSmapping.get_turf_above(mech_turf)))
+	if((direction & (DOWN|UP)) && !get_step_multiz(get_turf(src), direction))
+		direction &= ~(DOWN|UP) // remove vertical component
+	if(!direction) // don't bother moving without a direction
 		return FALSE
 	if(!Process_Spacemove(direction))
 		return FALSE
