@@ -7,7 +7,7 @@
 	/obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	armor = list(MELEE = 40, BULLET = 40, LASER = 30, ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 80, ACID = 85)
 	icon = 'icons/obj/clothing/species/vox/suits.dmi'
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 	slowdown = 2
 
 /obj/item/clothing/head/helmet/space/vox
@@ -15,8 +15,8 @@
 	clothing_flags = STOPSPRESSUREDAMAGE
 	flags_cover = HEADCOVERSEYES
 	icon = 'icons/obj/clothing/species/vox/hats.dmi'
-	species_restricted = list("Vox")
-	sprite_sheets = list("Vox" = VOX_HEAD_FILE)
+	species_restricted = list(SPECIES_VOX)
+	sprite_sheets = list(SPECIES_VOX = VOX_HEAD_FILE)
 
 /obj/item/clothing/head/helmet/space/vox/pressure
 	name = "alien helmet"

@@ -20,7 +20,7 @@
 	slot_flags = ITEM_SLOT_BACK	//ERROOOOO
 	resistance_flags = NONE
 	max_integrity = 300
-	sprite_sheets = list("Vox" = VOX_BACK_FILE)
+	sprite_sheets = list(SPECIES_VOX = VOX_BACK_FILE)
 
 /obj/item/storage/backpack/Initialize(mapload)
 	. = ..()

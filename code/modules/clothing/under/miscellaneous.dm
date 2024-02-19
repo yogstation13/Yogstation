@@ -996,7 +996,7 @@
 
 /obj/item/clothing/under/vox
 	icon = 'icons/obj/clothing/species/vox/uniforms.dmi'
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/under/vox/vox_casual
 	name = "alien clothing"

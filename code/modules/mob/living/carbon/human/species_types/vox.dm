@@ -109,6 +109,9 @@
 /datum/species/vox/get_icon_variant(mob/living/carbon/person_to_check)
 	return person_to_check.dna.features["vox_skin_tone"]
 
+/datum/species/vox/get_footprint_sprite()
+	return FOOTPRINT_SPRITE_CLAWS
+
 /datum/species/vox/get_eyes_static(mob/living/carbon/person_to_check)
 	var/list/blue_static_skin_tones = list("crimson", "mossy")
 	if(person_to_check.dna.features["vox_skin_tone"] in blue_static_skin_tones)

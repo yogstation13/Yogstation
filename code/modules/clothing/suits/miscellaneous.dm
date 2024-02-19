@@ -607,7 +607,7 @@
 	item_state = "vox-robes"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/vox_robe_hood
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/head/hooded/vox_robe_hood
 	name = "alien hood"
@@ -617,7 +617,7 @@
 	item_state = "vox-robes-hood"
 	flags_inv = HIDEHAIR
 	flags_cover = HEADCOVERSEYES
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/suit/armor/vox_scrap
 	name = "rusted metal armor"
@@ -626,4 +626,4 @@
 	armor = list(MELEE = 70, BULLET = 30, LASER = 20, ENERGY = 5, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15) //Higher melee armor versus lower everything else.
 	icon_state = "vox-scrap"
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)

@@ -129,14 +129,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	/* Species-specific sprites, concept from Bay.
 	ex:
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/head.dmi'
+		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
 	If index term exists and icon_override is not set, this sprite sheet will be used.
 	*/
 	var/list/sprite_sheets = null
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 	var/sprite_sheets_obj = null //Used to override hardcoded clothing inventory object dmis in human clothing proc.
-
+	var/species_fitted = null
 	// Needs to be in /obj/item because corgis can wear a lot of
 	// non-clothing items
 	var/datum/dog_fashion/dog_fashion = null

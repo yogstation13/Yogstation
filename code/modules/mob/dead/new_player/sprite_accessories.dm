@@ -67,7 +67,7 @@
 	var/list/body_slots = list()
 	/// the list of external organs covered
 	var/list/external_slots = list()
-	var/list/sprite_sheets = list() //For accessories common across species but need to use 'fitted' sprites (like underwear). e.g. list("Vox" = 'icons/mob/species/vox/iconfile.dmi')
+	var/list/sprite_sheets = list() //For accessories common across species but need to use 'fitted' sprites (like underwear). e.g. list(SPECIES_VOX = 'icons/mob/species/vox/iconfile.dmi')
 
 //////////////////////
 // Hair Definitions //
@@ -1282,7 +1282,7 @@
 ///////////////////////////
 /datum/sprite_accessory/underwear
 	icon = 'icons/mob/clothing/sprite_accessories/underwear.dmi'
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/underwear.dmi')
+	sprite_sheets = list(SPECIES_VOX = 'icons/mob/clothing/species/vox/underwear.dmi')
 
 /datum/sprite_accessory/underwear/nude
 	name = "Nude"
@@ -1485,7 +1485,7 @@
 
 /datum/sprite_accessory/undershirt
 	icon = 'icons/mob/clothing/sprite_accessories/undershirt.dmi'
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/undershirt.dmi')
+	sprite_sheets = list(SPECIES_VOX = 'icons/mob/clothing/species/vox/undershirt.dmi')
 
 /datum/sprite_accessory/undershirt/nude
 	name = "Nude"
@@ -1800,7 +1800,7 @@
 
 /datum/sprite_accessory/socks
 	icon = 'icons/mob/clothing/sprite_accessories/socks.dmi'
-	sprite_sheets = list("Vox" = 'icons/mob/clothing/species/vox/socks.dmi')
+	sprite_sheets = list(SPECIES_VOX = 'icons/mob/clothing/species/vox/socks.dmi')
 
 /datum/sprite_accessory/socks/nude
 	name = "Nude"

@@ -58,7 +58,7 @@
 	name = "vox breath mask"
 	desc = "A weirdly-shaped breath mask."
 	icon_state = "voxmask"
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 	flags_cover = NONE
 	visor_flags_cover = NONE
 	actions_types = list()

@@ -287,4 +287,4 @@
 	icon_state = "gloves-vox"
 	item_state = "gloves-vox"
 	icon = 'icons/obj/clothing/species/vox/gloves.dmi'
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)

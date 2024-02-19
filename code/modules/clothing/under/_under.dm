@@ -11,7 +11,7 @@
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 	limb_integrity = 30
 	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
-	sprite_sheets = list("Vox" = VOX_UNIFORM_FILE)
+	sprite_sheets = list(SPECIES_VOX = VOX_UNIFORM_FILE)
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
 	var/random_sensor = TRUE
@@ -33,6 +33,8 @@
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
 	if(HAS_BLOOD_DNA(src))
 		var/mutable_appearance/bloody_uniform = mutable_appearance('icons/effects/blood.dmi', "uniformblood")
+		if(species_fitted && icon_exists(bloody_uniform.icon, "uniformblood_[species_fitted]")) 
+			bloody_uniform.icon_state = "uniformblood_[species_fitted]"
 		bloody_uniform.color = get_blood_dna_color(return_blood_DNA())
 		. += bloody_uniform
 	if(accessory_overlay)

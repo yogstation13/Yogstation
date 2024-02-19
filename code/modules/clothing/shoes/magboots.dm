@@ -82,7 +82,7 @@
 	item_state = "boots-vox"
 	icon_state = "boots-vox"
 	icon = 'icons/obj/clothing/species/vox/shoes.dmi'
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(magpulse)

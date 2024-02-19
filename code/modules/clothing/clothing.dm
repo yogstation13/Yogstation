@@ -95,10 +95,10 @@
 			exclusive = TRUE
 		if(H.dna.species)
 			if(exclusive)
-				if(!(H.dna.species.name in species_restricted))
+				if(!(H.dna.species.id in species_restricted))
 					wearable = TRUE
 			else
-				if(H.dna.species.name in species_restricted)
+				if(H.dna.species.id in species_restricted)
 					wearable = TRUE
 			if(!wearable)
 				to_chat(M, span_warning("Your species cannot wear [src]."))

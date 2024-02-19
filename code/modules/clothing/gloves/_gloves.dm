@@ -10,7 +10,7 @@
 	strip_delay = 20
 	equip_delay_other = 40
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 50)
-	sprite_sheets = list("Vox" = VOX_GLOVES_FILE)
+	sprite_sheets = list(SPECIES_VOX = VOX_GLOVES_FILE)
 
 /obj/item/clothing/gloves/wash(clean_types)
 	. = ..()
@@ -34,6 +34,8 @@
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
 		if(HAS_BLOOD_DNA(src))
 			var/mutable_appearance/bloody_hands = mutable_appearance('icons/effects/blood.dmi', "bloodyhands")
+			if(species_fitted && icon_exists(bloody_hands.icon, "bloodyhands_[species_fitted]")) 
+				bloody_hands.icon_state = "bloodyhands_[species_fitted]"
 			bloody_hands.color = get_blood_dna_color(return_blood_DNA())
 			. += bloody_hands
 
