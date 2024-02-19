@@ -77,8 +77,8 @@
 /datum/emote/living/dab/run_emote(mob/user, params)
 	. = ..()
 	if(. && ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/human/dabber = user
 		var/light_dab_angle = rand(35,55)
 		var/light_dab_speed = rand(3,7)
-		H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
-		SSachievements.unlock_achievement(/datum/achievement/dab,H.client)
+		INVOKE_ASYNC(dabber, TYPE_PROC_REF(/atom, DabAnimation), light_dab_speed, 0, 0, 0, light_dab_angle)
+		SSachievements.unlock_achievement(/datum/achievement/dab, dabber.client)

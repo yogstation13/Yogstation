@@ -3,6 +3,7 @@
 	desc = "Vends things that the Captain and Head of Personnel are probably not going to appreciate you fiddling with instead of your job..."
 	product_ads = "Escape to a fantasy world!;Fuel your gambling addiction!;Ruin your friendships!;Roll for initiative!;Elves and dwarves!;Paranoid computers!;Totally not satanic!;Fun times forever!"
 	icon_state = "games"
+	panel_type = "panel4"
 	products = list(/obj/item/toy/cards/deck = 5,
 					/obj/item/toy/cards/deck/uno = 3,
 		            /obj/item/storage/pill_bottle/dice = 10,
@@ -25,6 +26,7 @@
 	default_price = 10
 	extra_price = 25
 	payment_department = ACCOUNT_SRV
+	light_mask = "games-light-mask"
 
 /obj/item/vending_refill/games
 	machine_name = "\improper Good Clean Fun"

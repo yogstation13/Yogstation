@@ -90,6 +90,15 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/donut/laugh
 	category = CAT_PASTRY
 
+/datum/crafting_recipe/food/donut/vegan
+	name = "Vegan Donut"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/tofu = 1,
+		/obj/item/reagent_containers/food/snacks/donut = 1,
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/vegan
+	category = CAT_PASTRY
+
 /datum/crafting_recipe/food/donut/jelly/laugh
 	name = "Sweet Pea Jelly Donut"
 	reqs = list(

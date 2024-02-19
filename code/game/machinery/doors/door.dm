@@ -10,11 +10,12 @@
 	power_channel = AREA_USAGE_ENVIRON
 	max_integrity = 350
 	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 70)
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	flags_1 = PREVENT_CLICK_UNDER_1
 	damage_deflection = 10
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	/// TRUE means density will be set as soon as the door begins to close
 	var/air_tight = FALSE
@@ -109,6 +110,7 @@
 	if(spark_system)
 		qdel(spark_system)
 		spark_system = null
+	air_update_turf()
 	return ..()
 
 /obj/machinery/door/Bumped(atom/movable/AM)
@@ -263,7 +265,7 @@
 	var/max_moles = min_moles
 	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
 	density = FALSE
-	var/list/adj_turfs = T.get_adjacent_atmos_turfs()
+	var/list/adj_turfs = TURF_SHARES(T)
 	// then we use those adjacent turfs to figure out what the difference between the lowest and highest pressures we'd be holding is
 	for(var/turf/open/T2 in adj_turfs)
 		if((flags_1 & ON_BORDER_1) && get_dir(src, T2) != dir)
@@ -362,7 +364,7 @@
 	density = FALSE
 	sleep(open_speed)
 	layer = initial(layer)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	set_opacity(0)
 	operating = FALSE
 	air_update_turf()
@@ -393,7 +395,7 @@
 	sleep(open_speed)
 	density = TRUE
 	sleep(open_speed)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(visible && !glass)
 		set_opacity(1)
 	operating = FALSE

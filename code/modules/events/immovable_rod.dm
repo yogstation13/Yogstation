@@ -89,7 +89,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	GLOB.poi_list -= src
 	. = ..()
 
-/obj/effect/immovablerod/Moved()
+/obj/effect/immovablerod/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	if((z != z_original) || (loc == destination))
 		qdel(src)
 	if(special_target && loc == get_turf(special_target))

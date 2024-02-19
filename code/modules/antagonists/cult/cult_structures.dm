@@ -223,7 +223,7 @@
 		var/turf/T = safepick(validturfs)
 		if(T)
 			if(istype(T, /turf/open/floor/plating))
-				T.PlaceOnTop(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
+				T.place_on_top(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
 			else
 				T.ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
 		else
@@ -282,7 +282,7 @@
 	max_integrity = 200
 	break_sound = 'sound/effects/meteorimpact.ogg'
 	break_message = span_warning("The pillar crumbles!")
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	var/alt = 0
 	is_endgame = TRUE
 
@@ -342,7 +342,7 @@
 	max_integrity = 600
 	break_sound = 'sound/effects/glassbr2.ogg'
 	break_message = span_warning("The bloodstone resonates violently before crumbling to the floor!")
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	light_color = "#FF0000"
 	var/current_fullness = 0
 	var/anchor = FALSE //are we the bloodstone used to summon Nar'sie? used in the final part of the summoning

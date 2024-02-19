@@ -188,8 +188,8 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	stationary_port.name = "[recorded_shuttle_area.name] Custom Shuttle construction site"
 	port.callTime = 50
 	port.dir = 1	//Point away from space.
-	port.id = "custom_[GLOB.custom_shuttle_count]"
-	linkedShuttleId = port.id
+	port.shuttle_id = "custom_[GLOB.custom_shuttle_count]"
+	linkedShuttleId = port.shuttle_id
 	port.ignitionTime = 25
 	port.port_direction = 2
 	port.preferred_direction = EAST
@@ -283,7 +283,6 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 //Yogs End
 	newS = new /area/shuttle/custom/powered()
 	newS.setup(str)
-	newS.set_dynamic_lighting()
 	//Shuttles always have gravity
 	newS.has_gravity = TRUE
 	newS.requires_power = TRUE

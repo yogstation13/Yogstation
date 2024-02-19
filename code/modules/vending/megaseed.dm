@@ -4,6 +4,8 @@
 	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
+	panel_type = "panel2"
+	light_mask = "seeds-light-mask"
 	products = list(/obj/item/seeds/aloe = 3,
 					/obj/item/seeds/ambrosia = 3,
 					/obj/item/seeds/apple = 3,
@@ -63,6 +65,8 @@
 	refill_canister = /obj/item/vending_refill/hydroseeds
 	default_price = 10
 	extra_price = 50
+	light_mask = "seeds-light-mask"
+	light_color = LIGHT_COLOR_BLUE
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/hydroseeds

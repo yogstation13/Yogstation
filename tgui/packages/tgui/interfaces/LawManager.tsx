@@ -62,16 +62,13 @@ type LawAddData = {
 
 export const LawManager = (props, context) => {
   const { act, data } = useBackend<LawManagerData>(context);
-  const { cyborg, ai, pai, connected, lawsync, syndiemmi, antag, admin, view } = data;
+  const { cyborg, ai, pai, connected, lawsync, syndiemmi, admin, view } = data;
 
   return (
     <Window height="600" width="800" title="Law Manager">
       <Window.Content scrollable>
         {!!admin && (
           <NoticeBox>You are viewing this from an admin prespective.</NoticeBox>
-        ) }
-        {!!(admin && ai && antag) && (
-          <NoticeBox>This AI is currently an antagonist.</NoticeBox>
         ) }
         {!!(admin && cyborg && syndiemmi) && (
           <NoticeBox>This Cyborg is using a syndicate MMI.</NoticeBox>
@@ -88,16 +85,13 @@ export const LawManager = (props, context) => {
         {!!(admin && pai) && (
           <NoticeBox>This pAI has less editing features due to their nature of being a pAI.</NoticeBox>
         ) }
-        {!!(!admin && ai && antag) && (
-          <NoticeBox>You have the ability to edit a majority of your laws as a malfunctioning AI.</NoticeBox>
-        ) }
         <Box>
           <Button
             content="Law Management"
             selected={view === 0}
             onClick={() => act('set_view', { set_view: 0 })}
           />
-          {!!(antag || admin) && !pai && (
+          {!!(admin) && !pai && (
             <Button
               content="Lawsets"
               selected={view === 1}
@@ -114,12 +108,12 @@ export const LawManager = (props, context) => {
 
 const LawManagementView = (props, context) => {
   const { data } = useBackend<LawManagementData>(context);
-  const { pai, antag, admin } = data;
+  const { pai, admin } = data;
   return (
     <Fragment>
       <LawSection />
       <LawStatementSection />
-      {!!((antag || admin) && !pai) && (
+      {!!(admin && !pai) && (
         <LawAddSection />
       )}
     </Fragment>
