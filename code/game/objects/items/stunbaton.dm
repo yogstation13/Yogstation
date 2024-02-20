@@ -44,6 +44,7 @@
 	set_light_on(!light_on)
 	return
 
+
 /obj/item/melee/baton/get_cell()
 	return cell
 
