@@ -3509,7 +3509,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	to_chat(user, span_notice("Signal sent to command. Awaiting response (ETA ~1 minute)..."))
 	var/diff_txt = list("RANDOM", "EASY", "MEDIUM", "HARD")[difficulty+1]
 	message_admins("[ADMIN_LOOKUPFLW(user)] has requested an objective ([diff_txt]). (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj=[REF(src)];requester=[REF(user)]'>FORGE CUSTOM OBJECTIVE?</A>) (AUTO SET IN 1 MINUTE)")
-	timer = addtimer(CALLBACK(src, .proc/spawn_objective, user), 1 MINUTES, TIMER_STOPPABLE)
+	timer = addtimer(CALLBACK(src, PROC_REF(spawn_objective), user), 1 MINUTES, TIMER_STOPPABLE)
 
 /datum/uplink_item/new_objective/proc/spawn_objective(user, _obj, _diff)
 	if(admin_forging) // If the timer expired while an admin was editing it
