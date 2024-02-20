@@ -199,9 +199,6 @@
 /// You can't see color!
 #define TRAIT_COLORBLIND "color_blind"
 
-///Used for managing KEEP_TOGETHER in [/atom/var/appearance_flags]
-#define TRAIT_KEEP_TOGETHER "keep-together"
-
 /// This person is crying
 #define TRAIT_CRYING "crying"
 
