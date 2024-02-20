@@ -99,7 +99,7 @@
 ////////////////////////////Single-area shuttles////////////////////////////
 
 /area/shuttle/transit
-	name = "Hyperspace"
+	name = "Bluespace"
 	desc = "Weeeeee"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
