@@ -130,7 +130,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(1, 0, src)
 	s.start()
-	mineEffect(victim)
+	INVOKE_ASYNC(src, PROC_REF(mineEffect), victim)
 	triggered = 1
 	qdel(src)
 
