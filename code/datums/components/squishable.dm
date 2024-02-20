@@ -35,7 +35,7 @@
 
 ///Handles the squashing of the mob
 /datum/component/squashable/proc/on_entered(turf/source_turf, atom/movable/crossing_movable)
-	SIGNAL_HANDLER
+	// SIGNAL_HANDLER -- dont uncomment this
 
 	if(parent == crossing_movable)
 		return
