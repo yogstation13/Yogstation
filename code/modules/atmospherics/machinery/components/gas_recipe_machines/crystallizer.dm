@@ -15,7 +15,7 @@
 	circuit = /obj/item/circuitboard/machine/crystallizer
 	pipe_flags = PIPING_ONE_PER_TURF| PIPING_DEFAULT_LAYER_ONLY
 
-	///Base icon state for the machine to be used in update_icon()
+	///Base icon state for the machine to be used in update_appearance(UPDATE_ICON)
 	var/base_icon = "crystallizer"
 	///Internal Gas mix used for processing the gases that have been put in
 	var/datum/gas_mixture/internal
@@ -32,7 +32,7 @@
 	///Stores the total amount of moles needed for the current recipe
 	var/total_recipe_moles = 0
 
-/obj/machinery/atmospherics/components/binary/crystallizer/Initialize()
+/obj/machinery/atmospherics/components/binary/crystallizer/Initialize(mapload)
 	. = ..()
 	internal = new
 
@@ -50,7 +50,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	SetInitDirections()
+	set_init_directions()
 	var/obj/machinery/atmospherics/node1 = nodes[1]
 	var/obj/machinery/atmospherics/node2 = nodes[2]
 	if(node1)
@@ -63,28 +63,30 @@
 		nodes[2] = null
 
 	if(parents[1])
-		nullifyPipenet(parents[1])
+		nullify_pipenet(parents[1])
 	if(parents[2])
-		nullifyPipenet(parents[2])
+		nullify_pipenet(parents[2])
 
-	atmosinit()
+	atmos_init()
 	node1 = nodes[1]
 	if(node1)
-		node1.atmosinit()
-		node1.addMember(src)
+		node1.atmos_init()
+		node1.add_member(src)
 	node2 = nodes[2]
 	if(node2)
-		node2.atmosinit()
-		node2.addMember(src)
+		node2.atmos_init()
+		node2.add_member(src)
 	SSair.add_to_rebuild_queue(src)
 	return TRUE
 
-/obj/machinery/atmospherics/components/binary/crystallizer/proc/update_overlays()
+/obj/machinery/atmospherics/components/binary/crystallizer/update_overlays()
+	. = ..()
 	cut_overlays()
-	add_overlay(getpipeimage(icon, "pipe", dir, COLOR_LIME, piping_layer))
-	add_overlay(getpipeimage(icon, "pipe", turn(dir, 180), COLOR_RED, piping_layer))
+	. += get_pipe_image(icon, "pipe", dir, COLOR_LIME, piping_layer)
+	. += get_pipe_image(icon, "pipe", turn(dir, 180), COLOR_RED, piping_layer)
 
-/obj/machinery/atmospherics/components/binary/crystallizer/proc/update_icon_state()
+/obj/machinery/atmospherics/components/binary/crystallizer/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "[base_icon]-open"
 	else if(on)
@@ -92,17 +94,12 @@
 	else
 		icon_state = "[base_icon]-off"
 
-/obj/machinery/atmospherics/components/binary/crystallizer/update_icon()
-	. = ..()
-	update_icon_state()
-	update_overlays()
-
 /obj/machinery/atmospherics/components/binary/crystallizer/AltClick(mob/user)
 	if(!can_interact(user))
 		return
 	on = !on
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Checks if the gases in the input are the ones needed by the recipe
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/check_gas_requirements()
@@ -278,14 +275,16 @@
 	if(internal.total_moles())
 		for(var/gasid in internal.get_gases())
 			internal_gas_data.Add(list(list(
-			"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
+			"name"= GLOB.gas_data.names[gasid],
 			"amount" = round(internal.get_moles(gasid), 0.01),
+			"color" = GLOB.gas_data.ui_colors[gasid],
 			)))
 	else
 		for(var/gasid in internal.get_gases())
 			internal_gas_data.Add(list(list(
-				"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
+				"name"= GLOB.gas_data.names[gasid],
 				"amount" = 0,
+				"color" = GLOB.gas_data.ui_colors[gasid],
 				)))
 	data["internal_gas_data"] = internal_gas_data
 
@@ -295,9 +294,8 @@
 	else
 		requirements = list("To create [selected_recipe.name] you will need:")
 		for(var/gas_type in selected_recipe.requirements)
-			var/datum/gas/gas_required = gas_type
 			var/amount_consumed = selected_recipe.requirements[gas_type]
-			requirements += "-[amount_consumed] moles of [initial(gas_required.name)]"
+			requirements += "-[amount_consumed] moles of [initial(gas_type)]"
 		requirements += "In a temperature range between [selected_recipe.min_temp] K and [selected_recipe.max_temp] K"
 		requirements += "The crystallization reaction will be [selected_recipe.energy_release ? (selected_recipe.energy_release > 0 ? "exothermic" : "endothermic") : "thermally neutral"]"
 	data["requirements"] = requirements.Join("\n")
@@ -341,7 +339,7 @@
 			var/_gas_input = params["gas_input"]
 			gas_input = clamp(_gas_input, 0, max_gas_input)
 			investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 #undef MIN_PROGRESS_AMOUNT
 #undef MIN_DEVIATION_RATE

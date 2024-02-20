@@ -42,8 +42,8 @@
 	QDEL_NULL(particles)
 	. = ..()
 
-/obj/machinery/oven/update_icon()
-	update_overlays()
+/obj/machinery/oven/update_icon_state()
+	. = ..()
 	if(panel_open) 
 		icon_state = "oven_o"
 		return ..()
@@ -51,17 +51,16 @@
 		icon_state = "oven_on"
 	else
 		icon_state = "oven_off"
-	return ..()
 
-/obj/machinery/oven/proc/update_overlays()
-	cut_overlays()
+/obj/machinery/oven/update_overlays()
+	. = ..()
 	var/mutable_appearance/door_overlay
 	if(open)
 		door_overlay = mutable_appearance(icon, "oven_lid_open")
 		door_overlay.pixel_y = OVEN_LID_Y_OFFSET
 	else
 		door_overlay = mutable_appearance(icon, "oven_lid_closed")
-	add_overlay(door_overlay);
+	. += door_overlay
 
 /obj/machinery/oven/process(delta_time)
 	..()
@@ -87,7 +86,7 @@
 		if(prob(10))
 			visible_message(span_danger("You smell a burnt smell coming from [src]!"))
 	set_smoke_state(worst_cooked_food_state)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/machinery/oven/attackby(obj/item/I, mob/user, params)
@@ -108,9 +107,9 @@
 	oven_tray.pixel_y = OVEN_TRAY_Y_OFFSET
 	oven_tray.pixel_x = OVEN_TRAY_X_OFFSET
 
-	RegisterSignal(used_tray, COMSIG_MOVABLE_MOVED, .proc/ItemMoved)
+	RegisterSignal(used_tray, COMSIG_MOVABLE_MOVED, PROC_REF(ItemMoved))
 	update_baking_audio()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Called when the tray is moved out of the oven in some way
 /obj/machinery/oven/proc/ItemMoved(obj/item/oven_tray, atom/OldLoc, Dir, Forced)
@@ -144,7 +143,33 @@
 		if(used_tray)
 			begin_processing()
 			used_tray.vis_flags |= VIS_HIDE
-	update_icon()
+	update_appearance(UPDATE_ICON)
+	update_baking_audio()
+	return TRUE
+
+/obj/machinery/oven/attack_robot(mob/user)
+	. = ..()
+	if(panel_open)
+		to_chat(user, span_notice("The door won't budge with the access panel open!"))
+		return TRUE
+	if(!anchored)
+		to_chat(user, span_notice("The door won't budge with the [src] unsecured!"))
+		return TRUE
+	open = !open
+	if(open)
+		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
+		set_smoke_state(OVEN_SMOKE_STATE_NONE)
+		to_chat(user, span_notice("You open [src]."))
+		end_processing()
+		if(used_tray)
+			used_tray.vis_flags &= ~VIS_HIDE
+	else
+		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
+		to_chat(user, span_notice("You close [src]."))
+		if(used_tray)
+			begin_processing()
+			used_tray.vis_flags |= VIS_HIDE
+	update_appearance(UPDATE_ICON)
 	update_baking_audio()
 	return TRUE
 
@@ -178,7 +203,7 @@
 		to_chat(user,span_notice("The access panel won't budge with a tray inside!"))
 		return TRUE
 	panel_open = !panel_open
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 	
 
@@ -203,28 +228,10 @@
 	icon_state = "oven_tray"
 	max_items = 6
 
-
-/particles/smoke
-	icon = 'icons/effects/smoke.dmi'
-	icon_state = list("smoke_1" = 1, "smoke_2" = 1, "smoke_3" = 2)
-	width = 100
-	height = 100
-	count = 1000
-	spawning = 4
-	lifespan = 1.5 SECONDS
-	fade = 1 SECONDS
-	velocity = list(0, 0.4, 0)
-	position = list(6, 0, 0)
-	drift = generator("sphere", 0, 2, NORMAL_RAND)
-	friction = 0.2
-	gravity = list(0, 0.95)
-	grow = 0.05
-
 /particles/smoke/steam/mild
 	spawning = 1
 	velocity = list(0, 0.3, 0)
 	friction = 0.25
-
 
 /particles/smoke/steam
 	icon_state = list("steam_1" = 1, "steam_2" = 1, "steam_3" = 2)

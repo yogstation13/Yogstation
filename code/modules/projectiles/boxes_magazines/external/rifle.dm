@@ -1,15 +1,15 @@
 //Surplus Carbine
 
 /obj/item/ammo_box/magazine/m10mm/rifle
-	name = "rifle magazine (10mm)"
+	name = "carbine magazine (.45 ACP)"
 	desc = "A well-worn magazine fitted for the surplus carbine."
 	icon_state = "75-8"
-	ammo_type = /obj/item/ammo_casing/c10mm
-	caliber = "10mm"
+	ammo_type = /obj/item/ammo_casing/c45
+	caliber = CALIBER_45ACP
 	max_ammo = 10
 
-/obj/item/ammo_box/magazine/m10mm/rifle/update_icon()
-	..()
+/obj/item/ammo_box/magazine/m10mm/rifle/update_icon_state()
+	. = ..()
 	if(ammo_count())
 		icon_state = "75-8"
 	else
@@ -22,11 +22,11 @@
 	desc = "A 30-round toploading magazine filled with 5.56 rounds, designed for the M-90gl Rifle."
 	icon_state = "5.56m-30"
 	ammo_type = /obj/item/ammo_casing/a556
-	caliber = "a556"
+	caliber = CALIBER_556NATO
 	max_ammo = 30
 
-/obj/item/ammo_box/magazine/m556/update_icon()
-	..()
+/obj/item/ammo_box/magazine/m556/update_icon_state()
+	. = ..()
 	icon_state = "5.56m[sprite_designation]-[round(ammo_count(),5)]"
 
 /obj/item/ammo_box/magazine/m556/ap
@@ -52,11 +52,11 @@
 	desc = "A standard 30-round magazine for the NT ARG 'Boarder' Rifle. Filled with 5.56 rounds."
 	icon_state = "arg556"
 	ammo_type = /obj/item/ammo_casing/a556
-	caliber = "a556"
+	caliber = CALIBER_556NATO
 	max_ammo = 30
 
-/obj/item/ammo_box/magazine/r556/update_icon()
-	..()
+/obj/item/ammo_box/magazine/r556/update_icon_state()
+	. = ..()
 	if(ammo_count())
 		icon_state = "arg556[sprite_designation]"
 	else
@@ -93,11 +93,11 @@
 	desc = "A standard 15-round magazine for the LWT-650 DMR. Filled with .308 rounds."
 	icon_state = "m308"
 	ammo_type = /obj/item/ammo_casing/m308
-	caliber = "m308"
+	caliber = CALIBER_308
 	max_ammo = 15
 
-/obj/item/ammo_box/magazine/m308/update_icon()
-	..()
+/obj/item/ammo_box/magazine/m308/update_icon_state()
+	. = ..()
 	if(ammo_count())
 		icon_state = "m308[sprite_designation]"
 	else
@@ -127,11 +127,11 @@
 	desc = "A standard 11-round magazine for the K-41s DMR. Filled with 7.62mm rounds."
 	icon_state = "ks762"
 	ammo_type = /obj/item/ammo_casing/a762
-	caliber = "a762"
+	caliber = CALIBER_762X54R
 	max_ammo = 11
 
-/obj/item/ammo_box/magazine/ks762/update_icon()
-	..()
+/obj/item/ammo_box/magazine/ks762/update_icon_state()
+	. = ..()
 	if(ammo_count())
 		icon_state = "ks762[sprite_designation]"
 	else

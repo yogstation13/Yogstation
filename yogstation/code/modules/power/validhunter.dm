@@ -11,11 +11,12 @@
 	var/operating = FALSE //Is it on?
 	var/gibtime = 40 // Time from starting until done
 
-/obj/machinery/power/validhunter_engine/Initialize()
+/obj/machinery/power/validhunter_engine/Initialize(mapload)
 	connect_to_network()
 	return ..()
 
-/obj/machinery/power/validhunter_engine/update_icon()
+/obj/machinery/power/validhunter_engine/update_icon_state()
+	. = ..()
 	if(operating)
 		icon_state = "throw_me_in_the_trash_and_feed_my_remains_to_the_devil_operating"
 	else
@@ -39,13 +40,14 @@
 
 	return TRUE
 
-/obj/machinery/power/validhunter_engine/emag_act(mob/user)
+/obj/machinery/power/validhunter_engine/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 
 	obj_flags |= EMAGGED
 	to_chat(user, span_warning("You overload the syndicate chip."))
-
+	return TRUE
+	
 /obj/machinery/power/validhunter_engine/attack_hand(mob/user)
 	. = ..()
 	if(.)
@@ -74,7 +76,7 @@
 
 /obj/machinery/power/validhunter_engine/proc/process_mob(mob/living/L, mob/user)
 	operating = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	
 	playsound(src.loc, 'sound/machines/terminal_on.ogg', 50, 1)
 	L.forceMove(src)
@@ -93,7 +95,7 @@
 			do_gib = TRUE
 			
 	if(!do_gib)
-		addtimer(CALLBACK(src, .proc/fake_gib, L), gibtime)
+		addtimer(CALLBACK(src, PROC_REF(fake_gib), L), gibtime)
 		return
 	
 	var/sourcenutriment = L.nutrition / 15
@@ -137,7 +139,7 @@
 	L.death(1)
 	L.ghostize()
 	qdel(L)
-	addtimer(CALLBACK(src, .proc/gib_antag, skin, allmeat, meat_produced, gibtype, diseases), gibtime)
+	addtimer(CALLBACK(src, PROC_REF(gib_antag), skin, allmeat, meat_produced, gibtype, diseases), gibtime)
 
 /obj/machinery/power/validhunter_engine/proc/gib_antag(obj/item/stack/sheet/animalhide/skin, list/obj/item/reagent_containers/food/snacks/meat/slab/allmeat, meat_produced, gibtype, list/datum/disease/diseases)
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
@@ -159,7 +161,7 @@
 
 	pixel_x = initial(pixel_x) //return to its spot after shaking
 	operating = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/validhunter_engine/proc/fake_gib(mob/living/L)
 	playsound(src.loc, 'sound/machines/terminal_off.ogg', 50, 1)
@@ -167,5 +169,5 @@
 	dropContents()
 
 	operating = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	

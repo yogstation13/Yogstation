@@ -66,7 +66,7 @@
 	icon = 'icons/mob/easter.dmi'
 	icon_state = "basket"
 
-/obj/item/storage/bag/easterbasket/Initialize()
+/obj/item/storage/bag/easterbasket/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/egg, /obj/item/reagent_containers/food/snacks/chocolateegg, /obj/item/reagent_containers/food/snacks/boiledegg))
@@ -90,7 +90,7 @@
 	icon_state = "bunnyhead"
 	item_state = "bunnyhead"
 	desc = "Considerably more cute than 'Frank'."
-	slowdown = -1
+	slowdown = -0.3
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 /obj/item/clothing/suit/bunnysuit
@@ -98,7 +98,7 @@
 	desc = "Hop Hop Hop!"
 	icon_state = "bunnysuit"
 	item_state = "bunnysuit"
-	slowdown = -1
+	slowdown = -0.3
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
@@ -109,7 +109,7 @@
 /obj/item/reagent_containers/food/snacks/egg/loaded
 	containsPrize = TRUE
 
-/obj/item/reagent_containers/food/snacks/egg/loaded/Initialize()
+/obj/item/reagent_containers/food/snacks/egg/loaded/Initialize(mapload)
 	. = ..()
 	var/eggcolor = pick("blue","green","mime","orange","purple","rainbow","red","yellow")
 	icon_state = "egg-[eggcolor]"
@@ -122,6 +122,7 @@
 	/obj/item/toy/balloon,
 	/obj/item/toy/gun,
 	/obj/item/toy/sword,
+	/obj/item/melee/vxtvulhammer/toy,
 	/obj/item/toy/foamblade,
 	/obj/item/toy/prize/ripley,
 	/obj/item/toy/prize/honk,
@@ -145,15 +146,16 @@
 	name = "hot-cross bun"
 	desc = "The Cross represents the Assistants that died for your sins."
 	icon_state = "hotcrossbun"
+	foodtype = GRAIN
 
 /datum/crafting_recipe/food/hotcrossbun
 	name = "Hot-Cross Bun"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
+		/obj/item/reagent_containers/food/snacks/bun = 1,
 		/datum/reagent/consumable/sugar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotcrossbun
-	subcategory = CAT_MISCFOOD
+	category = CAT_BREAD
 
 
 /obj/item/reagent_containers/food/snacks/store/cake/brioche
@@ -163,6 +165,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/brioche
 	slices_num = 6
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/cakeslice/brioche
 	name = "brioche cake slice"
@@ -177,7 +180,7 @@
 		/datum/reagent/consumable/sugar = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/cake/brioche
-	subcategory = CAT_MISCFOOD
+	category = CAT_CAKE
 
 /obj/item/reagent_containers/food/snacks/scotchegg
 	name = "scotch egg"
@@ -187,6 +190,7 @@
 	bitesize = 3
 	filling_color = "#FFFFF0"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+	foodtype = EGG | MEAT
 
 /datum/crafting_recipe/food/scotchegg
 	name = "Scotch egg"
@@ -197,7 +201,7 @@
 		/obj/item/reagent_containers/food/snacks/meatball = 1  //YOGS - Bigotry rule
 	)
 	result = /obj/item/reagent_containers/food/snacks/scotchegg
-	subcategory = CAT_MISCFOOD
+	category = CAT_EGG
 
 /obj/item/reagent_containers/food/snacks/soup/mammi
 	name = "Mammi"
@@ -205,16 +209,18 @@
 	icon_state = "mammi"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 1)
+	foodtype = GRAIN | CHOCOLATE | DAIRY
 
 /datum/crafting_recipe/food/mammi
 	name = "Mammi"
 	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
 		/datum/reagent/consumable/milk = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/soup/mammi
-	subcategory = CAT_MISCFOOD
+	category = CAT_SOUP
 
 /obj/item/reagent_containers/food/snacks/chocolatebunny
 	name = "chocolate bunny"
@@ -223,6 +229,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
+	foodtype = CHOCOLATE | SUGAR
 
 /datum/crafting_recipe/food/chocolatebunny
 	name = "Chocolate bunny"
@@ -231,4 +238,4 @@
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/chocolatebunny
-	subcategory = CAT_MISCFOOD
+	category = CAT_MISCFOOD

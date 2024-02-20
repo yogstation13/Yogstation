@@ -1446,7 +1446,7 @@
 "uM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_x = -11;
 	pixel_y = 3
 	},

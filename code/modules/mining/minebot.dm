@@ -43,7 +43,7 @@
 	var/mode = MINEDRONE_COLLECT
 	var/obj/item/gun/energy/kinetic_accelerator/minebot/stored_gun
 
-/mob/living/simple_animal/hostile/mining_drone/Initialize()
+/mob/living/simple_animal/hostile/mining_drone/Initialize(mapload)
 	. = ..()
 	stored_gun = new(src)
 	var/datum/action/innate/minedrone/toggle_light/toggle_light_action = new()
@@ -133,14 +133,14 @@
 
 /mob/living/simple_animal/hostile/mining_drone/CanAllowThrough(atom/movable/O)
 	. = ..()
-	if(istype(O, /obj/item/projectile/kinetic))
-		var/obj/item/projectile/kinetic/K = O
+	if(istype(O, /obj/projectile/kinetic))
+		var/obj/projectile/kinetic/K = O
 		if(K.kinetic_gun)
 			for(var/A in K.kinetic_gun.get_modkits())
 				var/obj/item/borg/upgrade/modkit/M = A
 				if(istype(M, /obj/item/borg/upgrade/modkit/minebot_passthrough))
 					return TRUE
-	if(istype(O, /obj/item/projectile/destabilizer))
+	if(istype(O, /obj/projectile/destabilizer))
 		return TRUE
 
 /mob/living/simple_animal/hostile/mining_drone/proc/SetCollectBehavior()
@@ -226,8 +226,9 @@
 
 /datum/action/innate/minedrone
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_mecha.dmi'
+	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	background_icon_state = "bg_default"
+	overlay_icon_state = "bg_default_border"
 
 /datum/action/innate/minedrone/toggle_light
 	name = "Toggle Light"

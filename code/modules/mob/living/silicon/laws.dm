@@ -10,7 +10,7 @@
 	if(announce && last_lawchange_announce != world.time)
 		to_chat(src, "<b>Your laws have been changed.</b>")
 		SEND_SOUND(src, sound('sound/effects/ionlaw.ogg'))
-		addtimer(CALLBACK(src, .proc/show_laws), 0)
+		addtimer(CALLBACK(src, PROC_REF(show_laws)), 0)
 		last_lawchange_announce = world.time
 
 /mob/living/silicon/proc/set_law_sixsixsix(law, announce = TRUE)

@@ -4,6 +4,7 @@
 	desc = "A generic brand of lipstick."
 	icon = 'icons/obj/cosmetics.dmi'
 	icon_state = "lipstick"
+	grind_results = list(/datum/reagent/phenol = 5)
 	w_class = WEIGHT_CLASS_TINY
 	var/colour = "red"
 	var/open = FALSE
@@ -25,7 +26,7 @@
 	name = "lipstick"
 	icon_state = "random_lipstick"
 
-/obj/item/lipstick/random/Initialize()
+/obj/item/lipstick/random/Initialize(mapload)
 	. = ..()
 	icon_state = "lipstick"
 	colour = pick("red","purple","lime","black","green","blue","white")
@@ -191,6 +192,9 @@
 				if(!get_location_accessible(H, location))
 					to_chat(user, span_warning("The headgear is in the way!"))
 					return
+				if(HAS_TRAIT(H, TRAIT_BALD))
+					to_chat(user, span_warning("[H] is just way too bald. Like, really really bald."))
+					return
 				user.visible_message(span_notice("[user] tries to change [H]'s hairstyle using [src]."), span_notice("You try to change [H]'s hairstyle using [src]."))
 				if(new_style && do_after(user, 6 SECONDS, H))
 					user.visible_message(span_notice("[user] successfully changes [H]'s hairstyle using [src]."), span_notice("You successfully change [H]'s hairstyle using [src]."))
@@ -233,6 +237,7 @@
 /obj/item/dyespray
 	name = "hair dye spray"
 	desc = "A spray to dye your hair any gradients you'd like."
+	grind_results = list(/datum/reagent/phenol = 10, /datum/reagent/hair_dye = 5)
 	icon = 'icons/obj/cosmetics.dmi'
 	icon_state = "dyespray"
 
@@ -259,7 +264,7 @@
 	if(!new_grad_style)
 		return
 
-	var/new_grad_color = input(usr, "Choose a secondary hair color:", "Character Preference","#"+human_target.grad_color) as color|null
+	var/new_grad_color = input(usr, "Choose a secondary hair color:", "Character Preference",human_target.grad_color) as color|null
 	if(!new_grad_color)
 		return
 

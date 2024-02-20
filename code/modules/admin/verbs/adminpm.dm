@@ -72,6 +72,8 @@
 
 	if(AH)
 		message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, 0, 0)]'s admin help.")
+		if(!AH.handling_admin_ckey)
+			AH.Administer(TRUE)
 	var/msg = input(src,"Message:", "Private message to [C.holder?.fakekey ? "an Administrator" : key_name(C, 0, 0)].") as message|null
 	if (!msg)
 		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
@@ -100,16 +102,17 @@
 
 		return
 
-	if(!holder && !current_ticket)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
-		return
-
 	var/client/recipient
-	var/irc = 0
+	var/discord = FALSE
+	var/irc = FALSE
 	if(istext(whom))
 		if(whom[1] == "@")
 			whom = findStealthKey(whom)
 		if(whom == "IRCKEY")
-			irc = 1
+			irc = TRUE
+		else if(whom[1] == "$")
+			discord = TRUE
+			whom = ckey(whom)
 		else
 			recipient = GLOB.directory[whom]
 	else if(istype(whom, /client))
@@ -131,7 +134,12 @@
 				confidential = TRUE)
 			return
 
+	else if(discord) 
+		if(!msg)
+			msg = input(src,"Message:", "Private message to Administrator") as message|null
 
+		if(!msg)
+			return
 	else
 		if(!recipient)
 			if(holder)
@@ -147,6 +155,9 @@
 		if(!msg)
 			if(holder)
 				message_admins("[key_name_admin(src)] has started replying to [key_name_admin(recipient, 0, 0)]'s admin help.")
+				var/datum/admin_help/AH = recipient.current_ticket
+				if(AH && !AH.handling_admin_ckey)
+					AH.Administer(TRUE)
 			msg = input(src,"Message:", "Private message to [recipient.holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
 			msg = trim(msg)
 			if(!msg)
@@ -172,7 +183,7 @@
 		return
 
 	//clean the message if it's not sent by a high-rank admin
-	if(!check_rights(R_SERVER|R_DEBUG,0)||irc)//no sending html to the poor bots
+	if(!check_rights(R_SERVER|R_DEBUG,0)||irc||discord)//no sending html to the poor bots
 		msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
 		if(!msg)
 			return
@@ -189,6 +200,9 @@
 		var/datum/admin_help/AH = admin_ticket_log(src, rawmsg) // yogs - Yog Tickets
 		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
+	else if(discord)
+		to_chat(src, span_notice("PM to-<b>Admins</b>: [span_linkify("[rawmsg]")]"), confidential=TRUE)
+		current_ticket.AddInteraction(rawmsg, ckey=src.ckey)
 	else
 		if(recipient.holder)
 			if(holder)
@@ -205,7 +219,7 @@
 				admin_ticket_log(src, msg, FALSE)
 				if(!recipient.current_ticket && !current_ticket) // creates a ticket if there is no ticket of either user
 					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
-				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
+				if(recipient.current_ticket && !recipient.current_ticket.handling_admin_ckey)
 					recipient.current_ticket.Administer()
 				// yogs end - Yog Tickets
 				if(recipient != src)	//reeee
@@ -229,8 +243,11 @@
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
 				if(!recipient.current_ticket)
 					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
-				if(!recipient.current_ticket.handling_admin)
+				if(!recipient.current_ticket.handling_admin_ckey)
 					recipient.current_ticket.Administer() // yogs - Yog Tickets
+				if(recipient.current_ticket.handling_admin_ckey != usr.ckey)
+					if(tgui_alert(usr, "You are replying to a ticket administered by [recipient.current_ticket.handling_admin_ckey], are you sure you wish to continue?", "Confirm", list("Yes", "No")) != "Yes")
+						return
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", confidential=TRUE)
 				to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)
@@ -248,11 +265,19 @@
 						var/sender = src
 						var/sendername = key
 						var/reply = input(recipient, msg,"Admin PM from-[sendername]", "") as message|null	//show message and await a reply
-						if(recipient && reply)
+						if(!recipient) // User logged off
+							return
+
+						var/temp = usr
+						usr = recipient.mob
+						if(!reply) // User dismissed popup
+							recipient.current_ticket.AddInteraction("Dismissed popup")
+						else
 							if(sender)
 								recipient.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
 							else
 								adminhelp(reply)													//sender has left, adminhelp instead
+						usr = temp
 						return
 
 			else		//neither are admins
@@ -269,6 +294,10 @@
 				type = MESSAGE_TYPE_ADMINPM,
 				html = span_notice("<B>PM: [key_name(src, X, 0)]-&gt;External:</B> [keywordparsedmsg]"),
 				confidential = TRUE)
+	else if(discord)
+		var/logmsg = "PM: [key_name(src)]->[whom] (discord): [rawmsg]"
+		log_admin_private(logmsg)
+		message_admins("PM: [key_name(src)]->[whom] (discord): [rawmsg]")
 	else
 		window_flash(recipient, ignorepref = TRUE)
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
@@ -280,6 +309,37 @@
 					html = span_notice("<B>PM: [key_name(src, X, 0)]-&gt;[key_name(recipient, X, 0)]:</B> [keywordparsedmsg]") ,
 					confidential = TRUE)
 
+/datum/admin_help/proc/DiscordReply(ckey, message)
+	if(!initiator) return "ERROR: Client not found"
+
+	var/msg = sanitize(copytext_char(message, 1, MAX_MESSAGE_LEN))
+	if(!msg)
+		return "ERROR: No message"
+
+	message_admins("Discord message from [ckey] to [key_name_admin(initiator)] : [msg]")
+	log_admin_private("Discord PM: [ckey] -> [key_name(initiator)] : [msg]")
+	msg = emoji_parse(msg)
+
+	to_chat(initiator,
+		type = MESSAGE_TYPE_ADMINPM,
+		html = "<font color='red' size='4'><b>-- Administrator private message --</b></font>",
+		confidential = TRUE)
+	to_chat(initiator,
+		type = MESSAGE_TYPE_ADMINPM,
+		html = span_adminsay("Admin PM from-<b><a href='?priv_msg=$[ckey]'>[ckey]</A></b>: [msg]"),
+		confidential = TRUE) // yogs - Yog Tickets
+	to_chat(initiator,
+		type = MESSAGE_TYPE_ADMINPM,
+		html = span_adminsay("<i>Click on the administrator's name to reply.</i>"),
+		confidential = TRUE) // yogs - Yog Tickets
+
+	AddInteraction(msg, ckey=ckey) // yogs - Yog Tickets
+
+	window_flash(initiator, ignorepref = TRUE)
+	//always play non-admin recipients the adminhelp sound
+	SEND_SOUND(initiator, 'sound/effects/adminhelp.ogg')
+
+	return "Message Sent"
 
 
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"

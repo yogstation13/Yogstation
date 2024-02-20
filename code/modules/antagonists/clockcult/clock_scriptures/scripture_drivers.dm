@@ -78,7 +78,7 @@
 	primary_component = BELLIGERENT_EYE
 	sort_priority = 4
 	slab_overlay = "volt"
-	ranged_type = /obj/effect/proc_holder/slab/kindle
+	ranged_type = /datum/action/innate/slab/kindle
 	ranged_message = "<span class='brass'><i>You charge the clockwork slab with divine energy.</i>\n\
 	<b>Left-click a target within melee range to stun!\n\
 	Click your slab to cancel.</b></span>"
@@ -102,7 +102,7 @@
 	tier = SCRIPTURE_DRIVER
 	primary_component = BELLIGERENT_EYE
 	sort_priority = 5
-	ranged_type = /obj/effect/proc_holder/slab/hateful_manacles
+	ranged_type = /datum/action/innate/slab/hateful_manacles
 	slab_overlay = "hateful_manacles"
 	ranged_message = "<span class='neovgre_small'><i>You charge the clockwork slab with divine energy.</i>\n\
 	<b>Left-click a target within melee range to shackle!\n\
@@ -161,7 +161,7 @@
 	quickbind = TRUE
 	quickbind_desc = "Allows you to convert a Servant's brute, burn, and oxygen damage to half toxin damage.<br><b>Click your slab to disable.</b>"
 	slab_overlay = "compromise"
-	ranged_type = /obj/effect/proc_holder/slab/compromise
+	ranged_type = /datum/action/innate/slab/compromise
 	ranged_message = "<span class='inathneq_small'><i>You charge the clockwork slab with healing power.</i>\n\
 	<b>Left-click a fellow Servant or yourself to heal!\n\
 	Click your slab to cancel.</b></span>"

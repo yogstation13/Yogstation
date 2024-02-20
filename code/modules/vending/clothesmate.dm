@@ -89,7 +89,11 @@
 		            /obj/item/clothing/under/sl_suit = 1,
 		            /obj/item/clothing/accessory/waistcoat = 1,
 					/obj/item/clothing/head/that = 1,
+					/obj/item/clothing/head/fedora/brown = 1,
 		            /obj/item/clothing/head/fedora = 1,
+					/obj/item/clothing/suit/det_suit/civilian = 1,
+					/obj/item/clothing/suit/det_suit/civilian/grey = 1,
+					/obj/item/clothing/suit/det_suit/civilian/tan = 1,
 		            /obj/item/clothing/glasses/monocle = 1,
 		            /obj/item/clothing/head/sombrero = 1,
 		            /obj/item/clothing/suit/poncho = 1,
@@ -181,13 +185,17 @@
 		            /obj/item/clothing/shoes/singery = 1,
 		            /obj/item/clothing/shoes/singerb = 1,
 		            /obj/item/clothing/shoes/yogs/trainers = 1,
-		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3) //yogs clothes for clothesmate end here
+		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3,
+					/obj/item/clothing/suit/jacket/pride = 3,
+					/obj/item/clothing/suit/jacket/pride/mlm = 2,
+					/obj/item/clothing/suit/jacket/pride/lesbian = 2) //yogs clothes for clothesmate end here
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 		              /obj/item/clothing/mask/balaclava = 1,
 		              /obj/item/clothing/head/ushanka = 1,
 		              /obj/item/clothing/under/soviet = 1,
 		              /obj/item/storage/belt/fannypack/black = 2,
 		              /obj/item/clothing/suit/jacket/letterman_syndie = 1,
+					  /obj/item/clothing/suit/yogs/battlejacket = 2,
 		              /obj/item/clothing/under/jabroni = 1,
 		              /obj/item/clothing/suit/vapeshirt = 1,
 		              /obj/item/clothing/under/geisha = 1, //yogs added a ,
@@ -203,7 +211,8 @@
 		           /obj/item/clothing/suit/yogs/trainman = 1,
 		           /obj/item/clothing/head/yogs/trainman = 1,
 		           /obj/item/clothing/suit/yogs/infsuit = 1,
-		           /obj/item/clothing/under/yogs/persskinsuit = 3) //yogs end
+		           /obj/item/clothing/under/yogs/persskinsuit = 3,
+				   /obj/item/clothing/suit/toggle/cyberpunk = 1) //yogs end
 	refill_canister = /obj/item/vending_refill/clothing
 	default_price = 50
 	extra_price = 75

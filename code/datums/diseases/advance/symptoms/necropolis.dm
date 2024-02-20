@@ -1,5 +1,6 @@
 /datum/symptom/necroseed
 	name = "Necropolis Seed"
+	icon = "necropolis_seed"
 	desc = "An infantile form of the root of Lavaland's tendrils. Forms a symbiotic bond with the host, making them stronger and hardier, at the cost of speed. Should the disease be cured, the host will be severely weakened."
 	stealth = 0
 	resistance = 3
@@ -21,6 +22,7 @@
 	var/list/cached_tentacle_turfs
 	var/turf/last_location
 	var/tentacle_recheck_cooldown = 100
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/necroseed/Start(datum/disease/advance/A)
 	. = ..()

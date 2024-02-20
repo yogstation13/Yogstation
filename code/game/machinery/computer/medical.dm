@@ -523,7 +523,7 @@
 						P.info += "<B>Medical Record Lost!</B><BR>"
 						P.name = text("MR-[] '[]'", GLOB.data_core.medicalPrintCount, "Record Lost")
 					P.info += "</TT>"
-					P.update_icon()
+					P.update_appearance(UPDATE_ICON)
 					src.printing = null
 
 	src.add_fingerprint(usr)
@@ -534,7 +534,7 @@
 	. = ..()
 	if(!(stat & (BROKEN|NOPOWER)) && !(. & EMP_PROTECT_SELF))
 		for(var/datum/data/record/R in GLOB.data_core.medical)
-			if(prob(10/severity))
+			if(prob(severity))
 				switch(rand(1,6))
 					if(1)
 						if(prob(10))
@@ -546,7 +546,8 @@
 					if(3)
 						R.fields["age"] = rand(AGE_MIN, AGE_MAX)
 					if(4)
-						R.fields["blood_type"] = random_blood_type()
+						var/datum/blood_type/blood = random_blood_type()
+						R.fields["blood_type"] = blood.name
 					if(5)
 						R.fields["p_stat"] = pick("*Unconscious*", "Active", "Physically Unfit")
 					if(6)

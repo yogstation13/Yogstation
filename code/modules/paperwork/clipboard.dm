@@ -16,8 +16,8 @@
 	user.visible_message(span_suicide("[user] begins putting [user.p_their()] head into the clip of \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS//the clipboard's clip is very strong. industrial duty. can kill a man easily.
 
-/obj/item/clipboard/Initialize()
-	update_icon()
+/obj/item/clipboard/Initialize(mapload)
+	update_appearance(UPDATE_ICON)
 	. = ..()
 
 /obj/item/clipboard/Destroy()
@@ -25,8 +25,8 @@
 	QDEL_NULL(toppaper)	//let movable/Destroy handle the rest
 	return ..()
 
-/obj/item/clipboard/update_icon()
-	cut_overlays()
+/obj/item/clipboard/update_overlays()
+	. = ..()
 	var/list/dat = list()
 	if(toppaper)
 		dat += toppaper.icon_state
@@ -34,7 +34,7 @@
 	if(haspen)
 		dat += "clipboard_pen"
 	dat += "clipboard_over"
-	add_overlay(dat)
+	. += dat
 
 
 /obj/item/clipboard/attackby(obj/item/W, mob/user, params)
@@ -43,10 +43,10 @@
 			return
 		toppaper = W
 		to_chat(user, span_notice("You clip the paper onto \the [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(toppaper)
 		toppaper.attackby(user.get_active_held_item(), user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
 /obj/item/clipboard/attack_self(mob/user)
@@ -126,4 +126,4 @@
 
 		//Update everything
 		attack_self(usr)
-		update_icon()
+		update_appearance(UPDATE_ICON)

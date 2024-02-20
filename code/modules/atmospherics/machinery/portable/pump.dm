@@ -15,7 +15,7 @@
 
 	volume = 1000
 
-/obj/machinery/portable_atmospherics/pump/Initialize()
+/obj/machinery/portable_atmospherics/pump/Initialize(mapload)
 	. = ..()
 	pump = new(src, FALSE)
 	pump.on = TRUE
@@ -25,18 +25,20 @@
 /obj/machinery/portable_atmospherics/pump/Destroy()
 	var/turf/T = get_turf(src)
 	T.assume_air(air_contents)
-	air_update_turf()
 	QDEL_NULL(pump)
 	return ..()
 
-/obj/machinery/portable_atmospherics/pump/update_icon()
+/obj/machinery/portable_atmospherics/pump/update_icon_state()
+	. = ..()
 	icon_state = "psiphon:[on]"
 
-	cut_overlays()
+/obj/machinery/portable_atmospherics/pump/update_overlays()
+	. = ..()
+
 	if(holding)
-		add_overlay("siphon-open")
+		. += "siphon-open"
 	if(connected_port)
-		add_overlay("siphon-connector")
+		. += "siphon-connector"
 
 /obj/machinery/portable_atmospherics/pump/process_atmos()
 	..()
@@ -54,20 +56,18 @@
 		pump.airs[2] = holding ? holding.air_contents : air_contents
 
 	pump.process_atmos() // Pump gas.
-	if(!holding)
-		air_update_turf() // Update the environment if needed.
 
 /obj/machinery/portable_atmospherics/pump/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(is_operational())
-		if(prob(50 / severity))
+		if(prob(5 * severity))
 			on = !on
-		if(prob(100 / severity))
+		if(prob(10 * severity))
 			direction = PUMP_OUT
 		pump.target_pressure = rand(0, 100 * ONE_ATMOSPHERE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/portable_atmospherics/pump/replace_tank(mob/living/user, close_valve)
 	. = ..()
@@ -75,7 +75,7 @@
 		if(close_valve)
 			if(on)
 				on = FALSE
-				update_icon()
+				update_appearance(UPDATE_ICON)
 		else if(on && holding && direction == PUMP_OUT)
 			investigate_log("[key_name(user)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
 
@@ -112,8 +112,8 @@
 		if("power")
 			on = !on
 			if(on && !holding)
-				var/plasma = air_contents.get_moles(/datum/gas/plasma)
-				var/n2o = air_contents.get_moles(/datum/gas/nitrous_oxide)
+				var/plasma = air_contents.get_moles(GAS_PLASMA)
+				var/n2o = air_contents.get_moles(GAS_NITROUS)
 				if(n2o || plasma)
 					message_admins("[ADMIN_LOOKUPFLW(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [ADMIN_VERBOSEJMP(src)]")
 					log_admin("[key_name(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [AREACOORD(src)]")
@@ -153,10 +153,10 @@
 			if(holding)
 				replace_tank(usr, FALSE)
 				. = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/portable_atmospherics/pump/CtrlShiftClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	on = !on
-	update_icon()
+	update_appearance(UPDATE_ICON)

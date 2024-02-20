@@ -1,6 +1,6 @@
 /*
 Overview:
-   Used to create objects that need a per step proc call.  Default definition of 'Initialize()'
+   Used to create objects that need a per step proc call.  Default definition of 'Initialize(mapload)'
    stores a reference to src machine in global 'machines list'.  Default definition
    of 'Destroy' removes reference to src machine in global 'machines list'.
 
@@ -37,7 +37,7 @@ Class Variables:
          EMPED -- temporary broken by EMP pulse
 
 Class Procs:
-   Initialize()                     'game/machinery/machine.dm'
+   Initialize(mapload)                     'game/machinery/machine.dm'
 
    Destroy()                   'game/machinery/machine.dm'
 
@@ -98,6 +98,7 @@ Class Procs:
 
 	var/stat = 0
 	var/use_power = IDLE_POWER_USE
+	var/datum/powernet/powernet = null
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
@@ -124,14 +125,22 @@ Class Procs:
 	var/fair_market_price = 69
 	var/market_verb = "Customer"
 	var/payment_department = ACCOUNT_ENG
+
+	var/clickvol = 40	// sound volume played on succesful click
+	var/next_clicksound = 0	// value to compare with world.time for whether to play clicksound according to CLICKSOUND_INTERVAL
+	var/clicksound	// sound played on succesful interface use by a carbon lifeform
+
 	/// For storing and overriding ui id
 	var/tgui_id // ID of TGUI interface
-	var/climbable = FALSE
-	var/climb_time = 20
-	var/climb_stun = 20
-	var/mob/living/machineclimber
+	/// world.time of last use by [/mob/living]
+	var/last_used_time = 0
+	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
+	var/mob/living/last_user_mobtype
 
-/obj/machinery/Initialize()
+	///Boolean on whether this machines interact with atmos
+	var/atmos_processing = FALSE
+
+/obj/machinery/Initialize(mapload)
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
@@ -154,9 +163,10 @@ Class Procs:
 /obj/machinery/LateInitialize()
 	. = ..()
 	power_change()
-	RegisterSignal(src, COMSIG_ENTER_AREA, .proc/power_change)
+	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(power_change))
 
-/obj/machinery/Destroy()
+/obj/machinery/Destroy(force=FALSE)
+	disconnect_from_network()
 	GLOB.machines.Remove(src)
 	if(!speed_process)
 		STOP_PROCESSING(SSmachines, src)
@@ -181,7 +191,7 @@ Class Procs:
 /obj/machinery/emp_act(severity)
 	. = ..()
 	if(use_power && !stat && !(. & EMP_PROTECT_SELF))
-		use_power(7500/severity)
+		use_power(750 * severity)
 		new /obj/effect/temp_visual/emp(loc)
 
 /obj/machinery/proc/open_machine(drop = TRUE)
@@ -189,7 +199,7 @@ Class Procs:
 	density = FALSE
 	if(drop)
 		dropContents()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	updateUsrDialog()
 
 /obj/machinery/proc/dropContents(list/subset = null)
@@ -227,7 +237,7 @@ Class Procs:
 		occupant = target
 		target.forceMove(src)
 	updateUsrDialog()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
@@ -288,13 +298,14 @@ Class Procs:
 	if(is_species(L, /datum/species/lizard/ashwalker))
 		return FALSE // ashwalkers cant use modern machines
 
+	//YOGS EDIT BEGIN
+	if(is_species(L, /datum/species/pod/ivymen))
+		return FALSE // same as ivymen
+	//YOGS EDIT END
+
 	var/mob/living/carbon/H = user
 	if(istype(H) && H.has_dna())
-		if (H.dna.check_mutation(ACTIVE_HULK))
-			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
-			return FALSE // hulks cant use machines
-
-		else if(!Adjacent(user) && !H.dna.check_mutation(TK))
+		if(!Adjacent(user) && !H.dna.check_mutation(TK))
 			return FALSE // need to be close or have telekinesis
 
 	return TRUE
@@ -339,6 +350,8 @@ Class Procs:
 
 /obj/machinery/ui_act(action, list/params)
 	add_fingerprint(usr)
+	if(isliving(usr) && in_range(src, usr))
+		play_click_sound()
 	return ..()
 
 /obj/machinery/Topic(href, href_list)
@@ -377,7 +390,17 @@ Class Procs:
 /obj/machinery/_try_interact(mob/user)
 	if((interaction_flags_machine & INTERACT_MACHINE_WIRES_IF_OPEN) && panel_open && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
 		return TRUE
+	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
+		return	
 	return ..()
+
+/obj/machinery/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
+	if(SEND_SIGNAL(user, COMSIG_TRY_USE_MACHINE, src) & COMPONENT_CANT_USE_MACHINE_TOOLS)
+		return TOOL_ACT_MELEE_CHAIN_BLOCKING
+	. = ..()
+	if(. & TOOL_ACT_SIGNAL_BLOCKING)
+		return
+	update_last_used(user)
 
 /obj/machinery/CheckParts(list/parts_list)
 	..()
@@ -400,32 +423,45 @@ Class Procs:
 		deconstruct(TRUE)
 
 /obj/machinery/deconstruct(disassembled = TRUE, force = FALSE)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		on_deconstruction()
-		if(component_parts && component_parts.len)
-			if(!force)
-				spawn_frame(disassembled)
-			for(var/obj/item/I in component_parts)
-				I.forceMove(loc)
-			component_parts.Cut()
-	qdel(src)
+	if(flags_1 & NODECONSTRUCT_1)
+		return ..()
+
+	on_deconstruction()
+	if(!LAZYLEN(component_parts))
+		return ..()
+	spawn_frame(disassembled)
+	for(var/obj/item/I in component_parts)
+		I.forceMove(loc)
+	component_parts.Cut()
+	return ..()
 
 /obj/machinery/proc/spawn_frame(disassembled)
-	var/obj/structure/frame/machine/M = new /obj/structure/frame/machine(loc)
-	. = M
-	M.setAnchored(anchored)
+	var/obj/structure/frame/machine/new_frame = new /obj/structure/frame/machine(loc)
+
+	new_frame.state = 2
+
+	// If the new frame shouldn't be able to fit here due to the turf being blocked, spawn the frame deconstructed.
+	if(isturf(loc))
+		var/turf/machine_turf = loc
+		// We're spawning a frame before this machine is qdeleted, so we want to ignore it. We've also just spawned a new frame, so ignore that too.
+		if(machine_turf.is_blocked_turf(TRUE, source_atom = new_frame, ignore_atoms = list(src)))
+			new_frame.deconstruct(disassembled)
+			return
+
+	new_frame.icon_state = "box_1"
+	. = new_frame
+	new_frame.setAnchored(anchored)
 	if(!disassembled)
-		M.obj_integrity = M.max_integrity * 0.5 //the frame is already half broken
-	transfer_fingerprints_to(M)
-	M.state = 2
-	M.icon_state = "box_1"
+		new_frame.obj_integrity = (new_frame.max_integrity * 0.5) //the frame is already half broken
+	transfer_fingerprints_to(new_frame)
 
 /obj/machinery/obj_break(damage_flag)
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
+	return FALSE
 
 /obj/machinery/contents_explosion(severity, target)
 	if(occupant)
@@ -434,7 +470,7 @@ Class Procs:
 /obj/machinery/handle_atom_del(atom/A)
 	if(A == occupant)
 		occupant = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		updateUsrDialog()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
@@ -456,8 +492,8 @@ Class Procs:
 		I.play_tool_sound(src, 50)
 		setDir(turn(dir,-90))
 		to_chat(user, span_notice("You rotate [src]."))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
 	if(!(isfloorturf(loc) || istype(loc, /turf/open/indestructible)) && !anchored)
@@ -465,23 +501,28 @@ Class Procs:
 		return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
-/obj/proc/default_unfasten_wrench(mob/user, obj/item/I, time = 20) //try to unwrench an object in a WONDERFUL DYNAMIC WAY
-	if(!(flags_1 & NODECONSTRUCT_1) && I.tool_behaviour == TOOL_WRENCH)
-		var/can_be_unfasten = can_be_unfasten_wrench(user)
-		if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
-			return can_be_unfasten
-		if(time)
-			to_chat(user, span_notice("You begin [anchored ? "un" : ""]securing [src]..."))
-		I.play_tool_sound(src, 50)
-		var/prev_anchored = anchored
-		//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
-		if(I.use_tool(src, user, time, extra_checks = CALLBACK(src, .proc/unfasten_wrench_check, prev_anchored, user)))
-			to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
-			setAnchored(!anchored)
-			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
-			return SUCCESSFUL_UNFASTEN
-		return FAILED_UNFASTEN
-	return CANT_UNFASTEN
+/obj/proc/default_unfasten_wrench(mob/user, obj/item/wrench, time = 20) //try to unwrench an object in a WONDERFUL DYNAMIC WAY
+	if((flags_1 & NODECONSTRUCT_1) || wrench.tool_behaviour != TOOL_WRENCH)
+		return CANT_UNFASTEN
+	
+	var/turf/ground = get_turf(src)
+	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
+		to_chat(user, span_notice("You fail to secure [src]."))
+		return CANT_UNFASTEN
+	var/can_be_unfasten = can_be_unfasten_wrench(user)
+	if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
+		return can_be_unfasten
+	if(time)
+		to_chat(user, span_notice("You begin [anchored ? "un" : ""]securing [src]..."))
+	wrench.play_tool_sound(src, 50)
+	var/prev_anchored = anchored
+	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
+	if(wrench.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
+		to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
+		setAnchored(!anchored)
+		playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+		return SUCCESSFUL_UNFASTEN
+	return FAILED_UNFASTEN
 
 /obj/proc/unfasten_wrench_check(prev_anchored, mob/user) //for the do_after, this checks if unfastening conditions are still valid
 	if(anchored != prev_anchored)
@@ -510,7 +551,7 @@ Class Procs:
 				for(var/obj/item/B in W.contents)
 					if(istype(B, P) && istype(A, P))
 						//won't replace beakers if they have reagents in them to prevent funny explosions
-						if(istype(B,/obj/item/reagent_containers) && !isemptylist(B.reagents?.reagent_list)) 
+						if(istype(B,/obj/item/reagent_containers) && length(B.reagents?.reagent_list)) 
 							continue
 						// If it's a corrupt or rigged cell, attempting to send it through Bluespace could have unforeseen consequences.
 						if(istype(B, /obj/item/stock_parts/cell) && W.works_from_distance)
@@ -581,7 +622,7 @@ Class Procs:
 /obj/machinery/proc/can_be_overridden()
 	. = 1
 
-/obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
+/obj/machinery/tesla_act(power, tesla_flags, shocked_objects, zap_gib = FALSE)
 	..()
 	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		if(prob(60))
@@ -619,69 +660,34 @@ Class Procs:
 	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
 	START_PROCESSING(subsystem, src)
 
+/obj/machinery/proc/play_click_sound(var/custom_clicksound)
+	if((custom_clicksound ||= clicksound) && world.time > next_clicksound)
+		next_clicksound = world.time + CLICKSOUND_INTERVAL
+		playsound(src, custom_clicksound, clickvol)
+
 /obj/machinery/rust_heretic_act()
 	take_damage(500, BRUTE, MELEE, 1)
 
-/obj/machinery/MouseDrop_T(atom/movable/O, mob/user)
-	. = ..()
-	if(!climbable)
-		return
-	if(user == O && iscarbon(O))
-		var/mob/living/carbon/C = O
-		if(C.mobility_flags & MOBILITY_MOVE)
-			climb_machine(user)
-			return
-	if(!istype(O, /obj/item) || user.get_active_held_item() != O)
-		return
-	if(iscyborg(user))
-		return
-	if(!user.dropItemToGround(O))
-		return
-	if (O.loc != src.loc)
-		step(O, get_dir(O, src))
+/obj/machinery/proc/update_last_used(mob/user)
+	if(isliving(user))
+		last_used_time = world.time
+		last_user_mobtype = user.type
 
-/obj/machinery/proc/do_climb(atom/movable/A)
-	if(climbable)
-		density = FALSE
-		. = step(A,get_dir(A,src.loc))
-		density = TRUE
+/**
+ * Puts passed object in to user's hand
+ *
+ * Puts the passed object in to the users hand if they are adjacent.
+ * If the user is not adjacent then place the object on top of the machine.
+ *
+ * Vars:
+ * * object (obj) The object to be moved in to the users hand.
+ * * user (mob/living) The user to recive the object
+ */
+/obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
+	if(!issilicon(user) && in_range(src, user))
+		user.put_in_hands(object)
+	else
+		object.forceMove(drop_location())
 
-/obj/machinery/proc/climb_machine(mob/living/user)
-	src.add_fingerprint(user)
-	user.visible_message("<span class='warning'>[user] starts climbing onto [src].</span>", \
-								"<span class='notice'>You start climbing onto [src]...</span>")
-	var/adjusted_climb_time = climb_time
-	if(user.restrained()) //climbing takes twice as long when restrained.
-		adjusted_climb_time *= 2
-	if(isalien(user))
-		adjusted_climb_time *= 0.25 //aliens are terrifyingly fast
-	if(HAS_TRAIT(user, TRAIT_FREERUNNING)) //do you have any idea how fast I am???
-		adjusted_climb_time *= 0.8
-	machineclimber = user
-	if(do_mob(user, user, adjusted_climb_time))
-		if(src.loc) //Checking if structure has been destroyed
-			if(do_climb(user))
-				user.visible_message("<span class='warning'>[user] climbs onto [src].</span>", \
-									"<span class='notice'>You climb onto [src].</span>")
-				log_combat(user, src, "climbed onto")
-				if(climb_stun)
-					var/mob/living/carbon/human/H = user
-					var/wagging = FALSE
-					if(H && H.dna.species.is_wagging_tail())
-						wagging = TRUE
-					user.Stun(climb_stun)
-					if(wagging)
-						H.dna.species.start_wagging_tail(H)
-				. = 1
-			else
-				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")
-	machineclimber = null
-
-/obj/machinery/CanAStarPass(ID, dir, caller)
-	. = ..()
-	if(climbable)
-		return TRUE
-	if(can_be_occupant(caller))
-		return TRUE
-
-	
+/obj/machinery/proc/set_occupant(atom/movable/new_occupant)
+	SHOULD_CALL_PARENT(TRUE)

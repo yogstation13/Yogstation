@@ -32,6 +32,7 @@
 	desc = "Homemade beef jerky made from the finest space cows."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	junkiness = 0
+	foodtype = JUNKFOOD | MEAT
 
 /obj/item/reagent_containers/food/snacks/chips
 	name = "chips"
@@ -113,7 +114,7 @@
 
 /obj/item/reagent_containers/food/snacks/energybar
 	name = "High-power energy bars"
-	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you're not an Ethereal."
+	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you don't run on electricity.."
 	icon_state = "energybar"
 	trash = /obj/item/trash/energybar
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/liquidelectricity = 4)
@@ -176,10 +177,10 @@
 		opened = TRUE
 	else
 		if(!searched)
-			if(INTERACTING_WITH(user, src))
+			if(DOING_INTERACTION(user, src))
 				return
 			to_chat(user, span_warning("You start searching for the toy..."))
-			if(!do_after(user, 1.5 SECONDS, target = src))
+			if(!do_after(user, 1.5 SECONDS, src))
 				return
 			if(prob(50))
 				switch(rand(1,2))
@@ -204,16 +205,15 @@
 	name = "vermin bites"
 	desc = "A small can with a cartoon mouse on the label. A noise that sounds suspiciously like squeaking can be heard coming from inside."
 	icon_state = "verminbites"
-	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
-	foodtype = MEAT
+	trash = /obj/item/trash/vermin
 	/// What animal does the snack contain?
-	var/mob/living/simple_animal/mouse/contained_animal
+	var/mob/living/simple_animal/mouse/fat/contained_animal
 
 /obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
 	. = ..()
-	contained_animal = new /mob/living/simple_animal/mouse(get_turf(src))
+	contained_animal = new /mob/living/simple_animal/mouse/fat(get_turf(src))
 	to_chat(user, span_warning("You pry open the [src]. A [contained_animal.name] falls out from inside!"))
-	qdel(src)
+	On_Consume(user)//give trash
 
 /obj/item/reagent_containers/food/snacks/vermin/attack(mob/living/M, mob/user, def_zone)
 	to_chat(user, span_warning("You need to open [src]' lid first."))

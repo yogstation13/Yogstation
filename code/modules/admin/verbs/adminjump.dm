@@ -15,7 +15,7 @@
 			continue
 		turfs.Add(T)
 
-	var/turf/T = safepick(turfs)
+	var/turf/T = pick(turfs)
 	if(!T)
 		to_chat(src, "Nowhere to jump to!", confidential=TRUE)
 		return
@@ -37,7 +37,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Jump To Turf") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/jumptomob(mob/M in GLOB.mob_list)
+/client/proc/jump_to_mob(mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
 

@@ -23,7 +23,7 @@
 	taste_description = "the bomb"
 	color = "#8B2500"
 
-/datum/reagent/blob/explosive_lattice/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/O)
+/datum/reagent/blob/explosive_lattice/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message, permeability, mob/camera/blob/O)
 	var/initial_volume = reac_volume
 	reac_volume = ..()
 	if(reac_volume >= 10) //if it's not a spore cloud, bad time incoming
@@ -32,7 +32,7 @@
 		for(var/mob/living/L in orange(get_turf(M), 1))
 			if(ROLE_BLOB in L.faction) //no friendly fire
 				continue
-			var/aoe_volume = ..(L, TOUCH, initial_volume, 0, L.get_permeability_protection(), O)
+			var/aoe_volume = ..(L, TOUCH, initial_volume, 0, L.get_permeability(), O)
 			L.apply_damage(0.4*aoe_volume, BRUTE, wound_bonus=CANT_WOUND)
 		if(M)
 			M.apply_damage(0.6*reac_volume, BRUTE, wound_bonus=CANT_WOUND)

@@ -55,7 +55,7 @@
 			dbadmins[admin_ckey] = admin_rank
 	qdel(query_load_admins)
 
-/datum/permissions_controller/db/_load_permissions_for(var/client/C)
+/datum/permissions_controller/db/_load_permissions_for(client/C)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")

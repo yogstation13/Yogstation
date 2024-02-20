@@ -53,6 +53,9 @@
 		var/mob/living/carbon/human/HMN = M
 		HMN.eye_color = old_eye_color
 		HMN.update_body()
+	M.cure_blind(list(EYE_DAMAGE)) // can't be blind from eye damage if there's no eye to be damaged, still blind from not having eyes though
+	M.cure_nearsighted(list(EYE_DAMAGE)) // likewise for nearsightedness
+	M.set_blurriness(0) // no eyes to blur
 	M.update_tint()
 	M.update_sight()
 
@@ -95,7 +98,7 @@
 	var/list/overlays = list(eye_overlay)
 
 	if((EYECOLOR in parent.dna.species.species_traits))
-		eye_overlay.color = "#" + eye_color
+		eye_overlay.color = eye_color
 
 	// Cry emote overlay
 	if (HAS_TRAIT(parent, TRAIT_CRYING)) // Caused by the *cry emote
@@ -162,19 +165,17 @@
 	desc = "Your vision is augmented."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /obj/item/organ/eyes/robotic/emp_act(severity)
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	if(prob(20 * severity))
-		return
-	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	to_chat(owner, span_danger("your eyes overload and blind you!"))
 	owner.flash_act(override_blindness_check = 1)
-	owner.blind_eyes(5)
+	owner.blind_eyes(severity / 2)
 	owner.blur_eyes(8)
-	eyes.applyOrganDamage(25)
+	applyOrganDamage(2 * severity)
 
 /obj/item/organ/eyes/robotic/xray
 	name = "\improper meson eyes"
@@ -231,7 +232,7 @@
 	M.become_blind("flashlight_eyes")
 
 
-/obj/item/organ/eyes/robotic/flashlight/Remove(var/mob/living/carbon/M, var/special = 0)
+/obj/item/organ/eyes/robotic/flashlight/Remove(mob/living/carbon/M, special = 0)
 	eye.on = FALSE
 	eye.update_brightness(M)
 	eye.forceMove(src)
@@ -265,7 +266,7 @@
 	var/image/mob_overlay
 	var/datum/component/mobhook
 
-/obj/item/organ/eyes/robotic/glow/Initialize()
+/obj/item/organ/eyes/robotic/glow/Initialize(mapload)
 	. = ..()
 	mob_overlay = image('icons/mob/human_face.dmi', "eyes_glow_gs")
 
@@ -334,7 +335,7 @@
 
 /obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()
-	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, .proc/update_visuals)
+	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_visuals))
 
 /obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
@@ -345,20 +346,22 @@
 	return ..()
 
 /obj/item/organ/eyes/robotic/glow/proc/activate(silent = FALSE)
-	start_visuals()
 	if(!silent)
 		to_chat(owner, span_warning("Your [src] clicks and makes a whining noise, before shooting out a beam of light!"))
 	active = TRUE
+	start_visuals()
 	cycle_mob_overlay()
 
 /obj/item/organ/eyes/robotic/glow/proc/deactivate(silent = FALSE)
-	clear_visuals()
 	if(!silent)
 		to_chat(owner, span_warning("Your [src] shuts off!"))
 	active = FALSE
+	clear_visuals()
 	remove_mob_overlay()
 
 /obj/item/organ/eyes/robotic/glow/proc/update_visuals(datum/source, olddir, newdir)
+	if(!active)
+		return
 	if((LAZYLEN(eye_lighting) < light_beam_distance) || !on_mob)
 		regenerate_light_effects()
 	var/turf/scanfrom = get_turf(owner)
@@ -373,7 +376,7 @@
 	on_mob.forceMove(scanning)
 	for(var/i in 1 to light_beam_distance)
 		scanning = get_step(scanning, scandir)
-		if(scanning.opacity || scanning.has_opaque_atom)
+		if(IS_OPAQUE_TURF(scanning))
 			stop = TRUE
 		var/obj/effect/abstract/eye_lighting/L = LAZYACCESS(eye_lighting, i)
 		if(stop)
@@ -439,7 +442,7 @@
 
 /obj/item/organ/eyes/moth
 	name = "moth eyes"
-	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
+	desc = "These eyes can see just a little too well, light doesn't entirely agree with them."
 	flash_protect = -1
 
 /obj/item/organ/eyes/snail
@@ -453,3 +456,27 @@
 	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	see_in_dark = 5
+
+/obj/item/organ/eyes/ethereal
+	name = "fractal eyes"
+	desc = "Crystalline eyes from an Ethereal. Seeing with them should feel like using a kaleidoscope, but somehow it isn't."
+	icon_state = "ethereal_eyes"
+	///Color of the eyes, is set by the species on gain
+	var/ethereal_color = "#9c3030"
+
+/obj/item/organ/eyes/ethereal/Initialize(mapload)
+	. = ..()
+	add_atom_colour(ethereal_color, FIXED_COLOUR_PRIORITY)
+
+/obj/item/organ/eyes/ethereal/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
+	. = ..()
+	var/client/dude = M.client
+	if(dude)
+		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
+		dude.view_size.addTo("2x2")
+
+/obj/item/organ/eyes/ethereal/Remove(mob/living/carbon/M, special)
+	var/client/dude = M.client
+	if(dude)
+		dude.view_size.resetToDefault(getScreenSize(dude.prefs.read_preference(/datum/preference/toggle/widescreen)))
+	. = ..()

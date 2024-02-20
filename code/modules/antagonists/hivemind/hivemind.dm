@@ -3,6 +3,7 @@
 	roundend_category = "hiveminds"
 	antagpanel_category = "Hivemind Host"
 	job_rank = ROLE_HIVE
+	antag_hud_name = "hivemind"
 	antag_moodlet = /datum/mood_event/focused
 	var/special_role = ROLE_HIVE
 	var/list/hivemembers = list()
@@ -17,26 +18,26 @@
 
 	var/list/upgrade_tiers = list(
 		//Tier 1 - Roundstart powers
-		/obj/effect/proc_holder/spell/target_hive/hive_add = 0,
-		/obj/effect/proc_holder/spell/target_hive/hive_remove = 0,
-		/obj/effect/proc_holder/spell/target_hive/hive_see = 0,
-		/obj/effect/proc_holder/spell/targeted/hive_shock = 0,
-		/obj/effect/proc_holder/spell/self/telekinetic_hand = 0,
+		/datum/action/cooldown/spell/aoe/target_hive/hive_add = 0,
+		/datum/action/cooldown/spell/aoe/target_hive/hive_remove = 0,
+		/datum/action/cooldown/spell/aoe/target_hive/hive_see = 0,
+		/datum/action/cooldown/spell/pointed/hive_shock = 0,
+		/datum/action/cooldown/spell/telekinetic_hand = 0,
 		//Tier 2 - Tracking related powers
-		/obj/effect/proc_holder/spell/self/hive_scan = 5,
-		/obj/effect/proc_holder/spell/targeted/hive_reclaim = 5,
-		/obj/effect/proc_holder/spell/targeted/hive_hack = 5,
+		/datum/action/cooldown/spell/hive_scan = 5,
+		/datum/action/cooldown/spell/pointed/hive_reclaim = 5,
+		/datum/action/cooldown/spell/pointed/hive_hack = 5,
 		//Tier 3 - Combat related powers
-		/obj/effect/proc_holder/spell/self/hive_drain = 10,
-		/obj/effect/proc_holder/spell/targeted/induce_panic = 10,
-		/obj/effect/proc_holder/spell/targeted/forcewall/hive = 10,
+		/datum/action/cooldown/spell/hive_drain = 10,
+		/datum/action/cooldown/spell/pointed/induce_panic = 10,
+		/datum/action/cooldown/spell/forcewall/hive = 10,
 		//Tier 4 - Chaos-spreading powers
-		/obj/effect/proc_holder/spell/self/hive_wake = 15,
-		/obj/effect/proc_holder/spell/self/hive_loyal = 15,
-		/obj/effect/proc_holder/spell/target_hive/hive_control = 15,
+		/datum/action/cooldown/spell/hive_wake = 15,
+		/datum/action/cooldown/spell/hive_loyal = 15,
+		/datum/action/cooldown/spell/aoe/target_hive/hive_control = 15,
 		//Tier 5 - Deadly powers
-		/obj/effect/proc_holder/spell/targeted/pin = 20,
-		/obj/effect/proc_holder/spell/target_hive/nightmare = 20
+		/datum/action/cooldown/spell/pointed/pin = 20,
+		/datum/action/cooldown/spell/aoe/target_hive/nightmare = 20
 	)
 
 
@@ -65,9 +66,9 @@
 /datum/antagonist/hivemind/proc/check_powers()
 	for(var/power in upgrade_tiers)
 		var/level = upgrade_tiers[power]
-		if(hive_size+size_mod >= level && !(locate(power) in owner.spell_list))
-			var/obj/effect/proc_holder/spell/the_spell = new power(null)
-			owner.AddSpell(the_spell)
+		if(hive_size+size_mod >= level && !(locate(power) in owner.current.actions))
+			var/datum/action/cooldown/spell/the_spell = new power(owner.current)
+			the_spell.Grant(owner.current)
 			if(hive_size > 0)
 				to_chat(owner, "[span_assimilator("We have unlocked [the_spell.name].")][span_bold(" [the_spell.desc]")]")
 
@@ -82,7 +83,9 @@
 			break
 		if(lead)
 			unlocked_one_mind = TRUE
-			owner.AddSpell(new/obj/effect/proc_holder/spell/self/one_mind)
+			var/datum/action/cooldown/spell/one_mind/one_mind = new(owner.current)
+			one_mind.Grant(owner.current)
+
 			to_chat(owner, "<big>[span_assimilator("Our true power, the One Mind, is finally within reach.")]</big>")
 
 /datum/antagonist/hivemind/proc/add_track_bonus(datum/antagonist/hivemind/enemy, bonus)
@@ -109,8 +112,8 @@
 	var/user_warning = span_userdanger("We have detected an enemy hivemind using our physical form as a vessel and have begun ejecting their mind! They will be alerted of our disappearance once we succeed!")
 	if(C.is_real_hivehost())
 		var/eject_time = rand(1400,1600) //2.5 minutes +- 10 seconds
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, user_warning), rand(500,1300)) // If the host has assimilated an enemy hive host, alert the enemy before booting them from the hive after a short while
-		addtimer(CALLBACK(src, .proc/handle_ejection, C), eject_time)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), C, user_warning), rand(500,1300)) // If the host has assimilated an enemy hive host, alert the enemy before booting them from the hive after a short while
+		addtimer(CALLBACK(src, PROC_REF(handle_ejection), C), eject_time)
 	else if(active_one_mind)
 		C.hive_awaken(final_form=active_one_mind)
 
@@ -164,10 +167,10 @@
 	go_back_to_sleep()
 	hivemembers = list()
 	calc_size()
-	for(var/power in upgrade_tiers)
+	for(var/datum/action/power in upgrade_tiers)
 		if(!upgrade_tiers[power])
 			continue
-		owner.RemoveSpell(power)
+		power.Remove(owner.current)
 
 /datum/antagonist/hivemind/antag_panel_data()
 	return "Vessels Assimilated: [hive_size] (+[size_mod])"
@@ -178,7 +181,8 @@
 	var/mob/living/carbon/C = owner.current.get_real_hivehost()
 	if(!C)
 		return
-	owner.AddSpell(new/obj/effect/proc_holder/spell/self/hive_comms)
+	var/datum/action/cooldown/spell/hive_comms/comms = new(owner.current)
+	comms.Grant(owner.current)
 	ADD_TRAIT(C, TRAIT_STUNIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
 	ADD_TRAIT(C, TRAIT_SLEEPIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
 	ADD_TRAIT(C, TRAIT_VIRUSIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
@@ -198,7 +202,8 @@
 	var/mob/living/carbon/C = owner.current.get_real_hivehost()
 	if(!C)
 		return
-	owner.RemoveSpell(new/obj/effect/proc_holder/spell/self/hive_comms)
+	for(var/datum/action/cooldown/spell/hive_comms/comms in owner.current.actions)
+		comms.Remove(owner.current)
 	REMOVE_TRAIT(C, TRAIT_STUNIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
 	REMOVE_TRAIT(C, TRAIT_SLEEPIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
 	REMOVE_TRAIT(C, TRAIT_VIRUSIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
@@ -214,29 +219,12 @@
 	..()
 
 /datum/antagonist/hivemind/apply_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "The great psionic powers of the Hive lets you overcome your clownish nature, allowing you to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_HIVE]
-	hud.join_hud(owner.current)
-	set_antag_hud(owner.current, "hivemind")
-
-/datum/antagonist/hivemind/remove_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			traitor_mob.dna.add_mutation(CLOWNMUT)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_HIVE]
-	hud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
+	handle_clown_mutation(owner.current, "The great psionic powers of the Hive lets you overcome your clownish nature, allowing you to wield weapons with impunity.")
 
 /datum/antagonist/hivemind/on_removal()
 	//Remove all hive powers here
-	for(var/power in upgrade_tiers)
-		owner.RemoveSpell(power)
+	for(var/datum/action/power in upgrade_tiers)
+		power.Remove(owner.current)
 
 	if(!silent && owner.current)
 		to_chat(owner.current,span_userdanger(" Your psionic powers fade, you are no longer the hivemind's host! "))

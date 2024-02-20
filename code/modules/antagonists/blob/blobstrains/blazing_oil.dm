@@ -3,9 +3,9 @@
 /datum/blobstrain/reagent/blazing_oil
 	name = "Blazing Oil"
 	description = "will do medium burn damage and set targets on fire."
-	effectdesc = "is completely immune to burn damage and will also release bursts of flame when burnt, but takes damage from water."
+	effectdesc = "is immune to, and will gain blob points from burn damage, but takes extra brute damage. Will also release bursts of flame when burnt, but takes damage from water."
 	analyzerdescdamage = "Does medium burn damage and sets targets on fire."
-	analyzerdesceffect = "Releases fire when burnt and is completely immune to burning, but takes damage from water and other extinguishing liquids."
+	analyzerdesceffect = "Releases fire when burnt and will gain power when exposed to heat, but takes damage from water and other extinguishing liquids as well as taking extra brute damage."
 	color = "#B68D00"
 	complementary_color = "#BE5532"
 	blobbernaut_message = "splashes"
@@ -14,9 +14,11 @@
 	reagent = /datum/reagent/blob/blazing_oil
 
 /datum/blobstrain/reagent/blazing_oil/extinguish_reaction(obj/structure/blob/B)
-	B.take_damage(1, BURN, ENERGY)
+	B.take_damage(2.5, BURN, ENERGY)
 
 /datum/blobstrain/reagent/blazing_oil/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
+	if(damage_type == BRUTE) 
+		return damage * 1.5
 	if(damage_type == BURN && damage_flag != ENERGY)
 		var/mob/camera/blob/O = overmind
 		O.add_points(damage / 10)//burn damage causes the blob to gain a very small amount of points: the 20 damage of a laser will generate 2 BP.
@@ -34,10 +36,10 @@
 	taste_description = "burning oil"
 	color = "#B68D00"
 
-/datum/reagent/blob/blazing_oil/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/O)
+/datum/reagent/blob/blazing_oil/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message, permeability, mob/camera/blob/O)
 	reac_volume = ..()
 	M.adjust_fire_stacks(round(reac_volume/10))
-	M.IgniteMob()
+	M.ignite_mob()
 	if(M)
 		M.apply_damage(0.8*reac_volume, BURN, wound_bonus=CANT_WOUND)
 	if(iscarbon(M))

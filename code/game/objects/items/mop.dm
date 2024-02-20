@@ -19,9 +19,9 @@
 	force_string = "robust... against germs"
 	var/insertable = TRUE
 
-/obj/item/mop/Initialize()
+/obj/item/mop/Initialize(mapload)
 	. = ..()
-	create_reagents(mopcap)
+	create_reagents(mopcap, REFILLABLE)
 
 
 /obj/item/mop/proc/clean(turf/A)
@@ -68,7 +68,7 @@
 	if(insertable)
 		J.put_in_cart(src, user)
 		J.mymop=src
-		J.update_icon()
+		J.update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return

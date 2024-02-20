@@ -31,6 +31,15 @@ Note: Must be placed within 3 tiles of the R&D Console
 	linked_console.linked_destroy = null
 	..()
 
+/obj/machinery/rnd/destructive_analyzer/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(user.a_intent == INTENT_DISARM)
+		return FALSE
+	else
+		Insert_Item(I, user)
+	return TRUE
+
 /obj/machinery/rnd/destructive_analyzer/Insert_Item(obj/item/O, mob/user)
 	if(user.a_intent != INTENT_HARM)
 		. = 1
@@ -43,15 +52,16 @@ Note: Must be placed within 3 tiles of the R&D Console
 		loaded_item = O
 		to_chat(user, span_notice("You add the [O.name] to the [src.name]!"))
 		flick("d_analyzer_la", src)
-		addtimer(CALLBACK(src, .proc/finish_loading), 10)
+		addtimer(CALLBACK(src, PROC_REF(finish_loading)), 10)
 		if (linked_console)
 			linked_console.updateUsrDialog()
 
 /obj/machinery/rnd/destructive_analyzer/proc/finish_loading()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	reset_busy()
 
-/obj/machinery/rnd/destructive_analyzer/update_icon()
+/obj/machinery/rnd/destructive_analyzer/update_icon_state()
+	. = ..()
 	if(loaded_item)
 		icon_state = "d_analyzer_l"
 	else
@@ -74,7 +84,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(!innermode)
 		flick("d_analyzer_process", src)
 		busy = TRUE
-		addtimer(CALLBACK(src, .proc/reset_busy), 24)
+		addtimer(CALLBACK(src, PROC_REF(reset_busy)), 24)
 		use_power(250)
 		if(thing == loaded_item)
 			loaded_item = null
@@ -82,7 +92,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		for(var/obj/item/innerthing in food)
 			destroy_item(innerthing, TRUE)
 	reclaim_materials_from(thing)
-	for(var/mob/M in thing)
+	for(var/mob/living/M in thing)
 		M.death()
 	if(istype(thing, /obj/item/stack/sheet))
 		var/obj/item/stack/sheet/S = thing
@@ -94,7 +104,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	else
 		qdel(thing)
 	if (!innermode)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id, mob/user)
@@ -150,5 +160,5 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return FALSE
 	loaded_item.forceMove(get_turf(src))
 	loaded_item = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE

@@ -8,6 +8,15 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 //config.alert_desc_blue_downto
 
+//set all area lights on station level to red if true, do otherwise if false
+/proc/change_areas_lights_alarm(red=TRUE)
+	if(red)
+		for(var/area/A in GLOB.delta_areas)
+			A.set_fire_alarm_effect(TRUE)
+	else
+		for(var/area/A in GLOB.delta_areas)
+			A.unset_fire_alarm_effects(TRUE)
+
 /proc/set_security_level(level)
 	switch(level)
 		if("green")
@@ -29,14 +38,16 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
 				minor_announce(CONFIG_GET(string/alert_green), "Attention! Security level lowered to green:")
+				sound_to_playing_players('sound/misc/notice2.ogg')
 				if(GLOB.security_level >= SEC_LEVEL_RED)
 					modTimer = 4
 				else
 					modTimer = 2
-				
+
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
 					minor_announce(CONFIG_GET(string/alert_blue_upto), "Attention! Security level elevated to blue:", TRUE)
+					sound_to_playing_players('sound/misc/notice1.ogg')
 					modTimer = 0.5
 				else
 					minor_announce(CONFIG_GET(string/alert_blue_downto), "Attention! Security level lowered to blue:")
@@ -45,6 +56,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			if(SEC_LEVEL_RED)
 				if(GLOB.security_level < SEC_LEVEL_RED)
 					minor_announce(CONFIG_GET(string/alert_red_upto), "Attention! Code red!", TRUE)
+					sound_to_playing_players('sound/misc/notice4.ogg')
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						modTimer = 0.25
 					else
@@ -53,7 +65,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
 					if(GLOB.security_level == SEC_LEVEL_GAMMA)
 						modTimer = 2
-          
+
 			if(SEC_LEVEL_GAMMA)
 				minor_announce(CONFIG_GET(string/alert_gamma), "Attention! Gamma security level activated!", TRUE)
 				sound_to_playing_players('sound/misc/gamma_alert.ogg')
@@ -63,7 +75,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 0.50
 				else if(GLOB.security_level == SEC_LEVEL_RED)
 					modTimer = 0.75
-						
+
 			if(SEC_LEVEL_EPSILON)
 				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", TRUE)
 				sound_to_playing_players('sound/misc/epsilon_alert.ogg')
@@ -72,7 +84,8 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 1
 
 			if(SEC_LEVEL_DELTA)
-				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE, 'sound/misc/delta_alert.ogg')
+				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE)
+				sound_to_playing_players('sound/misc/delta_alert.ogg')
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						modTimer = 0.25
@@ -82,7 +95,10 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		GLOB.security_level = level
 		for(var/obj/machinery/firealarm/FA in GLOB.machines)
 			if(is_station_level(FA.z))
-				FA.update_icon()
+				FA.update_appearance(UPDATE_ICON)
+
+		for(var/obj/machinery/level_interface/LI in GLOB.machines)
+			LI.update_appearance(UPDATE_ICON)
 
 		if(level >= SEC_LEVEL_RED)
 			for(var/obj/machinery/computer/shuttle/pod/pod in GLOB.machines)
@@ -91,6 +107,11 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 				if(D.red_alert_access)
 					D.visible_message(span_notice("[D] whirrs as it automatically lifts access requirements!"))
 					playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
+
+		if(level == SEC_LEVEL_DELTA)
+			change_areas_lights_alarm()
+		else
+			change_areas_lights_alarm(FALSE)
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 			SSshuttle.emergency.modTimer(modTimer)

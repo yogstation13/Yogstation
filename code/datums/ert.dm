@@ -11,6 +11,7 @@
 	var/mission = "Assist the station."
 	var/teamsize = 5
 	var/polldesc
+	var/dusting = FALSE
 
 	// this can be safely set as default because it doesnt do anything unless specifically making uplinked ERT
 	var/obj/item/uplinktype = /obj/item/ntuplink/official 
@@ -152,3 +153,11 @@
 	mission = "HONK them into submission."
 	polldesc = "an elite Nanotrasen tactical pranking squad"
 	code = "HOOOOOOOOOONK"
+
+/datum/ert/imperial
+	roles = list(/datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial/hotshot, /datum/antagonist/ert/imperial/sniper, /datum/antagonist/ert/imperial, /datum/antagonist/ert/imperial/plasma)
+	leader_role = /datum/antagonist/ert/imperial/sergeant
+	teamsize = 7
+	rename_team = "Imperial Guard"
+	mission = "Eliminate the threat to the station."
+	polldesc = "the Imperial Guard Task Force"

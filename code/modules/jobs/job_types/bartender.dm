@@ -1,10 +1,8 @@
 /datum/job/bartender
 	title = "Bartender"
 	description = "Serve booze, mix drinks, keep the crew drunk."
-	flag = BARTENDER
 	orbit_icon = "cocktail"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -28,13 +26,19 @@
 	)
 
 	mail_goodies = list(
-		/obj/item/storage/box/rubbershot = 30,
+		/obj/item/storage/box/beanbag = 30,
 		/obj/item/reagent_containers/glass/bottle/clownstears = 10,
 		/obj/item/stack/sheet/mineral/plasma = 10,
 		/obj/item/stack/sheet/mineral/uranium = 10,
 		/obj/item/reagent_containers/food/drinks/shaker = 5,
 	)
 
+	lightup_areas = list(
+		/area/hydroponics,
+		/area/medical/morgue,
+		/area/crew_quarters/kitchen
+	)
+	
 	smells_like = "alcohol"
 
 /datum/outfit/job/bartender

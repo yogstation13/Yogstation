@@ -199,6 +199,18 @@ GLOBAL_LIST_INIT(plasma_recipes, list ( \
 	atmos_spawn_air("plasma=[amount*10];TEMP=[exposed_temperature]")
 	qdel(src)
 
+/obj/item/stack/sheet/mineral/plasma/bullet_act(obj/projectile/P)
+	. = ..()
+	if(!QDELETED(src) && !P.nodamage && ((P.damage_type == BURN)))
+		var/turf/T = get_turf(src)
+		if(P.firer)
+			message_admins("Plasma stack ([amount]) ignited by [ADMIN_LOOKUPFLW(P.firer)] in [ADMIN_VERBOSEJMP(T)]")
+			log_game("Plasma stack ([amount]) ignited by [key_name(P.firer)] in [AREACOORD(T)]")
+		else
+			message_admins("Plasma stack ([amount]) ignited by [P]. No known firer, in [ADMIN_VERBOSEJMP(T)]")
+			log_game("Plasma stack ([amount]) ignited by [P] in [AREACOORD(T)]. No known firer.")
+		fire_act(2500)
+
 /*
  * Gold
  */
@@ -473,7 +485,7 @@ GLOBAL_LIST_INIT(abductor_recipes, list ( \
 GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
 	new /datum/stack_recipe("ancient armor", /obj/item/clothing/suit/armor/elder_atmosian, req_amount = 10, res_amount = 1),
 	new /datum/stack_recipe("ancient helmet", /obj/item/clothing/head/helmet/elder_atmosian, req_amount = 5, res_amount = 1),
-	new /datum/stack_recipe("metallic hydrogen axe", /obj/item/twohanded/fireaxe/metal_h2_axe, req_amount = 15, res_amount = 1),
+	new /datum/stack_recipe("metallic hydrogen axe", /obj/item/fireaxe/metal_h2_axe, req_amount = 15, res_amount = 1),
 	))
 
 /obj/item/stack/sheet/mineral/metal_hydrogen

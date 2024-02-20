@@ -319,6 +319,11 @@
 	results = list(/datum/reagent/consumable/ethanol/barefoot = 3)
 	required_reagents = list(/datum/reagent/consumable/berryjuice = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/ethanol/vermouth = 1)
 
+/datum/chemical_reaction/moscow_mule
+	id = /datum/reagent/consumable/ethanol/moscow_mule
+	results = list(/datum/reagent/consumable/ethanol/moscow_mule = 10)
+	required_reagents = list(/datum/reagent/consumable/sodawater = 5, /datum/reagent/consumable/ethanol/vodka = 5, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/ice = 1)
+	mix_sound = 'sound/effects/bubbles2.ogg'
 
 ////DRINKS THAT REQUIRED IMPROVED SPRITES BELOW:: -Agouri/////
 
@@ -551,7 +556,7 @@
 /datum/chemical_reaction/hearty_punch
 	name = "Hearty Punch"
 	id = /datum/reagent/consumable/ethanol/hearty_punch
-	results = list(/datum/reagent/consumable/ethanol/hearty_punch = 1)  //Very little, for balance reasons
+	results = list(/datum/reagent/consumable/ethanol/hearty_punch = 6)  //Very little, for balance reasons
 	required_reagents = list(/datum/reagent/consumable/ethanol/brave_bull = 5, /datum/reagent/consumable/ethanol/syndicatebomb = 5, /datum/reagent/consumable/ethanol/absinthe = 5)
 	mix_message = "The mixture darkens to a healthy crimson."
 	required_temp = 315 //Piping hot!
@@ -873,7 +878,7 @@
 
 /datum/chemical_reaction/blackvelvet
 	name = "Black Velvet"
-	id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet 
+	id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet
 	results = list(/datum/reagent/consumable/ethanol/beer/stout/blackvelvet = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/champagne = 1, /datum/reagent/consumable/ethanol/beer/stout = 1)
 
@@ -884,32 +889,65 @@
 	required_reagents = list(/datum/reagent/consumable/ethanol/irishcoffee = 2, /datum/reagent/consumable/ethanol/beer/stout = 1)
 
 /datum/chemical_reaction/drink/mushroom_tea
+	name = "Mushroom Tea"
+	id = /datum/reagent/consumable/mushroom_tea
 	results = list(/datum/reagent/consumable/mushroom_tea = 5)
 	required_reagents = list(/datum/reagent/toxin/mushroom_powder = 1, /datum/reagent/water = 5)
 
 /datum/chemical_reaction/drink/mushi_kombucha
+	name = "Mushi Kombucha"
+	id = /datum/reagent/consumable/ethanol/mushi_kombucha
 	results = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5)
-	required_reagents = list(/datum/reagent/consumable/mushroom_tea = 3, /datum/reagent/consumable/korta_nectar = 2)
+	required_reagents = list(/datum/reagent/consumable/mushroom_tea = 3, /datum/reagent/consumable/ute_nectar = 2)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 1)
 
 /datum/chemical_reaction/drink/sea_breeze
+	name = "Sea Breeze"
+	id = /datum/reagent/consumable/ethanol/sea_breeze
 	results = list(/datum/reagent/consumable/ethanol/sea_breeze = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/bilk/kortara = 3, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/utri = 3, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1)
 
 /datum/chemical_reaction/drink/white_tiziran
+	name = "Kriiya"
+	id = /datum/reagent/consumable/ethanol/white_tiziran
 	results = list(/datum/reagent/consumable/ethanol/white_tiziran = 8)
-	required_reagents = list(/datum/reagent/consumable/ethanol/black_russian = 5, /datum/reagent/consumable/ethanol/bilk/kortara = 3)
+	required_reagents = list(/datum/reagent/consumable/ethanol/black_russian = 5, /datum/reagent/consumable/ethanol/utri = 3)
 
 /datum/chemical_reaction/drink/drunken_espatier
+	name = "Drunken Espatier"
+	id = /datum/reagent/consumable/ethanol/drunken_espatier
 	results = list(/datum/reagent/consumable/ethanol/drunken_espatier = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 2, /datum/reagent/consumable/ethanol/moonshine = 2, /datum/reagent/consumable/berryjuice = 1)
 	mix_message = "The drink seems to let out a grim sigh..."
 
 /datum/chemical_reaction/drink/protein_blend
+	name = "Protein Blend"
+	id = /datum/reagent/consumable/ethanol/protein_blend
 	results = list(/datum/reagent/consumable/ethanol/protein_blend = 5)
-	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/consumable/korta_flour = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/ethanol = 2)
+	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/consumable/ute_flour = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/ethanol = 2)
 
 /datum/chemical_reaction/drink/triumphal_arch
+	name = "Triumphal Arch"
+	id = /datum/reagent/consumable/ethanol/triumphal_arch
 	results = list(/datum/reagent/consumable/ethanol/triumphal_arch = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5, /datum/reagent/consumable/ethanol/grappa = 2, /datum/reagent/consumable/lemonjuice = 2, /datum/reagent/gold = 1)
 	mix_message = "The mixture turns a deep golden hue."
+
+/datum/chemical_reaction/gin_garden
+	name = "Gin Garden"
+	id = /datum/reagent/consumable/ethanol/gin_garden
+	results = list(/datum/reagent/consumable/ethanol/gin_garden = 15)
+	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/ethanol/gin = 3, /datum/reagent/consumable/cucumberjuice = 3, /datum/reagent/consumable/sol_dry = 5, /datum/reagent/consumable/ice = 2)
+
+/datum/chemical_reaction/cucumberlemonade
+	name = "Cucumber Lemonade"
+	id = /datum/reagent/consumable/cucumberlemonade
+	results = list(/datum/reagent/consumable/cucumberlemonade = 5)
+	required_reagents = list(/datum/reagent/consumable/lemon_lime = 3, /datum/reagent/consumable/cucumberjuice = 2, /datum/reagent/consumable/ice = 1)
+
+/datum/chemical_reaction/syndicate_screwdriver
+	name = "Syndicate Screwdriver"
+	id = /datum/reagent/consumable/ethanol/syndicate_screwdriver
+	results = list(/datum/reagent/consumable/ethanol/syndicate_screwdriver = 1)
+	required_reagents = list (/datum/reagent/consumable/ethanol/screwdrivercocktail = 5, /datum/reagent/consumable/ethanol/syndicatebomb = 5)
+	mix_message = "The mixture sparkles with a menacing red aura."

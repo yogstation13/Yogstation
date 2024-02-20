@@ -18,7 +18,7 @@
 	if(can_interact(user))
 		on = !on
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/AltClick(mob/user)
@@ -26,14 +26,14 @@
 		heat_transfer_rate = max_heat_transfer_rate
 		investigate_log("was set to [heat_transfer_rate]% by [key_name(user)]", INVESTIGATE_ATMOS)
 		balloon_alert(user, "transfer rate set to [heat_transfer_rate]%")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/update_icon_nopipes()
 	icon_state = "tpump_[on && is_operational() ? "on" : "off"]-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/process_atmos()
-	..()
+
 	if(!on || !is_operational())
 		return
 
@@ -42,7 +42,6 @@
 
 	if(!QUANTIZE(air_input.total_moles()) || !QUANTIZE(air_output.total_moles())) //Don't transfer if there's no gas
 		return
-
 	var/datum/gas_mixture/remove_input = air_input.remove_ratio(0.9)
 	var/datum/gas_mixture/remove_output = air_output.remove_ratio(0.9)
 
@@ -50,7 +49,7 @@
 
 	if(coolant_temperature_delta > 0)
 		var/input_capacity = remove_input.heat_capacity()
-		var/output_capacity = remove_output.heat_capacity()
+		var/output_capacity = air_output.heat_capacity()
 
 		var/cooling_heat_amount = (heat_transfer_rate * 0.01) * coolant_temperature_delta * (input_capacity * output_capacity / (input_capacity + output_capacity))
 		remove_input.set_temperature(max(remove_input.return_temperature() - (cooling_heat_amount / input_capacity), TCMB))
@@ -94,4 +93,4 @@
 			if(.)
 				heat_transfer_rate = clamp(rate, 0, max_heat_transfer_rate)
 				investigate_log("was set to [heat_transfer_rate]% by [key_name(usr)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(UPDATE_ICON)

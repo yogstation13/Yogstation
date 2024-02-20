@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(allfaxes)
-GLOBAL_LIST_INIT(admin_departments, list("Central Command"))
+GLOBAL_LIST_EMPTY(admin_departments)
 GLOBAL_LIST_EMPTY(alldepartments)
 GLOBAL_LIST_EMPTY(adminfaxes)
 
@@ -18,11 +18,16 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	var/department = "Unknown" // our department
 	var/destination = "Central Command" // the department we're sending to
 
-/obj/machinery/photocopier/faxmachine/Initialize()
+/obj/machinery/photocopier/faxmachine/Initialize(mapload)
 	. = ..()
 	GLOB.allfaxes += src
 	if( !((department in GLOB.alldepartments) || (department in GLOB.admin_departments)) )
 		GLOB.alldepartments |= department
+
+/obj/machinery/photocopier/faxmachine/Initialize(mapload)
+	. = ..()
+	GLOB.admin_departments |= list("Central Command")
+	//please dont add to this
 
 /obj/machinery/photocopier/faxmachine/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -56,9 +61,9 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 					return	
 				sendcooldown = world.time + 1 MINUTES
 				if (destination in GLOB.admin_departments)
-					INVOKE_ASYNC(src, .proc/send_admin_fax, usr, destination)
+					INVOKE_ASYNC(src, PROC_REF(send_admin_fax), usr, destination)
 				else
-					INVOKE_ASYNC(src, .proc/sendfax, destination)
+					INVOKE_ASYNC(src, PROC_REF(sendfax), destination)
 			return
 		if("remove")
 			if(copy)
@@ -97,7 +102,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 			return
 	return FALSE
 
-/obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
+/obj/machinery/photocopier/faxmachine/proc/sendfax(destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	use_power(200)
@@ -110,7 +115,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 
-/obj/machinery/photocopier/faxmachine/proc/recievefax(var/obj/item/incoming)
+/obj/machinery/photocopier/faxmachine/proc/recievefax(obj/item/incoming)
 	if(stat & (BROKEN|NOPOWER))
 		return FALSE
 	
@@ -132,7 +137,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	use_power(active_power_usage)
 	return TRUE
 
-/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(var/mob/sender, var/destination)
+/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(mob/sender, destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	use_power(200)
@@ -160,12 +165,16 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	//message badmins that a fax has arrived
 	switch(destination)
 		if ("Central Command")
+			for(var/client/C in GLOB.permissions.admins) //linked to prayers cause we are running out of legacy toggles
+				if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX) //if to be moved elsewhere then we must declutter legacy toggles
+					if(C.prefs.toggles & SOUND_PRAYER_N_FAX)//if done then delete these comments
+						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
 	sendcooldown = world.time + 1 MINUTES
 	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 
-/obj/machinery/photocopier/faxmachine/proc/send_adminmessage(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
+/obj/machinery/photocopier/faxmachine/proc/send_adminmessage(mob/sender, faxname, obj/item/sent, reply_type, font_colour="#006100")
 	var/msg = "<b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;[HrefToken(TRUE)];adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken(TRUE)];Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken(TRUE)];subtlemessage=\ref[sender]'>SM</A>) (<A HREF='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=\ref[sender]'>JMP</A>) (<a href='?_src_=holder;[HrefToken(TRUE)];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken(TRUE)];AdminFaxView=\ref[sent]'>view message</a>"
 	msg = span_admin("<span class=\"message\">[msg]</span>")
 	to_chat(GLOB.permissions.admins,
@@ -196,7 +205,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 				templist += L
 
 		P.written += templist
-		P.update_icon()
+		P.update_appearance(UPDATE_ICON)
 		playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
 
 		// Stamps

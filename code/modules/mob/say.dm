@@ -31,7 +31,7 @@
 		log_say(log_message)
 		return
 	if(isliving(src))
-		message = minor_filter(to_utf8(message)) //yogs end - pretty filter
+		message = minor_filter(message) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
@@ -54,16 +54,22 @@
 		message_admins(log_message)
 		log_say(log_message)
 		return
-	message = to_utf8(minor_filter(message)) //yogs end - pretty filter
+	message = minor_filter(message) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 	whisper(message)
 
-///whisper a message
-/mob/proc/whisper(message, datum/language/language=null)
-	say(message, language) //only living mobs actually whisper, everything else just talks
+/**
+ * Whisper a message.
+ *
+ * Basic level implementation just speaks the message, nothing else.
+ */
+/mob/proc/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced, filterproof)
+	if(!message)
+		return
+	say(message, language = language)
 
 /mob/verb/me_wrapper()
 	set name = ".me"
@@ -94,7 +100,7 @@
 	usr.emote("me",1,message,TRUE)
 
 ///Speak as a dead person (ghost etc)
-/mob/proc/say_dead(var/message)
+/mob/proc/say_dead(message)
 	var/name = real_name
 	var/alt_name = ""
 

@@ -5,7 +5,7 @@
 	desc = "A 50-round box magazine designed for the L6 Saw."
 	icon_state = "a762-50"
 	ammo_type = /obj/item/ammo_casing/mm712x82
-	caliber = "mm71282"
+	caliber = CALIBER_712X82
 	max_ammo = 50
 
 /obj/item/ammo_box/magazine/mm712x82/hollow
@@ -32,6 +32,6 @@
 	ammo_type = /obj/item/ammo_casing/mm712x82/inc
 	sprite_designation = "I"
 
-/obj/item/ammo_box/magazine/mm712x82/update_icon()
-	..()
+/obj/item/ammo_box/magazine/mm712x82/update_icon_state()
+	. = ..()
 	icon_state = "a762[sprite_designation]-[round(ammo_count(),10)]"

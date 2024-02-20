@@ -11,38 +11,37 @@
 	var/area/lair_area
 	var/mob/lair_owner
 
-/obj/item/restraints/legcuffs/beartrap/bloodsucker/Initialize()
+/obj/item/restraints/legcuffs/beartrap/bloodsucker/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/restraints/legcuffs/beartrap/bloodsucker/attack_self(mob/user)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	lair_area = bloodsuckerdatum.lair
-	lair_owner = user
+	lair_area = bloodsuckerdatum?.bloodsucker_lair_area
 	START_PROCESSING(SSobj, src)
 	if(!bloodsuckerdatum)
-		to_chat(user, span_notice("Although it seems simple you have no idea how to reactivate the stake trap."))
+		to_chat(user, span_notice("Although it seems simple you have no idea how to reactivate [src]."))
 		return
 	if(armed)
 		STOP_PROCESSING(SSobj,src)
 		return ..() //disarm it, otherwise continue to try and place
-	if(!bloodsuckerdatum.lair)
+	if(!bloodsuckerdatum.bloodsucker_lair_area)
 		to_chat(user, span_danger("You don't have a lair. Claim a coffin to make that location your lair."))
 		return
 	if(lair_area != get_area(src))
 		to_chat(user, span_danger("You may only activate this trap in your lair: [lair_area]."))
 		return
-	lair_area = bloodsuckerdatum.lair
+	lair_area = bloodsuckerdatum.bloodsucker_lair_area
 	lair_owner = user
 	START_PROCESSING(SSobj, src)
-	..()
+	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/bloodsucker/Crossed(AM as mob|obj)
 	var/mob/living/carbon/human/user = AM
 	if(armed && (IS_BLOODSUCKER(user) || IS_VASSAL(user)))
 		to_chat(user, span_notice("You gracefully step over the blood puddle and avoid triggering the trap"))
 		return
-	..()
+	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/bloodsucker/close_trap()
 	STOP_PROCESSING(SSobj, src)
@@ -58,25 +57,11 @@
 		close_trap()
 
 //////////////////////
-//      HEART       //
-//////////////////////
-
-/datum/antagonist/bloodsucker/proc/RemoveVampOrgans()
-	var/obj/item/organ/heart/newheart = owner.current.getorganslot(ORGAN_SLOT_HEART)
-	if(newheart)
-		qdel(newheart)
-	newheart = new()
-	newheart.Insert(owner.current)
-
-//////////////////////
 //      STAKES      //
 //////////////////////
 
 /// Do I have a stake in my heart?
-/mob/proc/AmStaked()
-	return FALSE
-
-/mob/living/AmStaked()
+/mob/living/proc/am_staked()
 	var/obj/item/bodypart/chosen_bodypart = get_bodypart(BODY_ZONE_CHEST)
 	if(!chosen_bodypart)
 		return FALSE
@@ -144,7 +129,7 @@
 
 	to_chat(user, span_notice("You put all your weight into embedding the stake into [target]'s chest..."))
 	playsound(user, 'sound/magic/Demon_consume.ogg', 50, 1)
-	if(!do_mob(user, target, staketime, extra_checks = CALLBACK(target, /mob/living/carbon.proc/can_be_staked))) // user / target / time / uninterruptable / show progress bar / extra checks
+	if(!do_after(user, staketime, target, extra_checks = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon, can_be_staked)))) // user / target / time / uninterruptable / show progress bar / extra checks
 		return
 	// Drop & Embed Stake
 	user.visible_message(
@@ -181,7 +166,6 @@
 	name = "silver stake"
 	desc = "Polished and sharp at the end. For when some mofo is always trying to iceskate uphill."
 	icon_state = "silver"
-	siemens_coefficient = 1 //flags = CONDUCT // var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	force = 9
 	armour_penetration = 25
 	embedding = list("embed_chance" = 65)
@@ -194,9 +178,100 @@
 	hitsound = 'sound/items/bikehorn.ogg'
 	sharpness = SHARP_POINTY //torture ducky
 
-/obj/item/stake/ducky/Initialize()
+/obj/item/stake/ducky/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
+
+//////////////////////
+//      TOOLS       //
+//////////////////////
+
+/obj/item/bloodsucker
+	icon = 'icons/obj/vamp_obj.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/bs_leftinhand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/bs_rightinhand.dmi'
+
+/obj/item/bloodsucker/chisel
+	name = "chisel"
+	desc = "Despite not being the most precise or faster tool, it feels the best to work with nonetheless."
+	icon_state = "chisel"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("chiseled", "stabbed", "poked")
+	sharpness = SHARP_POINTY
+	force = 6
+	throwforce = 4
+
+/* #define PAINTING_TYPE_MESMERIZE "Mesmerizing Painting"
+#define PAINTING_TYPE_CHARM "Charming Painting"
+#define PAINTING_TYPE_CREEPY "Creepy Painting"
+
+/obj/item/bloodsucker/bloodybrush
+	name = "paintbrush"
+	desc = "Draws from a source that should never run dry, an artist's dream."
+	icon_state = "brush"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/bloodsucker/bloodybrush/proc/paint(mob/living/painter, obj/item/canvas/raw_piece)
+	var/list/possible_effects = list()
+	var/painting_type = tgui_input_list(painter, "You paint a...", "Conscience Flux", possible_effects)
+	var/base_x = painter.pixel_x
+	var/base_y = painter.pixel_y
+	animate(painter, pixel_x = base_x, pixel_y = base_y, time = 0.1 SECONDS, loop = -1)
+	balloon_alert(painter, "a little bit here...")
+	var/message = TRUE
+	for(var/i in 1 to 25)
+		var/x_offset = base_x + rand(-3, 3)
+		var/y_offset = base_y + rand(-3, 3)
+		animate(pixel_x = x_offset, pixel_y = y_offset, time = 0.1 SECONDS)
+		if(message)
+			balloon_alert(painter, "..fill that up there...")
+			message = FALSE
+	if(!do_after(painter, 10 SECONDS, raw_piece))
+		animate(painter, pixel_x = base_x, pixel_y = base_y, time = 0.1 SECONDS)
+		balloon_alert(painter, "..ah... dammit.")
+		return FALSE
+	animate(painter, pixel_x = base_x, pixel_y = base_y, time = 0.1 SECONDS)
+	balloon_alert(painter, "..and it's done.")
+	qdel(raw_piece)
+	var/obj/structure/sign/painting/sign_to_crop = new /obj/structure/sign/painting(get_turf(painter))
+	var/obj/item/wirecutters/cutters = new /obj/item/wirecutters(get_turf(painter))
+	sign_to_crop.load_persistent()
+	sign_to_crop.C.special_effect = painting_type
+	sign_to_crop.wirecutter_act(painter, cutters)
+	qdel(sign_to_crop)
+	qdel(cutters)
+
+/obj/item/canvas/attackby(obj/item/I, mob/living/user, params)
+	if(!istype(I, /obj/item/bloodsucker/bloodybrush))
+		return ..()
+	if(!IS_BLOODSUCKER(user))
+		return
+	var/obj/item/bloodsucker/bloodybrush/brush = I
+	var/turf/current_turf = get_turf(src)
+	if(!LAZYFIND(current_turf.contents, /obj/structure/easel))
+		to_chat(user, span_warning("You need a easel to support your canvas while you paint!"))
+		return
+	brush.paint(user, src)
+
+#undef PAINTING_TYPE_MESMERIZE
+#undef PAINTING_TYPE_CHARM
+#undef PAINTING_TYPE_CREEPY */
+
+//////////////////////
+//       MISC       //
+//////////////////////
+
+/obj/item/bloodsucker/abyssal_essence
+	name = "abyssal essence"
+	desc = "As you glare at the abyssal essence, you feel it glaring back."
+	icon_state = "abyssal_essence"
+	item_state = "abyssal_essence"
+	throwforce = 0
+	w_class = WEIGHT_CLASS_TINY
+	throw_speed = 3
+	throw_range = 7
+	pressure_resistance = 10
 
 //////////////////////
 //     ARCHIVES     //
@@ -235,7 +310,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/in_use = FALSE
 
-/obj/item/book/kindred/Initialize()
+/obj/item/book/kindred/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
@@ -253,141 +328,54 @@
 // target is the person being hit here
 /obj/item/book/kindred/afterattack(mob/living/target, mob/living/user, flag, params)
 	. = ..()
-	if(!user.can_read(src))
+	if(!user.can_read(src) || in_use || (target == user) || !ismob(target))
 		return
 	// Curator/Tremere using it
-	if(HAS_TRAIT(user, TRAIT_BLOODSUCKER_HUNTER))
-		if(in_use || (target == user) || !ismob(target))
+	if(!HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
+		if(IS_BLOODSUCKER(user))
+			to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
 			return
-		user.visible_message(span_notice("[user] begins to quickly look through [src], repeatedly looking back up at [target]."))
-		in_use = TRUE
-		if(!do_mob(user, target, 3 SECONDS, NONE, TRUE))
-			to_chat(user, span_notice("You quickly close [src]."))
-			in_use = FALSE
-			return
-		in_use = FALSE
-		var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(target)
-		// Are we a Bloodsucker | Are we on Masquerade. If one is true, they will fail.
-		if(IS_BLOODSUCKER(target) && !HAS_TRAIT(target, TRAIT_MASQUERADE))
-			if(bloodsuckerdatum.broke_masquerade)
-				to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.ReturnFullName(TRUE)]', is indeed a Bloodsucker, but you already knew this."))
-				return
-			else
-				to_chat(user, span_warning("You found the one! [target], also known as '[bloodsuckerdatum.ReturnFullName(TRUE)]', is not knowingly part of a Clan. You quickly note this information down, memorizing it."))
-				bloodsuckerdatum.break_masquerade()
-		else
-			to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Bloodsucker."))
-	// Bloodsucker using it
-	else if(IS_BLOODSUCKER(user))
-		to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
-	else
 		to_chat(user, span_warning("[src] burns your hands as you try to use it!"))
-		user.apply_damage(12, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
-
-/*
- *	# Reading the Book
- */
-/obj/item/book/kindred/attack_self(mob/living/carbon/user)
-//	Don't call parent since it handles reading the book.
-//	. = ..()
-	if(!user.can_read(src))
+		user.apply_damage(3, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		return
-	// Curator/Tremere using it
-	if(HAS_TRAIT(user, TRAIT_BLOODSUCKER_HUNTER))
+	
+	in_use = TRUE
+	user.balloon_alert_to_viewers(user, "reading book...", "looks at [target] and [src]")
+	if(!do_after(user, 3 SECONDS, target))
+		to_chat(user, span_notice("You quickly close [src]."))
+		in_use = FALSE
+		return
+	if(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
 		user.visible_message(span_notice("[user] opens [src] and begins reading intently."))
 		ui_interact(user)
 		return
-	// Bloodsucker using it
-	if(IS_BLOODSUCKER(user))
-		to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
-		return
-	to_chat(user, span_warning("You feel your eyes burn as you begin to read through [src]!"))
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
-	user.blur_eyes(5)
-	eyes.applyOrganDamage(5)
+	in_use = FALSE
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(target)
+	// Are we a Bloodsucker | Are we on Masquerade. If one is true, they will fail.
+	if(IS_BLOODSUCKER(target) && !HAS_TRAIT(target, TRAIT_MASQUERADE))
+		if(bloodsuckerdatum.broke_masquerade)
+			to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.return_full_name()]', is indeed a Bloodsucker, but you already knew this."))
+			return
+		to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.return_full_name()]', [bloodsuckerdatum.my_clan ? "is part of the [bloodsuckerdatum.my_clan]!" : "is not part of a clan."] You quickly note this information down, memorizing it."))
+		bloodsuckerdatum.break_masquerade()
+	else
+		to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Bloodsucker."))
+
+/obj/item/book/kindred/attack_self(mob/living/user)
+	ui_interact(user)
 
 /obj/item/book/kindred/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "KindredArchives", name)
+		ui = new(user, src, "KindredBook", name)
 		ui.open()
 
-/obj/item/book/kindred/ui_act(action, params)
-	. = ..()
-	if(.)
-		return
-	if(!action)
-		return FALSE
-	SStgui.close_uis(src)
-	INVOKE_ASYNC(src, .proc/search, usr, action)
+/obj/item/book/kindred/ui_static_data(mob/user)
+	var/data = list()
+	for(var/datum/bloodsucker_clan/clans as anything in subtypesof(/datum/bloodsucker_clan))
+		var/clan_data = list()
+		clan_data["clan_name"] = initial(clans.name)
+		clan_data["clan_desc"] = initial(clans.description)
+		data["clans"] += list(clan_data)
 
-// Flavortext stuff
-/obj/item/book/kindred/proc/search(mob/reader, clan)
-	dat = "<head>This is all knowledge about the Clan:</head><br>"
-	switch(clan)
-		if(CLAN_BRUJAH)
-			dat += "This Clan has proven to be the strongest in melee combat, boasting a <b>powerful punch</b>.<br> \
-			They also appear to be more calm than the others, entering their 'frenzies' whenever they want, but <i>dont seem affected</i>.<br> \
-			Be wary, as they are fearsome warriors, rebels and anarchists, with an inclination towards Frenzy.<br> \
-			<b>Favorite Vassal</b>: Their favorite Vassal gains the Brawn ability. \
-			<b>Strength</b>: Frenzy will not kill them, punches deal a lot of damage.<br> \
-			<b>Weakness</b>: They have to spend Blood on powers while in Frenzy too."
-		if(CLAN_TOREADOR)
-			dat += "The most charming Clan of them all, being borderline <i>party animals</i>, allowing them to <i>very easily</i> disguise among the crew.<br> \
-			They are more in touch with their <i>morals</i>, so they suffer and benefit more strongly from the humanity cost or gain of their actions.<br> \
-			They can be best defined as 'The most humane kind of vampire', due to their kindred with an obsession with perfectionism and beauty<br> \
-			<b>Favorite Vassal</b>: Their favorite Vassal gains the Mesmerize ability \
-			<b>Strength</b>: Highly charismatic and influential.<br> \
-			<b>Weakness</b>: Morally weak."
-		if(CLAN_NOSFERATU)
-			dat += "This Clan has been the most obvious to find information about.<br> \
-			They are <i>disfigured, ghoul-like</i> vampires upon embrace by their Sire, scouts that travel through desolate paths to avoid violating the Masquerade.<br> \
-			They make <i>no attempts</i> at hiding themselves within the crew, and have a terrible taste for <i>heavy items</i>.<br> \
-			They also seem to manage to fit themsleves into small spaces such as <i>vents</i>.<br> \
-			<b>Favorite Vassal</b>: Their Favorite Vassal gains the ability to ventcrawl while naked and becomes disfigured. \
-			<b>Strength</b>: Ventcrawl.<br> \
-			<b>Weakness</b>: Can't disguise themselves, permanently pale, can easily be discovered by their DNA or Blood Level."
-		if(CLAN_TREMERE)
-			dat += "This Clan seems to hate entering the <i>Chapel</i>.<br> \
-			They are a secluded Clan, they are Vampires who've mastered the power of blood, and seek knowledge.<br> \
-			They appear to be focused more on their Blood Magic than their other Powers, getting stronger faster the more Vassals they have.<br> \
-			They have 3 different paths they can take, from reviving people as Vassals, to stealing blood with beams made of the same essence.<br> \
-			<b>Favorite Vassal</b>: Their Favorite Vassal gains the ability to shift into a Bat at will. \
-			<b>Strength</b>: 3 different Powers that get stupidly strong overtime.<br> \
-			<b>Weakness</b>: Cannot get regular Powers, with no way to get stun resistance outside of Frenzy."
-		if(CLAN_GANGREL)
-			dat += "This Clan seems to be closer to <i>Animals</i> than to other Vampires.<br> \
-			They also go by the name of <i>Werewolves</i>, as that is what appears when they enter a Frenzy.<br> \
-			Despite this, they appear to be scared of <i>'True Faith'</i>, someone's ultimate and undying Faith, which itself doesn't require being something Religious.<br> \
-			They hate seeing many people, and tend to avoid Stations that have <i>more crewmembers than Nanotrasen's average</i>. Due to this, they are harder to find than others.<br> \
-			<b>Favorite Vassal</b>: Their Favorite Vassal turns into a Werewolf whenever their Master does.. \
-			<b>Strength</b>: Feral, Werewolf during Frenzy.<br> \
-			<b>Weakness</b>: Weak to True Faith."
-		if(CLAN_VENTRUE)
-			dat += "This Clan seems to <i>despise</i> drinking from non sentient organics.<br> \
-			They are Masters of manipulation, Greedy and entitled. Authority figures between the kindred society.<br> \
-			They seem to take their Vassal's lives <i>very seriously</i>, going as far as to give Vassals some of their own Blood.<br> \
-			Compared to other types, this one <i>relies</i> on their Vassals, rather than fighting for themselves.<br> \
-			<b>Favorite Vassal</b>: Their Favorite Vassal will slowly be turned into a Bloodsucker overtime. \
-			<b>Strength</b>: Slowly turns a Vassal into a Bloodsucker.<br> \
-			<b>Weakness</b>: Does not gain more abilities overtime, it is best to target the Bloodsucker over the Vassal."
-		if(CLAN_MALKAVIAN)
-			dat += "There is barely any information known about this Clan.<br> \
-			Members of this Clan seems to <i>mumble things to themselves</i>, unaware of their surroundings.<br> \
-			They also seem to enter and dissapear into areas randomly, <i>as if not even they know where they are</i>.<br> \
-			<b>Favorite Vassal</b>: Unknown. \
-			<b>Strength</b>: Unknown.<br> \
-			<b>Weakness</b>: Unknown."
-		if(CLAN_LASOMBRA)
-			dat += "This Clan seems to adore living in the <i>Shadows</i> and worshipping it's secrets.<br> \
-			They take their research and vanity seriously, they are always very proud of themselves after even minor achievements.<br> \
-			They appear to be in search of a station with a veil weakness to be able to channel their shadow's abyssal powers.<br> \
-			Their research into this sector has lead them to adopt <i>red eyes</i> as to view better in the shadows, which leads unmasked Lasombras to be easily identifiable.<br> \
-			Homewer they have appeared to have also evolved a hard chintin in their veins, which makes them <i>invulnerable</i> to brute damage.<br> \
-			<b>Favorite Vassal</b>: Their Favorite Vassal appears to have been imbued with abyssal essence and is able to blend in with the shadows. \
-			<b>Strength</b>: They are able to slowly advance their abilities.<br> \
-			<b>Weakness</b>: Immensely weak to burn damage."
-		if(CLAN_TZIMISCE)
-			dat += "The page is covered in blood..."
-
-	reader << browse("<meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
+	return data

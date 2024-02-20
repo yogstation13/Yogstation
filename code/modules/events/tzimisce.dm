@@ -1,9 +1,15 @@
+/datum/round_event_control/tzimisce
+	name = "Spawn Tzimisce"
+	typepath = /datum/round_event/ghost_role/tzimisce
+	max_occurrences = 2
+	min_players = 25
+	earliest_start = 45 MINUTES
+
 /datum/round_event_control/tzimisce/bloodsucker
 	name = "Spawn Tzimisce - Bloodsucker"
 	max_occurrences = 1
-	weight = 5
+//	weight = 2000
 	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
-	max_occurrences = 2
 	min_players = 25
 	earliest_start = 30 MINUTES
 	gamemode_whitelist = list("bloodsucker","traitorsucker")
@@ -21,13 +27,7 @@
 	if(cancel_me)
 		kill()
 		return
-
-/datum/round_event_control/tzimisce
-	name = "Spawn Tzimisce"
-	typepath = /datum/round_event/ghost_role/tzimisce
-	max_occurrences = 1
-	min_players = 25
-	earliest_start = 45 MINUTES
+	try_spawning()
 
 /datum/round_event/ghost_role/tzimisce
 	var/success_spawn = 0
@@ -53,31 +53,39 @@
 	var/mob/dead/selected_candidate = pick_n_take(candidates)
 	var/key = selected_candidate.key
 
-	var/datum/mind/Mind = create_tzimisce_mind(key)
-	Mind.active = TRUE
+	var/datum/mind/tzimisce_mind = create_tzimisce_mind(key)
+	tzimisce_mind.active = TRUE
 
 	var/mob/living/carbon/human/tzimisce = spawn_event_tzimisce()
-	Mind.transfer_to(tzimisce)
-	Mind.add_antag_datum(/datum/antagonist/bloodsucker)
+	tzimisce_mind.transfer_to(tzimisce)
+	tzimisce_mind.add_antag_datum(/datum/antagonist/bloodsucker)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = tzimisce.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	bloodsuckerdatum.antag_hud_name = "tzimisce"
+	bloodsuckerdatum.add_team_hud(tzimisce)
 	bloodsuckerdatum.bloodsucker_level_unspent += round(world.time / (15 MINUTES), 1)
-	bloodsuckerdatum.AssignClanAndBane(tzimisce = TRUE)
+	bloodsuckerdatum.my_clan = new /datum/bloodsucker_clan/tzimisce(bloodsuckerdatum)
+	bloodsuckerdatum.owner.announce_objectives()
 
 	spawned_mobs += tzimisce
 	message_admins("[ADMIN_LOOKUPFLW(tzimisce)] has been made into a tzimisce bloodsucker an event.")
 	log_game("[key_name(tzimisce)] was spawned as a tzimisce bloodsucker by an event.")
 	var/datum/job/jobdatum = SSjob.GetJob(pick("Assistant", "Botanist", "Station Engineer", "Medical Doctor", "Scientist", "Cargo Technician", "Cook"))
-	set_antag_hud(tzimisce, "tzimisce")
 	if(SSshuttle.arrivals)
 		SSshuttle.arrivals.QueueAnnounce(tzimisce, jobdatum.title)
-	Mind.assigned_role = jobdatum.title //sets up the manifest properly
-	jobdatum.equip(tzimisce)
-	var/obj/item/card/id/id = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+	tzimisce_mind.assigned_role = jobdatum.title //sets up the manifest properly
+	jobdatum.equip(tzimisce) 
+	var/obj/item/card/id/id = tzimisce.get_item_by_slot(ITEM_SLOT_ID)
+	if(!istype(id)) //pda on ID slot
+		var/obj/item/modular_computer/tablet/PDA = tzimisce.get_item_by_slot(ITEM_SLOT_ID)
+		var/obj/item/computer_hardware/card_slot/card_slot2 = PDA.all_components[MC_CARD2]
+		var/obj/item/computer_hardware/card_slot/card_slot = PDA.all_components[MC_CARD]
+		id = card_slot2?.stored_card || card_slot?.stored_card //check both slots, priority on 2nd
 	id.assignment = jobdatum.title
 	id.originalassignment = jobdatum.title
 	id.update_label()
 	GLOB.data_core.manifest_inject(tzimisce, force = TRUE)
 	tzimisce.update_move_intent_slowdown() //prevents you from going super duper fast
+	announce_to_ghosts(tzimisce)
 	return SUCCESSFUL_SPAWN
 
 
@@ -89,6 +97,6 @@
 	return new_tzimisce
 
 /datum/round_event/ghost_role/tzimisce/proc/create_tzimisce_mind(key)
-	var/datum/mind/Mind = new /datum/mind(key)
-	Mind.special_role = ROLE_BLOODSUCKER
-	return Mind
+	var/datum/mind/tzimisce_mind = new /datum/mind(key)
+	tzimisce_mind.special_role = ROLE_BLOODSUCKER
+	return tzimisce_mind

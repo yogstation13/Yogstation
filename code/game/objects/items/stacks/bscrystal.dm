@@ -57,7 +57,7 @@
 	
 	use(1)
 
-/obj/item/stack/ore/bluespace_crystal/Initialize()
+/obj/item/stack/ore/bluespace_crystal/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
@@ -73,7 +73,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		C.adjust_disgust(30)	//Won't immediately make you vomit, just dont use more than one or two at a time
-		C.confused += 7
+		C.adjust_confusion(7 SECONDS)
 	use(1)
 
 /obj/item/stack/ore/bluespace_crystal/proc/blink_mob(mob/living/L)

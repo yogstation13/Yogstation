@@ -7,7 +7,7 @@
 	icon_state = "tinkerers_daemon"
 	break_message = span_warning("The spire screeches with crackling power and collapses into scrap!")
 	max_integrity = 400
-	var/mob/eminence_nominee
+	var/mob/living/eminence_nominee
 	var/selection_timer //Timer ID; this is canceled if the vote is canceled
 	var/kingmaking
 
@@ -84,7 +84,7 @@
 			hierophant_message(span_brass("<b>[nominee] proposes selecting an Eminence from ghosts!</b> You may object by interacting with the eminence spire. The vote will otherwise pass in 30 seconds."))
 	for(var/mob/M in servants_and_ghosts())
 		M.playsound_local(M, 'sound/machines/clockcult/ocularwarden-target.ogg', 50, FALSE)
-	selection_timer = addtimer(CALLBACK(src, .proc/kingmaker), 300, TIMER_STOPPABLE)
+	selection_timer = addtimer(CALLBACK(src, PROC_REF(kingmaker)), 300, TIMER_STOPPABLE)
 
 /obj/structure/destructible/clockwork/eminence_spire/proc/objection(mob/living/wright)
 	if(alert(wright, "Object to the selection of [eminence_nominee] as Eminence?", "Objection!", "Object", "Cancel") == "Cancel" || !is_servant_of_ratvar(wright) || !wright.canUseTopic(src) || !eminence_nominee)

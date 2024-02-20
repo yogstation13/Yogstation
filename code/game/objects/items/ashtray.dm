@@ -5,13 +5,12 @@
 	icon_state = "ashtray"
 	var/max_butts = 10
 
-/obj/item/ashtray/update_icon()
-	..()
-	overlays.Cut()
+/obj/item/ashtray/update_overlays()
+	. = ..()
 	if(contents.len == max_butts)
-		add_overlay(image('icons/obj/objects.dmi',"ashtray_full"))
+		. += image('icons/obj/objects.dmi', "ashtray_full")
 	else if(contents.len >= max_butts * 0.5)
-		add_overlay(image('icons/obj/objects.dmi',"ashtray_half"))
+		. += image('icons/obj/objects.dmi', "ashtray_half")
 
 /obj/item/ashtray/attackby(obj/item/W, mob/user)
 	if (user.a_intent == INTENT_HARM)
@@ -32,7 +31,7 @@
 
 		if(user.transferItemToLoc(W, src))
 			visible_message(span_notice("[user] places [W] in [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		return
 
 	..()
@@ -42,5 +41,5 @@
 		visible_message(span_danger("\The [src] slams into [hit_atom], spilling its contents!"))
 		for(var/obj/O in contents)
 			O.forceMove(drop_location())
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return ..()

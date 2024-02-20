@@ -7,6 +7,9 @@
 	antagpanel_category = "Vampire"
 	roundend_category = "vampires"
 	job_rank = ROLE_VAMPIRE
+	antag_hud_name = "vampire"
+
+	ui_name = "AntagInfoVampire"
 
 	var/usable_blood = 0
 	var/total_blood = 0
@@ -23,24 +26,28 @@
 	var/obj/item/clothing/suit/draculacoat/coat
 
 	var/list/upgrade_tiers = list(
-		/obj/effect/proc_holder/spell/self/vampire_help = 0,
-		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
-		/obj/effect/proc_holder/spell/pointed/gaze = 0,
-		/obj/effect/proc_holder/spell/pointed/hypno = 0,
+		/datum/action/cooldown/spell/rejuvenate = 0,
+		/datum/action/cooldown/spell/pointed/gaze = 0,
+		/datum/action/cooldown/spell/pointed/hypno = 0,
 		/datum/vampire_passive/vision = 75,
-		/obj/effect/proc_holder/spell/self/shapeshift = 75,
-		/datum/vampire_passive/nostealth = 100,
-		/obj/effect/proc_holder/spell/self/cloak = 100,
-		/obj/effect/proc_holder/spell/self/revive = 100,
-		/obj/effect/proc_holder/spell/targeted/disease = 200,
-		/obj/effect/proc_holder/spell/self/batform = 200,
-		/obj/effect/proc_holder/spell/self/screech = 215,
-		/obj/effect/proc_holder/spell/bats = 250,
-		/datum/vampire_passive/regen = 255,
-		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 300,
-		/datum/vampire_passive/full = 420,
-		/obj/effect/proc_holder/spell/self/summon_coat = 420,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 450)
+		/datum/action/cooldown/spell/cloak = 100,
+		/datum/action/cooldown/spell/revive = 100,
+		/datum/vampire_passive/nostealth = 150, //only lose the ability to stealth once you get a proper way to escape
+		/datum/action/cooldown/spell/shapeshift/vampire = 150,
+		/datum/action/cooldown/spell/aoe/screech = 200,
+		/datum/action/cooldown/spell/bats = 250,
+		/datum/vampire_passive/regen = 250,
+		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mistform = 300,
+		/datum/action/cooldown/spell/summon_coat = 400,
+		/datum/vampire_passive/full = 400,
+		/datum/action/cooldown/spell/pointed/vampirize = 450)
+
+/datum/antagonist/vampire/ui_static_data(mob/user)
+	var/list/data = list()
+	data["antag_name"] = name
+	data["objectives"] = get_objectives()
+	data["loud"] = get_ability(/datum/vampire_passive/nostealth)
+	return data
 
 /datum/antagonist/vampire/new_blood
 	full_vampire = FALSE
@@ -49,15 +56,15 @@
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
-	.["Full Power"] = CALLBACK(src,.proc/admin_set_full_power)
-	.["Set Blood Amount"] = CALLBACK(src,.proc/admin_set_blood)
+	.["Full Power"] = CALLBACK(src, PROC_REF(admin_set_full_power))
+	.["Set Blood Amount"] = CALLBACK(src, PROC_REF(admin_set_blood))
 
 /datum/antagonist/vampire/proc/admin_set_full_power(mob/admin)
 	usable_blood = ALL_POWERS_UNLOCKED
 	total_blood = ALL_POWERS_UNLOCKED
 	check_vampire_upgrade()
-	message_admins("[key_name_admin(admin)] made [owner.current] a full power vampire..")
-	log_admin("[key_name(admin)] made [owner.current] a full power vampire..")
+	message_admins("[key_name_admin(admin)] made [owner.current] a full-power vampire.")
+	log_admin("[key_name(admin)] made [owner.current] a full-power vampire.")
 
 /datum/antagonist/vampire/proc/admin_set_blood(mob/admin)
 	total_blood = input(admin, "Set Vampire Total Blood", "Total Blood", total_blood) as null|num
@@ -72,10 +79,10 @@
 	check_vampire_upgrade()
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
-	SSticker.mode.update_vampire_icons_added(owner)
-	var/mob/living/carbon/human/C = owner.current
-	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
+	if(ishuman(owner.current))
+		var/mob/living/carbon/human/H = owner.current
+		RegisterSignal(H, COMSIG_HUMAN_BURNING, PROC_REF(handle_fire))
+		var/obj/item/organ/brain/B = H.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
 			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
@@ -88,9 +95,9 @@
 	owner.special_role = null
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
+		UnregisterSignal(H, COMSIG_HUMAN_BURNING)
 		if(owner && H.hud_used && H.hud_used.vamp_blood_display)
 			H.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
-	SSticker.mode.update_vampire_icons_removed(owner)
 	for(var/O in objectives_given)
 		objectives -= O
 	LAZYCLEARLIST(objectives_given)
@@ -108,7 +115,7 @@
 /datum/antagonist/vampire/greet()
 	to_chat(owner, span_userdanger("You are a Vampire!"))
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
-	to_chat(owner, span_userdanger("Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!"))
+	to_chat(owner, span_userdanger("Hit someone in the head with harm intent and an open hand to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!"))
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(full_vampire == FALSE)
 		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
@@ -151,7 +158,7 @@
 		add_objective(escape_objective)
 		return
 
-/datum/antagonist/vampire/proc/add_objective(var/datum/objective/O)
+/datum/antagonist/vampire/proc/add_objective(datum/objective/O)
 	objectives += O
 	objectives_given += O
 
@@ -180,7 +187,7 @@
 		steal_objective.find_target()
 		add_objective(steal_objective)
 
-/datum/antagonist/vampire/proc/vamp_burn(var/severe_burn = FALSE)
+/datum/antagonist/vampire/proc/vamp_burn(severe_burn = FALSE)
 	var/mob/living/L = owner.current
 	if(!L)
 		return
@@ -199,8 +206,13 @@
 		else
 			L.visible_message(span_warning("[L] continues to burn!"), span_danger("Your continue to burn!"))
 		L.adjust_fire_stacks(5)
-		L.IgniteMob()
+		L.ignite_mob()
 	return
+
+/datum/antagonist/vampire/proc/handle_fire()
+	var/mob/living/carbon/human/dude = owner.current
+	if(dude.on_fire && dude.stat == DEAD && !get_ability(/datum/vampire_passive/full))
+		dude.dust()
 
 /datum/antagonist/vampire/proc/check_sun()
 	var/mob/living/carbon/C = owner.current
@@ -222,18 +234,32 @@
 			return
 	vamp_burn(TRUE)
 
-/datum/antagonist/vampire/proc/vampire_life()
-	var/mob/living/carbon/C = owner.current
+/datum/antagonist/vampire/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, mob_override ? null : "Your bloodlusting desire overcomes your clownish heritage, you are able to use weapons!")
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(vampire_life))
+
+/datum/antagonist/vampire/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	return ..()
+
+/datum/antagonist/vampire/proc/vampire_life(mob/living/source, seconds_per_tick, times_fired)
+	var/mob/living/carbon/C = source
 	if(!C)
 		return
 	if(owner && C.hud_used && C.hud_used.vamp_blood_display)
 		C.hud_used.vamp_blood_display.invisibility = FALSE
-		C.hud_used.vamp_blood_display.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(usable_blood, 1)]</font></div>"
+		C.hud_used.vamp_blood_display.maptext = ANTAG_MAPTEXT(usable_blood, COLOR_CHANGELING_CHEMICALS)
 	handle_vampire_cloak()
+	if(get_ability(/datum/vampire_passive/regen))
+		C.heal_overall_damage(1, 1, 0, BODYPART_ANY) //advanced vampire powers give regen to even robotic limbs
+		C.adjustToxLoss(-1, TRUE, TRUE)
+		C.adjustOxyLoss(-2.5)
+
 	if(istype(C.loc, /obj/structure/closet/crate/coffin))
-		C.adjustBruteLoss(-4)
-		C.adjustFireLoss(-4)
-		C.adjustToxLoss(-4)
+		C.heal_overall_damage(4, 4, 0, BODYPART_ORGANIC) //sleepy in coffin doesn't
+		C.adjustToxLoss(-4, TRUE, TRUE)
 		C.adjustOxyLoss(-4)
 		C.adjustCloneLoss(-4)
 		return
@@ -263,13 +289,13 @@
 		O.visible_message(span_danger("[O] grabs [H]'s neck harshly and sinks in their fangs!"), span_danger("You sink your fangs into [H] and begin to [blood_to_take > BLOOD_SUCK_BASE ? "quickly" : ""] drain their blood."), span_notice("You hear a soft puncture and a wet sucking noise."))
 		playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
 	else
-		to_chat(O, span_notice("You stealthily begin to drain blood from [H], be careful, as they will notice if their blood gets too low."))
+		to_chat(O, span_notice("You stealthily begin to drain blood from [H]. Be careful, as they will notice if their blood gets too low."))
 		O.playsound_local(O, 'sound/weapons/bite.ogg', 50, 1)
 	if(!iscarbon(owner))
 		H.LAssailant = null
 	else
 		H.LAssailant = WEAKREF(O)
-	while(do_mob(O, H, 50))
+	while(do_after(O, 5 SECONDS, H))
 		if(!is_vampire(O))
 			to_chat(O, span_warning("Your fangs have disappeared!"))
 			return
@@ -316,14 +342,13 @@
 	to_chat(owner, span_notice("You stop draining [H.name] of blood."))
 
 /datum/antagonist/vampire/proc/force_add_ability(path)
-	var/spell = new path(owner)
-	if(istype(spell, /obj/effect/proc_holder/spell))
-		owner.AddSpell(spell)
-	powers += spell
+	var/datum/action/cooldown/spell/hi_how_are_you = new path(owner)
+	if(istype(hi_how_are_you))
+		hi_how_are_you.Grant(owner.current)
+	powers += hi_how_are_you
 
 /datum/antagonist/vampire/proc/get_ability(path)
-	for(var/P in powers)
-		var/datum/power = P
+	for(var/datum/power as anything in powers)
 		if(power.type == path)
 			return power
 	return null
@@ -335,16 +360,16 @@
 /datum/antagonist/vampire/proc/remove_ability(ability)
 	if(ability && (ability in powers))
 		powers -= ability
-		owner.spell_list.Remove(ability)
+		owner.current.actions.Remove(ability)
 		qdel(ability)
 
 
 /datum/antagonist/vampire/proc/remove_vampire_powers()
-	for(var/P in powers)
-		remove_ability(P)
+	for(var/datum/power as anything in powers)
+		remove_ability(power)
 	owner.current.alpha = 255
 
-/datum/antagonist/vampire/proc/check_vampire_upgrade(var/announce = TRUE)
+/datum/antagonist/vampire/proc/check_vampire_upgrade(announce = TRUE)
 	var/list/old_powers = powers.Copy()
 	for(var/ptype in upgrade_tiers)
 		var/level = upgrade_tiers[ptype]
@@ -357,12 +382,12 @@
 /datum/antagonist/vampire/proc/announce_new_power(list/old_powers)
 	for(var/p in powers)
 		if(!(p in old_powers))
-			if(istype(p, /obj/effect/proc_holder/spell))
-				var/obj/effect/proc_holder/spell/power = p
+			if(istype(p, /datum/action/cooldown/spell))
+				var/datum/action/cooldown/spell/power = p
 				to_chat(owner.current, span_notice("[power.gain_desc]"))
 			else if(istype(p, /datum/vampire_passive))
 				var/datum/vampire_passive/power = p
-				to_chat(owner, span_notice("[power.gain_desc]"))
+				to_chat(owner, power.gain_desc)
 
 /datum/antagonist/vampire/proc/handle_vampire_cloak()
 	if(!ishuman(owner.current))

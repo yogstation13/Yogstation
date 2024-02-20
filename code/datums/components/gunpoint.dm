@@ -37,9 +37,9 @@
 	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
-	RegisterSignal(targ, COMSIG_MOVABLE_MOVED, .proc/check_movement, FALSE) //except this one
-	RegisterSignals(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_ATTACK), .proc/trigger_reaction, TRUE) //any actions by the hostage will trigger the shot no exceptions
-	RegisterSignals(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/cancel)
+	RegisterSignal(targ, COMSIG_MOVABLE_MOVED, PROC_REF(check_movement), FALSE) //except this one
+	RegisterSignals(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_ATTACK), PROC_REF(trigger_reaction), TRUE) //any actions by the hostage will trigger the shot no exceptions
+	RegisterSignals(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), PROC_REF(cancel))
 
 	shooter.visible_message(span_danger("[shooter] aims [weapon] point blank at [target]!"), \
 		span_danger("You aim [weapon] point blank at [target]!"), target)
@@ -51,7 +51,7 @@
 	status_hold_up = shooter.apply_status_effect(STATUS_EFFECT_HOLDUP)
 	status_held_up = target.apply_status_effect(STATUS_EFFECT_HELDUP)
 
-	addtimer(CALLBACK(src, .proc/update_stage, 2), GUNPOINT_DELAY_STAGE_2)
+	addtimer(CALLBACK(src, PROC_REF(update_stage), 2), GUNPOINT_DELAY_STAGE_2)
 
 	check_deescalate() //telekinesis can start this so make sure the user is in range
 
@@ -61,10 +61,10 @@
 	return ..()
 
 /datum/component/gunpoint/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/check_deescalate)
-	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE, .proc/flinch)
-	RegisterSignal(parent, COMSIG_HUMAN_DISARM_HIT, .proc/flinch_disarm)
-	RegisterSignals(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_TABLING), .proc/noshooted)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(check_deescalate))
+	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(flinch))
+	RegisterSignal(parent, COMSIG_HUMAN_DISARM_HIT, PROC_REF(flinch_disarm))
+	RegisterSignals(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_TABLING), PROC_REF(noshooted))
 
 /datum/component/gunpoint/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
@@ -79,7 +79,7 @@
 		to_chat(parent, span_danger("You steady [weapon] on [target]."))
 		to_chat(target, span_userdanger("[parent] has steadied [weapon] on you!"))
 		damage_mult = GUNPOINT_MULT_STAGE_2
-		addtimer(CALLBACK(src, .proc/update_stage, 3), GUNPOINT_DELAY_STAGE_3)
+		addtimer(CALLBACK(src, PROC_REF(update_stage), 3), GUNPOINT_DELAY_STAGE_3)
 	else if(stage == 3)
 		to_chat(parent, span_danger("You have fully steadied [weapon] on [target]."))
 		to_chat(target, span_userdanger("[parent] has fully steadied [weapon] on you!"))
@@ -126,7 +126,7 @@
 /datum/component/gunpoint/proc/noshooted()
 	if(!disrupted)
 		disrupted = TRUE
-		addtimer(CALLBACK(src, .proc/reshooted), 5)
+		addtimer(CALLBACK(src, PROC_REF(reshooted)), 5)
 		to_chat(parent, span_boldwarning("You lose your aim for a second, try not to bump into things or throw stuff."))
 
 /datum/component/gunpoint/proc/reshooted()

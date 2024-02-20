@@ -5,7 +5,7 @@
 	icon_state = "wizard"
 	icon_living = "wizard"
 	icon_dead = "wizard_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 0
 	turns_per_move = 3
 	response_help = "pokes"
@@ -28,56 +28,61 @@
 	
 	retreat_distance = 3 //out of fireball range
 	minimum_distance = 3
-	del_on_death = 1
-	loot = list(/obj/effect/mob_spawn/human/corpse/wizard,
-				/obj/item/staff)
+	del_on_death = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
+	loot = list(
+		/obj/effect/mob_spawn/human/corpse/wizard,
+		/obj/item/staff,
+	)
 
-	var/obj/effect/proc_holder/spell/aimed/fireball/fireball = null
-	var/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/blink = null
-	var/obj/effect/proc_holder/spell/targeted/projectile/magic_missile/mm = null
+	var/datum/action/cooldown/spell/pointed/projectile/fireball/fireball
+	var/datum/action/cooldown/spell/teleport/radius_turf/blink/blink
+	var/datum/action/cooldown/spell/aoe/magic_missile/magic_missile
 
 	var/next_cast = 0
 
-	do_footstep = TRUE
-
-/mob/living/simple_animal/hostile/wizard/Initialize()
+/mob/living/simple_animal/hostile/wizard/Initialize(mapload)
 	. = ..()
-	fireball = new /obj/effect/proc_holder/spell/aimed/fireball
-	fireball.clothes_req = 0
-	fireball.human_req = 0
-	fireball.player_lock = 0
-	AddSpell(fireball)
-	implants += new /obj/item/implant/exile(src)
+	var/obj/item/implant/exile/exiled = new /obj/item/implant/exile(src)
+	exiled.implant(src)
 
-	mm = new /obj/effect/proc_holder/spell/targeted/projectile/magic_missile
-	mm.clothes_req = 0
-	mm.human_req = 0
-	mm.player_lock = 0
-	AddSpell(mm)
+	fireball = new(src)
+	fireball.spell_requirements &= ~(SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_WIZARD_GARB|SPELL_REQUIRES_MIND)
+	fireball.Grant(src)
 
-	blink = new /obj/effect/proc_holder/spell/targeted/turf_teleport/blink
-	blink.clothes_req = 0
-	blink.human_req = 0
-	blink.player_lock = 0
+	magic_missile = new(src)
+	magic_missile.spell_requirements &= ~(SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_WIZARD_GARB|SPELL_REQUIRES_MIND)
+	magic_missile.Grant(src)
+
+	blink = new(src)
+	blink.spell_requirements &= ~(SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_WIZARD_GARB|SPELL_REQUIRES_MIND)
 	blink.outer_tele_radius = 3
-	AddSpell(blink)
+	blink.Grant(src)
+
+/mob/living/simple_animal/hostile/wizard/Destroy()
+	QDEL_NULL(fireball)
+	QDEL_NULL(magic_missile)
+	QDEL_NULL(blink)
+	return ..()
 
 /mob/living/simple_animal/hostile/wizard/handle_automated_action()
 	. = ..()
 	if(target && next_cast < world.time)
-		if((get_dir(src,target) in list(SOUTH,EAST,WEST,NORTH)) && fireball.cast_check(0,src)) //Lined up for fireball
-			src.setDir(get_dir(src,target))
-			fireball.perform(list(target), user = src)
-			next_cast = world.time + 10 //One spell per second
-			return .
-		if(mm.cast_check(0,src))
-			mm.choose_targets(src)
-			next_cast = world.time + 10
-			return .
-		if(blink.cast_check(0,src)) //Spam Blink when you can
-			blink.choose_targets(src)
-			next_cast = world.time + 10
-			return .
+		if((get_dir(src, target) in list(SOUTH, EAST, WEST, NORTH)) && fireball.can_cast_spell(FALSE))
+			setDir(get_dir(src, target))
+			fireball.Trigger(null, target)
+			next_cast = world.time + 1 SECONDS
+			return
+
+		if(magic_missile.IsAvailable(feedback = FALSE))
+			magic_missile.Trigger(null, target)
+			next_cast = world.time + 1 SECONDS
+			return
+
+		if(blink.IsAvailable(feedback = FALSE)) // Spam Blink when you can
+			blink.Trigger(null, src)
+			next_cast = world.time + 1 SECONDS
+			return
 
 /mob/living/simple_animal/hostile/academywizard //weaker wizard, only knows arcane barrage.
 	name = "Academy Student"
@@ -86,7 +91,7 @@
 	icon_state = "wizard"
 	icon_living = "wizard"
 	icon_dead = "wizard_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 0
 	turns_per_move = 3
 	response_help = "pokes"
@@ -109,7 +114,7 @@
 	ranged = 1
 	retreat_distance = 4
 	minimum_distance = 4
-	projectiletype = /obj/item/projectile/magic/arcane_barrage
+	projectiletype = /obj/projectile/magic/arcane_barrage
 	projectilesound = 'sound/weapons/emitter.ogg'
 	loot = list(/obj/effect/mob_spawn/human/corpse/wizard, /obj/item/staff)
 	del_on_death = 1
@@ -137,12 +142,12 @@
 /mob/living/simple_animal/hostile/academywizard/chaos //chaotic wizard, not too powerful overall
 	name = "Chaos Wizard"
 	desc = "Unfortunately, he cannot Chaos Control."
-	projectiletype = /obj/item/projectile/magic
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/animate, /obj/item/projectile/magic/runic_honk,
-	/obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door,
-	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
+	projectiletype = /obj/projectile/magic
+	var/allowed_projectile_types = list(/obj/projectile/magic/animate, /obj/projectile/magic/runic_honk,
+	/obj/projectile/magic/teleport, /obj/projectile/magic/door,
+	/obj/projectile/magic/spellblade, /obj/projectile/magic/arcane_barrage)
 
-/mob/living/simple_animal/hostile/academywizard/chaos/Initialize()
+/mob/living/simple_animal/hostile/academywizard/chaos/Initialize(mapload)
 	projectiletype = pick(allowed_projectile_types)
 	. = ..()
 
@@ -153,4 +158,4 @@
 /mob/living/simple_animal/hostile/academywizard/botanist //super weak garbage wizard, for memes
 	name = "Academy Botanist"
 	desc = "Will destroy you with the power of... making you grow larger?"
-	projectiletype = /obj/item/projectile/magic/runic_resizement
+	projectiletype = /obj/projectile/magic/runic_resizement

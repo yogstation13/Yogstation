@@ -49,7 +49,7 @@ Slimecrossing Weapons
 	return ..()
 
 //Adamantine shield - Chilling Adamantine
-/obj/item/twohanded/required/adamantineshield
+/obj/item/adamantineshield
 	name = "adamantine shield"
 	desc = "A gigantic shield made of solid adamantium."
 	icon = 'icons/obj/slimecrossing.dmi'
@@ -66,6 +66,10 @@ Slimecrossing Weapons
 	attack_verb = list("bashed","pounded","slammed")
 	item_flags = SLOWS_WHILE_IN_HAND
 
+/obj/item/adamantineshield/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+
 //Bloodchiller - Chilling Green
 /obj/item/gun/magic/bloodchill
 	name = "blood chiller"
@@ -77,13 +81,14 @@ Slimecrossing Weapons
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = NONE
 	force = 5
 	max_charges = 1 //Recharging costs blood.
 	recharge_rate = 1
 	ammo_type = /obj/item/ammo_casing/magic/bloodchill
 	fire_sound = 'sound/effects/attackblob.ogg'
 
-/obj/item/gun/magic/bloodchill/Initialize()
+/obj/item/gun/magic/bloodchill/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
@@ -101,9 +106,9 @@ Slimecrossing Weapons
 	return 1
 
 /obj/item/ammo_casing/magic/bloodchill
-	projectile_type = /obj/item/projectile/magic/bloodchill
+	projectile_type = /obj/projectile/magic/bloodchill
 
-/obj/item/projectile/magic/bloodchill
+/obj/projectile/magic/bloodchill
 	name = "blood ball"
 	icon_state = "pulse0_bl"
 	damage = 0
@@ -111,7 +116,7 @@ Slimecrossing Weapons
 	nodamage = TRUE
 	hitsound = 'sound/effects/splat.ogg'
 
-/obj/item/projectile/magic/bloodchill/on_hit(mob/living/target)
+/obj/projectile/magic/bloodchill/on_hit(mob/living/target)
 	. = ..()
 	if(isliving(target))
 		target.apply_status_effect(/datum/status_effect/bloodchill)

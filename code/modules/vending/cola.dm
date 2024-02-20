@@ -38,7 +38,7 @@
 	icon_state = "random_cola"
 	desc = "Uh oh!"
 
-/obj/machinery/vending/cola/random/Initialize()
+/obj/machinery/vending/cola/random/Initialize(mapload)
 	..()
 	var/T = pick(subtypesof(/obj/machinery/vending/cola) - /obj/machinery/vending/cola/random - /obj/machinery/vending/cola/shamblers/prison)
 	new T(loc)

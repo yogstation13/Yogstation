@@ -3,7 +3,6 @@
 	desc = "Strange-looking hat-wear that most certainly belongs to a real magic user."
 	icon_state = "wizard"
 	gas_transfer_coefficient = 1
-	permeability_coefficient = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	resistance_flags = NONE
 	hattable = TRUE
@@ -22,3 +21,7 @@
 	name = "black wizard hat"
 	desc = "Strange-looking black hat-wear that most certainly belongs to a real skeleton. Spooky."
 	icon_state = "blackwizard"
+/obj/item/clothing/head/wizard/fake/brown
+	name = "brown wizard hat"
+	desc = "Looking at this peculiar, supposedly magical headwear makes you want to sip herbal tea and cook mushrooms."
+	icon_state = "brownwizard"

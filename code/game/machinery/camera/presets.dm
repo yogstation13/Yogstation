@@ -4,13 +4,13 @@
 /obj/machinery/camera/emp_proof
 	start_active = TRUE
 
-/obj/machinery/camera/emp_proof/Initialize()
+/obj/machinery/camera/emp_proof/Initialize(mapload)
 	. = ..()
 	upgradeEmpProof()
 
 // EMP + Motion
 
-/obj/machinery/camera/emp_proof/motion/Initialize()
+/obj/machinery/camera/emp_proof/motion/Initialize(mapload)
 	. = ..()
 	upgradeMotion()
 
@@ -20,7 +20,7 @@
 	start_active = TRUE
 	icon_state = "xraycamera" //mapping icon - Thanks to Krutchen for the icons.
 
-/obj/machinery/camera/xray/Initialize()
+/obj/machinery/camera/xray/Initialize(mapload)
 	. = ..()
 	upgradeXRay()
 
@@ -29,7 +29,7 @@
 	start_active = TRUE
 	name = "motion-sensitive security camera"
 
-/obj/machinery/camera/motion/Initialize()
+/obj/machinery/camera/motion/Initialize(mapload)
 	. = ..()
 	upgradeMotion()
 
@@ -38,7 +38,7 @@
 	start_active = TRUE
 	icon_state = "xraycamera" //mapping icon.
 
-/obj/machinery/camera/all/Initialize()
+/obj/machinery/camera/all/Initialize(mapload)
 	. = ..()
 	upgradeEmpProof()
 	upgradeXRay()
@@ -50,7 +50,7 @@
 	var/number = 0 //camera number in area
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
-/obj/machinery/camera/autoname/Initialize()
+/obj/machinery/camera/autoname/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -77,7 +77,8 @@
 /obj/machinery/camera/proc/upgradeEmpProof(malf_upgrade, ignore_malf_upgrades)
 	if(isEmpProof(ignore_malf_upgrades)) //pass a malf upgrade to ignore_malf_upgrades so we can replace the malf module with the normal one
 		return							//that way if someone tries to upgrade an already malf-upgraded camera, it'll just upgrade it to a normal version.
-	emp_component = AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES | EMP_PROTECT_CONTENTS)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "empproof_upgrade")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "empproof_upgrade")
 	if(malf_upgrade)
 		assembly.malf_emp_firmware_active = TRUE //don't add parts to drop, update icon, ect. reconstructing it will also retain the upgrade.
 		assembly.malf_emp_firmware_present = TRUE //so the upgrade is retained after incompatible parts are removed.
@@ -92,7 +93,8 @@
 /obj/machinery/camera/proc/removeEmpProof(ignore_malf_upgrades)
 	if(ignore_malf_upgrades) //don't downgrade it if malf software is forced onto it.
 		return
-	emp_component.RemoveComponent()
+	REMOVE_TRAIT(src, TRAIT_EMPPROOF_SELF, "empproof_upgrade")
+	REMOVE_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "empproof_upgrade")
 	upgrades &= ~CAMERA_UPGRADE_EMP_PROOF
 
 
@@ -113,12 +115,12 @@
 			assembly.malf_xray_firmware_active = FALSE //make it appear like it's just normally upgraded so the icons and examine texts are restored.
 
 	upgrades |= CAMERA_UPGRADE_XRAY
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/camera/proc/removeXRay(ignore_malf_upgrades)
 	if(!ignore_malf_upgrades) //don't downgrade it if malf software is forced onto it.
 		upgrades &= ~CAMERA_UPGRADE_XRAY
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 

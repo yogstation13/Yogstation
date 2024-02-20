@@ -1,20 +1,53 @@
-
+// TODO LIST:
+/*
+	/datum/asset/spritesheet/crafting/proc/add_tool_icons() needs to be fixed. Using it breaks all icons, but we still want it for icons for TOOL_BEHAVIOR.
+*/
 /datum/crafting_recipe
-	var/name = "" //in-game display name
-	var/reqs[] = list() //type paths of items consumed associated with how many are needed
-	var/blacklist[] = list() //type paths of items explicitly not allowed as an ingredient
-	var/result //type path of item resulting from this craft
-	var/tools[] = list() //type paths of items needed but not consumed
-	var/time = 3 SECONDS //time in seconds
-	var/parts[] = list() //type paths of items that will be placed in the result
-	var/chem_catalysts[] = list() //like tools but for reagents
-	var/category = CAT_NONE //where it shows up in the crafting UI
-	var/subcategory = CAT_NONE
-	var/always_available = TRUE //Set to FALSE if it needs to be learned first.
+	/// In-game display name.
+	var/name = ""
+	// Unused.
+	var/desc = ""
+	/// Type paths of items consumed associated with how many are needed.
+	var/list/reqs = list()
+	/// Type paths of items explicitly not allowed as an ingredient.
+	var/list/blacklist = list()
+	/// Type path of item resulting from this craft.
+	var/result
+	/// String defines of items needed but not consumed.
+	var/list/tool_behaviors
+	/// Type paths of items needed but not consumed.
+	var/list/tool_paths
+	/// Time in seconds.
+	var/time = 3 SECONDS
+	/// Type paths of items that will be placed in the result.
+	var/list/parts = list()
+	/// Where it shows up in the crafting UI.
+	var/category
+	/// Set to FALSE if it needs to be learned fast.
+	var/always_available = TRUE
+	/// Should only one object exist on the same turf?
+	var/one_per_turf = FALSE
 
 /datum/crafting_recipe/New()
 	if(!(result in reqs))
 		blacklist += result
+	// These should be excluded from all crafting recipes:
+	blacklist += list(
+		// From surgical toolset implant:
+		/obj/item/cautery/augment,
+		/obj/item/circular_saw/augment,
+		/obj/item/hemostat/augment,
+		/obj/item/retractor/augment,
+		/obj/item/scalpel/augment,
+		/obj/item/surgicaldrill/augment,
+		// From integrated toolset implant:
+		/obj/item/crowbar/cyborg,
+		/obj/item/multitool/cyborg,
+		/obj/item/screwdriver/cyborg,
+		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/wirecutters/cyborg,
+		/obj/item/wrench/cyborg,
+	)
 
 /**
   * Run custom pre-craft checks for this recipe
@@ -24,6 +57,13 @@
   */
 /datum/crafting_recipe/proc/check_requirements(mob/user, list/collected_requirements)
 	return TRUE
+
+/datum/crafting_recipe/proc/on_craft_completion(mob/user, atom/result)
+	return
+
+/// Additional UI data to be passed to the crafting UI for this recipe
+/datum/crafting_recipe/proc/crafting_ui_data()
+	return list()
 
 //Normal recipes
 
@@ -40,7 +80,7 @@
 				/obj/item/gun/energy/e_gun/dragnet = 1,
 				/obj/item/stock_parts/cell = 1,
 				/obj/item/assembly/prox_sensor = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	time = 6 SECONDS
 	category = CAT_ROBOT
 
@@ -52,7 +92,7 @@
 				/obj/item/melee/baton = 1,
 				/obj/item/assembly/prox_sensor = 1,
 				/obj/item/bodypart/r_arm/robot = 1)
-	tools = list(TOOL_WELDER)
+	tool_behaviors = list(TOOL_WELDER)
 	time = 6 SECONDS
 	category = CAT_ROBOT
 
@@ -147,7 +187,7 @@
 				/obj/item/stack/rods = 6)
 	time = 10 SECONDS
 	category = CAT_MISC
-	
+
 /datum/crafting_recipe/motorized_wheelchair
 	name = "Motorized Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair/motorized
@@ -158,7 +198,7 @@
 		/obj/item/stock_parts/capacitor = 1)
 	parts = list(/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/capacitor = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 20 SECONDS
 	category = CAT_MISC
 
@@ -169,7 +209,7 @@
 				/obj/item/stack/cable_coil = 3,
 				/obj/item/weaponcrafting/receiver = 1, //it recieves the blood
 				/obj/item/reagent_containers/autoinjector/medipen/pumpup = 1)
-	tools = list(TOOL_WIRECUTTER, TOOL_WELDER)
+	tool_behaviors = list(TOOL_WIRECUTTER, TOOL_WELDER)
 	time = 15 SECONDS
 	category = CAT_MISC
 
@@ -178,7 +218,7 @@
 	result = /obj/item/organ/lungs/ghetto
 	reqs = list(/obj/item/tank/internals/emergency_oxygen = 2,
 				/obj/item/weaponcrafting/receiver = 1) //it recieves the oxygen
-	tools = list(TOOL_WELDER)
+	tool_behaviors = list(TOOL_WELDER)
 	time = 15 SECONDS
 	category = CAT_MISC
 
@@ -197,7 +237,6 @@
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_MISC
 
-
 /datum/crafting_recipe/flashlight_eyes
 	name = "Flashlight Eyes"
 	result = /obj/item/organ/eyes/robotic/flashlight
@@ -206,7 +245,7 @@
 		/obj/item/flashlight = 2,
 		/obj/item/restraints/handcuffs/cable = 1
 	)
-	category = CAT_ROBOT
+	category = CAT_MISC
 
 /datum/crafting_recipe/paperframes
 	name = "Paper Frames"
@@ -219,7 +258,7 @@
 	name = "Hand-Pressed Paper"
 	time = 3 SECONDS
 	reqs = list(/datum/reagent/water = 50, /obj/item/stack/sheet/mineral/wood = 1)
-	tools = list(/obj/item/hatchet)
+	tool_paths = list(/obj/item/hatchet)
 	result = /obj/item/paper_bin/bundlenatural
 	category = CAT_MISC
 
@@ -227,6 +266,12 @@
 	name = "Toy Sword"
 	reqs = list(/obj/item/light/bulb = 1, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
 	result = /obj/item/toy/sword
+	category = CAT_MISC
+
+/datum/crafting_recipe/toysword
+	name = "Toy Sledgehammer"
+	reqs = list(/obj/item/light/bulb = 2, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
+	result = /obj/item/melee/vxtvulhammer/toy/pirate // not authentic!!!!
 	category = CAT_MISC
 
 /datum/crafting_recipe/toybat
@@ -266,6 +311,12 @@
 	result = /obj/structure/sink
 	category = CAT_STRUCTURES
 
+/datum/crafting_recipe/mirror
+	name = "Mirror"
+	reqs = 	list(/obj/item/stack/rods = 1, /obj/item/stack/sheet/glass = 1, /obj/item/stack/sheet/mineral/silver = 1)
+	result = /obj/item/wallframe/mirror
+	category = CAT_STRUCTURES
+
 /datum/crafting_recipe/toilet // best moment of my life - Hopek 2020
 	name = "Toilet"
 	reqs = 	list(/obj/item/stack/sheet/metal = 5, /obj/item/reagent_containers/glass/bucket = 1)
@@ -288,7 +339,7 @@
 /datum/crafting_recipe/shutters
 	name = "Mechanical Shutter"
 	reqs = list(/obj/item/stack/sheet/plasteel = 10, /obj/item/stack/cable_coil = 5, /obj/item/electronics/airlock = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 10 SECONDS
 	result = /obj/machinery/door/poddoor/shutters/preopen
 	category = CAT_STRUCTURES
@@ -296,7 +347,7 @@
 /datum/crafting_recipe/blastdoor
 	name = "Blastdoor"
 	reqs = list(/obj/item/stack/sheet/plasteel = 20, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 20 SECONDS
 	result = /obj/machinery/door/poddoor/preopen
 	category = CAT_STRUCTURES
@@ -355,33 +406,40 @@
 /datum/crafting_recipe/headpike
 	name = "Spike Head (Glass Spear)"
 	time = 6.5 SECONDS
-	reqs = list(/obj/item/twohanded/spear = 1,
+	reqs = list(/obj/item/melee/spear = 1,
 				/obj/item/bodypart/head = 1)
 	parts = list(/obj/item/bodypart/head = 1,
-			/obj/item/twohanded/spear = 1)
-	blacklist = list(/obj/item/twohanded/bonespear, /obj/item/twohanded/bamboospear)
+			/obj/item/melee/spear = 1)
+	blacklist = list(/obj/item/melee/spear/bonespear, /obj/item/melee/spear/bamboospear)
 	result = /obj/structure/headpike/glass
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/headpikebone
 	name = "Spike Head (Bone Spear)"
 	time = 6.5 SECONDS
-	reqs = list(/obj/item/twohanded/bonespear = 1,
+	reqs = list(/obj/item/melee/spear/bonespear = 1,
 				/obj/item/bodypart/head = 1)
 	parts = list(/obj/item/bodypart/head = 1,
-			/obj/item/twohanded/bonespear = 1)
+			/obj/item/melee/spear/bonespear = 1)
 	result = /obj/structure/headpike/bone
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/headpikebamboo
 	name = "Spike Head (Bamboo Spear)"
 	time = 6.5 SECONDS
-	reqs = list(/obj/item/twohanded/bamboospear = 1,
+	reqs = list(/obj/item/melee/spear/bamboospear = 1,
 				/obj/item/bodypart/head = 1)
 	parts = list(/obj/item/bodypart/head = 1,
-			/obj/item/twohanded/bamboospear = 1)
+			/obj/item/melee/spear/bamboospear = 1)
 	result = /obj/structure/headpike/bamboo
 	category = CAT_PRIMAL
+
+/datum/crafting_recipe/sillycup
+	name = "Paper Cup"
+	result = /obj/item/reagent_containers/food/drinks/sillycup
+	time = 1 SECONDS
+	reqs = list(/obj/item/paper = 2)
+	category = CAT_MISC
 
 /datum/crafting_recipe/smallcarton
 	name = "Small Carton"
@@ -400,12 +458,11 @@
 				  /obj/item/assembly/igniter = 1)
 	category = CAT_STRUCTURES
 
-
 /datum/crafting_recipe/rcl
 	name = "Makeshift Rapid Cable Layer"
-	result = /obj/item/twohanded/rcl/ghetto
+	result = /obj/item/rcl/ghetto
 	time = 4 SECONDS
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	reqs = list(/obj/item/stack/sheet/metal = 15)
 	category = CAT_TOOLS
 
@@ -416,14 +473,14 @@
 	reqs = list(/obj/item/stack/sheet/plasteel = 3,
 		        /obj/item/stack/sheet/mineral/wood = 20,
 		        /obj/item/stack/cable_coil = 10)
-	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
 	category = CAT_STRUCTURES
 
 /datum/crafting_recipe/aitater
 	name = "intelliTater"
 	result = /obj/item/aicard/aitater
 	time = 3 SECONDS
-	tools = list(TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/aicard = 1,
 					/obj/item/reagent_containers/food/snacks/grown/potato = 1,
 					/obj/item/stack/cable_coil = 5)
@@ -433,7 +490,7 @@
 	name = "intelliLantern"
 	result = /obj/item/aicard/aispook
 	time = 3 SECONDS
-	tools = list(TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/aicard = 1,
 					/obj/item/reagent_containers/food/snacks/grown/pumpkin = 1,
 					/obj/item/stack/cable_coil = 5)
@@ -452,7 +509,7 @@
 				/datum/reagent/water = 5,
 				/datum/reagent/consumable/milk = 5,
 				/obj/item/reagent_containers/glass/bucket = 1)
-	tools = list(TOOL_CROWBAR)
+	tool_behaviors = list(TOOL_CROWBAR)
 	category = CAT_MISC
 	time = 3 SECONDS
 
@@ -463,7 +520,7 @@
 				/datum/reagent/water = 5,
 				/datum/reagent/consumable/milk = 5,
 				/obj/item/reagent_containers/glass/bucket = 1)
-	tools = list(TOOL_CROWBAR)
+	tool_behaviors = list(TOOL_CROWBAR)
 	category = CAT_MISC
 	time = 3 SECONDS
 
@@ -581,7 +638,7 @@
 /datum/crafting_recipe/epinephrine_medipen
 	name = "Epinephrine Medipen"
 	result = /obj/item/reagent_containers/autoinjector/medipen
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 2 SECONDS
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
@@ -591,7 +648,7 @@
 /datum/crafting_recipe/atropine_medipen
 	name = "Atropine Autoinjector"
 	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 4 SECONDS
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
@@ -601,7 +658,7 @@
 /datum/crafting_recipe/maint_pumpup
 	name = "Maintenance Pump-Up"
 	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 4 SECONDS
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
@@ -620,7 +677,7 @@
 	name = "Refill Atropine Autoinjector"
 	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine = 1,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_MEDICAL
 
@@ -628,7 +685,7 @@
 	name = "Refill Maintenance Pump-Up"
 	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup = 1,
 				/datum/reagent/drug/pumpup = 15)
 	category = CAT_MEDICAL
 
@@ -677,17 +734,18 @@
 /datum/crafting_recipe/ointment
 	name = "Ointment"
 	result = /obj/item/stack/medical/ointment
-	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
-				/datum/reagent/ash = 10,
-				/datum/reagent/medicine/c2/lenturi = 15)
+	reqs = list(/datum/reagent/water = 10,
+				/datum/reagent/ash = 10)
+	tool_paths = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/antisepticointment
 	name = "Antiseptic Ointment"
 	result = /obj/item/stack/medical/ointment/antiseptic
-	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
+	reqs = list(/datum/reagent/water = 10,
 				/datum/reagent/ash = 10,
-				/datum/reagent/space_cleaner/sterilizine = 15)
+				/datum/reagent/silver = 10)
+	tool_paths = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/advancedmesh
@@ -722,7 +780,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 10)
-	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/rightprostheticarm
@@ -732,7 +790,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 10)
-	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/leftprostheticleg
@@ -742,7 +800,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 10)
-	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/rightprostheticleg
@@ -752,5 +810,58 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 10)
-	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL
+
+/datum/crafting_recipe/apprentice_bait
+	name = "Apprentice Bait"
+	reqs = list(
+		/datum/reagent/water = 2,
+		/datum/reagent/consumable/flour = 5,
+		/obj/item/reagent_containers/food/snacks/grown/corn = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/bait/apprentice
+	category = CAT_BAIT
+
+/datum/crafting_recipe/journeyman_bait
+	name = "Journeyman Bait"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/bait/apprentice = 2,
+		/datum/reagent/blood = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/bait/journeyman
+	category = CAT_BAIT
+
+/datum/crafting_recipe/master_bait
+	name = "Master Bait"
+	reqs = list(
+		/datum/reagent/toxin/plasma = 5,
+		/obj/item/reagent_containers/food/snacks/bait/journeyman = 2,
+		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/bait/master
+	category = CAT_BAIT
+
+/datum/crafting_recipe/wild_bait
+	name = "Wild Bait"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/bait/worm = 1,
+		/obj/item/stack/medical/gauze/improvised = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/bait/wild
+	category = CAT_BAIT
+
+// It can't run without fuel rods (cargo only) so this shouldn't be a problem
+/datum/crafting_recipe/reactor_frame
+	name = "Nuclear Reactor Frame"
+	reqs = list(
+		/obj/item/stack/sheet/plasteel = 20,
+		/obj/item/stack/sheet/metal = 50,
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/pipe = 3,
+		/obj/item/electronics/advanced_airlock_controller = 1
+	)
+	tool_behaviors = list(TOOL_WELDER)
+	result = /obj/structure/reactor_frame
+	category = CAT_STRUCTURES
+	time = 10 SECONDS

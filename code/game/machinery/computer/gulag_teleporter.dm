@@ -15,7 +15,7 @@
 
 	light_color = LIGHT_COLOR_RED
 
-/obj/machinery/computer/gulag_teleporter_computer/Initialize()
+/obj/machinery/computer/gulag_teleporter_computer/Initialize(mapload)
 	. = ..()
 	scan_machinery()
 
@@ -121,7 +121,7 @@
 		if("teleport")
 			if(!teleporter || !beacon)
 				return
-			addtimer(CALLBACK(src, .proc/teleport, usr), 5)
+			addtimer(CALLBACK(src, PROC_REF(teleport), usr), 5)
 
 /obj/machinery/computer/gulag_teleporter_computer/proc/scan_machinery()
 	teleporter = findteleporter()

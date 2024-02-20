@@ -1,6 +1,9 @@
 
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
-	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
+	if(tool_behaviour && (target.tool_act(user, src, tool_behaviour) & TOOL_ACT_MELEE_CHAIN_BLOCKING))
+		return TRUE
+
+	if(pre_attack(target, user, params))
 		// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 		var/resolved = target.attackby(src, user, params)
 		if(!resolved && target && !QDELETED(src))
@@ -10,14 +13,6 @@
 		SSdemo.mark_turf(target)
 	else
 		SSdemo.mark_dirty(target)
-
-//Checks if the item can work as a tool, calling the appropriate tool behavior on the target
-/obj/item/proc/tool_attack_chain(mob/user, atom/target)
-	if(!tool_behaviour)
-		return FALSE
-
-	return target.tool_act(user, src, tool_behaviour)
-
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
@@ -59,7 +54,7 @@
 		if(butchering && butchering.butchering_enabled)
 			to_chat(user, span_notice("You begin to butcher [src]..."))
 			playsound(loc, butchering.butcher_sound, 50, TRUE, -1)
-			if(do_mob(user, src, butchering.speed) && Adjacent(I))
+			if(do_after(user, butchering.speed, src) && Adjacent(I))
 				butchering.Butcher(user, src)
 			return TRUE
 		else if(I.is_sharp() && !butchering) //give sharp objects butchering functionality, for consistency
@@ -119,17 +114,26 @@
 	user.do_attack_animation(O)
 	O.attacked_by(src, user)
 	user.weapon_slow(src)
-	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
+	if(!QDELETED(src))
+		take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
 
 /atom/movable/proc/attacked_by()
 	return
 
-/obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force)
-		visible_message(span_danger("[user] has hit [src] with [I]!"), null, null, COMBAT_MESSAGE_RANGE)
-		//only witnesses close by and the victim see a hit message.
-		log_combat(user, src, "attacked", I)
-	take_damage(I.force, I.damtype, MELEE, 1)
+/obj/attacked_by(obj/item/attacking_item, mob/living/user)
+	if(!attacking_item.force)
+		return
+	
+	var/damage = take_damage(attacking_item.force * attacking_item.demolition_mod, attacking_item.damtype, MELEE, 1, armour_penetration = attacking_item.armour_penetration)
+	var/damage_verb = "hit"
+	if(attacking_item.demolition_mod > 1 && damage)
+		damage_verb = "pulverized"
+	if(attacking_item.demolition_mod < 1 || !damage)
+		damage_verb = "ineffectively pierced"
+
+	visible_message(span_danger("[user] [damage_verb] [src] with [attacking_item][damage ? "" : ", without leaving a mark"]!"), null, null, COMBAT_MESSAGE_RANGE)
+	//only witnesses close by and the victim see a hit message.
+	log_combat(user, src, "attacked", attacking_item)
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)
@@ -152,7 +156,7 @@
 
 /mob/living/proc/weapon_slow(obj/item/I)
 	add_movespeed_modifier(I.name, priority = 101, multiplicative_slowdown = I.weapon_stats[ENCUMBRANCE])
-	addtimer(CALLBACK(src, .proc/remove_movespeed_modifier, I.name), I.weapon_stats[ENCUMBRANCE_TIME], TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), I.name), I.weapon_stats[ENCUMBRANCE_TIME], TIMER_UNIQUE|TIMER_OVERRIDE)
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.

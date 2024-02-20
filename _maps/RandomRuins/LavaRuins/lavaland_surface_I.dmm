@@ -181,7 +181,7 @@
 "BJ" = (
 /obj/structure/closet/crate/coffin,
 /obj/item/shield/riot/buckler,
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "Ch" = (
@@ -200,7 +200,7 @@
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "He" = (
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/plating/lavaland_baseturf{
 	icon_state = "panelscorched"
 	},
@@ -221,14 +221,14 @@
 "NG" = (
 /obj/structure/closet/crate/coffin,
 /obj/effect/mob_spawn/human/skeleton,
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "Pa" = (
 /obj/structure/closet/crate/coffin,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shield/riot/buckler,
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "QE" = (

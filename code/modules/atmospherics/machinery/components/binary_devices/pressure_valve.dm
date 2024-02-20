@@ -24,7 +24,7 @@
 	if(can_interact(user))
 		on = !on
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/AltClick(mob/user)
@@ -32,7 +32,7 @@
 		target_pressure = MAX_OUTPUT_PRESSURE
 		investigate_log("was set to [target_pressure] kPa by [key_name(user)]", INVESTIGATE_ATMOS)
 		balloon_alert(user, "pressure output set to [target_pressure] kPa")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/Destroy()
@@ -117,9 +117,9 @@
 			if(.)
 				target_pressure = clamp(pressure, 0, ONE_ATMOSPHERE*100)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/atmospherics/components/binary/pressure_valve/atmosinit()
+/obj/machinery/atmospherics/components/binary/pressure_valve/atmos_init()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
@@ -147,7 +147,7 @@
 		return
 
 	broadcast_status()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/can_unwrench(mob/user)
 	. = ..()

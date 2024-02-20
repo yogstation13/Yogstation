@@ -3,16 +3,15 @@
 	duration = 10 SECONDS
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = null
-	var/obj/effect/immortality_talisman/v 
+	var/obj/effect/immortality_talisman/void_effect
 
 /datum/status_effect/voided/on_apply()
 	. = ..()
-	v = new /obj/effect/immortality_talisman/void(get_turf(owner), owner)
-	v.vanish(owner)	
+	void_effect = new /obj/effect/immortality_talisman/void(get_turf(owner), owner)
 
 /datum/status_effect/voided/on_remove()
 	. = ..()
-	v.unvanish(owner)
+	void_effect.unvanish(owner)
 
 /datum/status_effect/scent_hunter
 	id = "smelly"
@@ -66,7 +65,7 @@
 	if(scent_trail)
 		scent_trail.Destroy()
 	if(smell_hud)
-		smell_hud.remove_hud_from(owner)
+		smell_hud.hide_from(owner)
 	if(sniffer?.client?.images)
 		for(var/image/I in sniffer.client.images)
 			if(I.name==id)

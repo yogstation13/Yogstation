@@ -54,6 +54,8 @@
 
 /datum/config_entry/flag/everyone_has_maint_access
 
+/datum/config_entry/flag/auto_blue_alert
+
 /datum/config_entry/flag/sec_start_brig	//makes sec start in brig instead of dept sec posts
 
 /datum/config_entry/flag/force_random_names
@@ -65,6 +67,8 @@
 /datum/config_entry/flag/allow_ai_multicam	// allow ai multicamera mode
 
 /datum/config_entry/flag/disable_human_mood
+
+/datum/config_entry/flag/force_human_mood // force every human to have mood enabled, this overwrites disabling it.
 
 /datum/config_entry/flag/disable_secborg	// disallow secborg module to be chosen.
 
@@ -142,7 +146,7 @@
 	min_val = 0
 
 /datum/config_entry/number/escaped_alive_bonus
-	config_entry_value = 2
+	config_entry_value = 1.5
 	integer = FALSE
 	min_val = 1
 
@@ -181,7 +185,13 @@
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
 
-/datum/config_entry/flag/no_intercept_report	//Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
+/datum/config_entry/flag/no_summon_guns //No
+
+/datum/config_entry/flag/no_summon_magic //Fun
+
+/datum/config_entry/flag/no_summon_events //Allowed
+
+/datum/config_entry/flag/no_intercept_report //Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
 
 /datum/config_entry/number/arrivals_shuttle_dock_window	//Time from when a player late joins on the arrivals shuttle to when the shuttle docks on the station
 	config_entry_value = 55
@@ -364,6 +374,12 @@
 	config_entry_value = 16
 	integer = FALSE
 	min_val = 0
+//Yogs edit
+/datum/config_entry/number/jungleland_budget
+	config_entry_value = 40
+	integer = FALSE
+	min_val = 0
+//Yogs end
 
 /datum/config_entry/flag/allow_random_events	// Enables random events mid-round when set
 
@@ -415,6 +431,10 @@
 
 /datum/config_entry/number/monkeycap
 	config_entry_value = 64
+	min_val = 0
+
+/datum/config_entry/number/slimecap
+	config_entry_value = 256
 	min_val = 0
 
 /datum/config_entry/number/ratcap

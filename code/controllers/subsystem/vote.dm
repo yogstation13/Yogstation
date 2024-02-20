@@ -190,6 +190,7 @@ SUBSYSTEM_DEF(vote)
 				if(!lower_admin && SSmapping.map_voted)
 					to_chat(usr, span_warning("The next map has already been selected."))
 					return FALSE
+				var/list/previous_maps = SSmapping.get_map_weights()
 				// Randomizes the list so it isn't always METASTATION
 				var/list/maps = list()
 				for(var/map in global.config.maplist)
@@ -199,6 +200,8 @@ SUBSYSTEM_DEF(vote)
 					if(VM.config_min_users > 0 && GLOB.clients.len < VM.config_min_users)
 						continue
 					if(VM.config_max_users > 0 && GLOB.clients.len > VM.config_max_users)
+						continue
+					if(previous_maps[VM.map_name] > 7)
 						continue
 					maps += VM.map_name
 					shuffle_inplace(maps)
@@ -336,6 +339,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote
 	name = "Vote!"
 	button_icon_state = "vote"
+	show_to_observers = FALSE
 
 /datum/action/vote/Trigger()
 	if(owner)
@@ -343,7 +347,7 @@ SUBSYSTEM_DEF(vote)
 		remove_from_client()
 		Remove(owner)
 
-/datum/action/vote/IsAvailable()
+/datum/action/vote/IsAvailable(feedback = FALSE)
 	return TRUE
 
 /datum/action/vote/proc/remove_from_client()

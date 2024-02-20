@@ -166,14 +166,12 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 
 /datum/action/cooldown/disease_cough
 	name = "Cough"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "cough"
 	desc = "Force the host you are following to cough with extra force, spreading your infection to those within two meters of your host even if your transmissibility is low.<br>Cooldown: 10 seconds"
-	cooldown_time = 100
+	cooldown_time = 10 SECONDS
 
-/datum/action/cooldown/disease_cough/Trigger()
-	if(!..())
-		return FALSE
+/datum/action/cooldown/disease_cough/Activate()
 	var/mob/camera/disease/D = owner
 	var/mob/living/L = D.following_host
 	if(!L)
@@ -187,8 +185,6 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 		var/datum/disease/advance/sentient_disease/SD = D.hosts[L]
 		SD.spread(2)
 	StartCooldown()
-	return TRUE
-
 
 /datum/disease_ability/action/sneeze
 	name = "Voluntary Sneezing"
@@ -200,14 +196,12 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 
 /datum/action/cooldown/disease_sneeze
 	name = "Sneeze"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "sneeze"
 	desc = "Force the host you are following to sneeze with extra force, spreading your infection to any victims in a 4 meter cone in front of your host even if your transmissibility is low.<br>Cooldown: 20 seconds"
-	cooldown_time = 200
+	cooldown_time = 20 SECONDS
 
-/datum/action/cooldown/disease_sneeze/Trigger()
-	if(!..())
-		return FALSE
+/datum/action/cooldown/disease_sneeze/Activate()
 	var/mob/camera/disease/D = owner
 	var/mob/living/L = D.following_host
 	if(!L)
@@ -225,7 +219,6 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 				M.AirborneContractDisease(SD, TRUE)
 
 	StartCooldown()
-	return TRUE
 
 
 /datum/disease_ability/action/infect
@@ -238,14 +231,12 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 
 /datum/action/cooldown/disease_infect
 	name = "Secrete Infection"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "infect"
 	desc = "Cause the host you are following to excrete an infective substance from their pores, causing all objects touching their skin to transmit your infection to anyone who touches them for the next 30 seconds.<br>Cooldown: 40 seconds"
-	cooldown_time = 400
+	cooldown_time = 40 SECONDS
 
-/datum/action/cooldown/disease_infect/Trigger()
-	if(!..())
-		return FALSE
+/datum/action/cooldown/disease_infect/Activate()
 	var/mob/camera/disease/D = owner
 	var/mob/living/carbon/human/H = D.following_host
 	if(!H)
@@ -266,7 +257,6 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 			var/obj/O = V
 			O.AddComponent(/datum/component/infective, D.disease_template, 300)
 	StartCooldown()
-	return TRUE
 
 
 /*******************BASE SYMPTOM TYPES*******************/

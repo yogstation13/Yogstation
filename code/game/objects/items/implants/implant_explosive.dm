@@ -33,7 +33,7 @@
 		popup = TRUE
 		var/response = tgui_alert(imp_in, "Are you sure you want to activate your [name]? This will cause you to explode!", "[name] Confirmation", list("Yes", "No"))
 		popup = FALSE
-		if(response == "No")
+		if(response != "Yes")
 			return 0
 	heavy = round(heavy)
 	medium = round(medium)
@@ -122,3 +122,7 @@
 /obj/item/implanter/explosive_macro
 	name = "implanter (macrobomb)"
 	imp_type = /obj/item/implant/explosive/macro
+
+/datum/action/item_action/explosive_implant
+	check_flags = NONE
+	name = "Activate Explosive Implant"

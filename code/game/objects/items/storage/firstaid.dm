@@ -62,7 +62,7 @@
 	item_state = "firstaid"
 	desc = "A high capacity aid kit for doctors, full of medical supplies and basic surgical equipment"
 
-/obj/item/storage/firstaid/medical/ComponentInitialize()
+/obj/item/storage/firstaid/medical/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 12
@@ -228,7 +228,7 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/pill/patch/styptic = 2,
-		/obj/item/reagent_containers/pill/salicyclic = 2,
+		/obj/item/reagent_containers/pill/salicylic = 2,
 		/obj/item/reagent_containers/medspray/styptic = 1,
 		/obj/item/stack/medical/gauze = 2,
 		/obj/item/healthanalyzer = 1)
@@ -241,7 +241,7 @@
 	item_state = "firstaid-rad"
 	custom_premium_price = 600
 
-/obj/item/storage/firstaid/advanced/ComponentInitialize()
+/obj/item/storage/firstaid/advanced/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 12
@@ -266,7 +266,7 @@
 	icon_state = "bezerk"
 	item_state = "firstaid-bezerk"
 
-/obj/item/storage/firstaid/tactical/ComponentInitialize()
+/obj/item/storage/firstaid/tactical/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -320,7 +320,7 @@
 	custom_premium_price = 100
 	var/stored_hypo
 
-/obj/item/storage/firstaid/hypospray/ComponentInitialize()
+/obj/item/storage/firstaid/hypospray/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -560,10 +560,10 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/hypospray/combat = 1,
-		/obj/item/reagent_containers/glass/bottle/vial/large/combat = 2,
-		/obj/item/reagent_containers/glass/bottle/vial/large/omnizine = 1,
-		/obj/item/reagent_containers/glass/bottle/vial/large/morphine = 1,
-		/obj/item/reagent_containers/glass/bottle/vial/large/epi = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/combat = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/omnizine = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/morphine = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/epi/full = 1,
 		/obj/item/healthanalyzer = 1
 		)
 	generate_items_inside(items_inside,src)
@@ -582,7 +582,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/storage/pill_bottle/ComponentInitialize()
+/obj/item/storage/pill_bottle/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.allow_quick_gather = TRUE
@@ -718,7 +718,7 @@
 	name = "bottle of floorpills"
 	desc = "An old pill bottle. It smells musty."
 
-/obj/item/storage/pill_bottle/floorpill/Initialize()
+/obj/item/storage/pill_bottle/floorpill/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/pill/P = locate() in src
 	name = "bottle of [P.name]s"
@@ -769,7 +769,7 @@
 	icon_state = "pill_canister_large"
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/storage/pill_bottle/gummies/ComponentInitialize()
+/obj/item/storage/pill_bottle/gummies/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.allow_quick_gather = TRUE

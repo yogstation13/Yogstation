@@ -1,6 +1,3 @@
-GLOBAL_VAR_INIT(stolen_paycheck_money, 0)
-
-
 SUBSYSTEM_DEF(economy)
 	name = "Economy"
 	wait = 5 MINUTES
@@ -149,7 +146,9 @@ SUBSYSTEM_DEF(economy)
 /datum/controller/subsystem/economy/proc/eng_payout()
 	var/engineering_cash = 3000
 	engineering_check.count()
-	var/station_integrity = min(PERCENT(GLOB.start_state.score(engineering_check)), 100)
+	var/station_integrity = 100
+	if(GLOB.start_state)
+		station_integrity = min(PERCENT(GLOB.start_state.score(engineering_check)), 100)
 	station_integrity *= 0.01
 	engineering_cash *= station_integrity
 	if(moneysink)
@@ -168,27 +167,20 @@ SUBSYSTEM_DEF(economy)
 		D.adjust_money(500)
 
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
-	for(var/mob/m in GLOB.mob_list)
-		if(isnewplayer(m))
+	for(var/mob/living/carbon/human/human_player in GLOB.player_list)
+		if(human_player.stat == DEAD)
 			continue
-		if(m.mind)
-			if(isbrain(m) || iscameramob(m))
-				continue
-			if(ishuman(m))
-				var/mob/living/carbon/human/H = m
-				if(H.stat != DEAD)
-					var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
-					var/medical_cash = (H.health / H.maxHealth) * alive_humans_bounty
-					if(mood)
-						var/datum/bank_account/D = get_dep_account(ACCOUNT_SRV)
-						if(D)
-							var/mood_dosh = (mood.mood_level / 9) * mood_bounty
-							D.adjust_money(mood_dosh)
-						medical_cash *= (mood.sanity / 100)
-
-					var/datum/bank_account/D = get_dep_account(ACCOUNT_MED)
-					if(D)
-						D.adjust_money(medical_cash)
+		var/datum/component/mood/mood = human_player.GetComponent(/datum/component/mood)
+		var/medical_cash = (human_player.health / human_player.maxHealth) * alive_humans_bounty
+		if(mood)
+			var/datum/bank_account/D = get_dep_account(ACCOUNT_SRV)
+			if(D)
+				var/mood_dosh = (mood.mood_level / 9) * mood_bounty
+				D.adjust_money(mood_dosh)
+			medical_cash *= (mood.sanity / 100)
+		var/datum/bank_account/D = get_dep_account(ACCOUNT_MED)
+		if(D)
+			D.adjust_money(medical_cash)
 		CHECK_TICK
 
 	var/service_passive_income = (rand(1, 6) * 400) //min 400, max 2400

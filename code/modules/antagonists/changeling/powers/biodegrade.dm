@@ -3,7 +3,7 @@
 	desc = "Dissolves restraints or other objects preventing free movement. Costs 30 chemicals."
 	helptext = "This is obvious to nearby people, and can destroy standard restraints and closets."
 	button_icon_state = "biodegrade"
-	chemical_cost = 30 //High cost to prevent spam
+	chemical_cost = 30 //It's just worse, more reactive adrenals
 	dna_cost = 2
 	req_human = 1
 
@@ -14,22 +14,22 @@
 		return 0
 
 	if(user.handcuffed)
-		var/obj/O = user.get_item_by_slot(SLOT_HANDCUFFED)
+		var/obj/O = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 		if(!istype(O))
 			return 0
 		user.visible_message(span_warning("[user] vomits a glob of acid on [user.p_their()] [O]!"), \
 			span_warning("We vomit acidic ooze onto our restraints!"))
 
-		addtimer(CALLBACK(src, .proc/dissolve_handcuffs, user, O), 30)
+		addtimer(CALLBACK(src, PROC_REF(dissolve_handcuffs), user, O), 30)
 		used = TRUE
 
 	if(user.wear_suit && user.wear_suit.breakouttime && !used)
-		var/obj/item/clothing/suit/S = user.get_item_by_slot(SLOT_WEAR_SUIT)
+		var/obj/item/clothing/suit/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if(!istype(S))
 			return 0
 		user.visible_message(span_warning("[user] vomits a glob of acid across the front of [user.p_their()] [S]!"), \
 			span_warning("We vomit acidic ooze onto our straight jacket!"))
-		addtimer(CALLBACK(src, .proc/dissolve_straightjacket, user, S), 30)
+		addtimer(CALLBACK(src, PROC_REF(dissolve_straightjacket), user, S), 30)
 		used = TRUE
 
 
@@ -39,7 +39,7 @@
 			return 0
 		C.visible_message(span_warning("[C]'s hinges suddenly begin to melt and run!"))
 		to_chat(user, span_warning("We vomit acidic goop onto the interior of [C]!"))
-		addtimer(CALLBACK(src, .proc/open_closet, user, C), 70)
+		addtimer(CALLBACK(src, PROC_REF(open_closet), user, C), 70)
 		used = TRUE
 
 	if(istype(user.loc, /obj/structure/spider/cocoon) && !used)
@@ -48,7 +48,7 @@
 			return 0
 		C.visible_message(span_warning("[src] shifts and starts to fall apart!"))
 		to_chat(user, span_warning("We secrete acidic enzymes from our skin and begin melting our cocoon..."))
-		addtimer(CALLBACK(src, .proc/dissolve_cocoon, user, C), 25) //Very short because it's just webs
+		addtimer(CALLBACK(src, PROC_REF(dissolve_cocoon), user, C), 25) //Very short because it's just webs
 		used = TRUE
 	..()
 	return used

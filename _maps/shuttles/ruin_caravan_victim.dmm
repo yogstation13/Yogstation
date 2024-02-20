@@ -943,7 +943,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/item/gun/ballistic/automatic/pistol/APS,
+/obj/item/gun/ballistic/automatic/pistol/m1911,
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "TEMP=2.7"
 	},

@@ -3,24 +3,6 @@
 //The effects include: stun, knockdown, unconscious, sleeping, resting, jitteriness, dizziness, ear damage,
 // eye damage, eye_blind, eye_blurry, druggy, TRAIT_BLIND trait, and TRAIT_NEARSIGHT trait.
 
-
-
-///Set the jitter of a mob
-/mob/proc/Jitter(amount)
-	jitteriness = max(jitteriness,amount,0)
-
-/**
-  * Set the dizzyness of a mob to a passed in amount
-  *
-  * Except if dizziness is already higher in which case it does nothing
-  */
-/mob/proc/Dizzy(amount)
-	dizziness = max(dizziness,amount,0)
-
-///FOrce set the dizzyness of a mob
-/mob/proc/set_dizziness(amount)
-	dizziness = max(amount, 0)
-
 ///Blind a mobs eyes by amount
 /mob/proc/blind_eyes(amount)
 	if(amount>0)
@@ -118,14 +100,6 @@
 	GW.backdrop(src)
 	OT.backdrop(src)
 
-///Adjust the drugginess of a mob
-/mob/proc/adjust_drugginess(amount)
-	return
-
-///Set the drugginess of a mob
-/mob/proc/set_drugginess(amount)
-	return
-
 ///Adjust the disgust level of a mob
 /mob/proc/adjust_disgust(amount)
 	return
@@ -139,6 +113,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		amount *= H.dna.species.tempmod
+		amount *= H.physiology.temp_mod
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = clamp(bodytemperature + amount,min_temp,max_temp)
 	// Infrared luminosity, how far away can you pick up someone's heat with infrared (NOT THERMAL) vision

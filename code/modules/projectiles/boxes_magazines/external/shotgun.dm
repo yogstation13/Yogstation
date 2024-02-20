@@ -6,12 +6,12 @@
 			Syndicate buckshot is more damaging than your standard buckshot."
 	icon_state = "m12gb-8"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot/syndie
-	caliber = "shotgun"
+	caliber = CALIBER_12GA
 	max_ammo = 8
 	sprite_designation = "b"
 
-/obj/item/ammo_box/magazine/m12g/update_icon()
-	..()
+/obj/item/ammo_box/magazine/m12g/update_icon_state()
+	. = ..()
 	if(ammo_count())
 		icon_state = "m12g[sprite_designation]-8"
 	else

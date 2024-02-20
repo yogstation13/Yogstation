@@ -2,6 +2,10 @@
 	mood_change = 6
 	description = "<span class='nicegreen'>Woooow duudeeeeee...I'm tripping baaalls...</span>\n"
 
+/datum/mood_event/red_eye
+	mood_change = 10
+	description = "<span class='nicegreen'>Keep those eyes open...</span>\n"
+
 /datum/mood_event/smoked
 	description = "<span class='nicegreen'>I have had a smoke recently.</span>\n"
 	mood_change = 2
@@ -23,19 +27,19 @@
 	mood_change = -2
 
 /datum/mood_event/withdrawal_light/add_effects(drug_name)
-	description = "<span class='warning'>I could use some [drug_name]</span>\n"
+	description = "<span class='warning'>I could use some [drug_name].</span>\n"
 
 /datum/mood_event/withdrawal_medium
 	mood_change = -5
 
 /datum/mood_event/withdrawal_medium/add_effects(drug_name)
-	description = "<span class='warning'>I really need [drug_name]</span>\n"
+	description = "<span class='warning'>I really need [drug_name].</span>\n"
 
 /datum/mood_event/withdrawal_severe
 	mood_change = -8
 
 /datum/mood_event/withdrawal_severe/add_effects(drug_name)
-	description = "<span class='boldwarning'>Oh god I need some [drug_name]</span>\n"
+	description = "<span class='boldwarning'>Oh god I need some [drug_name]!</span>\n"
 
 /datum/mood_event/withdrawal_critical
 	mood_change = -10

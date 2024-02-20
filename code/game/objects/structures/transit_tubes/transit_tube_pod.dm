@@ -8,10 +8,10 @@
 	var/datum/gas_mixture/air_contents = new()
 	var/cargo = FALSE
 
-/obj/structure/transit_tube_pod/Initialize()
+/obj/structure/transit_tube_pod/Initialize(mapload)
 	. = ..()
-	air_contents.set_moles(/datum/gas/oxygen, MOLES_O2STANDARD)
-	air_contents.set_moles(/datum/gas/nitrogen, MOLES_N2STANDARD)
+	air_contents.set_moles(GAS_O2, MOLES_O2STANDARD)
+	air_contents.set_moles(GAS_N2, MOLES_N2STANDARD)
 	air_contents.set_temperature(T20C)
 
 
@@ -19,7 +19,8 @@
 	empty_pod()
 	return ..()
 
-/obj/structure/transit_tube_pod/update_icon()
+/obj/structure/transit_tube_pod/update_icon_state()
+	. = ..()
 	if(contents.len)
 		icon_state = "pod_occupied"
 	else
@@ -88,7 +89,7 @@
 		location = get_turf(src)
 	for(var/atom/movable/M in contents)
 		M.forceMove(location)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/transit_tube_pod/Process_Spacemove()
 	if(moving) //No drifting while moving in the tubes
@@ -165,8 +166,23 @@
 /obj/structure/transit_tube_pod/assume_air(datum/gas_mixture/giver)
 	return air_contents.merge(giver)
 
+/obj/structure/transit_tube_pod/assume_air_moles(datum/gas_mixture/giver, moles)
+	return giver.transfer_to(air_contents, moles)
+
+/obj/structure/transit_tube_pod/assume_air_ratio(datum/gas_mixture/giver, ratio)
+	return giver.transfer_ratio_to(air_contents, ratio)
+
 /obj/structure/transit_tube_pod/remove_air(amount)
 	return air_contents.remove(amount)
+
+/obj/structure/transit_tube_pod/remove_air_ratio(ratio)
+	return air_contents.remove_ratio(ratio)
+
+/obj/structure/transit_tube_pod/transfer_air(datum/gas_mixture/taker, moles)
+	return air_contents.transfer_to(taker, moles)
+
+/obj/structure/transit_tube_pod/transfer_air_ratio(datum/gas_mixture/taker, ratio)
+	return air_contents.transfer_ratio_to(taker, ratio)
 
 /obj/structure/transit_tube_pod/relaymove(mob/mob, direction)
 	if(istype(mob) && mob.client)
@@ -176,7 +192,7 @@
 					if(direction == turn(station.boarding_dir,180))
 						if(station.open_status == STATION_TUBE_OPEN)
 							mob.forceMove(loc)
-							update_icon()
+							update_appearance(UPDATE_ICON)
 						else
 							station.open_animation()
 

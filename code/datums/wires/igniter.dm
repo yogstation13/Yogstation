@@ -28,18 +28,18 @@
 			A.safety = !A.safety
 			if(A.safety)
 				A.on = FALSE
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 		if(WIRE_POWER) // Toggle power
 			A.on = !A.on
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 
 /datum/wires/igniter/on_cut(wire, mend)
 	var/obj/machinery/igniter/A = holder
 	switch(wire)
 		if(WIRE_POWER) // Toggle power
 			A.on = FALSE
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 		if(WIRE_SAFETY) // Stop it from being turned on
 			A.on = FALSE
 			A.safety = FALSE
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)

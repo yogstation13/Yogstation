@@ -9,7 +9,7 @@
 	var/list/pet_monkey_names = list("Pun Pun", "Bubbles", "Mojo", "George", "Darwin", "Aldo", "Caeser", "Kanzi", "Kong", "Terk", "Grodd", "Mala", "Bojangles", "Coco", "Able", "Baker", "Scatter", "Norbit", "Travis")
 	var/list/rare_pet_monkey_names = list("Professor Bobo", "Deempisi's Revenge", "Furious George", "King Louie", "Dr. Zaius", "Jimmy Rustles", "Dinner", "Lanky")
 
-/mob/living/carbon/monkey/punpun/Initialize()
+/mob/living/carbon/monkey/punpun/Initialize(mapload)
 	Read_Memory()
 	if(ancestor_name)
 		name = ancestor_name
@@ -29,11 +29,11 @@
 	if(ancestor_chain > 1)
 		generate_fake_scars(rand(ancestor_chain, ancestor_chain * 4))
 	if(relic_hat)
-		equip_to_slot_or_del(new relic_hat, SLOT_HEAD)
+		equip_to_slot_or_del(new relic_hat, ITEM_SLOT_HEAD)
 	if(relic_mask)
-		equip_to_slot_or_del(new relic_mask, SLOT_WEAR_MASK)
+		equip_to_slot_or_del(new relic_mask, ITEM_SLOT_MASK)
 
-/mob/living/carbon/monkey/punpun/Life()
+/mob/living/carbon/monkey/punpun/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE, FALSE)
 		memory_saved = TRUE

@@ -10,7 +10,7 @@
 	icon_living = "crawling"
 	icon_dead = "dead"
 	health_doll_icon = "crawling"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 80
 	maxHealth = 220
 	health = 220
@@ -36,10 +36,9 @@
 	minbodytemp = 270
 	maxbodytemp = 350
 	unique_name = TRUE
+	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	var/list/gorilla_overlays[GORILLA_TOTAL_LAYERS]
 	var/oogas = 0
-
-	do_footstep = TRUE
 
 // Gorillas like to dismember limbs from unconscious mobs.
 // Returns null when the target is not an unconscious carbon mob; a list of limbs (possibly empty) otherwise.
@@ -50,7 +49,7 @@
 		if(C.stat >= UNCONSCIOUS)
 			for(var/X in C.bodyparts)
 				var/obj/item/bodypart/BP = X
-				if(BP.body_part != HEAD && BP.body_part != CHEST)
+				if(!(BP.body_part & (HEAD|CHEST)))
 					if(BP.dismemberable)
 						parts += BP
 			return parts

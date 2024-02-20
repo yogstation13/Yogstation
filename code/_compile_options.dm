@@ -20,9 +20,11 @@
 //#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
 #endif
 
+// If this is uncommented, we do a single run though of the game setup and tear down process with unit tests in between
+// #define UNIT_TESTS
+
 // If defined, we will NOT defer asset generation till later in the game, and will instead do it all at once, during initiialize
 //#define DO_NOT_DEFER_ASSETS
-//#define UNIT_TESTS			//Enables unit tests via TEST_RUN_PARAMETER
 
 #ifndef PRELOAD_RSC				//set to:
 #define PRELOAD_RSC	2			//	0 to allow using external resources or on-demand behaviour;

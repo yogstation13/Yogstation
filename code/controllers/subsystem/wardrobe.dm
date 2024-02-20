@@ -70,6 +70,18 @@ SUBSYSTEM_DEF(wardrobe)
 	msg += " ID:[inspect_delay] NI:[last_inspect_time + inspect_delay]"
 	return ..()
 
+/datum/controller/subsystem/wardrobe/get_metrics()
+	. = ..()
+	.["canon_minimum"] = length(canon_minimum)
+	.["order_list"] = length(order_list)
+	.["preloaded_stock"] = length(preloaded_stock)
+	.["cache_intensity"] = length(cache_intensity)
+	.["overflow_lienency"] = length(overflow_lienency)
+	.["stock_hit"] = length(stock_hit)
+	.["stock_miss"] = length(stock_miss)
+	.["inspect_delay"] = length(inspect_delay)
+	.["one_go_master"] = one_go_master
+
 /datum/controller/subsystem/wardrobe/fire(resumed=FALSE)
 	if(current_task != SSWARDROBE_INSPECT && world.time - last_inspect_time >= inspect_delay)
 		current_task = SSWARDROBE_INSPECT
@@ -305,17 +317,17 @@ SUBSYSTEM_DEF(wardrobe)
 /// Mind this
 /datum/controller/subsystem/wardrobe/proc/setup_callbacks()
 	var/list/play_with = new /list(WARDROBE_CALLBACK_REMOVE) // Turns out there's a global list of pdas. Let's work around that yeah?
-	play_with[WARDROBE_CALLBACK_INSERT] = CALLBACK(null, /obj/item/pda/proc/display_pda)
-	play_with[WARDROBE_CALLBACK_REMOVE] = CALLBACK(null, /obj/item/pda/proc/cloak_pda)
+	play_with[WARDROBE_CALLBACK_INSERT] = CALLBACK(null, TYPE_PROC_REF(/obj/item/pda, display_pda))
+	play_with[WARDROBE_CALLBACK_REMOVE] = CALLBACK(null, TYPE_PROC_REF(/obj/item/pda, cloak_pda))
 	initial_callbacks[/obj/item/pda] = play_with
 
 	play_with = new /list(WARDROBE_CALLBACK_REMOVE) // Don't want organs rotting on the job
-	play_with[WARDROBE_CALLBACK_INSERT] = CALLBACK(null, /obj/item/organ/proc/enter_wardrobe)
-	play_with[WARDROBE_CALLBACK_REMOVE] = CALLBACK(null, /obj/item/organ/proc/exit_wardrobe)
+	play_with[WARDROBE_CALLBACK_INSERT] = CALLBACK(null, TYPE_PROC_REF(/obj/item/organ, enter_wardrobe))
+	play_with[WARDROBE_CALLBACK_REMOVE] = CALLBACK(null, TYPE_PROC_REF(/obj/item/organ, exit_wardrobe))
 	initial_callbacks[/obj/item/organ] = play_with
 
 	play_with = new /list(WARDROBE_CALLBACK_REMOVE)
-	play_with[WARDROBE_CALLBACK_REMOVE] = CALLBACK(null, /obj/item/storage/box/survival/proc/wardrobe_removal)
+	play_with[WARDROBE_CALLBACK_REMOVE] = CALLBACK(null, TYPE_PROC_REF(/obj/item/storage/box/survival, wardrobe_removal))
 	initial_callbacks[/obj/item/storage/box/survival] = play_with
 
 /datum/controller/subsystem/wardrobe/proc/load_outfits()

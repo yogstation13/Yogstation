@@ -8,14 +8,14 @@
 	var/bot_type = "norm"
 	var/bot_amt = 10
 
-/obj/structure/hivebot_beacon/Initialize()
+/obj/structure/hivebot_beacon/Initialize(mapload)
 	. = ..()
 	var/datum/effect_system/fluid_spread/smoke/smoke = new
 	smoke.set_up(2, location = loc)
 	smoke.start()
 	visible_message(span_boldannounce("[src] warps in!"))
 	playsound(src.loc, 'sound/effects/empulse.ogg', 25, 1)
-	addtimer(CALLBACK(src, .proc/warpbots), rand(10, 600))
+	addtimer(CALLBACK(src, PROC_REF(warpbots)), rand(10, 600))
 
 /obj/structure/hivebot_beacon/proc/warpbots()
 	icon_state = "def_radar"

@@ -7,7 +7,7 @@
 /obj/item/balloon/proc/random_balloon_color()
 	return pick(COLOR_RED, COLOR_GREEN, COLOR_BLUE, COLOR_YELLOW, COLOR_CYAN, COLOR_PURPLE, COLOR_ORANGE)
 
-/obj/item/balloon/Initialize()
+/obj/item/balloon/Initialize(mapload)
 	. = ..()
 	color = random_balloon_color()
 
@@ -26,8 +26,14 @@
 	icon_state = "bal_bag"
 	var/uses = 7
 
+/obj/item/balloonbox/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
 /obj/item/balloonbox/attack_self(mob/user)
-	. = ..()
 	if(!uses)
 		to_chat(user, span_notice("Oh no! There are no balloons left!"))
 		qdel(src)
@@ -46,16 +52,19 @@
 		"Girafe" = image(icon = 'yogstation/icons/obj/objects.dmi', icon_state = "bal_girafe"),
 		)
 	var/choice = show_radial_menu(user, src, balloons, tooltips = TRUE)
-	var/obj/item/balloon/BB = new(get_turf(src))
-	var/image/I = balloons[choice]
-	BB.icon_state = I.icon_state
-	uses--
-	if(!uses)
-		to_chat(user, span_notice("Oh no! There are no balloons left!"))
-		qdel(src)
-	else
-		to_chat(user, span_notice("There is [uses] [uses == 1 ? "balloon" : "balloons"] left!"))
+	if(!check_menu(user))
+		return
+	if(choice)
+		var/obj/item/balloon/BB = new(get_turf(src))
+		var/image/I = balloons[choice]
+		BB.icon_state = I.icon_state
+		uses--
+		if(!uses)
+			to_chat(user, span_notice("Oh no! There are no balloons left!"))
+			qdel(src)
+		else
+			to_chat(user, span_notice("There is [uses] [uses == 1 ? "balloon" : "balloons"] left!"))
 
 /obj/item/balloonbox/examine(mob/user)
 	. = ..()
-	. = span_notice("It has [uses] uses left.")
+	. += span_notice("It has [uses] uses left.")

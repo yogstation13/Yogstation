@@ -6,20 +6,20 @@
 	..()
 	var/atom/movable/screen/using
 
-	using = new /atom/movable/screen/drop()
+	using = new /atom/movable/screen/drop(src)
 	using.icon = ui_style
 	using.screen_loc = ui_drone_drop
 	static_inventory += using
 
-	pull_icon = new /atom/movable/screen/pull()
+	pull_icon = new /atom/movable/screen/pull(src)
 	pull_icon.icon = ui_style
-	pull_icon.update_icon(mymob)
+	pull_icon.update_appearance(UPDATE_ICON)
 	pull_icon.screen_loc = ui_drone_pull
 	static_inventory += pull_icon
 
 	build_hand_slots()
 
-	using = new /atom/movable/screen/inventory()
+	using = new /atom/movable/screen/inventory(src)
 	using.name = "hand"
 	using.icon = ui_style
 	using.icon_state = "swap_1_m"
@@ -28,7 +28,7 @@
 	using.plane = HUD_PLANE
 	static_inventory += using
 
-	using = new /atom/movable/screen/inventory()
+	using = new /atom/movable/screen/inventory(src)
 	using.name = "hand"
 	using.icon = ui_style
 	using.icon_state = "swap_2"
@@ -37,12 +37,11 @@
 	using.plane = HUD_PLANE
 	static_inventory += using
 
-	zone_select = new /atom/movable/screen/zone_sel()
+	zone_select = new /atom/movable/screen/zone_sel(src)
 	zone_select.icon = ui_style
-	zone_select.update_icon(mymob)
+	zone_select.update_appearance(UPDATE_ICON)
 
-	lingchemdisplay = new /atom/movable/screen/ling/chems()
-	devilsouldisplay = new /atom/movable/screen/devil/soul_counter
+	devilsouldisplay = new /atom/movable/screen/devil/soul_counter(src)
 	infodisplay += devilsouldisplay
 
 

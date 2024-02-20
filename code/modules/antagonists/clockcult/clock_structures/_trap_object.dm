@@ -5,7 +5,7 @@
 	clockwork_desc = "A trap that shouldn't exist, and you should report this as a bug."
 	var/list/wired_to
 
-/obj/structure/destructible/clockwork/trap/Initialize()
+/obj/structure/destructible/clockwork/trap/Initialize(mapload)
 	. = ..()
 	wired_to = list()
 

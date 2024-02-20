@@ -31,13 +31,13 @@
 	state_open = TRUE
 	density = FALSE
 
-/obj/machinery/decontamination_unit/Initialize()
+/obj/machinery/decontamination_unit/Initialize(mapload)
 	. = ..()
 	decon = new(list(src), FALSE)
 	decon_emagged = new(list(src), FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/decontamination_unit/update_icon()
+/obj/machinery/decontamination_unit/update_icon_state()
 	. = ..()
 	icon_state = uv? "tube_on" : (state_open? "tube_open" : "tube")
 
@@ -47,12 +47,11 @@
 		to_pickup.forceMove(src)
 
 /obj/machinery/decontamination_unit/power_change()
-	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_mob()
 		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
-	update_icon()
+	return ..()
 
 /obj/machinery/decontamination_unit/proc/dump_mob()
 	var/turf/T = get_turf(src)
@@ -83,7 +82,7 @@
 	else
 		target.visible_message(span_warning("[user] starts shoving [target] into [src]!"), span_userdanger("[user] starts shoving you into [src]!"))
 
-	if(do_mob(user, target, 30))
+	if(do_after(user, 3 SECONDS, target))
 		if(target == user)
 			user.visible_message(span_warning("[user] slips into [src] and closes the door behind [user.p_them()]!"), "<span class=notice'>You slip into [src]'s cramped space and shut its door.</span>")
 		else
@@ -97,7 +96,7 @@
 		uv_cycles--
 		uv = TRUE
 		locked = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(uv_emagged)
 			radiation_pulse(src, 500, 5)
 			decon_emagged.start()
@@ -105,13 +104,13 @@
 				mob_occupant.adjustFireLoss(rand(15, 26))
 				mob_occupant.radiation += 500
 				mob_occupant.adjust_fire_stacks(2)
-				mob_occupant.IgniteMob()
+				mob_occupant.ignite_mob()
 			if(iscarbon(mob_occupant) && mob_occupant.stat < UNCONSCIOUS)
 				//Awake, organic and screaming
 				mob_occupant.emote("scream")
 		else
 			decon.start()
-		addtimer(CALLBACK(src, .proc/cook), 50)
+		addtimer(CALLBACK(src, PROC_REF(cook)), 50)
 	else
 		uv_cycles = initial(uv_cycles)
 		uv = FALSE
@@ -120,12 +119,12 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject_emagged), flick_waitTime)
+			addtimer(CALLBACK(src, PROC_REF(decon_eject_emagged)), flick_waitTime)
 		else
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject), flick_waitTime)
+			addtimer(CALLBACK(src, PROC_REF(decon_eject)), flick_waitTime)
 
 /obj/machinery/decontamination_unit/proc/decon_eject_emagged()
 	var/mob/living/mob_occupant = occupant
@@ -136,7 +135,7 @@
 	else
 		visible_message(span_warning("[src]'s gate creaks open with a loud whining noise."))
 	playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
-	for(var/obj/item/item in contents)	
+	for(var/obj/item/item in contents)
 		QDEL_NULL(item)
 	shock()
 	open_machine(0)
@@ -145,17 +144,17 @@
 
 /obj/machinery/decontamination_unit/proc/decon_eject()
 	var/mob/living/mob_occupant = occupant
-	say("The decontamination process is completed, thank you for your patient.")
+	say("The decontamination process is completed, thank you for your patience.")
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 	if(mob_occupant)
 		visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
 		mob_occupant.radiation = 0
 	else
 		visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
-	var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+	var/list/things_to_clear = list() //Done this way since using get_all_contents on the SSU itself would include circuitry and such.
 	if(occupant)
 		things_to_clear += occupant
-		things_to_clear += occupant.GetAllContents()
+		things_to_clear += occupant.get_all_contents()
 		dump_mob()
 	if(contents.len)
 		things_to_clear += contents
@@ -170,19 +169,20 @@
 	s.start()
 	electrocute_mob(user, src, src, 1, TRUE)
 
-/obj/machinery/decontamination_unit/emag_act(mob/user)
+/obj/machinery/decontamination_unit/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
-		return
+		return FALSE
 	if(!state_open)
 		if(!panel_open)
 			to_chat(user, span_warning("Open the panel first."))
-			return
+			return FALSE
 	else
-		return
+		return FALSE
 	to_chat(user, span_warning("You short out [src]'s safeties."))
 	uv_emagged = TRUE
 	obj_flags |= EMAGGED
+	return TRUE
 
 /obj/machinery/decontamination_unit/relaymove(mob/user)
 	if(locked)
@@ -224,7 +224,7 @@
 	user.visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
 		span_notice("You start kicking against the doors... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a thump from [src]."))
-	if(do_after(user, (breakout_time), src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
@@ -237,7 +237,7 @@
 	if(locked)
 		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
 			span_notice("You start kicking against the doors..."))
-		addtimer(CALLBACK(src, .proc/resist_open, user), 300)
+		addtimer(CALLBACK(src, PROC_REF(resist_open), user), 300)
 	else
 		open_machine()
 		dump_mob()
@@ -250,7 +250,7 @@
 /obj/machinery/decontamination_unit/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning("Its maintenance panel is smoking slightly.")
+		. += span_warning("The maintenance panel is smoking slightly.")
 	if(in_range(user, src) || isobserver(user))
 		if (contents.len >= max_n_of_items)
 			. += span_notice("The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.")
@@ -309,7 +309,7 @@
 				return FALSE
 
 		visible_message(span_notice("[user] inserts [I] into [src]."), span_notice("You load [I] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(!state_open && !uv)
@@ -393,7 +393,7 @@
 			var/mob/living/mob_occupant = occupant
 			if(!occupant && !contents.len)
 				return
-			else 
+			else
 				if(uv_emagged)
 					say("ERROR: Decontamination process is going over safety limit!!")
 					uv_cycles = 7
@@ -441,7 +441,7 @@
 					dispense(O, usr)
 					desired--
 			return TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/decontamination_unit/proc/load(obj/item/O)
 	if(ismob(O.loc))
@@ -458,7 +458,7 @@
 			O.forceMove(src)
 			return TRUE
 
-/obj/machinery/decontamination_unit/proc/dispense(obj/item/O, var/mob/M)
+/obj/machinery/decontamination_unit/proc/dispense(obj/item/O, mob/M)
 	if(!M.put_in_hands(O))
 		O.forceMove(get_turf(M))
 		adjust_item_drop_location(O)
@@ -489,4 +489,4 @@
 	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
 		return
 	locked = !locked
-	update_icon()
+	update_appearance(UPDATE_ICON)

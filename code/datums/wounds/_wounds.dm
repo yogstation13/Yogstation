@@ -108,8 +108,9 @@
   * * silent: Not actually necessary I don't think, was originally used for demoting wounds so they wouldn't make new messages, but I believe old_wound took over that, I may remove this shortly
   * * old_wound: If our new wound is a replacement for one of the same time (promotion or demotion), we can reference the old one just before it's removed to copy over necessary vars
   * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
+  * * attack_direction: For bloodsplatters, if relevant
   */
-/datum/wound/proc/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE)
+/datum/wound/proc/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE, attack_direction = null)
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.is_organic_limb())
 		qdel(src)
 		return
@@ -132,6 +133,7 @@
 	set_limb(L)
 	LAZYADD(victim.all_wounds, src)
 	LAZYADD(limb.wounds, src)
+	update_descriptions()
 	limb.update_wounds()
 	if(status_effect_type)
 		linked_status_effect = victim.apply_status_effect(status_effect_type, src)
@@ -159,8 +161,12 @@
 			playsound(L.owner, sound_effect, 70 + 20 * severity, TRUE)
 
 	if(!demoted)
-		wound_injury(old_wound)
+		wound_injury(old_wound, attack_direction = attack_direction)
 		second_wind()
+
+// Updates descriptive texts for the wound, in case it can get altered for whatever reason
+/datum/wound/proc/update_descriptions()
+	return
 
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
 /datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE)
@@ -190,16 +196,16 @@
   * * new_type- The TYPE PATH of the wound you want to replace this, like /datum/wound/slash/severe
   * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
   */
-/datum/wound/proc/replace_wound(new_type, smited = FALSE)
+/datum/wound/proc/replace_wound(new_type, smited = FALSE, attack_direction = attack_direction)
 	var/datum/wound/new_wound = new new_type
 	already_scarred = TRUE
 	remove_wound(replaced=TRUE)
-	new_wound.apply_wound(limb, old_wound = src, smited = smited)
+	new_wound.apply_wound(limb, old_wound = src, smited = smited, attack_direction = attack_direction)
 	. = new_wound
 	qdel(src)
 
 /// The immediate negative effects faced as a result of the wound
-/datum/wound/proc/wound_injury(datum/wound/old_wound = null)
+/datum/wound/proc/wound_injury(datum/wound/old_wound = null, attack_direction = null)
 	return
 
 /// Proc called to change the variable `limb` and react to the event.
@@ -281,7 +287,7 @@
 		return FALSE
 
 	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient
-	if(INTERACTING_WITH(user, victim))
+	if(DOING_INTERACTION_WITH_TARGET(user, victim))
 		to_chat(user, span_warning("You're already interacting with [victim]!"))
 		return TRUE
 
@@ -313,11 +319,13 @@
 	return (!QDELETED(src) && limb)
 
 /// When our parent bodypart is hurt
-/datum/wound/proc/receive_damage(wounding_type, wounding_dmg, wound_bonus)
+/datum/wound/proc/receive_damage(wounding_type, wounding_dmg, wound_bonus, attack_direction)
 	return
 
 /// Called from cryoxadone and pyroxadone when they're proc'ing. Wounds will slowly be fixed separately from other methods when these are in effect. crappy name but eh
 /datum/wound/proc/on_xadone(power)
+	if(!(wound_flags & ACCEPTS_CRYO))
+		return
 	cryo_progress += power
 	if(cryo_progress > 66 * severity)
 		qdel(src)
@@ -345,7 +353,7 @@
  * Returns BLOOD_FLOW_STEADY if we're not bleeding or there's no change (like piercing), BLOOD_FLOW_DECREASING if we're clotting (non-critical slashes, gauzed, coagulant, etc), BLOOD_FLOW_INCREASING if we're opening up (crit slashes/heparin)
  */
 /datum/wound/proc/get_bleed_rate_of_change()
-	if(blood_flow && HAS_TRAIT(victim, TRAIT_BLOODY_MESS))
+	if(blood_flow && HAS_TRAIT(victim, TRAIT_BLOODY_MESS) || HAS_TRAIT(victim, TRAIT_BLOODY_MESS_LITE))
 		return BLOOD_FLOW_INCREASING
 	return BLOOD_FLOW_STEADY
 

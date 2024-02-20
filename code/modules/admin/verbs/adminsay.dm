@@ -1,6 +1,4 @@
 /client/verb/cmd_admin_say(msg as text)
-	set hidden = TRUE
-
 	set category = "Misc.Unused"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
 	
@@ -14,7 +12,6 @@
 	webhook_send_asay(key_name(src), msg)
 
 	msg = sanitize(msg)
-	msg = to_utf8(msg)
 
 	mob.log_talk(msg, LOG_ADMIN_PRIVATE)
 

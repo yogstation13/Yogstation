@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 
 	var/ready = TRUE
 	var/replenishing = FALSE
@@ -21,10 +21,10 @@
 	var/message_cooldown
 	var/breakout_time = 600
 
-/obj/machinery/implantchair/Initialize()
+/obj/machinery/implantchair/Initialize(mapload)
 	. = ..()
 	open_machine()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/machinery/implantchair/ui_state(mob/user)
@@ -84,7 +84,7 @@
 			addtimer(CALLBACK(src,"set_ready"),injection_cooldown)
 	else
 		playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 25, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/implantchair/proc/implant_action(mob/living/M)
 	var/obj/item/I = new implant_type
@@ -99,16 +99,18 @@
 		visible_message(span_warning("[M] has been implanted by [src]."))
 		return TRUE
 
-/obj/machinery/implantchair/update_icon()
+/obj/machinery/implantchair/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(state_open)
 		icon_state += "_open"
 	if(occupant)
 		icon_state += "_occupied"
+
+/obj/machinery/implantchair/update_overlays()
+	. = ..()
 	if(ready)
-		add_overlay("ready")
-	else
-		cut_overlays()
+		. += "ready"
 
 /obj/machinery/implantchair/proc/replenish()
 	if(ready_implants < max_implants)
@@ -120,7 +122,7 @@
 
 /obj/machinery/implantchair/proc/set_ready()
 	ready = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/implantchair/container_resist(mob/living/user)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
@@ -128,7 +130,7 @@
 	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
 		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a metallic creaking from [src]."))
-	if(do_after(user, (breakout_time), src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 			return
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \

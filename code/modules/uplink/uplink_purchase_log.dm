@@ -46,6 +46,8 @@ GLOBAL_LIST(uplink_purchase_logs_by_key)	//assoc key = /datum/uplink_purchase_lo
 		. += span_tooltip_container("\[[UPE.icon_b64][show_key?"([owner])":""]<span class='tooltip_hover'><b>[UPE.name]</b><br>[UPE.spent_cost ? "[UPE.spent_cost] [currency]" : "[UPE.base_cost] [currency]<br>(Surplus)"]<br>[UPE.desc]</span>[(UPE.amount_purchased > 1) ? "x[UPE.amount_purchased]" : ""]\]")
 
 /datum/uplink_purchase_log/proc/LogPurchase(atom/A, datum/uplink_item/uplink_item, spent_cost)
+	if(SSticker.current_state >= GAME_STATE_FINISHED) // Don't log purchases past round-end
+		return
 	var/datum/uplink_purchase_entry/UPE
 	var/hash = hash_purchase(uplink_item, spent_cost)
 	if(purchase_log[hash])

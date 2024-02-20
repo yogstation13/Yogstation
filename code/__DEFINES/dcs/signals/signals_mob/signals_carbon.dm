@@ -34,6 +34,7 @@
 #define COMSIG_CARBON_ATTACH_LIMB "carbon_attach_limb"
 #define COMSIG_BODYPART_GAUZED "bodypart_gauzed" // from /obj/item/bodypart/proc/apply_gauze(/obj/item/stack/gauze)
 #define COMSIG_BODYPART_GAUZE_DESTROYED "bodypart_degauzed" // from [/obj/item/bodypart/proc/seep_gauze] when it runs out of absorption
+#define COMSIG_BODYPART_HEALED "bodypart_healed" // from /obj/item/bodypart/proc/heal_damage() (/mob/living/carbon/C, amount, damtype, def_zone)
 
 /// Called from update_health_hud, whenever a bodypart is being updated on the health doll
 #define COMSIG_BODYPART_UPDATING_HEALTH_HUD "bodypart_updating_health_hud"
@@ -111,7 +112,7 @@
 ///Called when a monkey turns into a human, from /mob/living/carbon/proc/finish_humanize(species)
 #define COMSIG_MONKEY_HUMANIZE "monkey_humanize"
 
-///From mob/living/carbon/human/suicide()
+///From mob/living/carbon/human/handle_suicide(); on yog: mob/living/carbon/human/verb/suicide()
 #define COMSIG_HUMAN_SUICIDE_ACT "human_suicide_act"
 
 ///from base of /mob/living/carbon/regenerate_limbs(): (excluded_limbs)
@@ -121,4 +122,4 @@
 #define COMSIG_CARBON_ITEM_GIVEN "carbon_item_given"
 
 /// from  base of mob/living/carbon/set_species(): (new_race)
-#define COMSIG_CARBON_SPECIESCHANGE "mob_carbon_specieschange" 
+#define COMSIG_CARBON_SPECIESCHANGE "mob_carbon_specieschange"

@@ -42,8 +42,9 @@
 	name = "incinerator chamber gas sensor"
 	id_tag = ATMOS_GAS_MONITOR_SENSOR_INCINERATOR
 
-/obj/machinery/air_sensor/update_icon()
-		icon_state = "gsensor[on]"
+/obj/machinery/air_sensor/update_icon_state()
+	. = ..()
+	icon_state = "gsensor[on]"
 
 /obj/machinery/air_sensor/process_atmos()
 	if(on)
@@ -60,7 +61,7 @@
 		var/total_moles = air_sample.total_moles()
 		if(total_moles)
 			for(var/gas_id in air_sample.get_gases())
-				var/gas_name = GLOB.meta_gas_info[gas_id][META_GAS_NAME]
+				var/gas_name = GLOB.gas_data.names[gas_id]
 				signal.data["gases"][gas_name] = air_sample.get_moles(gas_id) / total_moles * 100
 
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
@@ -71,13 +72,13 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/air_sensor/Initialize()
+/obj/machinery/air_sensor/Initialize(mapload)
 	. = ..()
-	SSair.atmos_machinery += src
+	SSair.start_processing_machine(src)
 	set_frequency(frequency)
 
 /obj/machinery/air_sensor/Destroy()
-	SSair.atmos_machinery -= src
+	SSair.stop_processing_machine(src)
 	SSradio.remove_object(src, frequency)
 	return ..()
 
@@ -112,7 +113,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 
 	light_color = LIGHT_COLOR_CYAN
 
-/obj/machinery/computer/atmos_control/Initialize()
+/obj/machinery/computer/atmos_control/Initialize(mapload)
 	. = ..()
 	GLOB.atmos_air_controllers += src
 	set_frequency(frequency)

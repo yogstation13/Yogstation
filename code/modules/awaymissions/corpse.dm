@@ -54,7 +54,8 @@
 		return
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
-
+	return TRUE
+	
 /obj/effect/mob_spawn/Initialize(mapload)
 	. = ..()
 	if(instant || (roundstart && (mapload || (SSticker && SSticker.current_state > GAME_STATE_SETTING_UP))))
@@ -135,7 +136,7 @@
 	mob_type = /mob/living/carbon/human
 	//Human specific stuff.
 	var/mob_species = null		//Set to make them a mutant race such as lizard or skeleton. Uses the datum typepath instead of the ID.
-	var/datum/outfit/outfit = /datum/outfit	//If this is a path, it will be instanced in Initialize()
+	var/datum/outfit/outfit = /datum/outfit	//If this is a path, it will be instanced in Initialize(mapload)
 	var/disable_pda = TRUE
 	var/disable_sensors = TRUE
 	//All of these only affect the ID that the outfit has placed in the ID slot
@@ -170,7 +171,7 @@
 	var/facial_hair_style
 	var/skin_tone
 
-/obj/effect/mob_spawn/human/Initialize()
+/obj/effect/mob_spawn/human/Initialize(mapload)
 	if(ispath(outfit))
 		outfit = new outfit()
 	if(!outfit)
@@ -219,23 +220,23 @@
 			if(istype(C))
 				C.sensor_mode = NO_SENSORS
 
-	var/obj/item/card/id/W = H.wear_id
-	if(W)
+	var/obj/item/card/id/id = H.get_idcard()
+	if(id && istype(id))
 		if(id_access)
 			for(var/jobtype in typesof(/datum/job))
 				var/datum/job/J = new jobtype
 				if(J.title == id_access)
-					W.access = J.get_access()
+					id.access = J.get_access()
 					break
 		if(id_access_list)
-			if(!islist(W.access))
-				W.access = list()
-			W.access |= id_access_list
+			if(!islist(id.access))
+				id.access = list()
+			id.access |= id_access_list
 		if(id_job)
-			W.assignment = id_job
-			W.originalassignment = id_job
-		W.registered_name = H.real_name
-		W.update_label()
+			id.assignment = id_job
+			id.originalassignment = id_job
+		id.registered_name = H.real_name
+		id.update_label()
 
 //Instant version - use when spawning corpses during runtime
 /obj/effect/mob_spawn/human/corpse
@@ -402,7 +403,7 @@
 
 /obj/effect/mob_spawn/human/bartender/alive/space
 	name = "space bartender sleeper"
-	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until NanoTrasen decided to move in. Time to mix drinks and change lives."
+	flavour_text = "You got this place from your old man, a bar in the middle of nowhere. Or at least, until Nanotrasen decided to move in. Time to mix drinks and change lives."
 	important_info = "Do not leave your post under any circumstances!"
 	outfit = /datum/outfit/spacebartender/space
 
@@ -453,6 +454,11 @@
 		return
 	H.dna.add_mutation(STONER)
 
+
+/obj/effect/mob_spawn/human/corpse/felinid
+	name = "Felinid"
+	mob_species = /datum/species/human/felinid
+
 /obj/effect/mob_spawn/human/fishing/alive
 	death = FALSE
 	roundstart = FALSE
@@ -479,6 +485,7 @@
 	suit = /obj/item/clothing/suit/fishing
 	shoes = /obj/item/clothing/shoes/fishing
 	id = /obj/item/card/id
+
 
 /////////////////Officers+Nanotrasen Security//////////////////////
 

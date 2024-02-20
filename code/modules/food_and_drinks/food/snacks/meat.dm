@@ -133,7 +133,7 @@
 	foodtype = GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
-	name = " meat (rotten)"
+	name = "meat (rotten)"
 	icon_state = "rottenmeat"
 	desc = "Halfway to becoming fertilizer for your garden."
 	filling_color = "#6B8E23"
@@ -142,7 +142,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
 	icon_state = "etherealmeat"
-	desc = "So shiny you feel like ingesting it might make you shine too"
+	desc = "So shiny you feel like ingesting it might make you shine too."
 	filling_color = "#97ee63"
 	list_reagents = list(/datum/reagent/consumable/liquidelectricity = 3, /datum/reagent/consumable/tinlux = 3)
 	tastes = list("pure electricity" = 2, "meat" = 1)
@@ -153,12 +153,12 @@
 
 /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	name = "synthmeat"
-	icon_state = "meat_old"
+	icon_state = "labmeatraw"
 	desc = "A synthetic slab of meat."
 	foodtype = RAW | MEAT //hurr durr chemicals were harmed in the production of this meat thus its non-vegan.
 
 /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat/MakeGrillable()
-	AddComponent(/datum/component/grillable,/obj/item/reagent_containers/food/snacks/meat/steak/synth, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/synth, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/meat/slab/meatproduct
 	name = "meat product"
@@ -178,6 +178,11 @@
 	name = "mouse meat"
 	desc = "A slab of mouse meat. Best not eat it raw."
 	foodtype = MICE
+
+/obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat
+	name = "fatty mouse meat"
+	desc = "A decadently fatty slab of mouse meat. Best not eat it raw."
+	foodtype = MICE | JUNKFOOD
 
 /obj/item/reagent_containers/food/snacks/meat/slab/corgi
 	name = "corgi meat"
@@ -460,7 +465,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
 	name = "synthsteak"
 	desc = "A synthetic meat steak. It doesn't look quite right, now does it?"
-	icon_state = "meatsteak_old"
+	icon_state = "labmeatcooked"
 	tastes = list("meat" = 4, "cryoxandone" = 1)
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////

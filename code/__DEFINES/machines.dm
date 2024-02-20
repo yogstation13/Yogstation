@@ -114,6 +114,13 @@
 #define SUPERMATTER_EMERGENCY 5		// Integrity < 25%
 #define SUPERMATTER_DELAMINATING 6	// Pretty obvious.
 
+#define HYPERTORUS_INACTIVE 0		// No or minimal energy
+#define HYPERTORUS_NOMINAL 1		// Normal operation
+#define HYPERTORUS_WARNING 2		// Integrity damaged
+#define HYPERTORUS_DANGER 3			// Integrity < 50%
+#define HYPERTORUS_EMERGENCY 4		// Integrity < 25%
+#define HYPERTORUS_MELTING 5		// Pretty obvious.
+
 //Nuclear bomb stuff
 #define NUKESTATE_INTACT		5
 #define NUKESTATE_UNSCREWED		4
@@ -141,3 +148,6 @@
 //cloning defines. These are flags.
 #define CLONING_SUCCESS (1<<0)
 #define CLONING_DELETE_RECORD (1<<1)
+
+
+#define CLICKSOUND_INTERVAL (0.1 SECONDS)	//clicky noises, how much time needed in between clicks on the machine for the sound to play on click again.

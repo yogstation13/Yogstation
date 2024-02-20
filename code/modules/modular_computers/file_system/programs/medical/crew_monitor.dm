@@ -8,7 +8,7 @@
 	requires_ntnet = FALSE
 	transfer_access = ACCESS_MEDICAL
 	available_on_ntnet = TRUE
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_INTEGRATED | PROGRAM_PDA
+	usage_flags = PROGRAM_ALL
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosCrewMonitor"
@@ -25,7 +25,7 @@
 	clear_signals()
 
 /datum/computer_file/program/crew_monitor/proc/set_signals()
-	RegisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE, .proc/update_overlay, override = TRUE)
+	RegisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE, PROC_REF(update_overlay), override = TRUE)
 
 /datum/computer_file/program/crew_monitor/proc/clear_signals()
 	UnregisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE)
@@ -56,7 +56,7 @@
 		ui_header = "health_green.gif"
 
 	if(istype(computer))
-		computer.update_icon()
+		computer.update_appearance(UPDATE_ICON)
 
 /datum/computer_file/program/crew_monitor/ui_data(mob/user)
 	var/list/data = get_header_data()

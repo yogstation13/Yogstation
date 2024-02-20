@@ -1,7 +1,7 @@
 /mob/living/simple_animal/pet
 	icon = 'icons/mob/pets.dmi'
 	mob_size = MOB_SIZE_SMALL
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	blood_volume = BLOOD_VOLUME_GENERIC
 	var/unique_pet = FALSE // if the mob can be renamed
 	var/obj/item/clothing/neck/petcollar/pcollar
@@ -67,7 +67,7 @@
 		if(INTENT_HARM)
 			wuv(M, FALSE)
 
-/mob/living/simple_animal/pet/Initialize()
+/mob/living/simple_animal/pet/Initialize(mapload)
 	. = ..()
 	if(pcollar)
 		pcollar = new(src)

@@ -13,7 +13,7 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "splats"
 	density = FALSE
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	ventcrawler = VENTCRAWLER_ALWAYS
 	gold_core_spawnable = FRIENDLY_SPAWN
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
@@ -45,7 +45,7 @@
 		if(L.mob_size > MOB_SIZE_TINY)
 			playsound(src, stepped_sound, 100, 1)
 
-/mob/living/simple_animal/pet/axolotl/Life()
+/mob/living/simple_animal/pet/axolotl/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!stat && !buckled && !client)
 		if(prob(1))

@@ -45,6 +45,8 @@
 	///whether empty alarm sound varies
 	var/empty_alarm_vary = TRUE
 
+	///Hides the bolt icon.
+	var/show_bolt_icon = TRUE
 	///Whether the gun will spawn loaded with a magazine
 	var/spawnwithmagazine = TRUE
 	///Compatible magazines with the gun
@@ -120,54 +122,7 @@
 	max_attachments = 4
 	recoil = 0.3
 
-/obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
-	if(feedback_types[type])
-		feedback_commence(type, feedback_types[type])
-
-/obj/item/gun/ballistic/proc/feedback_commence(type,frames)
-	if(type && frames)
-		cut_overlays()
-		if (suppressed)
-			add_overlay("[icon_state]_[suppressed.icon_state]")
-		if(type == "fire")
-			if(!chambered)
-				return
-			if (magazine)
-				if (special_mags)
-					add_overlay("[icon_state]_mag_[initial(magazine.icon_state)]")
-					if (!magazine.ammo_count())
-						add_overlay("[icon_state]_mag_empty")
-				else
-					add_overlay("[icon_state]_mag")
-					var/capacity_number = 0
-					switch(get_ammo() / magazine.max_ammo)
-						if(0.2 to 0.39)
-							capacity_number = 20
-						if(0.4 to 0.59)
-							capacity_number = 40
-						if(0.6 to 0.79)
-							capacity_number = 60
-						if(0.8 to 0.99)
-							capacity_number = 80
-						if(1.0)
-							capacity_number = 100
-					if (capacity_number)
-						add_overlay("[icon_state]_mag_[capacity_number]")
-			feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
-			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
-			sleep(frames)
-			update_icon()
-			return
-		if (bolt_type == BOLT_TYPE_LOCKING)
-			if(type != "slide*")
-				add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
-			if(type == "slide_close") // cause the gun to move clockwise if slide is closed
-				DabAnimation(speed = feedback_recoil_speed, angle = ((rand(20,25)) * feedback_recoil_amount), direction = 2)
-		add_overlay("[feedback_original_icon_base]_[type]") // actual animation
-		sleep(frames)
-		update_icon()
-
-/obj/item/gun/ballistic/Initialize()
+/obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
 	feedback_original_icon_base = icon_state
 	if (bolt_type == BOLT_TYPE_LOCKING)
@@ -177,7 +132,7 @@
 		feedback_firing_icon = feedback_original_icon_base
 	if (!spawnwithmagazine)
 		bolt_locked = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if (!magazine)
 		if (!starting_mag_type)
@@ -185,57 +140,95 @@
 		else
 			magazine = new starting_mag_type(src)
 	chamber_round()
-	update_icon()
-	
+	update_appearance(UPDATE_ICON)
 
-/obj/item/gun/ballistic/update_icon()
-	if (QDELETED(src))
+/obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
+	if(feedback_types[type])
+		feedback_commence(type, feedback_types[type])
+
+/obj/item/gun/ballistic/proc/feedback_commence(type, frames)
+	if(!type || !frames)
 		return
-	..()
+	update_appearance(UPDATE_OVERLAYS)
+	var/list/added_overlays = list()
+	if(type == "fire")
+		added_overlays += feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
+		DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
+	else if(bolt_type == BOLT_TYPE_LOCKING)
+		if(type == "slide_close") // cause the gun to move clockwise if slide is closed
+			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(20,25)) * feedback_recoil_amount), direction = 2)
+	if(type != "fire")
+		added_overlays += add_overlay("[feedback_original_icon_base]_[type]") // actual animation
+	sleep(frames)
+	cut_overlays(added_overlays)
+	update_appearance(UPDATE_OVERLAYS)
+
+/obj/item/gun/ballistic/update_icon_state()
+	if(QDELETED(src))
+		return
+	. = ..()
 	if(current_skin)
 		icon_state = "[unique_reskin[current_skin]][sawn_off ? "_sawn" : ""]"
 	else
 		icon_state = "[initial(icon_state)][sawn_off ? "_sawn" : ""]"
-	cut_overlays()
-	if (bolt_type == BOLT_TYPE_LOCKING)
-		add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
-	if (bolt_type == BOLT_TYPE_OPEN && bolt_locked)
-		add_overlay("[icon_state]_bolt")
+
+/obj/item/gun/ballistic/update_overlays()
+	if(QDELETED(src))
+		return
+	. = ..()
+	if(show_bolt_icon)
+		if (bolt_type == BOLT_TYPE_LOCKING)
+			. += "[icon_state]_bolt[bolt_locked ? "_locked" : ""]"
+		if (bolt_type == BOLT_TYPE_OPEN && bolt_locked)
+			. += "[icon_state]_bolt"
+
 	if (suppressed)
-		add_overlay("[icon_state]_[suppressed.icon_state]")
+		. += "[icon_state]_[suppressed.icon_state]"
 	if (enloudened)
-		add_overlay("[icon_state]_[enloudened.icon_state]")
+		. += "[icon_state]_[enloudened.icon_state]"
+
 	if(!chambered && empty_indicator)
-		add_overlay("[icon_state]_empty")
-	if (magazine)
-		if (special_mags)
-			add_overlay("[icon_state]_mag_[initial(magazine.icon_state)]")
-			if (!magazine.ammo_count())
-				add_overlay("[icon_state]_mag_empty")
-		else
-			add_overlay("[icon_state]_mag")
-			var/capacity_number = 0
-			switch(get_ammo() / magazine.max_ammo)
-				if(0.2 to 0.39)
-					capacity_number = 20
-				if(0.4 to 0.59)
-					capacity_number = 40
-				if(0.6 to 0.79)
-					capacity_number = 60
-				if(0.8 to 0.99)
-					capacity_number = 80
-				if(1.0)
-					capacity_number = 100
-			if (capacity_number)
-				add_overlay("[icon_state]_mag_[capacity_number]")
+		. += "[icon_state]_empty"
+
+	if(!magazine || internal_magazine || !mag_display)
+		return
+
+	if(special_mags)
+		. += "[icon_state]_mag_[initial(magazine.icon_state)]"
+		if(mag_display_ammo && !magazine.ammo_count())
+			. += "[icon_state]_mag_empty"
+		return
+
+	. += "[icon_state]_mag"
+	if(!mag_display_ammo)
+		return
+
+	var/capacity_number = 0
+	switch(get_ammo() / magazine.max_ammo)
+		if(1 to INFINITY) //cause we can have one in the chamber.
+			capacity_number = 100
+		if(0.8 to 1)
+			capacity_number = 80
+		if(0.6 to 0.8)
+			capacity_number = 60
+		if(0.4 to 0.6)
+			capacity_number = 40
+		if(0.2 to 0.4)
+			capacity_number = 20
+	if (capacity_number)
+		. += "[icon_state]_mag_[capacity_number]"
 
 
 /obj/item/gun/ballistic/process_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
-	if(!semi_auto && from_firing)
-		return
 	var/obj/item/ammo_casing/AC = chambered //Find chambered round
+	if(!semi_auto && from_firing)
+		if(istype(AC) && CHECK_BITFIELD(AC.casing_flags, CASINGFLAG_FORCE_CLEAR_CHAMBER))
+			chambered = null
+		return
 	if(istype(AC)) //there's a chambered round
-		if(casing_ejector || !from_firing)
+		if(CHECK_BITFIELD(AC.casing_flags, CASINGFLAG_FORCE_CLEAR_CHAMBER) && from_firing)
+			chambered = null
+		else if(casing_ejector || !from_firing)
 			AC.forceMove(drop_location()) //Eject casing onto ground.
 			AC.bounce_away(TRUE)
 			chambered = null
@@ -277,7 +270,7 @@
 	else
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 		feedback("slide_close")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Drops the bolt from a locked position
 /obj/item/gun/ballistic/proc/drop_bolt(mob/user = null)
@@ -287,7 +280,7 @@
 	bolt_locked = FALSE
 	feedback("slide_close")
 	chamber_round()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Handles all the logic needed for magazine insertion
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
@@ -304,7 +297,7 @@
 		feedback("mag_in")
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 			chamber_round(TRUE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	else
 		to_chat(user, span_warning("You cannot seem to get \the [src] out of your hands!"))
@@ -336,10 +329,10 @@
 	else
 		magazine = null
 	user.put_in_hands(old_mag)
-	old_mag.update_icon()
+	old_mag.update_appearance(UPDATE_ICON)
 	if (display_message)
 		to_chat(user, span_notice("You pull the [magazine_wording] out of \the [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/can_shoot()
 	return chambered
@@ -364,7 +357,7 @@
 				chambered.forceMove(drop_location())
 				chambered = null
 			var/can_reload_say = !get_ammo(FALSE, FALSE)
-			var/num_loaded = magazine.attackby(A, user, params, TRUE)
+			var/num_loaded = magazine.attempt_load(A, user, params, TRUE)
 			if (num_loaded)
 				to_chat(user, span_notice("You load [num_loaded] [cartridge_wording]\s into \the [src]."))
 				playsound(src, load_sound, load_sound_volume, load_sound_vary)
@@ -372,8 +365,8 @@
 					user.say(reload_say, forced = "reloading")
 				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
 					chamber_round()
-				A.update_icon()
-				update_icon()
+				A.update_appearance(UPDATE_ICON)
+				update_appearance(UPDATE_ICON)
 			return
 	if(istype(A, /obj/item/suppressor))
 		var/obj/item/suppressor/S = A
@@ -415,12 +408,11 @@
 ///Installs a new suppressor, assumes that the suppressor is already in the contents of src
 /obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/S)
 	suppressed = S
-	w_class += S.w_class //so pistols do not fit in pockets when suppressed
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/proc/install_enloudener(obj/item/enloudener/E)
 	enloudened = E
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/AltClick(mob/user)
 	if (unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
@@ -432,18 +424,16 @@
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [suppressed.name] from \the [src]."))
 			user.put_in_hands(suppressed)
-			w_class -= suppressed.w_class
 			suppressed = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		if(enloudened && can_unsuppress)
 			if(!user.is_holding(src))
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [enloudened.name] from \the [src]."))
 			user.put_in_hands(enloudened)
-			w_class -= enloudened.w_class
 			enloudened = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 
 ///Prefire empty checks for the bolt drop
@@ -452,7 +442,7 @@
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 			bolt_locked = TRUE
 			playsound(src, bolt_drop_sound, bolt_drop_sound_volume)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 ///postfire empty checks for bolt locking and sound alarms
 /obj/item/gun/ballistic/proc/postfire_empty_checks()
@@ -460,12 +450,12 @@
 		if (!alarmed && empty_alarm)
 			playsound(src, empty_alarm_sound, empty_alarm_volume, empty_alarm_vary)
 			alarmed = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		if (bolt_type == BOLT_TYPE_LOCKING)
 			if(!bolt_locked)
 				feedback("slide_open")
 			bolt_locked = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/afterattack()
 	prefire_empty_checks()
@@ -496,7 +486,7 @@
 		if (num_unloaded)
 			to_chat(user, span_notice("You unload [num_unloaded] [cartridge_wording]\s from [src]."))
 			playsound(user, eject_sound, eject_sound_volume, eject_sound_vary)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("[src] is empty!"))
 		return
@@ -574,7 +564,7 @@
 			var/turf/target = get_ranged_target_turf(user, turn(user.dir, 180), BRAINS_BLOWN_THROW_RANGE)
 			B.Remove(user)
 			B.forceMove(T)
-			var/datum/callback/gibspawner = CALLBACK(GLOBAL_PROC, /proc/spawn_atom_to_turf, /obj/effect/gibspawner/generic, B, 1, FALSE, user)
+			var/datum/callback/gibspawner = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(spawn_atom_to_turf), /obj/effect/gibspawner/generic, B, 1, FALSE, user)
 			B.throw_at(target, BRAINS_BLOWN_THROW_RANGE, BRAINS_BLOWN_THROW_SPEED, callback=gibspawner)
 			return(BRUTELOSS)
 		else
@@ -591,7 +581,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	/obj/item/circular_saw,
 	/obj/item/gun/energy/plasmacutter,
 	/obj/item/melee/transforming/energy,
-	/obj/item/twohanded/required/chainsaw,
+	/obj/item/melee/chainsaw,
 	/obj/item/nullrod/claymore/chainsaw_sword,
 	/obj/item/nullrod/chainsaw,
 	/obj/item/mounted_chainsaw)))
@@ -626,7 +616,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		slot_flags |= ITEM_SLOT_BELT		//but you can wear it on your belt (poorly concealed under a trenchcoat, ideally)
 		recoil = SAWN_OFF_RECOIL
 		sawn_off = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 
 ///used for sawing guns, causes the gun to fire without the input of the user

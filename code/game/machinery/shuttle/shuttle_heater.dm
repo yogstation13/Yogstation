@@ -28,14 +28,14 @@
 
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 
-	var/gas_type = /datum/gas/plasma
+	var/gas_type = GAS_PLASMA
 	var/efficiency_multiplier = 1
 	var/gas_capacity = 0
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater/New()
 	. = ..()
 	GLOB.custom_shuttle_machines += src
-	SetInitDirections()
+	set_init_directions()
 	update_adjacent_engines()
 	updateGasStats()
 
@@ -46,27 +46,27 @@
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater/on_construction()
 	..(dir, dir)
-	SetInitDirections()
+	set_init_directions()
 	update_adjacent_engines()
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater/default_change_direction_wrench(mob/user, obj/item/I)
 	if(!..())
 		return FALSE
-	SetInitDirections()
+	set_init_directions()
 	var/obj/machinery/atmospherics/node = nodes[1]
 	if(node)
 		node.disconnect(src)
 		nodes[1] = null
 	if(!parents[1])
 		return
-	nullifyPipenet(parents[1])
+	nullify_pipenet(parents[1])
 
-	atmosinit()
+	atmos_init()
 	node = nodes[1]
 	if(node)
-		node.atmosinit()
-		node.addMember(src)
-	build_network()
+		node.atmos_init()
+		node.add_member(src)
+	SSair.add_to_rebuild_queue(src)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater/RefreshParts()
@@ -91,15 +91,13 @@
 		return
 	air_contents.set_volume(gas_capacity)
 	air_contents.set_temperature(T20C)
-	if(gas_type)
-		air_contents.set_moles(gas_type)
 
-/obj/machinery/atmospherics/components/unary/shuttle/heater/proc/hasFuel(var/required)
+/obj/machinery/atmospherics/components/unary/shuttle/heater/proc/hasFuel(required)
 	var/datum/gas_mixture/air_contents = airs[1]
 	var/moles = air_contents.total_moles()
 	return moles >= required
 
-/obj/machinery/atmospherics/components/unary/shuttle/heater/proc/consumeFuel(var/amount)
+/obj/machinery/atmospherics/components/unary/shuttle/heater/proc/consumeFuel(amount)
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.remove(amount)
 	return
@@ -230,7 +228,7 @@
 
 /obj/machinery/power/engine_capacitor_bank/emp_act(severity)
 	. = ..()
-	stored_power = rand(0, stored_power)
+	stored_power = stored_power * (0.9**(severity)) // exponential decay based on EMP severity, heavy EMPs (10 severity) reduce to 35% power
 
 /obj/machinery/power/engine_capacitor_bank/escape_pod
 	name = "emergency thruster capacitor bank"

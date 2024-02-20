@@ -128,6 +128,16 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
+"ei" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/oven,
+/turf/open/floor/plasteel/showroomfloor,
+/area/shuttle/abandoned)
 "fk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -156,12 +166,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"gD" = (
-/obj/structure/shuttle/engine/huge{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
 "gE" = (
 /obj/structure/sign/departments/minsky/engineering/engineering{
@@ -253,6 +257,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/table,
 /turf/open/floor/carpet/black,
+/area/shuttle/abandoned)
+"kQ" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder{
+	pixel_y = 6
+	},
+/obj/item/storage/box/mixedcubes,
+/turf/open/floor/plasteel/showroomfloor,
+/area/shuttle/abandoned)
+"kW" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/welding,
+/obj/item/wrench,
+/obj/item/storage/belt/utility/full/engi,
+/obj/item/construction/rcd/loaded,
+/turf/open/floor/plating,
 /area/shuttle/abandoned)
 "lc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -412,6 +432,12 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned)
+"qp" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/abandoned)
 "qq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/shuttle,
@@ -498,8 +524,32 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned)
-"tr" = (
-/turf/open/floor/plating/airless,
+"ue" = (
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/item/storage/fancy/egg_box{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "uk" = (
 /obj/structure/table,
@@ -567,30 +617,6 @@
 "vW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/shuttle/abandoned)
-"vZ" = (
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 6
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -688,6 +714,26 @@
 	pixel_y = 2
 	},
 /turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"zF" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 12
+	},
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "zG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -936,13 +982,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
-"IA" = (
-/obj/structure/table,
-/obj/item/clothing/glasses/welding,
-/obj/item/wrench,
-/obj/item/storage/belt/utility/full/engi,
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
 "IZ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -1019,25 +1058,6 @@
 	pixel_y = 4
 	},
 /turf/open/floor/carpet/black,
-/area/shuttle/abandoned)
-"Mw" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/box/mixedcubes,
-/obj/item/storage/box/fancy/egg_box{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/kitchen/knife,
-/turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "Mz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -1246,7 +1266,7 @@
 "Sd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned)
 "Sg" = (
@@ -1366,21 +1386,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"Vc" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 12
-	},
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/showroomfloor,
-/area/shuttle/abandoned)
 "Vy" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -1424,13 +1429,6 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"VJ" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "VL" = (
 /obj/machinery/syndicatebomb/training{
@@ -1582,9 +1580,9 @@
 
 (1,1,1) = {"
 aa
-tr
-tr
-gD
+aa
+aa
+aa
 aa
 aa
 EI
@@ -1592,16 +1590,16 @@ PE
 EI
 aa
 aa
-tr
-tr
-gD
+aa
+aa
+aa
 aa
 "}
 (2,1,1) = {"
 aa
-tr
-tr
-tr
+aa
+aa
+aa
 aa
 Ix
 EI
@@ -1609,16 +1607,16 @@ wb
 BO
 sw
 aa
-tr
-tr
-tr
+aa
+aa
+aa
 aa
 "}
 (3,1,1) = {"
 EI
-tr
-tr
-tr
+qp
+qp
+qp
 EI
 Fb
 EI
@@ -1626,9 +1624,9 @@ fJ
 EI
 EI
 EI
-tr
-tr
-tr
+qp
+qp
+qp
 bk
 "}
 (4,1,1) = {"
@@ -1713,7 +1711,7 @@ gE
 bk
 DV
 yT
-IA
+kW
 EI
 "}
 (9,1,1) = {"
@@ -1747,7 +1745,7 @@ lc
 Uk
 SD
 KJ
-VJ
+kQ
 EI
 "}
 (11,1,1) = {"
@@ -1762,7 +1760,7 @@ Zl
 EI
 EI
 EI
-Mw
+ei
 hU
 cH
 dN
@@ -1781,7 +1779,7 @@ ir
 EI
 Eq
 hU
-Vc
+zF
 dN
 "}
 (13,1,1) = {"
@@ -1798,7 +1796,7 @@ Fd
 EI
 HC
 zG
-vZ
+ue
 EI
 "}
 (14,1,1) = {"

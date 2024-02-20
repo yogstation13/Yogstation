@@ -15,6 +15,9 @@
 	if(prob(8) && meowcount)
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
 		meowcount--
+	if(iscatperson(M))
+		M.set_drugginess(50)
+		M.adjustOrganLoss(ORGAN_SLOT_EARS, -4*REM)
 	return ..()
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_add(mob/living/carbon/human/M)
@@ -65,9 +68,9 @@
 	taste_description = "pancake syrup"
 	glass_name = "glass of candy corn liquor"
 	glass_desc = "Good for your Imagination."
-	var/hal_amt = 4
+	var/hal_amt = 4 SECONDS
 
 /datum/reagent/consumable/ethanol/whiskey/candycorn/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
-		M.hallucination += hal_amt //conscious dreamers can be treasurers to their own currency
+		M.adjust_hallucinations(hal_amt) //conscious dreamers can be treasurers to their own currency
 	..()

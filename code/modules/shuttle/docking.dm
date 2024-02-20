@@ -115,14 +115,13 @@
 		var/area/old_area = oldT.loc
 		var/move_mode = old_area.beforeShuttleMove(shuttle_areas)											//areas
 
-		var/list/old_contents = oldT.contents
-		for(var/k in 1 to old_contents.len)
+		for(var/atom/movable/moving_atom as anything in oldT.contents)
 			CHECK_TICK
-			var/atom/movable/moving_atom = old_contents[k]
 			if(moving_atom.loc != oldT) //fix for multi-tile objects
 				continue
 			move_mode = moving_atom.beforeShuttleMove(newT, rotation, move_mode, src)						//atoms
 
+		oldT.beforeShuttleMove(newT)
 		move_mode = oldT.fromShuttleMove(newT, move_mode)													//turfs
 		move_mode = newT.toShuttleMove(oldT, move_mode, src)												//turfs
 
@@ -132,6 +131,7 @@
 		old_turfs[oldT] = move_mode
 
 /obj/docking_port/mobile/proc/takeoff(list/old_turfs, list/new_turfs, list/moved_atoms, rotation, movement_direction, old_dock, area/underlying_old_area)
+
 	for(var/i in 1 to old_turfs.len)
 		var/turf/oldT = old_turfs[i]
 		var/turf/newT = new_turfs[i]
@@ -205,3 +205,9 @@
 		var/turf/oldT = moved_atoms[moved_object]
 		moved_object.lateShuttleMove(oldT, movement_force, movement_direction)
 
+/obj/docking_port/mobile/proc/reset_air()
+	var/list/turfs = return_ordered_turfs(x, y, z, dir)
+	for(var/i in 1 to length(turfs))
+		var/turf/open/T = turfs[i]
+		if(istype(T))
+			T.air.copy_from_turf(T)

@@ -159,7 +159,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			return TRUE
 
 
-/datum/latejoin_menu/proc/check_latejoin_eligibility(mob/dead/new_player/owner, var/use_chat = FALSE)
+/datum/latejoin_menu/proc/check_latejoin_eligibility(mob/dead/new_player/owner, use_chat = FALSE)
 	if(!SSticker?.IsRoundInProgress())
 		if (use_chat)
 			to_chat(owner, span_notice("The round is either not ready, or has already finished..."))

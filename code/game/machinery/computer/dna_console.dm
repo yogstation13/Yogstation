@@ -34,6 +34,11 @@
 /// Flag for the mutation ref search system. Search will include advanced injector mutations
 #define SEARCH_ADV_INJ 8
 
+#define ENZYME_COPY_BASE_COOLDOWN (60 SECONDS)
+
+#define RAD_PULSE_UNIQUE_IDENTITY "ui"
+#define RAD_PULSE_UNIQUE_FEATURES "uf"
+
 /obj/machinery/computer/scan_consolenew
 	name = "DNA Console"
 	desc = "Scan DNA."
@@ -46,6 +51,7 @@
 	idle_power_usage = 10
 	active_power_usage = 400
 	light_color = LIGHT_COLOR_BLUE
+	clicksound = null
 
 	/// Link to the techweb's stored research. Used to retrieve stored mutations
 	var/datum/techweb/stored_research
@@ -89,7 +95,11 @@
 	var/rad_pulse_index = 0
 	/// World time when the enzyme pulse should complete
 	var/rad_pulse_timer = 0
-
+	/// Which dna string to edit with the pulse
+	var/rad_pulse_type
+	/// Cooldown for the genetic makeup transfer actions.
+	COOLDOWN_DECLARE(enzyme_copy_timer)
+	
 	/// Used for setting tgui data - Whether the connected DNA Scanner is usable
 	var/can_use_scanner = FALSE
 	/// Used for setting tgui data - Whether the current DNA Scanner occupant is viable for genetic modification
@@ -138,7 +148,7 @@
 
 	// This is for pulsing the UI element with radiation as part of genetic makeup
 	// If rad_pulse_index > 0 then it means we're attempting a rad pulse
-	if((rad_pulse_index > 0) && (rad_pulse_timer <= world.time))
+	if(((rad_pulse_index > 0) && (rad_pulse_timer <= world.time) && (rad_pulse_type == RAD_PULSE_UNIQUE_IDENTITY || rad_pulse_type == RAD_PULSE_UNIQUE_FEATURES)))
 		rad_pulse()
 		return
 
@@ -181,7 +191,7 @@
 
 	return ..()
 
-/obj/machinery/computer/scan_consolenew/Initialize()
+/obj/machinery/computer/scan_consolenew/Initialize(mapload)
 	. = ..()
 
 	// Connect with a nearby DNA Scanner on init
@@ -289,7 +299,8 @@
 		data["subjectRads"] = scanner_occupant.radiation/(RAD_MOB_SAFE/100)
 		data["subjectEnzymes"] = scanner_occupant.dna.unique_enzymes
 		data["isMonkey"] = ismonkey(scanner_occupant)
-		data["subjectUNI"] = scanner_occupant.dna.uni_identity
+		data["subjectUNI"] = scanner_occupant.dna.unique_identity
+		data["subjectUF"] = scanner_occupant.dna.unique_features
 		data["storage"]["occupant"] = tgui_occupant_mutations
 		//data["subjectMutations"] = tgui_occupant_mutations
 	else
@@ -340,7 +351,7 @@
 
 	return data
 
-/obj/machinery/computer/scan_consolenew/ui_act(action, var/list/params)
+/obj/machinery/computer/scan_consolenew/ui_act(action, list/params)
 	if(..())
 		return TRUE
 
@@ -489,12 +500,12 @@
 			//  X to allow highlighting logic to work on the tgui interface.
 			if(newgene == "X")
 				var/defaultseq = scanner_occupant.dna.default_mutation_genes[path]
-				defaultseq = copytext_char(defaultseq, 1, genepos) + newgene + copytext_char(defaultseq, genepos + 1)
+				defaultseq = copytext(defaultseq, 1, genepos) + newgene + copytext(defaultseq, genepos + 1)
 				scanner_occupant.dna.default_mutation_genes[path] = defaultseq
 
 			// Copy genome to scanner occupant and do some basic mutation checks as
 			//  we've increased the occupant rads
-			sequence = copytext_char(sequence, 1, genepos) + newgene + copytext_char(sequence, genepos + 1)
+			sequence = copytext(sequence, 1, genepos) + newgene + copytext(sequence, genepos + 1)
 			scanner_occupant.dna.mutation_index[path] = sequence
 			scanner_occupant.radiation += RADIATION_STRENGTH_MULTIPLIER/connected_scanner.damage_coeff
 			scanner_occupant.domutcheck()
@@ -594,6 +605,9 @@
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
 				return
+			if(!HM.allow_cloning)
+				say("ERROR: This mutation is anomalous and cannot be synthesized.")
+				return
 
 			// Create a new DNA Injector and add the appropriate mutations to it
 			var/obj/item/dnainjector/activator/I = new /obj/item/dnainjector/activator(loc)
@@ -654,11 +668,14 @@
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
 				return
+			if(!HM.allow_cloning)
+				say("ERROR: This mutation is anomalous, and cannot be saved.")
+				return
 
 			var/datum/mutation/human/A = new HM.type()
 			A.copy_mutation(HM)
 			stored_mutations += A
-			to_chat(usr,span_notice("Mutation successfully stored."))
+			to_chat(usr, span_notice("Mutation successfully stored."))
 			return
 
 		// Save a mutation to the diskette's storage buffer.
@@ -703,6 +720,9 @@
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
+				return
+			if(!HM.allow_cloning)
+				say("ERROR: This mutation is anomalous, and cannot be saved.")
 				return
 
 			var/datum/mutation/human/A = new HM.type()
@@ -1002,10 +1022,11 @@
 			// Set the new information
 			genetic_makeup_buffer[buffer_index] = list(
 				"label"="Slot [buffer_index]:[scanner_occupant.real_name]",
-				"UI"=scanner_occupant.dna.uni_identity,
+				"UI"=scanner_occupant.dna.unique_identity,
 				"UE"=scanner_occupant.dna.unique_enzymes,
+				"UF"=scanner_occupant.dna.unique_features,
 				"name"=scanner_occupant.real_name,
-				"blood_type"=scanner_occupant.dna.blood_type)
+				"blood_type"=scanner_occupant.dna.blood_type.name)
 
 			return
 
@@ -1050,6 +1071,7 @@
 		//  Expected results:
 		//   "ue" - Unique Enzyme, changes name and blood type
 		//	 "ui" - Unique Identity, changes looks
+		//   "uf" - Unique Features, changes mutant bodyparts and mutcolors
 		//	 "mixed" - Combination of both ue and ui
 		if("makeup_injector")
 			// Convert the index to a number and clamp within the array range, then
@@ -1097,16 +1119,31 @@
 					//  the radiation generated by this injector
 					if(scanner_operational())
 						I.damage_coeff  = connected_scanner.damage_coeff
+				if("uf")
+					// GUARD CHECK - There's currently no way to save partial genetic data.
+					//  However, if this is the case, we can't make a complete injector and
+					//  this catches that edge case
+					if(!buffer_slot["name"] || !buffer_slot["UF"] || !buffer_slot["blood_type"])
+						to_chat(usr,"<span class='warning'>Genetic data corrupted, unable to create injector.</span>")
+						return
+
+					I = new /obj/item/dnainjector/timed(loc)
+					I.fields = list("name"=buffer_slot["name"], "UF"=buffer_slot["UF"])
+
+					// If there is a connected scanner, we can use its upgrades to reduce
+					//  the radiation generated by this injector
+					if(scanner_operational())
+						I.damage_coeff  = connected_scanner.damage_coeff
 				if("mixed")
 					// GUARD CHECK - There's currently no way to save partial genetic data.
 					//  However, if this is the case, we can't make a complete injector and
 					//  this catches that edge case
-					if(!buffer_slot["UI"] || !buffer_slot["name"] || !buffer_slot["UE"] || !buffer_slot["blood_type"])
+					if(!buffer_slot["UI"] || !buffer_slot["name"] || !buffer_slot["UE"] || !buffer_slot["UF"] || !buffer_slot["blood_type"])
 						to_chat(usr,span_warning("Genetic data corrupted, unable to create injector."))
 						return
 
 					I = new /obj/item/dnainjector/timed(loc)
-					I.fields = list("UI"=buffer_slot["UI"],"name"=buffer_slot["name"], "UE"=buffer_slot["UE"], "blood_type"=buffer_slot["blood_type"])
+					I.fields = list("UI"=buffer_slot["UI"],"name"=buffer_slot["name"], "UE"=buffer_slot["UE"], "UF"=buffer_slot["UF"], "blood_type"=buffer_slot["blood_type"])
 
 					// If there is a connected scanner, we can use its upgrades to reduce
 					//  the radiation generated by this injector
@@ -1129,6 +1166,7 @@
 		//  Expected results:
 		//   "ue" - Unique Enzyme, changes name and blood type
 		//	 "ui" - Unique Identity, changes looks
+		//   "uf" - Unique Features, changes mutant bodyparts and mutcolors
 		//	 "mixed" - Combination of both ue and ui
 		if("makeup_apply")
 			// GUARD CHECK - Can we genetically modify the occupant? Includes scanner
@@ -1166,6 +1204,7 @@
 		//  Expected results:
 		//   "ue" - Unique Enzyme, changes name and blood type
 		//	 "ui" - Unique Identity, changes looks
+		//   "uf" - Unique Features, changes mutant bodyparts and mutcolors
 		//	 "mixed" - Combination of both ue and ui
 		if("makeup_delay")
 			// Convert the index to a number and clamp within the array range, then
@@ -1189,6 +1228,10 @@
 		// Attempts to modify the indexed element of the Unique Identity string
 		// This is a time delayed action that is handled in process()
 		// ---------------------------------------------------------------------- //
+		// params["type"] - Type of genetic makeup string to edit
+		//  Expected results:
+		//  "ui" - Unique Identity, changes looks
+		//  "uf" - Unique Features, changes mutant bodyparts and mutcolors
 		// params["index"] - The BYOND index of the Unique Identity string to
 		//  attempt to modify
 		if("makeup_pulse")
@@ -1197,9 +1240,16 @@
 			if(!can_modify_occupant())
 				return
 
-			// Set the appropriate timer and index to pulse. This is then managed
+			// Set the appropriate timer, string, and index to pulse. This is then managed
 			//  later on in process()
-			var/len = length_char(scanner_occupant.dna.uni_identity)
+			var/type = params["type"]
+			rad_pulse_type = type
+			var/len
+			switch(type)
+				if("ui")
+					len = length(scanner_occupant.dna.unique_identity)
+				if("uf")
+					len = length(scanner_occupant.dna.unique_features)
 			rad_pulse_timer = world.time + (radduration*10)
 			rad_pulse_index = WRAP(text2num(params["index"]), 1, len+1)
 			begin_processing()
@@ -1342,6 +1392,9 @@
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
 				return
+			if(!HM.allow_cloning)
+				say("ERROR: This mutation is anomalous, and cannot be added to an injector.")
+				return
 
 			// We want to make sure we stick within the instability limit.
 			// We start with the instability of the mutation we're intending to add.
@@ -1424,8 +1477,21 @@
 			if(!buffer_slot["UI"])
 				to_chat(usr,span_warning("Genetic data corrupted, unable to apply genetic data."))
 				return FALSE
-			scanner_occupant.dna.uni_identity = buffer_slot["UI"]
+			scanner_occupant.dna.unique_identity = buffer_slot["UI"]
 			scanner_occupant.updateappearance(mutations_overlay_update=1)
+			scanner_occupant.radiation += rad_increase
+			scanner_occupant.domutcheck()
+			return TRUE
+		if("uf")
+			// GUARD CHECK - There's currently no way to save partial genetic data.
+			//  However, if this is the case, we can't make a complete injector and
+			//  this catches that edge case
+			if(!buffer_slot["UF"])
+				to_chat(usr,"<span class='warning'>Genetic data corrupted, unable to apply genetic data.</span>")
+				return FALSE
+			COOLDOWN_START(src, enzyme_copy_timer, ENZYME_COPY_BASE_COOLDOWN)
+			scanner_occupant.dna.unique_features = buffer_slot["UF"]
+			scanner_occupant.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 			scanner_occupant.radiation += rad_increase
 			scanner_occupant.domutcheck()
 			return TRUE
@@ -1436,6 +1502,7 @@
 			if(!buffer_slot["name"] || !buffer_slot["UE"] || !buffer_slot["blood_type"])
 				to_chat(usr,span_warning("Genetic data corrupted, unable to apply genetic data."))
 				return FALSE
+			COOLDOWN_START(src, enzyme_copy_timer, ENZYME_COPY_BASE_COOLDOWN)
 			scanner_occupant.real_name = buffer_slot["name"]
 			scanner_occupant.name = buffer_slot["name"]
 			scanner_occupant.dna.unique_enzymes = buffer_slot["UE"]
@@ -1447,11 +1514,13 @@
 			// GUARD CHECK - There's currently no way to save partial genetic data.
 			//  However, if this is the case, we can't make a complete injector and
 			//  this catches that edge case
-			if(!buffer_slot["UI"] || !buffer_slot["name"] || !buffer_slot["UE"] || !buffer_slot["blood_type"])
+			if(!buffer_slot["UI"] || !buffer_slot["name"] || !buffer_slot["UE"] || !buffer_slot["UF"] || !buffer_slot["blood_type"])
 				to_chat(usr,span_warning("Genetic data corrupted, unable to apply genetic data."))
 				return FALSE
-			scanner_occupant.dna.uni_identity = buffer_slot["UI"]
-			scanner_occupant.updateappearance(mutations_overlay_update=1)
+			COOLDOWN_START(src, enzyme_copy_timer, ENZYME_COPY_BASE_COOLDOWN)
+			scanner_occupant.dna.unique_identity = buffer_slot["UI"]
+			scanner_occupant.dna.unique_features = buffer_slot["UF"]
+			scanner_occupant.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 			scanner_occupant.real_name = buffer_slot["name"]
 			scanner_occupant.name = buffer_slot["name"]
 			scanner_occupant.dna.unique_enzymes = buffer_slot["UE"]
@@ -1943,20 +2012,36 @@
 	// GUARD CHECK - Can we genetically modify the occupant? Includes scanner
 	//  operational guard checks.
 	// If we can't, abort the procedure.
-	if(!can_modify_occupant())
+	if(!can_modify_occupant()|| (rad_pulse_type != RAD_PULSE_UNIQUE_IDENTITY && rad_pulse_type != RAD_PULSE_UNIQUE_FEATURES))
 		rad_pulse_index = 0
 		end_processing()
 		return
 
-	var/len = length_char(scanner_occupant.dna.uni_identity)
+	var/len
+	switch(rad_pulse_type)
+		if(RAD_PULSE_UNIQUE_IDENTITY)
+			len = length(scanner_occupant.dna.unique_identity)
+		if(RAD_PULSE_UNIQUE_FEATURES)
+			len = length(scanner_occupant.dna.unique_features)
+
 	var/num = randomize_radiation_accuracy(rad_pulse_index, radduration + (connected_scanner.precision_coeff ** 2), len) //Each manipulator level above 1 makes randomization as accurate as selected time + manipulator lvl^2																																																		 //Value is this high for the same reason as with laser - not worth the hassle of upgrading if the bonus is low
-	var/hex = copytext_char(scanner_occupant.dna.uni_identity, num, num+1)
+	var/hex
+	switch(rad_pulse_type)
+		if(RAD_PULSE_UNIQUE_IDENTITY)
+			hex = copytext(scanner_occupant.dna.unique_identity, num, num+1)
+		if(RAD_PULSE_UNIQUE_FEATURES)
+			hex = copytext(scanner_occupant.dna.unique_features, num, num+1)
 	hex = scramble(hex, radstrength, radduration)
 
-	scanner_occupant.dna.uni_identity = copytext_char(scanner_occupant.dna.uni_identity, 1, num) + hex + copytext_char(scanner_occupant.dna.uni_identity, num + 1)
-	scanner_occupant.updateappearance(mutations_overlay_update=1)
+	switch(rad_pulse_type)
+		if(RAD_PULSE_UNIQUE_IDENTITY)
+			scanner_occupant.dna.unique_identity = copytext(scanner_occupant.dna.unique_identity, 1, num) + hex + copytext(scanner_occupant.dna.unique_identity, num + 1)
+		if(RAD_PULSE_UNIQUE_FEATURES)
+			scanner_occupant.dna.unique_features = copytext(scanner_occupant.dna.unique_features, 1, num) + hex + copytext(scanner_occupant.dna.unique_features, num + 1)
+	scanner_occupant.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 
 	rad_pulse_index = 0
+	rad_pulse_type = null
 	end_processing()
 	return
 

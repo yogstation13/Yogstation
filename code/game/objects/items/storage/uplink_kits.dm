@@ -29,29 +29,29 @@
 		if("recon") //28ish TC
 			new /obj/item/clothing/glasses/thermal/xray(src) //Would argue 6 TC. Thermals are 4 TC but work on organic targets in darkness
 			new /obj/item/storage/briefcase/launchpad(src) //6 TC
-			new	/obj/item/twohanded/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
+			new	/obj/item/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/storage/box/syndie_kit/space(src) //4 TC
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //Minibomb with one less range on each part except for fire. 3-4 TC.
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //See above
 			new /obj/item/flashlight/emp(src) //2 TC
 
-		if("bloodyspai") //32 TCish
+		if("bloodyspai") //30 TCish
 			new /obj/item/clothing/under/chameleon/syndicate(src) //1 TC, has only two parts of the massive kit
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //See above
 			new /obj/item/card/id/syndicate(src) //2 TC
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
-			new /obj/item/switchblade/backstab(src) //5 TC
-			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
+			new /obj/item/switchblade/backstab(src) //3 TC
+			new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC
 			new /obj/item/card/emag(src) //6 TC
 
 		if("stealth") //32 TC
 			new /obj/item/gun/energy/kinetic_accelerator/crossbow(src) //10 TC
-			new /obj/item/pen/sleepy(src) //4 TC
+			new /obj/item/pen/blue/sleepy(src) //4 TC
 			new /obj/item/chameleon(src) //7 TC
 			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
 			new /obj/item/flashlight/emp(src) //2 TC
@@ -91,21 +91,21 @@
 			new /obj/item/implanter/explosive(src) //2 TC, nukies only
 			new /obj/item/implanter/storage(src) //8 TC
 
-		if("hacker") //28 TC cost
+		if("hacker") //29 TC cost
 			new /obj/item/aiModule/syndicate(src) //4 TC
 			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
 			new /obj/item/aiModule/toyAI(src) //Um, free...?
 			new /obj/item/multitool/ai_detect(src) //1 TC
-			new /obj/item/storage/toolbox/syndicate(src) //1 TC
+			new /obj/item/storage/toolbox/syndicate/real(src) //2 TC
 			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/card/id/syndicate(src) //2 TC
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src) //6 TC
 			new /obj/item/clothing/glasses/hud/diagnostic/sunglasses(src) //RD glasses. 1 TC, if that
-			new /obj/item/pen/edagger(src) //2 TC
+			new /obj/item/pen/red/edagger(src) //2 TC
 
-		if("sabotage") //Maybe 29 TC?
+		if("sabotage") //Maybe 30 TC?
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
 			new /obj/item/doorCharge(src) //2 TC
@@ -113,12 +113,12 @@
 			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/sbeacondrop/powersink(src) //8 TC
 			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src) //6 TC
-			new /obj/item/storage/toolbox/syndicate(src) //1 TC
+			new /obj/item/storage/toolbox/syndicate/real(src) //2 TC
 			new /obj/item/pizzabox/bomb(src) //6 TC
 			new /obj/item/storage/box/syndie_kit/emp(src) //2 TC
 
 		if("sniper") //28 TC, you only get 11 shots total with the sniper and 14 with the revolver. A mini-ebow would probably be better than the sniper in a normal traitor game
-			new /obj/item/gun/ballistic/automatic/sniper_rifle(src) //12 TC, nukies only
+			new /obj/item/gun/ballistic/rifle/sniper_rifle(src) //12 TC, nukies only
 			new /obj/item/ammo_box/magazine/sniper_rounds/penetrator(src) //5 TC, nukies only
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
 			new /obj/item/ammo_box/a357/heartpiercer(src) //1 TC
@@ -138,7 +138,7 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "solo" = 1)))
 		if("v") //Big Boss. Total of ~26 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
@@ -149,7 +149,7 @@
 			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
 			new /obj/item/kitchen/knife/combat/survival(src) //Simple miner knife, in flavor. Maybe-maybe 1 TC, but basically free
 			new /obj/item/implanter/stealth(src) //Just a box. 8 TC
-			new /obj/item/storage/box/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
+			new /obj/item/storage/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
 			new /obj/item/lighter(src) //Need to light the cigar
 
 		if("oddjob") //Total TC value of 26ish TC
@@ -160,7 +160,7 @@
 			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun). Since you can print off .357 boxes now I'd honestly say it's like 5 TC, even that's an overestimation
 			new /obj/item/ammo_box/magazine/m50(src) //Spare mag for your gun. 1 TC.
 			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
-			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
+			new /obj/item/deployablemine/explosive(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
 			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
 
 		if("ninja")
@@ -181,17 +181,17 @@
 			new /obj/item/clothing/suit/yogs/armor/sith_suit(src) //See above
 			new /obj/item/clothing/shoes/combat(src) //See above
 			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
-			new /obj/item/book/granter/spell/lightningbolt(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that doesn't require robes and provides ranged potential
-			new /obj/item/book/granter/spell/forcewall(src) //It has the word force in it? But more importantly, it doesn't require robes and it's 1 SP and it's VERY good defense
-			new /obj/item/book/granter/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
+			new /obj/item/book/granter/action/spell/lightningbolt(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that doesn't require robes and provides ranged potential
+			new /obj/item/book/granter/action/spell/forcewall(src) //It has the word force in it? But more importantly, it doesn't require robes and it's 1 SP and it's VERY good defense
+			new /obj/item/book/granter/action/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else, more than 100 carps or your TC back
 			new /obj/item/pneumatic_cannon/speargun(src)
 			new /obj/item/storage/magspear_quiver(src)
 			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
 			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
-			new /obj/item/twohanded/pitchfork/trident(src)
-			new /obj/item/grenade/clusterbuster/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
+			new /obj/item/pitchfork/trident(src)
+			new /obj/item/grenade/clusterbuster/syndie/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
 			new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 20 carps
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
@@ -199,45 +199,47 @@
 			new /obj/item/carpcaller(src) //to spawn carps in space, making the place safer for you and dangerous for everyone else, you should get at least 20 carps per use so 60  carps
 			new /obj/item/toy/plush/carpplushie/dehy_carp //1 carp but guaranteed complete loyalty and cuddliness
 
-		if("mad_scientist")
+		if("mad_scientist") // ~22 tc
 			new /obj/item/clothing/suit/toggle/labcoat/mad(src) // 0 tc
 			new /obj/item/clothing/shoes/jackboots(src) // 0 tc
 			new /obj/item/megaphone(src) // 0 tc (because how else are they to know you're mad?)
-			new /obj/item/grenade/clusterbuster/random(src) // 10 tc?
-			new /obj/item/grenade/clusterbuster/random(src) // 10 tc?
+			new /obj/item/grenade/clusterbuster/random/syndie(src) // RNG worth like 2-10TC
+			new /obj/item/grenade/clusterbuster/random/syndie(src) // RNG worth like 2-10TC
 			new /obj/item/grenade/chem_grenade/bioterrorfoam(src) // 5 tc
+			new /obj/item/storage/box/syndie_kit/ez_clean // 6 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
-			new /obj/item/storage/toolbox/syndicate(src) // 1 tc
-			new /obj/item/pen/edagger(src)
-			new /obj/item/gun/energy/wormhole_projector/upgraded(src) //mooorttyyyy
-			new /obj/item/gun/energy/decloner/unrestricted(src)
+			new /obj/item/storage/toolbox/syndicate/real(src) // 2 tc
+			new /obj/item/pen/red/edagger(src) // 2 tc
+			new /obj/item/gun/energy/wormhole_projector/upgraded(src) // ~2 tc
+			new /obj/item/gun/energy/decloner/unrestricted(src) // these shots do 9 damage. 1 tc
 
-		if("bee")
+		if("bee") // bee sword too based so its priceless
 			new /obj/item/paper/fluff/bee_objectives(src) // 0 tc (motivation)
-			new /obj/item/clothing/suit/hooded/bee_costume(src) // 0 tc
+			new /obj/item/clothing/suit/hooded/bee_costume/authentic(src) // 0 tc
 			new /obj/item/clothing/mask/rat/bee(src) // 0 tc
 			new /obj/item/storage/belt/fannypack/yellow(src) // 0 tc
-			new /obj/item/storage/box/syndie_kit/bee_grenades(src) // 15 tc
+			new /obj/item/storage/box/syndie_kit/bee_grenades(src) // 6 tc
 			new /obj/item/reagent_containers/glass/bottle/beesease(src) // 10 tc?
-			new /obj/item/melee/beesword(src) //priceless
+			new /obj/item/gun/magic/staff/spellblade/beesword(src) //priceless
 
-		if("mr_freeze")
-			new /obj/item/clothing/glasses/cold(src)
-			new /obj/item/clothing/gloves/color/black(src)
-			new /obj/item/clothing/mask/chameleon/syndicate(src)
-			new /obj/item/clothing/suit/hooded/wintercoat(src)
-			new /obj/item/clothing/shoes/winterboots(src)
-			new /obj/item/grenade/gluon(src)
-			new /obj/item/grenade/gluon(src)
-			new /obj/item/grenade/gluon(src)
-			new /obj/item/grenade/gluon(src)
-			new /obj/item/dnainjector/geladikinesis(src)
-			new /obj/item/dnainjector/cryokinesis(src)
-			new /obj/item/gun/energy/temperature/security(src)
-			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
+		if("mr_freeze") // ~25 tc
+			new /obj/item/clothing/glasses/cold(src) // 0 tc
+			new /obj/item/clothing/gloves/color/black(src) // 0 tc
+			new /obj/item/clothing/mask/chameleon/syndicate(src) // 0 tc on its own
+			new /obj/item/clothing/suit/hooded/wintercoat(src) // 0 tc
+			new /obj/item/clothing/shoes/winterboots(src) // 0 tc
+			new /obj/item/grenade/gluon(src) // all four probably like 1 tc together kind of just a slip bomb
+			new /obj/item/grenade/gluon(src) //
+			new /obj/item/grenade/gluon(src) //
+			new /obj/item/grenade/gluon(src) //
+			new /obj/item/dnainjector/geladikinesis(src) // 0 tc
+			new /obj/item/dnainjector/cryokinesis(src) // 1 or 2 tc, kind of useful
+			new /obj/item/gun/energy/temperature/security(src) // ~4 tc
+			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue, 8 tc
+			new /obj/item/reagent_containers/spray/chemsprayer/freeze(src) // filled with frost oil and you can refill it with whatever, ~8 tc
 
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
@@ -265,11 +267,41 @@
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
 			new /obj/item/guardiancreator/tech(src) //15 TC
 			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
-			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
+			new /obj/item/storage/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
+		if("solo") //14 + 6x3 + 1 = 3 tc = 31 tc. it was, in fact, busted
+			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //12 tc
+			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
+			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
+			
+
 #undef CARP_CARP_CARP
+
+/obj/item/storage/pill_bottle/synaptizine
+	name = "bottle of synaptizine pills"
+	desc = "Contains synaptizine pills to help with managing the psychological drawbacks of having numerous implants. Someone hastily wrote 'DOES NOT MITIGATE OVERCLOCKER OVERUSAGE' on it with sharpie."
+
+/obj/item/storage/pill_bottle/synaptizine/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/pill/synaptizine(src)
+
+/obj/item/reagent_containers/pill/synaptizine
+	name = "synaptizine pill"
+	desc = "Helps with some of the side effects of having various implants."
+	icon_state = "pill19"
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 10)
+	rename_with_volume = TRUE
+
+/obj/item/clothing/suit/toggle/cyberpunk/solo
+	name = "David's Jacket"
+	desc = "A jacket once owned by a legendary edgerunner, or so they say. Armored."
+	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 15, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF //it's too stylish to be destroyed
 
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
@@ -341,7 +373,7 @@
 /obj/item/paper/contractor_guide
 	name = "Contractor Guide"
 
-/obj/item/paper/contractor_guide/Initialize()
+/obj/item/paper/contractor_guide/Initialize(mapload)
 	info = {"<p>Welcome agent, congratulations on your new position as contractor. On top of your already assigned objectives,
 			this kit will provide you contracts to take on for TC payments.</p>
 
@@ -390,8 +422,8 @@
 	new /obj/item/clothing/under/chameleon/syndicate(src)
 	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/card/id/syndicate(src)
-	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
-	new /obj/item/lighter(src)
+	new /obj/item/clothing/gloves/fingerless/bigboss(src)
+	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 
 /obj/item/storage/box/syndicate/contract_kit/PopulateContents()
 	new /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink(src)
@@ -400,12 +432,13 @@
 	new /obj/item/bodybag/environmental/prisoner/syndicate(src)
 
 	// All about 4 TC or less - some nukeops only items, but fit nicely to the theme.
+	// If you update this, consider updating yogstation/code/game/objects/items/implants/implant_dusting.dm reward
 	var/list/item_list = list(
 		/obj/item/storage/backpack/duffelbag/syndie/x4,
 		/obj/item/storage/box/syndie_kit/throwing_weapons,
 		/obj/item/gun/syringe/syndicate,
-		/obj/item/pen/edagger,
-		/obj/item/pen/sleepy,
+		/obj/item/pen/red/edagger,
+		/obj/item/pen/blue/sleepy,
 		/obj/item/flashlight/emp,
 		/obj/item/book/granter/crafting_recipe/weapons,
 		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
@@ -433,6 +466,65 @@
 
 	// Paper guide
 	new /obj/item/paper/contractor_guide(src)
+
+/obj/item/storage/box/syndicate/contract_kit/plasmaman
+	real_name = "Contract Kit"
+	desc = "Supplied to Syndicate contractors."
+	icon_state = "syndiebox"
+	illustration = "writing_syndie"
+
+/obj/item/storage/box/syndicate/contract_kit/plasmaman/PopulateContents()
+	new /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink(src)
+	new /obj/item/storage/box/syndicate/contractor_loadout/plasmaman(src)
+	new /obj/item/melee/classic_baton/telescopic/contractor_baton(src)
+	new /obj/item/bodybag/environmental/prisoner/syndicate(src)
+
+	var/list/item_list = list(
+		/obj/item/storage/backpack/duffelbag/syndie/x4,
+		/obj/item/storage/box/syndie_kit/throwing_weapons,
+		/obj/item/gun/syringe/syndicate,
+		/obj/item/pen/red/edagger,
+		/obj/item/pen/blue/sleepy,
+		/obj/item/flashlight/emp,
+		/obj/item/book/granter/crafting_recipe/weapons,
+		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
+		/obj/item/storage/firstaid/tactical,
+		/obj/item/clothing/shoes/airshoes,
+		/obj/item/clothing/glasses/thermal/syndi,
+		/obj/item/camera_bug,
+		/obj/item/storage/box/syndie_kit/imp_radio,
+		/obj/item/storage/box/syndie_kit/imp_uplink,
+		/obj/item/clothing/gloves/krav_maga/combatglovesplus,
+		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
+		/obj/item/reagent_containers/syringe/stimulants,
+		/obj/item/storage/box/syndie_kit/imp_freedom,
+		/obj/item/storage/belt/chameleon/syndicate
+	)
+
+	var/obj/item1 = pick_n_take(item_list)
+	var/obj/item2 = pick_n_take(item_list)
+	var/obj/item3 = pick_n_take(item_list)
+
+	new item1(src)
+	new item2(src)
+	new item3(src)
+
+	new /obj/item/paper/contractor_guide(src)
+
+/obj/item/storage/box/syndicate/contractor_loadout/plasmaman
+	real_name = "Standard Loadout"
+	desc = "Supplied to the Syndicate's plasmaman contractors, providing their specialised space suit and chameleon envirosuit."
+	icon_state = "syndiebox"
+	illustration = "writing_syndie"
+
+/obj/item/storage/box/syndicate/contractor_loadout/plasmaman/PopulateContents()
+	new /obj/item/clothing/head/helmet/space/plasmaman/chameleon/syndicate(src)
+	new /obj/item/clothing/suit/space/syndicate/contract(src)
+	new /obj/item/clothing/under/plasmaman/chameleon/syndicate(src)
+	new /obj/item/clothing/mask/chameleon/syndicate(src)
+	new /obj/item/card/id/syndicate(src)
+	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
+	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndie_kit
 	name = "box"
@@ -514,7 +606,7 @@
 /obj/item/storage/box/syndie_kit/space
 	real_name = "boxed space suit and helmet"
 
-/obj/item/storage/box/syndie_kit/space/ComponentInitialize()
+/obj/item/storage/box/syndie_kit/space/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -540,26 +632,24 @@
 /obj/item/storage/box/syndie_kit/chemical
 	real_name = "chemical kit"
 
-/obj/item/storage/box/syndie_kit/chemical/ComponentInitialize()
+/obj/item/storage/box/syndie_kit/chemical/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 14
+	STR.max_items = 12
 
 /obj/item/storage/box/syndie_kit/chemical/PopulateContents()
-	new /obj/item/reagent_containers/glass/bottle/polonium(src)
-	new /obj/item/reagent_containers/glass/bottle/venom(src)
-	new /obj/item/reagent_containers/glass/bottle/fentanyl(src)
-	new /obj/item/reagent_containers/glass/bottle/formaldehyde(src)
-	new /obj/item/reagent_containers/glass/bottle/spewium(src)
-	new /obj/item/reagent_containers/glass/bottle/cyanide(src)
-	new /obj/item/reagent_containers/glass/bottle/histamine(src)
-	new /obj/item/reagent_containers/glass/bottle/initropidril(src)
-	new /obj/item/reagent_containers/glass/bottle/pancuronium(src)
-	new /obj/item/reagent_containers/glass/bottle/sodium_thiopental(src)
-	new /obj/item/reagent_containers/glass/bottle/coniine(src)
-	new /obj/item/reagent_containers/glass/bottle/curare(src)
-	new /obj/item/reagent_containers/glass/bottle/amanitin(src)
-	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/syringe/big/polonium(src)
+	new /obj/item/reagent_containers/syringe/big/venom(src)
+	new /obj/item/reagent_containers/syringe/big/spewium(src)
+	new /obj/item/reagent_containers/syringe/big/histamine(src)
+	new /obj/item/reagent_containers/syringe/big/initropidril(src)
+	new /obj/item/reagent_containers/syringe/big/pancuronium(src)
+	new /obj/item/reagent_containers/syringe/big/sodium_thiopental(src)
+	new /obj/item/reagent_containers/syringe/big/curare(src)
+	new /obj/item/reagent_containers/syringe/big/amanitin(src)
+	new /obj/item/reagent_containers/syringe/big/coniine(src)
+	new /obj/item/reagent_containers/syringe/big/relaxant(src)
+	new /obj/item/reagent_containers/syringe/big(src)
 
 /obj/item/storage/box/syndie_kit/pistolammo
 	real_name = "10mm magazine box"
@@ -567,6 +657,31 @@
 /obj/item/storage/box/syndie_kit/pistolammo/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm(src)
+
+/obj/item/storage/box/syndie_kit/pistolammo/random
+	real_name = "random 10mm magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolammo/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/m10mm,
+		/obj/item/ammo_box/magazine/m10mm/cs,
+		/obj/item/ammo_box/magazine/m10mm/sp,
+		/obj/item/ammo_box/magazine/m10mm/ap,
+		/obj/item/ammo_box/magazine/m10mm/hp,
+		/obj/item/ammo_box/magazine/m10mm/fire,
+		/obj/item/ammo_box/magazine/m10mm/emp
+	)
+
+	for(var/i in 1 to 4)
+		var/item = pick(item_list)
+		new item(src)
+
+/obj/item/storage/box/syndie_kit/pistolcaselessammo
+	real_name = "10mm caseless magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolcaselessammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/magazine/m10mm/cs(src)
 
 /obj/item/storage/box/syndie_kit/pistolsleepyammo
 	real_name = "10mm soporific magazine box"
@@ -582,12 +697,29 @@
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/a357(src)
 
+/obj/item/storage/box/syndie_kit/revolverammo/random
+	real_name = "random .357 speed loader box"
+
+/obj/item/storage/box/syndie_kit/revolverammo/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/a357,
+		/obj/item/ammo_box/a357/ironfeather,
+		/obj/item/ammo_box/a357/nutcracker,
+		/obj/item/ammo_box/a357/metalshock,
+		/obj/item/ammo_box/a357/heartpiercer,
+		/obj/item/ammo_box/a357/wallstake
+	)
+
+	for(var/i in 1 to 4)
+		var/item = pick(item_list)
+		new item(src)
+
 /obj/item/storage/box/syndie_kit/revolvershotgunammo
 	real_name = ".357 Ironfeather speed loader box"
 
 /obj/item/storage/box/syndie_kit/revolvershotgunammo/PopulateContents()
 	for(var/i in 1 to 2)
-		new /obj/item/ammo_box/a357(src)
+		new /obj/item/ammo_box/a357/ironfeather(src)
 
 /obj/item/storage/box/syndie_kit/nuke
 	real_name = "box"
@@ -642,6 +774,22 @@
 	new /obj/item/stamp/chameleon/syndicate(src)
 	new /obj/item/pda/chameleon/syndicate(src)
 
+/obj/item/storage/box/syndie_kit/chameleon/plasmaman
+	real_name = "chameleon kit"
+
+/obj/item/storage/box/syndie_kit/chameleon/plasmaman/PopulateContents()
+	new /obj/item/clothing/under/plasmaman/chameleon/syndicate(src)
+	new /obj/item/clothing/suit/chameleon/syndicate(src)
+	new /obj/item/clothing/gloves/chameleon/syndicate(src)
+	new /obj/item/clothing/shoes/chameleon/syndicate(src)
+	new /obj/item/clothing/glasses/chameleon/syndicate(src)
+	new /obj/item/clothing/head/helmet/space/plasmaman/chameleon/syndicate(src)
+	new /obj/item/clothing/mask/chameleon/syndicate(src)
+	new /obj/item/storage/backpack/chameleon/syndicate(src)
+	new /obj/item/radio/headset/chameleon/syndicate(src)
+	new /obj/item/stamp/chameleon/syndicate(src)
+	new /obj/item/pda/chameleon/syndicate(src)
+
 //5*(2*4) = 5*8 = 45, 45 damage if you hit one person with all 5 stars.
 //Not counting the damage it will do while embedded (2*4 = 8, at 15% chance)
 /obj/item/storage/box/syndie_kit/throwing_weapons/PopulateContents()
@@ -651,6 +799,18 @@
 		new /obj/item/paperplane/syndicate(src)
 	new /obj/item/restraints/legcuffs/bola/tactical(src)
 	new /obj/item/restraints/legcuffs/bola/tactical(src)
+
+/obj/item/storage/box/syndie_kit/throwing_weapons/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 9 // 5 + 2 + 2
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 18 // 5*2 + 2*1 + 3*2
+	STR.set_holdable(list(
+		/obj/item/restraints/legcuffs/bola/tactical,
+		/obj/item/paperplane/syndicate,
+		/obj/item/throwing_star
+	))
 
 /obj/item/storage/box/syndie_kit/cutouts/PopulateContents()
 	for(var/i in 1 to 3)
@@ -670,8 +830,8 @@
 	new /obj/item/gun/ballistic/revolver/reverse(src)
 
 /obj/item/storage/box/syndie_kit/mimery/PopulateContents()
-	new /obj/item/book/granter/spell/mimery_blockade(src)
-	new /obj/item/book/granter/spell/mimery_guns(src)
+	new /obj/item/book/granter/action/spell/mime/mimery_blockade(src)
+	new /obj/item/book/granter/action/spell/mime/mimery_guns(src)
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
 	new /obj/item/clothing/under/rank/centcom_officer(src)
@@ -748,3 +908,17 @@
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube(src)
 	new /obj/item/bodypart/l_arm/robot/buster(src)
+
+/obj/item/storage/box/syndie_kit/emp_shield
+	real_name = "EMP shield implant kit"
+
+/obj/item/storage/box/syndie_kit/emp_shield/PopulateContents()
+	new /obj/item/implanter/empshield(src)
+
+/obj/item/storage/box/syndie_kit/prisonerbag
+	real_name = "Prisoner kit"
+
+/obj/item/storage/box/syndie_kit/prisonerbag/PopulateContents()
+	var/obj/item/bodybag/environmental/prisoner/syndicate/pbag = new(src)
+	var/obj/item/syndicate_prisoner_remote/remote = new(src)
+	remote.bag = pbag

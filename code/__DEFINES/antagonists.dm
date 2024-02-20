@@ -105,13 +105,20 @@
 ///It is faster as a macro than a proc
 #define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic))
 #define IS_HERETIC_MONSTER(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
+#define IS_HERETIC_OR_MONSTER(mob) (IS_HERETIC(mob) || IS_HERETIC_MONSTER(mob))
 #define IS_EXCLUSIVE_KNOWLEDGE(knowledge) (knowledge.tier % 2)
 
 #define PATH_SIDE "Side"
 
+#define PATH_NONE "Unpledged"
 #define PATH_ASH "Ash"
 #define PATH_RUST "Rust"
 #define PATH_FLESH "Flesh"
+#define PATH_MIND "Mind"
+#define PATH_VOID "Void"
+#define PATH_BLADE "Blade"
+#define PATH_COSMIC "Cosmic"
+#define PATH_KNOCK "Knock"
 
 #define TIER_NONE 0
 #define TIER_PATH 1
@@ -122,8 +129,40 @@
 #define TIER_3 6
 #define TIER_ASCEND 7
 
-//Bloodsuckers
+///Whether a mob is a Bloodsucker
 #define IS_BLOODSUCKER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/bloodsucker))
+///Whether a mob is a Vassal
 #define IS_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal))
+///Whether a mob is a Favorite Vassal
+#define IS_FAVORITE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/favorite))
+///Whether a mob is a Revenge Vassal
+#define IS_REVENGE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/revenge))
+///Whether a mob is a Monster Hunter
 #define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
+
+/// The Classic Wizard wizard loadout.
+#define WIZARD_LOADOUT_CLASSIC "loadout_classic"
+/// Mjolnir's Power wizard loadout.
+#define WIZARD_LOADOUT_MJOLNIR "loadout_hammer"
+/// Fantastical Army wizard loadout.
+#define WIZARD_LOADOUT_WIZARMY "loadout_army"
+/// Soul Tapper wizard loadout.
+#define WIZARD_LOADOUT_SOULTAP "loadout_tap"
+/// Convenient list of all wizard loadouts for unit testing.
+#define ALL_WIZARD_LOADOUTS list( \
+	WIZARD_LOADOUT_CLASSIC, \
+	WIZARD_LOADOUT_MJOLNIR, \
+	WIZARD_LOADOUT_WIZARMY, \
+	WIZARD_LOADOUT_SOULTAP, \
+)
+
+/// Used in logging spells for roundend results
+#define LOG_SPELL_TYPE "type"
+#define LOG_SPELL_AMOUNT "amount"
+
+//antagonist awaken stages
+#define ANTAG_ASLEEP 0
+#define ANTAG_FIRST_WARNING 1
+#define ANTAG_SECOND_WARNING 2
+#define ANTAG_AWAKE 3
 

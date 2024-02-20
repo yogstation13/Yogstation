@@ -2,7 +2,6 @@
 	name = "chem implant"
 	desc = "Injects things."
 	icon_state = "reagents"
-	activated = FALSE
 
 /obj/item/implant/chem/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -20,7 +19,7 @@
 				<b>Integrity:</b> Implant will last so long as the subject is alive."}
 	return dat
 
-/obj/item/implant/chem/Initialize()
+/obj/item/implant/chem/Initialize(mapload)
 	. = ..()
 	create_reagents(50, OPENCONTAINER)
 	GLOB.tracked_chem_implants += src

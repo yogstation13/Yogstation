@@ -3,6 +3,7 @@
 	antagpanel_category = "Brother"
 	job_rank = ROLE_BROTHER
 	var/special_role = ROLE_BROTHER
+	antag_hud_name = "brother"
 	var/datum/team/brother_team/team
 	antag_moodlet = /datum/mood_event/focused
 	can_hijack = HIJACK_HIJACKER
@@ -19,7 +20,6 @@
 
 /datum/antagonist/brother/on_gain()
 	SSticker.mode.brothers += owner
-	objectives += team.objectives
 	owner.special_role = special_role
 	if(owner.current)
 		give_pinpointer()
@@ -47,7 +47,7 @@
 	var/mob/living/carbon/human/dummy/consistent/brother1 = new
 	var/mob/living/carbon/human/dummy/consistent/brother2 = new
 
-	brother1.dna.features["ethcolor"] = GLOB.color_list_ethereal["Faint Red"]
+	brother1.dna.features["mcolor"] = "#ff4d4d"
 	brother1.set_species(/datum/species/ethereal)
 
 	brother2.dna.features["moth_antennae"] = "Plain"
@@ -102,7 +102,6 @@
 	for(var/datum/mind/M in team.members) // Link the implants of all team members
 		var/obj/item/implant/bloodbrother/T = locate() in M.current.implants
 		I.link_implant(T)
-	SSticker.mode.update_brother_icons_added(owner)
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/brother/admin_add(datum/mind/new_owner,mob/admin)
@@ -130,26 +129,24 @@
 
 /datum/antagonist/brother/get_admin_commands()
 	. = ..()
-	.["Convert To Traitor"] = CALLBACK(src, .proc/make_traitor)
+	.["Convert To Traitor"] = CALLBACK(src, PROC_REF(make_traitor))
 
 /datum/antagonist/brother/proc/make_traitor()
-	if(alert("Are you sure? This will turn the blood brother into a traitor with the same objectives!",,"Yes","No") != "Yes")
+	if(tgui_alert(usr, "Are you sure? This will turn the blood brother into a traitor with the same objectives!",,list("Yes","No")) != "Yes")
 		return
 
 	var/datum/antagonist/traitor/tot = new()
 	tot.give_objectives = FALSE
 	
-	for(var/datum/objective/obj in objectives)
+	for(var/datum/objective/obj in team.objectives)
 		var/obj_type = obj.type
 		var/datum/objective/new_obj = new obj_type()
 		new_obj.owner = owner
 		new_obj.copy_target(obj)
 		tot.add_objective(new_obj)
-		qdel(obj)
-	objectives.Cut()
 	
-	owner.add_antag_datum(tot)
 	owner.remove_antag_datum(/datum/antagonist/brother)
+	owner.add_antag_datum(tot)
 
 /datum/antagonist/brother/proc/give_pinpointer()
 	if(owner && owner.current)
@@ -216,8 +213,8 @@
 	if(is_hijacker)
 		if(!locate(/datum/objective/hijack) in objectives)
 			add_objective(new/datum/objective/hijack)
-	else if(!locate(/datum/objective/escape) in objectives)
-		add_objective(new/datum/objective/escape)
+	else if(!locate(/datum/objective/escape/onesurvivor) in objectives)
+		add_objective(new/datum/objective/escape/onesurvivor)
 
 /datum/team/brother_team/proc/forge_single_objective()
 	if(prob(50))

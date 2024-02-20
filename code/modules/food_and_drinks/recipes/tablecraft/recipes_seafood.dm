@@ -5,7 +5,7 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/carpmeat/fish/battered
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/battered_shrimp
 	name = "Battered Shrimp"
@@ -14,7 +14,7 @@
 		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/carpmeat/fish/shrimp/battered
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 
 /datum/crafting_recipe/food/sashimi
@@ -25,7 +25,7 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/sashimi
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/ceviche
 	name ="Ceviche"
@@ -36,7 +36,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/ceviche
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/cubancarp
 	name = "Cuban Carp"
@@ -46,7 +46,7 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/cubancarp
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/dolphinandchips
 	name = "Dolphin and Chips"
@@ -55,7 +55,7 @@
 		/obj/item/reagent_containers/food/snacks/chips = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/dolphinandchips
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/dolphincereal
 	name = "Dolphin Cereal"
@@ -65,7 +65,7 @@
 		/datum/reagent/consumable/flour = 15
 	)
 	result = /obj/item/reagent_containers/food/snacks/dolphincereal
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishdumpling
 	name = "Fish Dumplings"
@@ -77,7 +77,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/garlic = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishdumpling
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishandchips
 	name = "Fish and Chips"
@@ -86,7 +86,7 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat/fish/battered = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishandchips
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishfingers
 	name = "Fish Fingers"
@@ -96,7 +96,7 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishfingers
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishtaco
 	name ="Fish Taco"
@@ -107,7 +107,18 @@
 		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishtaco
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
+
+/datum/crafting_recipe/food/nigiri_sushi
+	name ="Nigiri Sushi"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/seaweedsheet = 1,
+		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
+		/obj/item/reagent_containers/food/snacks/carpmeat = 1,
+		/datum/reagent/consumable/soysauce = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/nigiri_sushi
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/shrimpalfredo
 	name = "Seafood Alfredo"
@@ -116,7 +127,7 @@
 		/obj/item/reagent_containers/food/snacks/fish/shrimp = 3
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/shrimpalfredo
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/squidpasta
 	name = "Squid Ink Spaghetti"
@@ -125,7 +136,7 @@
 		/obj/item/reagent_containers/food/snacks/fish/squid = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/ink
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/spicyfiletroll
 	name ="Spicy filet sushi roll"
@@ -137,7 +148,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/onion = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/spicyfiletsushiroll
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/shrimpcocktail
 	name = "Shrimp Cocktail"
@@ -148,7 +159,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/citrus/lemon = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/shrimpcocktail
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/vegetariansushiroll
 	name ="Vegetarian sushi roll"
@@ -159,4 +170,4 @@
 		/obj/item/reagent_containers/food/snacks/grown/potato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/vegetariansushiroll
-	subcategory = CAT_SEAFOOD
+	category = CAT_SEAFOOD

@@ -26,6 +26,7 @@ const GENE_COLORS = {
 const CONSOLE_MODE_STORAGE = 'storage';
 const CONSOLE_MODE_SEQUENCER = 'sequencer';
 const CONSOLE_MODE_ENZYMES = 'enzymes';
+const CONSOLE_MODE_FEATURES = 'features';
 const CONSOLE_MODE_INJECTORS = 'injectors';
 
 const STORAGE_MODE_CONSOLE = 'console';
@@ -73,6 +74,8 @@ export const DnaConsole = (props, context) => {
   const {
     isPulsingRads,
     radPulseSeconds,
+    subjectUNI,
+    subjectUF,
   } = data;
   const { consoleMode } = data.view;
   return (
@@ -104,7 +107,16 @@ export const DnaConsole = (props, context) => {
           <DnaConsoleSequencer />
         )}
         {consoleMode === CONSOLE_MODE_ENZYMES && (
-          <DnaConsoleEnzymes />
+          <DnaConsoleEnzymes
+            subjectBlock={subjectUNI}
+            type="ui"
+            name="Enzymes" />
+        )}
+        {consoleMode === CONSOLE_MODE_FEATURES && (
+          <DnaConsoleEnzymes
+            subjectBlock={subjectUF}
+            type="uf"
+            name="Features" />
         )}
       </Window.Content>
     </Window>
@@ -307,6 +319,12 @@ export const DnaConsoleCommands = (props, context) => {
             selected={consoleMode === CONSOLE_MODE_ENZYMES}
             onClick={() => act('set_view', {
               consoleMode: CONSOLE_MODE_ENZYMES,
+            })} />
+          <Button
+            content="Features"
+            selected={consoleMode === CONSOLE_MODE_FEATURES}
+            onClick={() => act('set_view', {
+              consoleMode: CONSOLE_MODE_FEATURES,
             })} />
         </LabeledList.Item>
         {!!hasDisk && (
@@ -1034,6 +1052,11 @@ const DnaConsoleEnzymes = (props, context) => {
     stdDevAcc,
     stdDevStr,
   } = data;
+  const {
+    subjectBlock,
+    type,
+    name,
+  } = props;
   if (!isScannerConnected) {
     return (
       <Section color="bad">
@@ -1051,7 +1074,10 @@ const DnaConsoleEnzymes = (props, context) => {
           <RadiationEmitterProbs />
         </Flex.Item>
         <Flex.Item grow={1} basis={0}>
-          <RadiationEmitterPulseBoard />
+          <RadiationEmitterPulseBoard
+            subjectBlock={subjectBlock}
+            type={type}
+            name={name} />
         </Flex.Item>
       </Flex>
       <GeneticMakeupBuffers />
@@ -1131,15 +1157,17 @@ const RadiationEmitterProbs = (props, context) => {
 };
 
 const RadiationEmitterPulseBoard = (props, context) => {
-  const { data, act } = useBackend(context);
+  const { act } = useBackend(context);
   const {
-    subjectUNI = [],
-  } = data;
+    subjectBlock = [],
+    type,
+    name,
+  } = props;
   // Build blocks of buttons of unique enzymes
   const blocks = [];
   let buffer = [];
-  for (let i = 0; i < subjectUNI.length; i++) {
-    const char = subjectUNI.charAt(i);
+  for (let i = 0; i < subjectBlock.length; i++) {
+    const char = subjectBlock.charAt(i);
     // Push a button into the buffer
     const button = (
       <Button
@@ -1149,6 +1177,7 @@ const RadiationEmitterPulseBoard = (props, context) => {
         content={char}
         onClick={() => act('makeup_pulse', {
           index: i + 1,
+          type: type,
         })} />
     );
     buffer.push(button);
@@ -1166,7 +1195,7 @@ const RadiationEmitterPulseBoard = (props, context) => {
   }
   return (
     <Section
-      title="Unique Enzymes"
+      title={"Unique " + name}
       minHeight="100%"
       position="relative">
       <Box mx="-1px">
@@ -1252,6 +1281,9 @@ const GeneticMakeupInfo = (props, context) => {
         <LabeledList.Item label="Unique Identifier">
           {makeup.UI || 'None'}
         </LabeledList.Item>
+        <LabeledList.Item label="Unique Features">
+          {makeup.UF || 'None'}
+        </LabeledList.Item>
       </LabeledList>
     </Section>
   );
@@ -1318,6 +1350,25 @@ const GeneticMakeupBufferInfo = (props, context) => {
             onClick={() => act(ACTION_MAKEUP_APPLY, {
               index,
               type: 'ui',
+            })}>
+            Transfer
+            {!isViableSubject && ' (Delayed)'}
+          </Button>
+        </LabeledList.Item>
+        <LabeledList.Item label="Features">
+          <Button
+            icon="syringe"
+            disabled={!isInjectorReady}
+            content="Print"
+            onClick={() => act('makeup_injector', {
+              index,
+              type: 'uf',
+            })} />
+          <Button
+            icon="exchange-alt"
+            onClick={() => act(ACTION_MAKEUP_APPLY, {
+              index,
+              type: 'uf',
             })}>
             Transfer
             {!isViableSubject && ' (Delayed)'}

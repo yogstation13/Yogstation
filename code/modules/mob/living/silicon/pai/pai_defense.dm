@@ -6,22 +6,22 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	take_holo_damage(50/severity)
-	Paralyze(400/severity)
-	silent = max(30/severity, silent)
+	take_holo_damage(5 * severity)
+	Paralyze(40 * severity)
+	silent = max(3 * severity, silent)
 	if(holoform)
 		fold_in(force = TRUE)
 	//Need more effects that aren't instadeath or permanent law corruption.
 	//Ask and you shall receive
 	switch(rand(1, 3))
 		if(1)
-			stuttering = 1
+			adjust_stutter((6 * severity) SECONDS)
 			to_chat(src, span_danger("Warning: Feedback loop detected in speech module."))
 		if(2)
-			slurring = 1
+			adjust_slurring(INFINITY)
 			to_chat(src, span_danger("Warning: Audio synthesizer CPU stuck."))
 		if(3)
-			derpspeech = 1
+			set_derpspeech(INFINITY)
 			to_chat(src, span_danger("Warning: Vocabulary databank corrupted."))
 	if(prob(40))
 		mind.language_holder.selected_language = get_random_spoken_language()
@@ -58,7 +58,7 @@
 				visible_message(span_danger("[user] stomps on [src]!."))
 				take_holo_damage(2)
 
-/mob/living/silicon/pai/bullet_act(obj/item/projectile/Proj)
+/mob/living/silicon/pai/bullet_act(obj/projectile/Proj)
 	if(Proj.stun)
 		fold_in(force = TRUE)
 		src.visible_message(span_warning("The electrically-charged projectile disrupts [src]'s holomatrix, forcing [src] to fold in!"))
@@ -70,7 +70,7 @@
 /mob/living/silicon/pai/stripPanelEquip(obj/item/what, mob/who, where) //prevents stripping
 	to_chat(src, span_warning("Your holochassis stutters and warps intensely as you attempt to interact with the object, forcing you to cease lest the field fail."))
 
-/mob/living/silicon/pai/IgniteMob(var/mob/living/silicon/pai/P)
+/mob/living/silicon/pai/ignite_mob(mob/living/silicon/pai/P)
 	return FALSE //No we're not flammable
 
 /mob/living/silicon/pai/proc/take_holo_damage(amount)
@@ -80,10 +80,10 @@
 	to_chat(src, span_userdanger("The impact degrades your holochassis!"))
 	return amount
 
-/mob/living/silicon/pai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/silicon/pai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	return take_holo_damage(amount)
 
-/mob/living/silicon/pai/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/silicon/pai/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	return take_holo_damage(amount)
 
 /mob/living/silicon/pai/adjustStaminaLoss(amount, updating_health, forced = FALSE)

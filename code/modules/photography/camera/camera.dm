@@ -41,7 +41,7 @@
 	var/flash_enabled = TRUE
 	var/start_full = TRUE // does the camera spawn full of film
 
-/obj/item/camera/Initialize()
+/obj/item/camera/Initialize(mapload)
 	. = ..()
 	if(start_full)
 		pictures_left = pictures_max // future proofed if anyone ever creates a camera with a different max
@@ -154,7 +154,7 @@
 	if(on) // EMP will only work on cameras that are on as it has power going through it
 		icon_state = state_off
 		on = FALSE
-		addtimer(CALLBACK(src, .proc/emp_after), (600/severity))
+		addtimer(CALLBACK(src, PROC_REF(emp_after)), (6*severity) SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /obj/item/camera/proc/emp_after()
 	on = TRUE
@@ -183,11 +183,11 @@
 	var/mob/living/carbon/human/H = user
 	if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
 		realcooldown *= 0.5
-	addtimer(CALLBACK(src, .proc/cooldown), realcooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), realcooldown)
 
 	icon_state = state_off
 
-	INVOKE_ASYNC(src, .proc/captureimage, target, user, flag, picture_size_x - 1, picture_size_y - 1)
+	INVOKE_ASYNC(src, PROC_REF(captureimage), target, user, flag, picture_size_x - 1, picture_size_y - 1)
 
 
 /obj/item/camera/proc/cooldown()
@@ -204,7 +204,7 @@
 /obj/item/camera/proc/captureimage(atom/target, mob/user, flag, size_x = 1, size_y = 1)
 	if(flash_enabled)
 		set_light_on(TRUE)
-		addtimer(CALLBACK(src, .proc/flash_end), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	blending = TRUE
 	var/turf/target_turf = get_turf(target)
 	if(!isturf(target_turf))
@@ -213,8 +213,8 @@
 	size_x = clamp(size_x, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	size_y = clamp(size_y, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	var/list/desc = list("This is a photo of an area of [size_x+1] meters by [size_y+1] meters.")
-	var/list/mobs_spotted = list()
 	var/list/dead_spotted = list()
+	var/list/minds_spotted = list()
 	var/ai_user = isAI(user)
 	var/list/seen
 	var/list/viewlist = (user && user.client)? getviewsize(user.client.view) : getviewsize(world.view)
@@ -234,9 +234,10 @@
 				blueprints = TRUE
 	for(var/i in mobs)
 		var/mob/M = i
-		mobs_spotted += M
-		if(M.stat == DEAD)
-			dead_spotted += M
+		if(M.mind)
+			minds_spotted += M.mind
+			if(M.stat == DEAD)
+				dead_spotted += M.mind
 		desc += M.get_photo_description(src)
 
 	var/psize_x = (size_x * 2 + 1) * world.icon_size
@@ -248,7 +249,7 @@
 	temp.Scale(psize_x, psize_y)
 	temp.Blend(get_icon, ICON_OVERLAY)
 
-	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, temp, null, psize_x, psize_y, blueprints)
+	var/datum/picture/P = new("picture", desc.Join(" "), minds_spotted, dead_spotted, temp, null, psize_x, psize_y, blueprints)
 	after_picture(user, P, flag)
 	blending = FALSE
 
@@ -289,7 +290,7 @@
 	var/obj/item/assembly/flash/tator/flashy
 	COOLDOWN_DECLARE(flash_cooldown)
 
-/obj/item/camera/tator/Initialize()
+/obj/item/camera/tator/Initialize(mapload)
 	. = ..()
 	flashy = new (src)
 

@@ -67,7 +67,7 @@
 	attacked_sound = 'sound/items/eatfood.ogg'
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/candy = 3)
 
-/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(stat)
 		return
@@ -157,6 +157,71 @@
 	icon_dead = "pixelgoat_dead"
 	gold_core_spawnable = NO_SPAWN
 
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive
+	name = "Radioactive Goat"
+	desc = "I would not get near this goat if I were you."
+	icon = 'yogstation/icons/mob/goats/radioactive_goat.dmi'
+	icon_state = "radioactivegoat"
+	icon_living = "radioactivegoat"
+	icon_dead = "radioactivegoat_dead"
+	gold_core_spawnable = NO_SPAWN
+	light_power = 5
+	light_range = 4
+	melee_damage_lower = 20
+	melee_damage_upper = 30
+	speed = -0.5
+	robust_searching = 1
+	turns_per_move = 5
+	dodging = 1
+	stat_attack = UNCONSCIOUS
+	health = 200
+	maxHealth = 200
+	var/datum/action/innate/rad_goat/rad_switch
+	var/datum/action/cooldown/spell/conjure/radiation_anomaly/radiation_anomaly
+	var/rad_emit = TRUE
+
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/energy/nuclear_particle))
+		P.damage = 0 //No damaging goat
+	return ..()
+
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/projectile/P)
+	. = ..()
+	if(istype(P, /obj/projectile/energy/nuclear_particle))
+		// abosrbs nuclear particle to heal
+		adjustBruteLoss(-1)
+		adjustFireLoss(-1)
+
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
+	if(stat == CONSCIOUS)
+		adjustBruteLoss(-0.5)
+		adjustFireLoss(-0.5) //gets healed over time
+	if(rad_emit)
+		light_color = LIGHT_COLOR_GREEN
+		radiation_pulse(src, 600)
+	else
+		light_color = initial(light_color)
+
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
+	rad_switch = new
+	rad_switch.Grant(src)
+	radiation_anomaly = new
+	radiation_anomaly.Grant(src)
+
+/datum/action/innate/rad_goat //This is for rad goat only.
+	name = "Rad emission switch"
+	desc = "If you want to enable/disable radiation emission."
+	background_icon_state = "bg_default"
+	button_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "greentext"
+
+/datum/action/innate/rad_goat/Activate()
+	var/mob/living/simple_animal/hostile/retaliate/goat/radioactive/S = owner
+	S.rad_emit = !S.rad_emit
+	to_chat(S, span_notice("You [S.rad_emit? "enable" : "disable"] radiation emission."))
+
 /mob/living/simple_animal/hostile/retaliate/goat/rainbow
 	name = "Rainbow Goat"
 	desc = "WHAT DOES IT MEANNNNNNN!"
@@ -201,7 +266,7 @@
 	melee_damage_upper = 20
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/retaliate/goat/huge/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/huge/Initialize(mapload)
 	. = ..()
 	transform *= 2
 
@@ -212,7 +277,7 @@
 	melee_damage_upper = 1
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/retaliate/goat/tiny/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/tiny/Initialize(mapload)
 	. = ..()
 	transform *= 0.5
 
@@ -345,7 +410,7 @@
 	tame = 1
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/retaliate/goat/legitgoat/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/legitgoat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/waddling)
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)

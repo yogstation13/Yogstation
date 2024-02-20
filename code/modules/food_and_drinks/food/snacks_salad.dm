@@ -9,7 +9,7 @@
 	tastes = list("leaves" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/salad/Initialize()
+/obj/item/reagent_containers/food/snacks/salad/Initialize(mapload)
 	. = ..()
 	eatverb = pick("devour","nibble","gnaw","gobble","chomp") //who the fuck gnaws and devours on a salad
 
@@ -84,6 +84,25 @@
 	tastes = list("rice" = 1)
 	foodtype = GRAIN | RAW
 
+/obj/item/reagent_containers/food/snacks/salad/ricebowl/attackby(obj/item/W, mob/user, params)
+	if(!istype(W, /obj/item/paicard))
+		return ..()
+	var/obj/item/paicard/ricephone = W
+	if(!ricephone.pai)
+		return ..()
+	if(!ricephone.pai.has_status_effect(/datum/status_effect/speech/slurring/drunk) && !ricephone.pai.has_status_effect(/datum/status_effect/speech/stutter/derpspeech))
+		to_chat(user, span_notice("There are rumors that burying a pAI in rice can fix some internal damage, but yours seems to be working fine for now."))
+		return ..()
+	user.visible_message(span_notice("[user] buries [ricephone] into [src]..."), span_notice("You bury [ricephone] in [src]..."))
+	if(do_after(user, 10 SECONDS, src))
+		if(!ricephone.pai)
+			return FALSE
+		user.visible_message(span_notice("[user] removes [ricephone] from [src]."), span_notice("You remove [ricephone] from [src], the diagnostics showing significantly fewer warnings."))
+		to_chat(ricephone.pai, span_notice("System recovery complete."))
+		ricephone.pai.emote("ping")
+		ricephone.pai.remove_status_effect(/datum/status_effect/speech/slurring/drunk)
+		ricephone.pai.remove_status_effect(/datum/status_effect/speech/stutter/derpspeech)
+
 /obj/item/reagent_containers/food/snacks/salad/boiledrice
 	name = "boiled rice"
 	desc = "A warm bowl of rice."
@@ -99,7 +118,7 @@
 	icon_state = "ricepudding"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("rice" = 1, "sweetness" = 1)
-	foodtype = GRAIN | DAIRY
+	foodtype = GRAIN | DAIRY | SUGAR
 
 /obj/item/reagent_containers/food/snacks/salad/ricepork
 	name = "rice and pork"
@@ -111,11 +130,11 @@
 
 /obj/item/reagent_containers/food/snacks/salad/eggbowl
 	name = "egg bowl"
-	desc = "A bowl of rice with a fried egg."
+	desc = "A bowl of rice with a boiled egg."
 	icon_state = "eggbowl"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("rice" = 1, "egg" = 1)
-	foodtype = GRAIN | MEAT | EGG // rip NinjaNomnom
+	foodtype = GRAIN | VEGETABLES | EGG // rip NinjaNomnom
 
 /obj/item/reagent_containers/food/snacks/salad/edensalad
 	name = "\improper Salad of Eden"
@@ -172,7 +191,7 @@
 	foodtype = GRAIN | SEAFOOD
 
 
-/obj/item/reagent_containers/food/snacks/salad/friedrice/shrimp/Initialize()
+/obj/item/reagent_containers/food/snacks/salad/friedrice/shrimp/Initialize(mapload)
 	. = ..()
 	if(prob(10))
 		name = "rice fried shrimp"

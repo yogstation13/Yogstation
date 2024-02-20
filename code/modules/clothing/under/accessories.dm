@@ -261,7 +261,7 @@
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
-	desc = "An armband, worn by personnel authorized to act as a deputy of station security."
+	desc = "A worn out armband, once worn by personnel authorized to act as a deputy of station security. No longer serves a purpose since Nanotrasen outlawed deputization."
 
 /obj/item/clothing/accessory/armband/cargo
 	name = "cargo bay guard armband"
@@ -316,13 +316,12 @@
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = "lawyer"
+		L.AddElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 /obj/item/clothing/accessory/lawyers_badge/on_clothing_dropped(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
-		L.bubble_icon = initial(L.bubble_icon)
-
+		L.RemoveElement(/datum/element/speech_bubble_override, BUBBLE_LAWYER)
 
 ////////////////
 //HA HA! NERD!//
@@ -334,13 +333,13 @@
 	icon_state = "pocketprotector"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/pocketprotector
 
-/obj/item/clothing/accessory/pocketprotector/full/Initialize()
+/obj/item/clothing/accessory/pocketprotector/full/Initialize(mapload)
 	. = ..()
 	new /obj/item/pen/red(src)
 	new /obj/item/pen(src)
 	new /obj/item/pen/blue(src)
 
-/obj/item/clothing/accessory/pocketprotector/cosmetology/Initialize()
+/obj/item/clothing/accessory/pocketprotector/cosmetology/Initialize(mapload)
 	. = ..()
 	for(var/i in 1 to 3)
 		new /obj/item/lipstick/random(src)

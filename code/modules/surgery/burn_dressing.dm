@@ -66,7 +66,7 @@
 		to_chat(user, span_warning("[target] has no infected flesh there!"))
 	return ..()
 
-/datum/surgery_step/debride_infected/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/debride_infected/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	..()
 	display_results(user, target, span_notice("You carve away some of the healthy flesh from [target]'s [parse_zone(target_zone)]."),
 		span_notice("[user] carves away some of the healthy flesh from [target]'s [parse_zone(target_zone)] with [tool]!"),
@@ -113,7 +113,7 @@
 		to_chat(user, span_warning("[target] has no burns there!"))
 	return ..()
 
-/datum/surgery_step/dress/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/dress/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool

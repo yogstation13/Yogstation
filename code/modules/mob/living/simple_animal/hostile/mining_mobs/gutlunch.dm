@@ -6,7 +6,7 @@
 	icon_state = "gutlunch"
 	icon_living = "gutlunch"
 	icon_dead = "gutlunch"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_emote = list("warbles", "quavers")
 	emote_hear = list("trills.")
 	emote_see = list("sniffs.", "burps.")
@@ -42,7 +42,7 @@
 	wanted_objects = list(/obj/effect/decal/cleanable/xenoblood/xgibs, /obj/effect/decal/cleanable/blood/gibs/, /obj/item/organ)
 	var/obj/item/udder/gutlunch/udder = null
 
-/mob/living/simple_animal/hostile/asteroid/gutlunch/Initialize()
+/mob/living/simple_animal/hostile/asteroid/gutlunch/Initialize(mapload)
 	udder = new()
 	. = ..()
 
@@ -68,6 +68,10 @@
 		return TRUE
 
 	if(isobj(the_target) && is_type_in_typecache(the_target, wanted_objects))
+		if(isorgan(the_target))
+			var/obj/item/organ/thing = the_target
+			if(thing.status == ORGAN_ROBOTIC)//don't eat robotic organs, they bad for the tummy
+				return FALSE
 		return TRUE
 
 	return FALSE
@@ -91,6 +95,10 @@
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/AttackingTarget()
 	if(is_type_in_typecache(target,wanted_objects)) //we eats
+		if(istype(target, /obj/item/organ))
+			var/obj/item/organ/thing = target
+			if(thing.status == ORGAN_ROBOTIC)//don't eat robotic organs, they bad for the tummy
+				return ..()
 		udder.generateMilk()
 		regenerate_icons()
 		visible_message(span_notice("[src] slurps up [target]."))
@@ -102,7 +110,7 @@
 	name = "gubbuck"
 	gender = MALE
 
-/mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck/Initialize()
+/mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck/Initialize(mapload)
 	. = ..()
 	add_atom_colour(pick("#E39FBB", "#D97D64", "#CF8C4A"), FIXED_COLOUR_PRIORITY)
 	resize = 0.85
@@ -113,7 +121,7 @@
 	name = "guthen"
 	gender = FEMALE
 
-/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen/Life()
+/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(udder.reagents.total_volume == udder.reagents.maximum_volume) //Only breed when we're full.
 		make_babies()
@@ -131,13 +139,13 @@
 	var/growth = 0
 
 //Baby gutlunch
-/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/Initialize()
+/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/Initialize(mapload)
 	. = ..()
 	add_atom_colour("#9E9E9E", FIXED_COLOUR_PRIORITY) //Somewhat hidden
 	resize = 0.45
 	update_transform()
 
-/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/Life()
+/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	growth++
 	if(growth > 50) //originally used a timer for this but was more problem that it's worth.
@@ -160,7 +168,7 @@
 /obj/item/udder/gutlunch
 	name = "nutrient sac"
 
-/obj/item/udder/gutlunch/Initialize()
+/obj/item/udder/gutlunch/Initialize(mapload)
 	. = ..()
 	reagents = new(50)
 	reagents.my_atom = src

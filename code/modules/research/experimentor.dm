@@ -70,7 +70,7 @@
 			if(initial(tempCheck.icon_state) != null) //check it's an actual usable item, in a hacky way
 				valid_items["[I]"] += rand(1,4)
 
-/obj/machinery/rnd/experimentor/Initialize()
+/obj/machinery/rnd/experimentor/Initialize(mapload)
 	. = ..()
 
 	trackedIan = locate(/mob/living/simple_animal/pet/dog/corgi/Ian) in GLOB.mob_living_list
@@ -83,7 +83,6 @@
 		/obj/item/aicard,
 		/obj/item/storage/backpack/holding,
 		/obj/item/slime_extract,
-		/obj/item/onetankbomb,
 		/obj/item/transfer_valve))
 
 /obj/machinery/rnd/experimentor/RefreshParts()
@@ -370,7 +369,7 @@
 		else if(prob(EFFECT_PROB_MEDIUM-badThingCoeff))
 			autoexperiment = 0
 			visible_message(span_warning("[src] melts [exp_on], ionizing the air around it!"))
-			empulse(loc, 4, 6)
+			empulse(loc, 6)
 			investigate_log("Experimentor has generated an Electromagnetic Pulse.", INVESTIGATE_EXPERIMENTOR)
 			ejectItem(TRUE)
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -395,7 +394,7 @@
 			if(MT)
 				visible_message(span_danger("[src] dangerously overheats, launching a flaming fuel orb!"))
 				investigate_log("Experimentor has launched a <font color='red'>fireball</font> at [M]!", INVESTIGATE_EXPERIMENTOR)
-				var/obj/item/projectile/magic/aoe/fireball/FB = new /obj/item/projectile/magic/aoe/fireball(start)
+				var/obj/projectile/magic/fireball/FB = new /obj/projectile/magic/fireball(start)
 				FB.preparePixelProjectile(MT, start)
 				FB.fire()
 		else if(prob(EFFECT_PROB_LOW-badThingCoeff))
@@ -408,15 +407,7 @@
 			autoexperiment = 0
 			visible_message(span_warning("[src] malfunctions, melting [exp_on] and leaking hot air!"))
 			var/datum/gas_mixture/env = loc.return_air()
-			var/transfer_moles = 0.25 * env.total_moles()
-			var/datum/gas_mixture/removed = env.remove(transfer_moles)
-			if(removed)
-				var/heat_capacity = removed.heat_capacity()
-				if(heat_capacity == 0 || heat_capacity == null)
-					heat_capacity = 1
-				removed.set_temperature(min((removed.return_temperature()*heat_capacity + 100000)/heat_capacity, 1000))
-			env.merge(removed)
-			air_update_turf()
+			env.adjust_heat(100000)
 			investigate_log("Experimentor has released hot air.", INVESTIGATE_EXPERIMENTOR)
 			ejectItem(TRUE)
 		else if(prob(EFFECT_PROB_MEDIUM-badThingCoeff))
@@ -458,15 +449,7 @@
 			autoexperiment = 0
 			visible_message(span_warning("[src] malfunctions, shattering [exp_on] and leaking cold air!"))
 			var/datum/gas_mixture/env = loc.return_air()
-			var/transfer_moles = 0.25 * env.total_moles()
-			var/datum/gas_mixture/removed = env.remove(transfer_moles)
-			if(removed)
-				var/heat_capacity = removed.heat_capacity()
-				if(heat_capacity == 0 || heat_capacity == null)
-					heat_capacity = 1
-				removed.set_temperature((removed.return_temperature()*heat_capacity - 75000)/heat_capacity)
-			env.merge(removed)
-			air_update_turf()
+			env.adjust_heat(-75000)
 			investigate_log("Experimentor has released cold air.", INVESTIGATE_EXPERIMENTOR)
 			ejectItem(TRUE)
 		else if(prob(EFFECT_PROB_MEDIUM-badThingCoeff))
@@ -561,16 +544,17 @@
 		use_power(500000)
 		investigate_log("Experimentor has drained power from its APC", INVESTIGATE_EXPERIMENTOR)
 
-	addtimer(CALLBACK(src, .proc/reset_exp), resetTime)
+	addtimer(CALLBACK(src, PROC_REF(reset_exp)), resetTime)
 
 /obj/machinery/rnd/experimentor/proc/reset_exp()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	recentlyExperimented = FALSE
 	if(autoexperiment)
 		do_experiment()
 
-/obj/machinery/rnd/experimentor/update_icon()
-	icon_state = "h_lathe"
+/obj/machinery/rnd/experimentor/update_icon_state()
+	. = ..()
+	icon_state = initial(icon_state)
 
 /obj/machinery/rnd/experimentor/proc/warn_admins(user, ReactionName)
 	var/turf/T = get_turf(user)
@@ -606,7 +590,7 @@
 	var/cooldownMax = 60
 	var/cooldown
 
-/obj/item/relic/Initialize()
+/obj/item/relic/Initialize(mapload)
 	. = ..()
 	icon_state = pick("shock_kit","armor-igniter-analyzer","infra-igniter0","infra-igniter1","radio-multitool","prox-radio1","radio-radio","timer-multitool0","radio-igniter-tank","infra-igniter-tank0","infra-igniter-tank1","infrared-radio0","infrared-radio1","prox-igniter0","prox-igniter1","prox-igniter2","prox-multitool0","prox-multitool1","prox-multitool2","prox-radio0","prox-radio1","prox-radio2","prox-igniter-tank0","prox-igniter-tank1","prox-igniter-tank2","radio-igniter","timer-igniter0","timer-igniter1","timer-igniter2","timer-igniter-tank0","timer-igniter-tank1","timer-igniter-tank2","timer-multitool1","timer-multitool2","timer-radio0","timer-radio1","timer-radio2")
 	realName = "[pick("broken","twisted","spun","improved","silly","regular","badly made")] [pick("device","object","toy","illegal tech","weapon")]"
@@ -629,7 +613,7 @@
 			cooldown = TRUE
 			call(src,realProc)(user)
 			if(!QDELETED(src))
-				addtimer(CALLBACK(src, .proc/cd), cooldownMax)
+				addtimer(CALLBACK(src, PROC_REF(cd)), cooldownMax)
 	else
 		to_chat(user, span_notice("You aren't quite sure what to do with this yet."))
 
@@ -646,7 +630,7 @@
 /obj/item/relic/proc/corgicannon(mob/user)
 	playsound(src, "sparks", rand(25,50), 1)
 	var/mob/living/simple_animal/pet/dog/corgi/C = new/mob/living/simple_animal/pet/dog/corgi(get_turf(user))
-	C.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, .proc/throwSmoke, C))
+	C.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, PROC_REF(throwSmoke), C))
 	warn_admins(user, "Corgi Cannon", 0)
 
 /obj/item/relic/proc/clean(mob/user)
@@ -696,7 +680,7 @@
 
 /obj/item/relic/proc/explode(mob/user)
 	to_chat(user, span_danger("[src] begins to heat up!"))
-	addtimer(CALLBACK(src, .proc/do_explode, user), rand(35, 100))
+	addtimer(CALLBACK(src, PROC_REF(do_explode), user), rand(35, 100))
 
 /obj/item/relic/proc/do_explode(mob/user)
 	if(loc == user)
@@ -707,7 +691,7 @@
 
 /obj/item/relic/proc/teleport(mob/user)
 	to_chat(user, span_notice("[src] begins to vibrate!"))
-	addtimer(CALLBACK(src, .proc/do_the_teleport, user), rand(10, 30))
+	addtimer(CALLBACK(src, PROC_REF(do_the_teleport), user), rand(10, 30))
 
 /obj/item/relic/proc/do_the_teleport(mob/user)
 	var/turf/userturf = get_turf(user)

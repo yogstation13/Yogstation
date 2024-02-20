@@ -219,10 +219,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
+	TopicData = null							//Prevent calls to client.Topic from connect
+
 	//this is a scam, so sometimes the topicdata is set to /?key=value instead of key=value, this is a hack around that
 	if(copytext(tdata, 1, 3) == "/?")
 		tdata = copytext(tdata, 3)
-	TopicData = null							//Prevent calls to client.Topic from connect
+
 
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
@@ -301,10 +303,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (prefs.unlock_content & DONOR_YOGS)
 		src.add_donator_verbs()
 	else
-		if(prefs.yogtoggles & QUIET_ROUND)
-			prefs.yogtoggles &= ~QUIET_ROUND
-			prefs.save_preferences()
-		
+		if(prefs.read_preference(/datum/preference/toggle/quiet_mode))
+			prefs.write_preference(/datum/preference/toggle/quiet_mode, FALSE)
+
 	. = ..()	//calls mob.Login()
 
 	if (byond_version >= 512)
@@ -331,9 +332,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
 
 	// Initialize tgui panel
-	tgui_panel.initialize()
+	tgui_panel.Initialize()
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
-	addtimer(CALLBACK(src, .proc/check_panel_loaded), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 5 SECONDS)
 
 
 	if(alert_mob_dupe_login)
@@ -394,6 +395,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		adminGreet()
 
 	add_verbs_from_config()
+	if(GLOB.admin_event)
+		add_verb(src, /client/proc/event_info)
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		player_age = 0
@@ -401,6 +404,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
 			message_admins("New user: [key_name_admin(src)] ([address]) is connecting here for the first time.")
+			to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "[key_name_mentor(src)] is connecting here for the first time, and might need help! Their BYOND account is [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].", confidential=TRUE)
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)
@@ -409,6 +413,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		player_age = account_age
 	if(account_age >= 0 && account_age < nnpa)
 		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
+		to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "[key_name_mentor(src)] is connecting, and might need help! Their BYOND account is [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].", confidential=TRUE)
 		if (CONFIG_GET(flag/irc_first_connection_alert))
 			send2irc_adminless_only("new_byond_user", "[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
 	get_message_output("watchlist entry", ckey)
@@ -417,7 +422,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	send_resources()
 
-	generate_clickcatcher()
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -438,7 +442,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 
-
+	update_ambience_pref()
 	//This is down here because of the browse() calls in tooltip/New()
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)
@@ -509,6 +513,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+
+	SSambience.remove_ambience_client(src)
 
 	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
 	if(CL)
@@ -836,6 +842,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		ip_intel = res.intel
 
 /client/Click(atom/object, atom/location, control, params)
+	if(click_intercept_time)
+		if(click_intercept_time >= world.time)
+			click_intercept_time = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercept_time = 0 //Just reset. Let's not keep re-checking forever.
+
 	if(src.afreeze)
 		to_chat(src, span_userdanger("You have been frozen by an administrator."))
 		return
@@ -847,7 +859,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(dragged && !L[dragged])
 		return
 
-	if (object && object == middragatom && L["left"])
+	if (object && IS_WEAKREF_OF(object, middle_drag_atom_ref) && LAZYACCESS(L, LEFT_CLICK))
 		ab = max(0, 5 SECONDS-(world.time-middragtime)*0.1)
 
 	var/mcl = CONFIG_GET(number/minute_click_limit)
@@ -896,6 +908,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	else
 		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 
+	SEND_SIGNAL(src, COMSIG_CLIENT_CLICK, object, location, control, params, usr)
+
 	..()
 
 /client/proc/add_verbs_from_config()
@@ -931,7 +945,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		if (CONFIG_GET(flag/asset_simple_preload))
-			addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
+			addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
 		#if (PRELOAD_RSC == 0)
 		for (var/name in GLOB.vox_sounds)
@@ -1031,11 +1045,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	if (prefs.read_preference(/datum/preference/toggle/auto_fit_viewport))
-		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
+		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS)) //Delayed to avoid wingets from Login calls.
 
 /client/proc/generate_clickcatcher()
 	if(!void)
 		void = new()
+	if(!(void in screen))
 		screen += void
 
 /client/proc/apply_clickcatcher()
@@ -1073,7 +1088,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(statbrowser_ready)
 		return
 	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
-	tgui_panel.initialize()
+	tgui_panel.Initialize()
+
+/client/verb/reload_statpanel()
+	set name = "Reload Statpanel"
+	set category = "OOC"
+
+	usr << browse(file('html/statbrowser.html'), "window=statbrowser")
 
 /client/verb/stop_client_sounds()
 	set name = "Stop Sounds"
@@ -1082,3 +1103,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	SEND_SOUND(usr, sound(null))
 	tgui_panel?.stop_music()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Stop Self Sounds"))
+
+/client/proc/update_ambience_pref()
+	if(prefs.toggles & SOUND_AMBIENCE)
+		if(SSambience.ambience_listening_clients[src] > world.time)
+			return // If already properly set we don't want to reset the timer.
+		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
+	else
+		SSambience.ambience_listening_clients -= src
+
+/client/proc/open_particle_editor(atom/in_atom)
+	if(holder)
+		holder.particool = new /datum/particle_editor(in_atom)
+		holder.particool.ui_interact(mob)

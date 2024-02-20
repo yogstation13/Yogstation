@@ -43,7 +43,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/margherita/raw/MakeBakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/margherita, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/pizza/margherita/robo/Initialize()
+/obj/item/reagent_containers/food/snacks/pizza/margherita/robo/Initialize(mapload)
 	bonus_reagents += list(/datum/reagent/nanomachines = 70)
 	return ..()
 
@@ -174,8 +174,8 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/dank
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 6)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/doctor_delight = 5, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | FRUIT | DAIRY
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "drugs" = 1)
+	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/dank/raw
 	name = "raw dank pizza"
@@ -192,8 +192,8 @@
 	desc = "So good, man..."
 	icon_state = "dankpizzaslice"
 	filling_color = "#2E8B57"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | FRUIT | DAIRY
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "drugs" = 1)
+	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/sassysage
 	name = "sassysage pizza"
@@ -202,7 +202,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/sassysage
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY
+	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT
 
 /obj/item/reagent_containers/food/snacks/pizza/sassysage/raw
 	name = "raw sassysage pizza"
@@ -220,7 +220,7 @@
 	icon_state = "sassysagepizzaslice"
 	filling_color = "#FF4500"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY
+	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT
 
 /obj/item/reagent_containers/food/snacks/pizza/pineapple
 	name = "\improper Hawaiian pizza"
@@ -305,7 +305,7 @@
 			r_arm.dismember()
 		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, TRUE, -1)
 
-/obj/item/reagent_containers/food/snacks/proc/i_kill_you(obj/item/I, mob/user)
+/obj/item/reagent_containers/food/snacks/proc/i_kill_you(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/pineappleslice))
 		to_chat(user, "<font color='red' size='7'>If you want something crazy like pineapple, I kill you.</font>")
 		user.gib() //if you want something crazy like pineapple, i kill you

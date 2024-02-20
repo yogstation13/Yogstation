@@ -408,7 +408,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 26
+	begin_day = 22
 	begin_month = OCTOBER
 	end_day = 2
 	end_month = NOVEMBER
@@ -428,6 +428,11 @@
 		"https://www.youtube.com/watch?v=bRLML36HnzU" // Monster Mash
 		)
 
+/datum/holiday/halloween/shouldCelebrate(dd, mm, yy, ww, ddd)
+	. = ..()
+	if(!.)
+		return (dd == 13 && ddd == FRIDAY)
+	
 /datum/holiday/halloween/greet()
 	return "Have a spooky Halloween!"
 
@@ -457,7 +462,7 @@
     begin_month = NOVEMBER
 
 /datum/holiday/remembrance/celebrate()
-    SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
+    SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
 
 /datum/holiday/remembrance/proc/roundstart_celebrate()
     for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -602,21 +607,41 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=Ri-Pmh5X8-c",   //Phyrnna - Sisters of Snow Dissent
 		"https://www.youtube.com/watch?v=W2Dyg4YY2VU",   //Phyrnna - Sisters of Snow Assent
 		"https://www.youtube.com/watch?v=VICEsWdd4Kk",   //Phyrnna - A First Snow with Friends
-		"https://www.youtube.com/watch?v=1HGQlV2AWGs"	// Phineas and Ferb - We Wish You a Merry Christmas
+		"https://www.youtube.com/watch?v=1HGQlV2AWGs",	// Phineas and Ferb - We Wish You a Merry Christmas
+		"https://www.youtube.com/watch?v=0gw8l7iv2Wg"   //Anuc Atittawan and Hera Loani - Chestnuts Roasting on an Open Fire
 
 		)
 	mail_holiday = TRUE
+
+/datum/holiday/xmas/getStationPrefix()
+	return pick(
+		"Birthday",
+		"Chimney",
+		"Claus",
+		"Elf",
+		"Fir",
+		"Ho Ho Ho",
+		"Jolly",
+		"Merry",
+		"Present",
+		"Sack",
+		"Santa",
+		"Sleigh",
+		"Yule",
+	)
 
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
 
 /datum/holiday/xmas/celebrate()
-	SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
-	GLOB.maintenance_loot += list(
-		/obj/item/toy/xmas_cracker = 3,
-		/obj/item/clothing/head/santa = 1,
-		/obj/item/a_gift/anything = 1
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
+	//Start of yogstation loot changes.
+	GLOB.maintenance_loot_traditional += list(
+		/obj/item/toy/xmas_cracker = 300,
+		/obj/item/clothing/head/santa = 100,
+		/obj/item/a_gift/anything = 100
 	)
+	//End of yogstation loot changes.
 
 /datum/holiday/xmas/proc/roundstart_celebrate()
 	for(var/obj/machinery/computer/security/telescreen/entertainment/Monitor in GLOB.machines)
@@ -682,9 +707,11 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return ..()
 
 /datum/holiday/easter/celebrate()
-	GLOB.maintenance_loot += list(
-		/obj/item/reagent_containers/food/snacks/egg/loaded = 15,
-		/obj/item/storage/bag/easterbasket = 15)
+	//Start of yogstation loot changes.
+	GLOB.maintenance_loot_traditional += list(
+		/obj/item/reagent_containers/food/snacks/egg/loaded = 1500,
+		/obj/item/storage/bag/easterbasket = 1500)
+	//End of yogstation loot changes.
 
 /datum/holiday/easter/greet()
 	return "Greetings! Have a Happy Easter and keep an eye out for Easter Bunnies!"
@@ -713,7 +740,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=P2csnVNai-o", // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
 		"https://www.youtube.com/watch?v=Jr5DG6QheEc",  // Look! Professor Angell Brings - H. P. Lovecraft Historical Society - An Even Scarier Solstice
 		"https://www.youtube.com/watch?v=LA4TMacjYMw",  // Slay Ride - H. P. Lovecraft Historical Society - An Even Scarier Solstice
-		"https://www.youtube.com/watch?v=tM08p2sxDVE"	// Embrace the Darkness - Andrew Hulshult - DUSK
+		"https://www.youtube.com/watch?v=tM08p2sxDVE",	// Embrace the Darkness - Andrew Hulshult - DUSK
+		"https://www.youtube.com/watch?v=hKJM4qUU-I4"	// Prelude to Darkness - Miro Haverinen - Fear & Hunger
 		)
 
 /datum/holiday/twofoursixohfive

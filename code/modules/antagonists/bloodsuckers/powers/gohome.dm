@@ -3,65 +3,63 @@
 #define GOHOME_FLICKER_TWO 4
 #define GOHOME_TELEPORT 6
 
-/datum/action/bloodsucker/gohome
+/datum/action/cooldown/bloodsucker/gohome
 	name = "Vanishing Act"
 	desc = "As dawn aproaches, disperse into mist and return directly to your Lair.<br><b>WARNING:</b> You will drop <b>ALL</b> of your possessions if observed by mortals."
 	button_icon_state = "power_gohome"
-	background_icon_state_on = "vamp_power_off_oneshot"
-	background_icon_state_off = "vamp_power_off_oneshot"
-	power_explanation = "<b>Vanishing Act</b>: \n\
+	active_background_icon_state = "vamp_power_off_oneshot"
+	base_background_icon_state = "vamp_power_off_oneshot"
+	power_explanation = "Vanishing Act: \n\
 		Activating Vanishing Act will, after a short delay, teleport the user to their <b>Claimed Coffin</b>. \n\
 		The power will cancel out if the <b>Claimed Coffin</b> is somehow destroyed. \n\
 		Immediately after activating, lights around the user will begin to flicker. \n\
 		Once the user teleports to their coffin, in their place will be a Rat or Bat."
 	power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED
+	check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED
 	// You only get this once you've claimed a lair and Sol is near.
 	purchase_flags = NONE
 	constant_bloodcost = 2
 	bloodcost = 100
-	cooldown = 100 SECONDS
+	cooldown_time = 100 SECONDS
 	///What stage of the teleportation are we in
 	var/teleporting_stage = GOHOME_START
-	var/list/spawning_mobs = list(
+	///The types of mobs that will drop post-teleportation.
+	var/static/list/spawning_mobs = list(
 		/mob/living/simple_animal/mouse = 3,
 		/mob/living/simple_animal/hostile/retaliate/bat = 1,
 	)
 
-/datum/action/bloodsucker/gohome/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/gohome/CanUse(mob/living/carbon/user)
 	. = ..()
 	if(!.)
 		return FALSE
 	/// Have No Lair (NOTE: You only got this power if you had a lair, so this means it's destroyed)
 	if(!istype(bloodsuckerdatum_power) || !bloodsuckerdatum_power.coffin)
-		to_chat(owner, span_warning("Your coffin has been destroyed!"))
+		owner.balloon_alert(owner, "coffin was destroyed!")
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/gohome/ActivatePower()
+/datum/action/cooldown/bloodsucker/gohome/ActivatePower()
 	. = ..()
-	to_chat(owner, span_notice("You focus on separating your consciousness from your physical form..."))
+	owner.balloon_alert(owner, "preparing to teleport...")
 
-/datum/action/bloodsucker/gohome/UsePower(mob/living/user)
+/datum/action/cooldown/bloodsucker/gohome/process()
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!bloodsuckerdatum_power.coffin)
-		to_chat(owner, span_warning("Your coffin has been destroyed! You no longer have a destination."))
-		return FALSE
+
 	switch(teleporting_stage)
 		if(GOHOME_START)
-			INVOKE_ASYNC(src, .proc/flicker_lights, 3, 20)
+			INVOKE_ASYNC(src, PROC_REF(flicker_lights), 3, 2 SECONDS)
 		if(GOHOME_FLICKER_ONE)
-			INVOKE_ASYNC(src, .proc/flicker_lights, 4, 40)
+			INVOKE_ASYNC(src, PROC_REF(flicker_lights), 4, 4 SECONDS)
 		if(GOHOME_FLICKER_TWO)
-			INVOKE_ASYNC(src, .proc/flicker_lights, 4, 60)
+			INVOKE_ASYNC(src, PROC_REF(flicker_lights), 4, 6 SECONDS)
 		if(GOHOME_TELEPORT)
-			do_mob(user, user, 1 SECONDS, TRUE)
-			INVOKE_ASYNC(src, .proc/teleport_to_coffin, user)
+			INVOKE_ASYNC(src, PROC_REF(teleport_to_coffin), owner)
 	teleporting_stage++
 
-/datum/action/bloodsucker/gohome/ContinueActive(mob/living/user, mob/living/target)
+/datum/action/cooldown/bloodsucker/gohome/ContinueActive(mob/living/user, mob/living/target)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -72,12 +70,12 @@
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/gohome/proc/flicker_lights(flicker_range, beat_volume)
+/datum/action/cooldown/bloodsucker/gohome/proc/flicker_lights(flicker_range, beat_volume)
 	for(var/obj/machinery/light/nearby_lights in view(flicker_range, get_turf(owner)))
 		nearby_lights.flicker(5)
 	playsound(get_turf(owner), 'sound/effects/singlebeat.ogg', beat_volume, TRUE)
 
-/datum/action/bloodsucker/gohome/proc/teleport_to_coffin(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/gohome/proc/teleport_to_coffin(mob/living/carbon/user)
 	var/drop_item = FALSE
 	var/turf/current_turf = get_turf(user)
 	// If we aren't in the dark, anyone watching us will cause us to drop out stuff
@@ -114,12 +112,9 @@
 	/// TELEPORT: Move to Coffin & Close it!
 	user.set_resting(TRUE, TRUE, FALSE)
 	do_teleport(user, bloodsuckerdatum_power.coffin, no_effects = TRUE, forced = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
-	user.Stun(3 SECONDS, TRUE)
-	// Puts me inside.
-	if(!bloodsuckerdatum_power.coffin.close(user))
-		// CLOSE LID: If fail, force me in.
-		bloodsuckerdatum_power.coffin.insert(user)
-		playsound(bloodsuckerdatum_power.coffin.loc, bloodsuckerdatum_power.coffin.close_sound, 15, TRUE, -3)
+	bloodsuckerdatum_power.coffin.close(owner)
+	bloodsuckerdatum_power.coffin.take_contents()
+	playsound(bloodsuckerdatum_power.coffin.loc, bloodsuckerdatum_power.coffin.close_sound, 15, TRUE, -3)
 
 	DeactivatePower()
 

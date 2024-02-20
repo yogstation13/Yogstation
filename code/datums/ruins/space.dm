@@ -214,8 +214,8 @@
 	id = "listeningstation"
 	suffix = "listeningstation.dmm"
 	name = "Syndicate Listening Station"
-	description = "Listening stations form the backbone of the syndicate's information-gathering operations. \
-	Assignment to these stations is dreaded by most agents, as it entails long and lonely shifts listening to nearby stations chatter incessantly about the most meaningless things."
+	description = "Listening stations form the backbone of the Syndicate's information-gathering operations. \
+	Assignment to these stations used to be one of the Syndicate's loneliest postings, but recent protests by workers have resulted in two-person outposts. They still, however, often get bored to death listening to nearby stations talking about the most useless things you could dream of."
 
 /datum/map_template/ruin/space/oldAIsat
 	id = "oldAIsat"
@@ -358,4 +358,9 @@
 	suffix = "nicelittlenest.dmm"
 	name = "Cozy Home"
 	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
-	
+
+/datum/map_template/ruin/space/syndicate_derelict_station
+	id = "syndicatederelictstation"
+	suffix = "syndicate_derelict_station.dmm"
+	name = "Syndicate Derelict Station"
+	description = "A remote station once used to be a syndicate research wing. Due to an unknown issue, it has been since abandoned as a bunch of floating debris."

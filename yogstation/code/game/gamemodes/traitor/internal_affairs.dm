@@ -45,11 +45,6 @@
 					hijack_objective.owner = owner
 					add_objective(hijack_objective)
 
-			if(uplink_holder && owner.current && ishuman(owner.current))
-				var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
-				uplink.telecrystals += 5
-				to_chat(owner, span_notice("You have been given 5 TC as a reward for completing your objective!"))
-
 			owner.announce_objectives()
 
 /datum/game_mode/traitor/internal_affairs/add_latejoin_traitor(datum/mind/character)

@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 		ticket_data["index"] = i
 		ticket_data["initiator_key_name"] = ahelp.initiator_key_name
 		ticket_data["initiator_ckey"] = ahelp.initiator_ckey
-		ticket_data["admin_key"] = ahelp.handling_admin && ahelp.handling_admin.key
+		ticket_data["admin_key"] = ahelp.handling_admin_ckey
 		ticket_data["active"] = ahelp.state == AHELP_ACTIVE
 
 		ticket_data["has_client"] = !!ahelp.initiator
@@ -70,7 +70,7 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	.["is_admin"] = !!user.client.holder
 	.["name"] = name
 	.["id"] = id
-	.["admin"] = handling_admin && handling_admin.key
+	.["admin"] = handling_admin_ckey
 	.["is_resolved"] = state != AHELP_ACTIVE
 	.["initiator_key_name"] = initiator_key_name
 	.["popups"] = popups_enabled
@@ -119,8 +119,9 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 				return
 			if(usr.client.current_ticket != src)
 				to_chat(usr, "<span class=warning>You are not able to reply to this ticket. To open a ticket, please use the adminhelp verb")
-			if(handling_admin)
-				usr.client.cmd_admin_pm(handling_admin, message)
+			if(handling_admin_ckey)
+				var/prefix = discord_admin ? "$" : ""
+				usr.client.cmd_admin_pm("[prefix][handling_admin_ckey]", message)
 			else
 				MessageNoRecipient(message)
 			return

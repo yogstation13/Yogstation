@@ -7,10 +7,10 @@
 /datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignals(parent, list(COMSIG_MOVABLE_Z_CHANGED), .proc/check_in_bounds)
-	RegisterSignals(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), .proc/relocate)
-	RegisterSignals(parent, list(COMSIG_PARENT_PREQDELETED), .proc/check_deletion)
-	RegisterSignals(parent, list(COMSIG_ITEM_IMBUE_SOUL), .proc/check_soul_imbue)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_Z_CHANGED), PROC_REF(check_in_bounds))
+	RegisterSignals(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), PROC_REF(relocate))
+	RegisterSignals(parent, list(COMSIG_PARENT_PREQDELETED), PROC_REF(check_deletion))
+	RegisterSignals(parent, list(COMSIG_ITEM_IMBUE_SOUL), PROC_REF(check_soul_imbue))
 	src.inform_admins = inform_admins
 	src.allow_death = allow_death
 	check_in_bounds() // Just in case something is being created outside of station/centcom
@@ -47,7 +47,7 @@
 		if(inform_admins)
 			message_admins("[parent] has been moved out of bounds in [ADMIN_VERBOSEJMP(currentturf)]. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
 
-/datum/component/stationloving/proc/check_soul_imbue()
+/datum/component/stationloving/proc/check_soul_imbue(datum/source)
 	return disallow_soul_imbue
 
 /datum/component/stationloving/proc/in_bounds()

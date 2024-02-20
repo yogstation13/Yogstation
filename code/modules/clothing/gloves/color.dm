@@ -6,8 +6,7 @@
 	name = "insulated gloves"
 	icon_state = "yellow"
 	item_state = "ygloves"
-	siemens_coefficient = 0
-	permeability_coefficient = 0.05
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 	resistance_flags = NONE
 
 /obj/item/clothing/gloves/color/fyellow                             //Cheap Chinese Crap
@@ -15,12 +14,31 @@
 	name = "budget insulated gloves"
 	icon_state = "yellow"
 	item_state = "ygloves"
-	siemens_coefficient = 0
-	permeability_coefficient = 0.05
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 	resistance_flags = NONE
 	var/damaged = FALSE
 
-/obj/item/clothing/gloves/color/fyellow/proc/get_shocked()
+/obj/item/clothing/gloves/color/fyellow/equipped(mob/user, slot)
+	. = ..()
+	if(slot & ITEM_SLOT_GLOVES)
+		RegisterSignal(user, COMSIG_LIVING_SHOCK_PREVENTED, PROC_REF(get_shocked))
+
+/obj/item/clothing/gloves/fyellow/dropped(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_GLOVES)==src)
+		UnregisterSignal(user, COMSIG_LIVING_SHOCK_PREVENTED)
+	return ..()
+
+/obj/item/clothing/gloves/color/fyellow/proc/get_shocked(mob/living/carbon/victim, power_source, source, siemens_coeff, dist_check)
+	var/list/powernet_info = get_powernet_info_from_source(power_source)
+	if (!powernet_info)
+		return FALSE
+
+	var/datum/powernet/net = powernet_info["powernet"]
+	var/obj/item/stock_parts/cell/cell = powernet_info["cell"]
+
+	if(!(net?.get_electrocute_damage() || cell?.get_electrocute_damage()))
+		return FALSE
+
 	if(damaged)
 		to_chat(loc, span_warning("Your gloves catch fire and disintegrate!"))
 		new/obj/effect/decal/cleanable/ash(src)
@@ -65,15 +83,8 @@
 	desc = "Rudimentary gloves that aid in carrying."
 	icon_state = "goligloves"
 	item_state = "goligloves"
-
-/obj/item/clothing/gloves/color/black/goliath/equipped(mob/user, slot)
-	..()
-	if(slot == SLOT_GLOVES)
-		ADD_TRAIT(user, TRAIT_QUICK_CARRY, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/color/black/goliath/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, TRAIT_QUICK_CARRY, CLOTHING_TRAIT)
+	can_be_cut = FALSE
+	clothing_traits = list(TRAIT_QUICKER_CARRY)
 
 /obj/item/clothing/gloves/color/orange
 	name = "orange gloves"
@@ -91,8 +102,7 @@
 /obj/item/clothing/gloves/color/red/insulated
 	name = "insulated gloves"
 	desc = "These gloves will protect the wearer from electric shock."
-	siemens_coefficient = 0
-	permeability_coefficient = 0.05
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 	resistance_flags = NONE
 
 /obj/item/clothing/gloves/color/rainbow
@@ -142,14 +152,12 @@
 	name = "captain's gloves"
 	icon_state = "captain"
 	item_state = "egloves"
-	siemens_coefficient = 0
-	permeability_coefficient = 0.05
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	strip_delay = 60
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 70, ACID = 50, ELECTRIC = 100)
 
 /obj/item/clothing/gloves/color/captain/centcom
 	desc = "Regal green gloves, with a nice gold trim, a diamond anti-shock coating, and an integrated thermal barrier. Swanky."
@@ -168,11 +176,10 @@
 	desc = "Cheap sterile gloves made from latex. Transfers minor paramedic knowledge to the user via budget nanochips."
 	icon_state = "latex"
 	item_state = "lgloves"
-	siemens_coefficient = 0.3
-	permeability_coefficient = 0.01
 	transfer_prints = TRUE
 	resistance_flags = NONE
-	var/carrytrait = TRAIT_QUICK_CARRY
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 70)
+	clothing_traits = list(TRAIT_QUICK_CARRY)
 	var/surgeryspeed = 0.9	//how much these gloves speed up surgery
 
 /obj/item/clothing/gloves/color/latex/nitrile
@@ -181,17 +188,18 @@
 	icon_state = "nitrile"
 	item_state = "nitrilegloves"
 	transfer_prints = FALSE
-	carrytrait = TRAIT_QUICKER_CARRY
+	clothing_traits = list(TRAIT_QUICKER_CARRY)
 	surgeryspeed = 0.8
 
-/obj/item/clothing/gloves/color/latex/equipped(mob/user, slot)
-	..()
-	if(slot == SLOT_GLOVES)
-		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/color/latex/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
+/obj/item/clothing/gloves/color/latex/fireproof
+	name = "fireproof surgical gloves"
+	desc = "Durable, thicker and head-resistant sterile gloves. Designed for medical first responders to fire emergencies. Transfers exhaustive paramedic knowledge into the user via nanochips."
+	icon_state = "mining_medic"
+	item_state = "mining_medic"
+	transfer_prints = FALSE
+	resistance_flags = FIRE_PROOF
+	clothing_traits = list(TRAIT_QUICKEST_CARRY, TRAIT_RESISTHEATHANDS)//quickest carry because lavaland
+	surgeryspeed = 0.95 //slower than even basic latex gloves to make up for the extinguish and faster carry
 
 /obj/item/clothing/gloves/color/white
 	name = "white gloves"

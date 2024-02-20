@@ -3,31 +3,17 @@
 	roundend_category = "syndicate infiltrators" //just in case
 	antagpanel_category = "Infiltrator"
 	job_rank = ROLE_INFILTRATOR
+	antag_hud_name = "synd"
 	show_to_ghosts = TRUE
 	var/datum/team/infiltrator/infiltrator_team
 	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
 	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
 	var/dress_up = TRUE
-	var/hud_icon = "synd"
 	preview_outfit = /datum/outfit/infiltrator
-
-/datum/antagonist/infiltrator/proc/update_synd_icons_added(mob/living/M)
-	var/datum/atom_hud/antag/sithud = GLOB.huds[ANTAG_HUD_INFILTRATOR]
-	sithud.join_hud(M)
-	set_antag_hud(M, hud_icon)
-
-/datum/antagonist/infiltrator/proc/update_synd_icons_removed(mob/living/M)
-	var/datum/atom_hud/antag/sithud = GLOB.huds[ANTAG_HUD_INFILTRATOR]
-	sithud.leave_hud(M)
-	set_antag_hud(M, null)
 
 /datum/antagonist/infiltrator/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
-	update_synd_icons_added(M)
-
-/datum/antagonist/infiltrator/remove_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_synd_icons_removed(M)
+	add_team_hud(M)
 
 /datum/antagonist/infiltrator/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/infiltrator.ogg', 100, 0)
@@ -51,7 +37,6 @@
 			H.fully_replace_character_name(H.real_name, new_name)
 			H.equipOutfit(/datum/outfit/infiltrator)
 	owner.store_memory("Do <B>NOT</B> kill or destroy needlessly, as this defeats the purpose of an 'infiltration'!")
-	objectives |= infiltrator_team.objectives
 	. = ..()
 	if(send_to_spawnpoint)
 		move_to_spawnpoint()
@@ -77,7 +62,7 @@
 
 /datum/antagonist/infiltrator/get_admin_commands()
 	. = ..()
-	.["Send to base"] = CALLBACK(src,.proc/admin_send_to_base)
+	.["Send to base"] = CALLBACK(src, PROC_REF(admin_send_to_base))
 
 /datum/antagonist/infiltrator/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.assigned_role = ROLE_INFILTRATOR

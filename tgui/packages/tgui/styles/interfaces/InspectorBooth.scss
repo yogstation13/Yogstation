@@ -1,0 +1,431 @@
+@use 'sass:math';
+
+// For accessing the stamp sprite sheet
+$stamp-width: 12vw !default;
+$stamp-height: 8vh !default;
+
+@mixin clear-margins {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin --reflect {
+  position: absolute;
+  // pacity: (0.2);
+  pointer-events: none;
+}
+
+.InspectorBooth__Window {
+  @include full-size;
+  // border: 0.5vmin dashed rgba(255, 255, 255, 0.2);
+
+  &__glass {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 35%;
+    min-height: 10px;
+    overflow: hidden;
+    pointer-events: none;
+
+    &-icon {
+        width: 100%;
+        height: 35vh;
+        opacity: 0.8;
+    }
+  }
+}
+
+.InspectorBooth {
+  position: relative;
+  background-repeat: space;
+  height: 100%;
+  overflow: hidden;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.InspectorBooth img {
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+.InspectorBooth__Tray {
+  position: absolute;
+  top: 10vh;
+  pointer-events: none;
+  box-shadow: 0vw 7vh 0 0 rgba(0, 0, 0, .2);
+
+  &__stamp {
+    margin-left: -8.27vw;
+    width: 6.9vw;
+    transform: translateY(0vh);
+    transition: transform 150ms ease-out 0s;
+    z-index: -1;
+    pointer-events: auto;
+
+    &--down {
+      @extend .InspectorBooth__Tray__stamp;
+      transform: translateY(5vh);
+    }
+
+    &__cover {
+      margin-left: -1.23vw;
+      width: 9.487vw;
+    }
+  }
+
+  &__segment {
+    position: relative;
+    z-index: -1;
+    pointer-events: auto;
+  }
+
+  &__end {
+    pointer-events: auto;
+  }
+}
+
+.InspectorBooth__Speaker {
+  position: absolute;
+  right: 15vw;
+  top: 23vh;
+  height: 6vh;
+  width: auto;
+  transform: translateX(50%);
+  pointer-events: auto;
+}
+
+.InspectorBooth__Desk {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-top: -2vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+
+  &__top {
+    height: 7vh;
+  }
+
+  &__bottom {
+    align-self: flex-end;
+  }
+
+  &__filler {
+    border-left: 0.5vmin dashed rgba(170, 174, 177, 1);
+    border-right: 0.5vmin dashed rgba(170, 174, 177, 1);
+    background-color: rgba(161, 165, 168, 1);
+    flex: 1 1;
+  }
+
+  & > img {
+    @include clear-margins;
+    width: 100%;
+    flex-grow: 1 1px;
+    flex-shrink: 1;
+  }
+}
+
+.InspectorBooth__Receptacle {
+  position: absolute;
+  font-size: 2.5vmin;
+  pointer-events: none;
+
+  &--drop_item {
+    position: relative;
+    right: 0;
+    width: 100%;
+    height: 35vh;
+  }
+
+  &--take_item {
+    right: 0;
+    width: 100%;
+    height: 1vh;
+    bottom: -0.5vh;
+  }
+
+  &--shrink {
+    right: 0;
+    width: 30vw;
+    height: 100%;
+    background-color:rgba(134, 157, 161, 1);
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.InspectorBooth__Items {
+
+  &__idcard {
+    height: 21vh;
+    width: 28vw;
+    border-radius: 2vmin;
+
+    &--reflect {
+      @extend .InspectorBooth__Items__idcard--small;
+      @include --reflect;
+    }
+
+    // Not BEM but its neater this way
+    &--small {
+      @extend .InspectorBooth__Items__idcard;
+      height: 7.5vh;
+      width: 10vw;
+      border-radius: 1vmin;
+
+      .InspectorBooth__Items__idcard-bar {
+        border-bottom-width: 0.1vh !important;
+      }
+
+      .InspectorBooth__Items__idcard-picture {
+        top: 20%;
+      }
+
+      .InspectorBooth__Items__idcard-sticker {
+        bottom: 4%;
+      }
+
+      .InspectorBooth__Items__idcard-textBox {
+        top: 20%;
+        font-size: 1vmin;
+        line-height: 1vmin;
+      }
+    }
+
+    &-icon {
+      @include full-size;
+      position: absolute;
+      bottom: -1vh;
+    }
+
+    &-bar {
+      position: absolute;
+      top: 1vh;
+      left: 25%;
+      width: 20%;
+      height: 100%;
+      background-color: rgba(79, 106, 77, 1);
+      border-bottom: 0.75vh solid rgba(69, 92, 68, 1);
+    }
+
+    &-picture {
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      width: 28%;
+      height: 49%;
+    }
+
+    &-textBox {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      width: 45%;
+      height: 90%;
+      color: black;
+      font-size: 2.5vmin;
+      // text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      overflow: hidden;
+    }
+
+    &-sticker {
+      position: absolute;
+      left: 5%;
+      bottom: 8%;
+      width: 15%;
+      height: 17%;
+      background-color: rgba(11, 78, 6, 1);
+      background-image: url('../assets/bg-nanotrasen.svg');
+    }
+  }
+
+  &__paper {
+    width: 30vw;
+    height: 60vh;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+
+    &--reflect {
+      @extend .InspectorBooth__Items__paper--small;
+      @include --reflect;
+    }
+
+    &--small {
+      @extend .InspectorBooth__Items__paper;
+      width: 10vw;
+      height: 20vh;
+      & * {
+        transform: scale(0.8);
+      }
+
+      // Not BEM but its neater this way
+      .InspectorBooth__Items__paper-textBox {
+        font-size: 1vmin;
+        line-height: 1vmin;
+        margin: -1vmin -2vmin -2vmin -1vmin;
+
+        & > hr {
+          margin: -1vmin 0 -1vmin 0;
+        }
+
+        > input {
+          width: 0.1vmin;
+          height: 0.1vmin;
+        }
+      }
+
+      .InspectorBooth__Items__paper-icon {
+        border-left: dashed 1px rgba(0, 0, 0, .2);
+        border-bottom: dashed 1px rgba(0, 0, 0, .2);
+      }
+
+      .InspectorBooth__Items__paper-stamps {
+        margin: 0 -12vmin 0 -12vmin;
+        transform: scale(0.4);
+
+        & > span {
+          margin: -4vmin -2vmin 0 -2vmin;
+        }
+      }
+    }
+
+    &-icon {
+      @include full-size;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-left: dashed 2px rgba(0, 0, 0, .2);
+      border-bottom: dashed 2px rgba(0, 0, 0, .2);
+      transform: none;
+    }
+
+    &-textBox {
+      position: relative;
+      padding: 15%;
+      margin-bottom: -15%;
+      text-align: left;
+      color: black;
+      font-size: 2vmin;
+      line-height: 2.05vmin;
+    }
+
+    &-textBox > hr {
+      @include clear-margins;
+    }
+
+    &-textBox > ul {
+      @include clear-margins;
+    }
+
+    &-textBox > input {
+      width: 1vw;
+      height: 1vh;
+
+      &--small {
+        width: 0.1vw;
+        height: 0.1vh;
+      }
+    }
+
+    &-stamps {
+      position: relative;
+      text-align: center;
+      display: inline-block;
+    }
+
+    &-stamps > span {
+      width: $stamp-width;
+      height: $stamp-height;
+      background-size: cover;
+    }
+  }
+}
+
+// Convert byond item overlays into css styles
+.InspectorBooth__Items__idcard {
+  $--gold: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+  radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%,#5d4a1f 62.5%, #5d4a1f 100%);
+
+  &-bar {
+    &.captain { background: $--gold; border-bottom: none; opacity: 0.5; }
+    &.security { background-color: rgba(146, 36, 41, 1); border-bottom-color: rgba(116, 23, 27, 1); }
+    &.medical { background-color: rgba(44, 128, 144, 1); border-bottom-color: rgba(43, 115, 103, 1); }
+    &.engineering { background-color: rgba(193, 95, 5, 1); border-bottom-color: rgba(144, 75, 11, 1); }
+    &.cargo { background-color: rgba(165, 145, 118, 1); border-bottom-color: rgba(143, 118, 89, 1); }
+    &.science { background-color: rgba(131, 42, 131, 1); border-bottom-color: rgba(102, 36, 102, 1); }
+    &.mime { background-color: rgba(0, 0, 0, 0.75); }
+
+    // This is horrifying
+    &.clown {background:
+      linear-gradient(rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%,
+      rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%,
+      rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%) 0 0/100% 200%;
+      @keyframes rainbow { to {background-position:0 -200%} }
+      animation: rainbow 2s linear infinite;
+      border-bottom: none;
+      opacity: 0.5;
+    }
+  }
+  &-sticker {
+    &.gold { background-color: #fcb81b; border: 1px dashed #FFFFAC; }
+    &.silver { background-color: #fcb81b; border: 1px dashed #dddddd; }
+    &.red { background-color: red; }
+    &.orange { background-color: rgb(236, 125, 15); }
+    &.yellow { background-color: rgba(255, 255, 0, 1); }
+    &.blue { background-color: cyan; }
+    &.purple { background-color: rgba(204, 0, 204, 1); }
+    &.white { background-color: white;  }
+    &.brown { background-color: rgb(128, 75, 21); }
+    &.black { background-color: rgba(100, 100, 100, 1); }
+    @keyframes horrifying-rainbow{
+      0% { background: red; }
+      20% { background: green; }
+      40% { background: yellow; }
+      60% { background: blue; }
+    }
+    &.rainbow { animation: horrifying-rainbow 1s infinite; }
+  }
+}
+
+// For some reason the stamp assets are treated as a single sprite sheet
+// that is used by a span as a background which is offset by set x
+// and y pixels which means it can't scale with screen size properly unless
+// you overide every single style manually like this
+.InspectorBooth .paper121x121 {
+  height: 2*$stamp-height !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+}
+.InspectorBooth .paper120x54 { background-size: 100% 100% !important; }
+.InspectorBooth .paper121x54 {
+  background-size: 3*$stamp-width 5*$stamp-height !important;
+  background-position: 0 0 !important;
+  // If any new stamps are added this will probably break
+  &.stamp-cent{ background-position: -0 -0 !important; }
+  &.stamp-mime{ background-position: -1*$stamp-width -0 !important; }
+  &.stamp-law{ background-position: -2*$stamp-width -0 !important; }
+  &.stamp-qm{ background-position: -0 -1*$stamp_height !important; }
+  &.stamp-cap{ background-position: -1*$stamp-width -1*$stamp_height !important; }
+  &.stamp-rd{ background-position: -2*$stamp-width -1*$stamp_height !important; }
+  &.stamp-hos{ background-position: -0 -2*$stamp_height !important; }
+  &.stamp-ce{ background-position: -$stamp-width -2*$stamp_height !important; }
+  &.stamp-cmo{ background-position: -2*$stamp-width -2*$stamp_height !important; }
+  &.stamp-hop{ background-position: -0 -3*$stamp_height !important; }
+  &.stamp-ok{ background-position: -$stamp-width -3*$stamp_height !important; }
+  &.stamp-deny{ background-position: -2*$stamp-width -3*$stamp_height !important; }
+  &.stamp-clown{ background-position: -0 -4*$stamp_height !important; }
+}

@@ -5,7 +5,6 @@
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "honeycomb"
 	possible_transfer_amounts = list()
-	spillable = FALSE
 	disease_amount = 0
 	volume = 10
 	amount_per_transfer_from_this = 0
@@ -13,20 +12,20 @@
 	grind_results = list()
 	var/honey_color = ""
 
-/obj/item/reagent_containers/honeycomb/Initialize()
+/obj/item/reagent_containers/honeycomb/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(8,-8)
 	pixel_y = rand(8,-8)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
-/obj/item/reagent_containers/honeycomb/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/honeycomb/update_overlays()
+	. = ..()
 	var/mutable_appearance/honey_overlay = mutable_appearance(icon, /datum/reagent/consumable/honey)
 	if(honey_color)
 		honey_overlay.icon_state = "greyscale_honey"
 		honey_overlay.color = honey_color
-	add_overlay(honey_overlay)
+	. += honey_overlay
 
 
 /obj/item/reagent_containers/honeycomb/proc/set_reagent(reagent)
@@ -37,4 +36,4 @@
 		reagents.add_reagent(R.type,5)
 	else
 		honey_color = ""
-	update_icon()
+	update_appearance(UPDATE_ICON)

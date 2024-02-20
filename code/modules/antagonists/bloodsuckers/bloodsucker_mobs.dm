@@ -187,7 +187,6 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()
-	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
@@ -196,6 +195,7 @@
 				user.blood_volume += 10
 		adjustFireLoss(2.5)
 		updatehealth() //3 minutes to die
+
 	if(satiation >= 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
 		qdel(src)
@@ -216,22 +216,22 @@
 				additionalmessage = "You have mutated a collar made out of fur!"
 				user_species.armor += 10
 				mutation = /obj/item/clothing/neck/wolfcollar
-				slot = SLOT_NECK
+				slot = ITEM_SLOT_NECK
 			if(2)
 				additionalmessage = "You have mutated werewolf ears!"
 				mutation = /obj/item/radio/headset/wolfears
-				slot = SLOT_EARS
+				slot = ITEM_SLOT_EARS
 			if(3)
 				additionalmessage = "You have mutated werewolf claws!"
 				user.physiology.punchdamagehigh_bonus += 2.5
 				user.physiology.punchdamagelow_bonus += 2.5
 				user.physiology.punchstunthreshold_bonus += 2.5
 				mutation = /obj/item/clothing/gloves/wolfclaws
-				slot = SLOT_GLOVES
+				slot = ITEM_SLOT_GLOVES
 			if(4)
 				additionalmessage = "You have mutated werewolf legs!"
 				mutation = /obj/item/clothing/shoes/wolflegs
-				slot = SLOT_SHOES
+				slot = ITEM_SLOT_FEET
 				if(DIGITIGRADE in user.dna.species.species_traits)
 					mutation = /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 			if(5 to INFINITY)
@@ -262,3 +262,43 @@
 	else
 		new /obj/structure/bloodsucker/possessedarmor(src.loc)
 	qdel(src)
+
+//Wraith - Hecata mob
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith
+	name = "wraith"
+	real_name = "Wraith"
+	desc = "An angry, tormented spirit, which looks to let out its wrath on whoever is nearby."
+	gender = PLURAL
+	icon_state = "wraith"
+	icon_living = "wraith"
+	mob_biotypes = list(MOB_SPIRIT)
+	maxHealth = 30
+	health = 30
+	spacewalk = TRUE
+	healable = 0
+	speak_emote = list("hisses")
+	emote_hear = list("wails.","screeches.")
+	response_help = "puts their hand through"
+	response_disarm = "flails at"
+	response_harm = "punches"
+	speak_chance = 1
+	melee_damage_lower = 6
+	melee_damage_upper = 6
+	attacktext = "torments"
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	status_flags = 0
+	status_flags = CANPUSH
+	movement_type = FLYING
+	loot = list(/obj/item/ectoplasm)
+	deathmessage = "withers away into nothing."
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/life_draining)
+
+/mob/living/simple_animal/hostile/bloodsucker/wraith/death()
+	qdel(src) //Del on death for some reason doesn't work, might be due to previous code preventing it for /bloodsucker mobs.
+	..()

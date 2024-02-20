@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/dizzy // Not the egg
 
 	name = "Dizziness"
+	icon = "dizziness"
 	desc = "The virus causes inflammation of the vestibular system, leading to bouts of dizziness."
 	resistance = -2
 	stage_speed = -3
@@ -52,6 +53,6 @@ Bonus
 				to_chat(M, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
 		else
 			to_chat(M, span_userdanger("A wave of dizziness washes over you!"))
-			M.Dizzy(5)
+			M.adjust_dizzy(5 SECONDS)
 			if(power >= 2)
 				M.set_drugginess(5)

@@ -26,10 +26,10 @@
 	var/sheetType = /obj/item/stack/sheet/metal //what we're made of
 	var/sheetAmount = 7 //how much we drop when deconstructed
 
-/obj/structure/mineral_door/Initialize()
+/obj/structure/mineral_door/Initialize(mapload)
 	. = ..()
 
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/mineral_door/Move()
 	var/turf/T = loc
@@ -94,12 +94,12 @@
 	density = FALSE
 	door_opened = TRUE
 	layer = OPEN_DOOR_LAYER
-	air_update_turf(1)
-	update_icon()
+	air_update_turf()
+	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
 	if(close_delay != -1)
-		addtimer(CALLBACK(src, .proc/Close), close_delay)
+		addtimer(CALLBACK(src, PROC_REF(Close)), close_delay)
 
 /obj/structure/mineral_door/proc/Close()
 	if(isSwitchingStates || !door_opened)
@@ -115,11 +115,12 @@
 	set_opacity(TRUE)
 	door_opened = FALSE
 	layer = initial(layer)
-	air_update_turf(1)
-	update_icon()
+	air_update_turf()
+	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
-/obj/structure/mineral_door/update_icon()
+/obj/structure/mineral_door/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][door_opened ? "open":""]"
 
 /obj/structure/mineral_door/attackby(obj/item/I, mob/user)
@@ -133,7 +134,7 @@
 /obj/structure/mineral_door/setAnchored(anchorvalue) //called in default_unfasten_wrench() chain
 	. = ..()
 	set_opacity(anchored ? !door_opened : FALSE)
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/mineral_door/wrench_act(mob/living/user, obj/item/I)
 	default_unfasten_wrench(user, I, 40)
@@ -219,9 +220,6 @@
 	max_integrity = 300
 	light_range = 2
 
-/obj/structure/mineral_door/uranium/ComponentInitialize()
-	return
-
 /obj/structure/mineral_door/sandstone
 	name = "sandstone door"
 	icon_state = "sandstone"
@@ -240,9 +238,6 @@
 	name = "plasma door"
 	icon_state = "plasma"
 	sheetType = /obj/item/stack/sheet/mineral/plasma
-
-/obj/structure/mineral_door/transparent/plasma/ComponentInitialize()
-	return
 
 /obj/structure/mineral_door/transparent/plasma/welder_act(mob/living/user, obj/item/I)
 	return
@@ -307,7 +302,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 20
 
-/obj/structure/mineral_door/paperframe/Initialize()
+/obj/structure/mineral_door/paperframe/Initialize(mapload)
 	. = ..()
 	queue_smooth_neighbors(src)
 
@@ -339,9 +334,6 @@
 			return TRUE
 
 	return ..()
-
-/obj/structure/mineral_door/paperframe/ComponentInitialize()
-	return
 
 /obj/structure/mineral_door/paperframe/Destroy()
 	queue_smooth_neighbors(src)

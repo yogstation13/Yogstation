@@ -2,7 +2,7 @@ import { toFixed } from 'common/math';
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, Section } from '../components';
+import { Box, Button, LabeledList, Section, Icon } from '../components';
 import { Window } from '../layouts';
 import { Scrubber, Vent } from './common/AtmosControls';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
@@ -72,6 +72,10 @@ const AirAlarmStatus = (props, context) => {
               {data.atmos_alarm && 'Atmosphere Alarm'
                 || data.fire_alarm && 'Fire Alarm'
                 || 'Nominal'}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Alarm override">
+              {data.manual_atmosalm? <Icon name="toggle-on" color="good" size={1.3} /> : <Icon name="toggle-off" color="bad" size={1.3} />}
             </LabeledList.Item>
           </>
         ) || (
@@ -144,16 +148,17 @@ const AirAlarmControlHome = (props, context) => {
   const {
     mode,
     atmos_alarm,
+    manual_atmosalm,
   } = data;
   return (
     <>
       <Button
-        icon={atmos_alarm
+        icon={atmos_alarm>1 && manual_atmosalm
           ? 'exclamation-triangle'
           : 'exclamation'}
-        color={atmos_alarm && 'caution'}
+        color={atmos_alarm>1 && manual_atmosalm && 'caution'}
         content="Area Atmosphere Alarm"
-        onClick={() => act(atmos_alarm ? 'reset' : 'alarm')} />
+        onClick={() => act(atmos_alarm>1 && manual_atmosalm ? 'reset' : 'alarm')} />
       <Box mt={1} />
       <Button
         icon={mode === 3

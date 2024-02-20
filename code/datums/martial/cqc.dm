@@ -113,7 +113,7 @@
 		D.apply_damage(A.get_punchdamagehigh() + 5, STAMINA)	//15 damage
 		log_combat(A, D, "kicked (CQC)")
 		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
-		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), SHOVE_SLOWDOWN_LENGTH)
+		addtimer(CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, clear_shove_slowdown)), SHOVE_SLOWDOWN_LENGTH)
 	if(!(D.mobility_flags & MOBILITY_STAND) && !D.stat)
 		log_combat(A, D, "prone-kicked(CQC)")
 		D.visible_message(span_warning("[A] firmly kicks [D] in the abdomen!"), \
@@ -200,7 +200,7 @@
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
 		if(D.grabbedby(A))
-			D.Stun(15)
+			D.Stun(1.5 SECONDS)
 		if(A.grab_state < 1)
 			restraining = FALSE
 		return TRUE
@@ -252,7 +252,7 @@
 			playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 			if(I && D.temporarilyRemoveItemFromInventory(I))
 				A.put_in_hands(I)
-			D.Jitter(2)
+			D.adjust_jitter(2 SECONDS)
 			D.apply_damage(A.get_punchdamagehigh()/2, STAMINA) //5 damage
 		else
 			D.visible_message(span_danger("[A] grabs at [D]'s arm, but misses!"), \
@@ -263,10 +263,12 @@
 		if(chokehold_active)
 			return TRUE
 		log_combat(A, D, "began to chokehold(CQC)")
-		D.visible_message(span_danger("[A] puts [D] into a chokehold!"), \
-							span_userdanger("[A] puts you into a chokehold!"))
+		D.visible_message(
+			span_danger("[isipc(D) ? "[A] attempts to deactivate [D]!" : "[A] puts [D] into a chokehold!"]"),
+			span_userdanger("[isipc(D) ? "[A] attempts to deactivate you!" : "[A] puts you into a chokehold!"]")
+		)
 		if(handle_chokehold(A, D))
-			D.Unconscious(400)
+			D.Unconscious(40 SECONDS)
 			if(A.grab_state < GRAB_NECK)
 				A.grab_state = GRAB_NECK
 			A.visible_message(span_danger("[A] relaxes their grip on [D]."), \
@@ -295,13 +297,17 @@
 /datum/martial_art/cqc/proc/handle_chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D) //handles the chokehold attack, dealing oxygen damage until the target is unconscious or would have less than 20 health before knocking out
 	chokehold_active = TRUE
 	var/damage2deal = 15
-	while(do_mob(A, D, 10))
+	while(do_after(A, isipc(D) ? 5 SECONDS : 1 SECONDS, D)) // doesn't make sense to deal oxygen damage to IPCs so instead do a longer channel that automatically succeeds
 		if(!A.grab_state)
 			return FALSE
+		if(isipc(D)) // have you tried turning it off and on again
+			return TRUE
 		damage2deal = 15 * (1+D.getStaminaLoss()/100) //stamina damage boosts the effectiveness of an attack, making using other attacks to prepare important
+		if(HAS_TRAIT(D, TRAIT_NOBREATH))
+			damage2deal *= 0.5 // if they don't breathe they can't be choked, but you can still cut off blood flow to the head
 		if(D.health - damage2deal < 20 || D.stat)
 			return TRUE
-		D.adjustOxyLoss(damage2deal)
+		D.apply_damage(damage2deal, OXY) // respect oxygen damage mods
 		if(D.getOxyLoss() >= 50)
 			return TRUE
 

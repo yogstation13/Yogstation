@@ -19,12 +19,13 @@
 	var/start_lit = FALSE
 	var/candle_type = "red"
 
-/obj/item/candle/Initialize()
+/obj/item/candle/Initialize(mapload)
 	. = ..()
 	if(start_lit)
 		light()
 
-/obj/item/candle/update_icon()
+/obj/item/candle/update_icon_state()
+	. = ..()
 	icon_state = "candle[(wax > 800) ? ((wax > 1500) ? 1 : 2) : 3][lit ? "_lit" : ""]"
 
 /obj/item/candle/attackby(obj/item/W, mob/user, params)
@@ -49,13 +50,13 @@
 			usr.visible_message(show_message)
 		set_light_on(TRUE)
 		START_PROCESSING(SSobj, src)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/candle/proc/put_out_candle()
 	if(!lit)
 		return
 	lit = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	set_light_on(FALSE)
 	return TRUE
 
@@ -75,7 +76,7 @@
 		else
 			new /obj/item/trash/candle(loc)
 			qdel(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	open_flame()
 
 /obj/item/candle/attack_self(mob/user)
@@ -99,7 +100,8 @@
 	wax = 2000
 	candle_type = "resin"
 
-/obj/item/candle/resin/update_icon()
+/obj/item/candle/resin/update_icon_state()
+	. = ..()
 	icon_state = "resincandle[(wax > 800) ? ((wax > 1500) ? 1 : 2) : 3][lit ? "_lit" : ""]"
 
 #undef CANDLE_LUMINOSITY

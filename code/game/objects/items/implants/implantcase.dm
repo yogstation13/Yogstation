@@ -14,7 +14,8 @@
 	var/imp_type
 
 
-/obj/item/implantcase/update_icon()
+/obj/item/implantcase/update_icon(updates=ALL)
+	. = ..()
 	if(imp)
 		icon_state = "implantcase-[imp.implant_color]"
 		reagents = imp.reagents
@@ -45,8 +46,8 @@
 			I.imp.forceMove(src)
 			imp = I.imp
 			I.imp = null
-			update_icon()
-			I.update_icon()
+			update_appearance(UPDATE_ICON)
+			I.update_appearance(UPDATE_ICON)
 		else
 			if(imp)
 				if(I.imp)
@@ -54,8 +55,8 @@
 				imp.forceMove(I)
 				I.imp = imp
 				imp = null
-				update_icon()
-			I.update_icon()
+				update_appearance(UPDATE_ICON)
+			I.update_appearance(UPDATE_ICON)
 
 	else
 		return ..()
@@ -64,7 +65,7 @@
 	. = ..()
 	if(imp_type)
 		imp = new imp_type(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/implantcase/tracking

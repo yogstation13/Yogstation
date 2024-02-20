@@ -33,7 +33,7 @@ Passive gate is similar to the regular pump except:
 		var/msg = "was turned [on ? "on" : "off"] by [key_name(user)]"
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/AltClick(mob/user)
@@ -43,7 +43,7 @@ Passive gate is similar to the regular pump except:
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		balloon_alert(user, "pressure output set to [target_pressure] kPa")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 
@@ -55,35 +55,15 @@ Passive gate is similar to the regular pump except:
 	cut_overlays()
 	icon_state = "passgate_off-[set_overlay_offset(piping_layer)]"
 	if(on)
-		add_overlay(getpipeimage(icon, "passgate_on-[set_overlay_offset(piping_layer)]"))
+		add_overlay(get_pipe_image(icon, "passgate_on-[set_overlay_offset(piping_layer)]"))
 
 /obj/machinery/atmospherics/components/binary/passive_gate/process_atmos()
-	..()
 	if(!on)
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]
 	var/datum/gas_mixture/air2 = airs[2]
-
-	var/output_starting_pressure = air2.return_pressure()
-	var/input_starting_pressure = air1.return_pressure()
-
-	if(output_starting_pressure >= min(target_pressure,input_starting_pressure-10))
-		//No need to pump gas if target is already reached or input pressure is too low
-		//Need at least 10 KPa difference to overcome friction in the mechanism
-		return
-
-	//Calculate necessary moles to transfer using PV = nRT
-	if((air1.total_moles() > 0) && (air1.return_temperature()>0))
-		var/pressure_delta = min(target_pressure - output_starting_pressure, (input_starting_pressure - output_starting_pressure)/2)
-		//Can not have a pressure delta that would cause output_pressure > input_pressure
-
-		var/transfer_moles = pressure_delta*air2.return_volume()/(air1.return_temperature() * R_IDEAL_GAS_EQUATION)
-
-		//Actually transfer the gas
-		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
-		air2.merge(removed)
-
+	if(air1.release_gas_to(air2, target_pressure))
 		update_parents()
 
 
@@ -148,9 +128,9 @@ Passive gate is similar to the regular pump except:
 				var/msg = "was set to [target_pressure] kPa by [key_name(usr)]"
 				investigate_log(msg, INVESTIGATE_ATMOS)
 				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/atmospherics/components/binary/passive_gate/atmosinit()
+/obj/machinery/atmospherics/components/binary/passive_gate/atmos_init()
 	..()
 	if(frequency)
 		set_frequency(frequency)
@@ -179,7 +159,7 @@ Passive gate is similar to the regular pump except:
 		return
 
 	broadcast_status()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/passive_gate/can_unwrench(mob/user)
 	. = ..()

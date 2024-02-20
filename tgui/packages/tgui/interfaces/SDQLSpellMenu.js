@@ -16,15 +16,15 @@ const typevars = (type) => {
     { name: 'name', type: 'string', options: null, default_value: '' },
     { name: 'desc', type: 'string', options: null, default_value: '' },
     { name: 'query', type: 'string', options: null, default_value: '' },
-    { name: 'action_icon', type: 'string', options: null, default_value: '' },
+    { name: 'icon_icon', type: 'string', options: null, default_value: '' },
     {
-      name: 'action_icon_state',
+      name: 'button_icon_state',
       type: 'string',
       options: null,
       default_value: '',
     },
     {
-      name: 'action_background_icon_state',
+      name: 'background_icon_state',
       type: 'string',
       options: null,
       default_value: '',
@@ -687,7 +687,7 @@ const SDQLSpellIcons = (props, context) => {
   const {
     saved_vars,
     type,
-    action_icon,
+    icon_icon,
     hand_icon,
     projectile_icon,
     overlay_icon,
@@ -706,7 +706,7 @@ const SDQLSpellIcons = (props, context) => {
               height="64px"
               width="auto"
               m={0}
-              src={`data:image/jpeg;base64,${action_icon}`}
+              src={`data:image/jpeg;base64,${icon_icon}`}
               style={{
                 '-ms-interpolation-mode': 'nearest-neighbor',
               }}

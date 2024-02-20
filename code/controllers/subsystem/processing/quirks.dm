@@ -45,6 +45,16 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/cli, spawn_effects)
 	if(!checkquirks(user,cli)) return// Yogs -- part of Adding Mood as Preference
 
+	if(user.job)
+		for(var/V in cli.prefs.all_quirks)
+			var/datum/quirk/Q = quirks[V]
+			if(Q)
+				Q = new Q (no_init = TRUE)
+				if(user.job in Q.job_blacklist)
+					to_chat(cli, span_danger("One or more of your quirks is incompatible with your job so all have been removed."))
+					return
+				qdel(Q)//clean up afterwards
+
 	var/badquirk = FALSE
 
 	for(var/V in cli.prefs.all_quirks)
@@ -62,13 +72,19 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /// be valid.
 /// If no changes need to be made, will return the same list.
 /// Expects all quirk names to be unique, but makes no other expectations.
-/datum/controller/subsystem/processing/quirks/proc/filter_invalid_quirks(list/quirks, client/C)
+/datum/controller/subsystem/processing/quirks/proc/filter_invalid_quirks(list/quirks, client_or_prefs)
 	var/list/new_quirks = list()
 	var/list/positive_quirks = list()
 	var/balance = 0
 
+	var/datum/preferences/prefs = client_or_prefs
+
+	if (istype(client_or_prefs, /client))
+		var/client/client = client_or_prefs
+		prefs = client.prefs
+
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (C.prefs.yogtoggles & PREF_MOOD))
+	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	for (var/quirk_name in quirks)
 		var/datum/quirk/quirk = SSquirks.quirks[quirk_name]
@@ -80,7 +96,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 
 		// Returns error string, FALSE if quirk is okay to have
 		var/datum/quirk/quirk_obj = new quirk(no_init = TRUE)
-		if (quirk_obj?.check_quirk(C.prefs))
+		if (quirk_obj?.check_quirk(prefs))
 			continue
 		qdel(quirk_obj)
 

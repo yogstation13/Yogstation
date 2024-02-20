@@ -153,7 +153,7 @@
 
 
 /// Checks for revhead loss conditions and other antag datums.
-/datum/dynamic_ruleset/latejoin/provocateur/proc/check_eligible(var/datum/mind/M)
+/datum/dynamic_ruleset/latejoin/provocateur/proc/check_eligible(datum/mind/M)
 	var/turf/T = get_turf(M.current)
 	if(!considered_afk(M) && considered_alive(M) && is_station_level(T.z) && !M.antag_datums?.len && !HAS_TRAIT(M, TRAIT_MINDSHIELD))
 		return TRUE
@@ -268,7 +268,7 @@
 			assigned -= selected_player
 			message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
 			return FALSE
-		sucker.bloodsucker_level_unspent = rand(2,3)
+		sucker.bloodsucker_level_unspent = rand(3,4)
 		message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 		log_game("DYNAMIC: [key_name(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 	return TRUE

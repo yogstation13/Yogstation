@@ -5,7 +5,7 @@
 	var/magboot_state = "magboots"
 	var/magpulse = 0
 	var/slowdown_active = 2
-	permeability_coefficient = 0.05
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 	actions_types = list(/datum/action/item_action/toggle)
 	strip_delay = 70
 	equip_delay_other = 70
@@ -35,7 +35,7 @@
 	user.update_gravity(user.has_gravity())
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/shoes/magboots/negates_gravity()
 	return clothing_flags & NOSLIP

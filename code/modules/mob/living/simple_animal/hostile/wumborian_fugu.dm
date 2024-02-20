@@ -9,7 +9,7 @@
 	icon_dead = "Fugu_dead"
 	icon_gib = "syndicate_gib"
 	health_doll_icon = "Fugu0"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
 	move_to_delay = 5
 	friendly = "floats near"
@@ -37,7 +37,7 @@
 	var/datum/action/innate/fugu/expand/E
 	loot = list(/obj/item/fugu_gland{layer = ABOVE_MOB_LAYER})
 
-/mob/living/simple_animal/hostile/asteroid/fugu/Initialize()
+/mob/living/simple_animal/hostile/asteroid/fugu/Initialize(mapload)
 	. = ..()
 	E = new
 	E.Grant(src)
@@ -46,7 +46,7 @@
 	QDEL_NULL(E)
 	return ..()
 
-/mob/living/simple_animal/hostile/asteroid/fugu/Life()
+/mob/living/simple_animal/hostile/asteroid/fugu/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!wumbo)
 		inflate_cooldown = max((inflate_cooldown - 1), 0)
 	if(target && AIStatus == AI_ON)
@@ -63,7 +63,7 @@
 	E.Activate()
 
 /datum/action/innate/fugu
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 
 /datum/action/innate/fugu/expand
 	name = "Inflate"
@@ -94,7 +94,7 @@
 	F.environment_smash = ENVIRONMENT_SMASH_WALLS
 	F.mob_size = MOB_SIZE_LARGE
 	F.speed = 1
-	addtimer(CALLBACK(F, /mob/living/simple_animal/hostile/asteroid/fugu/proc/Deflate), 100)
+	addtimer(CALLBACK(F, TYPE_PROC_REF(/mob/living/simple_animal/hostile/asteroid/fugu, Deflate)), 100)
 
 /mob/living/simple_animal/hostile/asteroid/fugu/proc/Deflate()
 	if(wumbo)

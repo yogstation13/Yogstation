@@ -1,7 +1,8 @@
 
-#define PCANNON_FIREALL 1
-#define PCANNON_FILO 2
-#define PCANNON_FIFO 3
+#define PCANNON_FIREALL 1 // Shoot all items on fire.
+#define PCANNON_FILO 2 // Shoot the newest (last) item inserted on fire.
+#define PCANNON_FIFO 3 // Shoot the oldest (first) item inserted on fire.
+
 /obj/item/pneumatic_cannon
 	name = "pneumatic cannon"
 	desc = "A gas-powered cannon that can fire any object loaded into it."
@@ -14,44 +15,80 @@
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 60, ACID = 50)
-	var/maxWeightClass = 20 //The max weight of items that can fit into the cannon
-	var/loadedWeightClass = 0 //The weight of items currently in the cannon
-	var/obj/item/tank/internals/tank = null //The gas tank that is drawn from to fire things
-	var/gasPerThrow = 3 //How much gas is drawn from a tank's pressure to fire
-	var/list/loadedItems = list() //The items loaded into the cannon that will be fired out
-	var/pressureSetting = 1 //How powerful the cannon is - higher pressure = more gas but more powerful throws
-	var/checktank = TRUE
-	var/range_multiplier = 1
-	var/throw_amount = 20	//How many items to throw per fire
-	var/fire_mode = PCANNON_FIREALL
-	var/automatic = FALSE
-	var/clumsyCheck = TRUE
-	var/list/allowed_typecache		//Leave as null to allow all.
-	var/charge_amount = 1
-	var/charge_ticks = 1
-	var/charge_tick = 0
-	var/charge_type
-	var/selfcharge = FALSE
-	var/fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
-	var/spin_item = TRUE //Do the projectiles spin when launched?
 	trigger_guard = TRIGGER_GUARD_NORMAL
-	
+	/// The max weight of items that can fit in the cannon.
+	var/maxWeightClass = 20
+	/// The weight of items currently in the cannon.
+	var/loadedWeightClass = 0
+	/// The loaded items in the cannon that will be fired out.
+	var/list/loadedItems = list()
+	/// The multiplier for how far will the items be thrown. 1 is exact distance of the target; higher will multiply by that number.
+	var/range_multiplier = 1
+	/// How many items in `loadedItems` will be thrown per fire if not on PCANNON_FIREALL?
+	var/throw_amount = 20
+	/// The sound played upon firing.
+	var/fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
+	/// Should projectiles spin when they are launched?
+	var/spin_item = TRUE
+	/// Prevents firing if there is no tank.
+	var/checktank = TRUE
+	/// The gas tank that is drawn from to fire things.
+	var/obj/item/tank/internals/tank = null
+	/// How much gas is removed from a tank's pressure when fired?
+	var/gasPerThrow = 3 
+	/// How powerful the cannon is. Higher pressure = more gas cost (if there is one), further distance, faster speed, etc.
+	var/pressureSetting = 1
+	/// The fire mode. Can be PCANNON_FIREALL, PCANNON_FILO, or PCANNON_FIFO.
+	var/fire_mode = PCANNON_FIREALL
+	/// Can you shoot this cannon automatically via click-and-hold?
+	var/automatic = FALSE
+	/// Should clumsy people have a chance to fail/backfire?
+	var/clumsyCheck = TRUE
+	/// List of allowed items to be loaded. Leave as null to allow all.
+	var/list/allowed_typecache
+	/// Should this cannon automatically recharge?
+	var/selfcharge = FALSE
+	/// How many `charge_type` should be loaded if `self-charge` is true and `charge_cooldown` seconds have passed?
+	var/charge_amount = 1
+	/// What item path should be loaded into the cannon for `self-charge`?
+	var/charge_type
+	/// How many seconds before it self-recharges?
+	var/recharge_cooldown = 2 SECONDS // 1 tick = 2 seconds.
+	/// How many seconds passed since last `process()` and haven't been spent on self-recharging?
+	var/seconds_time_remaining = 0
+	/// A list of items that cannot ever be inserted into the cannon.
 	var/list/blacklist_items = list(
 		/obj/item/melee/baton,
 		/obj/item/melee/supermatter_sword
-		)
+	)
 
-/obj/item/pneumatic_cannon/Initialize()
+/obj/item/pneumatic_cannon/Initialize(mapload)
 	. = ..()
 	if(selfcharge)
-		init_charge()
+		START_PROCESSING(SSobj, src)
 
-/obj/item/pneumatic_cannon/proc/init_charge()	//wrapper so it can be vv'd easier
-	START_PROCESSING(SSobj, src)
+// There was a `/proc/init_charge` that had a comment that suggested that admins can call it to enable self-recharging. So, this replaced that; now they can just set the variable to do the same thing.
+/// Starts and stops processing based on `self_recharging` variable.
+/obj/item/pneumatic_cannon/vv_edit_var(var_name, var_value)
+	if(var_name == "selfcharge")
+		switch(var_value)
+			if(-INFINITY to 0)
+				STOP_PROCESSING(SSobj, src)
+			else
+				START_PROCESSING(SSobj, src)
+	return ..()
 
-/obj/item/pneumatic_cannon/process()
-	if(++charge_tick >= charge_ticks && charge_type)
-		fill_with_type(charge_type, charge_amount)
+/obj/item/pneumatic_cannon/process(delta_time)
+	if(selfcharge && charge_amount && charge_type && recharge_cooldown)
+		seconds_time_remaining += delta_time * 1 SECONDS // You might think that this should use `COOLDOWN_DECLARE()`, but it shouldn't because process is inconsistent.
+		var/attempts = 1
+		while(seconds_time_remaining > recharge_cooldown)
+			attempts += 1
+			seconds_time_remaining -= recharge_cooldown
+			fill_with_type(charge_type, charge_amount)
+			if(attempts > 10) // Prevents an infinite if anything goes wrong (bad adminbus).
+				seconds_time_remaining = 0
+				break
 
 /obj/item/pneumatic_cannon/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -83,6 +120,8 @@
 				to_chat(user, span_warning("\The [IT] is too small for \the [src]."))
 				return
 			updateTank(W, 0, user)
+		else
+			load_item(W, user) // if there's already a tank attached, load it instead
 	else if(W.type == type)
 		to_chat(user, span_warning("You're fairly certain that putting a pneumatic cannon inside another pneumatic cannon would cause a spacetime disruption."))
 	else if(W.tool_behaviour == TOOL_WRENCH)
@@ -145,7 +184,7 @@
 		return
 	Fire(user, target)
 
-/obj/item/pneumatic_cannon/proc/Fire(mob/living/user, var/atom/target)
+/obj/item/pneumatic_cannon/proc/Fire(mob/living/user, atom/target)
 	if(!istype(user) && !target)
 		return
 	var/discharge = 0
@@ -225,7 +264,7 @@
 		loadedWeightClass -= I.w_class
 	else if (A == tank)
 		tank = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/pneumatic_cannon/ghetto //Obtainable by improvised methods; more gas per use, less capacity
 	name = "improvised pneumatic cannon"
@@ -250,13 +289,13 @@
 			return
 		to_chat(user, span_notice("You hook \the [thetank] up to \the [src]."))
 		tank = thetank
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/pneumatic_cannon/update_icon()
-	cut_overlays()
+/obj/item/pneumatic_cannon/update_overlays()
+	. = ..()
 	if(!tank)
 		return
-	add_overlay(tank.icon_state)
+	. += tank.icon_state
 
 /obj/item/pneumatic_cannon/proc/fill_with_type(type, amount)
 	if(!ispath(type, /obj) && !ispath(type, /mob))
@@ -284,7 +323,7 @@
 	clumsyCheck = FALSE
 	var/static/list/pie_typecache = typecacheof(/obj/item/reagent_containers/food/snacks/pie)
 
-/obj/item/pneumatic_cannon/pie/Initialize()
+/obj/item/pneumatic_cannon/pie/Initialize(mapload)
 	. = ..()
 	allowed_typecache = pie_typecache
 
@@ -304,7 +343,7 @@
 	automatic = FALSE
 	charge_type = /obj/item/reagent_containers/food/snacks/pie/cream/nostun
 	maxWeightClass = 6		//2 pies
-	charge_ticks = 2		//4 second/pie
+	recharge_cooldown = 4 SECONDS
 
 /obj/item/pneumatic_cannon/speargun
 	name = "kinetic speargun"
@@ -324,26 +363,26 @@
 	spin_item = FALSE
 	var/static/list/magspear_typecache = typecacheof(/obj/item/throwing_star/magspear)
 
-/obj/item/pneumatic_cannon/speargun/Initialize()
+/obj/item/pneumatic_cannon/speargun/Initialize(mapload)
 	. = ..()
 	allowed_typecache = magspear_typecache
 
 /obj/item/storage/magspear_quiver
 	name = "quiver"
 	desc = "A quiver for holding magspears."
-	slot_flags = ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_POCKETS
 	icon_state = "quiver"
 	item_state = "quiver"
 
-/obj/item/storage/magspear_quiver/ComponentInitialize()
+/obj/item/storage/magspear_quiver/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 20
 	STR.max_combined_w_class = 40
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
-		/obj/item/throwing_star/magspear
-		))
+		/obj/item/throwing_star/magspear,
+	))
 
 /obj/item/storage/magspear_quiver/PopulateContents()
 	for(var/i in 1 to 20)

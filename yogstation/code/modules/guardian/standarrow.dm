@@ -16,7 +16,7 @@
 	var/arrowtype = "magic"
 	var/can_requiem = TRUE
 
-/obj/item/stand_arrow/Initialize()
+/obj/item/stand_arrow/Initialize(mapload)
 	. = ..()
 	GLOB.poi_list += src
 
@@ -36,7 +36,7 @@
 	var/mob/living/carbon/H = M
 	var/mob/living/simple_animal/hostile/guardian/G = M
 	user.visible_message(span_warning("[user] prepares to stab [H] with [src]!"), span_notice("You raise [src] into the air."))
-	if (do_mob(user, H, 5 SECONDS, uninterruptible=FALSE))
+	if (do_after(user, 5 SECONDS, H))
 		if (LAZYLEN(H.hasparasites()) || (H.mind && H.mind.has_antag_datum(/datum/antagonist/changeling)) || (isguardian(M) && (users[G] || G.requiem || G.transforming || !can_requiem)))
 			H.visible_message(span_holoparasite("[src] rejects [H]!"))
 			return
@@ -46,9 +46,9 @@
 		user.dropItemToGround(src, TRUE)
 		forceMove(H)
 		if (iscarbon(M))
-			addtimer(CALLBACK(src, .proc/judge, H), 15 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(judge), H), 15 SECONDS)
 		else if (isguardian(M))
-			INVOKE_ASYNC(src, .proc/requiem, M)
+			INVOKE_ASYNC(src, PROC_REF(requiem), M)
 
 	if (!uses)
 		visible_message(span_warning("[src] falls apart!"))
@@ -63,7 +63,7 @@
 		victim.dust(TRUE)
 		in_use = FALSE
 	else
-		INVOKE_ASYNC(src, .proc/generate_stand, victim)
+		INVOKE_ASYNC(src, PROC_REF(generate_stand), victim)
 
 /obj/item/stand_arrow/proc/requiem(mob/living/simple_animal/hostile/guardian/G)
 	G.range = 255
@@ -150,7 +150,7 @@
 				stats.range++
 				if (stats.range >= 5)
 					categories -= "Range"
-	INVOKE_ASYNC(src, .proc/get_stand, H, stats)
+	INVOKE_ASYNC(src, PROC_REF(get_stand), H, stats)
 
 /obj/item/stand_arrow/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Guardian Spirit of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
@@ -160,7 +160,7 @@
 		G.summoner = H.mind
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(H)
-		G.RegisterSignal(H, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+		G.RegisterSignal(H, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/guardian, OnMoved))
 		var/datum/antagonist/guardian/S = new
 		S.stats = stats
 		S.summoner = H.mind
@@ -181,9 +181,13 @@
 			visible_message(span_warning("[src] falls apart!"))
 			qdel(src)
 	else
-		addtimer(CALLBACK(src, .proc/get_stand, H, stats), 90 SECONDS) // lmao
+		addtimer(CALLBACK(src, PROC_REF(get_stand), H, stats), 90 SECONDS) // lmao
 
 /obj/item/stand_arrow/examine(mob/user)
 	. = ..()
 	if (isobserver(user))
 		. += span_notice("The arrow has a [span_bold("[kill_chance]%")] chance of killing the user.")
+
+/obj/item/stand_arrow/safe //used by the battle royale gamemode, it's a one-time use that never kills the user
+	kill_chance = 0
+	uses = 1

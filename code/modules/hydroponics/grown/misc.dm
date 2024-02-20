@@ -57,10 +57,9 @@
 		return
 
 	var/datum/gas_mixture/stank = new
-	stank.set_moles(/datum/gas/miasma, (yield + 6) * 3.5 * MIASMA_CORPSE_MOLES * delta_time) // this process is only being called about 2/7 as much as corpses so this is 12-32 times a corpses
+	stank.set_moles(GAS_MIASMA, (yield + 6) * 3.5 * MIASMA_CORPSE_MOLES * delta_time) // this process is only being called about 2/7 as much as corpses so this is 12-32 times a corpses
 	stank.set_temperature(T20C) // without this the room would eventually freeze and miasma mining would be easier
 	T.assume_air(stank)
-	T.air_update_turf()
 
 //Galaxy Thistle
 /obj/item/seeds/galaxythistle
@@ -175,21 +174,24 @@
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/attack_self(mob/living/user)
 	user.visible_message(span_warning("[user] plucks the stem from [src]!"), span_userdanger("You pluck the stem from [src], which begins to hiss loudly!"))
 	log_bomber(user, "primed a", src, "for detonation")
-	prime()
+	preprime()
 
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/deconstruct(disassembled = TRUE)
 	if(!disassembled)
-		prime()
+		preprime()
 	if(!QDELETED(src))
 		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/ex_act(severity)
 	qdel(src) //Ensuring that it's deleted by its own explosion. Also prevents mass chain reaction with piles of cherry bombs
 
-/obj/item/reagent_containers/food/snacks/grown/cherry_bomb/proc/prime()
+/obj/item/reagent_containers/food/snacks/grown/cherry_bomb/proc/preprime()
 	icon_state = "cherry_bomb_lit"
 	playsound(src, 'sound/effects/fuse.ogg', seed.potency, 0)
-	reagents.chem_temp = 1000 //Sets off the black powder
+	addtimer(CALLBACK(src, PROC_REF(prime)), 5 SECONDS)
+
+/obj/item/reagent_containers/food/snacks/grown/cherry_bomb/proc/prime()
+	reagents.chem_temp = 1000 //Boom goes the blackpowder (Thanks chem nerfs)
 	reagents.handle_reactions()
 
 // aloe

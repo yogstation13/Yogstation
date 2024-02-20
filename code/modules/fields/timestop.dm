@@ -16,7 +16,6 @@
 	var/datum/proximity_monitor/advanced/timestop/chronofield
 	alpha = 125
 	var/check_anti_magic = FALSE
-	var/check_holy = FALSE
 	var/start_sound = 'sound/magic/timeparadox2.ogg'
 	var/start_sound_len = 3.3 SECONDS
 
@@ -28,16 +27,12 @@
 		freezerange = radius
 	for(var/A in immune_atoms)
 		immune[A] = TRUE
-	for(var/mob/living/L in GLOB.player_list)
-		if(locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in L.mind.spell_list) //People who can stop time are immune to its effects
-			immune[L] = TRUE
-	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.parasites)
-		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.summoner.spell_list) //It would only make sense that a person's stand would also be immune.
-			immune[G] = TRUE
-		if(locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.mob_spell_list)
-			immune[G] = TRUE
-			if(G.summoner?.current)
-				immune[G.summoner.current] = TRUE
+	for(var/mob/living/to_check in GLOB.player_list)
+		if(HAS_TRAIT(to_check, TRAIT_TIME_STOP_IMMUNE))
+			immune[to_check] = TRUE
+	for(var/mob/living/simple_animal/hostile/guardian/stand in GLOB.parasites)
+		if(stand.summoner && HAS_TRAIT(stand.summoner, TRAIT_TIME_STOP_IMMUNE)) //It would only make sense that a person's stand would also be immune.
+			immune[stand] = TRUE
 	if(start)
 		timestop()
 
@@ -48,9 +43,9 @@
 /obj/effect/timestop/proc/timestop()
 	target = get_turf(src)
 	playsound(src, start_sound, 75, 1, -1)
-	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic, "check_holy" = check_holy))
+	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic))
 	if(duration - start_sound_len * 2 > 0) // Needs to have enough time for both sounds to play in full
-		addtimer(CALLBACK(src, .proc/time_resumes), duration - start_sound_len)
+		addtimer(CALLBACK(src, PROC_REF(time_resumes)), duration - start_sound_len)
 	QDEL_IN(src, duration)
 
 /obj/effect/timestop/proc/time_resumes() // toki wa ugoki dasu
@@ -69,7 +64,6 @@
 	var/list/frozen_things = list()
 	var/list/frozen_mobs = list() //cached separately for processing
 	var/check_anti_magic = FALSE
-	var/check_holy = FALSE
 
 	var/static/list/global_frozen_atoms = list()
 
@@ -85,13 +79,13 @@
 		return FALSE
 	if(ismob(A))
 		var/mob/M = A
-		if(M.anti_magic_check(check_anti_magic, check_holy))
+		if(M.can_block_magic((check_anti_magic ? MAGIC_RESISTANCE : NONE)))
 			immune[A] = TRUE
 			return
 	var/frozen = TRUE
 	if(isliving(A))
 		freeze_mob(A)
-	else if(istype(A, /obj/item/projectile))
+	else if(istype(A, /obj/projectile))
 		freeze_projectile(A)
 	else if(istype(A, /obj/mecha))
 		freeze_mecha(A)
@@ -107,8 +101,8 @@
 	A.move_resist = INFINITY
 	global_frozen_atoms[A] = src
 	into_the_negative_zone(A)
-	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, .proc/unfreeze_atom)
-	RegisterSignal(A, COMSIG_ITEM_PICKUP, .proc/unfreeze_atom)
+	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(unfreeze_atom))
+	RegisterSignal(A, COMSIG_ITEM_PICKUP, PROC_REF(unfreeze_atom))
 
 	return TRUE
 
@@ -121,7 +115,7 @@
 		unfreeze_throwing(A)
 	if(isliving(A))
 		unfreeze_mob(A)
-	else if(istype(A, /obj/item/projectile))
+	else if(istype(A, /obj/projectile))
 		unfreeze_projectile(A)
 	else if(istype(A, /obj/mecha))
 		unfreeze_mecha(A)
@@ -161,10 +155,10 @@
 	return ..()
 
 
-/datum/proximity_monitor/advanced/timestop/proc/freeze_projectile(obj/item/projectile/P)
+/datum/proximity_monitor/advanced/timestop/proc/freeze_projectile(obj/projectile/P)
 	P.paused = TRUE
 
-/datum/proximity_monitor/advanced/timestop/proc/unfreeze_projectile(obj/item/projectile/P)
+/datum/proximity_monitor/advanced/timestop/proc/unfreeze_projectile(obj/projectile/P)
 	P.paused = FALSE
 
 /datum/proximity_monitor/advanced/timestop/proc/freeze_mob(mob/living/L)

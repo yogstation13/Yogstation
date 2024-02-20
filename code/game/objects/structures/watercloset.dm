@@ -11,10 +11,10 @@
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
 
-/obj/structure/toilet/Initialize()
+/obj/structure/toilet/Initialize(mapload)
 	. = ..()
 	open = round(rand(0, 1))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/toilet/attack_hand(mob/living/user)
@@ -38,7 +38,7 @@
 				if(open)
 					GM.visible_message(span_danger("[user] starts to give [GM] a swirlie!"), span_userdanger("[user] starts to give you a swirlie..."))
 					swirlie = GM
-					if(do_after(user, 3 SECONDS, src, FALSE))
+					if(do_after(user, 3 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 						GM.visible_message(span_danger("[user] gives [GM] a swirlie!"), span_userdanger("[user] gives you a swirlie!"), span_italics("You hear a toilet flushing."))
 						if(iscarbon(GM))
 							var/mob/living/carbon/C = GM
@@ -67,12 +67,12 @@
 			w_items -= I.w_class
 	else
 		open = !open
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
-/obj/structure/toilet/update_icon()
+/obj/structure/toilet/update_icon_state()
+	. = ..()
 	icon_state = "toilet[open][cistern]"
-
 
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_CROWBAR)
@@ -81,7 +81,7 @@
 		if(I.use_tool(src, user, 30))
 			user.visible_message("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!", span_notice("You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!"), span_italics("You hear grinding porcelain."))
 			cistern = !cistern
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	else if(cistern)
 		if(user.a_intent != INTENT_HARM)
@@ -131,7 +131,7 @@
 	var/exposed = 0 // can you currently put an item inside
 	var/obj/item/hiddenitem = null // what's in the urinal
 
-/obj/structure/urinal/Initialize()
+/obj/structure/urinal/Initialize(mapload)
 	. = ..()
 	hiddenitem = new /obj/item/reagent_containers/food/snacks/urinalcake
 
@@ -200,7 +200,7 @@
 	icon_state = "urinalcake"
 	item_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
-	list_reagents = list(/datum/reagent/chlorine = 3, /datum/reagent/ammonia = 1)
+	list_reagents = list(/datum/reagent/chlorine = 10, /datum/reagent/ammonia = 5)
 	foodtype = TOXIC | GROSS
 
 /obj/item/reagent_containers/food/snacks/urinalcake/attack_self(mob/living/user)
@@ -256,7 +256,7 @@
 
 	if(washing_face)
 		SEND_SIGNAL(user, COMSIG_COMPONENT_CLEAN_FACE_ACT, CLEAN_WASH)
-		user.drowsyness = max(user.drowsyness - rand(2,3), 0) //Washing your face wakes you up if you're falling asleep
+		user.adjust_drowsiness_up_to(-rand(2,3), 0) //Washing your face wakes you up if you're falling asleep
 		user.wash_cream()
 	else if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
@@ -274,15 +274,19 @@
 		to_chat(user, span_warning("Someone's already washing here!"))
 		return
 
-	if(istype(O, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/RG = O
-		if(RG.is_refillable())
-			if(!RG.reagents.holder_full())
-				RG.reagents.add_reagent(dispensedreagent, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-				to_chat(user, span_notice("You fill [RG] from [src]."))
-				return TRUE
-			to_chat(user, span_notice("\The [RG] is full."))
-			return FALSE
+	// If it's refillable, fill it up
+	if(O.is_refillable())
+		if(!O.reagents.holder_full())
+			var/transfer_amount = 10
+			if(istype(O, /obj/item/reagent_containers))
+				var/obj/item/reagent_containers/R = O
+				transfer_amount = R.amount_per_transfer_from_this
+			O.reagents.add_reagent(dispensedreagent, min(O.reagents.maximum_volume - O.reagents.total_volume, transfer_amount))
+			to_chat(user, span_notice("You fill [O] from [src]."))
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			return TRUE
+		to_chat(user, span_notice("\The [O] is full."))
+		return FALSE
 
 	if(istype(O, /obj/item/melee/baton))
 		var/obj/item/melee/baton/B = O
@@ -291,18 +295,12 @@
 				flick("baton_active", src)
 				var/stunforce = B.stunforce
 				user.Paralyze(stunforce)
-				user.stuttering = stunforce/20
+				user.adjust_stutter(stunforce/(2 SECONDS))
 				B.deductcharge(B.hitcost)
 				user.visible_message(span_warning("[user] shocks [user.p_them()]self while attempting to wash the active [B.name]!"), \
 									span_userdanger("You unwisely attempt to wash [B] while it's still on."))
 				playsound(src, "sparks", 50, 1)
 				return
-
-	if(istype(O, /obj/item/mop))
-		O.reagents.add_reagent(dispensedreagent, 5)
-		to_chat(user, span_notice("You wet [O] in [src]."))
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		return
 
 	if(istype(O, /obj/item/stack/medical/gauze))
 		var/obj/item/stack/medical/gauze/G = O
@@ -386,28 +384,29 @@
 	alpha = 200 //Mappers can also just set this to 255 if they want curtains that can't be seen through
 	layer = SIGN_LAYER
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 	density = FALSE
 	var/open = TRUE
 
 /obj/structure/curtain/proc/toggle()
 	open = !open
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/curtain/update_icon()
+/obj/structure/curtain/update_icon_state()
+	. = ..()
 	if(!open)
 		icon_state = "closed"
 		layer = WALL_OBJ_LAYER
 		density = TRUE
 		open = FALSE
-		opacity = TRUE
+		set_opacity(TRUE)
 
 	else
 		icon_state = "open"
 		layer = SIGN_LAYER
 		density = FALSE
 		open = TRUE
-		opacity = FALSE
+		set_opacity(FALSE)
 
 /obj/structure/curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))

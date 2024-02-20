@@ -29,14 +29,14 @@
 		if(WIRE_POWER) // Short out for a long time.
 			if(!A.shorted)
 				A.shorted = TRUE
-				A.update_icon()
-			addtimer(CALLBACK(A, /obj/machinery/advanced_airlock_controller.proc/reset, wire), 1200)
+				A.update_appearance(UPDATE_ICON)
+			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/advanced_airlock_controller, reset), wire), 1200)
 		if(WIRE_IDSCAN) // Toggle lock.
 			A.locked = !A.locked
 		if(WIRE_AI) // Disable AI control for a while.
 			if(!A.aidisabled)
 				A.aidisabled = TRUE
-			addtimer(CALLBACK(A, /obj/machinery/advanced_airlock_controller.proc/reset, wire), 100)
+			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/advanced_airlock_controller, reset), wire), 100)
 		if(WIRE_ACTIVATE) // Toggle airlock cycles
 			for(var/obj/machinery/door/airlock/airlock in A.airlocks)
 				if(airlock.operating || (airlock.obj_flags & EMAGGED))
@@ -59,7 +59,7 @@
 		if(WIRE_POWER) // Short out forever.
 			A.shock(usr, 50)
 			A.shorted = !mend
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 		if(WIRE_IDSCAN)
 			if(!mend)
 				A.locked = TRUE

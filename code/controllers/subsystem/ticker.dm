@@ -329,6 +329,29 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
+	// Toggle lightswitches on in occupied departments
+	var/list/lightup_area_typecache = list()
+	var/minimal_access = CONFIG_GET(flag/jobs_have_minimal_access)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
+		var/role = player.mind?.assigned_role
+		if(!role)
+			continue
+		var/datum/job/job = SSjob.GetJob(role)
+		if(!job)
+			continue
+		lightup_area_typecache |= job.areas_to_light_up(minimal_access)
+	for(var/area in lightup_area_typecache)
+		var/area/place = locate(area) in GLOB.areas
+		if(!place || place.lights_always_start_on)
+			continue
+		place.lightswitch = TRUE
+		place.update_appearance()
+
+		for(var/obj/machinery/light_switch/lswitch in place)
+			lswitch.update_appearance()
+
+		place.power_change()
+
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
@@ -396,7 +419,8 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless = TRUE
 	var/no_cyborgs = TRUE
-	var/no_bartender = TRUE
+	var/no_clerk = TRUE
+	var/no_chaplain = TRUE
 
 	for(var/mob/dead/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
@@ -405,8 +429,10 @@ SUBSYSTEM_DEF(ticker)
 				captainless = FALSE
 			if(player.mind.assigned_role == "Cyborg")
 				no_cyborgs = FALSE
-			if(player.mind.assigned_role == "Bartender")
-				no_bartender = FALSE
+			if(player.mind.assigned_role == "Clerk")
+				no_clerk = FALSE
+			if(player.mind.assigned_role == "Chaplain")
+				no_chaplain = FALSE
 			if(player.mind.assigned_role != player.mind.special_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, FALSE)
 				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
@@ -429,11 +455,13 @@ SUBSYSTEM_DEF(ticker)
 	if(captainless)
 		for(var/mob/dead/new_player/N in GLOB.player_list)
 			if(N.new_character)
-				to_chat(N, "Captainship not forced on anyone.")
+				to_chat(N, "<FONT color='red'>No Captain is present at the start of shift. Please follow the SOP available <b><a href='https://wiki.yogstation.net/wiki/Official:Disk_Procedure'>here</a></b> to secure the disk and assign an Acting Captain.")
 			CHECK_TICK
 
-	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
-		SSjob.random_bar_init()
+	if(no_clerk)
+		SSjob.random_clerk_init()
+	if(no_chaplain)
+		SSjob.random_chapel_init()
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()
@@ -448,7 +476,7 @@ SUBSYSTEM_DEF(ticker)
 				living.client.init_verbs()
 			livings += living
 	if(livings.len)
-		addtimer(CALLBACK(src, .proc/release_characters, livings), 30, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 30, TIMER_CLIENT_TIME)
 
 /datum/controller/subsystem/ticker/proc/release_characters(list/livings)
 	for(var/I in livings)
@@ -521,7 +549,7 @@ SUBSYSTEM_DEF(ticker)
 	//map rotate chance defaults to 75% of the length of the round (in minutes)
 	if (!prob((world.time/600)*CONFIG_GET(number/maprotatechancedelta)))
 		return
-	INVOKE_ASYNC(SSmapping, /datum/controller/subsystem/mapping/.proc/maprotate)
+	INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, maprotate))
 
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
@@ -632,7 +660,7 @@ SUBSYSTEM_DEF(ticker)
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.ready == PLAYER_READY_TO_OBSERVE && player.mind)
 			//Break chain since this has a sleep input in it
-			addtimer(CALLBACK(player, /mob/dead/new_player.proc/make_me_an_observer), 1)
+			addtimer(CALLBACK(player, TYPE_PROC_REF(/mob/dead/new_player, make_me_an_observer)), 1)
 
 /datum/controller/subsystem/ticker/proc/load_mode()
 	var/mode = trim(file2text("data/mode.txt"))

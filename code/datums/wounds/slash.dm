@@ -30,13 +30,15 @@
 	/// A bad system I'm using to track the worst scar we earned (since we can demote, we want the biggest our wound has been, not what it was when it was cured (probably moderate))
 	var/datum/scar/highest_scar
 
-/datum/wound/slash/wound_injury(datum/wound/slash/old_wound = null)
+/datum/wound/slash/wound_injury(datum/wound/slash/old_wound = null, attack_direction = null)
 	blood_flow = initial_flow
 	if(old_wound)
 		blood_flow = max(old_wound.blood_flow, initial_flow)
 		if(old_wound.severity > severity && old_wound.highest_scar)
 			highest_scar = old_wound.highest_scar
 			old_wound.highest_scar = null
+	else if(attack_direction && victim.blood_volume > BLOOD_VOLUME_OKAY(victim))
+		victim.spray_blood(attack_direction, severity)
 
 	if(!highest_scar)
 		highest_scar = new
@@ -83,7 +85,7 @@
 	return bleed_amt
 
 /datum/wound/slash/get_bleed_rate_of_change()
-	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS))
+	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS) || HAS_TRAIT(victim, TRAIT_BLOODY_MESS_LITE))
 		return BLOOD_FLOW_INCREASING
 	if(limb.current_gauze || clot_rate > 0)
 		return BLOOD_FLOW_DECREASING
@@ -104,6 +106,8 @@
 
 	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS) && (victim.stat != DEAD))
 		blood_flow += 0.5 // old heparin used to just add +2 bleed stacks per tick, this adds 0.5 bleed flow to all open cuts which is probably even stronger as long as you can cut them first
+	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS_LITE) && (victim.stat != DEAD)) //hemophiliac version, half strength
+		blood_flow += 0.25
 	if(limb.current_gauze)
 		if(clot_rate > 0)
 			blood_flow -= clot_rate
@@ -158,13 +162,15 @@
 /// If someone's putting a laser gun up to our cut to cauterize it
 /datum/wound/slash/proc/las_cauterize(obj/item/gun/energy/laser/lasgun, mob/user)
 	var/self_penalty_mult = (user == victim ? 1.25 : 1)
+	if(LAZYLEN(user.mind?.antag_datums) && severity > WOUND_SEVERITY_MODERATE) //antagonists can heal wounds better with ghetto alternatives, since they don't have as much access to proper medical treatment
+		self_penalty_mult = 1
 	user.visible_message(span_warning("[user] begins aiming [lasgun] directly at [victim]'s [limb.name]..."), span_userdanger("You begin aiming [lasgun] directly at [user == victim ? "your" : "[victim]'s"] [limb.name]..."))
-	playsound(lasgun, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff = 1)
+	playsound(lasgun, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff_exponent = 1)
 
-	if(!do_after(user, base_treat_time  * self_penalty_mult, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * self_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
-	
-	playsound(lasgun, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff = 1)
+
+	playsound(lasgun, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff_exponent = 1)
 	var/damage = lasgun.chambered.BB.damage
 	lasgun.chambered.BB.bare_wound_bonus = 0
 	lasgun.chambered.BB.wound_bonus -= 30
@@ -179,13 +185,16 @@
 /datum/wound/slash/proc/tool_cauterize(obj/item/I, mob/user)
 	var/improv_penalty_mult = (I.tool_behaviour == TOOL_CAUTERY ? 1 : 1.25) // 25% longer and less effective if you don't use a real cautery
 	var/self_penalty_mult = (user == victim ? 1.5 : 1) // 50% longer and less effective if you do it to yourself
+	if(LAZYLEN(user.mind?.antag_datums) && severity > WOUND_SEVERITY_MODERATE) //antagonists can heal wounds better with ghetto alternatives, since they don't have as much access to proper medical treatment
+		self_penalty_mult = 0.5
+		improv_penalty_mult = 1
 	user.visible_message(span_danger("[user] begins cauterizing [victim]'s [limb.name] with [I]..."), span_warning("You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
-	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff = 1)
+	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff_exponent = 1)
 
-	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult * I.toolspeed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
-	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff = 1)
+	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff_exponent = 1)
 	user.visible_message(span_green("[user] cauterizes some of the bleeding on [victim]."), span_green("You cauterize some of the bleeding on [victim]."))
 	limb.receive_damage(burn = 2 + severity, wound_bonus = CANT_WOUND)
 	if(prob(30))
@@ -201,10 +210,12 @@
 /// If someone is using a suture to close this cut
 /datum/wound/slash/proc/suture(obj/item/stack/medical/suture/I, mob/user)
 	var/self_penalty_mult = (user == victim ? 1.4 : 1)
+	if(LAZYLEN(user.mind?.antag_datums) && severity > WOUND_SEVERITY_MODERATE) //antagonists can heal wounds better with ghetto alternatives, since they don't have as much access to proper medical treatment
+		self_penalty_mult = 1
 	user.visible_message(span_notice("[user] begins stitching [victim]'s [limb.name] with [I]..."), span_notice("You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
 	playsound(I, pick(I.apply_sounds), 25)
 
-	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	user.visible_message(span_green("[user] stitches up some of the bleeding on [victim]."), span_green("You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"]."))
@@ -269,3 +280,12 @@
 	status_effect_type = /datum/status_effect/wound/slash/critical
 	scar_keyword = "slashcritical"
 	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | MANGLES_FLESH)
+
+// Subtype for cleave (heretic spell)
+/datum/wound/slash/critical/cleave
+	name = "Burning Avulsion"
+	examine_desc = "is ruptured, spraying blood wildly"
+	clot_rate = 0.01
+
+/datum/wound/slash/critical/cleave/update_descriptions()
+	occur_text = "is ruptured"

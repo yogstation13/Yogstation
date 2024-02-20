@@ -4,18 +4,12 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE
 
-/obj/item/antag_spawner/ComponentInitialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
-
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return
 
 /obj/item/antag_spawner/proc/equip_antag(mob/target)
 	return
 
-/obj/item/antag_spawner/proc/refund_check()
-	return !used
 
 ///////////WIZARD
 
@@ -24,68 +18,55 @@
 	desc = "A magic contract previously signed by an apprentice. In exchange for instruction in the magical arts, they are bound to answer your call for aid."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state ="scroll2"
+	var/polling = FALSE
 
-	var/unlocked = FALSE
+/obj/item/antag_spawner/contract/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(polling)
+		balloon_alert(user, "already calling an apprentice!")
+		return FALSE
 
-/obj/item/antag_spawner/contract/unlocked
-	unlocked = TRUE
+/obj/item/antag_spawner/contract/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ApprenticeContract", name)
+		ui.open()
 
-/obj/item/antag_spawner/contract/attack_self(mob/user)
-	if(!unlocked && !user.mind.has_antag_datum(/datum/antagonist/wizard))
-		to_chat(user, span_warning("You do not understand the words on this paper."))
-		return
-	user.set_machine(src)
-	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+/obj/item/antag_spawner/contract/ui_state(mob/user)
 	if(used)
-		dat = "<B>You have already summoned your apprentice.</B><BR>"
-	else
-		dat = "<B>Contract of Apprenticeship:</B><BR>"
-		dat += "<I>Using this contract, you may summon an apprentice to aid you on your mission.</I><BR>"
-		dat += "<I>If you are unable to establish contact with your apprentice, you can feed the contract back to the spellbook to refund your points.</I><BR>"
-		dat += "<B>Which school of magic is your apprentice studying?:</B><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_DESTRUCTION]'>Destruction</A><BR>"
-		dat += "<I>Your apprentice is skilled in offensive magic. They know Magic Missile and Fireball.</I><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_BLUESPACE]'>Bluespace Manipulation</A><BR>"
-		dat += "<I>Your apprentice is able to defy physics, melting through solid objects and travelling great distances in the blink of an eye. They know Teleport and Ethereal Jaunt.</I><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_HEALING]'>Healing</A><BR>"
-		dat += "<I>Your apprentice is training to cast spells that will aid your survival. They know Forcewall and Charge and come with a Staff of Healing.</I><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_ROBELESS]'>Robeless</A><BR>"
-		dat += "<I>Your apprentice is training to cast spells without their robes. They know Knock and Mindswap.</I><BR>"
+		return GLOB.never_state
+	return GLOB.default_state
 
-	dat += "</BODY></HTML>"
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+/obj/item/antag_spawner/contract/ui_assets(mob/user)
+	. = ..()
+	return list(
+		get_asset_datum(/datum/asset/simple/contracts),
+	)
 
-/obj/item/antag_spawner/contract/Topic(href, href_list)
-	..()
-	var/mob/living/carbon/human/H = usr
-
-	if(H.stat || H.restrained())
+/obj/item/antag_spawner/contract/ui_act(action, list/params)
+	. = ..()
+	if(used || polling || !ishuman(usr))
 		return
-	if(!ishuman(H))
-		return 1
+	INVOKE_ASYNC(src, PROC_REF(poll_for_student), usr, params["school"])
+	SStgui.close_uis(src)
 
-	if(loc == H || (in_range(src, H) && isturf(loc)))
-		H.set_machine(src)
-		if(href_list["school"])
-			if(used)
-				to_chat(H, "You already used this contract!")
-				return
-			var/list/candidates = pollCandidatesForMob("Do you want to play as a wizard's [href_list["school"]] apprentice?", ROLE_WIZARD, null, ROLE_WIZARD, 150, src)
-			if(LAZYLEN(candidates))
-				if(QDELETED(src))
-					return
-				if(used)
-					to_chat(H, "You already used this contract!")
-					return
-				used = TRUE
-				var/mob/dead/observer/C = pick(candidates)
-				spawn_antag(C.client, get_turf(src), href_list["school"],H.mind)
-			else
-				to_chat(H, "Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later.")
+/obj/item/antag_spawner/contract/proc/poll_for_student(mob/living/carbon/human/teacher, apprentice_school)
+	balloon_alert(teacher, "contacting apprentice...")
+	polling = TRUE
+	var/list/candidates = pollCandidatesForMob("Do you want to play as a wizard's [apprentice_school] apprentice?", ROLE_WIZARD, null, ROLE_WIZARD, 15 SECONDS, src)
+	polling = FALSE
+	if(!LAZYLEN(candidates))
+		to_chat(teacher, span_warning("Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later."))
+		return
+	if(QDELETED(src) || used)
+		return
+	used = TRUE
+	var/mob/dead/observer/student = pick(candidates)
+	spawn_antag(student.client, get_turf(src), apprentice_school, teacher.mind)
 
-/obj/item/antag_spawner/contract/spawn_antag(client/C, turf/T, kind ,datum/mind/user)
+/obj/item/antag_spawner/contract/spawn_antag(client/C, turf/T, kind, datum/mind/user)
 	new /obj/effect/particle_effect/fluid/smoke(T)
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(T)
 	C.prefs.apply_prefs_to(M)
@@ -103,10 +84,8 @@
 		app.wiz_team = master_wizard.wiz_team
 		master_wizard.wiz_team.add_member(app_mind)
 	app_mind.add_antag_datum(app)
-	//TODO Kill these if possible
 	app_mind.assigned_role = "Apprentice"
 	app_mind.special_role = "apprentice"
-	//
 	SEND_SOUND(M, sound('sound/effects/magic.ogg'))
 
 ///////////BORGS AND OPERATIVES
@@ -123,10 +102,10 @@
 	if(used)
 		to_chat(user, span_warning("[src] is out of power!"))
 		return FALSE
-	if(!user.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
+	if(!(is_nukeop(user) || is_battleroyale(user)))//also let it work in battle royales
 		to_chat(user, span_danger("AUTHENTICATION FAILURE. ACCESS DENIED."))
 		return FALSE
-	if(!user.onSyndieBase())
+	if(!(user.onSyndieBase() || is_battleroyale(user)))
 		to_chat(user, span_warning("[src] is out of range! It can only be used at your base!"))
 		return FALSE
 	return TRUE
@@ -205,7 +184,8 @@
 /obj/item/antag_spawner/nuke_ops/borg_tele/spawn_antag(client/C, turf/T, kind, datum/mind/user)
 	var/mob/living/silicon/robot/R
 	var/datum/antagonist/nukeop/creator_op = user.has_antag_datum(/datum/antagonist/nukeop,TRUE)
-	if(!creator_op)
+	var/royaler = user.has_antag_datum(/datum/antagonist/battleroyale, TRUE)
+	if(!creator_op && !royaler)
 		return
 
 	switch(borg_to_spawn)
@@ -220,7 +200,7 @@
 	if(prob(50))
 		brainfirstname = pick(GLOB.first_names_female)
 	var/brainopslastname = pick(GLOB.last_names)
-	if(creator_op.nuke_team.syndicate_name)  //the brain inside the syndiborg has the same last name as the other ops.
+	if(!royaler && creator_op.nuke_team.syndicate_name)  //the brain inside the syndiborg has the same last name as the other ops.
 		brainopslastname = creator_op.nuke_team.syndicate_name
 	var/brainopsname = "[brainfirstname] [brainopslastname]"
 
@@ -273,17 +253,16 @@
 
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
-	var/obj/effect/dummy/crawling/holder = new /obj/effect/dummy/crawling(T) //yogs start
-	//var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob(T)
-	var/mob/living/simple_animal/slaughter/S = new demon_type(holder)
-	//S.holder = holder //yogs end
+	var/mob/living/simple_animal/slaughter/S = new demon_type(T)
+	new /obj/effect/dummy/phased_mob(T, S)
+
 	S.key = C.key
 	S.mind.assigned_role = S.name
 	S.mind.special_role = S.name
 	S.mind.add_antag_datum(antag_type)
 	to_chat(S, S.playstyle_string)
-	to_chat(S, "<B>You are currently not in the same plane of existence as the station. \
-	Alt+Click a blood pool to manifest.</B>") //yogs
+	to_chat(S, span_bold("You are currently not currently in the same plane of existence as the station. \
+		Use your Blood Crawl ability near a pool of blood to manifest and wreak havoc.")) //fuck you
 
 /obj/item/antag_spawner/slaughter_demon/laughter
 	name = "vial of tickles"

@@ -13,7 +13,7 @@
 /obj/item/assembly/timer/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] looks at the timer and decides [user.p_their()] fate! It looks like [user.p_theyre()] going to commit suicide!"))
 	activate()//doesnt rely on timer_end to prevent weird metas where one person can control the timer and therefore someone's life. (maybe that should be how it works...)
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), time SECONDS)//kill yourself once the time runs out
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), time SECONDS)//kill yourself once the time runs out
 	return MANUAL_SUICIDE
 
 /obj/item/assembly/timer/proc/manual_suicide(mob/living/user)
@@ -21,7 +21,7 @@
 	user.adjustOxyLoss(200)
 	user.death(0)
 
-/obj/item/assembly/timer/Initialize()
+/obj/item/assembly/timer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -37,7 +37,7 @@
 	if(!..())
 		return FALSE//Cooldown check
 	timing = !timing
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 
@@ -48,7 +48,7 @@
 	else
 		timing = FALSE
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return secured
 
 
@@ -63,7 +63,7 @@
 			LM.playsound_local(get_turf(src), 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	if(loop)
 		timing = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/assembly/timer/process(delta_time)
@@ -75,15 +75,17 @@
 		timer_end()
 		time = saved_time
 
+/obj/item/assembly/timer/update_icon(updates=ALL)
+	. = ..()
+	if(holder)
+		holder.update_icon(updates)
 
-/obj/item/assembly/timer/update_icon()
-	cut_overlays()
+/obj/item/assembly/timer/update_overlays()
+	. = ..()
 	attached_overlays = list()
 	if(timing)
-		add_overlay("timer_timing")
+		. += "timer_timing"
 		attached_overlays += "timer_timing"
-	if(holder)
-		holder.update_icon()
 
 /obj/item/assembly/timer/ui_status(mob/user)
 	if(is_secured(user))
@@ -115,7 +117,7 @@
 			timing = !timing
 			if(timing && istype(holder, /obj/item/transfer_valve))
 				log_bomber(usr, "activated a", src, "attachment on [holder]")
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("repeat")
 			loop = !loop

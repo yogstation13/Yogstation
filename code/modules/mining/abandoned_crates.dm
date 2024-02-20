@@ -5,13 +5,13 @@
 	desc = "What could be inside?"
 	icon_state = "securecrate"
 	integrity_failure = 0 //no breaking open the crate
+	tamperproof = 90
 	var/code = null
 	var/lastattempt = null
 	var/attempts = 10
 	var/codelen = 4
-	tamperproof = 90
 
-/obj/structure/closet/crate/secure/loot/Initialize()
+/obj/structure/closet/crate/secure/loot/Initialize(mapload)
 	. = ..()
 	var/list/digits = list("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 	code = ""
@@ -20,6 +20,15 @@
 		code += dig
 		digits -= dig  //there are never matching digits in the answer
 
+/obj/structure/closet/crate/secure/loot/update_overlays()
+	. = ..()
+	tamperproof = initial(tamperproof)
+	if(!locked)
+		. += "securecrateg"
+		tamperproof = 0 // set explosion chance to zero, so we dont accidently hit it with a multitool and instantly die
+
+/obj/structure/closet/crate/secure/loot/PopulateContents()
+	. = ..()
 	var/loot = rand(1,100) //100 different crates with varying chances of spawning
 	switch(loot)
 		if(1 to 5) //5% chance
@@ -75,7 +84,14 @@
 				new /obj/item/clothing/neck/petcollar(src)
 		if(63 to 64)
 			for(var/i in 1 to rand(4, 7))
-				var/newcoin = pick(/obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/gold, /obj/item/coin/diamond, /obj/item/coin/plasma, /obj/item/coin/uranium)
+				var/newcoin = pickweight(list(
+					/obj/item/coin/silver = 3,
+					/obj/item/coin/iron = 3,
+					/obj/item/coin/gold = 1,
+					/obj/item/coin/diamond = 1,
+					/obj/item/coin/plasma = 1,
+					/obj/item/coin/uranium = 1,
+				))
 				new newcoin(src)
 		if(65 to 66)
 			new /obj/item/clothing/suit/ianshirt(src)
@@ -152,87 +168,87 @@
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/closet/crate/secure/loot/attack_hand(mob/user)
-	if(locked)
-		to_chat(user, span_notice("The crate is locked with a Deca-code lock."))
-		var/input = input(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "") as text
-		if(user.canUseTopic(src, BE_CLOSE))
-			var/list/sanitised = list()
-			var/sanitycheck = TRUE
-			var/char = ""
-			var/length_input = length(input)
-			for(var/i = 1, i <= length_input, i += length(char)) //put the guess into a list
-				char = input[i]
-				sanitised += text2num(char)
-			for(var/i = 1, i <= length(sanitised) - 1, i++) //compare each digit in the guess to all those following it
-				for(var/j = i + 1, j <= length(sanitised), j++)
-					if(sanitised[i] == sanitised[j])
-						sanitycheck = FALSE //if a digit is repeated, reject the input
-			if(input == code)
-				to_chat(user, span_notice("The crate unlocks!"))
-				locked = FALSE
-				cut_overlays()
-				add_overlay("securecrateg")
-				tamperproof = 0 // set explosion chance to zero, so we dont accidently hit it with a multitool and instantly die
-			else if(!input || !sanitycheck || length(sanitised) != codelen)
-				to_chat(user, span_notice("You leave the crate alone."))
-			else
-				to_chat(user, span_warning("A red light flashes."))
-				lastattempt = input
-				attempts--
-				if(attempts == 0)
-					boom(user)
-	else
+	if(!locked)
 		return ..()
+	to_chat(user, span_notice("The crate is locked with a Deca-code lock."))
+	var/input = input(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "") as text
+	if(user.canUseTopic(src, BE_CLOSE))
+		var/list/sanitised = list()
+		var/sanitycheck = TRUE
+		var/char = ""
+		var/length_input = length(input)
+		for(var/i = 1, i <= length_input, i += length(char)) //put the guess into a list
+			char = input[i]
+			sanitised += text2num(char)
+		for(var/i = 1, i <= length(sanitised) - 1, i++) //compare each digit in the guess to all those following it
+			for(var/j = i + 1, j <= length(sanitised), j++)
+				if(sanitised[i] == sanitised[j])
+					sanitycheck = FALSE //if a digit is repeated, reject the input
+		if(input == code)
+			to_chat(user, span_notice("The crate unlocks!"))
+			locked = FALSE
+			update_appearance(UPDATE_OVERLAYS)
+		else if(!input || !sanitycheck || length(sanitised) != codelen)
+			to_chat(user, span_notice("You leave the crate alone."))
+		else
+			to_chat(user, span_warning("A red light flashes."))
+			lastattempt = input
+			attempts--
+			if(!attempts)
+				boom(user)
 
 /obj/structure/closet/crate/secure/loot/AltClick(mob/living/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	return attack_hand(user) //this helps you not blow up so easily by overriding unlocking which results in an immediate boom.
 
-/obj/structure/closet/crate/secure/loot/attackby(obj/item/W, mob/user)
-	if(locked)
-		if(W.tool_behaviour == TOOL_MULTITOOL)
-			to_chat(user, span_notice("DECA-CODE LOCK REPORT:"))
-			if(attempts == 1)
-				to_chat(user, span_warning("* Anti-Tamper Bomb will activate on next failed access attempt."))
-			else
-				to_chat(user, span_notice("* Anti-Tamper Bomb will activate after [attempts] failed access attempts."))
-			if(lastattempt != null)
-				var/bulls = 0 //right position, right number
-				var/cows = 0 //wrong position but in the puzzle
+/obj/structure/closet/crate/secure/loot/multitool_act(mob/living/user, obj/item/tool)
+	if(!locked)
+		return ..()
 
-				var/lastattempt_char = ""
-				var/length_lastattempt = length(lastattempt)
-				var/lastattempt_it = 1
+	to_chat(user, span_notice("DECA-CODE LOCK REPORT:"))
+	if(attempts == 1)
+		to_chat(user, span_warning("* Anti-Tamper Bomb will activate on next failed access attempt."))
+	else
+		to_chat(user, span_notice("* Anti-Tamper Bomb will activate after [attempts] failed access attempts."))
 
-				var/code_char = ""
-				var/length_code = length(code)
-				var/code_it = 1
+	if(!isnull(lastattempt))
+		var/bulls = 0 //right position, right number
+		var/cows = 0 //wrong position but in the puzzle
 
-				while(lastattempt_it <= length_lastattempt && code_it <= length_code) // Go through list and count matches
-					lastattempt_char = lastattempt[lastattempt_it]
-					code_char = code[code_it]
-					if(lastattempt_char == code_char)
-						++bulls
-					else if(findtext(code, lastattempt_char))
-						++cows
+		var/lastattempt_char = ""
+		var/length_lastattempt = length(lastattempt)
+		var/lastattempt_it = 1
 
-					lastattempt_it += length(lastattempt_char)
-					code_it += length(code_char)
+		var/code_char = ""
+		var/length_code = length(code)
+		var/code_it = 1
 
-				to_chat(user, span_notice("Last code attempt, [lastattempt], had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
-			return
-	return ..()
+		while(lastattempt_it <= length_lastattempt && code_it <= length_code) // Go through list and count matches
+			lastattempt_char = lastattempt[lastattempt_it]
+			code_char = code[code_it]
+			if(lastattempt_char == code_char)
+				bulls++
+			else if(findtext(code, lastattempt_char))
+				cows++
 
-/obj/structure/closet/crate/secure/loot/emag_act(mob/user)
-	if(locked)
-		boom(user)
+			lastattempt_it += length(lastattempt_char)
+			code_it += length(code_char)
+
+		to_chat(user, span_notice("Last code attempt, [lastattempt], had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
+/obj/structure/closet/crate/secure/loot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(!locked)
+		return FALSE
+	boom(user) // Did you expect the "anti-tamper system" to not work?
+	return TRUE
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user)
 	if(locked)
 		boom(user)
-	else
-		..()
+		return
+	return ..()
 
 /obj/structure/closet/crate/secure/loot/deconstruct(disassembled = TRUE)
 	boom()

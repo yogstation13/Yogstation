@@ -10,12 +10,14 @@
 	var/brain_mod = 1   	// % of brain damage taken from all sources
 
 	var/pressure_mod = 1	// % of brute damage taken from low or high pressure (stacks with brute_mod)
+	var/temp_mod = 1		// % of temperature change actually taken
 	var/heat_mod = 1    	// % of burn damage taken from heat (stacks with burn_mod)
 	var/cold_mod = 1    	// % of burn damage taken from cold (stacks with burn_mod)
 
 	var/damage_resistance = 0 // %damage reduction from all sources
 
 	var/siemens_coeff = 1 	// resistance to shocks
+	var/emp_mod = 1			// resistance to EMPs
 
 	var/stun_mod = 1      	// % stun modifier
 	var/bleed_mod = 1     	// % bleeding modifier
@@ -28,6 +30,8 @@
 	var/punchdamagehigh_bonus = 0		//Increased maximum punch damage 
 	var/punchdamagelow_bonus = 0		//Increased minimum punch damage
 	var/punchstunthreshold_bonus = 0	//Increased stun threshhold on punches so we don't get knockdown hands
+
+	var/crawl_speed = 0		// Movement speed modifier when crawling
 
 /datum/physiology/New()
 	armor = new

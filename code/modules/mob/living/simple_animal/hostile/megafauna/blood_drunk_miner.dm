@@ -29,13 +29,13 @@ Difficulty: Medium
 	icon_living = "miner"
 	icon = 'icons/mob/broadMobs.dmi'
 	health_doll_icon = "miner"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = "#E4C7C5"
 	movement_type = GROUND
 	speak_emote = list("roars")
 	speed = 3
 	move_to_delay = 3
-	projectiletype = /obj/item/projectile/kinetic/miner
+	projectiletype = /obj/projectile/kinetic/miner
 	projectilesound = 'sound/weapons/kenetic_accel.ogg'
 	ranged = TRUE
 	ranged_cooldown_time = 16
@@ -54,32 +54,34 @@ Difficulty: Medium
 	var/transform_stop_attack = FALSE // stops the blood drunk miner from attacking after transforming his weapon until the next attack chain
 	deathmessage = "falls to the ground, decaying into glowing particles."
 	deathsound = "bodyfall"
-	do_footstep = TRUE
-	attack_action_types = list(/datum/action/innate/megafauna_attack/dash,
-							   /datum/action/innate/megafauna_attack/kinetic_accelerator,
-							   /datum/action/innate/megafauna_attack/transform_weapon)
+	footstep_type = FOOTSTEP_MOB_HEAVY
+	attack_action_types = list(
+		/datum/action/innate/megafauna_attack/dash,
+		/datum/action/innate/megafauna_attack/kinetic_accelerator,
+		/datum/action/innate/megafauna_attack/transform_weapon,
+	)
 
-/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/Initialize()
+/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/Initialize(mapload)
 	. = ..()
 	miner_saw = new(src)
 
 /datum/action/innate/megafauna_attack/dash
 	name = "Dash To Target"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = span_colossus("You are now dashing to your target.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/kinetic_accelerator
 	name = "Fire Kinetic Accelerator"
-	icon_icon = 'icons/obj/guns/energy.dmi'
+	button_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "kineticgun"
 	chosen_message = span_colossus("You are now shooting your kinetic accelerator.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/transform_weapon
 	name = "Transform Weapon"
-	icon_icon = 'icons/obj/lavaland/artefacts.dmi'
+	button_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "cleaving_saw"
 	chosen_message = span_colossus("You are now transforming your weapon.")
 	chosen_attack_num = 3
@@ -111,7 +113,7 @@ Difficulty: Medium
 	..()
 	target.stun_absorption -= "miner"
 
-/obj/item/projectile/kinetic/miner
+/obj/projectile/kinetic/miner
 	damage = 20
 	speed = 0.9
 	icon_state = "ka_tracer"
@@ -181,7 +183,7 @@ Difficulty: Medium
 		wander = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/proc/dash_attack()
-	INVOKE_ASYNC(src, .proc/dash, target)
+	INVOKE_ASYNC(src, PROC_REF(dash), target)
 	shoot_ka()
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/proc/shoot_ka()
@@ -208,7 +210,7 @@ Difficulty: Medium
 		if(get_dist(src, O) >= MINER_DASH_RANGE && turf_dist_to_target <= self_dist_to_target && !islava(O) && !ischasm(O))
 			var/valid = TRUE
 			for(var/turf/T in getline(own_turf, O))
-				if(is_blocked_turf(T, TRUE))
+				if(T.is_blocked_turf(TRUE))
 					valid = FALSE
 					continue
 			if(valid)
@@ -263,7 +265,7 @@ Difficulty: Medium
 
 /obj/effect/temp_visual/dir_setting/miner_death/Initialize(mapload, set_dir)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/fade_out)
+	INVOKE_ASYNC(src, PROC_REF(fade_out))
 
 /obj/effect/temp_visual/dir_setting/miner_death/proc/fade_out()
 	var/matrix/M = new
@@ -290,6 +292,6 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/hunter/AttackingTarget()
 	. = ..()
 	if(. && prob(12))
-		INVOKE_ASYNC(src, .proc/dash)
+		INVOKE_ASYNC(src, PROC_REF(dash))
 
 #undef MINER_DASH_RANGE

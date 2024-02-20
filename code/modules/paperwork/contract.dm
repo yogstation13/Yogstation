@@ -10,45 +10,9 @@
 /obj/item/paper/contract/proc/update_text()
 	return
 
-/obj/item/paper/contract/update_icon()
-	return
-
-
-/obj/item/paper/contract/employment
-	icon_state = "paper_words"
-
-/obj/item/paper/contract/employment/New(atom/loc, mob/living/nOwner)
-	. = ..()
-	if(!nOwner || !nOwner.mind)
-		qdel(src)
-		return -1
-	target = nOwner.mind
-	update_text()
-
-
-/obj/item/paper/contract/employment/update_text()
-	name = "paper- [target] employment contract"
-	info = "<center>Conditions of Employment</center><BR><BR><BR><BR>This Agreement is made and entered into as of the date of last signature below, by and between [target] (hereafter referred to as SLAVE), and Nanotrasen (hereafter referred to as the omnipresent and helpful watcher of humanity).<BR>WITNESSETH:<BR>WHEREAS, SLAVE is a natural born human or humanoid, possessing skills upon which he can aid the omnipresent and helpful watcher of humanity, who seeks employment in the omnipresent and helpful watcher of humanity.<BR>WHEREAS, the omnipresent and helpful watcher of humanity agrees to sporadically provide payment to SLAVE, in exchange for permanent servitude.<BR>NOW THEREFORE in consideration of the mutual covenants herein contained, and other good and valuable consideration, the parties hereto mutually agree as follows:<BR>In exchange for paltry payments, SLAVE agrees to work for the omnipresent and helpful watcher of humanity, for the remainder of his or her current and future lives.<BR>Further, SLAVE agrees to transfer ownership of his or her soul to the loyalty department of the omnipresent and helpful watcher of humanity.<BR>Should transfership of a soul not be possible, a lien shall be placed instead.<BR>Signed,<BR><i>[target]</i>"
-
-
-/obj/item/paper/contract/employment/attack(mob/living/M, mob/living/carbon/human/user)
-	var/deconvert = FALSE
-	if(M.mind == target && !M.owns_soul())
-		if(user.mind && (user.mind.assigned_role == "Lawyer"))
-			deconvert = TRUE
-		else if (user.mind && (user.mind.assigned_role =="Head of Personnel") || (user.mind.assigned_role == "CentCom Commander"))
-			deconvert = prob (25) // the HoP doesn't have AS much legal training
-		else
-			deconvert = prob (5)
-	if(deconvert)
-		M.visible_message(span_notice("[user] reminds [M] that [M]'s soul was already purchased by Nanotrasen!"))
-		to_chat(M, span_boldnotice("You feel that your soul has returned to its rightful owner, Nanotrasen."))
-		M.return_soul()
-	else
-		M.visible_message(span_danger("[user] beats [M] over the head with [src]!"), \
-			span_userdanger("[user] beats [M] over the head with [src]!"))
+/obj/item/paper/contract/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	return ..()
-
 
 /obj/item/paper/contract/infernal
 	var/contractType = 0
@@ -103,7 +67,7 @@
 		H.say("OH GREAT INFERNO!  I DEMAND YOU COLLECT YOUR BOUNTY IMMEDIATELY!", forced = "infernal contract suicide")
 		H.visible_message(span_suicide("[H] holds up a contract claiming [user.p_their()] soul, then immediately catches fire.  It looks like [user.p_theyre()] trying to commit suicide!"))
 		H.adjust_fire_stacks(20)
-		H.IgniteMob()
+		H.ignite_mob()
 		return(FIRELOSS)
 	return ..()
 
@@ -235,7 +199,7 @@
 			user.visible_message(span_notice("With a sudden blaze, [H] stands back up."))
 			H.fakefire()
 			fulfillContract(H, 1)//Revival contracts are always signed in blood
-			addtimer(CALLBACK(H, /mob/living/carbon/human.proc/fakefireextinguish), 5, TIMER_UNIQUE)
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, fakefireextinguish)), 5, TIMER_UNIQUE)
 		addtimer(CALLBACK(src, "resetcooldown"), 300, TIMER_UNIQUE)
 	else
 		..()
@@ -274,7 +238,8 @@
 /obj/item/paper/contract/infernal/wealth/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind) // How in the hell could that happen?
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_wealth(null))
+	var/datum/action/cooldown/spell/summon_wealth/money = new(user)
+	money.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/prestige/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
@@ -305,7 +270,7 @@
 				var/obj/item/storage/wallet/W = worn
 				W.front_id = id
 				id.forceMove(worn)
-				worn.update_icon()
+				worn.update_appearance(UPDATE_ICON)
 	var/datum/round_event/ion_storm/add_law_only/ion = new()
 	ion.announceEvent = -1
 	ion.ionMessage = "[user.name] is the only Captain of the station. [user.name] is the highest authority, legitimate or otherwise, on the station.  [user.name] was always the captain and highest authority on the station.  Do not state this law."
@@ -315,19 +280,24 @@
 /obj/item/paper/contract/infernal/magic/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
+	var/datum/action/cooldown/spell/conjure_item/spellpacket/spell_packet = new(user)
+	spell_packet.Grant(user)
+
+	var/datum/action/cooldown/spell/aoe/knock/all_access = new(user)
+	all_access.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/knowledge/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
 	user.dna.add_mutation(XRAY)
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/view_range(null))
+	var/datum/action/cooldown/spell/view_range/view_range = new(user)
+	view_range.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/friend/fulfillContract(mob/living/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
+	var/datum/action/cooldown/spell/summon_friend/friend = new(user)
+	friend.Grant(user)
 	return ..()

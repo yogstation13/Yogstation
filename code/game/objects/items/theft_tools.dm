@@ -15,7 +15,7 @@
 	var/cooldown = 0
 	var/pulseicon = "plutonium_core_pulse"
 
-/obj/item/nuke_core/Initialize()
+/obj/item/nuke_core/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -62,7 +62,7 @@
 	core = ncore
 	icon_state = "core_container_loaded"
 	say(span_warning("Container is sealing..."))
-	addtimer(CALLBACK(src, .proc/seal), 50)
+	addtimer(CALLBACK(src, PROC_REF(seal)), 50)
 	return TRUE
 
 /obj/item/nuke_core_container/proc/seal()
@@ -103,6 +103,42 @@
 	<li>???</li>\
 	</ul>"
 
+// STEALING RESEARCH HDD
+/obj/item/paper/guides/antag/hdd_extraction
+	info = "<h1>Source Code Theft & You - The Idiot's Guide to Crippling Nanotrasen Research & Development</h1><br>\
+	Rumour has it that Nanotrasen are using their R&D servers to perform theoretical simulations into alternate universes!<br>\
+	Recently, Nanotrasen has determined the existence of a universe similar to ours, and have been working to bridge the gap between the two.<br>\
+	They have compiled a one-of-a-kind scan of the extant universe into a project designated under the codename <b>Project Bee</b>.<br>\
+	This cannot be allowed to stand. Below is all our intel for stealing their source code and crippling their research efforts:<br>\
+	<ul>\
+	<li>Locate the physical R&D Server mainframes. Intel suggests these are stored in specially cooled rooms deep within their Science department.</li>\
+	<li>Nanotrasen is a corporation not known for subtlety in design. You should be able to identify the master server by any distinctive markings.</li>\
+	<li>Tools are on-site procurement. Screwdriver, crowbar and wirecutters should be all you need to do the job.</li>\
+	<li>The front panel screws are hidden in recesses behind stickers. Easily removed once you know they're there.</li>\
+	<li>You'll probably find the hard drive in secure housing. You may need to pry it loose with a crowbar, shouldn't do too much damage.</li>\
+	<li>Finally, carefully cut all of the hard drive's connecting wires. Don't rush this, snipping the wrong wire could wipe all data!</li>\
+	</ul>\
+	Removing this drive is guaranteed to cripple research efforts regardless of what data is contained on it.<br>\
+	The thing's probably hardwired. No putting it back once you've extracted it. The crew are likely to be as mad as bees if they find out!<br>\
+	Survive the shift and extract the hard drive safely.<br>\
+	Succeed and you will receive a coveted green highlight on your record for this assignment. Fail us and red's the last color you'll ever see.<br>\
+	Do not disappoint us."
+
+/obj/item/computer_hardware/hard_drive/cluster
+	name = "cluster hard disk drive"
+	desc = "A large storage cluster consisting of multiple HDDs for usage in dedicated storage systems."
+	power_usage = 500
+	max_capacity = 2048
+	icon_state = "harddisk"
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/computer_hardware/hard_drive/cluster/hdd_theft
+	name = "r&d server hard disk drive"
+	desc = "The hard drive containing sensitive data on alternate universes. Holding it up to your ear you can faintly hear the hum of millions of bees."
+	icon = 'icons/obj/nuke_tools.dmi'
+	icon_state = "project_bee" //hi bee!
+	max_capacity = 512
+
 // STEALING SUPERMATTER
 
 /obj/item/paper/guides/antag/supermatter_sliver
@@ -138,7 +174,7 @@
 			return FALSE
 		forceMove(tongs)
 		tongs.sliver = src
-		tongs.update_icon()
+		tongs.update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You carefully pick up [src] with [tongs]."))
 	else if(istype(W, /obj/item/scalpel/supermatter) || istype(W, /obj/item/nuke_core_container/supermatter/)) // we don't want it to dust
 		return
@@ -159,7 +195,7 @@
 			span_italics("Everything suddenly goes silent."))
 	radiation_pulse(user, 500, 2)
 	playsound(get_turf(user), 'sound/effects/supermatter.ogg', 50, 1)
-	ded.dust()
+	user.dust()
 
 /obj/item/nuke_core_container/supermatter
 	name = "supermatter bin"
@@ -179,7 +215,7 @@
 	T.icon_state = "supermatter_tongs"
 	icon_state = "core_container_loaded"
 	say(span_warning("Container is sealing..."))
-	addtimer(CALLBACK(src, .proc/seal), 50)
+	addtimer(CALLBACK(src, PROC_REF(seal)), 50)
 	return TRUE
 
 /obj/item/nuke_core_container/supermatter/seal()
@@ -206,7 +242,7 @@
 	usesound = 'sound/weapons/bladeslice.ogg'
 	var/usesLeft
 
-/obj/item/scalpel/supermatter/Initialize()
+/obj/item/scalpel/supermatter/Initialize(mapload)
 	. = ..()
 	usesLeft = rand(2, 4)
 
@@ -223,7 +259,8 @@
 	QDEL_NULL(sliver)
 	return ..()
 
-/obj/item/hemostat/supermatter/update_icon()
+/obj/item/hemostat/supermatter/update_icon_state()
+	. = ..()
 	if(sliver)
 		icon_state = "supermatter_tongs_loaded"
 	else
@@ -241,14 +278,14 @@
 		sliver.forceMove(loc)
 		visible_message(span_notice("\The [sliver] falls out of \the [src] as it hits the ground."))
 		sliver = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	..()
 
-/obj/item/hemostat/supermatter/proc/Consume(atom/movable/AM, mob/user)
-	if(ismob(AM))
-		var/mob/victim = AM
+/obj/item/hemostat/supermatter/proc/Consume(atom/movable/AM, mob/living/user)
+	if(isliving(AM))
+		var/mob/living/victim = AM
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
-		message_admins("[ADMIN_LOOKUPFLW(user)] has used a supermatter sliver to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].") 
+		message_admins("[ADMIN_LOOKUPFLW(user)] has used a supermatter sliver to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].")
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
 		investigate_log("[key_name(user)] has used a supermatter sliver to commit dual suicide with [key_name(victim)].", "supermatter")
 		victim.dust()
@@ -263,4 +300,4 @@
 	radiation_pulse(src, 500, 2)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 	QDEL_NULL(sliver)
-	update_icon()
+	update_appearance(UPDATE_ICON)

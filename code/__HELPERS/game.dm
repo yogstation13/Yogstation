@@ -8,6 +8,19 @@
 #define Z_TURFS(ZLEVEL) block(locate(1,1,ZLEVEL), locate(world.maxx, world.maxy, ZLEVEL))
 #define CULT_POLL_WAIT 2400
 
+/// Returns a list of turfs similar to CORNER_BLOCK but with offsets
+#define CORNER_BLOCK_OFFSET(corner, width, height, offset_x, offset_y) ( \
+	(block(locate(corner.x + offset_x, corner.y + offset_y, corner.z), \
+			locate(min(corner.x + (width - 1) + offset_x, world.maxx), \
+			min(corner.y + (height - 1) + offset_y, world.maxy), corner.z))))
+
+/// Returns an outline (neighboring turfs) of the given block
+#define CORNER_OUTLINE(corner, width, height) ( \
+	CORNER_BLOCK_OFFSET(corner, width + 2, 1, -1, -1) + \
+	CORNER_BLOCK_OFFSET(corner, width + 2, 1, -1, height) + \
+	CORNER_BLOCK_OFFSET(corner, 1, height, -1, 0) + \
+	CORNER_BLOCK_OFFSET(corner, 1, height, width, 0))
+
 /proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
@@ -144,20 +157,21 @@
 
 	return dist
 
-/proc/circlerangeturfs(center=usr,radius=3)
+///Returns a list of turfs around a center based on RANGE_TURFS()
+/proc/circle_range_turfs(center = usr, radius = 3)
 
-	var/turf/centerturf = get_turf(center)
+	var/turf/center_turf = get_turf(center)
 	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
+	var/rsq = radius * (radius + 0.5)
 
-	for(var/turf/T in range(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
+	for(var/turf/checked_turf as anything in RANGE_TURFS(radius, center_turf))
+		var/dx = checked_turf.x - center_turf.x
+		var/dy = checked_turf.y - center_turf.y
+		if(dx * dx + dy * dy <= rsq)
+			turfs += checked_turf
 	return turfs
 
-/proc/circleviewturfs(center=usr,radius=3)		//Is there even a diffrence between this proc and circlerangeturfs()?
+/proc/circleviewturfs(center=usr,radius=3) //Is there even a diffrence between this proc and circle_range_turfs()? // Yes
 
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
@@ -308,7 +322,7 @@
 			Y1+=s
 			while(Y1!=Y2)
 				T=locate(X1,Y1,Z)
-				if(T.opacity)
+				if(IS_OPAQUE_TURF(T))
 					return 0
 				Y1+=s
 	else
@@ -324,7 +338,7 @@
 			else
 				X1+=signX //Line exits tile horizontally
 			T=locate(X1,Y1,Z)
-			if(T.opacity)
+			if(IS_OPAQUE_TURF(T))
 				return 0
 	return 1
 #undef SIGNV
@@ -412,7 +426,7 @@
 /proc/flick_overlay(image/I, list/show_to, duration)
 	for(var/client/C in show_to)
 		C.images += I
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/remove_images_from_clients, I, show_to), duration, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_images_from_clients), I, show_to), duration, TIMER_CLIENT_TIME)
 
 /proc/flick_overlay_view(image/I, atom/target, duration) //wrapper for the above, flicks to everyone who can see the target atom
 	var/list/viewing = list()
@@ -422,7 +436,7 @@
 			viewing += M.client
 	flick_overlay(I, viewing, duration)
 
-/proc/get_active_player_count(var/alive_check = 0, var/afk_check = 0, var/human_check = 0)
+/proc/get_active_player_count(alive_check = 0, afk_check = 0, human_check = 0)
 	// Get active players who are playing in the round
 	var/active_players = 0
 	for(var/i = 1; i <= GLOB.player_list.len; i++)
@@ -632,8 +646,6 @@
 			++i
 	return L
 
-/proc/poll_helper(var/mob/living/M)
-
 /proc/makeBody(mob/dead/observer/G_found) // Uses stripped down and bastardized code from respawn character
 	if(!G_found || !G_found.key)
 		return
@@ -675,7 +687,7 @@
 
 	return A.loc
 
-/proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank)
+/proc/AnnounceArrival(mob/living/carbon/human/character, rank)
 	if(!SSticker.IsRoundInProgress() || QDELETED(character))
 		return
 	var/area/A = get_area(character)
@@ -695,11 +707,15 @@
 	if(!istype(T))
 		return
 	var/datum/gas_mixture/environment = T.return_air()
-	if(!istype(environment))
+	if(!environment)
 		return
 	var/pressure = environment.return_pressure()
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
+	//YOGS EDIT
+	if(pressure >= JUNGLELAND_EQUIPMENT_EFFECT_PRESSURE)
+		. = TRUE
+	//YOGS END
 
 /proc/ispipewire(item)
 	var/static/list/pire_wire = list(
@@ -710,7 +726,7 @@
 	return (is_type_in_list(item, pire_wire))
 
 // Find a obstruction free turf that's within the range of the center. Can also condition on if it is of a certain area type.
-/proc/find_obstruction_free_location(var/range, var/atom/center, var/area/specific_area)
+/proc/find_obstruction_free_location(range, atom/center, area/specific_area)
 	var/list/turfs = RANGE_TURFS(range, center)
 	var/list/possible_loc = list()
 
@@ -724,7 +740,7 @@
 				continue
 
 		if (!isspaceturf(found_turf))
-			if (!is_blocked_turf(found_turf))
+			if (!found_turf.is_blocked_turf())
 				possible_loc.Add(found_turf)
 
 	// Need at least one free location.

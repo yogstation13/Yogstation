@@ -35,7 +35,7 @@
 
 /datum/surgery_step/add_prosthetic
 	name = "add prosthetic"
-	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/twohanded/required/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100, /obj/item/medbeam_arm = 100)
+	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/melee/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100, /obj/item/medbeam_arm = 100)
 	time = 3.2 SECONDS
 	var/organ_rejection_dam = 0
 
@@ -51,7 +51,7 @@
 		tool = I
 	if(istype(tool, /obj/item/bodypart))
 		var/obj/item/bodypart/BP = tool
-		if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && BP.status != BODYPART_ROBOTIC)
+		if(target.dna && target.dna.species && (target.mob_biotypes & MOB_ROBOTIC) && BP.status != BODYPART_ROBOTIC)
 			to_chat(user, "<span class='warning'>[BP] doesn't match the patient's morphology.</span>")
 			return -1
 		if(ismonkey(target))// monkey patient only accept organic monkey limbs
@@ -92,7 +92,7 @@
 	if(istype(tool, /obj/item/bodypart) && user.temporarilyRemoveItemFromInventory(tool))
 		var/obj/item/bodypart/L = tool
 		L.attach_limb(target)
-		if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits))
+		if(target.dna && target.dna.species && (target.mob_biotypes * MOB_ROBOTIC))
 			if(L.status == BODYPART_ROBOTIC)
 				L.render_like_organic = TRUE
 		if(organ_rejection_dam)
@@ -110,7 +110,7 @@
 			"[user] finishes attaching [tool]!",
 			"[user] finishes the attachment procedure!")
 		qdel(tool)
-		if(istype(tool, /obj/item/twohanded/required/chainsaw))
+		if(istype(tool, /obj/item/melee/chainsaw))
 			var/obj/item/mounted_chainsaw/new_arm = new(target)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
 			return TRUE

@@ -4,9 +4,7 @@ Assistant
 /datum/job/assistant
 	title = "Assistant"
 	description = "Get your space legs, assist people, ask the HoP to give you a job."
-	flag = ASSISTANT
 	orbit_icon = "toolbox"
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
@@ -24,7 +22,7 @@ Assistant
 	department_for_prefs = /datum/job_department/assistant
 
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donkpocket = 10,
+		/obj/effect/spawner/lootdrop/donkpockets = 10, //more donkpockets
 		/obj/item/clothing/mask/gas = 10,
 		/obj/item/clothing/gloves/color/fyellow = 7,
 		/obj/item/choice_beacon/music = 5,

@@ -16,7 +16,7 @@
 
 // amber task force vest loadouts
 // To note: each vest has 7 normal slots - Hopek
-/obj/item/storage/belt/military/amber/ComponentInitialize() // Amber Soldier
+/obj/item/storage/belt/military/amber/Initialize(mapload) // Amber Soldier
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge(src)
 	new /obj/item/ammo_box/magazine/recharge(src)
@@ -27,7 +27,7 @@
 	new /obj/item/jawsoflife/jimmy(src)
 
 
-/obj/item/storage/belt/military/amber_commander/ComponentInitialize() // Amber Commander
+/obj/item/storage/belt/military/amber_commander/Initialize(mapload) // Amber Commander
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge(src)
 	new /obj/item/ammo_box/magazine/recharge(src)
@@ -37,7 +37,7 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
 
-/obj/item/storage/belt/military/amber_medic/ComponentInitialize() // Amber Medic
+/obj/item/storage/belt/military/amber_medic/Initialize(mapload) // Amber Medic
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge(src)
 	new /obj/item/reagent_containers/medspray/synthflesh(src) // for getting people back to defib range
@@ -64,7 +64,7 @@
 	head = /obj/item/clothing/head/helmet/riot/raised
 	l_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/ert/amber
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 	
 
 

@@ -8,14 +8,16 @@
 	roundend_category = "Monster Hunters"
 	antagpanel_category = "Monster Hunter"
 	job_rank = ROLE_MONSTERHUNTER
+	antag_hud_name = "monsterhunter"
 	preview_outfit = /datum/outfit/monsterhunter
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
 	var/give_objectives = TRUE
-	var/datum/action/bloodsucker/trackvamp = new /datum/action/bloodsucker/trackvamp()
-	var/datum/action/bloodsucker/fortitude = new /datum/action/bloodsucker/fortitude/hunter()
+	var/datum/action/cooldown/bloodsucker/trackvamp = new /datum/action/cooldown/bloodsucker/trackvamp()
+	var/datum/action/cooldown/bloodsucker/fortitude = new /datum/action/cooldown/bloodsucker/fortitude/hunter()
 
 /datum/antagonist/monsterhunter/apply_innate_effects(mob/living/mob_override)
+	.  = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	ADD_TRAIT(current_mob, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(current_mob, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
@@ -23,6 +25,7 @@
 	my_kungfu.teach(current_mob, make_temporary = FALSE)
 
 /datum/antagonist/monsterhunter/remove_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	REMOVE_TRAIT(current_mob, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(current_mob, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
@@ -33,14 +36,11 @@
 
 /datum/antagonist/monsterhunter/on_gain()
 	//Give Monster Hunter powers
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_MHUNTER]
 	trackvamp.Grant(owner.current)
 	fortitude.Grant(owner.current)
-	hud.join_hud(owner.current)
-	set_antag_hud(owner.current, "monsterhunter")
 	if(give_objectives)
 		//Give Hunter Objective
-		var/datum/objective/bloodsucker/monsterhunter/monsterhunter_objective = new
+		var/datum/objective/monsterhunter/monsterhunter_objective = new
 		monsterhunter_objective.owner = owner
 		objectives += monsterhunter_objective
 		//Give Theft Objective
@@ -56,20 +56,16 @@
 
 /datum/antagonist/monsterhunter/on_removal()
 	//Remove Monster Hunter powers
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_MHUNTER]
 	trackvamp.Remove(owner.current)
 	fortitude.Remove(owner.current)
-	hud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
 	to_chat(owner.current, span_userdanger("Your hunt has ended: You enter retirement once again, and are no longer a Monster Hunter."))
 	return ..()
 
 /datum/antagonist/monsterhunter/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
-	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
-
 
 /// Mind version
 /datum/mind/proc/make_monsterhunter()

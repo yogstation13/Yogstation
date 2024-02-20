@@ -19,8 +19,10 @@
 /datum/mapGeneratorModule/reload_station_map/generate()
 	if(!istype(mother, /datum/mapGenerator/repair/reload_station_map))
 		return
+
 	var/datum/mapGenerator/repair/reload_station_map/mother1 = mother
 	GLOB.reloading_map = TRUE
+
 	// This is kind of finicky on multi-Z maps but the reader would need to be
 	// changed to allow Z cropping and that's a mess
 	var/z_offset = SSmapping.station_start
@@ -32,26 +34,40 @@
 
 	var/list/obj/machinery/atmospherics/atmos_machines = list()
 	var/list/obj/structure/cable/cables = list()
-	var/list/atom/atoms = list()
+	var/list/atom/movable/movables = list()
+	var/list/area/areas = list()
+
+	var/list/turfs = block(
+		locate(
+			bounds[MAP_MINX],
+			bounds[MAP_MINY],
+			SSmapping.station_start
+		),
+		locate(
+			bounds[MAP_MAXX],
+			bounds[MAP_MAXY],
+			z_offset - 1
+		)
+	)
+
+	for(var/turf/current_turf as anything in turfs)
+		var/area/current_turfs_area = current_turf.loc
+		areas |= current_turfs_area
+
+		for(var/movable_in_turf in current_turf)
+			movables += movable_in_turf
+			if(istype(movable_in_turf, /obj/structure/cable))
+				cables += movable_in_turf
+				continue
+			if(istype(movable_in_turf, /obj/machinery/atmospherics))
+				atmos_machines += movable_in_turf
+
+	SSatoms.InitializeAtoms(areas + turfs + movables)
+	SSmachines.setup_template_powernets(cables)
+	SSair.setup_template_machinery(atmos_machines)
 
 	require_area_resort()
 
-	for(var/L in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], SSmapping.station_start),
-						locate(bounds[MAP_MAXX], bounds[MAP_MAXY], z_offset - 1)))
-		set waitfor = FALSE
-		var/turf/B = L
-		atoms += B
-		for(var/A in B)
-			atoms += A
-			if(istype(A,/obj/structure/cable))
-				cables += A
-				continue
-			if(istype(A,/obj/machinery/atmospherics))
-				atmos_machines += A
-
-	SSatoms.InitializeAtoms(atoms)
-	SSmachines.setup_template_powernets(cables)
-	SSair.setup_template_machinery(atmos_machines)
 	GLOB.reloading_map = FALSE
 
 /datum/mapGenerator/repair

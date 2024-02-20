@@ -15,7 +15,7 @@ This is mainly to prevent creating new map files when creating smaller variation
 	var/ref_y // y of reference
 	var/ref_z // z of reference
 
-/obj/effect/variation/Initialize()
+/obj/effect/variation/Initialize(mapload)
 	. = ..()
 	chosen = FALSE
 	placement()

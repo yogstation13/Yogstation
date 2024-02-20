@@ -44,24 +44,22 @@ field_generator power level display
 	var/list/obj/machinery/field/generator/connected_gens
 	var/clean_up = 0
 
-/obj/machinery/field/generator/update_icon()
-	cut_overlays()
+/obj/machinery/field/generator/update_overlays()
+	. = ..()
 	if(warming_up)
-		add_overlay("+a[warming_up]")
+		. += "+a[warming_up]"
 	if(LAZYLEN(fields))
-		add_overlay("+on")
+		. += "+on"
 	if(power_level)
-		add_overlay("+p[power_level]")
+		. += "+p[power_level]"
 
 
-/obj/machinery/field/generator/Initialize()
+/obj/machinery/field/generator/Initialize(mapload)
 	. = ..()
 	fields = list()
 	connected_gens = list()
-
-/obj/machinery/field/generator/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
 /obj/machinery/field/generator/process()
 	if(active == FG_ONLINE)
@@ -157,8 +155,8 @@ field_generator power level display
 	else
 		..()
 
-/obj/machinery/field/generator/bullet_act(obj/item/projectile/Proj)
-	if(Proj.flag != BULLET)
+/obj/machinery/field/generator/bullet_act(obj/projectile/Proj)
+	if(Proj.armor_flag != BULLET)
 		power = min(power + Proj.damage, field_generator_max_power)
 		check_power_level()
 	. = ..()
@@ -173,7 +171,7 @@ field_generator power level display
 	var/new_level = round(num_power_levels * power / field_generator_max_power)
 	if(new_level != power_level)
 		power_level = new_level
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/field/generator/proc/turn_off()
 	active = FG_OFFLINE
@@ -182,7 +180,7 @@ field_generator power level display
 		while (warming_up>0 && !active)
 			sleep(5 SECONDS)
 			warming_up--
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/machinery/field/generator/proc/turn_on()
 	active = FG_CHARGING
@@ -190,7 +188,7 @@ field_generator power level display
 		while (warming_up<3 && active)
 			sleep(5 SECONDS)
 			warming_up++
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if(warming_up >= 3)
 				start_fields()
 
@@ -306,7 +304,7 @@ field_generator power level display
 
 	connected_gens |= G
 	G.connected_gens |= src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/machinery/field/generator/proc/cleanup()
@@ -321,7 +319,7 @@ field_generator power level display
 			FG.cleanup()
 		connected_gens -= FG
 	clean_up = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	//This is here to help fight the "hurr durr, release singulo cos nobody will notice before the
 	//singulo eats the evidence". It's not fool-proof but better than nothing.

@@ -486,7 +486,7 @@
 "bK" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1

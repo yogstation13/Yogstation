@@ -1,3 +1,3 @@
-/obj/machinery/computer/operating/Initialize()
+/obj/machinery/computer/operating/Initialize(mapload)
 	.=..()
 	light_color = LIGHT_COLOR_GREEN

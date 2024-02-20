@@ -80,6 +80,9 @@
 
 /datum/config_entry/flag/log_pda	// log pda messages
 
+/// log uplink/spellbook/codex ciatrix purchases and refunds
+/datum/config_entry/flag/log_uplink
+
 /datum/config_entry/flag/log_telecomms	// log telecomms messages
 
 /datum/config_entry/flag/log_ntsl		// log NTSL compilation
@@ -514,7 +517,14 @@
 /datum/config_entry/string/vpn_lookup_key	// Key for VPN lookup API
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
-/datum/config_entry/flag/auto_profile
+/datum/config_entry/string/metrics_api
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+/datum/config_entry/string/metrics_token
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+/datum/config_entry/string/metrics_api_profile
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+/datum/config_entry/string/metrics_token_profile
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
 /datum/config_entry/flag/disable_gc_failure_hard_deletes
 

@@ -13,7 +13,7 @@
 
 /datum/component/shrapnel/RegisterWithParent()
 	if(ismachinery(parent) || isstructure(parent) || isgun(parent)) // turrets, etc
-		RegisterSignal(parent, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+		RegisterSignal(parent, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 
 /datum/component/shrapnel/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_PROJECTILE_ON_HIT))
@@ -26,7 +26,7 @@
 		return
 	var/turf/target_turf = get_turf(target)
 	for(var/turf/shootat_turf in RANGE_TURFS(radius, target) - RANGE_TURFS(radius-1, target))
-		var/obj/item/projectile/P = new projectile_type(target_turf)
+		var/obj/projectile/P = new projectile_type(target_turf)
 
 		//Shooting Code:
 		P.range = radius+1
@@ -34,5 +34,5 @@
 			P.range = override_projectile_range
 		P.preparePixelProjectile(shootat_turf, target)
 		P.firer = firer // don't hit ourself that would be really annoying
-		P.permutated += target // don't hit the target we hit already with the flak
+		P.impacted += target // don't hit the target we hit already with the flak
 		P.fire()

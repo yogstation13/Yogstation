@@ -33,7 +33,7 @@
 		add_screams(wear_id.alternate_screams)
 
 //Note that the following two are for /mob/living, while the above two are for /carbon and /human
-/mob/living/proc/add_screams(var/list/screams)
+/mob/living/proc/add_screams(list/screams)
 	LAZYINITLIST(alternate_screams)
 	if(!screams || screams.len == 0)
 		return

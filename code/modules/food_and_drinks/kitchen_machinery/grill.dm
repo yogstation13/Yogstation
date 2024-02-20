@@ -16,11 +16,12 @@
 	var/grill_time = 0
 	var/datum/looping_sound/grill/grill_loop
 
-/obj/machinery/grill/Initialize()
+/obj/machinery/grill/Initialize(mapload)
 	. = ..()
 	grill_loop = new(list(src), FALSE)
 
-/obj/machinery/grill/update_icon()
+/obj/machinery/grill/update_icon_state()
+	. = ..()
 	if(grilled_item)
 		icon_state = "grill"
 	else if(grill_fuel > 0)
@@ -38,7 +39,7 @@
 		else
 			grill_fuel += (50 * stackamount)
 		S.use(stackamount)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(I.resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, span_warning("You don't feel it would be wise to grill [I]..."))
@@ -56,10 +57,10 @@
 				return
 			else if(!grilled_item && user.transferItemToLoc(food_item, src))
 				grilled_item = food_item
-				RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
+				RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
 				grilled_item.foodtype |= GRILLED
 				to_chat(user, span_notice("You put the [grilled_item] on [src]."))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				grill_loop.start()
 				return
 		else
@@ -67,13 +68,13 @@
 				grill_fuel += (20 * (I.reagents.get_reagent_amount(/datum/reagent/consumable/monkey_energy)))
 				to_chat(user, span_notice("You pour the Monkey Energy in [src]."))
 				I.reagents.remove_reagent(/datum/reagent/consumable/monkey_energy, I.reagents.get_reagent_amount(/datum/reagent/consumable/monkey_energy))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				return
 	..()
 
 /obj/machinery/grill/process(delta_time)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(grill_fuel <= 0)
 		return
 	else
@@ -124,7 +125,7 @@
 	if(grilled_item)
 		to_chat(user, span_notice("You take out [grilled_item] from [src]."))
 		grilled_item.forceMove(drop_location())
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	return ..()
 
@@ -146,7 +147,7 @@
 			grilled_item.desc = "A [grilled_item.name]. Reminds you of your wife, wait, no, it's prettier!"
 			grilled_item.foodtype |= GRILLED
 	grill_time = 0
-	UnregisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
+	UnregisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
 	grill_loop.stop()
 
 ///Called when a food is transformed by the grillable component

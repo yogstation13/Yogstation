@@ -39,12 +39,13 @@
 			else
 				to_chat(user, "<span class ='notice'>This firearm already has a firing pin installed.</span>")
 
-/obj/item/firing_pin/emag_act(mob/user)
+/obj/item/firing_pin/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You override the authentication mechanism."))
-
+	return TRUE
+	
 ///what do we do when we are being added to a gun
 /obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
 	gun = G
@@ -165,8 +166,8 @@
 // fun pin
 // for when you need a gun to not be fired by anyone else ever
 /obj/item/firing_pin/fucked
-	name = "Syndicate Ultrasecure Firing Pin"
-	desc = "Get fuuuuuuuuucked."
+	name = "syndicate ultrasecure firing pin"
+	desc = "Get fucked!"
 	selfdestruct = TRUE
 
 /obj/item/firing_pin/fucked/pin_auth(mob/living/user)

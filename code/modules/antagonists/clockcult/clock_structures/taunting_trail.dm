@@ -14,7 +14,7 @@
 	debris = list()
 	var/timerid
 
-/obj/structure/destructible/clockwork/taunting_trail/Initialize()
+/obj/structure/destructible/clockwork/taunting_trail/Initialize(mapload)
 	. = ..()
 	timerid = QDEL_IN(src, 15)
 	var/obj/structure/destructible/clockwork/taunting_trail/Tt = locate(/obj/structure/destructible/clockwork/taunting_trail) in loc
@@ -54,9 +54,8 @@
 
 /obj/structure/destructible/clockwork/taunting_trail/proc/affect_mob(mob/living/L)
 	if(istype(L) && !is_servant_of_ratvar(L))
-		if(!L.anti_magic_check(chargecost = 0))
-			L.confused = min(L.confused + 15, 50)
-			L.dizziness = min(L.dizziness + 15, 50)
-			if(L.confused >= 25)
-				L.Paralyze(FLOOR(L.confused * 0.8, 1))
+		if(!L.can_block_magic(charge_cost = 0))
+			L.adjust_confusion_up_to(15 SECONDS, 50 SECONDS)
+			L.adjust_dizzy_up_to(15 SECONDS, 50 SECONDS)
+			L.Paralyze(FLOOR(L.get_timed_status_effect_duration(/datum/status_effect/confusion) * 0.8, 1))
 		take_damage(max_integrity)

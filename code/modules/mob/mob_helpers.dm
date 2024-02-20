@@ -312,12 +312,7 @@
 		var/mob/B = A
 		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
 	return FALSE
-
-///Is the mob hallucinating?
-/mob/proc/hallucinating()
-	return FALSE
-
-
+	
 // moved out of admins.dm because things other than admin procs were calling this.
 /**
   * Is this mob special to the gamemode?
@@ -391,7 +386,7 @@
   * * notify_suiciders If it should notify suiciders (who do not qualify for many ghost roles)
   * * notify_volume How loud the sound should be to spook the user
   */
-/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_suiciders = TRUE, var/notify_volume = 100) //Easy notification of ghosts.
+/proc/notify_ghosts(message, ghost_sound = null, enter_link = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_suiciders = TRUE, notify_volume = 100) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/mob/dead/observer/O in GLOB.player_list)
@@ -430,6 +425,9 @@
   */
 /proc/item_heal_robotic(mob/living/carbon/human/H, mob/user, brute_heal, burn_heal)
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+	var/list/damaged_parts = H.get_damaged_bodyparts(brute_heal, burn_heal, status = BODYPART_ROBOTIC) // list of damaged parts we can heal
+	if(damaged_parts.len && !(affecting in damaged_parts))
+		affecting = pick(damaged_parts) // pick a random damaged part if the selected one is fine
 	if(affecting && affecting.status == BODYPART_ROBOTIC)
 		var/dam //changes repair text based on how much brute/burn was supplied
 		if(brute_heal > burn_heal)
@@ -446,7 +444,7 @@
 			return FALSE
 
 ///Is the passed in mob an admin ghost
-/proc/IsAdminGhost(var/mob/user)
+/proc/IsAdminGhost(mob/user)
 	if(!user)		//Are they a mob? Auto interface updates call this with a null src
 		return
 	if(!user.client) // Do they have a client?

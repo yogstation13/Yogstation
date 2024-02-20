@@ -93,7 +93,7 @@
 	opened_at = world.time
 	window.acquire_lock(src)
 	if(!window.is_ready())
-		window.initialize(
+		window.Initialize(
 			fancy = user.client.prefs.read_preference(/datum/preference/toggle/tgui_fancy),
 			assets = list(
 				get_asset_datum(/datum/asset/simple/tgui),
@@ -186,7 +186,7 @@
 		return
 	if(!COOLDOWN_FINISHED(src, refresh_cooldown))
 		refreshing = TRUE
-		addtimer(CALLBACK(src, .proc/send_full_update), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(send_full_update)), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
 		return
 	refreshing = FALSE
 	var/should_update_data = force || status >= UI_UPDATE

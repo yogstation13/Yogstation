@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 	desc = "The guardian is capable of high-speed fighting, and speeding up its owner while manifested, too. REQUIRES RANGE C OR ABOVE."
 	cost = 3 // low cost because this stand is pretty much LOUD AS FUCK, and using it is stealthily is pretty hard due to it's loud, unique sounds and abilities
 				// also because in order for this to be any good, you need to spread your points real good
-	spell_type = /obj/effect/proc_holder/spell/targeted/guardian/frenzy
+	spell_type = /datum/action/cooldown/spell/pointed/guardian/frenzy
 	var/next_rush = 0
 
 /datum/guardian_ability/major/frenzy/Apply()
@@ -50,30 +50,37 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 	if(next_rush > world.time)
 		. += "Frenzy Charge Cooldown Remaining: [DisplayTimeText(next_rush - world.time)]"
 
-/obj/effect/proc_holder/spell/targeted/guardian/frenzy
+/datum/action/cooldown/spell/pointed/guardian/frenzy
 	name = "Teleport Behind"
 	desc = "<i>teleports behind you<i> NANI?"
-	action_icon_state = "omae_wa_shinderu"
+	button_icon_state = "omae_wa_shinderu"
 
-/obj/effect/proc_holder/spell/targeted/guardian/frenzy/InterceptClickOn(mob/living/caller, params, atom/movable/target)
+/datum/action/cooldown/spell/pointed/guardian/frenzy/InterceptClickOn(mob/living/caller, params, atom/movable/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	if (!isguardian(caller))
-		revert_cast()
 		return
 	var/mob/living/simple_animal/hostile/guardian/guardian = caller
 	if (!guardian.is_deployed())
 		to_chat(guardian, span_italics(span_danger("You are not manifested!")))
-		revert_cast()
 		return
 	if (!isliving(target))
 		to_chat(guardian, span_italics(span_danger("[target] is not a living thing.")))
 		return
 	if (!guardian.stats)
-		revert_cast()
+		return
+	if(!guardian.stats.ability)
+		return
+	if (!istype(guardian.stats.ability, /datum/guardian_ability/major/frenzy))
+		return
+	var/datum/guardian_ability/major/frenzy/ability = guardian.stats.ability
+	if(world.time < ability.next_rush)
 		return
 	if (get_dist_euclidian(guardian.summoner?.current, target) > guardian.range)
 		to_chat(guardian, span_italics(span_danger("[target] is out of your range!")))
 		return
-	remove_ranged_ability()
+
 	guardian.forceMove(get_step(get_turf(target), turn(target.dir, 180)))
 	playsound(guardian, 'yogstation/sound/effects/vector_appear.ogg', 100, FALSE)
 	guardian.target = target
@@ -82,4 +89,5 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 		span_italics("You hear a fast wooosh."))
 	guardian.AttackingTarget()
 	target.throw_at(get_edge_target_turf(guardian, get_dir(guardian, target)), world.maxx / 6, 5, guardian, TRUE)
+	ability.next_rush = world.time + 3 SECONDS
 	Finished()

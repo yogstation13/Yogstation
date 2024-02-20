@@ -6,7 +6,7 @@
 	circuit = /obj/item/circuitboard/computer/nanite_chamber_control
 	icon_screen = "nanite_chamber_control"
 
-/obj/machinery/computer/nanite_chamber_control/Initialize()
+/obj/machinery/computer/nanite_chamber_control/Initialize(mapload)
 	. = ..()
 	find_chamber()
 
@@ -94,10 +94,15 @@
 		return data
 
 	var/mob/living/L = chamber.occupant
-
-	if(!(MOB_ORGANIC in L.mob_biotypes) && !(MOB_UNDEAD in L.mob_biotypes) && !isipc(L))
-		data["status_msg"] = "Occupant not compatible with nanites."
-		return data
+	if(iscarbon(chamber.occupant))
+		var/mob/living/carbon/carbon_occupant = chamber.occupant
+		if(NONANITES in carbon_occupant.dna.species.species_traits)
+			data["status_msg"] = "Occupant not compatible with nanites."
+			return data
+	else
+		if(issilicon(L))
+			data["status_msg"] = "Occupant not compatible with nanites."
+			return data
 
 	if(chamber.busy)
 		data["status_msg"] = chamber.busy_message
@@ -117,7 +122,7 @@
 	switch(action)
 		if("toggle_lock")
 			chamber.locked = !chamber.locked
-			chamber.update_icon()
+			chamber.update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("eject")
 			eject(usr)

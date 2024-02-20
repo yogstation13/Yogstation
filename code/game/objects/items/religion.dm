@@ -231,7 +231,7 @@
 	desc = "It's a backpack with lots of extra room.  A banner with Nanotrasen's logo is attached, that can't be removed."
 	icon_state = "bannerpack"
 
-/obj/item/storage/backpack/bannerpack/Initialize()
+/obj/item/storage/backpack/bannerpack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 27 //6 more then normal, for the tradeoff of declaring yourself an antag at all times.
@@ -282,7 +282,7 @@
 	desc = "A religious-looking hat."
 	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	flags_1 = 0
-	armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 70, BIO = 50, RAD = 50, FIRE = 60, ACID = 60) //religion protects you from disease and radiation, honk.
+	armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 70, BIO = 60, RAD = 50, FIRE = 60, ACID = 60) //religion protects you from disease and radiation, honk.
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 
@@ -325,11 +325,11 @@
 	name = "Plate Gauntlets"
 	icon_state = "crusader"
 	desc = "They're like gloves, but made of metal."
-	siemens_coefficient = 0
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 /obj/item/clothing/gloves/plate/red
 	icon_state = "crusader-red"

@@ -9,6 +9,7 @@
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
+	demolition_mod = 0.5
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3
@@ -38,23 +39,23 @@
 	user.visible_message(span_suicide("[user] is stabbing [src] into [user.p_their()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(BRUTELOSS)
 
-/obj/item/screwdriver/Initialize()
+/obj/item/screwdriver/Initialize(mapload)
 	. = ..()
 	if(random_color) //random colors!
 		icon_state = "screwdriver"
 		var/our_color = pick(screwdriver_colors)
 		add_atom_colour(screwdriver_colors[our_color], FIXED_COLOUR_PRIORITY)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	if(prob(75))
 		pixel_y = rand(0, 16)
 
-/obj/item/screwdriver/update_icon()
+/obj/item/screwdriver/update_overlays()
+	. = ..()
 	if(!random_color) //icon override
 		return
-	cut_overlays()
 	var/mutable_appearance/base_overlay = mutable_appearance(icon, "screwdriver_screwybits")
 	base_overlay.appearance_flags = RESET_COLOR
-	add_overlay(base_overlay)
+	. += base_overlay
 
 /obj/item/screwdriver/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()

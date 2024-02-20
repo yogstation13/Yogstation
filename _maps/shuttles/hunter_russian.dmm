@@ -100,7 +100,7 @@
 /area/shuttle/hunter)
 "s" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/fancy/cigarettes/cigars/cohiba{
 	pixel_y = 6
 	},
 /turf/open/floor/mineral/plastitanium,

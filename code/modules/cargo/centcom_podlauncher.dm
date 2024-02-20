@@ -552,7 +552,7 @@
 	var/turf/drop = locate(coords_list[1], coords_list[2], coords_list[3])
 	setupView(RANGE_TURFS(3, drop))
 
-/datum/centcom_podlauncher/proc/setupView(var/list/visible_turfs)
+/datum/centcom_podlauncher/proc/setupView(list/visible_turfs)
 	var/list/bbox = get_bbox_of_atoms(visible_turfs)
 	var/size_x = bbox[3] - bbox[1] + 1
 	var/size_y = bbox[4] - bbox[2] + 1
@@ -582,7 +582,7 @@
 		holder_mob?.update_mouse_pointer() //set the moues icons to null, then call update_moues_pointer() which resets them to the correct values based on what the mob is doing (in a mech, holding a spell, etc)()
 
 /datum/centcom_podlauncher/proc/InterceptClickOn(user,params,atom/target) //Click Intercept so we know where to send pods where the user clicks
-	
+
 	var/list/pa = params2list(params)
 	var/left_click = pa.Find("left")
 
@@ -713,8 +713,8 @@
 /datum/centcom_podlauncher/proc/launch(turf/target_turf) //Game time started
 	if (isnull(target_turf))
 		return
-	var/obj/structure/closet/supplypod/centcompod/toLaunch = DuplicateObject(temp_pod) //Duplicate the temp_pod (which we have been varediting or configuring with the UI) and store the result
-	toLaunch.update_icon()//we update_icon() here so that the door doesnt "flicker on" right after it lands
+	var/obj/structure/closet/supplypod/centcompod/toLaunch = duplicate_object(temp_pod) //Duplicate the temp_pod (which we have been varediting or configuring with the UI) and store the result
+	toLaunch.update_appearance(UPDATE_ICON)//we update_appearance(UPDATE_ICON) here so that the door doesnt "flicker on" right after it lands
 	var/shippingLane = GLOB.areas_by_type[/area/centcom/supplypod/podStorage]
 	toLaunch.forceMove(shippingLane)
 	if (launchClone) //We arent launching the actual items from the bay, rather we are creating clones and launching those
@@ -726,7 +726,7 @@
 					toLaunch.turfs_in_cargo += atom_to_launch.type
 				else
 					var/atom/movable/movable_to_launch = launch_candidate
-					DuplicateObject(movable_to_launch).forceMove(toLaunch) //Duplicate a single atom/movable from launchList and forceMove it into the supplypod
+					duplicate_object(movable_to_launch).forceMove(toLaunch) //Duplicate a single atom/movable from launchList and forceMove it into the supplypod
 		else
 			for (var/launch_candidate in launchList)
 				if (isnull(launch_candidate))
@@ -736,7 +736,7 @@
 					toLaunch.turfs_in_cargo += turf_to_launch.type
 				else
 					var/atom/movable/movable_to_launch = launch_candidate
-					DuplicateObject(movable_to_launch).forceMove(toLaunch) //Duplicate each atom/movable in launchList and forceMove them into the supplypod
+					duplicate_object(movable_to_launch).forceMove(toLaunch) //Duplicate each atom/movable in launchList and forceMove them into the supplypod
 	else
 		if(launchRandomItem)
 			var/atom/random_item = pick_n_take(launchList)
@@ -774,9 +774,9 @@
 		selector.moveToNullspace() //Otherwise, we move the selector to nullspace until it is needed again
 
 /datum/centcom_podlauncher/proc/clearBay() //Clear all objs and mobs from the selected bay
-	for (var/obj/O in bay.GetAllContents())
+	for (var/obj/O in bay.get_all_contents())
 		qdel(O)
-	for (var/mob/M in bay.GetAllContents())
+	for (var/mob/M in bay.get_all_contents())
 		qdel(M)
 	for (var/bayturf in bay)
 		var/turf/turf_to_clear = bayturf
@@ -802,7 +802,7 @@
 		for (var/mob/living/M in whoDyin)
 			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
 
-/datum/centcom_podlauncher/proc/loadData(var/list/dataToLoad)
+/datum/centcom_podlauncher/proc/loadData(list/dataToLoad)
 	bayNumber = dataToLoad["bayNumber"]
 	customDropoff = dataToLoad["customDropoff"]
 	renderLighting = dataToLoad["renderLighting"]

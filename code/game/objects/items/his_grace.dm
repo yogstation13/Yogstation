@@ -13,7 +13,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	icon = 'icons/obj/storage.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
-	force = 12
+	force = 15
 	attack_verb = list("robusted")
 	hitsound = 'sound/weapons/smash.ogg'
 	var/awakened = FALSE
@@ -24,11 +24,11 @@
 	var/victims_needed = 25
 	var/ascend_bonus = 15
 
-/obj/item/his_grace/Initialize()
+/obj/item/his_grace/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	GLOB.poi_list += src
-	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/move_gracefully)
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(move_gracefully))
 
 /obj/item/his_grace/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -39,13 +39,25 @@
 
 /obj/item/his_grace/attack_self(mob/living/user)
 	if(!awakened)
-		INVOKE_ASYNC(src, .proc/awaken, user)
+		INVOKE_ASYNC(src, PROC_REF(awaken), user)
 
 /obj/item/his_grace/attack(mob/living/M, mob/user)
 	if(awakened && M.stat)
 		consume(M)
 	else
 		..()
+
+/obj/item/his_grace/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(!QDELETED(A) && (istype(A, /obj/machinery/door) || istype(A, /obj/structure/door_assembly)))
+		var/obj/O = A
+		// If the initial hit didn't count and we're pretending to have triple damage, make up for it
+		if(O.damage_deflection > force)
+			O.take_damage(force*3, BRUTE, MELEE, FALSE, null, armour_penetration)
+		else
+			O.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /obj/item/his_grace/CtrlClick(mob/user) //you can't pull his grace
 	return

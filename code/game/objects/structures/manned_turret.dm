@@ -13,7 +13,7 @@
 	layer = ABOVE_MOB_LAYER
 	var/view_range = 2.5
 	var/cooldown = 0
-	var/projectile_type = /obj/item/projectile/bullet/manned_turret
+	var/projectile_type = /obj/projectile/bullet/manned_turret
 	var/rate_of_fire = 1
 	var/number_of_shots = 40
 	var/cooldown_duration = 90
@@ -78,13 +78,14 @@
 	var/mob/living/controller = buckled_mobs[1]
 	if(!istype(controller))
 		return FALSE
-	var/client/C = controller.client
-	if(C)
-		var/atom/A = C.mouseObject
-		var/turf/T = get_turf(A)
-		if(istype(T))	//They're hovering over something in the map.
-			direction_track(controller, T)
-			calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(controller, C.mouseParams)
+	var/client/controlling_client = controller.client
+	if(controlling_client)
+		var/modifiers = params2list(controlling_client.mouseParams)
+		var/atom/target_atom = controlling_client.mouse_object_ref?.resolve()
+		var/turf/target_turf = get_turf(target_atom)
+		if(istype(target_turf)) //They're hovering over something in the map.
+			direction_track(controller, target_turf)
+			calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(controller, target_turf, modifiers)
 
 /obj/machinery/manned_turret/proc/direction_track(mob/user, atom/targeted)
 	if(user.incapacitated())
@@ -142,7 +143,7 @@
 /obj/machinery/manned_turret/proc/volley(mob/user)
 	target_turf = get_turf(target)
 	for(var/i in 1 to number_of_shots)
-		addtimer(CALLBACK(src, /obj/machinery/manned_turret/.proc/fire_helper, user), i*rate_of_fire)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/manned_turret, fire_helper), user), i*rate_of_fire)
 
 /obj/machinery/manned_turret/proc/fire_helper(mob/user)
 	if(user.incapacitated() || !(user in buckled_mobs))
@@ -151,7 +152,7 @@
 	var/turf/targets_from = get_turf(src)
 	if(QDELETED(target))
 		target = target_turf
-	var/obj/item/projectile/P = new projectile_type(targets_from)
+	var/obj/projectile/P = new projectile_type(targets_from)
 	P.starting = targets_from
 	P.firer = user
 	P.original = target
@@ -166,7 +167,7 @@
 /obj/machinery/manned_turret/ultimate  // Admin-only proof of concept for autoclicker automatics
 	name = "Infinity Gun"
 	view_range = 12
-	projectile_type = /obj/item/projectile/bullet/manned_turret
+	projectile_type = /obj/projectile/bullet/manned_turret
 
 /obj/machinery/manned_turret/ultimate/checkfire(atom/targeted_atom, mob/user)
 	target = targeted_atom
@@ -183,7 +184,7 @@
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/obj/machinery/manned_turret/turret
 
-/obj/item/gun_control/Initialize()
+/obj/item/gun_control/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	turret = loc

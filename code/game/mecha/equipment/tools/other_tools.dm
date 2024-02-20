@@ -296,12 +296,12 @@
 	if(equip_ready) //disabled
 		return
 	var/area/A = get_area(chassis)
-	var/pow_chan = GET_MUTATION_POWER_channel(A)
+	var/pow_chan = get_mutation_power_channel(A)
 	if(pow_chan)
 		return 1000 //making magic
 
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/GET_MUTATION_POWER_channel(var/area/A)
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/get_mutation_power_channel(area/A)
 	var/pow_chan
 	if(A)
 		for(var/c in use_channels)
@@ -370,7 +370,7 @@
 	var/fuel_per_cycle_active = 200
 	var/power_per_cycle = 20
 
-/obj/item/mecha_parts/mecha_equipment/generator/Initialize()
+/obj/item/mecha_parts/mecha_equipment/generator/Initialize(mapload)
 	. = ..()
 	generator_init()
 
@@ -409,7 +409,7 @@
 		if(result)
 			send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
 
-/obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(var/obj/item/stack/sheet/P)
+/obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(obj/item/stack/sheet/P)
 	if(P.type == fuel.type && P.amount > 0)
 		var/to_load = max(max_fuel - fuel.amount*fuel.mats_per_stack,0)
 		if(to_load)
@@ -470,3 +470,22 @@
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/process()
 	if(..())
 		radiation_pulse(get_turf(src), rad_per_cycle)
+
+
+
+/////////////////////////////////////////// EJECTION /////////////////////////////////////////////
+
+/obj/item/mecha_parts/mecha_equipment/emergency_eject
+	name = "emergency ejection system"
+	desc = "An emergency quick-eject system designed to protect the pilot from injury if the exosuit suffers catastrophic damage."
+	icon_state = "mecha_eject"
+	var/ejection_distance = 8
+
+/obj/item/mecha_parts/mecha_equipment/emergency_eject/attach(obj/mecha/M)
+	. = ..()
+	M.ejection_distance += ejection_distance
+
+/obj/item/mecha_parts/mecha_equipment/emergency_eject/detach(atom/moveto)
+	if(chassis)
+		chassis.ejection_distance -= ejection_distance
+	. = ..()

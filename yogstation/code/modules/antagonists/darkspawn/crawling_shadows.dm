@@ -40,7 +40,7 @@
 
 /mob/living/simple_animal/hostile/crawling_shadows/New()
 	..()
-	addtimer(CALLBACK(src, .proc/check_darkspawn), 1)
+	addtimer(CALLBACK(src, PROC_REF(check_darkspawn)), 1)
 
 /mob/living/simple_animal/hostile/crawling_shadows/Destroy()
 	if(darkspawn_mob && mind)
@@ -59,7 +59,7 @@
 		move_count = 0
 	..()
 
-/mob/living/simple_animal/hostile/crawling_shadows/Life()
+/mob/living/simple_animal/hostile/crawling_shadows/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	var/turf/T = get_turf(src)
 	var/lums = T.get_lumcount()
@@ -127,7 +127,7 @@
 	qdel(owner) //edgi
 	qdel(src)
 
-/datum/action/innate/darkspawn/end_shadows/IsAvailable()
+/datum/action/innate/darkspawn/end_shadows/IsAvailable(feedback = FALSE)
 	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
 		return TRUE
 	return FALSE

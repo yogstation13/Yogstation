@@ -326,7 +326,7 @@
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
 		G.fields["species"]	= H.dna.species.name
-		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
+		G.fields["fingerprint"]	= md5(H.dna.unique_identity)
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
 		G.fields["gender"]			= H.gender
@@ -344,7 +344,7 @@
 		var/datum/data/record/M = new()
 		M.fields["id"]			= id
 		M.fields["name"]		= record_name
-		M.fields["blood_type"]	= H.dna.blood_type
+		M.fields["blood_type"]	= H.dna.blood_type.name
 		M.fields["b_dna"]		= H.dna.unique_enzymes
 		M.fields["mi_dis"]		= "None"
 		M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
@@ -361,7 +361,7 @@
 		var/datum/data/record/S = new()
 		S.fields["id"]			= id
 		S.fields["name"]		= record_name
-		S.fields["criminal"]	= "None"
+		S.fields["criminal"]	= WANTED_NONE
 		S.fields["citation"]	= list()
 		S.fields["crimes"]		= list()
 		S.fields["comments"]	= list()
@@ -383,7 +383,7 @@
 			G.fields["gender"]  = "Other"
 		L.fields["blood_type"]	= H.dna.blood_type
 		L.fields["b_dna"]		= H.dna.unique_enzymes
-		L.fields["identity"]	= H.dna.uni_identity
+		L.fields["identity"]	= H.dna.unique_identity
 		L.fields["species"]		= H.dna.species.type
 		L.fields["features"]	= H.dna.features
 		L.fields["image"]		= image

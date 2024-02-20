@@ -51,7 +51,7 @@
 	needs_heater = FALSE
 	cooldown = 90
 
-/obj/machinery/shuttle/engine/Initialize()
+/obj/machinery/shuttle/engine/Initialize(mapload)
 	. = ..()
 	check_setup()
 
@@ -118,10 +118,11 @@
 
 //Thanks to spaceheater.dm for inspiration :)
 /obj/machinery/shuttle/engine/proc/fireEngine()
-	var/turf/heatTurf = loc
-	if(!heatTurf)
+	if(!isopenturf(get_turf(src)))
 		return
-	var/datum/gas_mixture/env = heatTurf.return_air()
+	var/datum/gas_mixture/env = return_air()
+	if(!env)
+		return
 	var/heat_cap = env.heat_capacity()
 	var/req_power = abs(env.return_temperature() - ENGINE_HEAT_TARGET) * heat_cap
 	req_power = min(req_power, ENGINE_HEATING_POWER)
@@ -129,7 +130,6 @@
 	if(deltaTemperature < 0)
 		return
 	env.set_temperature(env.return_temperature() + deltaTemperature)
-	air_update_turf()
 
 /obj/machinery/shuttle/engine/attackby(obj/item/I, mob/living/user, params)
 	check_setup()
@@ -217,7 +217,7 @@
 		UnregisterSignal(capacitor_bank, COMSIG_PARENT_QDELETING)
 	capacitor_bank = new_bank 
 	if(capacitor_bank)
-		RegisterSignal(capacitor_bank, COMSIG_PARENT_QDELETING, .proc/on_capacitor_deleted)
+		RegisterSignal(capacitor_bank, COMSIG_PARENT_QDELETING, PROC_REF(on_capacitor_deleted))
 	update_engine()
 
 /obj/machinery/shuttle/engine/ion/proc/on_capacitor_deleted(datum/source, force)

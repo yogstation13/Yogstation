@@ -119,3 +119,26 @@
 	results = list(/datum/reagent/toxin/plasma = 12) //One sheet of hot ice makes 200m of plasma
 	required_reagents = list(/datum/reagent/toxin/hot_ice = 1)
 	required_temp = T0C + 30 //Don't burst into flames when you melt
+
+/datum/chemical_reaction/polonium
+	name = "Polonium"
+	id = /datum/reagent/toxin/polonium
+	results = list(/datum/reagent/toxin/polonium = 1)
+	required_reagents = list(/datum/reagent/redspace = 1, /datum/reagent/consumable/nuka_cola = 1, /datum/reagent/uranium= 1)
+	mix_message = span_danger("The mixture suddenly flashes a brilliant red, leaving behind a slurry of pale green glowing slush.")
+
+/datum/chemical_reaction/spewium
+	name = "Spewium"
+	id = /datum/reagent/toxin/spewium
+	results = list(/datum/reagent/toxin/spewium = 1)
+	required_reagents = list(/datum/reagent/liquidgibs = 1, /datum/reagent/consumable/milk = 1, /datum/reagent/redspace = 1)
+	mix_message = span_danger("The mixture suddenly flashes a brilliant red, leaving behind a sickening mass of foul green and orange chunks.")
+	required_temp = 380
+
+/datum/chemical_reaction/initropidril
+	name = "Initropidril"
+	id = /datum/reagent/toxin/initropidril
+	results = list(/datum/reagent/toxin/initropidril = 3)
+	required_reagents = list(/datum/reagent/medicine/corazone = 1, /datum/reagent/toxin/cyanide = 1, /datum/reagent/redspace = 4)
+	mix_message = span_danger("The mixture suddenly flashes a brilliant red, leaving behind a swirling mixture of smoking purple liquid.")
+	required_temp = 670

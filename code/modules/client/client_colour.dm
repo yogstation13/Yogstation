@@ -17,11 +17,6 @@
 	//eg: "Bloody screen" > "goggles colour" as the former is much more important
 
 
-/mob
-	var/list/client_colours = list()
-
-
-
 /*
 	Adds an instance of colour_type to the mob's client_colours list
 	colour_type - a typepath (subtyped from /datum/client_colour)
@@ -116,3 +111,8 @@
 /datum/client_colour/monochrome_infra
 	colour = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	priority = INFINITY //we can't see colors anyway!
+
+/datum/client_colour/echolocate
+	colour = "#25a5ea"
+	priority = 1
+

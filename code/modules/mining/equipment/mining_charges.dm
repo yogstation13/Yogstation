@@ -8,7 +8,7 @@
 	alert_admins = FALSE
 	var/hacked = FALSE
 
-/obj/item/grenade/plastic/miningcharge/Initialize()
+/obj/item/grenade/plastic/miningcharge/Initialize(mapload)
 	. = ..()
 	plastic_overlay = mutable_appearance(icon, "[icon_state]_active", ON_EDGED_TURF_LAYER)
 
@@ -22,27 +22,26 @@
 		nadeassembly.attack_self(user)
 
 /obj/item/grenade/plastic/miningcharge/afterattack(atom/movable/AM, mob/user, flag, notify_ghosts = FALSE)
-	if(ismineralturf(AM) || hacked)
+	if(ismineralturf_inclusive(AM) || hacked)
 		..()
 	else
 		to_chat(user,span_warning("The charge only works on rocks!"))
 
 /obj/item/grenade/plastic/miningcharge/prime()
+	var/turf/location = get_turf(target) //YOGS EDIT
 	if(hacked) //big boom override
-		var/turf/location = get_turf(target)
 		explosion(location, boom_sizes[1], boom_sizes[2], boom_sizes[3])
 		qdel(src)
 		return //don't know if this is needed...
-	var/turf/closed/mineral/location = get_turf(target)
-	location.attempt_drill(null,TRUE,3) //orange says it doesnt include the actual middle
-	for(var/turf/closed/mineral/rock in circlerangeturfs(location,boom_sizes[3]))
+	drill_at(location,3)
+	for(var/turf/rock in circle_range_turfs(location,boom_sizes[3]))
 		var/distance = get_dist_euclidian(location,rock)
 		if(distance <= boom_sizes[1])
-			rock.attempt_drill(null,TRUE,3)
+			drill_at(rock,3) //YOGS EDIT
 		else if (distance <= boom_sizes[2])
-			rock.attempt_drill(null,TRUE,2)
+			drill_at(rock,2) // YOGS EDIT
 		else if (distance <= boom_sizes[3])
-			rock.attempt_drill(null,TRUE,1)
+			drill_at(rock,1) // YOGS EDIT
 	for(var/mob/living/carbon/C in circlerange(location,boom_sizes[3]))
 		if(ishuman(C) && C.soundbang_act(1, 0))
 			to_chat(C, span_warning("<font size='2'><b>You are knocked down by the power of the mining charge!</font></b>"))
@@ -62,6 +61,16 @@
 	boom_sizes[2] = max(boom_sizes[2]/3, 1)
 	boom_sizes[3] = max(boom_sizes[3]/3, 1)
 	alert_admins = TRUE //i'm telling teacher you're gibbing clown!
+
+//YOGS EDIT BEGIN
+/obj/item/grenade/plastic/miningcharge/proc/drill_at(location,power)
+	if(istype(location,/turf/closed/mineral))
+		var/turf/closed/mineral/M = location
+		M.attempt_drill(null,TRUE,power) //orange says it doesnt include the actual middle
+	else 
+		var/turf/open/floor/plating/dirt/jungleland/J = location 
+		J.spawn_rock()
+//YOGS EDIT END
 
 //MINING CHARGE HACKER
 /obj/item/t_scanner/adv_mining_scanner/syndicate

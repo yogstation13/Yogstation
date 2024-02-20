@@ -6,7 +6,7 @@
 	icon_living = "polarbear"
 	icon_dead = "polarbear_dead"
 	friendly = "wails at"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
 	friendly = "growls at"
 	speak_emote = list("growls")
@@ -42,7 +42,7 @@
 	else
 		rapid_melee = initial(rapid_melee)
 
-/mob/living/simple_animal/hostile/asteroid/polarbear/Life()
+/mob/living/simple_animal/hostile/asteroid/polarbear/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)

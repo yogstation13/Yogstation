@@ -38,7 +38,7 @@
 	var/needs_update = LIGHTING_NO_UPDATE
 
 
-/datum/light_source/New(var/atom/owner, var/atom/top)
+/datum/light_source/New(atom/owner, atom/top)
 	source_atom = owner // Set our new owner.
 	LAZYADD(source_atom.light_sources, src)
 	top_atom = top
@@ -80,7 +80,7 @@
 
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
-/datum/light_source/proc/update(var/atom/new_top_atom)
+/datum/light_source/proc/update(atom/new_top_atom)
 	// This top atom is different.
 	if (new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom && top_atom.light_sources) // Remove ourselves from the light sources of that top atom.
@@ -136,8 +136,12 @@
 	for (var/datum/lighting_corner/corner as anything in effect_str)
 		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
+		SSdemo.mark_turf(corner.master_NE)
+		SSdemo.mark_turf(corner.master_SE)
+		SSdemo.mark_turf(corner.master_SW)
+		SSdemo.mark_turf(corner.master_NW)
 
-/datum/light_source/proc/recalc_corner(var/datum/lighting_corner/corner)
+/datum/light_source/proc/recalc_corner(datum/lighting_corner/corner)
 	LAZYINITLIST(effect_str)
 	if (effect_str[corner]) // Already have one.
 		REMOVE_CORNER(corner)
@@ -215,7 +219,7 @@
 		var/oldlum = source_turf.luminosity
 		source_turf.luminosity = CEILING(light_range, 1)
 		for(var/turf/T in view(CEILING(light_range, 1), source_turf))
-			if(!T.has_opaque_atom)
+			if(!IS_OPAQUE_TURF(T))
 				if (!T.lighting_corners_initialised)
 					T.generate_missing_corners()
 				corners[T.lighting_corner_NE] = 0
@@ -223,6 +227,7 @@
 				corners[T.lighting_corner_SW] = 0
 				corners[T.lighting_corner_NW] = 0
 			turfs += T
+			SSdemo.mark_turf(T)
 		source_turf.luminosity = oldlum
 
 	var/list/datum/lighting_corner/new_corners = (corners - effect_str)

@@ -70,7 +70,7 @@ Stands have a lot of procs which mimic mob procs. Rather than inserting hooks fo
     * Returns a bitflag with signal specific information assembled from all activated components
     * Arguments are packaged in a list and handed off to _SendSignal()
 1. `/datum/proc/AddComponent(component_type(type), ...) -> datum/component`  (public, final)
-    * Creates an instance of `component_type` in the datum and passes `...` to its `Initialize()` call
+    * Creates an instance of `component_type` in the datum and passes `...` to its `Initialize(mapload)` call
     * Sends the `COMSIG_COMPONENT_ADDED` signal to the datum
     * All components a datum owns are deleted with the datum
     * Returns the component that was created. Or the old component in a dupe situation where `COMPONENT_DUPE_UNIQUE` was set
@@ -92,13 +92,13 @@ Stands have a lot of procs which mimic mob procs. Rather than inserting hooks fo
     * If signal is a list it will be as if RegisterSignal was called for each of the entries with the same following arguments
     * Makes the datum listen for the specified `signal` on it's `parent` datum.
     * When that signal is received `proc_ref` will be called on the component, along with associated arguments
-    * Example proc ref: `.proc/OnEvent`
+    * Example proc ref: `PROC_REF(OnEvent)`
     * If a previous registration is overwritten by the call, a runtime occurs. Setting `override` to TRUE prevents this
     * These callbacks run asyncronously
     * Returning `TRUE` from these callbacks will trigger a `TRUE` return from the `SendSignal()` that initiated it
 1. `/datum/component/New(datum/parent, ...)` (private, final)
     * Runs internal setup for the component
-    * Extra arguments are passed to `Initialize()`
+    * Extra arguments are passed to `Initialize(mapload)`
 1. `/datum/component/Initialize(...)` (abstract, no-sleep)
     * Called by `New()` with the same argments excluding `parent`
     * Component does not exist in `parent`'s `datum_components` list yet, although `parent` is set and may be used

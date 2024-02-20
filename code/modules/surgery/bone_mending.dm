@@ -78,7 +78,7 @@
 		to_chat(user, span_warning("[target] has no hairline fracture there!"))
 	return ..()
 
-/datum/surgery_step/repair_bone_hairline/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/repair_bone_hairline/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool
@@ -118,7 +118,7 @@
 		to_chat(user, span_warning("[target] has no compound fracture there!"))
 	return ..()
 
-/datum/surgery_step/reset_compound_fracture/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/reset_compound_fracture/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool
@@ -157,7 +157,7 @@
 		to_chat(user, span_warning("[target] has no compound fracture there!"))
 	return ..()
 
-/datum/surgery_step/repair_bone_compound/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/repair_bone_compound/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	..()
 	if(istype(tool, /obj/item/stack))
 		var/obj/item/stack/used_stack = tool

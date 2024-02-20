@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-c"
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	var/gpstag = "COM0"
 	var/emped = FALSE
 	var/tracking = TRUE
@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	. = ..()
 	. += span_notice("Alt-click to switch it [tracking ? "off":"on"].")
 
-/obj/item/gps/Initialize()
+/obj/item/gps/Initialize(mapload)
 	. = ..()
 	GLOB.GPS_list += src
 	name = "global positioning system ([gpstag])"
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	emped = TRUE
 	cut_overlay("working")
 	add_overlay("emp")
-	addtimer(CALLBACK(src, .proc/reboot), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //if a new EMP happens, remove the old timer so it doesn't reactivate early
+	addtimer(CALLBACK(src, PROC_REF(reboot)), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //if a new EMP happens, remove the old timer so it doesn't reactivate early
 	SStgui.close_uis(src) //Close the UI control if it is open.
 
 /obj/item/gps/proc/reboot()
@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	gpstag = "BORG0"
 	desc = "A mining cyborg internal positioning system. Used as a recovery beacon for damaged cyborg assets, or a collaboration tool for mining teams."
 
-/obj/item/gps/cyborg/Initialize()
+/obj/item/gps/cyborg/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		for marking the area around the transition edges."
 	var/list/turf/tagged
 
-/obj/item/gps/visible_debug/Initialize()
+/obj/item/gps/visible_debug/Initialize(mapload)
 	. = ..()
 	tagged = list()
 	START_PROCESSING(SSfastprocess, src)
@@ -227,7 +227,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
   *	Arguments:
   *	* ship_name - The name that of the ship that we're pretending to be, defaults to "Jolly Robuster"
   */
-/obj/item/gps/pirate/Initialize(ship_name = "Jolly Robuster")
+/obj/item/gps/pirate/Initialize(mapload, ship_name = "Jolly Robuster")
 	.=..()
 	if(ship_name)
 		name = ship_name

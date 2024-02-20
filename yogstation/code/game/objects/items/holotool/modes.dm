@@ -5,16 +5,16 @@
 	var/sharpness
 	var/speed = 0.4
 
-/datum/holotool_mode/proc/can_be_used(var/obj/item/holotool/H)
+/datum/holotool_mode/proc/can_be_used(obj/item/holotool/H)
 	return TRUE
 
-/datum/holotool_mode/proc/on_set(var/obj/item/holotool/H)
+/datum/holotool_mode/proc/on_set(obj/item/holotool/H)
 	H.usesound = sound ? sound : 'sound/items/pshoom.ogg'
 	H.toolspeed = speed ? speed : 1
 	H.tool_behaviour = behavior ? behavior : null
 	H.sharpness = sharpness ? sharpness : SHARP_NONE
 
-/datum/holotool_mode/proc/on_unset(var/obj/item/holotool/H)
+/datum/holotool_mode/proc/on_unset(obj/item/holotool/H)
 	H.usesound = initial(H.usesound)
 	H.toolspeed = initial(H.toolspeed)
 	H.tool_behaviour = initial(H.tool_behaviour)
@@ -64,10 +64,10 @@
 	sound = 'sound/weapons/blade1.ogg'
 	sharpness = SHARP_EDGED
 
-/datum/holotool_mode/knife/can_be_used(var/obj/item/holotool/H)
+/datum/holotool_mode/knife/can_be_used(obj/item/holotool/H)
 	return (H.obj_flags & EMAGGED)
 
-/datum/holotool_mode/knife/on_set(var/obj/item/holotool/H)
+/datum/holotool_mode/knife/on_set(obj/item/holotool/H)
 	..()
 	H.force = 17
 	H.attack_verb = list("sliced", "torn", "cut")
@@ -75,7 +75,7 @@
 	H.embedding = list("embed_chance" = 40, "embedded_fall_chance" = 0, "embedded_pain_multiplier" = 5)
 	H.hitsound = 'sound/weapons/blade1.ogg'
 
-/datum/holotool_mode/knife/on_unset(var/obj/item/holotool/H)
+/datum/holotool_mode/knife/on_unset(obj/item/holotool/H)
 	..()
 	H.force = initial(H.force)
 	H.attack_verb = initial(H.attack_verb)

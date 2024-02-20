@@ -18,8 +18,12 @@
 #define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
 #define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
 #define LAZYLEN(L) length(L)
+///Sets a list to null
+#define LAZYNULL(L) L = null
 ///Accesses an associative list, returns null if nothing is found
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
+///This is used to add onto lazy assoc list when the value you're adding is a /list/. This one has extra safety over lazyaddassoc because the value could be null (and thus cant be used to += objects)
+#define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 ///Qdel every item in the list before setting the list to null
 #define QDEL_LAZYLIST(L) for(var/I in L) qdel(I); L = null;
 //These methods don't null the list
@@ -30,7 +34,9 @@
 ///Returns the list if it's actually a valid list, otherwise will initialize it
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
-#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+///Adds to the item K the value V, if the list is null it will initialize it
+#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += V;
+///Removes the value V from the item K, if the item K is empty will remove it from the list, if the list is empty will set the list to null
 #define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 
 /// Passed into BINARY_INSERT to compare keys
@@ -342,13 +348,15 @@
 	var/total = 0
 	var/item
 	for (item in L)
-		if (!L[item])
-			L[item] = 0
+		if (L[item] <= 0)//edited to also allow negatives
+			continue //edited to not modify the input list
 		total += L[item]
 
 	total = rand(0, total)
 	for (item in L)
-		total -=L [item]
+		if (L[item] <= 0) //edited to skip all numbers not actually added to the total
+			continue
+		total -= L[item]
 		if (total <= 0 && L[item])
 			return item
 
@@ -357,6 +365,8 @@
 /// Takes a weighted list (see above) and expands it into raw entries
 /// This eats more memory, but saves time when actually picking from it
 /proc/expand_weights(list/list_to_pick)
+	if(!length(list_to_pick))
+		return list()
 	var/list/values = list()
 	for(var/item in list_to_pick)
 		var/value = list_to_pick[item]
@@ -379,7 +389,12 @@
 /// Note: this implementation is expensive as heck for large numbers, I only use it because most of my usecase
 /// Is < 10 ints
 /proc/greatest_common_factor(list/values)
-	var/smallest = min(arglist(values))
+	//Old implementation of this used var/smallest = min(argslist(values)), BUT this doesnt work for large lists! causing byond to spiral down into exception hell hole, THIS works!
+	var/smallest = INFINITY
+	for(var/entry in values)
+		if(entry < smallest)
+			smallest = entry
+
 	for(var/i in smallest to 1 step -1)
 		var/safe = TRUE
 		for(var/entry in values)
@@ -490,25 +505,23 @@
 /proc/sortUsernames(list/L, order=1)
 	return sortTim(L, order >= 0 ? /proc/cmp_username_asc : /proc/cmp_username_dsc)
 
-/// Converts a bitfield to a list of numbers (or words if a wordlist is provided)
-/proc/bitfield2list(bitfield = 0, list/wordlist)
-	var/list/r = list()
+///Converts a bitfield to a list of numbers (or words if a wordlist is provided)
+/proc/bitfield_to_list(bitfield = 0, list/wordlist)
+	var/list/return_list = list()
 	if(islist(wordlist))
-		var/max = min(wordlist.len,16)
+		var/max = min(wordlist.len, 24)
 		var/bit = 1
-		for(var/i=1, i<=max, i++)
+		for(var/i in 1 to max)
 			if(bitfield & bit)
-				r += wordlist[i]
+				return_list += wordlist[i]
 			bit = bit << 1
 	else
-		for(var/bit=1, bit<=65535, bit = bit << 1)
+		for(var/bit_number = 0 to 23)
+			var/bit = 1 << bit_number
 			if(bitfield & bit)
-				r += bit
+				return_list += bit
 
-	return r
-
-//tg compat
-#define bitfield_to_list(args...) bitfield2list(args)
+	return return_list
 
 /// Returns the key based on the index
 #define KEYBYINDEX(L, index) (((index <= length(L)) && (index > 0)) ? L[index] : null)
@@ -725,3 +738,19 @@
 			return FALSE
 
 	return TRUE
+
+///sort any value in a list
+/proc/sort_list(list/list_to_sort, cmp=/proc/cmp_text_asc)
+	return sortTim(list_to_sort.Copy(), cmp)
+
+
+/// ORs two lazylists together without inserting errant nulls, returning a new list and not modifying the existing lists.
+#define LAZY_LISTS_OR(left_list, right_list)\
+	(length(left_list)\
+		? length(right_list)\
+			? (left_list | right_list)\
+			: left_list.Copy()\
+		: length(right_list)\
+			? right_list.Copy()\
+			: null\
+	)

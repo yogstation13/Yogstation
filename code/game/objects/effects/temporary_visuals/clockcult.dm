@@ -69,7 +69,7 @@
 	pixel_y = 20
 	duration = 2 SECONDS
 
-/obj/effect/temp_visual/ratvar/belligerent_cast/Initialize()
+/obj/effect/temp_visual/ratvar/belligerent_cast/Initialize(mapload)
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_OUT)
 
@@ -95,7 +95,7 @@
 	icon_state = "warden_gaze"
 	duration = 0.3 SECONDS
 
-/obj/effect/temp_visual/ratvar/ocular_warden/Initialize()
+/obj/effect/temp_visual/ratvar/ocular_warden/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-8, 8)
 	pixel_y = rand(-10, 10)
@@ -134,7 +134,7 @@
 	layer = ABOVE_MOB_LAYER
 	duration = 1 SECONDS
 
-/obj/effect/temp_visual/ratvar/component/Initialize()
+/obj/effect/temp_visual/ratvar/component/Initialize(mapload)
 	. = ..()
 	transform = matrix()*0.75
 	pixel_x = rand(-10, 10)
@@ -165,7 +165,7 @@
 	light_power = 2
 	light_color = "#FAE48C"
 
-/obj/effect/temp_visual/ratvar/sigil/transgression/Initialize()
+/obj/effect/temp_visual/ratvar/sigil/transgression/Initialize(mapload)
 	. = ..()
 	var/oldtransform = transform
 	animate(src, transform = matrix()*2, time = 0.5 SECONDS)
@@ -227,7 +227,7 @@
 /obj/effect/temp_visual/steam_release
 	name = "all the steam"
 
-/obj/effect/temp_visual/steam_release/Initialize()
+/obj/effect/temp_visual/steam_release/Initialize(mapload)
 	..()
 	for(var/V in GLOB.cardinals)
 		var/turf/T = get_step(src, V)

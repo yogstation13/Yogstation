@@ -114,6 +114,11 @@ export const NtosCyborgRemoteMonitorContent = (props, context) => {
                                     : "Nominal"}
                             </Box>
                           </LabeledList.Item>
+                          <LabeledList.Item label="Location">
+                            <Box>
+                              {cyborg.locstring}
+                            </Box>
+                          </LabeledList.Item>
                           <LabeledList.Item label="Condition">
                             <Box color={cyborg.integ <= 25
                               ? 'bad'
@@ -157,7 +162,7 @@ export const NtosCyborgRemoteMonitorContent = (props, context) => {
               <>
                 <Flex.Item>
                   <Section width={49}>
-                    Scan a cyborg to download stored logs.
+                    Hit a cyborg with the device to download stored logs.
                     <ProgressBar
                       value={DL_progress/100}>
                       {ProgressSwitch(DL_progress)}

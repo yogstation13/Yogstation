@@ -18,7 +18,7 @@
 	var/time_between_shots = 4 //yogs: slower attack speed
 	var/last_process = 0 //see above
 
-/obj/structure/destructible/clockwork/ocular_warden/Initialize()
+/obj/structure/destructible/clockwork/ocular_warden/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
@@ -63,7 +63,7 @@
 			if(last_process + time_between_shots < world.time)
 				if(isliving(target))
 					var/mob/living/L = target
-					if(!L.anti_magic_check(chargecost = 0))
+					if(!L.can_block_magic(charge_cost = 0))
 						if(isrevenant(L))
 							var/mob/living/simple_animal/revenant/R = L
 							if(R.revealed)
@@ -79,7 +79,7 @@
 						last_process = world.time
 						if(GLOB.ratvar_awakens && L)
 							L.adjust_fire_stacks(damage_per_tick)
-							L.IgniteMob()
+							L.ignite_mob()
 				else if(ismecha(target))
 					var/obj/mecha/M = target
 					Beam(M, icon_state = "warden_beam", time = 10)		//yogs: gives a beam
@@ -109,15 +109,15 @@
 /obj/structure/destructible/clockwork/ocular_warden/proc/acquire_nearby_targets()
 	. = list()
 	for(var/mob/living/L in viewers(sight_range, src)) //Doesn't attack the blind
+		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.can_block_magic(MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND))
+			continue
 		var/obj/item/storage/book/bible/B = L.bible_check()
 		if(B)
 			if(!(B.resistance_flags & ON_FIRE))
 				to_chat(L, span_warning("Your [B.name] bursts into flames!"))
-			for(var/obj/item/storage/book/bible/BI in L.GetAllContents())
+			for(var/obj/item/storage/book/bible/BI in L.get_all_contents())
 				if(!(BI.resistance_flags & ON_FIRE))
 					BI.fire_act()
-			continue
-		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
 			continue
 		if(L.stat || L.IsStun() || L.IsParalyzed()) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
 			continue

@@ -13,6 +13,8 @@
 	bare_wound_bonus = 20
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
+	tool_behaviour = TOOL_CROWBAR // just a very "sharp" crowbar
+	toolspeed = 0.35 //for door prying speed, ends up at about 3 seconds
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "lacerated", "ripped", "diced", "cut")
 
 /obj/item/mantis/blade/equipped(mob/user, slot, initial)
@@ -32,6 +34,7 @@
 	if(istype(secondsword, /obj/item/mantis/blade) && !secondattack)
 		sleep(0.2 SECONDS)
 		secondsword.attack(M, user, TRUE)
+		user.changeNext_move(CLICK_CD_MELEE)
 	return
 
 /obj/item/mantis/blade/syndicate

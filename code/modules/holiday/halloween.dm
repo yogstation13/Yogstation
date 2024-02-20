@@ -1,24 +1,3 @@
-///////////////////////////////////////
-///////////HALLOWEEN CONTENT///////////
-///////////////////////////////////////
-
-
-//spooky recipes
-
-/datum/recipe/sugarcookie/spookyskull
-	reagents = list(/datum/reagent/consumable/flour = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/milk = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/egg,
-	)
-	result = /obj/item/reagent_containers/food/snacks/sugarcookie/spookyskull
-
-/datum/recipe/sugarcookie/spookycoffin
-	reagents = list(/datum/reagent/consumable/flour = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/coffee = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/egg,
-	)
-	result = /obj/item/reagent_containers/food/snacks/sugarcookie/spookycoffin
-
 //////////////////////////////
 //Spookoween trapped closets//
 //////////////////////////////
@@ -34,7 +13,7 @@
 	var/trapped = 0
 	var/mob/trapped_mob
 
-/obj/structure/closet/initialize()
+/obj/structure/closet/Initialize(mapload)
 	..()
 	if(prob(30))
 		set_spooky_trap()
@@ -129,14 +108,14 @@
 	layer = 4
 	var/timer = 0
 
-/mob/living/simple_animal/shade/howling_ghost/Initialize()
+/mob/living/simple_animal/shade/howling_ghost/Initialize(mapload)
 	. = ..()
 	icon_state = pick("ghost","ghostian","ghostian2","ghostking","ghost1","ghost2")
 	icon_living = icon_state
 	status_flags |= GODMODE
 	timer = rand(1,15)
 
-/mob/living/simple_animal/shade/howling_ghost/Life()
+/mob/living/simple_animal/shade/howling_ghost/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	timer--
 	if(prob(20))
@@ -189,7 +168,7 @@
 	unsuitable_atmos_damage = 0
 	var/timer
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/Initialize()
+/mob/living/simple_animal/hostile/retaliate/clown/insane/Initialize(mapload)
 	. = ..()
 	timer = rand(5,15)
 	status_flags = (status_flags | GODMODE)
@@ -201,7 +180,7 @@
 /mob/living/simple_animal/hostile/retaliate/clown/insane/ex_act()
 	return
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/Life()
+/mob/living/simple_animal/hostile/retaliate/clown/insane/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	timer--
 	if(target)
 		stalk()

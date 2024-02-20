@@ -44,22 +44,24 @@
 		if(61 to 200) //you really can only go to 120
 			ooo_youaregettingsleepy = 2
 	M.adjustStaminaLoss(ooo_youaregettingsleepy * REM)
+	M.clear_stamina_regen()
 	..()
 	. = TRUE
 
 /datum/reagent/medicine/c2/probital/overdose_process(mob/living/M)
 	M.adjustStaminaLoss(3 * REM, 0)
 	if(M.getStaminaLoss() >= 80)
-		M.drowsyness += 1 * REM
+		M.adjust_drowsiness(2 SECONDS * REM)
 	if(M.getStaminaLoss() >= 100)
 		to_chat(M,span_warning("You feel more tired than you usually do, perhaps if you rest your eyes for a bit..."))
 		M.adjustStaminaLoss(-100, TRUE)
 		M.Sleeping(10 SECONDS)
+	M.clear_stamina_regen()
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/probital/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	if(method != INGEST || !iscarbon(L))
+/datum/reagent/medicine/c2/probital/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+	if(!(methods & INGEST) || !iscarbon(L))
 		return
 
 	L.reagents.remove_reagent(/datum/reagent/medicine/c2/probital, reac_volume * 0.05)
@@ -136,7 +138,7 @@
 	exposed_mob.adjust_bodytemperature(-reac_volume * TEMPERATURE_DAMAGE_COEFFICIENT, 50)
 	exposed_mob.adjust_fire_stacks(-reac_volume / 2)
 	if(reac_volume >= metabolization_rate)
-		exposed_mob.ExtinguishMob()
+		exposed_mob.extinguish_mob()
 
 /datum/reagent/medicine/c2/rhigoxane/overdose_process(mob/living/carbon/M)
 	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT * REM, 50) //chilly chilly
@@ -156,8 +158,9 @@
 /datum/reagent/medicine/c2/tirimol/on_mob_life(mob/living/carbon/human/M)
 	M.adjustOxyLoss(-3 * REM)
 	M.adjustStaminaLoss(2 * REM)
+	M.clear_stamina_regen()
 	if(drowsycd && COOLDOWN_FINISHED(src, drowsycd))
-		M.drowsyness += 10
+		M.adjust_drowsiness(20 SECONDS)
 		COOLDOWN_START(src, drowsycd, 45 SECONDS)
 	else if(!drowsycd)
 		COOLDOWN_START(src, drowsycd, 15 SECONDS)
@@ -220,8 +223,8 @@
 	overdose_threshold = 6
 	var/conversion_amount
 
-/datum/reagent/medicine/c2/thializid/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	if(method != INJECT || !iscarbon(L))
+/datum/reagent/medicine/c2/thializid/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+	if(!(methods & INJECT) || !iscarbon(L))
 		return
 	var/mob/living/carbon/C = L
 	if(reac_volume >= 0.6) //prevents cheesing with ultralow doses.

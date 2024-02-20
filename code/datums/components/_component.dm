@@ -21,7 +21,7 @@
 /**
  * Create a new component.
  *
- * Additional arguments are passed to [Initialize()][/datum/component/proc/Initialize]
+ * Additional arguments are passed to [Initialize(mapload)][/datum/component/proc/Initialize]
  *
  * Arguments:
  * * datum/P the parent datum this component reacts to signals from

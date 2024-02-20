@@ -12,6 +12,7 @@
 	material_drop = /obj/item/stack/sheet/cloth
 	delivery_icon = null //unwrappable
 	anchorable = FALSE
+	open_flags = HORIZONTAL_HOLD //intended for bodies, so people lying down
 	notreallyacloset = TRUE
 	door_anim_time = 0 // no animation
 	var/foldedbag_path = /obj/item/bodybag
@@ -37,7 +38,7 @@
 		if(t)
 			name = "[initial(name)] - [t]"
 			tagged = 1
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			name = initial(name)
 		return
@@ -45,12 +46,12 @@
 		to_chat(user, span_notice("You cut the tag off [src]."))
 		name = initial(name)
 		tagged = 0
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/structure/closet/body_bag/update_icon()
-	..()
+/obj/structure/closet/body_bag/update_overlays()
+	. = ..()
 	if (tagged)
-		add_overlay("bodybag_label")
+		. += "bodybag_label"
 
 /obj/structure/closet/body_bag/close()
 	if(..())
@@ -189,7 +190,7 @@
 		to_chat(the_folder, span_warning("You wrestle with [src], but it won't fold while its straps are fastened."))
 	return ..()
 
-/obj/structure/closet/body_bag/environmental/prisoner/update_icon()
+/obj/structure/closet/body_bag/environmental/prisoner/update_icon_state()
 	. = ..()
 	if(sinched)
 		icon_state = initial(icon_state) + "_sinched"
@@ -215,7 +216,7 @@
 	if(!dense_when_open)
 		density = FALSE
 	dump_contents()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/structure/closet/body_bag/environmental/prisoner/container_resist(mob/living/user)
@@ -277,7 +278,7 @@
 							span_notice("You [sinched ? null : "un"]sinch [src]."),
 							span_hear("You hear stretching followed by metal clicking from [src]."))
 	log_game("[key_name(user)] [sinched ? "sinched":"unsinched"] secure environmental bag [src] at [AREACOORD(src)]")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate
 	name = "syndicate prisoner transport bag"
@@ -291,10 +292,39 @@
 	breakout_time = 8 MINUTES
 	sinch_time = 4 SECONDS
 
-/obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize()
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_overlays()
+	. = ..()
+	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
+	if(sinched && inner_bag && inner_bag.killing)
+		. += "kill_flash"
+
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize(mapload)
 	. = ..()
 	update_airtightness()
+	START_PROCESSING(SSobj, src)
 
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/togglelock(mob/living/user, silent)
+	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
+	if(sinched && inner_bag && inner_bag.killing) // let him cook
+		user.visible_message(span_notice("You begin prying back the buckles on [src]."))
+		if(!(do_after(user, (sinch_time), src)))
+			return
+	. = ..()
+
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/process(delta_time)
+	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
+	if(!inner_bag || !inner_bag.killing || !sinched)
+		return
+	for(var/mob/living/target in contents)
+		if(!target.reagents)
+			continue
+		if(target.stat == DEAD)
+			target.adjustFireLoss(10 * delta_time) // Husks after a few seconds
+			continue
+		target.reagents.add_reagent(/datum/reagent/clf3, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/phlogiston, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/teslium, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 3 * delta_time)
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_airtightness()
 	if(sinched)
@@ -306,13 +336,13 @@
 	air_contents = null
 	air_contents = new(50) // liters
 	air_contents.set_temperature(T20C)
-	air_contents.set_moles(/datum/gas/oxygen, (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD)
-	air_contents.set_moles(/datum/gas/nitrous_oxide, (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
+	air_contents.set_moles(GAS_O2, (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD)
+	air_contents.set_moles(GAS_NITROUS, (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	if(air_contents)
 		QDEL_NULL(air_contents)
-
 	return ..()
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/return_air()

@@ -7,8 +7,10 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mob/living/carbon/ghosts = list()
+	var/area/spawnArea
+	var/restricted = FALSE
 
-/obj/structure/ghostbeacon/Initialize()
+/obj/structure/ghostbeacon/Initialize(mapload)
 	. = ..()
 	GLOB.poi_list |= src
 	START_PROCESSING(SSprocessing, src)
@@ -23,6 +25,9 @@
 	STOP_PROCESSING(SSprocessing, src)
 
 /obj/structure/ghostbeacon/process()
+	if(restricted && !spawnArea)
+		var/area/A = get_area(loc)
+		spawnArea = A
 	for(var/mob/living/M in ghosts)
 		if(M.InCritical() || M.stat == DEAD || !M.key)
 			ghosts -= M
@@ -30,6 +35,17 @@
 			qdel(M)
 		if(QDELETED(M)) // Admin fuckery check
 			ghosts.Remove(M) // -= doesnt work with qdeled objects
+
+
+		if(restricted)
+			// Get your ass back here
+			// Only problem is a admin sending someone to the admin gulag
+			// Unsure what to do. Detect if the zlevel is centcom?
+			// Is it even a problem?
+			var/area/A = get_area(M)
+			if(spawnArea != A)
+				to_chat(M, span_warner("Your corporeal form gets ripped back!"))
+				M.loc = loc
 
 /obj/structure/ghostbeacon/attack_ghost(mob/user)
 	. = ..()
@@ -51,8 +67,7 @@
 		outfit = /datum/outfit/ghost/plasmaman
 	H.equipOutfit(outfit)
 	if(isplasmaman(H))
-		H.internal = H.get_item_for_held_index(2)
-		H.update_internals_hud_icon(1)
+		H.open_internals(H.get_item_for_held_index(2))
 	H.regenerate_icons()
 	ghosts |= H
 	H.visible_message(span_notice("[H] decends into this plane"), span_notice("You decend into the living plane."))
@@ -84,6 +99,6 @@
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
-	shoes = /obj/item/clothing/shoes/sneakers/brown
-	glasses = /obj/item/clothing/glasses/sunglasses
-	back = /obj/item/storage/backpack
+
+/obj/structure/ghostbeacon/restricted
+	restricted = TRUE

@@ -16,7 +16,7 @@ GLOBAL_LIST(labor_sheet_values)
 	/// Needed to send messages to sec radio
 	var/obj/item/radio/Radio
 
-/obj/machinery/mineral/labor_claim_console/Initialize()
+/obj/machinery/mineral/labor_claim_console/Initialize(mapload)
 	. = ..()
 	Radio = new/obj/item/radio(src)
 	Radio.listening = FALSE
@@ -118,11 +118,13 @@ GLOBAL_LIST(labor_sheet_values)
 	if(stacking_machine)
 		stacking_machine.console = src
 
-/obj/machinery/mineral/labor_claim_console/emag_act(mob/user)
-	if(!(obj_flags & EMAGGED))
-		obj_flags |= EMAGGED
-		to_chat(user, span_warning("PZZTTPFFFT"))
-
+/obj/machinery/mineral/labor_claim_console/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	obj_flags |= EMAGGED
+	to_chat(user, span_warning("PZZTTPFFFT"))
+	return TRUE
+	
 /**********************Prisoner Collection Unit**************************/
 
 /obj/machinery/mineral/stacking_machine/laborstacker

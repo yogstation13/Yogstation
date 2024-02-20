@@ -5,6 +5,7 @@
 	roundend_category = "abductors"
 	antagpanel_category = "Abductor"
 	job_rank = ROLE_ABDUCTOR
+	antag_hud_name = "abductor"
 	show_in_antagpanel = FALSE //should only show subtypes
 	show_to_ghosts = TRUE
 	var/datum/team/abductor_team/team
@@ -63,7 +64,6 @@
 /datum/antagonist/abductor/on_gain()
 	owner.special_role = "[name] [sub_role]"
 	owner.assigned_role = "[name] [sub_role]"
-	objectives += team.objectives
 	finalize_abductor()
 	ADD_TRAIT(owner.current, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST) // Yogs -- Fixes abductors having their traits associated with their mind instead of their mob
 	return ..()
@@ -97,8 +97,6 @@
 			H.forceMove(LM.loc)
 			break
 
-	update_abductor_icons_added(owner,"abductor")
-
 /datum/antagonist/abductor/scientist/on_gain()
 	ADD_TRAIT(owner.current, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
 	ADD_TRAIT(owner.current, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
@@ -126,7 +124,7 @@
 
 /datum/antagonist/abductor/get_admin_commands()
 	. = ..()
-	.["Equip"] = CALLBACK(src,.proc/admin_equip)
+	.["Equip"] = CALLBACK(src, PROC_REF(admin_equip))
 
 /datum/antagonist/abductor/proc/admin_equip(mob/admin)
 	if(!ishuman(owner.current))
@@ -184,6 +182,7 @@
 	name = "Abductee"
 	roundend_category = "abductees"
 	antagpanel_category = "Abductee"
+	antag_hud_name = "abductee"
 
 /datum/antagonist/abductee/on_gain()
 	give_objective()
@@ -201,13 +200,6 @@
 	var/objtype = (prob(75) ? /datum/objective/abductee/random : pick(subtypesof(/datum/objective/abductee/) - /datum/objective/abductee/random))
 	var/datum/objective/abductee/O = new objtype()
 	objectives += O
-
-/datum/antagonist/abductee/apply_innate_effects(mob/living/mob_override)
-	update_abductor_icons_added(mob_override ? mob_override.mind : owner,"abductee")
-
-/datum/antagonist/abductee/remove_innate_effects(mob/living/mob_override)
-	update_abductor_icons_removed(mob_override ? mob_override.mind : owner)
-
 
 // LANDMARKS
 /obj/effect/landmark/abductor
@@ -235,13 +227,3 @@
 		if(E.team_number == T.team_number)
 			return E.points >= target_amount
 	return FALSE
-
-/datum/antagonist/proc/update_abductor_icons_added(datum/mind/alien_mind,hud_type)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_ABDUCTOR]
-	hud.join_hud(alien_mind.current)
-	set_antag_hud(alien_mind.current, hud_type)
-
-/datum/antagonist/proc/update_abductor_icons_removed(datum/mind/alien_mind)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_ABDUCTOR]
-	hud.leave_hud(alien_mind.current)
-	set_antag_hud(alien_mind.current, null)

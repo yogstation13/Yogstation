@@ -2,7 +2,7 @@
 	info = "Antinoblium Shard User's Manual<br>\
 	<ul>\
 	<li>Approach an active supermatter crystal with radiation shielded personal protective equipment. DO NOT MAKE PHYSICAL CONTACT.</li>\
-	<li>Attach the data corruptor (provided) to the supermatter control infrastructure to allow the attachment of the antinoblium shard.</li>\
+	<li>Attach the data corruptor (provided) on the base of the supermatter crystal, where the control infrastructure is, to allow the attachment of the antinoblium shard.</li>\
 	<li>Open the antinoblium container (also provided).</li>\
 	<li>Use antinoblium extraction tongs (also provided) and apply the shard to the crystal. Take note that an EMP pulse will be emitted upon attachment. Prepare accordingly. </li>\
 	<li>Physical contact of any object with the antinoblium shard will fracture the shard and cause a spontaneous energy release.</li>\
@@ -11,7 +11,7 @@
 	<li>Nanotrasen safety controls will announce the destabilization of the crystal. Your identity will likely be compromised, but nothing can be done about the crystal.</li>\
 	</ul>"
 
-/obj/item/supermatter_delaminator/Initialize()
+/obj/item/supermatter_delaminator/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -39,7 +39,7 @@
 			return FALSE
 		forceMove(tongs)
 		tongs.shard = src
-		tongs.update_icon()
+		tongs.update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You carefully pick up [src] with [tongs]."))
 	else if(istype(W, /obj/item/antinoblium_container/)) // we don't want it to dust
 		return
@@ -54,23 +54,22 @@
 	..()
 	if(!iscarbon(user))
 		return FALSE
-	var/mob/ded = user
-	user.visible_message(span_danger("[ded] reaches out and tries to pick up [src]. [ded.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
-			span_userdanger("You reach for [src] with your hands. That was dumb."),\
-			span_italics("Everything suddenly goes silent."))
+	user.visible_message(span_danger("[user] reaches out and tries to pick up [src]. [user.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
+		span_userdanger("You reach for [src] with your hands. That was dumb."),\
+		span_italics("Everything suddenly goes silent."))
 	radiation_pulse(user, 500, 2)
 	playsound(get_turf(user), 'sound/effects/supermatter.ogg', 50, 1)
-	ded.dust()
+	user.dust()
 
 /obj/item/antinoblium_container
 	name = "antinoblium bin"
-	desc = "A small cube that houses a stable antinoblium shard  to be safely stored."
+	desc = "A small cube that houses a stable antinoblium shard to be safely stored."
 	icon = 'icons/obj/supermatter_delaminator.dmi'
 	icon_state = "antinoblium_container_sealed"
 	var/obj/item/supermatter_delaminator/antinoblium_shard/shard
 	var/sealed = TRUE
 
-/obj/item/antinoblium_container/Initialize()
+/obj/item/antinoblium_container/Initialize(mapload)
 	. = ..()
 	shard = new /obj/item/supermatter_delaminator/antinoblium_shard
 
@@ -84,10 +83,10 @@
 	T.shard.forceMove(src)
 	shard = T.shard
 	T.shard = null
-	T.update_icon()
-	update_icon()
+	T.update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
 	to_chat(user, span_warning("Container is resealing..."))
-	addtimer(CALLBACK(src, .proc/seal), 50)
+	addtimer(CALLBACK(src, PROC_REF(seal)), 50)
 	return TRUE
 
 /obj/item/antinoblium_container/proc/unload(obj/item/hemostat/antinoblium/T, mob/user)
@@ -96,8 +95,8 @@
 	shard.forceMove(T)
 	T.shard = shard
 	shard = null
-	T.update_icon()
-	update_icon()
+	T.update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
 	visible_message(span_warning("[user] gingerly takes out the antinoblium shard with the tongs..."))
 	return TRUE
 
@@ -107,14 +106,14 @@
 	STOP_PROCESSING(SSobj, shard)
 	playsound(src, 'sound/items/deconstruct.ogg', 60, 1)
 	sealed = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	say("Hermetic locks re-engaged; [shard] is safely recontained.")
 
 /obj/item/antinoblium_container/proc/unseal()
 	if(!sealed)
 		return
 	sealed = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	say("Hermetic locks disengaged; [shard] is available for use.")
 
 /obj/item/antinoblium_container/attackby(obj/item/hemostat/antinoblium/tongs, mob/user)
@@ -138,7 +137,8 @@
 		seal()
 		to_chat(user, span_warning("[user] seals the [src]."))
 
-/obj/item/antinoblium_container/update_icon()
+/obj/item/antinoblium_container/update_icon_state()
+	. = ..()
 	if(sealed)
 		icon_state = "antinoblium_container_sealed"
 	else if (shard)
@@ -160,7 +160,8 @@
 	QDEL_NULL(shard)
 	return ..()
 
-/obj/item/hemostat/antinoblium/update_icon()
+/obj/item/hemostat/antinoblium/update_icon_state()
+	. = ..()
 	if(shard)
 		icon_state = "antinoblium_tongs_loaded"
 	else
@@ -178,12 +179,12 @@
 		shard.forceMove(loc)
 		visible_message(span_notice("\The [shard] falls out of \the [src] as it hits the ground."))
 		shard = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	..()
 
-/obj/item/hemostat/antinoblium/proc/Consume(atom/movable/AM, mob/user)
-	if(ismob(AM))
-		var/mob/victim = AM
+/obj/item/hemostat/antinoblium/proc/Consume(atom/movable/AM, mob/living/user)
+	if(isliving(AM))
+		var/mob/living/victim = AM
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
 		message_admins("[ADMIN_LOOKUPFLW(user)] has used an antinoblium shard to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].") 
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
@@ -200,10 +201,10 @@
 		investigate_log("has consumed [key_name(user)].", "supermatter")
 		user.dust()
 	radiation_pulse(src, 500, 2)
-	empulse(src, 5, 10)
+	empulse(src, EMP_HEAVY)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 	QDEL_NULL(shard)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/supermatter_corruptor
 	name = "supermatter data corruptor bug"

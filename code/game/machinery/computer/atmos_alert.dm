@@ -4,14 +4,19 @@
 	circuit = /obj/item/circuitboard/computer/atmos_alert
 	icon_screen = "alert:0"
 	icon_keyboard = "atmos_key"
-	var/list/priority_alarms = list()
-	var/list/minor_alarms = list()
-	var/receive_frequency = FREQ_ATMOS_ALARMS
-	var/datum/radio_frequency/radio_connection
-
 	light_color = LIGHT_COLOR_CYAN
 
-/obj/machinery/computer/atmos_alert/Initialize()
+	///List of areas with a priority alarm ongoing.
+	var/list/area/priority_alarms = list()
+	///List of areas with a minor alarm ongoing.
+	var/list/area/minor_alarms = list()
+
+	///The radio connection the computer uses to receive signals.
+	var/datum/radio_frequency/radio_connection
+	///The frequency that radio_connection listens and retrieves signals from.
+	var/receive_frequency = FREQ_ATMOS_ALARMS
+
+/obj/machinery/computer/atmos_alert/Initialize(mapload)
 	. = ..()
 	set_frequency(receive_frequency)
 
@@ -27,31 +32,43 @@
 
 /obj/machinery/computer/atmos_alert/ui_data(mob/user)
 	var/list/data = list()
+	data["priority_alerts"] = list()
+	data["minor_alerts"] = list()
 
-	data["priority"] = list()
-	for(var/zone in priority_alarms)
-		data["priority"] += zone
-	data["minor"] = list()
-	for(var/zone in minor_alarms)
-		data["minor"] += zone
+	for(var/area/priority_alarm as anything in priority_alarms)
+		data["priority_alerts"] += list(list(
+			"name" = priority_alarm.name,
+			"ref" = REF(priority_alarm),
+		))
+
+	for(var/area/minor_alarm as anything in minor_alarms)
+		data["minor_alerts"] += list(list(
+			"name" = minor_alarm.name,
+			"ref" = REF(minor_alarm),
+		))
 
 	return data
 
 /obj/machinery/computer/atmos_alert/ui_act(action, params)
-	if(..())
-		return
-	switch(action)
-		if("clear")
-			var/zone = params["zone"]
-			if(zone in priority_alarms)
-				to_chat(usr, "Priority alarm for [zone] cleared.")
-				priority_alarms -= zone
-				. = TRUE
-			if(zone in minor_alarms)
-				to_chat(usr, "Minor alarm for [zone] cleared.")
-				minor_alarms -= zone
-				. = TRUE
-	update_icon()
+	. = ..()
+	if(.)
+		return TRUE
+	if(action != "clear")
+		return TRUE
+
+	var/area/zone_from_tgui = locate(params["zone_ref"]) in priority_alarms + minor_alarms
+	if(!zone_from_tgui || !istype(zone_from_tgui))
+		return TRUE
+	
+	var/obj/machinery/airalarm/found_air_alarm = locate() in zone_from_tgui
+	if(found_air_alarm)
+		found_air_alarm.atmos_manualOverride(TRUE)
+		found_air_alarm.post_alert(0)
+		priority_alarms -= zone_from_tgui
+		minor_alarms -= zone_from_tgui
+		balloon_alert(usr, "alarm cleared.")
+		update_appearance(UPDATE_ICON)
+		return TRUE
 
 /obj/machinery/computer/atmos_alert/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, receive_frequency)
@@ -62,26 +79,28 @@
 	if(!signal)
 		return
 
-	var/zone = signal.data["zone"]
+	var/area/new_zone = signal.data["zone"]
 	var/severity = signal.data["alert"]
-
-	if(!zone || !severity)
+	if(!new_zone || !istype(new_zone) || !severity)
 		return
 
-	minor_alarms -= zone
-	priority_alarms -= zone
-	if(severity == "severe")
-		priority_alarms += zone
-	else if (severity == "minor")
-		minor_alarms += zone
-	update_icon()
-	return
+	//clear current references.
+	minor_alarms -= new_zone
+	priority_alarms -= new_zone
 
-/obj/machinery/computer/atmos_alert/update_icon()
-	..()
+	switch(severity)
+		if(ATMOS_ALARM_SEVERE)
+			priority_alarms += new_zone
+		if(ATMOS_ALARM_MINOR)
+			minor_alarms += new_zone
+	update_appearance(UPDATE_ICON)
+
+/obj/machinery/computer/atmos_alert/update_overlays()
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
+
 	if(priority_alarms.len)
-		add_overlay("alert:2")
+		. += "alert:2"
 	else if(minor_alarms.len)
-		add_overlay("alert:1")
+		. += "alert:1"

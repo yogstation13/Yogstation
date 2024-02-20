@@ -198,7 +198,7 @@
 	pixel_x = 2;
 	pixel_y = 8
 	},
-/obj/item/twohanded/required/pool/pool_noodle{
+/obj/item/pool/pool_noodle{
 	pixel_x = 8;
 	pixel_y = -7
 	},

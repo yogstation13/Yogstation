@@ -15,7 +15,7 @@
 	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		armorval += checkarmor(BP, type)
+		armorval += min(checkarmor(BP, type), 100) // hey no you can't do that
 		organnum++
 	return (armorval/max(organnum, 1))
 
@@ -30,7 +30,7 @@
 			continue
 		if(bp && istype(bp , /obj/item/clothing))
 			var/obj/item/clothing/C = bp
-			if(C.body_parts_covered & def_zone.body_part)
+			if(def_zone.body_part & C.body_parts_covered)
 				protection += C.armor.getRating(d_type)
 			else if(C.body_parts_partial_covered & def_zone.body_part)
 				protection += C.armor.getRating(d_type) * 0.5
@@ -46,16 +46,16 @@
 			continue
 		if(bp && istype(bp , /obj/item/clothing))
 			var/obj/item/clothing/C = bp
-			if(C.body_parts_covered & def_zone.body_part)
+			if(def_zone.body_part & C.body_parts_covered)
 				covering_part += C
 	return covering_part
 
-/mob/living/carbon/human/on_hit(obj/item/projectile/P)
+/mob/living/carbon/human/on_hit(obj/projectile/P)
 	if(dna && dna.species)
 		dna.species.on_hit(P, src)
 
 
-/mob/living/carbon/human/bullet_act(obj/item/projectile/P, def_zone)
+/mob/living/carbon/human/bullet_act(obj/projectile/P, def_zone)
 	if(dna && dna.species)
 		var/spec_return = dna.species.bullet_act(P, src)
 		if(spec_return)
@@ -64,7 +64,7 @@
 	if(mind)
 		if(mind.martial_art && !incapacitated(FALSE, TRUE) && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || ((mind.martial_art.id == "sleeping carp") && in_throw_mode))) //Some martial arts users can deflect projectiles!
 			if(prob(mind.martial_art.deflection_chance) || ((mind.martial_art.id == "sleeping carp") && in_throw_mode)) // special check if sleeping carp is our martial art and throwmode is on, deflect
-				if((mobility_flags & MOBILITY_USE) && dna && !(dna.check_mutation(HULK)|| dna.check_mutation(ACTIVE_HULK))) //But only if they're otherwise able to use items, and hulks can't do it
+				if((mobility_flags & MOBILITY_USE) && dna && !dna.check_mutation(HULK)) //But only if they're otherwise able to use items, and hulks can't do it
 					if(!isturf(loc)) //if we're inside something and still got hit
 						P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
 						loc.bullet_act(P)
@@ -78,6 +78,8 @@
 						return BULLET_ACT_BLOCK
 					else
 						P.firer = src
+						if(P.hitscan)
+							P.store_hitscan_collision(P.trajectory.copy_to())
 						P.setAngle(rand(0, 360))//SHING
 						return BULLET_ACT_FORCE_PIERCE
 
@@ -86,6 +88,8 @@
 			if(check_reflect(def_zone)) // Checks if you've passed a reflection% check
 				visible_message(span_danger("The [P.name] gets reflected by [src]!"), \
 								span_userdanger("The [P.name] gets reflected by [src]!"))
+				if(P.hitscan) // hitscan check
+					P.store_hitscan_collision(P.trajectory.copy_to())
 				// Find a turf near or on the original location to bounce to
 				if(!isturf(loc)) //Open canopy mech (ripley) check. if we're inside something and still got hit
 					P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
@@ -124,9 +128,12 @@
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/check_shields(atom/AM, var/damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0)
+/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
+	//YOGS EDIT BEGIN
+	if(SEND_SIGNAL(src, COMSIG_MOB_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration))	
+		return TRUE 
+	//YOGS EDIT END
 	var/block_chance_modifier = round(damage / -3)
-
 	for(var/obj/item/I in held_items)
 		if(!istype(I, /obj/item/clothing))
 			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.armour_penetration)/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
@@ -147,7 +154,9 @@
 		var/final_block_chance = wear_neck.block_chance - (clamp((armour_penetration-wear_neck.armour_penetration)/2,0,100)) + block_chance_modifier
 		if(wear_neck.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
 			return TRUE
-  return FALSE
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration, damage_type) & SHIELD_BLOCK)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/check_block()
 	if(mind)
@@ -196,8 +205,6 @@
 		if(I.force && I.damtype != STAMINA && affecting.status == BODYPART_ROBOTIC) // Bodpart_robotic sparks when hit, but only when it does real damage
 			if(I.force >= 5)
 				do_sparks(1, FALSE, loc)
-				if(prob(25))
-					new /obj/effect/decal/cleanable/oil(loc)
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 
@@ -273,7 +280,7 @@
 		return 1
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M)
-	if(check_shields(M, 0, "the M.name"))
+	if(check_shields(M, 0, "the [M.name]"))
 		visible_message(span_danger("[M] attempted to touch [src]!"))
 		return 0
 
@@ -354,7 +361,8 @@
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor = run_armor_check(affecting, MELEE, armour_penetration = M.armour_penetration)
-		apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness)
+		var/attack_direction = get_dir(M, src)
+		apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness, attack_direction = attack_direction)
 
 
 /mob/living/carbon/human/attack_slime(mob/living/simple_animal/slime/M)
@@ -396,10 +404,12 @@
 						var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
 						src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 					update |= temp.receive_damage(dmg, 0)
-					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+					if(M.meleesound)
+						playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if(BURN)
 					update |= temp.receive_damage(0, dmg)
-					playsound(src, 'sound/items/welder.ogg', 50, 1)
+					if(M.meleesound)
+						playsound(src, 'sound/items/welder.ogg', 50, 1)
 				if(TOX)
 					M.mech_toxin_damage(src)
 				else
@@ -442,7 +452,7 @@
 				gib()
 				return
 			else
-				brute_loss = 200*(2 - round(bomb_armor/60, 0.05))	//0-83% damage reduction
+				brute_loss = 200*(2 - round(bomb_armor/100, 0.05))	//0-50% damage reduction because this should still kill you
 				burn_loss = brute_loss/2 //don't wanna husk people	
 				var/atom/throw_target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(throw_target, 200, 4)
@@ -495,71 +505,25 @@
 
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
-	if(tesla_shock)
-		var/total_coeff = 1
-		if(gloves)
-			var/obj/item/clothing/gloves/G = gloves
-			if(G.siemens_coefficient <= 0)
-				total_coeff -= 0.5
-			if(istype(G, /obj/item/clothing/gloves/color/fyellow))
-				var/obj/item/clothing/gloves/color/fyellow/greytide = G
-				greytide.get_shocked()
-		if(wear_suit)
-			var/obj/item/clothing/suit/S = wear_suit
-			if(S.siemens_coefficient <= 0)
-				total_coeff -= 0.95
-			else if(S.siemens_coefficient == (-1))
-				total_coeff -= 1
-		siemens_coeff = total_coeff
-		if(flags_1 & TESLA_IGNORE_1)
-			siemens_coeff = 0
-	else if(!safety)
-		var/gloves_siemens_coeff = 1
-		if(gloves)
-			var/obj/item/clothing/gloves/G = gloves
-			gloves_siemens_coeff = G.siemens_coefficient
-			if(istype(G, /obj/item/clothing/gloves/color/fyellow))
-				var/obj/item/clothing/gloves/color/fyellow/greytide = G
-				greytide.get_shocked()
-		siemens_coeff = gloves_siemens_coeff
-	if(undergoing_cardiac_arrest() && !illusion)
-		if(shock_damage * siemens_coeff >= 1 && prob(25))
-			var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-			heart.beating = TRUE
-			if(stat == CONSCIOUS)
-				to_chat(src, span_notice("You feel your heart beating again!"))
-	siemens_coeff *= physiology.siemens_coeff
-
-	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
-	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+	if(!override)
+		siemens_coeff *= physiology.siemens_coeff
+	. = ..()
 	if(.)
 		electrocution_animation(40)
 
-/mob/living/carbon/human/emag_act(mob/user)
-	.=..()
-	dna?.species.spec_emag_act(src, user)
+/mob/living/carbon/human/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
+	if(dna)
+		return dna.species.spec_emag_act(src, user, emag_card)
 
 /mob/living/carbon/human/emp_act(severity)
-	dna?.species.spec_emp_act(src, severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	var/informed = FALSE
-	for(var/obj/item/bodypart/L in src.bodyparts)
-		if(L.status == BODYPART_ROBOTIC)
-			if(!informed)
-				to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
-				informed = TRUE
-			switch(severity)
-				if(1)
-					L.receive_damage(0,10,200)
-				if(2)
-					L.receive_damage(0,5,100)
+	severity *= physiology.emp_mod
+	return ..(severity)
 
-			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
-				if(prob(5))
-					L.dismember(BRUTE)
+/mob/living/carbon/human/rad_act(amount, collectable_radiation)
+	. = ..()
+	dna?.species.spec_rad_act(src, amount, collectable_radiation)
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()
@@ -718,17 +682,25 @@
 	if(!istype(M))
 		return
 
+	if(try_extinguish(M)) //mostly redundant since it's called in species.dm also, but this allows alternative forms of help act calling to extinguish
+		return
+
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))
-			if(do_after(src, 3.5 SECONDS, src, FALSE))
+			if(do_after(src, 3.5 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 				to_chat(src, span_notice("You succesfuly remove the durathread strand."))
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
-		else if(istype(src.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard) && creamed)
-			visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."), 
-							"<span class='notice'>You eat the pie off your face with your forked tongue.")
-			reagents.add_reagent(/datum/reagent/consumable/banana, 1)
+		else if(creamed)
+			if(istype(getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
+				visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."), 
+								span_notice("You eat the pie off your face with your forked tongue."))
+				reagents.add_reagent(/datum/reagent/consumable/banana, 1)
+
+			else if(M.get_num_arms()) //make sure you have arms with which to wipe
+				visible_message(span_notice("[src] wipes the pie off [p_their()] face with [p_their()] hand."), 
+								span_notice("You wipe the pie off your face with your hand."))
 			wash_cream()
 			return
 		check_self_for_injuries()
@@ -764,7 +736,7 @@
 		var/status = ""
 		var/brutedamage = LB.brute_dam
 		var/burndamage = LB.burn_dam
-		if(hallucination)
+		if(has_status_effect(/datum/status_effect/hallucination))
 			if(prob(30))
 				brutedamage += rand(30,40)
 			if(prob(30))
@@ -868,19 +840,33 @@
 				combined_msg += span_danger("You're choking!")
 
 	if(!HAS_TRAIT(src, TRAIT_NOHUNGER))
-		switch(nutrition)
-			if(NUTRITION_LEVEL_FULL to INFINITY)
-				combined_msg += span_info("You're completely stuffed!")
-			if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
-				combined_msg += span_info("You're well fed!")
-			if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
-				combined_msg += span_info("You're not hungry.")
-			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-				combined_msg += span_info("You could use a bite to eat.")
-			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-				combined_msg += span_info("You feel quite hungry.")
-			if(0 to NUTRITION_LEVEL_STARVING)
-				combined_msg += span_danger("You're starving!")
+		if(HAS_TRAIT(src, TRAIT_POWERHUNGRY))
+			switch(nutrition)
+				if(NUTRITION_LEVEL_WELL_FED to INFINITY)
+					combined_msg += span_info("You're fully charged!")
+				if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
+					combined_msg += span_info("You're not low on charge.")
+				if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+					combined_msg += span_info("You could use a bit more charge.")
+				if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+					combined_msg += span_info("You feel low on charge.")
+				if(0 to NUTRITION_LEVEL_STARVING)
+					combined_msg += span_danger("You're almost out of power!")
+		else
+			switch(nutrition)
+				if(NUTRITION_LEVEL_FULL to INFINITY)
+					combined_msg += span_info("You're completely stuffed!")
+				if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
+					combined_msg += span_info("You're well fed!")
+				if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
+					combined_msg += span_info("You're not hungry.")
+				if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+					combined_msg += span_info("You could use a bite to eat.")
+				if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+					combined_msg += span_info("You feel quite hungry.")
+				if(0 to NUTRITION_LEVEL_STARVING)
+					combined_msg += span_danger("You're starving!")
+
 	if(dna.species.id == "skeleton")
 		var/obj/item/clothing/under/under = w_uniform
 		if((!under || under.adjusted) && (!wear_suit))
@@ -993,3 +979,68 @@
 
 	for(var/obj/item/I in torn_items)
 		I.take_damage(damage_amount, damage_type, damage_flag, 0)
+
+/**
+ * Used by fire code to damage worn items.
+ *
+ * Arguments:
+ * - seconds_per_tick
+ * - times_fired
+ * - stacks: Current amount of firestacks
+ *
+ */
+
+/mob/living/carbon/human/proc/burn_clothing(seconds_per_tick, stacks)
+	var/list/burning_items = list()
+	var/obscured = check_obscured_slots(TRUE)
+	//HEAD//
+
+	if(glasses && !(obscured & ITEM_SLOT_EYES))
+		burning_items += glasses
+	if(wear_mask && !(obscured & ITEM_SLOT_MASK))
+		burning_items += wear_mask
+	if(wear_neck && !(obscured & ITEM_SLOT_NECK))
+		burning_items += wear_neck
+	if(ears && !(obscured & ITEM_SLOT_EARS))
+		burning_items += ears
+	if(head)
+		burning_items += head
+
+	//CHEST//
+	if(w_uniform && !(obscured & ITEM_SLOT_ICLOTHING))
+		burning_items += w_uniform
+	if(wear_suit)
+		burning_items += wear_suit
+
+	//ARMS & HANDS//
+	var/obj/item/clothing/arm_clothes = null
+	if(gloves && !(obscured & ITEM_SLOT_GLOVES))
+		arm_clothes = gloves
+	else if(wear_suit && ((wear_suit.body_parts_covered & HANDS) || (wear_suit.body_parts_covered & ARMS)))
+		arm_clothes = wear_suit
+	else if(w_uniform && ((w_uniform.body_parts_covered & HANDS) || (w_uniform.body_parts_covered & ARMS)))
+		arm_clothes = w_uniform
+	if(arm_clothes)
+		burning_items |= arm_clothes
+
+	//LEGS & FEET//
+	var/obj/item/clothing/leg_clothes = null
+	if(shoes && !(obscured & ITEM_SLOT_FEET))
+		leg_clothes = shoes
+	else if(wear_suit && ((wear_suit.body_parts_covered & FEET) || (wear_suit.body_parts_covered & LEGS)))
+		leg_clothes = wear_suit
+	else if(w_uniform && ((w_uniform.body_parts_covered & FEET) || (w_uniform.body_parts_covered & LEGS)))
+		leg_clothes = w_uniform
+	if(leg_clothes)
+		burning_items |= leg_clothes
+
+	for(var/obj/item/burning in burning_items)
+		burning.fire_act((stacks * 25 * seconds_per_tick)) //damage taken is reduced to 2% of this value by fire_act()
+
+/mob/living/carbon/human/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
+	SEND_SIGNAL(src, COMSIG_HUMAN_BURNING)
+	burn_clothing(seconds_per_tick, fire_handler.stacks)
+	var/no_protection = FALSE
+	if(dna && dna.species)
+		no_protection = dna.species.handle_fire(src, seconds_per_tick, no_protection)
+	fire_handler.harm_human(seconds_per_tick, no_protection)

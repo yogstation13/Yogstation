@@ -11,7 +11,7 @@
 		return TRUE
 	else // Need to run MFA
 		if(allow_query)
-			INVOKE_ASYNC(src, .proc/mfa_query_login) // Don't want to hang while the user inputs their TOTP code
+			INVOKE_ASYNC(src, PROC_REF(mfa_query_login)) // Don't want to hang while the user inputs their TOTP code
 		else
 			to_chat(src, span_userdanger("New connection detected, use the readmin verb to authenticate!"))
 
@@ -91,7 +91,7 @@
 	if(response == "Retry TOTP")
 		return mfa_query()
 	else if(response == "Backup Code")
-		if(tgui_alert(src, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", list("Confirmation", "Cancel", "Yes")) != "Yes")
+		if(tgui_alert(src, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", "Confirmation", list("Cancel", "Yes")) != "Yes")
 			return mfa_query()
 		return mfa_backup_query()
 	else

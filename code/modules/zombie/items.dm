@@ -20,7 +20,7 @@
 	var/infect_chance = 100 //Before armor calculations
 	var/scaled_infect_chance = FALSE //Do we use steeper armor infection block chance or linear?
 
-/obj/item/zombie_hand/Initialize()
+/obj/item/zombie_hand/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 

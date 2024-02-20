@@ -16,7 +16,7 @@
 	from doing this unless you absolutely know what you are doing, and have defined a
 	conversion in savefile.dm
 */
-/proc/init_sprite_accessory_subtypes(prototype, list/L, list/male, list/female,var/roundstart = FALSE)//Roundstart argument builds a specific list for roundstart parts where some parts may be locked
+/proc/init_sprite_accessory_subtypes(prototype, list/L, list/male, list/female, roundstart = FALSE)//Roundstart argument builds a specific list for roundstart parts where some parts may be locked
 	if(!istype(L))
 		L = list()
 	if(!istype(male))
@@ -2008,14 +2008,6 @@
 	name = "Dark Tiger"
 	icon_state = "dtiger"
 
-/datum/sprite_accessory/tails/lizard/ltiger
-	name = "Light Tiger"
-	icon_state = "ltiger"
-
-/datum/sprite_accessory/tails_animated/lizard/ltiger
-	name = "Light Tiger"
-	icon_state = "ltiger"
-
 /datum/sprite_accessory/tails/lizard/spikes
 	name = "Spikes"
 	icon_state = "spikes"
@@ -2144,6 +2136,24 @@
 	center = TRUE
 	dimension_y = 34
 
+/datum/sprite_accessory/wings/plant
+	name = "Plant"
+	icon_state = "plant"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+	color_src = HAIR
+
+/datum/sprite_accessory/wings_open/plant
+	name = "Plant"
+	icon_state = "plant"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+	color_src = HAIR
+
 /datum/sprite_accessory/wings/dragon
 	name = "Dragon"
 	icon_state = "dragon"
@@ -2192,6 +2202,70 @@
 	dimension_x = 96
 	center = TRUE
 	dimension_y = 32
+
+/datum/sprite_accessory/wings/plant
+	name = "Plant"
+	icon_state = "plant"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+	color_src = HAIR
+
+/datum/sprite_accessory/wings_open/plant
+	name = "Plant"
+	icon_state = "plant"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	color_src = HAIR
+
+/datum/sprite_accessory/wings/plantdetails
+	name = "Plantdetails"
+	icon_state = "plantdetails"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+
+/datum/sprite_accessory/wings_open/plantdetails
+	name = "Plantdetails"
+	icon_state = "plantdetails"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+
+/datum/sprite_accessory/wings/ethereal
+	name = "Ethereal"
+	icon_state = "ethereal"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	locked = TRUE
+
+/datum/sprite_accessory/wings_open/ethereal
+	name = "Ethereal"
+	icon_state = "ethereal"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+
+/datum/sprite_accessory/wings/etherealdetails
+	name = "Etherealdetails"
+	icon_state = "etherealdetails"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	locked = TRUE
+	color_src = null
+
+/datum/sprite_accessory/wings_open/etherealdetails
+	name = "Etherealdetails"
+	icon_state = "etherealdetails"
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+	color_src = null
 
 /datum/sprite_accessory/frills
 	icon = 'icons/mob/mutant_bodyparts.dmi'

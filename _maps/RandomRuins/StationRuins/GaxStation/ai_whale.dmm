@@ -1354,7 +1354,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "Bs" = (

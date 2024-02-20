@@ -7,7 +7,7 @@
 	has_gravity = TRUE
 	noteleport = TRUE
 	flags_1 = NONE
-	ambientsounds = HIGHSEC
+	ambience_index = AMBIENCE_DANGER
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/yogs/infiltrator_base/poweralert(state, obj/source)
@@ -32,3 +32,4 @@
 	has_gravity = TRUE
 	noteleport = TRUE
 	flags_1 = NONE
+	area_flags = NOTELEPORT

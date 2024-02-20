@@ -250,20 +250,20 @@
 					secHUD = !secHUD
 					if(secHUD)
 						var/datum/atom_hud/sec = GLOB.huds[sec_hud]
-						sec.add_hud_to(src)
+						sec.show_to(src)
 					else
 						var/datum/atom_hud/sec = GLOB.huds[sec_hud]
-						sec.remove_hud_from(src)
+						sec.hide_from(src)
 
 			if("medicalhud")
 				if(href_list["toggle"])
 					medHUD = !medHUD
 					if(medHUD)
 						var/datum/atom_hud/med = GLOB.huds[med_hud]
-						med.add_hud_to(src)
+						med.show_to(src)
 					else
 						var/datum/atom_hud/med = GLOB.huds[med_hud]
-						med.remove_hud_from(src)
+						med.hide_from(src)
 
 			if("hostscan")
 				if(href_list["toggle"])
@@ -573,7 +573,7 @@
 			for(var/id in environment.get_gases())
 				var/gas_level = environment.get_moles(id)/total_moles
 				if(gas_level > 0.01)
-					dat += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_level*100)]%<br>"
+					dat += "[GLOB.gas_data.labels[id]]: [round(gas_level*100)]%<br>"
 		dat += "Temperature: [round(environment.return_temperature()-T0C)]&deg;C<br>"
 	dat += "<a href='byond://?src=[REF(src)];software=atmosensor;sub=0'>Refresh Reading</a> <br>"
 	dat += "<br>"

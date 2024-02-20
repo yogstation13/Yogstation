@@ -142,18 +142,29 @@
 
 		to_chat(user, span_notice("You fill \the [src] with lights from \the [S]. " + status_string() + ""))
 
-/obj/item/lightreplacer/emag_act()
+/obj/item/lightreplacer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
-	Emag()
+		return FALSE
+	obj_flags |= EMAGGED
+	playsound(src.loc, "sparks", 100, 1)
+	update_appearance()
+	return TRUE
 
 /obj/item/lightreplacer/attack_self(mob/user)
 	for(var/obj/machinery/light/target in user.loc)
 		ReplaceLight(target, user)
 	to_chat(user, status_string())
 
-/obj/item/lightreplacer/update_icon()
+/obj/item/lightreplacer/update_icon_state()
+	. = ..()
 	icon_state = "lightreplacer[(obj_flags & EMAGGED ? 1 : 0)]"
+
+/obj/item/lightreplacer/update_name(updates=ALL)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		name = "shortcircuited [initial(name)]"
+	else
+		name = initial(name)
 
 /obj/item/lightreplacer/proc/status_string()
 	return "It has [uses] light\s remaining (plus [bulb_shards] fragment\s)."
@@ -178,7 +189,7 @@
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	return new_bulbs
 
-/obj/item/lightreplacer/proc/Charge(var/mob/user)
+/obj/item/lightreplacer/proc/Charge(mob/user)
 	charge += 1
 	if(charge > 3)
 		AddUses(1)
@@ -218,15 +229,6 @@
 		to_chat(U, span_warning("There is a working [target.fitting] already inserted!"))
 		return
 
-/obj/item/lightreplacer/proc/Emag()
-	obj_flags ^= EMAGGED
-	playsound(src.loc, "sparks", 100, 1)
-	if(obj_flags & EMAGGED)
-		name = "shortcircuited [initial(name)]"
-	else
-		name = initial(name)
-	update_icon()
-
 /obj/item/lightreplacer/proc/CanUse(mob/living/user)
 	src.add_fingerprint(user)
 	if(uses > 0)
@@ -255,7 +257,7 @@
 /obj/item/lightreplacer/proc/janicart_insert(mob/user, obj/structure/janitorialcart/J)
 	J.put_in_cart(src, user)
 	J.myreplacer = src
-	J.update_icon()
+	J.update_appearance(UPDATE_ICON)
 
 /obj/item/lightreplacer/cyborg/janicart_insert(mob/user, obj/structure/janitorialcart/J)
 	return

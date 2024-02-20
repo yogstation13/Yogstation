@@ -13,6 +13,7 @@
 	var/mob/living/quirk_holder
 	var/not_init = FALSE // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
 	var/list/species_blacklist = list()
+	var/list/job_blacklist = list()
 	/// The icon to show in the preferences menu.
 	/// This references a tgui icon, so it can be FontAwesome or a tgfont (with a tg- prefix).
 	var/icon
@@ -34,7 +35,7 @@
 	add()
 	if(spawn_effects)
 		on_spawn()
-		addtimer(CALLBACK(src, .proc/post_add), 30)
+		addtimer(CALLBACK(src, PROC_REF(post_add)), 30)
 
 /datum/quirk/Destroy()
 	if(not_init) // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
@@ -137,7 +138,7 @@ Use this as a guideline
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/clothing/glasses/regular/glasses = new(get_turf(H))
 	H.put_in_hands(glasses)
-	H.equip_to_slot(glasses, SLOT_GLASSES)
+	H.equip_to_slot(glasses, ITEM_SLOT_EYES)
 	H.regenerate_icons()
 
 //This whole proc is called automatically

@@ -35,12 +35,12 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/obj/item/stock_parts/cell/integrated_battery
 
 
-/obj/machinery/ai/data_core/Initialize()
+/obj/machinery/ai/data_core/Initialize(mapload)
 	. = ..()
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	RefreshParts()
 
 /obj/machinery/ai/data_core/RefreshParts()
@@ -59,8 +59,42 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	power_modifier = new_power_mod
 	active_power_usage = AI_DATA_CORE_POWER_USAGE * power_modifier
 
-/obj/machinery/ai/data_core/process_atmos()
-	calculate_validity()
+/obj/machinery/ai/data_core/process()
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_DATA_CORE_TICKS)
+	
+	if(valid_holder())
+		valid_ticks++
+		if(valid_ticks == 1)
+			update_icon()
+		use_power = ACTIVE_POWER_USE
+		if((stat & NOPOWER))
+			integrated_battery.use(active_power_usage * CELL_POWERUSE_MULTIPLIER)
+		warning_sent = FALSE
+	else
+		valid_ticks--
+		if(valid_ticks <= 0)
+			use_power = IDLE_POWER_USE
+			update_icon()
+			for(var/mob/living/silicon/ai/AI in contents)
+				if(!AI.is_dying)
+					AI.relocate()
+		if(!warning_sent && COOLDOWN_FINISHED(src, warning_cooldown))
+			warning_sent = TRUE
+			COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
+			var/list/send_to = GLOB.ai_list.Copy()
+			for(var/mob/living/silicon/ai/AI in send_to)
+				if(AI.is_dying)
+					continue
+				if(!AI.mind && AI.deployed_shell.mind)
+					to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+				else
+					to_chat(AI, span_userdanger("<A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+				AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
+
+	if(!(stat & (BROKEN|EMPED)) && has_power() && !disableheat)
+		var/temp_active_usage = stat & NOPOWER ? active_power_usage * CELL_POWERUSE_MULTIPLIER : active_power_usage
+		var/temperature_increase = (temp_active_usage / AI_HEATSINK_CAPACITY) * heat_modifier //1 CPU = 1000W. Heat capacity = somewhere around 3000-4000. Aka we generate 0.25 - 0.33 K per second, per CPU. 
+		core_temp += temperature_increase * AI_TEMPERATURE_MULTIPLIER
 
 /obj/machinery/ai/data_core/Destroy()
 	GLOB.data_cores -= src
@@ -126,6 +160,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		. += span_warning("Machinery non-functional. Reason: [holder_status]")
 	if(!isobserver(user))
 		return
+	. += "Core temperature: <b>[core_temp] K</b>"
 	. += "<b>Networked AI Laws:</b>"
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
 		var/active_status = "(Core: [FOLLOW_LINK(user, AI.loc)], Eye: [FOLLOW_LINK(user, AI.eyeobj)])"
@@ -146,7 +181,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return TRUE
 	return FALSE
 
-/obj/machinery/ai/data_core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/machinery/ai/data_core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	for(var/mob/living/silicon/ai/AI in contents)
 		AI.disconnect_shell()
@@ -165,7 +200,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(valid_holder())
 		valid_ticks++
 		if(valid_ticks == 1)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		use_power = ACTIVE_POWER_USE
 		if((stat & NOPOWER))
 			integrated_battery.use(active_power_usage * CELL_POWERUSE_MULTIPLIER)
@@ -174,7 +209,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		valid_ticks--
 		if(valid_ticks <= 0)
 			use_power = IDLE_POWER_USE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			for(var/mob/living/silicon/ai/AI in contents)
 				if(!AI.is_dying)
 					AI.relocate()
@@ -214,8 +249,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(AI.eyeobj)
 		AI.eyeobj.forceMove(get_turf(src))
 
-/obj/machinery/ai/data_core/update_icon()
-	cut_overlays()
+/obj/machinery/ai/data_core/update_icon_state()
+	. = ..()
 	
 	if(!(stat & (BROKEN|EMPED)) && has_power())
 		if(!valid_data_core())
@@ -227,7 +262,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/proc/partytime()
 	var/current_color = random_color()
 	set_light(7, 3, current_color)
-	TimerID = addtimer(CALLBACK(src, .proc/partytime), 0.5 SECONDS, TIMER_STOPPABLE)
+	TimerID = addtimer(CALLBACK(src, PROC_REF(partytime)), 0.5 SECONDS, TIMER_STOPPABLE)
 
 /obj/machinery/ai/data_core/proc/stoptheparty()
 	set_light(0)

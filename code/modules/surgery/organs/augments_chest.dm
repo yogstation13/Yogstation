@@ -23,7 +23,7 @@
 		synthesizing = TRUE
 		to_chat(owner, span_notice("You feel less hungry..."))
 		owner.adjust_nutrition(50)
-		addtimer(CALLBACK(src, .proc/synth_cool), 50)
+		addtimer(CALLBACK(src, PROC_REF(synth_cool)), 50)
 
 /obj/item/organ/cyberimp/chest/nutriment/proc/synth_cool()
 	synthesizing = FALSE
@@ -32,7 +32,8 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	owner.reagents.add_reagent(/datum/reagent/toxin/bad_food, poison_amount / severity)
+	var/existing = owner.reagents.get_reagent_amount(/datum/reagent/toxin/bad_food)
+	owner.reagents.add_reagent(/datum/reagent/toxin/bad_food, (poison_amount * (severity / EMP_HEAVY)) - existing)
 	to_chat(owner, span_warning("You feel like your insides are burning."))
 
 
@@ -53,11 +54,12 @@
 	var/revive_cost = 0
 	var/reviving = 0
 	var/cooldown = 0
+	var/heal_amount = 1
 
 /obj/item/organ/cyberimp/chest/reviver/on_life()
 	if(reviving)
-		if(owner.stat == UNCONSCIOUS || owner.stat == SOFT_CRIT)
-			addtimer(CALLBACK(src, .proc/heal), 2 SECONDS)
+		if(owner.stat)
+			addtimer(CALLBACK(src, PROC_REF(heal)), 2 SECONDS)
 		else
 			cooldown = revive_cost + world.time
 			reviving = FALSE
@@ -66,7 +68,7 @@
 
 	if(cooldown > world.time)
 		return
-	if(owner.stat != UNCONSCIOUS)
+	if(!owner.stat)
 		return
 	if(owner.suiciding)
 		return
@@ -77,16 +79,16 @@
 
 /obj/item/organ/cyberimp/chest/reviver/proc/heal()
 	if(owner.getOxyLoss())
-		owner.adjustOxyLoss(-5)
+		owner.adjustOxyLoss(-heal_amount * 5)
 		revive_cost += 0.5 SECONDS
 	if(owner.getBruteLoss())
-		owner.adjustBruteLoss(-2)
+		owner.adjustBruteLoss(-heal_amount * 2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getFireLoss())
-		owner.adjustFireLoss(-2)
+		owner.adjustFireLoss(-heal_amount * 2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getToxLoss())
-		owner.adjustToxLoss(-1)
+		owner.adjustToxLoss(-heal_amount)
 		revive_cost += 4 SECONDS
 
 /obj/item/organ/cyberimp/chest/reviver/emp_act(severity)
@@ -99,12 +101,12 @@
 	else
 		cooldown += 20 SECONDS
 
-	if(ishuman(owner))
+	if(ishuman(owner) && !syndicate_implant)
 		var/mob/living/carbon/human/H = owner
-		if(H.stat != DEAD && prob(50 / severity) && H.can_heartattack())
+		if(H.stat != DEAD && prob(5 * severity) && H.can_heartattack())
 			H.set_heartattack(TRUE)
 			to_chat(H, span_userdanger("You feel a horrible agony in your chest!"))
-			addtimer(CALLBACK(src, .proc/undo_heart_attack), 10 SECONDS / severity)
+			addtimer(CALLBACK(src, PROC_REF(undo_heart_attack)), severity SECONDS)
 
 /obj/item/organ/cyberimp/chest/reviver/proc/undo_heart_attack()
 	var/mob/living/carbon/human/H = owner
@@ -114,12 +116,18 @@
 	if(H.stat == CONSCIOUS)
 		to_chat(H, span_notice("You feel your heart beating again!"))
 
+/obj/item/organ/cyberimp/chest/reviver/syndicate
+	name = "syndicate reviver implant"
+	desc = "A more powerful and experimental version of the one utilized by Nanotrasen, this implant will attempt to revive and heal you if you are critically injured. For the faint of heart!"
+	implant_color = "#600000"
+	syndicate_implant = TRUE
+	heal_amount = 2
 
 /obj/item/organ/cyberimp/chest/thrusters
 	name = "implantable thrusters set"
 	desc = "An implantable set of thruster ports. They use the gas from environment or subject's internals for propulsion in zero-gravity areas. \
 	Unlike regular jetpacks, this device has no stabilization system."
-	slot = ORGAN_SLOT_THRUSTERS
+	slot = ORGAN_SLOT_TORSO_IMPLANT
 	icon_state = "imp_jetpack"
 	implant_overlay = null
 	implant_color = null
@@ -151,7 +159,7 @@
 		on = TRUE
 		if(allow_thrust(0.01))
 			ion_trail.start()
-			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/move_react)
+			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 			owner.add_movespeed_modifier(MOVESPEED_ID_CYBER_THRUSTER, priority=100, multiplicative_slowdown=-0.3, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 			if(!silent)
 				to_chat(owner, span_notice("You turn your thrusters set on."))
@@ -162,16 +170,16 @@
 		if(!silent)
 			to_chat(owner, span_notice("You turn your thrusters set off."))
 		on = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/thrusters/update_icon()
+/obj/item/organ/cyberimp/chest/thrusters/update_icon_state()
+	. = ..()
 	if(on)
 		icon_state = "imp_jetpack-on"
 	else
 		icon_state = "imp_jetpack"
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtonIcon()
+	for(var/datum/action/A as anything in actions)
+		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/move_react()
 	allow_thrust(0.01)
@@ -197,31 +205,21 @@
 
 	// Priority 3: use internals tank.
 	var/obj/item/tank/I = owner.internal
-	if(I && I.air_contents && I.air_contents.total_moles() > num)
-		var/datum/gas_mixture/removed = I.air_contents.remove(num)
-		if(removed.total_moles() > 0.005)
-			T.assume_air(removed)
-			return 1
-		else
-			T.assume_air(removed)
+	if(I && I.air_contents && I.air_contents.total_moles() >= num)
+		T.assume_air_moles(I.air_contents, num)
 
 	toggle(silent = TRUE)
 	return 0
 
 /obj/item/organ/cyberimp/chest/thrusters/emp_act(severity)
 	. = ..()
-	switch(severity)
-		if(EMP_HEAVY)
-			owner.adjustFireLoss(35)
-			to_chat(owner, span_warning("Your thruster implant malfunctions and severely burns you!"))
-		if(EMP_LIGHT)
-			owner.adjustFireLoss(10)
-			to_chat(owner, span_danger("Your thruster implant malfunctions and mildly burns you!"))
+	owner.adjustFireLoss(3 * severity)
+	to_chat(owner, span_warning("Your thruster implant malfunctions and severely burns you!"))
 
 /obj/item/organ/cyberimp/chest/spinalspeed
 	name = "neural overclocker implant"
-	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
-	slot = ORGAN_SLOT_THRUSTERS
+	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
+	slot = ORGAN_SLOT_TORSO_IMPLANT
 	icon_state = "imp_spinal"
 	implant_overlay = null
 	implant_color = null
@@ -231,6 +229,8 @@
 	var/on = FALSE
 	var/time_on = 0
 	var/hasexerted = FALSE
+	var/list/hsv
+	var/last_step = 0
 	COOLDOWN_DECLARE(alertcooldown)
 	COOLDOWN_DECLARE(startsoundcooldown)
 	COOLDOWN_DECLARE(endsoundcooldown)
@@ -251,61 +251,53 @@
 		if(COOLDOWN_FINISHED(src, startsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_on.ogg', 60)
 			COOLDOWN_START(src, startsoundcooldown, 1 SECONDS)
-		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
-		owner.next_move_modifier *= 0.7
-		owner?.dna?.species?.action_speed_coefficient *= 0.7
-		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
+		if(syndicate_implant)//the toy doesn't do anything aside from the trail and the sound
+			if(ishuman(owner))
+				var/mob/living/carbon/human/human = owner
+				human.physiology.do_after_speed *= 0.7
+				human.physiology.crawl_speed -= 1
+			owner.next_move_modifier *= 0.7
+			owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
+		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
 			COOLDOWN_START(src, endsoundcooldown, 1 SECONDS)
-		owner.next_move_modifier /= 0.7
-		owner?.dna?.species?.action_speed_coefficient /= 0.7
-		owner.remove_movespeed_modifier("spinalimplant")
+		if(syndicate_implant)
+			if(ishuman(owner))
+				var/mob/living/carbon/human/human = owner
+				human.physiology.do_after_speed /= 0.7
+				human.physiology.crawl_speed += 1
+			owner.next_move_modifier /= 0.7
+			owner.remove_movespeed_modifier("spinalimplant")
 		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	on = !on
 	if(!silent)
 		to_chat(owner, span_notice("You turn your spinal implant [on? "on" : "off"]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/spinalspeed/update_icon()
+/obj/item/organ/cyberimp/chest/spinalspeed/update_icon_state()
+	. = ..()
 	if(on)
 		icon_state = "imp_spinal-on"
 	else
 		icon_state = "imp_spinal"
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtonIcon()
+	for(var/datum/action/A as anything in actions)
+		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
 	var/turf/currentloc = get_turf(owner)
 	var/obj/effect/temp_visual/decoy/fading/F = new(currentloc, owner)
-	var/rvalue = 0
-	var/gvalue = 0
-	var/bvalue = 0
-	var/numcolors = (world.time * 32) % 1280
-	var/segment = numcolors / 256
-	var/specific_color = numcolors % 256 //works like any non-sine wave rainbow generator thing, google it
-	switch(segment)//transition isn't as precise as if i used sin() but this is far more efficient for runtime
-		if(0 to 1)
-			rvalue = 255
-			gvalue = specific_color
-		if(1 to 2)
-			rvalue = 255 - specific_color
-			gvalue = 255
-		if(2 to 3)
-			gvalue = 255
-			bvalue = specific_color
-		if(3 to 4)
-			gvalue = 255 - specific_color
-			bvalue = 255
-		if(4 to 5)
-			rvalue = specific_color
-			bvalue = 255 - specific_color
-	var/usedcolor = rgb(rvalue, gvalue, bvalue)
-	F.color = usedcolor	//gotta add the flair
+	if(!hsv)
+		hsv = RGBtoHSV(rgb(255, 0, 0))
+	hsv = RotateHue(hsv, world.time - last_step * 15)
+	last_step = world.time
+	F.color = HSVtoRGB(hsv)	//gotta add the flair
 
 /obj/item/organ/cyberimp/chest/spinalspeed/on_life()
+	if(!syndicate_implant)//the toy doesn't have a drawback
+		return
+
 	if(on)
 		if(owner.stat == UNCONSCIOUS || owner.stat == DEAD)
 			toggle(silent = TRUE)
@@ -315,15 +307,15 @@
 				if(COOLDOWN_FINISHED(src, alertcooldown))
 					to_chat(owner, span_alert("You feel your spine tingle."))
 					COOLDOWN_START(src, alertcooldown, 10 SECONDS)
-				owner.hallucination += 5
+				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(1)
 			if(50 to 100)
 				if(COOLDOWN_FINISHED(src, alertcooldown) || !hasexerted)
 					to_chat(owner, span_userdanger("Your spine and brain feel like they're burning!"))
 					COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 				hasexerted = TRUE
-				owner.set_drugginess(10)
-				owner.hallucination += 100
+				owner.set_drugginess(2 SECONDS)
+				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(5)
 			if(100 to INFINITY)//no infinite abuse
 				to_chat(owner, span_userdanger("You feel a slight sense of shame as your brain and spine rip themselves apart from overexertion."))
@@ -338,23 +330,23 @@
 
 /obj/item/organ/cyberimp/chest/spinalspeed/emp_act(severity)
 	. = ..()
-	switch(severity)//i don't want emps to just be damage again, that's boring
-		if(EMP_HEAVY)
-			owner.set_drugginess(40)
-			owner.hallucination += 500
-			owner.blur_eyes(20)
-			owner.dizziness += 10
-			time_on += 10
-			owner.adjustFireLoss(10)
-			to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
-		if(EMP_LIGHT)
-			owner.set_drugginess(20)
-			owner.hallucination += 200
-			owner.blur_eyes(10)
-			owner.dizziness += 5
-			time_on += 5
-			owner.adjustFireLoss(5)
-			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))
+	if(!syndicate_implant)//the toy has a different emp act
+		owner.adjust_dizzy(severity SECONDS)
+		to_chat(owner, span_warning("Your spinal implant makes you feel queasy!"))
+		return
+
+	owner.set_drugginess(4 * severity)
+	owner.adjust_hallucinations((50 * severity) SECONDS)
+	owner.blur_eyes(2 * severity)
+	owner.adjust_dizzy(severity SECONDS)
+	time_on += severity
+	owner.adjustFireLoss(severity)
+	to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
+
+/obj/item/organ/cyberimp/chest/spinalspeed/toy
+	name = "glowy after-image trail implant"
+	desc = "Donk Co's first forray into the world of entertainment implants. Projects a series of after-images as you move, perfect for starting a dance party all on your own."
+	syndicate_implant = FALSE
 
 /obj/item/organ/cyberimp/chest/cooling_intake
 	name = "cooling intake"

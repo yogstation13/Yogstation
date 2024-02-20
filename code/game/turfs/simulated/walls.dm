@@ -28,6 +28,7 @@
 	/obj/structure/falsewall,
 	/obj/structure/falsewall/brass,
 	/obj/structure/falsewall/reinforced,
+	/turf/closed/wall/explosive,
 	/turf/closed/wall/rust,
 	/turf/closed/wall/r_wall/rust,
 	/turf/closed/wall/clockwork)
@@ -55,7 +56,7 @@
 /turf/closed/wall/attack_tk()
 	return
 
-/turf/closed/wall/handle_ricochet(obj/item/projectile/P)			//A huge pile of shitcode!
+/turf/closed/wall/handle_ricochet(obj/projectile/P)			//A huge pile of shitcode!
 	var/turf/p_turf = get_turf(P)
 	var/face_direction = get_dir(src, p_turf)
 	var/face_angle = dir2angle(face_direction)
@@ -80,8 +81,7 @@
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
 
-	var/turf/new_floor = ScrapeAway()
-	new_floor.air_update_turf()
+	ScrapeAway()
 
 /turf/closed/wall/proc/break_wall()
 	new sheet_type(src, sheet_amount)
@@ -124,17 +124,21 @@
 	M.do_attack_animation(src)
 	switch(M.damtype)
 		if(BRUTE)
-			playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+			if(M.meleesound)
+				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			visible_message(span_danger("[M.name] has hit [src]!"), null, null, COMBAT_MESSAGE_RANGE)
 			if(prob(hardness + M.force) && M.force > 20)
 				dismantle_wall(1)
-				playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
 			else
 				add_dent(WALL_DENT_HIT)
 		if(BURN)
-			playsound(src, 'sound/items/welder.ogg', 100, 1)
+			if(M.meleesound)
+				playsound(src, 'sound/items/welder.ogg', 100, 1)
 		if(TOX)
-			playsound(src, 'sound/effects/spray2.ogg', 100, 1)
+			if(M.meleesound)
+				playsound(src, 'sound/effects/spray2.ogg', 100, 1)
 			return FALSE
 
 /turf/closed/wall/attack_paw(mob/living/user)
@@ -189,7 +193,11 @@
 	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T))
 		return
 
-	return ..()
+	. = ..()
+
+	if(!.)
+		to_chat(user, span_notice("You hit the wall with \the [W] but nothing happens!"))
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 
 /turf/closed/wall/proc/try_clean(obj/item/W, mob/user, turf/T)
 	if((user.a_intent != INTENT_HELP) || !LAZYLEN(dent_decals))
@@ -311,8 +319,11 @@
 	add_overlay(dent_decals)
 
 /turf/closed/wall/rust_heretic_act()
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		ScrapeAway()
+		return
 	if(prob(70))
 		new /obj/effect/glowing_rune(src)
-	ChangeTurf(/turf/closed/wall/rust)
+	return ..()
 
 #undef MAX_DENT_DECALS

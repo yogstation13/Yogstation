@@ -12,7 +12,7 @@ TRICORDER
 
 /obj/item/multitool/tricorder
 	name = "tricorder"
-	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
+	desc = "A multifunctional handheld device useful for data sensing, analysis, and recording."
 	icon = 'yogstation/icons/obj/device.dmi'
 	icon_state = "tricorder"
 	item_state = "tricorder"
@@ -56,10 +56,17 @@ TRICORDER
 		return
 
 //Gas Analyzer Tank Scan
-/obj/item/multitool/tricorder/afterattack(atom/A as obj, mob/user, proximity)
-	if(!proximity)
-		return
-	A.analyzer_act(user, src)
+/obj/item/multitool/tricorder/afterattack(atom/target as obj, mob/user, proximity)
+	add_fingerprint(user)
+	if(istype(target, /turf))
+		var/turf/U = get_turf(target)
+		atmosanalyzer_scan(user, U)
+	else if(istype(target, /obj/effect/anomaly))
+		var/obj/effect/anomaly/A = target
+		A.analyzer_act(user, src)
+		to_chat(user, span_notice("Analyzing... [A]'s unstable field is fluctuating along frequency [format_frequency(A.aSignal.frequency)], code [A.aSignal.code]."))
+	else
+		target.analyzer_act(user, src)
 
 //Gas Analyzer Turf Scan
 /obj/item/multitool/tricorder/attack_self(mob/user)

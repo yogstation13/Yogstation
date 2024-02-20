@@ -11,17 +11,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_price = 20
 
-/obj/item/storage/byummie/ComponentInitialize()
+/obj/item/storage/byummie/Initialize(mapload)
 	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 4
-	STR.max_w_class = WEIGHT_CLASS_TINY
-	STR.set_holdable(list(
-		/obj/item/reagent_containers/food/snacks/borer
-		))
-
-/obj/item/storage/byummie/New()
-	..()
 	var/obj/item/reagent_containers/food/snacks/borer/B
 	for(var/i, i < 4, i++)
 		B = new(src)

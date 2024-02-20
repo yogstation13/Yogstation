@@ -48,12 +48,12 @@
 			parent_turret.setAnchored(TRUE)
 			to_chat(user, span_notice("You secure the exterior bolts on the turret."))
 			parent_turret.invisibility = 0
-			parent_turret.update_icon()
+			parent_turret.update_appearance(UPDATE_ICON)
 		else
 			parent_turret.setAnchored(FALSE)
 			to_chat(user, span_notice("You unsecure the exterior bolts on the turret."))
 			parent_turret.invisibility = INVISIBILITY_MAXIMUM
-			parent_turret.update_icon()
+			parent_turret.update_appearance(UPDATE_ICON)
 			qdel(src)
 
 	else if(I.GetID())
@@ -87,11 +87,17 @@
 /obj/machinery/porta_turret_cover/can_be_overridden()
 	. = 0
 
-/obj/machinery/porta_turret_cover/emag_act(mob/user)
-	if(!(parent_turret.obj_flags & EMAGGED))
-		to_chat(user, span_notice("You short out [parent_turret]'s threat assessment circuits."))
-		visible_message("[parent_turret] hums oddly...")
-		parent_turret.obj_flags |= EMAGGED
-		parent_turret.on = 0
-		spawn(40)
-			parent_turret.on = 1
+/obj/machinery/porta_turret_cover/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if((parent_turret.obj_flags & EMAGGED))
+		return FALSE
+	to_chat(user, span_notice("You short out [parent_turret]'s threat assessment circuits."))
+	visible_message("[parent_turret] hums oddly...")
+	parent_turret.obj_flags |= EMAGGED
+	parent_turret.on = FALSE
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act)), 4 SECONDS) // 4 seconds to get away.
+	return TRUE
+
+/obj/machinery/porta_turret_cover/proc/finish_emag_act()
+	if(QDELETED(parent_turret))
+		return
+	parent_turret.on = TRUE

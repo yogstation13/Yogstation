@@ -575,6 +575,24 @@
 	return TRUE
 
 /*********Holy Light**********/
+/datum/religion_rites/holysight
+	name = "Holy Sight"
+	desc = "Creates a medhud implant."
+	ritual_length = 15 SECONDS
+	ritual_invocations = list(
+	"To aid in our journey to heal...",
+	"...Grant us the ability to see within...",
+	)
+	invoke_msg = "So that we may seek the injured!"
+	favor_cost = 150
+
+/datum/religion_rites/holysight/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	var/atom/newitem = new /obj/item/autosurgeon/cmo (altar_turf)
+	newitem.name = "autosurgeon of truesight"
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
+	return TRUE
+
 /datum/religion_rites/medibot
 	name = "Angelic Assistance"
 	desc = "Creates a medibot."
@@ -585,30 +603,15 @@
 	"...Grant us this sustaining robot...",
 	)
 	invoke_msg = "So that we may live forever!"
-	favor_cost = 150
+	favor_cost = 250
 
 /datum/religion_rites/medibot/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	var/altar_turf = get_turf(religious_tool)
-	var/atom/newitem = new /mob/living/simple_animal/bot/medbot (altar_turf)
+	var/mob/living/simple_animal/bot/medbot/newitem = new (altar_turf)
 	newitem.name = "\improper Holy Medibot"
-	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
-	return TRUE
-
-/datum/religion_rites/holysight
-	name = "Holy Sight"
-	desc = "Creates a medhud implant."
-	ritual_length = 15 SECONDS
-	ritual_invocations = list(
-	"To aid in our journey to heal...",
-	"...Grant us the ability to see within...",
-	)
-	invoke_msg = "So that we may seek the injured!"
-	favor_cost = 250
-
-/datum/religion_rites/holysight/invoke_effect(mob/living/user, atom/movable/religious_tool)
-	var/altar_turf = get_turf(religious_tool)
-	var/atom/newitem = new /obj/item/autosurgeon/cmo (altar_turf)
-	newitem.name = "autosurgeon of truesight"
+	newitem.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+	newitem.holy = TRUE
+	newitem.AddComponent(/datum/component/anti_magic, MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY)
 	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
 	return TRUE
 
@@ -630,7 +633,7 @@
 	efficiency = 0.5
 	resistance_flags = FREEZE_PROOF
 
-/obj/item/rod_of_asclepius/white/Initialize()
+/obj/item/rod_of_asclepius/white/Initialize(mapload)
 	. = ..()
 	add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 
@@ -686,7 +689,7 @@
 	man_to_revive.revive(TRUE)
 	if(was_dead) // aheal needs downside
 		man_to_revive.adjustCloneLoss(75) // can be slowly healed with the rod of asclepius anyways
-	man_to_revive.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+	man_to_revive.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_ANTIMAGIC)	
 	to_chat(man_to_revive, span_userdanger("As you rise anew, you forget all that had previously harmed you!"))
 	man_to_revive.emote("smile")
 	man_to_revive.visible_message(span_notice("[man_to_revive] rises, reborn in the Holy Light!"))

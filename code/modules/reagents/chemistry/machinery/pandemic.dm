@@ -15,9 +15,9 @@
 	var/datum/symptom/selected_symptom
 	var/obj/item/reagent_containers/beaker
 
-/obj/machinery/computer/pandemic/Initialize()
+/obj/machinery/computer/pandemic/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/pandemic/Destroy()
 	QDEL_NULL(beaker)
@@ -42,7 +42,7 @@
 /obj/machinery/computer/pandemic/handle_atom_del(atom/A)
 	if(A == beaker)
 		beaker = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/computer/pandemic/proc/get_by_index(thing, index)
@@ -77,8 +77,7 @@
 			this["symptoms"] = list()
 			for(var/symptom in A.symptoms)
 				var/datum/symptom/S = symptom
-				var/list/this_symptom = list()
-				this_symptom = get_symptom_data(S)
+				var/list/this_symptom = get_symptom_data(S)
 				this["symptoms"] += list(this_symptom)
 			this["resistance"] = A.totalResistance()
 			this["stealth"] = A.totalStealth()
@@ -94,17 +93,16 @@
 
 /obj/machinery/computer/pandemic/proc/get_symptom_data(datum/symptom/S)
 	. = list()
-	var/list/this = list()
-	this["name"] = S.name
-	this["desc"] = S.desc
-	this["stealth"] = S.stealth
-	this["resistance"] = S.resistance
-	this["stage_speed"] = S.stage_speed
-	this["transmission"] = S.transmittable
-	this["level"] = S.level
-	this["neutered"] = S.neutered
-	this["threshold_desc"] = S.threshold_descs
-	. += this
+	.["name"] = S.name
+	.["desc"] = S.desc
+	.["icon"] = S.icon
+	.["stealth"] = S.stealth
+	.["resistance"] = S.resistance
+	.["stage_speed"] = S.stage_speed
+	.["transmission"] = S.transmittable
+	.["level"] = S.level
+	.["neutered"] = S.neutered
+	.["threshold_desc"] = S.threshold_descs
 
 /obj/machinery/computer/pandemic/proc/get_resistance_data(datum/reagent/blood/B)
 	. = list()
@@ -122,31 +120,39 @@
 
 /obj/machinery/computer/pandemic/proc/reset_replicator_cooldown()
 	wait = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 
-/obj/machinery/computer/pandemic/update_icon()
+/obj/machinery/computer/pandemic/update_icon_state()
+	. = ..()
 	if(stat & BROKEN)
 		icon_state = (beaker ? "mixer1_b" : "mixer0_b")
 		return
-
 	icon_state = "mixer[(beaker) ? "1" : "0"][powered() ? "" : "_nopower"]"
+
+/obj/machinery/computer/pandemic/update_overlays()
+	. = ..()
+	if(stat & BROKEN)
+		return
 	if(wait)
-		add_overlay("waitlight")
-	else
-		cut_overlays()
+		. += "waitlight"
 
 /obj/machinery/computer/pandemic/proc/eject_beaker()
 	if(beaker)
 		beaker.forceMove(drop_location())
 		beaker = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/pandemic/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Pandemic", name)
 		ui.open()
+
+/obj/machinery/computer/pandemic/ui_assets()
+	. = ..() || list()
+	. += get_asset_datum(/datum/asset/spritesheet/virology_symptoms)
+	. += get_asset_datum(/datum/asset/simple/virology_symptoms_animated)
 
 /obj/machinery/computer/pandemic/ui_data(mob/user)
 	var/list/data = list()
@@ -215,10 +221,10 @@
 			B.desc = "A small bottle. Contains [A.agent] culture in synthblood medium."
 			B.reagents.add_reagent(/datum/reagent/blood, 20, data)
 			wait = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			var/turf/source_turf = get_turf(src)
 			log_virus("A culture bottle was printed for the virus [A.admin_details()] at [loc_name(source_turf)] by [key_name(usr)]")
-			addtimer(CALLBACK(src, .proc/reset_replicator_cooldown), 50)
+			addtimer(CALLBACK(src, PROC_REF(reset_replicator_cooldown)), 50)
 			. = TRUE
 		if("create_vaccine_bottle")
 			if (wait)
@@ -229,8 +235,8 @@
 			B.name = "[D.name] vaccine bottle"
 			B.reagents.add_reagent(/datum/reagent/vaccine, 15, list(id))
 			wait = TRUE
-			update_icon()
-			addtimer(CALLBACK(src, .proc/reset_replicator_cooldown), 200)
+			update_appearance(UPDATE_ICON)
+			addtimer(CALLBACK(src, PROC_REF(reset_replicator_cooldown)), 200)
 			. = TRUE
 
 
@@ -247,7 +253,7 @@
 
 		beaker = I
 		to_chat(user, span_notice("You insert [I] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 

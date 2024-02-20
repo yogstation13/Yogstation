@@ -343,7 +343,7 @@ This is good:
 	getter_turned_into_variable = condition ? VALUE_C : VALUE_D
 ```
 
-### When passing vars through New() or Initialize()'s arguments, use src.var
+### When passing vars through New() or Initialize(mapload)'s arguments, use src.var
 Using src.var + naming the arguments the same as the var is the most readable and intuitive way to pass arguments into a new instance's vars. The main benefit is that you do not need to give arguments odd names with prefixes and suffixes that are easily forgotten in `new()` when sending named args.
 
 This is very bad:

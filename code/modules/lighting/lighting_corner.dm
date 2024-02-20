@@ -28,7 +28,7 @@
 	///whether we are to be added to SSlighting's corners_queue list for an update
 	var/needs_update = FALSE
 
-/datum/lighting_corner/New(var/turf/new_turf, var/diagonal)
+/datum/lighting_corner/New(turf/new_turf, diagonal)
 	. = ..()
 	save_master(new_turf, turn(diagonal, 180))
 

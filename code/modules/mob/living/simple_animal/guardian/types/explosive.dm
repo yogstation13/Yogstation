@@ -55,11 +55,11 @@
 /obj/guardian_bomb/proc/disguise(obj/A)
 	A.forceMove(src)
 	stored_obj = A
-	opacity = A.opacity
+	set_opacity(A.opacity)
 	anchored = A.anchored
 	density = A.density
 	appearance = A.appearance
-	addtimer(CALLBACK(src, .proc/disable), 600)
+	addtimer(CALLBACK(src, PROC_REF(disable)), 600)
 
 /obj/guardian_bomb/proc/disable()
 	stored_obj.forceMove(get_turf(src))

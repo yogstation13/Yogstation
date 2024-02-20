@@ -69,7 +69,7 @@
 #define COMSIG_MOB_RESTRICT_MAGIC "mob_cast_magic"
 ///from base of mob/can_block_magic(): (mob/user, casted_magic_flags, charge_cost)
 #define COMSIG_MOB_RECEIVE_MAGIC "mob_receive_magic"
-	#define COMPONENT_BLOCK_MAGIC (1<<0)
+	#define COMPONENT_MAGIC_BLOCKED (1<<0)
 
 ///from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"
@@ -86,12 +86,14 @@
 
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 #define COMSIG_MOB_APPLY_DAMAGE "mob_apply_damage"
+///from adjust procs and bodypart heal_damage(): (amount, damtype)
+#define COMSIG_MOB_APPLY_HEALING "mob_apply_healing"
 ///from base of /mob/living/attack_alien(): (user)
 #define COMSIG_MOB_ATTACK_ALIEN "mob_attack_alien"
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
 ///from base of /obj/structure/table_place() and table_push(): (mob/living/user, mob/living/pushed_mob)
-#define COMSIG_MOB_TABLING "mob_tabling"						
+#define COMSIG_MOB_TABLING "mob_tabling"
 ///from base of /mob/verb/examinate(): (atom/target)
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
 ///from /mob/living/handle_eye_contact(): (mob/living/other_mob)
@@ -120,9 +122,12 @@
 	#define MOB_DEADSAY_SIGNAL_INTERCEPT (1<<0)
 ///from /mob/living/emote(): ()
 #define COMSIG_MOB_EMOTE "mob_emote"
-///from base of mob/swap_hand(): (obj/item)
-#define COMSIG_MOB_SWAP_HANDS "mob_swap_hands"
+///from base of mob/swap_hand(): (obj/item/currently_held_item)
+#define COMSIG_MOB_SWAPPING_HANDS "mob_swapping_hands"
 	#define COMPONENT_BLOCK_SWAP (1<<0)
+/// from base of mob/swap_hand(): ()
+/// Performed after the hands are swapped.
+#define COMSIG_MOB_SWAP_HANDS "mob_swap_hands"
 ///from base of /mob/verb/pointed: (atom/A)
 #define COMSIG_MOB_POINTED "mob_pointed"
 ///Mob is trying to open the wires of a target [/atom], from /datum/wires/interactable(): (atom/target)
@@ -141,6 +146,10 @@
 ///Called on user, from base of /datum/strippable_item/try_(un)equip() (atom/target, obj/item/equipping?)
 #define COMSIG_TRY_STRIP "try_strip"
 	#define COMPONENT_CANT_STRIP (1<<0)
+///Called on user by /mob/verb/quick_equip() (atom/target, obj/item/equipping?)
+#define COMSIG_MOB_QUICK_EQUIP "quick_equip"
+	/// return this if you want to stop the rest of the quick equip logic
+	#define COMPONENT_BLOCK_QUICK_EQUIP (1<<0)
 ///From /datum/component/creamed/Initialize()
 #define COMSIG_MOB_CREAMED "mob_creamed"
 ///From /obj/item/gun/proc/check_botched()

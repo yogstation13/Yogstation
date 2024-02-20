@@ -3,7 +3,7 @@
 //Yogs start -- Fixes a very esoteric, mostly-hypothetical bug involving the fact that the /TG/ version doesn't use list() here
 GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(/area/engine/engineering,
 															    /area/engine/supermatter,
-															    /area/engine/atmospherics_engine,
+															    /area/engine/atmos/engine,
 															    /area/ai_monitored/turret_protected/ai)))
 //Yogs end
 
@@ -98,6 +98,7 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(/area/engin
 		thing.change_area(old_area, newA)
 
 	newA.reg_in_areas_in_z()
+	newA.add_delta_areas()
 
 	var/list/firedoors = oldA.firedoors
 	for(var/door in firedoors)

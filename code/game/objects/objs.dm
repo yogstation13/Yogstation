@@ -5,6 +5,10 @@
 	var/obj_flags = CAN_BE_HIT
 	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
 
+	/// Icon to use as a 32x32 preview in crafting menus and such
+	var/icon_preview
+	var/icon_state_preview
+
 	var/damtype = BRUTE
 	var/force = 0
 
@@ -12,6 +16,8 @@
 	var/wound_bonus = 0
 	/// If this attacks a human with no wound armor on the affected body part, add this to the wound mod. Some attacks may be significantly worse at wounding if there's even a slight layer of armor to absorb some of it vs bare flesh
 	var/bare_wound_bonus = 0
+	/// Damage multiplier against structures, machines, mechs, and to a lesser extent silicons
+	var/demolition_mod = 1
 
 	var/datum/armor/armor
 	var/obj_integrity	//defaults to max_integrity
@@ -50,14 +56,14 @@
 				return FALSE
 	return ..()
 
-/obj/Initialize()
+/obj/Initialize(mapload)
 	. = ..()
 	if (islist(armor))
 		armor = getArmor(arglist(armor))
 	else if (!armor)
 		armor = getArmor()
 	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
+		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
@@ -98,17 +104,39 @@
 	else
 		return null
 
+/obj/assume_air_moles(datum/gas_mixture/giver, moles)
+	if(loc)
+		return loc.assume_air_moles(giver, moles)
+	return null
+
+/obj/assume_air_ratio(datum/gas_mixture/giver, ratio)
+	if(loc)
+		return loc.assume_air_ratio(giver, ratio)
+	return null
+/obj/transfer_air(datum/gas_mixture/taker, moles)
+	if(loc)
+		return loc.transfer_air(taker, moles)
+	return null
+
+/obj/transfer_air_ratio(datum/gas_mixture/taker, ratio)
+	if(loc)
+		return loc.transfer_air_ratio(taker, ratio)
+	return null
+
 /obj/remove_air(amount)
 	if(loc)
 		return loc.remove_air(amount)
-	else
-		return null
+	return null
+
+/obj/remove_air_ratio(ratio)
+	if(loc)
+		return loc.remove_air_ratio(ratio)
+	return null
 
 /obj/return_air()
 	if(loc)
 		return loc.return_air()
-	else
-		return null
+	return null
 
 /obj/proc/handle_internal_lifeform(mob/lifeform_inside_me, breath_request)
 	//Return: (NONSTANDARD)
@@ -118,8 +146,7 @@
 
 	if(breath_request>0)
 		var/datum/gas_mixture/environment = return_air()
-		var/breath_percentage = BREATH_VOLUME / environment.return_volume()
-		return remove_air(environment.total_moles() * breath_percentage)
+		return remove_air_ratio(BREATH_VOLUME / environment.return_volume())
 	else
 		return null
 
@@ -176,9 +203,6 @@
 	ui_interact(user)
 
 /obj/proc/container_resist(mob/living/user)
-	return
-
-/obj/proc/update_icon()
 	return
 
 /mob/proc/unset_machine()
@@ -297,7 +321,9 @@
 /obj/examine(mob/user)
 	. = ..()
 	if(obj_flags & UNIQUE_RENAME)
-		. += span_notice("Use a pen on it to rename it or change its description.")
+		. += span_notice("Use a pen on it to rename it[obj_flags & UNIQUE_REDESC ? " or change its description" : ""].")
+	else if(obj_flags & UNIQUE_REDESC)
+		. += span_notice("Use a pen on it to change its description.")
 	if(unique_reskin && !current_skin)
 		. += span_notice("Alt-click it to reskin it.")
 
@@ -329,3 +355,16 @@
 
 /obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
 	return
+
+/obj/proc/freeze()
+	if(HAS_TRAIT(src, TRAIT_FROZEN))
+		return FALSE
+	if(resistance_flags & FREEZE_PROOF)
+		return FALSE
+
+	AddElement(/datum/element/frozen)
+	return TRUE
+
+/// Unfreezes this obj if its frozen
+/obj/proc/unfreeze()
+	SEND_SIGNAL(src, COMSIG_OBJ_UNFREEZE)

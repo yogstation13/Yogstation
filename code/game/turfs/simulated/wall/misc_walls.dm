@@ -9,7 +9,7 @@
 	sheet_amount = 1
 	girder_type = /obj/structure/girder/cult
 
-/turf/closed/wall/mineral/cult/Initialize()
+/turf/closed/wall/mineral/cult/Initialize(mapload)
 	new /obj/effect/temp_visual/cult/turf(src)
 	. = ..()
 
@@ -59,7 +59,7 @@
 	var/heated
 	var/obj/effect/clockwork/overlay/wall/realappearance
 
-/turf/closed/wall/clockwork/Initialize()
+/turf/closed/wall/clockwork/Initialize(mapload)
 	. = ..()
 	new /obj/effect/temp_visual/ratvar/wall(src)
 	new /obj/effect/temp_visual/ratvar/beam(src)
@@ -90,7 +90,7 @@
 		animate(src, color = previouscolor, time = 0.8 SECONDS)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
-/turf/closed/wall/clockwork/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd)
+/turf/closed/wall/clockwork/rcd_act(mob/user, obj/item/construction/rcd/the_rcd)
 	return FALSE
 
 /turf/closed/wall/clockwork/devastate_wall()
@@ -152,24 +152,24 @@
 	bullet_sizzle = TRUE
 
 /turf/closed/wall/rust
-	name = "rusted wall"
-	desc = "A rusted metal wall."
-	icon = 'icons/turf/walls/rusty_wall.dmi'
-	hardness = 45
+	//SDMM supports colors, this is simply for easier mapping
+	//and should be removed on initialize
+	color = COLOR_ORANGE_BROWN
 
-/turf/closed/wall/rust/rust_heretic_act()
-	ScrapeAway()
+/turf/closed/wall/rust/Initialize(mapload)
+	. = ..()
+	color = null
+	AddElement(/datum/element/rust)
 
 /turf/closed/wall/r_wall/rust
-	name = "rusted reinforced wall"
-	desc = "A huge chunk of rusted reinforced metal."
-	icon = 'icons/turf/walls/rusty_reinforced_wall.dmi'
-	hardness = 15
+	//SDMM supports colors, this is simply for easier mapping
+	//and should be removed on initialize
+	color = COLOR_ORANGE_BROWN
 
-/turf/closed/wall/r_wall/rust/rust_heretic_act()
-	if(prob(50))
-		return
-	ScrapeAway()
+/turf/closed/wall/r_wall/rust/Initialize(mapload)
+	. = ..()
+	color = null
+	AddElement(/datum/element/rust)
 
 /turf/closed/wall/mineral/bronze
 	name = "clockwork wall"
@@ -179,3 +179,11 @@
 	sheet_type = /obj/item/stack/tile/bronze
 	sheet_amount = 2
 	girder_type = /obj/structure/girder/bronze
+
+/turf/closed/wall/explosive
+	desc = "A huge chunk of metal used to seperate rooms. This one smells of gunpowder."
+
+/turf/closed/wall/explosive/ex_act(severity)
+	var/obj/item/bombcore/large/bombcore = new(get_turf(src))
+	bombcore.detonate()
+	..()

@@ -148,7 +148,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
 "D" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/template_noop)
 "E" = (

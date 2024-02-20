@@ -10,13 +10,19 @@
 	now_fixed = span_info("The pain in your abdomen has subsided.")
 	var/inflamed
 
-/obj/item/organ/appendix/update_icon()
+/obj/item/organ/appendix/update_name(updates=ALL)
+	. = ..()
 	if(inflamed)
-		icon_state = "appendixinflamed"
 		name = "inflamed appendix"
 	else
-		icon_state = "appendix"
 		name = "appendix"
+
+/obj/item/organ/appendix/update_icon_state()
+	. = ..()
+	if(inflamed)
+		icon_state = "appendixinflamed"
+	else
+		icon_state = "appendix"
 
 /obj/item/organ/appendix/on_life()
 	..()
@@ -30,7 +36,7 @@
 	for(var/datum/disease/appendicitis/A in M.diseases)
 		A.cure()
 		inflamed = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	..()
 
 /obj/item/organ/appendix/Insert(mob/living/carbon/M, special = 0)
@@ -45,13 +51,14 @@
 	return S
 
 /obj/item/organ/appendix/get_availability(datum/species/species)
-	return !(TRAIT_NOHUNGER in species.inherent_traits)
+	return !((TRAIT_NOHUNGER in species.inherent_traits) || (TRAIT_POWERHUNGRY in species.inherent_traits))
 
 /obj/item/organ/appendix/cybernetic
 	name = "cybernetic appendix"
 	desc = "One of the most advanced cybernetic organs ever created."
 	icon_state = "implant-filter"
 	organ_flags = ORGAN_SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES // THE GREATEST INVENTION IN THE HISTORY OF CYBERNETICS
 	now_failing = span_warning("NOT AGAIN!")
 	now_fixed = span_info("Thank god that's over.")
 
@@ -64,12 +71,17 @@
 		inflamed = FALSE
 		M.emote("chuckle") //you really think that will stop me?
 
-/obj/item/organ/appendix/cybernetic/update_icon()
-	icon_state = "implant-filter"
+/obj/item/organ/appendix/cybernetic/update_name(updates=ALL)
+	. = ..()
 	name = "cybernetic appendix"
+
+/obj/item/organ/appendix/cybernetic/update_icon(updates=ALL)
+	. = ..()
+	icon_state = "implant-filter"
 
 /obj/item/organ/appendix/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	damage += 100/severity
+	if(severity > EMP_LIGHT)
+		damage += 20 * (severity - EMP_HEAVY)

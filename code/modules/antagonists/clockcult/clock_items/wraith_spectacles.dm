@@ -12,7 +12,7 @@
 	visor_vars_to_toggle = NONE //we don't actually toggle anything we just set it
 	tint = 3 //this'll get reset, but it won't handle vision updates properly otherwise
 
-/obj/item/clothing/glasses/wraith_spectacles/Initialize()
+/obj/item/clothing/glasses/wraith_spectacles/Initialize(mapload)
 	. = ..()
 	GLOB.all_clockwork_objects += src
 
@@ -49,7 +49,7 @@
 /obj/item/clothing/glasses/wraith_spectacles/proc/blind_cultist(mob/living/victim)
 	var/obj/item/organ/eyes/eyes = victim.getorganslot(ORGAN_SLOT_EYES)
 	if(iscultist(victim))
-		to_chat(victim, "[span_heavy_brass("\"It looks like Nar-Sie's dogs really don't value their eyes.\"")]")
+		to_chat(victim, "[span_heavy_brass("\"It looks like Nar'sie's dogs really don't value their eyes.\"")]")
 		to_chat(victim, span_userdanger("Your eyes explode with horrific pain!"))
 		victim.emote("scream")
 		eyes.applyOrganDamage(eyes.maxHealth)
@@ -75,7 +75,7 @@
 
 /obj/item/clothing/glasses/wraith_spectacles/equipped(mob/living/user, slot)
 	..()
-	if(slot != SLOT_GLASSES || up)
+	if(slot != ITEM_SLOT_EYES || up)
 		return
 	if(HAS_TRAIT(user, TRAIT_BLIND))
 		to_chat(user, "[span_heavy_brass("\"You're blind, idiot. Stop embarrassing yourself.\"")]" )

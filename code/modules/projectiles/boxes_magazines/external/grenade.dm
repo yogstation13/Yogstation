@@ -2,11 +2,11 @@
 	name = "specialized magazine (.75)"
 	icon_state = "75-8"
 	ammo_type = /obj/item/ammo_casing/caseless/a75
-	caliber = "75"
+	caliber = CALIBER_75GYRO
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/m75/update_icon()
-	..()
+/obj/item/ammo_box/magazine/m75/update_icon_state()
+	. = ..()
 	if(ammo_count())
 		icon_state = "75-8"
 	else

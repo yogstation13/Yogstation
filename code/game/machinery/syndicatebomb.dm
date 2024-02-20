@@ -81,15 +81,15 @@
 	if(active && ((detonation_timer <= world.time) || explode_now))
 		active = FALSE
 		timer_set = initial(timer_set)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		try_detonate(TRUE)
 
-/obj/machinery/syndicatebomb/Initialize()
+/obj/machinery/syndicatebomb/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/syndicatebomb(src)
 	if(payload)
 		payload = new payload(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	countdown = new(src)
 	STOP_PROCESSING(SSfastprocess, src)
 
@@ -103,7 +103,8 @@
 	. = ..()
 	. += {"A digital display on it reads "[seconds_remaining()]"."}
 
-/obj/machinery/syndicatebomb/update_icon()
+/obj/machinery/syndicatebomb/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][active ? "-active" : "-inactive"][open_panel ? "-wires" : ""]"
 
 /obj/machinery/syndicatebomb/proc/seconds_remaining()
@@ -133,7 +134,7 @@
 
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		open_panel = !open_panel
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You [open_panel ? "open" : "close"] the wire panel."))
 
 	else if(is_wire_tool(I) && open_panel)
@@ -203,7 +204,7 @@
 		if(!active)
 			visible_message(span_danger("[icon2html(src, viewers(loc))] [timer_set] seconds until detonation, please clear the area."))
 			activate()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			add_fingerprint(user)
 
 			if(payload && !istype(payload, /obj/item/bombcore/training))
@@ -243,7 +244,7 @@
 	open_panel = TRUE
 	timer_set = 120
 
-/obj/machinery/syndicatebomb/empty/Initialize()
+/obj/machinery/syndicatebomb/empty/Initialize(mapload)
 	. = ..()
 	wires.cut_all()
 
@@ -313,7 +314,7 @@
 		holder.delayedbig = FALSE
 		holder.delayedlittle = FALSE
 		holder.explode_now = FALSE
-		holder.update_icon()
+		holder.update_appearance(UPDATE_ICON)
 		holder.updateDialog()
 		STOP_PROCESSING(SSfastprocess, holder)
 
@@ -409,7 +410,7 @@
 		chem_splash(get_turf(src), spread_range, list(reactants), temp_boost)
 
 		// Detonate it again in one second, until it's out of juice.
-		addtimer(CALLBACK(src, .proc/detonate), 10)
+		addtimer(CALLBACK(src, PROC_REF(detonate)), 10)
 
 	// If it's not a time release bomb, do normal explosion
 
@@ -501,16 +502,15 @@
 /obj/item/bombcore/emp
 	name = "EMP payload"
 	desc = "A set of superconducting electromagnetic coils designed to release a powerful pulse to destroy electronics and scramble circuits"
-	range_heavy = 15
-	range_medium = 25
+	range_heavy = 25 // 25 severity, can do some serious damage
 
 /obj/item/bombcore/emp/detonate()
 	if(adminlog)
 		message_admins(adminlog)
 		log_game(adminlog)
 
-	empulse(src, range_heavy, range_medium)
-	
+	empulse(src, range_heavy)
+
 	qdel(src)
 
 ///Syndicate Detonator (aka the big red button)///

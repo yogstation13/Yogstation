@@ -17,7 +17,7 @@
 	var/datum/action/strike/strike = new/datum/action/strike()
 	var/datum/action/drop/drop = new/datum/action/drop()
 
-/datum/martial_art/wrestling/proc/check_streak(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/wrestling/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	switch(streak)
 		if("drop")
 			streak = ""
@@ -192,7 +192,7 @@
 		if (T && isturf(T))
 			if (!D.stat)
 				D.emote("scream")
-			D.throw_at(T, 10, 4, A, TRUE, TRUE, callback = CALLBACK(D, /mob/living/carbon/human.proc/Paralyze, 20))
+			D.throw_at(T, 10, 4, A, TRUE, TRUE, callback = CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, Paralyze), 20))
 	log_combat(A, D, "has thrown with wrestling")
 	return 0
 
@@ -326,7 +326,7 @@
 			A.setDir(turn(A.dir, 90))
 
 		A.forceMove(D.loc)
-		addtimer(CALLBACK(src, .proc/CheckStrikeTurf, A, T), 4)
+		addtimer(CALLBACK(src, PROC_REF(CheckStrikeTurf), A, T), 4)
 
 		A.visible_message("<span class = 'danger'><b>[A] headbutts [D]!</b></span>")
 		D.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
@@ -438,9 +438,10 @@
 	if(A.pulling == D)
 		return 1
 	A.start_pulling(D)
+	if(A.grab_state == GRAB_PASSIVE)
+		A.setGrabState(GRAB_AGGRESSIVE) //Instant agressive grab
 	D.visible_message(span_danger("[A] gets [D] in a cinch!"), \
 								span_userdanger("[A] gets [D] in a cinch!"))
-	D.Stun(rand(60,100))
 	log_combat(A, D, "cinched")
 	return 1
 
@@ -452,7 +453,7 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_BELT)
+	if(slot == ITEM_SLOT_BELT)
 		var/mob/living/carbon/human/H = user
 		style.teach(H,1)
 	return
@@ -462,6 +463,6 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_BELT) == src)
+	if(H.get_item_by_slot(ITEM_SLOT_BELT) == src)
 		style.remove(H)
 	return

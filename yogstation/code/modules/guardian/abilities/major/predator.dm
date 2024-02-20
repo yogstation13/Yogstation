@@ -2,7 +2,7 @@
 	name = "Predator"
 	desc = "The guardian can track down any living being with just a fingerprint or blood sample."
 	cost = 2
-	spell_type = /obj/effect/proc_holder/spell/self/predator
+	spell_type = /datum/action/cooldown/spell/predator
 	has_mode = TRUE
 	mode_on_msg = span_bolddanger("You switch to analysis mode")
 	mode_off_msg = span_bolddanger("You switch to combat mode.")
@@ -20,7 +20,7 @@
 	if (mode)
 		if (!guardian.Adjacent(target))
 			return ..()
-		if (istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/trail_holder))
+		if (istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/blood/trail_holder))
 			guardian.visible_message(span_notice("[guardian] swirls it's finger around in [target] for a bit, before shaking it off."))
 			var/obj/effect/decal/D = target
 			var/list/blood = D.return_blood_DNA()
@@ -37,7 +37,7 @@
 			var/list/prints = O.return_fingerprints()
 			if (LAZYLEN(prints))
 				for (var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-					if (H.dna && prints[md5(H.dna.uni_identity)])
+					if (H.dna && prints[md5(H.dna.unique_identity)])
 						if (!(H in can_track))
 							to_chat(guardian, span_italics(span_notice("We learn the identity of [H.real_name].")))
 							can_track += H
@@ -50,17 +50,18 @@
 							can_track += H
 			return TRUE
 
-/obj/effect/proc_holder/spell/self/predator
+/datum/action/cooldown/spell/predator
 	name = "All-Seeing Predator"
 	desc = "Track down a target whose identity you know of."
-	action_icon = 'yogstation/icons/mob/actions.dmi'
-	action_icon_state = "predator"
-	action_background_icon_state = "bg_demon"
-	human_req = FALSE
-	clothes_req = FALSE
-	charge_max = 600
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "predator"
+	background_icon_state = "bg_demon"
+	
+	cooldown_time = 1 MINUTES
+	spell_requirements = NONE
 
-/obj/effect/proc_holder/spell/self/predator/cast(list/targets, mob/user)
+/datum/action/cooldown/spell/predator/cast(mob/living/user)
+	. = ..()
 	if (!isguardian(user))
 		return
 	var/mob/living/simple_animal/hostile/guardian/G = user
@@ -68,16 +69,14 @@
 		return
 	var/datum/guardian_ability/major/predator/P = G.stats.ability
 	if (!LAZYLEN(P.can_track))
-		revert_cast()
 		to_chat(G, span_notice("You don't have anyone to track!"))
 		return
-	var/mob/living/carbon/human/prey = input(G, "Select your prey!", "All-Seeing Eyes") as null|anything in P.can_track
+	var/mob/living/carbon/human/prey = tgui_input_list(G, "Select your prey!", "All-Seeing Eyes", P.can_track)
 	if (!prey)
-		revert_cast()
 		to_chat(G, span_notice("You didn't select anyone to track!"))
 		return
 	to_chat(G, span_notice("We begin to track [span_bold(prey.real_name)].[get_final_z(prey) == get_final_z(G) ? "" : " They are far away from here[G.stats.potential >= 4 ? ", on z-level [get_final_z(prey)]." : "."]"]"))
-	log_game("[key_name(G)] began to track [key_name(prey)] using Predator.") // why log this? Simple. Some idiot will eventually cry metacomms because someone used this ability to track them to their autistic maint base or random-ass locker.
+	log_game("[key_name(G)] began to track [key_name(prey)] using Predator.") // why log this? Simple. Some idiot will eventually cry metacomms because someone used this ability to track them to their autistic maint base or random-ass locker. //this post was fact-checked by real byond experts: TRUE
 	for (var/datum/status_effect/agent_pinpointer/predator/status in G.status_effects)
 		status.scan_target = prey
 		status.point_to_target()

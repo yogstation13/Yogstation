@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-        
+
       - name: Cache SpacemanDMM
         uses: actions/cache@v1
         with:
@@ -27,7 +27,7 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v2
-      
+
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v1.3.2
 
@@ -50,25 +50,25 @@ jobs:
         id: linter
         run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-          
+
       - name: Annotate Linter
         uses: yogstation13/DreamAnnotate@v2
         if: always()
-        with: 
+        with:
           outputFile: output-annotations.txt
-        
+
   compile:
     name: Compile All Maps
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-        
+
       - name: Install Dependencies
         run: |
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386
-      
+
       - name: Restore Cache BYOND
         uses: actions/cache@v1
         with:
@@ -84,37 +84,65 @@ jobs:
           echo "/home/runner/BYOND/byond/bin" >> $GITHUB_PATH
           echo "LD_LIBRARY_PATH=/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH" >> $GITHUB_ENV
           echo "MANPATH=/home/runner/BYOND/byond/man:$MANPATH" >> $GITHUB_ENV
-          
+
       - name: Compile All Maps
         run: |
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
+  find_all_maps:
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    name: Find Maps to Test
+    runs-on: ubuntu-20.04
+    outputs:
+      maps: ${{ steps.map_finder.outputs.maps }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Find Maps
+        id: map_finder
+        run: |
+          echo "$(ls -mw0 _maps/*.json)" > maps_output.txt
+          sed -i -e s+_maps/+\"+g -e s+.json+\"+g maps_output.txt
+          echo "Maps: $(cat maps_output.txt)"
+          echo "maps={\"paths\":[$(cat maps_output.txt)]}" >> $GITHUB_OUTPUT
   test:
     name: Compile and Run Tests
     runs-on: ubuntu-20.04
+    needs: [find_all_maps]
+    strategy:
+      fail-fast: false
+      matrix:
+        map: ${{ fromJSON(needs.find_all_maps.outputs.maps).paths }}
     services:
       mariadb:
-       image: mariadb/server
-       ports: 
-         - 3306:3306
-       env:
-        MARIADB_ALLOW_EMPTY_PASSWORD: yes
-        
+        image: mariadb
+        ports:
+          - 3306:3306
+        env:
+          MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
+    concurrency:
+      group: ci-${{ github.ref }}-${{ matrix.map }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v2
-        
+
       - name: Install Dependencies
         run: |
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib zlib1g:i386 libssl1.1 libssl1.1:i386
-          
+
       - name: Restore Cache BYOND
         uses: actions/cache@v1
         with:
           path: ~/BYOND
           key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
           restore-keys: ${{ runner.os }}-byond
-          
+
+      - name: Restore Cache Auxmos
+        uses: actions/cache@v1
+        with:
+          path: ~/.byond
+          key: auxmos-${{ hashFiles('dependencies.sh')}}
+
       - name: Restore Yarn Cache
         uses: actions/cache@v2
         with:
@@ -130,29 +158,40 @@ jobs:
           echo "MANPATH=/home/runner/BYOND/byond/man:$MANPATH" >> $GITHUB_ENV
           cd $GITHUB_WORKSPACE
           tools/travis/install_rust_g.sh
-          #tools/travis/install_extools.sh
+          sudo chmod 777 tools/travis/install_extools.sh
+          tools/travis/install_extools.sh
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis;'
           mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
-          mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis_prefixed;'
-          mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
       - name: Compile
         run: |
           tools/build/build --ci dm -DCIBUILDING
-          tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
-          
+          tools/travis/dm.sh -DTRAVISBUILDING -DANSICOLORS yogstation.dme || travis_terminate 1
+
       - name: Prepare Artifacts
         run: |
           mkdir artifacts
           cp yogstation.dmb artifacts
           cp yogstation.rsc artifacts
-      
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v1
-        with: 
-          name: DMB + RSC
+        with:
+          name: DMB + RSC ${{matrix.map}}
           path: ${{github.workspace}}/artifacts
-          
+
       - name: Run Tests
         run: |
-          tools/travis/run_server.sh
-
+          tools/travis/run_server.sh ${{ matrix.map }}
+  results:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    name: Final Map Test
+    needs: [test]
+    steps:
+      - run: exit 1
+        # see https://stackoverflow.com/a/67532120/4907315
+        if: >-
+          ${{
+               contains(needs.*.result, 'failure')
+            || contains(needs.*.result, 'cancelled')
+          }}

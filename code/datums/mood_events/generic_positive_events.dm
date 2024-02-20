@@ -1,3 +1,8 @@
+/datum/mood_event/ally_power
+	description= "<span class='nicegreen'>There are Allies everywhere.</span>\n"
+	mood_change = 1
+	timeout = 2 MINUTES
+
 /datum/mood_event/hug
 	description = "<span class='nicegreen'>Hugs are nice.</span>\n"
 	mood_change = 1
@@ -82,7 +87,7 @@
 	hidden = TRUE
 
 /datum/mood_event/badass_antag
-	description = "I'm a fucking badass and everyone around me knows it. Just look at them; they're all fucking shaking at the mere thought of me around."
+	description = span_nicegreen("I'm a fucking badass and everyone around me knows it. Just look at them; they're all fucking shaking at the mere thought of me around.\n")
 	mood_change = 15
 	hidden = TRUE
 	special_screen_obj = "badass_sun"
@@ -103,7 +108,7 @@
 	description = "<span class='nicegreen'>I have seen the truth, praise the almighty one!</span>\n"
 	mood_change = 40 //maybe being a cultist isnt that bad after all
 	hidden = TRUE
-	
+
 /datum/mood_event/changeling
 	description = "<span class='nicegreen'>No feeling supersedes our hunger.</span>\n" //if i could i'd just make them not get all those human feelings
 	mood_change = 40
@@ -138,7 +143,7 @@
 	timeout = 3 MINUTES
 
 /datum/mood_event/religiously_comforted
-	description = span_nicegreen("You are comforted by the presence of a holy person.")
+	description = span_nicegreen("You are comforted by the presence of a holy person.\n")
 	mood_change = 3
 	timeout = 5 MINUTES
 
@@ -182,6 +187,25 @@
 	description = "<span class='nicegreen'>Sitting in that chair for so long really got me motivated.</span>\n"
 	mood_change = 10
 	timeout = 4 MINUTES
+
+/datum/mood_event/confident_mane
+	description = span_nicegreen("I'm feeling confident with a head full of hair.\n")
+	mood_change = 2
+
+/datum/mood_event/pet_borg
+	description = span_nicegreen("I just love my robotic friends!\n")
+	mood_change = 3
+	timeout = 5 MINUTES
+	required_job = list("Research Director", "Scientist", "Roboticist", "Geneticist") // Only for science and science-adjacent jobs.
+
+/datum/mood_event/nice_tool
+	description = span_nicegreen("I recently used a nice tool.\n")
+	mood_change = 2
+	timeout = 2 MINUTES
+
+/datum/mood_event/adrenaline
+	description = span_nicegreen("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!\n")
+	mood_change = 10
 
 /datum/mood_event/area
 	description = "" //Fill this out in the area

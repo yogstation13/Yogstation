@@ -166,7 +166,7 @@
 	pixel_x = -4;
 	pixel_y = 6
 	},
-/obj/item/storage/box/fancy/cigarettes/cigars/havana,
+/obj/item/storage/fancy/cigarettes/cigars/havana,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "wn" = (

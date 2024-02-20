@@ -31,7 +31,7 @@
 			return
 		if(prob(stage*3))
 			to_chat(affected_mob, span_revennotice("You suddenly feel [pick("sick and tired", "disoriented", "tired and confused", "nauseated", "faint", "dizzy")]..."))
-			affected_mob.confused += 8
+			affected_mob.adjust_confusion(8 SECONDS)
 			affected_mob.adjustStaminaLoss(20)
 			new /obj/effect/temp_visual/revenant(affected_mob.loc)
 		if(stagedamage < stage)
@@ -62,6 +62,6 @@
 					affected_mob.dna.species.handle_hair(affected_mob,"#1d2953")
 				affected_mob.visible_message(span_warning("[affected_mob] looks terrifyingly gaunt..."), span_revennotice("You suddenly feel like your skin is <i>wrong</i>..."))
 				affected_mob.add_atom_colour("#1d2953", TEMPORARY_COLOUR_PRIORITY)
-				addtimer(CALLBACK(src, .proc/cure), 100)
+				addtimer(CALLBACK(src, PROC_REF(cure)), 100)
 		else
 			return

@@ -8,10 +8,10 @@
 
 /obj/item/assembly/igniter/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is trying to ignite [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	user.IgniteMob()
+	user.ignite_mob()
 	return FIRELOSS
 
-/obj/item/assembly/igniter/Initialize()
+/obj/item/assembly/igniter/Initialize(mapload)
 	. = ..()
 	sparks = new
 	sparks.set_up(2, 0, src)

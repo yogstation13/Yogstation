@@ -44,6 +44,7 @@
 			T.on_new(src, loc)
 		seed.prepare_result(src)
 		transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5 //Makes the resulting produce's sprite larger or smaller based on potency!
+		w_class = round((seed.potency / 100) * 2, 1) + 1 //more potent plants are larger
 		add_juice()
 
 
@@ -109,6 +110,12 @@
 	if(seed && seed.get_gene(/datum/plant_gene/trait/squash))
 		squash(user)
 	..()
+
+/obj/item/reagent_containers/food/snacks/grown/attack(mob/living/M, mob/living/user, def_zone)
+	if(!..()) // didn't get overridden
+		if(seed)
+			for(var/datum/plant_gene/trait/T in seed.genes)
+				T.on_attack(src, M, user, def_zone)
 
 /obj/item/reagent_containers/food/snacks/grown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) //was it caught by a mob?

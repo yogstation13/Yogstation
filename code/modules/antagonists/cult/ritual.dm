@@ -5,7 +5,7 @@ This file contains the cult dagger and rune list code
 */
 
 
-/obj/item/melee/cultblade/dagger/Initialize()
+/obj/item/melee/cultblade/dagger/Initialize(mapload)
 	. = ..()
 	if(!LAZYLEN(GLOB.rune_types))
 		GLOB.rune_types = list()
@@ -17,7 +17,7 @@ This file contains the cult dagger and rune list code
 /obj/item/melee/cultblade/dagger/examine(mob/user)
 	. = ..()
 	if(iscultist(user) || isobserver(user))
-		. += {"<span class='cult'>The scriptures of the Geometer. Allows the scribing of runes and access to the knowledge archives of the cult of Nar'Sie.\n
+		. += {"<span class='cult'>The scriptures of the Geometer. Allows the scribing of runes and access to the knowledge archives of the cult of Nar'sie.\n
 		Striking a cult structure will unanchor or reanchor it.\n
 		Striking another cultist with it will purge holy water from them.\n
 		Striking a noncultist, however, will tear their flesh.</span>"}
@@ -78,7 +78,7 @@ This file contains the cult dagger and rune list code
 			return
 		var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
 		if(!(A in summon_objective.summon_spots))
-			to_chat(user, span_cultlarge("The Apocalypse rune will remove a ritual site (where Nar-sie can be summoned), it can only be scribed in [english_list(summon_objective.summon_spots)]!"))
+			to_chat(user, span_cultlarge("The Apocalypse rune will remove a ritual site (where Nar'sie can be summoned), it can only be scribed in [english_list(summon_objective.summon_spots)]!"))
 			return
 		if(summon_objective.summon_spots.len < 2)
 			to_chat(user, span_cultlarge("Only one ritual site remains - it must be reserved for the final summoning!"))
@@ -87,7 +87,7 @@ This file contains the cult dagger and rune list code
 		var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
 		var/datum/objective/sacrifice/sac_objective = locate() in user_antag.cult_team.objectives
 		if(!summon_objective)
-			to_chat(user, span_warning("Nar-Sie does not wish to be summoned!"))
+			to_chat(user, span_warning("Nar'sie does not wish to be summoned!"))
 			return
 		if(sac_objective && !sac_objective.check_completion())
 			to_chat(user, span_warning("The sacrifice is not complete. The portal would lack the power to open if you tried!"))
@@ -104,7 +104,7 @@ This file contains the cult dagger and rune list code
 		if(!(A in summon_objective.summon_spots))
 			to_chat(user, span_cultlarge("The Geometer can only be summoned where the veil is weak - in [english_list(summon_objective.summon_spots)]!"))
 			return
-		var/confirm_final = tgui_alert(user, "This is the FINAL step to summon Nar'Sie; it is a long, painful ritual and the crew will be alerted to your presence", "Are you prepared for the final battle?", list("My life for Nar'Sie!", "No"))
+		var/confirm_final = tgui_alert(user, "This is the FINAL step to summon Nar'sie; it is a long, painful ritual and the crew will be alerted to your presence", "Are you prepared for the final battle?", list("My life for Nar'sie!", "No"))
 		if(confirm_final == "No")
 			to_chat(user, span_cult("You decide to prepare further before scribing the rune."))
 			return

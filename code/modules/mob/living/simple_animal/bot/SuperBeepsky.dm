@@ -18,7 +18,7 @@
 	maxHealth = 50
 	baton_type = /obj/item/toy/sword
 
-/mob/living/simple_animal/bot/secbot/grievous/bullet_act(obj/item/projectile/P)
+/mob/living/simple_animal/bot/secbot/grievous/bullet_act(obj/projectile/P)
 	visible_message("[src] deflects [P] with its energy swords!")
 	playsound(src, 'sound/weapons/blade1.ogg', 50, TRUE)
 	return BULLET_ACT_BLOCK
@@ -30,10 +30,10 @@
 		playsound(src,'sound/effects/beepskyspinsabre.ogg',100,TRUE,-1)
 		stun_attack(AM)
 
-/mob/living/simple_animal/bot/secbot/grievous/Initialize()
+/mob/living/simple_animal/bot/secbot/grievous/Initialize(mapload)
 	. = ..()
 	weapon = new baton_type(src)
-	INVOKE_ASYNC(weapon, /obj/item.proc/attack_self, src)
+	INVOKE_ASYNC(weapon, TYPE_PROC_REF(/obj/item, attack_self), src)
 
 /mob/living/simple_animal/bot/secbot/grievous/Destroy()
 	QDEL_NULL(weapon)
@@ -51,7 +51,7 @@
 	weapon.attack(C, src)
 	playsound(src, 'sound/weapons/blade1.ogg', 50, TRUE, -1)
 	if(C.stat == DEAD)
-		addtimer(CALLBACK(src, .proc/update_icon), 2)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 2)
 		back_to_idle()
 
 
@@ -60,13 +60,13 @@
 		return
 	switch(mode)
 		if(BOT_IDLE)		// idle
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			walk_to(src,0)
 			look_for_perp()	// see if any criminals are in range
 			if(!mode && auto_patrol)	// still idle, and set to patrol
 				mode = BOT_START_PATROL	// switch to patrol mode
 		if(BOT_HUNT)		// hunting for perp
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(src,'sound/effects/beepskyspinsabre.ogg',100,TRUE,-1)
 			// general beepsky doesn't give up so easily, jedi scum
 			if(frustration >= 20)
@@ -107,7 +107,7 @@
 		if((C.name == oldtarget_name) && (world.time < last_found + 100))
 			continue
 
-		threatlevel = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
+		threatlevel = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
 
 		if(!threatlevel)
 			continue
@@ -125,7 +125,7 @@
 			icon_state = "grievous-c"
 			visible_message("<b>[src]</b> points at [C.name]!")
 			mode = BOT_HUNT
-			INVOKE_ASYNC(src, .proc/handle_automated_action)
+			INVOKE_ASYNC(src, PROC_REF(handle_automated_action))
 			break
 		else
 			continue

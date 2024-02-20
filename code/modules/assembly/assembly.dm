@@ -1,10 +1,3 @@
-#define WIRE_RECEIVE		(1<<0)
-#define WIRE_PULSE			(1<<1)
-#define WIRE_PULSE_SPECIAL	(1<<2)
-#define WIRE_RADIO_RECEIVE	(1<<3)
-#define WIRE_RADIO_PULSE	(1<<4)
-#define ASSEMBLY_BEEP_VOLUME 5
-
 /obj/item/assembly
 	name = "assembly"
 	desc = "A small electronic device that should never exist."
@@ -18,7 +11,7 @@
 	throw_range = 7
 
 	var/is_position_sensitive = FALSE	//set to true if the device has different icons for each position.
-										//This will prevent things such as visible lasers from facing the incorrect direction when transformed by assembly_holder's update_icon()
+										//This will prevent things such as visible lasers from facing the incorrect direction when transformed by assembly_holder's update_appearance(UPDATE_ICON)
 	var/secured = TRUE
 	var/list/attached_overlays = null
 	var/obj/item/assembly_holder/holder = null
@@ -58,16 +51,16 @@
 	return TRUE
 
 
-//Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
+//Called when another assembly acts on this one, radio will determine where it came from for wire calcs
 /obj/item/assembly/proc/pulsed(radio = FALSE)
 	if(wire_type & WIRE_RECEIVE)
-		INVOKE_ASYNC(src, .proc/activate)
+		INVOKE_ASYNC(src, PROC_REF(activate))
 	if(radio && (wire_type & WIRE_RADIO_RECEIVE))
-		INVOKE_ASYNC(src, .proc/activate)
+		INVOKE_ASYNC(src, PROC_REF(activate))
 	return TRUE
 
 
-//Called when this device attempts to act on another device, var/radio determines if it was sent via radio or direct
+//Called when this device attempts to act on another device, radio determines if it was sent via radio or direct
 /obj/item/assembly/proc/pulse(radio = FALSE)
 	if(connected && wire_type)
 		connected.pulse_assembly(src)
@@ -89,7 +82,7 @@
 
 /obj/item/assembly/proc/toggle_secure()
 	secured = !secured
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return secured
 
 
@@ -121,6 +114,11 @@
 
 
 /obj/item/assembly/attack_self(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
+		to_chat(user, span_notice("You can't use things!"))
+		return
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+		return
 	if(!user)
 		return FALSE
 	user.set_machine(src)
@@ -128,6 +126,7 @@
 	return TRUE
 
 /obj/item/assembly/interact(mob/user)
+	add_fingerprint(user)
 	return ui_interact(user)
 
 /obj/item/assembly/ui_host(mob/user)

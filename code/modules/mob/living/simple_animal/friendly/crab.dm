@@ -22,7 +22,7 @@
 	var/obj/item/inventory_mask
 	gold_core_spawnable = FRIENDLY_SPAWN
 
-/mob/living/simple_animal/crab/Life()
+/mob/living/simple_animal/crab/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	//CRAB movement
 	if(!ckey && !stat)

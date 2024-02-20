@@ -204,7 +204,7 @@
 "J" = (
 /obj/structure/table,
 /obj/item/stack/spacecash/c20,
-/obj/item/storage/box/fancy/cigarettes/cigars,
+/obj/item/storage/fancy/cigarettes/cigars,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},

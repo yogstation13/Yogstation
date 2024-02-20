@@ -51,7 +51,7 @@
 /datum/uplink_item/stealthy_weapons/door_charge
 	name = "Explosive Airlock Charge"
 	desc = "A small, easily concealable device. It can be applied to an open airlock panel, booby-trapping it. \
-			The next person to use that airlock will trigger an explosion, knocking them down and destroying \
+			The next person to open that airlock will trigger an explosion, knocking them down and destroying \
 			the airlock maintenance panel."
 	item = /obj/item/doorCharge
 	cost = 2
@@ -142,17 +142,29 @@
 	cant_discount = TRUE
 
 /datum/uplink_item/race_restricted/garden_warfare
-	name = "Martial art scroll"
+	name = "Vegetable Parchment"
 	desc = "A special scroll with a martial art, that teaches phytosians of capabilities of their body."
 	cost = 13
 	item = /obj/item/book/granter/martial/garden_warfare
 	restricted_species = list("pod")
 
 /datum/uplink_item/race_restricted/combat_modules
-	name = "Combat Modules Board"
-	desc = "An upgrade board, containing upgrades and programs for your melee attacks."
+	name = "Remnant liquidator information board"
+	desc = "A stolen Remnant information board, containing data pertaining to covert assassination techniques."
 	cost = 11
-	item = /obj/item/book/granter/martial/preternis_stealth
+	item = /obj/item/book/granter/martial/liquidator
+	restricted_species = list("preternis")
+
+/datum/uplink_item/race_restricted/worldbreaker
+	name = "Prototype worldbreaker compound"
+	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost.\
+	Said to cause rapid muscle and plate growth in any Preternis that consumes it. It's believed to have been used by Vxtrin to transform their workers into highly effective commando units.\
+	It is not uncommon for Preterni that have consumed it to be crushed under the weight of their own ever-growing skin. The weight will also prevent use of conventional vehicles."
+	cost = 20
+	player_minimum = 25 //basically a fuckin megafauna
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //too much collateral damage with it's AOEs
+	item = /obj/item/book/granter/martial/worldbreaker
+	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
 
 /datum/uplink_item/race_restricted/explosive_fist_art
@@ -167,9 +179,25 @@
 	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed. \
 			If you install this, it will make you incapable of pushing and pulling. \
 			There are no half-measures, either you succeed or you die."
-	cost = 16
+	cost = 20
+	player_minimum = 25 //maybe we SHOULDNT be giving this to lowpop traitors when theres no sec?
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
+
+/datum/uplink_item/race_restricted/lightning_flow
+	name = "Glowing parchment"
+	desc = "A scroll made of unusual paper, written for ethereals looking to defend themselves while exploring the material world."
+	cost = 12
+	item = /obj/item/book/granter/martial/lightning_flow
+	restricted_species = list("ethereal")
+
+/datum/uplink_item/race_restricted/wirecrawl
+	name = "Modified yellow slime extract"
+	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
+	cost = 8
+	item = /obj/item/book/granter/action/wirecrawl
+	restricted_species = list("ethereal")
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"

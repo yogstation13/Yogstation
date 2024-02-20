@@ -1,6 +1,6 @@
 /obj/item/sharpener
 	name = "whetstone"
-	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "sharpener"
 	desc = "A block that makes things sharp."
 	force = 5
@@ -24,21 +24,20 @@
 	if(istype(I, /obj/item/melee/transforming/energy))
 		to_chat(user, span_warning("You don't think \the [I] will be the thing getting modified if you use it on \the [src]!"))
 		return
-	if(istype(I, /obj/item/twohanded))//some twohanded items should still be sharpenable, but handle force differently. therefore i need this stuff
-		var/obj/item/twohanded/TH = I
-		if(TH.force_wielded >= max)
-			to_chat(user, span_warning("[TH] is much too powerful to sharpen further!"))
-			return
-		if(TH.wielded)
-			to_chat(user, span_warning("[TH] must be unwielded before it can be sharpened!"))
-			return
-		if(TH.force_wielded > initial(TH.force_wielded))
-			to_chat(user, span_warning("[TH] has already been refined before. It cannot be sharpened further!"))
-			return
-		TH.force_wielded = clamp(TH.force_wielded + increment, 0, max)//wieldforce is increased since normal force wont stay
-	if(I.force > initial(I.force))
+	//This block is used to check more things if the item has a relevant component.
+	var/signal_out = SEND_SIGNAL(I, COMSIG_ITEM_SHARPEN_ACT, increment, max) //Stores the bitflags returned by SEND_SIGNAL
+	if(signal_out & COMPONENT_BLOCK_SHARPEN_MAXED) //If the item's components enforce more limits on maximum power from sharpening,  we fail
+		to_chat(user, span_warning("[I] is much too powerful to sharpen further!"))
+		return
+	if(signal_out & COMPONENT_BLOCK_SHARPEN_BLOCKED)
+		to_chat(user, span_warning("[I] is not able to be sharpened right now!"))
+		return
+	if((signal_out & COMPONENT_BLOCK_SHARPEN_ALREADY) || (I.force > initial(I.force) && !signal_out)) //No sharpening stuff twice
 		to_chat(user, span_warning("[I] has already been refined before. It cannot be sharpened further!"))
 		return
+	if(!(signal_out & COMPONENT_BLOCK_SHARPEN_APPLIED)) //If the item has a relevant component and COMPONENT_BLOCK_SHARPEN_APPLIED is returned, the item only gets the throw force increase
+		I.throwforce = clamp(I.throwforce + increment, 0, max)
+		I.wound_bonus = I.wound_bonus + increment //wound_bonus has no cap
 	user.visible_message(span_notice("[user] sharpens [I] with [src]!"), span_notice("You sharpen [I], making it much more deadly than before."))
 	playsound(src, 'sound/items/unsheath.ogg', 25, 1)
 	I.sharpness = SHARP_EDGED
@@ -48,7 +47,7 @@
 	name = "worn out [name]"
 	desc = "[desc] At least, it used to."
 	used = 1
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/sharpener/super
 	name = "super whetstone"

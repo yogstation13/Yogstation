@@ -23,7 +23,7 @@
 		borgo = null
 		stack_trace("[type] initialized outside of a silicon, deleting.")
 		return INITIALIZE_HINT_QDEL
-	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(pda_no_detonate))
 
 /obj/item/modular_computer/tablet/integrated/Destroy()
 	borgo = null
@@ -109,7 +109,7 @@
 	device_theme = "syndicate"
 
 
-/obj/item/modular_computer/tablet/integrated/syndicate/Initialize()
+/obj/item/modular_computer/tablet/integrated/syndicate/Initialize(mapload)
 	. = ..()
 	if(istype(borgo, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = borgo

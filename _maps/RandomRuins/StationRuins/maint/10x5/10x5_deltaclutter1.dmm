@@ -15,7 +15,7 @@
 /turf/open/floor/wood,
 /area/template_noop)
 "e" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/template_noop)
 "f" = (
@@ -45,7 +45,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/template_noop)
 "j" = (
@@ -123,7 +123,7 @@
 	},
 /area/template_noop)
 "s" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "t" = (

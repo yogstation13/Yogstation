@@ -9,7 +9,7 @@
 	var/bar_typing = FALSE
 
 /mob/proc/handle_typing_indicator()
-	INVOKE_ASYNC(src,.proc/typing_indicator_process)
+	INVOKE_ASYNC(src, PROC_REF(typing_indicator_process))
 
 /mob/proc/typing_indicator_process()
 	if(!GLOB.typing_indicators)
@@ -31,7 +31,7 @@
 		else
 			bar_typing = FALSE
 			remove_typing_indicator()
-			
+
 
 /mob/proc/create_typing_indicator()
 	if(typing_overlay) 
@@ -43,17 +43,20 @@
 	for(var/mob/M in listening)
 		if(M.client && M.client.prefs.chat_toggles & CHAT_TYPING_INDICATOR)
 			speech_bubble_recipients.Add(M.client)
-	var/bubble = "default"
-	if(isliving(src))
-		var/mob/living/L = src
-		bubble = L.bubble_icon
-	typing_overlay = image('yogstation/icons/mob/talk.dmi', src, "[bubble]_talking", FLY_LAYER)
-	typing_overlay.appearance_flags = APPEARANCE_UI
-	typing_overlay.invisibility = invisibility
-	typing_overlay.alpha = alpha
+	typing_overlay = get_bubble_icon(bubble_icon)
 	for(var/client/C in speech_bubble_recipients)
 		C.images += typing_overlay
 
+/mob/proc/get_bubble_icon(bubble)
+	bubble = bubble_icon
+	SEND_SIGNAL(src, COMSIG_MOB_CREATE_TYPING_INDICATOR, args)
+	typing_overlay = image('yogstation/icons/mob/talk.dmi', src, "[bubble]_talking", FLY_LAYER)
+	if(a_intent == INTENT_HARM) // ANGRY!!!!
+		typing_overlay.add_overlay("angry")
+	typing_overlay.appearance_flags = APPEARANCE_UI
+	typing_overlay.invisibility = invisibility
+	typing_overlay.alpha = alpha
+	return typing_overlay
 
 /mob/proc/remove_typing_indicator()
 	if(!typing_overlay) 

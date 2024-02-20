@@ -3,8 +3,8 @@
 	var/tainted = FALSE
 
 	action_delegations = list(
-		"give_quirk" = .proc/give_quirk,
-		"remove_quirk" = .proc/remove_quirk,
+		"give_quirk" = PROC_REF(give_quirk),
+		"remove_quirk" = PROC_REF(remove_quirk),
 	)
 
 /datum/preference_middleware/quirks/get_ui_static_data(mob/user)
@@ -17,8 +17,7 @@
 	data["locked_quirks"] = get_locked_quirks()
 
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
-	data["mood_enabled"] = ismoody
+	data["mood_enabled"] = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	return data
 
@@ -31,8 +30,7 @@
 		data["locked_quirks"] = get_locked_quirks()
 	
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
-	data["mood_enabled"] = ismoody
+	data["mood_enabled"] = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	return data
 
@@ -48,6 +46,16 @@
 			"value" = initial(quirk.value),
 			"mood" = initial(quirk.mood_quirk),
 		)
+		quirk = new quirk(no_init = TRUE);
+		var/blacklist_len = LAZYLEN(quirk.job_blacklist)
+		if(blacklist_len)
+			var/fullstring = ""
+			var/spot = 1
+			for(var/thing in quirk.job_blacklist)
+				fullstring += "[spot == 1 ? "" :", "][spot == blacklist_len ? "and " : ""] [thing]"
+				spot ++
+			fullstring += " cannot use this quirk."
+			quirk_info[sanitize_css_class_name(quirk_name)]["blacklisted"] = fullstring
 
 	return list(
 		"max_positive_quirks" = MAX_QUIRKS,

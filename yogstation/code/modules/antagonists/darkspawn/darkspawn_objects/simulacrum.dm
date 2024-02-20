@@ -7,7 +7,7 @@
 	obj_integrity = 25
 	var/mob/living/mimicking
 
-/obj/effect/simulacrum/Initialize()
+/obj/effect/simulacrum/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 	QDEL_IN(src, 100)

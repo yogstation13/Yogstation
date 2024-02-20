@@ -1,5 +1,5 @@
 
-/mob/living/silicon/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+/mob/living/silicon/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (hit_percent <= 0))
 		return 0
@@ -51,9 +51,9 @@
 	return FALSE
 
 //Special snowflake AI damage nos
-/mob/living/silicon/ai/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/silicon/ai/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	return FALSE
 
-/mob/living/silicon/ai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/silicon/ai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	return FALSE
 

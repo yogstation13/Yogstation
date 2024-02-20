@@ -30,7 +30,7 @@
 /obj/structure/spider/stickyweb
 	icon_state = "stickyweb1"
 
-/obj/structure/spider/stickyweb/Initialize()
+/obj/structure/spider/stickyweb/Initialize(mapload)
 	if(prob(50))
 		icon_state = "stickyweb2"
 	. = ..()
@@ -45,7 +45,7 @@
 		if(prob(50))
 			to_chat(mover, span_danger("You get stuck in \the [src] for a moment."))
 			return FALSE
-	else if(istype(mover, /obj/item/projectile))
+	else if(istype(mover, /obj/projectile))
 		return prob(30)
 
 /obj/structure/spider/eggcluster
@@ -59,7 +59,7 @@
 	var/poison_per_bite = 5
 	var/list/faction = list("spiders")
 
-/obj/structure/spider/eggcluster/Initialize()
+/obj/structure/spider/eggcluster/Initialize(mapload)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)
@@ -96,7 +96,7 @@
 	new/obj/item/reagent_containers/food/snacks/spiderling(get_turf(src))
 	. = ..()
 
-/obj/structure/spider/spiderling/Initialize()
+/obj/structure/spider/spiderling/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(6,-6)
 	pixel_y = rand(6,-6)
@@ -133,7 +133,7 @@
 		if(get_dist(src, entry_vent) <= 1)
 			var/list/vents = list()
 			var/datum/pipeline/entry_vent_parent = entry_vent.parents[1]
-			for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in entry_vent_parent.other_atmosmch)
+			for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in entry_vent_parent.other_atmos_machines)
 				vents.Add(temp_vent)
 			if(!vents.len)
 				entry_vent = null
@@ -206,7 +206,7 @@
 	icon_state = "cocoon1"
 	max_integrity = 60
 
-/obj/structure/spider/cocoon/Initialize()
+/obj/structure/spider/cocoon/Initialize(mapload)
 	icon_state = pick("cocoon1","cocoon2","cocoon3")
 	. = ..()
 
@@ -216,7 +216,7 @@
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	to_chat(user, span_notice("You struggle against the tight bonds... (This will take about [DisplayTimeText(breakout_time)].)"))
 	visible_message("You see something struggling and writhing in \the [src]!")
-	if(do_after(user, (breakout_time), src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src)
 			return
 		qdel(src)

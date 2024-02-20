@@ -37,6 +37,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/m45
 	can_suppress = FALSE
+	fire_sound = "sound/weapons/pistolshotsmall.ogg"
 	feedback_types = list(
 		"fire" = 3
 	)
@@ -49,10 +50,11 @@
 	desc = "A robust .50 AE handgun."
 	icon_state = "deagle"
 	force = 14
-	fire_delay = 8
+	fire_delay = 7 //Very slightly slower than the .357
 	mag_type = /obj/item/ammo_box/magazine/m50
 	can_suppress = FALSE
 	mag_display = TRUE
+	fire_sound = "sound/weapons/deaglefire.ogg"
 	feedback_types = list(
 		"fire" = 3
 	)
@@ -89,6 +91,7 @@
 	feedback_types = list(
 		"fire" = 2
 	)
+	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/stickman/pickup(mob/living/user)
 	SHOULD_CALL_PARENT(FALSE)
@@ -107,3 +110,38 @@
 	icon_state = "makeshift"
 	spawnwithmagazine = FALSE
 	fire_delay = 6
+
+/obj/item/gun/ballistic/automatic/pistol/implant
+	name = "Stechkin implant"
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows for easy concealment."
+
+/obj/item/gun/ballistic/automatic/pistol/v38
+	name = "\improper Vatra M38 Pistol"
+	desc = "A moderately-sized handgun that loads irregular .38 special magazines. Commonly found among Serbian police forces. 'Vatra Arms - 2506' is etched into the slide."
+	icon_state = "v38"
+	w_class = WEIGHT_CLASS_NORMAL
+	mag_type = /obj/item/ammo_box/magazine/v38
+	can_suppress = FALSE
+	fire_sound = "sound/weapons/pistolshotmedium.ogg"
+	feedback_types = list(
+		"fire" = 3
+	)
+
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal
+	starting_mag_type = /obj/item/ammo_box/magazine/v38/rubber
+
+/obj/item/gun/ballistic/automatic/pistol/boltpistol
+	name = "Imperial Bolt Pistol"
+	desc = "A smaller, sidearm variant of the Bolter. Typically blows people into chunks with every shot. Fires .75 caliber rounds."
+	icon_state = "bpistol"
+	item_state = "bpistol"
+	icon = 'icons/obj/guns/grimdark.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	mag_type = /obj/item/ammo_box/magazine/boltpistol
+	can_suppress = TRUE // goes hard
+	fire_delay = 2 // beeg gun, hard to fire rapidly
+	fire_sound = "sound/weapons/bolter.ogg"
+
+/obj/item/gun/ballistic/automatic/pistol/boltpistol/admin
+	fire_delay = 0 // you are welcome
+	mag_type = /obj/item/ammo_box/magazine/boltpistol/admin

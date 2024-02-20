@@ -11,7 +11,7 @@ datum/effect_system/fluid_spread/smoke/chem/glitter
 	lifetime = 6 SECONDS
 	opacity = TRUE
 
-/obj/item/grenade/plastic/glitterbomb/Initialize()
+/obj/item/grenade/plastic/glitterbomb/Initialize(mapload)
 	. = ..()
 	create_reagents(20)
 	reagents.add_reagent(glitter_type, 20)
@@ -27,8 +27,8 @@ datum/effect_system/fluid_spread/smoke/chem/glitter
 	user.visible_message(span_suicide("[user] swallows [src]! It looks like [user.p_they()] WANTS TO PARTY!"))
 	target = user
 	moveToNullspace()
-	addtimer(CALLBACK(src, .proc/prime), 99)
-	addtimer(CALLBACK(user, /mob/.proc/gib), 100)
+	addtimer(CALLBACK(src, PROC_REF(prime)), 99)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, gib)), 100)
 	return MANUAL_SUICIDE
 
 /obj/item/grenade/plastic/glitterbomb/pink

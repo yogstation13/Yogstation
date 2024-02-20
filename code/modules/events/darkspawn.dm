@@ -1,7 +1,7 @@
 /datum/round_event_control/darkspawn
 	name = "Spawn Darkspawn(s)"
 	typepath = /datum/round_event/ghost_role/darkspawn
-	max_occurrences = 1
+	max_occurrences = 0 //Disabled
 	min_players = 30
 	dynamic_should_hijack = TRUE
 	gamemode_blacklist = list("darkspawn", "shadowling")

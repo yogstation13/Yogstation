@@ -198,73 +198,78 @@ effective or pretty fucking useless.
 				target = round(target)
 				wavelength = clamp(target, 0, 120)
 
-/obj/item/shadowcloak
+/obj/item/storage/belt/military/shadowcloak
 	name = "cloaker belt"
-	desc = "Makes you invisible for short periods of time. Recharges in darkness, but must be turned on to recharge."
+	desc = "A tactical belt that can make you invisible for short periods of time. Recharges in darkness, but must be turned on to recharge."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
-	slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("whipped", "lashed", "disciplined")
 
 	var/mob/living/carbon/human/user = null
 	var/charge = 300
 	var/max_charge = 300
 	var/on = FALSE
 	var/old_alpha = 0
+	var/charge_speed = 25
+	var/decay_speed = 7.5
+	var/move_loss = 100
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/shadowcloak/ui_action_click(mob/user)
-	if(user.get_item_by_slot(SLOT_BELT) == src)
+/obj/item/storage/belt/military/shadowcloak/ui_action_click(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_BELT) == src)
 		if(!on)
 			Activate(usr)
 		else
 			Deactivate()
 	return
 
-/obj/item/shadowcloak/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_BELT)
+/obj/item/storage/belt/military/shadowcloak/item_action_slot_check(slot, mob/user)
+	if(slot == ITEM_SLOT_BELT)
 		return 1
 
-/obj/item/shadowcloak/proc/Activate(mob/living/carbon/human/user)
+/obj/item/storage/belt/military/shadowcloak/proc/Activate(mob/living/carbon/human/user)
 	if(!user)
 		return
 	to_chat(user, span_notice("You activate [src]."))
 	src.user = user
 	START_PROCESSING(SSobj, src)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	old_alpha = user.alpha
 	on = TRUE
 
-/obj/item/shadowcloak/proc/Deactivate()
+/obj/item/storage/belt/military/shadowcloak/proc/Deactivate()
 	to_chat(user, span_notice("You deactivate [src]."))
 	STOP_PROCESSING(SSobj, src)
 	if(user)
 		user.alpha = old_alpha
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	on = FALSE
 	user = null
 
-/obj/item/shadowcloak/dropped(mob/user)
+/obj/item/storage/belt/military/shadowcloak/dropped(mob/user)
 	..()
-	if(user && user.get_item_by_slot(SLOT_BELT) != src)
+	if(user && user.get_item_by_slot(ITEM_SLOT_BELT) != src)
 		Deactivate()
 
-/obj/item/shadowcloak/process(delta_time)
-	if(user.get_item_by_slot(SLOT_BELT) != src)
+/obj/item/storage/belt/military/shadowcloak/process(delta_time)
+	if(user.get_item_by_slot(ITEM_SLOT_BELT) != src)
 		Deactivate()
 		return
 	var/turf/T = get_turf(src)
 	if(on)
 		var/lumcount = T.get_lumcount()
 		if(lumcount > 0.3)
-			charge = max(0,charge - 12.5 * delta_time)//Quick decrease in light
+			charge = max(0,charge - decay_speed * delta_time)//Slow decreas in light
 		else
-			charge = min(max_charge,charge + 25 * delta_time) //Charge in the dark
+			charge = min(max_charge,charge + charge_speed * delta_time) //Charge in the dark
 		animate(user,alpha = clamp(255 - charge,0,255),time = 1 SECONDS)
 
+/obj/item/storage/belt/military/shadowcloak/proc/on_move(mob/user, Dir, Forced = FALSE)
+	charge = max(0,charge - move_loss)	//You can creep in the dark but not run
 
 /obj/item/jammer
-	name = "radio jammer"
-	desc = "Device used to disrupt nearby radio communication."
+	name = "signal jammer"
+	desc = "Device used to disrupt nearby radio communications and suit sensors."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "jammer"
 	var/active = FALSE
@@ -277,4 +282,4 @@ effective or pretty fucking useless.
 		GLOB.active_jammers |= src
 	else
 		GLOB.active_jammers -= src
-	update_icon()
+	update_appearance(UPDATE_ICON)

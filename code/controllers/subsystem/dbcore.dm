@@ -16,6 +16,8 @@ SUBSYSTEM_DEF(dbcore)
 
 	var/connection  // Arbitrary handle returned from rust_g.
 
+	var/db_daemon_started = FALSE
+
 /datum/controller/subsystem/dbcore/Initialize()
 	//We send warnings to the admins during subsystem init, as the clients will be New'd and messages
 	//will queue properly with goonchat
@@ -51,6 +53,7 @@ SUBSYSTEM_DEF(dbcore)
 		qdel(query_round_shutdown)
 	if(IsConnected())
 		Disconnect()
+	stop_db_daemon()
 
 //nu
 /datum/controller/subsystem/dbcore/can_vv_get(var_name)
@@ -74,6 +77,8 @@ SUBSYSTEM_DEF(dbcore)
 
 	if(!CONFIG_GET(flag/sql_enabled))
 		return FALSE
+	
+	stop_db_daemon()
 
 	var/user = CONFIG_GET(string/feedback_login)
 	var/pass = CONFIG_GET(string/feedback_password)
@@ -81,7 +86,8 @@ SUBSYSTEM_DEF(dbcore)
 	var/address = CONFIG_GET(string/address)
 	var/port = CONFIG_GET(number/port)
 	var/timeout = max(CONFIG_GET(number/async_query_timeout), CONFIG_GET(number/blocking_query_timeout))
-	var/thread_limit = CONFIG_GET(number/bsql_thread_limit)
+	var/min_sql_connections = CONFIG_GET(number/pooling_min_sql_connections)
+	var/max_sql_connections = CONFIG_GET(number/pooling_max_sql_connections)
 
 	var/result = json_decode(rustg_sql_connect_pool(json_encode(list(
 		"host" = address,
@@ -89,10 +95,10 @@ SUBSYSTEM_DEF(dbcore)
 		"user" = user,
 		"pass" = pass,
 		"db_name" = db,
-		"max_threads" = 5,
 		"read_timeout" = timeout,
 		"write_timeout" = timeout,
-		"max_threads" = thread_limit,
+		"min_threads" = min_sql_connections,
+		"max_threads" = max_sql_connections,
 	))))
 	. = (result["status"] == "ok")
 	if (.)
@@ -195,9 +201,9 @@ SUBSYSTEM_DEF(dbcore)
 	for (var/thing in querys)
 		var/datum/DBQuery/query = thing
 		if (warn)
-			INVOKE_ASYNC(query, /datum/DBQuery.proc/warn_execute)
+			INVOKE_ASYNC(query, TYPE_PROC_REF(/datum/DBQuery, warn_execute))
 		else
-			INVOKE_ASYNC(query, /datum/DBQuery.proc/Execute)
+			INVOKE_ASYNC(query, TYPE_PROC_REF(/datum/DBQuery, Execute))
 
 	for (var/thing in querys)
 		var/datum/DBQuery/query = thing
@@ -278,6 +284,47 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 	else
 		. = Query.Execute(async)
 	qdel(Query)
+
+/datum/controller/subsystem/dbcore/proc/start_db_daemon()
+	set waitfor = FALSE
+
+	if (db_daemon_started)
+		return
+
+	db_daemon_started = TRUE
+
+	var/daemon = CONFIG_GET(string/db_daemon)
+	if (!daemon)
+		return
+
+	ASSERT(fexists(daemon), "Configured db_daemon doesn't exist")
+
+	var/list/result = world.shelleo("echo \"Starting ezdb daemon, do not close this window\" && [daemon]")
+	var/result_code = result[1]
+	if (!result_code || result_code == 1)
+		return
+
+	stack_trace("Failed to start DB daemon: [result_code]\n[result[3]]")
+
+/datum/controller/subsystem/dbcore/proc/stop_db_daemon()
+	set waitfor = FALSE
+
+	if (!db_daemon_started)
+		return
+
+	db_daemon_started = FALSE
+
+	var/daemon = CONFIG_GET(string/db_daemon)
+	if (!daemon)
+		return
+
+	switch (world.system_type)
+		if (MS_WINDOWS)
+			var/list/result = world.shelleo("Get-Process | ? { $_.Path -eq '[daemon]' } | Stop-Process")
+			ASSERT(result[1], "Failed to stop DB daemon: [result[3]]")
+		if (UNIX)
+			var/list/result = world.shelleo("kill $(pgrep -f '[daemon]')")
+			ASSERT(result[1], "Failed to stop DB daemon: [result[3]]")
 
 /datum/DBQuery
 	// Inputs

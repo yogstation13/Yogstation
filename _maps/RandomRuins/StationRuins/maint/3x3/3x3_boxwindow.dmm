@@ -37,7 +37,7 @@
 /area/template_noop)
 "F" = (
 /obj/item/storage/box/matches,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /obj/structure/table_frame,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"

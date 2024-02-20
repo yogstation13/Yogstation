@@ -11,7 +11,7 @@
 	health = 25
 	maxHealth = 25
 	speed = 1.25
-	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
+	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	gold_core_spawnable = FRIENDLY_SPAWN
 	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
@@ -38,7 +38,7 @@
 	else
 		playsound(loc, 'sound/voice/moth/scream_moth.ogg', 50, TRUE)
 
-/mob/living/simple_animal/pet/mothroach/Life()
+/mob/living/simple_animal/pet/mothroach/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!stat && !buckled && !client)
 		if(prob(1))

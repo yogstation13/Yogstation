@@ -65,6 +65,9 @@
 			return TRUE
 	return FALSE
 
+/turf/open/lava/rust_heretic_act()
+	return FALSE
+	
 /turf/open/lava/singularity_act()
 	return
 
@@ -142,8 +145,8 @@
 
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
-				var/obj/item/clothing/S = C.get_item_by_slot(SLOT_WEAR_SUIT)
-				var/obj/item/clothing/H = C.get_item_by_slot(SLOT_HEAD)
+				var/obj/item/clothing/S = C.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+				var/obj/item/clothing/H = C.get_item_by_slot(ITEM_SLOT_HEAD)
 
 				if(S && H && S.clothing_flags & LAVAPROTECT && H.clothing_flags & LAVAPROTECT)
 					return
@@ -154,7 +157,7 @@
 			L.adjustFireLoss(20 * delta_time)
 			if(L) //mobs turning into object corpses could get deleted here.
 				L.adjust_fire_stacks(20 * delta_time)
-				L.IgniteMob()
+				L.ignite_mob()
 
 /turf/open/lava/smooth
 	name = "lava"
@@ -168,6 +171,8 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
+
+/turf/open/lava/smooth/lava_land_surface/no_shelter //snowflake version that survival pods won't spawn in
 
 /turf/open/lava/smooth/airless
 	initial_gas_mix = AIRLESS_ATMOS

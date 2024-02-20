@@ -10,7 +10,7 @@
 	desc = "Just your average condiment container."
 	icon = 'yogstation/icons/obj/food/containers.dmi' //yogs changed icon path
 	icon_state = "emptycondiment"
-	reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER_NOSPILL
 	possible_transfer_amounts = list(1, 5, 10, 15, 20, 25, 30, 50)
 	volume = 50
 	//Possible_states has the reagent type as key and a list of, in order, the icon_state, the name and the desc as values. Used in the on_reagent_change(changetype) to change names, descs and sprites.
@@ -28,7 +28,7 @@
 	 )
 	var/originalname = "condiment" //Can't use initial(name) for this. This stores the name set by condimasters.
 
-/obj/item/reagent_containers/food/condiment/Initialize()
+/obj/item/reagent_containers/food/condiment/Initialize(mapload)
 	. = ..()
 	//possible_states = typelist("possible_states", possible_states) // yogs -- commented out
 	initialize_possible_states() // yogs
@@ -50,7 +50,7 @@
 		user.visible_message(span_notice("[user] swallows some of contents of \the [src]."), span_notice("You swallow some of the contents of \the [src]."))
 	else
 		user.visible_message(span_warning("[user] attempts to feed [M] from [src]."))
-		if(!do_mob(user, M))
+		if(!do_after(user, 3 SECONDS, M))
 			return
 		if(!reagents || !reagents.total_volume)
 			return // The condiment might be empty after the delay.
@@ -185,11 +185,11 @@
 		icon_state = "emptyshaker"
 	else
 		icon_state = "peppermillsmall"
-		
+
 /obj/item/reagent_containers/food/condiment/mesophilic
 	name = "bottle of mesophilic culture"
 	desc = "A mixture of mesophilic bacteria used to make most cheese."
-	icon_state = "mixedcondiments"
+	icon_state = "mesophilic"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/mesophilicculture = 30)
@@ -198,7 +198,7 @@
 /obj/item/reagent_containers/food/condiment/pcandidum
 	name = "bottle of penicillium candidum"
 	desc = "A special bacterium used to make brie."
-	icon_state = "mixedcondiments"
+	icon_state = "penicillium_c"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/penicilliumcandidum = 30)
@@ -207,7 +207,7 @@
 /obj/item/reagent_containers/food/condiment/proqueforti
 	name = "bottle of penicillium roqueforti"
 	desc = "A special bacterium used to make blue cheese."
-	icon_state = "mixedcondiments"
+	icon_state = "penicillium_r"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/penicilliumroqueforti = 30)
@@ -216,7 +216,7 @@
 /obj/item/reagent_containers/food/condiment/thermophilic
 	name = "bottle of thermophilic culture"
 	desc = "A mixture of thermophilic bacteria used to make some cheese."
-	icon_state = "mixedcondiments"
+	icon_state = "thermophilic"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/thermophilicculture = 30)
@@ -232,6 +232,13 @@
 	list_reagents = list(/datum/reagent/consumable/milk = 50)
 	possible_states = list()
 
+/obj/item/reagent_containers/food/condiment/cream
+	name = "milk cream"
+	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
+	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon_state = "cream"
+	list_reagents = list(/datum/reagent/consumable/cream = 100)
+
 /obj/item/reagent_containers/food/condiment/flour
 	name = "flour sack"
 	desc = "A big bag of flour. Good for baking!"
@@ -243,7 +250,7 @@
 /obj/item/reagent_containers/food/condiment/flour/on_reagent_change(changetype) //born of intense hatred
 	if(!reagents.has_reagent(/datum/reagent/water, 10))
 		return ..()
-	
+
 	var/target
 	var/L
 	for(var/obj/structure/table/S in loc)
@@ -294,7 +301,19 @@
 	possible_states = list()
 	foodtype = EGG
 
+/obj/item/reagent_containers/food/condiment/bbqsauce
+	name = "bbq sauce"
+	desc = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
+	icon_state = "bbqsauce"
+	list_reagents = list(/datum/reagent/consumable/bbqsauce = 50)
+	possible_states = list()
 
+/obj/item/reagent_containers/food/condiment/peanutbutter
+	name = "peanut butter jar"
+	desc = "Tasty, fattening processed peanuts in a jar."
+	icon_state = "peanutbutter"
+	list_reagents = list(/datum/reagent/consumable/peanut_butter = 50)
+	possible_states = list()
 
 //Food packs. To easily apply deadly toxi... delicious sauces to your food!
 
@@ -315,6 +334,7 @@
 		/datum/reagent/consumable/cornoil = list("condi_cornoil", "Corn Oil", "A delicious oil used in cooking. Made from corn"),
 		/datum/reagent/consumable/sugar = list("condi_sugar", "Sugar", "Tasty spacey sugar!"),
 		/datum/reagent/consumable/astrotame = list("condi_astrotame", "Astrotame", "The sweetness of a thousand sugars but none of the calories."),
+		/datum/reagent/consumable/bbqsauce = list("condi_bbq", "BBQ Sauce", "Hand wipes not included."),
 		)
 
 /obj/item/reagent_containers/food/condiment/pack/attack(mob/M, mob/user, def_zone) //Can't feed these to people directly.
@@ -372,4 +392,25 @@
 /obj/item/reagent_containers/food/condiment/pack/astrotame
 	name = "astrotame pack"
 	originalname = "astrotame"
-	list_reagents = list(/datum/reagent/consumable/astrotame = 5)
+	list_reagents = list(/datum/reagent/consumable/astrotame = 10)
+
+/obj/item/reagent_containers/food/condiment/pack/bbqsauce
+	name = "bbq sauce pack"
+	originalname = "bbq sauce"
+	list_reagents = list(/datum/reagent/consumable/bbqsauce = 10)
+
+/obj/item/reagent_containers/food/condiment/pack/sugar
+	name = "sugar pack"
+	originalname = "sugar"
+	list_reagents = list(/datum/reagent/consumable/sugar = 10)
+
+/obj/item/reagent_containers/food/condiment/pack/creamer
+	name = "creamer" /// dont laugh you child
+	originalname = "cream"
+	list_reagents = list(/datum/reagent/consumable/cream = 10)
+
+/obj/item/reagent_containers/food/condiment/pack/chocolate
+	name = "chocolate"
+	originalname = "chocolate"
+	list_reagents = list(/datum/reagent/consumable/chocolate = 10)
+

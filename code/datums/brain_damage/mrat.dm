@@ -119,7 +119,7 @@
 /datum/action/innate/mrat_costume
 	name = "Change Appearance"
 	desc = "Shape your appearance to whatever you desire."
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	background_icon_state = "bg_revenant"
 	button_icon_state = "ninja_phase"
 
@@ -130,7 +130,7 @@
 /datum/action/innate/mrat_leave
 	name = "Leave"
 	desc = "Leave and return to your ghost form."
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	background_icon_state = "bg_revenant"
 	button_icon_state = "beam_up"
 

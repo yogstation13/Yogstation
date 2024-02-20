@@ -1,5 +1,6 @@
 /datum/symptom/radiation
 	name = "Ionising Cellular Emission"
+	icon = "symptom.ionizing_cellular_emission.gif"
 	desc = "Causes the host's cells to emit ionising radiation."
 	stealth = -3
 	resistance = 2
@@ -15,6 +16,7 @@
 		"Transmission 12" = "Makes the host irradiate others around them as well.",
 		"Stage Speed 8" = "Host takes radiation damage faster."
 	)
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/radiation/Start(datum/disease/advance/A)
 	. = ..()

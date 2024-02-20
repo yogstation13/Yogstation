@@ -1,3 +1,8 @@
+#define ORGANIC_BRUTE "bruising"
+#define ORGANIC_BURN "burns"
+#define ROBOTIC_BRUTE "denting"
+#define ROBOTIC_BURN "charring"
+
 /mob/living/carbon/human/examine(mob/user)
 //this is very slightly better than it was because you can use it more places. still can't do \his[src] though.
 	var/t_He = p_they(TRUE)
@@ -7,6 +12,9 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	var/obscure_name
+	var/robotic = FALSE //robotic mobs look different under certain circumstances
+	if(mob_biotypes & MOB_ROBOTIC)//please someone tell me this is stupid and i can do it all in one line
+		robotic = TRUE
 
 	if(isliving(user))
 		var/mob/living/L = user
@@ -15,7 +23,7 @@
 
 	. = list("<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
-	var/vampDesc = ReturnVampExamine(user) // Fulpstation Bloodsuckers edit STARTS
+	var/vampDesc = return_vamp_examine(user) // Fulpstation Bloodsuckers edit STARTS
 	var/vassDesc = ReturnVassalExamine(user)
 	if(vampDesc != "")
 		. += vampDesc
@@ -23,10 +31,9 @@
 		. += vassDesc // Fulpstation Bloodsucker edit ENDS
 
 	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	//uniform
-	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
+	if(w_uniform && !(ITEM_SLOT_ICLOTHING in obscured))
 		//accessory
 		var/accessory_msg
 		if(istype(w_uniform, /obj/item/clothing/under))
@@ -40,9 +47,16 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	//suit/armor
 	if(wear_suit)
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		//badge
+		var/badge_msg
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.attached_badge)
+				badge_msg += " with [icon2html(S.attached_badge, user)] \a [S.attached_badge]"
+
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)][badge_msg]."
 		//suit/armor storage
-		if(s_store && !(SLOT_S_STORE in obscured))
+		if(s_store && !(ITEM_SLOT_SUITSTORE in obscured))
 			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]."
 	//back
 	if(back)
@@ -55,7 +69,7 @@
 
 	var/datum/component/forensics/FR = GetComponent(/datum/component/forensics)
 	//gloves
-	if(gloves && !(SLOT_GLOVES in obscured))
+	if(gloves && !(ITEM_SLOT_GLOVES in obscured))
 		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
 	else if(FR && length(FR.blood_DNA))
 		var/hand_number = get_num_arms(FALSE)
@@ -63,38 +77,40 @@
 			. += span_warning("[t_He] [t_has] [hand_number > 1 ? "" : "a"] blood-stained hand[hand_number > 1 ? "s" : ""]!")
 
 	//handcuffed?
-
-	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
-			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!")
-		else
-			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!")
+		. += span_warning("[t_He] [t_is] handcuffed with [handcuffed.get_examine_string(user)]!")
+
+	//legcuffed?
+	if(legcuffed)
+		. += span_warning("[t_He] [t_is] legcuffed with [legcuffed.get_examine_string(user)]!")
 
 	//belt
 	if(belt)
 		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist."
 
 	//shoes
-	if(shoes && !(SLOT_SHOES in obscured))
+	if(shoes && !(ITEM_SLOT_FEET in obscured))
 		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
 
 	//mask
-	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
+	if(wear_mask && !(ITEM_SLOT_MASK in obscured))
 		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face."
 
-	if(wear_neck && !(SLOT_NECK in obscured))
+	if(wear_neck && !(ITEM_SLOT_NECK in obscured))
 		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck."
 
 	//eyes
-	if(!(SLOT_GLASSES in obscured))
+	if(!(ITEM_SLOT_EYES in obscured))
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
-			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
+			if(isipc(src))
+				. += span_warning("<B>Their monitor hums quietly, with an underlying collection of blood-red pixels swirling faintly.</B>")
+			else
+				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears
-	if(ears && !(SLOT_EARS in obscured))
+	if(ears && !(ITEM_SLOT_EARS in obscured))
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
 
 	//ID
@@ -103,15 +119,6 @@
 
 	//Status effects
 	. += status_effect_examines()
-
-	//Jitters
-	switch(jitteriness)
-		if(300 to INFINITY)
-			. += span_warning("<B>[t_He] [t_is] convulsing violently!</B>")
-		if(200 to 300)
-			. += span_warning("[t_He] [t_is] extremely jittery.")
-		if(100 to 200)
-			. += span_warning("[t_He] [t_is] twitching ever so slightly.")
 
 	if(islist(dna.features) && dna.features["wings"] && dna.features["wings"] != "None")
 		var/badwings = ""
@@ -131,7 +138,7 @@
 				highest_trauma = 2
 			else if(istype(B, /datum/brain_trauma/mild) && highest_trauma < 1)
 				highest_trauma = 1
-		
+
 		switch(highest_trauma)
 			if(1)
 				. += span_warning("[t_His] behavior seems a bit off.")
@@ -210,22 +217,22 @@
 	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor bruising.\n"
+				msg += "[t_He] [t_has] minor [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE].\n"
 			else if(temp < 50)
-				msg += "[t_He] [t_has] <b>moderate</b> bruising!\n"
+				msg += "[t_He] [t_has] <b>moderate</b> [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE]!\n"
 			else if(src.dna.species.id == "egg" && temp >= 200)
 				msg += "[t_He] look[p_s()] ready to crack into a million pieces!"
 			else
-				msg += "<B>[t_He] [t_has] severe bruising!</B>\n"
+				msg += "<B>[t_He] [t_has] severe [robotic ? ROBOTIC_BRUTE : ORGANIC_BRUTE]!</B>\n"
 
 		temp = getFireLoss()
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor burns.\n"
+				msg += "[t_He] [t_has] minor [robotic ? ROBOTIC_BURN : ORGANIC_BURN].\n"
 			else if (temp < 50)
-				msg += "[t_He] [t_has] <b>moderate</b> burns!\n"
+				msg += "[t_He] [t_has] <b>moderate</b> [robotic ? ROBOTIC_BURN : ORGANIC_BURN]!\n"
 			else
-				msg += "<B>[t_He] [t_has] severe burns!</B>\n"
+				msg += "<B>[t_He] [t_has] severe [robotic ? ROBOTIC_BURN : ORGANIC_BURN]!</B>\n"
 
 		temp = getCloneLoss()
 		if(temp)
@@ -235,7 +242,7 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-				
+
 	if(surgeries.len)
 		var/surgery_text
 		for(var/datum/surgery/S in surgeries)
@@ -245,15 +252,10 @@
 				surgery_text += ", [S.operated_bodypart]"
 		msg += "[surgery_text].\n"
 
-	switch(fire_stacks)
-		if(1 to INFINITY)
-			msg += "[t_He] [t_is] covered in something flammable.\n"
-		if(-5 to -1)
-			msg += "[t_He] look[p_s()] a little damp.\n"
-		if(-10 to -5)
-			msg += "[t_He] look[p_s()] a little soaked.\n"
-		if(-INFINITY to -10)
-			msg += "[t_He] look[p_s()] drenched.\n"
+	if(has_status_effect(/datum/status_effect/fire_handler/fire_stacks))
+		msg += "[t_He] [t_is] covered in something flammable.\n"
+	if(has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
+		msg += "[t_He] look[p_s()] a little soaked.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
@@ -261,20 +263,21 @@
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
 
-	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
-		msg += "[t_He] [t_is] severely malnourished.\n"
-	else if(nutrition >= NUTRITION_LEVEL_FAT)
-		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
-			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else
-			msg += "[t_He] [t_is] quite chubby.\n"
-	switch(disgust)
-		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
-			msg += "[t_He] look[p_s()] a bit grossed out.\n"
-		if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
-			msg += "[t_He] look[p_s()] really grossed out.\n"
-		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
-			msg += "[t_He] look[p_s()] extremely disgusted.\n"
+	if(!HAS_TRAIT(src, TRAIT_POWERHUNGRY)) //robots don't visibly show their hunger
+		if(nutrition < NUTRITION_LEVEL_STARVING - 50)
+			msg += "[t_He] [t_is] severely malnourished.\n"
+		else if(nutrition >= NUTRITION_LEVEL_FAT)
+			if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
+				msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
+			else
+				msg += "[t_He] [t_is] quite chubby.\n"
+		switch(disgust)
+			if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
+				msg += "[t_He] look[p_s()] a bit grossed out.\n"
+			if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
+				msg += "[t_He] look[p_s()] really grossed out.\n"
+			if(DISGUST_LEVEL_DISGUSTED to INFINITY)
+				msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
 
 	var/apparent_blood_volume = blood_volume
@@ -359,22 +362,10 @@
 		else
 			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
 
-	if(!appears_dead)
-		if(drunkenness && !skipface) //Drunkenness
-			switch(drunkenness)
-				if(11 to 21)
-					msg += "[t_He] [t_is] slightly flushed.\n"
-				if(21.01 to 41) //.01s are used in case drunkenness ends up to be a small decimal
-					msg += "[t_He] [t_is] flushed.\n"
-				if(41.01 to 51)
-					msg += "[t_He] [t_is] quite flushed and [t_his] breath smells of alcohol.\n"
-				if(51.01 to 61)
-					msg += "[t_He] [t_is] very flushed and [t_his] movements jerky, with breath reeking of alcohol.\n"
-				if(61.01 to 91)
-					msg += "[t_He] look[p_s()] like a drunken mess.\n"
-				if(91.01 to INFINITY)
-					msg += "[t_He] [t_is] a shitfaced, slobbering wreck.\n"
+	if((!glasses || !wear_suit) && mind?.has_antag_datum(ANTAG_DATUM_VEIL))
+		msg += "[t_His] whole body is covered in sigils!\n"
 
+	if(!appears_dead)
 		if(src != user)
 			if(HAS_TRAIT(user, TRAIT_EMPATH))
 				if (a_intent != INTENT_HELP)
@@ -411,11 +402,13 @@
 		if(getorgan(/obj/item/organ/brain))
 			if(!key)
 				msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
-			else if(!client)
+			else if(!client && !fake_client)
 				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 	var/scar_severity = 0
 	for(var/i in all_scars)
@@ -456,7 +449,7 @@
 					var/cyberimp_detect
 					for(var/obj/item/organ/cyberimp/CI in internal_organs)
 						if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)
-							cyberimp_detect += "[name] is modified with a [CI.name]."
+							cyberimp_detect += "[name] is modified with a [CI.name].\n"
 					if(cyberimp_detect)
 						. += "Detected cybernetic modifications:"
 						. += cyberimp_detect
@@ -486,7 +479,7 @@
 							"<a href='?src=[REF(src)];hud=s;view_comment=1'>\[View comment log\]</a>",
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
-		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
+		. += "<span class='info'><b>Quirks:</b> [traitstring]</span><br>"
 	. += "</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
@@ -511,13 +504,13 @@
 	var/t_his = p_their()
 	var/t_has = p_have()
 	var/t_is = p_are()
-	
+
 	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
 
 	//uniform
-	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
+	if(w_uniform && !(ITEM_SLOT_ICLOTHING in obscured))
 		//accessory
 		var/accessory_msg
 		if(istype(w_uniform, /obj/item/clothing/under))
@@ -531,7 +524,14 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	//suit/armor
 	if(wear_suit)
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		//badge
+		var/badge_msg
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.attached_badge)
+				badge_msg += " with [icon2html(S.attached_badge, user)] \a [S.attached_badge]"
+
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)][badge_msg]."
 	//back
 	if(back)
 		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back."
@@ -542,41 +542,44 @@
 			. += "[t_He] [t_is] holding a [weightclass2text(I.w_class)] item in [t_his] [get_held_index_name(get_held_index_of_item(I))]."
 
 	//gloves
-	if(gloves && !(SLOT_GLOVES in obscured))
+	if(gloves && !(ITEM_SLOT_GLOVES in obscured))
 		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
 
 
 	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
-			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!")
-		else
-			. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!")
+		. += span_warning("[t_He] [t_is] handcuffed with [handcuffed.get_examine_string(user)]!")
+
+	//legcuffed?
+	if(legcuffed)
+		. += span_warning("[t_He] [t_is] legcuffed with [legcuffed.get_examine_string(user)]!")
 
 	//belt
 	if(belt)
 		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist."
 
 	//shoes
-	if(shoes && !(SLOT_SHOES in obscured))
+	if(shoes && !(ITEM_SLOT_FEET in obscured))
 		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
 
 	//mask
-	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
+	if(wear_mask && !(ITEM_SLOT_MASK in obscured))
 		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face."
 
-	if(wear_neck && !(SLOT_NECK in obscured))
+	if(wear_neck && !(ITEM_SLOT_NECK in obscured))
 		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck."
 
 	//eyes
-	if(!(SLOT_GLASSES in obscured))
+	if(!(ITEM_SLOT_EYES in obscured))
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
-			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
-
+			if(isipc(src))
+				. += span_warning("<B>Their monitor hums quietly, with an underlying collection of blood-red pixels swirling faintly.</B>")
+			else
+				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 	//ears
-	if(ears && !(SLOT_EARS in obscured))
+	if(ears && !(ITEM_SLOT_EARS in obscured))
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
 
 
@@ -617,3 +620,6 @@
 		. += span_warning("[msg.Join("")]")
 
 	. += "</span>"
+
+#undef ORGANIC_BRUTE
+#undef ROBOTIC_BRUTE

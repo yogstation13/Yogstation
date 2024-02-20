@@ -10,6 +10,14 @@ if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
+if grep -REl 'list\(.*[^ ]=' --include='*.dmm' _maps; then
+    echo "ERROR: Associative list missing leading and trailing space. Update your mapping tool!"
+    st=1
+fi;
+if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\) code/**/*.dm'; then
+    echo "ERROR: changed files contains proc argument starting with 'var'"
+    st=1
+fi;
 if grep -P '^\ttag = \"icon' _maps/**/*.dmm;	then
     echo "ERROR: tag vars from icon state generation detected in maps, please remove them."
     st=1
@@ -38,8 +46,33 @@ if grep -i 'centcomm' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
 fi;
+if grep 'NanoTrasen' code/**/*.dm; then
+    echo "ERROR: Misspelling(s) of Nanotrasen detected in code, please uncapitalize the T."
+    st=1
+fi;
+if grep 'NanoTrasen' _maps/**/*.dmm; then
+    echo "ERROR: Misspelling(s) of Nanotrasen detected in maps, please uncapitalize the T."
+    st=1
+fi;
+if grep -i 'balloon_alert\(.*?, ?"[A-Z]'; then
+	echo
+	echo "ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT()."
+	st=1
+fi;
+if grep '\.proc/' code/**/*.dm | grep -v 'code/__byond_version_compat.dm'; then
+	echo "ERROR: Direct reference to .proc, use PROC_REF instead"
+	st=1
+fi;
 if ls _maps/*.json | grep -P "[A-Z]"; then
-    echo "Uppercase in a map json detected, these must be all lowercase."
+    echo "ERROR: Uppercase in a map json detected, these must be all lowercase."
+	st=1
+fi;
+if grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' code/**/*.dm; then
+	echo "ERROR: Initialize override without 'mapload' argument."
+	st=1
+fi;
+if grep -P '^\s*(\w+)\s*=\s*(\1)\b\s*$' code/**/*.dm; then
+	echo "ERROR: Variable is assigned to itself"
 	st=1
 fi;
 for json in _maps/*.json

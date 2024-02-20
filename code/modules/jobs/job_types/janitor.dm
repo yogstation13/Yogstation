@@ -1,10 +1,8 @@
 /datum/job/janitor
 	title = "Janitor"
 	description = "Clean up trash and blood, replace broken lights and slip people over."
-	flag = JANITOR
 	orbit_icon = "broom"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 1
@@ -16,7 +14,7 @@
 	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid")
 
 	added_access = list()
-	base_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_RESEARCH, ACCESS_MEDICAL, ACCESS_CONSTRUCTION)
+	base_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_RESEARCH, ACCESS_MEDICAL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
@@ -28,11 +26,15 @@
 	)
 
 	mail_goodies = list(
+		/obj/item/soap/nanotrasen = 35,
 		/obj/item/reagent_containers/spray/cleaner = 30,
 		/obj/item/grenade/chem_grenade/cleaner = 30,
 		/obj/item/storage/box/lights/mixed = 20,
-		/obj/item/lightreplacer = 10
+		/obj/item/lightreplacer = 10,
+		/obj/item/mop/advanced = 5
 	)
+
+	minimal_lightup_areas = list(/area/janitor)
 
 	smells_like = "bleach"
 

@@ -29,7 +29,7 @@
 		to_chat(src, span_notice("Your name is now <b>\"new_name\"</b>!"))
 		name = new_name
 
-/mob/living/simple_animal/pet/dog/eggdog/Life()
+/mob/living/simple_animal/pet/dog/eggdog/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(stat)
 		return

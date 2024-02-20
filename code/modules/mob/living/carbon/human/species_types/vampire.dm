@@ -4,8 +4,8 @@
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,DRINKSBLOOD,HAS_FLESH,HAS_BONE)
 	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_NOBREATH)
-	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
-	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
+	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
+	default_features = list("mcolor" = "#FFFFFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | ERT_SPAWN
 	exotic_bloodtype = "U"
 	use_skintones = TRUE
@@ -14,7 +14,7 @@
 	limbs_id = "human"
 	skinned_type = /obj/item/stack/sheet/animalhide/human
 	var/info_text = "You are a <span class='danger'>Vampire</span>. You will slowly but constantly lose blood if outside of a coffin. If inside a coffin, you will slowly heal. You may gain more blood by grabbing a live victim and using your drain ability."
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/batform //attached to the datum itself to avoid cloning memes, and other duplicates
+	var/datum/action/cooldown/spell/shapeshift/bat/batform //attached to the datum itself to avoid cloning memes, and other duplicates
 
 /datum/species/vampire/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
@@ -27,13 +27,13 @@
 	C.skin_tone = "albino"
 	C.update_body(0)
 	if(isnull(batform))
-		batform = new
-		C.AddSpell(batform)
+		batform = new(C)
+		batform.Grant(C)
 
 /datum/species/vampire/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	if(!isnull(batform))
-		C.RemoveSpell(batform)
+		batform.Remove(C)
 		QDEL_NULL(batform)
 
 /datum/species/vampire/spec_life(mob/living/carbon/human/C)
@@ -47,16 +47,15 @@
 	C.blood_volume -= 0.75
 	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE(C))
 		to_chat(C, span_danger("You ran out of blood!"))
-		var/obj/shapeshift_holder/H = locate() in C
-		if(H)
-			H.shape.dust() //make sure we're killing the bat if you are out of blood, if you don't it creates weird situations where the bat is alive but the caster is dusted.
+		if(C.has_status_effect(/datum/status_effect/shapechange_mob/from_spell))
+			C.dust() //make sure we're killing the bat if you are out of blood, if you don't it creates weird situations where the bat is alive but the caster is dusted.
 		C.dust()
 	var/area/A = get_area(C)
 	if(istype(A, /area/chapel))
 		to_chat(C, span_danger("You don't belong here!"))
 		C.adjustFireLoss(20)
 		C.adjust_fire_stacks(6)
-		C.IgniteMob()
+		C.ignite_mob()
 
 /datum/species/vampire/check_species_weakness(obj/item/weapon, mob/living/attacker)
 	if(istype(weapon, /obj/item/nullrod/whip))
@@ -167,7 +166,7 @@
 				to_chat(H, span_notice("[victim] doesn't have blood!"))
 				return
 			V.drain_cooldown = world.time + 30
-			if(victim.anti_magic_check(FALSE, TRUE, FALSE, 0))
+			if(victim.can_block_magic(MAGIC_RESISTANCE_HOLY, charge_cost = 0))
 				to_chat(victim, span_warning("[H] tries to bite you, but stops before touching you!"))
 				to_chat(H, span_warning("[victim] is blessed! You stop just in time to avoid catching fire."))
 				return
@@ -205,10 +204,10 @@
 		var/mob/living/carbon/H = owner
 		to_chat(H, span_notice("Current blood level: [H.blood_volume]/[BLOOD_VOLUME_MAXIMUM(H)]."))
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/bat
+/datum/action/cooldown/spell/shapeshift/bat
 	name = "Bat Form"
 	desc = "Take on the shape of a space bat."
+
 	invocation = "Squeak!"
-	charge_max = 50
-	cooldown_min = 50
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/bat
+	cooldown_time = 5 SECONDS
+	possible_shapes = list(/mob/living/simple_animal/hostile/retaliate/bat)

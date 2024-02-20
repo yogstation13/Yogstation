@@ -10,9 +10,9 @@
 	. = ..()
 	if((mover.pass_flags & PASSMOB))
 		return TRUE
-	if(istype(mover, /obj/item/projectile))
-		var/obj/item/projectile/P = mover
-		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
+	if(istype(mover, /obj/projectile))
+		var/obj/projectile/P = mover
+		return !P.can_hit_target(src, P.impacted, src == P.original, TRUE)
 	if(mover.throwing)
 		return (!density || !(mobility_flags & MOBILITY_STAND) || (mover.throwing.thrower == src && !ismob(mover)))
 	if(buckled == mover)
@@ -44,11 +44,15 @@
 		add_movespeed_modifier(MOVESPEED_ID_LIVING_TURF_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = T.slowdown)
 	else
 		remove_movespeed_modifier(MOVESPEED_ID_LIVING_TURF_SPEEDMOD)
+	update_move_intent_slowdown()
 
 /mob/living/proc/update_pull_movespeed()
 	if(pulling && isliving(pulling))
 		var/mob/living/L = pulling
 		if(drag_slowdown && !(L.mobility_flags & MOBILITY_STAND) && !L.buckled && grab_state < GRAB_AGGRESSIVE && !istype(L, /mob/living/simple_animal))
+			add_movespeed_modifier(MOVESPEED_ID_PRONE_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
+			return
+		else if(drag_slowdown && istype(L, /mob/living/simple_animal/bot/secbot))//snowflake proc to stop sec from dragging beepsky everywhere
 			add_movespeed_modifier(MOVESPEED_ID_PRONE_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
 			return
 	remove_movespeed_modifier(MOVESPEED_ID_PRONE_DRAGGING)

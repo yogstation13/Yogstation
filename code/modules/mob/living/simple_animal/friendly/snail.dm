@@ -11,7 +11,7 @@
 	speak_chance = 1
 	turns_per_move = 7
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1)
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps"

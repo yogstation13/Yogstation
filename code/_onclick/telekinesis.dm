@@ -82,7 +82,7 @@
 	var/atom/movable/focus = null
 	var/mob/living/carbon/tk_user = null
 
-/obj/item/tk_grab/Initialize()
+/obj/item/tk_grab/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
@@ -92,7 +92,7 @@
 
 /obj/item/tk_grab/process()
 	if(check_if_focusable(focus)) //if somebody grabs your thing, no waiting for them to put it down and hitting them again.
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/tk_grab/dropped(mob/user)
 	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
@@ -103,7 +103,7 @@
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_HANDS)
+	if(slot == ITEM_SLOT_HANDS)
 		return
 	qdel(src)
 
@@ -120,7 +120,7 @@
 		qdel(src)
 		return
 	focus.attack_self_tk(user)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/tk_grab/afterattack(atom/target, mob/living/carbon/user, proximity, params)//TODO: go over this
 	. = ..()
@@ -135,7 +135,7 @@
 
 	if(target == focus)
 		target.attack_self_tk(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 
@@ -149,7 +149,7 @@
 		apply_focus_overlay()
 		focus.throw_at(target, 10, 1,user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /proc/tkMaxRangeCheck(mob/user, atom/target)
 	var/d = get_dist(user, target)
@@ -165,7 +165,7 @@
 	if(!check_if_focusable(target))
 		return
 	focus = target
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	apply_focus_overlay()
 	return TRUE
 
@@ -183,16 +183,15 @@
 		return
 	new /obj/effect/temp_visual/telekinesis(get_turf(focus))
 
-/obj/item/tk_grab/update_icon()
-	cut_overlays()
-	if(focus)
-		var/old_layer = focus.layer
-		var/old_plane = focus.plane
-		focus.layer = layer+0.01
-		focus.plane = ABOVE_HUD_PLANE
-		add_overlay(focus) //this is kind of ick, but it's better than using icon()
-		focus.layer = old_layer
-		focus.plane = old_plane
+/obj/item/tk_grab/update_overlays()
+	. = ..()
+	if(!focus)
+		return
+
+	var/mutable_appearance/focus_overlay = new(focus)
+	focus_overlay.layer = layer + 0.01
+	focus_overlay.plane = ABOVE_HUD_PLANE
+	. += focus_overlay
 
 /obj/item/tk_grab/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is using [user.p_their()] telekinesis to choke [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!"))

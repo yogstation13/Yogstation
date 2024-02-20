@@ -27,7 +27,7 @@
 		src << browse(output,"window=playerpolllist;size=500x300")
 
 
-/client/proc/poll_results(var/pollid = -1)
+/client/proc/poll_results(pollid = -1)
 	if(!check_rights(R_ADMIN))
 		return
 	if(pollid == -1)

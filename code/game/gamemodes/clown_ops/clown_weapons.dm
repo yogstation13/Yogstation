@@ -17,10 +17,9 @@
 	desc = "advanced clown shoes that protect the wearer and render them nearly immune to slipping on their own peels. They also squeak at 100% capacity."
 	clothing_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50)
 	strip_delay = 70
 	resistance_flags = NONE
-	permeability_coefficient = 0.05
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
 /// Recharging rate in PPS (peels per second)
@@ -32,14 +31,13 @@
 	name = "mk-honk combat shoes"
 	desc = "The culmination of years of clown combat research, these shoes leave a trail of chaos in their wake. They will slowly recharge themselves over time, or can be manually charged with bananium."
 	slowdown = SHOES_SLOWDOWN
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50)
 	strip_delay = 70
 	resistance_flags = NONE
-	permeability_coefficient = 0.05
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	always_noslip = TRUE
 
-/obj/item/clothing/shoes/clown_shoes/banana_shoes/combat/Initialize()
+/obj/item/clothing/shoes/clown_shoes/banana_shoes/combat/Initialize(mapload)
 	. = ..()
 	var/datum/component/material_container/bananium = GetComponent(/datum/component/material_container)
 	bananium.insert_amount_mat(BANANA_SHOES_MAX_CHARGE, /datum/material/bananium)
@@ -76,7 +74,7 @@
 	light_color = "#ffff00"
 	var/next_trombone_allowed = 0
 
-/obj/item/melee/transforming/energy/sword/bananium/Initialize()
+/obj/item/melee/transforming/energy/sword/bananium/Initialize(mapload)
 	. = ..()
 	adjust_slipperiness()
 
@@ -140,7 +138,7 @@
 	on_throwforce = 0
 	on_throw_speed = 1
 
-/obj/item/shield/energy/bananium/Initialize()
+/obj/item/shield/energy/bananium/Initialize(mapload)
 	. = ..()
 	adjust_slipperiness()
 
@@ -171,7 +169,7 @@
 			var/datum/component/slippery/slipper = GetComponent(/datum/component/slippery)
 			slipper.Slip(src, hit_atom)
 		if(thrownby && !caught)
-			addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	else
 		return ..()
 
@@ -194,8 +192,9 @@
 	var/det_time = 50
 	var/obj/item/grenade/syndieminibomb/concussion/bomb
 
-/obj/item/grown/bananapeel/bombanana/Initialize()
+/obj/item/grown/bananapeel/bombanana/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/slippery, det_time)
 	bomb = new /obj/item/grenade/syndieminibomb/concussion(src)
 	bomb.det_time = det_time
 	if(iscarbon(loc))
@@ -203,10 +202,6 @@
 		var/mob/living/carbon/C = loc
 		C.throw_mode_on()
 	bomb.preprime(loc, null, FALSE)
-
-/obj/item/grown/bananapeel/bombanana/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/slippery, det_time)
 
 /obj/item/grown/bananapeel/bombanana/Destroy()
 	. = ..()
@@ -233,15 +228,15 @@
 		if(!istype(M.wear_mask, /obj/item/clothing/mask/gas/clown_hat) && !istype(M.wear_mask, /obj/item/clothing/mask/gas/mime) )
 			if(!M.wear_mask || M.dropItemToGround(M.wear_mask))
 				var/obj/item/clothing/mask/fakemoustache/sticky/the_stash = new /obj/item/clothing/mask/fakemoustache/sticky()
-				M.equip_to_slot_or_del(the_stash, SLOT_WEAR_MASK, TRUE, TRUE, TRUE, TRUE)
+				M.equip_to_slot_or_del(the_stash, ITEM_SLOT_MASK, TRUE, TRUE, TRUE, TRUE)
 
 /obj/item/clothing/mask/fakemoustache/sticky
 	var/unstick_time = 600
 
-/obj/item/clothing/mask/fakemoustache/sticky/Initialize()
+/obj/item/clothing/mask/fakemoustache/sticky/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
-	addtimer(CALLBACK(src, .proc/unstick), unstick_time)
+	addtimer(CALLBACK(src, PROC_REF(unstick)), unstick_time)
 
 /obj/item/clothing/mask/fakemoustache/sticky/proc/unstick()
 	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
@@ -309,7 +304,7 @@
 		return
 	cell = new /obj/item/stock_parts/cell/hyper(src)
 
-/obj/mecha/combat/honker/dark/loaded/Initialize()
+/obj/mecha/combat/honker/dark/loaded/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/honker()
 	ME.attach(src)
@@ -323,7 +318,7 @@
 	internals_req_access = list()
 	wreckage = /obj/structure/mecha_wreckage/honker/dark/crew
 
-/obj/mecha/combat/honker/dark/crew/loaded/Initialize()
+/obj/mecha/combat/honker/dark/crew/loaded/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/honker()
 	ME.attach(src)

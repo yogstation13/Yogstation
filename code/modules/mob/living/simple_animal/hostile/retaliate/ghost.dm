@@ -4,7 +4,7 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	icon_living = "ghost"
-	mob_biotypes = list(MOB_SPIRIT)
+	mob_biotypes = MOB_SPIRIT
 	speak_chance = 0
 	turns_per_move = 5
 	response_help = "passes through"
@@ -42,7 +42,7 @@
 	var/mutable_appearance/ghost_facial_hair
 	var/random = TRUE //if you want random names for ghosts or not
 
-/mob/living/simple_animal/hostile/retaliate/ghost/Initialize()
+/mob/living/simple_animal/hostile/retaliate/ghost/Initialize(mapload)
 	. = ..()
 	give_hair()
 	if(random)

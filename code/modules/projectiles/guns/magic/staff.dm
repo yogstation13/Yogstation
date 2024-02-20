@@ -49,11 +49,11 @@
 	max_charges = 10
 	recharge_rate = 2
 	no_den_usage = 1
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/change, /obj/item/projectile/magic/animate, /obj/item/projectile/magic/resurrection,
-	/obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/aoe/fireball,
-	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage, /obj/item/projectile/magic/locker, /obj/item/projectile/magic/flying,
-	/obj/item/projectile/magic/bounty, /obj/item/projectile/magic/antimagic, /obj/item/projectile/magic/fetch, /obj/item/projectile/magic/sapping,
-	/obj/item/projectile/magic/necropotence, /obj/item/projectile/magic, /obj/item/projectile/temp/chill, /obj/item/projectile/magic/wipe)
+	var/allowed_projectile_types = list(/obj/projectile/magic/change, /obj/projectile/magic/animate, /obj/projectile/magic/resurrection,
+	/obj/projectile/magic/teleport, /obj/projectile/magic/door, /obj/projectile/magic/fireball,
+	/obj/projectile/magic/spellblade, /obj/projectile/magic/arcane_barrage, /obj/projectile/magic/locker, /obj/projectile/magic/flying,
+	/obj/projectile/magic/bounty, /obj/projectile/magic/antimagic, /obj/projectile/magic/fetch, /obj/projectile/magic/sapping,
+	/obj/projectile/magic/necropotence, /obj/projectile/magic, /obj/projectile/temp/chill, /obj/projectile/magic/wipe)
 
 /obj/item/gun/magic/staff/chaos/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	chambered.projectile_type = pick(allowed_projectile_types)
@@ -104,7 +104,7 @@
 	desc = "A deadly combination of laziness and bloodlust, this blade allows the user to dismember their enemies without all the hard work of actually swinging the sword. This one seems to be covered in ash."
 	ammo_type = /obj/item/ammo_casing/magic/spellblade/weak
 
-/obj/item/gun/magic/staff/spellblade/Initialize()
+/obj/item/gun/magic/staff/spellblade/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 15, 125, 0, hitsound)
 
@@ -112,6 +112,44 @@
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance = 0
 	return ..()
+
+/obj/item/gun/magic/staff/spellblade/beesword
+	name = "The Stinger"
+	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
+	fire_sound = 'sound/items/syringeproj.ogg'
+	ammo_type = /obj/item/ammo_casing/magic/spellblade/beesword
+	icon = 'icons/obj/weapons/swords.dmi'
+	icon_state = "beesword"
+	item_state = "stinger"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_BULKY
+	sharpness = SHARP_EDGED
+	force = 7
+	throwforce = 10
+	block_chance = 20
+	armour_penetration = 85
+	sharpness = SHARP_POINTY
+	max_charges = 6
+	recharge_rate = 1
+	attack_verb = list("slashed", "stung", "prickled", "poked")
+	hitsound = 'sound/weapons/rapierhit.ogg'
+
+/obj/item/gun/magic/staff/spellblade/beesword/afterattack(target, mob/user, proximity_flag)
+	. = ..()
+	user.changeNext_move(CLICK_CD_RAPID)
+	if(iscarbon(target) && proximity_flag)
+		var/mob/living/carbon/H = target
+		H.reagents.add_reagent(/datum/reagent/toxin/venom, 2)
+
+/obj/item/gun/magic/staff/spellblade/beesword/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	to_chat(user, span_warning("The Stinger buzzes quietly."))
+
+/obj/item/gun/magic/staff/spellblade/beesword/suicide_act(mob/living/user)
+	user.visible_message(span_suicide("[user] is stabbing [user.p_them()]self in the throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	playsound(get_turf(src), hitsound, 75, 1, -1)
+	return TOXLOSS
 
 /obj/item/gun/magic/staff/locker
 	name = "staff of the locker"

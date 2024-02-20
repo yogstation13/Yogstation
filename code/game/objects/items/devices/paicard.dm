@@ -15,14 +15,14 @@
 	user.visible_message(span_suicide("[user] is staring sadly at [src]! [user.p_they()] can't keep living without real human intimacy!"))
 	return OXYLOSS
 
-/obj/item/paicard/Initialize()
-	SSpai.pai_card_list += src
+/obj/item/paicard/Initialize(mapload)
+	SSpai.paicard_list += src
 	add_overlay("pai-off")
 	return ..()
 
 /obj/item/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
-	SSpai.pai_card_list -= src
+	SSpai.paicard_list -= src
 	if (!QDELETED(pai))
 		QDEL_NULL(pai)
 	return ..()

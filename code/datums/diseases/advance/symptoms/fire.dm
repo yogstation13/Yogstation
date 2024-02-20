@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/fire
 
 	name = "Spontaneous Combustion"
+	icon = "spontaneous_combustion"
 	desc = "The virus turns fat into an extremely flammable compound, and raises the body's temperature, making the host burst into flames spontaneously."
 	stealth = 1
 	resistance = -4
@@ -60,12 +61,12 @@ Bonus
 				to_chat(M, span_warning("[pick("You feel hot.", "You hear a crackling noise.", "You smell smoke.")]"))
 		if(4)
 			Firestacks_stage_4(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your skin bursts into flames!"))
 			M.emote("scream")
 		if(5)
 			Firestacks_stage_5(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your skin erupts into an inferno!"))
 			M.emote("scream")
 
@@ -104,6 +105,7 @@ Bonus
 /datum/symptom/alkali
 
 	name = "Alkali perspiration"
+	icon = "symptom.alkali_perspiration.gif"
 	desc = "The virus attaches to sudoriferous glands, synthesizing a chemical that bursts into flames when reacting with water, leading to self-immolation."
 	stealth = 2
 	resistance = -2
@@ -121,6 +123,7 @@ Bonus
 		"Stage Speed 8" = "Increases explosion radius and explosion damage to the host when the host is wet.",
 		"Transmission 8" = "Additionally synthesizes chlorine trifluoride and napalm inside the host. More chemicals are synthesized if the resistance 9 threshold has been met."
 	)
+	compatible_biotypes = ALL_BIOTYPES //is funny
 
 /datum/symptom/alkali/Start(datum/disease/advance/A)
 	. = ..()
@@ -146,7 +149,7 @@ Bonus
 				to_chat(M, span_warning("[pick("Your veins boil.", "You feel hot.", "You smell meat cooking.")]"))
 		if(4)
 			Alkali_fire_stage_4(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your sweat bursts into flames!"))
 			M.emote("scream")
 		if(5)
@@ -155,7 +158,7 @@ Bonus
 				explosion(get_turf(M),0,0,2 * explosion_power)
 				Alkali_fire_stage_5(M, A)
 			Alkali_fire_stage_5(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your skin erupts into an inferno!"))
 			M.emote("scream")
 			

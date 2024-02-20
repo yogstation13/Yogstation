@@ -3,13 +3,11 @@
 	description = "Distribute supplies to the departments that ordered them, \
 		collect empty crates, load and unload the supply shuttle, \
 		ship bounty cubes."
-	flag = CARGOTECH
 	orbit_icon = "box"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 3
-	spawn_positions = 2
+	total_positions = 2
+	spawn_positions = 1
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dcba97"
 
@@ -36,6 +34,8 @@
 		/obj/item/stack/sheet/mineral/diamond = 3,
 		/obj/item/gun/ballistic/rifle/boltaction = 1
 	)
+	
+	lightup_areas = list(/area/quartermaster/qm)
 
 	smells_like = "cardboard"
 

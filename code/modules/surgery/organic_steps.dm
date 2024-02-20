@@ -119,13 +119,13 @@
 /datum/surgery_step/saw
 	name = "saw bone"
 	implements = list(TOOL_SAW = 100, /obj/item/melee/transforming/energy/sword/cyborg/saw = 100,
-		/obj/item/melee/arm_blade = 75, /obj/item/mounted_chainsaw = 65, /obj/item/twohanded/required/chainsaw = 50,
-		/obj/item/twohanded/fireaxe = 50, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
+		/obj/item/melee/arm_blade = 75, /obj/item/mounted_chainsaw = 65, /obj/item/melee/chainsaw = 50,
+		/obj/item/fireaxe = 50, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
 	time = 5.4 SECONDS
 	preop_sound = list(
 		/obj/item/circular_saw = 'sound/surgery/saw.ogg',
 		/obj/item/melee/arm_blade = 'sound/surgery/scalpel1.ogg',
-		/obj/item/twohanded/fireaxe = 'sound/surgery/scalpel1.ogg',
+		/obj/item/fireaxe = 'sound/surgery/scalpel1.ogg',
 		/obj/item/hatchet = 'sound/surgery/scalpel1.ogg',
 		/obj/item/kitchen/knife/butcher = 'sound/surgery/scalpel1.ogg',
 		/obj/item = 'sound/surgery/scalpel1.ogg',

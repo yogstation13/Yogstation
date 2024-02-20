@@ -14,15 +14,21 @@
 	add_req_access = 0
 	internal_damage_threshold = 25
 	max_equip = 2
-	step_energy_drain = 3
 	color = "#87878715"
 	stepsound = null
 	turnsound = null
-	opacity = 0
+	meleesound = FALSE
+	opacity = FALSE
 
-/obj/mecha/combat/reticence/loaded/Initialize()
+/obj/mecha/combat/reticence/Initialize(mapload)
+	. = ..()
+	if(internal_tank)
+		internal_tank.set_light_on(FALSE) //remove the light that is granted by the internal canister
+		internal_tank.set_light_range_power_color(0, 0, COLOR_BLACK) //just turning it off isn't enough apparently
+
+/obj/mecha/combat/reticence/loaded/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/rcd //HAHA IT MAKES WALLS GET IT
+	ME = new /obj/item/mecha_parts/mecha_equipment/rcd/mime //HAHA IT MAKES WALLS GET IT
 	ME.attach(src)

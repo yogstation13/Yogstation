@@ -15,27 +15,26 @@
 	construction_type = /obj/item/pipe/trinary
 	pipe_state = "he_manifold"
 
-	var/mutable_appearance/center
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/New()
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/New(mapload)
 	icon_state = ""
-	center = mutable_appearance(icon, "manifold_center")
 	return ..()
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/SetInitDirections()
-	initialize_directions = NORTH|SOUTH|EAST|WEST
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/set_init_directions()
+	initialize_directions = ALL_CARDINALS
 	initialize_directions &= ~dir
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/update_icon()
-	cut_overlays()
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/update_overlays()
+	. = ..()
 
+	var/mutable_appearance/center = mutable_appearance(icon, "manifold_center")
 	PIPING_LAYER_DOUBLE_SHIFT(center, piping_layer)
-	add_overlay(center)
+	. += center
 
 	//Add non-broken pieces
 	for(var/i in 1 to device_type)
 		if(nodes[i])
-			add_overlay( getpipeimage(icon, "pipe-[piping_layer]", get_dir(src, nodes[i])) )
+			. +=  get_pipe_image(icon, "pipe-[piping_layer]", get_dir(src, nodes[i]))
 
 	update_layer()
 	update_alpha()

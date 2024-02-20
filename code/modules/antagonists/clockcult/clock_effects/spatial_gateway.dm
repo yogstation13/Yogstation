@@ -15,9 +15,9 @@
 	var/obj/effect/clockwork/spatial_gateway/linked_gateway //The gateway linked to this one
 	var/timerid
 
-/obj/effect/clockwork/spatial_gateway/Initialize()
+/obj/effect/clockwork/spatial_gateway/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/check_setup), 1)
+	addtimer(CALLBACK(src, PROC_REF(check_setup)), 1)
 
 /obj/effect/clockwork/spatial_gateway/Destroy()
 	deltimer(timerid)
@@ -159,7 +159,7 @@
 	else
 		animate(src, transform = matrix() / 1.5, time = 1 SECONDS, flags = ANIMATION_END_NOW)
 		animate(linked_gateway, transform = matrix() / 1.5, time = 1 SECONDS, flags = ANIMATION_END_NOW)
-	addtimer(CALLBACK(src, .proc/check_uses), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(check_uses)), 1 SECONDS)
 	return TRUE
 
 /obj/effect/clockwork/spatial_gateway/proc/check_uses()

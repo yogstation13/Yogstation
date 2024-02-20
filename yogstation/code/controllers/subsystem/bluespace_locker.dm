@@ -65,8 +65,8 @@ SUBSYSTEM_DEF(bluespace_locker)
 		internal_locker.contents += external_locker.contents
 		internal_locker.open()
 		internal_locker.dump_contents()
-	internal_locker.update_icon()
-	external_locker.update_icon()
+	internal_locker.update_appearance(UPDATE_ICON)
+	external_locker.update_appearance(UPDATE_ICON)
 
 /datum/controller/subsystem/bluespace_locker/proc/redistribute_locker()
 	if(!internal_locker)

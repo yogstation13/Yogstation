@@ -94,7 +94,7 @@
 	. = ..()
 	. += span_notice("Alt-click to pump it.")
 
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize()
+/obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize(mapload)
 	. = ..()
 	if (!alternate_magazine)
 		alternate_magazine = new mag_type(src)
@@ -120,6 +120,20 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	rack()
+
+/obj/item/gun/ballistic/shotgun/lever
+	name = "\improper Winton Mk. VI Repeating Rifle"
+	desc = "A lever-action rifle chambered in .308 with pristine wooden furniture. Favored by Frontier sharpshooters."
+	icon_state = "wintonrifle"
+	item_state = "wintonrifle"
+	fire_sound = "sound/weapons/leverfire.ogg"
+	fire_sound_volume = 50
+	rack_sound = "sound/weapons/leverrack.ogg"
+	load_sound = "sound/weapons/leverload.ogg"
+	fire_delay = 9
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/lever
+	bolt_wording = "lever"
+	cartridge_wording = "bullet"
 
 // Bulldog shotgun //
 
@@ -193,15 +207,23 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
 	sawn_desc = "I'm just here for the gasoline."
 	unique_reskin = null
-	var/slung = FALSE
 	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
+	var/slung = FALSE
+	var/usage = 0 //how many times it's been used since last maintenance
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
-	if(prob(40))
+	if(prob(usage * 10))//10% chance for each shot to not fire
+		if(prob(max((usage - 5), 0) * 10))//10% chance for each shot to explode, after 6 shots
+			explosion(src, 0, 0, 1, 1)
+			playsound(src, 'sound/effects/break_stone.ogg', 30, TRUE)
+			to_chat(usr, span_warning("The round explodes in the chamber!"))
+			qdel(src)
+			return
 		playsound(src, dry_fire_sound, 30, TRUE)
 		return
 	else
 		. = ..()
+		usage++
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
 	..()
@@ -214,12 +236,33 @@
 			slot_flags = ITEM_SLOT_BACK
 			to_chat(user, span_notice("You tie the lengths of cable to the shotgun, making a sling."))
 			slung = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You need at least ten lengths of cable if you want to make a sling!"))
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon()
-	..()
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(usage == initial(usage))
+		to_chat(user, span_notice("[src] has no need for maintenance yet."))
+		return
+
+	to_chat(user, span_notice("You start to perform some maintenance on [src]."))
+	if(I.use_tool(src, user, 4 SECONDS))
+		to_chat(user, span_notice("You fix up [src] a bit."))
+		usage = max(usage - 2, initial(usage))
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/examine(mob/user)
+	. = ..()
+	switch(usage)
+		if(0 to 1)
+			. += "It looks about as good as it possibly could."
+		if(2 to 6)
+			. += "It's starting to show some wear."
+		if(7 to INFINITY)
+			. += "It's not long before this thing falls apart."
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon_state()
+	. = ..()
 	if(slung)
 		icon_state = "ishotgunsling"
 	
@@ -229,7 +272,7 @@
 	if(. && slung) //sawing off the gun removes the sling
 		new /obj/item/stack/cable_coil(get_turf(src), 10)
 		slung = 0
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
 	name = "sawn-off improvised shotgun"
@@ -240,3 +283,4 @@
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
 	can_bayonet = FALSE
+	usage = 1 //always slightly worse

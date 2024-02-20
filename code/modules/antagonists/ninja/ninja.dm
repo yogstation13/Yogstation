@@ -4,6 +4,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	name = "Ninja"
 	antagpanel_category = "Ninja"
 	job_rank = ROLE_NINJA
+	antag_hud_name = "ninja"
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
@@ -21,15 +22,13 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	var/mob/living/M = mob_override || owner.current
 	for(var/obj/item/implant/explosive/E in M.implants)
 		if(E)
-			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
-	update_ninja_icons_added(M)
+			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, PROC_REF(on_death))
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	for(var/obj/item/implant/explosive/E in M.implants)
 		if(E)
 			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED)
-	update_ninja_icons_removed(M)
 
 /datum/antagonist/ninja/proc/equip_space_ninja(mob/living/carbon/human/H = owner.current)
 	return H.equipOutfit(/datum/outfit/ninja)
@@ -55,10 +54,9 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	while(objectives.len < quantity)
 		switch(pick_n_take(possible_objectives))
 			if(1)	//research
-				var/datum/objective/download/O = new /datum/objective/download()
-				O.owner = owner
-				O.gen_amount_goal()
-				objectives += O
+				// Break into science and mess up their research.
+				var/datum/objective/research_secrets/sabotage_research = new /datum/objective/research_secrets()
+				objectives += sabotage_research
 
 			if(2)	//steal
 				var/datum/objective/steal/special/O = new /datum/objective/steal/special()
@@ -187,13 +185,3 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has [adj] ninja'ed [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has [adj] ninja'ed [key_name(new_owner)].")
-
-/datum/antagonist/ninja/proc/update_ninja_icons_added(var/mob/living/carbon/human/ninja)
-	var/datum/atom_hud/antag/ninjahud = GLOB.huds[ANTAG_HUD_NINJA]
-	ninjahud.join_hud(ninja)
-	set_antag_hud(ninja, "ninja")
-
-/datum/antagonist/ninja/proc/update_ninja_icons_removed(var/mob/living/carbon/human/ninja)
-	var/datum/atom_hud/antag/ninjahud = GLOB.huds[ANTAG_HUD_NINJA]
-	ninjahud.leave_hud(ninja)
-	set_antag_hud(ninja, null)

@@ -175,12 +175,12 @@ GLOBAL_LIST_INIT(food_reagents, build_reagents_to_food()) //reagentid = related 
 		return list()
 	. = ..()
 
-/obj/item/paper/secretrecipe/Initialize()
+/obj/item/paper/secretrecipe/Initialize(mapload)
 	. = ..()
 	if(SSpersistence.initialized)
 		UpdateInfo()
 	else
-		SSticker.OnRoundstart(CALLBACK(src,.proc/UpdateInfo))
+		SSticker.OnRoundstart(CALLBACK(src, PROC_REF(UpdateInfo)))
 
 /obj/item/paper/secretrecipe/proc/UpdateInfo()
 	var/datum/chemical_reaction/recipe = get_chemical_reaction(recipe_id)
@@ -208,4 +208,4 @@ GLOBAL_LIST_INIT(food_reagents, build_reagents_to_food()) //reagentid = related 
 			dat += " above [recipe.required_temp] degrees"
 	dat += "."
 	info = dat.Join("")
-	update_icon()
+	update_appearance(UPDATE_ICON)

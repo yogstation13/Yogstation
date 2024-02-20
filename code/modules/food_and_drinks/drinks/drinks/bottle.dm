@@ -13,6 +13,7 @@
 	volume = 100
 	force = 15 //Smashing bottles over someone's head hurts.
 	throwforce = 15
+	demolition_mod = 0.25
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
@@ -21,12 +22,17 @@
 	isGlass = TRUE
 	foodtype = ALCOHOL
 	age_restricted = TRUE
+	/// The optional custom name for the reagent fill icon_state prefix
+	/// If not set, uses the current icon state.
+	var/fill_icon_state = null
+	/// The icon file to take fill icon appearances from
+	var/fill_icon = 'icons/obj/reagentfillings.dmi'
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/food/drinks/bottle/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/food/drinks/bottle/update_overlays()
+	. = ..()
 
 	if(reagents.total_volume)
 		var/fill_name = icon_state
@@ -40,9 +46,9 @@
 				filling.icon_state = "[fill_name][fill_icon_thresholds[i]]"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+		. += filling
 
-	add_overlay("[initial(icon_state)]shine")
+	. += "[initial(icon_state)]shine"
 
 /obj/item/reagent_containers/food/drinks/bottle/small
 	name = "small glass bottle"
@@ -166,6 +172,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
+	demolition_mod = 0.25
 	w_class = WEIGHT_CLASS_TINY
 	item_state = "beer"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -173,7 +180,7 @@
 	sharpness = SHARP_EDGED
 	var/static/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
-/obj/item/broken_bottle/Initialize()
+/obj/item/broken_bottle/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 200, 55)
 
@@ -276,7 +283,7 @@
 	icon_state = "absinthebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 100)
 
-/obj/item/reagent_containers/food/drinks/bottle/absinthe/Initialize()
+/obj/item/reagent_containers/food/drinks/bottle/absinthe/Initialize(mapload)
 	. = ..()
 	redact()
 
@@ -349,7 +356,7 @@
 	icon_state = "sakebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/sake = 100)
 
-/obj/item/reagent_containers/food/drinks/bottle/sake/Initialize()
+/obj/item/reagent_containers/food/drinks/bottle/sake/Initialize(mapload)
 	. = ..()
 	if(prob(10))
 		name = "Fluffy Tail Sake"
@@ -513,16 +520,21 @@
 	return
 
 /obj/item/reagent_containers/food/drinks/bottle/molotov/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	var/firestarter = 0
-	for(var/datum/reagent/R in reagents.reagent_list)
-		for(var/A in accelerants)
-			if(istype(R,A))
-				firestarter = 1
-				break
-	if(firestarter && active)
+	var/fire_power = reagents.get_total_accelerant_quality()
+	if(active && fire_power > 0)
 		hit_atom.fire_act()
-		new /obj/effect/hotspot(get_turf(hit_atom))
-	..()
+		if(isliving(hit_atom))
+			var/mob/living/L = hit_atom
+			L.adjust_fire_stacks()
+		if(fire_power > 10)
+			var/turf/center_turf = get_turf(hit_atom)
+			if(isclosedturf(center_turf) && isopenturf(get_turf(src)))
+				center_turf = get_turf(src) // if it hits a wall, light the floor in front of the wall on fire, not the wall itself
+			center_turf.IgniteTurf(fire_power)
+			for(var/turf/T in center_turf.reachableAdjacentAtmosTurfs())
+				if(prob(fire_power))
+					T.IgniteTurf(fire_power)
+	return ..()
 
 /obj/item/reagent_containers/food/drinks/bottle/molotov/attackby(obj/item/I, mob/user, params)
 	if(I.is_hot() && !active)

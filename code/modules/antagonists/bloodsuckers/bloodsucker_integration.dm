@@ -1,25 +1,13 @@
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//			TG OVERWRITES
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/// Gives Curators their abilities
-/datum/outfit/job/curator/post_equip(mob/living/carbon/human/user, visualsOnly = FALSE)
-	. = ..()
-
-	ADD_TRAIT(user, TRAIT_BLOODSUCKER_HUNTER, JOB_TRAIT)
+/*
+ * OVERWRITES
+*/
 
 /datum/species/jelly/slime/spec_life(mob/living/carbon/human/user)
 	// Prevents Slimeperson 'gaming
 	if(IS_BLOODSUCKER(user))
 		return
 	. = ..()
-
-// Overwrites mob/living/life.dm instead of doing handle_changeling
-/mob/living/carbon/human/Life(delta_time = (SSmobs.wait/10), times_fired)
-	. = ..()
-	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
 
 // Used when analyzing a Bloodsucker, Masquerade will hide brain traumas
 /mob/living/carbon/get_traumas()
@@ -31,7 +19,7 @@
 	. = ..()
 
 // Used to keep track of how much Blood we've drank so far
-/mob/living/carbon/human/get_status_tab_items()
+/mob/living/get_status_tab_items()
 	. = ..()
 	if(mind)
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -40,7 +28,7 @@
 			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER + bloodsuckerdatum.humanity_lost * 10]"
 			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT + bloodsuckerdatum.humanity_lost * 10]"
 			. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
-			if(bloodsuckerdatum.current_task)
+			if(bloodsuckerdatum.has_task)
 				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
 
 // INTEGRATION: Adding Procs and Datums to existing "classes" //
@@ -61,7 +49,7 @@
 	return TRUE
 
 // EXAMINING
-/mob/living/carbon/human/proc/ReturnVampExamine(mob/living/viewer)
+/mob/living/carbon/proc/return_vamp_examine(mob/living/viewer)
 	if(!mind || !viewer.mind)
 		return ""
 	// Target must be a Vamp
@@ -79,7 +67,7 @@
 		if(!(HAS_TRAIT(viewer, TRAIT_BLOODSUCKER_HUNTER) && bloodsuckerdatum.broke_masquerade))
 			return ""
 	// Default String
-	var/returnString = "\[<span class='warning'><EM>[bloodsuckerdatum.ReturnFullName(1)]</EM></span>\]"
+	var/returnString = "\[<span class='warning'><EM>[bloodsuckerdatum.return_full_name(1)]</EM></span>\]"
 	var/returnIcon = "[icon2html('icons/mob/vampiric.dmi', world, "bloodsucker")]"
 
 	// In Disguise (Veil)?
@@ -107,7 +95,7 @@
 			returnIcon = "[icon2html('icons/mob/vampiric.dmi', world, "vassal")]"
 		// Am I someone ELSE'S Vassal?
 		else if(IS_BLOODSUCKER(viewer) || IS_MONSTERHUNTER(viewer))
-			returnString +=	"This [dna.species.name] bears the mark of <span class='boldwarning'>[vassaldatum.master.ReturnFullName(vassaldatum.master.owner.current,TRUE)][vassaldatum.master.broke_masquerade ? " who has broken the Masquerade" : ""]</span>"
+			returnString +=	"This [dna.species.name] bears the mark of <span class='boldwarning'>[vassaldatum.master.return_full_name(vassaldatum.master.owner.current,TRUE)][vassaldatum.master.broke_masquerade ? " who has broken the Masquerade" : ""]</span>"
 			returnIcon = "[icon2html('icons/mob/vampiric.dmi', world, "vassal_grey")]"
 		// Are you serving the same master as I am?
 		else if(viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassaldatum?.master.vassals)

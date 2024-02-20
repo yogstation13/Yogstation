@@ -112,10 +112,10 @@
 	//humans
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(dna[H.dna.uni_identity])
+		if(dna[H.dna.unique_identity])
 			to_chat(user, span_notice("Humanoid data already present in local storage."))
 			return
-		dna[H.dna.uni_identity] = 1
+		dna[H.dna.unique_identity] = 1
 		to_chat(user, span_notice("Humanoid data added to local storage."))
 
 /obj/machinery/dna_vault
@@ -147,7 +147,7 @@
 
 	var/list/obj/structure/fillers = list()
 
-/obj/machinery/dna_vault/Initialize()
+/obj/machinery/dna_vault/Initialize(mapload)
 	//TODO: Replace this,bsa and gravgen with some big machinery datum
 	var/list/occupied = list()
 	for(var/direct in list(EAST,WEST,SOUTHEAST,SOUTHWEST))
@@ -261,8 +261,7 @@
 			to_chat(H, span_notice("You feel resistant to toxins."))
 			if(locate(/obj/item/organ/lungs) in H.internal_organs)
 				var/obj/item/organ/lungs/L = H.internal_organs_slot[ORGAN_SLOT_LUNGS]
-				L.tox_breath_dam_min = 0
-				L.tox_breath_dam_max = 0
+				L.gas_max -= GAS_PLASMA
 			ADD_TRAIT(H, TRAIT_VIRUSIMMUNE, "dna_vault")
 			P.tox_mod *= 0.2
 			H.dna.species.acidmod *= 0.2	//Remind me to move this to physiolgy later - Mqiib

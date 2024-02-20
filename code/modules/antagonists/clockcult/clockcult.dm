@@ -4,6 +4,7 @@
 	roundend_category = "clock cultists"
 	antagpanel_category = "Clockcult"
 	job_rank = ROLE_SERVANT_OF_RATVAR
+	antag_hud_name = "clockwork"
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/cult
 	var/datum/action/innate/hierophant/hierophant_network = new()
@@ -55,14 +56,13 @@
 	if(!owner.current || silent)
 		return
 	owner.current.visible_message("[span_heavy_brass("[owner.current]'s eyes glow a blazing yellow!")]", null, null, 7, owner.current) //don't show the owner this message
-	to_chat(owner.current, "<span class='heavy_brass'>Assist your new companions in their righteous efforts. Your goal is theirs, and theirs yours. You serve the Clockwork \
-	Justiciar above all else. Perform his every whim without hesitation.</span>")
+	to_chat(owner.current, "<span class='heavy_brass'>A sharp light flashes through your mind, and you finally gain understanding of the cause. Assist your new companions in their righteous efforts. Your goal is theirs, and theirs yours. You serve the Clockwork \
+	Justiciar above all else. Perform his every whim without hesitation. Show the unenlightened Ratvars Light, as others have shown you, and defend the Ark until his arrival.</span>")
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/clockcultalr.ogg', 70, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/clockcult/on_gain()
 	var/mob/living/current = owner.current
 	SSticker.mode.servants_of_ratvar += owner
-	SSticker.mode.update_servant_icons_added(owner)
 	owner.special_role = ROLE_SERVANT_OF_RATVAR
 	owner.current.log_message("has been converted to the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
 	if(issilicon(current))
@@ -90,7 +90,7 @@
 	GLOB.all_clockwork_mobs += current
 	current.faction |= "ratvar"
 	current.grant_language(/datum/language/ratvar)
-	current.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them for whatever reason, we need to update buttons
+	current.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them for whatever reason, we need to update buttons
 	if(issilicon(current))
 		var/mob/living/silicon/S = current
 		if(iscyborg(S))
@@ -132,8 +132,10 @@
 	current.throw_alert("clockinfo", /atom/movable/screen/alert/clockwork/infodump)
 	if(clockwork_ark_active() && ishuman(current))
 		current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
+	add_team_hud(current)
 
 /datum/antagonist/clockcult/remove_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/current = owner.current
 	if(istype(mob_override))
 		current = mob_override
@@ -156,18 +158,18 @@
 		S.update_icons()
 		S.show_laws()
 	var/mob/living/temp_owner = current
-	..()
 	if(iscyborg(temp_owner))
 		var/mob/living/silicon/robot/R = temp_owner
 		R.module.rebuild_modules()
 	if(temp_owner)
-		temp_owner.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
+		temp_owner.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
 	temp_owner.cut_overlays()
 	temp_owner.regenerate_icons()
 
 /datum/antagonist/clockcult/on_removal()
 	SSticker.mode.servants_of_ratvar -= owner
-	SSticker.mode.update_servant_icons_removed(owner)
+	for(var/datum/action/item_action/clock/quickbind/existing_binds in owner.current.actions)
+		existing_binds.Remove(owner.current) //regenerate all our quickbound scriptures
 	if(!silent)
 		owner.current.visible_message("[span_deconversion_message("[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant."))
@@ -175,7 +177,7 @@
 	owner.special_role = null
 	if(iscyborg(owner.current))
 		to_chat(owner.current, span_warning("Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking."))
-	. = ..()
+	return ..()
 
 
 /datum/antagonist/clockcult/admin_add(datum/mind/new_owner,mob/admin)
@@ -190,9 +192,9 @@
 
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()
-	.["Give slab"] = CALLBACK(src,.proc/admin_give_slab)
+	.["Equip Cultist"] = CALLBACK(src, PROC_REF(admin_equip))
 
-/datum/antagonist/clockcult/proc/admin_give_slab(mob/admin)
+/datum/antagonist/clockcult/proc/admin_equip(mob/admin)
 	if(!SSticker.mode.equip_servant(owner.current))
 		to_chat(admin, span_warning("Failed to outfit [owner.current]!"))
 	else
@@ -224,6 +226,7 @@
 
 	if(check_clockwork_victory())
 		parts += "<span class='greentext big'>Ratvar's servants defended the Ark until its activation!</span>"
+		parts += "<span class='heavy_brass'>The Servants of Ratvar find themselves once more on the station, filled with a sense of pride and accomplishment. The vents beneath them hiss with steam as walls turn to brass, yet they do not feel content. Though Rat’var is free, they know that this is but the beginning of their duty. In the cold, dark expanse surrounding the new City of Cogs, there lay a billion stars, each waiting to be a part of Ratvars empire; their battle had just begun.</span>"
 		for(var/mind in SSticker.mode.servants_of_ratvar)
 			var/datum/mind/M = mind
 			if(M.current?.client)

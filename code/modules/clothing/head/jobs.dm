@@ -75,7 +75,7 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/fedora/detective
 	dog_fashion = /datum/dog_fashion/head/detective
 
-/obj/item/clothing/head/fedora/det_hat/Initialize()
+/obj/item/clothing/head/fedora/det_hat/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/food/drinks/flask/det(src)
 
@@ -111,6 +111,8 @@
 	attack_verb = list("poked", "tipped")
 	embedding = list("embed_chance" = 0) //Zero percent chance to embed
 	var/extended = 0
+	var/mob/living/carbon/fedora_man
+	var/returning = FALSE
 
 /obj/item/clothing/head/det_hat/evil/attack_self(mob/user)
 	extended = !extended
@@ -127,6 +129,7 @@
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		hattable = FALSE //So you don't accidentally throw it onto somebody's head instead of decapitating them
+		item_flags = UNCATCHABLE //so it isn't just immediately caught
 	else
 		force = 0
 		throwforce = 0
@@ -136,18 +139,31 @@
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
 		hattable = TRUE
+		item_flags = NONE
 
 /obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(iscarbon(loc) || !iscarbon(thrownby))
-		return ..()
-	throw_at(thrownby, throw_range+3, 3, null)
-	..()
+	if(fedora_man && hit_atom == fedora_man)
+		if(fedora_man.put_in_hands(src))
+			fedora_man.throw_mode_on()
+			return
+		else
+			return ..()
+	. = ..()
+	if(fedora_man && returning)
+		returning = FALSE //only try to return once
+		if(get_turf(src) == get_turf(fedora_man))//don't try to return if the tile it hit is literally under the thrower
+			return
+		addtimer(CALLBACK(src, PROC_REF(comeback)), 1, TIMER_UNIQUE)//delay the return by such a small amount
 
-/obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
-	if(iscarbon(thrower))
-		var/mob/living/carbon/C = thrower
-		C.throw_mode_on()
-	..()
+/obj/item/clothing/head/det_hat/evil/proc/comeback()
+	throw_at(fedora_man, throw_range+3, throw_speed)
+
+/obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=0, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
+	if(thrower && iscarbon(thrower))
+		fedora_man = thrower
+		fedora_man.changeNext_move(CLICK_CD_MELEE)//longer cooldown
+		returning = TRUE
+	. = ..()
 
 //Mime
 /obj/item/clothing/head/beret
@@ -165,7 +181,7 @@
 
 /obj/item/clothing/head/beret/archaic
 	name = "archaic beret"
-	desc = "An absolutely ancient beret, allegedly worn by the first mime to ever step foot on a NanoTrasen station."
+	desc = "An absolutely ancient beret, allegedly worn by the first mime to ever step foot on a Nanotrasen station."
 	icon_state = "archaicberet"
 	dog_fashion = null
 
@@ -178,7 +194,7 @@
 	desc = "That was white fabric. <i>Was.</i>"
 	dog_fashion = null //THIS IS FOR SLAUGHTER, NOT PUPPIES
 
-/obj/item/clothing/head/beret/highlander/Initialize()
+/obj/item/clothing/head/beret/highlander/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 
@@ -262,8 +278,8 @@
 
 /obj/item/clothing/head/warden/drill/equipped(mob/M, slot)
 	. = ..()
-	if (slot == SLOT_HEAD)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	if (slot == ITEM_SLOT_HEAD)
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
@@ -322,7 +338,7 @@
 
 /obj/item/clothing/head/beret/sec/centcom
 	name = "\improper CentCom beret"
-	desc = "A special beret with the NanoTrasen logo emblazoned on it. For where no man has gone before."
+	desc = "A special beret with the Nanotrasen logo emblazoned on it. For where no man has gone before."
 	icon_state = "official"
 
 //Curator

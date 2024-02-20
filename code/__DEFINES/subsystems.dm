@@ -21,7 +21,9 @@
   * make sure you add an update to the schema_version stable in the db changelog
   */
 
-#define DB_MINOR_VERSION 11
+#define DB_MINOR_VERSION 13
+#define DB_BOUND_CREDENTIALS_FLAG_BYPASS_BANS "bypass_bans"
+#define DB_BOUND_CREDENTIALS_FLAG_ALLOW_PROXIES "allow_proxies"
 
 //! ## Timing subsystem
 /**
@@ -67,9 +69,9 @@
 
 ///New should not call Initialize
 #define INITIALIZATION_INSSATOMS 0
-///New should call Initialize(TRUE)
+///New should call Initialize(mapload, TRUE)
 #define INITIALIZATION_INNEW_MAPLOAD 2
-///New should call Initialize(FALSE)
+///New should call Initialize(mapload, FALSE)
 #define INITIALIZATION_INNEW_REGULAR 1
 
 //! ### Initialization hints
@@ -148,7 +150,8 @@
 #define INIT_ORDER_CIRCUIT			15
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
-#define INIT_ORDER_AIR				-1
+#define INIT_ORDER_AIR_MACHINERY	-0.5
+#define INIT_ORDER_AIR				-2
 #define INIT_ORDER_PERSISTENCE 		-2
 #define INIT_ORDER_PERSISTENT_PAINTINGS -3 // Assets relies on this
 #define INIT_ORDER_ASSETS			-4
@@ -156,6 +159,7 @@
 #define INIT_ORDER_OVERLAY			-6
 #define INIT_ORDER_XKEYSCORE		-10
 #define INIT_ORDER_STICKY_BAN		-10
+#define INIT_ORDER_ECHELON			-10
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_MINOR_MAPPING	-40
@@ -169,11 +173,13 @@
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
+#define FIRE_PRIORITY_AMBIENCE		10
 #define FIRE_PRIORITY_IDLE_NPC		10
 #define FIRE_PRIORITY_SERVER_MAINT	10
 #define FIRE_PRIORITY_RESEARCH		10
 #define FIRE_PRIORITY_VIS			10
 #define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_ECHOLOCATION  15
 #define FIRE_PRIORITY_WET_FLOORS	20
 #define FIRE_PRIORITY_FLUIDS		20
 #define FIRE_PRIORITY_AIR			20
@@ -190,6 +196,7 @@
 #define FIRE_PRIORITY_DEFAULT		50
 #define FIRE_PRIORITY_PARALLAX		65
 #define FIRE_PRIORITY_INSTRUMENTS	80
+#define FIRE_PRIORITY_CALLBACKS		90
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_ASSETS 		105
 #define FIRE_PRIORITY_TGUI			110
@@ -212,6 +219,24 @@
 
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
 
+// SSair run section
+#define SSAIR_PIPENETS 1
+#define SSAIR_ATMOSMACHINERY 2
+#define SSAIR_EXCITEDGROUPS 3
+#define SSAIR_HIGHPRESSURE 4
+#define SSAIR_HOTSPOTS 5
+#define SSAIR_TURF_CONDUCTION 6
+#define SSAIR_REBUILD_PIPENETS 7
+#define SSAIR_EQUALIZE 8
+#define SSAIR_ACTIVETURFS 9
+#define SSAIR_TURF_POST_PROCESS 10
+#define SSAIR_FINALIZE_TURFS 11
+#define SSAIR_ATMOSMACHINERY_AIR 12
+#define SSAIR_DEFERRED_AIRS 13
+
+//Pipeline rebuild helper defines, these suck but it'll do for now //Fools you actually merged it
+#define SSAIR_REBUILD_PIPELINE 1
+#define SSAIR_REBUILD_QUEUE 2
 
 // Truly disgusting, TG. Truly disgusting.
 //! ## Overlays subsystem
@@ -231,7 +256,9 @@
 				AA.copy_overlays(changed_on, TRUE);\
 			}\
 		} \
-	}
+	}\
+	if(isturf(changed_on)){SSdemo.mark_turf(changed_on);}\
+	if(isobj(changed_on) || ismob(changed_on)){SSdemo.mark_dirty(changed_on);}\
 
 /**
 	Create a new timer and add it to the queue.
@@ -242,18 +269,6 @@
 	* * timer_subsystem the subsystem to insert this timer into
 */
 #define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)
-
-// Air subsystem subtasks
-#define SSAIR_PIPENETS 1
-#define SSAIR_ATMOSMACHINERY 2
-#define SSAIR_EQUALIZE 3
-#define SSAIR_ACTIVETURFS 4
-#define SSAIR_EXCITEDGROUPS 5
-#define SSAIR_HIGHPRESSURE 6
-#define SSAIR_HOTSPOTS 7
-#define SSAIR_SUPERCONDUCTIVITY 8
-#define SSAIR_REBUILD_PIPENETS 9
-
 
 // Explosion Subsystem subtasks
 #define SSEXPLOSIONS_MOVABLES 1

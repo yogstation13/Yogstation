@@ -44,7 +44,7 @@ const GuardianGeneralScene = (props, context) => {
           selected={!data.melee}
           disabled={data.melee && data.points < 3}
           onClick={() => act("ranged")}
-          tooltip="Your Guardian will shoot ranged projectiles. Nobody can deflect the Emerald Splash!"
+          tooltip="Your Guardian will shoot ranged projectiles. This will prevent you from using ranged weaponry!"
           tooltipPosition="right"
         />
       </Section>

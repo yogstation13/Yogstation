@@ -7,15 +7,8 @@
 
 */
 
-
-
-
-/*
-
-	PROPERTIES
-
- */
-
+/// # Advanced Diseases
+/// Advanced diseases are a system for virologists to engineer their own diseases with fancy symptoms.
 /datum/disease/advance
 	name = "Unknown" // We will always let our Virologist name our disease.
 	desc = "An engineered disease which can contain a multitude of symptoms."
@@ -25,15 +18,19 @@
 	spread_text = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 
-	// NEW VARS
+	/// Properties of the disease calculated from its list of symptoms
 	var/list/properties = list()
-	var/list/symptoms = list() // The symptoms of the disease.
+	/// The symptoms of the disease.
+	var/list/symptoms = list()
 	var/id = ""
+	/// Whether this disease is currently processing.
 	var/processing = FALSE
-	var/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology
+	/// Set to FALSE to prevent most in-game methods of altering the disease via virology
+	var/mutable = TRUE
 	var/oldres	//To prevent setting new cures unless resistance changes.
 
-	// The order goes from easy to cure to hard to cure.
+	/// Static tier list of cures for advanced diseases.
+	/// The order goes from easy to cure to hard to cure.
 	var/static/list/advance_cures = 	list(
 									list(	// level 1
 										/datum/reagent/copper, /datum/reagent/silver, /datum/reagent/iodine, /datum/reagent/iron, /datum/reagent/carbon
@@ -85,7 +82,7 @@
 			S.End(src)
 	return ..()
 
-/datum/disease/advance/try_infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/advance/try_infect(mob/living/infectee, make_copy = TRUE)
 	//see if we are more transmittable than enough diseases to replace them
 	//diseases replaced in this way do not confer immunity
 	var/list/advance_diseases = list()
@@ -103,7 +100,7 @@
 	infect(infectee, make_copy)
 	return TRUE
 
-// Randomly pick a symptom to activate.
+/// Randomly pick a symptom to activate.
 /datum/disease/advance/stage_act()
 	..()
 	if(carrier)
@@ -119,13 +116,13 @@
 		for(var/datum/symptom/S in symptoms)
 			S.Activate(src)
 
-// Tell symptoms stage changed
+/// Tell symptoms that the stage changed
 /datum/disease/advance/update_stage(new_stage)
 	..()
 	for(var/datum/symptom/S in symptoms)
 		S.on_stage_change(new_stage, src)
 
-// Compares type then ID.
+/// Compares type then ID.
 /datum/disease/advance/IsSame(datum/disease/advance/D)
 
 	if(!(istype(D, /datum/disease/advance)))
@@ -135,7 +132,7 @@
 		return 0
 	return 1
 
-// Returns the advance disease with a different reference memory.
+/// Returns a copy of this disease
 /datum/disease/advance/Copy()
 	var/datum/disease/advance/A = ..()
 	QDEL_LIST(A.symptoms)
@@ -174,7 +171,8 @@
 			return 1
 	return 0
 
-// Will generate new unique symptoms, use this if there are none. Returns a list of symptoms that were generated.
+/// Will generate new unique symptoms, use this if there are none.
+/// Returns a list of symptoms that were generated.
 /datum/disease/advance/proc/GenerateSymptoms(level_min, level_max, amount_get = 0)
 
 	var/list/generated = list() // Symptoms we generated.
@@ -296,7 +294,7 @@
 		var/res = clamp(properties["resistance"] - (symptoms.len / 2), 1, advance_cures.len)
 		if(res == oldres)
 			return
-		
+
 		if(prob(82 - (res * 7))) // Double cure
 			var/list/the_cures = advance_cures[res]
 			var/list/not_used = the_cures.Copy()
@@ -310,7 +308,7 @@
 			// Get the cure name from the cure_id
 			var/datum/reagent/D = GLOB.chemical_reagents_list[cures[1]]
 			cure_text = D.name
-		
+
 		oldres = res
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
@@ -391,7 +389,7 @@
 */
 
 // Mix a list of advance diseases and return the mixed result.
-/proc/Advance_Mix(var/list/D_list)
+/proc/Advance_Mix(list/D_list)
 	var/list/diseases = list()
 
 	for(var/datum/disease/advance/A in D_list)

@@ -17,6 +17,8 @@
 	clawfootstep = FOOTSTEP_WOOD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+	flags_1 = NO_RUST | CAN_BE_DIRTY_1
+	flammability = 3 // yikes, better put that out quick
 
 /turf/open/floor/wood/examine(mob/user)
 	. = ..()
@@ -60,6 +62,21 @@
 			if(user && !silent)
 				to_chat(user, span_notice("You forcefully pry off the planks, destroying them in the process."))
 	return make_plating()
+
+/turf/open/floor/wood/parquet
+	icon_state = "wood-parquet"
+	floor_tile = /obj/item/stack/tile/wood/parquet
+	broken_states = list("wood-parquet-broken", "wood-parquet-broken2", "wood-parquet-broken3", "wood-parquet-broken4", "wood-parquet-broken5", "wood-parquet-broken6", "wood-parquet-broken7")
+
+/turf/open/floor/wood/tile
+	icon_state = "wood-tile"
+	floor_tile = /obj/item/stack/tile/wood/tile
+	broken_states = list("wood-tile-broken", "wood-tile-broken2", "wood-tile-broken3")
+
+/turf/open/floor/wood/large
+	icon_state = "wood-large"
+	floor_tile = /obj/item/stack/tile/wood/large
+	broken_states = list("wood-large-broken", "wood-large-broken2", "wood-large-broken3")
 
 /turf/open/floor/wood/cold
 	initial_gas_mix = KITCHEN_COLDROOM_ATMOS
@@ -158,6 +175,48 @@
 /turf/open/floor/wood/cold/broken/seven
 	icon_state = "wood-broken7"
 
+/turf/open/floor/wood/parquet/broken
+	icon_state = "wood-parquet-broken"
+	broken = TRUE
+
+/turf/open/floor/wood/parquet/broken/two
+	icon_state = "wood-parquet-broken2"
+
+/turf/open/floor/wood/parquet/broken/three
+	icon_state = "wood-parquet-broken3"
+
+/turf/open/floor/wood/parquet/broken/four
+	icon_state = "wood-parquet-broken4"
+
+/turf/open/floor/wood/parquet/broken/five
+	icon_state = "wood-parquet-broken5"
+
+/turf/open/floor/wood/parquet/broken/six
+	icon_state = "wood-parquet-broken6"
+
+/turf/open/floor/wood/parquet/broken/seven
+	icon_state = "wood-parquet-broken7"
+
+/turf/open/floor/wood/tile/broken
+	icon_state = "wood-tile-broken"
+	broken = TRUE
+
+/turf/open/floor/wood/tile/broken/two
+	icon_state = "wood-tile-broken2"
+
+/turf/open/floor/wood/tile/broken/three
+	icon_state = "wood-tile-broken3"
+
+/turf/open/floor/wood/large/broken
+	icon_state = "wood-large-broken"
+	broken = TRUE
+
+/turf/open/floor/wood/large/broken/two
+	icon_state = "wood-large-broken2"
+
+/turf/open/floor/wood/large/broken/three
+	icon_state = "wood-large-broken3"
+
 /turf/open/floor/bamboo
 	desc = "A bamboo mat with a decorative trim."
 	icon = 'icons/turf/floors/bamboo_mat.dmi'
@@ -192,12 +251,13 @@
 	var/ore_type = /obj/item/stack/ore/glass
 	var/turfverb = "uproot"
 	tiled_dirt = FALSE
+	flammability = 2 // california simulator
 
-/turf/open/floor/grass/Initialize()
+/turf/open/floor/grass/Initialize(mapload)
 	. = ..()
 	if(src.type == /turf/open/floor/grass) //don't want grass subtypes getting the icon state,
 		icon_state = "grass[rand(1,4)]"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /turf/open/floor/grass/attackby(obj/item/C, mob/user, params)
 	if((C.tool_behaviour == TOOL_SHOVEL) && params)
@@ -223,6 +283,7 @@
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	flammability = -5 // negative flammability, makes fires deplete much faster
 
 /turf/open/floor/grass/snow/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
@@ -239,7 +300,7 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	slowdown = 0
 
-/turf/open/floor/grass/snow/basalt/Initialize()
+/turf/open/floor/grass/snow/basalt/Initialize(mapload)
 	. = ..()
 	if(prob(15))
 		icon_state = "basalt[rand(0, 12)]"
@@ -263,7 +324,7 @@
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
-/turf/open/floor/grass/fakebasalt/Initialize()
+/turf/open/floor/grass/fakebasalt/Initialize(mapload)
 	. = ..()
 	if(prob(15))
 		icon_state = "basalt[rand(0, 12)]"
@@ -286,17 +347,19 @@
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+	flammability = 3 // this will be abused and i am all for it
 
 /turf/open/floor/carpet/examine(mob/user)
 	. = ..()
 	. += span_notice("There's a <b>small crack</b> on the edge of it.")
 
-/turf/open/floor/carpet/Initialize()
+/turf/open/floor/carpet/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/turf/open/floor/carpet/update_icon()
-	if(!..())
+/turf/open/floor/carpet/update_icon(updates=ALL)
+	. = ..()
+	if(!.)
 		return 0
 	if(!broken && !burnt)
 		if(smooth)
@@ -402,11 +465,11 @@
 
 /turf/open/floor/carpet/break_tile()
 	broken = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /turf/open/floor/carpet/burn_tile()
 	burnt = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /turf/open/floor/carpet/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	return FALSE
@@ -433,7 +496,7 @@
 	plane = PLANE_SPACE
 	tiled_dirt = FALSE
 
-/turf/open/floor/fakespace/Initialize()
+/turf/open/floor/fakespace/Initialize(mapload)
 	. = ..()
 	icon_state = SPACE_ICON_STATE
 

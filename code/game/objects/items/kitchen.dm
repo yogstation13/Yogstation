@@ -13,7 +13,7 @@
  */
 
 /obj/item/kitchen
-	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 
@@ -52,7 +52,7 @@
 			M.reagents.add_reagent(forkload.type, 1)
 		else
 			M.visible_message(span_notice("[user] is trying to feed [M] a delicious forkful of [loaded_food]!")) //yogs start
-			if(!do_mob(user, M))
+			if(!do_after(user, 3 SECONDS, M))
 				return
 			log_combat(user, M, "fed [loaded_food]", forkload.type) //yogs end
 			M.visible_message(span_notice("[user] feeds [M] a delicious forkful of [loaded_food]!"))
@@ -92,6 +92,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	throw_speed = 3
 	throw_range = 6
+	demolition_mod = 0.8
 	materials = list(/datum/material/iron=12000)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharpness = SHARP_EDGED
@@ -101,7 +102,7 @@
 	wound_bonus = 5
 	bare_wound_bonus = 15
 
-/obj/item/kitchen/knife/Initialize()
+/obj/item/kitchen/knife/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10) //bonus chance increases depending on force
 
@@ -131,20 +132,20 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/kitchen/knife/ritual/holy
-	name = "ruinous knife" 
+	name = "ruinous knife"
 	desc = "The runes inscribed on the knife radiate a strange power. It looks like it could have more runes inscribed upon it..."
 
 /obj/item/kitchen/knife/ritual/holy/strong
-	name = "great ruinous knife" 
+	name = "great ruinous knife"
 	desc = "A heavy knife inscribed with dozens of runes."
 	force = 15
 
 /obj/item/kitchen/knife/ritual/holy/strong/blood
-	name = "blood-soaked ruinous knife" 
+	name = "blood-soaked ruinous knife"
 	desc = "Runes stretch across the surface of the knife, seemingly endless."
 	wound_bonus = 20 //a bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
 
-/obj/item/kitchen/knife/ritual/holy/Initialize()
+/obj/item/kitchen/knife/ritual/holy/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 70, 110) //the old gods demandeth more flesh output
 
@@ -273,7 +274,7 @@
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
-	
+
 /obj/item/kitchen/knife/makeshift
 	name = "makeshift knife"
 	icon_state = "knife_makeshift"

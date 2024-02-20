@@ -42,7 +42,7 @@
 #define COMSIG_MOVABLE_BUCKLE "buckle"
 ///from base of atom/movable/unbuckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_UNBUCKLE "unbuckle"
-///from base of atom/movable/throw_at(): Triggers when throwing, before the item is dropped and before COMSIG_MOVABLE_PRE_THROW 
+///from base of atom/movable/throw_at(): Triggers when throwing, before the item is dropped and before COMSIG_MOVABLE_PRE_THROW
 #define COMSIG_MOVABLE_PRE_DROPTHROW "movable_pre_dropthrow"
 ///from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle
 #define COMSIG_RIDDEN_DRIVER_MOVE "driver_move"
@@ -77,18 +77,12 @@
 #define COMSIG_MOVABLE_SET_ANCHORED "movable_set_anchored"
 ///from base of atom/movable/setGrabState(): (newstate)
 #define COMSIG_MOVABLE_SET_GRAB_STATE "living_set_grab_state"
-///Called when the movable tries to change its dynamic light color setting, from base atom/movable/lighting_overlay_set_color(): (color)
-#define COMSIG_MOVABLE_LIGHT_OVERLAY_SET_RANGE "movable_light_overlay_set_color"
-///Called when the movable tries to change its dynamic light power setting, from base atom/movable/lighting_overlay_set_power(): (power)
-#define COMSIG_MOVABLE_LIGHT_OVERLAY_SET_POWER "movable_light_overlay_set_power"
-///Called when the movable tries to change its dynamic light range setting, from base atom/movable/lighting_overlay_set_range(): (range)
-#define COMSIG_MOVABLE_LIGHT_OVERLAY_SET_COLOR "movable_light_overlay_set_range"
-///Called when the movable tries to toggle its dynamic light LIGHTING_ON status, from base atom/movable/lighting_overlay_toggle_on(): (new_state)
-#define COMSIG_MOVABLE_LIGHT_OVERLAY_TOGGLE_ON "movable_light_overlay_toggle_on"
 ///called when the movable's glide size is updated: (new_glide_size)
 #define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"
 ///Called when a movable is hit by a plunger in layer mode, from /obj/item/plunger/attack_atom()
 #define COMSIG_MOVABLE_CHANGE_DUCT_LAYER "movable_change_duct_layer"
+///Called before a movable is being teleported from `check_teleport_valid()`: (destination, channel)
+#define COMSIG_MOVABLE_TELEPORTING "movable_teleporting"
 ///Called when a movable is being teleported from `do_teleport()`: (destination, channel)
 #define COMSIG_MOVABLE_TELEPORTED "movable_teleported"
 ///Called after a movable is teleported from `do_teleport()`: ()

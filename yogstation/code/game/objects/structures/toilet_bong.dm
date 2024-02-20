@@ -7,12 +7,7 @@
 	anchored = TRUE
 	var/mutable_appearance/weed_overlay
 
-/obj/structure/toilet_bong/Initialize()
-	. = ..()
-	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
-	START_PROCESSING(SSobj, src)
-
-/obj/structure/toilet_bong/ComponentInitialize()
+/obj/structure/toilet_bong/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.attack_hand_interact = FALSE
@@ -20,14 +15,15 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_combined_w_class = WEIGHT_CLASS_SMALL * 24
 	STR.max_items = 24
-	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, .proc/update_icon)
-	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, .proc/update_icon)
+	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, TYPE_PROC_REF(/atom/, update_icon))
+	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, TYPE_PROC_REF(/atom/, update_icon))
+	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
+	START_PROCESSING(SSobj, src)
 
-/obj/structure/toilet_bong/update_icon()
+/obj/structure/toilet_bong/update_overlays()
 	. = ..()
-	cut_overlays()
 	if (LAZYLEN(contents))
-		add_overlay(weed_overlay)
+		. += weed_overlay
 
 /obj/structure/toilet_bong/attack_hand(mob/user)
 	. = ..()
@@ -47,7 +43,7 @@
 		smoke.set_up(smoke_spread, location = location, carry = boof.reagents, silent = TRUE)
 		smoke.start()
 		qdel(boof)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 // It's a bong powered by a **flamethrower**, it's definitely an open flame!!
 /obj/structure/toilet_bong/process()

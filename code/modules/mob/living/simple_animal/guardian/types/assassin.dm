@@ -17,11 +17,11 @@
 	var/atom/movable/screen/alert/canstealthalert
 	var/atom/movable/screen/alert/instealthalert
 
-/mob/living/simple_animal/hostile/guardian/assassin/Initialize()
+/mob/living/simple_animal/hostile/guardian/assassin/Initialize(mapload)
 	. = ..()
 	stealthcooldown = 0
 
-/mob/living/simple_animal/hostile/guardian/assassin/Life()
+/mob/living/simple_animal/hostile/guardian/assassin/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	updatestealthalert()
 	if(loc == summoner && toggle)

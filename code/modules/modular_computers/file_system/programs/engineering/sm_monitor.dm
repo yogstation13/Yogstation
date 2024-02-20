@@ -31,7 +31,7 @@
 		ui_header = "smmon_[last_status].gif"
 		program_icon_state = "smmon_[last_status]"
 		if(istype(computer))
-			computer.update_icon()
+			computer.update_appearance(UPDATE_ICON)
 
 /datum/computer_file/program/supermatter_monitor/run_program(mob/living/user)
 	. = ..(user)
@@ -72,8 +72,8 @@
  */
 /datum/computer_file/program/supermatter_monitor/proc/set_signals()
 	if(active)
-		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_ALARM, .proc/send_alert, override = TRUE)
-		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_START_ALARM, .proc/send_start_alert, override = TRUE)
+		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_ALARM, PROC_REF(send_alert), override = TRUE)
+		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_START_ALARM, PROC_REF(send_start_alert), override = TRUE)
 
 /**
   * Removes the signal listener for Supermatter delaminations from the selected supermatter.
@@ -154,18 +154,21 @@
 			for(var/gasid in air.get_gases())
 				if(data_corrupted)
 					gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = round(rand()*100,0.01))))
+					"name"= GLOB.gas_data.names[gasid],
+					"amount" = round(rand()*100,0.01),
+					"ui_color" = GLOB.gas_data.ui_colors[gasid])))
 				else
 					gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
+					"name"= GLOB.gas_data.names[gasid],
+					"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01),
+					"ui_color" = GLOB.gas_data.ui_colors[gasid])))
 
 		else
 			for(var/gasid in air.get_gases())
 				gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = 0)))
+					"name"= GLOB.gas_data.names[gasid],
+					"amount" = 0,
+					"ui_color" = GLOB.gas_data.ui_colors[gasid])))
 
 		data["gases"] = gasdata
 	else

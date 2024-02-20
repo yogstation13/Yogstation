@@ -55,14 +55,14 @@ Difficulty: Medium
 
 /datum/action/innate/megafauna_attack/create_skull
 	name = "Create Legion Skull"
-	icon_icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	button_icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "legion_head"
 	chosen_message = span_colossus("You are now creating legion skulls.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/charge_target
 	name = "Charge Target"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = span_colossus("You are now charging at your target.")
 	chosen_attack_num = 2
@@ -99,7 +99,7 @@ Difficulty: Medium
 	minimum_distance = 0
 	set_varspeed(0)
 	charging = TRUE
-	addtimer(CALLBACK(src, .proc/reset_charge), 50)
+	addtimer(CALLBACK(src, PROC_REF(reset_charge)), 50)
 
 /mob/living/simple_animal/hostile/megafauna/legion/GiveTarget(new_target)
 	. = ..()

@@ -14,7 +14,7 @@
 	name = "General Requests Form (Form NT-010)"
 	id = 1
 
-/obj/item/paper/paperwork/general_request_form/Initialize()
+/obj/item/paper/paperwork/general_request_form/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>General Request Form NT-010</h3></center><hr><b>Name: </b>",/datum/language/common)
@@ -24,7 +24,7 @@
 	written += new/datum/langtext("<br><br><b>Reason: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br><b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /**
@@ -39,7 +39,7 @@
 	name = "Complaint Form (Form NT-021)"
 	id = 2
 
-/obj/item/paper/paperwork/complaint_form/Initialize()
+/obj/item/paper/paperwork/complaint_form/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Complaint Form NT-021</h3></center><hr><b>Complainant: </b>",/datum/language/common)
@@ -57,7 +57,7 @@
 	written += new/datum/langtext("<br><hr><b>Administrator Notes: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><hr><b>Stamp Below if Accepted:</b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -71,7 +71,7 @@
 	name = "Incident Report (Form NT-400)"
 	id = 3
 
-/obj/item/paper/paperwork/incident_report/Initialize()
+/obj/item/paper/paperwork/incident_report/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><hr><h3>Incident Report Form NT-400</h3></center><br>",/datum/language/common)
@@ -106,7 +106,7 @@
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Signed: </b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -120,7 +120,7 @@
 	name = "Security Incident Report (Form SEC-030)"
 	id = 4
 
-/obj/item/paper/paperwork/sec_incident_report/Initialize()
+/obj/item/paper/paperwork/sec_incident_report/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<br>",/datum/language/common)
@@ -173,7 +173,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
 	written += new/datum/langtext("<b>Reporting Officer's Signature</b>:",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -187,7 +187,7 @@
 	name = "Item Request Form (Form NT-089)"
 	id = 5
 
-/obj/item/paper/paperwork/item_form/Initialize()
+/obj/item/paper/paperwork/item_form/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Item Request Form NT-089</h3></center><hr>",/datum/language/common)
@@ -207,7 +207,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /**
@@ -222,7 +222,7 @@
 	name = "Cyborgization Consent Form (Form NT-203)"
 	id = 6
 
-/obj/item/paper/paperwork/cyborg_request_form/Initialize()
+/obj/item/paper/paperwork/cyborg_request_form/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Cyberization Consent Form NT-203</h3></center><hr>",/datum/language/common)
@@ -243,7 +243,7 @@
 	written += new/datum/langtext("<b>Signed, </b><u>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("</u><hr><b>Roboticist Notes:</b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -257,7 +257,7 @@
 	name = "HoP Access Request Form (Form NT-022)"
 	id = 7
 
-/obj/item/paper/paperwork/hopaccessrequestform/Initialize()
+/obj/item/paper/paperwork/hopaccessrequestform/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>HOP Access Request Form NT-022</h3></center><hr>",/datum/language/common)
@@ -274,7 +274,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -288,7 +288,7 @@
 	name = "Job Reassignment Form (Form NT-059)"
 	id = 8
 
-/obj/item/paper/paperwork/hop_job_change_form/Initialize()
+/obj/item/paper/paperwork/hop_job_change_form/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Job Reassignment Form</h3></center><hr>",/datum/language/common)
@@ -312,7 +312,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -326,7 +326,7 @@
 	name = "R&D Request Form (Form SCI-3)"
 	id = 9
 
-/obj/item/paper/paperwork/rd_form/Initialize()
+/obj/item/paper/paperwork/rd_form/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>R&D Request Form SCI-3</h3></center><hr>",/datum/language/common)
@@ -340,7 +340,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br><br>",/datum/language/common)
 	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //RD upgrade form not included because from personal experience if you don't upgrade stuff you will be lynched
 
@@ -356,7 +356,7 @@
 	name = "R&D Mech Request Form (Form SCI-9)"
 	id = 10
 
-/obj/item/paper/paperwork/mech_form/Initialize()
+/obj/item/paper/paperwork/mech_form/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Mech Request Form SCI-9</h3></center><hr><b>Name: </b>",/datum/language/common)
@@ -372,7 +372,7 @@
 	written += new/datum/langtext("<br><br><b>Signed, </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br><br><b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -386,7 +386,7 @@
 	name = "Job Change Certificate"
 	id = 11
 
-/obj/item/paper/paperwork/jobchangecert/Initialize()
+/obj/item/paper/paperwork/jobchangecert/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Job Transfer Certificate</h3></center><hr>",/datum/language/common)
@@ -403,7 +403,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("</u><br><b>Stamp:</b>",/datum/language/common)
 	written += new/datum/langtext("",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -417,7 +417,7 @@
 	name = "Literacy Test for NT Employees (Form NT-43)"
 	id = 12
 
-/obj/item/paper/paperwork/literacytest/Initialize()
+/obj/item/paper/paperwork/literacytest/Initialize(mapload)
 	. = ..()
 	//a list of questions for the test
 	var/list/questions = list(
@@ -476,7 +476,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<b>, hereby acknowledge that I have answered this test's questions to the best of my ability, and acknowledge that if I fail this test, a penalty to be determined may be applied to me.</b><hr>",/datum/language/common)
 	written += new/datum/langtext("<b>Test Administrator:</b> ",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   *
@@ -491,7 +491,7 @@
 	id = 13
 	printable = FALSE
 
-/obj/item/paper/paperwork/literacytest/answers/Initialize()
+/obj/item/paper/paperwork/literacytest/answers/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>NT-44 Literacy Test Answer Key</h3></center><hr>",/datum/language/common)
@@ -501,20 +501,20 @@
 	written += new/datum/langtext("<b>4. Who is the CEO of Nanotrasen? Answer below.</b> <u>Theo Deimi</u><br>",/datum/language/common)
 	written += new/datum/langtext("<b>5. From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?</b> <u>YZ</u><hr>",/datum/language/common)
 	written += new/datum/langtext("<center><b><font color=\"red\">TOP SECRET - Command Eyes Only</font></b></center>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // How to perform autopsy
 
 /obj/item/paper/autopsy
 	name = "Autopsy 101"
 
-/obj/item/paper/autopsy/Initialize()
+/obj/item/paper/autopsy/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("Step 1: Apply drapes to the chest and select Autopsy.<br>",/datum/language/common)
 	written += new/datum/langtext("Step 2: Incise the chest with a scalpel.<br>",/datum/language/common)
 	written += new/datum/langtext("Step 3: While holding a forensic scanner in your off-hand, perform the autopsy using the scalpel again.<br>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //academy ruin papers
 
@@ -543,7 +543,7 @@
 /obj/item/paper/yog/ruins/academy/trey_wizard_lizard
 	name = "RE: Trey of the Shattered Voice"
 
-/obj/item/paper/yog/ruins/academy/trey_wizard_lizard/Initialize()
+/obj/item/paper/yog/ruins/academy/trey_wizard_lizard/Initialize(mapload)
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Wizard Academy Official Mail</h3></center><hr>",/datum/language/common)
@@ -551,7 +551,7 @@
 	written += new/datum/langtext("<b>To: Recruiter Billy the Lame</b><hr>",/datum/language/common)
 	written += new/datum/langtext("Bill, where the heck did you find this guy? Are you sure he's wizard material..? He st--te-s a-lot. He's a -tink-ng l-zard--<br>",/datum/language/common)
 	written += new/datum/langtext("<i><b>The rest of the paper is charred...</i></b>",/datum/language/common)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 
@@ -592,7 +592,7 @@
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
   * [Literacy Test for NT Employees][/obj/item/paper/paperwork/literacytest]
   */
-/obj/item/clipboard/yog/paperwork/rd/Initialize()
+/obj/item/clipboard/yog/paperwork/rd/Initialize(mapload)
 	. = ..()
 	name = "Paperwork (RD)"
 	new /obj/item/paper/paperwork/jobchangecert(src)
@@ -606,7 +606,7 @@
 	new /obj/item/paper/paperwork/incident_report(src)
 	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Initializes the Head of Security's clipboard.
@@ -620,7 +620,7 @@
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
   * [10 Security Incident Report Forms][/obj/item/paper/paperwork/sec_incident_report]
   */
-/obj/item/clipboard/yog/paperwork/hos/Initialize()
+/obj/item/clipboard/yog/paperwork/hos/Initialize(mapload)
 	. = ..()
 	name = "Paperwork (HoS)"
 	new /obj/item/paper/paperwork/jobchangecert(src)
@@ -633,7 +633,7 @@
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Initializes the Captain's clipboard.
@@ -647,7 +647,7 @@
   * [Literacy Test][/obj/item/paper/paperwork/literacytest]
   * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
-/obj/item/clipboard/yog/paperwork/captain/Initialize()
+/obj/item/clipboard/yog/paperwork/captain/Initialize(mapload)
 	. = ..()
 	name = "Paperwork (Captain)"
 	new /obj/item/paper/paperwork/jobchangecert(src)
@@ -658,7 +658,7 @@
 	new /obj/item/paper/paperwork/literacytest(src)
 	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Initializes the Head of Personnels clipboard.
@@ -673,7 +673,7 @@
   * [Literacy Test][/obj/item/paper/paperwork/literacytest]
   * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
-/obj/item/clipboard/yog/paperwork/hop/Initialize()
+/obj/item/clipboard/yog/paperwork/hop/Initialize(mapload)
 	. = ..()
 	name = "Paperwork (HoP)"
 	new /obj/item/paper/paperwork/jobchangecert(src)
@@ -685,7 +685,7 @@
 	new /obj/item/paper/paperwork/literacytest(src)
 	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Initializes the Warden's clipboard.
@@ -698,7 +698,7 @@
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
   * [10 Security Incident Report Forms][/obj/item/paper/paperwork/sec_incident_report]
   */
-/obj/item/clipboard/yog/paperwork/warden/Initialize()
+/obj/item/clipboard/yog/paperwork/warden/Initialize(mapload)
 	. = ..()
 	name = "Paperwork (Warden)"
 	new /obj/item/paper/paperwork/general_request_form(src)
@@ -709,7 +709,7 @@
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Initializes the Chief Engineer's clipboard.
@@ -722,7 +722,7 @@
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
   */
-/obj/item/clipboard/yog/paperwork/ce/Initialize()
+/obj/item/clipboard/yog/paperwork/ce/Initialize(mapload)
 	. = ..()
 	name = "Paperwork (CE)"
 	new /obj/item/paper/paperwork/jobchangecert(src)
@@ -732,7 +732,7 @@
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Initializes the Chief Medical Officer's clipboard.
@@ -745,7 +745,7 @@
   * [HoP Access Request Form][/obj/item/paper/paperwork/hopaccessrequestform]
   * [Incident Report Form][/obj/item/paper/paperwork/incident_report]
   */
-/obj/item/clipboard/yog/paperwork/cmo/Initialize()
+/obj/item/clipboard/yog/paperwork/cmo/Initialize(mapload)
 	. = ..()
 	name = "Paperwork (CMO)"
 	new /obj/item/paper/paperwork/jobchangecert(src)
@@ -755,7 +755,7 @@
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Initializes security officer clipboards.
@@ -764,14 +764,14 @@
   * [10 Security Incident Report Forms][/obj/item/paper/paperwork/sec_incident_report]
   * [10 Incident Report Forms][/obj/item/paper/paperwork/incident_report]
   */
-/obj/item/clipboard/yog/paperwork/security/Initialize()
+/obj/item/clipboard/yog/paperwork/security/Initialize(mapload)
 	. = ..()
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Initializes the admin variant clipboard.
@@ -791,7 +791,7 @@
   * [Literacy Test][/obj/item/paper/paperwork/literacytest]
   * [Literacy Test Answer Key][/obj/item/paper/paperwork/literacytest/answers]
   */
-/obj/item/clipboard/yog/paperwork/admin/Initialize()
+/obj/item/clipboard/yog/paperwork/admin/Initialize(mapload)
 	. = ..()
 	name = "Paperwork (AdminSpawn)"
 	new /obj/item/paper/paperwork/general_request_form(src)
@@ -808,5 +808,5 @@
 	new /obj/item/paper/paperwork/literacytest(src)
 	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(UPDATE_ICON)
 //turdis bad

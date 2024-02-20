@@ -42,6 +42,9 @@
 		for(var/i in 1 to amount)
 			new sinew (T)
 		meat.guaranteed_butcher_results.Remove(sinew)
+	var/mob/living/carbon/C = meat
+	if(istype(C))
+		C.remove_all_embedded_objects()
 	if(butcher)
 		meat.visible_message(span_notice("[butcher] butchers [meat]."))
 	ButcherEffects(meat)

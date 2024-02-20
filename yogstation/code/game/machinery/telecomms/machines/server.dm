@@ -17,7 +17,7 @@
 	COOLDOWN_DECLARE(compile_cooldown)
 
 //NTSL-related procs
-/obj/machinery/telecomms/server/Initialize()
+/obj/machinery/telecomms/server/Initialize(mapload)
 	Compiler = new()
 	Compiler.Holder = src
 	server_radio = new()
@@ -77,11 +77,11 @@
 			var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, /datum/language/common, "test", list(), )
 			signal.data["server"] = src
 			Compiler.Run(signal)
-			if(signal.data["reject"] == 1)
+			if(signal.data["reject"] == TRUE)
 				signal.data["name"] = ""
-				signal.data["reject"] = 0
+				signal.data["reject"] = FALSE
 				Compiler.Run(signal)
-				if(signal.data["reject"] == 0)
+				if(!signal.data["reject"] == FALSE)
 					SSachievements.unlock_achievement(/datum/achievement/engineering/Poly_silent, user.client)
 			else
 				for(var/sample in signal.data["spans"])

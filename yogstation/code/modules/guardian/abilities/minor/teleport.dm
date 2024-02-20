@@ -2,19 +2,21 @@
 	name = "Teleportation Pad"
 	desc = "The guardian can prepare a teleportation pad, and teleport things to it afterwards."
 	cost = 3
-	spell_type = /obj/effect/proc_holder/spell/targeted/guardian/teleport
+	spell_type = /datum/action/cooldown/spell/pointed/guardian/teleport
 	action_types = list(/datum/action/guardian/place_beacon)
 	var/obj/structure/receiving_pad/beacon
 
-/obj/effect/proc_holder/spell/targeted/guardian/teleport
+/datum/action/cooldown/spell/pointed/guardian/teleport
 	name = "Teleport"
 	desc = "Teleport someone to your recieving pad."
 
-/obj/effect/proc_holder/spell/targeted/guardian/teleport/InterceptClickOn(mob/living/caller, params, atom/movable/target)
+/datum/action/cooldown/spell/pointed/guardian/teleport/InterceptClickOn(mob/living/caller, params, atom/movable/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	if (!istype(target))
 		return
 	if (!isguardian(caller))
-		revert_cast()
 		return
 	var/mob/living/simple_animal/hostile/guardian/guardian = caller
 	var/datum/guardian_ability/minor/teleport/ability = guardian.has_ability(/datum/guardian_ability/minor/teleport)
@@ -35,13 +37,12 @@
 	if(ability.beacon.z != target_turf.z)
 		to_chat(guardian, span_bolddanger("The beacon is too far away to warp to!"))
 		return
-	remove_ranged_ability()
 
 	to_chat(guardian, span_bolddanger("You begin to warp [target]."))
 	target.visible_message(span_danger("[target] starts to glow faintly!"), span_userdanger("You start to faintly glow, and you feel strangely weightless!"))
 	guardian.do_attack_animation(target)
 
-	if(!do_mob(guardian, target, 5 SECONDS)) //now start the channel
+	if(!do_after(guardian, 5 SECONDS, target)) //now start the channel
 		to_chat(guardian, span_bolddanger("You need to hold still!"))
 		return
 

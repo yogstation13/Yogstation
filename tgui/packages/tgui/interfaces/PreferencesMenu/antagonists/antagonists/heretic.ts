@@ -3,18 +3,21 @@ import { multiline } from "common/string";
 
 export const HERETIC_MECHANICAL_DESCRIPTION
    = multiline`
-      Find hidden influences and sacrifice crew members to gain magical
-      powers and ascend as one of several paths.
+      Become a student of the Mansus via sacrifice and exploration.
+      Compile ingredients to perform rituals.
+      Seeking ultimate power, complete your research and ascend, and be counted among the Long.
    `;
+
 
 const Heretic: Antagonist = {
   key: "heretic",
   name: "Heretic",
   description: [
     multiline`
-      Forgotten, devoured, gutted. Humanity has forgotten the eldritch forces
-      of decay, but the mansus veil has weakened. We will make them taste fear
-      again...
+      The dreams began some time back.
+      Stumbling through brambles and trees, you found yourself in a tavern.
+      Unfamiliar faces discuss the Lores that establish the fabric of your reality, and the place with no walls that surrounds all things.
+      They ignore you for now. They will not soon enough.
     `,
     HERETIC_MECHANICAL_DESCRIPTION,
   ],

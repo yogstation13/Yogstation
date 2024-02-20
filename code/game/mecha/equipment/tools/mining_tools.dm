@@ -12,13 +12,13 @@
 	equip_cooldown = 15
 	energy_drain = 10
 	force = 15
-	harmful = TRUE
+	harmful = FALSE
 	/// Time in deciseconds it takes to drill
 	var/drill_delay = 7
 	/// Affects if it can bust through reinforced walls (DRILL_HARDENED)
 	var/drill_level = DRILL_BASIC
 
-/obj/item/mecha_parts/mecha_equipment/drill/Initialize()
+/obj/item/mecha_parts/mecha_equipment/drill/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 50, 100)
 
@@ -129,7 +129,11 @@
 		if(isalien(target))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target.drop_location(), splatter_dir)
 		else
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(target.drop_location(), splatter_dir)
+			var/splatter_color = null
+			if(iscarbon(target))
+				var/mob/living/carbon/carbon_target = target
+				splatter_color = carbon_target.dna.blood_type.color
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(target.drop_location(), splatter_dir, splatter_color)
 
 		//organs go everywhere
 		if(target_part && prob(10 * drill_level))
@@ -153,7 +157,7 @@
 	equip_cooldown = 15
 	var/scanning_time = 0
 
-/obj/item/mecha_parts/mecha_equipment/mining_scanner/Initialize()
+/obj/item/mecha_parts/mecha_equipment/mining_scanner/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 

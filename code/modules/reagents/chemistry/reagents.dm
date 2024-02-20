@@ -58,8 +58,12 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_threshold = 0
 	/// increases as addiction gets worse
 	var/addiction_stage = 0
-	/// What can process this? ORGANIC, SYNTHETIC, or ORGANIC | SYNTHETIC?. We'll assume by default that it affects organics.
-	var/process_flags = ORGANIC
+	/// Alternative names used for the drug
+	var/addiction_name = null
+	/// What biotypes can process this? We'll assume by default that it affects organics (and undead, for plasmemes)
+	var/compatible_biotypes = ALL_NON_ROBOTIC
+	/// How flammable is this material?
+	var/accelerant_quality = 0
 	/// You fucked up and this is now triggering its overdose effects, purge that shit quick.
 	var/overdosed = 0
 	///if false stops metab in liverless mobs
@@ -70,6 +74,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/metabolizing = FALSE
 	/// is it bad for you? Currently only used for borghypo. C2s and Toxins have it TRUE by default.
 	var/harmful = FALSE
+	/// The default reagent container for the reagent. Currently only used for crafting icon/displays.
+	var/obj/item/reagent_containers/default_container = /obj/item/reagent_containers/glass/bottle
+
 	/// Are we from a material? We might wanna know that for special stuff. Like metalgen. Is replaced with a ref of the material on New()
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
@@ -77,13 +84,13 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	holder = null
 
 /// Applies this reagent to a [/mob/living]
-/datum/reagent/proc/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+/datum/reagent/proc/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return 0
-	if(method == VAPOR) //smoke, foam, spray
+	if(methods & VAPOR) //smoke, foam, spray
 		if(M.reagents)
-			var/modifier = clamp((1 - touch_protection), 0, 1)
-			var/amount = round(reac_volume*modifier, 0.1)
+			var/modifier = clamp(permeability, 0, 1)
+			var/amount = round(max(reac_volume - M.reagents.get_reagent_amount(type), 0) * modifier, 0.1) // no reagent duplication on mobs
 			if(amount >= 0.5)
 				M.reagents.add_reagent(type, amount)
 	return 1
@@ -104,7 +111,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return
 
 ///Called after a reagent is transfered
-/datum/reagent/proc/on_transfer(atom/A, method=TOUCH, trans_volume)
+/datum/reagent/proc/on_transfer(atom/A, methods=TOUCH, trans_volume)
 /// Called when this reagent is first added to a mob
 /datum/reagent/proc/on_mob_add(mob/living/L)
 	return
@@ -153,30 +160,39 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when addiction hits stage1, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage1(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_light, name)
+	if(!addiction_name)
+		addiction_name = name
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_light, addiction_name)
 	if(prob(30))
-		to_chat(M, span_notice("You feel like having some [name] right about now."))
+
+		to_chat(M, span_notice("You feel like having some [addiction_name] right about now."))
 	return
 
 /// Called when addiction hits stage2, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage2(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_medium, name)
+	if(!addiction_name)
+		addiction_name = name
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_medium, addiction_name)
 	if(prob(30))
-		to_chat(M, span_notice("You feel like you need [name]. You just can't get enough."))
+		to_chat(M, span_notice("You feel like you need [addiction_name]. You just can't get enough."))
 	return
 
 /// Called when addiction hits stage3, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage3(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, name)
+	if(!addiction_name)
+		addiction_name = name
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, addiction_name)
 	if(prob(30))
-		to_chat(M, span_danger("You have an intense craving for [name]."))
+		to_chat(M, span_danger("You have an intense craving for [addiction_name]."))
 	return
 
 /// Called when addiction hits stage4, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage4(mob/living/M)
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_critical, name)
+	if(!addiction_name)
+		addiction_name = name
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_critical, addiction_name)
 	if(prob(30))
-		to_chat(M, span_boldannounce("You're not feeling good at all! You really need some [name]."))
+		to_chat(M, span_boldannounce("You're not feeling good at all! You really need some [addiction_name]."))
 	return
 
 /proc/pretty_string_from_reagent_list(list/reagent_list)

@@ -64,6 +64,7 @@ Difficulty: Insanely Hard
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	//break_stuff_probability = 35
+	magic_tameable = FALSE	//I YIELD TO NONE
 
 
 
@@ -96,6 +97,7 @@ Difficulty: Insanely Hard
 	//break_stuff_probability = 40
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/king_goat
+	magic_tameable = FALSE
 
 	var/spellscast = 0
 	var/phase3 = FALSE
@@ -103,9 +105,9 @@ Difficulty: Insanely Hard
 	var/special_attacks = 0
 	stun_chance = 7
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/Found(atom/A)
 	if(isliving(A))
@@ -138,6 +140,7 @@ Difficulty: Insanely Hard
 	armour_penetration = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 15
+	magic_tameable = FALSE	//Loyal till death
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/master
 	name = "master of the guard"
@@ -151,6 +154,7 @@ Difficulty: Insanely Hard
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	move_to_delay = 3
+	magic_tameable = FALSE	//Loyal till death
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/pope
 	name = "Goat Pope"
@@ -165,6 +169,7 @@ Difficulty: Insanely Hard
 	melee_damage_upper = 30
 	move_to_delay = 3
 	loot = list(/obj/item/clothing/head/yogs/goatpope)
+	magic_tameable = FALSE	//his soul belongs to the goat god or something
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/harem
 	name = "goat with a wig"
@@ -209,7 +214,7 @@ Difficulty: Insanely Hard
 		else if(prob(5)) //EMP blast
 			spellscast++
 			visible_message(span_cult("\The [src] disrupts nearby electrical equipment!"))
-			empulse(get_turf(src), 5, 2, 0)
+			empulse(get_turf(src), EMP_HEAVY)
 
 		else if(prob(5) && melee_damage_type == BRUTE && !special_attacks) //elemental attacks
 			spellscast++
@@ -240,22 +245,24 @@ Difficulty: Insanely Hard
 		else return
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/proc/phase3_transition()
-	phase3 = TRUE
 	spellscast = 0
 	maxHealth = 750
 	revive(TRUE)
+	phase3 = TRUE
 	var/datum/component/music_player/player = GetComponent(/datum/component/music_player)
 	// Do a sudden transition of music
 	player.stop_all(0)
+	loot = list(/obj/item/gem/dark, /obj/item/t_scanner/adv_mining_scanner/goat_scanner, /obj/item/toy/plush/goatplushie/angry/kinggoat, /obj/structure/ladder/unbreakable/goat)
 	player.remove_all()
 	player.music_path = /datum/music/sourced/battle/king_goat_2
 	player.do_range_check(0)
 	stun_chance = 10
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	visible_message(span_cult("\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!"))
 
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/proc/update_icon()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon_state()
+	. = ..()
 	var/matrix/M = new
 	if(phase3)
 		icon_state = "king_goat3"
@@ -266,7 +273,7 @@ Difficulty: Insanely Hard
 	transform = M
 	pixel_y = 10
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(move_to_delay < 3)
 		move_to_delay += 0.1
@@ -287,10 +294,6 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/OnDeath()
 	if(phase3)
 		visible_message(span_cult("\The [src] shrieks as the seal on his power breaks and he starts to break apart!"))
-		new /obj/structure/ladder/unbreakable/goat(loc)
-		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
-		new /obj/item/t_scanner/adv_mining_scanner/goat_scanner(loc)
-		new /obj/item/gem/dark(loc)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
@@ -304,7 +307,7 @@ Difficulty: Insanely Hard
 			L.gib()
 		if(prob(stun_chance))
 			L.Paralyze(5)
-			L.confused += 1
+			L.adjust_confusion(1 SECONDS)
 			visible_message(span_warning("\The [L] is bowled over by the impact of [src]'s attack!"))
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()

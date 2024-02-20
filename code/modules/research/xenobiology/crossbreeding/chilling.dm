@@ -9,7 +9,7 @@ Chilling extracts:
 	effect = "chilling"
 	icon_state = "chilling"
 
-/obj/item/slimecross/chilling/Initialize()
+/obj/item/slimecross/chilling/Initialize(mapload)
 	. = ..()
 	create_reagents(10, INJECTABLE | DRAWABLE)
 
@@ -107,9 +107,8 @@ Chilling extracts:
 	for(var/turf/open/T in A)
 		var/datum/gas_mixture/G = T.air
 		if(istype(G))
-			G.set_moles(/datum/gas/plasma, 0)
+			G.set_moles(GAS_PLASMA, 0)
 			filtered = TRUE
-			T.air_update_turf()
 	if(filtered)
 		user.visible_message(span_notice("Cracks spread throughout [src], and some air is sucked in!"))
 	else
@@ -285,7 +284,7 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/oil/do_effect(mob/user)
 	user.visible_message(span_danger("[src] begins to shake with muted intensity!"))
-	addtimer(CALLBACK(src, .proc/boom), 50)
+	addtimer(CALLBACK(src, PROC_REF(boom)), 50)
 
 /obj/item/slimecross/chilling/oil/proc/boom()
 	explosion(get_turf(src), -1, -1, 10, 0) //Large radius, but mostly light damage, and no flash.

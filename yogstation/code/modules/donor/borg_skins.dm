@@ -21,7 +21,7 @@ GLOBAL_DATUM_INIT(DonorBorgHolder, /datum/borg_skin_holder, new)
 		var/datum/ai_skin/instance = new Bskin
 		skins += instance
 
-/datum/borg_skin_holder/proc/AddSkin(var/datum/borg_skin/B)
+/datum/borg_skin_holder/proc/AddSkin(datum/borg_skin/B)
 	if(!(B in skins))
 		skins += B
 		log_game("Successfully added the [B.name] donor borg skin to the datumbase!")

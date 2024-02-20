@@ -50,7 +50,7 @@
 /datum/chemical_reaction/glycerol
 	name = "Glycerol"
 	id = /datum/reagent/glycerol
-	results = list(/datum/reagent/glycerol = 1)
+	results = list(/datum/reagent/glycerol = 3)
 	required_reagents = list(/datum/reagent/consumable/cornoil = 3, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/sodiumchloride
@@ -152,12 +152,6 @@
 	results = list(/datum/reagent/nitrous_oxide = 5)
 	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 2)
 	required_temp = 525
-
-/datum/chemical_reaction/lemolime
-	name = "Lemoline"
-	id = /datum/reagent/lemoline
-	required_reagents = list(/datum/reagent/consumable/lemonjuice = 2, /datum/reagent/consumable/limejuice = 2, /datum/reagent/consumable/ethanol = 4)
-	results = list(/datum/reagent/lemoline = 4)
 
 //Technically a mutation toxin
 /datum/chemical_reaction/mulligan
@@ -705,6 +699,13 @@
 	id = /datum/reagent/concentrated_barbers_aid
 	results = list(/datum/reagent/concentrated_barbers_aid = 2)
 	required_reagents = list(/datum/reagent/barbers_aid = 1, /datum/reagent/toxin/mutagen = 1)
+
+/datum/chemical_reaction/baldium
+	name = /datum/reagent/baldium
+	id = /datum/reagent/baldium
+	results = list(/datum/reagent/baldium = 3)
+	required_reagents = list(/datum/reagent/uranium/radium = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/lye = 1)
+	required_temp = 374
 
 /datum/chemical_reaction/saltpetre
 	name = /datum/reagent/saltpetre

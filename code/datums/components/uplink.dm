@@ -29,6 +29,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/hidden_crystals = 0
 	var/unlock_note
 	var/unlock_code
+	/// Set to true if failsafe_code should blow up the device
+	var/has_failsafe = FALSE
 	var/failsafe_code
 	var/debug = FALSE
 	var/compact_mode = FALSE
@@ -42,23 +44,23 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return COMPONENT_INCOMPATIBLE
 
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/OnAttackBy)
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/interact)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(interact))
 	if(istype(parent, /obj/item/implant))
-		RegisterSignal(parent, COMSIG_IMPLANT_ACTIVATED, .proc/implant_activation)
-		RegisterSignal(parent, COMSIG_IMPLANT_IMPLANTING, .proc/implanting)
-		RegisterSignal(parent, COMSIG_IMPLANT_OTHER, .proc/old_implant)
-		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, .proc/new_implant)
+		RegisterSignal(parent, COMSIG_IMPLANT_ACTIVATED, PROC_REF(implant_activation))
+		RegisterSignal(parent, COMSIG_IMPLANT_IMPLANTING, PROC_REF(implanting))
+		RegisterSignal(parent, COMSIG_IMPLANT_OTHER, PROC_REF(old_implant))
+		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, PROC_REF(new_implant))
 	else if(istype(parent, /obj/item/pda))
-		RegisterSignal(parent, COMSIG_TABLET_CHANGE_ID, .proc/new_ringtone)
-		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_TABLET_CHANGE_ID, PROC_REF(new_ringtone))
+		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(check_detonate))
 	else if(istype(parent, /obj/item/modular_computer))
-		RegisterSignal(parent, COMSIG_NTOS_CHANGE_RINGTONE, .proc/ntos_ringtone)
-		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_NTOS_CHANGE_RINGTONE, PROC_REF(ntos_ringtone))
+		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(check_detonate))
 	else if(istype(parent, /obj/item/radio))
-		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, .proc/new_frequency)
+		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, PROC_REF(new_frequency))
 	else if(istype(parent, /obj/item/pen))
-		RegisterSignal(parent, COMSIG_PEN_ROTATED, .proc/pen_rotation)
+		RegisterSignal(parent, COMSIG_PEN_ROTATED, PROC_REF(pen_rotation))
 
 	GLOB.uplinks += src
 	uplink_items = get_uplink_items(_gamemode, TRUE, allow_restricted, js_ui)
@@ -353,7 +355,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return L
 
 /datum/component/uplink/proc/failsafe()
-	if(!parent)
+	if(!parent || !has_failsafe)
 		return
 	var/turf/T = get_turf(parent)
 	if(!T)

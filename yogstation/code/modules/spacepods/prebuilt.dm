@@ -7,7 +7,7 @@
 	var/equipment_types = list()
 	construction_state = SPACEPOD_ARMOR_WELDED
 
-/obj/spacepod/prebuilt/Initialize()
+/obj/spacepod/prebuilt/Initialize(mapload)
 	. =..()
 	add_armor(new armor_type(src))
 	if(cell_type)
@@ -47,7 +47,7 @@
 	icon_state = "pod_civ"
 	construction_state = SPACEPOD_ARMOR_WELDED
 
-/obj/spacepod/random/Initialize()
+/obj/spacepod/random/Initialize(mapload)
 	. = ..()
 	var/armor_type = pick(/obj/item/pod_parts/armor,
 		/obj/item/pod_parts/armor/syndicate,

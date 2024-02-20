@@ -24,6 +24,8 @@ GLOBAL_VAR(restart_counter)
 	world.Profile(PROFILE_START)
 #endif
 
+	SSmetrics.world_init_time = REALTIMEOFDAY
+
 	log_world("World loaded at [time_stamp()]!")
 
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
@@ -73,8 +75,12 @@ GLOBAL_VAR(restart_counter)
 
 	Master.Initialize(10, FALSE, TRUE)
 
-	if(TEST_RUN_PARAMETER in params)
-		HandleTestRun()
+	RunUnattendedFunctions()
+
+/world/proc/RunUnattendedFunctions()
+#ifdef UNIT_TESTS
+	HandleTestRun()
+#endif
 
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
@@ -83,11 +89,11 @@ GLOBAL_VAR(restart_counter)
 	CONFIG_SET(number/round_end_countdown, 0)
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
-	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
+	cb = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(RunUnitTests))
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer_here, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), cb, 10 SECONDS))
 
 
 /world/proc/SetupLogs()
@@ -113,6 +119,7 @@ GLOBAL_VAR(restart_counter)
 		GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.test_log = "[GLOB.log_directory]/unit_tests.log"
 	GLOB.world_mecha_log = "[GLOB.log_directory]/mecha.log"
 	GLOB.world_virus_log = "[GLOB.log_directory]/virus.log"
 	GLOB.world_cloning_log = "[GLOB.log_directory]/cloning.log"
@@ -120,6 +127,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
+	GLOB.world_uplink_log = "[GLOB.log_directory]/uplink.log"
 	GLOB.world_ntsl_log = "[GLOB.log_directory]/ntsl.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
@@ -135,10 +143,7 @@ GLOBAL_VAR(restart_counter)
 
 	GLOB.demo_log = "[GLOB.log_directory]/demo.txt"
 
-#ifdef UNIT_TESTS
-	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
 	start_log(GLOB.test_log)
-#endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_pda_log)
@@ -206,21 +211,21 @@ GLOBAL_VAR(restart_counter)
 	var/list/fail_reasons
 	if(GLOB)
 		if(GLOB.total_runtimes != 0)
-			fail_reasons = list("Total runtimes: [GLOB.total_runtimes]")
+			fail_reasons = list(TEST_OUTPUT_RED("Total runtimes: [GLOB.total_runtimes]"))
 #ifdef UNIT_TESTS
 		if(GLOB.failed_any_test)
-			LAZYADD(fail_reasons, "Unit Tests failed!")
+			LAZYADD(fail_reasons, TEST_OUTPUT_RED("Unit Tests failed!"))
 #endif
 		if(!GLOB.log_directory)
-			LAZYADD(fail_reasons, "Missing GLOB.log_directory!")
+			LAZYADD(fail_reasons, TEST_OUTPUT_RED("Missing GLOB.log_directory!"))
 	else
-		fail_reasons = list("Missing GLOB!")
+		fail_reasons = list(TEST_OUTPUT_RED("Missing GLOB!"))
 	if(!fail_reasons)
 		text2file("Success!", "[GLOB.log_directory]/clean_run.lk")
 	else
-		log_world("Test run failed!\n[fail_reasons.Join("\n")]")
-	sleep(0)	//yes, 0, this'll let Reboot finish and prevent byond memes
-	qdel(src)	//shut it down
+		log_world("[TEST_OUTPUT_RED("Test run failed")]!\n[fail_reasons.Join("\n")]")
+	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
+	qdel(src) //shut it down
 
 /world/Reboot(reason = 0, fast_track = FALSE)
 	if (reason || fast_track) //special reboot, do none of the normal stuff
@@ -267,17 +272,15 @@ GLOBAL_VAR(restart_counter)
 
 	log_world("World rebooted at [time_stamp()]")
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+	__auxmos_shutdown()
 	..()
 
 /world/Del()
-	// memory leaks bad
-	var/num_deleted = 0
-	for(var/datum/gas_mixture/GM)
-		GM.__gasmixture_unregister()
-		num_deleted++
-	log_world("Deallocated [num_deleted] gas mixtures")
-	if(fexists(EXTOOLS))
-		call(EXTOOLS, "cleanup")()
+	shutdown_logging() // makes sure the thread is closed before end, else we terminate
+	__auxmos_shutdown()
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		LIBCALL(debug_server, "auxtools_shutdown")()
 	..()
 
 /world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid

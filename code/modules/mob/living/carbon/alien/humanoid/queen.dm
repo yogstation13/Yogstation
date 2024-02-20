@@ -5,7 +5,7 @@
 	ventcrawler = VENTCRAWLER_NONE //pull over that ass too fat
 	unique_name = 0
 	pixel_x = -16
-	bubble_icon = "alienroyal"
+	bubble_icon = BUBBLE_ALIENROYAL
 	mob_size = MOB_SIZE_LARGE
 	layer = LARGE_MOB_LAYER //above most mobs, but below speechbubbles
 	pressure_resistance = 200 //Because big, stompy xenos should not be blown around like paper.
@@ -13,7 +13,7 @@
 
 	var/alt_inhands_file = 'icons/mob/alienqueen.dmi'
 
-/mob/living/carbon/alien/humanoid/royal/can_inject()
+/mob/living/carbon/alien/humanoid/royal/can_inject(mob/user, error_msg, target_zone, penetrate_thick = 0)
 	return 0
 
 /mob/living/carbon/alien/humanoid/royal/queen
@@ -22,12 +22,12 @@
 	maxHealth = 400
 	health = 400
 	icon_state = "alienq"
-	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
+	var/datum/timedevent/time_to_shuttle
 
-/mob/living/carbon/alien/humanoid/royal/queen/Initialize()
+/mob/living/carbon/alien/humanoid/royal/queen/Initialize(mapload)
 	if(!is_centcom_level(get_turf(src)))
 		SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
-		addtimer(CALLBACK(src, .proc/game_end), 30 MINUTES) //yogs: time until shuttle is freed/called
+		time_to_shuttle = addtimer(CALLBACK(src, PROC_REF(game_end)), 30 MINUTES, TIMER_STOPPABLE) //yogs: time until shuttle is freed/called
 	//there should only be one queen
 	for(var/mob/living/carbon/alien/humanoid/royal/queen/Q in GLOB.carbon_list)
 		if(Q == src)
@@ -40,10 +40,27 @@
 
 	real_name = src.name
 
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno(src))
-	AddAbility(new/obj/effect/proc_holder/alien/royal/queen/promote())
+	var/datum/action/cooldown/spell/aoe/repulse/xeno/tail_whip = new(src)
+	tail_whip.Grant(src)
+
+	var/datum/action/small_sprite/queen/smallsprite = new(src)
 	smallsprite.Grant(src)
+
+	var/datum/action/cooldown/alien/promote/promotion = new(src)
+	promotion.Grant(src)
+
 	return ..()
+
+/mob/living/carbon/alien/humanoid/royal/queen/get_status_tab_items()
+	. = ..()
+	if(time_to_shuttle)
+		. += ""
+		. += "Blocked Shuttle Timer: [round(timeleft(time_to_shuttle) / 600, 1)] minutes" //weird conversion but works
+
+/mob/living/carbon/alien/humanoid/royal/queen/proc/kill_shuttle_timer()
+	SSshuttle.clearHostileEnvironment(src)
+	if(time_to_shuttle)
+		deltimer(time_to_shuttle)
 
 /mob/living/carbon/alien/humanoid/royal/queen/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/large/queen
@@ -51,110 +68,134 @@
 	internal_organs += new /obj/item/organ/alien/acid
 	internal_organs += new /obj/item/organ/alien/neurotoxin
 	internal_organs += new /obj/item/organ/alien/eggsac
-	..()
+	return ..()
 
 /mob/living/carbon/alien/humanoid/royal/queen/proc/game_end()
 	if(is_centcom_level(get_turf(src)))
 		return
 	if(stat == DEAD)
 		return
-	SSshuttle.clearHostileEnvironment(src)
+	kill_shuttle_timer()
 	if(EMERGENCY_IDLE_OR_RECALLED)
 		priority_announce("Xenomorph infestation detected: Emergency shuttle will be sent to recover any survivors, if this is in error feel free to recall.")
 		SSshuttle.emergency.request(null, set_coefficient=0.5)
 
 /mob/living/carbon/alien/humanoid/royal/queen/death()//yogs start: dead queen doesnt stop shuttle
-	SSshuttle.clearHostileEnvironment(src)
+	kill_shuttle_timer()
 	..()
 
 /mob/living/carbon/alien/humanoid/royal/queen/Destroy()
-	SSshuttle.clearHostileEnvironment(src)
+	kill_shuttle_timer()
 	..() //yogs end
 
 //Queen verbs
-/obj/effect/proc_holder/alien/lay_egg
+/datum/action/cooldown/alien/make_structure/lay_egg
 	name = "Lay Egg"
 	desc = "Lay an egg to produce huggers to impregnate prey with."
+	button_icon_state = "alien_egg"
 	plasma_cost = 75
-	check_turf = TRUE
-	action_icon_state = "alien_egg"
+	made_structure_type = /obj/structure/alien/egg
 
-/obj/effect/proc_holder/alien/lay_egg/fire(mob/living/carbon/user)
-	if(locate(/obj/structure/alien/egg) in get_turf(user))
-		to_chat(user, span_alertalien("There's already an egg here."))
-		return FALSE
-
-	if(!check_vent_block(user))
-		return FALSE
-
-	user.visible_message(span_alertalien("[user] has laid an egg!"))
-	new /obj/structure/alien/egg(user.loc)
-	return TRUE
+/datum/action/cooldown/alien/make_structure/lay_egg/Activate(atom/target)
+	. = ..()
+	owner.visible_message(span_alertalien("[owner] lays an egg!"))
 
 //Button to let queen choose her praetorian.
-/obj/effect/proc_holder/alien/royal/queen/promote
+/datum/action/cooldown/alien/promote
 	name = "Create Royal Parasite"
 	desc = "Produce a royal parasite to grant one of your children the honor of being your Praetorian."
-	plasma_cost = 500 //Plasma cost used on promotion, not spawning the parasite.
+	button_icon_state = "alien_queen_promote"
+	/// The promotion only takes plasma when completed, not on activation.
+	var/promotion_plasma_cost = 500
 
-	action_icon_state = "alien_queen_promote"
+/datum/action/cooldown/alien/promote/set_statpanel_format()
+	. = ..()
+	if(!islist(.))
+		return
 
+	.[PANEL_DISPLAY_STATUS] = "PLASMA - [promotion_plasma_cost]"
 
+/datum/action/cooldown/alien/promote/IsAvailable(feedback = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
 
-/obj/effect/proc_holder/alien/royal/queen/promote/fire(mob/living/carbon/alien/user)
-	var/obj/item/queenpromote/prom
-	if(get_alien_type(/mob/living/carbon/alien/humanoid/royal/praetorian/))
-		to_chat(user, span_noticealien("You already have a Praetorian!"))
-		return 0
-	else
-		for(prom in user)
-			to_chat(user, span_noticealien("You discard [prom]."))
-			qdel(prom)
-			return 0
+	var/mob/living/carbon/carbon_owner = owner
+	if(carbon_owner.getPlasma() < promotion_plasma_cost)
+		return FALSE
 
-		prom = new (user.loc)
-		if(!user.put_in_active_hand(prom, 1))
-			to_chat(user, span_warning("You must empty your hands before preparing the parasite."))
-			return 0
-		else //Just in case telling the player only once is not enough!
-			to_chat(user, span_noticealien("Use the royal parasite on one of your children to promote her to Praetorian!"))
-	return 0
+	if(get_alien_type(/mob/living/carbon/alien/humanoid/royal/praetorian))
+		return FALSE
 
-/obj/item/queenpromote
+	return TRUE
+
+/datum/action/cooldown/alien/promote/Activate(atom/target)
+	var/obj/item/queen_promotion/existing_promotion = locate() in owner.held_items
+	if(existing_promotion)
+		to_chat(owner, span_noticealien("You discard [existing_promotion]."))
+		owner.temporarilyRemoveItemFromInventory(existing_promotion)
+		qdel(existing_promotion)
+		return TRUE
+
+	if(!owner.get_empty_held_indexes())
+		to_chat(owner, span_warning("You must have an empty hand before preparing the parasite."))
+		return FALSE
+
+	var/obj/item/queen_promotion/new_promotion = new(owner.loc)
+	if(!owner.put_in_hands(new_promotion, del_on_fail = TRUE))
+		to_chat(owner, span_noticealien("You fail to prepare a parasite."))
+		return FALSE
+
+	to_chat(owner, span_noticealien("Use [new_promotion] on one of your children to promote her to a Praetorian!"))
+	return TRUE
+
+/obj/item/queen_promotion
 	name = "\improper royal parasite"
 	desc = "Inject this into one of your grown children to promote her to a Praetorian!"
 	icon_state = "alien_medal"
-	item_flags = ABSTRACT | DROPDEL
+	item_flags = NOBLUDGEON | ABSTRACT | DROPDEL
 	icon = 'icons/mob/alien.dmi'
 
-/obj/item/queenpromote/Initialize()
+/obj/item/queen_promotion/attack(mob/living/to_promote, mob/living/carbon/alien/humanoid/queen)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
-
-/obj/item/queenpromote/attack(mob/living/M, mob/living/carbon/alien/humanoid/user)
-	if(!isalienadult(M) || isalienroyal(M))
-		to_chat(user, span_noticealien("You may only use this with your adult, non-royal children!"))
-		return
-	if(get_alien_type(/mob/living/carbon/alien/humanoid/royal/praetorian/))
-		to_chat(user, span_noticealien("You already have a Praetorian!"))
+	if(.)
 		return
 
-	var/mob/living/carbon/alien/humanoid/A = M
-	if(A.stat == CONSCIOUS && A.mind && A.key)
-		if(!user.usePlasma(500))
-			to_chat(user, span_noticealien("You must have 500 plasma stored to use this!"))
-			return
+	var/datum/action/cooldown/alien/promote/promotion = locate() in queen.actions
+	if(!promotion)
+		CRASH("[type] was created and handled by a mob ([queen]) that didn't have a promotion action associated.")
 
-		to_chat(A, span_noticealien("The queen has granted you a promotion to Praetorian!"))
-		user.visible_message(span_alertalien("[A] begins to expand, twist and contort!"))
-		var/mob/living/carbon/alien/humanoid/royal/praetorian/new_prae = new (A.loc)
-		A.mind.transfer_to(new_prae)
-		qdel(A)
-		qdel(src)
+	if(!isalienadult(to_promote) || isalienroyal(to_promote))
+		to_chat(queen, span_noticealien("You may only use this with your adult, non-royal children!"))
 		return
-	else
-		to_chat(user, span_warning("This child must be alert and responsive to become a Praetorian!"))
+	
+	if(!promotion.IsAvailable(feedback = FALSE))
+		to_chat(queen, span_noticealien("You cannot promote a child right now!"))
+		return
 
-/obj/item/queenpromote/attack_self(mob/user)
+	if(to_promote.stat != CONSCIOUS || !to_promote.mind || !to_promote.key)
+		return
+
+	queen.adjustPlasma(-promotion.promotion_plasma_cost)
+
+	to_chat(queen, span_noticealien("You have promoted [to_promote] to a Praetorian!"))
+	to_promote.visible_message(
+		span_alertalien("[to_promote] begins to expand, twist and contort!"),
+		span_noticealien("The queen has granted you a promotion to Praetorian!"),
+	)
+
+	var/mob/living/carbon/alien/humanoid/royal/praetorian/new_prae = new(to_promote.loc)
+	to_promote.mind.transfer_to(new_prae)
+
+	qdel(to_promote)
+	qdel(src)
+	return TRUE
+
+/obj/item/queen_promotion/attack_self(mob/user)
 	to_chat(user, span_noticealien("You discard [src]."))
 	qdel(src)
+
+/obj/item/queen_promotion/dropped(mob/user, silent)
+	if(!silent)
+		to_chat(user, span_noticealien("You discard [src]."))
+	return ..()

@@ -277,7 +277,7 @@
 	id = "minemeic"
 
 /datum/skillcape/trimmed/minemedic
-	name = "cape of the grand minic medic"
+	name = "cape of the grand mining medic"
 	job = "Mining Medic"
 	path = /obj/item/clothing/neck/skillcape/trimmed/minemedic
 	id = "minemeic_trimmed"

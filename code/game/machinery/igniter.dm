@@ -39,7 +39,7 @@
 		on = !(on)
 	else
 		on = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/igniter/attackby(obj/item/O, mob/user, params)
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, O))
@@ -56,7 +56,7 @@
 /obj/machinery/igniter/process()	//ugh why is this even in process()?
 	if(safety || panel_open)
 		on = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if (src.on && !(stat & NOPOWER))
 		var/turf/location = src.loc
@@ -64,12 +64,13 @@
 			location.hotspot_expose(1000,500,1)
 	return TRUE
 
-/obj/machinery/igniter/Initialize()
+/obj/machinery/igniter/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/igniter(src)
 	icon_state = "igniter[on]"
 
-/obj/machinery/igniter/update_icon()
+/obj/machinery/igniter/update_icon_state()
+	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "igniter0"
 	else
@@ -91,7 +92,7 @@
 /obj/machinery/sparker/toxmix
 	id = INCINERATOR_TOXMIX_IGNITER
 
-/obj/machinery/sparker/Initialize()
+/obj/machinery/sparker/Initialize(mapload)
 	. = ..()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(2, 1, src)
@@ -101,7 +102,8 @@
 	QDEL_NULL(spark_system)
 	return ..()
 
-/obj/machinery/sparker/update_icon()
+/obj/machinery/sparker/update_icon_state()
+	. = ..()
 	if(disable)
 		icon_state = "[initial(icon_state)]-d"
 	else if(powered())
@@ -122,7 +124,7 @@
 			user.visible_message(span_notice("[user] has disabled \the [src]!"), span_notice("You disable the connection to \the [src]."))
 		if (!src.disable)
 			user.visible_message(span_notice("[user] has reconnected \the [src]!"), span_notice("You fix the connection to \the [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 

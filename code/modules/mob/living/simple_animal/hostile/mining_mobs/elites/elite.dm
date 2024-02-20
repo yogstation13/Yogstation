@@ -60,7 +60,7 @@
 		M.attempt_drill()
 
 //Elites can't talk (normally)!
-/mob/living/simple_animal/hostile/asteroid/elite/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/hostile/asteroid/elite/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(can_talk)
 		. = ..()
 		return TRUE
@@ -71,22 +71,54 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 /datum/action/innate/elite_attack
 	name = "Elite Attack"
-	icon_icon = 'icons/mob/actions/actions_elites.dmi'
+	button_icon = 'icons/mob/actions/actions_elites.dmi'
 	button_icon_state = ""
 	background_icon_state = "bg_default"
-	var/mob/living/simple_animal/hostile/asteroid/elite/M
+	overlay_icon_state = "bg_default_border"
+	///The displayed message into chat when this attack is selected
 	var/chosen_message
+	///The internal attack ID for the elite's OpenFire() proc to use
 	var/chosen_attack_num = 0
+
+/datum/action/innate/elite_attack/create_button()
+	var/atom/movable/screen/movable/action_button/button = ..()
+	button.maptext = ""
+	button.maptext_x = 6
+	button.maptext_y = 2
+	button.maptext_width = 24
+	button.maptext_height = 12
+	return button
+
+/datum/action/innate/elite_attack/process()
+	if(isnull(owner))
+		STOP_PROCESSING(SSfastprocess, src)
+		qdel(src)
+		return
+
+	build_all_button_icons(UPDATE_BUTTON_STATUS)
+
+/datum/action/innate/elite_attack/update_button_status(atom/movable/screen/movable/action_button/button, force = FALSE)
+	var/mob/living/simple_animal/hostile/asteroid/elite/elite_owner = owner
+	if(!istype(owner))
+		button.maptext = ""
+		return
+
+	var/timeleft = max(elite_owner.ranged_cooldown - world.time, 0)
+	if(timeleft == 0)
+		button.maptext = ""
+	else
+		button.maptext = MAPTEXT("<b>[round(timeleft/10, 0.1)]</b>")
 
 /datum/action/innate/elite_attack/Grant(mob/living/L)
 	if(istype(L, /mob/living/simple_animal/hostile/asteroid/elite))
-		M = L
+		START_PROCESSING(SSfastprocess, src)
 		return ..()
 	return FALSE
 
 /datum/action/innate/elite_attack/Activate()
-	M.chosen_attack = chosen_attack_num
-	to_chat(M, chosen_message)
+	var/mob/living/simple_animal/hostile/asteroid/elite/elite_owner = owner
+	elite_owner.chosen_attack = chosen_attack_num
+	to_chat(elite_owner, chosen_message)
 
 /mob/living/simple_animal/hostile/asteroid/elite/updatehealth()
 	. = ..()
@@ -151,13 +183,13 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				activity = TUMOR_ACTIVE
 				visible_message(span_boldwarning("[src] convulses as your arm enters its radius.  Your instincts tell you to step back."))
 				activator = user
-				addtimer(CALLBACK(src, .proc/return_elite), 30)
-				INVOKE_ASYNC(src, .proc/arena_checks)
+				addtimer(CALLBACK(src, PROC_REF(return_elite)), 30)
+				INVOKE_ASYNC(src, PROC_REF(arena_checks))
 			if(TUMOR_INACTIVE)
 				activity = TUMOR_ACTIVE
 				visible_message(span_boldwarning("[src] begins to convulse.  Your instincts tell you to step back."))
 				activator = user
-				addtimer(CALLBACK(src, .proc/spawn_elite), 3 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(spawn_elite)), 3 SECONDS)
 
 obj/structure/elite_tumor/proc/spawn_elite()
 	var/selectedspawn = pick(potentialspawns)
@@ -165,7 +197,7 @@ obj/structure/elite_tumor/proc/spawn_elite()
 	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	icon_state = "tumor_popped"
-	INVOKE_ASYNC(src, .proc/arena_checks)
+	INVOKE_ASYNC(src, PROC_REF(arena_checks))
 
 obj/structure/elite_tumor/proc/return_elite()
 	mychild.forceMove(loc)
@@ -202,10 +234,10 @@ obj/structure/elite_tumor/proc/return_elite()
 /obj/structure/elite_tumor/proc/arena_checks()
 	if(activity != TUMOR_ACTIVE || QDELETED(src))
 		return
-	INVOKE_ASYNC(src, .proc/fighters_check)  //Checks to see if our fighters died.
-	INVOKE_ASYNC(src, .proc/arena_trap)  //Gets another arena trap queued up for when this one runs out.
-	INVOKE_ASYNC(src, .proc/border_check)  //Checks to see if our fighters got out of the arena somehow.
-	addtimer(CALLBACK(src, .proc/arena_checks), 50)
+	INVOKE_ASYNC(src, PROC_REF(fighters_check))  //Checks to see if our fighters died.
+	INVOKE_ASYNC(src, PROC_REF(arena_trap))  //Gets another arena trap queued up for when this one runs out.
+	INVOKE_ASYNC(src, PROC_REF(border_check))  //Checks to see if our fighters got out of the arena somehow.
+	addtimer(CALLBACK(src, PROC_REF(arena_checks)), 50)
 
 /obj/structure/elite_tumor/proc/fighters_check()
 	if(activator != null && activator.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(activator))

@@ -7,7 +7,7 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 	backpack_contents = list(
 		/obj/item/clothing/mask/gas/sechailer/swat=1,
 		/obj/item/tank/internals/oxygen/tactical=1,
@@ -199,7 +199,7 @@
 /datum/outfit/ert/commander/inquisitor
 	name = "Inquisition Commander"
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal
-	belt = /obj/item/nullrod/scythe/talking/chainsword
+	belt = /obj/item/nullrod/talking/chainsword
 	suit_store = /obj/item/gun/energy/e_gun
 	mask = /obj/item/clothing/mask/gas/sechailer
 	backpack_contents = list(
@@ -338,6 +338,8 @@
 
 	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)
 	L.implant(H, null, 1)
+	var/obj/item/implant/biosig_ert/B = new/obj/item/implant/biosig_ert(H)
+	B.implant(H, null, 1)
 
 	var/obj/item/radio/R = H.ears
 	R.set_frequency(FREQ_CENTCOM)

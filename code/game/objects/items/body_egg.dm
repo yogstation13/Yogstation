@@ -15,19 +15,19 @@
 		src.Insert(loc)
 	return ..()
 
-/obj/item/organ/body_egg/Insert(var/mob/living/carbon/M, special = 0)
+/obj/item/organ/body_egg/Insert(mob/living/carbon/M, special = 0)
 	..()
 	ADD_TRAIT(owner, TRAIT_XENO_HOST, TRAIT_GENERIC)
 	START_PROCESSING(SSobj, src)
 	owner.med_hud_set_status()
-	INVOKE_ASYNC(src, .proc/AddInfectionImages, owner)
+	INVOKE_ASYNC(src, PROC_REF(AddInfectionImages), owner)
 
-/obj/item/organ/body_egg/Remove(var/mob/living/carbon/M, special = 0)
+/obj/item/organ/body_egg/Remove(mob/living/carbon/M, special = 0)
 	STOP_PROCESSING(SSobj, src)
 	if(owner)
 		REMOVE_TRAIT(owner, TRAIT_XENO_HOST, TRAIT_GENERIC)
 		owner.med_hud_set_status()
-		INVOKE_ASYNC(src, .proc/RemoveInfectionImages, owner)
+		INVOKE_ASYNC(src, PROC_REF(RemoveInfectionImages), owner)
 	..()
 
 /obj/item/organ/body_egg/process()

@@ -26,6 +26,7 @@ GLOBAL_LIST_EMPTY(cursed_minds)
 				randomize_human(H)
 				var/random_race = GLOB.species_list[pick(GLOB.roundstart_races)]
 				H.set_species(random_race)
+				H.dna.update_dna_identity()
 				var/list/valid_jobs = list()
 				for(var/random_job in subtypesof(/datum/job))
 					var/datum/job/J = new random_job()

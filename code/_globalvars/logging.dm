@@ -24,6 +24,10 @@ GLOBAL_VAR(world_pda_log)
 GLOBAL_PROTECT(world_pda_log)
 GLOBAL_VAR(world_telecomms_log)
 GLOBAL_PROTECT(world_telecomms_log)
+
+GLOBAL_VAR(world_uplink_log)
+GLOBAL_PROTECT(world_uplink_log)
+
 GLOBAL_VAR(world_ntsl_log)
 GLOBAL_PROTECT(world_ntsl_log)
 GLOBAL_VAR(world_manifest_log)
@@ -69,6 +73,9 @@ GLOBAL_LIST_EMPTY(adminlog)
 GLOBAL_PROTECT(adminlog)
 
 GLOBAL_LIST_EMPTY(active_turfs_startlist)
+
+GLOBAL_LIST_EMPTY(test_log)
+GLOBAL_PROTECT(test_log)
 
 /////Picture logging
 GLOBAL_VAR(picture_log_directory)

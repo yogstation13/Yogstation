@@ -17,7 +17,7 @@ map yogstation
 	votable
 endmap
 
-map yogsmeta
+map icemeta
 	minplayers 25
 	votable
 endmap
@@ -29,6 +29,11 @@ endmap
 
 map asteroidstation
 	minplayers 40
+	votable
+endmap
+
+map donutstation
+	maxplayers 50
 	votable
 endmap
 
