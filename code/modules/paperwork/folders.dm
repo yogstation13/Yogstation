@@ -138,15 +138,14 @@
 	var/tc = 0
 	var/admin_msg = FALSE
 	// Steal objectives initialized later
-	var/list/easy_objectives = list(
-		new /datum/objective/download, // Download research nodes
-		new /datum/objective/minor/pet, // Kill a pet
+	var/list/easy_objectives = newlist(
+		/datum/objective/minor/pet, // Kill a pet
 	)
-	var/list/med_objectives = list(
-		new /datum/objective/assassinate/once, // Kill someone once
+	var/list/med_objectives = newlist(
+		/datum/objective/assassinate/once, // Kill someone once
 	)
-	var/list/hard_objectives = list(
-		new /datum/objective/destroy, // Kill AI
+	var/list/hard_objectives = newlist(
+		/datum/objective/destroy, // Kill AI
 	)
 
 /obj/item/folder/objective/Initialize(mapload, _user, _obj, _diff)
@@ -224,10 +223,6 @@
 			// i hate objective code so much WHO WROTE THIS????
 			if(!istype(objective, /datum/objective/steal))
 				objective.find_target()
-
-			if(istype(objective, /datum/objective/download))
-				var/datum/objective/download/O = objective
-				O.gen_amount_goal()
 
 			if(istype(objective, /datum/objective/minor))
 				var/datum/objective/minor/O = objective
