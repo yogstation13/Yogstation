@@ -208,7 +208,9 @@ const ItemList = (props, context) => {
       level={2}
       buttons={(
         <Button
-          content={item.cost + ' ' + currencySymbol}
+          content={
+            item.name.startsWith('Request Objective') ? 'REQUEST' :
+            item.cost + ' ' + currencySymbol}
           disabled={item.disabled}
           onmouseover={() => setHoveredItem(item)}
           onmouseout={() => setHoveredItem({})}
