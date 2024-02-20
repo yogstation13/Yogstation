@@ -99,7 +99,7 @@
 	idle_threads = list()
 	install_starting_components()
 	install_starting_files()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/modular_computer/Destroy()
 	kill_program(forced = TRUE)
@@ -301,11 +301,11 @@
 
 /obj/item/modular_computer/equipped()
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/modular_computer/dropped()
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 
 /obj/item/modular_computer/proc/update_label()
@@ -346,7 +346,7 @@
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		play_computer_sound(startup_sound, get_clamped_volume(), FALSE)
 		ui_interact(user)
 	else // Unpowered
@@ -488,7 +488,7 @@
 	var/mob/user = usr
 	if(user && istype(user))
 		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
@@ -504,7 +504,7 @@
 	var/obj/item/computer_hardware/network_card/network_card = all_components[MC_NET]
 	return SSnetworks.station_network.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(loud = 1)
+/obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	kill_program(forced = TRUE)
 	for(var/datum/computer_file/program/P in idle_threads)
 		P.kill_program(forced = TRUE)
@@ -512,8 +512,8 @@
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
-	update_appearance(UPDATE_ICON)
 	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
+	update_appearance()
 
 /**
   * Toggles the computer's flashlight, if it has one.
@@ -525,7 +525,7 @@
 	if(!has_light)
 		return FALSE
 	set_light_on(!light_on)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	return TRUE
 
 /**

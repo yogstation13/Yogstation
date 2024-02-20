@@ -63,7 +63,7 @@
 	icon = 'icons/effects/clockwork_effects.dmi'
 	clockwork_desc = "A sigil that will stun the next non-Servant to cross it."
 	icon_state = "sigildull"
-	layer = HIGH_SIGIL_LAYER
+	layer = SIGIL_LAYER
 	alpha = 75
 	color = "#FAE48C"
 	light_range = 1.4

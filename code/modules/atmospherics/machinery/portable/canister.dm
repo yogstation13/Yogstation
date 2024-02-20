@@ -8,9 +8,6 @@
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#ffff00#000000"
 	density = TRUE
-	light_system = MOVABLE_LIGHT
-	light_range = 1.4
-	light_on = FALSE
 	var/valve_open = FALSE
 	var/obj/machinery/atmospherics/components/binary/passive_gate/pump
 	var/release_log = ""

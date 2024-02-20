@@ -43,7 +43,8 @@
 
 
 /mob/living/silicon/ai/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
-	. = ..()
+	if(!..())
+		return
 	if(istype(card) && interaction == AI_TRANS_TO_CARD && hijacking)
 		hijacking.forceMove(get_turf(card))
 		hijacking.visible_message(span_warning("[hijacking] falls off of [AI] as it's transferred to [card]!"))
