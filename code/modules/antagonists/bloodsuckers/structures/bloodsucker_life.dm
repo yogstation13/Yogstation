@@ -214,6 +214,7 @@
 	var/obj/item/organ/eyes/current_eyes = bloodsuckeruser.getorganslot(ORGAN_SLOT_EYES)
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, - 1)
+		current_eyes.color_cutoffs = list(25, 8, 5)
 		current_eyes.sight_flags = SEE_MOBS
 
 		current_eyes.setOrganDamage(0) //making sure

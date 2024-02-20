@@ -534,10 +534,10 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(greyscale_colors && greyscale_config)
 		icon = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
-	if(!smooth) // This is a bitfield but we're just checking that some sort of smoothing is happening
+	if(!smoothing_flags) // This is a bitfield but we're just checking that some sort of smoothing is happening
 		return
 	update_atom_colour()
-	queue_smooth(src)
+	QUEUE_SMOOTH(src)
 
 /**
  * An atom we are buckled or is contained within us has tried to move
