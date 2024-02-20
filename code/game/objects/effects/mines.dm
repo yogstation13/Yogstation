@@ -93,6 +93,7 @@
 /obj/effect/mine/Initialize(mapload)
 	. = ..()
 	layer = ABOVE_MOB_LAYER
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
