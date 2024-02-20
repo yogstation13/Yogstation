@@ -287,6 +287,9 @@
 	///More stress stuff.
 	var/turning_on = FALSE
 
+	///Flicker cooldown
+	COOLDOWN_DECLARE(flicker_cooldown)
+
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
 	icon_state = "tube-broken"
@@ -726,8 +729,9 @@
 
 /obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	set waitfor = 0
-	if(flickering)
+	if(flickering || !COOLDOWN_FINISHED(src, flicker_cooldown))
 		return
+	COOLDOWN_START(src, flicker_cooldown, 30 SECONDS)
 	flickering = 1
 	if(on && status == LIGHT_OK)
 		for(var/i = 0; i < amount; i++)
