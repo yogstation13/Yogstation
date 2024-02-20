@@ -390,7 +390,7 @@
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 
 /obj/effect/mine/proc/on_exited(datum/source, atom/movable/gone)
-	SIGNAL_HANDLER
+	// SIGNAL_HANDLER we're not ready for this
 
 	if(!can_trigger(gone))
 		return
