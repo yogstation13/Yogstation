@@ -29,7 +29,7 @@
 	icon_state = "compressor"
 	density = TRUE
 	resistance_flags = FIRE_PROOF
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	use_power = NO_POWER_USE // powered by gas flow
 	circuit = /obj/item/circuitboard/machine/power_compressor
 	var/obj/machinery/power/turbine/turbine
@@ -62,7 +62,7 @@
 	icon_state = "turbine"
 	density = TRUE
 	resistance_flags = FIRE_PROOF
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	use_power = NO_POWER_USE // powered by gas flow
 	circuit = /obj/item/circuitboard/machine/power_turbine
 	var/opened = 0
@@ -248,7 +248,7 @@
 	if(!isclosedturf(outturf))
 		output_blocked = FALSE
 		for(var/atom/A in outturf)
-			if(!CANATMOSPASS(A, outturf))
+			if(!CANATMOSPASS(A, outturf, FALSE))
 				output_blocked = TRUE
 				break
 

@@ -22,7 +22,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "space"
 	requires_power = TRUE
 	always_unpowered = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = TRUE
+
+	base_lighting_alpha = 0
+	base_lighting_color = COLOR_STARLIGHT
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE
@@ -31,25 +34,28 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	blob_allowed = FALSE //Eating up space doesn't count for victory as a blob.
 	ambience_index = null
 	ambient_music_index = AMBIENCE_SPACE
+	flags_1 = CAN_BE_DIRTY_1
 	ambient_buzz = null
 	sound_environment = SOUND_AREA_SPACE
 
 /area/space/nearstation
 	icon_state = "space_near"
-	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
 
 /area/start
 	name = "start area"
 	icon_state = "start"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = STANDARD_GRAVITY
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 	ambience_index = null
 	ambient_buzz = null
 
 /area/testroom
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 	name = "Test Room"
 	icon_state = "test_room"
 
@@ -67,7 +73,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	sound_environment = SOUND_AREA_ASTEROID
 
 /area/asteroid/nearstation
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = TRUE
 	ambience_index = AMBIENCE_RUINS
 	always_unpowered = FALSE
 	requires_power = TRUE

@@ -2,6 +2,7 @@
 	name = "\improper Donksoft Toy Vendor"
 	desc = "Ages 8 and up approved vendor that dispenses toys."
 	icon_state = "syndi"
+	panel_type = "panel18"
 	product_slogans = "Get your cool toys today!;Trigger a security officer today!;Quality toy weapons for cheap prices!;Give them to HoPs for all access!;Give them to HoS to get permabrigged!"
 	product_ads = "Feel robust with your toys!;Express your inner child today!;Toy weapons don't kill people, but security does!;Who needs responsibilities when you have toy weapons?;Make your next murder FUN!"
 	vend_reply = "Come back for more!"
@@ -36,6 +37,7 @@
 	refill_canister = /obj/item/vending_refill/donksoft
 	default_price = 25
 	extra_price = 50
+	light_mask = "donksoft-light-mask"
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/donksoft
