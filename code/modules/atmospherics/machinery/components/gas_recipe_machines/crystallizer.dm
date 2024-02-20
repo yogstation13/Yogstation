@@ -14,6 +14,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 80, ACID = 30)
 	circuit = /obj/item/circuitboard/machine/crystallizer
 	pipe_flags = PIPING_ONE_PER_TURF| PIPING_DEFAULT_LAYER_ONLY
+	vent_movement = NONE
 
 	///Base icon state for the machine to be used in update_appearance(UPDATE_ICON)
 	var/base_icon = "crystallizer"
@@ -340,6 +341,9 @@
 			gas_input = clamp(_gas_input, 0, max_gas_input)
 			investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_appearance(UPDATE_ICON)
+
+/obj/machinery/atmospherics/components/binary/crystallizer/update_layer()
+	return
 
 #undef MIN_PROGRESS_AMOUNT
 #undef MIN_DEVIATION_RATE

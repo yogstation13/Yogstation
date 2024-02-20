@@ -1,6 +1,7 @@
 SUBSYSTEM_DEF(bluespace_locker)
 	name = "Bluespace Locker"
 	flags = SS_NO_FIRE
+	init_order = INIT_ORDER_BLUESPACE_LOCKER
 	var/obj/structure/closet/bluespace/internal/internal_locker = null
 	var/obj/structure/closet/bluespace/external/external_locker = null
 
@@ -65,8 +66,8 @@ SUBSYSTEM_DEF(bluespace_locker)
 		internal_locker.contents += external_locker.contents
 		internal_locker.open()
 		internal_locker.dump_contents()
-	internal_locker.update_appearance(UPDATE_ICON)
-	external_locker.update_appearance(UPDATE_ICON)
+	internal_locker.update_appearance()
+	external_locker.update_appearance()
 
 /datum/controller/subsystem/bluespace_locker/proc/redistribute_locker()
 	if(!internal_locker)

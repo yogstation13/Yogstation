@@ -34,14 +34,16 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	
 	var/obj/item/stock_parts/cell/integrated_battery
 
-
 /obj/machinery/ai/data_core/Initialize(mapload)
 	. = ..()
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	RefreshParts()
+
+/obj/machinery/ai/data_core/JoinPlayerHere(mob/M, buckle)
+	return
 
 /obj/machinery/ai/data_core/RefreshParts()
 	var/new_heat_mod = 1
@@ -247,7 +249,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/proc/transfer_AI(mob/living/silicon/ai/AI)
 	AI.forceMove(src)
 	if(AI.eyeobj)
-		AI.eyeobj.forceMove(get_turf(src))
+		AI.eyeobj.setLoc(get_turf(src))
 
 /obj/machinery/ai/data_core/update_icon_state()
 	. = ..()
@@ -285,6 +287,7 @@ That prevents a few funky behaviors.
 
 
 /atom/proc/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+	SHOULD_CALL_PARENT(TRUE)
 	if(istype(card))
 		if(card.flush)
 			to_chat(user, "[span_boldannounce("ERROR")]: AI flush is in progress, cannot execute transfer protocol.")

@@ -4696,12 +4696,12 @@
 /obj/item/kirbyplants{
 	icon_state = "plant-14"
 	},
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 9
 	},
 /area/awaymission/research/interior/dorm)
 "jn" = (
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 1
 	},
 /area/awaymission/research/interior/dorm)
@@ -4709,7 +4709,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 1
 	},
 /area/awaymission/research/interior/dorm)
@@ -4722,7 +4722,7 @@
 	name = "flipped table";
 	obj_integrity = 55
 	},
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 1
 	},
 /area/awaymission/research/interior/dorm)
@@ -4885,7 +4885,7 @@
 /turf/open/floor/wood,
 /area/awaymission/research/interior/dorm)
 "jE" = (
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 8
 	},
 /area/awaymission/research/interior/dorm)
@@ -5080,23 +5080,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/research/interior/dorm)
-"ka" = (
-/turf/open/floor/plasteel/yellowsiding/corner,
-/area/awaymission/research/interior/dorm)
-"kb" = (
-/obj/structure/barricade/wooden{
-	desc = "A wooden table hastily flipped over for cover.";
-	icon = 'icons/obj/smooth_structures/wood_table.dmi';
-	icon_state = "wood_table";
-	max_integrity = 55;
-	name = "flipped table";
-	obj_integrity = 55
-	},
-/turf/open/floor/plasteel/yellowsiding,
-/area/awaymission/research/interior/dorm)
-"kc" = (
-/turf/open/floor/plasteel/yellowsiding,
-/area/awaymission/research/interior/dorm)
 "kd" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -5269,7 +5252,7 @@
 /area/awaymission/research/interior/dorm)
 "ku" = (
 /obj/structure/closet/wardrobe/pjs,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 4
 	},
 /area/awaymission/research/interior/dorm)
@@ -5343,13 +5326,8 @@
 /obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 9
-	},
-/area/awaymission/research/interior/dorm)
-"kD" = (
-/turf/open/floor/plasteel/yellowsiding/corner{
-	dir = 1
 	},
 /area/awaymission/research/interior/dorm)
 "kE" = (
@@ -5358,7 +5336,7 @@
 /area/awaymission/research/interior/dorm)
 "kF" = (
 /obj/structure/closet/wardrobe/green,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 4
 	},
 /area/awaymission/research/interior/dorm)
@@ -5396,7 +5374,7 @@
 /area/awaymission/research/interior/medbay)
 "kQ" = (
 /obj/structure/chair/stool,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 8
 	},
 /area/awaymission/research/interior/dorm)
@@ -5424,7 +5402,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 4
 	},
 /area/awaymission/research/interior/dorm)
@@ -5479,7 +5457,7 @@
 "lc" = (
 /obj/structure/window/reinforced,
 /obj/structure/closet/wardrobe/mixed,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 4
 	},
 /area/awaymission/research/interior/dorm)
@@ -5600,7 +5578,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 8
 	},
 /area/awaymission/research/interior/dorm)
@@ -5614,7 +5592,7 @@
 /area/awaymission/research/interior/dorm)
 "lp" = (
 /obj/machinery/washing_machine,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 4
 	},
 /area/awaymission/research/interior/dorm)
@@ -5717,22 +5695,13 @@
 /obj/item/kirbyplants{
 	icon_state = "plant-16"
 	},
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 10
 	},
 /area/awaymission/research/interior/dorm)
 "lz" = (
 /obj/machinery/light,
-/turf/open/floor/plasteel/yellowsiding,
-/area/awaymission/research/interior/dorm)
-"lA" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel/yellowsiding,
-/area/awaymission/research/interior/dorm)
-"lB" = (
-/turf/open/floor/plasteel/yellowsiding/corner{
-	dir = 8
-	},
+/turf/open/floor/plasteel,
 /area/awaymission/research/interior/dorm)
 "lC" = (
 /obj/machinery/iv_drip,
@@ -5833,7 +5802,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 4
 	},
 /area/awaymission/research/interior/dorm)
@@ -5882,7 +5851,7 @@
 /area/awaymission/research/interior/dorm)
 "lU" = (
 /obj/machinery/computer/arcade,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 4
 	},
 /area/awaymission/research/interior/dorm)
@@ -5908,12 +5877,12 @@
 /area/awaymission/research/interior/medbay)
 "lX" = (
 /obj/structure/closet/crate/bin,
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 10
 	},
 /area/awaymission/research/interior/dorm)
 "lY" = (
-/turf/open/floor/plasteel/yellowsiding{
+/turf/open/floor/plasteel{
 	dir = 6
 	},
 /area/awaymission/research/interior/dorm)
@@ -39637,7 +39606,7 @@ jn
 kR
 kR
 jF
-kc
+jF
 lK
 jk
 jD
@@ -39894,7 +39863,7 @@ jn
 kS
 kR
 kU
-kc
+jF
 iX
 lP
 jk
@@ -40151,7 +40120,7 @@ jn
 kT
 kR
 jF
-kc
+jF
 iX
 iX
 iX
@@ -40408,7 +40377,7 @@ jn
 kU
 jF
 jF
-kc
+jF
 iX
 lQ
 jC
@@ -40665,7 +40634,7 @@ jn
 jF
 jF
 ln
-kc
+jF
 lL
 jk
 jD
@@ -40922,7 +40891,7 @@ jn
 jF
 jF
 jF
-kc
+jF
 iX
 lR
 jk
@@ -41179,7 +41148,7 @@ jn
 jF
 jF
 jF
-kc
+jF
 iX
 iX
 iX
@@ -41693,7 +41662,7 @@ jn
 jF
 jF
 kU
-kc
+jF
 lM
 jk
 jD
@@ -41950,7 +41919,7 @@ jn
 kU
 kR
 jF
-kc
+jF
 iX
 lT
 jk
@@ -42207,7 +42176,7 @@ jn
 jF
 kR
 jF
-lA
+kU
 iX
 iX
 iX
@@ -42460,11 +42429,11 @@ jm
 jE
 jE
 jE
-kD
+jn
 jF
 jF
 lo
-lB
+jE
 jE
 jE
 jE
@@ -42982,7 +42951,7 @@ jF
 jF
 kU
 kU
-kc
+jF
 iX
 hD
 mb
@@ -43229,7 +43198,7 @@ iU
 iX
 jn
 jF
-ka
+jF
 ku
 kF
 kV
@@ -43486,7 +43455,7 @@ iT
 iX
 jp
 jG
-kb
+jG
 iX
 iX
 iX
@@ -43743,7 +43712,7 @@ cw
 iX
 jn
 jF
-kc
+jF
 iX
 cm
 bD

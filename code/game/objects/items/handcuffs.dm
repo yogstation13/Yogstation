@@ -268,7 +268,11 @@
 
 /obj/item/restraints/legcuffs/beartrap/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(trap_stepped_on),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/item/restraints/legcuffs/beartrap/update_icon_state()
 	. = ..()
@@ -309,6 +313,32 @@
 	anchored = FALSE
 	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
+
+/obj/item/restraints/legcuffs/beartrap/proc/trap_stepped_on(datum/source, atom/movable/entering, ...)
+	SIGNAL_HANDLER
+
+	spring_trap(entering)
+
+/**
+ * Tries to spring the trap on the target movable.
+ *
+ * This proc is safe to call without knowing if the target is valid or if the trap is armed.
+ *
+ * Does not trigger on tiny mobs.
+ * If ignore_movetypes is FALSE, does not trigger on floating / flying / etc. mobs.
+ */
+/obj/item/restraints/legcuffs/beartrap/proc/spring_trap(atom/movable/target, ignore_movetypes = FALSE)
+	if(!armed || !isturf(loc) || !isliving(target))
+		return
+
+	var/mob/living/victim = target
+	if(istype(victim.buckled, /obj/vehicle))
+		var/obj/vehicle/ridden_vehicle = victim.buckled
+		if(!ridden_vehicle.are_legs_exposed) //close the trap without injuring/trapping the rider if their legs are inside the vehicle at all times.
+			close_trap()
+			ridden_vehicle.visible_message(span_danger("[ridden_vehicle] triggers \the [src]."))
+			return
+
 
 /obj/item/restraints/legcuffs/beartrap/Crossed(AM as mob|obj)
 	if(armed && isturf(loc))

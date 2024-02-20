@@ -3,6 +3,7 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
+	panel_type = "panel4"
 	products = list(/obj/item/storage/bag/tray = 8,
 					/obj/item/reagent_containers/glass/bowl = 20,
 					/obj/item/kitchen/fork = 6,
@@ -28,7 +29,7 @@
 	refill_canister = /obj/item/vending_refill/dinnerware
 	default_price = 5
 	extra_price = 50
-	payment_department = ACCOUNT_SRV
+	light_mask = "dinnerware-light-mask"
 
 /obj/item/vending_refill/dinnerware
 	machine_name = "Plasteel Chef's Dinnerware Vendor"

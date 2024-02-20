@@ -43,6 +43,10 @@
 	var/current_positions = 0
 	/// Supervisors, who this person answers to directly
 	var/supervisors = ""
+
+	/// What kind of mob type joining players with this job as their assigned role are spawned as.
+	var/spawn_type = /mob/living/carbon/human
+
 	/// Selection Color for job preferences
 	var/selection_color = "#ffffff"
 	/// Alternate titles for the job
@@ -397,6 +401,97 @@
 /// An overridable getter for more dynamic goodies.
 /datum/job/proc/get_mail_goodies(mob/recipient)
 	return mail_goodies
+
+
+/datum/job/proc/award_service(client/winner, award)
+	return
+
+
+/datum/job/proc/get_captaincy_announcement(mob/living/captain)
+	return "Due to extreme staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+
+/// Returns an atom where the mob should spawn in.
+// /datum/job/proc/get_roundstart_spawn_point()
+// 	if(random_spawns_possible)
+// 		if(HAS_TRAIT(SSstation, STATION_TRAIT_LATE_ARRIVALS))
+// 			return get_latejoin_spawn_point()
+// 		if(HAS_TRAIT(SSstation, STATION_TRAIT_RANDOM_ARRIVALS))
+// 			return get_safe_random_station_turf(typesof(/area/station/hallway)) || get_latejoin_spawn_point()
+// 		if(HAS_TRAIT(SSstation, STATION_TRAIT_HANGOVER))
+// 			var/obj/effect/landmark/start/hangover_spawn_point
+// 			for(var/obj/effect/landmark/start/hangover/hangover_landmark in GLOB.start_landmarks_list)
+// 				hangover_spawn_point = hangover_landmark
+// 				if(hangover_landmark.used) //so we can revert to spawning them on top of eachother if something goes wrong
+// 					continue
+// 				hangover_landmark.used = TRUE
+// 				break
+// 			return hangover_spawn_point || get_latejoin_spawn_point()
+// 	if(length(GLOB.jobspawn_overrides[title]))
+// 		return pick(GLOB.jobspawn_overrides[title])
+// 	var/obj/effect/landmark/start/spawn_point = get_default_roundstart_spawn_point()
+// 	if(!spawn_point) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
+// 		return get_latejoin_spawn_point()
+// 	return spawn_point
+
+
+/// Handles finding and picking a valid roundstart effect landmark spawn point, in case no uncommon different spawning events occur.
+/datum/job/proc/get_default_roundstart_spawn_point()
+	for(var/obj/effect/landmark/start/spawn_point as anything in GLOB.start_landmarks_list)
+		if(spawn_point.name != title)
+			continue
+		. = spawn_point
+		if(spawn_point.used) //so we can revert to spawning them on top of eachother if something goes wrong
+			continue
+		spawn_point.used = TRUE
+		break
+	if(!.)
+		log_mapping("Job [title] ([type]) couldn't find a round start spawn point.")
+
+/// Finds a valid latejoin spawn point, checking for events and special conditions.
+// /datum/job/proc/get_latejoin_spawn_point()
+// 	if(length(GLOB.jobspawn_overrides[title])) //We're doing something special today.
+// 		return pick(GLOB.jobspawn_overrides[title])
+// 	if(length(SSjob.latejoin_trackers))
+// 		return pick(SSjob.latejoin_trackers)
+// 	return SSjob.get_last_resort_spawn_points()
+
+
+// Spawns the mob to be played as, taking into account preferences and the desired spawn point.
+/datum/job/proc/get_spawn_mob(client/player_client, atom/spawn_point)
+	var/mob/living/spawn_instance
+	if(ispath(spawn_type, /mob/living/silicon/ai))
+		// This is unfortunately necessary because of snowflake AI init code. To be refactored.
+		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob)
+	else
+		spawn_instance = new spawn_type(player_client.mob.loc)
+		spawn_point.JoinPlayerHere(spawn_instance, TRUE)
+	spawn_instance.apply_prefs_job(player_client, src)
+	if(!player_client)
+		qdel(spawn_instance)
+		return // Disconnected while checking for the appearance ban.
+	return spawn_instance
+
+
+/// Applies the preference options to the spawning mob, taking the job into account. Assumes the client has the proper mind.
+/mob/living/proc/apply_prefs_job(client/player_client, datum/job/job)
+
+/**
+ * Called after a successful roundstart spawn.
+ * Client is not yet in the mob.
+ * This happens after after_spawn()
+ */
+/datum/job/proc/after_roundstart_spawn(mob/living/spawning, client/player_client)
+	SHOULD_CALL_PARENT(TRUE)
+
+
+/**
+ * Called after a successful latejoin spawn.
+ * Client is in the mob.
+ * This happens after after_spawn()
+ */
+/datum/job/proc/after_latejoin_spawn(mob/living/spawning)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_LATEJOIN_SPAWN, src, spawning)
 
 //Warden and regular officers add this result to their get_access()
 /datum/job/proc/check_config_for_sec_maint()

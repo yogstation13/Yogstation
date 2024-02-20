@@ -6,7 +6,6 @@
 		. = new /datum/armor(melee, bullet, laser, energy, bomb, bio, rad, fire, acid, magic, wound, electric)
 
 /datum/armor
-	datum_flags = DF_USE_TAG
 	var/melee
 	var/bullet
 	var/laser
@@ -34,6 +33,7 @@
 	src.wound = wound
 	src.electric = electric
 	tag = ARMORID
+	GenerateTag()
 
 /datum/armor/proc/modifyRating(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0, magic = 0, wound = 0, electric=0)
 	return getArmor(src.melee+melee, src.bullet+bullet, src.laser+laser, src.energy+energy, src.bomb+bomb, src.bio+bio, src.rad+rad, src.fire+fire, src.acid+acid, src.magic+magic, src.wound+wound, src.electric+electric)

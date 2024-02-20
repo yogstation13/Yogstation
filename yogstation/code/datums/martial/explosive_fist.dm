@@ -366,7 +366,7 @@
 		var/armor_block = D.run_armor_check(hed, BOMB)
 		D.apply_damage(A.get_punchdamagehigh() + 3, BURN, BODY_ZONE_HEAD, armor_block) 		//10 burn (vs bomb armor)
 		D.emote("scream")
-		D.blur_eyes(4)
+		D.adjust_eye_blur(4)
 
 		A.apply_damage(10, BURN, BODY_ZONE_CHEST, 0) 	//Take some unblockable damage since you're using your inner flame or something
 
