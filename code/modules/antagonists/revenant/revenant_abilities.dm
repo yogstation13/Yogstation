@@ -71,7 +71,7 @@
 											   span_revenwarning("Violet lights, dancing in your vision, receding--"))
 					draining = FALSE
 					return
-				var/datum/beam/B = Beam(target,icon_state="drain_life",time=INFINITY)
+				var/datum/beam/draining_beam = Beam(target, icon_state = "drain_life")
 				if(do_after(src, 4.6 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
 					change_essence_amount(essence_drained, FALSE, target)
 					if(essence_drained <= 90 && target.stat != DEAD)
@@ -91,21 +91,12 @@
 					if(target) //Wait, target is WHERE NOW?
 						target.visible_message(span_warning("[target] slumps onto the ground."), \
 											   span_revenwarning("Violets lights, dancing in your vision, receding--"))
-				qdel(B)
+				qdel(draining_beam)
 			else
 				to_chat(src, span_revenwarning("You are not close enough to siphon [target ? "[target]'s":"[target.p_their()]"] soul. The link has been broken."))
 	draining = FALSE
 	essence_drained = 0
-
-//Toggle night vision: lets the revenant toggle its night vision
-/datum/action/cooldown/spell/night_vision/revenant
-	name = "Toggle Darkvision"
-	panel = "Revenant Abilities"
-	background_icon_state = "bg_revenant"
-	button_icon = 'icons/mob/actions/actions_revenant.dmi'
-	button_icon_state = "r_nightvision"
-	toggle_span = "revennotice"
-
+	
 //Transmit: the revemant's only direct way to communicate. Sends a single message silently to a single mob
 /datum/action/cooldown/spell/list_target/telepathy/revenant
 	name = "Revenant Transmit"
@@ -268,7 +259,7 @@
 
 	if(!isplatingturf(victim) && !istype(victim, /turf/open/floor/engine/cult) && isfloorturf(victim) && prob(15))
 		var/turf/open/floor/floor = victim
-		if(floor.floor_tile)
+		if(floor.overfloor_placed && floor.floor_tile)
 			new floor.floor_tile(floor)
 		floor.broken = 0
 		floor.burnt = 0

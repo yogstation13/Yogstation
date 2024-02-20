@@ -26,15 +26,7 @@
 		return ELEMENT_INCOMPATIBLE
 	SEND_SIGNAL(target, COMSIG_ELEMENT_ATTACH, src)
 	if(element_flags & ELEMENT_DETACH_ON_HOST_DESTROY)
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(Detach), override = TRUE)
-
-		/*
-		The override = TRUE here is to suppress runtimes happening because of the blood decal element
-		being applied multiple times to a same thing every time there is some bloody attacks,
-		which happens due to ludicrous use of check_blood() in forensics.dm,
-		and how elements system is design and coded; there isn't exactly a not-hacky
-		way to determine whether a datum has this particular element before adding it...
-		*/
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(OnTargetDelete), override = TRUE)
 
 /datum/element/proc/OnTargetDelete(datum/source, force)
 	SIGNAL_HANDLER
@@ -46,7 +38,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	SEND_SIGNAL(source, COMSIG_ELEMENT_DETACH, src)
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(source, COMSIG_QDELETING)
 
 /datum/element/Destroy(force)
 	if(!force)
@@ -59,10 +51,13 @@
 /// Finds the singleton for the element type given and attaches it to src
 /datum/proc/_AddElement(list/arguments)
 	if(QDELING(src))
-		//linter shits because of the way we init the maps and delete unused assets
-		//CRASH("We just tried to add an element to a qdeleted datum, something is fucked")
+		var/datum/element/element_type = arguments[1]
+		stack_trace("We just tried to add the element [element_type] to a qdeleted datum, something is fucked")
 		return
+
 	var/datum/element/ele = SSdcs.GetElement(arguments)
+	if(!ele) // We couldn't fetch the element, likely because it was not an element.
+		return // the crash message has already been sent
 	arguments[1] = src
 	if(ele.Attach(arglist(arguments)) == ELEMENT_INCOMPATIBLE)
 		CRASH("Incompatible element [ele.type] was assigned to a [type]! args: [json_encode(args)]")
@@ -72,7 +67,9 @@
  * You only need additional arguments beyond the type if you're using [ELEMENT_BESPOKE]
  */
 /datum/proc/_RemoveElement(list/arguments)
-	var/datum/element/ele = SSdcs.GetElement(arguments)
+	var/datum/element/ele = SSdcs.GetElement(arguments, FALSE)
+	if(!ele) // We couldn't fetch the element, likely because it didn't exist.
+		return
 	if(ele.element_flags & ELEMENT_COMPLEX_DETACH)
 		arguments[1] = src
 		ele.Detach(arglist(arguments))

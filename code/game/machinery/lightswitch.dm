@@ -62,8 +62,8 @@
 	desc = "Make dark."
 	power_channel = AREA_USAGE_LIGHT
 
-	light_power = 0
-	light_range = 7
+	///Range of the light emitted when powered, but off
+	var/light_on_range = 1
 
 	/// Set this to a string, path, or area instance to control that area
 	/// instead of the switch's location.
@@ -86,7 +86,7 @@
 	if(mapload)
 		construction_state = LIGHT_CONSTRUCTED
 
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	if(mapload)
 		return INITIALIZE_HINT_LATELOAD
 	return INITIALIZE_HINT_NORMAL
@@ -99,25 +99,39 @@
 		return
 	turn_off()
 
+/obj/machinery/light_switch/update_appearance(updates=ALL)
+	. = ..()
+	luminosity = (stat & NOPOWER) ? 0 : 1
+
+/obj/machinery/light_switch/update_icon_state()
+	set_light(area.lightswitch ? 0 : light_on_range)
+	switch(construction_state)
+		if(LIGHT_BARE)
+			icon_state = "light-b"
+		if(LIGHT_WIRE)
+			icon_state = "light-w"
+		if(LIGHT_CONSTRUCTED)
+			icon_state = "light-c"
+	
+	return ..()
+
 /obj/machinery/light_switch/update_overlays()
 	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(construction_state != LIGHT_CONSTRUCTED)
 		return
-	if(area.lightswitch)
-		. += "light1"
-	else
-		. += "light0"
+	. += mutable_appearance(icon, "[area.lightswitch ? "light1" : "light0"]")
+	. += emissive_appearance(icon, "[area.lightswitch ? "light1" : "light0"]", src)
 
 /obj/machinery/light_switch/proc/turn_off()
 	if(!area.lightswitch)
 		return
 	area.lightswitch = FALSE
-	area.update_icon()
+	area.update_appearance()
 
 	for(var/obj/machinery/light_switch/L in area)
-		L.update_icon()
+		L.update_appearance()
 
 	area.power_change()
 
@@ -125,10 +139,10 @@
 	if(area.lightswitch)
 		return
 	area.lightswitch = TRUE
-	area.update_icon()
+	area.update_appearance()
 
 	for(var/obj/machinery/light_switch/L in area)
-		L.update_icon()
+		L.update_appearance()
 
 	area.power_change()
 
@@ -146,11 +160,10 @@
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
-	area.update_appearance(UPDATE_ICON)
 	play_click_sound("button")
 
 	for(var/obj/machinery/light_switch/L in area)
-		L.update_appearance(UPDATE_ICON)
+		L.update_appearance()
 
 	area.power_change()
 
@@ -161,12 +174,13 @@
 			if(istype(c) && c.use(1))
 				to_chat(user, span_notice("You insert wiring into [src]."))
 				construction_state = LIGHT_WIRE
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 				return
 			if(W.tool_behaviour == TOOL_WRENCH)
 				W.play_tool_sound(src)
 				to_chat(user, span_notice("You remove the frame."))
 				new /obj/item/wallframe/light_switch(loc)
+				qdel(src)
 				return
 		if(LIGHT_WIRE)
 			if(W.tool_behaviour == TOOL_WIRECUTTER && wires.is_cut(WIRE_POWER))
@@ -174,7 +188,7 @@
 				to_chat(user, span_notice("You cut the wires out."))
 				new /obj/item/stack/cable_coil(loc, 1)
 				construction_state = LIGHT_BARE
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 				return
 			if(panel_open && is_wire_tool(W))
 				wires.interact(user)
@@ -184,7 +198,7 @@
 				to_chat(user, span_notice("You screw the cover on."))
 				panel_open = FALSE
 				construction_state = LIGHT_CONSTRUCTED
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 				return
 		if(LIGHT_CONSTRUCTED)
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
@@ -192,20 +206,9 @@
 				to_chat(user, span_notice("You take the cover off."))
 				panel_open = TRUE
 				construction_state = LIGHT_WIRE
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 				return
 	return ..()
-
-/obj/machinery/light_switch/update_icon_state()
-	. = ..()
-	switch(construction_state)
-		if(LIGHT_BARE)
-			icon_state = "light-b"
-		if(LIGHT_WIRE)
-			icon_state = "light-w"
-		if(LIGHT_CONSTRUCTED)
-			icon_state = "light-c"
-
 
 /obj/machinery/light_switch/power_change()
 	if(area == get_area(src))

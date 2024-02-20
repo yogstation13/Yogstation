@@ -172,7 +172,7 @@
 		if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE)
 			return TRUE
 		if(SHUTTLE_CALL)
-			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergencyCallTime)*0.5)
+			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergency_call_time)*0.5)
 				return TRUE
 
 	var/matc = CONFIG_GET(number/midround_antag_time_check)

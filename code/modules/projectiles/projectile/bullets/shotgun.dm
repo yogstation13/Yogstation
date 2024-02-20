@@ -76,7 +76,7 @@
 	armour_penetration = 60 // he he funny round go through armor
 	wound_bonus = -40
 	demolition_mod = 3 // very good at smashing through stuff
-	penetrating = TRUE //Goes through an infinite number of mobs
+	penetrations = INFINITY //Goes through an infinite number of mobs
 
 /obj/projectile/bullet/shotgun/slug/Range()
 	..()

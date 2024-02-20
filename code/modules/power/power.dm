@@ -115,8 +115,9 @@
   * Returns TRUE if the NOPOWER flag was toggled
   */
 /obj/machinery/proc/power_change()
+	//SIGNAL_HANDLER
 	if(stat & BROKEN)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return
 	if(powered(power_channel))
 		if(stat & NOPOWER)
@@ -128,7 +129,7 @@
 			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
 			. = TRUE
 		stat |= NOPOWER
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 // connect the machine to a powernet if a node cable is present on the turf
 /obj/machinery/proc/connect_to_network()
@@ -156,7 +157,7 @@
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = W
 		var/turf/T = user.loc
-		if(T.intact || !isfloorturf(T))
+		if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !isfloorturf(T))
 			return
 		if(get_dist(src, user) > 1)
 			return
@@ -355,10 +356,6 @@
 
 	if(victim.getarmor(zone, ELECTRIC) >= 100)
 		SEND_SIGNAL(victim, COMSIG_LIVING_SHOCK_PREVENTED, power_source, source, siemens_coeff, dist_check)
-		var/obj/item/clothing/gloves/G = victim.gloves
-		if(istype(G, /obj/item/clothing/gloves/color/fyellow))
-			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			greytide.get_shocked()
 		return FALSE //to avoid spamming with insulated glvoes on
 
 	var/list/powernet_info = get_powernet_info_from_source(power_source)

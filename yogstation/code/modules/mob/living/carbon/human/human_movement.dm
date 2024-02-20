@@ -1,4 +1,4 @@
-/mob/living/carbon/human/onTransitZ(old_z,new_z)
+/mob/living/carbon/human/on_changed_z_level(old_z,new_z)
 	.=..()
 	if(is_mining_level(new_z) || is_mining_level(old_z))
 		update_move_intent_slowdown()

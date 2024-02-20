@@ -47,6 +47,7 @@ All the important duct code:
 			qdel(src) //replace with dropping or something
 	if(active)
 		attempt_connect()
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 /obj/machinery/duct/proc/attempt_connect()
 	reset_connects(0) //All connects are gathered here again eitherway, we might aswell reset it so they properly update when reconnecting

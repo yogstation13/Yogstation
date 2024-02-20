@@ -113,12 +113,12 @@
 	qdel(wires)
 	wires = null
 	cut_links()
-	SSair_machinery.stop_processing_machine(src)
+	SSair.stop_processing_machine(src)
 	return ..()
 
 /obj/machinery/advanced_airlock_controller/Initialize(mapload)
 	. = ..()
-	SSair_machinery.start_processing_machine(src)
+	SSair.start_processing_machine(src)
 	scan_on_late_init = mapload
 	if(mapload && (. != INITIALIZE_HINT_QDEL))
 		return INITIALIZE_HINT_LATELOAD
@@ -142,7 +142,7 @@
 	if(environment)
 		pressure = environment.return_pressure()
 	var/maxpressure = (exterior_pressure && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN)) ? exterior_pressure : interior_pressure
-	var/pressure_bars = round(pressure / maxpressure * 5 + 0.01)
+	var/pressure_bars = ROUND_UP(pressure / maxpressure * 5 + 0.01)
 
 	var/new_overlays_hash = "[pressure_bars]-[cyclestate]-[buildstage]-[panel_open]-[stat]-[shorted]-[locked]-\ref[vis_target]"
 	if(use_hash && new_overlays_hash == overlays_hash)
@@ -182,7 +182,7 @@
 		var/matrix/TR = new
 		TR.Translate(0, 16)
 		TR.Multiply(new /matrix(s_dx, f_dx, 0, s_dy, f_dy, 0))
-		var/mutable_appearance/M = mutable_appearance(icon, "hologram-line", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+		var/mutable_appearance/M = mutable_appearance(icon, "hologram-line", ABOVE_LIGHTING_PLANE)
 		M.transform = TR
 		add_overlay(M)
 
@@ -536,7 +536,7 @@
 	for(var/I = 1; I <= turfs.len; I++)
 		var/turf/open/T = turfs[I]
 		if(assume_roles)
-			T.ImmediateCalculateAdjacentTurfs()
+			T.immediate_calculate_adjacent_turfs()
 		for(var/turf/open/T2 in T.atmos_adjacent_turfs)
 			if(get_dist(initial_turf, T2) > 5)
 				config_error_str = "Airlock too big"

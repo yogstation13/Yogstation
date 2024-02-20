@@ -26,7 +26,7 @@ const moderator_gases_help = {
     'Saps most forms of energy expression. Slows the rate of temperature change.',
 };
 
-const moderator_gases_sticky_order = ['plasma', 'bz', 'pluonium'];
+const moderator_gases_sticky_order = ['plasma', 'bz', 'pluonium', 'o2', 'healium', 'antinoblium', 'freon'];
 
 const ensure_gases = (gas_array, gasids) => {
   const gases_by_id = {};
@@ -36,7 +36,7 @@ const ensure_gases = (gas_array, gasids) => {
 
   for (let gasid of gasids) {
     if (!gases_by_id[gasid]) {
-      gas_array.push({ id: gasid, amount: 0 });
+      gas_array.push({ id: gasid, amount: 0, remove_rate: 0 });
     }
   }
 };
@@ -109,7 +109,8 @@ const GasList = (props, context) => {
               value={gas.amount}
               minValue={0}
               maxValue={minimumScale}>
-              {toFixed(gas.amount, 2) + ' moles'}
+              {toFixed(gas.amount, 2) + ' moles, '}
+              {toFixed(gas.remove_rate, 2) + ' mol/s'}
             </ProgressBar>
           </LabeledList.Item>
         );
