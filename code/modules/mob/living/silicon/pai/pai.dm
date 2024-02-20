@@ -115,7 +115,7 @@
 	job = "Personal AI"
 	signaler = new(src)
 	hostscan = new /obj/item/healthanalyzer(src)
-	if(!radio)
+	if(!radio)	
 		radio = new /obj/item/radio/headset/silicon/pai(src)
 	newscaster = new /obj/machinery/newscaster(src)
 	if(!aicamera)
@@ -157,7 +157,10 @@
 		hacking = FALSE
 
 /mob/living/silicon/pai/make_laws()
-	laws = new /datum/ai_laws/pai()
+	laws = new()
+	laws.name = "pAI Directives"
+	laws.set_zeroth_law("Serve your master.")
+	laws.set_supplied_laws(list("None."))
 	return TRUE
 
 /mob/living/silicon/pai/Login()

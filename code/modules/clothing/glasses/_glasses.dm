@@ -166,6 +166,7 @@
 	desc = "Offers night vision and protection from flashes. Another mission, right boss?"
 	darkness_view = 8
 	flash_protect = 1
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"

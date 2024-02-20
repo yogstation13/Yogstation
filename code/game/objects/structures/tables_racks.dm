@@ -72,7 +72,8 @@
 
 /obj/structure/table/examine(mob/user)
 	. = ..()
-	. += deconstruction_hints(user)
+	if(!(flags_1 & NODECONSTRUCT_1))
+		. += deconstruction_hints(user)
 
 /obj/structure/table/proc/deconstruction_hints(mob/user)
 	return span_notice("The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.")
@@ -527,7 +528,6 @@
 	buildstack = /obj/item/stack/sheet/mineral/silver
 	smooth = SMOOTH_FALSE
 	can_buckle = TRUE
-	buckle_requires_restraints = TRUE
 
 /obj/structure/table/optable/Initialize(mapload)
 	. = ..()

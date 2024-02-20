@@ -27,13 +27,13 @@
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/baguette = 15,
-		/obj/item/reagent_containers/food/snacks/store/cheesewheel = 10,
+		/obj/item/reagent_containers/food/snacks/store/cheesewheel/brie = 10,
 		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 10,
 		/obj/item/book/mimery = 1,
 	)
 
 	minimal_lightup_areas = list(/area/crew_quarters/theatre)
-	
+
 	smells_like = "complete nothingness"
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -103,7 +103,7 @@
 
 		if("Invisible Box")
 			picked_spell_type = /datum/action/cooldown/spell/conjure_item/invisible_box
-		
+
 		if("Invisible Touch")
 			picked_spell_type = /datum/action/cooldown/spell/touch/invisible_touch
 

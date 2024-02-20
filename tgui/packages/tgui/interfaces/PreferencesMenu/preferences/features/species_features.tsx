@@ -119,3 +119,18 @@ export const feature_ethereal_mark: FeatureChoiced = {
   name: "Mark",
   component: FeatureDropdownInput,
 };
+
+export const feature_preternis_weathering: FeatureChoiced = {
+  name: "Weathering",
+  component: FeatureDropdownInput,
+};
+
+export const feature_preternis_antenna: FeatureChoiced = {
+  name: "Antenna",
+  component: FeatureDropdownInput,
+};
+
+export const feature_preternis_eye: FeatureChoiced = {
+  name: "Eye",
+  component: FeatureDropdownInput,
+};

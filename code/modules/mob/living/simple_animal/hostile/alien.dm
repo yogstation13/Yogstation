@@ -23,7 +23,7 @@
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "slashes"
 	speak_emote = list("hisses")
-	bubble_icon = "alien"
+	bubble_icon = BUBBLE_ALIEN
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -133,7 +133,7 @@
 	icon_state = "alienq"
 	icon_living = "alienq"
 	icon_dead = "alienq_dead"
-	bubble_icon = "alienroyal"
+	bubble_icon = BUBBLE_ALIENROYAL
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400

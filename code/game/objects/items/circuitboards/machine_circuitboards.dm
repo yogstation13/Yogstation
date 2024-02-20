@@ -1438,3 +1438,9 @@
 	req_components = list(
 		/obj/item/stock_parts/capacitor = 3,
 		/obj/item/stock_parts/micro_laser = 1)
+
+/obj/item/circuitboard/machine/mass_driver
+	name = "Mass Driver"
+	build_path = /obj/machinery/mass_driver
+	req_components = list(
+		/obj/item/stock_parts/capacitor = 1)

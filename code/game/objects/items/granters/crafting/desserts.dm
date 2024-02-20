@@ -12,7 +12,7 @@
 	remarks = list(
 		"So that is how icing is made!",
 		"Placing fruit on top? How simple...",
-		"Huh layering cake seems harder then this...",
+		"Huh, layering cake seems harder than this...",
 		"This book smells like candy.",
 		"A clown must have made this page, or they forgot to spell check it before printing...",
 		"Wait, a way to cook slime to be safe?",
