@@ -731,7 +731,7 @@
 	set waitfor = 0
 	if(flickering || !COOLDOWN_FINISHED(src, flicker_cooldown))
 		return
-	COOLDOWN_START(src, flicker_cooldown, 30 SECONDS)
+	COOLDOWN_START(src, flicker_cooldown, 10 SECONDS)
 	flickering = 1
 	if(on && status == LIGHT_OK)
 		for(var/i = 0; i < amount; i++)
@@ -1076,9 +1076,9 @@
 	transfer_fingerprints_to(M)
 	qdel(src)
 
-/proc/flicker_all_lights()
+/proc/flicker_all_lights() //not QUITE all lights, but it reduces lag
 	for(var/obj/machinery/light/L in GLOB.machines)
-		if(is_station_level(L.z))
+		if(is_station_level(L.z) && prob(50))
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, flicker), rand(3, 6)), rand(0, 15))
 
 #undef LIGHT_ON_DELAY_UPPER
