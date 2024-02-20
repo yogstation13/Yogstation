@@ -131,6 +131,11 @@
 	var/datum/map_generator/map_generator
 	
 	var/turf/teleport_anchors = list()	//ist of tiles we prefer to teleport to. this is for areas that are partially hazardous like for instance atmos_distro
+
+
+	/// Whether the lights in this area aren't turned off when it's empty at roundstart
+	var/lights_always_start_on = FALSE
+
 	
 /**
   * A list of teleport locations

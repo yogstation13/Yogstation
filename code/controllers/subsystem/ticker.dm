@@ -329,6 +329,37 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
 
 	PostSetup()
+
+
+	// Toggle lightswitches off in unoccupied departments
+	var/list/lightup_area_typecache = list()
+	var/minimal_access = CONFIG_GET(flag/jobs_have_minimal_access)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
+		var/role = player.mind?.assigned_role
+		if(!role)
+			continue
+		var/datum/job/job = SSjob.GetJob(role)
+		if(!job)
+			continue
+		lightup_area_typecache |= job.areas_to_light_up(minimal_access)
+
+	for(var/area/place as anything in GLOB.areas)
+		if(!istype(place))
+			continue
+		if(place.lights_always_start_on)
+			continue
+		if(!is_station_level(place.z))
+			continue
+		if(is_type_in_typecache(place, lightup_area_typecache))
+			continue
+		place.lightswitch = FALSE
+		place.update_appearance()
+
+		for(var/obj/machinery/light_switch/lswitch in place)
+			lswitch.update_appearance()
+
+		place.power_change()
+
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
