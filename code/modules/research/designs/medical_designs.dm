@@ -404,7 +404,7 @@
 	build_path = /obj/item/organ/eyes/robotic/xray
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
+w
 /datum/design/cyberimp_xray
 	name = "X-Ray Eyes"
 	desc = "These cybernetic eyes will give you X-Ray-vision. Blinking is futile."
