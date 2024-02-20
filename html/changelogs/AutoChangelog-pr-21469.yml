@@ -1,0 +1,4 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "fix adminwho by skipping null clients in the admin list"
