@@ -380,7 +380,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Communications Relay"
 	icon_state = "tcomsatcham"
 	sound_environment = SOUND_AREA_STANDARD_STATION
-	lights_always_start_on = FALSE
+	lights_always_start_on = TRUE
 	lighting_colour_tube = "#e2feff"
 	lighting_colour_bulb = "#d5fcff"
 
