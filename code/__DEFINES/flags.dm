@@ -42,28 +42,10 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NODECONSTRUCT_1				(1<<7)
 /// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
 #define PREVENT_CLICK_UNDER_1		(1<<9)
+/// Can players recolor this in-game via vendors (and maybe more if support is added)?
+#define IS_PLAYER_COLORABLE_1 		(1<<10)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
 #define TESLA_IGNORE_1				(1<<11)
-///Whether /atom/Initialize(mapload) has already run for the object
-#define INITIALIZED_1				(1<<12)
-/// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED_1			    (1<<13)
-/// should not get harmed if this gets caught by an explosion?
-#define PREVENT_CONTENTS_EXPLOSION_1 (1<<14)
-/// should the contents of this atom be acted upon
-#define RAD_PROTECT_CONTENTS_1 (1<<15)
-/// should this object be allowed to be contaminated
-#define RAD_NO_CONTAMINATE_1 (1<<16)
-/// Can players recolor this in-game via vendors (and maybe more if support is added)?
-#define IS_PLAYER_COLORABLE_1 (1<<17)
-/// Prevents most radiation on this turf from leaving it
-#define RAD_CONTAIN_CONTENTS (1<<18)
-/// Is the thing currently spinning?
-#define IS_SPINNING_1 (1<<19)
-
-//turf-only flags
-#define NOJAUNT_1					(1<<0)
-#define UNUSED_RESERVATION_TURF_1	(1<<1)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
 #define CAN_BE_DIRTY_1				(1<<12)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
