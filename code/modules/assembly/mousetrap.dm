@@ -8,7 +8,6 @@
 	layer = BELOW_OBJ_LAYER
 	var/armed = FALSE
 
-
 /obj/item/assembly/mousetrap/examine(mob/user)
 	. = ..()
 	. += span_notice("The pressure plate is [armed?"primed":"safe"].")
