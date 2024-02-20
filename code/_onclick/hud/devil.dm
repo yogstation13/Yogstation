@@ -24,7 +24,7 @@
 	using.icon = ui_style
 	using.icon_state = "swap_1_m"
 	using.screen_loc = ui_swaphand_position(owner,1)
-	using.layer = HUD_LAYER
+	SET_PLANE_EXPLICIT(using, ABOVE_HUD_PLANE, owner)
 	using.plane = HUD_PLANE
 	static_inventory += using
 
@@ -33,7 +33,7 @@
 	using.icon = ui_style
 	using.icon_state = "swap_2"
 	using.screen_loc = ui_swaphand_position(owner,2)
-	using.layer = HUD_LAYER
+	SET_PLANE_EXPLICIT(using, ABOVE_HUD_PLANE, owner)
 	using.plane = HUD_PLANE
 	static_inventory += using
 

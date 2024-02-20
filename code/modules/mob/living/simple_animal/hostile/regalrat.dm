@@ -9,7 +9,6 @@
 	turns_per_move = 5
 	maxHealth = 70
 	health = 70
-	see_in_dark = 15
 	obj_damage = 10
 	butcher_results = list(/obj/item/clothing/head/crown = 1,)
 	response_help = "glares at"
@@ -24,7 +23,11 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	unique_name = TRUE
 	faction = list("rat")
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Slightly brown red, for the eyes
+	// Might be a bit too dim
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 8
+	lighting_cutoff_blue = 5
 	var/datum/action/cooldown/riot
 	var/datum/action/cooldown/domain
 	var/opening_airlock = FALSE

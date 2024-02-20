@@ -579,7 +579,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 								playsound(loc, 'sound/weapons/genhit.ogg', 100, 1)
 								var/turf/open/space/T
 								for(T in orange(1, src))
-									T.PlaceOnTop(/turf/open/floor/plating)
+									T.place_on_top(/turf/open/floor/plating)
 						else
 							say("Something slams into the floor around [src] - luckily, it didn't get through!")
 							playsound(loc, 'sound/effects/bang.ogg', 50, 1)

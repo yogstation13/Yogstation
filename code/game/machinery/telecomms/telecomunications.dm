@@ -31,7 +31,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/on = TRUE
 	var/toggled = TRUE 	// Is it toggled on
 	var/long_range_link = FALSE  // Can you link it across Z levels or on the otherside of the map? (Relay & Hub)
-	var/hide = FALSE  // Is it a hidden machine?
+	/// Is it a hidden machine?
+	var/hide = FALSE
 
 	var/generates_heat = TRUE 	//yogs turn off tcomms generating heat
 	var/heatoutput = 2500		//yogs modify power output per trafic removed(usual heat capacity of the air in server room is 1600J/K)
