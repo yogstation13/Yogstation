@@ -103,14 +103,14 @@
 		return
 	COOLDOWN_START(src, next_palm, COOLDOWN_RPALM)
 	var/obj/item/melee/overcharged_emitter/B = new()
-	user.visible_message(span_userdanger("[user]'s left arm begins crackling loudly!"))
+	user.visible_message(span_userdanger("[user]'s right arm begins crackling loudly!"))
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	if(do_after(user, 2 SECONDS, user, timed_action_flags = IGNORE_USER_LOC_CHANGE))
-		if(!user.put_in_l_hand(B))
-			to_chat(user, span_warning("You can't do this with your left hand full!"))
+		if(!user.put_in_r_hand(B))
+			to_chat(user, span_warning("You can't do this with your right hand full!"))
 		else
 			user.visible_message(span_danger("[user]'s arm begins shaking violently!"))
-			if(user.active_hand_index % 2 == 0)
+			if(user.active_hand_index % 2 == 1)
 				user.swap_hand(0)
 		//do cooldown
 
@@ -137,7 +137,7 @@
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	COOLDOWN_START(src, next_suplex, COOLDOWN_SUPLEX)
-	footsies(target, TRUE)
+	footsies(target)
 	var/turf/Q = get_step(get_turf(user), turn(user.dir,180))
 	user.visible_message(span_warning("[user] outstretches [user.p_their()] arm and goes for a grab!"))
 	wakeup(target)
@@ -150,7 +150,6 @@
 		if(target.stat == DEAD)
 			target.visible_message(span_warning("[target] crashes and explodes!"))
 			target.gib()
-	wakeup(target)
 	to_chat(user, span_warning("[user] suplexes [target] against [Q]!"))
 	to_chat(target, span_userdanger("[user] crushes you against [Q]!"))
 	playsound(target, 'sound/effects/meteorimpact.ogg', 60, 1)
