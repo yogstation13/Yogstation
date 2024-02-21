@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed the eye of god expose cooldown going off when an invalid target is selected"
