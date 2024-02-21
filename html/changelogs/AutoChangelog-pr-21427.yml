@@ -1,0 +1,8 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "PC Range Upgrade"
+  - rscadd: "PC Cooldown Upgrade"
+  - bugfix: "Vending machines not containing upgrades"
+  - tweak: "All plasma cutters can be upgraded"
+  - tweak: "Plasmacutters can be recharged with one click now"
