@@ -215,8 +215,8 @@
 		if(!fuel_mix.react(target))
 			break // break the loop if it stops reacting
 
-	// damage is based on the energy of the reaction, with a cap
-	var/damage = min((fuel_mix.thermal_energy() - old_thermal_energy) / JOULES_PER_DAMAGE, max_damage)
+	// damage is based on the positive or negative energy of the reaction, with a cap
+	var/damage = min(abs(fuel_mix.thermal_energy() - old_thermal_energy) / JOULES_PER_DAMAGE, max_damage)
 
 	// If there's not enough fuel and/or oxygen to do more than 1 damage, shut itself off
 	if(damage < 1)
