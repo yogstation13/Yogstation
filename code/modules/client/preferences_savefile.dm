@@ -183,7 +183,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	default_slot = sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
 	player_alt_titles = SANITIZE_LIST(player_alt_titles)
 
-	toggles = sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
+	toggles = sanitize_integer(toggles, 0, SHORT_REAL_LIMIT-1, initial(toggles))
 	
 	key_bindings = sanitize_keybindings(key_bindings)
 

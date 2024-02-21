@@ -8,7 +8,6 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
 	var/lawyers = 0 //Counts lawyer amount
 	alt_titles = list("Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney")
 

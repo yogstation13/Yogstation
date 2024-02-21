@@ -7,7 +7,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
-	selection_color = "#d4ebf2"
 	minimal_player_age = 4
 	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW

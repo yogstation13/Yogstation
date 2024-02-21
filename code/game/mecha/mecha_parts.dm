@@ -7,7 +7,7 @@
 	icon = 'icons/mecha/mech_construct.dmi'
 	icon_state = "blank"
 	w_class = WEIGHT_CLASS_GIGANTIC
-	flags_1 = CONDUCT_1
+	flags_1 = CONDUCT_1 | RAD_NO_CONTAMINATE_1
 
 /obj/item/mecha_parts/proc/try_attach_part(mob/user, obj/mecha/M) //For attaching parts to a finished mech
 	if(!user.transferItemToLoc(src, M))

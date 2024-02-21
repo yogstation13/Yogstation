@@ -583,6 +583,12 @@
 		analyzer_act(user, src)
 	return ..()
 
+/obj/machinery/portable_atmospherics/canister/fusion
+	name = "Fusion Canister"
+	desc = "A violent mix of gases resulting in a fusion reaction inside the canister. <br>\
+			A note on the side reads: \"DANGER: DO NOT OPEN\""
+	icon_state = "danger"
+
 /* yog- ADMEME CANISTERS */
 
 /// Canister 1 Kelvin below the fusion point. Is highly unoptimal, do not spawn to start fusion, only good for testing low instability mixes.
