@@ -4,6 +4,7 @@
 	cooldown_time = 10 SECONDS
 	button_icon_state = "harpoonhead"
 	
+	
 /obj/item/gun/magic/wire/harpoon
 	name = "Harpoon Head"
 	desc = "A harpoon head made of pure plasteel, hits like a freighter."
