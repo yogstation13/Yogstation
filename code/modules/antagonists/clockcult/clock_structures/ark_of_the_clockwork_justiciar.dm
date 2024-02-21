@@ -198,9 +198,12 @@
 			make_glow()
 			glow.icon_state = "clockwork_gateway_disrupted"
 			resistance_flags |= INDESTRUCTIBLE
-			sleep(2.7 SECONDS)
-			explosion(src, 1, 3, 8, 8)
-			sound_to_playing_players('sound/effects/explosion_distant.ogg', volume = 50)
+			addtimer(CALLBACK(src, PROC_REF(boom)), 2.7 SECONDS)
+			//well that was another easy adventure for spi-
+
+/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/boom()
+	explosion(src, 1, 3, 8, 8)
+	sound_to_playing_players('sound/effects/explosion_distant.ogg', volume = 50)
 	qdel(src)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/make_glow()

@@ -169,7 +169,7 @@
 
 	// Over 71, we will constantly have blurry eyes
 	if(drunk_value >= 71)
-		owner.blur_eyes(drunk_value * 2 - 140)
+		owner.adjust_eye_blur(drunk_value * 2 - 140)
 
 	// Over 81, we will gain constant toxloss and experienced drunks will now begin to slur
 	if(drunk_value >= 81)

@@ -42,9 +42,8 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/proc/get_all_connected_nodes()
 	return front_nodes + back_nodes + nodes
 
-/obj/machinery/atmospherics/pipe/layer_manifold/update_icon(updates=ALL)
-	. = ..()
-	layer = initial(layer) + (PIPING_LAYER_MAX * PIPING_LAYER_LCHANGE)
+/obj/machinery/atmospherics/pipe/layer_manifold/update_layer()
+	layer = initial(layer) + (PIPING_LAYER_MAX * PIPING_LAYER_LCHANGE) //This is above everything else.
 
 /obj/machinery/atmospherics/pipe/layer_manifold/update_overlays(updates=ALL)
 	. = ..()
@@ -106,8 +105,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/atmos_init()
 	normalize_cardinal_directions()
 	findAllConnections()
-	var/turf/T = loc			// hide if turf is not intact
-	hide(T.intact)
 
 /obj/machinery/atmospherics/pipe/layer_manifold/set_piping_layer()
 	piping_layer = PIPING_LAYER_DEFAULT
@@ -141,5 +138,4 @@
 	to_chat(user, "You align yourself with the [user.ventcrawl_layer]\th output.")
 
 /obj/machinery/atmospherics/pipe/layer_manifold/visible
-	level = PIPE_VISIBLE_LEVEL
 	layer = GAS_PIPE_VISIBLE_LAYER

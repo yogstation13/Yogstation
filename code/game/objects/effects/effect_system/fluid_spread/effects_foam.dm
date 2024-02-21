@@ -88,8 +88,7 @@
 		if(object == src)
 			continue
 		if(isturf(object.loc))
-			var/turf/turf = object.loc
-			if(turf.intact && object.level == 1) //hidden under the floor
+			if(location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(object, TRAIT_T_RAY_VISIBLE))
 				continue
 		reagents.reaction(object, TOUCH|VAPOR, fraction)
 
@@ -314,7 +313,8 @@
 	desc = "A lightweight foamed metal wall that can be used as base to construct a wall."
 	gender = PLURAL
 	max_integrity = 20
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
+	obj_flags = CAN_BE_HIT | BLOCK_Z_IN_DOWN | BLOCK_Z_IN_UP
 	///Var used to prevent spamming of the construction sound
 	var/next_beep = 0
 
@@ -367,7 +367,7 @@
 /obj/effect/particle_effect/fluid/foam/metal/smart/make_result() //Smart foam adheres to area borders for walls
 	var/turf/open/location = loc
 	if(isspaceturf(location))
-		location.PlaceOnTop(/turf/open/floor/plating/foam)
+		location.place_on_top(/turf/open/floor/plating/foam)
 
 	for(var/cardinal in GLOB.cardinals)
 		var/turf/cardinal_turf = get_step(location, cardinal)

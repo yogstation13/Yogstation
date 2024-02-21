@@ -4,7 +4,7 @@
 	cost = 5
 
 /datum/map_template/ruin/jungle/all
-	place_on_top = FALSE
+	should_place_on_top = FALSE
 
 /datum/map_template/ruin/jungle/dying/crashed_ship
 	name = "Crashed Ship"

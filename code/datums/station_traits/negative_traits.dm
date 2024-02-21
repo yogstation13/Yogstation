@@ -92,7 +92,7 @@
 	name = "Random Event Modifier"
 	report_message = "A random event has been modified this shift! Someone forgot to set this!"
 	show_in_report = TRUE
-	trait_flags = STATION_TRAIT_ABSTRACT
+	abstract_type = /datum/station_trait/random_event_weight_modifier
 	weight = 0
 
 	/// The path to the round_event_control that we modify.

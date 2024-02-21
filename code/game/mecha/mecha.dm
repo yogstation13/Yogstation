@@ -4,8 +4,8 @@
 #define MECHA_INT_TANK_BREACH	(1<<3)
 #define MECHA_INT_CONTROL_LOST	(1<<4)
 
-#define MECHA_MELEE 1
-#define MECHA_RANGED 2
+#define MECHA_MELEE (1<<0)
+#define MECHA_RANGED (1<<1)
 
 #define FRONT_ARMOUR 1
 #define SIDE_ARMOUR 2
@@ -92,6 +92,9 @@
 
 	var/silicon_pilot = FALSE //set to true if an AI or MMI is piloting.
 
+	///Camera installed into the mech
+	var/obj/machinery/camera/exosuit/chassis_camera
+
 	var/enter_delay = 40 //Time taken to enter the mech
 	var/exit_delay = 20 //Time to exit mech
 	var/destruction_sleep_duration = 20 //Time that mech pilot is put to sleep for if mech is destroyed
@@ -108,7 +111,6 @@
 	var/datum/action/innate/mecha/mech_cycle_equip/cycle_action = new
 	var/datum/action/innate/mecha/mech_toggle_lights/lights_action = new
 	var/datum/action/innate/mecha/mech_view_stats/stats_action = new
-	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
 	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
 	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
 	var/datum/effect_system/fluid_spread/smoke/smoke_system = new //not an action, but trigged by one
@@ -119,7 +121,6 @@
 	var/datum/action/innate/mecha/strafe/strafing_action = new
 
 	//Action vars
-	var/thrusters_active = FALSE
 	var/defence_mode = FALSE
 	var/defence_mode_deflect_chance = 15
 	var/leg_overload_mode = FALSE
@@ -132,7 +133,7 @@
 	var/phasing_energy_drain = 200
 	var/phase_state = "" //icon_state when phasing
 	var/strafe = FALSE //If we are strafing
-	var/canstrafe = TRUE
+	var/pivot_step = FALSE
 	var/nextsmash = 0
 	var/smashcooldown = 3	//deciseconds
 	var/ejection_distance = 0 //violently ejects the pilot when destroyed
@@ -471,14 +472,14 @@
 		for(var/mob/M in get_hearers_in_view(7,src))
 			if(M.client)
 				speech_bubble_recipients.Add(M.client)
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, image('icons/mob/talk.dmi', src, "machine[say_test(raw_message)]",MOB_LAYER+1), speech_bubble_recipients, 30)
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay_global, image('icons/mob/talk.dmi', src, "machine[say_test(raw_message)]",MOB_LAYER+1), speech_bubble_recipients, 30)
 
 ////////////////////////////
 ///// Action processing ////
 ////////////////////////////
 
 
-/obj/mecha/proc/click_action(atom/target,mob/user,params)
+/obj/mecha/proc/click_action(atom/target, mob/user, params)
 	if(!occupant || occupant != user )
 		return
 	if(!locate(/turf) in list(target,target.loc)) // Prevents inventory from being drilled
@@ -521,7 +522,7 @@
 			if(HAS_TRAIT(L, TRAIT_NO_STUN_WEAPONS) && !selected.harmful)
 				to_chat(user, span_warning("You cannot use non-lethal weapons!"))
 				return
-			if(selected.action(target,params))
+			if(selected.action(target, user, params))
 				selected.start_cooldown()
 	else if(selected && selected.is_melee())
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
@@ -535,19 +536,22 @@
 			if(HAS_TRAIT(L, TRAIT_PACIFISM) && W.cleave)
 				to_chat(user, span_warning("You don't want to harm other living beings!"))
 				return
-		if(selected.action(target,params))
+		if(selected.action(target, user, params))
 			selected.start_cooldown()
 	else
-		if(internal_damage & MECHA_INT_CONTROL_LOST)
-			target = pick(oview(1,src))
-		if(!melee_can_hit || !istype(target, /atom))
-			return
-		if(equipment_disabled)
-			return
-		target.mech_melee_attack(src, TRUE)
-		melee_can_hit = FALSE
-		spawn(melee_cooldown)
-			melee_can_hit = TRUE
+		default_melee_attack(target)
+
+/obj/mecha/proc/default_melee_attack(atom/target)
+	if(internal_damage & MECHA_INT_CONTROL_LOST)
+		target = pick(oview(1,src))
+	if(!melee_can_hit || !istype(target, /atom))
+		return
+	if(equipment_disabled)
+		return
+	target.mech_melee_attack(src, TRUE)
+	melee_can_hit = FALSE
+	spawn(melee_cooldown)
+		melee_can_hit = TRUE
 
 
 /obj/mecha/proc/range_action(atom/target)
@@ -569,8 +573,6 @@
 /obj/mecha/Process_Spacemove(movement_dir = 0)
 	. = ..()
 	if(.)
-		return TRUE
-	if(thrusters_active && movement_dir && use_power(step_energy_drain))
 		return TRUE
 
 	var/atom/movable/backup = get_spacemove_backup()
@@ -605,8 +607,10 @@
 /obj/mecha/proc/domove(direction)
 	if(can_move >= world.time)
 		return FALSE
-	if(direction == DOWN || direction == UP)
-		return FALSE //nuh uh
+	if((direction & (DOWN|UP)) && !get_step_multiz(get_turf(src), direction))
+		direction &= ~(DOWN|UP) // remove vertical component
+	if(!direction) // don't bother moving without a direction
+		return FALSE
 	if(!Process_Spacemove(direction))
 		return FALSE
 	if(!has_charge(step_energy_drain))
@@ -653,30 +657,35 @@
 
 /obj/mecha/proc/mechturn(direction)
 	setDir(direction)
-	if(turnsound)
+	if(turnsound && has_gravity())
 		playsound(src,turnsound,40,1)
 	return TRUE
 
 /obj/mecha/proc/mechstep(direction)
 	var/current_dir = dir
 	var/result = step(src,direction)
-	if(strafe)
+	if(strafe && !pivot_step)
 		setDir(current_dir)
-	if(result && stepsound)
+	if(result && stepsound && has_gravity())
 		playsound(src,stepsound,40,1)
 	return result
 
 /obj/mecha/proc/mechsteprand()
 	var/result = step_rand(src)
-	if(result && stepsound)
+	if(result && stepsound && has_gravity())
 		playsound(src,stepsound,40,1)
 	return result
+
+/obj/mecha/setDir()
+	. = ..()
+	if(occupant)
+		occupant.setDir(dir) // keep the pilot facing the direction of the mech or bad things happen
 
 /obj/mecha/Bump(atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
 
-	if(phasing && ((newloc.flags_1 & NOJAUNT_1) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
+	if(phasing && ((newloc.turf_flags & NOJAUNT) || newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE)))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
 		return	//If we're trying to phase and it's NOT ALLOWED, don't bump
 
@@ -854,11 +863,12 @@
 	occupant = AI
 	silicon_pilot = TRUE
 	icon_state = initial(icon_state)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
-	AI.cancel_camera()
+	AI.eyeobj?.forceMove(src)
+	AI.eyeobj?.RegisterSignal(src, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/camera/ai_eye, update_visibility))
 	AI.controlled_mech = src
 	AI.remote_control = src
 	AI.mobility_flags = ALL //Much easier than adding AI checks! Be sure to set this back to 0 if you decide to allow an AI to leave a mech somehow.
@@ -1269,6 +1279,13 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		else
 			to_chat(user, span_notice("None of the equipment on this exosuit can use this ammo!"))
 	return FALSE
+
+// Matter resupply and upgrades for mounted RCDs
+/obj/mecha/proc/matter_resupply(obj/item/I, mob/user)
+	for(var/obj/item/mecha_parts/mecha_equipment/rcd/R in equipment)
+		R.internal_rcd.attackby(I, user)
+		if(QDELETED(I))
+			return
 
 // Checks the pilot and their clothing for mech speed buffs
 /obj/mecha/proc/check_eva()

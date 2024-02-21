@@ -7,13 +7,13 @@
 	icon_state = "mflash1"
 	max_integrity = 250
 	integrity_failure = 100
-	light_color = LIGHT_COLOR_WHITE
-	light_power = FLASH_LIGHT_POWER
 	var/obj/item/assembly/flash/handheld/bulb
 	var/id = null
-	var/range = 2 //this is roughly the size of brig cell
+	/// How far this flash reaches. Affects both proximity distance and the actual stun effect.
+	var/flash_range = 2 //this is roughly the size of a brig cell.
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
-	var/strength = 100 //The "power" of the flash. At time of writing, this affects confusion stacks.
+	/// How strong Paralyze()'d targets are when flashed.
+	var/strength = 10 SECONDS
 	var/base_state = "mflash"
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
@@ -24,9 +24,6 @@
 	anchored = FALSE
 	base_state = "pflash"
 	density = TRUE
-	light_system = MOVABLE_LIGHT //Used as a flash here.
-	light_range = FLASH_LIGHT_RANGE
-	light_on = FALSE
 
 /obj/machinery/flasher/Initialize(mapload, ndir = 0, built = 0)
 	. = ..() // ..() is EXTREMELY IMPORTANT, never forget to add it
@@ -36,6 +33,9 @@
 		pixel_y = (dir & 3)? (dir ==1 ? -28 : 28) : 0
 	else
 		bulb = new(src)
+
+/obj/machinery/flasher/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	id = "[port.shuttle_id]_[id]"
 
 /obj/machinery/flasher/Destroy()
 	QDEL_NULL(bulb)
@@ -120,7 +120,7 @@
 
 	var/flashed = FALSE
 	for (var/mob/living/L in viewers(src, null))
-		if (get_dist(src, L) > range)
+		if (get_dist(src, L) > flash_range)
 			continue
 
 		if(L.flash_act(affect_silicon = 1))
@@ -188,7 +188,7 @@
 			add_overlay("[base_state]-s")
 			setAnchored(TRUE)
 			power_change()
-			proximity_monitor.SetRange(range)
+			proximity_monitor.SetRange(flash_range)
 		else
 			to_chat(user, span_notice("[src] can now be moved."))
 			cut_overlays()
