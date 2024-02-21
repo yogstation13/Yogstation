@@ -48,9 +48,7 @@
 //animation procs
 
 //knocking them down
-/datum/martial_art/reverberating_palm/proc/footsies(mob/living/target, var/suplex = FALSE)
-	if(suplex)
-		animate(target, transform = matrix(180, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
+/datum/martial_art/reverberating_palm/proc/footsies(mob/living/target)
 	if(target.mobility_flags & MOBILITY_STAND)
 		animate(target, transform = matrix(90, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
 		return
