@@ -532,14 +532,13 @@
 	return ..() && isliving(owner)
 
 /datum/action/cooldown/expose/Activate(atom/exposed)
-	StartCooldown(15 SECONDS)
-
 	if(owner.stat != CONSCIOUS)
 		return FALSE
 	if(!isliving(exposed) || exposed == owner)
 		owner.balloon_alert(owner, "invalid exposed!")
 		return FALSE
-
+	StartCooldown(15 SECONDS)
+	
 	var/mob/living/living_exposed = exposed
 	living_exposed.apply_status_effect(STATUS_EFFECT_EXPOSED)
 	living_exposed.adjust_jitter(5 SECONDS)
