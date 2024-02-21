@@ -210,6 +210,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///Does our species have colors for its' damage overlays?
 	var/use_damage_color = TRUE
 
+	/// Do we try to prevent reset_perspective() from working? Useful for Dullahans to stop perspective changes when they're looking through their head.
+	var/prevent_perspective_change = FALSE
+
 ///////////
 // PROCS //
 ///////////
@@ -1881,7 +1884,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							H.visible_message(span_danger("[H] has been knocked senseless!"), \
 											span_userdanger("[H] has been knocked senseless!"))
 							H.set_confusion_if_lower(20 SECONDS)
-							H.adjust_blurriness(10)
+							H.adjust_eye_blur(10)
 						if(prob(10))
 							H.gain_trauma(/datum/brain_trauma/mild/concussion)
 					else

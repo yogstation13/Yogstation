@@ -19,7 +19,7 @@
 		user.visible_message(span_warning("An unseen force knocks [user] to the ground!"), "[span_big_brass("\"I think not!\"")]")
 		user.Paralyze(60)
 		return
-	if(istype(loccheck.loc, /area/fabric_of_reality))
+	if(istype(loccheck.loc, /area/centcom/fabric_of_reality))
 		to_chat(user, span_danger("You can't do that here!"))
 	if(user.has_status_effect(STATUS_EFFECT_VOIDED))
 		user.remove_status_effect(STATUS_EFFECT_VOIDED)
@@ -50,8 +50,8 @@
 					M.visible_message(span_danger("The bluespace collapse crushes the air towards it, pulling [M] towards the ground..."))
 					M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
 		T.TerraformTurf(/turf/open/chasm/magic, /turf/open/chasm/magic)
-	for(var/fabricarea in get_areas(/area/fabric_of_reality))
-		var/area/fabric_of_reality/R = fabricarea
+	for(var/fabricarea in get_areas(/area/centcom/fabric_of_reality))
+		var/area/centcom/fabric_of_reality/R = fabricarea
 		R.origin = loccheck
 	for (var/obj/structure/ladder/unbreakable/binary/ladder in GLOB.ladders)
 		ladder.ActivateAlmonds()

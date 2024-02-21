@@ -32,7 +32,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/get_shot_amount()
 	return projectiles_per_shot
 
-/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, params)
+/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, mob/living/user, params)
 	if(!action_checks(target))
 		return 0
 
@@ -151,6 +151,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma
 	equip_cooldown = 10
+	range = MECHA_MELEE|MECHA_RANGED
 	name = "217-D Heavy Plasma Cutter"
 	desc = "A device that shoots resonant plasma bursts at extreme velocity. The blasts are capable of crushing rock and demolishing solid obstacles."
 	icon_state = "mecha_plasmacutter"
@@ -160,6 +161,9 @@
 	energy_drain = 30
 	projectile = /obj/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
+	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
+	toolspeed = 0.25 // high-power cutting
+	tool_behaviour = TOOL_WELDER
 	harmful = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
@@ -170,6 +174,18 @@
 	else if(M.equipment.len < M.max_equip && istype(M))
 		return 1
 	return 0
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/action(atom/target, mob/living/user, params)
+	if(!chassis.Adjacent(target))
+		return ..()
+	// Again, two ways using tools can be handled, so check both
+	if(target.tool_act(chassis.occupant, src, TOOL_WELDER) & TOOL_ACT_MELEE_CHAIN_BLOCKING)
+		return TRUE
+	if(target.attackby(src, chassis.occupant, params))
+		return TRUE
+	if(user.a_intent == INTENT_HARM) // hurt things
+		chassis.default_melee_attack(target)
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
 	equip_cooldown = 10
@@ -309,7 +325,7 @@
 		src.rearm()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action(atom/target)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action(atom/target, mob/living/user, params)
 	if(..())
 		projectiles -= get_shot_amount()
 		send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
@@ -534,7 +550,7 @@
 	if(!istype(PG))
 		return
 	 //has to be low sleep or it looks weird, the beam doesn't exist for very long so it's a non-issue
-	chassis.Beam(PG, icon_state = "chain", time = missile_range * 20, maxdistance = missile_range + 2, beam_sleep_time = 1)
+	chassis.Beam(PG, icon_state = "chain", time = missile_range * 20, maxdistance = missile_range + 2)
 
 /obj/item/punching_glove
 	name = "punching glove"
@@ -548,3 +564,42 @@
 			var/atom/movable/AM = hit_atom
 			AM.safe_throw_at(get_edge_target_turf(AM,get_dir(src, AM)), 7, 2)
 		qdel(src)
+
+// pressure washer, technically a gun
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer
+	name = "exosuit-mounted pressure washer"
+	desc = "A high-power pressure washer."
+	icon_state = "mecha_washer"
+	range = MECHA_MELEE|MECHA_RANGED
+	projectile = /obj/projectile/reagent/pressure_washer
+	firing_effect_type = null
+	fire_sound = 'sound/effects/extinguish.ogg'
+	var/chem_amount = 5
+
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer/Initialize(mapload)
+	. = ..()
+	create_reagents(1000)
+	reagents.add_reagent(/datum/reagent/water, 1000)
+
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer/action(atom/target, mob/living/user, params)
+	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
+		var/obj/structure/reagent_dispensers/WT = target
+		WT.reagents.trans_to(src, 1000)
+		occupant_message(span_notice("Pressure washer refilled."))
+		playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
+		return TRUE
+	else if(reagents.total_volume < 1)
+		occupant_message(span_notice("Not enough water!"))
+		return TRUE
+	if(..())
+		reagents.remove_reagent(/datum/reagent/water, chem_amount)
+		return TRUE
+	return FALSE
+
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer/can_attach(obj/mecha/M)
+	if(istype(M, /obj/mecha/working) && M.equipment.len < M.max_equip)
+		return TRUE
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer/get_equip_info()
+	return "[..()] \[[src.reagents.total_volume]\]"

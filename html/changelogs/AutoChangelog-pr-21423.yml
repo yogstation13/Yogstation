@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Players can no longer relabel gas canisters to a variant that's intended for admins and breaks the 4th wall"

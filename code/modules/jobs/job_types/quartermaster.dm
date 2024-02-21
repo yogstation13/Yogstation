@@ -8,7 +8,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	selection_color = "#d7b088"
 	outfit = /datum/outfit/job/quartermaster
 	alt_titles = list("Stock Controller", "Cargo Coordinator", "Shipping Overseer", "Postmaster General")
 	added_access = list()

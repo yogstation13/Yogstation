@@ -1,0 +1,4 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "turfs that smooth will spur their neighboring turfs to check their smoothing again when late loaded in"
