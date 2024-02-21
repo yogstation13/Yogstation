@@ -1,4 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Partially revert undocumented change to shutter/blastdoor layer covering window but still keep the blast door covering the door"
