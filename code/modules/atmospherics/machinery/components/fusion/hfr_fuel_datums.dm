@@ -145,8 +145,8 @@ GLOBAL_LIST_INIT(hfr_fuels_list, hfr_fuels_create_list())
 	negative_temperature_multiplier = 1.5
 	positive_temperature_multiplier = 1.5
 	energy_concentration_multiplier = 10
-	fuel_consumption_multiplier = 0.01
-	gas_production_multiplier = 3
+	fuel_consumption_multiplier = 0.5
+	gas_production_multiplier = 1.5
 	temperature_change_multiplier = 0.6
 	requirements = list(GAS_PLUOXIUM, GAS_ANTINOB)
 	primary_products = list(GAS_FREON, GAS_BZ)
