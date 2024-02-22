@@ -448,10 +448,9 @@
 	air.adjust_moles(GAS_PLASMA, -2*reaction_efficency)
 
 	//clamps by a minimum amount in the event of an underflow.
-	if(isturf(holder))
-		var/turf/holder_turf = holder
-		if(SSmapping.level_trait(holder_turf.z, ZTRAIT_STATION))
-			SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp((reaction_efficency**2)*BZ_RESEARCH_AMOUNT,0.01,BZ_RESEARCH_MAX_AMOUNT))
+	var/turf/holder_turf = get_turf(holder)
+	if(holder_turf && SSmapping.level_trait(holder_turf.z, ZTRAIT_STATION))
+		SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp((reaction_efficency**2)*BZ_RESEARCH_AMOUNT,0.01,BZ_RESEARCH_MAX_AMOUNT))
 
 	if(energy_released > 0)
 		var/new_heat_capacity = air.heat_capacity()
@@ -484,10 +483,10 @@
 	air.adjust_moles(GAS_N2, -20*nob_formed)
 	air.adjust_moles(GAS_HYPERNOB, nob_formed)
 
-	if(isturf(holder))
-		var/turf/holder_turf = holder
-		if(SSmapping.level_trait(holder_turf.z, ZTRAIT_STATION))
-			SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(nob_formed*NOBLIUM_RESEARCH_AMOUNT, 0.01, NOBLIUM_RESEARCH_MAX_AMOUNT))
+	var/turf/holder_turf = get_turf(holder)
+	if(holder_turf && SSmapping.level_trait(holder_turf.z, ZTRAIT_STATION))
+		SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(nob_formed*NOBLIUM_RESEARCH_AMOUNT, 0.01, NOBLIUM_RESEARCH_MAX_AMOUNT))
+
 	var/new_heat_capacity = air.heat_capacity()
 	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 		air.set_temperature(max(((old_thermal_energy - energy_taken)/new_heat_capacity),TCMB))
@@ -518,10 +517,9 @@
 	//Possibly burning a bit of organic matter through maillard reaction, so a *tiny* bit more heat would be understandable
 	air.set_temperature(air.return_temperature() + cleaned_air * 0.002)
 
-	if(isturf(holder))
-		var/turf/holder_turf = holder
-		if(SSmapping.level_trait(holder_turf.z, ZTRAIT_STATION))
-			SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(cleaned_air*MIASMA_RESEARCH_AMOUNT,0.01, MIASMA_RESEARCH_MAX_AMOUNT))//Turns out the burning of miasma is kinda interesting to scientists
+	var/turf/holder_turf = get_turf(holder)
+	if(holder_turf && SSmapping.level_trait(holder_turf.z, ZTRAIT_STATION))
+		SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(cleaned_air*MIASMA_RESEARCH_AMOUNT,0.01, MIASMA_RESEARCH_MAX_AMOUNT))//Turns out the burning of miasma is kinda interesting to scientists
 	return REACTING
 
 /datum/gas_reaction/nitro_ball
@@ -741,10 +739,9 @@
 		if (prob(25 * increase_factor))
 			air.adjust_moles(GAS_H2, -(heat_efficency * 10))
 			new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
-			if(isturf(holder))
-				var/turf/holder_turf = holder
-				if(SSmapping.level_trait(holder_turf.z, ZTRAIT_STATION))
-					SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
+			var/turf/holder_turf = get_turf(holder)
+			if(holder_turf && SSmapping.level_trait(holder_turf.z, ZTRAIT_STATION))
+				SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
 
 	if(energy_used > 0)
 		var/new_heat_capacity = air.heat_capacity()
