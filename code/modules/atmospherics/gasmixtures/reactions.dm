@@ -470,7 +470,7 @@
 		GAS_TRITIUM = 10,
 		"TEMP" = 5000000)
 
-/datum/gas_reaction/nobliumformation/react(datum/gas_mixture/air)
+/datum/gas_reaction/nobliumformation/react(datum/gas_mixture/air, datum/holder)
 	var/initial_trit = air.get_moles(GAS_TRITIUM)
 	var/initial_n2 = air.get_moles(GAS_N2)
 	var/initial_bz = air.get_moles(GAS_BZ)
