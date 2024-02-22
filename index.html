@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(851 modules,
-    3014/10772 macros, 28%)</aside></h3>
+<aside>(852 modules,
+    3017/10790 macros, 28%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -489,6 +489,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/game/objects/effects/turf_fire.html" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;turf_fire">turf_fire</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;items">items</span><ul class="index-tree">
+    <li><a href="code/game/objects/items/RCD.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;RCD">RCD</a></li>
     <li><a href="code/game/objects/items/RSF.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;RSF">RSF</a></li>
     <li><a href="code/game/objects/items/airlock_painter.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;airlock_painter">airlock_painter</a></li>
     <li><a href="code/game/objects/items/bell.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;bell">bell</a></li>
@@ -1232,7 +1233,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1177 detailed/2028 documented/29553 total, 6.9%)</aside></h3>
+<aside>(1184 detailed/2038 documented/29585 total, 6.9%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1248,7 +1249,7 @@ allowing golems to create new areas without suffering from the hazard_area debuf
     <li><span class="no-substance" title="&#x2F;area&#x2F;shuttle&#x2F;pirate">Pirate Shuttle</span> - Pirate Shuttle</li>
     <li><span class="no-substance" title="&#x2F;area&#x2F;shuttle&#x2F;syndicate">Syndicate Infiltrator</span> - Multi-area shuttles
 Syndicate infiltrator</li>
-    <li><span class="no-substance" title="&#x2F;area&#x2F;shuttle&#x2F;transit">Hyperspace</span> - Single-area shuttles</li>
+    <li><span class="no-substance" title="&#x2F;area&#x2F;shuttle&#x2F;transit">Bluespace</span> - Single-area shuttles</li>
     </ul></li>
     <li><a href="area/space.html" title="&#x2F;area&#x2F;space">space</a></li>
     <li><span class="no-substance" title="&#x2F;area&#x2F;survivalpod">Emergency Shelter</span> - Survival Pod</li>
@@ -1555,7 +1556,10 @@ All mobs consumed are revived after the demon is killed.</li>
     </ul></li>
     <li><a href="datum/action/innate/elite_attack.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;elite_attack">Elite Attack</a></li>
     <li><a href="datum/action/innate/expand_sight.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;expand_sight">Expand Sight</a></li>
-    <li><span class="no-substance">mecha&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;mecha&#x2F;mech_toggle_thrusters">Toggle Thrusters</span> - Specific Ability Actions</li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;mecha">mecha</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;mecha&#x2F;equipment">equipment</span> - Equipment Actions</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;mecha&#x2F;mech_defence_mode">Toggle Defence Mode</span> - Specific Ability Actions</li>
+    </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;seek_master">Seek your Master</span> - Master-Tracker</li>
     <li><span class="no-substance">spider&#x2F;</span><a href="datum/action/innate/spider/lay_eggs.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;spider&#x2F;lay_eggs">Lay Eggs</a></li>
     </ul></li>
@@ -2993,6 +2997,7 @@ In landmarks.dm and not unit_test.dm so it is always active in the mapping tools
     </ul></li>
     <li><span class="no-substance">mapping_helpers&#x2F;</span><a href="obj/effect/mapping_helpers/ztrait_injector.html" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;ztrait_injector">ztrait injector</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;meatgrinder">Meat Grinder</span> - Meatgrinder</li>
+    <li><a href="obj/effect/meteor.html" title="&#x2F;obj&#x2F;effect&#x2F;meteor">the concept of meteor</a></li>
     <li class="has-children"><span class="no-substance">mob_spawn&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human">human</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human&#x2F;bridgeofficer">Bridge Officer</span> - Officers+Nanotrasen Security</li>
     <li><span class="no-substance">corpse&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human&#x2F;corpse&#x2F;assistant">Assistant</span> - Civilians</li>
@@ -3036,6 +3041,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;freezing">nanofrost smoke</span> - Light blue, transparent smoke which is usually paired with a blast that chills every turf in the area.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;quick">quick</span> - Smoke that dissipates as quickly as possible.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;sleeping">sleeping</span> - Smoke which knocks you out if you breathe it in.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;trail">trail</span> - Special smoke used for the RCS thruster</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;fluid&#x2F;smoke&#x2F;transparent">transparent</span> - Same as the base type, but is not opaque.</li>
     </ul></li>
     </ul></li>
@@ -3302,6 +3308,7 @@ the program that displays laws should always be usable, and the exceptions were 
     </ul></li>
     <li class="has-children"><a href="obj/item/construction.html" title="&#x2F;obj&#x2F;item&#x2F;construction">not for ingame use</a><ul class="index-tree">
     <li><a href="obj/item/construction/rcd.html" title="&#x2F;obj&#x2F;item&#x2F;construction&#x2F;rcd">rapid-construction-device (RCD)</a></li>
+    <li><a href="obj/item/construction/rld.html" title="&#x2F;obj&#x2F;item&#x2F;construction&#x2F;rld">Rapid Lighting Device (RLD)</a></li>
     </ul></li>
     <li><span class="no-substance">deskbell&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;deskbell&#x2F;button">button</span> - Buttons</li>
     <li><span class="no-substance">device&#x2F;</span><a href="obj/item/device/loic_remote.html" title="&#x2F;obj&#x2F;item&#x2F;device&#x2F;loic_remote">low-orbit ion cannon remote</a></li>
@@ -3310,6 +3317,7 @@ the program that displays laws should always be usable, and the exceptions were 
     <li><span class="no-substance">design_disk&#x2F;</span><a href="obj/item/disk/design_disk/limbs.html" title="&#x2F;obj&#x2F;item&#x2F;disk&#x2F;design_disk&#x2F;limbs">Limb Design Disk</a> - Design disks and designs - for adding limbs and organs to the limbgrower.</li>
     </ul></li>
     <li><a href="obj/item/dyespray.html" title="&#x2F;obj&#x2F;item&#x2F;dyespray">hair dye spray</a></li>
+    <li><span class="no-substance">electronics&#x2F;</span><a href="obj/item/electronics/airlock.html" title="&#x2F;obj&#x2F;item&#x2F;electronics&#x2F;airlock">airlock electronics</a></li>
     <li><a href="obj/item/energy_harvester.html" title="&#x2F;obj&#x2F;item&#x2F;energy_harvester">Energy Harvesting Module</a></li>
     <li><a href="obj/item/energy_katana.html" title="&#x2F;obj&#x2F;item&#x2F;energy_katana">Energy Katana</a> - The space ninja's katana.</li>
     <li><a href="obj/item/extraction_pack.html" title="&#x2F;obj&#x2F;item&#x2F;extraction_pack">fulton extraction pack</a></li>
@@ -3418,11 +3426,15 @@ You can only use one type at a time, you have to clear them to swap to the other
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;medical&#x2F;mechmedbeam">exosuit medical beamgun</span> - Medical Beam</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;medical&#x2F;syringe_gun">exosuit syringe gun</span> - Syringe Gun</li>
     </ul></li>
-    <li><a href="obj/item/mecha_parts/mecha_equipment/melee_weapon.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;melee_weapon">mecha melee weapon</a></li>
+    <li class="has-children"><a href="obj/item/mecha_parts/mecha_equipment/melee_weapon.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;melee_weapon">mecha melee weapon</a><ul class="index-tree">
+    <li><a href="obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;melee_weapon&#x2F;flyswatter">comically large flyswatter</a></li>
+    </ul></li>
     <li><a href="obj/item/mecha_parts/mecha_equipment/orebox_manager.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;orebox_manager">ore storage module</a> - Special equipment for the Clarke mech, handles moving ore without giving the mech a hydraulic clamp and cargo compartment.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;repair_droid">exosuit repair droid</span> - REPAIR DROID</li>
+    <li><a href="obj/item/mecha_parts/mecha_equipment/t_scanner.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;t_scanner">exosuit T-ray scanner</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;teleporter">mounted teleporter</span> - TELEPORTER</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;tesla_energy_relay">exosuit energy relay</span> - TESLA ENERGY RELAY</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;thrusters">generic exosuit thrusters</span> - THRUSTERS</li>
     <li><a href="obj/item/mecha_parts/mecha_equipment/weapon.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;weapon">mecha weapon</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;wormhole_generator">mounted wormhole generator</span> - WORMHOLE GENERATOR</li>
     </ul></li>
@@ -3541,6 +3553,7 @@ Given to Nuke Ops members.</li>
     <li><a href="obj/item/pda.html" title="&#x2F;obj&#x2F;item&#x2F;pda">PDA</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;pickaxe">pickaxe</span> - Pickaxes &amp; Drills &amp; Shovels</li>
     <li><a href="obj/item/pipe.html" title="&#x2F;obj&#x2F;item&#x2F;pipe">pipe</a></li>
+    <li><a href="obj/item/pipe_dispenser.html" title="&#x2F;obj&#x2F;item&#x2F;pipe_dispenser">Rapid Pipe Dispenser (RPD)</a></li>
     <li><a href="obj/item/pitchfork.html" title="&#x2F;obj&#x2F;item&#x2F;pitchfork">pitchfork</a></li>
     <li><a href="obj/item/plate.html" title="&#x2F;obj&#x2F;item&#x2F;plate">plate</a></li>
     <li><a href="obj/item/pneumatic_cannon.html" title="&#x2F;obj&#x2F;item&#x2F;pneumatic_cannon">pneumatic cannon</a></li>
@@ -3866,6 +3879,7 @@ then shoots (and detonates) them at Lavaland Z-level GPS coordinates provided.</
     <li class="has-children"><a href="obj/mecha.html" title="&#x2F;obj&#x2F;mecha">mecha</a><ul class="index-tree">
     <li class="has-children"><a href="obj/mecha/working.html" title="&#x2F;obj&#x2F;mecha&#x2F;working">working</a><ul class="index-tree">
     <li><a href="obj/mecha/working/clarke.html" title="&#x2F;obj&#x2F;mecha&#x2F;working&#x2F;clarke">Clarke</a> - Lavaproof, fireproof, fast mech with low armor and higher energy consumption, cannot strafe and has an internal ore box.</li>
+    <li><a href="obj/mecha/working/ripley.html" title="&#x2F;obj&#x2F;mecha&#x2F;working&#x2F;ripley">APLU MK-I \&quot;Ripley\&quot;</a></li>
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="obj/projectile.html" title="&#x2F;obj&#x2F;projectile">projectile</a><ul class="index-tree">
@@ -4034,7 +4048,7 @@ uranium</li>
     <li><a href="turf/open/openspace/icemoon.html" title="&#x2F;turf&#x2F;open&#x2F;openspace&#x2F;icemoon">ice chasm</a></li>
     </ul></li>
     <li class="has-children"><a href="turf/open/space.html" title="&#x2F;turf&#x2F;open&#x2F;space">space</a><ul class="index-tree">
-    <li><a href="turf/open/space/transit.html" title="&#x2F;turf&#x2F;open&#x2F;space&#x2F;transit">hyperspace</a></li>
+    <li><a href="turf/open/space/transit.html" title="&#x2F;turf&#x2F;open&#x2F;space&#x2F;transit">bluespace</a></li>
     </ul></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;turf&#x2F;template_noop">Turf Passthrough</span> - See above explanation</li>
@@ -4046,7 +4060,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/c3f6abcb96095517ffe8a0e9c289e8af5ea62406">c3f6abc</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/944249cba4dd41a6632cd6ffa5b22927c7294327">944249c</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
