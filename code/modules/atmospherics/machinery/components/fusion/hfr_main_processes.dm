@@ -252,18 +252,19 @@
 		internal_fusion.adjust_moles(gas_id, -remove_amount)
 		delta_fuel_list[gas_id] -= remove_amount
 
+	var/add_remove_amount = round(scaled_production, 0.01) // gases on the same tier are produced at normal rate
+	for(var/gas_id in fuel.primary_products)
+			internal_fusion.adjust_moles(gas_id, add_remove_amount)
+			delta_fuel_list[gas_id] += add_remove_amount
+
 	if(power_level < 1)
 		return // can't produce any gases, don't need to continue
 
 	// Each recipe provides a tier list of six output gases.
 	// Which gases are produced depend on what the fusion level is.
 	var/list/tier = fuel.secondary_products
-	var/add_remove_amount = round(scaled_production, 0.01) // gases on the same tier are produced at normal rate
 	moderator_internal.adjust_moles(tier[power_level], add_remove_amount)
 	delta_mod_list[tier[power_level]] += add_remove_amount
-	for(var/gas_id in fuel.primary_products)
-		internal_fusion.adjust_moles(gas_id, add_remove_amount)
-		delta_fuel_list[gas_id] += add_remove_amount
 	if(power_level < 6)
 		moderator_internal.adjust_moles(tier[power_level + 1], round(scaled_production * 0.5, 0.01)) // gases on the above tier are produced at reduced rate
 		delta_mod_list[tier[power_level + 1]] += round(scaled_production * 0.5, 0.01)
