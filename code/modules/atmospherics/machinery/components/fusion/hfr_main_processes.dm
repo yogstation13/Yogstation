@@ -254,8 +254,8 @@
 
 	var/add_remove_amount = round(scaled_production, 0.01) // gases on the same tier are produced at normal rate
 	for(var/gas_id in fuel.primary_products)
-			internal_fusion.adjust_moles(gas_id, add_remove_amount)
-			delta_fuel_list[gas_id] += add_remove_amount
+		internal_fusion.adjust_moles(gas_id, add_remove_amount)
+		delta_fuel_list[gas_id] += add_remove_amount
 
 	if(power_level < 1)
 		return // can't produce any gases, don't need to continue
