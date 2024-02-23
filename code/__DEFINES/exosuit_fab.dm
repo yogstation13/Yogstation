@@ -27,7 +27,7 @@
 #define EXOSUIT_MODULE_SIDEWINDER	(1<<6)
 
 /// Module is compatible with "Working" Exosuit models - Ripley and Firefighter
-#define EXOSUIT_MODULE_WORKING		EXOSUIT_MODULE_RIPLEY | EXOSUIT_MODULE_FIREFIGHTER
+#define EXOSUIT_MODULE_WORKING		EXOSUIT_MODULE_RIPLEY
 /// Module is compatible with "Combat" Exosuit models - Gygax, H.O.N.K, Durand, Phazon, and Sidewinder
 #define EXOSUIT_MODULE_COMBAT		EXOSUIT_MODULE_GYGAX | EXOSUIT_MODULE_HONK | EXOSUIT_MODULE_DURAND | EXOSUIT_MODULE_PHAZON | EXOSUIT_MODULE_SIDEWINDER
 /// Module is compatible with "Medical" Exosuit modelsm - Odysseus
