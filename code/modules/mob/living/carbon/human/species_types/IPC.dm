@@ -59,7 +59,7 @@
 	var/ipc_name = "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 	return ipc_name
 
-/datum/species/ipc/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
+/datum/species/ipc/on_species_gain(mob/living/carbon/C, datum/species/old_species) // Let's make that IPC actually robotic.
 	. = ..()
 	C.particles = new /particles/smoke/ipc()
 	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
@@ -381,13 +381,14 @@ ipc martial arts stuff
 /datum/species/ipc/self/insurgent
 	id = "self insurgent"
 	var/disguise_fail_health = 50 //When their health gets to this level their synthflesh partially falls off
-	var/datum/species/human/fake_species //a species to do most of our work for us, unless we're damaged
+	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
 	var/list/initial_inherent_traits
 	var/list/initial_mutant_bodyparts
 	var/list/initial_step_sounds
 	var/list/initial_walk_sounds
-	var/original_color
+	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth)//species that really don't work with this system
+	var/list/old_features
 	var/disguised = FALSE
 	
 /datum/species/ipc/self/insurgent/New()
@@ -396,20 +397,26 @@ ipc martial arts stuff
 	initial_mutant_bodyparts = LAZYCOPY(mutant_bodyparts)
 	initial_step_sounds = LAZYCOPY(special_step_sounds)
 	initial_walk_sounds = LAZYCOPY(special_walk_sounds)
-	
-	fake_species = new () //for now, always pick human, it causes the least bugs
+
+	fake_species = new /datum/species/human() //default is human
 	..()
 
 /datum/species/ipc/self/insurgent/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	if(old_species && !is_type_in_list(old_species, blacklisted_species))
+		old_features = H.dna.features
+		qdel(fake_species)
+		fake_species = old_species
 	..()
 	for(var/obj/item/bodypart/O in H.bodyparts)
 		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 	assume_disguise(H)
 	
+/datum/species/ipc/self/insurgent/spec_fully_heal(mob/living/carbon/human/H)
+	assume_disguise(H)
+
 /datum/species/ipc/self/insurgent/proc/assume_disguise(mob/living/carbon/human/H)
 	if(disguised || !(fake_species && istype(fake_species)) || H.health < disguise_fail_health)
 		return FALSE
-	original_color = H.dna.features["mcolor"]
 
 	disguised = TRUE
 	name = fake_species.name
@@ -418,7 +425,7 @@ ipc martial arts stuff
 	species_traits = LAZYCOPY(initial_species_traits)
 	inherent_traits = LAZYCOPY(initial_inherent_traits)
 	mutant_bodyparts = LAZYCOPY(fake_species.mutant_bodyparts)
-	H.dna.features["mcolor"] = skintone2hex(random_skin_tone())
+	H.dna.features["mcolor"] = old_features
 	special_step_sounds = null
 	special_walk_sounds = null
 	species_traits |= fake_species.species_traits
@@ -446,7 +453,6 @@ ipc martial arts stuff
 	species_traits = LAZYCOPY(initial_species_traits)
 	inherent_traits = LAZYCOPY(initial_inherent_traits)
 	mutant_bodyparts = LAZYCOPY(initial_mutant_bodyparts)
-	H.dna.features["mcolor"] = original_color
 	special_step_sounds = LAZYCOPY(initial_step_sounds)
 	special_walk_sounds = LAZYCOPY(initial_walk_sounds)
 	damage_overlay_type = initial(damage_overlay_type)
@@ -473,5 +479,16 @@ ipc martial arts stuff
 	. = ..()
 	if(. && H.health < disguise_fail_health)
 		break_disguise(H)
+
+//admeme strong ipc
+/datum/species/ipc/self/insurgent/military
+	id = "insurrectionist ipc"
+	armor = 35
+	speedmod = -0.2
+	punchdamagelow = 10
+	punchdamagehigh = 19
+	punchstunthreshold = 14 //about 50% chance to stun
+	disguise_fail_health = 25
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN //admin only... sorta
 
 #undef CONSCIOUSAY
