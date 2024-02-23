@@ -474,8 +474,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		var/newdrift = ((REALTIMEOFDAY - init_timeofday) - (world.time - init_time)) / world.tick_lag
 		tickdrift = max(0, MC_AVERAGE_FAST(tickdrift, newdrift))
 		var/starting_tick_usage = TICK_USAGE
-
-		if(newdrift - olddrift >= CONFIG_GET(number/drift_dump_threshold))
+		//Yog: profile dumping was throttling lower performance computers, so we're going to have it disabled by default but you can enable it via config flags
+		if(newdrift - olddrift >= CONFIG_GET(number/drift_dump_threshold) && CONFIG_GET(flag/auto_profile))
 			AttemptProfileDump(CONFIG_GET(number/drift_profile_delay))
 		olddrift = newdrift
 
