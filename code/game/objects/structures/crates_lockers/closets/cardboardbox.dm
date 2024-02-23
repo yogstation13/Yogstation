@@ -8,7 +8,7 @@
 	max_integrity = 70
 	integrity_failure = 0
 	can_weld_shut = 0
-	cutting_tool = /obj/item/wirecutters
+	cutting_tool = TOOL_WIRECUTTER
 	open_sound = "rustle"
 	material_drop = /obj/item/stack/sheet/cardboard
 	delivery_icon = "deliverybox"
@@ -77,7 +77,7 @@
 	mob_storage_capacity = 5
 	resistance_flags = NONE
 	move_speed_multiplier = 2
-	cutting_tool = /obj/item/weldingtool
+	cutting_tool = TOOL_WELDER
 	open_sound = 'sound/machines/click.ogg'
 	material_drop = /obj/item/stack/sheet/plasteel
 #undef SNAKE_SPAM_TICKS
