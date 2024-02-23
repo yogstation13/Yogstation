@@ -6,8 +6,8 @@
 	max_temperature = 65000
 	max_integrity = 200
 	step_in = 1.25
-	fast_pressure_step_in = 1.25
-	slow_pressure_step_in = 1.8
+	fast_pressure_step_in = 1.5
+	slow_pressure_step_in = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	light_power = 7
 	deflect_chance = 10
