@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(starlight)
 	return TRUE
 
 /turf/open/space/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_FLOORWALL)
 			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
 	return FALSE

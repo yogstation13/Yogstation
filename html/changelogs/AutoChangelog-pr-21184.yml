@@ -1,0 +1,13 @@
+author: " sapphicoverload, syncit21, zxaber"
+delete-after: true 
+changes: 
+  - rscadd: "added a bunch more equipment for utility mechs"
+  - soundadd: "adds new sound effects for hydraulic clamp and APLU mech movement"
+  - tweak: "hydraulic clamp works as a wrench or crowbar and can pry powered doors"
+  - tweak: "mech plasma cutter can be used as a welder like the handheld version"
+  - tweak: "mech RCD works like an actual RCD now"
+  - tweak: "adds tgui RCD menu"
+  - tweak: "strafe button icon shows whether or not you're strafing"
+  - tweak: "APLU and Clarke mechs now have radiation shielding"
+  - bugfix: "fixed clarke movement not working correctly"
+  - bugfix: "fixes and re-adds multi-Z mech movement (no phasing through floors or teleporting to other z-levels this time)"

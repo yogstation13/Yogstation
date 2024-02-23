@@ -164,8 +164,8 @@
 	return FALSE
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
-	if(istype(I,/obj/item/jawsoflife/jimmy))
-		to_chat(user,"The [I] cannot pry tiles.")
+	if(istype(I, /obj/item/jawsoflife/jimmy) || istype(I, /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp))
+		to_chat(user,"[I] cannot pry tiles.")
 		return
 	if(overfloor_placed && pry_tile(I, user))
 		return TRUE
@@ -235,7 +235,7 @@
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_FLOORWALL)
 			return list("mode" = RCD_FLOORWALL, "delay" = 20, "cost" = 16)
 		if(RCD_AIRLOCK)
@@ -253,6 +253,10 @@
 			return list("mode" = RCD_COMPUTER, "delay" = 20, "cost" = 25)
 		if(RCD_FURNISHING)
 			return list("mode" = RCD_FURNISHING, "delay" = the_rcd.furnish_delay, "cost" = the_rcd.furnish_cost)
+		if(RCD_CONVEYOR)
+			return list("mode" = RCD_CONVEYOR, "delay" = 5, "cost" = 5)
+		if(RCD_SWITCH)
+			return list("mode" = RCD_SWITCH, "delay" = 1, "cost" = 1)
 	return FALSE
 
 /turf/open/floor/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
@@ -328,5 +332,20 @@
 				return FALSE
 			var/atom/new_furnish = new the_rcd.furnish_type(src)
 			new_furnish.setDir(user.dir)
+			return TRUE
+		if(RCD_CONVEYOR)
+			if(locate(/obj/machinery/conveyor) in src)
+				return FALSE
+			if(get_turf(user) == src)
+				return FALSE
+			var/obj/machinery/conveyor/new_conveyor = new /obj/machinery/conveyor(src)
+			new_conveyor.setDir(user.dir)
+			if(the_rcd.linked_switch_id)
+				new_conveyor.id = the_rcd.linked_switch_id // link the conveyor if possible
+			return TRUE
+		if(RCD_SWITCH)
+			if(locate(/obj/machinery/conveyor_switch) in src)
+				return FALSE
+			new /obj/machinery/conveyor_switch(src)
 			return TRUE
 	return FALSE

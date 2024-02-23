@@ -1,0 +1,5 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "cables on the correct plane so they don't have weird lattice lighting filters"
+  - bugfix: "meteors with space lighting overlays rotate with the meteors instead of being disjointed and unmoving"
