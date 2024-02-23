@@ -380,15 +380,16 @@ ipc martial arts stuff
 //infiltrators
 /datum/species/ipc/self/insurgent
 	id = "self insurgent"
-	var/disguise_fail_health = 50 //When their health gets to this level their synthflesh partially falls off
+	var/disguise_fail_health = 65 //When their health gets to this level their synthflesh partially falls off
 	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
 	var/list/initial_inherent_traits
 	var/list/initial_mutant_bodyparts
 	var/list/initial_step_sounds
 	var/list/initial_walk_sounds
-	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth)//species that really don't work with this system
+	var/list/blacklisted_species = list(/datum/species/ethereal, /datum/species/moth)//species that really don't work with this system (lizards aren't quite right either, but whatever)
 	var/list/old_features
+	var/ipc_color
 	var/disguised = FALSE
 	
 /datum/species/ipc/self/insurgent/New()
@@ -397,15 +398,20 @@ ipc martial arts stuff
 	initial_mutant_bodyparts = LAZYCOPY(mutant_bodyparts)
 	initial_step_sounds = LAZYCOPY(special_step_sounds)
 	initial_walk_sounds = LAZYCOPY(special_walk_sounds)
+	ipc_color = sanitize_hexcolor("[pick("7F", "FF")][pick("7F", "FF")][pick("7F", "FF")]")
 
 	fake_species = new /datum/species/human() //default is human
 	..()
 
 /datum/species/ipc/self/insurgent/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	old_features = H.dna.features
+	old_features = LAZYCOPY(H.dna.features)
 	if(old_species && !is_type_in_list(old_species, blacklisted_species))
 		qdel(fake_species)
 		fake_species = old_species
+		if(old_species.use_skintones)
+			old_features["mcolor"] = skintone2hex(H.skin_tone)
+	else
+		old_features["mcolor"] = skintone2hex(random_skin_tone())
 	..()
 	for(var/obj/item/bodypart/O in H.bodyparts)
 		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
@@ -430,6 +436,8 @@ ipc martial arts stuff
 	special_walk_sounds = null
 	species_traits |= fake_species.species_traits
 	inherent_traits |= fake_species.inherent_traits
+	if(!(NO_UNDERWEAR in fake_species.species_traits))
+		species_traits -= NO_UNDERWEAR
 	damage_overlay_type = fake_species.damage_overlay_type
 	attack_verb = fake_species.attack_verb
 	attack_sound = fake_species.attack_sound
@@ -456,6 +464,7 @@ ipc martial arts stuff
 	special_step_sounds = LAZYCOPY(initial_step_sounds)
 	special_walk_sounds = LAZYCOPY(initial_walk_sounds)
 	damage_overlay_type = initial(damage_overlay_type)
+	H.dna.features["mcolor"] = ipc_color
 	attack_verb = initial(attack_verb)
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)
@@ -488,7 +497,7 @@ ipc martial arts stuff
 	punchdamagelow = 10
 	punchdamagehigh = 19
 	punchstunthreshold = 14 //about 50% chance to stun
-	disguise_fail_health = 25
+	disguise_fail_health = 35
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN //admin only... sorta
 
 #undef CONSCIOUSAY
