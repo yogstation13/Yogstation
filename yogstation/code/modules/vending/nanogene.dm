@@ -1,7 +1,9 @@
 /obj/machinery/vending/wallgene
 	name = "\improper NanoGene"
 	desc = "Wall-mounted Medical Equipment dispenser."
+	/* dripstation edit
 	icon = 'yogstation/icons/obj/vending.dmi'
+	*/
 	icon_state = "wallgene"
 	icon_deny = "wallgene-deny"
 	panel_type = "panel-wall"

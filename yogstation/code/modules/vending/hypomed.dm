@@ -1,7 +1,9 @@
 /obj/machinery/vending/wallhypo
 	name = "\improper HypoMed"
 	desc = "Wall-mounted Hypospray Equipment dispenser."
+	/* dripstation edit
 	icon = 'yogstation/icons/obj/vending.dmi'
+	*/
 	icon_state = "wallhypo"
 	icon_deny = "wallhypo-deny"
 	panel_type = "panel-wall"

@@ -96,8 +96,10 @@
 		if(powered() && !power_wire_cut)
 			stat &= ~NOPOWER
 			START_PROCESSING(SSmachines, src)
+			set_light(powered() ? MINIMUM_USEFUL_LIGHT_RANGE : 0) //Dripstation edit
 		else
 			stat |= NOPOWER
+			set_light(0) //Dripstation edit
 
 /obj/machinery/smartfridge/process()
 	if(stat & (BROKEN|NOPOWER))
@@ -195,6 +197,7 @@
 	else
 		icon_state = "[startstate]-off"
 
+/* Dripstation edit
 /obj/machinery/smartfridge/update_overlays()
 	. = ..()
 
@@ -214,6 +217,7 @@
 
 	if(!stat && has_emissive)
 		. += emissive_appearance(icon, "[initial(icon_state)]-light-mask", src, alpha = src.alpha)
+*/
 
 /obj/machinery/smartfridge/proc/animate_dispenser()
 	//visually animate the smartfridge dispensing an item
@@ -241,9 +245,9 @@
 
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, O))
 		if(panel_open)
-			add_overlay("[initial(icon_state)]-panel")
+			update_overlays()
 		else
-			cut_overlay("[initial(icon_state)]-panel")
+			update_overlays()
 		updateUsrDialog()
 		return
 

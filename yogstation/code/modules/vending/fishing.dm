@@ -4,7 +4,9 @@
 /obj/machinery/vending/fishing
 	name = "\improper Tackle Box 2000"	
 	desc = "Fishing peaked in 2000!"
+	/* dripstation edit
 	icon = 'yogstation/icons/obj/vending.dmi'
+	*/
 	icon_state = "fishing"
 	icon_deny = "fishing-deny"
 	panel_type = "panel-fish"

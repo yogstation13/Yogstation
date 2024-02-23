@@ -231,6 +231,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		build_inventory(contraband, hidden_records)
 		build_inventory(premium, coin_records)
 
+	vend_reply = "Thank you for shopping with [src]!" //dripstation edit
+
 	slogan_list = splittext(product_slogans, ";")
 	small_ads = splittext(product_ads, ";")
 	// So not all machines speak at the exact same time.
@@ -804,6 +806,14 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(panel_open)
 				to_chat(usr, span_warning("The vending machine cannot dispense products while its service panel is open!"))
 				return
+//DRIPSTATION EDIT START
+			if((!allowed(usr)) && !(obj_flags & EMAGGED) && scan_id)	//For SECURE VENDING MACHINES YEAH  != EMAGGED
+				to_chat(usr, span_warning("Access denied."))//Unless emagged of course
+				flick(icon_deny, src)
+				playsound(src, 'sound/machines/deniedbeep.ogg', 50, TRUE, extrarange = -3)
+				vend_ready = TRUE
+				return
+//DRIPSTATION EDIT END
 			vend_ready = FALSE //One thing at a time!!
 			var/datum/data/vending_product/R = locate(params["ref"])
 			var/list/record_to_check = product_records + coin_records
@@ -826,6 +836,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if (R.amount <= 0)
 				say("Sold out of [R.name].")
 				flick(icon_deny,src)
+				playsound(src, 'sound/machines/deniedbeep.ogg', 50, TRUE, extrarange = -3) //dripstation edit
 				vend_ready = TRUE
 				return
 
@@ -856,15 +867,24 @@ GLOBAL_LIST_EMPTY(vending_products)
 						alertradio.talk_into(src, "SECURITY ALERT: Underaged crewmember [H] recorded attempting to purchase [R.name] in [get_area(src)]. Please watch for substance abuse.", FREQ_SECURITY)
 						GLOB.narcd_underages += H
 					flick(icon_deny,src)
+					playsound(src, 'sound/machines/deniedbeep.ogg', 50, TRUE, extrarange = -3) //dripstation edit
 					vend_ready = TRUE
 					return
 
+/* dripstation edit
 			thank_user("Thank you for shopping with [src]!")
+*/
+			thank_user(vend_reply) //dripstation edit
 			finish_vend()
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, ui_act), R, usr), vend_delay) //dripstation edit
 
 			var/obj/item/vended_item
 			if(!LAZYLEN(R.returned_products)) //always give out free returned stuff first, e.g. to avoid walling a traitor objective in a bag behind paid items
 				vended_item = new R.product_path(get_turf(src))
+// DRIPSTATION EDIT START
+				if(usr.CanReach(src) && usr.put_in_hands(vended_item))
+					to_chat(usr, span_notice("You take [R.name] out of the slot."))
+// DRIPSTATION EDIT END
 			else
 				vended_item = LAZYACCESS(R.returned_products, LAZYLEN(R.returned_products)) //first in, last out
 				LAZYREMOVE(R.returned_products, vended_item)
@@ -919,10 +939,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(!C)
 			say("No card found.")
 			flick(icon_deny,src)
+			playsound(src, 'sound/machines/deniedbeep.ogg', 50, TRUE, extrarange = -3) //dripstation edit
 			return FALSE
 		else if (!C.registered_account)
 			say("No account found.")
 			flick(icon_deny,src)
+			playsound(src, 'sound/machines/deniedbeep.ogg', 50, TRUE, extrarange = -3) //dripstation edit
 			return FALSE
 		var/datum/bank_account/account = C.registered_account
 		if(!always_charge && account.account_job && account.account_job.paycheck_department == payment_department)
@@ -930,6 +952,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(price && !account.adjust_money(-price))
 			say("You do not possess the funds to purchase \the [item_name].")
 			flick(icon_deny,src)
+			playsound(src, 'sound/machines/deniedbeep.ogg', 50, TRUE, extrarange = -3) //dripstation edit
 			return FALSE
 		var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
 		if(D)
@@ -954,6 +977,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(icon_vend) //Show the vending animation if needed
 		flick(icon_vend,src)
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
+	sleep(vend_delay)
 
 /obj/machinery/vending/process(delta_time)
 	if(stat & (BROKEN|NOPOWER))
@@ -1108,4 +1132,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 					return TRUE
 
 		to_chat(user, span_warning("[src]'s input compartment blinks red: Access denied."))
+//DRIPSTATION EDIT START
+		flick(icon_deny, src)
+		playsound(src, 'sound/machines/deniedbeep.ogg', 50, TRUE, extrarange = -3)
+//DRIPSTATION EDIT END
 		return FALSE
