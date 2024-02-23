@@ -9,9 +9,9 @@
 	if(!isobj(parent) && !iscyborg(parent)) // Only objects and cyborgs can have this component.
 		return COMPONENT_INCOMPATIBLE
 
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(applyplate))
-	RegisterSignal(parent, COMSIG_PARENT_PREQDELETED, PROC_REF(dropplates))
+	RegisterSignal(parent, COMSIG_PREQDELETED, PROC_REF(dropplates))
 
 	if(_maxamount)
 		maxamount = _maxamount

@@ -352,7 +352,6 @@
 	attacktext = "stings"
 	attack_sound = 'sound/voice/moth/scream_moth.ogg'
 	deathmessage = "rolls over, falling to the ground."
-	gold_core_spawnable = HOSTILE_SPAWN
 	butcher_results = list(/obj/item/stinger = 1, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/stack/sheet/sinew = 2, /obj/item/gem/topaz = 2)
 	loot = list()
 	crusher_loot = /obj/item/crusher_trophy/jungleland/wasp_head

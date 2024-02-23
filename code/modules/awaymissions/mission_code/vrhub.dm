@@ -5,7 +5,8 @@
 /area/awaymission/vr/hub
 	name = "Virtual Reality Hub Area"
 	icon_state = "awaycontent2"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 /area/awaymission/vr/hub/boxing
 	name = "Virtual Reality Boxing Ring"
@@ -22,22 +23,23 @@
 	desc = "Gives you a one time ability to return to this portal once you have entered."
 	mech_sized = TRUE
 	keep = TRUE
+	density = FALSE
 	var/datum/outfit/equipment // optional outfit to equip upon entering
 	var/datum/outfit/recall_equipment // optional outfit to equip upon recalling
 
-/obj/effect/portal/permanent/one_way/recall/Crossed(atom/movable/AM, oldloc)
-	if(ismob(AM))
-		var/mob/user = AM
-		var/check = locate(/datum/action/cooldown/spell/portal_recall) in user.actions
-		if(check)
-			var/datum/action/cooldown/spell/portal_recall/mob_recall = check
-			for(var/obj/effect/portal/permanent/one_way/recall/P in mob_recall.recall_portals)
-				if(src == P)
-					return ..(AM, oldloc, force_stop = TRUE) // don't teleport if they have a recall spell with this portal already (or have just teleported onto it)
-	return ..()
+/obj/effect/portal/permanent/one_way/recall/Entered(atom/movable/entering_atom, oldloc)
+	if(!ismob(entering_atom))
+		return
+	var/mob/user = entering_atom
+	var/check = locate(/datum/action/cooldown/spell/portal_recall) in user.actions
+	if(check)
+		var/datum/action/cooldown/spell/portal_recall/mob_recall = check
+		for(var/obj/effect/portal/permanent/one_way/recall/P in mob_recall.recall_portals)
+			if(src == P)
+				return // don't teleport if they have a recall spell with this portal already (or have just teleported onto it)
+	Bumped(user)
 
 /obj/effect/portal/permanent/one_way/recall/teleport(atom/movable/M, force = FALSE)
-	. = ..()
 	if(. && ismob(M))
 		var/mob/user = M
 		var/findspell = locate(/datum/action/cooldown/spell/portal_recall) in user.actions
@@ -49,6 +51,7 @@
 			var/mob/living/carbon/human/H = user
 			H.delete_equipment()
 			H.equipOutfit(equipment)
+	. = ..()
 
 // the effect that happens when someone recalls to your portal
 /obj/effect/portal/permanent/one_way/recall/proc/recall_effect(mob/user)
@@ -149,11 +152,13 @@
 /obj/effect/light_emitter/vr_hub
 	set_luminosity = 9
 	set_cap = 2.5
-	light_color = LIGHT_COLOR_WHITE
 
 /turf/closed/indestructible/iron
 	name = "rough metal wall"
 	desc = "A wall with rough metal plating."
 	icon = 'icons/turf/walls/iron_wall.dmi'
-	icon_state = "iron"
-	canSmoothWith = list(/turf/closed/indestructible/iron)
+	icon_state = "iron_wall-0"
+	base_icon_state = "iron_wall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_IRON_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	canSmoothWith = SMOOTH_GROUP_IRON_WALLS

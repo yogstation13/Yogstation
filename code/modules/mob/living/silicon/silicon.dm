@@ -6,7 +6,6 @@
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
 	initial_language_holder = /datum/language_holder/synthetic
-	see_in_dark = 8
 	infra_luminosity = 0
 	bubble_icon = BUBBLE_MACHINE
 	weather_immunities = list("ash")
@@ -386,7 +385,7 @@
 	if(!modularInterface)
 		modularInterface = new /obj/item/modular_computer/tablet/integrated(src)
 	modularInterface.layer = ABOVE_HUD_PLANE
-	modularInterface.plane = ABOVE_HUD_PLANE
+	SET_PLANE_EXPLICIT(modularInterface, ABOVE_HUD_PLANE, src)
 
 /mob/living/silicon/replace_identification_name(oldname,newname)
 	if(modularInterface)
