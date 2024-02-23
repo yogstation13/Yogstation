@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(852 modules,
-    3017/10790 macros, 28%)</aside></h3>
+<aside>(854 modules,
+    3026/10802 macros, 28%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -286,6 +286,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/controllers/subsystem/events.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events">events</a></li>
     <li><a href="code/controllers/subsystem/fluids.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;fluids">fluids</a></li>
     <li><a href="code/controllers/subsystem/garbage.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;garbage">garbage</a></li>
+    <li><a href="code/controllers/subsystem/init_profiler.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;init_profiler">init_profiler</a></li>
     <li><a href="code/controllers/subsystem/materials.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;materials">materials</a> - How material datums work
 Materials are now instanced datums, with an associative list of them being kept in SSmaterials. We only instance the materials once and then re-use these instances for everything.
 These materials call on_applied() on whatever item they are applied to, common effects are adding components, changing color and changing description. This allows us to differentiate items based on the material they are made out of.area</li>
@@ -343,6 +344,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/components/religious_tool.html" title="code&#x2F;datums&#x2F;components&#x2F;religious_tool">religious_tool</a></li>
     <li><a href="code/datums/components/riding.html" title="code&#x2F;datums&#x2F;components&#x2F;riding">riding</a></li>
     <li><a href="code/datums/components/slippery.html" title="code&#x2F;datums&#x2F;components&#x2F;slippery">slippery</a></li>
+    <li><a href="code/datums/components/squishable.html" title="code&#x2F;datums&#x2F;components&#x2F;squishable">squishable</a></li>
     <li><a href="code/datums/components/surgery_bed.html" title="code&#x2F;datums&#x2F;components&#x2F;surgery_bed">surgery_bed</a></li>
     <li><a href="code/datums/components/twohanded.html" title="code&#x2F;datums&#x2F;components&#x2F;twohanded">twohanded</a></li>
     <li><a href="code/datums/components/uplink.html" title="code&#x2F;datums&#x2F;components&#x2F;uplink">uplink</a></li>
@@ -1233,7 +1235,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1184 detailed/2038 documented/29585 total, 6.9%)</aside></h3>
+<aside>(1189 detailed/2043 documented/29595 total, 6.9%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1427,6 +1429,7 @@ Originally shitcoded by Lazenn, reorganized by ynot01
 Base for all buster arm actions<ul class="index-tree">
     <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;buster&#x2F;megabuster">Mega Buster</span> - Action<ul class="index-tree">
     <li><a href="datum/action/cooldown/buster/megabuster/l.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;buster&#x2F;megabuster&#x2F;l">l</a></li>
+    <li><span class="no-substance">megaharpoon&#x2F;</span><a href="datum/action/cooldown/buster/megabuster/megaharpoon/l.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;buster&#x2F;megabuster&#x2F;megaharpoon&#x2F;l">l</a></li>
     <li><a href="datum/action/cooldown/buster/megabuster/r.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;buster&#x2F;megabuster&#x2F;r">r</a></li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;buster&#x2F;wire_snatch">Wire Snatch</span> - Action<ul class="index-tree">
@@ -1728,6 +1731,8 @@ in the last X seconds. Taking any damage will reset this cooldown.</li>
     <li><a href="datum/component/slippery.html" title="&#x2F;datum&#x2F;component&#x2F;slippery">Slip behaviour component</a> - Add this component to an object to make it a slippery object, slippery objects make mobs that cross them fall over.
 Items with this component that get picked up may give their parent mob the slip behaviour.</li>
     <li><a href="datum/component/spawner.html" title="&#x2F;datum&#x2F;component&#x2F;spawner">spawner</a></li>
+    <li><a href="datum/component/squashable.html" title="&#x2F;datum&#x2F;component&#x2F;squashable">squashable</a> - This component allows something to be when crossed, for example for cockroaches.</li>
+    <li><a href="datum/component/squeak.html" title="&#x2F;datum&#x2F;component&#x2F;squeak">squeak</a></li>
     <li><a href="datum/component/surgery_bed.html" title="&#x2F;datum&#x2F;component&#x2F;surgery_bed">surgery_bed</a> - A component for surgery beds and those that act like them, handles patient information, success chance, and available surgeries</li>
     <li><a href="datum/component/two_handed.html" title="&#x2F;datum&#x2F;component&#x2F;two_handed">two_handed</a> - Two Handed Component</li>
     <li class="has-children"><a href="datum/component/uplink.html" title="&#x2F;datum&#x2F;component&#x2F;uplink">syndicate uplink</a> - Uplinks<ul class="index-tree">
@@ -2584,7 +2589,9 @@ This file contains their code, plus code for applying and removing them.<ul clas
     <li><a href="datum/status_effect/eldritch/ash.html" title="&#x2F;datum&#x2F;status_effect&#x2F;eldritch&#x2F;ash">ash</a></li>
     <li><a href="datum/status_effect/eldritch/cosmic.html" title="&#x2F;datum&#x2F;status_effect&#x2F;eldritch&#x2F;cosmic">cosmic</a></li>
     </ul></li>
-    <li><a href="datum/status_effect/exposed.html" title="&#x2F;datum&#x2F;status_effect&#x2F;exposed">exposed</a></li>
+    <li class="has-children"><a href="datum/status_effect/exposed.html" title="&#x2F;datum&#x2F;status_effect&#x2F;exposed">exposed</a><ul class="index-tree">
+    <li><a href="datum/status_effect/exposed/harpooned.html" title="&#x2F;datum&#x2F;status_effect&#x2F;exposed&#x2F;harpooned">harpooned</a></li>
+    </ul></li>
     <li><a href="datum/status_effect/eye_blur.html" title="&#x2F;datum&#x2F;status_effect&#x2F;eye_blur">eye_blur</a> - Applies a blur to the user's screen, increasing in strength depending on duration remaining.</li>
     <li class="has-children"><a href="datum/status_effect/fire_handler.html" title="&#x2F;datum&#x2F;status_effect&#x2F;fire_handler">fire_handler</a><ul class="index-tree">
     <li><a href="datum/status_effect/fire_handler/fire_stacks.html" title="&#x2F;datum&#x2F;status_effect&#x2F;fire_handler&#x2F;fire_stacks">fire_stacks</a></li>
@@ -2984,7 +2991,6 @@ Otherwise the lower turf might get shifted around, which is dumb. do this instea
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;landmark">landmark</span><ul class="index-tree">
     <li><a href="obj/effect/landmark/event_spawn.html" title="&#x2F;obj&#x2F;effect&#x2F;landmark&#x2F;event_spawn">generic event spawn</a> - Generic event spawn points</li>
     <li class="has-children"><a href="obj/effect/landmark/stationroom.html" title="&#x2F;obj&#x2F;effect&#x2F;landmark&#x2F;stationroom">stationroom</a><ul class="index-tree">
-    <li><a href="obj/effect/landmark/stationroom/box.html" title="&#x2F;obj&#x2F;effect&#x2F;landmark&#x2F;stationroom&#x2F;box">box</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;landmark&#x2F;stationroom&#x2F;limited_spawn">limited_spawn</span> - Type of landmark that find all others of the same type, and only spawns count number of ruins at them</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;landmark&#x2F;unit_test_bottom_left">unit test zone bottom left</span> - Marks the bottom left of the testing zone.
@@ -2998,6 +3004,7 @@ In landmarks.dm and not unit_test.dm so it is always active in the mapping tools
     <li><span class="no-substance">mapping_helpers&#x2F;</span><a href="obj/effect/mapping_helpers/ztrait_injector.html" title="&#x2F;obj&#x2F;effect&#x2F;mapping_helpers&#x2F;ztrait_injector">ztrait injector</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;meatgrinder">Meat Grinder</span> - Meatgrinder</li>
     <li><a href="obj/effect/meteor.html" title="&#x2F;obj&#x2F;effect&#x2F;meteor">the concept of meteor</a></li>
+    <li><a href="obj/effect/mine.html" title="&#x2F;obj&#x2F;effect&#x2F;mine">dummy mine</a></li>
     <li class="has-children"><span class="no-substance">mob_spawn&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human">human</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human&#x2F;bridgeofficer">Bridge Officer</span> - Officers+Nanotrasen Security</li>
     <li><span class="no-substance">corpse&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human&#x2F;corpse&#x2F;assistant">Assistant</span> - Civilians</li>
@@ -3248,6 +3255,7 @@ Attacking any human mob (typically yourself) will cause their arm to instantly b
     <li class="has-children"><a href="obj/item/clothing.html" title="&#x2F;obj&#x2F;item&#x2F;clothing">clothing</a><ul class="index-tree">
     <li><span class="no-substance">accessory&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;accessory&#x2F;dogtags">Dogtags</span> - Dog Tags</li>
     <li><a href="obj/item/clothing/glasses.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;glasses">glasses</a></li>
+    <li><span class="no-substance">gloves&#x2F;</span><a href="obj/item/clothing/gloves/gasharpoon.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;gloves&#x2F;gasharpoon">gasharpoon</a></li>
     <li class="has-children"><a href="obj/item/clothing/head.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head">head</a><ul class="index-tree">
     <li><a href="obj/item/clothing/head/foilhat.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head&#x2F;foilhat">tinfoil hat</a></li>
     <li><a href="obj/item/clothing/head/hardhat.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;head&#x2F;hardhat">hard hat</a></li>
@@ -4060,7 +4068,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/944249cba4dd41a6632cd6ffa5b22927c7294327">944249c</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ea38b6ac83fd17f312c2dd5508b9cd65d3d152f3">ea38b6a</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
