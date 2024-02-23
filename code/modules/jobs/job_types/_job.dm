@@ -47,8 +47,6 @@
 	/// What kind of mob type joining players with this job as their assigned role are spawned as.
 	var/spawn_type = /mob/living/carbon/human
 
-	/// Selection Color for job preferences
-	var/selection_color = "#ffffff"
 	/// Alternate titles for the job
 	var/list/alt_titles
 	/// If this is set to TRUE, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
@@ -134,7 +132,6 @@
 	Here is another example of using this:
 
 	/datum/job/doctor/proc/OmegaStationChanges()
-	selection_color = "#ffffff"
 	total_positions = 3
 	spawn_positions = 3
 	added_access = list()

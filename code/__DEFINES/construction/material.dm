@@ -12,7 +12,7 @@
 /// The maximum size of a stack object.
 #define MAX_STACK_SIZE 50
 /// Maximum amount of cable in a coil
-#define MAXCOIL 30
+#define MAXCOIL 40
 
 //Category of materials
 /// Is the material from an ore? currently unused but exists atm for categorizations sake

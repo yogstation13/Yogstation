@@ -196,7 +196,7 @@
 		return
 
 	//get the user's location
-	if(!isturf(user.loc))
+	if(!isturf(user.loc) && !ismecha(user.loc))
 		return	//can't do this stuff whilst inside objects and such
 
 	add_fingerprint(user)
@@ -297,7 +297,7 @@
 	dismantle_wall(1)
 
 /turf/closed/wall/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 40, "cost" = 26)
 	return FALSE
