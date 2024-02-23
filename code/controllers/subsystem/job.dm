@@ -617,9 +617,9 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/irish_override()
 	var/datum/map_template/template = SSmapping.station_room_templates["Bar Irish"]
 
-	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.bar_landmarks)
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
-
+		qdel(B)
 
 /datum/controller/subsystem/job/proc/random_chapel_init()
 	try
@@ -664,9 +664,9 @@ SUBSYSTEM_DEF(job)
 			log_game("WARNING: CHAPEL RECOVERY FAILED! THERE WILL BE NO CHAPEL FOR THIS ROUND!")
 			return
 
-		for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.chapel_landmarks)
+		for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.landmarks_list)
 			template.load(B.loc, centered = FALSE)
-
+			qdel(B)
 	catch(var/exception/e)
 		message_admins("RUNTIME IN RANDOM_CHAPEL_INIT")
 		spawn_chapel()
@@ -681,9 +681,9 @@ SUBSYSTEM_DEF(job)
 	if(isnull(template))
 		message_admins("UNABLE TO SPAWN CHAPEL")
 
-	for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.chapel_landmarks)
+	for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
-
+		qdel(B)
 
 /datum/controller/subsystem/job/proc/random_clerk_init()
 	try
@@ -728,9 +728,9 @@ SUBSYSTEM_DEF(job)
 			log_game("WARNING: CLERK RECOVERY FAILED! THERE WILL BE NO CLERK SHOP FOR THIS ROUND!")
 			return
 
-		for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.clerk_office_landmarks)
+		for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
 			template.load(B.loc, centered = FALSE)
-
+			qdel(B)
 	catch(var/exception/e)
 		message_admins("RUNTIME IN RANDOM_CLERK_INIT")
 		spawn_clerk()
@@ -745,8 +745,9 @@ SUBSYSTEM_DEF(job)
 	if(isnull(template))
 		message_admins("UNABLE TO SPAWN CLERK")
 	
-	for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.clerk_office_landmarks)
+	for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
+		qdel(B)
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
 	if(!C?.holder)

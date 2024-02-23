@@ -7,7 +7,6 @@
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the head of personnel"
-	selection_color = "#bbe291"
 
 	outfit = /datum/outfit/job/botanist
 
