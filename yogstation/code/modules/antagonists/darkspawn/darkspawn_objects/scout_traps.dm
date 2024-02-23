@@ -10,15 +10,16 @@
 	break_strength = 2
 	slowdown = 4
 	gender = FEMALE //lol examine text? (this actually matters, don't change it)
+	trap_damage = 5
 
 /obj/item/restraints/legcuffs/beartrap/dark/Initialize(mapload)
 	. = ..()
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
 /obj/item/restraints/legcuffs/beartrap/dark/attack_hand(mob/user)
-	Crossed(user) //no picking it up
+	spring_trap(user) //no picking it up
 
-/obj/item/restraints/legcuffs/beartrap/dark/Crossed(AM as mob|obj)
+/obj/item/restraints/legcuffs/beartrap/dark/spring_trap(AM as mob|obj)
 	if(isliving(AM))
 		var/mob/living/target = AM
 		if(is_darkspawn_or_veil(target))
@@ -48,7 +49,7 @@
 	. = ..()
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
-/obj/structure/trap/darkspawn/Crossed(atom/movable/AM)
+/obj/structure/trap/darkspawn/on_trap_entered(atom/movable/AM)
 	if(isliving(AM))
 		var/mob/living/target = AM
 		if(is_darkspawn_or_veil(target))
@@ -109,4 +110,4 @@
 
 /obj/structure/trap/darkspawn/legcuff/trap_effect(mob/living/L)
 	var/obj/item/restraints/legcuffs/beartrap/dark/trap = new(get_turf(src))
-	trap.Crossed(L)
+	trap.spring_trap(L)
