@@ -28,6 +28,16 @@
 	var/squish_chance = 50
 	del_on_death = 1
 
+
+/mob/living/simple_animal/cockroach/Initialize(mapload)
+	. = ..()
+	AddComponent( \
+		/datum/component/squashable, \
+		squash_chance = 50, \
+		squash_damage = 1, \
+		squash_flags = SQUASHED_SHOULD_BE_GIBBED|SQUASHED_ALWAYS_IF_DEAD|SQUASHED_DONT_SQUASH_IN_CONTENTS, \
+	)
+
 /mob/living/simple_animal/cockroach/death(gibbed)
 	if(SSticker.mode && SSticker.mode.station_was_nuked) //If the nuke is going off, then cockroaches are invincible. Keeps the nuke from killing them, cause cockroaches are immune to nukes.
 		return
