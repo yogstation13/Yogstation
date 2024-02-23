@@ -22,9 +22,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "space"
 	requires_power = TRUE
 	always_unpowered = TRUE
-	static_lighting = FALSE
+	static_lighting = TRUE
 
-	base_lighting_alpha = 255
+	base_lighting_alpha = 0
 	base_lighting_color = COLOR_STARLIGHT
 	power_light = FALSE
 	power_equip = FALSE
@@ -40,9 +40,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/space/nearstation
 	icon_state = "space_near"
-	static_lighting = TRUE
-	base_lighting_alpha = 0
-	base_lighting_color = null
 
 /area/start
 	name = "start area"

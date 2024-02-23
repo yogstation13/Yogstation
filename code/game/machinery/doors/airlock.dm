@@ -1306,10 +1306,9 @@
 				return
 		INVOKE_ASYNC(src, (density ? PROC_REF(open) : PROC_REF(close)), 2)
 
-	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade))
-		if(isElectrified())
-			if(shock(user,100))//it's like sticking a fork in a power socket
-				return
+	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade) || istype(I, /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp))
+		if(isElectrified() && shock(user,100))//it's like sticking a fork in a power socket
+			return
 
 		if(istype(I, /obj/item/mantis/blade))
 			var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
@@ -1662,7 +1661,7 @@
 	qdel(src)
 
 /obj/machinery/door/airlock/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_DECONSTRUCT)
 			if(security_level != AIRLOCK_SECURITY_NONE)
 				to_chat(user, span_notice("[src]'s reinforcement needs to be removed first."))

@@ -927,6 +927,9 @@
 	if(throwing)
 		return TRUE
 
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_SPACEMOVE, movement_dir) & COMSIG_MOVABLE_ALLOW_SPACEMOVE)
+		return TRUE
+
 	if(!isturf(loc))
 		return TRUE
 

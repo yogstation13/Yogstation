@@ -40,7 +40,7 @@
 		"generic striped" = /obj/machinery/portable_atmospherics/canister/generic/stripe,
 		"generic hazard" = /obj/machinery/portable_atmospherics/canister/generic/hazard,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"danger" = /obj/machinery/portable_atmospherics/canister/fusion_test,
+		"danger" = /obj/machinery/portable_atmospherics/canister/fusion,
 		"n2" = /obj/machinery/portable_atmospherics/canister/nitrogen,
 		"o2" = /obj/machinery/portable_atmospherics/canister/oxygen,
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -565,6 +565,12 @@
 	if(istype(user))
 		analyzer_act(user, src)
 	return ..()
+
+/obj/machinery/portable_atmospherics/canister/fusion
+	name = "Fusion Canister"
+	desc = "A violent mix of gases resulting in a fusion reaction inside the canister. <br>\
+			A note on the side reads: \"DANGER: DO NOT OPEN\""
+	icon_state = "danger"
 
 /* yog- ADMEME CANISTERS */
 

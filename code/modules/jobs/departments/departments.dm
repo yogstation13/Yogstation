@@ -43,7 +43,7 @@
 	department_experience_type = EXP_TYPE_COMMAND
 	display_order = 1
 	label_class = "command"
-	ui_color = "#ccccff"
+	ui_color = "#6681a5"
 
 
 /datum/job_department/security
@@ -53,7 +53,7 @@
 	department_experience_type = EXP_TYPE_SECURITY
 	display_order = 2
 	label_class = "security"
-	ui_color = "#ffbbbb"
+	ui_color = "#d46a78"
 
 
 /datum/job_department/engineering
@@ -63,7 +63,7 @@
 	department_experience_type = EXP_TYPE_ENGINEERING
 	display_order = 3
 	label_class = "engineering"
-	ui_color = "#ffeeaa"
+	ui_color = "#dfb567"
 
 
 /datum/job_department/medical
@@ -73,7 +73,7 @@
 	department_experience_type = EXP_TYPE_MEDICAL
 	display_order = 4
 	label_class = "medical"
-	ui_color = "#c1e1ec"
+	ui_color = "#65b2bd"
 
 
 /datum/job_department/science
@@ -83,7 +83,7 @@
 	department_experience_type = EXP_TYPE_SCIENCE
 	display_order = 5
 	label_class = "science"
-	ui_color = "#ffddff"
+	ui_color = "#c973c9"
 
 
 /datum/job_department/cargo
@@ -93,7 +93,7 @@
 	department_experience_type = EXP_TYPE_SUPPLY
 	display_order = 6
 	label_class = "supply"
-	ui_color = "#d7b088"
+	ui_color = "#cf9c6c"
 
 
 /datum/job_department/service
@@ -103,7 +103,7 @@
 	department_experience_type = EXP_TYPE_SERVICE
 	display_order = 7
 	label_class = "service"
-	ui_color = "#ddddff"
+	ui_color = "#7cc46a"
 
 
 /datum/job_department/silicon
@@ -113,7 +113,7 @@
 	department_experience_type = EXP_TYPE_SILICON
 	display_order = 8
 	label_class = "silicon"
-	ui_color = "#ccffcc"
+	ui_color = "#5dbda0"
 
 
 /// Catch-all department for undefined jobs.

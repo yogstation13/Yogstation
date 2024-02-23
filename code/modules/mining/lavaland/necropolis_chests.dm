@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/effect/wisp/proc/update_user_sight(mob/user)
 	SIGNAL_HANDLER
-	user.sight |= sight_flags
+	user.add_sight(sight_flags)
 	if(!isnull(color_cutoffs))
 		user.lighting_color_cutoffs = blend_cutoff_colors(user.lighting_color_cutoffs, color_cutoffs)
 

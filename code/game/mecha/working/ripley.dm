@@ -18,6 +18,9 @@
 	enclosed = FALSE //Normal ripley has an open cockpit design
 	enter_delay = 10 //can enter in a quarter of the time of other mechs
 	exit_delay = 10
+	/// Custom Ripley step and turning sounds (from TGMC)
+	stepsound = 'sound/mecha/powerloader_step.ogg'
+	turnsound = 'sound/mecha/powerloader_turn2.ogg'
 	opacity = FALSE //Ripley has a window
 
 /obj/mecha/working/ripley/Move()
@@ -67,7 +70,8 @@
 	fast_pressure_step_in = 1.75 //step_in while in low pressure conditions
 	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
 	step_in = 3
-	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 0, BOMB = 40, BIO = 100, RAD = 55, FIRE = 100, ACID = 100)
+	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 0, BOMB = 40, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	wreckage = /obj/structure/mecha_wreckage/ripley/mkii
 	enclosed = TRUE
 	enter_delay = 40
@@ -80,12 +84,13 @@
 	icon_state = "firefighter"
 	max_temperature = 65000
 	max_integrity = 250
-	fast_pressure_step_in = 2 //step_in while in low pressure conditions
-	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
-	step_in = 4
+	fast_pressure_step_in = 1.75 //step_in while in low pressure conditions
+	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
+	step_in = 3
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	light_power = 7
-	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 70, FIRE = 100, ACID = 100)
+	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_equip = 5 // More armor, less tools
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 	enclosed = TRUE
@@ -93,6 +98,15 @@
 	silicon_icon_state = null
 	opacity = TRUE
 
+// maybe janitor ERTs could get this or something?
+/obj/mecha/working/ripley/janitorial/Initialize(mapload)
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/washer = new /obj/item/mecha_parts/mecha_equipment/weapon/pressure_washer
+	washer.attach(src)
+	var/obj/item/mecha_parts/mecha_equipment/big_mop = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/mop
+	big_mop.attach(src)
+	var/obj/item/mecha_parts/mecha_equipment/swatter = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter
+	swatter.attach(src)
 
 /obj/mecha/working/ripley/deathripley
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
