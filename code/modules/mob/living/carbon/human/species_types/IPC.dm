@@ -402,8 +402,8 @@ ipc martial arts stuff
 	..()
 
 /datum/species/ipc/self/insurgent/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	old_features = H.dna.features
 	if(old_species && !is_type_in_list(old_species, blacklisted_species))
-		old_features = H.dna.features
 		qdel(fake_species)
 		fake_species = old_species
 	..()
@@ -425,7 +425,7 @@ ipc martial arts stuff
 	species_traits = LAZYCOPY(initial_species_traits)
 	inherent_traits = LAZYCOPY(initial_inherent_traits)
 	mutant_bodyparts = LAZYCOPY(fake_species.mutant_bodyparts)
-	H.dna.features["mcolor"] = old_features
+	H.dna.features = old_features
 	special_step_sounds = null
 	special_walk_sounds = null
 	species_traits |= fake_species.species_traits
