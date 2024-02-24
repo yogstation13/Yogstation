@@ -286,15 +286,6 @@
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
-/obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
-	var/turf/currentloc = get_turf(owner)
-	var/obj/effect/temp_visual/decoy/fading/F = new(currentloc, owner)
-	if(!hsv)
-		hsv = RGBtoHSV(rgb(255, 0, 0))
-	hsv = RotateHue(hsv, world.time - last_step * 15)
-	last_step = world.time
-	F.color = HSVtoRGB(hsv)	//gotta add the flair
-
 /obj/item/organ/cyberimp/chest/spinalspeed/on_life()
 	if(!syndicate_implant)//the toy doesn't have a drawback
 		return
