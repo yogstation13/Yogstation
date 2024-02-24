@@ -760,7 +760,7 @@
 	icon_state = "hardsuit0-ert_commander"
 	item_state = "hardsuit0-ert_commander"
 	hardsuit_type = "ert_commander"
-	armor = list(MELEE = 65, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 80, ELECTRIC = 80)
+	armor = list(MELEE = 65, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 80, ELECTRIC = 100)
 	strip_delay = 130
 	light_range = 7
 	resistance_flags = FIRE_PROOF
@@ -777,7 +777,7 @@
 	item_state = "ert_command"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
-	armor = list(MELEE = 65, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 80, ELECTRIC = 80)
+	armor = list(MELEE = 65, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, RAD = 100, FIRE = 80, ACID = 80, ELECTRIC = 100)
 	slowdown = 0
 	strip_delay = 130
 	resistance_flags = FIRE_PROOF
