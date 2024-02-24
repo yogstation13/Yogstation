@@ -1,4 +1,4 @@
-/**
+/*
  * Main Fusion processes
  * process() Organizes all other calls, and is the best starting point for top-level logic.
  * fusion_process() handles all the main fusion reaction logic and consequences (lightning, radiation, particles) from an active fusion reaction.
