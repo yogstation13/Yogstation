@@ -347,7 +347,7 @@
 				linked_output.airs[1].adjust_moles(GAS_FREON, scaled_production * 1.15)
 				induce_hallucination(500, delta_time)
 			if(moderator_list[GAS_HEALIUM] > 100)
-				if(critical_threshold_proximity > 400)
+				if(critical_threshold_proximity > 90)
 					critical_threshold_proximity = max(critical_threshold_proximity - (moderator_list[GAS_HEALIUM] / 100 * delta_time ), 0)
 					var/remove_amount = round(min(moderator_internal.get_moles(GAS_HEALIUM), scaled_production * 20), 0.01)
 					moderator_internal.adjust_moles(GAS_HEALIUM, -remove_amount)
@@ -373,7 +373,7 @@
 				induce_hallucination(900, delta_time, force=TRUE)
 				linked_output.airs[1].adjust_moles(GAS_ANTINOB, clamp(dirty_production_rate / 0.045, 0, 10) * delta_time)
 			if(moderator_list[GAS_HEALIUM] > 100)
-				if(critical_threshold_proximity > 400)
+				if(critical_threshold_proximity > 90)
 					critical_threshold_proximity = max(critical_threshold_proximity - (moderator_list[GAS_HEALIUM] / 100 * delta_time), 0)
 					var/remove_amount = round(min(moderator_internal.get_moles(GAS_HEALIUM), scaled_production * 20), 0.01)
 					delta_mod_list[GAS_HEALIUM] -= remove_amount
