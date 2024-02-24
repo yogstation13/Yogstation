@@ -16,8 +16,8 @@
 	///Abilities the darkspawn has learned from the psi_web
 	var/list/datum/psi_web/learned_abilities = list()
 	///The color of their aura outline
-	var/render_layer = FLOAT_LAYER 
-	var/render_plane = FLOAT_PLANE
+	var/render_layer =  ABOVE_LIGHTING_LAYER
+	var/render_plane = ABOVE_LIGHTING_PLANE
 	var/class_color = COLOR_SILVER
 
 	//var/filter_data = list("type" = "outline", "color" = COLOR_PURPLE, "alpha" = 0, "size" = 1)
@@ -30,6 +30,11 @@
 	var/mutable_appearance/class_sigil
 	var/class_icon = "classless"
 
+	///Darkspawn have a tiny anti-glow because any active light source makes a mob visible in pure darkness
+	var/obj/effect/dummy/luminescent_glow/unglowth
+	var/light_range = 1
+	var/light_power = -0.01
+
 /datum/component/darkspawn_class/Initialize()
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -41,6 +46,9 @@
 			power = new()
 		learned_abilities |= power
 		power.on_gain()
+	
+	unglowth = new(owner)
+	unglowth.set_light_range_power_color(light_range, light_power, class_color)
 	
 	eyes = mutable_appearance(icon_file, eye_icon, layer = render_layer, plane = render_plane)
 	eyes.color = class_color
