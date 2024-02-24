@@ -27,6 +27,12 @@
 			/obj/effect,
 			/mob/dead))
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+		COMSIG_ATOM_ENTERED = PROC_REF(on_trap_entered)
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/structure/trap/Destroy()
 	qdel(spark_system)
 	spark_system = null
@@ -56,8 +62,7 @@
 	else
 		animate(src, alpha = initial(alpha), time = time_between_triggers)
 
-/obj/structure/trap/Crossed(atom/movable/AM)
-	. = ..()
+/obj/structure/trap/proc/on_trap_entered(datum/source, atom/movable/AM, ...)
 	if(last_trigger + time_between_triggers > world.time)
 		return
 	// Don't want the traps triggered by sparks, ghosts or projectiles.
