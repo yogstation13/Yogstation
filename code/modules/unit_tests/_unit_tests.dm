@@ -70,6 +70,7 @@
 #define TRAIT_SOURCE_UNIT_TESTS "unit_tests"
 
 #include "anchored_mobs.dm"
+#include "atmos_tests.dm"
 #include "baseturfs.dm"
 #include "component_tests.dm"
 #include "dcs_check_list_arguments.dm"
