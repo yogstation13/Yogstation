@@ -17,9 +17,6 @@
 	var/list/datum/psi_web/learned_abilities = list()
 	///The color of their aura outline
 	var/class_color = COLOR_SILVER
-
-	//var/filter_data = list("type" = "outline", "color" = COLOR_PURPLE, "alpha" = 0, "size" = 1)
-	var/filter
 	
 	var/icon_file = 'yogstation/icons/mob/darkspawn.dmi'
 	var/mutable_appearance/eyes
@@ -46,17 +43,11 @@
 	
 	class_sigil = emissive_appearance(icon_file, class_icon, owner)
 	class_sigil.color = class_color
-	//SSvis_overlays.add_vis_overlay(owner, icon_file, eye_icon, layer, EMISSIVE_PLANE, owner.dir)
 	owner.add_overlay(class_sigil)
 	
-	owner.add_filter(DARKSPAWN_AURA_FILTER, 2, list("type" = "outline", "color" = class_color, "alpha" = 0, "size" = 1))
-	filter = owner.get_filter(DARKSPAWN_AURA_FILTER)
-	animate(filter, alpha = 200, time = 1 SECONDS, loop = -1)
-	animate(alpha = 0, time = 1 SECONDS)
 
 /datum/component/darkspawn_class/Destroy()
 	. = ..()
-	filter = null
 	owner = null
 
 /datum/component/darkspawn_class/RegisterWithParent()
@@ -71,7 +62,6 @@
 	QDEL_NULL(class_sigil)
 	for(var/datum/psi_web/power in learned_abilities)
 		lose_power(power)
-	owner.remove_filter(DARKSPAWN_AURA_FILTER)
 	
 /datum/component/darkspawn_class/proc/get_purchasable_abilities()
 	var/list/datum/psi_web/available_abilities = list()
