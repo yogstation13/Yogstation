@@ -1,7 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "flamethrowers now react their fuel for damage and effects instead of using pre-determined values"
-  - tweak: "flamethrower tanks release some of their contents when shot instead of just deleting themselves"
-  - tweak: "flamethrowers can hit vines on windows"
-  - bugfix: "fixed flamethrowers sometimes using more fuel than intended"
