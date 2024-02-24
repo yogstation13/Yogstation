@@ -333,6 +333,15 @@
 	var/cost = 10
 	var/stackable = FALSE
 
+/obj/item/upgrade/plasmacutter/examine(mob/user)
+	. = ..()
+	. += span_notice("This mod takes up [cost] mod capacity.")
+
+	if(stackable)
+		. += span_notice("This mod is stackable.")
+	else
+		. += span_notice("This mod is not stackable.")
+
 /obj/item/upgrade/plasmacutter/proc/modify_projectile(obj/projectile/plasma/K)
 
 /obj/item/upgrade/plasmacutter/proc/install(obj/item/gun/energy/plasmacutter/P)
