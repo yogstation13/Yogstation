@@ -207,6 +207,7 @@
 		name = "[area.name] APC"
 		stat |= MAINT
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs_list -= src
