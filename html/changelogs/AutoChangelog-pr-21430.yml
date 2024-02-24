@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Mech melee weapons now also hit vines properly when using cleave attacks"
