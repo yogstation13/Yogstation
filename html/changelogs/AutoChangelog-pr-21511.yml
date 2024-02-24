@@ -1,5 +1,0 @@
-author: "13spacemen"
-delete-after: true 
-changes: 
-  - rscadd: "Footprints are now based on what shoes you're wearing and what legs you have"
-  - bugfix: "Fixed bloody item overlays leaking onto other objects"
