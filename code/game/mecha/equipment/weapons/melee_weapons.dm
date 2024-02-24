@@ -199,7 +199,7 @@
 
 			if((isstructure(A) || ismachinery(A) || istype(A, /obj/mecha)) && can_stab_at(chassis, A))	//if it's a big thing we hit anyways. Structures ALWAYS are hit, machines and mechs can be protected
 				var/obj/O = A
-				if(!O.density)	//Make sure it's not an open door or something
+				if(!O.density && !istype(O, /obj/structure/spacevine))	//Make sure it's not an open door or something
 					continue
 				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult * (istype(A, /obj/mecha) ? mech_damage_multiplier : 1)	//Half damage on mechs
 				O.take_damage(object_damage, dam_type, "melee", 0)
