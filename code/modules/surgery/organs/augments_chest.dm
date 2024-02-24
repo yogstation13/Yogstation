@@ -258,7 +258,7 @@
 				human.physiology.crawl_speed -= 1
 			owner.next_move_modifier *= 0.7
 			owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
-		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
+		owner.AddComponent(/datum/component/after_image, 16, 0.5, TRUE)
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
@@ -270,7 +270,8 @@
 				human.physiology.crawl_speed += 1
 			owner.next_move_modifier /= 0.7
 			owner.remove_movespeed_modifier("spinalimplant")
-		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+		var/datum/component/after_image = owner.GetComponent(/datum/component/after_image)
+		qdel(after_image)
 	on = !on
 	if(!silent)
 		to_chat(owner, span_notice("You turn your spinal implant [on? "on" : "off"]."))
