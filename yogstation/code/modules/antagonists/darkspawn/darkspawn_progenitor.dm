@@ -44,7 +44,13 @@
 	//progenitor specific variables
 	var/time_to_next_roar = 0
 	var/roar_cooldown = 20 SECONDS
-	
+	var/list/roar_text = list(
+		"You stand paralyzed in the shadow of the cold as it descends from on high."
+		)
+
+	//glowing emissive outline
+	var/outline_filter
+
 	///Innate spells that are added when a progenitor is created
 	var/list/actions_to_add = list( //can be modified for each progenitor
 		/datum/action/cooldown/spell/pointed/progenitor_curse
@@ -76,8 +82,8 @@
 
 	//to show the class of the darkspawn
 	add_filter("outline_filter", 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 1))
-	var/filter = get_filter("outline_filter")
-	animate(filter, alpha = 200, time = 1 SECONDS, loop = -1, easing = EASE_OUT | SINE_EASING)
+	outline_filter = get_filter("outline_filter")
+	animate(outline_filter, alpha = 200, time = 1 SECONDS, loop = -1, easing = EASE_OUT | SINE_EASING)
 	animate(alpha = 100, time = 1 SECONDS, easing = EASE_OUT | SINE_EASING)
 
 	//have them fade into existence and play a sound cry when they finish fading in
@@ -126,7 +132,7 @@
 			continue
 		else if(isliving(M))
 			var/mob/living/L = M
-			to_chat(M, span_boldannounce("You stand paralyzed in the shadow of the cold as it descends from on high."))
+			to_chat(M, span_boldannounce(pick(roar_text)))
 			L.Stun(20)
 	time_to_next_roar = world.time + roar_cooldown
 
