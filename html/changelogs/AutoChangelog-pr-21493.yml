@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "HFR gas byproducts now uses scaled_production instead of fuel_consumption, and now scaled alongside with gas produced from moderator, code refactor"
