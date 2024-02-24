@@ -984,6 +984,9 @@
 		var/obj/item/organ/I = X
 		I.Insert(src)
 
+/mob/living/carbon/proc/get_footprint_sprite()
+	return FOOTPRINT_SPRITE_PAWS
+
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_SEPERATOR

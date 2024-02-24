@@ -172,6 +172,11 @@
 	impacted = list()
 	decayedRange = range
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/projectile/proc/Range()
 	range--
 	if(wound_bonus != CANT_WOUND)
@@ -722,8 +727,7 @@
 		angle = ATAN2(y - oy, x - ox)
 	return list(angle, p_x, p_y)
 
-/obj/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
-	. = ..()
+/obj/projectile/proc/on_entered(datum/source, atom/movable/AM, ...) //A mob moving on a tile with a projectile is hit by it.
 	if(isliving(AM) && !(pass_flags & PASSMOB))
 		var/mob/living/L = AM
 		if(can_hit_target(L, impacted, (AM == original)))
