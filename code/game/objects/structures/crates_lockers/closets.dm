@@ -615,6 +615,8 @@ GLOBAL_LIST_EMPTY(lockers)
 		if(!open(user))
 			to_chat(user, span_warning("It won't budge!"))
 			return
+	if(dense_when_open) //otherwise it's impossible to step toward
+		density = FALSE
 	step_towards(user, T2)
 	T1 = get_turf(user)
 	if(T1 == T2)
