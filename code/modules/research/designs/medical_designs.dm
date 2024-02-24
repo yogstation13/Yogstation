@@ -708,7 +708,7 @@
 /////////////////////
 /datum/design/surgery
 	name = "Surgery Design"
-	desc = "what"
+	desc = "What."
 	id = "surgery_parent"
 	research_icon = 'icons/misc/surgery_icons.dmi'
 	research_icon_state = "surgery_any"
