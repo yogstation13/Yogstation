@@ -508,6 +508,10 @@
 /mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(!override)
 		siemens_coeff *= physiology.siemens_coeff
+	var/obj/item/clothing/suit/space/hardsuit/shielded/shield = get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(shield, /obj/item/clothing/suit/space/hardsuit/shielded) && shield.current_charges > 0)
+		shield.current_charges--
+		return FALSE
 	. = ..()
 	if(.)
 		electrocution_animation(40)
