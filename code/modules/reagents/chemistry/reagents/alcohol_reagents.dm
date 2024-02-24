@@ -751,6 +751,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Moonshine"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
+/datum/reagent/consumable/ethanol/moonshine/on_mob_life(mob/living/carbon/M)
+	M.adjust_eye_blur(1.5)
+	return ..()
+
 /datum/reagent/consumable/ethanol/b52
 	name = "B-52"
 	description = "Coffee, Irish Cream, and cognac. You will get bombed."
@@ -2383,7 +2387,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/inocybeshine/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
 		M.adjustStaminaLoss(10,0)
-		M.blur_eyes(3)
+		M.adjust_eye_blur(3)
 		M.adjust_disgust(1)
 		. = TRUE
 	return ..()
@@ -2462,7 +2466,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A freezing pint of malt liquor."
 
 /datum/reagent/consumable/ethanol/ratvarnac
-	name = "Justicars Juice"
+	name = "Justiciar's Juice"
 	description = "I don't even know what an eminence is, but I want him to recall."
 	metabolization_rate = INFINITY
 	boozepwr = 30
@@ -2726,3 +2730,30 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.physiology.do_after_speed /= alcoholicspeed
 		M.next_move_modifier /= alcoholicspeed
 	return ..()
+
+/datum/reagent/consumable/ethanol/wine_voltaic
+	name = "Voltaic Yellow Wine"
+	description = "Electrically charged wine. Recharges ethereals, but also nontoxic."
+	boozepwr = 30
+	color = "#FFAA00"
+	quality = DRINK_GOOD
+	taste_description = "static with a hint of sweetness"
+	glass_icon_state = "wine_voltaic"
+	glass_name = "Voltaic Yellow Wine"
+	glass_desc = "Shocking, not stirred."
+
+/datum/reagent/consumable/ethanol/wine_voltaic/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
+		M.adjust_nutrition(nutriment_factor)
+	else if(prob(25))
+		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
+		playsound(M, "sparks", 50, 1)
+	return ..()
+
+/datum/reagent/consumable/korta_nectar
+	name = "Korta Nectar"
+	description = "A sweet, sugary syrup made from crushed sweet korta nuts."
+	color = "#d3a308"
+	nutriment_factor = 5
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	taste_description = "peppery sweetness"

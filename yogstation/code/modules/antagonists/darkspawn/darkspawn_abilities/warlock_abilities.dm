@@ -1,4 +1,48 @@
 //////////////////////////////////////////////////////////////////////////
+//-------------------------Warlock basic staff--------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/toggle/dark_staff
+	name = "Shadow Staff"
+	desc = "Pull darkness from the void, knitting it into a staff."
+	panel = null
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "pass"
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	var/obj/item/gun/magic/darkspawn/staff
+	/// Flags used for different effects that apply when a projectile hits something
+	var/effect_flags
+
+/datum/action/cooldown/spell/toggle/dark_staff/process()
+	active = owner.is_holding_item_of_type(/obj/item/gun/magic/darkspawn)
+	. = ..()
+
+/datum/action/cooldown/spell/toggle/dark_staff/can_cast_spell(feedback)
+	if(!owner.get_empty_held_indexes() && !active)
+		if(feedback)
+			to_chat(owner, span_warning("You need an empty hand for this!"))
+		return FALSE
+	. = ..()
+
+/datum/action/cooldown/spell/toggle/dark_staff/Enable()
+	to_chat(owner, span_velvet("Shhouna"))
+	owner.visible_message(span_warning("[owner] knits shadows together into a staff!"), span_velvet("You summon your staff."))
+	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
+	if(!staff)
+		staff = new (owner)
+	staff.effect_flags = effect_flags
+	owner.put_in_hands(staff)
+
+/datum/action/cooldown/spell/toggle/dark_staff/Disable()
+	to_chat(owner, span_velvet("Haoo"))
+	owner.visible_message(span_warning("[owner]'s staff dissipates!"), span_velvet("You dispel the staff."))
+	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
+	staff.moveToNullspace()
+
+//////////////////////////////////////////////////////////////////////////
 //---------------------Warlock light eater ability----------------------// little bit of anti-fire too
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/extinguish
@@ -19,6 +63,7 @@
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
 	aoe_radius = 7
 	var/obj/item/darkspawn_extinguish/bopper
+	var/list/seen_things
 
 /datum/action/cooldown/spell/aoe/extinguish/Grant(mob/grant_to)
 	. = ..()
@@ -29,13 +74,17 @@
 	. = ..()
 
 /datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
+	seen_things = view(owner) //cash all things you can see
 	. = ..()
+	to_chat(owner, span_velvet("Shwooh"))
 	to_chat(owner, span_velvet("You extinguish all lights."))
 
 /datum/action/cooldown/spell/aoe/extinguish/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(isturf(victim)) //no turf hitting
 		return
-	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
+	if(!seen_things)
+		return
+	if(!(victim in seen_things))//no putting out on the other side of walls
 		return
 	if(ishuman(victim))//put out any
 		var/mob/living/carbon/human/target = victim
@@ -62,30 +111,37 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/null_charge
 	name = "Null Charge"
-	desc = "Empties an APC, preventing it from recharging until fixed."
+	desc = "Meddle with the powergrid via a functioning APC, causing a temporary stationwide power outage. Breaks the APC in the process."
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "null_charge"
 
-	cooldown_time = 30 SECONDS
 	antimagic_flags = NONE
 	panel = null
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
-	psi_cost = 15
+	cooldown_time = 10 MINUTES
+	psi_cost = 100
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/null_charge/is_valid_target(atom/cast_on)
-	return istype(cast_on, /obj/machinery/power/apc)
+	if(!istype(cast_on, /obj/machinery/power/apc))
+		return FALSE
+	var/obj/machinery/power/apc/target = cast_on
+	if(target.stat & BROKEN)
+		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
+		return FALSE
+	return TRUE	
 
 /datum/action/cooldown/spell/touch/null_charge/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/power/apc/target, mob/living/carbon/human/caster)
 	if(!target || !istype(target))//sanity check
 		return FALSE
 
 	//Turn it off for the time being
+	to_chat(owner, span_velvet("Xlahwa..."))
 	target.set_light(0)
 	target.visible_message(span_warning("The [target] flickers and begins to grow dark."))
 
@@ -95,13 +151,22 @@
 		to_chat(caster, span_velvet("Your concentration breaks and the APC suddenly repowers!"))
 		target.set_light(2)
 		target.visible_message(span_warning("The [target] begins glowing brightly!"))
-	else
-		//We did it
-		to_chat(caster, span_velvet("You return the APC's power to the void, disabling it."))
-		target.cell?.charge = 0	//Sent to the shadow realm
-		target.chargemode = 0 //Won't recharge either until an engineer hits the button
-		target.charging = 0
-		target.update_appearance(UPDATE_ICON)
+		return FALSE
+
+	if(target.stat & BROKEN)
+		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
+		return FALSE
+
+	//We did it
+	if(isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+		darkspawn.block_psi(60 SECONDS, type)
+	to_chat(owner, span_progenitor("...SHWOOH!"))
+	priority_announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", ANNOUNCER_POWEROFF)
+	power_fail(30, 40)
+	to_chat(caster, span_velvet("You return the APC's power to the void, destroying it and disabling all others."))
+	target.set_broken()
+	return TRUE
 		
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Drain enemy, heal ally-------------------------//
@@ -169,6 +234,8 @@
 		if(cost && (!cost.use_psi(upkeep_cost)))
 			cancel()
 			return
+		if(prob(25))
+			to_chat(owner, span_velvet("...thum..."))
 		if(healing)
 			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 		else
@@ -183,8 +250,12 @@
 		return FALSE
 	. = ..()
 	
+/obj/effect/ebeam/darkspawn
+	name = "void beam"
+
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
+	to_chat(owner, span_velvet("Qokxlez..."))
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, cast_range)
 	channeled = cast_on
 	healing = is_darkspawn_or_veil(channeled)
@@ -195,20 +266,22 @@
 	if(channeled)
 		channeled = null
 		StartCooldown(actual_cooldown)
+		to_chat(owner, span_velvet("...qokshe"))
 		return TRUE
 	return FALSE
-
 
 //////////////////////////////////////////////////////////////////////////
 //------------------Literally just goliath tendrils---------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/darkspawn_build/tendril
-	name = "Darkspawn tendril"
+/datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call
+	name = "Abyssal call"
 	desc = "OOOOOOOOOOOOOOOO spooky"
 	cast_range = 10
 	cast_time = 0
 	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original
+	cooldown_time = 10 SECONDS
 	can_density = TRUE
+	language_final = "Xylt'he kkxla'thamara"
 
 //////////////////////////////////////////////////////////////////////////
 //--------------Gives everyone nearby a random hallucination------------//
@@ -231,41 +304,202 @@
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 7
 
+/datum/action/cooldown/spell/aoe/mass_hallucination/cast(atom/cast_on)
+	. = ..()
+	to_chat(owner, span_velvet("H'ellekth'ele"))
+
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim))
 		return
 	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
 		return
 	var/mob/living/target = victim
-	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
-		return
 	if(is_darkspawn_or_veil(target)) //don't fuck with allies
+		return
+	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
 	var/datum/hallucination/picked_hallucination = pick(GLOB.hallucination_list)//not using weights
 	target.cause_hallucination(picked_hallucination, "mass hallucination")
 
-
 //////////////////////////////////////////////////////////////////////////
-//-------------------------Shoots a projectile--------------------------//
+//----------------I stole blood beam from blood cultists----------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/projectile/assault/darkspawn
-	name = "Mind blast"
-	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
-	button_icon = 'icons/obj/hand_of_god_structures.dmi'
-	button_icon_state = "ward-red"
+/datum/action/cooldown/spell/pointed/shadow_beam
+	name = "Shadow beam"
+	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon_state = "Kindle"
+	active_icon_state = "Kindle"
+	base_icon_state = "Kindle"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-
-	sound = 'sound/weapons/resonator_blast.ogg'
-	cast_range = 7
-	cooldown_time = 25 SECONDS
 	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	cooldown_time = 1 MINUTES
+	psi_cost = 100 //big fuckin layzer
+	sound = null
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
+	cast_range = INFINITY //lol
+	var/charging = FALSE
+	var/angle
+	var/charge_ticks = 3 //1 second per tick
+	var/turf/targets_from
 
-	invocation = null
-	invocation_type = INVOCATION_NONE
+/datum/action/cooldown/spell/pointed/shadow_beam/can_cast_spell(feedback)
+	if(charging)
+		return
+	. = ..()
 
-	projectile_type = /obj/projectile/heretic_assault
+/datum/action/cooldown/spell/pointed/shadow_beam/cast(atom/cast_on)
+	. = ..()
+	if(charging)
+		return
+
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/user = owner	
+	targets_from = get_turf(user)
+	angle = get_angle(user, get_turf(cast_on))
+
+	to_chat(user, span_velvet("Qwo..."))
+	to_chat(user, span_velvet("You start building up psionic energy."))
+	charging = TRUE
+	INVOKE_ASYNC(src, PROC_REF(charge), user)
+	if(do_after(user, charge_ticks SECONDS, user))
+		INVOKE_ASYNC(src, PROC_REF(fire_beam), user)
+	charging = FALSE
+
+/datum/action/cooldown/spell/pointed/shadow_beam/proc/charge(mob/user, times = charge_ticks, first = TRUE)
+	if(!charging)
+		return
+	if(times <= 0)
+		return
+	var/power = charge_ticks - times //grow in sound volume and added sound range as it charges
+	var/volume = min(10 + (power * 20), 60)
+	playsound(user, 'sound/effects/magic.ogg', volume, TRUE, power)
+	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', volume, TRUE, power)
+	if(first)
+		new /obj/effect/temp_visual/cult/rune_spawn/rune1(user.loc, 2 SECONDS, "#21007F")
+	else
+		new /obj/effect/temp_visual/cult/rune_spawn/rune1/reverse(user.loc, 2 SECONDS, "#21007F")
+	addtimer(CALLBACK(src, PROC_REF(charge), user, times - 1, !first), 1 SECONDS)
+
+/obj/effect/temp_visual/cult/rune_spawn/rune1/reverse //spins the other way, that's it
+	turnedness = 179
+
+/datum/action/cooldown/spell/pointed/shadow_beam/proc/fire_beam(mob/user)
+	if(!angle || !targets_from) //sanity check
+		return
+	to_chat(user, span_progenitor("...GX'KSHA!"))
+	if(isdarkspawn(user))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+		darkspawn.block_psi(30 SECONDS, type)
+
+	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 20)
+	var/turf/temp_target = get_turf_in_angle(angle, targets_from, 200) //cross the entire map, lol
+	for(var/turf/T in getline(targets_from,temp_target))
+		for(var/turf/realtile in range(1, T)) //bit of aoe around the line (probably super fucking intensive lol)
+			var/obj/effect/temp_visual/darkspawn/chasm/effect = locate() in realtile.contents
+			if(!effect) //to prevent multiple visuals from appearing on the same tile and doing more than intended
+				effect = new(realtile)
+
+/obj/effect/temp_visual/darkspawn
+	name = "echoing void"
+	icon = 'yogstation/icons/effects/effects.dmi'
+	icon_state = "nothing"
+
+/obj/effect/temp_visual/darkspawn/chasm
+	icon_state = "consuming"
+	duration = 6 SECONDS //can be almost any number for balance, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
+	layer = ABOVE_OPEN_TURF_LAYER
+
+/obj/effect/temp_visual/darkspawn/chasm/Crossed(atom/movable/AM, oldloc)
+	. = ..()
+	if(isliving(AM))
+		var/mob/living/target = AM
+		if(!is_darkspawn_or_veil(target))
+			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 4, 1 SECONDS, type) //slow field, makes it harder to escape
+
+/obj/effect/temp_visual/darkspawn/chasm/Destroy()
+	new/obj/effect/temp_visual/darkspawn/detonate(get_turf(src))
+	. = ..()
+
+/obj/effect/temp_visual/darkspawn/detonate
+	icon_state = "detonate"
+	layer = ABOVE_OPEN_TURF_LAYER
+	duration = 2
+
+/obj/effect/temp_visual/darkspawn/detonate/Destroy()
+	var/turf/T = get_turf(src)
+	for(var/mob/living/L in T.contents)
+		if(is_darkspawn_or_veil(L))
+			L.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+		else if(!L.can_block_magic(MAGIC_RESISTANCE_MIND))
+			L.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
+			L.emote("scream")
+	. = ..()
+
+//////////////////////////////////////////////////////////////////////////
+//---------------------Detain and capture ability-----------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/seize //Stuns and mutes a human target for 10 seconds
+	name = "Seize"
+	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
+	panel = null
+	button_icon_state = "glare"
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	panel = null
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	cooldown_time = 30 SECONDS
+	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
+	var/strong = TRUE
+
+/datum/action/cooldown/spell/pointed/seize/before_cast(atom/cast_on)
+	. = ..()
+	if(!cast_on || !isliving(cast_on))
+		return . | SPELL_CANCEL_CAST
+	var/mob/living/carbon/target = cast_on
+	if(istype(target) && target.stat)
+		to_chat(owner, span_warning("[target] must be conscious!"))
+		return . | SPELL_CANCEL_CAST
+	if(is_darkspawn_or_veil(target))
+		to_chat(owner, span_warning("You cannot seize allies!"))
+		return . | SPELL_CANCEL_CAST
+
+/datum/action/cooldown/spell/pointed/seize/cast(atom/cast_on)
+	. = ..()
+	if(!isliving(cast_on) || !ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/user = owner
+	if(!(user.check_obscured_slots() & ITEM_SLOT_EYES)) //only show if the eyes are visible
+		user.visible_message(span_warning("<b>[user]'s eyes flash a deep purple</b>"))
+
+	to_chat(user, span_velvet("Sskr'aya"))
+
+	var/mob/living/target = cast_on
+	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
+		return
+		
+	var/distance = get_dist(target, user)
+	if (distance <= 2 && strong)
+		target.visible_message(span_danger("[target] suddenly collapses..."))
+		to_chat(target, span_userdanger("A purple light flashes through your mind, and you lose control of your movements!"))
+		target.Paralyze(10 SECONDS)
+		if(iscarbon(target))
+			var/mob/living/carbon/M = target
+			M.silent += 10
+	else //Distant glare
+		var/loss = max(100 - (distance * 10), 0)
+		target.adjustStaminaLoss(loss)
+		target.adjust_stutter(loss)
+		to_chat(target, span_userdanger("A purple light flashes through your mind, and exhaustion floods your body..."))

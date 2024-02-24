@@ -5,16 +5,20 @@
 	icon_state = "shield-old"
 	density = TRUE
 	move_resist = INFINITY
-	opacity = 0
+	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	max_integrity = 200 //The shield can only take so much beating (prevents perma-prisons)
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 
 /obj/structure/emergency_shield/Initialize(mapload)
 	. = ..()
 	setDir(pick(GLOB.cardinals))
-	air_update_turf(1)
+	air_update_turf()
+
+/obj/structure/emergency_shield/Destroy()
+	air_update_turf()
+	. = ..()
 
 /obj/structure/emergency_shield/Move()
 	var/turf/T = loc
@@ -25,11 +29,10 @@
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			take_damage(50, BRUTE, ENERGY, 0)
+	if(severity > EMP_LIGHT)
+		qdel(src)
+		return
+	take_damage(5 * severity, BRUTE, ENERGY, 0)
 
 /obj/structure/emergency_shield/play_attack_sound(damage, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
@@ -70,7 +73,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "shieldoff"
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 	anchored = FALSE
 	pressure_resistance = 2*ONE_ATMOSPHERE
 	req_access = list(ACCESS_ENGINE)

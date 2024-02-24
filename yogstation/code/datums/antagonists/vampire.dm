@@ -9,6 +9,8 @@
 	job_rank = ROLE_VAMPIRE
 	antag_hud_name = "vampire"
 
+	ui_name = "AntagInfoVampire"
+
 	var/usable_blood = 0
 	var/total_blood = 0
 	var/converted = 0
@@ -24,7 +26,6 @@
 	var/obj/item/clothing/suit/draculacoat/coat
 
 	var/list/upgrade_tiers = list(
-		/datum/action/cooldown/spell/vampire_help = 0,
 		/datum/action/cooldown/spell/rejuvenate = 0,
 		/datum/action/cooldown/spell/pointed/gaze = 0,
 		/datum/action/cooldown/spell/pointed/hypno = 0,
@@ -40,6 +41,13 @@
 		/datum/action/cooldown/spell/summon_coat = 400,
 		/datum/vampire_passive/full = 400,
 		/datum/action/cooldown/spell/pointed/vampirize = 450)
+
+/datum/antagonist/vampire/ui_static_data(mob/user)
+	var/list/data = list()
+	data["antag_name"] = name
+	data["objectives"] = get_objectives()
+	data["loud"] = get_ability(/datum/vampire_passive/nostealth)
+	return data
 
 /datum/antagonist/vampire/new_blood
 	full_vampire = FALSE

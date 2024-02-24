@@ -5,7 +5,7 @@
 	var/obj/machinery/camera/bodcam
 
 /datum/component/internal_cam/Initialize(list/networks = list("ss13"))
-	if (!isliving(parent))
+	if (!parent || !isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	bodcam = new(parent)
@@ -17,19 +17,17 @@
 	ADD_TRAIT(bodcam, TRAIT_EMPPROOF_SELF, type)
 
 /datum/component/internal_cam/RegisterWithParent()
-	. = ..()
 	bodcam.status = TRUE
-	bodcam.built_in = parent
 	bodcam.camnet.updatePortableCamera(bodcam)
+	bodcam.built_in = parent
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(update_cam))
 
 /datum/component/internal_cam/UnregisterFromParent()
 	bodcam.status = FALSE
-	bodcam.built_in = null
 	bodcam.camnet.updatePortableCamera(bodcam)
-	qdel(bodcam)
+	bodcam.built_in = null
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
-	. = ..()
+	QDEL_NULL(bodcam)
 
 /datum/component/internal_cam/proc/change_cameranet(var/datum/cameranet/newnet)
 	if(!newnet)

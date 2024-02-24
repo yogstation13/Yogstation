@@ -339,6 +339,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 
+/datum/uplink_item/dangerous/gasharpoon
+	name = "Gasharpoon"
+	desc = "A repurposed space-whaling tool attatched to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to it's harpoon."
+	item = /obj/item/clothing/gloves/gasharpoon
+	cost = 10
+	surplus = 0
+
 /datum/uplink_item/dangerous/rawketlawnchair
 	name = "84mm Rocket Propelled Grenade Launcher"
 	desc = "A reusable rocket propelled grenade launcher preloaded with a low-yield 84mm HE round. \
@@ -526,7 +533,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Upon hitting a target, the piston-ram will extend forward to make contact for some serious damage. \
 			Using a wrench on the piston valve will allow you to tweak the amount of gas used per punch to \
 			deal extra damage and hit targets further. Use a screwdriver to take out any attached tanks."
-	item = /obj/item/melee/powerfist
+	item = /obj/item/clothing/gloves/powerfist
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
@@ -610,6 +617,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			darts effective at incapacitating a target."
 	item = /obj/item/gun/ballistic/automatic/toy/pistol/riot
 	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus = 10
+
+/datum/uplink_item/dangerous/watergun
+	name = "Extended Capacity Hyper-Soaker"
+	desc = "A simple yet effective way of applying chemicals to a target's skin. \
+			Comes with a high-power nozzle and larger tank."
+	item = /obj/item/gun/water/syndicate
+	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
@@ -1462,7 +1478,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			completely silent as you slip away from the scene, or into a better position! You will not be able to take \
 			any actions for the 7 second duration."
 	item = /obj/item/pseudocider
-	cost = 6
+	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/shadowcloak
@@ -1802,7 +1818,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Hacked AI Law Upload Module"
 	desc = "When used with an upload console, this module allows you to upload priority laws to an artificial intelligence. \
 			Be careful with wording, as artificial intelligences may look for loopholes to exploit."
-	item = /obj/item/aiModule/syndicate
+	item = /obj/item/aiModule/hacked
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/infiltration)

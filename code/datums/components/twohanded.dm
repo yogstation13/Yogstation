@@ -14,10 +14,8 @@
 	var/wielded = FALSE
 	/// The multiplier applied to force when wielded, does not work with force_wielded, and force_unwielded
 	var/force_multiplier = 0
-	/// The force of the item when wielded
+	/// Additional force when wielded
 	var/force_wielded = 0
-	/// The force of the item when unweilded
-	var/force_unwielded = 0
 	/// Play sound when wielded
 	var/wieldsound = FALSE
 	/// Play sound when unwielded
@@ -33,6 +31,8 @@
 
 	/// stat list for wielded/unwielded, switches with weapon_stats when wielding or unwielding
 	var/list/wielded_stats
+	/// keep track of unwielded stats, we'll need it later for properly unwielding without causing runtimes
+	var/list/unwielded_stats
 
 	/// A callback on the parent to be called when the item is wielded
 	var/datum/callback/wield_callback
@@ -50,7 +50,6 @@
  * * attacksound (optional) The sound to play when wielded and attacking
  * * force_multiplier (optional) The force multiplier when wielded, do not use with force_wielded, and force_unwielded
  * * force_wielded (optional) The force setting when the item is wielded, do not use with force_multiplier
- * * force_unwielded (optional) The force setting when the item is unwielded, do not use with force_multiplier
  * * icon_wielded (optional) The icon to be used when wielded
  */
 /datum/component/two_handed/Initialize(
@@ -60,7 +59,6 @@
 	attacksound = FALSE,
 	force_multiplier = 0,
 	force_wielded = 0,
-	force_unwielded = 0,
 	icon_wielded = FALSE,
 	datum/callback/wield_callback,
 	datum/callback/unwield_callback,
@@ -75,7 +73,6 @@
 	src.attacksound = attacksound
 	src.force_multiplier = force_multiplier
 	src.force_wielded = force_wielded
-	src.force_unwielded = force_unwielded
 	src.icon_wielded = icon_wielded
 	src.wield_callback = wield_callback
 	src.unwield_callback = unwield_callback
@@ -93,7 +90,6 @@
 	unwieldsound,
 	force_multiplier,
 	force_wielded,
-	force_unwielded,
 	icon_wielded,
 	datum/callback/wield_callback,
 	datum/callback/unwield_callback,
@@ -113,8 +109,6 @@
 		src.force_multiplier = force_multiplier
 	if(force_wielded)
 		src.force_wielded = force_wielded
-	if(force_unwielded)
-		src.force_unwielded = force_unwielded
 	if(icon_wielded)
 		src.icon_wielded = icon_wielded
 	if(wield_callback)
@@ -225,9 +219,8 @@
 	if(force_multiplier)
 		parent_item.force *= force_multiplier
 	else if(force_wielded)
-		parent_item.force = force_wielded
-	if(sharpened_increase)
-		parent_item.force += sharpened_increase
+		parent_item.force += force_wielded
+	unwielded_stats = parent_item.weapon_stats
 	parent_item.weapon_stats = wielded_stats
 	parent_item.name = "[parent_item.name] (Wielded)"
 	parent_item.update_appearance()
@@ -247,7 +240,7 @@
 	offhand_item.desc = "Your second grip on [parent_item]."
 	offhand_item.wielded = TRUE
 	RegisterSignal(offhand_item, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
-	RegisterSignal(offhand_item, COMSIG_PARENT_QDELETING, PROC_REF(on_destroy))
+	RegisterSignal(offhand_item, COMSIG_QDELETING, PROC_REF(on_destroy))
 	user.put_in_inactive_hand(offhand_item)
 
 /**
@@ -271,14 +264,13 @@
 
 	// update item stats
 	var/obj/item/parent_item = parent
-	if(sharpened_increase)
-		parent_item.force -= sharpened_increase
 	if(force_multiplier)
 		parent_item.force /= force_multiplier
-	else if(force_unwielded)
-		parent_item.force = force_unwielded
+	else if(force_wielded)
+		parent_item.force -= force_wielded
 	
-	parent_item.weapon_stats = initial(parent_item.weapon_stats)
+	parent_item.weapon_stats = unwielded_stats
+	unwielded_stats = null
 
 	// update the items name to remove the wielded status
 	var/sf = findtext(parent_item.name, " (Wielded)", -10) // 10 == length(" (Wielded)")
@@ -315,7 +307,7 @@
 
 	// Remove the object in the offhand
 	if(offhand_item)
-		UnregisterSignal(offhand_item, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(offhand_item, list(COMSIG_ITEM_DROPPED, COMSIG_QDELETING))
 		qdel(offhand_item)
 	// Clear any old refrence to an item that should be gone now
 	offhand_item = null
@@ -365,7 +357,7 @@
 /**
  * on_sharpen Triggers on usage of a sharpening stone on the item
  */
-/datum/component/two_handed/proc/on_sharpen(obj/item/item, amount, max_amount)
+/datum/component/two_handed/proc/on_sharpen(obj/item/item, amount, max_amount=INFINITY)
 	SIGNAL_HANDLER
 
 	if(!item)
@@ -373,14 +365,14 @@
 	if(sharpened_increase)
 		return COMPONENT_BLOCK_SHARPEN_ALREADY
 	var/wielded_val = 0
+	var/obj/item/parent_item = parent
 	if(force_multiplier)
-		var/obj/item/parent_item = parent
 		if(wielded)
 			wielded_val = parent_item.force
 		else
 			wielded_val = parent_item.force * force_multiplier
 	else
-		wielded_val = force_wielded
+		wielded_val = parent_item.force + (wielded ? 0 : force_wielded)
 	if(wielded_val > max_amount)
 		return COMPONENT_BLOCK_SHARPEN_MAXED
 	sharpened_increase = min(amount, (max_amount - wielded_val))

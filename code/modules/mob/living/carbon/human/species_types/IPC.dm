@@ -4,6 +4,7 @@
 	name = "IPC" //inherited from the real species, for health scanners and things
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
+	bubble_icon = BUBBLE_ROBOT // beep boop
 	sexes = FALSE
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
@@ -24,7 +25,6 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
 	pressuremod = 0.5 // from the moment i understood the weakness of my flesh it disgusted me
 	heatmod = 0.5 // and i yearned for the certainty of steel
 	burnmod = 1.25 // easily cut by laser cutters and welding tools to speed up manufacturing

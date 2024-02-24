@@ -88,8 +88,7 @@
 		if(object == src)
 			continue
 		if(isturf(object.loc))
-			var/turf/turf = object.loc
-			if(turf.intact && object.level == 1) //hidden under the floor
+			if(location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(object, TRAIT_T_RAY_VISIBLE))
 				continue
 		reagents.reaction(object, TOUCH|VAPOR, fraction)
 
@@ -262,14 +261,12 @@
 		QDEL_NULL(turf_fire)
 
 	var/datum/gas_mixture/air = location.air
-	var/scrub_amt = min(30, air.get_moles(/datum/gas/plasma)) //Absorb some plasma
-	air.adjust_moles(/datum/gas/plasma, -scrub_amt)
+	var/scrub_amt = min(30, air.get_moles(GAS_PLASMA)) //Absorb some plasma
+	air.adjust_moles(GAS_PLASMA, -scrub_amt)
 	absorbed_plasma += scrub_amt
 
 	if (air.return_temperature() > T20C)
 		air.set_temperature(max(air.return_temperature() / 2, T20C))
-
-	location.air_update_turf(FALSE, FALSE)
 
 /obj/effect/particle_effect/fluid/foam/firefighting/make_result()
 	if(!absorbed_plasma) // don't bother if it didn't scrub any plasma
@@ -316,13 +313,14 @@
 	desc = "A lightweight foamed metal wall that can be used as base to construct a wall."
 	gender = PLURAL
 	max_integrity = 20
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
+	obj_flags = CAN_BE_HIT | BLOCK_Z_IN_DOWN | BLOCK_Z_IN_UP
 	///Var used to prevent spamming of the construction sound
 	var/next_beep = 0
 
 /obj/structure/foamedmetal/Initialize(mapload)
 	. = ..()
-	air_update_turf(1)
+	air_update_turf()
 
 /obj/structure/foamedmetal/Move()
 	var/turf/T = loc
@@ -369,7 +367,7 @@
 /obj/effect/particle_effect/fluid/foam/metal/smart/make_result() //Smart foam adheres to area borders for walls
 	var/turf/open/location = loc
 	if(isspaceturf(location))
-		location.PlaceOnTop(/turf/open/floor/plating/foam)
+		location.place_on_top(/turf/open/floor/plating/foam)
 
 	for(var/cardinal in GLOB.cardinals)
 		var/turf/cardinal_turf = get_step(location, cardinal)
@@ -409,11 +407,10 @@
 
 		for(var/gas_type in air.get_gases())
 			switch(gas_type)
-				if(/datum/gas/oxygen, /datum/gas/nitrogen)
+				if(GAS_O2, GAS_N2)
 					continue
 				else
 					air.set_moles(gas_type, 0)
-		location.air_update_turf()
 
 	for(var/obj/machinery/atmospherics/components/unary/comp in location)
 		if(!comp.welded)

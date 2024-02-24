@@ -16,9 +16,10 @@
 /obj/item/reagent_containers/food/snacks/burger/plain/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		new/obj/effect/particle_effect/fluid/smoke(get_turf(src))
-		playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
-		visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
+		if(!mapload)
+			new/obj/effect/particle_effect/fluid/smoke(get_turf(src))
+			playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
+			visible_message(span_warning("Oh, ye gods! [src] is ruined! But what if...?"))
 		name = "steamed ham"
 		desc = pick("Ahh, Head of Personnel, welcome. I hope you're prepared for an unforgettable luncheon!",
 		"And you call these steamed hams despite the fact that they are obviously microwaved?",

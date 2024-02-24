@@ -119,7 +119,7 @@ PROBABILITY CHANGELING 3
 PROBABILITY VAMPIRE 0
 
 # Group antags
-PROBABILITY DARKSPAWN 6
+PROBABILITY DARKSPAWN 8
 PROBABILITY REVOLUTION 8
 PROBABILITY GANG 0
 PROBABILITY CULT 5
@@ -457,7 +457,7 @@ LAW_WEIGHT reporter,4
 ION_LAW_WEIGHT reporter,1
 
 ## Quirky laws. Shouldn't cause too much harm
-LAW_WEIGHT hippocratic,1
+LAW_WEIGHT hippocratic,0
 ION_LAW_WEIGHT hippocratic,2
 LAW_WEIGHT maintain,1
 ION_LAW_WEIGHT maintain,2
@@ -499,7 +499,7 @@ LAW_WEIGHT fitnesscoach,0
 ION_LAW_WEIGHT fitnesscoach,3
 LAW_WEIGHT educator,0
 ION_LAW_WEIGHT educator,3
-LAW_WEIGHT mediator,1
+LAW_WEIGHT mediator,0
 ION_LAW_WEIGHT mediator,3
 
 ## Bad idea laws. Probably shouldn't enable these
@@ -642,6 +642,9 @@ LAVALAND_BUDGET 60
 ## Ice Moon Budget
 ICEMOON_BUDGET 90
 
+## Jungleland Budget
+JUNGLELAND_BUDGET 40
+
 ## Space Ruin Budget
 Space_Budget 16
 
@@ -672,6 +675,9 @@ ROUNDSTART_TRAITS
 ## Uncomment to disable human moods.
 DISABLE_HUMAN_MOOD
 
+## Uncomment to force human moods. Not compatible with DISABLE_HUMAN_MOOD
+FORCE_HUMAN_MOOD
+
 ## Enable night shifts ##
 #ENABLE_NIGHT_SHIFTS
 
@@ -696,5 +702,5 @@ ECONOMY
 ## Uncomment to enable dynamic ruleset config file.
 DYNAMIC_CONFIG_ENABLED
 
-## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for AGCNR
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for AGCNR, 5 for TEG
 ENGINE_TYPE 3

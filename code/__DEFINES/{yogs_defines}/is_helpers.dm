@@ -15,3 +15,5 @@
 #define is_battleroyale(M) (M.mind && M.mind.has_antag_datum(/datum/antagonist/battleroyale))
 
 #define isspacepod(A) (istype(A, /obj/spacepod))
+
+#define ismineralturf_inclusive(A) (istype(A, /turf/closed/mineral) || istype(A,/turf/open/floor/plating/dirt/jungleland))

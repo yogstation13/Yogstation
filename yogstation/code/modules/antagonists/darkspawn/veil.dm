@@ -6,6 +6,8 @@
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
 	var/mutable_appearance/veil_sigils
+	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/seize/lesser)
+	var/current_willpower_progress = 0
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
@@ -15,6 +17,7 @@
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
 	if(iscarbon(owner.current))
 		var/mob/living/carbon/dude = owner.current
+		dude.faction |= ROLE_DARKSPAWN
 		var/obj/item/organ/shadowtumor/ST = dude.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
 		if(!ST || !istype(ST))
 			ST = new
@@ -26,6 +29,7 @@
 	log_game("[key_name(owner.current)] was deveiled!")
 	owner.special_role = null
 	var/mob/living/M = owner.current
+	M.faction -= ROLE_DARKSPAWN
 	if(issilicon(M))
 		M.audible_message(span_notice("[M] lets out a short blip, followed by a low-pitched beep."))
 		to_chat(M,span_userdanger("You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a thrall! Though you try, you cannot remember anything about your servitude..."))
@@ -41,24 +45,60 @@
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
+	if(!current_mob)
+		return //sanity check
+
 	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
 	current_mob.add_overlay(veil_sigils)
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(veil_life))
 	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
 		cam.change_cameranet(GLOB.thrallnet)
+	for(var/spell in abilities)
+		var/datum/action/cooldown/spell/new_spell = new spell(owner)
+		new_spell.Grant(current_mob)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
+	if(!current_mob)
+		return //sanity check
+
 	current_mob.cut_overlay(veil_sigils)
-	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
-	if(cam)
-		cam.RemoveComponent()
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	qdel(current_mob.GetComponent(/datum/component/internal_cam))
 	QDEL_NULL(veil_sigils)
+	for(var/datum/action/cooldown/spell/spells in current_mob.actions)
+		if(spells.type in abilities) //I dont want big mobs to be able to use ash jaunt
+			spells.Remove(current_mob)
+			qdel(spells)
+
+/datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
+	if(!source || source.stat == DEAD)
+		return
+	var/obj/item/organ/tumor = source.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
+		source.remove_veil()
+		return
+
+	for(var/mob/living/thing in range(5, source))
+		if(!thing.client) //gotta be an actual player (hope no one goes afk)
+			continue
+		if(is_darkspawn_or_veil(thing))
+			continue
+		current_willpower_progress += 2
+
+	if(current_willpower_progress >= 100)
+		current_willpower_progress = 0
+		to_chat(world, "generating willpower for being near enough players")
+		for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
+			var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
+			if(teammate && istype(teammate))//sanity check
+				teammate.willpower ++
 
 /datum/antagonist/veil/greet()
-	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
+	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))
 	if(ispreternis(owner.current))
 		to_chat(owner, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
 		A consciousness brushes against your own. You dream.\n\

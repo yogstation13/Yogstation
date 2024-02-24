@@ -7,7 +7,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
-	selection_color = "#d4ebf2"
 	minimal_player_age = 5 //seriously stop griefing
 	exp_requirements = 100
 	exp_type = EXP_TYPE_CREW
@@ -23,7 +22,7 @@
 		/datum/job_department/security,
 	)
 
-	added_access = list(ACCESS_SURGERY)
+	added_access = list(ACCESS_SURGERY, ACCESS_CLONING, ACCESS_EXTERNAL_AIRLOCKS)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_BRIG, ACCESS_SEC_DOORS, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MECH_MEDICAL, ACCESS_BRIG_PHYS)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED

@@ -626,7 +626,6 @@
 	T.visible_message(span_danger("[T] smacks into [src] and rapidly flashes to ash."),\
 	span_italics("You hear a loud crack as you are washed with a wave of heat."))
 	shard.Consume()
-	CALCULATE_ADJACENT_TURFS(T)
 
 /obj/item/melee/supermatter_sword/add_blood_DNA(list/blood_dna)
 	return FALSE
@@ -728,14 +727,14 @@
 			held_sausage = target
 		else
 			to_chat(user, span_warning("[target] doesn't seem to want to get on [src]!"))
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/melee/roastingstick/attack_hand(mob/user)
 	..()
 	if (held_sausage)
 		user.put_in_hands(held_sausage)
 		held_sausage = null
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/item/melee/roastingstick/update_overlays()
 	. = ..()
@@ -771,7 +770,7 @@
 		if (istype(target, /obj/singularity) && get_dist(user, target) < 10)
 			to_chat(user, "You send [held_sausage] towards [target].")
 			playsound(src, 'sound/items/rped.ogg', 50, 1)
-			beam = user.Beam(target,icon_state="rped_upgrade",time=100)
+			beam = user.Beam(target, icon_state = "rped_upgrade", time = 10 SECONDS)
 		else if (user.Adjacent(target))
 			to_chat(user, "You extend [src] towards [target].")
 			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)

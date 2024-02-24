@@ -731,7 +731,6 @@
 	limbs_id = "clockgolem"
 	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem</span><span class='bold alloy'>, you are faster than other types of golems. On death, you will break down into scrap.</span>"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
-	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	armor = 20 //Reinforced, but much less so to allow for fast movement
 	attack_verb = "smash"
 	attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
@@ -1388,6 +1387,7 @@
 	active_msg = span_notice("You start channeling your telecrystal core....")
 	deactive_msg = span_notice("You stop channeling your telecrystal core.")
 	spell_requirements = NONE
+	var/beam_icon = "tentacle"
 
 /datum/action/cooldown/spell/pointed/phase_jump/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
@@ -1399,7 +1399,7 @@
 	var/obj/spot1 = new phaseout(get_turf(user), user.dir)
 	owner.forceMove(target_turf)
 	var/obj/spot2 = new phasein(get_turf(user), user.dir)
-	spot1.Beam(spot2, "tentacle", time=2 SECONDS)
+	spot1.Beam(spot2, beam_icon, time=2 SECONDS)
 	user.visible_message(span_danger("[user] phase shifts away!"), span_warning("You shift around the space around you."))
 	return TRUE
 
@@ -1653,3 +1653,29 @@
 	))
 
 	return to_add
+
+/datum/species/golem/tar
+	name = "Tar Golem"
+	id = "tar golem"
+	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING)
+	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
+	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	speedmod = 1.5 // Slightly faster
+	armor = 25
+	punchstunthreshold = 13
+	fixed_mut_color = "48002b"
+	info_text = "As a <span class='danger'>Tar Golem</span>, you burn very very easily and can temporarily turn yourself into a pool of tar, in this form you are invulnerable to all attacks."
+	random_eligible = FALSE //If false, the golem subtype can't be made through golem mutation toxin
+	prefix = "Tar"
+	special_names = list("Tar'ath", "Tar'eth", "Tar'kian", "Eth'ar", "Rum'tir")
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/tar_pool/TP
+
+/datum/species/golem/tar/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
+	TP = new 
+	TP.Grant(C)
+
+
+/datum/species/golem/tar/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	TP?.Remove(C)

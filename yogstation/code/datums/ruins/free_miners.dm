@@ -26,15 +26,15 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner
 	name = "Free Miner Navigation Computer"
 	desc = "Used to designate a precise transit location for the Free Miner Ship."
-	jumpto_ports = list("whiteship_away" = 1, "whiteship_home" = 1, "whiteship_mining0" = 1, "whiteship_mining1" = 1, "whiteship_mining2" = 1)
+	jump_to_ports = list("whiteship_away" = 1, "whiteship_home" = 1, "whiteship_mining0" = 1, "whiteship_mining1" = 1, "whiteship_mining2" = 1)
 	x_offset = -4
 	y_offset = -7
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner/Initialize(mapload)
 	. = ..()
-	for(var/V in SSshuttle.stationary)
+	for(var/V in SSshuttle.stationary_docking_ports)
 		var/obj/docking_port/stationary/S = V
-		if(jumpto_ports[S.id])
+		if(jump_to_ports[S.shuttle_id])
 			z_lock |= S.z
 
 

@@ -49,7 +49,7 @@
 	if(!danger_turfs)
 		danger_turfs = typecacheof(list(/turf/open/chasm, /turf/open/lava, /turf/open/floor/fakepit))
 	if(!allowed_paths)
-		allowed_paths = typecacheof(list(/turf/closed, /obj, /mob/living)) + danger_turfs - typecacheof(/obj/effect/decal)
+		allowed_paths = typecacheof(list(/turf/closed, /obj, /mob/living, /obj/structure)) + danger_turfs - typecacheof(/obj/effect/decal)
 	if(!isnull(echo_range))
 		src.echo_range = echo_range
 	if(!isnull(cooldown_time))
@@ -67,6 +67,7 @@
 	src.echo_group = echo_group || REF(src)
 	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), src.echo_group) //so they see all the tiles they echolocated, even if they are in the dark
 	echolocator.become_blind(ECHOLOCATION_TRAIT)
+	echolocator.overlay_fullscreen("echo", /atom/movable/screen/fullscreen/echo)
 	START_PROCESSING(SSfastprocess, src)
 
 /datum/component/echolocation/Destroy(force, silent)
@@ -159,7 +160,11 @@
 	var/use_outline = TRUE
 	var/mutable_appearance/copied_appearance = new /mutable_appearance()
 	copied_appearance.appearance = input
-	if(istype(input, /obj/machinery/door/airlock)) //i hate you
+	if(istype(input, /obj/structure/table))
+		copied_appearance.cut_overlays()
+		copied_appearance.icon = 'icons/obj/structures.dmi'
+		copied_appearance.icon_state = "table"
+	else if(istype(input, /obj/machinery/door/airlock)) //i hate you
 		copied_appearance.cut_overlays()
 		copied_appearance.icon = 'icons/obj/doors/airlocks/station/public.dmi'
 		copied_appearance.icon_state = "closed"

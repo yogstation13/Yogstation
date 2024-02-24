@@ -4,11 +4,13 @@
 	name = "alien nest"
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
 	icon = 'icons/obj/smooth_structures/alien/nest.dmi'
-	icon_state = "nest"
+	icon_state = "nest-0"
+	base_icon_state = "nest"
 	max_integrity = 120
-	smooth = SMOOTH_TRUE
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_ALIEN_NEST
+	canSmoothWith = SMOOTH_GROUP_ALIEN_NEST
 	can_be_unanchored = FALSE
-	canSmoothWith = null
 	buildstacktype = null
 	flags_1 = NODECONSTRUCT_1
 	bolts = FALSE
@@ -34,7 +36,7 @@
 					span_warning("[M.name] struggles to break free from the gelatinous resin!"),\
 					span_notice("You struggle to break free from the gelatinous resin... (Stay still for two minutes.)"),\
 					span_italics("You hear squelching..."))
-				if(!do_after(M, 2 MINUTES, src))
+				if(!do_after(M, 15 SECONDS, src))
 					if(M && M.buckled)
 						to_chat(M, span_warning("You fail to unbuckle yourself!"))
 					return
@@ -65,6 +67,8 @@
 			"[user.name] secretes a thick vile goo, securing [M.name] into [src]!",\
 			span_danger("[user.name] drenches you in a foul-smelling resin, trapping you in [src]!"),\
 			span_italics("You hear squelching..."))
+		var/obj/item/restraints/handcuffs/xeno/cuffs = new(M)
+		cuffs.apply_cuffs(M, user)
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/M)
 	M.pixel_y = 0
@@ -90,3 +94,9 @@
 		return attack_hand(user)
 	else
 		return ..()
+
+/obj/item/restraints/handcuffs/xeno
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "sinewcuff"
+	item_flags = DROPDEL
+	color = COLOR_MAGENTA

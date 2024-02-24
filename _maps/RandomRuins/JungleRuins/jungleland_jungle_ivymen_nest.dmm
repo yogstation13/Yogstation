@@ -1,0 +1,723 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/item/weldingtool/experimental,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"ab" = (
+/obj/structure/table/wood,
+/obj/item/storage/belt,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"ac" = (
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"ad" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"ae" = (
+/obj/item/storage/box/rxglasses,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"af" = (
+/obj/structure/closet/crate/radiation,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/flare,
+/obj/item/hand_labeler,
+/obj/item/hand_labeler_refill,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"ag" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"ai" = (
+/obj/item/flashlight/lantern{
+	light_on = 1
+	},
+/turf/open/indestructible/grass,
+/area/ruin/unpowered/ivymen)
+"ak" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"al" = (
+/turf/closed/indestructible/wood,
+/area/ruin/unpowered/ivymen)
+"am" = (
+/obj/machinery/iv_drip,
+/obj/item/reagent_containers/glass/beaker/waterbottle/large,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"an" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"ao" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"ap" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aq" = (
+/obj/structure/necropolis_gate{
+	name = "ancient gate"
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/indestructible/grass,
+/area/ruin/unpowered/ivymen)
+"au" = (
+/obj/item/storage/bag/plants/portaseeder,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"aw" = (
+/obj/structure/yog_jungle/ivymen,
+/turf/open/indestructible/grass,
+/area/ruin/unpowered/ivymen)
+"ax" = (
+/obj/item/seeds/bamboo,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"ay" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"az" = (
+/obj/item/flashlight/flare/torch,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aB" = (
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/jungleland/explored)
+"aC" = (
+/obj/structure/sink/puddle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aD" = (
+/obj/item/cultivator/rake,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aE" = (
+/obj/structure/bonfire/dense,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aF" = (
+/obj/item/hatchet/wooden,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aG" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered/ivymen)
+"aH" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aI" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aK" = (
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aL" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/seeds/tower,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"aO" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aP" = (
+/obj/item/reagent_containers/glass/bucket/wooden,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aQ" = (
+/obj/structure/table/optable,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"aR" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aS" = (
+/obj/structure/sink/puddle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"aT" = (
+/obj/item/shovel,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"aV" = (
+/obj/item/construction/rcd/loaded,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"aX" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"aY" = (
+/turf/open/indestructible/grass,
+/area/ruin/unpowered/ivymen)
+"aZ" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"bQ" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"hG" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"hW" = (
+/obj/item/malf_upgrade,
+/obj/item/stack/sheet/mineral/mythril{
+	amount = 50
+	},
+/obj/structure/closet/crate/wooden,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"kJ" = (
+/obj/item/seeds/nettle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"lS" = (
+/obj/item/seeds/ambrosia,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"mF" = (
+/obj/item/plant_analyzer,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"qA" = (
+/turf/closed/wall/mineral/wood,
+/area/jungleland/explored)
+"se" = (
+/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen{
+	desc = "Some strange bug that doesn't look like it comes from here. Eats dead things and produces a thick and nutritious milk."
+	},
+/turf/open/indestructible/grass,
+/area/ruin/unpowered/ivymen)
+"uo" = (
+/obj/item/flashlight/lantern{
+	light_on = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"yt" = (
+/obj/item/book/manual/ivymen,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"Ad" = (
+/turf/closed/mineral/ash_rock/jungle/deepjungle,
+/area/jungleland/explored)
+"AZ" = (
+/obj/structure/table/wood,
+/obj/item/storage/belt/quiver/weaver/ashwalker{
+	pixel_y = 2
+	},
+/obj/item/storage/belt/quiver/weaver/ashwalker{
+	pixel_y = -2
+	},
+/obj/item/gun/ballistic/bow{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/gun/ballistic/bow{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"Ez" = (
+/obj/item/seeds/cotton,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+"LK" = (
+/obj/structure/table/wood,
+/obj/item/melee/spear/bamboospear,
+/obj/item/melee/spear/bamboospear,
+/obj/item/melee/spear/bamboospear,
+/obj/item/melee/spear/bamboospear,
+/obj/item/hatchet/wooden,
+/obj/item/hatchet/wooden,
+/obj/item/hatchet/wooden,
+/obj/item/scythe,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"Ra" = (
+/obj/structure/closet/crate/medical,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/stack/sheet/cloth/ten,
+/obj/item/healthanalyzer,
+/obj/item/clothing/glasses/science,
+/obj/item/reagent_containers/glass/bottle/synaptizine,
+/obj/item/reagent_containers/spray/pestspray,
+/obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/item/reagent_containers/glass/bottle/nutrient/l4z,
+/obj/item/reagent_containers/glass/bottle/nutrient/l4z,
+/obj/item/reagent_containers/glass/bottle/nutrient/rh,
+/obj/item/reagent_containers/glass/bottle/nutrient/rh,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
+"Tb" = (
+/obj/item/melee/spear/bamboospear,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/jungleland/explored)
+
+(1,1,1) = {"
+Ad
+Ad
+Ad
+aG
+aG
+aG
+aG
+qA
+qA
+qA
+qA
+qA
+qA
+bQ
+Ad
+Ad
+Ad
+Ad
+Ad
+Ad
+"}
+(2,1,1) = {"
+Ad
+Ad
+aG
+aG
+AZ
+LK
+aG
+ay
+ay
+ay
+ay
+ay
+ay
+ay
+aI
+ay
+ay
+hG
+Ad
+Ad
+"}
+(3,1,1) = {"
+Ad
+Ad
+aG
+ab
+aX
+aX
+aX
+aB
+aB
+aB
+aB
+aB
+ay
+aH
+ay
+aZ
+ay
+ay
+aR
+Ad
+"}
+(4,1,1) = {"
+Ad
+Ad
+aG
+ak
+aX
+aX
+aG
+ao
+ag
+ay
+aI
+aB
+ay
+ay
+ag
+ay
+aO
+ay
+ay
+Ad
+"}
+(5,1,1) = {"
+Ad
+Ad
+aG
+aG
+aG
+aG
+aG
+ay
+aZ
+aI
+uo
+aB
+ay
+aK
+ay
+ay
+ay
+aO
+ay
+Ad
+"}
+(6,1,1) = {"
+Ad
+Ad
+al
+al
+al
+al
+al
+al
+ay
+ag
+az
+aB
+aB
+aB
+aB
+aC
+aD
+aO
+uo
+Ad
+"}
+(7,1,1) = {"
+Ad
+al
+al
+al
+al
+al
+al
+al
+al
+ay
+ay
+aB
+Tb
+Ez
+ay
+aP
+ay
+aO
+ay
+Ad
+"}
+(8,1,1) = {"
+Ad
+al
+al
+ai
+aY
+aY
+aY
+al
+al
+ay
+aI
+aB
+ay
+ay
+ad
+aH
+aO
+ay
+aH
+Ad
+"}
+(9,1,1) = {"
+Ad
+al
+al
+aX
+aX
+aX
+aY
+al
+al
+ay
+ay
+aB
+ag
+ay
+ay
+ax
+ay
+ay
+ay
+Ad
+"}
+(10,1,1) = {"
+Ad
+al
+al
+aX
+aw
+aX
+aY
+aY
+aq
+aB
+aB
+aB
+ay
+ay
+aE
+aF
+ay
+an
+ay
+Ad
+"}
+(11,1,1) = {"
+Ad
+al
+al
+aX
+aX
+aX
+aY
+al
+al
+ay
+ay
+aB
+ay
+ay
+lS
+ay
+aH
+ay
+ay
+Ad
+"}
+(12,1,1) = {"
+Ad
+al
+al
+ai
+aY
+aY
+se
+al
+al
+ag
+ay
+aB
+ay
+aH
+ay
+ay
+mF
+kJ
+Ad
+Ad
+"}
+(13,1,1) = {"
+Ad
+al
+al
+al
+al
+al
+al
+al
+al
+ay
+ag
+aB
+ay
+ay
+aK
+ay
+aO
+ay
+hG
+Ad
+"}
+(14,1,1) = {"
+Ad
+Ad
+al
+al
+al
+al
+al
+al
+ap
+aR
+Tb
+aB
+ad
+ay
+ay
+aP
+ay
+aO
+ay
+Ad
+"}
+(15,1,1) = {"
+Ad
+Ad
+aG
+aG
+aG
+aG
+aG
+aG
+hG
+ay
+az
+aB
+aB
+aB
+aB
+aC
+aT
+aO
+uo
+Ad
+"}
+(16,1,1) = {"
+Ad
+Ad
+aG
+aQ
+yt
+au
+aL
+aG
+ag
+ay
+uo
+aB
+ay
+aZ
+ay
+ay
+ax
+aO
+ay
+Ad
+"}
+(17,1,1) = {"
+Ad
+Ad
+aG
+ac
+aX
+aa
+Ra
+aG
+ay
+ay
+ay
+aB
+ay
+ag
+ay
+aI
+aO
+ay
+ay
+Ad
+"}
+(18,1,1) = {"
+Ad
+Ad
+aG
+hW
+ae
+aV
+aX
+aX
+aB
+aB
+aB
+aB
+ay
+ay
+ay
+ay
+ag
+ay
+ap
+Ad
+"}
+(19,1,1) = {"
+Ad
+Ad
+aG
+aG
+am
+aS
+af
+aG
+ay
+ay
+ay
+ay
+ay
+aI
+ay
+Ad
+ay
+Ad
+Ad
+Ad
+"}
+(20,1,1) = {"
+Ad
+Ad
+Ad
+aG
+aG
+aG
+aG
+aG
+qA
+qA
+qA
+qA
+qA
+bQ
+Ad
+Ad
+Ad
+Ad
+Ad
+Ad
+"}

@@ -64,18 +64,14 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 	idle_power_usage = initial(idle_power_usage) * power_modifier
 
-/obj/machinery/ai/server_cabinet/process_atmos()
+/obj/machinery/ai/server_cabinet/process()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(valid_holder())
 		var/total_usage = (cached_power_usage * power_modifier)
 		use_power(total_usage)
 
-		var/turf/T = get_turf(src)
-		var/datum/gas_mixture/env = T.return_air()
-		if(env.heat_capacity())
-			var/temperature_increase = (total_usage / env.heat_capacity()) * heat_modifier
-			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
-			T.air_update_turf()
+		var/temperature_increase = (total_usage / AI_HEATSINK_CAPACITY)* heat_modifier
+		core_temp += temperature_increase * AI_TEMPERATURE_MULTIPLIER
 		
 		valid_ticks++
 		if(!was_valid_holder)

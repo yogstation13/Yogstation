@@ -20,16 +20,15 @@
 /obj/machinery/computer/camera_advanced/darkspawn/Initialize(mapload)
 	. = ..()
 	camnet = GLOB.thrallnet
-	GLOB.thrallnet.updateVisibility(src)
+
+/obj/machinery/computer/camera_advanced/darkspawn/update_appearance(updates)
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src) //eventually replace this, but for now, this works
 
 /obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
 	if(user && !is_darkspawn_or_veil(user))
 		return FALSE
 	return ..()
-
-/obj/machinery/computer/camera_advanced/darkspawn/CreateEye()
-	. = ..()
-	eyeobj.nightvision = TRUE
 
 /obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
 	return

@@ -1,3 +1,5 @@
+#define PLASMA_BASE_RECHARGE 500
+
 /obj/item/gun/energy/ionrifle
 	name = "ion rifle"
 	desc = "Invented in 2506 to quell attacks from SELF aligned IPCs, the NT-I1 is a bulky rifle designed to disable mechanical and electronic threats at range."
@@ -129,24 +131,40 @@
 	var/progress_flash_divisor = 10  //copypasta is best pasta
 	var/light_intensity = 1
 	var/charge_weld = 25 //amount of charge used up to start action (multiplied by amount) and per progress_flash_divisor ticks of welding
+	/// Contains the instances of installed upgrades
+	var/list/installed_upgrades = list()
+	/// Mod capacity of this item
+	var/mod_capacity = 80
 
-/obj/item/gun/energy/plasmacutter/mini
-	name = "mini plasma cutter"
-	desc = "A weak plasma based mining tool."
-	icon_state = "plasmacutter_mini"
-	item_state = "plasmacutter_mini"
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
-	toolspeed = 2
+/obj/item/gun/energy/plasmacutter/proc/modify_projectile(obj/projectile/plasma/K)
+	K.gun = src //do something special on-hit, easy!
+	for(var/obj/item/upgrade/plasmacutter/A in installed_upgrades)
+		A.modify_projectile(K)
+
+/obj/item/gun/energy/plasmacutter/proc/get_remaining_mod_capacity()
+	. = mod_capacity
+	for(var/obj/item/upgrade/plasmacutter/a in installed_upgrades)
+		. -= a.cost
+	return .
 
 /obj/item/gun/energy/plasmacutter/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
 
+/obj/item/gun/energy/plasmacutter/Destroy()
+	. = ..()
+	for(var/obj/item/upgrade/plasmacutter/a in installed_upgrades)
+		qdel(a)
+	QDEL_NULL(installed_upgrades)
+
 /obj/item/gun/energy/plasmacutter/examine(mob/user)
 	. = ..()
 	if(cell)
 		. += span_notice("[src] is [round(cell.percent())]% charged.")
+	. += span_boldnotice("[get_remaining_mod_capacity()]%</b> mod capacity remaining.")
+	for(var/obj/item/upgrade/plasmacutter/a in installed_upgrades)
+		. += span_notice("There is \a [a] installed, using [span_bold("[a.cost]%")] capacity.")
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	var/charge_multiplier = 0 //2 = Refined stack, 1 = Ore
@@ -154,16 +172,20 @@
 		charge_multiplier = 2
 	if(istype(I, /obj/item/stack/ore/plasma))
 		charge_multiplier = 1
-	if(charge_multiplier)
-		if(cell.charge == cell.maxcharge)
-			to_chat(user, span_notice("You try to insert [I] into [src], but it's fully charged.")) //my cell is round and full
-			return
-		I.use(1)
-		cell.give(500*charge_multiplier)
-		to_chat(user, span_notice("You insert [I] in [src], recharging it."))
-	else
-		..()
+	if(!charge_multiplier)
+		return ..()
 
+	var/obj/item/stack/S = I
+
+	var/charge_amount = PLASMA_BASE_RECHARGE * charge_multiplier // Get the amount of charge per item
+	// Get remaining capacity and get the ideal amount to recharge or all of the stack whichever is smaller
+	var/amount_to_eat = ceil(min(((cell.maxcharge - cell.charge) / charge_amount), S.get_amount()))
+	if(amount_to_eat == 0)
+		to_chat(user, span_notice("You try to insert [I] into [src], but it's fully charged.")) //my cell is round and full
+		return
+	I.use(amount_to_eat)
+	cell.give(charge_amount * amount_to_eat)
+	to_chat(user, span_notice("You insert [I] in [src], recharging it."))
 // Tool procs, in case plasma cutter is used as welder
 // Can we start welding?
 /obj/item/gun/energy/plasmacutter/tool_start_check(mob/living/user, amount)
@@ -209,12 +231,54 @@
 	else
 		. = ..(amount=1)
 
+/obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(istype(I, /obj/item/upgrade/plasmacutter))
+		var/obj/item/upgrade/plasmacutter/PC = I
+		if(get_remaining_mod_capacity() < PC.cost)
+			to_chat(user, span_warning("There is no more room for this upgrade."))
+			return
+		if(!PC.stackable && is_type_in_list(PC, installed_upgrades))
+			to_chat(user, span_notice("[I] has already been installed in [src]"))
+			return
+		to_chat(user, span_notice("You install [I] into [src]"))
+		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
+		installed_upgrades += I
+		PC.install(src)
+		I.forceMove(src)
+
+/obj/item/gun/energy/plasmacutter/crowbar_act(mob/living/user, obj/item/I)
+	. = TRUE
+	if(installed_upgrades.len)
+		to_chat(user, span_notice("You pry the modifications out."))
+		I.play_tool_sound(src, 100)
+		for(var/obj/item/upgrade/plasmacutter/M in installed_upgrades)
+			M.forceMove(drop_location()) // Uninstallation handled in Exited().
+	else
+		to_chat(user, span_notice("There are no modifications currently installed."))
+
+/obj/item/gun/energy/plasmacutter/Exited(atom/movable/gone, direction)
+	..()
+	if(gone in installed_upgrades)
+		var/obj/item/upgrade/plasmacutter/MK = gone
+		MK.uninstall(src)
+
+/obj/item/gun/energy/plasmacutter/mini
+	name = "mini plasma cutter"
+	desc = "A weak plasma based mining tool."
+	icon_state = "plasmacutter_mini"
+	item_state = "plasmacutter_mini"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
+	toolspeed = 2
+	mod_capacity = 50
+
 /obj/item/gun/energy/plasmacutter/adv
 	name = "advanced plasma cutter"
 	icon_state = "adv_plasmacutter"
 	item_state = "adv_plasmacutter"
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
+	mod_capacity = 100
 
 /obj/item/gun/energy/plasmacutter/adv/mega
 	name = "mega plasma cutter"
@@ -222,6 +286,7 @@
 	item_state = "plasmacutter_mega"
 	desc = "A mining tool capable of expelling concentrated plasma bursts. You could use it to cut limbs off xenos! Or, you know, mine stuff. This one has been enhanced with plasma magmite."
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/mega)
+	mod_capacity = 120
 
 /obj/item/gun/energy/plasmacutter/scatter
 	name = "plasma cutter shotgun"
@@ -230,15 +295,7 @@
 	desc = "An industrial-grade, heavy-duty mining shotgun."
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter)
-
-
-
-/obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
-	. = ..()
-	if(try_upgrade(I))
-		to_chat(user, span_notice("You install [I] into [src]"))
-		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
-		qdel(I)
+	mod_capacity = 100
 
 /obj/item/gun/energy/plasmacutter/scatter/mega
 	name = "mega plasma cutter shotgun"
@@ -246,6 +303,7 @@
 	item_state = "miningshotgun_mega"
 	desc = "An industrial-grade, heavy-duty mining shotgun. This one seems... mega!"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter/adv/mega)
+	mod_capacity = 120
 
 /obj/item/gun/energy/plasmacutter/adv/cyborg
 	name = "cyborg advanced plasma cutter"
@@ -253,6 +311,7 @@
 	force = 15
 	selfcharge = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg)
+	mod_capacity = 70
 
 /obj/item/gun/energy/plasmacutter/adv/malf // Can't be subtype of cyborg or it will interfere with upgrades
 	name = "cyborg malfunctioning plasma cutter"
@@ -261,34 +320,71 @@
 	force = 15
 	selfcharge = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg/malf)
+	mod_capacity = 100
 
 // Upgrades for plasma cutters
 /obj/item/upgrade/plasmacutter
 	name = "generic upgrade kit"
-	desc = "An upgrade for plasma shotguns."
+	desc = "An upgrade for plasma cutters."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
 
+	var/cost = 10
+	var/stackable = FALSE
+
+/obj/item/upgrade/plasmacutter/proc/modify_projectile(obj/projectile/plasma/K)
+
+/obj/item/upgrade/plasmacutter/proc/install(obj/item/gun/energy/plasmacutter/P)
+
+/obj/item/upgrade/plasmacutter/proc/uninstall(obj/item/gun/energy/plasmacutter/P)
+
 /obj/item/upgrade/plasmacutter/defuser
 	name = "plasma cutter defusal kit"
-	desc = "An upgrade for plasma shotguns that allows it to automatically defuse gibtonite."
+	desc = "An upgrade for plasma cutters that allows it to automatically defuse gibtonite."
 
-/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I)
-	return // no upgrades for the plasmacutter
+/obj/item/upgrade/plasmacutter/defuser/modify_projectile(obj/projectile/plasma/K)
+	K.defuse = TRUE
 
-/obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I)
-	if(.)
-		return
-	if(istype(I, /obj/item/upgrade/plasmacutter/defuser))
-		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
-		ammo_type = list(kaboom)
-		return TRUE
-	return FALSE
+/obj/item/upgrade/plasmacutter/capacity
+	name = "plasma cutter capacity kit"
+	desc = "An upgrade for plasma cutters that doubles the tank capacity."
+	cost = 20
 
-//no upgrading this one either (for now)
-/obj/item/gun/energy/plasmacutter/scatter/mega/try_upgrade(obj/item/I)
-	return
+/obj/item/upgrade/plasmacutter/capacity/install(obj/item/gun/energy/plasmacutter/P)
+	P.cell.maxcharge = initial(P.cell.maxcharge)*2
+
+/obj/item/upgrade/plasmacutter/capacity/uninstall(obj/item/gun/energy/plasmacutter/P)
+	P.cell.maxcharge = initial(P.cell.maxcharge)
+	P.cell.charge = min(P.cell.charge, P.cell.maxcharge)
+
+/obj/item/upgrade/plasmacutter/cooldown
+	name = "plasma cutter cooldown kit"
+	desc = "An upgrade for plasma cutters that reduces the cooldown."
+	cost = 40
+	stackable = TRUE
+
+/obj/item/upgrade/plasmacutter/cooldown/install(obj/item/gun/energy/plasmacutter/P)
+	P.fire_delay *= 0.5
+
+/obj/item/upgrade/plasmacutter/cooldown/uninstall(obj/item/gun/energy/plasmacutter/P)
+	P.fire_delay *= 2
+
+/obj/item/upgrade/plasmacutter/range
+	name = "plasma cutter range kit"
+	desc = "An upgrade for plasma cutters that increases the range."
+	cost = 30
+
+/obj/item/upgrade/plasmacutter/range/modify_projectile(obj/projectile/plasma/K)
+	K.range += 4
+
+/obj/item/upgrade/plasmacutter/ore
+	name = "plasma cutter ore kit"
+	desc = "An upgrade for plasma cutters that doubles ore output."
+	cost = 30
+
+/obj/item/upgrade/plasmacutter/ore/modify_projectile(obj/projectile/plasma/K)
+	K.explosive = TRUE
 
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"
@@ -497,3 +593,5 @@
 	icon_state = "prifle"
 	item_state = "prifle"
 	ammo_type = list(/obj/item/ammo_casing/energy/grimdark)	
+
+#undef PLASMA_BASE_RECHARGE

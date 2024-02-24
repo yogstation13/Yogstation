@@ -14,7 +14,7 @@
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_GENELESS,TRAIT_NOHUNGER)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
-	mutanteyes = /obj/item/organ/eyes/night_vision
+	mutanteyes = /obj/item/organ/eyes/shadow
 	species_language_holder = /datum/language_holder/darkspawn
 	var/powerful_heal = FALSE
 	var/dark_healing = 1
@@ -37,8 +37,6 @@
 					H.SetSleeping(0)
 					H.setOrganLoss(ORGAN_SLOT_BRAIN,0)
 			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
-				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_SPACEWALK) && isspaceturf(T))
-					return
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_LIGHTRES))
 					return
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
@@ -47,8 +45,6 @@
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
 				H.adjustCloneLoss(light_burning * 0.2)
 			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
-				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_SPACEWALK) && isspaceturf(T))
-					return
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
 					return
 				to_chat(H, span_userdanger("The light burns you!"))
@@ -61,24 +57,13 @@
 	return ..()
 
 /datum/species/shadow/get_species_description()
-	return "Victims of a long extinct space alien. Their flesh is a sickly \
-		seethrough filament, their tangled insides in clear view. Their form \
-		is a mockery of life, leaving them mostly unable to work with others under \
-		normal circumstances."
+	return "Their flesh is a sickly seethrough filament,\
+		their tangled insides in clear view. Their form is a mockery of life, \
+		leaving them mostly unable to work with others under normal circumstances."
 
 /datum/species/shadow/get_species_lore()
 	return list(
-		"Long ago, the Spinward Sector used to be inhabited by terrifying aliens aptly named \"Shadowlings\" \
-		after their control over darkness, and tendancy to kidnap victims into the dark maintenance shafts. \
-		Around 2558, the long campaign Nanotrasen waged against the space terrors ended with the full extinction of the Shadowlings.",
-
-		"Victims of their kidnappings would become brainless thralls, and via surgery they could be freed from the Shadowling's control. \
-		Those more unlucky would have their entire body transformed by the Shadowlings to better serve in kidnappings. \
-		Unlike the brain tumors of lesser control, these greater thralls could not be reverted.",
-
-		"With Shadowlings long gone, their will is their own again. But their bodies have not reverted, burning in exposure to light. \
-		Nanotrasen has assured the victims that they are searching for a cure. No further information has been given, even years later. \
-		Most shadowpeople now assume Nanotrasen has long since shelfed the project.",
+		"WIP.",
 	)
 
 /datum/species/shadow/create_pref_unique_perks()
@@ -119,7 +104,7 @@
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
-	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
+	mutanteyes = /obj/item/organ/eyes/shadow
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
 	mutantbrain = /obj/item/organ/brain/nightmare
 	
@@ -159,7 +144,8 @@
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE, ITEM_SLOT_HEAD, ITEM_SLOT_EYES)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_NOHUNGER, TRAIT_NOSLIPICE)
-	mutanteyes = /obj/item/organ/eyes/night_vision/alien
+	mutanteyes = /obj/item/organ/eyes/darkspawn
+	mutantears = /obj/item/organ/ears/darkspawn
 
 	var/shadow_charges = 3
 	powerful_heal = TRUE
@@ -206,7 +192,29 @@
 
 /datum/species/shadow/darkspawn/check_roundstart_eligible()
 	return FALSE
-/////////////////////////////Organs/////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Darkspawn organs----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/obj/item/organ/eyes/darkspawn //special eyes that innately have night vision without having a toggle that adds action clutter
+	name = "darkspawn eyes"
+	desc = "It turned out they had them after all!"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable eyes than most
+	healing_factor = 2 * STANDARD_ORGAN_HEALING
+	lighting_cutoff = 40 //stronger than any defines
+	color_cutoffs = list(12, 0, 50)
+	sight_flags = SEE_MOBS
+
+/obj/item/organ/ears/darkspawn //special ears that are a bit tankier and have innate sound protection
+	name = "darkspawn ears"
+	desc = "It turned out they had them after all!"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable ears than most
+	healing_factor = 2 * STANDARD_ORGAN_HEALING
+	bang_protect = 1
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Nightmare organs----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /obj/item/organ/brain/nightmare
 	name = "tumorous mass"
 	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
@@ -308,8 +316,9 @@
 	armour_penetration = 20
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	item_flags = ABSTRACT | DROPDEL
-	tool_behaviour = TOOL_MINING
+	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = SHARP_EDGED
 	wound_bonus = -30
@@ -321,6 +330,7 @@
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
 	AddComponent(/datum/component/light_eater)
+	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
 #undef DARKSPAWN_REFLECT_COOLDOWN
 #undef HEART_SPECIAL_SHADOWIFY

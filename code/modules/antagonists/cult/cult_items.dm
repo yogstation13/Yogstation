@@ -543,7 +543,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				set_coefficient = 1
 			else
 				set_coefficient = 0.5
-		var/surplus = timer - (SSshuttle.emergencyCallTime * set_coefficient)
+		var/surplus = timer - (SSshuttle.emergency_call_time * set_coefficient)
 		SSshuttle.emergency.setTimer(timer)
 		if(surplus > 0)
 			SSshuttle.block_recall(surplus)
@@ -626,7 +626,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	color = "#ff0000"
 	on_damage = 15
 	slot_flags = null
-	on = TRUE
+	light_on = TRUE
 	var/charges = 5
 
 /obj/item/flashlight/flare/culttorch/afterattack(atom/movable/A, mob/user, proximity)
@@ -695,7 +695,6 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/cult_spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 12, \
 		force_wielded = 16, \
 		icon_wielded = "[base_icon_state]1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5), \
@@ -926,8 +925,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 						L.adjustBruteLoss(45)
 						playsound(L, 'sound/hallucinations/wail.ogg', 50, 1)
 						L.emote("scream")
-		var/datum/beam/current_beam = new(user,temp_target,time=7,beam_icon_state="blood_beam",btype=/obj/effect/ebeam/blood)
-		INVOKE_ASYNC(current_beam, TYPE_PROC_REF(/datum/beam, Start))
+		user.Beam(temp_target, icon_state="blood_beam", time = 7, beam_type = /obj/effect/ebeam/blood)
 
 
 /obj/effect/ebeam/blood

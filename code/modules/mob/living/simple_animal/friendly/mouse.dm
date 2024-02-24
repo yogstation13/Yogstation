@@ -29,7 +29,6 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	emote_see = list("runs in a circle.", "shakes.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 8
 	maxHealth = 5
 	health = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/mouse = 1)
@@ -41,7 +40,6 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	can_be_held = TRUE //mouse gaming
 	worn_slot_flags = ITEM_SLOT_HEAD
 	var/body_color //brown, gray and white, leave blank for random
@@ -103,7 +101,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /mob/living/simple_animal/mouse/handle_automated_action()
 	if(prob(chew_probability))
 		var/turf/open/floor/F = get_turf(src)
-		if(istype(F) && !F.intact)
+		if(istype(F) && !F.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE)
 			var/obj/structure/cable/C = locate() in F
 			if(C && prob(15))
 				if(C.avail())

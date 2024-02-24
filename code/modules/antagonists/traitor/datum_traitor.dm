@@ -17,6 +17,7 @@
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
 	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	var/datum/contractor_hub/contractor_hub
+	var/obj/item/uplink_holder
 	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/traitor/on_gain()
@@ -69,7 +70,7 @@
 	if(uplink_holder)
 		var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
 		if(uplink)//remove uplink so they can't keep using it if admin abuse happens
-			uplink.RemoveComponent()
+			qdel(uplink)
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
@@ -194,14 +195,14 @@
 			destroy_objective.owner = owner
 			destroy_objective.find_target()
 			add_objective(destroy_objective)
-		else if(prob(30))
-			var/datum/objective/maroon/maroon_objective = new
-			maroon_objective.owner = owner
-			maroon_objective.find_target()
-			add_objective(maroon_objective)
+		else if(prob(20))
+			var/datum/objective/maroon_organ/organ_objective = new
+			organ_objective.owner = owner
+			organ_objective.finalize()
+			add_objective(organ_objective)
 		else
-			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
-			var/datum/objective/assassinate/kill_objective = new N
+			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon)
+			var/datum/objective/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()
 			add_objective(kill_objective)

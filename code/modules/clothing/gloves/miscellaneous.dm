@@ -5,13 +5,13 @@
 	icon_state = "fingerless"
 	item_state = "fingerless"
 	transfer_prints = TRUE
-	siemens_coefficient = 1 //What no if you touch things with your bare fingies you're gonna get shocked
 	strip_delay = 40
 	equip_delay_other = 20
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	custom_price = 10
 	undyeable = TRUE
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 0)
 	var/tacticalspeed = 0.9
 	var/worn
 
@@ -63,14 +63,13 @@
 	desc = "These tactical gloves are fireproof and shock resistant."
 	icon_state = "black"
 	item_state = "blackgloves"
-	siemens_coefficient = 0
 	strip_delay = 80
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 80, ACID = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 80, ACID = 50, ELECTRIC = 100)
 
 /obj/item/clothing/gloves/bracer
 	name = "bone bracers"
@@ -78,7 +77,6 @@
 	icon_state = "bracers"
 	item_state = "bracers"
 	transfer_prints = TRUE
-	siemens_coefficient = 1 //They're not gloves?
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS
@@ -86,7 +84,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-	armor = list(MELEE = 15, BULLET = 25, LASER = 15, ENERGY = 15, BOMB = 20, BIO = 10, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 15, BULLET = 25, LASER = 15, ENERGY = 15, BOMB = 20, BIO = 10, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 0)
 
 /obj/item/clothing/gloves/rapid
 	name = "Gloves of the North Star"
@@ -264,8 +262,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
-	siemens_coefficient = 0.2
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 90, RAD = 0, FIRE = 100, ACID = 90)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 90, RAD = 0, FIRE = 100, ACID = 90, ELECTRIC = 80)
 	clothing_flags = THICKMATERIAL
 	clothing_traits = list(TRAIT_QUICKEST_CARRY, TRAIT_RESISTHEATHANDS)
 
@@ -273,4 +270,4 @@
 	name = "advanced insulated gloves"
 	desc = "These gloves provide excellent thermal and electrical insulation."
 	icon_state = "ce_insuls"
-	siemens_coefficient = 0
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 90, RAD = 0, FIRE = 100, ACID = 90, ELECTRIC = 100)

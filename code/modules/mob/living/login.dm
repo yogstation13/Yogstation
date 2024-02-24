@@ -1,11 +1,15 @@
 /mob/living/Login()
-	..()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	
 	//Mind updates
 	sync_mind()
 	mind.show_memory(src, 0)
 
 	update_damage_hud()
 	update_health_hud()
+	update_sight()
 
 	var/turf/T = get_turf(src)
 	if (isturf(T))

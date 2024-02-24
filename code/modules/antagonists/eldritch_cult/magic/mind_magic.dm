@@ -3,6 +3,38 @@
 MIND PATH SPELLS GO HERE
 
 */
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mind
+	name = "Mental Obfuscation"
+	desc = "A short range spell that allows you to pass unimpeded through walls."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "mansus_link"
+	sound = null
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 15 SECONDS
+
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
+
+	exit_jaunt_sound = null
+	jaunt_duration = 2 SECONDS
+	jaunt_in_time = 0.5 SECONDS
+	jaunt_out_time = 0.5 SECONDS
+	jaunt_in_type = /obj/effect/temp_visual/dir_setting/mind_shift
+	jaunt_out_type = /obj/effect/temp_visual/dir_setting/mind_shift/out
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mind/do_steam_effects()
+	return
+
+/obj/effect/temp_visual/dir_setting/mind_shift
+	name = "knock_shift"
+	icon = 'icons/effects/cult_effects.dmi'
+	icon_state = "cultin"
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/dir_setting/mind_shift/out
+	icon_state = "cultout"
 
 /datum/action/cooldown/spell/aoe/immobilize/famished_roar
 	name = "Famished Roar"
@@ -87,24 +119,24 @@ MIND PATH SPELLS GO HERE
 	bolt_power = 1000
 
 
-/datum/action/cooldown/spell/pointed/phase_jump/obfuscation
-	name = "Mental Obfuscation"
-	desc = "A short range targeted teleport."
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-	button_icon = 'icons/mob/actions/actions_ecult.dmi'
-	button_icon_state = "mansus_link"
-	ranged_mousepointer = 'icons/effects/mouse_pointers/phase_jump.dmi'
+// /datum/action/cooldown/spell/pointed/phase_jump/obfuscation
+// 	name = "Mental Obfuscation"
+// 	desc = "A short range targeted teleport."
+// 	background_icon_state = "bg_heretic"
+// 	overlay_icon_state = "bg_heretic_border"
+// 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+// 	button_icon_state = "mansus_link"
+// 	ranged_mousepointer = 'icons/effects/mouse_pointers/phase_jump.dmi'
 
-	school = SCHOOL_FORBIDDEN
+// 	school = SCHOOL_FORBIDDEN
 
-	cooldown_time = 25 SECONDS
-	cast_range = 7
-	invocation = "PH'ASE"
-	invocation_type = INVOCATION_WHISPER
-	active_msg = span_notice("You prepare to warp everyone's vision.")
-	deactive_msg = span_notice("You relax your mind.")
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
+// 	cooldown_time = 25 SECONDS
+// 	cast_range = 7
+// 	invocation = "PH'ASE"
+// 	invocation_type = INVOCATION_WHISPER
+// 	active_msg = span_notice("You prepare to warp everyone's vision.")
+// 	deactive_msg = span_notice("You relax your mind.")
+// 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 /datum/action/cooldown/spell/pointed/projectile/assault
 	name = "Amygdala Assault"

@@ -4,8 +4,6 @@
 
 //Defines copying names of mutations in all cases, make sure to change this if you change mutation's type
 #define HULK		/datum/mutation/human/hulk
-#define ACTIVE_HULK /datum/mutation/human/active_hulk
-#define GENETICS_HULK	/datum/mutation/human/genetics_hulk
 #define XRAY		/datum/mutation/human/thermal/x_ray
 #define SPACEMUT	/datum/mutation/human/space_adaptation
 #define HEATMUT		/datum/mutation/human/heat_adaptation
@@ -101,7 +99,7 @@
 #define DNA_HAIR_STYLE_BLOCK		7
 
 /// This number needs to equal the total number of DNA blocks
-#define DNA_FEATURE_BLOCKS 19
+#define DNA_FEATURE_BLOCKS 22
 
 #define DNA_MUTANT_COLOR_BLOCK 1
 #define DNA_ETHEREAL_COLOR_BLOCK 2
@@ -123,6 +121,9 @@
 #define DNA_POLY_DOME_BLOCK 17
 #define DNA_POLY_DORSAL_BLOCK 18
 #define DNA_ETHEREAL_MARK_BLOCK 19
+#define DNA_PRETERNIS_WEATHERING_BLOCK 20
+#define DNA_PRETERNIS_ANTENNA_BLOCK 21
+#define DNA_PRETERNIS_EYE_BLOCK 22
 
 #define DNA_SEQUENCE_LENGTH			4
 #define DNA_MUTATION_BLOCKS			8

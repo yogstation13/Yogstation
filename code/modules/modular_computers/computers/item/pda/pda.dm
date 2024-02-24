@@ -6,7 +6,7 @@
 	icon_state_unpowered = "pda"
 	icon_state_powered = "pda"
 	hardware_flag = PROGRAM_PDA
-	max_hardware_size = WEIGHT_CLASS_TINY
+	max_hardware_size = WEIGHT_CLASS_SMALL
 	w_class = WEIGHT_CLASS_SMALL
 	max_bays = 1
 	steel_sheet_cost = 1

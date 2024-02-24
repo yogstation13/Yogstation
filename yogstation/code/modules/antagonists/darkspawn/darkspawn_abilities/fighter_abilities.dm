@@ -31,23 +31,23 @@
 /datum/action/cooldown/spell/toggle/shadow_tendril/Enable()
 	var/list/hands_free = owner.get_empty_held_indexes()
 	if(!twin || hands_free.len < 2)
-		owner.visible_message(span_warning("[owner]'s arm contorts into tentacles!"), "<span class='velvet bold'>ikna</span><br>\
-		[span_notice("You transform your arm into umbral tendrils. Examine them to see possible uses.")]")
+		to_chat(owner, span_velvet("Ikna"))
+		owner.visible_message(span_warning("[owner]'s arm contorts into tentacles!"), span_velvet("You transform your arm into umbral tendrils. Examine them to see possible uses."))
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 		var/obj/item/umbral_tendrils/T = new(owner, isdarkspawn(owner))
 		owner.put_in_hands(T)
 	else
-		owner.visible_message(span_warning("[owner]'s arms contort into tentacles!"), "<span class='velvet'><b>ikna ikna</b><br>\
-		You transform both arms into umbral tendrils. Examine them to see possible uses.</span>")
+		to_chat(owner, span_velvet("Ikna ikna"))
+		owner.visible_message(span_warning("[owner]'s arms contort into tentacles!"), span_velvet("You transform both arms into umbral tendrils. Examine them to see possible uses."))
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE), 1)
 		for(var/i in 1 to 2)
-			var/obj/item/umbral_tendrils/T = new(owner, isdarkspawn(owner) )
+			var/obj/item/umbral_tendrils/T = new(owner, isdarkspawn(owner))
 			owner.put_in_hands(T)
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/Disable()
-	owner.visible_message(span_warning("[owner]'s tentacles transform back!"), "<span class='velvet bold'>haoo</span><br>\
-	[span_notice("You dispel the tendrils.")]")
+	to_chat(owner, span_velvet("Haoo"))
+	owner.visible_message(span_warning("[owner]'s tentacles transform back!"), span_notice("You dispel the tendrils."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	for(var/obj/item/umbral_tendrils/T in owner)
 		qdel(T)
@@ -74,6 +74,7 @@
 /datum/action/cooldown/spell/aoe/deluge/cast(atom/cast_on)
 	. = ..()
 	if(isliving(owner))
+		to_chat(owner, span_velvet("Wyrmul"))
 		var/mob/living/target = owner
 		target.extinguish_mob()
 		target.adjust_wet_stacks(20)
@@ -98,7 +99,6 @@
 /datum/action/cooldown/spell/pointed/shadow_crash
 	name = "Shadow crash"
 	desc = "Charge in a direction."
-	panel = "Shadowling Abilities"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -107,7 +107,7 @@
 	panel = null
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	cooldown_time = 15 SECONDS
+	cooldown_time = 5 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	psi_cost = 20
 	var/charging = FALSE
@@ -124,6 +124,7 @@
 	
 /datum/action/cooldown/spell/pointed/shadow_crash/cast(atom/cast_on)
 	. = ..()
+	to_chat(owner, span_velvet("Vorlax"))
 	owner.throw_at(cast_on, 4, 1, owner, FALSE)
 	if(isliving(owner))
 		var/mob/living/thing = owner
@@ -188,7 +189,8 @@
 	. = ..()
 	var/mob/living/L = owner
 	L.apply_status_effect(STATUS_EFFECT_TIME_DILATION)
-	L.visible_message(span_warning("[L] howls as their body moves at wild speeds!"), span_velvet("<b>ckppw ck bwop</b><br>Your sigils howl out light as your body moves at incredible speed!"))
+	to_chat(L, span_velvet("Quix'thra ZYXAR!"))
+	L.visible_message(span_warning("[L] howls as their body sigils begin to scream light in every direction!"), span_velvet("Your sigils howl out light as your body moves at incredible speed!"))
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------------Delayed AOE CC----------------------------//
@@ -222,7 +224,8 @@
 	if(. & SPELL_CANCEL_CAST)
 		return .
 	casting = TRUE
-	owner.visible_message(span_boldwarning("[owner] begins to growl as their chitin hardens..."), "<span class='velvet bold'>cap...</span><br>[span_danger("You begin harnessing your power...")]")
+	to_chat(owner, span_velvet("Kap..."))
+	owner.visible_message(span_boldwarning("[owner] begins to growl as their chitin hardens..."), span_velvet("You begin focusing your power..."))
 	playsound(owner, 'yogstation/sound/magic/demented_outburst_charge.ogg', 50, 0)
 	if(!do_after(owner, cast_time, cast_on))
 		casting = FALSE
@@ -231,7 +234,8 @@
 
 /datum/action/cooldown/spell/aoe/demented_outburst/cast(atom/cast_on)
 	. = ..()
-	owner.visible_message(span_userdanger("[owner] lets out a deafening scream!"), "<span class='velvet bold italics'>WSWU!</span><br>[span_danger("You let out a deafening outburst!")]")
+	to_chat(owner, span_velvet("...WXSU!"))
+	owner.visible_message(span_userdanger("[owner] lets out a deafening scream!"), span_velvet("You let out a deafening outburst!"))
 	playsound(owner, 'yogstation/sound/magic/demented_outburst_scream.ogg', 75, 0)
 
 /datum/action/cooldown/spell/aoe/demented_outburst/cast_on_thing_in_aoe(atom/victim, atom/caster)
@@ -300,11 +304,13 @@
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/creep/Enable()
-	owner.visible_message(span_warning("Velvety shadows coalesce around [owner]!"), span_velvet("<b>odeahz</b><br>You begin using Psi to shield yourself from lightburn."))
+	to_chat(owner, span_velvet("Odeahz"))
+	owner.visible_message(span_warning("Velvety shadows coalesce around [owner]!"), span_velvet("You begin using Psi to shield yourself from lightburn."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_victim.ogg', 50, TRUE)
 	ADD_TRAIT(owner, TRAIT_DARKSPAWN_CREEP, type)
 
 /datum/action/cooldown/spell/toggle/creep/Disable()
+	to_chat(owner, span_velvet("Phwo"))
 	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_CREEP, type)
@@ -336,12 +342,13 @@
 /datum/action/cooldown/spell/toggle/indomitable/process()
 	if(active && cost && (!cost.use_psi(upkeep_cost)))
 		Activate(owner)
-	if(owner.m_intent != MOVE_INTENT_WALK)
+	if(active && owner.m_intent != MOVE_INTENT_WALK)
 		owner.toggle_move_intent()
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/indomitable/Enable()
-	owner.visible_message(span_warning("Shadows stitch [owner]'s legs to the ground!"), span_velvet("<b>odeahz</b><br>You begin using Psi to defend yourself from disruption."))
+	to_chat(owner, span_velvet("Zhaedo"))
+	owner.visible_message(span_warning("Shadows stitch [owner]'s legs to the ground!"), span_velvet("You begin using Psi to defend yourself from disruption."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
@@ -351,6 +358,7 @@
 		owner.toggle_move_intent()
 
 /datum/action/cooldown/spell/toggle/indomitable/Disable()
+	to_chat(owner, span_velvet("Phwo"))
 	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, type)
@@ -382,6 +390,7 @@
 	. = ..()
 	if(isliving(owner))
 		var/mob/living/target = owner
+		to_chat(owner, span_velvet("Kmmo'atme"))
 		target.SetDaze(5000 SECONDS, TRUE, TRUE)
 		ADD_TRAIT(target, TRAIT_PUSHIMMUNE, type)
 		target.move_resist = INFINITY

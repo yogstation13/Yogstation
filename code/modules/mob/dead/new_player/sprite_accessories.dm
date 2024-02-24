@@ -2267,6 +2267,23 @@
 	dimension_y = 34
 	color_src = null
 
+/datum/sprite_accessory/wings/elytra
+	name = "Elytra"
+	icon_state = "elytra"
+	dimension_x = 32
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+	color_src = EYECOLOR
+
+/datum/sprite_accessory/wings_open/elytra
+	name = "Elytra"
+	icon_state = "elytra"
+	dimension_x = 64
+	center = TRUE
+	dimension_y = 32
+	color_src = EYECOLOR
+
 /datum/sprite_accessory/frills
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
@@ -2609,6 +2626,138 @@
 /datum/sprite_accessory/ethereal_mark/x
 	name = "X"
 	icon_state = "x"
+
+//Preternis body weathering
+/datum/sprite_accessory/preternis_weathering
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/preternis_weathering/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/preternis_weathering/damaged
+	name = "Damaged"
+	icon_state = "damaged"
+
+/datum/sprite_accessory/preternis_weathering/rusted
+	name = "Rusted"
+	icon_state = "rusted"
+
+/datum/sprite_accessory/preternis_weathering/repaired
+	name = "Repaired"
+	icon_state = "repaired"
+
+/datum/sprite_accessory/preternis_weathering/fullchasis
+	name = "Full chassis"
+	icon_state = "fullchassis"
+
+/datum/sprite_accessory/preternis_weathering/fullbody
+	name = "Upper body"
+	icon_state = "fullbody"
+
+/datum/sprite_accessory/preternis_weathering/halfbody
+	name = "Upper body (minor)"
+	icon_state = "halfbody"
+
+/datum/sprite_accessory/preternis_weathering/rightarm
+	name = "Right arm"
+	icon_state = "rightarm"
+
+/datum/sprite_accessory/preternis_weathering/leftarm
+	name = "Left arm"
+	icon_state = "leftarm"
+
+/datum/sprite_accessory/preternis_weathering/fullarm
+	name = "Both arms"
+	icon_state = "fullarm"
+
+/datum/sprite_accessory/preternis_weathering/halfarm
+	name = "Both arms (minor)"
+	icon_state = "halfarm"
+
+/datum/sprite_accessory/preternis_weathering/waist
+	name = "Waist"
+	icon_state = "waist"
+
+//Preternis body weathering
+/datum/sprite_accessory/preternis_antenna
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = MUTCOLORS
+
+/datum/sprite_accessory/preternis_antenna/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/preternis_antenna/dracula
+	name = "Dracula"
+	icon_state = "dracula"
+
+/datum/sprite_accessory/preternis_antenna/ghost
+	name = "Ghost"
+	icon_state = "ghost"
+
+/datum/sprite_accessory/preternis_antenna/army
+	name = "Army"
+	icon_state = "army"
+
+/datum/sprite_accessory/preternis_antenna/praetor
+	name = "Praetor"
+	icon_state = "praetor"
+
+/datum/sprite_accessory/preternis_antenna/field
+	name = "Field"
+	icon_state = "field"
+
+/datum/sprite_accessory/preternis_antenna/driver
+	name = "Driver"
+	icon_state = "driver"
+
+//Preternis eye
+/datum/sprite_accessory/preternis_eye
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = EYECOLOR
+
+/datum/sprite_accessory/preternis_eye/one
+	name = "Standard"
+	icon_state = "1"
+
+/datum/sprite_accessory/preternis_eye/two
+	name = "Focused"
+	icon_state = "2"
+	
+/datum/sprite_accessory/preternis_eye/three
+	name = "Fanned"
+	icon_state = "3"
+
+/datum/sprite_accessory/preternis_eye/four
+	name = "Horizontal"
+	icon_state = "4"
+
+/datum/sprite_accessory/preternis_eye/six
+	name = "Vertical"
+	icon_state = "6"
+
+/datum/sprite_accessory/preternis_eye/five
+	name = "Chambered"
+	icon_state = "5"
+
+/datum/sprite_accessory/preternis_eye/seven
+	name = "Compound"
+	icon_state = "7"
+
+/datum/sprite_accessory/preternis_eye/visionary
+	name = "Visionary"
+	icon_state = "8"
+
+//preternis core
+/datum/sprite_accessory/preternis_core
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = EYECOLOR
+
+/datum/sprite_accessory/preternis_core/core
+	name = "Core"
+	icon_state = "core"
 
 //Phytosian hair
 /datum/sprite_accessory/pod_hair

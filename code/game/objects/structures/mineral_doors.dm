@@ -12,7 +12,7 @@
 	icon_state = "metal"
 	max_integrity = 200
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 50, ACID = 50)
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 
@@ -29,7 +29,7 @@
 /obj/structure/mineral_door/Initialize(mapload)
 	. = ..()
 
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/mineral_door/Move()
 	var/turf/T = loc
@@ -94,7 +94,7 @@
 	density = FALSE
 	door_opened = TRUE
 	layer = OPEN_DOOR_LAYER
-	air_update_turf(1)
+	air_update_turf()
 	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
@@ -115,7 +115,7 @@
 	set_opacity(TRUE)
 	door_opened = FALSE
 	layer = initial(layer)
-	air_update_turf(1)
+	air_update_turf()
 	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
@@ -134,7 +134,7 @@
 /obj/structure/mineral_door/setAnchored(anchorvalue) //called in default_unfasten_wrench() chain
 	. = ..()
 	set_opacity(anchored ? !door_opened : FALSE)
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/mineral_door/wrench_act(mob/living/user, obj/item/I)
 	default_unfasten_wrench(user, I, 40)
@@ -304,7 +304,13 @@
 
 /obj/structure/mineral_door/paperframe/Initialize(mapload)
 	. = ..()
-	queue_smooth_neighbors(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
+
+/obj/structure/mineral_door/paperframe/Destroy()
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
+	return ..()
 
 /obj/structure/mineral_door/paperframe/examine(mob/user)
 	. = ..()
@@ -333,8 +339,4 @@
 			user.visible_message("[user] patches some of the holes in [src].", span_notice("You patch some of the holes in [src]!"))
 			return TRUE
 
-	return ..()
-
-/obj/structure/mineral_door/paperframe/Destroy()
-	queue_smooth_neighbors(src)
 	return ..()

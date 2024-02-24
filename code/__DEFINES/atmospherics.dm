@@ -1,15 +1,3 @@
-//LISTMOS
-//indices of values in gas lists.
-#define MOLES			1
-#define ARCHIVE			2
-#define GAS_META		3
-#define META_GAS_SPECIFIC_HEAT	1
-#define META_GAS_NAME			2
-#define META_GAS_MOLES_VISIBLE	3
-#define META_GAS_OVERLAY		4
-#define META_GAS_DANGER			5
-#define META_GAS_ID				6
-#define META_GAS_FUSION_POWER   7
 //ATMOS
 //stuff you should probably leave well alone!
 /// kPa*L/(K*mol)
@@ -236,13 +224,38 @@
 //CANATMOSPASS
 #define ATMOS_PASS_YES 1
 #define ATMOS_PASS_NO 0
-/// ask CanAtmosPass()
+/// ask can_atmos_pass()
 #define ATMOS_PASS_PROC -1
 /// just check density
 #define ATMOS_PASS_DENSITY -2
 
-#define CANATMOSPASS(A, O) ( A.CanAtmosPass == ATMOS_PASS_PROC ? A.CanAtmosPass(O) : ( A.CanAtmosPass == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPass ) )
-#define CANVERTICALATMOSPASS(A, O) ( A.CanAtmosPassVertical == ATMOS_PASS_PROC ? A.CanAtmosPass(O, TRUE) : ( A.CanAtmosPassVertical == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPassVertical ) )
+#define CANATMOSPASS(A, O, V) ( A.can_atmos_pass == ATMOS_PASS_PROC ? A.can_atmos_pass(O, V) : ( A.can_atmos_pass == ATMOS_PASS_DENSITY ? !A.density : A.can_atmos_pass ) )
+
+#ifdef TESTING
+GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
+#define CALCULATE_ADJACENT_TURFS(T, state) if (SSair.adjacent_rebuild[T]) { GLOB.atmos_adjacent_savings[1] += 1 } else { GLOB.atmos_adjacent_savings[2] += 1; SSair.adjacent_rebuild[T] = state}
+#else
+#define CALCULATE_ADJACENT_TURFS(T, state) SSair.adjacent_rebuild[T] = state
+#endif
+
+//If you're doing spreading things related to atmos, DO NOT USE CANATMOSPASS, IT IS NOT CHEAP. use this instead, the info is cached after all. it's tweaked just a bit to allow for circular checks
+#define TURFS_CAN_SHARE(T1, T2) (LAZYACCESS(T2.atmos_adjacent_turfs, T1) || LAZYLEN(T1.atmos_adjacent_turfs & T2.atmos_adjacent_turfs))
+//Use this to see if a turf is fully blocked or not, think windows or firelocks. Fails with 1x1 non full tile windows, but it's not worth the cost.
+#define TURF_SHARES(T) (LAZYLEN(T.atmos_adjacent_turfs))
+
+
+//Adjacent turf related defines, they dictate what to do with a turf once it's been recalculated
+//Used as "state" in CALCULATE_ADJACENT_TURFS
+///Normal non-active turf
+#define NORMAL_TURF 1
+///Set the turf to be activated on the next calculation
+#define MAKE_ACTIVE 2
+///Disable excited group
+#define KILL_EXCITED 3
+
+///Used to define the temperature of a tile, arg is the temperature it should be at. Should always be put at the end of the atmos list.
+///This is solely to be used after compile-time.
+#define TURF_TEMPERATURE(temperature) "TEMP=[temperature]"
 
 //OPEN TURF ATMOS
 /// the default air mix that open turfs spawn
@@ -257,6 +270,8 @@
 #define KITCHEN_COLDROOM_ATMOS		"o2=33;n2=124;TEMP=193.15"
 /// used in the holodeck burn test program
 #define BURNMIX_ATMOS				"o2=2500;plasma=5000;TEMP=370"
+///-153.15°C plasma air, used for burning people.
+#define BURNING_COLD 				"o2=0;n2=82;plasma=24;TEMP=120"
 
 //ATMOSPHERICS DEPARTMENT GAS TANK TURFS
 #define ATMOS_TANK_N2O				"n2o=6000;TEMP=293.15"
@@ -287,6 +302,7 @@
 //PLANETARY ATMOS MIXES
 #define LAVALAND_DEFAULT_ATMOS "o2=14;n2=23;TEMP=300"
 #define ICEMOON_DEFAULT_ATMOS "o2=14;n2=23;TEMP=180"
+#define JUNGLELAND_DEFAULT_ATMOS "o2=44;n2=164;TEMP=300" //yogs edit
 
 //ATMOSIA GAS MONITOR TAGS
 #define ATMOS_GAS_MONITOR_INPUT_O2 "o2_in"
@@ -426,7 +442,7 @@
 #define PIPING_LAYER_DEFAULT 3
 #define PIPING_LAYER_P_X 5
 #define PIPING_LAYER_P_Y 5
-#define PIPING_LAYER_LCHANGE 0.05
+#define PIPING_LAYER_LCHANGE 0.005
 
 /// intended to connect with all layers, check for all instead of just one.
 #define PIPING_ALL_LAYER				(1<<0)
@@ -437,61 +453,79 @@
 /// north/south east/west doesn't matter, auto normalize on build.
 #define PIPING_CARDINAL_AUTONORMALIZE	(1<<3)
 
-//HELPERS
+// Ventcrawling bitflags, handled in var/vent_movement
+///Allows for ventcrawling to occur. All atmospheric machines have this flag on by default. Cryo is the exception
+#define VENTCRAWL_ALLOWED (1<<0)
+///Allows mobs to enter or leave from atmospheric machines. On for passive, unary, and scrubber vents.
+#define VENTCRAWL_ENTRANCE_ALLOWED (1<<1)
+///Used to check if a machinery is visible. Called by update_pipe_vision(). On by default for all except cryo.
+#define VENTCRAWL_CAN_SEE (1<<2)
+
+DEFINE_BITFIELD(vent_movement, list(
+	"Ventcrawl Allowed" = VENTCRAWL_ALLOWED,
+	"Ventcrawl Entrance Allowed" = VENTCRAWL_ENTRANCE_ALLOWED,
+	"Ventcrawl Can See" = VENTCRAWL_CAN_SEE,
+))
+
+// Gas defines because i hate typepaths
+#define GAS_O2 "o2"
+#define GAS_N2 "n2"
+#define GAS_CO2 "co2"
+#define GAS_PLASMA "plasma"
+#define GAS_H2O "water_vapor"
+#define GAS_HYPERNOB "hypernob"
+#define GAS_NITROUS "n2o"
+#define GAS_NITRIUM "no2"
+#define GAS_TRITIUM "tritium"
+#define GAS_BZ "bz"
+#define GAS_PLUOXIUM "pluox"
+#define GAS_MIASMA "miasma"
+#define GAS_H2 "hydrogen"
+#define GAS_FREON "freon"
+#define GAS_HEALIUM "healium"
+#define GAS_PLUONIUM "pluonium"
+#define GAS_HALON "halon"
+#define GAS_ANTINOB "antinob"
+#define GAS_ZAUKER "zauker"
+#define GAS_HEXANE "hexane"
+#define GAS_DILITHIUM "dilithium"
+
+#define GAS_FLAG_DANGEROUS (1<<0)
+#define GAS_FLAG_BREATH_PROC (1<<1)
+
+//Helpers
+///Moves the icon of the device based on the piping layer and on the direction
 #define PIPING_LAYER_SHIFT(T, PipingLayer) \
-	if(T.dir & (NORTH|SOUTH)) {									\
+	if(T.dir & (NORTH|SOUTH)) { \
 		T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
-	}																		\
-	if(T.dir & (EAST|WEST)) {										\
+	} \
+	if(T.dir & (EAST|WEST)) { \
 		T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;\
 	}
 
+///Moves the icon of the device based on the piping layer and on the direction, the shift amount is dictated by more_shift
 #define PIPING_FORWARD_SHIFT(T, PipingLayer, more_shift) \
-	if(T.dir & (NORTH|SOUTH)) {									\
+	if(T.dir & (NORTH|SOUTH)) { \
 		T.pixel_y += more_shift * (PipingLayer - PIPING_LAYER_DEFAULT);\
-	}																		\
-	if(T.dir & (EAST|WEST)) {										\
+	} \
+	if(T.dir & (EAST|WEST)) { \
 		T.pixel_x += more_shift * (PipingLayer - PIPING_LAYER_DEFAULT);\
 	}
 
+///Moves the icon of the device based on the piping layer on both x and y
 #define PIPING_LAYER_DOUBLE_SHIFT(T, PipingLayer) \
 	T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
 	T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;
 
-#ifdef TESTING
-GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
-#define CALCULATE_ADJACENT_TURFS(T) if (SSadjacent_air.queue[T]) { GLOB.atmos_adjacent_savings[1] += 1 } else { GLOB.atmos_adjacent_savings[2] += 1; SSadjacent_air.queue[T] = 1 }
-#else
-#define CALCULATE_ADJACENT_TURFS(T) SSadjacent_air.queue[T] = 1
-#endif
-
-GLOBAL_VAR(atmos_extools_initialized) // this must be an uninitialized (null) one or init_monstermos will be called twice because reasons
-#define ATMOS_EXTOOLS_CHECK if(!GLOB.atmos_extools_initialized){\
-	GLOB.atmos_extools_initialized=TRUE;\
-	if(fexists(EXTOOLS)){\
-		var/result = LIBCALL(EXTOOLS,"init_monstermos")();\
-		if(result != "ok") {CRASH(result);}\
-	} else {\
-		CRASH("byond-extools.dll does not exist!");\
-	}\
-}
-
-GLOBAL_LIST_INIT(pipe_paint_colors, list(
-		"amethyst" = rgb(130,43,255), //supplymain
-		"blue" = rgb(0,0,255),
-		"brown" = rgb(178,100,56),
-		"cyan" = rgb(0,255,249),
-		"dark" = rgb(69,69,69),
-		"green" = rgb(30,255,0),
-		"grey" = rgb(255,255,255),
-		"orange" = rgb(255,129,25),
-		"purple" = rgb(128,0,182),
-		"red" = rgb(255,0,0),
-		"violet" = rgb(64,0,128),
-		"yellow" = rgb(255,198,0)
-))
-
 #define MIASMA_CORPSE_MOLES 0.02
 #define MIASMA_GIBS_MOLES 0.005
 
-#define TURF_SHARES(T) (LAZYLEN(T.atmos_adjacent_turfs))
+//PIPENET UPDATE STATUS
+#define PIPENET_UPDATE_STATUS_DORMANT 0
+#define PIPENET_UPDATE_STATUS_REACT_NEEDED 1
+#define PIPENET_UPDATE_STATUS_RECONCILE_NEEDED 2
+
+//Defines for air alarm severities in areas.
+#define ATMOS_ALARM_SEVERE "severe"
+#define ATMOS_ALARM_MINOR "minor"
+#define ATMOS_ALARM_CLEAR "clear"

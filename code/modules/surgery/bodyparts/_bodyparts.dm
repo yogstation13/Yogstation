@@ -14,7 +14,8 @@
 	var/status = BODYPART_ORGANIC
 	var/sub_status = BODYPART_SUBTYPE_ORGANIC
 	var/needs_processing = FALSE
-
+	///This is effectively the icon_state prefix for limbs.
+	var/limb_id
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
 	var/aux_zone // used for hands
 	var/aux_layer
@@ -45,6 +46,7 @@
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
+	var/emp_reduction = 0	//Subtracted to EMP severity
 
 	//Coloring and proper item icon update
 	var/skin_tone = ""
@@ -55,6 +57,10 @@
 	var/species_color = ""
 	var/mutation_color = ""
 	var/no_update = 0
+	/// The colour of damage done to this bodypart
+	var/damage_color = ""
+	/// Should we even use a color?
+	var/use_damage_color = FALSE
 
 	var/animal_origin = null //for nonhuman bodypart (e.g. monkey)
 	var/dismemberable = 1 //whether it can be dismembered with a weapon.
@@ -126,6 +132,32 @@
 
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
+
+/obj/item/bodypart/emp_act(severity, emp_message=TRUE)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+
+	var/blocked = owner.getarmor(body_zone, ENERGY) // energy armor protects against EMPs
+	severity *= (100 - blocked) / 100
+	severity -= emp_reduction
+	if(severity < 1)
+		return
+
+	if(receive_damage(0, severity / 2, severity, FALSE, TRUE, BODYPART_ROBOTIC, CANT_WOUND)) // returns false for non-robotic limbs
+		if(severity > EMP_LIGHT)
+			ADD_TRAIT(src, TRAIT_PARALYSIS, "EMP")
+			addtimer(CALLBACK(src, PROC_REF(after_emp)), min((severity / 2) SECONDS, 5 SECONDS), TIMER_UNIQUE | TIMER_OVERRIDE)
+		if(owner && emp_message)
+			owner.emote("scream")
+			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
+
+	if(!(. & EMP_PROTECT_CONTENTS))
+		for(var/obj/item/organ/O as anything in get_organs())
+			O.emp_act(severity)
+
+/obj/item/bodypart/proc/after_emp()
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, "EMP")
 
 /obj/item/bodypart/Destroy()
 	if(owner)
@@ -398,6 +430,9 @@
   */
 /obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus, attack_direction)
 	// note that these are fed into an exponent, so these are magnified
+	if(HAS_TRAIT(owner, TRAIT_HARDLY_WOUNDED))
+		damage *= 0.33
+
 	if(HAS_TRAIT(owner, TRAIT_EASILY_WOUNDED))
 		damage *= 1.5
 	else
@@ -601,7 +636,7 @@
 		if(!HAS_TRAIT(owner, TRAIT_STUNIMMUNE) && stamina_dam >= max_damage)
 			if(!last_maxed)
 				if(owner.stat < UNCONSCIOUS)
-					owner.emote("scream")
+					INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 				last_maxed = TRUE
 			set_disabled(TRUE)
 			return
@@ -619,7 +654,7 @@
 	if(total_damage >= max_damage * disable_threshold)
 		if(!last_maxed)
 			if(owner.stat < UNCONSCIOUS)
-				owner.emote("scream")
+				INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 			last_maxed = TRUE
 		set_disabled(TRUE)
 		return
@@ -821,6 +856,7 @@
 
 		body_gender = H.gender
 		should_draw_gender = S.sexes
+		use_damage_color = S.use_damage_color
 
 		if((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits))
 			if(S.fixed_mut_color)
@@ -831,7 +867,7 @@
 		else
 			species_color = ""
 
-		if(!dropping_limb && (H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK)))
+		if(!dropping_limb && (H.dna.check_mutation(HULK)))
 			mutation_color = "#00aa00"
 		else
 			mutation_color = ""
@@ -870,7 +906,10 @@
 		image_dir = SOUTH
 		if(dmg_overlay_type)
 			if(brutestate)
-				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				var/image/bruteoverlay = image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				if(use_damage_color)
+					bruteoverlay.color = damage_color
+				. += bruteoverlay
 			if(burnstate)
 				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
 

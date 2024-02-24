@@ -7,12 +7,11 @@
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
-	selection_color = "#d4ebf2"
 	alt_titles = list("EMT", "Paramedic Trainee", "Rapid Response Medic", "Space Search & Rescue")
 
 	outfit = /datum/outfit/job/paramedic
 
-	added_access = list(ACCESS_CLONING)
+	added_access = list(ACCESS_SURGERY, ACCESS_CLONING)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED

@@ -15,8 +15,34 @@
 	desc = "A bluespace engine used to make shuttles move."
 	density = TRUE
 	anchored = TRUE
+	
+	///How well the engine affects the ship's speed.
 	var/engine_power = 1
-	var/state = ENGINE_WELDED //welding shmelding
+	///Construction state of the Engine.
+	var/state = ENGINE_WELDED //welding shmelding //i love welding //i love welding charlie! I LOVE WELDING!!!!!!!!
+
+	///The mobile ship we are connected to.
+	var/datum/weakref/connected_ship_ref
+
+/obj/structure/shuttle/engine/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	. = ..()
+	if(!port)
+		return FALSE
+	connected_ship_ref = WEAKREF(port)
+	port.engine_list += src
+	port.current_engines += engine_power
+	if(mapload)
+		port.initial_engines += engine_power
+
+/**
+ * Called on destroy and when we need to unsync an engine from their ship.
+ */
+/obj/structure/shuttle/engine/proc/unsync_ship()
+	var/obj/docking_port/mobile/port = connected_ship_ref?.resolve()
+	if(port)
+		port.engine_list -= src
+		port.current_engines -= initial(engine_power)
+	connected_ship_ref = null
 
 //Ugh this is a lot of copypasta from emitters, welding need some boilerplate reduction
 /obj/structure/shuttle/engine/can_be_unfasten_wrench(mob/user, silent)
@@ -31,7 +57,9 @@
 	if(. == SUCCESSFUL_UNFASTEN)
 		if(anchored)
 			state = ENGINE_WRENCHED
+			connect_to_shuttle(port = SSshuttle.get_containing_shuttle(src)) //connect to a new ship, if needed
 		else
+			unsync_ship() //not part of the ship anymore
 			state = ENGINE_UNWRENCHED
 
 /obj/structure/shuttle/engine/wrench_act(mob/living/user, obj/item/I)
@@ -76,12 +104,11 @@
 
 //Propagates the change to the shuttle.
 /obj/structure/shuttle/engine/proc/alter_engine_power(mod)
-	if(mod == 0)
+	if(!mod)
 		return
-	if(SSshuttle.is_in_shuttle_bounds(src))
-		var/obj/docking_port/mobile/M = SSshuttle.get_containing_shuttle(src)
-		if(M)
-			M.alter_engines(mod)
+	var/obj/docking_port/mobile/port = connected_ship_ref?.resolve()
+	if(port)
+		port.alter_engines(mod)
 
 /obj/structure/shuttle/engine/heater
 	name = "engine heater"
@@ -99,7 +126,7 @@
 	name = "propulsion engine"
 	icon_state = "propulsion"
 	desc = "A standard reliable bluespace engine used by many forms of shuttles."
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/shuttle/engine/propulsion/left
 	name = "left propulsion engine"
@@ -132,7 +159,7 @@
 
 /obj/structure/shuttle/engine/large
 	name = "engine"
-	opacity = 1
+	opacity = TRUE
 	icon = 'icons/obj/2x2.dmi'
 	icon_state = "large_engine"
 	desc = "A very large bluespace engine used to propel very large ships."
@@ -142,7 +169,7 @@
 
 /obj/structure/shuttle/engine/huge
 	name = "engine"
-	opacity = 1
+	opacity = TRUE
 	icon = 'icons/obj/3x3.dmi'
 	icon_state = "huge_engine"
 	desc = "An extremely large bluespace engine used to propel extremely large ships."
