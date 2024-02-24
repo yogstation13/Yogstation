@@ -347,6 +347,7 @@
 /obj/item/upgrade/plasmacutter/proc/install(obj/item/gun/energy/plasmacutter/P)
 
 /obj/item/upgrade/plasmacutter/proc/uninstall(obj/item/gun/energy/plasmacutter/P)
+	P.installed_upgrades -= src
 
 /obj/item/upgrade/plasmacutter/defuser
 	name = "plasma cutter defusal kit"
@@ -364,6 +365,7 @@
 	P.cell.maxcharge = initial(P.cell.maxcharge)*2
 
 /obj/item/upgrade/plasmacutter/capacity/uninstall(obj/item/gun/energy/plasmacutter/P)
+	. = ..()
 	P.cell.maxcharge = initial(P.cell.maxcharge)
 	P.cell.charge = min(P.cell.charge, P.cell.maxcharge)
 
@@ -377,6 +379,7 @@
 	P.fire_delay *= 0.5
 
 /obj/item/upgrade/plasmacutter/cooldown/uninstall(obj/item/gun/energy/plasmacutter/P)
+	. = ..()
 	P.fire_delay *= 2
 
 /obj/item/upgrade/plasmacutter/range
