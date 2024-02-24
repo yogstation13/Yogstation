@@ -242,6 +242,8 @@
 
 /obj/machinery/power/apc/Initialize(mapload)
 	. = ..()
+	if(!mapload)
+		return
 	has_electronics = APC_ELECTRONICS_SECURED
 	// is starting with a power cell installed, create it and set its charge level
 	if(cell_type)
