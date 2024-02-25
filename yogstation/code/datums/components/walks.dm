@@ -67,9 +67,6 @@
 		move_delay = old_move_delay
 	else
 		move_delay = world.time
-	
-	L.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
-	move_delay += add_delay
 
 	var/allowed = can_walk(L, T)
 	switch(allowed)
@@ -81,8 +78,10 @@
 			preprocess_move(L, T)
 			L.forceMove(T)
 			finalize_move(L, T)
-			if(direction & (direction - 1))
-				move_delay += add_delay * 0.414214 // sqrt(2) (already added the 1x)
+			if(direction & (direction - 1)) //extra delay for diagonals
+				add_delay *= 1.414214 // sqrt(2)
+			L.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
+			move_delay += add_delay
 			return TRUE
 
 /datum/component/walk/shadow/can_walk(mob/living/user, turf/destination)
@@ -105,7 +104,7 @@
 
 /datum/component/walk/shadow/finalize_move(mob/living/user, turf/destination)
 	if(pulled)
-		user.start_pulling(pulled, TRUE)
+		user.start_pulling(pulled, TRUE, supress_message = TRUE)
 		pulled = null
 
 /datum/component/walk/jaunt
