@@ -753,7 +753,7 @@
 /datum/status_effect/progenitor_curse/proc/grasp(turf/spawn_turf)
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
-	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
+	playsound(spawn_turf, pick('sound/effects/curse1.ogg','sound/effects/curse2.ogg','sound/effects/curse3.ogg'), 80, 1, -1)
 	var/obj/projectile/curse_hand/progenitor/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
