@@ -224,7 +224,7 @@
 	if(class && istype(class) && class.learned_abilities)
 		. += "<b>Upgrades:</b><br>"
 		for(var/datum/psi_web/ability as anything in class.learned_abilities)
-			. += ability.name
+			. += "[ability.name]<br>"
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//

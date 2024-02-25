@@ -26,6 +26,9 @@
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
+	var/datum/component/darkspawn_class/class = owner.GetComponent(/datum/component/darkspawn_class)
+	if(class && class != src)
+		qdel(class) //no multiclassing
 	if(!isdarkspawn(owner))
 		return COMPONENT_INCOMPATIBLE
 	
