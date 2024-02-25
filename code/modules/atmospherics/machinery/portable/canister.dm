@@ -600,9 +600,9 @@
 /obj/machinery/portable_atmospherics/canister/fusion_test/create_gas()
 	air_contents.set_moles(GAS_TRITIUM, 10)
 	air_contents.set_moles(GAS_PLASMA, 500)
-	air_contents.set_moles(GAS_H2, 500)
+	air_contents.set_moles(GAS_CO2, 500)
 	air_contents.set_moles(GAS_NITROUS, 100)
-	air_contents.set_temperature(10000)
+	air_contents.set_temperature(FUSION_TEMPERATURE_THRESHOLD)
 
 /// Canister 1 Kelvin below the fusion point. Contains far too much plasma. Only good for adding more fuel to ongoing fusion reactions.
  /obj/machinery/portable_atmospherics/canister/fusion_test_2
@@ -614,7 +614,7 @@
 	air_contents.set_moles(GAS_PLASMA, 15000)
 	air_contents.set_moles(GAS_CO2, 1500)
 	air_contents.set_moles(GAS_NITROUS, 100)
-	air_contents.set_temperature(9999)
+	air_contents.set_temperature(FUSION_TEMPERATURE_THRESHOLD - 1)
 
 /// Canister at the perfect conditions to start and continue fusion for a long time.
 /obj/machinery/portable_atmospherics/canister/fusion_test_3
@@ -638,7 +638,7 @@
 	air_contents.set_moles(GAS_PLASMA, 4500)
 	air_contents.set_moles(GAS_CO2, 1500)
 	air_contents.set_moles(GAS_DILITHIUM, 2000)
-	air_contents.set_temperature(10000)
+	air_contents.set_temperature(FUSION_TEMPERATURE_THRESHOLD - 1)
 
 /// A canister that is 1 Kelvin away from doing the stimball reaction.
 /obj/machinery/portable_atmospherics/canister/stimball_test

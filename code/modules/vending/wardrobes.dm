@@ -368,7 +368,6 @@
 					/obj/item/clothing/under/yogs/casualjanitorsuit = 2,
 					/obj/item/clothing/suit/yogs/janitorcoat = 2,
 					/obj/item/clothing/suit/hooded/wintercoat/janitor = 2,
-					/obj/item/cartridge/janitor = 2,
 					/obj/item/clothing/under/rank/janitor/skirt = 2,
 					/obj/item/clothing/under/janimaid = 2,
 					/obj/item/clothing/gloves/color/black = 2,

@@ -74,6 +74,11 @@
 	air_contents = new(volume) //liters
 	air_contents.set_temperature(T20C)
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 	populate_gas()
 
 	START_PROCESSING(SSobj, src)
@@ -367,8 +372,7 @@
 
 //Assembly / attached device memes
 
-/obj/item/tank/Crossed(atom/movable/AM) //for mousetraps
-	..()
+/obj/item/tank/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(tank_assembly)
 		tank_assembly.Crossed(AM)
 

@@ -91,14 +91,6 @@
 		return INITIALIZE_HINT_LATELOAD
 	return INITIALIZE_HINT_NORMAL
 
-/obj/machinery/light_switch/LateInitialize()
-	if(!is_station_level(z))
-		return
-	var/area/source_area = get_area(get_turf(src))
-	if(source_area.lights_always_start_on)
-		return
-	turn_off()
-
 /obj/machinery/light_switch/update_appearance(updates=ALL)
 	. = ..()
 	luminosity = (stat & NOPOWER) ? 0 : 1

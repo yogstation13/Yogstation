@@ -144,7 +144,7 @@
 
 /obj/item/wallframe/mirror
 	name = "mirror"
-	desc = "a mirror on your hand, what are you gonna do?"
+	desc = "A mirror on your hand, what are you gonna do?"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
 	result_path = /obj/structure/mirror
