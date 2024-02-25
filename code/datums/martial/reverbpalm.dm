@@ -75,7 +75,7 @@
 		return FALSE
 	return ..()
 
-/datum/martial_art/reverberating_palm/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
+/datum/martial_art/reverberating_palm/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target, proximity)
 	var/list/modifiers = params2list(params)
 	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"]))
 		return
@@ -86,7 +86,7 @@
 		return
 	if(H.a_intent == INTENT_DISARM)
 		rush(H)
-	if(H.a_intent == INTENT_HARM && isliving(target))
+	if(H.a_intent == INTENT_HARM && isliving(target) && (get_dist(H, target) <= 1))
 		suplex(H,target)
 	if(H.a_intent == INTENT_GRAB)
 		lariat(H)
@@ -137,7 +137,6 @@
 	COOLDOWN_START(src, next_suplex, COOLDOWN_SUPLEX)
 	footsies(target)
 	var/turf/Q = get_step(get_turf(user), turn(user.dir,180))
-	user.visible_message(span_warning("[user] outstretches [user.p_their()] arm and goes for a grab!"))
 	wakeup(target)
 	for(var/mob/living/L in Q.contents)
 		damagefilter(user, L, simpledam, persondam, borgdam)
@@ -145,6 +144,15 @@
 		target.forceMove(Z)
 	damagefilter(user, target, simpledam, persondam, borgdam)
 	if(isanimal(target))
+		if(istype(target, /mob/living/simple_animal/hostile/megafauna/bubblegum))
+			var/mob/living/simple_animal/hostile/megafauna/bubblegum/B = target
+			if(B.charging)
+				B.adjustBruteLoss(50)
+				B.charging = FALSE
+				target.visible_message(span_warning("[B] is caught and slammed into the dirt!"))
+				playsound(target, 'sound/effects/explosion1.ogg', 60, 1)
+				shake_camera(user, 1, 2)
+				return
 		if(target.stat == DEAD)
 			target.visible_message(span_warning("[target] crashes and explodes!"))
 			target.gib()
