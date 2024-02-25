@@ -1382,12 +1382,6 @@
 /mob/living/carbon/human/species/skeleton/lowcalcium
 	race = /datum/species/skeleton/lowcalcium
 
-/mob/living/carbon/human/species/synth
-	race = /datum/species/synth
-
-/mob/living/carbon/human/species/synth/military
-	race = /datum/species/synth/military
-
 /mob/living/carbon/human/species/vampire
 	race = /datum/species/vampire
 
