@@ -75,7 +75,7 @@
 		return FALSE
 	return ..()
 
-/datum/martial_art/reverberating_palm/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target, proximity)
+/datum/martial_art/reverberating_palm/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
 	var/list/modifiers = params2list(params)
 	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"]))
 		return
