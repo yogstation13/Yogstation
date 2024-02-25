@@ -120,7 +120,7 @@
 //----------------------------Trap abilities----------------------------//
 //////////////////////////////////////////////////////////////////////////
 //Reskinned punji sticks that don't stun for as long
-/datum/action/cooldown/spell/pointed/darkspawn_build/punji
+/datum/action/cooldown/spell/pointed/darkspawn_build/damage
 	name = "Damage trap"
 	desc = "Stitch together shadows into a trap that deals damage to non-ally that crosses it."
 	object_type = /obj/structure/trap/darkspawn/damage
