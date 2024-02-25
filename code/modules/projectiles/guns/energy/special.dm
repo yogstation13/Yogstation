@@ -347,7 +347,7 @@
 /obj/item/upgrade/plasmacutter/proc/install(obj/item/gun/energy/plasmacutter/P)
 
 /obj/item/upgrade/plasmacutter/proc/uninstall(obj/item/gun/energy/plasmacutter/P)
-	P.installed_upgrades -= src
+	P.installed_upgrades -= src // Allows you to put the mod back in
 
 /obj/item/upgrade/plasmacutter/defuser
 	name = "plasma cutter defusal kit"
