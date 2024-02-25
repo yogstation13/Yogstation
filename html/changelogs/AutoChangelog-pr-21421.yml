@@ -1,0 +1,5 @@
+author: "Yarinoi"
+delete-after: true 
+changes: 
+  - imageadd: "added new chaplain hat icons"
+  - imagedel: "removed old chaplain hat icons :exploding_head:"
