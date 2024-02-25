@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Examining cutter mods shows you cost and stackability"
