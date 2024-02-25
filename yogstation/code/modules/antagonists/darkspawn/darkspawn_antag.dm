@@ -24,11 +24,6 @@
 	var/dark_healing = 5
 	var/light_burning = 7
 
-	//upgrade variables
-	var/list/upgrades = list() //A list of all the upgrades we currently have (actual objects, not just typepaths)
-	
-	var/specialization = NONE
-
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------UI and Psi web stuff--------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +104,6 @@
 	if(darkspawn_state == MUNDANE)
 		var/datum/action/cooldown/spell/divulge/action = new(owner)
 		action.Grant(current_mob)
-		upgrades += action
 		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
@@ -218,9 +212,15 @@
 	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? "[psi_regen_delay/10] seconds" : "no delay"]<br>"
 	. += "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
 
-	. += "<b>Upgrades:</b><br>"
-	for(var/V in upgrades)
-		. += "[V]<br>"
+	var/mob/living/carbon/human/user = owner.current
+	if(!user || !istype(user))//sanity check
+		return
+
+	var/datum/component/darkspawn_class/class = user.GetComponent(/datum/component/darkspawn_class)
+	if(class && istype(class) && class.learned_abilities)
+		. += "<b>Upgrades:</b><br>"
+		for(var/datum/psi_web/ability as anything in class.learned_abilities)
+			. += ability.name
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//
@@ -297,7 +297,6 @@
 			spells.Remove(user)
 			qdel(spells)
 
-
 	disguise_name = user.real_name //keep track of the old name
 	user.fully_heal()
 	user.set_species(/datum/species/shadow/darkspawn)
@@ -312,18 +311,6 @@
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
-
-
-	//will be handled by darkspawn classes when chubby finishes them
-	var/datum/action/cooldown/spell/touch/devour_will/devour = new(owner)
-	upgrades |= devour
-	devour.Grant(owner.current)
-	var/datum/action/cooldown/spell/toggle/light_eater/eater = new(owner)
-	upgrades |= eater
-	eater.Grant(owner.current)
-	var/datum/action/cooldown/spell/sacrament/sacrament = new(owner)
-	upgrades |= sacrament
-	sacrament.Grant(owner.current)
 
 	darkspawn_state = DIVULGED
 	to_chat(user, span_velvet("<b>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</b>"))
