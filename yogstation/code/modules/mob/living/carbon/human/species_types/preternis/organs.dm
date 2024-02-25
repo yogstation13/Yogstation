@@ -32,7 +32,6 @@
 
 /obj/item/organ/eyes/robotic/preternis/proc/nv_on()
 	night_vision = TRUE
-	sight_flags = initial(sight_flags)
 	color_cutoffs = colour_cutoff_list.Copy()
 	lighting_cutoff = light_cutoff
 	if(ishuman(owner))
@@ -45,7 +44,6 @@
 
 /obj/item/organ/eyes/robotic/preternis/proc/nv_off()
 	night_vision = FALSE
-	sight_flags = initial(sight_flags)
 	color_cutoffs = null
 	lighting_cutoff = null
 	if(ishuman(owner) && original_eye_color)
