@@ -72,3 +72,15 @@
 /datum/psi_web/light_resistance/on_loss()
 	darkspawn.light_burning *= 2
 	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_LIGHTRES, src)
+
+/datum/psi_web/brute_res
+	name = "fighter innate abilities"
+	desc = "me no think so good"
+	shadow_flags = FIGHTER
+	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_tendril)
+
+/datum/psi_web/fighter/on_gain()
+	owner.physiology.brute_res /= 2
+
+/datum/psi_web/fighter/on_loss()
+	owner.physiology.stamina_mod *= 2
