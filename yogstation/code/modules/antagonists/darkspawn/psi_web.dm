@@ -37,14 +37,7 @@
 	owner = user
 	darkspawn = owner.mind?.has_antag_datum(/datum/antagonist/darkspawn)
 	if(!darkspawn || (darkspawn.willpower < willpower_cost))
-		return FALSE
-
-	var/datum/component/darkspawn_class/class = owner.GetComponent(/datum/component/darkspawn_class)
-	if(!(class || istype(class)))
-		return FALSE
-
-	if(!(class.specialization_flag & shadow_flags))
-		CRASH("[owner] tried to gain [name] which is not allowed by their specialization")
+		CRASH("[owner] tried to gain a psi_web datum despite not being a darkspawn")
 
 	if(learn_text)
 		to_chat(owner, span_velvet(learn_text))

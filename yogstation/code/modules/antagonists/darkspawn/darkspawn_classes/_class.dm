@@ -28,11 +28,6 @@
 	owner = parent
 	if(!isdarkspawn(owner))
 		return COMPONENT_INCOMPATIBLE
-	for(var/datum/psi_web/power as anything in starting_abilities)
-		if(ispath(power))
-			power = new()
-		learned_abilities |= power
-		power.on_purchase(owner)
 	
 /datum/component/darkspawn_class/Destroy()
 	. = ..()
@@ -41,16 +36,19 @@
 /datum/component/darkspawn_class/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER, PROC_REF(gain_power))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
-	if(isatom(parent))
-		var/atom/thing = parent
-		thing.update_appearance(UPDATE_OVERLAYS)
+	if(ishuman(parent))
+		owner = parent
+		owner.update_appearance(UPDATE_OVERLAYS)
+
+	for(var/datum/psi_web/power as anything in starting_abilities)
+		gain_power(power)
 	
 /datum/component/darkspawn_class/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER)
 	UnregisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS)
-	if(isatom(parent))
-		var/atom/thing = parent
-		thing.update_appearance(UPDATE_OVERLAYS)
+	if(ishuman(parent))
+		owner = parent
+		owner.update_appearance(UPDATE_OVERLAYS)
 	
 	for(var/datum/psi_web/power in learned_abilities)
 		lose_power(power)

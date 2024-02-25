@@ -41,7 +41,11 @@
 	data["objectives"] = get_objectives()
 	data["lucidity_drained"] = SSticker.mode.lucidity
 	data["required_succs"] = SSticker.mode.required_succs
-	data["specialization"] = specialization //whether or not they've picked their specializationW
+	data["specialization"] = "none"
+
+	var/datum/component/darkspawn_class/class = user.GetComponent(/datum/component/darkspawn_class)
+	if(class && istype(class) && class.specialization_flag)
+		data["specialization"] = class.specialization_flag
 
 	return data
 
