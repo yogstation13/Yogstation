@@ -76,11 +76,25 @@
 /datum/psi_web/brute_res
 	name = "fighter innate abilities"
 	desc = "me no think so good"
+	willpower_cost = 2
+	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
-	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_tendril)
 
-/datum/psi_web/fighter/on_gain()
-	owner.physiology.brute_res /= 2
+/datum/psi_web/brute_res/on_gain()
+	owner.physiology.brute_mod /= 2
 
-/datum/psi_web/fighter/on_loss()
-	owner.physiology.stamina_mod *= 2
+/datum/psi_web/brute_res/on_loss()
+	owner.physiology.brute_mod *= 2
+
+/datum/psi_web/burn_res
+	name = "fighter innate abilities"
+	desc = "me no think so good"
+	willpower_cost = 2
+	menu_tab = STORE_PASSIVE
+	shadow_flags = FIGHTER
+
+/datum/psi_web/brute_res/on_gain()
+	owner.physiology.burn_mod /= 2
+
+/datum/psi_web/brute_res/on_loss()
+	owner.physiology.burn *= 2
