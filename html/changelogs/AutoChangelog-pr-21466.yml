@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscdel: "Lights no longer start off except for empty departments"
+  - tweak: "adds a cooldown to light flickering from explosions/etc"
