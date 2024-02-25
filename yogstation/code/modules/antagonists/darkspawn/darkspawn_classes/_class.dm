@@ -19,10 +19,7 @@
 	var/class_color = COLOR_SILVER
 	
 	var/icon_file = 'yogstation/icons/mob/darkspawn.dmi'
-	var/mutable_appearance/eyes
 	var/eye_icon = "eyes"
-
-	var/mutable_appearance/class_sigil
 	var/class_icon = "classless"
 
 /datum/component/darkspawn_class/Initialize()
@@ -37,32 +34,43 @@
 		learned_abilities |= power
 		power.on_gain()
 	
-	eyes = emissive_appearance(icon_file, eye_icon, owner)
-	eyes.color = class_color
-	owner.add_overlay(eyes)
-	
-	class_sigil = emissive_appearance(icon_file, class_icon, owner)
-	class_sigil.color = class_color
-	owner.add_overlay(class_sigil)
-	
-
 /datum/component/darkspawn_class/Destroy()
 	. = ..()
 	owner = null
 
 /datum/component/darkspawn_class/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER, PROC_REF(gain_power))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
+	if(isatom(parent))
+		var/atom/thing = parent
+		thing.update_appearance(UPDATE_OVERLAYS)
 	
-
 /datum/component/darkspawn_class/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER)
+	UnregisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS)
+	if(isatom(parent))
+		var/atom/thing = parent
+		thing.update_appearance(UPDATE_OVERLAYS)
 	
-	owner.cut_overlay(eyes)
-	owner.cut_overlay(class_sigil)
-	QDEL_NULL(class_sigil)
 	for(var/datum/psi_web/power in learned_abilities)
 		lose_power(power)
+
+/datum/component/darkspawn_class/proc/update_owner_overlay(atom/source, list/overlays)
+	SIGNAL_HANDLER
+
+	//draw both the overlay itself and the emissive overlay
+	var/mutable_appearance/eyes = mutable_appearance(icon_file, eye_icon)
+	eyes.color = class_color
+	overlays += eyes
+
+	overlays += emissive_appearance(icon_file, eye_icon, source) //the emissive overlay for the eyes
 	
+	var/mutable_appearance/class_sigil = mutable_appearance(icon_file, class_icon)
+	class_sigil.color = class_color
+	overlays += class_sigil
+
+	overlays += emissive_appearance(icon_file, class_icon, source) //the emissive overlay for the sigil
+
 /datum/component/darkspawn_class/proc/get_purchasable_abilities()
 	var/list/datum/psi_web/available_abilities = list()
 	for(var/datum/psi_web/ability in subtypesof(/datum/psi_web))

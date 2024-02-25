@@ -91,7 +91,11 @@
 	animate(src, alpha = 255, time = 4 SECONDS) 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'yogstation/sound/magic/sacrament_complete.ogg', 50), 4 SECONDS, TIMER_UNIQUE)
 	time_to_next_roar = world.time + roar_cooldown //prevent immediate roaring causing sound overlap
+	update_appearance(UPDATE_OVERLAYS)
 
+/mob/living/simple_animal/hostile/darkspawn_progenitor/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src)
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/AttackingTarget()
 	if(istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
