@@ -1,7 +1,6 @@
-/datum/action/cooldown/spell/darkness_smoke //Spawns a cloud of smoke that blinds non-thralls/shadows and grants slight healing to shadowlings and their allies
+/datum/action/cooldown/spell/darkness_smoke //Spawns a cloud of smoke that blinds non-thralls/shadows and grants slight healing to darkspawns and their allies
 	name = "Darkness Smoke"
 	desc = "Spews a cloud of smoke which will blind enemies."
-	panel = "Shadowling Abilities"
 	button_icon_state = "black_smoke"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 

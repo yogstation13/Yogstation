@@ -381,8 +381,14 @@
 	for(var/datum/action/cooldown/spell/spells in user.actions) //they'll have progenitor specific abilities
 		spells.Remove(user)
 		qdel(spells)
+
+	var/class_color = COLOR_DARKSPAWN_PSI
+	var/datum/component/darkspawn_class/class = user.GetComponent(/datum/component/darkspawn_class)
+	if(class && istype(class) && class.class_color)
+		class_color = class.class_color //this line actually kinda hurts me
+		
 	// Spawn the progenitor
-	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user), user.real_name)
+	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user), user.real_name, class_color)
 	user.mind.transfer_to(progenitor)
 
 	psi = 9999
@@ -401,7 +407,7 @@
 
 ///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
-	SSshuttle.emergency.request(null, 0, null, 0.1)
+	SSshuttle.emergency.request(null, 0, null, 0.2)
 
 ///To get the icon in preferences
 /datum/antagonist/darkspawn/get_preview_icon()

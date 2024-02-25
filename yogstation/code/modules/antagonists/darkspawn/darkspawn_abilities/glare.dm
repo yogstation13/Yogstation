@@ -1,7 +1,6 @@
 /datum/action/cooldown/spell/pointed/glare //Stuns and mutes a human target for 10 seconds
 	name = "Glare"
 	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
-	panel = "Shadowling Abilities"
 	button_icon_state = "glare"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	panel = null

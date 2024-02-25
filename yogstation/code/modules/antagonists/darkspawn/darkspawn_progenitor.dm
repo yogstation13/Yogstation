@@ -22,7 +22,7 @@
 	status_flags = NONE
 
 	//movement stats
-	speed = -0.5 //just about the same speed as a person
+	speed = -0.3 //just about the same speed as a person
 	movement_type = FLYING
 	move_force = INFINITY
 	move_resist = INFINITY //hmm yes, surely this won't cause bugs *clueless*
@@ -45,19 +45,18 @@
 	var/time_to_next_roar = 0
 	var/roar_cooldown = 20 SECONDS
 	var/list/roar_text = list(
-		"You stand paralyzed in the shadow of the cold as it descends from on high."
+		"You stand paralyzed in the shadow of the cold as it descends from on high.",
+		"The end times the end times the end times the end times the end times"
 		)
-
-	//glowing emissive outline
-	var/outline_filter
 
 	///Innate spells that are added when a progenitor is created
 	var/list/actions_to_add = list( //can be modified for each progenitor
 		/datum/action/cooldown/spell/pointed/progenitor_curse
 	)
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload, darkspawn_name, outline_colour = COLOR_DARKSPAWN_PSI)
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload, darkspawn_name, class_colour = COLOR_DARKSPAWN_PSI)
 	. = ..()
+	//add_atom_colour(class_colour, FIXED_COLOUR_PRIORITY)
 
 	//give them all the class specific spells
 	for(var/spell in actions_to_add)
@@ -80,12 +79,6 @@
 		prefix = "Vxtrin"
 	name = "[prefix] [suffix][darkspawn_name ? " [darkspawn_name]":""]"
 
-	//to show the class of the darkspawn
-	add_filter("outline_filter", 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 1))
-	outline_filter = get_filter("outline_filter")
-	animate(outline_filter, alpha = 200, time = 1 SECONDS, loop = -1, easing = EASE_OUT | SINE_EASING)
-	animate(alpha = 100, time = 1 SECONDS, easing = EASE_OUT | SINE_EASING)
-
 	//have them fade into existence and play a sound cry when they finish fading in
 	alpha = 0
 	animate(src, alpha = 255, time = 4 SECONDS) 
@@ -107,7 +100,7 @@
 //////////////////////////////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Login()
 	..()
-	var/image/I = image(icon = 'yogstation/icons/mob/mob.dmi' , icon_state = "smol_progenitor", loc = src)
+	var/image/I = image(icon = 'yogstation/icons/mob/darkspawn.dmi' , icon_state = "smol_progenitor", loc = src)
 	I.override = 1
 	I.pixel_x -= pixel_x
 	I.pixel_y -= pixel_y
@@ -128,10 +121,10 @@
 		roar()
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/proc/roar()
-	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 50, TRUE)
+	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 70, TRUE)
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
-			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 25, FALSE, falloff_exponent = 5)
+			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 35, FALSE, falloff_exponent = 5)
 		else if(is_darkspawn_or_veil(M) || M==src) //the progenitor is PROBABLY a darkspawn, but just in case
 			continue
 		else if(isliving(M))

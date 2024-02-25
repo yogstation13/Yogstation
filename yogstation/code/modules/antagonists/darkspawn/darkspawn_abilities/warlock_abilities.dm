@@ -174,7 +174,7 @@
 /datum/action/cooldown/spell/pointed/extract
 	name = "Extract"
 	desc = "Drain a target's life force or bestow it to an ally."
-	button_icon = 'yogstation/icons/mob/sling.dmi'
+	button_icon = 'yogstation/icons/mob/darkspawn.dmi'
 	button_icon_state = "slingbeam"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -256,7 +256,7 @@
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
 	to_chat(owner, span_velvet("Qokxlez..."))
-	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, cast_range)
+	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/darkspawn.dmi' , INFINITY, cast_range)
 	channeled = cast_on
 	healing = is_darkspawn_or_veil(channeled)
 	
