@@ -234,7 +234,7 @@ Like its parent but can be applied to carbon mobs instead of clothing items
 	. = list()
 	if(ishuman(wielder))// Monkeys get no bloody feet :(
 		if(HAS_BLOOD_DNA(wielder))
-			bloody_feet.color = bloody_feet.color = get_blood_dna_color(wielder.return_blood_DNA())
+			bloody_feet.color = get_blood_dna_color(wielder.return_blood_DNA())
 			. += bloody_feet
 		if(bloody_shoes[BLOOD_STATE_HUMAN] > 0 && !is_obscured())
 			wielder.remove_overlay(SHOES_LAYER)

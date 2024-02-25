@@ -6,7 +6,6 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	selection_color = "#ccffcc"
 	supervisors = "your laws"
 	req_admin_notify = TRUE
 	minimal_player_age = 30

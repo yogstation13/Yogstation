@@ -62,7 +62,7 @@
 	addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
 
 //Melee weapon attacks are a little different in that they'll override the standard melee attack
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/action(atom/target, params)
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/action(atom/target, mob/living/user, params)
 	if(!action_checks(target))
 		return 0
 
@@ -125,7 +125,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/cleave_attack()
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/special_hit()	//For special effects, slightly simplifies cleave/precise attack procs
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/special_hit(atom/target)	//For special effects, slightly simplifies cleave/precise attack procs
 	return 1
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/on_select()
@@ -536,3 +536,126 @@
 				span_userdanger("[chassis.name] penetrates your suits armor with [src]!"))
 			chassis.log_message("Hit [H] with [src.name] (precise attack).", LOG_MECHA)
 
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop
+	name = "heavy mop"
+	desc = "A very big mop, designed to be attached to mechanical exosuits."
+	icon_state = "mecha_mop"
+	energy_drain = 5
+	attack_sound = 'sound/effects/slosh.ogg'
+
+	cleave = TRUE
+	precise_attacks = FALSE // cleave only
+	attack_sharpness = SHARP_NONE
+	harmful = FALSE
+	weapon_damage = 0 // no damage
+	structure_damage_mult = 0 // don't break stuff while trying to clean
+	equip_actions = list(/datum/action/innate/mecha/equipment/sweeping)
+	var/auto_sweep = TRUE
+
+/datum/action/innate/mecha/equipment/sweeping
+	name = "Toggle Auto-Mop"
+	button_icon_state = "sweep_on"
+
+/datum/action/innate/mecha/equipment/sweeping/Activate()
+	var/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/mop = equipment
+	mop.auto_sweep = !mop.auto_sweep
+	button_icon_state = "sweep_[mop.auto_sweep ? "on" : "off"]"
+	build_all_button_icons()
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/attach(obj/mecha/M)
+	. = ..()
+	RegisterSignal(M, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_pre_move))
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/detach(atom/moveto)
+	UnregisterSignal(chassis, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/can_attach(obj/mecha/M)
+	if(istype(M, /obj/mecha/working) && M.equipment.len < M.max_equip)
+		return TRUE
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/proc/on_pre_move(obj/mecha/mech, atom/newloc)
+	if(!auto_sweep)
+		return
+	var/mop_dir = get_dir(mech, newloc)
+	if(mop_dir != mech.dir) // only sweep things in front of the mech
+		return
+	do_mop(mech, newloc)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/proc/do_mop(obj/mecha/mech, atom/newloc, throw_power=1)
+	var/turf/mop_turf = newloc
+	var/turf/thrown_at = get_edge_target_turf(mop_turf, chassis.dir)
+	var/cleaned = FALSE
+
+	if(mop_turf.wash(CLEAN_SCRUB))
+		cleaned = TRUE
+	for(var/atom/movable/moved_atom in newloc)
+		if(istype(moved_atom, /obj/effect/decal/nuclear_waste)) // sweep that nuclear waste under the rug
+			cleaned = TRUE
+			playsound(moved_atom, 'sound/effects/gib_step.ogg', 50, 1)
+			qdel(moved_atom)
+			continue
+		if(moved_atom.wash(CLEAN_SCRUB))
+			cleaned = TRUE
+		if(moved_atom.anchored)
+			continue
+		if(moved_atom == chassis) // it can clean itself, but not move itself
+			continue
+		moved_atom.throw_at(thrown_at, throw_power, 1, mech.occupant, (throw_power > 1))
+		if(isliving(moved_atom) && throw_power > 1)
+			moved_atom.visible_message(span_danger("[mech] mops the floor with [moved_atom]!"), span_userdanger("[mech] mops the floor with you!"))
+
+	if(cleaned)
+		playsound(newloc, 'sound/effects/slosh.ogg', 25, 1)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/mop/cleave_attack()
+	playsound(chassis, attack_sound, 50, 1)
+	for(var/turf/T in list(get_turf(chassis), get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, -45)), get_step(chassis, turn(chassis.dir, 45))))
+		do_mop(chassis, T, 3) // mop the floor with them!
+	var/turf/cleave_effect_loc = get_step(get_turf(src), SOUTHWEST)
+	new cleave_effect(cleave_effect_loc, chassis.dir)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter
+	name = "comically large flyswatter"
+	desc = "A comically large flyswatter, presumably for killing comically large bugs."
+	attack_sound = 'sound/effects/snap.ogg'
+	icon_state = "mecha_flyswatter"
+	cleave = FALSE
+	precise_attacks = TRUE
+	hit_effect = ATTACK_EFFECT_SMASH
+	///Things in this list will be instantly splatted.
+	var/list/strong_against
+	///Damage to mobs with the MOB_BUG biotype, quadrupled for simple mobs
+	var/bug_damage = 30
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter/Initialize(mapload)
+	. = ..()
+	strong_against = typecacheof(list(
+		/mob/living/simple_animal/hostile/poison/bees,
+		/mob/living/simple_animal/butterfly,
+		/mob/living/simple_animal/cockroach,
+		/obj/item/queen_bee
+	))
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter/precise_attack(atom/target)
+	var/mob/living/mob_target = target
+	if(is_type_in_typecache(target, strong_against))
+		new /obj/effect/decal/cleanable/insectguts(target.drop_location())
+		to_chat(chassis.occupant, span_warning("You easily splat the [target]."))
+		if(isliving(target))
+			var/mob/living/bug = target
+			bug.death(TRUE)
+		else
+			qdel(target)
+	else if(isliving(target) && (mob_target.mob_biotypes & MOB_BUG))
+		mob_target.apply_damage(bug_damage * (ishuman(mob_target) ? 1 : 4), BRUTE, wound_bonus=CANT_WOUND) // bonus damage to simple mobs
+		target.visible_message(span_warning("[chassis] splats [target] with [src]!"), span_userdanger("[chassis] splats you with [src]!"))
+	chassis.do_attack_animation(target, hit_effect)
+	playsound(chassis, attack_sound, 50, 1)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/flyswatter/can_attach(obj/mecha/M)
+	if(istype(M, /obj/mecha/working) && M.equipment.len < M.max_equip)
+		return TRUE
+	return ..()

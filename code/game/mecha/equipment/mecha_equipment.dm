@@ -7,6 +7,8 @@
 	icon_state = "mecha_equip"
 	force = 5
 	max_integrity = 300
+	/// Prevents hitting stuff when trying to use certain equipment as tools
+	item_flags = NOBLUDGEON
 	/// Cooldown after use
 	var/equip_cooldown = 0
 	/// is the module ready for use
@@ -27,8 +29,21 @@
 	var/destroy_sound = 'sound/mecha/critdestr.ogg'
 	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
 	var/mech_flags = NONE
-	//Special melee override for melee weapons
+	/// Special melee override for melee weapons
 	var/melee_override = FALSE
+	/// Actions granted by this equipment
+	var/list/equip_actions = list()
+
+/obj/item/mecha_parts/mecha_equipment/Initialize(mapload)
+	. = ..()
+	var/list/action_type_list = equip_actions.Copy()
+	equip_actions = list()
+	for(var/path in action_type_list)
+		var/datum/action/innate/mecha/equipment/action = new path
+		action.equipment = src
+		equip_actions.Add(action)
+	qdel(action_type_list)
+
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
 	if(chassis)
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
@@ -55,6 +70,8 @@
 			chassis.occupant_message(span_danger("[src] is destroyed!"))
 			chassis.occupant.playsound_local(chassis, destroy_sound, 50)
 		chassis = null
+	for(var/datum/action/innate/mecha/equipment/E in equip_actions)
+		E.Destroy()
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/try_attach_part(mob/user, obj/mecha/M)
@@ -103,7 +120,7 @@
 		return 0
 	return 1
 
-/obj/item/mecha_parts/mecha_equipment/proc/action(atom/target)
+/obj/item/mecha_parts/mecha_equipment/proc/action(atom/target, mob/living/user, params)
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/proc/start_cooldown()
@@ -140,9 +157,21 @@
 	forceMove(M)
 	log_message("[src] initialized.", LOG_MECHA)
 	update_chassis_page()
+	ADD_TRAIT(src, TRAIT_NODROP, "mecha")
+	item_flags |= NO_MAT_REDEMPTION // terrible
+	for(var/datum/action/innate/mecha/equipment/action as anything in equip_actions)
+		action.chassis = M
+	if(chassis.occupant)
+		grant_actions(chassis.occupant)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
+	if(chassis.occupant)
+		remove_actions(chassis.occupant)
+	for(var/datum/action/innate/mecha/equipment/action as anything in equip_actions)
+		action.chassis = null
+	item_flags &= ~NO_MAT_REDEMPTION
+	REMOVE_TRAIT(src, TRAIT_NODROP, "mecha")
 	if(chassis.selected == src)
 		src.on_deselect()
 	moveto = moveto || get_turf(chassis)
@@ -198,3 +227,16 @@
 /obj/item/mecha_parts/mecha_equipment/proc/check_eva()
 	return chassis?.check_eva()
 
+// Some equipment can be used as tools
+/obj/item/mecha_parts/mecha_equipment/tool_use_check(mob/living/user, amount)
+	return (chassis ? (chassis.cell.charge >= energy_drain) : FALSE) // but not if they aren't attached to a mech
+
+// Grant any actions to the pilot
+/obj/item/mecha_parts/mecha_equipment/proc/grant_actions(mob/pilot)
+	for(var/datum/action/innate/mecha/equipment/action as anything in equip_actions)
+		action.Grant(pilot)
+
+// Remove the actions!!!!
+/obj/item/mecha_parts/mecha_equipment/proc/remove_actions(mob/pilot)
+	for(var/datum/action/innate/mecha/equipment/action as anything in equip_actions)
+		action.Remove(pilot)

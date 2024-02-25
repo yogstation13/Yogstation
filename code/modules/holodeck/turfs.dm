@@ -89,18 +89,18 @@
 	icon_state = SPACE_ICON_STATE // so realistic
 	. = ..()
 
-/turf/open/floor/holofloor/hyperspace
-	name = "\proper hyperspace"
+/turf/open/floor/holofloor/bluespace
+	name = "\proper bluespace"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "speedspace_ns_1"
 	bullet_bounce_sound = null
 	tiled_dirt = FALSE
 
-/turf/open/floor/holofloor/hyperspace/Initialize(mapload)
+/turf/open/floor/holofloor/bluespace/Initialize(mapload)
 	icon_state = "speedspace_ns_[(x + 5*y + (y%2+1)*7)%15+1]"
 	. = ..()
 
-/turf/open/floor/holofloor/hyperspace/ns/Initialize(mapload)
+/turf/open/floor/holofloor/bluespace/ns/Initialize(mapload)
 	. = ..()
 	icon_state = "speedspace_ns_[(x + 5*y + (y%2+1)*7)%15+1]"
 

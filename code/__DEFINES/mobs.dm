@@ -314,6 +314,13 @@
 #define	REAGENTS_METABOLISM 0.4	//How many units of reagent are consumed per tick, by default.
 #define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4)	// By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism
 
+// Eye protection
+#define FLASH_PROTECTION_HYPER_SENSITIVE -2
+#define FLASH_PROTECTION_SENSITIVE -1
+#define FLASH_PROTECTION_NONE 0
+#define FLASH_PROTECTION_FLASH 1
+#define FLASH_PROTECTION_WELDER 2
+
 // Roundstart trait system
 
 #define MAX_QUIRKS 6 //The maximum amount of quirks one character can have at roundstart
@@ -392,3 +399,25 @@
 
 /// Possible value of [/atom/movable/buckle_lying]. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.
 #define NO_BUCKLE_LYING -1
+
+/// Squashing will not occur if the mob is not lying down (bodyposition is LYING_DOWN)
+#define SQUASHED_SHOULD_BE_DOWN (1<<0)
+/// If present, outright gibs the squashed mob instead of just dealing damage
+#define SQUASHED_SHOULD_BE_GIBBED (1<<1)
+/// If squashing always passes if the mob is dead
+#define SQUASHED_ALWAYS_IF_DEAD (1<<2)
+/// Don't squash our mob if its not located in a turf
+#define SQUASHED_DONT_SQUASH_IN_CONTENTS (1<<3)
+
+// Bitflags for mob dismemberment and gibbing
+/// Mobs will drop a brain
+#define DROP_BRAIN (1<<0)
+/// Mobs will drop organs
+#define DROP_ORGANS (1<<1)
+/// Mobs will drop bodyparts (arms, legs, etc.)
+#define DROP_BODYPARTS (1<<2)
+/// Mobs will drop items
+#define DROP_ITEMS (1<<3)
+
+/// Mobs will drop everything
+#define DROP_ALL_REMAINS (DROP_BRAIN | DROP_ORGANS | DROP_BODYPARTS | DROP_ITEMS)
