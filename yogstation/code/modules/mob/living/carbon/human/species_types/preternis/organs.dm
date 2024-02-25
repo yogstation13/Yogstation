@@ -59,10 +59,10 @@
 	. = ..()
 	if(!owner)
 		return
-	if(HAS_TRAIT(owner, TRAIT_POWERHUNGRY) && !powered)
+	if((HAS_TRAIT(owner, TRAIT_POWERHUNGRY) || (owner.mob_biotypes & MOB_ROBOTIC)) && !powered)
 		powered = TRUE
 		to_chat(owner, span_notice("A battery icon disappears from your vision as your [src] switch to external power."))
-	if(!HAS_TRAIT(owner, TRAIT_POWERHUNGRY) && powered) //these eyes depend on being inside a preternis for power
+	if(!(HAS_TRAIT(owner, TRAIT_POWERHUNGRY) || (owner.mob_biotypes & MOB_ROBOTIC)) && powered) //these eyes depend on being inside a preternis for power
 		powered = FALSE
 		to_chat(owner, span_boldwarning("Your [src] flash warnings that they've lost their power source, and are running on emergency power!"))
 	if(powered)
