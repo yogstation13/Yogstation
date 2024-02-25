@@ -69,11 +69,13 @@
 		//when powered, they recharge by healing
 		owner.adjustOrganLoss(ORGAN_SLOT_EYES,-0.5)
 		if(night_vision)
-			owner.adjust_nutrition(-0.5) //consumes power to stay charged
+			owner.adjust_nutrition(-1) //consumes power to stay charged
 			if(owner.nutrition <= NUTRITION_LEVEL_HUNGRY)
 				nv_off() //if low on power, turn off
 	else if(night_vision)
 		owner.adjustOrganLoss(ORGAN_SLOT_EYES,0.5) //to simulate running out of power, they take damage
+		if(damage > low_threshold)
+			nv_off() //if low on power, turn off
 	
 /obj/item/organ/eyes/robotic/preternis/examine(mob/user)
 	. = ..()
