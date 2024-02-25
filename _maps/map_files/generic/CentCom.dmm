@@ -12624,7 +12624,7 @@
 /obj/effect/portal/permanent/one_way/multi/entry{
 	alpha = 55;
 	color = "7D7D7D";
-	desc = "for when the clock hits one thirty and keeps ticking...";
+	desc = "For when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
 	teleport_channel = "quantum"
@@ -21648,7 +21648,7 @@
 /obj/effect/portal/permanent/one_way/multi/entry{
 	alpha = 55;
 	color = "7D7D7D";
-	desc = "for when the clock hits one thirty and keeps ticking...";
+	desc = "For when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
 	teleport_channel = "quantum"
@@ -23483,7 +23483,7 @@
 /obj/effect/portal/permanent/one_way/multi/entry{
 	alpha = 55;
 	color = "7D7D7D";
-	desc = "for when the clock hits one thirty and keeps ticking...";
+	desc = "For when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
 	teleport_channel = "quantum"

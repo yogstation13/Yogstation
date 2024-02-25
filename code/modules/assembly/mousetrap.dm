@@ -9,6 +9,13 @@
 	var/armed = FALSE
 
 
+/obj/item/assembly/mousetrap/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(trap_stepped_on),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/item/assembly/mousetrap/examine(mob/user)
 	. = ..()
 	. += span_notice("The pressure plate is [armed?"primed":"safe"].")
@@ -109,7 +116,7 @@
 	return ..()
 
 
-/obj/item/assembly/mousetrap/Crossed(atom/movable/AM as mob|obj)
+/obj/item/assembly/mousetrap/proc/trap_stepped_on(datum/source, atom/movable/AM, ...)
 	if(armed)
 		if(ismob(AM))
 			var/mob/MM = AM
@@ -124,7 +131,7 @@
 					triggered(MM)
 		else if(AM.density) // For mousetrap grenades, set off by anything heavy
 			triggered(AM)
-	..()
+	return
 
 
 /obj/item/assembly/mousetrap/on_found(mob/finder)
