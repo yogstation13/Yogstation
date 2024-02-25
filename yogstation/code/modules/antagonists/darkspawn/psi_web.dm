@@ -110,7 +110,7 @@
 	owner.LoadComponent(/datum/component/walk/shadow)
 
 /datum/psi_web/scout/on_loss()
-	owner.LoadComponent(/datum/component/walk)
+	qdel(owner.GetComponent(/datum/component/walk/shadow))
 
 //warlock
 /datum/psi_web/warlock
