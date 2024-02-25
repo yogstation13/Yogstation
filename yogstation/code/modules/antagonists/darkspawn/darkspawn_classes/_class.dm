@@ -85,6 +85,8 @@
 	if(!(new_power.shadow_flags & specialization_flag))
 		CRASH("[owner] tried to gain [new_power] which is not allowed by their specialization")
 
+	learned_abilities += new_power
+	new_power.on_purchase(owner)
 
 /datum/component/darkspawn_class/proc/lose_power(datum/psi_web/power)
 	if(!locate(power) in learned_abilities)
