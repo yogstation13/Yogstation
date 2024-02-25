@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "Add pluoxium + antinoblium gas recipe to HFR"
+  - bugfix: "fix tier 2 moderator pluonium production output on tgui"
