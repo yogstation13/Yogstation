@@ -987,6 +987,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD)
 			bodyparts_to_add -= "preternis_eye"
 
+
 	if("preternis_core" in mutant_bodyparts)
 		if(!get_location_accessible(H, BODY_ZONE_CHEST))
 			bodyparts_to_add -= "preternis_core"
