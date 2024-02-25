@@ -515,7 +515,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/theatre/abandoned
 	name = "Abandoned Theatre"
 	icon_state = "Theatre"
-	lights_always_start_on = FALSE
 
 /area/library
 	name = "Library"

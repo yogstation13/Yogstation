@@ -17,7 +17,7 @@
 
 /obj/item/cartridge
 	name = "generic cartridge"
-	desc = "A data cartridge for portable microcomputers."
+	desc = "A data cartridge for those old portable microcomputers."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "cart"
 	item_state = "electronic"

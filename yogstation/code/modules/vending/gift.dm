@@ -62,7 +62,7 @@
 					/obj/item/flashlight/flare/signal = 1,
 					/obj/item/storage/toolbox/mechanical = 1,
 					/obj/item/stack/cable_coil/random = 4,
-					/obj/item/pda = 8,
+					/obj/item/pda = 8, //Keeping these so the clerk can still sell their amazing "antique PDAs"
 					/obj/item/cartridge/engineering = 2,
 					/obj/item/cartridge/atmos = 2,
 					/obj/item/cartridge/medical = 2,
