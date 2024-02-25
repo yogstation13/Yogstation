@@ -107,10 +107,10 @@
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/light_eater)
 
 /datum/psi_web/scout/on_gain()
-	owner.AddComponent(/datum/component/shadow_step)
+	owner.LoadComponent(/datum/component/walk/shadow)
 
 /datum/psi_web/scout/on_loss()
-	qdel(owner.GetComponent(/datum/component/shadow_step))
+	owner.LoadComponent(/datum/component/walk)
 
 //warlock
 /datum/psi_web/warlock
