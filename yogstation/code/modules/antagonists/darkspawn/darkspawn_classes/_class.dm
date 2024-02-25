@@ -108,7 +108,7 @@
 	long_description = "Where is the thrill of carnage."
 	specialization_flag = FIGHTER
 	class_color = COLOR_RED
-	starting_abilities = list(/datum/psi_web/fighter, /datum/psi_web/innate_darkspawn)
+	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/fighter)
 
 /datum/component/darkspawn_class/scout
 	name = "Scout"
@@ -116,7 +116,7 @@
 	long_description = "You're sure to win because your speed is superior."
 	specialization_flag = SCOUT
 	class_color = COLOR_YELLOW
-	starting_abilities = list(/datum/psi_web/scout, /datum/psi_web/innate_darkspawn)
+	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/scout)
 
 /datum/component/darkspawn_class/warlock
 	name = "Warlock"
@@ -124,4 +124,4 @@
 	long_description = "Legalize nuclear bombs."
 	specialization_flag = WARLOCK
 	class_color = COLOR_STRONG_VIOLET
-	starting_abilities = list(/datum/psi_web/warlock, /datum/psi_web/innate_darkspawn)
+	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/warlock)

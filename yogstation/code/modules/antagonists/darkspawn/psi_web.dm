@@ -44,7 +44,7 @@
 	darkspawn.willpower -= willpower_cost
 	on_gain()
 	for(var/ability in learned_abilities)
-		if(istype(ability, /datum/action))
+		if(ispath(ability, /datum/action))
 			var/datum/action/action = new ability(owner.mind)
 			action.Grant(owner)
 	return TRUE
@@ -62,7 +62,7 @@
 		darkspawn.willpower += willpower_cost
 	
 	for(var/ability in learned_abilities)
-		if(istype(ability, /datum/action))
+		if(ispath(ability, /datum/action))
 			var/datum/action/action = locate(ability) in owner.actions
 			action.Remove(owner)
 
@@ -77,14 +77,14 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //fighter
 /datum/psi_web/fighter
-	name = "fighter ability"
+	name = "fighter innate abilities"
 	desc = "me no think so good"
 	shadow_flags = FIGHTER
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_tendril)
 
 //scout
 /datum/psi_web/scout
-	name = "scout ability (dark speed)"
+	name = "scout innate abilities"
 	desc = "GO FAST, TOUCH GRASS"
 	shadow_flags = SCOUT
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/light_eater)
@@ -97,7 +97,7 @@
 
 //warlock
 /datum/psi_web/warlock
-	name = "warlock ability"
+	name = "warlock innate abilities"
 	desc = "apartment \"complex\"... really? I find it quite simple"
 	shadow_flags = WARLOCK
 	learned_abilities = list(/datum/action/cooldown/spell/touch/veil_mind, /datum/action/cooldown/spell/unveil_mind)
