@@ -21,6 +21,16 @@
 	// This variable is the actual night vision strength
 	var/light_cutoff = LIGHTING_CUTOFF_HIGH
 
+/obj/item/organ/eyes/robotic/preternis/Insert(mob/living/carbon/M, special, drop_if_replaced, initialising)
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		original_eye_color = H.eye_color
+	
+/obj/item/organ/eyes/robotic/preternis/Remove(mob/living/carbon/M, special)
+	nv_off()
+	. = ..()
+
 /obj/item/organ/eyes/robotic/preternis/ui_action_click()
 	if(damage > low_threshold || (powered && owner.nutrition <= NUTRITION_LEVEL_HUNGRY))
 		//no nightvision if your eyes are low on power, whether internal or external
