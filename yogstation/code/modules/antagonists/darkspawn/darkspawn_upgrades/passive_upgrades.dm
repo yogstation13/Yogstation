@@ -97,4 +97,4 @@
 	owner.physiology.burn_mod /= 2
 
 /datum/psi_web/brute_res/on_loss()
-	owner.physiology.burn *= 2
+	owner.physiology.burn_mod *= 2
