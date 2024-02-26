@@ -151,6 +151,9 @@
 /mob/living/simple_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
 	return
 
+/mob/living/simple_animal/hostile/darkspawn_progenitor/gib() //no shuttlegib either
+	return
+	
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Progenitor attack---------------------------//
 //////////////////////////////////////////////////////////////////////////

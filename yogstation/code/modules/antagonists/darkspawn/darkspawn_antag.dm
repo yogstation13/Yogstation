@@ -366,7 +366,7 @@
 		set_security_level(SEC_LEVEL_DELTA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
-		set_starlight(COLOR_VELVET, 3, -2)
+		set_starlight(COLOR_VELVET)
 		SEND_GLOBAL_SIGNAL(COMSIG_DARKSPAWN_ASCENSION)
 
 	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
@@ -396,7 +396,7 @@
 ///get rid of all lights by calling the light eater proc
 /datum/antagonist/darkspawn/proc/shatter_lights()
 	for(var/obj/machinery/light/L in GLOB.machines)
-		addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, on_light_eater)), rand(1, 30)) //stagger the "shatter" to reduce lag
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, on_light_eater)), rand(1, 50)) //stagger the "shatter" to reduce lag
 
 ///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
