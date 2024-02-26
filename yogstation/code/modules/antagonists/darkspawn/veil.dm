@@ -57,6 +57,8 @@
 	if(cam)
 		cam.change_cameranet(GLOB.thrallnet)
 	for(var/spell in abilities)
+		if(ispreternis(current_mob) && ispath(spell, /datum/action/cooldown/spell/toggle/nightvision))
+			continue //they're already designed for it
 		var/datum/action/cooldown/spell/new_spell = new spell(owner)
 		new_spell.Grant(current_mob)
 
@@ -70,7 +72,7 @@
 	qdel(current_mob.GetComponent(/datum/component/internal_cam))
 	QDEL_NULL(veil_sigils)
 	for(var/datum/action/cooldown/spell/spells in current_mob.actions)
-		if(spells.type in abilities) //I dont want big mobs to be able to use ash jaunt
+		if(spells.type in abilities)//no keeping your abilities
 			spells.Remove(current_mob)
 			qdel(spells)
 
