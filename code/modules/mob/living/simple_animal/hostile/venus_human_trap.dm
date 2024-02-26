@@ -49,6 +49,11 @@
 	addtimer(CALLBACK(src, PROC_REF(bear_fruit)), growth_time)
 	countdown.start()
 
+/obj/structure/alien/resin/flower_bud_enemy/Destroy()
+	for(var/T in vines)
+		qdel(T)
+	. = ..()
+	
 /**
   * Spawns a venus human trap, then qdels itself.
   *
