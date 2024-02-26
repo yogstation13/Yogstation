@@ -366,7 +366,7 @@
 		set_security_level(SEC_LEVEL_DELTA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
-		set_starlight(COLOR_VELVET)
+		set_starlight(COLOR_VELVET) //i wanna change power and range, but that causes immense lag
 		SEND_GLOBAL_SIGNAL(COMSIG_DARKSPAWN_ASCENSION)
 
 	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)

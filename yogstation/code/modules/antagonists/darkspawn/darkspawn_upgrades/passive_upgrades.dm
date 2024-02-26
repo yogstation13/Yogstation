@@ -215,3 +215,58 @@
 /datum/psi_web/psi_regen_speed/on_loss()
 	darkspawn.psi_per_second /= 2
 
+//adds an additional thrall
+/datum/psi_web/more_thralls
+	name = "\'more thrall\' Sigil"
+	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
+	willpower_cost = 1
+	menu_tab = STORE_PASSIVE
+	shadow_flags = WARLOCK
+
+/datum/psi_web/more_thralls/on_gain()
+	SSticker.mode.max_veils += 1
+
+/datum/psi_web/more_thralls/on_loss()
+	SSticker.mode.max_veils -= 1
+
+//even more thralls
+/datum/psi_web/even_more_thralls
+	name = "\'also more thrall\' Sigil"
+	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
+	willpower_cost = 1
+	menu_tab = STORE_PASSIVE
+	shadow_flags = WARLOCK
+
+/datum/psi_web/even_more_thralls/on_gain()
+	SSticker.mode.max_veils += 1
+
+/datum/psi_web/even_more_thralls/on_loss()
+	SSticker.mode.max_veils -= 1
+
+//even more thralls
+/datum/psi_web/buff_allies
+	name = "\'buff darkspawns\' Sigil"
+	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
+	willpower_cost = 1
+	menu_tab = STORE_PASSIVE
+	shadow_flags = WARLOCK
+
+/datum/psi_web/buff_allies/on_gain()
+	ADD_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES, type)
+
+/datum/psi_web/buff_allies/on_loss()
+	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES, type)
+
+//reduces spell cooldowns
+/datum/psi_web/fast_cooldown
+	name = "\'fast cooldown\' Sigil"
+	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
+	willpower_cost = 1
+	menu_tab = STORE_PASSIVE
+	shadow_flags = WARLOCK
+
+/datum/psi_web/fast_cooldown/on_gain()
+	ADD_TRAIT(owner, TRAIT_FAST_COOLDOWNS, type)
+
+/datum/psi_web/fast_cooldown/on_loss()
+	REMOVE_TRAIT(owner, TRAIT_FAST_COOLDOWNS, type)
