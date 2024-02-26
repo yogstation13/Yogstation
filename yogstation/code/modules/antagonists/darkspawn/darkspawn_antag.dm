@@ -366,6 +366,8 @@
 		set_security_level(SEC_LEVEL_DELTA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
+		set_starlight(COLOR_VELVET, 3, -2)
+		SEND_GLOBAL_SIGNAL(COMSIG_DARKSPAWN_ASCENSION)
 
 	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
 

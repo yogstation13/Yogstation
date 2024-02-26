@@ -4,15 +4,15 @@
 	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
 	var/lucidity = 0
 	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
-	var/max_veils = 1
+	var/max_veils = 0
 
 /datum/game_mode/darkspawn
 	name = "darkspawn"
 	config_tag = "darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	required_players = 38
-	required_enemies = 3
-	recommended_enemies = 3
+	required_players = 25
+	required_enemies = 2
+	recommended_enemies = 2
 	enemy_minimum_age = 15
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician

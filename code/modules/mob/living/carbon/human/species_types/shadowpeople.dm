@@ -172,10 +172,21 @@
 	if(C.mind)
 		C.mind.name = C.real_name
 	C.dna.real_name = C.real_name
+	RegisterSignal(C, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(apply_darkness_speed))
 
 /datum/species/shadow/darkspawn/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	C.bubble_icon = initial(C.bubble_icon)
+	UnregisterSignal(C, COMSIG_MOB_CLIENT_PRE_MOVE)
+	C.remove_movespeed_modifier(type)
+
+/datum/species/shadow/darkspawn/proc/apply_darkness_speed(mob/living/carbon/owner, direction) //minor speedboost in darkness
+	var/turf/T = get_turf(owner)
+	var/light_amount = T.get_lumcount()
+	if(light_amount < SHADOW_SPECIES_BRIGHT_LIGHT)
+		owner.add_movespeed_modifier(type, update=TRUE, priority=100, override = TRUE, multiplicative_slowdown=-0.2)
+	else
+		owner.remove_movespeed_modifier(type)
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	H.bubble_icon = "darkspawn"

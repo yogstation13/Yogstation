@@ -82,7 +82,7 @@
 	name = "darkspawn progression abilities"
 	desc = "me no think so good"
 	shadow_flags = ALL_DARKSPAWN_CLASSES
-	learned_abilities = list(/datum/action/cooldown/spell/touch/devour_will, /datum/action/cooldown/spell/sacrament)
+	learned_abilities = list(/datum/action/cooldown/spell/sacrament, /datum/action/cooldown/spell/touch/devour_will)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------Specialization innate Upgrades----------------------------//
@@ -122,6 +122,8 @@
 
 /datum/psi_web/warlock/on_gain()
 	darkspawn.psi_cap += 100
+	SSticker.mode.max_veils += 3
 
 /datum/psi_web/warlock/on_loss()
 	darkspawn.psi_cap -= 100
+	SSticker.mode.max_veils -= 3
