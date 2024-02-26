@@ -407,7 +407,7 @@
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(TRACK_INFILTRATOR)
 		countdown.start()
-		SSsecurity_level.set_level("delta")
+		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	else
 		detonation_timer = null
 		SSsecurity_level.set_level(previous_level)
