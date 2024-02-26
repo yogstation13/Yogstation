@@ -31,10 +31,6 @@
 	mob_size = MOB_SIZE_HUGE
 
 	//night vision
-	lighting_cutoff_red = 12
-	lighting_cutoff_green = 0
-	lighting_cutoff_blue = 50
-	lighting_color_cutoffs = list(12, 0, 50)
 	lighting_cutoff = 40
 
 	//flavour
