@@ -107,8 +107,6 @@
 	melee_damage_upper = 25
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	unsuitable_atmos_damage = 0
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 	// Real green, cause of course
 	lighting_cutoff_red = 10
