@@ -645,6 +645,10 @@ Difficulty: Hard
 
 /obj/effect/temp_visual/hierophant/blast/Initialize(mapload, new_caster, friendly_fire)
 	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	friendly_fire_check = friendly_fire
 	if(new_caster)
 		hit_things += new_caster
@@ -664,8 +668,7 @@ Difficulty: Hard
 	sleep(0.13 SECONDS) //slightly forgiving; the burst animation is 0.15 seconds
 	bursting = FALSE //we no longer damage crossers
 
-/obj/effect/temp_visual/hierophant/blast/Crossed(atom/movable/AM)
-	..()
+/obj/effect/temp_visual/hierophant/blast/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(bursting)
 		do_damage(get_turf(src))
 

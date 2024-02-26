@@ -352,6 +352,10 @@
 /obj/effect/better_animated_temp_visual/tar_king_chaser_impale/Initialize(mapload, new_caster)
 	. = ..()
 	caster = new_caster
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	INVOKE_ASYNC(src, PROC_REF(blast))
 
 /obj/effect/better_animated_temp_visual/tar_king_chaser_impale/proc/blast()
@@ -365,8 +369,7 @@
 	sleep(0.1 SECONDS) 
 	bursting = FALSE 
 
-/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/Crossed(atom/movable/AM)
-	..()
+/obj/effect/better_animated_temp_visual/tar_king_chaser_impale/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(bursting)
 		do_damage(get_turf(src))
 

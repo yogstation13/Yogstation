@@ -35,7 +35,11 @@
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
-	AddComponent(/datum/component/bloodysoles/feet)
+	AddComponent(/datum/component/bloodysoles/feet, FOOTPRINT_SPRITE_SHOES)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -260,12 +264,11 @@
 
 // called when something steps onto a human
 // this could be made more general, but for now just handle mulebot
-/mob/living/carbon/human/Crossed(atom/movable/AM)
+/mob/living/carbon/human/proc/on_entered(datum/source, atom/movable/AM, ...)
 	var/mob/living/simple_animal/bot/mulebot/MB = AM
 	if(istype(MB))
 		MB.RunOver(src)
 
-	. = ..()
 	spreadFire(AM)
 
 /mob/living/carbon/human/Topic(href, href_list)
@@ -1378,12 +1381,6 @@
 
 /mob/living/carbon/human/species/skeleton/lowcalcium
 	race = /datum/species/skeleton/lowcalcium
-
-/mob/living/carbon/human/species/synth
-	race = /datum/species/synth
-
-/mob/living/carbon/human/species/synth/military
-	race = /datum/species/synth/military
 
 /mob/living/carbon/human/species/vampire
 	race = /datum/species/vampire
