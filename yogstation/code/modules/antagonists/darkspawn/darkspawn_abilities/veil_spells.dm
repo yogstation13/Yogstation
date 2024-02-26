@@ -333,13 +333,13 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/toggle/nightvision/Enable()
 	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
-		eyes.lighting_color_cutoffs = list(12, 0, 50)
+		eyes.color_cutoffs = list(12, 0, 50)
 		eyes.lighting_cutoff = LIGHTING_CUTOFF_HIGH
 		owner.update_sight()
 
 /datum/action/cooldown/spell/toggle/nightvision/Disable()
 	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
-		eyes.lighting_color_cutoffs = list(0, 0, 0)
+		eyes.color_cutoffs = list(0, 0, 0)
 		eyes.lighting_cutoff = 0
 		owner.update_sight()

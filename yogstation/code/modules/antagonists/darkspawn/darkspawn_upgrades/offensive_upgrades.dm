@@ -17,6 +17,14 @@
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/demented_outburst)
 
+/datum/psi_web/taunt
+	name = "taunt"
+	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	willpower_cost = 1
+	shadow_flags = FIGHTER
+	menu_tab = STORE_OFFENSE
+	learned_abilities = list(/datum/action/cooldown/spell/aoe/taunt)
+
 //Using shadow tendrils will now form two tendrils if possible.
 //Attacking with one set of tendrils will attack with the other.
 //This also speeds up most actions they have.
@@ -96,6 +104,33 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+/datum/psi_web/staff_upgrade
+	name = "\'Duality\' Sigils"
+	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	willpower_cost = 1
+	shadow_flags = WARLOCK
+	menu_tab = STORE_OFFENSE
+
+	var/datum/action/cooldown/spell/toggle/dark_staff/spell
+	var/flag_to_add = STAFF_UPGRADE_CONFUSION
+
+/datum/psi_web/staff_upgrade/on_gain()
+	spell = locate() in owner.actions
+	if(spell)
+		spell.effect_flags |= flag_to_add
+	else
+		remove(TRUE)
+
+/datum/psi_web/staff_upgrade/on_loss()
+	if(spell)
+		spell.effect_flags &= ~flag_to_add
+		spell = null
+
+/datum/psi_web/staff_upgrade/light_eater
+	name = "\'light eater\' Sigils"
+	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	flag_to_add = STAFF_UPGRADE_LIGHTEATER
+
 /datum/psi_web/mass_hallucination
 	name = "mass hallucination"
 	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."

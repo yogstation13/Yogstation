@@ -63,6 +63,16 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+/datum/psi_web/staff_upgrade/heal
+	name = "\'heal\' Sigils"
+	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	flag_to_add = STAFF_UPGRADE_HEAL
+	
+/datum/psi_web/staff_upgrade/extinguish
+	name = "\'Extinguish\' Sigils"
+	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	flag_to_add = STAFF_UPGRADE_EXTINGUISH
+	
 /datum/psi_web/extinguish
 	name = "extinguish"
 	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."

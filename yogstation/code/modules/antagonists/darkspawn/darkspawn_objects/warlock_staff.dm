@@ -1,3 +1,8 @@
+#define STAFF_UPGRADE_CONFUSION 	(1<<0)
+#define STAFF_UPGRADE_HEAL 			(1<<1)
+#define STAFF_UPGRADE_LIGHTEATER 	(1<<2)
+#define STAFF_UPGRADE_EXTINGUISH	(1<<3)
+
 //////////////////////////////////////////////////////////////////////////
 //---------------------Upgradeable warlock staff------------------------//
 //////////////////////////////////////////////////////////////////////////
@@ -17,6 +22,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	ammo_type = /obj/item/ammo_casing/magic/darkspawn
 	/// Flags used for different effects that apply when a projectile hits something
+	var/obj/item/darkspawn_extinguish/bopper
 	var/effect_flags
 
 /obj/item/gun/magic/darkspawn/Initialize(mapload)
@@ -28,12 +34,26 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
+	bopper = new(src)
+
+/obj/item/gun/magic/darkspaw/Destroy()
+	qdel(bopper)
+	. = ..()
 
 ///////////////////FANCY PROJECTILE EFFECTS//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_projectile_hit(datum/source, atom/movable/firer, atom/target, angle)
 	if(isliving(target))
 		var/mob/living/M = target
-		to_chat(world, "hitting [M] with projectile")
+		if(is_darkspawn_or_veil(M))
+			if(effect_flags & STAFF_UPGRADE_HEAL)
+				M.heal_ordered_damage(30, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
+				M.extinguish_mob()
+		else
+			if(effect_flags & STAFF_UPGRADE_CONFUSION)
+				M.adjust_confusion(6 SECONDS)
+			if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
+				SEND_SIGNAL(bopper, COMSIG_ITEM_AFTERATTACK, M, firer, TRUE) //just use a light eater attack on the target
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/update_icon_state()
@@ -65,7 +85,7 @@
 /obj/projectile/magic/darkspawn
 	name = "bolt of nothingness"
 	icon_state = "kinetic_blast"
-	damage = 50
+	damage = 40
 	damage_type = STAMINA
 	nodamage = FALSE
 	antimagic_flags = MAGIC_RESISTANCE_MIND
