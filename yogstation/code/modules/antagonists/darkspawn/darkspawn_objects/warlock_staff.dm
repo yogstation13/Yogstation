@@ -36,7 +36,7 @@
 	)
 	bopper = new(src)
 
-/obj/item/gun/magic/darkspaw/Destroy()
+/obj/item/gun/magic/darkspawn/Destroy()
 	qdel(bopper)
 	. = ..()
 
