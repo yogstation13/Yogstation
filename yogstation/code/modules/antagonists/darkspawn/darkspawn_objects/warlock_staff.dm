@@ -21,8 +21,8 @@
 
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	ammo_type = /obj/item/ammo_casing/magic/darkspawn
-	/// Flags used for different effects that apply when a projectile hits something
 	var/obj/item/darkspawn_extinguish/bopper
+	/// Flags used for different effects that apply when a projectile hits something
 	var/effect_flags
 
 /obj/item/gun/magic/darkspawn/Initialize(mapload)
