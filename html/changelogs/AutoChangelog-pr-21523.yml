@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Traitors can no longer roll whiteship or freeminer machines for the destroy objective"
