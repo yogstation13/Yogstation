@@ -6,6 +6,7 @@
 	icon = 'yogstation/icons/mob/darkspawn_progenitor.dmi'
 	icon_state = "darkspawn_progenitor"
 	icon_living = "darkspawn_progenitor"
+	health_doll_icon = "smolgenitor"
 	pixel_x = -48 //offset so the mob collision is roughly the middle of the sprite
 	pixel_y = -32
 	layer = LARGE_MOB_LAYER
