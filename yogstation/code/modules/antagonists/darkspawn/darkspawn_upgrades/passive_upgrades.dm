@@ -124,10 +124,12 @@
 	shadow_flags = FIGHTER
 
 /datum/psi_web/brute_res/on_gain()
-	owner.physiology.brute_mod /= 2
+	if(istype(owner))
+		owner.physiology.brute_mod /= 2
 
 /datum/psi_web/brute_res/on_loss()
-	owner.physiology.brute_mod *= 2
+	if(istype(owner))
+		owner.physiology.brute_mod *= 2
 
 /datum/psi_web/burn_res
 	name = "fighter innate abilities"
@@ -137,10 +139,12 @@
 	shadow_flags = FIGHTER
 
 /datum/psi_web/brute_res/on_gain()
-	owner.physiology.burn_mod /= 2
+	if(istype(owner))
+		owner.physiology.burn_mod /= 2
 
 /datum/psi_web/brute_res/on_loss()
-	owner.physiology.burn_mod *= 2
+	if(istype(owner))
+		owner.physiology.burn_mod *= 2
 
 /datum/psi_web/noslip
 	name = "fighter innate abilities"
@@ -167,10 +171,12 @@
 	shadow_flags = SCOUT
 
 /datum/psi_web/stamina_res/on_gain()
-	owner.physiology.stamina_mod /= 2
+	if(istype(owner))
+		owner.physiology.stamina_mod /= 2
 
 /datum/psi_web/stamina_res/on_loss()
-	owner.physiology.stamina_mod *= 2
+	if(istype(owner))
+		owner.physiology.stamina_mod *= 2
 
 /datum/psi_web/shadow_walk
 	name = "shadow sprint"
