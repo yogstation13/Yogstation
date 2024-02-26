@@ -207,6 +207,7 @@
 		name = "[area.name] APC"
 		stat |= MAINT
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs_list -= src
@@ -242,6 +243,8 @@
 
 /obj/machinery/power/apc/Initialize(mapload)
 	. = ..()
+	if(!mapload)
+		return
 	has_electronics = APC_ELECTRONICS_SECURED
 	// is starting with a power cell installed, create it and set its charge level
 	if(cell_type)

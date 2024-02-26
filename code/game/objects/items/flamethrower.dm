@@ -1,3 +1,6 @@
+/// How many joules of energy from reactions required to cause 1 damage
+#define JOULES_PER_DAMAGE 100000
+
 /obj/item/flamethrower
 	name = "flamethrower"
 	desc = "You are a firestarter!"
@@ -54,7 +57,7 @@
 		if(M.is_holding(src))
 			location = M.loc
 	if(isturf(location)) //start a fire if possible
-		igniter.flamethrower_process(location)
+		open_flame(igniter.heat)
 
 
 /obj/item/flamethrower/update_overlays()
@@ -199,33 +202,21 @@
 	if(!istype(target))
 		return FALSE
 
-	var/ratio_removed = 1
-	if(!release_all)
-		ratio_removed = min(ptank.distribute_pressure, ptank.air_contents.return_pressure()) / ptank.air_contents.return_pressure()
+	var/ratio_removed = min(ptank.distribute_pressure, ptank.air_contents.return_pressure()) / ptank.air_contents.return_pressure()
+
 	var/datum/gas_mixture/fuel_mix = ptank.air_contents.remove_ratio(ratio_removed)
+	var/datum/gas_mixture/turf_mix = target.return_air()
 
-	// Return of the stimball flamethrower, wear radiation protection when using this or you're just as likely to die as your target
-	if(fuel_mix.get_moles(GAS_PLASMA) >= NITRO_BALL_MOLES_REQUIRED && fuel_mix.get_moles(GAS_NITRIUM) >= NITRO_BALL_MOLES_REQUIRED && fuel_mix.get_moles(GAS_PLUOXIUM) >= NITRO_BALL_MOLES_REQUIRED)
-		var/balls_shot = round(min(fuel_mix.get_moles(GAS_NITRIUM), fuel_mix.get_moles(GAS_PLUOXIUM), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED))
-		var/angular_increment = 360/balls_shot
-		var/random_starting_angle = rand(0,360)
-		for(var/i in 1 to balls_shot)
-			target.fire_nuclear_particle((i*angular_increment+random_starting_angle))
-		fuel_mix.adjust_moles(GAS_PLASMA, -balls_shot * NITRO_BALL_MOLES_REQUIRED) // No free extra damage for you, conservation of mass go brrrrr
+	fuel_mix.merge(turf_mix.copy()) // copy air from the turf to do reactions with
+	fuel_mix.set_temperature(igniter.heat) // heat the contents
 
-	// Funny rad flamethrower go brrr
-	if(fuel_mix.get_moles(GAS_TRITIUM)) // Tritium fires cause a bit of radiation
-		radiation_pulse(target, min(fuel_mix.get_moles(GAS_TRITIUM), fuel_mix.get_moles(GAS_O2)/2) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+	var/old_thermal_energy = fuel_mix.thermal_energy()
+	for(var/i in 1 to 10) // react a bunch of times on the target turf
+		if(!fuel_mix.react(target))
+			break // break the loop if it stops reacting
 
-	// 8 damage at 0.5 mole transfer or ~17 kPa release pressure
-	// 16 damage at 1 mole transfer or ~35 kPa release pressure
-	var/damage = fuel_mix.get_moles(GAS_PLASMA) * 16
-	// harder to achieve than plasma
-	damage += fuel_mix.get_moles(GAS_TRITIUM) * 24 // Lower damage than hydrogen, causes minor radiation
-	damage += fuel_mix.get_moles(GAS_H2) * 32
-	// Maximum damage restricted by the available oxygen, with a hard cap at 16
-	var/datum/gas_mixture/turf_air = target.return_air()
-	damage = min(damage, turf_air.get_moles(GAS_O2) + fuel_mix.get_moles(GAS_O2), max_damage) // capped by combined oxygen in the fuel mix and enviroment
+	// damage is based on the positive or negative energy of the reaction, with a cap
+	var/damage = min(abs(fuel_mix.thermal_energy() - old_thermal_energy) / JOULES_PER_DAMAGE, max_damage)
 
 	// If there's not enough fuel and/or oxygen to do more than 1 damage, shut itself off
 	if(damage < 1)
@@ -251,22 +242,40 @@
 	for(var/turf/T in turflist)
 		if(T == previousturf)
 			continue	//so we don't burn the tile we be standin on
-		for(var/obj/structure/blob/B in T)
+		var/cached_damage = 0
+
+		for(var/obj/structure/blob/blob in T)
 			// This is run before atmos checks because blob can be atmos blocking but we still want to hit them
 			// See /proc/default_ignite
-			var/damage = process_fuel(T)
-			if(!damage)
-				break // Out of gas, stop running pointlessly
-			B.take_damage(damage * 2, BURN, FIRE) // strong against blobs
+			if(!cached_damage)
+				cached_damage = process_fuel(T)
+			if(!lit)
+				break // stopped running, don't continue
+			if(QDELETED(blob))
+				continue
+			blob.take_damage(cached_damage * 2, BURN, FIRE) // strong against blobs
+
+		for(var/obj/structure/spacevine/vine in T)
+			// This is run before atmos checks because vines can be on top of a window or some other atmos-blocking structure
+			if(!cached_damage)
+				cached_damage = process_fuel(T)
+			if(!lit)
+				break // stopped running, don't continue
+			if(QDELETED(vine))
+				continue
+			vine.take_damage(cached_damage * 3, BURN, FIRE, TRUE) // very strong against vines
+
 		var/list/turfs_sharing_with_prev = previousturf.GetAtmosAdjacentTurfs(alldir=1)
 		if(!(T in turfs_sharing_with_prev))
 			break // Hit something that blocks atmos
-		if(igniter)
-			if(!igniter.ignite_turf(src,T))
-				break // Out of gas, stop running pointlessly
-		else
-			if(!default_ignite(T))
-				break // Out of gas, stop running pointlessly
+
+		if(!cached_damage)
+			cached_damage = process_fuel(T)
+		if(!lit)
+			break // stopped running, don't continue
+		if(!burn_atoms_on_turf(T, cached_damage))
+			break // Out of gas, stop running pointlessly
+
 		if(!sound_played) // play the sound once if we successfully ignite at least one thing
 			sound_played = TRUE
 			playsound(loc, pick(flame_sounds), 50, TRUE)
@@ -281,10 +290,9 @@
 	// /obj/structure/blob/normal
 
 // Return value tells the parent whether to continue calculating the line
-/obj/item/flamethrower/proc/default_ignite(turf/target, release_all = FALSE)
-	// do the fuel stuff
-	var/damage = process_fuel(target, release_all)
-	if(!damage)
+/obj/item/flamethrower/proc/burn_atoms_on_turf(turf/target, damage)
+	// no damage? don't continue
+	if(damage <= 0)
 		return FALSE
 
 	//Burn it
@@ -333,24 +341,17 @@
 	var/obj/projectile/P = hitby
 	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(5))
 		owner.visible_message(span_danger("\The [attack_text] hits the fueltank on [owner]'s [name], rupturing it! What a shot!"))
-		var/target_turf = get_turf(owner)
-		igniter.ignite_turf(src,target_turf, release_all = TRUE)
-		qdel(ptank)
-		return 1 //It hit the flamethrower, not them
-
-
-/obj/item/assembly/igniter/proc/flamethrower_process(turf/open/location)
-	location.hotspot_expose(700,2)
-
-/obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F, turf/open/location, release_all = FALSE)
-	return F.default_ignite(location, release_all)
+		var/turf/target_turf = get_turf(owner)
+		burn_atoms_on_turf(target_turf, process_fuel(target_turf))
+		return TRUE //It hit the flamethrower, not them
+	return ..()
 
 ///////////////////// Flamethrower as an energy weapon /////////////////////
 // Currently used exclusively in /obj/item/gun/energy/printer/flamethrower
 /obj/item/ammo_casing/energy/flamethrower
 	projectile_type = /obj/projectile/bullet/incendiary/flamethrower
 	select_name = "fire"
-	fire_sound = null
+	fire_sound = 'sound/weapons/flamethrower1.ogg'
 	firing_effect_type = null
 	e_cost = 50
 
@@ -361,3 +362,5 @@
 	sharpness = SHARP_NONE
 	range = 6
 	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS
+
+#undef JOULES_PER_DAMAGE

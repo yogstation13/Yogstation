@@ -11,6 +11,7 @@
 	var/dryname = "dried blood" //when the blood lasts long enough, it becomes dry and gets a new name
 	var/drydesc = "Looks like it's been here a while. Eew." //as above
 	var/drytime = 0
+	var/footprint_sprite = null
 	
 /obj/effect/decal/cleanable/blood/Initialize(mapload)
 	. = ..()
@@ -205,9 +206,8 @@
 /obj/effect/decal/cleanable/blood/footprints
 	name = "footprints"
 	icon = 'icons/effects/footprints.dmi'
-	icon_state = "nothingwhatsoever"
 	desc = "WHOSE FOOTPRINTS ARE THESE?"
-	icon_state = "blood1"
+	icon_state = "blood_shoes_enter"
 	random_icon_states = null
 	blood_state = BLOOD_STATE_HUMAN //the icon state to load images from
 	var/entered_dirs = 0
@@ -220,28 +220,72 @@
 	dryname = "dried footprints"
 	drydesc = "HMM... SOMEONE WAS HERE!"
 
+/obj/effect/decal/cleanable/blood/footprints/Initialize(mapload, footprint_sprite)
+	src.footprint_sprite = footprint_sprite
+	. = ..()
+	icon_state = "" //All of the footprint visuals come from overlays
+	if(mapload)
+		entered_dirs |= dir //Keep the same appearance as in the map editor
+	update_appearance(mapload ? (ALL) : (UPDATE_NAME | UPDATE_DESC))
+
+//Rotate all of the footprint directions too
+/obj/effect/decal/cleanable/blood/footprints/setDir(newdir)
+	if(dir == newdir)
+		return ..()
+
+	var/ang_change = dir2angle(newdir) - dir2angle(dir)
+	var/old_entered_dirs = entered_dirs
+	var/old_exited_dirs = exited_dirs
+	entered_dirs = 0
+	exited_dirs = 0
+
+	for(var/Ddir in GLOB.cardinals)
+		if(old_entered_dirs & Ddir)
+			entered_dirs |= angle2dir_cardinal(dir2angle(Ddir) + ang_change)
+		if(old_exited_dirs & Ddir)
+			exited_dirs |= angle2dir_cardinal(dir2angle(Ddir) + ang_change)
+
+	update_appearance()
+	return ..()
+
+/obj/effect/decal/cleanable/blood/footprints/update_name(updates)
+	switch(footprint_sprite)
+		if(FOOTPRINT_SPRITE_CLAWS)
+			name = "clawprints"
+		if(FOOTPRINT_SPRITE_SHOES)
+			name = "footprints"
+		if(FOOTPRINT_SPRITE_PAWS)
+			name = "pawprints"
+	dryname = "dried [name]"
+	return ..()
+
+/obj/effect/decal/cleanable/blood/footprints/update_desc(updates)
+	desc = "WHOSE [uppertext(name)] ARE THESE?"
+	return ..()
+
+/obj/effect/decal/cleanable/blood/footprints/update_icon()
+	. = ..()
+	alpha = min(BLOODY_FOOTPRINT_BASE_ALPHA + (255 - BLOODY_FOOTPRINT_BASE_ALPHA) * bloodiness / (BLOOD_ITEM_MAX / 2), 255)
+
 /obj/effect/decal/cleanable/blood/footprints/update_overlays()
 	. = ..()
 
 	for(var/Ddir in GLOB.cardinals)
 		if(entered_dirs & Ddir)
-			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["entered-[blood_state]-[Ddir]"]
+			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["entered-[footprint_sprite]-[blood_state]-[Ddir]"]
 			if(!bloodstep_overlay)
-				GLOB.bloody_footprints_cache["entered-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]1", dir = Ddir)
+				GLOB.bloody_footprints_cache["entered-[footprint_sprite]-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]_[footprint_sprite]_enter", dir = Ddir)
 			. += bloodstep_overlay
 		if(exited_dirs & Ddir)
-			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["exited-[blood_state]-[Ddir]"]
+			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["exited-[footprint_sprite]-[blood_state]-[Ddir]"]
 			if(!bloodstep_overlay)
-				GLOB.bloody_footprints_cache["exited-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]2", dir = Ddir)
+				GLOB.bloody_footprints_cache["exited-[footprint_sprite]-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]_[footprint_sprite]_exit", dir = Ddir)
 			. += bloodstep_overlay
-
-	alpha = min(BLOODY_FOOTPRINT_BASE_ALPHA + (255 - BLOODY_FOOTPRINT_BASE_ALPHA) * bloodiness / (BLOOD_ITEM_MAX / 2), 255)
-
 
 /obj/effect/decal/cleanable/blood/footprints/examine(mob/user)
 	. = ..()
 	if((shoe_types.len + species_types.len) > 0)
-		. += "You recognise the footprints as belonging to:"
+		. += "You recognise the [name] as belonging to:"
 		for(var/sole in shoe_types)
 			var/obj/item/clothing/item = sole
 			var/article = initial(item.gender) == PLURAL ? "Some" : "A"
@@ -251,14 +295,14 @@
 			if(species == "unknown")
 				. += "Some <B>feet</B>."
 			else if(species == "monkey")
-				. += "[icon2html('icons/mob/monkey.dmi', user, "monkey1")] Some <B>monkey feet</B>."
+				. += "[icon2html('icons/mob/monkey.dmi', user, "monkey1")] Some <B>monkey paws</B>."
 			else if(species == "human")
 				. += "[icon2html('icons/mob/human_parts.dmi', user, "default_human_l_leg")] Some <B>human feet</B>."
 			else
 				. += "[icon2html('icons/mob/human_parts.dmi', user, "[species]_l_leg")] Some <B>[species] feet</B>."
 
-/obj/effect/decal/cleanable/blood/footprints/replace_decal(obj/effect/decal/cleanable/C)
-	if(blood_state != C.blood_state) //We only replace footprints of the same type as us
+/obj/effect/decal/cleanable/blood/footprints/replace_decal(obj/effect/decal/cleanable/blood/blood_decal)
+	if(blood_state != blood_decal.blood_state || footprint_sprite != blood_decal.footprint_sprite) //We only replace footprints of the same type as us
 		return FALSE
 	return ..()
 

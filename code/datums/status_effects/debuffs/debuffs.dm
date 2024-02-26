@@ -1301,6 +1301,45 @@
 		for(var/i in S.damage_coeff)
 			S.damage_coeff[i] /= power
 
+/datum/status_effect/exposed/harpooned
+	id = "harpooned"
+	duration = 2 SECONDS
+	///damage multiplier
+	power = 1.3
+
+/datum/status_effect/exposed/harpooned/on_apply()
+	. = ..()
+	if(.)
+		owner.add_filter("exposed", 2, list("type" = "outline", "color" = COLOR_RED, "size" = 1))
+
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.brute_mod *= power
+			H.physiology.burn_mod *= power
+			H.physiology.tox_mod *= power
+			H.physiology.oxy_mod *= power
+			H.physiology.clone_mod *= power
+			H.physiology.stamina_mod *= power
+		else if(isanimal(owner))
+			var/mob/living/simple_animal/S = owner
+			for(var/i in S.damage_coeff)
+				S.damage_coeff[i] *= power
+
+/datum/status_effect/exposed/harpooned/on_remove()
+	owner.remove_filter("exposed")
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod /= power
+		H.physiology.burn_mod /= power
+		H.physiology.tox_mod /= power
+		H.physiology.oxy_mod /= power
+		H.physiology.clone_mod /= power
+		H.physiology.stamina_mod /= power
+	else if(isanimal(owner))
+		var/mob/living/simple_animal/S = owner
+		for(var/i in S.damage_coeff)
+			S.damage_coeff[i] /= power
+
 /datum/status_effect/knuckled
     id = "knuckle_wound"
     duration = 10 SECONDS

@@ -97,7 +97,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#221915" // rgb: 34, 25, 21
 	taste_description = "malt and chocolate"
 	glass_name = "glass of stout"
-	glass_desc = "a cold pint of 'genius' brand stout."
+	glass_desc = "A cold pint of 'genius' brand stout."
 
 /datum/reagent/consumable/ethanol/beer/stout/irishflip
 	name = "Irish Flip"
@@ -106,7 +106,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "chocolate cream and egg"
 	glass_icon_state = "irish_flip"
 	glass_name = "glass of irish flip"
-	glass_desc = "a fancy glass of creamy cocktail."
+	glass_desc = "A fancy glass of creamy cocktail."
 
 /datum/reagent/consumable/ethanol/beer/stout/blackvelvet
 	name = "Black Velvet"
@@ -115,7 +115,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "Champagne with a hint of chocolate."
 	glass_icon_state = "black_velvet"
 	glass_name = "glass of black velvet"
-	glass_desc = "a fancy drink with a melancholic past."
+	glass_desc = "A fancy drink with a melancholic past."
 
 /datum/reagent/consumable/ethanol/beer/stout/espressomartini
 	name = "Espresso Martini"
@@ -124,7 +124,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "bitterness, chocolate, and cream."
 	glass_icon_state = "espresso_martini"
 	glass_name = "glass of espresso martini"
-	glass_desc = "a cocktail guaranteed to keep you awake."
+	glass_desc = "A cocktail guaranteed to keep you awake."
 ///////////////////////////////////////////
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Light Beer"
@@ -2281,7 +2281,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "dried plums and malt"
 	glass_icon_state = "trappistglass"
 	glass_name = "Trappist Beer"
-	glass_desc = "boozy Catholicism in a glass."
+	glass_desc = "Boozy Catholicism in a glass."
 
 /datum/reagent/consumable/ethanol/trappist/on_mob_life(mob/living/carbon/M)
 	if(M.mind.holy_role)
@@ -2440,7 +2440,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "tequila, creme de menthe, and a hint of medicine?"
 	glass_icon_state = "flaming_moe2"
 	glass_name = "Flaming Moe"
-	glass_desc = "an amazing concoction of various different bar drinks and a secret ingredient"
+	glass_desc = "An amazing concoction of various different bar drinks and a secret ingredient"
 
 /datum/reagent/consumable/ethanol/flaming_moe/on_mob_life(mob/living/carbon/M)
 	M.adjust_drowsiness(-5 SECONDS)

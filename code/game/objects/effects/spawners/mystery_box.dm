@@ -152,6 +152,7 @@
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	armor = 20
 	speedmod = 1.6
+	changesource_flags = MIRROR_BADMIN //deliberate admin spawn only
 	var/heal_rate = 1
 	var/regen_cooldown = 0
 

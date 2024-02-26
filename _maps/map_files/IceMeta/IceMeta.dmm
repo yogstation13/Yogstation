@@ -3408,6 +3408,9 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "aYL" = (
@@ -14358,7 +14361,6 @@
 	pixel_x = -2
 	},
 /obj/item/book/manual/wiki/security_space_law,
-/obj/item/cartridge/detective,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -14694,6 +14696,9 @@
 "esq" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
@@ -20039,9 +20044,12 @@
 	name = "Chief Engineer RC";
 	pixel_y = 32
 	},
-/obj/machinery/computer/card/minor/ce,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
+	},
+/obj/machinery/modular_computer/console/preset/command/ce,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
@@ -20455,6 +20463,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "gdG" = (
@@ -22763,9 +22774,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
@@ -27203,18 +27211,6 @@
 /area/engine/atmos/distro)
 "hZV" = (
 /obj/structure/closet/secure_closet/quartermaster,
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
 /obj/item/gps{
 	gpstag = "QM0"
 	},
@@ -33823,6 +33819,9 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "jQd" = (
@@ -35410,12 +35409,6 @@
 	pixel_x = -24;
 	pixel_y = 5;
 	req_access_txt = "11"
-	},
-/obj/machinery/modular_computer/console/preset/command/ce{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
@@ -40126,9 +40119,6 @@
 /turf/open/floor/carpet,
 /area/library)
 "lJe" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "lJh" = (
@@ -40424,9 +40414,6 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "lNo" = (
@@ -41757,9 +41744,6 @@
 /area/chapel/office)
 "meY" = (
 /obj/machinery/holopad,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "mfh" = (
@@ -47004,18 +46988,6 @@
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/cartridge/engineering{
-	pixel_x = 4;
-	pixel_y = 5
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = 3
-	},
-/obj/item/cartridge/atmos,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "nDh" = (
@@ -48545,6 +48517,9 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "nZd" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "nZg" = (
@@ -57860,9 +57835,6 @@
 	pixel_y = 3
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "qKv" = (
@@ -62596,15 +62568,6 @@
 	pixel_y = -30
 	},
 /obj/structure/table,
-/obj/item/cartridge/signal/toxins,
-/obj/item/cartridge/signal/toxins{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/cartridge/signal/toxins{
-	pixel_x = 4;
-	pixel_y = 6
-	},
 /obj/item/storage/pencil_holder/crew/fancy{
 	pixel_x = -8;
 	pixel_y = 10

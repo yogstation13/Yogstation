@@ -7,7 +7,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 /datum/material
 	var/name = "material"
-	var/desc = "its..stuff."
+	var/desc = "It's...stuff." // I'm stuff :stuff:
 	///Var that's mostly used by science machines to identify specific materials, should most likely be phased out at some point
 	var/id = "mat"
 	///Base color of the material, is used for greyscale. Item isn't changed in color if this is null.

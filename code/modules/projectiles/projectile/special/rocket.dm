@@ -10,7 +10,7 @@
 
 /obj/projectile/bullet/a84mm
 	name ="\improper HEDP rocket"
-	desc = "USE A WEEL GUN"
+	desc = "USE A WEEL GUN."
 	icon_state= "84mm-hedp"
 	armor_flag = BOMB
 	damage = 80
@@ -73,7 +73,7 @@
 /obj/projectile/bullet/cball
 	name = "cannonball"
 	icon_state = "cannonball"
-	desc = "Not for bowling purposes"
+	desc = "Not for bowling purposes."
 	damage = 30
 	demolition_mod = 20 // YARRR
 
@@ -91,5 +91,5 @@
 /obj/projectile/bullet/bolt
 	name = "bolt"
 	icon_state = "bolt"
-	desc = "smaller and faster rod"
+	desc = "A smaller and faster rod."
 	damage = 25

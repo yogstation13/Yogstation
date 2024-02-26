@@ -157,7 +157,7 @@
 	forceMove(M)
 	log_message("[src] initialized.", LOG_MECHA)
 	update_chassis_page()
-	ADD_TRAIT(src, TRAIT_NODROP, "mecha")
+	ADD_TRAIT(src, TRAIT_NODROP, REF(M))
 	item_flags |= NO_MAT_REDEMPTION // terrible
 	for(var/datum/action/innate/mecha/equipment/action as anything in equip_actions)
 		action.chassis = M
@@ -171,7 +171,7 @@
 	for(var/datum/action/innate/mecha/equipment/action as anything in equip_actions)
 		action.chassis = null
 	item_flags &= ~NO_MAT_REDEMPTION
-	REMOVE_TRAIT(src, TRAIT_NODROP, "mecha")
+	REMOVE_TRAIT(src, TRAIT_NODROP, REF(chassis))
 	if(chassis.selected == src)
 		src.on_deselect()
 	moveto = moveto || get_turf(chassis)

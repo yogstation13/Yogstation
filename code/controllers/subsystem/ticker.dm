@@ -330,7 +330,8 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
-	// Toggle lightswitches on in occupied departments
+
+	// Toggle lightswitches off in unoccupied departments
 	var/list/lightup_area_typecache = list()
 	var/minimal_access = CONFIG_GET(flag/jobs_have_minimal_access)
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
@@ -341,11 +342,17 @@ SUBSYSTEM_DEF(ticker)
 		if(!job)
 			continue
 		lightup_area_typecache |= job.areas_to_light_up(minimal_access)
-	for(var/area in lightup_area_typecache)
-		var/area/place = locate(area) in GLOB.areas
-		if(!place || place.lights_always_start_on)
+
+	for(var/area/place as anything in GLOB.areas)
+		if(!istype(place))
 			continue
-		place.lightswitch = TRUE
+		if(place.lights_always_start_on)
+			continue
+		if(!is_station_level(place.z))
+			continue
+		if(is_type_in_typecache(place, lightup_area_typecache))
+			continue
+		place.lightswitch = FALSE
 		place.update_appearance()
 
 		for(var/obj/machinery/light_switch/lswitch in place)
