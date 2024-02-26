@@ -173,7 +173,7 @@
 	owner.physiology.stamina_mod *= 2
 
 /datum/psi_web/shadow_walk
-	name = "shadow walk"
+	name = "shadow sprint"
 	desc = "GO FAST, TOUCH GRASS"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
