@@ -33,6 +33,17 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	light_range = 1.5
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
+	light_color = LIGHT_COLOR_ORANGE
+	light_power = 0.5
+
+/// Toggles the stun baton's light
+/obj/item/melee/baton/proc/toggle_light(mob/user)
+	set_light_on(!light_on)
+	return
+
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -76,6 +87,7 @@
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE
+			set_light_on(FALSE)
 			update_appearance(UPDATE_ICON)
 			playsound(loc, "sparks", 75, 1, -1)
 			STOP_PROCESSING(SSobj, src) // no more charge? stop checking for discharge
@@ -135,6 +147,8 @@
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 75, 1, -1)
+		toggle_light(user)
+		do_sparks(1, TRUE, src)
 		cell_last_used = 0
 		if(status)
 			START_PROCESSING(SSobj, src)
@@ -306,3 +320,5 @@
 	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of double power usage."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade3"
+
+

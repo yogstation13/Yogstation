@@ -16,6 +16,13 @@
 	var/obj/machinery/field/generator/FG1 = null
 	var/obj/machinery/field/generator/FG2 = null
 
+/obj/machinery/field/containment/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/machinery/field/containment/Destroy()
 	FG1.fields -= src
 	FG2.fields -= src
@@ -57,8 +64,7 @@
 	else
 		..()
 
-/obj/machinery/field/containment/Crossed(atom/movable/AM)
-	. = ..()
+/obj/machinery/field/containment/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		shock(AM)
 

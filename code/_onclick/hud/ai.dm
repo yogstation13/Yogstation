@@ -177,7 +177,7 @@
 
 /atom/movable/screen/ai/add_multicam/Click()
 	if(..())
-		return
+		return 
 	var/mob/living/silicon/ai/AI = usr
 	AI.drop_new_multicam()
 

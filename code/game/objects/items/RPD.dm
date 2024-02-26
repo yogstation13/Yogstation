@@ -20,6 +20,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("Manifold",			/obj/machinery/atmospherics/pipe/manifold, TRUE),
 		new /datum/pipe_info/pipe("4-Way Manifold",		/obj/machinery/atmospherics/pipe/manifold4w, TRUE),
 		new /datum/pipe_info/pipe("Layer Manifold",		/obj/machinery/atmospherics/pipe/layer_manifold, TRUE),
+		new /datum/pipe_info/pipe("Multi-Deck Adapter", /obj/machinery/atmospherics/pipe/multiz, TRUE),
 	),
 	"Devices" = list(
 		new /datum/pipe_info/pipe("Connector",			/obj/machinery/atmospherics/components/unary/portables_connector, FALSE),
@@ -240,6 +241,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	var/static/datum/pipe_info/first_plumbing
 	var/mode = BUILD_MODE | PAINT_MODE | DESTROY_MODE | WRENCH_MODE
 	var/locked = FALSE //wheter we can change categories. Useful for the plumber
+	/// The owner of this RCD. It can be a mech or a player.
+	var/owner
 
 /obj/item/pipe_dispenser/Initialize(mapload)
 	. = ..()
@@ -286,6 +289,9 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		get_asset_datum(/datum/asset/spritesheet/pipes),
 	)
 
+/obj/item/pipe_dispenser/ui_host(mob/user)
+	return owner || ..()
+
 /obj/item/pipe_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -305,7 +311,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		"selected_color" = paint_color,
 		"paint_colors" = GLOB.pipe_paint_colors,
 		"mode" = mode,
-		"locked" = locked
+		"locked" = locked,
 	)
 
 	var/list/recipes
@@ -329,10 +335,10 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	return data
 
 /obj/item/pipe_dispenser/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
-	if(!usr.canUseTopic(src, BE_CLOSE))
-		return
+
 	var/playeffect = TRUE
 	switch(action)
 		if("color")
@@ -429,7 +435,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			return
 
 	if (mode & BUILD_MODE)
-		if(istype(get_area(user), /area/reebe/city_of_cogs))
+		if(istype(get_area(user), /area/centcom/reebe/city_of_cogs))
 			to_chat(user, span_notice("You cannot build on Reebe.."))
 			return
 
@@ -566,6 +572,24 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	else
 		return
 	to_chat(source, span_notice("You set the layer to [piping_layer]."))
+
+/obj/item/pipe_dispenser/exosuit
+	name = "mounted pipe dispenser"
+	desc = "You shouldn't be seeing this!"
+	item_flags = NO_MAT_REDEMPTION | DROPDEL | NOBLUDGEON
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | UNACIDABLE // would be weird if it could somehow be destroyed inside the equipment item
+
+/obj/item/pipe_dispenser/exosuit/ui_state(mob/user)
+	return GLOB.pilot_state
+
+// don't allow using this thing unless you're piloting the mech it's attached to
+/obj/item/pipe_dispenser/exosuit/can_interact(mob/user)
+	if(!(owner && ismecha(owner)))
+		return FALSE
+	var/obj/mecha/gundam = owner
+	if(user == gundam.occupant && !gundam.equipment_disabled && gundam.selected == loc)
+		return TRUE
+	return FALSE
 
 /obj/item/pipe_dispenser/plumbing
 	name = "Plumberinator"

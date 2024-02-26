@@ -4,7 +4,7 @@
 /obj/machinery/smartfridge
 	name = "smartfridge"
 	desc = "Keeps cold things cold and hot things cold."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/smartfridge.dmi'
 	icon_state = "smartfridge"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
@@ -18,21 +18,37 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/smartfridge
+	/// Maximum number of items that can be loaded into the machine
 	var/max_n_of_items = 1000
 	var/allow_ai_retrieve = FALSE
+	/// List of items that the machine starts with upon spawn
 	var/list/initial_contents
-	var/full_indicator_state = "smartfridge-indicator" //the icon state for the "oh no, we're full" indicator light
-	var/retrieval_state = "smartfridge-retrieve" //the icon state for the dispensing animation
-	var/retrieval_time = 19 //the length (in ticks) of the retrieval_state
-	var/supports_full_indicator_state = TRUE //whether or not the smartfridge supports a full inventory indicator icon state
-	var/supports_retrieval_state = TRUE //whether or not the smartfridge supports a retrieval_state dispensing animation
-	var/supports_capacity_indication = TRUE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
-	var/pitches = FALSE //whether or not it should use "sales pitches" similar to a vendor machine
-	var/last_pitch = 0 //When did we last pitch?
-	var/pitch_delay = 2000 //How long until we can pitch again?
-	var/product_slogans = "" //String of slogans separated by semicolons, optional
-	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED	//Shock users like an airlock.
-	var/dispenser_arm = TRUE //whether or not the dispenser is active (wires can disable this)
+	/// Is this smartfridge going to have a glowing screen? (Drying Racks are not)
+	var/has_emissive = TRUE
+	/// the icon state for the "oh no, we're full" indicator light
+	var/full_indicator_state = "smartfridge-indicator"
+	/// the icon state for the dispensing animation
+	var/retrieval_state = "smartfridge-retrieve"
+	/// the length (in ticks) of the retrieval_state
+	var/retrieval_time = 19
+	/// whether or not the smartfridge supports a full inventory indicator icon state
+	var/supports_full_indicator_state = TRUE
+	/// whether or not the smartfridge supports a retrieval_state dispensing animation
+	var/supports_retrieval_state = TRUE
+	/// whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
+	var/supports_capacity_indication = TRUE
+	/// whether or not it should use "sales pitches" similar to a vendor machine
+	var/pitches = FALSE
+	// When did we last pitch?
+	var/last_pitch = 0
+	/// How long until we can pitch again?
+	var/pitch_delay = 2000
+	/// String of slogans separated by semicolons, optional
+	var/product_slogans = ""
+	/// Shock users like an airlock.
+	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED
+	/// whether or not the dispenser is active (wires can disable this)
+	var/dispenser_arm = TRUE
 	var/power_wire_cut = FALSE
 	var/list/slogan_list = list()
 
@@ -146,8 +162,13 @@
 /obj/machinery/smartfridge/obj_break(damage_flag)
 	if(!(stat & BROKEN))
 		stat |= BROKEN
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	..(damage_flag)
+
+/obj/machinery/smartfridge/update_appearance(updates=ALL)
+	. = ..()
+
+	set_light((!(stat & BROKEN) && powered()) ? MINIMUM_USEFUL_LIGHT_RANGE : 0)
 
 /obj/machinery/smartfridge/update_icon_state()
 	. = ..()
@@ -174,6 +195,26 @@
 	else
 		icon_state = "[startstate]-off"
 
+/obj/machinery/smartfridge/update_overlays()
+	. = ..()
+
+	// var/shown_contents_length = visible_items()
+	// if(visible_contents && shown_contents_length)
+	// 	var/content_level = "[initial(icon_state)]-[contents_icon_state]"
+	// 	switch(shown_contents_length)
+	// 		if(1 to 25)
+	// 			content_level += "-1"
+	// 		if(26 to 50)
+	// 			content_level += "-2"
+	// 		if(31 to INFINITY)
+	// 			content_level += "-3"
+	// 	. += mutable_appearance(icon, content_level)
+
+	// . += mutable_appearance(icon, "[initial(icon_state)]-glass[(machine_stat & BROKEN) ? "-broken" : ""]")
+
+	if(!stat && has_emissive)
+		. += emissive_appearance(icon, "[initial(icon_state)]-light-mask", src, alpha = src.alpha)
+
 /obj/machinery/smartfridge/proc/animate_dispenser()
 	//visually animate the smartfridge dispensing an item
 	if (supports_retrieval_state && !(stat & (NOPOWER|BROKEN)))
@@ -199,9 +240,10 @@
 		return
 
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, O))
-		cut_overlays()
 		if(panel_open)
 			add_overlay("[initial(icon_state)]-panel")
+		else
+			cut_overlay("[initial(icon_state)]-panel")
 		updateUsrDialog()
 		return
 
@@ -231,7 +273,7 @@
 		if(accept_check(O))
 			load(O)
 			user.visible_message("[user] has added \the [O] to \the [src].", span_notice("You add \the [O] to \the [src]."))
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			updateUsrDialog()
 			if(contents.len >= max_n_of_items)
 				indicate_full()
@@ -246,7 +288,7 @@
 				if(accept_check(G))
 					load(G)
 					loaded++
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			updateUsrDialog()
 
 			if(loaded)
@@ -273,7 +315,7 @@
 				load(organ)
 				OS.clear_organ()
 				user.visible_message("[user] has added \the [organ] to \the [src].", span_notice("You add \the [organ] to \the [src]."))
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 				updateUsrDialog()
 				if(contents.len >= max_n_of_items)
 					indicate_full()
@@ -378,7 +420,7 @@
 					if(O.name == params["name"])
 						dispense(O, usr)
 						break
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 				cut_overlay(full_indicator_state)
 				animate_dispenser()
 				return TRUE
@@ -391,7 +433,7 @@
 					dispense(O, usr)
 					desired--
 
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			cut_overlay(full_indicator_state)
 			animate_dispenser()
 			return TRUE
@@ -408,6 +450,7 @@
 	icon_state = "drying_rack"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
+	has_emissive = FALSE
 	active_power_usage = 200
 	supports_full_indicator_state = FALSE //whether or not the smartfridge supports a full inventory indicator icon state
 	supports_retrieval_state = FALSE //whether or not the smartfridge supports a retrieval_state dispensing animation
@@ -427,8 +470,13 @@
 	..()
 
 /obj/machinery/smartfridge/drying_rack/RefreshParts()
+	return NONE
+
 /obj/machinery/smartfridge/drying_rack/exchange_parts()
+	return NONE
+
 /obj/machinery/smartfridge/drying_rack/spawn_frame()
+	return NONE
 
 /obj/machinery/smartfridge/drying_rack/default_deconstruction_crowbar(obj/item/crowbar/C, ignore_panel = 1)
 	..()
@@ -455,7 +503,7 @@
 /obj/machinery/smartfridge/drying_rack/ui_act(action, params)
 	. = ..()
 	if(.)
-		update_appearance(UPDATE_ICON) // This is to handle a case where the last item is taken out manually instead of through drying pop-out
+		update_appearance() // This is to handle a case where the last item is taken out manually instead of through drying pop-out
 		return
 	switch(action)
 		if("Dry")
@@ -475,7 +523,7 @@
 
 /obj/machinery/smartfridge/drying_rack/load() //For updating the filled overlay
 	..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/smartfridge/drying_rack/update_overlays()
 	. = ..()
@@ -489,7 +537,7 @@
 	if(drying)
 		if(rack_dry())//no need to update unless something got dried
 			SStgui.update_uis(src)
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 
 /obj/machinery/smartfridge/drying_rack/accept_check(obj/item/O)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))
@@ -507,7 +555,7 @@
 	else
 		drying = TRUE
 		use_power = ACTIVE_POWER_USE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/smartfridge/drying_rack/proc/rack_dry()
 	for(var/obj/item/reagent_containers/food/snacks/S in src)
@@ -699,6 +747,7 @@
 /obj/machinery/smartfridge/disks
 	name = "disk compartmentalizer"
 	desc = "A machine capable of storing a variety of disks. Denoted by most as the DSU (disk storage unit)."
+	icon = 'icons/obj/vending.dmi'
 	icon_state = "disktoaster"
 	product_slogans = "Toasty!;Burnt to a crisp.;Puts a new meaning to the term \"burning a disk\", eh?;Store your plant data disks here. Or any kind of disk really. I don't discriminate."
 	pass_flags = PASSTABLE

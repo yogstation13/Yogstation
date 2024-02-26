@@ -13,6 +13,7 @@
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "tpump"
+	vent_movement = NONE
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/CtrlClick(mob/user)
 	if(can_interact(user))

@@ -419,7 +419,7 @@
 
 /obj/effect/penance_giver
 	name = "code ing"
-	desc = "it takes your soul, and other stuff"
+	desc = "It takes your soul, and other stuff."
 	icon = 'icons/mob/triangle.dmi'
 	icon_state = "triangle"
 	light_power = 2

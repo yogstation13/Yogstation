@@ -36,6 +36,10 @@
 	AddComponent(/datum/component/personal_crafting)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 	AddComponent(/datum/component/bloodysoles/feet)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -58,6 +62,11 @@
 	//...and display them.
 	add_to_all_human_data_huds()
 
+/mob/living/carbon/human/reset_perspective(atom/new_eye, force_reset = FALSE)
+	if(dna?.species?.prevent_perspective_change && !force_reset) // This is in case a species needs to prevent perspective changes in certain cases, like Dullahans preventing perspective changes when they're looking through their head.
+		update_fullscreen()
+		return
+	return ..()
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
@@ -255,12 +264,11 @@
 
 // called when something steps onto a human
 // this could be made more general, but for now just handle mulebot
-/mob/living/carbon/human/Crossed(atom/movable/AM)
+/mob/living/carbon/human/proc/on_entered(datum/source, atom/movable/AM, ...)
 	var/mob/living/simple_animal/bot/mulebot/MB = AM
 	if(istype(MB))
 		MB.RunOver(src)
 
-	. = ..()
 	spreadFire(AM)
 
 /mob/living/carbon/human/Topic(href, href_list)
@@ -1025,7 +1033,7 @@
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	var/carrydelay = 50 //if you have latex you are faster at grabbing
-	var/skills_space = "" // Changes depending on glove type
+	var/skills_space = null // Changes depending on glove type
 	if(HAS_TRAIT(src, TRAIT_QUICKEST_CARRY))
 		carrydelay = 25
 		skills_space = "masterfully"
@@ -1038,7 +1046,7 @@
 	if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE))
 		visible_message(span_notice("[src] starts [skills_space] lifting [target] onto their back.."),
 		//Joe Medic starts quickly/expertly lifting Grey Tider onto their back..
-		span_notice("[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space] start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
+		span_notice("[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space ? "[skills_space] " : ""]start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
 		//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
 		if(do_after(src, carrydelay, target))
 			//Second check to make sure they're still valid to be carried
@@ -1078,7 +1086,7 @@
 		target.visible_message(span_warning("[target] really can't seem to mount [src]..."))
 		return
 	buckle_lying = lying_buckle
-	var/datum/component/riding/human/riding_datum = LoadComponent(/datum/component/riding/human)
+	var/datum/component/riding/human/riding_datum = AddComponent(/datum/component/riding/human)
 	if(target_hands_needed)
 		riding_datum.ride_check_rider_restrained = TRUE
 	if(buckled_mobs && ((target in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled)
@@ -1374,12 +1382,6 @@
 /mob/living/carbon/human/species/skeleton/lowcalcium
 	race = /datum/species/skeleton/lowcalcium
 
-/mob/living/carbon/human/species/synth
-	race = /datum/species/synth
-
-/mob/living/carbon/human/species/synth/military
-	race = /datum/species/synth/military
-
 /mob/living/carbon/human/species/vampire
 	race = /datum/species/vampire
 
@@ -1391,3 +1393,6 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
+
+/mob/living/carbon/human/species/zombie/preternis
+	race = /datum/species/preternis/zombie

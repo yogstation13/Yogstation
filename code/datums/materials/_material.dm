@@ -7,7 +7,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 /datum/material
 	var/name = "material"
-	var/desc = "its..stuff."
+	var/desc = "It's...stuff." // I'm stuff :stuff:
 	///Var that's mostly used by science machines to identify specific materials, should most likely be phased out at some point
 	var/id = "mat"
 	///Base color of the material, is used for greyscale. Item isn't changed in color if this is null.
@@ -35,6 +35,12 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 	if(istype(source, /obj)) //objs
 		on_applied_obj(source, amount, material_flags)
+	
+	source.mat_update_desc(src)
+
+///This proc is called when a material updates an object's description
+/atom/proc/mat_update_desc(datum/material/mat)
+	return
 
 ///This proc is called when the material is added to an object specifically.
 /datum/material/proc/on_applied_obj(obj/o, amount, material_flags)

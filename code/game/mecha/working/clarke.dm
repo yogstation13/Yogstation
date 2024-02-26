@@ -6,16 +6,17 @@
 	max_temperature = 65000
 	max_integrity = 200
 	step_in = 1.25
-	fast_pressure_step_in = 1.25
-	slow_pressure_step_in = 1.8
+	fast_pressure_step_in = 1.5
+	slow_pressure_step_in = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	light_power = 7
 	deflect_chance = 10
-	armor = list(MELEE = 20, BULLET = 10, LASER = 20, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 70, FIRE = 100, ACID = 100)
+	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	armor = list(MELEE = 20, BULLET = 10, LASER = 20, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 100, FIRE = 100, ACID = 100)
 	max_equip = 7
 	wreckage = /obj/structure/mecha_wreckage/clarke
 	enter_delay = 40
-	canstrafe = FALSE
+	pivot_step = TRUE
 	/// Handles an internal ore box for Clarke
 	var/obj/structure/ore_box/box
 	omnidirectional_attacks = TRUE
@@ -49,6 +50,14 @@
 		var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
 		var/mob/living/brain/B = M.brainmob
 		hud.show_to(B)
+
+/obj/mecha/working/clarke/domove(direction)
+	if(ISDIAGONALDIR(direction) && strafe)
+		if(EWCOMPONENT(dir))
+			direction &= ~(NORTH|SOUTH)
+		else if(NSCOMPONENT(dir))
+			direction &= ~(EAST|WEST)
+	return ..(direction)
 
 //Ore Box Controls
 

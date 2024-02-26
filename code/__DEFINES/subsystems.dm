@@ -69,9 +69,9 @@
 
 ///New should not call Initialize
 #define INITIALIZATION_INSSATOMS 0
-///New should call Initialize(mapload, TRUE)
+///New should call Initialize(TRUE)
 #define INITIALIZATION_INNEW_MAPLOAD 2
-///New should call Initialize(mapload, FALSE)
+///New should call Initialize(FALSE)
 #define INITIALIZATION_INNEW_REGULAR 1
 
 //! ### Initialization hints
@@ -79,12 +79,12 @@
 ///Nothing happens
 #define INITIALIZE_HINT_NORMAL 0
 /**
-  * call LateInitialize at the end of all atom Initalization
-  *
-  * The item will be added to the late_loaders list, this is iterated over after
-  * initalization of subsystems is complete and calls LateInitalize on the atom
-  * see [this file for the LateIntialize proc](atom.html#proc/LateInitialize)
-  */
+ * call LateInitialize at the end of all atom Initalization
+ *
+ * The item will be added to the late_loaders list, this is iterated over after
+ * initalization of subsystems is complete and calls LateInitalize on the atom
+ * see [this file for the LateIntialize proc](atom.html#proc/LateInitialize)
+ */
 #define INITIALIZE_HINT_LATELOAD 1
 
 ///Call qdel on the atom after intialization
@@ -92,11 +92,14 @@
 
 ///type and all subtypes should always immediately call Initialize in New()
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
-    ..();\
-    if(!(flags_1 & INITIALIZED_1)) {\
-        args[1] = TRUE;\
-        SSatoms.InitAtom(src, args);\
-    }\
+	..();\
+	if(!(flags_1 & INITIALIZED_1)) {\
+		var/previous_initialized_value = SSatoms.initialized;\
+		SSatoms.initialized = INITIALIZATION_INNEW_MAPLOAD;\
+		args[1] = TRUE;\
+		SSatoms.InitAtom(src, FALSE, args);\
+		SSatoms.initialized = previous_initialized_value;\
+	}\
 }
 
 //! ### SS initialization hints
@@ -116,6 +119,9 @@
 
 /// Successful, but don't print anything. Useful if subsystem was disabled.
 #define SS_INIT_NO_NEED 3
+
+/// Succesfully initialized, BUT do not announce it to players (generally to hide game mechanics it would otherwise spoil)
+#define SS_INIT_NO_MESSAGE 4
 
 //! ### SS initialization load orders
 // Subsystem init_order, from highest priority to lowest priority
@@ -138,8 +144,8 @@
 #define INIT_ORDER_QUIRKS 			73
 #define INIT_ORDER_EVENTS			70
 #define INIT_ORDER_JOBS				65
-#define INIT_ORDER_MAPPING			60
-#define INIT_ORDER_TICKER			50
+#define INIT_ORDER_TICKER			55
+#define INIT_ORDER_MAPPING			50
 #define INIT_ORDER_EARLY_ASSETS 	48
 #define INIT_ORDER_NETWORKS			45
 #define INIT_ORDER_ECONOMY			40
@@ -151,7 +157,7 @@
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_AIR_MACHINERY	-0.5
-#define INIT_ORDER_AIR				-2
+#define INIT_ORDER_AIR				-1
 #define INIT_ORDER_PERSISTENCE 		-2
 #define INIT_ORDER_PERSISTENT_PAINTINGS -3 // Assets relies on this
 #define INIT_ORDER_ASSETS			-4
@@ -163,10 +169,12 @@
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_MINOR_MAPPING	-40
+#define INIT_ORDER_BLUESPACE_LOCKER -45
 #define INIT_ORDER_PATH				-50
 #define INIT_ORDER_DISCORD			-60
 #define INIT_ORDER_EXPLOSIONS		-69
-#define INIT_ORDER_STATPANELS 		-98
+#define INIT_ORDER_STATPANELS 		-97
+#define INIT_ORDER_INIT_PROFILER 	-98 //Near the end, logs the costs of initialize
 #define INIT_ORDER_DEMO				-99 // To avoid a bunch of changes related to initialization being written, do this last
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
@@ -188,11 +196,11 @@
 #define FIRE_PRIORITY_THROWING		25
 #define FIRE_PRIORITY_SPACEDRIFT	30
 #define FIRE_PRIORITY_FIELDS		30
-#define FIRE_PRIOTITY_SMOOTHING		35
+#define FIRE_PRIORITY_SMOOTHING 	35
 #define FIRE_PRIORITY_NETWORKS		40
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_ACID			40
-#define FIRE_PRIOTITY_BURNING		40
+#define FIRE_PRIORITY_BURNING		40
 #define FIRE_PRIORITY_DEFAULT		50
 #define FIRE_PRIORITY_PARALLAX		65
 #define FIRE_PRIORITY_INSTRUMENTS	80
@@ -211,13 +219,32 @@
 
 // SS runlevels
 
-#define RUNLEVEL_INIT 0
-#define RUNLEVEL_LOBBY 1
-#define RUNLEVEL_SETUP 2
-#define RUNLEVEL_GAME 4
-#define RUNLEVEL_POSTGAME 8
+#define RUNLEVEL_LOBBY (1<<0)
+#define RUNLEVEL_SETUP (1<<1)
+#define RUNLEVEL_GAME (1<<2)
+#define RUNLEVEL_POSTGAME (1<<3)
 
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
+
+//SSticker.current_state values
+/// Game is loading
+#define GAME_STATE_STARTUP 0
+/// Game is loaded and in pregame lobby
+#define GAME_STATE_PREGAME 1
+/// Game is attempting to start the round
+#define GAME_STATE_SETTING_UP 2
+/// Game has round in progress
+#define GAME_STATE_PLAYING 3
+/// Game has round finished
+#define GAME_STATE_FINISHED 4
+
+// Used for SSticker.force_ending
+/// Default, round is not being forced to end.
+#define END_ROUND_AS_NORMAL 0
+/// End the round now as normal
+#define FORCE_END_ROUND 1
+/// For admin forcing roundend, can be used to distinguish the two
+#define ADMIN_FORCE_END_ROUND 2
 
 // SSair run section
 #define SSAIR_PIPENETS 1

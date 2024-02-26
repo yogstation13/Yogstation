@@ -90,8 +90,8 @@
 	if(user.mind.miming)
 		alpha = 255
 
-/obj/item/storage/box/mime/Moved(oldLoc, dir)
-	if (iscarbon(oldLoc))
+/obj/item/storage/box/mime/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	if (iscarbon(old_loc))
 		alpha = 0
 	..()
 
@@ -623,16 +623,6 @@
 	new /obj/item/card/id/prisoner/five(src)
 	new /obj/item/card/id/prisoner/six(src)
 	new /obj/item/card/id/prisoner/seven(src)
-
-/obj/item/storage/box/seccarts
-	name = "box of PDA security cartridges"
-	desc = "A box full of PDA cartridges used by Security."
-	illustration = "pda"
-
-/obj/item/storage/box/seccarts/PopulateContents()
-	new /obj/item/cartridge/detective(src)
-	for(var/i in 1 to 6)
-		new /obj/item/cartridge/security(src)
 
 /obj/item/storage/box/firingpins
 	name = "box of standard firing pins"

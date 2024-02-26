@@ -35,7 +35,7 @@ Difficulty: Extremely Hard
 	var/projectile_speed_multiplier = 1
 	var/enraged = FALSE
 	var/enraging = FALSE
-	internal_type = /obj/item/gps/internal/frostminer
+	gps_name = "Bloodchilling Signal"
 	deathmessage = "falls to the ground, decaying into plasma particles."
 	deathsound = "bodyfall"
 	attack_action_types = list(/datum/action/innate/megafauna_attack/frost_orbs,

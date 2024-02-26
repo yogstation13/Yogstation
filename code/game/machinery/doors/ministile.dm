@@ -24,7 +24,7 @@
 	icon_state = "ministile"
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/ministile/CanAtmosPass(turf/T)
+/obj/machinery/ministile/can_atmos_pass(turf/target_turf, vertical = FALSE)
 	return TRUE
 
 /obj/machinery/ministile/Cross(atom/movable/mover)
