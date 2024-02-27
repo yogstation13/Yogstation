@@ -149,7 +149,6 @@
 			var/turf/D = get_step(Q, turn(user.dir,180))
 			if(B.charging)
 				B.adjustBruteLoss(50)
-				B.charging = FALSE
 				B.forceMove(D)
 				B.visible_message(span_warning("[B] is caught and thrown behind [user]!"))
 				playsound(target, 'sound/effects/explosion1.ogg', 60, 1)
