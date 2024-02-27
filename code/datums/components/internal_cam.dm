@@ -27,19 +27,15 @@
 	bodcam.camnet.updatePortableCamera(bodcam)
 	bodcam.built_in = null
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
+
+/datum/component/internal_cam/Destroy(force, silent)
+	. = ..()
 	QDEL_NULL(bodcam)
 
 /datum/component/internal_cam/proc/change_cameranet(var/datum/cameranet/newnet)
 	if(!newnet)
 		return
 	bodcam.change_camnet(newnet)
-
-/datum/component/internal_cam/Destroy(force, silent)
-	bodcam.built_in = null
-	bodcam.status = FALSE
-	bodcam.camnet.updatePortableCamera(bodcam)
-	QDEL_NULL(bodcam)
-	. = ..()
 
 /datum/component/internal_cam/proc/update_cam()
 	bodcam.camnet.updatePortableCamera(bodcam)

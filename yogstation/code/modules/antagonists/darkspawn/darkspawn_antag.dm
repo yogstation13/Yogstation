@@ -368,6 +368,7 @@
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
 		set_starlight(COLOR_VELVET) //i wanna change power and range, but that causes immense lag
 		SEND_GLOBAL_SIGNAL(COMSIG_DARKSPAWN_ASCENSION)
+		SSweather.run_weather(/datum/weather/shadowlands, 2)
 
 	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
 
@@ -400,10 +401,62 @@
 
 ///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
-	SSshuttle.emergency.request(null, 0, null, 0.2)
+	SSshuttle.emergency.request(null, 0, null, 0.15)
 
 ///To get the icon in preferences
 /datum/antagonist/darkspawn/get_preview_icon()
 	var/icon/darkspawn_icon = icon('yogstation/icons/mob/darkspawn_progenitor.dmi', "darkspawn_progenitor")
 	darkspawn_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 	return darkspawn_icon
+
+
+//applies the shadowlands component to anyone inside
+/datum/weather/shadowlands
+	name = "shadowlands"
+	desc = "The location has been ripped out of normalspace, straight into the shadowlands."
+	telegraph_message = span_velvet("Reality begins to quake and crack it the seams.")
+	weather_message = span_progenitor("SOMETHING IS WRONG.")
+	area_type = /area
+	telegraph_duration = 15 SECONDS //actually give them a brief moment to react
+	immunity_type = "fuckno"
+	weather_duration = INFINITY
+	weather_duration_lower = INFINITY
+	weather_duration_upper = INFINITY
+
+/datum/weather/shadowlands/weather_act(mob/living/L)
+	if(L.stat != DEAD)
+		L.AddComponent(/datum/component/shadowlands)
+
+//adds and removes the shadowlands overlay based on Z level
+/datum/component/shadowlands
+	var/mob/living/owner
+
+/datum/component/shadowlands/Initialize()
+	if(!isliving(parent))
+		return COMPONENT_INCOMPATIBLE
+	owner = parent
+
+/datum/component/shadowlands/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(update_fullscreen))
+	update_fullscreen()
+
+/datum/component/shadowlands/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_MOVABLE_Z_CHANGED)
+	. = ..()
+
+/datum/component/shadowlands/proc/update_fullscreen()
+	if(!owner)
+		return
+
+	var/turf/location = get_turf(owner)
+	if(!is_centcom_level(location.z))
+		owner.overlay_fullscreen("shadowlands", /atom/movable/screen/fullscreen/shadowlands)
+	else
+		owner.clear_fullscreen("shadowlands")
+
+//the fullscreen in question
+/atom/movable/screen/fullscreen/shadowlands
+	icon_state = "shadowlands"
+	layer = CURSE_LAYER
+	plane = FULLSCREEN_PLANE
