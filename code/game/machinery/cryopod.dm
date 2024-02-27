@@ -383,7 +383,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	if(!istype(target) || user.incapacitated() || !target.Adjacent(user) || !Adjacent(user) || !ismob(target) || (!ishuman(user) && !iscyborg(user)) || !istype(user.loc, /turf) || target.buckled)
 		return
 
-	if(SSsecurity_level.current_security_level.allow_cryo)
+	if(!SSsecurity_level.current_security_level.allow_cryo)
 		to_chat(user, span_boldnotice("Nanotrasen does not allow abandoning your crew during a crisis. Cryo systems disabled until the current crisis is resolved."))
 		return
 
