@@ -71,7 +71,7 @@
 		to_chat(owner, span_warning("[target_atom]'s mindshield interferes with [src], put [target_atom.p_them()] on a persuasion rack first."))
 		return FALSE
 	// No mind
-	if(!target_atom.mind)
+	if(!target_atom.mind || !target_atom.grab_ghost())
 		ghost_searching = TRUE
 		to_chat(owner, span_warning("Attempting to call a spirit from beyond the grave to possess [target_atom]."))
 		var/list/candidates = pollGhostCandidates("Would you like to play as a hecata zombie?", ROLE_BLOODSUCKER, null, null, poll_time = 5 SECONDS)
