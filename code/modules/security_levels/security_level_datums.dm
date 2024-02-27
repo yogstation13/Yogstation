@@ -119,7 +119,7 @@
 /**
  * EPSILON
  *
- * [REDACTED]
+ * Death squad alert
  */
 /datum/security_level/epsilon
 	name = "epsilon"
