@@ -152,13 +152,13 @@ GLOBAL_VAR(final_zone)
 /datum/game_mode/fortnite/proc/shrinkborders()
 	switch(borderstage)//to keep it seperate and not fuck with weather selection
 		if(1)
-			set_security_level("blue")
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
 		if(4)
-			set_security_level("red")
+			SSsecurity_level.set_level(SEC_LEVEL_RED)
 		if(7)
-			set_security_level("gamma")
+			SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 		if(9)
-			set_security_level("epsilon")
+			SSsecurity_level.set_level(SEC_LEVEL_EPSILON)
 
 	var/datum/weather/royale/W
 	switch(borderstage)
