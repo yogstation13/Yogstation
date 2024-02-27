@@ -206,11 +206,6 @@
 	icon_state = "ripley-broken"
 	orig_mecha = /obj/mecha/working/ripley
 
-/obj/structure/mecha_wreckage/ripley/mkii
-	name = "\improper Ripley MK-II wreckage"
-	icon_state = "ripleymkii-broken"
-	orig_mecha = /obj/mecha/working/ripley/mkii
-
 /obj/structure/mecha_wreckage/ripley/firefighter
 	name = "\improper Firefighter wreckage"
 	icon_state = "firefighter-broken"

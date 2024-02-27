@@ -187,11 +187,6 @@
 	desc = "A set of armor plates for the Durand. Built heavy to resist an incredible amount of brute force."
 	icon_state = "durand_armor"
 
-////////// Firefighter
-
-/obj/item/mecha_parts/chassis/firefighter
-	name = "\improper Firefighter chassis"
-	construct_type = /datum/component/construction/unordered/mecha_chassis/firefighter
 
 ////////// Clarke
 

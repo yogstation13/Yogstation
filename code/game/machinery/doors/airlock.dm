@@ -513,7 +513,7 @@
 			else
 				return
 		else if(user.has_status_effect(/datum/status_effect/hallucination) && ishuman(user) && prob(1) && !operating)
-			if(user.getarmor(user.held_index_to_body_zone(user.active_hand_index), ELECTRIC) < 100)
+			if(user.getarmor(user.held_index_to_hand(user.active_hand_index), ELECTRIC) < 100)
 				new /datum/hallucination/shock(user)
 				return
 	var/allowed = (obj_flags & CMAGGED) ? cmag_allowed(user) : allowed(user)
