@@ -213,8 +213,8 @@
 		return
 	
 	if(istype(W, /obj/item/stack) || istype(W, /obj/item/rcd_ammo) || istype(W, /obj/item/rcd_upgrade))
-		matter_resupply(W, user)
-		return
+		if(matter_resupply(W, user))
+			return
 
 	if(istype(W, /obj/item/mecha_parts))
 		var/obj/item/mecha_parts/P = W
