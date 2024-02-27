@@ -24,6 +24,10 @@
 		/datum/job_department/cargo,
 	)
 
+	minimal_lightup_areas = list(
+		/area/construction/mining/aux_base
+	)
+
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 10,
 		/obj/item/grenade/plastic/miningcharge/lesser = 10,
