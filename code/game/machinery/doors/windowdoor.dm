@@ -457,7 +457,7 @@
 
 /obj/machinery/door/window/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		atom_integrity = max_integrity
+		update_integrity(max_integrity)
 
 /obj/machinery/door/window/clockwork/hasPower()
 	return TRUE //yup that's power all right

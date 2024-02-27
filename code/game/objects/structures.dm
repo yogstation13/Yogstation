@@ -42,12 +42,6 @@
 			. += span_warning("It's on fire!")
 		if(broken)
 			. += span_notice("It appears to be broken.")
-		var/examine_status = examine_status(user)
-		if(examine_status)
-			. += examine_status
-
-/obj/structure/proc/examine_status(mob/user) //An overridable proc, mostly for falsewalls.
-	return
 
 /obj/structure/rust_heretic_act()
 	take_damage(500, BRUTE, MELEE, 1)

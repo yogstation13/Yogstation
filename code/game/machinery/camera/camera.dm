@@ -210,7 +210,7 @@
 	if(!panel_open)
 		return FALSE
 	toggle_cam(user, 1)
-	atom_integrity = max_integrity //this is a pretty simplistic way to heal the camera, but there's no reason for this to be complex.
+	update_integrity(max_integrity) //this is a pretty simplistic way to heal the camera, but there's no reason for this to be complex.
 	I.play_tool_sound(src)
 	return TRUE
 

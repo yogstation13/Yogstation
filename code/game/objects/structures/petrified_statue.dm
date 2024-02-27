@@ -25,8 +25,7 @@
 		ADD_TRAIT(L, TRAIT_MUTE, STATUE_MUTE)
 		L.faction += "mimic" //Stops mimics from instaqdeling people in statues
 		L.status_flags |= GODMODE
-		atom_integrity = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
-		max_integrity = atom_integrity
+		modify_max_integrity(L.health + 100, FALSE) //stoning damaged mobs will result in easier to shatter statues
 		START_PROCESSING(SSobj, src)
 	..()
 

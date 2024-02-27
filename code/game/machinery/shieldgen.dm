@@ -164,7 +164,7 @@
 			if(coil.get_amount() < 1)
 				return
 			coil.use(1)
-			atom_integrity = max_integrity
+			update_integrity(max_integrity)
 			stat &= ~BROKEN
 			to_chat(user, span_notice("You repair \the [src]."))
 			update_appearance(UPDATE_ICON)

@@ -117,7 +117,7 @@
 /obj/item/clothing/proc/repair(mob/user, params)
 	damaged_clothes = CLOTHING_PRISTINE
 	update_clothes_damaged_state(FALSE)
-	atom_integrity = max_integrity
+	update_integrity(max_integrity)
 	name = initial(name) // remove "tattered" or "shredded" if there's a prefix
 	body_parts_covered = initial(body_parts_covered)
 	slot_flags = initial(slot_flags)

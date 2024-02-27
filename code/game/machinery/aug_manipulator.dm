@@ -89,7 +89,7 @@
 					return
 				to_chat(user, span_notice("You repair [src]."))
 				stat &= ~BROKEN
-				atom_integrity = max(atom_integrity, max_integrity)
+				update_integrity(max(atom_integrity, max_integrity))
 				update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_notice("[src] does not need repairs."))

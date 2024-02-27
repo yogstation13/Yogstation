@@ -730,7 +730,7 @@
 			to_chat(user, span_notice("You replace the damaged APC frame with a new one."))
 			qdel(W)
 			stat &= ~BROKEN
-			atom_integrity = max_integrity
+			update_integrity(max_integrity)
 			if (opened==APC_COVER_REMOVED)
 				opened = APC_COVER_OPENED
 			update_appearance()

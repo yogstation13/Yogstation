@@ -207,7 +207,7 @@
 			span_notice("You restore [src] to operation."))
 
 		stat &= ~BROKEN
-		atom_integrity = max_integrity
+		update_integrity(max_integrity)
 		update_appearance(UPDATE_ICON)
 	else
 		return ..()

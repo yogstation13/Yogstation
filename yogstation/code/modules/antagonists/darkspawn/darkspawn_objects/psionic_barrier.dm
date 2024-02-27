@@ -28,4 +28,4 @@
 	return ..()
 
 /obj/structure/psionic_barrier/process()
-	atom_integrity = max(0, min(max_integrity, atom_integrity + 1))
+	update_integrity(max(0, min(max_integrity, atom_integrity + 1)))

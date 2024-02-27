@@ -32,15 +32,10 @@
 /obj/structure/destructible/cult/examine(mob/user)
 	. = ..()
 	. += span_notice("\The [src] is [anchored ? "":"not "]secured to the floor.")
-	if((iscultist(user) || isobserver(user)) && cooldowntime > world.time)
-		. += "<span class='cult italic'>The magic in [src] is too weak, [p_they()] will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>"
-
-/obj/structure/destructible/cult/examine_status(mob/user)
 	if(iscultist(user) || isobserver(user))
-		var/t_It = p_they(TRUE)
-		var/t_is = p_are()
-		return span_cult("[t_It] [t_is] at <b>[round(atom_integrity * 100 / max_integrity)]%</b> stability.")
-	return ..()
+		. += span_cult("[p_they(TRUE)] [p_are()] at <b>[round(atom_integrity * 100 / max_integrity)]%</b> stability.")
+		if(cooldowntime > world.time)
+			. += "<span class='cult italic'>The magic in [src] is too weak, [p_they()] will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>"
 
 /obj/structure/destructible/cult/attack_animal(mob/living/simple_animal/M)
 	if(is_endgame && iscultist(M))
@@ -48,7 +43,7 @@
 	if(istype(M, /mob/living/simple_animal/hostile/construct/builder))
 		if(atom_integrity < max_integrity)
 			M.changeNext_move(CLICK_CD_MELEE)
-			atom_integrity = min(max_integrity, atom_integrity + 5)
+			update_integrity(min(max_integrity, atom_integrity + 5))
 			Beam(M, icon_state="sendbeam", time=4)
 			M.visible_message(span_danger("[M] repairs \the <b>[src]</b>."), \
 				span_cult("You repair <b>[src]</b>, leaving [p_they()] at <b>[round(atom_integrity * 100 / max_integrity)]%</b> stability."))

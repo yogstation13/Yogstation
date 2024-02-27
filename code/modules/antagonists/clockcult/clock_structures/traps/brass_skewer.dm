@@ -51,10 +51,8 @@
 		return
 	var/mob/living/squirrel = locate() in get_turf(src)
 	playsound(src, 'sound/machines/clockcult/brass_skewer.ogg', 75, FALSE)
-	icon_state = "[initial(icon_state)]_extended"
 	density = TRUE //Skewers are one-use only
-	desc = "A vicious brass spike protruding from the ground like a stala[pick("gm", "ct")]ite. It makes you sick to look at." //is stalagmite the ground one? or the ceiling one? who can ever remember?
-
+	update_appearance(UPDATE_DESC|UPDATE_ICON_STATE)
 	if(squirrel)
 		if(iscyborg(squirrel))
 			if(!squirrel.stat)
@@ -75,6 +73,16 @@
 		buckle_mob(squirrel, TRUE)
 	else
 		visible_message(span_danger("A massive brass spike erupts from the ground!"))
+
+/obj/structure/destructible/clockwork/trap/brass_skewer/update_icon_state()
+	. = ..()
+	if(density)
+		icon_state = "[initial(icon_state)]_extended"
+
+/obj/structure/destructible/clockwork/trap/brass_skewer/update_desc(updates)
+	. = ..()
+	if(density)
+		desc = "A vicious brass spike protruding from the ground like a stala[pick("gm", "ct")]ite. It makes you sick to look at." //is stalagmite the ground one? or the ceiling one? who can ever remember?
 
 /obj/structure/destructible/clockwork/trap/brass_skewer/user_buckle_mob()
 	return

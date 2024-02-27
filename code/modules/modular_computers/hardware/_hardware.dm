@@ -54,7 +54,7 @@
 			return 1
 		if(S.use(1))
 			to_chat(user, span_notice("You patch up \the [src] with a bit of \the [I]."))
-			atom_integrity = min(atom_integrity + 10, max_integrity)
+			update_integrity(min(atom_integrity + 10, max_integrity))
 		return 1
 
 	if(try_insert(I, user))

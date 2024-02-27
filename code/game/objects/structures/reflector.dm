@@ -106,7 +106,7 @@
 								span_notice("You begin repairing [src]..."),
 								span_italics("You hear welding."))
 			if(W.use_tool(src, user, 40, volume=40))
-				atom_integrity = max_integrity
+				update_integrity(max_integrity)
 				user.visible_message("[user] has repaired [src].", \
 									span_notice("You finish repairing [src]."))
 

@@ -127,7 +127,7 @@
 	if(pulse_timestamp <= world.time)
 		ConsumeTile()
 		if(heal_timestamp <= world.time)
-			atom_integrity = min(max_integrity, atom_integrity+health_regen)
+			update_integrity(min(max_integrity, atom_integrity + health_regen))
 			heal_timestamp = world.time + 20
 		update_appearance(UPDATE_ICON)
 		pulse_timestamp = world.time + 10

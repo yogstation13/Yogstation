@@ -172,11 +172,7 @@
 	if(glass)
 		airlock_material = "glass"
 	if(security_level > AIRLOCK_SECURITY_METAL)
-		atom_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
-		max_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
-	else
-		atom_integrity = normal_integrity
-		max_integrity = normal_integrity
+		modify_max_integrity(normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER)
 	if(damage_deflection == AIRLOCK_DAMAGE_DEFLECTION_N && security_level > AIRLOCK_SECURITY_METAL)
 		damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
 	prepare_huds()
@@ -1258,7 +1254,7 @@
 								span_notice("You begin repairing the airlock..."), \
 								span_italics("You hear welding."))
 				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
-					atom_integrity = max_integrity
+					update_integrity(max_integrity)
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
 										span_notice("You finish repairing the airlock."))

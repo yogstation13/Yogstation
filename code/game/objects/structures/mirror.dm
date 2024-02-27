@@ -94,11 +94,6 @@
 			return
 		. = apply_choices(selection, newstyle, H) // Now apply the style
 
-/obj/structure/mirror/examine_status(mob/user)
-	if(broken)
-		return list()// no message spam
-	return ..()
-
 /obj/structure/mirror/atom_break(damage_flag, mapload)
 	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))

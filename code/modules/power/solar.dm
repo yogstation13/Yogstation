@@ -65,7 +65,7 @@
 
 	multiplier = S.multiplier
 	max_integrity *= S.integmultiplier
-	atom_integrity = max_integrity
+	update_integrity(max_integrity)
 	panelcolor = S.panelcolor
 	glass_type = S.glass_type
 

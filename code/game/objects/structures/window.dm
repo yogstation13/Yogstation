@@ -202,7 +202,7 @@
 
 			to_chat(user, span_notice("You begin repairing [src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
-				atom_integrity = max_integrity
+				update_integrity(max_integrity)
 				update_nearby_icons()
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -841,7 +841,7 @@
 
 /obj/structure/window/reinforced/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		atom_integrity = max_integrity
+		update_integrity(max_integrity)
 		update_appearance()
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
@@ -960,7 +960,7 @@
 	if(istype(W, /obj/item/paper) && atom_integrity < max_integrity)
 		user.visible_message("[user] starts to patch the holes in \the [src].")
 		if(do_after(user, 2 SECONDS, src))
-			atom_integrity = min(atom_integrity+4,max_integrity)
+			update_integrity(min(atom_integrity + 4, max_integrity))
 			qdel(W)
 			user.visible_message("[user] patches some of the holes in \the [src].")
 			if(atom_integrity == max_integrity)

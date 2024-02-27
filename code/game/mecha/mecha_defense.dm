@@ -305,7 +305,7 @@
 					to_chat(user, span_notice("You repair the damaged gas tank."))
 				else
 					user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to [src]."))
-					atom_integrity += min(10, max_integrity-atom_integrity)
+					update_integrity(atom_integrity + min(10, max_integrity-atom_integrity))
 					if(atom_integrity == max_integrity)
 						to_chat(user, span_notice("It looks to be fully repaired now."))
 			return 1

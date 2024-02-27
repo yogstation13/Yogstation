@@ -923,10 +923,7 @@
 			else
 				return 0
 	visible_message(span_danger("[M.name] has hit [src]."), null, null, COMBAT_MESSAGE_RANGE)
-	if(istype(src, /obj/mecha))
-		return take_damage(punch_force, mech_damtype, MELEE, play_soundeffect, get_dir(src, M))	//1.5x damage versus other mechs
-	else
-		return take_damage(punch_force, mech_damtype, MELEE, play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
+	return take_damage(punch_force, mech_damtype, MELEE, play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
 
 /**
   * Called when the atom log's in or out

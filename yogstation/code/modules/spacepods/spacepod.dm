@@ -167,7 +167,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			to_chat(user, span_notice("You start [repairing ? "repairing [src]" : "slicing off [src]'s armor'"]"))
 			if(W.use_tool(src, user, 50, amount=3, volume = 50))
 				if(repairing)
-					atom_integrity = min(max_integrity, atom_integrity + 10)
+					update_integrity(min(max_integrity, atom_integrity + 10))
 					update_appearance(UPDATE_ICON)
 					to_chat(user, span_notice("You mend some [pick("dents","bumps","damage")] with [W]"))
 				else if(!cell && !internal_tank && !equipment.len && !pilot && !passengers.len && construction_state == SPACEPOD_ARMOR_WELDED)
@@ -233,13 +233,13 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 /obj/spacepod/proc/add_armor(obj/item/pod_parts/armor/armor)
 	desc = armor.pod_desc
 	max_integrity = armor.pod_integrity
-	atom_integrity = max_integrity - integrity_failure + atom_integrity
+	update_integrity(max_integrity - integrity_failure + atom_integrity)
 	pod_armor = armor
 	update_appearance(UPDATE_ICON)
 
 /obj/spacepod/proc/remove_armor()
 	if(!pod_armor)
-		atom_integrity = min(integrity_failure, atom_integrity)
+		update_integrity(min(integrity_failure, atom_integrity))
 		max_integrity = integrity_failure
 		desc = initial(desc)
 		pod_armor = null

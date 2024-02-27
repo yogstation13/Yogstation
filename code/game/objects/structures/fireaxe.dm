@@ -44,7 +44,7 @@
 				return
 			to_chat(user, span_notice("You begin repairing [src]."))
 			if(I.use_tool(src, user, 40, volume=50, amount=2))
-				atom_integrity = max_integrity
+				update_integrity(max_integrity)
 				update_appearance(UPDATE_ICON)
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -59,7 +59,7 @@
 		to_chat(user, span_notice("You start fixing [src]..."))
 		if(do_after(user, 2 SECONDS, src) && G.use(2))
 			broken = 0
-			atom_integrity = max_integrity
+			update_integrity(max_integrity)
 			update_appearance(UPDATE_ICON)
 	//yogs start - warn user if they use the wrong type of glass to repair
 	else if(istype(I, /obj/item/stack/sheet/glass) && broken)

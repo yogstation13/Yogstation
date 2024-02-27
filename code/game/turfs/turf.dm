@@ -170,7 +170,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	
 	if(uses_integrity)
-		atom_integrity = max_integrity
+		update_integrity(max_integrity)
 		if(islist(armor))
 			armor = getArmor(arglist(armor))
 		else if(!armor)

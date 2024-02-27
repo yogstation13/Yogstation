@@ -735,7 +735,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				if(!(stat & BROKEN))
 					return
 				to_chat(user, span_notice("You repair [src]."))
-				atom_integrity = max_integrity
+				update_integrity(max_integrity)
 				stat &= ~BROKEN
 				update_appearance(UPDATE_ICON)
 		else
