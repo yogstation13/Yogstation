@@ -17,6 +17,11 @@
 	cast_range = 8
 	projectile_type = /obj/projectile/magic/cast_iron
 
+/datum/action/cooldown/spell/pointed/projectile/cast_iron/ready_projectile(obj/projectile/to_fire, atom/target, mob/user, iteration)
+	. = ..()
+	if(spell_level == spell_max_level)
+		to_fire.color = "#ffd700"
+
 /obj/projectile/magic/cast_iron
 	name = "cast iron"
 	icon = 'yogstation/icons/obj/pan.dmi'
