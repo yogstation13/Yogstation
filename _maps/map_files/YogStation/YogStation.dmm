@@ -49336,6 +49336,16 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
+"pcB" = (
+/obj/machinery/button/door{
+	id = "kitchen";
+	name = "Privacy Shutters Control";
+	pixel_x = -25;
+	pixel_y = 24;
+	req_access_txt = "28"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "pcF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -111892,7 +111902,7 @@ aAh
 aFt
 fgc
 gAp
-fKR
+pcB
 mPI
 xqh
 iix
