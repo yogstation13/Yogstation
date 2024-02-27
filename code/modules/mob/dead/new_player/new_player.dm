@@ -120,6 +120,7 @@
 	if(href_list["show_preferences"])
 		if(!SSquirks.initialized)
 			to_chat(usr, span_notice("The game is still loading. Please wait a bit before editing your character."))
+			return
 		var/datum/preferences/preferences = client.prefs
 		if(!preferences.loaded_character)
 			var/success = preferences.load_character()
