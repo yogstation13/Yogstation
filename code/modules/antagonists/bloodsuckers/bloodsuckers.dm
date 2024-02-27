@@ -191,9 +191,7 @@
 		if(initial(all_clans.joinable_clan))
 			clans |= all_clans
 	clans |= "vvv Not regularly joinable vvv"
-	for(var/datum/bloodsucker_clan/all_clans as anything in subtypesof(/datum/bloodsucker_clan))
-		if(!initial(all_clans.joinable_clan))
-			clans |= all_clans
+	clans |= subtypesof(/datum/bloodsucker_clan)
 		
 	var/chosen = tgui_input_list(admin, "Select which clan to force on the target.", "Select Clan", clans)
 	if(!chosen || !ispath(chosen, /datum/bloodsucker_clan))
