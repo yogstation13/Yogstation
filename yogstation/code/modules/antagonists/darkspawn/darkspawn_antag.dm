@@ -450,7 +450,7 @@
 		return
 
 	var/turf/location = get_turf(owner)
-	if(!is_centcom_level(location.z))
+	if(!(is_centcom_level(location.z) || is_reserved_level(location.z)))
 		owner.overlay_fullscreen("shadowlands", /atom/movable/screen/fullscreen/shadowlands)
 	else
 		owner.clear_fullscreen("shadowlands")
