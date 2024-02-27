@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Miners and mining medics now properly cause the mining base to start with the lights on"
