@@ -238,7 +238,7 @@
 /obj/structure/displaycase/captain/attackby(obj/item/W, mob/user, params) // Unless shit has really hit the fan.
 	if(!istype(W, /obj/item/card/id))
 		return ..()
-	if(seclevel2num(get_security_level()) >= SEC_LEVEL_GAMMA) // Everything higher than red.
+	if(SSsecurity_level.get_current_level_as_number()>= SEC_LEVEL_GAMMA) // Everything higher than red.
 		req_access = list(ACCESS_CAPTAIN)
 	else
 		to_chat(user, span_warning("The display case's access locks can only be lifted above red alert!"))

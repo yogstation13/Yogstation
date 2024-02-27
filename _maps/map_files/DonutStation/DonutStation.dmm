@@ -8471,13 +8471,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "dxs" = (
-/obj/machinery/vending/wardrobe/jani_wardrobe{
-	products = list(/obj/item/clothing/under/rank/janitor = 2, /obj/item/clothing/under/yogs/casualjanitorsuit = 2, /obj/item/clothing/suit/yogs/janitorcoat = 2, /obj/item/cartridge/janitor = 2, /obj/item/clothing/gloves/color/black = 2, /obj/item/clothing/head/soft/purple = 2, /obj/item/paint/paint_remover = 2, /obj/item/melee/flyswatter = 2, /obj/item/flashlight = 2, /obj/item/caution = 6, /obj/item/holosign_creator/janibarrier = 2, /obj/item/lightreplacer = 2, /obj/item/soap/nanotrasen = 2, /obj/item/storage/bag/trash = 2, /obj/item/clothing/shoes/galoshes = 2, /obj/item/watertank/janitor = 2, /obj/item/storage/belt/janitor = 2)
-	},
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 5
 	},
 /obj/effect/turf_decal/stripes/corner,
+/obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
 /area/janitor)
 "dxy" = (
@@ -35360,7 +35358,6 @@
 "pom" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder,
-/obj/item/cartridge/lawyer,
 /obj/machinery/requests_console{
 	department = "Law office";
 	pixel_x = -32
@@ -56171,10 +56168,6 @@
 /area/medical/genetics/cloning)
 "yda" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/seccarts{
-	pixel_x = 3;
-	pixel_y = 2
-	},
 /obj/item/storage/secure/safe/HoS{
 	pixel_x = 35
 	},

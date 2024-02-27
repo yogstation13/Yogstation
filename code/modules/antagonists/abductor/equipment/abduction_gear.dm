@@ -797,8 +797,14 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 
 	var/static/list/injected_reagents = list(/datum/reagent/medicine/corazone)
 
-/obj/structure/table/optable/abductor/Crossed(atom/movable/AM)
+/obj/structure/table/optable/abductor/Initialize(mapload)
 	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/structure/table/optable/abductor/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(iscarbon(AM))
 		START_PROCESSING(SSobj, src)
 		to_chat(AM, span_danger("You feel a series of tiny pricks!"))

@@ -13,6 +13,7 @@
 	high_threshold_cleared = span_info("Your Preternis eyes have recharged enough to re-enable most functionality.")
 	low_threshold_cleared = span_info("Your Preternis eyes have almost fully recharged.")
 	actions_types = list(/datum/action/item_action/organ_action/use)
+	var/original_eye_color
 	var/powered = TRUE 
 	var/night_vision = FALSE
 	// This list is used as the color cutoff for the night vision
@@ -29,9 +30,20 @@
 	if (night_vision)
 		color_cutoffs = colour_cutoff_list.Copy()
 		lighting_cutoff = light_cutoff
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			original_eye_color = H.eye_color
+			H.eye_color = "#8b60ff"
+			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+			H.update_body()
 	else
 		color_cutoffs = null
 		lighting_cutoff = null
+		if(ishuman(owner) && original_eye_color)
+			var/mob/living/carbon/human/H = owner
+			H.eye_color = original_eye_color
+			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+			H.update_body()
 	owner.update_sight()
 
 /obj/item/organ/eyes/robotic/preternis/on_life()

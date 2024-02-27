@@ -8,7 +8,6 @@
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
-	selection_color = "#dcba97"
 	alt_titles = list("Lavaland Scout", "Prospector", "Junior Miner", "Major Miner", "Surveyor")
 
 	outfit = /datum/outfit/job/miner
@@ -23,6 +22,10 @@
 
 	departments_list = list(
 		/datum/job_department/cargo,
+	)
+
+	minimal_lightup_areas = list(
+		/area/construction/mining/aux_base
 	)
 
 	mail_goodies = list(

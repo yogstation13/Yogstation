@@ -396,6 +396,14 @@
 	reagent_state = LIQUID
 	color = "#FFEBEB"
 
+/datum/reagent/medicine/synthflesh/on_mob_add(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/dude = L
+		if(dude?.dna?.species && istype(dude.dna.species, /datum/species/ipc/self/insurgent))
+			var/datum/species/ipc/self/insurgent/sneaky = dude.dna.species
+			sneaky.assume_disguise(dude)
+	. = ..()
+
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, methods=TOUCH, reac_volume,show_message = 1)
 	var/can_heal = FALSE
 	if(iscarbon(M))

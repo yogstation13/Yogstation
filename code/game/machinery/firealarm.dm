@@ -66,6 +66,8 @@
 	radio.recalculateChannels()
 	STOP_PROCESSING(SSmachines, src) // I will do this
 
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
+
 /obj/machinery/firealarm/Destroy()
 	myarea.firereset(src, TRUE)
 	QDEL_NULL(radio)
@@ -82,15 +84,19 @@
 		return
 	icon_state = "fire0"
 
+/obj/machinery/firealarm/proc/update_security_level()
+	if(is_station_level(z))
+		update_appearance(UPDATE_OVERLAYS)
+
 /obj/machinery/firealarm/update_overlays()
 	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 
 	if(is_station_level(z))
-		var/current_level = GLOB.security_level
-		. += mutable_appearance(icon, "fire_[GLOB.security_level]")
-		. += emissive_appearance(icon, "fire_[GLOB.security_level]", src)
+		var/current_level = SSsecurity_level.get_current_level_as_number()
+		. += mutable_appearance(icon, "fire_[current_level]")
+		. += emissive_appearance(icon, "fire_[current_level]", src)
 		switch(current_level)
 			if(SEC_LEVEL_GREEN)
 				set_light(l_color = LIGHT_COLOR_BLUEGREEN)

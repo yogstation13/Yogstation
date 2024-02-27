@@ -251,10 +251,11 @@
 		var/remove_amount = round(min(fuel_list[gas_id], fuel_consumption), 0.01)
 		internal_fusion.adjust_moles(gas_id, -remove_amount)
 		delta_fuel_list[gas_id] -= remove_amount
+
+	var/add_remove_amount = round(scaled_production, 0.01) // gases on the same tier are produced at normal rate
 	for(var/gas_id in fuel.primary_products)
-		var/add_amount = round(fuel_consumption * 0.5, 0.01)
-		internal_fusion.adjust_moles(gas_id, add_amount)
-		delta_fuel_list[gas_id] += add_amount
+		internal_fusion.adjust_moles(gas_id, add_remove_amount)
+		delta_fuel_list[gas_id] += add_remove_amount
 
 	if(power_level < 1)
 		return // can't produce any gases, don't need to continue
@@ -262,8 +263,8 @@
 	// Each recipe provides a tier list of six output gases.
 	// Which gases are produced depend on what the fusion level is.
 	var/list/tier = fuel.secondary_products
-	moderator_internal.adjust_moles(tier[power_level], round(scaled_production, 0.01)) // gases on the same tier are produced at normal rate
-	delta_mod_list[tier[power_level]] += round(scaled_production, 0.01)
+	moderator_internal.adjust_moles(tier[power_level], add_remove_amount)
+	delta_mod_list[tier[power_level]] += add_remove_amount
 	if(power_level < 6)
 		moderator_internal.adjust_moles(tier[power_level + 1], round(scaled_production * 0.5, 0.01)) // gases on the above tier are produced at reduced rate
 		delta_mod_list[tier[power_level + 1]] += round(scaled_production * 0.5, 0.01)
@@ -303,7 +304,7 @@
 				heat_output *= 1.025
 				var/remove_amount = round(min(moderator_internal.get_moles(GAS_PLUONIUM), scaled_production * 1.35), 0.01)
 				moderator_internal.adjust_moles(GAS_PLUONIUM, -remove_amount)
-				delta_mod_list[GAS_PLUONIUM] += remove_amount
+				delta_mod_list[GAS_PLUONIUM] -= remove_amount
 
 		if(3, 4)
 			if(moderator_list[GAS_PLASMA] > 10)
@@ -347,7 +348,7 @@
 				linked_output.airs[1].adjust_moles(GAS_FREON, scaled_production * 1.15)
 				induce_hallucination(500, delta_time)
 			if(moderator_list[GAS_HEALIUM] > 100)
-				if(critical_threshold_proximity > 400)
+				if(critical_threshold_proximity > 90)
 					critical_threshold_proximity = max(critical_threshold_proximity - (moderator_list[GAS_HEALIUM] / 100 * delta_time ), 0)
 					var/remove_amount = round(min(moderator_internal.get_moles(GAS_HEALIUM), scaled_production * 20), 0.01)
 					moderator_internal.adjust_moles(GAS_HEALIUM, -remove_amount)
@@ -373,7 +374,7 @@
 				induce_hallucination(900, delta_time, force=TRUE)
 				linked_output.airs[1].adjust_moles(GAS_ANTINOB, clamp(dirty_production_rate / 0.045, 0, 10) * delta_time)
 			if(moderator_list[GAS_HEALIUM] > 100)
-				if(critical_threshold_proximity > 400)
+				if(critical_threshold_proximity > 90)
 					critical_threshold_proximity = max(critical_threshold_proximity - (moderator_list[GAS_HEALIUM] / 100 * delta_time), 0)
 					var/remove_amount = round(min(moderator_internal.get_moles(GAS_HEALIUM), scaled_production * 20), 0.01)
 					delta_mod_list[GAS_HEALIUM] -= remove_amount

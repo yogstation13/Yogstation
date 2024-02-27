@@ -116,6 +116,8 @@
 
 #define STATUS_EFFECT_EXPOSED /datum/status_effect/exposed //increases incoming damage
 
+#define STATUS_EFFECT_EXPOSED_HARPOONED /datum/status_effect/exposed/harpooned //increases incoming damage when hit by a gasharpoon
+
 #define STATUS_EFFECT_TAMING /datum/status_effect/taming //tames the target after enough tame stacks
 
 #define STATUS_EFFECT_NECROPOLIS_CURSE /datum/status_effect/necropolis_curse

@@ -55,6 +55,10 @@ Temperature: 126.85 °C (400 K)
 /area/jungleland/dying_forest
 	name = "Dying Jungle"
 
+/area/ruin/powered/sinden
+	name = "Den of Sin"
+	icon_state = "dk_yellow"
+
 /turf/open/floor/plating/dirt/jungleland
 	name = "generic jungle land turf"
 	desc = "pain"

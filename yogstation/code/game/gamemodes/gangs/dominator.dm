@@ -242,8 +242,8 @@
 			if(!was_stranded)
 				priority_announce("All hostile activity within station systems has ceased.","Network Alert")
 
-			if(get_security_level() == "delta")
-				set_security_level("red")
+			if(SSsecurity_level.get_current_level_as_text() == SEC_LEVEL_DELTA)
+				SSsecurity_level.set_level(SEC_LEVEL_RED)
 
 		gang.message_gangtools("Hostile takeover cancelled: Dominator is no longer operational.[gang.dom_attempts ? " You have [gang.dom_attempts] attempt remaining." : " The station network will have likely blocked any more attempts by us."]",1,1)
 
