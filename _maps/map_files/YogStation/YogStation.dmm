@@ -5490,7 +5490,7 @@
 /area/maintenance/starboard/fore)
 "aNe" = (
 /obj/machinery/button/door{
-	id = "kitchenprivacy";
+	id = "kitchen";
 	name = "Privacy Shutters Control";
 	pixel_x = -5;
 	pixel_y = -25;
@@ -36995,7 +36995,7 @@
 	},
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -38089,8 +38089,7 @@
 "kRZ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	layer = 2.35;
-	
+	layer = 2.35
 	},
 /turf/closed/wall,
 /area/science/mixing)
@@ -42150,7 +42149,7 @@
 "mtr" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchenprivacy";
+	id = "kitchen";
 	name = "privacy shutters"
 	},
 /turf/open/floor/plating,
@@ -48781,9 +48780,6 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
 "oPJ" = (
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
-	},
 /obj/structure/table,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -55773,8 +55769,7 @@
 /area/security/brig)
 "rrF" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	layer = 2.35;
-	
+	layer = 2.35
 	},
 /turf/closed/wall,
 /area/science/mixing)
@@ -60707,7 +60702,7 @@
 "thr" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
