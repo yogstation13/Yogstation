@@ -434,6 +434,13 @@
 
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = TRUE
+	var/datum/preferences/preferences = client.prefs
+	if(!preferences.loaded_character)
+		var/success = preferences.load_character()
+		if(!success)
+			preferences.randomise_appearance_prefs() //let's create a random character then - rather than a fat, bald and naked man.
+			preferences.save_character() //let's save this new random character so it doesn't keep generating new ones.
+			preferences.loaded_character = TRUE
 	close_spawn_windows()
 	//mind.active = FALSE //we wish to transfer the key manually
 
