@@ -47,10 +47,29 @@
 
 	//progenitor specific variables
 	var/time_to_next_roar = 0
-	var/roar_cooldown = 20 SECONDS
-	var/list/roar_text = list(
+	var/roar_cooldown = 30 SECONDS
+	var/list/roar_text = list( //picks a random line each time the target is stunned by a roar (a rough mix of psychotic ramblings, poetic waxings, and white noise)
 		"You stand paralyzed in the shadow of the cold as it descends from on high.",
-		"The end times the end times the end times the end times the end times"
+		"The end times the end times the end times the end times the end times",
+		"Its in your mind, your mind? it's mind? who's mind?",
+		"You legs refuse to move as you hear the cry of the unknown.",
+		"You have barely yet stared into the abyss, yet it gazes back in full force",
+		"I can't i can't i can't i can't i can't i can't i can't i can't i can't i can't",
+		"Your brain begins to turn on your body as there is naught else it can do.",
+		"You fail to muster the strength to move as the weight of your circumstances crush you.",
+		"This is all a dream, that has to be it, I've just fallen asleep on the job.",
+		"AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH",
+		"________________________________________________________________________________",
+		"Let me out. Let me out. Let me out. Let me out. Let me out. Let me out. Let me out.",
+		"^$#%*^&($^%&($^^!#%#@~!$#@*)&)_*_*)&+(&+*@#$%!@#$!~@%&^%*^&)(&*_((_+*(!#$@!@!))",
+		"********************************************************************************",
+		"The beauty of the end, it captivates you, but only for a moment.",
+		"To once again live in blissful ignorance, what a treat that would be.",
+		"They've returned... who?",
+		"Never left, unseen, ancient, original, unending, fleeting, have always been here.",
+		"The height of hubris to believe one was invited, mere stowaways.",
+		"How quick the turn from serene to chaos, a thin divide between.",
+		"The cacophony of sounds assault you from all directions."
 		)
 
 	///Innate spells that are added when a progenitor is created
@@ -134,7 +153,7 @@
 		else if(isliving(M))
 			var/mob/living/L = M
 			to_chat(M, span_boldannounce(pick(roar_text)))
-			L.Stun(20)
+			L.Immobilize(3 SECONDS)
 	time_to_next_roar = world.time + roar_cooldown
 
 //////////////////////////////////////////////////////////////////////////
@@ -187,6 +206,6 @@
 	var/mob/living/target = cast_on
 	if(is_darkspawn_or_veil(target))
 		return
-	var/zoinks = rand(1, 10) / 10 //like, this isn't even my final form!
+	var/zoinks = rand(1, 50) / 100 //like, this isn't even my final form!
 	owner.visible_message(span_warning("[owner]'s sigils flare as it glances at [target]!"), span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!."))
 	target.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)

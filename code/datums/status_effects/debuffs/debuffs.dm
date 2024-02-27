@@ -740,7 +740,6 @@
 
 /datum/status_effect/progenitor_curse
 	duration = 30 SECONDS
-	tick_interval = 5
 
 /datum/status_effect/progenitor_curse/tick()
 	if(owner.stat == DEAD)

@@ -66,8 +66,9 @@
 	for(var/ability in learned_abilities)
 		if(ispath(ability, /datum/action))
 			var/datum/action/action = locate(ability) in owner.actions
-			action.Remove(owner)
-			qdel(action)
+			if(action)
+				action.Remove(owner)
+				qdel(action)
 
 	return QDEL_HINT_QUEUE
 

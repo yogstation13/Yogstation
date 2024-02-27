@@ -167,7 +167,7 @@
 	animate(src, color = null, time = 8 SECONDS)
 
 /atom/movable/screen/plane_master/parallax/proc/darkspawn_ascension(delay = 15 SECONDS)
-	animate(src, color = COLOR_BLACK, time = delay) //no stars
+	animate(src, color = "#555555", time = delay) //greatly dimmed stars
 
 /atom/movable/screen/plane_master/gravpulse
 	name = "Gravpulse"
