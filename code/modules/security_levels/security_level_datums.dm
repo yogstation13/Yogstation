@@ -138,7 +138,7 @@
 /datum/security_level/epsilon/on_activate(previous_level)
 	send_to_playing_players(span_notice("You get a bad feeling as you hear the Epsilon alert siren."))
 
-/**da
+/**
  * DELTA
  *
  * Station destruction is imminent
