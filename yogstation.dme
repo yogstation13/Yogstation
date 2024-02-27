@@ -3707,6 +3707,7 @@
 #include "code\modules\spells\spell_types\pointed\appendicitis.dm"
 #include "code\modules\spells\spell_types\pointed\barnyard.dm"
 #include "code\modules\spells\spell_types\pointed\blind.dm"
+#include "code\modules\spells\spell_types\pointed\cast_iron.dm"
 #include "code\modules\spells\spell_types\pointed\dominate.dm"
 #include "code\modules\spells\spell_types\pointed\finger_guns.dm"
 #include "code\modules\spells\spell_types\pointed\fireball.dm"
