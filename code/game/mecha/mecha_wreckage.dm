@@ -245,4 +245,10 @@
 /obj/structure/mecha_wreckage/sidewinder
 	name = "\improper Sidewinder wreckage"
 	icon_state = "sidewinder-broken"
+	desc = "It continues to twitch, as if barely alive."
 	orig_mecha = /obj/mecha/combat/sidewinder
+
+/obj/structure/mecha_wreckage/sidewinder/mamba
+	name = "\improper mamba wreckage"
+	icon_state = "mamba-broken"
+	orig_mecha = /obj/mecha/combat/sidewinder/mamba
