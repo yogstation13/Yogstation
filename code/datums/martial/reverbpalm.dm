@@ -146,10 +146,12 @@
 	if(isanimal(target))
 		if(istype(target, /mob/living/simple_animal/hostile/megafauna/bubblegum))
 			var/mob/living/simple_animal/hostile/megafauna/bubblegum/B = target
+			var/turf/D = get_step(Q, turn(user.dir,180))
 			if(B.charging)
 				B.adjustBruteLoss(50)
 				B.charging = FALSE
-				target.visible_message(span_warning("[B] is caught and slammed into the dirt!"))
+				B.forceMove(D)
+				B.visible_message(span_warning("[B] is caught and thrown behind [user]!"))
 				playsound(target, 'sound/effects/explosion1.ogg', 60, 1)
 				shake_camera(user, 1, 2)
 				return
