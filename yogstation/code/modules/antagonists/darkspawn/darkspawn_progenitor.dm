@@ -23,7 +23,7 @@
 	status_flags = NONE
 
 	//movement stats
-	speed = -0.3 //just about the same speed as a person
+	speed = 0 //slower than a person, RUN RUN RUN RUN
 	movement_type = FLYING
 	move_force = INFINITY
 	move_resist = INFINITY //hmm yes, surely this won't cause bugs *clueless*
@@ -31,7 +31,11 @@
 	mob_size = MOB_SIZE_HUGE
 
 	//night vision
+	lighting_cutoff_red = 12
+	lighting_cutoff_green = 0
+	lighting_cutoff_blue = 50
 	lighting_cutoff = 40
+	sight = SEE_MOBS //thermal vision (might be a downgrade from darkspawn xray, but this is cooler)
 
 	//flavour
 	attack_sound = 'yogstation/sound/creatures/progenitor_attack.ogg'

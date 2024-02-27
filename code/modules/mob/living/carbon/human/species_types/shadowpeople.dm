@@ -212,7 +212,7 @@
 	desc = "It turned out they had them after all!"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //far more durable eyes than most
 	healing_factor = 2 * STANDARD_ORGAN_HEALING
-	lighting_cutoff = 40 //stronger than any defines
+	lighting_cutoff = 40 //stronger than any defines because they need to play an entire round in the dark
 	color_cutoffs = list(12, 0, 50)
 	sight_flags = SEE_MOBS
 
