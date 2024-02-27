@@ -1333,6 +1333,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		if(ADMIN_PUNISHMENT_WIBBLY)
 			apply_wibbly_filters(target, 888)
+			to_chat(target, span_warning("Something feels very... wibbly!"))
 
 	punish_log(target, punishment)
 
