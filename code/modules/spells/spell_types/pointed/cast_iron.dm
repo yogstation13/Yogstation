@@ -13,7 +13,7 @@
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
 	active_msg = "You prepare to cast a cast iron!"
-	deactive_msg = "You extinguish your fireball... for now."
+	deactive_msg = "You decide to give these peasants a break."
 	cast_range = 8
 	projectile_type = /obj/projectile/magic/cast_iron
 
