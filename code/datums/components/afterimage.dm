@@ -1,137 +1,97 @@
 /datum/component/after_image
 	dupe_mode =	 COMPONENT_DUPE_UNIQUE_PASSARGS
-	var/rest_time
-	var/list/obj/after_image/after_images
+	var/rest_time = 10
+	var/duration = 150
 	
+	var/loop_timer = null
+	COOLDOWN_DECLARE(imagecooldown)
+	
+	//used for estimating the pixel_x and pixel_y of the target
+	var/turf/previous_loc
+	var/last_movement = 0
+	var/last_direction = NORTH
+	var/glide_size = 8
+	var/tile_size = 32
+
+	var/mob/owner
+
 	//cycles colors
+	var/last_colour = 0
 	var/color_cycle = FALSE
 	var/list/hsv
 
-/datum/component/after_image/Initialize(count = 4, rest_time = 1, color_cycle = FALSE)
-	..()
+/datum/component/after_image/Initialize(duration = 15, rest_time = 1, color_cycle = FALSE)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
+	owner = parent
 	src.rest_time = rest_time
-	src.after_images = list()
+	src.duration = duration
 	src.color_cycle = color_cycle
-	if(count > 1)
-		for(var/number = 1 to count)
-			var/obj/after_image/added_image = new /obj/after_image(null)
-			added_image.finalized_alpha = 200 - 100 * (number - 1) / (count - 1)
-			after_images += added_image
-	else
-		var/obj/after_image/added_image = new /obj/after_image(null)
-		added_image.finalized_alpha = 100
-		after_images |= added_image
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(move))
-	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(change_dir))
-	RegisterSignal(parent, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(throw_landed))
+	last_colour = world.time
 
 /datum/component/after_image/RegisterWithParent()
-	for(var/obj/after_image/listed_image in src.after_images)
-		listed_image.active = TRUE
-	src.sync_after_images()
+	loop_timer = addtimer(CALLBACK(src, PROC_REF(spawn_image)), rest_time, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start loop
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(update_step))
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_MOVED, PROC_REF(update_glide))
+	owner = parent
 
 /datum/component/after_image/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_MOVABLE_THROW_LANDED))
-	for(var/obj/after_image/listed_image in src.after_images)
-		listed_image.active = FALSE
-		animate(listed_image, time = 1 SECONDS, alpha = 0)
-		QDEL_IN(listed_image, 1.1 SECONDS)
-	. = ..()
+	deltimer(loop_timer)
+	UnregisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE)
+	UnregisterSignal(parent, COMSIG_MOB_CLIENT_MOVED)
 
-/datum/component/after_image/Destroy()
-	if(length(src.after_images))
-		for(var/obj/after_image/listed_image in src.after_images)
-			animate(listed_image, time = 1 SECONDS, alpha = 0)
-			QDEL_IN(listed_image, 1.1 SECONDS)
-		src.after_images.Cut()
-		src.after_images = null
-	. = ..()
+/datum/component/after_image/proc/update_step(mob/living/mover, dir) //when did the step start
+	previous_loc = get_turf(mover)
+	last_movement = world.time
 
-/datum/component/after_image/proc/change_dir(atom/movable/AM, new_dir, old_dir)
-	src.sync_after_images(new_dir)
+/datum/component/after_image/proc/update_glide(mob/living/mover) //what's the glide animation duration
+	last_direction = get_dir(previous_loc, get_turf(mover))
+	glide_size = owner.glide_size
 
-/datum/component/after_image/proc/set_loc(atom/movable/AM, atom/last_loc)
-	return src.move(AM, last_loc, AM.dir)
-
-/datum/component/after_image/proc/move(atom/movable/AM, turf/last_turf, direct)
-	src.sync_after_images()
-
-/datum/component/after_image/proc/throw_landed(atom/movable/AM, datum/thrownthing/thing)
-	src.sync_after_images() // necessary to fix pixel_x and pixel_y
-
-/datum/component/after_image/proc/sync_after_images(dir_override=null)
-	set waitfor = FALSE
-	var/obj/after_image/targeted_image = new(null)
-	targeted_image.active = TRUE
-	targeted_image.sync_with_parent(parent)
-	targeted_image.loc = null
-
-	if(color_cycle)
-		if(!hsv)
-			hsv = RGBtoHSV(rgb(255, 0, 0))
-		hsv = RotateHue(hsv, world.time - rest_time * 15)
-		targeted_image.color = HSVtoRGB(hsv)
-
-	if(!isnull(dir_override))
-		targeted_image.setDir(dir_override)
-
-	var/atom/movable/parent_am = parent
-	var/atom/target_loc = parent_am.loc
-	for(var/obj/after_image/listed_image in src.after_images)
-		sleep(src.rest_time)
-		listed_image.sync_with_parent(targeted_image, target_loc)
-	qdel(targeted_image)
-
-
-
-//to-do, make this emissive
-/obj/after_image
-	mouse_opacity = FALSE
-	anchored = 2
-	var/finalized_alpha = 100
-	var/appearance_ref = null
-	var/active = FALSE
-
-/obj/after_image/New()
-	. = ..()
-	animate(src, pixel_x=0, time=1, loop=-1)
-	var/count = rand(5, 10)
-	for(var/number = 1 to count)
-		var/time = 0.5 SECONDS + rand() * 3 SECONDS
-		var/pixel_x = number == count ? 0 : rand(-2, 2)
-		var/pixel_y = number == count ? 0 : rand(-2, 2)
-		animate(time = time, easing = pick(LINEAR_EASING, SINE_EASING, CIRCULAR_EASING, CUBIC_EASING), flags = ANIMATION_PARALLEL, pixel_x = pixel_x, pixel_y = pixel_y, loop =- 1)
-	
-/obj/after_image/proc/sync_with_parent(atom/movable/parent, loc_override=null)
-	if(!src.active)
+/datum/component/after_image/proc/spawn_image()
+	if(!previous_loc || get_turf(owner) == previous_loc)
 		return
-	src.name = parent.name
-	src.desc = parent.desc
-	src.glide_size = parent.glide_size
 
-	var/parent_appearance_ref = ref(parent.appearance)
-	if(istype(parent, /obj/after_image))
-		var/obj/after_image/parent_after_image = parent
-		parent_appearance_ref = parent_after_image.appearance_ref
+	var/obj/effect/temp_visual/decoy/after_image/F = new(previous_loc, owner, duration)
 
-	if(src.appearance_ref != parent_appearance_ref)
-		src.appearance_ref = parent_appearance_ref
-		src.appearance = parent.appearance
-		src.alpha = src.alpha / 255.0 * src.finalized_alpha
-		src.plane = initial(src.plane)
-		src.mouse_opacity = initial(src.mouse_opacity)
-		src.anchored = initial(src.anchored)
+	//need to recalculate position based on glide_size since it's not possible to get otherwise
+	var/per_step = glide_size * 2 //i don't know why i need to multiply by 2, but that's what seems to make it line up properly
+	var/since_last = world.time - last_movement
 
-	var/atom/target_loc = loc_override ? loc_override : parent.loc
+	var/x_modifier = 0
+	if(last_direction & EAST)
+		x_modifier = 1
+	else if(last_direction & WEST)
+		x_modifier = -1
+	var/y_modifier = 0
+	if(last_direction & NORTH)
+		y_modifier = 1
+	else if(last_direction & SOUTH)
+		y_modifier = -1
 
-	if(target_loc != src.loc)
-		src.loc = target_loc
+	var/traveled = per_step * since_last
+	if(traveled > 32) //don't spawn it if the player is stationary
+		qdel(F)
+		return
+	F.pixel_x = (traveled * x_modifier) + owner.pixel_x
+	F.pixel_y = (traveled * y_modifier) + owner.pixel_y
 
-	if(src.dir != parent.dir)
-		src.setDir(parent.dir)
-		
-/obj/after_image/Destroy()
-	src.active = FALSE
+	//give them a random colours
+	if(!color_cycle)
+		return
+	if(!hsv)
+		hsv = RGBtoHSV(rgb(255, 0, 0))
+	hsv = RotateHue(hsv, (world.time - last_colour) * 15)
+	last_colour = world.time
+	F.color = HSVtoRGB(hsv)	//gotta add the flair
+
+
+//object used
+/obj/effect/temp_visual/decoy/after_image
+	layer = BELOW_MOB_LAYER //so they don't appear ontop of the user
+	blocks_emissive = 0
+
+/obj/effect/temp_visual/decoy/after_image/Initialize(mapload, atom/mimiced_atom, decay)
+	duration = decay
 	. = ..()
+	animate(src, alpha = 0, time = duration)

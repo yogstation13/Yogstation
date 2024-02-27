@@ -229,8 +229,6 @@
 	var/on = FALSE
 	var/time_on = 0
 	var/hasexerted = FALSE
-	var/list/hsv
-	var/last_step = 0
 	COOLDOWN_DECLARE(alertcooldown)
 	COOLDOWN_DECLARE(startsoundcooldown)
 	COOLDOWN_DECLARE(endsoundcooldown)
@@ -258,7 +256,7 @@
 				human.physiology.crawl_speed -= 1
 			owner.next_move_modifier *= 0.7
 			owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
-		owner.AddComponent(/datum/component/after_image, 16, 0.5, TRUE)
+		owner.AddComponent(/datum/component/after_image, 3 SECONDS, 0.5, TRUE)
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
