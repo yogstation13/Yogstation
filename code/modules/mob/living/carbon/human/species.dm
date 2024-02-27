@@ -1086,7 +1086,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay
 
-			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)))
+			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)) && !istype(H, /mob/living/carbon/human/dummy))//don't put emissives on dummy mobs as they're used for the preference menu, which doesn't draw emissives properly
 				var/mutable_appearance/emissive_accessory_overlay = emissive_appearance(S.icon, "placeholder", H)
 
 				//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
