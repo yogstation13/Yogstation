@@ -61,6 +61,7 @@
 /obj/structure/closet/supplypod/bluespacepod
 	style = STYLE_BLUESPACE
 	bluespace = TRUE
+	flags_1 = NODECONSTRUCT_1|PREVENT_CONTENTS_EXPLOSION_1
 	explosionSize = list(0,0,1,2)
 	delays = list(POD_TRANSIT = 15, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
 
@@ -70,12 +71,14 @@
 	specialised = TRUE
 	style = STYLE_SYNDICATE
 	bluespace = TRUE
+	flags_1 = NODECONSTRUCT_1|PREVENT_CONTENTS_EXPLOSION_1
 	explosionSize = list(0,0,1,2)
 	delays = list(POD_TRANSIT = 25, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
 
 /obj/structure/closet/supplypod/centcompod
 	style = STYLE_CENTCOM
 	bluespace = TRUE
+	flags_1 = NODECONSTRUCT_1|PREVENT_CONTENTS_EXPLOSION_1
 	explosionSize = list(0,0,0,0)
 	delays = list(POD_TRANSIT = 20, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -178,12 +181,6 @@
 	if(decal)
 		. += decal
 
-/obj/structure/closet/supplypod/tool_interact(obj/item/W, mob/user)
-	if(bluespace) //We dont want to worry about interacting with bluespace pods, as they are due to delete themselves soon anyways.
-		return FALSE
-	else
-		..()
-
 /obj/structure/closet/supplypod/ex_act() //Explosions dont do SHIT TO US! This is because supplypods create explosions when they land.
 	return
 
@@ -199,6 +196,7 @@
 /obj/structure/closet/supplypod/proc/handleReturnAfterDeparting(atom/movable/holder = src)
 	reversing = FALSE //Now that we're done reversing, we set this to false (otherwise we would get stuck in an infinite loop of calling the close proc at the bottom of open_pod() )
 	bluespace = TRUE //Make it so that the pod doesn't stay in centcom forever
+	flags_1 = NODECONSTRUCT_1|PREVENT_CONTENTS_EXPLOSION_1
 	pod_flags &= ~FIRST_SOUNDS //Make it so we play sounds now
 	if (!effectQuiet && style != STYLE_SEETHROUGH)
 		audible_message(span_notice("The pod hisses, closing and launching itself away from the station."), span_notice("The ground vibrates, and you hear the sound of engines firing."))

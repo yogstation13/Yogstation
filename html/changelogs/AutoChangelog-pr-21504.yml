@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "Added a unit test for fusion reactions"
+  - bugfix: "Fixed fusion reactions not working in the atmospherics simulator computer"
