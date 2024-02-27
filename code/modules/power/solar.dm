@@ -214,6 +214,7 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY // Pretty big!
 	anchored = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	var/tracker = 0
 	var/glass_type = null
 	var/multiplier = 1

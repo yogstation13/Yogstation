@@ -2,19 +2,19 @@
 	name = "lattice"
 	desc = "A lightweight support lattice. These hold our station together."
 	icon = 'icons/obj/smooth_structures/lattice.dmi'
-	icon_state = "lattice"
+	icon_state = "lattice-255"
+	base_icon_state = "lattice"
 	density = FALSE
 	anchored = TRUE
 	armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 	max_integrity = 50
 	layer = LATTICE_LAYER //under pipes
 	plane = FLOOR_PLANE
+	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_LATTICE
+	canSmoothWith = SMOOTH_GROUP_LATTICE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_OPEN_FLOOR
 	var/number_of_rods = 1
-	canSmoothWith = list(/obj/structure/lattice,
-	/turf/open/floor,
-	/turf/closed/wall,
-	/obj/structure/falsewall)
-	smooth = SMOOTH_MORE
 	//	flags = CONDUCT_1
 
 /obj/structure/lattice/examine(mob/user)
@@ -52,7 +52,7 @@
 	qdel(src)
 
 /obj/structure/lattice/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	if(the_rcd.mode == RCD_FLOORWALL)
+	if(the_rcd.construction_mode == RCD_FLOORWALL)
 		return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 2)
 
 /obj/structure/lattice/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
@@ -60,7 +60,7 @@
 		to_chat(user, span_notice("You build a floor."))
 		var/turf/T = src.loc
 		if(isspaceturf(T))
-			T.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+			T.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			qdel(src)
 			return TRUE
 	return FALSE
@@ -71,11 +71,13 @@
 
 /obj/structure/lattice/clockwork
 	name = "cog lattice"
-	desc = "A lightweight support lattice. These hold the Justicar's station together."
+	desc = "A lightweight support lattice. These hold the Justiciar's station together."
 	icon = 'icons/obj/smooth_structures/lattice_clockwork.dmi'
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
 
 /obj/structure/lattice/clockwork/Initialize(mapload)
-	canSmoothWith += /turf/open/indestructible/clock_spawn_room //list overrides are a terrible thing
 	. = ..()
 	ratvar_act()
 	if(is_reebe(z))

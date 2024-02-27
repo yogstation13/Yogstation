@@ -6,6 +6,8 @@
 	var/useblacklist = TRUE
 	var/on = FALSE
 	var/retrievalmessage = "Retrieval complete."
+	var/punishment = FALSE
+	var/punishment_damage = 0
 
 /obj/item/implant/teleporter/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
@@ -49,6 +51,8 @@
 	if(!is_centcom_level(T.z))
 		do_teleport(imp_in, pointofreturn, 0, channel = TELEPORT_CHANNEL_WORMHOLE)
 		say(retrievalmessage)
+		if(punishment == TRUE)
+			imp_in.adjustFireLoss(punishment_damage)
 
 /obj/item/implant/teleporter/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	LAZYINITLIST(target.implants)
@@ -107,3 +111,10 @@
 	pointofreturn = /area/ruin/powered/inn
 	usewhitelist = TRUE
 	retrievalmessage = "Safety retrieval complete."
+
+/obj/item/implant/teleporter/demon
+	pointofreturn = /area/ruin/powered/sinden
+	usewhitelist = TRUE
+	punishment = TRUE
+	punishment_damage = 50
+	retrievalmessage = "You think you can just abandon your contract?"

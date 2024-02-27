@@ -111,6 +111,8 @@
 	if ((!enclosed || istype(Proj, /obj/projectile/bullet/shotgun/slug/uranium))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
 		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
+	if(istype(Proj, /obj/projectile/ion))
+		return ..()
 	var/booster_deflection_modifier = 1
 	var/booster_damage_modifier = 1
 	var/attack_dir = get_dir(src, Proj)
@@ -179,7 +181,8 @@
 		return
 	if(get_charge())
 		use_power((cell.charge * severity / 15))
-		take_damage(4 * severity, BURN, ENERGY, 1)
+		
+	take_damage(4 * severity, BURN, ENERGY, 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
 
 	if(istype(src, /obj/mecha/combat))
@@ -207,6 +210,15 @@
 
 	if(istype(W, /obj/item/mecha_ammo))
 		ammo_resupply(W, user)
+		return
+	
+	if(istype(W, /obj/item/stack) || istype(W, /obj/item/rcd_ammo) || istype(W, /obj/item/rcd_upgrade))
+		matter_resupply(W, user)
+		return
+
+	if(istype(W, /obj/item/mecha_parts))
+		var/obj/item/mecha_parts/P = W
+		P.try_attach_part(user, src)
 		return
 
 	if(W.GetID())
@@ -300,11 +312,6 @@
 		else
 			to_chat(user, span_warning("The [name] is at full integrity!"))
 		return 1
-
-	else if(istype(W, /obj/item/mecha_parts))
-		var/obj/item/mecha_parts/P = W
-		P.try_attach_part(user, src)
-		return
 
 	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
 		var/obj/item/airlock_scanner/S = W

@@ -1187,14 +1187,13 @@
 		if(!check_rights(R_SPAWN))
 			return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.", confidential=TRUE)
+		var/mob/our_mob = locate(href_list["makeai"])
+		if(!istype(our_mob))
 			return
-
-		message_admins(span_danger("Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!"))
-		log_admin("[key_name(usr)] AIized [key_name(H)].")
-		H.AIize(TRUE, H.client)
+		
+		message_admins(span_danger("Admin [key_name_admin(usr)] AIized [key_name_admin(our_mob)]!"))
+		log_admin("[key_name(usr)] AIized [key_name(our_mob)].")
+		our_mob.AIize(our_mob.client)
 
 	else if(href_list["makealien"])
 		if(!check_rights(R_SPAWN))

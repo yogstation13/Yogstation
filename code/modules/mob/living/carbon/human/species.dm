@@ -162,6 +162,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///what type of gas is breathed
 	var/breathid = "o2"
 
+	/// Special typing indicators
+	var/bubble_icon = BUBBLE_DEFAULT
+
 	/// The icon_state of the fire overlay added when sufficently ablaze and standing. see onfire.dmi
 	var/fire_overlay = "human" //not used until monkey is added as a species type rather than a mob
 
@@ -206,6 +209,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	///Does our species have colors for its' damage overlays?
 	var/use_damage_color = TRUE
+
+	/// Do we try to prevent reset_perspective() from working? Useful for Dullahans to stop perspective changes when they're looking through their head.
+	var/prevent_perspective_change = FALSE
 
 ///////////
 // PROCS //
@@ -434,6 +440,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.Digitigrade_Leg_Swap(FALSE)
 
 	C.mob_biotypes = inherent_biotypes
+	C.bubble_icon = bubble_icon
 
 	regenerate_organs(C,old_species)
 
@@ -901,6 +908,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "ethereal_mark"
 
+	if("preternis_antenna" in mutant_bodyparts)
+		if(H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD)
+			bodyparts_to_add -= "preternis_antenna"
+
+	if("preternis_eye" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD)
+			bodyparts_to_add -= "preternis_eye"
+
+	if("preternis_core" in mutant_bodyparts)
+		if(H.w_uniform || H.wear_suit)
+			bodyparts_to_add -= "preternis_core"
+
 	if("pod_hair" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "pod_hair"
@@ -1009,6 +1028,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
 				if("ethereal_mark")
 					S = GLOB.ethereal_mark_list[H.dna.features["ethereal_mark"]]
+				if("preternis_weathering")
+					S = GLOB.preternis_weathering_list[H.dna.features["preternis_weathering"]]
+				if("preternis_antenna")
+					S = GLOB.preternis_antenna_list[H.dna.features["preternis_antenna"]]
+				if("preternis_eye")
+					S = GLOB.preternis_eye_list[H.dna.features["preternis_eye"]]
+				if("preternis_core")
+					S = GLOB.preternis_core_list[H.dna.features["preternis_core"]]
 				if("ipc_screen")
 					S = GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
 				if("ipc_antenna")
@@ -1058,6 +1085,42 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				else
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay
+
+			if(S.emissive && !(HAS_TRAIT(H, TRAIT_HUSK)))
+				var/mutable_appearance/emissive_accessory_overlay = emissive_appearance(S.icon, "placeholder", H)
+
+				//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
+				if(S.gender_specific)
+					emissive_accessory_overlay.icon_state = "[g]_[bodypart]_[S.icon_state]_[layertext]"
+				else
+					emissive_accessory_overlay.icon_state = "m_[bodypart]_[S.icon_state]_[layertext]"
+
+				if(S.center)
+					emissive_accessory_overlay = center_image(emissive_accessory_overlay, S.dimension_x, S.dimension_y)
+
+				if(!forced_colour)
+					switch(S.color_src)
+						if(MUTCOLORS)
+							if(H.dna.check_mutation(HULK))			//HULK GO FIRST
+								emissive_accessory_overlay.color = "#00aa00"
+							else if(fixed_mut_color)													//Then fixed color if applicable
+								emissive_accessory_overlay.color = fixed_mut_color
+							else																		//Then snowflake color
+								emissive_accessory_overlay.color = H.dna.features["mcolor"]
+						if(HAIR)
+							if(hair_color == "mutcolor")
+								emissive_accessory_overlay.color = H.dna.features["mcolor"]
+							else if(hair_color == "fixedmutcolor")
+								emissive_accessory_overlay.color = fixed_mut_color
+							else
+								emissive_accessory_overlay.color = H.hair_color
+						if(FACEHAIR)
+							emissive_accessory_overlay.color = H.facial_hair_color
+						if(EYECOLOR)
+							emissive_accessory_overlay.color = H.eye_color
+				else
+					emissive_accessory_overlay.color = forced_colour
+				standing += emissive_accessory_overlay
 
 			if(S.hasinner)
 				var/mutable_appearance/inner_accessory_overlay = mutable_appearance(S.icon, layer = -layer)
@@ -1861,7 +1924,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							H.visible_message(span_danger("[H] has been knocked senseless!"), \
 											span_userdanger("[H] has been knocked senseless!"))
 							H.set_confusion_if_lower(20 SECONDS)
-							H.adjust_blurriness(10)
+							H.adjust_eye_blur(10)
 						if(prob(10))
 							H.gain_trauma(/datum/brain_trauma/mild/concussion)
 					else

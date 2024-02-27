@@ -4,7 +4,7 @@
 /area/centcom
 	name = "CentCom"
 	icon_state = "centcom"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = TRUE
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	noteleport = TRUE
@@ -40,7 +40,9 @@
 /area/centcom/supplypod
 	name = "Supplypod Facility"
 	icon_state = "supplypod"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 
 /area/centcom/supplypod/podStorage
 	name = "Supplypod Storage"
@@ -80,37 +82,34 @@
 	loading_id = "5"
 //THUNDERDOME
 
-/area/tdome
+/area/centcom/tdome
 	name = "Thunderdome"
 	icon_state = "yellow"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
-	requires_power = FALSE
-	has_gravity = STANDARD_GRAVITY
-	flags_1 = NONE
+	static_lighting = FALSE
 
-/area/tdome/arena
+	base_lighting_alpha = 255
+
+/area/centcom/tdome/arena
 	name = "Thunderdome Arena"
 	icon_state = "thunder"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
-/area/tdome/arena_source
+/area/centcom/tdome/arena_source
 	name = "Thunderdome Arena Template"
 	icon_state = "thunder"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
-/area/tdome/tdome1
+/area/centcom/tdome/tdome1
 	name = "Thunderdome (Team 1)"
 	icon_state = "green"
 
-/area/tdome/tdome2
+/area/centcom/tdome/tdome2
 	name = "Thunderdome (Team 2)"
 	icon_state = "green"
 
-/area/tdome/tdomeadmin
+/area/centcom/tdome/tdomeadmin
 	name = "Thunderdome (Admin.)"
 	icon_state = "purple"
 
-/area/tdome/tdomeobserve
+/area/centcom/tdome/tdomeobserve
 	name = "Thunderdome (Observer.)"
 	icon_state = "purple"
 
@@ -118,26 +117,28 @@
 //ENEMY
 
 //Wizard
-/area/wizard_station
+/area/centcom/wizard_station
 	name = "Wizard's Den"
 	icon_state = "yellow"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = TRUE
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	noteleport = TRUE
 	flags_1 = NONE
 
 //Abductors
-/area/abductor_ship
+/area/centcom/abductor_ship
 	name = "Abductor Ship"
 	icon_state = "yellow"
 	requires_power = FALSE
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 	noteleport = TRUE
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 
 //Syndicates
-/area/syndicate_mothership
+/area/centcom/syndicate_mothership
 	name = "Syndicate Mothership"
 	icon_state = "syndie-ship"
 	requires_power = FALSE
@@ -147,18 +148,19 @@
 	flags_1 = NONE
 	ambience_index = AMBIENCE_DANGER
 
-/area/syndicate_mothership/control
+/area/centcom/syndicate_mothership/control
 	name = "Syndicate Control Room"
 	icon_state = "syndie-control"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
-/area/syndicate_mothership/elite_squad
+/area/centcom/syndicate_mothership/elite_squad
 	name = "Syndicate Elite Squad"
 	icon_state = "syndie-elite"
 
-/area/fabric_of_reality
+/area/centcom/fabric_of_reality
 	name = "Tear in the Fabric of Reality"
 	requires_power = FALSE
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 	has_gravity = TRUE
 	noteleport = TRUE
 	blob_allowed = FALSE
@@ -166,51 +168,58 @@
 
 //CAPTURE THE FLAG
 
-/area/ctf
+/area/centcom/ctf
 	name = "Capture the Flag"
 	icon_state = "yellow"
 	requires_power = FALSE
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 	has_gravity = STANDARD_GRAVITY
 
-/area/ctf/control_room
+/area/centcom/ctf/control_room
 	name = "Control Room A"
 
-/area/ctf/control_room2
+/area/centcom/ctf/control_room2
 	name = "Control Room B"
 
-/area/ctf/central
+/area/centcom/ctf/central
 	name = "Central"
 
-/area/ctf/main_hall
+/area/centcom/ctf/main_hall
 	name = "Main Hall A"
 
-/area/ctf/main_hall2
+/area/centcom/ctf/main_hall2
 	name = "Main Hall B"
 
-/area/ctf/corridor
+/area/centcom/ctf/corridor
 	name = "Corridor A"
 
-/area/ctf/corridor2
+/area/centcom/ctf/corridor2
 	name = "Corridor B"
 
-/area/ctf/flag_room
+/area/centcom/ctf/flag_room
 	name = "Flag Room A"
 
-/area/ctf/flag_room2
+/area/centcom/ctf/flag_room2
 	name = "Flag Room B"
 
 // REEBE
 
-/area/reebe
+/area/centcom/reebe
 	name = "Reebe"
 	icon_state = "yellow"
-	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	noteleport = TRUE
 	hidden = TRUE
 	ambience_index = AMBIENCE_REEBE
 
-/area/reebe/city_of_cogs
+/area/centcom/reebe/city_of_cogs
 	name = "City of Cogs"
 	icon_state = "purple"
+	static_lighting = FALSE
+
+	base_lighting_alpha = 255
 	hidden = FALSE

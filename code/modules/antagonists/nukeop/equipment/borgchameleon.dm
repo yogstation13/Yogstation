@@ -118,7 +118,7 @@
 		var/obj/item/robot_module/M = modulelist[option]
 		var/is = initial(M.cyborg_base_icon)
 		moduleicons[option] = image(icon = 'icons/mob/robots.dmi', icon_state = is)
-	var/input_module = show_radial_menu(usr, usr, moduleicons, radius = 42, custom_check = CALLBACK(src, PROC_REF(cancel_radical_on_move), usr,  user.loc), check_delay = 0.1 SECONDS)
+	var/input_module = show_radial_menu(usr, usr, moduleicons, radius = 42, custom_check = CALLBACK(src, PROC_REF(cancel_radical_on_move), usr,  user.loc))
 	
 	// Sanity
 	if(!input_module || active)
@@ -134,7 +134,7 @@
 	savedName = user.name
 	user.name = friendlyName
 	user.module.cyborg_base_icon = initial(selected_module.cyborg_base_icon)
-	user.bubble_icon = "robot"
+	user.bubble_icon = BUBBLE_ROBOT
 	user.module.name = input_module
 	active = TRUE
 	user.update_icons()

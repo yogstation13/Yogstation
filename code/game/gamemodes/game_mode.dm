@@ -172,7 +172,7 @@
 		if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE)
 			return TRUE
 		if(SHUTTLE_CALL)
-			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergencyCallTime)*0.5)
+			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergency_call_time)*0.5)
 				return TRUE
 
 	var/matc = CONFIG_GET(number/midround_antag_time_check)
@@ -313,8 +313,8 @@
 	if(CONFIG_GET(flag/auto_blue_alert))
 		print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
 		priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_announcement()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
-		if(GLOB.security_level < SEC_LEVEL_BLUE)
-			set_security_level(SEC_LEVEL_BLUE)
+		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
 	else
 		print_command_report(intercepttext, "Central Command Status Summary")
 		

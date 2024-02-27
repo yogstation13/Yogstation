@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(C.is_eyes_covered())
 		C.visible_message(span_danger("[C]'s eye protection blocks the sand!"), span_warning("Your eye protection blocks the sand!"))
 		return
-	C.adjust_blurriness(6)
+	C.adjust_eye_blur(6)
 	C.adjustStaminaLoss(15)//the pain from your eyes burning does stamina damage
 	C.adjust_confusion(5 SECONDS)
 	to_chat(C, span_userdanger("\The [src] gets into your eyes! The pain, it burns!"))
@@ -415,7 +415,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/value = 1
 	var/coinflip
 	var/coin_stack_icon_state = "coin_stack"
-	var/list/allowed_ricochet_types = list(/obj/projectile/bullet/c38, /obj/projectile/bullet/a357, /obj/projectile/bullet/ipcmartial)
 
 /obj/item/coin/get_item_credit_value()
 	return value
@@ -603,7 +602,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		flick("coin_[cmineral]_flip", src)
 		icon_state = "coin_[cmineral]_[coinflip]"
 		if(flash)
-			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, unique = TRUE)
+			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_PLANE, unique = TRUE)
 		playsound(loc, 'sound/items/coinflip.ogg', 50, TRUE)
 		var/oldloc = loc
 		sleep(1.5 SECONDS)
@@ -624,10 +623,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	transform = initial(transform)
 
 /obj/item/coin/bullet_act(obj/projectile/P)
-	if(P.armor_flag != LASER && P.armor_flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
+	if(P.armor_flag != LASER && P.armor_flag != ENERGY && !P.can_ricoshot) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
 
-	if(cooldown >= world.time || istype(P, /obj/projectile/bullet/ipcmartial))//we ricochet the projectile
+	if(cooldown >= world.time || P.can_ricoshot == ALWAYS_RICOSHOT)//we ricochet the projectile
 		var/list/targets = list()
 		for(var/mob/living/T in viewers(5, src))
 			if(istype(T) && T != P.firer && T.stat != DEAD) //don't fire at someone if they're dead or if we already hit them
@@ -635,6 +634,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		P.damage *= 1.5
 		P.speed *= 0.5
 		P.ricochets++
+		if(P.hitscan)
+			P.store_hitscan_collision(P.trajectory.copy_to()) // ULTRA-RICOSHOT
 		P.on_ricochet(src)
 		P.impacted = list(src)
 		P.pixel_x = pixel_x

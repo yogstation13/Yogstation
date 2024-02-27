@@ -1,53 +1,40 @@
 /mob/living/carbon/human/getarmor(def_zone, type)
-	var/armorval = 0
-	var/organnum = 0
-
 	if(def_zone)
-		if(isbodypart(def_zone))
-			var/obj/item/bodypart/bp = def_zone
-			if(bp)
-				return checkarmor(def_zone, type)
-		var/obj/item/bodypart/affecting = get_bodypart(check_zone(def_zone))
-		if(affecting)
-			return checkarmor(affecting, type)
+		if(isnum(def_zone)) // allows using bodypart bitflags instead of zones
+			return checkarmor(def_zone, type)
+		var/obj/item/bodypart/affecting = isbodypart(def_zone) ? def_zone : get_bodypart(check_zone(def_zone))
+		return checkarmor(affecting.body_part, type)
 		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
 
 	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		armorval += min(checkarmor(BP, type), 100) // hey no you can't do that
+	var/armorval = 0
+	var/organnum = 0
+	for(var/obj/item/bodypart/limb as anything in bodyparts)
+		armorval += min(checkarmor(limb.body_part, type), 100) // hey no you can't do that
 		organnum++
 	return (armorval/max(organnum, 1))
 
 
-/mob/living/carbon/human/proc/checkarmor(obj/item/bodypart/def_zone, d_type)
-	if(!d_type)
+/mob/living/carbon/human/proc/checkarmor(bodypart_flag, armor_flag)
+	if(!armor_flag)
 		return 0
 	var/protection = 0
 	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
-	for(var/bp in body_parts)
-		if(!bp)
-			continue
-		if(bp && istype(bp , /obj/item/clothing))
-			var/obj/item/clothing/C = bp
-			if(def_zone.body_part & C.body_parts_covered)
-				protection += C.armor.getRating(d_type)
-			else if(C.body_parts_partial_covered & def_zone.body_part)
-				protection += C.armor.getRating(d_type) * 0.5
-	protection += physiology.armor.getRating(d_type)
+	for(var/obj/item/clothing/cover in body_parts)
+		if(bodypart_flag & cover.body_parts_covered)
+			protection += cover.armor.getRating(armor_flag)
+		else if(bodypart_flag & cover.body_parts_partial_covered)
+			protection += cover.armor.getRating(armor_flag) * 0.5
+	protection += physiology.armor.getRating(armor_flag)
 	return protection
 
 ///Get all the clothing on a specific body part
-/mob/living/carbon/human/proc/clothingonpart(obj/item/bodypart/def_zone)
+/mob/living/carbon/human/proc/clothingonpart(bodypart_flag)
 	var/list/covering_part = list()
 	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
-	for(var/bp in body_parts)
-		if(!bp)
-			continue
-		if(bp && istype(bp , /obj/item/clothing))
-			var/obj/item/clothing/C = bp
-			if(def_zone.body_part & C.body_parts_covered)
-				covering_part += C
+	for(var/obj/item/clothing/cover in body_parts)
+		if(bodypart_flag & cover.body_parts_covered)
+			covering_part += cover
 	return covering_part
 
 /mob/living/carbon/human/on_hit(obj/projectile/P)
@@ -78,6 +65,8 @@
 						return BULLET_ACT_BLOCK
 					else
 						P.firer = src
+						if(P.hitscan)
+							P.store_hitscan_collision(P.trajectory.copy_to())
 						P.setAngle(rand(0, 360))//SHING
 						return BULLET_ACT_FORCE_PIERCE
 
@@ -86,6 +75,8 @@
 			if(check_reflect(def_zone)) // Checks if you've passed a reflection% check
 				visible_message(span_danger("The [P.name] gets reflected by [src]!"), \
 								span_userdanger("The [P.name] gets reflected by [src]!"))
+				if(P.hitscan) // hitscan check
+					P.store_hitscan_collision(P.trajectory.copy_to())
 				// Find a turf near or on the original location to bounce to
 				if(!isturf(loc)) //Open canopy mech (ripley) check. if we're inside something and still got hit
 					P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
@@ -199,7 +190,7 @@
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
 	if(affecting)
 		if(I.force && I.damtype != STAMINA && affecting.status == BODYPART_ROBOTIC) // Bodpart_robotic sparks when hit, but only when it does real damage
-			if(I.force >= 5)
+			if(I.force >= 5 && !isinsurgent(src)) //small change, insurgent ipcs don't give off sparks if hit
 				do_sparks(1, FALSE, loc)
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
@@ -501,7 +492,7 @@
 
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(!override)
 		siemens_coeff *= physiology.siemens_coeff
 	. = ..()

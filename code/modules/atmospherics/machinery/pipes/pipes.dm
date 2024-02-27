@@ -2,8 +2,6 @@
 	var/datum/gas_mixture/air_temporary //used when reconstructing a pipeline that broke
 	var/volume = 0
 
-	level = 1
-
 	use_power = NO_POWER_USE
 	can_unwrench = 1
 	var/datum/pipeline/parent = null
@@ -18,10 +16,17 @@
         ),\
     )
 
-/obj/machinery/atmospherics/pipe/New(mapload)
+/obj/machinery/atmospherics/pipe/New()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 	volume = 35 * device_type
 	return ..()
+
+///I have no idea why there's a new and at this point I'm too afraid to ask
+/obj/machinery/atmospherics/pipe/Initialize(mapload)
+	. = ..()
+
+	if(hide)
+		AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE) //if changing this, change the subtypes RemoveElements too, because thats how bespoke works
 
 /obj/machinery/atmospherics/pipe/nullify_node(i)
 	var/obj/machinery/atmospherics/old_node = nodes[i]
@@ -37,16 +42,6 @@
 		return
 	parent = new
 	return list(parent)
-
-/obj/machinery/atmospherics/pipe/atmos_init()
-	var/turf/T = loc			// hide if turf is not intact
-	hide(T.intact)
-	..()
-
-/obj/machinery/atmospherics/pipe/hide(i)
-	if(level == 1 && isturf(loc))
-		invisibility = i ? INVISIBILITY_MAXIMUM : 0
-	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/pipe/proc/releaseAirToTurf()
 	if(air_temporary)
@@ -117,7 +112,7 @@
 	for(var/i in 1 to device_type)
 		if(nodes[i])
 			var/obj/machinery/atmospherics/N = nodes[i]
-			N.update_appearance(UPDATE_ICON)
+			N.update_appearance()
 
 /obj/machinery/atmospherics/pipe/return_pipenets()
 	. = list(parent)
@@ -132,3 +127,6 @@
 	pipe_color = paint_color
 	update_node_icon()
 	return TRUE
+
+/obj/machinery/atmospherics/pipe/update_layer()
+	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE

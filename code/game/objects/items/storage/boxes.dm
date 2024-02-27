@@ -90,8 +90,8 @@
 	if(user.mind.miming)
 		alpha = 255
 
-/obj/item/storage/box/mime/Moved(oldLoc, dir)
-	if (iscarbon(oldLoc))
+/obj/item/storage/box/mime/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	if (iscarbon(old_loc))
 		alpha = 0
 	..()
 
@@ -624,16 +624,6 @@
 	new /obj/item/card/id/prisoner/six(src)
 	new /obj/item/card/id/prisoner/seven(src)
 
-/obj/item/storage/box/seccarts
-	name = "box of PDA security cartridges"
-	desc = "A box full of PDA cartridges used by Security."
-	illustration = "pda"
-
-/obj/item/storage/box/seccarts/PopulateContents()
-	new /obj/item/cartridge/detective(src)
-	for(var/i in 1 to 6)
-		new /obj/item/cartridge/security(src)
-
 /obj/item/storage/box/firingpins
 	name = "box of standard firing pins"
 	desc = "A box full of standard firing pins, to allow newly-developed firearms to operate."
@@ -1033,7 +1023,7 @@
 #undef HEART
 #undef SMILEY
 
-/obj/item/storage/box/ingredients //This box is for the randomely chosen version the chef spawns with, it shouldn't actually exist.
+/obj/item/storage/box/ingredients //This box is for the randomly chosen version the chef spawns with, it shouldn't actually exist.
 	name = "ingredients box"
 	illustration = "fruit"
 	var/theme_name
@@ -1173,6 +1163,18 @@
 		new /obj/item/reagent_containers/food/snacks/grown/soybeans(src)
 		new /obj/item/reagent_containers/food/snacks/grown/cabbage(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
+
+/obj/item/storage/box/ingredients/seafood
+	theme_name = "seafood"
+
+/obj/item/storage/box/ingredients/seafood/PopulateContents()
+	new /obj/item/reagent_containers/food/snacks/grown/citrus/lemon(src)
+	for(var/i in 1 to 6)
+		var/randomFood = pick(/obj/item/reagent_containers/food/snacks/carpmeat,
+							  /obj/item/reagent_containers/food/snacks/dolphinmeat,
+							  /obj/item/reagent_containers/food/snacks/fish/tuna,
+							  /obj/item/reagent_containers/food/snacks/fish/shrimp)
+		new randomFood(src)
 
 /obj/item/storage/box/cheese
 	name = "box of advanced cheese bacteria"

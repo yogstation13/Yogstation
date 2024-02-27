@@ -1,1 +1,1 @@
-#define FORCE_MAP "_maps/icemeta.json"
+#define FORCE_MAP "icemeta"

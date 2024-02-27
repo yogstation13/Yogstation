@@ -55,7 +55,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "p" = (
-/obj/structure/mecha_wreckage/ripley/mkii,
+/obj/structure/mecha_wreckage/ripley/firefighter,
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/template_noop)
