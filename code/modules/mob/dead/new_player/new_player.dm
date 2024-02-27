@@ -118,7 +118,15 @@
 		relevant_cap = max(hpc, epc)
 
 	if(href_list["show_preferences"])
+		if(!SSquirks.initialized)
+			to_chat(usr, span_notice("The game is still loading. Please wait a bit before editing your character."))
 		var/datum/preferences/preferences = client.prefs
+		if(!preferences.loaded_character)
+			var/success = preferences.load_character()
+			if(!success)
+				preferences.randomise_appearance_prefs() //let's create a random character then - rather than a fat, bald and naked man.
+				preferences.save_character() //let's save this new random character so it doesn't keep generating new ones.
+				preferences.loaded_character = TRUE
 		preferences.current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 		preferences.update_static_data(usr)
 		preferences.ui_interact(usr)
