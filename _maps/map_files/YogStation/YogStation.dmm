@@ -36995,7 +36995,7 @@
 	},
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 8
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -49336,16 +49336,6 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
-"pcB" = (
-/obj/machinery/button/door{
-	id = "kitchen";
-	name = "Privacy Shutters Control";
-	pixel_x = -25;
-	pixel_y = 24;
-	req_access_txt = "28"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "pcF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -58917,6 +58907,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
+"sAn" = (
+/obj/machinery/button/door{
+	id = "kitchen";
+	name = "Privacy Shutters Control";
+	pixel_x = -25;
+	pixel_y = 24;
+	req_access_txt = "28"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "sAr" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/atmospherics/components/unary/portables_connector,
@@ -60712,7 +60712,7 @@
 "thr" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 8
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -111902,7 +111902,7 @@ aAh
 aFt
 fgc
 gAp
-pcB
+sAn
 mPI
 xqh
 iix
