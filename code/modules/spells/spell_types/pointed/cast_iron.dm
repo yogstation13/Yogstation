@@ -27,11 +27,6 @@
 	hitsound = 'yogstation/sound/weapons/pan.ogg'
 	stutter = 4 SECONDS
 
-/obj/projectile/magic/cast_iron/fire(angle, atom/direct_target)
-	. = ..()
-	if(.)
-		SpinAnimation(1 SECONDS, -1, prob(50))
-
 /obj/projectile/magic/cast_iron/vol_by_damage()
 	return 100 // BONK!
 	
