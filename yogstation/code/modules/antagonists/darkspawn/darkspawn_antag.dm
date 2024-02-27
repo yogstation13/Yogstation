@@ -363,7 +363,7 @@
 
 	if(!SSticker.mode.sacrament_done)
 		SSticker.mode.sacrament_done = TRUE
-		set_security_level(SEC_LEVEL_DELTA)
+		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
 		set_starlight(COLOR_VELVET) //i wanna change power and range, but that causes immense lag
