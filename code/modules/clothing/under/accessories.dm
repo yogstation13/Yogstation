@@ -473,7 +473,7 @@
 			"info" = "A orange corgi, pride in the HoP's beloved pet!"),
 		"Void Pride" = list( //darkness antag
 			"icon" = "pride",
-			"info" = "Nothing, pride in NOTHING!!!")
+			"info" = "Nothing, pride in NOTHING!!!"),
 		"Suspicious Pride Pin" = list( //syndicate
 			"icon" = "pride_suspicious",
 			"info" = "A black S on a red banner, pride in chaos!"),
