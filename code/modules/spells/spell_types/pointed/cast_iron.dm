@@ -5,8 +5,8 @@
 	button_icon_state = "frying_pan"
 
 	school = SCHOOL_EVOCATION
-	cooldown_time = 6 SECONDS
-	cooldown_reduction_per_rank = 1 SECONDS // 1 second reduction per rank
+	cooldown_time = 4 SECONDS
+	cooldown_reduction_per_rank = 0.6 SECONDS
 
 	invocation = "CL'AHNG!"
 	invocation_type = INVOCATION_SHOUT
