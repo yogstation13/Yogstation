@@ -5,8 +5,8 @@
 	button_icon_state = "human_basic"
 
 	school = SCHOOL_EVOCATION
-	cooldown_time = 60 SECONDS
-	cooldown_reduction_per_rank = 6 SECONDS // 6 second reduction per rank
+	cooldown_time = 30 SECONDS
+	cooldown_reduction_per_rank = 4 SECONDS // 4 second reduction per rank
 
 	sound = 'sound/effects/gravhit.ogg'
 	invocation = "SCRUNCH!" //no modification, just scrunch
