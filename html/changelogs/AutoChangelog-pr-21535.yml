@@ -1,0 +1,5 @@
+author: "13spacemen"
+delete-after: true 
+changes: 
+  - rscadd: "Mimes get their own special survival boxes"
+  - bugfix: "Plasmaman clowns will properly get their plasma tank in their hugbox"
