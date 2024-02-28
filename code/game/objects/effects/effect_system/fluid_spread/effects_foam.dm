@@ -433,7 +433,7 @@
 /obj/structure/foamedmetal/resin/proc/on_entered(datum/source, atom/movable/arrived)
 	SIGNAL_HANDLER
 
-	if(isliving(arrived))
+	if(isliving(arrived)) //I guess living subtype is fine ig
 		var/mob/living/living = arrived
 		living.add_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM, multiplicative_slowdown = 0.4)
 
@@ -444,12 +444,12 @@
 		var/turf/them = get_step(T, direction)
 
 		for(var/obj/structure/foamedmetal/resin/S in them)
-			if(S.loc == living.loc)
+			if(S.loc == living.loc) //No removing speed if has same loc
 				return
 
 		living.remove_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM)
 
-/obj/structure/foamedmetal/resin/Destroy()
+/obj/structure/foamedmetal/resin/Destroy() //Make sure to remove the speed if the resin is destroyed while the mob is in it
 	. = ..()
 	var/turf/T = get_turf(src)
 	for(var/mob/living/living in T)
