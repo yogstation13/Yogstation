@@ -38536,6 +38536,10 @@
 	icon_state = "platingdmg1"
 	},
 /area/ruin/powered)
+"lqk" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "lqq" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
@@ -62870,6 +62874,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -106654,7 +106661,7 @@ tOY
 yft
 abp
 dSn
-aUe
+lqk
 sKm
 aFr
 aFr
