@@ -6,7 +6,7 @@
 	category = "Offensive"
 
 /datum/spellbook_entry/cast_iron
-	name = "Cast iron"
+	name = "Cast Iron"
 	desc = "Fires a blunt force projectile."
 	spell_type = /datum/action/cooldown/spell/pointed/projectile/cast_iron
 	category = "Offensive"

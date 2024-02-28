@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/pointed/projectile/cast_iron
-	name = "Cast iron bolt"
+	name = "Cast Iron"
 	desc = "This spell fires a cast iron bolt."
 	button_icon = 'yogstation/icons/obj/pan.dmi'
 	button_icon_state = "frying_pan"
