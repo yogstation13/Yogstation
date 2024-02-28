@@ -32,6 +32,8 @@
 		to_chat(owner, span_warning("The spell had no effect!"))
 		return FALSE
 
+	if(spell_level == spell_max_level)
+		cast_on.AddElement(/datum/element/squish)
 	cast_on.AddElement(/datum/element/squish)
 	cast_on.apply_damage(60, BRUTE, wound_bonus = 50, bare_wound_bonus = 50) //brute wounds all over the body
 	cast_on.emote("scream")
