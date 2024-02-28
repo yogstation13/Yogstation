@@ -3,6 +3,7 @@
 	desc = "This spell scrunches a target."
 	button_icon = 'icons/mob/human.dmi'
 	button_icon_state = "human_basic"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 
 	school = SCHOOL_EVOCATION
 	cooldown_time = 30 SECONDS
