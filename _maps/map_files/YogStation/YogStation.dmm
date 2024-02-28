@@ -5490,7 +5490,7 @@
 /area/maintenance/starboard/fore)
 "aNe" = (
 /obj/machinery/button/door{
-	id = "kitchen";
+	id = "kitchenprivacy";
 	name = "Privacy Shutters Control";
 	pixel_x = -5;
 	pixel_y = -25;
@@ -26146,6 +26146,13 @@
 /obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
+/obj/machinery/button/door{
+	id = "kitchen";
+	name = "Counter Shutters Control";
+	pixel_x = -27;
+	pixel_y = -5;
+	req_access_txt = "28"
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "gAq" = (
@@ -42149,7 +42156,7 @@
 "mtr" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
+	id = "kitchenprivacy";
 	name = "privacy shutters"
 	},
 /turf/open/floor/plating,
@@ -58907,16 +58914,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
-"sAn" = (
-/obj/machinery/button/door{
-	id = "kitchen";
-	name = "Privacy Shutters Control";
-	pixel_x = -25;
-	pixel_y = 24;
-	req_access_txt = "28"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "sAr" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/atmospherics/components/unary/portables_connector,
@@ -111902,7 +111899,7 @@ aAh
 aFt
 fgc
 gAp
-sAn
+fKR
 mPI
 xqh
 iix
