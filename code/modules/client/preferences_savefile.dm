@@ -289,6 +289,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = SSquirks.filter_invalid_quirks(all_quirks, src)
 	validate_quirks()
 
+	loaded_character = TRUE
 	return TRUE
 
 /datum/preferences/proc/save_character()
