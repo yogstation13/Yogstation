@@ -494,4 +494,4 @@
 		choice.info = pride_reskins[pin_type]["info"]
 		radial_menu[pin_type] =  choice
 	var/Pin = show_radial_menu(user, user, radial_menu, tooltips = TRUE)
-	icon_state = Pin ? pride_reskins[P]["icon"] : initial(icon_state)
+	icon_state = Pin ? pride_reskins[Pin]["icon"] : initial(icon_state)
