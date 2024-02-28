@@ -12767,11 +12767,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4
 	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 24;
-	pixel_y = 1
-	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
 "bZI" = (
@@ -15803,7 +15798,7 @@
 /area/maintenance/starboard/aft)
 "cOh" = (
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel,
@@ -16979,7 +16974,7 @@
 	pixel_y = 9
 	},
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
@@ -18470,7 +18465,7 @@
 /area/hallway/secondary/entry)
 "dOm" = (
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -28507,6 +28502,11 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4
 	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24;
+	pixel_y = 1
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
 "hsq" = (
@@ -29426,7 +29426,7 @@
 /area/quartermaster/warehouse)
 "hIV" = (
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /obj/effect/turf_decal/stripes/corner{
@@ -36861,7 +36861,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel,
@@ -38089,8 +38089,7 @@
 "kRZ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	layer = 2.35;
-	
+	layer = 2.35
 	},
 /turf/closed/wall,
 /area/science/mixing)
@@ -41780,7 +41779,7 @@
 /area/security/prison)
 "mnR" = (
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
@@ -55773,8 +55772,7 @@
 /area/security/brig)
 "rrF" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	layer = 2.35;
-	
+	layer = 2.35
 	},
 /turf/closed/wall,
 /area/science/mixing)
