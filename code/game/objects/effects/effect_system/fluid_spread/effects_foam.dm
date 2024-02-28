@@ -433,7 +433,7 @@
 /obj/structure/foamedmetal/resin/proc/on_entered(datum/source, atom/movable/arrived)
 	SIGNAL_HANDLER
 
-	if(isliving(arrived)) //I guess living subtype is fine ig
+	if(isliving(arrived)) //I guess living subtype is fine
 		var/mob/living/living = arrived
 		living.add_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM, multiplicative_slowdown = 0.4)
 
