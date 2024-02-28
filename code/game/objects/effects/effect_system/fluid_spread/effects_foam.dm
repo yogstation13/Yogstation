@@ -450,7 +450,8 @@
 		living.remove_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM)
 
 /obj/structure/foamedmetal/resin/Destroy() //Make sure to remove the speed if the resin is destroyed while the mob is in it
-	. = ..()
 	var/turf/T = get_turf(src)
 	for(var/mob/living/living in T)
 		living.remove_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM)
+	
+	return ..()
