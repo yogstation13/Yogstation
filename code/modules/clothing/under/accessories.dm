@@ -466,20 +466,20 @@
 			"info" = "Orange and pink shaded stripes that represent Lesbian pride, pride in same-gender love among women!"),
 		"Gay Pride" = list(
 			"icon" = "pride_gay",
-			"info" = "Navy and turquoise shaded stripes that represent Gay pride, pride in same-gender love among men!")
+			"info" = "Navy and turquoise shaded stripes that represent Gay pride, pride in same-gender love among men!"),
 		//meme pins under this
 		"Ian Pride" = list( //we love ian
 			"icon" = "pride_ian",
-			"info" = "A orange corgi, pride in the HoP's beloved pet!")
+			"info" = "A orange corgi, pride in the HoP's beloved pet!"),
 		"Void Pride" = list( //darkness antag
 			"icon" = "pride",
 			"info" = "Nothing, pride in NOTHING!!!")
 		"Suspicious Pride Pin" = list( //syndicate
 			"icon" = "pride_suspicious",
-			"info" = "A black S on a red banner, pride in chaos!")
+			"info" = "A black S on a red banner, pride in chaos!"),
 		"Grey Pride" = list( //assistants
 			"icon" = "pride_grey",
-			"info" = "A robust toolbox over a grey background, pride in what is stationwide!")
+			"info" = "A robust toolbox over a grey background, pride in what is stationwide!"),
 		"Command Pride" = list(
 			"icon" = "pride_command",
 			"info" = "A blue background with an elaborate white trim, pride in your superiors!")
