@@ -26767,9 +26767,6 @@
 "gOa" = (
 /obj/effect/turf_decal/ramp_middle,
 /obj/structure/bookcase/random/fiction,
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
 /turf/open/floor/carpet,
 /area/library)
 "gOg" = (
@@ -39160,9 +39157,6 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
 /turf/open/floor/carpet,
 /area/library)
 "lmd" = (
@@ -63411,9 +63405,6 @@
 "uhU" = (
 /obj/effect/turf_decal/ramp_middle,
 /obj/structure/bookcase/random/adult,
-/obj/effect/turf_decal/siding/wood/thin{
-	dir = 1
-	},
 /turf/open/floor/carpet,
 /area/library)
 "uiF" = (
