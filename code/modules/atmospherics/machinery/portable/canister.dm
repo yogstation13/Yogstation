@@ -35,6 +35,8 @@
 	var/timing = FALSE
 	var/restricted = FALSE
 	req_access = list()
+	//a singletank bomb te explode the canister
+	var/obj/item/tank/single_tank
 
 	//list of canister types for relabeling
 	var/static/list/label2types = list(
@@ -369,6 +371,34 @@
 		to_chat(user, span_notice("You cannot slice [src] apart when it isn't broken."))
 
 	return TRUE
+
+//attaching or droping the singletank bomb
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/tank)) 
+		if(!(stat & BROKEN))
+			var/obj/item/tank/T = W
+			if(T.bomb_status)
+				if(!user.transferItemToLoc(T, src))
+					return ..()
+				single_tank = T
+				update_appearance(UPDATE_ICON)
+				user.balloon_alert(user, "[single_tank.name] attached!")
+				add_fingerprint(user)
+				return
+		return ..()
+	else if ((W.tool_behaviour == TOOL_WRENCH) && single_tank)
+		W.play_tool_sound(src)
+		single_tank.forceMove(drop_location())
+		single_tank = null
+		return
+	else
+		return ..()
+
+/obj/machinery/portable_atmospherics/canister/update_overlays()
+	. = ..()
+	if(single_tank)
+		. += single_tank.icon_state
+		. += single_tank.overlays
 
 /obj/machinery/portable_atmospherics/canister/obj_break(damage_flag)
 	. = ..()
