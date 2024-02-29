@@ -6692,8 +6692,8 @@
 	dir = 8;
 	dwidth = 12;
 	height = 17;
-	shuttle_id = "syndicate_nw";
 	name = "northwest of station";
+	shuttle_id = "syndicate_nw";
 	width = 23
 	},
 /turf/open/genturf,
@@ -8895,9 +8895,9 @@
 	dheight = 4;
 	dwidth = 4;
 	height = 9;
-	shuttle_id = "aux_base_zone";
 	name = "aux base zone";
 	roundstart_template = /datum/map_template/shuttle/aux_base/default;
+	shuttle_id = "aux_base_zone";
 	width = 9
 	},
 /turf/open/floor/plating,
@@ -13303,7 +13303,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "dWi" = (
@@ -22401,8 +22403,8 @@
 	dir = 8;
 	dwidth = 2;
 	height = 13;
-	shuttle_id = "ferry_home";
 	name = "port bay 2";
+	shuttle_id = "ferry_home";
 	width = 5
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -25196,8 +25198,8 @@
 	area_type = /area/icemoon/underground/explored/laborcamp;
 	dwidth = 2;
 	height = 5;
-	shuttle_id = "laborcamp_away";
 	name = "labor camp";
+	shuttle_id = "laborcamp_away";
 	width = 9
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -27570,8 +27572,8 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	shuttle_id = "whiteship_home";
 	name = "SS13: Auxiliary Dock, Station-Port";
+	shuttle_id = "whiteship_home";
 	width = 35
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -28470,8 +28472,8 @@
 	dir = 8;
 	dwidth = 5;
 	height = 7;
-	shuttle_id = "supply_home";
 	name = "Cargo Bay";
+	shuttle_id = "supply_home";
 	width = 12
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -31505,8 +31507,8 @@
 	dir = 2;
 	dwidth = 9;
 	height = 25;
-	shuttle_id = "emergency_home";
 	name = "MetaStation emergency evac bay";
+	shuttle_id = "emergency_home";
 	width = 29
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -33531,20 +33533,6 @@
 "jLL" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/command)
-"jLP" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/delivery,
-/obj/item/storage/pencil_holder/crew{
-	pixel_x = 8;
-	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
@@ -53967,36 +53955,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"pES" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 1;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk";
-	req_access_txt = "57"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/window/northleft{
-	dir = 2;
-	name = "Reception Window"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "hop";
-	name = "privacy shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/item/deskbell/preset/hop{
-	pixel_x = -8;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "pFu" = (
 /obj/item/radio/intercom{
 	pixel_y = -30
@@ -62026,7 +61984,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "san" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -67422,9 +67382,9 @@
 	dir = 8;
 	dwidth = 3;
 	height = 15;
-	shuttle_id = "arrivals_stationary";
 	name = "arrivals";
 	roundstart_template = /datum/map_template/shuttle/arrival/box;
+	shuttle_id = "arrivals_stationary";
 	width = 7
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -71497,6 +71457,27 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/storage/locker)
+"uIW" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/delivery,
+/obj/item/deskbell/preset/hop{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "uJg" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/button/door{
@@ -77983,6 +77964,32 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"wxN" = (
+/obj/machinery/door/window/brigdoor{
+	base_state = "rightsecure";
+	dir = 1;
+	icon_state = "rightsecure";
+	name = "Head of Personnel's Desk";
+	req_access_txt = "57"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Reception Window"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "hop";
+	name = "privacy shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/inspector_booth,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "wxO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -80706,9 +80713,9 @@
 	dir = 8;
 	dwidth = 2;
 	height = 5;
-	shuttle_id = "laborcamp_home";
 	name = "fore bay 1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
+	shuttle_id = "laborcamp_home";
 	width = 9
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -240559,7 +240566,7 @@ uEW
 ibB
 hJv
 mkZ
-pES
+wxN
 ylr
 qGb
 wGm
@@ -240817,7 +240824,7 @@ akc
 ibB
 mqP
 sYq
-jLP
+uIW
 vRv
 uxI
 ngT
