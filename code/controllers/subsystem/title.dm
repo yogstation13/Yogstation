@@ -8,6 +8,9 @@ SUBSYSTEM_DEF(title)
 	var/icon/icon
 	var/icon/previous_icon
 	var/turf/closed/indestructible/splashscreen/splash_turf
+	var/list/rare_provisional_title_screens
+	var/list/joke_provisional_title_screens
+	var/list/provisional_title_screens
 
 /datum/controller/subsystem/title/Initialize()
 	if(file_path && icon)
@@ -19,17 +22,32 @@ SUBSYSTEM_DEF(title)
 			previous_icon = new(previous_icon)
 	fdel("data/previous_title.dat")
 
-	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
+	normal_provisional_title_screens = flist("[global.config.directory]/title_screens/images/normal/")
+	joke_provisional_title_screens = flist("[global.config.directory]/title_screens/images/joke/")
+	rare_provisional_title_screens = flist("[global.config.directory]/title_screens/images/rare/")
+
+	
 	var/list/title_screens = list()
-	var/use_rare_screens = prob(1)
+	var/use_rare_screens = prob(1)		// 1% Chance for Rare Screens in /rare
+	var/use_joke_screens = prob(10) 	// 10% Chance for Joke Screens in /joke
 
-	for(var/S in provisional_title_screens)
-		var/list/L = splittext(S,"+")
-		if((L.len == 1 && (L[1] != "exclude" && L[1] != "blank.png"))|| (L.len > 1 && ((use_rare_screens && lowertext(L[1]) == "rare") || (lowertext(L[1]) == lowertext(SSmapping.config.map_name)))))
+	if(use_rare_screens)
+		for(var/S in rare_provisional_title_screens)
 			title_screens += S
+		if(length(title_screens))
+			file_path = "[global.config.directory]/title_screens/images/rare/[pick(title_screens)]"
+	
+	else if(use_joke_screens)
+		for(var/S in joke_provisional_title_screens)
+			title_screens += S
+		if(length(title_screens))
+			file_path = "[global.config.directory]/title_screens/images/joke/[pick(title_screens)]"
 
-	if(length(title_screens))
-		file_path = "[global.config.directory]/title_screens/images/[pick(title_screens)]"
+	else
+		for(var/S in normal_provisional_title_screens)
+			title_screens += S
+		if(length(title_screens))
+			file_path = "[global.config.directory]/title_screens/images/normal/[pick(title_screens)]"
 
 	if(!file_path)
 		file_path = "icons/default_title.dmi"
