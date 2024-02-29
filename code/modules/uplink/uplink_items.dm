@@ -1442,6 +1442,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cant_discount = TRUE
 	cost = 105 //Yogs change
 
+/datum/uplink_item/support/mamba
+	name = "Black Mamba Exosuit"
+	desc = "A stealthy, quick, and deadly combat exosuit, this modified sidewinder chassis is capable of suddenly striking and retreating while \
+			the effects of its venomous weapons take hold. Comes with a venom carbine, dual daggers, and an anti-projectile armor booster."
+	item = /obj/mecha/combat/sidewinder/mamba/loaded
+	cant_discount = TRUE
+	cost = 75
+
 // Stealth Items
 /datum/uplink_item/stealthy_tools
 	category = "Stealth Gadgets"

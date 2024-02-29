@@ -5,6 +5,13 @@
 	spell_type = /datum/action/cooldown/spell/pointed/projectile/fireball
 	category = "Offensive"
 
+/datum/spellbook_entry/cast_iron
+	name = "Cast Iron"
+	desc = "Fires a blunt force projectile."
+	spell_type = /datum/action/cooldown/spell/pointed/projectile/cast_iron
+	category = "Offensive"
+	cost = 1
+
 /datum/spellbook_entry/spell_cards
 	name = "Spell Cards"
 	desc = "Blazing hot rapid-fire homing cards. Send your foes to the shadow realm with their mystical power!"

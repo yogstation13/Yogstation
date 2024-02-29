@@ -49,6 +49,11 @@
 	addtimer(CALLBACK(src, PROC_REF(bear_fruit)), growth_time)
 	countdown.start()
 
+/obj/structure/alien/resin/flower_bud_enemy/Destroy()
+	for(var/T in vines)
+		qdel(T)
+	. = ..()
+	
 /**
   * Spawns a venus human trap, then qdels itself.
   *
@@ -107,8 +112,7 @@
 	melee_damage_upper = 25
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	unsuitable_atmos_damage = 0
+	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 	// Real green, cause of course
 	lighting_cutoff_red = 10
@@ -131,6 +135,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/life_draining, damage_overtime = 5, check_damage_callback = CALLBACK(src, PROC_REF(kudzu_need)))
+	remove_verb(src, /mob/living/verb/pulled) //no dragging the poor sap into the depths of the vines never to be seen again
 
 /mob/living/simple_animal/hostile/venus_human_trap/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()

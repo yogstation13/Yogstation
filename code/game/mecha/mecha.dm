@@ -1292,7 +1292,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 // Matter resupply and upgrades for mounted RCDs
 /obj/mecha/proc/matter_resupply(obj/item/I, mob/user)
 	for(var/obj/item/mecha_parts/mecha_equipment/rcd/R in equipment)
-		R.internal_rcd.attackby(I, user)
+		. = R.internal_rcd.attackby(I, user)
 		if(QDELETED(I))
 			return
 
