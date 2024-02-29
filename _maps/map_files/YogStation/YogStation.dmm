@@ -5933,6 +5933,9 @@
 	icon_state = "1-8"
 	},
 /obj/effect/turf_decal/siding/wood/thin,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/library)
 "aPQ" = (
@@ -70131,6 +70134,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"wFn" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/siding/wood/thin,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/library)
 "wFr" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -118873,7 +118891,7 @@ alP
 aEH
 xjK
 aFu
-aPf
+wFn
 cZY
 aIt
 jQY
