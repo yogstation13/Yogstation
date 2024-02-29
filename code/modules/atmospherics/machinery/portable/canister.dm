@@ -1,6 +1,6 @@
 #define CAN_DEFAULT_RELEASE_PRESSURE (ONE_ATMOSPHERE)
-#define CANISTER_EXPLOSION_PRESSURE   (40.*ONE_ATMOSPHERE) //maybe needs tweaking
-#define CANISTER_EXPLOSION_SCALE      (6.*ONE_ATMOSPHERE)
+#define CANISTER_EXPLOSION_PRESSURE   (200.*ONE_ATMOSPHERE) //maybe needs tweaking
+#define CANISTER_EXPLOSION_SCALE      (10.*ONE_ATMOSPHERE)
 
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
@@ -320,6 +320,8 @@
 	var/light_state = get_pressure_state(air_contents?.return_pressure())
 	if(light_state) //happens when pressure is below 10kpa which means no light
 		. += mutable_appearance(icon, light_state)
+	if(single_tank)
+		. += single_tank
 
 ///return the icon_state component for the canister's indicator light based on its current pressure reading
 /obj/machinery/portable_atmospherics/canister/proc/get_pressure_state(air_pressure)
@@ -390,15 +392,10 @@
 		W.play_tool_sound(src)
 		single_tank.forceMove(drop_location())
 		single_tank = null
+		update_appearance(UPDATE_ICON)
 		return
 	else
 		return ..()
-
-/obj/machinery/portable_atmospherics/canister/update_overlays()
-	. = ..()
-	if(single_tank)
-		. += single_tank.icon_state
-		. += single_tank.overlays
 
 /obj/machinery/portable_atmospherics/canister/obj_break(damage_flag)
 	. = ..()
