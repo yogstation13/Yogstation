@@ -1,7 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - mapping: "Fixed a mountain of decals using the wrong colors on every map"
-  - mapping: "Asteroid maint doors now have clear hazard stripes instead of nearly invisible brown ones"
-  - mapping: "Changed a few bridge decals to look better on every map"
-  - mapping: "Gax telecomms is now color coded, now has nice engie decals in the net admin's office"
