@@ -192,6 +192,8 @@ GLOBAL_LIST_EMPTY(lockers)
 	. = ..()
 	if(wall_mounted)
 		return TRUE
+	if(istype(mover) && (mover.pass_flags & PASSCLOSET))
+		return TRUE
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
