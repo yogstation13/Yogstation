@@ -8,9 +8,6 @@ SUBSYSTEM_DEF(title)
 	var/icon/icon
 	var/icon/previous_icon
 	var/turf/closed/indestructible/splashscreen/splash_turf
-	var/list/rare_provisional_title_screens
-	var/list/joke_provisional_title_screens
-	var/list/provisional_title_screens
 
 /datum/controller/subsystem/title/Initialize()
 	if(file_path && icon)
@@ -22,11 +19,9 @@ SUBSYSTEM_DEF(title)
 			previous_icon = new(previous_icon)
 	fdel("data/previous_title.dat")
 
-	normal_provisional_title_screens = flist("[global.config.directory]/title_screens/images/normal/")
-	joke_provisional_title_screens = flist("[global.config.directory]/title_screens/images/joke/")
-	rare_provisional_title_screens = flist("[global.config.directory]/title_screens/images/rare/")
-
-	
+	var/list/normal_provisional_title_screens = flist("[global.config.directory]/title_screens/images/normal/")
+	var/list/joke_provisional_title_screens = flist("[global.config.directory]/title_screens/images/joke/")
+	var/list/rare_provisional_title_screens = flist("[global.config.directory]/title_screens/images/rare/")
 	var/list/title_screens = list()
 	var/use_rare_screens = prob(1)		// 1% Chance for Rare Screens in /rare
 	var/use_joke_screens = prob(10) 	// 10% Chance for Joke Screens in /joke
