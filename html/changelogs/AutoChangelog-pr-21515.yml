@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - mapping: "Patients can now exit from both left and right doors on Box medbay"
