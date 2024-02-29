@@ -312,15 +312,12 @@
 		. += "can-open"
 	if(holding)
 		. += "can-tank"
-		if(holding.bomb_status)
-			. += holding
 	if(connected_port)
 		. += "can-connector"
-
 	var/light_state = get_pressure_state(air_contents?.return_pressure())
 	if(light_state) //happens when pressure is below 10kpa which means no light
 		. += mutable_appearance(icon, light_state)
-	if(holding.bomb_status)
+	if(holding?.bomb_status)
 		. += holding
 
 ///return the icon_state component for the canister's indicator light based on its current pressure reading
