@@ -312,6 +312,8 @@
 		. += "can-open"
 	if(holding)
 		. += "can-tank"
+		if(holding.bomb_status)
+			. += holding
 	if(connected_port)
 		. += "can-connector"
 
