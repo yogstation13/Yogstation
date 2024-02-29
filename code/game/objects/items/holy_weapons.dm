@@ -580,6 +580,20 @@
 /obj/item/nullrod/dragonslayer/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+	
+	if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY)
+	var/force_wielded = -12
+	. = ..()
+	RemoveComponent(/datum/component/two_handed, \
+		force_wielded = force_wielded, \
+		icon_wielded = "[base_icon_state]1", \
+		weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0 SECONDS) \
+	)
+	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
+
+/obj/item/fireaxe/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]0"
 
 
 /*---------------------------------------------------------------------------
