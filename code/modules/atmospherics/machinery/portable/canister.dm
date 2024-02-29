@@ -1,4 +1,6 @@
 #define CAN_DEFAULT_RELEASE_PRESSURE (ONE_ATMOSPHERE)
+#define CANISTER_EXPLOSION_PRESSURE   (40.*ONE_ATMOSPHERE) //maybe needs tweaking
+#define CANISTER_EXPLOSION_SCALE      (6.*ONE_ATMOSPHERE)
 
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
@@ -376,15 +378,19 @@
 
 /obj/machinery/portable_atmospherics/canister/proc/canister_break()
 	disconnect()
-	var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
+	var/pressure = air_contents.return_pressure()
 	var/turf/T = get_turf(src)
-	T.assume_air(expelled_gas)
-
+	if(pressure <= CANISTER_EXPLOSION_PRESSURE)
+		var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
+		T.assume_air(expelled_gas)
+		playsound(src.loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
+	else //mini nukes
+		log_bomber(get_mob_by_key(fingerprintslast), "was last key to touch", src, "which ruptured explosively")
+		var/range = (pressure-CANISTER_EXPLOSION_PRESSURE)/CANISTER_EXPLOSION_SCALE
+		explosion(T, round(range*0.25), round(range*0.5), round(range), round(range*1.5))
 	obj_break()
 	density = FALSE
-	playsound(src.loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	investigate_log("was destroyed.", INVESTIGATE_ATMOS)
-
 	if(holding)
 		usr.put_in_hands(holding)
 		holding = null
