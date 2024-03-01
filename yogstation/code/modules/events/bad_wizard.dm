@@ -62,8 +62,9 @@
 			SpellAdd(/datum/action/cooldown/spell/forcewall, 5)
 			SpellAdd(/datum/action/cooldown/spell/aoe/repulse/wizard, 5)
 
-		if(7) //5x Cluwne Curse and 2x blink
-			SpellAdd(/datum/action/cooldown/spell/pointed/cluwnecurse, 5)
+		if(7) //5x Slip 5x Appendicitis, and 2x blink (god have mercy, for this wizard has none)
+			SpellAdd(/datum/action/cooldown/spell/aoe/slip, 5)
+			SpellAdd(/datum/action/cooldown/spell/pointed/appendicitis, 5)
 			SpellAdd(/datum/action/cooldown/spell/teleport/radius_turf/blink, 2)
 
 		if(8) // 5x Flesh to stone 5x Animation Spell 2x Blind (Weeping Angels)

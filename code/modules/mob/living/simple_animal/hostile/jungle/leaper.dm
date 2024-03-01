@@ -80,6 +80,11 @@
 /obj/structure/leaper_bubble/Initialize(mapload)
 	. = ..()
 	float(on = TRUE)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 	QDEL_IN(src, 100)
 
 /obj/structure/leaper_bubble/Destroy()
@@ -87,7 +92,7 @@
 	playsound(src,'sound/effects/snap.ogg',50, 1, -1)
 	return ..()
 
-/obj/structure/leaper_bubble/Crossed(atom/movable/AM)
+/obj/structure/leaper_bubble/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(!istype(L, /mob/living/simple_animal/hostile/jungle/leaper))
@@ -100,7 +105,7 @@
 				var/mob/living/simple_animal/A = L
 				A.adjustHealth(25)
 			qdel(src)
-	return ..()
+	return 
 
 /datum/reagent/toxin/leaper_venom
 	name = "Leaper venom"

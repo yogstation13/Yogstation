@@ -10,6 +10,7 @@
 	icon_state = "tracker"
 	density = TRUE
 	use_power = NO_POWER_USE
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	max_integrity = 250
 	integrity_failure = 0.2
 
@@ -26,6 +27,14 @@
 /obj/machinery/power/tracker/Destroy()
 	unset_control() //remove from control computer
 	return ..()
+
+//Yog: our solars aren't as overlay based yet
+// /obj/machinery/power/tracker/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+// 	. = ..()
+// 	if(same_z_layer)
+// 		return
+// 	SET_PLANE(tracker_dish_edge, PLANE_TO_TRUE(tracker_dish_edge.plane), new_turf)
+// 	SET_PLANE(tracker_dish, PLANE_TO_TRUE(tracker_dish.plane), new_turf)
 
 /obj/machinery/power/tracker/proc/set_control(obj/machinery/power/solar_control/SC)
 	unset_control()

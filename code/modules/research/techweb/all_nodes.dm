@@ -39,7 +39,7 @@
 	starting_node = TRUE
 	display_name = "Basic Exosuit Equipment"
 	description = "Various tools fit for basic mech units"
-	design_ids = list("mech_drill", "mech_mscanner", "mech_extinguisher", "mech_cable_layer")
+	design_ids = list("mech_drill", "mech_mscanner", "mech_extinguisher", "mech_cable_layer", "mech_t_scanner", "mech_pipe_dispenser")
 
 /datum/techweb_node/clarke
 	id = "mecha_clarke"
@@ -155,7 +155,8 @@
 	design_ids = list("solarcontrol", "recharger", "powermonitor", "rped", "pacman", "adv_capacitor", "adv_scanning", "emitter", "high_cell", "adv_matter_bin", "scanner_gate",
 	"atmosalerts", "atmos_control", "recycler", "autolathe", "high_micro_laser", "nano_mani", "mesons", "thermomachine", "rad_collector", "tesla_coil", "grounding_rod",
 	"cell_charger", "stack_console", "stack_machine", "conveyor_belt", "conveyor_switch", "reactor_control",
-	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "electrolyzer", "floorigniter", "crystallizer", "suit_storage_unit", "atmos_thermal")
+	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "electrolyzer", "floorigniter", "crystallizer", "suit_storage_unit",
+	"atmos_thermal")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 
 /datum/techweb_node/adv_engi
@@ -163,7 +164,7 @@
 	display_name = "Advanced Engineering"
 	description = "Pushing the boundaries of physics, one chainsaw-fist at a time."
 	prereq_ids = list("engineering", "emp_basic")
-	design_ids = list("engine_goggles", "magboots", "forcefield_projector", "weldingmask", "decontamination_unit", "particle_emitter", "tricorder")
+	design_ids = list("engine_goggles", "magboots", "forcefield_projector", "weldingmask", "decontamination_unit", "particle_emitter", "tricorder", "mass_driver")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/anomaly
@@ -312,7 +313,6 @@
 	display_name = "Advanced Robotics Research"
 	description = "It can even do the dishes!"
 	prereq_ids = list("robotics")
-	design_ids = list("borg_upgrade_diamonddrill", "borg_upgrade_trashofholding", "borg_upgrade_advancedmop")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/neural_programming
@@ -330,37 +330,69 @@
 	design_ids = list("mmi_posi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
-/datum/techweb_node/cyborg_upg_util
-	id = "cyborg_upg_util"
+/datum/techweb_node/cyborg_upgrades_utility
+	id = "cyborg_upgrades_utility"
 	display_name = "Cyborg Upgrades: Utility"
-	description = "Utility upgrades for cyborgs."
-	prereq_ids = list("engineering")
-	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped", "borg_upgrade_language", "borg_upgrade_broomer", "borg_upgrade_snacks", "borg_upgrade_gemsatchel", "borg_upgrade_condiment_synthesizer", "borg_upgrade_service_cookbook", "borg_upgrade_janitor_autocleaner")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
+	description = "Upgrades that can be used on all cyborg module types that increases their general utility."
+	prereq_ids = list("engineering", "adv_robotics")
+	design_ids = list("borg_upgrade_thrusters", "borg_upgrade_language", "borg_upgrade_expand", "borg_upgrade_selfrepair")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 
-/datum/techweb_node/adv_cyborg_upg_util
-	id = "adv_cyborg_upg_util"
-	display_name = "Cyborg Upgrades: Advanced Utility"
-	description = "Advanced utility upgrades for cyborgs."
-	prereq_ids = list("cyborg_upg_util", "practical_bluespace", "exp_tools") // Experimental tools covers tools & holofan. Bluespace covers BRPED.
+/datum/techweb_node/cyborg_upgrades_engineering
+	id = "cyborg_upgrades_engineering"
+	display_name = "Cyborg Upgrades: Engineering"
+	description = "Upgrades that can only be used on cyborgs with a engineering-related module."
+	prereq_ids = list("cyborg_upgrades_utility")
+	design_ids = list("borg_upgrade_rped")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+
+/datum/techweb_node/cyborg_upgrades_engineering_adv
+	id = "cyborg_upgrades_engineering_adv"
+	display_name = "Cyborg Upgrades: Advanced Engineering"
+	description = "Advanced upgrades that can only be used on cyborgs with a engineering-related module."
+	prereq_ids = list("cyborg_upgrades_engineering", "practical_bluespace", "exp_tools")
 	design_ids = list("borg_upgrade_engi_advancedtools", "borg_upgrade_holofan", "borg_upgrade_brped")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
-/datum/techweb_node/cyborg_upg_med
-	id = "cyborg_upg_med"
+/datum/techweb_node/cyborg_upgrades_nvg
+	id = "cyborg_upgrades_nvg" // This is its own seperate node solely ONLY because it wasn't obvious on how to find this upgrade.
+	display_name = "Cyborg Upgrades: NVG"
+	description = "Upgrade that swaps a cyborg's mesons to nightvision mesons."
+	prereq_ids = list("cyborg_upgrades_engineering", "NVGtech")
+	design_ids = list("borg_upgrade_nv_mesons")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+
+/datum/techweb_node/cyborg_upgrades_medical
+	id = "cyborg_upgrades_medical"
 	display_name = "Cyborg Upgrades: Medical"
-	description = "Medical upgrades for cyborgs."
-	prereq_ids = list("adv_biotech")
-	design_ids = list("borg_upgrade_defibrillator", "borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser", "borg_upgrade_medigripper")
+	description = "Upgrades that focus on cyborgs with a medical-related module."
+	prereq_ids = list("cyborg_upgrades_utility", "adv_biotech")
+	design_ids = list("borg_upgrade_defibrillator", "borg_upgrade_expandedsynthesiser", "borg_upgrade_medigripper")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 
-/datum/techweb_node/cyborg_upg_surgkit
-	id = "cyborg_upg_surgkit"
-	display_name = "Cyborg Upgrade: Medical Advanced Medical Tools"
-	description = "Advanced Surgical Kit and Advanced Health Scanner upgrade design for medical cyborgs."
-	prereq_ids = list("cyborg_upg_med", "exp_tools")
-	design_ids = list("borg_upgrade_surgerykit", "borg_upgrade_analyzer")
+/datum/techweb_node/cyborg_upgrades_medical_adv
+	id = "cyborg_upgrades_medical_adv"
+	display_name = "Cyborg Upgrades: Advanced Medical"
+	description = "Advanced upgrades that focus on cyborgs with a medical-related module."
+	prereq_ids = list("cyborg_upgrades_medical", "exp_tools")
+	design_ids = list("borg_upgrade_piercinghypospray", "borg_upgrade_surgerykit", "borg_upgrade_analyzer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+
+/datum/techweb_node/cyborg_upgrades_mining
+	id = "cyborg_upgrades_mining"
+	display_name = "Cyborg Upgrades: Mining"
+	description = "Upgrades that focus on cyborgs with a mining-related module."
+	prereq_ids = list("cyborg_upgrades_utility", "adv_mining")
+	design_ids = list("borg_upgrade_lavaproof", "borg_upgrade_diamonddrill", "borg_upgrade_plasmacutter", "borg_upgrade_holding", "borg_upgrade_gemsatchel")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+
+/datum/techweb_node/cyborg_upgrades_service
+	id = "cyborg_upgrades_service"
+	display_name = "Cyborg Upgrades: Service"
+	description = "Upgrades that focus on cyborgs with a service-related module." // Janitor & "Service/Bartender".
+	prereq_ids = list("cyborg_upgrades_utility", "janitor")
+	design_ids = list("borg_upgrade_trashofholding", "borg_upgrade_advancedmop", "borg_upgrade_broomer", "borg_upgrade_janitor_autocleaner", "borg_upgrade_condiment_synthesizer", "borg_upgrade_service_cookbook", "borg_upgrade_snacks")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500) // Roleplay discount.
 
 /datum/techweb_node/ai
 	id = "ai"
@@ -463,7 +495,7 @@
 	display_name = "Night Vision Technology"
 	description = "Allows seeing in the dark without actual light!"
 	prereq_ids = list("integrated_HUDs", "adv_engi", "emp_adv")
-	design_ids = list("health_hud_night", "security_hud_night", "diagnostic_hud_night", "night_visision_goggles", "nvgmesons", "nightscigoggles", "borg_upgrade_nv_mesons")
+	design_ids = list("health_hud_night", "security_hud_night", "diagnostic_hud_night", "night_visision_goggles", "nvgmesons", "nightscigoggles")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 ////////////////////////Medical////////////////////////
@@ -562,7 +594,7 @@
 	display_name = "Advanced Mining Technology"
 	description = "Efficiency Level 127"	//dumb mc references
 	prereq_ids = list("basic_mining", "adv_engi", "adv_power", "adv_plasma")
-	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "borg_upgrade_plasmacutter","miningcharge")
+	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "miningcharge")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/magmite_mining
@@ -588,7 +620,7 @@
 	display_name = "Advanced Sanitation Technology"
 	description = "Clean things better, faster, stronger, and harder!"
 	prereq_ids = list("adv_engi")
-	design_ids = list("advmop", "buffer", "blutrash", "light_replacer", "spraybottle", "beartrap")
+	design_ids = list("advmop", "buffer", "blutrash", "light_replacer", "spraybottle", "beartrap", "mech_washer", "mech_mop", "mech_flyswatter")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/botany
@@ -825,7 +857,7 @@
 	display_name = "Advanced Exosuit Equipment"
 	description = "Tools for high level mech suits"
 	prereq_ids = list("adv_mecha")
-	design_ids = list("mech_rcd")
+	design_ids = list("mech_rcd", "mech_thrusters")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/med_mech_tools

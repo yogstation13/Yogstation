@@ -2,6 +2,7 @@
 	icon = 'icons/mob/screen_ghost.dmi'
 
 /atom/movable/screen/ghost/MouseEntered()
+	. = ..()
 	flick(icon_state + "_anim", src)
 
 /atom/movable/screen/ghost/jump_to_mob
@@ -10,7 +11,7 @@
 
 /atom/movable/screen/ghost/jump_to_mob/Click()
 	var/mob/dead/observer/G = usr
-	G.jump_to_mob()
+	G.dead_tele()
 
 /atom/movable/screen/ghost/orbit
 	name = "Orbit"
@@ -107,3 +108,10 @@
 		screenmob.client.screen += static_inventory
 	else
 		screenmob.client.screen -= static_inventory
+
+//We should only see observed mob alerts.
+/datum/hud/ghost/reorganize_alerts(mob/viewmob)
+	var/mob/dead/observer/O = mymob
+	if (istype(O) && O.observetarget)
+		return
+	. = ..()

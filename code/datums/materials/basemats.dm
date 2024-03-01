@@ -2,7 +2,7 @@
 /datum/material/iron
 	name = "iron"
 	id = "iron"
-	desc = "Common iron ore often found in sedimentary and igneous layers of the crust."
+	desc = "A common iron ore often found in sedimentary and igneous layers of the crust."
 	color = "#878687"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/metal
@@ -24,7 +24,7 @@
 /datum/material/silver
 	name = "silver"
 	id = "silver"
-	desc = "Silver"
+	desc = "Silver."
 	color = "#bdbebf"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/silver
@@ -34,7 +34,7 @@
 /datum/material/gold
 	name = "gold"
 	id = "gold"
-	desc = "Gold"
+	desc = "Gold. You're rich."
 	color = "#f0972b"
 	strength_modifier = 1.2
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
@@ -45,7 +45,7 @@
 /datum/material/diamond
 	name = "diamond"
 	id = "diamond"
-	desc = "Highly pressurized carbon"
+	desc = "Highly pressurized carbon."
 	color = "#22c2d4"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
@@ -55,7 +55,7 @@
 /datum/material/uranium
 	name = "uranium"
 	id = "uranium"
-	desc = "Uranium"
+	desc = "Uranium, known for its radioactive properties."
 	color = "#1fb83b"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
@@ -95,7 +95,7 @@
 /datum/material/bluespace
 	name = "bluespace crystal"
 	id = "bluespace_crystal"
-	desc = "Crystals with bluespace properties"
+	desc = "Rare crystals with bluespace properties."
 	color = "#506bc7"
 	categories = list(MAT_CATEGORY_ORE = TRUE)
 	sheet_type = /obj/item/stack/sheet/bluespace_crystal
@@ -104,7 +104,7 @@
 /datum/material/bananium
 	name = "bananium"
 	id = "bananium"
-	desc = "Material with hilarious properties"
+	desc = "A very rare material with hilarious properties."
 	color = "#fff263"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
@@ -125,7 +125,7 @@
 /datum/material/titanium
 	name = "titanium"
 	id = "titanium"
-	desc = "Titanium"
+	desc = "Titanium."
 	color = "#b3c0c7"
 	strength_modifier = 1.3
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
@@ -135,7 +135,7 @@
 /datum/material/plastic
 	name = "plastic"
 	id = "plastic"
-	desc = "plastic"
+	desc = "Plastic."
 	color = "#caccd9"
 	strength_modifier = 0.85
 	sheet_type = /obj/item/stack/sheet/plastic
@@ -151,7 +151,7 @@
 //formed when freon react with o2, emits a lot of plasma when heated
 /datum/material/hot_ice
 	name = "hot ice"
-	desc = "A weird kind of ice, feels warm to the touch"
+	desc = "A weird kind of ice, feels warm to the touch."
 	color = "#88cdf1"
 	alpha = 150
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
@@ -176,7 +176,7 @@
 
 /datum/material/metalhydrogen
 	name = "Metal Hydrogen"
-	desc = "Solid metallic hydrogen. Some say it should be impossible"
+	desc = "Solid metallic hydrogen. Some say it should be impossible."
 	color = "#f2d5d7"
 	alpha = 240
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
@@ -185,7 +185,7 @@
 
 /datum/material/zaukerite
 	name = "zaukerite"
-	desc = "A light absorbing crystal"
+	desc = "A light-absorbing crystal."
 	color = COLOR_ALMOST_BLACK
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/zaukerite
@@ -201,7 +201,7 @@
 /datum/material/dilithium
 	name = "dilithium crystal"
 	id = "dilithium_crystal"
-	desc = "Crystals with dilithium properties"
+	desc = "Crystals with dilithium properties."
 	color = "#506bc7"
 	categories = list(MAT_CATEGORY_ORE = TRUE)
 	sheet_type = /obj/item/stack/sheet/dilithium_crystal

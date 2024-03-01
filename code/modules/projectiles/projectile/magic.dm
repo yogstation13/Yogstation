@@ -653,7 +653,7 @@
 		return FALSE
 	return ..()
 
-/obj/projectile/magic/aoe/Moved(atom/OldLoc, Dir)
+/obj/projectile/magic/aoe/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(trail)
 		create_trail()
@@ -684,11 +684,11 @@
 	armor_flag = MAGIC
 
 	/// The power of the zap itself when it electrocutes someone
-	var/tesla_power = 20000
+	var/zap_power = 2e4
 	/// The range of the zap itself when it electrocutes someone
-	var/tesla_range = 15
+	var/zap_range = 15
 	/// The flags of the zap itself when it electrocutes someone
-	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
+	var/zap_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 	/// A reference to the chain beam between the caster and the projectile
 	var/datum/beam/chain
 
@@ -699,8 +699,7 @@
 
 /obj/projectile/magic/aoe/lightning/on_hit(target)
 	. = ..()
-	tesla_zap(src, tesla_range, tesla_power, tesla_flags)
-	qdel(src)
+	tesla_zap(source = src, zap_range = zap_range, power = zap_power, tesla_flags = zap_flags)
 
 /obj/projectile/magic/aoe/lightning/Destroy()
 	QDEL_NULL(chain)
@@ -715,9 +714,9 @@
 	speed = 0.3
 	armor_flag = MAGIC
 
-	tesla_power = 9000
-	tesla_range = 7
-	tesla_flags = TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
+	zap_power = 9000
+	zap_range = 7
+	zap_flags = TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 
 /obj/projectile/magic/fireball
 	name = "bolt of fireball"

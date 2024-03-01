@@ -339,6 +339,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 
+/datum/uplink_item/dangerous/gasharpoon
+	name = "Gasharpoon"
+	desc = "A repurposed space-whaling tool attatched to a glove, can be used as a sturdy weapon in both hands, or worn as a glove to allow access to it's harpoon."
+	item = /obj/item/clothing/gloves/gasharpoon
+	cost = 10
+	surplus = 0
+
 /datum/uplink_item/dangerous/rawketlawnchair
 	name = "84mm Rocket Propelled Grenade Launcher"
 	desc = "A reusable rocket propelled grenade launcher preloaded with a low-yield 84mm HE round. \
@@ -1435,6 +1442,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cant_discount = TRUE
 	cost = 105 //Yogs change
 
+/datum/uplink_item/support/mamba
+	name = "Black Mamba Exosuit"
+	desc = "A stealthy, quick, and deadly combat exosuit, this modified sidewinder chassis is capable of suddenly striking and retreating while \
+			the effects of its venomous weapons take hold. Comes with a venom carbine, dual daggers, and an anti-projectile armor booster."
+	item = /obj/mecha/combat/sidewinder/mamba/loaded
+	cant_discount = TRUE
+	cost = 75
+
 // Stealth Items
 /datum/uplink_item/stealthy_tools
 	category = "Stealth Gadgets"
@@ -1811,7 +1826,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Hacked AI Law Upload Module"
 	desc = "When used with an upload console, this module allows you to upload priority laws to an artificial intelligence. \
 			Be careful with wording, as artificial intelligences may look for loopholes to exploit."
-	item = /obj/item/aiModule/syndicate
+	item = /obj/item/aiModule/hacked
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/infiltration)

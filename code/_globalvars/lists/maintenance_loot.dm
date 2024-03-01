@@ -655,7 +655,8 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/storage/box/cups = W_RARE,
 	/obj/item/storage/box/drinkingglasses = W_UNCOMMON,
 	/obj/item/storage/box/gloves = W_RARE,
-	/obj/item/storage/box/hug/survival = W_UNCOMMON,
+	/obj/item/storage/box/survival/hug = W_UNCOMMON,
+	/obj/item/storage/box/survival/hug/black = W_UNCOMMON,
 	/obj/item/storage/box/masks = W_RARE,
 	/obj/item/storage/box/pillbottles = W_RARE,
 	/obj/item/storage/box/rxglasses = W_RARE,
@@ -760,7 +761,6 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/storage/box/hug/medical = W_MYTHICAL,
 	/obj/item/storage/box/mixedcubes = W_RARE,
 	/obj/item/storage/box/monkeycubes = W_RARE,
-	/obj/item/storage/box/plasmaman = W_RARE,
 	/obj/item/storage/box/smart_metal_foam = W_RARE,
 	/obj/item/storage/firstaid = W_MYTHICAL,
 	/obj/item/storage/firstaid/ancient = W_MYTHICAL,
@@ -803,7 +803,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 
 //Has moderate mechanical usage; stuff that would actually benefit the player with the right situation and the right access.
 GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
-	/obj/item/aiModule/toyAI = W_MYTHICAL,
+	/obj/item/aiModule/ion/toyAI = W_MYTHICAL,
 	/obj/item/a_gift/anything = W_UNCOMMON,
 	/obj/item/aicard/aitater = W_RARE,
 	/obj/item/ammo_box/foambox/riot = W_RARE,

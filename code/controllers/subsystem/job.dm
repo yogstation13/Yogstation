@@ -516,7 +516,7 @@ SUBSYSTEM_DEF(job)
 			RejectPlayer(player)
 
 //Gives the player the stuff he should have with his rank
-/datum/controller/subsystem/job/proc/EquipRank(mob/M, rank, joined_late = FALSE)
+/datum/controller/subsystem/job/proc/EquipRank(mob/living/M, rank, joined_late = FALSE)
 	var/mob/dead/new_player/newplayer
 	var/mob/living/living_mob
 	if(!joined_late)
@@ -620,7 +620,6 @@ SUBSYSTEM_DEF(job)
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
-
 
 /datum/controller/subsystem/job/proc/random_chapel_init()
 	try

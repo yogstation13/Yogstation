@@ -284,6 +284,10 @@
 /obj/structure/spacevine/Initialize(mapload)
 	. = ..()
 	add_atom_colour("#ffffff", FIXED_COLOUR_PRIORITY)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/structure/spacevine/examine(mob/user)
 	. = ..()
@@ -344,8 +348,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/structure/spacevine/Crossed(atom/movable/AM)
-	. = ..()
+/obj/structure/spacevine/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(!isliving(AM))
 		return
 	for(var/datum/spacevine_mutation/SM in mutations)
