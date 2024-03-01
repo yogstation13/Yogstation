@@ -102,3 +102,8 @@
 	name = "vermin bites"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "verminded"
+
+/obj/item/trash/cannedfish
+	name = "canned fish"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "fishkist"

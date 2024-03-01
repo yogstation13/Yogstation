@@ -218,3 +218,30 @@
 /obj/item/reagent_containers/food/snacks/vermin/attack(mob/living/M, mob/user, def_zone)
 	to_chat(user, span_warning("You need to open [src]' lid first."))
 	return FALSE
+
+//canned fish :3
+
+/obj/item/reagent_containers/food/snacks/cannedfish
+	name = "canned fish"
+	desc = "Unethically sourced seafood in a can. You're not sure if the fish is even safe to eat."
+	icon_state = "fishkist"
+	var/obj/item/reagent_containers/food/snacks/carpmeat/fish/contained
+
+/obj/item/reagent_containers/food/snacks/cannedfish/Initialize(mapload)
+	icon_state = pick("lucky","rio","gold","fishkist")
+	contained =  pick(/obj/item/reagent_containers/food/snacks/carpmeat/fish,/obj/item/reagent_containers/food/snacks/carpmeat/crab)
+	. = ..()
+
+/obj/item/reagent_containers/food/snacks/cannedfish/attack(mob/living/M, mob/user, def_zone)
+	to_chat(user, span_warning("You need to open [src]'s lid first."))
+	return FALSE
+
+/obj/item/reagent_containers/food/snacks/cannedfish/attack_self(mob/user)
+	user.visible_message(span_warning("You open the [src]."))
+	var/obj/item/trash/cannedfish/crushed = new /obj/item/trash/cannedfish(user.loc)
+	new contained(get_turf(src))
+	crushed.icon_state = icon_state
+	qdel(src)
+
+
+ 
