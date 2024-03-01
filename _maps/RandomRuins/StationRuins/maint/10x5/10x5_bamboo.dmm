@@ -170,7 +170,7 @@
 /area/template_noop)
 "T" = (
 /obj/structure/window/paperframe{
-	CanAtmosPass = 0
+	can_atmos_pass = 0
 	},
 /turf/open/floor/bamboo,
 /area/template_noop)

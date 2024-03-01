@@ -228,9 +228,8 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 
 /obj/machinery/computer/holodeck/proc/floorcheck()
 	for(var/turf/T in linked)
-		if (is_type_in_typecache(T, GLOB.typecache_holodeck_linked_floorcheck_ok))
-			continue
-		return FALSE
+		if(T.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE || isspaceturf(T))
+			return FALSE
 	return TRUE
 
 /obj/machinery/computer/holodeck/proc/nerf(active)
@@ -244,7 +243,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(!is_operational())
 		A = offline_program
 		force = TRUE
-	if(A.minimum_sec_level > GLOB.security_level && !force && !(obj_flags & EMAGGED))
+	if(A.minimum_sec_level > SSsecurity_level.get_current_level_as_number() && !force && !(obj_flags & EMAGGED))
 		say("ERROR. Program currently unavailiable, the security level is not high enough.")
 		return
 	if(program == A)

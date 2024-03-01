@@ -14,7 +14,7 @@
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(handle_move))
 	ADD_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 
-/datum/component/walk/RemoveComponent()
+/datum/component/walk/ClearFromParent()
 	REMOVE_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 	return ..()
 
@@ -82,7 +82,7 @@
 			R.reveal(20)
 			R.stun(20)
 		return MOVE_NOT_ALLOWED
-	if(destination.flags_1 & NOJAUNT_1 || is_secret_level(destination.z))
+	if(destination.turf_flags & NOJAUNT || is_secret_level(destination.z))
 		to_chat(user, span_warning("Some strange aura is blocking the way."))
 		return MOVE_NOT_ALLOWED
 	if (locate(/obj/effect/blessing, destination))

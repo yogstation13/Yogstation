@@ -274,8 +274,9 @@ Credit where due:
 	ears = /obj/item/radio/headset
 	gloves = /obj/item/clothing/gloves/color/yellow //Take them off if you want
 	belt = /obj/item/storage/belt/utility/servant //Take this off and pour it into a toolbox if you want
-	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
-	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
+	box = /obj/item/storage/box/survival/engineer
+	backpack_contents = list(/obj/item/clockwork/replica_fabricator = 1,\
+							 /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
 
 	var/obj/item/id_type = /obj/item/card/id
 	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic

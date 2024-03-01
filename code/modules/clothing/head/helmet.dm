@@ -46,7 +46,7 @@
 	if(A == attached_light)
 		set_attached_light(null)
 		update_helmlight()
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		QDEL_NULL(alight)
 		qdel(A)
 	return ..()
@@ -374,7 +374,7 @@
 	. = ..()
 	var/state = "[initial(icon_state)]"
 	if(attached_light)
-		if(attached_light.on)
+		if(attached_light.light_on)
 			state += "-flight-on" //"helmet-flight-on" // "helmet-cam-flight-on"
 		else
 			state += "-flight" //etc.
@@ -399,7 +399,7 @@
 				return
 			to_chat(user, span_notice("You click [S] into place on [src]."))
 			set_attached_light(S)
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			update_helmlight()
 			alight = new(src)
 			if(loc == user)
@@ -419,7 +419,7 @@
 		var/obj/item/flashlight/removed_light = set_attached_light(null)
 		update_helmlight()
 		removed_light.update_brightness(user)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		user.update_inv_head()
 		QDEL_NULL(alight)
 		return TRUE
@@ -435,16 +435,16 @@
 	var/mob/user = usr
 	if(user.incapacitated())
 		return
-	attached_light.on = !attached_light.on
+	attached_light.light_on = !attached_light.light_on
 	attached_light.update_brightness()
-	to_chat(user, span_notice("You toggle the helmet-light [attached_light.on ? "on":"off"]."))
+	to_chat(user, span_notice("You toggle the helmet-light [attached_light.light_on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_helmlight()
 
 /obj/item/clothing/head/helmet/proc/update_helmlight()
 	if(attached_light)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()

@@ -268,7 +268,11 @@
 
 /obj/item/restraints/legcuffs/beartrap/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(trap_stepped_on),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/item/restraints/legcuffs/beartrap/update_icon_state()
 	. = ..()
@@ -309,6 +313,55 @@
 	anchored = FALSE
 	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
+
+/obj/item/restraints/legcuffs/beartrap/proc/trap_stepped_on(datum/source, atom/movable/entering, ...)
+	SIGNAL_HANDLER
+
+	spring_trap(entering)
+
+/**
+ * Tries to spring the trap on the target movable.
+ *
+ * This proc is safe to call without knowing if the target is valid or if the trap is armed.
+ *
+ * Does not trigger on tiny mobs.
+ * If ignore_movetypes is FALSE, does not trigger on floating / flying / etc. mobs.
+ */
+/obj/item/restraints/legcuffs/beartrap/proc/spring_trap(atom/movable/target, ignore_movetypes = FALSE)
+	if(!armed || !isturf(loc) || !isliving(target))
+		return
+
+	var/mob/living/victim = target
+	if(istype(victim.buckled, /obj/vehicle))
+		var/obj/vehicle/ridden_vehicle = victim.buckled
+		if(!ridden_vehicle.are_legs_exposed) //close the trap without injuring/trapping the rider if their legs are inside the vehicle at all times.
+			close_trap()
+			ridden_vehicle.visible_message(span_danger("[ridden_vehicle] triggers \the [src]."))
+			return
+
+	//don't close the trap if they're as small as a mouse
+	if(victim.mob_size <= MOB_SIZE_TINY)
+		return
+	if(!ignore_movetypes && (victim.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
+		return
+
+	close_trap()
+	if(ignore_movetypes)
+		victim.visible_message(span_danger("\The [src] ensnares [victim]!"), \
+				span_userdanger("\The [src] ensnares you!"))
+	else
+		victim.visible_message(span_danger("[victim] triggers \the [src]."), \
+				span_userdanger("You trigger \the [src]!"))
+	var/def_zone = BODY_ZONE_CHEST
+	if(iscarbon(victim) && victim.body_position == STANDING_UP)
+		var/mob/living/carbon/carbon_victim = victim
+		def_zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+		if(!carbon_victim.legcuffed && carbon_victim.num_legs >= 2) //beartrap can't cuff your leg if there's already a beartrap or legcuffs, or you don't have two legs.
+			INVOKE_ASYNC(carbon_victim, TYPE_PROC_REF(/mob/living/carbon, equip_to_slot), src, ITEM_SLOT_LEGCUFFED)
+			SSblackbox.record_feedback("tally", "handcuffs", 1, type)
+
+	victim.apply_damage(trap_damage, BRUTE, def_zone)
+
 
 /obj/item/restraints/legcuffs/beartrap/Crossed(AM as mob|obj)
 	if(armed && isturf(loc))

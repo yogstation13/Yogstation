@@ -12,7 +12,16 @@
 	throw_range = 7
 	max_amount = 60
 	mats_per_stack = 500
+	/// What type of turf does this tile produce.
 	var/turf_type = null
+	/// What dir will the turf have?
+	var/turf_dir = SOUTH
+	/// Cached associative lazy list to hold the radial options for tile reskinning. See tile_reskinning.dm for more information. Pattern: list[type] -> image
+	var/list/tile_reskin_types
+	/// Cached associative lazy list to hold the radial options for tile dirs. See tile_reskinning.dm for more information.
+	var/list/tile_rotate_dirs
+	/// Allows us to replace the plating we are attacking if our baseturfs are the same.
+	var/replace_plating = FALSE
 	var/mineralType = null
 	novariants = TRUE
 
@@ -208,12 +217,12 @@
 	turf_type = /turf/open/floor/carpet/black
 	tableVariant = /obj/structure/table/wood/fancy/black
 
-/obj/item/stack/tile/carpet/exoticblue
+/obj/item/stack/tile/carpet/blue
 	name = "exotic blue carpet"
-	icon_state = "tile-carpet-exoticblue"
-	item_state = "tile-carpet-exoticblue"
-	turf_type = /turf/open/floor/carpet/exoticblue
-	tableVariant = /obj/structure/table/wood/fancy/exoticblue
+	icon_state = "tile-carpet-blue"
+	item_state = "tile-carpet-blue"
+	turf_type = /turf/open/floor/carpet/blue
+	tableVariant = /obj/structure/table/wood/fancy/blue
 
 /obj/item/stack/tile/carpet/cyan
 	name = "cyan carpet"
@@ -222,12 +231,12 @@
 	turf_type = /turf/open/floor/carpet/cyan
 	tableVariant = /obj/structure/table/wood/fancy/cyan
 
-/obj/item/stack/tile/carpet/exoticgreen
+/obj/item/stack/tile/carpet/green
 	name = "exotic green carpet"
-	icon_state = "tile-carpet-exoticgreen"
-	item_state = "tile-carpet-exoticgreen"
-	turf_type = /turf/open/floor/carpet/exoticgreen
-	tableVariant = /obj/structure/table/wood/fancy/exoticgreen
+	icon_state = "tile-carpet-green"
+	item_state = "tile-carpet-green"
+	turf_type = /turf/open/floor/carpet/green
+	tableVariant = /obj/structure/table/wood/fancy/green
 
 /obj/item/stack/tile/carpet/orange
 	name = "orange carpet"
@@ -236,12 +245,12 @@
 	turf_type = /turf/open/floor/carpet/orange
 	tableVariant = /obj/structure/table/wood/fancy/orange
 
-/obj/item/stack/tile/carpet/exoticpurple
+/obj/item/stack/tile/carpet/purple
 	name = "exotic purple carpet"
-	icon_state = "tile-carpet-exoticpurple"
-	item_state = "tile-carpet-exoticpurple"
-	turf_type = /turf/open/floor/carpet/exoticpurple
-	tableVariant = /obj/structure/table/wood/fancy/exoticpurple
+	icon_state = "tile-carpet-purple"
+	item_state = "tile-carpet-purple"
+	turf_type = /turf/open/floor/carpet/purple
+	tableVariant = /obj/structure/table/wood/fancy/purple
 
 /obj/item/stack/tile/carpet/red
 	name = "red carpet"
@@ -264,6 +273,27 @@
 	turf_type = /turf/open/floor/carpet/royalblue
 	tableVariant = /obj/structure/table/wood/fancy/royalblue
 
+/obj/item/stack/tile/carpet/executive
+	name = "executive carpet"
+	icon_state = "tile_carpet_executive"
+	item_state = "tile-carpet-royalblue"
+	turf_type = /turf/open/floor/carpet/executive
+	merge_type = /obj/item/stack/tile/carpet/executive
+
+/obj/item/stack/tile/carpet/stellar
+	name = "stellar carpet"
+	icon_state = "tile_carpet_stellar"
+	item_state = "tile-carpet-royalblue"
+	turf_type = /turf/open/floor/carpet/stellar
+	merge_type = /obj/item/stack/tile/carpet/stellar
+
+/obj/item/stack/tile/carpet/donk
+	name = "\improper Donk Co. promotional carpet"
+	icon_state = "tile_carpet_donk"
+	item_state = "tile-carpet-orange"
+	turf_type = /turf/open/floor/carpet/donk
+	merge_type = /obj/item/stack/tile/carpet/donk
+
 
 /obj/item/stack/tile/carpet/fifty
 	amount = 50
@@ -271,19 +301,19 @@
 /obj/item/stack/tile/carpet/black/fifty
 	amount = 50
 
-/obj/item/stack/tile/carpet/exoticblue/fifty
+/obj/item/stack/tile/carpet/blue/fifty
 	amount = 50
 
 /obj/item/stack/tile/carpet/cyan/fifty
 	amount = 50
 
-/obj/item/stack/tile/carpet/exoticgreen/fifty
+/obj/item/stack/tile/carpet/green/fifty
 	amount = 50
 
 /obj/item/stack/tile/carpet/orange/fifty
 	amount = 50
 
-/obj/item/stack/tile/carpet/exoticpurple/fifty
+/obj/item/stack/tile/carpet/purple/fifty
 	amount = 50
 
 /obj/item/stack/tile/carpet/red/fifty

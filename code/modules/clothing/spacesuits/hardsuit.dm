@@ -87,7 +87,7 @@
 
 	hat.pixel_y -= 10
 	hat.layer = initial(hat.layer)
-	hat.plane = initial(hat.plane)
+	SET_PLANE_IMPLICIT(hat, initial(hat.plane))
 	cut_overlays()
 	var/drop = drop_location()
 	if(drop)

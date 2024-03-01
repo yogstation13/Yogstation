@@ -45,8 +45,11 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	RefreshParts()
+
+/obj/machinery/ai/data_core/JoinPlayerHere(mob/M, buckle)
+	return
 
 /obj/machinery/ai/data_core/RefreshParts()
 	var/new_heat_mod = 1
@@ -359,6 +362,7 @@ That prevents a few funky behaviors.
 
 
 /atom/proc/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+	SHOULD_CALL_PARENT(TRUE)
 	if(istype(card))
 		if(card.flush)
 			to_chat(user, "[span_boldannounce("ERROR")]: AI flush is in progress, cannot execute transfer protocol.")

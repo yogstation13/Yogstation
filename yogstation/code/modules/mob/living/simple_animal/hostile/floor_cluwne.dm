@@ -38,7 +38,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/stage = STAGE_HAUNT
 	var/interest = 0
 	var/target_area
-	var/invalid_area_typecache = list(/area/space, /area/lavaland, /area/mine, /area/centcom, /area/reebe, /area/shuttle/syndicate)
+	var/invalid_area_typecache = list(/area/space, /area/lavaland, /area/mine, /area/centcom, /area/centcom/reebe, /area/shuttle/syndicate)
 	var/eating = FALSE
 	var/obj/effect/dummy/floorcluwne_orbit/poi
 	var/obj/effect/temp_visual/fcluwne_manifest/cluwnehole
@@ -242,7 +242,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	switch(stage)
 		if(STAGE_HAUNT)
 			if(prob(5))
-				H.blur_eyes(1)
+				H.adjust_eye_blur(1)
 
 			if(prob(5))
 				H.playsound_local(src,'yogstation/sound/voice/cluwnelaugh2_reversed.ogg', 1)
@@ -421,7 +421,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			H.invisibility = initial(H.invisibility)
 			H.density = initial(H.density)
 			H.anchored = initial(H.anchored)
-			H.blur_eyes(10)
+			H.adjust_eye_blur(10)
 			animate(H.client,color = old_color, time = 2 SECONDS)
 
 	eating = FALSE

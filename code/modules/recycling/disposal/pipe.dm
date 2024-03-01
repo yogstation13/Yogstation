@@ -7,7 +7,6 @@
 	anchored = TRUE
 	density = FALSE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	level = 1			// underfloor only
 	dir = NONE			// dir will contain dominant direction for junction pipes
 	max_integrity = 200
 	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 90, ACID = 30)
@@ -34,14 +33,14 @@
 
 	if(initialize_dirs != DISP_DIR_NONE)
 		dpdir = dir
-
 		if(initialize_dirs & DISP_DIR_LEFT)
 			dpdir |= turn(dir, 90)
 		if(initialize_dirs & DISP_DIR_RIGHT)
 			dpdir |= turn(dir, -90)
 		if(initialize_dirs & DISP_DIR_FLIP)
 			dpdir |= turn(dir, 180)
-	update()
+
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 // pipe is deleted
 // ensure if holder is present, it is expelled
@@ -97,7 +96,7 @@
 	var/eject_range = 5
 	var/turf/open/floor/floorturf
 
-	if(isfloorturf(T)) //intact floor, pop the tile
+	if(isfloorturf(T) && T.overfloor_placed) // pop the tile if present
 		floorturf = T
 		floorturf.remove_tile()
 

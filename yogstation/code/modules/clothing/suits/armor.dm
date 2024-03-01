@@ -55,7 +55,7 @@
 
 /obj/item/clothing/suit/armor/vest/hosjacket
 	name = "head of security jacket"
-	desc = "all the style of a jacket with all the protection of a armor vest!"
+	desc = "All the style of a jacket with all the protection of a armor vest!"
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "hos_jacket"
@@ -63,7 +63,7 @@
 
 /obj/item/clothing/suit/armor/vest/wardenjacket
 	name = "warden's black jacket"
-	desc = "all the style of a jacket with all the protection of a armor vest!"
+	desc = "All the style of a jacket with all the protection of a armor vest!"
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "warden_jacket"
@@ -71,7 +71,7 @@
 
 /obj/item/clothing/suit/armor/hos/germancoat
 	name = "padded german coat"
-	desc = "for those cold german winters or for those head of securitys that want to show their true colors."
+	desc = "For those cold german winters or those heads of security that want to show their true colors."
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "german_coat"
