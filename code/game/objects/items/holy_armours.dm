@@ -346,7 +346,7 @@
 	if(suittoggled) //Make sure it only checks when the hood is up
 		change_slowdown(H, slowdown, -1) //Change speed when losing a wound
 
-/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(mob/living/carbon/human/H, starting_slowdown, wound)
+/obj/item/clothing/suit/hooded/flagelantes_chains/proc/change_slowdown(mob/living/carbon/human/H, starting_slowdown)
 	var/health_percent = H.health / H.maxHealth
 	var/final_slowdown = 0
 
