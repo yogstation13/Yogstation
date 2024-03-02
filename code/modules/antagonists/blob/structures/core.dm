@@ -60,7 +60,7 @@
 		return
 	if(!overmind)
 		qdel(src)
-	if(check_containment(src, 10))
+	if(check_containment(src, 5))
 		SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 3000)
 	if(overmind)
 		overmind.blobstrain.core_process()
