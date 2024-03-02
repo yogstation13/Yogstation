@@ -6692,8 +6692,8 @@
 	dir = 8;
 	dwidth = 12;
 	height = 17;
-	shuttle_id = "syndicate_nw";
 	name = "northwest of station";
+	shuttle_id = "syndicate_nw";
 	width = 23
 	},
 /turf/open/genturf,
@@ -8895,9 +8895,9 @@
 	dheight = 4;
 	dwidth = 4;
 	height = 9;
-	shuttle_id = "aux_base_zone";
 	name = "aux base zone";
 	roundstart_template = /datum/map_template/shuttle/aux_base/default;
+	shuttle_id = "aux_base_zone";
 	width = 9
 	},
 /turf/open/floor/plating,
@@ -13303,7 +13303,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "dWi" = (
@@ -13849,6 +13851,16 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"eeV" = (
+/obj/structure/sign/warning/biohazard{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "efz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -14431,16 +14443,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
-"epc" = (
-/obj/structure/sign/warning/biohazard{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/trimline/green/filled/line/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/corner/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
 "ept" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -22401,8 +22403,8 @@
 	dir = 8;
 	dwidth = 2;
 	height = 13;
-	shuttle_id = "ferry_home";
 	name = "port bay 2";
+	shuttle_id = "ferry_home";
 	width = 5
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -25196,8 +25198,8 @@
 	area_type = /area/icemoon/underground/explored/laborcamp;
 	dwidth = 2;
 	height = 5;
-	shuttle_id = "laborcamp_away";
 	name = "labor camp";
+	shuttle_id = "laborcamp_away";
 	width = 9
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -25589,16 +25591,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port/fore)
-"hAt" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "hAw" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -27570,8 +27562,8 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	shuttle_id = "whiteship_home";
 	name = "SS13: Auxiliary Dock, Station-Port";
+	shuttle_id = "whiteship_home";
 	width = 35
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -28470,8 +28462,8 @@
 	dir = 8;
 	dwidth = 5;
 	height = 7;
-	shuttle_id = "supply_home";
 	name = "Cargo Bay";
+	shuttle_id = "supply_home";
 	width = 12
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -30329,6 +30321,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"iTC" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "iTF" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -31505,8 +31508,8 @@
 	dir = 2;
 	dwidth = 9;
 	height = 25;
-	shuttle_id = "emergency_home";
 	name = "MetaStation emergency evac bay";
+	shuttle_id = "emergency_home";
 	width = 29
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -38675,6 +38678,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
+"lmA" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "lmT" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -45921,6 +45937,24 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+"nnz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "nnC" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -48827,21 +48861,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"ocT" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "ocV" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
@@ -54042,25 +54061,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"pGF" = (
-/obj/machinery/camera{
-	c_tag = "Virology - Entrance";
-	dir = 8;
-	network = list("ss13","medbay")
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/trimline/green/filled/corner/lower{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/yellow/warning/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
 "pGQ" = (
 /obj/item/beacon,
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
@@ -54374,16 +54374,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"pMB" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "pMK" = (
 /obj/structure/table,
 /obj/item/paper/fluff/holodeck/disclaimer,
@@ -62026,7 +62016,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "san" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -67422,9 +67414,9 @@
 	dir = 8;
 	dwidth = 3;
 	height = 15;
-	shuttle_id = "arrivals_stationary";
 	name = "arrivals";
 	roundstart_template = /datum/map_template/shuttle/arrival/box;
+	shuttle_id = "arrivals_stationary";
 	width = 7
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -72159,6 +72151,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"uRz" = (
+/obj/machinery/camera{
+	c_tag = "Virology - Entrance";
+	dir = 8;
+	network = list("ss13","medbay")
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/green/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "uRF" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
@@ -80706,9 +80717,9 @@
 	dir = 8;
 	dwidth = 2;
 	height = 5;
-	shuttle_id = "laborcamp_home";
 	name = "fore bay 1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
+	shuttle_id = "laborcamp_home";
 	width = 9
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -237267,7 +237278,7 @@ okB
 lxx
 wLu
 xJi
-epc
+eeV
 lxx
 gMl
 fFr
@@ -237524,7 +237535,7 @@ fFw
 fjl
 aRC
 beQ
-pGF
+uRz
 sBO
 elA
 rsQ
@@ -240289,7 +240300,7 @@ fno
 rku
 hsx
 dne
-hAt
+lmA
 byf
 ewQ
 gUm
@@ -240803,7 +240814,7 @@ dmi
 vog
 tSt
 tqZ
-pMB
+iTC
 byf
 hGV
 buE
@@ -257523,7 +257534,7 @@ kyT
 xcS
 sJN
 gUo
-ocT
+nnz
 lFQ
 jIJ
 waM

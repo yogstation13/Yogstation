@@ -94,12 +94,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"ef" = (
-/obj/machinery/atmospherics/components/binary/circulator{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "ex" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -420,6 +414,17 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"oM" = (
+/obj/structure/closet/emcloset/anchored,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/advanced_airlock_controller/lavaland{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "oN" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
@@ -668,17 +673,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"yP" = (
-/obj/machinery/advanced_airlock_controller{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/structure/closet/emcloset/anchored,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "yS" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -735,12 +729,6 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/manifold/dark/visible,
 /turf/open/floor/engine,
-/area/engine/engineering)
-"Az" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "AW" = (
 /obj/effect/turf_decal/stripes/line{
@@ -811,6 +799,13 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
+"Ea" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
+	dir = 8;
+	id_tag = "teghot_out"
+	},
+/turf/open/floor/engine/airless,
+/area/engine/engineering)
 "Ec" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 8
@@ -853,12 +848,6 @@
 "Fy" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
-/area/engine/engineering)
-"FQ" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	dir = 8
-	},
-/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "Gm" = (
 /obj/effect/turf_decal/stripes/line{
@@ -993,10 +982,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Lc" = (
-/obj/machinery/atmospherics/components/binary/circulator,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Lg" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 6
@@ -1032,24 +1017,6 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
-"Md" = (
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "Ms" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /obj/effect/turf_decal/stripes/line{
@@ -1092,6 +1059,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"On" = (
+/obj/machinery/atmospherics/components/binary/circulator{
+	anchored = 0;
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Os" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -1100,6 +1074,21 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"OE" = (
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "OQ" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -1135,17 +1124,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"Pu" = (
-/obj/structure/closet/emcloset/anchored,
-/obj/machinery/advanced_airlock_controller{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "PC" = (
 /obj/machinery/igniter{
@@ -1448,6 +1426,12 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"XE" = (
+/obj/machinery/atmospherics/components/binary/circulator{
+	anchored = 0
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "XS" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -1534,6 +1518,13 @@
 "Zz" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/starboard/fore)
+"ZY" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8;
+	id = "teghot_in"
+	},
+/turf/open/floor/engine/airless,
+/area/engine/engineering)
 
 (1,1,1) = {"
 xR
@@ -1640,7 +1631,7 @@ xR
 xR
 "}
 (5,1,1) = {"
-Md
+OE
 xR
 aF
 pN
@@ -1680,7 +1671,7 @@ ap
 Pt
 qj
 Vz
-ef
+On
 qj
 Xj
 Ay
@@ -1692,7 +1683,7 @@ xR
 xR
 "}
 (7,1,1) = {"
-Pu
+oM
 ib
 Tl
 Mb
@@ -1781,7 +1772,7 @@ Xj
 Is
 Jy
 ap
-Lc
+XE
 uL
 Vz
 ba
@@ -1970,7 +1961,7 @@ UH
 Mb
 Tl
 Yg
-yP
+oM
 Tl
 xR
 xR
@@ -2040,9 +2031,9 @@ Mb
 lU
 Xo
 PC
-FQ
+ZY
 fU
-Az
+Ea
 PC
 nK
 lU
