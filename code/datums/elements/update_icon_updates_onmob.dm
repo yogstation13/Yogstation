@@ -19,11 +19,12 @@
 /datum/element/update_icon_updates_onmob/proc/update_onmob(obj/item/target)
 	SIGNAL_HANDLER
 
-	if(ismob(target.loc))
-		var/mob/mob = target.loc
-		if(mob.is_holding(target))
-			mob.update_inv_hands()
-		else
-			mob.update_clothing((target.slot_flags|update_flags))
-			if(update_body)
-				mob.update_body()
+	if(!ismob(target.loc))
+		return
+	var/mob/mob = target.loc
+	if(mob.is_holding(target))
+		mob.update_inv_hands()
+	else
+		mob.update_clothing((target.slot_flags|update_flags))
+		if(update_body)
+			mob.update_body()
