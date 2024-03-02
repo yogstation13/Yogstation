@@ -1,7 +1,6 @@
 /area/awaymission/vr/scientist_raid
 	name = "Small Abandoned Station"
 	icon_state = "awaycontent3"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /obj/item/paper/fluff/awaymissions/scientist_raid/report1
 	name = "Adaptive Neural Networks - Research Report"

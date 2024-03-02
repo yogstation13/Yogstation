@@ -79,16 +79,6 @@
 		H.forceMove(get_turf(src))
 		return null
 
-// update the icon_state to reflect hidden status
-/obj/structure/disposalpipe/proc/update()
-	var/turf/T = get_turf(src)
-	hide(T.overfloor_placed && !isspaceturf(T))	// space never hides pipes
-
-// hide called by levelupdate if turf intact status changes
-// change visibility status and force update of icon
-/obj/structure/disposalpipe/hide(intact)
-	invisibility = intact ? INVISIBILITY_MAXIMUM: 0	// hide if floor is intact
-
 // expel the held objects into a turf
 // called when there is a break in the pipe
 /obj/structure/disposalpipe/proc/expel(obj/structure/disposalholder/H, turf/T, direction)

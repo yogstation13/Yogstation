@@ -11,11 +11,7 @@ SUBSYSTEM_DEF(machines)
 	VAR_PRIVATE/list/machines_by_type = list()
 	/// All machines, not just those that are processing.
 	VAR_PRIVATE/list/all_machines = list()
-
-	var/list/processing = list()
-	var/list/currentrun = list()
 	///List of all powernets on the server.
-	var/list/powernets = list()
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
@@ -173,14 +169,6 @@ SUBSYSTEM_DEF(machines)
 			thing.datum_flags &= ~DF_ISPROCESSING
 		if (MC_TICK_CHECK)
 			return
-
-/datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
-	for(var/A in cables)
-		var/obj/structure/cable/PC = A
-		if(!PC.powernet)
-			var/datum/powernet/NewPN = new(PC.loc.z)
-			NewPN.add_cable(PC)
-			propagate_network(PC,PC.powernet)
 
 /datum/controller/subsystem/machines/Recover()
 	if(islist(SSmachines.processing))

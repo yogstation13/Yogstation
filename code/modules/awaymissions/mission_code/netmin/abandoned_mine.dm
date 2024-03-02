@@ -1,7 +1,6 @@
 /area/awaymission/vr/abandoned_mine
 	name = "Abandoned Mine"
 	icon_state = "awaycontent5"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	pacifist = FALSE
 
 

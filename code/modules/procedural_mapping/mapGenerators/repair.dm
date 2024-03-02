@@ -48,6 +48,7 @@
 	var/list/obj/structure/cable/cables = list()
 	var/list/atom/movable/movables = list()
 	var/list/area/areas = list()
+	var/list/atom/atoms = list()
 
 	var/list/turfs = block(
 		locate(

@@ -10,7 +10,6 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	total_positions = 0
 	spawn_positions = 1
 	supervisors = "the AI"
-	selection_color = "#ddffdd"
 	minimal_player_age = 30
 	exp_requirements = 900
 	exp_type = EXP_TYPE_CREW

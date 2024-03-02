@@ -1,7 +1,6 @@
 /area/awaymission/vr/combat_robot_factory
 	name = "Abandoned Robot Factory"
 	icon_state = "awaycontent4"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	pacifist = FALSE
 
 /obj/item/paper/fluff/awaymissions/robot_factory/shipment_details
