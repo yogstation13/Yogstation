@@ -53172,12 +53172,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
-"qtE" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "qtR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -103505,7 +103499,7 @@ ayW
 ayW
 ayW
 eAR
-qtE
+aJq
 aLY
 dCj
 qdd
