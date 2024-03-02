@@ -148,7 +148,7 @@
 	if(HAS_TRAIT(owner, TRAIT_LIGHT_DRINKER) & (drunk_value >= 11))
 		owner.adjust_slurring_up_to(2.4 SECONDS, 10 SECONDS)
 	if(HAS_TRAIT(owner, TRAIT_DRUNK_HEALING)) & (drunk_value >= 11)) // To save headache this will be separate for drunken resilience
-				adjustBruteLoss(-0.12, FALSE)
+				adjustBruteLoss(-0.10, FALSE)
 				adjustFireLoss(-0.06, FALSE
 
 	// Over 41, we have a 30% chance to gain confusion, and we will always have 20 seconds of dizziness.
