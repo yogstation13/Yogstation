@@ -1347,6 +1347,8 @@
 #include "code\game\objects\items\devices\busterarm\gasharpoon.dm"
 #include "code\game\objects\items\devices\busterarm\megabuster.dm"
 #include "code\game\objects\items\devices\busterarm\wire_snatch.dm"
+#include "code\game\objects\items\devices\infinityGauntlet\InfinityGauntlet.dm"
+#include "code\game\objects\items\devices\infinityGauntlet\space_stone.dm"
 #include "code\game\objects\items\devices\PDA\cart.dm"
 #include "code\game\objects\items\devices\PDA\PDA.dm"
 #include "code\game\objects\items\devices\PDA\PDA_types.dm"
