@@ -94,6 +94,19 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"dL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
+	dir = 8;
+	id_tag = "teghot_out"
+	},
+/turf/open/floor/engine/airless,
+/area/engine/engineering)
+"ew" = (
+/obj/machinery/atmospherics/components/binary/circulator{
+	anchored = 0
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ex" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -337,6 +350,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"lE" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8;
+	id = "teghot_in"
+	},
+/turf/open/floor/engine/airless,
+/area/engine/engineering)
 "lU" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
@@ -411,17 +431,6 @@
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
-"oM" = (
-/obj/structure/closet/emcloset/anchored,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/advanced_airlock_controller/lavaland{
-	dir = 8;
-	pixel_x = 24
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -799,13 +808,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
-"Ea" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
-	dir = 8;
-	id_tag = "teghot_out"
-	},
-/turf/open/floor/engine/airless,
-/area/engine/engineering)
 "Ec" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 8
@@ -840,6 +842,17 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"Fa" = (
+/obj/structure/closet/emcloset/anchored,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/advanced_airlock_controller/lavaland{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
 /area/engine/engineering)
 "Fb" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
@@ -1059,13 +1072,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"On" = (
-/obj/machinery/atmospherics/components/binary/circulator{
-	anchored = 0;
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Os" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -1074,21 +1080,6 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"OE" = (
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "OQ" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -1426,11 +1417,20 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"XE" = (
-/obj/machinery/atmospherics/components/binary/circulator{
-	anchored = 0
+"XK" = (
+/obj/effect/turf_decal/stripes{
+	dir = 5
 	},
-/turf/open/floor/engine,
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "XS" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -1515,16 +1515,16 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Zm" = (
+/obj/machinery/atmospherics/components/binary/circulator{
+	anchored = 0;
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Zz" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/starboard/fore)
-"ZY" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	dir = 8;
-	id = "teghot_in"
-	},
-/turf/open/floor/engine/airless,
-/area/engine/engineering)
 
 (1,1,1) = {"
 xR
@@ -1631,7 +1631,7 @@ xR
 xR
 "}
 (5,1,1) = {"
-OE
+XK
 xR
 aF
 pN
@@ -1671,7 +1671,7 @@ ap
 Pt
 qj
 Vz
-On
+Zm
 qj
 Xj
 Ay
@@ -1683,7 +1683,7 @@ xR
 xR
 "}
 (7,1,1) = {"
-oM
+Fa
 ib
 Tl
 Mb
@@ -1772,7 +1772,7 @@ Xj
 Is
 Jy
 ap
-XE
+ew
 uL
 Vz
 ba
@@ -1961,7 +1961,7 @@ UH
 Mb
 Tl
 Yg
-oM
+Fa
 Tl
 xR
 xR
@@ -2031,9 +2031,9 @@ Mb
 lU
 Xo
 PC
-ZY
+lE
 fU
-Ea
+dL
 PC
 nK
 lU
