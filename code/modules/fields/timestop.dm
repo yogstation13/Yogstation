@@ -67,11 +67,18 @@
 
 	var/static/list/global_frozen_atoms = list()
 
+/datum/proximity_monitor/advanced/timestop/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /datum/proximity_monitor/advanced/timestop/Destroy()
 	unfreeze_all()
 	return ..()
 
-/datum/proximity_monitor/advanced/timestop/field_turf_crossed(atom/movable/AM)
+/datum/proximity_monitor/advanced/timestop/proc/on_entered(datum/source, atom/movable/AM, ...)
 	freeze_atom(AM)
 
 /datum/proximity_monitor/advanced/timestop/proc/freeze_atom(atom/movable/A)
