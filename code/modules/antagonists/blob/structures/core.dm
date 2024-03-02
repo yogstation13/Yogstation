@@ -60,6 +60,8 @@
 		return
 	if(!overmind)
 		qdel(src)
+	if(check_containment(src, 10))
+		SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 3000)
 	if(overmind)
 		overmind.blobstrain.core_process()
 		overmind.update_health_hud()
@@ -68,6 +70,31 @@
 		if(DT_PROB(2.5, delta_time))
 			B.change_to(/obj/structure/blob/shield/core, overmind)
 	..()
+
+/proc/check_containment(atom/source, range)
+	var/safe = locate(/obj/machinery/field/containment) in urange(range, source, 1)
+	if(safe)
+		return TRUE
+	else
+		return FALSE
+
+/obj/structure/blob/core/attack_ghost(mob/user)
+	. = ..()
+	become_blob(user)
+
+/obj/structure/blob/core/proc/become_blob(mob/user)
+	if(is_banned_from(user.key, ROLE_BLOB))
+		to_chat(user, span_warning("You are banned from being a blob!"))
+		return
+	if(overmind.key)
+		to_chat(user, span_warning("Someone else already took this [overmind.name]!"))
+		return
+	var/blob_ask = tgui_alert(user,"Become [overmind.name]?", "BLOBBER", list("Yes", "No"))
+	if(blob_ask == "No" || QDELETED(overmind))
+		return
+	overmind.key = user.key
+	log_game("[key_name(user)] took control of [overmind.name].")
+	message_admins("[key_name(user)] took control of [overmind.name]. [ADMIN_JMP(overmind)].")
 
 /obj/structure/blob/core/on_changed_z_level(turf/old_turf, turf/new_turf)
 	if(overmind && is_station_level(new_turf.z))
