@@ -323,10 +323,13 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/attackby(obj/item/attacking_item, mob/user, params)
 	if(user in src)
 		return
-	if(user.a_intent != INTENT_HARM && attacking_item.GetID())
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+	if(attacking_item.GetID())
 		togglelock(user)
 		return TRUE
-	return ..()
+	if(user.transferItemToLoc(attacking_item, drop_location()))
+		return TRUE
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool)
 	if(user.a_intent == INTENT_HARM)
@@ -611,15 +614,18 @@ GLOBAL_LIST_EMPTY(lockers)
 		if(!open(user))
 			to_chat(user, span_warning("It won't budge!"))
 			return
+	density = FALSE //otherwise it's impossible to step toward (it becomes dense again when closed)
 	step_towards(user, T2)
+	if(dense_when_open)
+		density = TRUE
 	T1 = get_turf(user)
 	if(T1 == T2)
-		user.resting = TRUE //so people can jump into crates without slamming the lid on their head
+		user.density = FALSE //so people can jump into crates without slamming the lid on their head
 		if(!close(user))
 			to_chat(user, span_warning("You can't get [src] to close!"))
-			user.resting = FALSE
+			user.density = TRUE
 			return
-		user.resting = FALSE
+		user.density = TRUE
 		togglelock(user)
 		T1.visible_message(span_warning("[user] dives into [src]!"))
 

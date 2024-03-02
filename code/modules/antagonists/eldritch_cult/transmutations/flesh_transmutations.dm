@@ -134,7 +134,7 @@
 					spells.Remove(user)
 					qdel(spells)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
-			set_security_level(SEC_LEVEL_GAMMA)
+			SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 
 			shockwave.transform = matrix().Scale(0.5)

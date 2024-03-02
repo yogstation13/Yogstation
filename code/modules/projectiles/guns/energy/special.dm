@@ -333,11 +333,21 @@
 	var/cost = 10
 	var/stackable = FALSE
 
+/obj/item/upgrade/plasmacutter/examine(mob/user)
+	. = ..()
+	. += span_notice("This mod takes up [cost] mod capacity.")
+
+	if(stackable)
+		. += span_notice("This mod is stackable.")
+	else
+		. += span_notice("This mod is not stackable.")
+
 /obj/item/upgrade/plasmacutter/proc/modify_projectile(obj/projectile/plasma/K)
 
 /obj/item/upgrade/plasmacutter/proc/install(obj/item/gun/energy/plasmacutter/P)
 
 /obj/item/upgrade/plasmacutter/proc/uninstall(obj/item/gun/energy/plasmacutter/P)
+	P.installed_upgrades -= src // Allows you to put the mod back in
 
 /obj/item/upgrade/plasmacutter/defuser
 	name = "plasma cutter defusal kit"
@@ -355,6 +365,7 @@
 	P.cell.maxcharge = initial(P.cell.maxcharge)*2
 
 /obj/item/upgrade/plasmacutter/capacity/uninstall(obj/item/gun/energy/plasmacutter/P)
+	. = ..()
 	P.cell.maxcharge = initial(P.cell.maxcharge)
 	P.cell.charge = min(P.cell.charge, P.cell.maxcharge)
 
@@ -368,6 +379,7 @@
 	P.fire_delay *= 0.5
 
 /obj/item/upgrade/plasmacutter/cooldown/uninstall(obj/item/gun/energy/plasmacutter/P)
+	. = ..()
 	P.fire_delay *= 2
 
 /obj/item/upgrade/plasmacutter/range
