@@ -208,7 +208,7 @@
 	if(drunk_value >= 101)
 		owner.adjustToxLoss(2)
 	if(HAS_TRAIT(owner, TRAIT_DRUNK_HEALING))
-		owner.adjustBruteLoss(-0.5, FALSE)
+		owner.adjustBruteLoss(-0.6, FALSE)
 		owner.adjustFireLoss(-0.4, FALSE)
 
 /// Status effect for being fully drunk (not tipsy).
