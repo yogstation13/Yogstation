@@ -148,3 +148,24 @@
 	. = ..()
 	playsound(loc, "sparks", 75, 1, -1)
 	do_sparks(8, 3, usr)
+
+/obj/item/gun/ballistic/maintMusket
+	name = "maintenance musket"
+	desc = "A weapon with notoriously poor accuracy; it makes up for this by being quick and easy to smash together"
+	icon_state = "maintMusket"
+	item_state = "maintMusket"
+	mag_type = /obj/item/ammo_box/magazine/internal/cartridge
+	w_class = WEIGHT_CLASS_HUGE
+	weapon_weight = WEAPON_HEAVY
+	slot_flags = ITEM_SLOT_BACK
+	casing_ejector = FALSE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	internal_magazine = TRUE
+	empty_indicator = FALSE
+	can_bayonet = TRUE
+	can_suppress = FALSE
+	force = 10
+	cartridge_wording = "cartridge"
+	fire_sound = 'sound/weapons/musketShot.ogg'
+	pin = /obj/item/firing_pin
+ //DO NOT FORGET TO ADD COCKING SOUND!!

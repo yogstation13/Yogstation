@@ -37,3 +37,13 @@
 	projectile_type = /obj/projectile/bullet/bolt
 	firing_effect_type = /obj/effect/particle_effect/sparks/electricity
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/ammo_casing/caseless/cartridge
+	name = "cartridge"
+	desc = "A musket cartridge crafted by hand. This one uses welder fuel as its propellant."
+	caliber = null
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "cartridge"
+	projectile_type = /obj/projectile/bullet/cartridge
+	firing_effect_type = /obj/effect/particle_effect/sparks/electricity //Placeholder for smoke. REMEMBER TO CHANGE!!!!
+	w_class = WEIGHT_CLASS_TINY

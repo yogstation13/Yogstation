@@ -93,3 +93,10 @@
 	icon_state = "bolt"
 	desc = "A smaller and faster rod."
 	damage = 25
+
+/obj/projectile/bullet/cartridge
+	name = "cartridge"
+	icon_state = "cartridge"
+	desc = "A small metal ball fired from a musket."
+	damage = 20
+	armour_penetration = -40 //Cheap ammo means poor AP
