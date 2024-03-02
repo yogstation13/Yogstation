@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Nightshift lights now actually consume less power"
-  - rscdel: "Removes other useless power vars as they dont work with the light fixture anyway"

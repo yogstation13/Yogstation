@@ -59,7 +59,7 @@
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
 
-	if(shoes && (mobility_flags & MOBILITY_STAND) && loc == NewLoc && has_gravity(loc))
+	if(shoes && (mobility_flags & MOBILITY_STAND) && loc == NewLoc && has_gravity(loc) && istype(shoes, /obj/item/clothing/shoes))
 		var/obj/item/clothing/shoes/S = shoes
 		S.step_action()
 		

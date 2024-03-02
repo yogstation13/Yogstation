@@ -24,6 +24,15 @@
 	wuv_angy = "makes a noise"
 	var/stepped_sound = 'sound/effects/axolotl.ogg'
 
+
+/mob/living/simple_animal/pet/axolotl/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+
 /mob/living/simple_animal/pet/axolotl/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	. = ..()
 	if(src.stat == DEAD)
@@ -38,8 +47,7 @@
 	else
 		playsound(loc, 'sound/effects/axolotl.ogg', 100, TRUE)
 
-/mob/living/simple_animal/pet/axolotl/Crossed(AM as mob|obj)
-	. = ..()
+/mob/living/simple_animal/pet/axolotl/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(!stat && isliving(AM))
 		var/mob/living/L = AM
 		if(L.mob_size > MOB_SIZE_TINY)

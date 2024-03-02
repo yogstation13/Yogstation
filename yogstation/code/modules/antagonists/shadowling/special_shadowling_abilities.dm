@@ -205,10 +205,10 @@
 			H.invisibility = 60 //This is pretty bad, but is also necessary for the shuttle call to function properly
 			H.forceMove(A)
 			if(!SSticker.mode.shadowling_ascended)
-				set_security_level(SEC_LEVEL_GAMMA)
-				SSshuttle.emergencyCallTime = 1800
+				SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
+				SSshuttle.emergency_call_time = 1800
 				SSshuttle.emergency.request(null, 0.3)
-				SSshuttle.emergencyNoRecall = TRUE
+				SSshuttle.emergency_no_recall = TRUE
 				SSticker.mode.shadowling_ascended = TRUE
 			var/datum/action/cooldown/spell/pointed/sling/annihilate/annihilate = new(A)
 			annihilate.Grant(A)

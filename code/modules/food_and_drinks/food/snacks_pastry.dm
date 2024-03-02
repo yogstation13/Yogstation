@@ -150,6 +150,12 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/ketchup = 2)
 	tastes = list("spaghetti"= 3, "carbs" = 2, "ketchup" = 1)
 
+/obj/item/reagent_containers/food/snacks/donut/vegan
+	name = "Vegan Donut"
+	desc = "Adding tofu to a donut makes it vegan, who knew?!"
+	tastes = list("donut" = 1)
+	foodtype = VEGETABLES
+
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/muffin

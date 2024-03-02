@@ -101,3 +101,40 @@
 	resistance_flags = NONE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 80, ACID = 50, ELECTRIC = 100)
 	enabled_areas = list(/area/ruin/powered/syndicate_lava_base)
+
+/obj/effect/mob_spawn/human/greedydemon
+	name = "Red Sleeper"
+	desc = "An ancient sleeper that could possibly not even be man made, housing a raging hell fire."
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	short_desc = "You are a hellish demon of greed, posted on a house of sin and gambling."
+	flavour_text = "Attract patrons to your terrible home, make cash, and prepare any facilities that are needed. Make sure your guests feel welcome, it is the best way to tempt them. In addition, do not give things away for free, everything has a price after all."
+	important_info = "Do not leave your establishment if possible, and do not leave the planet at all."
+	outfit = /datum/outfit/greedydemon
+	assignedrole = "Greedy Demon"
+	id_access_list = list(ACCESS_BAR,ACCESS_KITCHEN,ACCESS_HYDROPONICS)
+
+/obj/effect/mob_spawn/human/greedydemon/special(mob/living/new_spawn)
+	var/datum/antagonist/sinfuldemon/demon = new
+	demon.demonsin = "greed"
+	new_spawn.mind.add_antag_datum(demon)
+	demon.greet()
+	message_admins("[ADMIN_LOOKUPFLW(new_spawn)] has been made into a Sinful Demon by a ghost spawner.")
+	log_game("[key_name(new_spawn)] was spawned as a Sinful Demon by a ghost spawner.")
+
+/datum/outfit/greedydemon
+	name = "Greedy Demon"
+	uniform = /obj/item/clothing/under/suit_jacket/really_black
+	head = /obj/item/clothing/head/that
+	back = /obj/item/storage/backpack
+	suit = /obj/item/clothing/suit/armor/vest
+	mask = /obj/item/clothing/mask/cigarette/pipe
+	shoes = /obj/item/clothing/shoes/laceup
+	glasses = /obj/item/clothing/glasses/sunglasses/reagent
+	gloves = /obj/item/clothing/gloves/color/white
+	ears = /obj/item/radio/headset
+	id = /obj/item/card/id
+	implants = list(/obj/item/implant/teleporter/demon) //stay at your den of sin

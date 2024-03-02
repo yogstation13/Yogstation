@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "limb loss in brazil is now worth 7 marbles"
-  - tweak: "limb skeletonization in brazil is now worth 3 marbles"
-  - bugfix: "If you somehow manage to run out of limbs while leaving brazil, you will be ejected"

@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Chaplain monk staff null rod (stamina) damage increased (15 -> 18)"
-  - tweak: "The above no longer can block projectiles"
