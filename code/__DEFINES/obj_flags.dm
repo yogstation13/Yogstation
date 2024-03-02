@@ -55,8 +55,8 @@
 #define LAVAPROTECT (1<<0)
 /// SUIT and HEAD items which stop pressure damage.
 /// To stop you taking all pressure damage you must have both a suit and head item with these flags. First one is high pressure (fires), second one is low (space).
-#define STOPSHIGHPRESSURE		(1<<1) 
-#define STOPSLOWPRESSURE		(1<<2)
+#define STOPSHIGHPRESSURE (1<<1) 
+#define STOPSLOWPRESSURE (1<<2)
 /// Blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
 #define BLOCK_GAS_SMOKE_EFFECT (1<<3)
 /// Mask allows internals
