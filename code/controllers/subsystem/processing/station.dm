@@ -26,6 +26,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 
 	announcer = new announcer() //Initialize the station's announcer datum
 	default_announcer = new default_announcer()
+	SSparallax.post_station_setup() //Apply station effects that parallax might have
 
 	return SS_INIT_SUCCESS
 
@@ -33,7 +34,13 @@ PROCESSING_SUBSYSTEM_DEF(station)
 /datum/controller/subsystem/processing/station/proc/SetupTraits()
 	for(var/i in subtypesof(/datum/station_trait))
 		var/datum/station_trait/trait_typepath = i
-		if (initial(trait_typepath.trait_flags) & STATION_TRAIT_ABSTRACT)
+		if(initial(trait_typepath.abstract_type) == trait_typepath)
+			continue //Dont add abstract ones to it
+
+		if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_PLANETARY) && SSmapping.is_planetary()) // we're on a planet but we can't do planet ;_;
+			continue
+
+		if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_SPACE_BOUND) && !SSmapping.is_planetary()) //we're in space but we can't do space ;_;
 			continue
 		selectable_traits_by_types[initial(trait_typepath.trait_type)][trait_typepath] = initial(trait_typepath.weight)
 
@@ -69,8 +76,6 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	var/report = "<b><i>Central Command Divergency Report</i></b><hr>"
 
 	for(var/datum/station_trait/trait as() in station_traits)
-		if(trait.trait_flags & STATION_TRAIT_ABSTRACT)
-			continue
 		if(!trait.report_message || !trait.show_in_report)
 			continue
 		report += "[trait.get_report()]<BR><hr>"

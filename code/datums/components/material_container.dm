@@ -39,7 +39,7 @@
 	after_insert = _after_insert
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(OnExamine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(OnExamine))
 
 	for(var/mat in mat_list) //Make the assoc list ref | amount
 		var/datum/material/M = getmaterialref(mat) || mat

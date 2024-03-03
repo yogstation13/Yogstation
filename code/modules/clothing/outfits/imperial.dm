@@ -18,6 +18,7 @@
 	desc = "A set of khaki fatigues. Standard issue for Imperial Guardsmen"
 	icon_state = "guard_uniform"
 	item_state = "guard_uniform"
+	can_adjust = 0
 
 /obj/item/clothing/shoes/combat/imperial
 	name = "flak boots"

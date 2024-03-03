@@ -39,8 +39,6 @@
 #define COMSIG_LIVING_SET_BODY_POSITION  "living_set_body_position"
 ///From post-can inject check of syringe after attack (mob/user)
 #define COMSIG_LIVING_TRY_SYRINGE "living_try_syringe"
-///From living/Life(seconds_per_tick = SSMOBS_DT, times_fired). (deltatime, times_fired)
-#define COMSIG_LIVING_LIFE "living_life"
 ///From living/set_resting(): (new_resting, silent, instant)
 #define COMSIG_LIVING_RESTING "living_resting"
 
@@ -96,7 +94,12 @@
 #define COMSIG_LIVING_MOB_BUMP "living_mob_bump"
 ///From base of mob/living/ZImpactDamage() (mob/living, levels, turf/t)
 #define COMSIG_LIVING_Z_IMPACT "living_z_impact"
-	#define NO_Z_IMPACT_DAMAGE (1<<0)
+	/// Just for the signal return, does not run normal living handing of z fall damage for mobs
+	#define ZIMPACT_CANCEL_DAMAGE (1<<0)
+	/// Do not show default z-impact message
+	#define ZIMPACT_NO_MESSAGE (1<<1)
+	/// Do not do the spin animation when landing
+	#define ZIMPACT_NO_SPIN (1<<2)
 
 /// From mob/living/try_speak(): (message, ignore_spam, forced)
 #define COMSIG_LIVING_TRY_SPEECH "living_vocal_speech"
@@ -137,5 +140,12 @@
 /// From /mob/living/unfriend() : (mob/living/old_friend)
 #define COMSIG_LIVING_UNFRIENDED "living_unfriended"
 
-///from mind/transfer_to. Sent after the mind has been transferred: (mob/previous_body)
-#define COMSIG_MIND_TRANSFERRED "mind_transferred"
+///From living/Life(). (deltatime, times_fired)
+#define COMSIG_LIVING_LIFE "living_life"
+	/// Block the Life() proc from proceeding... this should really only be done in some really wacky situations.
+	#define COMPONENT_LIVING_CANCEL_LIFE_PROCESSING (1<<0)
+
+///from /mob/create_typing_indicator()
+#define COMSIG_MOB_CREATE_TYPING_INDICATOR "create_typing_indicator"
+	///Icon used for the typing indicator
+	#define BUBBLE_ICON_STATE 1

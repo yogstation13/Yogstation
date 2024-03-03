@@ -312,7 +312,7 @@
 	movement_type = FLYING
 	limb_destroyer = 1
 	speak_emote = list("states")
-	bubble_icon = "syndibot"
+	bubble_icon = BUBBLE_SYNDIBOT
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
 	deathmessage = "is smashed into pieces!"

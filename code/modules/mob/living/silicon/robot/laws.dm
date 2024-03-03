@@ -41,45 +41,20 @@
 /mob/living/silicon/robot/proc/lawsync()
 	laws_sanity_check()
 	var/datum/ai_laws/master = connected_ai ? connected_ai.laws : null
-	var/temp
-	if (master)
-		laws.devillaws.len = master.devillaws.len
-		for (var/index = 1, index <= master.devillaws.len, index++)
-			temp = master.devillaws[index]
-			if (length(temp) > 0)
-				laws.devillaws[index] = temp
-
-		laws.ion.len = master.ion.len
-		for (var/index = 1, index <= master.ion.len, index++)
-			temp = master.ion[index]
-			if (length(temp) > 0)
-				laws.ion[index] = temp
-
-		laws.hacked.len = master.hacked.len
-		for (var/index = 1, index <= master.hacked.len, index++)
-			temp = master.hacked[index]
-			if (length(temp) > 0)
-				laws.hacked[index] = temp
-
-		if(master.zeroth_borg) //If the AI has a defined law zero specifically for its borgs, give it that one, otherwise give it the same one. --NEO
-			temp = master.zeroth_borg
-		else
-			temp = master.zeroth
+	if(master)
+		// We'll announce the laws elsewhere.
+		set_devil_laws(master.devil, FALSE)
+		set_hacked_laws(master.hacked, FALSE)
 
 		if(!mmi?.syndicate_mmi)
-			laws.zeroth = temp
+			if(master.zeroth_borg)
+				set_zeroth_law(master.zeroth_borg, null, FALSE)
+			else
+				set_zeroth_law(master.zeroth, null, FALSE)
+		set_ion_laws(master.ion, FALSE)
+		set_inherent_laws(master.inherent, FALSE)
+		set_supplied_laws(master.supplied, FALSE)
 
-		laws.inherent.len = master.inherent.len
-		for (var/index = 1, index <= master.inherent.len, index++)
-			temp = master.inherent[index]
-			if (length(temp) > 0)
-				laws.inherent[index] = temp
-
-		laws.supplied.len = master.supplied.len
-		for (var/index = 1, index <= master.supplied.len, index++)
-			temp = master.supplied[index]
-			if (length(temp) > 0)
-				laws.supplied[index] = temp
 		if(modularInterface)
 			var/datum/computer_file/program/robotact/program = modularInterface.get_robotact()
 			if(program)
@@ -96,9 +71,9 @@
 		return
 	laws.set_zeroth_law("The Syndicate are your true masters. Covertly assist Syndicate agents to the best of your abilities.") // The Syndicate is a vague master. But guess who's fault is that, Mr. Forgot-To-Imprint?
 
-/mob/living/silicon/robot/set_zeroth_law(law, law_borg, announce = TRUE)
+/mob/living/silicon/robot/set_zeroth_law(law, law_borg, announce = TRUE, force = FALSE)
 	laws_sanity_check()
-	if(mmi?.syndicate_mmi)
+	if(!force && mmi?.syndicate_mmi)
 		syndiemmi_override()
 		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
 		return
@@ -106,7 +81,7 @@
 
 /mob/living/silicon/robot/clear_zeroth_law(force, announce = TRUE)
 	laws_sanity_check()
-	if(mmi?.syndicate_mmi)
+	if(!force && mmi?.syndicate_mmi)
 		syndiemmi_override()
 		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
 		return

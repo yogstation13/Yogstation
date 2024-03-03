@@ -1,25 +1,4 @@
-//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
-#define RANGE_TURFS(RADIUS, CENTER) \
-  block( \
-    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-  )
-
-#define Z_TURFS(ZLEVEL) block(locate(1,1,ZLEVEL), locate(world.maxx, world.maxy, ZLEVEL))
 #define CULT_POLL_WAIT 2400
-
-/// Returns a list of turfs similar to CORNER_BLOCK but with offsets
-#define CORNER_BLOCK_OFFSET(corner, width, height, offset_x, offset_y) ( \
-	(block(locate(corner.x + offset_x, corner.y + offset_y, corner.z), \
-			locate(min(corner.x + (width - 1) + offset_x, world.maxx), \
-			min(corner.y + (height - 1) + offset_y, world.maxy), corner.z))))
-
-/// Returns an outline (neighboring turfs) of the given block
-#define CORNER_OUTLINE(corner, width, height) ( \
-	CORNER_BLOCK_OFFSET(corner, width + 2, 1, -1, -1) + \
-	CORNER_BLOCK_OFFSET(corner, width + 2, 1, -1, height) + \
-	CORNER_BLOCK_OFFSET(corner, 1, height, -1, 0) + \
-	CORNER_BLOCK_OFFSET(corner, 1, height, width, 0))
 
 /proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
@@ -51,17 +30,30 @@
 			get_area(get_ranged_target_turf(center, WEST, 1)))
 	listclearnulls(.)
 
+///Returns the open turf next to the center in a specific direction
 /proc/get_open_turf_in_dir(atom/center, dir)
-	var/turf/open/T = get_ranged_target_turf(center, dir, 1)
-	if(istype(T))
-		return T
+	var/turf/open/get_turf = get_step(center, dir)
+	if(istype(get_turf))
+		return get_turf
 
+///Returns a list with all the adjacent open turfs. Clears the list of nulls in the end.
 /proc/get_adjacent_open_turfs(atom/center)
-	. = list(get_open_turf_in_dir(center, NORTH),
-			get_open_turf_in_dir(center, SOUTH),
-			get_open_turf_in_dir(center, EAST),
-			get_open_turf_in_dir(center, WEST))
-	listclearnulls(.)
+	var/list/hand_back = list()
+	// Inlined get_open_turf_in_dir, just to be fast
+	var/turf/open/new_turf = get_step(center, NORTH)
+	if(istype(new_turf))
+		hand_back += new_turf
+	new_turf = get_step(center, SOUTH)
+	if(istype(new_turf))
+		hand_back += new_turf
+	new_turf = get_step(center, EAST)
+	if(istype(new_turf))
+		hand_back += new_turf
+	new_turf = get_step(center, WEST)
+	if(istype(new_turf))
+		hand_back += new_turf
+	return hand_back
+
 
 /proc/get_adjacent_open_areas(atom/center)
 	. = list()
@@ -415,26 +407,73 @@
 	O.screen_loc = screen_loc
 	return O
 
+/// Adds an image to a client's `.images`. Useful as a callback.
+/proc/add_image_to_client(image/image_to_remove, client/add_to)
+	add_to?.images += image_to_remove
+
+/// Like add_image_to_client, but will add the image from a list of clients
+/proc/add_image_to_clients(image/image_to_remove, list/show_to)
+	for(var/client/add_to in show_to)
+		add_to.images += image_to_remove
+
 /// Removes an image from a client's `.images`. Useful as a callback.
-/proc/remove_image_from_client(image/image, client/remove_from)
-	remove_from?.images -= image
+/proc/remove_image_from_client(image/image_to_remove, client/remove_from)
+	remove_from?.images -= image_to_remove
 
-/proc/remove_images_from_clients(image/I, list/show_to)
-	for(var/client/C in show_to)
-		C.images -= I
+/// Like remove_image_from_client, but will remove the image from a list of clients
+/proc/remove_image_from_clients(image/image_to_remove, list/hide_from)
+	for(var/client/remove_from in hide_from)
+		remove_from.images -= image_to_remove
 
-/proc/flick_overlay(image/I, list/show_to, duration)
-	for(var/client/C in show_to)
-		C.images += I
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_images_from_clients), I, show_to), duration, TIMER_CLIENT_TIME)
+/// Add an image to a list of clients and calls a proc to remove it after a duration
+/proc/flick_overlay_global(image/image_to_show, list/show_to, duration)
+	if(!show_to || !length(show_to) || !image_to_show)
+		return
+	for(var/client/add_to in show_to)
+		add_to.images += image_to_show
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_image_from_clients), image_to_show, show_to), duration, TIMER_CLIENT_TIME)
 
-/proc/flick_overlay_view(image/I, atom/target, duration) //wrapper for the above, flicks to everyone who can see the target atom
-	var/list/viewing = list()
-	for(var/m in viewers(target))
-		var/mob/M = m
-		if(M.client)
-			viewing += M.client
-	flick_overlay(I, viewing, duration)
+///Flicks a certain overlay onto an atom, handling icon_state strings
+/atom/proc/flick_overlay(image_to_show, list/show_to, duration, layer)
+	var/image/passed_image = \
+		istext(image_to_show) \
+			? image(icon, src, image_to_show, layer) \
+			: image_to_show
+
+	flick_overlay_global(passed_image, show_to, duration)
+
+/**
+ * Helper atom that copies an appearance and exists for a period
+*/
+/atom/movable/flick_visual
+
+/// Takes the passed in MA/icon_state, mirrors it onto ourselves, and displays that in world for duration seconds
+/// Returns the displayed object, you can animate it and all, but you don't own it, we'll delete it after the duration
+/atom/proc/flick_overlay_view(mutable_appearance/display, duration)
+	if(!display)
+		return null
+
+	var/mutable_appearance/passed_appearance = \
+		istext(display) \
+			? mutable_appearance(icon, display, layer) \
+			: display
+
+	// If you don't give it a layer, we assume you want it to layer on top of this atom
+	// Because this is vis_contents, we need to set the layer manually (you can just set it as you want on return if this is a problem)
+	if(passed_appearance.layer == FLOAT_LAYER)
+		passed_appearance.layer = layer + 0.1
+	// This is faster then pooling. I promise
+	var/atom/movable/flick_visual/visual = new()
+	visual.appearance = passed_appearance
+	visual.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	// I hate /area
+	var/atom/movable/lies_to_children = src
+	lies_to_children.vis_contents += visual
+	QDEL_IN_CLIENT_TIME(visual, duration)
+	return visual
+
+/area/flick_overlay_view(mutable_appearance/display, duration)
+	return
 
 /proc/get_active_player_count(alive_check = 0, afk_check = 0, human_check = 0)
 	// Get active players who are playing in the round

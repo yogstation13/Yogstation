@@ -14,8 +14,8 @@
 	use_power = IDLE_POWER_USE
 	can_unwrench = TRUE
 	welded = FALSE
-	level = 1
 	layer = GAS_SCRUBBER_LAYER
+	hide = TRUE
 	shift_underlay_only = FALSE
 	showpipe = FALSE
 
@@ -43,6 +43,7 @@
 	var/obj/machinery/advanced_airlock_controller/aac = null
 
 	pipe_state = "uvent"
+	vent_movement = VENTCRAWL_ALLOWED | VENTCRAWL_CAN_SEE | VENTCRAWL_ENTRANCE_ALLOWED
 
 /obj/machinery/atmospherics/components/unary/vent_pump/New()
 	..()
@@ -118,7 +119,7 @@
 		space_shutoff_ticks--
 		if(space_shutoff_ticks <= 1 && !on)
 			on = TRUE
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 	if(!nodes[1])
 		on = FALSE
 	if(!on || welded)
@@ -140,20 +141,25 @@
 			last_moles_added = 0
 			on = FALSE
 			space_shutoff_ticks = 20 // shut off for about 20 seconds before trying again.
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			return
 
 	if(pump_direction & RELEASING) // internal -> external
 		var/pressure_delta = 10000
 
 		if(pressure_checks&EXT_BOUND)
-			var/multiplier = 1 // fast_fill multiplier
-			if(fast_fill)
-				if(last_moles_added > 0 && last_moles_real_added > 0)
-					multiplier = clamp(last_moles_added / last_moles_real_added * 0.25, 1, 100)
-				else if(last_moles_added > 0 && last_moles_real_added < 0 && environment_moles != 0)
-					multiplier = 10 // pressure is going down, but let's fight it anyways
-			pressure_delta = min(pressure_delta, (external_pressure_bound - environment_pressure) * multiplier)
+			var/ext_difference = external_pressure_bound - environment_pressure
+			if(fast_fill && ext_difference <= 100)
+				//exponential
+				pressure_delta = min(pressure_delta, (2 ** ((ext_difference / 30) + 7)) - 128)
+			else if(fast_fill && last_moles_added > 0 && last_moles_real_added > 0)
+				//old scaling
+				pressure_delta = min(pressure_delta, ext_difference * clamp((last_moles_added / last_moles_real_added) * 0.25, 1, 100))
+			else if(fast_fill && last_moles_added > 0 && last_moles_real_added < 0)
+				//old scaling
+				pressure_delta = min(pressure_delta, ext_difference * 10)
+			else
+				pressure_delta = min(pressure_delta, ext_difference)
 		if(pressure_checks&INT_BOUND)
 			pressure_delta = min(pressure_delta, (air_contents.return_pressure() - internal_pressure_bound))
 		if(space_shutoff_ticks > 0) // if we just came off a space-shutoff, only transfer a little bit.
@@ -161,7 +167,6 @@
 
 		if(pressure_delta > 0)
 			if(air_contents.return_temperature() > 0)
-
 				var/transfer_moles = pressure_delta*environment.return_volume()/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 				last_moles_added = transfer_moles
 				loc.assume_air_moles(air_contents, transfer_moles)
@@ -296,7 +301,7 @@
 
 		// log_admin("DEBUG \[[world.timeofday]\]: vent_pump/receive_signal: unknown command \"[signal.data["command"]]\"\n[signal.debug_print()]")
 	broadcast_status()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/welder_act(mob/living/user, obj/item/I)
 	if(!I.tool_start_check(user, amount=0))
@@ -309,9 +314,9 @@
 		else
 			user.visible_message("[user] unwelded the vent.", span_notice("You unweld the vent."), span_italics("You hear welding."))
 			welded = FALSE
-		update_appearance(UPDATE_ICON)
-		pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
-		pipe_vision_img.plane = ABOVE_HUD_PLANE
+		update_appearance()
+		pipe_vision_img = image(src, loc, dir = dir)
+		SET_PLANE_EXPLICIT(pipe_vision_img, ABOVE_HUD_PLANE, src)
 		investigate_log("was [welded ? "welded shut" : "unwelded"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		add_fingerprint(user)
 	return TRUE
@@ -339,9 +344,9 @@
 		return
 	user.visible_message("[user] furiously claws at [src]!", "You manage to clear away the stuff blocking the vent", "You hear loud scraping noises.")
 	welded = FALSE
-	update_appearance(UPDATE_ICON)
-	pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
-	pipe_vision_img.plane = ABOVE_HUD_PLANE
+	update_appearance()
+	pipe_vision_img = image(src, loc, dir = dir)
+	SET_PLANE_EXPLICIT(pipe_vision_img, ABOVE_HUD_PLANE, src)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume

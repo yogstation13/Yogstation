@@ -22,7 +22,7 @@
 	rapid_fire_delay = 2 //Time between rapid fire shots
 	del_on_death = TRUE
 	pixel_x = -16
-	internal_type = /obj/item/gps/internal/stalwart
+	gps_name = "Ancient Signal"
 	attack_action_types = list(/datum/action/innate/megafauna_attack/spiralpikes,
 							   /datum/action/innate/megafauna_attack/cardinalpikes,
 							   /datum/action/innate/megafauna_attack/backup,
@@ -32,7 +32,6 @@
 	loot = list(/obj/structure/closet/crate/sphere/stalwart)
 	deathmessage = "erupts into blue flame, and screeches before violently shattering."
 	deathsound = 'sound/magic/castsummon.ogg'
-	internal_type = /obj/item/gps/internal/stalwart
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/stalwart
 

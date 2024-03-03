@@ -33,6 +33,9 @@
 	..()
 	LoseTarget()
 
+/**
+ * Proc that always is called when we want to end the beam and makes sure things are cleaned up, see beam_died()
+ */
 /obj/item/gun/medbeam/proc/LoseTarget()
 	if(active)
 		qdel(current_beam)
@@ -40,6 +43,19 @@
 		active = 0
 		on_beam_release(current_target)
 	current_target = null
+
+/**
+ * Proc that is only called when the beam fails due to something, so not when manually ended.
+ * manual disconnection = LoseTarget, so it can silently end
+ * automatic disconnection = beam_died, so we can give a warning message first
+ */
+/obj/item/gun/medbeam/proc/beam_died()
+	SIGNAL_HANDLER
+	current_beam = null
+	active = FALSE //skip qdelling the beam again if we're doing this proc, because
+	if(isliving(loc))
+		to_chat(loc, span_warning("You lose control of the beam!"))
+	LoseTarget()
 
 /obj/item/gun/medbeam/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(isliving(user))
@@ -52,8 +68,8 @@
 
 	current_target = target
 	active = TRUE
-	current_beam = new(user,current_target,time=6000,beam_icon_state="medbeam",btype=/obj/effect/ebeam/medical)
-	INVOKE_ASYNC(current_beam, TYPE_PROC_REF(/datum/beam, Start))
+	current_beam = user.Beam(current_target, icon_state="medbeam", time = 10 MINUTES, maxdistance = max_range, beam_type = /obj/effect/ebeam/medical)
+	RegisterSignal(current_beam, COMSIG_QDELETING, PROC_REF(beam_died))//this is a WAY better rangecheck than what was done before (process check)
 
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
 
@@ -102,7 +118,7 @@
 				return 0
 		for(var/obj/effect/ebeam/medical/B in turf)// Don't cross the str-beams!
 			if(B.owner.origin != current_beam.origin)
-				explosion(B.loc,0,3,5,8)
+				explosion(B.loc, heavy_impact_range = 3, light_impact_range = 5, flash_range = 8)
 				qdel(dummy)
 				return 0
 	qdel(dummy)
@@ -113,11 +129,14 @@
 
 /obj/item/gun/medbeam/proc/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth)
-		new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
-	target.adjustBruteLoss(-4)
-	target.adjustFireLoss(-4)
-	target.adjustToxLoss(-1)
-	target.adjustOxyLoss(-1)
+		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_HEALING_CYAN)
+	var/need_mob_update
+	need_mob_update = target.adjustBruteLoss(-4, updating_health = FALSE, forced = TRUE)
+	need_mob_update += target.adjustFireLoss(-4, updating_health = FALSE, forced = TRUE)
+	need_mob_update += target.adjustToxLoss(-1, updating_health = FALSE, forced = TRUE)
+	need_mob_update += target.adjustOxyLoss(-1, updating_health = FALSE, forced = TRUE)
+	if(need_mob_update)
+		target.updatehealth()
 	return
 
 /obj/item/gun/medbeam/proc/on_beam_release(mob/living/target)
