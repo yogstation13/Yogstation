@@ -57,45 +57,58 @@
 
 /datum/proximity_monitor/advanced/timestop
 	name = "chronofield"
+	edge_is_a_field = TRUE
 	setup_field_turfs = TRUE
 	field_shape = FIELD_SHAPE_RADIUS_SQUARE
 	requires_processing = TRUE
 	var/list/immune = list()
 	var/list/frozen_things = list()
 	var/list/frozen_mobs = list() //cached separately for processing
+	var/list/frozen_structures = list() //Also machinery, and only frozen aestethically
+	var/list/frozen_turfs = list() //Only aesthetically
 	var/check_anti_magic = FALSE
+	var/antimagic_flags = NONE
+	///if true, this doesn't time out after a duration but rather when an immune atom inside moves.
+	var/channelled = FALSE
 
 	var/static/list/global_frozen_atoms = list()
 
-/datum/proximity_monitor/advanced/timestop/Initialize(mapload)
-	. = ..()
-	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-	)
-	AddElement(/datum/element/connect_loc, loc_connections)
+/datum/proximity_monitor/advanced/timestop/New(atom/_host, range, _ignore_if_not_on_turf = TRUE, list/immune, antimagic_flags, channelled)
+	..()
+	src.immune = immune
+	src.antimagic_flags = antimagic_flags
+	src.channelled = channelled
+	recalculate_field()
+	START_PROCESSING(SSfastprocess, src)
 
 /datum/proximity_monitor/advanced/timestop/Destroy()
 	unfreeze_all()
 	return ..()
 
-/datum/proximity_monitor/advanced/timestop/proc/on_entered(datum/source, atom/movable/AM, ...)
+/datum/proximity_monitor/advanced/timestop/on_entered(datum/source, atom/movable/AM, ...)
 	freeze_atom(AM)
 
 /datum/proximity_monitor/advanced/timestop/proc/freeze_atom(atom/movable/A)
-	if(immune[A] || global_frozen_atoms[A] || !istype(A))
+	if(global_frozen_atoms[A] || !istype(A))
+		return FALSE
+	if(immune[A]) //a little special logic but yes immune things don't freeze
+		if(channelled)
+			RegisterSignal(A, COMSIG_MOVABLE_MOVED, PROC_REF(atom_broke_channel), override = TRUE)
 		return FALSE
 	if(ismob(A))
 		var/mob/M = A
-		if(M.can_block_magic((check_anti_magic ? MAGIC_RESISTANCE : NONE)))
+		if(M.can_block_magic(antimagic_flags))
 			immune[A] = TRUE
 			return
 	var/frozen = TRUE
 	if(isliving(A))
 		freeze_mob(A)
-	else if(istype(A, /obj/projectile))
+	else if(isprojectile(A))
 		freeze_projectile(A)
-	else if(istype(A, /obj/mecha))
+	else if(ismecha(A))
 		freeze_mecha(A)
+	else if((ismachinery(A) && !istype(A, /obj/machinery/light)) || isstructure(A)) //Special exception for light fixtures since recoloring causes them to change light
+		freeze_structure(A)
 	else
 		frozen = FALSE
 	if(A.throwing)
@@ -111,11 +124,16 @@
 	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(unfreeze_atom))
 	RegisterSignal(A, COMSIG_ITEM_PICKUP, PROC_REF(unfreeze_atom))
 
+	SEND_SIGNAL(A, COMSIG_ATOM_TIMESTOP_FREEZE, src)
+
 	return TRUE
 
 /datum/proximity_monitor/advanced/timestop/proc/unfreeze_all()
 	for(var/i in frozen_things)
 		unfreeze_atom(i)
+	for(var/T in frozen_turfs)
+		unfreeze_turf(T)
+
 
 /datum/proximity_monitor/advanced/timestop/proc/unfreeze_atom(atom/movable/A)
 	if(A.throwing)
@@ -151,15 +169,30 @@
 	if(T)
 		T.paused = FALSE
 
+/datum/proximity_monitor/advanced/timestop/proc/freeze_turf(turf/T)
+	into_the_negative_zone(T)
+	frozen_turfs += T
+
+/datum/proximity_monitor/advanced/timestop/proc/unfreeze_turf(turf/T)
+	escape_the_negative_zone(T)
+
+/datum/proximity_monitor/advanced/timestop/proc/freeze_structure(obj/O)
+	into_the_negative_zone(O)
+	frozen_structures += O
+
+/datum/proximity_monitor/advanced/timestop/proc/unfreeze_structure(obj/O)
+	escape_the_negative_zone(O)
+
 /datum/proximity_monitor/advanced/timestop/process()
 	for(var/i in frozen_mobs)
 		var/mob/living/m = i
 		m.Stun(20, 1, 1)
 
-/datum/proximity_monitor/advanced/timestop/setup_field_turf(turf/T)
-	for(var/i in T.contents)
+/datum/proximity_monitor/advanced/timestop/setup_field_turf(turf/target)
+	. = ..()
+	for(var/i in target.contents)
 		freeze_atom(i)
-	return ..()
+	freeze_turf(target)
 
 
 /datum/proximity_monitor/advanced/timestop/proc/freeze_projectile(obj/projectile/P)
@@ -193,3 +226,8 @@
 //let's put some colour back into your cheeks
 /datum/proximity_monitor/advanced/timestop/proc/escape_the_negative_zone(atom/A)
 	A.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+
+//signal fired when an immune atom moves in the time freeze zone
+/datum/proximity_monitor/advanced/timestop/proc/atom_broke_channel(datum/source)
+	SIGNAL_HANDLER
+	qdel(host)

@@ -7,7 +7,7 @@
 
 /datum/action/cooldown/spell/pointed/mind_transfer/soul_stone
 	spell_requirements = NONE
-	unconscious_amount_caster = 2 SECONDS
+	unconscious_amount_victim = 2 SECONDS
 
 /obj/item/infinity_soul_stone/equipped(mob/user, slot)
 	. = ..()

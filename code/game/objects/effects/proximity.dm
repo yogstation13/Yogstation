@@ -6,6 +6,12 @@
 	var/current_range
 	var/ignore_if_not_on_turf	//don't check turfs in range if the host's loc isn't a turf
 	var/wire = FALSE
+	///The signals of the connect range component, needed to monitor the turfs in range.
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+		COMSIG_ATOM_EXITED = PROC_REF(on_uncrossed),
+		COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON = PROC_REF(on_entered),
+	)
 
 /datum/proximity_monitor/New(atom/_host, range, _ignore_if_not_on_turf = TRUE)
 	checkers = list()
@@ -114,3 +120,12 @@
 	set waitfor = FALSE
 	. = ..()
 	monitor.hasprox_receiver?.HasProximity(AM)
+
+/datum/proximity_monitor/proc/on_uncrossed()
+	SIGNAL_HANDLER
+	return //Used by the advanced subtype for effect fields.
+
+/datum/proximity_monitor/proc/on_entered(atom/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+	if(source != host)
+		hasprox_receiver?.HasProximity(arrived)

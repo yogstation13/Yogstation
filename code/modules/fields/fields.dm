@@ -1,3 +1,5 @@
+#define FIELD_TURFS_KEY "field_turfs"
+#define EDGE_TURFS_KEY "edge_turfs"
 
 //Movable and easily code-modified fields! Allows for custom AOE effects that affect movement and anything inside of them, and can do custom turf effects!
 //Supports automatic recalculation/reset on movement.
@@ -34,11 +36,22 @@
 	var/setup_edge_turfs = FALSE	//Setup edge turfs/all field turfs. Set either or both to ON when you need it, it's defaulting to off unless you do to save CPU.
 	var/setup_field_turfs = FALSE
 	var/use_host_turf = FALSE		//For fields from items carried on mobs to check turf instead of loc...
+		/// If TRUE, edge turfs will be included as "in the field" for effects
+	/// Can be used in certain situations where you may have effects that trigger only at the edge,
+	/// while also wanting the field effect to trigger at edge turfs as well
+	var/edge_is_a_field = FALSE
 
 	var/list/turf/field_turfs = list()
 	var/list/turf/edge_turfs = list()
 	var/list/turf/field_turfs_new = list()
 	var/list/turf/edge_turfs_new = list()
+
+/datum/proximity_monitor/advanced/on_entered(turf/source, atom/movable/entered)
+	. = ..()
+	if(get_dist(source, host) == current_range)
+		field_edge_crossed(entered, source)
+	else
+		field_turf_crossed(entered, source)
 
 /datum/proximity_monitor/advanced/Destroy()
 	full_cleanup()
@@ -103,28 +116,40 @@
 			return TRUE
 	return FALSE
 
-/datum/proximity_monitor/advanced/proc/recalculate_field(ignore_movement_check = FALSE)	//Call every time the field moves (done automatically if you use update_center) or a setup specification is changed.
-	if(!(ignore_movement_check || check_movement()) && (field_shape != FIELD_NO_SHAPE))
-		return
-	update_new_turfs()
-	var/list/turf/needs_setup = field_turfs_new.Copy()
-	if(setup_field_turfs)
-		for(var/turf/T in field_turfs)
-			if(!(T in needs_setup))
-				cleanup_field_turf(T)
-			else
-				needs_setup -= T
-			CHECK_TICK
-		for(var/turf/T in needs_setup)
-			setup_field_turf(T)
-			CHECK_TICK
-	if(setup_edge_turfs)
-		for(var/turf/T in edge_turfs)
-			cleanup_edge_turf(T)
-			CHECK_TICK
-		for(var/turf/T in edge_turfs_new)
-			setup_edge_turf(T)
-			CHECK_TICK
+//Call every time the field moves (done automatically if you use update_center) or a setup specification is changed.
+/datum/proximity_monitor/advanced/proc/recalculate_field()
+	var/list/new_turfs = update_new_turfs()
+
+	var/list/new_field_turfs = new_turfs[FIELD_TURFS_KEY]
+	var/list/new_edge_turfs = new_turfs[EDGE_TURFS_KEY]
+
+	for(var/turf/old_turf as anything in field_turfs)
+		if(!(old_turf in new_field_turfs))
+			cleanup_field_turf(old_turf)
+	for(var/turf/old_turf as anything in edge_turfs)
+		cleanup_edge_turf(old_turf)
+
+	for(var/turf/new_turf as anything in new_field_turfs)
+		field_turfs |= new_turf
+		setup_field_turf(new_turf)
+	for(var/turf/new_turf as anything in new_edge_turfs)
+		edge_turfs |= new_turf
+		setup_edge_turf(new_turf)
+
+
+/datum/proximity_monitor/advanced/proc/field_turf_crossed(atom/movable/movable, turf/location)
+	return
+
+/datum/proximity_monitor/advanced/proc/field_turf_uncrossed(atom/movable/movable, turf/location)
+	return
+
+/datum/proximity_monitor/advanced/proc/field_edge_crossed(atom/movable/movable, turf/location)
+	if(edge_is_a_field) // If the edge is considered a field, pass crossed to that
+		field_turf_crossed(movable, location)
+
+/datum/proximity_monitor/advanced/proc/field_edge_uncrossed(atom/movable/movable, turf/location)
+	if(edge_is_a_field) // If the edge is considered a field, pass uncrossed to that
+		field_turf_uncrossed(movable, location)
 
 /datum/proximity_monitor/advanced/proc/field_turf_canpass(atom/movable/AM, obj/effect/abstract/proximity_checker/advanced/field_turf/F, turf/entering)
 	return TRUE
@@ -132,10 +157,6 @@
 /datum/proximity_monitor/advanced/proc/field_turf_uncross(atom/movable/AM, obj/effect/abstract/proximity_checker/advanced/field_turf/F)
 	return TRUE
 
-/datum/proximity_monitor/advanced/proc/field_turf_crossed(atom/movable/AM, obj/effect/abstract/proximity_checker/advanced/field_turf/F)
-	return TRUE
-
-/datum/proximity_monitor/advanced/proc/field_turf_uncrossed(atom/movable/AM, obj/effect/abstract/proximity_checker/advanced/field_turf/F)
 	return TRUE
 
 /datum/proximity_monitor/advanced/proc/field_edge_canpass(atom/movable/AM, obj/effect/abstract/proximity_checker/advanced/field_edge/F, turf/entering)
@@ -144,10 +165,6 @@
 /datum/proximity_monitor/advanced/proc/field_edge_uncross(atom/movable/AM, obj/effect/abstract/proximity_checker/advanced/field_edge/F)
 	return TRUE
 
-/datum/proximity_monitor/advanced/proc/field_edge_crossed(atom/movable/AM, obj/effect/abstract/proximity_checker/advanced/field_edge/F)
-	return TRUE
-
-/datum/proximity_monitor/advanced/proc/field_edge_uncrossed(atom/movable/AM, obj/effect/abstract/proximity_checker/advanced/field_edge/F)
 	return TRUE
 
 /datum/proximity_monitor/advanced/HandleMove()
@@ -326,3 +343,6 @@
 
 /obj/item/multitool/field_debug/proc/check_turf(turf/T)
 	current.HandleMove()
+
+#undef FIELD_TURFS_KEY
+#undef EDGE_TURFS_KEY

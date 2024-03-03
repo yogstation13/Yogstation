@@ -99,7 +99,10 @@
 #define COMSIG_ATOM_PROPAGATE_RAD_PULSE "atom_propagate_radiation_pulse"
 /// from cosmetic items to restyle certain mobs, objects or organs: (atom/source, mob/living/trimmer, atom/movable/original_target, body_zone, restyle_type, style_speed)
 #define COMSIG_ATOM_RESTYLE "atom_restyle"
-
+/// when a timestop ability is used on the atom: (datum/proximity_monitor/advanced/timestop)
+#define COMSIG_ATOM_TIMESTOP_FREEZE "atom_timestop_freeze"
+/// when the timestop ability effect ends on the atom: (datum/proximity_monitor/advanced/timestop)
+#define COMSIG_ATOM_TIMESTOP_UNFREEZE "atom_timestop_unfreeze"
 /// Called on [/atom/SpinAnimation()] : (speed, loops, segments, angle)
 #define COMSIG_ATOM_SPIN_ANIMATION "atom_spin_animation"
 
