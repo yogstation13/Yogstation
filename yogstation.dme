@@ -4145,6 +4145,7 @@
 #include "yogstation\code\modules\antagonists\blob\blob\blobs\core.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_antag.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_progenitor.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_team.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\psi_web.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\veil.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\_divulge.dm"

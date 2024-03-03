@@ -106,10 +106,7 @@
 	//pass out the willpower and lucidity to the darkspawns
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
-		for(var/datum/mind/dark_mind as anything in team.members)
-			var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
-			if(teammate && istype(teammate))//sanity check
-				teammate.willpower += willpower_amount
+		team.grant_willpower(willpower_amount)
 		team.lucidity += lucidity_amount
 
 	//format the text output to the darkspawn

@@ -32,7 +32,6 @@
 		antag_candidates -= darkboi
 		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
-		team.add_member(darkboi)
 		darkbois--
 
 	team.required_succs = clamp(round(num_players() / 3), 15, 30)
@@ -77,16 +76,8 @@
 
 /mob/living/proc/add_darkspawn()
 	if(!istype(mind))
-		return FALSE
-
-	var/datum/team/darkspawn/team
-	for (var/T in GLOB.antagonist_teams)
-		if (istype(T, /datum/team/darkspawn))
-			team = T
-	if(!team)
-		team = new
-		
-	return mind.add_antag_datum(/datum/antagonist/darkspawn, team)
+		return FALSE		
+	return mind.add_antag_datum(/datum/antagonist/darkspawn)
 
 /mob/living/proc/remove_darkspawn()
 	if(!istype(mind))
@@ -106,30 +97,11 @@
 		[span_boldwarning("The creature's gaze swallows the universe into blackness.")])\n\
 		[span_boldwarning("It cannot be permitted to succeed.")]")
 		return FALSE
-
-	var/datum/team/darkspawn/team
-	for (var/T in GLOB.antagonist_teams) //let's just hope there's never multiple darkspawn teams, or they could start mixing up veils
-		if (istype(T, /datum/team/darkspawn))
-			team = T
-	if(team && !team.add_veil(mind))
-		return FALSE
-
-	. = mind.add_antag_datum(/datum/antagonist/veil)
-	
-	var/datum/antagonist/veil/dude = isveil(src) //they are not a true member of the team
-	if(dude && istype(dude))
-		dude.team = team
+	return mind.add_antag_datum(/datum/antagonist/veil)
 
 /mob/living/proc/remove_veil()
 	if(!istype(mind))
 		return FALSE
-		
-	var/datum/antagonist/veil/dude = isveil(src) //they are not a true member of the team
-	if(dude && istype(dude))
-		var/datum/team/darkspawn/team = dude.get_team()
-		if(team && istype(team))
-			team.remove_veil(mind)
-
 	return mind.remove_antag_datum(/datum/antagonist/veil)
 
 /datum/game_mode/darkspawn/generate_credit_text()

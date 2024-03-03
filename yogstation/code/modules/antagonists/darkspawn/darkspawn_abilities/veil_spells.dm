@@ -57,6 +57,11 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		target.grab_ghost()
 		return TRUE
 
+	var/datum/team/darkspawn/team = master.get_team()
+	if(team && LAZYLEN(team.veils) >= team.max_veils)
+		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
+		return FALSE
+
 	if(master.willpower < willpower_cost) //sanity check
 		to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
 		return FALSE

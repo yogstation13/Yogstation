@@ -5,7 +5,6 @@
 	roundend_category = "veils"
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
-	var/mutable_appearance/veil_sigils
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/seize/lesser)
 	var/current_willpower_progress = 0
 	var/datum/team/darkspawn/team
@@ -25,6 +24,12 @@
 		if(!ST || !istype(ST))
 			ST = new
 			ST.Insert(dude, FALSE, FALSE)
+
+	for (var/T in GLOB.antagonist_teams)
+		if (istype(T, /datum/team/darkspawn))
+			team = T
+	if(!team)
+		CRASH("veil made without darkspawns")
 
 /datum/antagonist/veil/on_removal()
 	message_admins("[key_name_admin(owner.current)] was deveiled!")
@@ -46,14 +51,16 @@
 	return ..()
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
+	if(team)
+		team.add_veil(owner)
+
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
 
-	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
-	current_mob.add_overlay(veil_sigils)
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(veil_life))
+	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
 	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
@@ -65,18 +72,27 @@
 		new_spell.Grant(current_mob)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
+	if(team)
+		team.remove_veil(owner)
+
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
 
-	current_mob.cut_overlay(veil_sigils)
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	UnregisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS)
 	qdel(current_mob.GetComponent(/datum/component/internal_cam))
-	QDEL_NULL(veil_sigils)
 	for(var/datum/action/cooldown/spell/spells in current_mob.actions)
 		if(spells.type in abilities)//no keeping your abilities
 			spells.Remove(current_mob)
 			qdel(spells)
+
+/datum/antagonist/veil/proc/update_owner_overlay(atom/source, list/overlays)
+	SIGNAL_HANDLER
+
+	//draw both the overlay itself and the emissive overlay
+	overlays += mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
+	overlays += emissive_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", source) //glow them sigils
 
 /datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
@@ -96,10 +112,7 @@
 	if(current_willpower_progress >= 100)
 		current_willpower_progress = 0
 		to_chat(world, "generating willpower for being near enough players")
-		for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
-			var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
-			if(teammate && istype(teammate))//sanity check
-				teammate.willpower ++
+		team.grant_willpower(1)
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))

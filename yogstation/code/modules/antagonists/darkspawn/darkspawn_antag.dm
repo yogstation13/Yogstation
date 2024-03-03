@@ -30,6 +30,11 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/on_gain()
 	owner.special_role = "darkspawn"
+	for (var/T in GLOB.antagonist_teams)
+		if (istype(T, /datum/team/darkspawn))
+			team = T
+	if(!team)
+		team = new
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
@@ -40,6 +45,9 @@
 	return ..()
 
 /datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)
+	if(team)
+		team.add_member(owner)
+
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return
@@ -69,6 +77,8 @@
 		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
+	if(team)
+		team.remove_member(owner)
 	owner.current.remove_language(/datum/language/darkspawn)
 	owner.current.faction -= ROLE_DARKSPAWN
 	if(owner.current)
@@ -104,70 +114,6 @@
 	if(!istype(new_team))
 		stack_trace("Wrong team type passed to [type] initialization.")
 	team = new_team
-
-//the team itself
-/datum/team/darkspawn
-	name = "darkspawns"
-	member_name = "darkspawn"
-	var/list/datum/mind/veils = list() //not quite members (the darkspawns)
-	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
-	var/lucidity = 0
-	var/max_veils = 0
-
-/datum/team/darkspawn/New(starting_members)
-	. = ..()
-	var/datum/objective/darkspawn/O = new
-	objectives += O
-	O.update_explanation_text()
-
-/datum/team/darkspawn/roundend_report()
-	var/list/report = list()
-
-	if(SSticker.mode.sacrament_done)
-		report += "<span class='greentext big'>The darkspawn have completed the Sacrament!</span><br>"
-	else if(!SSticker.mode.sacrament_done && check_darkspawn_death())
-		report += "<span class='redtext big'>The darkspawn have been killed by the crew!</span><br>"
-	else if(!SSticker.mode.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		report += "<span class='redtext big'>The crew escaped the station before the darkspawn could complete the Sacrament!</span><br>"
-	else //fallback in case the round ends weirdly
-		report += "<span class='redtext big'>The darkspawn have failed!</span><br>"
-
-	return report
-
-/datum/team/darkspawn/proc/add_veil(datum/mind/new_member)
-	if(LAZYLEN(veils) >= max_veils)
-		return FALSE
-	veils |= new_member
-	return TRUE
-
-/datum/team/darkspawn/proc/remove_veil(datum/mind/member)
-	veils -= member
-	return TRUE
-
-/datum/team/darkspawn/proc/update_objectives()
-	for(var/datum/objective/darkspawn/O as anything in objectives)
-		if(istype(O))
-			O.required_succs = src.required_succs
-			O.update_explanation_text()
-
-/datum/team/darkspawn/proc/check_darkspawn_death() //check if a darkspawn is still alive
-	for(var/datum/mind/dark_mind as anything in members)
-		if(istype(dark_mind) && (dark_mind?.current?.stat != DEAD))
-			return FALSE
-	return TRUE
-
-//the objective
-/datum/objective/darkspawn
-	explanation_text = "Become lucid and perform the Sacrament."
-	var/required_succs = 20
-
-/datum/objective/darkspawn/update_explanation_text()
-	explanation_text = "Devour enough wills to gain [required_succs] lucidity and perform the sacrament."
-
-/datum/objective/darkspawn/check_completion()
-	if(..())
-		return TRUE
-	return SSticker.mode.sacrament_done
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Admin panel stuff---------------------------------//

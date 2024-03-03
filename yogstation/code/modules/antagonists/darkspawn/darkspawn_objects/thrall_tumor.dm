@@ -57,7 +57,8 @@
 				S.Knockdown(8 SECONDS)
 				S.adjustBruteLoss(20)
 				playsound(S, 'sound/effects/bang.ogg', 50, 1)
-		return FALSE
+		if(!QDELETED(src)) //only cancel the removal if it's not actively being deleted by something
+			return FALSE
 	. = ..()
 	if(isturf(loc))//only do this if the tumor is removed from the head, not if the head gets cut off
 		M.remove_veil()
