@@ -59,9 +59,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "ar" = (
-/obj/structure/closet/crate{
-	name = "material storage crate"
-	},
+/obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/toolbox/electrical{
 	pixel_y = 4
@@ -1381,9 +1379,7 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "mI" = (
-/obj/structure/closet/crate{
-	name = "material storage crate"
-	},
+/obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/box/lights/bulbs,
 /obj/item/storage/box/lights/bulbs,
@@ -1679,13 +1675,14 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "oX" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate{
-	name = "material storage crate"
-	},
+/obj/structure/closet/crate,
 /obj/effect/turf_decal/siding/brown/end{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/cobweb,
+/obj/item/pickaxe/drill,
+/obj/item/pickaxe/drill,
+/obj/item/pickaxe/drill,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "pf" = (
@@ -3172,10 +3169,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/telecomms)
-"Cq" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
-/area/jungleland/toxic_pit)
 "CD" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/structure/disposalpipe/segment{
@@ -3418,10 +3411,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/main)
-"EU" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/rust,
-/area/jungleland/toxic_pit)
 "EX" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3634,10 +3623,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "Gy" = (
-/obj/item/pickaxe{
-	name = "rusty pickaxe";
-	desc = "An old pickaxe, rusted away by time. It theoretically still works."
-	},
+/obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/jungleland/toxic_pit)
 "GD" = (
@@ -3682,9 +3668,7 @@
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/jungleland/toxic_pit)
 "GX" = (
-/obj/structure/closet/crate{
-	name = "material storage crate"
-	},
+/obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/box/donkpockets{
 	pixel_x = -2;
@@ -3899,9 +3883,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
 "Ih" = (
-/obj/structure/closet/crate{
-	name = "material storage crate"
-	},
+/obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/vending_refill/snack,
 /obj/item/vending_refill/snack,
@@ -4503,6 +4485,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
+"NY" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/jungleland/toxic_pit)
 "NZ" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -4753,7 +4739,7 @@
 /area/ruin/powered/syndicate_lava_base/virology)
 "Qp" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+/turf/open/floor/plating/rust,
 /area/jungleland/toxic_pit)
 "Qt" = (
 /obj/machinery/light,
@@ -4857,9 +4843,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "RK" = (
-/obj/structure/closet/crate{
-	name = "material storage crate"
-	},
+/obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/box/stockparts/deluxe,
 /obj/item/storage/box/stockparts/deluxe,
@@ -5613,9 +5597,7 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Yg" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/closet/crate{
-	name = "material storage crate"
-	},
+/obj/structure/closet/crate,
 /obj/item/reagent_containers/glass/beaker/waterbottle/large{
 	pixel_x = -3;
 	pixel_y = 3
@@ -6748,7 +6730,7 @@ Fi
 Fi
 Fi
 PW
-Gy
+PW
 cB
 cB
 cB
@@ -6932,7 +6914,7 @@ HA
 qF
 qF
 fh
-Qp
+NY
 qF
 qF
 qF
@@ -7846,10 +7828,10 @@ wk
 fh
 jQ
 qF
-EU
-EU
+Qp
+Qp
 fh
-EU
+Qp
 jQ
 qF
 wk
@@ -7911,7 +7893,7 @@ fh
 fh
 qF
 qF
-EU
+Qp
 HA
 HA
 Fi
@@ -8087,7 +8069,7 @@ nm
 uv
 Fi
 Fi
-Cq
+Gy
 PW
 zH
 JD
