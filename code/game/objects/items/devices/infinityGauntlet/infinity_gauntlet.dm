@@ -45,12 +45,12 @@
 		for(var/ability in abilities)
 			if(ispath(ability, /datum/action))
 				var/datum/action/spell = new ability(user)
-				ability.Grant(user)
+				spell.Grant(user)
 
 /obj/item/clothing/gloves/infinity/proc/remove_abilities(mob/user)
 	for(var/ability in abilities)
 		if(ispath(ability, /datum/action))
-			var/datum/action/action = locate(ability) in owner.actions
+			var/datum/action/action = locate(ability) in user.actions
 			if(action)
-				action.Remove(owner)
+				action.Remove(user)
 				qdel(action)
