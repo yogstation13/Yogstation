@@ -199,6 +199,9 @@
 
 	return randname
 
+/datum/species/plasmaman/get_butt_sprite()
+	return BUTT_SPRITE_PLASMA
+
 /datum/species/plasmaman/get_species_description()
 	return "Reanimated skeletons of those who died in plasma fires, plasmamen are the first alien sapient beings to be \
 		discovered, even though they're mainly former humans. While horrifying, most manage to return to their previous position in society before their transformation."
