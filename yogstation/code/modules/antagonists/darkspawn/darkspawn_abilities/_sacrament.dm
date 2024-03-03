@@ -33,8 +33,11 @@
 	if(!darkspawn)
 		to_chat(owner, span_warning("Error with non darkspawn using sacrament spell"))
 		return
-	if(SSticker.mode.lucidity < SSticker.mode.required_succs)
-		to_chat(owner, span_warning("You do not have enough unique lucidity! ([SSticker.mode.lucidity] / [SSticker.mode.required_succs])"))
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(!team)
+		return
+	if(team.lucidity < team.required_succs)
+		to_chat(owner, span_warning("You do not have enough unique lucidity! ([team.lucidity] / [team.required_succs])"))
 		return
 	if(alert(owner, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")
 		return
