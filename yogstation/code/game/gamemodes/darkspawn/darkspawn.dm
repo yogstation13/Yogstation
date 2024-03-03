@@ -138,8 +138,6 @@
 
 	round_credits += "<center><h1>The Darkspawn:</h1>"
 	len_before_addition = round_credits.len
-	for(var/datum/mind/darkboi in darkspawn)
-		round_credits += "<center><h2>[darkboi.name] as a Darkspawn</h2>"
 	if(len_before_addition == round_credits.len)
 		round_credits += list("<center><h2>The Darkspawn have moved to the shadows!</h2>", "<center><h2>We couldn't locate them!</h2>")
 	round_credits += "<br>"

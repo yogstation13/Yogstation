@@ -230,24 +230,16 @@
 	shadow_flags = WARLOCK
 
 /datum/psi_web/more_thralls/on_gain()
-	SSticker.mode.max_veils += 1
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(team)
+		team.max_veils += 1
+	else
+		remove(TRUE)
 
 /datum/psi_web/more_thralls/on_loss()
-	SSticker.mode.max_veils -= 1
-
-//even more thralls
-/datum/psi_web/even_more_thralls
-	name = "\'also more thrall\' Sigil"
-	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
-	willpower_cost = 1
-	menu_tab = STORE_PASSIVE
-	shadow_flags = WARLOCK
-
-/datum/psi_web/even_more_thralls/on_gain()
-	SSticker.mode.max_veils += 1
-
-/datum/psi_web/even_more_thralls/on_loss()
-	SSticker.mode.max_veils -= 1
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(team)
+		team.max_veils += 1
 
 //even more thralls
 /datum/psi_web/buff_allies

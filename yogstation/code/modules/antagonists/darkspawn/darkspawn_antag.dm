@@ -29,12 +29,10 @@
 //----------------------------Gain and loss stuff---------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/on_gain()
-	SSticker.mode.darkspawn += owner
 	owner.special_role = "darkspawn"
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
-	SSticker.mode.darkspawn -= owner
 	owner.special_role = null
 	owner.current.hud_used.psi_counter.invisibility = initial(owner.current.hud_used.psi_counter.invisibility)
 	owner.current.hud_used.psi_counter.maptext = ""

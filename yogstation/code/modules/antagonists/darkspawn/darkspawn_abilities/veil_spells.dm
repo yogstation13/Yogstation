@@ -86,15 +86,27 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 
 /datum/action/cooldown/spell/unveil_mind/can_cast_spell(feedback)
-	if(!LAZYLEN(SSticker.mode.veils))
-		if(feedback)
-			to_chat(owner, "You have no veils to release.")
-		return
+	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
+	if(dude && istype(dude))
+		var/datum/team/darkspawn/team = dude.get_team()
+		if(team &&!LAZYLEN(team.veils))
+			if(feedback)
+				to_chat(owner, "You have no veils to release.")
+			return
 	. = ..()
 	
 /datum/action/cooldown/spell/unveil_mind/cast(atom/cast_on)
 	. = ..()
-	var/loser = tgui_input_list(owner, "Select a veil to release from your control.", "Release a veil", SSticker.mode.veils)
+	if(!isdarkspawn(owner))
+		return
+
+	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
+	if(!dude.get_team())
+		return
+
+	var/datum/team/darkspawn/team = dude.get_team()
+
+	var/loser = tgui_input_list(owner, "Select a veil to release from your control.", "Release a veil", team.veils)
 	if(!loser || !istype(loser, /datum/mind))
 		return
 	var/datum/mind/unveiled = loser
