@@ -20,18 +20,12 @@
 
 /obj/item/clothing/gloves/infinity/equipped(mob/user, slot)
 	. = ..()
-	if(slot & ITEM_SLOT_GLOVES && LAZYLEN(abilities))
-		for(var/ability in abilities)
-			if(ispath(ability, /datum/action))
-				var/datum/action/spell = new ability(user)
-				ability.Grant(user)
+	if(slot & ITEM_SLOT_GLOVES)
+		grant_abilities(user)
 
 /obj/item/clothing/gloves/infinity/dropped(mob/user)
 	. = ..()
-	for(var/ability in abilities)
-		if(ispath())
-			ability.Remove(user)
-			qdel(ability)
+	remove_abilities(user)
 	return ..()
 
 /obj/item/clothing/gloves/infinity/attackby(obj/item/A, mob/user)
@@ -42,10 +36,21 @@
 		..()
 
 /obj/item/clothing/gloves/infinity/proc/update_abilities(mob/user)
-	for(var/datum/action/ability as anything in abilities)
-		if(istype(ability))
-			ability.Remove(user)
+	remove_abilities(user)
 	if(user.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
-		for(var/datum/action/ability as anything in abilities)
-			if(istype(ability))
+		grant_abilities(user)
+
+/obj/item/clothing/gloves/infinity/proc/grant_abilities(mob/user)
+	if(LAZYLEN(abilities))
+		for(var/ability in abilities)
+			if(ispath(ability, /datum/action))
+				var/datum/action/spell = new ability(user)
 				ability.Grant(user)
+
+/obj/item/clothing/gloves/infinity/proc/remove_abilities(mob/user)
+	for(var/ability in abilities)
+		if(ispath(ability, /datum/action))
+			var/datum/action/action = locate(ability) in owner.actions
+			if(action)
+				action.Remove(owner)
+				qdel(action)
