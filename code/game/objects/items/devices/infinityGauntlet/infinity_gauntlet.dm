@@ -43,7 +43,7 @@
 	for(var/datum/action/ability as anything in abilities)
 		if(istype(ability))
 			ability.Remove(user)
-	if(H.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
+	if(user.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
 		for(var/datum/action/ability as anything in abilities)
 			if(istype(ability))
 				ability.Grant(user)
