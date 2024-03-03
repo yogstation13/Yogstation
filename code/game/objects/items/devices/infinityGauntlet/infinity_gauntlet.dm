@@ -20,7 +20,7 @@
 
 /obj/item/clothing/gloves/infinity/equipped(mob/user, slot)
 	. = ..()
-	if(slot & ITEM_SLOT_HANDS && LAZYLEN(abilities))
+	if(slot & ITEM_SLOT_GLOVES && LAZYLEN(abilities))
 		for(var/datum/action/ability as anything in abilities)
 			if(istype(ability))
 				ability.Grant(user)

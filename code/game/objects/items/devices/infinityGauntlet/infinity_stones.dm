@@ -14,8 +14,8 @@
 	to_chat(user, span_narsie("ligma balls"))
 	if(!ability)
 		ability = new ability_type()
-		gauntlets.abilities += ability
-		gauntlets.update_abilities(user)
+	gauntlets.abilities |= ability
+	gauntlets.update_abilities(user)
 		
 /obj/item/infinity_stone/equipped(mob/user, slot)
 	. = ..()
