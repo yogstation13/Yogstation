@@ -350,7 +350,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					if(!check_containment(src, 5))
 						priority_announce("LEVEL 5 BIOHAZARD OUTBREAK IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
 					else
-						priority_announce("LEVEL 5 CONTROLLED BIOHAZARD IMMINENT. ESTABLISHING RESEARCH NODES AROUND CONTAINMENT FIELDS.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="green")
+						priority_announce("LEVEL 5 CONTROLLED BIOHAZARD CONTAINMENT IMMINENT. ESTABLISHING RESEARCH NODES AROUND CONTAINMENT FIELDS.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="green")
 		else
 			if(corruptor_attached)
 				speaking = "[round(i*0.1*rand(),1)]..."
@@ -511,7 +511,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		else
 			powerloss_dynamic_scaling = clamp(powerloss_dynamic_scaling - 0.05,0, 1)
 
-		if(support_integrity >= 10 && (!supermatter_blob && !check_containment(src, 5)))
+		if(support_integrity >= 10 && (!supermatter_blob || check_containment(src, 5)))
 			powerloss_inhibitor = clamp(1-(powerloss_dynamic_scaling * clamp(combined_gas/POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD,1 ,1.5)),0 ,1)
 
 		if(matter_power)
@@ -559,6 +559,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if (miasmacomp >= 0.5 && miasmol > 500 && !supermatter_blob) //requires around 4500 mol of miasma for the blob
 			supermatter_blob = TRUE // you are fucked
+			damage += 50
+			supermatter_zap(src, 10, 7000)
 
 		// adding enough hypernoblium can save it, but only if it hasn't gotten too bad and it wasn't corrupted using the traitor kit
 		if(nobliumcomp >= 0.5 && antinoblium_attached && !corruptor_attached && support_integrity > 10 && damage <= damage_archived)
@@ -714,21 +716,22 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			countdown()
 
 	//blob SM HAMMM
-	if((supermatter_blob && !check_containment(src, 5)))
-		powerloss_inhibitor = 0.01
-		power += 10000
-		if(prob(30))
-			radiation_pulse(src, 5000, 4)
-			pulsewave()
-			T.hotspot_expose(max(500+FIRE_MINIMUM_TEMPERATURE_TO_EXIST,T.return_air().return_temperature()), 100)
-			playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
-			supermatter_zap(src, 5, power)
-			for(var/i = 1 to 20)
-				fire_nuclear_particle()
+	if(supermatter_blob)
+		if(!check_containment(src, 5))
+			powerloss_inhibitor = 0.01
+			power += 10000
+			if(prob(2))
+				empulse(src, 10, 5)
+			if(prob(30))
+				radiation_pulse(src, 5000, 4)
+				pulsewave()
+				T.hotspot_expose(max(500+FIRE_MINIMUM_TEMPERATURE_TO_EXIST,T.return_air().return_temperature()), 100)
+				playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
+				supermatter_zap(src, 5, power)
+				for(var/i = 1 to 20)
+					fire_nuclear_particle()
 		if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 			damage += DAMAGE_HARDCAP * explosion_point
-		if(prob(2))
-			empulse(src, 10, 5)
 
 	//emagged SM go BRRRRRRR here
 	if(antinoblium_attached && !noblium_suppressed)

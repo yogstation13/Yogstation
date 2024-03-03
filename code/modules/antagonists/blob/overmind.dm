@@ -45,6 +45,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/announcement_time
 	var/has_announced = FALSE
 	var/basemodifier = 1
+	var/contained = FALSE
 
 /mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1, announcement_delay = 6000)
 	validate_location()
@@ -129,9 +130,19 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(!victory_in_progress && max_count < blobs_legit.len)
 		max_count = blobs_legit.len
 
-	if((world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
-		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/default/outbreak5.ogg')
-		has_announced = TRUE
+	if((world.time >= announcement_time || blobs_legit.len >= announcement_size) && (!has_announced || !contained))
+		if(check_containment(blob_core, 5) && !contained && !has_announced)
+			priority_announce("Confirmed outbreak Level 5 biohazard containment success acknowledged aboard [station_name()].", "Biohazard Containment Alert", 'sound/misc/notice1.ogg', color_override="green")
+			contained = TRUE
+			SSshuttle.clearHostileEnvironment(src)
+		else if(!check_containment(blob_core, 5) && contained && !has_announced)
+			priority_announce("Confirmed outbreak Level 5 biohazard containment breach detected aboard [station_name()], located at [blob_core.x]X [blob_core.y]Y [blob_core.z]Z. All personnel must attempt to re-contain, otherwise station loss is inevitable.", "Biohazard Containment Alert", 'sound/misc/notice1.ogg', color_override="red")
+			contained = FALSE
+			has_announced = TRUE
+			SSshuttle.registerHostileEnvironment(src)
+		else if(!check_containment(blob_core, 5) && !contained && !has_announced)
+			priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/default/outbreak5.ogg', color_override="yellow")
+			has_announced = TRUE
 
 /mob/camera/blob/proc/victory()
 	sound_to_playing_players('sound/machines/alarm.ogg')
@@ -236,24 +247,6 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		return
 
 	blob_talk(message)
-
-/mob/camera/blob/attack_ghost(mob/user)
-	. = ..()
-	become_blob(user)
-
-/mob/camera/blob/proc/become_blob(mob/user)
-	if(is_banned_from(user.key, ROLE_BLOB))
-		to_chat(user, span_warning("You are banned from being a blob!"))
-		return
-	if(key)
-		to_chat(user, span_warning("Someone else already took this [name]!"))
-		return
-	var/blob_ask = tgui_alert(user,"Become [name]?", "BLOBBER", list("Yes", "No"))
-	if(blob_ask == "No" || QDELETED(src))
-		return
-	key = user.key
-	log_game("[key_name(user)] took control of [name].")
-	message_admins("[key_name(user)] took control of [name]. [ADMIN_JMP(src)].")
 
 /mob/camera/blob/proc/blob_talk(message)
 
