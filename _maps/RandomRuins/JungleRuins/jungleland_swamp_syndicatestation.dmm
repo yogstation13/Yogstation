@@ -3896,7 +3896,7 @@
 	dir = 4;
 	dwidth = 5;
 	height = 5;
-	shuttle_id = "syndicatelavalandbase_cargo";
+	id = "syndicatelavalandbase_cargo";
 	name = "Syndicate Jungle Base: Cargo Bay Dock";
 	width = 11
 	},
@@ -4031,6 +4031,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/telecomms)
+"Jk" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/jungleland/toxic_pit)
 "Jm" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -4485,10 +4489,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
-"NY" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/jungleland/toxic_pit)
 "NZ" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -4739,7 +4739,7 @@
 /area/ruin/powered/syndicate_lava_base/virology)
 "Qp" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/rust,
+/turf/open/floor/plating,
 /area/jungleland/toxic_pit)
 "Qt" = (
 /obj/machinery/light,
@@ -6914,7 +6914,7 @@ HA
 qF
 qF
 fh
-NY
+Qp
 qF
 qF
 qF
@@ -7828,10 +7828,10 @@ wk
 fh
 jQ
 qF
-Qp
-Qp
+Jk
+Jk
 fh
-Qp
+Jk
 jQ
 qF
 wk
@@ -7893,7 +7893,7 @@ fh
 fh
 qF
 qF
-Qp
+Jk
 HA
 HA
 Fi
@@ -8336,7 +8336,7 @@ El
 BL
 El
 El
-PW
+Fi
 Fi
 Fi
 Fi
@@ -8385,9 +8385,9 @@ Fi
 Fi
 Fi
 Fi
-PW
-PW
-PW
+Fi
+Fi
+Fi
 PW
 El
 Zo
@@ -8397,7 +8397,7 @@ El
 Zo
 wk
 PW
-PW
+Fi
 Fi
 Fi
 Fi
@@ -8447,8 +8447,8 @@ Fi
 Fi
 Fi
 Fi
-PW
-PW
+Fi
+Fi
 PW
 PW
 PW
@@ -8458,7 +8458,7 @@ fh
 PW
 PW
 PW
-PW
+Fi
 Fi
 Fi
 Fi
@@ -8509,8 +8509,8 @@ Fi
 Fi
 Fi
 Fi
-PW
-PW
+Fi
+Fi
 PW
 PW
 PW
@@ -8518,7 +8518,7 @@ fh
 PW
 PW
 PW
-PW
+Fi
 Fi
 Fi
 Fi
@@ -8572,13 +8572,13 @@ Fi
 Fi
 Fi
 Fi
+Fi
 PW
 PW
 PW
 PW
 PW
-PW
-PW
+Fi
 Fi
 Fi
 Fi
@@ -8634,11 +8634,11 @@ Fi
 Fi
 Fi
 Fi
-PW
-PW
-PW
-PW
-PW
+Fi
+Fi
+Fi
+Fi
+Fi
 Fi
 Fi
 Fi
