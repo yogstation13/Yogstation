@@ -5,10 +5,11 @@
 	job_rank = ROLE_DARKSPAWN
 	antag_hud_name = "darkspawn"
 	ui_name = "AntagInfoDarkspawn"
-	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
 	antag_moodlet = /datum/mood_event/sling
 
+	var/datum/team/darkspawn/team
 	var/disguise_name //name of the player character
+	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
 
 	//Psi variables
 	var/psi = 100 //Psi is the resource used for darkspawn powers
@@ -24,6 +25,47 @@
 	var/dark_healing = 5
 	var/light_burning = 7
 
+/datum/antagonist/darkspawn/get_team()
+	return team
+
+/datum/antagonist/darkspawn/create_team(datum/team/darkspawn/new_team)
+	if(!new_team)
+		return
+	if(!istype(new_team))
+		stack_trace("Wrong team type passed to [type] initialization.")
+	team = new_team
+
+/datum/team/darkspawn
+	name = "darkspawns"
+	member_name = "darkspawn"
+
+/datum/team/darkspawn/New(starting_members)
+	. = ..()
+	var/datum/objective/darkspawn/O = new
+	objectives += O
+	O.update_explanation_text()
+
+/datum/team/darkspawn/roundend_report()
+	var/list/parts = list()
+
+	parts += span_header("The blood brothers of [name] were:")
+	for(var/datum/mind/M in members)
+		parts += printplayer(M)
+	var/win = TRUE
+	var/objective_count = 1
+	for(var/datum/objective/objective in objectives)
+		if(objective.check_completion())
+			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
+		else
+			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
+			win = FALSE
+		objective_count++
+	if(win)
+		parts += span_greentext("The blood brothers were successful!")
+	else
+		parts += span_redtext("The blood brothers have failed!")
+
+	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------UI and Psi web stuff--------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -67,10 +109,6 @@
 /datum/antagonist/darkspawn/on_gain()
 	SSticker.mode.darkspawn += owner
 	owner.special_role = "darkspawn"
-	var/datum/objective/darkspawn/O = new
-	objectives += O
-	O.update_explanation_text()
-	owner.announce_objectives()
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()

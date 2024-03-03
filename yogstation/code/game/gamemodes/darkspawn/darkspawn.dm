@@ -27,14 +27,19 @@
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	var/darkbois = max(required_enemies, round(num_players()/14))
+
+	var/darkbois = max(required_enemies, round(num_players()/14)) //scaling number of darkspawns, but at least 2
+
+	var/datum/team/darkspawn/team = new
 	while(darkbois)
 		var/datum/mind/darkboi = antag_pick(antag_candidates)
 		darkspawn += darkboi
 		antag_candidates -= darkboi
 		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
+		team.add_member(darkboi)
 		darkbois--
+
 	required_succs = clamp(round(num_players() / 3), 15, 30)
 	GLOB.thrallnet.name = "Thrall net"
 	return TRUE
@@ -93,7 +98,15 @@
 /mob/living/proc/add_darkspawn()
 	if(!istype(mind))
 		return FALSE
-	return mind.add_antag_datum(/datum/antagonist/darkspawn)
+
+	var/datum/team/darkspawn/team
+	for (var/T in GLOB.antagonist_teams)
+		if (istype(T, /datum/team/darkspawn))
+			team = T
+	if(!team)
+		team = new
+		
+	return mind.add_antag_datum(/datum/antagonist/darkspawn, team)
 
 /mob/living/proc/remove_darkspawn()
 	if(!istype(mind))
