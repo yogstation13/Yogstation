@@ -17,13 +17,13 @@
 	var/list/report = list()
 
 	if(SSticker.mode.sacrament_done)
-		report += "<span class='greentext big'>The darkspawn have completed the Sacrament!</span><br>"
+		report += "<span class='greentext big'>The Darkspawn have ascended once again! The station has forever been lost to the veil.</span><br>"
 	else if(!SSticker.mode.sacrament_done && check_darkspawn_death())
-		report += "<span class='redtext big'>The darkspawn have been killed by the crew!</span><br>"
+		report += "<span class='redtext big'>The Darkspawn have been killed by the crew!</span><br>"
 	else if(!SSticker.mode.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		report += "<span class='redtext big'>The crew escaped the station before the darkspawn could complete the Sacrament!</span><br>"
+		report += "<span class='redtext big'>The crew escaped the station before the Darkspawn could complete the Sacrament!</span><br>"
 	else //fallback in case the round ends weirdly
-		report += "<span class='redtext big'>The darkspawn have failed!</span><br>"
+		report += "<span class='redtext big'>The Darkspawn have failed!</span><br>"
 
 	report += span_header("The darkspawns were:")
 	for(var/datum/mind/master in members)
