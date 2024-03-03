@@ -25,23 +25,23 @@
 	else //fallback in case the round ends weirdly
 		report += "<span class='redtext big'>The darkspawn have failed!</span><br>"
 
-	result += span_header("The darkspawns were:")
-	for(var/datum/mind/darkspawn in members)
-		result += printplayer(abductor_mind)
+	report += span_header("The darkspawns were:")
+	for(var/datum/mind/master in members)
+		report += printplayer(master)
 
 	if(LAZYLEN(veils))
-		result += span_header("The veils were:")
-		for(var/datum/mind/veils in members)
-			result += printplayer(abductor_mind)
+		report += span_header("The veils were:")
+		for(var/datum/mind/veil in veils)
+			report += printplayer(veil)
 
 
 	return report
 
 /datum/team/darkspawn/proc/grant_willpower(amount = 1)
-	for(var/datum/mind/darkspawn in members)
-		if(isdarkspawn(dspawn)) //sanity check
-			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(dspawn)
-			darkspawn.willpower += amount
+	for(var/datum/mind/master in members)
+		if(master.has_antag_datum(/datum/antagonist/darkspawn)) //sanity check
+			var/datum/antagonist/darkspawn/antag = master.has_antag_datum(/datum/antagonist/darkspawn)
+			antag.willpower += amount
 
 /datum/team/darkspawn/add_member(datum/mind/new_member)
 	. = ..()
