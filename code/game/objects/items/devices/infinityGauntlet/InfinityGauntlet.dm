@@ -18,3 +18,18 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 
+/obj/item/infinity_stone
+	desc = "you shouldn't have this"
+	
+/obj/item/infinity_stone/attackby(obj/item/A, mob/user)
+	if(istype(A, /obj/item/clothing/gloves/infinity))
+		install(A, user)
+	else
+		..()
+
+/obj/item/infinity_stone/proc/install(obj/item/item, mob/user)
+	. = TRUE
+	if(istype(item, /obj/item/infinity_stone/mind))
+		var/datum/action/cooldown/spell/aoe/repulse/wizard/mind_stone/repulse = new(user)
+		repulse.Grant(user)
+		

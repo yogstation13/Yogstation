@@ -1,4 +1,4 @@
-/obj/item/infinity_reality_stone
+/obj/item/infinity_stone/reality
 	name = "Reality Stone"
 	desc = "A stone that allows the wielder to control the fabric of reality."
 	icon = 'icons/obj/gauntlet.dmi'
@@ -9,13 +9,13 @@
 /datum/action/cooldown/spell/spacetime_dist/reality_stone
 	spell_requirements = NONE
 
-/obj/item/infinity_reality_stone/equipped(mob/user, slot)
+/obj/item/infinity_stone/reality/equipped(mob/user, slot)
 	. = ..()
 	if(slot & ITEM_SLOT_HANDS)
 		var/datum/action/cooldown/spell/spacetime_dist/reality_stone/reality = new(user)
 		reality.Grant(user)
 
-/obj/item/infinity_reality_stone/dropped(mob/user)
+/obj/item/infinity_stone/reality/dropped(mob/user)
 	. = ..()
 	var/datum/action/cooldown/spell/spacetime_dist/reality_stone/reality = locate(/datum/action/cooldown/spell/spacetime_dist/reality_stone) in user.actions
 	if(reality)

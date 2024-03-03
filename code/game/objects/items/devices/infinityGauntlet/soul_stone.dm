@@ -1,4 +1,4 @@
-/obj/item/infinity_soul_stone
+/obj/item/infinity_stone/soul
 	name = "Soul Stone"
 	desc = "A stone that allows the wielder to swap souls with another."
 	icon = 'icons/obj/gauntlet.dmi'
@@ -9,13 +9,13 @@
 	spell_requirements = NONE
 	unconscious_amount_victim = 2 SECONDS
 
-/obj/item/infinity_soul_stone/equipped(mob/user, slot)
+/obj/item/infinity_stone/soul/equipped(mob/user, slot)
 	. = ..()
 	if(slot & ITEM_SLOT_HANDS)
 		var/datum/action/cooldown/spell/pointed/mind_transfer/soul_stone/soulswap = new(user)
 		soulswap.Grant(user)
 
-/obj/item/infinity_soul_stone/dropped(mob/user)
+/obj/item/infinity_stone/soul/dropped(mob/user)
 	. = ..()
 	var/datum/action/cooldown/spell/pointed/mind_transfer/soul_stone/soulswap = locate(/datum/action/cooldown/spell/pointed/mind_transfer/soul_stone) in user.actions
 	if(soulswap)
