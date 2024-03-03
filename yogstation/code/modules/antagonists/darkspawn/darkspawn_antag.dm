@@ -25,84 +25,6 @@
 	var/dark_healing = 5
 	var/light_burning = 7
 
-/datum/antagonist/darkspawn/get_team()
-	return team
-
-/datum/antagonist/darkspawn/create_team(datum/team/darkspawn/new_team)
-	if(!new_team)
-		return
-	if(!istype(new_team))
-		stack_trace("Wrong team type passed to [type] initialization.")
-	team = new_team
-
-/datum/team/darkspawn
-	name = "darkspawns"
-	member_name = "darkspawn"
-
-/datum/team/darkspawn/New(starting_members)
-	. = ..()
-	var/datum/objective/darkspawn/O = new
-	objectives += O
-	O.update_explanation_text()
-
-/datum/team/darkspawn/roundend_report()
-	var/list/parts = list()
-
-	parts += span_header("The blood brothers of [name] were:")
-	for(var/datum/mind/M in members)
-		parts += printplayer(M)
-	var/win = TRUE
-	var/objective_count = 1
-	for(var/datum/objective/objective in objectives)
-		if(objective.check_completion())
-			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
-		else
-			parts += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
-			win = FALSE
-		objective_count++
-	if(win)
-		parts += span_greentext("The blood brothers were successful!")
-	else
-		parts += span_redtext("The blood brothers have failed!")
-
-	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
-////////////////////////////////////////////////////////////////////////////////////
-//----------------------------UI and Psi web stuff--------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/darkspawn/ui_data(mob/user)
-	var/list/data = list()
-
-	data["willpower"] = willpower
-	
-	return data
-
-/datum/antagonist/darkspawn/ui_static_data(mob/user)
-	var/list/data = list()
-	
-	data["antag_name"] = name
-	data["objectives"] = get_objectives()
-	data["lucidity_drained"] = SSticker.mode.lucidity
-	data["required_succs"] = SSticker.mode.required_succs
-	data["specialization"] = "none"
-
-	var/datum/component/darkspawn_class/class = user.GetComponent(/datum/component/darkspawn_class)
-	if(class && istype(class) && class.specialization_flag)
-		data["specialization"] = class.specialization_flag
-
-	return data
-
-/datum/antagonist/darkspawn/ui_act(action, params)
-	. = ..()
-	if(.)
-		return
-	switch(action)
-		if("purchase")
-			var/upgrade_path = text2path(params["upgrade_path"])
-			if(!ispath(upgrade_path, /datum/psi_web))
-				return FALSE
-			//var/datum/psi_web/selected = new upgrade_path
-			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
-
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Gain and loss stuff---------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -155,7 +77,7 @@
 		qdel(owner.current.GetComponent(/datum/component/internal_cam))
 
 ////////////////////////////////////////////////////////////////////////////////////
-//----------------------------Greet and Objective---------------------------------//
+//------------------------------------Greet---------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/greet()
 	var/mob/user = owner.current
@@ -172,24 +94,35 @@
 	report += span_boldwarning("If you do not do this within twenty five minutes, this will happen involuntarily. Prepare quickly.")
 	to_chat(user, report.Join("<br>"))
 
-/datum/objective/darkspawn
-	explanation_text = "Become lucid and perform the Sacrament."
-
-/datum/objective/darkspawn/update_explanation_text()
-	explanation_text = "Devour enough wills to gain [SSticker.mode.required_succs] lucidity and perform the sacrament."
-
-/datum/objective/darkspawn/check_completion()
-	if(..())
-		return TRUE
-	return (SSticker.mode.sacrament_done)
-
 ////////////////////////////////////////////////////////////////////////////////////
-//------------------------------Round End stuff-----------------------------------//
+//------------------------------Antag Team stuff----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/darkspawn/roundend_report()
-	return "[owner ? printplayer(owner) : "Unnamed Darkspawn"]"
+/datum/antagonist/darkspawn/get_team()
+	return team
 
-/datum/antagonist/darkspawn/roundend_report_header() //put lore flavour in here
+/datum/antagonist/darkspawn/create_team(datum/team/darkspawn/new_team)
+	if(!new_team)
+		return
+	if(!istype(new_team))
+		stack_trace("Wrong team type passed to [type] initialization.")
+	team = new_team
+
+//the team itself
+/datum/team/darkspawn
+	name = "darkspawns"
+	member_name = "darkspawn"
+	var/list/datum/mind/veils = list() //not quite members (the darkspawns)
+	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
+	var/lucidity = 0
+	var/max_veils = 0
+
+/datum/team/darkspawn/New(starting_members)
+	. = ..()
+	var/datum/objective/darkspawn/O = new
+	objectives += O
+	O.update_explanation_text()
+
+/datum/team/darkspawn/roundend_report()
 	var/list/report = list()
 
 	if(SSticker.mode.sacrament_done)
@@ -203,12 +136,40 @@
 
 	return report
 
-/datum/antagonist/darkspawn/proc/check_darkspawn_death() //check if a darkspawn is still alive
-	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
-		var/datum/mind/dark_mind = DM
+/datum/team/darkspawn/proc/add_veil(datum/mind/new_member)
+	if(LAZYLEN(veils) >= max_veils)
+		return FALSE
+	veils |= new_member
+	return TRUE
+
+/datum/team/darkspawn/proc/remove_veil(datum/mind/member)
+	veils -= member
+	return TRUE
+
+/datum/team/darkspawn/proc/update_objectives()
+	for(var/datum/objective/darkspawn/O as anything in objectives)
+		if(istype(O))
+			O.required_succs = src.required_succs
+			O.update_explanation_text()
+
+/datum/team/darkspawn/proc/check_darkspawn_death() //check if a darkspawn is still alive
+	for(var/datum/mind/dark_mind as anything in members)
 		if(istype(dark_mind) && (dark_mind?.current?.stat != DEAD))
 			return FALSE
 	return TRUE
+
+//the objective
+/datum/objective/darkspawn
+	explanation_text = "Become lucid and perform the Sacrament."
+	var/required_succs = 20
+
+/datum/objective/darkspawn/update_explanation_text()
+	explanation_text = "Devour enough wills to gain [required_succs] lucidity and perform the sacrament."
+
+/datum/objective/darkspawn/check_completion()
+	if(..())
+		return TRUE
+	return SSticker.mode.sacrament_done
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Admin panel stuff---------------------------------//
@@ -224,8 +185,8 @@
 
 /datum/antagonist/darkspawn/proc/set_lucidity(mob/admin)
 	var/lucid = input(admin, "How much lucidity should all darkspawns have?") as null|num
-	if(lucid)
-		SSticker.mode.lucidity = lucid
+	if(lucid && team)
+		team.lucidity = lucid
 
 /datum/antagonist/darkspawn/proc/set_shop(mob/admin)
 	var/will = input(admin, "How much willpower should [owner] have?") as null|num
@@ -234,8 +195,8 @@
 
 /datum/antagonist/darkspawn/proc/set_max_veils(mob/admin)
 	var/thrall = input(admin, "How many veils should the darkspawn team be able to get?") as null|num
-	if(thrall)
-		SSticker.mode.max_veils = thrall
+	if(thrall && team)
+		team.max_veils = thrall
 
 /datum/antagonist/darkspawn/proc/set_psi(mob/admin)
 	var/max = input(admin, "What should the psi cap be?") as null|num
@@ -263,6 +224,43 @@
 		. += "<b>Upgrades:</b><br>"
 		for(var/datum/psi_web/ability as anything in class.learned_abilities)
 			. += "[ability.name]<br>"
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------UI and Psi web stuff--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/darkspawn/ui_data(mob/user)
+	var/list/data = list()
+
+	data["willpower"] = willpower
+	
+	return data
+
+/datum/antagonist/darkspawn/ui_static_data(mob/user)
+	var/list/data = list()
+	
+	data["antag_name"] = name
+	data["objectives"] = get_objectives()
+	data["lucidity_drained"] = SSticker.mode.lucidity
+	data["required_succs"] = SSticker.mode.required_succs
+	data["specialization"] = "none"
+
+	var/datum/component/darkspawn_class/class = user.GetComponent(/datum/component/darkspawn_class)
+	if(class && istype(class) && class.specialization_flag)
+		data["specialization"] = class.specialization_flag
+
+	return data
+
+/datum/antagonist/darkspawn/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("purchase")
+			var/upgrade_path = text2path(params["upgrade_path"])
+			if(!ispath(upgrade_path, /datum/psi_web))
+				return FALSE
+			//var/datum/psi_web/selected = new upgrade_path
+			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//

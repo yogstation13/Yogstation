@@ -55,10 +55,13 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		to_chat(owner, span_velvet("You revitalize your veil [target.real_name]."))
 		target.revive(TRUE, TRUE)
 		target.grab_ghost()
-	else if(target.add_veil())
-		if(master.willpower < willpower_cost) //sanity check
-			to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
-			return FALSE
+		return TRUE
+
+	if(master.willpower < willpower_cost) //sanity check
+		to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
+		return FALSE
+
+	if(target.add_veil())
 		master.willpower -= willpower_cost
 		to_chat(owner, span_velvet("...xthl'kap"))
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))

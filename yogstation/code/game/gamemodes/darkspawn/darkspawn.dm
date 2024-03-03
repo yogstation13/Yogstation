@@ -1,10 +1,5 @@
-/datum/game_mode //this is a mess, to-do, rework darkspawns to use teams
-	var/list/datum/mind/darkspawn = list()
-	var/list/datum/mind/veils = list()
-	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
-	var/lucidity = 0
+/datum/game_mode
 	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
-	var/max_veils = 0
 
 /datum/game_mode/darkspawn
 	name = "darkspawn"
@@ -17,6 +12,7 @@
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
 	title_icon = "ss13"
+	var/datum/team/darkspawn/team
 
 /datum/game_mode/darkspawn/announce()
 	to_chat(world, "<b>The current game mode is - Darkspawn!</b>")
@@ -30,17 +26,17 @@
 
 	var/darkbois = max(required_enemies, round(num_players()/14)) //scaling number of darkspawns, but at least 2
 
-	var/datum/team/darkspawn/team = new
+	team = new
 	while(darkbois)
 		var/datum/mind/darkboi = antag_pick(antag_candidates)
-		darkspawn += darkboi
 		antag_candidates -= darkboi
 		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
 		team.add_member(darkboi)
 		darkbois--
 
-	required_succs = clamp(round(num_players() / 3), 15, 30)
+	team.required_succs = clamp(round(num_players() / 3), 15, 30)
+	team.update_objectives()
 	GLOB.thrallnet.name = "Thrall net"
 	return TRUE
 
@@ -49,7 +45,7 @@
 	Be wary of dark areas and ensure all lights are kept well-maintained. Investigate all reports of odd or suspicious sightings in maintenance, and be on the lookout for anyone sympathizing with these aliens, as they may be compromised"
 
 /datum/game_mode/darkspawn/post_setup()
-	for(var/T in darkspawn)
+	for(var/T in team.members)
 		var/datum/mind/darkboi = T
 		log_game("[darkboi.key] (ckey) has been selected as a darkspawn.")
 		darkboi.current.add_darkspawn()
@@ -71,22 +67,6 @@
 	. = ..()
 	if(check_darkspawn_death())
 		return TRUE
-
-/datum/game_mode/proc/auto_declare_completion_darkspawn()
-	var/text = ""
-	if(darkspawn.len)
-		text += "<br><span class='big'><b>The darkspawn were:</b></span>"
-		for(var/D in darkspawn)
-			var/datum/mind/darkboi = D
-			text += printplayer(darkboi)
-		text += "<br>"
-		if(veils.len)
-			text += "<br><span class='big'><b>The veils were:</b></span>"
-			for(var/V in veils)
-				var/datum/mind/veil = V
-				text += printplayer(veil)
-	text += "<br>"
-	to_chat(world, text)
 
 /datum/game_mode/darkspawn/set_round_result()
 	..()
@@ -116,8 +96,6 @@
 /mob/living/proc/add_veil()
 	if(!istype(mind))
 		return FALSE
-	if(LAZYLEN(SSticker.mode.veils) >= SSticker.mode.max_veils)
-		return FALSE
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		src.visible_message(span_warning("[src] seems to resist an unseen force!"))
 		to_chat(src, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
@@ -128,11 +106,30 @@
 		[span_boldwarning("The creature's gaze swallows the universe into blackness.")])\n\
 		[span_boldwarning("It cannot be permitted to succeed.")]")
 		return FALSE
-	return mind.add_antag_datum(/datum/antagonist/veil)
+
+	var/datum/team/darkspawn/team
+	for (var/T in GLOB.antagonist_teams) //let's just hope there's never multiple darkspawn teams, or they could start mixing up veils
+		if (istype(T, /datum/team/darkspawn))
+			team = T
+	if(team && !team.add_veil(mind))
+		return FALSE
+
+	. = mind.add_antag_datum(/datum/antagonist/veil)
+	
+	var/datum/antagonist/veil/dude = isveil(src) //they are not a true member of the team
+	if(dude && istype(dude))
+		dude.team = team
 
 /mob/living/proc/remove_veil()
 	if(!istype(mind))
 		return FALSE
+		
+	var/datum/antagonist/veil/dude = isveil(src) //they are not a true member of the team
+	if(dude && istype(dude))
+		var/datum/team/darkspawn/team = dude.get_team()
+		if(team && istype(team))
+			team.remove_veil(mind)
+
 	return mind.remove_antag_datum(/datum/antagonist/veil)
 
 /datum/game_mode/darkspawn/generate_credit_text()
