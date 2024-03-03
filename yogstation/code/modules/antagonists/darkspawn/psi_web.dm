@@ -123,8 +123,12 @@
 
 /datum/psi_web/warlock/on_gain()
 	darkspawn.psi_cap += 100
-	SSticker.mode.max_veils += 3
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(team)
+		team.max_veils += 3
 
 /datum/psi_web/warlock/on_loss()
 	darkspawn.psi_cap -= 100
-	SSticker.mode.max_veils -= 3
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(team)
+		team.max_veils -= 3
