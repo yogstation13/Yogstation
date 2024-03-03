@@ -18,7 +18,27 @@
 	resistance_flags = NONE
 	var/damaged = FALSE
 
-/obj/item/clothing/gloves/color/fyellow/proc/get_shocked()
+/obj/item/clothing/gloves/color/fyellow/equipped(mob/user, slot)
+	. = ..()
+	if(slot & ITEM_SLOT_GLOVES)
+		RegisterSignal(user, COMSIG_LIVING_SHOCK_PREVENTED, PROC_REF(get_shocked))
+
+/obj/item/clothing/gloves/fyellow/dropped(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_GLOVES)==src)
+		UnregisterSignal(user, COMSIG_LIVING_SHOCK_PREVENTED)
+	return ..()
+
+/obj/item/clothing/gloves/color/fyellow/proc/get_shocked(mob/living/carbon/victim, power_source, source, siemens_coeff, dist_check)
+	var/list/powernet_info = get_powernet_info_from_source(power_source)
+	if (!powernet_info)
+		return FALSE
+
+	var/datum/powernet/net = powernet_info["powernet"]
+	var/obj/item/stock_parts/cell/cell = powernet_info["cell"]
+
+	if(!(net?.get_electrocute_damage() || cell?.get_electrocute_damage()))
+		return FALSE
+
 	if(damaged)
 		to_chat(loc, span_warning("Your gloves catch fire and disintegrate!"))
 		new/obj/effect/decal/cleanable/ash(src)

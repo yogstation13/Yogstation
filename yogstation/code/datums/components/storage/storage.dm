@@ -8,7 +8,7 @@
 	if (.)
 		SEND_SIGNAL(parent, COMSIG_STORAGE_REMOVED, AM, new_location)
 
-/datum/component/storage/RemoveComponent() // hey TG you dropped this
+/datum/component/storage/ClearFromParent() // hey TG you dropped this
 	UnregisterSignal(parent, COMSIG_CONTAINS_STORAGE)
 	UnregisterSignal(parent, COMSIG_IS_STORAGE_LOCKED)
 	UnregisterSignal(parent, COMSIG_TRY_STORAGE_SHOW)
@@ -43,12 +43,12 @@
 	UnregisterSignal(parent, COMSIG_CLICK_ALT)
 	UnregisterSignal(parent, COMSIG_MOUSEDROP_ONTO)
 	UnregisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO)
-	. = ..()
+	return ..()
 
-/datum/component/storage/concrete/RemoveComponent()
+/datum/component/storage/concrete/ClearFromParent()
 	UnregisterSignal(parent, COMSIG_ATOM_CONTENTS_DEL)
 	UnregisterSignal(parent, COMSIG_OBJ_DECONSTRUCT)
-	. = ..()
+	return ..()
 
 // You know, TG created the component system to prevent exactly this problem.
 // Turns out they did a shit job. Enjoy the literal copypaste.
@@ -89,7 +89,7 @@
 			user.visible_message(span_warning("An unseen force knocks [user] to the ground!"), "[span_big_brass("\"I think not!\"")]")
 			user.Paralyze(60)
 			return
-		if(istype(loccheck.loc, /area/fabric_of_reality))
+		if(istype(loccheck.loc, /area/centcom/fabric_of_reality))
 			to_chat(user, span_danger("You can't do that here!"))
 		to_chat(user, span_danger("The Bluespace interfaces of the two devices catastrophically malfunction!"))
 		playsound(loccheck,'sound/effects/supermatter.ogg', 200, 1)

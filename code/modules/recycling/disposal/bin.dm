@@ -11,19 +11,29 @@
 	interaction_flags_machine = INTERACT_MACHINE_OPEN | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 	obj_flags = CAN_BE_HIT | USES_TGUI
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
-	var/datum/gas_mixture/air_contents	// internal reservoir
+	/// The internal air reservoir of the disposal
+	var/datum/gas_mixture/air_contents
+	/// Is the disposal at full pressure
 	var/full_pressure = FALSE
+	/// Is the pressure charging
 	var/pressure_charging = TRUE
-	var/flush = 0	// true if flush handle is pulled
-	var/obj/structure/disposalpipe/trunk/trunk = null // the attached pipe trunk
-	var/flushing = 0	// true if flushing in progress
-	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
-	var/flush_count = 0 //this var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
+	// True if flush handle is pulled
+	var/flush = FALSE
+	/// The attached pipe trunk
+	var/obj/structure/disposalpipe/trunk/trunk = null
+	/// True if flushing in progress
+	var/flushing = FALSE
+	/// Every 30 ticks it will look whether it is ready to flush
+	var/flush_every_ticks = 30
+	/// This var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
+	var/flush_count = 0
+	/// The last time a sound was played
 	var/last_sound = 0
+	/// The stored disposal construction pipe
 	var/obj/structure/disposalconstruct/stored
-	// create a new disposal
-	// find the attached trunk (if present) and init gas resvr.
 
+// create a new disposal
+// find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize(mapload, obj/structure/disposalconstruct/make_from)
 	. = ..()
 
@@ -39,7 +49,7 @@
 
 	air_contents = new /datum/gas_mixture()
 	//gas.volume = 1.05 * CELLSTANDARD
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 	return INITIALIZE_HINT_LATELOAD //we need turfs to have air
 
@@ -99,7 +109,7 @@
 		if((I.item_flags & ABSTRACT) || !user.temporarilyRemoveItemFromInventory(I))
 			return
 		place_item_in_disposal(I, user)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 		return 1 //no afterattack
 	else
 		return ..()
@@ -143,7 +153,7 @@
 			target.visible_message(span_danger("[user] has placed [target] in [src]."), span_userdanger("[user] has placed [target] in [src]."))
 			log_combat(user, target, "stuffed", addition="into [src]")
 			target.LAssailant = WEAKREF(user)
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/disposal/relaymove(mob/user)
 	attempt_escape(user)
@@ -160,14 +170,14 @@
 // leave the disposal
 /obj/machinery/disposal/proc/go_out(mob/user)
 	user.forceMove(loc)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 // monkeys and xenos can only pull the flush lever
 /obj/machinery/disposal/attack_paw(mob/user)
 	if(stat & BROKEN)
 		return
 	flush = !flush
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 
 // eject the contents of the disposal unit
@@ -176,7 +186,7 @@
 	for(var/atom/movable/AM in src)
 		AM.forceMove(T)
 		AM.pipe_eject(0)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/disposal/proc/flush()
 	flushing = TRUE
@@ -229,7 +239,7 @@
 			src.transfer_fingerprints_to(stored)
 			stored.anchored = FALSE
 			stored.density = TRUE
-			stored.update_appearance(UPDATE_ICON)
+			stored.update_appearance()
 	for(var/atom/movable/AM in src) //out, out, darned crowbar!
 		AM.forceMove(T)
 	..()
@@ -270,8 +280,8 @@
 		to_chat(user, span_warning("You empty the bag."))
 		for(var/obj/item/O in T.contents)
 			STR.remove_from_storage(O,src)
-		T.update_appearance(UPDATE_ICON)
-		update_appearance(UPDATE_ICON)
+		T.update_appearance()
+		update_appearance()
 	else
 		return ..()
 
@@ -282,7 +292,7 @@
 	if(!user.canUseTopic(src, TRUE))
 		return
 	flush = !flush
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/disposal/bin/ui_state(mob/user)
 	return GLOB.notcontained_state
@@ -312,22 +322,22 @@
 	switch(action)
 		if("handle-0")
 			flush = FALSE
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 			. = TRUE
 		if("handle-1")
 			if(!panel_open)
 				flush = TRUE
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 			. = TRUE
 		if("pump-0")
 			if(pressure_charging)
 				pressure_charging = FALSE
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 			. = TRUE
 		if("pump-1")
 			if(!pressure_charging)
 				pressure_charging = TRUE
-				update_appearance(UPDATE_ICON)
+				update_appearance()
 			. = TRUE
 		if("eject")
 			eject()
@@ -340,10 +350,10 @@
 			AM.forceMove(src)
 			if(ismob(AM))
 				do_flush()
-				visible_message(span_notice("[AM] lands in [src] and triggers the flush system!."))
+				visible_message(span_notice("[AM] lands in [src] and triggers the flush system!"))
 			else
 				visible_message(span_notice("[AM] lands in [src]."))
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 		else
 			visible_message(span_notice("[AM] bounces off of [src]'s rim!"))
 			return ..()
@@ -354,7 +364,7 @@
 	..()
 	full_pressure = FALSE
 	pressure_charging = TRUE
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/disposal/bin/update_overlays()
 	. = ..()
@@ -374,12 +384,15 @@
 	//check for items in disposal - occupied light
 	if(contents.len > 0)
 		. += "[base_icon_state]-full"
+		. += emissive_appearance(icon, "[base_icon_state]-full", src, alpha = src.alpha)
 
 	//charging and ready light
 	if(pressure_charging)
 		. += "[base_icon_state]-charge"
+		. += emissive_appearance(icon, "[base_icon_state]-charge-glow", src, alpha = src.alpha)
 	else if(full_pressure)
 		. += "[base_icon_state]-ready"
+		. += emissive_appearance(icon, "[base_icon_state]-ready-glow", src, alpha = src.alpha)
 
 /obj/machinery/disposal/bin/proc/do_flush()
 	set waitfor = FALSE
@@ -430,7 +443,7 @@
 	if(air_contents.return_pressure() >= SEND_PRESSURE)
 		full_pressure = TRUE
 		pressure_charging = FALSE
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	return
 
 /obj/machinery/disposal/bin/get_remote_view_fullscreens(mob/user)

@@ -33,6 +33,13 @@
 #define COLOR_HALF_TRANSPARENT_BLACK "#0000007A"
 
 #define COLOR_RED "#FF0000"
+#define COLOR_CHRISTMAS_RED "#D6001C"
+#define COLOR_OLD_GLORY_RED "#B22234"
+#define COLOR_FRENCH_RED "#EF4135"
+#define COLOR_ETHIOPIA_RED "#DA121A"
+#define COLOR_UNION_JACK_RED "#C8102E"
+#define COLOR_MEDIUM_DARK_RED "#CC0000"
+#define COLOR_PINK_RED "#EF3340"
 #define COLOR_SYNDIE_RED "#F10303"
 #define COLOR_MOSTLY_PURE_RED "#FF3300"
 #define COLOR_DARK_RED "#A50824"
@@ -48,7 +55,10 @@
 
 #define COLOR_YELLOW "#FFFF00"
 #define COLOR_VIVID_YELLOW "#FBFF23"
+#define COLOR_TANGERINE_YELLOW "#FFCC00"
 #define COLOR_VERY_SOFT_YELLOW "#FAE48E"
+#define COLOR_GOLD "#FFD700"
+#define COLOR_ETHIOPIA_YELLOW "#FCDD09"
 
 #define COLOR_OLIVE "#808000"
 #define COLOR_ASSISTANT_OLIVE "#828163"
@@ -59,6 +69,9 @@
 #define COLOR_VERY_PALE_LIME_GREEN "#DDFFD3"
 #define COLOR_VERY_DARK_LIME_GREEN "#003300"
 #define COLOR_GREEN "#008000"
+#define COLOR_CHRISTMAS_GREEN "#00873E"
+#define COLOR_IRISH_GREEN "#169B62"
+#define COLOR_ETHIOPIA_GREEN "#078930"
 #define COLOR_DARK_MODERATE_LIME_GREEN "#44964A"
 #define COLOR_PAI_GREEN "#00FF88"
 #define COLOR_PALE_GREEN "#20e28e"
@@ -68,6 +81,9 @@
 #define COLOR_DARK_CYAN "#00A2FF"
 #define COLOR_TEAL "#008080"
 #define COLOR_BLUE "#0000FF"
+#define COLOR_OLD_GLORY_BLUE "#3C3B6E"
+#define COLOR_FRENCH_BLUE "#0055A4"
+#define COLOR_UNION_JACK_BLUE "#012169"
 #define COLOR_STRONG_BLUE "#1919c8"
 #define COLOR_CENTCOM_BLUE "#134975"
 #define COLOR_BRIGHT_BLUE "#2CB2E8"
@@ -94,6 +110,7 @@
 #define COLOR_DARK_PURPLE "#551A8B"
 
 #define COLOR_ORANGE "#FF9900"
+#define COLOR_IRISH_ORANGE "#FF883E"
 #define COLOR_ENGINEERING_ORANGE "#FFA62B"
 #define COLOR_MOSTLY_PURE_ORANGE "#ff8000"
 #define COLOR_TAN_ORANGE "#FF7B00"
@@ -186,11 +203,14 @@
  *
  * Important note: colors can end up significantly different from the basic html picture, especially when saturated
  */
-#define LIGHT_COLOR_WHITE		"#FFFFFF"
+/// Bright light used by default in tubes and bulbs
+#define LIGHT_COLOR_DEFAULT "#F3FFFA"
 /// Warm but extremely diluted red. rgb(250, 130, 130)
-#define LIGHT_COLOR_RED        "#FA8282"
+#define LIGHT_COLOR_RED "#FA8282"
 /// Bright but quickly dissipating neon green. rgb(100, 200, 100)
 #define LIGHT_COLOR_GREEN "#64C864"
+/// Vivid, slightly blue green. rgb(60, 240, 70)
+#define LIGHT_COLOR_VIVID_GREEN "#3CF046"
 /// Electric green. rgb(0, 255, 0)
 #define LIGHT_COLOR_ELECTRIC_GREEN "#00FF00"
 /// Cold, diluted blue. rgb(100, 150, 250)
@@ -231,6 +251,8 @@
 #define LIGHT_COLOR_LAVA "#C48A18"
 /// Bright, non-saturated red. Leaning slightly towards pink for visibility. rgb(250, 100, 75)
 #define LIGHT_COLOR_FLARE "#FA644B"
+/// Vivid red. Leans a bit darker to accentuate red colors and leave other channels a bit dry.  rgb(200, 25, 25)
+#define LIGHT_COLOR_INTENSE_RED "#C81919"
 /// Weird color, between yellow and green, very slimy. rgb(175, 200, 75)
 #define LIGHT_COLOR_SLIME_LAMP "#AFC84B"
 /// Extremely diluted yellow, close to skin color (for some reason). rgb(250, 225, 175)

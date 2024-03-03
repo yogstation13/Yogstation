@@ -23,7 +23,6 @@
 	icon_state = "station_intact"
 	plane = SPLASHSCREEN_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = SPLASHSCREEN_LAYER
 	screen_loc = "BOTTOM,LEFT+50%"
 	appearance_flags = APPEARANCE_UI | TILE_BOUND
 

@@ -3602,7 +3602,7 @@
 	dir = 8;
 	dwidth = 5;
 	height = 5;
-	id = "syndicatelavalandbase_cargo";
+	shuttle_id = "syndicatelavalandbase_cargo";
 	name = "Syndicate Lavaland Base: Cargo Bay Dock";
 	width = 11
 	},
@@ -4370,7 +4370,7 @@
 	dir = 2;
 	dwidth = 6;
 	height = 6;
-	id = "syndicatelavalandbase_arivals";
+	shuttle_id = "syndicatelavalandbase_arivals";
 	name = "Syndicate Lavaland Base: Arivals Dock";
 	width = 13
 	},

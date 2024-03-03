@@ -188,3 +188,5 @@
 	if(panel_open)
 		. += "<span class='[span_notice("The maintenance panel is [panel_open ? "opened" : "closed"].")]"
 		
+/obj/machinery/door/poddoor/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	id = "[port.shuttle_id]_[id]"

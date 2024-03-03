@@ -224,7 +224,7 @@
 
 /obj/machinery/computer/holodeck/proc/floorcheck()
 	for(var/turf/T in linked)
-		if(!T.intact || isspaceturf(T))
+		if(T.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE || isspaceturf(T))
 			return FALSE
 	return TRUE
 
@@ -239,7 +239,7 @@
 	if(!is_operational())
 		A = offline_program
 		force = TRUE
-	if(A.minimum_sec_level > GLOB.security_level && !force && !(obj_flags & EMAGGED))
+	if(A.minimum_sec_level > SSsecurity_level.get_current_level_as_number() && !force && !(obj_flags & EMAGGED))
 		say("ERROR. Program currently unavailiable, the security level is not high enough.")
 		return
 	if(program == A)
