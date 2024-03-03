@@ -6,15 +6,13 @@
 /obj/item/infinity_stone/proc/install(obj/item/clothing/gloves/infinity/gauntlets, mob/user)
 	if(!istype(gauntlets))
 		return FALSE
-	if(locate(ability_type) in gauntlets.abilities) //if they already have that infinity gem somehow
+	if(ability_type in gauntlets.abilities) //if they already have that infinity gem somehow
 		return FALSE
 	if(!user.transferItemToLoc(src, gauntlets))
 		return FALSE
 
 	to_chat(user, span_narsie("ligma balls"))
-	if(!ability)
-		ability = new ability_type()
-	gauntlets.abilities |= ability
+	gauntlets.abilities |= ability_type
 	gauntlets.update_abilities(user)
 		
 /obj/item/infinity_stone/equipped(mob/user, slot)
