@@ -136,5 +136,5 @@
 	BC.place_blob_core(BLOB_FORCE_PLACEMENT)
 	if(!check_containment(src, 5))
 		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(empulse), supermatter_turf, supermatter_explosion_power * explosion_mod, (supermatter_explosion_power * explosion_mod * 2) + (supermatter_explosion_power/4), TRUE, FALSE, FALSE, TRUE)
-	message_admins("Supermatter has created a blob. [ADMIN_JMP(BC)].")
+	message_admins("Supermatter has created a Blob Overmind. [ADMIN_JMP(BC)].")
 	notify_ghosts("A Blob Overmind has emerged through supermatter delammination!", source=BC, action=NOTIFY_ORBIT, header="Blob Overmind")

@@ -237,6 +237,24 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	blob_talk(message)
 
+/mob/camera/blob/attack_ghost(mob/user)
+	. = ..()
+	become_blob(user)
+
+/mob/camera/blob/proc/become_blob(mob/user)
+	if(is_banned_from(user.key, ROLE_BLOB))
+		to_chat(user, span_warning("You are banned from being a blob!"))
+		return
+	if(key)
+		to_chat(user, span_warning("Someone else already took this [name]!"))
+		return
+	var/blob_ask = tgui_alert(user,"Become [name]?", "BLOBBER", list("Yes", "No"))
+	if(blob_ask == "No" || QDELETED(src))
+		return
+	key = user.key
+	log_game("[key_name(user)] took control of [name].")
+	message_admins("[key_name(user)] took control of [name]. [ADMIN_JMP(src)].")
+
 /mob/camera/blob/proc/blob_talk(message)
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))

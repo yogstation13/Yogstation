@@ -78,24 +78,6 @@
 	else
 		return FALSE
 
-/obj/structure/blob/core/attack_ghost(mob/user)
-	. = ..()
-	become_blob(user)
-
-/obj/structure/blob/core/proc/become_blob(mob/user)
-	if(is_banned_from(user.key, ROLE_BLOB))
-		to_chat(user, span_warning("You are banned from being a blob!"))
-		return
-	if(overmind.key)
-		to_chat(user, span_warning("Someone else already took this [overmind.name]!"))
-		return
-	var/blob_ask = tgui_alert(user,"Become [overmind.name]?", "BLOBBER", list("Yes", "No"))
-	if(blob_ask == "No" || QDELETED(overmind))
-		return
-	overmind.key = user.key
-	log_game("[key_name(user)] took control of [overmind.name].")
-	message_admins("[key_name(user)] took control of [overmind.name]. [ADMIN_JMP(overmind)].")
-
 /obj/structure/blob/core/on_changed_z_level(turf/old_turf, turf/new_turf)
 	if(overmind && is_station_level(new_turf.z))
 		overmind.forceMove(get_turf(src))
