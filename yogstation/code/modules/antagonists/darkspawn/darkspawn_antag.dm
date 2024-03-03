@@ -210,10 +210,12 @@
 		psi_regen_delay = delay
 
 /datum/antagonist/darkspawn/antag_panel_data()
-	. += "<b>Lucidity:</b> [SSticker.mode.lucidity ? SSticker.mode.lucidity : "0"] / [SSticker.mode.required_succs ? SSticker.mode.required_succs : "0"]<br>"
+	if(team)
+		. += "<b>Lucidity:</b> [team.lucidity ? team.lucidity : "0"] / [team.required_succs ? team.required_succs : "0"]<br>"
 	. += "<b>Willpower:</b> [willpower ? willpower : "0"]<br>"
 	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? "[psi_regen_delay/10] seconds" : "no delay"]<br>"
-	. += "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
+	if(team)
+		. += "<b>Max Veils:</b> [team.max_veils ? team.max_veils : "0"]<br>"
 
 	var/mob/living/carbon/human/user = owner.current
 	if(!user || !istype(user))//sanity check
@@ -240,8 +242,9 @@
 	
 	data["antag_name"] = name
 	data["objectives"] = get_objectives()
-	data["lucidity_drained"] = SSticker.mode.lucidity
-	data["required_succs"] = SSticker.mode.required_succs
+	if(team)
+		data["lucidity_drained"] = team.lucidity
+		data["required_succs"] = team.required_succs
 	data["specialization"] = "none"
 
 	var/datum/component/darkspawn_class/class = user.GetComponent(/datum/component/darkspawn_class)
