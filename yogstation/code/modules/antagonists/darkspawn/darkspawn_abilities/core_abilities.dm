@@ -104,11 +104,13 @@
 		willpower_amount = round(willpower_amount) //make sure it's a whole number still
 
 	//pass out the willpower and lucidity to the darkspawns
-	for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
-		var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
-		if(teammate && istype(teammate))//sanity check
-			teammate.willpower += willpower_amount
-	SSticker.mode.lucidity += lucidity_amount
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(team)
+		for(var/datum/mind/dark_mind as anything in darkspawn.members)
+			var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
+			if(teammate && istype(teammate))//sanity check
+				teammate.willpower += willpower_amount
+		team.lucidity += lucidity_amount
 
 	//format the text output to the darkspawn
 	var/list/self_text = list() 
