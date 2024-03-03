@@ -132,11 +132,11 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	if((world.time >= announcement_time || blobs_legit.len >= announcement_size) && (!has_announced || !contained))
 		if(check_containment(blob_core, 5) && !contained && !has_announced)
-			priority_announce("Confirmed outbreak Level 5 biohazard containment success acknowledged aboard [station_name()].", "Biohazard Containment Alert", 'sound/misc/notice1.ogg', color_override="green")
+			priority_announce("Confirmed outbreak of level 5 biohazard containment success acknowledged aboard [station_name()].", "Biohazard Containment Alert", 'sound/misc/notice1.ogg', color_override="green")
 			contained = TRUE
 			SSshuttle.clearHostileEnvironment(src)
 		else if(!check_containment(blob_core, 5) && contained && !has_announced)
-			priority_announce("Confirmed outbreak Level 5 biohazard containment breach detected aboard [station_name()], located at [blob_core.x]X [blob_core.y]Y [blob_core.z]Z. All personnel must attempt to re-contain, otherwise station loss is inevitable.", "Biohazard Containment Alert", 'sound/misc/notice1.ogg', color_override="red")
+			priority_announce("Confirmed outbreak of level 5 biohazard containment breach detected aboard [station_name()], coordinations: x[blob_core.x] y[blob_core.y] z[blob_core.z]. All personnel must attempt to re-contain, otherwise station loss is inevitable.", "Biohazard Containment Alert", 'sound/misc/notice1.ogg', color_override="red")
 			contained = FALSE
 			has_announced = TRUE
 			SSshuttle.registerHostileEnvironment(src)
