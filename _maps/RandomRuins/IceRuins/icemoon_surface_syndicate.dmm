@@ -50,6 +50,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
+"at" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "au" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -70,6 +74,15 @@
 	},
 /mob/living/simple_animal/slime,
 /turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/xenobio)
+"aA" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "aG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -460,6 +473,9 @@
 	dir = 10
 	},
 /obj/item/storage/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "cV" = (
@@ -741,10 +757,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"ec" = (
-/obj/structure/fence/door,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "ee" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
@@ -1244,6 +1256,10 @@
 "hv" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /obj/structure/filingcabinet,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "hN" = (
@@ -1833,6 +1849,9 @@
 	pixel_y = -23;
 	req_access = list(150)
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "lG" = (
@@ -2099,15 +2118,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"mx" = (
-/obj/effect/turf_decal/tile/purple/half/contrasted{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/xenobio)
 "mJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -2302,6 +2312,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east{
+	req_access = list(150)
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "oh" = (
@@ -2725,13 +2739,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"qW" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/fence/door,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "qZ" = (
 /obj/machinery/chem_heater,
 /obj/machinery/light{
@@ -3019,10 +3026,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"sH" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "sM" = (
 /obj/structure/showcase/mecha/gygax/dark,
 /obj/machinery/door/firedoor/border_only,
@@ -3179,15 +3182,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
-"tL" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
 "tU" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
@@ -3305,6 +3299,15 @@
 /mob/living/simple_animal/slime,
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
+"uq" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = 27
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "us" = (
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
@@ -3320,6 +3323,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
+"uy" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "uz" = (
 /obj/machinery/computer/message_monitor{
 	dir = 4
@@ -3742,6 +3752,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/xenobio)
+"xq" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "xs" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -3939,6 +3953,9 @@
 "xY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "ya" = (
@@ -5078,6 +5095,9 @@
 	id = "syndieicemoon_sci_shutters";
 	name = "Window Shutters";
 	req_access_txt = "150"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -6374,6 +6394,12 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "Nk" = (
@@ -7688,6 +7714,12 @@
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "Wh" = (
@@ -8659,7 +8691,7 @@ qK
 qK
 qK
 qK
-sH
+at
 eM
 eM
 eM
@@ -9785,7 +9817,7 @@ nH
 eM
 eM
 ue
-ec
+xq
 eM
 fg
 eM
@@ -9926,7 +9958,7 @@ SF
 SF
 SF
 SF
-qW
+uy
 SF
 wk
 eM
@@ -11052,7 +11084,7 @@ eJ
 qo
 eJ
 DA
-tL
+uq
 KL
 cU
 Ly
@@ -11354,7 +11386,7 @@ zl
 pw
 LP
 wH
-mx
+aA
 Oe
 NR
 kG
