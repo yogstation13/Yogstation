@@ -1234,6 +1234,12 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"hK" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "hN" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -2584,6 +2590,13 @@
 "qi" = (
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
+"qk" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "qn" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -6958,6 +6971,7 @@
 /obj/structure/sign/warning/radiation/rad_area{
 	pixel_x = -32
 	},
+/obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "RT" = (
@@ -7130,6 +7144,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/canteen)
+"ST" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "SW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7477,9 +7495,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "Vc" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/syndicate_icemoon/reactor)
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "Vg" = (
 /obj/machinery/light{
 	dir = 4
@@ -8438,7 +8456,7 @@ qK
 qK
 eM
 eM
-eM
+fg
 eM
 FM
 Zu
@@ -8523,7 +8541,7 @@ Zu
 Zu
 Zu
 Zu
-Vc
+uj
 qK
 qK
 qK
@@ -8581,7 +8599,7 @@ qK
 qK
 qK
 qK
-eM
+ST
 eM
 eM
 eM
@@ -9173,7 +9191,7 @@ qK
 qK
 qK
 eM
-eM
+nH
 eM
 LC
 LC
@@ -9470,7 +9488,7 @@ qK
 qK
 qK
 eM
-eM
+fg
 eM
 eM
 eM
@@ -9626,14 +9644,14 @@ eM
 eM
 eM
 eM
-eM
-eM
+hK
+VN
 FF
 eM
 eM
 RR
 ue
-RR
+hK
 eP
 eM
 VN
@@ -9700,14 +9718,14 @@ eM
 eM
 eM
 eM
-eM
+hK
 eM
 FF
-eM
+nH
 eM
 eM
 ue
-eM
+Vc
 eM
 fg
 eM
@@ -9774,14 +9792,14 @@ eM
 eM
 eM
 eM
-eM
+hK
 eM
 FF
 eM
 eM
 eM
 ue
-eM
+hK
 eM
 eM
 eM
@@ -9848,18 +9866,18 @@ SF
 SF
 SF
 SF
-SF
+qk
 SF
 wk
 eM
-eM
+QJ
 oB
 rd
 oB
 eM
 eM
 eM
-eM
+nH
 eM
 YC
 iy
@@ -9922,10 +9940,10 @@ eM
 eM
 eM
 eM
-eM
-eM
+hK
+fg
 FF
-eM
+eP
 eM
 oB
 kF
@@ -10066,7 +10084,7 @@ eM
 eM
 FF
 eM
-eM
+nH
 eM
 eM
 YG
