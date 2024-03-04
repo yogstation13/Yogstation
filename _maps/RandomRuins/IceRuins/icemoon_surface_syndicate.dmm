@@ -50,6 +50,15 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
+"ap" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = 27
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "au" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -362,6 +371,10 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
+"cy" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "cz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -1006,7 +1019,6 @@
 /area/ruin/syndicate_icemoon/medical)
 "fV" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/structure/bodycontainer/morgue{
 	dir = 2
 	},
@@ -1559,6 +1571,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"ks" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/syndicate_icemoon/xenobio)
 "kt" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
@@ -2481,6 +2496,13 @@
 "pr" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/dorms)
+"pv" = (
+/obj/structure/mecha_wreckage/durand{
+	desc = "The remains of what was once a Syndicate-made Durand. The name 'china mauler' is written on its chassis with marker.";
+	name = "old mech wreckage"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "pw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2604,6 +2626,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
 "qh" = (
@@ -3301,13 +3324,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
-"uw" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/fence/door,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "uz" = (
 /obj/machinery/computer/message_monitor{
 	dir = 4
@@ -3344,15 +3360,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
-"vc" = (
-/obj/effect/turf_decal/tile/purple/half/contrasted{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/xenobio)
 "vd" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
@@ -3682,15 +3689,6 @@
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"xb" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
 "xe" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4840,6 +4838,15 @@
 /obj/item/circuitboard/machine/ore_redemption,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"Dl" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "Dm" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -4983,6 +4990,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"DQ" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "DV" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/dorms)
@@ -5122,10 +5136,6 @@
 /obj/machinery/recharger,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"EQ" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "EU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -5852,6 +5862,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
+"JC" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/xenobio)
 "JE" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -6097,10 +6114,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"KW" = (
-/obj/structure/fence/door,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "KY" = (
 /obj/machinery/vending/boozeomat/syndicate_access{
 	onstation = 0
@@ -6365,9 +6378,6 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/reactor)
-"MS" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/ruin/syndicate_icemoon/xenobio)
 "MX" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -6379,16 +6389,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"MY" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "syndie_icemoon_surgery_windows"
-	},
-/obj/machinery/door/firedoor/window{
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/medical)
 "Ng" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external{
@@ -6462,6 +6462,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"Nx" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "Nz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
@@ -6668,6 +6672,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"OX" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndie_icemoon_surgery_windows"
+	},
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/medical)
 "Pb" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
@@ -6685,17 +6699,6 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
-"Pg" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/window/reinforced/spawner/north,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/window/reinforced/spawner/west,
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/xenobio)
 "Pm" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -7606,6 +7609,10 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/north,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
 "Vg" = (
@@ -7941,13 +7948,6 @@
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"Xv" = (
-/obj/structure/sign/warning/radiation/rad_area{
-	pixel_x = -32
-	},
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "Xw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -8100,6 +8100,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"Yn" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = -32
+	},
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "Yr" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
@@ -8726,7 +8733,7 @@ qK
 qK
 qK
 qK
-EQ
+cy
 eM
 eM
 eM
@@ -9776,7 +9783,7 @@ VN
 FF
 eM
 eM
-Xv
+Yn
 ue
 RR
 eP
@@ -9852,7 +9859,7 @@ nH
 eM
 eM
 ue
-KW
+Nx
 eM
 fg
 eM
@@ -9993,7 +10000,7 @@ SF
 SF
 SF
 SF
-uw
+DQ
 SF
 wk
 eM
@@ -10893,9 +10900,9 @@ JJ
 dK
 wn
 eJ
-MY
+OX
 eJ
-MY
+OX
 eJ
 Hk
 Zo
@@ -11119,7 +11126,7 @@ eJ
 qo
 eJ
 DA
-xb
+ap
 KL
 cU
 Ly
@@ -11421,12 +11428,12 @@ zl
 pw
 LP
 wH
-vc
+Dl
 Oe
 NR
 kG
-Pg
-MS
+Vc
+ks
 wH
 iG
 iG
@@ -11573,7 +11580,7 @@ bW
 tv
 NR
 ac
-Vc
+JC
 xV
 wH
 qK
@@ -12925,7 +12932,7 @@ eM
 eM
 eP
 eM
-eM
+pv
 rk
 qK
 qK
