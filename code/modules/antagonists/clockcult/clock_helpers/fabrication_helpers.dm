@@ -239,7 +239,7 @@
 		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, src, \
 			extra_checks = CALLBACK(fabricator, TYPE_PROC_REF(/obj/item/clockwork/replica_fabricator, fabricator_repair_checks), repair_values, src, user, TRUE)))
 			break
-		obj_integrity = clamp(obj_integrity + repair_values["healing_for_cycle"], 0, max_integrity)
+		update_integrity(clamp(atom_integrity + repair_values["healing_for_cycle"], 0, max_integrity))
 		adjust_clockwork_power(-repair_values["power_required"])
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 
@@ -247,7 +247,7 @@
 		fabricator.repairing = null
 		if(user)
 			user.visible_message(span_notice("[user]'s [fabricator.name] stops covering [src] with glowing orange energy."), \
-			span_alloy("You finish repairing [src]. It is now at <b>[obj_integrity]/[max_integrity]</b> integrity."))
+			span_alloy("You finish repairing [src]. It is now at <b>[atom_integrity]/[max_integrity]</b> integrity."))
 
 //Fabricator mob heal proc, to avoid as much copypaste as possible.
 /mob/living/proc/fabricator_heal(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator)

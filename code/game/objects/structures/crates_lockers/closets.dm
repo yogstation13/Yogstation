@@ -316,7 +316,8 @@ GLOBAL_LIST_EMPTY(lockers)
 		new material_drop(loc, material_drop_amount)
 	qdel(src)
 
-/obj/structure/closet/obj_break(damage_flag)
+/obj/structure/closet/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		bust_open()
 

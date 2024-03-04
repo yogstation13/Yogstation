@@ -468,10 +468,11 @@ Class Procs:
 	. = new_frame
 	new_frame.setAnchored(anchored)
 	if(!disassembled)
-		new_frame.obj_integrity = (new_frame.max_integrity * 0.5) //the frame is already half broken
+		new_frame.update_integrity(new_frame.max_integrity * 0.5) //the frame is already half broken
 	transfer_fingerprints_to(new_frame)
 
-/obj/machinery/obj_break(damage_flag)
+/obj/machinery/atom_break(damage_flag)
+	. = ..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
@@ -613,17 +614,6 @@ Class Procs:
 	. = ..()
 	if(stat & BROKEN)
 		. += span_notice("It looks broken and non-functional.")
-	if(!(resistance_flags & INDESTRUCTIBLE))
-		if(resistance_flags & ON_FIRE)
-			. += span_warning("It's on fire!")
-		var/healthpercent = (obj_integrity/max_integrity) * 100
-		switch(healthpercent)
-			if(50 to 99)
-				. += "It looks slightly damaged."
-			if(25 to 50)
-				. += "It appears heavily damaged."
-			if(0 to 25)
-				. += span_warning("It's falling apart!")
 	if(user.research_scanner && component_parts)
 		. += display_parts(user, TRUE)
 

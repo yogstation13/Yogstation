@@ -35,7 +35,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_ABSTRACT_EXITED, PROC_REF(exited))
 	RegisterSignal(parent, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(initialized_on))
 	RegisterSignal(parent, COMSIG_ATOM_INTERCEPT_TELEPORTING, PROC_REF(block_teleport))
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(fish))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(fish))
 	//allow catwalks to give the turf the CHASM_STOPPED trait before dropping stuff when the turf is changed.
 	//otherwise don't do anything because turfs and areas are initialized before movables.
 	if(!mapload)
