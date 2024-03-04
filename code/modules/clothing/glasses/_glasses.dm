@@ -11,22 +11,21 @@
 	materials = list(/datum/material/glass = 250)
 	var/vision_flags = 0
 	var/invis_view = SEE_INVISIBLE_LIVING	//admin only for now
-	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
-	var/list/icon/current = list() //the current hud icons
-	var/vision_correction = 0 //does wearing these glasses correct some of our vision defects?
-	var/glass_colour_type //colors your vision when worn
-
+	/// Override to allow glasses to set higher than normal see_invis
+	var/invis_override = 0
 	/// A percentage of how much rgb to "max" on the lighting plane
 	/// This lets us brighten darkness without washing out bright color
 	var/lighting_cutoff = null
 	/// Similar to lighting_cutoff, except it has individual r g and b components in the same 0-100 scale
 	var/list/color_cutoffs = null
-// Potentially replace glass_color_type with a setup that colors lighting by dropping segments of different componets
-// Like the current idea, but applied without the mass cutoff (maybe? somehow?)
-// That or just a light color to the lighting plane, that'd work too
-// Enough to make it visible but not so much that it's a pain
-
-// That, or just make stuff that uses lighting_cutoff have colored offsets and all, like you were planning
+	/// The current hud icons
+	var/list/icon/current = list()
+	/// Colors your vision when worn
+	var/glass_colour_type
+	/// Whether or not vision coloring is forcing
+	var/forced_glass_color = FALSE
+	//does wearing these glasses correct some of our vision defects?
+	var/vision_correction = 0
 
 /obj/item/clothing/glasses/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -533,14 +532,13 @@
 	return ..() && isliving(owner)
 
 /datum/action/cooldown/expose/Activate(atom/exposed)
-	StartCooldown(15 SECONDS)
-
 	if(owner.stat != CONSCIOUS)
 		return FALSE
 	if(!isliving(exposed) || exposed == owner)
 		owner.balloon_alert(owner, "invalid exposed!")
 		return FALSE
-
+	StartCooldown(15 SECONDS)
+	
 	var/mob/living/living_exposed = exposed
 	living_exposed.apply_status_effect(STATUS_EFFECT_EXPOSED)
 	living_exposed.adjust_jitter(5 SECONDS)

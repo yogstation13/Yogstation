@@ -292,7 +292,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(SUPERMATTER_WARNING)
 			playsound(src, 'sound/machines/supermatter_alert.ogg', 75, FALSE, pressure_affected=FALSE)
 
-/obj/machinery/power/supermatter_crystal/proc/get_integrity()
+/obj/machinery/power/supermatter_crystal/get_integrity()
 	var/integrity = damage / explosion_point
 	integrity = round(100 - integrity * 100, 0.01)
 	integrity = integrity < 0 ? 0 : integrity
@@ -815,8 +815,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/blob_act(obj/structure/blob/B)
 	if(B && !isspaceturf(loc)) //does nothing in space
-		damage += B.obj_integrity * 0.5 //take damage equal to 50% of remaining blob health before it tried to eat us
-		if(B.obj_integrity > 100)
+		damage += B.get_integrity() * 0.5 //take damage equal to 50% of remaining blob health before it tried to eat us
+		if(B.get_integrity() > 100)
 			B.visible_message(span_danger("\The [B] strikes at \the [src] and flinches away!"),\
 			span_italics("You hear a loud crack as you are washed with a wave of heat."))
 			B.take_damage(100, BURN)

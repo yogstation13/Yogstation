@@ -172,6 +172,11 @@
 	impacted = list()
 	decayedRange = range
 
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/projectile/proc/Range()
 	range--
 	if(wound_bonus != CANT_WOUND)
@@ -244,8 +249,11 @@
 				splatter_dir = get_dir(starting, target_loca)
 			if(isalien(L) || ispolysmorph(L))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
-			else if (iscarbon(L) && !(NOBLOOD in C.dna.species.species_traits))
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir)
+			else if(iscarbon(L) && !(NOBLOOD in C.dna.species.species_traits))
+				var/splatter_color
+				var/mob/living/carbon/carbon_bleeder = L
+				splatter_color = carbon_bleeder.dna.blood_type.color
+				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, splatter_color)
 			else
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/genericsplatter(target_loca, splatter_dir)
 			var/obj/item/bodypart/B = L.get_bodypart(def_zone)
@@ -719,8 +727,7 @@
 		angle = ATAN2(y - oy, x - ox)
 	return list(angle, p_x, p_y)
 
-/obj/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
-	. = ..()
+/obj/projectile/proc/on_entered(datum/source, atom/movable/AM, ...) //A mob moving on a tile with a projectile is hit by it.
 	if(isliving(AM) && !(pass_flags & PASSMOB))
 		var/mob/living/L = AM
 		if(can_hit_target(L, impacted, (AM == original)))

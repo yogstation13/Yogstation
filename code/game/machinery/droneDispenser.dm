@@ -207,12 +207,12 @@
 			span_notice("You restore [src] to operation."))
 
 		stat &= ~BROKEN
-		obj_integrity = max_integrity
+		update_integrity(max_integrity)
 		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
-/obj/machinery/droneDispenser/obj_break(damage_flag)
+/obj/machinery/droneDispenser/atom_break(damage_flag)
 	. = ..()
 	if(!.)
 		return

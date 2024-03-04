@@ -261,7 +261,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/katana/basalt
 	name = "basalt katana"
-	desc = "a katana made out of hardened basalt. Particularly damaging to lavaland fauna. (Activate this item in hand to dodge roll in the direction you're facing)"
+	desc = "A katana made of hardened basalt. Particularly damaging to lavaland fauna. <br><b>(Activate this item in hand to dodge roll in the direction you're facing)</b>"
 	icon_state = "basalt_katana"
 	item_state = "basalt_katana"
 	force = 18

@@ -138,6 +138,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	if (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src) //Yog code because there are some templates we load right into the map
 
 	visibilityChanged()
 
@@ -166,6 +167,14 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	else
 		update_air_ref(-1)
 		__auxtools_update_turf_temp_info(isspaceturf(get_z_base_turf()))
+
+	
+	if(uses_integrity)
+		update_integrity(max_integrity)
+		if(islist(armor))
+			armor = getArmor(arglist(armor))
+		else if(!armor)
+			armor = getArmor()
 
 	return INITIALIZE_HINT_NORMAL
 

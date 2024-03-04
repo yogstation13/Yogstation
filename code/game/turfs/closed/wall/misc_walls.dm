@@ -114,8 +114,8 @@
 		user.adjustFireLoss(5)
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 
-/turf/closed/wall/clockwork/mech_melee_attack(obj/mecha/M, equip_allowed)
-	..()
+/turf/closed/wall/clockwork/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
+	. = ..()
 	if(heated)
 		to_chat(M.occupant, span_userdanger("The wall's intense heat completely reflects your [M.name]'s attack!"))
 		M.take_damage(20, BURN)

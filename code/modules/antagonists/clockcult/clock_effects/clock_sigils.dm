@@ -13,6 +13,14 @@
 	var/resist_string = "glows blinding white" //string for when a null rod blocks its effects, "glows [resist_string]"
 	var/check_antimagic = TRUE
 
+/obj/effect/clockwork/sigil/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
 		if(is_servant_of_ratvar(user) && user.a_intent != INTENT_HARM)
@@ -39,8 +47,7 @@
 	visible_message(span_warning("[src] scatters into thousands of particles."))
 	qdel(src)
 
-/obj/effect/clockwork/sigil/Crossed(atom/movable/AM)
-	..()
+/obj/effect/clockwork/sigil/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)

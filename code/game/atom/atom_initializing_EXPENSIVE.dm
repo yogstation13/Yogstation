@@ -144,6 +144,15 @@
 			temp_list[material] = custom_materials[material] //Get the proper instanced version
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
+	
+	if(uses_integrity)
+		if(islist(armor))
+			armor = getArmor(arglist(armor))
+		else if(!armor)
+			armor = getArmor()
+		else if(!istype(armor, /datum/armor))
+			stack_trace("Invalid type [armor.type] found in .armor during [type] Initialize()")
+		atom_integrity = max_integrity
 
 	return INITIALIZE_HINT_NORMAL
 

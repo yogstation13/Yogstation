@@ -185,7 +185,7 @@
 		if(prob(25)) // chance of some fun effects
 			if(prob(20))
 				A.visible_message(span_userdanger("[A] overloads and blows up!"))
-				A.obj_break()
+				A.atom_break()
 				explosion(A, 0, 0, 2, flame_range=3)
 			else
 				A.visible_message(span_userdanger("[A] overloads and makes a huge arc!"))

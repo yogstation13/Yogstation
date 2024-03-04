@@ -216,6 +216,10 @@
 /obj/structure/bonfire/prelit/Initialize(mapload)
 	. = ..()
 	StartBurning()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/structure/bonfire/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -300,8 +304,7 @@
 /obj/structure/bonfire/fire_act(exposed_temperature, exposed_volume)
 	StartBurning()
 
-/obj/structure/bonfire/Crossed(atom/movable/AM)
-	. = ..()
+/obj/structure/bonfire/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(burning & !grill)
 		Burn()
 
