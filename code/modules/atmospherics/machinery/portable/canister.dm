@@ -368,7 +368,7 @@
 
 	return TRUE
 
-/obj/machinery/portable_atmospherics/canister/obj_break(damage_flag)
+/obj/machinery/portable_atmospherics/canister/atom_break(damage_flag)
 	. = ..()
 	if(!.)
 		return
@@ -380,7 +380,7 @@
 	var/turf/T = get_turf(src)
 	T.assume_air(expelled_gas)
 
-	obj_break()
+	atom_break()
 	density = FALSE
 	playsound(src.loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	investigate_log("was destroyed.", INVESTIGATE_ATMOS)

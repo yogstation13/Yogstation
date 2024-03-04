@@ -315,13 +315,13 @@
 	icon_state = "cheesus1"
 
 /obj/structure/statue/cheese/cheesus/attackby(obj/item/W, mob/user, params)
-	if(obj_integrity <= 20)
+	if(atom_integrity <= 20)
 		icon_state = "cheesus4"
 		return ..()
-	if(obj_integrity <= 40)
+	if(atom_integrity <= 40)
 		icon_state = "cheesus3"
 		return ..()
-	if(obj_integrity <= 60)
+	if(atom_integrity <= 60)
 		icon_state = "cheesus2"
 		return ..()
 	return ..()
@@ -347,5 +347,4 @@
 	icon_state = "atmos"
 	custom_materials = list(/datum/material/metalhydrogen = MINERAL_MATERIAL_AMOUNT*10, /datum/material/zaukerite = MINERAL_MATERIAL_AMOUNT*15)
 	max_integrity = 1000
-	obj_integrity = 1000
 	impressiveness = 100
