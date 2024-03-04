@@ -190,6 +190,16 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/hunter)
+"F" = (
+/obj/item/radio/intercom{
+	freqlock = 1;
+	frequency = 1461;
+	name = "police hailing intercom";
+	pixel_x = -28;
+	desc = "An intercom used by Spacepol and civilian security forces to coordinate prisoner transfers."
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/hunter)
 
 (1,1,1) = {"
 a
@@ -275,7 +285,7 @@ b
 (10,1,1) = {"
 c
 c
-i
+F
 p
 i
 c
