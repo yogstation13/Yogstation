@@ -1234,12 +1234,6 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"hK" = (
-/obj/structure/fence{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "hN" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -1702,6 +1696,9 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/reactor)
@@ -2290,6 +2287,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/syndicate_icemoon/medical)
+"ok" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "or" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2590,13 +2594,6 @@
 "qi" = (
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"qk" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/fence/door,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "qn" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -4975,6 +4972,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/reactor)
 "Eo" = (
@@ -6968,10 +6968,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "RR" = (
-/obj/structure/sign/warning/radiation/rad_area{
-	pixel_x = -32
+/obj/structure/fence{
+	dir = 4
 	},
-/obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "RT" = (
@@ -7144,10 +7143,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/canteen)
-"ST" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "SW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7475,6 +7470,10 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
+"UI" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "UK" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -7588,6 +7587,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"VK" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = -32
+	},
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "VL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -8599,7 +8605,7 @@ qK
 qK
 qK
 qK
-ST
+UI
 eM
 eM
 eM
@@ -9644,14 +9650,14 @@ eM
 eM
 eM
 eM
-hK
+RR
 VN
 FF
 eM
 eM
-RR
+VK
 ue
-hK
+RR
 eP
 eM
 VN
@@ -9718,7 +9724,7 @@ eM
 eM
 eM
 eM
-hK
+RR
 eM
 FF
 nH
@@ -9792,14 +9798,14 @@ eM
 eM
 eM
 eM
-hK
+RR
 eM
 FF
 eM
 eM
 eM
 ue
-hK
+RR
 eM
 eM
 eM
@@ -9866,7 +9872,7 @@ SF
 SF
 SF
 SF
-qk
+ok
 SF
 wk
 eM
@@ -9940,7 +9946,7 @@ eM
 eM
 eM
 eM
-hK
+RR
 fg
 FF
 eP
