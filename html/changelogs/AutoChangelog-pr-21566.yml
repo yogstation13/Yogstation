@@ -1,4 +1,0 @@
-author: " cark"
-delete-after: true 
-changes: 
-  - mapping: "fixes an issue where psychiatrist on donut didnt have a spawnpoint"
