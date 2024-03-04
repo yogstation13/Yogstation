@@ -202,6 +202,10 @@
 	dir = 5
 	},
 /obj/machinery/light/small,
+/obj/machinery/light_switch{
+	pixel_x = -23;
+	pixel_y = 5
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/reactor)
 "bu" = (
@@ -737,6 +741,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"ec" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "ee" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
@@ -1024,6 +1032,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
+	},
+/obj/machinery/light_switch{
+	pixel_x = 6;
+	pixel_y = -25
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
@@ -1331,6 +1343,9 @@
 /obj/machinery/griddle,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
@@ -1801,6 +1816,9 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "lD" = (
@@ -2081,6 +2099,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"mx" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "mJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -2698,6 +2725,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"qW" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/fence/door,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "qZ" = (
 /obj/machinery/chem_heater,
 /obj/machinery/light{
@@ -2748,6 +2782,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
@@ -2982,6 +3019,10 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"sH" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "sM" = (
 /obj/structure/showcase/mecha/gygax/dark,
 /obj/machinery/door/firedoor/border_only,
@@ -3138,6 +3179,15 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"tL" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = 27
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "tU" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
@@ -3276,10 +3326,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
-"uD" = (
-/obj/structure/fence/door,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "uG" = (
 /obj/machinery/deepfryer,
 /obj/machinery/power/apc/auto_name/south{
@@ -3352,6 +3398,9 @@
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
@@ -3610,6 +3659,10 @@
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_y = -24;
+	pixel_x = 8
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/syndicate_icemoon/warehouse)
@@ -3999,6 +4052,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/light_switch{
+	pixel_x = -6;
+	pixel_y = 24
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "zf" = (
@@ -4109,10 +4166,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"zA" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "zG" = (
 /obj/structure/window/plasma/reinforced/spawner/north,
 /obj/machinery/door/firedoor/border_only{
@@ -6018,6 +6071,10 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/machinery/light_switch{
+	pixel_x = 13;
+	pixel_y = 23
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "KY" = (
@@ -6568,13 +6625,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"OZ" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/fence/door,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "Pb" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
@@ -6976,9 +7026,10 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "RR" = (
-/obj/structure/fence{
-	dir = 4
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = -32
 	},
+/obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "RT" = (
@@ -7498,10 +7549,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "Vc" = (
-/obj/structure/sign/warning/radiation/rad_area{
-	pixel_x = -32
+/obj/structure/fence{
+	dir = 4
 	},
-/obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "Vg" = (
@@ -7977,6 +8027,10 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light_switch{
+	pixel_x = -6;
+	pixel_y = 24
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "Yr" = (
@@ -8605,7 +8659,7 @@ qK
 qK
 qK
 qK
-zA
+sH
 eM
 eM
 eM
@@ -9650,14 +9704,14 @@ eM
 eM
 eM
 eM
-RR
+Vc
 VN
 FF
 eM
 eM
-Vc
-ue
 RR
+ue
+Vc
 eP
 eM
 VN
@@ -9724,14 +9778,14 @@ eM
 eM
 eM
 eM
-RR
+Vc
 eM
 FF
 nH
 eM
 eM
 ue
-uD
+ec
 eM
 fg
 eM
@@ -9798,14 +9852,14 @@ eM
 eM
 eM
 eM
-RR
+Vc
 eM
 FF
 eM
 eM
 eM
 ue
-RR
+Vc
 eM
 eM
 eM
@@ -9872,7 +9926,7 @@ SF
 SF
 SF
 SF
-OZ
+qW
 SF
 wk
 eM
@@ -9946,7 +10000,7 @@ eM
 eM
 eM
 eM
-RR
+Vc
 fg
 FF
 eP
@@ -10998,7 +11052,7 @@ eJ
 qo
 eJ
 DA
-wM
+tL
 KL
 cU
 Ly
@@ -11300,7 +11354,7 @@ zl
 pw
 LP
 wH
-VR
+mx
 Oe
 NR
 kG
