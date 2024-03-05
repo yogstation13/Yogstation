@@ -588,7 +588,7 @@
 
 /obj/item/reagent_containers/food/snacks/pineapple_rice
 	name = "hawaiian pineapple rice"
-	desc = "A grilled piece of juicy pineapple. Complete with tantilizing grill marks."
+	desc = "A simple hawaiian rice dish served directly out of a pineapple."
 	icon_state = "pineapple_rice"
 	filling_color = "#F6CB0B"
 	tastes = list("pineapple" = 3, "rice" = 2)
@@ -596,7 +596,7 @@
 
 /obj/item/reagent_containers/food/snacks/pineapple_friedrice
 	name = "hawaiian pineapple fried rice"
-	desc = "A grilled piece of juicy pineapple. Complete with tantilizing grill marks."
+	desc = "You're telling me a hawaiian pineapple fried this rice?"
 	icon_state = "pineapple_friedrice"
 	filling_color = "#F6CB0B"
 	tastes = list("pineapple" = 3, "rice" = 2, "citrus" = 1, "chili" = 1)

@@ -247,7 +247,7 @@
 
 /obj/item/reagent_containers/food/snacks/soup/saimin
 	name = "saimin"
-	desc = "A humble split pea soup."
+	desc = "A traditional hawaiian noodle soup."
 	icon_state = "saimin"
 	bonus_reagents = list (/datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("eggs"= 1, "onion" = 1, "cabbage" = 1)
