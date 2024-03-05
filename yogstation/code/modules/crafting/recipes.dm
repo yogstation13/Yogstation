@@ -119,7 +119,7 @@
 	tool_paths = list(/obj/item/weldingtool)
 	category = CAT_STRUCTURES
 
-/datum/crafting_recipe/pinap-o-lantern
+/datum/crafting_recipe/pinapolantern
 	name = "Pinap-o'-Lantern"
 	result = /obj/item/clothing/under/yogs/hawaiian_skirt
 	time = 2 SECONDS
