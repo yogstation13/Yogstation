@@ -1,0 +1,4 @@
+author: "13spacemen"
+delete-after: true 
+changes: 
+  - tweak: "Human unarmed attack visual effects are based on species instead of the attack verb text"
