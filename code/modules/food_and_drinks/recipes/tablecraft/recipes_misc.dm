@@ -339,7 +339,7 @@
 	name = "Hawaiian Pineapple Rice"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/pineapple = 1,
-		/obj/item/reagent_containers/food/snacks/grown/rice = 1
+		/datum/reagent/consumable/rice = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/pineapple_rice
 	category = CAT_MISCFOOD
@@ -348,7 +348,7 @@
 	name = "Hawaiian Pineapple Fried Rice"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/pineapple = 1,
-		/obj/item/reagent_containers/food/snacks/grown/rice = 1,
+		/datum/reagent/consumable/rice = 5,
 		/obj/item/reagent_containers/food/snacks/pineappleslice/grilled = 1,
 		/obj/item/reagent_containers/food/snacks/grown/chili = 1,
 		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,

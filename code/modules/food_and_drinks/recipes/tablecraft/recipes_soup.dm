@@ -268,7 +268,7 @@
 		/obj/item/reagent_containers/food/snacks/egg = 1,
 		/datum/reagent/consumable/soysauce = 5,
 		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
-		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/soup/saimin
 	category = CAT_SOUP
