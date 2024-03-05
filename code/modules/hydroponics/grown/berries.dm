@@ -296,5 +296,5 @@
 	desc = "Too heavy for a five ounce bird to carry."
 	icon_state = "coconut"
 	tastes = list("coconut" = 4)
-	juice_results = list(/datum/reagent/consumable/milk/coconut = 20)
+	grind_results = list(/datum/reagent/consumable/milk/coconut = 20)
 	distill_reagent = /datum/reagent/consumable/ethanol/creme_de_coconut //eh, why not
