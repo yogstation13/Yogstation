@@ -575,7 +575,7 @@
 
 /obj/item/reagent_containers/food/snacks/spam_musubi
 	name = "spam musubi"
-	desc = "A Waffle Co. brand mouse cube. Just add water!"
+	desc = "A dish made of rice and meat of questionable origin."
 	icon_state = "spam_musubi"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/rice = 1)
 	tastes = list("meat?" = 1, "rice" = 1)
