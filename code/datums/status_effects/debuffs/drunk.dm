@@ -159,8 +159,8 @@
 		owner.set_dizzy_if_lower(20 SECONDS)
 		ADD_TRAIT(src, TRAIT_SURGERY_PREPARED, "drunk")
 		if(HAS_TRAIT(owner, TRAIT_DRUNK_HEALING))
-			owner.adjustBruteLoss(-0.3, FALSE)
-			owner.adjustFireLoss(-0.15, FALSE)
+			owner.adjustBruteLoss(-0.2, FALSE)
+			owner.adjustFireLoss(-0.09, FALSE)
 
 	// Over 51, we have a 3% chance to gain a lot of confusion and vomit, and we will always have 50 seconds of dizziness and normal drinkers will start to slur
 	if(drunk_value >= 51)
@@ -177,8 +177,8 @@
 	if(drunk_value >= 71)
 		owner.adjust_eye_blur(drunk_value * 2 - 140)
 		if(HAS_TRAIT(owner, TRAIT_DRUNK_HEALING))
-			owner.adjustBruteLoss(-0.4, FALSE)
-			owner.adjustFireLoss(-0.2, FALSE)
+			owner.adjustBruteLoss(-0.1, FALSE)
+			owner.adjustFireLoss(-0.05, FALSE)
 
 	// Over 81, we will gain constant toxloss and experienced drunks will now begin to slur
 	if(drunk_value >= 81)
@@ -201,15 +201,15 @@
 				to_chat(owner, span_warning("Just a quick nap..."))
 				owner.Sleeping(90 SECONDS)
 		if(HAS_TRAIT(owner, TRAIT_DRUNK_HEALING))
-			owner.adjustBruteLoss(-0.45, FALSE)
-			owner.adjustFireLoss(-0.25, FALSE)
+			owner.adjustBruteLoss(-0.05, FALSE)
+			owner.adjustFireLoss(-0.05, FALSE)
 
 	// And finally, over 100 - let's be honest, you shouldn't be alive by now.
 	if(drunk_value >= 101)
 		owner.adjustToxLoss(2)
 	if(HAS_TRAIT(owner, TRAIT_DRUNK_HEALING))
-		owner.adjustBruteLoss(-0.6, FALSE)
-		owner.adjustFireLoss(-0.4, FALSE)
+		owner.adjustBruteLoss(-0.15, FALSE)
+		owner.adjustFireLoss(-0.15, FALSE)
 
 /// Status effect for being fully drunk (not tipsy).
 /atom/movable/screen/alert/status_effect/drunk
