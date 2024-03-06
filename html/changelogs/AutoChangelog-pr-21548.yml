@@ -1,4 +1,0 @@
-author: "13spacemen"
-delete-after: true 
-changes: 
-  - tweak: "Chat no longer complains if you have unbound keys"
