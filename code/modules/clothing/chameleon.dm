@@ -226,6 +226,7 @@
 	atom_target.name = initial(picked_item.name)
 	atom_target.desc = initial(picked_item.desc)
 	atom_target.icon_state = initial(picked_item.icon_state)
+
 	if(isitem(atom_target))
 		var/obj/item/item_target = target
 		item_target.mob_overlay_icon = initial(picked_item.mob_overlay_icon)
@@ -233,11 +234,22 @@
 		item_target.righthand_file = initial(picked_item.righthand_file)
 		if(initial(picked_item.greyscale_colors))
 			if(initial(picked_item.greyscale_config_worn))
-				item_target.mob_overlay_icon = SSgreyscale.GetColoredIconByType(initial(picked_item.greyscale_config_worn), initial(picked_item.greyscale_colors))
+				item_target.worn_icon = SSgreyscale.GetColoredIconByType(
+					initial(picked_item.greyscale_config_worn),
+					initial(picked_item.greyscale_colors),
+				)
 			if(initial(picked_item.greyscale_config_inhand_left))
-				item_target.lefthand_file = SSgreyscale.GetColoredIconByType(initial(picked_item.greyscale_config_inhand_left), initial(picked_item.greyscale_colors))
+				item_target.lefthand_file = SSgreyscale.GetColoredIconByType(
+					initial(picked_item.greyscale_config_inhand_left),
+					initial(picked_item.greyscale_colors),
+				)
+
 			if(initial(picked_item.greyscale_config_inhand_right))
-				item_target.righthand_file = SSgreyscale.GetColoredIconByType(initial(picked_item.greyscale_config_inhand_right), initial(picked_item.greyscale_colors))
+				item_target.righthand_file = SSgreyscale.GetColoredIconByType(
+					initial(picked_item.greyscale_config_inhand_right),
+					initial(picked_item.greyscale_colors),
+				)
+
 		item_target.worn_icon_state = initial(picked_item.worn_icon_state)
 		item_target.item_state = initial(picked_item.item_state)
 		if(isclothing(item_target) && ispath(picked_item, /obj/item/clothing))
@@ -249,10 +261,16 @@
 				var/obj/item/clothing/mask/chameleon/CH = CL
 				if(CH.vchange)
 					CH.flags_inv |= HIDEFACE // We want the chameleon mask hiding the face to retain voice changing!
+
 	if(initial(picked_item.greyscale_config) && initial(picked_item.greyscale_colors))
-		atom_target.icon = SSgreyscale.GetColoredIconByType(initial(picked_item.greyscale_config), initial(picked_item.greyscale_colors))
+		atom_target.icon = SSgreyscale.GetColoredIconByType(
+			initial(picked_item.greyscale_config),
+			initial(picked_item.greyscale_colors),
+		)
+
 	else
 		atom_target.icon = initial(picked_item.icon)
+
 	if(istype(atom_target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
 		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
@@ -262,6 +280,7 @@
 		I.head_piece.update_appearance(UPDATE_ICON)
 		qdel(helmet)
 		//YOGS END
+
 	atom_target.icon = initial(picked_item.icon)
 	atom_target.on_chameleon_change()
 	current_disguise = picked_item

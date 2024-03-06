@@ -57,7 +57,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 			source.alpha = alpha
 		if(texture_layer_icon_state)
 			ADD_KEEP_TOGETHER(source, MATERIAL_SOURCE(src))
-//			source.add_filter("material_texture_[name]",1,layering_filter(icon=cached_texture_filter_icon,blend_mode=BLEND_INSET_OVERLAY))
+			source.add_filter("material_texture_[name]",1,layering_filter(icon=cached_texture_filter_icon,blend_mode=BLEND_INSET_OVERLAY))
 
 	if(material_flags & MATERIAL_GREYSCALE)
 		var/config_path = get_greyscale_config_for(source.greyscale_config)
@@ -80,8 +80,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 ///This proc is called when the material is added to an object specifically.
 /datum/material/proc/on_applied_obj(obj/o, amount, material_flags)
 	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/new_max_integrity = CEILING(o.max_integrity * integrity_modifier, 1)
 		// This is to keep the same damage relative to the max integrity of the object
-		o.max_integrity = (CEILING(o.max_integrity * integrity_modifier, 1), FALSE)
+		o.modify_max_integrity(new_max_integrity, FALSE)
 		o.force *= strength_modifier
 		o.throwforce *= strength_modifier
 
@@ -116,7 +117,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 		if(color)
 			source.remove_atom_colour(FIXED_COLOUR_PRIORITY, color)
 		if(texture_layer_icon_state)
-//			source.remove_filter("material_texture_[name]")
+			source.remove_filter("material_texture_[name]")
 			REMOVE_KEEP_TOGETHER(source, MATERIAL_SOURCE(src))
 		source.alpha = initial(source.alpha)
 
@@ -135,7 +136,6 @@ Simple datum which is instanced once per type and is used for every object of sa
 ///This proc is called when the material is removed from an object specifically.
 /datum/material/proc/on_removed_obj(obj/o, amount, material_flags)
 	if(material_flags & MATERIAL_AFFECT_STATISTICS)
-		var/new_max_integrity = initial(o.max_integrity)
 		o.modify_max_integrity(initial(o.max_integrity), FALSE)
 		o.force = initial(o.force)
 		o.throwforce = initial(o.throwforce)
