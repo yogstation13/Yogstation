@@ -2695,8 +2695,7 @@
 "agB" = (
 /obj/structure/window/reinforced/fulltile{
 	max_integrity = 5000;
-	name = "hardened window";
-	obj_integrity = 5000
+	name = "hardened window"
 	},
 /turf/open/floor/plating,
 /area/centcom/ctf)
@@ -21400,7 +21399,6 @@
 /obj/item/dnainjector/hulkmut,
 /obj/item/dnainjector/insulated,
 /obj/item/dnainjector/lasereyesmut,
-/obj/item/dnainjector/mindread,
 /obj/item/dnainjector/mutemut,
 /obj/item/dnainjector/olfaction,
 /obj/item/dnainjector/radioactive,

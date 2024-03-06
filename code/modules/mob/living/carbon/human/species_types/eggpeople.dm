@@ -16,6 +16,7 @@
 	default_features = list()
 	changesource_flags = MIRROR_BADMIN | SLIME_EXTRACT | MIRROR_PRIDE | MIRROR_MAGIC
 	attack_verb = "slash"
+	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/omelette

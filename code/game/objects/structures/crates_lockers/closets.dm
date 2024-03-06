@@ -316,17 +316,21 @@ GLOBAL_LIST_EMPTY(lockers)
 		new material_drop(loc, material_drop_amount)
 	qdel(src)
 
-/obj/structure/closet/obj_break(damage_flag)
+/obj/structure/closet/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		bust_open()
 
 /obj/structure/closet/attackby(obj/item/attacking_item, mob/user, params)
 	if(user in src)
 		return
-	if(user.a_intent != INTENT_HARM && attacking_item.GetID())
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+	if(attacking_item.GetID())
 		togglelock(user)
 		return TRUE
-	return ..()
+	if(user.transferItemToLoc(attacking_item, drop_location()))
+		return TRUE
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool)
 	if(user.a_intent == INTENT_HARM)

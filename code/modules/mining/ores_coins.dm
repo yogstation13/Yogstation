@@ -254,8 +254,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		statue.name = "bananium plated [statue.name]"
 		statue.desc = "An incredibly lifelike bananium carving."
 		statue.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
-		statue.max_integrity = 9999
-		statue.obj_integrity = 9999
+		statue.modify_max_integrity(9999, can_break=FALSE)
 	return TRUE
 
 /obj/item/stack/ore/titanium

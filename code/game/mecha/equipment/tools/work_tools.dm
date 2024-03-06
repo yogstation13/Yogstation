@@ -572,8 +572,8 @@
 
 //Dunno where else to put this so shrug
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade
-	name = "Ripley MK-II Conversion Kit"
-	desc = "A pressurized canopy attachment kit for an Autonomous Power Loader Unit \"Ripley\" MK-I mecha, to convert it to the slower, but space-worthy MK-II design. This kit cannot be removed, once applied."
+	name = "Firefighter Conversion Kit"
+	desc = "A pressurized canopy attachment kit for an Autonomous Power Loader Unit MK-I \"Ripley\" mecha, to convert it to the slower, but space-worthy MK-II design. This kit cannot be removed, once applied."
 	icon_state = "ripleyupgrade"
 
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/can_attach(obj/mecha/working/ripley/M)
@@ -592,7 +592,7 @@
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/attach(obj/mecha/M)
-	var/obj/mecha/working/ripley/mkii/N = new /obj/mecha/working/ripley/mkii(get_turf(M),1)
+	var/obj/mecha/working/ripley/firefighter/N = new /obj/mecha/working/ripley/firefighter(get_turf(M),1)
 	if(!N)
 		return
 	QDEL_NULL(N.cell)
@@ -620,7 +620,7 @@
 	N.dna_lock = M.dna_lock
 	N.maint_access = M.maint_access
 	N.strafe = M.strafe
-	N.obj_integrity = M.obj_integrity //This is not a repair tool
+	N.update_integrity(M.get_integrity()) //This is not a repair tool
 	if (M.name != "\improper APLU MK-I \"Ripley\"")
 		N.name = M.name
 	M.wreckage = 0

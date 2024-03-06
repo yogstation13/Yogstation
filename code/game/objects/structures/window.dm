@@ -196,13 +196,13 @@
 	add_fingerprint(user)
 
 	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
 				return
 
 			to_chat(user, span_notice("You begin repairing [src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				update_nearby_icons()
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -254,10 +254,10 @@
 /obj/structure/window/proc/check_state_and_anchored(checked_state, checked_anchored)
 	return check_state(checked_state) && check_anchored(checked_anchored)
 
-/obj/structure/window/mech_melee_attack(obj/mecha/M, equip_allowed)
+/obj/structure/window/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	if(!can_be_reached())
 		return
-	..()
+	return ..()
 
 /obj/structure/window/proc/can_be_reached(mob/user)
 	if(!fulltile)
@@ -359,7 +359,7 @@
 	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
 		QUEUE_SMOOTH(src)
 
-	var/ratio = obj_integrity / max_integrity
+	var/ratio = atom_integrity / max_integrity
 	ratio = CEILING(ratio*4, 1) * 25
 	if(ratio > 75)
 		return
@@ -640,7 +640,7 @@
 	name = "frosted window"
 	icon_state = "fwindow"
 
-/* Full Tile Windows (more obj_integrity) */
+/* Full Tile Windows (more atom_integrity) */
 
 /obj/structure/window/fulltile
 	icon = 'icons/obj/smooth_structures/window.dmi'
@@ -841,7 +841,7 @@
 
 /obj/structure/window/reinforced/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		obj_integrity = max_integrity
+		update_integrity(max_integrity)
 		update_appearance()
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
@@ -914,7 +914,7 @@
 
 /obj/structure/window/paperframe/examine(mob/user)
 	. = ..()
-	if(obj_integrity < max_integrity)
+	if(atom_integrity < max_integrity)
 		. += span_info("It looks a bit damaged, you may be able to fix it with some <b>paper</b>.")
 
 /obj/structure/window/paperframe/spawnDebris(location)
@@ -940,7 +940,7 @@
 
 /obj/structure/window/paperframe/update_appearance(updates)
 	. = ..()
-	set_opacity(obj_integrity >= max_integrity)
+	set_opacity(atom_integrity >= max_integrity)
 
 /obj/structure/window/paperframe/update_icon(updates=ALL)
 	. = ..()
@@ -949,7 +949,7 @@
 
 /obj/structure/window/paperframe/update_overlays()
 	. = ..()
-	. += (obj_integrity < max_integrity) ? torn : paper
+	. += (atom_integrity < max_integrity) ? torn : paper
 
 /obj/structure/window/paperframe/attackby(obj/item/W, mob/user)
 	if(W.is_hot())
@@ -957,13 +957,13 @@
 		return
 	if(user.a_intent == INTENT_HARM)
 		return ..()
-	if(istype(W, /obj/item/paper) && obj_integrity < max_integrity)
+	if(istype(W, /obj/item/paper) && atom_integrity < max_integrity)
 		user.visible_message("[user] starts to patch the holes in \the [src].")
 		if(do_after(user, 2 SECONDS, src))
-			obj_integrity = min(obj_integrity+4,max_integrity)
+			update_integrity(min(atom_integrity + 4, max_integrity))
 			qdel(W)
 			user.visible_message("[user] patches some of the holes in \the [src].")
-			if(obj_integrity == max_integrity)
+			if(atom_integrity == max_integrity)
 				update_appearance(UPDATE_ICON)
 			return
 	..()

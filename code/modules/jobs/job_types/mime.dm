@@ -56,7 +56,7 @@
 	/obj/item/book/mimery=1,
 	/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing=1,
 	/obj/item/stamp/mime = 1)
-
+	box = /obj/item/storage/box/survival/hug/black
 	backpack = /obj/item/storage/backpack/mime
 	satchel = /obj/item/storage/backpack/mime
 

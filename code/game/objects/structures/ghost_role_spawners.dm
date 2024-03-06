@@ -543,9 +543,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	implants = list(/obj/item/implant/weapons_auth)
 	id = /obj/item/card/id/syndicate
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
+	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_empty/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
@@ -563,9 +561,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	r_pocket = /obj/item/kitchen/knife/combat/survival
 	belt = /obj/item/storage/belt/military/assault
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/battlecruiser/assault
 	name = "Syndicate Battlecruiser Assault Operative"
@@ -584,9 +579,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	suit_store = /obj/item/gun/ballistic/automatic/pistol
 	back = /obj/item/storage/backpack/security
 	mask = /obj/item/clothing/mask/gas/syndicate
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/battlecruiser/captain
 	name = "Syndicate Battlecruiser Captain"
@@ -606,9 +598,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	head = /obj/item/clothing/head/HoS/syndicate
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 //Icemoon Syndicate. Players become research agents working under a Syndicate research station.
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version
@@ -628,9 +617,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/gas/syndicate
 	id = /obj/item/card/id/syndicate/anyone
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
 	name = "Syndicate Outpost Security Officer"
@@ -647,9 +633,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	belt = /obj/item/storage/belt/security/full //take like one guy alive
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses //identify the job of whoever the fuck is breaking in at a glance
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci
 	name = "Syndicate Outpost Researcher"
@@ -665,9 +648,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	accessory = /obj/item/clothing/accessory/armband/science
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd //it's a syndicate nerd
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
 	name = "Syndicate Outpost Engineer"
@@ -684,9 +664,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	accessory = /obj/item/clothing/accessory/armband/engine
 	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/medic
 	name = "Syndicate Outpost Doctor"
@@ -702,9 +679,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo //rapid hurt and chemical identification
 	accessory = /obj/item/clothing/accessory/armband/medblue
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
 	name = "Syndicate Outpost Commander"
@@ -727,7 +701,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	suit_store = /obj/item/gun/ballistic/revolver
 	belt = /obj/item/storage/belt/sabre //ceremonial shamnk
 	backpack_contents = list(
-		/obj/item/storage/box/syndie,
 		/obj/item/modular_computer/tablet/preset/syndicate=1,
 		/obj/item/ammo_box/a357=2,
 		/obj/item/melee/classic_baton/telescopic=1
@@ -936,9 +909,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/kitchen/knife/combat/survival
 	implants = list(/obj/item/implant/weapons_auth)
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
+	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_derelict_engi/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
