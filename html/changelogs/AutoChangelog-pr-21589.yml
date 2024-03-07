@@ -1,0 +1,6 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Blob now generate research points if inside a containment field"
+  - tweak: "Shuttle will leave when blob is contained inside a containment field"
+  - tweak: "Supermatter blob delam now create blob without ghost poll (you can still click the blob camera to enter the blob if ur not banned or the blob is not occupied by another ghost)"
