@@ -234,7 +234,7 @@
 		item_target.righthand_file = initial(picked_item.righthand_file)
 		if(initial(picked_item.greyscale_colors))
 			if(initial(picked_item.greyscale_config_worn))
-				item_target.worn_icon = SSgreyscale.GetColoredIconByType(
+				item_target.mob_overlay_icon = SSgreyscale.GetColoredIconByType(
 					initial(picked_item.greyscale_config_worn),
 					initial(picked_item.greyscale_colors),
 				)
