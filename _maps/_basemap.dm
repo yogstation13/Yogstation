@@ -11,6 +11,7 @@
 		#include "map_files\GaxStation\GaxStation.dmm"
 		#include "map_files\AsteroidStation\AsteroidStation.dmm"
 		#include "map_files\DonutStation\DonutStation.dmm"
+		#include "map_files\IndieStation\IndieStation.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif

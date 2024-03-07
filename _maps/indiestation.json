@@ -1,0 +1,11 @@
+{
+    "map_name": "IndieStation",
+    "map_path": "map_files/IndieStation",
+    "map_file": "IndieStation.dmm",
+    "shuttles": {
+	    "cargo": "cargo_indie",
+	    "ferry": "ferry_indie",
+	    "emergency": "emergency_box",
+		"mining": "mining_indie"
+    }
+}
