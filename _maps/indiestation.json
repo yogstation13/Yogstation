@@ -5,7 +5,6 @@
     "shuttles": {
 	    "cargo": "cargo_indie",
 	    "ferry": "ferry_indie",
-	    "emergency": "emergency_box",
-		"mining": "mining_indie"
+	    "emergency": "emergency_box"
     }
 }

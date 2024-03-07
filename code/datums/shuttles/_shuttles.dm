@@ -82,6 +82,11 @@
 		M.movement_force = movement_force.Copy()
 	M.linkup()
 
+/datum/map_template/shuttle/infiltrator/storyline_event
+	name = "Syndicate Representative's Ship"
+	who_can_purchase = null
+	suffix = "syndrep"
+
 /datum/map_template/shuttle/cargo
 	port_id = "cargo"
 	name = "Base Shuttle Template (Cargo)"
@@ -176,6 +181,12 @@
 	name = "fancy transport ferry"
 	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
 
+/datum/map_template/shuttle/ferry/indie
+	suffix = "indie"
+	name = "long-range representative ferry"
+	description = "A longer-range ferry used by Nanotrasen for diplomatic affairs."
+	admin_notes = "Meant for the storyline events."
+
 /datum/map_template/shuttle/ferry/kilo
 	suffix = "kilo"
 	name = "kilo transport ferry"
@@ -228,6 +239,10 @@
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"
 	name = "cargo ferry (Box)"
+
+/datum/map_template/shuttle/cargo/indie
+	suffix = "indie"
+	name = "cargo ferry (independent)"
 
 /datum/map_template/shuttle/mining/box
 	suffix = "box"

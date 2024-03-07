@@ -1,0 +1,289 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/supply)
+"c" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/supply)
+"e" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/supply)
+"f" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad2"
+	},
+/obj/machinery/door/poddoor{
+	id = "QMLoaddoor2";
+	name = "supply dock loading door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/supply)
+"g" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Supply Shuttle Airlock";
+	req_access_txt = "31"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/supply)
+"h" = (
+/obj/machinery/button/door{
+	dir = 2;
+	id = "QMLoaddoor2";
+	name = "Loading Doors";
+	pixel_x = 24;
+	pixel_y = 8
+	},
+/obj/machinery/button/door{
+	id = "QMLoaddoor";
+	name = "Loading Doors";
+	pixel_x = 24;
+	pixel_y = -8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/supply)
+"i" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Supply Shuttle Airlock";
+	req_access_txt = "31"
+	},
+/obj/docking_port/mobile/supply{
+	dwidth = 5;
+	width = 12
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/supply)
+"j" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/machinery/door/poddoor{
+	id = "QMLoaddoor";
+	name = "supply dock loading door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/supply)
+"l" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/supply)
+"n" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/item/paper{
+	name = "paper - 'note'";
+	info = "The automated cargo-loaders of most trading stations are pretty careless, so expect to get cargo shoved in the bridge. Can't do anything about it. -Engineering"
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/supply)
+"q" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/shuttle/engine/heater,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/supply)
+"s" = (
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/obj/structure/shuttle/engine/propulsion/left,
+/turf/open/floor/plating/airless,
+/area/shuttle/supply)
+"u" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/shuttle/supply)
+"v" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/turf/open/floor/plating/airless,
+/area/shuttle/supply)
+"w" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/cargo,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/supply)
+"x" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/supply)
+"B" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/supply)
+"E" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/supply)
+"F" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/supply)
+"H" = (
+/obj/machinery/computer/shuttle{
+	shuttleId = "supply";
+	name = "supply shuttle console";
+	desc = "A gutted shuttle control computer, now turned into the main processor of the ship's flight systems. Can't be manually operated."
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/supply)
+"O" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Freighter Bridge"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/supply)
+"R" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/supply)
+"Y" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/supply)
+
+(1,1,1) = {"
+s
+c
+c
+F
+F
+F
+F
+F
+F
+F
+b
+s
+"}
+(2,1,1) = {"
+c
+c
+n
+F
+l
+x
+l
+e
+e
+l
+q
+t
+"}
+(3,1,1) = {"
+c
+H
+B
+O
+l
+l
+e
+e
+l
+l
+q
+u
+"}
+(4,1,1) = {"
+c
+w
+R
+F
+l
+e
+e
+e
+l
+l
+q
+u
+"}
+(5,1,1) = {"
+F
+F
+F
+b
+e
+e
+e
+l
+l
+l
+q
+u
+"}
+(6,1,1) = {"
+b
+F
+E
+l
+e
+h
+e
+l
+Y
+l
+q
+v
+"}
+(7,1,1) = {"
+s
+b
+F
+f
+g
+F
+i
+j
+F
+F
+b
+s
+"}

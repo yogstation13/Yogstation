@@ -41,6 +41,12 @@ map donutstation
 	votable
 endmap
 
+# Event-specific maps.
+
+map indiestation
+	voteweight 0
+endmap
+
 # Debug-only maps.
 
 map multiz_debug

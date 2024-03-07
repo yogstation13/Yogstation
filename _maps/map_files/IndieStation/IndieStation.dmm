@@ -10,14 +10,6 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/library)
-"aad" = (
-/obj/structure/bed/dogbed{
-	desc = "Jacob's bed! Looks comfy";
-	name = "Jacob's bed"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "aae" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space,
@@ -381,6 +373,8 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "abR" = (
@@ -9634,6 +9628,11 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
 	},
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "bvj" = (
@@ -15735,6 +15734,8 @@
 "cME" = (
 /obj/structure/closet/secure_closet/security/sec,
 /obj/effect/turf_decal/bot,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "cMO" = (
@@ -19403,6 +19404,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
 	},
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "ehd" = (
@@ -20605,6 +20610,18 @@
 	name = "Standard-Issue Weapons Locker";
 	req_access_txt = "1"
 	},
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "eCV" = (
@@ -26590,6 +26607,30 @@
 	name = "Standard-Issue Weapons Locker";
 	req_access_txt = "1"
 	},
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "gOE" = (
@@ -31845,6 +31886,8 @@
 	pixel_y = 24
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "iDE" = (
@@ -41756,11 +41799,11 @@
 "mxL" = (
 /obj/docking_port/stationary{
 	dir = 2;
-	dwidth = 11;
+	dwidth = 15;
 	height = 22;
 	shuttle_id = "whiteship_home";
-	name = "SS13: Auxiliary Dock, Station-Port";
-	width = 35
+	name = "Independent Station: Auxiliary Dock, Station-Port";
+	width = 40
 	},
 /turf/open/space/basic,
 /area/space)
@@ -41830,7 +41873,6 @@
 /obj/machinery/button/door{
 	id = "spacepol_dock";
 	name = "Prisoner Transfer Dock Control";
-	normaldoorcontrol = 1;
 	pixel_x = -26;
 	pixel_y = 5;
 	req_access_txt = "63"
@@ -57083,10 +57125,6 @@
 	name = "outdated energy pistol";
 	desc = "It works, I guess. Has two modes: disable and kill."
 	},
-/obj/item/gun/energy/e_gun/mini{
-	name = "outdated energy pistol";
-	desc = "It works, I guess. Has two modes: disable and kill."
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "sfU" = (
@@ -57496,6 +57534,8 @@
 /obj/structure/closet/secure_closet/security/sec,
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "spz" = (
@@ -63618,10 +63658,6 @@
 	name = "old revolver";
 	desc = "An old, outdated revolver."
 	},
-/obj/item/gun/ballistic/revolver/detective{
-	name = "old revolver";
-	desc = "An old, outdated revolver."
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "uLO" = (
@@ -64958,9 +64994,15 @@
 	req_access_txt = "1"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/gun/energy/e_gun{
-	desc = "Created in 2514, the NT-E3 hybrid energy gun is the newest generation of standardized energy equipment for use by security. This basic hybrid energy gun comes equipped with two settings: disable and kill. This one has seen better days."
-	},
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "vkO" = (
@@ -66260,6 +66302,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "vIb" = (
@@ -66795,6 +66841,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
 	},
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
 "vQQ" = (
@@ -66815,9 +66865,16 @@
 	req_access_txt = "1"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/gun/energy/ionrifle/carbine{
-	desc = "An outdated version of the Nanotrasen ion carbine. Practically identical to the current model."
-	},
+/obj/item/gun/ballistic/automatic/surplus,
+/obj/item/gun/ballistic/automatic/surplus,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "vRA" = (
@@ -67092,6 +67149,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 5
 	},
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/service)
 "vWw" = (
@@ -67261,6 +67322,46 @@
 	pixel_y = 23
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_box/c9mm{
+	ammo_type = /obj/item/ammo_casing/c38/rubber;
+	max_ammo = 40;
+	name = "ammo box (.38 rubber)"
+	},
+/obj/item/ammo_box/c9mm{
+	ammo_type = /obj/item/ammo_casing/c38/rubber;
+	max_ammo = 40;
+	name = "ammo box (.38 rubber)"
+	},
+/obj/item/ammo_box/c9mm{
+	ammo_type = /obj/item/ammo_casing/c38/rubber;
+	max_ammo = 40;
+	name = "ammo box (.38 rubber)"
+	},
+/obj/item/ammo_box/c9mm{
+	ammo_type = /obj/item/ammo_casing/c38/rubber;
+	max_ammo = 40;
+	name = "ammo box (.38 rubber)"
+	},
+/obj/item/ammo_box/c9mm{
+	ammo_type = /obj/item/ammo_casing/c38/rubber;
+	max_ammo = 40;
+	name = "ammo box (.38 rubber)"
+	},
+/obj/item/ammo_box/c9mm{
+	ammo_type = /obj/item/ammo_casing/c38/rubber;
+	max_ammo = 40;
+	name = "ammo box (.38 rubber)"
+	},
+/obj/item/ammo_box/c9mm{
+	ammo_type = /obj/item/ammo_casing/c38/rubber;
+	max_ammo = 40;
+	name = "ammo box (.38 rubber)"
+	},
+/obj/structure/closet/crate/secure/weapon{
+	req_access = list(1);
+	name = "ammunition crate";
+	desc = "A secure ammunition crate."
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "vZm" = (
@@ -68789,6 +68890,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 10
 	},
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
 "wFR" = (
@@ -101900,7 +102005,7 @@ aeq
 aiB
 gOs
 aqd
-aad
+kRv
 xit
 xng
 ewO

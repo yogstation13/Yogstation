@@ -212,10 +212,10 @@
 	id_tag = "ferry_escape_doors"
 	},
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/pod/light,
 /area/shuttle/transport)
 "s" = (
@@ -240,7 +240,8 @@
 	id = "ferry_escape_doors";
 	name = "Escape Door Lockdown";
 	pixel_y = 24;
-	pixel_x = 6
+	pixel_x = 6;
+	normaldoorcontrol = 1
 	},
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/recharger/wallrecharger{
@@ -271,7 +272,8 @@
 /obj/machinery/button/door{
 	specialfunctions = 4;
 	id = "ferry_escape_doors";
-	name = "Escape Door Lockdown"
+	name = "Escape Door Lockdown";
+	normaldoorcontrol = 1
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
