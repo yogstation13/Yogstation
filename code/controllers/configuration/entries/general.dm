@@ -53,6 +53,8 @@
 /datum/config_entry/flag/log_admin	// log admin actions
 	protection = CONFIG_ENTRY_LOCKED
 
+/datum/config_entry/flag/circuit // log integrated circuits
+
 /datum/config_entry/flag/log_prayer	// log prayers
 
 /datum/config_entry/flag/log_law	// log lawchanges

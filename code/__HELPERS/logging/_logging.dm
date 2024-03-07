@@ -45,6 +45,10 @@
 
 
 /* All other items are public. */
+/proc/log_circuit(text, list/data)
+	if	(CONFIG_GET(flag/log_circuit))
+		WRITE_LOG(GLOB.world_game_log, "CIRCUITS: [text]")
+
 /proc/log_game(text)
 	if (CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
