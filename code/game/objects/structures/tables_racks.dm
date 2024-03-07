@@ -189,14 +189,14 @@
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/rsf)) // Stops RSF from placing itself instead of glasses
 		return
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(I.tool_behaviour == TOOL_SCREWDRIVER && deconstruction_ready && (user.a_intent != INTENT_HELP && user.a_intent != INTENT_HARM || !(INTENT_DISARM in user.possible_a_intents)))
+	if(!(flags_1 & NODECONSTRUCT_1) && deconstruction_ready && ((user.a_intent != INTENT_HELP || HAS_TRAIT(I, TRAIT_NODROP)) && (user.a_intent != INTENT_HARM || (I.item_flags & NOBLUDGEON)) || !(INTENT_DISARM in user.possible_a_intents)))
+		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			to_chat(user, span_notice("You start disassembling [src]..."))
 			if(I.use_tool(src, user, 20, volume=50))
 				deconstruct(TRUE)
 			return
 
-		if(I.tool_behaviour == TOOL_WRENCH && deconstruction_ready && (user.a_intent != INTENT_HELP && user.a_intent != INTENT_HARM || !(INTENT_DISARM in user.possible_a_intents)))
+		if(I.tool_behaviour == TOOL_WRENCH)
 			to_chat(user, span_notice("You start deconstructing [src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
 				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
@@ -211,7 +211,7 @@
 			return
 		// If the tray IS empty, continue on (tray will be placed on the table like other items)
 
-	if(user.a_intent != INTENT_HARM && !(I.item_flags & ABSTRACT))
+	if((user.a_intent != INTENT_HARM && !HAS_TRAIT(I, TRAIT_NODROP)) && !(I.item_flags & ABSTRACT)) // if you can't drop it, you can't place it on the table
 		if(user.transferItemToLoc(I, drop_location()))
 			var/list/click_params = params2list(params)
 			//Center the icon where the user clicked.
@@ -270,13 +270,16 @@
 	. = ..()
 	debris += new frame
 	debris += new /obj/item/shard
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/structure/table/glass/Destroy()
 	QDEL_LIST(debris)
 	. = ..()
 
-/obj/structure/table/glass/Crossed(atom/movable/AM)
-	. = ..()
+/obj/structure/table/glass/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(flags_1 & NODECONSTRUCT_1)
 		return
 	if(!isliving(AM))
@@ -512,7 +515,7 @@
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /obj/structure/table/reinforced/brass/ratvar_act()
-	obj_integrity = max_integrity
+	update_integrity(max_integrity)
 
 /obj/structure/table/bronze
 	name = "bronze table"

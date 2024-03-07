@@ -9,7 +9,7 @@
 	slot_flags = ITEM_SLOT_FEET
 
 	slowdown = SHOES_SLOWDOWN
-	
+	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
 	var/offset = 0
 	var/equipped_before_drop = FALSE
 	var/xenoshoe = NO_DIGIT  // Check for if shoes can be worn by straight legs (NO_DIGIT) which is default, both / hybrid (EITHER_STYLE), or digitigrade only (YES_DIGIT)

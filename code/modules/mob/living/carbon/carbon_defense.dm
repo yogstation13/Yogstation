@@ -383,7 +383,7 @@
 		if(!(BP.emp_act(severity, emp_message) & EMP_PROTECT_SELF))
 			emp_message = FALSE // if the EMP was successful, don't spam the chat with more messages
 
-/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = BODY_ZONE_R_ARM, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))

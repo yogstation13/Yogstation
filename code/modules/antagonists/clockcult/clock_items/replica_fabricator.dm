@@ -204,11 +204,11 @@
 					to_chat(user, span_warning("[C] cannot be repaired!"))
 				return FALSE
 		var/obj/O = target
-		if(O.obj_integrity >= O.max_integrity)
+		if(O.get_integrity() >= O.max_integrity)
 			if(!silent)
 				to_chat(user, span_warning("[O] is at maximum integrity!"))
 			return FALSE
-		repair_values["amount_to_heal"] = O.max_integrity - O.obj_integrity
+		repair_values["amount_to_heal"] = O.max_integrity - O.get_integrity()
 	else
 		return FALSE
 	if(repair_values["amount_to_heal"] <= 0) //nothing to heal!

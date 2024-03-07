@@ -28,7 +28,9 @@
 	desc = ""
 	cutting_tool = null
 	can_weld_shut = FALSE
+	anchorable = FALSE
 	anchored = TRUE
+	flags_1 = NODECONSTRUCT_1
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mirage_whitelist = list()
 
@@ -53,9 +55,6 @@
 	if(!other || other.opened)
 		return TRUE
 	return other.can_open(user)
-
-/obj/structure/closet/bluespace/internal/tool_interact(obj/item/W, mob/user)
-	return
 
 /obj/structure/closet/bluespace/internal/attack_hand(mob/living/user)
 	var/obj/structure/closet/other = get_other_locker()

@@ -365,7 +365,7 @@
 
 /obj/item/clothing/head/hooded/winterhood/northern
 	name = "northern hat"
-	desc = "only this, and nothing more."
+	desc = "Only this, and nothing more."
 	icon_state = "northern"
 	item_state = "northern"
 

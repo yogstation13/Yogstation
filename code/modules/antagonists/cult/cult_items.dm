@@ -487,7 +487,7 @@
 			user.dropItemToGround(src, TRUE)
 
 /obj/item/clothing/glasses/hud/health/night/cultblind
-	desc = "may Nar'sie guide you through the darkness and shield you from the light."
+	desc = "May Nar'sie guide you through the darkness and shield you from the light."
 	name = "zealot's blindfold"
 	icon_state = "blindfold"
 	item_state = "blindfold"
@@ -534,7 +534,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 		var/cursetime = 1800
 		var/timer = SSshuttle.emergency.timeLeft(1) + cursetime
-		var/security_num = seclevel2num(get_security_level())
+		var/security_num = SSsecurity_level.get_current_level_as_number()
 		var/set_coefficient = 1
 		switch(security_num)
 			if(SEC_LEVEL_GREEN)
