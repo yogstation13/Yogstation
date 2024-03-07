@@ -23,6 +23,10 @@
 	var/mask_icon = 'icons/turf/floors.dmi'
 	/// The icon state that covers the lava bits of our turf
 	var/mask_state = "lava-lightmask"
+	/// The temperature this lava will heat or cool radiator pipes to
+	var/lava_temperature = 5000
+	/// The heat capacity of the lava, used by heat exchange pipes
+	var/lava_heat_capacity = 700000
 
 /turf/open/lava/Initialize(mapload)
 	. = ..()
@@ -155,10 +159,10 @@
 	return TRUE
 
 /turf/open/lava/GetHeatCapacity()
-	. = 700000
+	return lava_heat_capacity
 
 /turf/open/lava/GetTemperature()
-	. = 5000
+	return lava_temperature
 
 /turf/open/lava/TakeTemperature(temp)
 
