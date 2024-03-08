@@ -61,6 +61,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	icon_state = "arcade"
 	icon_keyboard = null
 	icon_screen = "invaders"
+
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = null
+	smoothing_groups = null
+	canSmoothWith = null
+
 	clockwork = TRUE //it'd look weird
 	var/list/prize_override
 	light_color = LIGHT_COLOR_GREEN

@@ -1,7 +1,8 @@
 /obj/machinery/computer
 	name = "computer"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
+	icon = 'icons/obj/machines/smooth_machines/computer.dmi'
+	icon_state = "computer-0"
+
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
@@ -10,6 +11,12 @@
 	integrity_failure = 100
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 20)
 	clicksound = "keyboard"
+
+	base_icon_state = "computer"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIRECTIONAL
+	smoothing_groups = list(SMOOTH_GROUP_COMPUTERS)
+	canSmoothWith = list(SMOOTH_GROUP_COMPUTERS)
+
 	/// How bright we are when turned on.
 	var/brightness_on = 1
 	/// Icon_state of the keyboard overlay.
@@ -27,6 +34,9 @@
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
+	if(smoothing_flags & SMOOTH_BITMASK)
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 	if(mapload)
 		update_appearance()
 	power_change()

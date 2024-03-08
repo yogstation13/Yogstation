@@ -3,7 +3,7 @@
 /obj/machinery/modular_computer
 	name = "modular computer"
 	desc = "An advanced computer."
-	icon = 'icons/obj/modular_console.dmi'
+	icon = 'icons/obj/machines/smooth_machines/console.dmi'
 	icon_state = "console"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5

@@ -188,6 +188,13 @@
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"
+
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = null
+	smoothing_groups = null
+	canSmoothWith = null
+
 	clockwork = TRUE //it'd look weird
 	pass_flags = PASSTABLE
 
@@ -231,6 +238,13 @@
 	icon_state = "telescreen"
 	icon_keyboard = null
 	icon_screen = null
+
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = null
+	smoothing_groups = null
+	canSmoothWith = null
+
 	layer = SIGN_LAYER
 	network = list("thunder")
 	density = FALSE

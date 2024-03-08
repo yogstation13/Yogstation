@@ -16,6 +16,8 @@
 /// it represents the sides of our directional border object that have a neighbor
 /// Is incompatible with SMOOTH_CORNERS because border objects don't have corners
 #define SMOOTH_BORDER_OBJECT (1<<6)
+/// Smooths with atoms facing the same direction only
+#define SMOOTH_DIRECTIONAL (1<<7)
 
 DEFINE_BITFIELD(smoothing_flags, list(
 	"SMOOTH_CORNERS" = SMOOTH_CORNERS,
@@ -25,6 +27,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 	"SMOOTH_QUEUED" = SMOOTH_QUEUED,
 	"SMOOTH_OBJ" = SMOOTH_OBJ,
 	"SMOOTH_BORDER_OBJECT" = SMOOTH_BORDER_OBJECT,
+	"SMOOTH_DIRECTIONAL" = SMOOTH_DIRECTIONAL,
 ))
 
 /// Components of a smoothing junction
@@ -201,7 +204,9 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 #define SMOOTH_GROUP_CLEANABLE_DIRT S_OBJ(68) ///obj/effect/decal/cleanable/dirt
 
-#define SMOOTH_GROUP_GAS_TANK S_OBJ(72) 
+#define SMOOTH_GROUP_COMPUTERS S_OBJ(69) ///obj/machinery/computer, /obj/machiner/modular_computer
+
+
 
 
 /// Performs the work to set smoothing_groups and canSmoothWith.

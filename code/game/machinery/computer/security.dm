@@ -55,6 +55,13 @@
 	icon_state = "laptop"
 	icon_screen = "seclaptop"
 	icon_keyboard = "laptop_key"
+
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = null
+	smoothing_groups = null
+	canSmoothWith = null
+
 	clockwork = TRUE //it'd look weird
 	pass_flags = PASSTABLE
 

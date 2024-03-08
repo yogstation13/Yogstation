@@ -23,11 +23,20 @@ GLOBAL_LIST_EMPTY(checkouts)
  */
 /obj/machinery/computer/libraryconsole
 	name = "library visitor console"
+	desc = "Checked out books MUST be returned on time."
 	icon_state = "oldcomp"
 	icon_screen = "library" 
 	icon_keyboard = null
+
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = null
+	smoothing_groups = null
+	canSmoothWith = null
+
+	clockwork = TRUE //it'd look weird
 	circuit = /obj/item/circuitboard/computer/libraryconsole
-	desc = "Checked out books MUST be returned on time."
+
 	// Search Parameters
 	/// Title to search
 	var/title
@@ -42,8 +51,6 @@ GLOBAL_LIST_EMPTY(checkouts)
 	var/librarianconsole = FALSE
 	/// Saved scanner
 	var/obj/machinery/libraryscanner/scanner
-	// Whatever this does
-	clockwork = TRUE
 	/// What page are we on
 	var/page = 0
 	/// How many pages do we have

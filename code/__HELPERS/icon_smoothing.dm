@@ -320,29 +320,36 @@ xxx xxx xxx
 	var/area/source_area = get_area(src)
 	if((source_area.area_limited_icon_smoothing && !istype(target_area, source_area.area_limited_icon_smoothing)) || (target_area.area_limited_icon_smoothing && !istype(source_area, target_area.area_limited_icon_smoothing)))
 		return NO_ADJ_FOUND
+	
+	var/atom/match //Used later in a special check
 
 	if(isnull(canSmoothWith)) //special case in which it will only smooth with itself
 		if(isturf(src))
-			return (type == target_turf.type) ? ADJ_FOUND : NO_ADJ_FOUND
-		var/atom/matching_obj = locate(type) in target_turf
-		return (matching_obj && matching_obj.type == type) ? ADJ_FOUND : NO_ADJ_FOUND
+			match = (type == target_turf.type) ? target_turf : null
+		else
+			var/atom/matching_obj = locate(type) in target_turf
+			match = (matching_obj && matching_obj.type == type) ? matching_obj : null
 
-	if(!isnull(target_turf.smoothing_groups))
+	if(isnull(match) && !isnull(target_turf.smoothing_groups))
 		for(var/target in canSmoothWith)
-			if(!(canSmoothWith[target] & target_turf.smoothing_groups[target]))
-				continue
-			return ADJ_FOUND
+			if(canSmoothWith[target] & target_turf.smoothing_groups[target])
+				match = target_turf
 
-	if(smoothing_flags & SMOOTH_OBJ)
+	if(isnull(match) && smoothing_flags & SMOOTH_OBJ)
 		for(var/atom/movable/thing as anything in target_turf)
 			if(!thing.anchored || isnull(thing.smoothing_groups))
 				continue
 			for(var/target in canSmoothWith)
-				if(!(canSmoothWith[target] & thing.smoothing_groups[target]))
-					continue
-				return ADJ_FOUND
+				if(canSmoothWith[target] & thing.smoothing_groups[target])
+					match = thing
 
-	return NO_ADJ_FOUND
+	if(isnull(match))
+		return NO_ADJ_FOUND
+	. = ADJ_FOUND
+
+	if(smoothing_flags & SMOOTH_DIRECTIONAL)
+		if(match.dir != dir)
+			return NO_ADJ_FOUND
 
 /**
  * Basic smoothing proc. The atom checks for adjacent directions to smooth with and changes the icon_state based on that.
@@ -359,6 +366,14 @@ xxx xxx xxx
 	var/smooth_border = (smoothing_flags & SMOOTH_BORDER)
 	var/smooth_obj = (smoothing_flags & SMOOTH_OBJ)
 	var/border_object_smoothing = (smoothing_flags & SMOOTH_BORDER_OBJECT)
+	var/smooth_directional = (smoothing_flags & SMOOTH_DIRECTIONAL)
+
+	#define EXTRA_CHECKS(atom) \
+		if(smooth_directional) { \
+			if(atom.dir != dir) { \
+				break set_adj_in_dir; \
+		 	}; \
+		}; \
 
 	// Did you know you can pass defines into other defines? very handy, lets take advantage of it here to allow 0 cost variation
 	#define SEARCH_ADJ_IN_DIR(direction, direction_flag, ADJ_FOUND, WORLD_BORDER, BORDER_CHECK) \
@@ -369,6 +384,7 @@ xxx xxx xxx
 				if(neighbor_smoothing_groups) { \
 					for(var/target in canSmoothWith) { \
 						if(canSmoothWith[target] & neighbor_smoothing_groups[target]) { \
+							EXTRA_CHECKS(neighbor); \
 							##ADJ_FOUND(neighbor, direction, direction_flag); \
 						} \
 					} \
@@ -381,6 +397,7 @@ xxx xxx xxx
 						}; \
 						for(var/target in canSmoothWith) { \
 							if(canSmoothWith[target] & thing_smoothing_groups[target]) { \
+								EXTRA_CHECKS(neighbor); \
 								##ADJ_FOUND(thing, direction, direction_flag); \
 							} \
 						} \
@@ -462,6 +479,7 @@ xxx xxx xxx
 	#undef BITMASK_ON_BORDER_CHECK
 	#undef BITMASK_FOUND
 	#undef SEARCH_ADJ_IN_DIR
+	#undef EXTRA_CHECKS
 
 ///Changes the icon state based on the new junction bitmask
 /atom/proc/set_smoothed_icon_state(new_junction)
