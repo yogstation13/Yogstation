@@ -1,0 +1,5 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the flagellant's chains to chaplain's armament beacon"
+  - imageadd: "Adds sprites for the flagellant's chains"
