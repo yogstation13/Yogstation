@@ -294,7 +294,7 @@
 		H.visible_message(span_warning("[H] starts wrapping [src] around themselves!"))
 		playsound(get_turf(src), 'sound/spookoween/chain_rattling.ogg', 10, TRUE, -1)
 		wrap = TRUE
-		if(!do_after(H, 10 SECONDS, H))
+		if(!do_after(H, 3 SECONDS, H))
 			wrap = FALSE
 			H.balloon_alert(H, "You were interupted!")
 			return //Stop it from completing if they move
