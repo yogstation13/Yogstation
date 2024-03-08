@@ -58,6 +58,9 @@
 	C.faction -= "plants"
 	C.faction -= "vines"
 
+/datum/species/pod/get_butt_sprite()
+	return BUTT_SPRITE_FLOWERPOT
+
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
 		return
