@@ -284,7 +284,7 @@
 	if(!shockcd)
 		if(ismob(user))
 			var/mob/living/M = user
-			M.electrocute_act(15,"Energy Barrier", zone=user.held_index_to_body_zone(user.active_hand_index)) // you touched it with your hand
+			M.electrocute_act(15,"Energy Barrier", zone=user.held_index_to_hand(user.active_hand_index)) // you touched it with your hand
 			shockcd = TRUE
 			addtimer(CALLBACK(src, PROC_REF(cooldown)), 5)
 

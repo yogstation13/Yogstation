@@ -63,6 +63,16 @@
 #define ENGINE_COEFF_MAX 2
 #define ENGINE_DEFAULT_MAXSPEED_ENGINES 5
 
+
+// Alert level related
+#define ALERT_COEFF_AUTOEVAC_NORMAL 2.5
+#define ALERT_COEFF_GREEN 2
+#define ALERT_COEFF_BLUE 1
+#define ALERT_COEFF_RED 0.5
+#define ALERT_COEFF_AUTOEVAC_CRITICAL 0.4
+#define ALERT_COEFF_EPSILON 1000
+#define ALERT_COEFF_DELTA 0.25
+
 //Docking error flags
 #define DOCKING_SUCCESS				0
 #define DOCKING_BLOCKED				(1<<0)
@@ -115,13 +125,3 @@
 
 ///Check for arena shuttle, if the bubblegum has died this round
 GLOBAL_VAR_INIT(bubblegum_dead, FALSE)
-
-// Alert level related for new thing im porting --- cowbot93
-#define ALERT_COEFF_AUTOEVAC_NORMAL 6
-#define ALERT_COEFF_GREEN 5
-#define ALERT_COEFF_BLUE 4
-#define ALERT_COEFF_RED 3
-#define ALERT_COEFF_AUTOEVAC_CRITICAL 2
-#define ALERT_COEFF_DELTA 1
-#define ALERT_COEFF_GAMMA 0
-#define ALERT_COEFF_EPSILON -1
