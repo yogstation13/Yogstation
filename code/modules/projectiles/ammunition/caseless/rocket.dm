@@ -46,4 +46,4 @@
 	icon_state = "cartridge"
 	projectile_type = /obj/projectile/bullet/cartridge
 	firing_effect_type = /obj/effect/particle_effect/sparks/electricity //Placeholder for smoke. REMEMBER TO CHANGE!!!!
-	w_class = WEIGHT_CLASS_TINY
+	variance = 40
