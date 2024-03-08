@@ -49,14 +49,12 @@
 	examine_list += "It can swing in a [arc_desc]."
 
 /datum/component/cleave_attack/proc/on_afterattack(obj/item/item, atom/target, mob/user, proximity_flag, click_parameters)
-	if(proximity_flag)
-		return // don't sweep on precise hits
+	if(proximity_flag || user.a_intent != INTENT_HARM)
+		return // don't sweep on precise hits or non-harmful intents
 	perform_sweep(item, target, user, click_parameters)
 
 
 /datum/component/cleave_attack/proc/perform_sweep(obj/item/item, atom/target, mob/living/user, params)
-	if(user.a_intent != INTENT_HARM) 
-		return // don't sweep unless on harm intent
 	if(user.next_move > world.time)
 		return // don't spam it
 	if(requires_wielded && !HAS_TRAIT(item, TRAIT_WIELDED))
@@ -77,22 +75,23 @@
 	// do some effects so everyone knows you're swinging a weapon
 	playsound(item, 'sound/weapons/punchmiss.ogg', 50, TRUE)
 	new cleave_effect(user_turf, facing_dir)
-	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
-	user.weapon_slow(item)
 
 	// now swing across those turfs
 	attack_loop:
 		for(var/turf/T as anything in turf_list)
 			for(var/atom/movable/hit_atom in T)
-				if(hit_atom == user)
+				if(hit_atom == user || hit_atom == target)
 					continue // why are you hitting yourself
-				if(hit_atom.pass_flags & LETPASSTHROW)
-					continue // if you can throw something over it, you can swing over it too
-				if(!hit_atom.density && hit_atom.uses_integrity)
-					continue
+				if(!(SEND_SIGNAL(hit_atom, COMSIG_ATOM_CLEAVE_ATTACK, item, user) & ATOM_ALLOW_CLEAVE_ATTACK))
+					if(hit_atom.pass_flags & LETPASSTHROW)
+						continue // if you can throw something over it, you can swing over it too
+					if(!hit_atom.density && hit_atom.uses_integrity)
+						continue
 				item.melee_attack_chain(user, hit_atom, params)
 				if(isliving(hit_atom) && item.sharpness == SHARP_NONE)
 					break attack_loop
 
-	// do attack animation last so it doesn't get overridden during the attack loop
+	// do these last so they don't get overridden during the attack loop
 	user.do_attack_animation(center_turf, no_effect=TRUE)
+	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
+	user.weapon_slow(item)
