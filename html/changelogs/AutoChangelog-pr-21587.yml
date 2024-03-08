@@ -1,6 +1,0 @@
-author: "Therandomhoboo"
-delete-after: true 
-changes: 
-  - bugfix: "Drunken Resilience back into the fray"
-  - rscadd: "Drunk Level 81 & Drunk Level 101 giving heals"
-  - tweak: "Drunk Resilience no longer is culmative healing"
