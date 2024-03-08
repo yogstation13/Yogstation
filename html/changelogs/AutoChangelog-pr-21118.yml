@@ -1,7 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "Only obtainable via a camera laser upgrade disk (or by being a traitor), the AI can get an ability based around lasers and their cameras."
-  - rscadd: "This new AI ability lets them enter a burst mode which lets them shoot a laser from any functioning camera every second. It lasts for 30 seconds and be re-activated every 60 seconds. Cameras used in this matter are hit with a heavy EMP."
-  - bugfix: "Hitting an AI control console with an upgrade no longer runtimes."
-  - spellcheck: "Logging regarding upgrading the AI with disks has better formatting."
