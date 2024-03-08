@@ -4054,7 +4054,8 @@
 	normaldoorcontrol = 1;
 	pixel_y = -24;
 	req_access_txt = "151";
-	specialfunctions = 4
+	specialfunctions = 4;
+	pixel_x = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -4066,6 +4067,14 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/red,
+/obj/machinery/button/door{
+	id = "syndicate_icemoon_bridge_windows";
+	name = "Window Shutters";
+	pixel_y = -24;
+	req_access_txt = "150";
+	specialfunctions = 4;
+	pixel_x = -6
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
 "yB" = (
@@ -6517,7 +6526,8 @@
 	id = "syndicate_icemoon_dorms_window";
 	name = "Window Shutters";
 	pixel_y = -24;
-	req_access_txt = "150"
+	req_access_txt = "150";
+	pixel_x = -6
 	},
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
@@ -6892,9 +6902,13 @@
 	},
 /area/ruin/syndicate_icemoon/reactor)
 "Qg" = (
-/obj/machinery/computer/rdconsole/nolock/ruin,
 /obj/effect/turf_decal/siding/red{
 	dir = 5
+	},
+/obj/machinery/computer/camera_advanced/syndie{
+	desc = "Used to access the cameras of the base's Xenobiology department.";
+	name = "xenobiology monitoring console";
+	networks = list("synd_icemoon_xenobio")
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
@@ -8028,13 +8042,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "syndicate_icemoon_bridge_windows";
-	name = "Window Shutters";
-	pixel_y = -24;
-	req_access_txt = "150";
-	specialfunctions = 4
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
