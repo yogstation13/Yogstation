@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Liquid plasma tiles cool down gas in radiator loops instead of heating them"
