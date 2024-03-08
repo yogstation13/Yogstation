@@ -18,7 +18,7 @@
 	freerange = 1
 	},
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "ac" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/bridge)
@@ -123,7 +123,7 @@
 	},
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "ap" = (
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
@@ -211,6 +211,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "aw" = (
@@ -219,7 +223,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "ax" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/eva)
@@ -232,7 +236,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "az" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -254,7 +258,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "aB" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/airlock)
@@ -263,7 +267,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "aD" = (
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
@@ -275,7 +279,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "aF" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/r_wall/syndicate,
@@ -290,7 +294,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "aH" = (
 /obj/structure/table/wood/fancy/red,
 /obj/effect/turf_decal/siding/wood{
@@ -299,8 +303,16 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "aI" = (
 /obj/structure/table/wood/fancy/red,
 /obj/effect/turf_decal/siding/wood{
@@ -309,8 +321,16 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "aJ" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/medical)
@@ -360,8 +380,12 @@
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
 /turf/open/floor/plating,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "aR" = (
 /obj/structure/closet/secure_closet/syndicate,
 /obj/effect/turf_decal/stripes/line{
@@ -407,8 +431,12 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	name = "windowed lockdown shutters";
+	id = "syndieshiplockdown"
+	},
 /turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "aW" = (
 /obj/machinery/door/airlock/external{
 	name = "E.V.A. Gear Storage";
@@ -469,6 +497,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	name = "windowed lockdown shutters";
+	id = "syndieshiplockdown"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 "bb" = (
@@ -503,6 +535,10 @@
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/airlock)
 "bg" = (
@@ -510,12 +546,20 @@
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/medical)
 "bh" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
 	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/armory)
@@ -549,6 +593,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/medical)
 "bm" = (
@@ -567,7 +615,7 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "bp" = (
 /obj/machinery/door/airlock/hatch{
 	req_access_txt = "150"
@@ -580,6 +628,10 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/armory)
@@ -823,6 +875,11 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -30
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
 "bL" = (
@@ -1280,8 +1337,16 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	name = "windowed lockdown shutters";
+	id = "syndieshiplockdown"
+	},
 /turf/open/floor/wood,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "nG" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1299,7 +1364,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 "pO" = (
 /obj/structure/bed,
 /obj/item/bedsheet/syndie,
@@ -1331,6 +1396,17 @@
 /obj/machinery/recharge_station/fullupgrade,
 /turf/open/floor/circuit/red,
 /area/shuttle/syndicate/armory)
+"tQ" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
+	},
+/turf/open/floor/plating,
+/area/shuttle/syndicate/eva)
 "tZ" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/syndicate/airlock)
@@ -1381,6 +1457,32 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/airlock)
+"Ey" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
+"Ge" = (
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	name = "windowed lockdown shutters";
+	id = "syndieshiplockdown"
+	},
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
 "Hj" = (
 /obj/structure/closet/secure_closet/syndicate/captain,
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate,
@@ -1423,10 +1525,18 @@
 /area/shuttle/syndicate/bridge)
 "MJ" = (
 /obj/machinery/button/door{
+	id = "syndieshiplockdown";
+	name = "Ship Lockdown Control";
+	pixel_y = 32;
+	req_access_txt = "150";
+	pixel_x = -6
+	},
+/obj/machinery/button/door{
 	id = "syndieshutters";
 	name = "Ship Shutters Control";
 	pixel_y = 32;
-	req_access_txt = "150"
+	req_access_txt = "150";
+	pixel_x = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
@@ -1477,7 +1587,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblack,
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/bridge)
 
 (1,1,1) = {"
 aa
@@ -1515,7 +1625,7 @@ aa
 aF
 ax
 ax
-ax
+tQ
 ax
 ax
 aJ
@@ -1560,7 +1670,7 @@ aa
 aa
 aa
 aF
-ac
+ae
 ac
 ac
 aM
@@ -1580,8 +1690,8 @@ cu
 cB
 "}
 (5,1,1) = {"
-aF
-ac
+ae
+ae
 ac
 ac
 ac
@@ -1605,7 +1715,7 @@ aJ
 aF
 "}
 (6,1,1) = {"
-ac
+ae
 ag
 an
 at
@@ -1693,7 +1803,7 @@ ao
 aV
 az
 aD
-aD
+Ge
 aD
 aD
 bL
@@ -1718,7 +1828,7 @@ bo
 aQ
 az
 az
-az
+Ey
 az
 bF
 bL
@@ -1735,12 +1845,12 @@ al
 ap
 at
 ac
-af
+ac
 aG
-af
-af
-aB
-aB
+ac
+ac
+ac
+ac
 ba
 bf
 bj
@@ -1755,7 +1865,7 @@ af
 aa
 "}
 (12,1,1) = {"
-ac
+ae
 am
 as
 No
@@ -1780,8 +1890,8 @@ aa
 aa
 "}
 (13,1,1) = {"
-aF
-ac
+ae
+ae
 ac
 ac
 ac
