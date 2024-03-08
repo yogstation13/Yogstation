@@ -168,4 +168,28 @@
 	cartridge_wording = "cartridge"
 	fire_sound = 'sound/weapons/musketShot.ogg'
 	pin = /obj/item/firing_pin
- //DO NOT FORGET TO ADD COCKING SOUND!!
+	var/reloading_active = FALSE
+
+/obj/item/gun/ballistic/maintMusket/afterattack()
+	. = ..()
+	magazine.get_round(FALSE)
+
+/obj/item/gun/ballistic/maintMusket/attackby(obj/item/A, mob/user, params)
+	
+	if(istype(A, /obj/item/ammo_casing/caseless/cartridge))
+		if(reloading_active == TRUE)
+			to_chat(user, span_warning("You're already reloading it!"))
+			return
+		to_chat(user, span_notice("You start reloading the [src]."))
+		user.visible_message(span_warning("[user] starts reloading the [src]!"))
+		reloading_active = TRUE
+		if(!do_after(user, 5 SECONDS, user))
+			reloading_active = FALSE
+			user.balloon_alert(user, "You were interupted!")
+			return
+		..()
+		chamber_round()
+		playsound(get_turf(src), 'sound/weapons/musketCock.ogg', 30, TRUE, -1)
+		reloading_active = FALSE
+	else
+		user.balloon_alert(user, "Wrong ammo type!")
