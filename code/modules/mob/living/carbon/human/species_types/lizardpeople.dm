@@ -75,6 +75,9 @@
 	else if(H.has_movespeed_modifier(LIZARD_SLOWDOWN))
 		H.remove_movespeed_modifier(LIZARD_SLOWDOWN)
 
+/datum/species/lizard/get_butt_sprite()
+	return BUTT_SPRITE_LIZARD
+
 /datum/species/lizard/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
 	C.remove_movespeed_modifier(LIZARD_SLOWDOWN)	

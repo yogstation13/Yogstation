@@ -63,6 +63,9 @@
 	if(C.physiology)
 		C.physiology.armor.wound -= 5
 
+/datum/species/polysmorph/get_butt_sprite()
+	return BUTT_SPRITE_XENOMORPH
+
 /datum/species/polysmorph/get_species_description()
 	return ""//"TODO: This is polysmorph description"
 

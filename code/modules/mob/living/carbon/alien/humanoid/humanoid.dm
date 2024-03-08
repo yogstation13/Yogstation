@@ -116,6 +116,9 @@
 		playsound(get_turf(src), pick('sound/voice/lowHiss2.ogg', 'sound/voice/lowHiss3.ogg', 'sound/voice/lowHiss4.ogg'), 50, 0, -5)
 	return ..()
 
+/mob/living/carbon/alien/humanoid/get_butt_sprite()
+	return BUTT_SPRITE_XENOMORPH
+
 /mob/living/carbon/alien/adult/proc/grab(mob/living/carbon/human/target)
 	if(target.check_block())
 		target.visible_message(span_warning("[target] blocks [src]'s grab!"), \
