@@ -29,10 +29,24 @@
 		src.requires_wielded = requires_wielded
 
 /datum/component/cleave_attack/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_afterattack))
 
 /datum/component/cleave_attack/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_ITEM_AFTERATTACK)
+	UnregisterSignal(parent, list(COMSIG_ATOM_EXAMINE, COMSIG_ITEM_AFTERATTACK))
+
+/datum/component/cleave_attack/proc/on_examine(atom/examined_item, mob/user, list/examine_list)
+	var/arc_desc
+	switch(arc_size)
+		if(0 to 90)
+			arc_desc = "narrow arc"
+		if(90 to 180)
+			arc_desc = "wide arc"
+		if(180 to 270)
+			arc_desc = "very wide arc"
+		if(270 to INFINITY)
+			arc_desc = "full circle"
+	examine_list += "It can swing in a [arc_desc]."
 
 /datum/component/cleave_attack/proc/on_afterattack(obj/item/item, atom/target, mob/user, proximity_flag, click_parameters)
 	if(proximity_flag)
@@ -60,25 +74,25 @@
 	for(var/i in -min(turfs_count, 3) to min(turfs_count, 4)) // do NOT hit the same tile more than once
 		turf_list.Add(get_step(user_turf, turn(facing_dir, i * 45 * swing_direction)))
 
-	// now swing across those turfs
-	for(var/turf/T as anything in turf_list)
-		for(var/atom/movable/A in T)
-			if(A == user)
-				continue // why are you hitting yourself
-			if(!A.density && !isliving(A))
-				continue // if it isn't in the way, don't hit it unless it's a mob
-			if(A.pass_flags & LETPASSTHROW)
-				continue // if you can throw something over it, you can swing over it too
-			item.melee_attack_chain(user, A, params)
-			if(isliving(A) && item.sharpness == SHARP_NONE)
-				return do_cleave_effects(item, user, center_turf, facing_dir)// blunt weapons can't hit more than one person
-
-	// now do some effects
-	return do_cleave_effects(item, user, center_turf, facing_dir)
-
-/datum/component/cleave_attack/proc/do_cleave_effects(obj/item/item, mob/living/user, turf/center, facing_dir)
-	new cleave_effect(get_step(get_turf(user), SOUTHWEST), facing_dir)
-	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
-	user.do_attack_animation(center, no_effect=TRUE)
-	user.weapon_slow(item)
+	// do some effects so everyone knows you're swinging a weapon
 	playsound(item, 'sound/weapons/punchmiss.ogg', 50, TRUE)
+	new cleave_effect(user_turf, facing_dir)
+	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
+	user.weapon_slow(item)
+
+	// now swing across those turfs
+	attack_loop:
+		for(var/turf/T as anything in turf_list)
+			for(var/atom/movable/hit_atom in T)
+				if(hit_atom == user)
+					continue // why are you hitting yourself
+				if(hit_atom.pass_flags & LETPASSTHROW)
+					continue // if you can throw something over it, you can swing over it too
+				if(!hit_atom.density && hit_atom.uses_integrity)
+					continue
+				item.melee_attack_chain(user, hit_atom, params)
+				if(isliving(hit_atom) && item.sharpness == SHARP_NONE)
+					break attack_loop
+
+	// do attack animation last so it doesn't get overridden during the attack loop
+	user.do_attack_animation(center_turf, no_effect=TRUE)
