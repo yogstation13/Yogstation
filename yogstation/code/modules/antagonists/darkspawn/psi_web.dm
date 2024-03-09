@@ -5,7 +5,7 @@
 	///Description of the effect
 	var/desc = "Basic knowledge of forbidden arts."
 	///Fancy description about the effect
-	var/lore_description = "This thing works in dark and mysterious ways."
+	var/lore_description = ""
 	///Icon that gets displayed
 	var/icon = ""
 	///Cost of to learn this

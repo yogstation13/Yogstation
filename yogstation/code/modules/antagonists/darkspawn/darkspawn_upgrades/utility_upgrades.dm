@@ -142,7 +142,7 @@
 /datum/psi_web/quantum_disruption
 	name = "Quantum Disruption"
 	desc = "Disrupt the flow of possibilities, where you are, where you could be."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	lore_description = ""
 	willpower_cost = 2
 	shadow_flags = SCOUT | WARLOCK
 	menu_tab = STORE_UTILITY
@@ -150,35 +150,35 @@
 	
 /datum/psi_web/umbral_trespass
 	name = "Umbral Trespass"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	desc = "Melds with a target's shadow, causing you to invisibly follow them."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = SCOUT | WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/umbral_trespass)
 
 /datum/psi_web/simulacrum
-	name = "simulacrum"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Simulacrum"
+	desc = "Creates an illusion that closely resembles you. The illusion will fight nearby enemies in your stead for 10 seconds."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/simulacrum)
 	
 /datum/psi_web/crawling_shadows
-	name = "crawling shadows"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Crawling Shadows"
+	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/shapeshift/crawling_shadows)
 
 /datum/psi_web/silver_tongue
-	name = "silver tongue"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Silver Tongue"
+	desc = "When used near a communications console, allows you to forcefully transmit a message to Central Command, initiating a shuttle recall."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
