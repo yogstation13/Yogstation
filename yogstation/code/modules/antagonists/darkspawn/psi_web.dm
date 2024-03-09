@@ -31,6 +31,8 @@
 	var/mob/living/carbon/human/owner
 	///The antag datum of the owner(used for modifying)
 	var/datum/antagonist/darkspawn/darkspawn
+	///how many times this can be purchased (for incremental passive upgrades)
+	var/max_purchase = 1
 
 ///When the button to purchase is clicked
 /datum/psi_web/proc/on_purchase(mob/living/carbon/human/user)

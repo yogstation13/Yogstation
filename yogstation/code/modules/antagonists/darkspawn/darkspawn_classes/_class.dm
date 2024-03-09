@@ -1,4 +1,5 @@
 /datum/component/darkspawn_class
+	dupe_type = /datum/component/darkspawn_class //prevents multiclassing
 	///Class name
 	var/name = "Debug class"
 	///Class short description
@@ -9,6 +10,7 @@
 	var/specialization_flag = NONE
 	///The darkspawn who this class belongs to
 	var/mob/living/carbon/human/owner
+	var/choosable = TRUE
 
 	var/datum/antagonist/darkspawn/d
 	///Abilities our class will start with. Granted to the owning darkspawn on initialization
@@ -26,9 +28,6 @@
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
-	var/datum/component/darkspawn_class/class = owner.GetComponent(/datum/component/darkspawn_class)
-	if(class && class != src)
-		qdel(class) //no multiclassing
 	if(!isdarkspawn(owner))
 		return COMPONENT_INCOMPATIBLE
 	
@@ -58,6 +57,9 @@
 
 /datum/component/darkspawn_class/proc/update_owner_overlay(atom/source, list/overlays)
 	SIGNAL_HANDLER
+
+	if(!is_species(A, /datum/species/shadow/darkspawn))
+		return //so they only get the overlay when divulged
 
 	//draw both the overlay itself and the emissive overlay
 	var/mutable_appearance/eyes = mutable_appearance(icon_file, eye_icon)
@@ -98,12 +100,13 @@
 	power.remove()
 
 
-// /datum/component/darkspawn_class/classless
-// 	name = "Deprived"
-// 	description = "You've yet to peep the horror."
-// 	long_description = "You can probably do this with just a club and loincloth anyway."
-// 	specialization_flag = NONE
-// 	class_color = COLOR_SILVER
+/datum/component/darkspawn_class/classless
+	name = "Deprived"
+	description = "You've yet to peep the horror."
+	long_description = "You can probably do this with just a club and loincloth anyway."
+	specialization_flag = NONE
+	class_color = COLOR_SILVER
+	choosable = FALSE
 
 /datum/component/darkspawn_class/fighter
 	name = "Fighter"

@@ -77,7 +77,20 @@
 		action.Grant(current_mob)
 		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 
+	//for testing, force a class upon recieving the datum
+	var/list/classes = list()
+	for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
+		if(initial(class.choosable))
+			classes |= class
+		
+	var/chosen = tgui_input_list(owner, "Select which class you want to play.", "Select Class", classes)
+	if(!chosen || !ispath(chosen, /datum/component/darkspawn_class))
+		return
 	
+	if(QDELETED(src) || QDELETED(owner.current))
+		return
+
+	picked_class = owner.current.AddComponent(chosen)
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	if(team)
@@ -86,6 +99,7 @@
 	owner.current.faction -= ROLE_DARKSPAWN
 	if(owner.current)
 		qdel(owner.current.GetComponent(/datum/component/internal_cam))
+	qdel(picked_class)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------Greet---------------------------------------//
