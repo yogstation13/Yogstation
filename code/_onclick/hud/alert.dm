@@ -744,3 +744,8 @@ so as to remain in compliance with the most up-to-date laws."
 	master_ref = null
 	mob_viewer = null
 	screen_loc = ""
+
+/atom/movable/screen/alert/psiblock
+	name = "Psiblock"
+	desc = "You have pushed your psionic powers beyond your capabilities and need time to recover."
+	icon_state = "shadow_mend"

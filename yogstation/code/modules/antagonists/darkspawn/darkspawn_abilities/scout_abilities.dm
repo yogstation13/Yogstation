@@ -151,7 +151,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt
 	name = "Void Jaunt"
-	desc = "Move through the void for a time, avoiding mortal eyes and lights."
+	desc = "Move through the veil for a time, avoiding mortal eyes and lights."
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"

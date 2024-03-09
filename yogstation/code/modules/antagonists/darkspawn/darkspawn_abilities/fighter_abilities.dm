@@ -58,7 +58,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/deluge
 	name = "Deluge"
-	desc = "yeah i make people wet."
+	desc = "Calls upon the endless depths to douse all with the beyond."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"

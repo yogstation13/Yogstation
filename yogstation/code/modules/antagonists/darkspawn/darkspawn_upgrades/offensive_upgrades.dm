@@ -116,10 +116,10 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //staff upgrades
 /datum/psi_web/staff_upgrade
-	name = "Confusion Sigils"
+	name = "Confusion Sign"
 	desc = "Empower your staff with the ability to confuse any enemy shot."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 
@@ -139,7 +139,7 @@
 		spell = null
 
 /datum/psi_web/staff_upgrade/light_eater
-	name = "Light Eater Sigils"
+	name = "Light Eater Sign"
 	desc = "Empower your staff with the ability to consume the light of anything shot."
 	lore_description = ""
 	flag_to_add = STAFF_UPGRADE_LIGHTEATER

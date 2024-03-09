@@ -38,10 +38,10 @@
 /datum/reagent/darkspawn_darkness_smoke/on_mob_life(mob/living/M)
 	if(!is_darkspawn_or_veil(M))
 		to_chat(M, span_warning("<b>The pitch black smoke irritates your eyes horribly!</b>"))
-		M.blind_eyes(5)
+		M.blind_eyes(2 SECONDS)
 		if(prob(25))
 			M.visible_message("<b>[M]</b> claws at their eyes!")
-			M.Stun(3, 0)
+			M.Stun(3)
 	else
 		to_chat(M, span_velvet("<b>You breathe in the black smoke and feel revitalized!</b>"))
 		M.adjustOxyLoss(-5, 0)

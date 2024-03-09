@@ -290,10 +290,14 @@
 	if(!identifier)
 		return
 	ADD_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK, identifier)
+	if(owner.current)
+		owner.current.throw_alert("psiblock", /atom/movable/screen/alert/psiblock)
 	addtimer(CALLBACK(src, PROC_REF(unblock_psi), identifier), duration, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /datum/antagonist/darkspawn/proc/unblock_psi(identifier)
 	REMOVE_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK, identifier)
+	if(!HAS_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK) && owner.current)
+		owner.current.clear_alert("psiblock")
 
 /datum/antagonist/darkspawn/proc/update_psi_hud()
 	if(!owner.current || !owner.current.hud_used)
