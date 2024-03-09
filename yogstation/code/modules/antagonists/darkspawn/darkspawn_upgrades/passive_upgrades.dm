@@ -4,9 +4,9 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //medhud, duh
 /datum/psi_web/medhud
-	name = "medhud"
-	desc = "me no think so good"
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Medical Sigil"
+	desc = "Provides you with a medical hud."
+	lore_description = "The ______ sigils, representing knowledge, are etched underneath the eyes."
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = ALL_DARKSPAWN_CLASSES
@@ -21,9 +21,9 @@
 
 //xray vision, duh
 /datum/psi_web/xray
-	name = "xray eyes"
-	desc = "me no think so good"
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "X-Ray Sigil"
+	desc = "Allows you to see through solid objects."
+	lore_description = "The ______ sigils, representing pierce, are etched underneath the eyes."
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = ALL_DARKSPAWN_CLASSES
@@ -39,10 +39,10 @@
 		eyes.sight_flags &= ~(SEE_OBJS | SEE_TURFS)
 
 /datum/psi_web/sunglasses
-	name = "sunglasses"
-	desc = "me no think so good"
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
-	willpower_cost = 2
+	name = "Lightblind Sigil"
+	desc = "Protects you from strong flashes of light."
+	lore_description = "The ______ sigils, representing warding, are etched underneath the eyes."
+	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
 	var/obj/item/organ/eyes/eyes
@@ -58,9 +58,9 @@
 
 //Increases max Psi by 25.
 /datum/psi_web/psi_cap
-	name = "\'Psi\' Sigils"
-	desc = "The Atlwjz sigils, representing Psi, are etched onto the forehead. Unlocking these sigils increases your maximum Psi by 100."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Psionic Reserve Sigils"
+	desc = "Unlocking these sigils increases your maximum Psi by 100."
+	lore_description = "The Atlwjz sigils, representing Psi, are etched onto the forehead."
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
@@ -73,9 +73,9 @@
 
 //Increases healing in darkness by 25%.
 /datum/psi_web/dark_healing
-	name = "\'Mending\' Sigil"
-	desc = "The Naykranu sigil, representing perseverence, is etched onto the back. Unlocking this sigil increases your healing in darkness by 25%."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Mending Sigil"
+	desc = "Unlocking this sigil increases your healing in darkness by 25%."
+	lore_description = "The Naykranu sigil, representing perseverence, is etched onto the back."
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
@@ -88,9 +88,9 @@
 
 //gives resistance to dim light
 /datum/psi_web/low_light_resistance
-	name = "\'Lightward\' Sigil"
-	desc = "The Lnkpayp sigil, representing imperviousness, is etched onto the abdomen. Unlocking this sigil protects from dim light."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Lightward Sigil"
+	desc = "Unlocking this sigil protects from dim light."
+	lore_description = "The Lnkpayp sigil, representing voiding, is etched onto the back."
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
@@ -106,9 +106,9 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //Halves lightburn damage.
 /datum/psi_web/light_resistance
-	name = "\'Lightward\' Sigil"
-	desc = "The Lnkpayp sigil, representing imperviousness, is etched onto the abdomen. Unlocking this sigil halves light damage taken."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Shadowskin Sigil"
+	desc = "Unlocking this sigil halves light damage taken."
+	lore_description = "The Pyapknl sigil, representing refraction, is etched onto the abdomen."
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
@@ -120,10 +120,10 @@
 	darkspawn.light_burning *= 2
 
 /datum/psi_web/brute_res
-	name = "brute res"
-	desc = "me no think so good"
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
-	willpower_cost = 2
+	name = "Callous Sigil"
+	desc = "Unlocking this sigil halves brute damage taken."
+	lore_description = "The _____ sigil, representing imperviousness, is etched onto the abdomen."
+	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
 
@@ -136,10 +136,10 @@
 		owner.physiology.brute_mod *= 2
 
 /datum/psi_web/burn_res
-	name = "burn res"
-	desc = "me no think so good"
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
-	willpower_cost = 2
+	name = "Stifle Sigil"
+	desc = "Unlocking this sigil halves burn damage taken."
+	lore_description = "The _____ sigil, representing suffocation, is etched onto the abdomen."
+	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
 
@@ -152,9 +152,9 @@
 		owner.physiology.burn_mod *= 2
 
 /datum/psi_web/noslip
-	name = "noslip"
-	desc = "me no think so good"
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Stability Sigil"
+	desc = "Unlocking this sigil prevents loss of footing."
+	lore_description = "The _____ sigils, representing stability, are etched onto the legs."
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
@@ -170,9 +170,9 @@
 //----------------------------Scout Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/psi_web/stamina_res
-	name = "stamina res"
-	desc = "me no think so good"
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Vigor Sigil"
+	desc = "Unlocking this sigil halves stamina damage taken."
+	lore_description = "The _____ sigils, representing vigor, are etched onto the legs."
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = SCOUT
@@ -186,9 +186,9 @@
 		owner.physiology.stamina_mod *= 2
 
 /datum/psi_web/shadow_walk
-	name = "shadow sprint"
-	desc = "GO FAST, TOUCH GRASS"
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Shadow Sprint"
+	desc = "Unlocking this sigil increases speed in the dark."
+	lore_description = "The _____ sigils, representing speed, are etched onto the legs."
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = SCOUT
@@ -203,9 +203,9 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //Decreases the delay before psi starts regenerating
 /datum/psi_web/psi_regen_delay
-	name = "\'Relief\' Sigil"
-	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to start regenerating 5 seconds sooner."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Psionic Relief Sigil"
+	desc = "Unlocking this sigil causes your Psi to start regenerating 5 seconds sooner."
+	lore_description = "The _______ sigil, representing relief, is etched onto the forehead."
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
@@ -218,9 +218,9 @@
 
 //increase the speed at which psi regenerates when it does start
 /datum/psi_web/psi_regen_speed
-	name = "\'Recovery\' Sigil"
-	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Psionic Recovery Sigil"
+	desc = "Unlocking this sigil causes your Psi to regenerate twice as quickly."
+	lore_description = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. "
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
@@ -231,46 +231,12 @@
 /datum/psi_web/psi_regen_speed/on_loss()
 	darkspawn.psi_per_second /= 2
 
-//adds an additional thrall
-/datum/psi_web/more_thralls
-	name = "\'more thrall\' Sigil"
-	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
-	willpower_cost = 1
-	menu_tab = STORE_PASSIVE
-	shadow_flags = WARLOCK
-
-/datum/psi_web/more_thralls/on_gain()
-	var/datum/team/darkspawn/team = darkspawn.get_team()
-	if(team)
-		team.max_veils += 1
-
-/datum/psi_web/more_thralls/on_loss()
-	var/datum/team/darkspawn/team = darkspawn.get_team()
-	if(team)
-		team.max_veils += 1
-
-//even more thralls
-/datum/psi_web/buff_allies
-	name = "\'buff darkspawns\' Sigil"
-	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
-	willpower_cost = 1
-	menu_tab = STORE_PASSIVE
-	shadow_flags = WARLOCK
-
-/datum/psi_web/buff_allies/on_gain()
-	ADD_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES, type)
-
-/datum/psi_web/buff_allies/on_loss()
-	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES, type)
-
 //reduces spell cooldowns
 /datum/psi_web/fast_cooldown
-	name = "\'fast cooldown\' Sigil"
-	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate twice as quickly."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
-	willpower_cost = 1
+	name = "Storm Sigil"
+	desc = "Unlocking this sigil causes your spells to have shorter cooldowns."
+	lore_description = "The _______ sigil, representing storm, is etched onto the forehead."
+	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
@@ -279,3 +245,37 @@
 
 /datum/psi_web/fast_cooldown/on_loss()
 	REMOVE_TRAIT(owner, TRAIT_FAST_COOLDOWNS, type)
+
+//adds an additional thrall
+/datum/psi_web/more_thralls
+	name = "Control Sigil"
+	desc = "Unlocking this sigil allows control of two additional veils."
+	lore_description = "The _____ sigils, representing control, are etched onto the arms."
+	willpower_cost = 2
+	menu_tab = STORE_PASSIVE
+	shadow_flags = WARLOCK
+
+/datum/psi_web/more_thralls/on_gain()
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(team)
+		team.max_veils += 2
+
+/datum/psi_web/more_thralls/on_loss()
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(team)
+		team.max_veils += 2
+
+//even more thralls
+/datum/psi_web/buff_allies
+	name = "Unity Sigil"
+	desc = "Unlocking this sigil allows your veil support abilities to also affect allied darkspawns."
+	lore_description = "The ______ sigils, representing unity, are etched onto the hands."
+	willpower_cost = 2
+	menu_tab = STORE_PASSIVE
+	shadow_flags = WARLOCK
+
+/datum/psi_web/buff_allies/on_gain()
+	ADD_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES, type)
+
+/datum/psi_web/buff_allies/on_loss()
+	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES, type)
