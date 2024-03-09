@@ -19,6 +19,13 @@
 	interface with the mining shuttle at the landing site if a mobile beacon is also deployed."
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "dorm_available"
+
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
+
 	req_one_access = list(ACCESS_CARGO, ACCESS_CONSTRUCTION, ACCESS_HEADS, ACCESS_RESEARCH)
 	/// Shuttle ID of the base
 	var/shuttleId = "colony_drop"

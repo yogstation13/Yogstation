@@ -18,6 +18,8 @@
 #define SMOOTH_BORDER_OBJECT (1<<6)
 /// Smooths with atoms facing the same direction only
 #define SMOOTH_DIRECTIONAL (1<<7)
+/// Skips the corner step of bitmask smoothing (does nothing without SMOOTH_BITMASK)
+#define SMOOTH_BITMASK_SKIP_CORNERS (1<<8)
 
 DEFINE_BITFIELD(smoothing_flags, list(
 	"SMOOTH_CORNERS" = SMOOTH_CORNERS,
@@ -28,6 +30,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 	"SMOOTH_OBJ" = SMOOTH_OBJ,
 	"SMOOTH_BORDER_OBJECT" = SMOOTH_BORDER_OBJECT,
 	"SMOOTH_DIRECTIONAL" = SMOOTH_DIRECTIONAL,
+	"SMOOTH_BITMASK_SKIP_CORNERS" = SMOOTH_BITMASK_SKIP_CORNERS,
 ))
 
 /// Components of a smoothing junction
@@ -205,6 +208,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_CLEANABLE_DIRT S_OBJ(68) ///obj/effect/decal/cleanable/dirt
 
 #define SMOOTH_GROUP_COMPUTERS S_OBJ(69) ///obj/machinery/computer, /obj/machinery/modular_console
+
+#define SMOOTH_GROUP_GAS_TANK S_OBJ(70)
 
 
 

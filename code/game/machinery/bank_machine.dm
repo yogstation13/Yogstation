@@ -2,6 +2,13 @@
 	name = "bank machine"
 	desc = "A machine used to deposit and withdraw station funds."
 	icon = 'goon/icons/obj/goon_terminals.dmi'
+
+	//these muthafuckas arent supposed to smooth until we get console icons for it :^
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
+
 	idle_power_usage = 100
 
 	var/siphoning = FALSE

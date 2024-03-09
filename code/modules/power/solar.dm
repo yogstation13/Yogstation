@@ -320,7 +320,7 @@
 	icon_state = "computer-0"
 	base_icon_state = "computer"
 
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIRECTIONAL
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIRECTIONAL | SMOOTH_BITMASK_SKIP_CORNERS
 	smoothing_groups = list(SMOOTH_GROUP_COMPUTERS)
 	canSmoothWith = list(SMOOTH_GROUP_COMPUTERS)
 
@@ -349,9 +349,8 @@
 	azimuth_rate = SSsun.base_rotation
 	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(timed_track))
 	connect_to_network()
-	if(smoothing_flags & SMOOTH_BITMASK)
-		QUEUE_SMOOTH(src)
-		QUEUE_SMOOTH_NEIGHBORS(src)
+	QUEUE_SMOOTH(src)
+	QUEUE_SMOOTH_NEIGHBORS(src)
 	if(powernet)
 		set_panels(azimuth_target)
 	if(powernet && force_auto)
@@ -366,6 +365,7 @@
 		M.unset_control()
 	if(connected_tracker)
 		connected_tracker.unset_control()
+	QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
 //search for unconnected panels and trackers in the computer powernet and connect them

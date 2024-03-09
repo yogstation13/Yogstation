@@ -367,6 +367,7 @@ xxx xxx xxx
 	var/smooth_obj = (smoothing_flags & SMOOTH_OBJ)
 	var/border_object_smoothing = (smoothing_flags & SMOOTH_BORDER_OBJECT)
 	var/smooth_directional = (smoothing_flags & SMOOTH_DIRECTIONAL)
+	var/skip_corners = (smoothing_flags & SMOOTH_BITMASK_SKIP_CORNERS)
 
 	#define EXTRA_CHECKS(atom) \
 		if(smooth_directional) { \
@@ -409,8 +410,9 @@ xxx xxx xxx
 		} while(FALSE) \
 
 	#define BITMASK_FOUND(target, direction, direction_flag) \
+		EXTRA_CHECKS(neighbor); \
 		new_junction |= direction_flag; \
-		break set_adj_in_dir; \
+		continue; \
 	/// Check that non border objects use to smooth against border objects
 	/// Returns true if the smooth is acceptable, FALSE otherwise
 	#define BITMASK_ON_BORDER_CHECK(target, direction) (!(target.smoothing_flags & SMOOTH_BORDER_OBJECT) || CAN_DIAGONAL_SMOOTH(target, src, REVERSE_DIR(direction)))
@@ -451,7 +453,7 @@ xxx xxx xxx
 	SET_ADJ_IN_DIR(WEST, WEST)
 
 	// If there's nothing going on already
-	if(!(new_junction & (NORTH|SOUTH)) || !(new_junction & (EAST|WEST)))
+	if(skip_corners || !(new_junction & (NORTH|SOUTH)) || !(new_junction & (EAST|WEST)))
 		set_smoothed_icon_state(new_junction)
 		return
 

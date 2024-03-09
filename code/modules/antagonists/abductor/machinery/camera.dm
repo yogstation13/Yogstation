@@ -17,6 +17,12 @@
 	icon_screen = null
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
+
 /obj/machinery/computer/camera_advanced/abductor/CreateEye()
 	..()
 	eyeobj.visible_icon = TRUE

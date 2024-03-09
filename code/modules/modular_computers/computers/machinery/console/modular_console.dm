@@ -4,11 +4,11 @@
 	icon = 'icons/obj/modular_console.dmi'
 	icon_state = "console-0"
 	icon_state_powered = "console"
-	icon_state_unpowered = "console-off"
+	icon_state_unpowered = "console"
 	screen_icon_state_menu = "menu"
 
 	base_icon_state = "console"
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIRECTIONAL
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIRECTIONAL | SMOOTH_BITMASK_SKIP_CORNERS
 	smoothing_groups = list(SMOOTH_GROUP_COMPUTERS)
 	canSmoothWith = list(SMOOTH_GROUP_COMPUTERS)
 
@@ -25,10 +25,8 @@
 
 /obj/machinery/modular_computer/console/Initialize(mapload)
 	. = ..()
-	if(smoothing_flags & SMOOTH_BITMASK)
-		QUEUE_SMOOTH(src)
-		QUEUE_SMOOTH_NEIGHBORS(src)
-
+	QUEUE_SMOOTH(src)
+	QUEUE_SMOOTH_NEIGHBORS(src)
 	var/obj/item/computer_hardware/battery/battery_module = cpu.all_components[MC_CELL]
 	if(battery_module)
 		qdel(battery_module)
@@ -80,19 +78,19 @@
 			pixel_x = offet_matrix[1]
 			pixel_y = offet_matrix[2]
 
-// Same as parent code, but without the smoothing handling
-/obj/machinery/modular_computer/update_icon()
-	cut_overlays()
+/obj/machinery/modular_computer/console/Destroy()
+	QUEUE_SMOOTH_NEIGHBORS(src)
+	. = ..()
 
-	if(!cpu || !cpu.enabled)
-		if (!(stat & NOPOWER) && (cpu && cpu.use_power()))
-			add_overlay(screen_icon_screensaver)
-	else
-		if(cpu.active_program)
-			add_overlay(cpu.active_program.program_icon_state ? cpu.active_program.program_icon_state : screen_icon_state_menu)
-		else
-			add_overlay(screen_icon_state_menu)
+/obj/machinery/modular_computer/console/update_icon()
+	. = ..()
 
-	if(cpu && cpu.max_integrity <= cpu.integrity_failure)
-		add_overlay("bsod")
-		add_overlay("broken")
+	var/keyboard = "keyboard"
+	if ((stat & NOPOWER) || !(cpu?.use_power()))
+		keyboard = "keyboard_off"
+	add_overlay(keyboard)
+
+	icon_state = "[icon_state]-[smoothing_junction]"
+
+	if(stat & BROKEN)
+		add_overlay("broken-[smoothing_junction]")

@@ -214,13 +214,21 @@
 
 /obj/machinery/computer/bsa_control
 	name = "bluespace artillery control"
+	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon_state = "control_boxp"
+
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
+
+	use_power = NO_POWER_USE
+	circuit = /obj/item/circuitboard/computer/bsa_control
+
 	var/obj/machinery/bsa/full/cannon
 	var/notice
 	var/target
-	use_power = NO_POWER_USE
-	circuit = /obj/item/circuitboard/computer/bsa_control
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
-	icon_state = "control_boxp"
 	var/area_aim = FALSE //should also show areas for targeting
 
 /obj/machinery/computer/bsa_control/ui_state(mob/user)
