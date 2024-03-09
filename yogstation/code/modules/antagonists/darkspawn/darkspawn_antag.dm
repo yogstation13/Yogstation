@@ -10,6 +10,7 @@
 	var/datum/team/darkspawn/team
 	var/disguise_name //name of the player character
 	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
+	var/datum/component/darkspawn_class/picked_class
 
 	//Psi variables
 	var/psi = 100 //Psi is the resource used for darkspawn powers
@@ -75,6 +76,8 @@
 		var/datum/action/cooldown/spell/divulge/action = new(owner)
 		action.Grant(current_mob)
 		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
+
+	
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	if(team)

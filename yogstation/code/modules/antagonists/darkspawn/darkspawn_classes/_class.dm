@@ -98,12 +98,12 @@
 	power.remove()
 
 
-/datum/component/darkspawn_class/classless
-	name = "Deprived"
-	description = "You've yet to peep the horror."
-	long_description = "You can probably do this with just a club and loincloth anyway."
-	specialization_flag = NONE
-	class_color = COLOR_SILVER
+// /datum/component/darkspawn_class/classless
+// 	name = "Deprived"
+// 	description = "You've yet to peep the horror."
+// 	long_description = "You can probably do this with just a club and loincloth anyway."
+// 	specialization_flag = NONE
+// 	class_color = COLOR_SILVER
 
 /datum/component/darkspawn_class/fighter
 	name = "Fighter"
