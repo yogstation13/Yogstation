@@ -204,7 +204,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 #define SMOOTH_GROUP_CLEANABLE_DIRT S_OBJ(68) ///obj/effect/decal/cleanable/dirt
 
-#define SMOOTH_GROUP_COMPUTERS S_OBJ(69) ///obj/machinery/computer, /obj/machiner/modular_computer
+#define SMOOTH_GROUP_COMPUTERS S_OBJ(69) ///obj/machinery/computer, /obj/machinery/modular_console
 
 
 

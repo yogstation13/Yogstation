@@ -671,6 +671,13 @@
 	icon_state = "oldcomp"
 	icon_screen = "oldcomp_broken"
 	icon_keyboard = null
+
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
+	
 	circuit = /obj/item/circuitboard/computer/reactor // we have the technology
 	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactor = null
 	var/id = null

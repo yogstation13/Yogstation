@@ -121,6 +121,12 @@
 	icon_screen = "library"
 	icon_keyboard = null
 
+	//these muthafuckas arent supposed to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
+
 /obj/machinery/computer/pod/old/syndicate
 	name = "\improper ProComp Executive IIc"
 	desc = "The Syndicate operate on a tight budget. Operates external airlocks."

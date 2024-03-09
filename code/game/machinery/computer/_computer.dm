@@ -1,6 +1,6 @@
 /obj/machinery/computer
 	name = "computer"
-	icon = 'icons/obj/machines/smooth_machines/computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer-0"
 
 	density = TRUE

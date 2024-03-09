@@ -85,7 +85,7 @@
 	cut_overlays()
 
 	if(!cpu || !cpu.enabled)
-		if (!(machine_stat & NOPOWER) && (cpu && cpu.use_power()))
+		if (!(stat & NOPOWER) && (cpu && cpu.use_power()))
 			add_overlay(screen_icon_screensaver)
 	else
 		if(cpu.active_program)
@@ -93,6 +93,6 @@
 		else
 			add_overlay(screen_icon_state_menu)
 
-	if(cpu && cpu.obj_integrity <= cpu.integrity_failure)
+	if(cpu && cpu.max_integrity <= cpu.integrity_failure)
 		add_overlay("bsod")
 		add_overlay("broken")
