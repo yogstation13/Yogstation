@@ -173,27 +173,27 @@
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/extract)
 
 /datum/psi_web/dabyssal_call
-	name = "abyssal call"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Abyssal Call"
+	desc = "Call a tendril at a targeted location to grasp an enemy."
+	lore_description = "Summon abyssal tendrils from beyond the veil."
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call)
 	
 /datum/psi_web/seize
-	name = "seize"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Seize"
+	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/seize)
 	
 /datum/psi_web/shadow_beam
-	name = "shadow beam"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Shadow Beam"
+	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -204,9 +204,9 @@
 ////////////////////////////////////////////////////////////////////////////////////
 
 /datum/psi_web/icyveins
-	name = "icyveins"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Icy Veins"
+	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = SCOUT | WARLOCK
 	menu_tab = STORE_OFFENSE

@@ -274,8 +274,8 @@
 //------------------Literally just goliath tendrils---------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call
-	name = "Abyssal call"
-	desc = "OOOOOOOOOOOOOOOO spooky"
+	name = "Abyssal Call"
+	desc = "Summon abyssal tendrils from beyond the veil to grasp an enemy."
 	cast_range = 10
 	cast_time = 0
 	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original
@@ -287,7 +287,7 @@
 //--------------Gives everyone nearby a random hallucination------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/mass_hallucination
-	name = "Mass hallucination"
+	name = "Mass Hallucination"
 	desc = "Forces brief delirium on all nearby enemies."
 	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "Kindle"
