@@ -385,7 +385,6 @@ xxx xxx xxx
 				if(neighbor_smoothing_groups) { \
 					for(var/target in canSmoothWith) { \
 						if(canSmoothWith[target] & neighbor_smoothing_groups[target]) { \
-							EXTRA_CHECKS(neighbor); \
 							##ADJ_FOUND(neighbor, direction, direction_flag); \
 						} \
 					} \
@@ -398,7 +397,6 @@ xxx xxx xxx
 						}; \
 						for(var/target in canSmoothWith) { \
 							if(canSmoothWith[target] & thing_smoothing_groups[target]) { \
-								EXTRA_CHECKS(neighbor); \
 								##ADJ_FOUND(thing, direction, direction_flag); \
 							} \
 						} \
@@ -410,9 +408,9 @@ xxx xxx xxx
 		} while(FALSE) \
 
 	#define BITMASK_FOUND(target, direction, direction_flag) \
-		EXTRA_CHECKS(neighbor); \
+		EXTRA_CHECKS(target); \
 		new_junction |= direction_flag; \
-		continue; \
+		break set_adj_in_dir; \
 	/// Check that non border objects use to smooth against border objects
 	/// Returns true if the smooth is acceptable, FALSE otherwise
 	#define BITMASK_ON_BORDER_CHECK(target, direction) (!(target.smoothing_flags & SMOOTH_BORDER_OBJECT) || CAN_DIAGONAL_SMOOTH(target, src, REVERSE_DIR(direction)))
