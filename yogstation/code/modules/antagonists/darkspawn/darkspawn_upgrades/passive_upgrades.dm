@@ -31,8 +31,6 @@
 	eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.sight_flags |= SEE_OBJS | SEE_TURFS
-	else
-		remove(TRUE)
 
 /datum/psi_web/xray/on_loss()
 	if(eyes)
@@ -50,8 +48,6 @@
 	eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.flash_protect += 2
-	else
-		remove(TRUE)
 
 /datum/psi_web/sunglasses/on_loss()
 	if(eyes)
@@ -233,8 +229,6 @@
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.max_veils += 1
-	else
-		remove(TRUE)
 
 /datum/psi_web/more_thralls/on_loss()
 	var/datum/team/darkspawn/team = darkspawn.get_team()
