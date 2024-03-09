@@ -12,6 +12,8 @@
 	var/datum/objective/darkspawn/O = new
 	objectives += O
 	O.update_explanation_text()
+	if(SSticker?.mode?.num_players())
+		required_succs = clamp(round(SSticker.mode.num_players() / 3), 10, 30)
 
 /datum/team/darkspawn/roundend_report()
 	var/list/report = list()

@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //medhud, duh
 /datum/psi_web/medhud
-	name = "fighter innate abilities"
+	name = "medhud"
 	desc = "me no think so good"
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
@@ -20,7 +20,7 @@
 
 //xray vision, duh
 /datum/psi_web/xray
-	name = "fighter innate abilities"
+	name = "xray eyes"
 	desc = "me no think so good"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
@@ -39,7 +39,7 @@
 		eyes.sight_flags &= ~(SEE_OBJS | SEE_TURFS)
 
 /datum/psi_web/sunglasses
-	name = "fighter innate abilities"
+	name = "sunglasses"
 	desc = "me no think so good"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
@@ -117,7 +117,7 @@
 	darkspawn.light_burning *= 2
 
 /datum/psi_web/brute_res
-	name = "fighter innate abilities"
+	name = "brute res"
 	desc = "me no think so good"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
@@ -132,7 +132,7 @@
 		owner.physiology.brute_mod *= 2
 
 /datum/psi_web/burn_res
-	name = "fighter innate abilities"
+	name = "burn res"
 	desc = "me no think so good"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
@@ -147,7 +147,7 @@
 		owner.physiology.burn_mod *= 2
 
 /datum/psi_web/noslip
-	name = "fighter innate abilities"
+	name = "noslip"
 	desc = "me no think so good"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
@@ -164,7 +164,7 @@
 //----------------------------Scout Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/psi_web/stamina_res
-	name = "fighter innate abilities"
+	name = "stamina res"
 	desc = "me no think so good"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE

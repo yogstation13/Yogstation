@@ -1,3 +1,4 @@
+import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
 import { Section, Stack, Box, Tabs, Button, BlockQuote } from '../components';
 import { Window } from '../layouts';
@@ -28,38 +29,39 @@ const hereticYellow = {
   color: 'yellow',
 };
 
+type Data = {
+  categories: Category[];
+};
+
+type Category = {
+  name: String;
+  knowledgeData: Knowledge[];
+};
+
 type Knowledge = {
   path: string;
   name: string;
   desc: string;
-  gainFlavor: string;
   cost: number;
   disabled: boolean;
-  hereticPath: string;
-  color: string;
-};
-
-type KnowledgeInfo = {
-  learnableKnowledge: Knowledge[];
-  learnedKnowledge: Knowledge[];
+  menutab: string;
 };
 
 type Info = {
-  charges: number;
-  total_sacrifices: number;
+  willpower: number;
+  lucidity_drained: number;
   ascended: BooleanLike;
   objectives: Objective[];
-  can_change_objective: BooleanLike;
 };
 
 const IntroductionSection = (props, context) => {
   const { data, act } = useBackend<Info>(context);
-  const { objectives, ascended, can_change_objective } = data;
+  const { objectives, ascended } = data;
 
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
       <Stack.Item grow>
-        <Section title="You are the Heretic!" fill fontSize="14px">
+        <Section title="You are the Darkspawn!" fill fontSize="14px">
           <Stack vertical>
             <FlavorSection />
             <Stack.Divider />
@@ -72,21 +74,9 @@ const IntroductionSection = (props, context) => {
                 <ObjectivePrintout
                   fill
                   titleMessage={
-                    can_change_objective
-                      ? 'In order to ascend, you have these tasks to fulfill'
-                      : 'Use your dark knowledge to fulfil your personal goal'
+                    'In order to ascend, you have these tasks to fulfill'
                   }
                   objectives={objectives}
-                  objectiveFollowup={
-                    <ReplaceObjectivesButton
-                      can_change_objective={can_change_objective}
-                      button_title={'Reject Ascension'}
-                      button_colour={'red'}
-                      button_tooltip={
-                        'Turn your back on the Mansus to accomplish a task of your choosing. Selecting this option will prevent you from ascending!'
-                      }
-                    />
-                  }
                 />
               </Stack.Item>
             )}
@@ -113,8 +103,8 @@ const FlavorSection = () => {
         </Stack.Item>
         <Stack.Item>
           <b>
-            The <span style={hereticPurple}>Gates of Mansus</span>
-            &nbsp;open up to your mind.
+            The <span style={hereticPurple}>Shadowlands</span>
+            &nbsp;await your return.
           </b>
         </Stack.Item>
       </Stack>
@@ -127,46 +117,10 @@ const GuideSection = () => {
     <Stack.Item>
       <Stack vertical fontSize="12px">
         <Stack.Item>
-          - Find reality smashing&nbsp;
-          <span style={hereticPurple}>influences</span>
-          &nbsp;around the station invisible to the normal eye and&nbsp;
-          <b>use your codex </b> on them to harvest them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span>.
+          - Collaborate with fellow darkspawns, use .w to converse using the mindlink
         </Stack.Item>
         <Stack.Item>
-          - Use your&nbsp;
-          <span style={hereticRed}>Living Heart</span>
-          &nbsp;to track down&nbsp;
-          <span style={hereticRed}>sacrifice targets</span>, but be careful:
-          You are able to target other heretics, so be careful whom you hunt.
-          This action is tied to your <b>heart</b> - if you lose it, you must
-          complete a ritual to regain it.
-        </Stack.Item>
-        <Stack.Item>
-          - Draw a&nbsp;
-          <span style={hereticGreen}>transmutation rune</span> by using a
-          your codex on the floor. This rune allows you to complete
-          rituals and sacrifices.
-        </Stack.Item>
-        <Stack.Item>
-          - Follow your <span style={hereticRed}>Living Heart</span> to find
-          your targets. Bring them back to a&nbsp;
-          <span style={hereticGreen}>transmutation rune</span> once you have killed them&nbsp;
-          <span style={hereticRed}>sacrifice</span> them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span>. The Mansus{' '}
-          <b>ONLY</b> accepts targets pointed to by the&nbsp;
-          <span style={hereticRed}>Living Heart</span>.
-        </Stack.Item>
-        <Stack.Item>
-          -  Each <span style={hereticYellow}>Lore-Specific</span> upgrade will be available after gaining three research of the previous tier.
-          This means you need three tier one abilities before you can claim your Grasp Mark,
-          then three tier two abilities before you can claim your Blade Upgrade.
-          As it follows, three tier three abilities are required before you unlock your Ascension Rite.
-        </Stack.Item>
-        <Stack.Item>
-          - Accomplish all of your research to be able to learn the{' '}
-          <span style={hereticYellow}>final ritual</span>. Complete the ritual
-          to become all powerful!
+          - Incapacitate crewmembers and drain them of their lucidity to gain willpower to purchase new abilities
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -175,7 +129,7 @@ const GuideSection = () => {
 
 const InformationSection = (props, context) => {
   const { data } = useBackend<Info>(context);
-  const { charges, total_sacrifices, ascended } = data;
+  const { willpower, lucidity_drained, ascended } = data;
   return (
     <Stack.Item>
       <Stack vertical fill>
@@ -193,109 +147,157 @@ const InformationSection = (props, context) => {
           </Stack.Item>
         )}
         <Stack.Item>
-          You have <b>{charges || 0}</b>&nbsp;
+          You have <b>{willpower || 0}</b>&nbsp;
           <span style={hereticBlue}>
-            knowledge point{charges !== 1 ? 's' : ''}
+            willpower
           </span>
           .
         </Stack.Item>
         <Stack.Item>
-          You have made a total of&nbsp;
-          <b>{total_sacrifices || 0}</b>&nbsp;
-          <span style={hereticRed}>sacrifices</span>.
+          You have drained a total of&nbsp;
+          <b>{lucidity_drained || 0}</b>&nbsp;
+          <span style={hereticRed}>lucidity</span>.
         </Stack.Item>
       </Stack>
     </Stack.Item>
   );
 };
 
-const ResearchedKnowledge = (props, context) => {
-  const { data } = useBackend<KnowledgeInfo>(context);
-  const { learnedKnowledge } = data;
+const MenuTabs = (props, context) => {
+  const { data, act } = useBackend<Data>(context);
+  const { categories = [] } = data;
+
+  const [selectedCategory, setSelectedCategory] = useLocalState<Category>(
+    context,
+    'category',
+    categories[0]
+  );
+
+  const [selectedKnowledge, setSelectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
 
   return (
-    <Stack.Item grow>
-      <Section title="Researched Knowledge" fill scrollable>
-        <Stack vertical>
-          {(!learnedKnowledge.length && 'None!') ||
-            learnedKnowledge.map((learned) => (
-              <Stack.Item key={learned.name}>
-                <Button
-                  width="100%"
-                  color={learned.color}
-                  content={`${learned.hereticPath} - ${learned.name}`}
-                  tooltip={learned.desc}
-                />
-              </Stack.Item>
-            ))}
-        </Stack>
-      </Section>
-    </Stack.Item>
+    <Section>
+
+      <Tabs >
+        {categories.map(category => (
+          <Tabs.Tab
+            key={category}
+            selected={category === selectedCategory}
+            onClick={() => setSelectedCategory(category)}>
+            {capitalize(category.name)}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+      <Tabs vertical >
+        {Object.entries(selectedCategory.knowledgeData).map(([knowledge, psiWeb]) => (
+          <Tabs.Tab
+            key={knowledge}
+            Autofocus
+            selected={psiWeb === selectedKnowledge}
+            onClick={() => setSelectedKnowledge(psiWeb)}>
+            {capitalize(psiWeb.name)}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+    </Section>
   );
 };
 
-const KnowledgeShop = (props, context) => {
-  const { data, act } = useBackend<KnowledgeInfo>(context);
-  const { learnableKnowledge } = data;
-
-  return (
-    <Stack.Item grow>
-      <Section title="Potential Knowledge" fill scrollable>
-        {(!learnableKnowledge && 'None!') ||
-          learnableKnowledge.map((toLearn) => (
-            <Stack.Item key={toLearn.name} mb={1}>
-              <Button
-                width="100%"
-                color={toLearn.color}
-                disabled={toLearn.disabled}
-                content={`${toLearn.hereticPath} - ${
-                  toLearn.cost > 0
-                    ? `${toLearn.name}: ${toLearn.cost}
-                  point${toLearn.cost !== 1 ? 's' : ''}`
-                    : toLearn.name
-                }`}
-                tooltip={toLearn.desc}
-                onClick={() => act('research', {
-                  name: toLearn.name,
-                  cost: toLearn.cost,
-                })} />
-              {!!toLearn.gainFlavor && (
-                <BlockQuote>
-                  <i>{toLearn.gainFlavor}</i>
-                </BlockQuote>
-              )}
-            </Stack.Item>
-          ))}
-      </Section>
-    </Stack.Item>
-  );
-};
 
 const ResearchInfo = (props, context) => {
-  const { data } = useBackend<Info>(context);
-  const { charges } = data;
+  const { act, data } = useBackend<Info>(context);
+  const { willpower } = data;
+
+  const [selectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
 
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
       <Stack.Item grow>
         <Stack vertical height="100%">
           <Stack.Item fontSize="20px" textAlign="center">
-            You have <b>{charges || 0}</b>&nbsp;
+            You have <b>{willpower || 0}</b>&nbsp;
             <span style={hereticBlue}>
-              knowledge point{charges !== 1 ? 's' : ''}
+              willpower
             </span>{' '}
             to spend.
           </Stack.Item>
-          <Stack.Item grow>
-            <Stack height="100%">
-              <ResearchedKnowledge />
-              <KnowledgeShop />
-            </Stack>
-          </Stack.Item>
+
+          <Stack
+            m={1}
+            fill>
+            <Stack.Item grow={1} overflowY="auto">
+              <MenuTabs />
+            </Stack.Item>
+
+            <Stack.Item grow={1}>
+              <Stack fill fluid direction="column">
+                <Stack.Item >
+                  <KnowledgePreview />
+                </Stack.Item>
+                <Stack.Item>
+                {selectedKnowledge && (
+                  <Button
+                  icon="hands-praying"
+                  content="Confirm your choice"
+                  textAlign="center"
+                  fontSize="16px"
+                  fluid
+                  color="green"
+                  onClick={() => act("purchase", {
+                  upgrade_path: selectedKnowledge.path,
+                  })}
+                />
+                )}
+
+                </Stack.Item>
+              </Stack>
+
+            </Stack.Item>
+          </Stack>
+
         </Stack>
       </Stack.Item>
     </Stack>
   );
+};
+
+const KnowledgePreview = (props, context) => {
+
+  const [selectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
+
+  if(selectedKnowledge!==null) {
+    return (
+      <Section overflow-wrap="break-word" fill title={capitalize(selectedKnowledge?.name)}>
+        <Stack fill fluid vertical justify="flex-start" fontSize="16px" textAlign="center">
+
+          <Stack.Item color="gold">{selectedKnowledge?.desc}</Stack.Item>
+
+          {/* <Stack.Item>
+            <Box
+            as="img"
+            src={resolveAsset(selectedKnowledge.rod_pic)}
+            height="96px"
+            style={{
+              '-ms-interpolation-mode': 'nearest-neighbor',
+              'image-rendering': 'pixelated' }} />
+          </Stack.Item> */}
+
+          <Stack.Item fontSize="12px" color="lightblue">{selectedKnowledge?.cost}</Stack.Item>
+
+        </Stack>
+      </Section>
+      );
+  }else{
+    return(
+      <Section overflow-wrap="break-word" fill fluid>
+        <Stack vertical fontSize="16px" align="center" height="50px" textAlign="center">
+
+          <Stack.Item width="100%" color="gold">Choose your implement of righteousness</Stack.Item>
+
+        </Stack>
+      </Section>
+    );
+  }
 };
 
 export const AntagInfoDarkspawn = (props, context) => {

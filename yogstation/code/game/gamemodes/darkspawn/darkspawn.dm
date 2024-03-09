@@ -34,7 +34,6 @@
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
 
-	team.required_succs = clamp(round(num_players() / 3), 15, 30)
 	team.update_objectives()
 	GLOB.thrallnet.name = "Thrall net"
 	return TRUE

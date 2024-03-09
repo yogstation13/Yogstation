@@ -74,10 +74,10 @@
 
 	overlays += emissive_appearance(icon_file, class_icon, source) //the emissive overlay for the sigil
 
-/datum/component/darkspawn_class/proc/get_purchasable_abilities()
+/datum/component/darkspawn_class/proc/get_purchasable_abilities() //todo, add buying multiples in this thing
 	var/list/datum/psi_web/available_abilities = list()
-	for(var/datum/psi_web/ability in subtypesof(/datum/psi_web))
-		if(!(ability.shadow_flags & specialization_flag) || locate(ability) in learned_abilities)
+	for(var/datum/psi_web/ability as anything in subtypesof(/datum/psi_web))
+		if(!(initial(ability.shadow_flags) & specialization_flag) || locate(ability) in learned_abilities)
 			continue
 		available_abilities += ability
 	return available_abilities
@@ -85,10 +85,10 @@
 /datum/component/darkspawn_class/proc/gain_power(power_typepath)
 	if(!ispath(power_typepath, /datum/psi_web))
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
-	var/datum/psi_web/new_power = new power_typepath()
-	if(!(new_power.shadow_flags & specialization_flag))
+	if(!(initial(power_typepath.specialization_flag) & specialization_flag))
 		CRASH("[owner] tried to gain [new_power] which is not allowed by their specialization")
-
+		
+	var/datum/psi_web/new_power = new power_typepath()
 	learned_abilities += new_power
 	new_power.on_purchase(owner)
 

@@ -1,14 +1,3 @@
-
-#define SCOUT (1<<0)
-#define FIGHTER (1<<1)
-#define WARLOCK (1<<2)
-#define ALL_DARKSPAWN_CLASSES (SCOUT | FIGHTER | WARLOCK)
-
-#define STORE_OFFENSE "offense" //things that you use and it fucks someone up
-#define STORE_UTILITY "utility" //things that you use and it does something less straightforward
-#define STORE_PASSIVE "passives" //things that always happen all the time
-
-
 //shadow store datums (upgrades and abilities)
 /datum/psi_web
 	///Name of the effect

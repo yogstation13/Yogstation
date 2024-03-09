@@ -83,7 +83,7 @@
 		if(initial(class.choosable))
 			classes |= class
 		
-	var/chosen = tgui_input_list(owner, "Select which class you want to play.", "Select Class", classes)
+	var/chosen = tgui_input_list(owner.current, "Select which class you want to play.", "Select Class", classes)
 	if(!chosen || !ispath(chosen, /datum/component/darkspawn_class))
 		return
 	
@@ -195,6 +195,35 @@
 	var/list/data = list()
 
 	data["willpower"] = willpower
+	if(team)
+		data["lucidity_drained"] = team.lucidity
+		data["required_succs"] = team.required_succs
+	data["ascended"] = (darkspawn_state == PROGENITOR)
+
+	if(picked_class)
+		if(picked_class.specialization_flag)
+			data["specialization"] = picked_class.specialization_flag
+
+		var/list/categories = list(STORE_OFFENSE, STORE_UTILITY, STORE_PASSIVE)
+		for(var/category in categories)
+			var/list/category_data = list()
+			category_data["name"] = category
+
+			var/list/paths = list()
+
+			for(var/datum/psi_web/knowledge as anything in picked_class.get_purchasable_abilities())
+				var/list/knowledge_data = list()
+				knowledge_data["path"] = knowledge
+				knowledge_data["name"] = initial(knowledge.name)
+				knowledge_data["desc"] = initial(knowledge.desc)
+				knowledge_data["cost"] = initial(knowledge.willpower_cost)
+				knowledge_data["disabled"] = (initial(knowledge.willpower_cost) > willpower)
+
+				if(category == initial(knowledge.menu_tab))
+					paths += list(knowledge_data)
+			
+			category_data["knowledgeData"] = paths
+			data["categories"] += list(category_data)
 	
 	return data
 
@@ -203,14 +232,6 @@
 	
 	data["antag_name"] = name
 	data["objectives"] = get_objectives()
-	if(team)
-		data["lucidity_drained"] = team.lucidity
-		data["required_succs"] = team.required_succs
-	data["specialization"] = "none"
-
-	var/datum/component/darkspawn_class/class = user.GetComponent(/datum/component/darkspawn_class)
-	if(class && istype(class) && class.specialization_flag)
-		data["specialization"] = class.specialization_flag
 
 	return data
 
@@ -221,9 +242,9 @@
 	switch(action)
 		if("purchase")
 			var/upgrade_path = text2path(params["upgrade_path"])
+			to_chat(world, "buying [upgrade_path]")
 			if(!ispath(upgrade_path, /datum/psi_web))
 				return FALSE
-			//var/datum/psi_web/selected = new upgrade_path
 			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -305,6 +326,7 @@
 	user.fully_heal()
 	user.set_species(/datum/species/shadow/darkspawn)
 	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
+	user.update_appearance(UPDATE_OVERLAYS)
 
 	show_to_ghosts = TRUE
 	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [user.real_name].</b>")
