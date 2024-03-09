@@ -12,7 +12,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "tagalong"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -49,7 +49,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "time_dilation"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -77,7 +77,7 @@
 	buttontooltipstyle = "alien"
 	sound = 'sound/effects/ghost2.ogg'
 	aoe_radius = 3
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN

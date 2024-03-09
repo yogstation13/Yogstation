@@ -2,7 +2,7 @@
 /datum/action/cooldown/spell/sacrament
 	name = "Sacrament"
 	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"

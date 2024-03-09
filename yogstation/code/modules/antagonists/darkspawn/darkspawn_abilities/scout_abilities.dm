@@ -4,7 +4,7 @@
 /datum/action/cooldown/spell/toggle/light_eater
 	name = "Light Eater"
 	desc = "Twists an active arm into a blade of all-consuming shadow."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -44,7 +44,7 @@
 /datum/action/cooldown/spell/toggle/shadow_caster
 	name = "Shadow caster"
 	desc = "Twists an active arm into a bow that shoots harddark arrows."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -85,7 +85,7 @@
 /datum/action/cooldown/spell/darkness_smoke
 	name = "Darkness Smoke"
 	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
-	panel = null
+	panel = "Darkspawn"
 	button_icon_state = "black_smoke"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
@@ -95,7 +95,6 @@
 	sound = 'sound/effects/bamf.ogg'
 	cooldown_time = 1 MINUTES
 	antimagic_flags = NONE
-	panel = null
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 15
@@ -161,7 +160,7 @@
 
 	cooldown_time = 60 SECONDS
 	antimagic_flags = NONE
-	panel = null
+	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 30
@@ -190,7 +189,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "voidblink"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
-	panel = null
+	panel = "Darkspawn"
 	sound = 'sound/magic/voidblink.ogg'
 
 	cooldown_time = 25 SECONDS
@@ -219,7 +218,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -246,13 +245,12 @@
 /datum/action/cooldown/spell/pointed/disguise //chameleon projector as a spell
 	name = "Shadow disguise"
 	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
-	panel = null
+	panel = "Darkspawn"
 	button_icon_state = "glare"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN

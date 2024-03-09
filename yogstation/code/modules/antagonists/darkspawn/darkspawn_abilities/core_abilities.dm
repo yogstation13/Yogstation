@@ -20,7 +20,7 @@
 	name = "Devour Will"
 	desc = "Creates a dark bead that can be used on a human to fully recharge Psi, gain one lucidity, and knock them unconscious. The victim will be stunned for the duration of the channel, being interrupted \
 	will knock both you and the victim down. Costs 5 Psi."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	sound = null
 	background_icon_state = "bg_alien"
@@ -141,7 +141,7 @@
 	buttontooltipstyle = "alien"
 	invocation_type = INVOCATION_NONE
 	antimagic_flags = NONE
-	panel = null
+	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	psi_cost = 60
@@ -211,7 +211,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "creep"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
@@ -248,7 +248,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "simulacrum"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -276,7 +276,7 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build
 	name = "Darkspawn building thing"
 	desc = "You shouldn't be able to see this."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"

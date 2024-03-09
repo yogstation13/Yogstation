@@ -4,7 +4,7 @@
 /datum/action/cooldown/spell/toggle/dark_staff
 	name = "Shadow Staff"
 	desc = "Pull darkness from the void, knitting it into a staff."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -55,7 +55,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -119,7 +119,7 @@
 	button_icon_state = "null_charge"
 
 	antimagic_flags = NONE
-	panel = null
+	panel = "Darkspawn"
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
@@ -179,7 +179,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -296,7 +296,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -334,7 +334,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -449,13 +449,12 @@
 /datum/action/cooldown/spell/pointed/seize //Stuns and mutes a human target for 10 seconds
 	name = "Seize"
 	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
-	panel = null
+	panel = "Darkspawn"
 	button_icon_state = "glare"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN

@@ -4,7 +4,7 @@
 /datum/action/cooldown/spell/toggle/shadow_tendril
 	name = "Shadow Tendril"
 	desc = "Twists an active arm into a mass of tendrils with many important uses. Examine the tendrils to see a list of uses."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -64,7 +64,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "time_dilation"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -104,7 +104,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "glare"
-	panel = null
+	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	cooldown_time = 5 SECONDS
@@ -172,7 +172,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "time_dilation"
 	check_flags = AB_CHECK_CONSCIOUS
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	sound = 'yogstation/sound/creatures/darkspawn_howl.ogg'
@@ -204,7 +204,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "demented_outburst"
 	antimagic_flags = NONE
-	panel = null
+	panel = "Darkspawn"
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 50 //big boom = big cost
@@ -286,7 +286,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "creep"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -326,7 +326,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "creep"
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
@@ -379,7 +379,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "time_dilation"
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN

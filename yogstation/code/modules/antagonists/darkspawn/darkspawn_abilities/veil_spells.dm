@@ -12,7 +12,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	buttontooltipstyle = "alien"
 	button_icon_state = "veil_mind"
 	antimagic_flags = NONE
-	panel = null
+	panel = "Darkspawn"
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
@@ -86,7 +86,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	buttontooltipstyle = "alien"
 	button_icon_state = "veil_mind"
 	antimagic_flags = NONE
-	panel = null
+	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 
@@ -147,7 +147,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 	cast_range = INFINITY //lol
 	cooldown_time = 15 SECONDS
-	panel = null
+	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -214,7 +214,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/veilbuff
 	name = "Empower veil"
 	desc = "buffs all veils with some sort of effect."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -277,7 +277,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/pointed/elucidate
 	name = "Elucidate"
 	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	background_icon_state = "bg_alien"
@@ -340,7 +340,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/toggle/nightvision
 	name = "Nightvision"
 	desc = "Grants sight in the dark."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"

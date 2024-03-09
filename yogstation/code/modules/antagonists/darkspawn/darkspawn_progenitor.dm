@@ -190,7 +190,7 @@
 	buttontooltipstyle = "alien"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
-	panel = null
+	panel = "Darkspawn"
 	spell_requirements = NONE
 	cast_range = 10
 

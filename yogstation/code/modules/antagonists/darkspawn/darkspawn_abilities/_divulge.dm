@@ -2,7 +2,7 @@
 /datum/action/cooldown/spell/divulge
 	name = "Divulge"
 	desc = "Sheds your human disguise. This is obvious and so should be done in a secluded area. You cannot reverse this."
-	panel = null
+	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
