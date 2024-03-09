@@ -797,7 +797,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return ..()
 	return 0
 
-/obj/item/mech_melee_attack(obj/mecha/M, equip_allowed)
+/obj/item/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	return 0
 
 /obj/item/deconstruct(disassembled = TRUE)

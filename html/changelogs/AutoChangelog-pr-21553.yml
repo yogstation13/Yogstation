@@ -1,6 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - mapping: "Added a second button to the kitchen on Box to toggle counter shutters"
-  - mapping: "The privacy shutters in the kitchen on Box are now toggled with the bottom (already existing) button"
-  - mapping: "Removed the third blender from the kitchen on Box"

@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Weedkiller does 2x damage to venus human traps than before"
-  - tweak: "Venus human traps can no longer pull"
-  - tweak: "venus human traps now require a pressurized environment"

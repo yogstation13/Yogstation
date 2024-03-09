@@ -5,6 +5,7 @@
 	icon = 'icons/effects/effects.dmi'
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	move_resist = INFINITY
+	uses_integrity = FALSE
 	obj_flags = NONE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
@@ -17,7 +18,7 @@
 /obj/effect/acid_act()
 	return
 
-/obj/effect/mech_melee_attack(obj/mecha/M, equip_allowed)
+/obj/effect/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	return 0
 
 /obj/effect/blob_act(obj/structure/blob/B)

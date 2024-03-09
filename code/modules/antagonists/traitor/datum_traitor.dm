@@ -62,6 +62,9 @@
 	if(traitor_kind == TRAITOR_AI && owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
+		for(var/datum/action/innate/ai/ranged/cameragun/ai_action in A.actions)
+			if(ai_action.from_traitor)
+				ai_action.Remove(A)
 		if(malf)
 			remove_verb(A, /mob/living/silicon/ai/proc/choose_modules)
 			A.malf_picker.remove_malf_verbs(A)
@@ -261,6 +264,16 @@
 			add_law_zero()
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
 			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
+
+			var/has_action = FALSE
+			for(var/datum/action/innate/ai/ranged/cameragun/ai_action in owner.current.actions)
+				has_action = TRUE
+				break
+			if(!has_action)
+				var/datum/action/innate/ai/ranged/cameragun/ability = new
+				ability.from_traitor = TRUE
+				ability.Grant(owner.current)
+
 		if(TRAITOR_HUMAN)
 			if(should_equip)
 				equip(silent)

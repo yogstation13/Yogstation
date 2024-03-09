@@ -1146,8 +1146,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 									ADMIN_PUNISHMENT_PERFORATE,
 									ADMIN_PUNISHMENT_SCARIFY,
 									ADMIN_PUNISHMENT_SMSPIDER,
-									ADMIN_PUNISHMENT_FLASHBANG
-									)
+									ADMIN_PUNISHMENT_FLASHBANG,
+									ADMIN_PUNISHMENT_WIBBLY)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1330,6 +1330,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(target.loc)
 			CB.prime()
 			chucklenuts.flash_act()
+
+		if(ADMIN_PUNISHMENT_WIBBLY)
+			apply_wibbly_filters(target, 888)
+			to_chat(target, span_warning("Something feels very... wibbly!"))
 
 	punish_log(target, punishment)
 
