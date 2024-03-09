@@ -3745,9 +3745,9 @@
 	dir = 8;
 	dwidth = 8;
 	height = 7;
-	shuttle_id = "supply_away";
 	json_key = "cargo";
 	name = "CentCom";
+	shuttle_id = "supply_away";
 	width = 20
 	},
 /turf/open/space,
@@ -4113,8 +4113,8 @@
 	area_type = /area/centcom/syndicate_mothership;
 	dwidth = 25;
 	height = 50;
-	shuttle_id = "emergency_syndicate";
 	name = "Syndicate Auxillary Shuttle Dock";
+	shuttle_id = "emergency_syndicate";
 	width = 50
 	},
 /turf/open/space/basic,
@@ -7603,10 +7603,6 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/centcom/evac)
-"aqX" = (
-/obj/structure/fluff/arc,
-/turf/open/floor/grass,
-/area/centcom/evac)
 "aqY" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/brflowers,
@@ -9208,9 +9204,9 @@
 	dir = 2;
 	dwidth = 14;
 	height = 13;
-	shuttle_id = "syndicatecutter_home";
 	name = "Syndicate Home Outpost";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/cutter;
+	shuttle_id = "syndicatecutter_home";
 	width = 22
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
@@ -9850,9 +9846,9 @@
 	dir = 4;
 	dwidth = 25;
 	height = 50;
-	shuttle_id = "emergency_away";
 	json_key = "emergency";
 	name = "CentCom Emergency Shuttle Dock";
+	shuttle_id = "emergency_away";
 	width = 50
 	},
 /turf/open/space,
@@ -10644,8 +10640,8 @@
 /obj/docking_port/stationary{
 	dwidth = 1;
 	height = 4;
-	shuttle_id = "pod2_away";
 	name = "recovery ship";
+	shuttle_id = "pod2_away";
 	width = 3
 	},
 /turf/open/space/basic,
@@ -10731,9 +10727,9 @@
 	dir = 8;
 	dwidth = 2;
 	height = 13;
-	shuttle_id = "ferry_away";
 	json_key = "ferry";
 	name = "CentCom Ferry Dock";
+	shuttle_id = "ferry_away";
 	width = 5
 	},
 /turf/open/space,
@@ -12794,8 +12790,8 @@
 /obj/docking_port/stationary{
 	dwidth = 1;
 	height = 4;
-	shuttle_id = "pod3_away";
 	name = "recovery ship";
+	shuttle_id = "pod3_away";
 	width = 3
 	},
 /turf/open/space/basic,
@@ -13933,8 +13929,8 @@
 	dir = 8;
 	dwidth = 2;
 	height = 7;
-	shuttle_id = "pod_away";
 	name = "recovery ship";
+	shuttle_id = "pod_away";
 	width = 5
 	},
 /turf/open/space/basic,
@@ -18750,9 +18746,9 @@
 	dir = 8;
 	dwidth = 12;
 	height = 17;
-	shuttle_id = "syndicate_away";
 	name = "syndicate recon outpost";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/basic;
+	shuttle_id = "syndicate_away";
 	width = 23
 	},
 /turf/open/floor/engine,
@@ -22063,8 +22059,8 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	shuttle_id = "pod4_away";
 	name = "recovery ship";
+	shuttle_id = "pod4_away";
 	width = 3
 	},
 /turf/open/space/basic,
@@ -24821,7 +24817,9 @@
 	},
 /area/holodeck/rec_center/chapelcourt)
 "aYX" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -26285,6 +26283,12 @@
 	icon_state = "info28"
 	},
 /area/centcom/testchamber)
+"kWs" = (
+/obj/structure/fluff/colton_statue{
+	layer = 3.5
+	},
+/turf/open/floor/grass,
+/area/centcom/evac)
 "kWx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -77815,7 +77819,7 @@ akm
 aps
 aio
 aqC
-aqX
+kWs
 arU
 aSq
 avh
