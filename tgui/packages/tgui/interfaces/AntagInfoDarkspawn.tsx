@@ -42,6 +42,7 @@ type Knowledge = {
   path: string;
   name: string;
   desc: string;
+  lore_description: string;
   cost: number;
   disabled: boolean;
   menutab: string;
@@ -50,8 +51,48 @@ type Knowledge = {
 type Info = {
   willpower: number;
   lucidity_drained: number;
+  divulged: BooleanLike;
   ascended: BooleanLike;
   objectives: Objective[];
+};
+
+export const AntagInfoDarkspawn = (props, context) => {
+  const { data } = useBackend<Info>(context);
+  const { divulged } = data;
+
+  const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
+
+  return (
+    <Window width={750} height={750}>
+      <Window.Content
+        style={{
+          'background-image': 'none',
+          'background': 'radial-gradient(circle, rgba(9,9,24,1) 54%, rgba(10,10,31,1) 60%, rgba(21,11,46,1) 80%, rgba(24,14,47,1) 100%);',
+        }}>
+        <Stack vertical fill>
+            <Tabs fluid>
+              <Tabs.Tab
+                icon="info"
+                selected={currentTab === 0}
+                onClick={() => setTab(0)}>
+                Information
+              </Tabs.Tab>
+              {divulged && (
+                <Tabs.Tab
+                  icon={currentTab === 1 ? 'book-open' : 'book'}
+                  selected={currentTab === 1}
+                  onClick={() => setTab(1)}>
+                  Research
+                </Tabs.Tab>
+              )}
+            </Tabs>
+          <Stack.Item grow>
+            {(currentTab === 0 && <IntroductionSection />) || <ResearchInfo />}
+          </Stack.Item>
+        </Stack>
+      </Window.Content>
+    </Window>
+  );
 };
 
 const IntroductionSection = (props, context) => {
@@ -163,47 +204,7 @@ const InformationSection = (props, context) => {
   );
 };
 
-const MenuTabs = (props, context) => {
-  const { data, act } = useBackend<Data>(context);
-  const { categories = [] } = data;
-
-  const [selectedCategory, setSelectedCategory] = useLocalState<Category>(
-    context,
-    'category',
-    categories[0]
-  );
-
-  const [selectedKnowledge, setSelectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
-
-  return (
-    <Section>
-
-      <Tabs >
-        {categories.map(category => (
-          <Tabs.Tab
-            key={category}
-            selected={category === selectedCategory}
-            onClick={() => setSelectedCategory(category)}>
-            {capitalize(category.name)}
-          </Tabs.Tab>
-        ))}
-      </Tabs>
-      <Tabs vertical >
-        {Object.entries(selectedCategory.knowledgeData).map(([knowledge, psiWeb]) => (
-          <Tabs.Tab
-            key={knowledge}
-            Autofocus
-            selected={psiWeb === selectedKnowledge}
-            onClick={() => setSelectedKnowledge(psiWeb)}>
-            {capitalize(psiWeb.name)}
-          </Tabs.Tab>
-        ))}
-      </Tabs>
-    </Section>
-  );
-};
-
-
+// Research tab
 const ResearchInfo = (props, context) => {
   const { act, data } = useBackend<Info>(context);
   const { willpower } = data;
@@ -214,7 +215,7 @@ const ResearchInfo = (props, context) => {
     <Stack justify="space-evenly" height="100%" width="100%">
       <Stack.Item grow>
         <Stack vertical height="100%">
-          <Stack.Item fontSize="20px" textAlign="center">
+          <Stack.Item fontSize="18px" textAlign="center">
             You have <b>{willpower || 0}</b>&nbsp;
             <span style={hereticBlue}>
               willpower
@@ -225,20 +226,20 @@ const ResearchInfo = (props, context) => {
           <Stack
             m={1}
             fill>
-            <Stack.Item grow={1} overflowY="auto">
+            <Stack.Item grow={1} overflowY="auto" >
               <MenuTabs />
             </Stack.Item>
 
             <Stack.Item grow={1}>
               <Stack fill fluid direction="column">
-                <Stack.Item >
+                <Stack.Item>
                   <KnowledgePreview />
                 </Stack.Item>
                 <Stack.Item>
                 {selectedKnowledge && (
                   <Button
                   icon="hands-praying"
-                  content="Confirm your choice"
+                  content="Purchase"
                   textAlign="center"
                   fontSize="16px"
                   fluid
@@ -261,16 +262,62 @@ const ResearchInfo = (props, context) => {
   );
 };
 
+// the skills on the left side of the menu
+const MenuTabs = (props, context) => {
+  const { data } = useBackend<Data>(context);
+  const { categories = [] } = data;
+
+  const [selectedCategory, setSelectedCategory] = useLocalState<Category>(
+    context,
+    'category',
+    categories[0]
+  );
+
+  const [selectedKnowledge, setSelectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
+
+  return (
+    <Section >
+
+      <Tabs >
+        {categories.map(category => (
+          <Tabs.Tab
+            width="100%"
+            fontSize="16px"
+            key={category}
+            selected={category === selectedCategory}
+            onClick={() => setSelectedCategory(category)}>
+            {capitalize(category.name)}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+      <Tabs vertical >
+        {Object.entries(selectedCategory.knowledgeData).map(([knowledge, psiWeb]) => (
+          <Tabs.Tab
+            fontSize="16px"
+            key={knowledge}
+            Autofocus
+            selected={psiWeb === selectedKnowledge}
+            onClick={() => setSelectedKnowledge(psiWeb)}>
+            {capitalize(psiWeb.name)}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+    </Section>
+  );
+};
+
 const KnowledgePreview = (props, context) => {
 
   const [selectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
 
   if(selectedKnowledge!==null) {
     return (
-      <Section overflow-wrap="break-word" fill title={capitalize(selectedKnowledge?.name)}>
+      <Section overflow-wrap="break-word" fontSize="16px" textAlign="center" fill title={capitalize(selectedKnowledge?.name)}>
         <Stack fill fluid vertical justify="flex-start" fontSize="16px" textAlign="center">
 
+          <Stack.Item fontSize="14px" color="purple">willpower cost: {selectedKnowledge?.cost}</Stack.Item>
           <Stack.Item color="gold">{selectedKnowledge?.desc}</Stack.Item>
+          <Stack.Item color="gold" fontSize="12px">{selectedKnowledge?.lore_description}</Stack.Item>
 
           {/* <Stack.Item>
             <Box
@@ -282,8 +329,6 @@ const KnowledgePreview = (props, context) => {
               'image-rendering': 'pixelated' }} />
           </Stack.Item> */}
 
-          <Stack.Item fontSize="12px" color="lightblue">{selectedKnowledge?.cost}</Stack.Item>
-
         </Stack>
       </Section>
       );
@@ -292,51 +337,10 @@ const KnowledgePreview = (props, context) => {
       <Section overflow-wrap="break-word" fill fluid>
         <Stack vertical fontSize="16px" align="center" height="50px" textAlign="center">
 
-          <Stack.Item width="100%" color="gold">Choose your implement of righteousness</Stack.Item>
+          <Stack.Item width="100%" color="gold">Select a knowledge to learn</Stack.Item>
 
         </Stack>
       </Section>
     );
   }
-};
-
-export const AntagInfoDarkspawn = (props, context) => {
-  const { data } = useBackend<Info>(context);
-  const { ascended } = data;
-
-  const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
-
-  return (
-    <Window width={675} height={635}>
-      <Window.Content
-        style={{
-          'background-image': 'none',
-          'background': ascended
-            ? 'radial-gradient(circle, rgba(24,9,9,1) 54%, rgba(31,10,10,1) 60%, rgba(46,11,11,1) 80%, rgba(47,14,14,1) 100%);'
-            : 'radial-gradient(circle, rgba(9,9,24,1) 54%, rgba(10,10,31,1) 60%, rgba(21,11,46,1) 80%, rgba(24,14,47,1) 100%);',
-        }}>
-        <Stack vertical fill>
-          <Stack.Item>
-            <Tabs fluid>
-              <Tabs.Tab
-                icon="info"
-                selected={currentTab === 0}
-                onClick={() => setTab(0)}>
-                Information
-              </Tabs.Tab>
-              <Tabs.Tab
-                icon={currentTab === 1 ? 'book-open' : 'book'}
-                selected={currentTab === 1}
-                onClick={() => setTab(1)}>
-                Research
-              </Tabs.Tab>
-            </Tabs>
-          </Stack.Item>
-          <Stack.Item grow>
-            {(currentTab === 0 && <IntroductionSection />) || <ResearchInfo />}
-          </Stack.Item>
-        </Stack>
-      </Window.Content>
-    </Window>
-  );
 };

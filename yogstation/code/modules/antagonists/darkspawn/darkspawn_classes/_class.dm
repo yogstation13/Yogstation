@@ -43,7 +43,7 @@
 		owner.update_appearance(UPDATE_OVERLAYS)
 
 	for(var/datum/psi_web/power as anything in starting_abilities)
-		gain_power(power)
+		gain_power(power_typepath = power)
 	
 /datum/component/darkspawn_class/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER)
@@ -82,15 +82,19 @@
 		available_abilities += ability
 	return available_abilities
 
-/datum/component/darkspawn_class/proc/gain_power(var/datum/psi_web/power_typepath)
+/datum/component/darkspawn_class/proc/gain_power(atom/source, var/datum/psi_web/power_typepath)
 	if(!ispath(power_typepath))
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
 	if(!(initial(power_typepath.shadow_flags) & specialization_flag))
 		CRASH("[owner] tried to gain [power_typepath] which is not allowed by their specialization")
+	if(locate(power_typepath) in learned_abilities)
+		return
 
 	var/datum/psi_web/new_power = new power_typepath()
-	learned_abilities += new_power
-	new_power.on_purchase(owner)
+	if(new_power.on_purchase(owner))
+		learned_abilities += new_power
+	else
+		qdel(new_power)
 
 /datum/component/darkspawn_class/proc/lose_power(datum/psi_web/power)
 	if(!locate(power) in learned_abilities)

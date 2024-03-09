@@ -198,6 +198,7 @@
 	if(team)
 		data["lucidity_drained"] = team.lucidity
 		data["required_succs"] = team.required_succs
+	data["divulged"] = (darkspawn_state > MUNDANE)
 	data["ascended"] = (darkspawn_state == PROGENITOR)
 
 	if(picked_class)
@@ -216,6 +217,7 @@
 				knowledge_data["path"] = knowledge
 				knowledge_data["name"] = initial(knowledge.name)
 				knowledge_data["desc"] = initial(knowledge.desc)
+				knowledge_data["lore_description"]  = initial(knowledge.lore_description)
 				knowledge_data["cost"] = initial(knowledge.willpower_cost)
 				knowledge_data["disabled"] = (initial(knowledge.willpower_cost) > willpower)
 
@@ -242,7 +244,6 @@
 	switch(action)
 		if("purchase")
 			var/upgrade_path = text2path(params["upgrade_path"])
-			to_chat(world, "buying [upgrade_path]")
 			if(!ispath(upgrade_path, /datum/psi_web))
 				return FALSE
 			SEND_SIGNAL(owner.current, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)

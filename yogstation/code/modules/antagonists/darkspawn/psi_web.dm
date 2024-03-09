@@ -4,6 +4,8 @@
 	var/name = "Basic knowledge"
 	///Description of the effect
 	var/desc = "Basic knowledge of forbidden arts."
+	///Fancy description about the effect
+	var/lore_description = "This thing works in dark and mysterious ways."
 	///Icon that gets displayed
 	var/icon = ""
 	///Cost of to learn this
@@ -12,28 +14,24 @@
 	var/shadow_flags = NONE
 	///what ability is granted if any
 	var/list/datum/action/learned_abilities = list()
-	///what is printed when learned
-	var/learn_text
 	///what tab of the antag menu does it fall under
 	var/menu_tab
 	///The owner of the psi_web datum that effects will be applied to
 	var/mob/living/carbon/human/owner
 	///The antag datum of the owner(used for modifying)
 	var/datum/antagonist/darkspawn/darkspawn
-	///how many times this can be purchased (for incremental passive upgrades)
-	var/max_purchase = 1
 
 ///When the button to purchase is clicked
 /datum/psi_web/proc/on_purchase(mob/living/carbon/human/user)
 	if(!ishuman(user))
 		return
 	owner = user
-	darkspawn = owner.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(!darkspawn || (darkspawn.willpower < willpower_cost))
+	darkspawn = isdarkspawn(user)
+	if(!darkspawn)
 		CRASH("[owner] tried to gain a psi_web datum despite not being a darkspawn")
+	if(darkspawn.willpower < willpower_cost)
+		return
 
-	if(learn_text)
-		to_chat(owner, span_velvet(learn_text))
 	darkspawn.willpower -= willpower_cost
 	on_gain()
 	for(var/ability in learned_abilities)
