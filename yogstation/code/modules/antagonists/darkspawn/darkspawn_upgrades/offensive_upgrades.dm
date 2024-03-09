@@ -2,17 +2,17 @@
 //---------------------------Fighter only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/psi_web/shadow_crash
-	name = "Shadow crash"
-	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Shadow Crash"
+	desc = "Charge in a direction, knock back and briefly paralyze anyone you collide with."
+	lore_description = "me run."
 	willpower_cost = 1
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/shadow_crash)
 
 /datum/psi_web/demented_outburst
-	name = "Demented outburst"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	name = "Demented Outburst"
+	desc = "Deafens and confuses listeners after a five-second charge period, knocking away everyone nearby.."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
 	shadow_flags = FIGHTER
@@ -20,8 +20,8 @@
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/demented_outburst)
 
 /datum/psi_web/taunt
-	name = "taunt"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	name = "Taunt"
+	desc = "Force everyone nearby to walk towards you, but disables your ability to attack for a time."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
 	shadow_flags = FIGHTER
@@ -33,8 +33,8 @@
 //This also speeds up most actions they have.
 //Check fighter_abilities.dm for the effect.
 /datum/psi_web/twin_tendrils
-	name = "\'Duality\' Sigils"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	name = "Duality Sigils"
+	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, empowering both."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
 	shadow_flags = FIGHTER
@@ -58,44 +58,44 @@
 //-----------------------------Scout only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/psi_web/permafrost
-	name = "permafrost"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Permafrost"
+	desc = "Banish heat from the surrounding terrain, freezing it instantly."
+	lore_description = "Opens a pinhole to the veil, rapidly draining heat from the surrounding area."
 	willpower_cost = 1
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/permafrost)
 	
 /datum/psi_web/shadow_caster
-	name = "shadow caster"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Shadow Caster"
+	desc = "Twists an active arm into a bow that shoots harddark arrows."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_caster)
 
 /datum/psi_web/damage_Trap
-	name = "damage trap"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Damage Trap"
+	desc = "Stitch together shadows into a trap that deals damage to non-ally that crosses it."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/damage)
 	
 /datum/psi_web/cuff_trap
-	name = "cuff trap"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Cuff Trap"
+	desc = "Stitch together shadows into a trap that restrains the legs of any non-ally that crosses it."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff)
 	
 /datum/psi_web/nausea_trap
-	name = "nausea trap"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	name = "Nausea Trap"
+	desc = "Stitch together shadows into a trap that makes any non-ally that crosses it sick to their stomach."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
 	shadow_flags = SCOUT
@@ -104,7 +104,7 @@
 	
 /datum/psi_web/teleport_trap
 	name = "teleport trap"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
+	desc = "Stitch together shadows into a trap that teleports any non-ally to a random location on the station."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
 	shadow_flags = SCOUT
@@ -114,10 +114,11 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+//staff upgrades
 /datum/psi_web/staff_upgrade
-	name = "\'Duality\' Sigils"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Confusion Sigils"
+	desc = "Empower your staff with the ability to confuse any enemy shot."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -138,33 +139,34 @@
 		spell = null
 
 /datum/psi_web/staff_upgrade/light_eater
-	name = "\'light eater\' Sigils"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Light Eater Sigils"
+	desc = "Empower your staff with the ability to consume the light of anything shot."
+	lore_description = ""
 	flag_to_add = STAFF_UPGRADE_LIGHTEATER
 
+//no more staff upgrades
 /datum/psi_web/mass_hallucination
-	name = "mass hallucination"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Mass Hallucination"
+	desc = "Forces brief delirium on all nearby enemies."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/mass_hallucination)
 	
 /datum/psi_web/mindblast
-	name = "mindblast"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Mindblast"
+	desc = "Focus your psionic energy into a blast that deals physical damage. Can also be projected from the minds of allies."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/mindblast)
 	
 /datum/psi_web/extract
-	name = "extract"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	name = "Extract"
+	desc = "Drain a target's life force or bestow it to an ally."
+	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE

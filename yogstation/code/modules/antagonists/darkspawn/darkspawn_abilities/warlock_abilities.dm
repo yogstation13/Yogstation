@@ -288,7 +288,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/mass_hallucination
 	name = "Mass hallucination"
-	desc = "Mass hallucination."
+	desc = "Forces brief delirium on all nearby enemies."
 	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "Kindle"
 	active_icon_state = "Kindle"

@@ -138,7 +138,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/mindblast
 	name = "Mind blast"
-	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
+	desc = "Focus your psionic energy into a blast that deals physical damage. Can also be projected from the minds of allies."
 	button_icon = 'icons/obj/hand_of_god_structures.dmi'
 	button_icon_state = "ward-red"
 	background_icon_state = "bg_alien"

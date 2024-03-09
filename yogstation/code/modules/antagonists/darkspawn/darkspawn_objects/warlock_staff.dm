@@ -50,6 +50,7 @@
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
 				M.extinguish_mob()
 		else
+			M.apply_damage(40, STAMINA)
 			if(effect_flags & STAFF_UPGRADE_CONFUSION)
 				M.adjust_confusion(6 SECONDS)
 			if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
@@ -85,7 +86,7 @@
 /obj/projectile/magic/darkspawn
 	name = "bolt of nothingness"
 	icon_state = "kinetic_blast"
-	damage = 40
+	damage = 0
 	damage_type = STAMINA
 	nodamage = FALSE
 	antimagic_flags = MAGIC_RESISTANCE_MIND

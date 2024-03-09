@@ -156,9 +156,9 @@
 	
 	var/destination = get_ranged_target_turf(get_turf(target), throwingdatum.init_dir, 5)
 	if(blocked)
-		target.throw_at(destination, 4, 2)
+		target.throw_at(destination, 3, 2)
 	else
-		target.throw_at(destination, 4, 2, callback = CALLBACK(target, TYPE_PROC_REF(/mob/living, Knockdown), 2 SECONDS))
+		target.throw_at(destination, 3, 2, callback = CALLBACK(target, TYPE_PROC_REF(/mob/living, Paralyze), 2 SECONDS))
 
 //////////////////////////////////////////////////////////////////////////
 //------------------------Action speed boost----------------------------//
@@ -372,7 +372,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/taunt
 	name = "Taunt"
-	desc = "taunt everyone but disables attacking for a time."
+	desc = "Force everyone nearby to walk towards you, but disables your ability to attack for a time."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
