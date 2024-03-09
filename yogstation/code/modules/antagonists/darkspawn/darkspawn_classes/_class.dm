@@ -58,7 +58,7 @@
 /datum/component/darkspawn_class/proc/update_owner_overlay(atom/source, list/overlays)
 	SIGNAL_HANDLER
 
-	if(!is_species(A, /datum/species/shadow/darkspawn))
+	if(!is_species(source, /datum/species/shadow/darkspawn))
 		return //so they only get the overlay when divulged
 
 	//draw both the overlay itself and the emissive overlay
