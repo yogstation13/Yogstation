@@ -245,7 +245,7 @@
 			to_chat(world, "buying [upgrade_path]")
 			if(!ispath(upgrade_path, /datum/psi_web))
 				return FALSE
-			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
+			SEND_SIGNAL(owner.current, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//

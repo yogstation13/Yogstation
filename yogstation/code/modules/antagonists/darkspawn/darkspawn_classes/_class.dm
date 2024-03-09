@@ -82,12 +82,12 @@
 		available_abilities += ability
 	return available_abilities
 
-/datum/component/darkspawn_class/proc/gain_power(power_typepath)
-	if(!ispath(power_typepath, /datum/psi_web))
+/datum/component/darkspawn_class/proc/gain_power(var/datum/psi_web/power_typepath)
+	if(!ispath(power_typepath))
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
-	if(!(initial(power_typepath.specialization_flag) & specialization_flag))
-		CRASH("[owner] tried to gain [new_power] which is not allowed by their specialization")
-		
+	if(!(initial(power_typepath.shadow_flags) & specialization_flag))
+		CRASH("[owner] tried to gain [power_typepath] which is not allowed by their specialization")
+
 	var/datum/psi_web/new_power = new power_typepath()
 	learned_abilities += new_power
 	new_power.on_purchase(owner)
