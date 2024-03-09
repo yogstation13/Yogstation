@@ -26283,12 +26283,6 @@
 	icon_state = "info28"
 	},
 /area/centcom/testchamber)
-"kWs" = (
-/obj/structure/fluff/colton_statue{
-	layer = 3.5
-	},
-/turf/open/floor/grass,
-/area/centcom/evac)
 "kWx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -26314,6 +26308,12 @@
 "lsj" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/syndicate_mothership)
+"lvq" = (
+/obj/structure/fluff/colton_statue{
+	layer = 4.5
+	},
+/turf/open/floor/grass,
+/area/centcom/evac)
 "lEw" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
@@ -77819,7 +77819,7 @@ akm
 aps
 aio
 aqC
-kWs
+lvq
 arU
 aSq
 avh
