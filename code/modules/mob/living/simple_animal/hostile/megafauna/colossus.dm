@@ -262,6 +262,7 @@ Difficulty: Very Hard
 	speed = 2
 	eyeblur = 0
 	damage_type = BRUTE
+	armor_flag = BOMB
 	pass_flags = PASSTABLE
 
 /obj/projectile/colossus/on_hit(atom/target, blocked = FALSE)

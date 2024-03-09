@@ -342,6 +342,7 @@
 	speed = 4
 	eyeblur = 0
 	damage_type = BRUTE
+	armor_flag = MELEE
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	color = "#00e1ff"
 	light_range = 2
@@ -356,6 +357,7 @@
 	speed = 6
 	eyeblur = 0
 	damage_type = BRUTE
+	armor_flag = MELEE
 	pass_flags = PASSTABLE
 	color = "#4851ce"
 	light_range = 2
@@ -370,6 +372,7 @@
 	speed = 5
 	eyeblur = 0
 	damage_type = BRUTE
+	armor_flag = MELEE
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	color = "#9a9fdb"
 	light_range = 2
@@ -384,6 +387,7 @@
 	speed = 10
 	eyeblur = 0
 	damage_type = BRUTE
+	armor_flag = BOMB
 	pass_flags = PASSTABLE
 	light_range = 6
 	light_power = 10
