@@ -356,19 +356,19 @@ const ClassSelection = (props, context) => {
       <Stack.Item grow>
         <Stack vertical height="100%">
 
-          {classData.map(category => (
+          {classData.map(darkspawnclass => (
             <Tabs.Tab
               width="100%"
               fontSize="16px"
-              key={category}
+              key={darkspawnclass}
               onClick={() => {
-              act("select", { class_path: category.path });
+              act("select", { class_path: darkspawnclass.path });
               setTab(0);
               }}>
               <Stack textAlign="center">
-                <Stack.Item>{capitalize(category.name)}</Stack.Item>
-                <Stack.Item>{category.description}</Stack.Item>
-                <Stack.Item>{category.long_description}</Stack.Item>
+                <Stack.Item>{capitalize(darkspawnclass.name)}</Stack.Item>
+                <Stack.Item>{darkspawnclass.description}</Stack.Item>
+                <Stack.Item>{darkspawnclass.long_description}</Stack.Item>
               </Stack>
 
             </Tabs.Tab>
