@@ -114,24 +114,24 @@
 
 /datum/component/darkspawn_class/fighter
 	name = "Fighter"
-	description = "Thick as a brick looking for dick to kick."
-	long_description = "Where is the thrill of carnage."
+	description = "An unstoppable wall of darkness."
+	long_description = "."
 	specialization_flag = FIGHTER
 	class_color = COLOR_RED
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/fighter)
 
 /datum/component/darkspawn_class/scout
 	name = "Scout"
-	description = "Fast as fuck boi."
-	long_description = "You're sure to win because your speed is superior."
+	description = "Stir the shadows in unnatural ways."
+	long_description = "."
 	specialization_flag = SCOUT
 	class_color = COLOR_YELLOW
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/scout)
 
 /datum/component/darkspawn_class/warlock
 	name = "Warlock"
-	description = "Shadow Wizard Money Gang. You love casting spells and shit."
-	long_description = "Legalize nuclear bombs."
+	description = "Psionic dominance."
+	long_description = "."
 	specialization_flag = WARLOCK
 	class_color = COLOR_STRONG_VIOLET
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/warlock)
