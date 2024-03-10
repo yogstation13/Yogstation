@@ -221,6 +221,7 @@
 			var/list/class_data = list()
 			class_data["path"] = class
 			class_data["name"] = initial(class.name)
+			class_data["color"] = initial(class.class_color)
 			class_data["description"] = initial(class.description)
 			class_data["long_description"] = initial(class.long_description)
 

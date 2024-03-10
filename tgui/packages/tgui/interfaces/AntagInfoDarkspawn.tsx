@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Section, Stack, Box, Tabs, Button, BlockQuote } from '../components';
+import { Section, Stack, Box, Tabs, Button, BlockQuote, Flex } from '../components';
 import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
 import { ObjectivePrintout, Objective, ReplaceObjectivesButton } from './common/Objectives';
@@ -38,6 +38,7 @@ type Class = {
   name: string;
   description: string;
   long_description: string;
+  color: string;
 }
 
 type Info = {
@@ -47,6 +48,7 @@ type Info = {
   ascended: BooleanLike;
   has_class: BooleanLike;
   objectives: Objective[];
+  categories: Category[];
 };
 
 export const AntagInfoDarkspawn = (props, context) => {
@@ -56,7 +58,7 @@ export const AntagInfoDarkspawn = (props, context) => {
   const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
 
   return (
-    <Window width={750} height={750}>
+    <Window width={750} height={650}>
       <Window.Content
         style={{
           'background-image': 'none',
@@ -208,7 +210,13 @@ const InformationSection = (props, context) => {
 // Research tab
 const ResearchInfo = (props, context) => {
   const { act, data } = useBackend<Info>(context);
-  const { willpower } = data;
+  const { willpower, categories = [] } = data;
+
+  const [selectedCategory, setSelectedCategory] = useLocalState<Category>(
+    context,
+    'category',
+    categories[0]
+  );
 
   const [selectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
 
@@ -244,9 +252,10 @@ const ResearchInfo = (props, context) => {
                   fontSize="16px"
                   fluid
                   color="green"
-                  onClick={() => act("purchase", {
+                  onClick={() => { act("purchase", {
                   upgrade_path: selectedKnowledge.path,
-                  })}
+                  });
+                }}
                 />
                 )}
 
@@ -352,30 +361,37 @@ const ClassSelection = (props, context) => {
   const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
 
   return (
-    <Stack justify="space-evenly" height="100%" width="100%">
-      <Stack.Item grow>
-        <Stack vertical height="100%">
-
-          {classData.map(darkspawnclass => (
+    <Flex justify="space-evenly" height="100%" width="100%"
+    style={{
+      "align-items": "center",
+      "height": "100%",
+      "justify-content": "center",
+    }}>
+      {classData.map(darkspawnclass => (
+        <Flex
+        width="100%"
+        direction="column"
+        key={darkspawnclass}
+        fontSize="16px"
+        textAlign="center"
+        >
+          <Flex.Item height="50px" fontSize="20px" color={darkspawnclass.color}>{capitalize(darkspawnclass.name)}</Flex.Item>
+          <Flex.Item height="50px">{darkspawnclass.description}</Flex.Item>
+          <Flex.Item height="100px" fontSize="12px" style={Velvet}>{darkspawnclass.long_description}</Flex.Item>
+          <Flex.Item height="50px">
             <Tabs.Tab
-              width="100%"
-              fontSize="16px"
-              key={darkspawnclass}
-              onClick={() => {
-              act("select", { class_path: darkspawnclass.path });
-              setTab(0);
-              }}>
-              <Stack textAlign="center">
-                <Stack.Item>{capitalize(darkspawnclass.name)}</Stack.Item>
-                <Stack.Item>{darkspawnclass.description}</Stack.Item>
-                <Stack.Item>{darkspawnclass.long_description}</Stack.Item>
-              </Stack>
-
+            height="50px"
+            fontSize="20px"
+            onClick={() => {
+            act("select", { class_path: darkspawnclass.path });
+            setTab(0);
+            }}>
+              Choose
             </Tabs.Tab>
-          ))}
+          </Flex.Item>
 
-        </Stack>
-      </Stack.Item>
-    </Stack>
+        </Flex>
+      ))}
+    </Flex>
   );
 };
