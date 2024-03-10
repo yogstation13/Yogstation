@@ -361,11 +361,10 @@ const ClassSelection = (props, context) => {
               width="100%"
               fontSize="16px"
               key={category}
-              // onClick={() => setTab(0)}
-              onClick={() => act("select", {
-              class_path: category.path,
-              })}
-              >
+              onClick={() => {
+              act("select", { class_path: category.path });
+              setTab(0);
+              }}>
               <Stack textAlign="center">
                 <Stack.Item>{capitalize(category.name)}</Stack.Item>
                 <Stack.Item>{category.description}</Stack.Item>
