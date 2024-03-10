@@ -35,7 +35,7 @@
 /datum/psi_web/twin_tendrils
 	name = "Duality Sigils"
 	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, empowering both."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	lore_description = "The _______ sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
@@ -76,7 +76,7 @@
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_caster)
 
 /datum/psi_web/damage_Trap
-	name = "Damage Trap"
+	name = "Psi Trap (damage)"
 	desc = "Stitch together shadows into a trap that deals damage to non-ally that crosses it."
 	lore_description = ""
 	willpower_cost = 1
@@ -85,7 +85,7 @@
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/damage)
 	
 /datum/psi_web/cuff_trap
-	name = "Cuff Trap"
+	name = "Psi Trap (restrain)"
 	desc = "Stitch together shadows into a trap that restrains the legs of any non-ally that crosses it."
 	lore_description = ""
 	willpower_cost = 1
@@ -94,7 +94,7 @@
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff)
 	
 /datum/psi_web/nausea_trap
-	name = "Nausea Trap"
+	name = "Psi Trap (nausea)"
 	desc = "Stitch together shadows into a trap that makes any non-ally that crosses it sick to their stomach."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
@@ -103,7 +103,7 @@
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/nausea)
 	
 /datum/psi_web/teleport_trap
-	name = "teleport trap"
+	name = "Psi Trap (teleport)"
 	desc = "Stitch together shadows into a trap that teleports any non-ally to a random location on the station."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
@@ -191,7 +191,7 @@
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/seize)
 	
 /datum/psi_web/shadow_beam
-	name = "Shadow Beam"
+	name = "Void Beam"
 	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
 	lore_description = ""
 	willpower_cost = 1

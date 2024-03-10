@@ -59,7 +59,7 @@
 	learned_abilities = list(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt)
 	
 /datum/psi_web/darkness_smoke
-	name = "Darkness Smoke"
+	name = "Blinding Miasma"
 	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
 	lore_description = "Release a pocket of darkness nestled within your body."
 	willpower_cost = 1

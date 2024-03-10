@@ -2,7 +2,7 @@
 //-------------------------Warlock basic staff--------------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/toggle/dark_staff
-	name = "Shadow Staff"
+	name = "Channeling Staff"
 	desc = "Pull darkness from the void, knitting it into a staff."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
@@ -325,7 +325,7 @@
 //----------------I stole blood beam from blood cultists----------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/shadow_beam
-	name = "Shadow beam"
+	name = "Void beam"
 	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
 	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "Kindle"

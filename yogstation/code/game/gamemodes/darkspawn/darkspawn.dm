@@ -5,7 +5,7 @@
 	name = "darkspawn"
 	config_tag = "darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	required_players = 25
+	required_players = 20
 	required_enemies = 2
 	recommended_enemies = 2
 	enemy_minimum_age = 15

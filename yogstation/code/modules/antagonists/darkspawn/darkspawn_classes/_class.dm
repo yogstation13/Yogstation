@@ -115,7 +115,7 @@
 /datum/component/darkspawn_class/fighter
 	name = "Fighter"
 	description = "An unstoppable wall of darkness."
-	long_description = "."
+	long_description = ""
 	specialization_flag = FIGHTER
 	class_color = COLOR_RED
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/fighter)
@@ -123,7 +123,7 @@
 /datum/component/darkspawn_class/scout
 	name = "Scout"
 	description = "Stir the shadows in unnatural ways."
-	long_description = "."
+	long_description = ""
 	specialization_flag = SCOUT
 	class_color = COLOR_YELLOW
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/scout)
@@ -131,7 +131,7 @@
 /datum/component/darkspawn_class/warlock
 	name = "Warlock"
 	description = "Psionic dominance."
-	long_description = "."
+	long_description = "Harness psionic power to rend flesh and dominate minds."
 	specialization_flag = WARLOCK
 	class_color = COLOR_STRONG_VIOLET
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/warlock)
