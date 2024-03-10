@@ -349,6 +349,8 @@ const ClassSelection = (props, context) => {
   const { act, data } = useBackend<Classes>(context);
   const { classData = [] } = data;
 
+  const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
+
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
       <Stack.Item grow>
@@ -359,10 +361,17 @@ const ClassSelection = (props, context) => {
               width="100%"
               fontSize="16px"
               key={category}
-              onClick={() => act("purchase", {
-              upgrade_path: category.path,
-              })}>
-              {capitalize(category.name)}
+              // onClick={() => setTab(0)}
+              onClick={() => act("select", {
+              class_path: category.path,
+              })}
+              >
+              <Stack textAlign="center">
+                <Stack.Item>{capitalize(category.name)}</Stack.Item>
+                <Stack.Item>{category.description}</Stack.Item>
+                <Stack.Item>{category.long_description}</Stack.Item>
+              </Stack>
+
             </Tabs.Tab>
           ))}
 

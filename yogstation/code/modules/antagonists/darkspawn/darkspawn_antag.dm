@@ -247,6 +247,8 @@
 				return FALSE
 			SEND_SIGNAL(owner.current, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
 		if("select")
+			if(picked_class)
+				return FALSE
 			var/class_path = text2path(params["class_path"])
 			if(!ispath(class_path, /datum/component/darkspawn_class))
 				return FALSE
