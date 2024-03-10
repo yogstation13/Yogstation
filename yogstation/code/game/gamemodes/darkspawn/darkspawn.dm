@@ -5,9 +5,9 @@
 	name = "darkspawn"
 	config_tag = "darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	required_players = 20
-	required_enemies = 2
-	recommended_enemies = 2
+	required_players = 15
+	required_enemies = 1
+	recommended_enemies = 1
 	enemy_minimum_age = 15
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
@@ -24,7 +24,7 @@
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
-	var/darkbois = max(required_enemies, round(num_players()/14)) //scaling number of darkspawns, but at least 2
+	var/darkbois = max(required_enemies, round((num_players()-5)/10)) //scaling number of darkspawns, but at least 1
 
 	team = new
 	while(darkbois)
