@@ -369,12 +369,12 @@ xxx xxx xxx
 	var/smooth_directional = (smoothing_flags & SMOOTH_DIRECTIONAL)
 	var/skip_corners = (smoothing_flags & SMOOTH_BITMASK_SKIP_CORNERS)
 
-	#define EXTRA_CHECKS(atom) \
-		if(smooth_directional) { \
-			if(atom.dir != dir) { \
-				break set_adj_in_dir; \
-		 	}; \
-		}; \
+    #define EXTRA_CHECKS(thing) \
+        if(smooth_directional) { \
+            if(thing?.dir != dir) { \
+                break set_adj_in_dir; \
+            }; \
+        }; \
 
 	// Did you know you can pass defines into other defines? very handy, lets take advantage of it here to allow 0 cost variation
 	#define SEARCH_ADJ_IN_DIR(direction, direction_flag, ADJ_FOUND, WORLD_BORDER, BORDER_CHECK) \
