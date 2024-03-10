@@ -12,3 +12,12 @@
 	desc = "A unique security envirosuit with white markings to indicate a warden or lieutenant-level security staff."
 	icon_state = "warden_envirosuit"
 	item_state = "warden_envirosuit"
+
+/obj/item/clothing/under/plasmaman/prisoner
+	name = "prison envirosuit"
+	desc = "A variation of the standard Nanotrasen envirosuit designed for easily identifying convicted plasmamen. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "prisoner_envirosuit"
+	item_state = "prisoner_envirosuit"
+	has_sensor = LOCKED_SENSORS
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
