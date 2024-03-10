@@ -5,28 +5,9 @@ import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
 import { ObjectivePrintout, Objective, ReplaceObjectivesButton } from './common/Objectives';
 
-const hereticRed = {
-  color: '#e03c3c',
-};
-
-const hereticBlue = {
+const Velvet = {
   fontWeight: 'bold',
-  color: '#2185d0',
-};
-
-const hereticPurple = {
-  fontWeight: 'bold',
-  color: '#bd54e0',
-};
-
-const hereticGreen = {
-  fontWeight: 'bold',
-  color: '#20b142',
-};
-
-const hereticYellow = {
-  fontWeight: 'bold',
-  color: 'yellow',
+  color: '#7264FF',
 };
 
 type Data = {
@@ -48,17 +29,29 @@ type Knowledge = {
   menutab: string;
 };
 
+type Classes = {
+  classData: Class[];
+}
+
+type Class = {
+  path: string;
+  name: string;
+  description: string;
+  long_description: string;
+}
+
 type Info = {
   willpower: number;
   lucidity_drained: number;
   divulged: BooleanLike;
   ascended: BooleanLike;
+  has_class: BooleanLike;
   objectives: Objective[];
 };
 
 export const AntagInfoDarkspawn = (props, context) => {
   const { data } = useBackend<Info>(context);
-  const { divulged } = data;
+  const { divulged, has_class } = data;
 
   const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
 
@@ -77,7 +70,7 @@ export const AntagInfoDarkspawn = (props, context) => {
                 onClick={() => setTab(0)}>
                 Information
               </Tabs.Tab>
-              {divulged && (
+              {!!divulged && (
                 <Tabs.Tab
                   icon={currentTab === 1 ? 'book-open' : 'book'}
                   selected={currentTab === 1}
@@ -85,9 +78,17 @@ export const AntagInfoDarkspawn = (props, context) => {
                   Research
                 </Tabs.Tab>
               )}
+              {!has_class && (
+                <Tabs.Tab
+                  icon={currentTab === 2 ? 'book-open' : 'book'}
+                  selected={currentTab === 2}
+                  onClick={() => setTab(2)}>
+                  Class Selection
+                </Tabs.Tab>
+              )}
             </Tabs>
           <Stack.Item grow>
-            {(currentTab === 0 && <IntroductionSection />) || <ResearchInfo />}
+            {(currentTab === 0 && <IntroductionSection />) || (currentTab === 1 && <ResearchInfo />) || <ClassSelection />}
           </Stack.Item>
         </Stack>
       </Window.Content>
@@ -135,16 +136,16 @@ const FlavorSection = () => {
         <Stack.Item>
           <i>
             Another day at a meaningless job. You feel a&nbsp;
-            <span style={hereticBlue}>shimmer</span>
+            <span style={Velvet}>shimmer</span>
             &nbsp;around you, as a realization of something&nbsp;
-            <span style={hereticRed}>strange</span>
+            <span style={Velvet}>strange</span>
             &nbsp;in the air unfolds. You look inwards and discover something
             that will change your life.
           </i>
         </Stack.Item>
         <Stack.Item>
           <b>
-            The <span style={hereticPurple}>Shadowlands</span>
+            The <span style={Velvet}>Shadowlands</span>
             &nbsp;await your return.
           </b>
         </Stack.Item>
@@ -189,7 +190,7 @@ const InformationSection = (props, context) => {
         )}
         <Stack.Item>
           You have <b>{willpower || 0}</b>&nbsp;
-          <span style={hereticBlue}>
+          <span style={Velvet}>
             willpower
           </span>
           .
@@ -197,7 +198,7 @@ const InformationSection = (props, context) => {
         <Stack.Item>
           You have drained a total of&nbsp;
           <b>{lucidity_drained || 0}</b>&nbsp;
-          <span style={hereticRed}>lucidity</span>.
+          <span style={Velvet}>lucidity</span>.
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -217,7 +218,7 @@ const ResearchInfo = (props, context) => {
         <Stack vertical height="100%">
           <Stack.Item fontSize="18px" textAlign="center">
             You have <b>{willpower || 0}</b>&nbsp;
-            <span style={hereticBlue}>
+            <span style={Velvet}>
               willpower
             </span>{' '}
             to spend.
@@ -238,7 +239,6 @@ const ResearchInfo = (props, context) => {
                 <Stack.Item>
                 {selectedKnowledge && (
                   <Button
-                  icon="hands-praying"
                   content="Purchase"
                   textAlign="center"
                   fontSize="16px"
@@ -317,7 +317,7 @@ const KnowledgePreview = (props, context) => {
 
           <Stack.Item fontSize="14px" color="purple">willpower cost: {selectedKnowledge?.cost}</Stack.Item>
           <Stack.Item color="gold">{selectedKnowledge?.desc}</Stack.Item>
-          <Stack.Item color="gold" fontSize="12px">{selectedKnowledge?.lore_description}</Stack.Item>
+          <Stack.Item style={Velvet} fontSize="12px">{selectedKnowledge?.lore_description}</Stack.Item>
 
           {/* <Stack.Item>
             <Box
@@ -343,4 +343,31 @@ const KnowledgePreview = (props, context) => {
       </Section>
     );
   }
+};
+
+const ClassSelection = (props, context) => {
+  const { act, data } = useBackend<Classes>(context);
+  const { classData = [] } = data;
+
+  return (
+    <Stack justify="space-evenly" height="100%" width="100%">
+      <Stack.Item grow>
+        <Stack vertical height="100%">
+
+          {classData.map(category => (
+            <Tabs.Tab
+              width="100%"
+              fontSize="16px"
+              key={category}
+              onClick={() => act("purchase", {
+              upgrade_path: category.path,
+              })}>
+              {capitalize(category.name)}
+            </Tabs.Tab>
+          ))}
+
+        </Stack>
+      </Stack.Item>
+    </Stack>
+  );
 };

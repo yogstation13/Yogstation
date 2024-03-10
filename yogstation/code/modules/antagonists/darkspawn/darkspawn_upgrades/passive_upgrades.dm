@@ -33,10 +33,12 @@
 	eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.sight_flags |= SEE_OBJS | SEE_TURFS
+		owner.update_sight()
 
 /datum/psi_web/xray/on_loss()
 	if(eyes)
 		eyes.sight_flags &= ~(SEE_OBJS | SEE_TURFS)
+		owner.update_sight()
 
 /datum/psi_web/sunglasses
 	name = "Lightblind Sigil"

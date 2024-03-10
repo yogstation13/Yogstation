@@ -77,21 +77,6 @@
 		action.Grant(current_mob)
 		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 
-	//for testing, force a class upon recieving the datum
-	var/list/classes = list()
-	for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
-		if(initial(class.choosable))
-			classes |= class
-		
-	var/chosen = tgui_input_list(owner.current, "Select which class you want to play.", "Select Class", classes)
-	if(!chosen || !ispath(chosen, /datum/component/darkspawn_class))
-		return
-	
-	if(QDELETED(src) || QDELETED(owner.current))
-		return
-
-	picked_class = owner.current.AddComponent(chosen)
-
 /datum/antagonist/darkspawn/remove_innate_effects()
 	if(team)
 		team.remove_member(owner)
@@ -200,6 +185,7 @@
 		data["required_succs"] = team.required_succs
 	data["divulged"] = (darkspawn_state > MUNDANE)
 	data["ascended"] = (darkspawn_state == PROGENITOR)
+	data["has_class"] = picked_class
 
 	if(picked_class)
 		if(picked_class.specialization_flag)
@@ -213,6 +199,9 @@
 			var/list/paths = list()
 
 			for(var/datum/psi_web/knowledge as anything in picked_class.get_purchasable_abilities())
+				if(category != initial(knowledge.menu_tab))
+					continue
+
 				var/list/knowledge_data = list()
 				knowledge_data["path"] = knowledge
 				knowledge_data["name"] = initial(knowledge.name)
@@ -221,11 +210,21 @@
 				knowledge_data["cost"] = initial(knowledge.willpower_cost)
 				knowledge_data["disabled"] = (initial(knowledge.willpower_cost) > willpower)
 
-				if(category == initial(knowledge.menu_tab))
-					paths += list(knowledge_data)
+				paths += list(knowledge_data)
 			
 			category_data["knowledgeData"] = paths
 			data["categories"] += list(category_data)
+	else
+		for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
+			if(!initial(class.choosable))
+				continue
+			var/list/class_data = list()
+			class_data["path"] = class
+			class_data["name"] = initial(class.name)
+			class_data["description"] = initial(class.description)
+			class_data["long_description"] = initial(class.long_description)
+
+			data["classData"] += list(class_Data)
 	
 	return data
 
@@ -247,6 +246,11 @@
 			if(!ispath(upgrade_path, /datum/psi_web))
 				return FALSE
 			SEND_SIGNAL(owner.current, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
+		if("select")
+			var/class_path = text2path(params["class_path"])
+			if(!ispath(class_path, /datum/component/darkspawn_class))
+				return FALSE
+			picked_class = owner.current.AddComponent(chosen)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//
@@ -316,6 +320,17 @@
 
 	if(!user || !istype(user))//sanity check
 		return
+
+	if(!picked_class) //you didn't pick, now it gets forced on you
+		var/list/classes = list()
+		for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
+			if(initial(class.choosable))
+				classes |= class
+
+		var/chosen = pick(classes)
+
+		picked_class = owner.current.AddComponent(chosen)
+
 
 	if(forced)
 		owner.current.visible_message(
