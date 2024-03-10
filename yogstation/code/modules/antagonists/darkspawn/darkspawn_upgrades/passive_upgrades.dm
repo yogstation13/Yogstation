@@ -123,7 +123,7 @@
 
 /datum/psi_web/brute_res
 	name = "Callous Sigil"
-	desc = "Unlocking this sigil halves brute damage taken."
+	desc = "Unlocking this sigil reduces brute damage taken."
 	lore_description = "The _____ sigil, representing imperviousness, is etched onto the abdomen."
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
@@ -131,15 +131,15 @@
 
 /datum/psi_web/brute_res/on_gain()
 	if(istype(owner))
-		owner.physiology.brute_mod /= 2
+		owner.physiology.brute_mod *= 0.6
 
 /datum/psi_web/brute_res/on_loss()
 	if(istype(owner))
-		owner.physiology.brute_mod *= 2
+		owner.physiology.brute_mod /= 0.6
 
 /datum/psi_web/burn_res
 	name = "Stifle Sigil"
-	desc = "Unlocking this sigil halves burn damage taken."
+	desc = "Unlocking this sigil reduces burn damage taken."
 	lore_description = "The _______ sigil, representing suffocation, is etched onto the abdomen."
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
@@ -147,11 +147,11 @@
 
 /datum/psi_web/brute_res/on_gain()
 	if(istype(owner))
-		owner.physiology.burn_mod /= 2
+		owner.physiology.burn_mod *= 0.6
 
 /datum/psi_web/brute_res/on_loss()
 	if(istype(owner))
-		owner.physiology.burn_mod *= 2
+		owner.physiology.burn_mod /= 0.6
 
 /datum/psi_web/noslip
 	name = "Stability Sigil"
