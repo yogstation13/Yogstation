@@ -224,7 +224,7 @@
 			class_data["description"] = initial(class.description)
 			class_data["long_description"] = initial(class.long_description)
 
-			data["classData"] += list(class_Data)
+			data["classData"] += list(class_data)
 	
 	return data
 
@@ -250,7 +250,7 @@
 			var/class_path = text2path(params["class_path"])
 			if(!ispath(class_path, /datum/component/darkspawn_class))
 				return FALSE
-			picked_class = owner.current.AddComponent(chosen)
+			picked_class = owner.current.AddComponent(class_path)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//

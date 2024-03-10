@@ -28,6 +28,12 @@
 		to_chat(user, span_warning("You need to be human-er to do that!"))
 		return
 
+	if(isdarkspawn(user))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+		if(!darkspawn.picked_class)
+			to_chat(user, span_warning("You must pick a class to divulge!"))
+			return
+
 	if(isethereal(user))//disable the light for long enough to start divulge
 		user.dna.species.spec_emp_act(user, EMP_HEAVY)
 			
