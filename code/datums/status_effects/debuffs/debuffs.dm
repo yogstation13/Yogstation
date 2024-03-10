@@ -1070,8 +1070,8 @@
 /datum/status_effect/devoured_will
 	id = "devoured_will"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 60 SECONDS
-	alert_type = null //yogs end
+	duration = 5 MINUTES
+	alert_type = null
 
 /datum/status_effect/eldritch
 	duration = 15 SECONDS
