@@ -16342,6 +16342,10 @@
 	pixel_x = -6;
 	pixel_y = 4
 	},
+/obj/item/clothing/under/plasmaman/prisoner{
+	pixel_y = 2;
+	pixel_x = 9
+	},
 /obj/item/clothing/shoes/sneakers/orange{
 	pixel_x = -6;
 	pixel_y = -8
@@ -16350,14 +16354,6 @@
 	c_tag = "Permabrig Processing";
 	dir = 8;
 	network = list("ss13","prison")
-	},
-/obj/item/clothing/under/plasmaman/prisoner{
-	pixel_y = 7;
-	pixel_x = 9
-	},
-/obj/item/clothing/under/plasmaman/prisoner{
-	pixel_y = -6;
-	pixel_x = 8
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -56123,15 +56119,11 @@
 "rzq" = (
 /obj/structure/table,
 /obj/item/clothing/under/rank/prisoner/skirt{
-	pixel_x = -1;
+	pixel_x = -5;
 	pixel_y = 8
 	},
-/obj/item/clothing/under/rank/prisoner/skirt{
-	pixel_x = -1;
-	pixel_y = -3
-	},
 /obj/item/clothing/under/rank/prisoner{
-	pixel_x = 9;
+	pixel_x = 7;
 	pixel_y = 5
 	},
 /obj/machinery/flasher{
@@ -56139,8 +56131,12 @@
 	pixel_y = -28
 	},
 /obj/item/clothing/under/rank/prisoner{
-	pixel_x = 8;
+	pixel_x = -4;
 	pixel_y = -6
+	},
+/obj/item/clothing/under/rank/prisoner/skirt{
+	pixel_x = 9;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
