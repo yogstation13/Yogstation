@@ -154,6 +154,12 @@
 	init_steal_objs()
 
 	difficulty = _diff ? _diff : rand(1,3)
+	if(!isnum(difficulty))
+		difficulty = rand(1,3)
+	difficulty = round(clamp(difficulty, 1, 3)) // safety
+
+	SSblackbox.record_feedback("tally", "SOMS_create", 1, list("EASY", "MEDIUM", "HARD")[difficulty])
+
 	tc = clamp(difficulty * 2 + rand(-1,1), 2, 10)
 	forge_objective(_obj)
 
@@ -287,6 +293,7 @@
 				if(usr.mind?.has_antag_datum(/datum/antagonist/traitor))
 					var/datum/antagonist/traitor/T = usr.mind.has_antag_datum(/datum/antagonist/traitor)
 					T.add_objective(objective) // Keep the objective done or you will redtext
+				SSblackbox.record_feedback("tally", "SOMS_finish", 1, list("EASY", "MEDIUM", "HARD")[difficulty])
 				qdel(src)
 				return TRUE
 			else if(istype(objective, /datum/objective/custom))
