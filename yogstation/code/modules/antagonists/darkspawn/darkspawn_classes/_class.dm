@@ -103,7 +103,9 @@
 	learned_abilities -= power
 	power.remove()
 
-
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------The Classes in Question-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/component/darkspawn_class/classless
 	name = "Deprived"
 	description = "You've yet to peep the horror."
@@ -115,7 +117,7 @@
 /datum/component/darkspawn_class/fighter
 	name = "Fighter"
 	description = "An unstoppable wall of darkness."
-	long_description = ""
+	long_description = "These beings are just cattle, ripe for the slaughter." //I am starting to suffer acute edge poisoning
 	specialization_flag = FIGHTER
 	class_color = COLOR_RED
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/fighter)
@@ -123,7 +125,7 @@
 /datum/component/darkspawn_class/scout
 	name = "Scout"
 	description = "Stir the shadows in unnatural ways."
-	long_description = ""
+	long_description = "The darkness is your domain, make those interlopers suffer."
 	specialization_flag = SCOUT
 	class_color = COLOR_YELLOW
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/scout)
