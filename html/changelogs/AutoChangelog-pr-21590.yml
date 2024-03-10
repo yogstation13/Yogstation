@@ -1,0 +1,6 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - mapping: "cleans up some decals on meta"
+  - mapping: "makes teg console recognize injector and replaces the scrubber with a vent pump"
+  - mapping: "replaces airlock controllers on meta teg with lavaland airlock controllers, should fix taking pressure damage"
