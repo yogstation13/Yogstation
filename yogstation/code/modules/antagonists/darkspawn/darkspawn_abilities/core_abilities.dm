@@ -96,7 +96,7 @@
 	target.Unconscious(5 SECONDS)
 
 	//get how much lucidity and willpower will be given
-	var/willpower_amount = 4
+	var/willpower_amount = 3
 	var/lucidity_amount = 1
 	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED)) //change the numbers before text
 		lucidity_amount = 0
