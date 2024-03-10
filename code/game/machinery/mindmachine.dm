@@ -28,7 +28,7 @@
 	desc = "The main hub of a complete mind machine setup. Placed between two mind pods and used to control and manage the transfer. \
 			Houses an experimental bluespace conduit which uses bluespace crystals for charge."
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer" // This may appear to be a computer, but it is a machine (that looks like a computer).
+	icon_state = "computer-0" // This may appear to be a computer, but it is a machine (that looks like a computer).
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_hub
 	/// The current icon of the screen.
