@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/closet/bluespace, // yogs - nope nice try
 		/obj/structure/disposalpipe,
 		/obj/structure/disposaloutlet, // connect outlet to bin, knock outlet onto shuttle, send it, enter bin
-		/obj/structure/receiving_pad // holoparasite
+		/obj/machinery/disposal
 	)))
 
 /obj/docking_port/mobile/supply
