@@ -187,15 +187,14 @@
 	data["ascended"] = (darkspawn_state == PROGENITOR)
 	data["has_class"] = picked_class
 
-	if(picked_class)
+	var/list/categories = list(STORE_OFFENSE, STORE_UTILITY, STORE_PASSIVE)
+	for(var/category in categories)
+		var/list/category_data = list()
+		category_data["name"] = category
 
-		var/list/categories = list(STORE_OFFENSE, STORE_UTILITY, STORE_PASSIVE)
-		for(var/category in categories)
-			var/list/category_data = list()
-			category_data["name"] = category
+		var/list/paths = list()
 
-			var/list/paths = list()
-
+		if(picked_class)
 			for(var/datum/psi_web/knowledge as anything in picked_class.get_purchasable_abilities())
 				if(category != initial(knowledge.menu_tab))
 					continue
@@ -210,21 +209,21 @@
 				knowledge_data["infinite"] = (initial(knowledge.infinite))
 
 				paths += list(knowledge_data)
-			
-			category_data["knowledgeData"] = paths
-			data["categories"] += list(category_data)
-	else
-		for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
-			if(!initial(class.choosable))
-				continue
-			var/list/class_data = list()
-			class_data["path"] = class
-			class_data["name"] = initial(class.name)
-			class_data["color"] = initial(class.class_color)
-			class_data["description"] = initial(class.description)
-			class_data["long_description"] = initial(class.long_description)
+		
+		category_data["knowledgeData"] = paths
+		data["categories"] += list(category_data)
 
-			data["classData"] += list(class_data)
+	for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
+		if(!initial(class.choosable))
+			continue
+		var/list/class_data = list()
+		class_data["path"] = class
+		class_data["name"] = initial(class.name)
+		class_data["color"] = initial(class.class_color)
+		class_data["description"] = initial(class.description)
+		class_data["long_description"] = initial(class.long_description)
+
+		data["classData"] += list(class_data)
 	
 	return data
 
