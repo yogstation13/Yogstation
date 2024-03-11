@@ -16,6 +16,10 @@
 	light_color = LIGHT_COLOR_PURPLE
 	light_range = 2
 
+	var/obj/item/gun/energy/plasmacutter/gun
+	var/defuse = FALSE
+	var/explosive = FALSE
+
 /obj/projectile/plasma/weak
 	name = "weak plasma blast"
 	icon_state = "plasmacutter_weak"
@@ -24,6 +28,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	light_color = LIGHT_COLOR_RED
 	mine_range = 0
+
 //yogs begin
 /obj/projectile/plasma/Move(atom/newloc, dir)
 	. = ..()
@@ -34,9 +39,12 @@
 //yogs end
 /obj/projectile/plasma/on_hit(atom/target)
 	. = ..()
+	if(defuse && istype(target, /turf/closed/mineral/gibtonite))
+		var/turf/closed/mineral/gibtonite/gib = target
+		gib.defuse()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.attempt_drill(firer)
+		M.attempt_drill(firer, explosive)
 		if(mine_range)
 			mine_range--
 			range++
@@ -51,12 +59,6 @@
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
 // yogs end
-
-/obj/projectile/plasma/scatter/adv/on_hit(atom/target)
-	if(istype(target, /turf/closed/mineral/gibtonite))
-		var/turf/closed/mineral/gibtonite/gib = target
-		gib.defuse()
-	. = ..()
 
 /obj/projectile/plasma/adv
 	damage = 7
@@ -78,6 +80,7 @@
 
 // Same as the scatter but with automatic defusing
 /obj/projectile/plasma/scatter/adv
+	defuse = TRUE
 
 // Megafauna loot, possibly best cutter?
 /obj/projectile/plasma/scatter/adv/stalwart

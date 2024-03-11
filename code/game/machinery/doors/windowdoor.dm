@@ -61,7 +61,7 @@
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	QDEL_LIST(debris)
-	if(obj_integrity == 0)
+	if(atom_integrity == 0)
 		playsound(src, "shatter", 70, 1)
 	electronics = null
 	return ..()
@@ -393,7 +393,7 @@
 			INVOKE_ASYNC(src, PROC_REF(open_and_close))
 
 /obj/machinery/door/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	switch(the_rcd.mode)
+	switch(the_rcd.construction_mode)
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 32)
 	return FALSE
@@ -457,7 +457,7 @@
 
 /obj/machinery/door/window/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		obj_integrity = max_integrity
+		update_integrity(max_integrity)
 
 /obj/machinery/door/window/clockwork/hasPower()
 	return TRUE //yup that's power all right

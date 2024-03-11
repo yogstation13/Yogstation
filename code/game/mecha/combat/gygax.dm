@@ -25,7 +25,7 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
-	max_equip = 6
+	max_equip = 7
 	destruction_sleep_duration = 20
 
 /obj/mecha/combat/gygax/dark/loaded/Initialize(mapload)
@@ -42,6 +42,8 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/emergency_eject
 	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/thrusters/ion
+	ME.attach(src)
 	max_ammo()
 
 /obj/mecha/combat/gygax/dark/add_cell(obj/item/stock_parts/cell/C=null)
@@ -56,16 +58,6 @@
 	..()
 	overload_action.Grant(user, src)
 
-/obj/mecha/combat/gygax/dark/GrantActions(mob/living/user, human_occupant = 0)
-	..()
-	thrusters_action.Grant(user, src)
-
-
 /obj/mecha/combat/gygax/RemoveActions(mob/living/user, human_occupant = 0)
 	..()
 	overload_action.Remove(user)
-
-/obj/mecha/combat/gygax/dark/RemoveActions(mob/living/user, human_occupant = 0)
-	..()
-	thrusters_action.Remove(user)
-

@@ -287,6 +287,9 @@
 	///More stress stuff.
 	var/turning_on = FALSE
 
+	///Flicker cooldown
+	COOLDOWN_DECLARE(flicker_cooldown)
+
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
 	icon_state = "tube-broken"
@@ -352,9 +355,6 @@
 
 	// Light projects out backwards from the dir of the light
 	set_light(l_dir = REVERSE_DIR(dir))
-
-	if(mapload && our_area.lights_always_start_on)
-		turn_on(trigger = FALSE, quiet = TRUE)
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -654,7 +654,7 @@
 	newlight.setDir(dir)
 	newlight.stage = current_stage
 	if(!disassembled)
-		newlight.obj_integrity = newlight.max_integrity * 0.5
+		newlight.update_integrity(newlight.max_integrity * 0.5)
 		if(status != LIGHT_BROKEN)
 			break_light_tube()
 		if(status != LIGHT_EMPTY)
@@ -729,8 +729,9 @@
 
 /obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	set waitfor = 0
-	if(flickering)
+	if(flickering || !COOLDOWN_FINISHED(src, flicker_cooldown))
 		return
+	COOLDOWN_START(src, flicker_cooldown, 10 SECONDS)
 	flickering = 1
 	if(on && status == LIGHT_OK)
 		for(var/i = 0; i < amount; i++)
@@ -1024,7 +1025,7 @@
 	..()
 	shatter()
 
-/obj/item/light/attack_obj(obj/O, mob/living/user)
+/obj/item/light/attack_atom(obj/O, mob/living/user)
 	..()
 	shatter()
 
@@ -1075,9 +1076,9 @@
 	transfer_fingerprints_to(M)
 	qdel(src)
 
-/proc/flicker_all_lights()
+/proc/flicker_all_lights() //not QUITE all lights, but it reduces lag
 	for(var/obj/machinery/light/L in GLOB.machines)
-		if(is_station_level(L.z))
+		if(is_station_level(L.z) && prob(50))
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, flicker), rand(3, 6)), rand(0, 15))
 
 #undef LIGHT_ON_DELAY_UPPER

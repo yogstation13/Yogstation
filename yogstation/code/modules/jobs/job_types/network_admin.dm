@@ -7,7 +7,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief engineer and research director"
-	selection_color = "#fff5cc"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	alt_titles = list("AI Tech Support", "SysOp")
@@ -52,6 +51,6 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	box = /obj/item/storage/box/engineer
+	box = /obj/item/storage/box/survival/engineer
 
 	pda_slot = ITEM_SLOT_LPOCKET

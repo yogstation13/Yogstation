@@ -90,7 +90,6 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		//weight of 0 - all round good things
 		/obj/item/shield/riot = 0,
 		/obj/item/clothing/suit/armor/elder_atmosian = 0,
-		/obj/item/clothing/head/det_hat/evil = 0,
 		/obj/item/clothing/suit/space/hardsuit/mining = 0,
 		/obj/item/clothing/suit/armor/bulletproof = 0,
 		/obj/item/clothing/head/helmet/space/pirate = 0,
@@ -274,6 +273,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/automatic/ar = -5,
 		/obj/item/gun/ballistic/automatic/lwt650 = -5,
 		/obj/item/gun/ballistic/automatic/k41s = -5,
+		/obj/item/clothing/head/det_hat/evil = -5, //infinite ammo ranged weapon with high dps
 
 		/obj/item/gun/energy/beam_rifle = -6,
 		/obj/item/gun/ballistic/rifle/sniper_rifle = -6,
@@ -411,8 +411,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/syndicate/spinalspeed = -6, // No opportunity cost speed boost
 
 		/obj/item/storage/belt/wands/full = -7, //not quite spellbook, but some of these wands are FUCKED
-
-		/obj/item/spellbook = -8, //literally auto-win
+		/obj/item/spellbook = -7, //literally auto-win IF you have the time to use it (a lot of spells are robe locked too)
 		))
 
 /obj/structure/closet/crate/battleroyale
@@ -509,7 +508,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		to_chat(user,span_warning("You already know [user.mind.martial_art.name]!"))
 		return
 
-	if(do_after(user, 6 SECONDS, user))
+	if(do_after(user, 2 SECONDS, user))
 		var/datum/martial_art/MA = new martial
 		user.set_species(species)
 		MA.teach(user)

@@ -266,7 +266,7 @@
 /obj/machinery/capture_the_flag/proc/spawn_team_member(client/new_team_member)
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(get_turf(src))
 	new_team_member.prefs.apply_prefs_to(M)
-	M.set_species(/datum/species/synth)
+	M.set_species(/datum/species/ipc/self)
 	M.key = new_team_member.key
 	M.faction += team
 	M.equipOutfit(ctf_gear)
@@ -345,7 +345,7 @@
 			continue
 		if(isstructure(atm))
 			var/obj/structure/S = atm
-			S.obj_integrity = S.max_integrity
+			S.update_integrity(S.max_integrity)
 		else if(!is_type_in_typecache(atm, ctf_object_typecache))
 			qdel(atm)
 
@@ -605,10 +605,13 @@
 
 /obj/effect/ctf/ammo/Initialize(mapload)
 	..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	QDEL_IN(src, AMMO_DROP_LIFETIME)
 
-/obj/effect/ctf/ammo/Crossed(atom/movable/AM)
-	. = ..()
+/obj/effect/ctf/ammo/proc/on_entered(datum/source, atom/movable/AM, ...)
 	reload(AM)
 
 /obj/effect/ctf/ammo/Bump(atom/A)

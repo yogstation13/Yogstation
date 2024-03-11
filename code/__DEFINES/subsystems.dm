@@ -138,6 +138,7 @@
 #define INIT_ORDER_SOUNDS			83
 #define INIT_ORDER_INSTRUMENTS		82
 #define INIT_ORDER_VIS				80
+#define INIT_ORDER_SECURITY_LEVEL	79
 #define INIT_ORDER_MATERIALS		76
 #define INIT_ORDER_RESEARCH			75
 #define INIT_ORDER_STATION			74
@@ -173,7 +174,8 @@
 #define INIT_ORDER_PATH				-50
 #define INIT_ORDER_DISCORD			-60
 #define INIT_ORDER_EXPLOSIONS		-69
-#define INIT_ORDER_STATPANELS 		-98
+#define INIT_ORDER_STATPANELS 		-97
+#define INIT_ORDER_INIT_PROFILER 	-98 //Near the end, logs the costs of initialize
 #define INIT_ORDER_DEMO				-99 // To avoid a bunch of changes related to initialization being written, do this last
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 

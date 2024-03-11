@@ -50,10 +50,10 @@ All ShuttleMove procs go here
 	//Destination turf changes
 	//Baseturfs is definitely a list or this proc wouldnt be called
 	var/shuttle_depth = depth_to_find_baseturf(/turf/baseturf_skipover/shuttle)
-	
+
 	if(!shuttle_depth)
 		CRASH("A turf queued to move via shuttle somehow had no skipover in baseturfs. [src]([type]):[loc]")
-	newT.CopyOnTop(src, 1, shuttle_depth, TRUE, CHANGETURF_DEFER_CHANGE)
+	newT.CopyOnTop(src, 1, shuttle_depth, TRUE)
 	SEND_SIGNAL(src, COMSIG_TURF_ON_SHUTTLE_MOVE, newT)
 	
 	return TRUE
@@ -67,7 +67,7 @@ All ShuttleMove procs go here
 	var/shuttle_depth = depth_to_find_baseturf(/turf/baseturf_skipover/shuttle)
 
 	if(shuttle_depth)
-		oldT.ScrapeAway(shuttle_depth)
+		oldT.ScrapeAway(shuttle_depth, CHANGETURF_DEFER_CHANGE)
 
 	if(rotation)
 		shuttleRotate(rotation) //see shuttle_rotate.dm

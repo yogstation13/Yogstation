@@ -22,7 +22,7 @@
 	dir = direct //This camera eye is visible as a drone, and needs to keep the dir updated
 	..()
 
-/obj/item/construction/rcd/internal //Base console's internal RCD. Roundstart consoles are filled, rebuilt cosoles start empty.
+/obj/item/construction/rcd/internal //Base console's internal RCD. Roundstart consoles are filled, rebuilt consoles start empty.
 	name = "internal RCD"
 	max_matter = 600 //Bigger container and faster speeds due to being specialized and stationary.
 	no_ammo_message = span_warning("Internal matter exhausted. Please add additional materials.")
@@ -43,10 +43,8 @@
 
 	var/obj/item/construction/rcd/internal/RCD //Internal RCD. The computer passes user commands to this in order to avoid massive copypaste.
 	var/obj/machinery/computer/auxiliary_base/found_aux_console //Tracker for the Aux base console, so the eye can always find it.
-	var/datum/action/innate/aux_base/switch_mode/switch_mode_action = new //Action for switching the RCD's build modes
+	var/datum/action/innate/aux_base/configure_mode/configure_mode_action = new //Action for switching the RCD's build modes
 	var/datum/action/innate/aux_base/build/build_action = new //Action for using the RCD
-	var/datum/action/innate/aux_base/airlock_type/airlock_mode_action = new //Action for setting the airlock type
-	var/datum/action/innate/aux_base/window_type/window_action = new //Action for setting the window type
 	var/fans_remaining = 0 //Number of fans in stock.
 	var/datum/action/innate/aux_base/place_fan/fan_action = new //Action for spawning fans
 	var/turret_stock = 0 //Turrets in stock
@@ -96,25 +94,15 @@
 /obj/machinery/computer/camera_advanced/base_construction/GrantActions(mob/living/user)
 	..()
 
-	if(switch_mode_action)
-		switch_mode_action.target = src
-		switch_mode_action.Grant(user)
-		actions += switch_mode_action
+	if(configure_mode_action)
+		configure_mode_action.target = src
+		configure_mode_action.Grant(user)
+		actions += configure_mode_action
 
 	if(build_action)
 		build_action.target = src
 		build_action.Grant(user)
 		actions += build_action
-
-	if(airlock_mode_action)
-		airlock_mode_action.target = src
-		airlock_mode_action.Grant(user)
-		actions += airlock_mode_action
-
-	if(window_action)
-		window_action.target = src
-		window_action.Grant(user)
-		actions += window_action
 
 	if(fan_action)
 		fan_action.target = src
@@ -190,38 +178,17 @@
 	B.RCD.afterattack(rcd_target, owner, TRUE) //Activate the RCD and force it to work remotely!
 	playsound(target_turf, 'sound/items/deconstruct.ogg', 60, 1)
 
-/datum/action/innate/aux_base/switch_mode
-	name = "Switch Mode"
-	button_icon_state = "builder_mode"
+/datum/action/innate/aux_base/configure_mode
+	name = "Configure RCD"
+	button_icon = 'icons/obj/tools.dmi'
+	button_icon_state = "rcd"
 
-/datum/action/innate/aux_base/switch_mode/Activate()
+/datum/action/innate/aux_base/configure_mode/Activate()
 	if(..())
 		return
 
-	var/list/buildlist = list("Walls and Floors" = RCD_FLOORWALL,"Airlocks" = RCD_AIRLOCK,"Deconstruction" = RCD_DECONSTRUCT,"Windows and Grilles" = RCD_WINDOWGRILLE)
-	var/buildmode = input(owner, "Set construction mode.", "Base Console", null) in buildlist
-	B.RCD.mode = buildlist[buildmode]
-	to_chat(owner, "Build mode is now [buildmode].")
-
-/datum/action/innate/aux_base/airlock_type
-	name = "Select Airlock Type"
-	button_icon_state = "airlock_select"
-
-datum/action/innate/aux_base/airlock_type/Activate()
-	if(..())
-		return
-
-	B.RCD.change_airlock_setting(owner, remote_eye)
-
-
-datum/action/innate/aux_base/window_type
-	name = "Select Window Glass"
-	button_icon_state = "window_select"
-
-datum/action/innate/aux_base/window_type/Activate()
-	if(..())
-		return
-	B.RCD.toggle_window_glass(owner)
+	B.RCD.owner = B
+	B.RCD.ui_interact(owner)
 
 datum/action/innate/aux_base/place_fan
 	name = "Place Tiny Fan"

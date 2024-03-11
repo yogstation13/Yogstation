@@ -52,7 +52,6 @@
 /obj/structure/closet/secure_closet/CMO/PopulateContents()
 	..()
 	new /obj/item/storage/backpack/duffelbag/med(src)
-	new /obj/item/cartridge/cmo(src)
 	new /obj/item/radio/headset/heads/cmo(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/clothing/neck/cloak/cmo(src)

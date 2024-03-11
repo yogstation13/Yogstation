@@ -305,8 +305,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	if(CONFIG_GET(flag/auto_blue_alert))
 		print_command_report(., "Central Command Status Summary", announce=FALSE)
 		priority_announce(desc, title, ANNOUNCER_INTERCEPT)
-		if(GLOB.security_level < SEC_LEVEL_BLUE)
-			set_security_level(SEC_LEVEL_BLUE)
+		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
 	else
 		print_command_report(., "Central Command Status Summary")
 
