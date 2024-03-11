@@ -91,4 +91,4 @@
 			var/datum/antagonist/darkspawn/antag = master.has_antag_datum(/datum/antagonist/darkspawn)
 			antag.willpower += amount
 			if(master.current)
-				to_chat(master.current, span_velvet("You have gained [willpower_amount] willpower."))
+				to_chat(master.current, span_velvet("You have gained [amount] willpower."))
