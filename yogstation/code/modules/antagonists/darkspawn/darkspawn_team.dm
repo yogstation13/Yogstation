@@ -13,7 +13,7 @@
 	objectives += O
 	if(SSticker?.mode?.num_players())
 		required_succs = clamp(round(SSticker.mode.num_players() / 3), min(SSticker.mode.num_players() / 2, 10), 30) //between 10 and 30 succs but will roll lower than 10 if the population is low enough
-	O.update_explanation_text()
+	update_objectives()
 
 /datum/team/darkspawn/roundend_report()
 	var/list/report = list()

@@ -134,41 +134,43 @@ const IntroductionSection = (props, context) => {
 
 const FlavorSection = () => {
   return (
-    <Stack.Item>
-      <Stack vertical textAlign="center" fontSize="14px">
+    <Stack vertical textAlign="center" fontSize="14px">
+      <i>
         <Stack.Item>
-          <i>
-            Another day at a meaningless job. You feel a&nbsp;
-            <span style={Velvet}>shimmer</span>
-            &nbsp;around you, as a realization of something&nbsp;
-            <span style={Velvet}>strange</span>
-            &nbsp;in the air unfolds. You look inwards and discover something
-            that will change your life.
-          </i>
+            Eternity spent dormant, floating in an <span style={Velvet}>endless void</span>.
         </Stack.Item>
         <Stack.Item>
-          <b>
-            The <span style={Velvet}>Shadowlands</span>
-            &nbsp;await your return.
-          </b>
+            Ripples herald chaos as a <span style={{ "color":"#00AAFF" }} >bright blue light</span> tears you from your slumber.&nbsp;
         </Stack.Item>
-      </Stack>
-    </Stack.Item>
+        <Stack.Item>
+            As you plunge into normalspace, you violently <span style={Velvet}>curse</span> the being that caused such an event.&nbsp;
+        </Stack.Item>
+        <Stack.Item>
+            You quickly fashion a <span style={{ "color":"#FF0000" }} >crude facsimile</span> of the lifeforms nearby.
+        </Stack.Item>
+        <Stack.Item>
+            I won&apos;t last long, but it&apos;s enough to trick these fools.
+        </Stack.Item>
+      </i>
+      <Stack.Item fontSize="20px">
+        <b>
+          The <span style={Velvet}>Shadowlands</span> await your return.
+        </b>
+      </Stack.Item>
+    </Stack>
   );
 };
 
 const GuideSection = () => {
   return (
-    <Stack.Item>
-      <Stack vertical fontSize="12px">
-        <Stack.Item>
-          - Collaborate with fellow darkspawns, use .w to converse using the mindlink
-        </Stack.Item>
-        <Stack.Item>
-          - Incapacitate crewmembers and drain them of their lucidity to gain willpower to purchase new abilities
-        </Stack.Item>
-      </Stack>
-    </Stack.Item>
+    <Stack vertical fontSize="14px">
+      <Stack.Item>
+        - Collaborate with fellow darkspawns, use .w to converse using the mindlink
+      </Stack.Item>
+      <Stack.Item>
+        - Incapacitate crewmembers and drain them of their lucidity to gain willpower to purchase new abilities
+      </Stack.Item>
+    </Stack>
   );
 };
 
