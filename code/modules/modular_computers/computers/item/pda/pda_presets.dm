@@ -137,6 +137,6 @@
 /obj/item/modular_computer/tablet/pda/preset/basic/bureaucrat/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/crew_manifest,
-		new /datum/computer_file/program/alarm_monitor // Captain I noticed you may have a few fires around
+		new /datum/computer_file/program/paperwork_printer
 	)	
 	. = ..()
