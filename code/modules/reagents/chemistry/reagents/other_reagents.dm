@@ -1548,6 +1548,7 @@
 		M.adjust_jitter_up_to(2, 10)
 	else if(M.bodytemperature < T0C)
 		heal_factor *= (100 + max(T0C - M.bodytemperature, 200)) / 100 // if you're asleep, you get healed faster when you're cold (up to 3x at 73 kelvin)
+	M.adjustOxyLoss(-10*heal_factor*REM)
 	M.adjustFireLoss(-7*heal_factor*REM)
 	M.adjustToxLoss(-5*heal_factor*REM)
 	M.adjustBruteLoss(-5*heal_factor*REM)
