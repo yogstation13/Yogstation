@@ -66,6 +66,7 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
+	infinite = TRUE
 
 /datum/psi_web/psi_cap/on_gain()
 	darkspawn.psi_cap += 100
@@ -78,9 +79,10 @@
 	name = "Mending Sigil"
 	desc = "Unlocking this sigil increases your healing in darkness by 25%."
 	lore_description = "The _______ sigil, representing perseverence, is etched onto the back."
-	willpower_cost = 1
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
+	infinite = TRUE
 
 /datum/psi_web/dark_healing/on_gain()
 	darkspawn.dark_healing *= 1.25
@@ -93,7 +95,7 @@
 	name = "Lightward Sigil"
 	desc = "Unlocking this sigil protects from dim light."
 	lore_description = "The _______ sigil, representing voiding, is etched onto the back."
-	willpower_cost = 1
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
 
@@ -111,7 +113,7 @@
 	name = "Shadowskin Sigil"
 	desc = "Unlocking this sigil halves light damage taken."
 	lore_description = "The _______ sigil, representing refraction, is etched onto the abdomen."
-	willpower_cost = 1
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
 
@@ -128,6 +130,7 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
+	infinite = TRUE
 
 /datum/psi_web/brute_res/on_gain()
 	if(istype(owner))
@@ -144,6 +147,7 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
+	infinite = TRUE
 
 /datum/psi_web/brute_res/on_gain()
 	if(istype(owner))
@@ -167,12 +171,11 @@
 /datum/psi_web/noslip/on_loss()
 	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_ALL, type)
 
-
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Scout Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/psi_web/stamina_res
-	name = "Vigor Sigil"
+	name = "Vigor Sigils"
 	desc = "Unlocking this sigil halves stamina damage taken."
 	lore_description = "The _______ sigils, representing vigor, are etched onto the legs."
 	willpower_cost = 2
@@ -188,8 +191,8 @@
 		owner.physiology.stamina_mod *= 2
 
 /datum/psi_web/shadow_walk
-	name = "Shadow Sprint"
-	desc = "Unlocking this sigil increases speed in the dark."
+	name = "Shadowwalk sigils"
+	desc = "Unlocking this sigil greatly increases speed in the dark."
 	lore_description = "The _______ sigils, representing speed, are etched onto the legs."
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
@@ -200,6 +203,7 @@
 
 /datum/psi_web/shadow_walk/on_loss()
 	qdel(owner.GetComponent(/datum/component/shadow_step))
+
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Warlock Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -267,7 +271,7 @@
 	if(team)
 		team.max_veils += 2
 
-//even more thralls
+//buff allied darkspawns
 /datum/psi_web/buff_allies
 	name = "Unity Sigil"
 	desc = "Unlocking this sigil allows your veil support abilities to also affect allied darkspawns."

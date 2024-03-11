@@ -61,7 +61,7 @@
 	name = "Permafrost"
 	desc = "Banish heat from the surrounding terrain, freezing it instantly."
 	lore_description = "Opens a pinhole to the veil, rapidly draining heat from the surrounding area."
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/permafrost)
@@ -70,14 +70,14 @@
 	name = "Shadow Caster"
 	desc = "Twists an active arm into a bow that shoots harddark arrows."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 3
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_caster)
 
 /datum/psi_web/damage_Trap
 	name = "Psi Trap (damage)"
-	desc = "Stitch together shadows into a trap that deals damage to non-ally that crosses it."
+	desc = "Place a trap that deals damage to non-ally that crosses it."
 	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = SCOUT
@@ -86,7 +86,7 @@
 	
 /datum/psi_web/cuff_trap
 	name = "Psi Trap (restrain)"
-	desc = "Stitch together shadows into a trap that restrains the legs of any non-ally that crosses it."
+	desc = "Place a trap that restrains the legs of any non-ally that crosses it."
 	lore_description = ""
 	willpower_cost = 1
 	shadow_flags = SCOUT
@@ -95,7 +95,7 @@
 	
 /datum/psi_web/nausea_trap
 	name = "Psi Trap (nausea)"
-	desc = "Stitch together shadows into a trap that makes any non-ally that crosses it sick to their stomach."
+	desc = "Place a trap that makes any non-ally that crosses it sick to their stomach."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
 	shadow_flags = SCOUT
@@ -104,7 +104,7 @@
 	
 /datum/psi_web/teleport_trap
 	name = "Psi Trap (teleport)"
-	desc = "Stitch together shadows into a trap that teleports any non-ally to a random location on the station."
+	desc = "Place a trap that teleports any non-ally to a random location on the station."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
 	willpower_cost = 1
 	shadow_flags = SCOUT
@@ -167,7 +167,7 @@
 	name = "Extract"
 	desc = "Drain a target's life force or bestow it to an ally."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/extract)
@@ -176,7 +176,7 @@
 	name = "Abyssal Call"
 	desc = "Call a tendril at a targeted location to grasp an enemy."
 	lore_description = "Summon abyssal tendrils from beyond the veil."
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call)
@@ -185,7 +185,7 @@
 	name = "Seize"
 	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/seize)
@@ -194,7 +194,7 @@
 	name = "Void Beam"
 	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 3
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/shadow_beam)
@@ -202,12 +202,11 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Mixed abilities-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-
 /datum/psi_web/icyveins
 	name = "Icy Veins"
 	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = SCOUT | WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/icyveins)

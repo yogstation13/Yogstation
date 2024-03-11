@@ -27,6 +27,7 @@ type Knowledge = {
   cost: number;
   disabled: boolean;
   menutab: string;
+  infinite: boolean;
 };
 
 type Classes = {
@@ -212,13 +213,7 @@ const ResearchInfo = (props, context) => {
   const { act, data } = useBackend<Info>(context);
   const { willpower, categories = [] } = data;
 
-  const [selectedCategory, setSelectedCategory] = useLocalState<Category>(
-    context,
-    'category',
-    categories[0]
-  );
-
-  const [selectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
+  const [selectedKnowledge, setSelectedKnowledge] = useLocalState<Knowledge | null>(context, "knowledge", null);
 
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
@@ -247,18 +242,17 @@ const ResearchInfo = (props, context) => {
                 <Stack.Item>
                 {selectedKnowledge && (
                   <Button
-                  content="Purchase"
+                  content={(selectedKnowledge.disabled && "Not enough willpower") || "Purchase"}
                   textAlign="center"
                   fontSize="16px"
+                  disabled={selectedKnowledge.disabled}
                   fluid
-                  color="green"
-                  onClick={() => { act("purchase", {
-                  upgrade_path: selectedKnowledge.path,
-                  });
-                }}
-                />
+                  color={(selectedKnowledge.disabled && "grey") || "green"}
+                  onClick={() => {
+                  act("purchase", { upgrade_path: selectedKnowledge.path });
+                  (!selectedKnowledge.infinite && setSelectedKnowledge(null));
+                  }} />
                 )}
-
                 </Stack.Item>
               </Stack>
 
@@ -324,11 +318,10 @@ const KnowledgePreview = (props, context) => {
       <Section overflow-wrap="break-word" fontSize="16px" textAlign="center" fill title={capitalize(selectedKnowledge?.name)}>
         <Stack fill fluid vertical justify="flex-start" fontSize="16px" textAlign="center">
 
-          <Stack.Item fontSize="14px" color="purple">willpower cost: {selectedKnowledge?.cost}</Stack.Item>
-          <Stack.Item color="gold">{selectedKnowledge?.desc}</Stack.Item>
-          <Stack.Item style={Velvet} fontSize="12px">{selectedKnowledge?.lore_description}</Stack.Item>
+          <Stack.Item fontSize="15px" color="purple">willpower cost: {selectedKnowledge?.cost}</Stack.Item>
 
-          {/* <Stack.Item>
+          {/* if i ever decide to add icons, this is where i'd put them
+          <Stack.Item>
             <Box
             as="img"
             src={resolveAsset(selectedKnowledge.rod_pic)}
@@ -338,6 +331,9 @@ const KnowledgePreview = (props, context) => {
               'image-rendering': 'pixelated' }} />
           </Stack.Item> */}
 
+          <Stack.Item color="gold">{selectedKnowledge?.desc}</Stack.Item>
+          <Stack.Item style={Velvet} fontSize="14px">{selectedKnowledge?.lore_description}</Stack.Item>
+          <Stack.Item fontSize="12px" color="purple">{!!(selectedKnowledge?.infinite) && "Can be purchased multiple times"}</Stack.Item>
         </Stack>
       </Section>
       );
@@ -377,7 +373,7 @@ const ClassSelection = (props, context) => {
         >
           <Flex.Item height="50px" fontSize="20px" color={darkspawnclass.color}>{capitalize(darkspawnclass.name)}</Flex.Item>
           <Flex.Item height="50px">{darkspawnclass.description}</Flex.Item>
-          <Flex.Item height="100px" fontSize="12px" style={Velvet}>{darkspawnclass.long_description}</Flex.Item>
+          <Flex.Item height="50px" fontSize="14px" style={Velvet}>{darkspawnclass.long_description}</Flex.Item>
           <Flex.Item height="50px">
             <Tabs.Tab
             height="50px"

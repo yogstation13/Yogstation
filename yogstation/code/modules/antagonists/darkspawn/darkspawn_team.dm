@@ -3,7 +3,7 @@
 	name = "darkspawns"
 	member_name = "darkspawn"
 	var/list/datum/mind/veils = list() //not quite members (the darkspawns)
-	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
+	var/required_succs = 10 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
 	var/lucidity = 0
 	var/max_veils = 0
 
@@ -11,9 +11,9 @@
 	. = ..()
 	var/datum/objective/darkspawn/O = new
 	objectives += O
-	O.update_explanation_text()
 	if(SSticker?.mode?.num_players())
 		required_succs = clamp(round(SSticker.mode.num_players() / 3), min(SSticker.mode.num_players() / 2, 10), 30) //between 10 and 30 succs but will roll lower than 10 if the population is low enough
+	O.update_explanation_text()
 
 /datum/team/darkspawn/roundend_report()
 	var/list/report = list()

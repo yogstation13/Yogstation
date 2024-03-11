@@ -39,32 +39,6 @@
 	return TRUE
 
 //////////////////////////////////////////////////////////////////////////
-//-------------------Scout and warlock, erase time----------------------//
-//////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/erase_time/darkspawn
-	name = "Quantum disruption"
-	desc = "Disrupt the flow of possibilities, where you are, where you could be."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-	buttontooltipstyle = "alien"
-	button_icon_state = "time_dilation"
-	panel = "Darkspawn"
-	antimagic_flags = NONE
-	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	psi_cost = 70
-	cooldown_time = 120 SECONDS
-	length = 5 SECONDS
-
-/datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
-	. = ..()
-	if(. && isdarkspawn(owner))
-		to_chat(owner, span_progenitor("KSH SHOL'NAXHAR!"))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
-		darkspawn.block_psi(20 SECONDS, type)
-
-//////////////////////////////////////////////////////////////////////////
 //-----------------Scout and warlock, aoe slow and chill----------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/icyveins //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting

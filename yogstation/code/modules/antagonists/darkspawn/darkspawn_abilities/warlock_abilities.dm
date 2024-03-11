@@ -124,7 +124,7 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	cooldown_time = 10 MINUTES
-	psi_cost = 100
+	psi_cost = 200
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/null_charge/is_valid_target(atom/cast_on)
@@ -502,3 +502,29 @@
 		target.adjustStaminaLoss(loss)
 		target.adjust_stutter(loss)
 		to_chat(target, span_userdanger("A purple light flashes through your mind, and exhaustion floods your body..."))
+
+//////////////////////////////////////////////////////////////////////////
+//----------------------Basically a fancy jaunt-------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/erase_time/darkspawn
+	name = "Quantum disruption"
+	desc = "Disrupt the flow of possibilities, where you are, where you could be."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "time_dilation"
+	panel = "Darkspawn"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	psi_cost = 70
+	cooldown_time = 120 SECONDS
+	length = 5 SECONDS
+
+/datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
+	. = ..()
+	if(. && isdarkspawn(owner))
+		to_chat(owner, span_progenitor("KSH SHOL'NAXHAR!"))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+		darkspawn.block_psi(20 SECONDS, type)

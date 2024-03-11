@@ -6,8 +6,6 @@
 	var/desc = "Basic knowledge of forbidden arts."
 	///Fancy description about the effect
 	var/lore_description = ""
-	///Icon that gets displayed
-	var/icon = ""
 	///Cost of to learn this
 	var/willpower_cost = 0
 	///What specialization can buy this
@@ -20,6 +18,8 @@
 	var/mob/living/carbon/human/owner
 	///The antag datum of the owner(used for modifying)
 	var/datum/antagonist/darkspawn/darkspawn
+	///If it can be bought infinite times for incremental upgrades
+	var/infinite = FALSE
 
 ///When the button to purchase is clicked
 /datum/psi_web/proc/on_purchase(mob/living/carbon/human/user)
@@ -33,6 +33,7 @@
 		return
 
 	darkspawn.willpower -= willpower_cost
+	to_chat(user, span_velvet("You have unlocked [name]"))
 	on_gain()
 	for(var/ability in learned_abilities)
 		if(ispath(ability, /datum/action))

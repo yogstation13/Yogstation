@@ -209,6 +209,7 @@
 				knowledge_data["lore_description"]  = initial(knowledge.lore_description)
 				knowledge_data["cost"] = initial(knowledge.willpower_cost)
 				knowledge_data["disabled"] = (initial(knowledge.willpower_cost) > willpower)
+				knowledge_data["infinite"] = (initial(knowledge.infinite))
 
 				paths += list(knowledge_data)
 			
@@ -255,6 +256,10 @@
 				return FALSE
 			picked_class = owner.current.AddComponent(class_path)
 
+/datum/antagonist/darkspawn/ui_status(mob/user, datum/ui_state/state)
+	if(user.stat == DEAD)
+		return UI_CLOSE
+	return ..()
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////

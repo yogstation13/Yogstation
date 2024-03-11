@@ -5,7 +5,7 @@
 	name = "Deluge"
 	desc = "Douses all nearby creatures with water, extinguishing them and protecting from fire."
 	lore_description = "Calls upon the endless depths to douse all with the beyond."
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/deluge)
@@ -14,7 +14,7 @@
 	name = "Creep"
 	desc = "Grants immunity to lightburn while active. Can be toggled on and off."
 	lore_description = "Mold the darkness into an ephemeral cloak using psionic power."
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/creep)
@@ -32,7 +32,7 @@
 	name = "Indomitable"
 	desc = "Grants immunity to all CC effects, but locks the user into walking."
 	lore_description = "Stitch yourself to the ground using shadows themselves."
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/indomitable)
@@ -53,7 +53,7 @@
 	name = "Void Jaunt"
 	desc = "Move through the veil for a time, avoiding mortal eyes and lights."
 	lore_description = "The veil can be treacherous for those unprepared, however it can give reprieve."
-	willpower_cost = 2
+	willpower_cost = 3
 	shadow_flags = SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt)
@@ -62,7 +62,7 @@
 	name = "Blinding Miasma"
 	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
 	lore_description = "Release a pocket of darkness nestled within your body."
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/darkness_smoke)
@@ -122,7 +122,7 @@
 	name = "Elucidate"
 	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 3
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/elucidate)
@@ -131,28 +131,28 @@
 	name = "Null Charge"
 	desc = "Meddle with the powergrid via a functioning APC, causing a temporary stationwide power outage. Breaks the APC in the process."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 3
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/null_charge)
 
-////////////////////////////////////////////////////////////////////////////////////
-//------------------------------Mixed abilities-----------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/datum/psi_web/quantum_disruption
+/datum/psi_web/quantum_disruption //basically just a worse jaunt
 	name = "Quantum Disruption"
 	desc = "Disrupt the flow of possibilities, where you are, where you could be."
 	lore_description = ""
-	willpower_cost = 2
-	shadow_flags = SCOUT | WARLOCK
+	willpower_cost = 3
+	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/erase_time/darkspawn)
-	
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Mixed abilities-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/psi_web/umbral_trespass
 	name = "Umbral Trespass"
 	desc = "Melds with a target's shadow, causing you to invisibly follow them."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = SCOUT | WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/umbral_trespass)
