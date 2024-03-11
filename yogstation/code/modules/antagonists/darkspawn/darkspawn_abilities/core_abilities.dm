@@ -103,12 +103,6 @@
 		willpower_amount *= 0.5
 		willpower_amount = round(willpower_amount) //make sure it's a whole number still
 
-	//pass out the willpower and lucidity to the darkspawns
-	var/datum/team/darkspawn/team = darkspawn.get_team()
-	if(team)
-		team.grant_willpower(willpower_amount)
-		team.lucidity += lucidity_amount
-
 	//format the text output to the darkspawn
 	var/list/self_text = list() 
 	self_text += span_velvet("...akkraup'dej")
@@ -122,6 +116,12 @@
 	self_text += span_warning("[target] is now severely weakened and will take some time to recover.")
 	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
 
+	//pass out the willpower and lucidity to the darkspawns
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(team)
+		team.grant_willpower(willpower_amount)
+		team.lucidity += lucidity_amount
+		
 	//apply the long-term debuffs to the victim
 	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
 	target.apply_status_effect(STATUS_EFFECT_DEVOURED_WILL)

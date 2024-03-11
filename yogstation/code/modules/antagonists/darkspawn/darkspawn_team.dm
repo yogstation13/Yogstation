@@ -7,6 +7,9 @@
 	var/lucidity = 0
 	var/max_veils = 0
 
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Basic Team Stuff----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/team/darkspawn/New(starting_members)
 	. = ..()
 	var/datum/objective/darkspawn/O = new
@@ -15,6 +18,19 @@
 		required_succs = clamp(round(SSticker.mode.num_players() / 3), min(SSticker.mode.num_players() / 2, 10), 30) //between 10 and 30 succs but will roll lower than 10 if the population is low enough
 	update_objectives()
 
+/datum/team/darkspawn/add_member(datum/mind/new_member)
+	. = ..()
+	new_member.announce_objectives()
+
+/datum/team/darkspawn/proc/add_veil(datum/mind/new_member) //veils are treated differently than darkspawns
+	veils |= new_member
+
+/datum/team/darkspawn/proc/remove_veil(datum/mind/member)
+	veils -= member
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Round end Stuff----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/team/darkspawn/roundend_report()
 	var/list/report = list()
 
@@ -36,30 +52,7 @@
 		for(var/datum/mind/veil in veils)
 			report += printplayer(veil)
 
-
 	return report
-
-/datum/team/darkspawn/proc/grant_willpower(amount = 1)
-	for(var/datum/mind/master in members)
-		if(master.has_antag_datum(/datum/antagonist/darkspawn)) //sanity check
-			var/datum/antagonist/darkspawn/antag = master.has_antag_datum(/datum/antagonist/darkspawn)
-			antag.willpower += amount
-
-/datum/team/darkspawn/add_member(datum/mind/new_member)
-	. = ..()
-	new_member.announce_objectives()
-
-/datum/team/darkspawn/proc/add_veil(datum/mind/new_member) //veils are treated differently than darkspawns
-	veils |= new_member
-
-/datum/team/darkspawn/proc/remove_veil(datum/mind/member)
-	veils -= member
-
-/datum/team/darkspawn/proc/update_objectives() //teams should really have this as a default proc or something
-	for(var/datum/objective/darkspawn/O as anything in objectives)
-		if(istype(O))
-			O.required_succs = src.required_succs
-			O.update_explanation_text()
 
 /datum/team/darkspawn/proc/check_darkspawn_death() //check if a darkspawn is still alive
 	for(var/datum/mind/dark_mind as anything in members)
@@ -67,6 +60,15 @@
 			return FALSE
 	return TRUE
 	
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Team Objective----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/team/darkspawn/proc/update_objectives() //teams should really have this as a default proc or something
+	for(var/datum/objective/darkspawn/O as anything in objectives)
+		if(istype(O))
+			O.required_succs = src.required_succs
+			O.update_explanation_text()
+
 //the objective
 /datum/objective/darkspawn
 	explanation_text = "Become lucid and perform the Sacrament."
@@ -79,3 +81,14 @@
 	if(..())
 		return TRUE
 	return SSticker.mode.sacrament_done
+
+////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------Special antag procs--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/team/darkspawn/proc/grant_willpower(amount = 1)
+	for(var/datum/mind/master in members)
+		if(master.has_antag_datum(/datum/antagonist/darkspawn)) //sanity check
+			var/datum/antagonist/darkspawn/antag = master.has_antag_datum(/datum/antagonist/darkspawn)
+			antag.willpower += amount
+			if(master.current)
+				to_chat(master.current, span_velvet("You have gained [willpower_amount] willpower."))
