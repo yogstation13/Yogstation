@@ -63,7 +63,7 @@
 
 /datum/game_mode/darkspawn/check_finished()
 	. = ..()
-	if(check_darkspawn_death())
+	if(. && check_darkspawn_death())
 		return TRUE
 
 /datum/game_mode/darkspawn/set_round_result()
