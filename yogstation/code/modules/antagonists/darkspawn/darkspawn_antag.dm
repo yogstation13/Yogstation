@@ -188,8 +188,6 @@
 	data["has_class"] = picked_class
 
 	if(picked_class)
-		if(picked_class.specialization_flag)
-			data["specialization"] = picked_class.specialization_flag
 
 		var/list/categories = list(STORE_OFFENSE, STORE_UTILITY, STORE_PASSIVE)
 		for(var/category in categories)
