@@ -43,3 +43,32 @@
 /obj/item/vending_refill/donksoft
 	machine_name = "Donksoft Toy Vendor"
 	icon_state = "refill_donksoft"
+
+/obj/machinery/vending/donksofttoyvendor/hugbox
+	name = "\improper Hugsoft Toy Vendor"
+	desc = "An ages 8 and up approved vendor that dispenses toys. This one feels noticably less fun..."
+	circuit = /obj/item/circuitboard/machine/vending/donksofttoyvendor/hugbox
+	products = list(
+		/obj/item/gun/ballistic/automatic/toy/unrestricted/hugbox = 10,
+		/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted/hugbox = 10,
+		/obj/item/gun/ballistic/shotgun/toy/unrestricted/hugbox = 10,
+		/obj/item/toy/sword = 10,
+		/obj/item/melee/vxtvulhammer/toy = 7,
+		/obj/item/ammo_box/foambox = 30,
+		/obj/item/toy/foamblade = 10,
+		/obj/item/toy/foamblade/baseball = 10,
+		/obj/item/toy/syndicateballoon = 10,
+		/obj/item/clothing/suit/syndicatefake = 5,
+		/obj/item/clothing/head/syndicatefake = 5,
+		/obj/item/gun/magic/sickly_blade_toy = 1,
+		/obj/item/gun/magic/sickly_blade_toy/rust_toy = 1,
+		/obj/item/gun/magic/sickly_blade_toy/ash_toy = 1,
+		/obj/item/gun/magic/sickly_blade_toy/flesh_toy =1,
+		/obj/item/gun/ballistic/shotgun/toy/crossbow/hugbox = 10, // No more contraband section because they cant load riot darts anymore.
+		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/hugbox = 10,
+		/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/hugbox = 10,
+		/obj/item/gun/water/full = 10,
+		/obj/item/toy/katana = 10,
+		/obj/item/melee/dualsaber/toy = 5,
+		/obj/item/organ/cyberimp/chest/spinalspeed/toy = 5
+	)

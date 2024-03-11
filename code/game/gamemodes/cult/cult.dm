@@ -199,14 +199,13 @@
 	var/anchor_power = 0 //anchor will be faster if there are more stones
 	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
 		anchor_power++
-		if(B.obj_integrity > anchor_target.obj_integrity)
+		if(B.get_integrity() > anchor_target.get_integrity())
 			anchor_target = B
 	SSticker.mode.anchor_bloodstone = anchor_target
 	anchor_target.name = "anchor bloodstone"
 	anchor_target.desc = "It pulses rhythmically with migraine-inducing light. Something is being reflected on every surface, something that isn't quite there..."
 	anchor_target.anchor = TRUE
-	anchor_target.max_integrity = 1200
-	anchor_target.obj_integrity = 1200
+	anchor_target.modify_max_integrity(1200, can_break = FALSE)
 	anchor_time2kill -= anchor_power * 1 MINUTES //one minute of bloodfuckery shaved off per surviving bloodstone.
 	anchor_target.set_animate()
 	var/area/A = get_area(anchor_target)

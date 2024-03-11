@@ -42,7 +42,7 @@
 			AT.emp_act(EMP_HEAVY)
 			if(istype(AT, /obj))
 				var/obj/O = AT
-				O.obj_break()
+				O.atom_break()
 			if(istype(AT, /mob/living))
 				var/mob/living/M = AT
 				M.take_overall_damage(85)

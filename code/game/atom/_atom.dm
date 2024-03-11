@@ -139,6 +139,20 @@
 
 	var/atom/orbit_target //Reference to atom being orbited
 
+	///any atom that uses integrity and can be damaged must set this to true, otherwise the integrity procs will throw an error
+	var/uses_integrity = FALSE
+	///Armor datum used by the atom
+	var/datum/armor/armor
+	///Current integrity, defaults to max_integrity on init
+	VAR_PRIVATE/atom_integrity
+	///Maximum integrity
+	var/max_integrity = 500
+	///Integrity level when this atom will "break" (whatever that means) 0 if we have no special broken behavior, otherwise is a percentage of at what point the atom breaks. 0.5 being 50%
+	var/integrity_failure = 0
+	///Damage under this value will be completely ignored
+	var/damage_deflection = 0
+
+	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
 
 /**
   * Top level of the destroy chain for most atoms
@@ -404,6 +418,14 @@
 	if(sig_return != NONE)
 		return sig_return
 	. = P.on_hit(src, 0, def_zone)
+	if(uses_integrity)
+		playsound(src, P.hitsound, 50, 1)
+		visible_message(span_danger("[src] is hit by \a [P]!"), null, null, COMBAT_MESSAGE_RANGE)
+		if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
+			var/demolition_mult = P.demolition_mod
+			if(istype(src, /obj/mecha) && P.demolition_mod != 1)	//snowflake damage checks for mechs
+				demolition_mult = istype(src, /obj/mecha/combat) ? min(1, (1 + P.demolition_mod)/2) : (1 + P.demolition_mod)/2
+			take_damage(P.damage * demolition_mult, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
 
 ///Return true if we're inside the passed in atom
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
@@ -450,6 +472,18 @@
 
 	if(desc)
 		. += desc
+
+	if(uses_integrity && atom_integrity < max_integrity)
+		if(resistance_flags & ON_FIRE)
+			. += span_warning("It's on fire!")
+		var/integrity = atom_integrity*100/max_integrity
+		switch(integrity)
+			if(66 to 100)
+				. += "It's slightly damaged."
+			if(33 to 66)
+				. += "It's heavily damaged."
+			if(0 to 33)
+				. += span_warning("It's falling apart!")
 
 	if(custom_materials)
 		for(var/i in custom_materials)
@@ -864,8 +898,32 @@
 	pixel_y = clamp(new_y, -16, 16)
 
 ///Handle melee attack by a mech
-/atom/proc/mech_melee_attack(obj/mecha/M, equip_allowed = TRUE)
-	return
+/atom/proc/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
+	if(!uses_integrity)
+		return
+	M.do_attack_animation(src)
+	var/play_soundeffect = 0
+	var/mech_damtype = M.damtype
+	punch_force *= M.demolition_mod
+	if(M.selected)
+		mech_damtype = M.selected.damtype
+		play_soundeffect = 1
+	else
+		switch(M.damtype)
+			if(BRUTE)
+				if(M.meleesound)
+					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+			if(BURN)
+				if(M.meleesound)
+					playsound(src, 'sound/items/welder.ogg', 50, 1)
+			if(TOX)
+				if(M.meleesound)
+					playsound(src, 'sound/effects/spray2.ogg', 50, 1)
+				return 0
+			else
+				return 0
+	visible_message(span_danger("[M.name] has hit [src]."), null, null, COMBAT_MESSAGE_RANGE)
+	return take_damage(punch_force, mech_damtype, MELEE, play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
 
 /**
   * Called when the atom log's in or out

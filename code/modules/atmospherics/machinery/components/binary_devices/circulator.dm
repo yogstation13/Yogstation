@@ -273,7 +273,7 @@
 	playsound(src, 'sound/items/change_drill.ogg', 50)
 	update_icon_nopipes()
 
-/obj/machinery/atmospherics/components/binary/circulator/obj_break(damage_flag)
+/obj/machinery/atmospherics/components/binary/circulator/atom_break(damage_flag)
 	if(generator)
 		generator.kill_circs()
 		generator.update_appearance(UPDATE_ICON)
