@@ -149,7 +149,7 @@ const FlavorSection = () => {
             You quickly fashion a <span style={{ "color":"#FF0000" }} >crude facsimile</span> of the lifeforms nearby.
         </Stack.Item>
         <Stack.Item>
-            I won&apos;t last long, but it&apos;s enough to trick these fools.
+            It won&apos;t last long, but it&apos;s enough to trick these fools.
         </Stack.Item>
       </i>
       <Stack.Item fontSize="20px">
