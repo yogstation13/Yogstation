@@ -335,7 +335,6 @@
 /obj/item/wallframe/button
 	name = "button frame"
 	desc = "Used for building buttons."
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "doorctrl-frame"
+	icon_state = "doorctrl"
 	result_path = /obj/machinery/button
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
