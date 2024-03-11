@@ -107,7 +107,6 @@
 	var/list/self_text = list() 
 	self_text += span_velvet("...akkraup'dej")
 	self_text += span_velvet("You devour [target]'s will.")
-	self_text += span_velvet("You have gained [willpower_amount] willpower. Use willpower to purchase abilities and passives.")
 	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
 		self_text += span_warning("[target]'s mind is already damaged by previous devouring and has granted less willpower and no lucidity.")
 	else
@@ -121,7 +120,7 @@
 	if(team)
 		team.grant_willpower(willpower_amount)
 		team.lucidity += lucidity_amount
-		
+
 	//apply the long-term debuffs to the victim
 	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
 	target.apply_status_effect(STATUS_EFFECT_DEVOURED_WILL)
