@@ -2150,12 +2150,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bau" = (
-/obj/machinery/atmospherics/pipe/multiz{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "bax" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -20442,6 +20436,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"jzG" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "jzM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -21012,6 +21015,15 @@
 /obj/effect/spawner/lootdrop/tanks,
 /turf/open/floor/plating,
 /area/maintenance/department/eva)
+"jLG" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "jMO" = (
 /obj/effect/turf_decal/siding/wideplating/corner{
 	dir = 1
@@ -28137,15 +28149,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"nmK" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/radiation{
-	anchored = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "noh" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
@@ -31289,6 +31292,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"oTt" = (
+/obj/machinery/atmospherics/pipe/multiz{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "oTT" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -38738,6 +38750,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"sum" = (
+/obj/machinery/atmospherics/pipe/multiz{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "sup" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -39503,6 +39524,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"sOQ" = (
+/obj/structure/closet/radiation{
+	anchored = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "sOU" = (
 /obj/machinery/door/window/southright{
 	dir = 8;
@@ -42986,6 +43013,13 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
+"uAJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/ladder,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "uBb" = (
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/supply)
@@ -70264,8 +70298,8 @@ aCD
 eFb
 uRB
 uRB
-bau
-bau
+oTt
+sum
 eFb
 aCD
 vAZ
@@ -70776,7 +70810,7 @@ aCD
 aCD
 aCD
 eFb
-uRB
+lRT
 uRB
 rYc
 uRB
@@ -135799,9 +135833,9 @@ yek
 mPB
 eFb
 kQd
-uRB
-bau
-bau
+sOQ
+oTt
+sum
 sHi
 ffr
 wYp
@@ -136312,7 +136346,7 @@ tFZ
 epM
 fhj
 eFb
-nmK
+uAJ
 kQd
 vBx
 atR
@@ -139654,7 +139688,7 @@ xpm
 xpm
 xpm
 xpm
-kLK
+jLG
 wCV
 hPm
 tjr
@@ -139911,7 +139945,7 @@ xpm
 xpm
 xpm
 xpm
-dul
+jzG
 dTA
 wxQ
 kLK
