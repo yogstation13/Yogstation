@@ -81,7 +81,6 @@
 	common_loot = list(
 		/mob/living/simple_animal/hostile/asteroid/gutlunch,
 		/obj/item/stack/sheet/bone,
-		/mob/living/simple_animal/hostile/asteroid/goliath,
 		/obj/item/stack/sheet/animalhide/goliath_hide,
 		/obj/item/claymore/ruin,
 		/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf,
@@ -99,15 +98,17 @@
 		/obj/item/clothing/shoes/magboots/syndie,
 		/obj/item/clothing/head/helmet/chaplain,
 		/obj/item/clothing/suit/armor/riot/chaplain,
-		/obj/item/claymore,
+		/obj/item/nullrod/claymore,
 		/obj/item/banner/cargo,
+		/obj/structure/closet/crate/necropolis, //empty chest its a joke :)
 		/obj/item/book/manual/ashwalker
 
 	)
 	rare_loot = list(
 		/mob/living/simple_animal/hostile/mining_drone,
+		/mob/living/simple_animal/hostile/asteroid/goliath,
 		/obj/item/stack/sheet/mineral/mythril,
-		/obj/structure/closet/crate/necropolis, //empty chest its a joke :)
+		/obj/structure/closet/crate/necropolis/tendril, //populated chest
 		/obj/item/book_of_babel,
 		/obj/item/bedsheet/cult,
 		/obj/item/assembly/signaler/anomaly/bluespace,
