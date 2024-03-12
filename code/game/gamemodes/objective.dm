@@ -1730,7 +1730,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	. = ..()
 
 /datum/objective/maroon_organ/admin_edit(mob/admin)
-	finalize()
 	update_explanation_text()
 	return
 
