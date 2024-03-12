@@ -1,4 +1,3 @@
-#define ALERT_FIRE "fire"
 // If a mob has a higher threshold than this, the icon shown will be increased to the big fire icon.
 #define MOB_BIG_FIRE_STACK_THRESHOLD 3
 
@@ -200,6 +199,7 @@
 	var/thermal_protection = victim.get_thermal_protection()
 
 	if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
+		SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
 		return
 
 	if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
@@ -207,7 +207,10 @@
 		return
 
 	victim.adjust_bodytemperature((BODYTEMP_HEATING_MAX + (stacks * 12)) * 0.5 * seconds_per_tick)
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
+	if(!HAS_TRAIT(victim, TRAIT_RESISTHEAT))
+		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
+	else
+		SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
 
 /**
  * Handles mob ignition, should be the only way to set on_fire to TRUE

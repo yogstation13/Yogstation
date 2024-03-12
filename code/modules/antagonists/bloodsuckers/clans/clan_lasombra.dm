@@ -36,6 +36,7 @@
 	if(ishuman(bloodsuckerdatum.owner.current))
 		var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 		human_user.eye_color = BLOODCULT_EYE
+		human_user.update_body()
 		human_user.updateappearance()
 	ADD_TRAIT(bloodsuckerdatum.owner.current, CULT_EYES, BLOODSUCKER_TRAIT)
 	bloodsuckerdatum.owner.current.faction |= "bloodhungry"
@@ -51,12 +52,13 @@
 	bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/restingplace)
 
 /datum/bloodsucker_clan/lasombra/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+	vassaldatum.BuyPower(new /datum/action/cooldown/spell/pointed/lesser_glare)
+	vassaldatum.BuyPower(new /datum/action/cooldown/spell/jaunt/shadow_walk)
 	if(ishuman(vassaldatum.owner.current))
 		var/mob/living/carbon/human/vassal = vassaldatum.owner.current
-		vassal.see_in_dark = 8
 		vassal.eye_color = BLOODCULT_EYE
-		vassal.updateappearance()
-	var/list/powers = list(/datum/action/cooldown/spell/pointed/lesser_glare, /datum/action/cooldown/spell/jaunt/shadow_walk)
-	for(var/datum/action/cooldown/spell/power in powers)
-		power = new(vassaldatum.owner.current)
-		power.Grant(vassaldatum.owner.current)
+		vassal.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+		ADD_TRAIT(vassal, CULT_EYES, BLOODSUCKER_TRAIT)	
+		vassal.update_body()
+		vassal.update_sight()
+		vassal.update_appearance()

@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	recipes = GLOB.wood_recipes
 	return ..()
 
-/obj/item/stack/sheet/mineral/wood/attack_obj(obj/O, mob/living/user)
+/obj/item/stack/sheet/mineral/wood/attack_atom(obj/O, mob/living/user)
 	if(istype(O, /obj/structure/window) || istype(O, /obj/machinery/door/airlock) || istype(O,/obj/machinery/door)) //I hate this but reportedly there is no other way :skull:
 		for(var/obj/structure/barricade/wooden/crude/crude in get_turf(O))
 			to_chat(user, span_warning("There is already a barricade there!"))
@@ -907,7 +907,7 @@ GLOBAL_LIST_INIT(cheese_recipes, list (
 	merge_type = /obj/item/stack/sheet/ruinous_metal
 
 GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
-	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("altar of the gods", /obj/structure/table/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40), \
 	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1, time = 40 )))
 
 /obj/item/stack/sheet/ruinous_metal/Initialize(mapload, new_amount, merge = TRUE)

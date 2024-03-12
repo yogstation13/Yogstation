@@ -80,8 +80,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/open_shuttlepanel, /* Opens shuttle manipulator UI */
 	/client/proc/respawn_character,
 	/client/proc/discord_id_manipulation,
+	/datum/admins/proc/manage_silicon_laws,
 	/datum/admins/proc/open_borgopanel,
-	/datum/admins/proc/change_laws,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history
@@ -159,7 +159,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/toggle_hub,
 	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
 	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
-	/client/proc/toggle_cdn
+	/client/proc/toggle_cdn,
+	/client/proc/set_next_minetype
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -178,6 +179,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,
 	#endif
+	/client/proc/debug_plane_masters,
 	/client/proc/debug_spell_requirements,
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))

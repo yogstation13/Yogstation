@@ -451,7 +451,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps //Standard for all digitigrade legs and feets
 	name = "footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
+	desc = "Standard issue Nanotrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
 	icon_state = "footwraps"
 	item_state = "footwraps"
 	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
@@ -469,7 +469,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
 	name = "command footwraps"
-	desc = "These Command-grade NanoTrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
+	desc = "These Command-grade Nanotrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
 	icon_state = "footwraps_c"
 	item_state = "footwraps_c"
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
@@ -509,7 +509,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/engineering
 	name = "engineering footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader. Electrically insulated."
+	desc = "Standard issue Nanotrasen cloth footwraps, specially made for the frequent glass treader. Electrically insulated."
 	icon_state = "footwraps_e"
 	item_state = "footwraps_e"
 	xenoshoe = YES_DIGIT
@@ -518,7 +518,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/science
 	name = "science footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
+	desc = "Standard issue Nanotrasen cloth footwraps, to reduce fatigue when standing at a console all day."
 	icon_state = "footwraps_sc"
 	item_state = "footwraps_sc"
 	xenoshoe = YES_DIGIT
@@ -526,7 +526,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/medical
 	name = "medical footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, for when you dont want other people's blood all over your feet."
+	desc = "Standard issue Nanotrasen cloth footwraps, for when you dont want other people's blood all over your feet."
 	icon_state = "footwraps_m"
 	item_state = "footwraps_m"
 	xenoshoe = YES_DIGIT
@@ -534,7 +534,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/cargo
 	name = "cargo footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
+	desc = "Standard issue Nanotrasen cloth footwraps, with reinforcment to protect against falling crates."
 	icon_state = "footwraps_ca"
 	item_state = "footwraps_ca"
 	xenoshoe = YES_DIGIT

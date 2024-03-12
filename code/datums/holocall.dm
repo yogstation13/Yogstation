@@ -9,10 +9,13 @@
 
 #define HOLORECORD_MAX_LENGTH 200
 
-/mob/camera/aiEye/remote/holo/setLoc()
-	. = ..()
+/mob/camera/ai_eye/remote/holo/setLoc(turf/destination, force_update = FALSE)
+	// If we're moving outside the space of our projector, then just... don't
 	var/obj/machinery/holopad/H = origin
-	H?.move_hologram(eye_user, loc)
+	if(!H?.move_hologram(eye_user, destination))
+		sprint = initial(sprint) // Reset sprint so it doesn't balloon in our calling proc
+		return
+	return ..()
 
 /obj/machinery/holopad/remove_eye_control(mob/living/user)
 	if(user.client)
@@ -27,7 +30,7 @@
 	var/obj/machinery/holopad/connected_holopad	//the one that answered the call (may be null)
 	var/list/dialed_holopads	//all things called, will be cleared out to just connected_holopad once answered
 
-	var/mob/camera/aiEye/remote/holo/eye	//user's eye, once connected
+	var/mob/camera/ai_eye/remote/holo/eye	//user's eye, once connected
 	var/obj/effect/overlay/holo_pad_hologram/hologram	//user's hologram, once connected
 	var/datum/action/innate/end_holocall/hangup	//hangup action
 
@@ -444,7 +447,7 @@
     DELAY 10
     NAME Maria Dell
     PRESET /datum/preset_holoimage/engineer/atmos
-    SAY It's fine, don't worry. I've got Plastic on it. And frankly, i'm kinda busy with, the, uhhm, incinerator.
+    SAY It's fine, don't worry. I've got Plastic on it. And frankly, I'm kinda busy with, the, uhhm, incinerator.
     DELAY 30
     NAME Dave Tundrale
     PRESET /datum/preset_holoimage/engineer

@@ -569,7 +569,7 @@
 		adminrank = client.holder.rank_name()
 	if(isnull(rating))
 		rating = "null"
-	var/datum/DBQuery/query_numval_vote = SSdbcore.NewQuery("INSERT INTO [format_table_name("poll_vote")] (datetime ,pollid ,optionid ,ckey ,ip ,adminrank, rating) VALUES (Now(), :pollid, :optionid, :ckey, INET_ATON(:address), :adminrank, :rating", list("pollid" = pollid, "optionid" = optionid, "ckey" = ckey, "address" = client.address, "adminrank" = adminrank, "rating" = rating))
+	var/datum/DBQuery/query_numval_vote = SSdbcore.NewQuery("INSERT INTO [format_table_name("poll_vote")] (datetime ,pollid ,optionid ,ckey ,ip ,adminrank, rating) VALUES (Now(), :pollid, :optionid, :ckey, INET_ATON(:address), :adminrank, :rating)", list("pollid" = pollid, "optionid" = optionid, "ckey" = ckey, "address" = client.address, "adminrank" = adminrank, "rating" = rating))
 	if(!query_numval_vote.warn_execute())
 		qdel(query_numval_vote)
 		return

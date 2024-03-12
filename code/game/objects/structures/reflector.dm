@@ -72,6 +72,8 @@
 	P.ignore_source_check = TRUE
 	P.range = P.decayedRange
 	P.decayedRange = max(P.decayedRange--, 0)
+	if(P.hitscan)
+		P.store_hitscan_collision(P.trajectory.copy_to())
 	return BULLET_ACT_FORCE_PIERCE
 
 /obj/structure/reflector/attackby(obj/item/W, mob/user, params)
@@ -96,7 +98,7 @@
 				new buildstacktype(drop_location(), buildstackamount)
 			qdel(src)
 	else if(W.tool_behaviour == TOOL_WELDER)
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=0))
 				return
 
@@ -104,7 +106,7 @@
 								span_notice("You begin repairing [src]..."),
 								span_italics("You hear welding."))
 			if(W.use_tool(src, user, 40, volume=40))
-				obj_integrity = max_integrity
+				update_integrity(max_integrity)
 				user.visible_message("[user] has repaired [src].", \
 									span_notice("You finish repairing [src]."))
 

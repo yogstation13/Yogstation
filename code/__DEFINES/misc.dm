@@ -57,8 +57,6 @@
 #define MANIFEST_ERROR_CONTENTS		2
 #define MANIFEST_ERROR_ITEM			4
 
-#define TRANSITIONEDGE			7 //Distance from edge to move to another z-level
-
 #define BE_CLOSE TRUE		//in the case of a silicon, to select if they need to be next to the atom
 #define NO_DEXTERY TRUE	//if other mobs (monkeys, aliens, etc) can use this
 #define NO_TK TRUE
@@ -71,14 +69,6 @@
 #define STAGE_FOUR 7
 #define STAGE_FIVE 9
 #define STAGE_SIX 11 //From supermatter shard
-
-//SSticker.current_state values
-#define GAME_STATE_STARTUP		0
-#define GAME_STATE_PREGAME		1
-#define GAME_STATE_SETTING_UP	2
-#define GAME_STATE_PLAYING		3
-#define GAME_STATE_FINISHED		4
-
 
 //FONTS:
 // Used by Paper and PhotoCopier (and PaperBin once a year).
@@ -115,12 +105,11 @@
 GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 
 //Bloody shoes/footprints
-#define MAX_SHOE_BLOODINESS			100
-#define BLOODY_FOOTPRINT_BASE_ALPHA	150
-#define BLOOD_GAIN_PER_STEP			100
-#define BLOOD_LOSS_PER_STEP			5
-#define BLOOD_LOSS_IN_SPREAD		20
-#define BLOOD_AMOUNT_PER_DECAL		20
+#define BLOODY_FOOTPRINT_BASE_ALPHA 80 /// Minimum alpha of footprints
+#define BLOOD_AMOUNT_PER_DECAL 50 /// How much blood a regular blood splatter contains
+#define BLOOD_ITEM_MAX 200 /// How much blood an item can have stuck on it
+#define BLOOD_POOL_MAX 300 /// How much blood a blood decal can contain
+#define BLOOD_FOOTPRINTS_MIN 5 /// How much blood a footprint need to at least contain
 
 //Bloody shoe blood states
 #define BLOOD_STATE_HUMAN			"blood"
@@ -142,18 +131,6 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define HAS_SENSORS 1
 #define LOCKED_SENSORS 2
 
-//Wet floor type flags. Stronger ones should be higher in number.
-#define TURF_DRY			(0)
-#define TURF_WET_WATER		(1<<0)
-#define TURF_WET_PERMAFROST	(1<<1)
-#define TURF_WET_ICE 		(1<<2)
-#define TURF_WET_LUBE		(1<<3)
-#define TURF_WET_SUPERLUBE	(1<<4)
-
-#define IS_WET_OPEN_TURF(O) O.GetComponent(/datum/component/wet_floor)
-
-//Maximum amount of time, (in deciseconds) a tile can be wet for.
-#define MAXIMUM_WET_TIME 5 MINUTES
 
 //unmagic-strings for types of polls
 #define POLLTYPE_OPTION		"OPTION"
@@ -162,16 +139,8 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define POLLTYPE_MULTI		"MULTICHOICE"
 #define POLLTYPE_IRV		"IRV"
 
-
-
 //subtypesof(), typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
-
-//Gets the turf this atom inhabits
-#define get_turf(A) (get_step(A, 0))
-
-//Same as above except gets the area instead
-#define get_area(A) (isarea(A) ? A : get_step(A, 0)?.loc)
 
 //Ghost orbit types:
 #define GHOST_ORBIT_CIRCLE		"circle"
@@ -246,14 +215,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 //Just space
 #define SPACE_ICON_STATE	"[((x + y) ^ ~(x * y) + z) % 25]"
 
-// Maploader bounds indices
-#define MAP_MINX 1
-#define MAP_MINY 2
-#define MAP_MINZ 3
-#define MAP_MAXX 4
-#define MAP_MAXY 5
-#define MAP_MAXZ 6
-
 // Defib stats
 #define DEFIB_TIME_LIMIT 15 MINUTES
 
@@ -272,18 +233,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
 #define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"
-
-//debug printing macros
-#define debug_world(msg) if (GLOB.Debug2) to_chat(world, \
-	type = MESSAGE_TYPE_DEBUG, \
-	text = "DEBUG: [msg]")
-#define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, \
-	type = MESSAGE_TYPE_DEBUG, \
-	text = "DEBUG: [msg]")
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.permissions.admins, \
-	type = MESSAGE_TYPE_DEBUG, \
-	text = "DEBUG: [msg]")
-#define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
 
 #define INCREMENT_TALLY(L, stat) if(L[stat]){L[stat]++}else{L[stat] = 1}
 
@@ -375,26 +324,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define STACK_CHECK_CARDINALS "cardinals" //checks if there is an object of the result type in any of the cardinal directions
 #define STACK_CHECK_ADJACENT "adjacent" //checks if there is an object of the result type within one tile
 
-//text files
-/// File location for brain damage traumas
-#define BRAIN_DAMAGE_FILE "traumas.json"
-/// File location for AI ion laws
-#define ION_FILE "ion_laws.json"
-/// File location for pirate names
-#define PIRATE_NAMES_FILE "pirates.json"
-/// File location for redpill questions
-#define REDPILL_FILE "redpill.json"
-/// File location for wanted posters messages
-#define WANTED_FILE "wanted_message.json"
-/// File location for really dumb suggestions memes
-#define VISTA_FILE "steve.json"
-/// File location for flesh wound descriptions
-#define FLESH_SCAR_FILE "wounds/flesh_scar_desc.json"
-/// File location for bone wound descriptions
-#define BONE_SCAR_FILE "wounds/bone_scar_desc.json"
-/// File location for scar wound descriptions
-#define SCAR_LOC_FILE "wounds/scar_loc.json"
-
 //Fullscreen overlay resolution in tiles.
 #define FULLSCREEN_OVERLAY_RESOLUTION_X 15
 #define FULLSCREEN_OVERLAY_RESOLUTION_Y 15
@@ -411,10 +340,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 
 //Run the world with this parameter to enable a single run though of the game setup and tear down process with unit tests in between
 #define TEST_RUN_PARAMETER "test-run"
-//Force the log directory to be something specific in the data/logs folder
-#define OVERRIDE_LOG_DIRECTORY_PARAMETER "log-directory"
-//Prevent the master controller from starting automatically, overrides TEST_RUN_PARAMETER
-#define NO_INIT_PARAMETER "no-init"
 //Force the config directory to be something other than "config"
 #define OVERRIDE_CONFIG_DIRECTORY_PARAMETER "config-directory"
 
@@ -423,17 +348,20 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 // Used by PDA and cartridge code to reduce repetitiveness of spritesheets
 #define PDAIMG(what) {"<span class="pda16x16 [#what]"></span>"}
 
+#define NEGATIVE_GRAVITY -1
+
 #define STANDARD_GRAVITY 1 //Anything above this is high gravity, anything below no grav
 #define GRAVITY_DAMAGE_TRESHOLD 3 //Starting with this value gravity will start to damage mobs
+/// The scaling factor for high gravity damage.
+#define GRAVITY_DAMAGE_SCALING 3.5
+/// The maximum [BRUTE] damage a mob can take from high gravity per second.
+#define GRAVITY_DAMAGE_MAXIMUM 4.5
 
 #define CAMERA_NO_GHOSTS 0
 #define CAMERA_SEE_GHOSTS_BASIC 1
 #define CAMERA_SEE_GHOSTS_ORBIT 2
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
-
-/// Possible value of [/atom/movable/buckle_lying]. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.
-#define NO_BUCKLE_LYING -1
 
 #define AREASELECT_CORNERA "corner A"
 #define AREASELECT_CORNERB "corner B"
@@ -454,10 +382,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define GRENADE_EMPTY 1
 #define GRENADE_WIRED 2
 #define GRENADE_READY 3
-
-//Misc text define. Does 4 spaces. Used as a makeshift tabulator.
-#define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
-
 
 // camera shooting modes , originally was going to put this under tools since the camera is a tool in rl but wasn't 100% sure
 #define CAMERA_STANDARD 		"standard"
@@ -481,3 +405,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define ui_vamprank_display "WEST:6,CENTER-2:-5"
 /// 6 pixels to the right, zero tiles & 5 pixels DOWN.
 #define ui_sunlight_display "WEST:6,CENTER-0:0"
+
+
+

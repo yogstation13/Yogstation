@@ -704,6 +704,14 @@
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/vending_refill/donksoft = 1)
 
+/obj/item/circuitboard/machine/vending/donksofttoyvendor/hugbox
+	name = "Donksoft Toy Vendor Lite (Machine Board)"
+	desc = "This one seems somehow less fun than usual..."
+	build_path = /obj/machinery/vending/donksofttoyvendor/hugbox
+	req_components = list(
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/vending_refill/donksoft = 1)
+
 /obj/item/circuitboard/machine/vending/syndicatedonksofttoyvendor
 	name = "Syndicate Donksoft Toy Vendor (Machine Board)"
 	build_path = /obj/machinery/vending/toyliberationstation
@@ -1438,3 +1446,9 @@
 	req_components = list(
 		/obj/item/stock_parts/capacitor = 3,
 		/obj/item/stock_parts/micro_laser = 1)
+
+/obj/item/circuitboard/machine/mass_driver
+	name = "Mass Driver"
+	build_path = /obj/machinery/mass_driver
+	req_components = list(
+		/obj/item/stock_parts/capacitor = 1)

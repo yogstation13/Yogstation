@@ -22,6 +22,11 @@
 /datum/species/human/has_toes()
 	return TRUE
 
+/datum/species/human/get_butt_sprite(mob/living/carbon/human/human)
+	var/butt_sprite = human.gender == FEMALE ? BUTT_SPRITE_HUMAN_FEMALE : BUTT_SPRITE_HUMAN_MALE
+	var/obj/item/organ/tail/tail = human.getorganslot(ORGAN_SLOT_TAIL)
+	return tail?.get_butt_sprite() || butt_sprite
+
 /datum/species/human/get_scream_sound(mob/living/carbon/human/H)
 	if(H.gender == FEMALE)
 		return pick(female_screams)

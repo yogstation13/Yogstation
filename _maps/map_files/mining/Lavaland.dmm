@@ -500,7 +500,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 5;
-	id = "laborcamp_away";
+	shuttle_id = "laborcamp_away";
 	name = "labor camp";
 	width = 9
 	},
@@ -3197,7 +3197,7 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	id = "whiteship_lavaland";
+	shuttle_id = "whiteship_mining";
 	name = "lavaland wastes";
 	width = 35
 	},

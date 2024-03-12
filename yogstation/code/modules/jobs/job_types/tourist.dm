@@ -6,7 +6,6 @@
 	total_positions = -1
 	spawn_positions = 0
 	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
 	added_access = list()
 	base_access = list()
 	alt_titles = list("Visitor", "Traveler", "Siteseer", "Fisher")

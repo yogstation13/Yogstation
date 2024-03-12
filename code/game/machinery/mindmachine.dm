@@ -105,7 +105,7 @@
 	if(stat & BROKEN)
 		overlay_state = "[icon_state]_broken"
 	. += mutable_appearance(icon, overlay_state)
-	. += mutable_appearance(icon, overlay_state, layer, EMISSIVE_PLANE)
+	. += emissive_appearance(icon, icon_screen, src)
 
 /obj/machinery/mindmachine_hub/RefreshParts()
 	// 2 matter bins. Reduce failure chance by 5 per tier. Results in 30 (tier 1) to 0 (tier 4).
@@ -316,6 +316,10 @@
 				if(DEAD)
 					.["firstStat"] = "Dead"
 			.["firstMindType"] = firstLiving.key ? "Sentient" : "Non-Sentient"
+		else
+			.["firstName"] = null
+			.["firstStat"] = null
+			.["firstMindType"] = null
 	else // If you don't null it and keep the ui open, then above data doesn't change until you reopen.
 		.["firstOpen"] = null
 		.["firstLocked"] = null
@@ -338,6 +342,10 @@
 				if(DEAD)
 					.["secondStat"] = "Dead"
 			.["secondMindType"] = secondLiving.key ? "Sentient" : "Non-Sentient"
+		else
+			.["secondName"] = null
+			.["secondStat"] = null
+			.["secondMindType"] = null
 	else
 		.["secondOpen"] = null
 		.["secondLocked"] = null

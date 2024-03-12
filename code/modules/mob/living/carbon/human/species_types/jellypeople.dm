@@ -5,6 +5,7 @@
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
+	bubble_icon = BUBBLE_SLIME
 	species_traits = list(MUTCOLORS, EYECOLOR, NOBLOOD, HAIR)
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
@@ -17,7 +18,6 @@
 	coldmod = 6
 	heatmod = 0.5
 	burnmod = 0.5 // = 1/2x generic burn damage
-	payday_modifier = 0.6 //literally a pile of toxic ooze walking around, definitely a health hazard
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
 	swimming_component = /datum/component/swimming/dissolve
@@ -83,6 +83,9 @@
 	return list(
 		""//"TODO: RIP in peace Skrem"
 	)
+
+/datum/species/jelly/get_butt_sprite()
+	return BUTT_SPRITE_SLIME
 
 /datum/species/jelly/create_pref_unique_perks()
 	var/list/to_add = list()

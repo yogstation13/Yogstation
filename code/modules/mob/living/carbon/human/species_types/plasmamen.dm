@@ -20,13 +20,15 @@
 	heatmod = 1.5 //Don't let the plasma actually heat up though
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
 	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
-	payday_modifier = 1 //Former humans, employment restrictions arise from psychological and practical concerns; they won't be able to be some head positions, but they get human pay and NT can't weasel out of it
+	species_gibs = "plasma"
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
 	disliked_food = NONE
 	liked_food = DAIRY
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	species_language_holder = /datum/language_holder/plasmaman
+	
+	screamsound = list('sound/voice/plasmaman/plasmeme_scream_1.ogg', 'sound/voice/plasmaman/plasmeme_scream_2.ogg', 'sound/voice/plasmaman/plasmeme_scream_3.ogg')
 
 	smells_like = "plasma-caked calcium"
 
@@ -196,6 +198,9 @@
 		randname += " [lastname]"
 
 	return randname
+
+/datum/species/plasmaman/get_butt_sprite()
+	return BUTT_SPRITE_PLASMA
 
 /datum/species/plasmaman/get_species_description()
 	return "Reanimated skeletons of those who died in plasma fires, plasmamen are the first alien sapient beings to be \

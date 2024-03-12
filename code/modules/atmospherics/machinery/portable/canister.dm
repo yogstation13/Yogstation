@@ -6,9 +6,6 @@
 	icon = 'icons/obj/atmospherics/canister.dmi'
 	icon_state = "hazard"
 	density = TRUE
-	light_system = MOVABLE_LIGHT
-	light_range = 1.4
-	light_on = FALSE
 	var/valve_open = FALSE
 	var/obj/machinery/atmospherics/components/binary/passive_gate/pump
 	var/release_log = ""
@@ -43,7 +40,7 @@
 		"generic striped" = /obj/machinery/portable_atmospherics/canister/generic/stripe,
 		"generic hazard" = /obj/machinery/portable_atmospherics/canister/generic/hazard,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"danger" = /obj/machinery/portable_atmospherics/canister/fusion_test,
+		"danger" = /obj/machinery/portable_atmospherics/canister/fusion,
 		"n2" = /obj/machinery/portable_atmospherics/canister/nitrogen,
 		"o2" = /obj/machinery/portable_atmospherics/canister/oxygen,
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -171,56 +168,56 @@
 
 /obj/machinery/portable_atmospherics/canister/freon
 	name = "Freon canister"
-	desc = "Freon. Can absorb heat"
+	desc = "Freon. Can absorb heat."
 	icon_state = "freon"
 	gas_type = GAS_FREON
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/hydrogen
 	name = "Hydrogen canister"
-	desc = "Hydrogen, highly flammable"
+	desc = "Hydrogen, highly flammable."
 	icon_state = "h2"
 	gas_type = GAS_H2
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/healium
 	name = "Healium canister"
-	desc = "Healium, causes deep sleep"
+	desc = "Healium, causes deep sleep."
 	icon_state = "healium"
 	gas_type = GAS_HEALIUM
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/pluonium
 	name = "Pluonium canister"
-	desc = "Pluonium, reacts differently with various gases"
+	desc = "Pluonium, reacts differently with various gases."
 	icon_state = "pluonium"
 	gas_type = GAS_PLUONIUM
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/halon
 	name = "Halon canister"
-	desc = "Halon, remove oxygen from high temperature fires and cool down the area"
+	desc = "Halon, remove oxygen from high temperature fires and cool down the area."
 	icon_state = "halon"
 	gas_type = GAS_HALON
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/hexane
 	name = "Hexane canister"
-	desc = "hexane, highly flammable."
+	desc = "Hexane, highly flammable."
 	icon_state = "hexane"
 	gas_type = GAS_HEXANE
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/zauker
 	name = "Zauker canister"
-	desc = "Zauker, highly toxic"
+	desc = "Zauker, highly toxic."
 	icon_state = "zauker"
 	gas_type = GAS_ZAUKER
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/antinoblium
 	name = "Antinoblium canister"
-	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
+	desc = "Antinoblium, we still don't know what it does, but it sells for a lot."
 	icon_state = "antino"
 	gas_type = GAS_ANTINOB
 	filled = 1
@@ -371,7 +368,7 @@
 
 	return TRUE
 
-/obj/machinery/portable_atmospherics/canister/obj_break(damage_flag)
+/obj/machinery/portable_atmospherics/canister/atom_break(damage_flag)
 	. = ..()
 	if(!.)
 		return
@@ -383,7 +380,7 @@
 	var/turf/T = get_turf(src)
 	T.assume_air(expelled_gas)
 
-	obj_break()
+	atom_break()
 	density = FALSE
 	playsound(src.loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	investigate_log("was destroyed.", INVESTIGATE_ATMOS)
@@ -569,6 +566,12 @@
 		analyzer_act(user, src)
 	return ..()
 
+/obj/machinery/portable_atmospherics/canister/fusion
+	name = "Fusion Canister"
+	desc = "A violent mix of gases resulting in a fusion reaction inside the canister. <br>\
+			A note on the side reads: \"DANGER: DO NOT OPEN\""
+	icon_state = "danger"
+
 /* yog- ADMEME CANISTERS */
 
 /// Canister 1 Kelvin below the fusion point. Is highly unoptimal, do not spawn to start fusion, only good for testing low instability mixes.
@@ -579,9 +582,9 @@
 /obj/machinery/portable_atmospherics/canister/fusion_test/create_gas()
 	air_contents.set_moles(GAS_TRITIUM, 10)
 	air_contents.set_moles(GAS_PLASMA, 500)
-	air_contents.set_moles(GAS_H2, 500)
+	air_contents.set_moles(GAS_CO2, 500)
 	air_contents.set_moles(GAS_NITROUS, 100)
-	air_contents.set_temperature(10000)
+	air_contents.set_temperature(FUSION_TEMPERATURE_THRESHOLD)
 
 /// Canister 1 Kelvin below the fusion point. Contains far too much plasma. Only good for adding more fuel to ongoing fusion reactions.
  /obj/machinery/portable_atmospherics/canister/fusion_test_2
@@ -593,7 +596,7 @@
 	air_contents.set_moles(GAS_PLASMA, 15000)
 	air_contents.set_moles(GAS_CO2, 1500)
 	air_contents.set_moles(GAS_NITROUS, 100)
-	air_contents.set_temperature(9999)
+	air_contents.set_temperature(FUSION_TEMPERATURE_THRESHOLD - 1)
 
 /// Canister at the perfect conditions to start and continue fusion for a long time.
 /obj/machinery/portable_atmospherics/canister/fusion_test_3
@@ -617,7 +620,7 @@
 	air_contents.set_moles(GAS_PLASMA, 4500)
 	air_contents.set_moles(GAS_CO2, 1500)
 	air_contents.set_moles(GAS_DILITHIUM, 2000)
-	air_contents.set_temperature(10000)
+	air_contents.set_temperature(FUSION_TEMPERATURE_THRESHOLD - 1)
 
 /// A canister that is 1 Kelvin away from doing the stimball reaction.
 /obj/machinery/portable_atmospherics/canister/stimball_test

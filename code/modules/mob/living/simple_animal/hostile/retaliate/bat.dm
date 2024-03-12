@@ -14,8 +14,6 @@
 	maxHealth = 15
 	health = 15
 	spacewalk = TRUE
-	see_in_dark = 10
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	harm_intent_damage = 6
 	melee_damage_lower = 6
 	melee_damage_upper = 5

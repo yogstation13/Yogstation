@@ -317,7 +317,7 @@
 		else if ( mouth_covered )	// Reduced effects if partially protected
 			if(prob(50))
 				victim.emote("scream")
-			victim.blur_eyes(14)
+			victim.adjust_eye_blur(14)
 			victim.blind_eyes(10)
 			victim.set_confusion_if_lower(10 SECONDS)
 			victim.damageoverlaytemp = 75
@@ -327,7 +327,7 @@
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
 			if(prob(20))
 				victim.emote("cough")
-			victim.blur_eyes(4)
+			victim.adjust_eye_blur(4)
 			victim.set_confusion_if_lower(5 SECONDS)
 			victim.damageoverlaytemp = 50
 			M.adjustStaminaLoss(3)
@@ -335,7 +335,7 @@
 		else // Oh dear :D
 			if(prob(60))
 				victim.emote("scream")
-			victim.blur_eyes(14)
+			victim.adjust_eye_blur(14)
 			victim.blind_eyes(10)
 			victim.set_confusion_if_lower(12 SECONDS)
 			victim.damageoverlaytemp = 100
@@ -637,13 +637,13 @@
 			if(!M.eye_blurry)
 				to_chat(M, "<span class = 'warning'>Tears well up in your eyes!</span>")
 			M.blind_eyes(2)
-			M.blur_eyes(5)
+			M.adjust_eye_blur(5)
 	return ..()
 
 /datum/reagent/consumable/tearjuice/on_mob_life(mob/living/carbon/M)
 	..()
 	if(M.eye_blurry)	//Don't worsen vision if it was otherwise fine
-		M.blur_eyes(4)
+		M.adjust_eye_blur(4)
 		if(prob(10))
 			to_chat(M, "<span class = 'warning'>Your eyes sting!</span>")
 			M.blind_eyes(2)
@@ -679,7 +679,7 @@
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM, 150)
 		M.adjustToxLoss(3*REM,0)
 		M.adjustStaminaLoss(10*REM,0)
-		M.blur_eyes(5)
+		M.adjust_eye_blur(5)
 		. = TRUE
 	..()
 
@@ -704,10 +704,10 @@
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = living_holder.mob_light(2)
 	mob_light_obj.set_light_color("#b5a213")
 	LAZYSET(mobs_affected, living_holder, mob_light_obj)
-	RegisterSignal(living_holder, COMSIG_PARENT_QDELETING, PROC_REF(on_living_holder_deletion))
+	RegisterSignal(living_holder, COMSIG_QDELETING, PROC_REF(on_living_holder_deletion))
 
 /datum/reagent/consumable/tinlux/proc/remove_reagent_light(mob/living/living_holder)
-	UnregisterSignal(living_holder, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(living_holder, COMSIG_QDELETING)
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = LAZYACCESS(mobs_affected, living_holder)
 	LAZYREMOVE(mobs_affected, living_holder)
 	if(mob_light_obj)
@@ -761,9 +761,10 @@
 	if(reac_volume < 3)
 		return
 
-	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
-		B = new(T)
+		B = new /obj/effect/decal/cleanable/blood/splatter(T)
+		B.Etherealify()
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
@@ -941,3 +942,7 @@
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#D9A066" // rgb: 217, 160, 102
 	taste_description = "peanuts"
+
+/// Gets just how much nutrition this reagent is worth for the passed mob
+/datum/reagent/consumable/proc/get_nutriment_factor(mob/living/carbon/eater)
+	return nutriment_factor * REAGENTS_METABOLISM * 2

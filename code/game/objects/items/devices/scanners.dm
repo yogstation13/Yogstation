@@ -69,10 +69,7 @@ GENE SCANNER
 		return
 	var/list/t_ray_images = list()
 	for(var/obj/O in orange(distance, viewer) )
-		if(O.level != 1)
-			continue
-
-		if(O.invisibility == INVISIBILITY_MAXIMUM || HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
+		if(HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
 			var/image/I = new(loc = get_turf(O))
 			var/mutable_appearance/MA = new(O)
 			MA.alpha = 128
@@ -80,7 +77,7 @@ GENE SCANNER
 			I.appearance = MA
 			t_ray_images += I
 	if(t_ray_images.len)
-		flick_overlay(t_ray_images, list(viewer.client), flick_time)
+		flick_overlay_global(t_ray_images, list(viewer.client), flick_time)
 
 /obj/item/healthanalyzer
 	name = "health analyzer"
@@ -427,7 +424,7 @@ GENE SCANNER
 				if(H.is_bleeding())
 					combined_msg += span_danger("Subject is losing blood at a rate of [H.get_total_bleed_rate() * H.physiology?.bleed_mod] cl per process!")
 			var/blood_percent =  round((C.blood_volume / BLOOD_VOLUME_NORMAL(C))*100)
-			var/blood_type = C.dna.blood_type
+			var/blood_type = C.dna.blood_type.name
 			if(blood_id != /datum/reagent/blood)//special blood substance
 				var/datum/reagent/R = GLOB.chemical_reagents_list[blood_id]
 				if(R)

@@ -15,10 +15,10 @@
 	mutanttail = /obj/item/organ/tail/lizard
 	coldmod = 0.67 //used to being cold, just doesn't like it much
 	heatmod = 0.67 //greatly appreciate heat, just not too much
-	payday_modifier = 0.85 //Full SIC citizens, but not quite given all the same rights- it's been an ongoing process for about half a decade
 	default_features = list("mcolor" = "#00FF00", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"
+	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard
@@ -74,6 +74,9 @@
 		H.add_movespeed_modifier(LIZARD_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown= -heat_stunmod/3, blacklisted_movetypes=FLOATING)//between a 0.33 speedup and a 1 slowdown
 	else if(H.has_movespeed_modifier(LIZARD_SLOWDOWN))
 		H.remove_movespeed_modifier(LIZARD_SLOWDOWN)
+
+/datum/species/lizard/get_butt_sprite()
+	return BUTT_SPRITE_LIZARD
 
 /datum/species/lizard/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()

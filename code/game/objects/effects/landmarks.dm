@@ -3,7 +3,8 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x2"
 	anchored = TRUE
-	layer = MID_LANDMARK_LAYER
+	layer = OBJ_LAYER
+	plane = GAME_PLANE
 	invisibility = INVISIBILITY_ABSTRACT
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
@@ -38,7 +39,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	var/used = FALSE
 
 /obj/effect/landmark/start/proc/after_round_start()
-#ifndef UNIT_TESTS // We'd like to keep these around for unit tests, so we can check that they exist.
+	// We'd like to keep these around for unit tests, so we can check that they exist.
+#ifndef UNIT_TESTS 
 	if(delete_after_roundstart)
 		qdel(src)
 #endif
@@ -198,8 +200,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "department_sec"
 	icon_state = "Security Officer"
 
-/obj/effect/landmark/start/depsec/New()
-	..()
+/obj/effect/landmark/start/depsec/Initialize(mapload)
+	. = ..()
 	GLOB.department_security_spawns += src
 
 /obj/effect/landmark/start/depsec/Destroy()
@@ -411,14 +413,20 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	GLOB.city_of_cogs_spawns += loc
 	return INITIALIZE_HINT_QDEL
 
-//handles clockwork portal+eminence teleport destinations
+/**
+ * Generic event spawn points
+ *
+ * These are placed in locales where there are likely to be players, and places which are identifiable at a glance -
+ * Such as public hallways, department rooms, head of staff offices, and non-generic maintenance locations
+ *
+ * Used in events to cause effects in locations where it is likely to effect players
+ */
 /obj/effect/landmark/event_spawn
 	name = "generic event spawn"
 	icon_state = "generic_event"
-	layer = HIGH_LANDMARK_LAYER
 
-/obj/effect/landmark/event_spawn/New()
-	..()
+/obj/effect/landmark/event_spawn/Initialize(mapload)
+	. = ..()
 	GLOB.generic_event_spawns += src
 
 /obj/effect/landmark/event_spawn/Destroy()
@@ -428,10 +436,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/brazil
 	name = "brazilian reception marker"
 	icon_state = "x"
-	layer = HIGH_LANDMARK_LAYER
+	layer = OBJ_LAYER
 
-/obj/effect/landmark/brazil/New()
-	..()
+/obj/effect/landmark/brazil/Initialize(mapload)
+	. = ..()
 	GLOB.brazil_reception += src
 
 /obj/effect/landmark/brazil/Destroy()
@@ -441,9 +449,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/ruin
 	var/datum/map_template/ruin/ruin_template
 
-/obj/effect/landmark/ruin/New(loc, my_ruin_template)
+/obj/effect/landmark/ruin/Initialize(mapload, my_ruin_template)
+	. = ..()
 	name = "ruin_[GLOB.ruin_landmarks.len + 1]"
-	..(loc)
 	ruin_template = my_ruin_template
 	GLOB.ruin_landmarks |= src
 
@@ -465,9 +473,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/centcom
 	name = "centcomspawn"
 	icon_state = "x"
-	layer = HIGH_LANDMARK_LAYER
+	layer = OBJ_LAYER
 
 /obj/effect/landmark/wiki
 	name = "wiki sprite room"
 	icon_state = "x"
-	layer = HIGH_LANDMARK_LAYER
+	layer = OBJ_LAYER

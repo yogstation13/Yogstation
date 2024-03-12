@@ -8,15 +8,17 @@
 	icon = 'icons/mob/blob.dmi'
 	pass_flags = PASSBLOB
 	faction = list(ROLE_BLOB)
-	bubble_icon = "blob"
+	bubble_icon = BUBBLE_BLOB
 	speak_emote = null //so we use verb_yell/verb_say/etc
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 360
 	unique_name = 1
 	a_intent = INTENT_HARM
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// ... Blob colored lighting
+	lighting_cutoff_red = 20
+	lighting_cutoff_green = 40
+	lighting_cutoff_blue = 30
 	var/mob/camera/blob/overmind = null
 	var/obj/structure/blob/factory/factory = null
 	var/independent = FALSE
