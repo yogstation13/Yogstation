@@ -295,7 +295,7 @@ Difficulty: Extremely Hard
 	if((slot & ITEM_SLOT_FEET) && ishuman(user))
 		owner = user
 
-/obj/item/clothing/shoes/winterboots/ice_boots/process(delta_time)
+/obj/item/clothing/shoes/winterboots/ice_boots/speedy/process(delta_time)
 	if(prob(10) && owner && (owner.get_item_by_slot(ITEM_SLOT_FEET) == src))
 		if(!W)
 			W = new(src)
