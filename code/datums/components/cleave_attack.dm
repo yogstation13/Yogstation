@@ -9,7 +9,7 @@
 	/// Which effect should this use
 	var/cleave_effect
 
-/datum/component/cleave_attack/Initialize(arc_size=90, swing_speed_mod=1.5, requires_wielded=FALSE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack, ...)
+/datum/component/cleave_attack/Initialize(arc_size=90, swing_speed_mod=1.25, requires_wielded=FALSE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack, ...)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	
@@ -52,7 +52,6 @@
 	if(proximity_flag || user.a_intent != INTENT_HARM)
 		return // don't sweep on precise hits or non-harmful intents
 	perform_sweep(item, target, user, click_parameters)
-
 
 /datum/component/cleave_attack/proc/perform_sweep(obj/item/item, atom/target, mob/living/user, params)
 	if(user.next_move > world.time)

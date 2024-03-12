@@ -618,6 +618,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 30, 100, 0, hitsound)
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/nullrod/armblade
 	name = "dark blessing"
@@ -641,6 +642,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/nullrod/armblade/tentacle
 	name = "unholy blessing"
@@ -1351,6 +1353,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	menutab = MENU_MISC //banish it from being associated with proper weapons
 	additional_desc = "Hey, God here. Asking you to pick literally anything else as your implement of justice."
+
+/obj/item/nullrod/sord/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack) // i guess???
 
 //NOT CHAPLAIN SPAWNABLE
 /obj/item/nullrod/talking/chainsword
