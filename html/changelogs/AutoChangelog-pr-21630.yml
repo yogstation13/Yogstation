@@ -1,6 +1,0 @@
-author: "Chubbygummibear"
-delete-after: true 
-changes: 
-  - bugfix: "Box Chapel tiles had no plating under them so crow barring them would send you straight to god"
-  - bugfix: "Broken grille sprites back. They just wanted to grille for Pete's sake"
-  - tweak: "Organized the spaghetti layering of atmos pipes, disposal pipes, and cables."
