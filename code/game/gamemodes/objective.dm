@@ -1709,8 +1709,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/maroon_organ/find_target(dupe_search_range, blacklist)
 	. = ..()
+	finalize()
+
+/datum/objective/maroon_organ/finalize()
 	if(!target)
-		return
+		return FALSE
 
 	// This will always be a carbon with organs, because of is_valid_target()
 	var/mob/living/carbon/carbon_target = target.current
@@ -1719,7 +1722,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		if(istype(thing, /obj/item/organ/brain)) //make sure it doesn't pick the brain
 			eligible_organs -= thing
 	original_organ = pick(eligible_organs)
-	update_explanation_text()
+	if(original_organ)
+		update_explanation_text()
+		return TRUE
 
 /datum/objective/maroon_organ/update_explanation_text()
 	if(target && original_organ)
@@ -1730,6 +1735,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	. = ..()
 
 /datum/objective/maroon_organ/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
+	finalize()
 	update_explanation_text()
 	return
 
