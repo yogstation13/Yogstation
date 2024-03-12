@@ -75,7 +75,7 @@
 		/obj/item/shovel,
 		/obj/item/shard,
 		/obj/item/pickaxe,
-		/obj/item/stack/sheet/mineral/sandstone
+		/obj/item/stack/sheet/mineral/sandstone,
 		/obj/item/stack/sheet/mineral/coal
 	)
 	common_loot = list(
