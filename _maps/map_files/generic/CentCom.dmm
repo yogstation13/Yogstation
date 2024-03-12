@@ -2695,8 +2695,7 @@
 "agB" = (
 /obj/structure/window/reinforced/fulltile{
 	max_integrity = 5000;
-	name = "hardened window";
-	obj_integrity = 5000
+	name = "hardened window"
 	},
 /turf/open/floor/plating,
 /area/centcom/ctf)

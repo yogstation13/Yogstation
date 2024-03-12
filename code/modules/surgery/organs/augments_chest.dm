@@ -229,8 +229,6 @@
 	var/on = FALSE
 	var/time_on = 0
 	var/hasexerted = FALSE
-	var/list/hsv
-	var/last_step = 0
 	COOLDOWN_DECLARE(alertcooldown)
 	COOLDOWN_DECLARE(startsoundcooldown)
 	COOLDOWN_DECLARE(endsoundcooldown)
@@ -258,7 +256,7 @@
 				human.physiology.crawl_speed -= 1
 			owner.next_move_modifier *= 0.7
 			owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
-		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
+		owner.AddComponent(/datum/component/after_image, 2 SECONDS, 0.5, TRUE)
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
@@ -270,7 +268,8 @@
 				human.physiology.crawl_speed += 1
 			owner.next_move_modifier /= 0.7
 			owner.remove_movespeed_modifier("spinalimplant")
-		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+		var/datum/component/after_image = owner.GetComponent(/datum/component/after_image)
+		qdel(after_image)
 	on = !on
 	if(!silent)
 		to_chat(owner, span_notice("You turn your spinal implant [on? "on" : "off"]."))
@@ -284,15 +283,6 @@
 		icon_state = "imp_spinal"
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
-
-/obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
-	var/turf/currentloc = get_turf(owner)
-	var/obj/effect/temp_visual/decoy/fading/F = new(currentloc, owner)
-	if(!hsv)
-		hsv = RGBtoHSV(rgb(255, 0, 0))
-	hsv = RotateHue(hsv, world.time - last_step * 15)
-	last_step = world.time
-	F.color = HSVtoRGB(hsv)	//gotta add the flair
 
 /obj/item/organ/cyberimp/chest/spinalspeed/on_life()
 	if(!syndicate_implant)//the toy doesn't have a drawback

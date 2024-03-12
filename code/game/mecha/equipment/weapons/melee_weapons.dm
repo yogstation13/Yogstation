@@ -503,14 +503,12 @@
 	weapon_damage = 20
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/precise_attack(atom/target)
-	target.mech_melee_attack(chassis, FALSE)	//DONT SET THIS TO TRUE
+	target.mech_melee_attack(chassis, chassis.force + weapon_damage, FALSE)	//DONT SET THIS TO TRUE
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_select()
-	chassis.force += weapon_damage	//PUNCH HARDER
 	chassis.melee_cooldown *= 0.8	//PUNCH FASTER
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_deselect()
-	chassis.force -= weapon_damage	//Return to babby fist
 	chassis.melee_cooldown /= 0.8	
 
 
