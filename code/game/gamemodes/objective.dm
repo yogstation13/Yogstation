@@ -1707,10 +1707,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/mob/living/carbon/possible_carbon_target = possible_target.current
 		return LAZYLEN(possible_carbon_target.internal_organs)
 
-/datum/objective/maroon_organ/finalize()
-	find_target()
+/datum/objective/maroon_organ/find_target(dupe_search_range, blacklist)
+	. = ..()
 	if(!target)
-		return FALSE
+		return
 
 	// This will always be a carbon with organs, because of is_valid_target()
 	var/mob/living/carbon/carbon_target = target.current
@@ -1719,9 +1719,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		if(istype(thing, /obj/item/organ/brain)) //make sure it doesn't pick the brain
 			eligible_organs -= thing
 	original_organ = pick(eligible_organs)
-	if(original_organ)
-		update_explanation_text()
-		return TRUE
+	update_explanation_text()
 
 /datum/objective/maroon_organ/update_explanation_text()
 	if(target && original_organ)
