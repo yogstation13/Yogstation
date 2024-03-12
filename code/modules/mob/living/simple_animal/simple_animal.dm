@@ -339,13 +339,15 @@
 		//a manner as to cause a call to death() again
 		del_on_death = FALSE
 		qdel(src)
-	else
-		health = 0
-		icon_state = icon_dead
-		if(flip_on_death)
-			transform = transform.Turn(180)
-		density = FALSE
-		..()
+		return
+	
+	health = 0
+	icon_state = icon_dead
+	if(flip_on_death)
+		transform = transform.Turn(180)
+	density = FALSE
+	update_appearance()
+	return	..()
 
 /mob/living/simple_animal/proc/CanAttack(atom/the_target)
 	if(see_invisible < the_target.invisibility)
