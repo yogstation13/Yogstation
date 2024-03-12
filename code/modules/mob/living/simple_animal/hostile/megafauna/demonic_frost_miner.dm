@@ -281,7 +281,7 @@ Difficulty: Extremely Hard
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy
 	name = "cursed ice hiking boots"
 	desc = "A pair of winter boots contractually made by a devil, they cannot be taken off once put on."
-	slowdown = SHOES_SLOWDOWN - 1
+	slowdown = SHOES_SLOWDOWN - 0.3
 
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy/Initialize(mapload)
 	. = ..()
