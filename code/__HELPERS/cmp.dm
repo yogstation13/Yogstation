@@ -160,3 +160,7 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_filter_data_priority(list/A, list/B)
 	return A["priority"] - B["priority"]
+
+/// Orders by integrated circuit weight
+/proc/cmp_port_order_asc(datum/port/compare1, datum/port/compare2)
+	return compare1.order - compare2.order

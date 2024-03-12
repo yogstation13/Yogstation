@@ -44,7 +44,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(on_attack_ghost))
 	if(!(shell_flags & SHELL_FLAG_CIRCUIT_UNMODIFIABLE))
 		RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(on_multitool_act))
-		RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attack_by))
+		RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attack_by))
 	if(!(shell_flags & SHELL_FLAG_CIRCUIT_UNREMOVABLE))
 		RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), PROC_REF(on_screwdriver_act))
 		RegisterSignal(parent, COMSIG_OBJ_DECONSTRUCT, PROC_REF(on_object_deconstruct))
@@ -91,7 +91,7 @@
 
 /datum/component/shell/UnregisterFromParent()
 	UnregisterSignal(parent, list(
-		COMSIG_ATOM_ATTACKBY,
+		COMSIG_PARENT_ATTACKBY,
 		COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER),
 		COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL),
 		COMSIG_OBJ_DECONSTRUCT,
@@ -173,7 +173,7 @@
 
 	if(istype(item, /obj/item/inducer))
 		var/obj/item/inducer/inducer = item
-		INVOKE_ASYNC(inducer, TYPE_PROC_REF(/obj/item, attack_atom), attached_circuit, attacker, list())
+		INVOKE_ASYNC(inducer, TYPE_PROC_REF(/obj/item, item_attack_obj), attached_circuit, attacker, list())
 		return COMPONENT_NO_AFTERATTACK
 
 	if(attached_circuit)
@@ -228,10 +228,10 @@
 		if(shell_flags & SHELL_FLAG_ALLOW_FAILURE_ACTION)
 			return
 		source.balloon_alert(user, "it's locked!")
-		return ITEM_INTERACT_BLOCKING
+		return TOOL_ACT_SIGNAL_BLOCKING
 
 	attached_circuit.interact(user)
-	return ITEM_INTERACT_BLOCKING
+	return TOOL_ACT_SIGNAL_BLOCKING
 
 /**
  * Called when a screwdriver is used on the parent. Removes the circuitboard from the component.
@@ -248,12 +248,12 @@
 		if(shell_flags & SHELL_FLAG_ALLOW_FAILURE_ACTION)
 			return
 		source.balloon_alert(user, "it's locked!")
-		return ITEM_INTERACT_BLOCKING
+		return TOOL_ACT_SIGNAL_BLOCKING
 
 	tool.play_tool_sound(parent)
 	source.balloon_alert(user, "you unscrew [attached_circuit] from [parent].")
 	remove_circuit()
-	return ITEM_INTERACT_BLOCKING
+	return TOOL_ACT_SIGNAL_BLOCKING
 
 /**
  * Checks for when the circuitboard moves. If it moves, removes it from the component.

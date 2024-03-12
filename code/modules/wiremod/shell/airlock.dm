@@ -33,7 +33,7 @@
 /obj/machinery/door/airlock/shell/allowed(mob/user)
 	if(SEND_SIGNAL(src, COMSIG_AIRLOCK_SHELL_ALLOWED, user) & COMPONENT_OBJ_ALLOW)
 		return TRUE
-	return isAdminGhostAI(user)
+	return isAdminGhost(user)
 
 /obj/machinery/door/airlock/shell/get_wires()
 	return new /datum/wires/airlock/shell(src)

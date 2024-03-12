@@ -53,16 +53,16 @@
 		return
 	if(!message)
 		message = "circuit input"
-	if(!(user.can_perform_action(parent.shell, FORBID_TELEKINESIS_REACH|ALLOW_SILICON_REACH|ALLOW_RESTING)))
+	if(!(user.can_interact_with(parent.shell)))
 		failure.set_output(COMPONENT_SIGNAL)
 		return
 	var/user_ref = REF(user)
 	ADD_TRAIT(parent, TRAIT_CIRCUIT_UI_OPEN, user_ref)
-	var/picked = tgui_input_list(user, message = message, items = showed_list)
+	var/picked = tgui_input_list(user, message = message, buttons = showed_list)
 	REMOVE_TRAIT(parent, TRAIT_CIRCUIT_UI_OPEN, user_ref)
 	if(QDELETED(src))
 		return
-	if(!(user.can_perform_action(parent.shell, FORBID_TELEKINESIS_REACH|ALLOW_SILICON_REACH|ALLOW_RESTING)))
+	if(!(user.can_interact_with(parent.shell)))
 		failure.set_output(COMPONENT_SIGNAL)
 		return
 	choose_item(picked, showed_list)

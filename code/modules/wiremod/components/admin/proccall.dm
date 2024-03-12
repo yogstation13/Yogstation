@@ -179,7 +179,7 @@
 	if(resolve_weakref)
 		params = recursive_list_resolve(params)
 
-	log_admin_circuit("[parent.get_creator()] proccalled '[to_invoke]' on [called_on] with params \[[params.Join(", ")]].")
+	log_circuit("[parent.get_creator()] proccalled '[to_invoke]' on [called_on] with params \[[params.Join(", ")]].")
 	INVOKE_ASYNC(src, PROC_REF(do_proccall), called_on, to_invoke, params)
 
 /obj/item/circuit_component/proccall/proc/do_proccall(called_on, to_invoke, params)
