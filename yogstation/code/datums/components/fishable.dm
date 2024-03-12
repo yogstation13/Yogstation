@@ -82,7 +82,7 @@
 		/mob/living/simple_animal/hostile/asteroid/gutlunch,
 		/obj/item/stack/sheet/bone,
 		/mob/living/simple_animal/hostile/asteroid/goliath,
-		/obj/item/stack/sheet/animalhide/goliath_hide
+		/obj/item/stack/sheet/animalhide/goliath_hide,
 		/obj/item/claymore/ruin,
 		/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf,
 		/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap,
