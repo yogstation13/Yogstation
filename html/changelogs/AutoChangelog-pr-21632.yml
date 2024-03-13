@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - imageadd: "Button frames now have a proper sprite"
