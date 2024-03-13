@@ -59,7 +59,7 @@
 	glass_desc = "It's just like a carrot but without crunching."
 
 /datum/reagent/consumable/carrotjuice/on_mob_life(mob/living/carbon/M)
-	M.adjust_blurriness(-1)
+	M.adjust_eye_blur(-1)
 	M.adjust_blindness(-1)
 	switch(current_cycle)
 		if(1 to 20)
@@ -199,6 +199,13 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 	default_container = /obj/item/reagent_containers/food/condiment/milk
+
+/datum/reagent/consumable/milk/coconut
+	name = "Coconut Milk"
+	description = "An opaque white liquid produced by the mammary glands of a coconut... wait what?"
+	taste_description = "coconut"
+	glass_icon_state = "coconut_milk" //disregard it spawning the coconut shell out of nowhere
+	glass_name = "glass of coconut milk"
 
 /datum/reagent/consumable/cilk
 	name = "Cilk"

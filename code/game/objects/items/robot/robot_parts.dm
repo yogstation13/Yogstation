@@ -296,7 +296,7 @@
 			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
 				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
 
-			if(M.laws && M.laws.id != DEFAULT_AI_LAWID && M.override_cyborg_laws)
+			if(M.laws && M.laws.modified && M.override_cyborg_laws)
 				aisync = FALSE
 				lawsync = FALSE
 				O.laws = M.laws
@@ -315,9 +315,15 @@
 					O.set_connected_ai(forced_ai)
 			if(!lawsync)
 				O.lawupdate = 0
-				if(M.laws.id == DEFAULT_AI_LAWID)
+				if(!M.laws.modified)
+					// Give the non-modified laws which is visible on the MMI.
+					O.laws = M.laws
+					M.laws.associate(O)
+				else if(!M.override_cyborg_laws) // MMI's laws were changed. Do not want to upload them if we say so.
+					// Give random default lawset.
 					O.make_laws()
-					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transferred!"))
+					// Obvious warning that their modified laws didn't get passed on.
+					to_chat(user, span_warning("Any laws uploaded to this MMI have not been transferred!"))
 
 			SSticker.mode.remove_antag_for_borging(BM.mind)
 			if(!istype(M.laws, /datum/ai_laws/ratvar))

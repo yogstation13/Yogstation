@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	var/static/list/inathneq_penalty = list("Child, this is too far out!", "The barrier isn't thin enough for for me to help!", "Please, go to the station so I can assist you.", \
 	"Don't waste my Cogs on this...", "There isn't enough time to linger out here!")
 	var/static/list/sevtug_penalty = list("Fool! Get to the station and don't waste capacitors.", "You go this far out and expect help?", "The veil is too strong, idiot.", \
-	"How does the Justicar get anything done with servants like you?", "Oh, you love wasting time, don't you?")
+	"How does the Justiciar get anything done with servants like you?", "Oh, you love wasting time, don't you?")
 	var/static/list/nezbere_penalty = list("You disgrace our master's name with this endeavour.", "This is too far from the station to be a good base.", "This will take too long, friend.", \
 	"The barrier isn't weakened enough to make this practical.", "Don't waste alloy.")
 	var/static/list/nzcrentr_penalty = list("You'd be easy to hunt in that little hunk of metal.", "Boss says you need to get back to the beacon.", "Boss says I can kill you if you do this again.", \

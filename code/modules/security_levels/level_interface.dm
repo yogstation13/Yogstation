@@ -27,6 +27,10 @@
 	radio.listening = FALSE
 	radio.independent = TRUE
 	radio.recalculateChannels()
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
+
+/obj/machinery/level_interface/proc/update_security_level()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/level_interface/update_icon(updates=ALL)
 	. = ..()
@@ -37,7 +41,7 @@
 
 /obj/machinery/level_interface/update_overlays()
 	. = ..()
-	switch(GLOB.security_level)
+	switch(SSsecurity_level.get_current_level_as_number())
 		if(SEC_LEVEL_GREEN)
 			. += "alert-level-green"
 		if(SEC_LEVEL_BLUE)
@@ -61,7 +65,7 @@
 
 /obj/machinery/level_interface/ui_data(mob/user)
 	var/list/data = ..()
-	data["alertLevel"] = GLOB.security_level
+	data["alertLevel"] = SSsecurity_level.get_current_level_as_number()
 	return data
 
 /obj/machinery/level_interface/ui_act(action, list/params, mob/user)
@@ -79,7 +83,7 @@
 
 	switch(action)
 		if("set_level")
-			if(GLOB.security_level >= SEC_LEVEL_GAMMA)
+			if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_GAMMA)
 				balloon_alert(usr, "Nanotrasen override in progress!")
 				return TRUE
 			if(!check_access(usr.get_idcard()))
@@ -88,9 +92,9 @@
 			var/alert_level = params["level_number"]
 			if(!isnum(alert_level))
 				return TRUE
-			if(!num2seclevel(alert_level))
+			if(!SSsecurity_level.number_level_to_text(alert_level))
 				return TRUE
-			if(GLOB.security_level == alert_level)
+			if(SSsecurity_level.get_current_level_as_number() == alert_level)
 				return TRUE
 			for(var/obj/machinery/computer/communications/comms_console in GLOB.machines)
 				if(!COOLDOWN_FINISHED(comms_console, important_action_cooldown))
@@ -99,11 +103,11 @@
 					return TRUE
 				COOLDOWN_START(comms_console, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 				break
-			set_security_level(num2seclevel(alert_level))
+			SSsecurity_level.set_level(alert_level)
 			var/username = "ERR_UNK"
 			var/obj/item/card/id/id_card = usr.get_idcard()
 			if(istype(id_card) && id_card && id_card.registered_name)
 				username = id_card.registered_name
-			radio.talk_into(src, "Security level set to [uppertext(num2seclevel(alert_level))] by [username].", sec_freq)
-			radio.talk_into(src, "Security level set to [uppertext(num2seclevel(alert_level))] by [username].", command_freq)
+			radio.talk_into(src, "Security level set to [uppertext(SSsecurity_level.number_level_to_text(alert_level))] by [username].", sec_freq)
+			radio.talk_into(src, "Security level set to [uppertext(SSsecurity_level.number_level_to_text(alert_level))] by [username].", command_freq)
 			return TRUE

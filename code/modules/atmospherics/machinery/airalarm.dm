@@ -587,7 +587,7 @@
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
-					"widenet" = 0,
+					"widenet" = 1,
 					"scrubbing" = 0
 				), signal_source)
 			for(var/device_id in A.air_vent_names)
@@ -902,7 +902,7 @@
 		new /obj/item/stack/sheet/metal(loc, 2)
 		var/obj/item/I = new /obj/item/electronics/airalarm(loc)
 		if(!disassembled)
-			I.obj_integrity = I.max_integrity * 0.5
+			I.update_integrity(I.max_integrity * 0.5)
 		new /obj/item/stack/cable_coil(loc, 3)
 	qdel(src)
 

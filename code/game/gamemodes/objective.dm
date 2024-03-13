@@ -1619,6 +1619,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			continue
 		if(!istype(get_area(machine), /area))
 			continue
+		if(istype(get_area(machine), /area/shuttle))
+			continue //no whiteship machines
 		eligible_machines |= machine
 
 	eligible_machines = shuffle(eligible_machines)

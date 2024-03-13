@@ -273,7 +273,7 @@
 		else if(mode == MONEY)
 			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Money production mode. Please insert <b>Plasma</b>. Use a multitool to change production modes.\"</span>"
 
-/obj/machinery/power/rad_collector/obj_break(damage_flag)
+/obj/machinery/power/rad_collector/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		eject()
@@ -285,12 +285,12 @@
 		return
 	Z.forceMove(drop_location())
 	Z.layer = initial(Z.layer)
-	Z.plane = initial(Z.plane)
+	SET_PLANE_IMPLICIT(Z, initial(Z.plane))
 	src.loaded_tank = null
 	if(active)
 		toggle_power()
 	else
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 
 /obj/machinery/power/rad_collector/rad_act(pulse_strength, collectable_radiation)
 	. = ..()

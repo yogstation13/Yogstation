@@ -78,7 +78,7 @@
 	if(isnull(id))
 		id = getnewid()
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/get_integrity()
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/get_integrity()
 	return round(100 * vessel_integrity / initial(vessel_integrity), 0.01)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/examine(mob/user)
@@ -175,12 +175,15 @@
 		to_chat(user, span_notice("The reactor has no fuel rods!"))
 		return TRUE
 	var/obj/item/fuel_rod/rod = tgui_input_list(usr, "Select a fuel rod to remove", "Fuel Rods", fuel_rods)
-	if(rod && istype(rod) && I.use_tool(src, user, removal_time))
+	if(rod && istype(rod) && I.use_tool(src, user, removal_time, volume=50))
 		if(temperature > REACTOR_TEMPERATURE_MINIMUM)
 			var/turf/T = get_turf(src)
 			T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[temperature]")
 		user.rad_act(rod.fuel_power * 1000)
 		fuel_rods.Remove(rod)
+		if(ismecha(user.loc))
+			rod.forceMove(get_step(get_turf(user.loc), user.loc.dir))
+			return TRUE
 		if(!user.put_in_hands(rod))
 			rod.forceMove(user.loc)
 	return TRUE
@@ -593,10 +596,10 @@
 	T.assume_air(coolant_input)
 	T.assume_air(moderator_input)
 	T.assume_air(coolant_output)
-	var/turf/lower_turf = SSmapping.get_turf_below(T)
+	var/turf/lower_turf = GET_TURF_BELOW(T)
 	if(lower_turf) // reactor fuel will melt down into the lower levels on multi-z maps like icemeta
 		new /obj/structure/reactor_corium(lower_turf)
-		var/turf/lowest_turf = SSmapping.get_turf_below(lower_turf)
+		var/turf/lowest_turf = GET_TURF_BELOW(lower_turf)
 		if(lowest_turf) // WE NEED TO GO DEEPER
 			new /obj/structure/reactor_corium(lower_turf)
 	explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)

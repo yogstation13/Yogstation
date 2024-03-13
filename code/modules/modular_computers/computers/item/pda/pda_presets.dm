@@ -111,12 +111,32 @@
 
 //for inside one of the nukie lockers
 /obj/item/modular_computer/tablet/pda/preset/basic/syndicate
-	desc = "A standard issue PDA often given to syndicate agents."
+	desc = "Based off Nanotrasen's PDAs, this one has been reverse-engineered and loaded with illegal software provided by the Syndicate."
 
 /obj/item/modular_computer/tablet/pda/preset/basic/syndicate/Initialize(mapload)
 	. = ..()
 	obj_flags |= EMAGGED //starts emagged
 	starting_files |= list(
 		new /datum/computer_file/program/bomberman
+	)
+
+// The worst thing mankind can fathom - used in clown ops and nukie clown costume
+/obj/item/modular_computer/tablet/pda/preset/basic/syndicate/clown
+	desc = "A hilariously terrifying PDA reverse-engineered by the Syndicate, given to their most unhinged operatives."
+	finish_color = "pink"
+	pen_type = /obj/item/toy/crayon/rainbow
+
+/obj/item/modular_computer/tablet/pda/preset/basic/syndicate/clown/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/slippery, 120, NO_SLIP_WHEN_WALKING)
+
+/obj/item/modular_computer/tablet/pda/preset/basic/bureaucrat
+	desc = "A standard issue PDA issued to certain Nanotrasen personnel to help with inspections."
+	finish_color = "green" // Rockin the company colors
+
+/obj/item/modular_computer/tablet/pda/preset/basic/bureaucrat/Initialize(mapload)
+	starting_files |= list(
+		new /datum/computer_file/program/crew_manifest,
+		new /datum/computer_file/program/paperwork_printer
 	)	
-	
+	. = ..()

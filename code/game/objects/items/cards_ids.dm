@@ -796,8 +796,8 @@ update_label("John Doe", "Clowny")
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)
 		holder.spareid = null
-		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
-			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
+		if(holder.get_integrity() > holder.integrity_failure) //we dont want to heal it by accident
+			holder.take_damage(holder.get_integrity() - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
 		else
 			holder.update_appearance(UPDATE_ICON) //update the icon anyway so it pops out
 		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
@@ -963,7 +963,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/prisoner
 	name = "prisoner ID card"
 	desc = "You are a number, you are not a free man."
-	icon_state = "orange"
+	icon_state = "prisoner"
 	item_state = "orange-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
@@ -1118,7 +1118,7 @@ update_label("John Doe", "Clowny")
 	. = ..()
 	if(target)
 		our_airlock = target
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(delete_on_door_delete))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(delete_on_door_delete))
 		
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
@@ -1227,7 +1227,7 @@ update_label("John Doe", "Clowny")
 	portal_one = new(get_turf(door2), door2)
 	portal_two = new(get_turf(door1), door1)
 	portal_one.destination = portal_two
-	RegisterSignal(portal_one, COMSIG_PARENT_QDELETING, PROC_REF(clear_portal_refs))  //we only really need to register one because they already qdel both portals if one is destroyed
+	RegisterSignal(portal_one, COMSIG_QDELETING, PROC_REF(clear_portal_refs))  //we only really need to register one because they already qdel both portals if one is destroyed
 	portal_two.destination = portal_one
 	balloon_alert(user, "[message]")
 

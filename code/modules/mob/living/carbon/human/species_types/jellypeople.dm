@@ -5,6 +5,7 @@
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
+	bubble_icon = BUBBLE_SLIME
 	species_traits = list(MUTCOLORS, EYECOLOR, NOBLOOD, HAIR)
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
@@ -82,6 +83,9 @@
 	return list(
 		""//"TODO: RIP in peace Skrem"
 	)
+
+/datum/species/jelly/get_butt_sprite()
+	return BUTT_SPRITE_SLIME
 
 /datum/species/jelly/create_pref_unique_perks()
 	var/list/to_add = list()

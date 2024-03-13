@@ -674,11 +674,8 @@ MICE_ROUNDSTART 5
 ## This used to be named traits, hence the config name, but it handles quirks, not the other kind of trait!
 ROUNDSTART_TRAITS
 
-## Uncomment to disable human moods.
-DISABLE_HUMAN_MOOD
-
-## Uncomment to force human moods. Not compatible with DISABLE_HUMAN_MOOD
-FORCE_HUMAN_MOOD
+## Uncomment to allow selection for human moods. Comment to force moods on
+#DISABLE_HUMAN_MOOD
 
 ## Enable night shifts ##
 #ENABLE_NIGHT_SHIFTS
@@ -704,5 +701,5 @@ ECONOMY
 ## Uncomment to enable dynamic ruleset config file.
 DYNAMIC_CONFIG_ENABLED
 
-## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for AGCNR
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for AGCNR, 5 for TEG
 ENGINE_TYPE 3

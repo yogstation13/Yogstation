@@ -89,18 +89,18 @@
 	icon_state = SPACE_ICON_STATE // so realistic
 	. = ..()
 
-/turf/open/floor/holofloor/hyperspace
-	name = "\proper hyperspace"
+/turf/open/floor/holofloor/bluespace
+	name = "\proper bluespace"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "speedspace_ns_1"
 	bullet_bounce_sound = null
 	tiled_dirt = FALSE
 
-/turf/open/floor/holofloor/hyperspace/Initialize(mapload)
+/turf/open/floor/holofloor/bluespace/Initialize(mapload)
 	icon_state = "speedspace_ns_[(x + 5*y + (y%2+1)*7)%15+1]"
 	. = ..()
 
-/turf/open/floor/holofloor/hyperspace/ns/Initialize(mapload)
+/turf/open/floor/holofloor/bluespace/ns/Initialize(mapload)
 	. = ..()
 	icon_state = "speedspace_ns_[(x + 5*y + (y%2+1)*7)%15+1]"
 
@@ -108,23 +108,23 @@
 	name = "carpet"
 	desc = "Electrically inviting."
 	icon = 'icons/turf/floors/carpet.dmi'
-	icon_state = "carpet"
+	icon_state = "carpet-255"
+	base_icon_state = "carpet"
 	floor_tile = /obj/item/stack/tile/carpet
-	smooth = SMOOTH_TRUE
-	canSmoothWith = null
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET
+	canSmoothWith = SMOOTH_GROUP_CARPET
 	bullet_bounce_sound = null
 	tiled_dirt = FALSE
 
 /turf/open/floor/holofloor/carpet/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 1)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), 1)
 
 /turf/open/floor/holofloor/carpet/update_icon(updates=ALL)
 	. = ..()
-	if(!.)
-		return FALSE
-	if(intact)
-		queue_smooth(src)
+	if((updates & UPDATE_SMOOTHING) && overfloor_placed && smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
 
 /turf/open/floor/holofloor/wood
 	icon_state = "wood"

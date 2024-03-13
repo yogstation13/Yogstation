@@ -123,7 +123,7 @@
 
 /obj/machinery/stasis/setDir()
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/machinery/stasis/update_overlays()
 	. = ..()
@@ -145,7 +145,13 @@
 		var/easing_direction = _running ? EASE_OUT : EASE_IN
 		animate(mattress_on, alpha = new_alpha, time = 50, easing = CUBIC_EASING|easing_direction)
 
-/obj/machinery/stasis/obj_break(damage_flag)
+/obj/machinery/stasis/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	if(same_z_layer)
+		return ..()
+	SET_PLANE(mattress_on, PLANE_TO_TRUE(mattress_on.plane), new_turf)
+	return ..()
+
+/obj/machinery/stasis/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		play_power_sound()

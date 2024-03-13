@@ -178,7 +178,7 @@
 
 /obj/item/reagent_containers/food/snacks/fishdumpling
 	name = "fish dumpling"
-	desc = "a powerful little pocket of flavor."
+	desc = "A powerful little pocket of flavor."
 	icon_state = "fishdumpling"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 15) //delicious onion and garlic and fish

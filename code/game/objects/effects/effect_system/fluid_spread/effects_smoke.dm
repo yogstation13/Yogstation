@@ -156,6 +156,19 @@
 /obj/effect/particle_effect/fluid/smoke/transparent
 	opacity = FALSE
 
+/// Special smoke used for the RCS thruster
+/obj/effect/particle_effect/fluid/smoke/trail
+	lifetime = 1 SECONDS
+	opacity = FALSE
+	alpha = 100
+
+/obj/effect/particle_effect/fluid/smoke/trail/Initialize(mapload, datum/fluid_group/group, ...)
+	. = ..()
+	var/matrix/start_transform = matrix(transform)/2
+	var/matrix/end_transform = matrix(transform)
+	transform = start_transform
+	animate(src, alpha = 0, transform = end_transform, time = lifetime)
+
 /**
  * A helper proc used to spawn small puffs of smoke.
  *
@@ -370,7 +383,7 @@
 	for(var/atom/movable/thing as anything in location)
 		if(thing == src)
 			continue
-		if(location.intact && thing.level == 1) //hidden under the floor
+		if(location.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(thing, TRAIT_T_RAY_VISIBLE))
 			continue
 		reagents.reaction(thing, TOUCH, fraction)
 

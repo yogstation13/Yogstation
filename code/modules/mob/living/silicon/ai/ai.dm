@@ -23,7 +23,6 @@
 	status_flags = CANSTUN|CANPUSH
 	a_intent = INTENT_HARM //so we always get pushed instead of trying to swap
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
-	see_in_dark = 8
 	hud_type = /datum/hud/ai
 	med_hud = DATA_HUD_MEDICAL_BASIC
 	sec_hud = DATA_HUD_SECURITY_BASIC
@@ -80,7 +79,7 @@
 	var/nuking = FALSE
 	var/obj/machinery/doomsday_device/doomsday_device
 
-	var/mob/camera/aiEye/eyeobj
+	var/mob/camera/ai_eye/eyeobj
 	//How fast you move your camera
 	var/sprint = 10
 	var/cooldown = 0
@@ -129,6 +128,7 @@
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
+		//new/obj/structure/ai_core/deactivated(loc) //New empty terminal.
 		return INITIALIZE_HINT_QDEL //Delete AI.
 
 	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
@@ -141,6 +141,8 @@
 		make_laws()
 
 	update_law_history() //yogs
+
+	create_eye()
 
 	if(target_ai.mind)
 		target_ai.mind.transfer_to(src)
@@ -161,8 +163,8 @@
 
 	job = "AI"
 
+	create_modularInterface()
 
-	create_eye()
 	if(client)
 		INVOKE_ASYNC(src, PROC_REF(apply_pref_name), /datum/preference/name/ai, client)
 
@@ -177,8 +179,6 @@
 
 	add_verb(src, /mob/living/silicon/ai/proc/show_laws_verb)
 
-	create_modularInterface()
-
 	aiMulti = new(src)
 	radio = new /obj/item/radio/headset/silicon/ai(src)
 	aicamera = new/obj/item/camera/siliconcam/ai_camera(src)
@@ -191,7 +191,7 @@
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
 		/mob/living/silicon/ai/proc/botcall, /mob/living/silicon/ai/proc/control_integrated_radio, \
-		/mob/living/silicon/ai/proc/set_automatic_say_channel, /mob/living/silicon/ai/proc/changeaccent))
+		/mob/living/silicon/ai/proc/changeaccent))
 
 	GLOB.ai_list += src
 	GLOB.shuttle_caller_list += src
@@ -683,42 +683,43 @@
 	set name = "Jump To Network"
 	unset_machine()
 	cameraFollow = null
-	var/list/network_list = list()
+	
+	var/cameralist[0]
 
 	if(incapacitated())
 		return
 
 	var/mob/living/silicon/ai/U = usr
 
-	//Yogs -- refactors this fucking decade-old, looney camera code
+	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+		var/turf/camera_turf = get_turf(C) //get camera's turf in case it's built into something so we don't get z=0
+
+		var/list/tempnetwork = C.network
+		if(!camera_turf || !(is_station_level(camera_turf.z) || is_mining_level(camera_turf.z) || ("ss13" in tempnetwork)))
+			continue
+		if(!C.can_use())
+			continue
+		tempnetwork.Remove("rd", "toxins", "prison")
+		if(length(tempnetwork))
+			for(var/i in C.network)
+				cameralist[i] = i
+	var/old_network = network
+	network = tgui_input_list(U, "Which network would you like to view?", "Camera Network", sort_list(cameralist))
+
 	if(!U.eyeobj)
 		U.view_core()
 		return
 
-	for (var/x in GLOB.cameranet.cameras)
-		var/obj/machinery/camera/C = x
-		if(!(is_station_level(C.z) || is_mining_level(C.z) || ("ss13" in C.network)))
-			continue
-		if(!C.can_use())
-			continue
-		var/list/tempnetwork = C.network
-		tempnetwork.Remove("rd", "toxins", "prison")
-		if(tempnetwork.len)
-			network_list |= tempnetwork
-	if(network_list.len < 2)
-		return
-
-	var/viewed_network = input(U, "Which network would you like to view?") as null|anything in network_list
-	if(!viewed_network)
-		return
-	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
-		if(!C.can_use())
-			continue
-		if(viewed_network in C.network)
-			U.eyeobj.setLoc(get_turf(C))
-			to_chat(src, span_notice("Switched to a camera in the \"[uppertext(viewed_network)]\" camera network."))
-			return
-	to_chat(src, span_warning("Failed to find any camera on the \"[uppertext(viewed_network)]\" camera network!")) // This is a bug, if it happens.
+	if(isnull(network))
+		network = old_network // If nothing is selected
+	else
+		for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+			if(!C.can_use())
+				continue
+			if(network in C.network)
+				U.eyeobj.setLoc(get_turf(C))
+				break
+	to_chat(src, span_notice("Switched to the \"[uppertext(network)]\" camera network."))
 //End of code by Mord_Sith and others :^)
 //yogs end
 
@@ -862,11 +863,12 @@
 	var/list/obj/machinery/camera/add = list()
 	var/list/obj/machinery/camera/remove = list()
 	var/list/obj/machinery/camera/visible = list()
-	for (var/datum/camerachunk/CC in eyeobj.visibleCameraChunks)
-		for (var/obj/machinery/camera/C in CC.cameras)
-			if (!C.can_use() || get_dist(C, eyeobj) > 7 || !C.internal_light)
-				continue
-			visible |= C
+	for (var/datum/camerachunk/chunk as anything in eyeobj.visibleCameraChunks)
+		for (var/z_key in chunk.cameras)
+			for(var/obj/machinery/camera/camera as anything in chunk.cameras[z_key])
+				if(isnull(camera) || !camera.can_use() || get_dist(camera, eyeobj) > 7 || !camera.internal_light)
+					continue
+				visible |= camera
 
 	add = visible - lit_cameras
 	remove = lit_cameras - visible
@@ -893,15 +895,6 @@
 /mob/living/silicon/ai/proc/set_syndie_radio()
 	if(radio)
 		radio.make_syndie()
-
-/mob/living/silicon/ai/proc/set_automatic_say_channel()
-	set name = "Set Auto Announce Mode"
-	set desc = "Modify the default radio setting for your automatic announcements."
-	set category = "AI Commands"
-
-	if(incapacitated())
-		return
-	set_autosay()
 
 /mob/living/silicon/ai/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
 	if(!..())
@@ -995,35 +988,41 @@
 	malf_picker = new /datum/module_picker
 
 
-/mob/living/silicon/ai/reset_perspective(atom/A)
+/mob/living/silicon/ai/reset_perspective(atom/new_eye)
+	SHOULD_CALL_PARENT(FALSE) // I hate you all
 	if(camera_light_on)
 		light_cameras()
-	if(istype(A, /obj/machinery/camera))
-		current = A
-	if(client)
-		if(ismovable(A))
-			if(A != GLOB.ai_camera_room_landmark)
-				end_multicam()
-			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
-		else
+	if(istype(new_eye, /obj/machinery/camera))
+		current = new_eye
+	if(!client)
+		return
+
+	if(ismovable(new_eye))
+		if(new_eye != GLOB.ai_camera_room_landmark)
 			end_multicam()
-			if(isturf(loc) || istype(loc, /obj/machinery/ai/data_core))
-				if(eyeobj)
-					client.eye = eyeobj
-					client.perspective = EYE_PERSPECTIVE
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
-			else
+		client.perspective = EYE_PERSPECTIVE
+		client.set_eye(new_eye)
+	else
+		end_multicam()
+		if(isturf(loc) || istype(loc, /obj/machinery/ai/data_core))
+			if(eyeobj)
+				client.set_eye(eyeobj)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-		update_sight()
-		if(client.eye != src)
-			var/atom/AT = client.eye
-			AT.get_remote_view_fullscreens(src)
+			else
+				client.set_eye(client.mob)
+				client.perspective = MOB_PERSPECTIVE
 		else
-			clear_fullscreen("remote_view", 0)
+			client.perspective = EYE_PERSPECTIVE
+			client.set_eye(loc)
+	update_sight()
+	if(client.eye != src)
+		var/atom/AT = client.eye
+		AT?.get_remote_view_fullscreens(src)
+	else
+		clear_fullscreen("remote_view", 0)
+
+	// I am so sorry
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 
 /mob/living/silicon/ai/revive(full_heal = 0, admin_revive = 0)
 	. = ..()
@@ -1068,16 +1067,18 @@
 
 	for(var/borgie in GLOB.available_ai_shells)
 		var/mob/living/silicon/robot/R = borgie
-		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai ||(R.connected_ai == src)))
+		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src)))
 			possible += R
 
 	if(!LAZYLEN(possible))
 		to_chat(src, "No usable AI shell beacons detected.")
 
 	if(!target || !(target in possible)) //If the AI is looking for a new shell, or its pre-selected shell is no longer valid
-		target = input(src, "Which body to control?") as null|anything in possible
+		target = tgui_input_list(src, "Which body to control?", "Direct Control", sort_names(possible))
 
-	if (!target || target.stat == DEAD || target.deployed || !(!target.connected_ai ||(target.connected_ai == src)))
+	if(isnull(target))
+		return
+	if (target.stat == DEAD || target.deployed || !(!target.connected_ai || (target.connected_ai == src)))
 		return
 
 	else if(mind)
@@ -1126,17 +1127,31 @@
 	return
 
 /mob/living/silicon/ai/spawned/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
-	. = ..()
 	if(!target_ai)
 		target_ai = src //cheat! just give... ourselves as the spawned AI, because that's technically correct
+	. = ..()
 
-/mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
+/mob/living/silicon/ai/proc/camera_visibility(mob/camera/ai_eye/moved_eye)
 	GLOB.cameranet.visibility(moved_eye, client, all_eyes, TRUE)
 
 /mob/living/silicon/ai/forceMove(atom/destination)
 	. = ..()
 	if(.)
 		end_multicam()
+
+/mob/living/silicon/ai/up()
+	set name = "Move Upwards"
+	set category = "IC"
+
+	if(eyeobj.zMove(UP, z_move_flags = ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move upwards."))
+
+/mob/living/silicon/ai/down()
+	set name = "Move Down"
+	set category = "IC"
+
+	if(eyeobj.zMove(DOWN, z_move_flags = ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move down."))
 
 /mob/living/silicon/ai/proc/send_borg_death_warning(mob/living/silicon/robot/R)
 	to_chat(src, span_warning("Unit [R] has stopped sending telemetry updates."))

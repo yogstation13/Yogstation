@@ -58,7 +58,7 @@
 
 	var/L = min(round(lastgenlev/100000), 11)
 	if(L != 0)
-		SSvis_overlays.add_vis_overlay(src, icon, "teg-op[L]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+		SSvis_overlays.add_vis_overlay(src, icon, "teg-op[L]", ABOVE_LIGHTING_PLANE, dir)
 
 #define GENRATE 800		// generator output coefficient from Q
 
@@ -296,7 +296,7 @@
 		cold_circ.update_appearance(UPDATE_ICON)
 		cold_circ = null
 
-/obj/machinery/power/generator/obj_break(damage_flag)
+/obj/machinery/power/generator/atom_break(damage_flag)
 	kill_circs()
 	..()
 	

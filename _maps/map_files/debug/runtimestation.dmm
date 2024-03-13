@@ -249,12 +249,8 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/effect/turf_decal/bot{
-	dir = 2
-	},
-/turf/open/floor/plasteel{
-	dir = 2
-	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
 /area/engine/atmos)
 "aO" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -366,12 +362,8 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister,
-/obj/effect/turf_decal/bot{
-	dir = 2
-	},
-/turf/open/floor/plasteel{
-	dir = 2
-	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
 /area/engine/atmos)
 "bc" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -1111,9 +1103,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "dg" = (
-/obj/machinery/airalarm/directional/east{
-	pixel_x = 24
-	},
+/obj/machinery/airalarm/directional/east,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "dh" = (
@@ -1394,7 +1384,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 5;
-	id = "laborcamp_home";
+	shuttle_id = "laborcamp_home";
 	name = "fore bay 1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9
@@ -1406,7 +1396,7 @@
 	dir = 8;
 	dwidth = 3;
 	height = 15;
-	id = "arrivals_stationary";
+	shuttle_id = "arrivals_stationary";
 	name = "arrivals";
 	roundstart_template = /datum/map_template/shuttle/arrival/box;
 	width = 7
@@ -1460,7 +1450,7 @@
 /area/hallway/secondary/entry)
 "el" = (
 /obj/docking_port/stationary/random{
-	id = "pod_lavaland1";
+	shuttle_id = "pod_lavaland1";
 	name = "lavaland"
 	},
 /turf/open/space,
@@ -1583,7 +1573,7 @@
 	dir = 8;
 	dwidth = 2;
 	height = 13;
-	id = "ferry_home";
+	shuttle_id = "ferry_home";
 	name = "port bay 2";
 	width = 5
 	},
@@ -1620,7 +1610,7 @@
 	dir = 4;
 	dwidth = 4;
 	height = 7;
-	id = "supply_home";
+	shuttle_id = "supply_home";
 	name = "Cargo Bay";
 	width = 12
 	},
@@ -1644,9 +1634,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "eM" = (
-/obj/machinery/airalarm/directional/east{
-	pixel_x = 24
-	},
+/obj/machinery/airalarm/directional/east,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "eN" = (
@@ -1785,7 +1773,6 @@
 /area/hallway/secondary/entry)
 "fe" = (
 /obj/machinery/button/door{
-	dir = 2;
 	id = "cargounload";
 	layer = 4;
 	name = "Loading Doors";
@@ -1810,7 +1797,7 @@
 	dir = 2;
 	dwidth = 11;
 	height = 15;
-	id = "whiteship_home";
+	shuttle_id = "whiteship_home";
 	name = "SS13: Auxiliary Dock, Station-Port";
 	width = 28
 	},
@@ -1866,11 +1853,10 @@
 /area/quartermaster/storage)
 "fp" = (
 /obj/docking_port/stationary{
-	dheight = 0;
 	dir = 2;
 	dwidth = 9;
 	height = 25;
-	id = "emergency_home";
+	shuttle_id = "emergency_home";
 	name = "Runtimestation emergency evac bay";
 	width = 29
 	},
@@ -2033,9 +2019,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "fF" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -2153,6 +2137,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+/obj/machinery/computer/security,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "fT" = (
@@ -2271,9 +2256,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 2
-	},
+/obj/machinery/computer/shuttle/mining,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "gi" = (
@@ -2294,7 +2277,7 @@
 	dir = 8;
 	dwidth = 3;
 	height = 5;
-	id = "mining_home";
+	shuttle_id = "mining_home";
 	name = "mining shuttle bay";
 	roundstart_template = /datum/map_template/shuttle/mining/box;
 	width = 7
@@ -2594,9 +2577,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "ou" = (
-/obj/machinery/airalarm/directional/west{
-	pixel_x = -24
-	},
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "oV" = (
@@ -2690,9 +2671,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "zo" = (
-/obj/machinery/power/apc/auto_name/south{
-	pixel_y = -23
-	},
+/obj/machinery/power/apc/auto_name/south,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -2990,9 +2969,7 @@
 	dir = 1
 	},
 /obj/machinery/rnd/production/circuit_imprinter/department,
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23
-	},
+/obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},

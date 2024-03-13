@@ -20,7 +20,7 @@
 	desc = "Robotic constructs of unknown design, swarmers seek only to consume materials and replicate themselves indefinitely."
 	speak_emote = list("tones")
 	initial_language_holder = /datum/language_holder/swarmer
-	bubble_icon = "swarmer"
+	bubble_icon = BUBBLE_SWARMER
 	mob_biotypes = MOB_ROBOTIC
 	health = 40
 	maxHealth = 40
@@ -249,7 +249,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/victim = target
 		if(!victim.handcuffed)
-			victim.set_handcuffed(new /obj/item/restraints/handcuffs/energy/used(victim))
+			victim.set_handcuffed(new /obj/item/restraints/handcuffs/energy/used/swarmer(victim))
 			victim.update_handcuffed()
 			log_combat(src, victim, "handcuffed")
 
@@ -368,7 +368,7 @@
 		return
 	var/mob/newswarmer = Fabricate(createtype, 20)
 	LAZYADD(dronelist, newswarmer)
-	RegisterSignal(newswarmer, COMSIG_PARENT_QDELETING, PROC_REF(remove_drone), newswarmer)
+	RegisterSignal(newswarmer, COMSIG_QDELETING, PROC_REF(remove_drone), newswarmer)
 	playsound(loc,'sound/items/poster_being_created.ogg', 20, TRUE, -1)
 
 /**

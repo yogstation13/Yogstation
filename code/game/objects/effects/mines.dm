@@ -86,13 +86,23 @@
 	icon_state = "uglymine"
 	alpha = 30
 	var/triggered = 0
+	/// Can be set to FALSE if we want a short 'coming online' delay, then set to TRUE. Can still be set off by damage
+	var/armed = TRUE
 	var/smartmine = FALSE
 	var/disarm_time = 12 SECONDS
 	var/disarm_product = /obj/item/deployablemine // ie what drops when the mine is disarmed
+	/// Who's got their foot on the mine's pressure plate
+	/// Stepping on the mine will set this to the first mob who stepped over it
+	/// The mine will not detonate via movement unless the first mob steps off of it
+	var/datum/weakref/foot_on_mine
 
 /obj/effect/mine/Initialize(mapload)
 	. = ..()
-	layer = ABOVE_MOB_LAYER
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
@@ -107,18 +117,6 @@
 /obj/effect/mine/proc/mineEffect(mob/victim)
 	to_chat(victim, span_danger("*click*"))
 
-/obj/effect/mine/Crossed(AM as mob|obj)
-	. = ..()
-	if(isturf(loc))
-		if(ismob(AM))
-			var/mob/MM = AM
-			if(!(MM.movement_type & FLYING))
-				checksmartmine(AM)
-		else
-			if(istype(AM, /obj/projectile))
-				return
-			triggermine(AM)
-
 /obj/effect/mine/proc/checksmartmine(mob/target)
 	if(smartmine && target && !HAS_TRAIT(target, TRAIT_MINDSHIELD))
 		triggermine(target)
@@ -132,7 +130,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(1, 0, src)
 	s.start()
-	mineEffect(victim)
+	INVOKE_ASYNC(src, PROC_REF(mineEffect), victim)
 	triggered = 1
 	qdel(src)
 
@@ -150,7 +148,7 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
-	var/sound = 'sound/items/bikehorn.ogg'
+	var/sound = 'yogstation/sound/misc/quack.ogg'
 	range_heavy = 2
 	range_light = 3
 	range_flash = 4
@@ -248,7 +246,7 @@
 	disarm_product = /obj/item/deployablemine/honk
 
 /obj/effect/mine/sound/mineEffect(mob/victim)
-	playsound(loc, sound, 100, 1)
+	playsound(loc, sound, 150, 1)
 
 
 /obj/effect/mine/sound/bwoink
@@ -257,7 +255,7 @@
 
 /obj/effect/mine/pickup
 	name = "pickup"
-	desc = "pick me up"
+	desc = "Pick me up."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 	density = FALSE
@@ -360,3 +358,45 @@
 /obj/effect/mine/creampie/mineEffect(mob/victim)
 	var/obj/item/reagent_containers/food/snacks/pie/cream/P = new /obj/item/reagent_containers/food/snacks/pie/cream(src)
 	P.splat(victim)
+
+/// Can this mine trigger on the passed movable?
+/obj/effect/mine/proc/can_trigger(atom/movable/on_who)
+	if(triggered || !isturf(loc) || iseffect(on_who))
+		return FALSE
+
+	var/mob/living/living_mob
+	if(ismob(on_who))
+		if(!isliving(on_who)) //no ghosties.
+			return FALSE
+		living_mob = on_who
+
+	if(living_mob?.incorporeal_move || (on_who.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
+		return foot_on_mine ? IS_WEAKREF_OF(on_who, foot_on_mine) : FALSE //Only go boom if their foot was on the mine PRIOR to flying/phasing. You fucked up, you live with the consequences.
+
+	return TRUE
+
+
+/obj/effect/mine/proc/on_entered(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+
+	if(!can_trigger(arrived))
+		return
+	// Someone already on it
+	if(foot_on_mine?.resolve())
+		return
+
+	foot_on_mine = WEAKREF(arrived)
+	visible_message(span_danger("[icon2html(src, viewers(src))] *click*"))
+	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
+
+/obj/effect/mine/proc/on_exited(datum/source, atom/movable/gone)
+	// SIGNAL_HANDLER we're not ready for this
+
+	if(!can_trigger(gone))
+		return
+	// Check that the guy who's on it is stepping off
+	if(foot_on_mine && !IS_WEAKREF_OF(gone, foot_on_mine))
+		return
+
+	triggermine(gone)
+	foot_on_mine = null

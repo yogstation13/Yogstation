@@ -22,10 +22,10 @@
 	D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
-/obj/vehicle/ridden/wheelchair/obj_destruction(damage_flag)
+/obj/vehicle/ridden/wheelchair/atom_destruction(damage_flag)
 	new /obj/item/stack/rods(drop_location(), 1)
 	new /obj/item/stack/sheet/metal(drop_location(), 1)
-	..()
+	return ..()
 
 /obj/vehicle/ridden/wheelchair/Destroy()
 	if(has_buckled_mobs())
@@ -54,7 +54,7 @@
 	//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
 	D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / clamp(user.get_num_arms(), 0.25, 2) // div by zero :x
 
-/obj/vehicle/ridden/wheelchair/Moved()
+/obj/vehicle/ridden/wheelchair/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	cut_overlays()
 	playsound(src, move_sound, 75, TRUE)
@@ -171,7 +171,7 @@
 	. = ..()
 	initialize_controller_action_type(/datum/action/vehicle/ridden/wheelchair/explosive/kaboom, VEHICLE_CONTROL_DRIVE)
 
-/obj/vehicle/ridden/wheelchair/explosive/obj_destruction(damage_flag)
+/obj/vehicle/ridden/wheelchair/explosive/atom_destruction(damage_flag)
 	explosion(src, 1, 3, 5)
 	qdel(src)
 

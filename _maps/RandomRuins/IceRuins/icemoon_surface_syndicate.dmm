@@ -1697,8 +1697,7 @@
 /area/ruin/syndicate_icemoon/medical)
 "lY" = (
 /obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4;
-	level = 2
+	dir = 4
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/engine)

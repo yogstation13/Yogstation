@@ -17,8 +17,7 @@
 		hands_overlays += r_hand_overlay
 
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
-			r_hand.layer = ABOVE_HUD_LAYER
-			r_hand.plane = ABOVE_HUD_PLANE
+			SET_PLANE_EXPLICIT(r_hand, ABOVE_HUD_PLANE, src)
 			r_hand.screen_loc = ui_hand_position(get_held_index_of_item(r_hand))
 			client.screen |= r_hand
 
@@ -28,8 +27,7 @@
 		hands_overlays += l_hand_overlay
 
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
-			l_hand.layer = ABOVE_HUD_LAYER
-			l_hand.plane = ABOVE_HUD_PLANE
+			SET_PLANE_EXPLICIT(l_hand, ABOVE_HUD_PLANE, src)
 			l_hand.screen_loc = ui_hand_position(get_held_index_of_item(l_hand))
 			client.screen |= l_hand
 	if(hands_overlays.len)

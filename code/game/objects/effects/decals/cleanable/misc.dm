@@ -48,28 +48,39 @@
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"
 	desc = "Someone should clean that up."
-	icon_state = "dirt"
-	canSmoothWith = list(/obj/effect/decal/cleanable/dirt, /turf/closed/wall, /obj/structure/falsewall)
-	smooth = SMOOTH_FALSE
+	icon = 'icons/effects/dirt.dmi'
+	icon_state = "dirt-flat-0"
+	base_icon_state = "dirt"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	smoothing_flags = NONE
+	smoothing_groups = SMOOTH_GROUP_CLEANABLE_DIRT
+	canSmoothWith = SMOOTH_GROUP_CLEANABLE_DIRT + SMOOTH_GROUP_WALLS
 
 /obj/effect/decal/cleanable/dirt/Initialize(mapload)
 	. = ..()
+	icon_state = pick("dirt-flat-0","dirt-flat-1","dirt-flat-2","dirt-flat-3")
+	var/obj/structure/fluff/broken_flooring/broken_flooring = locate(/obj/structure/fluff/broken_flooring) in loc
+	if(!isnull(broken_flooring))
+		return
 	var/turf/T = get_turf(src)
 	if(T.tiled_dirt)
-		smooth = SMOOTH_MORE
-		icon = 'icons/effects/dirt.dmi'
-		icon_state = ""
-		queue_smooth(src)
-	queue_smooth_neighbors(src)
+		smoothing_flags = SMOOTH_BITMASK
+		QUEUE_SMOOTH(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/effect/decal/cleanable/dirt/Destroy()
-	queue_smooth_neighbors(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
 /obj/effect/decal/cleanable/dirt/dust
 	name = "dust"
 	desc = "A thin layer of dust coating the floor."
+
+/obj/effect/decal/cleanable/dirt/dust/Initialize(mapload)
+	. = ..()
+	icon_state = base_icon_state
 
 /obj/effect/decal/cleanable/greenglow
 	name = "glowing goo"
@@ -95,7 +106,7 @@
 	light_range = 0
 	update_light()
 	if(R)
-		R.RemoveComponent()
+		qdel(R)
 
 /obj/effect/decal/cleanable/greenglow/filled/Initialize(mapload)
 	. = ..()
