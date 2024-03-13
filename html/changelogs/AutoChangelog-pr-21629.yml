@@ -1,6 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - rscadd: "CentCom inspectors and clown ops now have their own PDA presets"
-  - tweak: "CentCom inspectors, contractor supports, chameleon kits, etc. no longer spawn with old PDAs - now have modern ones"
-  - spellcheck: "Changed nukie PDA flavor text"
