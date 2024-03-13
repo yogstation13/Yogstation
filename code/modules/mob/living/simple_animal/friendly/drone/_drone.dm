@@ -166,6 +166,9 @@
 /mob/living/simple_animal/drone/gib()
 	dust()
 
+/mob/living/simple_animal/drone/get_butt_sprite()
+	return BUTT_SPRITE_DRONE
+
 /mob/living/simple_animal/drone/ratvar_act()
 	if(status_flags & GODMODE)
 		return

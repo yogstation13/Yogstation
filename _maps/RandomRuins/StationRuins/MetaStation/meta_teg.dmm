@@ -167,6 +167,18 @@
 	},
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
+"gA" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "gK" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -427,6 +439,17 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
+"oP" = (
+/obj/structure/closet/emcloset/anchored,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/advanced_airlock_controller/lavaland{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "oZ" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
@@ -617,6 +640,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"wj" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8;
+	id = "teghot_in"
+	},
+/turf/open/floor/engine/airless,
+/area/engine/engineering)
 "wu" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 1
@@ -667,17 +697,6 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"yP" = (
-/obj/machinery/advanced_airlock_controller{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/structure/closet/emcloset/anchored,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "yS" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -735,12 +754,6 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/manifold/dark/visible,
 /turf/open/floor/engine,
-/area/engine/engineering)
-"Az" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "AW" = (
 /obj/effect/turf_decal/stripes/line{
@@ -853,12 +866,6 @@
 "Fy" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
-/area/engine/engineering)
-"FQ" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	dir = 8
-	},
-/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "Gm" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1032,24 +1039,6 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/space/nearstation)
-"Md" = (
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "Ms" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /obj/effect/turf_decal/stripes/line{
@@ -1135,17 +1124,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"Pu" = (
-/obj/structure/closet/emcloset/anchored,
-/obj/machinery/advanced_airlock_controller{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "PC" = (
 /obj/machinery/igniter{
@@ -1379,6 +1357,13 @@
 /area/engine/engineering)
 "Vz" = (
 /turf/open/floor/engine,
+/area/engine/engineering)
+"VP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
+	dir = 8;
+	id_tag = "teghot_out"
+	},
+/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "VQ" = (
 /obj/structure/cable/yellow{
@@ -1640,7 +1625,7 @@ xR
 xR
 "}
 (5,1,1) = {"
-Md
+gA
 xR
 aF
 pN
@@ -1692,7 +1677,7 @@ xR
 xR
 "}
 (7,1,1) = {"
-Pu
+oP
 ib
 Tl
 Mb
@@ -1970,7 +1955,7 @@ UH
 Mb
 Tl
 Yg
-yP
+oP
 Tl
 xR
 xR
@@ -2040,9 +2025,9 @@ Mb
 lU
 Xo
 PC
-FQ
+wj
 fU
-Az
+VP
 PC
 nK
 lU

@@ -12,8 +12,8 @@
 	var/can_approve_requests = TRUE
 	var/contraband = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
-		cannot transport live organisms, human remains, classified nuclear weaponry \
-		or homing beacons. Additionally, remove any privately ordered crates from the shuttle."
+		cannot transport live organisms, human remains, classified nuclear weaponry, \
+		homing beacons or pneumatic disposal segments. Additionally, remove any privately ordered crates from the shuttle."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 	var/self_paid = FALSE
 

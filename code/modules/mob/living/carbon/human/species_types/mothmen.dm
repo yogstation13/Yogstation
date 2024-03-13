@@ -45,6 +45,9 @@
 
 	return randname
 
+/datum/species/moth/get_butt_sprite()
+	return BUTT_SPRITE_FUZZY
+
 /datum/species/moth/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
 	. = ..()
 	if(.) //if the mob is immune to fire, don't burn wings off.

@@ -305,7 +305,7 @@
 	return null
 
 /obj/structure/grille/broken // Pre-broken grilles for map placement
-	icon_state = "brokengrille"
+	icon_state = "grille_broken"
 	density = FALSE
 	broken = TRUE
 	rods_amount = 1

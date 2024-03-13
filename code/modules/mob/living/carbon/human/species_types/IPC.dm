@@ -219,6 +219,9 @@
 			break
 	H.visible_message("<span class='notice'>[H] unplugs from the [A].</span>", "<span class='notice'>You unplug from the [A].</span>")
 
+/datum/species/ipc/get_butt_sprite()
+	return BUTT_SPRITE_QR_CODE
+
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
 		if(saved_screen)

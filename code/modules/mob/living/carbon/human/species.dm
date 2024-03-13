@@ -121,6 +121,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/inert_mutation 	= DWARFISM
 	///used to set the mobs deathsound on species change
 	var/deathsound
+	///Barefoot step sound
+	var/barefoot_step_sound = FOOTSTEP_MOB_BAREFOOT
 	///Sounds to override barefeet walking
 	var/list/special_step_sounds
 	///How loud to play the step override
@@ -319,6 +321,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/has_toes()
 	return FALSE
+
+/// Sprite to show for photocopying mob butts
+/datum/species/proc/get_butt_sprite(mob/living/carbon/human/human)
+	return human.gender == FEMALE ? BUTT_SPRITE_HUMAN_FEMALE : BUTT_SPRITE_HUMAN_MALE
 
 /**
  * Corrects organs in a carbon, removing ones it doesn't need and adding ones it does.
