@@ -154,7 +154,8 @@
 	if(this_job)
 		if(this_job.paycheck_department && department_colors[this_job.paycheck_department])
 			color = department_colors[this_job.paycheck_department]
-		var/list/job_goodies = this_job.get_mail_goodies().Copy()
+		var/list/job_goodies = this_job.get_mail_goodies()
+		job_goodies = job_goodies.Copy()
 		if(LAZYLEN(job_goodies))
 			// certain roles and jobs (prisoner) do not receive generic gifts.
 			if(this_job.exclusive_mail_goodies)
