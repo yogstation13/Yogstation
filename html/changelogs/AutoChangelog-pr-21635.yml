@@ -1,0 +1,4 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - tweak: "rcd ore silo upgrade research price 2500 from 25000"
