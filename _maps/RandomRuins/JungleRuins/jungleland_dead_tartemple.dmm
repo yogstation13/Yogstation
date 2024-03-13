@@ -38,7 +38,8 @@
 	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
 	name = "lonely flowers";
 	light_range = 4;
-	light_power = 0.5
+	light_power = 0.5;
+	gender = ss
 	},
 /turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
@@ -46,12 +47,333 @@
 /turf/template_noop,
 /area/template_noop)
 "an" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 5
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/burnt{
+	dir = 1
 	},
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aq" = (
+/obj/structure/flora/ausbushes/lavendergrass{
+	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
+	name = "lonely flowers";
+	light_power = 0.5;
+	light_range = 4;
+	gender = "plural"
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"as" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/tar,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"at" = (
+/obj/structure/stone_tile/surrounding_tile/burnt,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"au" = (
+/obj/structure/flora/ausbushes/ywflowers{
+	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
+	name = "lonely flowers";
+	light_power = 0.5;
+	light_range = 4;
+	gender = "plural"
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"av" = (
+/obj/structure/stone_tile/burnt,
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 1
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aw" = (
+/turf/closed/indestructible/riveted/boss,
+/area/ruin/unpowered/tar_temple)
+"ax" = (
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/burnt{
+	dir = 4
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"ay" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"az" = (
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aF" = (
+/obj/structure/flora/ausbushes/brflowers{
+	name = "lonely flowers";
+	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
+	light_power = 0.5;
+	light_range = 4;
+	gender = "plural"
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"aH" = (
+/obj/structure/flora/ausbushes/brflowers{
+	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
+	name = "lonely flowers";
+	light_range = 4;
+	light_power = 0.5;
+	gender = "plural"
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"aI" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 4;
+	icon_state = "cracked_slab1"
+	},
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 6
+	},
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aL" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aM" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 1
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aN" = (
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 1
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aO" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aP" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 6
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aS" = (
+/obj/structure/necropolis_gate{
+	name = "ancient gate"
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"aV" = (
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 5
+	},
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 9
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"aX" = (
+/obj/structure/bonfire/prelit{
+	burning = TRUE
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"aY" = (
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"aZ" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"cG" = (
+/mob/living/simple_animal/hostile/tar/amalgamation/convert,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"cX" = (
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile/cracked,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"eh" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 6
+	},
+/obj/structure/stone_tile/surrounding_tile/burnt,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"gg" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 10
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"ko" = (
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 4
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"lc" = (
+/obj/structure/stone_tile/block,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"pP" = (
+/obj/effect/decal/remains/human,
+/obj/item/clothing/head/helmet/shaman,
+/obj/item/tar_crystal,
+/obj/item/melee/spear/bamboospear,
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"rb" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"rI" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"wB" = (
+/obj/structure/stone_tile/burnt{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"xw" = (
+/mob/living/simple_animal/hostile/tar/shade,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"zB" = (
+/obj/structure/flora/ausbushes/lavendergrass{
+	name = "lonely flowers";
+	light_power = 0.5;
+	light_range = 4;
+	gender = "plural"
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"Ci" = (
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 4
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"Du" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"Dz" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 9
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"DD" = (
+/obj/structure/flora/ausbushes/ppflowers{
+	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
+	name = "lonely flowers";
+	light_power = 0.5;
+	light_range = 4;
+	gender = "plural"
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"Ek" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"Es" = (
+/obj/structure/stone_tile/burnt{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 9
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"Fu" = (
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"Hc" = (
+/mob/living/simple_animal/hostile/tar/amalgamation,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"Hd" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/block/cracked{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"Hi" = (
+/obj/structure/flora/ausbushes/lavendergrass{
+	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
+	name = "lonely flowers";
+	light_range = 4;
+	light_power = 0.5;
+	gender = "plural"
+	},
+/turf/open/floor/plating/dirt/jungleland/obsidian,
+/area/ruin/unpowered/tar_temple)
+"Hs" = (
+/obj/structure/tar_altar,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"JX" = (
 /obj/structure/stone_tile/slab/cracked{
 	dir = 8
 	},
@@ -68,315 +390,6 @@
 /obj/structure/stone_tile/center/burnt,
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
-"as" = (
-/mob/living/simple_animal/hostile/tar/amalgamation/convert,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
-"at" = (
-/obj/structure/stone_tile/surrounding_tile/burnt,
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"au" = (
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"av" = (
-/obj/structure/stone_tile/burnt{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 9
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"aw" = (
-/turf/closed/indestructible/riveted/boss,
-/area/ruin/unpowered/tar_temple)
-"ax" = (
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 4
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"ay" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/tar,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
-"az" = (
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"aF" = (
-/obj/item/flashlight/flare/torch,
-/turf/open/floor/plating/dirt/jungleland/obsidian,
-/area/ruin/unpowered/tar_temple)
-"aH" = (
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked,
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"aI" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"aL" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"aM" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"aN" = (
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 5
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 9
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"aO" = (
-/obj/structure/flora/ausbushes/lavendergrass{
-	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
-	name = "lonely flowers";
-	light_power = 0.5;
-	light_range = 4
-	},
-/turf/open/floor/plating/dirt/jungleland/obsidian,
-/area/ruin/unpowered/tar_temple)
-"aP" = (
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 4
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"aS" = (
-/obj/structure/necropolis_gate{
-	name = "ancient gate"
-	},
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
-"aV" = (
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/template_noop)
-"aX" = (
-/obj/structure/bonfire/prelit{
-	burning = TRUE
-	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/template_noop)
-"aY" = (
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
-"aZ" = (
-/mob/living/simple_animal/hostile/tar/shade,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
-"cG" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/surrounding_tile,
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"cU" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 9
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"cX" = (
-/mob/living/simple_animal/hostile/tar/amalgamation,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
-"gg" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"ko" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"pP" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"qv" = (
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"rb" = (
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 1
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"rI" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/burnt{
-	dir = 1
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"wf" = (
-/obj/structure/stone_tile/block,
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"wB" = (
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 1
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"xw" = (
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 4
-	},
-/obj/structure/stone_tile/surrounding_tile/burnt,
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"zB" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/block/cracked{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"Ci" = (
-/obj/structure/flora/ausbushes/ywflowers{
-	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
-	name = "lonely flowers";
-	light_power = 0.5;
-	light_range = 4
-	},
-/turf/open/floor/plating/dirt/jungleland/obsidian,
-/area/ruin/unpowered/tar_temple)
-"Du" = (
-/obj/structure/flora/ausbushes/lavendergrass{
-	name = "lonely flowers";
-	light_power = 0.5;
-	light_range = 4
-	},
-/turf/open/floor/plating/dirt/jungleland/obsidian,
-/area/ruin/unpowered/tar_temple)
-"Dz" = (
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/burnt{
-	dir = 4
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"DD" = (
-/obj/structure/flora/ausbushes/ppflowers{
-	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
-	name = "lonely flowers";
-	light_power = 0.5;
-	light_range = 4
-	},
-/turf/open/floor/plating/dirt/jungleland/obsidian,
-/area/ruin/unpowered/tar_temple)
-"Ek" = (
-/obj/structure/stone_tile/slab/cracked{
-	dir = 6
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"Es" = (
-/obj/structure/tar_altar,
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"Fu" = (
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"Hc" = (
-/obj/structure/stone_tile/slab/cracked{
-	dir = 4;
-	icon_state = "cracked_slab1"
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 6
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"Hd" = (
-/obj/structure/stone_tile/burnt,
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 1
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"Hs" = (
-/obj/structure/stone_tile/burnt{
-	dir = 4
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 8
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
-"JX" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/turf/open/water/tar_basin,
-/area/ruin/unpowered/tar_temple)
 "Kv" = (
 /obj/structure/stone_tile/slab/cracked,
 /turf/open/water/tar_basin,
@@ -386,33 +399,26 @@
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/template_noop)
 "Nk" = (
-/obj/structure/flora/ausbushes/brflowers{
-	name = "lonely flowers";
-	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
-	light_power = 0.5;
-	light_range = 4
-	},
-/turf/open/floor/plating/dirt/jungleland/obsidian,
-/area/ruin/unpowered/tar_temple)
-"Rq" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 4
 	},
 /obj/structure/stone_tile/surrounding_tile/burnt,
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "RE" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 10
+/obj/structure/stone_tile/block{
+	dir = 1
 	},
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Tg" = (
-/obj/effect/decal/remains/human,
-/obj/item/clothing/head/helmet/shaman,
-/obj/item/tar_crystal,
-/obj/item/melee/spear/bamboospear,
-/turf/open/floor/plating/dirt/jungleland/obsidian,
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 1
+	},
+/turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Uh" = (
 /obj/structure/necropolis_gate{
@@ -422,28 +428,35 @@
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "Vc" = (
-/turf/open/floor/plating/dirt/jungleland/obsidian,
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile/burnt,
+/turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "VB" = (
-/obj/structure/stone_tile/block{
-	dir = 4
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 1
 	},
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Wl" = (
-/obj/structure/flora/ausbushes/lavendergrass{
-	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a smell akin to burnt plastic.";
-	name = "lonely flowers";
-	light_range = 4;
-	light_power = 0.5
-	},
 /turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
-"WZ" = (
+"WW" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 6
+	dir = 5
 	},
-/obj/structure/stone_tile/surrounding_tile/burnt,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"WZ" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 
@@ -510,12 +523,12 @@ aY
 aY
 aY
 aY
-cX
+Hc
 aY
 aY
 aY
 aY
-as
+cG
 aw
 aw
 ai
@@ -537,7 +550,7 @@ ai
 aw
 aw
 ac
-aZ
+xw
 aY
 aY
 aY
@@ -658,7 +671,7 @@ al
 al
 ai
 aw
-cX
+Hc
 aY
 aw
 az
@@ -682,7 +695,7 @@ aw
 aw
 aw
 aY
-cX
+Hc
 aY
 aw
 aw
@@ -706,18 +719,18 @@ az
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -746,20 +759,20 @@ aw
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -782,26 +795,26 @@ aw
 aw
 aY
 aY
-ay
+as
 aw
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-ak
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+aH
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -827,23 +840,23 @@ aw
 aw
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 DD
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -861,31 +874,31 @@ al
 aw
 aw
 aY
-cX
+Hc
 aY
 aw
 aw
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
 DD
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -909,30 +922,30 @@ az
 az
 az
 az
-Vc
-Vc
-aO
-Vc
-Vc
-Vc
-Vc
-Vc
-aO
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+aq
+Wl
+Wl
+Wl
+Wl
+Wl
+aq
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
 aY
-as
+cG
 aY
 aw
 ai
@@ -950,25 +963,25 @@ az
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
 Wl
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Hi
+Wl
 az
 az
 aw
@@ -988,28 +1001,28 @@ aw
 az
 az
 az
-ax
+Ci
 ah
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
@@ -1029,29 +1042,29 @@ aw
 az
 az
 az
-wB
-xw
+aN
+Nk
 ah
 az
 az
-Vc
-Vc
-Vc
-ak
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-ak
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+aH
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+aH
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
@@ -1071,28 +1084,28 @@ az
 az
 az
 az
-wB
+aN
 at
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-aF
-Vc
-Vc
-Vc
-Vc
-Vc
-aF
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
@@ -1105,7 +1118,7 @@ ai
 "}
 (17,1,1) = {"
 aw
-as
+cG
 aY
 aw
 az
@@ -1117,28 +1130,28 @@ az
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 DD
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
 aY
-as
+cG
 aw
 Lw
 ai
@@ -1150,39 +1163,39 @@ aY
 aY
 aw
 az
-an
-av
-aM
-aP
-aN
-cU
-Hs
-au
-Vc
-Vc
-Vc
-Vc
-Vc
+WW
+Es
+ay
+ko
+aV
+Dz
+wB
+Fu
+Wl
+Wl
+Wl
+Wl
+Wl
 DD
-Vc
-cG
-qv
+Wl
 aL
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+aZ
+aO
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 aw
 aY
 aY
 aw
 aw
-aV
+rI
 ai
 "}
 (19,1,1) = {"
@@ -1192,31 +1205,31 @@ aY
 Uh
 az
 Kv
-Hc
-aq
+aI
+JX
 Kv
 aj
-Ek
-zB
-Dz
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-gg
-Es
-wf
-Vc
-Vc
-Vc
-Vc
-Vc
-Ci
-Vc
-Vc
+aP
+Hd
+ax
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+RE
+Hs
+lc
+Wl
+Wl
+Wl
+Wl
+Wl
+au
+Wl
+Wl
 az
 aw
 aY
@@ -1232,39 +1245,39 @@ aY
 aY
 aw
 az
-RE
-aI
-Hd
-WZ
-rI
-aH
-ag
-Rq
-Vc
-Ci
-Vc
-Vc
-Vc
-Vc
-Vc
-ko
+gg
 VB
-Fu
+av
+eh
+an
+cX
+ag
 Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+au
+Wl
+Wl
+Wl
+Wl
+Wl
+WZ
+Ek
+rb
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 aw
 aY
 aY
 aw
 aw
-aV
+rI
 ai
 "}
 (21,1,1) = {"
@@ -1281,23 +1294,23 @@ az
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
@@ -1317,32 +1330,32 @@ az
 az
 az
 az
-ax
-pP
+Ci
+Du
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 aF
-Vc
-Vc
-Vc
-Vc
-Nk
-aF
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
-as
+cG
 aY
 aw
 ai
@@ -1352,34 +1365,34 @@ ai
 (23,1,1) = {"
 aw
 aY
-as
+cG
 aw
 az
 az
 az
-ax
-rb
+Ci
+Tg
 at
 az
 az
-Vc
-Vc
-Vc
-aO
-Vc
-Vc
-Vc
-Vc
-Du
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+aq
+Wl
+Wl
+Wl
+Wl
+zB
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
@@ -1398,28 +1411,28 @@ aw
 az
 az
 az
-JX
+aM
 at
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-ak
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+aH
+Wl
 az
 az
 aw
@@ -1442,25 +1455,25 @@ az
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
@@ -1483,31 +1496,31 @@ az
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Tg
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+pP
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 aw
 aY
 aY
-as
+cG
 aw
 ai
 al
@@ -1517,31 +1530,31 @@ al
 aw
 aw
 aY
-cX
+Hc
 aY
 aw
 aw
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Ci
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+au
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -1565,30 +1578,30 @@ aw
 aw
 az
 az
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
 ak
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 DD
-Vc
-Vc
+Wl
+Wl
 az
 az
 az
 aw
 aw
 aY
-cX
+Hc
 aw
 ai
 al
@@ -1602,26 +1615,26 @@ aw
 aw
 aY
 aY
-ay
+as
 aw
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 DD
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -1648,20 +1661,20 @@ aw
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -1690,18 +1703,18 @@ az
 az
 az
 az
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
 az
 az
 az
@@ -1808,7 +1821,7 @@ ai
 aw
 aY
 aY
-cX
+Hc
 aY
 aw
 aw
@@ -1829,7 +1842,7 @@ aw
 aw
 aY
 aY
-as
+cG
 aw
 aw
 ai
@@ -1865,7 +1878,7 @@ aY
 aY
 aY
 aY
-cX
+Hc
 aY
 aY
 aY
@@ -1892,7 +1905,7 @@ aw
 aw
 aY
 aY
-aZ
+xw
 aY
 aY
 aY
