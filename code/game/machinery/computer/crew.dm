@@ -149,7 +149,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			continue // you don't exist in reality
 
 		// Machinery and the target should be on the same level or different levels of the same station
-		if(pos.z != z && (!is_station_level(pos.z) || !is_station_level(tracked_mob.z)) && !HAS_TRAIT(tracked_mob, TRAIT_MULTIZ_SUIT_SENSORS))
+		if(!(z in SSmapping.get_connected_levels(pos)) && !HAS_TRAIT(tracked_mob, TRAIT_MULTIZ_SUIT_SENSORS))
 			continue
 
 		var/jammed = FALSE

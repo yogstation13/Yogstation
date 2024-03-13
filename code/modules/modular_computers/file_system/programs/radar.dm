@@ -137,7 +137,7 @@
 	var/turf/there = get_turf(signal)
 	if(!here || !there)
 		return FALSE //I was still getting a runtime even after the above check while scanning, so fuck it
-	return (there.z == here.z) || (is_station_level(here.z) && is_station_level(there.z))
+	return (there.z in SSmapping.get_connected_levels(here))
 
 /**
   *

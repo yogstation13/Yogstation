@@ -89,7 +89,7 @@
 /obj/item/pinpointer/crew/proc/trackable(mob/living/carbon/human/tracked_mob)
 	var/turf/here = get_turf(src)
 	var/turf/there = get_turf(tracked_mob)
-	if(here && there && (there.z == here.z || (is_station_level(here.z) && is_station_level(there.z)) || HAS_TRAIT(tracked_mob, TRAIT_MULTIZ_SUIT_SENSORS))) // Device and target should be on the same level or different levels of the same station
+	if(here && there && ((there.z in SSmapping.get_connected_levels(here)) || HAS_TRAIT(tracked_mob, TRAIT_MULTIZ_SUIT_SENSORS))) // Device and target should be on the same level or different levels of the same station
 		if(HAS_TRAIT(tracked_mob, TRAIT_SUITLESS_SENSORS))
 			return TRUE
 		if (istype(tracked_mob.w_uniform, /obj/item/clothing/under))
