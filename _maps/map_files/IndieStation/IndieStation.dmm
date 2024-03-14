@@ -3168,11 +3168,17 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
 "awS" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
@@ -3504,7 +3510,7 @@
 /area/maintenance/department/electrical)
 "azu" = (
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
@@ -6915,6 +6921,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "aWB" = (
@@ -7145,6 +7152,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "aYQ" = (
@@ -7441,9 +7449,11 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "bbJ" = (
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "bbK" = (
@@ -7596,6 +7606,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "bcR" = (
@@ -7650,6 +7661,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "bdn" = (
@@ -7747,6 +7759,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "bdI" = (
@@ -14927,7 +14940,7 @@
 	pixel_y = -25
 	},
 /obj/structure/cable/yellow{
-	icon_state = "0-4"
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
@@ -14992,6 +15005,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"cup" = (
+/turf/closed/wall/rust,
+/area/crew_quarters/toilet/locker)
 "cux" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -15165,6 +15181,11 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"cxd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "cxf" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 6
@@ -28888,7 +28909,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "hfy" = (
-/turf/open/space/basic,
+/turf/template_noop,
 /area/maintenance/port)
 "hfJ" = (
 /obj/structure/closet/boxinggloves,
@@ -28920,7 +28941,10 @@
 /area/maintenance/port/aft)
 "hgG" = (
 /obj/structure/cable/yellow{
-	icon_state = "0-2"
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
@@ -30306,6 +30330,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "hEv" = (
@@ -31326,6 +31351,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"hUt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/shard,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "hUA" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -31423,6 +31453,7 @@
 /obj/machinery/door/airlock{
 	name = "Unit B"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "hVF" = (
@@ -35595,6 +35626,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"jsj" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/zombie{
+	zombiejob = "Station Engineer";
+	name = "long-dead engineer";
+	desc = "Uhhh. UHHHH. UUUHHHH."
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "jsn" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -35627,6 +35667,7 @@
 	pixel_x = 11
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "jsR" = (
@@ -37221,6 +37262,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "kdE" = (
@@ -37318,6 +37360,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "khh" = (
@@ -38636,6 +38679,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/event_spawn,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "kGS" = (
@@ -40328,6 +40372,7 @@
 	dir = 8
 	},
 /obj/machinery/recharge_station,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "llj" = (
@@ -40408,6 +40453,7 @@
 /obj/structure/sign/departments/minsky/command/charge{
 	pixel_y = -32
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "llT" = (
@@ -40416,6 +40462,7 @@
 	pixel_y = -24
 	},
 /obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "llW" = (
@@ -46523,6 +46570,9 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
 "nsG" = (
@@ -49362,6 +49412,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen)
+"ovM" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "ovY" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -59214,6 +59270,9 @@
 	},
 /turf/closed/wall,
 /area/engine/atmos/distro)
+"rSi" = (
+/turf/closed/wall/rust,
+/area/crew_quarters/locker)
 "rSl" = (
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
@@ -61597,7 +61656,7 @@
 /area/maintenance/starboard/aft)
 "sLs" = (
 /obj/effect/landmark/stationroom/maint/threexthree,
-/turf/open/space/basic,
+/turf/template_noop,
 /area/maintenance/port)
 "sLv" = (
 /obj/machinery/camera{
@@ -68940,7 +68999,7 @@
 /area/bridge)
 "vrW" = (
 /obj/structure/cable/yellow{
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
@@ -75244,6 +75303,11 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
+"xCD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/rods,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "xCE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -94078,12 +94142,12 @@ nxy
 aXQ
 aXQ
 aXQ
-aXQ
-aXQ
-aXQ
-aXQ
-aXQ
-aXQ
+cup
+cup
+cup
+cup
+cup
+cup
 mAI
 bkF
 aaa
@@ -94326,21 +94390,21 @@ aNl
 sXC
 aLE
 iJY
-aPA
-aPA
-aPA
-aPA
-aPA
-aPA
+rSi
+rSi
+rSi
+rSi
+rSi
+rSi
 aXQ
 bbI
 aXQ
 bbI
-aXQ
+cup
 bbI
-aXQ
+cup
 llg
-aXQ
+cup
 jGC
 bkF
 aaa
@@ -94583,7 +94647,7 @@ azF
 xPb
 fnx
 aOl
-aPA
+rSi
 aQL
 aSg
 fXq
@@ -94595,9 +94659,9 @@ aXQ
 aWA
 aXQ
 bdH
-aXQ
+cup
 hVt
-aXQ
+cup
 mkz
 bkF
 aaa
@@ -94840,7 +94904,7 @@ aKm
 aLD
 aLE
 wdi
-aPA
+rSi
 aPz
 aQN
 aQN
@@ -94854,7 +94918,7 @@ bcL
 kdC
 bbJ
 llD
-aXQ
+cup
 jGC
 bkE
 aaa
@@ -95111,7 +95175,7 @@ jst
 kgV
 kGQ
 llT
-aXQ
+cup
 jGC
 bkF
 aaa
@@ -95360,13 +95424,13 @@ aQN
 aTB
 gzP
 gPY
-aXQ
-aXQ
-aXQ
-aXQ
-aXQ
-aXQ
-aXQ
+cup
+cup
+cup
+cup
+cup
+cup
+cup
 aXQ
 aXQ
 jGC
@@ -95621,7 +95685,7 @@ hoR
 hCM
 igL
 jKb
-aPA
+rSi
 hfy
 hfy
 sLs
@@ -95878,7 +95942,7 @@ hqB
 igL
 dgL
 khj
-aPA
+rSi
 hfy
 hfy
 hfy
@@ -96135,7 +96199,7 @@ aXp
 bEb
 igL
 jKb
-aPA
+rSi
 hfy
 hfy
 hfy
@@ -129595,7 +129659,7 @@ iKq
 iKq
 hNs
 cNW
-mpt
+ovM
 cOe
 cNW
 aaf
@@ -130109,7 +130173,7 @@ iKq
 iKq
 iKq
 euJ
-cmn
+hUt
 cOe
 cNW
 gXs
@@ -130367,7 +130431,7 @@ iKq
 iKq
 cNW
 ucb
-ucb
+cxd
 cNW
 aaf
 aaa
@@ -130623,8 +130687,8 @@ iKq
 iKq
 iKq
 cNW
-cmn
-cmn
+jsj
+xCD
 cNW
 gXs
 aaa
