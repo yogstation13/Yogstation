@@ -418,10 +418,6 @@
 	},
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
-"JX" = (
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/template_noop)
 "Kv" = (
 /obj/structure/stone_tile/slab/cracked,
 /turf/open/water/tar_basin,
@@ -1233,7 +1229,7 @@ aY
 aY
 aw
 aw
-JX
+ai
 ai
 "}
 (19,1,1) = {"
@@ -1315,7 +1311,7 @@ aY
 aY
 aw
 aw
-JX
+ai
 ai
 "}
 (21,1,1) = {"
