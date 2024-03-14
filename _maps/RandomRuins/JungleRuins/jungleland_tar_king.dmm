@@ -42,7 +42,7 @@
 	name = "lonely flowers";
 	light_range = 4;
 	light_power = 0.5;
-	gender = ss
+	gender = "plural"
 	},
 /turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)

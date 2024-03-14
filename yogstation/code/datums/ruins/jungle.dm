@@ -122,13 +122,14 @@
 	always_place = TRUE
 	cost = 0
 
-/datum/map_template/ruin/jungle/all/tar_king
-	name = "Tar King's Tomb"
+/datum/map_template/ruin/jungle/all/tar_king_phylactery
+	name = "Tar King's Phylactery"
 	id = "jungle-tar-king"
-	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	description = "In this place lies the core of this world's cancer. \
+		Resting deep within the obsidian, sealed under an altar untouched by time, awaiting the day it will finally take form."
 	suffix = "jungleland_tar_king.dmm"
 	always_place = TRUE
-	cost = 0	
+	cost = 0
 
 /datum/map_template/ruin/jungle/all/tar_temple2
 	name = "Tar temple 2"
