@@ -126,7 +126,7 @@
 	name = "Tar King's Phylactery"
 	id = "jungle-tar-king"
 	description = "In this place lies the core of this world's cancer. \
-		Resting deep within the obsidian, sealed under an altar untouched by time, awaiting the day it will finally take form."
+		Resting deep within the obsidian, sealed under an altar untouched by time, it awaits the day it will finally take form."
 	suffix = "jungleland_tar_king.dmm"
 	always_place = TRUE
 	cost = 0

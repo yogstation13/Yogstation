@@ -3977,6 +3977,7 @@
 #include "yogstation\code\datums\mutations\alcohol.dm"
 #include "yogstation\code\datums\mutations\extendoarm.dm"
 #include "yogstation\code\datums\ruins\free_miners.dm"
+#include "yogstation\code\datums\ruins\jungle_fluff.dm"
 #include "yogstation\code\datums\ruins\jungle.dm"
 #include "yogstation\code\datums\ruins\station.dm"
 #include "yogstation\code\datums\status_effects\buffs.dm"

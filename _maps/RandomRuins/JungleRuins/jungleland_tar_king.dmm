@@ -37,14 +37,25 @@
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "ak" = (
-/obj/structure/flora/ausbushes/brflowers{
-	desc = "Stems fused to the obsidian floor, they seem to be dripping some black, viscous fluid, filling the room with a dim glow and a smell akin to burnt plastic.";
-	name = "lonely flowers";
-	light_range = 4;
-	light_power = 0.5;
-	gender = "plural"
+/obj/item/melee/spear/bamboospear{
+	pixel_x = -11;
+	pixel_y = 6
 	},
-/turf/open/floor/plating/dirt/jungleland/obsidian,
+/obj/item/flashlight/flare/torch{
+	pixel_x = -13;
+	pixel_y = 13;
+	light_on = TRUE
+	},
+/obj/item/tar_crystal{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/item/paper/crumpled/ruins/jungle/tar_king_note{
+	pixel_x = 14;
+	pixel_y = -18
+	},
+/obj/effect/decal/remains/human,
+/turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "al" = (
 /turf/template_noop,
@@ -298,6 +309,13 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/obsidian,
 /area/ruin/unpowered/tar_temple)
+"zh" = (
+/obj/item/clothing/head/helmet/gladiator{
+	pixel_y = 11;
+	pixel_x = -8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
 "zB" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 8
@@ -409,9 +427,16 @@
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "Lw" = (
-/obj/item/flashlight/seclite,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/template_noop)
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 4
+	},
+/obj/item/reagent_containers/glass/bottle{
+	pixel_y = 6;
+	pixel_x = -10;
+	list_reagents = list(/datum/reagent/sulphur = 0.5, /datum/reagent/water = 0.5)
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
 "Nk" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
@@ -428,12 +453,9 @@
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "RE" = (
-/obj/effect/decal/remains/human,
-/obj/item/clothing/head/helmet/shaman,
-/obj/item/tar_crystal,
-/obj/item/melee/spear/bamboospear,
-/turf/open/floor/plating/dirt/jungleland/obsidian,
-/area/ruin/unpowered/tar_temple)
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
 "Tg" = (
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/surrounding_tile{
@@ -650,7 +672,7 @@ aY
 aY
 aY
 aw
-az
+aw
 az
 az
 az
@@ -690,7 +712,7 @@ aw
 pP
 aY
 aw
-az
+aw
 az
 az
 az
@@ -1163,13 +1185,13 @@ aN
 aN
 aN
 aN
-az
+aN
 az
 aw
 aY
 cG
 aw
-Lw
+ai
 ai
 ai
 "}
@@ -1327,7 +1349,7 @@ aN
 aN
 aN
 aN
-az
+aN
 az
 aw
 aY
@@ -1335,7 +1357,7 @@ aY
 aw
 ai
 ai
-ai
+RE
 "}
 (22,1,1) = {"
 aw
@@ -1385,8 +1407,8 @@ cG
 aw
 az
 az
-az
-VB
+ak
+Lw
 aL
 at
 az
@@ -1426,7 +1448,7 @@ aY
 aw
 az
 az
-az
+zh
 tG
 at
 az
@@ -1518,7 +1540,7 @@ aN
 aN
 aN
 aN
-RE
+aN
 aN
 aN
 aN
@@ -1571,7 +1593,7 @@ aN
 aN
 aN
 aN
-az
+aN
 az
 az
 aw
@@ -1597,7 +1619,7 @@ az
 aN
 aN
 aN
-ak
+aq
 aN
 aN
 aN
@@ -1644,9 +1666,9 @@ aN
 aN
 aN
 aN
+aN
+aN
 aI
-aN
-aN
 aN
 aN
 aN
