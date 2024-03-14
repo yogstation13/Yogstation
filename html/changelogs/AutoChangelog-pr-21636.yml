@@ -1,0 +1,4 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - tweak: "tweaks meta engine weights to 45/30/25 sm, reactor, teg"
