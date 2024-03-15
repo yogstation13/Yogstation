@@ -185,7 +185,7 @@
 // Honk end
 
 /obj/item/modular_computer/tablet/pda/preset/security
-	greyscale_colors = "#EA3232#0000cc"
+	greyscale_colors = "#EA3232#0000CC"
 
 /obj/item/modular_computer/tablet/pda/preset/security/detective
 	greyscale_colors = "#805A2F#990202"
@@ -202,14 +202,37 @@
 
 //for inside one of the nukie lockers
 /obj/item/modular_computer/tablet/pda/preset/syndicate
-	desc = "A standard issue PDA often given to syndicate agents."
+	desc = Based off Nanotrasen's PDAs, this one has been reverse-engineered and loaded with illegal software provided by the Syndicate."
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
-	greyscale_colors = "#a80001#5C070F#000000"
+	greyscale_colors = "#A80001#5C070F#000000"
 
 /obj/item/modular_computer/tablet/pda/preset/syndicate/Initialize(mapload)
-	. = ..()
 	obj_flags |= EMAGGED //starts emagged
 	starting_files |= list(
 		new /datum/computer_file/program/bomberman,
+	)
+  return ..()
+
+// The worst thing mankind can fathom - used in clown ops and nukie clown costume
+/obj/item/modular_computer/tablet/pda/preset/clown/syndicate
+	desc = "A hilariously terrifying PDA reverse-engineered by the Syndicate, given to their most unhinged operatives."
+
+/obj/item/modular_computer/tablet/pda/preset/clown/syndicate/Initialize(mapload)
+  obj_flags |= EMAGGED //starts emagged //rather have this than re-do clown stuff over
+	starting_files |= list(
+		new /datum/computer_file/program/bomberman,
+	)
+  return ..()
+
+/obj/item/modular_computer/tablet/pda/preset/bureaucrat
+	desc = "A standard issue PDA issued to certain Nanotrasen personnel to help with inspections."
+	greyscale_config = /datum/greyscale_config/tablet/captain
+	greyscale_colors = "#2EBE3B#FF0000#FFFFFF#FFD55B" // Rockin the company colors
+  pen_type = /obj/item/pen/fountain/captain
+
+/obj/item/modular_computer/tablet/pda/preset/bureaucrat/Initialize(mapload)
+	starting_files |= list(
+		new /datum/computer_file/program/crew_manifest,
+		new /datum/computer_file/program/paperwork_printer
 	)	
-	
+	return ..()
