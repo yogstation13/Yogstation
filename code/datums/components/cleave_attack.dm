@@ -76,6 +76,7 @@
 	new cleave_effect(user_turf, facing_dir)
 
 	// now swing across those turfs
+	ADD_TRAIT(item, TRAIT_CLEAVING, REF(src))
 	attack_loop:
 		for(var/turf/T as anything in turf_list)
 			for(var/atom/movable/hit_atom in T)
@@ -89,6 +90,7 @@
 				item.melee_attack_chain(user, hit_atom, params)
 				if(isliving(hit_atom) && item.sharpness == SHARP_NONE)
 					break attack_loop
+	REMOVE_TRAIT(item, TRAIT_CLEAVING, REF(src))
 
 	// do these last so they don't get overridden during the attack loop
 	user.do_attack_animation(center_turf, no_effect=TRUE)
