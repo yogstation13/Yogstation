@@ -574,7 +574,8 @@
 	var/damage_bonus = 0
 	var/cooldown_bonus = 0
 	var/current_state = 0
-	var/timer = 0
+	COOLDOWN_DECLARE(bonus_timer)
+	var/bonus_cooldown = 5 SECONDS
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/effect_desc()
 	return "Gives a stacking (up to 5 times) decreases your shot delay and increases detonation damage when you detonate a mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
@@ -593,8 +594,7 @@
 	STOP_PROCESSING(SSprocessing,src)
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced)
-	. = ..()
-	timer = 5 SECONDS
+	COOLDOWN_START(src, bonus_timer, bonus_cooldown)
 	var/previous_state = current_state
 	current_state = min(current_state + 1, 5)
 	cooldown_bonus = 2 * current_state
@@ -609,17 +609,15 @@
 		hammer_synced = loc
 		user = hammer_synced.loc
 	hammer_synced.detonation_damage -= damage_bonus
-	hammer_synced.charge_time -= cooldown_bonus
+	hammer_synced.charge_time += cooldown_bonus
 	current_state = 0
 	cooldown_bonus = 0
 	damage_bonus = 0
 	user.clear_alert("glory_of_victory")
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/process(delta_time)
-	if(timer > 0)
-		timer -= delta_time
-		if(timer <= 0)
-			remove_bonuses()
+	if(COOLDOWN_FINISHED(src, bonus_timer))
+		remove_bonuses()
 
 /obj/item/crusher_trophy/jungleland/mosquito_sack
 	name = "Mosquito's bloodsack"
