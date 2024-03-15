@@ -609,7 +609,7 @@
 		add_client_colour(/datum/client_colour/monochrome_infra)
 		var/image/A = null
 		see_infrared = TRUE
-		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_MEDIUM)
+		lighting_cutoff = max(lighting_cutoff, 10)
 
 		if(client)
 			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
