@@ -1,13 +1,13 @@
 /obj/item/paper/crumpled/ruins/jungle/tar_king_note
 	name = "tar-soaked note"
-	info = {"I am at the end now.<BR> 
-Many days and many nights have passed since I began my journey from our sanctuary across the isles.
-I was told this crystal was the key to bringing an end to the cancer of our world. I was told I would be prepared to face Him...<BR><BR>
-Hope was the one thing carrying me through my voyage and all that I've had to face. But now I realize they were all lies.<BR><BR>
-This crystal, this key that I have risked my life to carry here, doesn't even fit into the altar! All this time... I did all this just for a broken shard... And for what?<BR><BR>
+	info = {"I'm at the end now.<BR>
+Many days and many nights have passed since I left our sanctuary across the isles.
+They gave me this crystal, and told me it would be the key to exposing <i>it</i>, the source of our world's cancer.<BR><BR>
 
-My flask ran dry days ago. I am too far and too weak to go back. There's only the quiet now...<BR><BR>
+Now, I see the altar they spoke of, and its misshapen! The lock is too wide, too deep. And there I realized it doesn't fucking fit!
+It wasn't a key, it was a SHARD. I risked my life for this! Traveled half the world just for a fucking fragment? And for what? To die here, alone?<BR><BR>
 
-If any of you find this, I'm so sorry. I couldn't do it.<BR>
-- Welwitschia"}
-	infolang = /datum/language/sylvan
+This is it. My flask ran dry days ago. I could carry on, but I'm far too weak and too far to go back.<BR>
+If any of you find this, I'm so sorry. I failed you all.<BR>
+- Welwitschie"}
+	infolang = /datum/language/sylvan //90% sure this is broken anyways but whatevs
