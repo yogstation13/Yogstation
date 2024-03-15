@@ -49,10 +49,6 @@
 	return
 
 /datum/psi_web/proc/remove(refund = FALSE)
-	on_loss()
-	if(refund)
-		darkspawn.willpower += willpower_cost
-	
 	for(var/ability in learned_abilities)
 		if(ispath(ability, /datum/action))
 			var/datum/action/action = locate(ability) in owner.actions
@@ -60,6 +56,11 @@
 				action.Remove(owner)
 				qdel(action)
 
+	on_loss()
+
+	if(refund && darkspawn)
+		darkspawn.willpower += willpower_cost
+	
 	return QDEL_HINT_QUEUE
 
 /datum/psi_web/Destroy(force, ...)

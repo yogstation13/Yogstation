@@ -53,7 +53,7 @@
 		owner.update_appearance(UPDATE_OVERLAYS)
 	
 	for(var/datum/psi_web/power in learned_abilities)
-		lose_power(power)
+		lose_power(power, TRUE) //if the component is removed, refund them
 
 /datum/component/darkspawn_class/proc/update_owner_overlay(atom/source, list/overlays)
 	SIGNAL_HANDLER
@@ -96,12 +96,12 @@
 	else
 		qdel(new_power)
 
-/datum/component/darkspawn_class/proc/lose_power(datum/psi_web/power)
+/datum/component/darkspawn_class/proc/lose_power(datum/psi_web/power, refund = FALSE)
 	if(!locate(power) in learned_abilities)
 		CRASH("[owner] tried to lose [power] which they haven't learned")
 	
 	learned_abilities -= power
-	power.remove()
+	power.remove(refund)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------The Classes in Question-------------------------------//
@@ -137,3 +137,23 @@
 	specialization_flag = WARLOCK
 	class_color = COLOR_STRONG_VIOLET
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/warlock)
+
+/datum/component/darkspawn_class/admin
+	name = "Admin"
+	description = "Can do everything."
+	long_description = "Yeah, you're fucked buddy."
+	specialization_flag = ALL_DARKSPAWN_CLASSES
+	class_color = LIGHT_COLOR_ELECTRIC_GREEN
+	choosable = FALSE
+	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/fighter, /datum/psi_web/scout, /datum/psi_web/warlock)
+	var/last_colour = 0
+	var/list/hsv
+
+/datum/component/darkspawn_class/admin/update_owner_overlay(atom/source, list/overlays)
+	if(!hsv)
+		hsv = RGBtoHSV(rgb(255, 0, 0))
+	hsv = RotateHue(hsv, (world.time - last_colour) * 15)
+	last_colour = world.time
+	class_color = HSVtoRGB(hsv) //rainbow
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, update_appearance), UPDATE_OVERLAYS), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //regularly refresh the overlays
+	. = ..()

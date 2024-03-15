@@ -128,6 +128,7 @@
 	.["Set Willpower"] = CALLBACK(src, PROC_REF(set_shop))
 	.["Set Psi Values"] = CALLBACK(src, PROC_REF(set_psi))
 	.["Set Max Veils"] = CALLBACK(src, PROC_REF(set_max_veils))
+	.["Set Class"] = CALLBACK(src, PROC_REF(set_class))
 
 /datum/antagonist/darkspawn/proc/set_lucidity(mob/admin)
 	var/lucid = input(admin, "How much lucidity should all darkspawns have?") as null|num
@@ -154,6 +155,23 @@
 	var/delay = input(admin, "What should the delay to psi regeneration be?") as null|num
 	if(delay)
 		psi_regen_delay = delay
+
+/datum/antagonist/darkspawn/proc/set_class(mob/admin)
+	var/list/classes = list()
+	for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
+		if(initial(class.choosable))
+			classes |= class
+	classes |= "vvv Not regularly selectible vvv"
+	classes |= subtypesof(/datum/component/darkspawn_class)
+		
+	var/chosen = tgui_input_list(admin, "Select which class to force on the target.", "Select Class", classes)
+	if(!chosen || !ispath(chosen, /datum/component/darkspawn_class))
+		return
+	
+	if(QDELETED(src) || QDELETED(owner.current))
+		return
+
+	picked_class = owner.current.AddComponent(chosen)
 
 /datum/antagonist/darkspawn/antag_panel_data()
 	if(team)
