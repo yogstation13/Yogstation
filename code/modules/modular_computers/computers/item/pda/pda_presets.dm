@@ -202,7 +202,7 @@
 
 //for inside one of the nukie lockers
 /obj/item/modular_computer/tablet/pda/preset/syndicate
-	desc = Based off Nanotrasen's PDAs, this one has been reverse-engineered and loaded with illegal software provided by the Syndicate."
+	desc = "Based off Nanotrasen's PDAs, this one has been reverse-engineered and loaded with illegal software provided by the Syndicate."
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#A80001#5C070F#000000"
 
