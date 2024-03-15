@@ -572,4 +572,5 @@
 	desc = "A traditional hawaiian skirt, often called a pa'u."
 	icon_state = "hawaiian_skirt"
 	item_state = "hawaiian_skirt"
+	fitted = FEMALE_UNIFORM_TOP //no hole in the skirt
 	can_adjust = 0

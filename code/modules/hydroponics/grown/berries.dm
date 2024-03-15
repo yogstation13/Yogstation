@@ -288,7 +288,7 @@
 	icon_harvest = "coconut-harvest"
 	genes = list()
 	mutatelist = null
-	reagents_add = list()
+	reagents_add = list(/datum/reagent/consumable/milk/coconut = 0.1, /datum/reagent/consumable/nutriment/protein = 0.01)
 
 /obj/item/reagent_containers/food/snacks/grown/coconut
 	seed = /obj/item/seeds/coconut
@@ -296,5 +296,6 @@
 	desc = "Too heavy for a five ounce bird to carry."
 	icon_state = "coconut"
 	tastes = list("coconut" = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/protein = 1)
 	grind_results = list(/datum/reagent/consumable/milk/coconut = 20)
 	distill_reagent = /datum/reagent/consumable/ethanol/creme_de_coconut //eh, why not
