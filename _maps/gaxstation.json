@@ -15,7 +15,8 @@
 			"Linkage": null
 		},
 		{
-			"Down": true
+			"Down": true,
+			"Baseturf": "/turf/open/openspace"
 		}
 	]
 }

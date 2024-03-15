@@ -7129,15 +7129,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"djN" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/end/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "djO" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/power/apc{
@@ -9313,6 +9304,15 @@
 /obj/effect/turf_decal/trimline/atmos/warning/lower/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)
+"enC" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "eoa" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/engine/engineering";
@@ -11613,14 +11613,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"fkR" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/chair,
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "fli" = (
 /obj/machinery/advanced_airlock_controller{
 	pixel_y = 24
@@ -14920,6 +14912,16 @@
 "gJV" = (
 /turf/closed/wall/r_wall,
 /area/security/processing)
+"gKx" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/lapvend,
+/obj/machinery/firealarm{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "gKH" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -17277,19 +17279,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"hRH" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 6
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "hSr" = (
 /obj/machinery/doorButtons/access_button{
 	idDoor = "toxins_airlock_exterior";
@@ -19336,13 +19325,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"iOZ" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/lapvend,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "iPv" = (
 /obj/structure/rack,
 /obj/item/aicard,
@@ -20789,6 +20771,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"jBF" = (
+/obj/effect/turf_decal/trimline/brown/filled/end/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "jBG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only,
@@ -23483,6 +23471,15 @@
 /obj/effect/spawner/lootdrop/plushies,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"kSq" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 6
+	},
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "kSE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -27174,6 +27171,25 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/auxiliary)
+"mBJ" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "mCq" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 8
@@ -29796,19 +29812,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"nTx" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "nTF" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/stripes/corner{
@@ -37799,6 +37802,10 @@
 /obj/effect/turf_decal/trimline/atmos/warning/lower/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)
+"rIA" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/quartermaster/office)
 "rIB" = (
 /obj/machinery/computer/mecha{
 	dir = 4
@@ -46582,22 +46589,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/science/xenobiology)
-"vQb" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "vQk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -50465,6 +50456,17 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"xHU" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/chair,
+/obj/effect/landmark/start/assistant,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "xId" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -72302,7 +72304,7 @@ tkl
 ubS
 ubS
 aCD
-aCD
+ubS
 vRP
 vRP
 vRP
@@ -72559,7 +72561,7 @@ tkl
 tkl
 tkl
 tkl
-qOt
+aCD
 vRP
 vRP
 vRP
@@ -72816,14 +72818,14 @@ aMM
 aMM
 aMM
 tkl
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
+aCD
+aCD
+aCD
+aCD
+ubS
+ubS
+aCD
+ubS
 vRP
 vRP
 vRP
@@ -73080,7 +73082,7 @@ tkl
 tkl
 tkl
 tkl
-vRP
+aCD
 vRP
 vRP
 vRP
@@ -73337,7 +73339,7 @@ vRP
 vRP
 vRP
 tkl
-vRP
+ubS
 vRP
 vRP
 vRP
@@ -73594,7 +73596,7 @@ vRP
 vRP
 vRP
 tkl
-vRP
+ubS
 vRP
 vRP
 vRP
@@ -73851,7 +73853,7 @@ vRP
 vRP
 vRP
 tkl
-vRP
+ubS
 vRP
 vRP
 vRP
@@ -77681,7 +77683,7 @@ tkl
 ubS
 aCD
 aCD
-aCD
+tkl
 oyO
 pPe
 bOn
@@ -77937,8 +77939,8 @@ ubS
 ubS
 ubS
 vRP
-vRP
-vRP
+aCD
+tkl
 oyO
 pPe
 pPe
@@ -78194,8 +78196,8 @@ vRP
 aCD
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 oyO
 pPe
 pPe
@@ -78451,8 +78453,8 @@ vRP
 aCD
 aCD
 vRP
-vRP
-vRP
+aCD
+tkl
 oyO
 oyO
 oyO
@@ -78708,8 +78710,8 @@ aCD
 aCD
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 oyO
 bqd
 oyO
@@ -78964,12 +78966,12 @@ vRP
 vRP
 aCD
 vRP
-vRP
-vRP
-vRP
-oyO
-djN
-vQb
+ubS
+ubS
+tkl
+kmy
+jBF
+mBJ
 inT
 kKQ
 hjh
@@ -79221,9 +79223,9 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
-vRP
+ubS
+tkl
+tkl
 laH
 dby
 fEi
@@ -79478,8 +79480,8 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 laH
 laH
 hff
@@ -79735,8 +79737,8 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 laH
 cHk
 jHK
@@ -79756,9 +79758,9 @@ nJe
 nJe
 nJe
 xNs
-vRP
-vRP
-vRP
+aCD
+tkl
+aCD
 aCD
 ubS
 ubS
@@ -79992,8 +79994,8 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 laH
 eRo
 msR
@@ -80014,8 +80016,8 @@ nJe
 nJe
 xNs
 xNs
-vRP
-vRP
+tkl
+aCD
 vRP
 vRP
 vRP
@@ -80249,11 +80251,11 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 laH
 laH
-fkR
+xHU
 jGo
 fsY
 laH
@@ -80271,8 +80273,8 @@ lId
 nJe
 nJe
 xNs
-vRP
-vRP
+tkl
+aCD
 vRP
 vRP
 vRP
@@ -80506,8 +80508,8 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 laH
 cHk
 jHK
@@ -80528,8 +80530,8 @@ nJe
 nJe
 nJe
 xNs
-vRP
-vRP
+tkl
+aCD
 vRP
 vRP
 vRP
@@ -80763,8 +80765,8 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 laH
 eRo
 rUk
@@ -80785,8 +80787,8 @@ xNs
 xNs
 xNs
 xNs
-vRP
-vRP
+tkl
+aCD
 vRP
 vRP
 vRP
@@ -81020,13 +81022,13 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
+aCD
+tkl
 laH
 laH
-iOZ
-nTx
-hRH
+gKx
+enC
+kSq
 dby
 aGU
 iJN
@@ -81038,12 +81040,12 @@ nJe
 nJe
 nJe
 cdO
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
+tkl
+tkl
+tkl
+tkl
+tkl
+ubS
 vRP
 vRP
 vRP
@@ -81277,12 +81279,12 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
-vRP
+ubS
+tkl
+aCD
 laH
 laH
-laH
+rIA
 laH
 laH
 laH
@@ -81295,12 +81297,12 @@ nJe
 nJe
 nJe
 cdO
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
+tkl
+aCD
+aCD
+ubS
+ubS
+ubS
 vRP
 vRP
 vRP
@@ -81534,26 +81536,26 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
+ubS
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
 xNs
 xNs
 xNs
 xNs
 xNs
 xNs
-vRP
-vRP
+tkl
+aCD
 vRP
 vRP
 vRP
@@ -81791,26 +81793,26 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
+ubS
+aCD
+aCD
+aCD
+ubS
+ubS
+aCD
+aCD
+ubS
+ubS
+ubS
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+tkl
+ubS
 vRP
 vRP
 vRP
@@ -82058,16 +82060,16 @@ vRP
 vRP
 vRP
 vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
-vRP
+ubS
+ubS
+aCD
+ubS
+aCD
+aCD
+aCD
+aCD
+ubS
+ubS
 vRP
 vRP
 vRP
