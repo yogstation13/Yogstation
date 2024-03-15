@@ -211,7 +211,7 @@
 	starting_files |= list(
 		new /datum/computer_file/program/bomberman,
 	)
-  return ..()
+	return ..()
 
 // The worst thing mankind can fathom - used in clown ops and nukie clown costume
 /obj/item/modular_computer/tablet/pda/preset/clown/syndicate
@@ -222,7 +222,7 @@
 	starting_files |= list(
 		new /datum/computer_file/program/bomberman,
 	)
-  return ..()
+	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/bureaucrat
 	desc = "A standard issue PDA issued to certain Nanotrasen personnel to help with inspections."
