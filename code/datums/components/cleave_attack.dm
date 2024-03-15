@@ -8,17 +8,41 @@
 	var/swing_speed_mod
 	/// Which effect should this use
 	var/cleave_effect
+	/// Whether this item is disallowed from hitting more than one target
+	var/no_multi_hit
+	/// Callback when the cleave attack is finished
+	var/datum/callback/cleave_end_callback
 
-/datum/component/cleave_attack/Initialize(arc_size=90, swing_speed_mod=1.25, requires_wielded=FALSE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack, ...)
+/datum/component/cleave_attack/Initialize(
+		arc_size=90,
+		swing_speed_mod=1.25,
+		requires_wielded=FALSE,
+		no_multi_hit=FALSE,
+		cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack,
+		datum/callback/cleave_end_callback,
+		...
+	)
+
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	
 	src.arc_size = arc_size
 	src.swing_speed_mod = swing_speed_mod
 	src.requires_wielded = requires_wielded
+	src.no_multi_hit = no_multi_hit
 	src.cleave_effect = cleave_effect
+	src.cleave_end_callback = cleave_end_callback
 
-/datum/component/cleave_attack/InheritComponent(datum/component/C, i_am_original, arc_size, swing_speed_mod, requires_wielded, cleave_effect)
+/datum/component/cleave_attack/InheritComponent(
+		datum/component/C,
+		i_am_original,
+		arc_size,
+		swing_speed_mod,
+		requires_wielded,
+		cleave_effect,
+		cleave_end_callback
+	)
+
 	if(!i_am_original)
 		return
 	if(arc_size)
@@ -27,6 +51,12 @@
 		src.swing_speed_mod = swing_speed_mod
 	if(requires_wielded)
 		src.requires_wielded = requires_wielded
+	if(no_multi_hit)
+		src.no_multi_hit = no_multi_hit
+	if(cleave_effect)
+		src.cleave_effect = cleave_effect
+	if(cleave_end_callback)
+		src.cleave_end_callback = cleave_end_callback
 
 /datum/component/cleave_attack/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
@@ -88,11 +118,12 @@
 					if(!hit_atom.density && hit_atom.uses_integrity)
 						continue
 				item.melee_attack_chain(user, hit_atom, params)
-				if(isliving(hit_atom) && item.sharpness == SHARP_NONE)
+				if(no_multi_hit && isliving(hit_atom))
 					break attack_loop
 	REMOVE_TRAIT(item, TRAIT_CLEAVING, REF(src))
 
 	// do these last so they don't get overridden during the attack loop
+	cleave_end_callback?.Invoke(item, user)
 	user.do_attack_animation(center_turf, no_effect=TRUE)
 	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
 	user.weapon_slow(item)

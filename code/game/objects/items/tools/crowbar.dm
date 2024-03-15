@@ -64,7 +64,7 @@
 
 /obj/item/crowbar/large/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/cleave_attack) // it's big
+	AddComponent(/datum/component/cleave_attack, no_multi_hit=TRUE) // it's big
 
 /obj/item/crowbar/cyborg
 	name = "hydraulic crowbar"

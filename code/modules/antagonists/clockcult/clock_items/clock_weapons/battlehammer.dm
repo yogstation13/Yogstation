@@ -12,7 +12,7 @@
 /obj/item/clockwork/weapon/brass_battlehammer/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
-	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle) // big hammer
+	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE, no_multi_hit=TRUE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle) // big hammer
 
 /obj/item/clockwork/weapon/brass_battlehammer/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()

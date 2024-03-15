@@ -46,7 +46,12 @@
 		force_wielded = force_wielded, \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle)
+	AddComponent(/datum/component/cleave_attack, \
+		arc_size=180, \
+		requires_wielded=TRUE, \
+		cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle, \
+		cleave_end_callback=CALLBACK(src, PROC_REF(end_swing)), \
+	)
 
 /obj/item/melee/vxtvulhammer/Destroy() //Even though the hammer won't probably be destroyed, Ever™
 	QDEL_NULL(spark_system)
@@ -70,6 +75,10 @@
 		to_chat(user, span_notice("You flip the switch off as you adjust your grip."))
 		user.visible_message(span_warning("[user] flicks the hammer off!"))
 		charging = FALSE
+
+/obj/item/melee/vxtvulhammer/proc/end_swing(obj/item/weapon, mob/user)
+	if(supercharged)
+		supercharge()
 
 /obj/item/melee/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK || !HAS_TRAIT(src, TRAIT_WIELDED)) //Doesn't work against ranged or if it's not wielded
@@ -144,7 +153,8 @@
 		K.color = color
 		playsound(loc, 'sound/effects/powerhammerhit.ogg', 80, FALSE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
-		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
+		if(!HAS_TRAIT(src, TRAIT_CLEAVING)) // wait for the swing to end
+			supercharge() //At start so it doesn't give an unintentional message if you hit yourself
 
 		if(ismecha(target) && !toy)
 			user.visible_message(span_danger("The hammer thunders against [target], caving in part of its outer plating!"))
