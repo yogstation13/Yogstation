@@ -218,7 +218,7 @@
 	desc = "A hilariously terrifying PDA reverse-engineered by the Syndicate, given to their most unhinged operatives."
 
 /obj/item/modular_computer/tablet/pda/preset/clown/syndicate/Initialize(mapload)
-  obj_flags |= EMAGGED //starts emagged //rather have this than re-do clown stuff over
+	obj_flags |= EMAGGED //starts emagged //rather have this than re-do clown stuff over
 	starting_files |= list(
 		new /datum/computer_file/program/bomberman,
 	)
@@ -228,7 +228,7 @@
 	desc = "A standard issue PDA issued to certain Nanotrasen personnel to help with inspections."
 	greyscale_config = /datum/greyscale_config/tablet/captain
 	greyscale_colors = "#2EBE3B#FF0000#FFFFFF#FFD55B" // Rockin the company colors
-  pen_type = /obj/item/pen/fountain/captain
+	pen_type = /obj/item/pen/fountain/captain
 
 /obj/item/modular_computer/tablet/pda/preset/bureaucrat/Initialize(mapload)
 	starting_files |= list(
