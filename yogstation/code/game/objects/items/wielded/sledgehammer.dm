@@ -37,7 +37,6 @@
 		arc_size=180, \
 		requires_wielded=TRUE, \
 		no_multi_hit=TRUE, \
-		cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle, \
 	) // big and heavy hammer makes wide arc
 
 /obj/item/melee/sledgehammer/proc/on_wield(atom/source, mob/living/user)

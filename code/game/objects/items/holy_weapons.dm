@@ -365,7 +365,7 @@
 
 /obj/item/nullrod/bostaff/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/cleave_attack, arc_size=180, cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle)
+	AddComponent(/datum/component/cleave_attack, arc_size=180)
 
 /obj/item/nullrod/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)

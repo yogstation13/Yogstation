@@ -49,7 +49,6 @@
 	AddComponent(/datum/component/cleave_attack, \
 		arc_size=180, \
 		requires_wielded=TRUE, \
-		cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle, \
 		cleave_end_callback=CALLBACK(src, PROC_REF(end_swing)), \
 	)
 

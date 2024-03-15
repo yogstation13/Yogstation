@@ -18,8 +18,8 @@
 		swing_speed_mod=1.25,
 		requires_wielded=FALSE,
 		no_multi_hit=FALSE,
-		cleave_effect=/obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack,
 		datum/callback/cleave_end_callback,
+		cleave_effect,
 		...
 	)
 
@@ -30,8 +30,8 @@
 	src.swing_speed_mod = swing_speed_mod
 	src.requires_wielded = requires_wielded
 	src.no_multi_hit = no_multi_hit
-	src.cleave_effect = cleave_effect
 	src.cleave_end_callback = cleave_end_callback
+	set_cleave_effect(cleave_effect) // set it based on arc size if an effect wasn't specified
 
 /datum/component/cleave_attack/InheritComponent(
 		datum/component/C,
@@ -39,8 +39,8 @@
 		arc_size,
 		swing_speed_mod,
 		requires_wielded,
-		cleave_effect,
-		cleave_end_callback
+		datum/callback/cleave_end_callback,
+		cleave_effect
 	)
 
 	if(!i_am_original)
@@ -53,10 +53,22 @@
 		src.requires_wielded = requires_wielded
 	if(no_multi_hit)
 		src.no_multi_hit = no_multi_hit
-	if(cleave_effect)
-		src.cleave_effect = cleave_effect
 	if(cleave_end_callback)
 		src.cleave_end_callback = cleave_end_callback
+	set_cleave_effect(cleave_effect)
+
+/// Sets the cleave effect to the specified effect, or based on arc size if one wasn't specified.
+/datum/component/cleave_attack/proc/set_cleave_effect(new_effect)
+	if(new_effect)
+		cleave_effect = new_effect
+		return
+	switch(arc_size)
+		if(0 to 120)
+			cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack
+		if(120 to 240)
+			cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/semicircle
+		else
+			cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/sweep_attack/full_circle
 
 /datum/component/cleave_attack/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
