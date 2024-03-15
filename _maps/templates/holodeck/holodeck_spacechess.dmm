@@ -1,0 +1,344 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "8"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"b" = (
+/obj/item/cardboard_cutout/chess/black/rook,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"c" = (
+/obj/item/cardboard_cutout/chess/black/bishop,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"g" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "d"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"h" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "2"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"i" = (
+/obj/item/cardboard_cutout/chess/white/rook,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"j" = (
+/obj/structure/closet/chesspieces/black,
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"k" = (
+/obj/item/cardboard_cutout/chess/white/pawn,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"l" = (
+/obj/item/cardboard_cutout/chess/black/pawn,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"m" = (
+/obj/item/cardboard_cutout/chess/white/bishop,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"n" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "e"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"p" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "h"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"q" = (
+/obj/item/cardboard_cutout/chess/white/king,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"r" = (
+/obj/item/cardboard_cutout/chess/white/pawn,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"s" = (
+/obj/item/cardboard_cutout/chess/white/rook,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"v" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "f"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"w" = (
+/obj/item/cardboard_cutout/chess/black/knight,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"y" = (
+/obj/structure/closet/chesspieces/white,
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"A" = (
+/obj/item/cardboard_cutout/chess/black/pawn,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"C" = (
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"D" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "a"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"E" = (
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"G" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "6"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"H" = (
+/obj/item/cardboard_cutout/chess/black/king,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"I" = (
+/obj/item/cardboard_cutout/chess/black/knight,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"J" = (
+/obj/item/cardboard_cutout/chess/white/knight,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"K" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "1"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"L" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "7"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"M" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "g"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"N" = (
+/obj/item/cardboard_cutout/chess/black/rook,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"O" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "4"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"P" = (
+/obj/item/cardboard_cutout/chess/black/queen,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"Q" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "5"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"R" = (
+/obj/item/cardboard_cutout/chess/white/bishop,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"S" = (
+/obj/item/cardboard_cutout/chess/black/bishop,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"U" = (
+/obj/item/cardboard_cutout/chess/white/queen,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/template_noop)
+"W" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "b"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"X" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "3"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+"Y" = (
+/obj/item/cardboard_cutout/chess/white/knight,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/template_noop)
+"Z" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "c"
+	},
+/turf/open/floor/holofloor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+j
+a
+L
+G
+Q
+O
+X
+h
+K
+y
+"}
+(2,1,1) = {"
+D
+b
+A
+C
+E
+C
+E
+k
+s
+D
+"}
+(3,1,1) = {"
+W
+w
+l
+E
+C
+E
+C
+r
+J
+W
+"}
+(4,1,1) = {"
+Z
+c
+A
+C
+E
+C
+E
+k
+m
+Z
+"}
+(5,1,1) = {"
+g
+P
+l
+E
+C
+E
+C
+r
+U
+g
+"}
+(6,1,1) = {"
+n
+H
+A
+C
+E
+C
+E
+k
+q
+n
+"}
+(7,1,1) = {"
+v
+S
+l
+E
+C
+E
+C
+r
+R
+v
+"}
+(8,1,1) = {"
+M
+I
+A
+C
+E
+C
+E
+k
+Y
+M
+"}
+(9,1,1) = {"
+p
+N
+l
+E
+C
+E
+C
+r
+i
+p
+"}

@@ -192,13 +192,16 @@
 	var/datum/martial_art/krav_maga/style = new
 	cryo_preserve = TRUE
 	var/equipper = null //who's wearing the gloves?
-	var/equipped = FALSE //does the user currently have the martial art?
-	var/list/enabled_areas = list(/area/security,
-					/area/ai_monitored/security,
-					/area/mine/laborcamp,
-					/area/shuttle/labor,
-					/area/crew_quarters/heads/hos,
-					/area/holodeck/perma) //where can we use krav maga?
+	var/equipped = FALSE //does the user currently have the martial art? 
+	///List of places that Kravs can be used.
+	var/list/enabled_areas = list(
+		/area/security, 
+		/area/ai_monitored/security,
+		/area/mine/laborcamp,
+		/area/shuttle/labor,
+		/area/crew_quarters/heads/hos,
+		/area/holodeck/rec_center/perma,
+	)
 
 /obj/item/clothing/gloves/sec_maga/equipped(mob/user, slot)
 	. = ..()

@@ -1,2 +1,2 @@
-/area/holodeck/perma
-	name = "\improper Recreational Holodeck"
+/area/holodeck/rec_center/perma
+	name = "\improper Perambrig Recreational Holodeck"
