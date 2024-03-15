@@ -22,11 +22,11 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!iscarbon(cast_on))
+	if(!isliving(cast_on))
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/spell/pointed/scrunch/cast(mob/living/carbon/cast_on)
+/datum/action/cooldown/spell/pointed/scrunch/cast(mob/living/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
 		to_chat(cast_on, span_notice("You feel... not scrunched."))

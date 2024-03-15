@@ -13,10 +13,10 @@
 
 /datum/element/squish/Attach(datum/target, duration=20 SECONDS, reverse=FALSE)
 	. = ..()
-	if(!iscarbon(target))
+	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
 
-	var/mob/living/carbon/C = target
+	var/mob/living/C = target
 	var/was_lying = (C.lying != 0)
 	addtimer(CALLBACK(src, PROC_REF(Detach), C, was_lying, reverse), duration)
 
@@ -25,7 +25,7 @@
 	else
 		C.transform = C.transform.Scale(TALL, SHORT)
 
-/datum/element/squish/Detach(mob/living/carbon/C, was_lying, reverse)
+/datum/element/squish/Detach(mob/living/C, was_lying, reverse)
 	. = ..()
 	if(istype(C))
 		var/is_lying = (C.lying != 0)
