@@ -53016,7 +53016,7 @@
 "qpF" = (
 /obj/machinery/door/airlock{
 	name = "Service Hall";
-	req_access_txt = "79"
+	req_access_txt = "35"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
