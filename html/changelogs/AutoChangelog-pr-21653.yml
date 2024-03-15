@@ -1,6 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "job occupations won't delete themselves and you won't be put into random jobs if you haven't loaded your character"
-  - bugfix: "mining points card says the correct description"
-  - bugfix: "scars check for the correct body part flag instead of the body part itself"
