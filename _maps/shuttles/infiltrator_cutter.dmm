@@ -2,28 +2,6 @@
 "aa" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/yogs/stealthcruiser)
-"ab" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 2
-	},
-/obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_port";
-	req_access_txt = "150"
-	},
-/obj/docking_port/mobile{
-	callTime = 150;
-	dir = 2;
-	dwidth = 14;
-	height = 13;
-	shuttle_id = "syndicatecutter";
-	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
-	name = "Syndicate Cutter";
-	port_direction = 8;
-	preferred_direction = 4;
-	width = 22
-	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
 "ac" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 9
@@ -32,47 +10,6 @@
 /area/shuttle/yogs/stealthcruiser)
 "ad" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/yogs/stealthcruiser)
-"ae" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/sign/warning/vacuum{
-	pixel_x = -32
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"af" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "syndicatecutter_bridge"
-	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"ag" = (
-/obj/machinery/atmospherics/components/unary/tank/air,
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"ah" = (
-/obj/effect/turf_decal/bot_white,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/suit_storage_unit/infiltrator,
-/turf/open/floor/pod/light,
-/area/shuttle/yogs/stealthcruiser)
-"ai" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_port";
-	req_access_txt = "150"
-	},
-/turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "aj" = (
 /obj/machinery/porta_turret/syndicate{
@@ -95,675 +32,29 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/yogs/stealthcruiser)
-"am" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/mop,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"an" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 8
-	},
-/obj/machinery/meter,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"ap" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark/corner,
-/area/shuttle/yogs/stealthcruiser)
-"aq" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/defibrillator_mount/loaded{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/dark/side,
-/area/shuttle/yogs/stealthcruiser)
-"ar" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 1
-	},
-/obj/effect/turf_decal/caution/stand_clear/white,
-/turf/open/floor/plasteel/dark/side,
-/area/shuttle/yogs/stealthcruiser)
-"as" = (
-/obj/machinery/button/door{
-	id = "syndicatecutter_bolt_port";
-	name = "External Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_x = -4;
-	pixel_y = 25;
-	req_access_txt = "150";
-	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/side,
-/area/shuttle/yogs/stealthcruiser)
-"at" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark/side,
-/area/shuttle/yogs/stealthcruiser)
-"au" = (
-/obj/structure/sign/departments/medbay/alt,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/yogs/stealthcruiser)
-"av" = (
-/obj/structure/closet/syndicate/personal,
-/turf/open/floor/plasteel/dark/side{
-	dir = 5
-	},
-/area/shuttle/yogs/stealthcruiser)
-"aw" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/closet/syndicate/personal,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"ay" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/yogs/stealthcruiser)
-"az" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"aA" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"aB" = (
-/obj/structure/sign/departments/engineering,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/yogs/stealthcruiser)
-"aC" = (
-/obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/cautery{
-	pixel_x = 4
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/shuttle/yogs/stealthcruiser)
-"aD" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"aE" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"aF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"aH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/shuttle/yogs/stealthcruiser)
-"aI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"aJ" = (
-/obj/structure/table/reinforced,
-/obj/item/ammo_box/magazine/m10mm{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/ammo_box/magazine/m10mm,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
 "aK" = (
 /obj/structure/shuttle/engine/propulsion/burst/right{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/yogs/stealthcruiser)
-"aL" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/machinery/space_heater,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"aM" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"aN" = (
-/obj/structure/table,
-/obj/item/retractor,
-/obj/item/hemostat,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/shuttle/yogs/stealthcruiser)
-"aO" = (
-/obj/structure/table/optable,
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/shuttle/yogs/stealthcruiser)
-"aP" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/brute{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/fire,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/yogs/stealthcruiser)
-"aR" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/crate/freezer/blood,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/shuttle/yogs/stealthcruiser)
-"aS" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "tactical chair"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 6
-	},
-/area/shuttle/yogs/stealthcruiser)
-"aT" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
 "aU" = (
-/obj/structure/table/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/crowbar/red,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"aV" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bb" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/yogs/stealthcruiser)
-"bc" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/chair{
-	dir = 4;
-	name = "tactical chair"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bd" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"be" = (
 /obj/structure/rack,
-/obj/item/aicard,
-/obj/item/multitool,
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bg" = (
-/obj/structure/chair/office{
-	dir = 8
+/obj/item/grenade/syndieminibomb{
+	pixel_x = -1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
+/obj/item/grenade/syndieminibomb{
+	pixel_x = -1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/obj/item/grenade/syndieminibomb{
+	pixel_x = -1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/item/grenade/syndieminibomb{
+	pixel_x = -1
 	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bj" = (
-/obj/machinery/computer/shuttle/syndicate/cutter{
-	dir = 8;
-	icon_state = "computer"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bm" = (
-/obj/structure/table,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/handcuffs,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/yogs/stealthcruiser)
-"bn" = (
-/obj/structure/table,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/airalarm{
-	pixel_y = 24;
-	req_access = 150
-	},
-/obj/effect/landmark/start/infiltrator_objective,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/yogs/stealthcruiser)
-"bo" = (
-/obj/structure/tank_dispenser/oxygen,
-/obj/machinery/firealarm{
-	dir = 2;
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/yogs/stealthcruiser)
-"bp" = (
-/obj/structure/table,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/window/southleft{
-	name = "Weapon Storage";
-	req_access_txt = "150"
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/grenade/plastic/c4{
-	pixel_x = -3
-	},
-/obj/item/grenade/plastic/c4{
-	pixel_x = 5
-	},
-/obj/item/grenade/plastic/c4{
-	pixel_x = 13
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/yogs/stealthcruiser)
-"bq" = (
-/obj/structure/table,
-/obj/machinery/door/window/southleft{
-	base_state = "right";
-	icon_state = "right";
-	name = "Weapon Storage";
-	req_access_txt = "150"
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/grenade/flashbang{
-	pixel_x = -11
-	},
-/obj/item/grenade/flashbang{
-	pixel_x = -3
-	},
-/obj/item/grenade/flashbang{
-	pixel_x = 5
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/yogs/stealthcruiser)
-"br" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "tactical chair"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -24;
-	req_access = list(150)
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bs" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bA" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/closet/crate/secure/weapon,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/melee/baton/loaded{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/melee/baton/loaded,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bD" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bE" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bF" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"bI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/recharger/wallrecharger{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bK" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/obj/effect/turf_decal/caution/stand_clear/white{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bL" = (
-/obj/machinery/button/door{
-	id = "syndicatecutter_bolt_starboard";
-	name = "External Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_x = -4;
-	pixel_y = -25;
-	req_access_txt = "150";
-	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bM" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bN" = (
-/obj/structure/sign/warning/securearea,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/yogs/stealthcruiser)
-"bO" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/med_data/syndie{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bP" = (
-/obj/machinery/light/small,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/secure_data/syndie{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"bQ" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stack/cable_coil,
-/obj/item/stock_parts/cell/high,
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"bR" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 2
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_starboard";
-	req_access_txt = "150"
-	},
-/turf/open/floor/plating,
+/obj/machinery/light,
+/obj/effect/turf_decal/trimline/purple/filled,
+/turf/open/floor/pod,
 /area/shuttle/yogs/stealthcruiser)
 "bS" = (
 /obj/machinery/porta_turret/syndicate{
@@ -777,145 +68,446 @@
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/yogs/stealthcruiser)
-"bU" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+"bZ" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"cN" = (
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"do" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/dark_blue/filled,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"ec" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/obj/effect/turf_decal/trimline/secred,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"fv" = (
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_starboard";
-	req_access_txt = "150"
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
-"bW" = (
-/turf/template_noop,
-/area/template_noop)
-"cP" = (
-/obj/machinery/power/port_gen/pacman{
-	anchored = 1
+"gO" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
 	},
-/obj/item/wrench,
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"hn" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"hT" = (
+/obj/structure/rack,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/effect/turf_decal/trimline/purple/filled,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"ik" = (
+/obj/effect/turf_decal/trimline/dark_red,
+/turf/open/floor/plasteel/bluespace,
+/area/shuttle/yogs/stealthcruiser)
+"iz" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"db" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/structure/rack,
-/obj/item/storage/toolbox/emergency,
-/obj/item/weldingtool,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/closet/syndicate,
+/obj/item/clothing/suit/space/syndicate,
+/obj/item/clothing/head/helmet/space/syndicate,
+/turf/open/floor/sepia,
 /area/shuttle/yogs/stealthcruiser)
-"jX" = (
-/obj/machinery/computer/camera_advanced/syndie{
-	dir = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"kG" = (
+"iK" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/cutter{
 	x_offset = 3;
 	y_offset = -6
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
+/obj/effect/turf_decal/trimline/dark_blue/filled,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"iY" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
 	},
-/obj/effect/turf_decal/tile/red{
+/obj/structure/fans/tiny,
+/obj/docking_port/mobile{
+	callTime = 150;
+	dir = 2;
+	dwidth = 14;
+	height = 13;
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
+	name = "Syndicate Cutter";
+	port_direction = 8;
+	preferred_direction = 4;
+	shuttle_id = "syndicatecutter";
+	width = 22
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
 	dir = 4
 	},
-/obj/machinery/light/small{
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"je" = (
+/turf/template_noop,
+/area/space)
+"jp" = (
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 4
+	},
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"jt" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/line/lower,
+/obj/structure/chair/office/dark,
+/obj/item/toy/figure/atmos,
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"jK" = (
+/obj/item/storage/bag/mail,
+/obj/effect/turf_decal/trimline/dark_green/filled/line/lower{
+	dir = 9
+	},
+/obj/structure/table,
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"ky" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 4
+	},
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"kS" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
-"mi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+"lo" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"mE" = (
+/obj/item/mail/explosive,
+/obj/item/mail/explosive,
+/obj/item/mail/explosive,
+/obj/item/mail/explosive,
+/obj/item/mail/explosive,
+/obj/item/mail/explosive,
+/obj/item/mail/explosive,
+/obj/structure/closet/crate/mail{
+	desc = "Bomb-Mail";
+	name = "Bmail"
+	},
+/obj/item/grenade/pipebomb,
+/obj/item/mail/explosive,
+/obj/item/mail/explosive,
+/obj/effect/turf_decal/trimline/dark_green/filled/line/lower{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"mQ" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"nD" = (
+/obj/machinery/computer/crew/syndie,
+/obj/effect/turf_decal/trimline/dark_blue/filled,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"nY" = (
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Launchpad Door"
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"op" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/machinery/door/poddoor{
+	id = "syndicatecutter_bridge"
+	},
+/turf/open/floor/plating,
+/area/shuttle/yogs/stealthcruiser)
+"oR" = (
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Equipment Room";
+/obj/effect/turf_decal/trimline/dark_green/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"oS" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner/lower,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"oY" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/obj/effect/turf_decal/trimline/secred,
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"pB" = (
+/obj/machinery/computer/shuttle/syndicate/cutter{
+	dir = 8;
+	icon_state = "computer"
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"pI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"qr" = (
+/turf/open/floor/plasteel/bluespace,
+/area/shuttle/yogs/stealthcruiser)
+"qv" = (
+/mob/living/simple_animal/parrot/clock_hawk{
+	name = "Poly 2"
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"qC" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"qU" = (
+/obj/machinery/iv_drip,
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"sy" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/nitrium,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"tb" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"ts" = (
+/obj/structure/rack,
+/obj/item/grenade/chem_grenade/radiation,
+/obj/item/grenade/chem_grenade/radiation,
+/obj/effect/turf_decal/trimline/purple/filled,
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"tE" = (
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"ur" = (
+/obj/structure/rack,
+/obj/item/grenade/chem_grenade/radiation,
+/obj/item/grenade/chem_grenade/radiation,
+/obj/item/grenade/chem_grenade/radiation,
+/obj/effect/turf_decal/trimline/purple/filled,
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"us" = (
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"uv" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"wg" = (
+/obj/machinery/door/airlock/hatch{
 	req_access_txt = "150"
 	},
-/obj/machinery/door/firedoor/border_only{
+/turf/open/floor/plasteel/bluespace,
+/area/shuttle/yogs/stealthcruiser)
+"ww" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"wz" = (
+/obj/effect/turf_decal/trimline/secred/filled/end/lower,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"wW" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/brute,
+/obj/item/storage/firstaid/brute,
+/obj/item/storage/firstaid/brute,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/effect/turf_decal/trimline/blue/filled,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"xq" = (
+/obj/structure/shuttle/engine/large{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/yogs/stealthcruiser)
+"zK" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
-"qo" = (
-/obj/machinery/power/smes/fullycharged,
+"zX" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/dnainjector/radproof,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"Ax" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/item/mecha_parts/mecha_equipment/pipe_dispenser,
+/obj/item/mecha_parts/mecha_equipment/drill/diamonddrill,
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"AT" = (
+/obj/structure/statue/elder_atmosian,
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"BT" = (
+/obj/effect/turf_decal/trimline/dark_red/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 5
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/shuttle/yogs/stealthcruiser)
+"CH" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"CO" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/healium,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"CS" = (
+/obj/machinery/computer/security{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"DI" = (
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"DN" = (
+/obj/machinery/computer/launchpad{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled,
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"Eo" = (
+/obj/machinery/vending/tool,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/sepia,
 /area/shuttle/yogs/stealthcruiser)
-"rY" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -24;
-	req_access = list(150)
-	},
-/turf/open/floor/plasteel/dark,
+"EM" = (
+/obj/mecha/working/ripley,
+/obj/item/mecha_parts/concealed_weapon_bay,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/yogs/stealthcruiser)
-"vM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/hatch{
-	name = "Cockpit";
-	req_access_txt = "150"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
+"Fc" = (
+/obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/pod,
 /area/shuttle/yogs/stealthcruiser)
-"xE" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/medical/glass{
-	name = "Medbay"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"zl" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
+"FA" = (
 /obj/machinery/turretid{
 	icon_state = "control_kill";
 	lethal = 1;
@@ -924,99 +516,39 @@
 	pixel_y = -33;
 	req_access = 150
 	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"Bd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"Ey" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/metal/twenty,
-/obj/item/stack/sheet/glass{
-	amount = 10
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/item/storage/toolbox/syndicate,
-/obj/item/flashlight{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/mineral/plasma{
-	amount = 20
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"FN" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/red,
-/obj/item/clipboard{
-	pixel_x = 7;
-	pixel_y = 4
-	},
-/obj/item/folder/red{
-	pixel_x = 7;
-	pixel_y = 4
-	},
-/obj/item/pen{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"Ir" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/crew/syndie,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"JT" = (
-/obj/machinery/recharge_station/fullupgrade,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Syndicate Cutter APC";
-	pixel_x = -25;
-	req_access = 150
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"Lb" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/engineering{
-	name = "Engineering";
-	req_access_txt = "150"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"Pz" = (
-/obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
-"Re" = (
+"FT" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"FZ" = (
+/obj/machinery/sleeper/syndie{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/end{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"GO" = (
 /obj/machinery/button/door{
 	id = "syndicatecutter_bridge";
 	name = "Bridge Blast Door Control";
@@ -1024,389 +556,671 @@
 	pixel_y = 8;
 	req_access_txt = "150"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"Jm" = (
+/obj/machinery/sleeper/syndie{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/blue/end{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"JP" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "150"
+	},
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"Kf" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"Ky" = (
+/obj/machinery/door/airlock/hatch{
+	name = "GLA Postal Service";
+	req_access_txt = "150"
+	},
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"KR" = (
+/obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/syndie/surgery,
+/obj/effect/turf_decal/trimline/blue/filled/end/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/end{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"Lp" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/ointment,
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"LT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/closet/syndicate,
+/obj/item/melee/vxtvulhammer,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/mecha_parts/mecha_equipment/wormhole_generator,
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe,
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"Mq" = (
+/obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"Mr" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"Od" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"Ou" = (
+/obj/machinery/nuclearbomb/syndicate{
+	anchored = 1
+	},
+/obj/machinery/door/window{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit/red,
+/area/shuttle/yogs/stealthcruiser)
+"OL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 4
+	},
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"Pl" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"Po" = (
+/obj/structure/rack,
+/obj/item/grenade/clusterbuster/syndie/inferno,
+/obj/item/grenade/clusterbuster/syndie/inferno,
+/obj/item/grenade/clusterbuster/syndie/inferno,
+/obj/effect/turf_decal/trimline/purple/filled,
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"PG" = (
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"Qd" = (
+/obj/effect/turf_decal/trimline/purple/end,
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"QM" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/shuttle/yogs/stealthcruiser)
+"Rs" = (
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw,
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 1
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/shuttle/yogs/stealthcruiser)
+"Rt" = (
+/obj/machinery/computer/camera_advanced/syndie{
+	dir = 2
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/yogs/stealthcruiser)
+"Sj" = (
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"Tp" = (
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"Va" = (
+/obj/structure/rack,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/effect/turf_decal/trimline/purple/filled,
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"Vw" = (
+/turf/open/floor/plating/airless,
+/area/shuttle/yogs/stealthcruiser)
+"VJ" = (
+/obj/machinery/mech_bay_recharge_port,
+/obj/machinery/light,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"Wp" = (
+/obj/machinery/door/poddoor{
+	id = "smindicate";
+	name = "outer blast door"
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/button/door{
+	id = "smindicate";
+	name = "external door control";
+	pixel_x = 26;
+	pixel_y = 0;
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 4
+	},
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"Wv" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled,
+/turf/open/floor/plasteel/bluespace,
+/area/shuttle/yogs/stealthcruiser)
+"XT" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/yogs/stealthcruiser)
+"XX" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"Yc" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"YB" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster,
+/turf/open/floor/sepia,
+/area/shuttle/yogs/stealthcruiser)
+"YH" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
-"SN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24;
-	req_access = 150
-	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
-"Vb" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24;
-	req_access = null;
+"Zm" = (
+/obj/machinery/door/airlock/hatch{
 	req_access_txt = "150"
 	},
-/obj/machinery/sleeper/syndie/fullupgrade{
-	dir = 1
+/obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
+	dir = 8
 	},
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/trimline/dark_red/arrow_cw{
+	dir = 4
+	},
+/turf/open/floor/stone,
 /area/shuttle/yogs/stealthcruiser)
-"YI" = (
-/obj/effect/turf_decal/tile/neutral{
+"Zn" = (
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/chair/office{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
+/obj/effect/turf_decal/bot,
+/turf/open/floor/stone,
+/area/shuttle/yogs/stealthcruiser)
+"ZJ" = (
+/obj/effect/turf_decal/trimline/purple/end{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/turf/open/floor/pod,
+/area/shuttle/yogs/stealthcruiser)
+"ZK" = (
+/obj/machinery/launchpad,
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/trimline/dark_green/filled,
+/obj/item/toy/plush/nukeplushie{
+	name = "Nothing Stops The Mail"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/engine,
+/area/shuttle/yogs/stealthcruiser)
+"ZT" = (
+/obj/machinery/light{
 	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/end/lower{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
 
 (1,1,1) = {"
-bW
-bW
-bW
+je
+je
 ak
-ay
+Vw
+xq
+je
+je
+je
+Vw
+xq
 aK
-bW
-ak
-ay
-aK
-bW
-bW
-bW
+je
+je
 "}
 (2,1,1) = {"
-bW
-bW
+je
 aa
 al
-al
-al
+XT
+XT
 ad
-al
-al
+ad
+ad
+XT
+XT
 al
 aa
-bW
-bW
+je
 "}
 (3,1,1) = {"
-bW
 ac
+aa
+ec
+ec
+ec
 ad
-am
-az
-aL
-JT
-qo
-Ey
-cP
+Ou
 ad
+jK
+XX
+CS
+aa
 bT
-bW
 "}
 (4,1,1) = {"
-bW
-ad
-ag
-an
-aA
-aM
-SN
-Bd
-aA
-bH
-bQ
-ad
-bW
+aa
+ZT
+CH
+CH
+wz
+kS
+Rs
+Ky
+Pl
+Sj
+jt
+DN
+aa
 "}
 (5,1,1) = {"
-bW
 ad
+hn
+ec
+ec
+ec
 ad
-Lb
-aB
+Rs
 ad
+mE
+oR
+nY
+ZK
 ad
-ad
-aB
-Lb
-ad
-ad
-bW
 "}
 (6,1,1) = {"
-bW
 ad
-ah
-ap
-aC
-aN
-bb
-bm
-bA
-bI
-ah
 ad
-bW
+ad
+ad
+ad
+ad
+Rs
+ad
+ad
+ad
+ad
+ad
+ad
 "}
 (7,1,1) = {"
-aa
 ad
+oY
+Fc
+AT
+QM
+cN
+Rs
+bZ
 ad
-aq
-aD
-aO
+Po
+ts
+Va
 ad
-bn
-aD
-bJ
-ad
-ad
-aa
 "}
 (8,1,1) = {"
-ab
-ae
-ai
-ar
-aE
-aP
+iY
+PG
+PG
+PG
+FT
+DI
+ik
+cN
+JP
+ZJ
+Qd
+aU
 ad
-bo
-bh
-bK
-bR
-ae
-bU
 "}
 (9,1,1) = {"
-aa
 ad
+oY
+us
+AT
+QM
+cN
+Rs
+CO
 ad
-as
-aD
-Vb
+Po
+ur
+hT
 ad
-bp
-aD
-bL
-ad
-ad
-aa
 "}
 (10,1,1) = {"
-bW
-af
-ah
-at
-aF
-aR
-bb
-bq
-bB
-bM
-ah
-af
-bW
+ad
+ad
+ad
+ad
+ad
+Zn
+Rs
+Yc
+ad
+ad
+ad
+ad
+ad
 "}
 (11,1,1) = {"
-bW
-aa
 ad
-au
-xE
+Jm
+FZ
+uv
+kS
+cN
+Rs
+bZ
 ad
+LT
+iz
+pI
 ad
-ad
-mi
-bN
-ad
-aa
-bW
 "}
 (12,1,1) = {"
-bW
-bW
 ad
-av
-aH
-aS
-bc
-br
-bD
-bO
+fv
+tE
+ww
 ad
-bW
-bW
+bZ
+BT
+Tp
+Zm
+jp
+ky
+OL
+Wp
 "}
 (13,1,1) = {"
-bW
-bW
 ad
-aw
-aI
-aT
-bd
-bs
-bE
-bP
+oS
+qC
+qU
 ad
-bW
-bW
+sy
+qr
+bZ
+ad
+Mr
+Ax
+VJ
+ad
 "}
 (14,1,1) = {"
-bW
-bW
-aj
-bb
-aJ
-aU
-be
-bt
-bF
-bb
-bS
-bW
-bW
+ad
+gO
+wW
+Lp
+ad
+Kf
+qr
+zX
+ad
+Eo
+YB
+EM
+ad
 "}
 (15,1,1) = {"
-bW
-bW
-bW
-aa
+ad
+KR
 ad
 ad
 ad
-vM
+QM
+wg
+QM
 ad
-aa
-bW
-bW
-bW
+ad
+ad
+Mq
+ad
 "}
 (16,1,1) = {"
-bW
-bW
-bW
-af
-Ir
-aV
-rY
-bv
-FN
-af
-bW
-bW
-bW
+aj
+ad
+ad
+Rt
+YH
+qv
+Wv
+tb
+Od
+do
+ad
+ad
+bS
 "}
 (17,1,1) = {"
-bW
-bW
-bW
-af
-jX
-bg
-zl
-Re
-db
-af
-bW
-bW
-bW
+je
+ad
+ad
+nD
+mQ
+zK
+FA
+GO
+lo
+do
+ad
+ad
+je
 "}
 (18,1,1) = {"
-bW
-bW
-bW
+je
 ad
 ad
-kG
-YI
-Pz
+op
+op
+iK
+pB
+do
+op
+op
 ad
 ad
-bW
-bW
-bW
+je
 "}
 (19,1,1) = {"
-bW
-bW
-bW
-bW
-ad
-af
-bj
-af
-ad
-bW
-bW
-bW
-bW
+je
+aa
+aa
+je
+op
+op
+op
+op
+op
+je
+aa
+aa
+je
 "}
 (20,1,1) = {"
-bW
-bW
-bW
-bW
-bW
-af
-af
-af
-bW
-bW
-bW
-bW
-bW
+je
+je
+ad
+je
+je
+je
+je
+je
+je
+je
+ad
+je
+je
 "}
 (21,1,1) = {"
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
+je
+je
+aa
+bS
+je
+je
+je
+je
+je
+aj
+aa
+je
+je
 "}
 (22,1,1) = {"
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
+je
+je
+je
+je
+je
+je
+je
+je
+je
+je
+je
+je
+je
 "}
