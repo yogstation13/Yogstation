@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "fixes mining medic jumpsuit from having 5 less wound armour than every other basic jumpsuit"
+  - bugfix: "brig phys now spawns with the brig phys jumpsuit rather than the mining medic one"
+  - tweak: "gives mining medic jumpsuit the same armour as miner's jumpsuit"
