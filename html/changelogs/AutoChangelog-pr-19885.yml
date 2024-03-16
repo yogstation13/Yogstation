@@ -1,0 +1,6 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - rscadd: "admins can change colors on a specific item if it uses the GAGS system"
+  - rscadd: "you can now use right click -> toggle flashlight to toggle PDA flashlight"
+  - imageadd: "changed some sprites to use GAGS"
