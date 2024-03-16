@@ -43,8 +43,7 @@
 	},
 /obj/item/flashlight/flare/torch{
 	pixel_x = -13;
-	pixel_y = 13;
-	light_on = TRUE
+	pixel_y = 13
 	},
 /obj/item/tar_crystal{
 	pixel_x = -6;
