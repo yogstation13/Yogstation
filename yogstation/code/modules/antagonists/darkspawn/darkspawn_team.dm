@@ -50,7 +50,7 @@
 		report += span_header("The veil were:")
 		report += printplayerlist(veils)
 
-	return report
+	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
 /datum/team/darkspawn/proc/check_darkspawn_death() //check if a darkspawn is still alive
 	for(var/datum/mind/dark_mind as anything in members)
