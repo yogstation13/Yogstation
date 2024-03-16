@@ -13,6 +13,7 @@
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
 	title_icon = "ss13" //to do, give them a new title icon
 	round_ends_with_antag_death = TRUE
+	var/list/datum/mind/darkspawns = list()
 	var/datum/team/darkspawn/team
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -30,24 +31,25 @@
 	while(darkbois)
 		var/datum/mind/darkboi = antag_pick(antag_candidates)
 		antag_candidates -= darkboi
+		darkspawns += darkboi
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
 	team.update_objectives()
 	GLOB.thrallnet.name = "Thrall net"
 
-	if(!team || !LAZYLEN(team.members))
+	if(!team || !LAZYLEN(darkspawns))
 		setup_error = "Error setting up darkspawns"
 		return FALSE
 	return TRUE
 
 /datum/game_mode/darkspawn/post_setup()
-	for(var/T in team.members)
-		var/datum/mind/darkboi = T
-		log_game("[darkboi.key] (ckey) has been selected as a darkspawn.")
-		darkboi.current.add_darkspawn()
-		darkboi.special_role = "Darkspawn"
+	for(var/datum/mind/darkboi as anything in darkspawns)
+		if(darkboi.current.add_darkspawn())
+			log_game("[darkboi.key] (ckey) has been selected as a darkspawn.")
+			darkboi.special_role = "Darkspawn"
+		else
+			darkspawns -= darkboi
 	. = ..()
-	return
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Non-Secret mode stuff-------------------------------//
