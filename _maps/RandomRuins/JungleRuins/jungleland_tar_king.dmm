@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ac" = (
-/obj/structure/bonfire/prelit,
+/obj/structure/bonfire,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "ad" = (
@@ -212,9 +212,7 @@
 /turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "aX" = (
-/obj/structure/bonfire/prelit{
-	burning = TRUE
-	},
+/obj/structure/bonfire,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/template_noop)
 "aY" = (
