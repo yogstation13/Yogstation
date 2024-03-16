@@ -2,6 +2,7 @@
 /datum/team/darkspawn
 	name = "darkspawns"
 	member_name = "darkspawn"
+	var/veil_name = "veil"
 	var/list/datum/mind/veils = list() //not quite members (the darkspawns)
 	var/required_succs = 10 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
 	var/lucidity = 0
@@ -43,11 +44,11 @@
 	else //fallback in case the round ends weirdly
 		report += "<span class='redtext big'>The Darkspawn have failed!</span><br>"
 
-	report += "The [member_name] were:"
+	report += "The [member_name]s were:"
 	report += printplayerlist(members)
 
 	if(LAZYLEN(veils))
-		report += span_header("The veil were:")
+		report += "The [veil_name]s were:"
 		report += printplayerlist(veils)
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
