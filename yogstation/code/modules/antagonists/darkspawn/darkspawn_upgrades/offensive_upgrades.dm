@@ -14,7 +14,7 @@
 	name = "Demented Outburst"
 	desc = "Deafens and confuses listeners after a five-second charge period, knocking away everyone nearby.."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/demented_outburst)
@@ -23,7 +23,7 @@
 	name = "Taunt"
 	desc = "Force everyone nearby to walk towards you, but disables your ability to attack for a time."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/taunt)
@@ -36,7 +36,7 @@
 	name = "Duality Sigils"
 	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, empowering both."
 	lore_description = "The _______ sigils, representing duality, are etched onto the arms."
-	willpower_cost = 1
+	willpower_cost = 3
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
 
