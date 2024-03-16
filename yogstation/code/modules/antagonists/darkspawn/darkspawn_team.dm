@@ -35,15 +35,14 @@
 /datum/team/darkspawn/roundend_report()
 	var/list/report = list()
 
-	report += span_header("[name]:")
 	if(SSticker.mode.sacrament_done)
 		report += span_progenitor("The Darkspawn have ascended once again! The station has forever been lost to the veil.")
 	else if(!SSticker.mode.sacrament_done && check_darkspawn_death())
-		report += span_redtext("<span class='redtext'>The Darkspawn have been killed by the crew!")
+		report += span_redtext("The Darkspawn have been killed by the crew!")
 	else if(!SSticker.mode.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		report += span_redtext("<span class='redtext'>The crew escaped the station before the Darkspawn could complete the Sacrament!")
+		report += span_redtext("The crew escaped the station before the Darkspawn could complete the Sacrament!")
 	else //fallback in case the round ends weirdly
-		report += span_redtext("<span class='redtext'>The Darkspawn have failed!")
+		report += span_redtext("The Darkspawn have failed!")
 
 	report += "The [member_name]s were:"
 	report += printplayerlist(members)
