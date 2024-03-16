@@ -6,7 +6,9 @@
 	var/desc = "Basic knowledge of forbidden arts."
 	///Fancy description about the effect
 	var/lore_description = ""
+	///Icon file used for the tgui menu
 	var/icon = 'yogstation/icons/mob/darkspawn_actions.dmi'
+	///Specific icon used for the tgui menu
 	var/icon_state = "test"
 	///Cost of to learn this
 	var/willpower_cost = 0
