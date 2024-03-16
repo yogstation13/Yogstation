@@ -28,6 +28,7 @@ type Knowledge = {
   disabled: boolean;
   menutab: string;
   infinite: boolean;
+  icon: string;
 };
 
 type Classes = {
@@ -328,16 +329,15 @@ const KnowledgePreview = (props, context) => {
 
           <Stack.Item fontSize="15px" color="purple">willpower cost: {selectedKnowledge?.cost}</Stack.Item>
 
-          {/* if i ever decide to add icons, this is where i'd put them
           <Stack.Item>
             <Box
             as="img"
-            src={resolveAsset(selectedKnowledge.rod_pic)}
-            height="96px"
+            src={`data:image/jpeg;base64,${selectedKnowledge.icon}`}
+            height="128px"
             style={{
               '-ms-interpolation-mode': 'nearest-neighbor',
               'image-rendering': 'pixelated' }} />
-          </Stack.Item> */}
+          </Stack.Item>
 
           <Stack.Item color="gold">{selectedKnowledge?.desc}</Stack.Item>
           <Stack.Item style={Velvet} fontSize="14px">{selectedKnowledge?.lore_description}</Stack.Item>

@@ -225,6 +225,7 @@
 				knowledge_data["cost"] = initial(knowledge.willpower_cost)
 				knowledge_data["disabled"] = (initial(knowledge.willpower_cost) > willpower)
 				knowledge_data["infinite"] = (initial(knowledge.infinite))
+				knowledge_data["icon"] = icon2base64(icon(initial(knowledge.icon), initial(knowledge.icon_state)))
 
 				paths += list(knowledge_data)
 		

@@ -77,6 +77,8 @@
 /datum/component/darkspawn_class/proc/get_purchasable_abilities() //todo, add buying multiples in this thing
 	var/list/datum/psi_web/available_abilities = list()
 	for(var/datum/psi_web/ability as anything in subtypesof(/datum/psi_web))
+		if(!(initial(ability.willpower_cost))) //if it's free for some reason, don't show it, it's probably a bug
+			continue
 		if(!(initial(ability.shadow_flags) & specialization_flag) || (!initial(ability.infinite) && locate(ability) in learned_abilities))
 			continue
 		available_abilities += ability

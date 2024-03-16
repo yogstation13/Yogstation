@@ -6,6 +6,8 @@
 	var/desc = "Basic knowledge of forbidden arts."
 	///Fancy description about the effect
 	var/lore_description = ""
+	var/icon = 'yogstation/icons/mob/darkspawn_actions.dmi'
+	var/icon_state = "test"
 	///Cost of to learn this
 	var/willpower_cost = 0
 	///What specialization can buy this
@@ -33,7 +35,8 @@
 		return
 
 	darkspawn.willpower -= willpower_cost
-	to_chat(user, span_velvet("You have unlocked [name]"))
+	if(willpower_cost)
+		to_chat(user, span_velvet("You have unlocked [name]"))
 	on_gain()
 	for(var/ability in learned_abilities)
 		if(ispath(ability, /datum/action))
