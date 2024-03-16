@@ -20,7 +20,7 @@
 	COOLDOWN_DECLARE(psi_cooldown)//When this finishes it's cooldown, regenerate Psi and restart
 	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
 
-	var/willpower = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
+	var/willpower = 5 //Lucidity is used to buy abilities and is gained by using Devour Will
 
 	//Default light damage variables (modified by some abilities)
 	var/dark_healing = 5

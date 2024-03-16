@@ -73,13 +73,14 @@
 /datum/psi_web/staff_upgrade/heal
 	name = "Recovery Sign"
 	desc = "Empower your staff with the ability to heal allies shot."
-	lore_description = ""
+	lore_description = "The Kalak sigil, representing eternity, is etched onto the staff."
 	flag_to_add = STAFF_UPGRADE_HEAL
 	
 /datum/psi_web/staff_upgrade/extinguish
 	name = "Extinguish Sign"
 	desc = "Empower your staff with the ability to extinguish the fire on allies shot."
-	lore_description = ""
+	lore_description = "The Khophg sigil, representing suffocation, is etched onto the staff."
+	willpower_cost = 1
 	flag_to_add = STAFF_UPGRADE_EXTINGUISH
 	
 /datum/psi_web/extinguish

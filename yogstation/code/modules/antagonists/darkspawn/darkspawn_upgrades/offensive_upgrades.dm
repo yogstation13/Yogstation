@@ -35,7 +35,7 @@
 /datum/psi_web/twin_tendrils
 	name = "Duality Sigils"
 	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, empowering both."
-	lore_description = "The _______ sigils, representing duality, are etched onto the arms."
+	lore_description = "The Kqx'xpk sigils, representing duality, are etched onto the arms."
 	willpower_cost = 3
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
@@ -78,7 +78,7 @@
 /datum/psi_web/damage_Trap
 	name = "Psi Trap (damage)"
 	desc = "Place a trap that deals damage to non-ally that crosses it."
-	lore_description = ""
+	lore_description = "The Shash sigil, representing danger, is carved on the ground."
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -87,7 +87,7 @@
 /datum/psi_web/cuff_trap
 	name = "Psi Trap (restrain)"
 	desc = "Place a trap that restrains the legs of any non-ally that crosses it."
-	lore_description = ""
+	lore_description = "The Hh'rt sigil, representing restraint, is carved on the ground."
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -96,7 +96,7 @@
 /datum/psi_web/nausea_trap
 	name = "Psi Trap (nausea)"
 	desc = "Place a trap that makes any non-ally that crosses it sick to their stomach."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	lore_description = "The Vxb'rt sigil, representing disruption, is carved on the ground."
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -105,7 +105,7 @@
 /datum/psi_web/teleport_trap
 	name = "Psi Trap (teleport)"
 	desc = "Place a trap that teleports any non-ally to a random location on the station."
-	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
+	lore_description = "The Vxb'xki sigil, representing displacement, is carved on the ground."
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -127,7 +127,7 @@
 /datum/psi_web/staff_upgrade
 	name = "Confusion Sign"
 	desc = "Empower your staff with the ability to confuse any enemy shot."
-	lore_description = ""
+	lore_description = "The Vxb'rt sigil, representing disruption, is etched onto the staff."
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -150,7 +150,7 @@
 /datum/psi_web/staff_upgrade/light_eater
 	name = "Light Eater Sign"
 	desc = "Empower your staff with the ability to consume the light of anything shot."
-	lore_description = ""
+	lore_description = "The Aaah'ryt sigil, representing consumption, is etched onto the staff."
 	flag_to_add = STAFF_UPGRADE_LIGHTEATER
 
 //no more staff upgrades

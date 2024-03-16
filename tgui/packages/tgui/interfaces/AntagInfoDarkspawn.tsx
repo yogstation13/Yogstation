@@ -165,10 +165,16 @@ const GuideSection = () => {
   return (
     <Stack vertical fontSize="14px">
       <Stack.Item>
-        - Collaborate with fellow darkspawns, use .w to converse using the mindlink
+        - Collaborate with fellow darkspawns, use .w to converse using the mindlink.
       </Stack.Item>
       <Stack.Item>
-        - Incapacitate crewmembers and drain them of their lucidity to gain willpower to purchase new abilities
+        - Incapacitate crewmembers and devour their will to gain lucidity and willpower.
+      </Stack.Item>
+      <Stack.Item>
+        - Spend willpower in the research tab to unlock new abilities and passive skills.
+      </Stack.Item>
+      <Stack.Item>
+        - Once a certain amount lucidity has been drained, perform the sacrament and ascend as a progenitor.
       </Stack.Item>
     </Stack>
   );
