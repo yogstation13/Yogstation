@@ -330,6 +330,7 @@ const KnowledgePreview = (props, context) => {
           <Stack.Item fontSize="15px" color="purple">willpower cost: {selectedKnowledge?.cost}</Stack.Item>
 
 {/* uncomment this when the things actually get proper icons
+          {!!selectedKnowledge.icon && (
           <Stack.Item>
             <Box
             as="img"
@@ -338,7 +339,8 @@ const KnowledgePreview = (props, context) => {
             style={{
               '-ms-interpolation-mode': 'nearest-neighbor',
               'image-rendering': 'pixelated' }} />
-          </Stack.Item> */}
+          </Stack.Item>
+          )} */}
 
           <Stack.Item color="gold">{selectedKnowledge?.desc}</Stack.Item>
           <Stack.Item style={Velvet} fontSize="14px">{selectedKnowledge?.lore_description}</Stack.Item>
