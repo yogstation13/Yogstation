@@ -30,13 +30,12 @@
 	while(darkbois)
 		var/datum/mind/darkboi = antag_pick(antag_candidates)
 		antag_candidates -= darkboi
-		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
 	team.update_objectives()
 	GLOB.thrallnet.name = "Thrall net"
 
-	if(!LAZYLEN(team.members))
+	if(!team || !LAZYLEN(team.members))
 		setup_error = "Error setting up darkspawns"
 		return FALSE
 	return TRUE
@@ -46,6 +45,7 @@
 		var/datum/mind/darkboi = T
 		log_game("[darkboi.key] (ckey) has been selected as a darkspawn.")
 		darkboi.current.add_darkspawn()
+		darkboi.special_role = "Darkspawn"
 	. = ..()
 	return
 
@@ -65,7 +65,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/darkspawn/are_special_antags_dead()
 	for(var/datum/mind/dark_mind as anything in team.members)
-		if((dark_mind?.current?.stat != DEAD) && !issilicon(dark_mind))
+		if(dark_mind?.current?.stat != DEAD) //they can be borgs, their mind is all that really matters
 			return FALSE
 	return TRUE
 
