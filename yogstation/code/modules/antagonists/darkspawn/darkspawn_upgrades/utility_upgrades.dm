@@ -161,7 +161,7 @@
 	name = "Simulacrum"
 	desc = "Creates an illusion that closely resembles you. The illusion will fight nearby enemies in your stead for 10 seconds."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/simulacrum)
@@ -170,7 +170,7 @@
 	name = "Crawling Shadows"
 	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/shapeshift/crawling_shadows)

@@ -66,10 +66,8 @@
 		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
 		return
 
-
-	target.Stun(2 SECONDS)
+	target.Stun(1 SECONDS)
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
-	ADD_TRAIT(target, TRAIT_PARALYSIS, type)
 	target.silent += 5
 
 	to_chat(caster, span_velvet("Cera ko..."))
@@ -80,14 +78,10 @@
 	eating = TRUE
 	if(!do_after(caster, 5 SECONDS, target))
 		to_chat(target, span_boldwarning("All right... You're all right."))
-		REMOVE_TRAIT(target, TRAIT_PARALYSIS, type)
 		caster.Knockdown(5 SECONDS)
-		target.Knockdown(5 SECONDS)
 		eating = FALSE
 		return FALSE
 	eating = FALSE
-
-	REMOVE_TRAIT(target, TRAIT_PARALYSIS, type)
 
 	//put the victim to sleep before the visible_message proc so the victim doesn't see it
 	to_chat(target, span_progenitor("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))

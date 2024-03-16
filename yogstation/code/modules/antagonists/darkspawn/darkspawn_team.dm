@@ -43,14 +43,12 @@
 	else //fallback in case the round ends weirdly
 		report += "<span class='redtext big'>The Darkspawn have failed!</span><br>"
 
-	report += span_header("The darkspawns were:")
-	for(var/datum/mind/master in members)
-		report += printplayer(master)
+	report += "The [member_name] were:"
+	report += printplayerlist(members)
 
 	if(LAZYLEN(veils))
-		report += span_header("The veils were:")
-		for(var/datum/mind/veil in veils)
-			report += printplayer(veil)
+		report += span_header("The veil were:")
+		report += printplayerlist(veils)
 
 	return report
 

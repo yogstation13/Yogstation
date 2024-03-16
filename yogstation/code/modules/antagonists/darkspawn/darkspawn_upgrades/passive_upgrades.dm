@@ -212,7 +212,7 @@
 	name = "Psionic Relief Sigil"
 	desc = "Unlocking this sigil causes your Psi to start regenerating 5 seconds sooner."
 	lore_description = "The _______ sigil, representing relief, is etched onto the forehead."
-	willpower_cost = 1
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
@@ -227,7 +227,7 @@
 	name = "Psionic Recovery Sigil"
 	desc = "Unlocking this sigil causes your Psi to regenerate twice as quickly."
 	lore_description = "The _______ sigil, representing swiftness, is etched onto the forehead. "
-	willpower_cost = 1
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
@@ -257,7 +257,7 @@
 	name = "Control Sigil"
 	desc = "Unlocking this sigil allows control of two additional veils."
 	lore_description = "The _______ sigils, representing control, are etched onto the arms."
-	willpower_cost = 2
+	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 

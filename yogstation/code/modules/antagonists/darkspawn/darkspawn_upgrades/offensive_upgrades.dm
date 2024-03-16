@@ -79,7 +79,7 @@
 	name = "Psi Trap (damage)"
 	desc = "Place a trap that deals damage to non-ally that crosses it."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/damage)
@@ -88,7 +88,7 @@
 	name = "Psi Trap (restrain)"
 	desc = "Place a trap that restrains the legs of any non-ally that crosses it."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff)
@@ -97,7 +97,7 @@
 	name = "Psi Trap (nausea)"
 	desc = "Place a trap that makes any non-ally that crosses it sick to their stomach."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/nausea)
@@ -106,7 +106,7 @@
 	name = "Psi Trap (teleport)"
 	desc = "Place a trap that teleports any non-ally to a random location on the station."
 	lore_description = "The Zkqxha sigils, representing duality, are etched onto the arms."
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/teleport)	
@@ -114,6 +114,15 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+/datum/psi_web/seize
+	name = "Seize"
+	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
+	lore_description = ""
+	willpower_cost = 2
+	shadow_flags = WARLOCK
+	menu_tab = STORE_OFFENSE
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/seize)
+	
 //staff upgrades
 /datum/psi_web/staff_upgrade
 	name = "Confusion Sign"
@@ -149,7 +158,7 @@
 	name = "Mass Hallucination"
 	desc = "Forces brief delirium on all nearby enemies."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/mass_hallucination)
@@ -158,7 +167,7 @@
 	name = "Mindblast"
 	desc = "Focus your psionic energy into a blast that deals physical damage. Can also be projected from the minds of allies."
 	lore_description = ""
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/mindblast)
@@ -180,15 +189,6 @@
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call)
-	
-/datum/psi_web/seize
-	name = "Seize"
-	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
-	lore_description = ""
-	willpower_cost = 2
-	shadow_flags = WARLOCK
-	menu_tab = STORE_OFFENSE
-	learned_abilities = list(/datum/action/cooldown/spell/pointed/seize)
 	
 /datum/psi_web/shadow_beam
 	name = "Void Beam"

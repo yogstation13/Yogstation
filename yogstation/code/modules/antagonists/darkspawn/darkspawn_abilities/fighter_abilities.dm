@@ -352,6 +352,8 @@
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
+	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
+	ADD_TRAIT(owner, TRAIT_NOHARDCRIT, type)
 	owner.move_resist = INFINITY
 	was_running = (owner.m_intent == MOVE_INTENT_RUN)
 	if(was_running)
@@ -363,6 +365,8 @@
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
+	REMOVE_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
+	REMOVE_TRAIT(owner, TRAIT_NOHARDCRIT, type)
 	owner.move_resist = initial(owner.move_resist)
 	if(was_running && owner.m_intent == MOVE_INTENT_WALK)
 		owner.toggle_move_intent()

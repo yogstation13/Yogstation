@@ -48,6 +48,7 @@
 //the projectile being shot from the bow
 /obj/projectile/bullet/reusable/arrow/shadow
 	name = "shadow arrow"
+	damage = 25
 	light_system = MOVABLE_LIGHT
 	light_power = -1
 	light_color = COLOR_VELVET
