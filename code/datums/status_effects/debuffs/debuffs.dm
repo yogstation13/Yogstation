@@ -1042,7 +1042,7 @@
 	id = "broken_will"
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
-	duration = 300
+	duration = 30 SECONDS
 	examine_text = span_deadsay("SUBJECTPRONOUN is in a deep, deathlike sleep, with no signs of awareness to anything around them.")
 	alert_type = /atom/movable/screen/alert/status_effect/broken_will
 	var/old_health

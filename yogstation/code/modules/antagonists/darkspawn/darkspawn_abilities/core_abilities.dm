@@ -67,7 +67,7 @@
 		return
 
 
-	target.Stun(5 SECONDS)
+	target.Stun(2 SECONDS)
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
 	ADD_TRAIT(target, TRAIT_PARALYSIS, type)
 	target.silent += 5

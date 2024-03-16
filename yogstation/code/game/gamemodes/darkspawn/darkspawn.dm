@@ -12,6 +12,7 @@
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
 	title_icon = "ss13" //to do, give them a new title icon
+	round_ends_with_antag_death = TRUE
 	var/datum/team/darkspawn/team
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -32,9 +33,12 @@
 		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
-
 	team.update_objectives()
 	GLOB.thrallnet.name = "Thrall net"
+
+	if(!LAZYLEN(team.members))
+		setup_error = "Error setting up darkspawns"
+		return FALSE
 	return TRUE
 
 /datum/game_mode/darkspawn/post_setup()
@@ -59,17 +63,10 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Game end checks---------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/game_mode/darkspawn/check_finished()
-	. = ..()
-	if(. && check_darkspawn_death())
-		return TRUE
-
-/datum/game_mode/darkspawn/proc/check_darkspawn_death()
-	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
-		var/datum/mind/dark_mind = DM
-		if(istype(dark_mind))
-			if((dark_mind) && (dark_mind.current.stat != DEAD) && !issilicon(dark_mind))
-				return FALSE
+/datum/game_mode/darkspawn/are_special_antags_dead()
+	for(var/datum/mind/dark_mind as anything in team.members)
+		if((dark_mind?.current?.stat != DEAD) && !issilicon(dark_mind))
+			return FALSE
 	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////

@@ -15,7 +15,7 @@
 	var/datum/objective/darkspawn/O = new
 	objectives += O
 	if(SSticker?.mode?.num_players())
-		required_succs = clamp(round(SSticker.mode.num_players() / 3), min(SSticker.mode.num_players() / 2, 10), 30) //between 10 and 30 succs but will roll lower than 10 if the population is low enough
+		required_succs = min(round(SSticker.mode.num_players() / 2), 20) //half the players, scaling up to 20 at max
 	update_objectives()
 
 /datum/team/darkspawn/add_member(datum/mind/new_member)

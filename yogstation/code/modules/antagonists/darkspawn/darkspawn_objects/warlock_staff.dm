@@ -7,7 +7,7 @@
 //---------------------Upgradeable warlock staff------------------------//
 //////////////////////////////////////////////////////////////////////////
 /obj/item/gun/magic/darkspawn
-	name = "staff of shadows"
+	name = "channeling staff"
 	desc = "This staff is boring to watch because even though it came first you've seen everything it can do in other staves for years."
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "spearglass0"
@@ -17,7 +17,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 
 	fire_sound = 'sound/weapons/emitter2.ogg'
-	fire_delay = 2 SECONDS
+	fire_delay = 3 SECONDS
 
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	ammo_type = /obj/item/ammo_casing/magic/darkspawn

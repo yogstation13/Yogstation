@@ -111,7 +111,6 @@
 
 	if(current_willpower_progress >= 100)
 		current_willpower_progress = 0
-		to_chat(world, "generating willpower for being near enough players")
 		team.grant_willpower(1)
 
 /datum/antagonist/veil/greet()
