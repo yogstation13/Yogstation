@@ -172,6 +172,8 @@
 		return
 
 	picked_class = owner.current.AddComponent(chosen)
+	if(darkspawn_state >= DIVULGED)
+		owner.assigned_role = picked_class.name //they stop being whatever job they were the moment they divulge
 
 /datum/antagonist/darkspawn/antag_panel_data()
 	if(team)
@@ -355,7 +357,8 @@
 		var/chosen = pick(classes)
 
 		picked_class = owner.current.AddComponent(chosen)
-
+	
+	owner.assigned_role = picked_class.name //they stop being whatever job they were the moment they divulge
 
 	if(forced)
 		owner.current.visible_message(

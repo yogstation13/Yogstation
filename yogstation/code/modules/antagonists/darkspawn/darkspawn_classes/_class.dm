@@ -142,7 +142,7 @@
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/warlock)
 
 /datum/component/darkspawn_class/admin
-	name = "Admin"
+	name = "Admeme"
 	description = "Can do everything."
 	long_description = "Yeah, you're fucked buddy."
 	specialization_flag = ALL_DARKSPAWN_CLASSES
