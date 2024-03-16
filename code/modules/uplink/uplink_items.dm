@@ -3483,7 +3483,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			and send down a folder to a random location containing your new instructions. \
 			Upon completion, you will be rewarded depending on the difficulty of the objective."
 	item = /obj/item/folder/red
-	cost = 0
+	cost = 4
 	surplus = 0
 	limited_stock = 1
 	cant_discount = TRUE
@@ -3496,14 +3496,17 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/new_objective/easy
 	name = "Request Objective (EASY)"
 	difficulty = 1
+	cost = 2
 
 /datum/uplink_item/new_objective/medium
 	name = "Request Objective (MEDIUM)"
 	difficulty = 2
+	cost = 4
 
 /datum/uplink_item/new_objective/hard
 	name = "Request Objective (HARD)"
 	difficulty = 3
+	cost = 6
 
 /datum/uplink_item/new_objective/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	to_chat(user, span_notice("Signal sent to command. Awaiting response (ETA ~1 minute)..."))
