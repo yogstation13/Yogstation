@@ -124,9 +124,8 @@
 	flags_1 |= INITIALIZED_1
 
 	SET_PLANE_IMPLICIT(src, plane)
-	//Yog Code: Someday we'll have GAGs
-	// if(greyscale_config && greyscale_colors) //we'll check again at item/init for inhand/belt/worn configs.
-	// 	update_greyscale()
+	if(greyscale_config && greyscale_colors) //we'll check again at item/init for inhand/belt/worn configs.
+		update_greyscale()
 
 	//atom color stuff
 	if(color)

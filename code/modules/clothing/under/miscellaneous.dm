@@ -773,8 +773,14 @@
 /obj/item/clothing/under/durathread
 	name = "durathread jumpsuit"
 	desc = "A jumpsuit made from durathread, its resilient fibres provide some protection to the wearer."
-	icon_state = "durathread"
-	item_state = "durathread"
+	icon = 'icons/obj/clothing/under/color.dmi'
+	icon_state = "jumpsuit"
+	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'
+	greyscale_colors = "#8291a1"
+	greyscale_config = /datum/greyscale_config/jumpsuit
+	greyscale_config_inhand_left = /datum/greyscale_config/jumpsuit_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/jumpsuit_inhand_right
+	greyscale_config_worn = /datum/greyscale_config/jumpsuit_worn
 	can_adjust = FALSE
 	armor = list(MELEE = 10, LASER = 10, FIRE = 40, ACID = 10, BOMB = 5)
 	mutantrace_variation = MUTANTRACE_VARIATION

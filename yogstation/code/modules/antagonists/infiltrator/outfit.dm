@@ -8,7 +8,7 @@
 	ears = /obj/item/radio/headset/chameleon/syndicate
 	id = /obj/item/card/id/syndicate
 	mask = /obj/item/clothing/mask/chameleon/syndicate
-	belt = /obj/item/modular_computer/tablet/pda/preset/basic/syndicate
+	belt = /obj/item/modular_computer/tablet/pda/preset/syndicate
 	box = /obj/item/storage/box/survival/engineer
 	backpack_contents = list(/obj/item/kitchen/knife/combat/survival=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1)

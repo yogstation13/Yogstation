@@ -284,6 +284,6 @@
 			C.update_inv_wear_suit()
 
 /obj/item/clothing/suit/wizrobe/armor/worn_overlays(isinhands)
-	. = list()
+	. = ..()
 	if(!isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_state, MOB_LAYER + 0.01)

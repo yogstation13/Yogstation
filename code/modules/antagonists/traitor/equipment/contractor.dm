@@ -184,7 +184,7 @@
 	uniform = /obj/item/clothing/under/chameleon
 	suit = /obj/item/clothing/suit/chameleon
 	back = /obj/item/storage/backpack/chameleon
-	belt = /obj/item/modular_computer/tablet/pda/preset/basic/syndicate
+	belt = /obj/item/modular_computer/tablet/pda/preset/syndicate
 	mask = /obj/item/clothing/mask/cigarette/syndicate
 	shoes = /obj/item/clothing/shoes/chameleon/noslip
 	ears = /obj/item/radio/headset/chameleon
