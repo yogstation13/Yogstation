@@ -1,0 +1,5 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed NanoMed using the wrong sprite"
+  - imagedel: "Deleted TG's ChemVend and NanoMed sprites after being left over from another PR"
