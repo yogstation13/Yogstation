@@ -47,8 +47,6 @@
 		if(darkboi.current.add_darkspawn())
 			log_game("[darkboi.key] (ckey) has been selected as a darkspawn.")
 			darkboi.special_role = "Darkspawn"
-		else
-			darkspawns -= darkboi
 	. = ..()
 
 ////////////////////////////////////////////////////////////////////////////////////
