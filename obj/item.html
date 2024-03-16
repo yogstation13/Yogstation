@@ -16,20 +16,24 @@
 <h1>item <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L7">
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L7">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 7"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item.html#var/belt_icon_state">belt_icon_state</a></th><td>Icon state for the belt overlay, if null the normal icon_state will be used.</td></tr>
             <tr><th><a href="obj/item.html#var/cryo_preserve">cryo_preserve</a></th><td>Should the cryo console preserve this item</td></tr>
             <tr><th><a href="obj/item.html#var/drop_sound">drop_sound</a></th><td>Sound uses when dropping the item, or when its thrown.</td></tr>
             <tr><th><a href="obj/item.html#var/dye_color">dye_color</a></th><td>Used as the dye color source in the washing machine only (at the moment). Can be a hex color or a key corresponding to a registry entry, see washing_machine.dm</td></tr>
             <tr><th><a href="obj/item.html#var/dying_key">dying_key</a></th><td>What dye registry should be looked at when dying this item; see washing_machine.dm</td></tr>
             <tr><th><a href="obj/item.html#var/equip_sound">equip_sound</a></th><td>Sound used when equipping the item into a valid slot</td></tr>
             <tr><th><a href="obj/item.html#var/fryable">fryable</a></th><td>Is this item fryable without a syndicate frying pan</td></tr>
+            <tr><th><a href="obj/item.html#var/greyscale_config_belt">greyscale_config_belt</a></th><td>The config type to use for greyscaled belt overlays. Both this and greyscale_colors must be assigned to work.</td></tr>
+            <tr><th><a href="obj/item.html#var/greyscale_config_inhand_left">greyscale_config_inhand_left</a></th><td>The config type to use for greyscaled left inhand sprites. Both this and greyscale_colors must be assigned to work.</td></tr>
+            <tr><th><a href="obj/item.html#var/greyscale_config_inhand_right">greyscale_config_inhand_right</a></th><td>The config type to use for greyscaled right inhand sprites. Both this and greyscale_colors must be assigned to work.</td></tr>
+            <tr><th><a href="obj/item.html#var/greyscale_config_worn">greyscale_config_worn</a></th><td>The config type to use for greyscaled worn sprites. Both this and greyscale_colors must be assigned to work.</td></tr>
             <tr><th><a href="obj/item.html#var/item_state">item_state</a></th><td>icon state name for inhand overlays</td></tr>
             <tr><th><a href="obj/item.html#var/lefthand_file">lefthand_file</a></th><td>Icon file for left hand inhand overlays</td></tr>
-            <tr><th><a href="obj/item.html#var/mob_overlay_icon">mob_overlay_icon</a></th><td>Icon file for mob worn overlays.
-no var for state because it should <em>always</em> be the same as icon_state</td></tr>
+            <tr><th><a href="obj/item.html#var/mob_overlay_icon">mob_overlay_icon</a></th><td>Icon file for mob worn overlays.</td></tr>
             <tr><th><a href="obj/item.html#var/mob_throw_hit_sound">mob_throw_hit_sound</a></th><td>Used when yate into a mob</td></tr>
             <tr><th><a href="obj/item.html#var/outline_filter">outline_filter</a></th><td>item hover FX</td></tr>
             <tr><th><a href="obj/item.html#var/pickup_sound">pickup_sound</a></th><td>Sound uses when picking the item up (into your hands)</td></tr>
@@ -38,7 +42,8 @@ no var for state because it should <em>always</em> be the same as icon_state</td
             <tr><th><a href="obj/item.html#var/sharpness">sharpness</a></th><td>All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.</td></tr>
             <tr><th><a href="obj/item.html#var/syndicate">syndicate</a></th><td>Does this item have syndicate only functionality via hud buttons? Needs to be in this scope to encompass all Chameleon items - Hopek</td></tr>
             <tr><th><a href="obj/item.html#var/undyeable">undyeable</a></th><td>Whether the item is unaffected by standard dying.</td></tr>
-            <tr><th><a href="obj/item.html#var/weapon_stats">weapon_stats</a></th><td>A list of statistics used when a weapon hits someone, swing speed = multiplier for melee attack cd, encumbrance = slowdown, encumbrance_time = slowdown length, reach = reach, embed chance = chance for applicable weapons to embed on hit, damage_low/high = range of damage the weapon takes on hitting a mob</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item.html#var/weapon_stats">weapon_stats</a></th><td>A list of statistics used when a weapon hits someone, swing speed = multiplier for melee attack cd, encumbrance = slowdown, encumbrance_time = slowdown length, reach = reach, embed chance = chance for applicable weapons to embed on hit, damage_low/high = range of damage the weapon takes on hitting a mob</td></tr>
+            <tr><th><a href="obj/item.html#var/worn_icon_state">worn_icon_state</a></th><td>Icon state for mob worn overlays, if null the normal icon_state will be used.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="obj/item.html#proc/Adjacent">Adjacent</a></th><td>Yog code for spacepods I guess???</td></tr>
             <tr><th><a href="obj/item.html#proc/GetAccess">GetAccess</a></th><td>Get the accesses on the item</td></tr>
             <tr><th><a href="obj/item.html#proc/GetID">GetID</a></th><td>Get the ID in the object, used for PDAs</td></tr>
@@ -54,145 +59,181 @@ Can be be passed a typepath of an action or an instance of an action.</td></tr>
             <tr><th><a href="obj/item.html#proc/item_action_slot_check">item_action_slot_check</a></th><td>Sometimes we only want to grant the item's action if it's equipped in a specific slot.</td></tr>
             <tr><th><a href="obj/item.html#proc/on_action_deleted">on_action_deleted</a></th><td>Called when an action associated with our item is deleted</td></tr>
             <tr><th><a href="obj/item.html#proc/remove_item_action">remove_item_action</a></th><td>Removes an instance of an action from our list of item actions.</td></tr>
+            <tr><th><a href="obj/item.html#proc/update_greyscale">update_greyscale</a></th><td>Checks if this atom uses the GAGS system and if so updates the worn and inhand icons</td></tr>
             <tr><th><a href="obj/item.html#proc/update_item_action_buttons">update_item_action_buttons</a></th><td>Updates all action buttons associated with this item</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/cryo_preserve"><aside class="declaration">var </aside>cryo_preserve
+    <h2 id="var">Var Details</h2><h3 id="var/belt_icon_state"><aside class="declaration">var </aside>belt_icon_state
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L137">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 137"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 33"/></a></h3>
+        <p>Icon state for the belt overlay, if null the normal icon_state will be used.</p><h3 id="var/cryo_preserve"><aside class="declaration">var </aside>cryo_preserve
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 158"/></a></h3>
         <p>Should the cryo console preserve this item</p><h3 id="var/drop_sound"><aside class="declaration">var </aside>drop_sound
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L47">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 47"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 68"/></a></h3>
         <p>Sound uses when dropping the item, or when its thrown.</p><h3 id="var/dye_color"><aside class="declaration">var </aside>dye_color
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L123">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 123"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 144"/></a></h3>
         <p>Used as the dye color source in the washing machine only (at the moment). Can be a hex color or a key corresponding to a registry entry, see washing_machine.dm</p><h3 id="var/dying_key"><aside class="declaration">var </aside>dying_key
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L127">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 127"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 148"/></a></h3>
         <p>What dye registry should be looked at when dying this item; see washing_machine.dm</p><h3 id="var/equip_sound"><aside class="declaration">var </aside>equip_sound
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L43">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 43"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 64"/></a></h3>
         <p>Sound used when equipping the item into a valid slot</p><h3 id="var/fryable"><aside class="declaration">var </aside>fryable
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L140">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 140"/></a></h3>
-        <p>Is this item fryable without a syndicate frying pan</p><h3 id="var/item_state"><aside class="declaration">var </aside>item_state
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 161"/></a></h3>
+        <p>Is this item fryable without a syndicate frying pan</p><h3 id="var/greyscale_config_belt"><aside class="declaration">var </aside>greyscale_config_belt
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L12">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 12"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 43"/></a></h3>
+        <p>The config type to use for greyscaled belt overlays. Both this and greyscale_colors must be assigned to work.</p><h3 id="var/greyscale_config_inhand_left"><aside class="declaration">var </aside>greyscale_config_inhand_left
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 39"/></a></h3>
+        <p>The config type to use for greyscaled left inhand sprites. Both this and greyscale_colors must be assigned to work.</p><h3 id="var/greyscale_config_inhand_right"><aside class="declaration">var </aside>greyscale_config_inhand_right
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 41"/></a></h3>
+        <p>The config type to use for greyscaled right inhand sprites. Both this and greyscale_colors must be assigned to work.</p><h3 id="var/greyscale_config_worn"><aside class="declaration">var </aside>greyscale_config_worn
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 37"/></a></h3>
+        <p>The config type to use for greyscaled worn sprites. Both this and greyscale_colors must be assigned to work.</p><h3 id="var/item_state"><aside class="declaration">var </aside>item_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 22"/></a></h3>
         <p>icon state name for inhand overlays</p><h3 id="var/lefthand_file"><aside class="declaration">var </aside>lefthand_file
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L14">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 14"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 24"/></a></h3>
         <p>Icon file for left hand inhand overlays</p><h3 id="var/mob_overlay_icon"><aside class="declaration">var </aside>mob_overlay_icon
             <aside>&ndash; /icon</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L20">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 20"/></a></h3>
-        <p>Icon file for mob worn overlays.
-no var for state because it should <em>always</em> be the same as icon_state</p><h3 id="var/mob_throw_hit_sound"><aside class="declaration">var </aside>mob_throw_hit_sound
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 29"/></a></h3>
+        <p>Icon file for mob worn overlays.</p><h3 id="var/mob_throw_hit_sound"><aside class="declaration">var </aside>mob_throw_hit_sound
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L41">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 41"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 62"/></a></h3>
         <p>Used when yate into a mob</p><h3 id="var/outline_filter"><aside class="declaration">var </aside>outline_filter
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L150">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 150"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 171"/></a></h3>
         <p>item hover FX</p><h3 id="var/pickup_sound"><aside class="declaration">var </aside>pickup_sound
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L45">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 45"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 66"/></a></h3>
         <p>Sound uses when picking the item up (into your hands)</p><h3 id="var/range_cooldown_mod"><aside class="declaration">var </aside>range_cooldown_mod
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L97">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 97"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 118"/></a></h3>
         <p>multiplier to increase/decrease effects of range on attack cooldown, 0 to ignore range</p><h3 id="var/righthand_file"><aside class="declaration">var </aside>righthand_file
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L16">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 16"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 26"/></a></h3>
         <p>Icon file for right inhand overlays</p><h3 id="var/sharpness"><aside class="declaration">var </aside>sharpness
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L100">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 100"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 121"/></a></h3>
         <p>All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.</p><h3 id="var/syndicate"><aside class="declaration">var </aside>syndicate
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L146">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 146"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 167"/></a></h3>
         <p>Does this item have syndicate only functionality via hud buttons? Needs to be in this scope to encompass all Chameleon items - Hopek</p><h3 id="var/undyeable"><aside class="declaration">var </aside>undyeable
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L125">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 125"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 146"/></a></h3>
         <p>Whether the item is unaffected by standard dying.</p><h3 id="var/weapon_stats"><aside class="declaration">var </aside>weapon_stats
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L95">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 95"/></a></h3>
-        <p>A list of statistics used when a weapon hits someone, swing speed = multiplier for melee attack cd, encumbrance = slowdown, encumbrance_time = slowdown length, reach = reach, embed chance = chance for applicable weapons to embed on hit, damage_low/high = range of damage the weapon takes on hitting a mob</p><h2 id="proc">Proc Details</h2><h3 id="proc/Adjacent">Adjacent<aside>(/<a href="atom.html">atom</a>/neighbor, recurse) 
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 116"/></a></h3>
+        <p>A list of statistics used when a weapon hits someone, swing speed = multiplier for melee attack cd, encumbrance = slowdown, encumbrance_time = slowdown length, reach = reach, embed chance = chance for applicable weapons to embed on hit, damage_low/high = range of damage the weapon takes on hitting a mob</p><h3 id="var/worn_icon_state"><aside class="declaration">var </aside>worn_icon_state
+            <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/_onclick/adjacent.dm#L86">
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 31"/></a></h3>
+        <p>Icon state for mob worn overlays, if null the normal icon_state will be used.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Adjacent">Adjacent<aside>(/<a href="atom.html">atom</a>/neighbor, recurse) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/_onclick/adjacent.dm#L86">
         <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;adjacent.dm 86"/></a></aside>
         </h3>
         <p>Yog code for spacepods I guess???</p><h3 id="proc/GetAccess"><aside class="declaration">proc </aside>GetAccess<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/modules/jobs/access.dm#L35">
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/modules/jobs/access.dm#L35">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;access.dm 35"/></a></aside>
         </h3>
         <p>Get the accesses on the item</p><h3 id="proc/GetID"><aside class="declaration">proc </aside>GetID<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/modules/jobs/access.dm#L39">
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/modules/jobs/access.dm#L39">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;access.dm 39"/></a></aside>
         </h3>
         <p>Get the ID in the object, used for PDAs</p><h3 id="proc/GetJobName"><aside class="declaration">proc </aside>GetJobName<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/modules/jobs/access.dm#L427">
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/modules/jobs/access.dm#L427">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;jobs&#x2F;access.dm 427"/></a></aside>
         </h3>
         <p>Gets the name of a job from the ID</p><h3 id="proc/add_item_action"><aside class="declaration">proc </aside>add_item_action<aside>(action_or_action_type) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L220">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 220"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 244"/></a></aside>
         </h3>
         <p>Adds an item action to our list of item actions.
 Item actions are actions linked to our item, that are granted to mobs who equip us.
@@ -200,50 +241,56 @@ This also ensures that the actions are properly tracked in the actions list and 
 Can be be passed a typepath of an action or an instance of an action.</p><h3 id="proc/cyborg_equip"><aside class="declaration">proc </aside>cyborg_equip<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/modules/mob/living/silicon/robot/inventory.dm#L32">
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/modules/mob/living/silicon/robot/inventory.dm#L32">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 32"/></a></aside>
         </h3>
         <p>Parent proc - triggers when an item/module is equipped from a cyborg.</p><h3 id="proc/cyborg_unequip"><aside class="declaration">proc </aside>cyborg_unequip<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/modules/mob/living/silicon/robot/inventory.dm#L26">
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/modules/mob/living/silicon/robot/inventory.dm#L26">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 26"/></a></aside>
         </h3>
         <p>Parent proc - triggers when an item/module is unequipped from a cyborg.</p><h3 id="proc/get_temperature"><aside class="declaration">proc </aside>get_temperature<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L1012">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 1012"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L1060">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 1060"/></a></aside>
         </h3>
         <p>Returns the temperature of src. If you want to know if an item is hot use this proc.</p><h3 id="proc/give_item_action"><aside class="declaration">proc </aside>give_item_action<aside>(/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/action, /<a href="mob.html">mob</a>/to_who, slot) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L533">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 533"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L578">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 578"/></a></aside>
         </h3>
         <p>Gives one of our item actions to a mob, when equipped to a certain slot</p><h3 id="proc/item_action_slot_check"><aside class="declaration">proc </aside>item_action_slot_check<aside>(slot, /<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L545">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 545"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L590">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 590"/></a></aside>
         </h3>
         <p>Sometimes we only want to grant the item's action if it's equipped in a specific slot.</p><h3 id="proc/on_action_deleted"><aside class="declaration">proc </aside>on_action_deleted<aside>(/<a href="datum.html">datum</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L208">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 208"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L232">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 232"/></a></aside>
         </h3>
         <p>Called when an action associated with our item is deleted</p><h3 id="proc/remove_item_action"><aside class="declaration">proc </aside>remove_item_action<aside>(/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/action) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L241">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 241"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L265">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 265"/></a></aside>
         </h3>
-        <p>Removes an instance of an action from our list of item actions.</p><h3 id="proc/update_item_action_buttons"><aside class="declaration">proc </aside>update_item_action_buttons<aside>(update_flags, force) 
+        <p>Removes an instance of an action from our list of item actions.</p><h3 id="proc/update_greyscale"><aside class="parent"><a title="/atom" href="atom.html#proc/update_greyscale">&uarr;</a></aside>update_greyscale<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41567907ea7c8d1815488ce0ee99eefa60394cbb/code/game/objects/items.dm#L1154">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 1154"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 304"/></a></aside>
+        </h3>
+        <p>Checks if this atom uses the GAGS system and if so updates the worn and inhand icons</p><h3 id="proc/update_item_action_buttons"><aside class="declaration">proc </aside>update_item_action_buttons<aside>(update_flags, force) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/75095daab2eac0c0d8a8ed32b2756e043ad05655/code/game/objects/items.dm#L1202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items.dm 1202"/></a></aside>
         </h3>
         <p>Updates all action buttons associated with this item</p>
 <p>Arguments:</p>
@@ -253,7 +300,7 @@ Can be be passed a typepath of an action or an instance of an action.</p><h3 id=
 </ul></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/41567907ea7c8d1815488ce0ee99eefa60394cbb">4156790</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/75095daab2eac0c0d8a8ed32b2756e043ad05655">75095da</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

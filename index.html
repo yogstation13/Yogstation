@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(854 modules,
-    3028/10825 macros, 28%)</aside></h3>
+<aside>(862 modules,
+    3042/10835 macros, 28.1%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -159,7 +159,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/mobs.html" title="code&#x2F;__DEFINES&#x2F;mobs">mobs</a></li>
     <li><a href="code/__DEFINES/movement.html" title="code&#x2F;__DEFINES&#x2F;movement">movement</a></li>
     <li><a href="code/__DEFINES/multiz.html" title="code&#x2F;__DEFINES&#x2F;multiz">multiz</a></li>
-    <li><a href="code/__DEFINES/obj_flags.html" title="code&#x2F;__DEFINES&#x2F;obj_flags">obj_flags</a></li>
+    <li><a href="code/__DEFINES/obj_flags.html" title="code&#x2F;__DEFINES&#x2F;obj_flags">obj_flags</a> - For masks, allows you to breathe from internals on adjecent tiles</li>
     <li><a href="code/__DEFINES/power.html" title="code&#x2F;__DEFINES&#x2F;power">power</a></li>
     <li><a href="code/__DEFINES/preferences.html" title="code&#x2F;__DEFINES&#x2F;preferences">preferences</a></li>
     <li><a href="code/__DEFINES/procpath.html" title="code&#x2F;__DEFINES&#x2F;procpath">procpath</a></li>
@@ -376,6 +376,11 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/undertile.html" title="code&#x2F;datums&#x2F;elements&#x2F;undertile">undertile</a></li>
     <li><a href="code/datums/elements/update_icon_blocker.html" title="code&#x2F;datums&#x2F;elements&#x2F;update_icon_blocker">update_icon_blocker</a></li>
     </ul></li>
+    <li class="has-children"><a href="code/datums/greyscale.html" title="code&#x2F;datums&#x2F;greyscale">Greyscale Auto-Generated Sprites (GAGS)</a> - If you're wanting to add easy recolors for your sprite then this is the system for you. Features include:<ul class="index-tree">
+    <li><a href="code/datums/greyscale/_greyscale_config.html" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config">_greyscale_config</a></li>
+    <li><a href="code/datums/greyscale/json_reader.html" title="code&#x2F;datums&#x2F;greyscale&#x2F;json_reader">json_reader</a></li>
+    <li><a href="code/datums/greyscale/layer.html" title="code&#x2F;datums&#x2F;greyscale&#x2F;layer">layer</a></li>
+    </ul></li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;helper_datums">helper_datums</span><ul class="index-tree">
     <li><a href="code/datums/helper_datums/stack_end_detector.html" title="code&#x2F;datums&#x2F;helper_datums&#x2F;stack_end_detector">stack_end_detector</a></li>
     <li><a href="code/datums/helper_datums/teleport.html" title="code&#x2F;datums&#x2F;helper_datums&#x2F;teleport">teleport</a></li>
@@ -567,6 +572,7 @@ SPDX-License-Identifier: MIT</li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules">modules</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;modules&#x2F;admin">admin</span><ul class="index-tree">
+    <li><a href="code/modules/admin/greyscale_modify_menu.html" title="code&#x2F;modules&#x2F;admin&#x2F;greyscale_modify_menu">greyscale_modify_menu</a></li>
     <li><a href="code/modules/admin/mfa.html" title="code&#x2F;modules&#x2F;admin&#x2F;mfa">mfa</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;admin&#x2F;verbs">verbs</span><ul class="index-tree">
     <li><a href="code/modules/admin/verbs/commandreport.html" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;commandreport">commandreport</a></li>
@@ -902,6 +908,7 @@ transformations and other events that cause new languages to become available.</
     <li class="has-children"><span title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal">simple_animal</span><ul class="index-tree">
     <li><a href="code/modules/mob/living/simple_animal/constructs.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;constructs">constructs</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile">hostile</span><ul class="index-tree">
+    <li><a href="code/modules/mob/living/simple_animal/hostile/carp.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;carp">carp</a></li>
     <li><a href="code/modules/mob/living/simple_animal/hostile/illusion.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;illusion">illusion</a></li>
     <li><span class="no-substance">megafauna&#x2F;</span><a href="code/modules/mob/living/simple_animal/hostile/megafauna/colossus.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;megafauna&#x2F;colossus">colossus</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;mining_mobs">mining_mobs</span><ul class="index-tree">
@@ -1145,6 +1152,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/tgui/external.html" title="code&#x2F;modules&#x2F;tgui&#x2F;external">external</a></li>
     <li><span class="no-substance">states&#x2F;</span><a href="code/modules/tgui/states/never.html" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;never">never</a> - Copyright (c) 2021 Arm A. Hammer
 SPDX-License-Identifier: MIT</li>
+    <li><a href="code/modules/tgui/status_composers.html" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers">status_composers</a></li>
     <li><a href="code/modules/tgui/tgui.html" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui">tgui</a> - Copyright (c) 2020 Aleksej Komarov
 SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/tgui/tgui_window.html" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui_window">tgui_window</a> - Copyright (c) 2020 Aleksej Komarov
@@ -1168,6 +1176,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/unit_tests/dragon_expiration.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;dragon_expiration">dragon_expiration</a></li>
     <li><a href="code/modules/unit_tests/dynamic_ruleset_sanity.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;dynamic_ruleset_sanity">dynamic_ruleset_sanity</a></li>
     <li><a href="code/modules/unit_tests/focus_only_tests.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;focus_only_tests">focus_only_tests</a></li>
+    <li><a href="code/modules/unit_tests/greyscale_config.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;greyscale_config">greyscale_config</a></li>
     <li><a href="code/modules/unit_tests/map_landmarks.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;map_landmarks">map_landmarks</a></li>
     <li><a href="code/modules/unit_tests/mapping.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;mapping">mapping</a></li>
     <li><a href="code/modules/unit_tests/trait_addition_and_removal.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;trait_addition_and_removal">trait_addition_and_removal</a></li>
@@ -1235,7 +1244,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1191 detailed/2044 documented/29630 total, 6.9%)</aside></h3>
+<aside>(1199 detailed/2058 documented/29723 total, 6.9%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -2046,6 +2055,7 @@ The overlay can be specified in new as the first paramter; if not set it default
     <li><a href="datum/element/turf_z_transparency.html" title="&#x2F;datum&#x2F;element&#x2F;turf_z_transparency">turf_z_transparency</a></li>
     <li><a href="datum/element/undertile.html" title="&#x2F;datum&#x2F;element&#x2F;undertile">undertile</a> - Add to an object if you want to be able to be hidden under tiles</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;element&#x2F;update_icon_blocker">update_icon_blocker</span> - Prevents calling anything in update_icon() like update_icon_state() or update_overlays()</li>
+    <li><a href="datum/element/update_icon_updates_onmob.html" title="&#x2F;datum&#x2F;element&#x2F;update_icon_updates_onmob">update_icon_updates_onmob</a></li>
     </ul></li>
     <li><a href="datum/emote.html" title="&#x2F;datum&#x2F;emote">emote</a></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;fantasy_affix">fantasy_affix</span><ul class="index-tree">
@@ -2067,6 +2077,16 @@ the more moles you use and the higher the heat, the higher is the efficiency</li
     <li><a href="datum/gas_reaction/water_vapor.html" title="&#x2F;datum&#x2F;gas_reaction&#x2F;water_vapor">Water Vapor</a> - Steam Condensation/Deposition:</li>
     </ul></li>
     <li><a href="datum/gas_recipe.html" title="&#x2F;datum&#x2F;gas_recipe">gas_recipe</a></li>
+    <li><a href="datum/greyscale_config.html" title="&#x2F;datum&#x2F;greyscale_config">greyscale_config</a> - A datum tying together a greyscale configuration and dmi file. Required for using GAGS and handles the code interactions.</li>
+    <li class="has-children"><a href="datum/greyscale_layer.html" title="&#x2F;datum&#x2F;greyscale_layer">greyscale_layer</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;greyscale_layer&#x2F;color_matrix">color_matrix</span> - A layer to modify the previous layer's colors with a color matrix</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;greyscale_layer&#x2F;icon_state">icon_state</span> - The most basic greyscale layer; a layer which is created from a single icon_state in the given icon file</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;greyscale_layer&#x2F;reference">reference</span> - A layer created by using another greyscale icon's configuration</li>
+    </ul></li>
+    <li class="has-children"><a href="datum/greyscale_modify_menu.html" title="&#x2F;datum&#x2F;greyscale_modify_menu">greyscale_modify_menu</a> - The controller for the ui in charge of all runtime greyscale configuration/debug.
+If <code>Unlock()</code> is not called the menu is safe for players to use.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;greyscale_modify_menu&#x2F;spray_paint">spray_paint</span> - Used for spray painting items in the gags_recolorable component</li>
+    </ul></li>
     <li class="has-children"><a href="datum/hallucination.html" title="&#x2F;datum&#x2F;hallucination">hallucination</a><ul class="index-tree">
     <li><a href="datum/hallucination/fire.html" title="&#x2F;datum&#x2F;hallucination&#x2F;fire">fire</a></li>
     </ul></li>
@@ -2094,6 +2114,8 @@ NOTICE: This is NOT fully implemented everywhere. Currently only used in: Prefer
     <li><span class="no-substance" title="&#x2F;datum&#x2F;job_department&#x2F;captain">captain</span> - A special captain only department, for use by the preferences menu</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;job_department&#x2F;undefined">undefined</span> - Catch-all department for undefined jobs.</li>
     </ul></li>
+    <li><a href="datum/json_reader.html" title="&#x2F;datum&#x2F;json_reader">json_reader</a> - Takes a json list and extracts a single value.
+Subtypes represent different conversions of that value.</li>
     <li><span class="no-substance">keybinding&#x2F;mob&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;keybinding&#x2F;mob&#x2F;action_hotkey">action_hotkey</span> - Hotkeys for performing actions</li>
     <li class="has-children"><a href="datum/language_holder.html" title="&#x2F;datum&#x2F;language_holder">language_holder</a><ul class="index-tree">
     <li><a href="datum/language_holder/spiderbot.html" title="&#x2F;datum&#x2F;language_holder&#x2F;spiderbot">spiderbot</a></li>
@@ -2793,6 +2815,8 @@ Checks that every overlay passed into build_appearance_list exists in the icon</
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;focus_only&#x2F;sorted_smoothing_groups">sorted_smoothing_groups</span> - Checks that smoothing_groups and canSmoothWith are properly sorted in /atom/Initialize</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;focus_only&#x2F;stacked_lights">stacked_lights</span> - Checks that no light shares a tile/pixel offsets with another</li>
     </ul></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;greyscale_color_count">greyscale_color_count</span> - Makes sure objects using greyscale configs have, if any, the correct number of colors</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;greyscale_item_icon_states">greyscale_item_icon_states</span> - Makes sure items using GAGS have all the icon states needed to work</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;job_roundstart_spawnpoints">job_roundstart_spawnpoints</span> - Tests that <a href="datum/job.html#proc/get_default_roundstart_spawn_point" title="/datum/job">/datum/job/proc/get_default_roundstart_spawn_point</a> returns a landmark from all joinable jobs.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;log_mapping">log_mapping</span> - Conveys all log_mapping messages as unit test failures, as they all indicate mapping problems.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;space_dragon_expiration">space_dragon_expiration</span> - Unit tests that the space dragon - when its rift expires and it gets qdel'd - doesn't delete all the mobs it has eaten</li>
@@ -2883,6 +2907,7 @@ It's attacks are as follows:</li>
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;bloodsucker&#x2F;tzimisce">tzimisce</span> - TZIMISCE BLOODSUCKER MOBS</li>
     <li><a href="mob/living/simple_animal/hostile/bloodsucker/werewolf.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;bloodsucker&#x2F;werewolf">werewolf</a></li>
     </ul></li>
+    <li><a href="mob/living/simple_animal/hostile/carp.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;carp">space carp</a></li>
     <li class="has-children"><a href="mob/living/simple_animal/hostile/construct.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;construct">Construct</a><ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;construct&#x2F;armored">Juggernaut</span> - Juggernaut<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;construct&#x2F;armored&#x2F;angelic">angelic</span> - Angelic-Juggernaut</li>
@@ -3286,7 +3311,10 @@ Attacking any human mob (typically yourself) will cause their arm to instantly b
     <li><span class="no-substance">cloak&#x2F;</span><a href="obj/item/clothing/neck/cloak/ranger.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;neck&#x2F;cloak&#x2F;ranger">ranger cloak</a></li>
     <li><a href="obj/item/clothing/neck/eldritch_amulet.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;neck&#x2F;eldritch_amulet">warm eldritch medallion</a></li>
     </ul></li>
-    <li><span class="no-substance">shoes&#x2F;</span><a href="obj/item/clothing/shoes/airshoes.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;shoes&#x2F;airshoes">air shoes</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;shoes">shoes</span><ul class="index-tree">
+    <li><a href="obj/item/clothing/shoes/airshoes.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;shoes&#x2F;airshoes">air shoes</a></li>
+    <li><a href="obj/item/clothing/shoes/wheelys.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;shoes&#x2F;wheelys">Wheely-Heels</a></li>
+    </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;suit">suit</span><ul class="index-tree">
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;suit&#x2F;armor">armor</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;suit&#x2F;armor&#x2F;plated">empty plated armor vest</span> - PLATED ARMOR</li>
@@ -4015,7 +4043,10 @@ uranium</li>
     <li><span class="no-substance">trap&#x2F;</span><a href="obj/structure/trap/eldritch.html" title="&#x2F;obj&#x2F;structure&#x2F;trap&#x2F;eldritch">elder carving</a></li>
     <li><a href="obj/structure/window.html" title="&#x2F;obj&#x2F;structure&#x2F;window">window</a></li>
     </ul></li>
-    <li><span class="no-substance">vehicle&#x2F;ridden&#x2F;scooter&#x2F;</span><a href="obj/vehicle/ridden/scooter/skateboard.html" title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard">improvised skateboard</a></li>
+    <li class="has-children"><span class="no-substance">vehicle&#x2F;ridden&#x2F;</span><span title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter">scooter</span><ul class="index-tree">
+    <li><a href="obj/vehicle/ridden/scooter/skateboard.html" title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard">improvised skateboard</a></li>
+    <li><a href="obj/vehicle/ridden/scooter/wheelys.html" title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;wheelys">Wheely-Heels</a></li>
+    </ul></li>
     </ul></li>
     <li><span class="no-substance">particles&#x2F;</span><span class="no-substance" title="&#x2F;particles&#x2F;fire">fire</span> - GENERIC FIRE EFEFCT</li>
     <li><a href="procpath.html" title="&#x2F;procpath">procpath</a> - Represents a proc or verb path.</li>
@@ -4070,7 +4101,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/41567907ea7c8d1815488ce0ee99eefa60394cbb">4156790</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/75095daab2eac0c0d8a8ed32b2756e043ad05655">75095da</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
