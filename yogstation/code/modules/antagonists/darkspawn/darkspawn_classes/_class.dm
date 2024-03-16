@@ -114,6 +114,7 @@
 	long_description = "You can probably do this with just a club and loincloth anyway."
 	specialization_flag = NONE
 	class_color = COLOR_SILVER
+	starting_abilities = list(/datum/psi_web/innate_darkspawn)
 	choosable = FALSE
 
 /datum/component/darkspawn_class/fighter
