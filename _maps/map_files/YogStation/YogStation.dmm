@@ -8042,7 +8042,7 @@
 	},
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Shared Engineering Storage";
-	req_one_access_txt = "32;19;24"
+	req_access_txt = "10"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -18300,7 +18300,7 @@
 "dKN" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
-	req_access_txt = "10;13"
+	req_access_txt = "10"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = -2;
@@ -23854,7 +23854,7 @@
 "fHf" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
-	req_one_access_txt = "10;61"
+	req_access_txt = "10"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = 2;
@@ -34150,7 +34150,7 @@
 "joA" = (
 /obj/machinery/door/window/brigdoor/westleft{
 	name = "AI Satellite Access";
-	req_one_access_txt = "32;19"
+	req_access_txt = "65"
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -49626,7 +49626,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room";
-	req_one_access_txt = "10;61"
+	req_access_txt = "10"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -52687,7 +52687,7 @@
 	},
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room";
-	req_one_access_txt = "10;61"
+	req_access_txt = "10"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -53384,7 +53384,7 @@
 "qzt" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
-	req_access_txt = "10;13"
+	req_access_txt = "10"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = 2;
@@ -56424,7 +56424,7 @@
 "rEz" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Engineering";
-	req_access_txt = "32"
+	req_access_txt = "10"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -62191,7 +62191,7 @@
 "tKP" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Four";
-	req_one_access_txt = "10;61"
+	req_access_txt = "10"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
 	dirx = -2;
@@ -64355,7 +64355,7 @@
 "uDp" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "AI Satellite Monitoring";
-	req_one_access_txt = "10;61"
+	req_access_txt = "10"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
