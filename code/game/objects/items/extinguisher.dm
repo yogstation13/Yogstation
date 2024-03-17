@@ -89,7 +89,7 @@
 	else
 		return ..()
 
-/obj/item/extinguisher/attack_obj(obj/O, mob/living/user)
+/obj/item/extinguisher/attack_atom(obj/O, mob/living/user)
 	if(AttemptRefill(O, user))
 		refilling = TRUE
 		return FALSE

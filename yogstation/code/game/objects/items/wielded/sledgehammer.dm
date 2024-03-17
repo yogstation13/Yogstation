@@ -50,11 +50,12 @@
 	if(!proximity_flag)
 		return
 
-	if(isstructure(target) || ismachinery(target))
+	if(target.uses_integrity)
 		if(!QDELETED(target))
-			var/obj/structure/S = target
-			if(istype(S, /obj/structure/window)) // Sledgehammer really good at smashing windows. 2-7 hits to kill a window
-				S.take_damage(S.max_integrity/2, BRUTE, MELEE, FALSE, null, armour_penetration)
+			if(istype(target, /obj/structure/window)) // Sledgehammer really good at smashing windows. 2-7 hits to kill a window
+				target.take_damage(target.max_integrity/2, BRUTE, MELEE, FALSE, null, armour_penetration)
+			if(iswallturf(target))
+				target.take_damage(force * demolition_mod, BRUTE, MELEE, FALSE, null, armour_penetration) // Sledgehammers are quite good at smashing walls
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 
 /obj/item/melee/sledgehammer/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)

@@ -34,6 +34,8 @@
 	mutanttail = /obj/item/organ/tail/polysmorph
 	mutantlungs = /obj/item/organ/lungs/xeno
 	attack_verb = "slash"
+	barefoot_step_sound = FOOTSTEP_MOB_CLAW
+	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	fixed_mut_color = "#444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
@@ -61,6 +63,9 @@
 	.=..()
 	if(C.physiology)
 		C.physiology.armor.wound -= 5
+
+/datum/species/polysmorph/get_butt_sprite()
+	return BUTT_SPRITE_XENOMORPH
 
 /datum/species/polysmorph/get_species_description()
 	return ""//"TODO: This is polysmorph description"

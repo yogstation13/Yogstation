@@ -91,6 +91,8 @@
 	desc = "For some classy, murderous fun."
 	icon_state = "waistcoat"
 	item_state = "waistcoat"
+	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -99,6 +101,8 @@
 	desc = "The best part of a maid costume."
 	icon_state = "maidapron"
 	item_state = "maidapron"
+	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -464,6 +468,25 @@
 		"Lesbian Pride" = list(
 			"icon" = "pride_lesbian",
 			"info" = "Orange and pink shaded stripes that represent Lesbian pride, pride in same-gender love among women!"),
+		"Gay Pride" = list(
+			"icon" = "pride_gay",
+			"info" = "Navy and turquoise shaded stripes that represent Gay pride, pride in same-gender love among men!"),
+		//meme pins under this
+		"Ian Pride" = list( //we love ian
+			"icon" = "pride_ian",
+			"info" = "A orange corgi, pride in the HoP's beloved pet!"),
+		"Void Pride" = list( //darkness antag
+			"icon" = "pride",
+			"info" = "Nothing, pride in NOTHING!!!"),
+		"Suspicious Pride Pin" = list( //syndicate
+			"icon" = "pride_suspicious",
+			"info" = "A black S on a red banner, pride in chaos!"),
+		"Grey Pride" = list( //assistants
+			"icon" = "pride_grey",
+			"info" = "A robust toolbox over a grey background, pride in what is stationwide!"),
+		"Command Pride" = list(
+			"icon" = "pride_command",
+			"info" = "A blue background with an elaborate white trim, pride in your superiors!")
 		)
 
 /obj/item/clothing/accessory/pride/attack_self(mob/user)
@@ -474,5 +497,5 @@
 		choice.image = icon(icon, pride_reskins[pin_type]["icon"])
 		choice.info = pride_reskins[pin_type]["info"]
 		radial_menu[pin_type] =  choice
-	var/P = show_radial_menu(user, user, radial_menu, tooltips = TRUE)
-	icon_state = P ? pride_reskins[P]["icon"] : initial(icon_state)
+	var/Pin = show_radial_menu(user, user, radial_menu, tooltips = TRUE)
+	icon_state = Pin ? pride_reskins[Pin]["icon"] : initial(icon_state)
