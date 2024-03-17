@@ -18,6 +18,8 @@
 
 /obj/machinery/telecomms/allinone/Initialize(mapload)
 	. = ..()
+	id = "Telecommunicatons Mainframe" //Does nothing, just prevents from showing NULL
+	network = "SyndiMain"
 	if (intercept)
 		freq_listening = list(FREQ_SYNDICATE)
 
