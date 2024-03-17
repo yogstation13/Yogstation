@@ -1,0 +1,6 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "You can \"Bash\" on windows by harm intent clicking them with an open hand for a louder audio queue."
+  - bugfix: "Paperframe window sprites were invisible"
+  - soundadd: "glassbash.ogg from TG"
