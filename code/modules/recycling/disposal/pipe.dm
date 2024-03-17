@@ -46,10 +46,10 @@
 // pipe is deleted
 // ensure if holder is present, it is expelled
 /obj/structure/disposalpipe/Destroy()
-	var/obj/structure/disposalholder/H = locate() in src
-	if(H)
-		H.active = FALSE
-		expel(H, get_turf(src), 0)
+	for(var/obj/structure/disposalholder/H as anything in src)
+		if(istype(H))
+			H.active = FALSE
+			expel(H, get_turf(src), 0)
 	QDEL_NULL(stored)
 	return ..()
 
