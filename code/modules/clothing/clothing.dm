@@ -105,17 +105,6 @@
 				return FALSE
 	return TRUE
 
-/obj/item/clothing/proc/refit_for_species(target_species)
-	//Set icon
-	if(sprite_sheets && (target_species in sprite_sheets))
-		icon_override = sprite_sheets[target_species]
-	else
-		icon_override = initial(icon_override)
-	if(sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
-
 /obj/item/reagent_containers/food/snacks/clothing
 	name = "temporary moth clothing snack item"
 	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object."

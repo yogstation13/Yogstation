@@ -345,6 +345,7 @@
 			prof.righthand_file_list[slot] = I.righthand_file
 			prof.worn_icon_list[slot] = I.worn_icon
 			prof.worn_icon_state_list[slot] = I.worn_icon_state
+			prof.sprite_sheets_list[slot] = I.sprite_sheets
 			prof.exists_list[slot] = 1
 		else
 			continue
@@ -646,6 +647,7 @@
 	var/list/worn_icon_list = list()
 	/// Assoc list of item slot to string - stores the worn icon state of the item in that slot
 	var/list/worn_icon_state_list = list()
+	var/list/sprite_sheets_list = list()
 
 	var/underwear
 	var/undershirt
@@ -676,6 +678,7 @@
 	new_profile.socks = socks
 	new_profile.worn_icon_list = worn_icon_list.Copy()
 	new_profile.worn_icon_state_list = worn_icon_state_list.Copy()
+	new_profile.sprite_sheets_list = sprite_sheets_list.Copy()
 	new_profile.stored_scars = stored_scars.Copy()
 
 /datum/antagonist/changeling/xenobio

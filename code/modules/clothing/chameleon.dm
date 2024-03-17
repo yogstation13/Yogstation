@@ -252,7 +252,6 @@
 
 		item_target.worn_icon_state = initial(picked_item.worn_icon_state)
 		item_target.item_state = initial(picked_item.item_state)
-		item_target.icon_override = initial(picked_item.icon_override)
 		item_target.sprite_sheets = initial(picked_item.sprite_sheets)
 		if(isclothing(item_target) && ispath(picked_item, /obj/item/clothing))
 			var/obj/item/clothing/CL = item_target
