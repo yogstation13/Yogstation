@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("crate shelf parts", /obj/item/rack_parts/shelf), \
 		)), \
 	null, \
-	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister/generic, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("portable pump", /obj/machinery/portable_atmospherics/pump, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	recipes = GLOB.wood_recipes
 	return ..()
 
-/obj/item/stack/sheet/mineral/wood/attack_obj(obj/O, mob/living/user)
+/obj/item/stack/sheet/mineral/wood/attack_atom(obj/O, mob/living/user)
 	if(istype(O, /obj/structure/window) || istype(O, /obj/machinery/door/airlock) || istype(O,/obj/machinery/door)) //I hate this but reportedly there is no other way :skull:
 		for(var/obj/structure/barricade/wooden/crude/crude in get_turf(O))
 			to_chat(user, span_warning("There is already a barricade there!"))

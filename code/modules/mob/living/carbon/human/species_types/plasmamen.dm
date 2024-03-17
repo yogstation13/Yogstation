@@ -15,6 +15,7 @@
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
 	mutantstomach = /obj/item/organ/stomach/plasmaman
+	barefoot_step_sound = FOOTSTEP_MOB_CLAW
 	brutemod = 1.3 //Rattle me bones, but less because plasma bones are very hard
 	burnmod = 0.9 //Plasma is a surprisingly good insulator if not around oxygen
 	heatmod = 1.5 //Don't let the plasma actually heat up though
@@ -198,6 +199,9 @@
 		randname += " [lastname]"
 
 	return randname
+
+/datum/species/plasmaman/get_butt_sprite()
+	return BUTT_SPRITE_PLASMA
 
 /datum/species/plasmaman/get_species_description()
 	return "Reanimated skeletons of those who died in plasma fires, plasmamen are the first alien sapient beings to be \
