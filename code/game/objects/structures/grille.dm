@@ -326,7 +326,7 @@
 	desc = "A strangely-shaped grille."
 	broken_type = /obj/structure/grille/ratvar/broken
 
-	// These don't smooth
+	// These ones are too cool to smooth
 	base_icon_state = null
 	smoothing_flags = NONE
 	smoothing_groups = null
