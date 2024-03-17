@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Maybe fixes a bug with disposal pipes qdeleting people"
