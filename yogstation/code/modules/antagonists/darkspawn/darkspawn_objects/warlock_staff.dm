@@ -1,8 +1,3 @@
-#define STAFF_UPGRADE_CONFUSION 	(1<<0)
-#define STAFF_UPGRADE_HEAL 			(1<<1)
-#define STAFF_UPGRADE_LIGHTEATER 	(1<<2)
-#define STAFF_UPGRADE_EXTINGUISH	(1<<3)
-
 //////////////////////////////////////////////////////////////////////////
 //---------------------Upgradeable warlock staff------------------------//
 //////////////////////////////////////////////////////////////////////////
