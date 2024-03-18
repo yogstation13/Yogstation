@@ -309,6 +309,8 @@
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
 	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
 		return FALSE
+	if(owner.movement_type & VENTCRAWLING) //don't let them smoosh themselves
+		return FALSE
 	. = ..()
 	
 //////////////////////////////////////////////////////////////////////////

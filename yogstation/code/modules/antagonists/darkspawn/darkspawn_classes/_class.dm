@@ -37,6 +37,7 @@
 
 /datum/component/darkspawn_class/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER, PROC_REF(gain_power))
+	RegisterSignal(parent, COMSIG_MIND_TRANSFERRED, PROC_REF(update_overlays_target))
 	if(istype(parent, /datum/mind))
 		var/datum/mind/thinker = parent
 		if(thinker.current && isliving(thinker.current))
@@ -49,6 +50,7 @@
 	
 /datum/component/darkspawn_class/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER)
+	UnregisterSignal(parent, COMSIG_MIND_TRANSFERRED)
 	if(istype(parent, /datum/mind))
 		var/datum/mind/thinker = parent
 		if(thinker.current && isliving(thinker.current))
@@ -58,6 +60,20 @@
 	
 	for(var/datum/psi_web/power in learned_abilities)
 		lose_power(power, TRUE) //if the component is removed, refund them
+
+//////////////////////////////////////////////////////////////////////////
+//---------------------------Overlay handlers---------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/component/darkspawn_class/proc/update_overlays_target(datum/mind/source, mob/old_current)
+	SIGNAL_HANDLER
+
+	UnregisterSignal(old_current, COMSIG_ATOM_UPDATE_OVERLAYS)
+	old_current.update_appearance(UPDATE_OVERLAYS)
+
+	if(source.current)
+		RegisterSignal(source.current, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
+		source.current.update_appearance(UPDATE_OVERLAYS)
+
 
 /datum/component/darkspawn_class/proc/update_owner_overlay(atom/source, list/overlays)
 	SIGNAL_HANDLER
@@ -78,6 +94,9 @@
 
 	overlays += emissive_appearance(icon_file, class_icon, source) //the emissive overlay for the sigil
 
+//////////////////////////////////////////////////////////////////////////
+//---------------------------Abilities procs----------------------------//
+//////////////////////////////////////////////////////////////////////////
 /datum/component/darkspawn_class/proc/get_purchasable_abilities() //todo, add buying multiples in this thing
 	var/list/datum/psi_web/available_abilities = list()
 	for(var/datum/psi_web/ability as anything in subtypesof(/datum/psi_web))

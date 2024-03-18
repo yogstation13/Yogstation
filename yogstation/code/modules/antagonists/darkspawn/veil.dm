@@ -61,6 +61,7 @@
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(veil_life))
 	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
+	current_mob.update_appearance(UPDATE_OVERLAYS)
 	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
@@ -81,6 +82,7 @@
 
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS)
+	current_mob.update_appearance(UPDATE_OVERLAYS)
 	qdel(current_mob.GetComponent(/datum/component/internal_cam))
 	for(var/datum/action/cooldown/spell/spells in current_mob.actions)
 		if(spells.type in abilities)//no keeping your abilities
