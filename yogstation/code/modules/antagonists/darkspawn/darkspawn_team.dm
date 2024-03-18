@@ -100,3 +100,13 @@
 		for(var/datum/mind/master in members)
 			if(master.current)
 				to_chat(master.current, span_progenitor("Enough lucidity has been gathered, perform the sacrament to ascend once more!"))
+
+/datum/team/darkspawn/proc/upon_sacrament()
+	for(var/datum/mind/master in members)
+		var/dead = FALSE
+		if(master.current)
+			if(master.current.stat == DEAD)
+				dead = TRUE
+			master.current.revive(TRUE)
+			if(dead)
+				to_chat(master.current, "Returning to the shadowlands has revitalized your form")

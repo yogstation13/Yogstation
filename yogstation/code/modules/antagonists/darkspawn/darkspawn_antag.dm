@@ -433,6 +433,7 @@
 	user.status_flags |= GODMODE
 
 	if(!SSticker.mode.sacrament_done)
+		team.upon_sacrament()
 		SSticker.mode.sacrament_done = TRUE
 		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 		shatter_lights()
