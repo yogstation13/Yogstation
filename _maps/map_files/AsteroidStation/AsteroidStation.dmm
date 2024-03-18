@@ -2546,7 +2546,7 @@
 /turf/open/floor/carpet/green,
 /area/hallway/secondary/entry)
 "awN" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/engine,
 /area/science/storage)
 "awR" = (
@@ -8567,7 +8567,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bZf" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "bZn" = (
@@ -8898,7 +8898,7 @@
 /turf/open/floor/engine,
 /area/science/storage)
 "cdi" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/atmospherics/miner/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos/distro)
@@ -19633,7 +19633,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
 "fom" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -36652,7 +36652,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
