@@ -25,7 +25,7 @@
 	name = "Incite"
 	desc = "Force everyone nearby to walk towards you, but disables your ability to attack for a time."
 	lore_description = ""
-	icon_state = "shadow_crash"
+	icon_state = "incite"
 	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE

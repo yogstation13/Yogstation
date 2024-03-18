@@ -77,23 +77,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/psi_web/staff_upgrade/heal
-	name = "Recovery Sign"
-	desc = "Empower your staff with the ability to heal allies shot."
-	lore_description = "The Kalak sigil, representing eternity, is etched onto the staff."
-	icon_state = ""
-	menu_tab = STORE_UTILITY
-	flag_to_add = STAFF_UPGRADE_HEAL
-	
-/datum/psi_web/staff_upgrade/extinguish
-	name = "Extinguish Sign"
-	desc = "Empower your staff with the ability to extinguish the fire on allies shot."
-	lore_description = "The Khophg sigil, representing suffocation, is etched onto the staff."
-	icon_state = ""
-	willpower_cost = 1
-	menu_tab = STORE_UTILITY
-	flag_to_add = STAFF_UPGRADE_EXTINGUISH
-	
 /datum/psi_web/extinguish
 	name = "Extinguish"
 	desc = "Extinguish all light around you."
@@ -113,6 +96,23 @@
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam)
+
+/datum/psi_web/staff_upgrade/heal
+	name = "Recovery Sign"
+	desc = "Empower your staff with the ability to heal allies shot."
+	lore_description = "The Kalak sigil, representing eternity, is etched onto the staff."
+	icon_state = ""
+	menu_tab = STORE_UTILITY
+	flag_to_add = STAFF_UPGRADE_HEAL
+	
+/datum/psi_web/staff_upgrade/extinguish
+	name = "Extinguish Sign"
+	desc = "Empower your staff with the ability to extinguish the fire on allies shot."
+	lore_description = "The Khophg sigil, representing suffocation, is etched onto the staff."
+	icon_state = ""
+	willpower_cost = 1
+	menu_tab = STORE_UTILITY
+	flag_to_add = STAFF_UPGRADE_EXTINGUISH
 	
 /datum/psi_web/veil_heal
 	name = "Veil Recovery"
