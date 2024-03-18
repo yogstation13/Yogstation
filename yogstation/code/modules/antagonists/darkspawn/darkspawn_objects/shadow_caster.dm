@@ -5,7 +5,7 @@
 	item_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
 	no_pin_required = TRUE
-	recharge_time = 5 SECONDS
+	recharge_time = 4 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
 	. = ..()
@@ -48,7 +48,6 @@
 //the projectile being shot from the bow
 /obj/projectile/bullet/reusable/arrow/shadow
 	name = "shadow arrow"
-	damage = 25
 	light_system = MOVABLE_LIGHT
 	light_power = -1
 	light_color = COLOR_VELVET

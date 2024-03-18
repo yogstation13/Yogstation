@@ -15,6 +15,8 @@
 	wound_bonus = -80 //no wounding
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
+	COOLDOWN_DECLARE(grab_cooldown)
+	var/cooldown_length = 1 SECONDS //just to prevent accidentally wasting all your psi
 
 /obj/item/umbral_tendrils/Initialize(mapload, new_darkspawn)
 	. = ..()
@@ -46,7 +48,7 @@
 /obj/item/umbral_tendrils/attack(mob/living/target, mob/living/user, twinned_attack = TRUE)
 	set waitfor = FALSE
 	..()
-	sleep(0.1 SECONDS)
+	sleep(0.2 SECONDS)
 	if(twin && twinned_attack && user.Adjacent(target))
 		twin.attack(target, user, FALSE)
 
@@ -61,12 +63,15 @@
 			tendril_swing(user, target)
 
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
+	if(!COOLDOWN_FINISHED(src, grab_cooldown))
+		return
 	if(darkspawn && !darkspawn.has_psi(30))
 		return
 	if(isliving(target) && target.lying)
 		to_chat(user, span_warning("[target] is already knocked down!"))
 		return
 	darkspawn.use_psi(30)
+	COOLDOWN_START(src, grab_cooldown, cooldown_length)
 	user.visible_message(span_warning("[user] draws back [src] and swings them towards [target]!"), \
 	span_velvet("<b>opehhjaoo</b><br>You swing your tendrils towards [target]!"))
 	playsound(user, 'sound/magic/tail_swing.ogg', 50, TRUE)

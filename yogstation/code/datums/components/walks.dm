@@ -53,6 +53,8 @@
 		return TRUE
 
 	var/mob/living/L = parent
+	if(!is_species(L, /datum/species/shadow/darkspawn))
+		return FALSE
 	var/turf/T = get_step(L, direction)
 	L.setDir(direction)
 	if(!T)
@@ -100,6 +102,7 @@
 				return
 			L.face_atom(user)
 		pulled = user.pulling
+		pulled.set_glide_size(user.glide_size)
 		user.pulling.forceMove(get_turf(user))
 
 /datum/component/walk/shadow/finalize_move(mob/living/user, turf/destination)

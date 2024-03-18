@@ -74,7 +74,7 @@ export const AntagInfoDarkspawn = (props, context) => {
                 onClick={() => setTab(0)}>
                 Information
               </Tabs.Tab>
-              {!!divulged && (
+              {!!divulged && !!has_class && (
                 <Tabs.Tab
                   icon={currentTab === 1 ? 'book-open' : 'book'}
                   selected={currentTab === 1}

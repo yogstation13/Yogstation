@@ -14,11 +14,11 @@
 
 /datum/psi_web/medhud/on_gain()
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	H.show_to(owner)
+	H.show_to(shadowhuman)
 
 /datum/psi_web/medhud/on_loss()
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	H.hide_from(owner)
+	H.hide_from(shadowhuman)
 
 //xray vision, duh
 /datum/psi_web/xray
@@ -32,15 +32,15 @@
 	var/obj/item/organ/eyes/eyes
 
 /datum/psi_web/xray/on_gain()
-	eyes = owner.getorganslot(ORGAN_SLOT_EYES)
+	eyes = shadowhuman.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.sight_flags |= SEE_OBJS | SEE_TURFS
-		owner.update_sight()
+		shadowhuman.update_sight()
 
 /datum/psi_web/xray/on_loss()
 	if(eyes)
 		eyes.sight_flags &= ~(SEE_OBJS | SEE_TURFS)
-		owner.update_sight()
+		shadowhuman.update_sight()
 
 /datum/psi_web/sunglasses
 	name = "Lightblind Sigil"
@@ -53,7 +53,7 @@
 	var/obj/item/organ/eyes/eyes
 
 /datum/psi_web/sunglasses/on_gain()
-	eyes = owner.getorganslot(ORGAN_SLOT_EYES)
+	eyes = shadowhuman.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.flash_protect += 2
 
@@ -106,10 +106,10 @@
 	shadow_flags = FIGHTER | SCOUT
 
 /datum/psi_web/low_light_resistance/on_gain()
-	ADD_TRAIT(owner, TRAIT_DARKSPAWN_LIGHTRES, src)
+	ADD_TRAIT(shadowhuman, TRAIT_DARKSPAWN_LIGHTRES, src)
 
 /datum/psi_web/low_light_resistance/on_loss()
-	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_LIGHTRES, src)
+	REMOVE_TRAIT(shadowhuman, TRAIT_DARKSPAWN_LIGHTRES, src)
 	
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Fighter Passive Upgrades------------------------------//
@@ -141,12 +141,10 @@
 	infinite = TRUE
 
 /datum/psi_web/brute_res/on_gain()
-	if(istype(owner))
-		owner.physiology.brute_mod *= 0.8
+	shadowhuman.physiology.brute_mod *= 0.8
 
 /datum/psi_web/brute_res/on_loss()
-	if(istype(owner))
-		owner.physiology.brute_mod /= 0.8
+	shadowhuman.physiology.brute_mod /= 0.8
 
 /datum/psi_web/burn_res
 	name = "Stifle Sigil"
@@ -159,12 +157,10 @@
 	infinite = TRUE
 
 /datum/psi_web/brute_res/on_gain()
-	if(istype(owner))
-		owner.physiology.burn_mod *= 0.85
+	shadowhuman.physiology.burn_mod *= 0.85
 
 /datum/psi_web/brute_res/on_loss()
-	if(istype(owner))
-		owner.physiology.burn_mod /= 0.85
+	shadowhuman.physiology.burn_mod /= 0.85
 
 /datum/psi_web/noslip
 	name = "Stability Sigil"
@@ -176,10 +172,10 @@
 	shadow_flags = FIGHTER
 
 /datum/psi_web/noslip/on_gain()
-	ADD_TRAIT(owner, TRAIT_NO_SLIP_ALL, type)
+	ADD_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
 
 /datum/psi_web/noslip/on_loss()
-	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_ALL, type)
+	REMOVE_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Scout Passive Upgrades------------------------------//
@@ -194,12 +190,10 @@
 	shadow_flags = SCOUT
 
 /datum/psi_web/stamina_res/on_gain()
-	if(istype(owner))
-		owner.physiology.stamina_mod /= 2
+	shadowhuman.physiology.stamina_mod /= 2
 
 /datum/psi_web/stamina_res/on_loss()
-	if(istype(owner))
-		owner.physiology.stamina_mod *= 2
+	shadowhuman.physiology.stamina_mod *= 2
 
 /datum/psi_web/shadow_walk
 	name = "Shadowwalk Sigils"
@@ -211,10 +205,10 @@
 	shadow_flags = SCOUT
 
 /datum/psi_web/shadow_walk/on_gain()
-	owner.AddComponent(/datum/component/shadow_step)
+	shadowhuman.AddComponent(/datum/component/shadow_step)
 
 /datum/psi_web/shadow_walk/on_loss()
-	qdel(owner.GetComponent(/datum/component/shadow_step))
+	qdel(shadowhuman.GetComponent(/datum/component/shadow_step))
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Warlock Passive Upgrades------------------------------//
@@ -262,10 +256,10 @@
 	shadow_flags = WARLOCK
 
 /datum/psi_web/fast_cooldown/on_gain()
-	ADD_TRAIT(owner, TRAIT_FAST_COOLDOWNS, type)
+	ADD_TRAIT(shadowhuman, TRAIT_FAST_COOLDOWNS, type)
 
 /datum/psi_web/fast_cooldown/on_loss()
-	REMOVE_TRAIT(owner, TRAIT_FAST_COOLDOWNS, type)
+	REMOVE_TRAIT(shadowhuman, TRAIT_FAST_COOLDOWNS, type)
 
 //adds an additional thrall
 /datum/psi_web/more_thralls
@@ -298,7 +292,7 @@
 	shadow_flags = WARLOCK
 
 /datum/psi_web/buff_allies/on_gain()
-	ADD_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES, type)
+	ADD_TRAIT(shadowhuman, TRAIT_DARKSPAWN_BUFFALLIES, type)
 
 /datum/psi_web/buff_allies/on_loss()
-	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES, type)
+	REMOVE_TRAIT(shadowhuman, TRAIT_DARKSPAWN_BUFFALLIES, type)

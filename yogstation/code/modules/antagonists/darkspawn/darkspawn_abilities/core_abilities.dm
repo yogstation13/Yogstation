@@ -48,7 +48,7 @@
 
 /datum/action/cooldown/spell/touch/devour_will/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/target, mob/living/carbon/caster)
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
-	if(!darkspawn || eating || target == caster) //no eating urself ;)))))))
+	if(!darkspawn || eating || target == caster)
 		return
 	if(!target.mind)
 		to_chat(caster, span_warning("You cannot drain the mindless."))
@@ -124,6 +124,81 @@
 	target.apply_status_effect(STATUS_EFFECT_DEVOURED_WILL)
 	ADD_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED, type)
 	return TRUE
+
+//////////////////////////////////////////////////////////////////////////
+//--------------------------Glorified handcuffs-------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/touch/restrain_body
+	name = "Restrain body"
+	desc = "Forms rudimentary restraints on a target's hands."
+	panel = "Darkspawn"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	sound = null
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "divulge(old)"
+	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	invocation_type = INVOCATION_NONE
+	hand_path = /obj/item/melee/touch_attack/darkspawn
+	var/tying = FALSE //If we're tying someone's hands
+
+/datum/action/cooldown/spell/touch/restrain_body/can_cast_spell(feedback)
+	if(tying)
+		return
+	return ..()
+
+/datum/action/cooldown/spell/touch/restrain_body/is_valid_target(atom/cast_on)
+	return iscarbon(cast_on)
+
+/datum/action/cooldown/spell/touch/restrain_body/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/target, mob/living/carbon/caster)
+	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
+	if(!darkspawn || tying || target == caster) //no tying yourself
+		return
+	if(is_darkspawn_or_veil(target))
+		to_chat(caster, span_warning("You cannot restrain allies."))
+		return
+	if(!istype(target))
+		to_chat(caster, span_warning("[target]'s mind is too pitiful to be of any use."))
+		return
+	if(target.handcuffed)
+		to_chat(caster, span_warning("[target] is already restrained."))
+		return
+
+	to_chat(caster, span_velvet("Koce ra..."))
+	to_chat(caster, span_velvet("You begin restraining [target]..."))
+	playsound(target, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 50, TRUE)
+	tying = TRUE
+	if(!do_after(caster, 1.5 SECONDS, target, progress = FALSE))
+		tying = FALSE
+		return FALSE
+	tying = FALSE
+
+	if(target.handcuffed)
+		to_chat(caster, span_warning("[target] is already restrained."))
+		return
+
+	playsound(target, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
+	target.set_handcuffed(new /obj/item/restraints/handcuffs/darkspawn(target))
+	target.update_handcuffed()
+
+	return TRUE
+
+//the restrains in question
+/obj/item/restraints/handcuffs/darkspawn
+	name = "shadow stitched restraints"
+	desc = "Bindings created by stitching together shadows."
+	icon_state = "handcuffAlien"
+	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
+	breakouttime = 30 SECONDS
+	flags_1 = NONE
+	item_flags = DROPDEL
+
+/obj/item/restraints/handcuffs/darkspawn/Initialize(mapload)
+	. = ..()
+	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Recall shuttle ability-------------------------//
@@ -223,11 +298,13 @@
 	. = ..()
 	if(.)
 		to_chat(owner, span_velvet("Zov..."))
+		psi_cost = 0
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/do_unshapeshift(mob/living/caster)
 	. = ..()
 	if(.)
 		to_chat(owner, span_velvet("...Voz"))
+		psi_cost = initial(psi_cost)
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
 	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))

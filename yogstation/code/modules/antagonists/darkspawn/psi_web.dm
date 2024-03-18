@@ -19,18 +19,24 @@
 	///what tab of the antag menu does it fall under
 	var/menu_tab
 	///The owner of the psi_web datum that effects will be applied to
-	var/mob/living/carbon/human/owner
+	var/datum/mind/owner
+	///The human mob of darkspawn
+	var/mob/living/carbon/human/shadowhuman
 	///The antag datum of the owner(used for modifying)
 	var/datum/antagonist/darkspawn/darkspawn
 	///If it can be bought infinite times for incremental upgrades
 	var/infinite = FALSE
 
 ///When the button to purchase is clicked
-/datum/psi_web/proc/on_purchase(mob/living/carbon/human/user)
-	if(!ishuman(user))
+/datum/psi_web/proc/on_purchase(datum/mind/user)
+	if(!istype(user, /datum/mind))
 		return
 	owner = user
-	darkspawn = isdarkspawn(user)
+	if(!owner.current || !ishuman(owner.current))
+		to_chat(user, span_warning("You can only research as a human"))
+		return
+	shadowhuman = owner.current
+	darkspawn = owner.has_antag_datum(/datum/antagonist/darkspawn)
 	if(!darkspawn)
 		CRASH("[owner] tried to gain a psi_web datum despite not being a darkspawn")
 	if(darkspawn.willpower < willpower_cost)
@@ -42,8 +48,8 @@
 	on_gain()
 	for(var/ability in learned_abilities)
 		if(ispath(ability, /datum/action))
-			var/datum/action/action = new ability(owner.mind)
-			action.Grant(owner)
+			var/datum/action/action = new ability(owner)
+			action.Grant(shadowhuman)
 	return TRUE
 
 ///If the purchase goes through, this gets called
@@ -56,9 +62,10 @@
 /datum/psi_web/proc/remove(refund = FALSE)
 	for(var/ability in learned_abilities)
 		if(ispath(ability, /datum/action))
-			var/datum/action/action = locate(ability) in owner.actions
+			var/datum/action/action = locate(ability) in owner.current.actions
 			if(action)
-				action.Remove(owner)
+				if(shadowhuman)
+					action.Remove(shadowhuman)
 				qdel(action)
 
 	on_loss()
@@ -79,7 +86,7 @@
 	name = "darkspawn progression abilities"
 	desc = "me no think so good"
 	shadow_flags = ALL_DARKSPAWN_CLASSES
-	learned_abilities = list(/datum/action/cooldown/spell/sacrament, /datum/action/cooldown/spell/touch/devour_will)
+	learned_abilities = list(/datum/action/cooldown/spell/sacrament, /datum/action/cooldown/spell/touch/restrain_body, /datum/action/cooldown/spell/touch/devour_will)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------Specialization innate Upgrades----------------------------//
@@ -92,10 +99,10 @@
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_tendril)
 
 /datum/psi_web/fighter/on_gain()
-	owner.physiology.stamina_mod /= 2
+	shadowhuman.physiology.stamina_mod /= 2
 
 /datum/psi_web/fighter/on_loss()
-	owner.physiology.stamina_mod *= 2
+	shadowhuman.physiology.stamina_mod *= 2
 
 //scout
 /datum/psi_web/scout
@@ -105,10 +112,10 @@
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/light_eater)
 
 /datum/psi_web/scout/on_gain()
-	owner.LoadComponent(/datum/component/walk/shadow)
+	shadowhuman.LoadComponent(/datum/component/walk/shadow)
 
 /datum/psi_web/scout/on_loss()
-	qdel(owner.GetComponent(/datum/component/walk/shadow))
+	qdel(shadowhuman.GetComponent(/datum/component/walk/shadow))
 
 //warlock
 /datum/psi_web/warlock

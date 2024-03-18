@@ -30,25 +30,27 @@
 //----------------------------Gain and loss stuff---------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/on_gain()
+	START_PROCESSING(SSprocessing, src)
 	owner.special_role = "darkspawn"
 	for (var/T in GLOB.antagonist_teams)
 		if (istype(T, /datum/team/darkspawn))
 			team = T
 	if(!team)
 		team = new
+	team.add_member(owner)
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
+	STOP_PROCESSING(SSprocessing, src)
 	owner.special_role = null
+	if(team)
+		team.remove_member(owner)
 	owner.current.hud_used.psi_counter.invisibility = initial(owner.current.hud_used.psi_counter.invisibility)
 	owner.current.hud_used.psi_counter.maptext = ""
-	STOP_PROCESSING(SSprocessing, src)
+	QDEL_NULL(picked_class)
 	return ..()
 
 /datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)
-	if(team)
-		team.add_member(owner)
-
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return
@@ -60,7 +62,6 @@
 	if(current_mob?.hud_used?.psi_counter)
 		current_mob.hud_used.psi_counter.invisibility = 0
 		update_psi_hud()
-	START_PROCESSING(SSprocessing, src)
 
 	current_mob.faction |= ROLE_DARKSPAWN
 
@@ -78,13 +79,10 @@
 		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
-	if(team)
-		team.remove_member(owner)
 	owner.current.remove_language(/datum/language/darkspawn)
 	owner.current.faction -= ROLE_DARKSPAWN
 	if(owner.current)
 		qdel(owner.current.GetComponent(/datum/component/internal_cam))
-	qdel(picked_class)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------Greet---------------------------------------//
@@ -171,7 +169,7 @@
 	if(QDELETED(src) || QDELETED(owner.current))
 		return
 
-	picked_class = owner.current.AddComponent(chosen)
+	picked_class = owner.AddComponent(chosen)
 	if(darkspawn_state >= DIVULGED)
 		owner.assigned_role = picked_class.name //they stop being whatever job they were the moment they divulge
 
@@ -183,11 +181,7 @@
 	if(team)
 		. += "<b>Max Veils:</b> [team.max_veils ? team.max_veils : "0"]<br>"
 
-	var/mob/living/carbon/human/user = owner.current
-	if(!user || !istype(user))//sanity check
-		return
-
-	var/datum/component/darkspawn_class/class = user.GetComponent(/datum/component/darkspawn_class)
+	var/datum/component/darkspawn_class/class = owner.GetComponent(/datum/component/darkspawn_class)
 	if(class && istype(class) && class.learned_abilities)
 		. += "<b>Upgrades:</b><br>"
 		for(var/datum/psi_web/ability as anything in class.learned_abilities)
@@ -266,14 +260,14 @@
 			var/upgrade_path = text2path(params["upgrade_path"])
 			if(!ispath(upgrade_path, /datum/psi_web))
 				return FALSE
-			SEND_SIGNAL(owner.current, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
+			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
 		if("select")
 			if(picked_class)
 				return FALSE
 			var/class_path = text2path(params["class_path"])
 			if(!ispath(class_path, /datum/component/darkspawn_class))
 				return FALSE
-			picked_class = owner.current.AddComponent(class_path)
+			picked_class = owner.AddComponent(class_path)
 
 /datum/antagonist/darkspawn/ui_status(mob/user, datum/ui_state/state)
 	if(user.stat == DEAD)
@@ -357,7 +351,7 @@
 
 		var/chosen = pick(classes)
 
-		picked_class = owner.current.AddComponent(chosen)
+		picked_class = owner.AddComponent(chosen)
 	
 	owner.assigned_role = picked_class.name //they stop being whatever job they were the moment they divulge
 

@@ -9,7 +9,7 @@
 	///The flag of the classtype. Used to determine which psi_web options are available to the class
 	var/specialization_flag = NONE
 	///The darkspawn who this class belongs to
-	var/mob/living/carbon/human/owner
+	var/datum/mind/owner
 	var/choosable = TRUE
 
 	var/datum/antagonist/darkspawn/d
@@ -25,10 +25,10 @@
 	var/class_icon = "classless"
 
 /datum/component/darkspawn_class/Initialize()
-	if(!ishuman(parent))
+	if(!istype(parent, /datum/mind))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
-	if(!isdarkspawn(owner))
+	if(!owner.has_antag_datum(/datum/antagonist/darkspawn))
 		return COMPONENT_INCOMPATIBLE
 	
 /datum/component/darkspawn_class/Destroy()
@@ -37,20 +37,24 @@
 
 /datum/component/darkspawn_class/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER, PROC_REF(gain_power))
-	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
-	if(ishuman(parent))
-		owner = parent
-		owner.update_appearance(UPDATE_OVERLAYS)
+	if(istype(parent, /datum/mind))
+		var/datum/mind/thinker = parent
+		if(thinker.current && isliving(thinker.current))
+			var/mob/living/thinkmob = thinker.current
+			RegisterSignal(thinkmob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
+			thinkmob.update_appearance(UPDATE_OVERLAYS)
 
 	for(var/datum/psi_web/power as anything in starting_abilities)
 		gain_power(power_typepath = power)
 	
 /datum/component/darkspawn_class/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_DARKSPAWN_PURCHASE_POWER)
-	UnregisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS)
-	if(ishuman(parent))
-		owner = parent
-		owner.update_appearance(UPDATE_OVERLAYS)
+	if(istype(parent, /datum/mind))
+		var/datum/mind/thinker = parent
+		if(thinker.current && isliving(thinker.current))
+			var/mob/living/thinkmob = thinker.current
+			UnregisterSignal(thinkmob, COMSIG_ATOM_UPDATE_OVERLAYS)
+			thinkmob.update_appearance(UPDATE_OVERLAYS)
 	
 	for(var/datum/psi_web/power in learned_abilities)
 		lose_power(power, TRUE) //if the component is removed, refund them

@@ -47,7 +47,7 @@
 	var/datum/action/cooldown/spell/toggle/shadow_tendril/spell
 
 /datum/psi_web/twin_tendrils/on_gain()
-	spell = locate() in owner.actions
+	spell = locate() in shadowhuman.actions
 	if(spell)
 		spell.twin = TRUE
 	else
@@ -148,7 +148,7 @@
 	var/flag_to_add = STAFF_UPGRADE_CONFUSION
 
 /datum/psi_web/staff_upgrade/on_gain()
-	spell = locate() in owner.actions
+	spell = locate() in shadowhuman.actions
 	if(spell)
 		spell.effect_flags |= flag_to_add
 	else
