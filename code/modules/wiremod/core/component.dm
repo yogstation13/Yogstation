@@ -11,7 +11,7 @@
 	name = COMPONENT_DEFAULT_NAME
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "component"
-	inhand_icon_state = "electronic"
+	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 

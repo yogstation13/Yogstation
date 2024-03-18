@@ -18,7 +18,7 @@
 	AddComponent(/datum/component/shell, null, SHELL_CAPACITY_VERY_LARGE, SHELL_FLAG_REQUIRE_ANCHOR|SHELL_FLAG_USB_PORT)
 
 /obj/structure/server/wrench_act(mob/living/user, obj/item/tool)
-	set_anchored(!anchored)
+	anchored = FALSE
 	tool.play_tool_sound(src)
 	balloon_alert(user, anchored ? "secured" : "unsecured")
 	return TRUE
