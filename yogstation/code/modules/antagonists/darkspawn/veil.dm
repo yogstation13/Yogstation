@@ -97,6 +97,11 @@
 	overlay.color = COLOR_DARKSPAWN_PSI
 	overlays += overlay
 
+	if(ishuman(source))
+		var/mob/living/carbon/human/dude = source
+		if(!(dude.wear_suit || dude.w_uniform))
+		overlays += mutable_appearance('yogstation/icons/mob/darkspawn.dmi', "veil_sigils", source)
+
 /datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
 		return
