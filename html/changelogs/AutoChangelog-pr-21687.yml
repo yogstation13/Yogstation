@@ -1,0 +1,5 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed invincible carpets looking like a black void (see goat king's arena)"
+  - bugfix: "Fixed cog grilles looking like smiling tables"
