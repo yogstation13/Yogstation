@@ -11,7 +11,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "veil_mind"
-	antimagic_flags = NONE
+	antimagic_flags = MAGIC_RESISTANCE_MIND
 	panel = "Darkspawn"
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -84,7 +84,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "veil_mind"
+	button_icon_state = "veiling_touch"
 	antimagic_flags = NONE
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
