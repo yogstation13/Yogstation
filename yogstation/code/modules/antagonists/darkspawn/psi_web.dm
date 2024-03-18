@@ -9,7 +9,7 @@
 	///Icon file used for the tgui menu
 	var/icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	///Specific icon used for the tgui menu
-	var/icon_state = ""
+	var/icon_state = null
 	///Cost of to learn this
 	var/willpower_cost = 0
 	///What specialization can buy this
