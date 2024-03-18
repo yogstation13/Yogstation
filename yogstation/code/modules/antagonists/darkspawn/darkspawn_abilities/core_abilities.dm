@@ -83,6 +83,10 @@
 		return FALSE
 	eating = FALSE
 
+	if(target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
+		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
+		return
+		
 	//put the victim to sleep before the visible_message proc so the victim doesn't see it
 	to_chat(target, span_progenitor("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	playsound(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
