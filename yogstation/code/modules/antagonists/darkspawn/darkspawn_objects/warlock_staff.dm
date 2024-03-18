@@ -21,7 +21,6 @@
 
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	ammo_type = /obj/item/ammo_casing/magic/darkspawn
-	var/obj/item/darkspawn_extinguish/bopper
 	/// Flags used for different effects that apply when a projectile hits something
 	var/effect_flags
 
@@ -34,11 +33,6 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	bopper = new(src)
-
-/obj/item/gun/magic/darkspawn/Destroy()
-	qdel(bopper)
-	. = ..()
 
 ///////////////////FANCY PROJECTILE EFFECTS//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_projectile_hit(datum/source, atom/movable/firer, atom/target, angle)
@@ -53,8 +47,6 @@
 			M.apply_damage(40, STAMINA)
 			if(effect_flags & STAFF_UPGRADE_CONFUSION)
 				M.adjust_confusion(6 SECONDS)
-	if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
-		SEND_SIGNAL(bopper, COMSIG_ITEM_AFTERATTACK, target, firer, TRUE) //just use a light eater attack on the target
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/update_icon_state()

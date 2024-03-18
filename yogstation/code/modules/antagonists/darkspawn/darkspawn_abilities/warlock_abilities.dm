@@ -33,6 +33,8 @@
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	if(!staff)
 		staff = new (owner)
+	if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
+		staff.LoadComponent(/datum/component/light_eater)
 	staff.effect_flags = effect_flags
 	owner.put_in_hands(staff)
 

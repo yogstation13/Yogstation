@@ -66,7 +66,6 @@
 		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
 		return
 
-	target.Stun(1 SECONDS)
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
 	target.silent += 5
 

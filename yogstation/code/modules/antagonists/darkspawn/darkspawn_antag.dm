@@ -268,6 +268,11 @@
 			if(!ispath(class_path, /datum/component/darkspawn_class))
 				return FALSE
 			picked_class = owner.AddComponent(class_path)
+			var/processed_message = span_velvet("<b>\[Mindlink\] [owner.current] has selected [picked_class.name] as their class.</b>")
+			for(var/T in GLOB.alive_mob_list)
+				var/mob/M = T
+				if(is_darkspawn_or_veil(M))
+					to_chat(M, processed_message)
 
 /datum/antagonist/darkspawn/ui_status(mob/user, datum/ui_state/state)
 	if(user.stat == DEAD)
