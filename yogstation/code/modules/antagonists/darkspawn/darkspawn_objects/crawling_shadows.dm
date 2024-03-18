@@ -26,8 +26,10 @@
 	melee_damage_upper = 5
 
 	//sight variables
-	lighting_color_cutoffs = list(12, 0, 50)
-	lighting_cutoff = 40
+	lighting_cutoff_red = 12
+	lighting_cutoff_green = 0
+	lighting_cutoff_blue = 50
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 	//death variables
 	del_on_death = TRUE

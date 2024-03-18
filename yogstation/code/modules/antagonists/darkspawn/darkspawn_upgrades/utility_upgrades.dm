@@ -106,7 +106,7 @@
 	flag_to_add = STAFF_UPGRADE_HEAL
 	
 /datum/psi_web/staff_upgrade/extinguish
-	name = "Extinguish Sign"
+	name = "Stifle Sign"
 	desc = "Empower your staff with the ability to extinguish the fire on allies shot."
 	lore_description = "The Khophg sigil, representing suffocation, is etched onto the staff."
 	icon_state = ""

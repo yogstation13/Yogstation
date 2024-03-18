@@ -44,19 +44,11 @@
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
 
-	var/datum/action/cooldown/spell/toggle/shadow_tendril/spell
-
 /datum/psi_web/twin_tendrils/on_gain()
-	spell = locate() in shadowhuman.actions
-	if(spell)
-		spell.twin = TRUE
-	else
-		remove(TRUE)
+	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_UPGRADE_ABILITY, TENDRIL_UPGRADE_TWIN)
 
 /datum/psi_web/twin_tendrils/on_loss()
-	if(spell)
-		spell.twin = FALSE
-		spell = null
+	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, TENDRIL_UPGRADE_TWIN)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------Scout only abilities-------------------------------//
@@ -143,21 +135,15 @@
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
-
-	var/datum/action/cooldown/spell/toggle/dark_staff/spell
 	var/flag_to_add = STAFF_UPGRADE_CONFUSION
 
 /datum/psi_web/staff_upgrade/on_gain()
-	spell = locate() in shadowhuman.actions
-	if(spell)
-		spell.effect_flags |= flag_to_add
-	else
-		remove(TRUE)
+	if(flag_to_add)
+		SEND_SIGNAL(owner, COMSIG_DARKSPAWN_UPGRADE_ABILITY, flag_to_add)
 
 /datum/psi_web/staff_upgrade/on_loss()
-	if(spell)
-		spell.effect_flags &= ~flag_to_add
-		spell = null
+	if(flag_to_add)
+		SEND_SIGNAL(owner, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, flag_to_add)
 
 /datum/psi_web/staff_upgrade/light_eater
 	name = "Light Eater Sign"

@@ -16,6 +16,26 @@
 	/// Flags used for different effects that apply when a projectile hits something
 	var/effect_flags
 
+/datum/action/cooldown/spell/toggle/dark_staff/link_to(Target)
+	. = ..()
+	if(istype(target, /datum/mind))
+		RegisterSignal(target, COMSIG_DARKSPAWN_UPGRADE_ABILITY, PROC_REF(handle_upgrade))
+		RegisterSignal(target, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, PROC_REF(handle_downgrade))
+	
+/datum/action/cooldown/spell/toggle/dark_staff/proc/handle_upgrade(atom/source, flag)
+	effect_flags |= flag
+	if(staff)
+		staff.effect_flags = effect_flags
+		if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
+			staff.LoadComponent(/datum/component/light_eater)
+
+/datum/action/cooldown/spell/toggle/dark_staff/proc/handle_downgrade(atom/source, flag)
+	effect_flags -= flag
+	if(staff)
+		staff.effect_flags = effect_flags
+		if(flag & STAFF_UPGRADE_LIGHTEATER)
+			qdel(staff.GetComponent(/datum/component/light_eater))
+
 /datum/action/cooldown/spell/toggle/dark_staff/process()
 	active = owner.is_holding_item_of_type(/obj/item/gun/magic/darkspawn)
 	. = ..()

@@ -34,7 +34,7 @@
 	lighting_cutoff_red = 12
 	lighting_cutoff_green = 0
 	lighting_cutoff_blue = 50
-	lighting_cutoff = 40
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	sight = SEE_MOBS //thermal vision (might be a downgrade from darkspawn xray, but this is cooler)
 
 	//flavour

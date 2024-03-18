@@ -12,7 +12,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 
 	fire_sound = 'sound/weapons/emitter2.ogg'
-	fire_delay = 3 SECONDS
+	fire_delay = 5 SECONDS
 
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	ammo_type = /obj/item/ammo_casing/magic/darkspawn
@@ -39,7 +39,7 @@
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
 				M.extinguish_mob()
 		else
-			M.apply_damage(40, STAMINA)
+			M.apply_damage(50, STAMINA)
 			if(effect_flags & STAFF_UPGRADE_CONFUSION)
 				M.adjust_confusion(6 SECONDS)
 
@@ -77,7 +77,7 @@
 	damage_type = STAMINA
 	nodamage = FALSE
 	antimagic_flags = MAGIC_RESISTANCE_MIND
-	speed = 1.4 //watch out, it fucks you up
+	speed = 1.6 //watch out, it fucks you up
 
 /obj/projectile/magic/darkspawn/Initialize(mapload)
 	. = ..()

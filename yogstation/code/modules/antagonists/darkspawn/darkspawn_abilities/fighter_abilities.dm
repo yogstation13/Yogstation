@@ -14,6 +14,24 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	var/twin = FALSE
 
+/datum/action/cooldown/spell/toggle/shadow_tendril/link_to(Target)
+	. = ..()
+	if(istype(target, /datum/mind))
+		RegisterSignal(target, COMSIG_DARKSPAWN_UPGRADE_ABILITY, PROC_REF(handle_upgrade))
+		RegisterSignal(target, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, PROC_REF(handle_downgrade))
+	
+/datum/action/cooldown/spell/toggle/shadow_tendril/proc/handle_upgrade(atom/source, flag)
+	if(flag & TENDRIL_UPGRADE_TWIN)
+		twin = TRUE
+		name = "Twinned Shadow Tendrils"
+		desc = "Twists one or both of your arms into tendrils with many uses."
+
+/datum/action/cooldown/spell/toggle/shadow_tendril/proc/handle_downgrade(atom/source, flag)
+	if(flag & TENDRIL_UPGRADE_TWIN)
+		twin = FALSE
+		name = "Shadow Tendril"
+		desc = "Twists an active arm into a mass of tendrils with many important uses. Examine the tendrils to see a list of uses."
+
 /datum/action/cooldown/spell/toggle/shadow_tendril/can_cast_spell(feedback)
 	if(!owner.get_empty_held_indexes() && !active)
 		if(feedback)
@@ -23,9 +41,6 @@
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/process()
 	active = owner.is_holding_item_of_type(/obj/item/umbral_tendrils)
-	if(twin)
-		name = "Twinned Shadow Tendrils"
-		desc = "Twists one or both of your arms into tendrils with many uses."
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/Enable()

@@ -15,9 +15,15 @@
 ///things that always happen all the time
 #define STORE_PASSIVE "passives" 
 
+///used by the antag datum and class component to handle power purchasing
 #define COMSIG_DARKSPAWN_PURCHASE_POWER "purchase_power"
+///used by the psi_web to handle upgrading existing abilities
+#define COMSIG_DARKSPAWN_UPGRADE_ABILITY "upgrade_ability"
+///used by the psi_web to handle refunding ability upgrades
+#define COMSIG_DARKSPAWN_DOWNGRADE_ABILITY "downgrade_ability"
 
 #define STAFF_UPGRADE_CONFUSION 	(1<<0)
 #define STAFF_UPGRADE_HEAL 			(1<<1)
 #define STAFF_UPGRADE_LIGHTEATER 	(1<<2)
 #define STAFF_UPGRADE_EXTINGUISH	(1<<3)
+#define TENDRIL_UPGRADE_TWIN		(1<<4)
