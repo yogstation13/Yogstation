@@ -79,7 +79,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/unveil_mind
 	name = "Release veil"
-	desc = "Release a veil from your control, freeing your power to be redistributed."
+	desc = "Release a veil from your control, freeing your power to be redistributed and restoring a portion of the spent willpower."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -120,6 +120,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	if(unveiled.current.remove_veil())
 		to_chat(owner, span_velvet("Fk'koht"))
 		to_chat(owner, span_velvet("You release your control over [unveiled]"))
+		dude.willpower += 1
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//
