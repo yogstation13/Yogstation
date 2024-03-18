@@ -387,7 +387,8 @@
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
 
 	darkspawn_state = DIVULGED
-	to_chat(user, span_velvet("<b>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</b>"))
+	to_chat(user, span_velvet("<b>Your mind has expanded.Avoid the light. Keep to the shadows. Your time will come.</b>"))
+	to_chat(user, span_velvet("<b>Access to the Psi Web has been unlocked, spend your [willpower] willpower to purchase abilities and upgrades.</b>"))
 	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////
