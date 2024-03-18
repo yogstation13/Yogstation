@@ -116,7 +116,7 @@
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.grant_willpower(willpower_amount)
-		team.lucidity += lucidity_amount
+		team.grant_lucidity(lucidity_amount)
 
 	//apply the long-term debuffs to the victim
 	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)

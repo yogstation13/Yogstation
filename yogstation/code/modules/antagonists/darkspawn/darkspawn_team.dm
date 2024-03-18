@@ -7,6 +7,7 @@
 	var/required_succs = 10 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
 	var/lucidity = 0
 	var/max_veils = 0
+	var/announced = FALSE //if the announcement that they've got enough lucidity has been sent
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Basic Team Stuff----------------------------------//
@@ -91,3 +92,11 @@
 			antag.willpower += amount
 			if(master.current)
 				to_chat(master.current, span_velvet("You have gained [amount] willpower."))
+
+/datum/team/darkspawn/proc/grant_lucidity(amount = 1)
+	lucidity += amount
+	if(lucidity >= required_succs && !announced)
+		announced = TRUE
+		for(var/datum/mind/master in members)
+			if(master.current)
+				to_chat(master.current, span_progenitor("Enough lucidity has been gathered, perform the sacrament to ascend once more!"))
