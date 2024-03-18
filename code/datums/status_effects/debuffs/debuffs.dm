@@ -1048,6 +1048,9 @@
 	var/old_health
 
 /datum/status_effect/broken_will/tick()
+	if(is_darkspawn_or_veil(owner))
+		qdel(src)
+		return
 	owner.Unconscious(15)
 	if(!old_health)
 		old_health = owner.health
