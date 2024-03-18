@@ -93,11 +93,9 @@
 	SIGNAL_HANDLER
 
 	//draw both the overlay itself and the emissive overlay
-	var/mutable_appearance/overlay = mutable_appearance('yogstation/icons/mob/darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER)//show them sigils
+	var/mutable_appearance/overlay = mutable_appearance('yogstation/icons/mob/darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER)
 	overlay.color = COLOR_DARKSPAWN_PSI
 	overlays += overlay
-	
-	overlays += emissive_appearance('yogstation/icons/mob/darkspawn.dmi', "veil_sigils", source) //glow them sigils
 
 /datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
