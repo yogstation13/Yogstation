@@ -25,7 +25,7 @@
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
-	var/darkbois = max(required_enemies, round((num_players())/10)) //scaling number of darkspawns, but at least 1
+	var/darkbois = clamp(round((num_players())/10), required_enemies, 4) //scaling number of darkspawns, at least 1, at most 4 (they get exponentially stronger per person)
 
 	team = new
 	while(darkbois)
