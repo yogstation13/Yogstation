@@ -43,13 +43,13 @@
 					return
 				to_chat(H, span_userdanger("The light singes you!"))
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
-				H.adjustCloneLoss(light_burning * 0.2)
+				H.adjustFireLoss(light_burning * 0.2)
 			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
 					return
 				to_chat(H, span_userdanger("The light burns you!"))
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
-				H.adjustCloneLoss(light_burning)
+				H.adjustFireLoss(light_burning)
 
 /datum/species/shadow/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
@@ -144,7 +144,7 @@
 	heatmod = 1.5
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE, ITEM_SLOT_HEAD, ITEM_SLOT_EYES)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
-	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_NOHUNGER, TRAIT_NOSLIPICE)
+	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_NOHUNGER, TRAIT_NOSLIPICE, TRAIT_GENELESS, TRAIT_NOCRITDAMAGE)
 	mutanteyes = /obj/item/organ/eyes/darkspawn
 	mutantears = /obj/item/organ/ears/darkspawn
 
