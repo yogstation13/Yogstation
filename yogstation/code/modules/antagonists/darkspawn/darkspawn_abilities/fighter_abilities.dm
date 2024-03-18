@@ -99,11 +99,11 @@
 /datum/action/cooldown/spell/pointed/shadow_crash
 	name = "Shadow crash"
 	desc = "Charge in a direction."
-	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "glare"
+	button_icon_state = "shadow_crash"
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
@@ -279,13 +279,13 @@
 //////////////////////////////////////////////////////////////////////////
 //Allows you to move through light unimpeded while active. Drains 5 Psi per second.
 /datum/action/cooldown/spell/toggle/creep
-	name = "Creep"
+	name = "Encroach"
 	desc = "Grants immunity to lightburn while active. Can be toggled on and off. Drains 5 Psi per second."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "creep"
+	button_icon_state = "encroach"
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
@@ -375,13 +375,13 @@
 //-------------------AOE forced movement towards user-------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/taunt
-	name = "Taunt"
+	name = "Incite"
 	desc = "Force everyone nearby to walk towards you, but disables your ability to attack for a time."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "time_dilation"
+	button_icon_state = "incite"
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	panel = "Darkspawn"
 	antimagic_flags = NONE

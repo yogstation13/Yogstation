@@ -9,7 +9,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "pass"
+	button_icon_state = "shadow_staff"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	var/obj/item/gun/magic/darkspawn/staff
@@ -48,10 +48,8 @@
 /datum/action/cooldown/spell/aoe/extinguish
 	name = "Extinguish"
 	desc = "Extinguish all light around you."
-	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
-	button_icon_state = "Kindle"
-	active_icon_state = "Kindle"
-	base_icon_state = "Kindle"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "extinguish"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -174,8 +172,8 @@
 /datum/action/cooldown/spell/pointed/extract
 	name = "Extract"
 	desc = "Drain a target's life force or bestow it to an ally."
-	button_icon = 'yogstation/icons/mob/darkspawn.dmi'
-	button_icon_state = "slingbeam"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "extract"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -289,10 +287,8 @@
 /datum/action/cooldown/spell/aoe/mass_hallucination
 	name = "Mass Hallucination"
 	desc = "Forces brief delirium on all nearby enemies."
-	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
-	button_icon_state = "Kindle"
-	active_icon_state = "Kindle"
-	base_icon_state = "Kindle"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "mass_hallucination"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -327,10 +323,8 @@
 /datum/action/cooldown/spell/pointed/shadow_beam
 	name = "Void beam"
 	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
-	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
-	button_icon_state = "Kindle"
-	active_icon_state = "Kindle"
-	base_icon_state = "Kindle"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "shadow_beam"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -450,8 +444,8 @@
 	name = "Seize"
 	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
 	panel = "Darkspawn"
-	button_icon_state = "glare"
-	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "seize"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -513,7 +507,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "time_dilation"
+	button_icon_state = "quantum_disruption"
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS

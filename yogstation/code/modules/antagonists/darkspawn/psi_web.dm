@@ -7,9 +7,9 @@
 	///Fancy description about the effect
 	var/lore_description = ""
 	///Icon file used for the tgui menu
-	var/icon = 'yogstation/icons/mob/darkspawn_actions.dmi'
+	var/icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	///Specific icon used for the tgui menu
-	var/icon_state = "test"
+	var/icon_state = ""
 	///Cost of to learn this
 	var/willpower_cost = 0
 	///What specialization can buy this

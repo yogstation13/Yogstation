@@ -120,15 +120,16 @@
 /datum/component/darkspawn_class/fighter
 	name = "Fighter"
 	description = "An unstoppable wall of darkness."
-	long_description = "These beings are just cattle, ripe for the slaughter." //I am starting to suffer acute edge poisoning
+	long_description = "Act as a physical threat to crewmembers."
 	specialization_flag = FIGHTER
 	class_color = COLOR_RED
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/fighter)
+	class_icon = "fighter_sigils"
 
 /datum/component/darkspawn_class/scout
 	name = "Scout"
 	description = "Stir the shadows in unnatural ways."
-	long_description = "The darkness is your domain, make those interlopers suffer."
+	long_description = "Deter crewmembers from venturing into the darkness by being everywhere at once."
 	specialization_flag = SCOUT
 	class_color = COLOR_YELLOW
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/scout)
@@ -136,10 +137,11 @@
 /datum/component/darkspawn_class/warlock
 	name = "Warlock"
 	description = "Psionic dominance."
-	long_description = "Harness psionic power to rend flesh and dominate minds."
+	long_description = "Cast spells, veil minds, and support allies from across the station."
 	specialization_flag = WARLOCK
 	class_color = COLOR_STRONG_VIOLET
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/warlock)
+	class_icon = "warlock_sigils"
 
 /datum/component/darkspawn_class/admin
 	name = "Admeme"

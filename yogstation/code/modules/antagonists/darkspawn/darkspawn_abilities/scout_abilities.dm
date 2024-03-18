@@ -9,7 +9,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "pass"
+	button_icon_state = "light_eater"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 
@@ -49,7 +49,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "pass"
+	button_icon_state = "shadow_caster"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	var/obj/item/gun/ballistic/bow/energy/shadow_caster/bow
@@ -86,8 +86,8 @@
 	name = "Blinding Miasma"
 	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
 	panel = "Darkspawn"
-	button_icon_state = "black_smoke"
-	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "blinding_miasma"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -122,6 +122,7 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build/damage
 	name = "Psi Trap (damage)"
 	desc = "Stitch together shadows into a trap that deals damage to non-ally that crosses it."
+	button_icon_state = "psi_trap_damage"
 	object_type = /obj/structure/trap/darkspawn/damage
 	language_final = "ksha"
 
@@ -129,6 +130,7 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
 	name = "Psi Trap (restrain)"
 	desc = "Stitch together shadows into a trap that restrains the legs of any non-ally that crosses it."
+	button_icon_state = "psi_trap_bear"
 	object_type = /obj/structure/trap/darkspawn/legcuff
 	language_final = "xcrak"
 
@@ -136,6 +138,7 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build/nausea
 	name = "Psi Trap (nausea)"
 	desc = "Stitch together shadows into a trap that makes any non-ally that crosses it sick to their stomach."
+	button_icon_state = "psi_trap_nausea"
 	object_type = /obj/structure/trap/darkspawn/nausea
 	language_final = "guhxo"
 
@@ -143,6 +146,7 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build/teleport
 	name = "Psi Trap (teleport)"
 	desc = "Stitch together shadows into a trap that teleports any non-ally to a random location on the station."
+	button_icon_state = "psi_trap_teleport"
 	object_type = /obj/structure/trap/darkspawn/teleport
 	language_final = "hwkwo"
 
@@ -152,11 +156,11 @@
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt
 	name = "Void Jaunt"
 	desc = "Move through the veil for a time, avoiding mortal eyes and lights."
-	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "space_crawl"
+	button_icon_state = "void_jaunt"
 
 	cooldown_time = 60 SECONDS
 	antimagic_flags = NONE
@@ -183,11 +187,11 @@
 /datum/action/cooldown/spell/pointed/phase_jump/void_jump
 	name = "Void jump"
 	desc = "A short range targeted teleport."
-	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "voidblink"
+	button_icon_state = "shadow_jump"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	panel = "Darkspawn"
 	sound = 'sound/magic/voidblink.ogg'
@@ -211,10 +215,8 @@
 /datum/action/cooldown/spell/aoe/permafrost
 	name = "Permafrost"
 	desc = "Banish heat from the surrounding terrain, freezing it instantly."
-	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
-	button_icon_state = "Kindle"
-	active_icon_state = "Kindle"
-	base_icon_state = "Kindle"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "permafrost"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

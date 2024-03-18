@@ -329,7 +329,6 @@ const KnowledgePreview = (props, context) => {
 
           <Stack.Item fontSize="15px" color="purple">willpower cost: {selectedKnowledge?.cost}</Stack.Item>
 
-{/* uncomment this when the things actually get proper icons
           {!!selectedKnowledge.icon && (
           <Stack.Item>
             <Box
@@ -337,10 +336,11 @@ const KnowledgePreview = (props, context) => {
             src={`data:image/jpeg;base64,${selectedKnowledge.icon}`}
             height="128px"
             style={{
+              'background': 'radial-gradient(circle, rgb(114, 100, 255) 0%, rgb(33, 0, 127) 100%);',
               '-ms-interpolation-mode': 'nearest-neighbor',
               'image-rendering': 'pixelated' }} />
           </Stack.Item>
-          )} */}
+          )}
 
           <Stack.Item color="gold">{selectedKnowledge?.desc}</Stack.Item>
           <Stack.Item style={Velvet} fontSize="14px">{selectedKnowledge?.lore_description}</Stack.Item>

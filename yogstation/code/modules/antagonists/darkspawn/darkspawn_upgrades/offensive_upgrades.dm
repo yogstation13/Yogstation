@@ -5,6 +5,7 @@
 	name = "Shadow Crash"
 	desc = "Charge in a direction, knock back and briefly paralyze anyone you collide with."
 	lore_description = ""
+	icon_state = "shadow_crash"
 	willpower_cost = 1
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
@@ -14,15 +15,17 @@
 	name = "Demented Outburst"
 	desc = "Deafens and confuses listeners after a five-second charge period, knocking away everyone nearby.."
 	lore_description = ""
+	icon_state = "demented_outburst"
 	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/demented_outburst)
 
 /datum/psi_web/taunt
-	name = "Taunt"
+	name = "Incite"
 	desc = "Force everyone nearby to walk towards you, but disables your ability to attack for a time."
 	lore_description = ""
+	icon_state = "shadow_crash"
 	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
@@ -36,6 +39,7 @@
 	name = "Duality Sigils"
 	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, empowering both."
 	lore_description = "The Kqx'xpk sigils, representing duality, are etched onto the arms."
+	icon_state = ""
 	willpower_cost = 3
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
@@ -61,6 +65,7 @@
 	name = "Permafrost"
 	desc = "Banish heat from the surrounding terrain, freezing it instantly."
 	lore_description = "Opens a pinhole to the veil, rapidly draining heat from the surrounding area."
+	icon_state = "permafrost"
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -70,6 +75,7 @@
 	name = "Shadow Caster"
 	desc = "Twists an active arm into a bow that shoots harddark arrows."
 	lore_description = ""
+	icon_state = "shadow_caster"
 	willpower_cost = 3
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -79,6 +85,7 @@
 	name = "Psi Trap (damage)"
 	desc = "Place a trap that deals damage to non-ally that crosses it."
 	lore_description = "The Shash sigil, representing danger, is carved on the ground."
+	icon_state = "psi_trap_damage"
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -88,6 +95,7 @@
 	name = "Psi Trap (restrain)"
 	desc = "Place a trap that restrains the legs of any non-ally that crosses it."
 	lore_description = "The Hh'rt sigil, representing restraint, is carved on the ground."
+	icon_state = "psi_trap_bear"
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -97,6 +105,7 @@
 	name = "Psi Trap (nausea)"
 	desc = "Place a trap that makes any non-ally that crosses it sick to their stomach."
 	lore_description = "The Vxb'rt sigil, representing disruption, is carved on the ground."
+	icon_state = "psi_trap_nausea"
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -106,6 +115,7 @@
 	name = "Psi Trap (teleport)"
 	desc = "Place a trap that teleports any non-ally to a random location on the station."
 	lore_description = "The Vxb'xki sigil, representing displacement, is carved on the ground."
+	icon_state = "psi_trap_teleport"
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
@@ -118,6 +128,7 @@
 	name = "Seize"
 	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
 	lore_description = ""
+	icon_state = "seize"
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -128,6 +139,7 @@
 	name = "Confusion Sign"
 	desc = "Empower your staff with the ability to confuse any enemy shot."
 	lore_description = "The Vxb'rt sigil, representing disruption, is etched onto the staff."
+	icon_state = ""
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -151,6 +163,7 @@
 	name = "Light Eater Sign"
 	desc = "Empower your staff with the ability to consume the light of anything shot."
 	lore_description = "The Aaah'ryt sigil, representing consumption, is etched onto the staff."
+	icon_state = ""
 	flag_to_add = STAFF_UPGRADE_LIGHTEATER
 
 //no more staff upgrades
@@ -158,6 +171,7 @@
 	name = "Mass Hallucination"
 	desc = "Forces brief delirium on all nearby enemies."
 	lore_description = ""
+	icon_state = "mass_hallucination"
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -167,6 +181,7 @@
 	name = "Mindblast"
 	desc = "Focus your psionic energy into a blast that deals physical damage. Can also be projected from the minds of allies."
 	lore_description = ""
+	icon_state = "mind_blast"
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -176,6 +191,7 @@
 	name = "Extract"
 	desc = "Drain a target's life force or bestow it to an ally."
 	lore_description = ""
+	icon_state = "extract"
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -185,6 +201,7 @@
 	name = "Abyssal Call"
 	desc = "Call a tendril at a targeted location to grasp an enemy."
 	lore_description = "Summon abyssal tendrils from beyond the veil."
+	icon_state = ""
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -194,6 +211,7 @@
 	name = "Void Beam"
 	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
 	lore_description = ""
+	icon_state = "shadow_beam"
 	willpower_cost = 3
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -206,6 +224,7 @@
 	name = "Icy Veins"
 	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
 	lore_description = ""
+	icon_state = "icy_veins"
 	willpower_cost = 2
 	shadow_flags = SCOUT | WARLOCK
 	menu_tab = STORE_OFFENSE

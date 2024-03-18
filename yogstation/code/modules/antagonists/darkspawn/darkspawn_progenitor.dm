@@ -184,7 +184,7 @@
 	name = "Viscerate Mind"
 	desc = "Unleash a powerful psionic barrage into the mind of the target."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	button_icon_state = "veil_mind"
+	button_icon_state = "sacrament(old)"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

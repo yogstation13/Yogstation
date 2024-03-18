@@ -5,15 +5,17 @@
 	name = "Deluge"
 	desc = "Douses all nearby creatures with water, extinguishing them and protecting from fire."
 	lore_description = "Calls upon the endless depths to douse all with the beyond."
+	icon_state = ""
 	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/deluge)
 
 /datum/psi_web/creep
-	name = "Creep"
+	name = "Encroach"
 	desc = "Grants immunity to lightburn while active. Can be toggled on and off."
 	lore_description = "Mold the darkness into an ephemeral cloak using psionic power."
+	icon_state = "encroach"
 	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_UTILITY
@@ -23,6 +25,7 @@
 	name = "Time Dilation"
 	desc = "Greatly increases reaction times and action speed, and provides immunity to slowdown."
 	lore_description = "Directly control your physical form using psionic power rather than relying on brutish biology."
+	icon_state = "time_dilation"
 	willpower_cost = 3
 	shadow_flags = FIGHTER
 	menu_tab = STORE_UTILITY
@@ -32,6 +35,7 @@
 	name = "Indomitable"
 	desc = "Grants immunity to all CC effects, but locks the user into walking."
 	lore_description = "Stitch yourself to the ground using shadows themselves."
+	icon_state = ""
 	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_UTILITY
@@ -44,6 +48,7 @@
 	name = "Void Jump"
 	desc = "A short range targeted teleport."
 	lore_description = "Take a single step through the veil."
+	icon_state = "shadow_jump"
 	willpower_cost = 1
 	shadow_flags = SCOUT
 	menu_tab = STORE_UTILITY
@@ -53,6 +58,7 @@
 	name = "Void Jaunt"
 	desc = "Move through the veil for a time, avoiding mortal eyes and lights."
 	lore_description = "The veil can be treacherous for those unprepared, however it can give reprieve."
+	icon_state = "void_jaunt"
 	willpower_cost = 3
 	shadow_flags = SCOUT
 	menu_tab = STORE_UTILITY
@@ -62,6 +68,7 @@
 	name = "Blinding Miasma"
 	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
 	lore_description = "Release a pocket of darkness nestled within your body."
+	icon_state = "blinding_miasma"
 	willpower_cost = 2
 	shadow_flags = SCOUT
 	menu_tab = STORE_UTILITY
@@ -74,19 +81,24 @@
 	name = "Recovery Sign"
 	desc = "Empower your staff with the ability to heal allies shot."
 	lore_description = "The Kalak sigil, representing eternity, is etched onto the staff."
+	icon_state = ""
+	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_HEAL
 	
 /datum/psi_web/staff_upgrade/extinguish
 	name = "Extinguish Sign"
 	desc = "Empower your staff with the ability to extinguish the fire on allies shot."
 	lore_description = "The Khophg sigil, representing suffocation, is etched onto the staff."
+	icon_state = ""
 	willpower_cost = 1
+	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_EXTINGUISH
 	
 /datum/psi_web/extinguish
 	name = "Extinguish"
 	desc = "Extinguish all light around you."
 	lore_description = "Remind all that glows, that it is but a small part of reality."
+	icon_state = "extinguish"
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
@@ -96,6 +108,7 @@
 	name = "Panopticon"
 	desc = "Watch what your allies and servants are doing at all times."
 	lore_description = "The psionic link with your allies is a boon, utilize it."
+	icon_state = "panopticon"
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
@@ -105,6 +118,7 @@
 	name = "Veil Recovery"
 	desc = "Heals all veils for an amount of brute and burn."
 	lore_description = "While veils are expendable, they do have their use."
+	icon_state = "heal_veils"
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
@@ -114,6 +128,7 @@
 	name = "Veil Envigorate"
 	desc = "Give all veils a temporary movespeed bonus."
 	lore_description = "Veils are expendable, push them until they break."
+	icon_state = "speedboost_veils"
 	willpower_cost = 1
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
@@ -123,6 +138,7 @@
 	name = "Elucidate"
 	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost."
 	lore_description = ""
+	icon_state = "elucidate"
 	willpower_cost = 3
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
@@ -132,6 +148,7 @@
 	name = "Null Charge"
 	desc = "Meddle with the powergrid via a functioning APC, causing a temporary stationwide power outage. Breaks the APC in the process."
 	lore_description = ""
+	icon_state = "null_charge"
 	willpower_cost = 3
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
@@ -141,6 +158,7 @@
 	name = "Quantum Disruption"
 	desc = "Disrupt the flow of possibilities, where you are, where you could be."
 	lore_description = ""
+	icon_state = "quantum_disruption"
 	willpower_cost = 3
 	shadow_flags = WARLOCK
 	menu_tab = STORE_UTILITY
@@ -153,6 +171,7 @@
 	name = "Umbral Trespass"
 	desc = "Melds with a target's shadow, causing you to invisibly follow them."
 	lore_description = ""
+	icon_state = "umbral_trespass"
 	willpower_cost = 2
 	shadow_flags = SCOUT | WARLOCK
 	menu_tab = STORE_UTILITY
@@ -162,6 +181,7 @@
 	name = "Simulacrum"
 	desc = "Creates an illusion that closely resembles you. The illusion will fight nearby enemies in your stead for 10 seconds."
 	lore_description = ""
+	icon_state = "simulacrum"
 	willpower_cost = 2
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
@@ -171,6 +191,7 @@
 	name = "Crawling Shadows"
 	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors."
 	lore_description = ""
+	icon_state = "crawling_shadows"
 	willpower_cost = 2
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
@@ -180,6 +201,7 @@
 	name = "Silver Tongue"
 	desc = "When used near a communications console, allows you to forcefully transmit a message to Central Command, initiating a shuttle recall."
 	lore_description = ""
+	icon_state = "silver_tongue"
 	willpower_cost = 1
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY

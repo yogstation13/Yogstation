@@ -53,8 +53,8 @@
 			M.apply_damage(40, STAMINA)
 			if(effect_flags & STAFF_UPGRADE_CONFUSION)
 				M.adjust_confusion(6 SECONDS)
-			if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
-				SEND_SIGNAL(bopper, COMSIG_ITEM_AFTERATTACK, M, firer, TRUE) //just use a light eater attack on the target
+	if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
+		SEND_SIGNAL(bopper, COMSIG_ITEM_AFTERATTACK, target, firer, TRUE) //just use a light eater attack on the target
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/update_icon_state()

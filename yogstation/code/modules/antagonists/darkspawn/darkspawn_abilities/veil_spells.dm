@@ -127,7 +127,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam
 	name = "Panopticon"
 	desc = "Watch what your allies and servants are doing at all times."
-	button_icon_state = "sacrament"
+	button_icon_state = "panopticon"
 	cooldown_time = 1 MINUTES
 	cast_time = 2 SECONDS
 	object_type = /obj/machinery/computer/camera_advanced/darkspawn
@@ -139,8 +139,8 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/pointed/mindblast
 	name = "Mind blast"
 	desc = "Focus your psionic energy into a blast that deals physical damage. Can also be projected from the minds of allies."
-	button_icon = 'icons/obj/hand_of_god_structures.dmi'
-	button_icon_state = "ward-red"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "mind_blast"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -219,7 +219,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "veil_sigils"
+	button_icon_state = "speedboost_veils"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	cooldown_time = 1 MINUTES
@@ -256,6 +256,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/veilbuff/heal
 	name = "Heal veils"
 	desc = "Heals all veils for an amount of brute and burn."
+	button_icon_state = "heal_veils"
 	var/heal_amount = 20
 	language_output = "Plyn othra"
 
@@ -266,6 +267,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/veilbuff/speed
 	name = "Expedite veils"
 	desc = "Give all veils a temporary movespeed bonus."
+	button_icon_state = "speedboost_veils"
 	language_output = "Vyzthun"
 
 /datum/action/cooldown/spell/veilbuff/speed/empower(mob/living/carbon/human/target)
@@ -283,7 +285,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "veil_sigils"
+	button_icon_state = "elucidate"
 	cast_range = INFINITY //lol
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
