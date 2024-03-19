@@ -59,7 +59,7 @@
 				for (var/error in errors)
 					to_chat(usr, span_warning(error))
 		if ("follow_circuit")
-			usr.client?.admin_follow(circuit)
+			usr.client?.admin_ghost(circuit)
 		if ("save_circuit")
 			circuit.attempt_save_to(usr.client)
 		if ("vv_circuit")

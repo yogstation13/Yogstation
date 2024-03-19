@@ -53,7 +53,7 @@
 	var/mob/living/carbon/human/carbon_target
 	if(iscarbon(target))
 		carbon_target = target
-		visible_items = carbon_target.get_visible_items()
+		visible_items = carbon_target.show_inv()
 	else
 		visible_items = target.get_equipped_items()
 
@@ -84,7 +84,7 @@
 		return
 
 	var/atom/movable/chosen = locate(picked_ref)
-	if(chosen == target || (chosen in (carbon_target ? carbon_target.get_visible_items() : target.get_equipped_items())))
+	if(chosen == target || (chosen in (carbon_target ? carbon_target.show_inv() : target.get_equipped_items())))
 		mark_target(chosen)
 	else
 		balloon_alert(user, "cannot mark entity")

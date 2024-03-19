@@ -8,10 +8,9 @@
 	name = "controller"
 	icon = 'icons/obj/assemblies/circuits.dmi'
 	icon_state = "setup_small_calc"
-	inhand_icon_state = "electronic"
-	worn_icon_state = "electronic"
-	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
+	item_state = "electronic"
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
 
@@ -24,7 +23,7 @@
 /obj/item/circuit_component/controller
 	display_name = "Controller"
 	desc = "Used to receive inputs from the controller shell. Use the shell in hand to trigger the output signal."
-	desc_controls = "Alt-click for the alternate signal. Right click for the extra signal."
+//	desc_controls = "Alt-click for the alternate signal. Right click for the extra signal."
 	/// The three separate buttons that are called in attack_hand on the shell.
 	var/datum/port/output/signal
 	var/datum/port/output/alt

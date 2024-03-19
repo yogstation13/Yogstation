@@ -62,7 +62,7 @@
 	), SHELL_CAPACITY_LARGE)
 
 /obj/structure/dispenser_bot/attackby(obj/item/item, mob/living/user, params)
-	if()
+	if(.)
 		return ..()
 	if(istype(item, /obj/item/wrench) || istype(item, /obj/item/multitool) || istype(item, /obj/item/integrated_circuit))
 		return ..()
@@ -86,7 +86,7 @@
 /obj/structure/dispenser_bot/wrench_act(mob/living/user, obj/item/tool)
 	if(locked)
 		return
-	set_anchored(!anchored)
+	anchored = TRUE
 	tool.play_tool_sound(src)
 	balloon_alert(user, "[anchored? "secured" : "unsecured"]")
 	return TRUE

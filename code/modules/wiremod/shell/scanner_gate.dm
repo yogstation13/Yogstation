@@ -20,7 +20,7 @@
 /obj/structure/scanner_gate_shell/wrench_act(mob/living/user, obj/item/tool)
 	if(locked)
 		return
-	set_anchored(!anchored)
+	anchored = TRUE
 	tool.play_tool_sound(src)
 	balloon_alert(user, anchored ? "secured" : "unsecured")
 	return TRUE
