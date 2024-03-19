@@ -95,7 +95,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	psi_cost = 60
-	cooldown_time = 0
+	cooldown_time = 1 SECONDS //to prevent double clicking by accident
 	die_with_shapeshifted_form = FALSE
 	convert_damage = TRUE
 	convert_damage_type = STAMINA
