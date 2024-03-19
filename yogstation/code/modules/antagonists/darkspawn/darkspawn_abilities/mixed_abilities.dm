@@ -78,3 +78,144 @@
 	if(victim.reagents)
 		victim.reagents.add_reagent(/datum/reagent/consumable/frostoil, 5)
 		victim.reagents.add_reagent(/datum/reagent/shadowfrost, 5)
+
+//////////////////////////////////////////////////////////////////////////
+//--------------------Transform into a simplemob------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/shapeshift/crawling_shadows
+	name = "Crawling Shadows"
+	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors. You can also knock people out by attacking them."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "crawling_shadows"
+	panel = "Darkspawn"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	psi_cost = 60
+	cooldown_time = 0
+	die_with_shapeshifted_form = FALSE
+	convert_damage = TRUE
+	convert_damage_type = STAMINA
+	sound = 'yogstation/sound/magic/devour_will_end.ogg'
+	possible_shapes = list(/mob/living/simple_animal/hostile/crawling_shadows)
+
+/datum/action/cooldown/spell/shapeshift/crawling_shadows/do_shapeshift(mob/living/caster)
+	. = ..()
+	if(.)
+		to_chat(owner, span_velvet("Zov..."))
+
+/datum/action/cooldown/spell/shapeshift/crawling_shadows/do_unshapeshift(mob/living/caster)
+	. = ..()
+	if(.)
+		to_chat(owner, span_velvet("...Voz"))
+
+/datum/action/cooldown/spell/shapeshift/crawling_shadows/cast(mob/living/cast_on)
+	if(cast_on.has_status_effect(/datum/status_effect/shapechange_mob/from_spell))
+		psi_cost = 0
+	else
+		psi_cost = initial(psi_cost)
+	. = ..()
+
+/datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
+	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
+		return FALSE
+	if(owner.movement_type & VENTCRAWLING) //don't let them smoosh themselves
+		return FALSE
+	. = ..()
+	
+//////////////////////////////////////////////////////////////////////////
+//------------------------Summon a distraction--------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/simulacrum
+	name = "Simulacrum"
+	desc = "Creates an illusion that closely resembles you. The illusion will fight nearby enemies in your stead for 10 seconds. Costs 40 Psi."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "simulacrum"
+	panel = "Darkspawn"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	psi_cost = 40
+	var/duration = 10 SECONDS
+	//no cooldown, make an army if you really want
+
+/datum/action/cooldown/spell/simulacrum/cast(atom/cast_on)
+	. = ..()
+	if(!isliving(owner))
+		return
+	var/mob/living/L = owner
+	to_chat(L, span_velvet("Zkxa'yaera"))
+	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!"), span_velvet("You create an illusion of yourself."))
+	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
+
+	var/mob/living/simple_animal/hostile/illusion/darkspawn/M = new(get_turf(L))
+	M.faction = list(ROLE_DARKSPAWN)
+	M.Copy_Parent(L, duration, 100, 10) //closely follows regular player stats so it's not painfully obvious (still sorta is)
+	M.move_to_delay = L.movement_delay()
+	
+//////////////////////////////////////////////////////////////////////////
+//--------------------Summon a sentient distraction---------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/fray_self
+	name = "Fray self"
+	desc = "Attemps to split a piece of your psyche into a sentient copy of yourself that lasts until destroyed. Costs 80 Psi."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "simulacrum"
+	panel = "Darkspawn"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	psi_cost = 80
+	var/mob/living/simple_animal/hostile/illusion/darkspawn/dude
+	var/health = 100
+	var/damage = 10
+	var/searching = FALSE
+
+/datum/action/cooldown/spell/fray_self/can_cast_spell(feedback)
+	if(dude)
+		if(feedback)
+			to_chat(owner, span_velvet("The piece of your psyche hasn't yet returned to you."))
+		return FALSE
+	if(searching)
+		return FALSE
+	. = ..()
+
+/datum/action/cooldown/spell/fray_self/cast(atom/cast_on)
+	. = ..()
+	if(dude || searching)
+		return
+	if(!isliving(owner))
+		return
+	var/mob/living/L = owner
+	
+	to_chat(L, span_danger("You attempt to split a piece of your psyche."))
+	searching = TRUE
+	var/mob/dead/observer/chosen_ghost
+	var/list/consenting_candidates = pollGhostCandidates("Would you like to play as piece of [L]'s psyche?", "Darkspawn", null, ROLE_DARKSPAWN, 10 SECONDS, POLL_IGNORE_DARKSPAWN_PSYCHE)
+	if(consenting_candidates.len)
+		chosen_ghost = pick(consenting_candidates)
+	searching = FALSE
+	if(!chosen_ghost)
+		to_chat(L, span_danger("You fail to split a piece of your psyche."))
+		return
+
+	to_chat(L, span_velvet("Zkxa'yaera"))
+	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
+	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
+
+	if(!dude)
+		dude = new(get_turf(L))
+	dude.Copy_Parent(L, 100, health, damage)
+	dude.faction = list(ROLE_DARKSPAWN)
+	dude.ckey = chosen_ghost.ckey
+	dude.name = L.name
+	dude.real_name = L.real_name

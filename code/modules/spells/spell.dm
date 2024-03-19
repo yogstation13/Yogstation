@@ -271,11 +271,6 @@
 	if(precast_result & SPELL_CANCEL_CAST)
 		return FALSE
 		
-	//sanity check, they shouldn't be able to get here without being darkspawn if it has a psi cost
-	if(psi_cost && isdarkspawn(owner))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
-		darkspawn.use_psi(psi_cost)
-
 	// Spell is officially being cast
 	if(!(precast_result & SPELL_NO_FEEDBACK))
 		// We do invocation and sound effects here, before actual cast

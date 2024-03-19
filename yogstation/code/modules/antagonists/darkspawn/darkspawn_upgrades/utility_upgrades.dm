@@ -206,3 +206,13 @@
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/silver_tongue)
+
+/datum/psi_web/quantum_disruption //basically just a worse jaunt
+	name = "Fray self"
+	desc = "Attemps to split a piece of your psyche into a sentient copy of yourself that lasts until destroyed."
+	lore_description = ""
+	icon_state = ""
+	willpower_cost = 3
+	shadow_flags = WARLOCK | SCOUT
+	menu_tab = STORE_UTILITY
+	learned_abilities = list(/datum/action/cooldown/spell/simulacrum)

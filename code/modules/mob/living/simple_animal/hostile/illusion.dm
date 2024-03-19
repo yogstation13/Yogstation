@@ -74,3 +74,29 @@
 
 /mob/living/simple_animal/hostile/illusion/escape/AttackingTarget()
 	return FALSE
+
+/mob/living/simple_animal/hostile/illusion/darkspawn
+	maxHealth = 100
+	health = 100
+	pressure_resistance = INFINITY
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+
+	speed = -1
+	pass_flags = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER
+	ventcrawler = TRUE
+
+	attack_sound = 'sound/magic/voidblink.ogg'
+	deathsound = 'yogstation/sound/magic/devour_will_victim.ogg'
+	attacktext = "gores"
+
+	lighting_cutoff_red = 12
+	lighting_cutoff_green = 0
+	lighting_cutoff_blue = 50
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	
+
+/mob/living/simple_animal/hostile/illusion/darkspawn/psyche/Copy_Parent(mob/living/original, life, hp, damage, replicate)
+	. = ..()
+	life_span = INFINITY //doesn't actually despawn
