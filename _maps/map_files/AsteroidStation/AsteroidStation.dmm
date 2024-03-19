@@ -70680,6 +70680,7 @@
 /area/maintenance/starboard/aft)
 "vif" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
 "vig" = (
@@ -78990,7 +78991,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
 /area/engine/atmos/hfr)
 "xLQ" = (
