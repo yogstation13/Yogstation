@@ -175,7 +175,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 80
-	var/mob/living/simple_animal/hostile/illusion/darkspawn/dude
+	var/mob/living/simple_animal/hostile/illusion/darkspawn/psyche/dude
 	var/health = 100
 	var/damage = 10
 	var/searching = FALSE
