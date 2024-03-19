@@ -5647,7 +5647,7 @@
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored/laborcamp)
 "bID" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/item/radio/intercom{
 	pixel_x = 29
 	},
@@ -25648,6 +25648,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "hAw" = (
@@ -40603,7 +40606,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "lOQ" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/firealarm{
@@ -44473,7 +44476,7 @@
 "mQN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "mQS" = (
@@ -51074,7 +51077,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "oLq" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "oLv" = (
@@ -54452,6 +54455,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "pMK" = (
@@ -61532,7 +61536,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "rTy" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -75500,7 +75504,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "vPq" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/atmospherics/miner/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos/distro)

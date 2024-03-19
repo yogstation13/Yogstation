@@ -122,12 +122,7 @@
 			to_chat(usr, span_notice("The game is still loading. Please wait a bit before editing your character."))
 			return
 		var/datum/preferences/preferences = client.prefs
-		if(!preferences.loaded_character)
-			var/success = preferences.load_character()
-			if(!success)
-				preferences.randomise_appearance_prefs() //let's create a random character then - rather than a fat, bald and naked man.
-				preferences.save_character() //let's save this new random character so it doesn't keep generating new ones.
-				preferences.loaded_character = TRUE
+		force_load_character()
 		preferences.current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 		preferences.update_static_data(usr)
 		preferences.ui_interact(usr)
@@ -435,13 +430,6 @@
 
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = TRUE
-	var/datum/preferences/preferences = client.prefs
-	if(!preferences.loaded_character)
-		var/success = preferences.load_character()
-		if(!success)
-			preferences.randomise_appearance_prefs() //let's create a random character then - rather than a fat, bald and naked man.
-			preferences.save_character() //let's save this new random character so it doesn't keep generating new ones.
-			preferences.loaded_character = TRUE
 	close_spawn_windows()
 	//mind.active = FALSE //we wish to transfer the key manually
 
@@ -546,6 +534,19 @@
 			message_admins("[src.ckey] just got booted back to lobby with no jobs enabled, but antag rolling enabled. Likely antag rolling abuse.")
 
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
+	return TRUE
+
+/mob/dead/new_player/proc/force_load_character()
+	if(!client)
+		return
+	var/datum/preferences/preferences = client.prefs
+	if(preferences.loaded_character) //no need
+		return
+	var/success = preferences.load_character()
+	if(!success)
+		preferences.randomise_appearance_prefs() //let's create a random character then - rather than a fat, bald and naked man.
+		preferences.save_character() //let's save this new random character so it doesn't keep generating new ones.
+		preferences.loaded_character = TRUE
 	return TRUE
 
 #undef RESET_HUD_INTERVAL

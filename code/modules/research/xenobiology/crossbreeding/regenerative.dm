@@ -173,7 +173,7 @@ Regenerative extracts:
 	src.forceMove(user.loc)
 	var/obj/item/slimecross/X = new /obj/item/slimecross/regenerative(user.loc)
 	X.name = name
-	X.desc = desc
+	X.effect_desc = effect_desc
 	user.put_in_active_hand(X)
 	to_chat(user, span_notice("Some of the milky goo congeals in your hand!"))
 
