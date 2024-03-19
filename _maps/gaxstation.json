@@ -8,5 +8,15 @@
 		"ferry": "ferry_fancy",
 		"emergency": "emergency_box"
 	},
-	"cryo_spawn": true
+	"cryo_spawn": true,
+	"traits": [
+		{
+			"Up": true,
+			"Linkage": null
+		},
+		{
+			"Down": true,
+			"Baseturf": "/turf/open/openspace"
+		}
+	]
 }
