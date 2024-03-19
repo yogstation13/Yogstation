@@ -76,7 +76,7 @@
 	if(darkspawn_state == MUNDANE)
 		var/datum/action/cooldown/spell/divulge/action = new(owner)
 		action.Grant(current_mob)
-		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
+		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 20 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)
@@ -387,9 +387,17 @@
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
 
 	darkspawn_state = DIVULGED
-	to_chat(user, span_velvet("<b>Your mind has expanded.Avoid the light. Keep to the shadows. Your time will come.</b>"))
+	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 25 MINUTES)
+	to_chat(user, span_velvet("<b>Your mind has expanded. Avoid the light. Keep to the shadows. Your time will come.</b>"))
 	to_chat(user, span_velvet("<b>Access to the Psi Web has been unlocked, spend your [willpower] willpower to purchase abilities and upgrades.</b>"))
 	return TRUE
+
+//20 minutes after divulge, enable validhunters and powergamers to do their thing (station is probably fucked by that point anyways)
+/datum/antagonist/darkspawn/proc/enable_validhunt()
+	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_GAMMA)
+		return
+	priority_announce("Dangerous fluctuations in the veil have been detected aboard the station. Be on high alert for unusual beings commanding unnatural powers.", "Central Command Higher Dimensional Affairs")
+	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Forced Divulge------------------------------------//
