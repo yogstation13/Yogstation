@@ -28,7 +28,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "devour_will"
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	psi_cost = 5
 	hand_path = /obj/item/melee/touch_attack/devour_will
@@ -138,7 +138,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "divulge(old)"
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	var/tying = FALSE //If we're tying someone's hands
@@ -214,7 +214,7 @@
 	antimagic_flags = NONE
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = NONE
 	psi_cost = 60
 	var/in_use = FALSE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
@@ -286,7 +286,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	cooldown_time = 15 SECONDS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	psi_cost = 20
 	cast_range = 2
