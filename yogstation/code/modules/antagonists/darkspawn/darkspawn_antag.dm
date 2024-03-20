@@ -84,9 +84,9 @@
 	if(owner.current)
 		qdel(owner.current.GetComponent(/datum/component/internal_cam))
 
-	for(var/datum/action/cooldown/spell/spells in user.actions) //remove divulge if they haven't yet
+	for(var/datum/action/cooldown/spell/spells in owner.current.actions) //remove divulge if they haven't yet
 		if(istype(spells, /datum/action/cooldown/spell/divulge))
-			spells.Remove(user)
+			spells.Remove(owner.current)
 			qdel(spells)
 
 ////////////////////////////////////////////////////////////////////////////////////
