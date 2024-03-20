@@ -7,6 +7,11 @@
 	icon_state = "wall-0"
 	base_icon_state = "wall"
 	explosion_block = 1
+	max_integrity = 300
+	damage_deflection = 20 // big chunk of solid metal
+	uses_integrity = TRUE
+
+	armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 90, ACID = 50) // very tough
 
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
@@ -29,6 +34,7 @@
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/sheet_amount = 2
 	var/girder_type = /obj/structure/girder
+	var/smash_flags = ENVIRONMENT_SMASH_WALLS|ENVIRONMENT_SMASH_RWALLS
 	/// A turf that will replace this turf when this turf is destroyed
 	var/decon_type
 
@@ -58,6 +64,21 @@
 /turf/closed/wall/examine(mob/user)
 	. += ..()
 	. += deconstruction_hints(user)
+
+/turf/closed/wall/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+	. = ..()
+	if(.) // add a dent if it took damage
+		add_dent(WALL_DENT_HIT)
+
+/turf/closed/wall/run_atom_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
+	if(damage_amount < damage_deflection && (damage_type in list(MELEE, BULLET, LASER, ENERGY)))
+		return 0 // absolutely no bypassing damage deflection by using projectiles
+	return ..()
+
+/turf/closed/wall/atom_destruction(damage_flag)
+	if(damage_flag == MELEE)
+		playsound(src, 'sound/effects/meteorimpact.ogg', 50, TRUE) //Otherwise there's no sound for hitting the wall, since it's just dismantled
+	dismantle_wall(TRUE, (damage_flag==BOMB))
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
 	return span_notice("The outer plating is <b>welded</b> firmly in place.")
@@ -106,22 +127,18 @@
 
 /turf/closed/wall/ex_act(severity, target)
 	if(target == src)
-		dismantle_wall(1,1)
+		dismantle_wall(TRUE, TRUE)
 		return
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			//SN src = null
 			var/turf/NT = ScrapeAway()
 			NT.contents_explosion(severity, target)
 			return
-		if(2)
-			if (prob(50))
-				dismantle_wall(0,1)
-			else
-				dismantle_wall(1,1)
-		if(3)
-			if (prob(hardness))
-				dismantle_wall(0,1)
+		if(EXPLODE_HEAVY)
+			dismantle_wall(pick(FALSE, TRUE), TRUE)
+		if(EXPLODE_LIGHT)
+			take_damage(150, BRUTE, BOMB) // less kaboom
 	if(!density)
 		..()
 	
@@ -129,31 +146,11 @@
 
 
 /turf/closed/wall/blob_act(obj/structure/blob/B)
-	if(prob(50))
-		dismantle_wall()
-	else
-		add_dent(WALL_DENT_HIT)
+	take_damage(400, BRUTE, MELEE, FALSE)
+	playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
 
-/turf/closed/wall/mech_melee_attack(obj/mecha/M, equip_allowed)
-	M.do_attack_animation(src)
-	switch(M.damtype)
-		if(BRUTE)
-			if(M.meleesound)
-				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
-			visible_message(span_danger("[M.name] has hit [src]!"), null, null, COMBAT_MESSAGE_RANGE)
-			if(prob(hardness + M.force) && M.force > 20)
-				dismantle_wall(1)
-				if(M.meleesound)
-					playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
-			else
-				add_dent(WALL_DENT_HIT)
-		if(BURN)
-			if(M.meleesound)
-				playsound(src, 'sound/items/welder.ogg', 100, 1)
-		if(TOX)
-			if(M.meleesound)
-				playsound(src, 'sound/effects/spray2.ogg', 100, 1)
-			return FALSE
+/turf/closed/wall/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
+	return ..(M, punch_force * 5, equip_allowed)
 
 /turf/closed/wall/attack_paw(mob/living/user)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -163,21 +160,19 @@
 /turf/closed/wall/attack_animal(mob/living/simple_animal/M)
 	M.changeNext_move(CLICK_CD_MELEE)
 	M.do_attack_animation(src)
-	if((M.environment_smash & ENVIRONMENT_SMASH_WALLS) || (M.environment_smash & ENVIRONMENT_SMASH_RWALLS))
-		playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
-		dismantle_wall(1)
+	if(!(M.environment_smash & smash_flags))
+		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+		to_chat(M, span_warning("This wall is far too strong for you to destroy."))
 		return
+	take_damage(400, BRUTE, MELEE, FALSE)
+	playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
 
 /turf/closed/wall/attack_hulk(mob/user, does_attack_animation = 0)
 	..(user, 1)
-	if(prob(hardness))
-		playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
-		dismantle_wall(1)
-	else
-		playsound(src, 'sound/effects/bang.ogg', 50, 1)
-		add_dent(WALL_DENT_HIT)
-		to_chat(user, span_notice("You punch the wall."))
+	user.say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ), forced = "hulk")
+	take_damage(400, BRUTE, MELEE, FALSE)
+	playsound(src, 'sound/effects/bang.ogg', 50, 1)
+	to_chat(user, span_notice("You punch the wall."))
 	return TRUE
 
 /turf/closed/wall/attack_hand(mob/user)
@@ -189,7 +184,7 @@
 	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 	add_fingerprint(user)
 
-/turf/closed/wall/attackby(obj/item/W, mob/user, params)
+/turf/closed/wall/attackby(obj/item/attacking_item, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (!user.IsAdvancedToolUser())
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
@@ -204,30 +199,32 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//the istype cascade has been spread among various procs for easy overriding
-	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T))
+	if(try_clean(attacking_item, user, T) || try_wallmount(attacking_item, user, T) || try_decon(attacking_item, user, T))
 		return
 
-	. = ..()
-
-	if(!.)
-		to_chat(user, span_notice("You hit the wall with \the [W] but nothing happens!"))
-		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+	return ..() || (attacking_item.attack_atom(src, user))
 
 /turf/closed/wall/proc/try_clean(obj/item/W, mob/user, turf/T)
-	if((user.a_intent != INTENT_HELP) || !LAZYLEN(dent_decals))
+	if(user.a_intent == INTENT_HARM)
 		return FALSE
 
 	if(W.tool_behaviour == TOOL_WELDER)
-		if(!W.tool_start_check(user, amount=0))
-			return FALSE
-
-		to_chat(user, span_notice("You begin fixing dents on the wall..."))
-		if(W.use_tool(src, user, 0, volume=100))
-			if(iswallturf(src) && LAZYLEN(dent_decals))
-				to_chat(user, span_notice("You fix some dents on the wall."))
-				cut_overlay(dent_decals)
-				dent_decals.Cut()
+		if(atom_integrity >= max_integrity)
+			to_chat(user, span_warning("[src] is intact!"))
 			return TRUE
+
+		if(!W.tool_start_check(user, amount=0))
+			to_chat(user, span_warning("You need more fuel to repair [src]!"))
+			return TRUE
+
+		to_chat(user, span_notice("You begin repairing [src]..."))
+		if(W.use_tool(src, user, 3 SECONDS, volume=100))
+			update_integrity(max_integrity)
+			to_chat(user, span_notice("You repair [src]."))
+			cut_overlay(dent_decals)
+			dent_decals.Cut()
+			return TRUE
+		return TRUE
 
 	return FALSE
 
@@ -263,14 +260,11 @@
 	return FALSE
 
 /turf/closed/wall/singularity_pull(S, current_size)
-	..()
+	. = ..()
 	if(current_size >= STAGE_FIVE)
-		if(prob(50))
-			dismantle_wall()
-		return
-	if(current_size == STAGE_FOUR)
-		if(prob(30))
-			dismantle_wall()
+		take_damage(250, armour_penetration=100) // LORD SINGULOTH CARES NOT FOR YOUR "ARMOR"
+	else if(current_size == STAGE_FOUR)
+		take_damage(150, armour_penetration=100)
 
 /turf/closed/wall/narsie_act(force, ignore_mobs, probability = 20)
 	. = ..()
@@ -310,7 +304,10 @@
 			return TRUE
 	return FALSE
 
-/turf/closed/wall/proc/add_dent(denttype, x=rand(-8, 8), y=rand(-8, 8))
+/turf/proc/add_dent(denttype, x=rand(-8, 8), y=rand(-8, 8)) // this only exists because turf code is terrible
+	return
+
+/turf/closed/wall/add_dent(denttype, x=rand(-8, 8), y=rand(-8, 8))
 	if(LAZYLEN(dent_decals) >= MAX_DENT_DECALS)
 		return
 

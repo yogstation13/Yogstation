@@ -57,6 +57,14 @@
 		else
 			icon_state = "condisposal"
 
+// Extra layer handling
+/obj/structure/disposalconstruct/update_icon()
+	. = ..()
+	if(!is_pipe())
+		return
+
+	layer = anchored ? initial(pipe_type.layer) : initial(layer)
+
 /obj/structure/disposalconstruct/proc/get_disposal_dir()
 	if(!is_pipe())
 		return NONE

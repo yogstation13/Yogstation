@@ -159,7 +159,7 @@
 			return
 	return ..()
 
-/obj/machinery/smartfridge/obj_break(damage_flag)
+/obj/machinery/smartfridge/atom_break(damage_flag)
 	if(!(stat & BROKEN))
 		stat |= BROKEN
 		update_appearance()
@@ -331,6 +331,20 @@
 	else
 		return ..()
 
+/obj/machinery/smartfridge/welder_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(stat & BROKEN)
+		if(!I.tool_start_check(user, amount=0))
+			return
+		user.visible_message(span_notice("[user] is repairing [src]."), span_notice("You begin repairing [src]..."), span_hear("You hear welding."))
+		if(I.use_tool(src, user, 4 SECONDS))
+			if(!(stat & BROKEN))
+				return
+			to_chat(user, span_notice("You repair [src]."))
+			update_integrity(max_integrity)
+			stat &= ~BROKEN
+			update_icon()
+		return TRUE			
 
 /obj/machinery/smartfridge/proc/accept_check(obj/item/O)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/grown/) || istype(O, /obj/item/seeds/) || istype(O, /obj/item/grown/))

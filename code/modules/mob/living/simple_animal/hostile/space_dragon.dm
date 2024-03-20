@@ -120,21 +120,9 @@
 		to_chat(src, span_warning("You almost bite yourself, but then decide against it."))
 		return
 	if(iswallturf(target))
-		if(tearing_wall)
-			return
-		tearing_wall = TRUE
-		var/turf/closed/wall/thewall = target
-		to_chat(src, span_warning("You begin tearing through the wall..."))
-		playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
-		var/timetotear = 4 SECONDS
-		if(istype(target, /turf/closed/wall/r_wall))
-			timetotear = 12 SECONDS
-		if(do_after(src, timetotear, target = thewall))
-			if(isopenturf(thewall))
-				return
-			thewall.dismantle_wall(1)
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
-		tearing_wall = FALSE
+		target.take_damage(180, BRUTE, MELEE, FALSE)
+		playsound(target, 'sound/effects/meteorimpact.ogg', 100, TRUE)
+		changeNext_move(CLICK_CD_MELEE)
 		return
 	if(isliving(target)) //Swallows corpses like a snake to regain health.
 		var/mob/living/L = target

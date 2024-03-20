@@ -168,6 +168,14 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		update_air_ref(-1)
 		__auxtools_update_turf_temp_info(isspaceturf(get_z_base_turf()))
 
+	
+	if(uses_integrity)
+		update_integrity(max_integrity)
+		if(islist(armor))
+			armor = getArmor(arglist(armor))
+		else if(!armor)
+			armor = getArmor()
+
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/__auxtools_update_turf_temp_info()

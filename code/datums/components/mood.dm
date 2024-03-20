@@ -1,6 +1,3 @@
-#define MINOR_INSANITY_PEN 5
-#define MAJOR_INSANITY_PEN 10
-
 /datum/component/mood
 	var/mood //Real happiness
 	var/sanity = 100 //Current sanity
@@ -235,28 +232,22 @@
 	var/mob/living/master = parent
 	switch(sanity)
 		if(SANITY_INSANE to SANITY_CRAZY)
-			setInsanityEffect(MAJOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.75, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.25, movetypes=(~FLYING))
 			sanity_level = 6
 		if(SANITY_CRAZY to SANITY_UNSTABLE)
-			setInsanityEffect(MINOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
+			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
 			sanity_level = 5
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
-			setInsanityEffect(0)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.25, movetypes=(~FLYING))
+			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
 			sanity_level = 4
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
-			setInsanityEffect(0)
 			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
 			sanity_level = 3
 		if(SANITY_NEUTRAL+1 to SANITY_GREAT+1) //shitty hack but +1 to prevent it from responding to super small differences
-			setInsanityEffect(0)
-			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1, movetypes=(~FLYING))
 			sanity_level = 2
 		if(SANITY_GREAT+1 to INFINITY)
-			setInsanityEffect(0)
-			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.15, movetypes=(~FLYING))
 			sanity_level = 1
 	update_mood_icon()
 
@@ -376,6 +367,3 @@
 /datum/component/mood/proc/check_area_mood(datum/source, area/A)
 	if(A.mood_bonus)
 		add_event(null, "area", /datum/mood_event/area, A.mood_bonus, A.mood_message)
-
-#undef MINOR_INSANITY_PEN
-#undef MAJOR_INSANITY_PEN

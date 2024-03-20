@@ -28,7 +28,7 @@
 
 /obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	var/ratio = obj_integrity / max_integrity
+	var/ratio = atom_integrity / max_integrity
 	ratio = CEILING(ratio*4, 1) * 25
 
 	if(ratio>75)
@@ -245,7 +245,8 @@
 		transfer_fingerprints_to(R)
 		..()
 
-/obj/structure/grille/obj_break()
+/obj/structure/grille/atom_break()
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		density = FALSE
 		broken = TRUE
@@ -304,9 +305,8 @@
 	return null
 
 /obj/structure/grille/broken // Pre-broken grilles for map placement
-	icon_state = "brokengrille"
+	icon_state = "grille_broken"
 	density = FALSE
-	obj_integrity = 20
 	broken = TRUE
 	rods_amount = 1
 	rods_broken = FALSE
@@ -316,6 +316,7 @@
 /obj/structure/grille/broken/Initialize(mapload)
 	. = ..()
 	holes = (holes | 16)
+	update_integrity(20)
 	update_appearance()
 
 /obj/structure/grille/ratvar
@@ -324,6 +325,12 @@
 	name = "cog grille"
 	desc = "A strangely-shaped grille."
 	broken_type = /obj/structure/grille/ratvar/broken
+
+	// These ones are too cool to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
 
 /obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()
@@ -347,9 +354,12 @@
 /obj/structure/grille/ratvar/broken
 	icon_state = "brokenratvargrille"
 	density = FALSE
-	obj_integrity = 20
 	broken = TRUE
 	rods_amount = 1
 	rods_broken = FALSE
 	grille_type = /obj/structure/grille/ratvar
 	broken_type = null
+
+/obj/structure/grille/ratvar/broken/Initialize(mapload)
+	. = ..()
+	update_integrity(20)

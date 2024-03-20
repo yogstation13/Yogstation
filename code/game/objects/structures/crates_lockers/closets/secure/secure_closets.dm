@@ -8,7 +8,7 @@
 	secure = TRUE
 	var/obj/item/electronics/airlock/electronics
 
-/obj/structure/closet/secure_closet/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/structure/closet/secure_closet/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	if(damage_flag == MELEE && damage_amount < 20)
 		return 0
 	. = ..()

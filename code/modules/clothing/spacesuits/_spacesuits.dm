@@ -27,6 +27,8 @@
 	desc = "A suit that protects against low pressure environments. Has a big N on the back."
 	icon_state = "space"
 	item_state = "space"
+	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
