@@ -128,4 +128,3 @@
 #define BUBBLE_DARKSPAWN "darkspawn"
 #define BUBBLE_GUARDIAN "guardian"
 #define BUBBLE_BLOB "blob"
-#define BUBBLE_DARKSPAWN "darkspawn"
