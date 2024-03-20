@@ -100,8 +100,6 @@
 	if(!ishuman(source))
 		return
 
-	var/mob/living/carbon/human/dude = source
-
 	//draw both the overlay itself and the emissive overlay
 	var/mutable_appearance/overlay = mutable_appearance('yogstation/icons/mob/darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER)
 	overlay.color = COLOR_DARKSPAWN_PSI
