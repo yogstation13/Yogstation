@@ -149,13 +149,11 @@
 			return
 
 		// send to the turf below
+		var/turf/above_turf = get_turf(dropped_thing)
 		dropped_thing.visible_message(span_boldwarning("[dropped_thing] falls into [parent]!"), span_userdanger("[fall_message]"))
 		below_turf.visible_message(span_boldwarning("[dropped_thing] falls from above!"))
 		dropped_thing.forceMove(below_turf)
-		if(isliving(dropped_thing))
-			var/mob/living/fallen = dropped_thing
-			fallen.Paralyze(100)
-			fallen.adjustBruteLoss(30)
+		below_turf.zImpact(dropped_thing, abs(above_turf.z - below_turf.z), get_turf(dropped_thing), FALL_NO_MESSAGE)
 		falling_atoms -= falling_ref
 		return
 

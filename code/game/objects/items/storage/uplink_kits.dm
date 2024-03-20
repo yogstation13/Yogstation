@@ -839,7 +839,7 @@
 	new /obj/item/radio/headset/headset_cent/empty(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/storage/backpack/satchel(src)
-	new /obj/item/modular_computer/tablet/pda/preset/basic/bureaucrat(src)
+	new /obj/item/modular_computer/tablet/pda/preset/bureaucrat(src)
 	new /obj/item/clipboard(src)
 	new /obj/item/implanter/mindshield(src)
 
