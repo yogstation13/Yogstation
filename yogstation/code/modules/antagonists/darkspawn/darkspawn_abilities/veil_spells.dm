@@ -199,15 +199,21 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /obj/projectile/magic/mindblast
 	name ="mindbolt"
-	icon_state= "chronobolt"
+	icon = 'yogstation/icons/obj/darkspawn_projectiles.dmi'
+	icon_state = "mind_blast"
 	damage = 30
 	armour_penetration = 100
 	speed = 1
-	eyeblur = 0
 	damage_type = BRUTE
-	pass_flags = PASSTABLE
 	range = 8
-	color = COLOR_VELVET
+
+/obj/projectile/magic/mindblast/Initialize(mapload)
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
+
+/obj/projectile/magic/mindblast/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Global AOE Buff spells-------------------------//

@@ -43,7 +43,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/toggle/shadow_caster
 	name = "Shadow caster"
-	desc = "Twists an active arm into a bow that shoots harddark arrows."
+	desc = "Twists an active arm into a bow that shoots arrows made of solid darkness."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"

@@ -180,6 +180,21 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Scout Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+/datum/psi_web/shadow_walk
+	name = "Shadowwalk Sigils"
+	desc = "Unlocking this sigil greatly increases speed in the dark."
+	lore_description = "The Mehlak sigils, representing journey, are etched onto the legs."
+	icon_state = "shadow_walk"
+	willpower_cost = 3
+	menu_tab = STORE_PASSIVE
+	shadow_flags = SCOUT
+
+/datum/psi_web/shadow_walk/on_gain()
+	shadowhuman.AddComponent(/datum/component/shadow_step)
+
+/datum/psi_web/shadow_walk/on_loss()
+	qdel(shadowhuman.GetComponent(/datum/component/shadow_step))
+
 /datum/psi_web/stamina_res
 	name = "Vigor Sigils"
 	desc = "Unlocking this sigil halves stamina damage taken."
@@ -194,21 +209,6 @@
 
 /datum/psi_web/stamina_res/on_loss()
 	shadowhuman.physiology.stamina_mod *= 2
-
-/datum/psi_web/shadow_walk
-	name = "Shadowwalk Sigils"
-	desc = "Unlocking this sigil greatly increases speed in the dark."
-	lore_description = "The Mehlak sigils, representing journey, are etched onto the legs."
-	icon_state = "shadow_walk"
-	willpower_cost = 2
-	menu_tab = STORE_PASSIVE
-	shadow_flags = SCOUT
-
-/datum/psi_web/shadow_walk/on_gain()
-	shadowhuman.AddComponent(/datum/component/shadow_step)
-
-/datum/psi_web/shadow_walk/on_loss()
-	qdel(shadowhuman.GetComponent(/datum/component/shadow_step))
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Warlock Passive Upgrades------------------------------//

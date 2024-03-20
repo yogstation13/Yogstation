@@ -3,9 +3,9 @@
 //////////////////////////////////////////////////////////////////////////
 /obj/machinery/computer/camera_advanced/darkspawn
 	name = "dark orb"
-	desc = "SEND DUDES"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
+	desc = "An unsettling swirling mass of darkness. Gazing into it seems to reveal forbidden knowledge."
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "panopticon"
 	special = TRUE
 	use_power = NO_POWER_USE
 	flags_1 = NODECONSTRUCT_1
@@ -21,12 +21,13 @@
 	. = ..()
 	camnet = GLOB.thrallnet
 
-/obj/machinery/computer/camera_advanced/darkspawn/update_appearance(updates)
+/obj/machinery/computer/camera_advanced/darkspawn/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, icon_state, src) //eventually replace this, but for now, this works
+	. += emissive_appearance(icon, "panopticon_emissive", src)
 
 /obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
 	if(user && !is_darkspawn_or_veil(user))
+		to_chat(user, span_velvet("You tamper with forces you do not understand mortal."))
 		return FALSE
 	return ..()
 

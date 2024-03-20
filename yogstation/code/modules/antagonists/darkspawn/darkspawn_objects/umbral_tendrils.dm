@@ -12,6 +12,7 @@
 	attack_verb = list("impaled", "tentacled", "torn")
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
+	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
 	wound_bonus = -80 //no wounding
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
@@ -35,14 +36,18 @@
 		qdel(twin)
 	. = ..()
 
+/obj/item/umbral_tendrils/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
+	. = ..()
+	if(isinhands)
+		. += emissive_appearance(icon_file, "[item_state]_emissive", src)
+
 /obj/item/umbral_tendrils/examine(mob/user)
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
 		to_chat(user, span_velvet("<b>Functions:</b>"))
 		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
 		to_chat(user, span_velvet("<b>Grab intent:</b> Consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
-		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
-		to_chat(user, span_velvet("The tendrils will shatter light fixtures instantly, as opposed to in several attacks."))
+		to_chat(user, span_velvet("The tendrils will devour any lights hit."))
 		to_chat(user, span_velvet("Also functions to pry open depowered airlocks on any intent other than harm."))
 
 /obj/item/umbral_tendrils/attack(mob/living/target, mob/living/user, twinned_attack = TRUE)

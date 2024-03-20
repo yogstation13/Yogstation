@@ -82,13 +82,13 @@
 		return //so they only get the overlay when divulged
 
 	//draw both the overlay itself and the emissive overlay
-	var/mutable_appearance/eyes = mutable_appearance(icon_file, eye_icon)
+	var/mutable_appearance/eyes = mutable_appearance(icon_file, eye_icon, -UNDER_SUIT_LAYER)
 	eyes.color = class_color
 	overlays += eyes
 
 	overlays += emissive_appearance(icon_file, eye_icon, source) //the emissive overlay for the eyes
 	
-	var/mutable_appearance/class_sigil = mutable_appearance(icon_file, class_icon)
+	var/mutable_appearance/class_sigil = mutable_appearance(icon_file, class_icon, -UNDER_SUIT_LAYER)
 	class_sigil.color = class_color
 	overlays += class_sigil
 

@@ -112,14 +112,11 @@
 	if(.)
 		to_chat(owner, span_velvet("...Voz"))
 
-/datum/action/cooldown/spell/shapeshift/crawling_shadows/cast(mob/living/cast_on)
-	if(cast_on.has_status_effect(/datum/status_effect/shapechange_mob/from_spell))
+/datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
+	if(cast_on.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)) //so it's free to change back, but costs psi to change
 		psi_cost = 0
 	else
 		psi_cost = initial(psi_cost)
-	. = ..()
-
-/datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
 	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
 		return FALSE
 	if(owner.movement_type & VENTCRAWLING) //don't let them smoosh themselves
@@ -195,9 +192,12 @@
 		return
 	if(!isliving(owner))
 		return
+	INVOKE_ASYNC(src, PROC_REF(fray))
+
+/datum/action/cooldown/spell/fray_self/proc/fray()
 	var/mob/living/L = owner
 	
-	to_chat(L, span_danger("You attempt to split a piece of your psyche."))
+	to_chat(L, span_velvet("You attempt to split a piece of your psyche."))
 	searching = TRUE
 	var/mob/dead/observer/chosen_ghost
 	var/list/consenting_candidates = pollGhostCandidates("Would you like to play as piece of [L]'s psyche?", "Darkspawn", null, ROLE_DARKSPAWN, 10 SECONDS, POLL_IGNORE_DARKSPAWN_PSYCHE)

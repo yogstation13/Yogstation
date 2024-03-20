@@ -321,13 +321,13 @@
 //Weapon
 /obj/item/light_eater
 	name = "light eater" //as opposed to heavy eater
-	icon = 'icons/obj/changeling.dmi'
-	icon_state = "arm_blade"
-	item_state = "arm_blade"
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "light_eater"
+	item_state = "light_eater"
 	force = 15
 	armour_penetration = 20
-	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	item_flags = ABSTRACT | DROPDEL
 	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
@@ -342,7 +342,11 @@
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
 	AddComponent(/datum/component/light_eater)
-	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
+
+/obj/item/light_eater/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
+	. = ..()
+	if(isinhands)
+		. += emissive_appearance(icon, "[item_state]_emissive", src)
 
 #undef DARKSPAWN_REFLECT_COOLDOWN
 #undef HEART_SPECIAL_SHADOWIFY

@@ -65,10 +65,10 @@
 	
 /datum/psi_web/shadow_caster
 	name = "Shadow Caster"
-	desc = "Twists an active arm into a bow that shoots harddark arrows."
+	desc = "Twists an active arm into a bow that shoots arrows made of solid darkness."
 	lore_description = ""
 	icon_state = "shadow_caster"
-	willpower_cost = 3
+	willpower_cost = 4 //easily one of the strongest and most reliable abilities
 	shadow_flags = SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_caster)

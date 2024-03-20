@@ -89,7 +89,8 @@
 	//add passive traits, elements, and components
 	ADD_TRAIT(src, TRAIT_HOLY, INNATE_TRAIT) //sorry no magic
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT) //so people can actually look at the sprite without the weird bobbing up and down
-	AddElement(/datum/element/death_explosion, 10, 20, 40) //with INFINITY health, they're not likely do die, but IF THEY DO
+	AddElement(/datum/element/death_explosion, 20, 20, 20) //with INFINITY health, they're not really able to die, but IF THEY DO
+	AddComponent(/datum/component/light_eater)
 
 	//so the progenitor can hear people's screams over radio
 	var/obj/item/radio/headset/silicon/ai/radio = new(src) 

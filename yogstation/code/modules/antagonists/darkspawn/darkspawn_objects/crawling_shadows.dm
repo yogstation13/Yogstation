@@ -48,15 +48,22 @@
 
 /mob/living/simple_animal/hostile/crawling_shadows/Move()
 	move_count++
-	if(move_count >= 5)
+	if(move_count >= 4)
 		playsound(src, "crawling_shadows_walk", 25, 0)
 		move_count = 0
 	..()
+	update_light_speed()
+
+/mob/living/simple_animal/hostile/crawling_shadows/Life(seconds_per_tick, times_fired)
+	. = ..()
+	update_light_speed()
+
+/mob/living/simple_animal/hostile/crawling_shadows/proc/update_light_speed()
 	var/turf/T = get_turf(src)
 	var/lums = T.get_lumcount()
 	if(lums < SHADOW_SPECIES_BRIGHT_LIGHT)
 		speed = -1 //Faster, too
-		alpha = 0
+		alpha = max(alpha - ((SHADOW_SPECIES_BRIGHT_LIGHT - lums) * 60), 0) //Rapidly becomes more invisible in the dark
 	else
 		speed = 0
 		alpha = min(alpha + (lums * 30), 255) //Slowly becomes more visible in brighter light

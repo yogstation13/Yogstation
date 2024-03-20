@@ -1,8 +1,11 @@
 /obj/item/gun/ballistic/bow/energy/shadow_caster
 	name = "shadow caster"
 	desc = "A bow made of solid darkness. The arrows it shoots seem to suck light out of the surroundings."
-	icon_state = "bow_hardlight"
-	item_state = "bow_hardlight"
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "shadow_caster"
+	item_state = "shadow_caster"
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
 	no_pin_required = TRUE
 	recharge_time = 2 SECONDS
@@ -10,7 +13,6 @@
 /obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 	AddComponent(/datum/component/light_eater)
 
 // the thing that holds the ammo inside the bow
@@ -21,16 +23,15 @@
 /obj/item/ammo_casing/reusable/arrow/shadow
 	name = "shadow arrow"
 	desc = "it seem to suck light out of the surroundings."
+	icon = 'yogstation/icons/obj/darkspawn_projectiles.dmi'
+	icon_state = "caster_arrow"
+	item_state = "caster_arrow"
 	light_system = MOVABLE_LIGHT
 	light_power = -1
 	light_color = COLOR_VELVET
-	light_range = 3.5
+	light_range = 2
 	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 0) //always embeds if it hits someone
 	projectile_type = /obj/projectile/bullet/reusable/arrow/shadow
-
-/obj/item/ammo_casing/reusable/arrow/shadow/Initialize(mapload)
-	. = ..()
-	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
 /obj/item/ammo_casing/reusable/arrow/shadow/on_land(obj/projectile/old_projectile)
 	. = ..()
@@ -48,14 +49,20 @@
 //the projectile being shot from the bow
 /obj/projectile/bullet/reusable/arrow/shadow
 	name = "shadow arrow"
+	icon = 'yogstation/icons/obj/darkspawn_projectiles.dmi'
+	icon_state = "caster_arrow"
 	damage = 30 //reduced damage per arrow +
 	armour_penetration = 0 //no negative armour pen = more damage to armoured targets, less to unarmoured targets
 	light_system = MOVABLE_LIGHT
 	light_power = -1
 	light_color = COLOR_VELVET
-	light_range = 3.5
+	light_range = 2
 	embed_chance = 1 //always embeds if it hits someone
 
 /obj/projectile/bullet/reusable/arrow/shadow/Initialize(mapload)
 	. = ..()
-	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
+	update_appearance(UPDATE_OVERLAYS)
+
+/obj/projectile/bullet/reusable/arrow/shadow/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)

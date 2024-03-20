@@ -345,6 +345,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	cooldown_time = 2 SECONDS
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 1 //happens 5 times a second
 	var/was_running
