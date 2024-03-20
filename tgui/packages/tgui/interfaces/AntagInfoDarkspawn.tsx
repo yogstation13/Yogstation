@@ -227,7 +227,9 @@ const InformationSection = (props, context) => {
         {!!current_veils && !!veil_names && (
         <Stack.Item>
           They are:
-          {veil_names.map}
+          {veil_names.map(veil => (
+            <Stack.Item key={veil}>{capitalize(veil)}</Stack.Item>
+          ))}
         </Stack.Item>
         )}
       </Stack>

@@ -107,9 +107,6 @@
 	overlay.color = COLOR_DARKSPAWN_PSI
 	overlays += overlay
 
-	if(!(dude.wear_suit || dude.w_uniform))//glow the sigils if they're not wearing something covering them
-		overlays += emissive_appearance('yogstation/icons/mob/darkspawn.dmi', "veil_sigils", source)
-
 /datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
 		return
