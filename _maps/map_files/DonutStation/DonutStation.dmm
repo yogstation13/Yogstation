@@ -28199,7 +28199,7 @@
 "mfh" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Engineering Desk";
-	req_access_txt = "10"
+	req_one_access_txt = "10;32"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -35060,7 +35060,7 @@
 	},
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Engineering";
-	req_access_txt = "10"
+	req_one_access_txt = "10;32"
 	},
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 4

@@ -40713,7 +40713,7 @@
 "tVs" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Engineering";
-	req_access_txt = "10"
+	req_one_access_txt = "10;32"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -41401,7 +41401,7 @@
 "umn" = (
 /obj/machinery/door/airlock/engineering{
 	name = "AI Ship Access";
-	req_one_access_txt = "10;17;32"
+	req_one_access_txt = "10;17;61"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
