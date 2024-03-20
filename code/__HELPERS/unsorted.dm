@@ -1216,9 +1216,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-#define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
-
-
 /proc/tgui_login_data(mob/user, obj/machine, silicon_access = TRUE, admin_ghost_access = TRUE, access_requirement)
 	var/list/data = list()
 	if(!user || (!machine && !access_requirement))
