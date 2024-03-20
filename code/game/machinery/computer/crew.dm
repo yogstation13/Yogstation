@@ -136,7 +136,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/life_status
 
 	for(var/mob/living/carbon/human/tracked_mob in GLOB.carbon_list)
-		if(is_synth(H)) //Synths are unsupported (they're not organic)
+		if(is_synth(tracked_mob)) //Synths are unsupported (they're not organic)
 			continue
 		var/forced_sensors = HAS_TRAIT(tracked_mob, TRAIT_SUITLESS_SENSORS)
 		uniform = tracked_mob.w_uniform
