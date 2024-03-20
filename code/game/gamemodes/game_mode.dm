@@ -81,9 +81,9 @@
 		if(player.client.holder) //Admins don't count towards unreadied or observing player count
 			continue
 
-		if((player.ready == PLAYER_NOT_READY))
+		if(player.ready == PLAYER_NOT_READY)
 			unreadiedPlayers++
-		else if((player.ready == PLAYER_READY_TO_OBSERVE))
+		else if(player.ready == PLAYER_READY_TO_OBSERVE)
 			ghostPlayers++
 
 	if(!GLOB.Debug2)
