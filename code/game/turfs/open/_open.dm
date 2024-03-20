@@ -408,7 +408,6 @@
 	color = "#21007F"
 
 /turf/open/floor/grass/fairy/dark/on_light_eater(obj/machinery/light/source, datum/light_eater)
-	SIGNAL_HANDLER
 	return
 
 /turf/open/floor/grass/fairy/Initialize(mapload)
