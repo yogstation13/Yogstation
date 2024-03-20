@@ -75,6 +75,7 @@
 /mob/living/simple_animal/hostile/illusion/escape/AttackingTarget()
 	return FALSE
 
+//////////Darkspawn specific illusions//////////////
 /mob/living/simple_animal/hostile/illusion/darkspawn //simulacrum version
 	maxHealth = 100
 	health = 100

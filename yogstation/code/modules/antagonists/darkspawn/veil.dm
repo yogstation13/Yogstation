@@ -118,7 +118,7 @@
 			continue
 		if(is_darkspawn_or_veil(thing))
 			continue
-		current_willpower_progress += 2
+		current_willpower_progress += seconds_per_tick
 
 	if(current_willpower_progress >= 100)
 		current_willpower_progress = 0
