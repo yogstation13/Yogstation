@@ -12,10 +12,12 @@
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 
 	fire_sound = 'sound/weapons/emitter2.ogg'
-	fire_delay = 5 SECONDS
+	fire_delay = 1 SECONDS
 
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	ammo_type = /obj/item/ammo_casing/magic/darkspawn
+	///the psi cost to shoot the staff
+	var/psi_cost = 40
 	/// Flags used for different effects that apply when a projectile hits something
 	var/effect_flags
 
@@ -43,9 +45,9 @@
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
 				M.extinguish_mob()
 		else
-			M.apply_damage(50, STAMINA)
+			M.apply_damage(30, STAMINA)
 			if(effect_flags & STAFF_UPGRADE_CONFUSION)
-				M.adjust_confusion(6 SECONDS)
+				M.adjust_confusion(4 SECONDS)
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_wield() //guns do weird things to some of the icon procs probably, and i can't find which ones, so i need to do this all again
@@ -67,7 +69,23 @@
 		final_block_chance = 0 //don't bring a staff to a knife fight
 	return ..()
 
-////////////////////////INFINITE AMMO//////////////////////////
+////////////////////////INFINITE AMMO////////////////////////// (some psi required)
+/obj/item/gun/magic/darkspawn/can_shoot()
+	if(isliving(src.loc))
+		var/mob/living/dude = src.loc
+		if(isdarkspawn(dude))
+			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(dude)
+			if(darkspawn && !darkspawn.has_psi(psi_cost))
+				return FALSE
+	return ..()
+
+/obj/item/gun/magic/darkspawn/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
+	. = ..()
+	if(. && isdarkspawn(user))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+		if(darkspawn)
+			darkspawn.use_psi(psi_cost)
+
 /obj/item/gun/magic/darkspawn/process_chamber()
 	. = ..()
 	charges = max_charges //infinite charges

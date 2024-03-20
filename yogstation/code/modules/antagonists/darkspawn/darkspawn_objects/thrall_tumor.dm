@@ -17,7 +17,7 @@
 	..()
 
 /obj/item/organ/shadowtumor/process()
-	if(!isveil(owner) && !owner.add_veil())
+	if(!isveil(owner))
 		qdel(src)
 	if(isturf(loc))
 		var/turf/T = loc

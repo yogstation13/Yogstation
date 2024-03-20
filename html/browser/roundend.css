@@ -96,3 +96,8 @@ body {
 .tooltip_container:hover .tooltip_hover {
 	visibility: visible;
 }
+
+.redtext {
+	color: #7264FF;
+	font-weight: bold;
+}

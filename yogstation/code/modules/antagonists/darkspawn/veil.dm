@@ -13,7 +13,6 @@
 	return team
 
 /datum/antagonist/veil/on_gain()
-	. = ..()
 	owner.special_role = "veil"
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
@@ -30,6 +29,7 @@
 			team = T
 	if(!team)
 		CRASH("veil made without darkspawns")
+	return ..()
 
 /datum/antagonist/veil/on_removal()
 	message_admins("[key_name_admin(owner.current)] was deveiled!")
@@ -51,12 +51,12 @@
 	return ..()
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
-	if(team)
-		team.add_veil(owner)
-
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
+
+	if(team)
+		team.add_veil(current_mob.mind)
 
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(veil_life))
@@ -76,12 +76,12 @@
 		new_spell.Grant(current_mob)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
-	if(team)
-		team.remove_veil(owner)
-
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
+
+	if(team)
+		team.remove_veil(current_mob.mind)
 
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS)

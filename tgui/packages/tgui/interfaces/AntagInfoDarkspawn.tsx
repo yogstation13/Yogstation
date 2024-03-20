@@ -53,6 +53,7 @@ type Info = {
   has_class: BooleanLike;
   objectives: Objective[];
   categories: Category[];
+  veil_names: string[];
 };
 
 export const AntagInfoDarkspawn = (props, context) => {
@@ -185,7 +186,7 @@ const GuideSection = () => {
 
 const InformationSection = (props, context) => {
   const { data } = useBackend<Info>(context);
-  const { willpower, lucidity_drained, ascended, current_veils, max_veils } = data;
+  const { willpower, lucidity_drained, ascended, current_veils, max_veils, veil_names } = data;
   return (
     <Stack.Item>
       <Stack vertical fill>
@@ -216,8 +217,19 @@ const InformationSection = (props, context) => {
         </Stack.Item>
         {!!max_veils && (
         <Stack.Item>
-          You currently have {current_veils || 0}/{max_veils || 0} veils.
-        </Stack.Item>)}
+          You currently have <b>{current_veils || 0}/{max_veils || 0}</b>&nbsp;
+          <span style={Velvet}>
+            veils
+          </span>
+          .
+        </Stack.Item>
+        )}
+        {!!current_veils && !!veil_names && (
+        <Stack.Item>
+          They are:
+          {veil_names.map}
+        </Stack.Item>
+        )}
       </Stack>
     </Stack.Item>
   );

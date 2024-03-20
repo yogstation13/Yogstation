@@ -5,7 +5,7 @@
 	name = "Deluge"
 	desc = "Douses all nearby creatures with water, extinguishing them and protecting from fire."
 	lore_description = "Calls upon the endless depths to douse all with the beyond."
-	icon_state = ""
+	icon_state = "deluge"
 	willpower_cost = 2
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_UTILITY
@@ -156,8 +156,8 @@
 
 /datum/psi_web/quantum_disruption //basically just a worse jaunt
 	name = "Quantum Disruption"
-	desc = "Disrupt the flow of possibilities, where you are, where you could be."
-	lore_description = ""
+	desc = "Bend the laws of reality to allow free passage all through-out spacetime for a short duration."
+	lore_description = "Disrupt the flow of possibilities, where you are, where you could be."
 	icon_state = "quantum_disruption"
 	willpower_cost = 3
 	shadow_flags = DARKSPAWN_WARLOCK

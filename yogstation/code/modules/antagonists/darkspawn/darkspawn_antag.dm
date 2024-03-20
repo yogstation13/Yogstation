@@ -222,6 +222,11 @@
 		data["lucidity_drained"] = team.lucidity
 		data["max_veils"] = team.max_veils
 		data["current_veils"] = LAZYLEN(team.veils)
+		if(LAZYLEN(team.veils))
+			var/list/veil_names = list()
+			for(var/datum/mind/dude in team.veils)
+				veil_names += dude.name
+			data["veil_names"] += list(veil_names)
 	data["divulged"] = (darkspawn_state > DARKSPAWN_MUNDANE)
 	data["ascended"] = (darkspawn_state == DARKSPAWN_PROGENITOR)
 	data["has_class"] = picked_class

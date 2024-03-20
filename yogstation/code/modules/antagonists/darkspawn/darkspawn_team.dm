@@ -36,6 +36,7 @@
 /datum/team/darkspawn/roundend_report()
 	var/list/report = list()
 
+	report += span_header("[name]:")
 	if(GLOB.sacrament_done)
 		report += span_progenitor("The Darkspawn have ascended once again! The station has forever been lost to the veil.")
 	else if(!GLOB.sacrament_done && check_darkspawn_death())
