@@ -79,5 +79,5 @@
 		var/mob/living/victim = target
 		if(is_darkspawn_or_veil(victim))
 			return BULLET_ACT_FORCE_PIERCE
-	. = ..()
+	return ..()
 	

@@ -6,7 +6,7 @@
 	desc = "An unsettling swirling mass of darkness. Gazing into it seems to reveal forbidden knowledge."
 	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
 	icon_state = "panopticon"
-	special = TRUE
+	special_appearance = TRUE
 	use_power = NO_POWER_USE
 	flags_1 = NODECONSTRUCT_1
 	max_integrity = 200

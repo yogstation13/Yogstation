@@ -92,7 +92,7 @@
 		narsie_start_midway(GLOB.narsie_effect_last_modified) // We assume we're on the start, so we can use this number
 
 	RegisterSignal(SSdcs, COMSIG_DARKSPAWN_ASCENSION, PROC_REF(darkspawn_ascension))
-	if(SSticker?.mode?.sacrament_done) //so no runtimes prior to the round starting
+	if(GLOB.sacrament_done) //so no runtimes prior to the round starting
 		darkspawn_ascension(0)
 
 	offset_increase(0, SSmapping.max_plane_offset)

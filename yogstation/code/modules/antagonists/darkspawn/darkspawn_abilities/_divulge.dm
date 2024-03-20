@@ -10,6 +10,7 @@
 	button_icon_state = "divulge"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = NONE
+	///if they're actively divulging
 	var/in_use = FALSE
 
 /datum/action/cooldown/spell/divulge/IsAvailable(feedback)
@@ -17,7 +18,7 @@
 		if (feedback)
 			owner.balloon_alert(owner, "already in use!")
 		return
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/divulge/cast(atom/cast_on)
 	set waitfor = FALSE

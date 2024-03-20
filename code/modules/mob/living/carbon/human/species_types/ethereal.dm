@@ -42,7 +42,9 @@
 	var/max_power = 2
 	var/current_color
 	var/EMPeffect = FALSE
+	var/EMP_timer = null
 	var/emageffect = FALSE
+	var/emag_timer = null
 	var/emag_speed = 4 //how many deciseconds between each colour cycle
 	var/r1
 	var/g1
@@ -83,6 +85,8 @@
 	UnregisterSignal(C, COMSIG_LIGHT_EATER_ACT)
 	QDEL_NULL(ethereal_light)
 	C.set_light(0)
+	deltimer(EMP_timer)
+	deltimer(emag_timer)
 	return ..()
 
 /datum/species/ethereal/random_name(gender,unique,lastname)
@@ -145,11 +149,9 @@
 		to_chat(H, span_notice("You feel the light of your body leave you."))
 	EMPeffect = TRUE
 	spec_updatehealth(H)
-	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 20 * severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 2 to 20 seconds depending on severity
+	EMP_timer = addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 20 * severity, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE) //We're out for 2 to 20 seconds depending on severity
 
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
-	if(!isethereal(H))//if they've stopped being an ethereal since then
-		return
 	EMPeffect = FALSE
 	spec_updatehealth(H)
 	to_chat(H, span_notice("You feel more energized as your shine comes back."))
@@ -164,7 +166,7 @@
 	current_color = rgb(255,0,0)
 	emageffect = TRUE
 	handle_emag(H)
-	addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
+	emag_timer = addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
 	return TRUE
 
 /datum/species/ethereal/proc/handle_emag(mob/living/carbon/human/H)//please change this to use animate() if you ever figure out how to animate light colours
@@ -178,8 +180,6 @@
 	addtimer(CALLBACK(src, PROC_REF(handle_emag), H), emag_speed) //Call ourselves every 0.4 seconds to continue the animation
 
 /datum/species/ethereal/proc/stop_emag(mob/living/carbon/human/H)
-	if(!isethereal(H))//if they've stopped being an ethereal since then
-		return
 	emageffect = FALSE
 	spec_updatehealth(H)
 	var/datum/component/overlay_lighting/light = ethereal_light.GetComponent(/datum/component/overlay_lighting)

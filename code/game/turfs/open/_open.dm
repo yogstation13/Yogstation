@@ -356,8 +356,6 @@
 /turf/open/floor/grass/fairy/proc/on_light_eater(obj/machinery/light/source, datum/light_eater)
 	SIGNAL_HANDLER
 	. = COMPONENT_BLOCK_LIGHT_EATER
-	if(istype(src, /turf/open/floor/grass/fairy/dark))
-		return
 	visible_message("Dark energies lash out and corrupt [src].")
 	TerraformTurf(/turf/open/floor/grass/fairy/dark)
 	return
@@ -408,6 +406,10 @@
 	light_power = -1
 	light_color = "#21007F"
 	color = "#21007F"
+
+/turf/open/floor/grass/fairy/dark/on_light_eater(obj/machinery/light/source, datum/light_eater)
+	SIGNAL_HANDLER
+	return
 
 /turf/open/floor/grass/fairy/Initialize(mapload)
 	. = ..()

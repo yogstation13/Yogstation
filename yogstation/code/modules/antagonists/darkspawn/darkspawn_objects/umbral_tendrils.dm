@@ -34,7 +34,7 @@
 /obj/item/umbral_tendrils/Destroy()
 	if(!QDELETED(twin))
 		qdel(twin)
-	. = ..()
+	return ..()
 
 /obj/item/umbral_tendrils/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()

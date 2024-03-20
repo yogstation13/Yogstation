@@ -191,6 +191,10 @@
 			name = "Private Security Officer"
 			desc = "A cardboard cutout of a private security officer."
 			icon_state = "cutout_ntsec"
+		if("Shadowling")
+			name = "Unknown"
+			desc = "A cardboard cutout of a shadowling."
+			icon_state = "cutout_shadowling"
 		else
 			return FALSE
 	return TRUE

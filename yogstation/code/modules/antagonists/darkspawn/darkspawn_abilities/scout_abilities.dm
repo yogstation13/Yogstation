@@ -12,31 +12,34 @@
 	button_icon_state = "light_eater"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	///The blade spawned by the ability
+	var/obj/item/light_eater/armblade
 
 /datum/action/cooldown/spell/toggle/light_eater/process()
 	active = owner.is_holding_item_of_type(/obj/item/light_eater)
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/can_cast_spell(feedback)
 	if(!owner.get_empty_held_indexes() && !active)
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/Enable()
 	to_chat(owner, span_velvet("Akna"))
 	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), span_velvet("You transform your arm into a blade."))
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
-	var/obj/item/light_eater/T = new(owner)
-	owner.put_in_hands(T)
+	if(!armblade)
+		armblade = new(owner)
+	owner.put_in_hands(armblade)
 
 /datum/action/cooldown/spell/toggle/light_eater/Disable()
 	to_chat(owner, span_velvet("Haoo"))
 	owner.visible_message(span_warning("[owner]'s blade transforms back!"), span_velvet("You dispel the blade."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
-	for(var/obj/item/light_eater/T in owner)
-		qdel(T)
+	if(armblade)
+		armblade.moveToNullspace()
 
 //////////////////////////////////////////////////////////////////////////
 //---------------------Scout Long range option--------------------------//
@@ -52,18 +55,19 @@
 	button_icon_state = "shadow_caster"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	///the bow spawned by the ability
 	var/obj/item/gun/ballistic/bow/energy/shadow_caster/bow
 
 /datum/action/cooldown/spell/toggle/shadow_caster/process()
 	active = owner.is_holding_item_of_type(/obj/item/gun/ballistic/bow/energy/shadow_caster)
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/shadow_caster/can_cast_spell(feedback)
 	if(!owner.get_empty_held_indexes() && !active)
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/shadow_caster/Enable()
 	to_chat(owner, span_velvet("Crxkna"))
@@ -77,7 +81,8 @@
 	to_chat(owner, span_velvet("Haoo"))
 	owner.visible_message(span_warning("[owner]'s bow transforms back!"), span_velvet("You dispel the bow."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
-	bow.moveToNullspace()
+	if(bow)
+		bow.moveToNullspace()
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------Temporary Darkness in aoe-----------------------//

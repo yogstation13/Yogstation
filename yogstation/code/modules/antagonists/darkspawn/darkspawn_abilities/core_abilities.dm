@@ -290,16 +290,21 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	psi_cost = 20
 	cast_range = 2
+	///Whether or not the user is in the process of "building"
 	var/casting = FALSE
+	///How long it takes to "build"
 	var/cast_time = 2 SECONDS
+	///The object type that is placed at the end
 	var/object_type
+	///Whether or not the object can be placed on a tile containing dense things
 	var/can_density = FALSE
+	///The final text output when the spell finishes (flavour)
 	var/language_final = "xom"
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/can_cast_spell(feedback)
 	if(casting)
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/before_cast(atom/cast_on)
 	. = ..()

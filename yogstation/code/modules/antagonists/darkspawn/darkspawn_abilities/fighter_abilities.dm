@@ -37,11 +37,11 @@
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/process()
 	active = owner.is_holding_item_of_type(/obj/item/umbral_tendrils)
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/Enable()
 	var/list/hands_free = owner.get_empty_held_indexes()

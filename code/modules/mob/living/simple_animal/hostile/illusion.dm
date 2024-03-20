@@ -75,7 +75,7 @@
 /mob/living/simple_animal/hostile/illusion/escape/AttackingTarget()
 	return FALSE
 
-/mob/living/simple_animal/hostile/illusion/darkspawn
+/mob/living/simple_animal/hostile/illusion/darkspawn //simulacrum version
 	maxHealth = 100
 	health = 100
 	pressure_resistance = INFINITY
@@ -95,7 +95,9 @@
 	lighting_cutoff_green = 0
 	lighting_cutoff_blue = 50
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	faction = list(ROLE_DARKSPAWN)
 	
+/mob/living/simple_animal/hostile/illusion/darkspawn/psyche //sentient version
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche/Copy_Parent(mob/living/original, life, hp, damage, replicate)
 	. = ..()

@@ -12,7 +12,8 @@
 	spell_requirements = NONE
 	var/datum/looping_sound/sacrament/soundloop
 	var/datum/antagonist/darkspawn/darkspawn
-	var/in_use
+	///if they're actively performing the sacrament
+	var/in_use = FALSE
 
 /datum/action/cooldown/spell/sacrament/Grant(mob/grant_to)
 	. = ..()
@@ -26,7 +27,7 @@
 		if (feedback)
 			owner.balloon_alert(owner, "already in use!")
 		return
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/sacrament/cast(atom/cast_on)
 	. = ..()
@@ -35,13 +36,14 @@
 		return
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(!team)
+		stack_trace("Non-Darkspawn or Darkspawn without team tried to perform the sacrament")
 		return
 	if(team.lucidity < team.required_succs)
 		to_chat(owner, span_warning("You do not have enough unique lucidity! ([team.lucidity] / [team.required_succs])"))
 		return
 	if(alert(owner, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")
 		return
-	if(SSticker.mode.sacrament_done)
+	if(GLOB.sacrament_done)
 		darkspawn.sacrament() //if someone else has already done the sacrament, skip to the good part
 		return
 
@@ -75,14 +77,6 @@
 
 	user.visible_message(span_danger("[user] suddenly jolts into the air, pulsing with screaming violet light."), span_progenitor("You begin the Sacrament."))
 
-	/*replace this with inverse lighting rather than grav distortion
-	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner))
-	shockwave.transform *= 0.1
-	shockwave.pixel_x = -240
-	shockwave.pixel_y = -240
-	animate(shockwave, transform = matrix().Scale(100), time = 30 SECONDS, easing = EASE_IN|SINE_EASING) //grow to cover the station over the course of the cast time
-	*/
-
 	for(var/stage in 1 to 2)
 		soundloop.stage = stage
 		switch(stage)
@@ -105,18 +99,10 @@
 			animate(user, transform = matrix(), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
 			in_use = FALSE
 			QDEL_NULL(soundloop)
-			/* Replace this with inverted lighting
-			animate(shockwave, alpha = 0, time = 1 SECONDS)
-			QDEL_IN(shockwave, 1.1 SECONDS)
-			*/
 			return
 
 
 	soundloop.stage = 3
-	/* Replace this with inverted lighting
-	animate(shockwave, transform = matrix().Scale(0), time = 3.9 SECONDS)
-	QDEL_IN(shockwave, 4 SECONDS)
-	*/
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"))	
 
@@ -124,8 +110,9 @@
 		if(prob(35))
 			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 40))
 
-	sleep(3 SECONDS) //ominous delay that's eerily quiet
+	addtimer(CALLBACK(src, PROC_REF(finalize), user), 3 SECONDS)//ominous delay that's eerily quiet
 
+/datum/action/cooldown/spell/sacrament/proc/finalize(mob/living/carbon/human/user)
 	to_chat(user, span_progenitor("AND THE WEAK WILL KNOW <i>FEAR--</i>"))
 	sound_to_playing_players('yogstation/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
 	QDEL_IN(soundloop, 1 SECONDS)

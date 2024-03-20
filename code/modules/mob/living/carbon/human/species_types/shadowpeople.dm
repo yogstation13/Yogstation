@@ -8,6 +8,7 @@
 	plural_form = "???"
 	id = "shadow"
 	sexes = FALSE
+	bubble_icon = BUBBLE_DARKSPAWN
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
 	species_traits = list(NOBLOOD,NOEYESPRITES,NOFLASH, AGENDER)
@@ -16,12 +17,14 @@
 
 	mutanteyes = /obj/item/organ/eyes/shadow
 	species_language_holder = /datum/language_holder/darkspawn
+	///If the darkness healing heals all damage types, not just brute and burn
 	var/powerful_heal = FALSE
+	///How much damage is healed each life tick
 	var/dark_healing = 1
+	///How much burn damage is taken each life tick, reduced to 20% for dim light
 	var/light_burning = 1
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
-	H.bubble_icon = "darkspawn"
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
@@ -29,8 +32,8 @@
 			if(0 to SHADOW_SPECIES_DIM_LIGHT) //rapid healing and stun reduction in the darkness
 				H.adjustBruteLoss(-dark_healing)
 				H.adjustFireLoss(-dark_healing)
-				H.adjustCloneLoss(-dark_healing)
 				if(powerful_heal) //only darkspawn gets this
+					H.adjustCloneLoss(-dark_healing)
 					H.adjustToxLoss(-dark_healing)
 					H.adjustStaminaLoss(-dark_healing * 20)
 					H.AdjustAllImmobility(-dark_healing * 40)
@@ -148,11 +151,12 @@
 	mutanteyes = /obj/item/organ/eyes/darkspawn
 	mutantears = /obj/item/organ/ears/darkspawn
 
-	var/shadow_charges = 3
 	powerful_heal = TRUE
-	shadow_charges = 3
 	dark_healing = 5
 	light_burning = 7
+
+	///How many charges their projectile protection has
+	var/shadow_charges = 3
 
 /datum/species/shadow/darkspawn/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(prob(50) && shadow_charges > 0)
@@ -161,7 +165,7 @@
 		shadow_charges = min(shadow_charges - 1, 0)
 		addtimer(CALLBACK(src, PROC_REF(regen_shadow)), DARKSPAWN_REFLECT_COOLDOWN)//so they regen on different timers
 		return BULLET_ACT_BLOCK
-	return 0
+	return ..()
 
 /datum/species/shadow/darkspawn/proc/regen_shadow()
 	shadow_charges = min(shadow_charges++, initial(shadow_charges))
@@ -188,10 +192,6 @@
 		owner.add_movespeed_modifier(type, update=TRUE, priority=100, override = TRUE, multiplicative_slowdown=-0.2)
 	else
 		owner.remove_movespeed_modifier(type)
-
-/datum/species/shadow/spec_life(mob/living/carbon/human/H)
-	H.bubble_icon = "darkspawn"
-	. = ..()
 
 /datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
 	if(H.mind?.has_antag_datum(ROLE_DARKSPAWN))

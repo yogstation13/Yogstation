@@ -1,5 +1,4 @@
-/datum/game_mode
-	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
+GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 /datum/game_mode/darkspawn
 	name = "darkspawn"
@@ -74,7 +73,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/darkspawn/set_round_result()
 	..()
-	if(sacrament_done)
+	if(GLOB.sacrament_done)
 		SSticker.mode_result = "win - the darkspawn have completed the sacrament"
 	else
 		SSticker.mode_result = "loss - staff stopped the darkspawn"

@@ -121,7 +121,7 @@
 		return FALSE
 	if(owner.movement_type & VENTCRAWLING) //don't let them smoosh themselves
 		return FALSE
-	. = ..()
+	return ..()
 	
 //////////////////////////////////////////////////////////////////////////
 //------------------------Summon a distraction--------------------------//
@@ -139,8 +139,8 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 40
+	///How long the clones last
 	var/duration = 10 SECONDS
-	//no cooldown, make an army if you really want
 
 /datum/action/cooldown/spell/simulacrum/cast(atom/cast_on)
 	. = ..()
@@ -152,7 +152,6 @@
 	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 
 	var/mob/living/simple_animal/hostile/illusion/darkspawn/M = new(get_turf(L))
-	M.faction = list(ROLE_DARKSPAWN)
 	M.Copy_Parent(L, duration, 100, 10) //closely follows regular player stats so it's not painfully obvious (still sorta is)
 	M.move_to_delay = L.movement_delay()
 	
@@ -184,7 +183,7 @@
 		return FALSE
 	if(searching)
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/fray_self/cast(atom/cast_on)
 	. = ..()
@@ -215,7 +214,6 @@
 	if(!dude)
 		dude = new(get_turf(L))
 	dude.Copy_Parent(L, 100, health, damage)
-	dude.faction = list(ROLE_DARKSPAWN)
 	dude.ckey = chosen_ghost.ckey
 	dude.name = L.name
 	dude.real_name = L.real_name
