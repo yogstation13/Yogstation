@@ -189,7 +189,7 @@
 	while(pixel_y < -16)
 		pixel_y += 32
 		new_y--
-	new_x = clamp(new_x, 1, world.maxx) //edit, x and y don't go down to 0 ever
+	new_x = clamp(new_x, 1, world.maxx)
 	new_y = clamp(new_y, 1, world.maxy)
 	return locate(new_x, new_y, starting.z)
 
