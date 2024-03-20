@@ -169,7 +169,7 @@
 
 /turf/closed/wall/attack_hulk(mob/user, does_attack_animation = 0)
 	..(user, 1)
-	user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
+	user.say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ), forced = "hulk")
 	take_damage(400, BRUTE, MELEE, FALSE)
 	playsound(src, 'sound/effects/bang.ogg', 50, 1)
 	to_chat(user, span_notice("You punch the wall."))
