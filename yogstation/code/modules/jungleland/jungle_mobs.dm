@@ -351,7 +351,7 @@
 	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
 	speak = list("bzzzzz")
 	speak_emote = list("buzzes")
-	emote_hear = list("buzzes")u
+	emote_hear = list("buzzes")
 	emote_taunt = list("buzzes")
 	speak_chance = 0
 	taunt_chance = 0
