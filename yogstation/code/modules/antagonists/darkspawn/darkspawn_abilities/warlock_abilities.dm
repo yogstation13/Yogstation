@@ -355,7 +355,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	cooldown_time = 1 MINUTES
+	cooldown_time = 90 SECONDS
 	psi_cost = 100 //big fuckin layzer
 	sound = null
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
@@ -475,8 +475,10 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	psi_cost = 35
 	cooldown_time = 30 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
+	///whether or not it can paralyze at close range
 	var/strong = TRUE
 
 /datum/action/cooldown/spell/pointed/seize/before_cast(atom/cast_on)

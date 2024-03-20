@@ -208,10 +208,10 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/psi_web/icyveins
 	name = "Icy Veins"
-	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
+	desc = "Instantly freezes the blood of nearby people, slowing them and rapidly chilling their body."
 	lore_description = ""
 	icon_state = "icy_veins"
-	willpower_cost = 2
+	willpower_cost = 3
 	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/icyveins)

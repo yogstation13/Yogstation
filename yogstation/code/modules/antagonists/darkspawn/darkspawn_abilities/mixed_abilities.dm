@@ -43,7 +43,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/icyveins //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
-	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
+	desc = "Instantly freezes the blood of nearby people, slowing them and rapidly chilling their body."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "icy_veins"
 	background_icon_state = "bg_alien"
@@ -55,6 +55,7 @@
 	antimagic_flags = NONE
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	psi_cost = 40
 	cooldown_time = 1 MINUTES
 
 /datum/action/cooldown/spell/aoe/icyveins/cast(atom/cast_on)
@@ -170,7 +171,8 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 80
+	psi_cost = 100
+	cooldown_time = 3 MINUTES
 	var/mob/living/simple_animal/hostile/illusion/darkspawn/psyche/dude
 	var/health = 100
 	var/damage = 10
@@ -217,3 +219,6 @@
 	dude.ckey = chosen_ghost.ckey
 	dude.name = L.name
 	dude.real_name = L.real_name
+	if(isdarkspawn(L))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(L)
+		darkspawn.block_psi(30 SECONDS, type)

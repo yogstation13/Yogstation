@@ -48,6 +48,8 @@ type Info = {
   lucidity_drained: number;
   divulged: BooleanLike;
   ascended: BooleanLike;
+  max_veils: number;
+  current_veils: number;
   has_class: BooleanLike;
   objectives: Objective[];
   categories: Category[];
@@ -183,7 +185,7 @@ const GuideSection = () => {
 
 const InformationSection = (props, context) => {
   const { data } = useBackend<Info>(context);
-  const { willpower, lucidity_drained, ascended } = data;
+  const { willpower, lucidity_drained, ascended, current_veils, max_veils } = data;
   return (
     <Stack.Item>
       <Stack vertical fill>
@@ -212,6 +214,10 @@ const InformationSection = (props, context) => {
           <b>{lucidity_drained || 0}</b>&nbsp;
           <span style={Velvet}>lucidity</span>.
         </Stack.Item>
+        {!!max_veils && (
+        <Stack.Item>
+          You currently have {current_veils || 0}/{max_veils || 0} veils.
+        </Stack.Item>)}
       </Stack>
     </Stack.Item>
   );

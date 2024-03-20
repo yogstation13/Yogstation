@@ -126,6 +126,8 @@
 	.["Set Willpower"] = CALLBACK(src, PROC_REF(set_shop))
 	.["Set Psi Values"] = CALLBACK(src, PROC_REF(set_psi))
 	.["Set Max Veils"] = CALLBACK(src, PROC_REF(set_max_veils))
+	if(picked_class)
+		.["Refund Ability"] = CALLBACK(src, PROC_REF(refund_ability))
 	.["Set Class"] = CALLBACK(src, PROC_REF(set_class))
 
 /datum/antagonist/darkspawn/proc/set_lucidity(mob/admin)
@@ -138,11 +140,6 @@
 	if(will)
 		willpower = will
 
-/datum/antagonist/darkspawn/proc/set_max_veils(mob/admin)
-	var/thrall = input(admin, "How many veils should the darkspawn team be able to get?") as null|num
-	if(thrall && team)
-		team.max_veils = thrall
-
 /datum/antagonist/darkspawn/proc/set_psi(mob/admin)
 	var/max = input(admin, "What should the psi cap be?") as null|num
 	if(max)
@@ -153,6 +150,33 @@
 	var/delay = input(admin, "What should the delay to psi regeneration be?") as null|num
 	if(delay)
 		psi_regen_delay = delay
+
+/datum/antagonist/darkspawn/proc/set_max_veils(mob/admin)
+	var/thrall = input(admin, "How many veils should the darkspawn team be able to get?") as null|num
+	if(thrall && team)
+		team.max_veils = thrall
+
+/datum/antagonist/darkspawn/proc/refund_ability(mob/admin)
+	if(!picked_class)
+		return
+
+	var/list/abilities = list()
+	for(var/datum/psi_web/ability as anything in picked_class.learned_abilities)
+		if(initial(ability.willpower_cost)) //if there's even a cost to refund
+			abilities |= ability
+		
+	if(!LAZYLEN(abilities))
+		to_chat(admin, span_warning("There are no abilities to refund"))
+		return
+
+	var/datum/psi_web/picked_ability = tgui_input_list(admin, "Select which ability to refund.", "Select Ability", abilities)
+	if(!picked_ability || !istype(picked_ability, /datum/psi_web))
+		return
+	
+	if(QDELETED(src) || QDELETED(owner.current) || QDELETED(picked_class))
+		return
+
+	picked_class.lose_power(picked_ability, TRUE)
 
 /datum/antagonist/darkspawn/proc/set_class(mob/admin)
 	var/list/classes = list()
@@ -196,7 +220,8 @@
 	data["willpower"] = willpower
 	if(team)
 		data["lucidity_drained"] = team.lucidity
-		data["required_succs"] = team.required_succs
+		data["max_veils"] = team.max_veils
+		data["current_veils"] = LAZYLEN(team.veils)
 	data["divulged"] = (darkspawn_state > DARKSPAWN_MUNDANE)
 	data["ascended"] = (darkspawn_state == DARKSPAWN_PROGENITOR)
 	data["has_class"] = picked_class

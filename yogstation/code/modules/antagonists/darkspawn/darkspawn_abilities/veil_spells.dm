@@ -70,6 +70,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		master.willpower -= willpower_cost
 		to_chat(owner, span_velvet("...xthl'kap"))
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
+		to_chat(owner, span_velvet("Veils will serve your every command and passively generate willpower for being nearby non veils."))
 	else
 		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
 	return TRUE
@@ -166,7 +167,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	var/closest_dude_dist = body_range
 	if(get_dist(owner, cast_on) > body_range)
 		for(var/mob/living/dude in range(body_range, cast_on))
-			if(is_darkspawn_or_veil(dude))
+			if(is_darkspawn_or_veil(dude) || (ROLE_DARKSPAWN in dude.faction))
 				if(!isturf(dude.loc))
 					continue
 				if(get_dist(cast_on, dude) < closest_dude_dist)//always only get the closest dude
@@ -338,8 +339,8 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/pointed/seize/lesser //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
 	name = "Lesser Seize"
 	desc = "Makes a single target dizzy for a bit."
-	button_icon = 'yogstation/icons/mob/actions.dmi'
-	button_icon_state = "glare"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "seize"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 
 	cooldown_time = 45 SECONDS
@@ -350,11 +351,11 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	name = "Nightvision"
 	desc = "Grants sight in the dark."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "pass"
+	button_icon_state = "glare"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
