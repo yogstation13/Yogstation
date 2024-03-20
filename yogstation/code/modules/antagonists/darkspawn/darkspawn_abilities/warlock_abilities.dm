@@ -296,6 +296,7 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call
 	name = "Abyssal Call"
 	desc = "Summon abyssal tendrils from beyond the veil to grasp an enemy."
+	button_icon_state = "abyssal_call"
 	cast_range = 10
 	cast_time = 0
 	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original

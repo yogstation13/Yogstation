@@ -39,7 +39,7 @@
 	name = "Duality Sigils"
 	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, empowering both."
 	lore_description = "The Kqx'xpk sigils, representing duality, are etched onto the arms."
-	icon_state = ""
+	icon_state = "duality"
 	willpower_cost = 3
 	shadow_flags = FIGHTER
 	menu_tab = STORE_OFFENSE
@@ -131,7 +131,7 @@
 	name = "Confusion Sign"
 	desc = "Empower your staff with the ability to confuse any enemy shot."
 	lore_description = "The Vxb'rt sigil, representing disruption, is etched onto the staff."
-	icon_state = ""
+	icon_state = "confusion_sign"
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE
@@ -149,7 +149,7 @@
 	name = "Light Eater Sign"
 	desc = "Empower your staff with the ability to consume the light of anything shot."
 	lore_description = "The Aaah'ryt sigil, representing consumption, is etched onto the staff."
-	icon_state = ""
+	icon_state = "lighteater_sign"
 	flag_to_add = STAFF_UPGRADE_LIGHTEATER
 
 //no more staff upgrades
@@ -187,7 +187,7 @@
 	name = "Abyssal Call"
 	desc = "Call a tendril at a targeted location to grasp an enemy."
 	lore_description = "Summon abyssal tendrils from beyond the veil."
-	icon_state = ""
+	icon_state = "abyssal_call"
 	willpower_cost = 2
 	shadow_flags = WARLOCK
 	menu_tab = STORE_OFFENSE

@@ -35,7 +35,7 @@
 	name = "Indomitable"
 	desc = "Grants immunity to all CC effects, but locks the user into walking."
 	lore_description = "Stitch yourself to the ground using shadows themselves."
-	icon_state = ""
+	icon_state = "indomitable"
 	willpower_cost = 2
 	shadow_flags = FIGHTER
 	menu_tab = STORE_UTILITY
@@ -101,7 +101,7 @@
 	name = "Recovery Sign"
 	desc = "Empower your staff with the ability to heal allies shot."
 	lore_description = "The Kalak sigil, representing eternity, is etched onto the staff."
-	icon_state = ""
+	icon_state = "recovery_sign"
 	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_HEAL
 	
@@ -109,7 +109,7 @@
 	name = "Stifle Sign"
 	desc = "Empower your staff with the ability to extinguish the fire on allies shot."
 	lore_description = "The Khophg sigil, representing suffocation, is etched onto the staff."
-	icon_state = ""
+	icon_state = "extinguish_sign"
 	willpower_cost = 1
 	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_EXTINGUISH
@@ -207,12 +207,12 @@
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/silver_tongue)
 
-/datum/psi_web/quantum_disruption //basically just a worse jaunt
+/datum/psi_web/fray_self
 	name = "Fray self"
 	desc = "Attemps to split a piece of your psyche into a sentient copy of yourself that lasts until destroyed."
 	lore_description = ""
-	icon_state = ""
+	icon_state = "fray_self"
 	willpower_cost = 3
 	shadow_flags = WARLOCK | SCOUT
 	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/simulacrum)
+	learned_abilities = list(/datum/action/cooldown/spell/fray_self)
