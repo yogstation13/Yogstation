@@ -87,15 +87,16 @@
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/extinguish)
 	
-/datum/psi_web/panopticon
-	name = "Panopticon"
-	desc = "Watch what your allies and servants are doing at all times."
-	lore_description = "The psionic link with your allies is a boon, utilize it."
-	icon_state = "panopticon"
-	willpower_cost = 1
-	shadow_flags = DARKSPAWN_WARLOCK
-	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam)
+//commented out while chubby fixes bodycams not actually updating
+// /datum/psi_web/panopticon
+// 	name = "Panopticon"
+// 	desc = "Watch what your allies and servants are doing at all times."
+// 	lore_description = "The psionic link with your allies is a boon, utilize it."
+// 	icon_state = "panopticon"
+// 	willpower_cost = 1
+// 	shadow_flags = DARKSPAWN_WARLOCK
+// 	menu_tab = STORE_UTILITY
+// 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam)
 
 /datum/psi_web/staff_upgrade/heal
 	name = "Recovery Sign"
