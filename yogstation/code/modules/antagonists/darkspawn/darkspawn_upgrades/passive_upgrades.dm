@@ -49,7 +49,7 @@
 	icon_state = "light_blind"
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER | SCOUT
+	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 	var/obj/item/organ/eyes/eyes
 
 /datum/psi_web/sunglasses/on_gain()
@@ -69,7 +69,7 @@
 	icon_state = "psi_reserve"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER | SCOUT
+	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 	infinite = TRUE
 
 /datum/psi_web/psi_cap/on_gain()
@@ -86,7 +86,7 @@
 	icon_state = "mending"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER | SCOUT
+	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 	infinite = TRUE
 
 /datum/psi_web/dark_healing/on_gain()
@@ -103,7 +103,7 @@
 	icon_state = "light_ward"
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER | SCOUT
+	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 
 /datum/psi_web/low_light_resistance/on_gain()
 	ADD_TRAIT(shadowhuman, TRAIT_DARKSPAWN_LIGHTRES, src)
@@ -122,7 +122,7 @@
 	icon_state = "shadow_skin"
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 
 /datum/psi_web/light_resistance/on_gain()
 	darkspawn.light_burning /= 2
@@ -137,7 +137,7 @@
 	icon_state = "callous"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	infinite = TRUE
 
 /datum/psi_web/brute_res/on_gain()
@@ -153,7 +153,7 @@
 	icon_state = "stifle"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	infinite = TRUE
 
 /datum/psi_web/brute_res/on_gain()
@@ -169,7 +169,7 @@
 	icon_state = "stability"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 
 /datum/psi_web/noslip/on_gain()
 	ADD_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
@@ -187,7 +187,7 @@
 	icon_state = "shadow_walk"
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 
 /datum/psi_web/shadow_walk/on_gain()
 	shadowhuman.AddComponent(/datum/component/shadow_step)
@@ -202,7 +202,7 @@
 	icon_state = "vigor"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 
 /datum/psi_web/stamina_res/on_gain()
 	shadowhuman.physiology.stamina_mod /= 2
@@ -221,7 +221,7 @@
 	icon_state = "psi_relief"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 
 /datum/psi_web/psi_regen_delay/on_gain()
 	darkspawn.psi_regen_delay -= 5 SECONDS
@@ -237,7 +237,7 @@
 	icon_state = "psi_recovery"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 
 /datum/psi_web/psi_regen_speed/on_gain()
 	darkspawn.psi_per_second *= 2
@@ -253,7 +253,7 @@
 	icon_state = "storm"
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 
 /datum/psi_web/fast_cooldown/on_gain()
 	ADD_TRAIT(shadowhuman, TRAIT_FAST_COOLDOWNS, type)
@@ -269,7 +269,7 @@
 	icon_state = "control"
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 
 /datum/psi_web/more_thralls/on_gain()
 	var/datum/team/darkspawn/team = darkspawn.get_team()
@@ -289,7 +289,7 @@
 	icon_state = "unity"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 
 /datum/psi_web/buff_allies/on_gain()
 	ADD_TRAIT(shadowhuman, TRAIT_DARKSPAWN_BUFFALLIES, type)

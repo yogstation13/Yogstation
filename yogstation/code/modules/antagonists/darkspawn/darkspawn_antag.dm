@@ -9,7 +9,7 @@
 
 	var/datum/team/darkspawn/team
 	var/disguise_name //name of the player character
-	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
+	var/darkspawn_state = DARKSPAWN_MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
 	var/datum/component/darkspawn_class/picked_class
 
 	//Psi variables
@@ -73,7 +73,7 @@
 			cam.change_cameranet(GLOB.thrallnet)
 
 	//divulge
-	if(darkspawn_state == MUNDANE)
+	if(darkspawn_state == DARKSPAWN_MUNDANE)
 		var/datum/action/cooldown/spell/divulge/action = new(owner)
 		action.Grant(current_mob)
 		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 20 MINUTES) //this won't trigger if they've divulged when the proc runs
@@ -120,7 +120,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/get_admin_commands()
 	. = ..()
-	if(darkspawn_state == MUNDANE)
+	if(darkspawn_state == DARKSPAWN_MUNDANE)
 		.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
 	.["Set Lucidity"] = CALLBACK(src, PROC_REF(set_lucidity))
 	.["Set Willpower"] = CALLBACK(src, PROC_REF(set_shop))
@@ -170,7 +170,7 @@
 		return
 
 	picked_class = owner.AddComponent(chosen)
-	if(darkspawn_state >= DIVULGED)
+	if(darkspawn_state >= DARKSPAWN_DIVULGED)
 		owner.assigned_role = picked_class.name //they stop being whatever job they were the moment they divulge
 
 /datum/antagonist/darkspawn/antag_panel_data()
@@ -197,8 +197,8 @@
 	if(team)
 		data["lucidity_drained"] = team.lucidity
 		data["required_succs"] = team.required_succs
-	data["divulged"] = (darkspawn_state > MUNDANE)
-	data["ascended"] = (darkspawn_state == PROGENITOR)
+	data["divulged"] = (darkspawn_state > DARKSPAWN_MUNDANE)
+	data["ascended"] = (darkspawn_state == DARKSPAWN_PROGENITOR)
 	data["has_class"] = picked_class
 
 	var/list/categories = list(STORE_OFFENSE, STORE_UTILITY, STORE_PASSIVE)
@@ -340,7 +340,7 @@
 //-----------------------------------Divulge--------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/divulge(forced = FALSE)
-	if(darkspawn_state >= DIVULGED)
+	if(darkspawn_state >= DARKSPAWN_DIVULGED)
 		return FALSE
 		
 	var/mob/living/carbon/human/user = owner.current
@@ -386,7 +386,7 @@
 		var/mob/M = T
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
 
-	darkspawn_state = DIVULGED
+	darkspawn_state = DARKSPAWN_DIVULGED
 	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 25 MINUTES)
 	to_chat(user, span_velvet("<b>Your mind has expanded. Avoid the light. Keep to the shadows. Your time will come.</b>"))
 	to_chat(user, span_velvet("<b>Access to the Psi Web has been unlocked, spend your [willpower] willpower to purchase abilities and upgrades.</b>"))
@@ -403,14 +403,14 @@
 //------------------------------Forced Divulge------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/begin_force_divulge()
-	if(darkspawn_state != MUNDANE)
+	if(darkspawn_state != DARKSPAWN_MUNDANE)
 		return
 	to_chat(owner.current, span_userdanger("You feel the skin you're wearing crackling like paper - you will forcefully divulge soon! Get somewhere hidden and dark!"))
 	owner.current.playsound_local(owner.current, 'yogstation/sound/magic/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
 	addtimer(CALLBACK(src, PROC_REF(force_divulge), 2 MINUTES))
 
 /datum/antagonist/darkspawn/proc/force_divulge()
-	if(darkspawn_state != MUNDANE)
+	if(darkspawn_state != DARKSPAWN_MUNDANE)
 		return
 	var/mob/living/carbon/C = owner.current
 	if(C && !ishuman(C))
@@ -471,7 +471,7 @@
 	psi_regen_delay = 0
 	update_psi_hud()
 
-	darkspawn_state = PROGENITOR
+	darkspawn_state = DARKSPAWN_PROGENITOR
 	QDEL_IN(user, 1)
 
 ///get rid of all lights by calling the light eater proc

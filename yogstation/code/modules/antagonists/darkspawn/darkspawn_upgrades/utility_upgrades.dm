@@ -7,7 +7,7 @@
 	lore_description = "Calls upon the endless depths to douse all with the beyond."
 	icon_state = ""
 	willpower_cost = 2
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/deluge)
 
@@ -17,7 +17,7 @@
 	lore_description = "Mold the darkness into an ephemeral cloak using psionic power."
 	icon_state = "encroach"
 	willpower_cost = 2
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/creep)
 	
@@ -27,7 +27,7 @@
 	lore_description = "Directly control your physical form using psionic power rather than relying on brutish biology."
 	icon_state = "time_dilation"
 	willpower_cost = 3
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/time_dilation)
 	
@@ -37,7 +37,7 @@
 	lore_description = "Stitch yourself to the ground using shadows themselves."
 	icon_state = "indomitable"
 	willpower_cost = 2
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/indomitable)
 
@@ -50,7 +50,7 @@
 	lore_description = "Take a single step through the veil."
 	icon_state = "shadow_jump"
 	willpower_cost = 1
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/phase_jump/void_jump)
 
@@ -60,7 +60,7 @@
 	lore_description = "The veil can be treacherous for those unprepared, however it can give reprieve."
 	icon_state = "void_jaunt"
 	willpower_cost = 3
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt)
 	
@@ -70,7 +70,7 @@
 	lore_description = "Release a pocket of darkness nestled within your body."
 	icon_state = "blinding_miasma"
 	willpower_cost = 2
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/darkness_smoke)
 
@@ -83,7 +83,7 @@
 	lore_description = "Remind all that glows, that it is but a small part of reality."
 	icon_state = "extinguish"
 	willpower_cost = 1
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/extinguish)
 	
@@ -93,7 +93,7 @@
 	lore_description = "The psionic link with your allies is a boon, utilize it."
 	icon_state = "panopticon"
 	willpower_cost = 1
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam)
 
@@ -120,7 +120,7 @@
 	lore_description = "While veils are expendable, they do have their use."
 	icon_state = "heal_veils"
 	willpower_cost = 1
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/veilbuff/heal)
 	
@@ -130,7 +130,7 @@
 	lore_description = "Veils are expendable, push them until they break."
 	icon_state = "speedboost_veils"
 	willpower_cost = 1
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/veilbuff/speed)
 	
@@ -140,7 +140,7 @@
 	lore_description = ""
 	icon_state = "elucidate"
 	willpower_cost = 3
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/elucidate)
 	
@@ -150,7 +150,7 @@
 	lore_description = ""
 	icon_state = "null_charge"
 	willpower_cost = 3
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/null_charge)
 
@@ -160,7 +160,7 @@
 	lore_description = ""
 	icon_state = "quantum_disruption"
 	willpower_cost = 3
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/erase_time/darkspawn)
 
@@ -173,7 +173,7 @@
 	lore_description = ""
 	icon_state = "umbral_trespass"
 	willpower_cost = 2
-	shadow_flags = SCOUT | WARLOCK
+	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/umbral_trespass)
 
@@ -213,6 +213,6 @@
 	lore_description = ""
 	icon_state = "fray_self"
 	willpower_cost = 3
-	shadow_flags = WARLOCK | SCOUT
+	shadow_flags = DARKSPAWN_WARLOCK | DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/fray_self)

@@ -9,7 +9,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "divulge"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = NONE
 	var/in_use = FALSE
 
 /datum/action/cooldown/spell/divulge/IsAvailable(feedback)

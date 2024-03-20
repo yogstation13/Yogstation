@@ -11,7 +11,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "shadow_staff"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	var/obj/item/gun/magic/darkspawn/staff
 	/// Flags used for different effects that apply when a projectile hits something
 	var/effect_flags
@@ -78,7 +78,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
 	aoe_radius = 7
@@ -141,7 +141,7 @@
 	antimagic_flags = NONE
 	panel = "Darkspawn"
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	cooldown_time = 10 MINUTES
 	psi_cost = 200
@@ -202,7 +202,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = 5
 	var/mob/living/channeled
@@ -318,7 +318,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 7
@@ -354,7 +354,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 1 MINUTES
 	psi_cost = 100 //big fuckin layzer
 	sound = null
@@ -474,7 +474,7 @@
 	buttontooltipstyle = "alien"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 30 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
 	var/strong = TRUE
@@ -534,7 +534,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 70
 	cooldown_time = 120 SECONDS
 	length = 5 SECONDS

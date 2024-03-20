@@ -95,7 +95,7 @@
 /datum/psi_web/fighter
 	name = "fighter innate abilities"
 	desc = "me no think so good"
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_tendril)
 
 /datum/psi_web/fighter/on_gain()
@@ -108,7 +108,7 @@
 /datum/psi_web/scout
 	name = "scout innate abilities"
 	desc = "GO FAST, TOUCH GRASS"
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/light_eater)
 
 /datum/psi_web/scout/on_gain()
@@ -121,7 +121,7 @@
 /datum/psi_web/warlock
 	name = "warlock innate abilities"
 	desc = "apartment \"complex\"... really? I find it quite simple"
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	learned_abilities = list(/datum/action/cooldown/spell/touch/veil_mind, /datum/action/cooldown/spell/unveil_mind, /datum/action/cooldown/spell/toggle/dark_staff)
 
 /datum/psi_web/warlock/on_gain()

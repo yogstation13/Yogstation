@@ -11,7 +11,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	var/twin = FALSE
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/link_to(Target)
@@ -82,7 +82,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 10
 	cooldown_time = 20 SECONDS
 
@@ -121,7 +121,7 @@
 	button_icon_state = "shadow_crash"
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 5 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	psi_cost = 20
@@ -189,7 +189,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	panel = "Darkspawn"
 	antimagic_flags = NONE
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	sound = 'yogstation/sound/creatures/darkspawn_howl.ogg'
 	psi_cost = 75
 
@@ -220,7 +220,7 @@
 	button_icon_state = "demented_outburst"
 	antimagic_flags = NONE
 	panel = "Darkspawn"
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 50 //big boom = big cost
 	aoe_radius = 5
@@ -304,7 +304,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 1 //happens 5 times a second
 
@@ -344,7 +344,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = NONE
 	cooldown_time = 2 SECONDS
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 1 //happens 5 times a second
@@ -404,7 +404,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 10
 	cooldown_time = 20 SECONDS
 

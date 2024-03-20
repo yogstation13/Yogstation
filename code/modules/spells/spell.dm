@@ -174,12 +174,6 @@
 			to_chat(owner, span_warning("You must dedicate yourself to silence first!"))
 		return FALSE
 
-	if((spell_requirements & SPELL_REQUIRES_DARKSPAWN) && !isdarkspawn(owner))
-		// In the future this can be moved out of spell checks exactly
-		if(feedback)
-			to_chat(owner, span_warning("Your mind is too feeble to perform this!"))
-		return FALSE
-
 	//used for darkspawn spells
 	if(psi_cost)
 		if(isdarkspawn(owner))

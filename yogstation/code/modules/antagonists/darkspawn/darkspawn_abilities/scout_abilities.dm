@@ -11,7 +11,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "light_eater"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/toggle/light_eater/process()
 	active = owner.is_holding_item_of_type(/obj/item/light_eater)
@@ -51,7 +51,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "shadow_caster"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	var/obj/item/gun/ballistic/bow/energy/shadow_caster/bow
 
 /datum/action/cooldown/spell/toggle/shadow_caster/process()
@@ -96,7 +96,7 @@
 	cooldown_time = 1 MINUTES
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 15
 	var/range = 4
 
@@ -166,7 +166,7 @@
 	antimagic_flags = NONE
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 30
 
 	sound = 'sound/effects/bamf.ogg'
@@ -201,7 +201,7 @@
 	active_msg = span_velvet("You prepare to take a step through the void.")
 	deactive_msg = span_notice("You relax your mind.")
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	beam_icon = "curse0"
 
 /datum/action/cooldown/spell/pointed/phase_jump/void_jump/InterceptClickOn(mob/living/user, params, atom/target)
@@ -223,7 +223,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 3
@@ -255,7 +255,7 @@
 	buttontooltipstyle = "alien"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 30 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
 	var/obj/item/chameleon/handler

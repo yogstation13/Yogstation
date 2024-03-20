@@ -14,7 +14,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	panel = "Darkspawn"
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	psi_cost = 100
 	hand_path = /obj/item/melee/touch_attack/darkspawn
@@ -88,7 +88,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	antimagic_flags = NONE
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = NONE
 
 /datum/action/cooldown/spell/unveil_mind/can_cast_spell(feedback)
 	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
@@ -151,7 +151,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
 	invocation = null
@@ -230,7 +230,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	cooldown_time = 1 MINUTES
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
 	var/language_output = "DEBUGIFY"
@@ -296,7 +296,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	cast_range = INFINITY //lol
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 5 MINUTES //it's REALLY strong
 	psi_cost = 100 //it's REALLY strong
 

@@ -7,7 +7,7 @@
 	lore_description = ""
 	icon_state = "shadow_crash"
 	willpower_cost = 1
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/shadow_crash)
 
@@ -17,7 +17,7 @@
 	lore_description = ""
 	icon_state = "demented_outburst"
 	willpower_cost = 2
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/demented_outburst)
 
@@ -27,7 +27,7 @@
 	lore_description = ""
 	icon_state = "incite"
 	willpower_cost = 2
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/taunt)
 
@@ -41,7 +41,7 @@
 	lore_description = "The Kqx'xpk sigils, representing duality, are etched onto the arms."
 	icon_state = "duality"
 	willpower_cost = 3
-	shadow_flags = FIGHTER
+	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
 
 /datum/psi_web/twin_tendrils/on_gain()
@@ -59,7 +59,7 @@
 	lore_description = "Opens a pinhole to the veil, rapidly draining heat from the surrounding area."
 	icon_state = "permafrost"
 	willpower_cost = 2
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/permafrost)
 	
@@ -69,7 +69,7 @@
 	lore_description = ""
 	icon_state = "shadow_caster"
 	willpower_cost = 4 //easily one of the strongest and most reliable abilities
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_caster)
 
@@ -79,7 +79,7 @@
 	lore_description = "The Shash sigil, representing danger, is carved on the ground."
 	icon_state = "psi_trap_damage"
 	willpower_cost = 2
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/damage)
 	
@@ -89,7 +89,7 @@
 	lore_description = "The Hh'rt sigil, representing restraint, is carved on the ground."
 	icon_state = "psi_trap_bear"
 	willpower_cost = 2
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff)
 	
@@ -99,7 +99,7 @@
 	lore_description = "The Vxb'rt sigil, representing disruption, is carved on the ground."
 	icon_state = "psi_trap_nausea"
 	willpower_cost = 2
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/nausea)
 	
@@ -109,7 +109,7 @@
 	lore_description = "The Vxb'xki sigil, representing displacement, is carved on the ground."
 	icon_state = "psi_trap_teleport"
 	willpower_cost = 2
-	shadow_flags = SCOUT
+	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/teleport)	
 
@@ -122,7 +122,7 @@
 	lore_description = ""
 	icon_state = "seize"
 	willpower_cost = 2
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/seize)
 	
@@ -133,7 +133,7 @@
 	lore_description = "The Vxb'rt sigil, representing disruption, is etched onto the staff."
 	icon_state = "confusion_sign"
 	willpower_cost = 2
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	var/flag_to_add = STAFF_UPGRADE_CONFUSION
 
@@ -159,7 +159,7 @@
 	lore_description = ""
 	icon_state = "mass_hallucination"
 	willpower_cost = 2
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/mass_hallucination)
 	
@@ -169,7 +169,7 @@
 	lore_description = ""
 	icon_state = "mind_blast"
 	willpower_cost = 2
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/mindblast)
 	
@@ -179,7 +179,7 @@
 	lore_description = ""
 	icon_state = "extract"
 	willpower_cost = 2
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/extract)
 
@@ -189,7 +189,7 @@
 	lore_description = "Summon abyssal tendrils from beyond the veil."
 	icon_state = "abyssal_call"
 	willpower_cost = 2
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call)
 	
@@ -199,7 +199,7 @@
 	lore_description = ""
 	icon_state = "shadow_beam"
 	willpower_cost = 3
-	shadow_flags = WARLOCK
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/shadow_beam)
 
@@ -212,6 +212,6 @@
 	lore_description = ""
 	icon_state = "icy_veins"
 	willpower_cost = 2
-	shadow_flags = SCOUT | WARLOCK
+	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/icyveins)

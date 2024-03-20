@@ -15,7 +15,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	psi_cost = 30
 	var/datum/status_effect/tagalong/tagalong
@@ -54,7 +54,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 1 MINUTES
 
 /datum/action/cooldown/spell/aoe/icyveins/cast(atom/cast_on)
@@ -93,7 +93,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = NONE
 	psi_cost = 60
 	cooldown_time = 1 SECONDS //to prevent double clicking by accident
 	die_with_shapeshifted_form = FALSE
@@ -113,7 +113,7 @@
 		to_chat(owner, span_velvet("...Voz"))
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
-	if(cast_on.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)) //so it's free to change back, but costs psi to change
+	if(owner.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)) //so it's free to change back, but costs psi to change
 		psi_cost = 0
 	else
 		psi_cost = initial(psi_cost)
@@ -137,7 +137,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 40
 	var/duration = 10 SECONDS
 	//no cooldown, make an army if you really want
@@ -170,7 +170,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 80
 	var/mob/living/simple_animal/hostile/illusion/darkspawn/psyche/dude
 	var/health = 100
