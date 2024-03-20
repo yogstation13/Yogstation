@@ -13568,6 +13568,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"ckf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/kirbyplants/random,
+/obj/machinery/camera/motion/armory{
+	c_tag = "Armory North"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "ckw" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -18911,14 +18921,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"dVK" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/kirbyplants/random,
-/obj/machinery/camera/motion/armory,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "dVM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -28571,6 +28573,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"hsK" = (
+/obj/structure/closet/crate/secure/gear/donut,
+/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/paper/guides/jobs/security/donut,
+/obj/machinery/camera/motion/armory{
+	c_tag = "Armory South";
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "hsL" = (
 /obj/structure/table/glass,
 /obj/item/clothing/glasses/science,
@@ -29920,8 +29932,12 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
 "hRt" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
 /obj/effect/landmark/xeno_spawn,
-/turf/open/floor/wood/parquet,
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "hRx" = (
 /obj/effect/turf_decal/tile/red/opposingcorners,
@@ -57257,15 +57273,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"rRJ" = (
-/obj/structure/closet/crate/secure/gear/donut,
-/obj/item/reagent_containers/food/snacks/donut,
-/obj/item/paper/guides/jobs/security/donut,
-/obj/machinery/camera/motion/armory{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "rRQ" = (
 /obj/machinery/computer/security{
 	dir = 1
@@ -104168,7 +104175,7 @@ aaa
 aaa
 wlK
 aaZ
-dVK
+ckf
 adl
 adl
 atX
@@ -104430,7 +104437,7 @@ adl
 xBG
 eRj
 adl
-rRJ
+hsK
 aaZ
 ucI
 cuR
@@ -109605,7 +109612,7 @@ wcU
 aql
 hKi
 jTj
-sGs
+hRt
 exZ
 aql
 ioB
@@ -110635,7 +110642,7 @@ qWa
 col
 hQg
 hOm
-hRt
+aFd
 aFd
 cFS
 aFd
