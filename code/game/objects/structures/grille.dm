@@ -326,6 +326,12 @@
 	desc = "A strangely-shaped grille."
 	broken_type = /obj/structure/grille/ratvar/broken
 
+	// These ones are too cool to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
+
 /obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()
 	if(broken)
