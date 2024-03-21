@@ -37,7 +37,7 @@
 	. = ..()
 	finder.visible_message(span_danger("[finder] opens up [owner]'s skull, revealing a pulsating black mass, with red tendrils attaching it to [owner.p_their()] brain."))
 
-/obj/item/organ/shadowtumor/proc/resist()//Thralls cannot be deconverted while awake
+/obj/item/organ/shadowtumor/proc/resist(mob/living/carbon/M)//Thralls cannot be deconverted while awake
 	if(QDELETED(src))
 		return
 
