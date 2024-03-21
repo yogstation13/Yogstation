@@ -1,5 +1,0 @@
-author: "tattax"
-delete-after: true 
-changes: 
-  - bugfix: "fixed missing sprite on booth circuitboard"
-  - imageadd: "reduced saturation on med and engie circuitobards"
