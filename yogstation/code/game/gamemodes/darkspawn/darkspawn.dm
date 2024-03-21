@@ -10,7 +10,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	enemy_minimum_age = 15
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
-	title_icon = "ss13" //to do, give them a new title icon
+	title_icon = "darkspawn"
 	round_ends_with_antag_death = TRUE
 	var/list/datum/mind/darkspawns = list()
 	var/datum/team/darkspawn/team
