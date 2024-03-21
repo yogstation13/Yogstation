@@ -1,0 +1,5 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed a lot of engineering doors having incorrect access requirements"
+  - tweak: "Curators may now only go as far as where the protolathe is in engineering"
