@@ -3,9 +3,9 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 //-----------------------------Veil Creation----------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/touch/veil_mind
-	name = "Veil mind"
-	desc = "Consume 2 willpower to veil a target's mind. To be eligible, they must be alive and recently drained by Devour Will. Can also be used to revive deceased veils."
+/datum/action/cooldown/spell/touch/thrall_mind
+	name = "Thrall mind"
+	desc = "Consume 2 willpower to thrall a target's mind. To be eligible, they must be alive and recently drained by Devour Will. Can also be used to revive deceased thralls."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -20,14 +20,14 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	var/willpower_cost = 2
 
-/datum/action/cooldown/spell/touch/veil_mind/is_valid_target(atom/cast_on)
+/datum/action/cooldown/spell/touch/thrall_mind/is_valid_target(atom/cast_on)
 	return ishuman(cast_on)
 
-/datum/action/cooldown/spell/touch/veil_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
+/datum/action/cooldown/spell/touch/thrall_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	if(!isdarkspawn(caster))//sanity check
 		return
 	if(!target.mind && !target.last_mind)
-		to_chat(owner, "This mind is too feeble to even be worthy of veiling.")
+		to_chat(owner, "This mind is too feeble to even be worthy of thralling.")
 		return
 	if(!target.getorganslot(ORGAN_SLOT_BRAIN))
 		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control them."))
@@ -36,12 +36,12 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		to_chat(owner, span_velvet("You will never be strong enough to control the will of another."))
 		return
 	var/datum/antagonist/darkspawn/master = isdarkspawn(caster)
-	if(!isveil(target))
+	if(!isthrall(target))
 		if(!target.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
-			to_chat(owner, span_velvet("[target]'s will is still too strong to veil."))
+			to_chat(owner, span_velvet("[target]'s will is still too strong to thrall."))
 			return FALSE
 		if(master.willpower < willpower_cost)
-			to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
+			to_chat(owner, span_velvet("You do not have enough will to thrall [target]."))
 			return FALSE
 
 	to_chat(owner, span_velvet("Krx'lna tyhx graha..."))
@@ -50,27 +50,27 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
-	if(isveil(target))
+	if(isthrall(target))
 		to_chat(owner, span_velvet("...tia"))
-		to_chat(owner, span_velvet("You revitalize your veil [target.real_name]."))
+		to_chat(owner, span_velvet("You revitalize your thrall [target.real_name]."))
 		target.revive(TRUE, TRUE)
 		target.grab_ghost()
 		return TRUE
 
 	var/datum/team/darkspawn/team = master.get_team()
-	if(team && LAZYLEN(team.veils) >= team.max_veils)
+	if(team && LAZYLEN(team.thralls) >= team.max_thralls)
 		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
 		return FALSE
 
 	if(master.willpower < willpower_cost) //sanity check
-		to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
+		to_chat(owner, span_velvet("You do not have enough will to thrall [target]."))
 		return FALSE
 
-	if(target.add_veil())
+	if(target.add_thrall())
 		master.willpower -= willpower_cost
 		to_chat(owner, span_velvet("...xthl'kap"))
-		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
-		to_chat(owner, span_velvet("Veils will serve your every command and passively generate willpower for being nearby non veils."))
+		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a thrall!"))
+		to_chat(owner, span_velvet("Thralls will serve your every command and passively generate willpower for being nearby non thralls."))
 	else
 		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
 	return TRUE
@@ -78,9 +78,9 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 //----------------------------Get rid of a thrall-----------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/unveil_mind
-	name = "Release veil"
-	desc = "Release a veil from your control, freeing your power to be redistributed and restoring a portion of the spent willpower."
+/datum/action/cooldown/spell/release_thrall
+	name = "Release thrall"
+	desc = "Release a thrall from your control, freeing your power to be redistributed and restoring a portion of the spent willpower."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -91,17 +91,17 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/unveil_mind/can_cast_spell(feedback)
+/datum/action/cooldown/spell/release_thrall/can_cast_spell(feedback)
 	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
 	if(dude && istype(dude))
 		var/datum/team/darkspawn/team = dude.get_team()
-		if(team &&!LAZYLEN(team.veils))
+		if(team &&!LAZYLEN(team.thralls))
 			if(feedback)
-				to_chat(owner, "You have no veils to release.")
+				to_chat(owner, "You have no thralls to release.")
 			return
 	. = ..()
 	
-/datum/action/cooldown/spell/unveil_mind/cast(atom/cast_on)
+/datum/action/cooldown/spell/release_thrall/cast(atom/cast_on)
 	. = ..()
 	if(!isdarkspawn(owner))
 		return
@@ -112,13 +112,13 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 	var/datum/team/darkspawn/team = dude.get_team()
 
-	var/loser = tgui_input_list(owner, "Select a veil to release from your control.", "Release a veil", team.veils)
+	var/loser = tgui_input_list(owner, "Select a thrall to release from your control.", "Release a thrall", team.thralls)
 	if(!loser || !istype(loser, /datum/mind))
 		return
 	var/datum/mind/unveiled = loser
 	if(!unveiled.current)
 		return
-	if(unveiled.current.remove_veil())
+	if(unveiled.current.remove_thrall())
 		to_chat(owner, span_velvet("Fk'koht"))
 		to_chat(owner, span_velvet("You release your control over [unveiled]"))
 		dude.willpower += 1
@@ -126,7 +126,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam
+/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_cam
 	name = "Panopticon"
 	desc = "Watch what your allies and servants are doing at all times."
 	button_icon_state = "panopticon"
@@ -167,7 +167,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	var/closest_dude_dist = body_range
 	if(get_dist(owner, cast_on) > body_range)
 		for(var/mob/living/dude in range(body_range, cast_on))
-			if(is_darkspawn_or_veil(dude) || (ROLE_DARKSPAWN in dude.faction))
+			if(is_darkspawn_or_thrall(dude) || (ROLE_DARKSPAWN in dude.faction))
 				if(!isturf(dude.loc))
 					continue
 				if(get_dist(cast_on, dude) < closest_dude_dist)//always only get the closest dude
@@ -219,9 +219,9 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Global AOE Buff spells-------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/veilbuff
-	name = "Empower veil"
-	desc = "buffs all veils with some sort of effect."
+/datum/action/cooldown/spell/thrallbuff
+	name = "Empower thrall"
+	desc = "buffs all thralls with some sort of effect."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
@@ -236,14 +236,14 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	var/darkspawns_too = FALSE
 	var/language_output = "DEBUGIFY"
 
-/datum/action/cooldown/spell/veilbuff/before_cast(atom/cast_on)
+/datum/action/cooldown/spell/thrallbuff/before_cast(atom/cast_on)
 	. = ..()
 	darkspawns_too = HAS_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES)
 
-/datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
+/datum/action/cooldown/spell/thrallbuff/cast(atom/cast_on)
 	. = ..()
 	to_chat(owner, span_velvet("[language_output]"))
-	for(var/datum/antagonist/veil/lackey in GLOB.antagonists)
+	for(var/datum/antagonist/thrall/lackey in GLOB.antagonists)
 		if(lackey.owner?.current && ishuman(lackey.owner.current))
 			var/mob/living/carbon/human/target = lackey.owner.current
 			if(target && istype(target))//sanity check
@@ -257,28 +257,28 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 						continue
 					empower(target)
 	
-/datum/action/cooldown/spell/veilbuff/proc/empower(mob/living/carbon/human/target)
+/datum/action/cooldown/spell/thrallbuff/proc/empower(mob/living/carbon/human/target)
 	return
 
 ////////////////////////////Global AOE heal//////////////////////////
-/datum/action/cooldown/spell/veilbuff/heal
-	name = "Heal veils"
-	desc = "Heals all veils for an amount of brute and burn."
+/datum/action/cooldown/spell/thrallbuff/heal
+	name = "thrall recovery"
+	desc = "Heals all thralls for an amount of brute and burn."
 	button_icon_state = "heal_veils"
 	var/heal_amount = 20
 	language_output = "Plyn othra"
 
-/datum/action/cooldown/spell/veilbuff/heal/empower(mob/living/carbon/human/target)
+/datum/action/cooldown/spell/thrallbuff/heal/empower(mob/living/carbon/human/target)
 	target.heal_overall_damage(heal_amount, heal_amount, 0, BODYPART_ANY)
 
 ////////////////////////////Temporary speed boost//////////////////////////
-/datum/action/cooldown/spell/veilbuff/speed
-	name = "Expedite veils"
-	desc = "Give all veils a temporary movespeed bonus."
+/datum/action/cooldown/spell/thrallbuff/speed
+	name = "Thrall envigorate"
+	desc = "Give all thralls a temporary movespeed bonus."
 	button_icon_state = "speedboost_veils"
 	language_output = "Vyzthun"
 
-/datum/action/cooldown/spell/veilbuff/speed/empower(mob/living/carbon/human/target)
+/datum/action/cooldown/spell/thrallbuff/speed/empower(mob/living/carbon/human/target)
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 5 SECONDS, type)
 
 //////////////////////////////////////////////////////////////////////////
@@ -305,7 +305,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	if(!iscarbon(cast_on))
 		return FALSE
 	var/mob/living/carbon/target = cast_on
-	if(!is_darkspawn_or_veil(target))
+	if(!is_darkspawn_or_thrall(target))
 		return FALSE
 	if(target.stat == DEAD)
 		to_chat(owner, span_velvet("This one is beyond our help at such a range"))

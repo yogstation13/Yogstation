@@ -95,7 +95,7 @@
 	willpower_cost = 1
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam)
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_cam)
 
 /datum/psi_web/staff_upgrade/heal
 	name = "Recovery Sign"
@@ -114,25 +114,25 @@
 	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_EXTINGUISH
 	
-/datum/psi_web/veil_heal
-	name = "Veil Recovery"
-	desc = "Heals all veils for an amount of brute and burn."
-	lore_description = "While veils are expendable, they do have their use."
+/datum/psi_web/thrall_heal
+	name = "Thrall Recovery"
+	desc = "Heals all vthralls for an amount of brute and burn."
+	lore_description = "While thralls are expendable, they do have their use."
 	icon_state = "heal_veils"
 	willpower_cost = 1
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/veilbuff/heal)
+	learned_abilities = list(/datum/action/cooldown/spell/thrallbuff/heal)
 	
-/datum/psi_web/veil_speed
-	name = "Veil Envigorate"
-	desc = "Give all veils a temporary movespeed bonus."
-	lore_description = "Veils are expendable, push them until they break."
+/datum/psi_web/thrall_speed
+	name = "Thrall Envigorate"
+	desc = "Give all thralls a temporary movespeed bonus."
+	lore_description = "Thralls are expendable, push them until they break."
 	icon_state = "speedboost_veils"
 	willpower_cost = 1
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/veilbuff/speed)
+	learned_abilities = list(/datum/action/cooldown/spell/thrallbuff/speed)
 	
 /datum/psi_web/elucidate
 	name = "Elucidate"

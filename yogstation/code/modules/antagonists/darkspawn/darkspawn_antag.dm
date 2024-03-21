@@ -130,7 +130,7 @@
 	.["Set Lucidity"] = CALLBACK(src, PROC_REF(set_lucidity))
 	.["Set Willpower"] = CALLBACK(src, PROC_REF(set_shop))
 	.["Set Psi Values"] = CALLBACK(src, PROC_REF(set_psi))
-	.["Set Max Veils"] = CALLBACK(src, PROC_REF(set_max_veils))
+	.["Set Max Thralls"] = CALLBACK(src, PROC_REF(set_max_thralls))
 	if(picked_class)
 		.["Refund Ability"] = CALLBACK(src, PROC_REF(refund_ability))
 	.["Set Class"] = CALLBACK(src, PROC_REF(set_class))
@@ -156,10 +156,10 @@
 	if(delay)
 		psi_regen_delay = delay
 
-/datum/antagonist/darkspawn/proc/set_max_veils(mob/admin)
-	var/thrall = input(admin, "How many veils should the darkspawn team be able to get?") as null|num
+/datum/antagonist/darkspawn/proc/set_max_thralls(mob/admin)
+	var/thrall = input(admin, "How many thralls should the darkspawn team be able to get?") as null|num
 	if(thrall && team)
-		team.max_veils = thrall
+		team.max_thralls = thrall
 
 /datum/antagonist/darkspawn/proc/refund_ability(mob/admin)
 	if(!picked_class)
@@ -208,7 +208,7 @@
 	. += "<b>Willpower:</b> [willpower ? willpower : "0"]<br>"
 	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? "[psi_regen_delay/10] seconds" : "no delay"]<br>"
 	if(team)
-		. += "<b>Max Veils:</b> [team.max_veils ? team.max_veils : "0"]<br>"
+		. += "<b>Max Thralls:</b> [team.max_thralls ? team.max_thralls : "0"]<br>"
 
 	var/datum/component/darkspawn_class/class = owner.GetComponent(/datum/component/darkspawn_class)
 	if(class && istype(class) && class.learned_abilities)
@@ -225,13 +225,13 @@
 	data["willpower"] = willpower
 	if(team)
 		data["lucidity_drained"] = team.lucidity
-		data["max_veils"] = team.max_veils
-		data["current_veils"] = LAZYLEN(team.veils)
-		if(LAZYLEN(team.veils))
-			var/list/veil_names = list()
-			for(var/datum/mind/dude in team.veils)
-				veil_names += dude.name
-			data["veil_names"] += list(veil_names)
+		data["max_thralls"] = team.max_thralls
+		data["current_thralls"] = LAZYLEN(team.thralls)
+		if(LAZYLEN(team.thralls))
+			var/list/thrall_names = list()
+			for(var/datum/mind/dude in team.thralls)
+				thrall_names += dude.name
+			data["thrall_names"] += list(thrall_names)
 	data["divulged"] = (darkspawn_state > DARKSPAWN_MUNDANE)
 	data["ascended"] = (darkspawn_state == DARKSPAWN_PROGENITOR)
 	data["has_class"] = picked_class
@@ -306,7 +306,7 @@
 			var/processed_message = span_velvet("<b>\[Mindlink\] [owner.current] has selected [picked_class.name] as their class.</b>")
 			for(var/T in GLOB.alive_mob_list)
 				var/mob/M = T
-				if(is_darkspawn_or_veil(M))
+				if(is_darkspawn_or_thrall(M))
 					to_chat(M, processed_message)
 
 /datum/antagonist/darkspawn/ui_status(mob/user, datum/ui_state/state)
@@ -415,7 +415,7 @@
 	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [user.real_name].</b>")
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
-		if(is_darkspawn_or_veil(M))
+		if(is_darkspawn_or_thrall(M))
 			to_chat(M, processed_message)
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T

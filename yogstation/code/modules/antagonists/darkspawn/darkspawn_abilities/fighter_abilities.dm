@@ -104,7 +104,7 @@
 		return
 	var/mob/living/target = victim
 	target.extinguish_mob()
-	if(is_darkspawn_or_veil(target) && ispreternis(target)) //don't make preterni allies wet
+	if(is_darkspawn_or_thrall(target) && ispreternis(target)) //don't make preterni allies wet
 		return
 	target.adjust_wet_stacks(20)
 
@@ -265,7 +265,7 @@
 		return
 	if(isliving(AM))
 		var/mob/living/dude = AM
-		if(is_darkspawn_or_veil(dude))
+		if(is_darkspawn_or_thrall(dude))
 			return
 	var/distance = get_dist(owner, AM)
 	var/turf/target = get_edge_target_turf(owner, get_dir(owner, get_step_away(AM, owner)))
@@ -420,6 +420,6 @@
 	if(!isliving(victim) || !can_see(caster, victim))
 		return
 	var/mob/living/target = victim
-	if(is_darkspawn_or_veil(target))
+	if(is_darkspawn_or_thrall(target))
 		return
 	target.apply_status_effect(STATUS_EFFECT_TAUNT, owner)

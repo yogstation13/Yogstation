@@ -2,11 +2,11 @@
 /datum/team/darkspawn
 	name = "darkspawns"
 	member_name = "darkspawn"
-	var/veil_name = "veil"
-	var/list/datum/mind/veils = list() //not quite members (the darkspawns)
+	var/thrall_name = "thrall"
+	var/list/datum/mind/thralls = list() //not quite members (the darkspawns)
 	var/required_succs = 10 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
 	var/lucidity = 0
-	var/max_veils = 0
+	var/max_thralls = 0
 	var/announced = FALSE //if the announcement that they've got enough lucidity has been sent
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -24,11 +24,11 @@
 	. = ..()
 	new_member.announce_objectives()
 
-/datum/team/darkspawn/proc/add_veil(datum/mind/new_member) //veils are treated differently than darkspawns
-	veils |= new_member
+/datum/team/darkspawn/proc/add_thrall(datum/mind/new_member) //thralls are treated differently than darkspawns
+	thralls |= new_member
 
-/datum/team/darkspawn/proc/remove_veil(datum/mind/member)
-	veils -= member
+/datum/team/darkspawn/proc/remove_thrall(datum/mind/member)
+	thralls -= member
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Round end Stuff----------------------------------//
@@ -50,9 +50,9 @@
 	report += "The [member_name]s were:"
 	report += printplayerlist(members)
 
-	if(LAZYLEN(veils))
-		report += "The [veil_name]s were:"
-		report += printplayerlist(veils)
+	if(LAZYLEN(thralls))
+		report += "The [thrall_name]s were:"
+		report += printplayerlist(thralls)
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 

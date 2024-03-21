@@ -113,7 +113,7 @@
 	animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
 
 	for(var/mob/living/L in view(7, user))
-		if(is_darkspawn_or_veil(L) || L == user) //probably won't have veils yet, but might as well check just in case
+		if(is_darkspawn_or_thrall(L) || L == user) //probably won't have thralls yet, but might as well check just in case
 			continue
 		L.flash_act(1, 1)
 		L.Knockdown(5 SECONDS)

@@ -54,7 +54,7 @@
 	var/processed_message = span_progenitor("\[Mindlink\] [user] has begun performing the sacrament.")
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
-		if(is_darkspawn_or_veil(M))
+		if(is_darkspawn_or_thrall(M))
 			to_chat(M, processed_message)
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T

@@ -17,7 +17,7 @@
 	..()
 
 /obj/item/organ/shadowtumor/process()
-	if(!isveil(owner))
+	if(!isthrall(owner))
 		qdel(src)
 	if(isturf(loc))
 		var/turf/T = loc
@@ -44,7 +44,7 @@
 		M.resting = FALSE //Remove all stuns
 		M.SetAllImmobility(0, TRUE)
 		for(var/mob/living/user in range(2, src))
-			if(is_darkspawn_or_veil(user))
+			if(is_darkspawn_or_thrall(user))
 				continue
 			var/turf/target = get_ranged_target_turf(user, get_dir(M, user))
 			user.throw_at(target, 2, 2, M)
@@ -61,6 +61,6 @@
 			return FALSE
 	. = ..()
 	if(isturf(loc))//only do this if the tumor is removed from the head, not if the head gets cut off
-		M.remove_veil()
+		M.remove_thrall()
 		M.update_sight()
 		M.visible_message(span_warning("A strange black mass falls from [M]'s head!"))

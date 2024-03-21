@@ -1584,7 +1584,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
         /datum/antagonist/cult,
         /datum/antagonist/darkspawn,
         /datum/antagonist/rev,
-        /datum/antagonist/veil
+        /datum/antagonist/thrall
     )
     for(var/antagcheck in bad_antags)
         if(mind?.has_antag_datum(antagcheck))

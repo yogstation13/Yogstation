@@ -264,7 +264,7 @@
 //adds an additional thrall
 /datum/psi_web/more_thralls
 	name = "Control Sigil"
-	desc = "Unlocking this sigil allows control of two additional veils."
+	desc = "Unlocking this sigil allows control of two additional thralls."
 	lore_description = "The Gryxah sigils, representing control, are etched onto the arms."
 	icon_state = "control"
 	willpower_cost = 3
@@ -274,17 +274,17 @@
 /datum/psi_web/more_thralls/on_gain()
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
-		team.max_veils += 2
+		team.max_thralls += 2
 
 /datum/psi_web/more_thralls/on_loss()
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
-		team.max_veils += 2
+		team.max_thralls += 2
 
 //buff allied darkspawns
 /datum/psi_web/buff_allies
 	name = "Unity Sigil"
-	desc = "Unlocking this sigil allows your veil support abilities to also affect allied darkspawns."
+	desc = "Unlocking this sigil allows your thrall support abilities to also affect allied darkspawns."
 	lore_description = "The Ahwelhe sigils, representing unity, are etched onto the hands."
 	icon_state = "unity"
 	willpower_cost = 2

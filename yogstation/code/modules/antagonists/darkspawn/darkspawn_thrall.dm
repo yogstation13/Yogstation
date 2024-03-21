@@ -1,21 +1,21 @@
-/datum/antagonist/veil
-	name = "Darkspawn Veil"
+/datum/antagonist/thrall
+	name = "Darkspawn Thrall"
 	job_rank = ROLE_DARKSPAWN
-	antag_hud_name = "veil"
-	roundend_category = "veils"
+	antag_hud_name = "thrall"
+	roundend_category = "thralls"
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/seize/lesser)
 	var/current_willpower_progress = 0
 	var/datum/team/darkspawn/team
 
-/datum/antagonist/veil/get_team()
+/datum/antagonist/thrall/get_team()
 	return team
 
-/datum/antagonist/veil/on_gain()
-	owner.special_role = "veil"
-	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
-	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
+/datum/antagonist/thrall/on_gain()
+	owner.special_role = "thrall"
+	message_admins("[key_name_admin(owner.current)] was thralled by a darkspawn!")
+	log_game("[key_name(owner.current)] was thralled by a darkspawn!")
 	if(iscarbon(owner.current))
 		var/mob/living/carbon/dude = owner.current
 		dude.faction |= ROLE_DARKSPAWN
@@ -28,12 +28,12 @@
 		if (istype(T, /datum/team/darkspawn))
 			team = T
 	if(!team)
-		CRASH("veil made without darkspawns")
+		CRASH("thrall made without darkspawns")
 	return ..()
 
-/datum/antagonist/veil/on_removal()
-	message_admins("[key_name_admin(owner.current)] was deveiled!")
-	log_game("[key_name(owner.current)] was deveiled!")
+/datum/antagonist/thrall/on_removal()
+	message_admins("[key_name_admin(owner.current)] was dethralled!")
+	log_game("[key_name(owner.current)] was dethralled!")
 	owner.special_role = null
 	var/mob/living/M = owner.current
 	M.faction -= ROLE_DARKSPAWN
@@ -50,16 +50,16 @@
 	M.update_sight()
 	return ..()
 
-/datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
+/datum/antagonist/thrall/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
 
 	if(team)
-		team.add_veil(current_mob.mind)
+		team.add_thrall(current_mob.mind)
 
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
-	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(veil_life))
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(thrall_life))
 	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
 	current_mob.update_appearance(UPDATE_OVERLAYS)
 	current_mob.grant_language(/datum/language/darkspawn)
@@ -75,13 +75,13 @@
 		var/datum/action/cooldown/spell/new_spell = new spell(owner)
 		new_spell.Grant(current_mob)
 
-/datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
+/datum/antagonist/thrall/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
 
 	if(team)
-		team.remove_veil(current_mob.mind)
+		team.remove_thrall(current_mob.mind)
 
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS)
@@ -94,7 +94,7 @@
 			spells.Remove(current_mob)
 			qdel(spells)
 
-/datum/antagonist/veil/proc/update_owner_overlay(atom/source, list/overlays)
+/datum/antagonist/thrall/proc/update_owner_overlay(atom/source, list/overlays)
 	SIGNAL_HANDLER
 
 	if(!ishuman(source))
@@ -105,18 +105,18 @@
 	overlay.color = COLOR_DARKSPAWN_PSI
 	overlays += overlay
 
-/datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
+/datum/antagonist/thrall/proc/thrall_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
 		return
 	var/obj/item/organ/tumor = source.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
 	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
-		source.remove_veil()
+		source.remove_thrall()
 		return
 
 	for(var/mob/living/thing in range(5, source))
 		if(!thing.client) //gotta be an actual player (hope no one goes afk)
 			continue
-		if(is_darkspawn_or_veil(thing))
+		if(is_darkspawn_or_thrall(thing))
 			continue
 		current_willpower_progress += seconds_per_tick
 
@@ -124,7 +124,7 @@
 		current_willpower_progress = 0
 		team.grant_willpower(1)
 
-/datum/antagonist/veil/greet()
+/datum/antagonist/thrall/greet()
 	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))
 	if(ispreternis(owner.current))
 		to_chat(owner, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
@@ -147,5 +147,5 @@
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
 	flash_color(owner, flash_color = "#21007F", flash_time = 10 SECONDS)
 
-/datum/antagonist/veil/roundend_report()
+/datum/antagonist/thrall/roundend_report()
 	return "[printplayer(owner)]"

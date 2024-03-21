@@ -1,6 +1,6 @@
 #define isdarkspawn(A) (A?.mind?.has_antag_datum(/datum/antagonist/darkspawn))
-#define isveil(A) (A?.mind?.has_antag_datum(/datum/antagonist/veil))
-#define is_darkspawn_or_veil(A) (A.mind && isdarkspawn(A) || isveil(A))
+#define isthrall(A) (A?.mind?.has_antag_datum(/datum/antagonist/thrall))
+#define is_darkspawn_or_thrall(A) (A.mind && isdarkspawn(A) || isthrall(A))
 
 #define is_clockcult(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult))
 

@@ -39,7 +39,7 @@
 /obj/item/gun/magic/darkspawn/proc/on_projectile_hit(datum/source, atom/movable/firer, atom/target, angle)
 	if(isliving(target))
 		var/mob/living/M = target
-		if(is_darkspawn_or_veil(M))
+		if(is_darkspawn_or_thrall(M))
 			if(effect_flags & STAFF_UPGRADE_HEAL)
 				M.heal_ordered_damage(30, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)

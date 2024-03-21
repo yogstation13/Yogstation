@@ -111,7 +111,7 @@
 		if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 			return
 		target.extinguish_mob()
-		if(is_darkspawn_or_veil(target)) //don't put out or damage any lights carried by allies
+		if(is_darkspawn_or_thrall(target)) //don't put out or damage any lights carried by allies
 			return
 	if(isobj(victim))//put out any items too
 		var/obj/target = victim
@@ -278,7 +278,7 @@
 	to_chat(owner, span_velvet("Qokxlez..."))
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/darkspawn.dmi' , INFINITY, cast_range)
 	channeled = cast_on
-	healing = is_darkspawn_or_veil(channeled)
+	healing = is_darkspawn_or_thrall(channeled)
 	
 /datum/action/cooldown/spell/pointed/extract/proc/cancel()
 	if(visual)
@@ -333,7 +333,7 @@
 	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
 		return
 	var/mob/living/target = victim
-	if(is_darkspawn_or_veil(target)) //don't fuck with allies
+	if(is_darkspawn_or_thrall(target)) //don't fuck with allies
 		return
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
@@ -438,7 +438,7 @@
 	. = ..()
 	if(isliving(AM))
 		var/mob/living/target = AM
-		if(!is_darkspawn_or_veil(target))
+		if(!is_darkspawn_or_thrall(target))
 			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 4, 1 SECONDS, type) //slow field, makes it harder to escape
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
@@ -453,7 +453,7 @@
 /obj/effect/temp_visual/darkspawn/detonate/Destroy()
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T.contents)
-		if(is_darkspawn_or_veil(L))
+		if(is_darkspawn_or_thrall(L))
 			L.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 		else if(!L.can_block_magic(MAGIC_RESISTANCE_MIND))
 			L.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
@@ -489,7 +489,7 @@
 	if(istype(target) && target.stat)
 		to_chat(owner, span_warning("[target] must be conscious!"))
 		return . | SPELL_CANCEL_CAST
-	if(is_darkspawn_or_veil(target))
+	if(is_darkspawn_or_thrall(target))
 		to_chat(owner, span_warning("You cannot seize allies!"))
 		return . | SPELL_CANCEL_CAST
 

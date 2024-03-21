@@ -160,7 +160,7 @@
 /datum/component/darkspawn_class/warlock
 	name = "Warlock"
 	description = "Psionic dominance."
-	long_description = "Cast spells, veil minds, and support allies from across the station."
+	long_description = "Cast spells, thrall minds, and support allies from across the station."
 	specialization_flag = DARKSPAWN_WARLOCK
 	class_color = COLOR_STRONG_VIOLET
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/warlock)

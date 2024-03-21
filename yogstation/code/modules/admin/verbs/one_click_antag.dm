@@ -17,7 +17,7 @@
 				continue
 			if(!temp.age_check(applicant.client) || (applicant.job in temp.restricted_jobs))
 				continue
-			if(is_darkspawn_or_veil(applicant))
+			if(is_darkspawn_or_thrall(applicant))
 				continue
 			candidates += applicant
 	if(candidates.len)

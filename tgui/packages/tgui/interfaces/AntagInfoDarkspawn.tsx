@@ -48,12 +48,12 @@ type Info = {
   lucidity_drained: number;
   divulged: BooleanLike;
   ascended: BooleanLike;
-  max_veils: number;
-  current_veils: number;
+  max_thralls: number;
+  current_thralls: number;
   has_class: BooleanLike;
   objectives: Objective[];
   categories: Category[];
-  veil_names: string[];
+  thrall_names: string[];
 };
 
 export const AntagInfoDarkspawn = (props, context) => {
@@ -186,7 +186,7 @@ const GuideSection = () => {
 
 const InformationSection = (props, context) => {
   const { data } = useBackend<Info>(context);
-  const { willpower, lucidity_drained, ascended, current_veils, max_veils, veil_names } = data;
+  const { willpower, lucidity_drained, ascended, current_thralls, max_thralls, thrall_names } = data;
   return (
     <Stack.Item>
       <Stack vertical fill>
@@ -215,20 +215,20 @@ const InformationSection = (props, context) => {
           <b>{lucidity_drained || 0}</b>&nbsp;
           <span style={Velvet}>lucidity</span>.
         </Stack.Item>
-        {!!max_veils && (
+        {!!max_thralls && (
         <Stack.Item>
-          You currently have <b>{current_veils || 0}/{max_veils || 0}</b>&nbsp;
+          You currently have <b>{current_thralls || 0}/{max_thralls || 0}</b>&nbsp;
           <span style={Velvet}>
-            veils
+            thralls
           </span>
           .
         </Stack.Item>
         )}
-        {!!current_veils && !!veil_names && (
+        {!!current_thralls && !!thrall_names && (
         <Stack.Item>
           They are:
-          {veil_names.map(veil => (
-            <Stack.Item key={veil}>{capitalize(veil)}</Stack.Item>
+          {thrall_names.map(thrall => (
+            <Stack.Item key={thrall}>{capitalize(thrall)}</Stack.Item>
           ))}
         </Stack.Item>
         )}

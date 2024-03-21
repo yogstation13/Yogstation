@@ -53,7 +53,7 @@
 	if(!target.mind)
 		to_chat(caster, span_warning("You cannot drain the mindless."))
 		return
-	if(is_darkspawn_or_veil(target))
+	if(is_darkspawn_or_thrall(target))
 		to_chat(caster, span_warning("You cannot drain allies."))
 		return
 	if(!istype(target))
@@ -155,7 +155,7 @@
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
 	if(!darkspawn || tying || target == caster) //no tying yourself
 		return
-	if(is_darkspawn_or_veil(target))
+	if(is_darkspawn_or_thrall(target))
 		to_chat(caster, span_warning("You cannot restrain allies."))
 		return
 	if(!istype(target))

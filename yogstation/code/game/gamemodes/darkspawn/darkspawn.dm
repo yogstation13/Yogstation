@@ -107,7 +107,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		return FALSE
 	return mind.remove_antag_datum(/datum/antagonist/darkspawn)
 
-/mob/living/proc/add_veil()
+/mob/living/proc/add_thrall()
 	if(!istype(mind))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
@@ -120,9 +120,9 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		[span_boldwarning("The creature's gaze swallows the universe into blackness.")])\n\
 		[span_boldwarning("It cannot be permitted to succeed.")]")
 		return FALSE
-	return mind.add_antag_datum(/datum/antagonist/veil)
+	return mind.add_antag_datum(/datum/antagonist/thrall)
 
-/mob/living/proc/remove_veil()
+/mob/living/proc/remove_thrall()
 	if(!istype(mind))
 		return FALSE
-	return mind.remove_antag_datum(/datum/antagonist/veil)
+	return mind.remove_antag_datum(/datum/antagonist/thrall)
