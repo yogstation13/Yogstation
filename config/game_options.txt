@@ -164,6 +164,7 @@ CONTINUOUS HIVEMIND
 CONTINUOUS VAMPIRE
 CONTINUOUS DYNAMIC
 CONTINUOUS HERESY
+CONTINUOUS DARKSPAWN
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
@@ -186,6 +187,7 @@ MIDROUND_ANTAG CHANGELING
 MIDROUND_ANTAG WIZARD
 #MIDROUND_ANTAG  MONKEY
 #MIDROUND_ANTAG MALF
+MIDROUND_ANTAG DARKSPAWN
 
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type.
 ## If you set any of these occasionally check to see if you still need them as the modes
