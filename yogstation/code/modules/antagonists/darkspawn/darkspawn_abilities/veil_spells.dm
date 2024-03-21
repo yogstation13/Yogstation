@@ -343,6 +343,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	button_icon_state = "seize"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 
+	psi_cost = 0 //thralls don't have psi
 	cooldown_time = 45 SECONDS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	strong = FALSE
