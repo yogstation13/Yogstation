@@ -16,14 +16,6 @@
 	owner.special_role = "thrall"
 	message_admins("[key_name_admin(owner.current)] was thralled by a darkspawn!")
 	log_game("[key_name(owner.current)] was thralled by a darkspawn!")
-	if(iscarbon(owner.current))
-		var/mob/living/carbon/dude = owner.current
-		dude.faction |= ROLE_DARKSPAWN
-		var/obj/item/organ/shadowtumor/ST = dude.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
-		if(!ST || !istype(ST))
-			ST = new
-			ST.Insert(dude, FALSE, FALSE)
-
 	for (var/T in GLOB.antagonist_teams)
 		if (istype(T, /datum/team/darkspawn))
 			team = T
@@ -44,10 +36,6 @@
 		M.visible_message(span_big("[M] looks like their mind is their own again!"))
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
 		to_chat(owner, span_notice("As your mind is released from their grasp, you feel your strength returning."))
-	var/obj/item/organ/tumor = M.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
-	if(tumor && istype(tumor, /obj/item/organ/shadowtumor))
-		qdel(tumor)
-	M.update_sight()
 	return ..()
 
 /datum/antagonist/thrall/apply_innate_effects(mob/living/mob_override)
@@ -63,6 +51,7 @@
 	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
 	current_mob.update_appearance(UPDATE_OVERLAYS)
 	current_mob.grant_language(/datum/language/darkspawn)
+	current_mob.faction |= ROLE_DARKSPAWN
 
 	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
@@ -74,6 +63,12 @@
 			continue //preterni are already designed for it
 		var/datum/action/cooldown/spell/new_spell = new spell(owner)
 		new_spell.Grant(current_mob)
+
+	if(isliving(current_mob))
+		var/obj/item/organ/shadowtumor/ST = current_mob.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+		if(!ST || !istype(ST))
+			ST = new
+			ST.Insert(current_mob, FALSE, FALSE)
 
 /datum/antagonist/thrall/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
@@ -87,12 +82,17 @@
 	UnregisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS)
 	current_mob.update_appearance(UPDATE_OVERLAYS)
 	current_mob.remove_language(/datum/language/darkspawn)
+	current_mob.faction -= ROLE_DARKSPAWN
 
 	qdel(current_mob.GetComponent(/datum/component/internal_cam))
 	for(var/datum/action/cooldown/spell/spells in current_mob.actions)
 		if(spells.type in abilities)//no keeping your abilities
 			spells.Remove(current_mob)
 			qdel(spells)
+	var/obj/item/organ/tumor = current_mob.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	if(tumor && istype(tumor, /obj/item/organ/shadowtumor))
+		qdel(tumor)
+	current_mob.update_sight()
 
 /datum/antagonist/thrall/proc/update_owner_overlay(atom/source, list/overlays)
 	SIGNAL_HANDLER

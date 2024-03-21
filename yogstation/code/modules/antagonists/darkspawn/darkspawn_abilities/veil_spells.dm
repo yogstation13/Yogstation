@@ -360,6 +360,10 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
 
+/datum/action/cooldown/spell/toggle/nightvision/Remove(mob/living/remove_from)
+	Disable()
+	return ..()
+
 /datum/action/cooldown/spell/toggle/nightvision/Enable()
 	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
