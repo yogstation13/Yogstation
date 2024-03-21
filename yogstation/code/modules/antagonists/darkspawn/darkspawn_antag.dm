@@ -55,7 +55,6 @@
 	if(!current_mob)
 		return
 	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
-	add_team_hud(current_mob, /datum/antagonist/thrall)
 	add_team_hud(current_mob)
 	current_mob.grant_language(/datum/language/darkspawn)
 
@@ -89,6 +88,24 @@
 		if(istype(spells, /datum/action/cooldown/spell/divulge))
 			spells.Remove(owner.current)
 			qdel(spells)
+
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Antag hud---------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/darkspawn/add_team_hud(mob/target, antag_to_check)
+	QDEL_NULL(team_hud_ref)
+
+	team_hud_ref = WEAKREF(target.add_alt_appearance(
+		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
+		"antag_team_hud_[REF(src)]",
+		hud_image_on(target),
+		antag_to_check || type,
+	))
+
+	// Add HUDs that they couldn't see before
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if (is_darkspawn_or_thrall(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
+			antag_hud.show_to(owner.current)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------Greet---------------------------------------//

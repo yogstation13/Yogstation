@@ -20,7 +20,8 @@
 		if (istype(T, /datum/team/darkspawn))
 			team = T
 	if(!team)
-		CRASH("thrall made without darkspawns")
+		team = new
+		stack_trace("thrall made without darkspawns")
 	return ..()
 
 /datum/antagonist/thrall/on_removal()
@@ -46,8 +47,7 @@
 		team.add_thrall(current_mob.mind)
 
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
-	add_team_hud(current_mob)
-	
+
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(thrall_life))
 	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
 	current_mob.update_appearance(UPDATE_OVERLAYS)
@@ -95,6 +95,27 @@
 		qdel(tumor)
 	current_mob.update_sight()
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Antag hud---------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/thrall/add_team_hud(mob/target, antag_to_check)
+	QDEL_NULL(team_hud_ref)
+
+	team_hud_ref = WEAKREF(target.add_alt_appearance(
+		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
+		"antag_team_hud_[REF(src)]",
+		hud_image_on(target),
+		antag_to_check || type,
+	))
+
+	// Add HUDs that they couldn't see before
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if (is_darkspawn_or_thrall(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
+			antag_hud.show_to(owner.current)
+
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Body Sigil--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/thrall/proc/update_owner_overlay(atom/source, list/overlays)
 	SIGNAL_HANDLER
 
@@ -106,6 +127,9 @@
 	overlay.color = COLOR_DARKSPAWN_PSI
 	overlays += overlay
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------Passive willpower gen---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/thrall/proc/thrall_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
 		return
@@ -125,6 +149,9 @@
 		current_willpower_progress = 0
 		team.grant_willpower(1)
 
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Antag greet--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/thrall/greet()
 	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))
 	if(ispreternis(owner.current))
@@ -143,7 +170,7 @@
 		Eyes filled with stars. \n\
 		You feel the vast consciousness slowly consume your own and the veil falls away. \n\
 		Serve the darkspawn above all else. Your former allegiances are now forfeit. Their goal is yours, and yours is theirs.</b>")
-	to_chat(owner, "<i>Use <b>:[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink.</i>")
+	to_chat(owner, "<i>Use <b>.[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink.</i>")
 	to_chat(owner, "<i>Ask for help from your masters or fellows if you're new to this role.</i>")
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
 	flash_color(owner, flash_color = COLOR_VELVET, flash_time = 10 SECONDS)

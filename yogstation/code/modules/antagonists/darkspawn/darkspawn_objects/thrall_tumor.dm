@@ -7,6 +7,9 @@
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_BRAIN_TUMOR
 	var/organ_health = 3
+	//adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
+	COOLDOWN_DECLARE(resist_cooldown)
+	var/cooldown_length = 15 SECONDS
 
 /obj/item/organ/shadowtumor/New()
 	..()
@@ -44,9 +47,12 @@
 		return FALSE
 	if(!isthrall(M))//non thralls don't resist
 		return FALSE
+	if(!COOLDOWN_FINISHED(src, resist_cooldown))//adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
+		return FALSE
+	COOLDOWN_START(src, resist_cooldown, cooldown_length)
 
 	playsound(M,'sound/effects/tendril_destroyed.ogg', 80, 1)
-	to_chat(M, span_velvet("<b><i>NOT LIKE THIS!</i></b>"))
+	to_chat(M, span_progenitor("<b><i>NOT LIKE THIS!</i></b>"))
 	M.visible_message(span_danger("[M] suddenly slams upward and knocks everyone back!"))
 	M.resting = FALSE //Remove all stuns
 	M.SetAllImmobility(0, TRUE)
