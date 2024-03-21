@@ -1,3 +1,6 @@
+///The static update delay on movement of the camera in a mob we use
+#define INTERNAL_CAMERA_BUFFER 0.5 SECONDS
+
 /**
  * Internal camera component, basically a bodycam component, so it's not tied to an item
  */
@@ -18,13 +21,13 @@
 
 /datum/component/internal_cam/RegisterWithParent()
 	bodcam.status = TRUE
-	bodcam.camnet.updatePortableCamera(bodcam)
+	update_cam()
 	bodcam.built_in = parent
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(update_cam))
 
 /datum/component/internal_cam/UnregisterFromParent()
 	bodcam.status = FALSE
-	bodcam.camnet.updatePortableCamera(bodcam)
+	update_cam()
 	bodcam.built_in = null
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
 
@@ -38,6 +41,6 @@
 	bodcam.change_camnet(newnet)
 
 /datum/component/internal_cam/proc/update_cam()
-	bodcam.camnet.updatePortableCamera(bodcam)
+	bodcam.camnet.updatePortableCamera(bodcam, INTERNAL_CAMERA_BUFFER)
 
 
