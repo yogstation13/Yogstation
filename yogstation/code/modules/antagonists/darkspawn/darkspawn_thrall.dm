@@ -35,7 +35,6 @@
 	else
 		M.visible_message(span_big("[M] looks like their mind is their own again!"))
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
-		to_chat(owner, span_notice("As your mind is released from their grasp, you feel your strength returning."))
 	return ..()
 
 /datum/antagonist/thrall/apply_innate_effects(mob/living/mob_override)
@@ -47,6 +46,8 @@
 		team.add_thrall(current_mob.mind)
 
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
+	add_team_hud(current_mob)
+	
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(thrall_life))
 	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
 	current_mob.update_appearance(UPDATE_OVERLAYS)
@@ -142,10 +143,10 @@
 		Eyes filled with stars. \n\
 		You feel the vast consciousness slowly consume your own and the veil falls away. \n\
 		Serve the darkspawn above all else. Your former allegiances are now forfeit. Their goal is yours, and yours is theirs.</b>")
-	to_chat(owner, "<i>Use <b>:[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink. This only works across your current z-level.</i>")
+	to_chat(owner, "<i>Use <b>:[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink.</i>")
 	to_chat(owner, "<i>Ask for help from your masters or fellows if you're new to this role.</i>")
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
-	flash_color(owner, flash_color = "#21007F", flash_time = 10 SECONDS)
+	flash_color(owner, flash_color = COLOR_VELVET, flash_time = 10 SECONDS)
 
 /datum/antagonist/thrall/roundend_report()
 	return "[printplayer(owner)]"

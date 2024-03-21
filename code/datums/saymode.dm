@@ -156,11 +156,5 @@
 				var/link = FOLLOW_LINK(M, user)
 				to_chat(M, "[link] [msg]")
 			else if(is_darkspawn_or_thrall(M))
-				var/turf/receiver = get_turf(M)
-				var/turf/sender = get_turf(user)
-				if(receiver.z != sender.z)
-					if(prob(25))
-						to_chat(M, span_warning("Your mindlink trembles with words, but they are too far to make out..."))
-					continue
 				to_chat(M, msg)
 	return FALSE //yogs end

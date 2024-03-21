@@ -55,6 +55,7 @@
 	if(!current_mob)
 		return
 	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
+	add_team_hud(current_mob, /datum/antagonist/thrall)
 	add_team_hud(current_mob)
 	current_mob.grant_language(/datum/language/darkspawn)
 

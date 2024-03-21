@@ -167,10 +167,11 @@
 			log_combat(user, target, "surgically removed [H] from", addition="INTENT: [uppertext(user.a_intent)]")
 			H.leave_victim()
 			return FALSE
-		if(isthrall(target) && I.owner == target && istype(I, /obj/item/organ/shadowtumor))
-			var/obj/item/organ/shadowtumor/tumor = I
-			tumor.resist(target)
-		else if(I && I.owner == target)
+		if(I && I.owner == target)
+			if(istype(I, /obj/item/organ/shadowtumor))//Thralls resist deconversion
+				var/obj/item/organ/shadowtumor/tumor = I
+				if(tumor.resist(target))
+					return FALSE
 			display_results(user, target, span_notice("You successfully extract [I] from [target]'s [parse_zone(target_zone)]."),
 				"[user] successfully extracts [I] from [target]'s [parse_zone(target_zone)]!",
 				"[user] successfully extracts something from [target]'s [parse_zone(target_zone)]!")

@@ -37,9 +37,13 @@
 	. = ..()
 	finder.visible_message(span_danger("[finder] opens up [owner]'s skull, revealing a pulsating black mass, with red tendrils attaching it to [owner.p_their()] brain."))
 
-/obj/item/organ/shadowtumor/proc/resist(mob/living/carbon/M)//Thralls cannot be deconverted while awake
+/obj/item/organ/shadowtumor/proc/resist(mob/living/carbon/M)
 	if(QDELETED(src))
-		return
+		return FALSE
+	if(!(M.stat == CONSCIOUS))//Thralls cannot be deconverted while awake
+		return FALSE
+	if(!isthrall(M))//non thralls don't resist
+		return FALSE
 
 	playsound(M,'sound/effects/tendril_destroyed.ogg', 80, 1)
 	to_chat(M, span_velvet("<b><i>NOT LIKE THIS!</i></b>"))
@@ -62,3 +66,4 @@
 			S.Knockdown(8 SECONDS)
 			S.adjustBruteLoss(20)
 			playsound(S, 'sound/effects/bang.ogg', 50, 1)
+	return TRUE
