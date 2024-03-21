@@ -37,7 +37,7 @@
 	var/list/report = list()
 
 	if(GLOB.sacrament_done)
-		report += span_progenitor("The Darkspawn have ascended once again! The station has forever been lost to the veil.")
+		report += span_progenitor("The Darkspawn have ascended once again! The station has forever been lost beyond the veil.")
 	else
 		report += span_header("[name]:") //only have a regular header if it's a loss
 		if(check_darkspawn_death())
