@@ -349,6 +349,7 @@
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 1 //happens 5 times a second
 	var/was_running
+	var/list/traits = list(TRAIT_STUNIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_NODEATH)
 
 /datum/action/cooldown/spell/toggle/indomitable/Grant(mob/grant_to)
 	. = ..()
@@ -366,11 +367,7 @@
 	to_chat(owner, span_velvet("Zhaedo"))
 	owner.visible_message(span_warning("Shadows stitch [owner]'s legs to the ground!"), span_velvet("You begin using Psi to defend yourself from disruption."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
-	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, type)
-	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
-	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
-	ADD_TRAIT(owner, TRAIT_NOHARDCRIT, type)
-	ADD_TRAIT(owner, TRAIT_NODEATH, type)
+	owner.add_traits(traits, type)
 	owner.move_resist = INFINITY
 	was_running = (owner.m_intent == MOVE_INTENT_RUN)
 	if(was_running)
@@ -380,11 +377,7 @@
 	to_chat(owner, span_velvet("Phwo"))
 	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
-	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, type)
-	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
-	REMOVE_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
-	REMOVE_TRAIT(owner, TRAIT_NOHARDCRIT, type)
-	REMOVE_TRAIT(owner, TRAIT_NODEATH, type)
+	owner.remove_traits(traits, type)
 	owner.move_resist = initial(owner.move_resist)
 	if(was_running && owner.m_intent == MOVE_INTENT_WALK)
 		owner.toggle_move_intent()
