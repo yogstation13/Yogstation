@@ -156,7 +156,7 @@
 	desc = "They're cherries that are blue."
 	icon_state = "bluecherry"
 	filling_color = "#6495ED"
-	bitesize_mod = 2r
+	bitesize_mod = 2
 	foodtype = FRUIT
 	juice_results = list(/datum/reagent/consumable/bluecherryjelly = 0)
 	tastes = list("blue cherry" = 1)
