@@ -139,14 +139,18 @@
 	
 /datum/action/cooldown/spell/pointed/shadow_crash/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("Vorlax"))
-	owner.throw_at(cast_on, 4, 1, owner, FALSE)
-	if(isliving(owner))
-		var/mob/living/thing = owner
-		thing.SetImmobilized(0.4 SECONDS, TRUE, TRUE) //to prevent walking out of your charge
+	if(!isliving(owner))
+		return
+	var/mob/living/thing = owner
+	to_chat(owner, span_velvet("Vorl'ax!"))
 	charging = TRUE
-	addtimer(VARSET_CALLBACK(src, charging, FALSE), 1 SECONDS, TIMER_UNIQUE)
-	
+	thing.SetImmobilized(1 SECONDS, TRUE, TRUE) //to prevent walking out of your charge
+	thing.throw_at(cast_on, 4, 1, thing, FALSE, callback = CALLBACK(src, PROC_REF(end_dash), thing))
+
+/datum/action/cooldown/spell/pointed/shadow_crash/proc/end_dash(mob/living/H)
+	charging = FALSE
+	H.SetImmobilized(0, TRUE, TRUE) //remove the block on movement
+
 /datum/action/cooldown/spell/pointed/shadow_crash/proc/impact(atom/source, atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!charging)
 		return

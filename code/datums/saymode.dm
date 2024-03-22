@@ -155,6 +155,6 @@
 			if(M in GLOB.dead_mob_list)
 				var/link = FOLLOW_LINK(M, user)
 				to_chat(M, "[link] [msg]")
-			else if(is_darkspawn_or_thrall(M))
+			else if(is_darkspawn_or_thrall(M) || (ROLE_DARKSPAWN in M.faction))
 				to_chat(M, msg)
 	return FALSE //yogs end

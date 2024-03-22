@@ -215,6 +215,7 @@
 
 	if(!dude)
 		dude = new(get_turf(L))
+		RegisterSignal(dude, COMSIG_LIVING_DEATH, PROC_REF(rejoin))
 	dude.Copy_Parent(L, 100, health, damage)
 	dude.ckey = chosen_ghost.ckey
 	dude.name = L.name
@@ -222,3 +223,9 @@
 	if(isdarkspawn(L))
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(L)
 		darkspawn.block_psi(30 SECONDS, type)
+
+/datum/action/cooldown/spell/fray_self/proc/rejoin()
+	to_chat(owner, span_velvet("You feel your psyche form back into a singular entity."))
+	if(!QDELETED(dude))
+		qdel(dude)
+	dude = null

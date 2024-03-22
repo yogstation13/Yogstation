@@ -44,10 +44,21 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 			to_chat(owner, span_velvet("You do not have enough will to thrall [target]."))
 			return FALSE
 
+	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+		to_chat(owner, span_warning("[target] has foreign machinery that resists our thralling, we shall attempt to destroy it."))
+		target.visible_message(span_warning("[target] seems to resist an unseen force!"))
+		to_chat(target, span_velvet("<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \nA mind brushes against your own. You dream.\nOf a vast, empty Void in the deep of space.\n\
+		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \nEyes filled with stars.</b>\n[span_boldwarning("The creature's gaze swallows the universe into blackness.")]"))
+		if(!do_after(owner, 10 SECONDS, target))
+			to_chat(target, span_userdanger("It cannot be permitted to succeed."))
+			return FALSE
+		for(var/obj/item/implant/mindshield/L in target)
+			qdel(L)
+
 	to_chat(owner, span_velvet("Krx'lna tyhx graha..."))
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
-	if(!do_after(owner, 2 SECONDS, owner))
+	if(!do_after(owner, 2 SECONDS, target))
 		return FALSE
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isthrall(target))
@@ -230,6 +241,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	button_icon_state = "speedboost_veils"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
+	psi_cost = 50
 	cooldown_time = 1 MINUTES
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	/// If the buff also buffs all darkspawns

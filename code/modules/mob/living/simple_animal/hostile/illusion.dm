@@ -85,12 +85,13 @@
 	maxbodytemp = INFINITY
 
 	speed = -1
-	pass_flags = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER
+	pass_flags = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER | PASSGRILLE | PASSGLASS
 	ventcrawler = TRUE
 
 	attack_sound = 'sound/magic/voidblink.ogg'
 	deathsound = 'yogstation/sound/magic/devour_will_victim.ogg'
 	attacktext = "gores"
+	bubble_icon = BUBBLE_DARKSPAWN
 
 	lighting_cutoff_red = 12
 	lighting_cutoff_green = 0

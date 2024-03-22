@@ -1,6 +1,6 @@
 //the team itself
 /datum/team/darkspawn
-	name = "darkspawns"
+	name = "Darkspawns"
 	member_name = "darkspawn"
 	var/thrall_name = "thrall"
 	var/list/datum/mind/thralls = list() //not quite members (the darkspawns)
@@ -42,7 +42,7 @@
 		report += span_header("[name]:") //only have a regular header if it's a loss
 		if(check_darkspawn_death())
 			report += span_redtext("The Darkspawn have been killed by the crew!")
-		else if(SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
+		else if(EMERGENCY_ESCAPED_OR_ENDGAMED)
 			report += span_redtext("The crew escaped the station before the Darkspawn could complete the Sacrament!")
 		else //fallback in case the round ends weirdly
 			report += span_redtext("The Darkspawn have failed!")

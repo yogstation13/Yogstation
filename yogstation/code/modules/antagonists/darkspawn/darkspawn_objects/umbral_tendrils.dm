@@ -53,7 +53,7 @@
 /obj/item/umbral_tendrils/attack(mob/living/target, mob/living/user, twinned_attack = TRUE)
 	set waitfor = FALSE
 	..()
-	sleep(0.2 SECONDS)
+	sleep(0.3 SECONDS)
 	if(twin && twinned_attack && user.Adjacent(target))
 		twin.attack(target, user, FALSE)
 

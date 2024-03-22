@@ -181,7 +181,6 @@
 
 /datum/species/shadow/darkspawn/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.bubble_icon = initial(C.bubble_icon)
 	UnregisterSignal(C, COMSIG_MOB_CLIENT_PRE_MOVE)
 	C.remove_movespeed_modifier(type)
 

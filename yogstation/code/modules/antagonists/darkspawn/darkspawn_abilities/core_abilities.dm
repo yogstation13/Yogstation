@@ -59,7 +59,7 @@
 	if(!istype(target))
 		to_chat(caster, span_warning("[target]'s mind is too pitiful to be of any use."))
 		return
-	if(!target.health || target.stat)
+	if(target.stat == DEAD)
 		to_chat(caster, span_warning("[target] is too weak to drain."))
 		return
 	if(target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
@@ -334,3 +334,31 @@
 	var/obj/thing = new object_type(get_turf(cast_on))
 	to_chat(owner, span_velvet("...[language_final]"))
 	owner.visible_message(span_warning("[owner] knits shadows together into [thing]!"), span_velvet("You create [thing]"))
+
+//////////////////////////////////////////////////////////////////////////
+//----------Reform the darkspawn body after death from mmi or borg------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/reform_body
+	name = "Reform body"
+	desc = "You may have lost your body, but it matters not."
+	panel = "Darkspawn"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "sacrament(old)"
+	antimagic_flags = NONE
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/reform_body/can_cast_spell(feedback)
+	if(!(issilicon(owner) || isbrain(owner)))
+		return FALSE
+	return ..()
+	
+/datum/action/cooldown/spell/reform_body/cast(atom/cast_on)
+	. = ..()
+	if(isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/darkmind = isdarkspawn(owner)
+		if(darkmind)//sanity check
+			darkmind.reform_body()
+

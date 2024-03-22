@@ -20,7 +20,7 @@
 	COOLDOWN_DECLARE(psi_cooldown)//When this finishes it's cooldown, regenerate Psi and restart
 	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
 
-	var/willpower = 5 //Lucidity is used to buy abilities and is gained by using Devour Will
+	var/willpower = 6 //Lucidity is used to buy abilities and is gained by using Devour Will
 
 	//Default light damage variables (modified by some abilities)
 	var/dark_healing = 5
@@ -74,8 +74,10 @@
 
 	//divulge
 	if(darkspawn_state == DARKSPAWN_MUNDANE)
-		var/datum/action/cooldown/spell/divulge/action = new(owner)
-		action.Grant(current_mob)
+		var/datum/action/cooldown/spell/divulge/action = locate() in current_mob.actions
+		if(!action)
+			action = new(owner)
+			action.Grant(current_mob)
 		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 20 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
@@ -343,6 +345,12 @@
 		regenerate_psi()
 	update_psi_hud()
 
+	if(owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
+		var/datum/action/cooldown/spell/reform_body/recreance = locate() in owner.current.actions
+		if(!recreance)
+			recreance = new(owner)
+			recreance.Grant(owner.current)
+
 /datum/antagonist/darkspawn/proc/has_psi(amt)
 	return psi >= amt
 
@@ -433,7 +441,7 @@
 	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [user.real_name].</b>")
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
-		if(is_darkspawn_or_thrall(M))
+		if(is_darkspawn_or_thrall(M) || (ROLE_DARKSPAWN in M.faction))
 			to_chat(M, processed_message)
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T
@@ -477,7 +485,7 @@
 	H.do_jitter_animation(1000)
 	var/processed_message = span_progenitor("\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.")
 	for(var/mob/M in GLOB.player_list)
-		if(M.stat != DEAD && isdarkspawn(M))
+		if(M.stat != DEAD && (is_darkspawn_or_thrall(M) || (ROLE_DARKSPAWN in M.faction)))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, H)
 	addtimer(CALLBACK(src, PROC_REF(divulge), TRUE), 2.5 SECONDS)
@@ -593,3 +601,42 @@
 	icon_state = "shadowlands"
 	layer = CURSE_LAYER
 	plane = FULLSCREEN_PLANE
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Reform body from brain------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/darkspawn/proc/reform_body()
+	if(owner.current && !(isbrain(owner.current) || issilicon(owner.current)))
+		return
+
+	var/mob/living/old_body = owner.current
+	var/mob/living/carbon/human/returner = new(get_turf(old_body))
+
+	if(darkspawn_state >= DARKSPAWN_DIVULGED)//set them back to being a darkspawn
+		returner.set_species(/datum/species/shadow/darkspawn)
+		ADD_TRAIT(returner, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
+
+	returner.name = old_body.name
+	returner.real_name = old_body.real_name
+	owner.transfer_to(returner)
+	returner.update_appearance(UPDATE_OVERLAYS)
+
+	for(var/thing in old_body)
+		qdel(thing)
+	qdel(old_body)
+	playsound(returner, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
+	playsound(returner, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, 0)
+	
+	var/processed_message = span_velvet("<b>\[Mindlink\] [returner] has reformed their body.</b>")
+	for(var/T in GLOB.alive_mob_list)
+		var/mob/M = T
+		if(is_darkspawn_or_thrall(M) || (ROLE_DARKSPAWN in M.faction))
+			to_chat(M, processed_message)
+	for(var/T in GLOB.dead_mob_list)
+		var/mob/M = T
+		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(returner)]'>(F)</a> [processed_message]")
+
+	for(var/datum/action/cooldown/spell/spells in returner.actions) //remove the ability that triggers this
+		if(istype(spells, /datum/action/cooldown/spell/reform_body))
+			spells.Remove(returner)
+			qdel(spells)
