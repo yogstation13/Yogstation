@@ -100,6 +100,14 @@
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	faction = list(ROLE_DARKSPAWN)
 	
+/mob/living/simple_animal/hostile/illusion/darkspawn/Life(seconds_per_tick, times_fired)
+	. = ..()
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		var/light_amount = T.get_lumcount()
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
+			adjustHealth(-2)
+
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche //sentient version
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche/Copy_Parent(mob/living/original, life, hp, damage, replicate)
