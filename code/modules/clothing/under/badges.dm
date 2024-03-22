@@ -15,7 +15,7 @@
 /obj/item/badge/proc/try_attach(obj/item/clothing/suit/suit_target, mob/user)
 	if (suit_target.attached_badge)
 		to_chat(user, span_warning("There's already a badge on \the [suit_target]."))
-		return FALSE
+		return FALSEs
 	suit_target.attached_badge = src
 	forceMove(suit_target)
 	layer = FLOAT_LAYER
