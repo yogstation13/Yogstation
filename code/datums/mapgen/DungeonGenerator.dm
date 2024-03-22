@@ -94,7 +94,6 @@
 /datum/map_generator/dungeon_generator/combine_local_areas()
 	for(var/area/procedurally_generated/current_area in GLOB.areas)
 		if(istype(src, current_area.map_generator) && current_area.z == area_ref.z)
-			//log_world("[current_area] added to [src] started by [area_ref] at z-level [area_ref.z]")
 			areas_included |= current_area
 			current_area.map_generator = src
 
@@ -102,7 +101,6 @@
 	var/start_time = REALTIMEOFDAY
 	
 	for(var/area/procedurally_generated/pg in areas_included)
-		//log_world("adding [pg.contents.len] turfs from [pg] to [src]")
 		pg.shared_generator_initialized = TRUE
 		for(var/turf/t in pg.contents)
 			working_turfs |= t	
@@ -221,11 +219,8 @@
 		var/room_width = text2num(room["width"])
 		var/room_height = text2num(room["height"]) 
 		
-		//var/room_type = text2num(room["room_type"])
-		
 		//We take the center of the room and if it's outside the generated area, we don't add it to our list
 		//var/turf/center = locate(ROUND_UP(x2-room_width/2), ROUND_UP(y2-room_height/2), z_level)
-		
 		
 		var/datum/dungeon_room/potential_room = new room_datum_path(
 			_id = room_id, 
