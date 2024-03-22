@@ -33,6 +33,12 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	)
 	return SS_INIT_SUCCESS
 
+//basically a lazily loaded list of quirks, never access .quirks directly.
+/datum/controller/subsystem/processing/quirks/proc/get_quirks()
+	if(!quirks.len)
+		SetupQuirks()
+	return quirks
+
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 	// Sort by Positive, Negative, Neutral; and then by name
 	var/list/quirk_list = sortList(subtypesof(/datum/quirk), /proc/cmp_quirk_asc)
@@ -86,8 +92,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
 	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
+	var/list/all_quirks = get_quirks() //forces a load of the quirks if they aren't setup already
+
 	for (var/quirk_name in quirks)
-		var/datum/quirk/quirk = SSquirks.quirks[quirk_name]
+		var/datum/quirk/quirk = all_quirks[quirk_name]
 		if (isnull(quirk))
 			continue
 
