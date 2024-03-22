@@ -141,102 +141,6 @@
 	team = new_team
 
 ////////////////////////////////////////////////////////////////////////////////////
-//------------------------------Admin panel stuff---------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/darkspawn/get_admin_commands()
-	. = ..()
-	if(darkspawn_state == DARKSPAWN_MUNDANE)
-		.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
-	.["Set Lucidity"] = CALLBACK(src, PROC_REF(set_lucidity))
-	.["Set Willpower"] = CALLBACK(src, PROC_REF(set_shop))
-	.["Set Psi Values"] = CALLBACK(src, PROC_REF(set_psi))
-	.["Set Max Thralls"] = CALLBACK(src, PROC_REF(set_max_thralls))
-	if(picked_class)
-		.["Refund Ability"] = CALLBACK(src, PROC_REF(refund_ability))
-	.["Set Class"] = CALLBACK(src, PROC_REF(set_class))
-
-/datum/antagonist/darkspawn/proc/set_lucidity(mob/admin)
-	var/lucid = input(admin, "How much lucidity should all darkspawns have?") as null|num
-	if(lucid && team)
-		team.lucidity = lucid
-
-/datum/antagonist/darkspawn/proc/set_shop(mob/admin)
-	var/will = input(admin, "How much willpower should [owner] have?") as null|num
-	if(will)
-		willpower = will
-
-/datum/antagonist/darkspawn/proc/set_psi(mob/admin)
-	var/max = input(admin, "What should the psi cap be?") as null|num
-	if(max)
-		psi_cap = max
-	var/regen = input(admin, "How much psi should be regenerated per second?") as null|num
-	if(regen)
-		psi_per_second = regen
-	var/delay = input(admin, "What should the delay to psi regeneration be?") as null|num
-	if(delay)
-		psi_regen_delay = delay
-
-/datum/antagonist/darkspawn/proc/set_max_thralls(mob/admin)
-	var/thrall = input(admin, "How many thralls should the darkspawn team be able to get?") as null|num
-	if(thrall && team)
-		team.max_thralls = thrall
-
-/datum/antagonist/darkspawn/proc/refund_ability(mob/admin)
-	if(!picked_class)
-		return
-
-	var/list/abilities = list()
-	for(var/datum/psi_web/ability as anything in picked_class.learned_abilities)
-		if(initial(ability.willpower_cost)) //if there's even a cost to refund
-			abilities |= ability
-		
-	if(!LAZYLEN(abilities))
-		to_chat(admin, span_warning("There are no abilities to refund"))
-		return
-
-	var/datum/psi_web/picked_ability = tgui_input_list(admin, "Select which ability to refund.", "Select Ability", abilities)
-	if(!picked_ability || !istype(picked_ability, /datum/psi_web))
-		return
-	
-	if(QDELETED(src) || QDELETED(owner.current) || QDELETED(picked_class))
-		return
-
-	picked_class.lose_power(picked_ability, TRUE)
-
-/datum/antagonist/darkspawn/proc/set_class(mob/admin)
-	var/list/classes = list()
-	for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
-		if(initial(class.choosable))
-			classes |= class
-	classes |= "vvv Not regularly selectible vvv"
-	classes |= subtypesof(/datum/component/darkspawn_class)
-		
-	var/chosen = tgui_input_list(admin, "Select which class to force on the target.", "Select Class", classes)
-	if(!chosen || !ispath(chosen, /datum/component/darkspawn_class))
-		return
-	
-	if(QDELETED(src) || QDELETED(owner.current))
-		return
-
-	picked_class = owner.AddComponent(chosen)
-	if(darkspawn_state >= DARKSPAWN_DIVULGED)
-		owner.assigned_role = picked_class.name //they stop being whatever job they were the moment they divulge
-
-/datum/antagonist/darkspawn/antag_panel_data()
-	if(team)
-		. += "<b>Lucidity:</b> [team.lucidity ? team.lucidity : "0"] / [team.required_succs ? team.required_succs : "0"]<br>"
-	. += "<b>Willpower:</b> [willpower ? willpower : "0"]<br>"
-	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? "[psi_regen_delay/10] seconds" : "no delay"]<br>"
-	if(team)
-		. += "<b>Max Thralls:</b> [team.max_thralls ? team.max_thralls : "0"]<br>"
-
-	var/datum/component/darkspawn_class/class = owner.GetComponent(/datum/component/darkspawn_class)
-	if(class && istype(class) && class.learned_abilities)
-		. += "<b>Upgrades:</b><br>"
-		for(var/datum/psi_web/ability as anything in class.learned_abilities)
-			. += "[ability.name]<br>"
-
-////////////////////////////////////////////////////////////////////////////////////
 //----------------------------UI and Psi web stuff--------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/ui_data(mob/user)
@@ -449,17 +353,9 @@
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
 
 	darkspawn_state = DARKSPAWN_DIVULGED
-	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 25 MINUTES)
 	to_chat(user, span_velvet("<b>Your mind has expanded. Avoid the light. Keep to the shadows. Your time will come.</b>"))
 	to_chat(user, span_velvet("<b>Access to the Psi Web has been unlocked, spend your [willpower] willpower to purchase abilities and upgrades.</b>"))
 	return TRUE
-
-//20 minutes after divulge, enable validhunters and powergamers to do their thing (station is probably fucked by that point anyways)
-/datum/antagonist/darkspawn/proc/enable_validhunt()
-	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_GAMMA)
-		return
-	priority_announce("Dangerous fluctuations in the veil have been detected aboard the station. Be on high alert for unusual beings commanding unnatural powers.", "Central Command Higher Dimensional Affairs")
-	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Forced Divulge------------------------------------//
@@ -641,3 +537,99 @@
 		if(istype(spells, /datum/action/cooldown/spell/reform_body))
 			spells.Remove(returner)
 			qdel(spells)
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Admin panel stuff---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/darkspawn/get_admin_commands()
+	. = ..()
+	if(darkspawn_state == DARKSPAWN_MUNDANE)
+		.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
+	.["Set Lucidity"] = CALLBACK(src, PROC_REF(set_lucidity))
+	.["Set Willpower"] = CALLBACK(src, PROC_REF(set_shop))
+	.["Set Psi Values"] = CALLBACK(src, PROC_REF(set_psi))
+	.["Set Max Thralls"] = CALLBACK(src, PROC_REF(set_max_thralls))
+	if(picked_class)
+		.["Refund Ability"] = CALLBACK(src, PROC_REF(refund_ability))
+	.["Set Class"] = CALLBACK(src, PROC_REF(set_class))
+
+/datum/antagonist/darkspawn/proc/set_lucidity(mob/admin)
+	var/lucid = input(admin, "How much lucidity should all darkspawns have?") as null|num
+	if(lucid && team)
+		team.lucidity = lucid
+
+/datum/antagonist/darkspawn/proc/set_shop(mob/admin)
+	var/will = input(admin, "How much willpower should [owner] have?") as null|num
+	if(will)
+		willpower = will
+
+/datum/antagonist/darkspawn/proc/set_psi(mob/admin)
+	var/max = input(admin, "What should the psi cap be?") as null|num
+	if(max)
+		psi_cap = max
+	var/regen = input(admin, "How much psi should be regenerated per second?") as null|num
+	if(regen)
+		psi_per_second = regen
+	var/delay = input(admin, "What should the delay to psi regeneration be?") as null|num
+	if(delay)
+		psi_regen_delay = delay
+
+/datum/antagonist/darkspawn/proc/set_max_thralls(mob/admin)
+	var/thrall = input(admin, "How many thralls should the darkspawn team be able to get?") as null|num
+	if(thrall && team)
+		team.max_thralls = thrall
+
+/datum/antagonist/darkspawn/proc/refund_ability(mob/admin)
+	if(!picked_class)
+		return
+
+	var/list/abilities = list()
+	for(var/datum/psi_web/ability as anything in picked_class.learned_abilities)
+		if(initial(ability.willpower_cost)) //if there's even a cost to refund
+			abilities |= ability
+		
+	if(!LAZYLEN(abilities))
+		to_chat(admin, span_warning("There are no abilities to refund"))
+		return
+
+	var/datum/psi_web/picked_ability = tgui_input_list(admin, "Select which ability to refund.", "Select Ability", abilities)
+	if(!picked_ability || !istype(picked_ability, /datum/psi_web))
+		return
+	
+	if(QDELETED(src) || QDELETED(owner.current) || QDELETED(picked_class))
+		return
+
+	picked_class.lose_power(picked_ability, TRUE)
+
+/datum/antagonist/darkspawn/proc/set_class(mob/admin)
+	var/list/classes = list()
+	for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
+		if(initial(class.choosable))
+			classes |= class
+	classes |= "vvv Not regularly selectible vvv"
+	classes |= subtypesof(/datum/component/darkspawn_class)
+		
+	var/chosen = tgui_input_list(admin, "Select which class to force on the target.", "Select Class", classes)
+	if(!chosen || !ispath(chosen, /datum/component/darkspawn_class))
+		return
+	
+	if(QDELETED(src) || QDELETED(owner.current))
+		return
+
+	picked_class = owner.AddComponent(chosen)
+	if(darkspawn_state >= DARKSPAWN_DIVULGED)
+		owner.assigned_role = picked_class.name //they stop being whatever job they were the moment they divulge
+
+/datum/antagonist/darkspawn/antag_panel_data()
+	if(team)
+		. += "<b>Lucidity:</b> [team.lucidity ? team.lucidity : "0"] / [team.required_succs ? team.required_succs : "0"]<br>"
+	. += "<b>Willpower:</b> [willpower ? willpower : "0"]<br>"
+	. += "<b>Psi Cap:</b> [psi_cap]. <b>Psi per second:</b> [psi_per_second]. <b>Psi regen delay:</b> [psi_regen_delay ? "[psi_regen_delay/10] seconds" : "no delay"]<br>"
+	if(team)
+		. += "<b>Max Thralls:</b> [team.max_thralls ? team.max_thralls : "0"]<br>"
+
+	var/datum/component/darkspawn_class/class = owner.GetComponent(/datum/component/darkspawn_class)
+	if(class && istype(class) && class.learned_abilities)
+		. += "<b>Upgrades:</b><br>"
+		for(var/datum/psi_web/ability as anything in class.learned_abilities)
+			. += "[ability.name]<br>"

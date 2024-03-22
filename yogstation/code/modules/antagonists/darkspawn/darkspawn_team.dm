@@ -19,6 +19,7 @@
 	if(SSticker?.mode)
 		required_succs = clamp(round(SSticker.mode.num_players() / 3), 5, 20) //a third the players, 5 at minimum, scaling up to 20 at max
 	update_objectives()
+	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 60 MINUTES)
 
 /datum/team/darkspawn/add_member(datum/mind/new_member)
 	. = ..()
@@ -112,3 +113,12 @@
 			master.current.revive(TRUE)
 			if(dead)
 				to_chat(master.current, "Returning to the shadowlands has revitalized your form")
+
+//60 minutes after the round starts, enable validhunters and powergamers to do their thing (station is probably fucked by that point anyways)
+/datum/team/darkspawn/proc/enable_validhunt()
+	if(check_darkspawn_death())//if no darkspawns are alive, don't bother announcing
+		return
+	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_GAMMA)//if for some reason, it's already gamma, don't bother announcing
+		return
+	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
+	priority_announce("Dangerous fluctuations in the veil have been detected aboard the station. Be on high alert for unusual beings commanding unnatural powers.", "Central Command Higher Dimensional Affairs")
