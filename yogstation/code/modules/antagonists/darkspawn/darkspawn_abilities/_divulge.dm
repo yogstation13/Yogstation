@@ -42,7 +42,7 @@
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return
 
-	if(alert(user, "You are ready to divulge. Are you sure?", name, "Yes", "No") == "No")
+	if(alert(user, "You are ready to divulge. This will leave you vulnerable and take a long time, are you sure?", name, "Yes", "No") == "No")
 		return
 	in_use = TRUE
 
