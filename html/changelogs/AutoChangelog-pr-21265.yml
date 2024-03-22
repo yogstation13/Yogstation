@@ -1,0 +1,6 @@
+author: "Cartlord"
+delete-after: true 
+changes: 
+  - rscadd: "The Service Hall now has its own access type, which Heads of personnel can add or remove as they see fit."
+  - rscadd: "Artists now have Service Hall access."
+  - mapping: "Hydroponics on IceMeta can no longer be accessed by Chefs without skeleton crew being active."
