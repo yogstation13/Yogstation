@@ -345,7 +345,8 @@
 		regenerate_psi()
 	update_psi_hud()
 
-	if(owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
+	//low probability because i want it to be super rare and a "wait what the FUCK they can do that!?" type moment
+	if(prob(1) && owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
 		var/datum/action/cooldown/spell/reform_body/recreance = locate() in owner.current.actions
 		if(!recreance)
 			recreance = new(owner)
