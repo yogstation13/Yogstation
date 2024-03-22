@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed water cookies tasting like /datum/reagent/water and metallic cookies tasting like /datum/reagent/copper"
