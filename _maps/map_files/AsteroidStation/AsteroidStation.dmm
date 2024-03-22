@@ -26686,8 +26686,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock{
 	name = "Service Hall";
-	req_access_txt = "35";
-	req_one_access_txt = "0"
+	req_access_txt = "35;79"
 	},
 /turf/open/floor/wood,
 /area/hallway/secondary/service)
@@ -68523,7 +68522,7 @@
 	},
 /obj/machinery/door/airlock{
 	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38;36"
+	req_access_txt = "79"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
