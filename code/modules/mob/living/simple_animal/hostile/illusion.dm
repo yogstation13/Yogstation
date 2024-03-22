@@ -77,6 +77,7 @@
 
 //////////Darkspawn specific illusions//////////////
 /mob/living/simple_animal/hostile/illusion/darkspawn //simulacrum version
+	desc = "They have a weird shimmering to them."
 	maxHealth = 100
 	health = 100
 	pressure_resistance = INFINITY
