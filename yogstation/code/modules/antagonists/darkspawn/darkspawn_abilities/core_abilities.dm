@@ -136,7 +136,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "divulge(old)"
+	button_icon_state = "restrain_body"
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
