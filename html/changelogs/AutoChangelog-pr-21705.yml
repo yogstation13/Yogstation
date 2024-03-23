@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "Cargo shuttle call displays the correct time"

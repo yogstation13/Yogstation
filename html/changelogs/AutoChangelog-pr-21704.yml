@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed PDA screens being one pixel more to the left than they should be"
