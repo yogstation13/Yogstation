@@ -183,7 +183,7 @@
 	INVOKE_ASYNC(src, PROC_REF(do_proccall), called_on, to_invoke, params)
 
 /obj/item/circuit_component/proccall/proc/do_proccall(called_on, to_invoke, params)
-	var/result = HandleUserlessProcCall(parent.get_creator(), called_on, to_invoke, params)
+	var/result = WrapAdminProcCall(parent.get_creator(), called_on, to_invoke, params)
 	output_value.set_output(result)
 
 #undef COMP_PROC_GLOBAL

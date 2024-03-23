@@ -33,7 +33,7 @@
 		RegisterSignal(shell, COMSIG_MOVABLE_HEAR, PROC_REF(on_shell_hear))
 
 /obj/item/circuit_component/hear/unregister_shell(atom/movable/shell)
-	REMOVE_TRAIT(shell, TRAIT_HEARING_SENSITIVE, CIRCUIT_HEAR_TRAIT)
+	REMOVE_TRAIT(shell, TRAIT_GOOD_HEARING, CIRCUIT_HEAR_TRAIT)
 
 /obj/item/circuit_component/hear/proc/on_shell_hear(datum/source, list/arguments)
 	SIGNAL_HANDLER

@@ -95,10 +95,10 @@
 			loggable_strings += "<B>:</B> The last fingerprints on the containing shell was [parent_shell.fingerprintslast]."
 
 		var/loggable_string = loggable_strings.Join(" ")
-		add_to_signaler_investigate_log(loggable_string)
+		GLOB.lastsignalers.Add(loggable_string)
 		TIMER_COOLDOWN_START(parent, COOLDOWN_SIGNALLER_SEND, signal_cooldown_time)
 
-		var/datum/signal/signal = new(list("code" = signal_code, "key" = parent?.owner_id), logging_data = loggable_string)
+		var/datum/signal/signal = new(list("code" = signal_code, "key" = parent?.owner_id), data = loggable_string)
 		radio_connection.post_signal(src, signal)
 
 /obj/item/circuit_component/radio/receive_signal(datum/signal/signal)

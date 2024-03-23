@@ -62,7 +62,7 @@
 		"Megaphone" = 'sound/items/megaphone.ogg',
 		"Warpwhistle" = 'sound/magic/warpwhistle.ogg',
 		"Hiss" = 'sound/voice/hiss1.ogg',
-		"Lizard" = 'sound/voice/lizard/lizard_scream_1.ogg',
+		"Lizard" = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg', //we really need to kill off yogstation/yogstation
 		"Flashbang" = 'sound/weapons/flashbang.ogg',
 		"Flash" = 'sound/weapons/flash.ogg',
 		"Whip" = 'sound/weapons/whip.ogg',
