@@ -193,8 +193,8 @@
 		owner.remove_movespeed_modifier(type)
 
 /datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
-	if(H.mind?.has_antag_datum(ROLE_DARKSPAWN))
-		var/datum/antagonist/darkspawn/antag = H.mind.has_antag_datum(ROLE_DARKSPAWN)
+	if(isdarkspawn(H))
+		var/datum/antagonist/darkspawn/antag = isdarkspawn(H)
 		dark_healing = antag.dark_healing
 		light_burning = antag.light_burning
 
