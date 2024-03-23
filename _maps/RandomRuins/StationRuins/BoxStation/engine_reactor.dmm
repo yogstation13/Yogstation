@@ -95,7 +95,7 @@
 	},
 /obj/machinery/door/airlock/engineering{
 	name = "AI Satellite Access";
-	req_one_access_txt = "10;17;32"
+	req_access_txt = "10"
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 9

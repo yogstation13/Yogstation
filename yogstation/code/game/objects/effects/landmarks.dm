@@ -151,7 +151,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/meta/engine
-	template_names = list("Meta SM" = 25, "Meta Nuclear Reactor" = 45, "Meta TEG" = 25) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
+	template_names = list("Meta SM" = 45, "Meta Nuclear Reactor" = 30, "Meta TEG" = 25) // tesla is loud as fuck and singulo doesn't make sense, so SM/reactor only
 
 /obj/effect/landmark/stationroom/meta/engine/choose()
 	. = ..()

@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 #define SFX_HYPERTORUS_MELTING "hypertorus_melting"
 #define SFX_IM_HERE "im_here"
 #define SFX_LAW "law"
-#define SFX_PAGE_TURN "page_turn"
+#define SFX_PAGE_TURN "pageturn"
 #define SFX_PUNCH "punch"
 #define SFX_REVOLVER_SPIN "revolver_spin"
 #define SFX_RICOCHET "ricochet"
