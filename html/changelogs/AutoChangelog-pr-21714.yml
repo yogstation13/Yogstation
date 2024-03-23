@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "quirks should finally stop resetting for real, along with your jobs since your character is loaded properly."
