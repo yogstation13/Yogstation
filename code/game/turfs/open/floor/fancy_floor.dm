@@ -227,7 +227,8 @@
 /turf/open/floor/bamboo
 	desc = "A bamboo mat with a decorative trim."
 	icon = 'icons/turf/floors/bamboo_mat.dmi'
-	icon_state = "bamboo"
+	icon_state = "mat-255"
+	base_icon_state = "mat"
 	floor_tile = /obj/item/stack/tile/bamboo
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_BAMBOO_FLOOR
