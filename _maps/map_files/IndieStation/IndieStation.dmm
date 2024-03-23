@@ -47408,9 +47408,6 @@
 /area/crew_quarters/dorms)
 "nHr" = (
 /obj/structure/flora/ausbushes/leafybush,
-/mob/living/carbon/monkey{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grass,
 /area/medical/genetics)
