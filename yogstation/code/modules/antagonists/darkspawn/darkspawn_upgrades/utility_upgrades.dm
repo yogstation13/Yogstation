@@ -139,7 +139,7 @@
 	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost."
 	lore_description = ""
 	icon_state = "elucidate"
-	willpower_cost = 3
+	willpower_cost = 2
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/elucidate)

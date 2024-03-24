@@ -280,7 +280,7 @@
 			if(!revive_notice)
 				to_chat(deadguy, span_progenitor("Your body lurches as it refuses to be stopped by death."))
 				revive_notice = TRUE
-			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN))
+			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
 			if(deadguy.health >= deadguy.maxHealth)
 				deadguy.revive(TRUE)
 				deadguy.visible_message(span_progenitor("[deadguy]'s sigils flare brightly as they are once again in the realm of the living!"), span_progenitor("You rise once more!"))

@@ -264,12 +264,12 @@
 		if(prob(25))
 			owner.balloon_alert(owner, "...thum...")
 		if(healing)
-			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
 		else
 			channeled.apply_damage(damage_amount, BURN)
 			if(isliving(owner))
 				var/mob/living/healed = owner
-				healed.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+				healed.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /datum/action/cooldown/spell/pointed/extract/Trigger(trigger_flags, atom/target)
@@ -461,7 +461,7 @@
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
 		if(is_darkspawn_or_thrall(victim))
-			victim.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+			victim.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
 			victim.emote("scream")
