@@ -301,10 +301,10 @@
 /obj/effect/anomaly/pyro/anomalyEffect(delta_time)
 	..()
 	var/turf/center = get_turf(src)
-	center.IgniteTurf(delta_time * fire_power)
+	center.ignite_turf(delta_time * fire_power)
 	for(var/turf/open/T in center.GetAtmosAdjacentTurfs())
 		if(prob(5 * delta_time))
-			T.IgniteTurf(delta_time)
+			T.ignite_turf(delta_time)
 
 /obj/effect/anomaly/pyro/detonate()
 	INVOKE_ASYNC(src, PROC_REF(makepyroslime))
@@ -314,7 +314,7 @@
 	for(var/turf/open/T in spiral_range_turfs(5, center))
 		if(prob(get_dist(center, T) * 15))
 			continue
-		T.IgniteTurf(fire_power * 10) //Make it hot and burny for the new slime
+		T.ignite_turf(fire_power * 10) //Make it hot and burny for the new slime
 	var/new_colour = pick("red", "orange")
 	var/mob/living/simple_animal/slime/S = new(center, new_colour)
 	S.rabid = TRUE

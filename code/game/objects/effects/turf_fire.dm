@@ -162,7 +162,7 @@
 	var/list/turfs_to_spread = open_turf.atmos_adjacent_turfs
 	for(var/turf/open/T in turfs_to_spread)
 		if(prob(T.flammability * fire_power * TURF_FIRE_SPREAD_RATE))
-			T.IgniteTurf(fire_power * TURF_FIRE_SPREAD_RATE)
+			T.ignite_turf(fire_power * TURF_FIRE_SPREAD_RATE)
 	if(magical)
 		if(prob(fire_power))
 			open_turf.burn_tile()

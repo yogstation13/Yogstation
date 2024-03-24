@@ -297,17 +297,7 @@
 			foam.lifetime = initial(foam.lifetime) //reduce object churn a little bit when using smoke by keeping existing foam alive a bit longer
 
 	// If there's a hotspot or turf fire, get rid of them and make the air colder
-	var/obj/effect/hotspot/hotspot = exposed_turf.active_hotspot
-	var/obj/effect/abstract/turf_fire/turf_fire = exposed_turf.turf_fire
-	if((hotspot || turf_fire) && !isspaceturf(exposed_turf) && exposed_turf.air)
-		var/datum/gas_mixture/air = exposed_turf.air
-		if(air.return_temperature() > T20C)
-			air.set_temperature(max(air.return_temperature()/2, T20C))
-		air.react(src)
-		if(hotspot)
-			qdel(hotspot)
-		if(turf_fire)
-			qdel(turf_fire)
+	exposed_turf.extinguish_turf()
 
 /datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)
 	O.extinguish()

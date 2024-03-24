@@ -237,6 +237,17 @@
 		affecting_turf = T
 		affecting_turf.flammability = -10 // set the turf to be non-flammable while the foam is covering it
 	//Remove_element(/datum/element/atmos_sensitive)
+	var/static/list/loc_connections = list(
+		COMSIG_TURF_HOTSPOT_EXPOSE = PROC_REF(on_hotspot_expose),
+		COMSIG_TURF_IGNITED = PROC_REF(on_turf_ignite),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/effect/particle_effect/fluid/foam/firefighting/proc/on_hotspot_expose()
+	return SUPPRESS_FIRE
+
+/obj/effect/particle_effect/fluid/foam/firefighting/proc/on_turf_ignite()
+	return SUPPRESS_FIRE
 
 /obj/effect/particle_effect/fluid/foam/firefighting/Destroy()
 	if(affecting_turf && !QDELETED(affecting_turf))
@@ -244,21 +255,11 @@
 	return ..()
 
 /obj/effect/particle_effect/fluid/foam/firefighting/process()
-	..()
+	. = ..()
 
 	var/turf/open/location = loc
 	if(!istype(location))
 		return
-
-	var/obj/effect/hotspot/hotspot = location.active_hotspot
-	var/obj/effect/abstract/turf_fire/turf_fire = location.turf_fire
-	if(!((hotspot||turf_fire) && location.air))
-		return
-
-	if(hotspot)
-		QDEL_NULL(hotspot)
-	if(turf_fire)
-		QDEL_NULL(turf_fire)
 
 	var/datum/gas_mixture/air = location.air
 	var/scrub_amt = min(30, air.get_moles(GAS_PLASMA)) //Absorb some plasma
