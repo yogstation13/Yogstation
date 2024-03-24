@@ -53,7 +53,7 @@
 /datum/psi_web/cleaving_tendrils
 	name = "Cleaving Sigils"
 	desc = "Unlocking these sigils causes tendrils to cleave through enemies."
-	lore_description = "The Akvryt sigils, representing duality, are etched onto the arms."
+	lore_description = "The Akvryt sigils, representing pierce, are etched onto the arms."
 	icon_state = "duality"
 	willpower_cost = 2
 	shadow_flags = DARKSPAWN_FIGHTER
