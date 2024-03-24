@@ -67,18 +67,21 @@
 		qdel(action)
 
 /datum/action/cooldown/spell/snap
+	name = "The snap"
+	desc = "Remove half of all life in the universe."
 	button_icon_state = "touchofdeath"
 	spell_requirements = NONE
 	cooldown_time = 1 MINUTES
-	invocation = "I am inevitable."
-	invocation_type = INVOCATION_SHOUT
 
 /datum/action/cooldown/spell/snap/cast(atom/cast_on)
 	. = ..()
+	if(isliving(cast_on))
+		var/mob/living/thanos = cast_on
+		thanos.say("I AM INEVITABLE.", forced = "thanos snap")
 	sound_to_playing_players('sound/magic/clockwork/narsie_attack.ogg')
-	var/list/victims = shuffle_inplace(GLOB.mob_living_list.Copy()) //make a copy list so it doesn't fuck with 
-	var/number_of_victims = round(LAZYLEN(victims)/2)
-	for(var/mob/living/snapped as anything in victims)
+	shuffle_inplace(GLOB.mob_living_list)
+	var/number_of_victims = round(LAZYLEN(GLOB.mob_living_list)/2)
+	for(var/mob/living/snapped as anything in GLOB.mob_living_list)
 		addtimer(CALLBACK(snapped, TYPE_PROC_REF(/mob/living, dust), TRUE), rand(1,100)) //dust randomly, and with a delay (give the fear that you might be next)
 
 		if(number_of_victims <= 0)

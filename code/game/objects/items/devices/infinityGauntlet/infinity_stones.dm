@@ -11,7 +11,7 @@
 	if(!user.transferItemToLoc(src, gauntlets))
 		return FALSE
 
-	to_chat(user, span_narsie("ligma balls"))
+	to_chat(user, span_notice("You slot [name] into [gauntlets]."))
 	gauntlets.abilities |= ability_type
 	gauntlets.update_abilities(user)
 		
