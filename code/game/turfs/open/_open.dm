@@ -365,10 +365,9 @@
 
 /turf/open/floor/grass/fairy/proc/on_light_eater(obj/machinery/light/source, datum/light_eater)
 	SIGNAL_HANDLER
-	. = COMPONENT_BLOCK_LIGHT_EATER
 	visible_message("Dark energies lash out and corrupt [src].")
 	TerraformTurf(/turf/open/floor/grass/fairy/dark)
-	return
+	return COMPONENT_BLOCK_LIGHT_EATER
 
 /turf/open/floor/grass/fairy/white
 	name = "white fairygrass patch"
