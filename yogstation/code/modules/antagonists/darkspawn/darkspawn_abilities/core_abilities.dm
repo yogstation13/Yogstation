@@ -50,7 +50,7 @@
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
 	if(!darkspawn || eating || target == caster)
 		return
-	if(!target.mind)
+	if(!target.mind || !target.client)
 		to_chat(caster, span_warning("You cannot drain the mindless."))
 		return
 	if(is_darkspawn_or_thrall(target))
@@ -175,6 +175,8 @@
 		tying = FALSE
 		return FALSE
 	tying = FALSE
+
+	target.silent += 5
 
 	if(target.handcuffed)
 		to_chat(caster, span_warning("[target] is already restrained."))

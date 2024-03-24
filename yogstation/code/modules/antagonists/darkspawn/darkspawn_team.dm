@@ -2,12 +2,18 @@
 /datum/team/darkspawn
 	name = "Darkspawns"
 	member_name = "darkspawn"
+	///The name of the "converted" players
 	var/thrall_name = "thrall"
-	var/list/datum/mind/thralls = list() //not quite members (the darkspawns)
+	///The list containing all converted players
+	var/list/datum/mind/thralls = list()
+	///The number of drains required to perform the sacrament
 	var/required_succs = 10 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
+	///How many drains have happened so far
 	var/lucidity = 0
+	///The max number of people that can be actively converted
 	var/max_thralls = 0
-	var/announced = FALSE //if the announcement that they've got enough lucidity has been sent
+	///Boolean, Whether or not the darkspawn have been al;erted that they can perform the sacrament
+	var/announced = FALSE
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Basic Team Stuff----------------------------------//
@@ -19,7 +25,7 @@
 	if(SSticker?.mode)
 		required_succs = clamp(round(SSticker.mode.num_players() / 3), 5, 20) //a third the players, 5 at minimum, scaling up to 20 at max
 	update_objectives()
-	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 60 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 70 MINUTES) //allow for validhunting after a duration
 
 /datum/team/darkspawn/add_member(datum/mind/new_member)
 	. = ..()
@@ -65,7 +71,7 @@
 			continue
 		if(QDELETED(dark_mind.current)) //if the body is deleted, but hasn't been cleaned up yet, skip it
 			continue
-		if(dark_mind.current.stat != DEAD) //if their body isn't dead, skip it
+		if(dark_mind.current.stat == DEAD) //if their body is dead, skip it
 			continue
 		return FALSE //they aren't all dead
 	return TRUE //they're all dead

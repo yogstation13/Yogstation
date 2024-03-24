@@ -125,7 +125,24 @@
 //----------------------------Trap abilities----------------------------//
 //////////////////////////////////////////////////////////////////////////
 //Reskinned punji sticks that don't stun for as long
-/datum/action/cooldown/spell/pointed/darkspawn_build/damage
+/datum/action/cooldown/spell/pointed/darkspawn_build/trap
+	name = "Psi Trap"
+	desc = "Stitch together shadows into a trap."
+	button_icon_state = "psi_trap_damage"
+	language_final = "DEBUGIFY"
+
+/datum/action/cooldown/spell/pointed/darkspawn_build/trap/before_cast(atom/cast_on)
+	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		return .
+	var/turf/target_loc = get_turf(cast_on)
+	var/obj/structure/trap/darkspawn/trap = locate() in target_loc
+	if(trap)
+		owner.balloon_alert(owner, "There is already a trap there")
+		return . | SPELL_CANCEL_CAST
+
+//Reskinned punji sticks that don't stun for as long
+/datum/action/cooldown/spell/pointed/darkspawn_build/trap/damage
 	name = "Psi Trap (damage)"
 	desc = "Stitch together shadows into a trap that deals damage to non-ally that crosses it."
 	button_icon_state = "psi_trap_damage"
@@ -133,7 +150,7 @@
 	language_final = "ksha"
 
 //Reskinned bear trap that doesn't slow as much and can't be picked up
-/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
+/datum/action/cooldown/spell/pointed/darkspawn_build/trap/legcuff
 	name = "Psi Trap (restrain)"
 	desc = "Stitch together shadows into a trap that restrains the legs of any non-ally that crosses it."
 	button_icon_state = "psi_trap_bear"
@@ -141,7 +158,7 @@
 	language_final = "xcrak"
 
 //Discombobulates people
-/datum/action/cooldown/spell/pointed/darkspawn_build/nausea
+/datum/action/cooldown/spell/pointed/darkspawn_build/trap/nausea
 	name = "Psi Trap (nausea)"
 	desc = "Stitch together shadows into a trap that makes any non-ally that crosses it sick to their stomach."
 	button_icon_state = "psi_trap_nausea"
@@ -149,7 +166,7 @@
 	language_final = "guhxo"
 
 //Discombobulates people
-/datum/action/cooldown/spell/pointed/darkspawn_build/teleport
+/datum/action/cooldown/spell/pointed/darkspawn_build/trap/teleport
 	name = "Psi Trap (teleport)"
 	desc = "Stitch together shadows into a trap that teleports any non-ally to a random location on the station."
 	button_icon_state = "psi_trap_teleport"

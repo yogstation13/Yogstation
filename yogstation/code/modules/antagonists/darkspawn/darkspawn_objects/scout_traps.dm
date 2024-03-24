@@ -49,7 +49,7 @@
 	. = ..()
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
-/obj/structure/trap/darkspawn/on_trap_entered(atom/movable/AM)
+/obj/structure/trap/darkspawn/on_trap_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/target = AM
 		if(is_darkspawn_or_thrall(target))

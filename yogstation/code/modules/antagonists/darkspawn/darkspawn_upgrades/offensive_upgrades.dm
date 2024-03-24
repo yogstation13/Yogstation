@@ -40,7 +40,7 @@
 	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, empowering both."
 	lore_description = "The Kqx'xpk sigils, representing duality, are etched onto the arms."
 	icon_state = "duality"
-	willpower_cost = 3
+	willpower_cost = 4
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
 
@@ -54,8 +54,8 @@
 	name = "Cleaving Sigils"
 	desc = "Unlocking these sigils causes tendrils to cleave through enemies."
 	lore_description = "The Akvryt sigils, representing pierce, are etched onto the arms."
-	icon_state = "duality"
-	willpower_cost = 2
+	icon_state = "cleave"
+	willpower_cost = 3
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
 
@@ -96,7 +96,7 @@
 	willpower_cost = 2
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
-	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/damage)
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/damage)
 	
 /datum/psi_web/cuff_trap
 	name = "Psi Trap (restrain)"
@@ -106,7 +106,7 @@
 	willpower_cost = 2
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
-	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff)
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/legcuff)
 	
 /datum/psi_web/nausea_trap
 	name = "Psi Trap (nausea)"
@@ -116,7 +116,7 @@
 	willpower_cost = 2
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
-	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/nausea)
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/nausea)
 	
 /datum/psi_web/teleport_trap
 	name = "Psi Trap (teleport)"
@@ -126,7 +126,7 @@
 	willpower_cost = 2
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
-	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/teleport)	
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/teleport)	
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//

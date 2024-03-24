@@ -278,6 +278,8 @@
 #define TRAIT_DARKSPAWN_PSIBLOCK "darkspawn_psiblock" 
 ///make aoe ally buff abilities also affect allied darkspawns
 #define TRAIT_DARKSPAWN_BUFFALLIES "darkspawn_allybuff" 
+///revives the darkspawn if they're dead and in the dark
+#define TRAIT_DARKSPAWN_UNDYING "darkspawn_undying" 
 
 ///reduces the cooldown of all used /datum/action/cooldown by 25%
 #define TRAIT_FAST_COOLDOWNS "short_spell_cooldowns" 

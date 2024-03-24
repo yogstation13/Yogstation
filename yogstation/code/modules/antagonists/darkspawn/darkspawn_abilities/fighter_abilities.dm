@@ -368,7 +368,7 @@
 	///Boolean, if the user was running before activating this spell
 	var/was_running
 	///List of traits applied during the effect
-	var/list/traits = list(TRAIT_STUNIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_NODEATH)
+	var/list/traits = list(TRAIT_STUNIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_NODEATH, TRAIT_IGNOREDAMAGESLOWDOWN)
 
 /datum/action/cooldown/spell/toggle/indomitable/Grant(mob/grant_to)
 	. = ..()

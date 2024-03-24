@@ -167,7 +167,7 @@
 	desc = "Unlocking this sigil prevents loss of footing."
 	lore_description = "The Tr'bxv sigils, representing stability, are etched onto the legs."
 	icon_state = "stability"
-	willpower_cost = 2
+	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
 
@@ -176,6 +176,21 @@
 
 /datum/psi_web/noslip/on_loss()
 	REMOVE_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
+
+/datum/psi_web/undying
+	name = "Undying Sigils"
+	desc = "Unlocking this sigil will revive you upon death after some time spent in darkness."
+	lore_description = "The Kalak sigil, representing eternity, is etched onto the abdomen."
+	icon_state = "indomitable"
+	willpower_cost = 2
+	shadow_flags = DARKSPAWN_FIGHTER
+	menu_tab = STORE_UTILITY
+
+/datum/psi_web/undying/on_gain()
+	ADD_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING, type)
+
+/datum/psi_web/undying/on_loss()
+	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING, type)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Scout Passive Upgrades------------------------------//

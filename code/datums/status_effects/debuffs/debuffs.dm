@@ -1055,7 +1055,7 @@
 	if(!old_health)
 		old_health = owner.health
 	var/health_difference = old_health - owner.health
-	if(!health_difference)
+	if(health_difference <= 0) //if theyre healing or staying stagnant, no waking up
 		return
 	owner.visible_message(span_warning("[owner] jerks in their sleep as they're harmed!"))
 	to_chat(owner, span_boldannounce("Something hits you, pulling you towards wakefulness!"))

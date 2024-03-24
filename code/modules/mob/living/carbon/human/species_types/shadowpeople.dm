@@ -182,7 +182,7 @@
 	mutantears = /obj/item/organ/ears/darkspawn
 
 	powerful_heal = TRUE
-	dark_healing = 5
+	dark_healing = 7
 	light_burning = 7
 
 	///How many charges their projectile protection has
@@ -358,7 +358,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	item_flags = ABSTRACT | DROPDEL
+	item_flags = ABSTRACT
 	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = SHARP_EDGED

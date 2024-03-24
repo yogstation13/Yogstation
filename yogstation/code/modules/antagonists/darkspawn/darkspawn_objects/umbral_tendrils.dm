@@ -12,8 +12,8 @@
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
 	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
-	force = 28
-	block_chance = 30
+	force = 30
+	block_chance = 25
 	wound_bonus = -80 //no wounding
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
@@ -29,10 +29,10 @@
 		if(U != src)
 			twin = U
 			U.twin = src
-			force *= 0.8
-			U.force *= 0.8
-			block_chance *= 0.8
-			U.block_chance *= 0.8
+			force *= 0.75
+			U.force *= 0.75
+			block_chance *= 0.75
+			U.block_chance *= 0.75
 
 /obj/item/umbral_tendrils/Destroy()
 	if(!QDELETED(twin))

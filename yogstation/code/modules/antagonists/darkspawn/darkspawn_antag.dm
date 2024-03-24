@@ -35,7 +35,7 @@
 	var/willpower = 6
 
 	///Default amount healed in darkness
-	var/dark_healing = 5
+	var/dark_healing = 7
 	///Default amount of damage taken in light
 	var/light_burning = 7
 
@@ -268,6 +268,12 @@
 		if(!recreance)
 			recreance = new(owner)
 			recreance.Grant(owner.current)
+
+	if((owner?.current?.stat == DEAD) && HAS_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current))
+		var/mob/living/carbon/human/deadguy = owner.current
+		var/turf/location == get_turf(owner.current)
+		var/light_amount = location.get_lumcount()
+			
 
 /datum/antagonist/darkspawn/proc/has_psi(amt)
 	return psi >= amt
