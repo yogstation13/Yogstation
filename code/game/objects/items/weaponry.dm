@@ -74,6 +74,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/claymore/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack, arc_size=90)
 	AddComponent(/datum/component/butchering, 40, 105)
 
 /obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
@@ -258,6 +259,10 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
+
+/obj/item/katana/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/katana/basalt
 	name = "basalt katana"
@@ -584,6 +589,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/mounted_chainsaw/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/mounted_chainsaw/Destroy()
