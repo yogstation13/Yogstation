@@ -46,7 +46,6 @@
 	desc = "A hard-light crowbar. It appears to pry by itself, without any effort required."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "crowbar_alien"
-	belt_icon_state = "crowbar_alien"
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	toolspeed = 0.1
 
@@ -62,6 +61,10 @@
 	icon_state = "crowbar_large"
 	item_state = "crowbar"
 	toolspeed = 0.7
+
+/obj/item/crowbar/large/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack, no_multi_hit=TRUE) // it's big
 
 /obj/item/crowbar/cyborg
 	name = "hydraulic crowbar"
