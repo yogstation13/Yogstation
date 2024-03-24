@@ -158,7 +158,8 @@
 	buttontooltipstyle = "alien"
 
 	cast_range = INFINITY //lol
-	cooldown_time = 15 SECONDS
+	psi_cost = 40
+	cooldown_time = 10 SECONDS
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
@@ -168,7 +169,8 @@
 	invocation = null
 	invocation_type = INVOCATION_NONE
 
-	var/body_range = 8 //how far the projectile can shoot from a body
+	///how far the projectile can shoot from a body
+	var/body_range = 8 
 
 /datum/action/cooldown/spell/pointed/mindblast/cast(atom/cast_on)
 	. = ..()

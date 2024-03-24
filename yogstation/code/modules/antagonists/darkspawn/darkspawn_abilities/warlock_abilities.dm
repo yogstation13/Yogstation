@@ -181,8 +181,8 @@
 		return FALSE
 
 	//We did it
-	if(isdarkspawn(owner))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	if(darkspawn)
 		darkspawn.block_psi(60 SECONDS, type)
 	owner.balloon_alert(owner, "...SHWOOH!")
 	priority_announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", ANNOUNCER_POWEROFF)

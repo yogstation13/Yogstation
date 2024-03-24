@@ -91,8 +91,8 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 10
-	cooldown_time = 20 SECONDS
+	psi_cost = 25
+	cooldown_time = 30 SECONDS
 
 /datum/action/cooldown/spell/aoe/deluge/cast(atom/cast_on)
 	. = ..()
@@ -108,13 +108,17 @@
 	REMOVE_TRAIT(target, TRAIT_NOFIRE, type)
 
 /datum/action/cooldown/spell/aoe/deluge/cast_on_thing_in_aoe(atom/victim, atom/caster)
-	if(!isliving(victim) || !can_see(caster, victim))
+	if(!can_see(caster, victim))
 		return
-	var/mob/living/target = victim
-	target.extinguish_mob()
-	if(is_darkspawn_or_thrall(target) && ispreternis(target)) //don't make preterni allies wet
-		return
-	target.adjust_wet_stacks(20)
+	if(isliving(victim))
+		var/mob/living/target = victim
+		target.extinguish_mob()
+		if(is_darkspawn_or_thrall(target) && ispreternis(target)) //don't make preterni allies wet
+			return
+		target.adjust_wet_stacks(20)
+	else if(isobj(victim))
+		var/obj/target = victim
+		target.extinguish()
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Targeted Dash with CC--------------------------//
@@ -235,6 +239,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 50 //big boom = big cost
+	cooldown_time = 20 SECONDS
 	aoe_radius = 5
 	///Boolean, if the spell is being charged up
 	var/casting = FALSE
@@ -360,7 +365,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
-	cooldown_time = 2 SECONDS
+	cooldown_time = 1 SECONDS
 	///Antag datum that the psi is coming from
 	var/datum/antagonist/darkspawn/cost
 	///Psi cost of maintaining the spell
@@ -417,7 +422,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 10
+	psi_cost = 15
 	cooldown_time = 20 SECONDS
 	invocation_type = INVOCATION_SHOUT
 	invocation = "Kmmo'axhe!"

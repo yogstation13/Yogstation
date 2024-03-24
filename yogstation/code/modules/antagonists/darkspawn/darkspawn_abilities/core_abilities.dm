@@ -142,6 +142,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
+	psi_cost = 5
 	//Boolean on whether we're tying someone's hands
 	var/tying = FALSE
 
@@ -296,10 +297,10 @@
 	button_icon_state = "sacrament(old)"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	cooldown_time = 15 SECONDS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
-	psi_cost = 20
+	psi_cost = 35
+	cooldown_time = 15 SECONDS
 	cast_range = 2
 	///Whether or not the user is in the process of "building"
 	var/casting = FALSE

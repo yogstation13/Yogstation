@@ -98,11 +98,11 @@
 	buttontooltipstyle = "alien"
 
 	sound = 'sound/effects/bamf.ogg'
+	psi_cost = 20
 	cooldown_time = 1 MINUTES
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 15
 	///The size of the smoke cloud spawned by the ability
 	var/range = 4
 
@@ -247,6 +247,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	psi_cost = 35
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 3

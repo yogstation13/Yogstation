@@ -18,6 +18,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	psi_cost = 30
+	cooldown_time = 10 SECONDS
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	///status effect applied by the spell
 	var/datum/status_effect/tagalong/tagalong
@@ -96,7 +97,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
-	psi_cost = 60
+	psi_cost = 50
 	cooldown_time = 1 SECONDS //to prevent double clicking by accident
 	die_with_shapeshifted_form = FALSE
 	convert_damage = TRUE
