@@ -119,19 +119,9 @@
 
 	// now swing across those turfs
 	ADD_TRAIT(item, TRAIT_CLEAVING, REF(src))
-	attack_loop:
-		for(var/turf/T as anything in turf_list)
-			for(var/atom/movable/hit_atom in T)
-				if(hit_atom == user || hit_atom == target)
-					continue // why are you hitting yourself
-				if(!(SEND_SIGNAL(hit_atom, COMSIG_ATOM_CLEAVE_ATTACK, item, user) & ATOM_ALLOW_CLEAVE_ATTACK))
-					if(hit_atom.pass_flags & LETPASSTHROW)
-						continue // if you can throw something over it, you can swing over it too
-					if(!hit_atom.density && hit_atom.uses_integrity)
-						continue
-				item.melee_attack_chain(user, hit_atom, params)
-				if(no_multi_hit && isliving(hit_atom))
-					break attack_loop
+	for(var/turf/T as anything in turf_list)
+		if(hit_atoms_on_turf(item, target, user, T, params))
+			break
 	REMOVE_TRAIT(item, TRAIT_CLEAVING, REF(src))
 
 	// do these last so they don't get overridden during the attack loop
@@ -139,3 +129,18 @@
 	user.do_attack_animation(center_turf, no_effect=TRUE)
 	user.changeNext_move(CLICK_CD_MELEE * item.weapon_stats[SWING_SPEED] * swing_speed_mod)
 	user.weapon_slow(item)
+
+/// Hits all possible atoms on a turf, returns TRUE if the swing should end early
+/datum/component/cleave_attack/proc/hit_atoms_on_turf(obj/item/item, atom/target, mob/living/user, turf/T, params)
+	for(var/atom/movable/hit_atom in T)
+		if(hit_atom == user || hit_atom == target)
+			continue // why are you hitting yourself
+		if(!(SEND_SIGNAL(hit_atom, COMSIG_ATOM_CLEAVE_ATTACK, item, user) & ATOM_ALLOW_CLEAVE_ATTACK))
+			if(hit_atom.pass_flags & LETPASSTHROW)
+				continue // if you can throw something over it, you can swing over it too
+			if(!hit_atom.density && hit_atom.uses_integrity)
+				continue
+		item.melee_attack_chain(user, hit_atom, params)
+		if(no_multi_hit && isliving(hit_atom))
+			return TRUE
+	return FALSE
