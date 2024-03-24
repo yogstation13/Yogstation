@@ -18,8 +18,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	psi_cost = 30
-	var/datum/status_effect/tagalong/tagalong
 	hand_path = /obj/item/melee/touch_attack/darkspawn
+	///status effect applied by the spell
+	var/datum/status_effect/tagalong/tagalong
 
 /datum/action/cooldown/spell/touch/umbral_trespass/cast(mob/living/carbon/cast_on)
 	if(tagalong)
@@ -29,7 +30,7 @@
 		QDEL_NULL(tagalong)
 		if(possessing)
 			return //only return if the user is actually still hiding
-	. = ..()
+	return ..()
 	
 /datum/action/cooldown/spell/touch/umbral_trespass/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	tagalong = caster.apply_status_effect(STATUS_EFFECT_TAGALONG, target)
@@ -173,9 +174,13 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 100
 	cooldown_time = 3 MINUTES
+	///mob summoned by the spell
 	var/mob/living/simple_animal/hostile/illusion/darkspawn/psyche/dude
+	///health of the mob summoned by the spell
 	var/health = 100
+	///punch damage of the mob summoned by the spell
 	var/damage = 10
+	///Boolean, whether or not the spell is trying to call a ghost
 	var/searching = FALSE
 
 /datum/action/cooldown/spell/fray_self/can_cast_spell(feedback)
@@ -195,10 +200,11 @@
 		return
 	INVOKE_ASYNC(src, PROC_REF(fray))
 
+///Attempt to spawn the sentient ghost mob
 /datum/action/cooldown/spell/fray_self/proc/fray()
-	var/mob/living/L = owner
+	var/mob/living/caster = owner
 	
-	to_chat(L, span_velvet("You attempt to split a piece of your psyche."))
+	to_chat(caster, span_velvet("You attempt to split a piece of your psyche."))
 	searching = TRUE
 	var/mob/dead/observer/chosen_ghost
 	var/list/consenting_candidates = pollGhostCandidates("Would you like to play as piece of [L]'s psyche?", "Darkspawn", null, ROLE_DARKSPAWN, 10 SECONDS, POLL_IGNORE_DARKSPAWN_PSYCHE)
@@ -206,24 +212,25 @@
 		chosen_ghost = pick(consenting_candidates)
 	searching = FALSE
 	if(!chosen_ghost)
-		to_chat(L, span_danger("You fail to split a piece of your psyche."))
+		to_chat(caster, span_danger("You fail to split a piece of your psyche."))
 		return
 
-	to_chat(L, span_velvet("Zkxa'yaera"))
-	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
-	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
+	to_chat(caster, span_velvet("Zkxa'yaera"))
+	caster.visible_message(span_warning("[caster] breaks away from [caster]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
+	playsound(caster, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 
 	if(!dude)
-		dude = new(get_turf(L))
+		dude = new(get_turf(caster))
 		RegisterSignal(dude, COMSIG_LIVING_DEATH, PROC_REF(rejoin))
-	dude.Copy_Parent(L, 100, health, damage)
+	dude.Copy_Parent(caster, 100, health, damage)
 	dude.ckey = chosen_ghost.ckey
-	dude.name = L.name
-	dude.real_name = L.real_name
-	if(isdarkspawn(L))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(L)
+	dude.name = caster.name
+	dude.real_name = caster.real_name
+	if(isdarkspawn(caster))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
 		darkspawn.block_psi(30 SECONDS, type)
 
+///Make sure to properly reset the ability when the ghost mob dies
 /datum/action/cooldown/spell/fray_self/proc/rejoin()
 	to_chat(owner, span_velvet("You feel your psyche form back into a singular entity."))
 	if(!QDELETED(dude))

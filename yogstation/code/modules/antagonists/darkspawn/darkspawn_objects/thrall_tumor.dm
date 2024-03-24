@@ -6,9 +6,11 @@
 	w_class = 1
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_BRAIN_TUMOR
+	///How many process ticks the organ can be in light before it evaporates
 	var/organ_health = 3
-	//adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
+	///adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
 	COOLDOWN_DECLARE(resist_cooldown)
+	///How long the resist cooldown is
 	var/cooldown_length = 15 SECONDS
 
 /obj/item/organ/shadowtumor/New()

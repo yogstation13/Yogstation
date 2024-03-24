@@ -1,5 +1,3 @@
-GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
-
 //////////////////////////////////////////////////////////////////////////
 //-----------------------------Veil Creation----------------------------//
 //////////////////////////////////////////////////////////////////////////
@@ -18,6 +16,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	invocation_type = INVOCATION_NONE
 	psi_cost = 100
 	hand_path = /obj/item/melee/touch_attack/darkspawn
+	///Willpower spent by the darkspawn datum to thrall a mind
 	var/willpower_cost = 2
 
 /datum/action/cooldown/spell/touch/thrall_mind/is_valid_target(atom/cast_on)
@@ -110,7 +109,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 			if(feedback)
 				to_chat(owner, "You have no thralls to release.")
 			return
-	. = ..()
+	return ..()
 	
 /datum/action/cooldown/spell/release_thrall/cast(atom/cast_on)
 	. = ..()
@@ -322,7 +321,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	if(target.stat == DEAD)
 		to_chat(owner, span_velvet("This one is beyond our help at such a range"))
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/pointed/elucidate/cast(atom/cast_on)
 	. = ..()
@@ -341,8 +340,8 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		target.clear_cuffs(cuffs, TRUE, TRUE)
 		target.clear_cuffs(legcuffs, TRUE, TRUE)
 	playsound(get_turf(target),'yogstation/sound/creatures/darkspawn_death.ogg', 80, 1)
-	if(isdarkspawn(owner))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	if(isdarkspawn)
 		darkspawn.block_psi(30 SECONDS, type)
 	
 //////////////////////////////////////////////////////////////////////////

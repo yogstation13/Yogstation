@@ -24,7 +24,7 @@
 		var/mob/living/target = AM
 		if(is_darkspawn_or_thrall(target))
 			return
-	. = ..()
+	return ..()
 	
 //////////////////////////////////////////////////////////////////////////
 //---------------------------Recharging trap----------------------------//
@@ -56,7 +56,7 @@
 			return
 	if(isprojectile(AM)) //if it's flying above the trap, don't trigger it
 		return
-	. = ..()
+	return ..()
 
 /////////////////////////////Makes people sick////////////////////////////
 /obj/structure/trap/darkspawn/nausea

@@ -7,12 +7,12 @@
 	color = "#000000" //Complete black (RGB: 0, 0, 0)
 
 /datum/reagent/shadowfrost/on_mob_metabolize(mob/living/L)
-	..()
+	. = ..()
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=2)
 
 /datum/reagent/shadowfrost/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
-	..()
+	return ..()
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Used for darkness smoke------------------------//
@@ -28,7 +28,7 @@
 
 /datum/reagent/darkspawn_darkness_smoke/on_mob_delete(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_DARKSPAWN_CREEP, type)
-	. = ..()
+	return ..()
 
 /datum/reagent/darkspawn_darkness_smoke/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
 	. = ..()

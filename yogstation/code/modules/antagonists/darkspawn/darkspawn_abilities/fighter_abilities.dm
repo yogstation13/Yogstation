@@ -310,8 +310,10 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	///Antag datum that the psi is coming from
 	var/datum/antagonist/darkspawn/cost
-	var/upkeep_cost = 1 //happens 5 times a second
+	///Psi cost of maintaining the spell
+	var/upkeep_cost = 1
 
 /datum/action/cooldown/spell/toggle/creep/Grant(mob/grant_to)
 	. = ..()
@@ -351,9 +353,13 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
 	cooldown_time = 2 SECONDS
+	///Antag datum that the psi is coming from
 	var/datum/antagonist/darkspawn/cost
-	var/upkeep_cost = 1 //happens 5 times a second
+	///Psi cost of maintaining the spell
+	var/upkeep_cost = 1
+	///Boolean, if the user was running before activating this spell
 	var/was_running
+	///List of traits applied during the effect
 	var/list/traits = list(TRAIT_STUNIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_NODEATH)
 
 /datum/action/cooldown/spell/toggle/indomitable/Grant(mob/grant_to)

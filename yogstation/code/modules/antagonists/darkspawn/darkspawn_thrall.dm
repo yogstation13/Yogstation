@@ -5,8 +5,11 @@
 	roundend_category = "thralls"
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
+	///The abilities granted to the thrall
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/seize/lesser)
+	///How many ticks towards willpower generation has happened so far
 	var/current_willpower_progress = 0
+	///The darkspawn team that the thrall is on
 	var/datum/team/darkspawn/team
 
 /datum/antagonist/thrall/get_team()
@@ -16,9 +19,8 @@
 	owner.special_role = "thrall"
 	message_admins("[key_name_admin(owner.current)] was thralled by a darkspawn!")
 	log_game("[key_name(owner.current)] was thralled by a darkspawn!")
-	for (var/T in GLOB.antagonist_teams)
-		if (istype(T, /datum/team/darkspawn))
-			team = T
+	for (var/datum/team/darkspawn/T in GLOB.antagonist_teams)
+		team = T
 	if(!team)
 		team = new
 		stack_trace("thrall made without darkspawns")

@@ -12,6 +12,7 @@
 	button_icon_state = "shadow_staff"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	/// Staff object stored for the ability
 	var/obj/item/gun/magic/darkspawn/staff
 	/// Flags used for different effects that apply when a projectile hits something
 	var/effect_flags
@@ -38,14 +39,14 @@
 
 /datum/action/cooldown/spell/toggle/dark_staff/process()
 	active = owner.is_holding_item_of_type(/obj/item/gun/magic/darkspawn)
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/dark_staff/can_cast_spell(feedback)
 	if(!owner.get_empty_held_indexes() && !active)
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/dark_staff/Enable()
 	to_chat(owner, span_velvet("Shhouna"))
@@ -82,7 +83,9 @@
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
 	aoe_radius = 7
+	///Secret item stored in the ability to hit things with to trigger light eater
 	var/obj/item/darkspawn_extinguish/bopper
+	///List of objects seen at cast
 	var/list/seen_things
 
 /datum/action/cooldown/spell/aoe/extinguish/Grant(mob/grant_to)
@@ -90,8 +93,8 @@
 	bopper = new(src)
 	
 /datum/action/cooldown/spell/aoe/extinguish/Remove(mob/living/remove_from)
-	qdel(bopper)
-	. = ..()
+	QDEL_NULL(bopper)
+	return ..()
 
 /datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
 	seen_things = view(owner) //cash all things you can see
@@ -205,17 +208,20 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = 5
+	///The mob being targeted by the ability
 	var/mob/living/channeled
+	///The beam visual drawn by the ability
 	var/datum/beam/visual
+	///The antag datum that psi is being drawn from
 	var/datum/antagonist/darkspawn/cost
-	var/upkeep_cost = 2 //happens 5 times a second
-	var/damage_amount = 2 //these also happens 5 times a second
-	var/actual_cooldown = 15 SECONDS //this only applies when the channel is broken
+	///How much psi is taken every process tick (5 times a second)
+	var/upkeep_cost = 2
+	///How much damage or healing happens every process tick
+	var/damage_amount = 2
+	///The cooldown duration, only applied when the ability ends
+	var/actual_cooldown = 15 SECONDS
+	///Boolean, whether or not the spell is healing the target
 	var/healing = FALSE
-
-/datum/action/cooldown/spell/pointed/extract/New()
-	..()
-	START_PROCESSING(SSfastprocess, src)
 
 /datum/action/cooldown/spell/pointed/extract/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -223,6 +229,7 @@
 
 /datum/action/cooldown/spell/pointed/extract/Grant(mob/grant_to)
 	. = ..()
+	START_PROCESSING(SSfastprocess, src)
 	if(isdarkspawn(owner))
 		cost = isdarkspawn(owner)
 
@@ -443,7 +450,7 @@
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
 	new/obj/effect/temp_visual/darkspawn/detonate(get_turf(src))
-	. = ..()
+	return ..()
 
 /obj/effect/temp_visual/darkspawn/detonate
 	icon_state = "detonate"
@@ -451,14 +458,14 @@
 	duration = 2
 
 /obj/effect/temp_visual/darkspawn/detonate/Destroy()
-	var/turf/T = get_turf(src)
-	for(var/mob/living/L in T.contents)
-		if(is_darkspawn_or_thrall(L))
-			L.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
-		else if(!L.can_block_magic(MAGIC_RESISTANCE_MIND))
-			L.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
-			L.emote("scream")
-	. = ..()
+	var/turf/tile_location = get_turf(src)
+	for(var/mob/living/victim in tile_location.contents)
+		if(is_darkspawn_or_thrall(victim))
+			victim.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
+			victim.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
+			victim.emote("scream")
+	return ..()
 
 //////////////////////////////////////////////////////////////////////////
 //---------------------Detain and capture ability-----------------------//

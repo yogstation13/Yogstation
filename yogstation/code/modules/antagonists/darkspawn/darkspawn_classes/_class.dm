@@ -184,4 +184,4 @@
 	last_colour = world.time
 	class_color = HSVtoRGB(hsv) //rainbow
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, update_appearance), UPDATE_OVERLAYS), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //regularly refresh the overlays
-	. = ..()
+	return ..()

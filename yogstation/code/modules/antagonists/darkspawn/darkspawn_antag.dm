@@ -7,23 +7,36 @@
 	ui_name = "AntagInfoDarkspawn"
 	antag_moodlet = /datum/mood_event/sling
 
+	//team used for all the darkspawns, thralls, and the objective
 	var/datum/team/darkspawn/team
-	var/disguise_name //name of the player character
+	///name of the player character before the divulge
+	var/disguise_name 
+	///keeps track of where the darkspawn player is in progression
 	var/darkspawn_state = DARKSPAWN_MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
+	///Component that keeps track of all the spells a darkspawn can learn
 	var/datum/component/darkspawn_class/picked_class
 
 	//Psi variables
-	var/psi = 100 //Psi is the resource used for darkspawn powers
-	var/psi_cap = 100 //Max Psi by default
-	var/psi_regen_delay = 10 SECONDS //How long before psi starts regenerating
-	var/psi_per_second = 10 //how much psi is regenerated per second once it does start regenerating
-	COOLDOWN_DECLARE(psi_cooldown)//When this finishes it's cooldown, regenerate Psi and restart
-	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
+	//Psi is the resource used for darkspawn powers
+	///Currently available psi
+	var/psi = 100 
+	///Maximum amount of psi
+	var/psi_cap = 100 
+	///How long before psi starts regenerating
+	var/psi_regen_delay = 10 SECONDS 
+	///how much psi is regenerated per second once it does start regenerating
+	var/psi_per_second = 10 
+	///When this finishes it's cooldown, regenerate Psi and restart
+	COOLDOWN_DECLARE(psi_cooldown)
+	///Used to prevent duplicate regen proc calls
+	var/psi_regenerating = FALSE 
+ 
+ 	///Willpower is used to buy abilities and is gained by using Devour Will
+	var/willpower = 6
 
-	var/willpower = 6 //Lucidity is used to buy abilities and is gained by using Devour Will
-
-	//Default light damage variables (modified by some abilities)
+	///Default amount healed in darkness
 	var/dark_healing = 5
+	///Default amount of damage taken in light
 	var/light_burning = 7
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -344,8 +357,7 @@
 
 	show_to_ghosts = TRUE
 	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [user.real_name].</b>")
-	for(var/T in GLOB.alive_mob_list)
-		var/mob/M = T
+	for(var/mob/M as anything in GLOB.alive_mob_list)
 		if(is_darkspawn_or_thrall(M) || (ROLE_DARKSPAWN in M.faction))
 			to_chat(M, processed_message)
 	for(var/T in GLOB.dead_mob_list)
@@ -464,40 +476,6 @@
 /datum/weather/shadowlands/weather_act(mob/living/L)
 	if(L.stat != DEAD)
 		L.AddComponent(/datum/component/shadowlands)
-
-//adds and removes the shadowlands overlay based on Z level
-/datum/component/shadowlands
-	var/mob/living/owner
-
-/datum/component/shadowlands/Initialize()
-	if(!isliving(parent))
-		return COMPONENT_INCOMPATIBLE
-	owner = parent
-
-/datum/component/shadowlands/RegisterWithParent()
-	. = ..()
-	RegisterSignal(parent, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(update_fullscreen))
-	update_fullscreen()
-
-/datum/component/shadowlands/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_MOVABLE_Z_CHANGED)
-	. = ..()
-
-/datum/component/shadowlands/proc/update_fullscreen()
-	if(!owner)
-		return
-
-	var/turf/location = get_turf(owner)
-	if(!(is_centcom_level(location.z) || is_reserved_level(location.z)))
-		owner.overlay_fullscreen("shadowlands", /atom/movable/screen/fullscreen/shadowlands)
-	else
-		owner.clear_fullscreen("shadowlands")
-
-//the fullscreen in question
-/atom/movable/screen/fullscreen/shadowlands
-	icon_state = "shadowlands"
-	layer = CURSE_LAYER
-	plane = FULLSCREEN_PLANE
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Reform body from brain------------------------------//

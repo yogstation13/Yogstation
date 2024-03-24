@@ -103,6 +103,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 15
+	///The size of the smoke cloud spawned by the ability
 	var/range = 4
 
 /datum/action/cooldown/spell/darkness_smoke/cast(mob/living/carbon/human/user) //Extremely hacky ---- (oh god, it really is)
@@ -263,8 +264,10 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 30 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
+	///Item stored by the projector
 	var/obj/item/chameleon/handler
-	var/active
+	///boolean, if the chameleon projector is active
+	var/active = FALSE
 
 /datum/action/cooldown/spell/pointed/disguise/New(Target)
 	. = ..()

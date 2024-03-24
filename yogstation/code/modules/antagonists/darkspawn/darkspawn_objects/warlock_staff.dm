@@ -45,7 +45,7 @@
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
 				M.extinguish_mob()
 		else
-			M.apply_damage(30, STAMINA)
+			M.apply_damage(35, STAMINA)
 			if(effect_flags & STAFF_UPGRADE_CONFUSION)
 				M.adjust_confusion(4 SECONDS)
 
