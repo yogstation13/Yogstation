@@ -131,8 +131,8 @@
 	user.weapon_slow(item)
 
 /// Hits all possible atoms on a turf, returns TRUE if the swing should end early
-/datum/component/cleave_attack/proc/hit_atoms_on_turf(obj/item/item, atom/target, mob/living/user, turf/T, params)
-	for(var/atom/movable/hit_atom in T)
+/datum/component/cleave_attack/proc/hit_atoms_on_turf(obj/item/item, atom/target, mob/living/user, turf/hit_turf, params)
+	for(var/atom/movable/hit_atom in hit_turf)
 		if(hit_atom == user || hit_atom == target)
 			continue // why are you hitting yourself
 		if(!(SEND_SIGNAL(hit_atom, COMSIG_ATOM_CLEAVE_ATTACK, item, user) & ATOM_ALLOW_CLEAVE_ATTACK))
