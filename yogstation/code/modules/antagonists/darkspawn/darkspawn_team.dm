@@ -59,9 +59,16 @@
 
 /datum/team/darkspawn/proc/check_darkspawn_death() //check if a darkspawn is still alive
 	for(var/datum/mind/dark_mind as anything in members)
-		if(istype(dark_mind) && (dark_mind?.current?.stat != DEAD))
-			return FALSE
-	return TRUE
+		if(!istype(dark_mind)) //if for some reason something other than a mind was mixed in, skip it
+			continue
+		if(!dark_mind.current) //if they don't have a body, skip it
+			continue
+		if(QDELETED(dark_mind.current)) //if the body is deleted, but hasn't been cleaned up yet, skip it
+			continue
+		if(dark_mind.current.stat != DEAD) //if their body isn't dead, skip it
+			continue
+		return FALSE //they aren't all dead
+	return TRUE //they're all dead
 	
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Team Objective----------------------------------//

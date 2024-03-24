@@ -2,7 +2,6 @@
 /obj/item/umbral_tendrils
 	name = "umbral tendrils"
 	desc = "A mass of pulsing, chitonous tendrils with exposed violet flesh."
-	force = 30
 	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
 	item_state = "umbral_tendrils"
@@ -13,6 +12,8 @@
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
 	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
+	force = 28
+	block_chance = 30
 	wound_bonus = -80 //no wounding
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
@@ -30,6 +31,8 @@
 			U.twin = src
 			force *= 0.8
 			U.force *= 0.8
+			block_chance *= 0.8
+			U.block_chance *= 0.8
 
 /obj/item/umbral_tendrils/Destroy()
 	if(!QDELETED(twin))

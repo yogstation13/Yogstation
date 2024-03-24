@@ -12,7 +12,8 @@
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	var/twin = FALSE
+	///what additional effects the ability has
+	var/ability_flags = NONE
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/link_to(Target)
 	. = ..()
@@ -21,14 +22,14 @@
 		RegisterSignal(target, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, PROC_REF(handle_downgrade))
 	
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/handle_upgrade(atom/source, flag)
+	ability_flags |= flag
 	if(flag & TENDRIL_UPGRADE_TWIN)
-		twin = TRUE
 		name = "Twinned Shadow Tendrils"
 		desc = "Twists one or both of your arms into tendrils with many uses."
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/handle_downgrade(atom/source, flag)
+	ability_flags -= flag
 	if(flag & TENDRIL_UPGRADE_TWIN)
-		twin = FALSE
 		name = initial(name)
 		desc = initial(desc)
 
@@ -45,7 +46,7 @@
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/Enable()
 	var/list/hands_free = owner.get_empty_held_indexes()
-	var/num_tendrils = min(twin ? 2 : 1, LAZYLEN(hands_free))
+	var/num_tendrils = min((ability_flags & TENDRIL_UPGRADE_TWIN) ? 2 : 1, LAZYLEN(hands_free))
 
 	if(!num_tendrils)
 		return
@@ -60,6 +61,8 @@
 
 	for(var/i in 1 to num_tendrils)
 		var/obj/item/umbral_tendrils/T = new(owner, isdarkspawn(owner))
+		if(ability_flags & TENDRIL_UPGRADE_CLEAVE)
+			T.AddComponent(/datum/component/cleave_attack, arc_size=180)
 		owner.put_in_hands(T)
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/echo()
@@ -71,7 +74,7 @@
 	owner.visible_message(span_warning("[owner]'s tentacles transform back!"), span_notice("You dispel the tendrils."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	for(var/obj/item/umbral_tendrils/T in owner)
-		qdel(T)
+		QDEL_NULL(T)
 
 //////////////////////////////////////////////////////////////////////////
 //---------------------Fighter anti-fire ability------------------------//

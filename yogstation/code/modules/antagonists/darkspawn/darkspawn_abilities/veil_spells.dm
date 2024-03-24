@@ -343,7 +343,7 @@
 		target.clear_cuffs(legcuffs, TRUE, TRUE)
 	playsound(get_turf(target),'yogstation/sound/creatures/darkspawn_death.ogg', 80, 1)
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
-	if(isdarkspawn)
+	if(darkspawn)
 		darkspawn.block_psi(30 SECONDS, type)
 	
 //////////////////////////////////////////////////////////////////////////

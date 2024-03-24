@@ -50,6 +50,21 @@
 /datum/psi_web/twin_tendrils/on_loss()
 	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, TENDRIL_UPGRADE_TWIN)
 
+/datum/psi_web/cleaving_tendrils
+	name = "Cleaving Sigils"
+	desc = "Unlocking these sigils causes tendrils to cleave through enemies."
+	lore_description = "The Akvryt sigils, representing duality, are etched onto the arms."
+	icon_state = "duality"
+	willpower_cost = 2
+	shadow_flags = DARKSPAWN_FIGHTER
+	menu_tab = STORE_OFFENSE
+
+/datum/psi_web/cleaving_tendrils/on_gain()
+	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_UPGRADE_ABILITY, TENDRIL_UPGRADE_CLEAVE)
+
+/datum/psi_web/cleaving_tendrils/on_loss()
+	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, TENDRIL_UPGRADE_CLEAVE)
+
 ////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------Scout only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
