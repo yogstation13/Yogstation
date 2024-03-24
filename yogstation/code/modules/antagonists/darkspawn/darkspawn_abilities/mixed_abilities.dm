@@ -34,7 +34,7 @@
 	
 /datum/action/cooldown/spell/touch/umbral_trespass/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	tagalong = caster.apply_status_effect(STATUS_EFFECT_TAGALONG, target)
-	to_chat(caster, span_velvet("Iahz"))
+	caster.balloon_alert(caster, "Iahz")
 	to_chat(caster, span_velvet("You slip into [target]'s shadow. This will last five minutes, until canceled, or you are forced out by darkness."))
 	caster.forceMove(target)
 	return TRUE
@@ -61,7 +61,7 @@
 
 /datum/action/cooldown/spell/aoe/icyveins/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("Syn'thra"))
+	owner.balloon_alert(owner, "Syn'thra")
 	to_chat(owner, span_velvet("You freeze the nearby air."))
 	if(isliving(owner))
 		var/mob/living/target = owner
@@ -107,12 +107,12 @@
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/do_shapeshift(mob/living/caster)
 	. = ..()
 	if(.)
-		to_chat(owner, span_velvet("Zov..."))
+		owner.balloon_alert(owner, "Zov...")
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/do_unshapeshift(mob/living/caster)
 	. = ..()
 	if(.)
-		to_chat(owner, span_velvet("...Voz"))
+		owner.balloon_alert(owner, "...Voz")
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
 	if(owner.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)) //so it's free to change back, but costs psi to change
@@ -149,7 +149,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
-	to_chat(L, span_velvet("Zkxa'yaera"))
+	L.balloon_alert(L, "Zkxa'ya")
 	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!"), span_velvet("You create an illusion of yourself."))
 	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 
@@ -215,7 +215,7 @@
 		to_chat(caster, span_danger("You fail to split a piece of your psyche."))
 		return
 
-	to_chat(caster, span_velvet("Zkxa'yaera"))
+	caster.balloon_alert(caster, "Zkxa'yaera Hohef'era!")
 	caster.visible_message(span_warning("[caster] breaks away from [caster]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
 	playsound(caster, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 

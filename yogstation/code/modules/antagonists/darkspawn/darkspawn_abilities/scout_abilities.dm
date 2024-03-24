@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/Enable()
-	to_chat(owner, span_velvet("Akna"))
+	owner.balloon_alert(owner, "Akna")
 	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), span_velvet("You transform your arm into a blade."))
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	if(!armblade)
@@ -35,7 +35,7 @@
 	owner.put_in_hands(armblade)
 
 /datum/action/cooldown/spell/toggle/light_eater/Disable()
-	to_chat(owner, span_velvet("Haoo"))
+	owner.balloon_alert(owner, "Haoo")
 	owner.visible_message(span_warning("[owner]'s blade transforms back!"), span_velvet("You dispel the blade."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	if(armblade)
@@ -70,7 +70,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/shadow_caster/Enable()
-	to_chat(owner, span_velvet("Crxkna"))
+	owner.balloon_alert(owner, "Crxkna")
 	owner.visible_message(span_warning("[owner]'s arm contorts into a bow!"), span_velvet("You transform your arm into a bow."))
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	if(!bow)
@@ -78,7 +78,7 @@
 	owner.put_in_hands(bow)
 
 /datum/action/cooldown/spell/toggle/shadow_caster/Disable()
-	to_chat(owner, span_velvet("Haoo"))
+	owner.balloon_alert(owner, "Haoo")
 	owner.visible_message(span_warning("[owner]'s bow transforms back!"), span_velvet("You dispel the bow."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	if(bow)
@@ -108,7 +108,7 @@
 
 /datum/action/cooldown/spell/darkness_smoke/cast(mob/living/carbon/human/user) //Extremely hacky ---- (oh god, it really is)
 	. = ..()
-	to_chat(owner, span_velvet("Hwlok'krotho"))
+	owner.balloon_alert(owner, "Hwlok'krotho")
 	user.visible_message(span_warning("[user] bends over and bellows out a cloud of black smoke!"), span_velvet("You expel a vast cloud of blinding smoke."))
 	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(user.loc) //hacky
 	B.reagents.clear_reagents() //Just in case!
@@ -185,7 +185,7 @@
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt/cast(mob/living/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("Vxklu'wop sla'txhaka"))
+	owner.balloon_alert(owner, "Vxklu'wop sla'txhaka")
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Targeted Teleport---------------------------//
@@ -213,7 +213,7 @@
 /datum/action/cooldown/spell/pointed/phase_jump/void_jump/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
 	if(.)
-		to_chat(owner, span_velvet("Vxklu'wop"))
+		owner.balloon_alert(owner, "Vxklu'wop")
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------------AOE ice field----------------------------//
@@ -236,7 +236,7 @@
 
 /datum/action/cooldown/spell/aoe/permafrost/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("Syn'thxklp"))
+	owner.balloon_alert(owner, "Syn'thxklp")
 	if(isliving(owner))
 		var/mob/living/target = owner
 		target.extinguish_mob()

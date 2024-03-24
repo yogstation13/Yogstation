@@ -49,7 +49,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/dark_staff/Enable()
-	to_chat(owner, span_velvet("Shhouna"))
+	owner.balloon_alert(owner, "Shhouna")
 	owner.visible_message(span_warning("[owner] knits shadows together into a staff!"), span_velvet("You summon your staff."))
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	if(!staff)
@@ -60,7 +60,7 @@
 	owner.put_in_hands(staff)
 
 /datum/action/cooldown/spell/toggle/dark_staff/Disable()
-	to_chat(owner, span_velvet("Haoo"))
+	owner.balloon_alert(owner, "Haoo")
 	owner.visible_message(span_warning("[owner]'s staff dissipates!"), span_velvet("You dispel the staff."))
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	staff.moveToNullspace()
@@ -99,7 +99,7 @@
 /datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
 	seen_things = view(owner) //cash all things you can see
 	. = ..()
-	to_chat(owner, span_velvet("Shwooh"))
+	owner.balloon_alert(owner, "Shwooh")
 	to_chat(owner, span_velvet("You extinguish all lights."))
 
 /datum/action/cooldown/spell/aoe/extinguish/cast_on_thing_in_aoe(atom/victim, atom/caster)
@@ -164,7 +164,7 @@
 		return FALSE
 
 	//Turn it off for the time being
-	to_chat(owner, span_velvet("Xlahwa..."))
+	owner.balloon_alert(owner, "Xlahwa")
 	target.set_light(0)
 	target.visible_message(span_warning("The [target] flickers and begins to grow dark."))
 
@@ -184,7 +184,7 @@
 	if(isdarkspawn(owner))
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 		darkspawn.block_psi(60 SECONDS, type)
-	to_chat(owner, span_progenitor("...SHWOOH!"))
+	owner.balloon_alert(owner, "...SHWOOH!")
 	priority_announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", ANNOUNCER_POWEROFF)
 	power_fail(30, 40)
 	to_chat(caster, span_velvet("You return the APC's power to the void, destroying it and disabling all others."))
@@ -262,7 +262,7 @@
 			cancel()
 			return
 		if(prob(25))
-			to_chat(owner, span_velvet("...thum..."))
+			owner.balloon_alert(owner, "...thum...")
 		if(healing)
 			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 		else
@@ -282,7 +282,7 @@
 
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("Qokxlez..."))
+	owner.balloon_alert(owner, "Qokxlez")
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/darkspawn.dmi' , INFINITY, cast_range)
 	channeled = cast_on
 	healing = is_darkspawn_or_thrall(channeled)
@@ -293,7 +293,7 @@
 	if(channeled)
 		channeled = null
 		StartCooldown(actual_cooldown)
-		to_chat(owner, span_velvet("...qokshe"))
+		owner.balloon_alert(owner, "...qokshe")
 		return TRUE
 	return FALSE
 
@@ -332,7 +332,7 @@
 
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("H'ellekth'ele"))
+	owner.balloon_alert(owner, "H'ellekth'ele")
 
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim))
@@ -389,7 +389,7 @@
 	targets_from = get_turf(user)
 	angle = get_angle(user, get_turf(cast_on))
 
-	to_chat(user, span_velvet("Qwo..."))
+	user.balloon_alert(user, "Qwo...")
 	to_chat(user, span_velvet("You start building up psionic energy."))
 	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(charge), user)
@@ -418,7 +418,7 @@
 /datum/action/cooldown/spell/pointed/shadow_beam/proc/fire_beam(mob/user)
 	if(!angle || !targets_from) //sanity check
 		return
-	to_chat(user, span_progenitor("...GX'KSHA!"))
+	user.balloon_alert(user, "...GX'KSHA!")
 	if(isdarkspawn(user))
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
 		darkspawn.block_psi(30 SECONDS, type)
@@ -509,7 +509,7 @@
 	if(!(user.check_obscured_slots() & ITEM_SLOT_EYES)) //only show if the eyes are visible
 		user.visible_message(span_warning("<b>[user]'s eyes flash a deep purple</b>"))
 
-	to_chat(user, span_velvet("Sskr'aya"))
+	user.balloon_alert(user, "Sskr'aya")
 
 	var/mob/living/target = cast_on
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
@@ -551,6 +551,6 @@
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()
 	if(. && isdarkspawn(owner))
-		to_chat(owner, span_progenitor("KSH SHOL'NAXHAR!"))
+		owner.balloon_alert(owner, "KSH SHOL'NAXHAR!")
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 		darkspawn.block_psi(20 SECONDS, type)

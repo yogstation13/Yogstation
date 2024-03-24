@@ -54,14 +54,14 @@
 		for(var/obj/item/implant/mindshield/L in target)
 			qdel(L)
 
-	to_chat(owner, span_velvet("Krx'lna tyhx graha..."))
+	owner.balloon_alert(owner, "Krx'lna tyhx graha...")
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, target))
 		return FALSE
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isthrall(target))
-		to_chat(owner, span_velvet("...tia"))
+		owner.balloon_alert(owner, "...tia")
 		to_chat(owner, span_velvet("You revitalize your thrall [target.real_name]."))
 		target.revive(TRUE, TRUE)
 		target.grab_ghost()
@@ -78,7 +78,7 @@
 
 	if(target.add_thrall())
 		master.willpower -= willpower_cost
-		to_chat(owner, span_velvet("...xthl'kap"))
+		owner.balloon_alert(owner, "...xthl'kap")
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a thrall!"))
 		to_chat(owner, span_velvet("Thralls will serve your every command and passively generate willpower for being nearby non thralls."))
 	else
@@ -129,7 +129,7 @@
 	if(!unveiled.current)
 		return
 	if(unveiled.current.remove_thrall())
-		to_chat(owner, span_velvet("Fk'koht"))
+		owner.balloon_alert(owner, "Fk'koht")
 		to_chat(owner, span_velvet("You release your control over [unveiled]"))
 		dude.willpower += 1
 
@@ -190,7 +190,7 @@
 		on_deactivation(owner, refund_cooldown = TRUE)
 		return FALSE
 	fire_projectile(cast_on, shooter)
-	to_chat(owner, span_velvet("Vyk'thunak"))
+	owner.balloon_alert(owner, "Vyk'thunak")
 	playsound(get_turf(shooter), 'sound/weapons/resonator_blast.ogg', 50, 1)
 
 /datum/action/cooldown/spell/pointed/mindblast/proc/fire_projectile(atom/target, mob/shooter)
@@ -245,6 +245,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
+	/// Text to be put in the balloon alert upon cast
 	var/language_output = "DEBUGIFY"
 
 /datum/action/cooldown/spell/thrallbuff/before_cast(atom/cast_on)
@@ -253,7 +254,7 @@
 
 /datum/action/cooldown/spell/thrallbuff/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("[language_output]"))
+	owner.balloon_alert(owner, "[language_output]")
 	for(var/datum/antagonist/thrall/lackey in GLOB.antagonists)
 		if(lackey.owner?.current && ishuman(lackey.owner.current))
 			var/mob/living/carbon/human/target = lackey.owner.current
@@ -311,6 +312,8 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 5 MINUTES //it's REALLY strong
 	psi_cost = 100 //it's REALLY strong
+	invocation_type = INVOCATION_SHOUT
+	invocation = "CKKREM!"
 
 /datum/action/cooldown/spell/pointed/elucidate/is_valid_target(atom/cast_on)
 	if(!iscarbon(cast_on))
@@ -332,7 +335,6 @@
 	target.resting = FALSE
 	target.SetAllImmobility(0, TRUE)
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 10 SECONDS, type)
-	to_chat(owner, span_progenitor("CKKREM!"))
 	target.visible_message(span_danger("Streaks of velvet light crack out of [target]'s skin."), span_velvet("Power roars through you like a raging storm, pushing you to your absolute limits."))
 	var/obj/item/cuffs = target.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/item/legcuffs = target.get_item_by_slot(ITEM_SLOT_LEGCUFFED)

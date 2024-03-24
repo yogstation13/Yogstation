@@ -69,7 +69,7 @@
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
 	target.silent += 5
 
-	to_chat(caster, span_velvet("Cera ko..."))
+	caster.balloon_alert(caster, "Cera ko...")
 	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))
 	target.visible_message(span_danger("<i>[target] suddenly howls and clutches their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
 	playsound(target, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
@@ -102,7 +102,8 @@
 
 	//format the text output to the darkspawn
 	var/list/self_text = list() 
-	self_text += span_velvet("...akkraup'dej")
+	
+	caster.balloon_alert(caster, "...akkraup'dej")
 	self_text += span_velvet("You devour [target]'s will.")
 	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
 		self_text += span_warning("[target]'s mind is already damaged by previous devouring and has granted less willpower and no lucidity.")
@@ -166,7 +167,7 @@
 		to_chat(caster, span_warning("[target] is already restrained."))
 		return
 
-	to_chat(caster, span_velvet("Koce ra..."))
+	caster.balloon_alert(caster, "Koce ra...")
 	to_chat(caster, span_velvet("You begin restraining [target]..."))
 	playsound(target, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 50, TRUE)
 	tying = TRUE
@@ -237,7 +238,8 @@
 	if(target.stat)
 		to_chat(owner, span_warning("[target] is depowered."))
 		return FALSE
-	to_chat(owner, span_velvet("[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]"))
+		
+	caster.balloon_alert(caster, "[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]")
 	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), span_velvet("You begin transmitting a recall message to Central Command..."))
 	play_recall_sounds(target, (duration/10)-1)
 	in_use = TRUE
@@ -326,7 +328,7 @@
 		return .
 	if(cast_time)
 		casting = TRUE
-		to_chat(owner, span_velvet("Xkla'thra..."))
+		owner.balloon_alert(owner, "Xkla'thra...")
 		playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
 		if(!do_after(owner, cast_time, cast_on))
 			casting = FALSE
@@ -339,7 +341,7 @@
 		return
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	var/obj/thing = new object_type(get_turf(cast_on))
-	to_chat(owner, span_velvet("...[language_final]"))
+	owner.balloon_alert(owner, "...[language_final]")
 	owner.visible_message(span_warning("[owner] knits shadows together into [thing]!"), span_velvet("You create [thing]"))
 
 //////////////////////////////////////////////////////////////////////////
