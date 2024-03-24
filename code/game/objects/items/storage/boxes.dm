@@ -1335,7 +1335,7 @@
 	icon = 'icons/obj/food/containers.dmi'
 	var/beantype = /obj/item/reagent_containers/food/snacks/grown/coffee
 
-/obj/item/storage/box/cofeepack/Initialize(mapload)
+/obj/item/storage/box/coffeepack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 5
