@@ -105,7 +105,7 @@
 		network -= i
 		network += "[port.shuttle_id]_[i]"
 
-/obj/machinery/camera/proc/change_camnet(var/datum/cameranet/newnet)
+/obj/machinery/camera/proc/change_camnet(datum/cameranet/newnet)
 	if(newnet && istype(newnet))
 		camnet.cameras -= src
 		camnet.removeCamera(src)
