@@ -79,9 +79,25 @@
 		var/mob/living/thanos = cast_on
 		thanos.say("I AM INEVITABLE.", forced = "thanos snap")
 	sound_to_playing_players('sound/magic/clockwork/narsie_attack.ogg')
+
 	shuffle_inplace(GLOB.mob_living_list)
 	var/number_of_victims = round(LAZYLEN(GLOB.mob_living_list)/2)
 	for(var/mob/living/snapped as anything in GLOB.mob_living_list)
+		if(snapped.client)
+			continue
+		addtimer(CALLBACK(snapped, TYPE_PROC_REF(/mob/living, dust), TRUE), rand(1,100)) //dust randomly, and with a delay (give the fear that you might be next)
+
+		if(number_of_victims <= 0)
+			return
+		number_of_victims --
+
+	shuffle_inplace(GLOB.player_list) //once for players, once for everything else, this ensures that players aren't affected by spamming loads of simplemobs, but simplemobs aren't completely ignored
+	number_of_victims = round(LAZYLEN(GLOB.player_list)/2)
+	for(var/mob/living/snapped as anything in GLOB.player_list)
+		if(!istype(snapped)) //players can be non living mobs
+			if(prob(50))
+				number_of_victims --
+			continue
 		addtimer(CALLBACK(snapped, TYPE_PROC_REF(/mob/living, dust), TRUE), rand(1,100)) //dust randomly, and with a delay (give the fear that you might be next)
 
 		if(number_of_victims <= 0)
