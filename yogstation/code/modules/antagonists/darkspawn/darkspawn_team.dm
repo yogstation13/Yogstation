@@ -111,11 +111,15 @@
 
 /datum/team/darkspawn/proc/grant_lucidity(amount = 1)
 	lucidity += amount
-	if(lucidity >= required_succs && !announced)
-		announced = TRUE
+	if(lucidity >= required_succs)
 		for(var/datum/mind/master in members)
 			if(master.current)
-				to_chat(master.current, span_progenitor("Enough lucidity has been gathered, perform the sacrament to ascend once more!"))
+				if(!announced)
+					announced = TRUE
+					to_chat(master.current, span_progenitor("Enough lucidity has been gathered, perform the sacrament to ascend once more!"))
+				if(lucidity >= required_succs*2)
+					to_chat(master.current, span_progenitor("Your form can't maintain itself with all this energy!"))
+					master.current.gib(TRUE, TRUE, TRUE)//stop farming the round
 
 /datum/team/darkspawn/proc/upon_sacrament()
 	for(var/datum/mind/master in members)
@@ -135,3 +139,13 @@
 		return
 	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 	priority_announce("Dangerous fluctuations in the veil have been detected aboard the station. Be on high alert for unusual beings commanding unnatural powers.", "Central Command Higher Dimensional Affairs")
+
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(lock_validhunt))
+
+/datum/team/darkspawn/proc/lock_validhunt()
+	if(check_darkspawn_death())//if no darkspawns are alive, don't bother announcing
+		return
+	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_GAMMA)//if for some reason, it's already gamma, don't bother announcing
+		return
+	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
+	priority_announce("The dangerous fluctuations in the veil have not abated. Do not attempt to lower the security level further.", "Central Command Higher Dimensional Affairs")
