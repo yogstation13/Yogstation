@@ -1,6 +1,3 @@
-// Way to many types to just leave as a instance variable
-GLOBAL_LIST_INIT(filingcabinet_types, typecacheof(list(/obj/item/paper, /obj/item/folder, /obj/item/photo, /obj/item/documents, /obj/item/clipboard, /obj/item/tape)))
-
 /* Filing cabinets!
  * Contains:
  *		Filing Cabinets
@@ -20,6 +17,9 @@ GLOBAL_LIST_INIT(filingcabinet_types, typecacheof(list(/obj/item/paper, /obj/ite
 	icon_state = "filingcabinet"
 	density = TRUE
 	anchored = TRUE
+
+	/// List of allowed item types
+	var/allowed_types = list(/obj/item/paper, /obj/item/folder, /obj/item/photo, /obj/item/documents, /obj/item/clipboard, /obj/item/tape)
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"
@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(filingcabinet_types, typecacheof(list(/obj/item/paper, /obj/ite
 	update_appearance(UPDATE_ICON)
 	if(mapload)
 		for(var/obj/item/I in loc)
-			if(is_type_in_typecache(I, GLOB.filingcabinet_types))
+			if(is_type_in_list(I, allowed_types))
 				I.forceMove(src)
 
 /obj/structure/filingcabinet/deconstruct(disassembled = TRUE)
@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(filingcabinet_types, typecacheof(list(/obj/item/paper, /obj/ite
 		else
 			name = initial(name)
 		return
-	if(is_type_in_typecache(P, GLOB.filingcabinet_types))
+	if(is_type_in_list(P, allowed_types))
 		if(!user.transferItemToLoc(P, src))
 			return
 		to_chat(user, span_notice("You put [P] in [src]."))
