@@ -35,7 +35,7 @@
 	var/willpower = 6
 
 	///Default amount healed in darkness
-	var/dark_healing = 7
+	var/dark_healing = 5
 	///Default amount of damage taken in light
 	var/light_burning = 7
 
