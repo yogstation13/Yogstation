@@ -30,7 +30,7 @@
 /datum/action/cooldown/spell/erase_time/can_cast_spell(feedback)
 	if(!isturf(owner.loc))
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/erase_time/cast(mob/living/user)
 	. = ..()
