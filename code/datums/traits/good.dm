@@ -164,10 +164,9 @@
 
 /datum/quirk/night_vision/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/organ/eyes/eyes = H.getorgan(/obj/item/organ/eyes)
-	if(!eyes || eyes.lighting_cutoff)
+	if(!istype(H)) //sanity check
 		return
-	eyes.Insert(H) //refresh their eyesight and vision
+	H.update_sight()//refresh their eyesight and vision
 
 /datum/quirk/photographer
 	name = "Photographer"

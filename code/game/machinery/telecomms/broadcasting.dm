@@ -125,8 +125,7 @@
 		levels = lvls
 	else
 	//Yogs end, technically, I guess
-		var/turf/T = get_turf_global(source) // yogs - get_turf_global instead of get_turf
-		levels = list(T.z)
+		levels = SSmapping.get_connected_levels(get_turf_global(source)) // yogs - get_turf_global instead of get_turf
 
 /datum/signal/subspace/vocal/copy()
 	var/datum/signal/subspace/vocal/copy = new(source, frequency, virt, language)
