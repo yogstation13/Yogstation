@@ -123,4 +123,4 @@
 		
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche/Destroy()
 	qdel(GetComponent(/datum/component/internal_cam))
-	. = ..()
+	return ..()
