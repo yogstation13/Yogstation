@@ -283,6 +283,7 @@
 			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
 			if(deadguy.health >= deadguy.maxHealth)
 				deadguy.revive(TRUE)
+				revive_notice = FALSE
 				deadguy.visible_message(span_progenitor("[deadguy]'s sigils flare brightly as they are once again in the realm of the living!"), span_progenitor("You rise once more!"))
 				playsound(deadguy, 'yogstation/sound/magic/demented_outburst_scream.ogg', 40, FALSE)
 		else if(revive_notice)

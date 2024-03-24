@@ -44,7 +44,7 @@
 	var/list/report = list()
 
 	if(GLOB.sacrament_done)
-		report += span_progenitor("The Darkspawn have ascended once again! The station has forever been lost beyond the veil.")
+		report += span_progenitor("The Darkspawn have ascended once again!<br>The station has forever been lost beyond the veil.")
 	else
 		report += span_header("[name]:") //only have a regular header if it's a loss
 		if(check_darkspawn_death())
@@ -117,6 +117,7 @@
 				if(!announced)
 					announced = TRUE
 					to_chat(master.current, span_progenitor("Enough lucidity has been gathered, perform the sacrament to ascend once more!"))
+					enable_validhunt()
 				if(lucidity >= required_succs*2)
 					to_chat(master.current, span_progenitor("Your form can't maintain itself with all this energy!"))
 					master.current.gib(TRUE, TRUE, TRUE)//stop farming the round
@@ -140,7 +141,7 @@
 	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 	priority_announce("Dangerous fluctuations in the veil have been detected aboard the station. Be on high alert for unusual beings commanding unnatural powers.", "Central Command Higher Dimensional Affairs")
 
-	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(lock_validhunt))
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(lock_validhunt)) //so you can't just turn off gamma
 
 /datum/team/darkspawn/proc/lock_validhunt()
 	if(check_darkspawn_death())//if no darkspawns are alive, don't bother announcing
