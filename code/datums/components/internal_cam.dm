@@ -1,5 +1,5 @@
 ///The static update delay on movement of the camera in a mob we use
-#define INTERNAL_CAMERA_BUFFER 0.5 SECONDS
+#define INTERNAL_CAMERA_BUFFER (0.5 SECONDS)
 
 /**
  * Internal camera component, basically a bodycam component, so it's not tied to an item
