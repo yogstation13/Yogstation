@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "adds a 20 pop req to sleeping carp (doesn't require readied up like gamemodes do)"
