@@ -326,6 +326,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	psi_cost = 30
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 7
@@ -544,13 +545,13 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 70
-	cooldown_time = 120 SECONDS
+	psi_cost = 80
+	cooldown_time = 60 SECONDS
 	length = 5 SECONDS
 
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()
-	if(. && isdarkspawn(owner))
+	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	if(. && darkspawn)
 		owner.balloon_alert(owner, "KSH SHOL'NAXHAR!")
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 		darkspawn.block_psi(20 SECONDS, type)
