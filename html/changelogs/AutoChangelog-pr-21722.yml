@@ -1,0 +1,5 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "fixed canisters not laying on their side and showing the correct side when broken"
+  - bugfix: "fixed error on toolbelt sprite"
