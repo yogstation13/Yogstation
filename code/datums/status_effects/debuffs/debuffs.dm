@@ -1707,7 +1707,7 @@
 
 /datum/status_effect/taunt/on_creation(mob/living/new_owner, mob/living/taunter)
 	src.taunter = taunter
-	. = ..()
+	return ..()
 	
 /datum/status_effect/taunt/on_apply()
 	. = ..()
