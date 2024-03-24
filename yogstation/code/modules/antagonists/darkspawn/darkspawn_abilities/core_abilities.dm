@@ -243,9 +243,9 @@
 		return FALSE
 		
 	caster.balloon_alert(caster, "[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]")
-	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), span_velvet("You begin transmitting a recall message to Central Command..."))
+	owner.visible_message(span_warning("[owner] briefly touches [target]'s screen, and the keys begin to move by themselves!"), span_velvet("You begin transmitting a recall message to Central Command..."))
+	in_use = TRUE	
 	play_recall_sounds(target, (duration/10)-1)
-	in_use = TRUE
 	if(!do_after(owner, duration, target))
 		in_use = FALSE
 		return
