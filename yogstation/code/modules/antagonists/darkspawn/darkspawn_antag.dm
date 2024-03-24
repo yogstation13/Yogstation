@@ -271,7 +271,7 @@
 
 	if((owner?.current?.stat == DEAD) && HAS_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current))
 		var/mob/living/carbon/human/deadguy = owner.current
-		var/turf/location == get_turf(owner.current)
+		var/turf/location = get_turf(owner.current)
 		var/light_amount = location.get_lumcount()
 			
 
