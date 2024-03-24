@@ -13,7 +13,7 @@
 /obj/effect/temp_visual/goliath_tentacle/darkspawn/original/Initialize(mapload, mob/living/new_spawner)
 	. = ..()
 	var/list/turf/turfs = circle_range_turfs(get_turf(src), 2)
-	for(var/i in 1 to 7)
+	for(var/i in 1 to 9)
 		if(!LAZYLEN(turfs)) //sanity check
 			break
 		var/turf/T = pick_n_take(turfs)

@@ -39,6 +39,9 @@
 	///Default amount of damage taken in light
 	var/light_burning = 7
 
+	///Boolean, if the player has been notified that they are being revived by undying sigils
+	var/revive_notice = FALSE
+
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Gain and loss stuff---------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -269,11 +272,22 @@
 			recreance = new(owner)
 			recreance.Grant(owner.current)
 
-	if((owner?.current?.stat == DEAD) && HAS_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current))
+	if((owner?.current?.stat == DEAD) && HAS_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current) && !QDELETED(owner.current))
 		var/mob/living/carbon/human/deadguy = owner.current
 		var/turf/location = get_turf(owner.current)
 		var/light_amount = location.get_lumcount()
-			
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
+			if(!revive_notice)
+				to_chat(deadguy, span_progenitor("Your body lurches as it refuses to be stopped by death."))
+				revive_notice = TRUE
+			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN))
+			if(deadguy.health >= deadguy.maxHealth)
+				deadguy.revive(TRUE)
+				deadguy.visible_message(span_progenitor("[deadguy]'s sigils flare brightly as they are once again in the realm of the living!"), span_progenitor("You rise once more!"))
+				playsound(deadguy, 'yogstation/sound/magic/demented_outburst_scream.ogg', 40, FALSE)
+		else if(revive_notice)
+			revive_notice = FALSE
+			to_chat(deadguy, span_velvet("Your body stills once more."))
 
 /datum/antagonist/darkspawn/proc/has_psi(amt)
 	return psi >= amt

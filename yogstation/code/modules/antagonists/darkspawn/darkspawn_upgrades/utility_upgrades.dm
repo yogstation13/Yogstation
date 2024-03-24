@@ -173,7 +173,7 @@
 	lore_description = ""
 	icon_state = "umbral_trespass"
 	willpower_cost = 2
-	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_WARLOCK
+	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/umbral_trespass)
 

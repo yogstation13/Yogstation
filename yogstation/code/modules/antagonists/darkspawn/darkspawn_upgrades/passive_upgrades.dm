@@ -69,7 +69,7 @@
 	icon_state = "psi_reserve"
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
-	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
+	shadow_flags = ALL_DARKSPAWN_CLASSES
 	infinite = TRUE
 
 /datum/psi_web/psi_cap/on_gain()
@@ -111,6 +111,21 @@
 /datum/psi_web/low_light_resistance/on_loss()
 	REMOVE_TRAIT(shadowhuman, TRAIT_DARKSPAWN_LIGHTRES, src)
 	
+/datum/psi_web/noslip
+	name = "Stability Sigil"
+	desc = "Unlocking this sigil prevents loss of footing."
+	lore_description = "The Tr'bxv sigils, representing stability, are etched onto the legs."
+	icon_state = "stability"
+	willpower_cost = 1
+	menu_tab = STORE_PASSIVE
+	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
+
+/datum/psi_web/noslip/on_gain()
+	ADD_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
+
+/datum/psi_web/noslip/on_loss()
+	REMOVE_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
+
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Fighter Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -162,29 +177,14 @@
 /datum/psi_web/brute_res/on_loss()
 	shadowhuman.physiology.burn_mod /= 0.85
 
-/datum/psi_web/noslip
-	name = "Stability Sigil"
-	desc = "Unlocking this sigil prevents loss of footing."
-	lore_description = "The Tr'bxv sigils, representing stability, are etched onto the legs."
-	icon_state = "stability"
-	willpower_cost = 1
-	menu_tab = STORE_PASSIVE
-	shadow_flags = DARKSPAWN_FIGHTER
-
-/datum/psi_web/noslip/on_gain()
-	ADD_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
-
-/datum/psi_web/noslip/on_loss()
-	REMOVE_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
-
 /datum/psi_web/undying
 	name = "Undying Sigils"
 	desc = "Unlocking this sigil will revive you upon death after some time spent in darkness."
 	lore_description = "The Kalak sigil, representing eternity, is etched onto the abdomen."
-	icon_state = "indomitable"
+	icon_state = "undying"
 	willpower_cost = 2
+	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
-	menu_tab = STORE_UTILITY
 
 /datum/psi_web/undying/on_gain()
 	ADD_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING, type)
@@ -253,6 +253,7 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
+	infinite = TRUE
 
 /datum/psi_web/psi_regen_speed/on_gain()
 	darkspawn.psi_per_second *= 2

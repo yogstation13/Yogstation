@@ -142,6 +142,7 @@
 	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | ERT_SPAWN //never put this in the pride pool because they look super valid
 	siemens_coeff = 0
+	armor = 10
 	brutemod = 0.9
 	burnmod = 1.1
 	heatmod = 1.5

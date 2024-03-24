@@ -1,7 +1,7 @@
 //Turns the darkspawn into a progenitor.
 /datum/action/cooldown/spell/sacrament
 	name = "Sacrament"
-	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
+	desc = "Ascends into a progenitor. You must have drained lucidity from a certain number of different people for this to work."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
@@ -41,7 +41,7 @@
 	if(team.lucidity < team.required_succs)
 		to_chat(owner, span_warning("You do not have enough unique lucidity! ([team.lucidity] / [team.required_succs])"))
 		return
-	if(alert(owner, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")
+	if(tgui_alert(owner, "The Sacrament is ready! Are you prepared?", name, list("Yes", "No")) != "Yes")
 		return
 	if(GLOB.sacrament_done)
 		darkspawn.sacrament() //if someone else has already done the sacrament, skip to the good part
