@@ -141,7 +141,8 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
-	var/tying = FALSE //If we're tying someone's hands
+	//Boolean on whether we're tying someone's hands
+	var/tying = FALSE
 
 /datum/action/cooldown/spell/touch/restrain_body/can_cast_spell(feedback)
 	if(tying)
