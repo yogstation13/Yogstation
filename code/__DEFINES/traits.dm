@@ -160,6 +160,7 @@
 #define TRAIT_ALWAYS_CLEAN      "always-clean"
 
 #define TRAIT_QUICKEST_CARRY	"quickest-carry"
+#define TRAIT_STRONK			"stronk"
 #define TRAIT_STRONG_GRIP		"strong-grip"
 
 #define TRAIT_SHELTERED			"sheltered"

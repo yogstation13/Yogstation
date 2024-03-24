@@ -567,6 +567,41 @@
 			playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		sheath.swords = TRUE
 
+/obj/item/nullrod/dragonslayer
+	name = "Dragon Slayer"
+	desc = "It was much too big to be called a sword. Massive, thick, heavy, and far too rough. Indeed, it was like a heap of raw iron."
+	icon = 'icons/obj/weapons/swords.dmi'
+	icon_state = "bigSwordTwoHanded"
+	item_state = "bigSword"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	weapon_stats = list(SWING_SPEED = 1.6, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 1 SECONDS)
+	force = 30
+	throw_speed = 1
+	throw_range = 1 //you cant throw that shit
+	slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	hitsound = 'sound/weapons/gigaclang.ogg'
+	attack_verb = list("attacked", "cleaved", "hacked", "crushed", "demolished")
+	menutab = MENU_WEAPON
+	additional_desc = "It'd take a lot of guts to lift this thing, let alone swing it."
+/obj/item/nullrod/dragonslayer/Initialize(mapload)
+	var/force_wielded = 18
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+	. = ..()
+	RemoveComponent(/datum/component/two_handed, \
+		force_wielded = force_wielded, \
+		icon_wielded = "bigSwordOneHanded", \
+		wieldsound = 'sound/weapons/saberoff.og', \
+		unwieldsound = 'sound/weapons/saberoff.ogg', \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+
+/obj/item/nullrod/dragonslayer/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /*---------------------------------------------------------------------------
 |
@@ -1348,9 +1383,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
 	force = 4.13
-	throwforce = 1
+	throwforce = 1.11111
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("attaged", "sashed", "stabb", "fall downed", "CAUSE violenced", "unbro hurt cuted", "unhealed..", "makes this hapen to")
+	force_string = "un real,,,"
 	menutab = MENU_MISC //banish it from being associated with proper weapons
 	additional_desc = "Hey, God here. Asking you to pick literally anything else as your implement of justice."
 
