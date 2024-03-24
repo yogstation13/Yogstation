@@ -163,6 +163,15 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/manipulator = 5)
 
+/obj/item/circuitboard/machine/synth_pod
+	name = "Synthetic Storage Unit (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/synth_pod
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/manipulator = 2)
+
 /obj/item/circuitboard/machine/decontamination_unit
 	name = "Decontamination Storage Unit (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
@@ -1084,6 +1093,27 @@
 		/obj/item/stack/sheet/glass = 2,
 		/obj/item/stack/cable_coil = 1)
 
+/obj/item/circuitboard/machine/networking_machine
+	name = "Networking Machine (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/ai/networking
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 4,
+		/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stock_parts/scanning_module = 4,
+		/obj/item/stack/sheet/glass = 4,
+		/obj/item/stack/cable_coil = 1)
+
+/obj/item/circuitboard/machine/subcontroller
+	name = "Subcontroller (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/ai/master_subcontroller
+	req_components = list(
+		/obj/item/stock_parts/capacitor = 4,
+		/obj/item/stock_parts/scanning_module = 4,
+		/obj/item/stack/sheet/glass = 2,
+		/obj/item/stack/cable_coil = 1)
+		
 /obj/item/circuitboard/machine/ai_core_display
 	name = "AI Core Display (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE

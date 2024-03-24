@@ -252,6 +252,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/bodycontainer/crematorium/proc/cremate(mob/user)
 	if(locked)
 		return //don't let you cremate something twice or w/e
+	if(is_synth(user))
+		return
 	// Make sure we don't delete the actual morgue and its tray
 	var/list/conts = get_all_contents() - src - connected
 

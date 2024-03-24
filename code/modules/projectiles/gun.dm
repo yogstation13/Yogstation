@@ -325,6 +325,9 @@
 			firing_burst = FALSE
 			return FALSE
 	if(chambered && chambered.BB)
+		if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+			return
+		
 		if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 			if(chambered.harmful) // Is the bullet chambered harmful?
 				to_chat(user, span_notice(" [src] is lethally chambered! You don't want to risk harming anyone..."))
@@ -386,6 +389,8 @@
 			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
 	else
 		if(chambered)
+			if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+				return
 			if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 				if(chambered.harmful) // Is the bullet chambered harmful?
 					to_chat(user, span_notice(" [src] is lethally chambered! You don't want to risk harming anyone..."))

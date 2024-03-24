@@ -70,6 +70,8 @@
 	if(item_flags & NOBLUDGEON)
 		return
 
+	if(force && !synth_check(user, SYNTH_ORGANIC_HARM))
+		return
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM) && (damtype != STAMINA))
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return TRUE
@@ -100,8 +102,13 @@
 
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
-
-	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
+	var/force_multiplier = 1
+	if(is_synth(user))
+		var/mob/living/carbon/human/H = user
+		var/datum/species/wy_synth/S = H.dna.species
+		force_multiplier = S.force_multiplier
+	
+	take_damage(rand(weapon_stats[DAMAGE_LOW] * force_multiplier, weapon_stats[DAMAGE_HIGH] * force_multiplier), sound_effect = FALSE)
 
 //the equivalent of the standard version of attack() but for non-mob targets.
 /obj/item/proc/attack_atom(atom/attacked_atom, mob/living/user)
@@ -109,13 +116,20 @@
 		return
 	if(item_flags & NOBLUDGEON)
 		return
-	var/dist = get_dist(attacked_atom, user)
+	var/dist = get_dist(attacked_atom,user)
+	if(!synth_check(user, SYNTH_OBJ_DAMAGE))
+		return
 	user.changeNext_move(CLICK_CD_MELEE * weapon_stats[SWING_SPEED] * (range_cooldown_mod ? (dist > 0 ? min(dist, weapon_stats[REACH]) * range_cooldown_mod : range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
 	user.do_attack_animation(attacked_atom)
 	attacked_atom.attacked_by(src, user)
 	user.weapon_slow(src)
+	var/force_multiplier = 1
+	if(is_synth(user))
+		var/mob/living/carbon/human/H = user
+		var/datum/species/wy_synth/S = H.dna.species
+		force_multiplier = S.force_multiplier
 	if(!QDELETED(src))
-		take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
+		take_damage(rand(weapon_stats[DAMAGE_LOW] * force_multiplier, weapon_stats[DAMAGE_HIGH] * force_multiplier), sound_effect = FALSE)
 
 /atom/proc/attacked_by(obj/item/attacking_item, mob/living/user)
 	if(!uses_integrity)

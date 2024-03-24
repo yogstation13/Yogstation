@@ -31,6 +31,9 @@
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, span_notice("You don't want to hurt [src]!"))
 				return
+			if(!synth_check(M, SYNTH_ORGANIC_HARM))
+				to_chat(M, span_notice("You don't want to hurt [src]!"))
+				return
 			last_damage = "fist"
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message(span_danger("[M] [response_harm] [src]!"),\

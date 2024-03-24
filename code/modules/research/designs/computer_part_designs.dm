@@ -261,3 +261,13 @@
 	build_path = /obj/item/computer_hardware/sensorpackage
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+// Intellicard slot
+/datum/design/network_interface
+	name = "AI Network Interface"
+	id = "aiinterface"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 600)
+	build_path = /obj/item/computer_hardware/ai_interface
+	category = list("Computer Parts")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING

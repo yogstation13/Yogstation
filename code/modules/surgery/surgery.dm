@@ -49,6 +49,8 @@
 	..()
 	if(surgery_target)
 		target = surgery_target
+		if(is_synth(target))
+			ignore_clothes = TRUE
 		target.surgeries += src
 		if(surgery_location)
 			location = surgery_location

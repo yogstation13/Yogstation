@@ -539,7 +539,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 	deltimer(search_objects_timer_id)
 	search_objects_timer_id = addtimer(CALLBACK(src, PROC_REF(RegainSearchObjects)), search_objects_regain_time, TIMER_STOPPABLE)
 
-
+	
 /mob/living/simple_animal/hostile/proc/RegainSearchObjects(value)
 	if(!value)
 		value = initial(search_objects)

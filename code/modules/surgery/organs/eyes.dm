@@ -477,6 +477,9 @@
 	if(!isnull(light_flags))
 		set_light_flags(light_flags)
 
+/obj/item/organ/eyes/robotic/synth
+	flash_protect = 2
+
 /obj/item/organ/eyes/moth
 	name = "moth eyes"
 	desc = "These eyes can see just a little too well, light doesn't entirely agree with them."

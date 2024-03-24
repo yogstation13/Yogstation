@@ -72,6 +72,8 @@
 	. = ..()
 
 /datum/species/plasmaman/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(!J)
+		return
 	var/current_job = J.title
 	var/datum/outfit/plasmaman/O = new /datum/outfit/plasmaman
 	switch(current_job)

@@ -72,44 +72,7 @@
 
 	data["logged_in"] = logged_in
 
-	if(issilicon(user))
-		var/mob/living/silicon/borg = user
-		data["username"] = borg.name
-		data["has_access"] = TRUE
-
-	if(IsAdminGhost(user))
-		data["username"] = user.client.holder.admin_signature
-		data["has_access"] = TRUE
-
-	if(ishuman(user))
-		var/username = user.get_authentification_name("Unknown")
-		data["username"] = user.get_authentification_name("Unknown")
-		if(username != "Unknown")
-			var/datum/data/record/record
-			for(var/RP in GLOB.data_core.general)
-				var/datum/data/record/R = RP
-
-				if(!istype(R))
-					continue
-				if(R.fields["name"] == username)
-					record = R
-					break
-			if(record)
-				if(istype(record.fields["photo_front"], /obj/item/photo))
-					var/obj/item/photo/P1 = record.fields["photo_front"]
-					var/icon/picture = icon(P1.picture.picture_image)
-					picture.Crop(10, 32, 22, 22)
-					var/md5 = md5(fcopy_rsc(picture))
-
-					if(!SSassets.cache["photo_[md5]_cropped.png"])
-						SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
-					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
-
-					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
-
-		data["has_access"] = check_access(user.get_idcard())
-
-
+	data += tgui_login_data(user, src)
 
 	if(!logged_in)
 		return data
@@ -277,7 +240,6 @@
 
 		data["active_record"] = record
 
-
 	return data
 
 /obj/machinery/computer/secure_data/ui_static_data(mob/user)
@@ -292,6 +254,8 @@
 	if(..())
 		return
 
+
+
 	switch(action)
 		if("back")
 			if(!logged_in)
@@ -305,6 +269,10 @@
 			active_security_record = null
 			screen = MAIN_SCREEN
 
+			logged_in = tgui_login_act(usr, src)
+			if(!logged_in)
+				return
+
 			if(issilicon(usr))
 				var/mob/living/silicon/borg = usr
 				logged_in = borg.name
@@ -314,17 +282,14 @@
 			if(IsAdminGhost(usr))
 				logged_in = usr.client.holder.admin_signature
 				rank = "Central Command Officer"
-
-
-
-
-			var/mob/living/carbon/human/H = usr
-			if(!istype(H))
 				return
 
-			if(check_access(H.get_idcard()))
+			var/mob/living/carbon/human/H = usr
+			if(istype(H))
 				logged_in = H.get_authentification_name("Unknown")
 				rank = H.get_assignment("Unknown", "Unknown")
+				return
+
 		if("log_out")
 			if(!logged_in)
 				return

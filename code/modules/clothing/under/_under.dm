@@ -109,6 +109,9 @@
 		attached_accessory.on_clothing_equip(src, user)
 		if(attached_accessory.above_suit)
 			H.update_inv_wear_suit()
+	if(is_synth(user) && has_sensor)
+		to_chat(user, span_notice("Suit sensors disabled due to non-compatible user."))
+		sensor_mode = SENSOR_OFF
 
 /obj/item/clothing/under/dropped(mob/user)
 	if(attached_accessory)

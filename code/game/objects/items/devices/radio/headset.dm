@@ -204,6 +204,23 @@
 	icon_state = "srv_headset"
 	keyslot = new /obj/item/encryptionkey/headset_service
 
+/obj/item/radio/headset/headset_synthetic
+	name = "synthetic radio headset"
+	desc = "Headset used by the onboard synthetic units. This one is integrated directly into the unit and is not possible to remove."
+	icon_state = "com_headset"
+	keyslot = new /obj/item/encryptionkey/headset_synthetic
+	item_flags = DROPDEL
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/item/radio/headset/headset_synthetic/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, SYNTHETIC_TRAIT)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, SYNTHETIC_TRAIT)
+	
+/obj/item/radio/headset/headset_synthetic/attackby(obj/item/W, mob/user, params)
+	return FALSE
+
 /obj/item/radio/headset/headset_cent
 	name = "\improper CentCom headset"
 	desc = "A headset used by the upper echelons of Nanotrasen."

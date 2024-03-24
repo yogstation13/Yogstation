@@ -59,7 +59,6 @@
 	var/lockdown = FALSE
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
-	var/draining = FALSE
 	var/soggy = FALSE
 	var/low_power_warning = FALSE
 

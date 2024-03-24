@@ -223,6 +223,8 @@
 /mob/living/proc/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	if(is_synth(src))
+		return FALSE
 	if(amount < 0)
 		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, min(amount, cloneloss), CLONE)
 	cloneloss = clamp((cloneloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)

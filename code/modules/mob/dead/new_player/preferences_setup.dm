@@ -48,7 +48,10 @@
 	mannequin.add_overlay(mutable_appearance('icons/turf/floors.dmi', background, layer = SPACE_LAYER))
 	apply_prefs_to(mannequin, TRUE)
 
+
 	if(preview_job)
+		if(preview_job.forced_species)
+			mannequin.set_species(preview_job.forced_species)
 		mannequin.job = preview_job.title
 		mannequin.dress_up_as_job(preview_job, TRUE)
 

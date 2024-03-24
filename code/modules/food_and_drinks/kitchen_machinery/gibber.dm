@@ -74,6 +74,10 @@
 		to_chat(user, span_notice("[src] cannot be used unless bolted to the ground."))
 		return
 
+	if(is_synth(user))
+		to_chat(user, span_warning("You don't want to use this!"))
+		return
+
 	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(!iscarbon(L))

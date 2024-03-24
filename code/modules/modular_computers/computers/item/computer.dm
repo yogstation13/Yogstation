@@ -156,6 +156,9 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+		var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
+		if(ai_slot)
+			ai_slot.try_eject(user)
 		if(card_slot2)
 			var/obj/item/card/id/target_id_card = card_slot2.stored_card
 			if(!target_id_card)
@@ -653,6 +656,17 @@
 			program.alert_pending = FALSE
 			enabled = TRUE
 
+/obj/item/modular_computer/pickup(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(parent_moved))
+
+/obj/item/modular_computer/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+
+/obj/item/modular_computer/proc/parent_moved()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED)
+
 /// Sets visible messages to also send to holder because coders didn't know it didn't do this
 /obj/item/modular_computer/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags)
 	. = ..()
@@ -661,3 +675,4 @@
 
 /obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
 	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE
+

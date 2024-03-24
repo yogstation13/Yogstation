@@ -16605,9 +16605,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/obj/structure/sign/plaques/ai_password{
-	pixel_x = 32
-	},
 /obj/machinery/papershredder,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)

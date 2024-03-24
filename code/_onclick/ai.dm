@@ -134,12 +134,24 @@
 	if((obj_flags & EMAGGED) || (obj_flags & CMAGGED))
 		return
 
+	var/mob/living/silicon/ai/AI = usr
+	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
+		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+			return
+
 	toggle_bolt(usr)
 	add_hiddenprint(usr)
 
 /obj/machinery/door/airlock/AIAltClick() // Eletrifies doors.
 	if((obj_flags & EMAGGED) || (obj_flags & CMAGGED))
 		return
+
+	var/mob/living/silicon/ai/AI = usr
+	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
+		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+			return
 
 	if(!secondsElectrified)
 		shock_perm(usr)
@@ -150,6 +162,11 @@
 	if((obj_flags & EMAGGED) || (obj_flags & CMAGGED))
 		return
 
+	var/mob/living/silicon/ai/AI = usr
+	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
+		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+			return
 	user_toggle_open(usr)
 	add_hiddenprint(usr)
 
@@ -157,11 +174,23 @@
 	if((obj_flags & EMAGGED) || (obj_flags & CMAGGED))
 		return
 
+	var/mob/living/silicon/ai/AI = usr
+	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
+		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+			return
+
 	toggle_emergency(usr)
 	add_hiddenprint(usr)
 
 /* APC */
 /obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
+
+	var/mob/living/silicon/ai/AI = usr
+	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
+		to_chat(AI, span_warning("No connection to subcontroller detected. Polling APC..."))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+			return
 	if(can_use(usr, 1))
 		toggle_breaker(usr)
 

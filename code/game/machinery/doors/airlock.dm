@@ -857,6 +857,12 @@
 		to_chat(user, span_warning("Unable to interface. Airlock control panel damaged."))
 		return
 
+	var/mob/living/silicon/ai/AI = user
+	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
+		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
+			return
+
 	ui_interact(user)
 
 /obj/machinery/door/airlock/proc/hack(mob/user)
@@ -1570,6 +1576,14 @@
 		if(density && !open(2)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
 			to_chat(user, span_warning("Despite your efforts, [src] managed to resist your attempts to open it!"))
 
+
+/obj/machinery/door/airlock/proc/safe_lockdown()
+	// Must be powered and have working AI wire.
+	if(canAIControl(src) && !stat)
+		locked = FALSE //For airlocks that were bolted open.
+		close()
+		bolt() //Bolt it!
+
 /obj/machinery/door/airlock/hostile_lockdown(mob/origin)
 	// Must be powered and have working AI wire.
 	if(canAIControl(src) && !stat)
@@ -1589,6 +1603,13 @@
 		set_electrified(MACHINE_NOT_ELECTRIFIED)
 		open()
 		safe = TRUE
+
+/obj/machinery/door/airlock/proc/disable_safe_lockdown()
+	// Must be powered and have working AI wire.
+	if(canAIControl(src) && !stat)
+		unbolt()
+		open()
+
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds

@@ -78,6 +78,10 @@
 	if(broken || !Adjacent(user))
 		return
 
+	if(is_synth(user))
+		to_chat(user, span_warning("You may not change your appearance."))
+		return
+
 	if(user && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/choices = get_choices(H) // Get the choices you can change

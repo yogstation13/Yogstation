@@ -13,7 +13,7 @@
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 15
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Added Brig Physician
 	title_icon = "ss13"
 

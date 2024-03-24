@@ -170,6 +170,8 @@
 		user.Paralyze(stunforce*3)
 		deductcharge(hitcost)
 		return
+	if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+		return
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return
