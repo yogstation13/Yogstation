@@ -354,7 +354,7 @@
 	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
 	icon_state = "light_eater"
 	item_state = "light_eater"
-	force = 15
+	force = 18
 	armour_penetration = 20
 	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
