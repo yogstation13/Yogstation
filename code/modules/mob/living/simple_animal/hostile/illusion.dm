@@ -103,6 +103,7 @@
 /mob/living/simple_animal/hostile/illusion/darkspawn/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/light_eater)
+	grant_language(/datum/language/darkspawn)
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/Life(seconds_per_tick, times_fired)
 	. = ..()
