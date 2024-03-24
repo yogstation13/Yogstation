@@ -11130,8 +11130,8 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bEo" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
 /obj/effect/turf_decal/delivery,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bEs" = (
@@ -11648,12 +11648,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
-"bJy" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "bJA" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -23187,11 +23181,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"fgV" = (
-/obj/effect/turf_decal/arrows/white,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/maintenance/disposal/incinerator)
 "fhf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -26557,8 +26546,8 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "gon" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/atmospherics/miner/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos/distro)
 "goW" = (
@@ -30845,13 +30834,6 @@
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
-"hNw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "hNx" = (
 /obj/structure/chair/sofa,
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -32701,10 +32683,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
-"ipo" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
 "ips" = (
 /obj/structure/cable{
@@ -35081,16 +35059,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"jjC" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jjR" = (
 /obj/machinery/atmospherics/components/unary/tank/toxins,
 /obj/effect/decal/cleanable/dirt,
@@ -60542,7 +60510,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
 "soW" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -69210,7 +69177,6 @@
 	dir = 4;
 	name = "Fuel Port"
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
 /obj/effect/decal/cleanable/dirt{
 	pixel_x = 2
 	},
@@ -69737,17 +69703,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"vCE" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "vCK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -75325,10 +75280,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "xBp" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
+/turf/open/space/basic,
 /area/maintenance/disposal/incinerator)
 "xBG" = (
 /obj/structure/rack,
@@ -114899,9 +114851,9 @@ aHd
 qQF
 pFA
 iak
-fKW
-cmd
-cmd
+xBp
+xBp
+xBp
 aaa
 aaa
 aaa
@@ -115155,8 +115107,8 @@ ctE
 fKW
 ghK
 wML
-fKW
-fKW
+xBp
+xBp
 mVw
 cmd
 cmd
@@ -115411,8 +115363,8 @@ fKW
 ctE
 ghK
 kRa
-fca
-fca
+xBp
+xBp
 fca
 tfH
 fKW
@@ -115667,8 +115619,8 @@ lQl
 vsW
 ctE
 kRa
-hNw
-ipo
+xBp
+xBp
 eiw
 pPW
 kOp
@@ -115924,7 +115876,7 @@ qXS
 mSL
 ctE
 pIA
-ipo
+xBp
 piz
 mtm
 gqF
@@ -116181,7 +116133,7 @@ dAA
 csz
 xqu
 iBI
-fgV
+xBp
 nka
 goZ
 mxv
@@ -116438,7 +116390,7 @@ mFW
 ilQ
 dzz
 pIA
-pPW
+xBp
 upb
 rOf
 piz
@@ -116696,7 +116648,7 @@ svh
 dzz
 eDN
 xBp
-pPW
+xBp
 iGK
 pPW
 feM
@@ -116953,8 +116905,8 @@ sDi
 dzz
 fKW
 eDN
-bJy
-csU
+xBp
+xBp
 csU
 uzn
 ghK
@@ -117211,8 +117163,8 @@ dfL
 tEp
 tEp
 tEp
-vCE
-jjC
+xBp
+xBp
 bLK
 tEp
 sSk
@@ -117469,7 +117421,7 @@ kAj
 cmd
 cmd
 nbm
-nbm
+xBp
 nbm
 nbm
 nbm
