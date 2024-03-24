@@ -29,8 +29,8 @@
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/handle_downgrade(atom/source, flag)
 	if(flag & TENDRIL_UPGRADE_TWIN)
 		twin = FALSE
-		name = "Shadow Tendril"
-		desc = "Twists an active arm into a mass of tendrils with many important uses. Examine the tendrils to see a list of uses."
+		name = initial(name)
+		desc = initial(desc)
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/can_cast_spell(feedback)
 	if(!owner.get_empty_held_indexes() && !active)
@@ -135,7 +135,7 @@
 /datum/action/cooldown/spell/pointed/shadow_crash/Remove(mob/living/remove_from)
 	UnregisterSignal(owner, COMSIG_MOVABLE_IMPACT)
 	REMOVE_TRAIT(owner, TRAIT_IMPACTIMMUNE, type)
-	. = ..()
+	return ..()
 	
 /datum/action/cooldown/spell/pointed/shadow_crash/cast(atom/cast_on)
 	. = ..()
@@ -202,7 +202,7 @@
 		if(feedback)
 			to_chat(owner, span_notice("You still have time dilation in effect."))
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/time_dilation/cast(atom/cast_on)
 	. = ..()
@@ -228,13 +228,15 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 50 //big boom = big cost
 	aoe_radius = 5
+	///Boolean, if the spell is being charged up
 	var/casting = FALSE
+	///Duration spent charging the spell
 	var/cast_time = 5 SECONDS
 
 /datum/action/cooldown/spell/aoe/demented_outburst/can_cast_spell(feedback)
 	if(casting)
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/aoe/demented_outburst/before_cast(atom/cast_on)
 	. = ..()
@@ -257,25 +259,24 @@
 	owner.visible_message(span_userdanger("[owner] lets out a deafening scream!"), span_velvet("You let out a deafening outburst!"))
 	playsound(owner, 'yogstation/sound/magic/demented_outburst_scream.ogg', 75, 0)
 
-/datum/action/cooldown/spell/aoe/demented_outburst/cast_on_thing_in_aoe(atom/victim, atom/caster)
+/datum/action/cooldown/spell/aoe/demented_outburst/cast_on_thing_in_aoe(atom/movable/victim, atom/caster)
 	if(!can_see(victim, caster, aoe_radius))
 		return
 	if(!ismovable(victim))
 		return
-	var/atom/movable/AM = victim
-	if(AM.anchored)
+	if(victim.anchored)
 		return
-	if(isitem(AM) && isliving(AM.loc))//don't throw anything being held by someone
+	if(isitem(victim) && isliving(victim.loc))//don't throw anything being held by someone
 		return
-	if(isliving(AM))
-		var/mob/living/dude = AM
+	if(isliving(victim))
+		var/mob/living/dude = victim
 		if(is_darkspawn_or_thrall(dude))
 			return
-	var/distance = get_dist(owner, AM)
-	var/turf/target = get_edge_target_turf(owner, get_dir(owner, get_step_away(AM, owner)))
-	AM.throw_at(target, ((clamp((5 - (clamp(distance - 2, 0, distance))), 3, 5))), 1, owner)
-	if(iscarbon(AM))
-		var/mob/living/carbon/C = AM
+	var/distance = get_dist(owner, victim)
+	var/turf/target = get_edge_target_turf(owner, get_dir(owner, get_step_away(victim, owner)))
+	victim.throw_at(target, ((clamp((5 - (clamp(distance - 2, 0, distance))), 3, 5))), 1, owner)
+	if(iscarbon(victim))
+		var/mob/living/carbon/C = victim
 		if(distance <= 1) //you done fucked up now
 			C.visible_message(span_warning("The blast sends [C] flying!"), span_userdanger("The force sends you flying!"))
 			C.Paralyze(5 SECONDS)
@@ -287,8 +288,8 @@
 			C.Paralyze(2.5  SECONDS)
 			C.Knockdown(3 SECONDS)
 			C.soundbang_act(1, 3, 5, 0)
-	if(iscyborg(AM))
-		var/mob/living/silicon/robot/R = AM
+	if(iscyborg(victim))
+		var/mob/living/silicon/robot/R = victim
 		R.visible_message(span_warning("The blast sends [R] flying!"), span_userdanger("The force sends you flying!"))
 		R.Paralyze(10 SECONDS) //fuck borgs
 		R.soundbang_act(1, 5, 15, 5)
@@ -320,7 +321,7 @@
 /datum/action/cooldown/spell/toggle/creep/process()
 	if(active && cost && (!cost.use_psi(upkeep_cost)))
 		Activate(owner)
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/creep/Enable()
 	to_chat(owner, span_velvet("Odeahz"))
@@ -365,7 +366,7 @@
 		Activate(owner)
 	if(active && owner.m_intent != MOVE_INTENT_WALK)
 		owner.toggle_move_intent()
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/toggle/indomitable/Enable()
 	to_chat(owner, span_velvet("Zhaedo"))

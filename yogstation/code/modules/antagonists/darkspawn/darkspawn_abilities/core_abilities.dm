@@ -217,8 +217,10 @@
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE
 	spell_requirements = NONE
 	psi_cost = 60
-	var/in_use = FALSE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
+	///Boolean on whether this is in use.
+	var/in_use = FALSE
+	///The time it takes to use this spell, used in do after and to play sounds as it goes.
 	var/duration = 8 SECONDS
 
 /datum/action/cooldown/spell/touch/silver_tongue/can_cast_spell(feedback)
@@ -237,7 +239,7 @@
 		return FALSE
 	to_chat(owner, span_velvet("[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]"))
 	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), span_velvet("You begin transmitting a recall message to Central Command..."))
-	play_recall_sounds(target)
+	play_recall_sounds(target, (duration/10)-1)
 	in_use = TRUE
 	if(!do_after(owner, duration, target))
 		in_use = FALSE
@@ -252,18 +254,22 @@
 	to_chat(owner, span_velvet("The ruse was a success. The shuttle is on its way back."))
 	return TRUE
 
-/datum/action/cooldown/spell/touch/silver_tongue/proc/play_recall_sounds(obj/machinery/C) //neato sound effects
+/datum/action/cooldown/spell/touch/silver_tongue/proc/play_recall_sounds(obj/machinery/C, iterations) //neato sound effects
 	set waitfor = FALSE
+	if(!C || C.stat || !in_use)
+		return
 	playsound(C, "terminal_type", 50, TRUE)
-	for(var/i in 1 to ((duration/10)-1)) //8 seconds (80) -> 7 loops -> 7 seconds of random typing and beeping
-		sleep(1 SECONDS)
-		if(!C || C.stat || !in_use)
-			return
-		playsound(C, "terminal_type", 50, TRUE)
-		if(prob(25))
-			playsound(C, 'sound/machines/terminal_alert.ogg', 50, FALSE)
-			do_sparks(5, TRUE, get_turf(C))
-	sleep(0.4 SECONDS)
+	if(prob(25))
+		playsound(C, 'sound/machines/terminal_alert.ogg', 50, FALSE)
+		do_sparks(5, TRUE, get_turf(C))
+	
+	if(iterations <= 0)
+		addtimer(CALLBACK(src, PROC_REF(end_recall_sounds), C), 0.4 SECONDS)
+	else
+		addtimer(CALLBACK(src, PROC_REF(play_recall_sounds), C, iterations - 1), 1 SECONDS)
+
+/datum/action/cooldown/spell/touch/silver_tongue/proc/end_recall_sounds(obj/machinery/C) //end the neato sound effects
+	set waitfor = FALSE
 	if(!C || C.stat || !in_use)
 		return
 	playsound(C, 'sound/machines/terminal_prompt.ogg', 50, FALSE)

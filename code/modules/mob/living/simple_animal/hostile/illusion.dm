@@ -109,6 +109,8 @@
 			adjustHealth(-2)
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche //sentient version
+	///Camera stored inside the mob for use with the darkspawn camera net
+	var/datum/component/internal_cam/cam
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche/Copy_Parent(mob/living/original, life, hp, damage, replicate)
 	. = ..()
@@ -116,11 +118,10 @@
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
-	var/datum/component/internal_cam/cam = GetComponent(/datum/component/internal_cam)
+	cam = AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	if(cam)
 		cam.change_cameranet(GLOB.thrallnet)
 		
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche/Destroy()
-	qdel(GetComponent(/datum/component/internal_cam))
+	qdel(cam)
 	return ..()
