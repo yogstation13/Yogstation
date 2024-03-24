@@ -198,7 +198,7 @@
 /datum/action/cooldown/spell/pointed/progenitor_curse/is_valid_target(atom/cast_on)
 	if(!isliving(cast_on))
 		return FALSE
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/pointed/progenitor_curse/cast(atom/cast_on)
 	. = ..()
