@@ -1343,8 +1343,8 @@
 
 /obj/item/storage/box/coffeepack/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/food/snacks/grown/coffee = 5,
-		/obj/item/reagent_containers/food/snacks/grown/coffee/robusta = 5)
+		beantype = 5
+		)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/coffeepack/robusta
