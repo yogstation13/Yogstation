@@ -100,6 +100,10 @@
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	faction = list(ROLE_DARKSPAWN)
 	
+/mob/living/simple_animal/hostile/illusion/darkspawn/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/light_eater)
+
 /mob/living/simple_animal/hostile/illusion/darkspawn/Life(seconds_per_tick, times_fired)
 	. = ..()
 	var/turf/T = get_turf(src)

@@ -73,7 +73,7 @@
 	desc = "Banish heat from the surrounding terrain, freezing it instantly."
 	lore_description = "Opens a pinhole to the veil, rapidly draining heat from the surrounding area."
 	icon_state = "permafrost"
-	willpower_cost = 2
+	willpower_cost = 3
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/permafrost)

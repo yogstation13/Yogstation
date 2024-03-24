@@ -46,6 +46,10 @@
 	var/move_count = 0 //For spooky sound effects
 	var/knocking_out = FALSE
 
+/mob/living/simple_animal/hostile/crawling_shadows/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/light_eater)
+
 /mob/living/simple_animal/hostile/crawling_shadows/Move()
 	. = ..()
 	update_light_speed()
@@ -64,25 +68,3 @@
 		speed = 0
 		alpha = min(alpha + (lums * 30), 255) //Slowly becomes more visible in brighter light
 	update_simplemob_varspeed()
-
-/mob/living/simple_animal/hostile/crawling_shadows/AttackingTarget()
-	if(ishuman(target) && !knocking_out)
-		var/mob/living/carbon/human/H = target
-		if(H.stat)
-			return ..()
-		knocking_out = TRUE
-		visible_message(span_warning("[src] picks up [H] and dangles [H.p_them()] in the air!"), span_notice("You pluck [H] from the ground..."))
-		to_chat(H, span_userdanger("[src] grabs you and dangles you in the air!"))
-		H.Stun(3 SECONDS)
-		H.pixel_y += 4
-		if(!do_after(src, 1 SECONDS, target))
-			H.pixel_y -= 4
-			knocking_out = FALSE
-			return
-		visible_message(span_warning("[src] gently presses a hand against [H]'s face, and [H.p_they()] falls limp..."), span_notice("You quietly incapacitate [H]."))
-		H.pixel_y -= 4
-		to_chat(H, span_userdanger("[src] presses a hand to your face, and docility washes over you..."))
-		H.Paralyze(6 SECONDS)
-		knocking_out = FALSE
-		return TRUE
-	..()

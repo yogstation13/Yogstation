@@ -60,6 +60,7 @@
 
 /////////////////////////////Makes people sick////////////////////////////
 /obj/structure/trap/darkspawn/nausea
+	time_between_triggers = 15 SECONDS
 	examine_text = "sickness"
 
 /obj/structure/trap/darkspawn/nausea/flare()

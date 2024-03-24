@@ -26,7 +26,7 @@
 	desc = "Allows you to see through solid objects."
 	lore_description = "The Akvryt sigils, representing pierce, are etched underneath the eyes."
 	icon_state = "xray"
-	willpower_cost = 2
+	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	var/obj/item/organ/eyes/eyes
@@ -41,25 +41,6 @@
 	if(eyes)
 		eyes.sight_flags &= ~(SEE_OBJS | SEE_TURFS)
 		shadowhuman.update_sight()
-
-/datum/psi_web/sunglasses
-	name = "Lightblind Sigil"
-	desc = "Protects you from strong flashes of light."
-	lore_description = "The Vvkatkz sigils, representing warding, are etched underneath the eyes."
-	icon_state = "light_blind"
-	willpower_cost = 1
-	menu_tab = STORE_PASSIVE
-	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
-	var/obj/item/organ/eyes/eyes
-
-/datum/psi_web/sunglasses/on_gain()
-	eyes = shadowhuman.getorganslot(ORGAN_SLOT_EYES)
-	if(eyes && istype(eyes))
-		eyes.flash_protect += 2
-
-/datum/psi_web/sunglasses/on_loss()
-	if(eyes)
-		eyes.flash_protect -= 2
 
 //Increases max Psi by 100.
 /datum/psi_web/psi_cap
@@ -129,6 +110,25 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Fighter Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+/datum/psi_web/sunglasses
+	name = "Lightblind Sigil"
+	desc = "Protects you from strong flashes of light."
+	lore_description = "The Vvkatkz sigils, representing warding, are etched underneath the eyes."
+	icon_state = "light_blind"
+	willpower_cost = 1
+	menu_tab = STORE_PASSIVE
+	shadow_flags = DARKSPAWN_FIGHTER
+	var/obj/item/organ/eyes/eyes
+
+/datum/psi_web/sunglasses/on_gain()
+	eyes = shadowhuman.getorganslot(ORGAN_SLOT_EYES)
+	if(eyes && istype(eyes))
+		eyes.flash_protect += 2
+
+/datum/psi_web/sunglasses/on_loss()
+	if(eyes)
+		eyes.flash_protect -= 2
+		
 //Halves lightburn damage.
 /datum/psi_web/light_resistance
 	name = "Shadowskin Sigil"

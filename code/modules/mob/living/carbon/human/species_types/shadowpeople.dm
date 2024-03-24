@@ -355,7 +355,6 @@
 	icon_state = "light_eater"
 	item_state = "light_eater"
 	force = 18
-	armour_penetration = 20
 	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -363,8 +362,7 @@
 	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = SHARP_EDGED
-	wound_bonus = -30
-	bare_wound_bonus = 20
+	wound_bonus = -40
 	resistance_flags = ACID_PROOF
 
 /obj/item/light_eater/Initialize(mapload)

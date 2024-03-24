@@ -49,7 +49,7 @@
 	desc = "A short range targeted teleport."
 	lore_description = "Take a single step through the veil."
 	icon_state = "shadow_jump"
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/phase_jump/void_jump)
@@ -69,7 +69,7 @@
 	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
 	lore_description = "Release a pocket of darkness nestled within your body."
 	icon_state = "blinding_miasma"
-	willpower_cost = 2
+	willpower_cost = 3
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/darkness_smoke)
@@ -192,7 +192,7 @@
 	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors."
 	lore_description = ""
 	icon_state = "crawling_shadows"
-	willpower_cost = 2
+	willpower_cost = 3
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/shapeshift/crawling_shadows)
@@ -212,7 +212,7 @@
 	desc = "Attemps to split a piece of your psyche into a sentient copy of yourself that lasts until destroyed."
 	lore_description = ""
 	icon_state = "fray_self"
-	willpower_cost = 3
+	willpower_cost = 4
 	shadow_flags = DARKSPAWN_WARLOCK | DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/fray_self)

@@ -87,7 +87,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/shapeshift/crawling_shadows
 	name = "Crawling Shadows"
-	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors. You can also knock people out by attacking them."
+	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"

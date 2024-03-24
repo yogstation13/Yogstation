@@ -51,8 +51,7 @@
 	name = "shadow arrow"
 	icon = 'yogstation/icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
-	damage = 30 //reduced damage per arrow +
-	armour_penetration = 0 //no negative armour pen = more damage to armoured targets, less to unarmoured targets
+	damage = 25 //reduced damage per arrow compared to regular ones
 	light_system = MOVABLE_LIGHT
 	light_power = -1
 	light_color = COLOR_VELVET
