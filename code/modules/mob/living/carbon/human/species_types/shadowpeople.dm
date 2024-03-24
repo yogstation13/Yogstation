@@ -177,7 +177,8 @@
 		TRAIT_NOHUNGER, 
 		TRAIT_NOSLIPICE, 
 		TRAIT_GENELESS, 
-		TRAIT_NOCRITDAMAGE
+		TRAIT_NOCRITDAMAGE,
+		TRAIT_NOGUNS
 		)
 	mutanteyes = /obj/item/organ/eyes/darkspawn
 	mutantears = /obj/item/organ/ears/darkspawn

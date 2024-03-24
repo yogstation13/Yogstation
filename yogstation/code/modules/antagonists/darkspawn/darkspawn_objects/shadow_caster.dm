@@ -9,6 +9,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
 	no_pin_required = TRUE
 	recharge_time = 2 SECONDS
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
 	. = ..()
