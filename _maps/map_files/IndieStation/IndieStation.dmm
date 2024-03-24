@@ -11648,6 +11648,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
+"bJy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "bJA" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -23181,6 +23187,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"fgV" = (
+/obj/effect/turf_decal/arrows/white,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/disposal/incinerator)
 "fhf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -30834,6 +30845,13 @@
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
+"hNw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "hNx" = (
 /obj/structure/chair/sofa,
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -32683,6 +32701,10 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
+"ipo" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
 "ips" = (
 /obj/structure/cable{
@@ -35059,6 +35081,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"jjC" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "jjR" = (
 /obj/machinery/atmospherics/components/unary/tank/toxins,
 /obj/effect/decal/cleanable/dirt,
@@ -69703,6 +69735,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"vCE" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "vCK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -75280,7 +75323,10 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "xBp" = (
-/turf/open/space/basic,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "xBG" = (
 /obj/structure/rack,
@@ -114851,9 +114897,9 @@ aHd
 qQF
 pFA
 iak
-xBp
-xBp
-xBp
+fKW
+cmd
+cmd
 aaa
 aaa
 aaa
@@ -115107,8 +115153,8 @@ ctE
 fKW
 ghK
 wML
-xBp
-xBp
+fKW
+fKW
 mVw
 cmd
 cmd
@@ -115363,8 +115409,8 @@ fKW
 ctE
 ghK
 kRa
-xBp
-xBp
+fca
+fca
 fca
 tfH
 fKW
@@ -115619,8 +115665,8 @@ lQl
 vsW
 ctE
 kRa
-xBp
-xBp
+hNw
+ipo
 eiw
 pPW
 kOp
@@ -115876,7 +115922,7 @@ qXS
 mSL
 ctE
 pIA
-xBp
+ipo
 piz
 mtm
 gqF
@@ -116133,7 +116179,7 @@ dAA
 csz
 xqu
 iBI
-xBp
+fgV
 nka
 goZ
 mxv
@@ -116390,7 +116436,7 @@ mFW
 ilQ
 dzz
 pIA
-xBp
+pPW
 upb
 rOf
 piz
@@ -116648,7 +116694,7 @@ svh
 dzz
 eDN
 xBp
-xBp
+pPW
 iGK
 pPW
 feM
@@ -116905,8 +116951,8 @@ sDi
 dzz
 fKW
 eDN
-xBp
-xBp
+bJy
+csU
 csU
 uzn
 ghK
@@ -117163,8 +117209,8 @@ dfL
 tEp
 tEp
 tEp
-xBp
-xBp
+vCE
+jjC
 bLK
 tEp
 sSk
@@ -117421,7 +117467,7 @@ kAj
 cmd
 cmd
 nbm
-xBp
+nbm
 nbm
 nbm
 nbm
