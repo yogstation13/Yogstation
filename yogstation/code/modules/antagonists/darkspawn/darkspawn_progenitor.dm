@@ -12,8 +12,8 @@
 	layer = LARGE_MOB_LAYER
 
 	//combat stats
-	health = INFINITY
-	maxHealth = INFINITY
+	health = 100000 //functionally immortal, but still killable
+	maxHealth = 100000
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	armour_penetration = 100
