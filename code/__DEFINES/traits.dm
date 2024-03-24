@@ -146,7 +146,8 @@
 #define TRAIT_NOINTERACT		"no_interact" //Not allowed to touch anything (even with TK) or use things in hand
 
 #define TRAIT_POWERHUNGRY		"power_hungry" // uses electricity instead of food
-#define TRAIT_SPECIESLOCK		"species_lock" //prevent species from changing while they have the trait
+///Prevent species from changing while they have the trait
+#define TRAIT_SPECIESLOCK "species_lock"
 #define TRAIT_NOSLIPICE			"noslip_ice"
 #define TRAIT_NOSLIPWATER		"noslip_water"
 #define TRAIT_NOSLIPALL			"noslip_all"
