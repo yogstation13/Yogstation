@@ -52,6 +52,7 @@ GLOBAL_LIST_EMPTY(starlight)
 	initial_temperature = TCMB
 	thermal_conductivity = 0
 	heat_capacity = 700000
+	flammability = 0 // nuh uh
 	var/starlight_source_count = 0
 
 	var/destination_z
