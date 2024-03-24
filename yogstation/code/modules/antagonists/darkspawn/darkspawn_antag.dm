@@ -471,7 +471,7 @@
 
 ///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
-	SSshuttle.emergency.request(null, 0, null, 0.15)
+	SSshuttle.emergency.request(null, 0, null, 0.1)
 
 ///To get the icon in preferences
 /datum/antagonist/darkspawn/get_preview_icon()
