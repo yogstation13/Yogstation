@@ -266,8 +266,7 @@
 	air.adjust_moles(GAS_PLASMA, -scrub_amt)
 	absorbed_plasma += scrub_amt
 
-	if (air.return_temperature() > T20C)
-		air.set_temperature(max(air.return_temperature() / 2, T20C))
+	location.extinguish_turf()
 
 /obj/effect/particle_effect/fluid/foam/firefighting/make_result()
 	if(!absorbed_plasma) // don't bother if it didn't scrub any plasma
