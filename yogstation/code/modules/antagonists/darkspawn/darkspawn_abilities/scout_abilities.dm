@@ -264,7 +264,7 @@
 	if(!isopenturf(victim))
 		return
 	var/turf/open/target = victim
-	target.MakeSlippery(TURF_WET_ICE, 10 SECONDS)
+	target.MakeSlippery(TURF_WET_PERMAFROST, 10 SECONDS)
 
 //////////////////////////////////////////////////////////////////////////
 //------------------------Chameleon projector---------------------------//
