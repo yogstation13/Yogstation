@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Traitor Vampire gamemode can now roll during lowpop"
+  - tweak: "Traitor Vampire now spawns less traitors to make up for the vampires it spawns"
