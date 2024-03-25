@@ -714,6 +714,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/carp
 	cost = 14
+	player_minimum = 20
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 

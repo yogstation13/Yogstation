@@ -10,10 +10,19 @@
 	add_duds(1)
 	..()
 
+/datum/wires/vending/interact(mob/user)
+	var/obj/machinery/vending/V = holder
+	if(!issilicon(user) && V.seconds_electrified && V.shock(user, 100)) // Just incase
+		return
+
+	return ..()
+
 /datum/wires/vending/interactable(mob/user)
 	var/obj/machinery/vending/V = holder
-	if(!issilicon(user) && V.seconds_electrified && V.shock(user, 100))
-		return FALSE
+	if(!issilicon(user) && V.seconds_electrified)
+		var/mob/living/carbon/carbon_user = user
+		if (!istype(carbon_user) || carbon_user.should_electrocute(src))
+			return FALSE
 	if(V.panel_open)
 		return TRUE
 
@@ -56,6 +65,7 @@
 				V.seconds_electrified = MACHINE_NOT_ELECTRIFIED
 			else
 				V.seconds_electrified = MACHINE_ELECTRIFIED_PERMANENT
+				V.shock(usr, 100)
 		if(WIRE_IDSCAN)
 			V.scan_id = mend
 		if(WIRE_SPEAKER)

@@ -7,7 +7,6 @@
 	state_open = FALSE
 	density = TRUE
 	req_access = list(ACCESS_KITCHEN)
-	var/processing = FALSE
 	var/start_at = NUTRITION_LEVEL_WELL_FED
 	var/stop_at = NUTRITION_LEVEL_STARVING
 	var/free_exit = TRUE //set to false to prevent people from exiting before being completely stripped of fat
@@ -31,6 +30,7 @@
 	. = ..()
 	soundloop = new(list(src),  FALSE)
 	update_appearance(UPDATE_ICON)
+	STOP_PROCESSING(SSmachines, src) //We'll handle this one ourselves.
 
 /obj/machinery/fat_sucker/RefreshParts()
 	..()
@@ -64,8 +64,7 @@
 /obj/machinery/fat_sucker/open_machine(mob/user)
 	make_meat()
 	playsound(src, 'sound/machines/click.ogg', 50)
-	if(processing)
-		stop()
+	stop()
 	..()
 
 /obj/machinery/fat_sucker/container_resist(mob/living/user)
@@ -89,7 +88,7 @@
 /obj/machinery/fat_sucker/interact(mob/user)
 	if(state_open)
 		close_machine()
-	else if(!processing || free_exit)
+	else if(free_exit)
 		open_machine()
 	else
 		to_chat(user, span_warning("The safety hatch has been disabled!"))
@@ -109,7 +108,7 @@
 /obj/machinery/fat_sucker/update_overlays()
 	. = ..()
 	if(!state_open)
-		if(processing)
+		if(occupant)
 			. += "[icon_state]_door_on"
 			. += "[icon_state]_stack"
 			. += "[icon_state]_smoke"
@@ -128,19 +127,19 @@
 		. += "[icon_state]_panel"
 
 /obj/machinery/fat_sucker/process(delta_time)
-	if(!processing)
-		return
 	if(!powered(AREA_USAGE_EQUIP) || !occupant || !iscarbon(occupant))
 		open_machine()
-		return
+		return PROCESS_KILL
 
 	var/mob/living/carbon/C = occupant
+
+	C.adjust_nutrition(-bite_size * delta_time)
+	nutrients += bite_size * delta_time
+
 	if(C.nutrition <= stop_at)
 		open_machine()
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
-		return
-	C.adjust_nutrition(-bite_size * delta_time)
-	nutrients += bite_size * delta_time
+		return PROCESS_KILL
 
 	if(next_fact <= 0)
 		next_fact = initial(next_fact)
@@ -151,22 +150,28 @@
 	use_power(500)
 
 /obj/machinery/fat_sucker/proc/start_extracting()
-	if(state_open || !occupant || processing || !powered(AREA_USAGE_EQUIP))
+	if(state_open || !occupant || !powered(AREA_USAGE_EQUIP))
 		return
 	if(iscarbon(occupant))
 		var/mob/living/carbon/C = occupant
-		if(C.nutrition > start_at)
-			processing = TRUE
-			soundloop.start()
-			update_appearance(UPDATE_ICON)
-			set_light(2, 1, "#ff0000")
-		else
+		if(!(C.mob_biotypes & MOB_ORGANIC))
+			say("Subject does not contain fat.")
+			playsound(src, 'sound/machines/buzz-sigh.ogg', 40, FALSE)
+			overlays += "[icon_state]_red" //throw a red light icon over it, to show that it wont work
+			return
+
+		if(C.nutrition < start_at)
 			say("Subject not fat enough.")
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 40, FALSE)
 			overlays += "[icon_state]_red" //throw a red light icon over it, to show that it wont work
+			return
+
+		START_PROCESSING(SSmachines, src)
+		soundloop.start()
+		update_appearance(UPDATE_ICON)
+		set_light(2, 1, "#ff0000")
 
 /obj/machinery/fat_sucker/proc/stop()
-	processing = FALSE
 	soundloop.stop()
 	set_light(0, 0)
 
