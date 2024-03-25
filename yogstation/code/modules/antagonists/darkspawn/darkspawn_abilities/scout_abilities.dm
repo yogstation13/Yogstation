@@ -98,8 +98,8 @@
 	buttontooltipstyle = "alien"
 
 	sound = 'sound/effects/bamf.ogg'
-	psi_cost = 20
-	cooldown_time = 1 MINUTES
+	psi_cost = 35
+	cooldown_time = 45 SECONDS
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
@@ -114,7 +114,7 @@
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
 	B.reagents.add_reagent(/datum/reagent/darkspawn_darkness_smoke, 50)
-	var/datum/effect_system/fluid_spread/smoke/chem/transparent/S = new //it doesn't actually block light anyways, so let's not block vision either
+	var/datum/effect_system/fluid_spread/smoke/chem/darkspawn/S = new //it doesn't actually block light anyways, so let's not block vision either
 	S.attach(B)
 	if(S)
 		S.set_up(range, location = B.loc, carry = B.reagents)
@@ -185,12 +185,12 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "void_jaunt"
 
-	cooldown_time = 60 SECONDS
 	antimagic_flags = NONE
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 30
+	psi_cost = 50
+	cooldown_time = 60 SECONDS
 
 	sound = 'sound/effects/bamf.ogg'
 	exit_jaunt_sound = 'yogstation/sound/magic/devour_will_begin.ogg'
@@ -219,7 +219,8 @@
 	panel = "Darkspawn"
 	sound = 'sound/magic/voidblink.ogg'
 
-	cooldown_time = 25 SECONDS
+	psi_cost = 20
+	cooldown_time = 20 SECONDS
 	cast_range = 7
 	active_msg = span_velvet("You prepare to take a step through the void.")
 	deactive_msg = span_notice("You relax your mind.")

@@ -49,7 +49,7 @@
 	desc = "A short range targeted teleport."
 	lore_description = "Take a single step through the veil."
 	icon_state = "shadow_jump"
-	willpower_cost = 2
+	willpower_cost = 1
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/phase_jump/void_jump)
@@ -77,15 +77,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/psi_web/extinguish
-	name = "Extinguish"
-	desc = "Extinguish all light around you."
-	lore_description = "Remind all that glows, that it is but a small part of reality."
-	icon_state = "extinguish"
-	willpower_cost = 1
-	shadow_flags = DARKSPAWN_WARLOCK
-	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/aoe/extinguish)
 	
 /datum/psi_web/panopticon
 	name = "Panopticon"
@@ -113,6 +104,16 @@
 	willpower_cost = 1
 	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_EXTINGUISH
+	
+/datum/psi_web/extinguish
+	name = "Extinguish"
+	desc = "Extinguish all light around you."
+	lore_description = "Remind all that glows, that it is but a small part of reality."
+	icon_state = "extinguish"
+	willpower_cost = 2
+	shadow_flags = DARKSPAWN_WARLOCK
+	menu_tab = STORE_UTILITY
+	learned_abilities = list(/datum/action/cooldown/spell/aoe/extinguish)
 	
 /datum/psi_web/thrall_heal
 	name = "Thrall Recovery"
@@ -202,7 +203,7 @@
 	desc = "When used near a communications console, allows you to forcefully transmit a message to Central Command, initiating a shuttle recall."
 	lore_description = ""
 	icon_state = "silver_tongue"
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/silver_tongue)

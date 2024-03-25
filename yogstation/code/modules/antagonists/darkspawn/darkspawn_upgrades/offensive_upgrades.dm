@@ -198,7 +198,7 @@
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/extract)
 
-/datum/psi_web/dabyssal_call
+/datum/psi_web/abyssal_call
 	name = "Abyssal Call"
 	desc = "Call a tendril at a targeted location to grasp an enemy."
 	lore_description = "Summon abyssal tendrils from beyond the veil."

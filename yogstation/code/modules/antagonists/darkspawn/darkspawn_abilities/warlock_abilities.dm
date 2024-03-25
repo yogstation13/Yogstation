@@ -114,8 +114,6 @@
 		if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 			return
 		target.extinguish_mob()
-		if(is_darkspawn_or_thrall(target)) //don't put out or damage any lights carried by allies
-			return
 	if(isobj(victim))//put out any items too
 		var/obj/target = victim
 		target.extinguish()
@@ -285,7 +283,7 @@
 	owner.balloon_alert(owner, "Qokxlez")
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/darkspawn.dmi' , INFINITY, cast_range)
 	channeled = cast_on
-	healing = is_darkspawn_or_thrall(channeled)
+	healing = is_darkspawn_or_thrall(channeled) || (ROLE_DARKSPAWN in channeled.faction)
 	
 /datum/action/cooldown/spell/pointed/extract/proc/cancel()
 	if(visual)
@@ -341,7 +339,7 @@
 	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
 		return
 	var/mob/living/target = victim
-	if(is_darkspawn_or_thrall(target)) //don't fuck with allies
+	if(is_darkspawn_or_thrall(target) || (ROLE_DARKSPAWN in M.faction)) //don't fuck with allies
 		return
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
@@ -442,11 +440,18 @@
 	duration = 6 SECONDS //can be almost any number for balance, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
 	layer = ABOVE_OPEN_TURF_LAYER
 
-/obj/effect/temp_visual/darkspawn/chasm/Crossed(atom/movable/AM, oldloc)
+/obj/effect/temp_visual/darkspawn/chasm/Initialize(mapload)
 	. = ..()
+	
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered)
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/effect/temp_visual/darkspawn/chasm/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/target = AM
-		if(!is_darkspawn_or_thrall(target))
+		if(!is_darkspawn_or_thrall(target) || (ROLE_DARKSPAWN in M.faction))
 			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 4, 1 SECONDS, type) //slow field, makes it harder to escape
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
@@ -461,7 +466,7 @@
 /obj/effect/temp_visual/darkspawn/detonate/Destroy()
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
-		if(is_darkspawn_or_thrall(victim))
+		if(is_darkspawn_or_thrall(victim) || (ROLE_DARKSPAWN in victim.faction))
 			victim.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)

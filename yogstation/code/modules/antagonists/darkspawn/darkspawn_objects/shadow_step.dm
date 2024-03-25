@@ -1,5 +1,5 @@
 /datum/component/shadow_step
-	var/speedboost = -1
+	var/speedboost = -0.6
 	var/mob/living/carbon/human/owner
 
 /datum/component/shadow_step/Initialize()

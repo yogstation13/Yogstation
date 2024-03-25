@@ -178,7 +178,7 @@
 	if(new_owner)
 		owner = WEAKREF(new_owner)
 
-/obj/structure/trap/eldritch/on_entered(datum/source, atom/movable/entering_atom)
+/obj/structure/trap/eldritch/on_trap_entered(datum/source, atom/movable/entering_atom)
 	if(!isliving(entering_atom))
 		return ..()
 	var/mob/living/living_mob = entering_atom

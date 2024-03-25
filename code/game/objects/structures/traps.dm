@@ -30,7 +30,6 @@
 			/mob/dead))
 
 	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 		COMSIG_ATOM_ENTERED = PROC_REF(on_trap_entered)
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
@@ -66,6 +65,7 @@
 		animate(src, alpha = initial(alpha), time = time_between_triggers)
 
 /obj/structure/trap/proc/on_trap_entered(datum/source, atom/movable/AM, ...)
+	SIGNAL_HANDLER
 	if(last_trigger + time_between_triggers > world.time)
 		return
 	// Don't want the traps triggered by sparks, ghosts or projectiles.
@@ -149,23 +149,3 @@
 /obj/structure/trap/ward/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, time_between_triggers)
-
-/obj/structure/trap/proc/on_entered(datum/source, atom/movable/victim)
-	SIGNAL_HANDLER
-	if(last_trigger + time_between_triggers > world.time)
-		return
-	// Don't want the traps triggered by sparks, ghosts or projectiles.
-	if(is_type_in_typecache(victim, ignore_typecache))
-		return
-	if(ismob(victim))
-		var/mob/mob_victim = victim
-		if(mob_victim.mind in immune_minds)
-			return
-		if(mob_victim.can_block_magic(antimagic_flags))
-			flare()
-			return
-	if(charges <= 0)
-		return
-	flare()
-	if(isliving(victim))
-		trap_effect(victim)

@@ -74,7 +74,7 @@
 	if(!isliving(target))
 		return
 	var/mob/living/victim = target
-	if(is_darkspawn_or_thrall(victim)) //no friendly fire
+	if(is_darkspawn_or_thrall(victim) || (ROLE_DARKSPAWN in victim.faction)) //no friendly fire
 		return
 	to_chat(victim, span_userdanger("A wave of shockingly cold air engulfs you!"))
 	victim.apply_damage(5, BURN)
@@ -97,7 +97,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
-	psi_cost = 50
+	psi_cost = 55
 	cooldown_time = 1 SECONDS //to prevent double clicking by accident
 	die_with_shapeshifted_form = FALSE
 	convert_damage = TRUE
