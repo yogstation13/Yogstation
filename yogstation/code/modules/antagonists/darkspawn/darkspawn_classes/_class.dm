@@ -156,6 +156,7 @@
 	specialization_flag = DARKSPAWN_SCOUT
 	class_color = COLOR_YELLOW
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/scout)
+	class_icon = "scout_sigils"
 
 /datum/component/darkspawn_class/warlock
 	name = "Warlock"
