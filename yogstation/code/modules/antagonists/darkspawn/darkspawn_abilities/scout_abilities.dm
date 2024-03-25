@@ -249,7 +249,7 @@
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 35
-	cooldown_time = 30 SECONDS
+	cooldown_time = 40 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 3
 
@@ -264,7 +264,7 @@
 	if(!isopenturf(victim))
 		return
 	var/turf/open/target = victim
-	target.MakeSlippery(TURF_WET_PERMAFROST, 15 SECONDS, 15 SECONDS)
+	target.MakeSlippery(TURF_WET_ICE, 10 SECONDS)
 
 //////////////////////////////////////////////////////////////////////////
 //------------------------Chameleon projector---------------------------//
