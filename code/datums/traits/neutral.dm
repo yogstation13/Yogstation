@@ -398,3 +398,28 @@
 	H.remove_language(/datum/language/common, FALSE, TRUE)
 	if(!H.get_selected_language())
 		H.grant_language(/datum/language/japanese)
+
+//regular cybernetic organs
+/datum/quirk/cyberorgan/lungs
+	name = "Cybernetic Organ (Lungs)"
+	desc = "Due to a past incident you lost function of your lungs, but now have cybernetic lungs!"
+	organ_list = list(ORGAN_SLOT_LUNGS = /obj/item/organ/lungs/cybernetic)
+	medical_record_text = "During physical examination, patient was found to have cybernetic lungs."
+	value = 0
+	quality = "regular cybernetic"
+
+/datum/quirk/cyberorgan/heart
+	name = "Cybernetic Organ (Heart)"
+	desc = "Due to a past incident you lost function of your heart, but now have a cybernetic heart!"
+	organ_list = list(ORGAN_SLOT_HEART = /obj/item/organ/heart/cybernetic)
+	medical_record_text = "During physical examination, patient was found to have a cybernetic heart."
+	value = 0
+	quality = "regular cybernetic"
+
+/datum/quirk/cyberorgan/liver
+	name = "Cybernetic Organ (Liver)"
+	desc = "Due to a past incident you lost function of your liver, but now have a cybernetic liver!"
+	organ_list = list(ORGAN_SLOT_LIVER = /obj/item/organ/liver/cybernetic)
+	medical_record_text = "During physical examination, patient was found to have a cybernetic liver."
+	value = 0
+	quality = "regular cybernetic"
