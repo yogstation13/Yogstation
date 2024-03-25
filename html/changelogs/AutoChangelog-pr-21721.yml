@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Lipid extractor can no longer extract robots"
