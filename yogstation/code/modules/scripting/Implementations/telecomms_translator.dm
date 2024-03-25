@@ -13,6 +13,7 @@
 #define MOTH (1<<9)
 #define CAT (1<<10)
 #define ENGLISH (1<<11)
+#define VOXPIDGIN (1<<12)
 
 ///Span classes that players are allowed to set in a radio transmission.
 GLOBAL_LIST_INIT(allowed_custom_spans, list(
@@ -146,6 +147,8 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		"mothian" = MOTH,
 		"cat" = CAT,
 		"english" = ENGLISH,
+		"voxpidgin" = VOXPIDGIN,
+
 	)))
 
 	interpreter.Run() // run the thing
@@ -194,6 +197,8 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			oldlangbits = CAT
 		if(/datum/language/english)
 			oldlangbits = ENGLISH
+		if(/datum/language/vox)
+			oldlangbits = VOXPIDGIN
 
 	// Signal data
 	var/datum/n_struct/signal/script_signal = new(list(
@@ -336,6 +341,8 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			return /datum/language/felinid
 		if(ENGLISH)
 			return /datum/language/english
+		if(VOXPIDGIN)
+			return /datum/language/vox
 
 /datum/n_function/default/mem
 	name = "mem"
@@ -516,3 +523,4 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 #undef MOTH
 #undef CAT
 #undef ENGLISH
+#undef VOXPIDGIN

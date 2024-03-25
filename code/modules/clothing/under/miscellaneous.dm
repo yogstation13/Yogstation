@@ -78,6 +78,7 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
+	sprite_sheets = list("GAGS_sprite" = list(SPECIES_VOX))
 
 /obj/item/clothing/under/rank/prisoner/skirt
 	name = "prison jumpskirt"
@@ -92,6 +93,7 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
+	sprite_sheets = list("GAGS_sprite" = list(SPECIES_VOX))
 
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
@@ -945,7 +947,7 @@
 	name = "incredibly fashionable outfit"
 	desc = "Expensive-looking designer vest. It radiates an aggressively attractive aura. You feel putting this on would change you forever."
 	icon = 'icons/obj/clothing/uniforms.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/uniform/uniform.dmi'
+	mob_overlay_icon = DEFAULT_UNIFORM_FILE
 	icon_state = "drippy"
 	item_state = "drippy"
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, RAD = 10, FIRE = 100, ACID = 100)
@@ -975,3 +977,25 @@
 /obj/item/clothing/under/ash_robe/hunter/jungle
 	name = "primal rags"
 	desc = "Light primal rags that are fashionable and practical, while still maximizing photosynthesis capability for plantpeople."
+
+/obj/item/clothing/under/vox
+	icon = 'icons/obj/clothing/species/vox/uniforms.dmi'
+	species_restricted = list(SPECIES_VOX)
+
+/obj/item/clothing/under/vox/vox_casual
+	name = "alien clothing"
+	desc = "This doesn't look very comfortable."
+	icon_state = "vox-casual-1"
+	item_state = "vox-casual-1"
+
+/obj/item/clothing/under/vox/vox_robes
+	name = "alien robes"
+	desc = "Weird and flowing!"
+	icon_state = "vox-casual-2"
+	item_state = "vox-casual-2"
+
+/obj/item/clothing/under/vox/vox_casual
+	name = "alien jumpsuit"
+	desc = "These loose clothes are optimized for the labors of the lower castes onboard the arkships. Large openings in the top allow for breathability while the pants are durable yet flexible enough to not restrict movement."
+	icon_state = "vox-jumpsuit"
+	item_state = "vox-jumpsuit"

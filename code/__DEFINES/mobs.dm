@@ -105,6 +105,10 @@
 #define ALIEN_BODYPART "alien"
 #define LARVA_BODYPART "larva"
 #define DEVIL_BODYPART "devil"
+
+#define SPECIES_VOX "vox"
+#define SPECIES_MOTH "moth"
+
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
 // Health/damage defines for carbon mobs
@@ -435,3 +439,4 @@
 #define BUTT_SPRITE_PLASMA "plasma"
 #define BUTT_SPRITE_FUZZY "fuzzy"
 #define BUTT_SPRITE_SLIME "slime"
+#define BUTT_SPRITE_VOX "vox"

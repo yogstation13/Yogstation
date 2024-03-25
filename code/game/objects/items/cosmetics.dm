@@ -118,10 +118,18 @@
 	return BRUTELOSS
 
 /obj/item/razor/proc/shave(mob/living/carbon/human/H, location = BODY_ZONE_PRECISE_MOUTH)
-	if(location == BODY_ZONE_PRECISE_MOUTH)
-		H.facial_hair_style = "Shaved"
+	if(isvox(H))//both hair and bodyparts need refactors to do this cleanly
+		if(location == BODY_ZONE_PRECISE_MOUTH)
+			H.dna.features["vox_facial_quills"] = "None"
+			H.dna.update_uf_block(DNA_VOX_FACIAL_QUILLS_BLOCK)
+		else
+			H.dna.features["vox_quills"] = "None"
+			H.dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
 	else
-		H.hair_style = "Skinhead"
+		if(location == BODY_ZONE_PRECISE_MOUTH)
+			H.facial_hair_style = "Shaved"
+		else
+			H.hair_style = "Skinhead"
 
 	H.update_hair()
 	playsound(loc, 'sound/items/welder2.ogg', 20, 1)
@@ -134,85 +142,117 @@
 		if((location in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_HEAD)) && !H.get_bodypart(BODY_ZONE_HEAD))
 			to_chat(user, span_warning("[H] doesn't have a head!"))
 			return
+		var/hair_name = "hair"
+		if(isvox(H))
+			hair_name = "quills"
 		if(location == BODY_ZONE_PRECISE_MOUTH)
 			if(user.a_intent == INTENT_HELP)
 				if(H.gender == MALE)
 					if (H == user)
-						to_chat(user, span_warning("You need a mirror to properly style your own facial hair!"))
+						to_chat(user, span_warning("You need a mirror to properly style your own facial [hair_name]!"))
 						return
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
-					var/new_style = input(user, "Select a facial hair style", "Grooming")  as null|anything in GLOB.facial_hair_styles_list
+					var/list/hair_list = GLOB.facial_hair_styles_list
+					if(isvox(H))
+						hair_list = GLOB.vox_facial_quills_list
+					var/new_style = input(user, "Select a facial [hair_name] style", "Grooming")  as null|anything in hair_list
 					if(!get_location_accessible(H, location))
 						to_chat(user, span_warning("The mask is in the way!"))
 						return
-					user.visible_message(span_notice("[user] tries to change [H]'s facial hair style using [src]."), span_notice("You try to change [H]'s facial hair style using [src]."))
+					user.visible_message(span_notice("[user] tries to change [H]'s facial [hair_name] style using [src]."), span_notice("You try to change [H]'s facial [hair_name] style using [src]."))
 					if(new_style && do_after(user, 6 SECONDS, H))
-						user.visible_message(span_notice("[user] successfully changes [H]'s facial hair style using [src]."), span_notice("You successfully change [H]'s facial hair style using [src]."))
-						H.facial_hair_style = new_style
+						user.visible_message(span_notice("[user] successfully changes [H]'s facial [hair_name] style using [src]."), span_notice("You successfully change [H]'s facial [hair_name] style using [src]."))
+						if(isvox(H))
+							H.dna.features["vox_facial_quills"] = new_style
+							H.dna.update_uf_block(DNA_VOX_FACIAL_QUILLS_BLOCK)
+						else
+							H.facial_hair_style = new_style
 						H.update_hair()
 						return
 				else
 					return
 
 			else
-				if(!(FACEHAIR in H.dna.species.species_traits))
-					to_chat(user, span_warning("There is no facial hair to shave!"))
-					return
 				if(!get_location_accessible(H, location))
 					to_chat(user, span_warning("The mask is in the way!"))
 					return
-				if(H.facial_hair_style == "Shaved")
-					to_chat(user, span_warning("Already clean-shaven!"))
-					return
-
+				if(!isvox(H))
+					if(!(FACEHAIR in H.dna.species.species_traits))
+						to_chat(user, span_warning("There is no facial hair to shave!"))
+						return
+					if(H.facial_hair_style == "Shaved")
+						to_chat(user, span_warning("Already clean-shaven!"))
+						return
+				else
+					if(!("vox_facial_quills" in H.dna.species.mutant_bodyparts))
+						to_chat(user, span_warning("There are no facial quills to shave!"))
+						return
+					if(H.dna.species.mutant_bodyparts["vox_facial_quills"] == "None")
+						to_chat(user, span_warning("Already clean-shaven!"))
+						return
 				if(H == user) //shaving yourself
-					user.visible_message("[user] starts to shave [user.p_their()] facial hair with [src].", \
-										 span_notice("You take a moment to shave your facial hair with [src]..."))
+					user.visible_message("[user] starts to shave [user.p_their()] facial [hair_name] with [src].", \
+										 span_notice("You take a moment to shave your facial [hair_name] with [src]..."))
 					if(do_after(user, 5 SECONDS, H))
-						user.visible_message("[user] shaves [user.p_their()] facial hair clean with [src].", \
+						user.visible_message("[user] shaves [user.p_their()] facial [hair_name] clean with [src].", \
 											 span_notice("You finish shaving with [src]. Fast and clean!"))
 						shave(H, location)
 				else
-					user.visible_message(span_warning("[user] tries to shave [H]'s facial hair with [src]."), \
-										 span_notice("You start shaving [H]'s facial hair..."))
+					user.visible_message(span_warning("[user] tries to shave [H]'s facial [hair_name] with [src]."), \
+										 span_notice("You start shaving [H]'s facial [hair_name]..."))
 					if(do_after(user, 5 SECONDS, target = H))
-						user.visible_message(span_warning("[user] shaves off [H]'s facial hair with [src]."), \
-											 span_notice("You shave [H]'s facial hair clean off."))
+						user.visible_message(span_warning("[user] shaves off [H]'s facial [hair_name] with [src]."), \
+											 span_notice("You shave [H]'s facial [hair_name] clean off."))
 						shave(H, location)
 
 		else if(location == BODY_ZONE_HEAD)
 			if(user.a_intent == INTENT_HELP)
 				if (H == user)
-					to_chat(user, span_warning("You need a mirror to properly style your own hair!"))
+					to_chat(user, span_warning("You need a mirror to properly style your own [hair_name]!"))
 					return
 				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 					return
-				var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in GLOB.hair_styles_list
+				var/hair_list = GLOB.hair_styles_list
+				if(isvox(H))
+					hair_list = GLOB.vox_quills_list
+				var/new_style = input(user, "Select a [hair_name] style", "Grooming")  as null|anything in hair_list
 				if(!get_location_accessible(H, location))
 					to_chat(user, span_warning("The headgear is in the way!"))
 					return
 				if(HAS_TRAIT(H, TRAIT_BALD))
 					to_chat(user, span_warning("[H] is just way too bald. Like, really really bald."))
 					return
-				user.visible_message(span_notice("[user] tries to change [H]'s hairstyle using [src]."), span_notice("You try to change [H]'s hairstyle using [src]."))
+				user.visible_message(span_notice("[user] tries to change [H]'s [hair_name]style using [src]."), span_notice("You try to change [H]'s [hair_name]style using [src]."))
 				if(new_style && do_after(user, 6 SECONDS, H))
-					user.visible_message(span_notice("[user] successfully changes [H]'s hairstyle using [src]."), span_notice("You successfully change [H]'s hairstyle using [src]."))
-					H.hair_style = new_style
+					user.visible_message(span_notice("[user] successfully changes [H]'s [hair_name]style using [src]."), span_notice("You successfully change [H]'s [hair_name]style using [src]."))
+					if(isvox(H))
+						H.dna.features["vox_quills"] = new_style
+						H.dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
+					else
+						H.hair_style = new_style
 					H.update_hair()
 					return
 
 			else
-				if(!(HAIR in H.dna.species.species_traits))
-					to_chat(user, span_warning("There is no hair to shave!"))
-					return
 				if(!get_location_accessible(H, location))
 					to_chat(user, span_warning("The headgear is in the way!"))
 					return
-				if(H.hair_style == "Bald" || H.hair_style == "Balding Hair" || H.hair_style == "Skinhead")
-					to_chat(user, span_warning("There is not enough hair left to shave!"))
-					return
-
+				if(!isvox(H))
+					if(!(HAIR in H.dna.species.species_traits))
+						to_chat(user, span_warning("There is no hair to shave!"))
+						return
+					
+					if(H.hair_style == "Bald" || H.hair_style == "Balding Hair" || H.hair_style == "Skinhead")
+						to_chat(user, span_warning("There is not enough hair left to shave!"))
+						return
+				else
+					if(!("vox_quills" in H.dna.species.mutant_bodyparts))
+						to_chat(user, span_warning("There are no quills to shave!"))
+						return
+					if(H.dna.species.mutant_bodyparts["vox_quills"] == "None")
+						to_chat(user, span_warning("There are not enough quills left to shave!"))
+						return
 				if(H == user) //shaving yourself
 					user.visible_message("[user] starts to shave [user.p_their()] head with [src].", \
 										 span_notice("You start to shave your head with [src]..."))

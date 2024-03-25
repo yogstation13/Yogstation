@@ -556,7 +556,13 @@
 /mob/living/carbon/human/get_footprint_sprite()
 	var/obj/item/bodypart/l_leg/left_leg = get_bodypart(BODY_ZONE_L_LEG)
 	var/obj/item/bodypart/r_leg/right_leg = get_bodypart(BODY_ZONE_R_LEG)
-	return shoes?.footprint_sprite || left_leg?.footprint_sprite || right_leg?.footprint_sprite
+	var/species_id
+	var/datum/species/species
+	if(left_leg?.species_id == right_leg?.species_id)
+		species_id = left_leg.species_id
+		var/species_type = GLOB.species_list[species_id]
+		species = new species_type()
+	return species?.get_footprint_sprite() || shoes?.footprint_sprite || left_leg?.footprint_sprite || right_leg?.footprint_sprite
 
 /mob/living/carbon/human/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null)
 	if(judgement_criteria & JUDGE_EMAGGED)
@@ -821,6 +827,7 @@
 	if(creamed) //clean both to prevent a rare bug
 		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_lizard"))
 		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_human"))
+		cut_overlay(mutable_appearance('icons/effects/creampie.dmi', "creampie_vox"))
 		creamed = FALSE
 
 //Turns a mob black, flashes a skeleton overlay
@@ -1392,6 +1399,9 @@
 
 /mob/living/carbon/human/species/vampire
 	race = /datum/species/vampire
+
+/mob/living/carbon/human/species/vox
+	race = /datum/species/vox
 
 /mob/living/carbon/human/species/zombie
 	race = /datum/species/zombie

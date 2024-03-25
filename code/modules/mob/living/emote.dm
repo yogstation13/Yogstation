@@ -79,6 +79,13 @@
 	if(HAS_TRAIT(user, TRAIT_SOOTHED_THROAT))
 		return FALSE
 
+/datum/emote/living/cough/get_sound(mob/living/user)
+	if(!ishuman(user))
+		return sound
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.dna?.species)
+		return human_user.dna.species.cough_sound
+
 /datum/emote/living/cross
 	key = "cross"
 	key_third_person = "crosses"
@@ -379,6 +386,13 @@
 	key_third_person = "sneezes"
 	message = "sneezes."
 	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/sneeze/get_sound(mob/living/user)
+	if(!ishuman(user))
+		return sound
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.dna?.species)
+		return human_user.dna.species.sneeze_sound
 
 /datum/emote/living/smug
 	key = "smug"

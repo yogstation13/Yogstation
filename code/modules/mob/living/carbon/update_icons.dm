@@ -490,9 +490,9 @@
 			. += "-organic"
 		else
 			. += "-robotic"
+		if(BP.is_husked)
+			. += "-husk"
 
-	if(HAS_TRAIT(src, TRAIT_HUSK))
-		. += "-husk"
 
 
 //change the mob's icon to the one matching its key

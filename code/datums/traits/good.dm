@@ -414,11 +414,14 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
+	var/no_dna = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
+	var/no_clone = (TRAIT_NOCLONE in species.inherent_traits) 
 	qdel(species)
 
-	if(disallowed_trait)
+	if(no_dna)
 		return "You have no DNA!"
+	else if(no_clone)
+		return "Your species cannot be cloned!"
 	return FALSE
 
 /datum/quirk/marine
@@ -500,6 +503,13 @@
 	specific = /datum/language/draconic
 	gain_text = span_notice("You have learned to understand Draconic.")
 	lose_text = span_notice("You have forgotten how to understand Draconic.")
+
+/datum/quirk/multilingual/voxpidgin
+	name = "Multilingual (Vox-pidgin)"
+	desc = "You spent a portion of your life learning to understand Vox-pidgin. You may or may not be able to speak it based on your anatomy."
+	specific = /datum/language/vox
+	gain_text = span_notice("You have learned to understand Vox-pidgin.")
+	lose_text = span_notice("You have forgotten how to understand Vox-pidgin.")
 
 /datum/quirk/multilingual/felinid
 	name = "Multilingual (Felinid)"

@@ -185,7 +185,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (HAIR in species.species_traits) // No Hair
+	var/disallowed_trait = ((HAIR in species.species_traits) || ("vox_quills" in species.mutant_bodyparts)) // No Hair
 	qdel(species)
 
 	if(!disallowed_trait)

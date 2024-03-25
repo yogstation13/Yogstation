@@ -25,6 +25,7 @@
 
 	// Mutant randomizing, doesn't affect the mob appearance unless it's the specific mutant.
 	human.dna.features["mcolor"] = "#[random_color()]"
+	human.dna.features["mcolor_secondary"] = "#[random_color()]"
 	human.dna.features["pretcolor"] = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)]
 	human.dna.features["tail_lizard"] = pick(GLOB.tails_list_lizard)
 	human.dna.features["tail_polysmorph"] = pick(GLOB.tails_list_polysmorph)
@@ -44,6 +45,11 @@
 	human.dna.features["preternis_core"] = pick(GLOB.preternis_core_list)
 	human.dna.features["pod_hair"] = pick(GLOB.pod_hair_list)
 	human.dna.features["pod_flower"] = GLOB.pod_flower_list[human.dna.features["pod_hair"]]
+	human.dna.features["vox_skin_tone"] = pick(GLOB.vox_skin_tones)
+	human.dna.features["vox_quills"] = pick(GLOB.vox_quills_list)
+	human.dna.features["vox_facial_quills"] = pick(GLOB.vox_facial_quills_list)
+	human.dna.features["vox_body_markings"] = pick(GLOB.vox_body_markings_list)
+	human.dna.features["vox_tail_markings"] = pick(GLOB.vox_tail_markings_list)
 
 	human.update_body()
 	human.update_hair()

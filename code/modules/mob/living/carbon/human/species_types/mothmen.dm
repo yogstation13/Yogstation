@@ -1,14 +1,14 @@
 /datum/species/moth
 	name = "Ex'hai"
 	plural_form = "Ex'hau"
-	id = "moth"
+	id = SPECIES_MOTH
 	say_mod = "flutters"
 	default_color = "00FF00"
 	species_traits = list(LIPS, NOEYESPRITES,HAS_FLESH,HAS_BONE)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	mutant_bodyparts = list("moth_wings")
 	default_features = list("moth_wings" = "Plain")
-	attack_verb = "slash"
+	attack_verbs = list("slash")
 	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'

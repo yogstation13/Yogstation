@@ -11,7 +11,7 @@
 	no_equip = list(ITEM_SLOT_FEET)
 
 	say_mod = "intones"
-	attack_verb = "assault"
+	attack_verbs = list("assault")
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES

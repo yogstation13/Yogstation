@@ -843,9 +843,12 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
+	var/no_dna = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
+	var/no_clone = (TRAIT_NOCLONE in species.inherent_traits) 
 	qdel(species)
 
-	if(disallowed_trait)
+	if(no_dna)
 		return "You have no DNA!"
+	else if(no_clone)
+		return "Your species cannot be cloned!"
 	return FALSE

@@ -632,7 +632,7 @@
 	name = "fashionable shoes"
 	desc = "Expensive-looking designer sneakers. Loud, ostentatious, agressively attractive, you detest the idea of taking them off. The elaborate design on the sole could probably give you some decent traction."
 	icon = 'icons/obj/clothing/shoes.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/feet/feet.dmi'
+	mob_overlay_icon = DEFAULT_SHOES_FILE
 	icon_state = "dripshoes"
 	item_state = "dripshoes"
 	clothing_flags = NOSLIP_ICE | NOSLIP

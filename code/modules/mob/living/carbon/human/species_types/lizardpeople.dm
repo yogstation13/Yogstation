@@ -17,9 +17,10 @@
 	heatmod = 0.67 //greatly appreciate heat, just not too much
 	default_features = list("mcolor" = "#00FF00", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	attack_verb = "slash"
+	attack_verbs = list("slash")
 	attack_effect = ATTACK_EFFECT_CLAW
 	barefoot_step_sound = FOOTSTEP_MOB_CLAW
+	creampie_id = "creampie_lizard"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard

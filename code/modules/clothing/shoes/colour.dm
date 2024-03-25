@@ -10,6 +10,7 @@
 	greyscale_config_inhand_left = /datum/greyscale_config/sneakers_inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/sneakers_inhand_right
 	flags_1 = IS_PLAYER_COLORABLE_1
+	sprite_sheets = list("GAGS_sprite" = list(SPECIES_VOX))
 
 /obj/item/clothing/shoes/sneakers/black
 	name = "black shoes"
@@ -71,7 +72,8 @@
 	greyscale_config_worn = /datum/greyscale_config/sneakers_orange_worn
 	greyscale_config_inhand_left = /datum/greyscale_config/sneakers_orange_inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/sneakers_orange_inhand_right
-	flags_1 = NONE	
+	flags_1 = NONE
+	sprite_sheets = list("GAGS_sprite" = list(SPECIES_VOX))
 
 /obj/item/clothing/shoes/sneakers/orange/attack_self(mob/user)
 	if (chained)

@@ -84,12 +84,15 @@
 		///obj/item/organ/tongue/ethereal,
 		/obj/item/organ/tongue/robot,
 		/obj/item/organ/tongue/zombie,
+		/obj/item/organ/tongue/vox,
 		/obj/item/organ/appendix,
 		/obj/item/organ/liver/fly,
 		/obj/item/organ/lungs/plasmaman,
 		/obj/item/organ/lungs/ethereal,
+		/obj/item/organ/lungs/vox,
 		/obj/item/organ/tail/cat,
 		/obj/item/organ/tail/lizard,
+		/obj/item/organ/tail/vox
 	)
 
 /obj/effect/spawner/lootdrop/plushies
@@ -115,7 +118,8 @@
 		/obj/item/toy/plush/inorixplushie,
 		/obj/item/toy/plush/flowerbunch,
 		/obj/item/toy/plush/goatplushie,
-		/obj/item/toy/plush/realgoat
+		/obj/item/toy/plush/realgoat,
+		/obj/item/toy/plush/voxplushie
 	)
 
 /obj/effect/spawner/lootdrop/techshell

@@ -3,6 +3,16 @@
 	specific_heat = 20
 	name = "Oxygen"
 	label = "O₂"
+	breath_alert_info = list(
+		not_enough_alert = list(
+			alert_category = "not_enough_oxy",
+			alert_type = /atom/movable/screen/alert/not_enough_oxy
+		),
+		too_much_alert = list(
+			alert_category = "too_much_oxy",
+			alert_type = /atom/movable/screen/alert/too_much_oxy
+		)
+	)
 	ui_color = "blue"
 
 /datum/gas/nitrogen
@@ -47,6 +57,16 @@
 	gas_overlay = "plasma"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
+	breath_alert_info = list(
+		not_enough_alert = list(
+			alert_category = "not_enough_tox",
+			alert_type = /atom/movable/screen/alert/not_enough_tox,
+		),
+		too_much_alert = list(
+			alert_category = "too_much_tox",
+			alert_type = /atom/movable/screen/alert/too_much_tox,
+		)
+	)
 	ui_color = "orange"
 
 /datum/gas/water_vapor

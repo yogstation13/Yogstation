@@ -12,6 +12,19 @@
 			"blend_mode": "overlay"
 		}
 	],
+	"jumpsuit_vox": [
+		{
+			"type": "icon_state",
+			"icon_state": "jumpsuit_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "jumpsuit_prison_vox",
+			"blend_mode": "overlay"
+		}
+	],
 	"jumpsuit_d" : [
 		{
 			"type": "icon_state",
@@ -22,6 +35,19 @@
 		{
 			"type": "icon_state",
 			"icon_state": "jumpsuit_d_prison",
+			"blend_mode": "overlay"
+		}
+	],
+	"jumpsuit_d_vox": [
+		{
+			"type": "icon_state",
+			"icon_state": "jumpsuit_d_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "jumpsuit_d_prison_vox",
 			"blend_mode": "overlay"
 		}
 	],
@@ -38,6 +64,19 @@
 			"blend_mode": "overlay"
 		}
 	],
+	"jumpskirt_vox": [
+		{
+			"type": "icon_state",
+			"icon_state": "jumpskirt_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "jumpskirt_prison_vox",
+			"blend_mode": "overlay"
+		}
+	],
 	"jumpskirt_d" : [
 		{
 			"type": "icon_state",
@@ -48,6 +87,19 @@
 		{
 			"type": "icon_state",
 			"icon_state": "jumpskirt_d_prison",
+			"blend_mode": "overlay"
+		}
+	],
+	"jumpskirt_d_vox" : [
+		{
+			"type": "icon_state",
+			"icon_state": "jumpskirt_d_vox",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "jumpskirt_d_prison_vox",
 			"blend_mode": "overlay"
 		}
 	]

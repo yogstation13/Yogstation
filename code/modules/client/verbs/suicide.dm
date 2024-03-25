@@ -85,27 +85,34 @@
 
 				return
 
-		var/suicide_message
+		var/list/suicide_messages
 
 		if(a_intent == INTENT_DISARM)
-			suicide_message = pick("[src] is attempting to push [p_their()] own head off [p_their()] shoulders! It looks like [p_theyre()] trying to commit suicide.", \
+			var/list/disarm_suicide_messages = list("[src] is attempting to push [p_their()] own head off [p_their()] shoulders! It looks like [p_theyre()] trying to commit suicide.", \
 								"[src] is pushing [p_their()] thumbs into [p_their()] eye sockets! It looks like [p_theyre()] trying to commit suicide.", \
 								"[src] is ripping [p_their()] own arms off! It looks like [p_theyre()] trying to commit suicide.")//heheh get it?
+			suicide_messages = disarm_suicide_messages.Copy()
 		if(a_intent == INTENT_GRAB)
-			suicide_message = pick("[src] is attempting to pull [p_their()] own head off! It looks like [p_theyre()] trying to commit suicide.", \
+			var/list/grab_suicide_messages = list("[src] is attempting to pull [p_their()] own head off! It looks like [p_theyre()] trying to commit suicide.", \
 									"[src] is aggressively grabbing [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide.", \
 									"[src] is pulling [p_their()] eyes out of their sockets! It looks like [p_theyre()] trying to commit suicide.")
+			suicide_messages = grab_suicide_messages.Copy()
 		if(a_intent == INTENT_HELP)
-			suicide_message = pick("[src] is hugging [p_them()]self to death! It looks like [p_theyre()] trying to commit suicide.", \
+			var/list/help_suicide_messages = list("[src] is hugging [p_them()]self to death! It looks like [p_theyre()] trying to commit suicide.", \
 									"[src] is high-fiving [p_them()]self to death! It looks like [p_theyre()] trying to commit suicide.", \
 									"[src] is getting too high on life! It looks like [p_theyre()] trying to commit suicide.")
+			suicide_messages = help_suicide_messages.Copy()
 		else
-			suicide_message = pick("[src] is attempting to bite [p_their()] tongue off! It looks like [p_theyre()] trying to commit suicide.", \
+			var/list/harm_suicide_messages = list("[src] is attempting to bite [p_their()] tongue off! It looks like [p_theyre()] trying to commit suicide.", \
 								"[src] is jamming [p_their()] thumbs into [p_their()] eye sockets! It looks like [p_theyre()] trying to commit suicide.", \
 								"[src] is twisting [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide.", \
 								"[src] is holding [p_their()] breath! It looks like [p_theyre()] trying to commit suicide.")
+			suicide_messages = harm_suicide_messages.Copy()
+		
+		suicide_messages |= dna?.species?.suicide_messages
+		var/chosen_message = pick(suicide_messages)
 
-		visible_message(span_danger("[suicide_message]"), span_userdanger("[suicide_message]"))
+		visible_message(span_danger("[chosen_message]"), span_userdanger("[chosen_message]"))
 
 		suicide_log()
 

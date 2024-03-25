@@ -156,6 +156,7 @@
 	new /obj/item/reagent_containers/blood/OMinus(src)
 	new /obj/item/reagent_containers/blood/OPlus(src)
 	new /obj/item/reagent_containers/blood/lizard(src)
+	new /obj/item/reagent_containers/blood/vox(src)
 	new /obj/item/reagent_containers/blood/gorilla(src) // yogs -- gorilla people
 	new /obj/item/reagent_containers/blood/ethereal(src)
 	for(var/i in 1 to 3)

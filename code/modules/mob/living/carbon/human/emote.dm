@@ -103,6 +103,7 @@
 	key = "scream"
 	key_third_person = "screams"
 	message = "screams!"
+	message_vox = "shrieks!"
 	emote_type = EMOTE_AUDIBLE
 	cooldown = 10 SECONDS
 	vary = TRUE
@@ -370,3 +371,21 @@
 
 /datum/emote/living/carbon/human/robot_tongue/clown/sad/get_sound(mob/living/user)
 	return 'sound/misc/sadtrombone.ogg'
+
+/datum/emote/living/carbon/human/quill
+	key = "quill"
+	key_third_person = "quills"
+	message = "rustles their quills."
+	message_param = "rustles their quills at %t."
+	emote_type = EMOTE_AUDIBLE
+	// Credit to sound-ideas (freesfx.co.uk) for the sound.
+
+/datum/emote/living/carbon/human/quill/get_sound(mob/living/user)
+	return 'sound/effects/voxrustle.ogg'
+
+/datum/emote/living/carbon/human/quill/can_run_emote(mob/user, status_check, intentional)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isvox(user))
+		return FALSE

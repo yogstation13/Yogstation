@@ -117,6 +117,17 @@
 				alert_type = alert["alert_type"]
 		if(alert_category)
 			H.throw_alert(alert_category, alert_type)
+		var/list/too_much_gas_alerts = list()
+		for(var/gas in gas_max)
+			var/gas_alert_category
+			if(ispath(gas))
+				var/datum/breathing_class/breathclass = gas
+				gas_alert_category = breathclass.high_alert_category
+			else
+				gas_alert_category = GLOB.gas_data.breath_alert_info[gas]["too_much_alert"]["alert_category"]
+			too_much_gas_alerts += gas_alert_category
+		for(var/alert as anything in too_much_gas_alerts)
+			H.clear_alert(alert)
 		return FALSE
 
 	#define PP_MOLES(X) ((X / total_moles) * pressure)
@@ -625,3 +636,19 @@
 		breath.adjust_moles(GAS_H2O, -electrolysis)
 		breath.adjust_moles(GAS_H2, electrolysis)
 		breath.adjust_moles(GAS_O2, electrolysis/2)
+
+/obj/item/organ/lungs/vox
+	name = "vox lungs"
+	icon_state = "lungs-vox"
+	desc = "Contain no dust."
+	decay_factor = 0
+	breathing_class = BREATH_VOX
+
+/obj/item/organ/lungs/vox/populate_gas_info()
+	..()
+	gas_max[GAS_O2] = 0.05
+	gas_max -= BREATH_VOX
+	gas_damage[GAS_O2] = list(min = MIN_TOXIC_GAS_DAMAGE, max = MAX_TOXIC_GAS_DAMAGE, damage_type = TOX)
+
+/obj/item/organ/lungs/vox/emp_act()
+	owner.emote("gasp")

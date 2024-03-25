@@ -442,7 +442,7 @@ ipc martial arts stuff
 	if(!(NO_UNDERWEAR in fake_species.species_traits))
 		species_traits -= NO_UNDERWEAR
 	damage_overlay_type = fake_species.damage_overlay_type
-	attack_verb = fake_species.attack_verb
+	attack_verbs = fake_species.attack_verbs
 	attack_effect = fake_species.attack_effect
 	attack_sound = fake_species.attack_sound
 	miss_sound = fake_species.miss_sound
@@ -469,7 +469,7 @@ ipc martial arts stuff
 	special_walk_sounds = LAZYCOPY(initial_walk_sounds)
 	damage_overlay_type = initial(damage_overlay_type)
 	H.dna.features["mcolor"] = ipc_color
-	attack_verb = initial(attack_verb)
+	attack_verbs = initial(attack_verbs)
 	attack_effect = initial(attack_effect)
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)
