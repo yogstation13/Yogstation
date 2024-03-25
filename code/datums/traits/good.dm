@@ -12,12 +12,8 @@
 	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
 
 /datum/quirk/no_taste/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
-	qdel(species)
-
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
 	if(disallowed_trait)
 		return "You don't have the ability to eat!"
 	return FALSE
@@ -33,11 +29,8 @@
 	medical_record_text = "Patient demonstrates a high tolerance for alcohol."
 
 /datum/quirk/alcohol_tolerance/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
 
 	if(disallowed_trait)
 		return "You don't have the ability to drink!"
@@ -73,11 +66,8 @@
 	medical_record_text = "Patient has unusually efficient liver metabolism and can slowly regenerate wounds by drinking alcoholic beverages."
 
 /datum/quirk/drunkhealing/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
 
 	if(disallowed_trait) // Cant drink
 		return "You don't have the ability to drink!"
@@ -240,11 +230,8 @@
 		species.liked_food = initial(species.liked_food)
 
 /datum/quirk/toxic_tastes/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
 
 	if(disallowed_trait) // Cant eat
 		return "You don't have the ability to eat!"
@@ -278,11 +265,8 @@
 	medical_record_text = "Patient demonstrates a disturbing capacity for eating."
 
 /datum/quirk/voracious/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NOMOUTH in initial(species_type.species_traits)) // Cant drink
 
 	if(disallowed_trait) // Cant eat
 		return "You don't have the ability to eat!"
@@ -344,7 +328,7 @@
 	to_chat(quirk_holder, span_boldannounce("Your [slot_string] has been replaced with an [quality] variant."))
 
 /datum/quirk/cyberorgan/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
 
 	if(species_type == /datum/species/ipc) // IPCs are already cybernetic
 		return "You already have cybernetic organs!"
@@ -371,11 +355,8 @@
 	medical_record_text = "DNA analysis indicates that the patient's DNA telomeres are still naturally long."
 
 /datum/quirk/telomeres_long/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	var/disallowed_trait = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
-	qdel(species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/disallowed_trait = (NO_DNA_COPY in initial(species_type.species_traits)) //Can't pick if you have no DNA bruv.
 
 	if(disallowed_trait)
 		return "You have no DNA!"
@@ -420,7 +401,7 @@
 			H.grant_language(random_language, TRUE, TRUE, LANGUAGE_MULTILINGUAL)
 
 /datum/quirk/multilingual/check_quirk(datum/preferences/prefs)
-	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 	if(species && specific)
 		var/mob/M = new /mob // can't instantiate a language holder without an owner
