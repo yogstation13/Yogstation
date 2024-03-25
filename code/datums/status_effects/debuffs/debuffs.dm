@@ -1056,11 +1056,12 @@
 	if(!old_health)
 		old_health = owner.health
 	var/health_difference = old_health - owner.health
-	if(health_difference <= 0) //if theyre healing or staying stagnant, no waking up
+	if(health_difference <= 0) //if theyre not taking damage, no waking up
+		if(owner.stat != CONSCIOUS)
+			owner.heal_ordered_damage(1, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
+			if(prob(10))
+				to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
 		return
-
-	if(owner.stat != CONSCIOUS)
-		owner.heal_ordered_damage(1, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
 
 	owner.visible_message(span_warning("[owner] jerks in their sleep as they're harmed!"))
 	to_chat(owner, span_boldannounce("Something hits you, pulling you towards wakefulness!"))
