@@ -1335,7 +1335,7 @@
 	icon = 'icons/obj/food/containers.dmi'
 	var/beantype = /obj/item/reagent_containers/food/snacks/grown/coffee
 
-/obj/item/storage/box/cofeepack/Initialize(mapload)
+/obj/item/storage/box/coffeepack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 5
@@ -1343,8 +1343,8 @@
 
 /obj/item/storage/box/coffeepack/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/food/snacks/grown/coffee = 5,
-		/obj/item/reagent_containers/food/snacks/grown/coffee/robusta = 5)
+		beantype = 5
+		)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/coffeepack/robusta

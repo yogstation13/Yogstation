@@ -40,6 +40,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	can_be_held = TRUE //mouse gaming
 	worn_slot_flags = ITEM_SLOT_HEAD
 	var/body_color //brown, gray and white, leave blank for random
