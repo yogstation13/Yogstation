@@ -59,6 +59,21 @@
 /datum/psi_web/psi_cap/on_loss()
 	darkspawn.psi_cap -= 100
 
+/datum/psi_web/stamina_res
+	name = "Vigor Sigils"
+	desc = "Unlocking this sigil halves stamina damage taken."
+	lore_description = "The Kalak sigils, representing eternity, are etched onto the legs."
+	icon_state = "vigor"
+	willpower_cost = 2
+	menu_tab = STORE_PASSIVE
+	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_FIGHTER
+
+/datum/psi_web/stamina_res/on_gain()
+	shadowhuman.physiology.stamina_mod *= 0.5
+
+/datum/psi_web/stamina_res/on_loss()
+	shadowhuman.physiology.stamina_mod /= 0.5
+	
 //Increases healing in darkness by 25%.
 /datum/psi_web/dark_healing
 	name = "Mending Sigil"
@@ -209,21 +224,6 @@
 
 /datum/psi_web/shadow_walk/on_loss()
 	qdel(shadowhuman.GetComponent(/datum/component/shadow_step))
-
-/datum/psi_web/stamina_res
-	name = "Vigor Sigils"
-	desc = "Unlocking this sigil halves stamina damage taken."
-	lore_description = "The Kalak sigils, representing eternity, are etched onto the legs."
-	icon_state = "vigor"
-	willpower_cost = 2
-	menu_tab = STORE_PASSIVE
-	shadow_flags = DARKSPAWN_SCOUT
-
-/datum/psi_web/stamina_res/on_gain()
-	shadowhuman.physiology.stamina_mod /= 2
-
-/datum/psi_web/stamina_res/on_loss()
-	shadowhuman.physiology.stamina_mod *= 2
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Warlock Passive Upgrades------------------------------//

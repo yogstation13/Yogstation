@@ -99,14 +99,10 @@
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_tendril)
 
 /datum/psi_web/fighter/on_gain()
-	shadowhuman.physiology.stamina_mod /= 2
-	shadowhuman.physiology.brute_mod *= 0.8
-	shadowhuman.physiology.burn_mod *= 0.8
+	shadowhuman.physiology.brute_mod *= 0.7
 
 /datum/psi_web/fighter/on_loss()
-	shadowhuman.physiology.stamina_mod *= 2
-	shadowhuman.physiology.brute_mod /= 0.8
-	shadowhuman.physiology.burn_mod /= 0.8
+	shadowhuman.physiology.brute_mod /= 0.7
 
 //scout
 /datum/psi_web/scout
