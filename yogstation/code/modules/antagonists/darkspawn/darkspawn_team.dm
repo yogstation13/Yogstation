@@ -73,6 +73,8 @@
 			continue
 		if(dark_mind.current.stat == DEAD) //if their body is dead, skip it
 			continue
+		if(isbrain(dark_mind.current) || issilicon(dark_mind.current)) //if they're a borg or mmi, skip it
+			continue
 		return FALSE //they aren't all dead
 	return TRUE //they're all dead
 	
