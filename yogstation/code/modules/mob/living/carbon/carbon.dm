@@ -3,11 +3,13 @@
 	if(mind)
 		var/datum/antagonist/vampire/V = mind.has_antag_datum(/datum/antagonist/vampire)
 		if(V)
+			var/new_sight = sight
 			if(V.get_ability(/datum/vampire_passive/full))
-				sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-				see_in_dark = max(see_in_dark, 8)
+				new_sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+				lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_HIGH)
 			else if(V.get_ability(/datum/vampire_passive/vision))
-				sight |= (SEE_MOBS)
+				new_sight |= (SEE_MOBS)
+			set_sight(new_sight)
 
 /mob/living/carbon/relaymove(mob/user, direction)
 	if(user in src.stomach_contents)
