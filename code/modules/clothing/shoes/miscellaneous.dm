@@ -1,10 +1,6 @@
 /obj/item/clothing/shoes/proc/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_SHOES_STEP_ACTION)
 
-/obj/item/clothing/shoes/sneakers/mime
-	name = "mime shoes"
-	icon_state = "mime"
-
 /obj/item/clothing/shoes/combat //basic syndicate combat boots for nuke ops and mob corpses
 	name = "combat boots"
 	desc = "High speed, low drag combat boots."
@@ -12,7 +8,7 @@
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50, ELECTRIC = 100)
 	strip_delay = 70
 	resistance_flags = NONE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
@@ -25,7 +21,7 @@
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."
 	clothing_flags = NOSLIP
-	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 30, FIRE = 90, ACID = 50)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 30, FIRE = 90, ACID = 50, ELECTRIC = 100)
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain wooden sandals."
@@ -55,7 +51,7 @@
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 40, ACID = 75)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 40, ACID = 75, ELECTRIC = 100)
 	can_be_bloody = FALSE
 	custom_price = 100
 
@@ -169,7 +165,7 @@
 
 /obj/item/clothing/shoes/workboots
 	name = "work boots"
-	desc = "Nanotrasen-issue Engineering lace-up work boots for the especially blue-collar."
+	desc = "Nanotrasen-issue Engineering lace-up work boots for the especially blue-collar. Electrically insulated to protect from hazardous work environments."
 	icon_state = "workboots"
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -177,7 +173,7 @@
 	strip_delay = 40
 	equip_delay_other = 40
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 /obj/item/clothing/shoes/workboots/mining
 	name = "mining boots"
@@ -280,41 +276,62 @@
 /obj/item/clothing/shoes/wheelys
 	name = "Wheely-Heels"
 	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either." //Thanks Fel
-	icon_state = "wheelys"
-	item_state = "wheelys"
+	item_state = "sneakers_back"
+	icon_state = "sneakers"
+	greyscale_colors = "#545454#ffffff"
+	greyscale_config = /datum/greyscale_config/sneakers_wheelys
+	greyscale_config_inhand_left = /datum/greyscale_config/sneakers_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/sneakers_inhand_right
+	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/feet.dmi'
+	worn_icon_state = "wheelys"
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	clothing_flags = LARGE_WORN_ICON
 	actions_types = list(/datum/action/item_action/wheelys)
-	var/wheelToggle = FALSE //False means wheels are not popped out
-	var/obj/vehicle/ridden/scooter/wheelys/W
+	///False means wheels are not popped out
+	var/wheelToggle = FALSE
+	///The vehicle associated with the shoes
+	var/obj/vehicle/ridden/scooter/wheelys/wheels = /obj/vehicle/ridden/scooter/wheelys
 
 /obj/item/clothing/shoes/wheelys/Initialize(mapload)
 	. = ..()
-	W = new /obj/vehicle/ridden/scooter/wheelys(null)
+	AddElement(/datum/element/update_icon_updates_onmob)
+	wheels = new wheels(null)
+	wheels.link_shoes(src)
 
 /obj/item/clothing/shoes/wheelys/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
 	if(!istype(user.get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes/wheelys))
-		to_chat(user, span_warning("You must be wearing the wheely-heels to use them!"))
+		balloon_alert(user, "must be worn!")
 		return
-	if(!(W.is_occupant(user)))
+	if(!(wheels.is_occupant(user)))
 		wheelToggle = FALSE
 	if(wheelToggle)
-		W.unbuckle_mob(user)
+		wheels.unbuckle_mob(user)
 		wheelToggle = FALSE
 		return
-	W.forceMove(get_turf(user))
-	W.buckle_mob(user)
+	wheels.forceMove(get_turf(user))
+	wheels.buckle_mob(user)
 	wheelToggle = TRUE
 
 /obj/item/clothing/shoes/wheelys/dropped(mob/user)
 	if(wheelToggle)
-		W.unbuckle_mob(user)
+		wheels.unbuckle_mob(user)
 		wheelToggle = FALSE
-	..()
+	return ..()
+
+/obj/item/clothing/shoes/wheelys/proc/toggle_wheels(status)
+	if (status)
+		worn_icon_state = "[initial(worn_icon_state)]-on"
+	else
+		worn_icon_state = "[initial(worn_icon_state)]"
+	playsound(src, 'sound/weapons/tap.ogg', 10, TRUE)
+	update_appearance()
 
 /obj/item/clothing/shoes/wheelys/Destroy()
-	QDEL_NULL(W)
-	. = ..()
+	QDEL_NULL(wheels)
+	return ..()
 
 /obj/item/clothing/shoes/kindleKicks
 	name = "Kindle Kicks"
@@ -451,7 +468,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps //Standard for all digitigrade legs and feets
 	name = "footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
+	desc = "Standard issue Nanotrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
 	icon_state = "footwraps"
 	item_state = "footwraps"
 	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
@@ -469,7 +486,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
 	name = "command footwraps"
-	desc = "These Command-grade NanoTrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
+	desc = "These Command-grade Nanotrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
 	icon_state = "footwraps_c"
 	item_state = "footwraps_c"
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
@@ -509,15 +526,16 @@
 
 /obj/item/clothing/shoes/xeno_wraps/engineering
 	name = "engineering footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader."
+	desc = "Standard issue Nanotrasen cloth footwraps, specially made for the frequent glass treader. Electrically insulated."
 	icon_state = "footwraps_e"
 	item_state = "footwraps_e"
 	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 /obj/item/clothing/shoes/xeno_wraps/science
 	name = "science footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
+	desc = "Standard issue Nanotrasen cloth footwraps, to reduce fatigue when standing at a console all day."
 	icon_state = "footwraps_sc"
 	item_state = "footwraps_sc"
 	xenoshoe = YES_DIGIT
@@ -525,7 +543,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/medical
 	name = "medical footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, for when you dont want other people's blood all over your feet."
+	desc = "Standard issue Nanotrasen cloth footwraps, for when you dont want other people's blood all over your feet."
 	icon_state = "footwraps_m"
 	item_state = "footwraps_m"
 	xenoshoe = YES_DIGIT
@@ -533,7 +551,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/cargo
 	name = "cargo footwraps"
-	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
+	desc = "Standard issue Nanotrasen cloth footwraps, with reinforcment to protect against falling crates."
 	icon_state = "footwraps_ca"
 	item_state = "footwraps_ca"
 	xenoshoe = YES_DIGIT

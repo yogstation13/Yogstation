@@ -80,7 +80,17 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			return ..()
 		var/obj/item/surveillance_upgrade/upgrade = W
 		upgrade.afterattack(AI, user)
-
+		return FALSE
+	if(istype(W, /obj/item/cameragun_upgrade))
+		if(!authenticated)
+			to_chat(user, span_warning("You need to be logged in to do this!"))
+			return ..()
+		var/mob/living/silicon/ai/AI = input("Select an AI", "Select an AI", null, null) as null|anything in GLOB.ai_list
+		if(!AI)
+			return ..()
+		var/obj/item/cameragun_upgrade/upgrade = W
+		upgrade.afterattack(AI, user)
+		return FALSE
 	if(istype(W, /obj/item/malf_upgrade))
 		if(!authenticated)
 			to_chat(user, span_warning("You need to be logged in to do this!"))
@@ -90,7 +100,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			return ..()
 		var/obj/item/malf_upgrade/upgrade = W
 		upgrade.afterattack(AI, user)
-
+		return FALSE
 	return ..()
 
 /obj/machinery/computer/ai_control_console/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -320,7 +330,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				one_time_password_used = TRUE
 				var/msg = "<h4>Warning!</h4><br>We have detected usage of the AI Control Code for unlocking a console at coordinates ([src.x], [src.y], [src.z]) by [usr.name]. Please verify that this is correct. Be aware we have cancelled the current control code.<br>\
 				If needed a new code can be printed at a communications console."
-				priority_announce(msg, sender_override = "Central Cyber Security Update", has_important_message = TRUE, sanitize = FALSE)
+				priority_announce(msg, sender_override = "Central Cyber Security Update", has_important_message = TRUE)
 				GLOB.ai_control_code = null
 			else
 				to_chat(usr, span_warning("Incorrect code. Make sure you have the latest one."))
@@ -456,7 +466,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				return
 			var/mob/living/silicon/ai/A = target
 			if(A.mind && is_servant_of_ratvar(A))
-				to_chat(user, span_brass("[A] has already seen the light of the Justicar!"))
+				to_chat(user, span_brass("[A] has already seen the light of the Justiciar!"))
 				return
 			if(A.stat == DEAD)
 				to_chat(user, span_warning("[A] is dead!"))

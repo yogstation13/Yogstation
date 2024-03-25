@@ -24,11 +24,11 @@
 /obj/item/bigspoon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 2, \
 		force_wielded = 16, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
+	AddComponent(/datum/component/cleave_attack, requires_wielded=TRUE, no_multi_hit=TRUE)
 
 /obj/item/bigspoon/proc/on_wield(atom/source, mob/living/user)
 	hitsound = 'yogstation/sound/weapons/bat_hit.ogg'

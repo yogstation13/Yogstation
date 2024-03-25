@@ -67,7 +67,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(prob(15/severity) && owner)
+	if(prob(1.5 * severity) && owner)
 		to_chat(owner, span_warning("[src] is hit by EMP!"))
 		// give the owner an idea about why his implant is glitching
 		Retract()
@@ -162,7 +162,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(prob(30/severity) && owner && (organ_flags & ORGAN_FAILING))
+	if(prob(3 * severity) && owner && (organ_flags & ORGAN_FAILING))
 		Retract()
 		owner.visible_message(span_danger("A loud bang comes from [owner]\'s [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm!"))
 		playsound(get_turf(owner), 'sound/weapons/flashbang.ogg', 100, 1)
@@ -329,7 +329,6 @@
 	lefthand_file = active_tool.lefthand_file
 	righthand_file = active_tool.righthand_file
 	linkedarm.owner.update_inv_hands()
-	plane = 22
 
 /obj/item/toolset_handler/attack_self(mob/user)
 	linkedarm.ui_action_click()

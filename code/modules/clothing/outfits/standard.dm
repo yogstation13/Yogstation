@@ -172,7 +172,7 @@
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber
 	l_hand = /obj/item/storage/secure/briefcase
 	id = /obj/item/card/id/syndicate
-	belt = /obj/item/pda/heads
+	belt = /obj/item/modular_computer/tablet/pda/preset/syndicate
 
 /datum/outfit/assassin/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/obj/item/clothing/under/U = H.w_uniform
@@ -369,7 +369,7 @@
 	r_hand = /obj/item/gun/energy/pulse/loyalpin
 	id = /obj/item/card/id/centcom
 	ears = /obj/item/radio/headset/headset_cent/alt
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
 
 	backpack_contents = list(/obj/item/storage/box=1,\
 		/obj/item/ammo_box/m44=1,\

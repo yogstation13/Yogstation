@@ -80,11 +80,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	switch(severity)
-		if(1)
-			Stun(160)
-		if(2)
-			Stun(60)
+	Stun(min((1.6 SECONDS) * severity, 16 SECONDS)) // up to 16 seconds
 
 
 /mob/living/silicon/robot/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -142,7 +138,7 @@
 	to_chat(src, span_danger("Initiating diagnostics..."))
 	sleep(2 SECONDS)
 	to_chat(src, span_danger("SynBorg v1.7 loaded."))
-	logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
+	logevent("WARN: root privileges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 	sleep(0.5 SECONDS)
 	to_chat(src, span_danger("LAW SYNCHRONISATION ERROR"))
 	sleep(0.5 SECONDS)
@@ -201,7 +197,7 @@
 	if(prob(75) && Proj.damage > 0)
 		spark_system.start()
 
-/mob/living/silicon/robot/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
+/mob/living/silicon/robot/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
 	if(gib)
 		visible_message(
 		span_danger("[src] begins to heat up!"), \

@@ -108,7 +108,7 @@
 	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
-		if(F.light_on || F.on)
+		if(F.light_on)
 			if(cold)
 				if(is_type_in_list(F, blacklisted_lights))
 					F.visible_message(span_warning("The sheer cold shatters [F]!"))
@@ -118,7 +118,7 @@
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message(span_danger("[I] dims slightly before scattering the shadows around it."))
 				return F.light_power //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
-			F.on = FALSE
+			F.light_on = FALSE
 			F.set_light_on(FALSE)
 			F.update_brightness()
 	else if(istype(I, /obj/item/pda))
@@ -136,12 +136,12 @@
 		var/mob/living/carbon/M = H
 		var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
 		if(G)
-			G.glowth.set_light(0, 0) // Set glowy to no light
+			G.glow.set_light_range_power_color(range = 0, power = 0) // Set glowy to no light
 			if(G.current_nullify_timer)
 				deltimer(G.current_nullify_timer) // Stacks
-			G.current_nullify_timer = addtimer(CALLBACK(src, PROC_REF(giveGlowyBack), M), 40 SECONDS, TIMER_STOPPABLE)
+			G.current_nullify_timer = addtimer(CALLBACK(src, PROC_REF(give_glow_back), M), 40 SECONDS, TIMER_STOPPABLE)
 
-/datum/action/cooldown/spell/aoe/proc/giveGlowyBack(mob/living/carbon/M)
+/datum/action/cooldown/spell/aoe/proc/give_glow_back(mob/living/carbon/M)
 	if(!M)
 		return
 	var/datum/mutation/human/glow/G = M.dna.get_mutation(GLOWY)
@@ -153,8 +153,8 @@
 	if(!shadowling_check(owner) && !admin_override)
 		return
 	to_chat(owner, span_shadowling("You silently disable all nearby lights."))
-	var/turf/T = get_turf(owner)
-	for(var/datum/light_source/LS in T.get_affecting_lights())
+	//var/turf/T = get_turf(owner)
+	for(var/datum/light_source/LS in target.light_sources)
 		var/atom/LO = LS.source_atom
 		if(isitem(LO))
 			extinguishItem(LO)
@@ -775,7 +775,7 @@
 		timer += more_minutes
 		priority_announce("Major system failure aboard the emergency shuttle. This will extend its arrival time by approximately 15 minutes...", "System Failure", 'sound/misc/notice1.ogg')
 		SSshuttle.emergency.setTimer(timer)
-		SSshuttle.emergencyNoRecall = TRUE
+		SSshuttle.emergency_no_recall = TRUE
 	user.actions.Remove(src) //Can only be used once!
 	qdel(src)
 	
@@ -993,30 +993,30 @@
 
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/thrall_night_vision/cast(mob/living/carbon/human/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!is_shadow_or_thrall(user))
-		return
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
-	if(!eyes)
-		return
-	eyes.sight_flags = initial(eyes.sight_flags)
-	switch(eyes.lighting_alpha)
-		if (LIGHTING_PLANE_ALPHA_VISIBLE)
-			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-			eyes.see_in_dark = 8
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		else
-			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			eyes.see_in_dark = 2	//default
-	user.update_sight()
+// /datum/action/cooldown/spell/thrall_night_vision/cast(mob/living/carbon/human/user)
+// 	. = ..()
+// 	if(!.)
+// 		return FALSE
+// 	if(!is_shadow_or_thrall(user))
+// 		return
+// 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
+// 	if(!eyes)
+// 		return
+// 	eyes.sight_flags = initial(eyes.sight_flags)
+// 	switch(eyes.lighting_alpha)
+// 		if (LIGHTING_PLANE_ALPHA_VISIBLE)
+// 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+// 			eyes.see_in_dark = 8
+// 		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+// 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+// 		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
+// 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+// 		else
+// 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+// 			eyes.see_in_dark = 2	//default
+// 	user.update_sight()
 
-	return TRUE
+// 	return TRUE
 
 /datum/action/cooldown/spell/lesser_shadowling_hivemind //Lets a thrall talk with their allies
 	name = "Lesser Commune"

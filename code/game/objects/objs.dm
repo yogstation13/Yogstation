@@ -2,6 +2,8 @@
 /obj
 	animate_movement = 2
 	speech_span = SPAN_ROBOT
+	uses_integrity = TRUE
+
 	var/obj_flags = CAN_BE_HIT
 	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
 
@@ -16,17 +18,10 @@
 	var/wound_bonus = 0
 	/// If this attacks a human with no wound armor on the affected body part, add this to the wound mod. Some attacks may be significantly worse at wounding if there's even a slight layer of armor to absorb some of it vs bare flesh
 	var/bare_wound_bonus = 0
-
-	var/datum/armor/armor
-	var/obj_integrity	//defaults to max_integrity
-	var/max_integrity = 500
-	var/integrity_failure = 0 //0 if we have no special broken behavior
-	///Damage under this value will be completely ignored
-	var/damage_deflection = 0
-
-	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
-
-	var/acid_level = 0 //how much acid is on that obj
+	/// Damage multiplier against structures, machines, mechs, and to a lesser extent silicons
+	var/demolition_mod = 1
+	/// How much acid is on this object
+	var/acid_level = 0 
 
 	var/persistence_replacement //have something WAY too amazing to live to the next round? Set a new path here. Overuse of this var will make me upset.
 	var/current_skin //Has the item been reskinned?
@@ -56,15 +51,6 @@
 
 /obj/Initialize(mapload)
 	. = ..()
-	if (islist(armor))
-		armor = getArmor(arglist(armor))
-	else if (!armor)
-		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
-
-	if(obj_integrity == null)
-		obj_integrity = max_integrity
 	if (set_obj_flags)
 		var/flagslist = splittext(set_obj_flags,";")
 		var/list/string_to_objflag = GLOB.bitfields["obj_flags"]
@@ -77,7 +63,6 @@
 	if((obj_flags & ON_BLUEPRINTS) && isturf(loc))
 		var/turf/T = loc
 		T.add_blueprints_preround(src)
-
 
 /obj/Destroy(force=FALSE)
 	if(!ismachinery(src))
@@ -102,17 +87,39 @@
 	else
 		return null
 
+/obj/assume_air_moles(datum/gas_mixture/giver, moles)
+	if(loc)
+		return loc.assume_air_moles(giver, moles)
+	return null
+
+/obj/assume_air_ratio(datum/gas_mixture/giver, ratio)
+	if(loc)
+		return loc.assume_air_ratio(giver, ratio)
+	return null
+/obj/transfer_air(datum/gas_mixture/taker, moles)
+	if(loc)
+		return loc.transfer_air(taker, moles)
+	return null
+
+/obj/transfer_air_ratio(datum/gas_mixture/taker, ratio)
+	if(loc)
+		return loc.transfer_air_ratio(taker, ratio)
+	return null
+
 /obj/remove_air(amount)
 	if(loc)
 		return loc.remove_air(amount)
-	else
-		return null
+	return null
+
+/obj/remove_air_ratio(ratio)
+	if(loc)
+		return loc.remove_air_ratio(ratio)
+	return null
 
 /obj/return_air()
 	if(loc)
 		return loc.return_air()
-	else
-		return null
+	return null
 
 /obj/proc/handle_internal_lifeform(mob/lifeform_inside_me, breath_request)
 	//Return: (NONSTANDARD)
@@ -122,8 +129,7 @@
 
 	if(breath_request>0)
 		var/datum/gas_mixture/environment = return_air()
-		var/breath_percentage = BREATH_VOLUME / environment.return_volume()
-		return remove_air(environment.total_moles() * breath_percentage)
+		return remove_air_ratio(BREATH_VOLUME / environment.return_volume())
 	else
 		return null
 
@@ -183,18 +189,24 @@
 	return
 
 /mob/proc/unset_machine()
-	if(machine)
-		machine.on_unset_machine(src)
-		machine = null
+	SIGNAL_HANDLER
+	if(!machine)
+		return
+	UnregisterSignal(machine, COMSIG_QDELETING)
+	machine.on_unset_machine(src)
+	machine = null
 
 //called when the user unsets the machine.
 /atom/movable/proc/on_unset_machine(mob/user)
 	return
 
 /mob/proc/set_machine(obj/O)
-	if(src.machine)
+	if(QDELETED(src) || QDELETED(O))
+		return
+	if(machine)
 		unset_machine()
-	src.machine = O
+	machine = O
+	RegisterSignal(O, COMSIG_QDELETING, PROC_REF(unset_machine))
 	if(istype(O))
 		O.obj_flags |= IN_USE
 
@@ -202,9 +214,6 @@
 	var/mob/M = src.loc
 	if(istype(M) && M.client && M.machine == src)
 		src.attack_self(M)
-
-/obj/proc/hide(h)
-	return
 
 /obj/singularity_pull(S, current_size)
 	..()
@@ -253,9 +262,10 @@
 			                  bio = text2num(result["values"][BIO]),\
 			                  rad = text2num(result["values"][RAD]),\
 			                  fire = text2num(result["values"][FIRE]),\
-			                  acid = text2num(result["values"][ACID]))
-				log_admin("[key_name(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid]")
-				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid]"))
+			                  acid = text2num(result["values"][ACID]),\
+							  electric = text2num(result["values"][ELECTRIC]))
+				log_admin("[key_name(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid], electric: [armor.electric]")
+				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid], electric: [armor.electric]"))
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(check_rights(R_DEBUG|R_SERVER))
 			var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))

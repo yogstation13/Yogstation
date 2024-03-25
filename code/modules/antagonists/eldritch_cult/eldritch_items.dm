@@ -107,6 +107,7 @@
 	force = 20
 	armour_penetration = 25
 	throwforce = 10
+	wound_bonus = -5
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 	var/datum/action/innate/heretic_shatter/linked_action
@@ -302,7 +303,8 @@
 	desc = "Allows the user to swap between three hud types, science, medical, and diagnostic"
 	icon_state = "godeye"
 	item_state = "godeye"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	// Blue, light blue
+	color_cutoffs = list(15, 30, 40)
 	hud_type = DATA_HUD_SECURITY_BASIC
 
 /obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/user, slot)

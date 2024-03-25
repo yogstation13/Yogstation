@@ -7,7 +7,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
-	selection_color = "#d4ebf2"
 	minimal_player_age = 4
 	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW
@@ -23,8 +22,13 @@
 		/datum/job_department/medical,
 		/datum/job_department/cargo,
 	)
+	
+	minimal_lightup_areas = list(
+		/area/construction/mining/aux_base
+	)
 
-	added_access = list(ACCESS_SURGERY, ACCESS_CARGO)
+	//if it's skeleton there's probably no paramedic to save spaced miners that jaunted away from danger
+	added_access = list(ACCESS_SURGERY, ACCESS_CARGO, ACCESS_CLONING, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_MED
@@ -42,7 +46,7 @@
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
@@ -63,5 +67,5 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	box = /obj/item/storage/box/survival_mining
+	box = /obj/item/storage/box/survival/mining
 	pda_slot = ITEM_SLOT_LPOCKET

@@ -6,17 +6,18 @@
 @use '../base.scss';
 
 .Dropdown {
-  position: relative;
+  display: flex;
+  align-items: flex-start;
 }
 
 .Dropdown__control {
-  position: relative;
-  display: inline-block;
+  flex: 1;
   font-family: Verdana, sans-serif;
   font-size: base.em(12px);
+  overflow: hidden;
+  user-select: none;
   width: base.em(100px);
   line-height: base.em(17px);
-  user-select: none;
 }
 
 .Dropdown__arrow-button {

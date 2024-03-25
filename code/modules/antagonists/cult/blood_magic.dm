@@ -423,12 +423,12 @@
 		user.visible_message(span_warning("[user] holds up [user.p_their()] hand, which explodes in a flash of red light!"), \
 							span_cultitalic("You attempt to stun [L] with the spell!"))
 
-		user.mob_light(_range = 3, _color = LIGHT_COLOR_BLOOD_MAGIC, _duration = 0.2 SECONDS)
+		user.mob_light(range = 3, color = LIGHT_COLOR_BLOOD_MAGIC, duration = 0.2 SECONDS)
 
 		var/anti_magic_source = L.can_block_magic()
 		if(anti_magic_source)
 
-			L.mob_light(_range = 2, _color = LIGHT_COLOR_HOLY_MAGIC, _duration = 10 SECONDS)
+			L.mob_light(range = 2, color = LIGHT_COLOR_HOLY_MAGIC, duration = 10 SECONDS)
 			var/mutable_appearance/forbearance = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 			L.add_overlay(forbearance)
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/atom, cut_overlay), forbearance), 100)
@@ -578,6 +578,7 @@
 /obj/item/restraints/handcuffs/energy/cult //For the shackling spell
 	name = "shadow shackles"
 	desc = "Shackles that bind the wrists with sinister magic."
+	icon_state = "cuff"
 	trashtype = /obj/item/restraints/handcuffs/energy/used
 	item_flags = DROPDEL
 
@@ -763,12 +764,8 @@
 					temp += max((B.bloodiness**2)/800,1)
 				new /obj/effect/temp_visual/cult/turf/floor(get_turf(B))
 				qdel(B)
-		for(var/obj/effect/decal/cleanable/trail_holder/TH in view(T, 2))
+		for(var/obj/effect/decal/cleanable/blood/trail_holder/TH in view(T, 2))
 			qdel(TH)
-		var/obj/item/clothing/shoes/shoecheck = user.shoes
-		if(shoecheck && istype(shoecheck) && shoecheck.bloody_shoes[/datum/reagent/blood])
-			temp += shoecheck.bloody_shoes[/datum/reagent/blood]/20
-			shoecheck.bloody_shoes[/datum/reagent/blood] = 0
 		if(temp)
 			user.Beam(T,icon_state="drainbeam",time=15)
 			new /obj/effect/temp_visual/cult/sparks(get_turf(user))

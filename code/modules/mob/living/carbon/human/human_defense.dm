@@ -1,53 +1,40 @@
 /mob/living/carbon/human/getarmor(def_zone, type)
-	var/armorval = 0
-	var/organnum = 0
-
 	if(def_zone)
-		if(isbodypart(def_zone))
-			var/obj/item/bodypart/bp = def_zone
-			if(bp)
-				return checkarmor(def_zone, type)
-		var/obj/item/bodypart/affecting = get_bodypart(check_zone(def_zone))
-		if(affecting)
-			return checkarmor(affecting, type)
+		if(isnum(def_zone)) // allows using bodypart bitflags instead of zones
+			return checkarmor(def_zone, type)
+		var/obj/item/bodypart/affecting = isbodypart(def_zone) ? def_zone : get_bodypart(check_zone(def_zone))
+		return checkarmor(affecting.body_part, type)
 		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
 
 	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		armorval += checkarmor(BP, type)
+	var/armorval = 0
+	var/organnum = 0
+	for(var/obj/item/bodypart/limb as anything in bodyparts)
+		armorval += min(checkarmor(limb.body_part, type), 100) // hey no you can't do that
 		organnum++
 	return (armorval/max(organnum, 1))
 
 
-/mob/living/carbon/human/proc/checkarmor(obj/item/bodypart/def_zone, d_type)
-	if(!d_type)
+/mob/living/carbon/human/proc/checkarmor(bodypart_flag, armor_flag)
+	if(!armor_flag)
 		return 0
 	var/protection = 0
 	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
-	for(var/bp in body_parts)
-		if(!bp)
-			continue
-		if(bp && istype(bp , /obj/item/clothing))
-			var/obj/item/clothing/C = bp
-			if(C.body_parts_covered & def_zone.body_part)
-				protection += C.armor.getRating(d_type)
-			else if(C.body_parts_partial_covered & def_zone.body_part)
-				protection += C.armor.getRating(d_type) * 0.5
-	protection += physiology.armor.getRating(d_type)
+	for(var/obj/item/clothing/cover in body_parts)
+		if(bodypart_flag & cover.body_parts_covered)
+			protection += cover.armor.getRating(armor_flag)
+		else if(bodypart_flag & cover.body_parts_partial_covered)
+			protection += cover.armor.getRating(armor_flag) * 0.5
+	protection += physiology.armor.getRating(armor_flag)
 	return protection
 
 ///Get all the clothing on a specific body part
-/mob/living/carbon/human/proc/clothingonpart(obj/item/bodypart/def_zone)
+/mob/living/carbon/human/proc/clothingonpart(bodypart_flag)
 	var/list/covering_part = list()
 	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
-	for(var/bp in body_parts)
-		if(!bp)
-			continue
-		if(bp && istype(bp , /obj/item/clothing))
-			var/obj/item/clothing/C = bp
-			if(C.body_parts_covered & def_zone.body_part)
-				covering_part += C
+	for(var/obj/item/clothing/cover in body_parts)
+		if(bodypart_flag & cover.body_parts_covered)
+			covering_part += cover
 	return covering_part
 
 /mob/living/carbon/human/on_hit(obj/projectile/P)
@@ -64,7 +51,7 @@
 	if(mind)
 		if(mind.martial_art && !incapacitated(FALSE, TRUE) && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || ((mind.martial_art.id == "sleeping carp") && in_throw_mode))) //Some martial arts users can deflect projectiles!
 			if(prob(mind.martial_art.deflection_chance) || ((mind.martial_art.id == "sleeping carp") && in_throw_mode)) // special check if sleeping carp is our martial art and throwmode is on, deflect
-				if((mobility_flags & MOBILITY_USE) && dna && !(dna.check_mutation(HULK)|| dna.check_mutation(ACTIVE_HULK))) //But only if they're otherwise able to use items, and hulks can't do it
+				if((mobility_flags & MOBILITY_USE) && dna && !dna.check_mutation(HULK)) //But only if they're otherwise able to use items, and hulks can't do it
 					if(!isturf(loc)) //if we're inside something and still got hit
 						P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
 						loc.bullet_act(P)
@@ -78,6 +65,8 @@
 						return BULLET_ACT_BLOCK
 					else
 						P.firer = src
+						if(P.hitscan)
+							P.store_hitscan_collision(P.trajectory.copy_to())
 						P.setAngle(rand(0, 360))//SHING
 						return BULLET_ACT_FORCE_PIERCE
 
@@ -86,6 +75,8 @@
 			if(check_reflect(def_zone)) // Checks if you've passed a reflection% check
 				visible_message(span_danger("The [P.name] gets reflected by [src]!"), \
 								span_userdanger("The [P.name] gets reflected by [src]!"))
+				if(P.hitscan) // hitscan check
+					P.store_hitscan_collision(P.trajectory.copy_to())
 				// Find a turf near or on the original location to bounce to
 				if(!isturf(loc)) //Open canopy mech (ripley) check. if we're inside something and still got hit
 					P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
@@ -125,8 +116,11 @@
 	return 0
 
 /mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
+	//YOGS EDIT BEGIN
+	if(SEND_SIGNAL(src, COMSIG_MOB_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration))	
+		return TRUE 
+	//YOGS EDIT END
 	var/block_chance_modifier = round(damage / -3)
-
 	for(var/obj/item/I in held_items)
 		if(!istype(I, /obj/item/clothing))
 			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.armour_penetration)/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
@@ -196,10 +190,8 @@
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
 	if(affecting)
 		if(I.force && I.damtype != STAMINA && affecting.status == BODYPART_ROBOTIC) // Bodpart_robotic sparks when hit, but only when it does real damage
-			if(I.force >= 5)
+			if(I.force >= 5 && !isinsurgent(src)) //small change, insurgent ipcs don't give off sparks if hit
 				do_sparks(1, FALSE, loc)
-				if(prob(25))
-					new /obj/effect/decal/cleanable/oil(loc)
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 
@@ -381,7 +373,7 @@
 		var/armor_block = run_armor_check(affecting, MELEE)
 		apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
 
-/mob/living/carbon/human/mech_melee_attack(obj/mecha/M, equip_allowed)
+/mob/living/carbon/human/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	if(M.selected?.melee_override && equip_allowed)
 		M.selected.action(src)
 	else if(M.occupant.a_intent == INTENT_HARM)
@@ -500,44 +492,10 @@
 
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
-	if(tesla_shock)
-		var/total_coeff = 1
-		if(gloves)
-			var/obj/item/clothing/gloves/G = gloves
-			if(G.siemens_coefficient <= 0)
-				total_coeff -= 0.5
-			if(istype(G, /obj/item/clothing/gloves/color/fyellow))
-				var/obj/item/clothing/gloves/color/fyellow/greytide = G
-				greytide.get_shocked()
-		if(wear_suit)
-			var/obj/item/clothing/suit/S = wear_suit
-			if(S.siemens_coefficient <= 0)
-				total_coeff -= 0.95
-			else if(S.siemens_coefficient == (-1))
-				total_coeff -= 1
-		siemens_coeff = total_coeff
-		if(flags_1 & TESLA_IGNORE_1)
-			siemens_coeff = 0
-	else if(!safety)
-		var/gloves_siemens_coeff = 1
-		if(gloves)
-			var/obj/item/clothing/gloves/G = gloves
-			gloves_siemens_coeff = G.siemens_coefficient
-			if(istype(G, /obj/item/clothing/gloves/color/fyellow))
-				var/obj/item/clothing/gloves/color/fyellow/greytide = G
-				greytide.get_shocked()
-		siemens_coeff = gloves_siemens_coeff
-	if(undergoing_cardiac_arrest() && !illusion)
-		if(shock_damage * siemens_coeff >= 1 && prob(25))
-			var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-			heart.beating = TRUE
-			if(stat == CONSCIOUS)
-				to_chat(src, span_notice("You feel your heart beating again!"))
-	siemens_coeff *= physiology.siemens_coeff
-
-	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
-	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun, gib)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+	if(!override)
+		siemens_coeff *= physiology.siemens_coeff
+	. = ..()
 	if(.)
 		electrocution_animation(40)
 
@@ -547,32 +505,8 @@
 		return dna.species.spec_emag_act(src, user, emag_card)
 
 /mob/living/carbon/human/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(HAS_TRAIT(src, TRAIT_FARADAYCAGE))
-		severity++
-		if(severity > EMP_LIGHT)
-			return
-	dna?.species.spec_emp_act(src, severity)
-	var/list/affected_parts = list()
-	for(var/obj/item/bodypart/BP in bodyparts)
-		if(istype(BP) && BP.status == BODYPART_ROBOTIC)
-			if(prob(5) && severity == EMP_HEAVY && (TRAIT_EASYDISMEMBER in dna?.species.inherent_traits) && BP.body_zone != BODY_ZONE_CHEST)
-				BP.dismember()
-			else
-				affected_parts += BP
-	if(affected_parts.len)
-		emote("scream")
-		adjustFireLoss(min(5 * affected_parts.len / severity, 20 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
-		var/obj/item/bodypart/chest/C = get_bodypart(BODY_ZONE_CHEST)
-		var/obj/item/bodypart/head/H = get_bodypart(BODY_ZONE_HEAD)
-		if(((C && C.status == BODYPART_ROBOTIC) || (H && H.status == BODYPART_ROBOTIC)) && severity == EMP_HEAVY) // if your head and/or chest are robotic (aka you're a robotic race or augmented) you get cooler flavor text and rapid-onset paralysis
-			to_chat(src, span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
-			Paralyze(5 SECONDS) //heavy EMPs will fully stun you
-		else
-			adjustStaminaLoss(min(15 * affected_parts.len / severity, 60 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
-			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
+	severity *= physiology.emp_mod
+	return ..(severity)
 
 /mob/living/carbon/human/rad_act(amount, collectable_radiation)
 	. = ..()
@@ -735,7 +669,7 @@
 	if(!istype(M))
 		return
 
-	if(try_extinguish(M))
+	if(try_extinguish(M)) //mostly redundant since it's called in species.dm also, but this allows alternative forms of help act calling to extinguish
 		return
 
 	if(src == M)

@@ -76,6 +76,12 @@
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/ash_spirit
 	required_shit_list = "A pile of ash, a head, and a book."
 
+/datum/eldritch_transmutation/summon/fire_shark
+	name = "Summon Fire Shark"
+	required_atoms = list(/obj/item/organ/eyes,/obj/effect/decal/cleanable/ash,/obj/item/stack/sheet/mineral/plasma)
+	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/fire_shark
+	required_shit_list = "A pile of ash, a pair of eyes, and a stack of plasma."
+
 /datum/eldritch_transmutation/summon/rusty
 	name = "Summon Rustwalker"
 	required_atoms = list(/obj/effect/decal/cleanable/vomit,,/obj/item/book)
@@ -128,7 +134,7 @@
 					spells.Remove(user)
 					qdel(spells)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
-			set_security_level(SEC_LEVEL_GAMMA)
+			SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 
 			shockwave.transform = matrix().Scale(0.5)

@@ -91,7 +91,7 @@
 	if(response == "Retry TOTP")
 		return mfa_query()
 	else if(response == "Backup Code")
-		if(tgui_alert(src, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", list("Confirmation", "Cancel", "Yes")) != "Yes")
+		if(tgui_alert(src, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", "Confirmation", list("Cancel", "Yes")) != "Yes")
 			return mfa_query()
 		return mfa_backup_query()
 	else

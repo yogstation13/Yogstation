@@ -105,10 +105,11 @@
 		if(!brainmob.stored_dna)
 			brainmob.stored_dna = new /datum/dna/stored(brainmob)
 		C.dna.copy_dna(brainmob.stored_dna)
-		if(HAS_TRAIT(L, TRAIT_BADDNA))
-			brainmob.status_traits[TRAIT_BADDNA] = L.status_traits[TRAIT_BADDNA]
-		if(HAS_TRAIT(L, TRAIT_NOCLONE)) // YOU CAN'T ESCAPE
-			brainmob.status_traits[TRAIT_NOCLONE] = L.status_traits[TRAIT_NOCLONE]
+		// Hack, fucked dna needs to follow the brain to prevent memes, so we need to copy over the trait sources and shit
+		for(var/source in GET_TRAIT_SOURCES(L, TRAIT_BADDNA))
+			ADD_TRAIT(brainmob, TRAIT_BADDNA, source)
+		for(var/source in GET_TRAIT_SOURCES(L, TRAIT_NOCLONE))
+			ADD_TRAIT(brainmob, TRAIT_NOCLONE, source)
 		var/obj/item/organ/zombie_infection/ZI = L.getorganslot(ORGAN_SLOT_ZOMBIE)
 		if(ZI)
 			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
@@ -287,15 +288,10 @@
 	var/obj/item/clothing/head/hat = owner.get_item_by_slot(ITEM_SLOT_HEAD)
 	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
 		return
-
-	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (50/severity) * (maxHealth - damage) / maxHealth)
-	owner.adjust_drugginess(40/severity)
-	switch(severity)
-		if(1)
-			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
-		if(2)
-			to_chat(owner, span_warning("Alert: Posibrain damaged."))
-
+	to_chat(owner, span_warning("Alert: Posibrain [severity > EMP_LIGHT ? "severely " : ""]damaged."))
+	owner.adjust_drugginess(5 * severity)
+	if(severity > EMP_LIGHT)
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (2 * (severity - EMP_LIGHT)) * (maxHealth - damage) / maxHealth) // don't give traumas from weak EMPs
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////
 

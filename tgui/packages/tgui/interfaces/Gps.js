@@ -2,6 +2,7 @@ import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { clamp } from 'common/math';
 import { vecLength, vecSubtract } from 'common/vector';
+
 import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -10,36 +11,29 @@ const coordsToVec = coords => map(parseFloat)(coords.split(', '));
 
 export const Gps = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    currentArea,
-    currentCoords,
-    globalmode,
-    power,
-    tag,
-    updating,
-  } = data;
+  const { currentArea, currentCoords, globalmode, power, tag, updating } = data;
   const signals = flow([
     map((signal, index) => {
       // Calculate distance to the target. BYOND distance is capped to 127,
       // that's why we roll our own calculations here.
-      const dist = signal.dist && (
-        Math.round(vecLength(vecSubtract(
-          coordsToVec(currentCoords),
-          coordsToVec(signal.coords))))
-      );
+      const dist =
+        signal.dist &&
+        Math.round(
+          vecLength(
+            vecSubtract(coordsToVec(currentCoords), coordsToVec(signal.coords)),
+          ),
+        );
       return { ...signal, dist, index };
     }),
     sortBy(
       // Signals with distance metric go first
-      signal => signal.dist === undefined,
+      (signal) => signal.dist === undefined,
       // Sort alphabetically
-      signal => signal.entrytag),
+      (signal) => signal.entrytag,
+    ),
   ])(data.signals || []);
   return (
-    <Window
-      width={470}
-      height={700}
-      resizable>
+    <Window title="Global Positioning System" width={470} height={700} resizable>
       <Window.Content scrollable>
         <Section
           title="Control"
@@ -87,34 +81,32 @@ export const Gps = (props, context) => {
                   <Table.Cell collapsing content="Direction" />
                   <Table.Cell collapsing content="Coordinates" />
                 </Table.Row>
-                {signals.map(signal => (
+                {signals.map((signal) => (
                   <Table.Row
                     key={signal.entrytag + signal.coords + signal.index}
-                    className="candystripe">
+                    className="candystripe"
+                  >
                     <Table.Cell bold color="label">
                       {signal.entrytag}
                     </Table.Cell>
                     <Table.Cell
                       collapsing
-                      opacity={signal.dist !== undefined && (
-                        clamp(
-                          1.2 / Math.log(Math.E + signal.dist / 20),
-                          0.4, 1)
-                      )}>
+                      opacity={
+                        signal.dist !== undefined &&
+                        clamp(1.2 / Math.log(Math.E + signal.dist / 20), 0.4, 1)
+                      }
+                    >
                       {signal.degrees !== undefined && (
                         <Icon
                           mr={1}
                           size={1.2}
                           name="arrow-up"
-                          rotation={signal.degrees} />
+                          rotation={signal.degrees}
+                        />
                       )}
-                      {signal.dist !== undefined && (
-                        signal.dist + 'm'
-                      )}
+                      {signal.dist !== undefined && signal.dist + 'm'}
                     </Table.Cell>
-                    <Table.Cell collapsing>
-                      {signal.coords}
-                    </Table.Cell>
+                    <Table.Cell collapsing>{signal.coords}</Table.Cell>
                   </Table.Row>
                 ))}
               </Table>

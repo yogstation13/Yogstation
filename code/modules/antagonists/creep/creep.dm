@@ -66,6 +66,10 @@
 	to_chat(owner, span_boldannounce("This role does NOT enable you to otherwise surpass what's deemed creepy behavior per the rules."))//ironic if you know the history of the antag
 	owner.announce_objectives()
 
+/datum/antagonist/obsessed/farewell()
+	to_chat(owner, span_userdanger("The Voices fall silent, you are once again alone in your own mind."))
+	owner.announce_objectives()
+
 /datum/antagonist/obsessed/Destroy()
 	if(trauma)
 		qdel(trauma)
@@ -85,7 +89,7 @@
 		var/datum/component/C = M.GetComponent(/datum/component/mood)
 		if(C) //we cannot be too sure they may have somehow removed it
 			to_chat(owner, span_danger("Your need for mental fitness vanishes alongside the voices, mood has been disabled."))
-			C.RemoveComponent()
+			qdel(C)
 
 /datum/antagonist/obsessed/proc/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")

@@ -7,14 +7,13 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
 
 	outfit = /datum/outfit/job/mime
 
 	alt_titles = list("Mute Entertainer", "Silent Jokester", "Pantomimist")
 
 	added_access = list()
-	base_access = list(ACCESS_THEATRE)
+	base_access = list(ACCESS_THEATRE, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 
@@ -27,13 +26,13 @@
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/baguette = 15,
-		/obj/item/reagent_containers/food/snacks/store/cheesewheel = 10,
+		/obj/item/reagent_containers/food/snacks/store/cheesewheel/brie = 10,
 		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 10,
 		/obj/item/book/mimery = 1,
 	)
 
 	minimal_lightup_areas = list(/area/crew_quarters/theatre)
-	
+
 	smells_like = "complete nothingness"
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -44,7 +43,7 @@
 	name = "Mime"
 	jobtype = /datum/job/mime
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/mime
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/mime
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/mime
@@ -57,7 +56,7 @@
 	/obj/item/book/mimery=1,
 	/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing=1,
 	/obj/item/stamp/mime = 1)
-
+	box = /obj/item/storage/box/survival/hug/black
 	backpack = /obj/item/storage/backpack/mime
 	satchel = /obj/item/storage/backpack/mime
 
@@ -103,7 +102,7 @@
 
 		if("Invisible Box")
 			picked_spell_type = /datum/action/cooldown/spell/conjure_item/invisible_box
-		
+
 		if("Invisible Touch")
 			picked_spell_type = /datum/action/cooldown/spell/touch/invisible_touch
 

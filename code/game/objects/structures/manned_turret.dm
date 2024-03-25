@@ -29,7 +29,7 @@
 
 //BUCKLE HOOKS
 
-/obj/machinery/manned_turret/unbuckle_mob(mob/living/buckled_mob,force = FALSE)
+/obj/machinery/manned_turret/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	playsound(src,'sound/mecha/mechmove01.ogg', 50, 1)
 	for(var/obj/item/I in buckled_mob.held_items)
 		if(istype(I, /obj/item/gun_control))
@@ -198,7 +198,7 @@
 /obj/item/gun_control/CanItemAutoclick()
 	return TRUE
 
-/obj/item/gun_control/attack_obj(obj/O, mob/living/user)
+/obj/item/gun_control/attack_atom(obj/O, mob/living/user)
 	user.changeNext_move(CLICK_CD_MELEE)
 	O.attacked_by(src, user)
 

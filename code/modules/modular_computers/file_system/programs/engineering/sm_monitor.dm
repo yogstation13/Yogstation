@@ -154,18 +154,21 @@
 			for(var/gasid in air.get_gases())
 				if(data_corrupted)
 					gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = round(rand()*100,0.01))))
+					"name"= GLOB.gas_data.names[gasid],
+					"amount" = round(rand()*100,0.01),
+					"ui_color" = GLOB.gas_data.ui_colors[gasid])))
 				else
 					gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
+					"name"= GLOB.gas_data.names[gasid],
+					"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01),
+					"ui_color" = GLOB.gas_data.ui_colors[gasid])))
 
 		else
 			for(var/gasid in air.get_gases())
 				gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = 0)))
+					"name"= GLOB.gas_data.names[gasid],
+					"amount" = 0,
+					"ui_color" = GLOB.gas_data.ui_colors[gasid])))
 
 		data["gases"] = gasdata
 	else

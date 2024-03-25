@@ -17,7 +17,7 @@
 	desc = "A great place for storing knowledge."
 	anchored = FALSE
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
@@ -225,7 +225,7 @@
 		if(!literate)
 			to_chat(user, span_notice("You scribble illegibly on the cover of [src]!"))
 			return
-		var/choice = input(usr, "What would you like to change?",,list("Title", "Contents", "Author", "Cancel"))
+		var/choice = input(usr, "What would you like to change?", "Change book title, author, or add content?") as null|anything in list("Title", "Author", "Contents", "Cancel")
 		if(!user.canUseTopic(src, BE_CLOSE, literate))
 			return
 		switch(choice)
@@ -243,7 +243,7 @@
 					name = newtitle
 					title = newtitle
 			if("Contents")
-				var/content = stripped_input(user, "Write your book's contents (HTML NOT allowed):","","",8192)
+				var/content = stripped_input(user, "Add to your book's contents (HTML NOT allowed):","","",8192)
 				if(!user.canUseTopic(src, BE_CLOSE, literate))
 					return
 				if(!content)

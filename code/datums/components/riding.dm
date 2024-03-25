@@ -1,24 +1,61 @@
+/**
+ * This is the riding component, which is applied to a movable atom by the [ridable element][/datum/element/ridable] when a mob is successfully buckled to said movable.
+ *
+ * This component lives for as long as at least one mob is buckled to the parent. Once all mobs are unbuckled, the component is deleted, until another mob is buckled in
+ * and we make a new riding component, so on and so forth until the sun explodes.
+ */
+
 /datum/component/riding
-	var/last_vehicle_move = 0 //used for move delays
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+
 	var/last_move_diagonal = FALSE
-	var/vehicle_move_delay = 2 //tick delay between movements, lower = faster, higher = slower
+	///tick delay between movements, lower = faster, higher = slower
+	var/vehicle_move_delay = 2
+
+	var/last_vehicle_move = 0 //used for move delays
+
+	
+	/**
+	 * If the driver needs a certain item in hand (or inserted, for vehicles) to drive this. For vehicles, this must be duplicated on the actual vehicle object in their
+	 * [/obj/vehicle/var/key_type] variable because the vehicle objects still have a few special checks/functions of their own I'm not porting over to the riding component
+	 * quite yet. Make sure if you define it on the vehicle, you define it here too.
+	 */
 	var/keytype
 
 	var/slowed = FALSE
 	var/slowvalue = 1
 
-	var/list/riding_offsets = list()	//position_of_user = list(dir = list(px, py)), or RIDING_OFFSET_ALL for a generic one.
-	var/list/directional_vehicle_layers = list()	//["[DIRECTION]"] = layer. Don't set it for a direction for default, set a direction to null for no change.
-	var/list/directional_vehicle_offsets = list()	//same as above but instead of layer you have a list(px, py)
+	/// position_of_user = list(dir = list(px, py)), or RIDING_OFFSET_ALL for a generic one.
+	var/list/riding_offsets = list()
+	/// ["[DIRECTION]"] = layer. Don't set it for a direction for default, set a direction to null for no change.
+	var/list/directional_vehicle_layers = list()
+	/// same as above but instead of layer you have a list(px, py)
+	var/list/directional_vehicle_offsets = list()
+	/// allow typecache for only certain turfs, forbid to allow all but those. allow only certain turfs will take precedence.
 	var/list/allowed_turf_typecache
-	var/list/forbid_turf_typecache					//allow typecache for only certain turfs, forbid to allow all but those. allow only certain turfs will take precedence.
-	var/allow_one_away_from_valid_turf = TRUE		//allow moving one tile away from a valid turf but not more.
+	/// allow typecache for only certain turfs, forbid to allow all but those. allow only certain turfs will take precedence.
+	var/list/forbid_turf_typecache
+	/// We don't need roads where we're going if this is TRUE, allow normal movement in space tiles
 	var/override_allow_spacemove = FALSE
+	/// can anyone other than the rider unbuckle the rider?
+	var/can_force_unbuckle = TRUE
+
+	/**
+	 * Ride check flags defined for the specific riding component types, so we know if we need arms, legs, or whatever.
+	 * Takes additional flags from the ridable element and the buckle proc (buckle_mob_flags) for riding cyborgs/humans in case we need to reserve arms
+	 */
+	var/ride_check_flags = NONE
+	/// For telling someone they can't drive
+	COOLDOWN_DECLARE(message_cooldown)
+	/// For telling someone they can't drive
+	COOLDOWN_DECLARE(vehicle_move_cooldown)
+	
+	
+	var/allow_one_away_from_valid_turf = TRUE		//allow moving one tile away from a valid turf but not more.
 	var/drive_verb = "drive"
 	var/ride_check_rider_incapacitated = FALSE
 	var/ride_check_rider_restrained = FALSE
 	var/ride_check_ridden_incapacitated = FALSE
-	var/parent_initial_layer
 
 	var/del_on_unbuckle_all = FALSE
 
@@ -28,10 +65,10 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, PROC_REF(vehicle_mob_buckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
+	RegisterSignal(parent, COMSIG_BUCKLED_CAN_Z_MOVE, PROC_REF(riding_can_z_move))
 
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	var/atom/movable/AM = parent
-	AM.layer = parent_initial_layer
 	restore_position(M)
 	unequip_buckle_inhands(M)
 	M.updating_glide_size = TRUE
@@ -44,18 +81,18 @@
 	var/atom/movable/AM = parent
 	M.set_glide_size(AM.glide_size)
 	M.updating_glide_size = FALSE
-	parent_initial_layer = AM.layer
 	handle_vehicle_offsets()
 	if(AM.movement_type & FLYING)
 		M.movement_type |= FLYING
 
+/// Some ridable atoms may want to only show on top of the rider in certain directions, like wheelchairs
 /datum/component/riding/proc/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
 	var/static/list/defaults = list(TEXT_NORTH = OBJ_LAYER, TEXT_SOUTH = ABOVE_MOB_LAYER, TEXT_EAST = ABOVE_MOB_LAYER, TEXT_WEST = ABOVE_MOB_LAYER)
 	. = defaults["[dir]"]
 	if(directional_vehicle_layers["[dir]"])
 		. = directional_vehicle_layers["[dir]"]
-	if(isnull(.))	//you can set it to null to not change it.
+	if(isnull(.)) //you can set it to null to not change it.
 		. = AM.layer
 	AM.layer = .
 
@@ -147,11 +184,14 @@
 
 //BUCKLE HOOKS
 /datum/component/riding/proc/restore_position(mob/living/buckled_mob)
-	if(buckled_mob)
-		buckled_mob.pixel_x = 0
-		buckled_mob.pixel_y = 0
-		if(buckled_mob.client)
-			buckled_mob.client.view_size.resetToDefault()
+	if(isnull(buckled_mob))
+		return
+	buckled_mob.pixel_x = buckled_mob.base_pixel_x
+	buckled_mob.pixel_y = buckled_mob.base_pixel_y
+	var/atom/source = parent
+	SET_PLANE_EXPLICIT(buckled_mob, initial(buckled_mob.plane), source)
+	if(buckled_mob.client)
+		buckled_mob.client.view_size.resetToDefault()
 
 //MOVEMENT
 /datum/component/riding/proc/turf_check(turf/next, turf/current)
@@ -244,21 +284,23 @@
 
 /datum/component/riding/human/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
-	if(AM.buckled_mobs && AM.buckled_mobs.len)
-		for(var/mob/M in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
-			M.layer = MOB_LAYER
-		if(!AM.buckle_lying)
-			if(dir == SOUTH)
-				AM.layer = ABOVE_MOB_LAYER
-			else
-				AM.layer = OBJ_LAYER
-		else
-			if(dir == NORTH)
-				AM.layer = OBJ_LAYER
-			else
-				AM.layer = ABOVE_MOB_LAYER
-	else
+	if(!AM.buckled_mobs || !AM.buckled_mobs.len)
 		AM.layer = MOB_LAYER
+		return
+
+	for(var/mob/M in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
+		M.layer = MOB_LAYER
+
+	if(!AM.buckle_lying) // rider is vertical, must be piggybacking
+		if(dir == SOUTH)
+			AM.layer = MOB_ABOVE_PIGGYBACK_LAYER
+		else
+			AM.layer = MOB_BELOW_PIGGYBACK_LAYER
+	else  // laying flat, we must be firemanning the rider
+		if(dir == NORTH)
+			AM.layer = MOB_BELOW_PIGGYBACK_LAYER
+		else
+			AM.layer = MOB_ABOVE_PIGGYBACK_LAYER
 
 /datum/component/riding/human/get_offsets(pass_index)
 	var/mob/living/carbon/human/H = parent
@@ -272,6 +314,19 @@
 	AM.unbuckle_mob(user)
 	user.Knockdown(60)
 	user.visible_message(span_warning("[AM] pushes [user] off of [AM.p_them()]!"))
+
+/datum/component/riding/human/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS))
+		return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+	// if(!can_be_driven)
+	// 	if(z_move_flags & ZMOVE_FEEDBACK)
+	// 		to_chat(rider, span_warning("[movable_parent] cannot be driven around. Unbuckle from [movable_parent.p_them()] first."))
+	// 	return COMPONENT_RIDDEN_STOP_Z_MOVE
+	if(!ride_check(rider, FALSE))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You're unable to ride [movable_parent] right now!"))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
 /datum/component/riding/cyborg
 	del_on_unbuckle_all = TRUE
@@ -296,14 +351,11 @@
 			return
 
 /datum/component/riding/cyborg/handle_vehicle_layer(dir)
-	var/atom/movable/AM = parent
-	if(AM.buckled_mobs && AM.buckled_mobs.len)
-		if(dir == SOUTH)
-			AM.layer = ABOVE_MOB_LAYER
-		else
-			AM.layer = OBJ_LAYER
+	var/atom/movable/robot_parent = parent
+	if(dir == SOUTH)
+		robot_parent.layer = MOB_ABOVE_PIGGYBACK_LAYER
 	else
-		AM.layer = MOB_LAYER
+		robot_parent.layer = MOB_BELOW_PIGGYBACK_LAYER
 
 /datum/component/riding/cyborg/get_offsets(pass_index) // list(dir = x, y, layer)
 	return list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(-6, 3), TEXT_WEST = list( 6, 3))
@@ -352,6 +404,19 @@
 	S.throwcooldown = TRUE
 	addtimer(VARSET_CALLBACK(S, throwcooldown, FALSE), 10 SECONDS)
 
+/datum/component/riding/cyborg/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS))
+		return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+	// if(!can_be_driven)
+	// 	if(z_move_flags & ZMOVE_FEEDBACK)
+	// 		to_chat(rider, span_warning("[movable_parent] cannot be driven around. Unbuckle from [movable_parent.p_them()] first."))
+	// 	return COMPONENT_RIDDEN_STOP_Z_MOVE
+	if(!ride_check(rider, FALSE))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You're unable to ride [movable_parent] right now!"))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+
 /datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override = null)
 	var/atom/movable/AM = parent
 	var/amount_equipped = 0
@@ -385,6 +450,11 @@
 		else
 			qdel(O)
 	return TRUE
+
+/// Extra checks before buckled.can_z_move can be called in mob/living/can_z_move()
+/datum/component/riding/proc/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	SIGNAL_HANDLER
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
 /obj/item/riding_offhand
 	name = "offhand"

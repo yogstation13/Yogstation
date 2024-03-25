@@ -148,13 +148,14 @@
 	recipient_ref = WEAKREF(recipient)
 
 	var/mob/living/body = recipient.current
-	var/list/goodies = generic_goodies
+	var/list/goodies = generic_goodies.Copy()
 
 	var/datum/job/this_job = SSjob.GetJob(recipient.assigned_role)
 	if(this_job)
 		if(this_job.paycheck_department && department_colors[this_job.paycheck_department])
 			color = department_colors[this_job.paycheck_department]
 		var/list/job_goodies = this_job.get_mail_goodies()
+		job_goodies = job_goodies.Copy()
 		if(LAZYLEN(job_goodies))
 			// certain roles and jobs (prisoner) do not receive generic gifts.
 			if(this_job.exclusive_mail_goodies)
@@ -168,7 +169,7 @@
 			if(goodies[item] <= 0)	 //remove everything with a weight below 0
 				goodies -= item
 
-	if(!goodies) //if everything was removed for some reason
+	if(!length(goodies)) //if everything was removed for some reason
 		return FALSE 
 
 	for(var/iterator in 1 to goodie_count)
@@ -281,7 +282,7 @@
 	desc = "A bag for letters, envelopes, and other postage."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bookbag"
-	//worn_icon_state = "bookbag"
+	worn_icon_state = "bookbag"
 	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/mail/Initialize(mapload)
@@ -377,4 +378,3 @@
 				debug_info += " - [initial(goodie.name)]: [goodie_weight] ([(goodie_weight / job_goodies_weight) * 100]%)\n"
 	
 	to_chat(src, examine_block(debug_info))
-

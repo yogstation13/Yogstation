@@ -7,7 +7,7 @@
 	icon_state = "minibar"
 	anchored = TRUE
 	density = FALSE
-	opacity = 0
+	opacity = FALSE
 	var/deconstructible = TRUE
 
 /obj/structure/fluff/attackby(obj/item/I, mob/living/user, params)
@@ -199,5 +199,14 @@
 	icon_state = "chain"
 	layer = ABOVE_OBJ_LAYER
 	anchored = TRUE
+	density = TRUE
+	deconstructible = FALSE
+
+/obj/structure/fluff/colton_statue //Memorial statue of Colton Oppenheimer/AutisticFroggy
+	name = "statue of colton oppenheimer"
+	desc = "https://wiki.yogstation.net/wiki/User:Autisticfroggy/The_Last_Lecture"
+	icon = 'icons/obj/3x3.dmi'
+	icon_state = "colton"
+	pixel_x = -1
 	density = TRUE
 	deconstructible = FALSE

@@ -4,6 +4,39 @@ FLESH PATH SPELLS GO HERE
 
 */
 
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/flesh
+	name = "Blood Passage"
+	desc = "A short range spell that allows you to pass unimpeded through walls."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "bloodout"
+	sound = null
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 15 SECONDS
+
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
+
+	exit_jaunt_sound = null
+	jaunt_duration = 1.5 SECONDS
+	jaunt_in_time = 0.5 SECONDS
+	jaunt_out_time = 0.5 SECONDS
+	jaunt_in_type = /obj/effect/temp_visual/dir_setting/blood_shift
+	jaunt_out_type = /obj/effect/temp_visual/dir_setting/blood_shift/out
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/flesh/do_steam_effects()
+	return
+
+/obj/effect/temp_visual/dir_setting/blood_shift
+	name = "blood_shift"
+	icon = 'icons/effects/cult_effects.dmi'
+	icon_state = "bloodin"
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/dir_setting/blood_shift/out
+	icon_state = "bloodout"
+
 /datum/action/cooldown/spell/pointed/blood_siphon
 	name = "Blood Siphon"
 	desc = "A touch spell that heals your wounds while damaging the enemy. \

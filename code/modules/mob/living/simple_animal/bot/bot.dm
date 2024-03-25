@@ -18,7 +18,7 @@
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
 	initial_language_holder = /datum/language_holder/synthetic
-	bubble_icon = "machine"
+	bubble_icon = BUBBLE_MACHINE
 	speech_span = SPAN_ROBOT
 	faction = list("neutral", "silicon" , "turret")
 	light_system = MOVABLE_LIGHT
@@ -364,7 +364,7 @@
 		ejectpai(0)
 	if(on)
 		turn_off()
-	spawn(severity*300)
+	spawn(30 * severity)
 		stat &= ~EMPED
 		if(was_on)
 			turn_on()

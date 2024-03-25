@@ -8,6 +8,7 @@
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	force = 5
 	throwforce = 15
+	demolition_mod = 3 // specifically designed for breaking things
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut", "axed")
@@ -19,16 +20,16 @@
 	wound_bonus = -15
 	bare_wound_bonus = 20
 
-	/// How much damage to do wielded
-	var/force_wielded = 24
+	/// Bonus damage from wielding
+	var/force_wielded = 19
 
 /obj/item/fireaxe/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 	)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE) // YEAHHHHH
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
 /obj/item/fireaxe/update_icon_state()
@@ -43,19 +44,15 @@
 	. = ..()
 	if(!proximity)
 		return
-	if(HAS_TRAIT(src, TRAIT_WIELDED)) //destroys shit faster, generally in 1-2 hits.
+	if(QDELETED(A))
+		return
+	if(HAS_TRAIT(src, TRAIT_WIELDED) && !HAS_TRAIT(src, TRAIT_CLEAVING)) //destroys shit faster, generally in 1-2 hits.
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
 			W.take_damage(W.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
 			G.take_damage(G.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
-		else if(istype(A, /obj/machinery/door)) //Nines hits for reinforced airlock, seven for normal
-			var/obj/machinery/door/D = A
-			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
-		else if(istype(A, /obj/structure/door_assembly)) //Two hits for frames left behind
-			var/obj/machinery/door/D = A
-			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /*
  * Metal Hydrogen Axe
@@ -86,6 +83,7 @@
 	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "energy-fireaxe0"
 	base_icon_state = "energy-fireaxe"
+	demolition_mod = 4 // DESTROY
 	armour_penetration = 50 // Probably doesn't care much for armor given how it can destroy solid metal structures
 	block_chance = 50 // Big handle and large flat energy blade, good for blocking things
 	heat = 1800 // It's a FIRE axe
@@ -105,7 +103,6 @@
 /obj/item/fireaxe/energy/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 		wieldsound = 'sound/weapons/saberon.ogg', \
@@ -131,15 +128,6 @@
 /obj/item/fireaxe/energy/attack(mob/living/M, mob/living/user)
 	..()
 	M.ignite_mob() // Ignites you if you're flammable
-
-/obj/item/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(HAS_TRAIT(src, TRAIT_WIELDED)) // Does x2 damage against inanimate objects like machines, structures, mechs, etc
-		if(isobj(A) && !isitem(A))
-			var/obj/O = A
-			O.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /obj/item/fireaxe/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))

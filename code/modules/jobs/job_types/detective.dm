@@ -9,7 +9,6 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
-	selection_color = "#ffeeee"
 	minimal_player_age = 7
 	exp_requirements = 180
 	exp_type = EXP_TYPE_SECURITY
@@ -63,7 +62,7 @@
 	name = "Detective"
 	jobtype = /datum/job/detective
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/security/detective
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/det

@@ -11,7 +11,7 @@
 	construction_time = 75
 	build_path = /obj/item/mmi
 	category = list("Control Interfaces", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/posibrain
 	name = "Positronic Brain"
@@ -22,7 +22,7 @@
 	construction_time = 75
 	build_path = /obj/item/mmi/posibrain
 	category = list("Control Interfaces", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/bluespacebeaker
 	name = "Bluespace Beaker"
@@ -387,7 +387,7 @@
 	name = "Chemical Analyzer Implant"
 	desc = "These cybernetic eye implants will allow rapid identification of reagents. Wiggle eyes to control."
 	id = "ci-scihud"
-	build_type = MECHFAB
+	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plastic = 150)
 	build_path = /obj/item/organ/cyberimp/eyes/hud/science
@@ -708,7 +708,7 @@
 /////////////////////
 /datum/design/surgery
 	name = "Surgery Design"
-	desc = "what"
+	desc = "What."
 	id = "surgery_parent"
 	research_icon = 'icons/misc/surgery_icons.dmi'
 	research_icon_state = "surgery_any"

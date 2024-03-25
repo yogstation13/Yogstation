@@ -49,7 +49,8 @@ turf/open/floor/plasteel/ameridiner
 	desc = "A counter with a red and black motif."
 	icon = 'yogstation/icons/obj/smooth_structures/ameritable.dmi'
 	icon_state = "table"
-	smooth = SMOOTH_FALSE
+	smoothing_flags = NONE
+	smoothing_groups = null
 	canSmoothWith = null
 
 /obj/structure/table/american/end
@@ -75,4 +76,3 @@ turf/open/floor/plasteel/ameridiner
 	name = "slot machine"
 	desc = "Gambling for the antisocial."
 	icon = 'yogstation/icons/obj/special_slot_machine.dmi'
-	icon_state = "slots1"

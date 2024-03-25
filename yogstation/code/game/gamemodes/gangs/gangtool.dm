@@ -226,13 +226,13 @@
 		gang.recalls--
 		return TRUE
 
-	to_chat(user, span_info("[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time."))
+	to_chat(user, span_info("[icon2html(src, loc)]No response received. Emergency shuttle cannot be recalled at this time."))
 	return
 
 /obj/item/gangtool/proc/recallchecks(mob/user)
 	if(!can_use(user))
 		return
-	if(SSshuttle.emergencyNoRecall)
+	if(SSshuttle.emergency_no_recall)
 		return
 	if(!is_station_level(user.z)) //Shuttle can only be recalled while on station
 		to_chat(user, span_warning("[icon2html(src, user)]Error: Device out of range of station communication arrays."))

@@ -62,7 +62,7 @@
 
 /datum/antagonist/cult/greet()
 	to_chat(owner.current, "<B><font size=3 color=red>You are a member of the cult!</font><B>")
-	to_chat(owner.current, "<b>If you are new to Blood Cult, please review <a href='https://forums.yogstation.net/threads/how-to-newbloodcult-for-hyperdunces.16896/'>this tutorial!</a><b>") //Yogs
+	to_chat(owner.current, "<b>If you are new to Blood Cult, please review <a href='https://forums.yogstation.net/threads/how-to-newbloodcult-for-hyperdunces.16896/'>this tutorial</a>!<b>") //Yogs
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/bloodcult.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
 	owner.announce_objectives()
 
@@ -482,7 +482,7 @@
 		return
 	UnregisterSignal(target, COMSIG_MIND_TRANSFERRED)
 	if(target.current)
-		UnregisterSignal(target.current, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
+		UnregisterSignal(target.current, list(COMSIG_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
 	target = null
 
 /datum/objective/sacrifice/find_target(dupe_search_range, list/blacklist)
@@ -522,7 +522,7 @@
 		// Register a bunch of signals to both the target mind and its body
 		// to stop cult from softlocking everytime the target is deleted before being actually sacrificed.
 		RegisterSignal(target, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer))
-		RegisterSignal(target.current, COMSIG_PARENT_QDELETING, PROC_REF(on_target_body_del))
+		RegisterSignal(target.current, COMSIG_QDELETING, PROC_REF(on_target_body_del))
 		RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
 	else
 		message_admins("Cult Sacrifice: Could not find unconvertible or convertible target. WELP!")
@@ -544,13 +544,13 @@
 	if(!isliving(target.current))
 		INVOKE_ASYNC(src, PROC_REF(find_target))
 		return
-	UnregisterSignal(previous_body, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
-	RegisterSignal(target.current, COMSIG_PARENT_QDELETING, PROC_REF(on_target_body_del))
+	UnregisterSignal(previous_body, list(COMSIG_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
+	RegisterSignal(target.current, COMSIG_QDELETING, PROC_REF(on_target_body_del))
 	RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
 
 /datum/objective/sacrifice/proc/on_possible_mindswap(mob/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(target.current, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
+	UnregisterSignal(target.current, list(COMSIG_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
 	//we check if the mind is bodyless only after mindswap shenanigeans to avoid issues.
 	addtimer(CALLBACK(src, PROC_REF(do_we_have_a_body)), 0 SECONDS)
 
@@ -558,7 +558,7 @@
 	if(!target.current) //The player was ghosted and the mind isn't probably going to be transferred to another mob at this point.
 		find_target()
 		return
-	RegisterSignal(target.current, COMSIG_PARENT_QDELETING, PROC_REF(on_target_body_del))
+	RegisterSignal(target.current, COMSIG_QDELETING, PROC_REF(on_target_body_del))
 	RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
 
 /datum/objective/sacrifice/check_completion()
@@ -650,7 +650,7 @@
 		return FALSE
 
 	blood_target = new_target
-	RegisterSignal(blood_target, COMSIG_PARENT_QDELETING, PROC_REF(unset_blood_target_and_timer))
+	RegisterSignal(blood_target, COMSIG_QDELETING, PROC_REF(unset_blood_target_and_timer))
 	var/area/target_area = get_area(new_target)
 
 	blood_target_image = image('icons/effects/mouse_pointers/cult_target.dmi', new_target, "glow", ABOVE_MOB_LAYER)
@@ -687,7 +687,7 @@
 			to_chat(cultist.current, span_bold(span_cultlarge("The blood mark has expired!")))
 		cultist.current.client.images -= blood_target_image
 
-	UnregisterSignal(blood_target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(blood_target, COMSIG_QDELETING)
 	blood_target = null
 
 	QDEL_NULL(blood_target_image)
