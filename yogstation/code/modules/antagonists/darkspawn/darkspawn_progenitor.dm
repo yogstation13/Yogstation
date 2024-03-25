@@ -153,7 +153,10 @@
 			continue
 		else if(isliving(M))
 			var/mob/living/L = M
-			to_chat(M, span_boldannounce(pick(roar_text)))
+			if(prob(1) && isethereal(L))
+				to_chat(M, span_boldannounce("They weren't just a story to keep us in line..."))
+			else
+				to_chat(M, span_boldannounce(pick(roar_text)))
 			L.Immobilize(3 SECONDS)
 	time_to_next_roar = world.time + roar_cooldown
 

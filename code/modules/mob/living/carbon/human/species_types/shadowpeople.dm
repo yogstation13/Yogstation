@@ -143,8 +143,7 @@
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | ERT_SPAWN //never put this in the pride pool because they look super valid
 	siemens_coeff = 0
 	armor = 10
-	brutemod = 0.9
-	burnmod = 1.1
+	burnmod = 1.2
 	heatmod = 1.5
 	no_equip = list(
 		ITEM_SLOT_MASK,
@@ -360,7 +359,6 @@
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	item_flags = ABSTRACT
-	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = SHARP_EDGED
 	wound_bonus = -40

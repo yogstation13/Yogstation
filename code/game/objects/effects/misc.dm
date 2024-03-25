@@ -115,6 +115,13 @@
 	. = ..()
 	if(!ismob(loc))
 		return INITIALIZE_HINT_QDEL
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+
+//always block light eater if it tries to apply directly to this
+//moblights should be handled in special ways by everything that grants them
+/obj/effect/dummy/lighting_obj/moblight/proc/on_light_eater(atom/source, datum/light_eater)
+	SIGNAL_HANDLER 
+	return COMPONENT_BLOCK_LIGHT_EATER
 
 /obj/effect/dummy/lighting_obj/moblight/species
 	name = "species lighting"

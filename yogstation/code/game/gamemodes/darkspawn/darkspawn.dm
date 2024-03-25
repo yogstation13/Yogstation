@@ -24,7 +24,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
-	var/darkbois = clamp(round((num_players())/10), required_enemies, 4) //scaling number of darkspawns, at least 1, at most 4 (they get exponentially stronger per person)
+	var/darkbois = clamp(round((num_players()-5)/10), required_enemies, 4) //scaling number of darkspawns, at least 1, at most 4 (they get exponentially stronger per person)
 
 	team = new
 	while(darkbois)

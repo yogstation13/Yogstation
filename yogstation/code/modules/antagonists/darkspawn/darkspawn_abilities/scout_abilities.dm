@@ -189,8 +189,8 @@
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 50
-	cooldown_time = 60 SECONDS
+	psi_cost = 70
+	cooldown_time = 90 SECONDS
 
 	sound = 'sound/effects/bamf.ogg'
 	exit_jaunt_sound = 'yogstation/sound/magic/devour_will_begin.ogg'
@@ -248,8 +248,8 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 55
-	cooldown_time = 40 SECONDS
+	psi_cost = 65
+	cooldown_time = 60 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 3
 

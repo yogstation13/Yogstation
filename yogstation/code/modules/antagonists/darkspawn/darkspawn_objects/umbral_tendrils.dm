@@ -11,8 +11,7 @@
 	attack_verb = list("impaled", "tentacled", "torn")
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
-	tool_behaviour = TOOL_CROWBAR //so it can open unpowered doors
-	force = 30
+	force = 25
 	block_chance = 25
 	wound_bonus = -80 //no wounding
 	var/datum/antagonist/darkspawn/darkspawn

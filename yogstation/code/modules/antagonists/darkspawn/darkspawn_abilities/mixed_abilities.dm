@@ -57,8 +57,8 @@
 	antimagic_flags = NONE
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 40
-	cooldown_time = 1 MINUTES
+	psi_cost = 60
+	cooldown_time = 45 SECONDS
 
 /datum/action/cooldown/spell/aoe/icyveins/cast(atom/cast_on)
 	. = ..()

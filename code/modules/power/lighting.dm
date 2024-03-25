@@ -699,12 +699,10 @@
 
 /obj/machinery/light/proc/on_light_eater(obj/machinery/light/source, datum/light_eater)
 	SIGNAL_HANDLER
-	. = COMPONENT_BLOCK_LIGHT_EATER
-	if(status == LIGHT_EMPTY)
-		return
-	var/obj/item/light/tube = drop_light_tube()
-	tube?.burn()
-	return
+	if(status != LIGHT_EMPTY)
+		var/obj/item/light/tube = drop_light_tube()
+		tube?.burn()
+	return COMPONENT_BLOCK_LIGHT_EATER
 // returns if the light has power /but/ is manually turned off
 // if a light is turned off, it won't activate emergency power
 /obj/machinery/light/proc/turned_off()

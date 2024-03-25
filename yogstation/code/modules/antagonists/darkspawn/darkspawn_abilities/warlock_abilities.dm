@@ -80,9 +80,10 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
+	psi_cost = 60
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
-	aoe_radius = 7
+	aoe_radius = 6
 	///Secret item stored in the ability to hit things with to trigger light eater
 	var/obj/item/darkspawn_extinguish/bopper
 	///List of objects seen at cast

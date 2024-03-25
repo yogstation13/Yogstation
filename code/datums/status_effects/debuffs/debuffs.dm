@@ -739,6 +739,7 @@
 	deltimer(timerid)
 
 /datum/status_effect/progenitor_curse
+	tick_interval = 1.5 SECONDS //how often a hand is shot
 	duration = 30 SECONDS
 
 /datum/status_effect/progenitor_curse/tick()

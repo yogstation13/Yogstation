@@ -210,6 +210,17 @@
 	var/grill = FALSE
 	var/fire_stack_strength = 5
 
+/obj/structure/bonfire/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+
+//fire isn't one light source, it's several constantly appearing and disappearing... or something
+/obj/structure/bonfire/proc/on_light_eater(atom/source, datum/light_eater)
+	SIGNAL_HANDLER 
+	if(burning)
+		visible_message("The roaring fire of \the [src] refuses to fade.")
+	return COMPONENT_BLOCK_LIGHT_EATER
+
 /obj/structure/bonfire/dense
 	density = TRUE
 

@@ -94,7 +94,7 @@
 		if(!action)
 			action = new(owner)
 			action.Grant(current_mob)
-		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 20 MINUTES) //this won't trigger if they've divulged when the proc runs
+		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 15 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)
@@ -398,7 +398,7 @@
 		return
 	to_chat(owner.current, span_userdanger("You feel the skin you're wearing crackling like paper - you will forcefully divulge soon! Get somewhere hidden and dark!"))
 	owner.current.playsound_local(owner.current, 'yogstation/sound/magic/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
-	addtimer(CALLBACK(src, PROC_REF(force_divulge), 2 MINUTES))
+	addtimer(CALLBACK(src, PROC_REF(force_divulge), 5 MINUTES))
 
 /datum/antagonist/darkspawn/proc/force_divulge()
 	if(darkspawn_state != DARKSPAWN_MUNDANE)

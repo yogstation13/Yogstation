@@ -26,7 +26,7 @@
 	desc = "Greatly increases reaction times and action speed, and provides immunity to slowdown."
 	lore_description = "Directly control your physical form using psionic power rather than relying on brutish biology."
 	icon_state = "time_dilation"
-	willpower_cost = 3
+	willpower_cost = 4
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/time_dilation)
@@ -49,7 +49,7 @@
 	desc = "A short range targeted teleport."
 	lore_description = "Take a single step through the veil."
 	icon_state = "shadow_jump"
-	willpower_cost = 1
+	willpower_cost = 2
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/phase_jump/void_jump)
@@ -110,7 +110,7 @@
 	desc = "Extinguish all light around you."
 	lore_description = "Remind all that glows, that it is but a small part of reality."
 	icon_state = "extinguish"
-	willpower_cost = 2
+	willpower_cost = 3
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/extinguish)
