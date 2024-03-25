@@ -1049,7 +1049,7 @@
 	var/old_health
 
 /datum/status_effect/broken_will/tick()
-	if(is_darkspawn_or_thrall(owner))
+	if(is_darkspawn_or_thrall(owner) || owner.stat == DEAD)
 		qdel(src)
 		return
 	owner.Unconscious(15)
@@ -1058,6 +1058,10 @@
 	var/health_difference = old_health - owner.health
 	if(health_difference <= 0) //if theyre healing or staying stagnant, no waking up
 		return
+
+	if(owner.stat != CONSCIOUS)
+		owner.heal_ordered_damage(1, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
+
 	owner.visible_message(span_warning("[owner] jerks in their sleep as they're harmed!"))
 	to_chat(owner, span_boldannounce("Something hits you, pulling you towards wakefulness!"))
 	health_difference *= 10 //1 point of damage = 1 second = 10 deciseconds
