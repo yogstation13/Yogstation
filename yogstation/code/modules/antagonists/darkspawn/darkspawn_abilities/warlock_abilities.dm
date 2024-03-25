@@ -339,7 +339,7 @@
 	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
 		return
 	var/mob/living/target = victim
-	if(is_darkspawn_or_thrall(target) || (ROLE_DARKSPAWN in M.faction)) //don't fuck with allies
+	if(is_darkspawn_or_thrall(target) || (ROLE_DARKSPAWN in target.faction)) //don't fuck with allies
 		return
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
@@ -451,7 +451,7 @@
 /obj/effect/temp_visual/darkspawn/chasm/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/target = AM
-		if(!is_darkspawn_or_thrall(target) || (ROLE_DARKSPAWN in M.faction))
+		if(!is_darkspawn_or_thrall(target) || (ROLE_DARKSPAWN in target.faction))
 			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 4, 1 SECONDS, type) //slow field, makes it harder to escape
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
