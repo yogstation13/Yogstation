@@ -132,7 +132,7 @@
 				dead = TRUE
 			master.current.revive(TRUE)
 			if(dead)
-				to_chat(master.current, "Returning to the shadowlands has revitalized your form")
+				to_chat(master.current, "Returning to Nullspace has revitalized your form")
 
 //60 minutes after the round starts, enable validhunters and powergamers to do their thing (station is probably fucked by that point anyways)
 /datum/team/darkspawn/proc/enable_validhunt()

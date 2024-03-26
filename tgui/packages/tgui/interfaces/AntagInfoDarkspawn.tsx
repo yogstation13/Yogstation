@@ -158,7 +158,7 @@ const FlavorSection = () => {
       </i>
       <Stack.Item fontSize="20px">
         <b>
-          The <span style={Velvet}>Shadowlands</span> await your return.
+          <span style={Velvet}>Nullspace</span> awaits your return.
         </b>
       </Stack.Item>
     </Stack>

@@ -483,8 +483,8 @@
 
 //applies the shadowlands component to anyone inside
 /datum/weather/shadowlands
-	name = "shadowlands"
-	desc = "The location has been ripped out of normalspace, straight into the shadowlands."
+	name = "Nullspace"
+	desc = "The location has been ripped out of normalspace, straight into Nullspace."
 	telegraph_message = span_velvet("Reality begins to quake and crack it the seams.")
 	weather_message = span_progenitor("SOMETHING IS WRONG.")
 	area_type = /area
