@@ -46,11 +46,11 @@
 /obj/item/umbral_tendrils/examine(mob/user)
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
-		to_chat(user, span_velvet("<b>Functions:</b>"))
-		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
-		to_chat(user, span_velvet("<b>Grab intent:</b> Consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
-		to_chat(user, span_velvet("The tendrils will devour any lights hit."))
-		to_chat(user, span_velvet("Also functions to pry open depowered airlocks on any intent other than harm."))
+		. += span_velvet("<b>Functions:</b>")
+		. += span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)")
+		. += span_velvet("<b>Grab intent:</b> Consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.")
+		. += span_velvet("The tendrils will devour any lights hit.")
+		. += span_velvet("Also functions to pry open depowered airlocks on any intent other than harm.")
 
 /obj/item/umbral_tendrils/attack(mob/living/target, mob/living/user, twinned_attack = TRUE)
 	set waitfor = FALSE
