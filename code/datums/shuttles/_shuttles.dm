@@ -82,10 +82,6 @@
 		M.movement_force = movement_force.Copy()
 	M.linkup()
 
-/datum/map_template/shuttle/infiltrator/storyline_event
-	name = "Syndicate Representative's Ship"
-	who_can_purchase = null
-	suffix = "syndrep"
 
 /datum/map_template/shuttle/cargo
 	port_id = "cargo"
@@ -114,6 +110,12 @@
 
 /datum/map_template/shuttle/infiltrator
 	port_id = "infiltrator"
+
+/datum/map_template/shuttle/infiltrator/storyline_event
+	name = "Syndicate Representative's Ship"
+	description = "A heavily-modified Syndicate infiltration vessel used for diplomatic affairs, with increased range."
+	admin_notes = "Meant for the storyline events. Can dock at Arrivals thanks to varediting."
+	suffix = "syndrep"
 
 /datum/map_template/shuttle/aux_base
 	port_id = "aux_base"
