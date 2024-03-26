@@ -23,6 +23,23 @@
 	var/dark_healing = 1
 	///How much burn damage is taken each life tick, reduced to 20% for dim light
 	var/light_burning = 1
+	///How many charges their projectile protection has
+	var/shadow_charges = 0
+
+/datum/species/shadow/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
+	var/turf/T = get_turf(H)
+	if(istype(T))
+		var/light_amount = T.get_lumcount()
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT && shadow_charges > 0)
+			H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
+			playsound(H, "bullet_miss", 75, 1)
+			shadow_charges = min(shadow_charges - 1, 0)
+			addtimer(CALLBACK(src, PROC_REF(regen_shadow)), DARKSPAWN_REFLECT_COOLDOWN)//so they regen on different timers
+			return BULLET_ACT_BLOCK
+	return ..()
+
+/datum/species/shadow/proc/regen_shadow()
+	shadow_charges = min(shadow_charges++, initial(shadow_charges))
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	var/turf/T = H.loc
@@ -110,7 +127,8 @@
 	mutanteyes = /obj/item/organ/eyes/shadow
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
 	mutantbrain = /obj/item/organ/brain/nightmare
-	
+	shadow_charges = 1
+
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
 
@@ -128,7 +146,7 @@
 	. = ..()
 	to_chat(C, "[info_text]")
 
-	C.fully_replace_character_name("[C.real_name]","[pick(GLOB.nightmare_names)]") // Yogs -- fixes nightmares not having special spooky names. this proc takes the old name first, and *THEN* the new name!
+	C.fully_replace_character_name("[C.real_name]", nightmare_name())
 
 /datum/species/shadow/nightmare/check_roundstart_eligible()
 	return FALSE
@@ -185,43 +203,11 @@
 	powerful_heal = TRUE
 	dark_healing = 7
 	light_burning = 7
-
-	///How many charges their projectile protection has
-	var/shadow_charges = 3
-
-/datum/species/shadow/darkspawn/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
-	if(prob(50) && shadow_charges > 0)
-		H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
-		playsound(H, "bullet_miss", 75, 1)
-		shadow_charges = min(shadow_charges - 1, 0)
-		addtimer(CALLBACK(src, PROC_REF(regen_shadow)), DARKSPAWN_REFLECT_COOLDOWN)//so they regen on different timers
-		return BULLET_ACT_BLOCK
-	return ..()
-
-/datum/species/shadow/darkspawn/proc/regen_shadow()
-	shadow_charges = min(shadow_charges++, initial(shadow_charges))
+	shadow_charges = 3
 
 /datum/species/shadow/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.real_name = "[pick(GLOB.nightmare_names)]"
-	C.name = C.real_name
-	if(C.mind)
-		C.mind.name = C.real_name
-	C.dna.real_name = C.real_name
-	RegisterSignal(C, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(apply_darkness_speed))
-
-/datum/species/shadow/darkspawn/on_species_loss(mob/living/carbon/C)
-	. = ..()
-	UnregisterSignal(C, COMSIG_MOB_CLIENT_PRE_MOVE)
-	C.remove_movespeed_modifier(type)
-
-/datum/species/shadow/darkspawn/proc/apply_darkness_speed(mob/living/carbon/owner, direction) //minor speedboost in darkness
-	var/turf/T = get_turf(owner)
-	var/light_amount = T.get_lumcount()
-	if(light_amount < SHADOW_SPECIES_BRIGHT_LIGHT)
-		owner.add_movespeed_modifier(type, update=TRUE, priority=100, override = TRUE, multiplicative_slowdown=-0.2)
-	else
-		owner.remove_movespeed_modifier(type)
+	C.fully_replace_character_name("[C.real_name]", darkspawn_name())
 
 /datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
 	if(isdarkspawn(H))

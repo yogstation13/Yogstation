@@ -167,7 +167,7 @@ const FlavorSection = () => {
 
 const GuideSection = () => {
   return (
-    <Stack vertical fontSize="14px">
+    <Stack vertical fontSize="16px">
       <Stack.Item>
         - Collaborate with fellow darkspawns, use .w to converse using the mindlink.
       </Stack.Item>
@@ -175,10 +175,10 @@ const GuideSection = () => {
         - Incapacitate crewmembers and devour their will to gain lucidity and willpower.
       </Stack.Item>
       <Stack.Item>
-        - Spend willpower in the research tab to unlock new abilities and passive skills.
+        - Spend <span style={Velvet}>willpower</span> in the research tab to unlock new abilities and passive skills.
       </Stack.Item>
       <Stack.Item>
-        - Once a certain amount lucidity has been drained, perform the sacrament and ascend as a progenitor.
+        - Once a certain amount <span style={Velvet}>lucidity</span> has been drained, perform the sacrament and ascend as a progenitor.
       </Stack.Item>
     </Stack>
   );

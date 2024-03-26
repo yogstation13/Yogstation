@@ -512,8 +512,7 @@
 		returner.set_species(/datum/species/shadow/darkspawn)
 		ADD_TRAIT(returner, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 
-	returner.name = old_body.name
-	returner.real_name = old_body.real_name
+	returner.fully_replace_character_name(null, (old_body.real_name || old_body.name))
 	owner.transfer_to(returner)
 	returner.update_appearance(UPDATE_OVERLAYS)
 

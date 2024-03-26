@@ -99,7 +99,7 @@
 	antimagic_flags = NONE
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 
 /datum/action/cooldown/spell/release_thrall/can_cast_spell(feedback)
 	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
@@ -163,7 +163,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
 	invocation = null
@@ -244,7 +244,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 50
 	cooldown_time = 1 MINUTES
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
 	/// Text to be put in the balloon alert upon cast
@@ -311,7 +311,7 @@
 	cast_range = INFINITY //lol
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	cooldown_time = 5 MINUTES //it's REALLY strong
 	psi_cost = 200 //it's REALLY strong
 	invocation_type = INVOCATION_SHOUT
@@ -374,7 +374,7 @@
 	button_icon_state = "glare"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 
 /datum/action/cooldown/spell/toggle/nightvision/Remove(mob/living/remove_from)
 	Disable()
@@ -386,6 +386,8 @@
 		eyes.color_cutoffs = list(12, 0, 50)
 		eyes.lighting_cutoff = LIGHTING_CUTOFF_HIGH
 		owner.update_sight()
+	else
+		owner.lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 /datum/action/cooldown/spell/toggle/nightvision/Disable()
 	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
@@ -393,3 +395,5 @@
 		eyes.color_cutoffs = list(0, 0, 0)
 		eyes.lighting_cutoff = 0
 		owner.update_sight()
+	else
+		owner.lighting_cutoff = 0

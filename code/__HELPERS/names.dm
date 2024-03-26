@@ -55,6 +55,26 @@
 /proc/ipc_name()
 	return "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 
+/proc/nightmare_name() //they have one segment to the name
+	switch(rand(1,3))
+		if(1) //space and capital last name
+			return "[pick(GLOB.preternis_class)]"
+		if(2) //dash and lowercase last name
+			return "[pick(GLOB.preternis_names)]"
+		if(3) //apostrophe and lowercase last name
+			return "[pick(GLOB.preternis_home)]"
+
+/proc/darkspawn_name() //they have two segments to the name
+	var/name = "[capitalize(nightmare_name())]"
+	switch(rand(1,3))
+		if(1) //space and capital last name
+			name += " [capitalize(nightmare_name())]"
+		if(2) //dash and lowercase last name
+			name += "-[lowertext(nightmare_name())]"
+		if(3) //apostrophe and lowercase last name
+			name += "'[lowertext(nightmare_name())]"
+	return name
+
 GLOBAL_VAR(command_name)
 /proc/command_name()
 	if (GLOB.command_name)

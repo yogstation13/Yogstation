@@ -102,15 +102,15 @@
 	cooldown_time = 45 SECONDS
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = NONE
 	///The size of the smoke cloud spawned by the ability
 	var/range = 4
 
 /datum/action/cooldown/spell/darkness_smoke/cast(mob/living/carbon/human/user) //Extremely hacky ---- (oh god, it really is)
 	. = ..()
 	owner.balloon_alert(owner, "Hwlok'krotho")
-	user.visible_message(span_warning("[user] bends over and bellows out a cloud of black smoke!"), span_velvet("You expel a vast cloud of blinding smoke."))
-	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(user.loc) //hacky
+	owner.visible_message(span_warning("[owner] bends over and bellows out a cloud of black smoke!"), span_velvet("You expel a vast cloud of blinding smoke."))
+	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(get_turf(owner)) //hacky
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
 	B.reagents.add_reagent(/datum/reagent/darkspawn_darkness_smoke, 50)
@@ -225,7 +225,7 @@
 	active_msg = span_velvet("You prepare to take a step through the void.")
 	deactive_msg = span_notice("You relax your mind.")
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	beam_icon = "curse0"
 
 /datum/action/cooldown/spell/pointed/phase_jump/void_jump/InterceptClickOn(mob/living/user, params, atom/target)

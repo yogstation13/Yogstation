@@ -128,7 +128,7 @@
 	button_icon_state = "shadow_crash"
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = NONE
 	cooldown_time = 5 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	psi_cost = 20
@@ -231,7 +231,7 @@
 	button_icon_state = "demented_outburst"
 	antimagic_flags = NONE
 	panel = "Darkspawn"
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 50 //big boom = big cost
 	cooldown_time = 20 SECONDS

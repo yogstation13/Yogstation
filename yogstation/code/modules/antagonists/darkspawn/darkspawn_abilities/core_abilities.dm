@@ -220,7 +220,7 @@
 	antimagic_flags = NONE
 	panel = "Darkspawn"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE
-	spell_requirements = NONE
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 60
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	///Boolean on whether this is in use.
@@ -361,7 +361,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "sacrament(old)"
 	antimagic_flags = NONE
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 
 /datum/action/cooldown/spell/reform_body/can_cast_spell(feedback)
 	if(!(issilicon(owner) || isbrain(owner)))
