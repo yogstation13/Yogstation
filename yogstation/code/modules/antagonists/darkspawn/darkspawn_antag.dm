@@ -525,9 +525,6 @@
 	owner.transfer_to(returner)
 	returner.update_appearance(UPDATE_OVERLAYS)
 
-	for(var/thing in old_body)
-		qdel(thing)
-	old_body.gib(TRUE, TRUE, TRUE)
 	playsound(returner, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
 	playsound(returner, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, 0)
 	
@@ -544,6 +541,14 @@
 		if(istype(spells, /datum/action/cooldown/spell/reform_body))
 			spells.Remove(returner)
 			qdel(spells)
+
+	if(isbrain(old_body))
+		var/mob/living/brain/thinker = old_body
+		thinker.container?.eject_brain()
+
+	for(var/thing in old_body)
+		qdel(thing)
+	old_body.gib(TRUE, TRUE, TRUE)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Admin panel stuff---------------------------------//
