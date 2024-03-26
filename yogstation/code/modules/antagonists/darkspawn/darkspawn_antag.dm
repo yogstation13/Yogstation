@@ -379,7 +379,7 @@
 	show_to_ghosts = TRUE
 	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [user.real_name].</b>")
 	for(var/mob/M as anything in GLOB.alive_mob_list)
-		if(is_darkspawn_or_thrall(M) || (ROLE_DARKSPAWN in M.faction))
+		if(is_team_darkspawn(M))
 			to_chat(M, processed_message)
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T
@@ -415,7 +415,7 @@
 	H.do_jitter_animation(1000)
 	var/processed_message = span_progenitor("\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.")
 	for(var/mob/M in GLOB.player_list)
-		if(M.stat != DEAD && (is_darkspawn_or_thrall(M) || (ROLE_DARKSPAWN in M.faction)))
+		if(M.stat != DEAD && is_team_darkspawn(M))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, H)
 	addtimer(CALLBACK(src, PROC_REF(divulge), TRUE), 2.5 SECONDS)
@@ -526,7 +526,7 @@
 	var/processed_message = span_velvet("<b>\[Mindlink\] [returner] has reformed their body.</b>")
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
-		if(is_darkspawn_or_thrall(M) || (ROLE_DARKSPAWN in M.faction))
+		if(is_team_darkspawn(M))
 			to_chat(M, processed_message)
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T

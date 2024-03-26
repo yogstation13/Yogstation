@@ -179,7 +179,7 @@
 	var/closest_dude_dist = body_range
 	if(get_dist(owner, cast_on) > body_range)
 		for(var/mob/living/dude in range(body_range, cast_on))
-			if(is_darkspawn_or_thrall(dude) || (ROLE_DARKSPAWN in dude.faction))
+			if(is_team_darkspawn(dude))
 				if(!isturf(dude.loc))
 					continue
 				if(get_dist(cast_on, dude) < closest_dude_dist)//always only get the closest dude

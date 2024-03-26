@@ -2,8 +2,8 @@
 //----------------------Fighter light eater ability---------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/toggle/shadow_tendril
-	name = "Shadow Tendril"
-	desc = "Twists an active arm into a mass of tendrils with many important uses. Examine the tendrils to see a list of uses."
+	name = "Umbral Tendril"
+	desc = "Twists an active arm into a mass of tendrils with many uses."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
@@ -24,7 +24,7 @@
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/handle_upgrade(atom/source, flag)
 	ability_flags |= flag
 	if(flag & TENDRIL_UPGRADE_TWIN)
-		name = "Twinned Shadow Tendrils"
+		name = "Twinned [initial(name)]s"
 		desc = "Twists one or both of your arms into tendrils with many uses."
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/handle_downgrade(atom/source, flag)
@@ -92,7 +92,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	psi_cost = 25
-	cooldown_time = 30 SECONDS
+	cooldown_time = 45 SECONDS
 
 /datum/action/cooldown/spell/aoe/deluge/cast(atom/cast_on)
 	. = ..()
@@ -167,7 +167,7 @@
 
 	if(isobj(hit_atom))
 		var/obj/thing = hit_atom
-		thing.take_damage(29)
+		thing.take_damage(29) //does 29 twice so it can break weak things, but doesn't do anything to structures with reinforcement
 		thing.take_damage(29)
 
 	if(!isliving(hit_atom))
@@ -278,7 +278,7 @@
 		return
 	if(isliving(victim))
 		var/mob/living/dude = victim
-		if(is_darkspawn_or_thrall(dude))
+		if(is_team_darkspawn(dude))
 			return
 	var/distance = get_dist(owner, victim)
 	var/turf/target = get_edge_target_turf(owner, get_dir(owner, get_step_away(victim, owner)))

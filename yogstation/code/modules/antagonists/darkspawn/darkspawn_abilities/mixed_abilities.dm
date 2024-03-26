@@ -74,7 +74,7 @@
 	if(!isliving(target))
 		return
 	var/mob/living/victim = target
-	if(is_darkspawn_or_thrall(victim) || (ROLE_DARKSPAWN in victim.faction)) //no friendly fire
+	if(is_team_darkspawn(victim)) //no friendly fire
 		return
 	to_chat(victim, span_userdanger("A wave of shockingly cold air engulfs you!"))
 	victim.apply_damage(5, BURN)

@@ -95,7 +95,6 @@
 	layer = LARGE_MOB_LAYER
 	damage = 0
 	nodamage = TRUE
-	knockdown = 40
 	speed = 1
 	range = 5
 	var/twinned = FALSE
@@ -115,29 +114,27 @@
 	. = TRUE
 	if(isliving(target))
 		var/mob/living/L = target
-		if(is_darkspawn_or_thrall(L))
+		if(is_team_darkspawn(L))
 			return BULLET_ACT_FORCE_PIERCE //ignore allies
 		if(iscarbon(target))
 			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
+			L.Knockdown(6 SECONDS)
 			if(!twinned)
 				target.visible_message(span_warning("[firer]'s [name] slam into [target], knocking them off their feet!"), \
 				span_userdanger("You're knocked off your feet!"))
-				L.Knockdown(6 SECONDS)
 			else
 				L.Immobilize(0.15 SECONDS) // so they cant cancel the throw by moving
 				target.throw_at(get_step_towards(firer, target), 7, 2) //pull them towards us!
 				target.visible_message(span_warning("[firer]'s [name] slam into [target] and drag them across the ground!"), \
 				span_userdanger("You're suddenly dragged across the floor!"))
-				L.Knockdown(8 SECONDS) //these can't hit people who are already on the ground but they can be spammed to all shit
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else if(issilicon(target))
 			var/mob/living/silicon/robot/R = target
-			R.toggle_headlamp(TRUE) //disable headlamps
 			target.visible_message(span_warning("[firer]'s [name] smashes into [target]'s chassis!"), \
 			span_userdanger("Heavy percussive impact detected. Recalibrating motor input."))
 			R.playsound_local(target, 'sound/misc/interference.ogg', 25, FALSE)
 			playsound(R, 'sound/effects/bang.ogg', 50, TRUE)
-			R.Paralyze(40) //this is the only real anti-borg spell  get
+			R.Paralyze(40)
 			R.adjustBruteLoss(10)
 		else
 			return BULLET_ACT_FORCE_PIERCE //ignore things that don't matter

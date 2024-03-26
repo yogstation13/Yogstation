@@ -284,7 +284,7 @@
 	owner.balloon_alert(owner, "Qokxlez")
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/darkspawn.dmi' , INFINITY, cast_range)
 	channeled = cast_on
-	healing = is_darkspawn_or_thrall(channeled) || (ROLE_DARKSPAWN in channeled.faction)
+	healing = is_team_darkspawn(channeled)
 	
 /datum/action/cooldown/spell/pointed/extract/proc/cancel()
 	if(visual)
@@ -340,7 +340,7 @@
 	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
 		return
 	var/mob/living/target = victim
-	if(is_darkspawn_or_thrall(target) || (ROLE_DARKSPAWN in target.faction)) //don't fuck with allies
+	if(is_team_darkspawn(target)) //don't fuck with allies
 		return
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
@@ -368,9 +368,9 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = INFINITY //lol
 	var/charging = FALSE
-	var/angle
 	var/charge_ticks = 3 //1 second per tick
 	var/turf/targets_from
+	var/turf/targets_to
 
 /datum/action/cooldown/spell/pointed/shadow_beam/can_cast_spell(feedback)
 	if(charging)
@@ -381,18 +381,18 @@
 	. = ..()
 	if(charging)
 		return
+	
+	targets_from = get_turf(owner)
+	targets_to = get_turf(cast_on)
 
-	if(!ishuman(owner))
-		return
-
-	var/mob/living/carbon/human/user = owner	
-	targets_from = get_turf(user)
-	angle = get_angle(user, get_turf(cast_on))
-
-	user.balloon_alert(user, "Qwo...")
-	to_chat(user, span_velvet("You start building up psionic energy."))
+	owner.balloon_alert(owner, "Qwo...")
+	to_chat(owner, span_velvet("You start building up psionic energy."))
 	charging = TRUE
-	INVOKE_ASYNC(src, PROC_REF(charge), user)
+	INVOKE_ASYNC(src, PROC_REF(start_beam), owner) //so the reticule doesn't continue to show even after clicking
+
+/datum/action/cooldown/spell/pointed/shadow_beam/proc/start_beam(mob/user)
+	charging = TRUE
+	INVOKE_ASYNC(src, PROC_REF(charge), user) //visual effect
 	if(do_after(user, charge_ticks SECONDS, user))
 		INVOKE_ASYNC(src, PROC_REF(fire_beam), user)
 	charging = FALSE
@@ -416,7 +416,7 @@
 	turnedness = 179
 
 /datum/action/cooldown/spell/pointed/shadow_beam/proc/fire_beam(mob/user)
-	if(!angle || !targets_from) //sanity check
+	if(!targets_from || !targets_to) //sanity check
 		return
 	user.balloon_alert(user, "...GX'KSHA!")
 	if(isdarkspawn(user))
@@ -424,21 +424,30 @@
 		darkspawn.block_psi(30 SECONDS, type)
 
 	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 20)
-	var/turf/temp_target = get_turf_in_angle(angle, targets_from, 200) //cross the entire map, lol
-	for(var/turf/T in getline(targets_from,temp_target))
-		for(var/turf/realtile in range(1, T)) //bit of aoe around the line (probably super fucking intensive lol)
-			var/obj/effect/temp_visual/darkspawn/chasm/effect = locate() in realtile.contents
-			if(!effect) //to prevent multiple visuals from appearing on the same tile and doing more than intended
-				effect = new(realtile)
+	//split in two so the targeted tile is always in the center of the beam
+	for(var/turf/step_target in getline(targets_from, targets_to))
+		spawn_ground(step_target)
+
+	//extrapolate a new end target along the line using an angle
+	var/turf/distant_target = get_turf_in_angle(get_angle(targets_from, targets_to), targets_to, 100) //100 tiles past the end point, roughly following the angle of the original line
+
+	for(var/turf/step_target in getline(targets_to, distant_target))
+		spawn_ground(step_target)
+
+/datum/action/cooldown/spell/pointed/shadow_beam/proc/spawn_ground(turf/target)
+	for(var/turf/realtile in range(1, target)) //bit of aoe around the line (probably super fucking intensive lol)
+		var/obj/effect/temp_visual/darkspawn/chasm/effect = locate() in realtile.contents
+		if(!effect) //to prevent multiple visuals from appearing on the same tile and doing more damage than intended
+			effect = new(realtile)
 
 /obj/effect/temp_visual/darkspawn
 	name = "echoing void"
 	icon = 'yogstation/icons/effects/effects.dmi'
 	icon_state = "nothing"
 
-/obj/effect/temp_visual/darkspawn/chasm
+/obj/effect/temp_visual/darkspawn/chasm //a slow field that eventually explodes
 	icon_state = "consuming"
-	duration = 6 SECONDS //can be almost any number for balance, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
+	duration = 4 SECONDS //functions as the delay until the explosion, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
 	layer = ABOVE_OPEN_TURF_LAYER
 
 /obj/effect/temp_visual/darkspawn/chasm/Initialize(mapload)
@@ -452,14 +461,14 @@
 /obj/effect/temp_visual/darkspawn/chasm/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/target = AM
-		if(!is_darkspawn_or_thrall(target) || (ROLE_DARKSPAWN in target.faction))
+		if(!is_team_darkspawn(target))
 			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 4, 1 SECONDS, type) //slow field, makes it harder to escape
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
 	new/obj/effect/temp_visual/darkspawn/detonate(get_turf(src))
 	return ..()
 
-/obj/effect/temp_visual/darkspawn/detonate
+/obj/effect/temp_visual/darkspawn/detonate //the explosion effect, applies damage when it disappears
 	icon_state = "detonate"
 	layer = ABOVE_OPEN_TURF_LAYER
 	duration = 2
@@ -467,7 +476,7 @@
 /obj/effect/temp_visual/darkspawn/detonate/Destroy()
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
-		if(is_darkspawn_or_thrall(victim) || (ROLE_DARKSPAWN in victim.faction))
+		if(is_team_darkspawn(victim))
 			victim.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
