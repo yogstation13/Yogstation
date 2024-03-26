@@ -544,7 +544,10 @@
 
 	if(isbrain(old_body))
 		var/mob/living/brain/thinker = old_body
-		thinker.container?.eject_brain()
+		if(thinker.container)
+			for(var/thing in thinker.container)
+				qdel(thing)
+			return
 
 	for(var/thing in old_body)
 		qdel(thing)
