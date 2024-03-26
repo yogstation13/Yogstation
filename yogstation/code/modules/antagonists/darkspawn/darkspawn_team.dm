@@ -120,7 +120,7 @@
 					announced = TRUE
 					to_chat(master.current, span_progenitor("Enough lucidity has been gathered, perform the sacrament to ascend once more!"))
 					enable_validhunt()
-				if(lucidity >= required_succs*2)
+				if(lucidity >= (required_succs + 5)) //don't farm a round you've already basically won
 					to_chat(master.current, span_progenitor("Your form can't maintain itself with all this energy!"))
 					master.current.gib(TRUE, TRUE, TRUE)//stop farming the round
 
