@@ -12,8 +12,8 @@
 	var/can_approve_requests = TRUE
 	var/contraband = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
-		cannot transport live organisms, human remains, classified nuclear weaponry \
-		or homing beacons. Additionally, remove any privately ordered crates from the shuttle."
+		cannot transport live organisms, human remains, classified nuclear weaponry, \
+		homing beacons or pneumatic disposal segments. Additionally, remove any privately ordered crates from the shuttle."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 	var/self_paid = FALSE
 
@@ -148,7 +148,14 @@
 				investigate_log("[key_name(usr)] sent the supply shuttle away.", INVESTIGATE_CARGO)
 			else
 				investigate_log("[key_name(usr)] called the supply shuttle.", INVESTIGATE_CARGO)
-				say("The supply shuttle has been called and will arrive in [SSshuttle.supply.timeLeft(600)] minutes.")
+				var/call_time = SSshuttle.supply.timeLeft(10) //how many seconds
+				var/unit = "seconds"
+				if(call_time >= 60) //if more than 60 seconds,
+					call_time = SSshuttle.supply.timeLeft(600) //go to minutes instead
+					unit = "minute"
+					if(call_time > 1) //handles more than 1 minute
+						unit = "minutes"
+				say("The supply shuttle has been called and will arrive in [call_time] [unit].")
 				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 			. = TRUE
 		if("loan")

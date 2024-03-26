@@ -28,38 +28,7 @@
 	var/floor_tile = null //tile that this floor drops
 
 /turf/open/floor/Initialize(mapload)
-
-	// if (!broken_states)
-	// 	broken_states = typelist("broken_states", list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5"))
-	// else
-	// 	broken_states = typelist("broken_states", broken_states)
-	// burnt_states = typelist("burnt_states", burnt_states)
-	// if(!broken && broken_states && (icon_state in broken_states))
-	// 	broken = TRUE
-	// if(!burnt && burnt_states && (icon_state in burnt_states))
-	// 	burnt = TRUE
 	. = ..()
-	//This is so damaged or burnt tiles or platings don't get remembered as the default tile
-	// var/static/list/icons_to_ignore_at_floor_init = list("foam_plating", "plating","light_on","light_on_flicker1","light_on_flicker2",
-	// 				"light_on_clicker3","light_on_clicker4","light_on_clicker5",
-	// 				"light_on_broken","light_off","wall_thermite","grass", "sand",
-	// 				"asteroid","asteroid_dug",
-	// 				"asteroid0","asteroid1","asteroid2","asteroid3","asteroid4",
-	// 				"asteroid5","asteroid6","asteroid7","asteroid8","asteroid9","asteroid10","asteroid11","asteroid12",
-	// 				"basalt","basalt_dug",
-	// 				"basalt0","basalt1","basalt2","basalt3","basalt4",
-	// 				"basalt5","basalt6","basalt7","basalt8","basalt9","basalt10","basalt11","basalt12",
-	// 				"oldburning","light-on-r","light-on-y","light-on-g","light-on-b", "wood", "carpetsymbol", "carpetstar",
-	// 				"carpetcorner", "carpetside", "carpet", "ironsand1", "ironsand2", "ironsand3", "ironsand4", "ironsand5",
-	// 				"ironsand6", "ironsand7", "ironsand8", "ironsand9", "ironsand10", "ironsand11",
-	// 				"ironsand12", "ironsand13", "ironsand14", "ironsand15", "bamboo", "bamboosymbol", "bamboostar")
-	// if(broken || burnt || (icon_state in icons_to_ignore_at_floor_init)) //so damaged/burned tiles or plating icons aren't saved as the default
-	// 	icon_state_regular_floor = "floor"
-	// 	icon_regular_floor = 'icons/turf/floors.dmi'
-	// else
-	// 	icon_state_regular_floor = icon_state
-	// 	icon_regular_floor = icon
-
 	if(mapload && prob(33))
 		MakeDirty()
 	if(is_station_level(z))
@@ -136,7 +105,7 @@
 		return
 	T.break_tile()
 
-/turf/open/floor/proc/make_plating()
+/turf/open/floor/proc/make_plating(force = FALSE)
 	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/ChangeTurf(path, new_baseturf, flags)
@@ -185,7 +154,7 @@
 	I.play_tool_sound(src, 80)
 	return remove_tile(user, silent)
 
-/turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE)
+/turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, force_plating)
 	if(broken || burnt)
 		broken = 0
 		burnt = 0
@@ -194,29 +163,34 @@
 	else
 		if(user && !silent)
 			to_chat(user, span_notice("You remove the floor tile."))
-		if(floor_tile && make_tile)
-			new floor_tile(src)
-	return make_plating()
+		if(make_tile)
+			spawn_tile()
+	return make_plating(force_plating)
+
+/turf/open/floor/proc/has_tile()
+	return floor_tile
+
+/turf/open/floor/proc/spawn_tile()
+	if(!has_tile())
+		return null
+	return new floor_tile(src)
 
 /turf/open/floor/singularity_pull(S, current_size)
 	..()
-	if(current_size == STAGE_THREE)
-		if(prob(30))
-			if(floor_tile)
-				new floor_tile(src)
-				make_plating()
-	else if(current_size == STAGE_FOUR)
-		if(prob(50))
-			if(floor_tile)
-				new floor_tile(src)
-				make_plating()
-	else if(current_size >= STAGE_FIVE)
-		if(floor_tile)
+	var/sheer = FALSE
+	switch(current_size)
+		if(STAGE_THREE)
+			if(prob(30))
+				sheer = TRUE
+		if(STAGE_FOUR)
+			if(prob(50))
+				sheer = TRUE
+		if(STAGE_FIVE to INFINITY)
 			if(prob(70))
-				new floor_tile(src)
-				make_plating()
-		else if(prob(50))
-			attempt_lattice_replacement()
+				sheer = TRUE
+	if(sheer)
+		if(has_tile())
+			remove_tile(null, TRUE, TRUE, TRUE)
 
 /turf/open/floor/narsie_act(force, ignore_mobs, probability = 20)
 	. = ..()

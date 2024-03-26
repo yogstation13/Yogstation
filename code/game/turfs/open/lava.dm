@@ -33,6 +33,7 @@
 	refresh_light()
 	if(!smoothing_flags)
 		update_appearance()
+	AddComponent(/datum/component/fishable/lava)
 
 /turf/open/lava/update_overlays()
 	. = ..()

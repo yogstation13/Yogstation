@@ -26,6 +26,7 @@
 
 /obj/item/melee/chainsaw/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 	AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
 

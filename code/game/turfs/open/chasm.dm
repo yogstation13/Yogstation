@@ -16,6 +16,10 @@
 	. = ..()
 	apply_components(mapload)
 
+/// Handles adding the chasm component to the turf (So stuff falls into it!)
+/turf/open/chasm/proc/apply_components(mapload)
+	AddComponent(/datum/component/chasm, GET_TURF_BELOW(src), mapload)
+
 /// Lets people walk into chasms.
 /turf/open/chasm/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
@@ -128,12 +132,5 @@
 	light_power = 0.65
 	can_atmos_pass = ATMOS_PASS_NO
 
-/turf/open/chasm/magic/Initialize(mapload)
-	. = ..()
-	var/turf/T = pick(get_area_turfs(/area/centcom/fabric_of_reality))
-	if(T)
-		set_target(T)
-
-/// Handles adding the chasm component to the turf (So stuff falls into it!)
-/turf/open/chasm/proc/apply_components(mapload)
-	AddComponent(/datum/component/chasm, null, mapload)
+/turf/open/chasm/magic/apply_components(mapload)
+	AddComponent(/datum/component/chasm, pick(get_area_turfs(/area/centcom/fabric_of_reality)), mapload)

@@ -151,7 +151,7 @@
 	. = ..()
 	if(HAS_TRAIT(stomach_owner, TRAIT_POWERHUNGRY))
 		stomach_owner.nutrition = stored_charge
-	RegisterSignal(stomach_owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
+	RegisterSignal(stomach_owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge), override = TRUE)
 
 /obj/item/organ/stomach/cell/Remove(mob/living/carbon/stomach_owner, special)
 	. = ..()
