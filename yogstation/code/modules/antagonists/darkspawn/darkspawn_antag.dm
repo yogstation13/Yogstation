@@ -266,7 +266,7 @@
 	update_psi_hud()
 
 	//low probability because i want it to be super rare and a "wait what the FUCK they can do that!?" type moment
-	if((rand(0, 10000) == 0) && owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
+	if((rand(0, 1000) == 0) && owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
 		var/datum/action/cooldown/spell/reform_body/recreance = locate() in owner.current.actions
 		if(!recreance)
 			recreance = new(owner)
@@ -278,9 +278,9 @@
 		var/light_amount = location.get_lumcount()
 		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			if(!revive_notice)
-				to_chat(deadguy, span_progenitor("Your body lurches as it refuses to be stopped by death."))
+				deadguy.visible_message(span_notice("[deadguy]'s body twitches."), span_progenitor("Your body lurches as it refuses to be stopped by death."))
 				revive_notice = TRUE
-			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
+			deadguy.heal_ordered_damage(5, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
 			if(deadguy.health >= deadguy.maxHealth)
 				deadguy.revive(TRUE)
 				revive_notice = FALSE
@@ -288,7 +288,7 @@
 				playsound(deadguy, 'yogstation/sound/magic/demented_outburst_scream.ogg', 40, FALSE)
 		else if(revive_notice)
 			revive_notice = FALSE
-			to_chat(deadguy, span_velvet("Your body stills once more."))
+			deadguy.visible_message(span_notice("[deadguy]'s body stills."), span_velvet("Your body stills once more."))
 
 /datum/antagonist/darkspawn/proc/has_psi(amt)
 	return psi >= amt
