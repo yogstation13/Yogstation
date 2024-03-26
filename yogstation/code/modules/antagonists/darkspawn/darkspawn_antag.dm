@@ -280,7 +280,7 @@
 			if(!revive_notice)
 				deadguy.visible_message(span_notice("[deadguy]'s body twitches."), span_progenitor("Your body lurches as it refuses to be stopped by death."))
 				revive_notice = TRUE
-			deadguy.heal_ordered_damage(5, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
+			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
 			if(deadguy.health >= deadguy.maxHealth)
 				deadguy.revive(TRUE)
 				revive_notice = FALSE
