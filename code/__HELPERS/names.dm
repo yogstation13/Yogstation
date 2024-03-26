@@ -66,7 +66,7 @@
 
 /proc/darkspawn_name() //they have two segments to the name
 	var/name = "[nightmare_name()]"
-	switch(rand(1,3))
+	switch(rand(1,4))
 		if(1) //space and capital last name
 			name += " [nightmare_name()]"
 		if(2) //dash and lowercase last name
