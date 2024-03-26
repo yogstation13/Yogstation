@@ -266,11 +266,9 @@
 	update_psi_hud()
 
 	//low probability because i want it to be super rare and a "wait what the FUCK they can do that!?" type moment
-	if((rand(0, 1000) == 0) && owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
-		var/datum/action/cooldown/spell/reform_body/recreance = locate() in owner.current.actions
-		if(!recreance)
-			recreance = new(owner)
-			recreance.Grant(owner.current)
+	//if it becomes too common, then people stop putting darkspawn brains in mmi (which is metagaming, but whatever)
+	if((rand(0, 10000) == 0) && owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
+		addtimer(CALLBACK(src, PROC_REF(grant_reform)), rand(1, (10 MINUTES)), TIMER_UNIQUE) //give it a random delay before granting the ability, so it's luck squared to get it immediately
 
 	if((owner?.current?.stat == DEAD) && HAS_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current) && !QDELETED(owner.current))
 		var/mob/living/carbon/human/deadguy = owner.current
@@ -501,6 +499,17 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Reform body from brain------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+///proc used to delay the granting of the reform body ability
+/datum/antagonist/darkspawn/proc/grant_reform()
+	if(!owner.current || !(isbrain(owner.current) || issilicon(owner.current)))
+		return
+	var/datum/action/cooldown/spell/reform_body/recreance = locate() in owner.current.actions
+	if(recreance)
+		return
+	recreance = new(owner)
+	recreance.Grant(owner.current)
+
+///creates a new human body for the darkspawn player and transfers their mind to it
 /datum/antagonist/darkspawn/proc/reform_body()
 	if(owner.current && !(isbrain(owner.current) || issilicon(owner.current)))
 		return
@@ -518,7 +527,7 @@
 
 	for(var/thing in old_body)
 		qdel(thing)
-	qdel(old_body)
+	old_body.gib(TRUE, TRUE, TRUE)
 	playsound(returner, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
 	playsound(returner, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, 0)
 	
