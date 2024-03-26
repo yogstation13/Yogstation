@@ -388,7 +388,7 @@
 	owner.balloon_alert(owner, "Qwo...")
 	to_chat(owner, span_velvet("You start building up psionic energy."))
 	charging = TRUE
-	INVOKE_ASYNC(src, PROC_REF(start_beam), owner) //so the reticule doesn't continue to show even after clicking
+	INVOKE_ASYNC(src, PROC_REF(start_beam), owner) //so the reticle doesn't continue to show even after clicking
 
 /datum/action/cooldown/spell/pointed/shadow_beam/proc/start_beam(mob/user)
 	charging = TRUE
