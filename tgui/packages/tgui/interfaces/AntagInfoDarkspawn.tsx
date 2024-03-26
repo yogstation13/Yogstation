@@ -10,6 +10,11 @@ const Velvet = {
   color: '#7264FF',
 };
 
+const Lucidity = {
+  fontWeight: 'bold',
+  color: '#00AAFF',
+};
+
 type Data = {
   categories: Category[];
 };
@@ -144,7 +149,7 @@ const FlavorSection = () => {
             Eternity spent dormant, floating in an <span style={Velvet}>endless void</span>.
         </Stack.Item>
         <Stack.Item>
-            Ripples herald chaos as a <span style={{ "color":"#00AAFF" }} >bright blue light</span> tears you from your slumber.&nbsp;
+            Ripples herald chaos as a <span style={Lucidity} >bright blue light</span> tears you from your slumber.&nbsp;
         </Stack.Item>
         <Stack.Item>
             As you plunge into normalspace, you violently <span style={Velvet}>curse</span> the being that caused such an event.&nbsp;
@@ -172,13 +177,13 @@ const GuideSection = () => {
         - Collaborate with fellow darkspawns, use .w to converse using the mindlink.
       </Stack.Item>
       <Stack.Item>
-        - Incapacitate crewmembers and devour their will to gain lucidity and willpower.
+        - Incapacitate crewmembers and devour their will to gain <span style={Lucidity}>lucidity</span> and <span style={Velvet}>willpower</span>.
       </Stack.Item>
       <Stack.Item>
         - Spend <span style={Velvet}>willpower</span> in the research tab to unlock new abilities and passive skills.
       </Stack.Item>
       <Stack.Item>
-        - Once a certain amount <span style={Velvet}>lucidity</span> has been drained, perform the sacrament and ascend as a progenitor.
+        - Once a certain amount <span style={Lucidity}>lucidity</span> has been drained, perform the sacrament and ascend as a progenitor.
       </Stack.Item>
     </Stack>
   );
@@ -213,7 +218,7 @@ const InformationSection = (props, context) => {
         <Stack.Item>
           You have drained a total of&nbsp;
           <b>{lucidity_drained || 0}</b>&nbsp;
-          <span style={Velvet}>lucidity</span>.
+          <span style={Lucidity}>lucidity</span>.
         </Stack.Item>
         {!!max_thralls && (
         <Stack.Item>
