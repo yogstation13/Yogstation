@@ -271,3 +271,26 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		return
 	level.traits |= traits_to_add
 	SSweather.update_z_level(level) //in case of someone adding a weather for the level, we want SSweather to update for that
+
+/obj/effect/mapping_helpers/firedoor_border_spawner
+	var/orientation = VERTICAL
+	var/obj/machinery/door/firedoor/border_only/door1
+	var/obj/machinery/door/firedoor/border_only/door2
+
+/obj/effect/mapping_helpers/firedoor_border_spawner/Initialize(mapload, _orientation)
+	. = ..()
+	if(_orientation)
+		orientation = _orientation
+	door1 = new(loc)
+	door2 = new(loc)
+	switch(orientation)
+		if(VERTICAL)
+			//door1 is naturally the right orientation
+			door2.dir = 1
+		if(HORIZONTAL)
+			door1.dir = 4
+			door2.dir = 8
+
+
+/obj/effect/mapping_helpers/firedoor_border_spawner/horizontal
+	orientation = HORIZONTAL
