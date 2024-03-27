@@ -33529,20 +33529,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
-"jLP" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/delivery,
-/obj/item/storage/pencil_holder/crew{
-	pixel_x = 8;
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/command)
 "jLX" = (
 /obj/machinery/status_display/evac{
 	pixel_x = -32
@@ -54060,36 +54046,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"pES" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 1;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk";
-	req_access_txt = "57"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/window/northleft{
-	dir = 2;
-	name = "Reception Window"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "hop";
-	name = "privacy shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/item/deskbell/preset/hop{
-	pixel_x = -8;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "pFu" = (
 /obj/item/radio/intercom{
 	pixel_y = -30
@@ -71585,6 +71541,27 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/storage/locker)
+"uIW" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/delivery,
+/obj/item/deskbell/preset/hop{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "uJg" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/button/door{
@@ -78059,6 +78036,32 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"wxN" = (
+/obj/machinery/door/window/brigdoor{
+	base_state = "rightsecure";
+	dir = 1;
+	icon_state = "rightsecure";
+	name = "Head of Personnel's Desk";
+	req_access_txt = "57"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Reception Window"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "hop";
+	name = "privacy shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/inspector_booth,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "wxO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -240618,7 +240621,7 @@ uEW
 ibB
 hJv
 mkZ
-pES
+wxN
 ylr
 qGb
 wGm
@@ -240876,7 +240879,7 @@ akc
 ibB
 mqP
 sYq
-jLP
+uIW
 vRv
 uxI
 ngT

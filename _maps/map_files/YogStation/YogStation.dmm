@@ -35924,6 +35924,37 @@
 	},
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/cmo)
+"jXN" = (
+/obj/machinery/door/window/northleft{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/machinery/door/window/brigdoor{
+	base_state = "rightsecure";
+	dir = 4;
+	icon_state = "rightsecure";
+	name = "Head of Personnel's Desk";
+	req_access_txt = "57"
+	},
+/obj/machinery/flasher{
+	id = "hopflash";
+	pixel_y = 28
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/inspector_booth{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "jXO" = (
 /obj/structure/sink{
 	dir = 8;
@@ -47062,15 +47093,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"oiE" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "ojh" = (
 /obj/structure/table,
 /obj/item/plant_analyzer,
@@ -54370,39 +54392,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/stone,
 /area/crew_quarters/heads/captain)
-"qPS" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft{
-	dir = 8;
-	name = "Reception Window"
-	},
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 4;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk";
-	req_access_txt = "57"
-	},
-/obj/machinery/flasher{
-	id = "hopflash";
-	pixel_y = 28
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "hop";
-	name = "Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/item/deskbell/preset/hop{
-	pixel_x = -6;
-	pixel_y = -5
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "qQa" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -69056,6 +69045,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
+"wiU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/paper_bin{
+	pixel_x = -5
+	},
+/obj/item/pen{
+	pixel_x = -5
+	},
+/obj/item/deskbell/preset/hop{
+	pixel_x = 7;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "wiV" = (
 /turf/open/indestructible/sound/pool,
 /area/crew_quarters/fitness)
@@ -100652,7 +100658,7 @@ aBN
 bhq
 sxt
 mlj
-oiE
+wiU
 rIo
 gBO
 pPI
@@ -100910,7 +100916,7 @@ bhs
 nkd
 bmr
 bmr
-qPS
+jXN
 ldU
 pQd
 qov
