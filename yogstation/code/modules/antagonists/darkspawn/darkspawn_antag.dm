@@ -163,6 +163,10 @@
 	var/list/data = list()
 
 	data["willpower"] = willpower
+	data["objectives"] = get_objectives()
+	data["divulged"] = (darkspawn_state > DARKSPAWN_MUNDANE)
+	data["ascended"] = (darkspawn_state == DARKSPAWN_PROGENITOR)
+	data["has_class"] = picked_class
 	if(team)
 		data["lucidity_drained"] = team.lucidity
 		data["max_thralls"] = team.max_thralls
@@ -172,9 +176,6 @@
 			for(var/datum/mind/dude in team.thralls)
 				thrall_names += dude.name
 			data["thrall_names"] += list(thrall_names)
-	data["divulged"] = (darkspawn_state > DARKSPAWN_MUNDANE)
-	data["ascended"] = (darkspawn_state == DARKSPAWN_PROGENITOR)
-	data["has_class"] = picked_class
 
 	var/list/categories = list(STORE_OFFENSE, STORE_UTILITY, STORE_PASSIVE)
 	for(var/category in categories)
@@ -204,6 +205,13 @@
 		category_data["knowledgeData"] = paths
 		data["categories"] += list(category_data)
 
+	return data
+
+/datum/antagonist/darkspawn/ui_static_data(mob/user)
+	var/list/data = list()
+	
+	data["antag_name"] = name
+
 	for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
 		if(!initial(class.choosable))
 			continue
@@ -215,14 +223,6 @@
 		class_data["long_description"] = initial(class.long_description)
 
 		data["classData"] += list(class_data)
-	
-	return data
-
-/datum/antagonist/darkspawn/ui_static_data(mob/user)
-	var/list/data = list()
-	
-	data["antag_name"] = name
-	data["objectives"] = get_objectives()
 
 	return data
 

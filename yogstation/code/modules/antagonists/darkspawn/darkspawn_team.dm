@@ -115,16 +115,20 @@
 
 /datum/team/darkspawn/proc/grant_lucidity(amount = 1)
 	lucidity += amount
-	if(lucidity >= required_succs)
+	if(lucidity >= (required_succs -1)) //enable valid hunting right before darkspawns complete their objective
+		enable_validhunt()
+
+	if(lucidity >= required_succs && !announced) //let the darkspawns know they've won
+		announced = TRUE
 		for(var/datum/mind/master in members)
 			if(master.current)
-				if(!announced)
-					announced = TRUE
-					to_chat(master.current, span_progenitor("Enough lucidity has been gathered, perform the sacrament to ascend once more!"))
-					enable_validhunt()
-				if(lucidity >= (required_succs + 5)) //don't farm a round you've already basically won
-					to_chat(master.current, span_progenitor("Your form can't maintain itself with all this energy!"))
-					master.current.gib(TRUE, TRUE, TRUE)//stop farming the round
+				to_chat(master.current, span_progenitor("Enough lucidity has been gathered, perform the sacrament to ascend once more!"))
+
+	if(lucidity >= (required_succs + 5)) //don't farm a round you've already basically won
+		for(var/datum/mind/master in members)
+			if(master.current)
+				to_chat(master.current, span_userdanger("Your form can't maintain itself with all this energy!"))
+				master.current.gib(TRUE, TRUE, TRUE)
 
 /datum/team/darkspawn/proc/upon_sacrament()
 	for(var/datum/mind/master in members)
