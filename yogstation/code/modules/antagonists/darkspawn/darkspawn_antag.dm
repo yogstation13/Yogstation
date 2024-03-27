@@ -369,7 +369,7 @@
 
 	if(forced)
 		owner.current.visible_message(
-			span_boldwarning("[owner.current]'s skin sloughs off, revealing black flesh covered in symbols!"), 
+			span_boldwarning("[owner.current]'s skin sloughs off, revealing warping black flesh covered in symbols!"), 
 			span_userdanger("You have forcefully divulged!"))
 
 	for(var/datum/action/cooldown/spell/spells in user.actions) //remove the ability that triggers this
@@ -386,6 +386,8 @@
 	show_to_ghosts = TRUE
 	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [user.real_name].</b>")
 	for(var/mob/M as anything in GLOB.alive_mob_list)
+		if(M == user)
+			continue
 		if(is_team_darkspawn(M))
 			to_chat(M, processed_message)
 	for(var/T in GLOB.dead_mob_list)
@@ -393,8 +395,9 @@
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
 
 	darkspawn_state = DARKSPAWN_DIVULGED
-	to_chat(user, span_velvet("<b>Your mind has expanded. Avoid the light. Keep to the shadows. Your time will come.</b>"))
-	to_chat(user, span_velvet("<b>Access to the Psi Web has been unlocked, spend your [willpower] willpower to purchase abilities and upgrades.</b>"))
+	to_chat(user, span_velvet("Your mind has expanded. Avoid the light. Keep to the shadows. Your time will come."))
+	to_chat(user, span_progenitor("Access to the Psi Web store has been unlocked in the antag menu."))
+	to_chat(user, span_progenitor("Spend your [willpower] willpower to purchase abilities and upgrades."))
 	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////

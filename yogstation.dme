@@ -4170,7 +4170,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\fighter_abilities.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\mixed_abilities.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\scout_abilities.dm"
-#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\veil_spells.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\thrall_spells.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\warlock_abilities.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_classes\_class.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\crawling_shadows.dm"
