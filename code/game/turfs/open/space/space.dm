@@ -52,6 +52,7 @@ GLOBAL_LIST_EMPTY(starlight)
 	initial_temperature = TCMB
 	thermal_conductivity = 0
 	heat_capacity = 700000
+	flammability = 0 // nuh uh
 	var/starlight_source_count = 0
 
 	var/destination_z
@@ -96,6 +97,13 @@ GLOBAL_LIST_EMPTY(starlight)
 
 /turf/open/space/Initalize_Atmos(times_fired)
 	return
+
+/turf/open/space/ignite_turf(power, fire_color)
+	return // no fire in space
+
+/turf/open/space/extinguish_turf()
+	if(active_hotspot) // there's no actual fire in space, but space dragons and stuff can make fire effects which should be cleared
+		qdel(active_hotspot)
 
 /turf/open/space/TakeTemperature(temp)
 

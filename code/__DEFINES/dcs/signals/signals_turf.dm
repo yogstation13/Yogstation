@@ -40,3 +40,10 @@
 #define COMSIG_TURF_RESET_ELEVATION "turf_reset_elevation"
 	#define ELEVATION_CURRENT_PIXEL_SHIFT 1
 	#define ELEVATION_MAX_PIXEL_SHIFT 2
+
+///From /datum/hotspot/perform_exposure()
+#define COMSIG_TURF_HOTSPOT_EXPOSE "turf_hotspot_expose"
+///From /turf/ignite_turf(): (power, fire_color)
+#define COMSIG_TURF_IGNITED "turf_ignited"
+	///Prevents hotspots and turf fires
+	#define SUPPRESS_FIRE (1<<0)

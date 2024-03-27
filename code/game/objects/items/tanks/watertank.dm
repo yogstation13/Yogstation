@@ -209,7 +209,6 @@
 	power = 8
 	force = 10
 	precision = 1
-	cooling_power = 5
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT  // don't put in storage
 	var/obj/item/watertank/tank

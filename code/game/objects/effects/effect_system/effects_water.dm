@@ -35,12 +35,14 @@
 				reagents.reaction(A, transfer_methods)
 		qdel(src) // delete itself if it got blocked and can't move
 		return
-	addtimer(CALLBACK(src, PROC_REF(move_particle)), 2)
+	if(life)
+		addtimer(CALLBACK(src, PROC_REF(move_particle)), 2)
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
-	if (--src.life < 1)
+	if(life < 1)
 		qdel(src)
 		return FALSE
+	life--
 	if(reagents)
 		reagents.reaction(newloc, transfer_methods)
 		for(var/atom/A in newloc)

@@ -11,7 +11,7 @@
 		M.ignite_mob()
 	var/turf/open/target_turf = get_turf(target)
 	if(istype(target_turf))
-		target_turf.IgniteTurf(rand(8, 22))
+		target_turf.ignite_turf(rand(8, 22))
 
 /obj/projectile/bullet/incendiary/Move()
 	. = ..()
