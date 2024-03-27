@@ -179,7 +179,7 @@
 		NO_DNA_COPY,
 		NOTRANSSTING,
 		NOEYESPRITES,
-		NOFLASH
+		NOHUSK
 		)
 	inherent_traits = list(
 		TRAIT_NOGUNS, 
