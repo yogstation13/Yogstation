@@ -350,7 +350,7 @@
 
 /datum/quirk/insanity/check_quirk(datum/preferences/prefs)
 	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
-	var/disallowed_trait = (initial(species_type.inherent_biotypes) & MOB_ROBOTIC)
+	var/disallowed_trait = !(initial(species_type.inherent_biotypes) & ALL_NON_ROBOTIC)
 
 	if(disallowed_trait)
 		return "You are not illogical."
