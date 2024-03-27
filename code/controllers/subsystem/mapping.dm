@@ -196,6 +196,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
 	if (space_ruins.len)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), list(/area/space), space_ruins_templates)
+	seedStation()
 	loading_ruins = FALSE
 	
 	//Load Reebe
@@ -210,7 +211,6 @@ SUBSYSTEM_DEF(mapping)
 	if(errorList.len)	// arena failed to load
 		message_admins("A shuttle arena failed to load!")
 		log_game("A shuttle arena failed to load!")
-	errorList = list()
 #endif
 	// Add the transit level
 	var/datum/space_level/base_transit = add_reservation_zlevel()
