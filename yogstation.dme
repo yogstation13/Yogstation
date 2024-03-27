@@ -801,6 +801,7 @@
 #include "code\datums\mapgen\dungeon_generators\maintenance_generator\maintenance_room_themes\random.dm"
 #include "code\datums\mapgen\dungeon_generators\maintenance_generator\maintenance_room_themes\ruin.dm"
 #include "code\datums\mapgen\dungeon_generators\maintenance_generator\maintenance_room_themes\space.dm"
+#include "code\datums\mapgen\biomes\_biome.dm"
 #include "code\datums\martial\boxing.dm"
 #include "code\datums\martial\buster_style.dm"
 #include "code\datums\martial\cqc.dm"
