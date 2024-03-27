@@ -75,6 +75,8 @@
 			continue
 		if(isbrain(dark_mind.current) || issilicon(dark_mind.current)) //if they're a borg or mmi, skip it
 			continue
+		if(!dark_mind.current.ckey)//if they've gone cata, skip it
+			continue
 		return FALSE //they aren't all dead
 	return TRUE //they're all dead
 	

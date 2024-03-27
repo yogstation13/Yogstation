@@ -61,7 +61,7 @@
 	in_use = TRUE
 
 	user.visible_message(span_warning("[user]'s sigils flare as energy swirls around them..."), span_velvet("You begin creating a psychic barrier around yourself..."))
-	playsound(user, 'yogstation/sound/magic/sacrament_begin.ogg', 50, FALSE)
+	sound_to_playing_players('yogstation/sound/magic/sacrament_begin.ogg', 50, FALSE, pressure_affected = FALSE)
 	if(!do_after(user, 3 SECONDS, user))
 		in_use = FALSE
 		return

@@ -63,10 +63,9 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 //--------------------------------Game end checks---------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/darkspawn/are_special_antags_dead()
-	for(var/datum/mind/dark_mind as anything in team.members)
-		if(dark_mind?.current?.stat != DEAD) //they can be borgs, their mind is all that really matters
-			return FALSE
-	return TRUE
+	if(team)
+		return team.check_darkspawn_death()
+	return ..()
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------After game end stuff--------------------------------//

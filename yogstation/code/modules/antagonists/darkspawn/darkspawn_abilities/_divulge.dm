@@ -29,10 +29,13 @@
 		to_chat(user, span_warning("You need to be human-er to do that!"))
 		return
 
-	if(isdarkspawn(user))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+	if(darkspawn)
 		if(!darkspawn.picked_class)
 			to_chat(user, span_warning("You must pick a class to divulge!"))
+			return
+		if(darkspawn.darkspawn_state != DARKSPAWN_MUNDANE) //if they've somehow gone back to being a non-darkspawn, let them skip the process
+			darkspawn.divulge()
 			return
 
 	if(isethereal(user))//disable the light for long enough to start divulge
@@ -113,11 +116,10 @@
 	animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
 
 	for(var/mob/living/L in view(7, user))
-		if(is_darkspawn_or_thrall(L) || L == user) //probably won't have thralls yet, but might as well check just in case
+		if(is_team_darkspawn(L) || L == user) //probably won't have thralls yet, but might as well check just in case
 			continue
 		L.flash_act(1, 1)
 		L.Knockdown(5 SECONDS)
 
-	if(isdarkspawn(owner))//sanity check
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	if(darkspawn)//sanity check
 		darkspawn.divulge()

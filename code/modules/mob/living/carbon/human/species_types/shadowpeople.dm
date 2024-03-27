@@ -1,7 +1,11 @@
 #define HEART_RESPAWN_THRESHHOLD 40
 #define HEART_SPECIAL_SHADOWIFY 2
+///cooldown between charges of the projectile absorb 
 #define DARKSPAWN_REFLECT_COOLDOWN 15 SECONDS
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------Basic shadow person species---------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
 	name = "???"
@@ -114,7 +118,9 @@
 
 	return to_add
 
-//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------Midround antag exclusive species------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow/nightmare
 	name = "Nightmare"
 	plural_form = null
@@ -132,16 +138,6 @@
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
 
-/datum/species/shadow/nightmare/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
-	var/turf/T = H.loc
-	if(istype(T))
-		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
-			H.visible_message(span_danger("[H] dances in the shadows, evading [P]!"))
-			playsound(T, "bullet_miss", 75, 1)
-			return BULLET_ACT_FORCE_PIERCE
-	return ..()
-
 /datum/species/shadow/nightmare/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	to_chat(C, "[info_text]")
@@ -151,7 +147,9 @@
 /datum/species/shadow/nightmare/check_roundstart_eligible()
 	return FALSE
 
-///////////////////////////ANTAG////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------Roundstart antag exclusive species------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow/darkspawn
 	name = "Darkspawn"
 	id = "darkspawn"
@@ -323,7 +321,7 @@
 			playsound(owner,'sound/effects/singlebeat.ogg',40,1)
 	if(respawn_progress >= HEART_RESPAWN_THRESHHOLD)
 		owner.revive(full_heal = TRUE)
-		if(!(owner.dna.species.id == "shadow" || owner.dna.species.id == "nightmare"))
+		if(!(isshadowperson(owner)))
 			var/mob/living/carbon/old_owner = owner
 			Remove(owner, HEART_SPECIAL_SHADOWIFY)
 			old_owner.set_species(/datum/species/shadow)

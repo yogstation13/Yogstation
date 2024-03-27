@@ -255,7 +255,7 @@
 	return ..()
 	
 ////////////////////////////////////////////////////////////////////////////////////
-//------------------------------Psi regen and usage-------------------------------//
+//---------------------------------Process proc-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/process(delta_time)
 	psi = min(psi, psi_cap)
@@ -288,6 +288,15 @@
 			revive_notice = FALSE
 			deadguy.visible_message(span_notice("[deadguy]'s body stills."), span_velvet("Your body stills once more."))
 
+	if(owner.current && ishuman(owner.current) && !isshadowperson(owner.current))
+		var/datum/action/cooldown/spell/divulge/action = locate() in owner.current.actions
+		if(!action)
+			action = new(owner)
+			action.Grant(owner.current)
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Psi regen and usage-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/has_psi(amt)
 	return psi >= amt
 
