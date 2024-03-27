@@ -37,13 +37,12 @@
 	QDEL_LIST(surgeries)
 	return ..()
 
-/mob/living/onZImpact(turf/T, levels, message = TRUE)
+/mob/living/onZImpact(turf/T, levels)
 	ZImpactDamage(T, levels)
 	return ..()
 
 /mob/living/proc/ZImpactDamage(turf/T, levels)
-	visible_message(span_danger("[src] crashes into [T] with a sickening noise!"), \
-					span_userdanger("You crash into [T] with a sickening noise!"))
+	visible_message(span_danger("[src] crashes into [T] with a sickening noise!"))
 	adjustBruteLoss((levels * 5) ** 1.5)
 	Knockdown(levels * 50)
 
