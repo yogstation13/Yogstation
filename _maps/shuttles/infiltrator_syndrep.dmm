@@ -17,6 +17,7 @@
 	syndie = 1;
 	freerange = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/shuttle/syndicate/bridge)
 "ac" = (
@@ -33,6 +34,12 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "ae" = (
@@ -44,6 +51,12 @@
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
 	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/bridge)
 "af" = (
@@ -54,16 +67,34 @@
 /obj/item/paper_bin,
 /obj/item/pen/red,
 /obj/item/stamp/syndiround,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "ah" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/computer/camera_advanced/syndie,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "ai" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
 /obj/effect/turf_decal/bot_white,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "aj" = (
@@ -71,12 +102,27 @@
 	possible_destinations = "syndicate_away;syndicate_z5;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s;spacebar;syndicate_custom;whiteship_home"
 	},
 /obj/effect/turf_decal/bot_white,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "ak" = (
 /obj/structure/table/reinforced,
 /obj/item/card/id/syndicate/nuke_leader{
 	name = "syndicate spare ID"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
@@ -87,11 +133,24 @@
 	name = "syndicate fax machine";
 	desc = "Used to copy important documents and anatomy studies. This one reeks of distaste for Nanotrasen."
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "am" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/donut_box,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/item/phone/real/syndicate_ruin,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "an" = (
@@ -122,6 +181,16 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/shuttle/syndicate/bridge)
 "ap" = (
@@ -140,6 +209,9 @@
 	},
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
@@ -222,6 +294,9 @@
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
 "ax" = (
@@ -234,6 +309,15 @@
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
 	},
 /turf/open/floor/wood,
 /area/shuttle/syndicate/bridge)
@@ -269,6 +353,11 @@
 /turf/open/floor/wood,
 /area/shuttle/syndicate/bridge)
 "aD" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
 "aE" = (
@@ -293,6 +382,15 @@
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
 "aH" = (
@@ -311,6 +409,9 @@
 	id = "syndieshiplockdown";
 	name = "lockdown shutters"
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
 /turf/open/floor/wood,
 /area/shuttle/syndicate/bridge)
 "aI" = (
@@ -328,6 +429,9 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "syndieshiplockdown";
 	name = "lockdown shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
 	},
 /turf/open/floor/wood,
 /area/shuttle/syndicate/bridge)
@@ -392,6 +496,7 @@
 	dir = 5
 	},
 /obj/item/storage/box/syndie_kit/chameleon,
+/obj/item/gun/energy/kinetic_accelerator/crossbow,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/syndicate/eva)
 "aS" = (
@@ -435,11 +540,16 @@
 	name = "windowed lockdown shutters";
 	id = "syndieshiplockdown"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "aW" = (
 /obj/machinery/door/airlock/external{
-	name = "E.V.A. Gear Storage";
+	name = "Security Operative Prep Room";
 	req_access_txt = "150"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -458,6 +568,15 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
 "aX" = (
@@ -475,6 +594,26 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/airlock)
 "aZ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/closet/crate/secure/weapon{
+	req_access_txt = "150";
+	name = "special weapons crate"
+	},
+/obj/item/gun/ballistic/automatic/pistol/v38,
+/obj/item/gun/ballistic/automatic/pistol/v38,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/ammo_box/magazine/v38,
+/obj/item/paper{
+	info = "You know how the guys at the Dreadnought asked the Rep to ensure his NT equivalent got offed without us being to blame? Yea. We've gotten you pistols and other guns quite similar to what most local mining stations use, and we've got a few refitted PKAs elsewhere in the ship. Should help you get the job done. Also, this is classified. Don't tell any civvies or Command will off you. Very, very quickly."
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
 "ba" = (
@@ -501,6 +640,15 @@
 	name = "windowed lockdown shutters";
 	id = "syndieshiplockdown"
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 "bb" = (
@@ -511,6 +659,15 @@
 /turf/open/floor/plating,
 /area/shuttle/syndicate/eva)
 "bc" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 "bd" = (
@@ -571,6 +728,9 @@
 	},
 /obj/item/clothing/suit/space/syndicate,
 /obj/item/clothing/head/helmet/space/syndicate,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/airlock)
 "bj" = (
@@ -581,9 +741,6 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/medical)
 "bl" = (
-/obj/machinery/door/airlock/hatch{
-	req_access_txt = "150"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -596,6 +753,16 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "syndieshiplockdown";
 	name = "lockdown shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/door/airlock/medical/glass{
+	req_access = list(150);
+	name = "Infirmary"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/medical)
@@ -617,9 +784,6 @@
 /turf/open/floor/wood,
 /area/shuttle/syndicate/bridge)
 "bp" = (
-/obj/machinery/door/airlock/hatch{
-	req_access_txt = "150"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -632,6 +796,19 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "syndieshiplockdown";
 	name = "lockdown shutters"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Engineering";
+	req_access = list(150)
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/armory)
@@ -692,6 +869,7 @@
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/ointment,
 /obj/effect/turf_decal/bot_white,
+/obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
 "bv" = (
@@ -735,53 +913,44 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "bx" = (
-/obj/item/stock_parts/cell/high{
-	pixel_x = -3;
-	pixel_y = 3
+/obj/structure/cable{
+	icon_state = "0-2"
 	},
-/obj/item/stock_parts/cell/high,
-/obj/structure/table/reinforced,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/power/rtg/advanced,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "by" = (
-/obj/item/screwdriver{
-	pixel_y = 9
+/obj/structure/cable{
+	icon_state = "0-8"
 	},
-/obj/item/assembly/voice{
-	pixel_y = 3
-	},
-/obj/structure/table/reinforced,
+/obj/machinery/power/rtg/advanced,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "bz" = (
-/obj/item/wrench,
-/obj/item/assembly/infra,
-/obj/structure/table/reinforced,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/tank/air{
+	startingvolume = 250
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "bA" = (
-/obj/item/assembly/signaler,
-/obj/item/assembly/signaler,
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
 	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
 	},
-/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "bB" = (
-/obj/item/weldingtool/largetank{
-	pixel_y = 3
-	},
-/obj/item/multitool,
-/obj/structure/table/reinforced,
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/autolathe/hacked,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "bC" = (
@@ -827,12 +996,21 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/meat/steak,
+/obj/item/reagent_containers/food/snacks/meat/steak,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
 "bG" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/east{
+	req_access = list(150)
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
@@ -853,11 +1031,20 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/medical)
 "bJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/medical)
@@ -886,11 +1073,25 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/hallway)
 "bN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/armory)
@@ -898,20 +1099,19 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/trinary/mixer/flipped/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/armory)
 "bP" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 6
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/turf/open/floor/circuit/green/anim{
+	initial_gas_mix = "n2=100;TEMP=80"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "bQ" = (
 /obj/structure/closet/syndicate/personal,
@@ -933,29 +1133,56 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/medical)
 "bT" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/medical)
 "bU" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/hallway)
 "bV" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/armory)
 "bW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/machinery/atmospherics/components/trinary/filter/flipped/layer4{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/armory)
 "bX" = (
-/obj/structure/closet/syndicate/nuclear,
 /obj/effect/turf_decal/bot_white,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	target_temperature = 73;
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "bY" = (
@@ -988,6 +1215,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
 "ca" = (
@@ -1001,6 +1229,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
 "cb" = (
@@ -1044,89 +1273,93 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
 "ce" = (
-/obj/item/sbeacondrop/bomb{
-	pixel_y = 5
-	},
-/obj/item/sbeacondrop/bomb,
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/grenade/plastic/c4,
+/obj/structure/closet/crate/secure/weapon{
+	req_access_txt = "150";
+	name = "special weapons crate"
+	},
+/obj/item/gun/energy/kinetic_accelerator,
+/obj/item/gun/energy/kinetic_accelerator,
+/obj/item/borg/upgrade/modkit/indoors,
+/obj/item/borg/upgrade/modkit/indoors,
+/obj/item/borg/upgrade/modkit/indoors,
+/obj/item/borg/upgrade/modkit/indoors,
+/obj/item/borg/upgrade/modkit/damage,
+/obj/item/borg/upgrade/modkit/damage,
+/obj/item/paper{
+	info = "We also found some kinetic accelerators onboard the Dreadnought in the mining wing. Got permission from the salvage guys to give you two - we've also gotten you the indoors-capable upgrade. Do note, though, it might end up being more harm than good if NT manages to recover the KA, so we've got some less suspicious ways for you to compensate for the lack of damage in air as well."
+	},
+/obj/item/borg/upgrade/modkit/damage,
+/obj/item/borg/upgrade/modkit/damage,
+/obj/item/borg/upgrade/modkit/hardness,
+/obj/item/borg/upgrade/modkit/hardness,
+/obj/item/borg/upgrade/modkit/cooldown,
+/obj/item/borg/upgrade/modkit/cooldown,
+/obj/item/borg/upgrade/modkit/range,
+/obj/item/borg/upgrade/modkit/range,
+/obj/item/borg/upgrade/modkit/damage,
+/obj/item/borg/upgrade/modkit/damage,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "cf" = (
-/obj/item/grenade/syndieminibomb{
-	pixel_x = 4;
-	pixel_y = 2
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/item/grenade/syndieminibomb{
-	pixel_x = -1
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
+/obj/structure/window/plasma/reinforced/spawner/north,
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/grenade/plastic/c4,
-/obj/item/grenade/plastic/c4,
-/obj/item/grenade/plastic/c4,
-/obj/item/grenade/plastic/c4,
-/obj/item/grenade/plastic/c4,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/armory)
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/hallway)
 "cg" = (
-/obj/structure/window/reinforced{
+/obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/armory)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/wood,
+/area/shuttle/syndicate/bridge)
 "ch" = (
-/obj/machinery/door/window{
-	dir = 1;
-	name = "Technological Storage";
-	req_access_txt = "150"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "150";
+	name = "Server Room"
 	},
+/obj/structure/fans/tiny,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "ci" = (
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
 	},
-/obj/structure/table/reinforced,
-/obj/item/aicard,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/armory)
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/hallway)
 "cj" = (
-/obj/item/surgicaldrill,
-/obj/item/circular_saw,
 /obj/structure/table/reinforced,
 /obj/machinery/light{
 	dir = 8
@@ -1141,6 +1374,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/storage/backpack/duffelbag/syndie/surgery,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
 "ck" = (
@@ -1160,6 +1394,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
@@ -1184,28 +1421,28 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "cn" = (
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 8;
+	external_pressure_bound = 120;
+	name = "server vent"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
+/turf/open/floor/circuit/green/anim{
+	initial_gas_mix = "n2=100;TEMP=80"
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "co" = (
-/obj/item/cautery,
-/obj/item/scalpel,
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -1216,8 +1453,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
 /turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/medical)
+/area/shuttle/syndicate/hallway)
 "cp" = (
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
@@ -1225,8 +1464,6 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
 "cq" = (
-/obj/item/retractor,
-/obj/item/hemostat,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1242,20 +1479,21 @@
 /area/shuttle/syndicate/medical)
 "cr" = (
 /obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/structure/window/plasma/reinforced/spawner/north,
 /turf/open/floor/plating/airless,
 /area/shuttle/syndicate/hallway)
 "ct" = (
 /obj/machinery/telecomms/allinone{
 	intercept = 1
 	},
-/turf/open/floor/circuit/red,
+/obj/machinery/light,
+/turf/open/floor/circuit/green/anim{
+	initial_gas_mix = "n2=100;TEMP=80"
+	},
 /area/shuttle/syndicate/armory)
 "cu" = (
 /obj/structure/shuttle/engine/heater,
@@ -1324,6 +1562,16 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/shuttle/syndicate/armory)
+"dd" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/armory)
 "dp" = (
 /obj/structure/chair/office/dark{
 	dir = 1;
@@ -1331,6 +1579,114 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
+"dw" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/medical)
+"fm" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
+"ft" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/shuttle/syndicate/bridge)
+"gn" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/armory)
+"gr" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/syndicate/armory)
+"hM" = (
+/obj/effect/turf_decal/siding/wood/thin,
+/obj/effect/turf_decal/siding/wood/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/shuttle/syndicate/bridge)
+"je" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/window/plasma/reinforced/spawner/north,
+/obj/structure/table/reinforced,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/hallway)
+"jw" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/armory)
+"kw" = (
+/obj/structure/safe,
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/hallway)
 "kQ" = (
 /obj/structure/table/wood/fancy/red,
 /obj/effect/turf_decal/siding/wood{
@@ -1345,8 +1701,63 @@
 	name = "windowed lockdown shutters";
 	id = "syndieshiplockdown"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/shuttle/syndicate/bridge)
+"mC" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/item/storage/box/mre/menu3{
+	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. Any NT employee lucky enough to get their hands on one of these is truly blessed. The Nanotrasen logo has been scratched out and replaced with the Syndicate one too! A blessing from the Lord!"
+	},
+/obj/item/storage/box/mre/menu3{
+	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. Any NT employee lucky enough to get their hands on one of these is truly blessed. The Nanotrasen logo has been scratched out and replaced with the Syndicate one too! A blessing from the Lord!"
+	},
+/obj/item/storage/box/mre/menu3{
+	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. Any NT employee lucky enough to get their hands on one of these is truly blessed. The Nanotrasen logo has been scratched out and replaced with the Syndicate one too! A blessing from the Lord!"
+	},
+/obj/item/storage/box/mre/menu3{
+	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. Any NT employee lucky enough to get their hands on one of these is truly blessed. The Nanotrasen logo has been scratched out and replaced with the Syndicate one too! A blessing from the Lord!"
+	},
+/obj/item/storage/box/mre/menu3{
+	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. Any NT employee lucky enough to get their hands on one of these is truly blessed. The Nanotrasen logo has been scratched out and replaced with the Syndicate one too! A blessing from the Lord!"
+	},
+/obj/item/storage/box/mre/menu3{
+	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. Any NT employee lucky enough to get their hands on one of these is truly blessed. The Nanotrasen logo has been scratched out and replaced with the Syndicate one too! A blessing from the Lord!"
+	},
+/obj/item/storage/box/mre,
+/obj/item/storage/box/mre,
+/obj/item/storage/box/mre,
+/obj/item/storage/box/mre/menu4,
+/obj/item/storage/box/mre/menu4,
+/obj/item/storage/box/mre/menu4,
+/obj/item/storage/box/mre/menu4,
+/obj/item/storage/box/mre/menu4,
+/obj/item/storage/box/mre/menu2,
+/obj/item/storage/box/mre/menu2,
+/obj/item/storage/box/mre/menu2,
+/obj/item/storage/box/mre/menu2,
+/obj/item/storage/box/mre/menu2,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
 "nG" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1356,6 +1767,28 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/airlock)
+"oZ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/eva)
 "pd" = (
 /obj/structure/chair/comfy/shuttle{
 	name = "tactical chair"
@@ -1363,8 +1796,78 @@
 /obj/effect/turf_decal/siding/wood/end/thin{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
+"pl" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Bridge";
+	req_access_txt = "151"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndieshiplockdown";
+	name = "lockdown shutters"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
+"pK" = (
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/hallway)
+"pN" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/item/gun/energy/laser/retro,
+/obj/item/gun/energy/laser/retro,
+/obj/structure/closet/crate/secure/weapon{
+	req_access_txt = "150";
+	name = "special weapons crate"
+	},
+/obj/item/paper{
+	info = "Yep, these guys actually use the retro lasers too. You use what you can get out in frontier space like where you're headed. Don't worry, you've always got the bossman and his revolver if you really get into trouble."
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 "pO" = (
 /obj/structure/bed,
 /obj/item/bedsheet/syndie,
@@ -1376,6 +1879,50 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
+"qr" = (
+/obj/machinery/porta_turret/syndicate,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/syndicate/bridge)
+"qv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/hallway)
+"qD" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
 "rB" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/syndicate,
@@ -1390,11 +1937,36 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"rJ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/eva)
+"rW" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/medical)
 "sI" = (
-/obj/machinery/recharge_station/fullupgrade,
-/turf/open/floor/circuit/red,
+/turf/open/floor/circuit/red/anim{
+	initial_gas_mix = "n2=100;TEMP=80"
+	},
 /area/shuttle/syndicate/armory)
 "tQ" = (
 /obj/effect/spawner/structure/window/plastitanium,
@@ -1404,6 +1976,9 @@
 	},
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/eva)
@@ -1416,6 +1991,7 @@
 	dir = 6
 	},
 /obj/item/storage/box/syndie_kit/chameleon,
+/obj/item/gun/energy/kinetic_accelerator/crossbow,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/syndicate/eva)
 "vv" = (
@@ -1423,12 +1999,169 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
+"vz" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/eva)
+"vZ" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/shuttle/syndicate/bridge)
+"wL" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"xv" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
+"yf" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/armory)
+"As" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/syndicate/armory)
+"AV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/medical)
 "Bn" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4;
 	name = "tactical chair"
 	},
 /obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"BU" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4,
+/turf/template_noop,
+/area/shuttle/syndicate/airlock)
+"Cf" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/shuttle/syndicate/bridge)
+"CI" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/armory)
+"CZ" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/hallway)
+"Da" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 "Dg" = (
@@ -1444,6 +2177,9 @@
 	},
 /obj/structure/closet/emcloset/anchored,
 /obj/item/tank/internals/oxygen,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "Eh" = (
@@ -1454,6 +2190,9 @@
 	},
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/airlock)
@@ -1473,14 +2212,67 @@
 	name = "lockdown shutters"
 	},
 /obj/machinery/door/firedoor/heavy,
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32;
+	pixel_y = 4
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32;
+	pixel_y = -8
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/bearsteak,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
+"EL" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
+"Fu" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/medical)
 "Ge" = (
 /obj/machinery/door/poddoor/shutters/window/preopen{
 	name = "windowed lockdown shutters";
 	id = "syndieshiplockdown"
 	},
 /obj/machinery/door/firedoor/heavy,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
 "Hj" = (
@@ -1508,18 +2300,72 @@
 	},
 /obj/item/storage/toolbox/syndicate/real,
 /obj/item/flashlight/seclite,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/carpet/royalblack,
+/area/shuttle/syndicate/bridge)
+"Hm" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Syndicate engineers."
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
 /area/shuttle/syndicate/bridge)
 "In" = (
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 9
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
+"Iu" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/eva)
+"Mc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/trinary/filter/flipped/layer4{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/armory)
 "Mw" = (
 /obj/effect/turf_decal/siding/wood/thin,
 /obj/effect/turf_decal/siding/wood/corner/thin{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
@@ -1538,6 +2384,9 @@
 	req_access_txt = "150";
 	pixel_x = 6
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "No" = (
@@ -1547,6 +2396,114 @@
 	},
 /obj/machinery/suit_storage_unit/syndicate{
 	suit_type = /obj/item/clothing/suit/space/hardsuit/syndi/elite
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
+"Pc" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"Pf" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"Py" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/eva)
+"PJ" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
+"QT" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/armory)
+"Rz" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/hallway)
+"Sz" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
@@ -1567,6 +2524,108 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
+"TG" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/circuit/red/anim{
+	initial_gas_mix = "n2=100;TEMP=80"
+	},
+/area/shuttle/syndicate/armory)
+"Uu" = (
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/turf/open/floor/circuit/red/anim{
+	initial_gas_mix = "n2=100;TEMP=80"
+	},
+/area/shuttle/syndicate/armory)
+"Uw" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/eva)
+"Vc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/window/brigdoor{
+	dir = 1;
+	req_access = list(151)
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/hallway)
+"Vt" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"Vy" = (
+/obj/structure/filingcabinet,
+/obj/item/folder/syndicate/red,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/hallway)
+"Wo" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
+"WA" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 "Xg" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/closet/syndicate,
@@ -1579,6 +2638,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"XM" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/atmospherics/components/unary/tank/nitrogen{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/armory)
 "Yu" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -1586,8 +2652,45 @@
 /obj/effect/turf_decal/siding/wood/end/thin{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
+"YP" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/eva)
+"Zw" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 
 (1,1,1) = {"
 aa
@@ -1635,7 +2738,7 @@ bq
 bR
 bY
 cj
-co
+cq
 cu
 cz
 "}
@@ -1657,9 +2760,9 @@ aJ
 br
 bD
 bH
-bH
+dw
 bZ
-bH
+Fu
 cp
 cu
 cA
@@ -1670,13 +2773,13 @@ aa
 aa
 aa
 aF
-ae
+ft
 ac
 ac
 aM
-aM
-aM
-aM
+vz
+Uw
+Py
 aM
 bk
 bs
@@ -1690,8 +2793,8 @@ cu
 cB
 "}
 (5,1,1) = {"
-ae
-ae
+ft
+ft
 ac
 ac
 ac
@@ -1699,9 +2802,9 @@ ad
 aq
 bw
 aM
-aM
-aM
-aM
+YP
+rJ
+oZ
 aM
 aJ
 bt
@@ -1715,24 +2818,24 @@ aJ
 aF
 "}
 (6,1,1) = {"
-ae
+vZ
 ag
 an
 at
 av
-ad
+Wo
 Dg
 ac
 aN
 aS
 aU
-aZ
+Iu
 vv
 aJ
 bu
 bD
-bJ
-bT
+AV
+rW
 cc
 aJ
 aa
@@ -1740,7 +2843,7 @@ aa
 aa
 "}
 (7,1,1) = {"
-ae
+Hm
 ah
 ap
 at
@@ -1765,10 +2868,10 @@ af
 aa
 "}
 (8,1,1) = {"
-ae
+Hm
 ai
 dp
-at
+Sz
 au
 ay
 ab
@@ -1776,71 +2879,71 @@ aH
 aw
 aC
 aQ
-az
+xv
 az
 bK
 az
 bE
-bL
-bU
-az
-az
+Rz
+CZ
+cf
+Vy
 cr
 cv
 aa
 "}
 (9,1,1) = {"
-ae
+Hm
 aj
-ap
-at
-av
+PJ
+fm
+pl
 ao
 pd
 kQ
 Yu
-ao
+cg
 aV
-az
+qD
 aD
 Ge
 aD
 aD
 bL
-bU
-az
-az
+ci
+Vc
+pK
 cr
 cw
 aa
 "}
 (10,1,1) = {"
-ae
+Hm
 ak
 MJ
 SP
 ac
 aA
-aw
+hM
 aI
 aE
 bo
 aQ
-az
-az
+EL
+mC
 Ey
-az
+co
 bF
-bL
+qv
 bU
-az
-az
+je
+kw
 cr
 cx
 aa
 "}
 (11,1,1) = {"
-ae
+Hm
 al
 ap
 at
@@ -1880,9 +2983,9 @@ bc
 Xg
 bm
 bx
-bG
+CI
 bN
-bV
+yf
 ce
 bm
 aa
@@ -1890,8 +2993,8 @@ aa
 aa
 "}
 (13,1,1) = {"
-ae
-ae
+Cf
+Cf
 ac
 ac
 ac
@@ -1899,16 +3002,16 @@ Hj
 pO
 ac
 bv
-aP
-aP
-aP
+Vt
+Zw
+Da
 aP
 bm
 by
-bG
-bN
+dd
+Mc
 bV
-cf
+bj
 bj
 bm
 bm
@@ -1920,22 +3023,22 @@ aa
 aa
 aa
 aF
+Cf
 ac
 ac
-ac
-aP
-aP
-aP
-aP
+wL
+Pc
+WA
+Pf
 rB
 bn
 bz
-bG
+jw
 bO
 bW
-cg
+bh
 bP
-sI
+TG
 cy
 cE
 "}
@@ -1948,18 +3051,18 @@ aa
 aa
 aa
 aB
-aP
+pN
 nG
 aT
 bd
 bi
 bm
+bQ
 bA
-bG
-bP
-bP
+QT
+gn
 ch
-bP
+Uu
 ct
 cy
 cF
@@ -1981,9 +3084,9 @@ Eh
 bm
 bB
 bG
-bQ
+XM
 bX
-ci
+bj
 cn
 sI
 cy
@@ -2002,10 +3105,10 @@ aa
 aB
 ar
 aB
-aa
-aF
-bm
-bm
+BU
+qr
+gr
+As
 bm
 bm
 bm

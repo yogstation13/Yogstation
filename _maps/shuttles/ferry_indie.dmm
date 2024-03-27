@@ -23,7 +23,6 @@
 	id_tag = "ferry_escape_doors"
 	},
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "ntferrylockdown";
 	name = "lockdown shutters"
@@ -240,7 +239,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "ntferrylockdown";
 	name = "lockdown shutters"
@@ -263,14 +261,6 @@
 	},
 /obj/machinery/light{
 	dir = 8
-	},
-/obj/machinery/button/door{
-	specialfunctions = 4;
-	id = "ferry_escape_doors";
-	name = "Escape Door Lockdown";
-	pixel_y = 24;
-	pixel_x = 6;
-	normaldoorcontrol = 1
 	},
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/recharger/wallrecharger{
@@ -304,12 +294,6 @@
 /obj/structure/table/wood,
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/obj/machinery/button/door{
-	specialfunctions = 4;
-	id = "ferry_escape_doors";
-	name = "Escape Door Lockdown";
-	normaldoorcontrol = 1
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -532,8 +516,8 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
 	dir = 4
 	},
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating/airless,
 /area/shuttle/transport)
 "N" = (
 /obj/structure/cable{

@@ -702,7 +702,9 @@
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
 	},
-/turf/open/floor/plating/burnt,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
 /area/science/mixing/chamber)
 "aeo" = (
 /obj/machinery/sparker/toxmix{
@@ -1048,7 +1050,7 @@
 	id = "mixingsparker";
 	pixel_x = 25
 	},
-/turf/open/floor/plating/burnt,
+/turf/open/floor/plating/airless,
 /area/science/mixing/chamber)
 "agT" = (
 /obj/machinery/holopad,
@@ -9619,7 +9621,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt/two,
 /area/science/storage)
 "bsg" = (
 /obj/effect/landmark/xeno_spawn,
@@ -9633,7 +9635,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt,
 /area/science/storage)
 "bsj" = (
 /obj/machinery/camera{
@@ -11224,7 +11226,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt,
 /area/science/storage)
 "bDm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -11263,7 +11265,7 @@
 "bDE" = (
 /obj/machinery/electrolyzer,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt,
 /area/science/storage)
 "bDF" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -11311,7 +11313,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt/two,
 /area/science/storage)
 "bEg" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -11568,7 +11570,7 @@
 "bGY" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt/two,
 /area/science/storage)
 "bHa" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -11601,7 +11603,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt/two,
 /area/science/storage)
 "bHi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -11768,17 +11770,15 @@
 "bIz" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt,
 /area/science/storage)
 "bIA" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating/burnt,
 /area/science/storage)
 "bIB" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating/burnt,
 /area/science/storage)
 "bIE" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -13858,6 +13858,11 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/cryopods)
+"cer" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/burnt,
+/area/science/storage)
 "cet" = (
 /turf/open/floor/engine/o2,
 /area/engine/atmos/distro)
@@ -18999,8 +19004,7 @@
 "dDp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/portable_atmospherics/canister/water_vapor,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating/burnt,
 /area/science/storage)
 "dDw" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -25314,7 +25318,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt/two,
 /area/science/storage)
 "fFK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -36633,8 +36637,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating/burnt,
 /area/science/storage)
 "jtZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -38662,7 +38665,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt/two,
 /area/science/storage)
 "kky" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -41761,6 +41764,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"loM" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/portable_atmospherics/canister/plasma,
+/turf/open/floor/plasteel/burnt/two,
+/area/science/storage)
 "lpj" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 1
@@ -49286,7 +49294,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt,
 /area/science/storage)
 "nUW" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on,
@@ -61782,7 +61790,7 @@
 "sgH" = (
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt/two,
 /area/science/storage)
 "sgI" = (
 /obj/machinery/portable_atmospherics/scrubber,
@@ -72698,7 +72706,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/burnt,
 /area/science/mixing)
 "vRX" = (
 /obj/machinery/vending/cigarette,
@@ -77399,6 +77407,11 @@
 /obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"xAd" = (
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/burnt,
+/area/science/storage)
 "xAi" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/effect/turf_decal/bot_red,
@@ -125843,7 +125856,7 @@ bDc
 bIA
 kkv
 bEc
-bIB
+cer
 bIB
 bJN
 mvV
@@ -126100,7 +126113,7 @@ bDc
 fFy
 nUQ
 bsf
-bEo
+loM
 bEo
 bJN
 eDW
@@ -126357,8 +126370,8 @@ bDc
 sgH
 dDp
 bsg
-bEo
-bEo
+loM
+loM
 bJN
 kCh
 tqt
@@ -126614,7 +126627,7 @@ bDc
 bDE
 bDf
 bsm
-bGY
+xAd
 bGY
 bJN
 smk

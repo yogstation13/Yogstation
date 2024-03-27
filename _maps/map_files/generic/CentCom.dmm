@@ -8969,9 +8969,13 @@
 /turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "atB" = (
-/obj/item/storage/fancy/donut_box,
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/button/door{
+	id = "centcom_storyline_event_vault";
+	req_access_txt = "106";
+	name = "Diplomatic Supply Vault"
+	},
 /turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "atC" = (
@@ -10736,8 +10740,8 @@
 	shuttle_id = "ferry_away";
 	width = 5
 	},
-/turf/open/space,
-/area/space)
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "axc" = (
 /obj/machinery/door/airlock/external{
 	name = "Ferry Airlock"
@@ -23127,7 +23131,9 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/brass/prefilled/ratvar/admin,
-/obj/item/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate{
+	desc = "Danger. Very robust. A little note on it says 'RETRIEVED BY SALVAGE DIVISION'. Huh."
+	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aVF" = (
@@ -25305,6 +25311,19 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"bkj" = (
+/turf/open/floor/plating,
+/area/centcom/ferry)
+"blO" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/firstaid/brute,
+/obj/item/storage/firstaid/fire,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "btv" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
@@ -25395,6 +25414,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ctf)
+"bSI" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/defibrillator/compact/loaded,
+/obj/item/defibrillator/compact/loaded,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "bUf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -25522,6 +25551,16 @@
 /obj/machinery/vending/sustenance,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"cSf" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/part_replacer/cargo,
+/obj/item/storage/part_replacer/cargo,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "cSn" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -25556,7 +25595,9 @@
 	req_access = 150
 	},
 /obj/structure/table,
-/obj/item/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate{
+	desc = "Danger. Very robust. A little note on it says 'RETRIEVED BY SALVAGE DIVISION'. Huh."
+	},
 /obj/item/flashlight,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/mineral/plastitanium,
@@ -25644,6 +25685,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
+"ejW" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "enK" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -25801,6 +25851,18 @@
 	},
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
+"fMl" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/toolbox/syndicate{
+	desc = "Danger. Very robust. A little note on it says 'RETRIEVED BY SALVAGE DIVISION'. Huh."
+	},
+/obj/item/circuitboard/machine/autolathe,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "fPN" = (
 /obj/machinery/light{
 	dir = 4
@@ -25817,6 +25879,16 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/centcom)
+"gdf" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/box/syndie_kit/chameleon,
+/obj/item/storage/box/syndie_kit/chameleon,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "gfq" = (
 /obj/machinery/vending/boozeomat/all_access,
 /turf/open/floor/plasteel/bluespace,
@@ -25863,6 +25935,17 @@
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"gGQ" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/firstaid/tactical,
+/obj/item/storage/firstaid/tactical,
+/obj/item/storage/firstaid/tactical,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "gJW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -25892,6 +25975,29 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/syndicate_mothership)
+"gWw" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/toolbox/mechanical/insulateds{
+	name = "mechanical toolbox";
+	desc = "Danger. Very robust."
+	},
+/obj/item/storage/toolbox/mechanical/insulateds{
+	name = "mechanical toolbox";
+	desc = "Danger. Very robust."
+	},
+/obj/item/storage/toolbox/mechanical/insulateds{
+	name = "mechanical toolbox";
+	desc = "Danger. Very robust."
+	},
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "hcE" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Ready Room";
@@ -25913,6 +26019,17 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"hpp" = (
+/obj/machinery/door/poddoor{
+	id = "centcom_storyline_event_vault"
+	},
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "hpv" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info27"
@@ -25931,6 +26048,20 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"hwX" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/construction/rcd/loaded,
+/obj/item/construction/rcd/loaded,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "hxb" = (
 /obj/machinery/vending/wallgene,
 /turf/open/floor/plasteel/bluespace,
@@ -25947,6 +26078,17 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
+"hHm" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/firstaid/hypospray/deluxe,
+/obj/item/storage/firstaid/hypospray/deluxe,
+/obj/item/storage/firstaid/hypospray/vial,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "hHB" = (
 /obj/machinery/vending/cola/shamblers,
 /turf/open/floor/plasteel/bluespace,
@@ -25980,6 +26122,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"hOw" = (
+/obj/machinery/door/poddoor{
+	id = "centcom_storyline_event_vault"
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "hUh" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/plasteel/bluespace,
@@ -26000,6 +26153,17 @@
 /obj/machinery/vending/cola/blue,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"ila" = (
+/obj/machinery/door/poddoor{
+	id = "centcom_storyline_event_vault"
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "ilg" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title11"
@@ -26038,6 +26202,11 @@
 /obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"iwB" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon,
+/turf/open/space/basic,
+/area/centcom/ferry)
 "iCm" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info19"
@@ -26047,6 +26216,17 @@
 /obj/machinery/vending/donksofttoyvendor,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"iDJ" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/clothing/suit/space/hardsuit/ert,
+/obj/item/clothing/suit/space/hardsuit/ert/sec,
+/obj/item/clothing/suit/space/hardsuit/ert/sec,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "iIk" = (
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/machinery/light{
@@ -26054,6 +26234,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
+"iIR" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/energy/e_gun/stun,
+/obj/item/gun/energy/e_gun/stun,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "iSo" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -26066,6 +26256,36 @@
 /obj/machinery/vending/cigarette/beach,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"iZC" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/circuitboard/machine/cryo_tube,
+/obj/item/circuitboard/machine/thermomachine,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
+"jhF" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/circuitboard/machine/sleeper,
+/obj/item/circuitboard/machine/sleeper,
+/obj/item/circuitboard/machine/clonescanner,
+/obj/item/circuitboard/machine/clonescanner,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "jjO" = (
 /obj/machinery/vending/gifts,
 /turf/open/floor/plasteel/bluespace,
@@ -26088,6 +26308,27 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"jHU" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_y = -12
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "jJm" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -26275,6 +26516,10 @@
 /obj/machinery/microwave,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/syndicate_mothership)
+"lFQ" = (
+/obj/effect/turf_decal/stripes/end,
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "lFR" = (
 /obj/machinery/vending/wardrobe/law_wardrobe,
 /turf/open/floor/plasteel/bluespace,
@@ -26283,6 +26528,17 @@
 /obj/item/flashlight/lantern,
 /turf/open/indestructible/brazil/lostit,
 /area/brazil)
+"lPc" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/energy/taser{
+	desc = "A low-capacity, energy-based stun gun used by security teams to subdue targets at range. It has a thin layer of rust over it."
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "lSY" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
@@ -26404,6 +26660,17 @@
 	icon_state = "info17"
 	},
 /area/centcom/testchamber)
+"mGr" = (
+/obj/machinery/door/airlock/external{
+	name = "Ferry Airlock"
+	},
+/obj/machinery/door/poddoor{
+	id = "centcom_storyline_event_vault"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "mGx" = (
 /obj/machinery/vending/snack/teal,
 /turf/open/floor/plasteel/bluespace,
@@ -26423,6 +26690,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ctf)
+"mRV" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/energy/disabler,
+/obj/item/gun/energy/disabler,
+/obj/item/gun/energy/disabler,
+/obj/item/gun/energy/disabler,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "mVV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -26464,6 +26743,18 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"nky" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/obj/item/ammo_box/magazine/v38/rubber,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "not" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -26498,10 +26789,28 @@
 /obj/machinery/vending/boozeomat/syndicate_access,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"nve" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "nvq" = (
 /obj/machinery/vending/cart,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"nwK" = (
+/turf/closed/indestructible/syndicate,
+/area/centcom/ferry)
+"nxH" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/clothing/suit/space/hardsuit/engine,
+/obj/item/clothing/suit/space/hardsuit/engine,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "nDx" = (
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /turf/open/floor/plasteel/dark,
@@ -26513,11 +26822,25 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/syndicate_mothership)
+"nIm" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "nIM" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title8"
 	},
 /area/centcom/testchamber)
+"nJZ" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "nNJ" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info8"
@@ -26658,6 +26981,9 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"oMr" = (
+/turf/closed/indestructible/fakedoor/poddoor,
+/area/centcom/ferry)
 "oWM" = (
 /obj/machinery/vending/wardrobe/curator_wardrobe,
 /turf/open/floor/plasteel/bluespace,
@@ -26686,6 +27012,27 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"pap" = (
+/obj/machinery/door/poddoor{
+	id = "centcom_storyline_event_vault"
+	},
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
+"pft" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/syringe,
+/obj/item/gun/syringe,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "pfQ" = (
 /obj/effect/decal/fakelattice{
 	color = "#808080"
@@ -26706,6 +27053,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
+"poZ" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/energy/kinetic_accelerator/crossbow{
+	desc = "A reverse-engineered version of the Syndicate energy crossbow, made by Nanotrasen."
+	},
+/obj/item/gun/energy/kinetic_accelerator/crossbow{
+	desc = "A reverse-engineered version of the Syndicate energy crossbow, made by Nanotrasen."
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "pCa" = (
 /turf/closed/indestructible/riveted,
 /area/centcom)
@@ -26731,6 +27092,10 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"pIG" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/centcom/ferry)
 "pJM" = (
 /turf/closed/indestructible/alien,
 /area/bluespace_locker)
@@ -26754,6 +27119,21 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ctf)
+"pXk" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/centcom/ferry)
+"pZb" = (
+/obj/machinery/conveyor_switch{
+	id = "centcom_storyline_freight1"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "qeJ" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/light{
@@ -26778,6 +27158,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom)
+"qjP" = (
+/obj/effect/turf_decal/stripes,
+/turf/open/floor/engine,
+/area/centcom/ferry)
 "qnv" = (
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/structure/table/reinforced,
@@ -26795,6 +27179,18 @@
 /obj/machinery/vending/wardrobe/viro_wardrobe,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"qvQ" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "qFl" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
@@ -26898,6 +27294,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"rzM" = (
+/obj/machinery/door/poddoor{
+	id = "centcom_storyline_event_vault"
+	},
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "rBK" = (
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/dark,
@@ -26941,6 +27348,16 @@
 /obj/item/flashlight/lantern,
 /turf/open/indestructible/brazil/necropolis,
 /area/brazil)
+"rOj" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/part_replacer/bluespace/tier4,
+/obj/item/storage/part_replacer/bluespace/tier4,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "rVA" = (
 /obj/machinery/vending/magivend,
 /turf/open/floor/plasteel/bluespace,
@@ -26955,6 +27372,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
+"sio" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "spc" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title9"
@@ -26964,6 +27390,22 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"swr" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/card/id/syndicate/anyone{
+	access = list(12);
+	name = "nanotrasen infiltrator ID card"
+	},
+/obj/item/card/id/syndicate/anyone{
+	access = list(12);
+	name = "nanotrasen infiltrator ID card"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "sNZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -26971,6 +27413,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
+"sQo" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "sSY" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info10"
@@ -27008,6 +27458,25 @@
 /obj/machinery/vending/wallhypo,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"too" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
+/turf/open/floor/plating,
+/area/centcom/ferry)
+"toU" = (
+/obj/machinery/conveyor_switch{
+	id = "centcom_storyline_freight2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "tqx" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
@@ -27053,6 +27522,12 @@
 	icon_state = "256"
 	},
 /area/centcom/testchamber)
+"tYq" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "uav" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
@@ -27071,6 +27546,9 @@
 /obj/structure/mecha_wreckage/seraph,
 /turf/open/floor/plating/asteroid/snow/temperatre,
 /area/centcom/syndicate_mothership)
+"ujS" = (
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "una" = (
 /obj/machinery/vending/wardrobe/science_wardrobe,
 /turf/open/floor/plasteel/bluespace,
@@ -27121,6 +27599,13 @@
 	color = "#808080"
 	},
 /area/centcom/syndicate_mothership)
+"uKR" = (
+/obj/machinery/conveyor_switch{
+	id = "centcom_storyline_freight3"
+	},
+/obj/effect/turf_decal/stripes/end,
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "uNA" = (
 /obj/structure/rack,
 /obj/item/clothing/head/chefhat,
@@ -27211,6 +27696,16 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/grass,
 /area/centcom/tdome/tdomeadmin)
+"vnD" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "vpx" = (
 /obj/structure/goalnet/goalpost/right,
 /turf/open/floor/holofloor/grass,
@@ -27233,6 +27728,17 @@
 	name = "Munitions"
 	},
 /area/centcom/syndicate_mothership)
+"vBo" = (
+/obj/machinery/door/poddoor{
+	id = "centcom_storyline_event_vault"
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "vDN" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
@@ -27266,6 +27772,16 @@
 "vPZ" = (
 /turf/open/floor/plasteel/dark,
 /area/centcom)
+"vRB" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/firstaid/hypospray/qmc,
+/obj/item/storage/firstaid/hypospray/qmc,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "vUr" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "128"
@@ -27336,6 +27852,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership/control)
+"wra" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
+"wso" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "wxA" = (
 /obj/machinery/vending/snack/blue,
 /turf/open/floor/plasteel/bluespace,
@@ -27381,6 +27908,16 @@
 	icon_state = "96"
 	},
 /area/centcom/testchamber)
+"wDI" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/energy/laser/retro,
+/obj/item/gun/energy/laser/retro,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "wId" = (
 /obj/structure/closet/syndicate/personal,
 /obj/effect/turf_decal/stripes/line{
@@ -27389,6 +27926,18 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/control)
+"wJi" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/syringe/mulligan,
+/obj/item/reagent_containers/syringe/mulligan,
+/obj/item/reagent_containers/syringe/mulligan,
+/obj/item/reagent_containers/syringe/mulligan,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "wPo" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -27401,6 +27950,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ctf)
+"wTB" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/energy/kinetic_accelerator,
+/obj/item/gun/energy/kinetic_accelerator,
+/obj/item/borg/upgrade/modkit/indoors{
+	desc = "A reverse-engineered replica of a piece of Syndicate technology which automatically compensates for air pressure to permit kientic accelerators to be more effective in pressurised environments."
+	},
+/obj/item/borg/upgrade/modkit/indoors{
+	desc = "A reverse-engineered replica of a piece of Syndicate technology which automatically compensates for air pressure to permit kientic accelerators to be more effective in pressurised environments."
+	},
+/obj/item/borg/upgrade/modkit/indoors{
+	desc = "A reverse-engineered replica of a piece of Syndicate technology which automatically compensates for air pressure to permit kientic accelerators to be more effective in pressurised environments."
+	},
+/obj/item/borg/upgrade/modkit/indoors{
+	desc = "A reverse-engineered replica of a piece of Syndicate technology which automatically compensates for air pressure to permit kientic accelerators to be more effective in pressurised environments."
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "xfJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -27488,6 +28059,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
+"xuc" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/item/gun/energy/disabler,
+/obj/item/gun/energy/disabler,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
 	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
@@ -27507,6 +28088,13 @@
 /obj/machinery/light/floor,
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"xBS" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight2"
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "xGe" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info31"
@@ -27520,6 +28108,18 @@
 /obj/structure/railing,
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"xMF" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight1"
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "xXc" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/plasteel/bluespace,
@@ -58302,6 +58902,24 @@ aaa
 aaa
 aaa
 aaa
+amD
+amD
+oMr
+oMr
+oMr
+oMr
+oMr
+amD
+amD
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+iwB
 aaa
 aaa
 aaa
@@ -58311,25 +58929,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+iwB
 aaa
 aaa
 aaa
@@ -58559,7 +59159,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
+amD
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
 amD
 amD
 amD
@@ -58567,26 +59174,19 @@ amD
 amD
 amD
 amD
+amD
+aaa
+pIG
+aaa
+aaa
+pIG
 aaa
 aaa
 aaa
+pIG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+pIG
 aaa
 aaa
 aaa
@@ -58816,35 +59416,35 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aTw
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
+awB
+axe
+axe
+axe
+wso
+lFQ
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
 aaa
 aaa
 aaa
@@ -59073,35 +59673,35 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aTw
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ejW
+axf
+axf
+axf
+ayp
+nIm
+rzM
+ila
+blO
+xMF
+vRB
+wJi
+jhF
+iZC
+too
+hHm
+bSI
+jHU
+gGQ
+oMr
 aaa
 aaa
 aaa
@@ -59330,35 +59930,35 @@ aaa
 aaa
 aaa
 aaa
-aaa
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+avD
+ujS
+ujS
+ujS
+tYq
+pZb
+amD
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
 aaa
 aaa
 aaa
@@ -59587,34 +60187,34 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aTw
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
+amD
+avD
+axf
+axf
+axf
+axf
+ayp
 amD
 aaa
+pIG
+aaa
+aaa
+pIG
 aaa
 aaa
 aaa
-aaa
-amD
-aaa
+pIG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+pIG
 aaa
 aaa
 aaa
@@ -59844,34 +60444,34 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aTw
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
+amD
+avD
+axf
+axf
+axf
+axf
+nve
 amD
 aaa
+pIG
+aaa
+aaa
+pIG
 aaa
 aaa
 aaa
-aaa
-amD
-aaa
+pIG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+pIG
 aaa
 aaa
 aaa
@@ -60101,35 +60701,35 @@ aaa
 aaa
 aaa
 aaa
-aaa
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ejW
+ujS
+ujS
+ujS
+wra
+awz
+amD
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
 aaa
 aaa
 aaa
@@ -60358,35 +60958,35 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aTw
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+avD
+axf
+axf
+axf
+ayp
+xBS
+hpp
+hOw
+cSf
+vnD
+gWw
+nky
+pft
+nxH
+qvQ
+iDJ
+hwX
+rOj
+fMl
+oMr
 aaa
 aaa
 aaa
@@ -60615,35 +61215,35 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aTw
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
+avD
+ujS
+ujS
+ujS
+tYq
+toU
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
 aaa
 aaa
 aaa
@@ -60872,34 +61472,34 @@ aaa
 aaa
 aaa
 aaa
-aaa
+amD
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
+mGr
+avD
+axf
+axf
+axf
+axf
+nve
 amD
 aaa
+pIG
+aaa
+aaa
+pIG
 aaa
 aaa
 aaa
-aaa
-amD
-aaa
+pIG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+pIG
 aaa
 aaa
 aaa
@@ -61129,34 +61729,34 @@ aaa
 aaa
 aaa
 aaa
-aaa
+amD
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
+amD
+ejW
+axf
+axf
+axf
+axf
+ayp
 amD
 aaa
+pIG
+aaa
+aaa
+pIG
 aaa
 aaa
 aaa
-aaa
-amD
-aaa
+pIG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+pIG
 aaa
 aaa
 aaa
@@ -61386,35 +61986,35 @@ aaa
 aaa
 aaa
 aaa
-aaa
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
+qjP
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+avD
+ujS
+ujS
+ujS
+wra
+awz
+amD
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
 aaa
 pCa
 pCa
@@ -61643,35 +62243,35 @@ aTw
 aTw
 anT
 anU
-aTw
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bkj
+bkj
+bkj
+bkj
+bkj
+pXk
+amD
+avD
+axf
+axf
+axf
+ayp
+nJZ
+pap
+vBo
+mRV
+gdf
+wDI
+sQo
+xuc
+iIR
+wTB
+swr
+sQo
+poZ
+lPc
+oMr
 aaa
 pCa
 qiu
@@ -61901,34 +62501,34 @@ ark
 asq
 ato
 auj
-amD
-aaa
-aaa
+aTw
+bkj
+bkj
 axb
-aaa
-aaa
+bkj
+bkj
+pXk
 amD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+axR
+awt
+awt
+awt
+sio
+uKR
+amD
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
+nwK
 aaa
 pCa
 vPZ
@@ -62159,32 +62759,32 @@ asr
 atp
 auk
 amD
-aaa
+bkj
 aoe
 axc
 aoe
-aaa
+bkj
+pXk
+amD
+amD
+amD
+amD
+amD
+amD
+amD
 amD
 aaa
+pIG
+aaa
+aaa
+pIG
 aaa
 aaa
 aaa
+pIG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+pIG
 aaa
 aaa
 pCa
@@ -62431,6 +63031,7 @@ amD
 amD
 aaa
 aaa
+iwB
 aaa
 aaa
 aaa
@@ -62440,8 +63041,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+iwB
 aaa
 aaa
 pCa
