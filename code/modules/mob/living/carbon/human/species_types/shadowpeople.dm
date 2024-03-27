@@ -50,16 +50,13 @@
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
 		switch(light_amount)
-			if(0 to SHADOW_SPECIES_DIM_LIGHT) //rapid healing and stun reduction in the darkness
-				H.adjustBruteLoss(-dark_healing)
-				H.adjustFireLoss(-dark_healing)
-				if(powerful_heal) //only darkspawn gets this
-					H.adjustCloneLoss(-dark_healing)
-					H.adjustToxLoss(-dark_healing)
-					H.adjustStaminaLoss(-dark_healing * 20)
+			if(0 to SHADOW_SPECIES_DIM_LIGHT)
+				var/list/healing_types = list(BURN, BRUTE)
+				if(powerful_heal)
+					healing_types |= list(STAMINA, TOX, OXY, CLONE, BRAIN) //heal additional damage types
 					H.AdjustAllImmobility(-dark_healing * 40)
 					H.SetSleeping(0)
-					H.setOrganLoss(ORGAN_SLOT_BRAIN,0)
+				H.heal_ordered_damage(dark_healing, healing_types, BODYPART_ANY)
 			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_LIGHTRES))
 					return
@@ -199,8 +196,6 @@
 	mutantears = /obj/item/organ/ears/darkspawn
 
 	powerful_heal = TRUE
-	dark_healing = 7
-	light_burning = 7
 	shadow_charges = 3
 
 /datum/species/shadow/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -208,8 +203,8 @@
 	C.fully_replace_character_name("[C.real_name]", darkspawn_name())
 
 /datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
-	if(isdarkspawn(H))
-		var/datum/antagonist/darkspawn/antag = isdarkspawn(H)
+	var/datum/antagonist/darkspawn/antag = isdarkspawn(H)
+	if(antag)
 		dark_healing = antag.dark_healing
 		light_burning = antag.light_burning
 
