@@ -1652,7 +1652,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	if(machines_to_break.len == 0)
 		return TRUE
 	for(var/obj/machinery/thing as anything in machines_to_break)
-		if(thing && istype(thing, target_obj_type))
+		if(thing && !QDELETED(thing) && istype(thing, target_obj_type))
 			return FALSE
 	return TRUE
 
