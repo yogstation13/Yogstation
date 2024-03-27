@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes a bug where the break machinery objective wouldn't complete until deleted objects went through garbage collection"
