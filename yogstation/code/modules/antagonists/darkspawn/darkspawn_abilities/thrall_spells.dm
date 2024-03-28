@@ -159,23 +159,22 @@
 
 	cast_range = INFINITY //lol
 	psi_cost = 40
-	cooldown_time = 10 SECONDS
+	cooldown_time = 5 SECONDS
 	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
-	invocation = null
-	invocation_type = INVOCATION_NONE
-
 	///how far the projectile can shoot from a body
 	var/body_range = 8 
+	///mob to shoot the projectile from
+	var/mob/shoot_from
 
-/datum/action/cooldown/spell/pointed/mindblast/cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/mindblast/before_cast(atom/cast_on)
 	. = ..()
-
-	var/mob/shooter
+	if(. & SPELL_CANCEL_CAST)
+		return
 	var/closest_dude_dist = body_range
 	if(get_dist(owner, cast_on) > body_range)
 		for(var/mob/living/dude in range(body_range, cast_on))
@@ -183,17 +182,22 @@
 				if(!isturf(dude.loc))
 					continue
 				if(get_dist(cast_on, dude) < closest_dude_dist)//always only get the closest dude
-					shooter = dude
+					shoot_from = dude
 					closest_dude_dist = get_dist(cast_on, dude)
 	else
-		shooter = owner
-	if(!shooter)
+		shoot_from = owner
+	if(!shoot_from)
 		to_chat(owner, span_warning("There is no one nearby to channel your power through."))
-		on_deactivation(owner, refund_cooldown = TRUE)
-		return FALSE
-	fire_projectile(cast_on, shooter)
+		return . | SPELL_CANCEL_CAST
+
+/datum/action/cooldown/spell/pointed/mindblast/cast(atom/cast_on)
+	. = ..()
+	if(!shoot_from)
+		return
+	fire_projectile(cast_on, shoot_from)
 	owner.balloon_alert(owner, "Vyk'thunak")
-	playsound(get_turf(shooter), 'sound/weapons/resonator_blast.ogg', 50, 1)
+	playsound(get_turf(shoot_from), 'sound/weapons/resonator_blast.ogg', 50, 1)
+	shoot_from = null
 
 /datum/action/cooldown/spell/pointed/mindblast/proc/fire_projectile(atom/target, mob/shooter)
 	var/obj/projectile/magic/mindblast/to_fire = new ()
@@ -214,11 +218,11 @@
 	name ="mindbolt"
 	icon = 'yogstation/icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "mind_blast"
-	damage = 30
+	damage = 35
 	armour_penetration = 100
 	speed = 1
 	damage_type = BRUTE
-	range = 8
+	range = 10
 
 /obj/projectile/magic/mindblast/Initialize(mapload)
 	. = ..()

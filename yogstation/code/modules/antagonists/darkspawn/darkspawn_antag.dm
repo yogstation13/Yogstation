@@ -25,7 +25,7 @@
 	///How long before psi starts regenerating
 	var/psi_regen_delay = 10 SECONDS 
 	///how much psi is regenerated per second once it does start regenerating
-	var/psi_per_second = 10 
+	var/psi_per_second = 20 
 	///When this finishes it's cooldown, regenerate Psi and restart
 	COOLDOWN_DECLARE(psi_cooldown)
 	///Used to prevent duplicate regen proc calls

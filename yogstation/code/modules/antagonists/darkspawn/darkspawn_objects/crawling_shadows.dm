@@ -2,9 +2,9 @@
 	//appearance variables
 	name = "crawling shadows"
 	desc = "A formless mass of nothingness with piercing white eyes."
-	icon = 'icons/effects/effects.dmi' //Placeholder sprite
-	icon_state = "blank_dspawn"
-	icon_living = "blank_dspawn"
+	icon = 'yogstation/icons/mob/darkspawn.dmi' //Placeholder sprite
+	icon_state = "crawling_shadows"
+	icon_living = "crawling_shadows"
 
 	//survival variables
 	maxHealth = 10
