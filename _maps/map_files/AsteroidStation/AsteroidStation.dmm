@@ -76880,7 +76880,7 @@
 /area/maintenance/starboard/aft)
 "wZX" = (
 /obj/machinery/power/apc/highcap{
-	areastring = "/area/ai_monitored/secondarydatacore";
+	areastring = "/area/ai_monitored/secondarydatacoreserver";
 	dir = 4;
 	name = "AI Secondary Datacore";
 	pixel_x = 24
