@@ -7,9 +7,6 @@
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "aA" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 8
-	},
 /obj/machinery/computer/security/telescreen{
 	dir = 8;
 	name = "MiniSat Camera Monitor";
