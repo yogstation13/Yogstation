@@ -177,6 +177,16 @@
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/erase_time/darkspawn)
 
+/datum/psi_web/fray_self
+	name = "Fray self"
+	desc = "Attemps to split a piece of your psyche into a sentient copy of yourself that lasts until destroyed."
+	lore_description = ""
+	icon_state = "fray_self"
+	willpower_cost = 3
+	shadow_flags = DARKSPAWN_WARLOCK
+	menu_tab = STORE_UTILITY
+	learned_abilities = list(/datum/action/cooldown/spell/fray_self)
+
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Mixed abilities-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -219,13 +229,3 @@
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/touch/silver_tongue)
-
-/datum/psi_web/fray_self
-	name = "Fray self"
-	desc = "Attemps to split a piece of your psyche into a sentient copy of yourself that lasts until destroyed."
-	lore_description = ""
-	icon_state = "fray_self"
-	willpower_cost = 4
-	shadow_flags = DARKSPAWN_WARLOCK | DARKSPAWN_SCOUT
-	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/fray_self)

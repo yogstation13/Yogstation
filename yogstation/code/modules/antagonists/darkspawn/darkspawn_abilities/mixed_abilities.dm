@@ -77,10 +77,10 @@
 	if(is_team_darkspawn(victim)) //no friendly fire
 		return
 	to_chat(victim, span_userdanger("A wave of shockingly cold air engulfs you!"))
-	victim.apply_damage(5, BURN)
+	victim.apply_damage(10, BURN)
 	if(victim.reagents)
-		victim.reagents.add_reagent(/datum/reagent/consumable/frostoil, 5)
-		victim.reagents.add_reagent(/datum/reagent/shadowfrost, 5)
+		victim.reagents.add_reagent(/datum/reagent/consumable/frostoil, 10)
+		victim.reagents.add_reagent(/datum/reagent/shadowfrost, 10)
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------Transform into a simplemob------------------------//

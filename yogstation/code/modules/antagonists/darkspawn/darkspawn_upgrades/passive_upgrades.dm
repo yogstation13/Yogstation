@@ -97,7 +97,7 @@
 	desc = "Unlocking this sigil protects from dim light."
 	lore_description = "The Vvkatkz sigil, representing warding, is etched onto the back."
 	icon_state = "light_ward"
-	willpower_cost = 3
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 
