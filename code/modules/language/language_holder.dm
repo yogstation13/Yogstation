@@ -372,6 +372,16 @@ Key procs
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 							/datum/language/felinid = list(LANGUAGE_ATOM))
 
+/datum/language_holder/darkspawn
+	understood_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/darkspawn = list(LANGUAGE_ATOM)
+		)
+	spoken_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/darkspawn = list(LANGUAGE_ATOM)
+		)
+
 /datum/language_holder/spiderbot
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/felinid = list(LANGUAGE_ATOM), ///Spiderbots, I am sorry for making you understand this shit

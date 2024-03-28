@@ -72,6 +72,8 @@
 #define COMSIG_LIVING_STATUS_PARALYZE "living_paralyze"
 ///from base of mob/living/Immobilize() (amount, ignore_canstun)
 #define COMSIG_LIVING_STATUS_IMMOBILIZE "living_immobilize"
+///from base of mob/living/Daze() (amount, ignore_canstun)
+#define COMSIG_LIVING_STATUS_DAZE "living_daze"
 ///from base of mob/living/Unconscious() (amount, ignore_canstun)
 #define COMSIG_LIVING_STATUS_UNCONSCIOUS "living_unconscious"
 ///from base of mob/living/Sleeping() (amount, ignore_canstun)

@@ -96,3 +96,9 @@ body {
 .tooltip_container:hover .tooltip_hover {
 	visibility: visible;
 }
+
+.progenitor {
+	color: #7264FF;
+	font-size: 24px;
+	font-weight: bold;
+}

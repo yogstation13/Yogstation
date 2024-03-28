@@ -145,7 +145,6 @@
 
 /datum/status_effect/tagalong //applied to darkspawns while they accompany someone //yogs start: darkspawn
 	id = "tagalong"
-	duration = 3000
 	tick_interval = 1 //as fast as possible
 	alert_type = /atom/movable/screen/alert/status_effect/tagalong
 	var/mob/living/shadowing
@@ -172,18 +171,14 @@
 		qdel(src)
 		return
 	cached_location = get_turf(shadowing)
-	if(cached_location.get_lumcount() < DARKSPAWN_DIM_LIGHT)
+	if(cached_location.get_lumcount() < SHADOW_SPECIES_DIM_LIGHT)
 		owner.forceMove(cached_location)
 		shadowing.visible_message(span_warning("[owner] suddenly appears from the dark!"))
 		to_chat(owner, span_warning("You are forced out of [shadowing]'s shadow!"))
-		owner.Knockdown(3 SECONDS)
 		qdel(src)
 	var/obj/item/I = owner.get_active_held_item()
 	if(I)
 		to_chat(owner, span_userdanger("Equipping an item forces you out!"))
-		if(istype(I, /obj/item/dark_bead))
-			to_chat(owner, span_userdanger("[I] crackles with feedback, briefly disorienting you!"))
-			owner.Stun(5) //short delay so they can't click as soon as they're out
 		qdel(src)
 
 /atom/movable/screen/alert/status_effect/tagalong

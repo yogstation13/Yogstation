@@ -24,7 +24,7 @@
 	if(is_jaunting(owner))
 		return TRUE
 	var/turf/cast_turf = get_turf(owner)
-	if(cast_turf.get_lumcount() >= SHADOW_SPECIES_LIGHT_THRESHOLD)
+	if(cast_turf.get_lumcount() >= SHADOW_SPECIES_DIM_LIGHT)
 		if(feedback)
 			to_chat(owner, span_warning("It isn't dark enough here!"))
 		return FALSE
@@ -112,7 +112,7 @@
 /obj/effect/dummy/phased_mob/shadow/proc/check_light_level(location_to_check)
 	var/turf/T = get_turf(location_to_check)
 	var/light_amount = T.get_lumcount()
-	if(light_amount > SHADOW_SPECIES_LIGHT_THRESHOLD) // jaunt ends
+	if(light_amount > SHADOW_SPECIES_DIM_LIGHT) // jaunt ends
 		return TRUE
 
 /**

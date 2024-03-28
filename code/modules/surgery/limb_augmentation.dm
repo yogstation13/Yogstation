@@ -66,6 +66,9 @@
 	if(isgolem(target)) // no armor stacking
 		to_chat(user, span_warning("[target]'s exterior is too strong already!"))
 		return FALSE
+	else if(is_species(target, /datum/species/shadow/darkspawn)) // no negating light damage
+		to_chat(user, span_warning("[target]'s body refuses to be augmented!"))
+		return FALSE
 	else
 		return TRUE
 

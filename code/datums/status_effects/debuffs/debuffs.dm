@@ -83,20 +83,18 @@
 	owner.remove_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-//INCAPACITATED
+//DAZED
 /// This status effect represents anything that leaves a character unable to perform basic tasks (interrupting do-afters, for example), but doesn't incapacitate them further than that (no stuns etc..)
-/datum/status_effect/incapacitating/incapacitated
-	id = "incapacitated"
+/datum/status_effect/incapacitating/dazed
+	id = "dazed"
 
-// What happens when you get the incapacitated status. You get TRAIT_INCAPACITATED added to you for the duration of the status effect.
-/datum/status_effect/incapacitating/incapacitated/on_apply()
+/datum/status_effect/incapacitating/dazed/on_apply()
 	. = ..()
 	if(!.)
 		return
 	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 
-// When the status effect runs out, your TRAIT_INCAPACITATED is removed.
-/datum/status_effect/incapacitating/incapacitated/on_remove()
+/datum/status_effect/incapacitating/dazed/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
@@ -741,8 +739,8 @@
 	deltimer(timerid)
 
 /datum/status_effect/progenitor_curse
-	duration = 200
-	tick_interval = 5
+	tick_interval = 1.5 SECONDS //how often a hand is shot
+	duration = 30 SECONDS
 
 /datum/status_effect/progenitor_curse/tick()
 	if(owner.stat == DEAD)
@@ -755,7 +753,7 @@
 /datum/status_effect/progenitor_curse/proc/grasp(turf/spawn_turf)
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
-	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
+	playsound(spawn_turf, pick('sound/effects/curse1.ogg','sound/effects/curse2.ogg','sound/effects/curse3.ogg'), 80, 1, -1)
 	var/obj/projectile/curse_hand/progenitor/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
@@ -1045,18 +1043,26 @@
 	id = "broken_will"
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
-	duration = 300
+	duration = 30 SECONDS
 	examine_text = span_deadsay("SUBJECTPRONOUN is in a deep, deathlike sleep, with no signs of awareness to anything around them.")
 	alert_type = /atom/movable/screen/alert/status_effect/broken_will
 	var/old_health
 
 /datum/status_effect/broken_will/tick()
+	if(is_darkspawn_or_thrall(owner) || owner.stat == DEAD)
+		qdel(src)
+		return
 	owner.Unconscious(15)
 	if(!old_health)
 		old_health = owner.health
 	var/health_difference = old_health - owner.health
-	if(!health_difference)
+	if(health_difference <= 0) //if theyre not taking damage, no waking up
+		if(owner.stat != CONSCIOUS)
+			owner.heal_ordered_damage(1, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
+			if(prob(10))
+				to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
 		return
+
 	owner.visible_message(span_warning("[owner] jerks in their sleep as they're harmed!"))
 	to_chat(owner, span_boldannounce("Something hits you, pulling you towards wakefulness!"))
 	health_difference *= 10 //1 point of damage = 1 second = 10 deciseconds
@@ -1067,7 +1073,14 @@
 	name = "Broken Will"
 	desc = "..."
 	icon_state = "broken_will"
-	alerttooltipstyle = "alien" //yogs end
+	alerttooltipstyle = "alien" 
+
+//used to prevent the use of devour will on the target
+/datum/status_effect/devoured_will
+	id = "devoured_will"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 5 MINUTES
+	alert_type = null
 
 /datum/status_effect/eldritch
 	duration = 15 SECONDS
@@ -1690,3 +1703,29 @@
 /datum/status_effect/eldritch/knock/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_ALWAYS_NO_ACCESS, STATUS_EFFECT_TRAIT)
 	return ..()
+
+/datum/status_effect/taunt
+	id = "taunt"
+	alert_type = /atom/movable/screen/alert/status_effect/star_mark
+	duration = 5 SECONDS
+	tick_interval = CLICK_CD_MELEE
+	var/mob/living/taunter
+
+/datum/status_effect/taunt/on_creation(mob/living/new_owner, mob/living/taunter)
+	src.taunter = taunter
+	return ..()
+	
+/datum/status_effect/taunt/on_apply()
+	. = ..()
+	if(HAS_TRAIT(owner, TRAIT_STUNIMMUNE))
+		return FALSE
+	if(!taunter)
+		return FALSE
+	owner.SetImmobilized(5 SECONDS)
+
+/datum/status_effect/taunt/tick(delta_time, times_fired)
+	step_towards(owner, taunter)
+	owner.SetImmobilized(5 SECONDS)
+
+/datum/status_effect/taunt/on_remove()
+	owner.SetImmobilized(0)

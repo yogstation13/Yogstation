@@ -135,7 +135,7 @@
 			if(absmood > highest_absolute_mood)
 				highest_absolute_mood = absmood
 
-	if(!conflicting_moodies.len) //no special icons- go to the normal icon states
+	if(!conflicting_moodies.len && owner.mind) //no special icons- go to the normal icon states
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker) //bloodsucker edit
 		if(sanity < 25)
 			screen_obj.icon_state = "mood_insane"

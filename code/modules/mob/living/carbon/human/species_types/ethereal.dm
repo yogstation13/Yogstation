@@ -42,7 +42,9 @@
 	var/max_power = 2
 	var/current_color
 	var/EMPeffect = FALSE
+	var/EMP_timer = null
 	var/emageffect = FALSE
+	var/emag_timer = null
 	var/emag_speed = 4 //how many deciseconds between each colour cycle
 	var/r1
 	var/g1
@@ -69,6 +71,7 @@
 	setup_color(ethereal)
 
 	ethereal_light = ethereal.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight/species)
+	RegisterSignal(ethereal, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	spec_updatehealth(ethereal)
 
 	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
@@ -79,8 +82,11 @@
 		ethereal_eyes.ethereal_color = default_color
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	UnregisterSignal(C, COMSIG_LIGHT_EATER_ACT)
 	QDEL_NULL(ethereal_light)
 	C.set_light(0)
+	deltimer(EMP_timer)
+	deltimer(emag_timer)
 	return ..()
 
 /datum/species/ethereal/random_name(gender,unique,lastname)
@@ -131,13 +137,19 @@
 		fixed_mut_color = rgb(128,128,128)
 	ethereal.update_body()
 
+/// Special handling for getting hit with a light eater
+/datum/species/ethereal/proc/on_light_eater(mob/living/carbon/human/source, datum/light_eater)
+	SIGNAL_HANDLER
+	spec_emp_act(source, EMP_LIGHT)
+	return COMPONENT_BLOCK_LIGHT_EATER
+
 /datum/species/ethereal/spec_emp_act(mob/living/carbon/human/H, severity)
 	.=..()
 	if(!EMPeffect)
 		to_chat(H, span_notice("You feel the light of your body leave you."))
 	EMPeffect = TRUE
 	spec_updatehealth(H)
-	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 20 * severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 2 to 20 seconds depending on severity
+	EMP_timer = addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 20 * severity, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE) //We're out for 2 to 20 seconds depending on severity
 
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
 	EMPeffect = FALSE
@@ -154,7 +166,7 @@
 	current_color = rgb(255,0,0)
 	emageffect = TRUE
 	handle_emag(H)
-	addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
+	emag_timer = addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
 	return TRUE
 
 /datum/species/ethereal/proc/handle_emag(mob/living/carbon/human/H)//please change this to use animate() if you ever figure out how to animate light colours
