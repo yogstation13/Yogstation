@@ -48693,13 +48693,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"oKK" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	layer = 2.35;
-	level = 1
-	},
-/turf/closed/wall,
-/area/science/mixing)
 "oKX" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -50833,6 +50826,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"pyv" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/science/mixing)
 "pyy" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -53052,6 +53051,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"qma" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/closed/wall,
+/area/science/mixing)
 "qmf" = (
 /obj/item/storage/fancy/donut_box,
 /obj/structure/table,
@@ -65630,14 +65633,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"uVn" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6;
-	layer = 2.35;
-	level = 1
-	},
-/turf/closed/wall,
-/area/science/mixing)
 "uVz" = (
 /obj/machinery/cryopod{
 	dir = 8
@@ -123323,8 +123318,8 @@ bEs
 bGc
 rAr
 cIT
-uVn
-oKK
+pyv
+qma
 bTC
 aaf
 aaf
