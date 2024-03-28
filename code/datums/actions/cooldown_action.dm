@@ -172,7 +172,7 @@
 	if(isnum(override_cooldown_time))
 		cooldown_amount = override_cooldown_time
 	if(owner && HAS_TRAIT(owner, TRAIT_FAST_COOLDOWNS))
-		cooldown_amount *= 0.75
+		cooldown_amount *= 0.66
 	
 	next_use_time = world.time + cooldown_amount
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
