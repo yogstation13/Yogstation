@@ -7,6 +7,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	icon_state = "extraction_pack"
 	w_class = WEIGHT_CLASS_NORMAL
 	var/obj/structure/extraction_point/beacon
+	var/obj/mecha/mech
 	var/list/beacon_networks = list("station")
 	var/uses_left = 3
 	var/can_use_indoors
