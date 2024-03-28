@@ -1,0 +1,566 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ao" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"bn" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"dk" = (
+/obj/structure/rack,
+/obj/item/tank/internals/oxygen/red,
+/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/head/hardhat/red,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"dL" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/space_elevator)
+"dQ" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"ef" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"fJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/corner/lower,
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"gt" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"gu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"gK" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/obj/machinery/computer/shuttle/space_elevator{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"iC" = (
+/obj/effect/turf_decal/delivery/white,
+/obj/machinery/door/airlock/shuttle{
+	name = "Space Elevator Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"ln" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/machinery/computer/shuttle/space_elevator{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"ly" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"mp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"mA" = (
+/obj/structure/rack,
+/obj/item/radio/off,
+/obj/item/radio/off{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"nh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"oT" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"pa" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"pI" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle/space_elevator{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"qI" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"sw" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"uz" = (
+/obj/effect/turf_decal/stripes/white/line,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"uI" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"vO" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/structure/window/reinforced{
+	dir = 8;
+	max_integrity = 350
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"xE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"yj" = (
+/obj/effect/turf_decal/stripes/white/corner,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"yH" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"zu" = (
+/turf/template_noop,
+/area/template_noop)
+"Dc" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Dh" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Er" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	max_integrity = 350
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Fy" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"FA" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Ga" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Iw" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"KC" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"Le" = (
+/obj/effect/turf_decal/delivery/white,
+/obj/machinery/door/airlock/shuttle{
+	name = "Space Elevator Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/docking_port/mobile/space_elevator{
+	dir = 8;
+	port_direction = 4;
+	dwidth = 5;
+	height = 11;
+	id = space_elevator;
+	width = 11
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"LG" = (
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"MN" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"MO" = (
+/obj/effect/turf_decal/delivery/white,
+/obj/machinery/door/airlock/shuttle{
+	name = "Space Elevator Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Oi" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"Px" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Qf" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Qv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower,
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"QF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/corner/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"QN" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Sm" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/space_elevator)
+"Tf" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/space_elevator)
+"Vo" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+"Yj" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/space_elevator)
+"YZ" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/light,
+/obj/machinery/computer/shuttle/space_elevator{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/space_elevator)
+
+(1,1,1) = {"
+zu
+Tf
+dL
+dL
+Tf
+iC
+Tf
+dL
+dL
+Tf
+zu
+"}
+(2,1,1) = {"
+Tf
+Tf
+qI
+Iw
+QN
+yH
+ly
+LG
+Fy
+Tf
+Tf
+"}
+(3,1,1) = {"
+dL
+gt
+LG
+Yj
+nh
+mp
+nh
+sw
+LG
+uI
+dL
+"}
+(4,1,1) = {"
+dL
+Fy
+Yj
+xE
+oT
+ln
+dQ
+QF
+sw
+dk
+dL
+"}
+(5,1,1) = {"
+Tf
+Dh
+KC
+Er
+Sm
+Sm
+Sm
+vO
+Qv
+yj
+Tf
+"}
+(6,1,1) = {"
+MO
+Px
+KC
+YZ
+Sm
+zu
+Sm
+pI
+Qv
+uz
+MO
+"}
+(7,1,1) = {"
+Tf
+ao
+KC
+FA
+Sm
+Sm
+Sm
+Qf
+Qv
+QN
+Tf
+"}
+(8,1,1) = {"
+dL
+Fy
+Oi
+gu
+MN
+gK
+Dc
+fJ
+ef
+mA
+dL
+"}
+(9,1,1) = {"
+dL
+bn
+LG
+Oi
+pa
+pa
+pa
+ef
+LG
+Iw
+dL
+"}
+(10,1,1) = {"
+Tf
+Tf
+Iw
+Iw
+yj
+Ga
+Vo
+LG
+Fy
+Tf
+Tf
+"}
+(11,1,1) = {"
+zu
+Tf
+dL
+dL
+Tf
+Le
+Tf
+dL
+dL
+Tf
+zu
+"}

@@ -348,6 +348,11 @@
 		reserved_area = null
 	return ..()
 
+/obj/docking_port/mobile/space_elevator
+	name = "space elevator"
+	space_elevator = TRUE
+	preferred_direction = null
+
 /obj/docking_port/stationary/picked
 	///Holds a list of map name strings for the port to pick from
 	var/list/shuttlekeys
@@ -466,6 +471,9 @@
 	var/rechargeTime = 0
 	/// time spent after transit 'landing' before actually arriving
 	var/prearrivalTime = 0
+
+	/// whether or not to load the space elevator transit stage
+	var/space_elevator = FALSE
 
 	/// The direction the shuttle prefers to travel in, ie what direction
 	/// the animation will cause it to appear to be traveling in
