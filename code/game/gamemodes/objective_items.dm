@@ -29,7 +29,7 @@
 /datum/objective_item/steal/caplaser
 	name = "the Captain's antique laser gun."
 	targetitem = /obj/item/gun/energy/laser/captain
-	difficulty = 5
+	difficulty = 10
 	excludefromjob = list("Captain")
 
 /datum/objective_item/steal/hoslaser
@@ -47,7 +47,7 @@
 /datum/objective_item/steal/jetpack
 	name = "the Captain's jetpack."
 	targetitem = /obj/item/tank/jetpack/oxygen/captain
-	difficulty = 5
+	difficulty = 10
 	excludefromjob = list("Captain")
 
 /datum/objective_item/steal/magboots
@@ -71,7 +71,7 @@
 /datum/objective_item/steal/nukedisc
 	name = "the nuclear authentication disk."
 	targetitem = /obj/item/disk/nuclear
-	difficulty = 5
+	difficulty = 15
 	excludefromjob = list("Captain")
 
 /datum/objective_item/steal/nukedisc/check_special_completion(obj/item/disk/nuclear/N)
@@ -80,7 +80,7 @@
 /datum/objective_item/steal/reflector
 	name = "a reflective jacket."
 	targetitem = /obj/item/clothing/suit/armor/laserproof
-	difficulty = 3
+	difficulty = 5
 	excludefromjob = list("Head of Security", "Warden")
 
 /datum/objective_item/steal/aiupload
