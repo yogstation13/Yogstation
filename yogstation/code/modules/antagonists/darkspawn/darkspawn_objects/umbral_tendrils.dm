@@ -12,7 +12,6 @@
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
 	force = 25
-	block_chance = 25
 	wound_bonus = -80 //no wounding
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
@@ -30,8 +29,6 @@
 			U.twin = src
 			force *= 0.75
 			U.force *= 0.75
-			block_chance *= 0.75
-			U.block_chance *= 0.75
 
 /obj/item/umbral_tendrils/Destroy()
 	if(!QDELETED(twin))

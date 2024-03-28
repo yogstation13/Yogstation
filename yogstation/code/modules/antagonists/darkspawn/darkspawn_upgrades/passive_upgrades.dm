@@ -77,7 +77,7 @@
 //Increases healing in darkness by 25%.
 /datum/psi_web/dark_healing
 	name = "Mending Sigil"
-	desc = "Unlocking this sigil increases your healing in darkness by 25%."
+	desc = "Unlocking this sigil increases your healing in darkness."
 	lore_description = "The Kalak sigil, representing eternity, is etched onto the back."
 	icon_state = "mending"
 	willpower_cost = 2
@@ -86,10 +86,10 @@
 	infinite = TRUE
 
 /datum/psi_web/dark_healing/on_gain()
-	darkspawn.dark_healing *= 1.25
+	darkspawn.dark_healing *= 1.5
 
 /datum/psi_web/dark_healing/on_gain()
-	darkspawn.dark_healing /= 1.25
+	darkspawn.dark_healing /= 1.5
 
 //gives resistance to dim light
 /datum/psi_web/low_light_resistance
@@ -147,7 +147,7 @@
 //Halves lightburn damage.
 /datum/psi_web/light_resistance
 	name = "Shadowskin Sigil"
-	desc = "Unlocking this sigil halves light damage taken."
+	desc = "Unlocking this sigil reduces light damage taken."
 	lore_description = "The Xlynsh sigil, representing refraction, is etched onto the abdomen."
 	icon_state = "shadow_skin"
 	willpower_cost = 3
@@ -155,10 +155,10 @@
 	shadow_flags = DARKSPAWN_FIGHTER
 
 /datum/psi_web/light_resistance/on_gain()
-	darkspawn.light_burning /= 2
+	darkspawn.light_burning *= 0.7
 
 /datum/psi_web/light_resistance/on_loss()
-	darkspawn.light_burning *= 2
+	darkspawn.light_burning /= 0.7
 
 /datum/psi_web/brute_res
 	name = "Callous Sigil"
