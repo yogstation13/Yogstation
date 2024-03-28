@@ -235,7 +235,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 50 //big boom = big cost
 	cooldown_time = 20 SECONDS
-	aoe_radius = 5
+	aoe_radius = 7
 	///Boolean, if the spell is being charged up
 	var/casting = FALSE
 	///Duration spent charging the spell
@@ -285,16 +285,14 @@
 	victim.throw_at(target, ((clamp((5 - (clamp(distance - 2, 0, distance))), 3, 5))), 1, owner)
 	if(iscarbon(victim))
 		var/mob/living/carbon/C = victim
-		if(distance <= 1) //you done fucked up now
+		if(distance <= 2) //you done fucked up now
 			C.visible_message(span_warning("The blast sends [C] flying!"), span_userdanger("The force sends you flying!"))
-			C.Paralyze(5 SECONDS)
-			C.Knockdown(5 SECONDS)
+			C.Stun(5 SECONDS)
 			C.adjustBruteLoss(10)
 			C.soundbang_act(1, 5, 15, 5)
-		else if(distance <= 3)
+		else if(distance <= 5)
 			C.visible_message(span_warning("The blast knocks [C] off their feet!"), span_userdanger("The force bowls you over!"))
-			C.Paralyze(2.5  SECONDS)
-			C.Knockdown(3 SECONDS)
+			C.Stun(3 SECONDS)
 			C.soundbang_act(1, 3, 5, 0)
 	if(iscyborg(victim))
 		var/mob/living/silicon/robot/R = victim

@@ -12,7 +12,8 @@
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
 	force = 25
-	wound_bonus = -80 //no wounding
+	wound_bonus = -60 //no wounding
+	bare_wound_bonus = 20
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
 	COOLDOWN_DECLARE(grab_cooldown)

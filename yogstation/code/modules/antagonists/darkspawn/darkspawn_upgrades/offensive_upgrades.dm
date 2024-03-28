@@ -50,7 +50,7 @@
 	desc = "Unlocking these sigils causes tendrils to cleave through enemies."
 	lore_description = "The Akvryt sigils, representing pierce, are etched onto the arms."
 	icon_state = "cleave"
-	willpower_cost = 3
+	willpower_cost = 2
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
 	flag_to_add = TENDRIL_UPGRADE_CLEAVE
@@ -211,7 +211,7 @@
 	desc = "Instantly freezes the blood of nearby people, slowing them and rapidly chilling their body."
 	lore_description = ""
 	icon_state = "icy_veins"
-	willpower_cost = 3
+	willpower_cost = 2
 	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/icyveins)

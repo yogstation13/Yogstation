@@ -329,6 +329,8 @@
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	aoe_radius = 7
+	///how many times it hallucinates (1 per second)
+	var/hallucination_triggers = 3
 
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast(atom/cast_on)
 	. = ..()
@@ -337,15 +339,19 @@
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim))
 		return
-	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
-		return
 	var/mob/living/target = victim
 	if(is_team_darkspawn(target)) //don't fuck with allies
 		return
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
+	hallucinate(target)
+
+/datum/action/cooldown/spell/aoe/mass_hallucination/proc/hallucinate(mob/living/target, times = hallucination_triggers)
+	if(times <= 0)
+		return
 	var/datum/hallucination/picked_hallucination = pick(GLOB.hallucination_list)//not using weights
 	target.cause_hallucination(picked_hallucination, "mass hallucination")
+	addtimer(CALLBACK(src, PROC_REF(hallucinate), target, times--), 1 SECONDS, TIMER_UNIQUE)
 
 //////////////////////////////////////////////////////////////////////////
 //----------------I stole blood beam from blood cultists----------------//
@@ -500,9 +506,10 @@
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	psi_cost = 35
 	cooldown_time = 30 SECONDS
-	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
-	///whether or not it can paralyze at close range
-	var/strong = TRUE
+	cast_range = 10
+	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
+	///duration of stun when used at close range
+	var/stun_duration = 10 SECONDS
 
 /datum/action/cooldown/spell/pointed/seize/before_cast(atom/cast_on)
 	. = ..()
@@ -533,15 +540,15 @@
 		return
 		
 	var/distance = get_dist(target, owner)
-	if (distance <= 2 && strong)
+	if (distance <= 2)
 		target.visible_message(span_danger("[target] suddenly collapses..."))
 		to_chat(target, span_userdanger("A purple light flashes through your mind, and you lose control of your movements!"))
-		target.Paralyze(10 SECONDS)
+		target.Paralyze(stun_duration)
 		if(iscarbon(target))
 			var/mob/living/carbon/M = target
 			M.silent += 10
 	else //Distant glare
-		var/loss = max(100 - (distance * 10), 0)
+		var/loss = max(120 - (distance * 10), 0)
 		target.adjustStaminaLoss(loss)
 		target.adjust_stutter(loss)
 		to_chat(target, span_userdanger("A purple light flashes through your mind, and exhaustion floods your body..."))

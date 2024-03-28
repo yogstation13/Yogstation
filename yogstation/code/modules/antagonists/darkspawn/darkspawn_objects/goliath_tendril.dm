@@ -30,7 +30,7 @@
 		else
 			L.AdjustStun(2 SECONDS)
 		latched = L.AmountStun() //hold on until the stun applied by the tentacle ends
-		L.adjustBruteLoss(rand(10,15))
+		L.adjustBruteLoss(rand(15,25))
 	if(!latched)
 		retract()
 	else

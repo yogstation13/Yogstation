@@ -43,16 +43,31 @@
 			to_chat(owner, span_velvet("You do not have enough will to thrall [target]."))
 			return FALSE
 
-	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		to_chat(owner, span_warning("[target] has foreign machinery that resists our thralling, we shall attempt to destroy it."))
-		target.visible_message(span_warning("[target] seems to resist an unseen force!"))
-		to_chat(target, span_velvet("<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \nA mind brushes against your own. You dream.\nOf a vast, empty Void in the deep of space.\n\
-		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \nEyes filled with stars.</b>\n[span_boldwarning("The creature's gaze swallows the universe into blackness.")]"))
-		if(!do_after(owner, 10 SECONDS, target))
-			to_chat(target, span_userdanger("It cannot be permitted to succeed."))
-			return FALSE
-		for(var/obj/item/implant/mindshield/L in target)
-			qdel(L)
+		var/list/flavour = list()
+
+		flavour += "Your mind goes numb. Your thoughts go blank. You feel utterly empty."
+		flavour += "A consciousness brushes against your own. You dream."
+		if(ispreternis(target))
+			flavour += "Of a vast, glittering empire stretching from star to star."
+			flavour += "Then, a Void blankets the canopy, suffocating the light."
+			flavour += "Hungry eyes bear into you from the blackness. Ancient. Familiar."
+		else
+			flavour += "Of a vast, empty Void in the deep of space."
+			flavour += "Something lies in the Void. Ancient. Unknowable."
+			flavour += "It watches you with hungry eyes. Eyes filled with stars."
+
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+			flavour += span_boldwarning("The creature's gaze swallows the universe into blackness.")
+
+		to_chat(target, flavour.Join("<br>"))
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+			to_chat(owner, span_warning("[target] has foreign machinery that resists our thralling, we shall attempt to destroy it."))
+			target.visible_message(span_warning("[target] seems to resist an unseen force!"))
+			if(!do_after(owner, 10 SECONDS, target))
+				to_chat(target, span_userdanger("It cannot be permitted to succeed."))
+				return FALSE
+			for(var/obj/item/implant/mindshield/L in target)
+				qdel(L)
 
 	owner.balloon_alert(owner, "Krx'lna tyhx graha...")
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
@@ -355,17 +370,10 @@
 //////////////////////////////////////////////////////////////////////////
 //----------------------Abilities that thralls get----------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/seize/lesser //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
-	name = "Lesser Seize"
-	desc = "Makes a single target dizzy for a bit."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	button_icon_state = "seize"
-	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
-
+/datum/action/cooldown/spell/pointed/seize/lesser
 	psi_cost = 0 //thralls don't have psi
 	cooldown_time = 45 SECONDS
-	spell_requirements = SPELL_REQUIRES_HUMAN
-	strong = FALSE
+	stun_duration = 5 SECONDS
 
 /datum/action/cooldown/spell/toggle/nightvision
 	name = "Nightvision"

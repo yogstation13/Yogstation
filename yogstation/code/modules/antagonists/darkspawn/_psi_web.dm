@@ -100,9 +100,11 @@
 
 /datum/psi_web/fighter/on_gain()
 	shadowhuman.physiology.brute_mod *= 0.7
+	darkspawn.dark_healing += 1 //so they're just a little bit faster at healing since they're gonna take damage the most
 
 /datum/psi_web/fighter/on_loss()
 	shadowhuman.physiology.brute_mod /= 0.7
+	darkspawn.dark_healing -= 1
 
 //scout
 /datum/psi_web/scout
