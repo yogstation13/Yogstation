@@ -77,7 +77,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-	
 /datum/psi_web/panopticon
 	name = "Panopticon"
 	desc = "Watch what your allies and servants are doing at all times."
@@ -88,20 +87,33 @@
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_cam)
 
-/datum/psi_web/staff_upgrade/heal
+/datum/psi_web/ability_upgrade/efficiency
+	name = "Efficiency Sign"
+	desc = "Optimize your staff to reduce the Psi cost to shoot."
+	lore_description = "The Akylia sigil, representing efficiency, is etched onto the staff."
+	icon_state = "efficiency_sign"
+	willpower_cost = 2
+	shadow_flags = DARKSPAWN_WARLOCK
+	menu_tab = STORE_UTILITY
+	flag_to_add = STAFF_UPGRADE_EFFICIENCY
+
+/datum/psi_web/ability_upgrade/heal
 	name = "Recovery Sign"
 	desc = "Empower your staff with the ability to heal allies shot."
 	lore_description = "The Kalak sigil, representing eternity, is etched onto the staff."
 	icon_state = "recovery_sign"
+	willpower_cost = 2
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_HEAL
 	
-/datum/psi_web/staff_upgrade/extinguish
+/datum/psi_web/ability_upgrade/extinguish
 	name = "Stifle Sign"
 	desc = "Empower your staff with the ability to extinguish the fire on allies shot."
 	lore_description = "The Khophg sigil, representing suffocation, is etched onto the staff."
 	icon_state = "extinguish_sign"
 	willpower_cost = 1
+	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_EXTINGUISH
 	

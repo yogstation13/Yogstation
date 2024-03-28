@@ -135,3 +135,19 @@
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.max_thralls -= 3
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------Helper for ability upgrades----------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/psi_web/ability_upgrade
+	name = "Upgrades ability"
+	desc = "you shouldn't be seeing this, let a coder or maintainer know."
+	var/flag_to_add
+
+/datum/psi_web/ability_upgrade/on_gain()
+	if(flag_to_add)
+		SEND_SIGNAL(owner, COMSIG_DARKSPAWN_UPGRADE_ABILITY, flag_to_add)
+
+/datum/psi_web/ability_upgrade/on_loss()
+	if(flag_to_add)
+		SEND_SIGNAL(owner, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, flag_to_add)

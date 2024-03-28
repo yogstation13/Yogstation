@@ -72,6 +72,9 @@
 
 ////////////////////////INFINITE AMMO////////////////////////// (some psi required)
 /obj/item/gun/magic/darkspawn/can_shoot()
+	psi_cost = initial(psi_cost)
+	if(effect_flags & STAFF_UPGRADE_EFFICIENCY)
+		psi_cost *= 0.5
 	if(isliving(src.loc))
 		var/mob/living/dude = src.loc
 		if(isdarkspawn(dude))

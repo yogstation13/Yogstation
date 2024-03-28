@@ -35,7 +35,7 @@
 //Attacking with one set of tendrils will attack with the other.
 //This also speeds up most actions they have.
 //Check fighter_abilities.dm for the effect.
-/datum/psi_web/twin_tendrils
+/datum/psi_web/ability_upgrade/twin_tendrils
 	name = "Duality Sigils"
 	desc = "Unlocking these sigils causes tendrils to form in both hands if possible, empowering both."
 	lore_description = "The Kqx'xpk sigils, representing duality, are etched onto the arms."
@@ -43,14 +43,9 @@
 	willpower_cost = 4
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
+	flag_to_add = TENDRIL_UPGRADE_TWIN
 
-/datum/psi_web/twin_tendrils/on_gain()
-	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_UPGRADE_ABILITY, TENDRIL_UPGRADE_TWIN)
-
-/datum/psi_web/twin_tendrils/on_loss()
-	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, TENDRIL_UPGRADE_TWIN)
-
-/datum/psi_web/cleaving_tendrils
+/datum/psi_web/ability_upgrade/cleaving_tendrils
 	name = "Cleaving Sigils"
 	desc = "Unlocking these sigils causes tendrils to cleave through enemies."
 	lore_description = "The Akvryt sigils, representing pierce, are etched onto the arms."
@@ -58,12 +53,7 @@
 	willpower_cost = 3
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
-
-/datum/psi_web/cleaving_tendrils/on_gain()
-	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_UPGRADE_ABILITY, TENDRIL_UPGRADE_CLEAVE)
-
-/datum/psi_web/cleaving_tendrils/on_loss()
-	SEND_SIGNAL(owner, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, TENDRIL_UPGRADE_CLEAVE)
+	flag_to_add = TENDRIL_UPGRADE_CLEAVE
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------Scout only abilities-------------------------------//
@@ -142,29 +132,24 @@
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/seize)
 	
 //staff upgrades
-/datum/psi_web/staff_upgrade
+/datum/psi_web/ability_upgrade/staff_confusion
 	name = "Confusion Sign"
 	desc = "Empower your staff with the ability to confuse any enemy shot."
 	lore_description = "The Vxb'rt sigil, representing disruption, is etched onto the staff."
 	icon_state = "confusion_sign"
-	willpower_cost = 2
+	willpower_cost = 1
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
-	var/flag_to_add = STAFF_UPGRADE_CONFUSION
+	flag_to_add = STAFF_UPGRADE_CONFUSION
 
-/datum/psi_web/staff_upgrade/on_gain()
-	if(flag_to_add)
-		SEND_SIGNAL(owner, COMSIG_DARKSPAWN_UPGRADE_ABILITY, flag_to_add)
-
-/datum/psi_web/staff_upgrade/on_loss()
-	if(flag_to_add)
-		SEND_SIGNAL(owner, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, flag_to_add)
-
-/datum/psi_web/staff_upgrade/light_eater
+/datum/psi_web/ability_upgrade/staff_light_eater
 	name = "Light Eater Sign"
 	desc = "Empower your staff with the ability to consume the light of anything shot."
 	lore_description = "The Aaah'ryt sigil, representing consumption, is etched onto the staff."
 	icon_state = "lighteater_sign"
+	willpower_cost = 2
+	shadow_flags = DARKSPAWN_WARLOCK
+	menu_tab = STORE_OFFENSE
 	flag_to_add = STAFF_UPGRADE_LIGHTEATER
 
 //no more staff upgrades

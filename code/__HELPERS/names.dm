@@ -34,7 +34,7 @@
 				if(2) //Caste + Name
 					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]"
 				if(3) //Caste + Name + Home
-					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]'[pick(GLOB.preternis_home)]"
+					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]-[capitalize(pick(GLOB.preternis_home))]"
 		if(3) //Robotic name
 			return ipc_name()
 
@@ -55,26 +55,33 @@
 /proc/ipc_name()
 	return "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
 
-/proc/nightmare_name() //they have one segment to the name
+/proc/nightmare_name() //they have one segment to the name because they're shells of what a vxtrin once was
 	switch(rand(1,3))
 		if(1) //space and capital last name
-			return "[capitalize(pick(GLOB.preternis_class))]"
+			return "[pick(GLOB.preternis_class)]"
 		if(2) //dash and lowercase last name
-			return "[capitalize(pick(GLOB.preternis_names))]"
+			return "[pick(GLOB.preternis_names)]"
 		if(3) //apostrophe and lowercase last name
-			return "[capitalize(pick(GLOB.preternis_home))]"
+			return "[pick(GLOB.preternis_home)]"
 
-/proc/darkspawn_name() //they have two segments to the name
-	var/name = "[nightmare_name()]"
-	switch(rand(1,4))
-		if(1) //space and capital last name
-			name += " [nightmare_name()]"
-		if(2) //dash and lowercase last name
-			name += "-[lowertext(nightmare_name())]"
-		if(3) //apostrophe and lowercase last name
-			name += "'[lowertext(nightmare_name())]"
-		if(4) //just the first name
-			return name
+/proc/darkspawn_name() //they have three segments to their name, but have lost sane ordering
+	var/list/order = list("name", "class", "home")
+	var/name = ""
+	for(var/i in 1 to 3)
+		var/selection = pick_n_take(order)
+		switch(selection)
+			if("name")
+				name += "[capitalize(pick(GLOB.preternis_names))]"
+			if("class")
+				name += "[capitalize(pick(GLOB.preternis_class))]"
+			if("home")
+				name += "[capitalize(pick(GLOB.preternis_home))]"
+		switch(i)
+			if(1) //apostrophe after the first name
+				name += "'"
+			if(2) //dash after the second
+				name = capitalize(name)
+				name += "-"
 	return name
 
 GLOBAL_VAR(command_name)
