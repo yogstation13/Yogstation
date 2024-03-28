@@ -22201,7 +22201,6 @@
 /obj/structure/sign/plaques/cave{
 	pixel_y = 32
 	},
-/obj/item/circuitboard/computer/ai_upload_download,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "fen" = (
@@ -65071,7 +65070,7 @@
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
 "uKh" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)

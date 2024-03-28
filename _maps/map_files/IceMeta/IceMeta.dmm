@@ -34549,9 +34549,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "kcT" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 8
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -70394,7 +70391,6 @@
 "uql" = (
 /obj/structure/table,
 /obj/item/aicard,
-/obj/item/circuitboard/computer/ai_upload_download,
 /obj/item/disk/holodisk/tutorial/AICore,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
