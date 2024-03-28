@@ -122,6 +122,22 @@
 /datum/psi_web/noslip/on_loss()
 	REMOVE_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
 
+//reduces spell cooldowns
+/datum/psi_web/fast_cooldown
+	name = "Storm Sigil"
+	desc = "Unlocking this sigil causes your spells to have shorter cooldowns."
+	lore_description = "The Zeras sigil, representing storm, is etched onto the forehead."
+	icon_state = "storm"
+	willpower_cost = 2
+	menu_tab = STORE_PASSIVE
+	shadow_flags = DARKSPAWN_WARLOCK | DARKSPAWN_SCOUT
+
+/datum/psi_web/fast_cooldown/on_gain()
+	ADD_TRAIT(shadowhuman, TRAIT_FAST_COOLDOWNS, type)
+
+/datum/psi_web/fast_cooldown/on_loss()
+	REMOVE_TRAIT(shadowhuman, TRAIT_FAST_COOLDOWNS, type)
+	
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Fighter Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -260,22 +276,6 @@
 
 /datum/psi_web/psi_regen_speed/on_loss()
 	darkspawn.psi_per_second /= 2
-
-//reduces spell cooldowns
-/datum/psi_web/fast_cooldown
-	name = "Storm Sigil"
-	desc = "Unlocking this sigil causes your spells to have shorter cooldowns."
-	lore_description = "The Zeras sigil, representing storm, is etched onto the forehead."
-	icon_state = "storm"
-	willpower_cost = 2
-	menu_tab = STORE_PASSIVE
-	shadow_flags = DARKSPAWN_WARLOCK
-
-/datum/psi_web/fast_cooldown/on_gain()
-	ADD_TRAIT(shadowhuman, TRAIT_FAST_COOLDOWNS, type)
-
-/datum/psi_web/fast_cooldown/on_loss()
-	REMOVE_TRAIT(shadowhuman, TRAIT_FAST_COOLDOWNS, type)
 
 //adds an additional thrall
 /datum/psi_web/more_thralls

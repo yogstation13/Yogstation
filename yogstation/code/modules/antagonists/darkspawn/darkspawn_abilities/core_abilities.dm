@@ -362,11 +362,6 @@
 	button_icon_state = "sacrament(old)"
 	antimagic_flags = NONE
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
-
-/datum/action/cooldown/spell/reform_body/can_cast_spell(feedback)
-	if(!(issilicon(owner) || isbrain(owner)))
-		return FALSE
-	return ..()
 	
 /datum/action/cooldown/spell/reform_body/cast(atom/cast_on)
 	. = ..()

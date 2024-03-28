@@ -521,6 +521,14 @@
 
 ///creates a new human body for the darkspawn player and transfers their mind to it
 /datum/antagonist/darkspawn/proc/reform_body()
+	if(!owner.current)
+		return
+
+	for(var/datum/action/cooldown/spell/spells in owner.current.actions) //remove the ability that triggers this
+		if(istype(spells, /datum/action/cooldown/spell/reform_body))
+			spells.Remove(owner.current)
+			qdel(spells)
+
 	if(owner.current && !(isbrain(owner.current) || issilicon(owner.current)))
 		return
 
@@ -545,11 +553,6 @@
 		if(is_team_darkspawn(M))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, returner)
-
-	for(var/datum/action/cooldown/spell/spells in returner.actions) //remove the ability that triggers this
-		if(istype(spells, /datum/action/cooldown/spell/reform_body))
-			spells.Remove(returner)
-			qdel(spells)
 
 	if(isbrain(old_body))
 		var/mob/living/brain/thinker = old_body

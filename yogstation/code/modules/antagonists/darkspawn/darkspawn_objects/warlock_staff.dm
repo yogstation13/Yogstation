@@ -12,7 +12,6 @@
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 
 	fire_sound = 'sound/weapons/emitter2.ogg'
-	fire_delay = 1 SECONDS
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	slot_flags = NONE
 
@@ -109,7 +108,7 @@
 	damage_type = STAMINA
 	nodamage = FALSE
 	antimagic_flags = MAGIC_RESISTANCE_MIND
-	speed = 1.6 //watch out, it fucks you up
+	speed = 2 //watch out, it fucks you up
 
 /obj/projectile/magic/darkspawn/Initialize(mapload)
 	. = ..()

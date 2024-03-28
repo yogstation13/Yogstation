@@ -24,13 +24,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /obj/machinery/computer/camera_advanced/darkspawn/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "panopticon_emissive", src)
-
-/obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
-	if(user && !is_darkspawn_or_thrall(user))
-		to_chat(user, span_velvet("You tamper with forces you do not understand mortal."))
-		return FALSE
-	return ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
 	return
