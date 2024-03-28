@@ -160,7 +160,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "bn" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
 /obj/machinery/button_puzzle{
@@ -310,7 +310,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "cD" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -342,7 +342,7 @@
 /turf/open/floor/carpet/blue,
 /area/awaymission/vr/combat_robot_factory)
 "cX" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
 /obj/machinery/button_puzzle{
@@ -763,7 +763,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
 "gb" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
 "gc" = (
@@ -1129,7 +1129,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/abandoned_mine)
 "iP" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
 /obj/machinery/button_puzzle{
@@ -1293,7 +1293,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
 "ka" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
 /turf/open/floor/plasteel,
@@ -1539,7 +1539,7 @@
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
 "mq" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 6
 	},
 /turf/open/floor/plasteel,
@@ -1566,7 +1566,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
 "mG" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 1
 	},
@@ -1754,7 +1754,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
 "oi" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
 /obj/effect/mob_spawn/human/corpse/cargo_tech,
@@ -1787,7 +1787,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
 "oE" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 5
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -1827,7 +1827,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "oM" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 10
 	},
 /obj/item/kirbyplants/random,
@@ -2140,7 +2140,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "rk" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /obj/machinery/light,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel,
@@ -2171,7 +2171,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "rH" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /obj/effect/mob_spawn/human/corpse/assistant,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
@@ -2222,7 +2222,7 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "sb" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
@@ -2248,7 +2248,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "sq" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
 /obj/machinery/button_puzzle{
@@ -2352,7 +2352,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "th" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -2446,7 +2446,7 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/abandoned_mine)
 "tZ" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood,
@@ -2557,7 +2557,7 @@
 /turf/open/floor/plating/asteroid,
 /area/awaymission/vr/abandoned_mine)
 "uT" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
@@ -2588,7 +2588,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "vj" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -3059,7 +3059,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "ze" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
@@ -3232,7 +3232,7 @@
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
 "AF" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -3338,7 +3338,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "Br" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -3672,7 +3672,7 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "Er" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/tracks{
@@ -4137,7 +4137,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
 "Ih" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 5
 	},
 /obj/machinery/button_puzzle{
@@ -4363,10 +4363,10 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
 "JZ" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -4608,7 +4608,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
 "Mn" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
 /obj/structure/table,
@@ -4856,7 +4856,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
 "Og" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/tracks{
@@ -5047,7 +5047,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/abandoned_mine)
 "Px" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -5134,7 +5134,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/vr/combat_robot_factory)
 "PV" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
 /obj/machinery/button_puzzle{
@@ -5329,7 +5329,7 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
 "Re" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 6
 	},
 /obj/structure/table,
@@ -5349,7 +5349,7 @@
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
 "Rj" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -5411,7 +5411,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "RK" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
 /obj/effect/mob_spawn/human/corpse/assistant,
@@ -5547,7 +5547,7 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "ST" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -5815,7 +5815,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "UO" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -6074,7 +6074,7 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
 "WB" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 5
 	},
 /obj/machinery/light{
@@ -6278,7 +6278,7 @@
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
 "XO" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
