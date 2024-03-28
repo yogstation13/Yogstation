@@ -28,13 +28,15 @@
 		if(1) //Adj + Noun
 			return "[pick(GLOB.adjectives)] [pick(GLOB.forge_name)]"
 		if(2) //Vxtrin name
-			switch(rand(1,3)) 
+			switch(rand(1,4)) 
 				if(1) //Name
 					return pick(GLOB.preternis_names)
 				if(2) //Caste + Name
 					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]"
 				if(3) //Caste + Name + Home
 					return "[pick(GLOB.preternis_class)]'[pick(GLOB.preternis_names)]-[capitalize(pick(GLOB.preternis_home))]"
+				if(4) //Name + Home
+					return "[pick(GLOB.preternis_names)]-[capitalize(pick(GLOB.preternis_home))]"
 		if(3) //Robotic name
 			return ipc_name()
 
