@@ -100,11 +100,11 @@
 
 /datum/psi_web/fighter/on_gain()
 	shadowhuman.physiology.brute_mod *= 0.7
-	darkspawn.dark_healing += 1 //so they're just a little bit faster at healing since they're gonna take damage the most
+	darkspawn.dark_healing += 2 //so they're just a little bit faster at healing since they're gonna take damage the most
 
 /datum/psi_web/fighter/on_loss()
 	shadowhuman.physiology.brute_mod /= 0.7
-	darkspawn.dark_healing -= 1
+	darkspawn.dark_healing -= 2
 
 //scout
 /datum/psi_web/scout
@@ -128,12 +128,14 @@
 
 /datum/psi_web/warlock/on_gain()
 	darkspawn.psi_cap += 100
+	darkspawn.willpower += 1
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.max_thralls += 3
 
 /datum/psi_web/warlock/on_loss()
 	darkspawn.psi_cap -= 100
+	darkspawn.willpower -= 1
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.max_thralls -= 3

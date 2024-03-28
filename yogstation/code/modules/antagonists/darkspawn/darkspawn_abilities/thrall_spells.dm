@@ -19,13 +19,21 @@
 	///Willpower spent by the darkspawn datum to thrall a mind
 	var/willpower_cost = 2
 
+/datum/action/cooldown/spell/touch/thrall_mind/can_cast_spell(feedback)
+	var/datum/antagonist/darkspawn/master = isdarkspawn(owner)
+	if(master && master.willpower < willpower_cost)
+		if(feedback)
+			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
+		return FALSE
+	return ..()
+
 /datum/action/cooldown/spell/touch/thrall_mind/is_valid_target(atom/cast_on)
 	return ishuman(cast_on)
 
 /datum/action/cooldown/spell/touch/thrall_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	if(!isdarkspawn(caster))//sanity check
 		return
-	if(!target.mind && !target.last_mind)
+	if(!(target.mind || target.ckey))
 		to_chat(owner, "This mind is too feeble to even be worthy of thralling.")
 		return
 	if(!target.getorganslot(ORGAN_SLOT_BRAIN))
@@ -37,10 +45,10 @@
 	var/datum/antagonist/darkspawn/master = isdarkspawn(caster)
 	if(!isthrall(target))
 		if(!target.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
-			to_chat(owner, span_velvet("[target]'s will is still too strong to thrall."))
+			to_chat(owner, span_danger("[target]'s will is still too strong to thrall."))
 			return FALSE
 		if(master.willpower < willpower_cost)
-			to_chat(owner, span_velvet("You do not have enough will to thrall [target]."))
+			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
 			return FALSE
 
 		var/list/flavour = list()

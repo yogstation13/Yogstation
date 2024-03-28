@@ -12,6 +12,7 @@
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
 	force = 25
+	block_chance = 25
 	wound_bonus = -60 //no wounding
 	bare_wound_bonus = 20
 	var/datum/antagonist/darkspawn/darkspawn
@@ -30,10 +31,17 @@
 			U.twin = src
 			force *= 0.75
 			U.force *= 0.75
+			block_chance *= 0.75
+			U.block_chance *= 0.75
 
 /obj/item/umbral_tendrils/Destroy()
 	if(!QDELETED(twin))
 		qdel(twin)
+	return ..()
+
+/obj/item/umbral_tendrils/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(attack_type != PROJECTILE_ATTACK)
+		final_block_chance = 0 //only give defense against shooting
 	return ..()
 
 /obj/item/umbral_tendrils/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why

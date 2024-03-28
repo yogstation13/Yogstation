@@ -14,6 +14,7 @@
 	fire_sound = 'sound/weapons/emitter2.ogg'
 	fire_delay = 1 SECONDS
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
+	slot_flags = NONE
 
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	ammo_type = /obj/item/ammo_casing/magic/darkspawn
@@ -104,6 +105,7 @@
 	icon = 'yogstation/icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "staff_blast"
 	damage = 0
+	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER
 	damage_type = STAMINA
 	nodamage = FALSE
 	antimagic_flags = MAGIC_RESISTANCE_MIND

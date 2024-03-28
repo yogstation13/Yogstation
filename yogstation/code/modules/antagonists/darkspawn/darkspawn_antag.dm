@@ -11,6 +11,8 @@
 	var/datum/team/darkspawn/team
 	///name of the player character before the divulge
 	var/disguise_name 
+	///name of the player character after the divulge
+	var/darkspawn_name 
 	///keeps track of where the darkspawn player is in progression
 	var/darkspawn_state = DARKSPAWN_MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
 	///Component that keeps track of all the spells a darkspawn can learn
@@ -268,7 +270,7 @@
 	//low probability because i want it to be super rare and a "wait what the FUCK they can do that!?" type moment
 	//if it becomes too common, then people stop putting darkspawn brains in mmi (which is metagaming, but whatever)
 	if((rand(0, 10000) == 0) && owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
-		addtimer(CALLBACK(src, PROC_REF(grant_reform)), rand(1, (10 MINUTES)), TIMER_UNIQUE) //give it a random delay before granting the ability, so it's luck squared to get it immediately
+		addtimer(CALLBACK(src, PROC_REF(grant_reform)), rand(1, (20 MINUTES)), TIMER_UNIQUE) //give it a random delay before granting the ability, so it's luck squared to get it immediately
 
 	if((owner?.current?.stat == DEAD) && HAS_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current) && !QDELETED(owner.current))
 		var/mob/living/carbon/human/deadguy = owner.current
@@ -377,14 +379,15 @@
 			spells.Remove(user)
 			qdel(spells)
 
-	disguise_name = user.real_name //keep track of the old name
 	user.fully_heal()
+	disguise_name = user.real_name //keep track of the old name
 	user.set_species(/datum/species/shadow/darkspawn)
+	darkspawn_name = user.real_name //keep track of the new name
 	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 	user.update_appearance(UPDATE_OVERLAYS)
 
 	show_to_ghosts = TRUE
-	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [user.real_name].</b>")
+	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [darkspawn_name].</b>")
 	for(var/mob/M as anything in GLOB.alive_mob_list)
 		if(M == user)
 			continue
@@ -404,12 +407,16 @@
 /datum/antagonist/darkspawn/proc/begin_force_divulge()
 	if(darkspawn_state != DARKSPAWN_MUNDANE)
 		return
+	if(owner.current.stat == DEAD)
+		return
 	to_chat(owner.current, span_userdanger("You feel the skin you're wearing crackling like paper - you will forcefully divulge soon! Get somewhere hidden and dark!"))
 	owner.current.playsound_local(owner.current, 'yogstation/sound/magic/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
 	addtimer(CALLBACK(src, PROC_REF(force_divulge), 5 MINUTES))
 
 /datum/antagonist/darkspawn/proc/force_divulge()
 	if(darkspawn_state != DARKSPAWN_MUNDANE)
+		return
+	if(owner.current.stat == DEAD)
 		return
 	var/mob/living/carbon/C = owner.current
 	if(C && !ishuman(C))
@@ -524,7 +531,8 @@
 		returner.set_species(/datum/species/shadow/darkspawn)
 		ADD_TRAIT(returner, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 
-	returner.fully_replace_character_name(null, (old_body.real_name || old_body.name))
+	var/new_name = darkspawn_name || darkspawn_name()
+	returner.fully_replace_character_name(null, new_name)
 	owner.transfer_to(returner)
 	returner.update_appearance(UPDATE_OVERLAYS)
 

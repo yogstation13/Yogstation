@@ -50,7 +50,7 @@
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
 	if(!darkspawn || eating || target == caster)
 		return
-	if(!target.mind || !target.client)
+	if(!target.mind)
 		to_chat(caster, span_warning("You cannot drain the mindless."))
 		return
 	if(is_darkspawn_or_thrall(target))

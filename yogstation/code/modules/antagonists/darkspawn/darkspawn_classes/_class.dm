@@ -143,7 +143,7 @@
 /datum/component/darkspawn_class/fighter
 	name = "Fighter"
 	description = "An unstoppable wall of darkness."
-	long_description = "Act as a physical threat to crewmembers."
+	long_description = "Act as a physical threat to crewmembers. Simple and messy."
 	specialization_flag = DARKSPAWN_FIGHTER
 	class_color = COLOR_RED
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/fighter)
@@ -152,7 +152,7 @@
 /datum/component/darkspawn_class/scout
 	name = "Scout"
 	description = "Stir the shadows in unnatural ways."
-	long_description = "Deter crewmembers from venturing into the darkness by being everywhere at once."
+	long_description = "Deter crewmembers from venturing into the darkness by being everywhere at once. Good at running away."
 	specialization_flag = DARKSPAWN_SCOUT
 	class_color = COLOR_YELLOW
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/scout)
@@ -161,7 +161,7 @@
 /datum/component/darkspawn_class/warlock
 	name = "Warlock"
 	description = "Psionic dominance."
-	long_description = "Cast spells, thrall minds, and support allies from across the station."
+	long_description = "Cast spells, thrall minds, and support allies from across the station. Rather complex."
 	specialization_flag = DARKSPAWN_WARLOCK
 	class_color = COLOR_STRONG_VIOLET
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/warlock)

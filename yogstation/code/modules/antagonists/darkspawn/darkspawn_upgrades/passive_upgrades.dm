@@ -250,7 +250,7 @@
 	desc = "Unlocking this sigil causes your Psi to regenerate twice as quickly."
 	lore_description = "The Ieaxki sigil, representing swiftness, is etched onto the forehead."
 	icon_state = "psi_recovery"
-	willpower_cost = 2
+	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
 	infinite = TRUE
@@ -267,7 +267,7 @@
 	desc = "Unlocking this sigil causes your spells to have shorter cooldowns."
 	lore_description = "The Zeras sigil, representing storm, is etched onto the forehead."
 	icon_state = "storm"
-	willpower_cost = 3
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
 
@@ -303,7 +303,7 @@
 	desc = "Unlocking this sigil allows your thrall support abilities to also affect allied darkspawns."
 	lore_description = "The Ahwelhe sigils, representing unity, are etched onto the hands."
 	icon_state = "unity"
-	willpower_cost = 2
+	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
 
