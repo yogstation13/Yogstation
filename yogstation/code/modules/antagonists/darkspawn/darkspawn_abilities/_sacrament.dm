@@ -55,8 +55,7 @@
 	for(var/mob/M as anything in GLOB.alive_mob_list)
 		if(is_darkspawn_or_thrall(M))
 			to_chat(M, processed_message)
-	for(var/mob/M as anything in GLOB.dead_mob_list)
-		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
+	deadchat_broadcast(processed_message, null, user)
 
 	in_use = TRUE
 

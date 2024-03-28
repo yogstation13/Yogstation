@@ -25,7 +25,7 @@
 	if(SSticker?.mode)
 		required_succs = clamp(round(SSticker.mode.num_players() / 2), 5, 30) //half the players, 5 at minimum, scaling up to 30 at max
 	update_objectives()
-	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 60 MINUTES) //allow for validhunting after a duration
+	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 75 MINUTES) //allow for validhunting after a duration
 
 /datum/team/darkspawn/add_member(datum/mind/new_member)
 	. = ..()

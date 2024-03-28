@@ -94,7 +94,7 @@
 		if(!action)
 			action = new(owner)
 			action.Grant(current_mob)
-		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 15 MINUTES) //this won't trigger if they've divulged when the proc runs
+		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 20 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)
@@ -390,9 +390,7 @@
 			continue
 		if(is_team_darkspawn(M))
 			to_chat(M, processed_message)
-	for(var/T in GLOB.dead_mob_list)
-		var/mob/M = T
-		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
+	deadchat_broadcast(processed_message, null, user)
 
 	darkspawn_state = DARKSPAWN_DIVULGED
 	to_chat(user, span_velvet("Your mind has expanded. Avoid the light. Keep to the shadows. Your time will come."))
@@ -540,14 +538,12 @@
 	playsound(returner, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
 	playsound(returner, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, 0)
 	
-	var/processed_message = span_velvet("<b>\[Mindlink\] [returner] has reformed their body.</b>")
+	var/processed_message = span_progenitor("<b>\[Mindlink\] [returner] has reformed their body.</b>")
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
 		if(is_team_darkspawn(M))
 			to_chat(M, processed_message)
-	for(var/T in GLOB.dead_mob_list)
-		var/mob/M = T
-		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(returner)]'>(F)</a> [processed_message]")
+	deadchat_broadcast(processed_message, null, returner)
 
 	for(var/datum/action/cooldown/spell/spells in returner.actions) //remove the ability that triggers this
 		if(istype(spells, /datum/action/cooldown/spell/reform_body))

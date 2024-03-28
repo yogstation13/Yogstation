@@ -170,12 +170,20 @@ const FlavorSection = () => {
   );
 };
 
-const GuideSection = () => {
+const GuideSection = (props, context) => {
+  const { data } = useBackend<Info>(context);
+  const { has_class } = data;
+
   return (
     <Stack vertical fontSize="16px">
       <Stack.Item>
         - Collaborate with fellow darkspawns, use .w to converse using the mindlink.
       </Stack.Item>
+      {!has_class && (
+      <Stack.Item>
+        - Select a class in the selection tab to decide what kind of gameplay you want.
+      </Stack.Item>
+      )}
       <Stack.Item>
         - Incapacitate crewmembers and devour their will to gain <span style={Lucidity}>lucidity</span> and <span style={Velvet}>willpower</span>.
       </Stack.Item>
