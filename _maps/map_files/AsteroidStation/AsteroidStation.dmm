@@ -5096,25 +5096,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
-"aTV" = (
-/obj/machinery/power/apc{
-	areastring = "/area/science/server";
-	dir = 4;
-	name = "Server Room APC";
-	pixel_x = 24
-	},
-/obj/machinery/power/apc/highcap{
-	areastring = "/area/ai_monitored/secondarydatacoreserver";
-	dir = 4;
-	name = "AI Secondary Datacore";
-	pixel_x = 24
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/turf/open/floor/engine,
-/area/science/explab)
 "aUa" = (
 /turf/open/floor/engine,
 /area/science/mixing)
@@ -16242,6 +16223,19 @@
 /obj/item/toy/beach_ball/holoball,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"epK" = (
+/obj/machinery/power/apc{
+	areastring = "/area/science/server";
+	dir = 4;
+	name = "Server Room APC";
+	pixel_x = 24
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/science/explab)
 "epY" = (
 /obj/structure/cloth_curtain{
 	color = "#99ccff"
@@ -116094,7 +116088,7 @@ wZX
 qcK
 ecO
 pVu
-aTV
+epK
 gnV
 tLH
 aPQ
