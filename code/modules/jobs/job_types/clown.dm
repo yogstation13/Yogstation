@@ -13,7 +13,7 @@
 	alt_titles = list("Entertainer", "Comedian", "Jester", "Improv Artist")
 
 	added_access = list()
-	base_access = list(ACCESS_THEATRE)
+	base_access = list(ACCESS_THEATRE, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 

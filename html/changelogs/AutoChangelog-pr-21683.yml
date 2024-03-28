@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed meatspike frames not checking if they're anchored or not when finishing"

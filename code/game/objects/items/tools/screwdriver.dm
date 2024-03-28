@@ -7,6 +7,12 @@
 	belt_icon_state = "screwdriver"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+
+	greyscale_config = /datum/greyscale_config/screwdriver
+	greyscale_config_belt = /datum/greyscale_config/screwdriver_belt
+	greyscale_config_inhand_left = /datum/greyscale_config/screwdriver_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/screwdriver_inhand_right
+
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
@@ -19,16 +25,13 @@
 	attack_verb = list("stabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	usesound = list('sound/items/screwdriver.ogg', 'sound/items/screwdriver2.ogg')
+	drop_sound = 'sound/items/handling/screwdriver_drop.ogg'
+	pickup_sound =  'sound/items/handling/screwdriver_pickup.ogg'
+
 	tool_behaviour = TOOL_SCREWDRIVER
 	toolspeed = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
-	drop_sound = 'sound/items/handling/screwdriver_drop.ogg'
-	pickup_sound =  'sound/items/handling/screwdriver_pickup.ogg'
 	sharpness = SHARP_POINTY
-	greyscale_config = /datum/greyscale_config/screwdriver
-	greyscale_config_inhand_left = /datum/greyscale_config/screwdriver_inhand_left
-	greyscale_config_inhand_right = /datum/greyscale_config/screwdriver_inhand_right
-	greyscale_config_belt = /datum/greyscale_config/screwdriver_belt
 	var/random_color = TRUE //if the screwdriver uses random coloring
 	var/static/list/screwdriver_colors = list(
 		COLOR_TOOL_BLUE,
@@ -86,9 +89,6 @@
 	toolspeed = 0.1
 	random_color = FALSE
 
-/obj/item/screwdriver/abductor/get_belt_overlay()
-	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver_alien")
-
 /obj/item/screwdriver/cyborg
 	name = "powered screwdriver"
 	desc = "An electrical screwdriver, designed to be both precise and quick."
@@ -100,6 +100,7 @@
 	desc = "Crude driver of screws. A primitive way to screw things up."
 	icon = 'icons/obj/improvised.dmi'
 	icon_state = "screwdriver_makeshift"
+	item_state = "screwdriver_makeshift"
 	toolspeed = 2
 	random_color = FALSE
 

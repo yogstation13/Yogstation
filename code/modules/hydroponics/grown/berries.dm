@@ -167,7 +167,7 @@
 	name = "pack of cherry bulb pits"
 	desc = "The glowy kind of cherries."
 	icon_state = "seed-cherrybulb"
-	species = "cherrybulb"
+	species = "cherry" // Same icons as normal cherries
 	plantname = "Cherry Bulb Tree"
 	product = /obj/item/reagent_containers/food/snacks/grown/cherrybulbs
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/pink)

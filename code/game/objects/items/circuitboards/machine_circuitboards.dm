@@ -531,7 +531,7 @@
 
 /obj/item/circuitboard/machine/inspector_booth
 	name = "Inspector Booth (Machine Board)"
-	icon_state = "generic"
+	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/inspector_booth
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 1,

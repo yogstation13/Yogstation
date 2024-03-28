@@ -45,14 +45,6 @@
 	if(random_color) //random colors!
 		set_greyscale(colors = list(pick(wirecutter_colors)))
 
-/obj/item/wirecutters/update_overlays()
-	. = ..()
-	if(!random_color) //icon override
-		return
-	var/mutable_appearance/base_overlay = mutable_appearance(icon, "cutters_cutty_thingy")
-	base_overlay.appearance_flags = RESET_COLOR
-	. += base_overlay
-
 /obj/item/wirecutters/attack(mob/living/carbon/C, mob/user)
 	if(istype(C) && C.handcuffed && istype(C.handcuffed, /obj/item/restraints/handcuffs/cable))
 		user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
@@ -83,6 +75,7 @@
 	desc = "A pair of wirecutters made of brass. The handle feels freezing cold to the touch."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "cutters_brass"
+	item_state = "cutters_brass"
 	random_color = FALSE
 	toolspeed = 0.5
 
@@ -91,6 +84,7 @@
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cutters_alien"
+	item_state = "cutters_alien"
 	toolspeed = 0.1
 
 	random_color = FALSE
@@ -105,6 +99,7 @@
 	desc = "Mind your fingers."
 	icon = 'icons/obj/improvised.dmi'
 	icon_state = "cutters_makeshift"
+	item_state = "cutters_makeshift"
 	toolspeed = 0.5
 	random_color = FALSE
 

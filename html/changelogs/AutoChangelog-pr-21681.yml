@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed the pirate data siphon going invisible when activated"
