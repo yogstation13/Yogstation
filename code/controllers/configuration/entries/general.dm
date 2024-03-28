@@ -80,6 +80,8 @@
 
 /datum/config_entry/flag/log_pda	// log pda messages
 
+/datum/config_entry/flag/log_circuit // log integrated circuits
+
 /// log uplink/spellbook/codex ciatrix purchases and refunds
 /datum/config_entry/flag/log_uplink
 

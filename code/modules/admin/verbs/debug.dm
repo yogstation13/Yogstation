@@ -102,6 +102,69 @@ GLOBAL_VAR(LastAdminCalledProc)
 GLOBAL_PROTECT(LastAdminCalledProc)
 GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
 GLOBAL_PROTECT(AdminProcCallSpamPrevention)
+GLOBAL_DATUM_INIT(AdminProcCallHandler, /mob/proccall_handler, new())
+GLOBAL_PROTECT(AdminProcCallHandler)
+
+//adminprocallhandler is used for integrated circuit stuff. messes with wrapadmin proccall and sdql
+/mob/proccall_handler
+	name = "ProcCall Handler"
+	desc = "If you are seeing this, tell a coder."
+
+	var/list/callers = list()
+
+	invisibility = INVISIBILITY_ABSTRACT
+	density = FALSE
+
+/// Adds a caller.
+/mob/proccall_handler/proc/add_caller(caller_name)
+	callers += caller_name
+	name = "[initial(name)] ([callers.Join(") (")])"
+
+/// Removes a caller.
+/mob/proccall_handler/proc/remove_caller(caller_name)
+	callers -= caller_name
+	name = "[initial(name)] ([callers.Join(") (")])"
+
+/mob/proccall_handler/Initialize(mapload)
+	. = ..()
+	if(GLOB.AdminProcCallHandler && GLOB.AdminProcCallHandler != src)
+		return INITIALIZE_HINT_QDEL
+	GLOB.AdminProcCallHandler = src
+
+/mob/proccall_handler/vv_edit_var(var_name, var_value)
+	if(GLOB.AdminProcCallHandler != src)
+		return ..()
+	return FALSE
+
+/mob/proccall_handler/vv_do_topic(list/href_list)
+	if(GLOB.AdminProcCallHandler != src)
+		return ..()
+	return FALSE
+
+/mob/proccall_handler/CanProcCall(procname)
+	if(GLOB.AdminProcCallHandler != src)
+		return ..()
+	return FALSE
+
+// Shit will break if this is allowed to be deleted
+/mob/proccall_handler/Destroy(force)
+	if(GLOB.AdminProcCallHandler != src)
+		return ..()
+	if(!force)
+		stack_trace("Attempted deletion on [type] - [name], aborting.")
+		return QDEL_HINT_LETMELIVE
+	return ..()	
+
+/proc/HandleUserlessSDQL(user, query_text)
+	if(IsAdminAdvancedProcCall())
+		return
+	var/mob/proccall_handler/handler = GLOB.AdminProcCallHandler
+	handler.add_caller(user)
+	var/lastusr = usr
+	usr = handler
+	. = world.SDQL2_query(query_text, user, user)
+	usr = lastusr
+	handler.remove_caller(user)
 
 
 /// Wrapper for proccalls where the datum is flagged as vareditted

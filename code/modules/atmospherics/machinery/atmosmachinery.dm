@@ -76,6 +76,12 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	set_init_directions()
 
 /obj/machinery/atmospherics/Initialize(mapload)
+	var/turf/turf_loc = null
+	if(isturf(loc))
+		turf_loc = loc
+		turf_loc.add_blueprints_preround(src)
+	SSspatial_grid.add_grid_awareness(src, SPATIAL_GRID_CONTENTS_TYPE_ATMOS)
+	SSspatial_grid.add_grid_membership(src, turf_loc, SPATIAL_GRID_CONTENTS_TYPE_ATMOS)
 	if(init_processing)
 		SSair.start_processing_machine(src)
 	return ..()
