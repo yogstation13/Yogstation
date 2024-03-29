@@ -62,20 +62,36 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
-	var/maxdistance = (SOUND_RANGE + extrarange)
-	var/z = turf_source.z
-	var/list/listeners = SSmobs.clients_by_zlevel[z]
-	if(!ignore_walls) //these sounds don't carry through walls
-		listeners = listeners & hearers(maxdistance,turf_source)
-	for(var/P in listeners)
-		var/mob/M = P
-		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb)
-	for(var/P in SSmobs.dead_players_by_zlevel[z])
-		var/mob/M = P
-		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb)
+	var/maxdistance = SOUND_RANGE + extrarange
+	var/source_z = turf_source.z
+	var/list/listeners = SSmobs.clients_by_zlevel[source_z].Copy()
 
+	. = list() //output everything that successfully heard the sound
+
+	var/turf/above_turf = GET_TURF_ABOVE(turf_source)
+	var/turf/below_turf = GET_TURF_BELOW(turf_source)
+
+	if(ignore_walls)
+
+		if(above_turf && istransparentturf(above_turf))
+			listeners += SSmobs.clients_by_zlevel[above_turf.z]
+
+		if(below_turf && istransparentturf(turf_source))
+			listeners += SSmobs.clients_by_zlevel[below_turf.z]
+
+	else //these sounds don't carry through walls
+		listeners = get_hearers_in_view(maxdistance, turf_source)
+
+		if(above_turf && istransparentturf(above_turf))
+			listeners += get_hearers_in_view(maxdistance, above_turf)
+
+		if(below_turf && istransparentturf(turf_source))
+			listeners += get_hearers_in_view(maxdistance, below_turf)
+
+	for(var/mob/listening_mob in listeners | SSmobs.dead_players_by_zlevel[source_z])//observers always hear through walls
+		if(get_dist(listening_mob, turf_source) <= maxdistance)
+			listening_mob.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb)
+			. += listening_mob
 
 /*! playsound
 playsound_local is a proc used to play a sound directly on a mob from a specific turf.

@@ -110,7 +110,7 @@
 		return mob.remote_control.relaymove(mob, direct)
 
 	if(isAI(mob))
-		return AIMove(n,direct,mob)
+		return AIMove(direct,mob)
 
 	if(Process_Grab()) //are we restrained by someone's grip?
 		return

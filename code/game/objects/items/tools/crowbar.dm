@@ -62,6 +62,10 @@
 	item_state = "crowbar"
 	toolspeed = 0.7
 
+/obj/item/crowbar/large/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack, no_multi_hit=TRUE) // it's big
+
 /obj/item/crowbar/cyborg
 	name = "hydraulic crowbar"
 	desc = "A hydraulic prying tool, compact but powerful. Designed to replace crowbar in construction cyborgs."

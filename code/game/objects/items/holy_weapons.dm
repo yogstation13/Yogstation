@@ -147,6 +147,10 @@
 	menutab = MENU_WEAPON
 	additional_desc = "An exceptionally large sword, capable of occasionally deflecting blows."
 
+/obj/item/nullrod/claymore/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
+
 /obj/item/nullrod/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance = 0 //Don't bring a sword to a gunfight
@@ -358,6 +362,10 @@
 	sharpness = SHARP_NONE
 	menutab = MENU_WEAPON
 	additional_desc = "The weapon of choice for a devout monk. Block incoming blows while striking weak points until your opponent is too exhausted to continue."
+
+/obj/item/nullrod/bostaff/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack, arc_size=180)
 
 /obj/item/nullrod/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
@@ -610,6 +618,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 30, 100, 0, hitsound)
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/nullrod/armblade
 	name = "dark blessing"
@@ -633,6 +642,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/nullrod/armblade/tentacle
 	name = "unholy blessing"
@@ -852,7 +862,7 @@
 			C.regenerate_icons()
 
 /obj/item/nullrod/staff/worn_overlays(isinhands)
-	. = list()
+	. = ..()
 	if(isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
 
@@ -1039,6 +1049,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	var/datum/action/cooldown/spell/recall_nullrod/summon //the recall spell in question
 	menutab = MENU_MISC
 	additional_desc = "You feel an unwoken presence in this one."
+
+/obj/item/nullrod/talking/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 
 /obj/item/nullrod/talking/relaymove(mob/user)
 	return //stops buckled message spam for the ghost.
@@ -1339,6 +1353,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	menutab = MENU_MISC //banish it from being associated with proper weapons
 	additional_desc = "Hey, God here. Asking you to pick literally anything else as your implement of justice."
+
+/obj/item/nullrod/sord/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack) // i guess???
 
 //NOT CHAPLAIN SPAWNABLE
 /obj/item/nullrod/talking/chainsword

@@ -8,11 +8,11 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 
-AshCorr	=	Host
+spl99	=	Host
 Xantam	=	Host
  
 aquizit = Council Member
-mordrehel = Council Member
+hisakaki = Council Member
 cowbot93 = Council Member
 
 jamied12	=	Head Developer
