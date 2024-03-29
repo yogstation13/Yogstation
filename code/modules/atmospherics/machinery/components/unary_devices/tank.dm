@@ -1,16 +1,19 @@
 #define AIR_CONTENTS	((25*ONE_ATMOSPHERE)*(air_contents.return_volume())/(R_IDEAL_GAS_EQUATION*air_contents.return_temperature()))
 
 /obj/machinery/atmospherics/components/unary/tank
-	icon = 'icons/obj/atmospherics/pressure_tank.dmi'
-	icon_state = "generic"
-
 	name = "pressure tank"
 	desc = "A large vessel containing pressurized gas."
+
+	icon = 'icons/obj/atmospherics/pressure_tank.dmi'
+	icon_state = "tank_base"
 
 	max_integrity = 800
 	density = TRUE
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF
+
+	greyscale_config = /datum/greyscale_config/pressure_tank
+	greyscale_colors = "#ffffff"
 
 	var/volume = 10000 //in liters
 	var/gas_type = 0
@@ -26,8 +29,8 @@
 	set_piping_layer(piping_layer)
 
 /obj/machinery/atmospherics/components/unary/tank/air
-	icon_state = "grey"
 	name = "pressure tank (Air)"
+	greyscale_colors = "#f5f3f0"
 
 /obj/machinery/atmospherics/components/unary/tank/air/Initialize(mapload)
 	. = ..()
@@ -36,8 +39,9 @@
 	air_contents.set_moles(GAS_N2, AIR_CONTENTS * 0.8)
 
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide
-	// icon_state uses the default dark color
+	name = "pressure tank (CO2)"
 	gas_type = GAS_CO2
+	greyscale_colors = "#2f2f38"
 
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide/Initialize(mapload)
 	. = ..()
@@ -45,8 +49,9 @@
 	air_contents.set_moles(GAS_CO2, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/plasma
-	icon_state = "orange"
+	name = "pressure tank (Plasma)"
 	gas_type = GAS_PLASMA
+	greyscale_colors = "#d75500"
 
 /obj/machinery/atmospherics/components/unary/tank/plasma/Initialize(mapload)
 	. = ..()
@@ -54,8 +59,9 @@
 	air_contents.set_moles(GAS_PLASMA, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/oxygen
-	icon_state = "blue"
+	name = "pressure tank (O2)"
 	gas_type = GAS_O2
+	greyscale_colors = "#158aed"
 
 /obj/machinery/atmospherics/components/unary/tank/oxygen/Initialize(mapload)
 	. = ..()
@@ -63,8 +69,9 @@
 	air_contents.set_moles(GAS_O2, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/nitrogen
-	icon_state = "red"
+	name = "pressure tank (N2)"
 	gas_type = GAS_N2
+	greyscale_colors = "#2d8f44"
 
 /obj/machinery/atmospherics/components/unary/tank/nitrogen/Initialize(mapload)
 	. = ..()
