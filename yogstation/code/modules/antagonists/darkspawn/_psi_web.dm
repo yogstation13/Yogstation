@@ -124,18 +124,16 @@
 	name = "warlock innate abilities"
 	desc = "apartment \"complex\"... really? I find it quite simple"
 	shadow_flags = DARKSPAWN_WARLOCK
-	learned_abilities = list(/datum/action/cooldown/spell/touch/thrall_mind, /datum/action/cooldown/spell/release_thrall, /datum/action/cooldown/spell/toggle/dark_staff)
+	learned_abilities = list(/datum/action/cooldown/spell/touch/thrall_mind, /datum/action/cooldown/spell/release_thrall, /datum/action/cooldown/spell/toggle/dark_staff, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_cam)
 
 /datum/psi_web/warlock/on_gain()
 	darkspawn.psi_cap += 100
-	darkspawn.willpower += 1
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.max_thralls += 3
 
 /datum/psi_web/warlock/on_loss()
 	darkspawn.psi_cap -= 100
-	darkspawn.willpower -= 1
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.max_thralls -= 3
