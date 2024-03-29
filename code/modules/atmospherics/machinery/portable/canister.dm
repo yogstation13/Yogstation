@@ -310,14 +310,10 @@
 	air_contents.set_moles(GAS_O2, (O2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
 	air_contents.set_moles(GAS_N2, (N2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
 
-/obj/machinery/portable_atmospherics/canister/update_icon_state()
-	if(stat & BROKEN)
-		icon_state = "[initial(icon_state)]-1"
-	return ..()
-
 /obj/machinery/portable_atmospherics/canister/update_overlays()
 	. = ..()
 	if(stat & BROKEN)
+		. += mutable_appearance(canister_overlay_file, "broken")
 		return
 	if(valve_open)
 		. += mutable_appearance(canister_overlay_file, "can-open")
@@ -401,6 +397,8 @@
 	if(holding)
 		usr.put_in_hands(holding)
 		holding = null
+
+	animate(src, 0.5 SECONDS, transform=turn(transform, 90), easing=BOUNCE_EASING)
 
 /obj/machinery/portable_atmospherics/canister/replace_tank(mob/living/user, close_valve)
 	. = ..()

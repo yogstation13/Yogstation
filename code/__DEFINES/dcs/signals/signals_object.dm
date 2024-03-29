@@ -147,6 +147,11 @@
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"
 	#define COMPONENT_HIT_REACTION_BLOCK (1<<0)
 
+/// from /datum/component/cleave_attack/perform_sweep(): (atom/target, obj/item/item, mob/living/user, params) 
+#define COMSIG_ATOM_CLEAVE_ATTACK "atom_cleave_attack"
+	// allows cleave attack to hit things it normally wouldn't
+	#define ATOM_ALLOW_CLEAVE_ATTACK (1<<0)
+
 /// Called before an item is embedded (mob/living/carbon/target = carbon that it is getting embedded into)
 #define COMSIG_ITEM_EMBEDDED "mob_carbon_embedded" 
 	// Prevents the embed

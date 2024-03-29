@@ -100,6 +100,7 @@
 		force_wielded = 20, \
 		icon_wielded = "[base_icon_state]1", \
 	)
+	AddComponent(/datum/component/cleave_attack, arc_size=180, requires_wielded=TRUE)
 
 /obj/item/mjolnir/update_icon_state()
 	. = ..()
