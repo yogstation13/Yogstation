@@ -544,6 +544,9 @@
 	owner.transfer_to(returner)
 	returner.update_appearance(UPDATE_OVERLAYS)
 
+	if(picked_class) //should bring back all powers, might be something i'm overlooking
+		picked_class.refresh_powers()
+
 	playsound(returner, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
 	playsound(returner, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, 0)
 	

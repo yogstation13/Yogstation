@@ -107,7 +107,7 @@
 		available_abilities += ability
 	return available_abilities
 
-/datum/component/darkspawn_class/proc/gain_power(atom/source, var/datum/psi_web/power_typepath)
+/datum/component/darkspawn_class/proc/gain_power(atom/source, var/datum/psi_web/power_typepath, silent = FALSE)
 	if(!ispath(power_typepath))
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
 	if(!(initial(power_typepath.shadow_flags) & specialization_flag))
@@ -116,7 +116,7 @@
 		return
 
 	var/datum/psi_web/new_power = new power_typepath()
-	if(new_power.on_purchase(owner))
+	if(new_power.on_purchase(owner, silent))
 		learned_abilities += new_power
 	else
 		qdel(new_power)
@@ -127,6 +127,12 @@
 	
 	learned_abilities -= power
 	power.remove(refund)
+
+/datum/component/darkspawn_class/proc/refresh_powers()
+	for(var/datum/psi_web/power in learned_abilities)
+		var/power_type = power.type
+		lose_power(power, TRUE) //full refund
+		gain_power(power_typepath = power_type, silent = TRUE) //then just rebuy it
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------The Classes in Question-------------------------------//

@@ -28,7 +28,7 @@
 	var/infinite = FALSE
 
 ///When the button to purchase is clicked
-/datum/psi_web/proc/on_purchase(datum/mind/user)
+/datum/psi_web/proc/on_purchase(datum/mind/user, silent = FALSE)
 	if(!istype(user, /datum/mind))
 		return
 	owner = user
@@ -43,7 +43,7 @@
 		return
 
 	darkspawn.willpower -= willpower_cost
-	if(willpower_cost)
+	if(willpower_cost && !silent)
 		to_chat(user, span_velvet("You have unlocked [name]"))
 	on_gain()
 	for(var/ability in learned_abilities)

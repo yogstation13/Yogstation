@@ -137,7 +137,7 @@
 
 /datum/psi_web/fast_cooldown/on_loss()
 	REMOVE_TRAIT(shadowhuman, TRAIT_FAST_COOLDOWNS, type)
-	
+
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------Fighter Passive Upgrades------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
@@ -149,16 +149,12 @@
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
-	var/obj/item/organ/eyes/eyes
 
 /datum/psi_web/sunglasses/on_gain()
-	eyes = shadowhuman.getorganslot(ORGAN_SLOT_EYES)
-	if(eyes && istype(eyes))
-		eyes.flash_protect += 2
+	ADD_TRAIT(shadowhuman, TRAIT_NOFLASH, type)
 
 /datum/psi_web/sunglasses/on_loss()
-	if(eyes)
-		eyes.flash_protect -= 2
+	REMOVE_TRAIT(shadowhuman, TRAIT_NOFLASH, type)
 		
 //Halves lightburn damage.
 /datum/psi_web/light_resistance
