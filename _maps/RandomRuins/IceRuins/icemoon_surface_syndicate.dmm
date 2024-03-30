@@ -144,10 +144,6 @@
 "bd" = (
 /obj/machinery/microwave,
 /obj/structure/table/reinforced,
-/obj/machinery/airalarm/syndicate{
-	dir = 1;
-	pixel_y = -24
-	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "bl" = (
@@ -1915,10 +1911,6 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "lL" = (
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
@@ -2532,10 +2524,6 @@
 /obj/effect/turf_decal/stripes{
 	dir = 1
 	},
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -2698,6 +2686,12 @@
 /obj/effect/turf_decal/siding/blue,
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
@@ -2944,19 +2938,14 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "rL" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+/obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/purple/filled/line/lower,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 28;
-	pixel_x = -6
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 28;
-	pixel_x = 6
-	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/xenobio)
 "rM" = (
 /obj/structure/cable{
@@ -3039,16 +3028,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"sn" = (
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/xenobio)
 "su" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Control Room";
@@ -4575,7 +4554,7 @@
 "Bw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/firealarm{
-	dir = 8;
+	dir = 4;
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -5174,6 +5153,10 @@
 	req_access_txt = "150"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
 "Ey" = (
@@ -5401,6 +5384,12 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -6331,6 +6320,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
@@ -8243,6 +8238,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"Yr" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28;
+	pixel_x = -6
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28;
+	pixel_x = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "Yu" = (
 /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon{
 	dir = 1
@@ -11789,7 +11799,7 @@ ED
 DY
 Rc
 DM
-rL
+Yr
 rc
 NR
 bD
@@ -11943,7 +11953,7 @@ Mp
 wH
 wH
 Rz
-sn
+rL
 DM
 qK
 qK
