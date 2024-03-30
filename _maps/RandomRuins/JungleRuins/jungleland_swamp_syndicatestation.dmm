@@ -3535,10 +3535,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/dormitories)
-"Gy" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
-/area/jungleland/toxic_pit)
 "GD" = (
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
@@ -6467,7 +6463,7 @@ dw
 Fi
 Fi
 Fi
-EL
+PW
 PW
 PW
 cB
@@ -7870,7 +7866,7 @@ OC
 Fi
 Fi
 Fi
-Fi
+PW
 PW
 pw
 pw
@@ -7930,7 +7926,7 @@ nm
 uv
 Fi
 Fi
-Gy
+PW
 PW
 zH
 JD
@@ -8033,7 +8029,7 @@ Fi
 tE
 tE
 PW
-PW
+EL
 PW
 tZ
 wk
