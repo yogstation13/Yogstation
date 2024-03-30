@@ -1068,7 +1068,7 @@
 		return
 	owner.Unconscious(15)
 	if(owner.health <= HEALTH_THRESHOLD_CRIT)
-		owner.heal_ordered_damage(1, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
+		owner.heal_ordered_damage(2, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
 		if(prob(10))
 			to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
 
