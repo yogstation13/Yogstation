@@ -50,7 +50,7 @@
 	var/max_hardware_size = 0
 	/// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/steel_sheet_cost = 5
-	/// What set of icons should be used for program overlays.
+	/// What set of icons should be used for program overlays. curently unused
 	var/overlay_skin = null
 
 	integrity_failure = 50
@@ -175,7 +175,10 @@
 /obj/item/modular_computer/RemoveID()
 	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	return (card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+	if(card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+		update_appearance(UPDATE_ICON)
+		return TRUE
+	return FALSE
 
 /obj/item/modular_computer/InsertID(obj/item/inserting_item)
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
@@ -189,7 +192,7 @@
 		return FALSE
 
 	if((card_slot?.try_insert(inserting_id)) || (card_slot2?.try_insert(inserting_id)))
-		update_appearance()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	//to_chat(user, "<span class='warning'>This computer doesn't have an open card slot.</span>")
 	return FALSE
@@ -262,12 +265,17 @@
 
 /obj/item/modular_computer/examine(mob/user)
 	. = ..()
-	if(obj_integrity <= integrity_failure)
+	if(atom_integrity <= integrity_failure)
 		. += span_danger("It is heavily damaged!")
-	else if(obj_integrity < max_integrity)
+	else if(atom_integrity < max_integrity)
 		. += span_warning("It is damaged.")
 
 	. += get_modular_computer_parts_examine(user)
+
+/obj/item/modular_computer/update_icon(updates=ALL)
+	if(!physical)
+		return
+	return ..()
 
 /obj/item/modular_computer/update_icon_state()
 	if(!icon_state_powered || !icon_state_unpowered) //no valid icon, don't update.
@@ -281,9 +289,13 @@
 	if(!init_icon)
 		return
 
+//	if(overlay_skin)
+//		program_overlay = "[overlay_skin]-"
+	if(!enabled && use_power() && !isnull(icon_state_screensaver))
+		. += mutable_appearance(init_icon, icon_state_screensaver)
 	if(enabled)
 		. += active_program ? mutable_appearance(init_icon, active_program.program_icon_state) : mutable_appearance(init_icon, icon_state_menu)
-	if(obj_integrity <= integrity_failure)
+	if(atom_integrity <= integrity_failure)
 		. += mutable_appearance(init_icon, "bsod")
 		. += mutable_appearance(init_icon, "broken")
 
@@ -316,7 +328,7 @@
 
 /obj/item/modular_computer/proc/turn_on(mob/user)
 	var/issynth = issilicon(user) // Robots and AIs get different activation messages.
-	if(obj_integrity <= integrity_failure)
+	if(atom_integrity <= integrity_failure)
 		if(issynth)
 			to_chat(user, span_warning("You send an activation signal to \the [src], but it responds with an error code. It must be damaged."))
 		else
@@ -349,7 +361,7 @@
 		last_power_usage = 0
 		return FALSE
 
-	if(obj_integrity <= integrity_failure)
+	if(atom_integrity <= integrity_failure)
 		shutdown_computer()
 		return FALSE
 
@@ -580,7 +592,7 @@
 		return
 
 	if(W.tool_behaviour == TOOL_WELDER)
-		if(obj_integrity == max_integrity)
+		if(atom_integrity == max_integrity)
 			to_chat(user, span_warning("\The [src] does not require repairs."))
 			return
 
@@ -589,11 +601,11 @@
 
 		to_chat(user, span_notice("You begin repairing damage to \the [src]..."))
 		if(W.use_tool(src, user, 20, volume=50, amount=1))
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			to_chat(user, span_notice("You repair \the [src]."))
 		return
 
-	..()
+	return ..()
 
 // Used by processor to relay qdel() to machinery type.
 /obj/item/modular_computer/proc/relay_qdel()
@@ -614,19 +626,24 @@
 		if(istype(new_part, /obj/item/computer_hardware))
 			var/result = install_component(new_part)
 			if(result == FALSE)
-				CRASH("[src] failed to install starting component for an unknown reason")
+				CRASH("[src] failed to install starting component for an unknown reason.")
 		else if(istype(new_part, /obj/item/stock_parts/cell/computer))
 			var/new_cell = new /obj/item/computer_hardware/battery(src, part)
 			qdel(new_part)
 			var/result = install_component(new_cell)
 			if(result == FALSE)
-				CRASH("[src] failed to install starting cell for an unknown reason")
+				CRASH("[src] failed to install starting cell for an unknown reason.")
 
 /obj/item/modular_computer/proc/install_starting_files()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
-
+	if(!istype(hard_drive) || starting_files.len < 1)
+		if(!starting_files.len < 1)
+			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files.")
+		return
 	for(var/datum/computer_file/file in starting_files)
 		var/result = hard_drive.store_file(file)
+		if(result == FALSE)
+			CRASH("[src] failed to install starting files for an unknown reason.")
 		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
 			var/datum/computer_file/program/program = result
 			if(program.requires_ntnet && program.network_destination)

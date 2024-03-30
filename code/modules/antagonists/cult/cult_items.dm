@@ -446,7 +446,7 @@
 		holder.update_inv_wear_suit()
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/worn_overlays(isinhands)
-	. = list()
+	. = ..()
 	if(!isinhands && shielded)
 		. += mutable_appearance('icons/effects/cult_effects.dmi', "shield-cult", MOB_LAYER + 0.01)
 
@@ -534,7 +534,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 		var/cursetime = 1800
 		var/timer = SSshuttle.emergency.timeLeft(1) + cursetime
-		var/security_num = seclevel2num(get_security_level())
+		var/security_num = SSsecurity_level.get_current_level_as_number()
 		var/set_coefficient = 1
 		switch(security_num)
 			if(SEC_LEVEL_GREEN)

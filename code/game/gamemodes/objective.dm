@@ -1619,6 +1619,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			continue
 		if(!istype(get_area(machine), /area))
 			continue
+		if(istype(get_area(machine), /area/shuttle))
+			continue //no whiteship machines
 		eligible_machines |= machine
 
 	eligible_machines = shuffle(eligible_machines)
@@ -1650,7 +1652,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	if(machines_to_break.len == 0)
 		return TRUE
 	for(var/obj/machinery/thing as anything in machines_to_break)
-		if(thing && istype(thing, target_obj_type))
+		if(thing && !QDELETED(thing) && istype(thing, target_obj_type))
 			return FALSE
 	return TRUE
 
@@ -1705,8 +1707,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/mob/living/carbon/possible_carbon_target = possible_target.current
 		return LAZYLEN(possible_carbon_target.internal_organs)
 
+/datum/objective/maroon_organ/find_target(dupe_search_range, blacklist)
+	. = ..()
+	finalize()
+
 /datum/objective/maroon_organ/finalize()
-	find_target()
 	if(!target)
 		return FALSE
 
@@ -1730,6 +1735,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	. = ..()
 
 /datum/objective/maroon_organ/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
 	finalize()
 	update_explanation_text()
 	return

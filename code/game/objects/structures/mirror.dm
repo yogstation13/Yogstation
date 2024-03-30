@@ -23,7 +23,7 @@
 /obj/structure/mirror/Initialize(mapload)
 	. = ..()
 	if(icon_state == "mirror_broke" && !broken)
-		obj_break(null, mapload)
+		atom_break(null, mapload)
 
 /obj/structure/mirror/proc/get_choices(mob/living/carbon/human/H)
 	. = list()
@@ -94,12 +94,8 @@
 			return
 		. = apply_choices(selection, newstyle, H) // Now apply the style
 
-/obj/structure/mirror/examine_status(mob/user)
-	if(broken)
-		return list()// no message spam
-	return ..()
-
-/obj/structure/mirror/obj_break(damage_flag, mapload)
+/obj/structure/mirror/atom_break(damage_flag, mapload)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		icon_state = "mirror_broke"
 		if(!mapload)

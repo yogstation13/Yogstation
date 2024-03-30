@@ -66,6 +66,8 @@
 	radio.recalculateChannels()
 	STOP_PROCESSING(SSmachines, src) // I will do this
 
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
+
 /obj/machinery/firealarm/Destroy()
 	myarea.firereset(src, TRUE)
 	QDEL_NULL(radio)
@@ -82,15 +84,19 @@
 		return
 	icon_state = "fire0"
 
+/obj/machinery/firealarm/proc/update_security_level()
+	if(is_station_level(z))
+		update_appearance(UPDATE_OVERLAYS)
+
 /obj/machinery/firealarm/update_overlays()
 	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 
 	if(is_station_level(z))
-		var/current_level = GLOB.security_level
-		. += mutable_appearance(icon, "fire_[GLOB.security_level]")
-		. += emissive_appearance(icon, "fire_[GLOB.security_level]", src)
+		var/current_level = SSsecurity_level.get_current_level_as_number()
+		. += mutable_appearance(icon, "fire_[current_level]")
+		. += emissive_appearance(icon, "fire_[current_level]", src)
 		switch(current_level)
 			if(SEC_LEVEL_GREEN)
 				set_light(l_color = LIGHT_COLOR_BLUEGREEN)
@@ -218,13 +224,13 @@
 	if(panel_open)
 
 		if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
-			if(obj_integrity < max_integrity)
+			if(atom_integrity < max_integrity)
 				if(!W.tool_start_check(user, amount=0))
 					return
 
 				to_chat(user, span_notice("You begin repairing [src]..."))
 				if(W.use_tool(src, user, 40, volume=50))
-					obj_integrity = max_integrity
+					update_integrity(max_integrity)
 					to_chat(user, span_notice("You repair [src]."))
 			else
 				to_chat(user, span_warning("[src] is already in good condition!"))
@@ -328,7 +334,7 @@
 /obj/machinery/firealarm/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.) //damage received
-		if(obj_integrity > 0 && !(stat & BROKEN) && buildstage != 0)
+		if(atom_integrity > 0 && !(stat & BROKEN) && buildstage != 0)
 			if(prob(33))
 				alarm()
 
@@ -337,7 +343,7 @@
 		deconstruct()
 	..()
 
-/obj/machinery/firealarm/obj_break(damage_flag)
+/obj/machinery/firealarm/atom_break(damage_flag)
 	if(buildstage == 0) //can't break the electronics if there isn't any inside.
 		return
 
@@ -352,7 +358,7 @@
 		if(!(stat & BROKEN))
 			var/obj/item/I = new /obj/item/electronics/firealarm(loc)
 			if(!disassembled)
-				I.obj_integrity = I.max_integrity * 0.5
+				I.update_integrity(I.max_integrity * 0.5)
 		new /obj/item/stack/cable_coil(loc, 3)
 	qdel(src)
 

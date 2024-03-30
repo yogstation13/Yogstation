@@ -175,7 +175,7 @@
 	data = init_data
 	var/turf/T = get_turf(source)
 	if(T)
-		levels = list(T.z)
+		levels = SSmapping.get_connected_levels(T)
 	else
 		levels = list(2) 
 	if(!("reject" in data))

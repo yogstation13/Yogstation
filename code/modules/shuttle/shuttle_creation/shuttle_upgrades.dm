@@ -24,7 +24,7 @@
 	icon_state = "shuttledisk_void"
 	upgrade_amount = 0.2
 
-/obj/item/shuttle_route_optimisation/attack_obj(obj/O, mob/living/user)
+/obj/item/shuttle_route_optimisation/attack_atom(obj/O, mob/living/user)
 	. = ..()
 	if(!istype(O, /obj/machinery/computer))
 		return

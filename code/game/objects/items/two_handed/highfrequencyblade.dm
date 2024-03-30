@@ -23,6 +23,7 @@
 		force_wielded = 20, \
 		icon_wielded = "[base_icon_state]1", \
 	)
+	AddComponent(/datum/component/cleave_attack, requires_wielded=TRUE)
 	AddComponent(/datum/component/butchering, 20, 105)
 
 /obj/item/vibro_weapon/update_icon_state()

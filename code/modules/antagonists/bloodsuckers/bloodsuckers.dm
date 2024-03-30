@@ -179,6 +179,33 @@
 	else
 		.["Break Masquerade"] = CALLBACK(src, PROC_REF(break_masquerade))
 
+	if(!my_clan)
+		.["Force Clan"] = CALLBACK(src, PROC_REF(force_clan))
+
+/datum/antagonist/bloodsucker/proc/force_clan(mob/admin)
+	if(my_clan)	
+		return
+
+	var/list/clans = list()
+	for(var/datum/bloodsucker_clan/all_clans as anything in typesof(/datum/bloodsucker_clan))
+		if(initial(all_clans.joinable_clan))
+			clans |= all_clans
+	clans |= "vvv Not regularly joinable vvv"
+	clans |= typesof(/datum/bloodsucker_clan)
+		
+	var/chosen = tgui_input_list(admin, "Select which clan to force on the target.", "Select Clan", clans)
+	if(!chosen || !ispath(chosen, /datum/bloodsucker_clan))
+		return
+	
+	if(QDELETED(src) || QDELETED(owner.current))
+		return
+	if(my_clan)
+		to_chat(admin, span_warning("error, clan already picked"))
+		return
+
+	my_clan = new chosen(src)
+	owner.announce_objectives()
+
 ///Called when you get the antag datum, called only ONCE per antagonist.
 /datum/antagonist/bloodsucker/on_gain()
 	RegisterSignal(SSsunlight, COMSIG_SOL_RANKUP_BLOODSUCKERS, PROC_REF(sol_rank_up))
@@ -564,9 +591,7 @@
 	if(user_eyes)
 		user_eyes.flash_protect = initial(user_eyes.flash_protect)
 		user_eyes.sight_flags = initial(user_eyes.sight_flags)
-		user.lighting_cutoff_red += 5
-		user.lighting_cutoff_green += 15
-		user.lighting_cutoff_blue += 5
+		user_eyes.color_cutoffs = initial(user_eyes.color_cutoffs)
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/give_masquerade_infraction()

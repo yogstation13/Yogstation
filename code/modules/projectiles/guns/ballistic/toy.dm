@@ -115,3 +115,28 @@
 /obj/item/gun/ballistic/automatic/l6_saw/toy/update_overlays()
 	. = ..()
 	. += "[icon_state]_toy"
+
+// Hugbox'ed guns
+/obj/item/gun/ballistic/automatic/toy/unrestricted/hugbox
+	desc = "A prototype three-round burst toy submachine gun. Ages 8 and up. This one feels noticably less fun..."
+	mag_type = /obj/item/ammo_box/magazine/toy/smg/hugbox
+
+/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted/hugbox
+	desc = "A small, easily concealable toy handgun. Ages 8 and up. This one feels noticably less fun..."
+	mag_type = /obj/item/ammo_box/magazine/toy/pistol/hugbox
+
+/obj/item/gun/ballistic/shotgun/toy/unrestricted/hugbox
+	desc = "A toy shotgun with wood furniture and a four-shell capacity underneath. Ages 8 and up. This one feels noticably less fun..."
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy/hugbox
+
+/obj/item/gun/ballistic/shotgun/toy/crossbow/hugbox
+	desc = "A weapon favored by many overactive children. Ages 8 and up. This one feels noticably less fun..."
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy/crossbow/hugbox
+
+obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/hugbox
+	desc = "A heavily modified toy light machine gun, designated 'L6 SAW'. Ages 8 and up. This one feels noticably less fun..."
+	mag_type = /obj/item/ammo_box/magazine/toy/m762/hugbox
+
+/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/hugbox
+	desc = "A bullpup two-round burst toy SMG, designated 'C-20r'. Ages 8 and up. This one feels noticably less fun..."
+	mag_type = /obj/item/ammo_box/magazine/toy/smgm45/hugbox

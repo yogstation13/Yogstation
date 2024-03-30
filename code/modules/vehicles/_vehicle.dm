@@ -33,19 +33,6 @@
 	occupant_actions = list()
 	generate_actions()
 
-/obj/vehicle/examine(mob/user)
-	. = ..()
-	if(resistance_flags & ON_FIRE)
-		. += span_warning("It's on fire!")
-	var/healthpercent = obj_integrity/max_integrity * 100
-	switch(healthpercent)
-		if(50 to 99)
-			. += "It looks slightly damaged."
-		if(25 to 50)
-			. += "It appears heavily damaged."
-		if(0 to 25)
-			. += span_warning("It's falling apart!")
-
 /obj/vehicle/proc/is_key(obj/item/I)
 	return I? (key_type_exact? (I.type == key_type) : istype(I, key_type)) : FALSE
 

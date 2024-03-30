@@ -63,10 +63,10 @@
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(red_alert_access)
-		if(GLOB.security_level >= SEC_LEVEL_RED)
+		if(SSsecurity_level.current_security_level.emergency_doors)
 			. += span_notice("Due to a security threat, its access requirements have been lifted!")
 		else
-			. += span_notice("In the event of a red alert, its access requirements will automatically lift.")
+			. += span_notice("In the event of an emegerency alert, its access requirements will automatically lift.")
 	if(!poddoor)
 		. += span_notice("Its maintenance panel is <b>screwed</b> in place.")
 	if(!isdead(user))
@@ -76,7 +76,7 @@
 		. += span_notice("It leads into [areaName].")
 
 /obj/machinery/door/check_access_list(list/access_list)
-	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
+	if(red_alert_access && SSsecurity_level.current_security_level.emergency_doors)
 		return TRUE
 	return ..()
 
@@ -97,6 +97,13 @@
 		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	if(red_alert_access)
+		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
+
+/obj/machinery/door/proc/update_security_level(_, datum/security_level/new_level)
+	if(red_alert_access && new_level.emergency_doors)
+		visible_message(span_notice("[src] whirrs as it automatically lifts access requirements!"))
+		playsound(src, 'sound/machines/boltsup.ogg', 50, TRUE)
 
 /obj/machinery/door/proc/set_init_door_layer()
 	if(density)
@@ -297,7 +304,7 @@
 
 /obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
-	if(. && obj_integrity > 0)
+	if(. && atom_integrity > 0)
 		if(damage_amount >= 10 && prob(30))
 			spark_system.start()
 

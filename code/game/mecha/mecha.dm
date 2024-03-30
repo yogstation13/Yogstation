@@ -28,6 +28,7 @@
 	light_range = 8
 	light_on = FALSE
 	flags_1 = HEAR_1
+	demolition_mod = 3 // mech punch go brr
 	var/ruin_mecha = FALSE //if the mecha starts on a ruin, don't automatically give it a tracking beacon to prevent metagaming.
 	var/can_move = 0 //time of next allowed movement
 	var/mob/living/carbon/occupant = null
@@ -301,18 +302,6 @@
 
 /obj/mecha/examine(mob/user)
 	. = ..()
-	var/integrity = obj_integrity*100/max_integrity
-	switch(integrity)
-		if(85 to 100)
-			. += "It's fully intact."
-		if(65 to 85)
-			. += "It's slightly damaged."
-		if(45 to 65)
-			. += "It's badly damaged."
-		if(25 to 45)
-			. += "It's heavily damaged."
-		else
-			. += "It's falling apart."
 	var/hide_weapon = locate(/obj/item/mecha_parts/concealed_weapon_bay) in contents
 	var/hidden_weapon = hide_weapon ? (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in equipment) : null
 	var/list/visible_equipment = equipment - hidden_weapon
@@ -413,7 +402,7 @@
 				else
 					occupant.throw_alert("charge", /atom/movable/screen/alert/emptycell)
 
-		var/integrity = obj_integrity/max_integrity*100
+		var/integrity = atom_integrity/max_integrity*100
 		switch(integrity)
 			if(30 to 45)
 				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 1)
@@ -548,7 +537,7 @@
 		return
 	if(equipment_disabled)
 		return
-	target.mech_melee_attack(src, TRUE)
+	target.mech_melee_attack(src, force, TRUE)
 	melee_can_hit = FALSE
 	spawn(melee_cooldown)
 		melee_can_hit = TRUE
@@ -708,7 +697,7 @@
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
 			if(!equipment_disabled)
 				if(nextsmash < world.time)
-					obstacle.mech_melee_attack(src, FALSE)	//Non-equipment melee attack
+					obstacle.mech_melee_attack(src, force, FALSE)	//Non-equipment melee attack
 					nextsmash = world.time + smashcooldown
 					if(!obstacle || obstacle.CanPass(src,newloc))
 						step(src,dir)
@@ -733,7 +722,7 @@
 	if(!islist(possible_int_damage) || !length(possible_int_damage))
 		return
 	if(prob(20))
-		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
+		if(ignore_threshold || atom_integrity*100/max_integrity < internal_damage_threshold)
 			for(var/T in possible_int_damage)
 				if(internal_damage & T)
 					possible_int_damage -= T
@@ -741,7 +730,7 @@
 			if(int_dam_flag)
 				setInternalDamage(int_dam_flag)
 	if(prob(5))
-		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
+		if(ignore_threshold || atom_integrity*100/max_integrity < internal_damage_threshold)
 			var/obj/item/mecha_parts/mecha_equipment/ME = pick(equipment)
 			if(ME)
 				qdel(ME)
@@ -973,7 +962,7 @@
 	visible_message("[user] starts to climb into [name].")
 
 	if(do_after(user, enter_delay, src))
-		if(obj_integrity <= 0)
+		if(atom_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
 			to_chat(user, span_danger("[occupant] was faster! Try better next time, loser."))
@@ -1283,7 +1272,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 // Matter resupply and upgrades for mounted RCDs
 /obj/mecha/proc/matter_resupply(obj/item/I, mob/user)
 	for(var/obj/item/mecha_parts/mecha_equipment/rcd/R in equipment)
-		R.internal_rcd.attackby(I, user)
+		. = R.internal_rcd.attackby(I, user)
 		if(QDELETED(I))
 			return
 

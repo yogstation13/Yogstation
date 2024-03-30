@@ -44,3 +44,30 @@
 			playsound(src,'sound/mecha/mechmove01.ogg',40,1)
 	return ..()
 
+/obj/mecha/combat/sidewinder/mamba
+	desc = "Otherwise nearly identical to the original sidewinder chassis in form, this one has been heavily modified for stealthier, longer-range combat engagements. The fangs are purely aesthetic, though."
+	name = "\improper Black Mamba"
+	icon_state = "mamba"
+	wreckage = /obj/structure/mecha_wreckage/sidewinder/mamba
+	infra_luminosity = 0	//Cold-blooded
+	guns_allowed = TRUE		//Syndicate bullshit
+	operation_req_access = list(ACCESS_SYNDICATE)
+	internals_req_access = list(ACCESS_SYNDICATE)
+	stepsound = null
+	turnsound = null
+
+/obj/mecha/combat/sidewinder/mamba/Initialize(mapload)
+	. = ..()
+	if(internal_tank)
+		internal_tank.set_light_on(FALSE) //remove the light that is granted by the internal canister
+		internal_tank.set_light_range_power_color(0, 0, COLOR_BLACK) //just turning it off isn't enough apparently
+
+/obj/mecha/combat/sidewinder/mamba/loaded/Initialize(mapload)
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/venom
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier/razerfang	//Not a snake without fangs right?
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
+	ME.attach(src)
+	max_ammo()

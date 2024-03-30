@@ -52,7 +52,7 @@
 					qdel(spells)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the cosmos, for The Creator has ascended! Unmake all of reality! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
 			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
-			set_security_level(SEC_LEVEL_GAMMA)
+			SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 
 			shockwave.transform = matrix().Scale(0.5)
 			shockwave.pixel_x = -240

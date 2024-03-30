@@ -244,3 +244,12 @@
 	tastes = list("creamy peas"= 2, "parsnip" = 1)
 	filling_color = "#9dc530"
 	foodtype = VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/soup/saimin
+	name = "saimin"
+	desc = "A traditional hawaiian noodle soup."
+	icon_state = "saimin"
+	bonus_reagents = list (/datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("eggs"= 1, "onion" = 1, "cabbage" = 1)
+	filling_color = "#9dc530"
+	foodtype = VEGETABLES | EGG | GRAIN

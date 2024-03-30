@@ -386,8 +386,10 @@
 /// Atmos Backpack Resin, transparent, prevents atmos and filters the air
 /obj/structure/foamedmetal/resin
 	name = "\improper ATMOS Resin"
-	desc = "A lightweight, transparent resin used to suffocate fires, scrub the air of toxins, and restore the air to a safe temperature. It can be used as base to construct a wall."
+	desc = "A lightweight, transparent and passable resin used to suffocate fires, scrub the air of toxins, and restore the air to a safe temperature. It can be used as base to construct a wall."
 	opacity = FALSE
+	density = FALSE
+	can_atmos_pass = ATMOS_PASS_NO
 	icon_state = "atmos_resin"
 	alpha = 120
 	max_integrity = 10
@@ -395,6 +397,11 @@
 /obj/structure/foamedmetal/resin/Initialize(mapload)
 	. = ..()
 	var/turf/open/location = loc
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	if(!istype(location))
 		return
 
@@ -422,3 +429,29 @@
 		potential_tinder.extinguish_mob()
 	for(var/obj/item/potential_tinder in location)
 		potential_tinder.extinguish()
+
+/obj/structure/foamedmetal/resin/proc/on_entered(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+
+	if(isliving(arrived)) //I guess living subtype is fine
+		var/mob/living/living = arrived
+		living.add_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM, multiplicative_slowdown = 0.4)
+
+/obj/structure/foamedmetal/resin/proc/on_exited(datum/source, atom/movable/gone, direction)
+	if(isliving(gone))
+		var/mob/living/living = gone
+		var/turf/T = get_turf(src)
+		var/turf/them = get_step(T, direction)
+
+		for(var/obj/structure/foamedmetal/resin/S in them)
+			if(S.loc == living.loc) //No removing speed if has same loc
+				return
+
+		living.remove_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM)
+
+/obj/structure/foamedmetal/resin/Destroy() //Make sure to remove the speed if the resin is destroyed while the mob is in it
+	var/turf/T = get_turf(src)
+	for(var/mob/living/living in T)
+		living.remove_movespeed_modifier(MOVESPEED_ID_RESIN_FOAM)
+	
+	return ..()

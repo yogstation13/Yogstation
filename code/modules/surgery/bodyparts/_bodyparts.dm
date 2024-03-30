@@ -19,7 +19,7 @@
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
 	var/aux_zone // used for hands
 	var/aux_layer
-	var/body_part = null //bitflag used to check which clothes cover this bodypart
+	var/body_part = NONE //bitflag used to check which clothes cover this bodypart
 	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
@@ -460,7 +460,7 @@
 	// quick re-check to see if bare_wound_bonus applies, for the benefit of log_wound(), see about getting the check from check_wounding_mods() somehow
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_wearer = owner
-		var/list/clothing = human_wearer.clothingonpart(src)
+		var/list/clothing = human_wearer.clothingonpart(body_part)
 		for(var/i in clothing)
 			var/obj/item/clothing/clothes_check = i
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
@@ -524,7 +524,7 @@
 		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
 			armor_ablation += H.physiology.armor.getRating(WOUND)
 
-		var/list/clothing = H.clothingonpart(src)
+		var/list/clothing = H.clothingonpart(body_part)
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary

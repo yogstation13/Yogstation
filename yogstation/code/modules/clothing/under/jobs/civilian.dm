@@ -27,8 +27,8 @@
 	name = "recovery medic's jumpsuit"
 	icon_state = "recovery"
 	item_state = "recovery"
-	can_adjust = 0
+	can_adjust = FALSE
 	sensor_mode = 3
-	random_sensor = 0
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 15, rad = 0)
+	random_sensor = FALSE
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 80, ACID = 0, WOUND = 10)
 	mutantrace_variation = MUTANTRACE_VARIATION

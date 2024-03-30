@@ -346,7 +346,7 @@
 //dist_check - set to only shock mobs within 1 of source (vendors, airlocks, etc.)
 //zone_override - allows checking a specific body part for shock protection instead of the hands
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/victim, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE, zone = BODY_ZONE_R_ARM)
+/proc/electrocute_mob(mob/living/carbon/victim, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE, zone = HANDS)
 	if(!istype(victim) || ismecha(victim.loc))
 		return FALSE //feckin mechs are dumb
 

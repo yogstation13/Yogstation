@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	name = "Security Officer"
 	jobtype = /datum/job/officer
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/security
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security
@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
-	box = /obj/item/storage/box/security
+	box = /obj/item/storage/box/survival/security
 
 	implants = list(/obj/item/implant/mindshield)
 

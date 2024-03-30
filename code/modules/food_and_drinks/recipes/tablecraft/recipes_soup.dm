@@ -258,3 +258,17 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/soup/peasoup
 	category = CAT_SOUP
+
+/datum/crafting_recipe/food/saimin
+	name = "Saimin"
+	reqs = list(
+		/datum/reagent/water = 10,
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1,
+		/obj/item/reagent_containers/food/snacks/egg = 1,
+		/datum/reagent/consumable/soysauce = 5,
+		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/soup/saimin
+	category = CAT_SOUP

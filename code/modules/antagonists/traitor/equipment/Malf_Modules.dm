@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(owner.stat == DEAD)
 		return
 	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert", ANNOUNCER_AIMALF)
-	set_security_level("delta")
+	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	var/obj/machinery/doomsday_device/DOOM = new(owner_AI)
 	owner_AI.nuking = TRUE
 	owner_AI.doomsday_device = DOOM
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 
 /datum/AI_Module/upgrade/upgrade_turrets/upgrade(mob/living/silicon/ai/AI)
 	for(var/obj/machinery/porta_turret/ai/turret in GLOB.machines)
-		turret.obj_integrity += 30
+		turret.modify_max_integrity(turret.max_integrity + 30, FALSE)
 		turret.lethal_projectile = /obj/projectile/beam/laser/heavylaser //Once you see it, you will know what it means to FEAR.
 		turret.lethal_projectile_sound = 'sound/weapons/lasercannonfire.ogg'
 

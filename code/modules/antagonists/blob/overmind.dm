@@ -45,9 +45,12 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/announcement_time
 	var/has_announced = FALSE
 	var/basemodifier = 1
+	var/contained = FALSE
 
 /mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1, announcement_delay = 6000)
 	validate_location()
+	if(starting_points > max_blob_points)
+		max_blob_points = starting_points
 	blob_points = starting_points
 	basemodifier = pointmodifier
 	manualplace_min_time += world.time
@@ -115,7 +118,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	else if(!victory_in_progress && (blobs_legit.len >= blobwincount))
 		victory_in_progress = TRUE
 		priority_announce("Biohazard has reached critical mass. Station loss is imminent.", "Biohazard Alert")
-		set_security_level("delta")
+		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 		max_blob_points = INFINITY
 		blob_points = INFINITY	
 		blob_core.max_integrity = 999999
@@ -127,9 +130,19 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(!victory_in_progress && max_count < blobs_legit.len)
 		max_count = blobs_legit.len
 
-	if((world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
-		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/default/outbreak5.ogg')
-		has_announced = TRUE
+	if((world.time >= announcement_time || blobs_legit.len >= announcement_size) && (!has_announced || !contained))
+		if(check_containment(blob_core, 5) && !contained && !has_announced)
+			priority_announce("Confirmed outbreak of level 5 biohazard containment successfully aboard [station_name()].", "Biohazard Containment Alert", 'sound/misc/notice1.ogg', color_override="green")
+			contained = TRUE
+			SSshuttle.clearHostileEnvironment(src)
+		else if(!check_containment(blob_core, 5) && contained && !has_announced)
+			priority_announce("Confirmed outbreak of level 5 biohazard containment breach detected aboard [station_name()], coordinations: x[blob_core.x] y[blob_core.y] z[blob_core.z]. All personnel must attempt to re-contain, otherwise station loss is inevitable.", "Biohazard Containment Alert", 'sound/misc/notice1.ogg', color_override="red")
+			contained = FALSE
+			has_announced = TRUE
+			SSshuttle.registerHostileEnvironment(src)
+		else if(!check_containment(blob_core, 5) && !contained && !has_announced)
+			priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/default/outbreak5.ogg', color_override="yellow")
+			has_announced = TRUE
 
 /mob/camera/blob/proc/victory()
 	sound_to_playing_players('sound/machines/alarm.ogg')
@@ -209,15 +222,15 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/update_health_hud()
 	if(blob_core)
-		var/current_health = round((blob_core.obj_integrity / blob_core.max_integrity) * 100)
-		hud_used.healths.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[current_health]%</font></div>"
+		var/current_health = round((blob_core.get_integrity() / blob_core.max_integrity) * 100)
+		hud_used?.healths.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[current_health]%</font></div>"
 		for(var/mob/living/simple_animal/hostile/blob/blobbernaut/B in blob_mobs)
 			if(B.hud_used && B.hud_used.blobpwrdisplay)
 				B.hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[current_health]%</font></div>"
 
 /mob/camera/blob/proc/add_points(points)
 	blob_points = clamp(blob_points + points, 0, max_blob_points)
-	hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#e36600'>[round(blob_points)]</font></div>"
+	hud_used?.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#e36600'>[round(blob_points)]</font></div>"
 
 /mob/camera/blob/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if (!message)
@@ -260,7 +273,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /mob/camera/blob/get_status_tab_items()
 	. = ..()
 	if(blob_core)
-		. += "Core Health: [blob_core.obj_integrity]"
+		. += "Core Health: [blob_core.get_integrity()]"
 		. += "Power Stored: [blob_points]/[max_blob_points]"
 		. += "Blobs to Win: [blobs_legit.len]/[blobwincount]"
 	if(free_strain_rerolls)

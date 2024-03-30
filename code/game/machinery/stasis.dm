@@ -151,7 +151,7 @@
 	SET_PLANE(mattress_on, PLANE_TO_TRUE(mattress_on.plane), new_turf)
 	return ..()
 
-/obj/machinery/stasis/obj_break(damage_flag)
+/obj/machinery/stasis/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		play_power_sound()

@@ -36,7 +36,7 @@
 	name = "Network Admin"
 	jobtype = /datum/job/network_admin
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/network_admin
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_network
@@ -51,6 +51,6 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	box = /obj/item/storage/box/engineer
+	box = /obj/item/storage/box/survival/engineer
 
 	pda_slot = ITEM_SLOT_LPOCKET

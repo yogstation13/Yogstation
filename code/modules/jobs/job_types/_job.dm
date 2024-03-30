@@ -325,9 +325,6 @@
 	if (H.jumpsuit_style == PREF_SKIRT && uniform_skirt)
 		uniform = uniform_skirt
 
-	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
-		box = null
-
 	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
 

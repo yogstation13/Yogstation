@@ -79,7 +79,7 @@
 	if(LAZYLEN(turrets))
 		for(var/turret in turrets)
 			var/obj/machinery/porta_turret/aux_base/base_turret = turret
-			var/turret_integrity = clamp(round((base_turret.obj_integrity / base_turret.max_integrity)*100,2), 0, 100)
+			var/turret_integrity = clamp(round((base_turret.get_integrity() / base_turret.max_integrity)*100,2), 0, 100)
 			var/turret_status
 			if(base_turret.stat & BROKEN)
 				turret_status = "ERROR"

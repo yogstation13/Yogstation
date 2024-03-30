@@ -40,7 +40,7 @@
 	STOP_PROCESSING(SSobj, core)
 	update_appearance(UPDATE_ICON)
 	GLOB.poi_list |= src
-	previous_level = get_security_level()
+	previous_level = SSsecurity_level.get_current_level_as_text()
 
 /obj/machinery/nuclearbomb/Destroy()
 	safety = FALSE
@@ -387,7 +387,7 @@
 	safety = !safety
 	if(safety)
 		if(timing)
-			set_security_level(previous_level)
+			SSsecurity_level.set_level(previous_level)
 			for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 				S.switch_mode_to(initial(S.mode))
 				S.alert = FALSE
@@ -402,15 +402,15 @@
 		return
 	timing = !timing
 	if(timing)
-		previous_level = get_security_level()
+		previous_level = SSsecurity_level.get_current_level_as_text()
 		detonation_timer = world.time + (timer_set * 10)
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(TRACK_INFILTRATOR)
 		countdown.start()
-		set_security_level("delta")
+		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	else
 		detonation_timer = null
-		set_security_level(previous_level)
+		SSsecurity_level.set_level(previous_level)
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(initial(S.mode))
 			S.alert = FALSE
@@ -544,7 +544,7 @@
 	detonation_timer = null
 	exploding = FALSE
 	exploded = TRUE
-	set_security_level(previous_level)
+	SSsecurity_level.set_level(previous_level)
 	for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 		S.switch_mode_to(initial(S.mode))
 		S.alert = FALSE

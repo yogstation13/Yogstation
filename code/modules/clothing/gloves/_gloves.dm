@@ -27,7 +27,7 @@
 	return OXYLOSS
 
 /obj/item/clothing/gloves/worn_overlays(isinhands = FALSE)
-	. = list()
+	. = ..()
 	if(!isinhands)
 		if(damaged_clothes)
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")

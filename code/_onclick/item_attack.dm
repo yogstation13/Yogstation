@@ -30,13 +30,13 @@
 	return TRUE //return FALSE to avoid calling attackby after this proc does stuff
 
 // No comment
-/atom/proc/attackby(obj/item/W, mob/user, params)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, params) & COMPONENT_NO_AFTERATTACK)
+/atom/proc/attackby(obj/item/attacking_item, mob/user, params)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
 /obj/attackby(obj/item/I, mob/living/user, params)
-	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_obj(src, user))
+	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_atom(src, user))
 
 /mob/living/attackby(obj/item/I, mob/living/user, params)
 	for(var/datum/surgery/S in surgeries)
@@ -103,24 +103,24 @@
 
 	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
 
-//the equivalent of the standard version of attack() but for object targets.
-/obj/item/proc/attack_obj(obj/O, mob/living/user)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
+//the equivalent of the standard version of attack() but for non-mob targets.
+/obj/item/proc/attack_atom(atom/attacked_atom, mob/living/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, attacked_atom, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
 	if(item_flags & NOBLUDGEON)
 		return
-	var/dist = get_dist(O,user)
+	var/dist = get_dist(attacked_atom, user)
 	user.changeNext_move(CLICK_CD_MELEE * weapon_stats[SWING_SPEED] * (range_cooldown_mod ? (dist > 0 ? min(dist, weapon_stats[REACH]) * range_cooldown_mod : range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
-	user.do_attack_animation(O)
-	O.attacked_by(src, user)
+	user.do_attack_animation(attacked_atom)
+	attacked_atom.attacked_by(src, user)
 	user.weapon_slow(src)
 	if(!QDELETED(src))
 		take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
 
-/atom/movable/proc/attacked_by()
-	return
+/atom/proc/attacked_by(obj/item/attacking_item, mob/living/user)
+	if(!uses_integrity)
+		CRASH("attacked_by() was called on [type], which doesn't use integrity!")
 
-/obj/attacked_by(obj/item/attacking_item, mob/living/user)
 	if(!attacking_item.force)
 		return
 	
@@ -128,12 +128,15 @@
 	var/damage_verb = "hit"
 	if(attacking_item.demolition_mod > 1 && damage)
 		damage_verb = "pulverized"
-	if(attacking_item.demolition_mod < 1 || !damage)
+	if(attacking_item.demolition_mod < 1)
 		damage_verb = "ineffectively pierced"
 
 	visible_message(span_danger("[user] [damage_verb] [src] with [attacking_item][damage ? "" : ", without leaving a mark"]!"), null, null, COMBAT_MESSAGE_RANGE)
 	//only witnesses close by and the victim see a hit message.
 	log_combat(user, src, "attacked", attacking_item)
+
+/area/attacked_by(obj/item/attacking_item, mob/living/user)
+	CRASH("areas are NOT supposed to have attacked_by() called on them!")
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)

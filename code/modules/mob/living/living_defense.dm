@@ -120,7 +120,7 @@
 	..()
 
 
-/mob/living/mech_melee_attack(obj/mecha/M, equip_allowed)
+/mob/living/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
 	if(M.selected?.melee_override && equip_allowed)
 		M.selected.action(src)
 	else if(M.occupant.a_intent == INTENT_HARM)

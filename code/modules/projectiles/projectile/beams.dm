@@ -116,6 +116,7 @@
 	name = "pulse"
 	icon_state = "u_laser"
 	damage = 50
+	demolition_mod = 6 // it has three settings, and they are all DESTROY.
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	light_color = LIGHT_COLOR_BLUE
 	tracer_type = /obj/effect/projectile/tracer/pulse
@@ -124,11 +125,6 @@
 
 /obj/projectile/beam/pulse/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
-		if(isobj(target))
-			SSexplosions.med_mov_atom += target
-		else
-			SSexplosions.medturf += target
 	var/turf/open/target_turf = get_turf(target)
 	if(istype(target_turf))
 		target_turf.IgniteTurf(rand(8, 22), "blue")
@@ -153,7 +149,7 @@
 	damage = 30
 	wound_bonus = -40
 	bare_wound_bonus = 70
-	demolition_mod = 3 // industrial laser
+	demolition_mod = 2.4 // industrial laser, strong but not quite enough for reinforced walls
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = LIGHT_COLOR_GREEN
 
@@ -165,19 +161,12 @@
 	icon_state = "u_laser"
 	damage = 50 // EVEN MORE power for the SM
 	range = 250 // More power means longer range
+	demolition_mod = 4 // too powerful for its own good, CAN destroy reinforced walls
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	light_color = LIGHT_COLOR_BLUE
 	tracer_type = /obj/effect/projectile/tracer/pulse
 	muzzle_type = /obj/effect/projectile/muzzle/pulse
 	impact_type = /obj/effect/projectile/impact/pulse
-
-/obj/projectile/beam/emitter/pulse/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
-		if(isobj(target))
-			SSexplosions.low_mov_atom += target
-		else
-			SSexplosions.lowturf += target
 
 /obj/projectile/beam/lasertag
 	name = "laser tag beam"

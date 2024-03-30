@@ -22,6 +22,10 @@
 		/datum/job_department/medical,
 		/datum/job_department/cargo,
 	)
+	
+	minimal_lightup_areas = list(
+		/area/construction/mining/aux_base
+	)
 
 	//if it's skeleton there's probably no paramedic to save spaced miners that jaunted away from danger
 	added_access = list(ACCESS_SURGERY, ACCESS_CARGO, ACCESS_CLONING, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS)
@@ -42,7 +46,7 @@
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/paramed
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
@@ -63,5 +67,5 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
-	box = /obj/item/storage/box/survival_mining
+	box = /obj/item/storage/box/survival/mining
 	pda_slot = ITEM_SLOT_LPOCKET

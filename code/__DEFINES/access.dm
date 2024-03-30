@@ -92,6 +92,7 @@
 #define ACCESS_SECURE_TECH_STORAGE 76 // Creating this to cleanly fix door remote bug will be equivalent to ACCESS_AI_UPLOAD for Cap and RD
 #define ACCESS_PSYCH 77 // For the psych's back office area with the flashes/chem machines
 #define ACCESS_RND 78 //rnd console
+#define ACCESS_SERVHALL 79
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.

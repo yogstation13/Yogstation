@@ -101,7 +101,7 @@
 				targets += C
 
 	if(!targets.len)
-		obj_break()
+		atom_break()
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/door_timer/attackby(obj/item/W, mob/user, params)

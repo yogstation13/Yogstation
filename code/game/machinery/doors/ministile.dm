@@ -5,7 +5,6 @@
 	icon_state = "ministile_map"
 	power_channel = AREA_USAGE_ENVIRON
 	density = TRUE
-	obj_integrity = 150
 	max_integrity = 150
 	//Smaller turnstile easier to smash
 	armor = list(MELEE = 30, BULLET = 20, LASER = 0, ENERGY = 60, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)

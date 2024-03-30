@@ -118,6 +118,9 @@
 		relevant_cap = max(hpc, epc)
 
 	if(href_list["show_preferences"])
+		if(!SSquirks.initialized)
+			to_chat(usr, span_notice("The game is still loading. Please wait a bit before editing your character."))
+			return
 		var/datum/preferences/preferences = client.prefs
 		preferences.current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
 		preferences.update_static_data(usr)

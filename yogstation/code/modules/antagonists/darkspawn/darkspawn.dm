@@ -354,7 +354,7 @@
 /datum/antagonist/darkspawn/proc/sacrament()
 	var/mob/living/carbon/human/user = owner.current
 	if(!SSticker.mode.sacrament_done)
-		set_security_level(SEC_LEVEL_GAMMA)
+		SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)

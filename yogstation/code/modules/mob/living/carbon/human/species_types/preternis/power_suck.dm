@@ -31,7 +31,7 @@
 		draining = FALSE
 		return
 
-	var/blocked = H.getarmor(H.held_index_to_body_zone(H.active_hand_index), ELECTRIC)
+	var/blocked = H.getarmor(H.held_index_to_hand(H.active_hand_index), ELECTRIC)
 	siemens_coefficient *= (100 - blocked) / 100
 	if(blocked >= 100)
 		to_chat(H, span_info("NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted."))

@@ -32,6 +32,7 @@
 	target_range = 1
 	prefire_message = "Select a target."
 	var/list/zombies = list()
+	var/ghost_searching = FALSE
 	
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/Grant(mob/user)
 	. = ..()
@@ -53,9 +54,8 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	// No mind
-	if(!target_atom.mind)
-		to_chat(owner, span_warning("[target_atom] is mindless."))
+	if(ghost_searching)
+		to_chat(owner, span_notice("Your previous use of necromancy is still doing it's work."))
 		return FALSE
 	// Bloodsucker
 	if(IS_BLOODSUCKER(target_atom))
@@ -70,6 +70,17 @@
 	if(HAS_TRAIT(target_atom, TRAIT_MINDSHIELD) && !rack)
 		to_chat(owner, span_warning("[target_atom]'s mindshield interferes with [src], put [target_atom.p_them()] on a persuasion rack first."))
 		return FALSE
+	// No mind
+	if(!target_atom.grab_ghost())//only call for a ghost if the existing one is gone
+		ghost_searching = TRUE
+		to_chat(owner, span_warning("Attempting to call a spirit from beyond the grave to possess [target_atom]."))
+		var/list/candidates = pollGhostCandidates("Would you like to play as a hecata zombie?", ROLE_BLOODSUCKER, null, null, poll_time = 5 SECONDS)
+		ghost_searching = FALSE
+		if(!LAZYLEN(candidates))
+			to_chat(owner, span_warning("You were unable to call a spirit back from the afterlife."))
+			return FALSE
+		var/mob/dead/observer/C = pick(candidates)
+		target_atom.key = C.key
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/FireTargetedPower(atom/target_atom)
