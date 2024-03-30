@@ -123,6 +123,8 @@
 	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
 		return FALSE
 	if(owner.movement_type & VENTCRAWLING) //don't let them smoosh themselves
+		if(feedback)
+			to_chat(owner, span_warning("There isn't enough room to release your transformation"))
 		return FALSE
 	return ..()
 	

@@ -22,7 +22,7 @@
 
 	//combat variables
 	harm_intent_damage = 5
-	melee_damage_lower = 5 //it has a built in stun if you want to kill someone kill them like a man
+	melee_damage_lower = 5
 	melee_damage_upper = 5
 
 	//sight variables
