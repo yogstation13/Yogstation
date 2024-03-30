@@ -684,7 +684,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
 	name = "Syndicate Outpost Commander"
-	desc "A Syndicate-made high-security cryogenic sleeper for senior officers. Looks fancy, and has even more layers of redundancy."
+	desc = "A Syndicate-made high-security cryogenic sleeper for senior officers. Looks fancy, and has even more layers of redundancy."
 	short_desc = "You are the commander of the Syndicate icemoon outpost."
 	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
