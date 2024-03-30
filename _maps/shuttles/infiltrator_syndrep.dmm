@@ -477,6 +477,12 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/button/door{
+	id = "smindicate";
+	name = "Airlock Blast Door Controls";
+	pixel_y = -24;
+	req_access_txt = "150"
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 "aQ" = (
@@ -873,23 +879,30 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
 "bv" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
+/obj/machinery/door/window/brigdoor{
+	req_access_txt = "151";
+	name = "Trophy Case"
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/obj/structure/window/plasma/reinforced/spawner/east,
+/obj/structure/table/wood/fancy/red,
+/obj/item/gun/ballistic/revolver/mateba{
+	pin = null;
+	name = "deactivated Mateba autorevolver";
+	pixel_x = -12;
+	pixel_y = 12;
+	desc = "A deactivated Mateba autorevolver, bearing Nanotrasen production markings, covered in Syndicate engravings. One of them reads 'CAYENNE 1 - NANOTRASEN 0'. Huh. Its cylinder seems to have been filled in with metal - no way you're ever firing this.";
+	mag_type = null
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/item/clothing/neck/yogs/skin_twister{
+	desc = "A tattered cloak made out of the hide of a skin-twister. Smells faintly of blood and has the words 'VICTORY OVER NANOTRASEN' on a tag.";
+	pixel_y = 3;
+	pixel_x = 2
 	},
-/obj/machinery/button/door{
-	id = "smindicate";
-	name = "Airlock Blast Door Controls";
-	pixel_y = 26;
-	req_access_txt = "150"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/wood,
 /area/shuttle/syndicate/airlock)
 "bw" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -1687,6 +1700,22 @@
 /obj/item/stack/spacecash/c1000,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/syndicate/hallway)
+"kA" = (
+/obj/structure/window/plasma/reinforced/spawner,
+/obj/structure/table/wood/fancy/red,
+/obj/item/clothing/head/beret/captain{
+	desc = "A lovely blue Captain beret with a gold and white insignia. The words 'DEATH TO NANOTRASEN' have been inscribed on the badge, which has been replaced with the Syndicate emblem.";
+	pixel_y = 14
+	},
+/obj/item/clothing/neck/pauldron/commander{
+	desc = "An old, Nanotrasen-made gold alloy pauldron. The words 'VICTORY OVER NANOTRASEN' have been inscribed on it, as well as what appears to be the emblem of the Syndicate Jungle planet exploratory corps."
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/syndicate/airlock)
 "kQ" = (
 /obj/structure/table/wood/fancy/red,
 /obj/effect/turf_decal/siding/wood{
@@ -1764,6 +1793,9 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+	},
+/obj/structure/chair/comfy/shuttle{
+	name = "tactical chair"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/airlock)
@@ -2976,7 +3008,7 @@ ac
 In
 Mw
 ac
-Bn
+kA
 aX
 Bn
 bc
