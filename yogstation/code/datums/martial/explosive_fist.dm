@@ -55,7 +55,7 @@
 	
 	if(isopenturf(get_turf(D)))
 		var/turf/open/flashy = get_turf(D)
-		flashy.IgniteTurf(rand(5, 10)) //for the flashy
+		flashy.ignite_turf(rand(5, 10)) //for the flashy
 
 	D.ignite_mob()
 	D.apply_damage(A.get_punchdamagehigh() + 3, BRUTE, selected_zone, brute_block) 	//10 brute
@@ -360,7 +360,7 @@
 			target.adjustFireLoss(30)
 			target.ignite_mob() 	
 		for(var/turf/open/flashy in view_or_range(2, A, "range"))
-			flashy.IgniteTurf(15)
+			flashy.ignite_turf(15)
 
 		var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
 		var/armor_block = D.run_armor_check(hed, BOMB)
