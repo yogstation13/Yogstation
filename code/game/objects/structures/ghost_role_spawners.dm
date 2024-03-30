@@ -600,8 +600,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 
 //Icemoon Syndicate. Players become research agents working under a Syndicate research station.
-/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version - shouldnt be spawned
 	name = "Syndicate Outpost Agent"
+	desc = "A reinforced, Syndicate-made cryogenic sleeper used to store their agents for long periods of time, with hundreds of layers of redundancy."
 	short_desc = "You are an agent at the Syndicate icemoon outpost."
 	flavour_text = "You are meant to work within the outpost and may take any role within the base you see fit."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
@@ -622,7 +623,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
 	name = "Syndicate Outpost Security Officer"
 	short_desc = "You are a security officer at the Syndicate icemoon outpost."
-	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary."
+	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary. Repel intruders with your submachinegun."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/security
 
@@ -638,7 +639,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci
 	name = "Syndicate Outpost Researcher"
 	short_desc = "You are a researcher at the Syndicate icemoon outpost."
-	flavour_text = "Perform research for the sake of the Syndicate and advance technology."
+	flavour_text = "Perform research for the sake of the Syndicate and advance technology. Do xenobiological or chemical research."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/scientist
 
@@ -653,17 +654,17 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
 	name = "Syndicate Outpost Engineer"
 	short_desc = "You are an engineer at the Syndicate icemoon outpost."
-	flavour_text = "Maintain and upgrade the base's systems and equipment."
+	flavour_text = "Maintain and upgrade the base's systems and equipment. Operate the nuclear reactor and absolutely do not let it melt down."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
 
 /datum/outfit/syndicate_empty/icemoon_base/engineer
 	name = "Syndicate Icemoon Outpost Engineer"
-	belt = /obj/item/storage/belt/utility/chief/full //mainly based off the fact that the syndie station ruin that's TM'd at the time of the ruin gives its engis this
+	belt = /obj/item/storage/belt/utility/chief/full //gamer tools
 	suit = /obj/item/clothing/suit/hazardvest
 	head = /obj/item/clothing/head/hardhat
 	accessory = /obj/item/clothing/accessory/armband/engine
-	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
+	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce //why not
 	back = /obj/item/storage/backpack
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/medic
@@ -683,6 +684,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
 	name = "Syndicate Outpost Commander"
+	desc "A Syndicate-made high-security cryogenic sleeper for senior officers. Looks fancy, and has even more layers of redundancy."
 	short_desc = "You are the commander of the Syndicate icemoon outpost."
 	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
