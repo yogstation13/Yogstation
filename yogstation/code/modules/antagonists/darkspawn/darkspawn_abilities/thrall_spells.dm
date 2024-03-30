@@ -17,7 +17,7 @@
 	psi_cost = 100
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	///Willpower spent by the darkspawn datum to thrall a mind
-	var/willpower_cost = 2
+	var/willpower_cost = 1
 
 /datum/action/cooldown/spell/touch/thrall_mind/can_cast_spell(feedback)
 	var/datum/antagonist/darkspawn/master = isdarkspawn(owner)
@@ -43,14 +43,22 @@
 		to_chat(owner, span_velvet("You will never be strong enough to control the will of another."))
 		return
 	var/datum/antagonist/darkspawn/master = isdarkspawn(caster)
+
 	if(!isthrall(target))
-		if(!target.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
+		if(!target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
 			to_chat(owner, span_danger("[target]'s will is still too strong to thrall."))
 			return FALSE
 		if(master.willpower < willpower_cost)
 			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
 			return FALSE
 
+	owner.balloon_alert(owner, "Krx'lna tyhx graha...")
+	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
+	playsound(owner, 'yogstation/sound/magic/devour_will_victim.ogg', 50)
+	if(!do_after(owner, 2 SECONDS, target))
+		return FALSE
+
+	if(!isthrall(target))
 		var/list/flavour = list()
 
 		flavour += "Your mind goes numb. Your thoughts go blank. You feel utterly empty."
@@ -71,17 +79,17 @@
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			to_chat(owner, span_warning("[target] has foreign machinery that resists our thralling, we shall attempt to destroy it."))
 			target.visible_message(span_warning("[target] seems to resist an unseen force!"))
-			if(!do_after(owner, 10 SECONDS, target))
+			if(!do_after(owner, 8 SECONDS, target))
 				to_chat(target, span_userdanger("It cannot be permitted to succeed."))
 				return FALSE
 			for(var/obj/item/implant/mindshield/L in target)
 				qdel(L)
 
-	owner.balloon_alert(owner, "Krx'lna tyhx graha...")
-	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
+
 	if(!do_after(owner, 2 SECONDS, target))
 		return FALSE
+
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isthrall(target))
 		owner.balloon_alert(owner, "...tia")
@@ -154,7 +162,6 @@
 	if(unveiled.current.remove_thrall())
 		owner.balloon_alert(owner, "Fk'koht")
 		to_chat(owner, span_velvet("You release your control over [unveiled]"))
-		dude.willpower += 1
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//

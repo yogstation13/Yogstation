@@ -143,7 +143,7 @@
 
 #define STATUS_EFFECT_STASIS /datum/status_effect/incapacitating/stasis //Halts biological functions like bleeding, chemical processing, blood regeneration, walking, etc
 
-#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect reduced by 1 second for every point of damage the target takes. //Yogs
+#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect, ends instantly upon taking enough damage in a single hit. //Yogs
 
 #define STATUS_EFFECT_DEVOURED_WILL /datum/status_effect/devoured_will //A 5 minute long status effect that prevents using devour will on the owner
 
