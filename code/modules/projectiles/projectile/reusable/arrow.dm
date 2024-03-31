@@ -17,9 +17,9 @@
 		if(istype(ammo_type, /obj/item/ammo_casing/reusable/arrow))	
 			var/obj/item/ammo_casing/reusable/arrow/arrow = ammo_type
 			if(arrow.flaming)
-				target_turf.igniteTurf(rand(8, 16))
+				target_turf.ignite_turf(rand(8, 16))
 		else
-			target_turf.igniteTurf(rand(8, 16))
+			target_turf.ignite_turf(rand(8, 16))
 
 	if(!isliving(target) || (blocked == 100))
 		return
