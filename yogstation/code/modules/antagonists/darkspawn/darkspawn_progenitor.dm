@@ -20,7 +20,9 @@
 	obj_damage = INFINITY
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	weather_immunities = list("lava", "ash")
-	status_flags = NONE
+	status_flags = NONE	
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0) //Leaving something at 0 means it's off - has no maximum
+	unsuitable_atmos_damage = 0	
 
 	//movement stats
 	speed = 0 //slower than a person, RUN RUN RUN RUN
@@ -34,8 +36,8 @@
 	lighting_cutoff_red = 12
 	lighting_cutoff_green = 0
 	lighting_cutoff_blue = 50
-	lighting_cutoff = LIGHTING_CUTOFF_HIGH
-	sight = SEE_MOBS //thermal vision (might be a downgrade from darkspawn xray, but this is cooler)
+	lighting_cutoff = (LIGHTING_CUTOFF_HIGH + 10) //could set it at 40, but i explicitly want it to be higher than the highest lighting cutoff
+	sight = SEE_MOBS | SEE_TURFS | SEE_OBJS
 
 	//flavour
 	attack_sound = 'yogstation/sound/creatures/progenitor_attack.ogg'

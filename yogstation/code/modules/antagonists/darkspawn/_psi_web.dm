@@ -99,11 +99,11 @@
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/shadow_tendril)
 
 /datum/psi_web/fighter/on_gain()
-	shadowhuman.physiology.brute_mod *= 0.7
+	darkspawn.brute_mod *= 0.7
 	darkspawn.dark_healing += 2 //so they're just a little bit faster at healing since they're gonna take damage the most
 
 /datum/psi_web/fighter/on_loss()
-	shadowhuman.physiology.brute_mod /= 0.7
+	darkspawn.brute_mod /= 0.7
 	darkspawn.dark_healing -= 2
 
 //scout
@@ -124,16 +124,18 @@
 	name = "warlock innate abilities"
 	desc = "apartment \"complex\"... really? I find it quite simple"
 	shadow_flags = DARKSPAWN_WARLOCK
-	learned_abilities = list(/datum/action/cooldown/spell/touch/thrall_mind, /datum/action/cooldown/spell/release_thrall, /datum/action/cooldown/spell/toggle/dark_staff, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_cam)
+	learned_abilities = list(/datum/action/cooldown/spell/touch/thrall_mind, /datum/action/cooldown/spell/release_thrall, /datum/action/cooldown/spell/toggle/dark_staff, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_cam, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye)
 
 /datum/psi_web/warlock/on_gain()
 	darkspawn.psi_cap += 100
+	darkspawn.psi_per_second += 10
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.max_thralls += 3
 
 /datum/psi_web/warlock/on_loss()
 	darkspawn.psi_cap -= 100
+	darkspawn.psi_per_second -= 10
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(team)
 		team.max_thralls -= 3

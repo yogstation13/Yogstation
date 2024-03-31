@@ -335,13 +335,17 @@
 	owner.balloon_alert(owner, "Odeahz")
 	owner.visible_message(span_warning("Velvety shadows coalesce around [owner]!"), span_velvet("You begin using Psi to shield yourself from lightburn."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_victim.ogg', 50, TRUE)
-	ADD_TRAIT(owner, TRAIT_DARKSPAWN_CREEP, type)
+	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
+	if(dude)
+		ADD_TRAIT(dude, TRAIT_DARKSPAWN_CREEP, type)
 
 /datum/action/cooldown/spell/toggle/creep/Disable()
 	owner.balloon_alert(owner, "Phwo")
 	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
-	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_CREEP, type)
+	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
+	if(dude)
+		REMOVE_TRAIT(dude, TRAIT_DARKSPAWN_CREEP, type)
 
 //////////////////////////////////////////////////////////////////////////
 //------------Toggled CC immunity force walking with psi drain----------//

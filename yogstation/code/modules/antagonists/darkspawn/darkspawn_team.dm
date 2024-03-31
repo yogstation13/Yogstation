@@ -136,6 +136,7 @@
 		if(master.current)
 			if(master.current.stat == DEAD)
 				dead = TRUE
+			master.current.grab_ghost()
 			master.current.revive(TRUE)
 			if(dead)
 				to_chat(master.current, "Returning to Nullspace has revitalized your form")

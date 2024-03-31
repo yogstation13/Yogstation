@@ -417,7 +417,7 @@ const ClassSelection = (props, context) => {
         >
           <Flex.Item height="50px" fontSize="20px" color={darkspawnclass.color}>{capitalize(darkspawnclass.name)}</Flex.Item>
           <Flex.Item height="50px">{darkspawnclass.description}</Flex.Item>
-          <Flex.Item height="50px" fontSize="14px" style={Velvet}>{darkspawnclass.long_description}</Flex.Item>
+          <Flex.Item height="70px" fontSize="14px" style={Velvet}>{darkspawnclass.long_description}</Flex.Item>
           <Flex.Item height="50px">
             <Tabs.Tab
             height="50px"

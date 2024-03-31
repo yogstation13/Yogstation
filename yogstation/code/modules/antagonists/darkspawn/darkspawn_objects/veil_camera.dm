@@ -1,6 +1,6 @@
 GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
-//-------------------------Used for veil net----------------------------//
+//-------------------------Access the veilnet---------------------------//
 //////////////////////////////////////////////////////////////////////////
 /obj/machinery/computer/camera_advanced/darkspawn
 	name = "dark orb"
@@ -28,3 +28,43 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
 	return
+
+//////////////////////////////////////////////////////////////////////////
+//-------------------------Expand the veilnet---------------------------//
+//////////////////////////////////////////////////////////////////////////
+/obj/machinery/camera/darkspawn
+	use_power = NO_POWER_USE
+	max_integrity = 20
+	integrity_failure = 20
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "camera"
+	special_camera = TRUE
+	internal_light = FALSE
+	alpha = 100
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	flags_1 = NODECONSTRUCT_1
+
+/obj/machinery/camera/darkspawn/Initialize(mapload, obj/structure/camera_assembly/CA)
+	. = ..()
+	network = list(ROLE_DARKSPAWN)
+	change_camnet(GLOB.thrallnet)
+	setViewRange(10)
+
+/obj/machinery/camera/darkspawn/emp_act(severity)
+	return
+
+/obj/machinery/camera/darkspawn/screwdriver_act(mob/living/user, obj/item/I)
+	return
+
+/obj/machinery/camera/darkspawn/wirecutter_act(mob/living/user, obj/item/I)
+	return
+
+/obj/machinery/camera/darkspawn/multitool_act(mob/living/user, obj/item/I)
+	return
+
+/obj/machinery/camera/darkspawn/welder_act(mob/living/user, obj/item/I)
+	return
+
+/obj/machinery/camera/darkspawn/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)

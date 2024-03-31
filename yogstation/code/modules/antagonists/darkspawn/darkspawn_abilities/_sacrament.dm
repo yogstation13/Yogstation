@@ -15,13 +15,6 @@
 	///if they're actively performing the sacrament
 	var/in_use = FALSE
 
-/datum/action/cooldown/spell/sacrament/Grant(mob/grant_to)
-	. = ..()
-	if(!isdarkspawn(owner))
-		Remove(owner)
-		return
-	darkspawn = isdarkspawn(owner)
-
 /datum/action/cooldown/spell/sacrament/IsAvailable(feedback)
 	if(in_use)
 		if (feedback)
@@ -31,6 +24,7 @@
 
 /datum/action/cooldown/spell/sacrament/cast(atom/cast_on)
 	. = ..()
+	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 	if(!darkspawn)
 		to_chat(owner, span_warning("Error with non darkspawn using sacrament spell"))
 		return

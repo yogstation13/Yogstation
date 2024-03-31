@@ -40,6 +40,13 @@
 	var/dark_healing = 8
 	///Default amount of damage taken in light
 	var/light_burning = 7
+	///These three variables 
+	///multiplies brute damage taken
+	var/brute_mod = 1
+	///multiplies burn damage taken
+	var/burn_mod = 1
+	///multiplies stamina damage taken
+	var/stam_mod = 1
 
 	///Boolean, if the player has been notified that they are being revived by undying sigils
 	var/revive_notice = FALSE
@@ -124,7 +131,7 @@
 
 	// Add HUDs that they couldn't see before
 	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
-		if (is_darkspawn_or_thrall(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
+		if (is_team_darkspawn(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
 			antag_hud.show_to(owner.current)
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -272,7 +279,7 @@
 	if((rand(0, 10000) == 0) && owner.current && (isbrain(owner.current) || issilicon(owner.current)))//who in their RIGHT mind would put the brain of the PSIONIC antag into an mmi after you kill them
 		addtimer(CALLBACK(src, PROC_REF(grant_reform)), rand(1, (20 MINUTES)), TIMER_UNIQUE) //give it a random delay before granting the ability, so it's luck squared to get it immediately
 
-	if((owner?.current?.stat == DEAD) && HAS_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current) && !QDELETED(owner.current))
+	if((owner?.current?.stat == DEAD) && HAS_TRAIT(src, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current) && !QDELETED(owner.current))
 		var/mob/living/carbon/human/deadguy = owner.current
 		var/turf/location = get_turf(owner.current)
 		var/light_amount = location.get_lumcount()
@@ -282,6 +289,7 @@
 				revive_notice = TRUE
 			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
 			if(deadguy.health >= deadguy.maxHealth)
+				deadguy.grab_ghost()
 				deadguy.revive(TRUE)
 				revive_notice = FALSE
 				deadguy.visible_message(span_progenitor("[deadguy]'s sigils flare brightly as they are once again in the realm of the living!"), span_progenitor("You rise once more!"))
@@ -383,7 +391,6 @@
 	disguise_name = user.real_name //keep track of the old name
 	user.set_species(/datum/species/shadow/darkspawn)
 	darkspawn_name = user.real_name //keep track of the new name
-	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 	user.update_appearance(UPDATE_OVERLAYS)
 
 	show_to_ghosts = TRUE
@@ -537,7 +544,6 @@
 
 	if(darkspawn_state >= DARKSPAWN_DIVULGED)//set them back to being a darkspawn
 		returner.set_species(/datum/species/shadow/darkspawn)
-		ADD_TRAIT(returner, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 
 	var/new_name = darkspawn_name || darkspawn_name()
 	returner.fully_replace_character_name(null, new_name)

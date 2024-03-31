@@ -58,16 +58,20 @@
 					H.SetSleeping(0)
 				H.heal_ordered_damage(dark_healing, healing_types, BODYPART_ANY)
 			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
-				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_LIGHTRES))
-					return
-				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
-					return
+				var/datum/antagonist/darkspawn/dude = isdarkspawn(H)
+				if(dude)
+					if(HAS_TRAIT(dude, TRAIT_DARKSPAWN_LIGHTRES))
+						return
+					if(HAS_TRAIT(dude, TRAIT_DARKSPAWN_CREEP))
+						return
 				to_chat(H, span_userdanger("The light singes you!"))
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
 				H.adjustCloneLoss(light_burning * 0.2)
 			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
-				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
-					return
+				var/datum/antagonist/darkspawn/dude = isdarkspawn(H)
+				if(dude)
+					if(HAS_TRAIT(dude, TRAIT_DARKSPAWN_CREEP))
+						return
 				to_chat(H, span_userdanger("The light burns you!"))
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
 				H.adjustCloneLoss(light_burning)
@@ -190,7 +194,8 @@
 		TRAIT_NOSLIPICE, 
 		TRAIT_GENELESS, 
 		TRAIT_NOCRITDAMAGE,
-		TRAIT_NOGUNS
+		TRAIT_NOGUNS,
+		TRAIT_SPECIESLOCK //never let them swap off darkspawn, it can cause issues
 		)
 	mutanteyes = /obj/item/organ/eyes/darkspawn
 	mutantears = /obj/item/organ/ears/darkspawn
@@ -207,6 +212,10 @@
 	if(antag)
 		dark_healing = antag.dark_healing
 		light_burning = antag.light_burning
+		if(H.physiology)
+			H.physiology.brute_mod = antag.brute_mod
+			H.physiology.burn_mod = antag.burn_mod
+			H.physiology.stamina_mod = antag.stam_mod
 
 /datum/species/shadow/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
 	playsound(H, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, FALSE)

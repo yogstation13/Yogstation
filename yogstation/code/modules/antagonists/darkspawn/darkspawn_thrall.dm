@@ -6,7 +6,7 @@
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
 	///The abilities granted to the thrall
-	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/seize/lesser)
+	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall)
 	///How many ticks towards willpower generation has happened so far
 	var/current_willpower_progress = 0
 	///The darkspawn team that the thrall is on
@@ -112,7 +112,7 @@
 
 	// Add HUDs that they couldn't see before
 	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
-		if (is_darkspawn_or_thrall(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
+		if (is_team_darkspawn(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
 			antag_hud.show_to(owner.current)
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -140,11 +140,15 @@
 		source.remove_thrall()
 		return
 
+	var/found_other = FALSE
 	for(var/mob/living/thing in range(5, source))
 		if(!thing.client) //gotta be an actual player (hope no one goes afk)
 			continue
 		if(is_darkspawn_or_thrall(thing))
 			continue
+		found_other = TRUE
+
+	if(found_other)
 		current_willpower_progress += seconds_per_tick
 
 	if(current_willpower_progress >= 100)

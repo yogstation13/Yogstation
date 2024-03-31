@@ -22,6 +22,8 @@
 	var/status = TRUE
 	var/start_active = FALSE //If it ignores the random chance to start broken on round start
 	var/invuln = null
+	///Boolean, if this camera uses special icon states rather than the default
+	var/special_camera = FALSE
 	var/obj/item/camera_bug/bug = null
 	var/obj/item/radio/alertradio = null
 	var/obj/structure/camera_assembly/assembly = null
@@ -371,6 +373,8 @@
 
 /obj/machinery/camera/update_icon_state() //TO-DO: Make panel open states, xray camera, and indicator lights overlays instead.
 	. = ..()
+	if(special_camera)
+		return
 	var/xray_module
 	if(isXRay(TRUE))
 		xray_module = "xray"

@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/thrall_mind
 	name = "Thrall mind"
-	desc = "Consume 2 willpower to thrall a target's mind. To be eligible, they must be alive and recently drained by Devour Will. Can also be used to revive deceased thralls."
+	desc = "Consume 1 willpower to thrall a target's mind. To be eligible, they must be alive and recently drained by Devour Will. Can also be used to revive deceased thralls."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -194,6 +194,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
+	sound = 'sound/weapons/resonator_blast.ogg'
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
 	///how far the projectile can shoot from a body
@@ -226,7 +227,8 @@
 		return
 	fire_projectile(cast_on, shoot_from)
 	owner.balloon_alert(owner, "Vyk'thunak")
-	playsound(get_turf(shoot_from), 'sound/weapons/resonator_blast.ogg', 50, 1)
+	if(shoot_from != owner)
+		playsound(get_turf(shoot_from), 'sound/weapons/resonator_blast.ogg', 50, 1)
 	shoot_from = null
 
 /datum/action/cooldown/spell/pointed/mindblast/proc/fire_projectile(atom/target, mob/shooter)
@@ -252,11 +254,20 @@
 	armour_penetration = 100
 	speed = 1
 	damage_type = BRUTE
+	nodamage = FALSE
+	pass_flags = PASSMACHINES | PASSCOMPUTER | PASSTABLE
 	range = 10
 
 /obj/projectile/magic/mindblast/Initialize(mapload)
 	. = ..()
 	update_appearance(UPDATE_OVERLAYS)
+
+/obj/projectile/magic/mindblast/can_hit_target(atom/target, list/passthrough, direct_target, ignore_loc)
+	if(isliving(target))
+		var/mob/living/victim = target
+		if(is_team_darkspawn(victim))
+			return FALSE
+	return ..()
 
 /obj/projectile/magic/mindblast/update_overlays()
 	. = ..()
@@ -279,6 +290,7 @@
 	psi_cost = 50
 	cooldown_time = 1 MINUTES
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
+	sound = 'sound/magic/staff_healing.ogg'
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
 	/// Text to be put in the balloon alert upon cast
@@ -286,9 +298,11 @@
 
 /datum/action/cooldown/spell/thrallbuff/before_cast(atom/cast_on)
 	. = ..()
-	darkspawns_too = HAS_TRAIT(owner, TRAIT_DARKSPAWN_BUFFALLIES)
+	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
+	if(dude)
+		darkspawns_too = HAS_TRAIT(dude, TRAIT_DARKSPAWN_BUFFALLIES)
 
-/datum/action/cooldown/spell/thrallbuff/cast(atom/cast_on)
+/datum/action/cooldown/spell/thrallbuff/cast(atom/cast_on) //this looks like a mess, i'm sure it can be optimized
 	. = ..()
 	owner.balloon_alert(owner, "[language_output]")
 	for(var/datum/antagonist/thrall/lackey in GLOB.antagonists)
@@ -317,6 +331,7 @@
 	language_output = "Plyn othra"
 
 /datum/action/cooldown/spell/thrallbuff/heal/empower(mob/living/carbon/human/target)
+	to_chat(target, span_velvet("You feel healed."))
 	target.heal_ordered_damage(heal_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
 
 ////////////////////////////Temporary speed boost//////////////////////////
@@ -327,6 +342,7 @@
 	language_output = "Vyzthun"
 
 /datum/action/cooldown/spell/thrallbuff/speed/empower(mob/living/carbon/human/target)
+	to_chat(target, span_velvet("You feel fast."))
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 15 SECONDS, type)
 
 //////////////////////////////////////////////////////////////////////////
@@ -347,7 +363,8 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
 	cooldown_time = 5 MINUTES //it's REALLY strong
-	psi_cost = 200 //it's REALLY strong
+	sound = 'sound/magic/staff_healing.ogg'
+	psi_cost = 100 //it's REALLY strong
 	invocation_type = INVOCATION_SHOUT
 	invocation = "CKKREM!"
 
@@ -355,9 +372,9 @@
 	if(!iscarbon(cast_on))
 		return FALSE
 	var/mob/living/carbon/target = cast_on
-	if(!is_darkspawn_or_thrall(target))
+	if(!is_team_darkspawn(target))
 		return FALSE
-	if(target.stat == DEAD)
+	if(target.stat == DEAD && get_dist(target, owner) > 5)
 		to_chat(owner, span_velvet("This one is beyond our help at such a range"))
 		return FALSE
 	return ..()
@@ -424,3 +441,14 @@
 		owner.update_sight()
 	else
 		owner.lighting_cutoff = 0
+
+/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye
+	name = "Opticial"
+	desc = "Places a floating watchful eye."
+	psi_cost = 20
+	object_type = /obj/machinery/camera/darkspawn
+	language_final = "Ixnce"
+
+/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall/thrall
+	desc = "Places a floating watchful eye for your warlock to observe through."
+	psi_cost = 0

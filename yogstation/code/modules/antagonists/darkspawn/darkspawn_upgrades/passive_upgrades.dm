@@ -69,10 +69,10 @@
 	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_FIGHTER
 
 /datum/psi_web/stamina_res/on_gain()
-	shadowhuman.physiology.stamina_mod *= 0.5
+	darkspawn.stam_mod *= 0.5
 
 /datum/psi_web/stamina_res/on_loss()
-	shadowhuman.physiology.stamina_mod /= 0.5
+	darkspawn.stam_mod /= 0.5
 	
 //Increases healing in darkness by 25%.
 /datum/psi_web/dark_healing
@@ -102,10 +102,10 @@
 	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 
 /datum/psi_web/low_light_resistance/on_gain()
-	ADD_TRAIT(shadowhuman, TRAIT_DARKSPAWN_LIGHTRES, src)
+	ADD_TRAIT(darkspawn, TRAIT_DARKSPAWN_LIGHTRES, src)
 
 /datum/psi_web/low_light_resistance/on_loss()
-	REMOVE_TRAIT(shadowhuman, TRAIT_DARKSPAWN_LIGHTRES, src)
+	REMOVE_TRAIT(darkspawn, TRAIT_DARKSPAWN_LIGHTRES, src)
 	
 /datum/psi_web/noslip
 	name = "Stability Sigil"
@@ -162,7 +162,7 @@
 	desc = "Unlocking this sigil reduces light damage taken."
 	lore_description = "The Xlynsh sigil, representing refraction, is etched onto the abdomen."
 	icon_state = "shadow_skin"
-	willpower_cost = 3
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
 
@@ -183,10 +183,10 @@
 	infinite = TRUE
 
 /datum/psi_web/brute_res/on_gain()
-	shadowhuman.physiology.brute_mod *= 0.8
+	darkspawn.brute_mod *= 0.8
 
 /datum/psi_web/brute_res/on_loss()
-	shadowhuman.physiology.brute_mod /= 0.8
+	darkspawn.brute_mod /= 0.8
 
 /datum/psi_web/burn_res
 	name = "Stifle Sigil"
@@ -199,10 +199,10 @@
 	infinite = TRUE
 
 /datum/psi_web/brute_res/on_gain()
-	shadowhuman.physiology.burn_mod *= 0.85
+	darkspawn.burn_mod *= 0.85
 
 /datum/psi_web/brute_res/on_loss()
-	shadowhuman.physiology.burn_mod /= 0.85
+	darkspawn.burn_mod /= 0.85
 
 /datum/psi_web/undying
 	name = "Undying Sigils"
@@ -214,10 +214,10 @@
 	shadow_flags = DARKSPAWN_FIGHTER
 
 /datum/psi_web/undying/on_gain()
-	ADD_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING, type)
+	ADD_TRAIT(darkspawn, TRAIT_DARKSPAWN_UNDYING, type)
 
 /datum/psi_web/undying/on_loss()
-	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_UNDYING, type)
+	REMOVE_TRAIT(darkspawn, TRAIT_DARKSPAWN_UNDYING, type)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Scout Passive Upgrades------------------------------//
@@ -304,7 +304,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 
 /datum/psi_web/buff_allies/on_gain()
-	ADD_TRAIT(shadowhuman, TRAIT_DARKSPAWN_BUFFALLIES, type)
+	ADD_TRAIT(darkspawn, TRAIT_DARKSPAWN_BUFFALLIES, type)
 
 /datum/psi_web/buff_allies/on_loss()
-	REMOVE_TRAIT(shadowhuman, TRAIT_DARKSPAWN_BUFFALLIES, type)
+	REMOVE_TRAIT(darkspawn, TRAIT_DARKSPAWN_BUFFALLIES, type)
