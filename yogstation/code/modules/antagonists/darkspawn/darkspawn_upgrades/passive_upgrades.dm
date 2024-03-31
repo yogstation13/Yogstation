@@ -74,7 +74,7 @@
 /datum/psi_web/stamina_res/on_loss()
 	darkspawn.stam_mod /= 0.5
 	
-//Increases healing in darkness by 25%.
+//Increases healing in darkness.
 /datum/psi_web/dark_healing
 	name = "Mending Sigil"
 	desc = "Unlocking this sigil increases your healing in darkness."
@@ -86,10 +86,10 @@
 	infinite = TRUE
 
 /datum/psi_web/dark_healing/on_gain()
-	darkspawn.dark_healing *= 1.5
+	darkspawn.dark_healing *= 1.25
 
 /datum/psi_web/dark_healing/on_gain()
-	darkspawn.dark_healing /= 1.5
+	darkspawn.dark_healing /= 1.25
 
 //gives resistance to dim light
 /datum/psi_web/low_light_resistance
@@ -165,12 +165,13 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
+	infinite = TRUE
 
 /datum/psi_web/light_resistance/on_gain()
-	darkspawn.light_burning *= 0.7
+	darkspawn.light_burning *= 0.8
 
 /datum/psi_web/light_resistance/on_loss()
-	darkspawn.light_burning /= 0.7
+	darkspawn.light_burning /= 0.8
 
 /datum/psi_web/brute_res
 	name = "Callous Sigil"
