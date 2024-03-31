@@ -128,7 +128,6 @@
 	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	color = "#609bdf77" // rgb: 96, 155, 223, 77 (alpha)
 	taste_description = "water"
-	var/cooling_temperature = 2
 	glass_icon_state = "glass_clear"
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
@@ -143,21 +142,15 @@
 /datum/reagent/water/reaction_turf(turf/open/T, reac_volume)
 	if(!istype(T))
 		return
-	var/CT = cooling_temperature
 
 	if(reac_volume >= 5)
-		T.MakeSlippery(TURF_WET_WATER, 120 SECONDS, min(reac_volume*3 SECONDS, 300 SECONDS)) //yogs
+		T.MakeSlippery(TURF_WET_WATER, 120 SECONDS, min(reac_volume * 3 SECONDS, 300 SECONDS)) //yogs
 
 	for(var/mob/living/simple_animal/slime/M in T)
 		M.apply_water()
 
-	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
-	if(hotspot && !isspaceturf(T))
-		if(T.air)
-			var/datum/gas_mixture/G = T.air
-			G.set_temperature(max(min(G.return_temperature()-(CT*1000),G.return_temperature()/CT),TCMB))
-			G.react(src)
-			qdel(hotspot)
+	T.extinguish_turf()
+
 	var/obj/effect/acid/A = (locate(/obj/effect/acid) in T)
 	if(A)
 		A.acid_level = max(A.acid_level - reac_volume*50, 0)
