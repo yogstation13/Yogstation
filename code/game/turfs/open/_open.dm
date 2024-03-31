@@ -697,7 +697,10 @@
 		air.set_moles(GAS_H2, max(air.get_moles(GAS_H2) - (pulse_strength * 0.001), 0))
 		air.adjust_moles(GAS_TRITIUM, pulse_strength * 0.001)
 
-/turf/open/IgniteTurf(power, fire_color="red")
+/turf/open/ignite_turf(power, fire_color="red")
+	. = ..()
+	if(. & SUPPRESS_FIRE)
+		return
 	if(air.get_moles(GAS_O2) < 1)
 		return
 	if(turf_fire)
@@ -705,6 +708,17 @@
 		return
 	if(!isgroundlessturf(src))
 		new /obj/effect/abstract/turf_fire(src, power, fire_color)
+
+/turf/open/extinguish_turf()
+	if(!air)
+		return
+	if(air.return_temperature() > T20C)
+		air.set_temperature(max(air.return_temperature() / 2, T20C))
+	air.react(src)
+	if(active_hotspot)
+		qdel(active_hotspot)
+	if(turf_fire)
+		qdel(turf_fire)
 
 /turf/open/proc/set_flammability(new_flammability)
 	if(isnull(new_flammability))

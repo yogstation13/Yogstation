@@ -896,13 +896,13 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "ahZ" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
 	c_tag = "Prison Cafeteria";
 	dir = 4;
 	network = list("ss13","prison")
 	},
+/obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "aib" = (

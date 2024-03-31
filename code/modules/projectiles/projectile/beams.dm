@@ -57,7 +57,7 @@
 	if(fire_hazard)
 		var/turf/open/target_turf = get_turf(target)
 		if(istype(target_turf))
-			target_turf.IgniteTurf(rand(8, 16))
+			target_turf.ignite_turf(rand(8, 16))
 	return ..()
 
 /obj/projectile/beam/weak
@@ -127,7 +127,7 @@
 	. = ..()
 	var/turf/open/target_turf = get_turf(target)
 	if(istype(target_turf))
-		target_turf.IgniteTurf(rand(8, 22), "blue")
+		target_turf.ignite_turf(rand(8, 22), "blue")
 
 /obj/projectile/beam/pulse/shotgun
 	damage = 40
