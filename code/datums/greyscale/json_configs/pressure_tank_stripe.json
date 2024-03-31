@@ -1,5 +1,5 @@
 {
-	"tank": [
+	"tank_stripe": [
 		{
 			"type": "icon_state",
 			"icon_state": "tank_base",
@@ -9,7 +9,8 @@
 		{
 			"type": "icon_state",
 			"icon_state": "tank_stripe",
-			"blend_mode": "overlay"
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
 		}
 	]
 }
