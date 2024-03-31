@@ -23,7 +23,7 @@
 	var/datum/objective/darkspawn/O = new
 	objectives += O
 	if(SSticker?.mode)
-		required_succs = clamp(round(SSticker.mode.num_players() / 2), 5, 30) //half the players, 5 at minimum, scaling up to 30 at max
+		required_succs = clamp(round(SSticker.mode.num_players() / 2), 5, 25) //half the players, 5 at minimum, scaling up to 25 at max
 	update_objectives()
 	addtimer(CALLBACK(src, PROC_REF(enable_validhunt)), 75 MINUTES) //allow for validhunting after a duration
 

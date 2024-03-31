@@ -4,8 +4,8 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	name = "darkspawn"
 	config_tag = "darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	required_players = 10
-	required_enemies = 1
+	required_players = 25
+	required_enemies = 2
 	recommended_enemies = 1
 	enemy_minimum_age = 24 //reasonably complicated antag
 	restricted_jobs = list("AI", "Cyborg")
@@ -24,7 +24,11 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
-	var/darkbois = clamp(round((num_players()-5)/10), required_enemies, 4) //scaling number of darkspawns, at least 1, at most 4 (they get exponentially stronger per person)
+ 	//scaling number of darkspawns, at least 2, at most 4 (they get exponentially stronger per person)
+	// 25 players = 2 darkspawns
+	// 40 players = 3 darkspawns
+	// 55 players = 4 darkspawns
+	var/darkbois = clamp(round((num_players()+5)/15), required_enemies, 4)
 
 	team = new
 	while(darkbois)
