@@ -262,7 +262,7 @@
 /area/shuttle/syndicate/bridge)
 "au" = (
 /obj/machinery/status_display/evac,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/syndicate/bridge)
 "av" = (
 /obj/machinery/door/airlock/hatch{
@@ -300,7 +300,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
 "ax" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/syndicate/eva)
 "ay" = (
 /obj/effect/turf_decal/siding/wood{
@@ -744,7 +744,7 @@
 /area/shuttle/syndicate/armory)
 "bk" = (
 /obj/machinery/status_display/ai,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/syndicate/medical)
 "bl" = (
 /obj/effect/turf_decal/stripes/line{
@@ -777,7 +777,7 @@
 /area/shuttle/syndicate/armory)
 "bn" = (
 /obj/machinery/status_display/evac,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/syndicate/armory)
 "bo" = (
 /obj/effect/turf_decal/siding/wood{
@@ -1657,8 +1657,11 @@
 /area/shuttle/syndicate/armory)
 "gr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/syndicate/armory)
+"gz" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/syndicate/bridge)
 "hM" = (
 /obj/effect/turf_decal/siding/wood/thin,
 /obj/effect/turf_decal/siding/wood/thin{
@@ -1700,22 +1703,6 @@
 /obj/item/stack/spacecash/c1000,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/syndicate/hallway)
-"kA" = (
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/structure/table/wood/fancy/red,
-/obj/item/clothing/head/beret/captain{
-	desc = "A lovely blue Captain beret with a gold and white insignia. The words 'DEATH TO NANOTRASEN' have been inscribed on the badge, which has been replaced with the Syndicate emblem.";
-	pixel_y = 14
-	},
-/obj/item/clothing/neck/pauldron/commander{
-	desc = "An old, Nanotrasen-made gold alloy pauldron. The words 'VICTORY OVER NANOTRASEN' have been inscribed on it, as well as what appears to be the emblem of the Syndicate Jungle planet exploratory corps."
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/shuttle/syndicate/airlock)
 "kQ" = (
 /obj/structure/table/wood/fancy/red,
 /obj/effect/turf_decal/siding/wood{
@@ -1914,7 +1901,7 @@
 "qr" = (
 /obj/machinery/porta_turret/syndicate,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/syndicate/bridge)
 "qv" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2113,7 +2100,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/syndicate/armory)
 "AV" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2373,6 +2360,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
+"KK" = (
+/obj/structure/window/plasma/reinforced/spawner,
+/obj/structure/table/wood/fancy/red,
+/obj/item/clothing/head/beret/captain{
+	desc = "A lovely blue Captain beret with a gold and white insignia. The words 'DEATH TO NANOTRASEN' have been inscribed on the badge, which has been replaced with the Syndicate emblem.";
+	pixel_y = 14
+	},
+/obj/item/clothing/neck/pauldron/commander{
+	desc = "An old, Nanotrasen-made gold alloy pauldron. The words 'VICTORY OVER NANOTRASEN' have been inscribed on it, as well as what appears to be the emblem of the Syndicate Jungle planet exploratory corps."
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/syndicate/airlock)
 "Mc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -2517,6 +2520,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
+"Rc" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/syndicate/hallway)
 "Rz" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -2739,14 +2745,14 @@ aa
 aa
 aa
 aF
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
-aJ
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
 aJ
 "}
 (2,1,1) = {"
@@ -2763,7 +2769,7 @@ ax
 tQ
 ax
 ax
-aJ
+aK
 bq
 bC
 bq
@@ -2788,7 +2794,7 @@ be
 aZ
 aR
 up
-aJ
+aK
 br
 bD
 bH
@@ -2806,8 +2812,8 @@ aa
 aa
 aF
 ft
-ac
-ac
+gz
+gz
 aM
 vz
 Uw
@@ -2829,7 +2835,7 @@ ft
 ft
 ac
 ac
-ac
+gz
 ad
 aq
 bw
@@ -2838,15 +2844,15 @@ YP
 rJ
 oZ
 aM
-aJ
+aK
 bt
 bD
 bJ
 bT
 cb
 aK
-aJ
-aJ
+aK
+aK
 aF
 "}
 (6,1,1) = {"
@@ -2857,19 +2863,19 @@ at
 av
 Wo
 Dg
-ac
+gz
 aN
 aS
 aU
 Iu
 vv
-aJ
+aK
 bu
 bD
 AV
 rW
 cc
-aJ
+aK
 aa
 aa
 aa
@@ -2879,10 +2885,10 @@ Hm
 ah
 ap
 at
-ac
+gz
 cl
-ac
-ac
+gz
+gz
 ax
 ax
 ax
@@ -2893,9 +2899,9 @@ bg
 bg
 bl
 bg
-aJ
-aJ
-af
+aK
+aK
+Rc
 af
 aa
 "}
@@ -2954,7 +2960,7 @@ Hm
 ak
 MJ
 SP
-ac
+gz
 aA
 hM
 aI
@@ -2979,13 +2985,13 @@ Hm
 al
 ap
 at
-ac
-ac
+gz
+gz
 aG
-ac
-ac
-ac
-ac
+gz
+gz
+gz
+gz
 ba
 bf
 bj
@@ -2994,8 +3000,8 @@ bh
 bp
 bh
 bm
-bm
-af
+bj
+Rc
 af
 aa
 "}
@@ -3004,22 +3010,22 @@ ae
 am
 as
 No
-ac
+gz
 In
 Mw
-ac
-kA
+gz
+KK
 aX
 Bn
 bc
 Xg
-bm
+bj
 bx
 CI
 bN
 yf
 ce
-bm
+bj
 aa
 aa
 aa
@@ -3029,24 +3035,24 @@ Cf
 Cf
 ac
 ac
-ac
+gz
 Hj
 pO
-ac
+gz
 bv
 Vt
 Zw
 Da
 aP
-bm
+bj
 by
 dd
 Mc
 bV
 bj
 bj
-bm
-bm
+bj
+bj
 aF
 "}
 (14,1,1) = {"
@@ -3056,8 +3062,8 @@ aa
 aa
 aF
 Cf
-ac
-ac
+gz
+gz
 wL
 Pc
 WA
@@ -3082,13 +3088,13 @@ aa
 aa
 aa
 aa
-aB
+tZ
 pN
 nG
 aT
 bd
 bi
-bm
+bj
 bQ
 bA
 QT
@@ -3113,7 +3119,7 @@ tZ
 aY
 tZ
 Eh
-bm
+bj
 bB
 bG
 XM
@@ -3141,11 +3147,11 @@ BU
 qr
 gr
 As
-bm
-bm
-bm
-bm
-bm
-bm
+bj
+bj
+bj
+bj
+bj
+bj
 bm
 "}
