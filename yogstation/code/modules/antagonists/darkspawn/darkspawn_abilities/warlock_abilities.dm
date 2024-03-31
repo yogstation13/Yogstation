@@ -206,7 +206,7 @@
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
-	cast_range = 5
+	cast_range = 7
 	///The mob being targeted by the ability
 	var/mob/living/channeled
 	///The beam visual drawn by the ability
@@ -221,6 +221,8 @@
 	var/actual_cooldown = 15 SECONDS
 	///Boolean, whether or not the spell is healing the target
 	var/healing = FALSE
+	///counts up each process tick, when reaching 5 prints a balloon alert and resets
+	var/balloon_counter = 0
 
 /datum/action/cooldown/spell/pointed/extract/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -248,6 +250,10 @@
 
 /datum/action/cooldown/spell/pointed/extract/process()
 	if(channeled)
+		balloon_counter++
+		if(!visual || QDELETED(visual))
+			cancel()
+			return
 		if(!healing && channeled.stat == DEAD)
 			cancel()
 			return
@@ -260,7 +266,8 @@
 		if(cost && (!cost.use_psi(upkeep_cost)))
 			cancel()
 			return
-		if(prob(25))
+		if(balloon_counter >= 5)
+			balloon_counter = 0
 			owner.balloon_alert(owner, "...thum...")
 		if(healing)
 			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
@@ -287,6 +294,7 @@
 	healing = is_team_darkspawn(channeled)
 	
 /datum/action/cooldown/spell/pointed/extract/proc/cancel()
+	balloon_counter = 0
 	if(visual)
 		qdel(visual)
 	if(channeled)
@@ -483,7 +491,7 @@
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
 		if(is_team_darkspawn(victim))
-			victim.heal_ordered_damage(90, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
+			victim.heal_ordered_damage(90, list(BURN, BRUTE, TOX, OXY, CLONE, STAMINA), BODYPART_ANY)
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
 			victim.emote("scream")

@@ -17,6 +17,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 	networks = list(ROLE_DARKSPAWN)
 	clicksound = "crawling_shadows_walk"
+	jump_action = /datum/action/innate/camera_jump/darkspawn
 
 /obj/machinery/computer/camera_advanced/darkspawn/Initialize(mapload)
 	. = ..()
@@ -28,6 +29,51 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
 	return
+
+/obj/machinery/computer/camera_advanced/darkspawn/remove_eye_control(mob/living/user)
+	. = ..()
+	playsound(src, "crawling_shadows_walk", 35, FALSE)
+
+//special ability to replace sound effects
+/datum/action/innate/camera_jump/darkspawn
+	name = "Jump To Ally"
+
+/datum/action/innate/camera_jump/darkspawn/Activate()
+	if(!owner || !isliving(owner))
+		return
+	var/mob/camera/ai_eye/remote/remote_eye = owner.remote_control
+	var/obj/machinery/computer/camera_advanced/origin = remote_eye.origin
+
+	var/list/L = list()
+
+	for (var/obj/machinery/camera/cam as anything in origin.camnet.cameras)
+		if(length(origin.z_lock) && !(cam.z in origin.z_lock))
+			continue
+		L.Add(cam)
+
+	camera_sort(L)
+
+	var/list/T = list()
+
+	for (var/obj/machinery/camera/netcam in L)
+		var/list/tempnetwork = netcam.network & origin.networks
+		if (length(tempnetwork))
+			if(!netcam.c_tag)
+				continue
+			T["[netcam.c_tag][netcam.can_use() ? null : " (Deactivated)"]"] = netcam
+
+	playsound(origin, "crawling_shadows_walk", 25, FALSE)
+	var/camera = tgui_input_list(usr, "Ally to view", "Allies", T)
+	if(isnull(camera))
+		return
+	if(isnull(T[camera]))
+		return
+	var/obj/machinery/camera/final = T[camera]
+	playsound(origin, "crawling_shadows_walk", 25, FALSE)
+	if(final)
+		remote_eye.setLoc(get_turf(final))
+		owner.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
+		owner.clear_fullscreen("flash", 1) //Shorter flash than normal since it's an ~~advanced~~ console!
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------------Expand the veilnet---------------------------//
