@@ -11624,6 +11624,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"bMO" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "bMQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 8
@@ -118348,7 +118357,7 @@ alP
 syq
 syq
 syq
-vTK
+bMO
 tQg
 anf
 aFu

@@ -298,7 +298,7 @@
 	//Burn it
 	var/list/hit_list = list()
 	hit_list += src
-	target.IgniteTurf(rand(damage, damage * 4))
+	target.ignite_turf(rand(damage, damage * 4))
 
 	// Fire go brrrr
 	for(var/mob/living/L in target.contents)
