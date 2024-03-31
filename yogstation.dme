@@ -4160,6 +4160,7 @@
 #include "yogstation\code\modules\antagonists\blob\blob\blobs\core.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\_psi_web.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_antag.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_illusions.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_progenitor.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_team.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_thrall.dm"

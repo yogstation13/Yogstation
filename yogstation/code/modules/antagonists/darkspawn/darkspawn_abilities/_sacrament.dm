@@ -60,6 +60,8 @@
 		return
 	user.visible_message(span_warning("A vortex of violet energies surrounds [user]!"), span_velvet("Your barrier will protect you."))
 	for(var/turf/T in RANGE_TURFS(2, user))
+		if(isclosedturf(T))
+			continue
 		new/obj/structure/psionic_barrier(T, 340)
 
 	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "sacrament")

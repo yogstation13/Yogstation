@@ -198,10 +198,10 @@
 	shadow_flags = DARKSPAWN_FIGHTER
 	infinite = TRUE
 
-/datum/psi_web/brute_res/on_gain()
+/datum/psi_web/burn_res/on_gain()
 	darkspawn.burn_mod *= 0.85
 
-/datum/psi_web/brute_res/on_loss()
+/datum/psi_web/burn_res/on_loss()
 	darkspawn.burn_mod /= 0.85
 
 /datum/psi_web/undying

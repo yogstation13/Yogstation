@@ -9,6 +9,8 @@
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall)
 	///How many ticks towards willpower generation has happened so far
 	var/current_willpower_progress = 0
+	///Amount of progress required to generate willpower, increases every time
+	var/current_willpower_max = 80
 	///The darkspawn team that the thrall is on
 	var/datum/team/darkspawn/team
 
@@ -141,19 +143,22 @@
 		return
 
 	var/found_other = FALSE
-	for(var/mob/living/thing in range(5, source))
+	for(var/mob/living/thing in range(10, source))
 		if(!thing.client) //gotta be an actual player (hope no one goes afk)
 			continue
-		if(is_darkspawn_or_thrall(thing))
+		if(is_team_darkspawn(thing))
+			continue
+		if(!can_see(source, thing, 10))
 			continue
 		found_other = TRUE
 
 	if(found_other)
 		current_willpower_progress += seconds_per_tick
 
-	if(current_willpower_progress >= 100)
+	if(current_willpower_progress >= current_willpower_max)
+		current_willpower_max *= 2
 		current_willpower_progress = 0
-		team.grant_willpower(1)
+		team.grant_willpower(1, TRUE)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Antag greet--------------------------------------//
@@ -171,6 +176,7 @@
 	to_chat(owner, span_velvet(flavour.Join("<br>")))
 
 	to_chat(owner, span_notice("<i>Use <b>.[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink.</i>"))
+	to_chat(owner, span_notice("<i>Blending in with regular crewmembers will generate willpower for your masters.</i>"))
 	to_chat(owner, span_notice("<i>Ask for help from your masters or fellows if you're new to this role.</i>"))
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
 	flash_color(owner, flash_color = COLOR_VELVET, flash_time = 10 SECONDS)

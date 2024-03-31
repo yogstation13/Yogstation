@@ -164,7 +164,7 @@
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/mass_hallucination)
 	
 /datum/psi_web/mindblast
-	name = "Mindblast"
+	name = "Mind blast"
 	desc = "Focus your psionic energy into a blast that deals physical damage. Can also be projected from the minds of allies."
 	lore_description = ""
 	icon_state = "mind_blast"

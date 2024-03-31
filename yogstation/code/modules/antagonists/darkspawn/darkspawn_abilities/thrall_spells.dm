@@ -374,7 +374,7 @@
 	var/mob/living/carbon/target = cast_on
 	if(!is_team_darkspawn(target))
 		return FALSE
-	if(target.stat == DEAD && get_dist(target, owner) > 5)
+	if(target.stat == DEAD && get_dist(target, owner) > 2)
 		to_chat(owner, span_velvet("This one is beyond our help at such a range"))
 		return FALSE
 	return ..()
@@ -384,7 +384,7 @@
 	if(!iscarbon(cast_on))
 		return FALSE
 	var/mob/living/carbon/target = cast_on
-	target.fully_heal()
+	target.revive(TRUE)
 	target.SetAllImmobility(0, TRUE)
 	target.resting = FALSE
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 15 SECONDS, type)

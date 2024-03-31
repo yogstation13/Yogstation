@@ -105,12 +105,12 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------Special antag procs--------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/team/darkspawn/proc/grant_willpower(amount = 1)
+/datum/team/darkspawn/proc/grant_willpower(amount = 1, silent = FALSE)
 	for(var/datum/mind/master in members)
 		if(master.has_antag_datum(/datum/antagonist/darkspawn)) //sanity check
 			var/datum/antagonist/darkspawn/antag = master.has_antag_datum(/datum/antagonist/darkspawn)
 			antag.willpower += amount
-			if(master.current)
+			if(!silent && master.current)
 				to_chat(master.current, span_velvet("You have gained [amount] willpower."))
 
 /datum/team/darkspawn/proc/grant_lucidity(amount = 1)
