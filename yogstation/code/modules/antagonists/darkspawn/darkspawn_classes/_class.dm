@@ -181,6 +181,8 @@
 	class_color = LIGHT_COLOR_ELECTRIC_GREEN
 	choosable = FALSE
 	starting_abilities = list(/datum/psi_web/innate_darkspawn, /datum/psi_web/fighter, /datum/psi_web/scout, /datum/psi_web/warlock)
+	eye_icon = "admeme_eyes"
+	class_icon = "admeme_sigils"
 	var/last_colour = 0
 	var/list/hsv
 

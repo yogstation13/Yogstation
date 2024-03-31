@@ -382,7 +382,7 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = INFINITY //lol
 	var/charging = FALSE
-	var/charge_ticks = 3 //1 second per tick
+	var/charge_ticks = 2 //1 second per tick
 	var/turf/targets_from
 	var/turf/targets_to
 
@@ -437,7 +437,7 @@
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
 		darkspawn.block_psi(30 SECONDS, type)
 
-	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 20)
+	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 30)
 	//split in two so the targeted tile is always in the center of the beam
 	for(var/turf/step_target in getline(targets_from, targets_to))
 		spawn_ground(step_target)
@@ -449,7 +449,7 @@
 		spawn_ground(step_target)
 
 /datum/action/cooldown/spell/pointed/shadow_beam/proc/spawn_ground(turf/target)
-	for(var/turf/realtile in range(1, target)) //bit of aoe around the line (probably super fucking intensive lol)
+	for(var/turf/realtile in RANGE_TURFS(1, target)) //bit of aoe around the line (probably super fucking intensive lol)
 		var/obj/effect/temp_visual/darkspawn/chasm/effect = locate() in realtile.contents
 		if(!effect) //to prevent multiple visuals from appearing on the same tile and doing more damage than intended
 			effect = new(realtile)
@@ -462,6 +462,7 @@
 /obj/effect/temp_visual/darkspawn/chasm //a slow field that eventually explodes
 	icon_state = "consuming"
 	duration = 4 SECONDS //functions as the delay until the explosion, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
+	plane = WALL_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 
 /obj/effect/temp_visual/darkspawn/chasm/Initialize(mapload)
@@ -484,6 +485,7 @@
 
 /obj/effect/temp_visual/darkspawn/detonate //the explosion effect, applies damage when it disappears
 	icon_state = "detonate"
+	plane = WALL_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 	duration = 2
 
@@ -493,7 +495,7 @@
 		if(is_team_darkspawn(victim))
 			victim.heal_ordered_damage(90, list(BURN, BRUTE, TOX, OXY, CLONE, STAMINA), BODYPART_ANY)
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
-			victim.take_overall_damage(33, 66) //skill issue if you don't dodge it (won't crit if you're full hp)
+			victim.take_overall_damage(10, 50, 200) //skill issue if you don't dodge it (won't crit if you're full hp)
 			victim.emote("scream")
 	return ..()
 

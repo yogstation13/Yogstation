@@ -79,6 +79,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //-------------------------Expand the veilnet---------------------------//
 //////////////////////////////////////////////////////////////////////////
 /obj/machinery/camera/darkspawn
+	name = "void eye"
 	use_power = NO_POWER_USE
 	max_integrity = 20
 	integrity_failure = 20

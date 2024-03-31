@@ -198,7 +198,7 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
 	///how far the projectile can shoot from a body
-	var/body_range = 8 
+	var/body_range = 9 
 	///mob to shoot the projectile from
 	var/mob/shoot_from
 
@@ -450,5 +450,5 @@
 	language_final = "Ixnce"
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall/thrall
-	desc = "Places a floating watchful eye for your warlock to observe through."
+	desc = "Places a floating watchful eye for your masters to observe through."
 	psi_cost = 0
