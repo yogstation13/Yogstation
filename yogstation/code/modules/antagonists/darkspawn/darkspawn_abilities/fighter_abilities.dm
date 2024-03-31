@@ -101,6 +101,7 @@
 		var/mob/living/target = owner
 		target.extinguish_mob()
 		target.adjust_wet_stacks(20)
+		target.adjust_wet_stacks(20)
 
 /datum/action/cooldown/spell/aoe/deluge/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!can_see(caster, victim))
@@ -110,6 +111,7 @@
 		target.extinguish_mob()
 		if(is_darkspawn_or_thrall(target) && ispreternis(target)) //don't make preterni allies wet
 			return
+		target.adjust_wet_stacks(20)
 		target.adjust_wet_stacks(20)
 	else if(isobj(victim))
 		var/obj/target = victim
