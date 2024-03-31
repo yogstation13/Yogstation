@@ -25,7 +25,7 @@
 	///Maximum amount of psi
 	var/psi_cap = 100 
 	///How long before psi starts regenerating
-	var/psi_regen_delay = 10 SECONDS 
+	var/psi_regen_delay = 9 SECONDS 
 	///how much psi is regenerated per second once it does start regenerating
 	var/psi_per_second = 20 
 	///When this finishes it's cooldown, regenerate Psi and restart
