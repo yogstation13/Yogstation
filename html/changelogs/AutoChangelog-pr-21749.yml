@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "fixes preternis cores not showing up if wearing a suit or jacket that doesn't cover the chest"
+  - bugfix: "fixes alt jumpsuit modes having inverted chest covering than the sprite implies"
