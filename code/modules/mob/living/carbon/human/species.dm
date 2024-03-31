@@ -925,7 +925,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "preternis_eye"
 
 	if("preternis_core" in mutant_bodyparts)
-		if(H.w_uniform || H.wear_suit)
+		if(!get_location_accessible(H, BODY_ZONE_CHEST))
 			bodyparts_to_add -= "preternis_core"
 
 	if("pod_hair" in mutant_bodyparts)

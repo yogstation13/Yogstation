@@ -18,6 +18,7 @@ a img {border:none;}
 .rscadd {background-image:url(tick-circle.png)}
 .imageadd {background-image:url(image-plus.png)}
 .imagedel {background-image:url(image-minus.png)}
+.mapping {background-image:url(mapping.png)}
 .spellcheck {background-image:url(spell-check.png)}
 .experiment {background-image:url(burn-exclamation.png)}
 .refactor {background-image:url(burn-exclamation.png)}

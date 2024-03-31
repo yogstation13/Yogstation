@@ -240,7 +240,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /mob/living/simple_animal/mouse/proc/cheese_up()
 	regen_health(15)
 	if(cheesed)
-		cheese_time = cheese_time + 3 MINUTES
+		cheese_time += 3 MINUTES
 		return
 	cheesed = TRUE
 	resize = 2
@@ -249,7 +249,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	maxHealth = 30
 	health = maxHealth
 	to_chat(src, span_userdanger("You ate cheese! You are now stronger, bigger and faster!"))
-	cheese_time = cheese_time + 3 MINUTES
+	cheese_time = world.time + 3 MINUTES
 
 /mob/living/simple_animal/mouse/proc/cheese_down()
 	cheesed = FALSE

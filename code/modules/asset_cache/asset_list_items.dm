@@ -170,6 +170,7 @@
 		"coding.png" = 'html/coding.png',
 		"ban.png" = 'html/ban.png',
 		"chrome-wrench.png" = 'html/chrome-wrench.png',
+		"mapping.png" = 'html/mapping.png',
 		"changelog.css" = 'html/changelog.css'
 	)
 	parents = list("changelog.html" = 'html/changelog.html')
