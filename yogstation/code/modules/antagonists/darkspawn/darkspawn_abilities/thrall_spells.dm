@@ -384,6 +384,7 @@
 	if(!iscarbon(cast_on))
 		return FALSE
 	var/mob/living/carbon/target = cast_on
+	target.grab_ghost()
 	target.revive(TRUE)
 	target.SetAllImmobility(0, TRUE)
 	target.resting = FALSE
