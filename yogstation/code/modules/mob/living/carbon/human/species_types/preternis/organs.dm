@@ -32,6 +32,10 @@
 	. = ..()
 
 /obj/item/organ/eyes/robotic/preternis/ui_action_click()
+	if(damage > low_threshold || (powered && owner.nutrition <= NUTRITION_LEVEL_HUNGRY))
+		to_chat(owner, span_warning("Your [src] flash warnings that they've disabled night vision to save power!"))
+		//no nightvision if your eyes are low on power, whether internal or external
+		return
 	if (night_vision)
 		nv_off()
 	else
