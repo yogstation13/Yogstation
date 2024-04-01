@@ -49,7 +49,7 @@
 	else
 		underfloor_accessibility = UNDERFLOOR_VISIBLE
 		layer = CATWALK_LAYER
-		plane = GAME_PLANE
+		plane = FLOOR_PLANE //for some reason these are black
 		icon_state = "[catwalk_type]_above"
 	user.balloon_alert(user, "[!covered ? "cover removed" : "cover added"]")
 	tool.play_tool_sound(src)
