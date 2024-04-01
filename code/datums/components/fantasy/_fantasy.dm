@@ -1,3 +1,11 @@
+GLOBAL_LIST_INIT(rarity_to_quality, list(
+	TIER_NORMAL = 0,
+	TIER_UNCOMMON = 2,
+	TIER_RARE = 5,
+	TIER_LEGENDARY = 10,
+	TIER_MYTHICAL = 25
+))
+
 /datum/component/fantasy
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
@@ -12,13 +20,17 @@
 
 	var/static/list/affixListing
 
+	var/rarity = TIER_NORMAL
+
 /datum/component/fantasy/Initialize(quality, list/affixes = list(), canFail=FALSE, announce=FALSE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	src.quality = quality || randomQuality()
+	//src.quality = quality || randomQuality()
 	src.canFail = canFail
 	src.announce = announce
+	src.rarity = randomRarity()
+	src.quality = GLOB.rarity_to_quality[src.rarity]
 
 	src.affixes = affixes
 	appliedComponents = list()
@@ -54,6 +66,16 @@
 	if(prob(50))
 		quality = -quality
 	return quality
+
+/datum/component/fantasy/proc/randomRarity()
+	var/list/rarity = list(
+		TIER_NORMAL = 55,
+		TIER_UNCOMMON = 30,
+		TIER_RARE = 10,
+		TIER_LEGENDARY = 4,
+		TIER_MYTHICAL = 1
+	)
+	return pickweight(rarity)
 
 /datum/component/fantasy/proc/randomAffixes(force)
 	if(!affixListing)
@@ -95,6 +117,8 @@
 	master.bare_wound_bonus += quality
 
 	var/newName = originalName
+	newName = "[rarity] [originalName]"
+	
 	for(var/i in affixes)
 		var/datum/fantasy_affix/affix = i
 		newName = affix.apply(src, newName)
