@@ -11,7 +11,7 @@
 	reroll_friendly = 1
 	enemy_minimum_age = 0
 	title_icon = "devil"
-	restricted_jobs = list("Cyborg", "AI")
+	restricted_jobs = list("Cyborg", "AI", "Synthetic")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician") //YOGS -  added the hop and brig physician
 
 	var/traitors_possible = 4 //hard limit on devils if scaling is turned off
