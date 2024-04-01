@@ -951,33 +951,35 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/darkspawn
-	name = "Darkspawn"
-	antag_flag = ROLE_DARKSPAWN
-	antag_datum = /datum/antagonist/darkspawn
-	minimum_required_age = 20
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
-	restricted_roles = list("AI", "Cyborg", "Synthetic")
-	required_candidates = 3
-	weight = 3
-	cost = 20
-	scaling_cost = 20
-	antag_cap = 3
-	requirements = list(80,75,70,65,50,30,30,30,25,20)
-	minimum_players = 32
+//this might not work, just commenting it out for now
 
-/datum/dynamic_ruleset/roundstart/darkspawn/pre_execute(population)
-	. = ..()
-	var/num_darkspawn = get_antag_cap(population) * (scaled_times + 1)
-	for (var/i = 1 to num_darkspawn)
-		if(candidates.len <= 0)
-			break
-		var/mob/M = pick_n_take(candidates)
-		assigned += M.mind
-		M.mind.special_role = ROLE_DARKSPAWN
-		M.mind.restricted_roles = restricted_roles
-		log_game("[key_name(M)] has been selected as a Darkspawn")
-	return TRUE
+// /datum/dynamic_ruleset/roundstart/darkspawn
+// 	name = "Darkspawn"
+// 	antag_flag = ROLE_DARKSPAWN
+// 	antag_datum = /datum/antagonist/darkspawn
+// 	minimum_required_age = 20
+// 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
+// 	restricted_roles = list("AI", "Cyborg", "Synthetic")
+// 	minimum_players = 25
+// 	required_candidates = 2
+// 	antag_cap = 4
+// 	weight = 3
+// 	cost = 20
+// 	scaling_cost = 20
+// 	requirements = list(80,75,70,65,50,30,30,30,25,20)
+
+// /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute(population)
+// 	. = ..()
+// 	var/num_darkspawn = get_antag_cap(population) * (scaled_times + 1)
+// 	for (var/i = 1 to num_darkspawn)
+// 		if(candidates.len <= 0)
+// 			break
+// 		var/mob/M = pick_n_take(candidates)
+// 		assigned += M.mind
+// 		M.mind.special_role = ROLE_DARKSPAWN
+// 		M.mind.restricted_roles = restricted_roles
+// 		log_game("[key_name(M)] has been selected as a Darkspawn")
+// 	return TRUE
 
 //////////////////////////////////////////////
 //                                          //
