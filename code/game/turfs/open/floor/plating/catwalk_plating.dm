@@ -13,7 +13,7 @@
 	baseturfs = /turf/open/floor/plating
 	floor_tile = /obj/item/stack/tile/catwalk_tile
 	layer = CATWALK_LAYER
-	plane = GAME_PLANE
+	plane = FLOOR_PLANE
 	footstep = FOOTSTEP_CATWALK
 	overfloor_placed = TRUE
 	underfloor_accessibility = UNDERFLOOR_VISIBLE
