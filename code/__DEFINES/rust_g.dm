@@ -92,6 +92,31 @@
 #define rustg_acreplace_with_replacements(key, text, replacements) RUSTG_CALL(RUST_G, "acreplace_with_replacements")(key, text, json_encode(replacements))
 
 /**
+ * This proc generates rooms in a specified area of random size and placement. Essential for procedurally generated areas, BSP works by cutting a given area in half,
+ * then cutting one of those subsections in half, and repeating this process until a minimum size is reached, then backtracking to other subsections that are not of
+ * the minimum size yet. These cuts are offset by small random amounts so that the sections are all varied in size and shape.
+ *
+ * BSP excels at creating rooms or areas with a relatively even distribution over an area, so there won't be too much blank open area. However if you discard rooms that
+ * overlap pre-existing map structures or areas, you may still get blank areas where nothing interesting appears.
+ *
+ * Return:
+ * * a json list of room data to be processed by json_decode in byond and further processed there.
+ *
+ * Arguments:
+ * * width: the width of the area to generate in
+ * * height: the height of the area to generate in
+ * * hash: the rng seed the generator will use for this instance
+ * * map_subsection_min_size: The minimum size of a map subsection. When using this for rooms with walls, the minimum possible square will be a 5x5 room. Barring walls,
+ * this will be a 3x3 room. The maximum size will be 9x9, because a further cut could reduce this size beneath the minimum size.
+ * * map_subsection_min_room_width: The minimum room width once the subsections are finalized. Room width and height are random between this amount, and the subsection
+ * max size
+ * * map_subsection_min_room_height: The minimum room height once the subsections are finalized. Room width and height are random between this amount, and the subsection
+ * max size
+ */
+#define rustg_bsp_generate(width, height, hash, map_subsection_min_size, map_subsection_min_room_width, map_subsection_min_room_height) \
+	RUSTG_CALL(RUST_G, "bsp_generate")(width, height, hash, map_subsection_min_size, map_subsection_min_room_width, map_subsection_min_room_height)
+
+/**
  * This proc generates a cellular automata noise grid which can be used in procedural generation methods.
  *
  * Returns a single string that goes row by row, with values of 1 representing an alive cell, and a value of 0 representing a dead cell.
@@ -216,6 +241,31 @@
  */
 #define rustg_generate_path_astar(start_node_id, goal_node_id) RUSTG_CALL(RUST_G, "generate_path_astar")(start_node_id, goal_node_id)
 
+/**
+ * This proc generates rooms in a specified area of random size and placement. Used in procedural generation, but far less intensively than Binary Space Partitioning
+ * due to Random Room Placement being far more simple and unreliable for area coverage. These rooms will not overlap one another, but that is the only logic
+ * they do. The room dimensions returned by this call are hardcoded to be the dimensions of maint ruins so that I could sprinkle pre-generated areas over
+ * the binary space rooms that are random.
+ * These dimensions are:
+ * * 3x3
+ * * 3x5
+ * * 5x3
+ * * 5x4
+ * * 10x5
+ * * 10x10
+ *
+ * Return:
+ * * a json list of room data to be processed by json_decode in byond and further processed there.
+ *
+ * Arguments:
+ * * width: the width of the area to generate in
+ * * height: the height of the area to generate in
+ * * desired_room_count: the number of rooms you want generated and returned
+ * * hash: the rng seed the generator will use for this instance
+ */
+#define rustg_random_room_generate(width, height, desired_room_count, hash) \
+	RUSTG_CALL(RUST_G, "random_room_generate")(width, height, desired_room_count, hash)
+
 #define RUSTG_REDIS_ERROR_CHANNEL "RUSTG_REDIS_ERROR_CHANNEL"
 
 #define rustg_redis_connect(addr) RUSTG_CALL(RUST_G, "redis_connect")(addr)
@@ -285,5 +335,3 @@
  */
 #define rustg_worley_generate(region_size, threshold, node_per_region_chance, size, node_min, node_max) \
 	RUSTG_CALL(RUST_G, "worley_generate")(region_size, threshold, node_per_region_chance, size, node_min, node_max)
-
-

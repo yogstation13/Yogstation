@@ -352,6 +352,8 @@ SUBSYSTEM_DEF(ticker)
 
 		place.power_change()
 
+
+	rock_paper_scissors_puzzle()
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()

@@ -129,8 +129,10 @@
 		else
 			var/list/radial_menu = list()
 			for(var/obj/item/organ/O in organs)
+				
 				O.on_find(user)
-				radial_menu[O] = image(O)
+				if(O.can_extract())
+					radial_menu[O] = image(O)
 			I = show_radial_menu(user, target, radial_menu, tooltips = TRUE)
 			if(I && user && target && user.Adjacent(target) && user.get_active_held_item() == tool)
 				display_results(user, target, span_notice("You begin to extract [I] from [target]'s [parse_zone(target_zone)]..."),

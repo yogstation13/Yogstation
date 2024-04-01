@@ -467,6 +467,11 @@
 			return TRUE
 	return FALSE
 
+/mob/living/proc/remove_all_quirks()
+	for(var/datum/quirk/Q in roundstart_quirks)
+		qdel(Q)
+	return TRUE
+
 /////////////////////////////////// TRAIT PROCS ////////////////////////////////////
 
 /mob/living/proc/cure_blind(list/sources)

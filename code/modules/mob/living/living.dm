@@ -719,6 +719,8 @@
 	return bleed_amount
 
 /mob/living/proc/getTrail()
+	if(is_synth(src))
+		return
 	if(getBruteLoss() < 300)
 		return pick("ltrails_1", "ltrails_2")
 	else

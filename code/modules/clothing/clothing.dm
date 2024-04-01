@@ -360,6 +360,9 @@ BLIND     // can't see anything
 		return
 	if (!can_use(M))
 		return
+	if(is_synth(M))
+		to_chat(usr, "You're unable to use suit sensors as a synthetic!")
+		return
 	if(src.has_sensor == LOCKED_SENSORS)
 		to_chat(usr, "The controls are locked.")
 		return 0
@@ -443,7 +446,7 @@ BLIND     // can't see anything
 			adjusted = DIGIALT_STYLE
 		if(DIGIALT_STYLE)
 			adjusted = DIGITIGRADE_STYLE
-	if(adjusted == NORMAL_STYLE || adjusted == DIGIALT_STYLE) //Yogs End
+	if(adjusted == ALT_STYLE || adjusted == DIGIALT_STYLE) //Yogs End
 		if(fitted != FEMALE_UNIFORM_TOP)
 			fitted = NO_FEMALE_UNIFORM
 		if(!alt_covers_chest) // for the special snowflake suits that expose the chest when adjusted (and also the arms, realistically)

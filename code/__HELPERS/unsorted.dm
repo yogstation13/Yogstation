@@ -1216,3 +1216,75 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
+/proc/tgui_login_data(mob/user, obj/machine, silicon_access = TRUE, admin_ghost_access = TRUE, access_requirement)
+	var/list/data = list()
+	if(!user || (!machine && !access_requirement))
+		return data
+
+	if(issilicon(user) && silicon_access)
+		var/mob/living/silicon/borg = user
+		data["username"] = borg.name
+		data["has_access"] = TRUE
+
+	if(IsAdminGhost(user) && admin_ghost_access)
+		data["username"] = user.client.holder.admin_signature
+		data["has_access"] = TRUE
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/username = H.get_authentification_name("Unknown")
+		data["username"] = H.get_authentification_name("Unknown")
+		if(username != "Unknown")
+			var/datum/data/record/record
+			for(var/RP in GLOB.data_core.general)
+				var/datum/data/record/R = RP
+				if(!istype(R))
+					continue
+				if(R.fields["name"] == username)
+					record = R
+					break
+			if(record)
+				if(istype(record.fields["photo_front"], /obj/item/photo))
+					var/obj/item/photo/P1 = record.fields["photo_front"]
+					var/icon/picture = icon(P1.picture.picture_image)
+					picture.Crop(10, 32, 22, 22)
+					var/md5 = md5(fcopy_rsc(picture))
+
+					if(!SSassets.cache["photo_[md5]_cropped.png"])
+						SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
+
+					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
+		if(machine)
+			data["has_access"] = machine.check_access(user.get_idcard())
+		else
+			var/obj/item/id_giver = user.get_idcard()
+			var/access_list = id_giver.GetAccess()
+			data["has_access"] = (access_requirement in access_list)
+	
+	return data
+
+/proc/tgui_login_act(mob/user, obj/machine, silicon_access = TRUE, admin_ghost_access = TRUE, access_requirement)
+	if(!user || (!machine && !access_requirement))
+		return FALSE
+
+	if(issilicon(user) && silicon_access)
+		return TRUE
+
+	if(IsAdminGhost(user) && admin_ghost_access)
+		return TRUE
+
+	var/mob/living/carbon/human/H = user
+	if(!istype(H))
+		return FALSE
+
+	if(machine)
+		if(machine.check_access(H.get_idcard()))
+			return TRUE
+	else
+		var/obj/item/id_giver = H.get_idcard()
+		var/access_list = id_giver.GetAccess()
+		if(access_requirement in access_list)
+			return TRUE
+
+	return FALSE
