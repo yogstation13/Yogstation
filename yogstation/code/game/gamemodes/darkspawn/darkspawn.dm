@@ -28,15 +28,18 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	// 25 players = 2 darkspawns
 	// 40 players = 3 darkspawns
 	// 55 players = 4 darkspawns
-	var/darkbois = clamp(round((num_players()+5)/15), required_enemies, 4)
-
-	team = new
-	while(darkbois)
+	var/num_darkspawn = clamp(round((num_players()+5)/15), required_enemies, 4)
+	for (var/i = 1 to num_darkspawn)
+		if(LAZYLEN(antag_candidates) <= 0)
+			break
 		var/datum/mind/darkboi = antag_pick(antag_candidates)
 		antag_candidates -= darkboi
 		darkspawns += darkboi
+		darkboi.special_role = ROLE_DARKSPAWN
 		darkboi.restricted_roles = restricted_jobs
-		darkbois--
+		log_game("[key_name(darkboi)] (ckey) has been selected as a darkspawn.")
+
+	team = new
 	team.update_objectives()
 	GLOB.thrallnet.name = "Thrall net"
 
@@ -47,9 +50,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 /datum/game_mode/darkspawn/post_setup()
 	for(var/datum/mind/darkboi as anything in darkspawns)
-		if(darkboi.current.add_darkspawn())
-			log_game("[darkboi.key] (ckey) has been selected as a darkspawn.")
-			darkboi.special_role = "Darkspawn"
+		darkboi.add_antag_datum(/datum/antagonist/darkspawn)
 	. = ..()
 
 ////////////////////////////////////////////////////////////////////////////////////
