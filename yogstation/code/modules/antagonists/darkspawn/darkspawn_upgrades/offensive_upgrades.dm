@@ -195,13 +195,23 @@
 	
 /datum/psi_web/shadow_beam
 	name = "Void Beam"
-	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
-	lore_description = ""
+	desc = "After a short delay, fire a huge beam of void terrain across the entire station."
+	lore_description = "Tears a strip of reality into the void for a short duration."
 	icon_state = "shadow_beam"
 	willpower_cost = 3
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/shadow_beam)
+
+/datum/psi_web/null_burst
+	name = "Null Burst"
+	desc = "After a short delay, create an explosion of void terrain at the targeted location."
+	lore_description = "Tears a portion of reality into the void for a short duration."
+	icon_state = null //needs an icon
+	willpower_cost = 3
+	shadow_flags = DARKSPAWN_WARLOCK
+	menu_tab = STORE_OFFENSE
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/null_burst)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Mixed abilities-----------------------------------//

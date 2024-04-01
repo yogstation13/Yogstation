@@ -401,6 +401,16 @@
 		darkspawn.block_psi(1 MINUTES, type)
 	
 //////////////////////////////////////////////////////////////////////////
+//--------------------Places a camera for panopticon use----------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye
+	name = "Opticial"
+	desc = "Places a floating watchful eye."
+	psi_cost = 20
+	object_type = /obj/machinery/camera/darkspawn
+	language_final = "Ixnce"
+
+//////////////////////////////////////////////////////////////////////////
 //----------------------Abilities that thralls get----------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/seize/lesser
@@ -442,13 +452,6 @@
 		owner.update_sight()
 	else
 		owner.lighting_cutoff = 0
-
-/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye
-	name = "Opticial"
-	desc = "Places a floating watchful eye."
-	psi_cost = 20
-	object_type = /obj/machinery/camera/darkspawn
-	language_final = "Ixnce"
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall/thrall
 	desc = "Places a floating watchful eye for your masters to observe through."

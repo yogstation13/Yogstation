@@ -362,11 +362,102 @@
 	addtimer(CALLBACK(src, PROC_REF(hallucinate), target, times--), 1 SECONDS, TIMER_UNIQUE)
 
 //////////////////////////////////////////////////////////////////////////
-//----------------I stole blood beam from blood cultists----------------//
+//---------------------Detain and capture ability-----------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/seize //Stuns and mutes a human target for 10 seconds
+	name = "Seize"
+	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
+	panel = "Darkspawn"
+	button_icon_state = "seize"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
+	spell_requirements = SPELL_CASTABLE_AS_BRAIN
+	psi_cost = 35
+	cooldown_time = 30 SECONDS
+	cast_range = 10
+	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
+	///duration of stun when used at close range
+	var/stun_duration = 10 SECONDS
+
+/datum/action/cooldown/spell/pointed/seize/before_cast(atom/cast_on)
+	. = ..()
+	if(!cast_on || !isliving(cast_on))
+		return . | SPELL_CANCEL_CAST
+	var/mob/living/carbon/target = cast_on
+	if(istype(target) && target.stat)
+		to_chat(owner, span_warning("[target] must be conscious!"))
+		return . | SPELL_CANCEL_CAST
+	if(is_team_darkspawn(target))
+		to_chat(owner, span_warning("You cannot seize allies!"))
+		return . | SPELL_CANCEL_CAST
+
+/datum/action/cooldown/spell/pointed/seize/cast(atom/cast_on)
+	. = ..()
+	if(!isliving(cast_on))
+		return
+
+	if(iscarbon(owner))
+		var/mob/living/carbon/user = owner
+		if(!(user.check_obscured_slots() & ITEM_SLOT_EYES)) //only show if the eyes are visible
+			user.visible_message(span_warning("<b>[user]'s eyes flash a deep purple</b>"))
+
+	owner.balloon_alert(owner, "Sskr'aya")
+
+	var/mob/living/target = cast_on
+	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
+		return
+		
+	var/distance = get_dist(target, owner)
+	if (distance <= 2)
+		target.visible_message(span_danger("[target] suddenly collapses..."))
+		to_chat(target, span_userdanger("A purple light flashes through your mind, and you lose control of your movements!"))
+		target.Paralyze(stun_duration)
+		if(iscarbon(target))
+			var/mob/living/carbon/M = target
+			M.silent += 10
+	else //Distant glare
+		var/loss = max(120 - (distance * 10), 0)
+		target.adjustStaminaLoss(loss)
+		target.adjust_stutter(loss)
+		to_chat(target, span_userdanger("A purple light flashes through your mind, and exhaustion floods your body..."))
+
+//////////////////////////////////////////////////////////////////////////
+//----------------------Basically a fancy jaunt-------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/erase_time/darkspawn
+	name = "Quantum disruption"
+	desc = "Disrupt the flow of possibilities, where you are, where you could be."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "quantum_disruption"
+	panel = "Darkspawn"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_HUMAN
+	psi_cost = 80
+	cooldown_time = 60 SECONDS
+	length = 5 SECONDS
+
+/datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
+	. = ..()
+	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	if(. && darkspawn)
+		owner.balloon_alert(owner, "KSH SHOL'NAXHAR!")
+		darkspawn.block_psi(20 SECONDS, type)
+
+
+//////////////////////////////////////////////////////////////////////////
+//----------------I stole blood beam from blood cultists----------------// (and made it better)
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/shadow_beam
 	name = "Void beam"
-	desc = "Focus psionic energy briefly to tear a portion of reality into the void for a short duration."
+	desc = "After a short delay, fire a huge beam of void terrain across the entire station."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "shadow_beam"
 	background_icon_state = "bg_alien"
@@ -381,15 +472,19 @@
 	sound = null
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = INFINITY //lol
+	///boolean, whether or not the spell is being charged
 	var/charging = FALSE
+	///how many times the charge sound effect plays, also affects delay, sorta like a cast time
 	var/charge_ticks = 2 //1 second per tick
+	///turf of the caster at the moment of casting starting
 	var/turf/targets_from
+	///turf targeted for the center of the beam
 	var/turf/targets_to
 
 /datum/action/cooldown/spell/pointed/shadow_beam/can_cast_spell(feedback)
 	if(charging)
 		return
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/pointed/shadow_beam/cast(atom/cast_on)
 	. = ..()
@@ -498,93 +593,106 @@
 			victim.take_overall_damage(10, 50, 200) //skill issue if you don't dodge it (won't crit if you're full hp)
 			victim.emote("scream")
 	return ..()
-
+	
 //////////////////////////////////////////////////////////////////////////
-//---------------------Detain and capture ability-----------------------//
+//-------------------I stole heirophant's burst ability-----------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/seize //Stuns and mutes a human target for 10 seconds
-	name = "Seize"
-	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
-	panel = "Darkspawn"
-	button_icon_state = "seize"
+/datum/action/cooldown/spell/pointed/null_burst
+	name = "Null Burst"
+	desc = "After a short delay, create an explosion of void terrain at the targeted location."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "creep"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
+	panel = "Darkspawn"
 	antimagic_flags = MAGIC_RESISTANCE_MIND
-	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_CASTABLE_AS_BRAIN
-	psi_cost = 35
-	cooldown_time = 30 SECONDS
-	cast_range = 10
-	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
-	///duration of stun when used at close range
-	var/stun_duration = 10 SECONDS
-
-/datum/action/cooldown/spell/pointed/seize/before_cast(atom/cast_on)
-	. = ..()
-	if(!cast_on || !isliving(cast_on))
-		return . | SPELL_CANCEL_CAST
-	var/mob/living/carbon/target = cast_on
-	if(istype(target) && target.stat)
-		to_chat(owner, span_warning("[target] must be conscious!"))
-		return . | SPELL_CANCEL_CAST
-	if(is_team_darkspawn(target))
-		to_chat(owner, span_warning("You cannot seize allies!"))
-		return . | SPELL_CANCEL_CAST
-
-/datum/action/cooldown/spell/pointed/seize/cast(atom/cast_on)
-	. = ..()
-	if(!isliving(cast_on))
-		return
-
-	if(iscarbon(owner))
-		var/mob/living/carbon/user = owner
-		if(!(user.check_obscured_slots() & ITEM_SLOT_EYES)) //only show if the eyes are visible
-			user.visible_message(span_warning("<b>[user]'s eyes flash a deep purple</b>"))
-
-	owner.balloon_alert(owner, "Sskr'aya")
-
-	var/mob/living/target = cast_on
-	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
-		return
-		
-	var/distance = get_dist(target, owner)
-	if (distance <= 2)
-		target.visible_message(span_danger("[target] suddenly collapses..."))
-		to_chat(target, span_userdanger("A purple light flashes through your mind, and you lose control of your movements!"))
-		target.Paralyze(stun_duration)
-		if(iscarbon(target))
-			var/mob/living/carbon/M = target
-			M.silent += 10
-	else //Distant glare
-		var/loss = max(120 - (distance * 10), 0)
-		target.adjustStaminaLoss(loss)
-		target.adjust_stutter(loss)
-		to_chat(target, span_userdanger("A purple light flashes through your mind, and exhaustion floods your body..."))
-
-//////////////////////////////////////////////////////////////////////////
-//----------------------Basically a fancy jaunt-------------------------//
-//////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/erase_time/darkspawn
-	name = "Quantum disruption"
-	desc = "Disrupt the flow of possibilities, where you are, where you could be."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-	buttontooltipstyle = "alien"
-	button_icon_state = "quantum_disruption"
-	panel = "Darkspawn"
-	antimagic_flags = NONE
-	check_flags = AB_CHECK_CONSCIOUS
+	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	psi_cost = 80
-	cooldown_time = 60 SECONDS
-	length = 5 SECONDS
+	cooldown_time = 90 SECONDS
+	psi_cost = 100 //big fuckin layzer
+	sound = null
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
+	cast_range = INFINITY //lol
+	///boolean, whether or not the ability is actively being casted
+	var/charging = FALSE
+	///how many times the charge sound effect plays, also affects delay, sorta like a cast time
+	var/charge_ticks = 2 //1 second per tick
+	///the targeted location for the burst
+	var/turf/targets_to
+	///radius of the burst aoe
+	var/burst_range = 5
+	///modifies the delay between waves in the burst
+	var/spread_speed = 0.6
 
-/datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
+/datum/action/cooldown/spell/pointed/null_burst/can_cast_spell(feedback)
+	if(charging)
+		return
+	return ..()
+
+/datum/action/cooldown/spell/pointed/null_burst/is_valid_target(atom/cast_on) //can target yourself if you really want to
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/null_burst/cast(atom/cast_on)
 	. = ..()
-	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
-	if(. && darkspawn)
-		owner.balloon_alert(owner, "KSH SHOL'NAXHAR!")
-		darkspawn.block_psi(20 SECONDS, type)
+	if(charging)
+		return
+	
+	targets_to = get_turf(cast_on)
+
+	owner.balloon_alert(owner, "Qwo...")
+	to_chat(owner, span_velvet("You start building up psionic energy."))
+	charging = TRUE
+	INVOKE_ASYNC(src, PROC_REF(start_beam), owner) //so the reticle doesn't continue to show even after clicking
+
+/datum/action/cooldown/spell/pointed/null_burst/proc/start_beam(mob/user)
+	charging = TRUE
+	INVOKE_ASYNC(src, PROC_REF(charge), user) //visual effect
+	if(do_after(user, charge_ticks SECONDS, user))
+		INVOKE_ASYNC(src, PROC_REF(burst), user)
+	charging = FALSE
+
+/datum/action/cooldown/spell/pointed/null_burst/proc/charge(mob/user, times = charge_ticks, first = TRUE)
+	if(!charging)
+		return
+	if(times <= 0)
+		return
+	var/power = charge_ticks - times //grow in sound volume and added sound range as it charges
+	var/volume = min(10 + (power * 20), 60)
+	playsound(user, 'sound/effects/magic.ogg', volume, TRUE, power)
+	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', volume, TRUE, power)
+	if(first)
+		new /obj/effect/temp_visual/cult/rune_spawn/rune1(user.loc, 2 SECONDS, "#21007F")
+	else
+		new /obj/effect/temp_visual/cult/rune_spawn/rune1/reverse(user.loc, 2 SECONDS, "#21007F")
+	addtimer(CALLBACK(src, PROC_REF(charge), user, times - 1, !first), 1 SECONDS)
+
+/datum/action/cooldown/spell/pointed/null_burst/proc/burst(mob/user)
+	if(!targets_to)
+		return
+
+	user.balloon_alert(user, "...GWO'KSHA!")
+	if(isdarkspawn(user))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+		darkspawn.block_psi(30 SECONDS, type)
+
+	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 30)
+	playsound(targets_to,'yogstation/sound/magic/divulge_end.ogg', 80, TRUE, burst_range)
+
+	var/last_dist = 0
+	var/real_delay = 0
+	for(var/t in spiral_range_turfs(burst_range, targets_to))
+		var/turf/T = t
+		if(!T)
+			continue
+		var/dist = get_dist(targets_to, T)
+		if(dist > last_dist)
+			last_dist = dist
+			real_delay += (0.1 SECONDS) + (min(burst_range - last_dist, 1.2 SECONDS) * spread_speed) //gets faster as it gets further out
+		addtimer(CALLBACK(src, PROC_REF(spawn_ground), T), real_delay) //spawns turf with a callback to avoid using sleep() in a loop like heiro does
+
+/datum/action/cooldown/spell/pointed/null_burst/proc/spawn_ground(turf/target)
+	new /obj/effect/temp_visual/darkspawn/chasm/burst(target)
+
+/obj/effect/temp_visual/darkspawn/chasm/burst
+	duration = 1.1 SECONDS
