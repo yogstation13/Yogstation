@@ -964,7 +964,6 @@
 	weight = 4
 	flags = HIGH_IMPACT_RULESET
 	cost = 20
-	scaling_cost = 20
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
 	var/datum/team/darkspawn/team
 
