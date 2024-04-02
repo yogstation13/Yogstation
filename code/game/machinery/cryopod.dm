@@ -309,7 +309,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant.mind && mob_occupant.mind.assigned_role)
 		// Removes from team antag teams to avoid influencing gameplay
-		var/datum/antagonist/antag = mob_occupant.mind.has_antag_datum()
+		var/datum/antagonist/antag = mob_occupant.mind.has_antag_datum(/datum/antagonist)
 		if(antag)
 			var/datum/team/antag_team = antag.get_team()
 			if(antag_team)
