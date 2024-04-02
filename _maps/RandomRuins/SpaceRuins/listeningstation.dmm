@@ -2147,6 +2147,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
+"EW" = (
+/obj/structure/sign/poster/official/no_erp{
+	desc = "This poster reminds the crew that Eroticism, Rape and Pornography are banned on Syndicate stations.";
+	pixel_y = -32
+	},
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "Fl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -2247,18 +2256,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
-"He" = (
-/obj/structure/sign/poster/official/no_erp{
-	desc = "This poster reminds the crew that Eroticism, Rape and Pornography are banned on Syndicate stations.";
-	pixel_y = -32
-	},
-/obj/item/bedsheet/syndie,
-/obj/structure/bed,
-/obj/effect/mob_spawn/human/lavaland_syndicate/comms/space/lieutenant{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "Hy" = (
 /obj/machinery/computer/med_data/syndie{
 	dir = 8;
@@ -2407,8 +2404,8 @@
 /obj/docking_port/stationary{
 	dwidth = 6;
 	height = 7;
-	shuttle_id = "listeningpost";
 	name = "Listening Post Dock";
+	shuttle_id = "listeningpost";
 	width = 15
 	},
 /turf/template_noop,
@@ -4175,7 +4172,7 @@ OV
 Su
 tH
 ah
-He
+EW
 az
 NO
 "}
