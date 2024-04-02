@@ -1870,10 +1870,6 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
-/obj/machinery/light_switch{
-	pixel_y = 28;
-	pixel_x = 14
-	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "lD" = (
@@ -7454,6 +7450,10 @@
 	},
 /obj/structure/closet/secure_closet/syndicate/captain,
 /obj/item/storage/toolbox/syndicate/real,
+/obj/machinery/light_switch{
+	pixel_y = 28;
+	pixel_x = -6
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "SZ" = (
