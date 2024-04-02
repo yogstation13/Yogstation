@@ -6,14 +6,21 @@
 	weighted_closed_turf_types = list(/turf/closed/wall = 5, /turf/closed/wall/rust = 2 )
 	room_datum_path = /datum/dungeon_room/maintenance
 	room_theme_path = /datum/dungeon_room_theme/maintenance
+
+	///Boolean, whether or not firelocks are added to the maintenance
+	var/include_firelocks = TRUE
+	///Boolean, wether or not apcs are added to the maintenance
+	var/include_apcs = TRUE
 	
 	//var/list/used_spawn_points = list()
 
 /datum/map_generator/dungeon_generator/maintenance/build_dungeon()
 	. = ..()
-	add_firelocks()
-	add_apcs()
-	wire_apcs()
+	if(include_firelocks)
+		add_firelocks()
+	if(include_apcs)
+		add_apcs()
+		wire_apcs()
 	add_maint_loot()
 
 /datum/map_generator/dungeon_generator/maintenance/proc/add_firelocks()
@@ -261,3 +268,10 @@
 		//what the fuck how did you get here
 		brazil = TRUE
 	return "blocked directions: [blocked_directions], against a wall: [against_wall], in a one tile hallway: [blocking_passage], brazil: [brazil]"
+
+////////////////////////////////////////////////////////////////
+//------------Generator specifically for the Z level----------//
+////////////////////////////////////////////////////////////////
+/datum/map_generator/dungeon_generator/maintenance/backrooms //this is an entire Z level, so we need to be mindful of how many machines and mobs we spawn
+	include_firelocks = FALSE
+	include_apcs = FALSE
