@@ -1871,7 +1871,8 @@
 	pixel_y = 26
 	},
 /obj/machinery/light_switch{
-	pixel_y = 28
+	pixel_y = 28;
+	pixel_x = 14
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
@@ -3311,6 +3312,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "ud" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1
+	},
 /turf/open/floor/engine/plasma,
 /area/ruin/syndicate_icemoon/reactor)
 "ue" = (
@@ -5807,6 +5811,10 @@
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 10
+	},
+/obj/machinery/light_switch{
+	pixel_y = -28;
+	pixel_x = 8
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
