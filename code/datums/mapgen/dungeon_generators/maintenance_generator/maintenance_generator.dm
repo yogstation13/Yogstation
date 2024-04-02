@@ -277,7 +277,7 @@
 	//since there are no firelocks, the place needs to be impossible to space
 	weighted_open_turf_types = list(
 		/turf/open/floor/plating/indestructible = 10, 
-		/turf/open/floor/plasteel/dark/indestructible = 1,
+		/turf/open/floor/plating/rust/indestructible = 1,
 		)
 	weighted_closed_turf_types = list(/turf/closed/indestructible = 1)
 
@@ -285,3 +285,11 @@
 
 	include_firelocks = FALSE
 	include_apcs = FALSE
+
+/turf/open/floor/plating/rust/indestructible
+	baseturfs = /turf/open/floor/plating/indestructible
+	planetary_atmos = TRUE // prevent spacing backrooms
+
+/turf/open/floor/plating/indestructible
+	baseturfs = /turf/open/floor/plating/indestructible
+	planetary_atmos = TRUE // prevent spacing backrooms
