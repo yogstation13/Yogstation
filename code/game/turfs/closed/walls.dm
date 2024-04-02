@@ -72,7 +72,7 @@
 
 /turf/closed/wall/run_atom_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
 	if(damage_amount < damage_deflection && (damage_flag in list(MELEE, BULLET, LASER, ENERGY)))
-		return 0 // absolutely no bypassing damage deflection by using projectiles
+		return 0 // absolutely no bypassing damage deflection by using projectiles FOR REAL THIS TIME
 	return ..()
 
 /turf/closed/wall/atom_destruction(damage_flag)
