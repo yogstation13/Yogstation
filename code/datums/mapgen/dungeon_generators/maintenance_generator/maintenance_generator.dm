@@ -274,20 +274,19 @@
 ////////////////////////////////////////////////////////////////
 /datum/map_generator/dungeon_generator/maintenance/backrooms //this is an entire Z level, so we need to be mindful of how many machines and mobs we spawn
 
-	//since there are no firelocks, the place needs to be impossible to space
+	//since there are no firelocks, the place needs to be hard to space and replenish air automatically
 	weighted_open_turf_types = list(
-		/turf/open/floor/plating/indestructible = 10, 
-		/turf/open/floor/plating/rust/indestructible = 1,
+		/turf/open/floor/plating/backrooms = 10, 
+		/turf/open/floor/plating/rust/backrooms = 1,
 		)
-	weighted_closed_turf_types = list(/turf/closed/indestructible = 1)
 
 	include_firelocks = FALSE
 	include_apcs = FALSE
 
-/turf/open/floor/plating/rust/indestructible
-	baseturfs = /turf/open/floor/plating/indestructible
+/turf/open/floor/plating/rust/backrooms
+	baseturfs = /turf/open/floor/plating/backrooms
 	planetary_atmos = TRUE // prevent spacing backrooms
 
-/turf/open/floor/plating/indestructible
-	baseturfs = /turf/open/floor/plating/indestructible
+/turf/open/floor/plating/backrooms
+	baseturfs = /turf/open/floor/plating/backrooms
 	planetary_atmos = TRUE // prevent spacing backrooms
