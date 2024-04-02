@@ -31,6 +31,10 @@
 	. = ..()
 	new_member.announce_objectives()
 
+/datum/team/darkspawn/remove_member(datum/mind/member) //also try to remove them from the thralls list just in case
+	. = ..()
+	thralls -= member
+
 /datum/team/darkspawn/proc/add_thrall(datum/mind/new_member) //thralls are treated differently than darkspawns
 	thralls |= new_member
 
