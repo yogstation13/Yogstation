@@ -559,20 +559,21 @@
 	duration = 4 SECONDS //functions as the delay until the explosion, just make sure it's not shorter than 1.1 seconds or it fucks up the animation
 	plane = WALL_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
+	alpha = 0
 
 /obj/effect/temp_visual/darkspawn/chasm/Initialize(mapload)
 	. = ..()
-	
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered)
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	animate(src, 1.1 SECONDS, alpha = 255) //fade into existence
 
 /obj/effect/temp_visual/darkspawn/chasm/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/target = AM
 		if(!is_team_darkspawn(target))
-			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 4, 1 SECONDS, type) //slow field, makes it harder to escape
+			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 3, 1 SECONDS, type) //slow field, makes it harder to escape
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
 	new/obj/effect/temp_visual/darkspawn/detonate(get_turf(src))
@@ -610,7 +611,7 @@
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	cooldown_time = 90 SECONDS
-	psi_cost = 100 //big fuckin layzer
+	psi_cost = 100 //big fuckin boom
 	sound = null
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = INFINITY //lol
@@ -621,9 +622,9 @@
 	///the targeted location for the burst
 	var/turf/targets_to
 	///radius of the burst aoe
-	var/burst_range = 5
+	var/burst_range = 4
 	///modifies the delay between waves in the burst
-	var/spread_speed = 0.6
+	var/spread_speed = 1
 
 /datum/action/cooldown/spell/pointed/null_burst/can_cast_spell(feedback)
 	if(charging)
@@ -677,7 +678,7 @@
 		darkspawn.block_psi(30 SECONDS, type)
 
 	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 30)
-	playsound(targets_to,'yogstation/sound/magic/divulge_end.ogg', 80, TRUE, burst_range)
+	playsound(targets_to,'yogstation/sound/magic/divulge_end.ogg', 70, TRUE, burst_range)
 
 	var/last_dist = 0
 	var/real_delay = 0
@@ -692,7 +693,4 @@
 		addtimer(CALLBACK(src, PROC_REF(spawn_ground), T), real_delay) //spawns turf with a callback to avoid using sleep() in a loop like heiro does
 
 /datum/action/cooldown/spell/pointed/null_burst/proc/spawn_ground(turf/target)
-	new /obj/effect/temp_visual/darkspawn/chasm/burst(target)
-
-/obj/effect/temp_visual/darkspawn/chasm/burst
-	duration = 1.1 SECONDS
+	new /obj/effect/temp_visual/darkspawn/chasm(target)

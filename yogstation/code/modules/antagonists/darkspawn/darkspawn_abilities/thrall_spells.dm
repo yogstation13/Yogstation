@@ -409,6 +409,7 @@
 	psi_cost = 20
 	object_type = /obj/machinery/camera/darkspawn
 	language_final = "Ixnce"
+	cast_time = 1 SECONDS
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------Abilities that thralls get----------------------//
