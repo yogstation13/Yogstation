@@ -275,7 +275,10 @@
 /datum/map_generator/dungeon_generator/maintenance/backrooms //this is an entire Z level, so we need to be mindful of how many machines and mobs we spawn
 
 	//since there are no firelocks, the place needs to be impossible to space
-	weighted_possible_floor_types = list(/turf/open/floor/plasteel/dark/indestructible = 1, /turf/open/floor/plating/indestructible = 5)
+	weighted_open_turf_types = list(
+		/turf/open/floor/plating/indestructible = 10, 
+		/turf/open/floor/plasteel/dark/indestructible = 1,
+		)
 	weighted_closed_turf_types = list(/turf/closed/indestructible = 1)
 
 	room_theme_path = /datum/dungeon_room_theme/maintenance/backrooms

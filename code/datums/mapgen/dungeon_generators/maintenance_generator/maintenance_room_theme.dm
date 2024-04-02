@@ -28,5 +28,4 @@
 
 /turf/open/floor/plating/indestructible
 	baseturfs = /turf/open/floor/plating/indestructible
-	planetary_atmos = TRUE
-	made_baseturf = TRUE // prevent spacing backrooms
+	planetary_atmos = TRUE // prevent spacing backrooms
