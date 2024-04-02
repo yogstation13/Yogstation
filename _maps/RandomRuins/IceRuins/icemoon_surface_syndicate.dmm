@@ -6011,7 +6011,6 @@
 /area/icemoon/surface/outdoors)
 "Jy" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	dir = 8;
 	target_temperature = 80
 	},
 /turf/open/floor/plating,
@@ -7566,9 +7565,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "TS" = (
-/obj/machinery/atmospherics/components/unary/tank/nitrogen{
-	dir = 4
-	},
+/obj/machinery/atmospherics/components/unary/tank/nitrogen,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
 "TW" = (
