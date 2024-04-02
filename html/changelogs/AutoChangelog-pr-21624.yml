@@ -1,6 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - rscadd: "Added envirosuits designed for prisoners, found in brig lockers along with normal prison wear"
-  - imageadd: "Prisoner envirosuit sprites"
-  - mapping: "Added a prison envirosuit to Box permabrig's holding cell alongside the prison uniforms"
