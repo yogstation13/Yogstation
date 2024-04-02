@@ -281,8 +281,6 @@
 		)
 	weighted_closed_turf_types = list(/turf/closed/indestructible = 1)
 
-	room_theme_path = /datum/dungeon_room_theme/maintenance/backrooms
-
 	include_firelocks = FALSE
 	include_apcs = FALSE
 
