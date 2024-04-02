@@ -1,0 +1,5 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - rscadd: "The Syndicate Jungle Base has been given slight upgrades to improve its capability, including being built atop large underground mineral reserves, having a refinery, actually getting a comms agent intercom, and more!"
+  - rscadd: "Admins can now also dock shuttles to the base's cargo dock as they can with all the others (no this doesnt mean im making the cargo consoles work)"

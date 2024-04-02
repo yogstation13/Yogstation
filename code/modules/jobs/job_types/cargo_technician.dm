@@ -49,3 +49,7 @@
 	uniform_skirt = /obj/item/clothing/under/rank/cargotech/skirt
 	l_hand = /obj/item/export_scanner
 
+/datum/outfit/job/cargo_tech/no_pda
+	name = "Cargo Technician (No PDA)"
+
+	pda_type = null

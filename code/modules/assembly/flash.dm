@@ -117,6 +117,8 @@
 		return typecache_filter_list(target_loc.get_all_contents(), GLOB.typecache_living)
 
 /obj/item/assembly/flash/proc/try_use_flash(mob/user = null)
+	if(user && !synth_check(user, SYNTH_RESTRICTED_ITEM))
+		return
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE
@@ -294,6 +296,8 @@
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd * 2)
 
 /obj/item/assembly/flash/armimplant/try_use_flash(mob/user = null)
+	if(user && !synth_check(user, SYNTH_RESTRICTED_ITEM))
+		return
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE

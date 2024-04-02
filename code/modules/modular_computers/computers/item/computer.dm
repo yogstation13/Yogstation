@@ -226,6 +226,43 @@
 /obj/item/modular_computer/AltClick(mob/user)
 	. = ..()
 	if(issilicon(user))
+		return
+
+	if(user.canUseTopic(src, BE_CLOSE))
+		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
+		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+		var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
+		if(ai_slot)
+			ai_slot.try_eject(user)
+		if(card_slot2)
+			var/obj/item/card/id/target_id_card = card_slot2.stored_card
+			if(!target_id_card)
+				return card_slot?.try_eject(user)
+			GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.assignment)
+			return card_slot2.try_eject(user)
+		return card_slot?.try_eject(user)
+
+
+// Gets IDs/access levels from card slot. Would be useful when/if PDAs would become modular PCs.
+/obj/item/modular_computer/GetAccess()
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	if(card_slot)
+		return card_slot.GetAccess()
+	return ..()
+
+/obj/item/modular_computer/RemoveID()
+	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	if(card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+		update_appearance(UPDATE_ICON)
+		return TRUE
+	return FALSE
+
+/obj/item/modular_computer/InsertID(obj/item/inserting_item)
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
+	if(!(card_slot || card_slot2))
+		//to_chat(user, "<span class='warning'>There isn't anywhere you can fit a card into on this computer.</span>")
 		return FALSE
 	if(!user.can_perform_action(src))
 		return FALSE
@@ -921,47 +958,52 @@
 		return physical.Adjacent(neighbor)
 	return ..()
 
-///Returns a string of what to send at the end of messenger's messages.
-/obj/item/modular_computer/proc/get_messenger_ending()
-	return "Sent from my PDA"
+// Starting Comps/Programs, mainly used for presets. Edit starting_components, starting_files, and initial_program.
+/obj/item/modular_computer/proc/install_starting_components()
+	if(starting_components.len < 1)
+		return
+	for(var/part in starting_components)
+		var/new_part = new part(src)
+		if(istype(new_part, /obj/item/computer_hardware))
+			var/result = install_component(new_part)
+			if(result == FALSE)
+				CRASH("[src] failed to install starting component for an unknown reason.")
+		else if(istype(new_part, /obj/item/stock_parts/cell/computer))
+			var/new_cell = new /obj/item/computer_hardware/battery(src, part)
+			qdel(new_part)
+			var/result = install_component(new_cell)
+			if(result == FALSE)
+				CRASH("[src] failed to install starting cell for an unknown reason.")
 
-/obj/item/modular_computer/proc/insert_pai(mob/user, obj/item/pai_card/card)
-	if(inserted_pai)
-		return FALSE
-	if(!user.transferItemToLoc(card, src))
-		return FALSE
-	inserted_pai = card
-	balloon_alert(user, "inserted pai")
-	if(inserted_pai.pai)
-		inserted_pai.pai.give_messenger_ability()
-	update_appearance(UPDATE_ICON)
-	return TRUE
+/obj/item/modular_computer/proc/install_starting_files()
+	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
+	if(!istype(hard_drive) || starting_files.len < 1)
+		if(!starting_files.len < 1)
+			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files.")
+		return
+	for(var/datum/computer_file/file in starting_files)
+		var/result = hard_drive.store_file(file)
+		if(result == FALSE)
+			CRASH("[src] failed to install starting files for an unknown reason.")
+		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
+			var/datum/computer_file/program/program = result
+			if(program.requires_ntnet && program.network_destination)
+				program.generate_network_log("Connection opened to [program.network_destination].")
+			program.program_state = PROGRAM_STATE_ACTIVE
+			active_program = program
+			program.alert_pending = FALSE
+			enabled = TRUE
 
-/obj/item/modular_computer/proc/remove_pai(mob/user)
-	if(!inserted_pai)
-		return FALSE
-	if(inserted_pai.pai)
-		inserted_pai.pai.remove_messenger_ability()
-	if(user)
-		user.put_in_hands(inserted_pai)
-		balloon_alert(user, "removed pAI")
-	else
-		inserted_pai.forceMove(drop_location())
-	inserted_pai = null
-	update_appearance(UPDATE_ICON)
-	return TRUE
+/obj/item/modular_computer/pickup(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(parent_moved))
 
-/**
- * Debug ModPC
- * Used to spawn all programs for Create and Destroy unit test.
- */
-/obj/item/modular_computer/debug
-	max_capacity = INFINITY
+/obj/item/modular_computer/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 
-/obj/item/modular_computer/debug/Initialize(mapload)
-	starting_programs += subtypesof(/datum/computer_file/program)
-	return ..()
-
+/obj/item/modular_computer/proc/parent_moved()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED)
 
 /// Sets visible messages to also send to holder because coders didn't know it didn't do this
 /obj/item/modular_computer/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags)
@@ -971,3 +1013,4 @@
 
 /obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
 	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE
+
