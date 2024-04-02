@@ -257,7 +257,6 @@
 	return "#[random_short_color()]"
 
 /datum/holiday/april_fools/greet()
-	rock_paper_scissors_puzzle()
 	return "NOTICE: Yogstation will be down from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
 
 /datum/holiday/spess
