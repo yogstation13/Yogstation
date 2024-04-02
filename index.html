@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(862 modules,
-    3054/10858 macros, 28.1%)</aside></h3>
+<aside>(867 modules,
+    3066/10921 macros, 28.1%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -194,6 +194,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/unit_tests.html" title="code&#x2F;__DEFINES&#x2F;unit_tests">unit_tests</a></li>
     <li><a href="code/__DEFINES/wounds.html" title="code&#x2F;__DEFINES&#x2F;wounds">wounds</a></li>
     <li class="has-children"><span title="code&#x2F;__DEFINES&#x2F;{yogs_defines}">{yogs_defines}</span><ul class="index-tree">
+    <li><a href="code/__DEFINES/{yogs_defines}/mapping.html" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping">mapping</a></li>
     <li><a href="code/__DEFINES/{yogs_defines}/reactions.html" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;reactions">reactions</a></li>
     <li><a href="code/__DEFINES/{yogs_defines}/telecomms.html" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;telecomms">telecomms</a></li>
     </ul></li>
@@ -389,8 +390,13 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/lazy_template.html" title="code&#x2F;datums&#x2F;lazy_template">lazy_template</a></li>
     <li><a href="code/datums/map_config.html" title="code&#x2F;datums&#x2F;map_config">map_config</a></li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;mapgen">mapgen</span><ul class="index-tree">
+    <li><a href="code/datums/mapgen/DungeonGenerator.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;DungeonGenerator">DungeonGenerator</a></li>
     <li><a href="code/datums/mapgen/_MapGenerator.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;_MapGenerator">_MapGenerator</a></li>
     <li><span class="no-substance">biomes&#x2F;</span><a href="code/datums/mapgen/biomes/_biome.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;biomes&#x2F;_biome">_biome</a></li>
+    <li class="has-children"><span title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators">dungeon_generators</span><ul class="index-tree">
+    <li><a href="code/datums/mapgen/dungeon_generators/dungeon_room.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room">dungeon_room</a></li>
+    <li><a href="code/datums/mapgen/dungeon_generators/dungeon_room_theme.html" title="code&#x2F;datums&#x2F;mapgen&#x2F;dungeon_generators&#x2F;dungeon_room_theme">dungeon_room_theme</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><a href="code/datums/martial.html" title="code&#x2F;datums&#x2F;martial">martial</a><ul class="index-tree">
     <li><a href="code/datums/martial/cqc.html" title="code&#x2F;datums&#x2F;martial&#x2F;cqc">cqc</a></li>
@@ -561,6 +567,7 @@ SPDX-License-Identifier: MIT</li>
     <li class="has-children"><a href="code/game/turfs/open/floor.html" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;floor">floor</a><ul class="index-tree">
     <li class="has-children"><a href="code/game/turfs/open/floor/plating.html" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;floor&#x2F;plating">plating</a><ul class="index-tree">
     <li><a href="code/game/turfs/open/floor/plating/asteroid.html" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;floor&#x2F;plating&#x2F;asteroid">asteroid</a></li>
+    <li><a href="code/game/turfs/open/floor/plating/catwalk_plating.html" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;floor&#x2F;plating&#x2F;catwalk_plating">catwalk_plating</a></li>
     </ul></li>
     </ul></li>
     <li><a href="code/game/turfs/open/lava.html" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;lava">lava</a></li>
@@ -1244,7 +1251,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1202 detailed/2061 documented/29730 total, 6.9%)</aside></h3>
+<aside>(1209 detailed/2068 documented/29924 total, 6.9%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1254,6 +1261,7 @@ allowing golems to create new areas without suffering from the hazard_area debuf
     <li><span class="no-substance" title="&#x2F;area&#x2F;lavaland">lavaland</span> - Lavaland Areas</li>
     <li><span class="no-substance" title="&#x2F;area&#x2F;mine">mine</span> - Mine areas</li>
     <li><span class="no-substance">misc&#x2F;</span><span class="no-substance" title="&#x2F;area&#x2F;misc&#x2F;cordon">CORDON</span> - Area used in conjuction with the cordon turf to create a fully functioning world border.</li>
+    <li><a href="area/procedurally_generated.html" title="&#x2F;area&#x2F;procedurally_generated">Dungeon</a></li>
     <li class="has-children"><a href="area/shuttle.html" title="&#x2F;area&#x2F;shuttle">Shuttle</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;area&#x2F;shuttle&#x2F;abandoned">Abandoned Ship</span> - White Ship</li>
     <li><span class="no-substance" title="&#x2F;area&#x2F;shuttle&#x2F;hunter">Hunter Shuttle</span> - Bounty Hunter Shuttles</li>
@@ -1590,9 +1598,10 @@ All mobs consumed are revived after the demon is killed.</li>
     <li><a href="datum/action_group.html" title="&#x2F;datum&#x2F;action_group">action_group</a></li>
     <li><a href="datum/admin_event.html" title="&#x2F;datum&#x2F;admin_event">admin_event</a></li>
     <li><a href="datum/admins.html" title="&#x2F;datum&#x2F;admins">nobody&#x27;s admin datum (no rank)</a></li>
-    <li><a href="datum/ai_dashboard.html" title="&#x2F;datum&#x2F;ai_dashboard">ai_dashboard</a></li>
     <li><a href="datum/ai_laws.html" title="&#x2F;datum&#x2F;ai_laws">Unknown Laws</a></li>
+    <li><a href="datum/ai_network.html" title="&#x2F;datum&#x2F;ai_network">ai_network</a></li>
     <li><a href="datum/ai_project.html" title="&#x2F;datum&#x2F;ai_project">DEBUG</a></li>
+    <li><a href="datum/ai_shared_resources.html" title="&#x2F;datum&#x2F;ai_shared_resources">ai_shared_resources</a></li>
     <li class="has-children"><a href="datum/antagonist.html" title="&#x2F;datum&#x2F;antagonist">Antagonist</a><ul class="index-tree">
     <li><a href="datum/antagonist/blob.html" title="&#x2F;datum&#x2F;antagonist&#x2F;blob">Blob</a></li>
     <li><a href="datum/antagonist/bloodsucker.html" title="&#x2F;datum&#x2F;antagonist&#x2F;bloodsucker">Bloodsucker</a></li>
@@ -1646,8 +1655,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     </ul></li>
     <li><a href="datum/barsign.html" title="&#x2F;datum&#x2F;barsign">barsign</a></li>
     <li><a href="datum/beam.html" title="&#x2F;datum&#x2F;beam">beam</a></li>
-    <li><a href="datum/biome.html" title="&#x2F;datum&#x2F;biome">biome</a> - Spawning isn't done in procs to save on overhead on the 60k turfs we're going through.
-This datum handles the transitioning from a turf to a specific biome, and handles spawning decorative structures and mobs.</li>
+    <li><a href="datum/biome.html" title="&#x2F;datum&#x2F;biome">biome</a> - This datum handles the transitioning from a turf to a specific biome, and handles spawning decorative structures and mobs.</li>
     <li><a href="datum/bitfield.html" title="&#x2F;datum&#x2F;bitfield">bitfield</a> - Specifies a bitfield for smarter debugging</li>
     <li><a href="datum/blood_type.html" title="&#x2F;datum&#x2F;blood_type">?</a></li>
     <li class="has-children"><a href="datum/bloodsucker_clan.html" title="&#x2F;datum&#x2F;bloodsucker_clan">Caitiff</a> - Bloodsucker clans<ul class="index-tree">
@@ -1964,6 +1972,12 @@ for scheduling different subsystems for different stages of the round</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;donator_gear&#x2F;dukeofsoleil">Druid hat</span> - Generic donator hats, ckey agnostic.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;donator_gear&#x2F;orca">Megumus Dress (orcacora)</span> - Ckey locked (special) items. These should come last to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)</li>
     </ul></li>
+    <li><a href="datum/dungeon_room.html" title="&#x2F;datum&#x2F;dungeon_room">dungeon_room</a> - This datum represents a &quot;room&quot; which is created by the Dungeon Generator process. Whether you use Binary Space Partition(BSP) or Random Room Placement(RRP),
+the Rust algorith will populate the given area with rooms, which are just squares and rectangles of various dimensions with X and Y coordinates. I created
+this datum to give better control over the data the generator is using. So you can look through the list of rooms for feedback or to understand what's happening.</li>
+    <li><a href="datum/dungeon_room_theme.html" title="&#x2F;datum&#x2F;dungeon_room_theme">dungeon_room_theme</a> - Dungeon room themes determine the style of the generated rooms. If you want to create a new dungeon generator for say, Icemeta,
+Then you would want to create a new subtype of room theme with maybe snow floor tiles, ice or snow walls and some fitting kind of door. Then from there further subtype
+into hostile, neutral, beneficial and whatever other types of rooms you want to appear in that area.</li>
     <li class="has-children"><a href="datum/dynamic_ruleset.html" title="&#x2F;datum&#x2F;dynamic_ruleset">dynamic_ruleset</a><ul class="index-tree">
     <li><span class="no-substance">latejoin&#x2F;</span><a href="datum/dynamic_ruleset/latejoin/provocateur.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;latejoin&#x2F;provocateur">Provocateur</a></li>
     <li class="has-children"><a href="datum/dynamic_ruleset/midround.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;midround">midround</a><ul class="index-tree">
@@ -2134,6 +2148,9 @@ but do want to be loaded under certain circumstances. Use this for stuff like th
     <li class="has-children"><a href="datum/map_generator/cave_generator.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator">Cave Generator</a><ul class="index-tree">
     <li><a href="datum/map_generator/cave_generator/icemoon.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator&#x2F;icemoon">icemoon</a></li>
     <li><a href="datum/map_generator/cave_generator/lavaland.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator&#x2F;lavaland">Lavaland Base</a></li>
+    </ul></li>
+    <li class="has-children"><a href="datum/map_generator/dungeon_generator.html" title="&#x2F;datum&#x2F;map_generator&#x2F;dungeon_generator">Dungeon Generator</a> - Spawning isn't done in procs to save on overhead on the 60k turfs we're going through.<ul class="index-tree">
+    <li><a href="datum/map_generator/dungeon_generator/maintenance.html" title="&#x2F;datum&#x2F;map_generator&#x2F;dungeon_generator&#x2F;maintenance">maintenance</a></li>
     </ul></li>
     <li><a href="datum/map_generator/jungleland.html" title="&#x2F;datum&#x2F;map_generator&#x2F;jungleland">jungleland</a></li>
     </ul></li>
@@ -2583,6 +2600,7 @@ They attach to an atom and provide the editor + playback functionality.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;stargazer">Stargazer</span> - STARGAZERS</li>
     </ul></li>
     <li><a href="datum/species/plasmaman.html" title="&#x2F;datum&#x2F;species&#x2F;plasmaman">Plasmaman</a></li>
+    <li><a href="datum/species/wy_synth.html" title="&#x2F;datum&#x2F;species&#x2F;wy_synth">Synthetic</a></li>
     <li><span class="no-substance">zombie&#x2F;</span><a href="datum/species/zombie/hecata.html" title="&#x2F;datum&#x2F;species&#x2F;zombie&#x2F;hecata">Sanguine Zombie</a></li>
     </ul></li>
     <li class="has-children"><a href="datum/spellbook_entry.html" title="&#x2F;datum&#x2F;spellbook_entry">spellbook_entry</a><ul class="index-tree">
@@ -2880,7 +2898,6 @@ Copies the stock dna setup from the dummy/consistent type</li>
     <li><a href="mob/living/carbon/monkey.html" title="&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;monkey">monkey</a></li>
     </ul></li>
     <li class="has-children"><a href="mob/living/silicon.html" title="&#x2F;mob&#x2F;living&#x2F;silicon">silicon</a><ul class="index-tree">
-    <li><a href="mob/living/silicon/ai.html" title="&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai">AI</a></li>
     <li><a href="mob/living/silicon/robot.html" title="&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot">Cyborg</a></li>
     </ul></li>
     <li class="has-children"><a href="mob/living/simple_animal.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal">animal</a><ul class="index-tree">
@@ -3756,7 +3773,7 @@ Reduce delay by 20% if medical</li>
     <li><a href="obj/machinery/abductor/experiment.html" title="&#x2F;obj&#x2F;machinery&#x2F;abductor&#x2F;experiment">experimentation machine</a></li>
     </ul></li>
     <li class="has-children"><a href="obj/machinery/ai.html" title="&#x2F;obj&#x2F;machinery&#x2F;ai">You shouldn&#x27;t see this!</a><ul class="index-tree">
-    <li><a href="obj/machinery/ai/server_cabinet.html" title="&#x2F;obj&#x2F;machinery&#x2F;ai&#x2F;server_cabinet">Server Cabinet</a></li>
+    <li><a href="obj/machinery/ai/server_cabinet.html" title="&#x2F;obj&#x2F;machinery&#x2F;ai&#x2F;server_cabinet">server cabinet</a></li>
     </ul></li>
     <li class="has-children"><a href="obj/machinery/atmospherics.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics">atmospherics</a><ul class="index-tree">
     <li class="has-children"><a href="obj/machinery/atmospherics/components.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components">components</a><ul class="index-tree">
@@ -4077,6 +4094,7 @@ uranium</li>
     <li class="has-children"><a href="turf/open.html" title="&#x2F;turf&#x2F;open">open</a><ul class="index-tree">
     <li><a href="turf/open/chasm.html" title="&#x2F;turf&#x2F;open&#x2F;chasm">chasm</a></li>
     <li class="has-children"><span title="&#x2F;turf&#x2F;open&#x2F;floor">floor</span> - Anything above a lattice should go here.<ul class="index-tree">
+    <li><a href="turf/open/floor/catwalk_floor.html" title="&#x2F;turf&#x2F;open&#x2F;floor&#x2F;catwalk_floor">catwalk floor</a></li>
     <li><a href="turf/open/floor/light.html" title="&#x2F;turf&#x2F;open&#x2F;floor&#x2F;light">light floor</a></li>
     <li class="has-children"><a href="turf/open/floor/plating.html" title="&#x2F;turf&#x2F;open&#x2F;floor&#x2F;plating">plating</a><ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;turf&#x2F;open&#x2F;floor&#x2F;plating&#x2F;asteroid">asteroid sand</span> - Asteroid<ul class="index-tree">
@@ -4105,7 +4123,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/d94fb4b51f79335681ee714845abb59c1b11a31e">d94fb4b</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/fdfeb0556ac218af1b88863ce965a83458c52601">fdfeb05</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>

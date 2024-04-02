@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/{yogs_defines}/mapping.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/{yogs_defines}/mapping.dm 
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/{yogs_defines}/mapping.html#define/ROOM_HAS_FLOORS">ROOM_HAS_FLOORS</a></th><td></td></tr>
+        <tr><th><a href="code/__DEFINES/{yogs_defines}/mapping.html#define/ROOM_HAS_WALLS">ROOM_HAS_WALLS</a></th><td>If the room has specific wall tiles</td></tr>
+        <tr><th><a href="code/__DEFINES/{yogs_defines}/mapping.html#define/ROOM_HAS_WINDOWS">ROOM_HAS_WINDOWS</a></th><td>If the room has windows and specific window type</td></tr>
+        <tr><th><a href="code/__DEFINES/{yogs_defines}/mapping.html#define/ROOM_HAS_ONLY_WINDOWS">ROOM_HAS_ONLY_WINDOWS</a></th><td>If the room has windows and specific window type, but no walls to spawn, so this room should just be a glass box</td></tr>
+        <tr><th><a href="code/__DEFINES/{yogs_defines}/mapping.html#define/ROOM_HAS_DOORS">ROOM_HAS_DOORS</a></th><td>If the room has specific door type</td></tr>
+        <tr><th><a href="code/__DEFINES/{yogs_defines}/mapping.html#define/ROOM_HAS_SPECIAL_FEATURES">ROOM_HAS_SPECIAL_FEATURES</a></th><td>If we want the room shape, but then the room to do something very specific. This is how I handle ruin spawning</td></tr>
+        <tr><th><a href="code/__DEFINES/{yogs_defines}/mapping.html#define/ROOM_HAS_FEATURES">ROOM_HAS_FEATURES</a></th><td>If the room has specific decorative features like blood splatters or loot spawners</td></tr>
+        <tr><th><a href="code/__DEFINES/{yogs_defines}/mapping.html#define/ROOM_HAS_MOBS">ROOM_HAS_MOBS</a></th><td>If the room has mobs to spawn, whether they're hostile spiders or harmless rats</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ROOM_HAS_DOORS"><aside class="declaration">#define </aside>ROOM_HAS_DOORS
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm 13"/></a>
+    </h3>
+    <p>If the room has specific door type</p><h3 id="define/ROOM_HAS_FEATURES"><aside class="declaration">#define </aside>ROOM_HAS_FEATURES
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm 17"/></a>
+    </h3>
+    <p>If the room has specific decorative features like blood splatters or loot spawners</p><h3 id="define/ROOM_HAS_FLOORS"><aside class="declaration">#define </aside>ROOM_HAS_FLOORS
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm 5"/></a>
+    </h3>
+    <ul>
+<li>Defines for the Dungeon Generator.</li>
+<li>These bitflags control which elements are present in each room theme so the parent room of the theme knows which furnishing procs it needs to call
+If the room has specific floor tiles</li>
+</ul><h3 id="define/ROOM_HAS_MOBS"><aside class="declaration">#define </aside>ROOM_HAS_MOBS
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm 19"/></a>
+    </h3>
+    <p>If the room has mobs to spawn, whether they're hostile spiders or harmless rats</p><h3 id="define/ROOM_HAS_ONLY_WINDOWS"><aside class="declaration">#define </aside>ROOM_HAS_ONLY_WINDOWS
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm 11"/></a>
+    </h3>
+    <p>If the room has windows and specific window type, but no walls to spawn, so this room should just be a glass box</p><h3 id="define/ROOM_HAS_SPECIAL_FEATURES"><aside class="declaration">#define </aside>ROOM_HAS_SPECIAL_FEATURES
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm 15"/></a>
+    </h3>
+    <p>If we want the room shape, but then the room to do something very specific. This is how I handle ruin spawning</p><h3 id="define/ROOM_HAS_WALLS"><aside class="declaration">#define </aside>ROOM_HAS_WALLS
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm 7"/></a>
+    </h3>
+    <p>If the room has specific wall tiles</p><h3 id="define/ROOM_HAS_WINDOWS"><aside class="declaration">#define </aside>ROOM_HAS_WINDOWS
+            <a href="https://github.com/yogstation13/Yogstation/blob/fdfeb0556ac218af1b88863ce965a83458c52601/code/__DEFINES/{yogs_defines}/mapping.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;{yogs_defines}&#x2F;mapping.dm 9"/></a>
+    </h3>
+    <p>If the room has windows and specific window type</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/fdfeb0556ac218af1b88863ce965a83458c52601">fdfeb05</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
