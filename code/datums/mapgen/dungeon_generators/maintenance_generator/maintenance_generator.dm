@@ -272,7 +272,7 @@
 ////////////////////////////////////////////////////////////////
 //------------Generator specifically for the Z level----------//
 ////////////////////////////////////////////////////////////////
-/datum/map_generator/dungeon_generator/maintenance/backrooms //this is an entire Z level, so we need to be mindful of how many machines and mobs we spawn
+/datum/map_generator/dungeon_generator/maintenance/backrooms
 
 	//since there are no firelocks, the place needs to be hard to space and replenish air automatically
 	weighted_open_turf_types = list(
@@ -280,6 +280,7 @@
 		/turf/open/floor/plating/rust/backrooms = 1,
 		)
 
+	//removes firelocks and apcs as the area is large enough that it annihilates the server if it has a bunch of firelocks
 	include_firelocks = FALSE
 	include_apcs = FALSE
 
