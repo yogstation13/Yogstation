@@ -22,7 +22,7 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	ventcrawler = VENTCRAWLER_ALWAYS
 	unique_name = TRUE
-	faction = list("rat", "mouse") //also rules over mice
+	faction = list("rat")
 	// Slightly brown red, for the eyes
 	// Might be a bit too dim
 	lighting_cutoff_red = 22
