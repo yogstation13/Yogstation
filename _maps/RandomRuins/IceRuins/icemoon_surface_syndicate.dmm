@@ -1870,9 +1870,6 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "lD" = (
@@ -3311,6 +3308,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "ud" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1
+	},
 /turf/open/floor/engine/plasma,
 /area/ruin/syndicate_icemoon/reactor)
 "ue" = (
@@ -5808,6 +5808,10 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 10
 	},
+/obj/machinery/light_switch{
+	pixel_y = -28;
+	pixel_x = 8
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
 "Ip" = (
@@ -6007,7 +6011,6 @@
 /area/icemoon/surface/outdoors)
 "Jy" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	dir = 8;
 	target_temperature = 80
 	},
 /turf/open/floor/plating,
@@ -7446,6 +7449,10 @@
 	},
 /obj/structure/closet/secure_closet/syndicate/captain,
 /obj/item/storage/toolbox/syndicate/real,
+/obj/machinery/light_switch{
+	pixel_y = 28;
+	pixel_x = -6
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "SZ" = (
@@ -7558,9 +7565,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "TS" = (
-/obj/machinery/atmospherics/components/unary/tank/nitrogen{
-	dir = 4
-	},
+/obj/machinery/atmospherics/components/unary/tank/nitrogen,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
 "TW" = (
