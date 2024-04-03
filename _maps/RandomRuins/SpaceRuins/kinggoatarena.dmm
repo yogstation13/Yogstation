@@ -131,7 +131,8 @@
 /obj/effect/portal/permanent/one_way/multi/entry{
 	id = "goatarena";
 	teleport_channel = "free";
-	name = "goat arena portal"
+	desc = "The echoes of a thousand bleats and a faint smell of wool seem to emanate from this portal. Do you dare enter?"
+	name = "Ingress"
 	},
 /turf/open/indestructible/carpet,
 /area/ruin/powered/kinggoat_arena)
@@ -196,7 +197,7 @@
 /area/ruin/powered/kinggoat_arena)
 "T" = (
 /obj/machinery/door/airlock/gold/glass{
-	desc = "Once you go in the portal past this door there is no going back...";
+	desc = "A small engraving on the door reads: <i>Once you go in the portal past this door there is no going back...</i>";
 	name = "POINT OF NO RETURN"
 	},
 /turf/open/indestructible/carpet,
@@ -205,7 +206,8 @@
 /obj/effect/portal/permanent/one_way/multi/exit{
 	id = "goatarena";
 	teleport_channel = "free";
-	name = "goat arena portal";
+	desc = "You can barely make out what's on the other side: Freedom, something you hope to see again."
+	name = "Egress";
 	alpha = 0
 	},
 /turf/open/indestructible/carpet{
