@@ -106,6 +106,11 @@
 	for(var/i in 1 to length(old_turfs))
 		var/turf/oldT = old_turfs[i]
 		var/turf/newT = new_turfs[i]
+		if(!newT)
+			return DOCKING_NULL_DESTINATION
+		if(!oldT)
+			return DOCKING_NULL_SOURCE
+
 		oldT.clear_adjacencies()
 		newT.clear_adjacencies()
 
