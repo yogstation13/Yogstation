@@ -1,0 +1,5 @@
+author: " AMyriad, X13-421"
+delete-after: true 
+changes: 
+  - bugfix: "The pitchfork nullrod variant now shows up in your hands properly"
+  - imageadd: "Pitchforks now look better in your hands"
