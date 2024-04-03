@@ -9,7 +9,6 @@ All ShuttleMove procs go here
 /turf/proc/fromShuttleMove(turf/newT, move_mode)
 	if(!(move_mode & MOVE_AREA) || !isshuttleturf(src))
 		return move_mode
-	
 	return move_mode | MOVE_TURF | MOVE_CONTENTS
 
 /// Called from the new turf before anything has been moved
@@ -53,7 +52,7 @@ All ShuttleMove procs go here
 
 	if(!shuttle_depth)
 		CRASH("A turf queued to move via shuttle somehow had no skipover in baseturfs. [src]([type]):[loc]")
-	newT.CopyOnTop(src, 1, shuttle_depth, TRUE)
+	newT.CopyOnTop(src, 1, shuttle_depth, TRUE, CHANGETURF_DEFER_CHANGE)
 	SEND_SIGNAL(src, COMSIG_TURF_ON_SHUTTLE_MOVE, newT)
 	
 	return TRUE
@@ -75,8 +74,8 @@ All ShuttleMove procs go here
 	return TRUE
 
 /turf/proc/lateShuttleMove(turf/oldT)
-	AfterChange(CHANGETURF_RECALC_ADJACENT)
-	oldT.AfterChange(CHANGETURF_RECALC_ADJACENT)
+	AfterChange()
+	oldT.AfterChange()
 
 /////////////////////////////////////////////////////////////////////////////////////
 
