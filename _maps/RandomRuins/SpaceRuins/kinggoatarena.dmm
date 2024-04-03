@@ -206,7 +206,7 @@
 /obj/effect/portal/permanent/one_way/multi/exit{
 	id = "goatarena";
 	teleport_channel = "free";
-	desc = "You can barely make out what's on the other side: Freedom, something you hope to see again."
+	desc = "You can barely make out what's on the other side: Freedom, something you hope to see again.";
 	name = "Egress";
 	alpha = 0
 	},
