@@ -132,7 +132,7 @@
 	id = "goatarena";
 	teleport_channel = "free";
 	desc = "Echoes of a thousand bleats and the faint smell of farm seem to emanate from this portal. Do you dare enter?"
-	name = "Ingress"
+	name = "Ingress";
 	},
 /turf/open/indestructible/carpet,
 /area/ruin/powered/kinggoat_arena)
