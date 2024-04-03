@@ -189,6 +189,9 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	can_be_sawn_off  = TRUE
 
+/obj/item/gun/ballistic/shotgun/doublebarrel/lethal
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal
+
 /obj/item/gun/ballistic/shotgun/doublebarrel/AltClick(mob/user)
 	. = ..()
 	if(unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))

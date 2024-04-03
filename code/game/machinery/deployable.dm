@@ -1,6 +1,4 @@
 #define SINGLE "single"
-#define VERTICAL "vertical"
-#define HORIZONTAL "horizontal"
 
 #define METAL 1
 #define WOOD 2
@@ -214,8 +212,6 @@
 
 
 #undef SINGLE
-#undef VERTICAL
-#undef HORIZONTAL
 
 #undef METAL
 #undef WOOD

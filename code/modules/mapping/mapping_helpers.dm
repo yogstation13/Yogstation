@@ -236,7 +236,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		log_mapping("[src] at [x],[y] could not find any morgues.")
 		return
 	for (var/i = 1 to bodycount)
-		var/obj/structure/bodycontainer/morgue/j = pick(trays)
+		var/obj/structure/bodycontainer/morgue/j = pick_n_take(trays)
 		var/mob/living/carbon/human/h = new /mob/living/carbon/human(j, 1)
 		h.death()
 		for (var/part in h.internal_organs) //randomly remove organs from each body, set those we keep to be in stasis
@@ -271,3 +271,26 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		return
 	level.traits |= traits_to_add
 	SSweather.update_z_level(level) //in case of someone adding a weather for the level, we want SSweather to update for that
+
+/obj/effect/mapping_helpers/firedoor_border_spawner
+	var/orientation = VERTICAL
+	var/obj/machinery/door/firedoor/border_only/door1
+	var/obj/machinery/door/firedoor/border_only/door2
+
+/obj/effect/mapping_helpers/firedoor_border_spawner/Initialize(mapload, _orientation)
+	. = ..()
+	if(_orientation)
+		orientation = _orientation
+	door1 = new(loc)
+	door2 = new(loc)
+	switch(orientation)
+		if(VERTICAL)
+			//door1 is naturally the right orientation
+			door2.dir = 1
+		if(HORIZONTAL)
+			door1.dir = 4
+			door2.dir = 8
+
+
+/obj/effect/mapping_helpers/firedoor_border_spawner/horizontal
+	orientation = HORIZONTAL

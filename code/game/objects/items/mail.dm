@@ -240,6 +240,8 @@
 		var/datum/job/this_job = SSjob.GetJob(human.mind.assigned_role)
 		if(!this_job || this_job.faction != "Station")
 			continue
+		if(is_synth(human))
+			continue
 
 		mail_recipients += human.mind
 
