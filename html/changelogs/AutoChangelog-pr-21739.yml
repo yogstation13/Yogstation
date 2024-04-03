@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - mapping: "Fixed an issue where prisoners/warden couldn't access the top fridge in perma on Asteroid"

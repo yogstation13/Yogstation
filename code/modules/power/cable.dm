@@ -611,7 +611,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
-		to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
+		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
 		return
 
 	if(get_amount() < 1) // Out of cable
@@ -630,6 +630,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			dirn = get_dir(T, user)
 	else
 		dirn = dirnew
+
 
 	for(var/obj/structure/cable/LC in T)
 		if(LC.d2 == dirn && LC.d1 == 0)
@@ -673,7 +674,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/turf/T = C.loc
 
 	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
-		to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
+		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
 		return
 	
 	if(get_amount() < 1) // Out of cable

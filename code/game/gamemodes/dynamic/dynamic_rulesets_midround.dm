@@ -168,7 +168,7 @@
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
+	restricted_roles = list("Cyborg", "AI", "Positronic Brain", "Synthetic")
 	required_candidates = 1
 	weight = 7
 	cost = 10
@@ -563,7 +563,7 @@
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list("Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI")
+	restricted_roles = list("Cyborg", "AI", "Synthetic")
 	required_candidates = 1
 	weight = 5
 	cost = 15
@@ -713,7 +713,7 @@
 		"Warden", "Security Officer", "Detective", "Brig Physician",
 		"Curator"
 	)
-	restricted_roles = list("AI","Cyborg", "Positronic Brain")
+	restricted_roles = list("AI","Cyborg", "Positronic Brain", "Synthetic")
 	required_candidates = 1
 	weight = 5
 	cost = 10

@@ -64,7 +64,13 @@
 			to_chat(owner, span_warning("Swapping minds with your own guardian would just put you back into your own head!"))
 			return FALSE
 
+
 	var/mob/living/living_target = cast_on
+	if(ishuman(living_target))
+		var/mob/living/carbon/human/living_human = cast_on
+		if(is_synth(living_human))
+			to_chat(owner, span_warning("This creature isn't alive in the regular sense, this wouldn't be a good idea."))
+			return FALSE
 	if(living_target.stat == DEAD)
 		to_chat(owner, span_warning("You don't particularly want to be dead!"))
 		return FALSE

@@ -44,8 +44,44 @@
 		z_offset += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
 
 	var/list/obj/machinery/atmospherics/atmos_machines = list()
+	var/list/obj/structure/ethernet_cable/ethernet_cables = list()
 	var/list/obj/structure/cable/cables = list()
+	var/list/atom/movable/movables = list()
+	var/list/area/areas = list()
 	var/list/atom/atoms = list()
+
+	var/list/turfs = block(
+		locate(
+			bounds[MAP_MINX],
+			bounds[MAP_MINY],
+			SSmapping.station_start
+		),
+		locate(
+			bounds[MAP_MAXX],
+			bounds[MAP_MAXY],
+			z_offset - 1
+		)
+	)
+
+	for(var/turf/current_turf as anything in turfs)
+		var/area/current_turfs_area = current_turf.loc
+		areas |= current_turfs_area
+
+		for(var/movable_in_turf in current_turf)
+			movables += movable_in_turf
+			if(istype(movable_in_turf, /obj/structure/cable))
+				cables += movable_in_turf
+				continue
+			if(istype(movable_in_turf, /obj/structure/ethernet_cable))
+				ethernet_cables += movable_in_turf
+				continue
+			if(istype(movable_in_turf, /obj/machinery/atmospherics))
+				atmos_machines += movable_in_turf
+
+	SSatoms.InitializeAtoms(areas + turfs + movables)
+	SSmachines.setup_template_powernets(cables)
+	SSmachines.setup_template_ainets(ethernet_cables)
+	SSair.setup_template_machinery(atmos_machines)
 
 	require_area_resort()
 

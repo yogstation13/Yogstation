@@ -186,6 +186,7 @@
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+#define TRAIT_NO_GRENADES		"no_nades"
 ///You become a Marine that can eat crayons!!!
 #define TRAIT_MARINE  "marine"
 
@@ -259,6 +260,7 @@
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
+#define SYNTHETIC_TRAIT "synthetictrait"
 #define WRIST_STRAP_TRAIT "wrist_strap"
 #define GRIMOIRE_TRAIT "grimoire_trait"
 

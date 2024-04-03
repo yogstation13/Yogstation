@@ -61,6 +61,8 @@
 		return ..()
 	if(user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_HEAD)
 		return ..()
+	if(!synth_check(user, SYNTH_ORGANIC_HARM))
+		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [M]!"))
 		return
