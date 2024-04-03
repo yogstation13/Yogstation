@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed some instances of fancy blue, green, and purple tables not showing their proper sprites"
