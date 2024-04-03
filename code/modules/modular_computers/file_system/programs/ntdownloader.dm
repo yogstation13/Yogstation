@@ -37,8 +37,8 @@
 
 /datum/computer_file/program/ntnetdownload/run_program()
 	. = ..()
-	main_repo = SSnetworks.station_network.available_station_software
-	antag_repo = SSnetworks.station_network.available_antag_software
+	main_repo = SSmodular_computers.station_network.available_station_software
+	antag_repo = SSmodular_computers.station_network.available_antag_software
 
 /datum/computer_file/program/ntnetdownload/run_emag()
 	if(emagged)
@@ -49,7 +49,7 @@
 	if(downloaded_file)
 		return FALSE
 
-	var/datum/computer_file/program/PRG = SSnetworks.station_network.find_ntnet_file_by_name(filename)
+	var/datum/computer_file/program/PRG = SSmodular_computers.station_network.find_ntnet_file_by_name(filename)
 
 	if(!PRG || !istype(PRG))
 		return FALSE
@@ -123,7 +123,7 @@
 	if(ntnet_status != 3) // Ethernet unaffected by distance
 		var/dist = 100
 		// Loop through every ntnet relay, find the closest one and use that
-		for(var/obj/machinery/ntnet_relay/n in SSnetworks.station_network.relays)
+		for(var/obj/machinery/ntnet_relay/n in SSmodular_computers.station_network.relays)
 			var/cur_dist = get_dist_euclidian(n, computer)
 			if(n.is_operational() && cur_dist <= dist)
 				dist = cur_dist
@@ -233,5 +233,5 @@
 
 /datum/computer_file/program/ntnetdownload/syndicate/run_program()
 	. = ..()
-	main_repo = SSnetworks.station_network.available_antag_software
+	main_repo = SSmodular_computers.station_network.available_antag_software
 	antag_repo = null

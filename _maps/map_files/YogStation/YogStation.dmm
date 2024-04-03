@@ -16313,10 +16313,6 @@
 	pixel_x = -6;
 	pixel_y = -8
 	},
-/obj/item/clothing/under/rank/prisoner{
-	pixel_x = 8;
-	pixel_y = 5
-	},
 /obj/machinery/camera{
 	c_tag = "Permabrig Processing";
 	dir = 8;
@@ -28855,6 +28851,10 @@
 	dir = 8
 	},
 /obj/structure/table,
+/obj/item/clothing/under/plasmaman/prisoner{
+	pixel_y = 2;
+	pixel_x = 12
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "hwK" = (
@@ -56435,20 +56435,24 @@
 "rzq" = (
 /obj/structure/table,
 /obj/item/clothing/under/rank/prisoner/skirt{
-	pixel_x = -13;
-	pixel_y = 5
-	},
-/obj/item/clothing/under/rank/prisoner/skirt{
-	pixel_x = 9;
-	pixel_y = 5
-	},
-/obj/item/clothing/under/rank/prisoner{
-	pixel_x = -2;
-	pixel_y = 5
+	pixel_x = -5;
+	pixel_y = 8
 	},
 /obj/machinery/flasher{
 	id = "waitingflash";
 	pixel_y = -28
+	},
+/obj/item/clothing/under/rank/prisoner{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/item/clothing/under/rank/prisoner/skirt{
+	pixel_x = 9;
+	pixel_y = -4
+	},
+/obj/item/clothing/under/rank/prisoner{
+	pixel_x = -4;
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
