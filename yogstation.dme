@@ -613,6 +613,7 @@
 #include "code\datums\components\mind_linker.dm"
 #include "code\datums\components\mirage_border.dm"
 #include "code\datums\components\mood.dm"
+#include "code\datums\components\nanites.dm"
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\overlay_lighting.dm"
 #include "code\datums\components\paintable.dm"
