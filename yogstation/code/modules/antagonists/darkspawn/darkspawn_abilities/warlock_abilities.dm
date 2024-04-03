@@ -602,7 +602,7 @@
 	name = "Null Burst"
 	desc = "After a short delay, create an explosion of void terrain at the targeted location."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	button_icon_state = "creep"
+	button_icon_state = "null_burst"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

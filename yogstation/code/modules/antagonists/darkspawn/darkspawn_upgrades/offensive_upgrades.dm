@@ -207,7 +207,7 @@
 	name = "Null Burst"
 	desc = "After a short delay, create an explosion of void terrain at the targeted location."
 	lore_description = "Tears a portion of reality into the void for a short duration."
-	icon_state = null //needs an icon
+	icon_state = "null_burst" //needs an icon
 	willpower_cost = 3
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
