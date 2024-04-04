@@ -2318,6 +2318,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/item/storage/backpack/satchel/leather,
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
 "Hm" = (
@@ -2371,9 +2372,6 @@
 	desc = "An old, Nanotrasen-made gold alloy pauldron. The words 'VICTORY OVER NANOTRASEN' have been inscribed on it, as well as what appears to be the emblem of the Syndicate Jungle planet exploratory corps."
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/light/small{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/shuttle/syndicate/airlock)
 "Mc" = (

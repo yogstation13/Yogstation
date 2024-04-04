@@ -13370,6 +13370,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/kirbyplants{
+	icon_state = "plant-21"
+	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "aCy" = (
@@ -13394,23 +13397,8 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "aCz" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/light,
+/turf/open/floor/carpet/executive,
 /area/centcom/ferry)
 "aCA" = (
 /obj/item/radio{
@@ -13432,6 +13420,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
@@ -26227,6 +26218,16 @@
 /obj/item/clothing/suit/space/hardsuit/ert/sec,
 /turf/open/floor/plating,
 /area/centcom/ferry)
+"iEO" = (
+/obj/machinery/door/poddoor{
+	id = "centcom_storyline_event_vault"
+	},
+/obj/machinery/door/airlock/centcom{
+	name = "Diplomat's Quarters";
+	req_access_txt = "101"
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "iIk" = (
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/machinery/light{
@@ -27067,6 +27068,29 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/ferry)
+"pzF" = (
+/obj/structure/closet/secure_closet{
+	req_access = list(109);
+	icon_state = "cap";
+	name = "nanotrasen representative's locker"
+	},
+/obj/item/clothing/under/rank/centcom_commander,
+/obj/item/clothing/head/centhat/admiral{
+	name = "nanotrasen representative's peaked cap";
+	desc = "It's good to represent God."
+	},
+/obj/item/clothing/shoes/jackboots,
+/obj/item/gun/energy/pulse/pistol/loyalpin{
+	name = "nanotrasen representative's pistol";
+	desc = "A custom energy pistol used by Nanotrasen officers, derived from the pulse pistol. Lacks the pulse mode, sadly.";
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode,/obj/item/ammo_casing/energy/laser)
+	},
+/obj/item/clothing/suit/hooded/wintercoat/centcom,
+/obj/item/clothing/suit/armor/vest/capcarapace/centcom,
+/obj/item/clothing/gloves/color/captain/centcom,
+/obj/item/clothing/head/beret/sec/centcom,
+/turf/open/floor/carpet/executive,
+/area/centcom/ferry)
 "pCa" = (
 /turf/closed/indestructible/riveted,
 /area/centcom)
@@ -27133,15 +27157,6 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/centcom/ferry)
-"qcl" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "centcom_storyline_freight3"
-	},
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/maintenance/four,
-/turf/open/floor/plating,
 /area/centcom/ferry)
 "qeJ" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -27523,6 +27538,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
+"tLq" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/four,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "tLI" = (
 /obj/machinery/vending/autodrobe/all_access,
 /turf/open/floor/plasteel/bluespace,
@@ -27724,6 +27748,12 @@
 /obj/structure/goalnet/goalpost/right,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
+"vqJ" = (
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/turf/open/floor/carpet/executive,
+/area/centcom/ferry)
 "vsA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -28033,6 +28063,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/yogs/infiltrator_base)
+"xht" = (
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = -24;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/executive,
+/area/centcom/ferry)
 "xhO" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/door/airlock/public/glass{
@@ -62277,7 +62314,7 @@ vBo
 mRV
 gdf
 wDI
-qcl
+tLq
 xuc
 iIR
 wTB
@@ -66641,9 +66678,9 @@ aBA
 aCa
 aCy
 amD
-aaa
-aaa
-aaa
+amD
+amD
+amD
 aaa
 aaa
 aEp
@@ -66896,11 +66933,11 @@ aAh
 aAP
 aAh
 aVl
+asw
+iEO
+xht
 aCz
 amD
-aaa
-aaa
-aaa
 aaa
 aaa
 aEp
@@ -67155,9 +67192,9 @@ aVl
 aNH
 aCA
 amD
-aaa
-aaa
-aaa
+pzF
+vqJ
+amD
 aaa
 aaa
 aEp
@@ -67412,9 +67449,9 @@ aAi
 arz
 anU
 amD
-aaa
-aaa
-aaa
+amD
+amD
+amD
 aaa
 aaa
 aEp
