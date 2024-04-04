@@ -181,10 +181,9 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		return TRUE
 
 /obj/machinery/ore_silo/multitool_act(mob/living/user, obj/item/multitool/I)
-	if (istype(I))
-		to_chat(user, span_notice("You log [src] in the multitool's buffer."))
-		I.buffer = src
-		return TRUE
+	to_chat(user, span_notice("You log [src] in the multitool's buffer."))
+	multitool_set_buffer(user, I, src)
+	return TRUE
 
 /obj/machinery/ore_silo/proc/silo_log(obj/machinery/M, action, amount, noun, list/mats)
 	if (!length(mats))

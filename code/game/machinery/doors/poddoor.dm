@@ -127,9 +127,8 @@
 
 			if(!multitool_check_buffer(user, W))
 				return
-				
-			var/obj/item/multitool/P = W	
-			id = P.buffer
+	
+			id = multitool_get_buffer(user, W)
 			to_chat(user, span_notice("You link the button to the [src]."))
 			return
 
