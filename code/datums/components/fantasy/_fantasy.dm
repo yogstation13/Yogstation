@@ -14,6 +14,14 @@ GLOBAL_LIST_INIT(rarity_to_color, list(
 	TIER_MYTHICAL = "#ffd900"
 ))
 
+GLOBAL_LIST_INIT(rarity_weights, list(
+		TIER_NORMAL = 55,
+		TIER_UNCOMMON = 30,
+		TIER_RARE = 10,
+		TIER_LEGENDARY = 4,
+		TIER_MYTHICAL = 1
+	))
+
 /datum/component/fantasy
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
@@ -64,14 +72,7 @@ GLOBAL_LIST_INIT(rarity_to_color, list(
 	modify()
 
 /datum/component/fantasy/proc/randomRarity()
-	var/list/rarity = list(
-		TIER_NORMAL = 55,
-		TIER_UNCOMMON = 30,
-		TIER_RARE = 10,
-		TIER_LEGENDARY = 4,
-		TIER_MYTHICAL = 1
-	)
-	return pickweight(rarity)
+	return pickweight(GLOB.rarity_weights)
 
 /datum/component/fantasy/proc/randomAffixes(force)
 	if(!affixListing)

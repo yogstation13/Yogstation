@@ -1730,6 +1730,7 @@
 #include "code\modules\af\anvil.dm"
 #include "code\modules\af\holiday.dm"
 #include "code\modules\af\mind.dm"
+#include "code\modules\af\reforge_menu.dm"
 #include "code\modules\antagonists\sentient_creature.dm"
 #include "code\modules\antagonists\_common\antag_datum.dm"
 #include "code\modules\antagonists\_common\antag_helpers.dm"
