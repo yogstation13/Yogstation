@@ -308,6 +308,12 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 /obj/machinery/cryopod/proc/despawn_occupant()
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant.mind && mob_occupant.mind.assigned_role)
+		// Removes from team antag teams to avoid influencing gameplay
+		for(var/datum/antagonist/antag as anything in mob_occupant.mind.antag_datums)
+			if(antag && istype(antag))
+				var/datum/team/antag_team = antag.get_team()
+				if(antag_team)
+					antag_team.remove_member(mob_occupant.mind)
 		//Handle job slot/tater cleanup.
 		var/job = mob_occupant.mind.assigned_role
 		SSjob.FreeRole(job)
