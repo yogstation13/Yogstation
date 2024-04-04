@@ -1,81 +1,53 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
-"c" = (
 /obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon,
 /turf/template_noop,
 /area/template_noop)
-"f" = (
-/obj/item/stack/rods,
-/turf/template_noop,
-/area/template_noop)
-"i" = (
-/obj/structure/girder/displaced,
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
-"o" = (
-/obj/structure/girder/displaced,
-/turf/template_noop,
-/area/template_noop)
-"q" = (
-/obj/structure/girder/reinforced,
-/turf/open/floor/plating/airless,
-/area/ruin/space)
-"t" = (
-/obj/machinery/power/rtg/advanced,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/circuit/green/off{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/ruin/space)
-"x" = (
-/obj/item/stack/marker_beacon,
-/turf/template_noop,
-/area/template_noop)
-"A" = (
-/obj/machinery/power/rtg/advanced,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/circuit/green/off{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/ruin/space)
-"F" = (
-/turf/closed/wall/r_wall,
-/area/ruin/space)
-"H" = (
-/obj/machinery/spaceship_navigation_beacon,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/circuit/green/off{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/ruin/space)
-"I" = (
-/obj/machinery/door/airlock/external/glass{
-	name = "Gigabeacon Maintenance Hatch"
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space)
-"J" = (
+"b" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/east,
 /turf/open/floor/circuit/green/off{
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/ruin/space)
-"N" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon,
+"d" = (
+/obj/machinery/door/airlock/external/glass{
+	name = "Gigabeacon Maintenance Hatch"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"g" = (
+/obj/item/stock_parts/manipulator,
+/obj/item/circuitboard/machine/rtg/advanced,
 /turf/template_noop,
 /area/template_noop)
-"U" = (
+"h" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"k" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/structure/frame/machine,
+/turf/open/floor/circuit/green/off{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space)
+"m" = (
+/obj/structure/girder/displaced,
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/obj/structure/girder/displaced,
+/turf/template_noop,
+/area/template_noop)
+"o" = (
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
@@ -89,131 +61,201 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/ruin/space)
-"W" = (
+"p" = (
+/obj/item/stack/marker_beacon,
+/turf/template_noop,
+/area/template_noop)
+"q" = (
+/obj/item/stock_parts/capacitor,
+/turf/template_noop,
+/area/template_noop)
+"s" = (
+/obj/item/stack/sheet/plasteel,
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/obj/item/stack/sheet/mineral/plasma,
+/turf/template_noop,
+/area/template_noop)
+"y" = (
+/obj/machinery/spaceship_navigation_beacon,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/circuit/green/off{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space)
+"z" = (
+/obj/item/stack/rods,
+/turf/template_noop,
+/area/template_noop)
+"A" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/mineral/uranium,
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/turf/closed/wall/r_wall,
+/area/ruin/space)
+"F" = (
+/obj/structure/girder/reinforced,
 /turf/open/floor/plating/airless,
 /area/ruin/space)
-"Z" = (
+"M" = (
+/obj/item/stack/sheet/plasteel,
+/obj/item/stock_parts/capacitor,
+/turf/template_noop,
+/area/template_noop)
+"V" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
+"W" = (
+/turf/template_noop,
+/area/template_noop)
+"X" = (
+/obj/item/stack/sheet/plasteel,
+/obj/item/stack/sheet/mineral/uranium,
+/turf/template_noop,
+/area/template_noop)
+"Y" = (
+/obj/machinery/power/rtg/advanced,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit/green/off{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space)
 
 (1,1,1) = {"
-a
 x
-a
-a
-a
-i
-a
-f
-a
-a
+p
+X
+W
+W
+m
+W
+z
+W
+W
+W
 "}
 (2,1,1) = {"
-a
-a
-a
-o
-a
-Z
-a
-a
-a
-a
+s
+g
+W
+n
+M
+V
+W
+W
+W
+W
+W
 "}
 (3,1,1) = {"
-a
-o
-a
-a
 W
-q
+n
+W
+x
+j
 F
+E
+W
+W
+W
 a
-a
-N
 "}
 (4,1,1) = {"
-a
-a
-f
+W
+q
+z
+j
+j
+k
+E
+E
 W
 W
-t
-F
-F
-a
-Z
+V
 "}
 (5,1,1) = {"
-N
-Z
-Z
-q
-H
-U
-J
-I
-c
-c
-"}
-(6,1,1) = {"
 a
-a
-a
-F
-F
+V
 A
 F
-F
-a
-Z
+y
+o
+b
+d
+h
+h
+h
+"}
+(6,1,1) = {"
+W
+W
+s
+E
+E
+Y
+E
+E
+W
+W
+V
 "}
 (7,1,1) = {"
+W
+W
+W
+W
+E
+E
+E
+W
+W
+W
 a
-a
-a
-a
-F
-F
-F
-a
-a
-N
 "}
 (8,1,1) = {"
-a
-a
-a
-a
-a
-Z
-a
-a
-a
-a
+W
+W
+W
+W
+W
+V
+W
+W
+W
+W
+W
 "}
 (9,1,1) = {"
-a
-a
-a
-a
-a
-Z
-a
-a
-a
-a
+W
+W
+W
+W
+W
+V
+W
+W
+W
+W
+W
 "}
 (10,1,1) = {"
+W
+W
+W
+W
+W
 a
-a
-a
-a
-a
-N
-a
-a
-a
-a
+W
+W
+W
+W
+W
 "}
