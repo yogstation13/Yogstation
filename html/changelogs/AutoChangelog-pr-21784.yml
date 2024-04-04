@@ -1,5 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed synthetic storage unit circuit boards being invisible"
-  - spellcheck: "Standardized some circuit board names"
