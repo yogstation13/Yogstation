@@ -12722,8 +12722,9 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "bQb" = (
-/obj/effect/landmark/stationroom/maint/threexfive,
-/turf/template_noop,
+/obj/machinery/synth_pod,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "bQi" = (
 /obj/machinery/door/firedoor/border_only{
@@ -21275,6 +21276,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"erM" = (
+/obj/structure/window/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "erS" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/four,
@@ -23357,6 +23364,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"eXJ" = (
+/obj/structure/frame/machine{
+	anchored = 1;
+	state = 2
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ethernet_cable,
+/turf/open/floor/circuit/green,
+/area/ai_monitored/turret_protected/ai)
 "eXK" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 1
@@ -25397,6 +25413,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"fFm" = (
+/obj/effect/landmark/start/synthetic,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/recharge_station,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "fFy" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
@@ -28788,6 +28810,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"gPZ" = (
+/obj/structure/window/reinforced,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "gQb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -35043,12 +35076,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
-"iPy" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/ethernet_cable,
-/obj/machinery/ai/server_cabinet/prefilled,
-/turf/open/floor/circuit/green,
-/area/ai_monitored/turret_protected/ai)
 "iPD" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -61270,6 +61297,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"rUb" = (
+/obj/structure/window/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/card/id{
+	access = list(12);
+	name = "maintenance access card";
+	desc = "An ID card specifically used to access maintenance airlocks.";
+	registered_name = "Maintenance Technician"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "rUj" = (
 /obj/machinery/power/apc{
 	areastring = "/area/medical/paramedic";
@@ -74404,12 +74445,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "wnI" = (
-/obj/structure/frame/machine{
-	anchored = 1;
-	state = 2
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/ethernet_cable,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/ai)
 "wnN" = (
@@ -75347,6 +75385,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"wHP" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "wIe" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "Biohazard";
@@ -119721,8 +119769,8 @@ wyi
 wyi
 wyi
 arj
-alP
-alP
+fKA
+fKA
 alP
 alP
 alP
@@ -119978,12 +120026,12 @@ arj
 ket
 arx
 nbX
-alP
-syq
-syq
-syq
-syq
+fKA
 bQb
+gPZ
+syq
+syq
+eCa
 alP
 anf
 aEH
@@ -120235,9 +120283,9 @@ aWB
 bac
 bbG
 anf
-rjG
-syq
-syq
+wHP
+iuq
+erM
 syq
 syq
 syq
@@ -120493,8 +120541,8 @@ bRB
 egH
 asA
 fKA
-syq
-syq
+fFm
+rUb
 syq
 syq
 syq
@@ -129814,7 +129862,7 @@ nlV
 gdI
 kJz
 mSg
-wnI
+eXJ
 cva
 pam
 fXS
@@ -130328,7 +130376,7 @@ gDs
 fFO
 gLv
 twt
-iPy
+wnI
 pam
 pam
 fXS
