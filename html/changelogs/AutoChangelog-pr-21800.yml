@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "to_chat_immediate is now properly called so you see stuff loading/chat during initialization"
