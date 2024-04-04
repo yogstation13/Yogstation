@@ -26,7 +26,7 @@
 
 	ShutOffDoomsdayDevice()
 
-	GLOB.ai_os.remove_ai(src)
+	ai_network?.remove_ai(src)
 
 	if(explosive)
 		spawn(10)

@@ -561,6 +561,10 @@ update_label("John Doe", "Clowny")
 
 	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
 
+//a card that can't register a bank account IC
+/obj/item/card/id/no_bank/AltClick(mob/living/user)
+	return FALSE
+
 /obj/item/card/id/silver
 	name = "silver identification card"
 	desc = "A silver card which shows honour and dedication."
@@ -583,6 +587,27 @@ update_label("John Doe", "Clowny")
 	item_state = "gold_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+
+/obj/item/card/id/synthetic
+	name = "synthetic identification card"
+	desc = "An integrated card that allows synthetic units access across the station."
+	icon_state = "id_silver"
+	item_state = "silver_id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	item_flags = DROPDEL
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/item/card/id/synthetic/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
+
+/obj/item/card/id/synthetic/GetAccess()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.mind)
+			return GLOB.synthetic_base_access + GLOB.synthetic_added_access
+	return list()
 
 /obj/item/card/id/syndicate
 	name = "agent card"

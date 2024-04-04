@@ -147,6 +147,9 @@
 	desc = "An evil-looking remote controller for a crematorium."
 
 /obj/item/assembly/control/crematorium/activate()
+	if(is_synth(usr))
+		to_chat(usr, span_warning("You don't want to use this!"))
+		return
 	if(cooldown)
 		return
 	cooldown = TRUE
