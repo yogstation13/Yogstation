@@ -1,0 +1,219 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"c" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/obj/item/stack/rods,
+/turf/template_noop,
+/area/template_noop)
+"i" = (
+/obj/structure/girder/displaced,
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"o" = (
+/obj/structure/girder/displaced,
+/turf/template_noop,
+/area/template_noop)
+"q" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"t" = (
+/obj/machinery/power/rtg/advanced,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/circuit/green/off{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space)
+"x" = (
+/obj/item/stack/marker_beacon,
+/turf/template_noop,
+/area/template_noop)
+"A" = (
+/obj/machinery/power/rtg/advanced,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit/green/off{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space)
+"F" = (
+/turf/closed/wall/r_wall,
+/area/ruin/space)
+"H" = (
+/obj/machinery/spaceship_navigation_beacon,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/circuit/green/off{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space)
+"I" = (
+/obj/machinery/door/airlock/external/glass{
+	name = "Gigabeacon Maintenance Hatch"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"J" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/circuit/green/off{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space)
+"N" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon,
+/turf/template_noop,
+/area/template_noop)
+"U" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/circuit/green/off{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space)
+"W" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"Z" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+x
+a
+a
+a
+i
+a
+f
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+o
+a
+Z
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+o
+a
+a
+W
+q
+F
+a
+a
+N
+"}
+(4,1,1) = {"
+a
+a
+f
+W
+W
+t
+F
+F
+a
+Z
+"}
+(5,1,1) = {"
+N
+Z
+Z
+q
+H
+U
+J
+I
+c
+c
+"}
+(6,1,1) = {"
+a
+a
+a
+F
+F
+A
+F
+F
+a
+Z
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+F
+F
+F
+a
+a
+N
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+Z
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+Z
+a
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+"}

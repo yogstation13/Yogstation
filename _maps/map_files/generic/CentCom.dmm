@@ -26153,6 +26153,19 @@
 /obj/machinery/vending/cola/blue,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"iiq" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	name = "stowaway Syndicate Operative";
+	desc = "How the fuck did he get here?";
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier, /obj/item/gun/ballistic/automatic/pistol)
+	},
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "ila" = (
 /obj/machinery/door/poddoor{
 	id = "centcom_storyline_event_vault"
@@ -62268,7 +62281,7 @@ xuc
 iIR
 wTB
 swr
-sQo
+iiq
 poZ
 lPc
 oMr

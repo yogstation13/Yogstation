@@ -364,3 +364,10 @@
 	suffix = "syndicate_derelict_station.dmm"
 	name = "Syndicate Derelict Station"
 	description = "A remote station once used to be a syndicate research wing. Due to an unknown issue, it has been since abandoned as a bunch of floating debris."
+
+/datum/map_template/ruin/space/event_gigabeacon
+	id = "gigabeaconsat"
+	suffix = "gigabeaconsat.dmm"
+	name = "Abandoned Gigabeacon Satellite"
+	desc = "An abandoned Nanotrasen-made satellite, used for interstellar navigation. Its gigabeacon is still functional."
+	always_place = TRUE //this is meant as an event area for the syndicate long-range envoy ship to retreat to, and as such, should spawn
