@@ -2302,7 +2302,9 @@
 /obj/item/clothing/under/syndicate/camo,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/under/syndicate,
-/obj/item/gun/ballistic/revolver/mateba,
+/obj/item/gun/ballistic/revolver/mateba{
+	pin = /obj/item/firing_pin/fucked
+	},
 /obj/item/ammo_box/m44,
 /obj/item/ammo_box/m44,
 /obj/item/clothing/neck/pauldron/commander{
