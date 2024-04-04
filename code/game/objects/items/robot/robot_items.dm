@@ -1103,12 +1103,11 @@
 /obj/item/borg/cyborg_omnitool/medical/reference_item_for_parameters()
 	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = tool_behaviour == (TOOL_SCALPEL && TOOL_SAW)
-	can_initiate_surgery = FALSE
+	can_initiate_surgery = TRUE // For some reason, all of these medical items are suppose to initiate surgery instead of a select few.
 	item_flags = SURGICAL_TOOL
 	switch(tool_behaviour)
 		if(TOOL_SCALPEL)
 			reference = /obj/item/scalpel
-			can_initiate_surgery = TRUE
 		if(TOOL_DRILL)
 			reference = /obj/item/surgicaldrill
 		if(TOOL_HEMOSTAT)
@@ -1119,7 +1118,6 @@
 			reference = /obj/item/cautery
 		if(TOOL_SAW)
 			reference = /obj/item/circular_saw
-			can_initiate_surgery = TRUE
 		if(TOOL_BONESET)
 			reference = /obj/item/bonesetter
 
