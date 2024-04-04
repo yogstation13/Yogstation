@@ -250,8 +250,8 @@
 		"https://www.youtube.com/watch?v=9whQIbNmu9s"  // Clown.wmv - Admiral Hippie
 	)
 
-/datum/holiday/april_fools/celebrate()
-	SSjob.set_overflow_role("Clown")
+///datum/holiday/april_fools/celebrate()
+	//SSjob.set_overflow_role("Clown")
 
 /datum/holiday/april_fools/get_holiday_colors(atom/thing_to_color)
 	return "#[random_short_color()]"
