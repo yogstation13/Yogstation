@@ -26153,19 +26153,6 @@
 /obj/machinery/vending/cola/blue,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
-"iiq" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "centcom_storyline_freight3"
-	},
-/obj/structure/closet/crate,
-/mob/living/simple_animal/hostile/syndicate/ranged{
-	name = "stowaway Syndicate Operative";
-	desc = "How the fuck did he get here?";
-	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier, /obj/item/gun/ballistic/automatic/pistol)
-	},
-/turf/open/floor/plating,
-/area/centcom/ferry)
 "ila" = (
 /obj/machinery/door/poddoor{
 	id = "centcom_storyline_event_vault"
@@ -27147,6 +27134,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
+"qcl" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "centcom_storyline_freight3"
+	},
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/four,
+/turf/open/floor/plating,
+/area/centcom/ferry)
 "qeJ" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/light{
@@ -27432,6 +27428,11 @@
 	id = "centcom_storyline_freight3"
 	},
 /obj/structure/closet/crate,
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	name = "stowaway Syndicate Operative";
+	desc = "How the fuck did he get here?";
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier, /obj/item/gun/ballistic/automatic/pistol)
+	},
 /turf/open/floor/plating,
 /area/centcom/ferry)
 "sSY" = (
@@ -62276,12 +62277,12 @@ vBo
 mRV
 gdf
 wDI
-sQo
+qcl
 xuc
 iIR
 wTB
 swr
-iiq
+sQo
 poZ
 lPc
 oMr

@@ -369,5 +369,5 @@
 	id = "gigabeaconsat"
 	suffix = "gigabeaconsat.dmm"
 	name = "Abandoned Gigabeacon Satellite"
-	desc = "An abandoned Nanotrasen-made satellite, used for interstellar navigation. Its gigabeacon is still functional."
+	description = "An abandoned Nanotrasen-made satellite, used for interstellar navigation. Its gigabeacon is still functional."
 	always_place = TRUE //this is meant as an event area for the syndicate long-range envoy ship to retreat to, and as such, should spawn

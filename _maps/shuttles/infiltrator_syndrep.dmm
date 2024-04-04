@@ -87,7 +87,9 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "ai" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate{
+	jump_to_ports = list("syndicate_ne" = 1, "syndicate_nw" = 1, "syndicate_n" = 1, "syndicate_se" = 1, "syndicate_sw" = 1, "syndicate_s" = 1, "whiteship_home" = 1)
+	},
 /obj/effect/turf_decal/bot_white,
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2311,9 +2313,6 @@
 /obj/effect/turf_decal/siding/wood/thin{
 	dir = 5
 	},
-/obj/item/card/id/syndicate/nuke_leader{
-	name = "syndicate spare ID"
-	},
 /obj/item/storage/toolbox/syndicate/real,
 /obj/item/flashlight/seclite,
 /obj/structure/cable{
@@ -2343,6 +2342,10 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+/obj/item/card/id/syndicate/nuke_leader{
+	name = "syndicate command ID"
+	},
+/obj/structure/table/wood,
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/syndicate/bridge)
 "Iu" = (
