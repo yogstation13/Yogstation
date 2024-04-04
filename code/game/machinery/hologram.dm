@@ -122,6 +122,19 @@ obj/machinery/holopad/secure/Initialize(mapload)
 	else if(disk && disk.record)
 		replay_start()
 
+/obj/machinery/holopad/tutorial/attackby(obj/item/P, mob/user, params)
+	. = ..()
+	if(istype(P, /obj/item/crowbar))
+		if(disk)
+			disk.forceMove(drop_location())
+			disk = null
+			return TRUE
+
+/obj/machinery/holopad/tutorial/examine(mob/user)
+	. = ..()
+	. += span_notice("Use a crowbar to remove an already inserted disk.")
+		
+
 /obj/machinery/holopad/tutorial/HasProximity(atom/movable/AM)
 	if (!isliving(AM))
 		return

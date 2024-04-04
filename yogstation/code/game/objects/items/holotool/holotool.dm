@@ -10,6 +10,7 @@
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	actions_types = list(/datum/action/item_action/change_tool, /datum/action/item_action/change_ht_color)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	light_system = MOVABLE_LIGHT
 
 	var/datum/holotool_mode/current_tool
 	var/obj/item/multitool/internal_multitool // A kludge caused by the statefulness of multitools,

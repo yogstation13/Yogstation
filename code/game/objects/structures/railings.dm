@@ -7,6 +7,8 @@
 	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	density = TRUE
 	anchored = TRUE
+	pass_flags = LETPASSTHROW|PASSSTRUCTURE
+	layer = ABOVE_MOB_LAYER
 	pixel_y = -16
 
 	///Boolean on whether the railing should be cimable.

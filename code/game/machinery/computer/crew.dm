@@ -136,6 +136,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/life_status
 
 	for(var/mob/living/carbon/human/tracked_mob in GLOB.carbon_list)
+		if(is_synth(tracked_mob)) //Synths are unsupported (they're not organic)
+			continue
 		var/forced_sensors = HAS_TRAIT(tracked_mob, TRAIT_SUITLESS_SENSORS)
 		uniform = tracked_mob.w_uniform
 		pos = get_turf(tracked_mob)
@@ -151,7 +153,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// Machinery and the target should be on the same level or different levels of the same station
 		if(!(z in SSmapping.get_connected_levels(pos)) && !HAS_TRAIT(tracked_mob, TRAIT_MULTIZ_SUIT_SENSORS))
 			continue
-
+			
 		var/jammed = FALSE
 		for(var/obj/item/jammer/jammer in GLOB.active_jammers)
 			var/turf/jammer_turf = get_turf(jammer)

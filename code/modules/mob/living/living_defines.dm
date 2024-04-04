@@ -133,6 +133,8 @@
 	//Last projectile that damaged this mob, not including surgery
 	var/last_damage = ""
 
+	//Due to the fact that silicon and carbons can both be connected to a network we share at this level of inheritance
+	var/datum/ai_network/ai_network
 	/// Variable to track the body position of a mob, regardgless of the actual angle of rotation (usually matching it, but not necessarily).
 	var/body_position = STANDING_UP
 	///The x amount a mob's sprite should be offset due to the current position they're in

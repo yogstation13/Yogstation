@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
 		var/thing = allowed_contents[i]
-		qdel(thing, force=TRUE)
+		qdel(thing)
 
 	if(turf_type)
 		ChangeTurf(turf_type, baseturf_type, flags)

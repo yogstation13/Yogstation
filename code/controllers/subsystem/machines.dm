@@ -3,19 +3,19 @@ SUBSYSTEM_DEF(machines)
 	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
 	wait = 2 SECONDS
-
+	var/list/processing = list()
+	var/list/currentrun = list()
+	var/list/powernets = list()
+	var/list/ainets = list()
 	/// Assosciative list of all machines that exist.
 	VAR_PRIVATE/list/machines_by_type = list()
 	/// All machines, not just those that are processing.
 	VAR_PRIVATE/list/all_machines = list()
-
-	var/list/processing = list()
-	var/list/currentrun = list()
 	///List of all powernets on the server.
-	var/list/powernets = list()
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
+	makeainets()
 	fire()
 	return SS_INIT_SUCCESS
 
@@ -24,6 +24,80 @@ SUBSYSTEM_DEF(machines)
 	LAZYADD(machines_by_type[machine.type], machine)
 	all_machines |= machine
 
+	for(var/obj/structure/cable/PC in GLOB.cable_list)
+		if(!PC.powernet)
+			var/datum/powernet/NewPN = new(PC.loc.z)
+			NewPN.add_cable(PC)
+			propagate_network(PC,PC.powernet)
+
+/datum/controller/subsystem/machines/proc/makeainets()
+	for(var/datum/ai_network/AN in ainets)
+		qdel(AN)
+	ainets.Cut()
+
+	for(var/obj/structure/ethernet_cable/EC in GLOB.ethernet_cable_list)
+		if(!EC.network)
+			var/datum/ai_network/NewAN = new()
+			NewAN.add_cable(EC)
+			propagate_ai_network(EC,EC.network)
+
+	for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+		N.roundstart_connect()
+
+/datum/controller/subsystem/machines/stat_entry(msg)
+	msg = "M:[length(processing)]|PN:[length(powernets)]|AN:[length(ainets)]"
+	return ..()
+
+/datum/controller/subsystem/machines/get_metrics()
+	. = ..()
+	.["machines"] = length(processing)
+	.["powernets"] = length(powernets)
+
+/datum/controller/subsystem/machines/fire(resumed = 0)
+	if (!resumed)
+		for(var/datum/powernet/Powernet in powernets)
+			Powernet.reset() //reset the power state.
+		src.currentrun = processing.Copy()
+
+	//cache for sanic speed (lists are references anyways)
+	var/list/currentrun = src.currentrun
+
+	while(currentrun.len)
+		var/obj/machinery/thing = currentrun[currentrun.len]
+		currentrun.len--
+		if(!QDELETED(thing) && thing.process(wait * 0.1) != PROCESS_KILL)
+			if(thing.use_power)
+				thing.auto_use_power() //add back the power state
+		else
+			processing -= thing
+			if (!QDELETED(thing))
+				thing.datum_flags &= ~DF_ISPROCESSING
+		if (MC_TICK_CHECK)
+			return
+
+/datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
+	for(var/A in cables)
+		var/obj/structure/cable/PC = A
+		if(!PC.powernet)
+			var/datum/powernet/NewPN = new(PC.loc.z)
+			NewPN.add_cable(PC)
+			propagate_network(PC,PC.powernet)
+
+/datum/controller/subsystem/machines/proc/setup_template_ainets(list/cables)
+	for(var/A in cables)
+		var/obj/structure/ethernet_cable/PC = A
+		if(!PC.network)
+			var/datum/ai_network/NewPN = new()
+			NewPN.add_cable(PC)
+			propagate_ai_network(PC,PC.network)
+
+/datum/controller/subsystem/machines/Recover()
+	if (istype(SSmachines.processing))
+		processing = SSmachines.processing
+	if (istype(SSmachines.powernets))
+		powernets = SSmachines.powernets
+	if (istype(SSmachines.ainets))
+		ainets = SSmachines.ainets
 /// Removes a machine from the machine subsystem; should only be called by the machine itself inside Destroy.
 /datum/controller/subsystem/machines/proc/unregister_machine(obj/machinery/machine)
 	var/list/existing = machines_by_type[machine.type]
@@ -95,14 +169,6 @@ SUBSYSTEM_DEF(machines)
 			thing.datum_flags &= ~DF_ISPROCESSING
 		if (MC_TICK_CHECK)
 			return
-
-/datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
-	for(var/A in cables)
-		var/obj/structure/cable/PC = A
-		if(!PC.powernet)
-			var/datum/powernet/NewPN = new(PC.loc.z)
-			NewPN.add_cable(PC)
-			propagate_network(PC,PC.powernet)
 
 /datum/controller/subsystem/machines/Recover()
 	if(islist(SSmachines.processing))
