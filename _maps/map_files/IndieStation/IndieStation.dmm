@@ -8209,6 +8209,9 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bgc" = (
@@ -9307,6 +9310,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -13069,6 +13075,9 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/maintenance_hatch,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bTc" = (
@@ -13363,6 +13372,9 @@
 /area/bridge)
 "bWP" = (
 /obj/machinery/light/floor/built,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "bWQ" = (
@@ -17603,8 +17615,16 @@
 /area/science/xenobiology)
 "dbG" = (
 /obj/structure/window/reinforced/spawner/north,
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+/obj/item/paper{
+	name = "note from the quartermaster";
+	info = "Please package materials into crates for sale so they're easier to ship in bulk - preferably BEFORE they are loaded into the chute."
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "dbJ" = (
 /obj/effect/turf_decal/stripes/line{
@@ -20343,10 +20363,18 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "eaX" = (
-/obj/item/stack/sheet/mineral/wood,
-/obj/structure/window/reinforced/spawner/north,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "ebl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -20784,6 +20812,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "eiR" = (
@@ -29525,6 +29556,9 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "haI" = (
@@ -35096,6 +35130,10 @@
 	dir = 8;
 	light_color = "#e8eaff"
 	},
+/obj/machinery/conveyor{
+	dir = 2;
+	id = "station_old_refinery"
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "iRt" = (
@@ -37799,18 +37837,11 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "jQd" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/obj/item/toy/figure/cmo,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/turf/open/floor/plating,
 /area/maintenance/port/aft)
 "jQg" = (
 /obj/effect/turf_decal/arrows/white{
@@ -38992,6 +39023,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plasteel/burnt,
 /area/quartermaster/miningdock)
 "kqm" = (
@@ -45073,6 +45107,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/modular_computer/console/preset/cargo,
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "mxv" = (
@@ -57134,14 +57169,13 @@
 /turf/open/floor/plasteel,
 /area/storage/tech)
 "qCZ" = (
-/obj/structure/chair/office,
-/obj/item/toy/figure/captain,
 /obj/structure/window/reinforced/spawner/north,
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/stripes{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "qDy" = (
 /obj/structure/target_stake,
@@ -62060,6 +62094,9 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "siU" = (
@@ -62743,6 +62780,9 @@
 	req_access_txt = "48"
 	},
 /obj/structure/barricade/wooden/crude,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "swB" = (
@@ -65319,6 +65359,9 @@
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "tpW" = (
@@ -65739,6 +65782,9 @@
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line/lower,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "tyQ" = (
@@ -68018,6 +68064,13 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/deliveryChute{
+	dir = 8;
+	name = "refinery chute"
+	},
 /turf/open/floor/plating/broken,
 /area/quartermaster/miningdock)
 "upt" = (
@@ -68561,6 +68614,7 @@
 	shuttledocked = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "uAV" = (
@@ -68636,13 +68690,11 @@
 	},
 /area/maintenance/aft)
 "uBu" = (
-/obj/item/toy/figure/hop,
-/obj/structure/chair/office{
-	dir = 1
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 2
 	},
-/obj/effect/turf_decal/siding/wood,
-/obj/machinery/light/small,
-/turf/open/floor/wood,
+/turf/open/floor/plating,
 /area/maintenance/port/aft)
 "uBw" = (
 /obj/effect/turf_decal/stripes{
@@ -69350,6 +69402,9 @@
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line/lower,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "uMD" = (
@@ -71292,14 +71347,13 @@
 	dir = 1;
 	id = "station_old_refinery"
 	},
+/obj/structure/window/reinforced/spawner/east,
 /obj/machinery/mineral/unloading_machine{
 	dir = 1;
 	icon_state = "unloader-corner";
 	input_dir = 2;
 	output_dir = 1
 	},
-/obj/structure/plasticflaps,
-/obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "vsV" = (
@@ -74230,13 +74284,12 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
 "wmw" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/britcup,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating,
 /area/maintenance/port/aft)
 "wmB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -75238,6 +75291,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "wHG" = (
@@ -75920,10 +75976,11 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "wTO" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plating,
 /area/maintenance/port/aft)
 "wTW" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -77827,12 +77884,13 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "xCd" = (
-/obj/item/chair,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/window/reinforced/spawner/north,
+/obj/effect/turf_decal/stripes{
+	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+/obj/machinery/modular_computer/console/preset/civilian,
+/turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "xCk" = (
 /obj/effect/turf_decal/tile/neutral/opposingcorners{
@@ -79614,6 +79672,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"ykt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "ykR" = (
 /obj/machinery/computer/bank_machine,
 /obj/effect/turf_decal/bot_white,
@@ -101956,7 +102021,7 @@ esm
 iRg
 esm
 vUl
-mwQ
+qCZ
 pEc
 abZ
 bCq
@@ -102213,7 +102278,7 @@ pnM
 hRi
 dpo
 tgJ
-mwQ
+qCZ
 pEc
 hRi
 bCq
@@ -102470,9 +102535,9 @@ dql
 hRi
 gbL
 ede
-eaX
-xCd
-wTO
+qCZ
+pEc
+hRi
 bCq
 vbh
 bHE
@@ -102728,8 +102793,8 @@ hRi
 mAw
 ede
 qCZ
-wmw
-uBu
+pEc
+hRi
 bCq
 bCq
 wuL
@@ -102972,7 +103037,7 @@ kjK
 bGi
 oym
 bPr
-hRi
+ykt
 mZD
 cJE
 sof
@@ -102986,7 +103051,7 @@ dej
 ede
 dbG
 jQd
-bHE
+hRi
 bCq
 bHE
 bHE
@@ -103230,11 +103295,11 @@ bxy
 bGi
 bCq
 wHA
-uPc
-hRi
+eaX
+uBu
 siH
 tpJ
-wOL
+wTO
 wOL
 wOL
 wOL
@@ -103491,14 +103556,14 @@ uPc
 dtp
 apu
 bCq
-wOL
+wmw
 wOL
 wOL
 bHE
 wLJ
 cdQ
 ede
-mwQ
+xCd
 rBH
 bHU
 bCq
