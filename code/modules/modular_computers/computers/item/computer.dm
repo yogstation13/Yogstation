@@ -505,7 +505,7 @@
 	if(!get_ntnet_status())
 		return FALSE
 	var/obj/item/computer_hardware/network_card/network_card = all_components[MC_NET]
-	return SSmodular_computers.station_network.add_log(text, network_card)
+	return SSmodular_computers.add_log(text, network_card)
 
 /obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	kill_program(forced = TRUE)

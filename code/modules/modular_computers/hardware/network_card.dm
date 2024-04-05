@@ -41,7 +41,7 @@
 	if(ethernet) // Computer is connected via wired connection.
 		return 3
 
-	if(!SSmodular_computers.station_network || !SSmodular_computers.station_network.check_function(specific_action)) // NTNet is down and we are not connected via wired connection. No signal.
+	if(!SSmodular_computers || !SSmodular_computers.check_function(specific_action)) // NTNet is down and we are not connected via wired connection. No signal.
 		return 0
 
 	if(holder)
