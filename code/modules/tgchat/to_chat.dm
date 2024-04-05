@@ -65,7 +65,7 @@
 	trailing_newline = TRUE,
 	confidential = FALSE
 )
-	if(isnull(Master) || !Master.current_runlevel)
+	if(isnull(Master) || !Master.current_runlevel || !MC_RUNNING(SSchat.init_stage))
 		to_chat_immediate(target, html, type, text, avoid_highlighting, allow_linkify)
 		return
 	
