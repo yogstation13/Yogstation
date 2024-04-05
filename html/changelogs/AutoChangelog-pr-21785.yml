@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed the portal in goat king arena not working"
