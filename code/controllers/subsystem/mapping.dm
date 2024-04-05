@@ -154,6 +154,9 @@ SUBSYSTEM_DEF(mapping)
 #ifndef LOWMEMORYMODE
 	//Pregenerate generic jungleland ruins that are biome-nonspecific 
 
+	//Generates the backrooms Z level
+	generate_backrooms()
+
 	//YOGS END
 	
 	// Create space ruin levels
