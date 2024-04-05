@@ -1336,9 +1336,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(target, span_warning("Something feels very... wibbly!"))
 			
 		if(ADMIN_PUNISHMENT_BACKROOMS)
-			var/backrooms_level = SSmapping.levels_by_trait(ZTRAITS_BACKROOM_MAINTS)
-			if(backrooms_level)
-				target.forceMove(find_safe_turf(backrooms_level))
+			if(target.sendToBackrooms())
 				to_chat(target, span_warning("Something feels very... wibbly!"))
 
 	punish_log(target, punishment)
