@@ -916,9 +916,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Prison Wing"
 	icon_state = "sec_prison"
 	minimap_color = "#530505"
+	lights_always_start_on = TRUE
 
 /area/security/prison/hallway
 	name = "Prison Wing Hallway"
+	lights_always_start_on = TRUE
 
 /area/security/processing
 	name = "Labor Shuttle Dock"
