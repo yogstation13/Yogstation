@@ -920,7 +920,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/security/prison/hallway
 	name = "Prison Wing Hallway"
-	lights_always_start_on = TRUE
 
 /area/security/processing
 	name = "Labor Shuttle Dock"
