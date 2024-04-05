@@ -13959,6 +13959,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"fLh" = (
+/mob/living/simple_animal/pet/penguin/emperor/shamebrero{
+	desc = "Was used in a experiment by the RD to test how a penguin with a sombrero would effect morale. Results were uncertain but is being kept as the science department's mascot anyway.";
+	name = "Anadear";
+	real_name = "Anadear"
+	},
+/turf/open/floor/engine,
+/area/science/explab)
 "fLk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -82055,7 +82063,7 @@ swf
 qgC
 cLs
 bvP
-mBt
+fLh
 vpD
 mXH
 qkE
