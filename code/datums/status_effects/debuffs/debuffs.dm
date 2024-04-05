@@ -1047,7 +1047,7 @@
 	examine_text = span_deadsay("SUBJECTPRONOUN is in a deep, deathlike sleep, with no signs of awareness to anything around them.")
 	alert_type = /atom/movable/screen/alert/status_effect/broken_will
 	///how much damage taken in one hit will wake the holder
-	var/wake_threshold = 8
+	var/wake_threshold = 5
 
 /datum/status_effect/broken_will/on_apply()
 	if(owner)
@@ -1068,7 +1068,7 @@
 		return
 	owner.Unconscious(15)
 	if(owner.health <= HEALTH_THRESHOLD_CRIT)
-		owner.heal_ordered_damage(2, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
+		owner.heal_ordered_damage(3, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
 		if(prob(10))
 			to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
 
@@ -1077,7 +1077,9 @@
 		return
 	owner.visible_message(span_warning("[owner] is jolted awake by the impact!") , span_boldannounce("Something hits you, pulling you towards wakefulness!"))
 	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
-	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_NOSOFTCRIT, type), 30 SECONDS)
+	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_NOSOFTCRIT, type), 20 SECONDS)	
+	ADD_TRAIT(owner, TRAIT_RESISTDAMAGESLOWDOWN, type)
+	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_RESISTDAMAGESLOWDOWN, type), 20 SECONDS)
 	qdel(src)
 
 /atom/movable/screen/alert/status_effect/broken_will
@@ -1090,7 +1092,7 @@
 /datum/status_effect/devoured_will
 	id = "devoured_will"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 5 MINUTES
+	duration = 3 MINUTES
 	alert_type = null
 
 /datum/status_effect/eldritch
