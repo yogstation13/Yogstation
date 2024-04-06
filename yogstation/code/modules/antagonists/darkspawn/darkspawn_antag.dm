@@ -454,14 +454,15 @@
 	user.status_flags |= GODMODE
 
 	if(!GLOB.sacrament_done)
-		team.upon_sacrament()
 		GLOB.sacrament_done = TRUE
+		team.upon_sacrament()
 		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
 		set_starlight(COLOR_VELVET) //i wanna change power and range, but that causes immense lag
+		to_chat(world, span_velvet("Reality begins to quake and crack at the seams."))
+		addtimer(CALLBACK(src, PROC_REF(start_overlay)), 15 SECONDS)
 		SEND_GLOBAL_SIGNAL(COMSIG_DARKSPAWN_ASCENSION)
-		SSweather.run_weather(/datum/weather/shadowlands, 2)
 
 	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
 
@@ -496,22 +497,10 @@
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
 	SSshuttle.emergency.request(null, 0, null, 0.1)
 
-//applies the shadowlands component to anyone inside
-/datum/weather/shadowlands
-	name = "Nullspace"
-	desc = "The location has been ripped out of normalspace, straight into Nullspace."
-	telegraph_message = span_velvet("Reality begins to quake and crack it the seams.")
-	weather_message = span_progenitor("SOMETHING IS WRONG.")
-	area_type = /area
-	telegraph_duration = 15 SECONDS //actually give them a brief moment to react
-	immunity_type = "fuckno"
-	weather_duration = INFINITY
-	weather_duration_lower = INFINITY
-	weather_duration_upper = INFINITY
-
-/datum/weather/shadowlands/weather_act(mob/living/L)
-	if(L.stat != DEAD)
-		L.AddComponent(/datum/component/shadowlands)
+/datum/antagonist/darkspawn/proc/start_overlay()
+	to_chat(world, span_progenitor("SOMETHING IS WRONG."))
+	for(var/mob/living/person in GLOB.player_list)
+		person.AddComponent(/datum/component/shadowlands)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Reform body from brain------------------------------//

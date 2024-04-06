@@ -24,3 +24,6 @@
 		changeling.regain_powers()
 
 	src.client.init_verbs()
+
+	if(GLOB.sacrament_done)
+		AddComponent(/datum/component/shadowlands)
