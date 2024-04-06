@@ -704,14 +704,6 @@
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/vending_refill/donksoft = 1)
 
-/obj/item/circuitboard/machine/vending/donksofttoyvendor/hugbox
-	name = "Donksoft Toy Vendor Lite (Machine Board)"
-	desc = "This one seems somehow less fun than usual..."
-	build_path = /obj/machinery/vending/donksofttoyvendor/hugbox
-	req_components = list(
-		/obj/item/stack/sheet/glass = 1,
-		/obj/item/vending_refill/donksoft = 1)
-
 /obj/item/circuitboard/machine/vending/syndicatedonksofttoyvendor
 	name = "Syndicate Donksoft Toy Vendor (Machine Board)"
 	build_path = /obj/machinery/vending/toyliberationstation
