@@ -46,9 +46,9 @@
 	computer.play_interact_sound()
 	switch(action)
 		if("PRG_target_relay")
-			for(var/obj/machinery/ntnet_relay/R in SSmodular_computers.relays)
-				if(R.uid == text2num(params["targid"]))
-					target = R
+			for(var/obj/machinery/ntnet_relay/relays as anything in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay))
+				if(relays.uid == text2num(params["targid"]))
+					target = relays
 					break
 			return TRUE
 		if("PRG_reset")
@@ -84,8 +84,8 @@
 	else
 		data["target"] = FALSE
 		data["relays"] = list()
-		for(var/obj/machinery/ntnet_relay/R in SSmodular_computers.relays)
-			data["relays"] += list(list("id" = R.uid))
+		for(var/obj/machinery/ntnet_relay/relays as anything in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay))
+			data["relays"] += list(list("id" = relays.uid))
 		data["focus"] = target ? target.uid : null
 
 	return data

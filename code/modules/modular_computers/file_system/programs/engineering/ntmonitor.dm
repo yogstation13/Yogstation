@@ -12,66 +12,60 @@
 	tgui_id = "NtosNetMonitor"
 	program_icon = "network-wired"
 
-/datum/computer_file/program/ntnetmonitor/ui_act(action, params)
-	if(..())
-		return
-	computer.play_interact_sound()
+/datum/computer_file/program/ntnetmonitor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
 	switch(action)
 		if("resetIDS")
-			if(SSmodular_computers)
-				SSmodular_computers.resetIDS()
+			SSmodular_computers.intrusion_detection_alarm = FALSE
 			return TRUE
 		if("toggleIDS")
-			if(SSmodular_computers)
-				SSmodular_computers.toggleIDS()
+			SSmodular_computers.intrusion_detection_enabled = !SSmodular_computers.intrusion_detection_enabled
 			return TRUE
-		if("toggleWireless")
-			if(!SSmodular_computers)
+		if("toggle_relay")
+			var/obj/machinery/ntnet_relay/target_relay = locate(params["ref"]) in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay)
+			if(!istype(target_relay))
 				return
-
-			// NTNet is disabled. Enabling can be done without user prompt
-			if(SSmodular_computers.setting_disabled)
-				SSmodular_computers.setting_disabled = FALSE
-				return TRUE
-
-			SSmodular_computers.setting_disabled = TRUE
+			target_relay.set_relay_enabled(!target_relay.relay_enabled)
 			return TRUE
 		if("purgelogs")
-			if(SSmodular_computers)
-				SSmodular_computers.purge_logs()
+			SSmodular_computers.purge_logs()
 			return TRUE
-		if("updatemaxlogs")
-			var/logcount = params["new_number"]
-			if(SSmodular_computers)
-				SSmodular_computers.update_max_log_count(logcount)
-			return TRUE
-		if("toggle_function")
-			if(!SSmodular_computers)
+		if("toggle_mass_pda")
+			if(!(params["ref"] in GLOB.pda_messengers))
 				return
-			SSmodular_computers.toggle_function(text2num(params["id"]))
+			var/datum/computer_file/program/messenger/target_messenger = GLOB.pda_messengers[params["ref"]]
+			target_messenger.spam_mode = !target_messenger.spam_mode
 			return TRUE
 
 /datum/computer_file/program/ntnetmonitor/ui_data(mob/user)
-	if(!SSmodular_computers)
-		return
-	var/list/data = get_header_data()
+	var/list/data = list()
 
-	data["ntnetstatus"] = SSmodular_computers.check_function()
-	data["ntnetrelays"] = SSmodular_computers.relays.len
+	data["ntnetrelays"] = list()
+	for(var/obj/machinery/ntnet_relay/relays as anything in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay))
+		var/list/relay_data = list()
+		relay_data["is_operational"] = !!relays.is_operational
+		relay_data["name"] = relays.name
+		relay_data["ref"] = REF(relays)
+
+		data["ntnetrelays"] += list(relay_data)
+
 	data["idsstatus"] = SSmodular_computers.intrusion_detection_enabled
 	data["idsalarm"] = SSmodular_computers.intrusion_detection_alarm
 
-	data["config_softwaredownload"] = SSmodular_computers.setting_softwaredownload
-	data["config_peertopeer"] = SSmodular_computers.setting_peertopeer
-	data["config_communication"] = SSmodular_computers.setting_communication
-	data["config_systemcontrol"] = SSmodular_computers.setting_systemcontrol
-
 	data["ntnetlogs"] = list()
-	data["minlogs"] = MIN_NTNET_LOGS
-	data["maxlogs"] = MAX_NTNET_LOGS
-
-	for(var/i in SSmodular_computers.logs)
+	for(var/i in SSmodular_computers.modpc_logs)
 		data["ntnetlogs"] += list(list("entry" = i))
-	data["ntnetmaxlogs"] = SSmodular_computers.setting_maxlogcount
+
+	data["tablets"] = list()
+	for(var/messenger_ref in get_messengers_sorted_by_name())
+		var/datum/computer_file/program/messenger/app = GLOB.pda_messengers[messenger_ref]
+		var/obj/item/modular_computer/pda = app.computer
+
+		var/list/tablet_data = list()
+		tablet_data["enabled_spam"] = app.spam_mode
+		tablet_data["name"] = pda.saved_identification
+		tablet_data["ref"] = REF(app)
+
+		data["tablets"] += list(tablet_data)
 
 	return data
