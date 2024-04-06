@@ -443,9 +443,27 @@
 		//add_blood doesn't work for borgs/xenos, but add_blood_floor does.
 		L.add_splatter_floor(location)
 		if(rand(0,1000) == 0) //no clip out of reality into the backrooms
-			L.sendToBackrooms()
+			INVOKE_ASYNC(src, PROC_REF(backrooms_clip), L)
 	for(var/obj/mecha/M in get_turf(src))
 		M.take_damage(DOOR_CRUSH_DAMAGE)
+
+/obj/machinery/door/proc/backrooms_clip(var/mob/living/target)
+	playsound(get_turf(target), 'yogstation/sound/effects/backrooms_clipping.ogg', 80, FALSE)
+	target.set_resting(FALSE)
+	target.Immobilize(1.9 SECONDS, TRUE, TRUE)
+	var/x_diff = 4
+	var/y_diff = 1
+	var/rotation = 40
+	if(prob(50))
+		rotation *= -1
+	animate(target, pixel_x = x_diff, pixel_y = y_diff, time = 0.5, transform = matrix(rotation + x_diff, MATRIX_ROTATE), loop = 18, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+	animate(pixel_x = -x_diff , pixel_y = -y_diff, transform = matrix(rotation - x_diff, MATRIX_ROTATE), time = 0.5, flags = ANIMATION_RELATIVE)
+	sleep(1.8 SECONDS)
+	target.pixel_x = 0
+	target.pixel_y = 0
+	target.set_resting(FALSE)
+	target.transform = matrix()
+	target.sendToBackrooms()
 
 /obj/machinery/door/proc/autoclose()
 	if(!QDELETED(src) && !density && !operating && !locked && !welded && autoclose)

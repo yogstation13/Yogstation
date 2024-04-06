@@ -1147,7 +1147,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 									ADMIN_PUNISHMENT_SCARIFY,
 									ADMIN_PUNISHMENT_SMSPIDER,
 									ADMIN_PUNISHMENT_FLASHBANG,
-									ADMIN_PUNISHMENT_WIBBLY)
+									ADMIN_PUNISHMENT_WIBBLY,
+									ADMIN_PUNISHMENT_BACKROOMS)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1336,8 +1337,22 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(target, span_warning("Something feels very... wibbly!"))
 			
 		if(ADMIN_PUNISHMENT_BACKROOMS)
-			if(target.sendToBackrooms())
-				to_chat(target, span_warning("Something feels very... wibbly!"))
+			playsound(get_turf(target), 'yogstation/sound/effects/backrooms_clipping.ogg', 80, FALSE)
+			target.set_resting(FALSE)
+			target.Immobilize(1.9 SECONDS, TRUE, TRUE)
+			var/x_diff = 4
+			var/y_diff = 1
+			var/rotation = 40
+			if(prob(50))
+				rotation *= -1
+			animate(target, pixel_x = x_diff, pixel_y = y_diff, time = 0.5, transform = matrix(rotation + x_diff, MATRIX_ROTATE), loop = 18, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+			animate(pixel_x = -x_diff , pixel_y = -y_diff, transform = matrix(rotation - x_diff, MATRIX_ROTATE), time = 0.5, flags = ANIMATION_RELATIVE)
+			sleep(1.8 SECONDS)
+			target.pixel_x = 0
+			target.pixel_y = 0
+			target.set_resting(FALSE)
+			target.transform = matrix()
+			target.sendToBackrooms()
 
 	punish_log(target, punishment)
 

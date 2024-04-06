@@ -1356,7 +1356,9 @@
 				ADD_TRAIT(pulling, TRAIT_HANDS_BLOCKED, CHOKEHOLD_TRAIT)
 
 /atom/movable/proc/sendToBackrooms()
-	var/backrooms_level = SSmapping.levels_by_trait(ZTRAITS_BACKROOM_MAINTS)
-	if(backrooms_level)
-		target.forceMove(find_safe_turf(backrooms_level))
-		return TRUE
+	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	if(LAZYLEN(backrooms_level))
+		var/turf/destination = find_safe_turf(zlevels = backrooms_level)
+		if(destination)
+			forceMove(destination)
+			return TRUE
