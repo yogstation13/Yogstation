@@ -110,7 +110,7 @@
 		return mob.remote_control.relaymove(mob, direct)
 
 	if(isAI(mob))
-		return AIMove(n,direct,mob)
+		return AIMove(direct,mob)
 
 	if(Process_Grab()) //are we restrained by someone's grip?
 		return
@@ -153,7 +153,8 @@
 
 	. = ..()
 
-	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
+	var/diagonal = (direct & (direct - 1)) && mob.loc == n
+	if(diagonal) //moved diagonally successfully
 		add_delay *= 1.414214 // sqrt(2)
 	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 	move_delay += add_delay
@@ -165,6 +166,7 @@
 	if(P && !ismob(P) && P.density)
 		mob.setDir(turn(mob.dir, 180))
 
+	SEND_SIGNAL(L, COMSIG_MOB_CLIENT_MOVED)
 /**
   * Checks to see if you're being grabbed and if so attempts to break it
   *

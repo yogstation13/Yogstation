@@ -714,6 +714,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/carp
 	cost = 14
+	player_minimum = 20
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
@@ -1441,6 +1442,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/mecha/combat/marauder/mauler/loaded
 	cant_discount = TRUE
 	cost = 105 //Yogs change
+
+/datum/uplink_item/support/mamba
+	name = "Black Mamba Exosuit"
+	desc = "A stealthy, quick, and deadly combat exosuit, this modified sidewinder chassis is capable of suddenly striking and retreating while \
+			the effects of its venomous weapons take hold. Comes with a venom carbine, dual daggers, and an anti-projectile armor booster."
+	item = /obj/mecha/combat/sidewinder/mamba/loaded
+	cant_discount = TRUE
+	cost = 75
 
 // Stealth Items
 /datum/uplink_item/stealthy_tools

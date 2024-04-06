@@ -398,6 +398,19 @@
 	ammo_type = "bfg"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/venom
+	name = "\improper K0-B3 \"Snakebite\" Carbine"
+	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
+	icon_state = "mecha_venom"
+	equip_cooldown = 10
+	fire_sound = 'sound/weapons/smgshot.ogg'
+	projectile = /obj/projectile/bullet/c45/venom	//yes the same one
+	projectiles = 24
+	projectiles_cache = 24
+	projectiles_cache_max = 96
+	harmful = TRUE
+	ammo_type = "venom"
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
 	name = "\improper SRM-8 missile rack"
 	desc = "A weapon for combat exosuits. Launches light explosive missiles."

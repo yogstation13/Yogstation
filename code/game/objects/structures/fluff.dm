@@ -201,3 +201,12 @@
 	anchored = TRUE
 	density = TRUE
 	deconstructible = FALSE
+
+/obj/structure/fluff/colton_statue //Memorial statue of Colton Oppenheimer/AutisticFroggy
+	name = "statue of colton oppenheimer"
+	desc = "https://wiki.yogstation.net/wiki/User:Autisticfroggy/The_Last_Lecture"
+	icon = 'icons/obj/3x3.dmi'
+	icon_state = "colton"
+	pixel_x = -1
+	density = TRUE
+	deconstructible = FALSE

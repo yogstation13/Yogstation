@@ -14,7 +14,7 @@
 	outfit = /datum/outfit/job/lawyer
 
 	added_access = list()
-	base_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
+	base_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
@@ -40,7 +40,7 @@
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/fountainpen/lawyer
 
 	ears = /obj/item/radio/headset/headset_srvsec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit

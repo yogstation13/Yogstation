@@ -30,7 +30,7 @@
 	return ..()
 
 /obj/structure/fireaxecabinet/proc/check_deconstruct(obj/item/I, mob/user)
-	if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !fireaxe && (open || broken || obj_integrity >= max_integrity))
+	if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !fireaxe && (open || broken || atom_integrity >= max_integrity))
 		//User is attempting to wrench an open/broken fireaxe cabinet with NO fireaxe in it
 		user.visible_message(span_warning("[user] disassembles the [name]."), \
 							 "You start to disassemble the [name]...", \

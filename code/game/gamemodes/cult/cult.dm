@@ -39,7 +39,7 @@
 	report_type = "cult"
 	antag_flag = ROLE_CULTIST
 	false_report_weight = 10
-	restricted_jobs = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Yogs: Added Brig Physician
+	restricted_jobs = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician", "Synthetic") //Yogs: Added Brig Physician
 	protected_jobs = list()
 	required_players = 24
 	required_enemies = 4
@@ -178,7 +178,7 @@
 
 	priority_announce("Figments of an eldritch god are being pulled through the veil anomaly in [bloodstone_areas[1]], [bloodstone_areas[2]], [bloodstone_areas[3]], and [bloodstone_areas[4]]! Destroy any occult structures located in those areas!","Central Command Higher Dimensional Affairs")
 	addtimer(CALLBACK(src, PROC_REF(increase_bloodstone_power)), 30 SECONDS)
-	set_security_level(SEC_LEVEL_GAMMA)
+	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 
 /datum/game_mode/proc/increase_bloodstone_power()
 	if(!bloodstone_list.len) //check if we somehow ran out of bloodstones
@@ -199,14 +199,13 @@
 	var/anchor_power = 0 //anchor will be faster if there are more stones
 	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
 		anchor_power++
-		if(B.obj_integrity > anchor_target.obj_integrity)
+		if(B.get_integrity() > anchor_target.get_integrity())
 			anchor_target = B
 	SSticker.mode.anchor_bloodstone = anchor_target
 	anchor_target.name = "anchor bloodstone"
 	anchor_target.desc = "It pulses rhythmically with migraine-inducing light. Something is being reflected on every surface, something that isn't quite there..."
 	anchor_target.anchor = TRUE
-	anchor_target.max_integrity = 1200
-	anchor_target.obj_integrity = 1200
+	anchor_target.modify_max_integrity(1200, can_break = FALSE)
 	anchor_time2kill -= anchor_power * 1 MINUTES //one minute of bloodfuckery shaved off per surviving bloodstone.
 	anchor_target.set_animate()
 	var/area/A = get_area(anchor_target)

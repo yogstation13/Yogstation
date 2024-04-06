@@ -346,7 +346,7 @@
 //dist_check - set to only shock mobs within 1 of source (vendors, airlocks, etc.)
 //zone_override - allows checking a specific body part for shock protection instead of the hands
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/victim, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE, zone = BODY_ZONE_R_ARM)
+/proc/electrocute_mob(mob/living/carbon/victim, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE, zone = HANDS)
 	if(!istype(victim) || ismecha(victim.loc))
 		return FALSE //feckin mechs are dumb
 
@@ -404,6 +404,14 @@
 	if(!can_have_cabling())
 		return null
 	for(var/obj/structure/cable/C in src)
+		if(C.d1 == 0)
+			return C
+	return null
+
+/turf/proc/get_ai_cable_node()
+	if(!can_have_cabling())
+		return null
+	for(var/obj/structure/ethernet_cable/C in src)
 		if(C.d1 == 0)
 			return C
 	return null

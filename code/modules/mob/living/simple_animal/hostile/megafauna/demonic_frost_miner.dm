@@ -281,11 +281,27 @@ Difficulty: Extremely Hard
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy
 	name = "cursed ice hiking boots"
 	desc = "A pair of winter boots contractually made by a devil, they cannot be taken off once put on."
-	slowdown = SHOES_SLOWDOWN - 1
+	slowdown = SHOES_SLOWDOWN - 0.5
+	var/obj/vehicle/ridden/scooter/wheelys/W
+	var/mob/living/carbon/human/owner
 
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+	START_PROCESSING(SSobj, src)
+
+/obj/item/clothing/shoes/winterboots/ice_boots/speedy/equipped(mob/user, slot)
+	. = ..()
+	if((slot & ITEM_SLOT_FEET) && ishuman(user))
+		owner = user
+
+/obj/item/clothing/shoes/winterboots/ice_boots/speedy/process(delta_time)
+	if(prob(10) && owner && (owner.get_item_by_slot(ITEM_SLOT_FEET) == src))
+		if(!W)
+			W = new(src)
+		if(!W.has_buckled_mobs())
+			W.forceMove(get_turf(owner))
+			W.buckle_mob(owner)
 
 /obj/item/pickaxe/drill/jackhammer/demonic
 	name = "demonic jackhammer"

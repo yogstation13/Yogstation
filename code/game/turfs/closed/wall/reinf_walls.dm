@@ -13,6 +13,10 @@
 	sheet_amount = 1
 	girder_type = /obj/structure/girder/reinforced
 	explosion_block = 2
+	max_integrity = 400
+	damage_deflection = 75 // can't be damaged with most conventional weapons or tools
+	armor = list(MELEE = 80, BULLET = 80, LASER = 60, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	smash_flags = ENVIRONMENT_SMASH_RWALLS // rwalls only
 	rad_insulation = RAD_FULL_INSULATION
 	///Dismantled state, related to deconstruction.
 	var/d_state = INTACT
@@ -39,19 +43,6 @@
 /turf/closed/wall/r_wall/devastate_wall()
 	new sheet_type(src, sheet_amount)
 	new /obj/item/stack/sheet/metal(src, 2)
-
-/turf/closed/wall/r_wall/attack_animal(mob/living/simple_animal/M)
-	M.changeNext_move(CLICK_CD_MELEE)
-	M.do_attack_animation(src)
-	if(!M.environment_smash)
-		return
-	if(M.environment_smash & ENVIRONMENT_SMASH_RWALLS)
-		dismantle_wall(1)
-		playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
-	else
-		playsound(src, 'sound/effects/bang.ogg', 50, 1)
-		to_chat(M, span_warning("This wall is far too strong for you to destroy."))
-
 
 /turf/closed/wall/r_wall/try_decon(obj/item/W, mob/user, turf/T)
 	//DECONSTRUCTION

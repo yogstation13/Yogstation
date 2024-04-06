@@ -96,6 +96,7 @@
 	/// Icons to be displayed in the orbit ui. Source: FontAwesome v5.
 	var/orbit_icon
 
+	var/datum/species/forced_species
 		/**
 	 * A list of job-specific areas to enable lights for if this job is present at roundstart, whenever minimal access is not in effect.
 	 * This will be combined with minimal_lightup_areas, so no need to duplicate entries.
@@ -183,11 +184,16 @@
 	if(!H)
 		return FALSE
 
+	
+
 //This reads Command placement exceptions in code/controllers/configuration/entries/game_options to allow non-Humans in specified Command roles. If the combination of species and command role is invalid, default to Human.
 	if(CONFIG_GET(keyed_list/job_species_whitelist)[type] && !splittext(CONFIG_GET(keyed_list/job_species_whitelist)[type], ",").Find(H.dna.species.id))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
 			H.apply_pref_name(/datum/preference/name/backup_human, preference_source)
+	
+	if(forced_species)
+		H.set_species(forced_species)
 
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src)
@@ -325,9 +331,6 @@
 	if (H.jumpsuit_style == PREF_SKIRT && uniform_skirt)
 		uniform = uniform_skirt
 
-	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
-		box = null
-
 	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
 
@@ -359,15 +362,17 @@
 			B.bank_cards += C
 		H.sec_hud_set_ID()
 
-	var/obj/item/modular_computer/PDA = new pda_type()
-	if(istype(PDA))
-		PDA.InsertID(C)
-		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
+	if(pda_type)
+		var/obj/item/modular_computer/PDA = new pda_type()
+		if(istype(PDA))
+			PDA.InsertID(C)
+			H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
 
-		PDA.update_label()
-		PDA.update_appearance(UPDATE_ICON)
-		PDA.update_filters()
-		
+			PDA.update_label()
+			PDA.update_appearance(UPDATE_ICON)
+			PDA.update_filters()
+		else
+			H.equip_to_slot_if_possible(C, ITEM_SLOT_ID)
 	else
 		H.equip_to_slot_if_possible(C, ITEM_SLOT_ID)
 

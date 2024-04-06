@@ -1,5 +1,5 @@
 
-/datum/species/preternis/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
+/datum/species/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
 	if(!istype(H) || !A)
 		return
 
@@ -31,7 +31,7 @@
 		draining = FALSE
 		return
 
-	var/blocked = H.getarmor(H.held_index_to_body_zone(H.active_hand_index), ELECTRIC)
+	var/blocked = H.getarmor(H.held_index_to_hand(H.active_hand_index), ELECTRIC)
 	siemens_coefficient *= (100 - blocked) / 100
 	if(blocked >= 100)
 		to_chat(H, span_info("NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted."))

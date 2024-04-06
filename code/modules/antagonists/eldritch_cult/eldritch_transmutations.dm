@@ -141,7 +141,7 @@
 
 /datum/eldritch_transmutation/final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
-	set_security_level(SEC_LEVEL_GAMMA)
+	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 
 	shockwave.transform = matrix().Scale(0.5)
 	shockwave.pixel_x = -240

@@ -40,12 +40,11 @@
 				guardian.med_hud_set_health()
 				guardian.med_hud_set_status()
 			return TRUE
-		else if (isobj(target))
-			var/obj/O = target
-			guardian.do_attack_animation(O)
-			O.obj_integrity = min(O.obj_integrity + (O.max_integrity * 0.1), O.max_integrity)
-			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(O))
-			O.update_appearance(UPDATE_ICON)
+		else if (target.uses_integrity)
+			guardian.do_attack_animation(target)
+			target.update_integrity(min(target.get_integrity() + (target.max_integrity * 0.1), target.max_integrity))
+			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(target))
+			target.update_appearance(UPDATE_ICON)
 			if (guardian.namedatum)
 				H.color = guardian.namedatum.color
 			guardian.changeNext_move(CLICK_CD_MELEE)

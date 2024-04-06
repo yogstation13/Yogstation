@@ -205,7 +205,7 @@
 			H.invisibility = 60 //This is pretty bad, but is also necessary for the shuttle call to function properly
 			H.forceMove(A)
 			if(!SSticker.mode.shadowling_ascended)
-				set_security_level(SEC_LEVEL_GAMMA)
+				SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
 				SSshuttle.emergency_call_time = 1800
 				SSshuttle.emergency.request(null, 0.3)
 				SSshuttle.emergency_no_recall = TRUE

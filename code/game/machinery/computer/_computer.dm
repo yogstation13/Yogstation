@@ -138,7 +138,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/machinery/computer/obj_break(damage_flag)
+/obj/machinery/computer/atom_break(damage_flag)
 	if(!circuit) //no circuit, no breaking
 		return
 	. = ..()
@@ -151,7 +151,7 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(prob(5 * severity))
-		obj_break(ENERGY)
+		atom_break(ENERGY)
 
 /obj/machinery/computer/deconstruct(disassembled = TRUE, mob/user)
 	on_deconstruction()

@@ -928,6 +928,20 @@
 	last_timer_length *= multiple
 	setTimer(time_remaining)
 
+/obj/docking_port/mobile/proc/alert_coeff_change(new_coeff)
+	if(isnull(new_coeff))
+		return
+
+	var/time_multiplier = new_coeff / alert_coeff
+	var/time_remaining = timer - world.time
+	if(time_remaining < 0 || !last_timer_length)
+		return
+
+	time_remaining *= time_multiplier
+	last_timer_length *= time_multiplier
+	alert_coeff = new_coeff
+	setTimer(time_remaining)
+
 /obj/docking_port/mobile/proc/invertTimer()
 	if(!last_timer_length)
 		return

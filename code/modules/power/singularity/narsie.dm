@@ -94,7 +94,7 @@
 		return
 	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: 30 SECONDS.","Central Command Higher Dimensional Affairs")
 	sleep(5 SECONDS)
-	set_security_level("delta")
+	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	SSshuttle.registerHostileEnvironment(GLOB.cult_narsie)
 	SSshuttle.lockdown = TRUE
 	sleep(25 SECONDS)
@@ -102,7 +102,7 @@
 		priority_announce("Nuclear detonation has been aborted due to termination of event. Please note that further damage to corporate property will not be tolerated.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(2 SECONDS)
-		set_security_level("red")
+		SSsecurity_level.set_level(SEC_LEVEL_RED)
 		SSshuttle.clearHostileEnvironment()
 		SSshuttle.lockdown = FALSE
 		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(cult_ending_helper), 2)

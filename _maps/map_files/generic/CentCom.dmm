@@ -2695,8 +2695,7 @@
 "agB" = (
 /obj/structure/window/reinforced/fulltile{
 	max_integrity = 5000;
-	name = "hardened window";
-	obj_integrity = 5000
+	name = "hardened window"
 	},
 /turf/open/floor/plating,
 /area/centcom/ctf)
@@ -3746,9 +3745,9 @@
 	dir = 8;
 	dwidth = 8;
 	height = 7;
-	shuttle_id = "supply_away";
 	json_key = "cargo";
 	name = "CentCom";
+	shuttle_id = "supply_away";
 	width = 20
 	},
 /turf/open/space,
@@ -4114,8 +4113,8 @@
 	area_type = /area/centcom/syndicate_mothership;
 	dwidth = 25;
 	height = 50;
-	shuttle_id = "emergency_syndicate";
 	name = "Syndicate Auxillary Shuttle Dock";
+	shuttle_id = "emergency_syndicate";
 	width = 50
 	},
 /turf/open/space/basic,
@@ -9209,9 +9208,9 @@
 	dir = 2;
 	dwidth = 14;
 	height = 13;
-	shuttle_id = "syndicatecutter_home";
 	name = "Syndicate Home Outpost";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/cutter;
+	shuttle_id = "syndicatecutter_home";
 	width = 22
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
@@ -9851,9 +9850,9 @@
 	dir = 4;
 	dwidth = 25;
 	height = 50;
-	shuttle_id = "emergency_away";
 	json_key = "emergency";
 	name = "CentCom Emergency Shuttle Dock";
+	shuttle_id = "emergency_away";
 	width = 50
 	},
 /turf/open/space,
@@ -10645,8 +10644,8 @@
 /obj/docking_port/stationary{
 	dwidth = 1;
 	height = 4;
-	shuttle_id = "pod2_away";
 	name = "recovery ship";
+	shuttle_id = "pod2_away";
 	width = 3
 	},
 /turf/open/space/basic,
@@ -10732,9 +10731,9 @@
 	dir = 8;
 	dwidth = 2;
 	height = 13;
-	shuttle_id = "ferry_away";
 	json_key = "ferry";
 	name = "CentCom Ferry Dock";
+	shuttle_id = "ferry_away";
 	width = 5
 	},
 /turf/open/space,
@@ -12795,8 +12794,8 @@
 /obj/docking_port/stationary{
 	dwidth = 1;
 	height = 4;
-	shuttle_id = "pod3_away";
 	name = "recovery ship";
+	shuttle_id = "pod3_away";
 	width = 3
 	},
 /turf/open/space/basic,
@@ -13934,8 +13933,8 @@
 	dir = 8;
 	dwidth = 2;
 	height = 7;
-	shuttle_id = "pod_away";
 	name = "recovery ship";
+	shuttle_id = "pod_away";
 	width = 5
 	},
 /turf/open/space/basic,
@@ -14059,23 +14058,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"aDy" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
-	},
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aDz" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
@@ -16093,20 +16075,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/tdome/tdomeobserve)
-"aHy" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/vending/magivend,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aHz" = (
 /obj/effect/turf_decal/caution/red,
 /turf/open/floor/plasteel/dark,
@@ -18751,9 +18719,9 @@
 	dir = 8;
 	dwidth = 12;
 	height = 17;
-	shuttle_id = "syndicate_away";
 	name = "syndicate recon outpost";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/basic;
+	shuttle_id = "syndicate_away";
 	width = 23
 	},
 /turf/open/floor/engine,
@@ -18775,21 +18743,6 @@
 	pixel_y = 2
 	},
 /obj/structure/table/reinforced,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
-"aMA" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/kirbyplants/random,
-/obj/item/throwing_star/ninja,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aMB" = (
@@ -18976,7 +18929,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aMY" = (
@@ -18995,21 +18948,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"aMZ" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/chair,
-/obj/item/soapstone/infinite,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aNa" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21500,21 +21438,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"aRX" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/chair,
-/obj/item/storage/briefcase/sniperbundle,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aRY" = (
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -22064,8 +21987,8 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	shuttle_id = "pod4_away";
 	name = "recovery ship";
+	shuttle_id = "pod4_away";
 	width = 3
 	},
 /turf/open/space/basic,
@@ -23407,7 +23330,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aWb" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aWc" = (
@@ -23423,20 +23346,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"aWd" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/vending/liberationstation,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aWe" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -24151,21 +24060,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
-"aXz" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/kirbyplants/random,
-/obj/item/switchblade,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "aXA" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
@@ -24822,7 +24716,9 @@
 	},
 /area/holodeck/rec_center/chapelcourt)
 "aYX" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -25478,6 +25374,12 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"bQp" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/window/reinforced,
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
 "bSb" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -25588,6 +25490,20 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
+"cJM" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/window/reinforced,
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
+"cNm" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/vending/liberationstation,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "cOr" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 6
@@ -25606,6 +25522,15 @@
 /obj/machinery/vending/sustenance,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"cSn" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/brflowers,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
 "cZw" = (
 /turf/open/floor/plasteel,
 /area/centcom/supply)
@@ -25733,6 +25658,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/syndicate_mothership)
+"erk" = (
+/obj/structure/fluff/colton_statue{
+	layer = 4.4
+	},
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
 "evb" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -25744,6 +25675,11 @@
 /obj/machinery/vending/cola/starkist,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"ewL" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
 "eDa" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title1"
@@ -26026,6 +25962,24 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ctf)
+"hJg" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/chair,
+/obj/item/storage/briefcase/sniperbundle,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "hUh" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/plasteel/bluespace,
@@ -26206,6 +26160,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
+"jZR" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
 "kaB" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "64"
@@ -26505,6 +26464,14 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"not" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/vending/magivend,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "nuF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -26771,6 +26738,11 @@
 /obj/machinery/vending/wardrobe/cargo_wardrobe,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"pNt" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
 "pQy" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -26845,6 +26817,19 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"qSP" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/closed/indestructible/riveted,
+/area/centcom/tdome/tdomeadmin)
 "qSU" = (
 /obj/machinery/vending/toyliberationstation,
 /turf/open/floor/plasteel/bluespace,
@@ -26895,6 +26880,24 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
+"rxZ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/chair,
+/obj/item/soapstone/infinite,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "rBK" = (
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/dark,
@@ -26973,6 +26976,11 @@
 	icon_state = "info10"
 	},
 /area/centcom/testchamber)
+"tgb" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
 "tkz" = (
 /obj/machinery/vending/liberationstation,
 /turf/open/floor/plasteel/bluespace,
@@ -27197,6 +27205,12 @@
 /obj/machinery/vending/wallmed,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"vjD" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/window/reinforced,
+/turf/open/floor/grass,
+/area/centcom/tdome/tdomeadmin)
 "vpx" = (
 /obj/structure/goalnet/goalpost/right,
 /turf/open/floor/holofloor/grass,
@@ -70157,9 +70171,9 @@ aKa
 aJG
 aKr
 aIv
-aIR
-aIv
-aMZ
+aKA
+aXX
+rxZ
 aZr
 awS
 aBt
@@ -70177,7 +70191,7 @@ aNt
 aNQ
 aNt
 aNt
-auh
+not
 awS
 aMk
 aAF
@@ -70413,10 +70427,10 @@ aJQ
 aKa
 aJG
 aKc
-aIR
-aKA
 aIv
-aMA
+aIv
+aIv
+qSP
 aZr
 awS
 aBt
@@ -70671,9 +70685,9 @@ aJG
 aJG
 aKs
 aIR
-aKG
-aIv
-aHy
+jZR
+tgb
+vjD
 aZr
 awS
 aBt
@@ -70928,9 +70942,9 @@ aKb
 aJG
 aKt
 aKD
-aIR
-aIv
-aDy
+cSn
+erk
+bQp
 aMk
 awS
 add
@@ -71185,9 +71199,9 @@ aJG
 aJG
 aKu
 aIR
-aKG
-aIv
-aWd
+ewL
+pNt
+cJM
 aZr
 awS
 aBt
@@ -71441,10 +71455,10 @@ aJQ
 aKa
 aJG
 aKc
-aIR
-aKA
 aIv
-aXz
+aIv
+aIv
+qSP
 aZr
 awS
 aBt
@@ -71699,9 +71713,9 @@ aKa
 aJG
 aKv
 aIv
-aIR
-aIv
-aRX
+aKG
+aXX
+hJg
 aZr
 awS
 aBt
@@ -71719,7 +71733,7 @@ aNt
 aSt
 aNt
 aNt
-auh
+cNm
 awS
 aMk
 aAF

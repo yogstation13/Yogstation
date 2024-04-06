@@ -169,6 +169,8 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/plasma
 
+/obj/item/stack/sheet/mineral/plasma/ten
+	amount = 10
 /obj/item/stack/sheet/mineral/plasma/fifty
 	amount = 50
 

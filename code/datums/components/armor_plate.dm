@@ -10,7 +10,7 @@
 		return COMPONENT_INCOMPATIBLE
 
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(applyplate))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(applyplate))
 	RegisterSignal(parent, COMSIG_PREQDELETED, PROC_REF(dropplates))
 
 	if(_maxamount)

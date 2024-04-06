@@ -63,7 +63,7 @@
 		if(gang)
 			dominator_overlay.color = gang.color
 		. += dominator_overlay
-	if(obj_integrity/max_integrity < 0.66)
+	if(atom_integrity/max_integrity < 0.66)
 		. += "damage"
 
 /obj/machinery/dominator/update_icon_state()
@@ -90,7 +90,7 @@
 		. += span_notice("System on standby.")
 	if(nukedisk)
 		. += span_notice("[nukedisk] seems to be stuck inside.")
-	. += span_danger("System Integrity: [round((obj_integrity/max_integrity)*100,1)]%")
+	. += span_danger("System Integrity: [round((atom_integrity/max_integrity)*100,1)]%")
 
 /obj/machinery/dominator/process()
 	..()
@@ -138,7 +138,7 @@
 /obj/machinery/dominator/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.)
-		if(obj_integrity/max_integrity > 0.66)
+		if(atom_integrity/max_integrity > 0.66)
 			if(prob(damage_amount*2))
 				spark_system.start()
 		else if(!(stat & BROKEN))
@@ -146,7 +146,8 @@
 			update_appearance(UPDATE_ICON)
 
 
-/obj/machinery/dominator/obj_break(damage_flag)
+/obj/machinery/dominator/atom_break(damage_flag)
+	. = ..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_broken()
 
@@ -242,8 +243,8 @@
 			if(!was_stranded)
 				priority_announce("All hostile activity within station systems has ceased.","Network Alert")
 
-			if(get_security_level() == "delta")
-				set_security_level("red")
+			if(SSsecurity_level.get_current_level_as_text() == SEC_LEVEL_DELTA)
+				SSsecurity_level.set_level(SEC_LEVEL_RED)
 
 		gang.message_gangtools("Hostile takeover cancelled: Dominator is no longer operational.[gang.dom_attempts ? " You have [gang.dom_attempts] attempt remaining." : " The station network will have likely blocked any more attempts by us."]",1,1)
 

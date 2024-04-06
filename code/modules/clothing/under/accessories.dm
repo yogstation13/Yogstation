@@ -91,6 +91,8 @@
 	desc = "For some classy, murderous fun."
 	icon_state = "waistcoat"
 	item_state = "waistcoat"
+	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -99,6 +101,8 @@
 	desc = "The best part of a maid costume."
 	icon_state = "maidapron"
 	item_state = "maidapron"
+	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -428,3 +432,70 @@
 	attachment_slot = null
 	above_suit = TRUE
 	above_suit_adjustable = TRUE
+	
+
+//////////////
+//Pride Pins//
+//////////////
+
+/obj/item/clothing/accessory/pride
+	name = "pride pin"
+	desc = "A Nanotrasen Diversity & Inclusion Center-sponsored holographic pin to show off your sexuality, reminding the crew of their unwavering commitment to equity, diversity, and inclusion!"
+	icon_state = "pride"
+	above_suit_adjustable = TRUE
+	var/static/list/pride_reskins = list(
+		"Rainbow Pride" = list(
+			"icon" = "pride_rainbow",
+			"info" = "A colorful striped rainbow that represents diversity and Gay Pride, pride in same-gender love!"),
+		"Bisexual Pride" = list(
+			"icon" = "pride_bi",
+			"info" = "Purple, dark pink and dark blue stripes that represent Bisexual Pride, pride in loving both binary genders!"),
+		"Pansexual Pride" = list(
+			"icon" = "pride_pan",
+			"info" = "Yellow, pink and blue stripes that represent Pansexual Pride, pride in loving regardless of sex or gender!"),
+		"Asexual Pride"	= list(
+			"icon" = "pride_ace",
+			"info" = "Black, grey, white and purple stripes that represent Asexual Pride, pride in nonsexual love!"),
+		"Non-binary Pride" = list(
+			"icon" = "pride_enby",
+			"info" = "Yellow, white, purple and black stripes that represent Non-Binary pride, pride in identifying as a Non-Binary gender!"),
+		"Transgender Pride"= list(
+			"icon" = "pride_trans",
+			"info" = "Blue, pink and white stripes that represent Transgender pride, pride in transitioning genders!"),
+		"Intersex Pride" = list(
+			"icon" = "pride_intersex",
+			"info" = "A yellow background with a disctint purple circle that represents Intersex pride, pride in atypical sex characteristics!"),
+		"Lesbian Pride" = list(
+			"icon" = "pride_lesbian",
+			"info" = "Orange and pink shaded stripes that represent Lesbian pride, pride in same-gender love among women!"),
+		"Gay Pride" = list(
+			"icon" = "pride_gay",
+			"info" = "Navy and turquoise shaded stripes that represent Gay pride, pride in same-gender love among men!"),
+		//meme pins under this
+		"Ian Pride" = list( //we love ian
+			"icon" = "pride_ian",
+			"info" = "A orange corgi, pride in the HoP's beloved pet!"),
+		"Void Pride" = list( //darkness antag
+			"icon" = "pride",
+			"info" = "Nothing, pride in NOTHING!!!"),
+		"Suspicious Pride Pin" = list( //syndicate
+			"icon" = "pride_suspicious",
+			"info" = "A black S on a red banner, pride in chaos!"),
+		"Grey Pride" = list( //assistants
+			"icon" = "pride_grey",
+			"info" = "A robust toolbox over a grey background, pride in what is stationwide!"),
+		"Command Pride" = list(
+			"icon" = "pride_command",
+			"info" = "A blue background with an elaborate white trim, pride in your superiors!")
+		)
+
+/obj/item/clothing/accessory/pride/attack_self(mob/user)
+	. = ..()
+	var/list/radial_menu = list()
+	for(var/pin_type in pride_reskins)
+		var/datum/radial_menu_choice/choice = new()
+		choice.image = icon(icon, pride_reskins[pin_type]["icon"])
+		choice.info = pride_reskins[pin_type]["info"]
+		radial_menu[pin_type] =  choice
+	var/Pin = show_radial_menu(user, user, radial_menu, tooltips = TRUE)
+	icon_state = Pin ? pride_reskins[Pin]["icon"] : initial(icon_state)

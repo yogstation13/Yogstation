@@ -80,8 +80,13 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(/datum/material/iron = 1000)
 
+/obj/item/melee/cutlass/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack)
+
 /obj/item/melee/sabre/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack) // YES
 	AddComponent(/datum/component/butchering, 30, 95, 5) //fast and effective, but as a sword, it might damage the results.
 
 /obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
@@ -322,7 +327,8 @@
 /obj/item/melee/classic_baton/attack(mob/living/target, mob/living/user)
 	if(!on)
 		return ..()
-
+	if(!synth_check(user, SYNTH_RESTRICTED_WEAPON))
+		return
 	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return

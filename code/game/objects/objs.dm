@@ -2,6 +2,8 @@
 /obj
 	animate_movement = 2
 	speech_span = SPAN_ROBOT
+	uses_integrity = TRUE
+
 	var/obj_flags = CAN_BE_HIT
 	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
 
@@ -18,17 +20,8 @@
 	var/bare_wound_bonus = 0
 	/// Damage multiplier against structures, machines, mechs, and to a lesser extent silicons
 	var/demolition_mod = 1
-
-	var/datum/armor/armor
-	var/obj_integrity	//defaults to max_integrity
-	var/max_integrity = 500
-	var/integrity_failure = 0 //0 if we have no special broken behavior
-	///Damage under this value will be completely ignored
-	var/damage_deflection = 0
-
-	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
-
-	var/acid_level = 0 //how much acid is on that obj
+	/// How much acid is on this object
+	var/acid_level = 0 
 
 	var/persistence_replacement //have something WAY too amazing to live to the next round? Set a new path here. Overuse of this var will make me upset.
 	var/current_skin //Has the item been reskinned?
@@ -58,15 +51,6 @@
 
 /obj/Initialize(mapload)
 	. = ..()
-	if (islist(armor))
-		armor = getArmor(arglist(armor))
-	else if (!armor)
-		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
-
-	if(obj_integrity == null)
-		obj_integrity = max_integrity
 	if (set_obj_flags)
 		var/flagslist = splittext(set_obj_flags,";")
 		var/list/string_to_objflag = GLOB.bitfields["obj_flags"]
@@ -79,7 +63,6 @@
 	if((obj_flags & ON_BLUEPRINTS) && isturf(loc))
 		var/turf/T = loc
 		T.add_blueprints_preround(src)
-
 
 /obj/Destroy(force=FALSE)
 	if(!ismachinery(src))

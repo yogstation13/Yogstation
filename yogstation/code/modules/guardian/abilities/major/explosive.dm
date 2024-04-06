@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 	action_types = list(/datum/action/guardian/detonate_bomb)
 	var/bomb_cooldown = 0
 	var/list/bombs = list()
-	var/static/list/boom_signals = list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND)
+	var/static/list/boom_signals = list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND)
 
 /datum/guardian_ability/major/explosive/Attack(atom/target)
 	if (prob(40) && isliving(target))
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 	var/picked_bomb = input(user, "Pick which bomb to detonate", "Detonate Bomb") as null|anything in ability.bombs
 	if (picked_bomb)
 		ability.bombs -= picked_bomb
-		UnregisterSignal(picked_bomb, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND));
+		UnregisterSignal(picked_bomb, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND));
 		UnregisterSignal(picked_bomb, COMSIG_ATOM_EXAMINE);
 		log_bomber(user, "detonated a", picked_bomb)
 		explosion(picked_bomb, -1, 1, 1, 1)

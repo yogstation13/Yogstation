@@ -93,7 +93,7 @@
 	if(dodging && target && in_melee && isturf(loc) && isturf(target.loc))
 		var/datum/cb = CALLBACK(src, PROC_REF(sidestep))
 		if(sidestep_per_cycle > 1) //For more than one just spread them equally - this could changed to some sensible distribution later
-			var/sidestep_delay = SSnpcpool.wait / sidestep_per_cycle
+			var/sidestep_delay = round(SSnpcpool.wait / sidestep_per_cycle)
 			for(var/i in 1 to sidestep_per_cycle)
 				addtimer(cb, (i - 1)*sidestep_delay)
 		else //Otherwise randomize it to make the players guessing.
@@ -261,7 +261,7 @@
 /mob/living/simple_animal/hostile/proc/MeleeAction(patience = TRUE)
 	if(rapid_melee > 1)
 		var/datum/callback/cb = CALLBACK(src, PROC_REF(CheckAndAttack))
-		var/delay = SSnpcpool.wait / rapid_melee
+		var/delay = round(SSnpcpool.wait / rapid_melee)
 		for(var/i in 1 to rapid_melee)
 			addtimer(cb, (i - 1)*delay)
 	else
@@ -454,7 +454,7 @@
 		if(CanSmashTurfs(T))
 			T.attack_animal(src)
 		for(var/obj/O in T)
-			if(O.density && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES && !O.IsObscured())
+			if(O.density && !O.CanAllowThrough(src) && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES && !O.IsObscured())
 				O.attack_animal(src)
 				return
 
@@ -539,7 +539,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 	deltimer(search_objects_timer_id)
 	search_objects_timer_id = addtimer(CALLBACK(src, PROC_REF(RegainSearchObjects)), search_objects_regain_time, TIMER_STOPPABLE)
 
-
+	
 /mob/living/simple_animal/hostile/proc/RegainSearchObjects(value)
 	if(!value)
 		value = initial(search_objects)

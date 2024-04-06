@@ -79,7 +79,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// If set to TRUE, will update character_profiles on the next ui_data tick.
 	var/tainted_character_profiles = FALSE
 
-
 	///removed, kept here for migration in 'legacy_mood_migration.dm'
 	///DO NOT USE THIS!
 	var/yogtoggles

@@ -145,15 +145,6 @@ SUBSYSTEM_DEF(ticker)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire()
-	if(seclevel2num(get_security_level()) < SEC_LEVEL_GAMMA && !GLOB.cryopods_enabled)
-		GLOB.cryopods_enabled = TRUE
-		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
-			pod.PowerOn()
-	else if(seclevel2num(get_security_level()) >= SEC_LEVEL_GAMMA && GLOB.cryopods_enabled)
-		GLOB.cryopods_enabled = FALSE
-		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
-			pod.PowerOff()
-
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in)
@@ -222,6 +213,7 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
 		//Create and announce mode
+
 	var/list/datum/game_mode/runnable_modes
 	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
 		runnable_modes = config.get_runnable_modes()
@@ -360,6 +352,8 @@ SUBSYSTEM_DEF(ticker)
 
 		place.power_change()
 
+
+	rock_paper_scissors_puzzle()
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()

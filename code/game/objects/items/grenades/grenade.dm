@@ -58,6 +58,9 @@
 /obj/item/grenade/attack_self(mob/user)
 	if(!active)
 		if(clown_check(user))
+			if(HAS_TRAIT(user, TRAIT_NO_GRENADES))
+				to_chat(user, span_warning("You can't use grenades!"))
+				return
 			preprime(user)
 
 /obj/item/grenade/proc/log_grenade(mob/user, turf/T)
