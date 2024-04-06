@@ -265,7 +265,7 @@
 /datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap))
 		var/mob/living/simple_animal/hostile/venus_human_trap/planty = M
-		planty.weedkiller(reac_volume)
+		planty.weedkiller(reac_volume * 2)
 	if(methods & VAPOR)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M

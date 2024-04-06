@@ -6,7 +6,7 @@
 		else
 			to_chat(owner, "This [claimed.name] has already been claimed by another.")
 		return FALSE
-	if(!LAZYFIND(GLOB.the_station_areas, current_area))
+	if(!LAZYFIND(GLOB.the_station_areas, current_area.type))
 		claimed.balloon_alert(owner.current, "not part of station!")
 		return
 	// This is my Lair

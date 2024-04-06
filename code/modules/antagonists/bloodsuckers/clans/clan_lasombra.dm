@@ -59,6 +59,11 @@
 		vassal.eye_color = BLOODCULT_EYE
 		vassal.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		ADD_TRAIT(vassal, CULT_EYES, BLOODSUCKER_TRAIT)	
+		var/obj/item/organ/eyes/current_eyes = vassal.getorganslot(ORGAN_SLOT_EYES)
+		if(current_eyes)
+			current_eyes.color_cutoffs = list(25, 8, 5)
+			current_eyes.lighting_cutoff = LIGHTING_CUTOFF_REAL_LOW
+
 		vassal.update_body()
 		vassal.update_sight()
 		vassal.update_appearance()

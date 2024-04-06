@@ -13,7 +13,7 @@
 	alt_titles = list("Mute Entertainer", "Silent Jokester", "Pantomimist")
 
 	added_access = list()
-	base_access = list(ACCESS_THEATRE)
+	base_access = list(ACCESS_THEATRE, ACCESS_SERVHALL)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 
@@ -43,7 +43,7 @@
 	name = "Mime"
 	jobtype = /datum/job/mime
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/mime
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/mime
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/mime
@@ -56,7 +56,7 @@
 	/obj/item/book/mimery=1,
 	/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing=1,
 	/obj/item/stamp/mime = 1)
-
+	box = /obj/item/storage/box/survival/hug/black
 	backpack = /obj/item/storage/backpack/mime
 	satchel = /obj/item/storage/backpack/mime
 

@@ -492,6 +492,13 @@
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
 
+/obj/item/flashlight/lantern/pinapolantern
+	name = "pinap-o'-lantern"
+	desc = "It's a pineapple."
+	icon = 'yogstation/icons/obj/items.dmi'
+	icon_state = "pinapolantern"
+	item_state = "pinapolantern"
+
 /obj/item/flashlight/lantern/heirloom_moth
 	name = "old lantern"
 	desc = "An old lantern that has seen plenty of use."

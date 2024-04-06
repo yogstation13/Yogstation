@@ -40,8 +40,8 @@ GLOBAL_LIST_EMPTY(donators)
 	var/s = ""
 	var/server_name = CONFIG_GET(string/servername)
 	if (server_name)
-		s += "[server_name]\] &#8212; Dive in Now: Perfect for Beginners!"
-	s += "<br>99% Lag-Free <b>MRP</b> Experience! Join the Adventure!"
+		s += "<b>[server_name]</b>\] &#8212; Dive in Now: Perfect for Beginners!"
+	s += "<br>99% Lag-Free | Regular Events | Active Community"
 	s += "<br>Time: <b>[gameTimestamp("hh:mm")]</b> | Map: <b>[SSmapping?.config?.map_name || "Unknown"]</b> | Alert: <b>[capitalize(SSsecurity_level.get_current_level_as_text())]</b>"
 	s += "<br>\[<a href=\"https://yogstation.net/\">Website</a>" // link to our website so they can join forums + discord from here
 

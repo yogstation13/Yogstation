@@ -90,8 +90,16 @@
 		else
 			datumname = "element"
 			target._AddElement(lst)
-		log_admin("[key_name(usr)] has added [result] [datumname] to [key_name(target)].")
-		message_admins(span_notice("[key_name_admin(usr)] has added [result] [datumname] to [key_name_admin(target)]."))
+		log_admin("[key_name(usr)] has added [result] [datumname] to [key_name(src)].")
+		message_admins("<span class='notice'>[key_name_admin(usr)] has added [result] [datumname] to [key_name_admin(src)].</span>")
+
+	if(href_list[VV_HK_MODIFY_GREYSCALE])
+		if(!check_rights(NONE))
+			return
+		var/datum/greyscale_modify_menu/menu = new(target, usr, SSgreyscale.configurations)
+		menu.Unlock()
+		menu.ui_interact(usr)
+
 	if(href_list[VV_HK_REMOVECOMPONENT] || href_list[VV_HK_MASS_REMOVECOMPONENT])
 		if(!check_rights(NONE))
 			return
@@ -135,5 +143,6 @@
 					qdel(to_delete)
 
 		message_admins(span_notice("[key_name_admin(usr)] has [mass_remove? "mass" : ""] removed [path] component from [mass_remove? target.type : key_name_admin(target)]."))
+
 	if(href_list[VV_HK_CALLPROC])
 		usr.client.callproc_datum(target)

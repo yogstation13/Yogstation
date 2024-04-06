@@ -1,6 +1,4 @@
 #define SINGLE "single"
-#define VERTICAL "vertical"
-#define HORIZONTAL "horizontal"
 
 #define METAL 1
 #define WOOD 2
@@ -28,13 +26,13 @@
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM && bar_material == METAL)
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
 				return
 
 			to_chat(user, span_notice("You begin repairing [src]..."))
 			if(I.use_tool(src, user, 40, volume=40))
-				obj_integrity = clamp(obj_integrity + 20, 0, max_integrity)
+				update_integrity(clamp(atom_integrity + 20, 0, max_integrity))
 	else
 		return ..()
 
@@ -214,8 +212,6 @@
 
 
 #undef SINGLE
-#undef VERTICAL
-#undef HORIZONTAL
 
 #undef METAL
 #undef WOOD

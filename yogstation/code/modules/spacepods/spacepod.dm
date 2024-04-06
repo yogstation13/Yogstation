@@ -157,17 +157,17 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			to_chat(user, span_notice("Turn the [L] on first."))
 			return TRUE
 		if(W.tool_behaviour == TOOL_WELDER)
-			var/repairing = cell || internal_tank || equipment.len || (obj_integrity < max_integrity) || pilot || passengers.len
+			var/repairing = cell || internal_tank || equipment.len || (atom_integrity < max_integrity) || pilot || passengers.len
 			if(!hatch_open)
 				to_chat(user, span_warning("You must open the maintenance hatch before [repairing ? "attempting repairs" : "unwelding the armor"]."))
 				return TRUE
-			if(repairing && obj_integrity >= max_integrity)
+			if(repairing && atom_integrity >= max_integrity)
 				to_chat(user, span_warning("[src] is fully repaired!"))
 				return TRUE
 			to_chat(user, span_notice("You start [repairing ? "repairing [src]" : "slicing off [src]'s armor'"]"))
 			if(W.use_tool(src, user, 50, amount=3, volume = 50))
 				if(repairing)
-					obj_integrity = min(max_integrity, obj_integrity + 10)
+					update_integrity(min(max_integrity, atom_integrity + 10))
 					update_appearance(UPDATE_ICON)
 					to_chat(user, span_notice("You mend some [pick("dents","bumps","damage")] with [W]"))
 				else if(!cell && !internal_tank && !equipment.len && !pilot && !passengers.len && construction_state == SPACEPOD_ARMOR_WELDED)
@@ -233,13 +233,13 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 /obj/spacepod/proc/add_armor(obj/item/pod_parts/armor/armor)
 	desc = armor.pod_desc
 	max_integrity = armor.pod_integrity
-	obj_integrity = max_integrity - integrity_failure + obj_integrity
+	update_integrity(max_integrity - integrity_failure + atom_integrity)
 	pod_armor = armor
 	update_appearance(UPDATE_ICON)
 
 /obj/spacepod/proc/remove_armor()
 	if(!pod_armor)
-		obj_integrity = min(integrity_failure, obj_integrity)
+		update_integrity(min(integrity_failure, atom_integrity))
 		max_integrity = integrity_failure
 		desc = initial(desc)
 		pod_armor = null
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		var/obj/spacepod/S = loc
 		. += ""
 		. += "Spacepod Charge: [S.cell ? "[round(S.cell.charge,0.1)]/[S.cell.maxcharge] KJ" : "NONE"]"
-		. += "Spacepod Integrity: [round(S.obj_integrity,0.1)]/[S.max_integrity]"
+		. += "Spacepod Integrity: [round(S.get_integrity(),0.1)]/[S.max_integrity]"
 		. += "Spacepod Velocity: [round(sqrt(S.velocity_x*S.velocity_x+S.velocity_y*S.velocity_y), 0.1)] m/s"
 		. += ""
 
@@ -315,8 +315,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			if(prob(40))
 				take_damage(40, BRUTE, BOMB, 0)
 
-/obj/spacepod/obj_break()
-	if(obj_integrity <= 0)
+/obj/spacepod/atom_break()
+	. = ..()
+	if(atom_integrity <= 0)
 		return // nah we'll let the other boy handle it
 	if(construction_state < SPACEPOD_ARMOR_LOOSE)
 		return
@@ -422,9 +423,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			. += masked_armor
 		return
 
-	if(obj_integrity <= max_integrity / 2)
+	if(atom_integrity <= max_integrity / 2)
 		. += image(icon='goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_damage")
-		if(obj_integrity <= max_integrity / 4)
+		if(atom_integrity <= max_integrity / 4)
 			. += image(icon='goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_fire")
 
 	if(weapon && weapon.overlay_icon_state)

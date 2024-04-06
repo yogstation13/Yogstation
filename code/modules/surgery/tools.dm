@@ -241,6 +241,7 @@
 
 /obj/item/circular_saw/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cleave_attack)
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
 /obj/item/circular_saw/attack(mob/living/M, mob/user)
@@ -406,6 +407,9 @@
 	demolition_mod = 1.5 // lasers are good at cutting metal
 	sharpness = SHARP_EDGED
 
+/obj/item/scalpel/advanced/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/cleave_attack) // woe, angry medbay be upon ye
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)

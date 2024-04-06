@@ -200,6 +200,13 @@
 	glass_desc = "White and nutritious goodness!"
 	default_container = /obj/item/reagent_containers/food/condiment/milk
 
+/datum/reagent/consumable/milk/coconut
+	name = "Coconut Milk"
+	description = "An opaque white liquid produced by the mammary glands of a coconut... wait what?"
+	taste_description = "coconut"
+	glass_icon_state = "coconut_milk" //disregard it spawning the coconut shell out of nowhere
+	glass_name = "glass of coconut milk"
+
 /datum/reagent/consumable/cilk
 	name = "Cilk"
 	description = "A mixture of milk and.... cola? Who the fuck would do this?"

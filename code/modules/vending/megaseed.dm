@@ -18,6 +18,7 @@
 					/obj/item/seeds/chili = 3,
 					/obj/item/seeds/cinnamomum = 3,
 					/obj/item/seeds/cocoapod = 3,
+					/obj/item/seeds/coconut = 3,
 					/obj/item/seeds/coffee = 3,
 					/obj/item/seeds/corn = 3,
 					/obj/item/seeds/cotton = 3,

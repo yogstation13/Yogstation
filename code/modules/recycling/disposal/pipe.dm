@@ -10,7 +10,8 @@
 	dir = NONE			// dir will contain dominant direction for junction pipes
 	max_integrity = 200
 	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 90, ACID = 30)
-	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
+	plane = FLOOR_PLANE
+	layer = DISPOSAL_PIPE_LAYER // slightly lower than wires and other pipes
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	var/dpdir = NONE					// bitmask of pipe directions
 	var/initialize_dirs = NONE			// bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm
@@ -45,10 +46,10 @@
 // pipe is deleted
 // ensure if holder is present, it is expelled
 /obj/structure/disposalpipe/Destroy()
-	var/obj/structure/disposalholder/H = locate() in src
-	if(H)
-		H.active = FALSE
-		expel(H, get_turf(src), 0)
+	for(var/obj/structure/disposalholder/H as anything in src)
+		if(istype(H))
+			H.active = FALSE
+			expel(H, get_turf(src), 0)
 	QDEL_NULL(stored)
 	return ..()
 
@@ -134,7 +135,7 @@
 		H.contents_explosion(severity, target)
 
 
-/obj/structure/disposalpipe/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/structure/disposalpipe/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	if(damage_flag == MELEE && damage_amount < 10)
 		return 0
 	return ..()

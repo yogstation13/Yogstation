@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	var/fullcrit = InFullCritical()
 	if((InCritical() && !fullcrit) || message_mods[WHISPER_MODE] == MODE_WHISPER)
-		if(fullcrit)
+		if(fullcrit && !forced)
 			var/alertresult = alert(src, "You will be immediately killed by this action. Proceed?",,"Accept", "Decline")
 			if(alertresult == "Decline" || QDELETED(src))
 				return FALSE

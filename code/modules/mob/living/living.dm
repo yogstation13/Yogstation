@@ -719,6 +719,8 @@
 	return bleed_amount
 
 /mob/living/proc/getTrail()
+	if(is_synth(src))
+		return
 	if(getBruteLoss() < 300)
 		return pick("ltrails_1", "ltrails_2")
 	else
@@ -1595,6 +1597,10 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
 	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects
+
+/// Sprite to show for photocopying mob butts
+/mob/living/proc/get_butt_sprite()
+	return null
 
 /mob/living/carbon/proc/set_handcuffed(new_value)
 	if(handcuffed == new_value)

@@ -423,7 +423,7 @@
 					dumpster.do_flush()
 					drop()
 					return
-			var/reduction = thing.obj_integrity
+			var/reduction = thing.get_integrity()
 			thing.take_damage(remaining_damage)
 			remaining_damage -= reduction
 			if(thing.density)

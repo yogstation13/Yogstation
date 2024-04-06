@@ -15,6 +15,9 @@
 	if(default_unfasten_wrench(user, I))
 		return
 	else if(istype(I, /obj/item/stack/rods))
+		if(!anchored)
+			to_chat(user, span_warning("[src] must be anchored first!"))
+			return
 		var/obj/item/stack/rods/R = I
 		if(R.get_amount() >= 4)
 			R.use(4)

@@ -45,26 +45,15 @@
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else if(istype(W, repair_material))
-		if (obj_integrity >= max_integrity)
+		if (atom_integrity >= max_integrity)
 			to_chat(user, span_notice("[src] is already in perfect condition."))
 		else
 			var/obj/item/stack/sheet/mineral/T = W
 			T.use(1)
-			obj_integrity = max_integrity
+			update_integrity(max_integrity)
 			to_chat(user, span_notice("You repair [src] with [T]."))
 	else
 		return ..()
-
-/obj/item/shield/riot/examine(mob/user)
-	. = ..()
-	var/healthpercent = round((obj_integrity/max_integrity) * 100, 1)
-	switch(healthpercent)
-		if(50 to 99)
-			. += span_info("It looks slightly damaged.")
-		if(25 to 50)
-			. += span_info("It appears heavily damaged.")
-		if(0 to 25)
-			. += span_warning("It's falling apart!")
 
 /obj/item/shield/riot/proc/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/glassbr3.ogg', 100)
@@ -73,7 +62,7 @@
 /obj/item/shield/riot/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	if(!damage)
 		return ..()
-	if (obj_integrity <= damage)
+	if (atom_integrity <= damage)
 		var/turf/T = get_turf(owner)
 		T.visible_message(span_warning("[hitby] destroys [src]!"))
 		shatter(owner)

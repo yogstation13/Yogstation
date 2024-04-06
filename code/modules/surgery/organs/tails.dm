@@ -19,6 +19,9 @@
 /obj/item/organ/tail/get_availability(datum/species/species)
 	return (HAS_TAIL in species.species_traits)
 
+/obj/item/organ/tail/proc/get_butt_sprite()
+	return null
+
 /obj/item/organ/tail/cat
 	name = "cat tail"
 	desc = "A severed cat tail. Who's wagging now?"
@@ -42,6 +45,9 @@
 		H.dna.species.mutant_bodyparts -= "tail_human"
 		color = H.hair_color
 		H.update_body()
+
+/obj/item/organ/tail/cat/get_butt_sprite()
+	return BUTT_SPRITE_CAT
 
 /obj/item/organ/tail/lizard
 	name = "lizard tail"

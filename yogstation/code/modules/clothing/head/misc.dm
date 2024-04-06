@@ -56,6 +56,7 @@
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	resistance_flags = FLAMMABLE
+	clothing_flags = LARGE_WORN_ICON
 
 /obj/item/clothing/head/yogs/goatpope/equipped(mob/living/carbon/human/user, slot)
 	..()
