@@ -66,6 +66,10 @@
 
 /datum/martial_art/reverberating_palm/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/seismic/R = H.get_bodypart(BODY_ZONE_R_ARM)
+	var/turf/current = get_turf(H)
+	for(var/obj/outside in current.contents)
+		if(H in outside.contents)
+			return FALSE
 	if(R)
 		if(!istype(R, /obj/item/bodypart/r_arm/robot/seismic))
 			return FALSE
