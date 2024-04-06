@@ -4,6 +4,11 @@
 	caliber = CALIBER_FOAM
 	var/hugbox = FALSE
 
+/obj/item/ammo_box/magazine/toy/Initialize(mapload)
+	. = ..()
+	if(hugbox) //noob
+		name = "safety-first [name]"
+
 /obj/item/ammo_box/magazine/toy/attempt_load(obj/item/A, mob/user, silent, replace_spent)
 	if(istype(A, /obj/item/ammo_casing/reusable/foam_dart/riot) && hugbox)
 		to_chat(user, span_danger("The dart seems to be blocked from entering by a bright orange piece of plastic! How annoying."))
