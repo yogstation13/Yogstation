@@ -80,6 +80,11 @@
 	///The color of that light
 	var/comp_light_color = "#FFFFFF"
 
+	///The full name of the stored ID card's identity. These vars should probably be on the PDA.
+	var/saved_identification
+	///The job title of the stored ID card
+	var/saved_job
+
 	// Preset Stuff
 	var/list/starting_components = list()
 	var/list/starting_files = list()

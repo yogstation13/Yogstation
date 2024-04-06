@@ -1,4 +1,5 @@
-
+// Used to stringify message targets before sending the signal datum.
+#define STRINGIFY_PDA_TARGET(name, job) "[name] ([job])"
 /**
  * program_flags
  * Used by programs to tell the ModPC any special functions it has.

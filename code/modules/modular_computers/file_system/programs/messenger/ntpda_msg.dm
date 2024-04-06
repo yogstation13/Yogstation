@@ -23,6 +23,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	var/ringtone = "beep"
 	var/receiving = FALSE
 	var/silent = FALSE
+	var/spam_mode = FALSE
 	var/next_message = 0
 	var/next_keytry = 0
 	var/authed = FALSE

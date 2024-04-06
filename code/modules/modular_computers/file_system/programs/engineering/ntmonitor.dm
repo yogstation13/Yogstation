@@ -25,7 +25,7 @@
 			var/obj/machinery/ntnet_relay/target_relay = locate(params["ref"]) in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay)
 			if(!istype(target_relay))
 				return
-			target_relay.is_operational(!target_relay.relay_enabled)
+			target_relay.is_operational(enabled = 0)
 			return TRUE
 		if("purgelogs")
 			SSmodular_computers.purge_logs()
@@ -33,7 +33,7 @@
 		if("toggle_mass_pda")
 			if(!(params["ref"] in GLOB.pda_messengers))
 				return
-			var/datum/computer_file/program/messenger/target_messenger = GLOB.pda_messengers[params["ref"]]
+			var/datum/computer_file/program/pdamessager/target_messenger = GLOB.pda_messengers[params["ref"]]
 			target_messenger.spam_mode = !target_messenger.spam_mode
 			return TRUE
 
@@ -43,7 +43,7 @@
 	data["ntnetrelays"] = list()
 	for(var/obj/machinery/ntnet_relay/relays as anything in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay))
 		var/list/relay_data = list()
-		relay_data["is_operational"] = !!relays.is_operational
+		relay_data["is_operational"] = !!relays.is_operational()
 		relay_data["name"] = relays.name
 		relay_data["ref"] = REF(relays)
 
@@ -58,7 +58,7 @@
 
 	data["tablets"] = list()
 	for(var/messenger_ref in get_messengers_sorted_by_name())
-		var/datum/computer_file/program/messenger/app = GLOB.pda_messengers[messenger_ref]
+		var/datum/computer_file/program/pdamessager/app = GLOB.pda_messengers[messenger_ref]
 		var/obj/item/modular_computer/pda = app.computer
 
 		var/list/tablet_data = list()

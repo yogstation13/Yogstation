@@ -44,9 +44,9 @@ SUBSYSTEM_DEF(modular_computers)
 			continue
 		prog = new prog
 
-		if(prog.program_flags & PROGRAM_ON_NTNET_STORE)
+		if(prog.program_state & PROGRAM_ON_NTNET_STORE)
 			available_station_software.Add(prog)
-		if(prog.program_flags & PROGRAM_ON_SYNDINET_STORE)
+		if(prog.program_state & PROGRAM_ON_SYNDINET_STORE)
 			available_antag_software.Add(prog)
 
 ///Attempts to find a new file through searching the available stores with its name.

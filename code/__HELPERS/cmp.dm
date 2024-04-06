@@ -162,3 +162,9 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_filter_data_priority(list/A, list/B)
 	return A["priority"] - B["priority"]
+
+/proc/cmp_pdajob_asc(datum/computer_file/program/pdamessager/A, datum/computer_file/program/pdamessager/B)
+	return sorttext(B?.computer?.saved_job, A?.computer?.saved_job)
+
+/proc/cmp_pdaname_asc(datum/computer_file/program/pdamessager/A, datum/computer_file/program/pdamessager/B)
+	return sorttext(B?.computer?.saved_identification, A?.computer?.saved_identification)
