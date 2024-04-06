@@ -3,7 +3,7 @@ s///The maximum amount of logs that can be generated before they start overwriti
 
 SUBSYSTEM_DEF(modular_computers)
 	name = "Modular Computers"
-	flags = SS_KEEP_TIMING | SS_NO_INIT
+	flags = SS_KEEP_TIMING | SS_NO_FIRE
 	wait = 1 MINUTES
 	runlevels = RUNLEVEL_GAME
 
