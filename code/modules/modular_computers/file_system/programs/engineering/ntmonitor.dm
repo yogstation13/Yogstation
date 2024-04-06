@@ -25,7 +25,7 @@
 			var/obj/machinery/ntnet_relay/target_relay = locate(params["ref"]) in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay)
 			if(!istype(target_relay))
 				return
-			target_relay.set_relay_enabled(!target_relay.relay_enabled)
+			target_relay.is_operational(!target_relay.relay_enabled)
 			return TRUE
 		if("purgelogs")
 			SSmodular_computers.purge_logs()

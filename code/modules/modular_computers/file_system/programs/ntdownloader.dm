@@ -123,9 +123,9 @@
 	if(ntnet_status != 3) // Ethernet unaffected by distance
 		var/dist = 100
 		// Loop through every ntnet relay, find the closest one and use that
-		for(var/obj/machinery/ntnet_relay/n in SSmodular_computers.ntnet_relays)
-			var/cur_dist = get_dist_euclidian(n, computer)
-			if(n.is_operational() && cur_dist <= dist)
+		for(var/obj/machinery/ntnet_relay/relays in GLOB.ntnet_relays)
+			var/cur_dist = get_dist_euclidian(relays, computer)
+			if(relays.is_operational() && cur_dist <= dist)
 				dist = cur_dist
 		// At 0 tiles distance, 3x download speed. At 100 tiles distance, 1x download speed.
 		download_netspeed *= max((-dist/50) + 3, 1)
