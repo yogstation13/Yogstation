@@ -2781,6 +2781,15 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"bhk" = (
+/mob/living/simple_animal/crab/kreb{
+	desc = "Here to lay down the hard claws of the law!";
+	health = 50;
+	name = "Officer Kreb";
+	real_name = "Officer Kreb"
+	},
+/turf/open/floor/plasteel,
+/area/security/checkpoint)
 "bhn" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10298,6 +10307,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"eiT" = (
+/mob/living/simple_animal/cockroach{
+	desc = "Virtually unkillable.";
+	name = "Becquerel";
+	sentience_type = 5;
+	status_flags = 16
+	},
+/turf/open/floor/plating,
+/area/maintenance/disposal/incinerator)
 "eiX" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -13985,6 +14003,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"fLh" = (
+/mob/living/simple_animal/pet/penguin/emperor/shamebrero{
+	desc = "Was used in a experiment by the RD to test how a penguin with a sombrero would effect morale. Results were uncertain but is being kept as the science department's mascot anyway.";
+	name = "Anadear";
+	real_name = "Anadear"
+	},
+/turf/open/floor/engine,
+/area/science/explab)
 "fLk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -29836,9 +29862,6 @@
 /obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/port/fore)
-"mKX" = (
-/turf/open/floor/plasteel,
-/area/security/checkpoint)
 "mLc" = (
 /obj/machinery/camera{
 	c_tag = "Research - Xenobiology Cell 6";
@@ -34277,6 +34300,40 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"oAF" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/hos";
+	dir = 4;
+	name = "Head of Security's Office APC";
+	pixel_x = 24
+	},
+/mob/living/simple_animal/hostile/retaliate/bat{
+	desc = "A fierce companion for any person of power, this spider has been carefully trained by Nanotrasen specialists. Its beady, staring eyes send shivers down your spine.";
+	emote_hear = list("chitters");
+	faction = list("spiders");
+	harm_intent_damage = 3;
+	health = 200;
+	icon_dead = "guard_dead";
+	icon_gib = "guard_dead";
+	icon_living = "guard";
+	icon_state = "guard";
+	maxHealth = 250;
+	max_co2 = 5;
+	max_tox = 2;
+	melee_damage_lower = 15;
+	melee_damage_upper = 20;
+	min_oxy = 5;
+	movement_type = 1;
+	name = "Sergeant Araneus";
+	real_name = "Sergeant Araneus";
+	response_help = "pets";
+	turns_per_move = 10
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "oAH" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -35184,6 +35241,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"oWY" = (
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "oXw" = (
 /obj/machinery/light,
 /obj/item/kirbyplants/random,
@@ -39277,6 +39338,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"qIM" = (
+/mob/living/simple_animal/pet/dog/pug{
+	desc = "Much better at protecting the armory than your average warden.";
+	name = "Warden Jacob";
+	real_name = "Warden Jacob"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "qIR" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -55123,18 +55192,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"xuj" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/heads/hos";
-	dir = 4;
-	name = "Head of Security's Office APC";
-	pixel_x = 24
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "xuF" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
@@ -82329,7 +82386,7 @@ swf
 qgC
 cLs
 bvP
-mBt
+fLh
 vpD
 mXH
 qkE
@@ -91383,7 +91440,7 @@ jVy
 mew
 sii
 mvc
-mvc
+oWY
 mvc
 mew
 jvO
@@ -92588,7 +92645,7 @@ ylr
 ylr
 naG
 jds
-mKX
+bhk
 slw
 hWs
 klw
@@ -101411,7 +101468,7 @@ sMl
 wCc
 wCc
 isK
-wCc
+eiT
 wCc
 bBZ
 tzk
@@ -104972,7 +105029,7 @@ nXl
 jEc
 wiy
 ccS
-woJ
+qIM
 woJ
 woJ
 bwX
@@ -105254,7 +105311,7 @@ puT
 kPJ
 uVg
 cMD
-xuj
+oAF
 ixN
 kvm
 yda
