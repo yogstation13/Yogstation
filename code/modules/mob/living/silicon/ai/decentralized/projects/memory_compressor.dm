@@ -25,6 +25,7 @@
 	var/total_cpu_used = 0
 	for(var/I in dashboard.cpu_usage)
 		total_cpu_used += dashboard.cpu_usage[I]
-	if(total_cpu_used < 0.85)
+	if(total_cpu_used > 0.85)
 		return TRUE
 	to_chat(ai, span_warning("Unable to run this program. You require 15% free CPU!"))
+	return FALSE
