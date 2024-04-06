@@ -210,8 +210,14 @@ obj/structure/elite_tumor/proc/return_elite()
 
 /obj/structure/elite_tumor/Initialize(mapload)
 	. = ..()
-	//AddComponent(/datum/component/gps, "Menacing Signal")
+	AddComponent(/datum/component/gps, "Menacing Signal")
 	START_PROCESSING(SSobj, src)
+
+/obj/item/gps/internal/elite
+	icon_state = null
+	gpstag = "Menacing Signal"
+	desc = "Something strange sleeps beneath the planet."
+	invisibility = 100
 
 /obj/structure/elite_tumor/Destroy()
 	STOP_PROCESSING(SSobj, src)
