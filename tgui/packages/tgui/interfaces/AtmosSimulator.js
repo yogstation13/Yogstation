@@ -33,12 +33,12 @@ export const AtmosSimulator = (props, context) => {
         <Tabs>
           <Tabs.Tab
             selected={mode === 1}
-            onClick={ () => act('set_mode', {mode: 1}) }>
+            onClick={() => act('set_mode', { mode: 1 })}>
             Bomb Simulator
           </Tabs.Tab>
           <Tabs.Tab
             selected={mode === 2}
-            onClick={ () => act('set_mode', {mode: 2}) }>
+            onClick={() => act('set_mode', { mode: 2 })}>
             Tank Reaction
           </Tabs.Tab>
         </Tabs>
