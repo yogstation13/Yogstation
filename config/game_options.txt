@@ -54,7 +54,7 @@ WALK_DELAY 6
 ## Entries completely override all subtypes. Later entries have precedence over earlier entries.
 ## This means if you put /mob 0 on the last entry, it will null out all changes, while if you put /mob as the first entry and
 ## /mob/living/carbon/human on the last entry, the last entry will override the first.
-##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/human 0
+MULTIPLICATIVE_MOVESPEED /mob/living/carbon/human 0.1
 ##MULTIPLICATIVE_MOVESPEED /mob/living/silicon/robot 0
 MULTIPLICATIVE_MOVESPEED /mob/living/carbon/monkey 0
 ##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/alien 0

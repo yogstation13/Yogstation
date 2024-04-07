@@ -66,7 +66,7 @@
 
 // Copy an existing turf and put it on top
 // Returns the new turf
-/turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY, copy_air = FALSE)
+/turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY, copy_air = FALSE, flags)
 	var/list/new_baseturfs = list()
 	new_baseturfs += baseturfs
 	new_baseturfs += type
@@ -83,7 +83,7 @@
 			target_baseturfs -= new_baseturfs & GLOB.blacklisted_automated_baseturfs
 			new_baseturfs += target_baseturfs
 
-	var/turf/newT = copytarget.copyTurf(src, copy_air)
+	var/turf/newT = copytarget.copyTurf(src, copy_air, flags)
 	newT.baseturfs = baseturfs_string_list(new_baseturfs, newT)
 	return newT
 

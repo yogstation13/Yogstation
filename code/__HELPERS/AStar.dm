@@ -234,3 +234,7 @@ Actual Adjacent procs :
 			if(!istype(D, /obj/structure/window) && D.density) //had to do it silly like this so rwindows didn't stop it outright
 				return FALSE
 		return TRUE
+
+/turf/proc/wiringTurfTest(caller, turf/T, ID, simulated_only)
+	if(T && !T.density && !istype(T.loc, /area/space))
+		return TRUE

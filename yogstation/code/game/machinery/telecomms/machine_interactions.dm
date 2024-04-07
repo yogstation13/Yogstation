@@ -4,11 +4,11 @@
         return U.aiMulti
     if(iscyborg(user) && in_range(user,src)) // I couldn't tell you why this has a range requirement, that's just what was in the original code.
         var/obj/held_thing = user.get_active_held_item()
-        if(istype(held_thing,/obj/item/multitool))
+        if(multitool_check_buffer(user, held_thing))
             return held_thing
         else
             return
-    var/obj/item/multitool/held_thing = user.is_holding_tool_quality(TOOL_MULTITOOL)
-    if(istype(held_thing))
-        return held_thing
+    var/obj/item/held_item = user.is_holding_tool_quality(TOOL_MULTITOOL)
+    if(multitool_check_buffer(user, held_item))
+        return held_item
     return

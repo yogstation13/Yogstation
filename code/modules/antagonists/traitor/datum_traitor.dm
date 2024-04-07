@@ -162,10 +162,12 @@
 			if(minorObjective)
 				add_objective(minorObjective)
 		if(!(locate(/datum/objective/escape) in objectives))
-			var/datum/objective/escape/escape_objective = new
-			escape_objective.owner = owner
-			add_objective(escape_objective)
-			return
+			if(prob(70)) //doesn't always need to escape
+				var/datum/objective/escape/escape_objective = new
+				escape_objective.owner = owner
+				add_objective(escape_objective)
+			else
+				forge_single_human_objective()
 
 /datum/antagonist/traitor/proc/forge_ai_objectives()
 	var/objective_count = 0
@@ -198,13 +200,8 @@
 			destroy_objective.owner = owner
 			destroy_objective.find_target()
 			add_objective(destroy_objective)
-		else if(prob(20))
-			var/datum/objective/maroon_organ/organ_objective = new
-			organ_objective.owner = owner
-			organ_objective.finalize()
-			add_objective(organ_objective)
 		else
-			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon)
+			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon, /datum/objective/maroon_organ)
 			var/datum/objective/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()

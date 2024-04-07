@@ -50,7 +50,7 @@
 	var/max_hardware_size = 0
 	/// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/steel_sheet_cost = 5
-	/// What set of icons should be used for program overlays.
+	/// What set of icons should be used for program overlays. curently unused
 	var/overlay_skin = null
 
 	integrity_failure = 50
@@ -156,6 +156,9 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+		var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
+		if(ai_slot)
+			ai_slot.try_eject(user)
 		if(card_slot2)
 			var/obj/item/card/id/target_id_card = card_slot2.stored_card
 			if(!target_id_card)
@@ -175,7 +178,10 @@
 /obj/item/modular_computer/RemoveID()
 	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	return (card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+	if(card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+		update_appearance(UPDATE_ICON)
+		return TRUE
+	return FALSE
 
 /obj/item/modular_computer/InsertID(obj/item/inserting_item)
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
@@ -189,7 +195,7 @@
 		return FALSE
 
 	if((card_slot?.try_insert(inserting_id)) || (card_slot2?.try_insert(inserting_id)))
-		update_appearance()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	//to_chat(user, "<span class='warning'>This computer doesn't have an open card slot.</span>")
 	return FALSE
@@ -269,6 +275,11 @@
 
 	. += get_modular_computer_parts_examine(user)
 
+/obj/item/modular_computer/update_icon(updates=ALL)
+	if(!physical)
+		return
+	return ..()
+
 /obj/item/modular_computer/update_icon_state()
 	if(!icon_state_powered || !icon_state_unpowered) //no valid icon, don't update.
 		return ..()
@@ -281,6 +292,10 @@
 	if(!init_icon)
 		return
 
+//	if(overlay_skin)
+//		program_overlay = "[overlay_skin]-"
+	if(!enabled && use_power() && !isnull(icon_state_screensaver))
+		. += mutable_appearance(init_icon, icon_state_screensaver)
 	if(enabled)
 		. += active_program ? mutable_appearance(init_icon, active_program.program_icon_state) : mutable_appearance(init_icon, icon_state_menu)
 	if(atom_integrity <= integrity_failure)
@@ -593,7 +608,7 @@
 			to_chat(user, span_notice("You repair \the [src]."))
 		return
 
-	..()
+	return ..()
 
 // Used by processor to relay qdel() to machinery type.
 /obj/item/modular_computer/proc/relay_qdel()
@@ -614,19 +629,24 @@
 		if(istype(new_part, /obj/item/computer_hardware))
 			var/result = install_component(new_part)
 			if(result == FALSE)
-				CRASH("[src] failed to install starting component for an unknown reason")
+				CRASH("[src] failed to install starting component for an unknown reason.")
 		else if(istype(new_part, /obj/item/stock_parts/cell/computer))
 			var/new_cell = new /obj/item/computer_hardware/battery(src, part)
 			qdel(new_part)
 			var/result = install_component(new_cell)
 			if(result == FALSE)
-				CRASH("[src] failed to install starting cell for an unknown reason")
+				CRASH("[src] failed to install starting cell for an unknown reason.")
 
 /obj/item/modular_computer/proc/install_starting_files()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
-
+	if(!istype(hard_drive) || starting_files.len < 1)
+		if(!starting_files.len < 1)
+			CRASH("[src] failed to install files due to not having a hard drive even though it has starting files.")
+		return
 	for(var/datum/computer_file/file in starting_files)
 		var/result = hard_drive.store_file(file)
+		if(result == FALSE)
+			CRASH("[src] failed to install starting files for an unknown reason.")
 		if(istype(result, initial_program) && istype(result, /datum/computer_file/program))
 			var/datum/computer_file/program/program = result
 			if(program.requires_ntnet && program.network_destination)
@@ -636,6 +656,17 @@
 			program.alert_pending = FALSE
 			enabled = TRUE
 
+/obj/item/modular_computer/pickup(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(parent_moved))
+
+/obj/item/modular_computer/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+
+/obj/item/modular_computer/proc/parent_moved()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED)
+
 /// Sets visible messages to also send to holder because coders didn't know it didn't do this
 /obj/item/modular_computer/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags)
 	. = ..()
@@ -644,3 +675,4 @@
 
 /obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
 	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE
+

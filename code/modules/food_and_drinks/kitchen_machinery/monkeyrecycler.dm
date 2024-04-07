@@ -95,7 +95,6 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 		to_chat(user, span_danger("The machine needs at least 1 monkey worth of material to produce a monkey cube. It currently has [stored_matter]."))
 
 /obj/machinery/monkey_recycler/multitool_act(mob/living/user, obj/item/multitool/I)
-	if(istype(I))
-		to_chat(user, span_notice("You log [src] in the multitool's buffer."))
-		I.buffer = src
-		return TRUE
+	to_chat(user, span_notice("You log [src] in the multitool's buffer."))
+	multitool_set_buffer(user, I, src)
+	return TRUE

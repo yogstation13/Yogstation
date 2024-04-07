@@ -42,6 +42,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NODECONSTRUCT_1				(1<<7)
 /// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
 #define PREVENT_CLICK_UNDER_1		(1<<9)
+/// Can players recolor this in-game via vendors (and maybe more if support is added)?
+#define IS_PLAYER_COLORABLE_1 (1<<10)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
 #define TESLA_IGNORE_1				(1<<11)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
@@ -210,7 +212,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 	if(HAS_TRAIT_FROM_ONLY(x, TRAIT_KEEP_TOGETHER, KEEP_TOGETHER_ORIGINAL))\
 		REMOVE_TRAIT(x, TRAIT_KEEP_TOGETHER, KEEP_TOGETHER_ORIGINAL);\
 	else if(!HAS_TRAIT(x, TRAIT_KEEP_TOGETHER))\
-	 	x.appearance_flags &= ~KEEP_TOGETHER
+		x.appearance_flags &= ~KEEP_TOGETHER
 
 //religious_tool flags
 #define RELIGION_TOOL_INVOKE 		(1<<0)

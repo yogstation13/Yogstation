@@ -27,7 +27,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	desc = "A flexible, superconducting insulated cable for heavy-duty power transfer."
 	icon = 'icons/obj/power_cond/cables.dmi'
 	icon_state = "0-1"
-	plane = FLOOR_PLANE
+	///Yogs, Biome wanted cables above pipes
+	//plane = FLOOR_PLANE
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
@@ -610,7 +611,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
-		to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
+		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
 		return
 
 	if(get_amount() < 1) // Out of cable
@@ -629,6 +630,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			dirn = get_dir(T, user)
 	else
 		dirn = dirnew
+
 
 	for(var/obj/structure/cable/LC in T)
 		if(LC.d2 == dirn && LC.d1 == 0)
@@ -672,7 +674,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/turf/T = C.loc
 
 	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
-		to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
+		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
 		return
 	
 	if(get_amount() < 1) // Out of cable

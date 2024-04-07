@@ -279,7 +279,7 @@
 /turf/open/floor/plating,
 /area/awaymission/academy/academycellar)
 "eT" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},

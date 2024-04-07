@@ -177,6 +177,9 @@
 				if(HAS_TRAIT(src, TRAIT_PACIFISM))
 					to_chat(src, span_notice("You gently let go of [throwable_mob]."))
 					return
+				if(!synth_check(src, SYNTH_ORGANIC_HARM))
+					to_chat(src, span_notice("You gently let go of [throwable_mob]."))
+					return
 				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 				var/turf/end_T = get_turf(target)
 				if(start_T && end_T)
@@ -188,6 +191,9 @@
 		dropItemToGround(I, silent = TRUE)
 
 		if(HAS_TRAIT(src, TRAIT_PACIFISM) && I.throwforce)
+			to_chat(src, span_notice("You set [I] down gently on the ground."))
+			return
+		if(!synth_check(src, SYNTH_RESTRICTED_WEAPON))
 			to_chat(src, span_notice("You set [I] down gently on the ground."))
 			return
 
@@ -567,6 +573,7 @@
 		return
 
 	var/new_sight = initial(sight)
+	see_infrared = initial(see_infrared)
 	lighting_cutoff = initial(lighting_cutoff)
 	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 
@@ -582,6 +589,11 @@
 			client.view_size.resetToDefault(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
 			client.view_size.addTo("2x2")
 
+	for(var/image/I in infra_images)
+		if(client)
+			client.images.Remove(I)
+	infra_images = list()
+	remove_client_colour(/datum/client_colour/monochrome_infra)
 
 	if(client.eye && client.eye != src)
 		var/atom/A = client.eye
@@ -599,6 +611,22 @@
 		if(length(glasses.color_cutoffs))
 			lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, glasses.color_cutoffs)
 
+	if(HAS_TRAIT(src, TRAIT_INFRARED_VISION))
+		add_client_colour(/datum/client_colour/monochrome_infra)
+		var/image/A = null
+		see_infrared = TRUE
+		lighting_cutoff = max(lighting_cutoff, 10)
+
+		if(client)
+			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+				if(H == src)
+					continue
+				A = image('icons/mob/simple_human.dmi', H, "fullwhite")
+				A.add_overlay(emissive_appearance('icons/mob/simple_human.dmi', "fullwhite", H))
+				A.name = "white haze"
+				A.override = 1
+				infra_images |= A
+				client.images |= A
 
 	if(HAS_TRAIT(src, TRAIT_TRUE_NIGHT_VISION))
 		lighting_cutoff = max(lighting_cutoff, LIGHTING_CUTOFF_HIGH)

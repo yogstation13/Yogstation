@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(tcomms_servers)
+
 /obj/item/radio/server
 
 /obj/item/radio/server/can_receive(frequency,levels)
@@ -21,6 +23,11 @@
 	Compiler = new()
 	Compiler.Holder = src
 	server_radio = new()
+	GLOB.tcomms_servers += src
+	. = ..()
+
+/obj/machinery/telecomms/server/Destroy()
+	GLOB.tcomms_servers -= src
 	. = ..()
 
 /obj/machinery/telecomms/server/proc/update_logs()

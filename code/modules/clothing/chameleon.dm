@@ -1,5 +1,8 @@
 #define EMP_RANDOMISE_TIME 300
 
+/atom/proc/on_chameleon_change()
+	return
+
 /datum/action/item_action/chameleon/drone/randomise
 	name = "Randomise Headgear"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
@@ -218,16 +221,39 @@
 		thing.update_slot_icon()
 	build_all_button_icons()
 
-/datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item, obj/item/target = src.target) //yogs -- add support for cham hardsuits
-	target.name = initial(picked_item.name)
-	target.desc = initial(picked_item.desc)
-	target.icon_state = initial(picked_item.icon_state)
-	if(isitem(target))
-		var/obj/item/I = target
-		I.item_state = initial(picked_item.item_state)
-		I.mob_overlay_icon = initial(picked_item.mob_overlay_icon)
-		if(istype(I, /obj/item/clothing) && istype(picked_item, /obj/item/clothing))
-			var/obj/item/clothing/CL = I
+/datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item) //yogs -- add support for cham hardsuits
+	var/atom/atom_target = target
+	atom_target.name = initial(picked_item.name)
+	atom_target.desc = initial(picked_item.desc)
+	atom_target.icon_state = initial(picked_item.icon_state)
+
+	if(isitem(atom_target))
+		var/obj/item/item_target = target
+		item_target.mob_overlay_icon = initial(picked_item.mob_overlay_icon)
+		item_target.lefthand_file = initial(picked_item.lefthand_file)
+		item_target.righthand_file = initial(picked_item.righthand_file)
+		if(initial(picked_item.greyscale_colors))
+			if(initial(picked_item.greyscale_config_worn))
+				item_target.mob_overlay_icon = SSgreyscale.GetColoredIconByType(
+					initial(picked_item.greyscale_config_worn),
+					initial(picked_item.greyscale_colors),
+				)
+			if(initial(picked_item.greyscale_config_inhand_left))
+				item_target.lefthand_file = SSgreyscale.GetColoredIconByType(
+					initial(picked_item.greyscale_config_inhand_left),
+					initial(picked_item.greyscale_colors),
+				)
+
+			if(initial(picked_item.greyscale_config_inhand_right))
+				item_target.righthand_file = SSgreyscale.GetColoredIconByType(
+					initial(picked_item.greyscale_config_inhand_right),
+					initial(picked_item.greyscale_colors),
+				)
+
+		item_target.worn_icon_state = initial(picked_item.worn_icon_state)
+		item_target.item_state = initial(picked_item.item_state)
+		if(isclothing(item_target) && ispath(picked_item, /obj/item/clothing))
+			var/obj/item/clothing/CL = item_target
 			var/obj/item/clothing/PCL = picked_item
 			CL.flags_cover = initial(PCL.flags_cover)
 			CL.flags_inv = initial(PCL.flags_inv)
@@ -235,7 +261,17 @@
 				var/obj/item/clothing/mask/chameleon/CH = CL
 				if(CH.vchange)
 					CH.flags_inv |= HIDEFACE // We want the chameleon mask hiding the face to retain voice changing!
-	if(istype(target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
+
+	if(initial(picked_item.greyscale_config) && initial(picked_item.greyscale_colors))
+		atom_target.icon = SSgreyscale.GetColoredIconByType(
+			initial(picked_item.greyscale_config),
+			initial(picked_item.greyscale_colors),
+		)
+
+	else
+		atom_target.icon = initial(picked_item.icon)
+
+	if(istype(atom_target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
 		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
 		var/obj/item/clothing/head/helmet/helmet = initial(HS.helmettype)
@@ -244,8 +280,9 @@
 		I.head_piece.update_appearance(UPDATE_ICON)
 		qdel(helmet)
 		//YOGS END
-	target.icon = initial(picked_item.icon)
-	target.on_chameleon_change()
+
+	atom_target.icon = initial(picked_item.icon)
+	atom_target.on_chameleon_change()
 	current_disguise = picked_item
 
 /datum/action/item_action/chameleon/change/Trigger()
@@ -272,8 +309,13 @@
 /obj/item/clothing/under/chameleon
 //starts off as black
 	name = "black jumpsuit"
-	icon_state = "black"
-	item_state = "bl_suit"
+	icon_state = "jumpsuit"
+	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'
+	greyscale_colors = "#3f3f3f"
+	greyscale_config = /datum/greyscale_config/jumpsuit
+	greyscale_config_inhand_left = /datum/greyscale_config/jumpsuit_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/jumpsuit_inhand_right
+	greyscale_config_worn = /datum/greyscale_config/jumpsuit_worn
 	desc = "It's a plain jumpsuit. It has a small dial on the wrist."
 	sensor_mode = SENSOR_OFF //Hey who's this guy on the Syndicate Shuttle??
 	random_sensor = FALSE
@@ -289,6 +331,12 @@
 /obj/item/clothing/under/chameleon/ratvar
 	name = "ratvarian engineer's jumpsuit"
 	desc = "A tough jumpsuit woven from alloy threads. It can take on the appearance of other jumpsuits."
+	mob_overlay_icon = 'icons/mob/clothing/uniform/uniform.dmi'
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+	greyscale_config_worn = null
 	icon_state = "engine"
 	item_state = "engi_suit"
 
@@ -595,7 +643,11 @@
 
 /obj/item/clothing/shoes/chameleon
 	name = "black shoes"
-	icon_state = "black"
+	icon_state = "sneakers"
+	item_state = "sneakers_back"
+	greyscale_colors = "#545454#ffffff"
+	greyscale_config = /datum/greyscale_config/sneakers
+	greyscale_config_worn = /datum/greyscale_config/sneakers_worn
 	desc = "A pair of black shoes."
 	resistance_flags = NONE
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 50, ACID = 50, ELECTRIC = 100)
@@ -624,9 +676,6 @@
 	chameleon_action.emp_randomise()
 
 /obj/item/clothing/shoes/chameleon/noslip
-	name = "black shoes"
-	icon_state = "black"
-	desc = "A pair of black shoes."
 	clothing_flags = NOSLIP
 	can_be_bloody = FALSE
 
@@ -773,6 +822,3 @@
 /obj/item/stamp/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
-
-/obj/item/proc/on_chameleon_change()
-	return

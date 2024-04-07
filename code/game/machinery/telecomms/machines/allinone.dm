@@ -5,7 +5,7 @@
 
 /obj/machinery/telecomms/allinone
 	name = "telecommunications mainframe"
-	icon_state = "comm_server"
+	icon_state = "server"
 	desc = "A compact machine used for portable subspace telecommunications processing."
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -18,6 +18,8 @@
 
 /obj/machinery/telecomms/allinone/Initialize(mapload)
 	. = ..()
+	id = "Telecommunicatons Mainframe" //Does nothing, just prevents from showing NULL
+	network = "SyndiMain"
 	if (intercept)
 		freq_listening = list(FREQ_SYNDICATE)
 

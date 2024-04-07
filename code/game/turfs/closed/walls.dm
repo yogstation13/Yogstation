@@ -71,8 +71,8 @@
 		add_dent(WALL_DENT_HIT)
 
 /turf/closed/wall/run_atom_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
-	if(damage_amount < damage_deflection && (damage_type in list(MELEE, BULLET, LASER, ENERGY)))
-		return 0 // absolutely no bypassing damage deflection by using projectiles
+	if(damage_amount < damage_deflection && (damage_flag in list(MELEE, BULLET, LASER, ENERGY)))
+		return 0 // absolutely no bypassing damage deflection by using projectiles FOR REAL THIS TIME
 	return ..()
 
 /turf/closed/wall/atom_destruction(damage_flag)
@@ -169,7 +169,7 @@
 
 /turf/closed/wall/attack_hulk(mob/user, does_attack_animation = 0)
 	..(user, 1)
-	user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
+	user.say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ), forced = "hulk")
 	take_damage(400, BRUTE, MELEE, FALSE)
 	playsound(src, 'sound/effects/bang.ogg', 50, 1)
 	to_chat(user, span_notice("You punch the wall."))

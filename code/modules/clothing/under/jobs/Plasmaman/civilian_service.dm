@@ -24,7 +24,6 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 
-
 /obj/item/clothing/under/plasmaman/chef
 	name = "chef's envirosuit"
 	desc = "A white plasmaman envirosuit designed for cullinary practices. One might question why a member of a species that doesn't need to eat would become a chef."

@@ -15,6 +15,7 @@
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
 	mutantstomach = /obj/item/organ/stomach/plasmaman
+	barefoot_step_sound = FOOTSTEP_MOB_CLAW
 	brutemod = 1.3 //Rattle me bones, but less because plasma bones are very hard
 	burnmod = 0.9 //Plasma is a surprisingly good insulator if not around oxygen
 	heatmod = 1.5 //Don't let the plasma actually heat up though
@@ -71,6 +72,8 @@
 	. = ..()
 
 /datum/species/plasmaman/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(!J)
+		return
 	var/current_job = J.title
 	var/datum/outfit/plasmaman/O = new /datum/outfit/plasmaman
 	switch(current_job)

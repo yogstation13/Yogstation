@@ -148,8 +148,8 @@
 	//cache for sanic speed (lists are references anyways)
 	var/static/list/footstep_sounds = GLOB.footstep
 
-	if (((source.wear_suit?.body_parts_covered | source.w_uniform?.body_parts_covered) & FEET) || (source.shoes && !istype(source.shoes, /obj/item/clothing/shoes/xeno_wraps)))
-		// we are wearing shoes
+	if (((source.wear_suit?.body_parts_covered | source.w_uniform?.body_parts_covered) & FEET) || (source.shoes && !istype(source.shoes, /obj/item/clothing/shoes/xeno_wraps)) || (source.dna.species.barefoot_step_sound == FOOTSTEP_MOB_SHOE))
+		// we are wearing shoes or have shoes for feet
 
 		var/shoestep_type = prepared_steps[FOOTSTEP_MOB_SHOE]
 		playsound(source.loc, pick(footstep_sounds[shoestep_type][1]),
@@ -157,16 +157,27 @@
 			TRUE,
 			footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff_distance = 1, vary = sound_vary)
 	else
-		var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
+		var/barefoot_type = prepared_steps[source.dna.species.barefoot_step_sound]
 		if(source.dna.species.special_step_sounds)
 			playsound(source.loc, pick(source.dna.species.special_step_sounds), 50, TRUE, falloff_distance = 1, vary = sound_vary)
 		else
-			var/static/list/bare_footstep_sounds = GLOB.barefootstep
-
-			playsound(source.loc, pick(bare_footstep_sounds[barefoot_type][1]),
-				bare_footstep_sounds[barefoot_type][2] * volume * volume_multiplier,
-				TRUE,
-				bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff_distance = 1, vary = sound_vary)
+			switch(source.dna.species.barefoot_step_sound)
+				if(FOOTSTEP_MOB_BAREFOOT)
+					playsound(source.loc, pick(GLOB.barefootstep[barefoot_type][1]),
+						GLOB.barefootstep[barefoot_type][2] * volume * volume_multiplier,
+						TRUE,
+						GLOB.barefootstep[barefoot_type][3] + e_range + range_adjustment, falloff_distance = 1, vary = sound_vary)
+				if(FOOTSTEP_MOB_CLAW)
+					playsound(source.loc, pick(GLOB.clawfootstep[barefoot_type][1]),
+						GLOB.clawfootstep[barefoot_type][2] * volume * volume_multiplier,
+						TRUE,
+						GLOB.clawfootstep[barefoot_type][3] + e_range + range_adjustment, falloff_distance = 1, vary = sound_vary)
+				else	//Emergency backup shoe step sound if it's not either of these other two types for some reason
+					playsound(source.loc, pick(GLOB.footstep[prepared_steps[FOOTSTEP_MOB_SHOE]][1]),
+						GLOB.footstep[prepared_steps[FOOTSTEP_MOB_SHOE]][2] * volume * volume_multiplier,
+						TRUE,
+						GLOB.footstep[prepared_steps[FOOTSTEP_MOB_SHOE]][3] + e_range + range_adjustment, falloff_distance = 1, vary = sound_vary)
+					
 
 ///Prepares a footstep for machine walking
 /datum/element/footstep/proc/play_simplestep_machine(atom/movable/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)

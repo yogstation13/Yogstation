@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(O.late_joiner)
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
-		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
+		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && !is_synth(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
 			if(possible_target.antag_datums || !(guy.mind.quiet_round))
@@ -1652,7 +1652,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	if(machines_to_break.len == 0)
 		return TRUE
 	for(var/obj/machinery/thing as anything in machines_to_break)
-		if(thing && istype(thing, target_obj_type))
+		if(thing && !QDELETED(thing) && istype(thing, target_obj_type))
 			return FALSE
 	return TRUE
 
@@ -1707,8 +1707,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/mob/living/carbon/possible_carbon_target = possible_target.current
 		return LAZYLEN(possible_carbon_target.internal_organs)
 
+/datum/objective/maroon_organ/find_target(dupe_search_range, blacklist)
+	. = ..()
+	finalize()
+
 /datum/objective/maroon_organ/finalize()
-	find_target()
 	if(!target)
 		return FALSE
 
@@ -1732,6 +1735,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	. = ..()
 
 /datum/objective/maroon_organ/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
 	finalize()
 	update_explanation_text()
 	return
