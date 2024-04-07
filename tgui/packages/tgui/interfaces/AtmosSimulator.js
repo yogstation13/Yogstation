@@ -42,8 +42,8 @@ export const AtmosSimulator = (props, context) => {
             Tank Reaction
           </Tabs.Tab>
         </Tabs>
-        { mode === 1 && <BombSimulator/> }
-        { mode === 2 && <TankReactor/> }
+        { mode === 1 && <BombSimulator /> }
+        { mode === 2 && <TankReactor /> }
       </Window.Content>
     </Window>
   );
