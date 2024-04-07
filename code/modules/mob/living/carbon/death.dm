@@ -20,10 +20,6 @@
 /mob/living/carbon/gib(no_brain, no_organs, no_bodyparts)
 	var/atom/Tsec = drop_location()
 	for(var/mob/living/M in src)
-		//yogs start -- Yogs vorecode
-		if(M in stomach_contents)
-			stomach_contents.Remove(M)
-		//yogs end
 		M.forceMove(Tsec)
 		if(ishorror(M))	//eldritch horror(aka. borer) check, they die along with their host to prevent mind controlled suicides
 			M.gib()
