@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Polysmorph eyes now provide infrared vision"
-  - bugfix: "Fixes infrared vision not working"
