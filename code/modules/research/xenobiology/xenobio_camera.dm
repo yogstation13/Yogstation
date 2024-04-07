@@ -170,9 +170,10 @@
 	..()
 
 /obj/machinery/computer/camera_advanced/xenobio/multitool_act(mob/living/user, obj/item/multitool/I)
-	if (istype(I) && istype(I.buffer,/obj/machinery/monkey_recycler))
-		to_chat(user, span_notice("You link [src] with [I.buffer] in [I] buffer."))
-		connected_recycler = I.buffer
+	var/atom/buffer_atom = multitool_get_buffer(user, I)
+	if(istype(buffer_atom, /obj/machinery/monkey_recycler))
+		to_chat(user, span_notice("You link [src] with [buffer_atom] in [I] buffer."))
+		connected_recycler = buffer_atom
 		connected_recycler.connected += src
 		return TRUE
 

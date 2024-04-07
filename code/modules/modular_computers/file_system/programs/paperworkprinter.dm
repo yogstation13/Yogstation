@@ -8,7 +8,7 @@
 	requires_ntnet = FALSE
 	size = 4
 	tgui_id = "NtosPaperworkPrinter"
-	program_icon = "clipboard-list"
+	program_icon = "file"
 
 /datum/computer_file/program/paperwork_printer/ui_static_data(mob/user)
 	var/list/data = get_header_data()

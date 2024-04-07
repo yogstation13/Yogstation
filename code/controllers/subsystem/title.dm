@@ -23,8 +23,8 @@ SUBSYSTEM_DEF(title)
 	var/list/joke_provisional_title_screens = flist("[global.config.directory]/title_screens/images/joke/")
 	var/list/rare_provisional_title_screens = flist("[global.config.directory]/title_screens/images/rare/")
 	var/list/title_screens = list()
-	var/use_rare_screens = prob(5)		// 1% Chance for Rare Screens in /rare
-	var/use_joke_screens = prob(20) 	// 20% Chance for Joke Screens in /joke
+	var/use_rare_screens = prob(1)		// 1% Chance for Rare Screens in /rare
+	var/use_joke_screens = prob(10) 	// 10% Chance for Joke Screens in /joke
 
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
 		use_joke_screens = TRUE

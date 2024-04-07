@@ -158,6 +158,9 @@
 		. = . || (mover.pass_flags & PASSGRILLE)
 
 /obj/structure/grille/attackby(obj/item/W, mob/user, params)
+	var/obj/structure/window/window = locate() in loc
+	if(window && window.fulltile && window.anchored)
+		return TRUE // don't attack grilles through windows, that's weird and causes too many problems
 	user.changeNext_move(CLICK_CD_MELEE)
 	add_fingerprint(user)
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
@@ -305,7 +308,7 @@
 	return null
 
 /obj/structure/grille/broken // Pre-broken grilles for map placement
-	icon_state = "brokengrille"
+	icon_state = "grille_broken"
 	density = FALSE
 	broken = TRUE
 	rods_amount = 1
@@ -325,6 +328,12 @@
 	name = "cog grille"
 	desc = "A strangely-shaped grille."
 	broken_type = /obj/structure/grille/ratvar/broken
+
+	// These ones are too cool to smooth
+	base_icon_state = null
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
 
 /obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()

@@ -86,22 +86,16 @@
 	var/has_owner = FALSE
 	var/pinpointer_owner = null
 
-/obj/item/pinpointer/crew/proc/trackable(mob/living/carbon/human/H)
+/obj/item/pinpointer/crew/proc/trackable(mob/living/carbon/human/tracked_mob)
 	var/turf/here = get_turf(src)
-	var/nanite_sensors = FALSE
-	if(H in SSnanites.nanite_monitored_mobs)
-		nanite_sensors = TRUE
-	if((H.z == 0 || H.z == here.z) && (istype(H.w_uniform, /obj/item/clothing/under) || nanite_sensors))
-		if(!nanite_sensors) // Does the mob have monitoring nanite?
-			var/obj/item/clothing/under/U = H.w_uniform
-
-			// Suit sensors must be on maximum.
-			if(!U.has_sensor || (U.sensor_mode < SENSOR_COORDS && !ignore_suit_sensor_level))
-				return FALSE
-
-		var/turf/there = get_turf(H)
-		return (H.z != 0 || (there && there.z == here.z))
-
+	var/turf/there = get_turf(tracked_mob)
+	if(here && there && ((there.z in SSmapping.get_connected_levels(here)) || HAS_TRAIT(tracked_mob, TRAIT_MULTIZ_SUIT_SENSORS))) // Device and target should be on the same level or different levels of the same station
+		if(HAS_TRAIT(tracked_mob, TRAIT_SUITLESS_SENSORS))
+			return TRUE
+		if (istype(tracked_mob.w_uniform, /obj/item/clothing/under))
+			var/obj/item/clothing/under/U = tracked_mob.w_uniform
+			if(U.has_sensor && (U.sensor_mode >= SENSOR_COORDS || ignore_suit_sensor_level)) // Suit sensors must be on maximum or a contractor pinpointer
+				return TRUE
 	return FALSE
 
 /obj/item/pinpointer/crew/attack_self(mob/living/user)

@@ -79,10 +79,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// If set to TRUE, will update character_profiles on the next ui_data tick.
 	var/tainted_character_profiles = FALSE
 
-	/// var to tell the game if we actually have a loaded character or if we need to load one, doesnt care if your loaded character is valid or not
-	var/loaded_character = FALSE
-
-
 	///removed, kept here for migration in 'legacy_mood_migration.dm'
 	///DO NOT USE THIS!
 	var/yogtoggles
@@ -123,7 +119,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
-		return
+		if(load_character())
+			return
 	//we couldn't load character data so just randomize the character appearance + name
 	randomise_appearance_prefs()		//let's create a random character then - rather than a fat, bald and naked man.
 	if(C)

@@ -28,14 +28,14 @@
 	var/lights_colour = "16be00"
 
 /obj/item/clothing/suit/space/space_ninja/worn_overlays(isinhands = FALSE)
-	.=..()
+	. = ..()
 	if(!isinhands && lights_on)
 		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
 /obj/item/clothing/mask/gas/space_ninja/worn_overlays(isinhands = FALSE)
-	.=..()
+	. = ..()
 	if(!isinhands && lights_on)
 		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
 		M.color = lights_colour
@@ -43,14 +43,14 @@
 
 
 /obj/item/clothing/shoes/space_ninja/worn_overlays(isinhands = FALSE)
-	.=..()
+	. = ..()
 	if(!isinhands && lights_on)
 		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
 /obj/item/clothing/gloves/space_ninja/worn_overlays(isinhands = FALSE)
-	.=..()
+	. = ..()
 	if(!isinhands && lights_on)
 		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
 		M.color = lights_colour
@@ -64,7 +64,7 @@
 		to_chat(H, "[span_userdanger("ERROR")]: 10453 UNABLE TO LOCATE FACE MASK\nABORTING...")
 		return FALSE
 
-	.=..()
+	. = ..()
 	if(.)
 		n_mask = H.wear_mask
 		ADD_TRAIT(n_mask, TRAIT_NODROP, NINJA_SUIT_TRAIT)

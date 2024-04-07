@@ -225,7 +225,7 @@
 		if(!literate)
 			to_chat(user, span_notice("You scribble illegibly on the cover of [src]!"))
 			return
-		var/choice = input(usr, "What would you like to change?",,list("Title", "Contents", "Author", "Cancel"))
+		var/choice = input(usr, "What would you like to change?", "Change book title, author, or add content?") as null|anything in list("Title", "Author", "Contents", "Cancel")
 		if(!user.canUseTopic(src, BE_CLOSE, literate))
 			return
 		switch(choice)
@@ -243,7 +243,7 @@
 					name = newtitle
 					title = newtitle
 			if("Contents")
-				var/content = stripped_input(user, "Write your book's contents (HTML NOT allowed):","","",8192)
+				var/content = stripped_input(user, "Add to your book's contents (HTML NOT allowed):","","",8192)
 				if(!user.canUseTopic(src, BE_CLOSE, literate))
 					return
 				if(!content)

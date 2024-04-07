@@ -343,7 +343,7 @@
 
 /obj/structure/statue/elder_atmosian
 	name = "Elder Atmosian"
-	desc = "A statue of an Elder Atmosian, capable of bending the laws of thermodynamics to their will."
+	desc = "A statue of Colton Oppenheimer, an Elder Atmosian who was capable of bending the laws of thermodynamics to his will."
 	icon_state = "atmos"
 	custom_materials = list(/datum/material/metalhydrogen = MINERAL_MATERIAL_AMOUNT*10, /datum/material/zaukerite = MINERAL_MATERIAL_AMOUNT*15)
 	max_integrity = 1000

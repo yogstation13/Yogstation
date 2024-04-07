@@ -321,6 +321,9 @@
 /mob/living/silicon/handle_high_gravity(gravity)
 	return
 
+/mob/living/silicon/get_butt_sprite()
+	return BUTT_SPRITE_QR_CODE
+
 /mob/living/silicon/get_status_tab_items()
 	.=..()
 	.+= ""

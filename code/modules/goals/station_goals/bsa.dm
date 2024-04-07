@@ -42,8 +42,7 @@
 /obj/machinery/bsa/back/multitool_act(mob/living/user, obj/item/I)
 	if(!multitool_check_buffer(user, I)) //make sure it has a data buffer
 		return
-	var/obj/item/multitool/M = I
-	M.buffer = src
+	multitool_set_buffer(user, I, src)
 	to_chat(user, span_notice("You store linkage information in [I]'s buffer."))
 	return TRUE
 
@@ -55,8 +54,7 @@
 /obj/machinery/bsa/front/multitool_act(mob/living/user, obj/item/I)
 	if(!multitool_check_buffer(user, I)) //make sure it has a data buffer
 		return
-	var/obj/item/multitool/M = I
-	M.buffer = src
+	multitool_set_buffer(user, I, src)
 	to_chat(user, span_notice("You store linkage information in [I]'s buffer."))
 	return TRUE
 
@@ -70,15 +68,15 @@
 /obj/machinery/bsa/middle/multitool_act(mob/living/user, obj/item/I)
 	if(!multitool_check_buffer(user, I))
 		return
-	var/obj/item/multitool/M = I
-	if(M.buffer)
-		if(istype(M.buffer, /obj/machinery/bsa/back))
-			back = M.buffer
-			M.buffer = null
+	var/atom/buffer_atom = multitool_get_buffer(user, I)
+	if(buffer_atom)
+		if(istype(buffer_atom, /obj/machinery/bsa/back))
+			back = buffer_atom
+			multitool_set_buffer(null)
 			to_chat(user, span_notice("You link [src] with [back]."))
-		else if(istype(M.buffer, /obj/machinery/bsa/front))
-			front = M.buffer
-			M.buffer = null
+		else if(istype(buffer_atom, /obj/machinery/bsa/front))
+			front = buffer_atom
+			multitool_set_buffer(null)
 			to_chat(user, span_notice("You link [src] with [front]."))
 	else
 		to_chat(user, span_warning("[I]'s data buffer is empty!"))

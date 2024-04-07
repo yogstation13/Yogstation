@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(ai_projects)
-
 /datum/ai_project
 	///Name of the project. This is used as an ID so please keep all names unique (Or refactor it to use an ID like you should)
 	var/name = "DEBUG"
@@ -27,12 +25,18 @@ GLOBAL_LIST_EMPTY(ai_projects)
 	var/ability_recharge_invested = 0
 
 	var/mob/living/silicon/ai/ai
+	var/mob/living/carbon/human/synth
 	var/datum/ai_dashboard/dashboard
 
-/datum/ai_project/New(new_ai, new_dash)
-	ai = new_ai
+	var/for_synths = FALSE
+
+/datum/ai_project/New(new_owner, new_dash)
+	if(!for_synths)
+		ai = new_owner
+	else
+		synth = new_owner
 	dashboard = new_dash
-	if(!ai || !dashboard)
+	if(!(ai || synth) || !dashboard)
 		qdel(src)
 	..()
 
@@ -55,6 +59,8 @@ GLOBAL_LIST_EMPTY(ai_projects)
 	dashboard.running_projects += src
 	return TRUE
 
+/datum/ai_project/proc/switch_network(datum/ai_network/old_net, datum/ai_network/new_net)
+	return TRUE
 
 /datum/ai_project/proc/stop()
 	SHOULD_CALL_PARENT(TRUE)

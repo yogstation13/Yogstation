@@ -112,6 +112,11 @@
 	usewhitelist = TRUE
 	retrievalmessage = "Safety retrieval complete."
 
+/obj/item/implant/teleporter/syndicate_icemoon
+	pointofreturn = /area/ruin/syndicate_icemoon
+	usewhitelist = TRUE
+	retrievalmessage = "Agent retrieval complete."
+
 /obj/item/implant/teleporter/demon
 	pointofreturn = /area/ruin/powered/sinden
 	usewhitelist = TRUE

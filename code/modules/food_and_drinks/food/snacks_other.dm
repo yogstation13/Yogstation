@@ -567,9 +567,42 @@
 	desc = "A sliced piece of juicy pineapple."
 	icon_state = "pineapple_slice"
 	filling_color = "#F6CB0B"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	juice_results = list(/datum/reagent/consumable/pineapplejuice = 3)
 	tastes = list("pineapple" = 1)
 	foodtype = FRUIT | PINEAPPLE
+
+/obj/item/reagent_containers/food/snacks/pineappleslice/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/pineappleslice/grilled, rand(10 SECONDS, 15 SECONDS), TRUE)
+	
+/obj/item/reagent_containers/food/snacks/pineappleslice/grilled
+	name = "grilled pineapple slice"
+	desc = "A grilled piece of juicy pineapple. Complete with tantilizing grill marks."
+	icon_state = "grilled_pineapple"
+	filling_color = "#F6CB0B"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	juice_results = list(/datum/reagent/consumable/pineapplejuice = 3)
+	tastes = list("pineapple" = 1)
+	foodtype = FRUIT | PINEAPPLE
+
+/obj/item/reagent_containers/food/snacks/pineappleslice/grilled/MakeGrillable() //so it burns after it grills
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(20 SECONDS, 30 SECONDS), FALSE)
+
+/obj/item/reagent_containers/food/snacks/pineapple_rice
+	name = "hawaiian pineapple rice"
+	desc = "A simple hawaiian rice dish served directly out of a pineapple."
+	icon_state = "pineapple_rice"
+	filling_color = "#F6CB0B"
+	tastes = list("pineapple" = 3, "rice" = 2)
+	foodtype = FRUIT | PINEAPPLE | GRAIN
+
+/obj/item/reagent_containers/food/snacks/pineapple_friedrice
+	name = "hawaiian pineapple fried rice"
+	desc = "You're telling me a hawaiian pineapple fried this rice?"
+	icon_state = "pineapple_friedrice"
+	filling_color = "#F6CB0B"
+	tastes = list("pineapple" = 3, "rice" = 2, "citrus" = 1, "chili" = 1)
+	foodtype = FRUIT | PINEAPPLE | GRAIN
 
 /obj/item/reagent_containers/food/snacks/tinychocolate
 	name = "chocolate"

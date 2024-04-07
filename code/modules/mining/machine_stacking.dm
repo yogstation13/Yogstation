@@ -42,8 +42,7 @@
 /obj/machinery/mineral/stacking_unit_console/multitool_act(mob/living/user, obj/item/I)
 	if(!multitool_check_buffer(user, I))
 		return
-	var/obj/item/multitool/M = I
-	M.buffer = src
+	multitool_set_buffer(user, I, src)
 	to_chat(user, span_notice("You store linkage information in [I]'s buffer."))
 	return TRUE
 
@@ -175,12 +174,12 @@
 	return ..()
 
 /obj/machinery/mineral/stacking_machine/multitool_act(mob/living/user, obj/item/multitool/M)
-	if(istype(M))
-		if(istype(M.buffer, /obj/machinery/mineral/stacking_unit_console) && !panel_open)
-			console = M.buffer
-			console.machine = src
-			to_chat(user, span_notice("You link [src] to the console in [M]'s buffer."))
-			return TRUE
+	var/atom/buffer_atom = multitool_get_buffer(user, M)
+	if(istype(buffer_atom, /obj/machinery/mineral/stacking_unit_console) && !panel_open)
+		console = buffer_atom
+		console.machine = src
+		to_chat(user, span_notice("You link [src] to the console in [M]'s buffer."))
+		return TRUE
 	if(panel_open)
 		io = !io
 		to_chat(user, span_notice("You set the I/O to change [io ? "output" : "input"]."))

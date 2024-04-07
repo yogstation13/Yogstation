@@ -352,6 +352,15 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		coil.place_turf(src, user)
 		return TRUE
 
+	if(can_lay_cable() && istype(C, /obj/item/stack/ethernet_coil))
+		var/obj/item/stack/ethernet_coil/coil = C
+		for(var/obj/structure/ethernet_cable/LC in src)
+			if(!LC.d1 || !LC.d2)
+				LC.attackby(C,user)
+				return
+		coil.place_turf(src, user)
+		return TRUE
+
 	else if(istype(C, /obj/item/rcl))
 		handleRCL(C, user)
 
@@ -770,7 +779,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		movable_content.wash(clean_types)
 
 /// Called when attempting to set fire to a turf
-/turf/proc/IgniteTurf(power, fire_color="red")
+/turf/proc/ignite_turf(power, fire_color="red")
+	return SEND_SIGNAL(src, COMSIG_TURF_IGNITED, power, fire_color)
+
+/turf/proc/extinguish_turf()
 	return
 
 /// Returns whether it is safe for an atom to move across this turf

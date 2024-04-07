@@ -219,6 +219,9 @@
 			break
 	H.visible_message("<span class='notice'>[H] unplugs from the [A].</span>", "<span class='notice'>You unplug from the [A].</span>")
 
+/datum/species/ipc/get_butt_sprite()
+	return BUTT_SPRITE_QR_CODE
+
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
 		if(saved_screen)
@@ -440,6 +443,7 @@ ipc martial arts stuff
 		species_traits -= NO_UNDERWEAR
 	damage_overlay_type = fake_species.damage_overlay_type
 	attack_verb = fake_species.attack_verb
+	attack_effect = fake_species.attack_effect
 	attack_sound = fake_species.attack_sound
 	miss_sound = fake_species.miss_sound
 	nojumpsuit = fake_species.nojumpsuit
@@ -466,6 +470,7 @@ ipc martial arts stuff
 	damage_overlay_type = initial(damage_overlay_type)
 	H.dna.features["mcolor"] = ipc_color
 	attack_verb = initial(attack_verb)
+	attack_effect = initial(attack_effect)
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)
 	nojumpsuit = initial(nojumpsuit)

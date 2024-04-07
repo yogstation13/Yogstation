@@ -266,7 +266,7 @@
 		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 /obj/structure/fireaxecabinet/bridge/spare
-	name = "spare id cabinet"
+	name = "spare ID cabinet"
 	desc = "There is a small label that reads \"For Emergency use only\". <BR>There are bolts under it's glass cover for easy disassembly using a wrench."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "spareid"

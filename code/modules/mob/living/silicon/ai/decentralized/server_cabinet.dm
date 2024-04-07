@@ -1,10 +1,12 @@
 GLOBAL_LIST_EMPTY(server_cabinets)
 
 /obj/machinery/ai/server_cabinet
-	name = "Server Cabinet"
+	name = "server cabinet"
 	desc = "A simple cabinet of bPCIe slots for installing server racks."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "expansion_bus"
+
+	appearance_flags = KEEP_TOGETHER
 	
 	circuit = /obj/item/circuitboard/machine/server_cabinet
 
@@ -27,26 +29,32 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	//Atmos hasn't run at the start so this has to be set to true if you map it in
 	var/roundstart = FALSE
 	///How many ticks we can go without fulfilling the criteria before shutting off
-	var/valid_ticks = MAX_AI_EXPANSION_TICKS
+	var/valid_ticks
 	///Heat production multiplied by this
 	var/heat_modifier = 1
 	///Power modifier, power modified by this. Be aware this indirectly changes heat since power => heat
 	var/power_modifier = 1
 
+	var/obj/ai_smoke/smoke
+
+	var/obj/item/disk/puzzle/puzzle_disk
+
 
 /obj/machinery/ai/server_cabinet/Initialize(mapload)
 	. = ..()
+	valid_ticks = MAX_AI_SERVER_CABINET_TICKS
 	roundstart = mapload
 	installed_racks = list()
 	GLOB.server_cabinets += src
 	update_appearance(UPDATE_ICON)
 	RefreshParts()
 
+
 /obj/machinery/ai/server_cabinet/Destroy()
 	installed_racks = list()
 	GLOB.server_cabinets -= src
-	//Recalculate all the CPUs and RAM :)
-	GLOB.ai_os.update_hardware()
+	vis_contents -= smoke
+	QDEL_NULL(smoke)
 	return ..()
 
 /obj/machinery/ai/server_cabinet/RefreshParts()
@@ -65,8 +73,9 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	idle_power_usage = initial(idle_power_usage) * power_modifier
 
 /obj/machinery/ai/server_cabinet/process()
-	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
+	valid_ticks = clamp(valid_ticks, 0, MAX_AI_SERVER_CABINET_TICKS)
 	if(valid_holder())
+		roundstart = FALSE
 		var/total_usage = (cached_power_usage * power_modifier)
 		use_power(total_usage)
 
@@ -74,22 +83,32 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		core_temp += temperature_increase * AI_TEMPERATURE_MULTIPLIER
 		
 		valid_ticks++
+		if(smoke)
+			vis_contents -= smoke
+			QDEL_NULL(smoke)
 		if(!was_valid_holder)
 			update_appearance(UPDATE_ICON)
 		was_valid_holder = TRUE
 
-		if(!hardware_synced)
-			GLOB.ai_os.update_hardware()
+		
+
+		if(!hardware_synced && network)
+			network.update_resources()
 			hardware_synced = TRUE
 	else 
 		valid_ticks--
+		if(!smoke)
+			if(get_holder_status() == AI_MACHINE_TOO_HOT)
+				smoke = new()
+				vis_contents += smoke
 		if(was_valid_holder)
 			if(valid_ticks > 0)
 				return
+			
 			was_valid_holder = FALSE
-			cut_overlays()
+			update_icon()
 			hardware_synced = FALSE
-			GLOB.ai_os.update_hardware()
+			network?.update_resources()
 
 
 /obj/machinery/ai/server_cabinet/update_overlays()
@@ -104,7 +123,9 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
 		. += on_overlay
-		if(!valid_ticks)
+		if(!valid_ticks) //If we are running on valid ticks we don't turn off instantly, only when we run out
+			return
+		if(!network) //If we lose network connection we cut out INSTANTLY
 			return
 		if(installed_racks.len > 0)
 			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
@@ -125,7 +146,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		total_cpu += rack.get_cpu()
 		total_ram += rack.get_ram()
 		cached_power_usage += rack.get_power_usage()
-		GLOB.ai_os.update_hardware()
+		network?.update_resources()
 		use_power = ACTIVE_POWER_USE
 		update_appearance(UPDATE_ICON)
 		return FALSE
@@ -138,7 +159,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			total_cpu = 0
 			total_ram = 0
 			cached_power_usage = 0
-			GLOB.ai_os.update_hardware()
+			network?.update_resources()
 			to_chat(user, span_notice("You remove all the racks from [src]"))
 			use_power = IDLE_POWER_USE
 			update_appearance(UPDATE_ICON)
@@ -148,6 +169,20 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 				return TRUE
 
 	if(default_deconstruction_screwdriver(user, "expansion_bus_o", "expansion_bus", W))
+		return TRUE
+	
+	if(istype(W, /obj/item/disk/puzzle))
+		var/obj/item/disk/puzzle/P = W
+		if(P.decrypted)
+			to_chat(user, span_warning("The disk has already been decrypted!"))
+			return
+		if(puzzle_disk)
+			to_chat(user, span_warning("There's already a floppy drive inserted!"))
+			return
+
+		puzzle_disk = W
+		network.decryption_drives |= src
+		puzzle_disk.forceMove(src)
 		return TRUE
 
 	return ..()
@@ -167,12 +202,32 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		. += span_notice("There is a rack installed with a processing capacity of [R.get_cpu()]THz and a memory capacity of [R.get_ram()]TB. Uses [R.get_power_usage()]W")
 	. += span_notice("Use a crowbar to remove all currently inserted racks.")
 
+	if(puzzle_disk)
+		. += span_notice("The inserted disk is [round(puzzle_disk.decryption_progress / (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT) * 100)]% decrypted.")
+
 
 /obj/machinery/ai/server_cabinet/prefilled/Initialize(mapload)
+	. = ..()
 	var/obj/item/server_rack/roundstart/rack = new(src)
 	total_cpu += rack.get_cpu()
 	total_ram += rack.get_ram()
 	cached_power_usage += rack.get_power_usage()
 	installed_racks += rack
-	GLOB.ai_os.update_hardware()
-	return ..()
+
+/obj/machinery/ai/server_cabinet/connect_to_ai_network()
+	. = ..()
+	if(network)
+		network.update_resources()
+		if(puzzle_disk)
+			network.decryption_drives |= src
+
+/obj/machinery/ai/server_cabinet/disconnect_from_ai_network()
+	var/datum/ai_network/temp = network
+	if(puzzle_disk)
+		network.decryption_drives -= src
+	. = ..()
+	if(temp)
+		temp.update_resources()
+		if(puzzle_disk)
+			temp.decryption_drives |= src
+		
