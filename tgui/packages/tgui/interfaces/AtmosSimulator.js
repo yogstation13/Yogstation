@@ -33,17 +33,17 @@ export const AtmosSimulator = (props, context) => {
         <Tabs>
           <Tabs.Tab
             selected={mode === 1}
-            onClick={() => act('set_mode', {mode: 1})}>
+            onClick={ () => act('set_mode', {mode: 1}) }>
             Bomb Simulator
           </Tabs.Tab>
           <Tabs.Tab
             selected={mode === 2}
-            onClick={() => act('set_mode', {mode: 2})}>
+            onClick={ () => act('set_mode', {mode: 2}) }>
             Tank Reaction
           </Tabs.Tab>
         </Tabs>
-        {mode === 1 && <BombSimulator/>}
-        {mode === 2 && <TankReactor/>}
+        { mode === 1 && <BombSimulator/> }
+        { mode === 2 && <TankReactor/> }
       </Window.Content>
     </Window>
   );
@@ -114,13 +114,13 @@ const BombSimulator = (props, context) => {
               labelColor={getGasColor(gas.id, gas_data)}
               color={getGasColor(gas.id, gas_data)}>
                 {gas.moles} moles
-              </LabeledList.Item>
+            </LabeledList.Item>
           ))}
         </LabeledList>
       </Section>
     </>
-  )
-}
+  );
+};
 
 const TankReactor = (props, context) => {
   const { act, data } = useBackend(context);
@@ -145,7 +145,7 @@ const TankReactor = (props, context) => {
       tank={tank_mix}
       can_react
     />
-  )
+  );
 };
 
 const SimulatorTank = (props, context) => {
@@ -161,7 +161,7 @@ const SimulatorTank = (props, context) => {
     can_react,
   } = props;
 
-  const gas_data = data.gas_data
+  const gas_data = data.gas_data;
 
   const gases = (raw_gases || []);
 
@@ -247,11 +247,13 @@ const SimulatorTank = (props, context) => {
                 pressure: gas.pressure + 1,
                 tank: tank,
               })} />
-            </LabeledList.Item>
+          </LabeledList.Item>
           ))}
-        {total_moles ? (<LabeledList.Item label='Pressure'>
-          {pressure} kPa
-        </LabeledList.Item>) : ''}
+        {total_moles ? (
+          <LabeledList.Item label='Pressure'>
+            {pressure} kPa
+          </LabeledList.Item>
+        ) : ''}
         <LabeledList.Item>
           <Button
             icon="plus"
