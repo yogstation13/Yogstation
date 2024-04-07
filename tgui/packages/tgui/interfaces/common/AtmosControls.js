@@ -174,3 +174,33 @@ export const Scrubber = (props, context) => {
     </Section>
   );
 };
+
+// Returns gas color based on gasId
+export const getGasColor = (gasId, gases) => {
+  if (!gasId) return 'white';
+
+  const gasSearchString = gasId.toLowerCase();
+
+  for (let idx = 0; idx < gases.length; idx++) {
+    if (gases[idx].id === gasSearchString) {
+      return gases[idx].ui_color;
+    }
+  }
+
+  return 'white';
+};
+
+// Returns gas label based on gasId
+export const getGasLabel = (gasId, gases) => {
+  if (!gasId) return "";
+
+  const gasSearchString = gasId.toLowerCase();
+
+  for (let idx = 0; idx < gases.length; idx++) {
+    if (gases[idx].id === gasSearchString) {
+      return gases[idx].label;
+    }
+  }
+
+  return gasId;
+};
