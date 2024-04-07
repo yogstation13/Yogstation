@@ -1,9 +1,6 @@
-import { flow } from 'common/fp';
-import { toFixed } from 'common/math';
 import { useBackend } from '../backend';
 import { formatSiUnit } from '../format';
-import { filter, sortBy } from 'common/collections';
-import { Box, Button, LabeledList, NumberInput, ProgressBar, Section, Stack, Tabs } from '../components';
+import { Button, LabeledList, NumberInput, Section, Tabs } from '../components';
 import { getGasColor, getGasLabel } from './common/AtmosControls';
 import { Window } from '../layouts';
 
