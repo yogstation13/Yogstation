@@ -8,11 +8,10 @@
 	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD)
 
 /datum/surgery/amputation/can_start(mob/user, mob/living/carbon/target)
-	else if(isshadowperson(target)) // no cutting off shadow limbs because they look horrendous when spliced with other species
+	if(isshadowperson(target)) // no cutting off shadow limbs because they look horrendous when spliced with other species
 		to_chat(user, span_warning("[target]'s body is made out of shadows!"))
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 /datum/surgery/amputation/mechanic
 	requires_bodypart_type = BODYPART_ROBOTIC
