@@ -25,7 +25,6 @@
 #define CALIBER_BREACH "breaching"  	    // 12 Gauge (Breaching Shotgun)
 #define CALIBER_CANNON "100mm"		        // Cannonball (Hand Cannon)
 #define CALIBER_FOAM "foam_force"           // Foam darts (Toy Guns)
-#define CALIBER_FOAM_RIOT "foam_force_riot" // Riot darts (Syndicate Toy Guns)
 #define CALIBER_GATLING "gatling"   	    // Gatling (Osprey Minigun) (Don't ask)
 #define CALIBER_SPEAR "speargun"            // Spear (Speargun)
 
