@@ -129,8 +129,8 @@
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/voice/rattled.ogg'
 
-/datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	return isskeleton(user) && ..()
+/datum/emote/living/carbon/human/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return (isskeleton(user) || isplasmaman(user)) && ..()
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
