@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "candle boxes won't turn invisible anymore when used inhand as they cannot be closed"
