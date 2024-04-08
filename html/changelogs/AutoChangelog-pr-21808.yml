@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "clown throwing pie at sec officer title screen is no longer offset incorrectly"
