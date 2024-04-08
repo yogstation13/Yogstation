@@ -168,14 +168,18 @@
 	backpack_contents = list(
 		/obj/item/modular_computer/tablet/preset/syndicate=1
 		)
-	implants = list(/obj/item/implant/teleporter/syndicate_lavaland)
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_lavaland,
+	/obj/item/implant/weapons_auth)
 
 /datum/outfit/lavaland_syndicate/comms/subordinate
 	name = "Space Syndicate Comms Agent"
 	r_hand = /obj/item/kitchen/knife/combat
 	back = /obj/item/storage/backpack
 	backpack_contents = null
-	implants = list(/obj/item/implant/teleporter/syndicate_listening_post)
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_listening_post,
+	/obj/item/implant/weapons_auth)
 
 /datum/outfit/lavaland_syndicate/comms/lieutenant
 	name = "Space Syndicate Comms Agent Lieutenant"
@@ -187,8 +191,10 @@
 		/obj/item/modular_computer/tablet/preset/syndicate=1,
 		/obj/item/gun/ballistic/revolver/ultrasecure=1
 		)
-	implants = list(/obj/item/implant/teleporter/syndicate_listening_post)
-	
+	implants = list(
+	/obj/item/implant/teleporter/syndicate_listening_post,
+	/obj/item/implant/weapons_auth)
+
 /obj/item/clothing/mask/chameleon/gps/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/gps, "Encrypted Signal")
