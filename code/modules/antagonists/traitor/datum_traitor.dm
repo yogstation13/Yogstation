@@ -19,6 +19,9 @@
 	var/datum/contractor_hub/contractor_hub
 	var/obj/item/uplink_holder
 	can_hijack = HIJACK_HIJACKER
+	/// If this specific traitor has been assigned codewords. This is not always true, because it varies by faction.
+	var/has_codewords = FALSE
+	var/datum/weakref/uplink_ref
 
 /datum/antagonist/traitor/on_gain()
 	if(owner.current && iscyborg(owner.current))
@@ -249,7 +252,10 @@
 			.=2
 
 /datum/antagonist/traitor/greet()
+	var/list/msg = list()
 	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role]."))
+	msg += "<span class='alertsyndie'>Use the 'Traitor Info and Backstory' action at the top left in order to select a backstory and review your objectives, uplink location, and codewords!</span>"
+	to_chat(owner.current, EXAMINE_BLOCK(msg.Join("\n")))
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
@@ -272,8 +278,7 @@
 				ability.Grant(owner.current)
 
 		if(TRAITOR_HUMAN)
-			if(should_equip)
-				equip(silent)
+			ui_interact(owner.current)
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/traitor/proc/give_codewords()
@@ -390,6 +395,15 @@
 
 	result += objectives_text
 
+	var/backstory_text = "<br>"
+	if(istype(faction))
+		backstory_text += "<b>Faction:</b> <span class='tooltip_container' style=\"font-size: 12px\">\[ [faction.name]<span class='tooltip_hover' style=\"width: 320px; padding: 5px;\">[faction.description]</span> \]</span><br>"
+	if(istype(backstory))
+		backstory_text += "<b>Backstory:</b> <span class='tooltip_container' style=\"font-size: 12px\">\[ [backstory.name]<span class='tooltip_hover' style=\"width: 320px; padding: 5px;\">[backstory.description]</span> \]</span><br>"
+	else
+		backstory_text += "<span class='redtext'>No backstory was selected!</span><br>"
+	result += backstory_text
+
 	var/special_role_text = lowertext(name)
 
 	if (contractor_hub)
@@ -464,3 +478,17 @@
 /datum/outfit/traitor/post_equip(mob/living/carbon/human/H, visualsOnly)
 	var/obj/item/melee/transforming/energy/sword/sword = locate() in H.held_items
 	sword.transform_weapon(H)
+
+
+/datum/antagonist/traitor/antag_panel_data()
+	// Traitor Backstory
+	var/backstory_text = "<b>Traitor Backstory:</b><br>"
+	if(istype(faction))
+		backstory_text += "<b>Faction:</b> <span class='tooltip' style=\"font-size: 12px\">\[ [faction.name]<span class='tooltiptext' style=\"width: 320px; padding: 5px;\">[faction.description]</span> \]</span><br>"
+	else
+		backstory_text += "<font color='red'>No faction selected!</font><br>"
+	if(istype(backstory))
+		backstory_text += "<b>Backstory:</b> <span class='tooltip' style=\"font-size: 12px\">\[ [backstory.name]<span class='tooltiptext' style=\"width: 320px; padding: 5px;\">[backstory.description]</span> \]</span><br>"
+	else
+		backstory_text += "<font color='red'>No backstory selected!</font><br>"
+	return backstory_text
