@@ -2,7 +2,7 @@ import { useBackend } from '../backend';
 import { BlockQuote, Section, Stack } from '../components';
 import { BooleanLike } from 'common/react';
 import { Window } from '../layouts';
-import { ObjectivesSection, Objective } from './common/ObjectiveSection';
+import { ObjectivesSection, Objective } from './common/ObjectiveSelection';
 import { AntagInfoHeader } from './common/AntagInfoHeader';
 
 const badstyle = {
