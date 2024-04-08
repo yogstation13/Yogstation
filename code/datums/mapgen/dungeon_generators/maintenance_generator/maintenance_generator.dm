@@ -155,7 +155,7 @@
 			attempts--
 		
 		//We're not actually building these so they can break if Init doesn't trigger right like using a generator mid round
-		if(!apc_placed.area)
+		if(apc_placed && !apc_placed.area)
 			apc_placed.area = get_area(apc_placed.loc)
 
 /datum/map_generator/dungeon_generator/maintenance/proc/wire_apcs()
