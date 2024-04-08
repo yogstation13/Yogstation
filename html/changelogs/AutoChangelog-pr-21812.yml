@@ -1,4 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed being able to run the memory compressor when using more than 85% CPU"

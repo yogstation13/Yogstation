@@ -1,4 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - bugfix: "Weapon internal magazines will no longer drop upon death in VR"
