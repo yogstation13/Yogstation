@@ -237,6 +237,13 @@
 				H.OpenWings()
 			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
 
+/datum/emote/living/carbon/human/flap/aflap
+	key = "aflap"
+	key_third_person = "aflaps"
+	message = "flaps their wings ANGRILY!"
+	hands_use_check = TRUE
+	wing_time = 10
+
 /datum/emote/living/carbon/human/wing
 	key = "wing"
 	key_third_person = "wings"

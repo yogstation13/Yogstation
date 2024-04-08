@@ -146,13 +146,6 @@
 		var/mob/living/L = user
 		L.Knockdown(60)
 
-/datum/emote/living/flap/aflap
-	key = "aflap"
-	key_third_person = "aflaps"
-	message = "flaps their wings ANGRILY!"
-	hands_use_check = TRUE
-	wing_time = 10
-
 /datum/emote/living/frown
 	key = "frown"
 	key_third_person = "frowns"
