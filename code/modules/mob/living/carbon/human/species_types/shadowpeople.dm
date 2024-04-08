@@ -157,7 +157,7 @@
 	limbs_id = "darkspawn"
 	sexes = FALSE
 	nojumpsuit = TRUE
-	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | ERT_SPAWN //never put this in the pride pool because they look super valid
+	changesource_flags = MIRROR_BADMIN //never put this in the pride pool because they look super valid and can never be changed off of
 	siemens_coeff = 0
 	armor = 10
 	burnmod = 1.2

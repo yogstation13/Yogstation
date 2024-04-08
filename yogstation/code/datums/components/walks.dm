@@ -53,7 +53,7 @@
 		return TRUE
 
 	var/mob/living/L = parent
-	if(!is_species(L, /datum/species/shadow/darkspawn))
+	if(!isshadowperson(L))
 		return FALSE
 	var/turf/T = get_step(L, direction)
 	L.setDir(direction)
