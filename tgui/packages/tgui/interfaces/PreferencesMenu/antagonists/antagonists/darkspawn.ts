@@ -4,7 +4,7 @@ import { multiline } from "common/string";
 export const DARKSPAWN_MECHANICAL_DESCRIPTION
    = multiline`
       Finish what you and your fellow kin started eons ago.
-      Ascend to godhood with two others by harvesting the sparks of the infirm.
+      Ascend to godhood alongside others by harvesting the sparks of the infirm.
       The sigils hunger, and you must respond.
    `;
 
