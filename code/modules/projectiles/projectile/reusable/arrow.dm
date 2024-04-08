@@ -14,7 +14,12 @@
 	..()
 	var/turf/open/target_turf = get_turf(target)
 	if(istype(target_turf))
-		target_turf.ignite_turf(rand(8, 16))
+		if(istype(ammo_type, /obj/item/ammo_casing/reusable/arrow))	
+			var/obj/item/ammo_casing/reusable/arrow/arrow = ammo_type
+			if(arrow.flaming)
+				target_turf.ignite_turf(rand(8, 16))
+		else
+			target_turf.ignite_turf(rand(8, 16))
 
 	if(!isliving(target) || (blocked == 100))
 		return

@@ -120,7 +120,7 @@
 					id = getnewid()
 					to_chat(user, span_notice("No ID found. Generating New ID"))
 
-				P.buffer = id
+				multitool_set_buffer(user, W, id)
 				to_chat(user, span_notice("You link the button to the [P]."))
 				setup_device() // Has to be done. It sets the signaller up
 			else

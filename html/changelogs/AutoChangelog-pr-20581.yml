@@ -1,0 +1,8 @@
+author: "Flikr, Mqiib, Cryphia, Chubbygummibear, Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new darkspawns (very different)"
+  - rscdel: "Removes shadowlings from the codebase"
+  - rscdel: "Deletes old darkspawns"
+  - imageadd: "add icons for new darkspawns"
+  - wip: "Darkspawn balance is ongoing, please leave feedback in the discord"

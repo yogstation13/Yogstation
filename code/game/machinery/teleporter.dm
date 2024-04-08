@@ -166,15 +166,15 @@
 	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!multitool_check_buffer(user, W))
 			return
-		var/obj/item/multitool/M = W
 		if(panel_open)
-			M.buffer = src
+			multitool_set_buffer(user, W, src)
 			to_chat(user, span_caution("You download the data to the [W.name]'s buffer."))
 		else
-			if(M.buffer && istype(M.buffer, /obj/machinery/teleport/station) && M.buffer != src)
+			var/atom/buffer_atom = multitool_get_buffer(user, W)
+			if(buffer_atom && istype(buffer_atom, /obj/machinery/teleport/station) && buffer_atom != src)
 				if(linked_stations.len < efficiency)
-					linked_stations.Add(M.buffer)
-					M.buffer = null
+					linked_stations.Add(buffer_atom)
+					multitool_set_buffer(user, W, null)
 					to_chat(user, span_caution("You upload the data from the [W.name]'s buffer."))
 				else
 					to_chat(user, span_alert("This station can't hold more information, try to use better parts."))
