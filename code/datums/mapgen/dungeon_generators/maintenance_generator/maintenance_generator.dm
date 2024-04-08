@@ -7,13 +7,20 @@
 	room_datum_path = /datum/dungeon_room/maintenance
 	room_theme_path = /datum/dungeon_room_theme/maintenance
 	
+	///Boolean, whether or not firelocks are added to the maintenance
+	var/include_firelocks = TRUE
+	///Boolean, wether or not apcs are added to the maintenance
+	var/include_apcs = TRUE
+
 	//var/list/used_spawn_points = list()
 
 /datum/map_generator/dungeon_generator/maintenance/build_dungeon()
 	. = ..()
-	add_firelocks()
-	add_apcs()
-	wire_apcs()
+	if(include_firelocks)
+		add_firelocks()
+	if(include_apcs)
+		add_apcs()
+		wire_apcs()
 	add_maint_loot()
 
 /datum/map_generator/dungeon_generator/maintenance/proc/add_firelocks()
@@ -261,3 +268,26 @@
 		//what the fuck how did you get here
 		brazil = TRUE
 	return "blocked directions: [blocked_directions], against a wall: [against_wall], in a one tile hallway: [blocking_passage], brazil: [brazil]"
+
+////////////////////////////////////////////////////////////////
+//------------Generator specifically for the Z level----------//
+////////////////////////////////////////////////////////////////
+/datum/map_generator/dungeon_generator/maintenance/backrooms
+
+	//since there are no firelocks, the place needs to be hard to space and replenish air automatically
+	weighted_open_turf_types = list(
+		/turf/open/floor/plating/backrooms = 10, 
+		/turf/open/floor/plating/rust/backrooms = 1,
+		)
+
+	//removes firelocks and apcs as the area is large enough that it annihilates the server if it has a bunch of firelocks
+	include_firelocks = FALSE
+	include_apcs = FALSE
+
+/turf/open/floor/plating/rust/backrooms
+	baseturfs = /turf/open/floor/plating/backrooms
+	planetary_atmos = TRUE // prevent spacing backrooms
+
+/turf/open/floor/plating/backrooms
+	baseturfs = /turf/open/floor/plating/backrooms
+	planetary_atmos = TRUE // prevent spacing backrooms
