@@ -150,7 +150,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 	ZTRAIT_GRAVITY = TRUE, \
 	ZTRAIT_NOPHASE = TRUE, \
 	ZTRAIT_NOXRAY = TRUE, \
-    ZTRAIT_BASETURF = /turf/open/floor/plating)
+    ZTRAIT_BASETURF = /turf/open/floor/plating/backrooms)
 
 ///Z level traits for Away Missions
 #define ZTRAITS_AWAY list(ZTRAIT_AWAY = TRUE)
