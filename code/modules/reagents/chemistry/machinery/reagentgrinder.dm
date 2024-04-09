@@ -40,7 +40,7 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/reagentgrinder/Destroy()
-	if(container && !QDELETED(container))
+	if(container && !QDELETED(container) && !ispath(container))
 		container.forceMove(drop_location())
 	drop_all_items()
 	return ..()
