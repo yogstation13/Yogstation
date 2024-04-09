@@ -1,6 +1,6 @@
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-import { Box, Button, ProgressBar, Section, Stack, Table } from '../components';
+import { Button, ProgressBar, Section, Table } from '../components';
 import { ReactorHistory, ReactorStats } from './ReactorComputer';
 
 export const NtosReactorStats = (props, context) => {
