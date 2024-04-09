@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		var/atom/thing = allowed_contents[i]
 		if(QDELETED(thing)) //don't double delete
 			continue
-		qdel(thing)
+		QDEL_NULL(thing)
 
 	if(turf_type)
 		ChangeTurf(turf_type, baseturf_type, flags)
