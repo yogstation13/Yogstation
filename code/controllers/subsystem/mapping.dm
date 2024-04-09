@@ -139,17 +139,6 @@ SUBSYSTEM_DEF(mapping)
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
 
-#ifndef LOWMEMORYMODE
-
-	//Load backrooms
-	var/list/errorList = list()
-	SSmapping.LoadGroup(errorList, "Maintrooms", "map_files/generic", "MaintStation.dmm", default_traits = ZTRAITS_BACKROOM_MAINTS, silent = TRUE)
-	if(errorList.len)	// maintrooms failed to load
-		message_admins("Maintrooms failed to load!")
-		log_game("Maintrooms failed to load!")
-
-#endif
-
 	var/list/jungle_ruins = levels_by_trait(ZTRAIT_JUNGLE_RUINS)
 	//this is really fuckign hacky, but we need to have a very specific order for these things, and if jungleland isn't even being loaded then i dont fucking care.
 	if(jungle_ruins.len)
@@ -212,7 +201,7 @@ SUBSYSTEM_DEF(mapping)
 	loading_ruins = FALSE
 	
 	//Load Reebe
-	errorList = list()
+	var/list/errorList = list()
 	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
 	if(errorList.len)	// reebe failed to load
 		message_admins("Reebe failed to load!")
