@@ -192,7 +192,7 @@
 	else
 		weighted_feature_spawn_list |= list(/obj/item/storage/part_replacer = 1)
 	
-	weighted_feature_spawn_list |= pick( (subtypesof(/mob/living/simple_animal/bot) - /mob/living/simple_animal/bot/secbot/grievous) )
+	weighted_feature_spawn_list |= pick(((subtypesof(/mob/living/simple_animal/bot) - /mob/living/simple_animal/bot/secbot/grievous) - typesof(/mob/living/simple_animal/bot/ed209)))
 	weighted_feature_spawn_list |= pick(subtypesof(/obj/item/borg/upgrade) - typesof(/obj/item/borg/upgrade/modkit))
 	//all wrecks except the god damn ones that explode upon existing
 	weighted_feature_spawn_list |= pick(subtypesof(/obj/structure/mecha_wreckage) - list(/obj/structure/mecha_wreckage/gygax/dark, /obj/structure/mecha_wreckage/mauler))
