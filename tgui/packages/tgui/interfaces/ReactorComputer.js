@@ -12,9 +12,9 @@ export const ReactorComputer = (props, context) => {
       width={400}
       height={588}>
       <Window.Content>
-        <ReactorStats/>
-        <ReactorControl/>
-        <ReactorHistory/>
+        <ReactorStats />
+        <ReactorControl />
+        <ReactorHistory />
       </Window.Content>
     </Window>
   );
@@ -106,45 +106,43 @@ export const ReactorHistory = (props, context) => {
   const tempInputData = data.tempInputData.map((value, i) => [i, value]);
   const tempOutputData = data.tempOutputData.map((value, i) => [i, value]);
   return (
-    <>
-      <Section fill title="Reactor Statistics:" height="200px" mt={1}>
-        <Chart.Line
-          fillPositionedParent
-          data={powerData}
-          rangeX={[0, powerData.length - 1]}
-          rangeY={[0, Math.max(15000000, ...data.powerData)]}
-          strokeColor="rgba(255, 215,0, 1)"
-          fillColor="rgba(255, 215, 0, 0.1)" />
-        <Chart.Line
-          fillPositionedParent
-          data={kpaData}
-          rangeX={[0, kpaData.length - 1]}
-          rangeY={[0, Math.max(10000, ...data.kpaData)]}
-          strokeColor="rgba(255,250,250, 1)"
-          fillColor="rgba(255,250,250, 0.1)" />
-        <Chart.Line
-          fillPositionedParent
-          data={tempCoreData}
-          rangeX={[0, tempCoreData.length - 1]}
-          rangeY={[0, Math.max(1800, ...data.tempCoreData)]}
-          strokeColor="rgba(255, 0, 0 , 1)"
-          fillColor="rgba(255, 0, 0 , 0.1)" />
-        <Chart.Line
-          fillPositionedParent
-          data={tempInputData}
-          rangeX={[0, tempInputData.length - 1]}
-          rangeY={[0, Math.max(1800, ...data.tempInputData)]}
-          strokeColor="rgba(127, 179, 255 , 1)"
-          fillColor="rgba(127, 179, 255 , 0.1)" />
-        <Chart.Line
-          fillPositionedParent
-          data={tempOutputData}
-          rangeX={[0, tempOutputData.length - 1]}
-          rangeY={[0, Math.max(1800, ...data.tempOutputData)]}
-          strokeColor="rgba(255, 129, 25 , 1)"
-          fillColor="rgba(255, 129, 25 , 0.1)" />
-      </Section>
-    </>
+    <Section fill title="Reactor Statistics:" height="200px" mt={1}>
+      <Chart.Line
+        fillPositionedParent
+        data={powerData}
+        rangeX={[0, powerData.length - 1]}
+        rangeY={[0, Math.max(15000000, ...data.powerData)]}
+        strokeColor="rgba(255, 215,0, 1)"
+        fillColor="rgba(255, 215, 0, 0.1)" />
+      <Chart.Line
+        fillPositionedParent
+        data={kpaData}
+        rangeX={[0, kpaData.length - 1]}
+        rangeY={[0, Math.max(10000, ...data.kpaData)]}
+        strokeColor="rgba(255,250,250, 1)"
+        fillColor="rgba(255,250,250, 0.1)" />
+      <Chart.Line
+        fillPositionedParent
+        data={tempCoreData}
+        rangeX={[0, tempCoreData.length - 1]}
+        rangeY={[0, Math.max(1800, ...data.tempCoreData)]}
+        strokeColor="rgba(255, 0, 0 , 1)"
+        fillColor="rgba(255, 0, 0 , 0.1)" />
+      <Chart.Line
+        fillPositionedParent
+        data={tempInputData}
+        rangeX={[0, tempInputData.length - 1]}
+        rangeY={[0, Math.max(1800, ...data.tempInputData)]}
+        strokeColor="rgba(127, 179, 255 , 1)"
+        fillColor="rgba(127, 179, 255 , 0.1)" />
+      <Chart.Line
+        fillPositionedParent
+        data={tempOutputData}
+        rangeX={[0, tempOutputData.length - 1]}
+        rangeY={[0, Math.max(1800, ...data.tempOutputData)]}
+        strokeColor="rgba(255, 129, 25 , 1)"
+        fillColor="rgba(255, 129, 25 , 0.1)" />
+    </Section>
   );
 };
 
@@ -156,46 +154,44 @@ export const ReactorControl = (props, context) => {
   const fuel_rods = data.rods.length;
   const shutdown_temp = data.shutdownTemp;
   return (
-    <>
-      <Section title="Controls:">
-        <LabeledList>
-          <LabeledList.Item label="Reactor Power">
-            <Button
-              disabled={
-                (data.coreTemp > shutdown_temp && data.active) ||
-                (fuel_rods <= 0 && !data.active) ||
-                k > 0
-              }
-              icon={data.active ? 'power-off' : 'times'}
-              content={data.active ? 'On' : 'Off'}
-              selected={data.active}
-              onClick={() => act('power')}
-            />
-          </LabeledList.Item>
-          <LabeledList.Item label="Control Rod Insertion">
-            <ProgressBar
-              value={(control_rods / 100 * 100) * 0.01}
-              ranges={{
-                good: [0.7, Infinity],
-                average: [0.4, 0.7],
-                bad: [-Infinity, 0.4],
-              }} />
-          </LabeledList.Item>
-          <LabeledList.Item label="Target Criticality">
-            <Slider
-              value={Math.round(desiredK*10)/10}
-              fillValue={Math.round(k*10)/10}
-              minValue={0}
-              maxValue={5}
-              step={0.1}
-              stepPixelSize={5}
-              onDrag={(e, value) => act('input', {
-                target: value,
-              })} />
-          </LabeledList.Item>
-        </LabeledList>
-      </Section>
-    </>
+    <Section title="Controls:">
+      <LabeledList>
+        <LabeledList.Item label="Reactor Power">
+          <Button
+            disabled={
+              (data.coreTemp > shutdown_temp && data.active) ||
+              (fuel_rods <= 0 && !data.active) ||
+              k > 0
+            }
+            icon={data.active ? 'power-off' : 'times'}
+            content={data.active ? 'On' : 'Off'}
+            selected={data.active}
+            onClick={() => act('power')}
+          />
+        </LabeledList.Item>
+        <LabeledList.Item label="Control Rod Insertion">
+          <ProgressBar
+            value={(control_rods / 100 * 100) * 0.01}
+            ranges={{
+              good: [0.7, Infinity],
+              average: [0.4, 0.7],
+              bad: [-Infinity, 0.4],
+            }} />
+        </LabeledList.Item>
+        <LabeledList.Item label="Target Criticality">
+          <Slider
+            value={Math.round(desiredK*10)/10}
+            fillValue={Math.round(k*10)/10}
+            minValue={0}
+            maxValue={5}
+            step={0.1}
+            stepPixelSize={5}
+            onDrag={(e, value) => act('input', {
+              target: value,
+            })} />
+        </LabeledList.Item>
+      </LabeledList>
+    </Section>
   );
 };
 

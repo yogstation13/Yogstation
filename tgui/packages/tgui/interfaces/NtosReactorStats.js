@@ -34,7 +34,7 @@ export const NtosReactorMonitorContent = (props, context) => {
           content="Back"
           onClick={() => act('PRG_clear')} />
         )} />
-      <ReactorHistory/>
+      <ReactorHistory />
     </>
   );
 };
