@@ -87,7 +87,9 @@
 			if(istype(backstory)) // bad!!
 				return TRUE
 			var/datum/traitor_backstory/selected_backstory = GLOB.traitor_backstories[params["backstory"]]
+			message_admins(params["backstory"])
 			var/datum/traitor_faction/selected_faction = GLOB.traitor_factions_to_datum[params["faction"]]
+			message_admins(params["faction"])
 			if(!istype(selected_faction) || !istype(selected_backstory))
 				return TRUE
 			if(istype(faction) && faction.key != selected_faction.key) // bad!
@@ -98,5 +100,7 @@
 				return TRUE
 			if(!istype(faction))
 				set_faction(selected_faction)
+				message_admins(selected_faction)
 			set_backstory(selected_backstory)
+			message_admins(selected_backstory)
 			return TRUE

@@ -171,6 +171,8 @@
 				add_objective(escape_objective)
 			else
 				forge_single_human_objective()
+			// Finally, set up our traitor's backstory!
+	setup_backstories(!is_hijacker && martyr_compatibility, is_hijacker)
 
 /datum/antagonist/traitor/proc/forge_ai_objectives()
 	var/objective_count = 0
@@ -284,6 +286,7 @@
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
 		return
+	has_codewords = TRUE
 	var/mob/traitor_mob=owner.current
 
 	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")

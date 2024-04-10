@@ -462,3 +462,4 @@ GLOBAL_LIST_EMPTY(antagonists)
 	info_button.Grant(owner.current)
 	info_button_ref = WEAKREF(info_button)
 	return info_button
+
