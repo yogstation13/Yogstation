@@ -9,7 +9,6 @@
 
 /datum/surgery/amputation/can_start(mob/user, mob/living/carbon/target)
 	if(isshadowperson(target)) // no cutting off shadow limbs because they look horrendous when spliced with other species
-		to_chat(user, span_warning("[target]'s body is made out of shadows!"))
 		return FALSE
 	return TRUE
 
