@@ -171,6 +171,7 @@
 #define INIT_ORDER_ECHELON			-10
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
+#define INIT_ORDER_MAINTROOMS		-35 //relies on basically everything to be initialized first
 #define INIT_ORDER_MINOR_MAPPING	-40
 #define INIT_ORDER_BLUESPACE_LOCKER -45
 #define INIT_ORDER_DISCORD			-60
