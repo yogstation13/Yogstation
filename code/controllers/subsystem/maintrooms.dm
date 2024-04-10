@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(maintrooms)
-	name = "maintrooms"
+	name = "Procedural Generation"
 	init_order = INIT_ORDER_MAINTROOMS
 	flags = SS_NO_FIRE
 
