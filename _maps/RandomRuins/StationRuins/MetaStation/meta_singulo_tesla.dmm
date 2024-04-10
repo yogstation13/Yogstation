@@ -281,6 +281,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"nz" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 6
+	},
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "oj" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -500,6 +512,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"zC" = (
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "zG" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -599,6 +617,18 @@
 /obj/machinery/power/grounding_rod,
 /turf/open/floor/plating/snowed/smoothed,
 /area/engine/engineering)
+"EA" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Fj" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -628,15 +658,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed,
 /area/engine/engineering)
-"Ij" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 6
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Ik" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -655,15 +676,6 @@
 "JC" = (
 /obj/effect/turf_decal/stripes{
 	dir = 8
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"JJ" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 5
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -759,6 +771,12 @@
 "Oy" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/engine/engineering)
+"Pj" = (
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Pm" = (
 /obj/machinery/power/tesla_coil,
@@ -1156,11 +1174,11 @@ KV
 JC
 JC
 vP
-oj
+Pj
 oj
 cS
 oj
-oj
+zC
 vP
 JC
 JC
@@ -1178,7 +1196,7 @@ SN
 vP
 ZP
 vP
-JJ
+EA
 vE
 vE
 fE
@@ -1190,7 +1208,7 @@ oj
 fE
 vE
 vE
-Ij
+nz
 vP
 am
 vP

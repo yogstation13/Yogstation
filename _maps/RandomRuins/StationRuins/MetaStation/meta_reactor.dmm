@@ -346,14 +346,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/top_layer/outdoors)
-"lx" = (
-/obj/structure/closet/firecloset,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "lE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/turf_decal/stripes/line{
@@ -694,6 +686,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"sK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "sY" = (
 /obj/machinery/atmospherics/pipe/simple/brown/visible{
 	dir = 8
@@ -764,9 +766,32 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/top_layer/outdoors)
+"wk" = (
+/obj/structure/closet/radiation,
+/obj/item/clothing/glasses/meson/engine,
+/obj/effect/turf_decal/bot,
+/obj/item/sealant,
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "wF" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
 /turf/closed/wall/r_wall,
+/area/engine/engineering)
+"xh" = (
+/obj/structure/closet/radiation,
+/obj/item/clothing/glasses/meson/engine,
+/obj/effect/turf_decal/bot,
+/obj/item/sealant,
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "xj" = (
 /obj/item/radio/intercom{
@@ -822,16 +847,6 @@
 /obj/item/sealant,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"yt" = (
-/obj/structure/closet/radiation,
-/obj/item/clothing/glasses/meson/engine,
-/obj/effect/turf_decal/bot,
-/obj/item/sealant,
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "yD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -862,6 +877,17 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"zv" = (
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "zF" = (
 /obj/structure/cable/yellow{
@@ -1351,13 +1377,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Oe" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "OD" = (
 /turf/template_noop,
 /area/template_noop)
@@ -1619,13 +1638,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Va" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "Vb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1644,6 +1656,16 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"Vo" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "Vr" = (
 /obj/machinery/light{
@@ -1850,7 +1872,7 @@ OD
 OD
 IG
 jp
-yt
+wk
 Pd
 zG
 jp
@@ -1860,7 +1882,7 @@ di
 bl
 FQ
 jp
-zG
+xh
 MQ
 zG
 OD
@@ -1910,7 +1932,7 @@ UH
 JW
 hW
 Vb
-lx
+zv
 jp
 aA
 nh
@@ -2110,7 +2132,7 @@ dO
 mU
 Np
 rB
-Oe
+Vo
 kC
 fA
 pp
@@ -2120,7 +2142,7 @@ xJ
 QH
 DK
 BF
-Va
+sK
 ya
 IA
 wF
