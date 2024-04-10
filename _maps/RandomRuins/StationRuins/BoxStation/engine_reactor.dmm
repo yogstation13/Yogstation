@@ -107,12 +107,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"cA" = (
-/obj/effect/turf_decal/pool{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "df" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -233,6 +227,15 @@
 	pixel_x = 25
 	},
 /turf/open/floor/noslip,
+/area/engine/engineering)
+"io" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 6
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "is" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -427,6 +430,15 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/engine/engineering)
+"oq" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "oz" = (
 /obj/machinery/atmospherics/pipe/simple/brown/visible{
 	dir = 8
@@ -604,6 +616,15 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/brown/visible,
 /turf/open/floor/plating,
+/area/engine/engineering)
+"tz" = (
+/obj/effect/turf_decal/pool{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "tZ" = (
 /obj/machinery/computer/station_alert,
@@ -957,12 +978,6 @@
 	network = list("ss13","engine")
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"Fd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "Fl" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
@@ -1414,12 +1429,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Qp" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "Qt" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -1482,6 +1491,12 @@
 "Sr" = (
 /turf/template_noop,
 /area/template_noop)
+"Ss" = (
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "Sz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1988,7 +2003,7 @@ BT
 Ue
 uK
 Ue
-Fd
+io
 Oh
 dH
 Li
@@ -2259,7 +2274,7 @@ ri
 dH
 tZ
 PR
-Qp
+oq
 Az
 Dv
 Ue
@@ -2268,7 +2283,7 @@ yn
 oz
 rW
 Rd
-cA
+tz
 Uc
 dH
 cg
@@ -2427,7 +2442,7 @@ Sr
 Sr
 uu
 kM
-Ue
+Ss
 dH
 qH
 Xk

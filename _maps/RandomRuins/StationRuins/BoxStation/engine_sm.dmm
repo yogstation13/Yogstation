@@ -1709,6 +1709,22 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"zd" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"CH" = (
+/mob/living/simple_animal/opossum/poppy,
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "CI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -1817,10 +1833,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"Jj" = (
-/mob/living/simple_animal/opossum/poppy,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "JA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -1904,6 +1916,15 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Lx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "LS" = (
@@ -2000,6 +2021,13 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"Qd" = (
+/obj/effect/mapping_helpers/teleport_anchor,
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "RS" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2388,7 +2416,7 @@ ac
 ah
 CI
 aJ
-aJ
+zd
 aJ
 qr
 bT
@@ -2428,7 +2456,7 @@ EH
 dB
 ad
 dT
-Jj
+CH
 eg
 bN
 ev
@@ -2764,7 +2792,7 @@ yN
 dL
 ad
 ea
-po
+Qd
 en
 bN
 ex
@@ -2781,7 +2809,7 @@ ac
 RS
 aW
 bp
-bz
+Lx
 bM
 ch
 bz

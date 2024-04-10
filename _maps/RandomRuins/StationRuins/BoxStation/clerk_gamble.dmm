@@ -28,19 +28,6 @@
 	},
 /turf/open/floor/wood,
 /area/clerk)
-"f" = (
-/obj/structure/table/wood,
-/obj/item/coinstack,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/plasma,
-/obj/item/coin/uranium,
-/obj/item/coin/diamond,
-/obj/item/coin/iron,
-/obj/item/coin/iron,
-/turf/open/floor/carpet/black,
-/area/clerk)
 "g" = (
 /obj/structure/table/wood/poker,
 /obj/machinery/door/poddoor/shutters{
@@ -233,6 +220,22 @@
 	dir = 9
 	},
 /turf/open/floor/wood,
+/area/clerk)
+"M" = (
+/obj/structure/table/wood,
+/obj/item/coinstack,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/plasma,
+/obj/item/coin/uranium,
+/obj/item/coin/diamond,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/carpet/black,
 /area/clerk)
 "N" = (
 /obj/structure/table/wood,
@@ -441,7 +444,7 @@ G
 G
 F
 u
-f
+M
 G
 w
 A
