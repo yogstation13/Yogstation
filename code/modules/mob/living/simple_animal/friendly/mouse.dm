@@ -46,6 +46,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 	move_force = MOVE_FORCE_EXTREMELY_WEAK
+	faction = list("neutral", "rat") //while they aren't rats, we don't want ai controlled rats killing these because rat king can convert them
 	var/chew_probability = 1
 	var/full = FALSE
 	var/eating = FALSE
