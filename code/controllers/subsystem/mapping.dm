@@ -206,7 +206,6 @@ SUBSYSTEM_DEF(mapping)
 	if(errorList.len)	// reebe failed to load
 		message_admins("Reebe failed to load!")
 		log_game("Reebe failed to load!")
-
 	//Load an Arena
 	errorList = list()
 	SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
