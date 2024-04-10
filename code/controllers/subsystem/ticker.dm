@@ -352,8 +352,6 @@ SUBSYSTEM_DEF(ticker)
 
 		place.power_change()
 
-
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(rock_paper_scissors_puzzle))
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
