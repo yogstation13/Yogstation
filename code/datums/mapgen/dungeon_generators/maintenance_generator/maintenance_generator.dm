@@ -1,3 +1,8 @@
+///If it spawns firedoors to ensure mass spacing doesn't happen
+#define ATMOS_CONTROL_FIREDOORS "spawn_firedoors"
+///If it spawns atmos fans to ensure mass spacing doesn't happen
+#define ATMOS_CONTROL_FANS "spawn_fans"
+
 /datum/map_generator/dungeon_generator/maintenance
 	weighted_open_turf_types = list(
 		/turf/open/floor/plating = 10, 
@@ -8,7 +13,7 @@
 	room_theme_path = /datum/dungeon_room_theme/maintenance
 	
 	///Boolean, whether or not firelocks are added to the maintenance
-	var/include_firelocks = TRUE
+	var/atmos_control = ATMOS_CONTROL_FIREDOORS
 	///Boolean, wether or not apcs are added to the maintenance
 	var/include_apcs = TRUE
 
@@ -16,19 +21,30 @@
 
 /datum/map_generator/dungeon_generator/maintenance/build_dungeon()
 	. = ..()
-	if(include_firelocks)
-		add_firelocks()
+	if(atmos_control)
+		add_atmos_control()
 	if(include_apcs)
 		add_apcs()
 		wire_apcs()
 	add_maint_loot()
 
-/datum/map_generator/dungeon_generator/maintenance/proc/add_firelocks()
+/datum/map_generator/dungeon_generator/maintenance/proc/add_atmos_control()
 	///we only want to look to place firedoors every 5 tiles, so we don't place too many
 	var/step_increment = 5
 	var/consecutive_firedoor_limit = 3
 	var/list/fire_door_spawn_points = list()
-	var/fire_doors_path = /obj/effect/mapping_helpers/firedoor_border_spawner
+
+	var/fire_doors_path
+	switch(atmos_control)
+		if(ATMOS_CONTROL_FANS)
+			fire_doors_path = /obj/structure/fans/tiny/indestructible
+		if(ATMOS_CONTROL_FIREDOORS)
+			fire_doors_path = /obj/effect/mapping_helpers/firedoor_border_spawner
+
+	if(!fire_doors_path)
+		return
+
+	//spawn vertical lines of atmos control
 	for(var/y in min_y to max_y step step_increment)
 		fire_door_spawn_points = list()
 		for(var/turf/current_turf in block(locate(min_x,y,z_level),locate(max_x,y,z_level)))
@@ -41,7 +57,10 @@
 			if(fire_door_spawn_points.len > consecutive_firedoor_limit && current_turf.is_blocked_turf(TRUE))
 				fire_door_spawn_points = list()
 	
-	fire_doors_path = /obj/effect/mapping_helpers/firedoor_border_spawner/horizontal
+	if(atmos_control == ATMOS_CONTROL_FIREDOORS)
+		fire_doors_path = /obj/effect/mapping_helpers/firedoor_border_spawner/horizontal
+
+	//spawn horizontal lines of atmos control
 	for(var/x in min_x to max_x step step_increment)
 		fire_door_spawn_points = list()
 		for(var/turf/current_turf in block(locate(x,min_y,z_level),locate(x,max_y,z_level)))
@@ -277,17 +296,15 @@
 	//since there are no firelocks, the place needs to be hard to space and replenish air automatically
 	weighted_open_turf_types = list(
 		/turf/open/floor/plating/backrooms = 10, 
-		/turf/open/floor/plating/rust/backrooms = 1,
+		/turf/open/floor/plating/rust = 1,
 		)
 
 	//removes firelocks and apcs as the area is large enough that it annihilates the server if it has a bunch of firelocks
-	include_firelocks = FALSE
+	atmos_control = ATMOS_CONTROL_FANS
 	include_apcs = FALSE
 
-/turf/open/floor/plating/rust/backrooms
-	baseturfs = /turf/open/floor/plating/backrooms
-	planetary_atmos = TRUE // prevent spacing backrooms
-
 /turf/open/floor/plating/backrooms
-	baseturfs = /turf/open/floor/plating/backrooms
-	planetary_atmos = TRUE // prevent spacing backrooms
+	baseturfs = /turf/open/floor/plating/backrooms	
+
+#undef ATMOS_CONTROL_FIREDOORS
+#undef ATMOS_CONTROL_FANS
