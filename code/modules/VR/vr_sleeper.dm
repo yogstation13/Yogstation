@@ -177,6 +177,8 @@
 		vr_human.undershirt = H.undershirt
 		vr_human.underwear = H.underwear
 		vr_human.updateappearance(TRUE, TRUE, TRUE)
+		if(!is_synth(vr_human) || !ishumanbasic(vr_human))
+			vr_human.set_species(/datum/species/human)
 		if(outfit)
 			var/datum/outfit/O = new outfit()
 			O.equip(vr_human)
