@@ -314,9 +314,12 @@
 	if(malf)
 		killer.add_malf_picker()
 
-/datum/antagonist/traitor/proc/equip(silent = FALSE)
+/datum/antagonist/traitor/proc/equip(var/silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
-		uplink_holder = owner.equip_traitor(employer, silent, src) //yogs - uplink_holder =
+		var/obj/item/uplink_loc = owner.equip_traitor(employer, silent, src)
+		var/datum/component/uplink/uplink = uplink_loc?.GetComponent(/datum/component/uplink)
+		if(uplink)
+			uplink_ref = WEAKREF(uplink) //yogs - uplink_holder =
 
 /datum/antagonist/traitor/proc/assign_exchange_role()
 	//set faction

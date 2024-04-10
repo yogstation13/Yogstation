@@ -32,7 +32,7 @@
 		if(backstory.murderbone)
 			recommended_backstories += "[path]"
 
-	add_menu_action()
+	// add_menu_action() -- dont need doubles lol -- cowbot93
 
 /datum/antagonist/traitor/proc/set_faction(datum/traitor_faction/new_faction)
 	if(!istype(new_faction))

@@ -12,17 +12,6 @@ export const AntagInfoHeader = (props: Props, _context) => {
   return (
     <Section>
       <Stack className="AntagInfo__header_outer">
-        {!!asset && (
-          <Stack.Item className="AntagInfo__header_img">
-            <Box
-              inline
-              as="img"
-              src={resolveAsset(asset)}
-              width="64px"
-              style={{ '-ms-interpolation-mode': 'nearest-neighbor' }}
-            />
-          </Stack.Item>
-        )}
         <Stack.Item grow className="AntagInfo__header_text">
           <h1>
             You are the{' '}
