@@ -148,6 +148,7 @@
 #define INIT_ORDER_JOBS				65
 #define INIT_ORDER_PATH				61
 #define INIT_ORDER_TICKER			55
+#define INIT_ORDER_DEMO				54
 #define INIT_ORDER_MAPPING			50
 #define INIT_ORDER_EARLY_ASSETS 	48
 #define INIT_ORDER_NETWORKS			45
@@ -177,7 +178,6 @@
 #define INIT_ORDER_EXPLOSIONS		-69
 #define INIT_ORDER_STATPANELS 		-97
 #define INIT_ORDER_INIT_PROFILER 	-98 //Near the end, logs the costs of initialize
-#define INIT_ORDER_DEMO				-99 // To avoid a bunch of changes related to initialization being written, do this last
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
 // Subsystem fire priority, from lowest to highest priority
