@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "custom shuttles no longer glitch out on takeoff"
