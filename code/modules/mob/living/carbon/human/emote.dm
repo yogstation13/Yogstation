@@ -210,6 +210,40 @@
 	if(H.dna.species.is_wagging_tail())
 		. = null
 
+/datum/emote/living/carbon/human/flap
+	key = "flap"
+	key_third_person = "flaps"
+	message = "flaps their wings."
+	hands_use_check = TRUE
+	var/wing_time = 20
+
+/datum/emote/living/carbon/human/flap/can_run_emote(mob/user, status_check, intentional)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.dna.features["wings"] == "None")
+			return FALSE
+	return ..()
+
+/datum/emote/living/carbon/human/flap/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/open = FALSE
+		if(H.dna.features["wings"] != "None")
+			if("wingsopen" in H.dna.species.mutant_bodyparts)
+				open = TRUE
+				H.CloseWings()
+			else
+				H.OpenWings()
+			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
+
+/datum/emote/living/carbon/human/flap/aflap
+	key = "aflap"
+	key_third_person = "aflaps"
+	message = "flaps their wings ANGRILY!"
+	hands_use_check = TRUE
+	wing_time = 10
+
 /datum/emote/living/carbon/human/wing
 	key = "wing"
 	key_third_person = "wings"
