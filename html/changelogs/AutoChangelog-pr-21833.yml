@@ -1,0 +1,4 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Adds those anti-leaving-z-level implants to all syndicate ghost roles."
