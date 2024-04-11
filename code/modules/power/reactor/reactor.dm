@@ -696,7 +696,7 @@
 
 /obj/item/circuitboard/computer/reactor
 	name = "Reactor Control (Computer Board)"
-	icon_state = "engineering"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/computer/reactor
 
 /obj/machinery/computer/reactor/Initialize(mapload, obj/item/circuitboard/C)
