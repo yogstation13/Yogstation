@@ -3,6 +3,7 @@
 /obj/machinery/computer/terminal
 	name = "terminal"
 	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old."
+	//convenience in deconstruction
 	circuit = /obj/item/circuitboard/computer/terminal
 	///Text that displays on top of the actual 'lore' funnies.
 	var/upperinfo = "COPYRIGHT 2487 NANOSOFT-TM - DO NOT REDISTRIBUTE"
@@ -16,7 +17,7 @@
 	..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Terminal", name) //The paper tgui file scares me, so new type of UI
+		ui = new(user, src, "Terminal", name) //The paper tgui file scared whoever wrote this, so new type of UI
 		ui.open()
 
 /obj/machinery/computer/terminal/ui_static_data(mob/user)
