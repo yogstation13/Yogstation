@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "mood is slightly less affected by lag"
+  - tweak: "makes it slightly easier to maintain good moods"
