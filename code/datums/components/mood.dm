@@ -189,11 +189,11 @@
 		if(4)
 			setSanity(sanity-0.025*delta_time, minimum=SANITY_DISTURBED)
 		if(5)
-			setSanity(sanity+0.1)
+			setSanity(sanity+0.1*delta_time)
 		if(6)
 			setSanity(sanity+0.15*delta_time)
 		if(7)
-			setSanity(sanity+0.2*delta_time)
+			setSanity(sanity+0.2*delta_time, maximum=SANITY_GREAT)
 		if(8)
 			setSanity(sanity+0.25*delta_time, maximum=SANITY_GREAT)
 		if(9)
@@ -241,7 +241,7 @@
 			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
 			sanity_level = 4
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
-			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.05, movetypes=(~FLYING))
 			sanity_level = 3
 		if(SANITY_NEUTRAL+1 to SANITY_GREAT+1) //shitty hack but +1 to prevent it from responding to super small differences
 			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=-0.1, movetypes=(~FLYING))
