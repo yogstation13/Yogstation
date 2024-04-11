@@ -361,6 +361,7 @@
 		force = on_damage
 		damtype = BURN
 		update_brightness()
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 
 /obj/item/flashlight/flare/toggle_light()
 	if(light_on || !fuel)
@@ -444,6 +445,13 @@
 /obj/item/flashlight/flare/is_hot()
 	return light_on * heat
 
+//fire isn't one light source, it's several constantly appearing and disappearing... or something
+/obj/item/flashlight/flare/proc/on_light_eater(atom/source, datum/light_eater)
+	SIGNAL_HANDLER 
+	if(light_on)
+		visible_message("The enduring flickering of \the [src] refuses to fade.")
+	return COMPONENT_BLOCK_LIGHT_EATER
+	
 /obj/item/flashlight/flare/emergency
 	name = "safety flare"
 	desc = "A flare issued to Nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey Nanotrasen'."
@@ -491,6 +499,13 @@
 	desc = "A mining lantern."
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
+
+/obj/item/flashlight/lantern/pinapolantern
+	name = "pinap-o'-lantern"
+	desc = "It's a pineapple."
+	icon = 'yogstation/icons/obj/items.dmi'
+	icon_state = "pinapolantern"
+	item_state = "pinapolantern"
 
 /obj/item/flashlight/lantern/heirloom_moth
 	name = "old lantern"

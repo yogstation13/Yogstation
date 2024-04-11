@@ -17,15 +17,15 @@
 	if(user.a_intent == INTENT_HARM)
 		return FALSE
 
-	if(obj_integrity == max_integrity)
+	if(atom_integrity == max_integrity)
 		to_chat(user, span_warning("[src] is already in good condition!"))
 		return FALSE
 
 	to_chat(user, span_notice("You begin repairing [src]..."))
 	if(I.use_tool(src, user, 10, volume=50))
 		to_chat(user, span_notice("You repair [src]."))
-		obj_integrity = min(max_integrity, obj_integrity + 20)
-		if(obj_integrity == max_integrity)
+		update_integrity(min(max_integrity, atom_integrity + 20))
+		if(atom_integrity == max_integrity)
 			to_chat(user, span_notice("[src] looks to be fully repaired now."))
 
 	return TRUE

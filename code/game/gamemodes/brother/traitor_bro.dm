@@ -5,7 +5,7 @@
 /datum/game_mode/traitor/bros
 	name = "traitor+brothers"
 	config_tag = "traitorbro"
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	required_players = 20 //yogs - just a minor change
 	title_icon = "ss13"
 

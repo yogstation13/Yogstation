@@ -19,6 +19,10 @@
 
 /mob/living/carbon/human/virtual_reality/Destroy()
 	revert_to_reality()
+	for(var/obj/item/I in get_all_contents())
+		if(I.item_flags & ABSTRACT)
+			continue
+		dropItemToGround(I, TRUE, TRUE)
 	return ..()
 
 /mob/living/carbon/human/virtual_reality/Life(seconds_per_tick = SSMOBS_DT, times_fired)
@@ -42,7 +46,12 @@
 
 /mob/living/carbon/human/virtual_reality/proc/check_area()
 	var/area/check = get_area(src)
-	if(!check || !istype(check, /area/awaymission/vr))
+	if(!check)
+		return
+	if(!istype(check, /area/awaymission/vr))
+		to_chat(src, span_userdanger("It is unwise to attempt to break Virtual Reality."))
+		playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
+		dust()
 		return
 	var/area/awaymission/vr/A = check
 	if(A.death)
@@ -65,6 +74,7 @@
 			if(vr_sleeper.you_die_in_the_game_you_die_for_real)
 				to_chat(real_mind, span_warning("You feel everything fading away..."))
 				real_mind.current.death(0)
+	
 	if(deathchecks && vr_sleeper)
 		vr_sleeper.vr_human = null
 		vr_sleeper = null
@@ -84,3 +94,12 @@
 			VR.revert_to_reality(FALSE)
 		else
 			Remove(owner)
+
+
+//Overwritten to ensure we don't get blocked by secret level checks
+/mob/living/carbon/human/virtual_reality/forceMove(atom/destination)
+	. = FALSE
+	if(destination)
+		. = doMove(destination)
+	else
+		CRASH("No valid destination passed into forceMove")

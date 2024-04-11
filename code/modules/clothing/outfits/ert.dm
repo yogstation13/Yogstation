@@ -47,10 +47,8 @@
 	back = /obj/item/storage/backpack/ert
 	belt = /obj/item/storage/belt/security/full
 	mask = /obj/item/clothing/mask/gas/sechailer
-	backpack_contents = list(
-		/obj/item/storage/box/engineer=1,
-		/obj/item/melee/baton/loaded=1
-		)
+	box = /obj/item/storage/box/survival/engineer
+	backpack_contents = list(/obj/item/melee/baton/loaded=1)
 	l_pocket = /obj/item/switchblade
 
 /datum/outfit/ert/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -68,10 +66,6 @@
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	suit_store = /obj/item/gun/energy/e_gun/stun
-	backpack_contents = list(
-		/obj/item/storage/box/engineer=1,
-		/obj/item/melee/baton/loaded=1
-		)
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber
 
 /datum/outfit/ert/security
@@ -84,8 +78,8 @@
 	belt = /obj/item/storage/belt/security/full
 	suit_store = /obj/item/gun/energy/e_gun
 	mask = /obj/item/clothing/mask/gas/sechailer
+	box = /obj/item/storage/box/survival/engineer
 	backpack_contents = list(
-		/obj/item/storage/box/engineer=1,
 		/obj/item/storage/box/zipties=1,
 		/obj/item/melee/baton/loaded=1
 		)
@@ -105,7 +99,6 @@
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	suit_store = /obj/item/gun/energy/e_gun/stun
 	backpack_contents = list(
-		/obj/item/storage/box/engineer=1,
 		/obj/item/storage/box/handcuffs=1,
 		/obj/item/melee/baton/loaded=1
 		)
@@ -203,7 +196,6 @@
 	suit_store = /obj/item/gun/energy/e_gun
 	mask = /obj/item/clothing/mask/gas/sechailer
 	backpack_contents = list(
-		/obj/item/storage/box/engineer=1,
 		/obj/item/assembly/flash/handheld=1,
 		/obj/item/grenade/flashbang=1,
 		/obj/item/reagent_containers/spray/pepper=1
@@ -215,9 +207,7 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
 	mask = /obj/item/clothing/mask/gas/sechailer
 	suit_store = /obj/item/gun/energy/e_gun/stun
-
-	backpack_contents = list(/obj/item/storage/box/engineer=1,
-		/obj/item/storage/box/handcuffs=1,
+	backpack_contents = list(/obj/item/storage/box/handcuffs=1,\
 		/obj/item/melee/baton/loaded=1,
 		/obj/item/construction/rcd/loaded=1)
 
@@ -231,9 +221,8 @@
 	l_pocket = /obj/item/reagent_containers/autoinjector/combat
 	r_pocket = /obj/item/reagent_containers/autoinjector/combat/heresypurge
 	suit_store = /obj/item/gun/medbeam
-
+	box = /obj/item/storage/box/survival/engineer
 	backpack_contents = list(
-		/obj/item/storage/box/engineer=1,
 		/obj/item/melee/baton/loaded=1,
 		/obj/item/storage/firstaid/toxin=1,
 		/obj/item/storage/firstaid/fire=1,
@@ -261,9 +250,8 @@
 	belt = /obj/item/storage/belt/soulstone
 	suit_store = /obj/item/gun/energy/e_gun
 	l_pocket = /obj/item/nullrod
-	backpack_contents = list(
-		/obj/item/storage/box/engineer=1
-		)
+	box = /obj/item/storage/box/survival/engineer
+	backpack_contents = null
 
 /datum/outfit/ert/chaplain/inquisitor
 	name = "Inquisition Chaplain"
@@ -271,9 +259,6 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
 	r_pocket = /obj/item/grenade/chem_grenade/holy
 	belt = /obj/item/storage/belt/soulstone/full/chappy
-	backpack_contents = list(
-		/obj/item/storage/box/engineer=1
-		)
 
 /datum/outfit/ert/janitor
 	name = "ERT Janitor"
@@ -287,8 +272,8 @@
 	r_pocket = /obj/item/grenade/chem_grenade/cleaner
 	l_pocket = /obj/item/grenade/chem_grenade/cleaner
 	mask = /obj/item/clothing/mask/gas/sechailer
-	backpack_contents = list(/obj/item/storage/box/engineer=1,\
-		/obj/item/storage/box/lights/mixed=1,\
+	box = /obj/item/storage/box/survival/engineer
+	backpack_contents = list(/obj/item/storage/box/lights/mixed=1,\
 		/obj/item/mop/advanced=1,\
 		/obj/item/reagent_containers/glass/bucket=1,\
 		/obj/item/grenade/clusterbuster/cleaner=1)
@@ -305,8 +290,7 @@
 
 /datum/outfit/ert/janitor/heavy
 	name = "ERT Janitor - Heavy Duty"
-	backpack_contents = list(/obj/item/storage/box/engineer=1,\
-		/obj/item/reagent_containers/spray/chemsprayer/janitor=1,\
+	backpack_contents = list(/obj/item/reagent_containers/spray/chemsprayer/janitor=1,\
 		/obj/item/storage/box/lights/mixed=1,\
 		/obj/item/melee/classic_baton/telescopic=1,\
 		/obj/item/grenade/clusterbuster/cleaner=3)
@@ -325,8 +309,8 @@
 	mask = /obj/item/clothing/mask/gas/explorer
 	shoes = /obj/item/clothing/shoes/bhop
 	uniform = /obj/item/clothing/under/rank/miner/lavaland
+	box = /obj/item/storage/box/survival/mining
 	backpack_contents = list(
-		/obj/item/storage/box/survival_mining=1,
 		/obj/item/crusher_trophy/demon_claws=1,
 		/obj/item/crusher_trophy/watcher_wing=1,
 		/obj/item/reagent_containers/autoinjector/medipen/survival=3,
@@ -349,7 +333,7 @@
 /datum/outfit/centcom_clown
 	name = "Code Banana ERT"
 	id = /obj/item/card/id/centcom
-	belt = /obj/item/pda/clown
+	belt = /obj/item/modular_computer/tablet/pda/preset/clown
 	ears = /obj/item/radio/headset/headset_cent
 	uniform = /obj/item/clothing/under/rank/clown
 	back = /obj/item/storage/backpack/clown

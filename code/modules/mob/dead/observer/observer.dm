@@ -465,6 +465,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (!istype(target) || (is_secret_level(target.z) && !client?.holder))
 		return
 
+	//shitcode override so that if you try to follow the AI, you'll get redirected to the AI eye where they're actually looking
+	if(isAI(target))
+		var/mob/living/silicon/ai/ai_target = target
+		if(ai_target.eyeobj)
+			target = ai_target.eyeobj
+	
 	var/icon/I = icon(target.icon,target.icon_state,target.dir)
 
 	var/orbitsize = (I.Width()+I.Height())*0.5
@@ -576,9 +582,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		ghost_others = client.prefs.read_preference(/datum/preference/choiced/ghost_others) //A quick update just in case this setting was changed right before calling the proc
 
 	if (!ghostvision)
-		see_invisible = SEE_INVISIBLE_LIVING
+		set_invis_see(SEE_INVISIBLE_LIVING)
 	else
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 
 
 	updateghostimages()

@@ -37,3 +37,14 @@
 		new /datum/computer_file/program/secureye/mining
 	)
 	. = ..()
+
+/obj/item/modular_computer/laptop/preset/network_admin
+	desc = "A multi-purpose laptop often used by network admins."
+	starting_files = list(new /datum/computer_file/program/ai/ai_network_interface)
+	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
+								/obj/item/stock_parts/cell/computer,
+								/obj/item/computer_hardware/hard_drive,
+								/obj/item/computer_hardware/network_card,
+								/obj/item/computer_hardware/ai_interface,
+								/obj/item/computer_hardware/ai_slot,
+								/obj/item/computer_hardware/card_slot)

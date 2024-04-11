@@ -543,9 +543,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	implants = list(/obj/item/implant/weapons_auth)
 	id = /obj/item/card/id/syndicate
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
+	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_empty/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
@@ -563,9 +561,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	r_pocket = /obj/item/kitchen/knife/combat/survival
 	belt = /obj/item/storage/belt/military/assault
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/battlecruiser/assault
 	name = "Syndicate Battlecruiser Assault Operative"
@@ -584,9 +579,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	suit_store = /obj/item/gun/ballistic/automatic/pistol
 	back = /obj/item/storage/backpack/security
 	mask = /obj/item/clothing/mask/gas/syndicate
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/battlecruiser/captain
 	name = "Syndicate Battlecruiser Captain"
@@ -606,13 +598,11 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	head = /obj/item/clothing/head/HoS/syndicate
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 //Icemoon Syndicate. Players become research agents working under a Syndicate research station.
-/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version - shouldnt be spawned
 	name = "Syndicate Outpost Agent"
+	desc = "A reinforced, Syndicate-made cryogenic sleeper used to store their agents for long periods of time, with hundreds of layers of redundancy."
 	short_desc = "You are an agent at the Syndicate icemoon outpost."
 	flavour_text = "You are meant to work within the outpost and may take any role within the base you see fit."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
@@ -628,14 +618,12 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/gas/syndicate
 	id = /obj/item/card/id/syndicate/anyone
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
+	implants = list(/obj/item/implant/weapons_auth, /obj/item/implant/teleporter/syndicate_icemoon) //stay in the FUCKING BASE you LITTLE SHIT
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
 	name = "Syndicate Outpost Security Officer"
 	short_desc = "You are a security officer at the Syndicate icemoon outpost."
-	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary."
+	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary. Repel intruders with your submachinegun."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/security
 
@@ -647,14 +635,11 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	belt = /obj/item/storage/belt/security/full //take like one guy alive
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses //identify the job of whoever the fuck is breaking in at a glance
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci
 	name = "Syndicate Outpost Researcher"
 	short_desc = "You are a researcher at the Syndicate icemoon outpost."
-	flavour_text = "Perform research for the sake of the Syndicate and advance technology."
+	flavour_text = "Perform research for the sake of the Syndicate and advance technology. Do xenobiological or chemical research."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/scientist
 
@@ -665,28 +650,22 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	accessory = /obj/item/clothing/accessory/armband/science
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd //it's a syndicate nerd
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
 	name = "Syndicate Outpost Engineer"
 	short_desc = "You are an engineer at the Syndicate icemoon outpost."
-	flavour_text = "Maintain and upgrade the base's systems and equipment."
+	flavour_text = "Maintain and upgrade the base's systems and equipment. Operate the nuclear reactor and absolutely do not let it melt down."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
 
 /datum/outfit/syndicate_empty/icemoon_base/engineer
 	name = "Syndicate Icemoon Outpost Engineer"
-	belt = /obj/item/storage/belt/utility/chief/full //mainly based off the fact that the syndie station ruin that's TM'd at the time of the ruin gives its engis this
+	belt = /obj/item/storage/belt/utility/chief/full //gamer tools
 	suit = /obj/item/clothing/suit/hazardvest
 	head = /obj/item/clothing/head/hardhat
 	accessory = /obj/item/clothing/accessory/armband/engine
-	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
+	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce //why not
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/medic
 	name = "Syndicate Outpost Doctor"
@@ -702,12 +681,10 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo //rapid hurt and chemical identification
 	accessory = /obj/item/clothing/accessory/armband/medblue
 	back = /obj/item/storage/backpack
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
 	name = "Syndicate Outpost Commander"
+	desc = "A Syndicate-made high-security cryogenic sleeper for senior officers. Looks fancy, and has even more layers of redundancy."
 	short_desc = "You are the commander of the Syndicate icemoon outpost."
 	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
@@ -724,10 +701,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/chameleon/gps //best one to give a GPS is this guy because he has a fast-firing 2-shot kill to defend his home with
 	head = /obj/item/clothing/head/HoS/beret/syndicate
 	back = /obj/item/storage/backpack/satchel/leather //LUXURY AT ITS FINEST
-	suit_store = /obj/item/gun/ballistic/revolver
+	suit_store = /obj/item/gun/ballistic/revolver/ultrasecure //No
 	belt = /obj/item/storage/belt/sabre //ceremonial shamnk
 	backpack_contents = list(
-		/obj/item/storage/box/syndie,
 		/obj/item/modular_computer/tablet/preset/syndicate=1,
 		/obj/item/ammo_box/a357=2,
 		/obj/item/melee/classic_baton/telescopic=1
@@ -936,9 +912,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/kitchen/knife/combat/survival
 	implants = list(/obj/item/implant/weapons_auth)
-	backpack_contents = list(
-		/obj/item/storage/box/syndie
-		)
+	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_derelict_engi/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE

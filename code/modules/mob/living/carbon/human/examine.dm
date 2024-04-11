@@ -356,13 +356,7 @@
 			if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
-	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		if(getorganslot(ORGAN_SLOT_EYES))
-			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
-		else
-			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
-
-	if((!glasses || !wear_suit) && mind?.has_antag_datum(ANTAG_DATUM_VEIL))
+	if((!wear_suit && !w_uniform) && mind?.has_antag_datum(ANTAG_DATUM_THRALL))
 		msg += "[t_His] whole body is covered in sigils!\n"
 
 	if(!appears_dead)
@@ -401,9 +395,15 @@
 				msg += "[t_He] [t_is] barely conscious.\n"
 		if(getorgan(/obj/item/organ/brain))
 			if(!key)
-				msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
+				if(is_synth(src))
+					msg += "The unit is indicating that it is currently inactive. Place this unit inside a synthetic storage unit to allow the onboard synthetic intelligences to control it.\n"
+				else
+					msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
 			else if(!client && !fake_client)
-				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
+				if(is_synth(src))
+					msg += "The unit is indicating that it is currently inactive. Place this unit inside a synthetic storage unit to allow the onboard synthetic intelligences to control it.\n"
+				else
+					msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
@@ -611,10 +611,6 @@
 		msg += "[t_He] really keeps to the left.\n"
 	else if(l_limbs_missing >= 2 && r_limbs_missing >= 2)
 		msg += "[t_He] [p_do()]n't seem all there.\n"
-
-
-	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
 
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")

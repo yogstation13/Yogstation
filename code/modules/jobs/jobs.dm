@@ -204,8 +204,10 @@ GLOBAL_LIST_INIT(security_positions, original_security_positions | alt_security_
 GLOBAL_LIST_INIT(nonhuman_positions, original_nonhuman_positions | alt_nonhuman_positions)
 GLOBAL_LIST_INIT(civilian_positions, original_civilian_positions | alt_civilian_positions)
 
+GLOBAL_LIST_INIT(crew_positions, command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions)
+
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions), // crew positions
+	EXP_TYPE_CREW = list("titles" = crew_positions),
 	EXP_TYPE_COMMAND = list("titles" = command_positions),
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
 	EXP_TYPE_MEDICAL = list("titles" = medical_positions),

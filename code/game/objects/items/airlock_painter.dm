@@ -439,7 +439,7 @@
  * * target - The turf being painted to
 */
 /obj/item/airlock_painter/decal/proc/paint_floor(turf/open/floor/target)
-	target.AddElement(/datum/element/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, null, null, alpha, color, null, FALSE, null)
+	target.AddElement(/datum/element/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, null, null, default_alpha, color, null, FALSE, null)
 
 /**
  * Return the final icon_state for the given decal options

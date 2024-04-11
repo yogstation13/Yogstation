@@ -24,6 +24,10 @@
 		/datum/job_department/cargo,
 	)
 
+	minimal_lightup_areas = list(
+		/area/construction/mining/aux_base
+	)
+
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 10,
 		/obj/item/grenade/plastic/miningcharge/lesser = 10,
@@ -40,7 +44,7 @@
 	name = "Shaft Miner"
 	jobtype = /datum/job/mining
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/shaft_miner
 
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining
@@ -61,7 +65,7 @@
 	backpack = /obj/item/storage/backpack/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
-	box = /obj/item/storage/box/survival_mining
+	box = /obj/item/storage/box/survival/mining
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
 

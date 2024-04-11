@@ -9,6 +9,7 @@
 	mutant_bodyparts = list("moth_wings")
 	default_features = list("moth_wings" = "Plain")
 	attack_verb = "slash"
+	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
@@ -43,6 +44,9 @@
 		randname += " [lastname]"
 
 	return randname
+
+/datum/species/moth/get_butt_sprite()
+	return BUTT_SPRITE_FUZZY
 
 /datum/species/moth/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
 	. = ..()
