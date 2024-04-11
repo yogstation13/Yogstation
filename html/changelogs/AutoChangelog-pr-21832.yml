@@ -1,0 +1,5 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - rscdel: "Deleted a simplemob referencing someone"
+  - imagedel: "Deleted images said simplemob were using"
