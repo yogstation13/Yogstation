@@ -566,14 +566,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 
 	switch(lighting_cutoff)
-		if (0)
+		if (LIGHTING_CUTOFF_VISIBLE)
 			lighting_cutoff = 50
 		if (50)
-			lighting_cutoff = 100
-		if (100)
-			lighting_cutoff = 0
+			lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 		else
-			lighting_cutoff = 0
+			lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
 
 	update_sight()
 
