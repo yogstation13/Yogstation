@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes vampire nightvision, thermal, and xray upgrades"
