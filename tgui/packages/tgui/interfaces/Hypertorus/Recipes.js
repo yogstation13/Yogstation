@@ -1,5 +1,5 @@
 import { Box, Button, Icon, Table, Tooltip } from '../../components';
-import { getGasColor, getGasLabel } from './helpers';
+import { getGasColor, getGasLabel } from '../common/AtmosControls';
 
 /*
  * Recipe selection interface

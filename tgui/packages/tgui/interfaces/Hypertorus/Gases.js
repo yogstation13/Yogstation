@@ -3,7 +3,8 @@ import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, NumberInput, ProgressBar, Section } from '../../components';
-import { HelpDummy, HoverHelp, getGasLabel, getGasColor } from './helpers';
+import { HelpDummy, HoverHelp } from './helpers';
+import { getGasColor, getGasLabel } from '../common/AtmosControls';
 
 /*
  * Displays contents of gas mixtures, along with help text for gases with
