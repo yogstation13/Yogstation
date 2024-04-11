@@ -11,6 +11,8 @@
 	weighted_closed_turf_types = list(/turf/closed/wall = 5, /turf/closed/wall/rust = 2 )
 	room_datum_path = /datum/dungeon_room/maintenance
 	room_theme_path = /datum/dungeon_room_theme/maintenance
+
+	probability_room_types = list(ROOM_TYPE_RUIN = 75, ROOM_TYPE_SPACE = 20)
 	
 	///Boolean, whether or not firelocks are added to the maintenance
 	var/atmos_control = ATMOS_CONTROL_FIREDOORS
@@ -299,8 +301,10 @@
 		/turf/open/floor/plating/rust = 1,
 		)
 
+	probability_room_types = list(ROOM_TYPE_RUIN = 75)
+
 	//removes firelocks and apcs as the area is large enough that it annihilates the server if it has a bunch of firelocks
-	atmos_control = ATMOS_CONTROL_FANS
+	atmos_control = null
 	include_apcs = FALSE
 
 /turf/open/floor/plating/backrooms
