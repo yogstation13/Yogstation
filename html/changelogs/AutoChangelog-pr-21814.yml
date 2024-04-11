@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed antinoblium not showing up properly in the HFR interface"
