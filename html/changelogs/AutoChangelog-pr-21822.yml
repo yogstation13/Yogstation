@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a tgui interface for the atmospheric simulator computer"
-  - bugfix: "Fixed a runtime error when trying to clear gases in the atmos simulator"
