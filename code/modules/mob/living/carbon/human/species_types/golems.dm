@@ -1389,6 +1389,7 @@
 	active_msg = span_notice("You start channeling your telecrystal core....")
 	deactive_msg = span_notice("You stop channeling your telecrystal core.")
 	spell_requirements = NONE
+	var/beam_icon = "tentacle"
 
 /datum/action/cooldown/spell/pointed/phase_jump/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
@@ -1400,7 +1401,7 @@
 	var/obj/spot1 = new phaseout(get_turf(user), user.dir)
 	owner.forceMove(target_turf)
 	var/obj/spot2 = new phasein(get_turf(user), user.dir)
-	spot1.Beam(spot2, "tentacle", time=2 SECONDS)
+	spot1.Beam(spot2, beam_icon, time=2 SECONDS)
 	user.visible_message(span_danger("[user] phase shifts away!"), span_warning("You shift around the space around you."))
 	return TRUE
 

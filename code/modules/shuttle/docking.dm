@@ -104,6 +104,17 @@
 
 /obj/docking_port/mobile/proc/preflight_check(list/old_turfs, list/new_turfs, list/areas_to_move, rotation)
 	for(var/i in 1 to length(old_turfs))
+		var/turf/oldT = old_turfs[i]
+		var/turf/newT = new_turfs[i]
+		if(!newT)
+			return DOCKING_NULL_DESTINATION
+		if(!oldT)
+			return DOCKING_NULL_SOURCE
+
+		oldT.clear_adjacencies()
+		newT.clear_adjacencies()
+
+	for(var/i in 1 to length(old_turfs))
 		CHECK_TICK
 		var/turf/oldT = old_turfs[i]
 		var/turf/newT = new_turfs[i]

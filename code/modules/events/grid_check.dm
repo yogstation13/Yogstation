@@ -1,6 +1,7 @@
 /datum/round_event_control/grid_check
 	name = "Grid Check"
 	typepath = /datum/round_event/grid_check
+	gamemode_blacklist = list("darkspawn") //no free win for darkspawns
 	weight = 10
 	max_occurrences = 3
 

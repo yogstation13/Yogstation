@@ -27,14 +27,14 @@
 	var/lights_on = FALSE
 	var/lights_colour = "16be00"
 
-/obj/item/clothing/suit/space/space_ninja/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/suit/space/space_ninja/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && lights_on)
 		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
-/obj/item/clothing/mask/gas/space_ninja/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/mask/gas/space_ninja/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && lights_on)
 		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
@@ -42,14 +42,14 @@
 		. += M
 
 
-/obj/item/clothing/shoes/space_ninja/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/shoes/space_ninja/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && lights_on)
 		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
 		M.color = lights_colour
 		. += M
 
-/obj/item/clothing/gloves/space_ninja/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/gloves/space_ninja/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
 	if(!isinhands && lights_on)
 		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "s-ninja-overlay")
