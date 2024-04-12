@@ -9,10 +9,12 @@ import { JobsPage } from "./JobsPage";
 import { MainPage } from "./MainPage";
 import { SpeciesPage } from "./SpeciesPage";
 import { QuirksPage } from "./QuirksPage";
+import { BackgroundPage } from "./BackgroundPage";
 
 enum Page {
   Antags,
   Main,
+  Background,
   Jobs,
   Species,
   Quirks,
@@ -58,6 +60,7 @@ export const CharacterPreferenceWindow = (props, context) => {
     case Page.Main:
       pageContents = (<MainPage
         openSpecies={() => setCurrentPage(Page.Species)}
+        openBackground={() => setCurrentPage(Page.Background)}
       />);
 
       break;
@@ -67,6 +70,12 @@ export const CharacterPreferenceWindow = (props, context) => {
       />);
 
       break;
+    case Page.Background:
+      pageContents = (<BackgroundPage
+        closeBackground={() => setCurrentPage(Page.Main)}
+      />);
+
+        break;
     case Page.Quirks:
       pageContents = <QuirksPage />;
       break;
