@@ -19,6 +19,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	light_range = 1
 	light_power = 2
 	light_on = FALSE
+	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	var/can_reenter_corpse
 	var/bootime = 0
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -567,8 +568,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	switch(lighting_cutoff)
 		if (LIGHTING_CUTOFF_VISIBLE)
-			lighting_cutoff = 40
-		if (40)
+			lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+		if (LIGHTING_CUTOFF_MEDIUM)
+			lighting_cutoff = 50
+		if (50)
 			lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 		else
 			lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
