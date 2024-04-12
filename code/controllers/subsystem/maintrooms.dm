@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(maintrooms)
 /obj/effect/portal/permanent/one_way/backrooms/get_link_target_turf()
 	var/list/valid_lockers = typecacheof(typesof(/obj/structure/closet) - typesof(/obj/structure/closet/body_bag)\
 	- typesof(/obj/structure/closet/secure_closet) - typesof(/obj/structure/closet/cabinet)\
-	- typesof(/obj/structure/closet/cardboard) - typesof(/obj/structure/closet/crate)\
+	- typesof(/obj/structure/closet/cardboard)
 	- typesof(/obj/structure/closet/supplypod) - typesof(/obj/structure/closet/stasis)\
 	- typesof(/obj/structure/closet/abductor) - typesof(/obj/structure/closet/bluespace), only_root_path = TRUE) //stolen from bluespace lockers
 
