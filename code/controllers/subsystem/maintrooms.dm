@@ -25,3 +25,34 @@ SUBSYSTEM_DEF(maintrooms)
 	for(var/area/A as anything in GLOB.areas)
 		if(istype(A, /area/procedurally_generated/maintenance/the_backrooms))
 			A.RunGeneration()
+
+	addtimer(CALLBACK(src, PROC_REF(generate_exit)), 1 MINUTES)
+
+/datum/controller/subsystem/maintrooms/proc/generate_exit()
+	var/backrooms_level = SSmapping.levels_by_trait(ZTRAIT_PROCEDURAL_MAINTS)
+	if(LAZYLEN(backrooms_level))
+		var/turf/way_out = find_safe_turf(zlevels = backrooms_level, dense_atoms = FALSE)
+		new /obj/effect/portal/permanent/one_way/backrooms(way_out)
+
+/obj/effect/portal/permanent/one_way/backrooms/get_link_target_turf()
+	var/list/valid_lockers = typecacheof(typesof(/obj/structure/closet) - typesof(/obj/structure/closet/body_bag)\
+	- typesof(/obj/structure/closet/secure_closet) - typesof(/obj/structure/closet/cabinet)\
+	- typesof(/obj/structure/closet/cardboard) - typesof(/obj/structure/closet/crate)\
+	- typesof(/obj/structure/closet/supplypod) - typesof(/obj/structure/closet/stasis)\
+	- typesof(/obj/structure/closet/abductor) - typesof(/obj/structure/closet/bluespace), only_root_path = TRUE) //stolen from bluespace lockers
+
+	var/list/lockers_list = list()
+	for(var/obj/structure/closet/L in GLOB.lockers)
+		if(!is_station_level(L.z))
+			continue
+		if(!is_type_in_typecache(L, valid_lockers))
+			continue
+		lockers_list += L
+	return get_turf(pick(lockers_list)) //no way this is safe, but it's probably fine.... right?
+
+/obj/effect/portal/permanent/one_way/backrooms/teleport(atom/movable/M, force)
+	. = ..()
+	if(.)
+		var/obj/structure/closet/end = locate() in loc
+		if(end)
+			M.forceMove(end) //get in the locker, nerd
