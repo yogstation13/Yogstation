@@ -1,5 +1,0 @@
-author: "AMyriad, PositiveEntropy, The Shiptest Team"
-delete-after: true 
-changes: 
-  - bugfix: "Welding hard hat visors are no longer invisible, and overlay correctly now"
-  - imageadd: "Added proper visor sprites for welding hard hats"
