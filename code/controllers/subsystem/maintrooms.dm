@@ -53,6 +53,6 @@ SUBSYSTEM_DEF(maintrooms)
 /obj/effect/portal/permanent/one_way/backrooms/teleport(atom/movable/M, force)
 	. = ..()
 	if(.)
-		var/obj/structure/closet/end = locate() in loc
+		var/obj/structure/closet/end = locate() in get_turf(M)
 		if(end)
 			M.forceMove(end) //get in the locker, nerd
