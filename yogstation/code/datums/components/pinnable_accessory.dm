@@ -16,13 +16,13 @@
 	src.on_pre_pin = on_pre_pin
 
 /datum/component/pinnable_accessory/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_INTERACTING_WITH_ATOM, PROC_REF(on_atom_interact))
+	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_atom_interact))
 
 /datum/component/pinnable_accessory/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_ITEM_INTERACTING_WITH_ATOM)
+	UnregisterSignal(parent, COMSIG_ITEM_AFTERATTACK)
 
 /// Called when you whack someone with this accessory
-/datum/component/pinnable_accessory/proc/on_atom_interact(obj/item/clothing/accessory/badge, mob/living/user, atom/target, modifiers)
+/datum/component/pinnable_accessory/proc/on_atom_interact(obj/item/clothing/accessory/badge, mob/target, mob/user, proximity_flag, click_parameters)
 	SIGNAL_HANDLER
 	if (!ishuman(target) || target == user)
 		return

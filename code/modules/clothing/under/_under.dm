@@ -27,15 +27,16 @@
 
 /obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
 	. = ..()
-	if(!isinhands)
-		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
-		if(HAS_BLOOD_DNA(src))
-			var/mutable_appearance/bloody_uniform = mutable_appearance('icons/effects/blood.dmi', "uniformblood")
-			bloody_uniform.color = get_blood_dna_color(return_blood_DNA())
-			. += bloody_uniform
-		if(accessory_overlay)
-			. += accessory_overlay
+	if(isinhands)
+		return
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
+	if(HAS_BLOOD_DNA(src))
+		var/mutable_appearance/bloody_uniform = mutable_appearance('icons/effects/blood.dmi', "uniformblood")
+		bloody_uniform.color = get_blood_dna_color(return_blood_DNA())
+		. += bloody_uniform
+	if(accessory_overlay)
+		. += accessory_overlay
 
 /obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
 	if((has_sensor == BROKEN_SENSORS) && istype(I, /obj/item/stack/cable_coil))
